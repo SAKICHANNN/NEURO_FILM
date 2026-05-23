@@ -3,26 +3,29 @@ name: "Kodak Ektar 100"
 short_name: "ektar_100"
 film_type: "negative_color_still"
 iso: 100
-white_balance: "daylight"
 
-hd_curve:
-  csv_path: "data/physics/kodak_ektar_100/hd_curve.csv"
-  r: {toe: -2.4, linear_shoulder: 0.8, gamma: 0.60, dmax: 3.2}
-  g: {toe: -2.3, linear_shoulder: 0.8, gamma: 0.59, dmax: 3.1}
-  b: {toe: -2.1, linear_shoulder: 0.7, gamma: 0.57, dmax: 2.9}
+style:
+  prompt: "a vivid photograph shot on Kodak Ektar 100 film, ultra fine grain, rich saturated colors, high contrast, sharp details, analog film photography"
+  negative_prompt: "digital, oversharpened, HDR, muted colors, low contrast, B&W"
+
+lora:
+  path: "loras/ektar_100.safetensors"
+  source: "civitai"
+  rank: 16
+
+inference:
+  strength: 0.45
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+ip_adapter:
+  enabled: false
+  scale: 0.5
 
 grain:
+  enabled: false
   rms_granularity: 8.0
-  shadow_power: 0.3
-  midtone_power: 0.2
-  highlight_power: 0.1
 
 halation:
+  enabled: false
   r_sigma: 0.3
-  g_sigma: 0.15
-  b_sigma: 0.08
-  threshold: 0.90
-
-color:
-  method: "cut"
-  model_path: null

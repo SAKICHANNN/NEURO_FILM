@@ -1,35 +1,34 @@
 import torch
 import torch.nn as nn
+from typing import Optional, List
+from PIL import Image
 
 
-class HalationSimulator(nn.Module):
-    """Multi-channel Gaussian scatter to simulate film halation.
+class LoRATrainer:
+    """SDXL LoRA fine-tuning for film styles."""
 
-    Red channel gets largest scatter radius (bounces back through
-    anti-halation layer), green medium, blue smallest.
-
-    Consumer: pipeline_full.py
-    """
-
-    def __init__(self, r_sigma: float = 0.6, g_sigma: float = 0.3, b_sigma: float = 0.15, threshold: float = 0.85):
-        super().__init__()
+    def __init__(self, model_id: str = "stabilityai/stable-diffusion-xl-base-1.0",
+                 rank: int = 16, alpha: int = 16):
         raise NotImplementedError
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """(B,3,H,W) → (B,3,H,W)"""
+    def train(self, image_dir: str, prompt_template: str,
+              steps: int = 2000, lr: float = 1e-4,
+              resolution: int = 1024) -> str:
+        """Train LoRA on film domain images. Returns path to saved weights."""
+        raise NotImplementedError
+
+    def save(self, output_path: str):
         raise NotImplementedError
 
 
-class FilmGrainRenderer(nn.Module):
-    """Film grain rendering — wraps filmgrainer (MIT) or custom Newson implementation.
+class FilmStyleLoader:
+    """Loads film style configuration and manages prompt templates."""
 
-    Consumer: pipeline_full.py
-    """
-
-    def __init__(self, grain_radius: float = 0.1, grain_sigma: float = 0.0, n_monte_carlo: int = 400):
-        super().__init__()
+    def __init__(self, config_path: str):
         raise NotImplementedError
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """(B,3,H,W) → (B,3,H,W)"""
+    def get_prompt(self, style_name: str) -> str:
+        raise NotImplementedError
+
+    def get_negative_prompt(self, style_name: str) -> str:
         raise NotImplementedError

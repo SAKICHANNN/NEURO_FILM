@@ -1,0 +1,7 @@
+# Phase 2: Self-training film LoRA on SDXL
+training:
+  phase: phase2_lora_training
+  extends: configs/model/lora_sdxl.yaml
+
+# Override per film:
+# lora.rank, lora.alpha, training.max_train_steps

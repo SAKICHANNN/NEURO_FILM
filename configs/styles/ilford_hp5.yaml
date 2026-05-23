@@ -1,26 +1,32 @@
 # Ilford HP5 Plus — Classic black & white negative film
+# Note: self-trained LoRA (no Civitai equivalent identified for HP5 specifically)
 name: "Ilford HP5 Plus"
 short_name: "hp5"
 film_type: "negative_bw"
 iso: 400
-white_balance: "n/a"
 
-hd_curve:
-  csv_path: "data/physics/ilford_hp5/hd_curve.csv"
-  bw: {toe: -2.4, linear_shoulder: 0.9, gamma: 0.65, dmax: 3.4}
+style:
+  prompt: "a black and white photograph shot on Ilford HP5 Plus 400 film, classic grain, rich tonality, wide dynamic range, documentary photography, analog film"
+  negative_prompt: "color, digital, oversharpened, HDR, plastic, CGI, smooth, noise-free"
+
+lora:
+  path: "loras/hp5.safetensors"
+  source: "self_trained"
+  rank: 8
+
+inference:
+  strength: 0.45
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+ip_adapter:
+  enabled: false
+  scale: 0.5
 
 grain:
+  enabled: false
   rms_granularity: 17.0
-  shadow_power: 0.8
-  midtone_power: 0.7
-  highlight_power: 0.5
 
 halation:
+  enabled: false
   r_sigma: 0.5
-  g_sigma: 0.5
-  b_sigma: 0.5
-  threshold: 0.85
-
-color:
-  method: "grayscale"
-  model_path: null

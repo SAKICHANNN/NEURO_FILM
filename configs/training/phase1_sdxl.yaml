@@ -1,0 +1,11 @@
+# Phase 1: SDXL img2img inference with community LoRA
+training:
+  phase: phase1_sdxl_baseline
+
+inference:
+  resolution: 1024
+  num_inference_steps: 30
+  guidance_scale: 7.5
+
+strength_grid:
+  values: [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60]

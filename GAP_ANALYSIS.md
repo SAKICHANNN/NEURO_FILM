@@ -1,119 +1,101 @@
-# K-MCFM 项目缺口分析（修订版）
+# K-MCFM 项目缺口分析（V3 — Diffusion-Based Edition）
 
-> 基于 `docs/ARCH_REDESIGN.md` 的架构重设计，重新评估资源缺口。
-> 原 6 层数据策略和 CFM+Mamba+KAN 方案已放弃。
-
----
-
-## 1. 已解决的缺口
-
-| 原缺口 | 原方案 | 修订方案 | 状态 |
-|--------|--------|---------|:---:|
-| 无配对数据 | 6 层间接数据拼凑 | CUT 无配对 GAN + 3D LUT 自监督 | ✅ 架构级解决 |
-| VAE 潜空间坍塌风险 | 从 1e-6 逐增 KL weight | 像素空间直接操作 | ✅ 去掉 |
-| ODE 求解器慢 (30-50 NFE) | dopri5 自适应步长 | GAN 单次前向 | ✅ 去掉 |
-| Mamba 骨干不稳定 | Mamba® 寄存器修复 | 使用 ResNet/UNet 生成器 | ✅ 替换 |
-| KAN B-spline GPU 慢 | 限制维度 <64 | 解析函数 / MLP / LUT | ✅ 替换 |
-| mamba-ssm 无法安装 | 待修复 | 不再需要 | ✅ 去掉 |
+> 基于 V3 扩散模型方案（SDEdit + LoRA + IP-Adapter）重新评估。
 
 ---
 
-## 2. 仍存在的缺口
+## 1. 已解决的缺口（V1→V3）
 
-### 2.1 胶片域图片（颜色训练用）
+| V1 缺口 | V3 方案 | 状态 |
+|---------|---------|:---:|
+| 无配对数据 | 社区 LoRA 已有 30+ 胶片风格，自训练只需目标域图片 | ✅ |
+| 内容保真 | SDEdit 噪声级别控制 + IP-Adapter 内容锚定 | ✅ |
+| VRAM 限制 | SDXL 8GB@1024² 推理，LoRA 训练 8-10GB@512² | ✅ |
+| Mac 兼容 | MLX/MPS/CoreML 三选一 | ✅ |
+| 研发周期 | 5-6 周（vs V1 的 5.5 月）| ✅ |
 
-| 需求 | 当前状态 | 行动 |
-|------|---------|------|
-| 每胶片 ≥500 张高质量图片 | FilmSet 有 3 种风格 × 5,285 张，但质量参差 | 使用 FilmSet + 补充 web 爬取 |
-| 图片需反映真实胶片特征 | FilmSet 是 Capture One 胶片模拟，非真实扫描 | 优先使用 FilmSet（已有），后期补充真实扫描 |
+---
 
-**风险**: FilmSet 只有 3 种风格 (Cinema, ClassicNeg, Velvia)，与目标 8 种胶片不完全对应。
-**缓解**: 用相近的替代对应（Velvia → Velvia 50, ClassicNeg → Portra 系列），其他胶片从 web 收集。
+## 2. 当前缺口
 
-### 2.2 H&D 曲线 PDF
+### 2.1 高质量胶片域图片（LoRA 训练用）
 
-| 需求 | 当前状态 | 行动 |
-|------|---------|------|
-| 8 种胶片的完整 H&D 曲线 | PDF 已在 `data/physics/` (部分已下载，需重建) | `python scripts/download_data.py physics` 重新下载 |
-| 数字化工具 | WebPlotDigitizer (免费网页应用) | Phase 1.1 手动操作 |
-
-**风险**: 部分 PDF 可能只有 R/G/B 合并曲线，无分通道曲线。
-**缓解**: 使用合并曲线作为所有通道的基线 + 从胶片文献手动调整通道差异。
-
-### 2.3 颗粒参数
-
-| 需求 | 当前状态 | 行动 |
-|------|---------|------|
-| 每种胶片的 RMS granularity | Kodak/Ilford 技术文档中有公布 | 从 PDF 提取 |
-| RMS granularity → filmgrainer 参数映射 | 无现成映射 | 手动校准：生成不同参数下的颗粒图像，对比真实胶片扫描 |
-
-**风险**: filmgrainer 的物理精度有限（非 Newson Boolean 模型级别）。
-**缓解**: 先用 filmgrainer 快速验证管线，如需更高精度，自实现 Newson Pixel-wise 算法（3-5 天）。
-
-### 2.4 客观评估标准
-
-| 需求 | 当前状态 | 行动 |
-|------|---------|------|
-| 颜色精度量化 | 无 ground truth 配对 | 对比目标胶片域 histograms, ΔE2000 on ColorChecker |
-| 颗粒逼真度 | 无 ground truth 颗粒 | 主观评估为主，NPS (Noise Power Spectrum) 对比为辅 |
-| 光晕自然度 | 无 ground truth 光晕 | 主观评估，与真实胶片高光区域对比 |
-
-### 2.5 GPU 兼容性风险
-
-| 需求 | 风险 | 缓解 |
+| 胶片 | 状态 | 行动 |
 |------|------|------|
-| filmgrainer on RTX 5070 Ti | 未知，需测试 | 先测试，如不行回退 CPU 或自实现 |
-| SilverGrain | AGPL-3.0 + sm_120 不兼容 | **不使用** |
+| Portra 400, Vision3 500T, Ektar 100, Tri-X | Civitai 已有 LoRA | 下载 + 验证 |
+| Vision3 250D, Portra 800 | Civitai 可能有 | 搜索 + 验证 |
+| Velvia 50, HP5 | 无现成 | **需自训练**（每胶片需 ≥200 张） |
 
-### 2.6 CUT PyTorch 2.x 兼容
+**数据来源优先级**：
+1. FilmSet（3 风格 × 5285 张，已有，但非真实扫描）
+2. Flickr 标签搜索 `kodak portra 400`, `shot on portra` 等
+3. r/analog 子版（Reddit 社区，高质量）
+4. 500px / Lomography 标签搜索
 
-| 需求 | 风险 | 缓解 |
+**风险**：Flickr/Reddit 图片可能有压缩、水印、过度后期。需人工筛选。
+
+### 2.2 LoRA 训练环境
+
+| 需求 | 状态 | 行动 |
 |------|------|------|
-| CUT 代码在 PyTorch 2.11 上运行 | 官方代码基于 PyTorch 1.1 | 手动修复 5-10 行 API 变更 (torch.tensor, nn.Module.module 等) |
+| kohya-ss sd-scripts | 需安装 | `git clone` + 配置 |
+| diffusers 训练脚本 | 需安装 | pip install diffusers[training] |
+| 12GB 训练 1024² | 可能 OOM（需 gradient checkpointing + 8-bit Adam） | 降级到 768² 或减少 batch |
 
----
+### 2.3 IP-Adapter 兼容性
 
-## 3. 不再需要的资源
+| 需求 | 状态 | 行动 |
+|------|------|------|
+| SDXL IP-Adapter Plus | h94/IP-Adapter 提供 | 下载 safetensors 权重 |
+| 与胶片 LoRA 共存 | 理论上兼容（LoRA 改 UNet，IP-Adapter 加 cross-attn） | 需要实测验证 |
 
-以下原计划所需资源不再需要：
+### 2.4 Civitai LoRA 许可
 
-| 资源 | 原因 |
+| 风险 | 说明 |
 |------|------|
-| MambaVision 预训练权重 (HuggingFace) | Mamba 骨干已放弃 |
-| KAN 相关依赖 (pykan, scikit-learn) | KAN 物理层已放弃 |
-| SD VAE 预训练权重 | VAE 潜空间已放弃 |
-| CFM 参考实现 (torchcfm) | CFM 方案已放弃 |
-| mamba-ssm causal-conv1d | 不再需要 |
-| Mitsuba 3 PBR 合成管线 | 不再需要（CUT 无配对，不需要合成配对数据） |
-| 光谱灵敏度数据 | 光谱交叉模块已延期 |
-| CIE 色度数据 | 链路简化，不再需要 |
+| 商用限制 | 部分 LoRA 标注"不能商用"。学术/个人 OK，发布前需检查。 |
+| 下载失效 | Civitai 链接可能失效。建议备份本地。 |
 
 ---
 
-## 4. 风险矩阵
+## 3. VRAM OOM 降级策略
 
-| 风险 | 概率 | 影响 | 缓解策略 |
+| 优先级 | 操作 | 省 VRAM |
+|:---:|------|:---:|
+| 1 | 降到 768² 推理/训练 | ~2-3 GB |
+| 2 | 换 SD 3.5 Medium（2.5B vs SDXL 2.6B） | ~1.5 GB |
+| 3 | 关掉 IP-Adapter | ~1 GB |
+| 4 | 关掉 ControlNet | ~1.5 GB |
+| 5 | FP16→GGUF Q8（仅 Flux） | ~4 GB |
+
+---
+
+## 4. 风险评估
+
+| 风险 | 概率 | 影响 | 缓解 |
 |------|:---:|:---:|------|
-| 胶片域图片质量不足 | 中 | 高 | FilmSet + web 补充 + 最终可能需要用户自拍 |
-| filmgrainer 在 RTX 5070 Ti 上不兼容 | 低 | 中 | CPU 回退 + 自实现 Newson 算法 |
-| CUT 训练出现 mode collapse | 中 | 高 | 先试 3D LUT 方案 (有预训练权重) |
-| H&D 曲线数字化精度不足 | 低 | 中 | 多数据点 + 插值平滑 + MLP 拟合 |
-| CUT 颜色转移产生伪影 | 中 | 中 | Identity loss + lighter texture matching (减少 PatchNCE layers) |
+| 社区 LoRA 质量差 | 中 | 中 | 自训练替代 |
+| LoRA + IP-Adapter 冲突 | 低 | 中 | 独立测试，降低 ip_adapter_scale |
+| Velvia 50 正片数据不足 | 中 | 中 | 从 Flickr/500px 正片标签收集 |
+| strength 无法同时满足内容+风格 | 低 | 高 | IP-Adapter 做内容补偿 |
+| Mac 推理太慢（>30s） | 中 | 低 | CoreML 转换提速 2-3× |
+| Civitai LoRA 链接失效 | 低 | 低 | 本地备份所有 LoRA 文件 |
 
 ---
 
-## 5. 下一步行动
+## 5. 不再需要的资源
 
-按优先级排序：
-
-1. **P0**: 重新下载物理 PDF (`scripts/download_data.py physics`)
-2. **P0**: 安装 filmgrainer，在 RTX 5070 Ti 上测试兼容性
-3. **P0**: 数字化 2 个胶片的 H&D 曲线（Vision3 500T + Portra 400）
-4. **P0**: 实现光晕 + 颗粒模块
-5. **P0**: 跑通手动管线 CLI
-6. **P1**: 收集胶片域图片数据
-7. **P1**: CUT 颜色迁移训练
+| V1/V2 需求 | 原因 |
+|-----------|------|
+| MambaVision 权重 | 架构已放弃 |
+| pykan / KAN | 架构已放弃 |
+| causal-conv1d / mamba-ssm | 不再使用 |
+| SD VAE 预训练（VAE 训练用） | diffusers 内置 SDXL VAE |
+| CFM torchcfm | 不再使用 |
+| Mitsuba 3 PBR | 不再需要合成配对数据 |
+| 3D LUT 训练 | 扩散模型替代 |
+| CUT 训练 | 扩散模型替代 |
 
 ---
 
-*修订版本: v2.0 | 2026-05-23 | 基于 ARCH_REDESIGN.md*
+*修订版本: V3.0 | 2026-05-23 | Diffusion-Based Edition*

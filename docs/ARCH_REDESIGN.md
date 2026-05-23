@@ -281,4 +281,194 @@ Digital Input (B, 3, H, W) linear RGB, float32, [0,1]
 
 ---
 
-*编写日期: 2026-05-23 | 修订版本: v1.0*
+*编写日期: 2026-05-23 | 修订版本: v2.0*
+
+---
+
+## 10. V3: Diffusion-Based Film Translation（2026-05-23 追加）
+
+> 前两版方案（原始 CFM+Mamba+KAN、V2 的 CUT+3D LUT+颗粒）都有一个根本问题：**它们生产的"胶片效果"本质上是 LUT 色调映射 + 噪声叠加，缺少 AI 文生图模型对胶片美学的那种深层理解**。
+>
+> SD/Flux 等扩散模型已经在 Civitai 社区通过 LoRA 证明了它们能生成"看起来像胶片拍的"图像——Kodak Vision3 500T/250D、Portra 400/800、Ektar 100、Gold 200 等胶片 LoRA 已可下载使用。
+>
+> **核心挑战不是生成胶片外观，而是保留输入图像的事实性内容。**
+
+### 10.1 核心方案：SDEdit + 胶片 LoRA + IP-Adapter
+
+```
+Digital Input (3, H, W)
+    │
+    ▼
+[Preprocess] → resize 1024², normalize
+    │
+    ▼
+[VAE Encode] → z_0 (4, H/8, W/8)
+    │
+    ▼
+[Forward Diffuse]: z_t = √(α_t)·z_0 + √(1-α_t)·ε
+    │  t_start 控制内容保真度:
+    │  0.3 = 几乎不改，轻微色调
+    │  0.5 = 内容保留 + 明显胶片风格  ← sweet spot
+    │  0.7 = 强风格，内容可能偏移
+    │  1.0 = 纯文生图，内容丢失
+    │
+    ▼
+[Denoise with Film Conditioning]:
+    ├── Film LoRA (per-stock, 2-5MB)
+    ├── Text Prompt: "a cinematic photograph shot on Kodak Portra 400"
+    ├── IP-Adapter (input image as content anchor, 22M params)
+    └── Optional: ControlNet-depth/lineart (structure lock)
+    │
+    ▼
+[VAE Decode] → (3, H, W) film image
+    │
+    ▼
+[Optional Post-Process]:
+    ├── Film grain (filmgrainer or Newson Boolean)
+    ├── Halation (Gaussian scatter)
+    └── H&D tone curve (subtle finishing)
+    │
+    ▼
+Film Output
+```
+
+### 10.2 VRAM 可行性（2026 年实测数据）
+
+| 配置 | 推理 (1024²) | LoRA 训练 (512²) |
+|------|:---:|:---:|
+| SDXL FP16 | 7.5 GB | 8-10 GB |
+| SDXL + LoRA | 8 GB | 8-10 GB |
+| SDXL + LoRA + IP-Adapter | 8.5 GB | — |
+| SDXL + LoRA + ControlNet | 10 GB | — |
+| SD 3.5 Medium FP16 | 6 GB | 7-9 GB |
+| SD 3.5 Large FP8 | 12 GB | >12 GB |
+| Flux.1 Dev GGUF Q4 | 12 GB | >12 GB |
+| Flux.1 Schnell GGUF Q4 | 12 GB (4 steps) | >12 GB |
+
+**结论**：SDXL 在 12GB RTX 5070 Ti 上完全可行，余量充足。SD 3.5 Medium 更省。Flux GGUF 可用但训练需云 GPU。
+
+### 10.3 为什么 SDEdit + LoRA 比 CUT/3D LUT 更好
+
+| 维度 | CUT/3D LUT (V2) | SDEdit + LoRA (V3) |
+|------|:---:|:---:|
+| 电影感颜色 | 统计分布匹配 | **AI 深层理解** |
+| 纹理细节 | 噪声叠加 | **扩散模型生成真实纹理** |
+| 内容保真 | GAN 不稳定 | **噪声级别可控** |
+| 分辨率 | ≤512² 训练 | 1024² 推理 |
+| 可解释性 | LUT 可解释 | LoRA 权重可解释 |
+| 社区生态 | 无 | **大量现成 LoRA** |
+| VRAM | 3-5 GB | 7-10 GB |
+
+### 10.4 内容保真策略
+
+**方式一：SDEdit 噪声级别控制（最简单）**
+```python
+# diffusers img2img pipeline
+pipe(
+    prompt="cinematic photo, Kodak Portra 400 film stock, film grain",
+    image=input_image,
+    strength=0.45,          # 0.4-0.5 for film simulation
+    guidance_scale=7.5,
+)
+```
+- strength=0.4 → 内容几乎不动，色调胶片化
+- strength=0.5 → 内容保留 + 明显胶片风格
+- strength=0.6 → 较强风格，细小内容可能变化
+
+**方式二：IP-Adapter 内容注入（更强内容锁定）**
+```python
+pipe.load_ip_adapter("h94/IP-Adapter", subfolder="models", 
+                      weight_name="ip-adapter-plus_sdxl_vit-h.bin")
+pipe.set_ip_adapter_scale(0.5)  # 0.3-0.6 range
+result = pipe(
+    prompt="...",
+    ip_adapter_image=input_image,
+    strength=0.5,
+)
+```
+IP-Adapter 将输入图像的特征注入 cross-attention，提供额外的内容引导。
+
+**方式三：InstructPix2Pix-style 双 CFG**
+```python
+# image_guidance_scale 控制"多像原图"
+# guidance_scale 控制"多听 prompt"
+pipe(
+    prompt="convert to Kodak Portra 400 film photograph",
+    image=input_image,
+    image_guidance_scale=1.5,   # ↑ = 更像原图
+    guidance_scale=7.5,         # ↑ = 更听 prompt
+)
+```
+
+### 10.5 Mac 兼容性
+
+| 平台 | 方案 | SDXL 推理速度 |
+|------|------|:---:|
+| M1 Max 64GB | MLX (Apple 官方) | ~15-20s/image |
+| M1 Max 64GB | MPS (PyTorch) | ~25-30s/image |
+| M5 32GB | MLX | ~8-12s/image |
+| M5 32GB | CoreML 转换 | ~5-8s/image |
+| RTX 5070 Ti 12GB | CUDA | ~4-6s/image |
+
+SDXL LoRA 训练在 Mac 上也可行（MLX），但比 CUDA 慢 3-5×，适合轻量实验。
+
+### 10.6 修订实施计划（3 阶段，5-6 周）
+
+**Phase 1: SDXL 基线 + 胶片 LoRA 推理（1 周）**
+1. 加载 SDXL + diffusers img2img pipeline
+2. 从 Civitai 下载现成胶片 LoRA（Vision3 500T, Portra 400, Ektar 100 等）
+3. 调优 strength 参数，找到每种胶片的最佳内容/风格平衡点
+4. 主观评估输出质量
+
+**Phase 2: 自训练胶片 LoRA（2 周）**
+1. 收集高质量胶片扫描图片（每种 ≥200 张）
+2. 用 kohya-ss / diffusers LoRA 训练脚本在 SDXL 上微调
+3. 512² 训练，12GB 足够
+4. 针对内容保真做 LoRA rank 和 alpha 消融实验
+
+**Phase 3: 管线 + 微调（2 周）**
+1. IP-Adapter 集成（增强内容保真）
+2. ControlNet 可选集成（深度/边缘结构锁）
+3. 后处理串联（颗粒 + 光晕）
+4. Mac MLX 适配
+5. 全管线 CLI + 批量推理
+
+**训练数据需求**：
+- SDXL LoRA 训练：每胶片 200-500 张高质量扫描/胶片域图片
+- 数据源：FilmSet（3 风格 × 5285）、Flickr r/analog、个人收藏
+
+### 10.7 放弃从 V2 计划
+
+| V2 组件 | 放弃原因 |
+|---------|---------|
+| CUT/CycleGAN 训练 | GAN 稳定性不如扩散模型，颜色质量差 |
+| 3D LUT 预测 | LUT 只能做全局颜色，无纹理/光影理解 |
+| H&D 曲线手动管线 | 扩散模型内部已学习色调映射 |
+| 光晕作为独立模块 | 扩散模型可生成自然光晕（如果训练数据包含） |
+| filmgrainer 前端集成 | 扩散模型可生成颗粒（但后处理颗粒更可控） |
+
+### 10.8 保留作为后处理的可选项
+
+- **颗粒**：如果扩散模型生成的颗粒不够，追加 filmgrainer
+- **光晕**：如果高光红晕不明显，追加 Gaussian scatter
+- **色调微调**：如果特定胶片的 D-max 或 toe 不够精确，追加 1D LUT
+
+这些后处理模块在 V3 中从"核心管线"降级为"可选精修工具"。
+
+### 10.9 关键参考资料（扩散模型）
+
+| 资源 | 用途 |
+|------|------|
+| SDEdit (Meng et al., ICLR 2022) | 噪声-降噪内容保真框架 |
+| InstructPix2Pix (Brooks et al., CVPR 2023) | 图像编辑 + 双 CFG |
+| IP-Adapter (Ye et al., 2023) | 图像特征注入 cross-attention |
+| InstantStyle (2024) | IP-Adapter 解耦风格/内容 |
+| diffusers img2img pipeline | 标准 SDEdit 实现 |
+| kohya-ss sd-scripts | LoRA 训练工具 |
+| FluxGym / SimpleTuner | Flux LoRA 训练 |
+| ControlNet (Zhang et al., ICCV 2023) | 结构条件注入 |
+| Civitai 胶片 LoRA | 已有 30+ 胶片风格 LoRA 可下载 |
+
+---
+
+*修订版本: v3.0 | 2026-05-23 | 基于扩散模型 + LoRA 的内容保真胶片翻译*

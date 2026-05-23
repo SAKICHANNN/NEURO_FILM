@@ -1,0 +1,14 @@
+# Phase 3: Full pipeline with IP-Adapter + optional post-processing
+training:
+  phase: phase3_pipeline
+
+inference:
+  extends: configs/training/phase1_sdxl.yaml
+  ip_adapter_scale: 0.5
+  controlnet_conditioning_scale: 0.7
+  grain_enabled: false
+  halation_enabled: false
+
+evaluation:
+  test_images: 20
+  metrics: [clip_similarity, fid, delta_e]

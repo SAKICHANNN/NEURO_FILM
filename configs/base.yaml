@@ -1,50 +1,57 @@
-# K-MCFM Base Configuration
-# Revised architecture: modular pixel-space pipeline
+# K-MCFM V3 Base Configuration
+# Diffusion-based film translation: SDEdit + LoRA + IP-Adapter
 
 project:
   name: K-MCFM
-  version: 2.0
-  description: Modular Film Simulation Pipeline
+  version: 3.0
+  description: Diffusion-Based Film Translation
 
 hardware:
-  device: cuda
-  gpu: RTX 5070 Ti Laptop
-  vram_total_mb: 12227
-  vram_training_budget_mb: 10240
-  vram_inference_budget_mb: 3800
+  cuda:
+    device: cuda
+    gpu: RTX 5070 Ti Laptop
+    vram_total_mb: 12227
+  mac:
+    device: mps
+    mlx_enabled: true
 
 precision:
-  training: bf16-mixed
-  inference: fp32
+  training: fp16-mixed
+  inference: float16
 
 paths:
   data_root: data
-  physics_root: data/physics
   film_domain_root: data/film_domain
-  digital_domain_root: data/digital_domain
-  configs_root: configs/styles
+  loras_root: loras
   checkpoints_root: checkpoints
   outputs_root: outputs
 
-pipeline:
-  resolution: 512
-  color_space: linear_rgb
-  output_color_space: srgb
+inference:
+  resolution: 1024
+  num_inference_steps: 30
+  guidance_scale: 7.5
+  strength: 0.45
+
+training:
+  resolution: 1024
+  batch_size: 1
+  gradient_accumulation_steps: 4
+  max_train_steps: 2000
+  learning_rate: 1e-4
+  rank: 16
+  lora_alpha: 16
+  optimizer: adamw8bit
+  gradient_checkpointing: true
 
 modules:
-  color:
-    method: cut              # cut | cyclegan | lut_predictor | neural_preset
-    model_path: null          # pretrained generator checkpoint
-  tone:
-    method: hnd_lut           # 1D per-channel LUT from digitized H&D curves
-  halation:
-    enabled: true
-  grain:
-    method: filmgrainer       # filmgrainer | newson_custom
-    enabled: true
+  lora: true
+  ip_adapter: false
+  controlnet: false
+  grain_post: false
+  halation_post: false
 
 logging:
   use_wandb: false
   use_tensorboard: true
   log_every_n_steps: 50
-  save_every_n_epochs: 5
+  save_every_n_steps: 500

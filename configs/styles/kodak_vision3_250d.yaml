@@ -1,28 +1,31 @@
-# Kodak Vision3 250D — Daylight-balanced color negative motion picture film
+# Kodak Vision3 250D — Daylight-balanced motion picture color negative film
 name: "Kodak Vision3 250D"
 short_name: "vision3_250d"
 film_type: "negative_color_motion"
 iso: 250
-white_balance: "daylight"
 
-hd_curve:
-  csv_path: "data/physics/kodak_vision3_250d/hd_curve.csv"
-  r: {toe: -2.3, linear_shoulder: 0.7, gamma: 0.56, dmax: 3.0}
-  g: {toe: -2.2, linear_shoulder: 0.6, gamma: 0.55, dmax: 2.9}
-  b: {toe: -2.0, linear_shoulder: 0.5, gamma: 0.52, dmax: 2.7}
+style:
+  prompt: "a cinematic photograph shot on Kodak Vision3 250D motion picture film, daylight-balanced, natural colors, fine grain, analog cinematography"
+  negative_prompt: "digital, oversharpened, HDR, overprocessed, CGI, B&W, tungsten white balance"
+
+lora:
+  path: "loras/vision3_250d.safetensors"
+  source: "civitai"
+  rank: 16
+
+inference:
+  strength: 0.45
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+ip_adapter:
+  enabled: false
+  scale: 0.5
 
 grain:
+  enabled: false
   rms_granularity: 9.0
-  shadow_power: 0.6
-  midtone_power: 0.4
-  highlight_power: 0.2
 
 halation:
+  enabled: false
   r_sigma: 0.5
-  g_sigma: 0.25
-  b_sigma: 0.12
-  threshold: 0.85
-
-color:
-  method: "cut"
-  model_path: null

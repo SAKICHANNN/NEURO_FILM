@@ -1,28 +1,32 @@
-# Fujifilm Velvia 50 — High-saturation color reversal (slide) film
+# Fujifilm Velvia 50 — Ultra-saturated color reversal (slide) film
+# Note: self-trained LoRA (no Civitai equivalent identified)
 name: "Fujifilm Velvia 50"
 short_name: "velvia_50"
 film_type: "positive_color_slide"
 iso: 50
-white_balance: "daylight"
 
-hd_curve:
-  csv_path: "data/physics/fuji_velvia_50/hd_curve.csv"
-  r: {toe: -2.6, linear_shoulder: 1.0, gamma: 0.70, dmax: 3.5}
-  g: {toe: -2.5, linear_shoulder: 1.0, gamma: 0.68, dmax: 3.4}
-  b: {toe: -2.3, linear_shoulder: 0.9, gamma: 0.65, dmax: 3.2}
+style:
+  prompt: "a photograph shot on Fujifilm Velvia 50 slide film, ultra saturated vivid colors, deep shadows, high contrast, extremely fine grain, landscape photography"
+  negative_prompt: "digital, muted colors, low contrast, B&W, heavy noise, overexposed"
+
+lora:
+  path: "loras/velvia_50.safetensors"
+  source: "self_trained"
+  rank: 16
+
+inference:
+  strength: 0.45
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+ip_adapter:
+  enabled: false
+  scale: 0.5
 
 grain:
+  enabled: false
   rms_granularity: 3.0
-  shadow_power: 0.2
-  midtone_power: 0.1
-  highlight_power: 0.05
 
 halation:
+  enabled: false
   r_sigma: 0.2
-  g_sigma: 0.1
-  b_sigma: 0.05
-  threshold: 0.92
-
-color:
-  method: "cut"
-  model_path: null

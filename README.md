@@ -1,46 +1,28 @@
-# K-MCFM: Modular Film Simulation Pipeline
+# K-MCFM: Diffusion-Based Film Translation
 
-模块化数字到胶片图像转换管线 — 像素空间直接操作，4 模块解耦。
+用扩散模型（SDXL/SD3.5/Flux）将数码照片转化为内容保真的胶片摄影作品。
 
-**核心方法**: 颜色风格迁移 (CUT/CycleGAN or 3D LUT) → H&D 色调映射 → 光晕 → 颗粒
+**核心方法**: SDEdit (noise-denoise) + 胶片 LoRA + IP-Adapter 内容锚定
 
-**目标硬件**: NVIDIA RTX 5070 Ti Laptop GPU 12GB VRAM
-**输入**: 数字 RAW / 16-bit TIFF
-**输出**: 胶片模拟图像（Kodak Vision3 500T/250D、Portra 400/800、Ektar 100、Fujifilm Velvia 50、Ilford HP5、Kodak Tri-X）
+**目标硬件**: RTX 5070 Ti 12GB (CUDA) / M5 32GB (MLX) / M1 Max 64GB (MLX/MPS)
+**输入**: 任意数字照片 (JPEG/PNG/TIFF)
+**输出**: 内容保真的胶片风格图像
 
 ---
 
 ## 架构
 
 ```
-Digital Input (3, H, W) linear RGB
-    │
-    ├─ [1] Color Style Transfer   ← CUT/CycleGAN 或 3D LUT Predictor
-    ├─ [2] H&D Tone Mapping        ← 每通道 1D LUT (从 PDF 数字化)
-    ├─ [3] Halation                ← 多通道 Gaussian scatter
-    └─ [4] Film Grain              ← filmgrainer (MIT) 或 Newson 模型
-    │
-Film Output (3, H, W)
+Input Image → VAE Encode → Forward Diffuse (控量噪声)
+    → Denoise with Film LoRA + Prompt + IP-Adapter
+    → VAE Decode → Optional: Grain + Halation → Film Output
 ```
 
-### 关键设计原则
+### 为什么这样做
 
-- **像素空间操作**: 不使用 VAE 潜空间，更简单、可解释
-- **模块解耦**: 每模块独立开发、测试、验证
-- **无配对数据**: 颜色模块用 CUT（无配对 GAN），物理模块用解析函数
-- **MIT 许可兼容**: 不使用 AGPL 库
+扩散模型（SD/Flux）在数十亿张图片上预训练，已学会"照片应该长什么样"。LoRA 在预训练模型上注入胶片美学，只需 2MB。通过噪声级别（strength）精确控制"改多少"——不是 GAN 的黑盒映射，不是 LUT 的全局调色。
 
----
-
-## 实施计划（4-6 周）
-
-| 阶段 | 内容 | 工期 |
-|------|------|:---:|
-| Phase 1 | 手动基线管线 (H&D + 光晕 + 颗粒 + CLI) | 1 周 |
-| Phase 2 | 颜色风格转移训练 (CUT 或 3D LUT) | 2-3 周 |
-| Phase 3 | 全管线集成 + 参数调优 + 批量推理 | 1-2 周 |
-
-详细计划见 `IMPL_PLAN.md`，架构分析见 `docs/ARCH_REDESIGN.md`。
+社区已有 30+ 胶片 LoRA 可直接使用（Civitai）。
 
 ---
 
@@ -48,36 +30,56 @@ Film Output (3, H, W)
 
 ```bash
 # 安装依赖
-pip install -r requirements.txt
+pip install diffusers>=0.28.0 transformers accelerate peft safetensors
 
-# 运行手动管线 (Phase 1)
-python scripts/pipeline.py input.tiff --style kodak_portra_400
+# 单张推理
+python scripts/pipeline.py input.jpg \
+    --style portra400 \
+    --strength 0.45 \
+    --output result.jpg
 
-# 训练颜色迁移 (Phase 2)
-python scripts/train_cut.py \
-    --dataroot ./data \
-    --name portra400_cut \
-    --model cut \
-    --crop_size 256
-
-# 全管线推理 (Phase 3)
-python scripts/pipeline_full.py input.tiff --style kodak_portra_400
+# 批量处理
+python scripts/pipeline.py ./photos/ \
+    --style vision3_500t \
+    --strength 0.4 \
+    --output_dir ./outputs/
 ```
+
+---
+
+## 实施阶段
+
+| 阶段 | 内容 | 工期 |
+|------|------|:---:|
+| Phase 1 | SDXL 基线 + 社区 LoRA 推理 | 1 周 |
+| Phase 2 | 自训练胶片 LoRA | 2 周 |
+| Phase 3 | IP-Adapter + 后处理 + Mac 适配 | 2 周 |
 
 ---
 
 ## 胶片清单
 
-| 胶片 | 类型 | ISO |
+| 胶片 | 类型 | LoRA |
 |------|------|:---:|
-| Kodak Vision3 500T | 彩色负片 (电影) | 500 |
-| Kodak Vision3 250D | 彩色负片 (电影) | 250 |
-| Kodak Portra 400 | 彩色负片 (静态) | 400 |
-| Kodak Portra 800 | 彩色负片 (静态) | 800 |
-| Kodak Ektar 100 | 彩色负片 (静态) | 100 |
-| Fujifilm Velvia 50 | 彩色正片 | 50 |
-| Ilford HP5 Plus | 黑白负片 | 400 |
-| Kodak Tri-X 400 | 黑白负片 | 400 |
+| Kodak Vision3 500T | 彩色负片 | Civitai |
+| Kodak Vision3 250D | 彩色负片 | Civitai |
+| Kodak Portra 400 | 彩色负片 | Civitai |
+| Kodak Portra 800 | 彩色负片 | Civitai |
+| Kodak Ektar 100 | 彩色负片 | Civitai |
+| Fujifilm Velvia 50 | 彩色正片 | 自训练 |
+| Ilford HP5 Plus | 黑白负片 | 自训练 |
+| Kodak Tri-X 400 | 黑白负片 | Civitai |
+
+---
+
+## VRAM 需求
+
+| 配置 | 推理 1024² | 训练 512² |
+|------|:---:|:---:|
+| SDXL + LoRA | 8 GB | 8-10 GB |
+| SDXL + LoRA + IP-Adapter | 8.5 GB | — |
+| SD 3.5 Medium | 6 GB | 7-9 GB |
+| Flux.1 Schnell GGUF Q4 | 12 GB | — |
 
 ---
 
@@ -87,4 +89,4 @@ MIT License. 详见 `LICENSE`。
 
 ---
 
-*最后更新: 2026-05-23 | 架构重设计 v2.0*
+*最后更新: 2026-05-23 | V3 — Diffusion-Based Film Translation*

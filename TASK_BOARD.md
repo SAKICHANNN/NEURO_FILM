@@ -1,75 +1,51 @@
-# TASK_BOARD.md — 任务协调板
+# TASK_BOARD.md — V3 Diffusion-Based Film Translation
 
-> **架构重设计完成 (2026-05-23)**。原始 CFM+Mamba+KAN 方案已放弃。
-> 新方案采用模块化像素空间管线：颜色迁移 + H&D 色调映射 + 光晕 + 颗粒。
-
----
-
-## Active Tasks
-
-| ID | Task | Status | Agent | Branch | Started | Last Active |
-|----|------|--------|-------|--------|---------|-------------|
-| ARCH-REDESIGN | AI 可行性深度分析 + 架构重设计 | done | codex | codex/arch-redesign | 2026-05-23T15:00 | 2026-05-23T16:30 |
+> 架构 V3 (2026-05-23)：SDEdit + 胶片 LoRA + IP-Adapter
 
 ---
 
-## Phase 1: 手动基线管线 — 1 周
+## Phase 1: SDXL 基线 + 社区 LoRA — 1 周
 
-| ID | Task | Status | Priority | Deps | Estimated |
-|----|------|--------|----------|------|-----------|
-| 1.1 | H&D 曲线数字化 (从 PDF 提取曲线) | available | P0 | - | 1d |
-| 1.2 | 光晕实现 (Gaussian scatter) | available | P0 | - | 1d |
-| 1.3 | 颗粒模块集成 (filmgrainer) | available | P0 | - | 1d |
-| 1.4 | 手动管线 CLI (input→output) | available | P0 | 1.1, 1.2, 1.3 | 2d |
+| ID | Task | Status | Priority | Estimated |
+|----|------|--------|----------|-----------|
+| 1.1 | 环境搭建 (diffusers + SDXL + peft) | available | P0 | 0.5d |
+| 1.2 | SDXL img2img pipeline 搭建 | available | P0 | 0.5d |
+| 1.3 | 下载社区胶片 LoRA (Portra 400, Vision3 500T, Ektar 100, Tri-X) | available | P0 | 0.5d |
+| 1.4 | strength 参数调优 (grid search per film) | available | P0 | 1d |
+| 1.5 | CLI 实现 (pipeline.py) | available | P0 | 1d |
 
-## Phase 2: 颜色风格转移 — 2-3 周
+## Phase 2: 自训练胶片 LoRA — 2 周
 
-| ID | Task | Status | Priority | Deps | Estimated |
-|----|------|--------|----------|------|-----------|
-| 2.1 | 胶片域数据收集 (FilmSet + web) | available | P1 | - | 2d |
-| 2.2 | CUT 颜色迁移训练 | available | P1 | 2.1 | 7d |
-| 2.3 | 3D LUT 颜色 (备选方案) | available | P2 | 2.1 | 5d |
+| ID | Task | Status | Priority | Estimated |
+|----|------|--------|----------|-----------|
+| 2.1 | 胶片域数据收集 (FilmSet + web, ≥200/film) | available | P1 | 2d |
+| 2.2 | kohya-ss/diffusers LoRA 训练环境 | available | P1 | 0.5d |
+| 2.3 | 训练 Portra 400 LoRA | available | P1 | 1d |
+| 2.4 | 训练 Vision3 500T LoRA | available | P1 | 1d |
+| 2.5 | 训练 Velvia 50 LoRA (正片特化) | available | P1 | 1d |
+| 2.6 | 训练 HP5 LoRA (黑白特化) | available | P2 | 1d |
+| 2.7 | 训练其余胶片 LoRA | available | P2 | 2d |
+| 2.8 | 验收测试 (A/B 对比 + 量化) | available | P1 | 1d |
 
-## Phase 3: 集成 — 1-2 周
+## Phase 3: 增强管线 + 多平台 — 2 周
 
-| ID | Task | Status | Priority | Deps | Estimated |
-|----|------|--------|----------|------|-----------|
-| 3.1 | 全管线集成 (4 模块串联) | available | P1 | 1.4, 2.2 | 3d |
-| 3.2 | 逐胶片参数调优 | available | P1 | 3.1 | 3d |
-| 3.3 | 批量推理 CLI | available | P2 | 3.2 | 2d |
+| ID | Task | Status | Priority | Estimated |
+|----|------|--------|----------|-----------|
+| 3.1 | IP-Adapter 集成 (h94/IP-Adapter SDXL) | available | P1 | 2d |
+| 3.2 | ControlNet-depth 可选集成 | available | P2 | 1d |
+| 3.3 | 后处理颗粒+光晕 (filmgrader + Gaussian) | available | P2 | 1d |
+| 3.4 | Mac MLX 适配 | available | P2 | 2d |
+| 3.5 | 全管线 CLI | available | P1 | 1d |
+| 3.6 | 定量 + 主观评估 | available | P1 | 1d |
 
 ---
 
-## Locked Files
+## 锁文件
 
 | Agent | Files |
 |-------|-------|
-| codex | AGENTS.md, IMPL_PLAN.md, TASK_BOARD.md, docs/ARCH_REDESIGN.md, GAP_ANALYSIS.md, README.md |
+| codex | AGENTS.md, IMPL_PLAN.md, TASK_BOARD.md, docs/ARCH_REDESIGN.md |
 
 ---
 
-## 协调协议
-
-### 认领任务
-```
-1. 读 TASK_BOARD.md → 验证 deps done + 无文件锁冲突
-2. git checkout -b codex/<task-id>-<name>
-3. 更新本文件 (status=in_progress, 添加 Locked Files)
-4. git commit 本文件更新
-```
-
-### 完成任务
-```
-1. git commit 代码
-2. 更新本文件 (status=done, 释放 Locked Files)
-3. 更新 AGENTS.md §5
-4. git commit 文档更新
-```
-
-### Stale 回收
-- 条件: status=in_progress + Last Active > 2h
-- 用户决定 abandon/keep
-
----
-
-*架构重设计完成: 2026-05-23 | 下一步: Phase 1.1 H&D 曲线数字化*
+*V3 基线: 2026-05-23 | 下一步: Phase 1.1 环境搭建*

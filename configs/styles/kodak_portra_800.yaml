@@ -1,28 +1,31 @@
-# Kodak Portra 800 — High-speed color negative still film
+# Kodak Portra 800 — High-speed natural skin tone color negative still film
 name: "Kodak Portra 800"
 short_name: "portra_800"
 film_type: "negative_color_still"
 iso: 800
-white_balance: "daylight"
 
-hd_curve:
-  csv_path: "data/physics/kodak_portra_800/hd_curve.csv"
-  r: {toe: -2.1, linear_shoulder: 0.7, gamma: 0.58, dmax: 2.9}
-  g: {toe: -2.0, linear_shoulder: 0.7, gamma: 0.57, dmax: 2.8}
-  b: {toe: -1.8, linear_shoulder: 0.6, gamma: 0.55, dmax: 2.6}
+style:
+  prompt: "a photograph shot on Kodak Portra 800 film, natural skin tones, moderate grain, warm tones, analog film photography, available light"
+  negative_prompt: "digital, oversharpened, HDR, overprocessed, CGI, plastic skin, B&W"
+
+lora:
+  path: "loras/portra_800.safetensors"
+  source: "civitai"
+  rank: 16
+
+inference:
+  strength: 0.45
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+ip_adapter:
+  enabled: false
+  scale: 0.5
 
 grain:
+  enabled: false
   rms_granularity: 15.0
-  shadow_power: 0.6
-  midtone_power: 0.5
-  highlight_power: 0.3
 
 halation:
+  enabled: false
   r_sigma: 0.5
-  g_sigma: 0.25
-  b_sigma: 0.12
-  threshold: 0.85
-
-color:
-  method: "cut"
-  model_path: null
