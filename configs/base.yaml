@@ -1,0 +1,25 @@
+project: "K-MCFM"
+seed: 42
+device: "cuda"
+precision: "bf16-mixed"
+
+memory:
+  vram_total_mb: 12227
+  vram_target_inference_mb: 3800
+  vram_target_training_mb: 10240
+  gradient_checkpointing: true
+  use_8bit_adam: true
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  synthetic_dir: "data/synthetic"
+  resolution: 512
+  crop: "random"
+  batch_size: 2
+
+logging:
+  wandb_project: "kmcfm"
+  log_every_n_steps: 50
+  save_every_n_epochs: 5
+  checkpoint_dir: "checkpoints"

@@ -1,0 +1,32 @@
+# @package style
+name: "Ilford HP5 Plus"
+short_name: "ilford_hp5"
+film_type: "negative_bw"
+iso: 400
+white_balance: "na"
+
+hd_curve:
+  density: {toe: -2.0, linear_shoulder: 1.0, gamma: 0.62, dmax: 2.8}
+
+spectral_sensitivity:
+  panchromatic: true
+  peak: 520
+  width: 150
+
+grain:
+  rms_granularity: 7.0
+  coarseness: 0.8
+  color_correlation: 0.0
+
+halation:
+  scatter_intensity: [0.18]
+  scatter_radius: [25.0]
+
+dir:
+  strength: 0.4
+  diffusion_radius: 2.0
+  edge_threshold: 0.12
+
+lora:
+  rank: 8
+  alpha: 8

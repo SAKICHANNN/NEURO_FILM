@@ -1,0 +1,38 @@
+# @package style
+name: "Kodak Vision3 250D"
+short_name: "vision3_250d"
+film_type: "negative_color_motion"
+iso: 250
+white_balance: "daylight"
+data_confidence: "high"
+
+hd_curve:
+  r: {toe: -2.5, linear_shoulder: 0.9, gamma: 0.56, dmax: 3.25}
+  g: {toe: -2.4, linear_shoulder: 0.8, gamma: 0.55, dmax: 3.15}
+  b: {toe: -2.1, linear_shoulder: 0.6, gamma: 0.51, dmax: 2.85}
+
+spectral_sensitivity:
+  r_peak: 615
+  g_peak: 540
+  b_peak: 450
+  r_width: 98
+  g_width: 88
+  b_width: 60
+
+grain:
+  rms_granularity: 4.0
+  coarseness: 0.48
+  color_correlation: 0.22
+
+halation:
+  scatter_intensity: [0.13, 0.07, 0.025]
+  scatter_radius: [19.0, 12.0, 6.0]
+
+dir:
+  strength: 0.30
+  diffusion_radius: 1.4
+  edge_threshold: 0.09
+
+lora:
+  rank: 16
+  alpha: 16

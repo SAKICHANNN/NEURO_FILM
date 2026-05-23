@@ -1,0 +1,37 @@
+# @package style
+name: "Kodak Portra 400"
+short_name: "portra_400"
+film_type: "negative_color_still"
+iso: 400
+white_balance: "daylight"
+
+hd_curve:
+  r: {toe: -2.5, linear_shoulder: 1.2, gamma: 0.60, dmax: 3.3}
+  g: {toe: -2.4, linear_shoulder: 1.1, gamma: 0.58, dmax: 3.2}
+  b: {toe: -2.1, linear_shoulder: 0.8, gamma: 0.54, dmax: 2.9}
+
+spectral_sensitivity:
+  r_peak: 610
+  g_peak: 545
+  b_peak: 455
+  r_width: 100
+  g_width: 90
+  b_width: 60
+
+grain:
+  rms_granularity: 4.0
+  coarseness: 0.45
+  color_correlation: 0.22
+
+halation:
+  scatter_intensity: [0.12, 0.07, 0.02]
+  scatter_radius: [19.0, 12.0, 6.0]
+
+dir:
+  strength: 0.28
+  diffusion_radius: 1.4
+  edge_threshold: 0.09
+
+lora:
+  rank: 16
+  alpha: 16

@@ -1,0 +1,27 @@
+# @package data
+dataset: "paired"
+raw_dir: "data/raw"
+processed_dir: "data/processed"
+resolution: 512
+crop: "random"
+
+augmentation:
+  enabled: true
+  exposure_shift_ev: [-2, 2]
+  white_balance_kelvin_range: [2500, 10000]
+  poisson_gaussian_noise: true
+  random_horizontal_flip: true
+  probability: 0.5
+
+raw_processing:
+  demosaic_method: "AMaZE"
+  output_color_space: "srgb"
+  bit_depth: 16
+  use_camera_wb: true
+  no_auto_bright: true
+
+loader:
+  batch_size: 2
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2

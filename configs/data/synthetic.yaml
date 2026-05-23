@@ -1,0 +1,29 @@
+# @package data
+dataset: "synthetic"
+output_dir: "data/synthetic"
+resolution: 512
+num_scenes: 100
+samples_per_scene: 20
+
+renderer: "mitsuba"
+spectral: true
+wavelength_samples: 8
+
+scenes:
+  - macbeth_colorchecker
+  - hdr_environments
+  - iso_test_charts
+
+film_stocks:
+  - kodak_vision3_500t
+  - kodak_vision3_250d
+  - kodak_portra_400
+  - kodak_portra_800
+  - kodak_ektar_100
+  - fuji_velvia_50
+
+loader:
+  batch_size: 8
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2

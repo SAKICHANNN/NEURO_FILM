@@ -1,0 +1,38 @@
+# @package style
+name: "Kodak Portra 800"
+short_name: "portra_800"
+film_type: "negative_color_still"
+iso: 800
+white_balance: "daylight"
+data_confidence: "high"
+
+hd_curve:
+  r: {toe: -2.45, linear_shoulder: 1.15, gamma: 0.59, dmax: 3.25}
+  g: {toe: -2.35, linear_shoulder: 1.05, gamma: 0.57, dmax: 3.15}
+  b: {toe: -2.05, linear_shoulder: 0.75, gamma: 0.53, dmax: 2.85}
+
+spectral_sensitivity:
+  r_peak: 610
+  g_peak: 545
+  b_peak: 455
+  r_width: 105
+  g_width: 92
+  b_width: 62
+
+grain:
+  rms_granularity: 5.0
+  coarseness: 0.58
+  color_correlation: 0.25
+
+halation:
+  scatter_intensity: [0.13, 0.075, 0.025]
+  scatter_radius: [20.0, 13.0, 6.0]
+
+dir:
+  strength: 0.27
+  diffusion_radius: 1.5
+  edge_threshold: 0.10
+
+lora:
+  rank: 16
+  alpha: 16

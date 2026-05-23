@@ -1,0 +1,31 @@
+# @package model
+kan:
+  hd_curve:
+    in_dim: 1
+    hidden_dims: [8, 4]
+    out_dim: 1
+    grid: 8
+    k: 3
+    gamma_min: 0.3
+    gamma_max: 1.5
+
+  crosstalk:
+    in_dim: 3
+    hidden_dims: [16, 8]
+    out_dim: 9
+    grid: 5
+    k: 3
+
+  dir:
+    in_dim: 5
+    hidden_dims: [12, 6]
+    out_dim: 3
+    grid: 6
+    k: 3
+
+  exposure_to_grain:
+    in_dim: 1
+    hidden_dims: [8, 4]
+    out_dim: 1
+    grid: 5
+    k: 3

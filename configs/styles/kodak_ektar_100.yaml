@@ -1,0 +1,38 @@
+# @package style
+name: "Kodak Ektar 100"
+short_name: "ektar_100"
+film_type: "negative_color_still"
+iso: 100
+white_balance: "daylight"
+data_confidence: "high"
+
+hd_curve:
+  r: {toe: -2.55, linear_shoulder: 1.15, gamma: 0.63, dmax: 3.35}
+  g: {toe: -2.45, linear_shoulder: 1.05, gamma: 0.61, dmax: 3.25}
+  b: {toe: -2.15, linear_shoulder: 0.80, gamma: 0.56, dmax: 2.95}
+
+spectral_sensitivity:
+  r_peak: 610
+  g_peak: 545
+  b_peak: 455
+  r_width: 95
+  g_width: 85
+  b_width: 58
+
+grain:
+  rms_granularity: 4.0
+  coarseness: 0.38
+  color_correlation: 0.20
+
+halation:
+  scatter_intensity: [0.10, 0.06, 0.02]
+  scatter_radius: [17.0, 11.0, 5.0]
+
+dir:
+  strength: 0.30
+  diffusion_radius: 1.3
+  edge_threshold: 0.08
+
+lora:
+  rank: 16
+  alpha: 16
