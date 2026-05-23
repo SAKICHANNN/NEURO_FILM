@@ -31,6 +31,75 @@ CIE_FILES = [
     "CIE_std_illum_A_1nm.csv",
     "CIE_std_illum_A_1nm.csv_metadata.json",
 ]
+PHYSICS_JOBS = [
+    (
+        "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-50D-5203-7203-technical-information.pdf",
+        "data/physics/kodak_vision3_50d/technical_data.pdf",
+    ),
+    (
+        "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-250D-5207-7207-technical-information.pdf",
+        "data/physics/kodak_vision3_250d/technical_data.pdf",
+    ),
+    (
+        "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-500T-5219-7219-technical-information.pdf",
+        "data/physics/kodak_vision3_500t/technical_data.pdf",
+    ),
+    (
+        "https://imaging.kodakalaris.com/sites/default/files/files/resources/e4051_Portra_160.pdf",
+        "data/physics/kodak_portra_160/technical_data.pdf",
+    ),
+    (
+        "https://imaging.kodakalaris.com/sites/default/files/files/resources/e4050_portra_400.pdf",
+        "data/physics/kodak_portra_400/technical_data.pdf",
+    ),
+    (
+        "https://imaging.kodakalaris.com/sites/default/files/files/products/e4040_portra_800.pdf",
+        "data/physics/kodak_portra_800/technical_data.pdf",
+    ),
+    (
+        "https://www.kodakprofessional.com/sites/default/files/wysiwyg/pro/resources/e4046_ektar_100.pdf",
+        "data/physics/kodak_ektar_100/technical_data.pdf",
+    ),
+    (
+        "https://kodakprofessional.com/sites/default/files/wysiwyg/film/f4017_trix_320400.pdf",
+        "data/physics/kodak_trix/technical_data.pdf",
+    ),
+    (
+        "https://www.ilfordphoto.com/amfile/file/download/file/1903/product/692/",
+        "data/physics/ilford_hp5/technical_data.pdf",
+    ),
+    (
+        "https://asset.fujifilm.com/www/us/files/2020-03/85d928f44b0df3b2a95913e46608881d/ProfessionalFilmDataGuide.pdf",
+        "data/physics/fujifilm_professional_guide/professional_film_data_guide.pdf",
+    ),
+    (
+        "https://asset.fujifilm.com/master/emea/files/2020-10/a71dda63e2662f012b3b74110794918a/films_velvia-50_datasheet_01.pdf",
+        "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
+    ),
+]
+CAMERA_SPECTRAL_JOBS = [
+    (
+        "https://www.gujinwei.org/research/camspec/camspec_database.txt",
+        "data/calibration/camera_spectral/rit_camspec/camspec_database.txt",
+    ),
+    (
+        "https://www.gujinwei.org/research/camspec/camlist%26equipment.txt",
+        "data/calibration/camera_spectral/rit_camspec/camlist_equipment.txt",
+    ),
+    (
+        "https://www.gujinwei.org/research/camspec/css_code.zip",
+        "data/calibration/camera_spectral/rit_camspec/css_code.zip",
+    ),
+    (
+        "https://www.gujinwei.org/research/camspec/camspec.pdf",
+        "data/calibration/camera_spectral/rit_camspec/paper.pdf",
+    ),
+    (
+        "https://www.gujinwei.org/research/camspec/supp.pdf",
+        "data/calibration/camera_spectral/rit_camspec/supplement.pdf",
+    ),
+]
+TOKYO_SPECTRAL_BASE = "https://open-vision.sc.e.titech.ac.jp/~reikawa/research/cs/zhao/"
 
 
 class FiveKParser(html.parser.HTMLParser):
@@ -127,17 +196,8 @@ def run_download(jobs: list[tuple[str, Path]], workers: int) -> None:
 
 
 def download_physics() -> None:
-    jobs = [
-        (
-            "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-50D-5203-7203-technical-information.pdf",
-            ROOT / "data/physics/kodak_vision3_50d/technical_data.pdf",
-        ),
-        (
-            "https://imaging.kodakalaris.com/sites/default/files/files/resources/e4050_portra_400.pdf",
-            ROOT / "data/physics/kodak_portra_400/technical_data.pdf",
-        ),
-    ]
-    run_download(jobs, workers=2)
+    jobs = [(url, ROOT / rel) for url, rel in PHYSICS_JOBS]
+    run_download(jobs, workers=4)
 
 
 def list_filmset_files(limit: int | None = None) -> list[str]:
@@ -201,6 +261,28 @@ def download_cie() -> None:
     run_download(jobs, workers=4)
 
 
+def download_camera_spectral() -> None:
+    jobs = [(url, ROOT / rel) for url, rel in CAMERA_SPECTRAL_JOBS]
+    tokyo_paths = [f"files/camera_{idx}.spectra" for idx in range(12)]
+    for idx in range(12):
+        name = f"camera_{idx}.spectra"
+        jobs.append(
+            (
+                urllib.parse.urljoin(TOKYO_SPECTRAL_BASE, f"files/{name}"),
+                ROOT / "data/calibration/camera_spectral/tokyo_open_vision" / name,
+            )
+        )
+    jobs.append(
+        (
+            urllib.parse.urljoin(TOKYO_SPECTRAL_BASE, "database.html"),
+            ROOT / "data/calibration/camera_spectral/tokyo_open_vision/index.html",
+        )
+    )
+    run_download(jobs, workers=6)
+    paths_file = ROOT / "data/calibration/camera_spectral/tokyo_open_vision/spectra_paths.txt"
+    paths_file.write_text("\n".join(tokyo_paths) + "\n", encoding="utf-8")
+
+
 def list_fivek_expert(expert: str, limit: int | None = None) -> list[str]:
     index = ROOT / "data/raw/fivek/fivek_index.html"
     if index.exists():
@@ -231,7 +313,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "dataset",
-        choices=["physics", "cie", "filmset", "filmset-zip", "fivek-dng", "fivek-expert", "dped"],
+        choices=[
+            "physics",
+            "cie",
+            "camera-spectral",
+            "filmset",
+            "filmset-zip",
+            "fivek-dng",
+            "fivek-expert",
+            "dped",
+        ],
     )
     parser.add_argument("--expert", choices=["a", "b", "c", "d", "e"], default="c")
     parser.add_argument("--dped-part", choices=["sample", "patches", "original", "all"], default="all")
@@ -244,6 +335,8 @@ def main() -> None:
         download_physics()
     elif args.dataset == "cie":
         download_cie()
+    elif args.dataset == "camera-spectral":
+        download_camera_spectral()
     elif args.dataset == "filmset":
         download_filmset(args.workers, args.limit)
     elif args.dataset == "filmset-zip":

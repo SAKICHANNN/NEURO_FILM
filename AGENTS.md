@@ -32,6 +32,7 @@
 | `GAP_ANALYSIS.md` | 资源缺口：数据集、物理数据、软件环境、行动计划 | 需要了解"还缺什么"时查阅 |
 | `DATA_LICENSE_BOUNDARIES.md` | 数据许可、发表、权重发布边界 | 发布模型/论文/demo 前必须查阅 |
 | `docs/MAC_ARM_MIGRATION.md` | 通过 GitHub 迁移到 Apple Silicon Mac 的环境/数据重建 runbook | 换机、Mac ARM 初始化、避免提交数据集时查阅 |
+| `docs/DATA_REPRODUCTION_MANIFEST.json` | 被 Git 忽略的数据资源复现清单：路径、校验、恢复命令、缺口 | 在新机器恢复 `data/` 或核对数据状态时查阅 |
 | `FILMGRAINSTYLE740K_REQUEST_EMAIL.md` | FilmGrainStyle740k 许可申请邮件草稿 | 用户申请受限颗粒数据时使用 |
 | `guidelines.pdf` | 原始研究指南 (13 页，图片型 PDF) | 理解项目原始动机和学术背景 |
 | `README.md` | 面向人类的项目介绍 | 了解项目对外呈现 |
@@ -136,8 +137,8 @@
 | **1.1 软件环境** | ✅ **PyTorch 2.11+cu128, diffusers, timm, kornia, bitsandbytes 等 30+ 包已验证** |
 | 多 Agent 协调 | ✅ TASK_BOARD.md + 接口 stubs + AGENTS.md §11 |
 | 数据资源补齐 | ✅ FiveK DNG + Expert C TIFF16, FilmSet, Kodak/Ilford PDF 已落盘；见 `data/raw/dataset_status.json` |
-| 数据下载脚本 | ✅ `scripts/download_data.py` 支持 physics / FilmSet / FiveK expert 断点补齐 |
-| GitHub → ARM Mac 迁移档案 | ✅ `docs/MAC_ARM_MIGRATION.md` + `requirements-macos-arm.txt`；数据目录仅提交 `.gitkeep` |
+| 数据下载脚本 | ✅ `scripts/download_data.py` 支持 FiveK DNG/Expert、FilmSet、DPED、CIE、physics PDF、camera spectral 断点补齐 |
+| GitHub → ARM Mac 迁移档案 | ✅ `docs/MAC_ARM_MIGRATION.md` + `docs/DATA_REPRODUCTION_MANIFEST.json` + `requirements-macos-arm.txt`；目标 Mac = Apple Silicon / macOS Tahoe 26；数据目录仅提交 `.gitkeep` |
 
 ### 待开始
 

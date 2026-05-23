@@ -19,6 +19,7 @@
 
 | ID | Task | Deps | Status | Agent | Branch | Locked Files | Started | Last Active | Completed |
 |----|------|------|--------|-------|--------|-------------|---------|-------------|-----------|
+| REPRO-MANIFEST-20260523 | Add Tahoe 26 reproduction manifest and fuller data restore docs | - | done | codex | codex/migrate-mac-arm | - | 2026-05-23T14:35 | 2026-05-23T14:40 | 2026-05-23T14:40 |
 | MIGRATE-MAC-ARM-20260523 | Prepare GitHub migration docs and ARM Mac setup files | - | done | codex | codex/migrate-mac-arm | - | 2026-05-23T13:49 | 2026-05-23T13:55 | 2026-05-23T13:55 |
 | DOC-STATE-ALIGN-20260522 | Align current and target project state docs | - | done | codex | master (uncommitted) | - | 2026-05-22T22:09 | 2026-05-22T22:16 | 2026-05-22T22:16 |
 | DOC-FILMGRAIN-IDENTITY-20260522 | Fill FilmGrainStyle740k requester identity | - | done | codex | master (uncommitted) | - | 2026-05-22T21:28 | 2026-05-22T21:28 | 2026-05-22T21:28 |

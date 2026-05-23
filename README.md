@@ -132,6 +132,7 @@ python scripts/download_data.py --help
 ### ARM Mac / GitHub 迁移
 
 Apple Silicon Mac 使用 `requirements-macos-arm.txt`，不要使用 CUDA 版 `requirements.txt`。迁移和数据重建步骤见 [docs/MAC_ARM_MIGRATION.md](docs/MAC_ARM_MIGRATION.md)。
+被 Git 忽略的数据集/校准资源复现清单见 [docs/DATA_REPRODUCTION_MANIFEST.json](docs/DATA_REPRODUCTION_MANIFEST.json)。
 
 ### 目标推理入口
 

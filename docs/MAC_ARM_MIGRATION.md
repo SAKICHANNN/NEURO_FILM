@@ -2,6 +2,8 @@
 
 This repo is intended to move through GitHub without bundled datasets. The source Windows workspace has hundreds of GB under `data/`; those files are deliberately ignored and must be recreated on the Mac from public sources or separately licensed sources.
 
+Target Mac for this migration: Apple Silicon on macOS Tahoe 26. The pinned ARM package set was checked against modern macOS ARM wheel tags; older macOS versions may fail to resolve the same versions.
+
 ## 1. What Belongs In Git
 
 Commit these:
@@ -9,6 +11,7 @@ Commit these:
 - Source code: `src/`, `scripts/`, `tests/`
 - Configs: `configs/`
 - Project docs: root `*.md`, `docs/`, `guidelines.pdf`
+- Reproduction manifest: `docs/DATA_REPRODUCTION_MANIFEST.json`
 - Dependency manifests: `requirements.txt`, `requirements-macos-arm.txt`
 - Empty data directory markers: `data/**/.gitkeep`
 
@@ -83,6 +86,8 @@ mkdir -p data/raw data/processed data/synthetic data/physics data/calibration/ci
 
 Approximate disk target for the same local resources as the Windows machine: 350 GB before future processed manifests/checkpoints.
 
+The committed source of truth for ignored data is [DATA_REPRODUCTION_MANIFEST.json](DATA_REPRODUCTION_MANIFEST.json). Use it when a future agent needs exact paths, expected file counts, checksums, and known gaps.
+
 ## 4. Public Downloads
 
 FiveK RAW archive:
@@ -118,13 +123,19 @@ CIE colorimetry CSVs and metadata:
 python scripts/download_data.py cie
 ```
 
-Seed film physics PDFs currently supported by the script:
+Film physics PDFs currently supported by the script:
 
 ```zsh
 python scripts/download_data.py physics
 ```
 
-The Windows workspace had additional manufacturer PDFs under `data/physics/` and RIT/Tokyo camera spectral files under `data/calibration/camera_spectral/`. Recreate those from the source links in `AGENTS.md` section 6 before implementing physics calibration extraction. Keep the same destination layout:
+RIT and Tokyo Open Vision camera spectral sensitivity data:
+
+```zsh
+python scripts/download_data.py camera-spectral
+```
+
+Some Windows physics files are intentionally listed as gaps in [DATA_REPRODUCTION_MANIFEST.json](DATA_REPRODUCTION_MANIFEST.json) rather than guessed. Recreate or script them only after confirming stable public URLs. Keep the same destination layout:
 
 ```text
 data/physics/<stock>/technical_data.pdf
@@ -153,6 +164,9 @@ checks = [
     "data/raw/filmset/filmset.zip",
     "data/raw/dped/dped_patches.gz",
     "data/calibration/cie/CIE_xyz_1931_2deg.csv",
+    "data/physics/kodak_vision3_500t/technical_data.pdf",
+    "data/calibration/camera_spectral/rit_camspec/camspec_database.txt",
+    "data/calibration/camera_spectral/tokyo_open_vision/camera_0.spectra",
 ]
 for item in checks:
     path = Path(item)
