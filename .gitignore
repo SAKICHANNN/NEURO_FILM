@@ -58,3 +58,7 @@ wandb/
 output/
 *.tiff
 *.tif
+.cache/
+test_*.jpg
+output_*.jpg
+outputs/
