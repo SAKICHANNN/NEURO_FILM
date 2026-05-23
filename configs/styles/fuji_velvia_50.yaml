@@ -1,38 +1,28 @@
-# @package style
+# Fujifilm Velvia 50 — High-saturation color reversal (slide) film
 name: "Fujifilm Velvia 50"
-short_name: "fuji_velvia_50"
+short_name: "velvia_50"
 film_type: "positive_color_slide"
 iso: 50
 white_balance: "daylight"
-data_confidence: "medium"
 
 hd_curve:
-  r: {toe: -2.6, linear_shoulder: 0.9, gamma: 0.72, dmax: 3.4}
-  g: {toe: -2.7, linear_shoulder: 0.9, gamma: 0.76, dmax: 3.5}
-  b: {toe: -2.5, linear_shoulder: 0.8, gamma: 0.68, dmax: 3.3}
-
-spectral_sensitivity:
-  r_peak: 615
-  g_peak: 545
-  b_peak: 455
-  r_width: 85
-  g_width: 75
-  b_width: 55
+  csv_path: "data/physics/fuji_velvia_50/hd_curve.csv"
+  r: {toe: -2.6, linear_shoulder: 1.0, gamma: 0.70, dmax: 3.5}
+  g: {toe: -2.5, linear_shoulder: 1.0, gamma: 0.68, dmax: 3.4}
+  b: {toe: -2.3, linear_shoulder: 0.9, gamma: 0.65, dmax: 3.2}
 
 grain:
   rms_granularity: 3.0
-  coarseness: 0.35
-  color_correlation: 0.18
+  shadow_power: 0.2
+  midtone_power: 0.1
+  highlight_power: 0.05
 
 halation:
-  scatter_intensity: [0.06, 0.035, 0.015]
-  scatter_radius: [12.0, 8.0, 4.0]
+  r_sigma: 0.2
+  g_sigma: 0.1
+  b_sigma: 0.05
+  threshold: 0.92
 
-dir:
-  strength: 0.32
-  diffusion_radius: 1.1
-  edge_threshold: 0.08
-
-lora:
-  rank: 16
-  alpha: 16
+color:
+  method: "cut"
+  model_path: null

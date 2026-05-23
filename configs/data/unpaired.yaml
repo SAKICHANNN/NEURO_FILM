@@ -1,0 +1,22 @@
+# Unpaired Film Domain Data Configuration
+# For CUT/CycleGAN unpaired training
+
+domain_a:
+  name: digital
+  path: data/digital_domain
+  image_format: [tiff, tif, png, jpg]
+  color_space: linear_rgb
+  dtype: float32
+
+domain_b:
+  name: film
+  path: data/film_domain
+  image_format: [tiff, tif, png, jpg, jpeg]
+  color_space: linear_rgb
+  dtype: float32
+
+preprocessing:
+  resolution: 256
+  random_crop: true
+  horizontal_flip: true
+  normalize: true

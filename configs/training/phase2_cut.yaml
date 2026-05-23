@@ -1,0 +1,24 @@
+# CUT Training — Phase 2 Color Transfer
+# Overrides base.yaml for unpaired film style transfer training
+
+training:
+  phase: phase2_cut
+  batch_size: 1
+  load_size: 286
+  crop_size: 256
+  lr: 0.0002
+  n_epochs: 200
+  n_epochs_decay: 200
+  gan_mode: lsgan
+  lambda_identity: 1.0
+  pool_size: 50
+
+data:
+  domain_a: data/digital_domain
+  domain_b: data/film_domain
+  num_threads: 4
+  flip: true
+
+validation:
+  eval_every_n_epochs: 10
+  metrics: [fid, lpips]

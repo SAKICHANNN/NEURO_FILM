@@ -1,45 +1,35 @@
-"""KAN physics layer interfaces consumed by film simulation modules.
-契约: 所有 6 个 Film 物理模块通过此接口调用 KAN 函数。
-KAN 仅用于低维 (<64) 物理映射，不在骨干中使用。
-"""
-
 import torch
 import torch.nn as nn
 
 
-class HnDCurveInterface(nn.Module):
-    """
-    单个 H&D 特性曲线的 KAN 表示。
+class HalationSimulator(nn.Module):
+    """Multi-channel Gaussian scatter to simulate film halation.
 
-    物理背景: 光学密度 D = f(log10 曝光)
-    - 线性 RGB → log10 曝光
-    - KAN 学习 D = f(log H) 的非线性映射
-    - 输出为胶片密度值
+    Red channel gets largest scatter radius (bounces back through
+    anti-halation layer), green medium, blue smallest.
 
-    用于 src/models/film/tone.py
+    Consumer: pipeline_full.py
     """
 
-    def forward(self, log_exposure: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            log_exposure: (B,) or (B, 1) — log10 曝光值
-        Returns:
-            density: (B,) — 光学密度 (0 ~ Dmax)
-        """
+    def __init__(self, r_sigma: float = 0.6, g_sigma: float = 0.3, b_sigma: float = 0.15, threshold: float = 0.85):
+        super().__init__()
+        raise NotImplementedError
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """(B,3,H,W) → (B,3,H,W)"""
         raise NotImplementedError
 
 
-class KANScalarFunctionInterface(nn.Module):
-    """
-    通用标量物理映射的 KAN 接口。
-    用于: 曝光→颗粒强度, 局部对比度→DIR 抑制量, 波长→吸收等
+class FilmGrainRenderer(nn.Module):
+    """Film grain rendering — wraps filmgrainer (MIT) or custom Newson implementation.
+
+    Consumer: pipeline_full.py
     """
 
+    def __init__(self, grain_radius: float = 0.1, grain_sigma: float = 0.0, n_monte_carlo: int = 400):
+        super().__init__()
+        raise NotImplementedError
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            x: (B, in_dim) — 输入物理量
-        Returns:
-            y: (B, out_dim) — 输出物理量
-        """
+        """(B,3,H,W) → (B,3,H,W)"""
         raise NotImplementedError

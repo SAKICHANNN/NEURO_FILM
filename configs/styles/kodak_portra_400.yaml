@@ -1,4 +1,4 @@
-# @package style
+# Kodak Portra 400 — Fine-grain color negative still film
 name: "Kodak Portra 400"
 short_name: "portra_400"
 film_type: "negative_color_still"
@@ -6,32 +6,23 @@ iso: 400
 white_balance: "daylight"
 
 hd_curve:
-  r: {toe: -2.5, linear_shoulder: 1.2, gamma: 0.60, dmax: 3.3}
-  g: {toe: -2.4, linear_shoulder: 1.1, gamma: 0.58, dmax: 3.2}
-  b: {toe: -2.1, linear_shoulder: 0.8, gamma: 0.54, dmax: 2.9}
-
-spectral_sensitivity:
-  r_peak: 610
-  g_peak: 545
-  b_peak: 455
-  r_width: 100
-  g_width: 90
-  b_width: 60
+  csv_path: "data/physics/kodak_portra_400/hd_curve.csv"
+  r: {toe: -2.2, linear_shoulder: 0.7, gamma: 0.58, dmax: 3.0}
+  g: {toe: -2.1, linear_shoulder: 0.7, gamma: 0.57, dmax: 2.9}
+  b: {toe: -1.9, linear_shoulder: 0.6, gamma: 0.55, dmax: 2.7}
 
 grain:
-  rms_granularity: 4.0
-  coarseness: 0.45
-  color_correlation: 0.22
+  rms_granularity: 10.0
+  shadow_power: 0.4
+  midtone_power: 0.3
+  highlight_power: 0.15
 
 halation:
-  scatter_intensity: [0.12, 0.07, 0.02]
-  scatter_radius: [19.0, 12.0, 6.0]
+  r_sigma: 0.4
+  g_sigma: 0.2
+  b_sigma: 0.1
+  threshold: 0.88
 
-dir:
-  strength: 0.28
-  diffusion_radius: 1.4
-  edge_threshold: 0.09
-
-lora:
-  rank: 16
-  alpha: 16
+color:
+  method: "cut"
+  model_path: null

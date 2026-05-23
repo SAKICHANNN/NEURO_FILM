@@ -1,25 +1,50 @@
-project: "K-MCFM"
-seed: 42
-device: "cuda"
-precision: "bf16-mixed"
+# K-MCFM Base Configuration
+# Revised architecture: modular pixel-space pipeline
 
-memory:
+project:
+  name: K-MCFM
+  version: 2.0
+  description: Modular Film Simulation Pipeline
+
+hardware:
+  device: cuda
+  gpu: RTX 5070 Ti Laptop
   vram_total_mb: 12227
-  vram_target_inference_mb: 3800
-  vram_target_training_mb: 10240
-  gradient_checkpointing: true
-  use_8bit_adam: true
+  vram_training_budget_mb: 10240
+  vram_inference_budget_mb: 3800
 
-data:
-  raw_dir: "data/raw"
-  processed_dir: "data/processed"
-  synthetic_dir: "data/synthetic"
+precision:
+  training: bf16-mixed
+  inference: fp32
+
+paths:
+  data_root: data
+  physics_root: data/physics
+  film_domain_root: data/film_domain
+  digital_domain_root: data/digital_domain
+  configs_root: configs/styles
+  checkpoints_root: checkpoints
+  outputs_root: outputs
+
+pipeline:
   resolution: 512
-  crop: "random"
-  batch_size: 2
+  color_space: linear_rgb
+  output_color_space: srgb
+
+modules:
+  color:
+    method: cut              # cut | cyclegan | lut_predictor | neural_preset
+    model_path: null          # pretrained generator checkpoint
+  tone:
+    method: hnd_lut           # 1D per-channel LUT from digitized H&D curves
+  halation:
+    enabled: true
+  grain:
+    method: filmgrainer       # filmgrainer | newson_custom
+    enabled: true
 
 logging:
-  wandb_project: "kmcfm"
+  use_wandb: false
+  use_tensorboard: true
   log_every_n_steps: 50
   save_every_n_epochs: 5
-  checkpoint_dir: "checkpoints"

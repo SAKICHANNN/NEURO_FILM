@@ -1,0 +1,23 @@
+# Full Pipeline Integration Training — Phase 3
+# Overrides base.yaml for end-to-end film simulation tuning
+
+training:
+  phase: phase3_integration
+  batch_size: 1
+  crop_size: 512
+  lr: 0.0001
+  n_steps: 50000
+  freeze_color_module: true
+  train_tone_lut: false
+  train_halation: false
+  train_grain: false
+
+losses:
+  perceptual_weight: 1.0
+  color_histogram_weight: 0.5
+  hd_rmse_weight: 1.0
+  grain_nps_weight: 0.3
+
+evaluation:
+  eval_every_n_steps: 2000
+  metrics: [fid, lpips, delta_e, hd_rmse]
