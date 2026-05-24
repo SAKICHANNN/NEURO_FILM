@@ -62,3 +62,7 @@ output/
 test_*.jpg
 output_*.jpg
 outputs/
+loras/ip2p_*/
+outputs/
+data/raw/
+data/ip2p_train/

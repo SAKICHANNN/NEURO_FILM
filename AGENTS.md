@@ -9,14 +9,11 @@
 
 | 字段 | 值 |
 |------|-----|
-| **项目名** | K-MCFM: Diffusion-Based Film Translation |
-| **一句话** | 用扩散模型（SDXL/SD3.5/Flux）将数码照片转化为内容保真的胶片摄影作品 |
-| **核心方法** | SDEdit (noise-denoise) + 胶片 LoRA + IP-Adapter 内容锚定 |
-| **目标硬件** | RTX 5070 Ti 12GB (CUDA) / M5 32GB (MLX) / M1 Max 64GB (MLX/MPS) |
-| **输入** | 任意数字照片 (JPEG/PNG/TIFF) |
-| **输出** | 内容保真的胶片风格图像 |
-| **Python** | 3.12.10 (.venv) |
-| **PyTorch** | 2.11.0+cu128 |
+| **项目名** | K-MCFM: Film Translation via InstructPix2Pix |
+| **一句话** | 用 InstructPix2Pix 指令编辑模型做内容保真的胶片色彩转换 |
+| **核心方法** | 预训练 IP2P + 参数调优 (ig=1.5, tg=7.5) + 胶片指令工程 |
+| **目标硬件** | M5 32GB (MPS推理) / RTX 5070 Ti 12GB (CUDA训练+推理) |
+| **当前阶段** | 9 轮实验完成。IP2P 为最佳基线。详细记录见 `docs/EXPERIMENT_LOG.md` |
 | **许可** | MIT |
 
 ---
@@ -26,8 +23,9 @@
 | 文件 | 内容 | 使用场景 |
 |------|------|---------|
 | `AGENTS.md` | 本文件 | 每次新会话先读 |
+| `docs/EXPERIMENT_LOG.md` | 9 轮完整实验日志 | 理解项目历史 |
 | `docs/ARCH_REDESIGN.md` | 架构演进：V1(CFM+Mamba) → V2(CUT+LUT) → V3(SDEdit+LoRA) | 理解方向 |
-| `IMPL_PLAN.md` | V3 实施计划 | 编码前查阅 |
+| `IMPL_PLAN.md` | 当前实施计划 | 编码前查阅 |
 | `TASK_BOARD.md` | 任务分配 | 第二个读 |
 | `README.md` | 面向人类 | 对外 |
 
