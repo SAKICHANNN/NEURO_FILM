@@ -151,35 +151,72 @@ print('Downloaded SDXL')
 
 ## 第 6 步：Windows — 同步数据
 
-在 Windows 上，数据不在 Git 里（`.gitignore` 里的 `data/raw/` 和 `data/film_domain/`）。需要从 Mac 拷贝或者重新下载：
+Git clone 只得到代码。以下数据需要手动放入（推荐从 Mac SCP 传输，已有全部数据）。
 
-### 选项 A：从 Mac SCP 传输（推荐，已有数据）
+### 最终目录结构（Windows 端应长这样）
+
+```
+C:\projects\NEURO_FILM\
+├── .venv/                  # Python 虚拟环境（由 setup_win.ps1 创建）
+├── scripts/                # 所有训练/推理/下载脚本
+├── configs/                # 配置文件
+├── outputs/                # 输出图片
+├── loras/                  # ⚠️ 需要放入
+│   ├── velvia_50_sd15.safetensors   (1.5MB)
+│   ├── hp5_sd15.safetensors         (1.5MB)
+│   ├── portra_400_sd15.safetensors  (1.5MB)
+│   ├── portra_800_sd15.safetensors  (1.5MB)
+│   ├── vision3_500t_sd15.safetensors(1.5MB)
+│   ├── vision3_250d_sd15.safetensors(1.5MB)
+│   ├── ektar_100_sd15.safetensors   (1.5MB)
+│   ├── tri_x_400_sd15.safetensors   (1.5MB)
+│   ├── film_photography_style.safetensors (870MB, HF)
+│   └── film_grain.safetensors             (163MB, HF)
+├── data/
+│   ├── film_domain/         # ⚠️ 需要放入（~2.6GB 总计）
+│   │   ├── portra_400/      # 500 张 JPEG
+│   │   ├── portra_800/      # 500 张
+│   │   ├── vision3_500t/    # 500 张
+│   │   ├── vision3_250d/    # 403 张
+│   │   ├── ektar_100/       # 499 张
+│   │   ├── tri_x_400/       # 500 张
+│   │   ├── velvia_50/       # 384 张
+│   │   └── hp5/             # 500 张
+│   └── physics/             # 可选，参考用（~50MB）
+│       ├── kodak_vision3_500t/technical_data.pdf
+│       └── ...（共 12 份 PDF）
+└── .env                     # ⚠️ 需要创建
+    FLICKR_API_KEY=xxx        # Flickr API Key
+    FLICKR_API_SECRET=xxx     # Flickr API Secret
+```
+
+### 三类数据：必须 / 建议 / 可选
+
+| 优先级 | 目录 | 大小 | 用途 | 不装的后果 |
+|:---:|------|:---:|------|------|
+| **必须** | `data/film_domain/` | 2.6GB | SDXL LoRA 训练 | 无法训练任何 LoRA |
+| **必须** | `.env` | 1KB | Flickr 下载、CivitAI 下载 | 无法重新下载数据 |
+| 建议 | `loras/` | ~1GB | SD 1.5 推理 | 只能跑 IP2P 推理 |
+| 可选 | `data/physics/` | 50MB | H&D 曲线参考 | 不影响训练 |
+
+### 从 Mac 传输（最快）
 
 ```bash
-# Mac 上执行
+# Mac 终端执行
 cd ~/neuro_film
 
-# 传输胶片扫描数据（~2GB）
-tar czf - data/film_domain data/physics data/calibration | ssh YOURUSER@WIN_IP "cd C:\projects\NEURO_FILM && tar xzf -"
+# 必须：胶片扫描数据（~2.6GB）
+rsync -avz --progress data/film_domain/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/data/film_domain/"
 
-# 如果 tar 在 Windows 上不可用，用 rsync
-rsync -avz --progress data/film_domain/ YOURUSER@WIN_IP:/c/projects/NEURO_FILM/data/film_domain/
-rsync -avz --progress data/physics/ YOURUSER@WIN_IP:/c/projects/NEURO_FILM/data/physics/
-rsync -avz --progress data/calibration/ YOURUSER@WIN_IP:/c/projects/NEURO_FILM/data/calibration/
-rsync -avz --progress loras/ YOURUSER@WIN_IP:/c/projects/NEURO_FILM/loras/
+# 必须：Flickr API 密钥
+scp .env YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/.env"
+
+# 建议：现有 LoRA 权重（~1GB）
+rsync -avz --progress loras/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/loras/"
 ```
 
-### 选项 B：Windows 上重新下载
-
-```powershell
-cd C:\projects\NEURO_FILM
-.venv\Scripts\activate
-
-# 重新下载 Flickr 胶片扫描（需要 Flickr API key）
-# 先把 .env 从 Mac 复制过来
-python scripts/scrape_films.py --stock portra_400 --count 500 --dedup
-# ... 对每种胶片重复
-```
+> 替换 `YOURUSER` 和 `WIN_IP`（Windows 上 `ipconfig` 找 IPv4）
+> Windows 需要先装 rsync：`winget install rsync`
 
 ## 第 7 步：日常工作流
 
