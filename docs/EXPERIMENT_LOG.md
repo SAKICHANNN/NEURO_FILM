@@ -241,12 +241,84 @@ noise_pred = uncond + guidance_scale × (text - image) + image_guidance_scale ×
 
 ## 数据收集
 
-**Film 扫描**：Flickr API，8 种胶片 × 384-500 张（共 3,896 张）
-**FiveK DNG**：50.83GB，5,396 文件（已下载但未使用）
-**物理 PDF**：12 份 Kodak/Fuji/Ilford 技术文档
-**CIE 校准数据**：6 文件
-**相机光谱**：RIT + Tokyo 18 文件
-**FilmSet**：10GB zip（已下载但因为是 Capture One 模拟而非真胶片扫描，被丢弃）
+> 完整下载指令见文末 [附录 A：数据下载完整指南](#附录-a数据下载完整指南)
+
+### 已下载并使用的数据集
+
+| 数据集 | 数量 | 大小 | 来源 | 用途 | 需要密钥 |
+|--------|:---:|:---:|------|------|:---:|
+| **Flickr 胶片扫描** | 3,896 张 | ~2.6GB | Flickr API | SD 1.5 LoRA 自训练 + IP2P fine-tune | ✅ API Key + Secret |
+| **FiveK DNG** | 5,396 文件 | 50.83GB | MIT CSAIL | 未使用（备用） | ❌ 公开 |
+| **物理 PDF** | 12 份 | ~50MB | Kodak/Fuji/Ilford 官网 | 参考 H&D 曲线数据 | ❌ 公开 |
+| **CIE 校准** | 8 文件 | <1MB | CIE 官网 | 色彩空间校准（未使用） | ❌ 公开 |
+| **相机光谱** | 18 文件 | ~5MB | RIT + Tokyo Open Vision | 传感器光谱参考（未使用） | ❌ 公开 |
+
+### 下载但未使用的数据集
+
+| 数据集 | 原因 |
+|--------|------|
+| **FilmSet**（10GB, 21,140 文件） | Capture One 软件模拟的胶片风格，不是真实胶片扫描。提取后全部删除。 |
+
+### 尝试下载但失败的数据集
+
+| 数据集 | 原因 |
+|--------|------|
+| **HuggingFace vintage-photography-450k** | URL 超时，流式下载极端缓慢（~0 有效下载） |
+| **CivitAI 胶片 LoRA**（Vision3 500T/250D, Ektar, Tri-X） | 大部分需要登录。仅 Portra 400（model 723250）下载成功。其余 401 Unauthorized |
+
+### 胶片扫描明细（Flickr）
+
+每种胶片的 Flickr 搜索标签和最终下载量：
+
+| 胶片 | 标签 | 收集量 | 训练 LoRA | IP2P 训练 |
+|------|------|:---:|:---:|:---:|
+| Kodak Portra 400 | `kodak portra 400`, `portra400`, `portra 400 film` | 500 | ✅ | ✅ |
+| Kodak Portra 800 | `kodak portra 800`, `portra800`, `portra 800 film` | 500 | ✅ | ❌ |
+| Kodak Vision3 500T | `kodak vision3 500t`, `vision3 500t`, `5219 film` | 500 | ✅ | ❌ |
+| Kodak Vision3 250D | `kodak vision3 250d`, `vision3 250d`, `5207 film` | 403 | ✅ | ❌ |
+| Kodak Ektar 100 | `kodak ektar 100`, `ektar100`, `ektar 100 film` | 499 | ✅ | ❌ |
+| Kodak Tri-X 400 | `kodak tri-x 400`, `tri-x 400`, `tri-x400`, `tri x 400 film` | 500 | ✅ | ❌ |
+| Fujifilm Velvia 50 | `fujifilm velvia 50`, `velvia 50`, `velvia50`, `fuji velvia film` | 384 | ✅ | ❌ |
+| Ilford HP5 Plus | `ilford hp5`, `hp5+`, `ilford hp5 plus`, `hp5 plus film` | 500 | ✅ | ❌ |
+
+> **数据质量说明**：图片来自 Flickr 公开搜索，原始分辨率各异。可能存在水印、压缩伪影、过度后期。在 LoRA 训练中使用 `CenterCrop(resolution)` + `RandomFlip` 做增强。所有图片归原始上传者所有，不随项目分发。
+
+### 数据目录结构
+
+```
+data/
+├── film_domain/           # 胶片扫描（从 Flickr 下载，8 个子目录）
+│   ├── portra_400/        # 500 张 → 961MB
+│   ├── portra_800/        # 500 张
+│   ├── vision3_500t/      # 500 张
+│   ├── vision3_250d/      # 403 张
+│   ├── ektar_100/         # 499 张
+│   ├── tri_x_400/         # 500 张
+│   ├── velvia_50/         # 384 张 → 961MB
+│   └── hp5/               # 500 张 → 585MB
+├── physics/               # 胶片物理 PDF（12 份）
+│   ├── kodak_vision3_500t/technical_data.pdf
+│   ├── kodak_vision3_250d/technical_data.pdf
+│   ├── kodak_vision3_50d/technical_data.pdf
+│   ├── kodak_portra_400/technical_data.pdf
+│   ├── kodak_portra_800/technical_data.pdf
+│   ├── kodak_portra_160/technical_data.pdf
+│   ├── kodak_ektar_100/technical_data.pdf
+│   ├── kodak_trix/technical_data.pdf
+│   ├── ilford_hp5/technical_data.pdf
+│   ├── fujifilm_velvia_50/product_information_bulletin.pdf
+│   └── fujifilm_professional_guide/professional_film_data_guide.pdf
+├── calibration/           # 色彩科学数据
+│   ├── cie/               # CIE 标准（XYZ 1931, D50/D65/Illuminant A）
+│   └── camera_spectral/   # 相机光谱灵敏度（RIT + Tokyo）
+├── raw/                   # 原始数据集
+│   ├── fivek/             # FiveK DNG (50.83GB)
+│   └── filmset/           # FilmSet zip (10GB) — 未使用
+├── ip2p_train/            # IP2P 伪配对训练数据（200 对）
+└── processed/             # 预处理数据（空）
+```
+
+> **注意**：`data/raw/` 和 `data/film_domain/` 在 `.gitignore` 中——不在 Git 仓库里。新机器需要重新执行下载步骤。
 
 ---
 
@@ -276,6 +348,96 @@ noise_pred = uncond + guidance_scale × (text - image) + image_guidance_scale ×
 2. **IP2P fine-tune on 5070 Ti** with original IP2P dataset + our film instructions
 3. **InstructPix2Pix SDXL fine-tune** with real paired data（同一场景数码+胶片）
 4. **物理模拟管线**（agx-emulsion / filmr / vkdt filmsim）作为后处理验证
+
+## 附录 A：数据下载完整指南
+
+### A.1 前置准备
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate         # Mac
+pip install flickrapi requests pillow safetensors datasets
+```
+
+### A.2 Flickr 胶片扫描下载 — 需要密钥
+
+**获取密钥**：
+1. https://www.flickr.com/services/apps/create/
+2. "Apply for a Non-Commercial Key"
+3. App name: `K-MCFM Film Research`
+4. Description: `Academic research project studying film photography aesthetics using machine learning.`
+
+在项目根目录创建 `.env`（已在 `.gitignore` 中）：
+
+```bash
+FLICKR_API_KEY=你的API_KEY
+FLICKR_API_SECRET=你的API_SECRET
+```
+
+运行下载（每种胶片约 5-10 分钟，支持断点续传和去重）：
+
+```bash
+python scripts/scrape_films.py --stock portra_400 --count 500 --dedup
+python scripts/scrape_films.py --stock vision3_500t --count 500 --dedup
+python scripts/scrape_films.py --stock vision3_250d --count 500 --dedup
+python scripts/scrape_films.py --stock portra_800 --count 500 --dedup
+python scripts/scrape_films.py --stock ektar_100 --count 500 --dedup
+python scripts/scrape_films.py --stock tri_x_400 --count 500 --dedup
+python scripts/scrape_films.py --stock velvia_50 --count 500 --dedup
+python scripts/scrape_films.py --stock hp5 --count 500 --dedup
+```
+
+### A.3 物理 PDF（公开，无需密钥）
+
+```bash
+python scripts/download_data.py physics
+```
+
+### A.4 CIE 色彩校准（公开，无需密钥）
+
+```bash
+python scripts/download_data.py cie
+```
+
+### A.5 相机光谱（公开，无需密钥）
+
+```bash
+python scripts/download_data.py camera-spectral
+```
+
+### A.6 FiveK DNG（公开，50GB，可选）
+
+```bash
+python scripts/download_data.py fivek-dng
+```
+
+### A.7 HuggingFace 模型权重（自动下载，无需密钥）
+
+首次使用时自动从 HuggingFace 下载到 `~/.cache/huggingface/`：
+
+| 模型 | 大小 | 用途 |
+|------|:---:|------|
+| `timbrooks/instruct-pix2pix` | ~3GB | IP2P 推理 |
+| `stabilityai/stable-diffusion-xl-base-1.0` | ~12GB | SDXL 基座 |
+| `runwayml/stable-diffusion-v1-5` | ~5GB | SD 1.5 基座 |
+
+### A.8 Windows 端数据同步
+
+```bash
+# Mac 端执行（替换 WIN_IP）
+rsync -avz --progress data/film_domain/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/data/film_domain/"
+rsync -avz --progress data/physics/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/data/physics/"
+rsync -avz --progress loras/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/loras/"
+```
+
+### A.9 所需密钥汇总
+
+| 服务 | 用途 | 获取地址 |
+|------|------|---------|
+| Flickr API | 下载胶片扫描 | https://www.flickr.com/services/apps/create/ |
+| GitHub Token | Git push/pull | https://github.com/settings/tokens |
+| HuggingFace | 模型下载 | 不需要密钥 |
+| CivitAI | 社区 LoRA | https://civitai.com/user/account（可选） |
 
 ---
 
