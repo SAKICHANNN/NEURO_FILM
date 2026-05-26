@@ -218,69 +218,122 @@ rsync -avz --progress loras/ YOURUSER@WIN_IP:"/c/projects/NEURO_FILM/loras/"
 > 替换 `YOURUSER` 和 `WIN_IP`（Windows 上 `ipconfig` 找 IPv4）
 > Windows 需要先装 rsync：`winget install rsync`
 
-## 第 7 步：日常工作流
+## 第 7 步：Windows — 首次验证
 
-### 7.1 Mac 开发 → Push
+```powershell
+# SSH 到 Windows 后
+cd C:\Users\hhvrf\Documents\neuro_film
+.venv\Scripts\activate
+
+# 1. 确认 CUDA
+python -c "import torch; assert torch.cuda.is_available(); print(f'CUDA OK: {torch.cuda.get_device_name(0)} ({torch.cuda.get_device_properties(0).total_mem/1e9:.1f}GB)')"
+
+# 2. 下载模型权重（首次运行自动下载~20GB，需 30-60 分钟）
+python -c "
+from diffusers import StableDiffusionXLPipeline, StableDiffusionInstructPix2PixPipeline
+print('Downloading SDXL...')
+sdxl = StableDiffusionXLPipeline.from_pretrained('stabilityai/stable-diffusion-xl-base-1.0', torch_dtype=torch.float16, use_safetensors=True)
+print('Downloading IP2P...')
+ip2p = StableDiffusionInstructPix2PixPipeline.from_pretrained('timbrooks/instruct-pix2pix', torch_dtype=torch.float16, safety_checker=None)
+print('All models downloaded')
+"
+
+# 3. 快速推理测试（确认管线正常）
+python scripts/translate.py test.jpg --style portra_400 --device cuda
+```
+
+## 第 8 步：Windows — 训练任务清单
+
+按优先级排列，每项完成后 push 权重到 GitHub，Mac 端拉取验证。
+
+### 任务 1：SDXL 全 UNet LoRA 训练（优先级最高）
+
+**目标**：训练每种胶片的 SDXL LoRA（rank 64, 3000步, 512², CUDA FP16）
+
+**工具**：kohya-ss sd-scripts 或 diffusers 官方脚本
+
+**命令**（diffusers 版）：
+```powershell
+# 对每种胶片：
+python scripts/train_sdxl_lora.py \
+    --film-dir data/film_domain/portra_400 \
+    --style portra_400 \
+    --resolution 512 \
+    --rank 64 \
+    --steps 3000 \
+    --lr 1e-4 \
+    --device cuda
+```
+
+**产出**：每胶片一个 `.safetensors` LoRA（~100MB）
+
+**验证**：Mac 上 `python scripts/translate.py test.jpg --style portra_400 --device mps`
+
+### 任务 2：IP2P 指令微调
+
+**目标**：在原始 IP2P 数据集 + 我们的胶片指令上 fine-tune IP2P
+
+**工具**：`diffusers/examples/instruct_pix2pix/train_instruct_pix2pix.py`
+
+**说明**：不破坏预训练先验，只教模型"Portra 400"这类新词对应什么色彩
+
+```powershell
+accelerate launch train_instruct_pix2pix.py \
+    --pretrained_model_name_or_path=timbrooks/instruct-pix2pix \
+    --dataset_name=我们的胶片指令数据集（需构建） \
+    --resolution=256 \
+    --train_batch_size=4 \
+    --gradient_accumulation_steps=4 \
+    --gradient_checkpointing \
+    --max_train_steps=5000 \
+    --learning_rate=5e-05 \
+    --conditioning_dropout_prob=0.05 \
+    --mixed_precision=fp16
+```
+
+### 任务 3：SDXL InstructPix2Pix 训练
+
+**目标**：用 SDXL 基础版 IP2P + 我们的胶片数据做 fine-tune
+
+**工具**：`diffusers/examples/instruct_pix2pix/train_instruct_pix2pix_sdxl.py`
+
+**基础模型**：`diffusers/sdxl-instructpix2pix-768`
+
+### 任务 4：超参数调优
+
+**目标**：找到每种胶片的最佳 `image_guidance_scale` 和 `guidance_scale`
+
+```powershell
+python scripts/grid_search_ip2p.py --image test.jpg --style all
+```
+
+## 日常工作流（更新版）
 
 ```bash
-# Mac 上
+# ===== Mac → 开发 =====
 cd ~/neuro_film
 git checkout -b feature/xxx
-# 写代码...
+# ... 写代码 ...
 git add -A && git commit -m "xxx"
 git push origin feature/xxx
-```
 
-### 7.2 Windows 拉取 → 训练
-
-```powershell
-# SSH 到 Windows
-ssh YOURUSER@WIN_IP
-cd C:\projects\NEURO_FILM
+# ===== Win → 训练 =====
+ssh hhvrf@192.168.1.103
+cd C:\Users\hhvrf\Documents\neuro_film
 .venv\Scripts\activate
 git pull origin feature/xxx
+python scripts/train_sdxl_lora.py --film-dir data/film_domain/portra_400 --style portra_400 --device cuda
+# 训完: git add loras/ && git commit && git push
 
-# 运行训练
-python scripts/train_ip2p.py --film-dir data/film_domain/portra_400 --style portra_400 --steps 15000 --device cuda
-```
-
-### 7.3 Windows 把权重推送回 Mac
-
-```powershell
-# Windows 上
-# 训练完成后，把权重加入 LFS 或直接 scp
-
-# 方法1：用 git 传输小文件（LoRA < 10MB）
-git add loras/portra_400_lora.safetensors
-git commit -m "trained portra 400 lora"
-git push
-
-# 方法2：大文件直接 SCP 到 Mac
-scp loras\portra_400_lora.safetensors YOURUSER@MAC_IP:~/neuro_film/loras/
-```
-
-### 7.4 Mac 拉取 → 验证
-
-```bash
-# Mac 上
-cd ~/neuro_film
-git pull
-python scripts/translate.py test.jpg --style portra_400
-```
-
-## 快速命令速查
-
-```bash
-# ===== Mac 端 =====
-ssh YOURUSER@WIN_IP                                    # 连 Windows
-scp file.txt YOURUSER@WIN_IP:"C:\projects\file.txt"    # 传文件到 Windows
-scp YOURUSER@WIN_IP:"C:\projects\result.txt" .         # 从 Windows 拉文件
-
-# ===== Windows 端 (SSH 进去后) =====
-cd C:\projects\NEURO_FILM && .venv\Scripts\activate    # 进入项目
-python scripts/translate.py test.jpg --style portra_400  # 推理
-python scripts/train_ip2p.py --film-dir data/film_domain/portra_400 --style portra_400 --steps 15000 --device cuda
-nvidia-smi                                              # 看 GPU 状态
+# ===== Mac → 验收 =====
+git pull origin feature/xxx
+python -c "
+from PIL import Image
+from diffusers import StableDiffusionInstructPix2PixPipeline
+import torch
+pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained('timbrooks/instruct-pix2pix', torch_dtype=torch.float16, safety_checker=None)
+# 加载新 LoRA...
+"
 ```
 
 ## 故障排查
