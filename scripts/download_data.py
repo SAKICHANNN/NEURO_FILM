@@ -76,6 +76,14 @@ PHYSICS_JOBS = [
         "https://asset.fujifilm.com/master/emea/files/2020-10/a71dda63e2662f012b3b74110794918a/films_velvia-50_datasheet_01.pdf",
         "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
     ),
+    (
+        "https://asset.fujifilm.com/www/us/files/2020-03/64873257f4644939d7bd75d95600a561/AF3-960E.pdf",
+        "data/physics/fujifilm_velvia_rvp/technical_data.pdf",
+    ),
+    (
+        "https://asset.fujifilm.com/www/us/files/2020-03/226db49cde8b549d243c6498a80479cc/Velvia100_Brochure_Final.pdf",
+        "data/physics/fujifilm_velvia_100/brochure.pdf",
+    ),
 ]
 CAMERA_SPECTRAL_JOBS = [
     (

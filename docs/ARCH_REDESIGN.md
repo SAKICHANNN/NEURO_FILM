@@ -289,7 +289,7 @@ Digital Input (B, 3, H, W) linear RGB, float32, [0,1]
 
 > 前两版方案（原始 CFM+Mamba+KAN、V2 的 CUT+3D LUT+颗粒）都有一个根本问题：**它们生产的"胶片效果"本质上是 LUT 色调映射 + 噪声叠加，缺少 AI 文生图模型对胶片美学的那种深层理解**。
 >
-> SD/Flux 等扩散模型已经在 Civitai 社区通过 LoRA 证明了它们能生成"看起来像胶片拍的"图像——Kodak Vision3 500T/250D、Portra 400/800、Ektar 100、Gold 200 等胶片 LoRA 已可下载使用。
+> SD/Flux 等扩散模型已经在 Civitai 社区通过 LoRA 证明了它们能生成"看起来像胶片拍的"图像。2026-05-25 联网核实的精确 SDXL 条目为 Kodak Portra 400、Vision3 500T、Vision3 250D、Ektar 100；Portra 800、Tri-X 400、Velvia 50、HP5 仍按自训练处理。
 >
 > **核心挑战不是生成胶片外观，而是保留输入图像的事实性内容。**
 
@@ -416,7 +416,7 @@ SDXL LoRA 训练在 Mac 上也可行（MLX），但比 CUDA 慢 3-5×，适合�
 
 **Phase 1: SDXL 基线 + 胶片 LoRA 推理（1 周）**
 1. 加载 SDXL + diffusers img2img pipeline
-2. 从 Civitai 下载现成胶片 LoRA（Vision3 500T, Portra 400, Ektar 100 等）
+2. 从 Civitai 下载现成胶片 LoRA（已验证 SDXL：Portra 400, Vision3 500T, Vision3 250D, Ektar 100）
 3. 调优 strength 参数，找到每种胶片的最佳内容/风格平衡点
 4. 主观评估输出质量
 
@@ -467,7 +467,7 @@ SDXL LoRA 训练在 Mac 上也可行（MLX），但比 CUDA 慢 3-5×，适合�
 | kohya-ss sd-scripts | LoRA 训练工具 |
 | FluxGym / SimpleTuner | Flux LoRA 训练 |
 | ControlNet (Zhang et al., ICCV 2023) | 结构条件注入 |
-| Civitai 胶片 LoRA | 已有 30+ 胶片风格 LoRA 可下载 |
+| Civitai 胶片 LoRA | 胶片风格 LoRA 很多；精确 SDXL 库存以 `docs/ONLINE_DATA_AUDIT.md` 为准 |
 
 ---
 

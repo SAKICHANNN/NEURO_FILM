@@ -264,7 +264,7 @@ noise_pred = uncond + guidance_scale × (text - image) + image_guidance_scale ×
 | 数据集 | 原因 |
 |--------|------|
 | **HuggingFace vintage-photography-450k** | URL 超时，流式下载极端缓慢（~0 有效下载） |
-| **CivitAI 胶片 LoRA**（Vision3 500T/250D, Ektar, Tri-X） | 大部分需要登录。仅 Portra 400（model 723250）下载成功。其余 401 Unauthorized |
+| **CivitAI 胶片 LoRA**（2026-05-25 复核） | 精确 SDXL 已验证：Portra 400 `723250/808680`、Vision3 500T `725625/820808`、Vision3 250D `725620/820761`、Ektar 100 `779013/1167852`；Portra 800/Tri-X/Velvia/HP5 未验证到精确 SDXL 条目，详见 `docs/ONLINE_DATA_AUDIT.md` |
 
 ### 胶片扫描明细（Flickr）
 
@@ -372,6 +372,7 @@ pip install flickrapi requests pillow safetensors datasets
 ```bash
 FLICKR_API_KEY=你的API_KEY
 FLICKR_API_SECRET=你的API_SECRET
+CIVITAI_API_TOKEN=你的Civitai_TOKEN  # 可选；私有/订阅 LoRA 下载需要
 ```
 
 运行下载（每种胶片约 5-10 分钟，支持断点续传和去重）：

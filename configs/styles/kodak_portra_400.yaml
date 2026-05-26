@@ -9,7 +9,7 @@ style:
   negative_prompt: "digital, oversharpened, HDR, overprocessed, CGI, plastic skin, heavy noise, B&W"
 
 lora:
-  path: "loras/portra400.safetensors"
+  path: "loras/portra_400.safetensors"
   source: "civitai"         # civitai | self_trained
   rank: 16
 

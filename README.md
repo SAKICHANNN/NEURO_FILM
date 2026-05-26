@@ -22,7 +22,7 @@ Input Image → VAE Encode → Forward Diffuse (控量噪声)
 
 扩散模型（SD/Flux）在数十亿张图片上预训练，已学会"照片应该长什么样"。LoRA 在预训练模型上注入胶片美学，只需 2MB。通过噪声级别（strength）精确控制"改多少"——不是 GAN 的黑盒映射，不是 LUT 的全局调色。
 
-社区已有 30+ 胶片 LoRA 可直接使用（Civitai）。
+社区有大量胶片 LoRA 可用，但 SDXL 精确胶片库存需要逐个核实；本仓库已在 `docs/ONLINE_DATA_AUDIT.md` 记录 2026-05-25 的核实结果。
 
 ---
 
@@ -30,11 +30,11 @@ Input Image → VAE Encode → Forward Diffuse (控量噪声)
 
 ```bash
 # 安装依赖
-pip install diffusers>=0.28.0 transformers accelerate peft safetensors
+pip install diffusers>=0.38.0 transformers accelerate peft safetensors
 
 # 单张推理
 python scripts/pipeline.py input.jpg \
-    --style portra400 \
+    --style portra_400 \
     --strength 0.45 \
     --output result.jpg
 
@@ -61,14 +61,14 @@ python scripts/pipeline.py ./photos/ \
 
 | 胶片 | 类型 | LoRA |
 |------|------|:---:|
-| Kodak Vision3 500T | 彩色负片 | Civitai |
-| Kodak Vision3 250D | 彩色负片 | Civitai |
-| Kodak Portra 400 | 彩色负片 | Civitai |
-| Kodak Portra 800 | 彩色负片 | Civitai |
-| Kodak Ektar 100 | 彩色负片 | Civitai |
+| Kodak Vision3 500T | 彩色负片 | Civitai SDXL verified |
+| Kodak Vision3 250D | 彩色负片 | Civitai SDXL verified |
+| Kodak Portra 400 | 彩色负片 | Civitai SDXL verified |
+| Kodak Portra 800 | 彩色负片 | 自训练 |
+| Kodak Ektar 100 | 彩色负片 | Civitai SDXL verified |
 | Fujifilm Velvia 50 | 彩色正片 | 自训练 |
 | Ilford HP5 Plus | 黑白负片 | 自训练 |
-| Kodak Tri-X 400 | 黑白负片 | Civitai |
+| Kodak Tri-X 400 | 黑白负片 | 自训练 |
 
 ---
 

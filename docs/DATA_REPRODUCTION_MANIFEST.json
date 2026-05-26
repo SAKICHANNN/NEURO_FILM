@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_updated": "2026-05-23",
+  "last_updated": "2026-05-25",
   "purpose": "Committed reproduction manifest for rebuilding ignored data/ contents on a new machine.",
   "target_mac": {
     "machine": "Apple Silicon Mac",
@@ -11,7 +11,8 @@
   "notes": [
     "Do not commit downloaded dataset files, manufacturer PDFs, calibration CSVs, generated manifests, checkpoints, or outputs.",
     "Local Windows source state was recorded from data/raw/dataset_status.json, which is intentionally ignored by Git.",
-    "The next implementation task is still 1.2 data pipeline; data/processed/manifest.jsonl does not exist yet."
+    "The next implementation task is still 1.2 data pipeline; data/processed/manifest.jsonl does not exist yet.",
+    "Online data audit added in docs/ONLINE_DATA_AUDIT.md on 2026-05-25."
   ],
   "resources": {
     "fivek_dng": {
@@ -82,7 +83,7 @@
       "license_note": "CIE metadata records CC BY-SA 4.0 for these CSV datasets."
     },
     "physics_pdfs": {
-      "status_on_windows": "partial_complete",
+      "status_on_windows": "complete_for_current_scripted_scope",
       "target_path": "data/physics",
       "restore_command": "python scripts/download_data.py physics",
       "scripted_files": [
@@ -96,16 +97,24 @@
         "data/physics/kodak_trix/technical_data.pdf",
         "data/physics/ilford_hp5/technical_data.pdf",
         "data/physics/fujifilm_professional_guide/professional_film_data_guide.pdf",
-        "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf"
-      ],
-      "windows_extra_files_not_yet_scripted": [
+        "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
         "data/physics/fujifilm_velvia_rvp/technical_data.pdf",
         "data/physics/fujifilm_velvia_100/brochure.pdf"
       ],
+      "newly_confirmed_urls_2026_05_25": [
+        {
+          "file": "data/physics/fujifilm_velvia_rvp/technical_data.pdf",
+          "source": "https://www.fujifilm.com/us/en/business/professional-photography/film/velvia-50/support",
+          "sha256_local": "4281E316D648E626D9A3A7127902489FB8E6BEDABD90751AA32E3743C8BF8541"
+        },
+        {
+          "file": "data/physics/fujifilm_velvia_100/brochure.pdf",
+          "source": "https://asset.fujifilm.com/www/us/files/2020-03/226db49cde8b549d243c6498a80479cc/Velvia100_Brochure_Final.pdf",
+          "sha256_local": "43DAFE1A93C3110CCCE0D198CB21FD145B28269B4C5936B7A54B97AEC6FA8115"
+        }
+      ],
       "known_gaps": [
-        "Standalone Fuji Reala public technical PDF not located; Fujifilm Professional Film Data Guide is the fallback.",
-        "Official Fujifilm Velvia 100 datasheet CDN returned 403 on the Windows setup; public brochure was used instead.",
-        "Older Fujifilm Velvia RVP and Velvia 100 brochure files are listed in the Windows project state but not yet scripted because stable public direct URLs still need confirmation."
+        "Standalone Fuji Reala public technical PDF not located; Fujifilm Professional Film Data Guide is the fallback."
       ]
     },
     "camera_spectral_sensitivity": {
@@ -144,6 +153,24 @@
       "target_path": "data/raw/filmgrainstyle740k",
       "restore_action": "Use FILMGRAINSTYLE740K_REQUEST_EMAIL.md; do not commit received files.",
       "contact": "filmgrainstylemanagement@interdigital.com"
+    },
+    "film_domain_flickr": {
+      "status_on_windows": "complete_in_git_history_but_missing_from_current_checkout",
+      "target_path": "data/film_domain",
+      "restore_action": "Use scripts/scrape_films.py with a local .env containing Flickr credentials, or rsync from the authorized machine.",
+      "source": "Flickr API",
+      "expected_files": 3896,
+      "per_stock_counts": {
+        "portra_400": 500,
+        "portra_800": 500,
+        "vision3_500t": 500,
+        "vision3_250d": 403,
+        "ektar_100": 499,
+        "tri_x_400": 500,
+        "velvia_50": 384,
+        "hp5": 500
+      },
+      "license_note": "User/API-collected images; do not redistribute. Verify Flickr license metadata before training public or commercial checkpoints."
     },
     "cinestill800t": {
       "status_on_windows": "blocked_dataset_not_published_in_repo",

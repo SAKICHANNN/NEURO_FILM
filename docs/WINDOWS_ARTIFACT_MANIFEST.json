@@ -1,0 +1,1051 @@
+{
+  "generated_at": "2026-05-26T23:58:45+0800",
+  "workspace": "C:\\Users\\hhvrf\\Documents\\neuro_film",
+  "items": [
+    {
+      "path": "loras/ektar_100.safetensors",
+      "size_bytes": 456488820,
+      "sha256": "434869df899302da237bedfe670a8bdb719850fb01a16eb59942acad7069b52e"
+    },
+    {
+      "path": "loras/ektar_100_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "9fea08355a70a2282553c2f7bad4b825e59384cd25ac08d87791248d06e0e9cc"
+    },
+    {
+      "path": "loras/film_grain.safetensors",
+      "size_bytes": 170540044,
+      "sha256": "1a49e40a374321e27f74b18139941107120eb43c95c0923cc204b9be675fade4"
+    },
+    {
+      "path": "loras/film_photography_style.safetensors",
+      "size_bytes": 232957560,
+      "sha256": "bc6db9d8f167adf51c2ad9280cccaff108fc8a6d6e8cd654e3afcfdbf13e1048"
+    },
+    {
+      "path": "loras/hp5.safetensors",
+      "size_bytes": 371758976,
+      "sha256": "e6f109ceb22fcab99d48d491ad09b7507d7435a07f4bb8fb1c5fe876db94bc3a"
+    },
+    {
+      "path": "loras/hp5_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "a7c6afc65c8508c6671e99c1411d98b17fa993620d8f69d9078c816de23eb4d8"
+    },
+    {
+      "path": "loras/portra_400.safetensors",
+      "size_bytes": 228461276,
+      "sha256": "408f3cd2608017bd5e1fdc0d975e775dc3b67cabd8c405b7e03d849ea3dafe3c"
+    },
+    {
+      "path": "loras/portra_400_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "31435e602a72b0582310258d8b351f9a4c45bc49053eac4777c11099bdc228ec"
+    },
+    {
+      "path": "loras/portra_800.safetensors",
+      "size_bytes": 371758976,
+      "sha256": "5e4f0f9c341dc9699ffd04b4b51de6dc4d288991d7e9bbd8b13a566d38377e7a"
+    },
+    {
+      "path": "loras/portra_800_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "435efb3c10403026ae7deaa0ec5a6c09934020d7e0edce3bf9026dd5cc6db87d"
+    },
+    {
+      "path": "loras/tri_x_400.safetensors",
+      "size_bytes": 371758976,
+      "sha256": "194bcb111fe8ca2309c49e098075df848c4a9e5cb70df14e501e8228260024b5"
+    },
+    {
+      "path": "loras/tri_x_400_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "9e994dd0a1ee968559974c18a0a09420c26ed6b0e8d88eba72920b22f660e936"
+    },
+    {
+      "path": "loras/velvia_50.safetensors",
+      "size_bytes": 371758976,
+      "sha256": "e93b98add042469af287c755154e6a27a6593939333e54e2717623edfba5ecf5"
+    },
+    {
+      "path": "loras/velvia_50_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "2dc9bac4f436c3aa22d12188d051e471368d108abb394d012630f90a62665659"
+    },
+    {
+      "path": "loras/vision3_250d.safetensors",
+      "size_bytes": 456485018,
+      "sha256": "c1d88d930dd36f49c342a9c7f2c66b953db33104acb72ab9d3eb447c1a1c3c04"
+    },
+    {
+      "path": "loras/vision3_250d_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "f50c96272125a48bfedabdd018df500a88b585c11b40cd769abf22ed43c65c96"
+    },
+    {
+      "path": "loras/vision3_500t.safetensors",
+      "size_bytes": 456485018,
+      "sha256": "ca595af4506cf43bd1cad743b3cf6eac309323164af45b41c63e45fe914ade44"
+    },
+    {
+      "path": "loras/vision3_500t_sd15.safetensors",
+      "size_bytes": 1594016,
+      "sha256": "b9a0bc4824daa344ca9d215aad1ad9b692688bbe427d467f5171a8f9b6e71c17"
+    },
+    {
+      "path": "configs/film_color_stats.json",
+      "size_bytes": 5271,
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/feature_extractor/preprocessor_config.json",
+      "size_bytes": 493,
+      "sha256": "64a49623964ac5cd407d449ae72ea66b58eb05c62fbc55e5d1ea3dc6cbaf4cea"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/logs/instruct-pix2pix/1779793626.5522792/events.out.tfevents.1779793626.SAKICHAN.35472.1",
+      "size_bytes": 2503,
+      "sha256": "c73f801637701211f8e60751810277e8df2485d755a26da184eb37380e9be613"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/logs/instruct-pix2pix/1779793626.5567815/hparams.yml",
+      "size_bytes": 1340,
+      "sha256": "582a8ff56039c8e61fdee3c4828628b9fe3a5cf0cdc997c07dc7b8889d699834"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/logs/instruct-pix2pix/events.out.tfevents.1779793626.SAKICHAN.35472.0",
+      "size_bytes": 48961,
+      "sha256": "1e37c8748f01b07e9716b112a8577cb2cf31eeeb788dff83b03b17ff5add8b0c"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/model_index.json",
+      "size_bytes": 728,
+      "sha256": "c375954848b7335e1aa4144c908cf332d157666c47f238010afb1c5286181094"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/safety_checker/config.json",
+      "size_bytes": 2297,
+      "sha256": "4bc5ec791c11a1c7b2ebe7899634a937dc09e2bd4570711b35a01318ba2d8540"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/safety_checker/model.safetensors",
+      "size_bytes": 1215979664,
+      "sha256": "fb351a5ded815c3ff744968ad9c6b218d071b9d313d04f35e813b84b4c0ffde8"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/scheduler/scheduler_config.json",
+      "size_bytes": 389,
+      "sha256": "f00b8f4186ccd00d7af821a92832b9b95f9336a1aeb977fcfafca836be02d58a"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/text_encoder/config.json",
+      "size_bytes": 577,
+      "sha256": "7d69b52bced11cb7508d9c726a75e2574a03074e9afbccbe786d9469ced2f79e"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/text_encoder/model.safetensors",
+      "size_bytes": 246144152,
+      "sha256": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/tokenizer/tokenizer.json",
+      "size_bytes": 3642073,
+      "sha256": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/tokenizer/tokenizer_config.json",
+      "size_bytes": 364,
+      "sha256": "4d1439e2cefa4a2c46934aa42dafab7a4f35c3d47612d9a9a04f880c4ca494ab"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/unet/config.json",
+      "size_bytes": 1900,
+      "sha256": "a7004398cfadcc97a38bfaa81f8151ec48c8f9103e3dc53e4e8d09990f0be64a"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/unet/diffusion_pytorch_model.safetensors",
+      "size_bytes": 3438213624,
+      "sha256": "8db7d312c272cb5b1fd48864bbf21aad62d077231a61b5da9893039de05f48de"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/vae/config.json",
+      "size_bytes": 855,
+      "sha256": "151973c6746b8c9e594441302d292ebaabcf25957ead6dbe1858ff679a3b0c48"
+    },
+    {
+      "path": "outputs/ip2p_finetune/all_1000/vae/diffusion_pytorch_model.safetensors",
+      "size_bytes": 167335342,
+      "sha256": "4fbcf0ebe55a0984f5a5e00d8c4521d52359af7229bb4d81890039d2aa16dd7c"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/ektar_100_contact_sheet.jpg",
+      "size_bytes": 257671,
+      "sha256": "27e51ce0e8379c11b3e4d9559578ddff2f48a12823edf8cfcb75435c9fbe9a0b"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/hp5_contact_sheet.jpg",
+      "size_bytes": 120174,
+      "sha256": "3191a195985b1d2dc9e690fbdf5ba3432073fa16ecace046219ffd71bd605543"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/portra_400_contact_sheet.jpg",
+      "size_bytes": 209271,
+      "sha256": "f1ed3324c001003a17128457fcce2a5339ee1353041956c3a1663d730b3c21f0"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/portra_800_contact_sheet.jpg",
+      "size_bytes": 122615,
+      "sha256": "fb0f98b7f72746b015916bbec305accb55fd75b1617a9d132fe3402c1ae4482e"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/tri_x_400_contact_sheet.jpg",
+      "size_bytes": 134973,
+      "sha256": "9203e412ba08ec76cbbc18df584eb361d340d7967cabd6b398d2bf6619454732"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/velvia_50_contact_sheet.jpg",
+      "size_bytes": 258111,
+      "sha256": "7b430637dc7ad6d5c3064e3c3c8ae7a6c621cb4e499e3582467555b5bd725d6a"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/vision3_250d_contact_sheet.jpg",
+      "size_bytes": 249418,
+      "sha256": "57ecd28bf4dcc3e84aadb6fe977c782ef7de92b5fff4a6936d185324560b308c"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/contact_sheets/vision3_500t_contact_sheet.jpg",
+      "size_bytes": 265417,
+      "sha256": "3acbf961845a52cc23fd4800f8ccdb130e3ff88a1c496642d6f6aa1a1e7efed8"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1_g10.jpg",
+      "size_bytes": 122349,
+      "sha256": "be732477e0dc99175c74b890b6035131134c50e9af07ce8539ff4533984b937b"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1_g5.jpg",
+      "size_bytes": 94091,
+      "sha256": "49514367954614b95cbafcd6860c7d9a7eb9993a68b593321d2e3ac3ad1939db"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1_g7p5.jpg",
+      "size_bytes": 108387,
+      "sha256": "32e4c0e6e981d7c0b6b250f4a01dc4ac336dafdb2f6b5f3a9ef600befb097a4e"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1p5_g10.jpg",
+      "size_bytes": 116496,
+      "sha256": "fbde3f5c182f29411c4b48dcb7791bf4899bc2bb4094effd42b205eab07e3386"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1p5_g5.jpg",
+      "size_bytes": 90725,
+      "sha256": "5d8330f687c311b4725096f52d2e9d78701a2825ad4c9a5f7cc11d089242ef6f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig1p5_g7p5.jpg",
+      "size_bytes": 100683,
+      "sha256": "d9acb9da81785bc7d25c0c5194b5849a14d42c5821883b86a5e08fe1eaf1020f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig2_g10.jpg",
+      "size_bytes": 110404,
+      "sha256": "a6a46dd493ae4caf5ebf42d3bbfe8fd3d79c02e7d18169fc9c9bdc4ab6692473"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig2_g5.jpg",
+      "size_bytes": 93295,
+      "sha256": "1561ee7264d14393074f96d615b86dadc23c5130f354e9458fa7a219cc364da1"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_ektar_100_ig2_g7p5.jpg",
+      "size_bytes": 100757,
+      "sha256": "85835ea88c823ee1426dab920007325051c302367cb28c19462693b616d1c0a3"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_grid_manifest.csv",
+      "size_bytes": 27402,
+      "sha256": "47b101e51813c3fdac2c0d547ab066431ac464f39222260d8871674d05356b7d"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_grid_manifest.json",
+      "size_bytes": 42796,
+      "sha256": "ac1ccdd3a82e14dd366ddbe5f92f55faaa067848c94db70a374056c9b13f0ee9"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1_g10.jpg",
+      "size_bytes": 69778,
+      "sha256": "74097318f8a23ef21b42a96ef22ca022c7922f0269cbc0a5c0318d6410a40b9e"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1_g5.jpg",
+      "size_bytes": 62038,
+      "sha256": "bb6ede71c72ea3138ee457801e098c619dede65d63d9549a9a36a92da2fdfac5"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1_g7p5.jpg",
+      "size_bytes": 66857,
+      "sha256": "56eed1d72f7813f9de60ea82e3e2cd269429169ba1a5b0ea2419bb60df8e6c63"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1p5_g10.jpg",
+      "size_bytes": 68485,
+      "sha256": "741005f8bc0080c387900081133a567caf86b043d7c8af05da160600be13d580"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1p5_g5.jpg",
+      "size_bytes": 57556,
+      "sha256": "6d080c6547db41f57a0561dcde1248aab8b26bc59e89f8cd919f5c1e303a69df"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig1p5_g7p5.jpg",
+      "size_bytes": 62014,
+      "sha256": "2e494ee6ea125033abec0ca0716b8e5da173610a6d007540614ba5cc5817bf3f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig2_g10.jpg",
+      "size_bytes": 81583,
+      "sha256": "9680145ba8bac3e0ddfb19f00bf576865ee42e4354001fcf1fba3eecf033dea9"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig2_g5.jpg",
+      "size_bytes": 52919,
+      "sha256": "01be42e855f4b818f328e9d6c09192552a8b4e5d75ba0546eea4de6ccd039e13"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_hp5_ig2_g7p5.jpg",
+      "size_bytes": 63664,
+      "sha256": "70bf30d88eabfdabfe6f6f4cd691704e7a1349bde160e464b2e903cfa797e0ee"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1_g10.jpg",
+      "size_bytes": 116345,
+      "sha256": "27b11cdb2c0a498645bfa78e1a7a1b1479e578b7fcaa80eda780095a7cd6e3bc"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1_g5.jpg",
+      "size_bytes": 85372,
+      "sha256": "4c42a8b9c248742c38131254ec17e0db148ebf1ca80a136225e0c3de48d4602b"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1_g7p5.jpg",
+      "size_bytes": 93025,
+      "sha256": "29e51b6fe1943cab35e17ed87d6f6408c495c0fcf08fc242b2b9d5ba4a6193b4"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1p5_g10.jpg",
+      "size_bytes": 107376,
+      "sha256": "aab84d2975df4b6e25a3d76a45ab674401a68e09e1b83fbaa5826c4817344b00"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1p5_g5.jpg",
+      "size_bytes": 80010,
+      "sha256": "187896daf9d874dc733ae59118f185e3fc138c75de4334d64e90bb252f16e9c4"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig1p5_g7p5.jpg",
+      "size_bytes": 81986,
+      "sha256": "67cd4def6ec6f8ee99365e79e1d8ee7ae4c85974c4850ca6882a71068e685d16"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig2_g10.jpg",
+      "size_bytes": 102285,
+      "sha256": "3dcd2cd5affb74bbc7765f57b953c027787cc9922d176b7aaafb80f6d97eec5d"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig2_g5.jpg",
+      "size_bytes": 86130,
+      "sha256": "8a95e864f30aa22b1c2e4e35c45637d26ee8d526adf4b1f665aa2fabd98f77ec"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_ig2_g7p5.jpg",
+      "size_bytes": 87037,
+      "sha256": "d63f734384054db79f5f3aad7f192b58d0c15cdebaf04acb8da5366cb570cd5f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1_g10.jpg",
+      "size_bytes": 70288,
+      "sha256": "6321a1f99d4bde2e9169b26244a0671700ad5073b6c71acad3524cc76eac2564"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1_g5.jpg",
+      "size_bytes": 63426,
+      "sha256": "ad8a85892fdbef394087fb63e81fc0b0784821c8a14de0866bfba0475ba1f852"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1_g7p5.jpg",
+      "size_bytes": 67595,
+      "sha256": "68f456b576b2141b6538a1be8c6beb1b49043db6892ac8be771a9b9d017167ad"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1p5_g10.jpg",
+      "size_bytes": 71970,
+      "sha256": "c026b221059c30e4ae8cec1f2dbc34ad6609508ac3ac8ac0b8d0657ce2b14637"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1p5_g5.jpg",
+      "size_bytes": 57709,
+      "sha256": "66d26172506d220ffd785374cf711ecc2cd1f404f77bb313a374d86c6c2646d9"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig1p5_g7p5.jpg",
+      "size_bytes": 62250,
+      "sha256": "27afc46732d01772943004e73c22e5c077f83b9957b6a1b0a6a6607f74b7ab71"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig2_g10.jpg",
+      "size_bytes": 74619,
+      "sha256": "de85f3a0c5d102f3df5ffb16b6b26794fcdc447f6f65c2359ec140c53b631396"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig2_g5.jpg",
+      "size_bytes": 54235,
+      "sha256": "9fa72d678594d54e04610522377029af5f5696cad042d7f26bbf2c9d7fe0257e"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_ig2_g7p5.jpg",
+      "size_bytes": 57066,
+      "sha256": "09ad5dcff35a080f4e8c86a0f5871fa11bd98ed8ee25bc3c7a04aaf962da45f9"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1_g10.jpg",
+      "size_bytes": 78186,
+      "sha256": "8a9738d360676ec63ab3ff65ed83dec94aaebbff7a70a9e9fea5249161d81642"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1_g5.jpg",
+      "size_bytes": 70727,
+      "sha256": "8a7b35bfe94bd8d7c076bd6028fa9d7b00d39dd60edf0840bbf22f6cf0655aa7"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1_g7p5.jpg",
+      "size_bytes": 76574,
+      "sha256": "536882166ebf30e2c59b5999366d57948e46950ac03068bed3683799629b344b"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1p5_g10.jpg",
+      "size_bytes": 77150,
+      "sha256": "727b0e3907672dff94fd8ea31963bb4790110c79d20381f0a112c4f74e2543eb"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1p5_g5.jpg",
+      "size_bytes": 66894,
+      "sha256": "3b960571a1bf12cf36ee7724954a8b2ed15df051c6d6c57dd0ba07200cca14b0"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig1p5_g7p5.jpg",
+      "size_bytes": 72293,
+      "sha256": "2b361a8ab153fd5eee2ec1e5bbf7057278a64bfae03fb8de201dd68d8bc15e48"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig2_g10.jpg",
+      "size_bytes": 75187,
+      "sha256": "b4369c021f297d42c56a40c75f81fc1e962111b576ecc9c2eb34e1020b38703f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig2_g5.jpg",
+      "size_bytes": 65571,
+      "sha256": "bb5590cfb64ac4b00d38f53ed7165a0ceeb0e58f65583d0baab7ca7805ca4483"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_ig2_g7p5.jpg",
+      "size_bytes": 67982,
+      "sha256": "9ba99bdeed5814195afd6c01dd96b7652c7bd49b9bb9ae76733871045535d5a7"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1_g10.jpg",
+      "size_bytes": 119157,
+      "sha256": "f2df6239c6acde7147c1b228c870dd6d19ff1437f3457f88e491057a9c17beb0"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1_g5.jpg",
+      "size_bytes": 90372,
+      "sha256": "abe3de9800a929a9370b6eeeefdf7ddc4faaad42c235dc298dba9f39c0684207"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1_g7p5.jpg",
+      "size_bytes": 103979,
+      "sha256": "fc7592a11679c6d447a10d6cb1f2528d283fd57400e11387123a262d084add13"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1p5_g10.jpg",
+      "size_bytes": 112271,
+      "sha256": "bf871c8c5310d9b47d42cd3f5015ffc76e3f31ea8facd779dd0d803a05e2616f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1p5_g5.jpg",
+      "size_bytes": 87976,
+      "sha256": "ded72305103a622d6e1e831591f7a63597218a360bf707d0ba40b6b6b8eb56a0"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig1p5_g7p5.jpg",
+      "size_bytes": 97836,
+      "sha256": "ecd671c57c2cc07923b960c2332c191caa865644df393b4b9a7aa3ebc7cfc1c6"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig2_g10.jpg",
+      "size_bytes": 106958,
+      "sha256": "66a5147598b5fea1e52e91760808364d5f3c1940fda48c3fef2820b5c17461a4"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig2_g5.jpg",
+      "size_bytes": 90581,
+      "sha256": "702fd2f56a3314fbd2632ebff0a48b0a299aa87b00874cef66fb8bdf67ecda9f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_ig2_g7p5.jpg",
+      "size_bytes": 97868,
+      "sha256": "1045465bd25dd76ce7719f7acc5d8d53e973f911b3670481090b8bd7ee0abfe8"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1_g10.jpg",
+      "size_bytes": 124238,
+      "sha256": "93ea214b71ae234cecd07999ddecf9d3184773cec03747b0f170782a25f6cddc"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1_g5.jpg",
+      "size_bytes": 96157,
+      "sha256": "22c354f365ee824fe9ab94641539f3379650a6618ab20ff632139b37d2841eb3"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1_g7p5.jpg",
+      "size_bytes": 110103,
+      "sha256": "e30977c442644acda3d8a3d0d058bc60fe4efbdfe3df2ec52b63dac7951e4ca6"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1p5_g10.jpg",
+      "size_bytes": 118137,
+      "sha256": "7d58117121e7136cd7c1c3bdcc328da41a7954f10aa0a9bd4580e888b084cb1b"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1p5_g5.jpg",
+      "size_bytes": 92121,
+      "sha256": "010d4e4ec8850c8a65ce25420010fe766490706e7d6e0cf48b3d09b01fdbeb6f"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig1p5_g7p5.jpg",
+      "size_bytes": 103805,
+      "sha256": "69fc9a089a97f21b287672e0390fac6bc9f8ed2d697b47831bf73cfc63d846c8"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig2_g10.jpg",
+      "size_bytes": 112649,
+      "sha256": "8d46b700899d4a500ded5cc6eac713b88fdd29e5179199aacdda96e93d1dbabf"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig2_g5.jpg",
+      "size_bytes": 93119,
+      "sha256": "683924748acdd3f2338c94dc07bc51380419e579a9794f49688e560f24748dca"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_250d_ig2_g7p5.jpg",
+      "size_bytes": 101445,
+      "sha256": "5d119e86bed4cba9e5f7c4ecca5c668d2e350dd256ed04c835d3de7205adf7c5"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1_g10.jpg",
+      "size_bytes": 136286,
+      "sha256": "e1e6c3c3513c3ee631d7518b5b2480f2595d954913137412309b4940242819cf"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1_g5.jpg",
+      "size_bytes": 100662,
+      "sha256": "4a4d7943795ae3698d212656b2de2d312beff292edbc590854e1967706367610"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1_g7p5.jpg",
+      "size_bytes": 120365,
+      "sha256": "f48d9cdf52864abd217357aecbad17129bdc2dada3fe46153c7334d84c9fe4a5"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1p5_g10.jpg",
+      "size_bytes": 128072,
+      "sha256": "3299310f77df351f863a1fd9a6ead21623ca8884e4c15b32adabbac2b299250d"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1p5_g5.jpg",
+      "size_bytes": 94894,
+      "sha256": "ff42af5b2b99c178e3423b96496fe406798d1e5a790179b70634787e394ab5cb"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig1p5_g7p5.jpg",
+      "size_bytes": 111846,
+      "sha256": "20c1e6606ebd3971fd559ed7b0bd4c3e530dc18251d37d556847a029f388a4c5"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig2_g10.jpg",
+      "size_bytes": 120411,
+      "sha256": "1e6592d6bda209a34bd4f6a3fb0a131f29a1d650c25aa904510aba1caa382de8"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig2_g5.jpg",
+      "size_bytes": 95057,
+      "sha256": "398a9376613f6fd7c28f46cebd618d838a70b092ce361c92b5abda9f440258b7"
+    },
+    {
+      "path": "outputs/ip2p_grid/all_1000_portra400_probe/fl_020a5cc43131bde2_99026de7b4_vision3_500t_ig2_g7p5.jpg",
+      "size_bytes": 106725,
+      "sha256": "3fc72cf7bc7b6eb31ddcd25024ee374c1b91602754a305fcb0ef3989f170fb9b"
+    },
+    {
+      "path": "outputs/smoke/sdxl_lora_portra800_smoke.jpg",
+      "size_bytes": 311119,
+      "sha256": "1065b0c2088f8bb328233147258db1e696cb0fd01dd9e0236e122c64e3d2a2b3"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_hp5_s0p25_g5p0.jpg",
+      "size_bytes": 92615,
+      "sha256": "20df7eae20a03617f9c8a1cf2686e5bb7eb02369ede5fba7ee9043f4c4611cfb"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_hp5_s0p35_g5p0.jpg",
+      "size_bytes": 92664,
+      "sha256": "1e9213d9b30745e41afbc84f064ec5967a8c1abb56e91f704447d11ae4584afd"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_hp5_s0p45_g5p0.jpg",
+      "size_bytes": 93387,
+      "sha256": "0513238f283aee1ab7b0c2f49c002f4f1244ed13802217040fa11ef1dc13987e"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_hp5_s0p55_g5p0.jpg",
+      "size_bytes": 95750,
+      "sha256": "f464e87ebce83e5312141a12a160f78b4a29675e934039b5e321c950b6c32524"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 964,
+      "sha256": "ac90c33ab3eb213f4cbbcaecc66bfd16269cbdac8995e69c4db9659695306e1e"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/astronaut_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1563,
+      "sha256": "5989107fc7d96b013b6d4d26c2fb31fe39d5e88203e867db4bc29eff29e832cf"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_astronaut_medium_probe/contact_sheets/hp5_contact_sheet.jpg",
+      "size_bytes": 100936,
+      "sha256": "4315d2cddf0215a7186b1251b4374646da4ce5d745f0ee149944a12509f26173"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/contact_sheets/hp5_contact_sheet.jpg",
+      "size_bytes": 43802,
+      "sha256": "f47b60ff842c84176ec98a9b5bbd837ba10aa44e3ebc49394af990c058fa6789"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_hp5_s0p18_g4p0.jpg",
+      "size_bytes": 110957,
+      "sha256": "66bcee375c8c9ccfdc016b7f09b7667b280d157f53aa5448fb0c60c1aad71287"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_hp5_s0p1_g4p0.jpg",
+      "size_bytes": 109859,
+      "sha256": "0494ee7b774ffa8a01ee5568b40a15d850bb354025c9def599f079aff2ac85eb"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_hp5_s0p25_g4p0.jpg",
+      "size_bytes": 109006,
+      "sha256": "00fbf5f6c26621793488bbc119ac7ba4337cb78e36a4e2648964cfd46ea4f046"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_hp5_s0p35_g4p0.jpg",
+      "size_bytes": 108616,
+      "sha256": "20b7c13f0e2c4afeccb54add14adc8e38566d31fd61f6db69bfc605df5081753"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1138,
+      "sha256": "9056d6b0bb40cbdc7c4eeabb5c3977d052de8d10a09e3b4cf7f6465ba3e038f7"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/hp5_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1741,
+      "sha256": "939347ef1b375139bdae40dd85fe087e479fd782167eb9a95ce3004e30b7a377"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/contact_sheets/portra_400_contact_sheet.jpg",
+      "size_bytes": 44456,
+      "sha256": "85a730dab244e4ac4d772550c69ee047e1b0e2251e5739a074e767c9d5285d82"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p18_g4p0.jpg",
+      "size_bytes": 113948,
+      "sha256": "ca0fe41efe0cbfd532f5080c09deb01e529b473fb78c94744f5ab335105561a2"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p1_g4p0.jpg",
+      "size_bytes": 110499,
+      "sha256": "fbb0b315cc9f864ea6a31683c31df71f00f8378c8d3becf3b6f5500dbf751efd"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p25_g4p0.jpg",
+      "size_bytes": 113454,
+      "sha256": "82e121bbbf9b7ef6f34e1dc372cb2a4e62d430cb28ac339d9d9caa9ad3d2f2fc"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p35_g4p0.jpg",
+      "size_bytes": 113474,
+      "sha256": "0c13adf3c85d1e292d66cd0f912ebe121e9c1b539370597e8b88aa2fd44c5115"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1218,
+      "sha256": "992faeda4bb708f47def2b61faa9d65e0c41aa9eab9fac36dc866c5d5538bad8"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1821,
+      "sha256": "3fbe3b89f9de69a89fc654fec124087b9a34c0f90e583c2a905306b1f6e6b486"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/contact_sheets/portra_400_contact_sheet.jpg",
+      "size_bytes": 44456,
+      "sha256": "85a730dab244e4ac4d772550c69ee047e1b0e2251e5739a074e767c9d5285d82"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p18_g4p0.jpg",
+      "size_bytes": 113948,
+      "sha256": "ca0fe41efe0cbfd532f5080c09deb01e529b473fb78c94744f5ab335105561a2"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p1_g4p0.jpg",
+      "size_bytes": 110499,
+      "sha256": "fbb0b315cc9f864ea6a31683c31df71f00f8378c8d3becf3b6f5500dbf751efd"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p25_g4p0.jpg",
+      "size_bytes": 113454,
+      "sha256": "82e121bbbf9b7ef6f34e1dc372cb2a4e62d430cb28ac339d9d9caa9ad3d2f2fc"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_portra_400_s0p35_g4p0.jpg",
+      "size_bytes": 113474,
+      "sha256": "0c13adf3c85d1e292d66cd0f912ebe121e9c1b539370597e8b88aa2fd44c5115"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1238,
+      "sha256": "25d5ef79622e83b18868c4d83c938bdbd6ce6e90c371a565ad64f4202f27faec"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra400_low_strength_probe_lora/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1841,
+      "sha256": "81b673def2ca023558a88212c6097111c019d081864a291bfdb061a33339ca3e"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/contact_sheets/portra_800_contact_sheet.jpg",
+      "size_bytes": 44270,
+      "sha256": "af21e369b5e0d4121b2f93b109f430a588ed21dd9da892def6894ab431e67131"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_s0p18_g4p0.jpg",
+      "size_bytes": 112165,
+      "sha256": "3091bd891cac2398b021b6782849aaa769b740bfa3253546664e2f42b6efeca8"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_s0p1_g4p0.jpg",
+      "size_bytes": 110449,
+      "sha256": "ad06c9c5a80c45927664296734feb731e6cd2139706186293841d8d9c51c816f"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_s0p25_g4p0.jpg",
+      "size_bytes": 111040,
+      "sha256": "44467c1f8c71138163ffb60a72dc6a98c081b156654c99dbced4af33ec260618"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_portra_800_s0p35_g4p0.jpg",
+      "size_bytes": 111302,
+      "sha256": "5b74e8b12c5c5503926b9f23bde610961b0bf7dbff746dca80dbaa4f2db5a723"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1218,
+      "sha256": "38e11432da9ebbfd748be6dd6bfb2a25f0d44ecda18f39bdd0fe128515b0ba23"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra800_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1821,
+      "sha256": "519b68bc6294d659162f800b714cd21ad73103735e5ecb4a6d7f3cd031801d8a"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_portra_800_s0p25_g5p0.jpg",
+      "size_bytes": 94188,
+      "sha256": "8c3b3d64d4dcb56a510b48c557824004b292dc4493b714378a85c5ec06201794"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_portra_800_s0p35_g5p0.jpg",
+      "size_bytes": 94662,
+      "sha256": "c7e20738b1f6dea6af7cf24b3785bd7346d983278a414ba5a3256ef571162301"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_portra_800_s0p45_g5p0.jpg",
+      "size_bytes": 94997,
+      "sha256": "50c6c965e645a32f3ada5e6f9d30d1f702040ea4b1a064698ce58a2e3f84ab46"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_portra_800_s0p55_g5p0.jpg",
+      "size_bytes": 95328,
+      "sha256": "0fc792be56598c97dd054ad0f7f18997237da3ac65368a7d8f26cabd49833e71"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1048,
+      "sha256": "4c44fc1f8ed89c35990395bdf9258e7e1a2a905c0dcdcec87eca80240706f545"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/astronaut_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1647,
+      "sha256": "c0993d3537121b6e65b9355b3e3ce346bc061facfe5d19e7f8b08c2e8568d1f6"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/portra_800_astronaut_medium_probe/contact_sheets/portra_800_contact_sheet.jpg",
+      "size_bytes": 100302,
+      "sha256": "90d0f51908ecba6968721f7e00cdc7a6840dc6b076b230c33349b16be35a135f"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/contact_sheets/tri_x_400_contact_sheet.jpg",
+      "size_bytes": 44193,
+      "sha256": "4b2e1558c0faf8a508a85b1887cc2595a9773460cb6e384a4c075371e0c91310"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1210,
+      "sha256": "51f4ecf1588adb4cdd659a43243d547818f3094c4752d7dd3f6ae986ba1c0d6e"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1813,
+      "sha256": "cfdb8641b1fd7e453aae17f3cc0df8c7967406fb6d588630160596e3c6ffd269"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_s0p18_g4p0.jpg",
+      "size_bytes": 111504,
+      "sha256": "c32ba0455cd204ab3527e86c4961c869cfddb51d4e89fcaf4465af11c6802685"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_s0p1_g4p0.jpg",
+      "size_bytes": 110211,
+      "sha256": "7702b43fef377bcad95ac359aff05a1313f51847cc47c3b86c45153548bdf614"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_s0p25_g4p0.jpg",
+      "size_bytes": 109806,
+      "sha256": "36ca9733698daa0e7a08809e1932d6cc628af2299e82fe7c0f57b0f670a51b3f"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/tri_x_400_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_tri_x_400_s0p35_g4p0.jpg",
+      "size_bytes": 108745,
+      "sha256": "46ad7b1c56d4374145c52dd12bc3b313f2b2a347582c64fd8bb5ce46dd660769"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/contact_sheets/velvia_50_contact_sheet.jpg",
+      "size_bytes": 44490,
+      "sha256": "0250daca8bcc533080fb8c7a0e149a4119d5284bc130734a07c51c6da6c62505"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.csv",
+      "size_bytes": 1210,
+      "sha256": "e72760eae459df3a28fc54347615c232e8f467a27d714413383e34f5d1a25194"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_sdxl_lora_grid_manifest.json",
+      "size_bytes": 1813,
+      "sha256": "5291e5fee7f96aa97fa9deda418dee5dcb096dacbb005aadafe42172fe0cb6fa"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_s0p18_g4p0.jpg",
+      "size_bytes": 112661,
+      "sha256": "9caf4e6bc9a5bb02b8802c81c61ba407075f36e2fcae1fbdbee60872926491c6"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_s0p1_g4p0.jpg",
+      "size_bytes": 110218,
+      "sha256": "fcd79fc9c3c801dca64484ff813157bfe0b656e18aced58deb76cffddcfd3ac9"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_s0p25_g4p0.jpg",
+      "size_bytes": 111567,
+      "sha256": "11636f002beb3e9ee99d8bfafd8cab6cac064394f01601c57bcaa602c02e3d24"
+    },
+    {
+      "path": "outputs/sdxl_lora_grid/velvia_50_low_strength_probe/fl_020a5cc43131bde2_99026de7b4_velvia_50_s0p35_g4p0.jpg",
+      "size_bytes": 111466,
+      "sha256": "6b8c5d6240201143466d251358ba21a1bd6f77b4e3f20f5b21f49cc7dc377051"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_color_baseline_manifest.csv",
+      "size_bytes": 1035,
+      "sha256": "23fd68435f6996b9198ab43d5bbf171a5a98dcb78ccf104d0659ee9bc52f62d3"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_color_baseline_manifest.json",
+      "size_bytes": 1591,
+      "sha256": "87333685602c4e42893d0e46a7d7f31d1280e61fe1a9482ad3cab74b4e7ba7eb"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_ektar_100_s0p35.jpg",
+      "size_bytes": 110932,
+      "sha256": "ebf38f948966af8cd2ec1a3c2b0b1cb9d727ff8e3f0b51f6a7dd8cfc26cace91"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_ektar_100_s0p55.jpg",
+      "size_bytes": 110656,
+      "sha256": "b812b781a320b23baad45f7f6e03e8dde7ed206f9cdfce8026027d3f4d2e7dbb"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_ektar_100_s0p75.jpg",
+      "size_bytes": 110014,
+      "sha256": "7ba91f277b4a5e4000c9b869ba10798bc57c813962a1a447d2a5179facd5f961"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/astronaut_ektar_100_s0p95.jpg",
+      "size_bytes": 109556,
+      "sha256": "02616b1430d6b1492bb0064573a1ae36cb7ed71ba85111e6821bd5709263a8d4"
+    },
+    {
+      "path": "outputs/color_baseline/ektar_100_astronaut_probe/contact_sheets/ektar_100_contact_sheet.jpg",
+      "size_bytes": 107886,
+      "sha256": "67c91f44a028e9bcb215226ea052194bc8bb1c6ebf00a488271c1f789aa55658"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_color_baseline_manifest.csv",
+      "size_bytes": 939,
+      "sha256": "0b15088d9a318a137c4d467d02cde95e6cebe26a2ab3a82c1e5be1e92cc989ff"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_color_baseline_manifest.json",
+      "size_bytes": 1495,
+      "sha256": "74619fdc6a73ed20d7ce95099c0031dcc62e4bff975d193ef75a25255753305e"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_hp5_s0p35.jpg",
+      "size_bytes": 105103,
+      "sha256": "b4be67d8f30287a5f4644671ff0924088a0f25ed77a68f4b99c31bf6df304867"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_hp5_s0p55.jpg",
+      "size_bytes": 103093,
+      "sha256": "4a4ed8ce81d449841dd3a7802bf81d05ac11e6ab3ee047101cec442534e11560"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_hp5_s0p75.jpg",
+      "size_bytes": 102389,
+      "sha256": "41a9e3f82cc72abc08ed56a394f215f4a3a89dec6986b3b7ad252a469d9e0bb1"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/astronaut_hp5_s0p95.jpg",
+      "size_bytes": 103484,
+      "sha256": "13e9b1ea0ba199fb2a3822a99f249697abb4aae982d9f55bf63ec258e4240082"
+    },
+    {
+      "path": "outputs/color_baseline/hp5_astronaut_probe/contact_sheets/hp5_contact_sheet.jpg",
+      "size_bytes": 101470,
+      "sha256": "0bfccebf8b154a04903f6c8173fefe4bcffcc202aa1cebb06ffb201d0471c9de"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_color_baseline_manifest.csv",
+      "size_bytes": 1051,
+      "sha256": "ec3f3b45cb3f6521a0916538236842e0e205f61c00b6a694ff368cb4460d503a"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_color_baseline_manifest.json",
+      "size_bytes": 1607,
+      "sha256": "b4566c87e484df7cf5707d3297118ae2b39f8c1729e95f554d36db37ca20cffd"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_portra_800_s0p35.jpg",
+      "size_bytes": 110540,
+      "sha256": "600026eab1d0570445a4c494bf61ed2563ea62a2735400363b0bae7528d320f1"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_portra_800_s0p55.jpg",
+      "size_bytes": 110362,
+      "sha256": "401c9e2860c4d6e3f12298766d4d06431ed90bd8f56ec65ec82174355f9d0c0e"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_portra_800_s0p75.jpg",
+      "size_bytes": 109909,
+      "sha256": "6e71f5f8d5b819237b0caa91698d4c670f3f3cceeeaa1af65a7bb01cd17e1c81"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/astronaut_portra_800_s0p95.jpg",
+      "size_bytes": 109381,
+      "sha256": "e7757d2757856a241f13f6c71fc2cab688208307df587108a960f3fff5678f12"
+    },
+    {
+      "path": "outputs/color_baseline/portra_800_astronaut_probe/contact_sheets/portra_800_contact_sheet.jpg",
+      "size_bytes": 107659,
+      "sha256": "e9c5ddfead84be359bff973de55931205464eecc30e7fdb3f3e014b089bcf515"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_color_baseline_manifest.csv",
+      "size_bytes": 1035,
+      "sha256": "b92ebe57f97547cb99cfdc7d70ace7d9ac1a1fb0a083795847d81811f8c1fd5d"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_color_baseline_manifest.json",
+      "size_bytes": 1591,
+      "sha256": "f05186380082de8f28235525bb309cbbe8eda45979cd0e775d4d0a7eb4a018e5"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_tri_x_400_s0p35.jpg",
+      "size_bytes": 104994,
+      "sha256": "08d933c767af7536b2ce0f051638518c83701213cf6105c48f1ae5bdffa59743"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_tri_x_400_s0p55.jpg",
+      "size_bytes": 103096,
+      "sha256": "53c81a3c9abcd75853aa7a842a3e6b0be76fa4cffab8376083e89aec7ebcd9df"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_tri_x_400_s0p75.jpg",
+      "size_bytes": 102475,
+      "sha256": "62bce03df591c99a1eb27d163321182ca8ea5da6024441300a90538a36e89d06"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/astronaut_tri_x_400_s0p95.jpg",
+      "size_bytes": 103718,
+      "sha256": "135bdfd7fbfc3420d79b16dee8198af6a86f8567881a5974dad9101aba3bf594"
+    },
+    {
+      "path": "outputs/color_baseline/tri_x_400_astronaut_probe/contact_sheets/tri_x_400_contact_sheet.jpg",
+      "size_bytes": 102806,
+      "sha256": "6129897cd4231117850626a618cc3d987f7f1d6e2167c329058b3f5ec381c648"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_color_baseline_manifest.csv",
+      "size_bytes": 1035,
+      "sha256": "46a42d697a141c11662db258ae84e92db4c711ebdb68d755fa5056c25be746f8"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_color_baseline_manifest.json",
+      "size_bytes": 1591,
+      "sha256": "bc1b2754b0921bd53f1e161a0d6db16a2c830802878c912446cf887c10338281"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_velvia_50_s0p35.jpg",
+      "size_bytes": 111206,
+      "sha256": "c54c00ab0bb31f6555c5240ef80fe499529ac227d623602c0c2b9e8ec6de973f"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_velvia_50_s0p55.jpg",
+      "size_bytes": 111773,
+      "sha256": "de8acd6dd84ae2dcde23dffcdb6aa551d5a65beb75777967a8079d9dfb4673c8"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_velvia_50_s0p75.jpg",
+      "size_bytes": 112062,
+      "sha256": "c4f5feaac94ff94f893ab0b27954f66c4d78e229ed1f6cc2abd9b7a1c1b379e3"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/astronaut_velvia_50_s0p95.jpg",
+      "size_bytes": 112183,
+      "sha256": "cd9030186408862904c3407f991658fa677d87b7661ed5a08a28312d557fa601"
+    },
+    {
+      "path": "outputs/color_baseline/velvia_50_astronaut_probe/contact_sheets/velvia_50_contact_sheet.jpg",
+      "size_bytes": 109324,
+      "sha256": "5f07a18e2402842abddb7db5f340f0b49049f1be1beef1ac07f8f9130e0c12fc"
+    }
+  ]
+}

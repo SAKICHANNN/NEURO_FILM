@@ -8,8 +8,11 @@ torch==2.11.0
 torchvision==0.26.0
 
 # --- Diffusion / training helpers ---
-diffusers==0.37.1
+diffusers==0.38.0
 accelerate==1.13.0
+transformers==5.9.0
+peft==0.19.1
+safetensors==0.8.0rc0
 
 # --- Vision backbone ---
 timm==1.0.26

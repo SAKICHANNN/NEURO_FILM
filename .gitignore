@@ -12,6 +12,7 @@ venv/
 *.pth
 *.pt
 *.safetensors
+loras/
 checkpoints/
 runs/
 logs/

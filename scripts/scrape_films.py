@@ -63,30 +63,38 @@ FILM_STOCKS = {
 
 
 def load_api_creds():
+    key = os.environ.get("FLICKR_API_KEY", "").strip()
+    secret = os.environ.get("FLICKR_API_SECRET", "").strip()
     env_path = ROOT / ".env"
     if env_path.exists():
         for line in env_path.read_text().splitlines():
             if line.startswith("FLICKR_API_KEY="):
-                key = line.split("=", 1)[1].strip()
+                key = key or line.split("=", 1)[1].strip()
             elif line.startswith("FLICKR_API_SECRET="):
-                secret = line.split("=", 1)[1].strip()
+                secret = secret or line.split("=", 1)[1].strip()
     if not key or not secret:
         print("ERROR: FLICKR_API_KEY and FLICKR_API_SECRET required in .env")
         exit(1)
     return key, secret
 
 
-def scrape_stock(stock_key: str, target: int, flickr, dest_dir: Path):
+def count_images(directory: Path) -> int:
+    if not directory.exists():
+        return 0
+    return sum(1 for path in directory.rglob("*") if path.suffix.lower() in (".jpg", ".jpeg", ".png"))
+
+
+def scrape_stock(stock_key: str, target_total: int, flickr, dest_dir: Path):
     stock = FILM_STOCKS[stock_key]
     dest_dir.mkdir(parents=True, exist_ok=True)
     downloaded = 0
     seen_urls = set()
 
     for tag in stock["tags"]:
-        if downloaded >= target:
+        if count_images(dest_dir) >= target_total:
             break
         page = 1
-        while downloaded < target and page <= 100:
+        while count_images(dest_dir) < target_total and page <= 100:
             try:
                 r = flickr.photos.search(
                     tags=tag,
@@ -103,7 +111,7 @@ def scrape_stock(stock_key: str, target: int, flickr, dest_dir: Path):
                     break
 
                 for photo in photos:
-                    if downloaded >= target:
+                    if count_images(dest_dir) >= target_total:
                         break
                     url = photo.get("url_o") or photo.get("url_l") or photo.get("url_c")
                     if not url or url in seen_urls:
@@ -116,7 +124,6 @@ def scrape_stock(stock_key: str, target: int, flickr, dest_dir: Path):
                         ext = ".jpg"
                     dest = dest_dir / f"fl_{h}{ext}"
                     if dest.exists():
-                        downloaded += 1
                         continue
 
                     try:
@@ -176,17 +183,17 @@ def main():
 
     for sk in stocks_to_scrape:
         dest = FILM_DOMAIN / FILM_STOCKS[sk]["dir"]
-        existing = sum(1 for _ in dest.rglob("*") if _.suffix.lower() in (".jpg", ".jpeg", ".png"))
+        existing = count_images(dest)
         needed = max(0, args.count - existing)
         print(f"\n[{sk}] exists={existing}, need={needed}")
 
         if needed > 0:
-            n = scrape_stock(sk, needed, flickr, dest)
-            print(f"  → downloaded {n} new images")
+            n = scrape_stock(sk, args.count, flickr, dest)
+            print(f"  downloaded {n} new images")
 
         if args.dedup:
             k, r = dedup(dest)
-            print(f"  → dedup: {k} kept, {r} removed")
+            print(f"  dedup: {k} kept, {r} removed")
 
     print("\nDone. Status:")
     for sk in sorted(FILM_STOCKS):

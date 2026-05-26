@@ -86,7 +86,7 @@ mkdir -p data/raw data/processed data/synthetic data/physics data/calibration/ci
 
 Approximate disk target for the same local resources as the Windows machine: 350 GB before future processed manifests/checkpoints.
 
-The committed source of truth for ignored data is [DATA_REPRODUCTION_MANIFEST.json](DATA_REPRODUCTION_MANIFEST.json). Use it when a future agent needs exact paths, expected file counts, checksums, and known gaps.
+The committed source of truth for ignored data is [DATA_REPRODUCTION_MANIFEST.json](DATA_REPRODUCTION_MANIFEST.json). Use it when a future agent needs exact paths, expected file counts, checksums, and known gaps. The current online reconciliation notes are in [ONLINE_DATA_AUDIT.md](ONLINE_DATA_AUDIT.md).
 
 ## 4. Public Downloads
 
@@ -135,12 +135,25 @@ RIT and Tokyo Open Vision camera spectral sensitivity data:
 python scripts/download_data.py camera-spectral
 ```
 
-Some Windows physics files are intentionally listed as gaps in [DATA_REPRODUCTION_MANIFEST.json](DATA_REPRODUCTION_MANIFEST.json) rather than guessed. Recreate or script them only after confirming stable public URLs. Keep the same destination layout:
+The Fuji RVP and Velvia 100 physics PDFs were confirmed on 2026-05-25 and are now part of `scripts/download_data.py physics`. Keep the same destination layout:
 
 ```text
 data/physics/<stock>/technical_data.pdf
 data/calibration/camera_spectral/rit_camspec/
 data/calibration/camera_spectral/tokyo_open_vision/
+```
+
+Flickr film-domain images are not redistributable through git. Restore them with local Flickr credentials:
+
+```zsh
+python scripts/scrape_films.py --stock portra_400 --count 500 --dedup
+python scripts/scrape_films.py --stock portra_800 --count 500 --dedup
+python scripts/scrape_films.py --stock vision3_500t --count 500 --dedup
+python scripts/scrape_films.py --stock vision3_250d --count 500 --dedup
+python scripts/scrape_films.py --stock ektar_100 --count 500 --dedup
+python scripts/scrape_films.py --stock tri_x_400 --count 500 --dedup
+python scripts/scrape_films.py --stock velvia_50 --count 500 --dedup
+python scripts/scrape_films.py --stock hp5 --count 500 --dedup
 ```
 
 ## 5. Restricted Or Unavailable Data

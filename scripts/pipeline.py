@@ -123,13 +123,32 @@ def translate(
         raise ValueError(f"Unknown style: {style}. Available: {list(FILM_STYLES)}")
 
     lora_path = LORAS_DIR / style_cfg["lora"]
+    lora_loaded = False
+    if getattr(pipe, "_k_mcfm_lora_loaded", False):
+        try:
+            pipe.unload_lora_weights()
+        except Exception:
+            pass
+        pipe._k_mcfm_lora_loaded = False
     if lora_path.exists():
         print(f"  Loading LoRA: {lora_path.name}")
-        pipe.load_lora_weights(str(lora_path))
-        # pipe.fuse_lora()  # Speed boost, but quality may vary
+        try:
+            pipe.load_lora_weights(str(lora_path))
+            lora_loaded = True
+            pipe._k_mcfm_lora_loaded = True
+            # pipe.fuse_lora()  # Speed boost, but quality may vary
+        except Exception as exc:
+            print(f"  LoRA load failed ({type(exc).__name__}: {exc}); using base SDXL")
+            try:
+                pipe.unload_lora_weights()
+            except Exception:
+                pass
+            pipe._k_mcfm_lora_loaded = False
     else:
-        print(f"  ⚠️  LoRA not found: {lora_path} — using base SDXL only")
-        pipe.unload_lora_weights()
+        print(f"  LoRA not found: {lora_path}; using base SDXL only")
+        if getattr(pipe, "_k_mcfm_lora_loaded", False):
+            pipe.unload_lora_weights()
+            pipe._k_mcfm_lora_loaded = False
 
     # Resize input to optimal resolution (SDXL works best at 1024²)
     w, h = image.size
@@ -157,7 +176,7 @@ def translate(
         strength=strength,
         num_inference_steps=steps,
         guidance_scale=guidance,
-        cross_attention_kwargs={"scale": lora_scale} if lora_path.exists() else None,
+        cross_attention_kwargs={"scale": lora_scale} if lora_loaded else None,
     ).images[0]
 
     elapsed = time.time() - t0

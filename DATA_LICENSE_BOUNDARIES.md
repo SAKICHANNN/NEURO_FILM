@@ -26,6 +26,7 @@ This file is the project-level warning label for dataset licensing, publication,
 
 - Confirm licenses for all manifest sources used in the checkpoint.
 - Export a training-source summary with dataset names, weights, and license classes.
+- For community LoRA use, store the model page URL, model/version id, creator, and current license flags next to the downloaded weight. Use `docs/ONLINE_DATA_AUDIT.md` as the current checked snapshot.
 - Exclude restricted validation images from examples and test fixtures.
 - Separate research checkpoints from redistributable checkpoints.
 - Include citations for FiveK, FilmSet, FilmGrainStyle740k, DPED, Cinestill800T, and any film manufacturer technical PDFs used for parameter extraction.

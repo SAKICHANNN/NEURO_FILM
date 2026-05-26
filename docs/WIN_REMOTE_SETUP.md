@@ -172,6 +172,11 @@ C:\projects\NEURO_FILM\
 │   ├── tri_x_400_sd15.safetensors   (1.5MB)
 │   ├── film_photography_style.safetensors (870MB, HF)
 │   └── film_grain.safetensors             (163MB, HF)
+│   # SDXL 社区 LoRA（可选，重新下载见 scripts/download_loras.py）
+│   ├── portra_400.safetensors
+│   ├── vision3_500t.safetensors
+│   ├── vision3_250d.safetensors
+│   └── ektar_100.safetensors
 ├── data/
 │   ├── film_domain/         # ⚠️ 需要放入（~2.6GB 总计）
 │   │   ├── portra_400/      # 500 张 JPEG
@@ -188,6 +193,7 @@ C:\projects\NEURO_FILM\
 └── .env                     # ⚠️ 需要创建
     FLICKR_API_KEY=xxx        # Flickr API Key
     FLICKR_API_SECRET=xxx     # Flickr API Secret
+    CIVITAI_API_TOKEN=xxx     # Civitai API Token（可选；私有/订阅下载需要）
 ```
 
 ### 三类数据：必须 / 建议 / 可选
@@ -195,9 +201,11 @@ C:\projects\NEURO_FILM\
 | 优先级 | 目录 | 大小 | 用途 | 不装的后果 |
 |:---:|------|:---:|------|------|
 | **必须** | `data/film_domain/` | 2.6GB | SDXL LoRA 训练 | 无法训练任何 LoRA |
-| **必须** | `.env` | 1KB | Flickr 下载、CivitAI 下载 | 无法重新下载数据 |
-| 建议 | `loras/` | ~1GB | SD 1.5 推理 | 只能跑 IP2P 推理 |
+| **必须** | `.env` | 1KB | Flickr 下载、Civitai 私有/订阅 LoRA 下载 | 无法重新下载数据 |
+| 建议 | `loras/` | ~1GB+ | SD 1.5 推理 + 已验证 SDXL 社区 LoRA | 只能跑 IP2P/base SDXL 推理 |
 | 可选 | `data/physics/` | 50MB | H&D 曲线参考 | 不影响训练 |
+
+2026-05-25 已验证的精确 SDXL Civitai LoRA 只有 Portra 400、Vision3 500T、Vision3 250D、Ektar 100。Portra 800、Tri-X 400、Velvia 50、HP5 继续使用自训练权重。
 
 ### 从 Mac 传输（最快）
 

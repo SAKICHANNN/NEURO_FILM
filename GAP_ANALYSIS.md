@@ -22,13 +22,16 @@
 
 | 胶片 | 状态 | 行动 |
 |------|------|------|
-| Portra 400, Vision3 500T, Ektar 100, Tri-X | Civitai 已有 LoRA | 下载 + 验证 |
-| Vision3 250D, Portra 800 | Civitai 可能有 | 搜索 + 验证 |
-| Velvia 50, HP5 | 无现成 | **需自训练**（每胶片需 ≥200 张） |
+| Portra 400 | Civitai SDXL 已验证：model `723250`, version `808680` | 下载 + 本地备份 |
+| Vision3 500T | Civitai SDXL 已验证：model `725625`, version `820808` | 下载 + 注意许可限制 |
+| Vision3 250D | Civitai SDXL 已验证：model `725620`, version `820761` | 下载 + 注意许可限制 |
+| Ektar 100 | Civitai SDXL 已验证：model `779013`, version `1167852` | 下载 + 注意许可限制 |
+| Portra 800, Tri-X 400 | 未验证到精确 SDXL LoRA | **需自训练**（或继续人工搜索） |
+| Velvia 50, HP5 | 未验证到精确 SDXL LoRA | **需自训练**（每胶片需 ≥200 张） |
 
 **数据来源优先级**：
-1. FilmSet（3 风格 × 5285 张，已有，但非真实扫描）
-2. Flickr 标签搜索 `kodak portra 400`, `shot on portra` 等
+1. Flickr 胶片扫描（git 历史 `80d058c` 记录 8 类共 3,896 张；当前 checkout 未包含）
+2. FilmSet（3 风格 × 5285 张，已有，但非真实扫描）
 3. r/analog 子版（Reddit 社区，高质量）
 4. 500px / Lomography 标签搜索
 
@@ -53,8 +56,9 @@
 
 | 风险 | 说明 |
 |------|------|
-| 商用限制 | 部分 LoRA 标注"不能商用"。学术/个人 OK，发布前需检查。 |
+| 商用限制 | 2026-05-25 Civitai API 显示 EauDeNoire 的 Vision3/Ektar 条目为 `allowCommercialUse={RentCivit}` 且多为不允许 derivatives；发布/商用前必须逐页复核。 |
 | 下载失效 | Civitai 链接可能失效。建议备份本地。 |
+| 搜索误命中 | 旧 `tri_x_400` model id `521049` 实际为无关 LoRA；下载脚本已改为只收录精确 SDXL 条目。 |
 
 ---
 
@@ -80,6 +84,7 @@
 | strength 无法同时满足内容+风格 | 低 | 高 | IP-Adapter 做内容补偿 |
 | Mac 推理太慢（>30s） | 中 | 低 | CoreML 转换提速 2-3× |
 | Civitai LoRA 链接失效 | 低 | 低 | 本地备份所有 LoRA 文件 |
+| LoRA 搜索误配 | 中 | 中 | 只使用 `docs/ONLINE_DATA_AUDIT.md` 中已验证的 model/version id |
 
 ---
 

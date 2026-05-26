@@ -1,4 +1,5 @@
 # Kodak Tri-X 400 — Iconic black & white negative film
+# Note: exact SDXL Civitai LoRA not verified on 2026-05-25; use self-trained weights.
 name: "Kodak Tri-X 400"
 short_name: "tri_x_400"
 film_type: "negative_bw"
@@ -10,7 +11,7 @@ style:
 
 lora:
   path: "loras/tri_x_400.safetensors"
-  source: "civitai"
+  source: "self_trained"
   rank: 8
 
 inference:

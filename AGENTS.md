@@ -11,9 +11,9 @@
 |------|-----|
 | **项目名** | K-MCFM: Film Translation via InstructPix2Pix |
 | **一句话** | 用 InstructPix2Pix 指令编辑模型做内容保真的胶片色彩转换 |
-| **核心方法** | 预训练 IP2P + 参数调优 (ig=1.5, tg=7.5) + 胶片指令工程 |
+| **核心方法** | SDXL SDEdit/img2img + 胶片 LoRA；IP2P (ig=1.5, tg=7.5) 保留为实测最佳 fallback |
 | **目标硬件** | M5 32GB (MPS推理) / RTX 5070 Ti 12GB (CUDA训练+推理) |
-| **当前阶段** | 9 轮实验完成。IP2P 为最佳基线。详细记录见 `docs/EXPERIMENT_LOG.md` |
+| **当前阶段** | 9 轮实验完成；V3 脚本已入库，社区 SDXL LoRA/数据缺口已在 2026-05-25 复核 |
 | **许可** | MIT |
 
 ---
@@ -25,6 +25,7 @@
 | `AGENTS.md` | 本文件 | 每次新会话先读 |
 | `docs/EXPERIMENT_LOG.md` | 9 轮完整实验日志 | 理解项目历史 |
 | `docs/ARCH_REDESIGN.md` | 架构演进：V1(CFM+Mamba) → V2(CUT+LUT) → V3(SDEdit+LoRA) | 理解方向 |
+| `docs/ONLINE_DATA_AUDIT.md` | 2026-05-25 联网核实的 LoRA/依赖/数据缺口 | 查最新补齐记录 |
 | `IMPL_PLAN.md` | 当前实施计划 | 编码前查阅 |
 | `TASK_BOARD.md` | 任务分配 | 第二个读 |
 | `README.md` | 面向人类 | 对外 |
@@ -102,14 +103,14 @@ Output
 
 | 胶片 | LoRA 状态 | 优先级 |
 |------|:---:|:---:|
-| Kodak Portra 400 | Civitai 已有 | P0 |
-| Kodak Vision3 500T | Civitai 已有 | P0 |
-| Kodak Portra 800 | Civitai 已有 | P0 |
-| Kodak Ektar 100 | Civitai 已有 | P1 |
-| Kodak Vision3 250D | Civitai 已有 | P1 |
-| Fujifilm Velvia 50 | 需自训练 | P1 |
-| Ilford HP5 Plus | 需自训练 | P2 |
-| Kodak Tri-X 400 | Civitai 已有 | P2 |
+| Kodak Portra 400 | Civitai SDXL 已验证：model `723250`, version `808680` | P0 |
+| Kodak Vision3 500T | Civitai SDXL 已验证：model `725625`, version `820808` | P0 |
+| Kodak Vision3 250D | Civitai SDXL 已验证：model `725620`, version `820761` | P0 |
+| Kodak Ektar 100 | Civitai SDXL 已验证：model `779013`, version `1167852` | P1 |
+| Kodak Portra 800 | 未验证到精确 SDXL LoRA；需自训练或重新搜索 | P1 |
+| Fujifilm Velvia 50 | 未验证到精确 SDXL LoRA；需自训练 | P1 |
+| Ilford HP5 Plus | 仅找到 SD1.5 泛 Ilford LoRA；SDXL 需自训练 | P2 |
+| Kodak Tri-X 400 | 未验证到精确 SDXL LoRA；旧 id `521049` 为无关模型 | P2 |
 
 ---
 
@@ -122,7 +123,7 @@ Output
 | 1.1 | 安装 diffusers + SDXL，搭建 img2img pipeline |
 | 1.2 | 从 Civitai 下载胶片 LoRA (Portra 400, Vision3 500T) |
 | 1.3 | 调优 strength 参数，找到内容/风格最佳平衡 |
-| 1.4 | 实现 CLI: `python scripts/pipeline.py img.jpg --style portra400` |
+| 1.4 | 实现 CLI: `python scripts/pipeline.py img.jpg --style portra_400` |
 
 ### Phase 2: 自训练胶片 LoRA（2 周）
 
@@ -149,19 +150,20 @@ Output
 
 | 包 | 用途 | 版本 |
 |----|------|------|
-| diffusers | SDXL/SD3.5 pipeline | ≥0.28.0 |
-| torch | 核心框架 | 2.11.0 |
-| safetensors | LoRA 权重加载 | latest |
-| accelerate | 推理加速 | latest |
-| transformers | CLIP 文本编码器 | latest |
-| filmgrainer | 可选后处理颗粒 | MIT |
-| mlx (Mac) | Apple Silicon 加速 | latest |
+| diffusers | SDXL/SD3.5 pipeline | 项目锁定/PyPI 0.38.0 |
+| torch | 核心框架 | 项目锁定 2.11.0(+cu128)；PyPI 2.12.0 |
+| safetensors | LoRA 权重加载 | 项目锁定 0.8.0rc0 |
+| accelerate | 推理加速 | 项目锁定/PyPI 1.13.0 |
+| transformers | CLIP 文本编码器 | PyPI 5.9.0 |
+| peft | LoRA adapter 支持 | PyPI 0.19.1 |
+| filmgrainer | 可选后处理颗粒 | GitHub MIT；未发布 PyPI |
+| mlx (Mac) | Apple Silicon 加速 | 需按 Mac 环境单独验证 |
 
-新增依赖（不在原 requirements.txt）：
+关键依赖下限（requirements 已锁定具体版本）：
 ```
-diffusers>=0.28.0
-peft>=0.12.0
-safetensors>=0.4.0
+diffusers>=0.38.0
+peft>=0.19.1
+safetensors>=0.8.0rc0
 kornia                  # 已有
 ```
 

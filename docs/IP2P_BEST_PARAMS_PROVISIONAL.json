@@ -1,0 +1,49 @@
+{
+  "generated_on": "2026-05-26",
+  "model": "outputs/ip2p_finetune/all_1000",
+  "grid_dir": "outputs/ip2p_grid/all_1000_portra400_probe",
+  "status": "failed_experiment_reference_only",
+  "review_note": "The SD1.5-IP2P grid shows severe painterly smearing and is not usable as a film translation deliverable. These values are preserved only to document the least-bad cells in the failed grid, not as recommended defaults.",
+  "params": {
+    "ektar_100": {
+      "image_guidance_scale": 1.0,
+      "guidance_scale": 5.0,
+      "reason": "Least artifacted among saturated Ektar candidates; stronger guidance becomes noisy."
+    },
+    "hp5": {
+      "image_guidance_scale": 1.5,
+      "guidance_scale": 5.0,
+      "reason": "Best balance of black-and-white shift and content preservation."
+    },
+    "portra_400": {
+      "image_guidance_scale": 1.5,
+      "guidance_scale": 5.0,
+      "reason": "Slightly stronger film shift than 1.0/5.0 without the 7.5-10.0 artifact jump."
+    },
+    "portra_800": {
+      "image_guidance_scale": 1.5,
+      "guidance_scale": 5.0,
+      "reason": "Moderate tonal change with acceptable structure; higher guidance introduces sky/water damage."
+    },
+    "tri_x_400": {
+      "image_guidance_scale": 1.5,
+      "guidance_scale": 5.0,
+      "reason": "Most usable monochrome candidate before high-guidance structure loss."
+    },
+    "velvia_50": {
+      "image_guidance_scale": 1.0,
+      "guidance_scale": 5.0,
+      "reason": "Least artifacted candidate; Velvia saturation prompt overdrives texture at higher guidance."
+    },
+    "vision3_250d": {
+      "image_guidance_scale": 1.0,
+      "guidance_scale": 5.0,
+      "reason": "Preserves scene best; stronger guidance adds painterly/noisy texture."
+    },
+    "vision3_500t": {
+      "image_guidance_scale": 1.0,
+      "guidance_scale": 5.0,
+      "reason": "Most stable candidate; 7.5 and 10.0 increase visible artifacts."
+    }
+  }
+}

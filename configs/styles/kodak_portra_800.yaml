@@ -1,4 +1,5 @@
 # Kodak Portra 800 — High-speed natural skin tone color negative still film
+# Note: exact SDXL Civitai LoRA not verified on 2026-05-25; use self-trained weights.
 name: "Kodak Portra 800"
 short_name: "portra_800"
 film_type: "negative_color_still"
@@ -10,7 +11,7 @@ style:
 
 lora:
   path: "loras/portra_800.safetensors"
-  source: "civitai"
+  source: "self_trained"
   rank: 16
 
 inference:
