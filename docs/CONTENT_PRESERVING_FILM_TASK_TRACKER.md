@@ -380,10 +380,10 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 
 | Order | Task | Depends On | Status | Completion Test | Commit Node |
 |:---:|------|------------|:---:|-----------------|-------------|
-| 0 | Push current handoff branch | Git access | pending | `git status` not ahead after push | P0; do this without asking if git remote works |
-| 1 | Create `feat/color-baseline-stability` | Order 0 | pending | branch exists and tracks intended base | branch node B1 |
-| 2 | Define eval source buckets | current rawpixls manifests, no committed images | pending | `configs/eval_buckets.yaml` exists | `color: define evaluation source buckets` |
-| 3 | Add safety evaluator | Order 2 | pending | evaluator runs on identity pair and reports zero/new clipping | `color: add render safety evaluator` |
+| 0 | Push current handoff branch | Git access | done | `git push` returned `Everything up-to-date` on 2026-05-27 | P0; do this without asking if git remote works |
+| 1 | Create `feat/color-baseline-stability` | Order 0 | done | branch created from `codex/windows-baseline-handoff-20260527` | branch node B1 |
+| 2 | Define eval source buckets | current rawpixls manifests, no committed images | done | `configs/eval_buckets.yaml` exists; `scripts/list_eval_sources.py --require-existing` passes for seed set | `color: define evaluation source buckets` |
+| 3 | Add safety evaluator | Order 2 | done | identity pair reports zero new clipping and `L_ssim=1.0` | `color: add render safety evaluator` |
 | 4 | Audit current baseline | Order 3 | pending | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table | `color: audit current baseline stability` |
 | 5 | Implement no-clipping renderer improvements | Order 4 | pending | no new `0/255` on fixture set | `color: enforce non-clipping output bounds` |
 | 6 | Add artifact/banding guards | Order 5 | pending | banding and high-frequency metrics appear in report | `color: add artifact and banding guards` |
@@ -415,10 +415,10 @@ This is a dependency for all three missions.
 
 | ID | Task | Status | Output |
 |----|------|--------|--------|
-| E0.1 | Define `data/eval_sources/` manifest schema without committing images | pending | `configs/eval_sources.schema.json` or doc section |
-| E0.2 | Reuse final raw.pixls.us RAW-rendered 20-image set as a seed benchmark | pending | manifest references only |
-| E0.3 | Add source buckets: skin, sky, foliage, night/tungsten, snow/high-key, deep shadow, saturated objects, text/logo, face, fine detail | pending | `configs/eval_buckets.yaml` |
-| E0.4 | Add manual slot for user/Mac photos without committing them | pending | `.gitignore`-safe path and README |
+| E0.1 | Define `data/eval_sources/` manifest schema without committing images | done | `configs/eval_sources.schema.json` plus `docs/EVAL_SOURCE_BUCKETS.md` |
+| E0.2 | Reuse final raw.pixls.us RAW-rendered 20-image set as a seed benchmark | done | `configs/eval_buckets.yaml` references ignored manifest only |
+| E0.3 | Add source buckets: skin, sky, foliage, night/tungsten, snow/high-key, deep shadow, saturated objects, text/logo, face, fine detail | done | `configs/eval_buckets.yaml` |
+| E0.4 | Add manual slot for user/Mac photos without committing them | done | ignored `data/eval_sources/private_manual/` slot documented |
 
 Completion test:
 
