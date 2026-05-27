@@ -392,7 +392,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 9 | Freeze Part 1 verdict | Order 8 | done | Part 1 final gate table completed; human visual approval remains manual | `color: record stable baseline verdict` |
 | 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | done | branch created from Part 1 work | branch node B2 |
 | 11 | Neural LUT scaffold | Order 10 | done | differentiable LUT smoke test passes | P2.1 |
-| 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
+| 12 | Neural LUT MVP | Order 11 | done | MVP imitation smoke improves L1 by 3.18x vs initial identity-like LUT | P2.2 |
 | 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
 | 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | pending | branch exists | branch node B3 |
 | 15 | Layer schema/compositor | Order 14 | pending | layer compositor smoke test passes | P3.1 |
@@ -611,10 +611,10 @@ Rationale: closest engineering match to "AI predicts color transform; determinis
 | 2A.2 | Implement basis LUT module | done | identity plus learnable basis LUTs |
 | 2A.3 | Implement small image encoder | done | tiny CNN encoder scaffold |
 | 2A.4 | Predict basis weights per style | done | style embedding plus image features |
-| 2A.5 | Train to imitate Part 1 stable renderer first | pending | supervised pseudo-target from safe renderer |
+| 2A.5 | Train to imitate Part 1 stable renderer first | done | `scripts/train_neural_lut.py` smoke run on Portra/Velvia |
 | 2A.6 | Add unpaired film-stat/style loss only after imitation works | pending | histogram/CLIP/DINO optional, never first |
-| 2A.7 | Export LUT or LUT weights per image | pending | reproducible color transform artifact |
-| 2A.8 | Evaluate against Part 1 safety gates | pending | must not reduce structure metrics |
+| 2A.7 | Export LUT or LUT weights per image | partial | ignored `model.pt` checkpoint written; per-image LUT export pending |
+| 2A.8 | Evaluate against Part 1 safety gates | partial | L1 imitation metric recorded; full safety eval pending |
 
 Proposed files:
 
