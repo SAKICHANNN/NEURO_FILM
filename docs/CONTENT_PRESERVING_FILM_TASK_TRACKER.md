@@ -47,6 +47,58 @@ These constraints apply to every branch, experiment, and merge:
    - safety metrics,
    - written conclusion.
 
+## Tracker Operating Contract
+
+This tracker should be treated like `docs/WINDOWS_TASK_TRACKER.md`: work from top to bottom, skip only blocked/manual tasks, and keep statuses current after every milestone.
+
+### Status Legend
+
+| Status | Meaning |
+|--------|---------|
+| done | Implemented and verified on this Windows machine |
+| partial | Some code/data exists, but the completion test does not fully pass |
+| pending | Not started or not verified |
+| blocked | Cannot proceed until a dependency is resolved |
+| manual | Requires Mac/user/account/GUI action |
+| experimental | Implemented only as a research path; not allowed as production default |
+| abandoned | Tried and rejected; keep records but do not build on it without a new reason |
+
+### Source And Hallucination Control Protocol
+
+Use this protocol before adding or changing any research claim in this tracker:
+
+1. Prefer primary sources: papers, official project pages, official docs, or project repos.
+2. If a claim is not directly stated in the source, label it as `engineering inference`.
+3. If a cited method has not been run locally, label the implementation status as `pending` or `experimental`, never `done`.
+4. If a source is inaccessible, do not rely on it; either find another primary source or mark the claim as `unverified`.
+5. Do not cite user-provided prose as fact unless it is independently confirmed or clearly marked as a hypothesis.
+6. Re-check recency-sensitive model/tool claims before implementation.
+
+### Evidence Labels
+
+| Label | Meaning |
+|-------|---------|
+| source-verified | Directly supported by a checked source |
+| locally-verified | Verified by code or output in this repo on this machine |
+| engineering-inference | Reasonable conclusion from source + project constraints, but not directly claimed by a source |
+| unverified | Do not implement as fact until checked |
+
+### Machine Role
+
+Windows remains the CUDA implementation and experiment machine. Mac remains the development/review machine.
+
+```text
+Mac reviews / develops -> GitHub -> Windows pulls / runs -> Windows pushes code docs -> Mac validates visuals
+```
+
+Known Windows workspace:
+
+```text
+C:\Users\hhvrf\Documents\neuro_film
+```
+
+Manual Mac actions still live in `docs/WINDOWS_TASK_TRACKER.md` and `docs/REMOTE_ACCESS_MANUAL_STEPS.md`.
+
 ## Source-Checked Research Notes
 
 The planning below is based on project experiments plus primary sources checked on 2026-05-27.
@@ -93,6 +145,33 @@ The planning below is based on project experiments plus primary sources checked 
   - LayerDiffuse: <https://arxiv.org/abs/2402.17113>
   - Trans-Adapter: <https://arxiv.org/abs/2508.01098>
   - Layered Diffusion Brushes: <https://openaccess.thecvf.com/content/ICCV2025/html/Gholami_Streamlining_Image_Editing_with_Layered_Diffusion_Brushes_ICCV_2025_paper.html>
+- Frequency-preservation editing research supports the need for high-frequency safety metrics and residual/layer constraints, but it does not directly solve film rendering:
+  - FreqEdit: <https://arxiv.org/html/2512.01755v2>
+  - FlexiEdit: <https://arxiv.org/html/2407.17850v1>
+
+### Source Verification Matrix
+
+| Claim Used In This Tracker | Evidence Label | Checked Source | Implementation Consequence |
+|----------------------------|----------------|----------------|----------------------------|
+| ControlNet/T2I-Adapter improve conditioning but are still generative image controls | source-verified + engineering-inference | ControlNet, T2I-Adapter papers | keep as experiment only, not default |
+| Diffusion can be used for colorization/image-to-image tasks | source-verified | Palette paper | motivates chroma-only research, not production proof |
+| Transformer colorization can predict plausible chroma semantically | source-verified | DDColor paper | motivates chroma/residual model |
+| Image-adaptive LUTs can learn efficient color/tone transforms | source-verified | Image-Adaptive 3D LUT paper | prioritize Neural LUT as Part 2A |
+| Adaptive/non-uniform LUT sampling improves expressiveness | source-verified | AdaInt paper | optional upgrade after basic LUT MVP |
+| Separating 1D and 3D LUT transforms can be useful | source-verified | SepLUT paper | optional architecture variant |
+| Neural implicit LUTs can represent conditional color transforms | source-verified | NILUT paper | research variant, not MVP |
+| Film grain can be synthesized with controllable deep generative methods | source-verified | IEEE TIP/PubMed film grain paper | Part 3 AI grain is plausible |
+| Film scratches/dust/hairs can be statistically simulated from real damage | source-verified | FilmDamageSimulator paper/project | Part 3 scratch/dust statistical baseline |
+| Halation should be highlight-bound and red/orange biased for CineStill-like behavior | source-verified + engineering-inference | CineStill FAQ, Dehancer article | deterministic halation constraints |
+| CNN digital-to-film work learned color/grain but not halation | source-verified | `CNNs for Style Transfer of Digital to Film Photography` | halation is high-value research target |
+| Transparent/layered diffusion can support future RGBA layer work | source-verified + engineering-inference | LayerDiffuse, Trans-Adapter, Layered Diffusion Brushes | Part 3 AI layer generators remain experimental |
+| High-frequency preservation matters for identity/detail stability | source-verified + engineering-inference | FreqEdit, FlexiEdit | evaluator must measure high-frequency luminance/detail retention |
+
+Unverified or deliberately excluded claims:
+
+- No claim is made that any cited diffusion/color-editing method directly solves Kodak/Fuji film emulation.
+- No claim is made that any cited layer-diffusion method already generates film-specific halation/grain layers.
+- No claim is made that Neural LUT will outperform the deterministic baseline before local experiments.
 
 ## Branch, Commit, And Push Policy
 
@@ -109,6 +188,7 @@ Known local commits not yet pushed at the time this tracker is written:
 ```text
 fdaa03f windows: add raw preview handoff and gamut-safe baseline
 0078367 docs: organize project structure
+dbc3673 docs: add content-preserving film task tracker
 ```
 
 Before beginning implementation, push this branch or intentionally create a new branch from it.
@@ -150,6 +230,28 @@ Before beginning implementation, push this branch or intentionally create a new 
 | P3.3 | After AI artifact prototype decision | report and prototype artifacts |
 | P4 | Integration branch | approved code paths plus final task report |
 
+## Feature Registry
+
+This registry defines what exists, what is planned, and what must remain experimental.
+
+| Feature | Category | Current Status | Production Default? | Main Risk | Required Gate |
+|---------|----------|----------------|---------------------|-----------|---------------|
+| Deterministic Lab stats baseline | color renderer | partial | yes, after Part 1 | clipping/banding/overstrong chroma | Part 1 final gate |
+| Gamut-safe Lab compression | color safety | partial | yes | hue shift or desaturation | no-clipping + visual review |
+| Output headroom/margin | color safety | partial in raw preview script | yes | JPEG can reintroduce edge values | PNG validation min/max |
+| Render safety evaluator | evaluator | pending | yes | false confidence if metrics too weak | calibrated identity baseline |
+| Neural LUT | AI color renderer | pending | maybe | may become generic filter | Part 2A decision gate |
+| Local/Semantic LUT maps | AI color renderer | pending | maybe | color halos/bleeding | edge-aware map gate |
+| Chroma residual model | AI color renderer | pending | maybe | chroma bleeding | fixed-L and gamut gate |
+| Chroma-only diffusion | research | pending | no | unstable training, bleeding | research report only |
+| Diffusion chroma suggestion | research | pending | no | dirty/generated chroma | archive unless clear win |
+| Layer compositor | filmfx foundation | pending | yes | bad blend math/clipping | layer bounds + no-clipping |
+| Deterministic grain | filmfx | pending | maybe | ugly/noisy texture | spectrum + visual gate |
+| AI grain residual | filmfx research | pending | no until proven | semantic texture contamination | residual-only gate |
+| Deterministic halation | filmfx | pending | maybe | fake glow everywhere | highlight-bound gate |
+| AI halation RGBA | filmfx research | pending | no until proven | hallucinated glow/content damage | RGBA-only + physical losses |
+| Scratch/dust alpha overlays | filmfx | pending | optional | distracting damage | sparse alpha gate |
+
 ## Global Execution Order
 
 Do not skip the evaluator. The whole project depends on objective safety gates.
@@ -164,6 +266,39 @@ Do not skip the evaluator. The whole project depends on objective safety gates.
 6. Explore artifact layers: deterministic compositor first, AI layer generators later.
 7. Integrate only paths that pass safety gates.
 ```
+
+## Dependency Order
+
+This is the execution contract. Work from top to bottom; skip only blocked/manual items and continue with the next unblocked item.
+
+| Order | Task | Depends On | Status | Completion Test | Commit Node |
+|:---:|------|------------|:---:|-----------------|-------------|
+| 0 | Push current handoff branch | Git access | pending | `git status` not ahead after push | P0 |
+| 1 | Create `feat/color-baseline-stability` | Order 0 | pending | branch exists and tracks intended base | branch node B1 |
+| 2 | Define eval source buckets | current rawpixls manifests, no committed images | pending | `configs/eval_buckets.yaml` exists | `color: define evaluation source buckets` |
+| 3 | Add safety evaluator | Order 2 | pending | evaluator runs on identity pair and reports zero/new clipping | `color: add render safety evaluator` |
+| 4 | Audit current baseline | Order 3 | pending | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table | `color: audit current baseline stability` |
+| 5 | Implement no-clipping renderer improvements | Order 4 | pending | no new `0/255` on fixture set | `color: enforce non-clipping output bounds` |
+| 6 | Add artifact/banding guards | Order 5 | pending | banding and high-frequency metrics appear in report | `color: add artifact and banding guards` |
+| 7 | Tune safe-rich profiles | Order 6 | pending | per-style settings pass gates and visual review | `color: tune rich natural film profiles` |
+| 8 | Add production preset/regression tests | Order 7 | pending | pytest smoke + batch eval pass | `color: add safe-rich production preset` |
+| 9 | Freeze Part 1 verdict | Order 8 | pending | Part 1 final gate table completed | `color: record stable baseline verdict` |
+| 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
+| 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
+| 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
+| 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
+| 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | pending | branch exists | branch node B3 |
+| 15 | Layer schema/compositor | Order 14 | pending | layer compositor smoke test passes | P3.1 |
+| 16 | Deterministic grain/halation/scratch layers | Order 15 | pending | layer contact sheets and safety metrics exist | P3.2 |
+| 17 | AI artifact layer prototypes | Orders 15-16 | pending | residual/RGBA-only reports exist | P3.3 |
+| 18 | Integration branch | approved outputs from B1/B2/B3 | pending | `render_film.py` final CLI runs | P4 |
+| 19 | Mac/user visual validation | Order 18 | manual | user approves contact sheets | manual |
+
+Parallel-safe tasks:
+
+- Orders 10-13 and 14-17 can proceed in parallel after Order 5, but neither may merge into integration before Part 1 gates pass.
+- Literature review/memos can proceed anytime, but implementation claims must still follow source verification.
+- Manual Mac validation can run whenever contact sheets exist.
 
 ## Shared Evaluation Harness
 
@@ -766,8 +901,8 @@ These should remain manual unless the user gives interactive access:
 
 The next agent should:
 
-1. Commit this tracker.
-2. Push the current branch with the existing two commits plus this tracker commit.
+1. Commit this tracker revision if it is still uncommitted.
+2. Push the current branch with the existing handoff, structure, tracker, and tracker-revision commits.
 3. Create branch `feat/color-baseline-stability`.
 4. Implement E0/E1 evaluator before changing renderer behavior.
 
@@ -775,9 +910,8 @@ Suggested immediate commands:
 
 ```powershell
 git status --short --branch
-git add docs/CONTENT_PRESERVING_FILM_TASK_TRACKER.md
-git commit -m "docs: add content-preserving film task tracker"
+git add docs/CONTENT_PRESERVING_FILM_TASK_TRACKER.md AGENTS.md
+git commit -m "docs: refine content-preserving tracker with source gates"
 git push
 git switch -c feat/color-baseline-stability
 ```
-
