@@ -398,7 +398,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 15 | Layer schema/compositor | Order 14 | done | layer compositor smoke test passes | P3.1 |
 | 16 | Deterministic grain/halation/scratch layers | Order 15 | done | deterministic effects smoke writes layer views and metrics | P3.2 |
 | 17 | AI artifact layer prototypes | Orders 15-16 | done | RGBA/residual-only prototype decision recorded; AI training deferred | P3.3 |
-| 18 | Integration branch | approved outputs from B1/B2/B3 | pending | `render_film.py` final CLI runs | P4 |
+| 18 | Integration branch | approved outputs from B1/B2/B3 | done | `scripts/render_film.py` final CLI runs with safe_lab and deterministic filmfx | P4 |
 | 19 | Mac/user visual validation | Order 18 | manual | user approves contact sheets | manual |
 
 Parallel-safe tasks:
@@ -971,10 +971,10 @@ ai_halation_experimental
 
 | Commit Node | Contents |
 |-------------|----------|
-| I1 | `render_film.py` wrapper and stable safe_lab path |
-| I2 | layer compositor integrated with stable renderer |
-| I3 | optional Neural LUT engine behind explicit flag |
-| I4 | final docs, metrics, and tracker status update |
+| I1 | done: `render_film.py` wrapper and stable safe_lab path |
+| I2 | done: deterministic layer compositor integrated with stable renderer |
+| I3 | deferred: Neural LUT remains research; not merged into production CLI |
+| I4 | done: final docs, metrics, and tracker status update |
 
 Push node: P4
 
