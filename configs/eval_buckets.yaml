@@ -1,0 +1,66 @@
+schema_version: 1
+ignored_image_policy: "Image files, RAW files, user photos, and generated outputs stay under ignored paths. This file tracks manifests and bucket intent only."
+
+benchmark_sets:
+  - id: rawpixls_velvia20_seed
+    status: seed
+    source_type: "raw.pixls.us RAW files rendered neutrally with camera white balance"
+    manifest_path: "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json"
+    images_root: "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs"
+    license: "CC0/Public Domain per raw.pixls.us manifest rows"
+    notes: "Seed benchmark from the final 2026-05-27 Velvia preview. Paths are local ignored outputs, not committed assets."
+    buckets:
+      - sky
+      - foliage
+      - saturated_objects
+      - fine_detail
+      - deep_shadow
+      - high_key
+      - tungsten_night
+      - text_logo
+  - id: user_private_manual
+    status: manual
+    source_type: "private user or Mac-side photos"
+    manifest_path: "data/eval_sources/private_manual/manifest.json"
+    images_root: "data/eval_sources/private_manual/images"
+    license: "private; never commit"
+    notes: "Manual slot for user-selected validation photos. The data directory is ignored by git."
+    buckets:
+      - skin
+      - face
+      - text_logo
+      - fine_detail
+      - high_key
+      - deep_shadow
+
+buckets:
+  skin:
+    purpose: "Skin hue and neutral protection"
+    risk: "dirty color shifts, red/green blotching, over-saturation"
+  face:
+    purpose: "Identity-sensitive visual review"
+    risk: "tone damage around eyes, lips, hair, or facial contours"
+  sky:
+    purpose: "Smooth gradients and blue/cyan hue stability"
+    risk: "posterization, banding, cyan clipping"
+  foliage:
+    purpose: "Green/yellow separation and Velvia-style saturation"
+    risk: "radioactive greens, texture flattening, hue collapse"
+  tungsten_night:
+    purpose: "Warm practical lights and night contrast"
+    risk: "unsupported halos, crushed shadows, orange channel clipping"
+  high_key:
+    purpose: "Snow, clouds, white walls, and bright scenes"
+    risk: "highlight clipping and flat roll-off"
+  deep_shadow:
+    purpose: "Low-key scenes and shadow color stability"
+    risk: "blocked blacks, chroma noise, muddy color"
+  saturated_objects:
+    purpose: "Highly saturated flowers, signs, paint, and fabric"
+    risk: "gamut clipping and hue breakage"
+  text_logo:
+    purpose: "Shape-sensitive text, logos, and hard edges"
+    risk: "edge movement, color bleeding, readability loss"
+  fine_detail:
+    purpose: "Hair, leaves, fabric, architecture, and texture"
+    risk: "smearing, high-frequency loss, false texture"

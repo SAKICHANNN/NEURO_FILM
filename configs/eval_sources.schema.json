@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/neuro-film/eval-sources.schema.json",
+  "title": "Neuro Film Evaluation Source Buckets",
+  "type": "object",
+  "required": ["schema_version", "ignored_image_policy", "benchmark_sets", "buckets"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "ignored_image_policy": {
+      "type": "string"
+    },
+    "benchmark_sets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "source_type", "manifest_path", "images_root", "buckets"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": ["seed", "manual", "planned", "archived"]
+          },
+          "source_type": {
+            "type": "string"
+          },
+          "manifest_path": {
+            "type": "string"
+          },
+          "images_root": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "buckets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "buckets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["purpose", "risk"],
+        "properties": {
+          "purpose": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
