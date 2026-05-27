@@ -51,6 +51,113 @@ These constraints apply to every branch, experiment, and merge:
 
 This tracker should be treated like `docs/WINDOWS_TASK_TRACKER.md`: work from top to bottom, skip only blocked/manual tasks, and keep statuses current after every milestone.
 
+### Autonomous One-Day Development Contract
+
+This file is designed to guide an agent through a full autonomous development day without asking the user routine questions.
+
+Default behavior:
+
+1. Work in dependency order from the `Dependency Order` table.
+2. Do not ask the user for implementation preferences when the tracker, repo conventions, or safety constraints give a reasonable answer.
+3. Use web research and repo search proactively when a claim, tool, model, metric, or implementation detail is uncertain.
+4. Prefer conservative, reversible, well-scoped implementation choices.
+5. Keep generated outputs, datasets, weights, and private files ignored; commit code/docs/config/tests only.
+6. Run long jobs when the tracker requires them, but write logs and keep enough metadata to resume after a crash.
+7. Update this tracker and result docs as work completes, fails, or changes status.
+8. Leave only true manual/account/GUI/private-data actions for the user, and report those at the end.
+
+The agent should not pause to ask about:
+
+- exact filenames when a clear repo convention exists;
+- whether to add a small helper script needed by the current order;
+- whether to run tests or safety evaluation;
+- whether to browse for primary sources before implementing research tasks;
+- whether to commit at an explicit commit node;
+- whether to push at an explicit push node;
+- whether to reduce scope inside a research task if the full version is blocked and a useful smoke test is possible.
+
+The agent must pause or mark `manual` only for:
+
+- account login, GUI install, or credential entry;
+- private user photo selection or user aesthetic approval;
+- publishing/licensing decisions;
+- destructive cleanup outside ignored generated-output directories;
+- paid/cloud resource decisions not already approved;
+- legal/privacy choices.
+
+### Autonomous Decision Defaults
+
+When multiple reasonable options exist, use these defaults:
+
+| Decision Area | Default |
+|---------------|---------|
+| Output image format for safety validation | PNG, not JPEG |
+| Production color path | deterministic `safe_lab` until a later path beats it on metrics and visual review |
+| First AI color route | Neural LUT imitation of the safe renderer before unpaired/style losses |
+| First film-effect route | deterministic layer compositor before AI layer generators |
+| Diffusion usage | experimental only unless output space is chroma/residual/layer constrained |
+| Eval images | use existing raw.pixls-derived manifests and ignored local eval folders |
+| Tests | add lightweight synthetic/fixture tests before large visual grids |
+| Metrics | prefer conservative gates; calibrate thresholds on identity transform |
+| Commits | commit at the tracker-defined commit node after tests/docs pass |
+| Pushes | push at tracker-defined push node after commit group is coherent |
+| Failed experiment | document, mark `abandoned` or `experimental`, and continue to next unblocked task |
+
+### Autonomous Work Loop
+
+Repeat this loop until the day ends or all unblocked tasks are complete:
+
+1. `git status --short --branch`
+2. Read the next pending order in `Dependency Order`.
+3. Search the repo for existing helpers before creating new code.
+4. If external knowledge matters, browse primary sources and update the tracker with source labels.
+5. Implement the smallest complete milestone that satisfies the current completion test.
+6. Run unit/smoke/safety checks.
+7. Update docs/tracker/result files.
+8. Commit at the defined commit node.
+9. Push if the current milestone is a push node.
+10. Continue to the next unblocked order.
+
+### Long-Running Job Protocol
+
+For training, batch evaluation, large grids, or downloads:
+
+- write stdout/stderr logs under `logs/` or the ignored output run directory;
+- record the exact command in the relevant result doc;
+- write a manifest with input files, parameters, seed, git commit, and output paths;
+- prefer resumable/cache-aware scripts;
+- after a crash or reboot, inspect logs/manifests before restarting;
+- if a long job fails, document the failure and run a smaller smoke test to isolate the issue.
+
+### Self-Review Cadence
+
+At least once per milestone, and roughly every 90 minutes during a long autonomous run, do a short self-review:
+
+```text
+What order am I on?
+Did I accidentally skip a dependency?
+Did I rely on an unverified claim?
+Did I protect .env/data/weights/outputs from git?
+Did I run the completion test?
+Should this be committed or pushed now?
+What, if anything, is truly manual?
+```
+
+Record meaningful answers in the relevant result doc or tracker status update.
+
+### End-Of-Day Report Requirements
+
+At the end of a full autonomous run, report:
+
+- current branch and git status;
+- commits and pushes made;
+- tracker orders completed, partial, blocked, manual;
+- tests/evals run and whether they passed;
+- output contact sheets/manifests generated;
+- research sources newly used;
+- critical failures or abandoned experiments;
+- only the remaining true manual actions for the user.
+
 ### Status Legend
 
 | Status | Meaning |
@@ -273,7 +380,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 
 | Order | Task | Depends On | Status | Completion Test | Commit Node |
 |:---:|------|------------|:---:|-----------------|-------------|
-| 0 | Push current handoff branch | Git access | pending | `git status` not ahead after push | P0 |
+| 0 | Push current handoff branch | Git access | pending | `git status` not ahead after push | P0; do this without asking if git remote works |
 | 1 | Create `feat/color-baseline-stability` | Order 0 | pending | branch exists and tracks intended base | branch node B1 |
 | 2 | Define eval source buckets | current rawpixls manifests, no committed images | pending | `configs/eval_buckets.yaml` exists | `color: define evaluation source buckets` |
 | 3 | Add safety evaluator | Order 2 | pending | evaluator runs on identity pair and reports zero/new clipping | `color: add render safety evaluator` |
@@ -902,7 +1009,7 @@ These should remain manual unless the user gives interactive access:
 The next agent should:
 
 1. Commit this tracker revision if it is still uncommitted.
-2. Push the current branch with the existing handoff, structure, tracker, and tracker-revision commits.
+2. Push the current branch with the existing handoff, structure, tracker, and tracker-revision commits; this is an explicit tracker-approved push node, so do not ask the user again if GitHub auth works.
 3. Create branch `feat/color-baseline-stability`.
 4. Implement E0/E1 evaluator before changing renderer behavior.
 
