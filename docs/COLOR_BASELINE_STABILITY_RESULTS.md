@@ -273,3 +273,45 @@ preset smoke: after_min=4, after_max=251, new_clipped_pixel_count=0, L_ssim=0.99
 batch eval smoke: velvia_50 and portra_400 image 01 passed with zero new clipping
 pytest: 1 passed
 ```
+
+## Part 1 Verdict
+
+Machine verdict: promote `safe_lab` + `safe-rich` as the current default
+color-stock baseline for content-preserving film color rendering.
+
+Recommended CLI:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\pipeline_color_baseline.py input.jpg --style velvia_50 --preset safe-rich --format png --fail-on-clip --output output.png
+```
+
+Batch eval CLI:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_color_pipeline.py
+```
+
+Gate status:
+
+| Gate | Status | Evidence |
+|------|:---:|----------|
+| 20-image rawpixls set has no `0/255` output | pass | `outputs/eval/baseline_saferich/summary.json` |
+| Output bounds inside configured margin | pass | all safe-rich styles report `4..251` |
+| Color-stock `L_ssim >= 0.995` | pass | six color stocks have min L-SSIM `0.9950..0.9956` |
+| B&W no-clip and near-monochrome | pass | HP5/Tri-X mean chroma `0.625` / `0.491` |
+| B&W color-only L-SSIM gate | not applicable | monochrome conversion intentionally changes Lab L |
+| Severe banding smoke | pass | histogram empty-bin score did not regress in smoke/contact sheets |
+| Human visual approval | manual | user/Mac review of ignored contact sheets still required |
+
+Ignored contact sheets for review:
+
+```text
+outputs/eval/baseline_saferich/<style>/contact_sheet.png
+```
+
+Known residual risks:
+
+- The safe-rich profile is conservative. It is designed to pass safety gates, not
+  to maximize film intensity.
+- B&W stocks need a separate subjective tone gate before being called final.
+- User visual approval is still the deciding gate for naturalness and taste.

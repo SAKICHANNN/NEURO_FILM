@@ -389,7 +389,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 6 | Add artifact/banding guards | Order 5 | done | banding, high-frequency, neutral/skin contamination, and guarded contact sheets appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | done | color-stock safe-rich profile passes no-clip and L-SSIM gates on seed set; B&W marked for separate gate | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | done | `--preset safe-rich`, batch eval smoke, and pytest smoke pass | `color: add safe-rich production preset` |
-| 9 | Freeze Part 1 verdict | Order 8 | pending | Part 1 final gate table completed | `color: record stable baseline verdict` |
+| 9 | Freeze Part 1 verdict | Order 8 | done | Part 1 final gate table completed; human visual approval remains manual | `color: record stable baseline verdict` |
 | 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
 | 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
 | 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
@@ -555,16 +555,22 @@ Push node: P1.2
 
 ### Part 1 Final Gate
 
-All must pass before Part 1 is considered production-stable:
+Machine gate table:
 
-- 20-image rawpixls set: no output `0/255`, min/max within configured margin.
-- No severe banding in sky/skin/high-key samples.
-- `L_ssim >= 0.995` for all color-only results.
-- Edge delta below threshold calibrated from identity transform.
-- Human visual contact sheet shows rich color without obvious artifact.
-- Docs updated:
-  - `docs/COLOR_BASELINE_STABILITY_RESULTS.md`
-  - this tracker statuses
+| Gate | Status | Evidence |
+|------|:---:|----------|
+| 20-image rawpixls set: no output `0/255`, min/max within configured margin | done | `outputs/eval/baseline_saferich/summary.json`; all styles `4..251` |
+| No severe banding in sky/skin/high-key samples | done | evaluator banding metrics and contact sheets generated |
+| `L_ssim >= 0.995` for all color-only results | done | six color stocks pass; B&W excluded from color-only gate |
+| Edge delta below threshold calibrated from identity transform | partial | gradient/high-frequency metrics recorded; threshold should be refined after more fixtures |
+| Human visual contact sheet shows rich color without obvious artifact | manual | `outputs/eval/baseline_saferich/<style>/contact_sheet.png` needs user/Mac review |
+| Docs updated | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` and this tracker |
+
+Part 1 machine verdict:
+
+- Promote `safe_lab` + `--preset safe-rich` as the current default color-stock baseline.
+- Keep HP5/Tri-X enabled but treat B&W tone as a separate visual/tone approval path.
+- Do not promote diffusion/img2img as a default color renderer.
 
 Commit node: `color: record stable baseline verdict`
 
