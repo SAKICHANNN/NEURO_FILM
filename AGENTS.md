@@ -26,6 +26,7 @@
 | `docs/EXPERIMENT_LOG.md` | 9 轮完整实验日志 | 理解项目历史 |
 | `docs/ARCH_REDESIGN.md` | 架构演进：V1(CFM+Mamba) → V2(CUT+LUT) → V3(SDEdit+LoRA) | 理解方向 |
 | `docs/ONLINE_DATA_AUDIT.md` | 2026-05-25 联网核实的 LoRA/依赖/数据缺口 | 查最新补齐记录 |
+| `docs/PROJECT_STRUCTURE.md` | 仓库目录结构和安全整理规则 | 移动/整理文件前查阅 |
 | `IMPL_PLAN.md` | 当前实施计划 | 编码前查阅 |
 | `TASK_BOARD.md` | 任务分配 | 第二个读 |
 | `README.md` | 面向人类 | 对外 |

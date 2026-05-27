@@ -151,7 +151,7 @@
     "filmgrainstyle740k": {
       "status_on_windows": "blocked_requires_email_request",
       "target_path": "data/raw/filmgrainstyle740k",
-      "restore_action": "Use FILMGRAINSTYLE740K_REQUEST_EMAIL.md; do not commit received files.",
+      "restore_action": "Use docs/data/FILMGRAINSTYLE740K_REQUEST_EMAIL.md; do not commit received files.",
       "contact": "filmgrainstylemanagement@interdigital.com"
     },
     "film_domain_flickr": {

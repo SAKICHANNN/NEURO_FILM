@@ -10,7 +10,7 @@ Commit these:
 
 - Source code: `src/`, `scripts/`, `tests/`
 - Configs: `configs/`
-- Project docs: root `*.md`, `docs/`, `guidelines.pdf`
+- Project docs: root `*.md`, `docs/`, `docs/reference/guidelines.pdf`
 - Reproduction manifest: `docs/DATA_REPRODUCTION_MANIFEST.json`
 - Dependency manifests: `requirements.txt`, `requirements-macos-arm.txt`
 - Empty data directory markers: `data/**/.gitkeep`
@@ -27,7 +27,7 @@ Before the first GitHub push on the Windows machine:
 
 ```powershell
 git status --short --ignored
-git add .gitignore AGENTS.md DATA_LICENSE_BOUNDARIES.md FILMGRAINSTYLE740K_REQUEST_EMAIL.md GAP_ANALYSIS.md IMPL_PLAN.md README.md TASK_BOARD.md guidelines.pdf requirements.txt requirements-macos-arm.txt configs scripts src tests docs data/raw/.gitkeep data/processed/.gitkeep data/synthetic/.gitkeep data/calibration/.gitkeep data/physics/.gitkeep
+git add .gitignore AGENTS.md IMPL_PLAN.md README.md TASK_BOARD.md requirements.txt requirements-macos-arm.txt configs scripts src tests docs data/raw/.gitkeep data/processed/.gitkeep data/synthetic/.gitkeep data/calibration/.gitkeep data/physics/.gitkeep
 git status --short
 ```
 
@@ -160,7 +160,7 @@ python scripts/scrape_films.py --stock hp5 --count 500 --dedup
 
 Do not try to put these in Git:
 
-- FilmGrainStyle740k: requires an email request. Use `FILMGRAINSTYLE740K_REQUEST_EMAIL.md`.
+- FilmGrainStyle740k: requires an email request. Use `docs/data/FILMGRAINSTYLE740K_REQUEST_EMAIL.md`.
 - Cinestill800T/sillystill: dataset was not published at the time this project state was recorded.
 - L5 real scan validation set: user-owned future capture/scan data; keep local only.
 

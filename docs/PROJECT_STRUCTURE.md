@@ -1,0 +1,68 @@
+# Project Structure
+
+This document records the intended repository layout. Keep executable entrypoints stable unless every caller and document reference is updated.
+
+## Root
+
+```text
+AGENTS.md                  Agent/project knowledge base. Read first in new sessions.
+README.md                  Human-facing overview.
+IMPL_PLAN.md               Current implementation plan.
+TASK_BOARD.md              Task ownership and board.
+requirements*.txt          Environment requirements.
+configs/                   Runtime, model, training, and style configuration.
+scripts/                   Stable CLI/training/data entrypoints.
+src/                       Library modules and future package code.
+tests/                     Test package.
+docs/                      Project documentation, audits, handoffs, and references.
+agent_reminder/            Timestamped chat handoff notes for future agents.
+data/                      Ignored local datasets; only skeleton paths are tracked.
+loras/                     Ignored local LoRA/model weights.
+outputs/                   Ignored generated outputs.
+logs/                      Ignored local run logs.
+```
+
+## Docs
+
+```text
+docs/
+  data/                    Data-license notes, request templates, and dataset-specific docs.
+  planning/                Gap analyses and planning notes that are not active task boards.
+  reference/               External reference files such as PDFs.
+```
+
+Core status and experiment docs remain directly under `docs/` so the next agent can find them quickly:
+
+- `docs/WINDOWS_TASK_TRACKER.md`
+- `docs/CURRENT_STATUS_2026-05-27.md`
+- `docs/EXPERIMENT_LOG.md`
+- `docs/ARCH_REDESIGN.md`
+- `docs/COLOR_BASELINE_RESULTS.md`
+- `docs/IP2P_GRID_SEARCH_RESULTS.md`
+- `docs/SDXL_LORA_VALIDATION_RESULTS.md`
+
+## Scripts
+
+`scripts/` intentionally remains flat. Many commands in docs and handoff notes call these files directly, so moving them into subfolders would break reproducibility. Prefer adding a README/category index before reorganizing script paths.
+
+Current categories:
+
+- Setup and remote access: `setup_win*.ps1`, `install_openssh_preview_server.ps1`, `run_*_as_admin.bat`
+- Data preparation: `download_data.py`, `scrape_films.py`, `build_data_manifest.py`, `build_ip2p_dataset.py`, `combine_ip2p_dataset.py`
+- Training: `train_lora*.py`, `train_sdxl_lora.py`, `train_ip2p*.py`, `train_lut.py`, `train_unet.py`
+- Inference and validation: `pipeline.py`, `translate.py`, `infer_lora.py`, `grid_search_*.py`, `pipeline_color_baseline.py`, `make_rawpixls_velvia_preview.py`
+- Artifact verification: `verify_windows_artifacts.py`
+
+## Safety Rules For Future Reorganization
+
+- Do not move script entrypoints without updating all docs, handoff notes, and command examples.
+- Do not commit `.env`, datasets, weights, generated outputs, or local caches.
+- Prefer `git mv` for tracked-file moves so history remains readable.
+- After moving any referenced file, run `rg` for the old basename and update references.
+- Run lightweight checks after structural changes:
+
+```powershell
+git status --short --branch
+python -m py_compile scripts/pipeline_color_baseline.py scripts/make_rawpixls_velvia_preview.py
+```
+
