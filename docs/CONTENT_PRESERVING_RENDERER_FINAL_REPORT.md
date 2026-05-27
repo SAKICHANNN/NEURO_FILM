@@ -26,6 +26,13 @@ layers=grain, halation, dust_scratch
 metrics=outputs/integration/render_film_smoke.metrics.json
 ```
 
+Halation note:
+
+The deterministic halation layer uses highlight/edge support plus a continuous
+exposure-dependent scatter radius. Brighter high-light sources receive wider
+Gaussian scale-space support; the result is still emitted as a bounded screen
+layer and can be inspected with `--write-layers`.
+
 ## What Is Promoted
 
 - `safe_lab` color engine with `--preset safe-rich` for color stocks.

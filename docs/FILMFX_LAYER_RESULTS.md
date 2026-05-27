@@ -51,7 +51,8 @@ Implemented:
 - `halation_layer`
   - highlight and edge supported only,
   - red/orange screen layer,
-  - bounded alpha.
+  - bounded alpha,
+  - continuous exposure-dependent scatter radius.
 - `dust_scratch_layer`
   - sparse alpha overlay,
   - seed-controlled.
@@ -69,7 +70,22 @@ bounds=[4, 251]
 grain residual_abs_max=0.0566, residual_abs_mean=0.0078
 halation alpha_max=0.0345, affected_percent=22.02
 dust_scratch alpha_max=0.0360, affected_percent=0.46
+continuous halation smoke bounds=[4, 251], alpha_max=0.0137
 ```
+
+Halation model update:
+
+The first halation implementation used fixed small/broad blur radii. It now
+computes a continuous per-pixel radius from highlight strength:
+
+```text
+radius = min_radius + (max_radius - min_radius) * highlight^radius_gamma
+```
+
+The implementation approximates spatially varying convolution by softly assigning
+each source pixel into Gaussian scale-space, then summing the blurred support.
+This avoids visible threshold bands while keeping the effect deterministic and
+bounded.
 
 ## AI Artifact Layer Prototype Decision
 

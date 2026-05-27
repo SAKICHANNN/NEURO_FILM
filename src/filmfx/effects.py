@@ -12,6 +12,11 @@ def luminance(rgb: np.ndarray) -> np.ndarray:
     return rgb[..., 0] * 0.2126 + rgb[..., 1] * 0.7152 + rgb[..., 2] * 0.0722
 
 
+def _smoothstep(edge0: float, edge1: float, value: np.ndarray) -> np.ndarray:
+    x = np.clip((value - edge0) / max(edge1 - edge0, 1e-6), 0.0, 1.0)
+    return x * x * (3.0 - 2.0 * x)
+
+
 def grain_residual_layer(
     base_rgb: np.ndarray,
     *,
@@ -41,17 +46,39 @@ def halation_layer(
     strength: float = 0.16,
     threshold: float = 0.78,
     edge_threshold: float = 0.08,
+    min_radius: float = 1.1,
+    max_radius: float = 10.0,
+    radius_gamma: float = 1.35,
+    scale_count: int = 6,
     name: str = "halation",
 ) -> FilmLayer:
     lum = luminance(base_rgb)
     gy, gx = np.gradient(lum)
     edge = np.hypot(gx, gy)
-    highlight = np.clip((lum - threshold) / max(1.0 - threshold, 1e-6), 0.0, 1.0)
-    edge_mask = np.clip(edge / max(edge_threshold, 1e-6), 0.0, 1.0)
+    highlight = _smoothstep(threshold, 1.0, lum)
+    edge_mask = _smoothstep(0.0, edge_threshold, edge)
     support = highlight * edge_mask
-    core = gaussian_filter(support, sigma=1.2)
-    bloom = gaussian_filter(support, sigma=5.0)
-    alpha = np.clip((core * 0.55 + bloom * 0.45) * strength, 0.0, min(0.22, strength))
+
+    # Approximate a spatially varying scattering radius. Each source pixel gets a
+    # continuous target radius from its exposure, then is softly assigned across
+    # Gaussian scale-space before blurring.
+    scale_count = max(3, int(scale_count))
+    min_radius = max(0.4, float(min_radius))
+    max_radius = max(min_radius + 0.1, float(max_radius))
+    sigmas = np.geomspace(min_radius, max_radius, scale_count).astype(np.float32)
+    radius = min_radius + (max_radius - min_radius) * np.power(highlight, radius_gamma)
+    log_radius = np.log(np.maximum(radius, 1e-4))[..., None]
+    log_sigmas = np.log(sigmas).reshape(1, 1, scale_count)
+    bandwidth = max(float(np.log(max_radius / min_radius) / max(scale_count - 1, 1)) * 0.9, 1e-3)
+    scale_weights = np.exp(-0.5 * ((log_sigmas - log_radius) / bandwidth) ** 2).astype(np.float32)
+    scale_weights /= np.maximum(scale_weights.sum(axis=2, keepdims=True), 1e-6)
+
+    halo = np.zeros_like(lum, dtype=np.float32)
+    for index, sigma in enumerate(sigmas):
+        source = support * scale_weights[..., index]
+        halo += gaussian_filter(source, sigma=float(sigma))
+
+    alpha = np.clip(halo * strength, 0.0, min(0.22, strength))
     rgb = np.zeros_like(base_rgb, dtype=np.float32)
     rgb[..., 0] = 1.0
     rgb[..., 1] = 0.34
