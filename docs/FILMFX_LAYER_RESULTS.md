@@ -70,3 +70,34 @@ grain residual_abs_max=0.0566, residual_abs_mean=0.0078
 halation alpha_max=0.0345, affected_percent=22.02
 dust_scratch alpha_max=0.0360, affected_percent=0.46
 ```
+
+## AI Artifact Layer Prototype Decision
+
+Decision: defer AI grain/halation/damage training until deterministic layers have
+user visual approval and a richer patch dataset exists.
+
+Allowed future AI output forms:
+
+```text
+grain: residual_rgb_or_luma + strength/mask
+halation: RGBA layer with bounded alpha
+dust/scratch: sparse RGBA alpha overlay
+light leak/bloom: RGBA layer or bounded residual
+```
+
+Current rationale:
+
+- Deterministic grain/halation/dust layers already satisfy the layer contract and
+  are easier to inspect.
+- There is no paired clean/film-effect layer dataset in the repo.
+- Training AI layers against pseudo labels before visual approval would mostly
+  imitate the deterministic simulator, so it adds complexity without a clear win.
+- Any later AI layer generator must write independent layer views and pass the
+  same alpha/residual bounds before compositing.
+
+Status:
+
+- AI grain generator: deferred.
+- AI halation generator: deferred.
+- AI transparent scratch/dust generator: deferred.
+- Layer contract for all of the above: active and enforced by compositor design.

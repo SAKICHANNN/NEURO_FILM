@@ -397,7 +397,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | done | branch created from Part 1 baseline | branch node B3 |
 | 15 | Layer schema/compositor | Order 14 | done | layer compositor smoke test passes | P3.1 |
 | 16 | Deterministic grain/halation/scratch layers | Order 15 | done | deterministic effects smoke writes layer views and metrics | P3.2 |
-| 17 | AI artifact layer prototypes | Orders 15-16 | pending | residual/RGBA-only reports exist | P3.3 |
+| 17 | AI artifact layer prototypes | Orders 15-16 | done | RGBA/residual-only prototype decision recorded; AI training deferred | P3.3 |
 | 18 | Integration branch | approved outputs from B1/B2/B3 | pending | `render_film.py` final CLI runs | P4 |
 | 19 | Mac/user visual validation | Order 18 | manual | user approves contact sheets | manual |
 
@@ -822,7 +822,7 @@ Rationale: easiest AI artifact layer because grain is high-frequency and non-sem
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.2.1 | Review implementation options: cGAN vs tiny diffusion vs procedural neural noise | pending | write memo first |
+| 3.2.1 | Review implementation options: cGAN vs tiny diffusion vs procedural neural noise | done | deferred by `docs/FILMFX_LAYER_RESULTS.md` memo |
 | 3.2.2 | Build training patches from grainy/clean or pseudo pairs | pending | do not commit data |
 | 3.2.3 | Train small conditional generator | pending | condition on luminance, ISO, style, seed/noise |
 | 3.2.4 | Output residual only | pending | not final image |
@@ -868,7 +868,7 @@ Rationale: high-value research path. Must not start until deterministic halation
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.4.1 | Write halation data strategy memo | pending | paired data, pseudo labels, residual extraction |
+| 3.4.1 | Write halation data strategy memo | done | deferred until deterministic halation visual approval |
 | 3.4.2 | Generate pseudo-halation targets from deterministic simulator | pending | train first to imitate constraints |
 | 3.4.3 | Train layer generator to output RGBA only | pending | no final RGB |
 | 3.4.4 | Condition on highlight/edge/luminance/style | pending | not prompt-only |
@@ -887,7 +887,7 @@ Rationale: can be modeled as sparse alpha overlays and should not need to unders
 | 3.5.2 | Add avoid-face/avoid-subject optional mask slot | pending | manual/heuristic first |
 | 3.5.3 | Add style controls: clean scan, archival, damaged, dusty | pending | user-facing |
 | 3.5.4 | Explore FilmDamageSimulator-like statistics | pending | source-compatible implementation only |
-| 3.5.5 | Optional AI transparent layer generator | pending | only if procedural baseline insufficient |
+| 3.5.5 | Optional AI transparent layer generator | done | deferred; RGBA-only contract documented |
 
 Commit node: `filmfx: add dust and scratch layers`
 
