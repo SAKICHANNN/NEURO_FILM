@@ -19,6 +19,7 @@ from skimage.color import lab2rgb, rgb2lab
 
 ROOT = Path(__file__).resolve().parents[1]
 B_AND_W_STYLES = {"hp5", "tri_x_400"}
+DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
 
 
 def parse_float_list(raw: str) -> list[float]:
@@ -46,6 +47,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-margin", type=int, default=0, help="Reserve 8-bit output headroom, e.g. 4 -> [4, 251].")
     parser.add_argument("--format", choices=("auto", "png", "jpeg"), default="auto")
     parser.add_argument("--fail-on-clip", action="store_true", help="Exit nonzero if the saved output has new hard clipping.")
+    parser.add_argument("--use-guardrails", action="store_true", help="Apply neutral/skin/chroma guardrails.")
+    parser.add_argument("--guardrails", type=Path, default=DEFAULT_GUARDRAILS)
+    parser.add_argument("--neutral-protect", type=float, default=None)
+    parser.add_argument("--skin-protect", type=float, default=None)
+    parser.add_argument("--max-chroma-gain", type=float, default=None)
+    parser.add_argument("--max-chroma-boost", type=float, default=None)
+    parser.add_argument("--max-chroma-absolute", type=float, default=None)
+    parser.add_argument("--dither", type=float, default=None, help="8-bit quantization dither strength in LSBs.")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs" / "color_baseline")
@@ -138,6 +147,62 @@ def apply_tone_rolloff(lab: np.ndarray, strength: float) -> np.ndarray:
     return out
 
 
+def smoothstep(edge0: float, edge1: float, value: np.ndarray) -> np.ndarray:
+    x = np.clip((value - edge0) / max(edge1 - edge0, 1e-6), 0.0, 1.0)
+    return x * x * (3.0 - 2.0 * x)
+
+
+def skin_like_mask(lab: np.ndarray) -> np.ndarray:
+    return (
+        (lab[..., 0] > 20.0)
+        & (lab[..., 0] < 92.0)
+        & (lab[..., 1] > 4.0)
+        & (lab[..., 1] < 28.0)
+        & (lab[..., 2] > 4.0)
+        & (lab[..., 2] < 46.0)
+    )
+
+
+def apply_color_guardrails(
+    source_lab: np.ndarray,
+    target_lab: np.ndarray,
+    neutral_protect: float,
+    skin_protect: float,
+    max_chroma_gain: float | None,
+    max_chroma_boost: float | None,
+    max_chroma_absolute: float | None,
+) -> np.ndarray:
+    out = target_lab.copy()
+    source_ab = source_lab[..., 1:3]
+    out_ab = out[..., 1:3]
+    source_chroma = np.linalg.norm(source_ab, axis=2, keepdims=True)
+    out_chroma = np.linalg.norm(out_ab, axis=2, keepdims=True)
+
+    if neutral_protect > 0:
+        neutral_weight = 1.0 - smoothstep(4.0, 14.0, source_chroma)
+        blend = np.clip(neutral_weight * neutral_protect, 0.0, 1.0)
+        out_ab = out_ab * (1.0 - blend) + source_ab * blend
+
+    if skin_protect > 0:
+        skin_weight = skin_like_mask(source_lab)[..., None].astype(np.float32) * np.clip(skin_protect, 0.0, 1.0)
+        out_ab = out_ab * (1.0 - skin_weight) + source_ab * skin_weight
+
+    if max_chroma_gain is not None or max_chroma_boost is not None or max_chroma_absolute is not None:
+        gain = float(max_chroma_gain if max_chroma_gain is not None else 999.0)
+        boost = float(max_chroma_boost if max_chroma_boost is not None else 999.0)
+        cap = np.maximum(source_chroma * gain, source_chroma + boost)
+        if max_chroma_absolute is not None:
+            cap = np.minimum(cap, float(max_chroma_absolute))
+        out_chroma = np.maximum(np.linalg.norm(out_ab, axis=2, keepdims=True), 1e-6)
+        scale = np.minimum(1.0, cap / out_chroma)
+        # Ease into the cap over the upper chroma range to avoid an obvious hard shelf.
+        knee = smoothstep(0.82, 1.0, out_chroma / np.maximum(cap, 1e-6))
+        out_ab = out_ab * ((1.0 - knee) + knee * scale)
+
+    out[..., 1:3] = out_ab
+    return out
+
+
 def lab_to_rgb_no_clip(lab: np.ndarray) -> np.ndarray:
     linear = lab_to_linear_srgb(lab)
     # Gamut-safe callers should already be inside bounds; this guards tiny float error only.
@@ -153,6 +218,19 @@ def apply_output_margin(rgb: np.ndarray, output_margin: int) -> np.ndarray:
     return low + np.clip(rgb, 0.0, 1.0) * (high - low)
 
 
+def load_guardrail_config(path: Path, style: str) -> dict:
+    if not path.exists():
+        return {}
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    config = dict(doc.get("defaults", {}))
+    config.update(doc.get("styles", {}).get(style, {}))
+    return config
+
+
+def resolve_guardrail_value(config: dict, cli_value: float | None, key: str) -> float | None:
+    return cli_value if cli_value is not None else config.get(key)
+
+
 def style_transfer(
     image: Image.Image,
     stats: dict,
@@ -165,6 +243,13 @@ def style_transfer(
     gamut_mode: str | None = None,
     tone_rolloff: float = 0.0,
     output_margin: int = 0,
+    guardrails: dict | None = None,
+    neutral_protect: float | None = None,
+    skin_protect: float | None = None,
+    max_chroma_gain: float | None = None,
+    max_chroma_boost: float | None = None,
+    max_chroma_absolute: float | None = None,
+    dither: float | None = None,
 ) -> Image.Image:
     rgb = np.asarray(image, dtype=np.float32) / 255.0
     lab = rgb2lab(rgb)
@@ -184,6 +269,21 @@ def style_transfer(
         contrast = 1.0 + 0.30 * strength
         out[..., 0] = np.clip((out[..., 0] - 50.0) * contrast + 50.0, 0.0, 100.0)
 
+    guardrails = guardrails or {}
+    neutral_protect = resolve_guardrail_value(guardrails, neutral_protect, "neutral_protect") or 0.0
+    skin_protect = resolve_guardrail_value(guardrails, skin_protect, "skin_protect") or 0.0
+    max_chroma_gain = resolve_guardrail_value(guardrails, max_chroma_gain, "max_chroma_gain")
+    max_chroma_boost = resolve_guardrail_value(guardrails, max_chroma_boost, "max_chroma_boost")
+    max_chroma_absolute = resolve_guardrail_value(guardrails, max_chroma_absolute, "max_chroma_absolute")
+    out = apply_color_guardrails(
+        lab,
+        out,
+        neutral_protect=float(neutral_protect),
+        skin_protect=float(skin_protect),
+        max_chroma_gain=max_chroma_gain,
+        max_chroma_boost=max_chroma_boost,
+        max_chroma_absolute=max_chroma_absolute,
+    )
     out = apply_tone_rolloff(out, tone_rolloff)
 
     resolved_gamut_mode = gamut_mode or ("source" if gamut_safe else "off")
@@ -204,6 +304,11 @@ def style_transfer(
         noise_scale = grain * (0.55 + 0.9 * (1.0 - luminance))
         noise = rng.normal(0.0, noise_scale, size=result.shape).astype(np.float32)
         result = np.clip(result + noise, 0.0, 1.0)
+
+    dither = resolve_guardrail_value(guardrails, dither, "dither") or 0.0
+    if dither > 0:
+        rng = np.random.default_rng(seed + 1009)
+        result = np.clip(result + rng.uniform(-0.5, 0.5, size=result.shape).astype(np.float32) * (float(dither) / 255.0), 0.0, 1.0)
 
     result = apply_output_margin(result, output_margin)
     return Image.fromarray(np.rint(np.clip(result * 255.0, 0, 255)).astype(np.uint8), mode="RGB")
@@ -283,6 +388,7 @@ def main() -> int:
     for style in styles:
         if style not in stats_doc["styles"]:
             raise ValueError(f"Style not found in stats: {style}")
+        guardrail_config = load_guardrail_config(args.guardrails, style) if args.use_guardrails else {}
         style_rows = []
         for strength in strengths:
             out = style_transfer(
@@ -297,6 +403,13 @@ def main() -> int:
                 gamut_mode=args.gamut_mode,
                 tone_rolloff=args.tone_rolloff,
                 output_margin=args.output_margin,
+                guardrails=guardrail_config,
+                neutral_protect=args.neutral_protect,
+                skin_protect=args.skin_protect,
+                max_chroma_gain=args.max_chroma_gain,
+                max_chroma_boost=args.max_chroma_boost,
+                max_chroma_absolute=args.max_chroma_absolute,
+                dither=args.dither,
             )
             if args.output and len(styles) == 1 and len(strengths) == 1:
                 output_path = args.output
@@ -318,6 +431,7 @@ def main() -> int:
                 "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
                 "tone_rolloff": args.tone_rolloff,
                 "output_margin": args.output_margin,
+                "guardrails": args.use_guardrails,
                 "output": str(output_path),
                 "label": f"{style} s={strength}",
                 **clip_stats,

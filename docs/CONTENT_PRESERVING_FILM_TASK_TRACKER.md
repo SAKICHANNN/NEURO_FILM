@@ -386,7 +386,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 3 | Add safety evaluator | Order 2 | done | identity pair reports zero new clipping and `L_ssim=1.0` | `color: add render safety evaluator` |
 | 4 | Audit current baseline | Order 3 | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table and ignored metrics exist under `outputs/eval/baseline_current/` | `color: audit current baseline stability` |
 | 5 | Implement no-clipping renderer improvements | Order 4 | done | full 20-image x 8-style safe pass has zero new `0/255` and output bounds `4..251` | `color: enforce non-clipping output bounds` |
-| 6 | Add artifact/banding guards | Order 5 | pending | banding and high-frequency metrics appear in report | `color: add artifact and banding guards` |
+| 6 | Add artifact/banding guards | Order 5 | done | banding, high-frequency, neutral/skin contamination, and guarded contact sheets appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | pending | per-style settings pass gates and visual review | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | pending | pytest smoke + batch eval pass | `color: add safe-rich production preset` |
 | 9 | Freeze Part 1 verdict | Order 8 | pending | Part 1 final gate table completed | `color: record stable baseline verdict` |
@@ -517,12 +517,12 @@ Commit node: `color: enforce non-clipping output bounds`
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 1.2.1 | Add banding/posterization metric | pending | histogram gaps and low-bit quantization proxy |
-| 1.2.2 | Add optional 16-bit internal processing path | pending | keep float/16-bit until final export |
-| 1.2.3 | Add smooth chroma compression | pending | avoid hard a/b truncation |
-| 1.2.4 | Add neutral/skin protection masks as non-AI heuristics | pending | protect near-neutral and skin-like hues from dirty shifts |
-| 1.2.5 | Add per-style max chroma gain | pending | Velvia can be rich but bounded |
-| 1.2.6 | Add regression contact sheets for artifact-prone images | pending | same images every run |
+| 1.2.1 | Add banding/posterization metric | done | histogram gaps and low-bit quantization proxy in evaluator |
+| 1.2.2 | Add optional 16-bit internal processing path | done | renderer keeps float32 until final export; optional dither reduces 8-bit quantization risk |
+| 1.2.3 | Add smooth chroma compression | done | guardrail chroma caps ease into limit before gamut compression |
+| 1.2.4 | Add neutral/skin protection masks as non-AI heuristics | done | `--use-guardrails` applies neutral and skin masks |
+| 1.2.5 | Add per-style max chroma gain | done | `configs/color_guardrails.json` defines per-style caps |
+| 1.2.6 | Add regression contact sheets for artifact-prone images | done | audit script writes per-style `contact_sheet.png` |
 
 Commit node: `color: add artifact and banding guards`
 

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "description": "Conservative chroma and protection guardrails for the deterministic Lab renderer.",
+  "defaults": {
+    "neutral_protect": 0.35,
+    "skin_protect": 0.25,
+    "max_chroma_gain": 2.25,
+    "max_chroma_boost": 14.0,
+    "dither": 0.35
+  },
+  "styles": {
+    "ektar_100": {
+      "neutral_protect": 0.35,
+      "skin_protect": 0.25,
+      "max_chroma_gain": 2.35,
+      "max_chroma_boost": 15.0
+    },
+    "hp5": {
+      "neutral_protect": 0.0,
+      "skin_protect": 0.0,
+      "max_chroma_gain": 0.20,
+      "max_chroma_boost": 0.0,
+      "max_chroma_absolute": 4.0
+    },
+    "portra_400": {
+      "neutral_protect": 0.50,
+      "skin_protect": 0.45,
+      "max_chroma_gain": 1.75,
+      "max_chroma_boost": 10.0
+    },
+    "portra_800": {
+      "neutral_protect": 0.45,
+      "skin_protect": 0.40,
+      "max_chroma_gain": 1.90,
+      "max_chroma_boost": 11.0
+    },
+    "tri_x_400": {
+      "neutral_protect": 0.0,
+      "skin_protect": 0.0,
+      "max_chroma_gain": 0.20,
+      "max_chroma_boost": 0.0,
+      "max_chroma_absolute": 4.0
+    },
+    "velvia_50": {
+      "neutral_protect": 0.55,
+      "skin_protect": 0.35,
+      "max_chroma_gain": 2.10,
+      "max_chroma_boost": 16.0
+    },
+    "vision3_250d": {
+      "neutral_protect": 0.45,
+      "skin_protect": 0.35,
+      "max_chroma_gain": 1.95,
+      "max_chroma_boost": 12.0
+    },
+    "vision3_500t": {
+      "neutral_protect": 0.45,
+      "skin_protect": 0.35,
+      "max_chroma_gain": 1.95,
+      "max_chroma_boost": 12.0
+    }
+  }
+}

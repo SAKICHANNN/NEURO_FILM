@@ -38,6 +38,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gamut-mode", choices=("off", "source", "chroma"), default=None)
     parser.add_argument("--tone-rolloff", type=float, default=0.0)
     parser.add_argument("--output-margin", type=int, default=0)
+    parser.add_argument("--use-guardrails", action="store_true")
+    parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
+    parser.add_argument("--neutral-protect", type=float, default=None)
+    parser.add_argument("--skin-protect", type=float, default=None)
+    parser.add_argument("--max-chroma-gain", type=float, default=None)
+    parser.add_argument("--max-chroma-boost", type=float, default=None)
+    parser.add_argument("--max-chroma-absolute", type=float, default=None)
+    parser.add_argument("--dither", type=float, default=None)
     return parser.parse_args()
 
 
@@ -125,6 +133,8 @@ def main() -> int:
         run_id += "_gamutsafe"
     if args.output_margin > 0:
         run_id += f"_m{args.output_margin}"
+    if args.use_guardrails:
+        run_id += "_guards"
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     summary = {
@@ -138,10 +148,18 @@ def main() -> int:
         "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
         "tone_rolloff": args.tone_rolloff,
         "output_margin": args.output_margin,
+        "guardrails": args.use_guardrails,
         "styles": {},
     }
 
     for style in styles:
+        guardrail_config = (
+            json.loads(args.guardrails.read_text(encoding="utf-8")).get("defaults", {}) if args.use_guardrails else {}
+        )
+        if args.use_guardrails:
+            guardrail_doc = json.loads(args.guardrails.read_text(encoding="utf-8"))
+            guardrail_config = dict(guardrail_doc.get("defaults", {}))
+            guardrail_config.update(guardrail_doc.get("styles", {}).get(style, {}))
         style_dir = output_dir / style
         after_dir = style_dir / "after"
         diff_dir = style_dir / "diff_maps"
@@ -165,6 +183,13 @@ def main() -> int:
                 gamut_mode=args.gamut_mode,
                 tone_rolloff=args.tone_rolloff,
                 output_margin=args.output_margin,
+                guardrails=guardrail_config,
+                neutral_protect=args.neutral_protect,
+                skin_protect=args.skin_protect,
+                max_chroma_gain=args.max_chroma_gain,
+                max_chroma_boost=args.max_chroma_boost,
+                max_chroma_absolute=args.max_chroma_absolute,
+                dither=args.dither,
             )
             after_path = after_dir / f"{source['id']}_{style}_{run_id}.png"
             diff_path = diff_dir / f"{source['id']}_{style}_{run_id}_diff.png"
