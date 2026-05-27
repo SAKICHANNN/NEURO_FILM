@@ -11,6 +11,7 @@ from pathlib import Path
 from statistics import mean
 
 from PIL import Image, ImageDraw, ImageFont
+from omegaconf import OmegaConf
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -37,6 +38,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gamut-safe", action="store_true", help="Audit the existing optional gamut-safe flag.")
     parser.add_argument("--gamut-mode", choices=("off", "source", "chroma"), default=None)
     parser.add_argument("--tone-rolloff", type=float, default=0.0)
+    parser.add_argument("--shadow-floor-l", type=float, default=1.0)
+    parser.add_argument("--highlight-ceiling-l", type=float, default=99.0)
+    parser.add_argument("--preserve-luma-detail", type=float, default=0.0)
+    parser.add_argument("--chroma-curve-strength", type=float, default=0.0)
     parser.add_argument("--output-margin", type=int, default=0)
     parser.add_argument("--use-guardrails", action="store_true")
     parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
@@ -46,6 +51,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-chroma-boost", type=float, default=None)
     parser.add_argument("--max-chroma-absolute", type=float, default=None)
     parser.add_argument("--dither", type=float, default=None)
+    parser.add_argument("--profile", type=Path, default=None)
+    parser.add_argument("--profile-name", default="safe_rich")
     return parser.parse_args()
 
 
@@ -73,6 +80,27 @@ def parse_styles(raw: str, available: list[str]) -> list[str]:
     if unknown:
         raise ValueError(f"Unknown styles: {unknown}")
     return requested
+
+
+def load_profile(path: Path | None, profile_name: str) -> dict:
+    if path is None:
+        return {}
+    data = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
+    profile = data.get("profiles", {}).get(profile_name)
+    if not profile:
+        raise ValueError(f"Profile {profile_name!r} not found in {path}")
+    return profile
+
+
+def style_profile(profile: dict, style: str) -> dict:
+    values = dict(profile.get("defaults", {}))
+    values.update(profile.get("styles", {}).get(style, {}))
+    return values
+
+
+def pick(args: argparse.Namespace, profile_values: dict, key: str):
+    cli_name = key.replace("-", "_")
+    return profile_values.get(key, getattr(args, cli_name))
 
 
 def make_style_contact_sheet(rows: list[dict], output_path: Path, title: str) -> None:
@@ -147,16 +175,32 @@ def main() -> int:
         "gamut_safe": args.gamut_safe,
         "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
         "tone_rolloff": args.tone_rolloff,
+        "profile": str(args.profile) if args.profile else "",
+        "profile_name": args.profile_name if args.profile else "",
         "output_margin": args.output_margin,
         "guardrails": args.use_guardrails,
         "styles": {},
     }
+    profile = load_profile(args.profile, args.profile_name)
 
     for style in styles:
+        profile_values = style_profile(profile, style)
+        strength = pick(args, profile_values, "strength")
+        luma_strength = pick(args, profile_values, "luma_strength")
+        grain = pick(args, profile_values, "grain")
+        gamut_safe = bool(profile_values.get("gamut_safe", args.gamut_safe))
+        gamut_mode = profile_values.get("gamut_mode", args.gamut_mode)
+        tone_rolloff = pick(args, profile_values, "tone_rolloff")
+        shadow_floor_l = pick(args, profile_values, "shadow_floor_l")
+        highlight_ceiling_l = pick(args, profile_values, "highlight_ceiling_l")
+        preserve_detail = pick(args, profile_values, "preserve_luma_detail")
+        chroma_curve = pick(args, profile_values, "chroma_curve_strength")
+        output_margin = int(pick(args, profile_values, "output_margin"))
+        use_guardrails = bool(profile_values.get("use_guardrails", args.use_guardrails))
         guardrail_config = (
-            json.loads(args.guardrails.read_text(encoding="utf-8")).get("defaults", {}) if args.use_guardrails else {}
+            json.loads(args.guardrails.read_text(encoding="utf-8")).get("defaults", {}) if use_guardrails else {}
         )
-        if args.use_guardrails:
+        if use_guardrails:
             guardrail_doc = json.loads(args.guardrails.read_text(encoding="utf-8"))
             guardrail_config = dict(guardrail_doc.get("defaults", {}))
             guardrail_config.update(guardrail_doc.get("styles", {}).get(style, {}))
@@ -175,14 +219,18 @@ def main() -> int:
                 before_image,
                 stats_doc["styles"][style],
                 style,
-                strength=args.strength,
-                luma_strength=args.luma_strength,
-                grain=args.grain,
+                strength=strength,
+                luma_strength=luma_strength,
+                grain=grain,
                 seed=42 + int(source["id"]),
-                gamut_safe=args.gamut_safe,
-                gamut_mode=args.gamut_mode,
-                tone_rolloff=args.tone_rolloff,
-                output_margin=args.output_margin,
+                gamut_safe=gamut_safe,
+                gamut_mode=gamut_mode,
+                tone_rolloff=tone_rolloff,
+                shadow_floor_l=shadow_floor_l,
+                highlight_ceiling_l=highlight_ceiling_l,
+                preserve_luma_detail_strength=preserve_detail,
+                chroma_curve_strength=chroma_curve,
+                output_margin=output_margin,
                 guardrails=guardrail_config,
                 neutral_protect=args.neutral_protect,
                 skin_protect=args.skin_protect,

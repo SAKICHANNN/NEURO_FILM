@@ -4,8 +4,9 @@
 
 ## Current Verdict
 
-Status: no-clipping renderer path and first artifact/color guards implemented;
-safe-rich profile tuning still needs work.
+Status: safe-rich color profile is locally validated for color stocks; B&W stocks
+remain content-safe/no-clip but intentionally fail color-only L-SSIM because they
+perform monochrome tone conversion.
 
 The first milestone establishes the shared benchmark configuration and render
 safety metrics before changing renderer behavior. Generated outputs remain under
@@ -66,8 +67,7 @@ outputs/eval/identity_smoke/contact_sheet.png
 
 ## Next Action
 
-Tune rich-but-natural per-style profiles, especially luminance preservation on
-the hard seed images 09 and 11.
+Add production CLI/regression tests and separate B&W gates from color-only gates.
 
 ## Current Baseline Audit
 
@@ -213,3 +213,37 @@ Guardrail effect:
 - Vision3 250D dropped from 8.489% to 0.700%.
 - HP5/Tri-X now remain near monochrome after adding absolute B&W chroma caps.
 - Worst-case L-SSIM decreased for some color stocks because the current luma transfer and gamut compression still interact on hard images. This is a tuning problem for the safe-rich profile stage, not a clipping blocker.
+
+## Safe-Rich Profile Pass
+
+Implementation changes:
+
+- Added `configs/color_rendering_profiles.yaml`.
+- Added renderer controls for `--chroma-curve-strength`, `--shadow-floor-l`, `--highlight-ceiling-l`, and `--preserve-luma-detail`.
+- Changed `--output-margin` from global RGB rescaling to headroom clamping. This preserves midtone luminance while still preventing 0/255 output values.
+- `scripts/audit_color_baseline.py` can apply a named profile with `--profile` and `--profile-name`.
+
+Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\audit_color_baseline.py --output-dir outputs\eval\baseline_saferich --profile configs\color_rendering_profiles.yaml --profile-name safe_rich
+```
+
+Summary:
+
+| Style | New Clip | Bounds | Min L-SSIM | Mean L-SSIM | Max Neutral Contam. | Mean Chroma |
+|------|:---:|:---:|---:|---:|---:|---:|
+| ektar_100 | 0/20 | 4..251 | 0.9952 | 0.9991 | 0.025% | 15.881 |
+| hp5 | 0/20 | 4..251 | 0.8489 | 0.9184 | 0.000% | 0.625 |
+| portra_400 | 0/20 | 4..251 | 0.9956 | 0.9991 | 0.003% | 15.869 |
+| portra_800 | 0/20 | 4..251 | 0.9952 | 0.9991 | 0.010% | 16.357 |
+| tri_x_400 | 0/20 | 4..251 | 0.8373 | 0.9148 | 0.000% | 0.491 |
+| velvia_50 | 0/20 | 4..251 | 0.9955 | 0.9991 | 1.648% | 17.077 |
+| vision3_250d | 0/20 | 4..251 | 0.9951 | 0.9991 | 0.022% | 16.480 |
+| vision3_500t | 0/20 | 4..251 | 0.9950 | 0.9991 | 0.008% | 15.646 |
+
+Decision:
+
+- Color stocks pass the current color-only structure gate on the 20-image seed set: no new clipping, output bounds inside `[4, 251]`, and minimum L-SSIM at or above 0.995.
+- B&W stocks are correctly near-monochrome and no-clip, but they should use a separate B&W tone-conversion gate because converting a color image to monochrome changes Lab L by design.
+- The current profile prioritizes safety over maximum Velvia-style saturation. Later visual review can raise stock-specific strength only if the safety gates remain green.

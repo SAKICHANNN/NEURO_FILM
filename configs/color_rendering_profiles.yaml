@@ -1,0 +1,48 @@
+schema_version: 1
+profiles:
+  safe_rich:
+    description: "First conservative profile: rich chroma, locked luminance, no hard output clipping."
+    defaults:
+      strength: 0.35
+      luma_strength: 0.02
+      grain: 0.0
+      gamut_safe: true
+      gamut_mode: source
+      output_margin: 4
+      use_guardrails: true
+      chroma_curve_strength: 0.45
+      tone_rolloff: 0.04
+      shadow_floor_l: 1.0
+      highlight_ceiling_l: 99.0
+      preserve_luma_detail: 0.90
+      dither: 0.35
+    styles:
+      ektar_100:
+        strength: 0.36
+        chroma_curve_strength: 0.44
+      hp5:
+        strength: 0.72
+        luma_strength: 0.10
+        chroma_curve_strength: 0.0
+        preserve_luma_detail: 0.85
+      portra_400:
+        strength: 0.35
+        chroma_curve_strength: 0.45
+      portra_800:
+        strength: 0.36
+        chroma_curve_strength: 0.44
+      tri_x_400:
+        strength: 0.74
+        luma_strength: 0.10
+        chroma_curve_strength: 0.0
+        preserve_luma_detail: 0.85
+      velvia_50:
+        strength: 0.35
+        luma_strength: 0.02
+        chroma_curve_strength: 0.45
+      vision3_250d:
+        strength: 0.36
+        chroma_curve_strength: 0.44
+      vision3_500t:
+        strength: 0.36
+        chroma_curve_strength: 0.44

@@ -387,7 +387,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 4 | Audit current baseline | Order 3 | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table and ignored metrics exist under `outputs/eval/baseline_current/` | `color: audit current baseline stability` |
 | 5 | Implement no-clipping renderer improvements | Order 4 | done | full 20-image x 8-style safe pass has zero new `0/255` and output bounds `4..251` | `color: enforce non-clipping output bounds` |
 | 6 | Add artifact/banding guards | Order 5 | done | banding, high-frequency, neutral/skin contamination, and guarded contact sheets appear in report | `color: add artifact and banding guards` |
-| 7 | Tune safe-rich profiles | Order 6 | pending | per-style settings pass gates and visual review | `color: tune rich natural film profiles` |
+| 7 | Tune safe-rich profiles | Order 6 | done | color-stock safe-rich profile passes no-clip and L-SSIM gates on seed set; B&W marked for separate gate | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | pending | pytest smoke + batch eval pass | `color: add safe-rich production preset` |
 | 9 | Freeze Part 1 verdict | Order 8 | pending | Part 1 final gate table completed | `color: record stable baseline verdict` |
 | 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
@@ -530,12 +530,12 @@ Commit node: `color: add artifact and banding guards`
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 1.3.1 | Build style-specific tone/chroma parameter table | pending | `configs/color_rendering_profiles.yaml` |
-| 1.3.2 | Add colorfulness target ranges per stock | pending | Velvia high, Portra medium, B&W near zero chroma |
-| 1.3.3 | Implement saturation curve instead of linear saturation push | pending | protect already-saturated colors |
-| 1.3.4 | Implement highlight roll-off and shadow floor | pending | avoid crushed blacks/whites |
-| 1.3.5 | Add optional local contrast preservation in L only | pending | small, bounded, disabled by default until safe |
-| 1.3.6 | Validate 8 stocks on raw.pixls/digital eval set | pending | results doc updated |
+| 1.3.1 | Build style-specific tone/chroma parameter table | done | `configs/color_rendering_profiles.yaml` |
+| 1.3.2 | Add colorfulness target ranges per stock | done | safe-rich profile records high/medium/near-zero chroma through per-style strengths and guardrails |
+| 1.3.3 | Implement saturation curve instead of linear saturation push | done | `--chroma-curve-strength` protects already-saturated colors |
+| 1.3.4 | Implement highlight roll-off and shadow floor | done | `--shadow-floor-l` and `--highlight-ceiling-l` supported |
+| 1.3.5 | Add optional local contrast preservation in L only | done | `--preserve-luma-detail` supported |
+| 1.3.6 | Validate 8 stocks on raw.pixls/digital eval set | done | `outputs/eval/baseline_saferich/summary.json` and results doc updated |
 
 Commit node: `color: tune rich natural film profiles`
 

@@ -14,6 +14,7 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from scipy.ndimage import gaussian_filter
 from skimage.color import lab2rgb, rgb2lab
 
 
@@ -44,6 +45,10 @@ def parse_args() -> argparse.Namespace:
         help="Gamut compression mode. --gamut-safe defaults to source.",
     )
     parser.add_argument("--tone-rolloff", type=float, default=0.0, help="Monotonic Lab L roll-off strength in [0, 1].")
+    parser.add_argument("--shadow-floor-l", type=float, default=1.0)
+    parser.add_argument("--highlight-ceiling-l", type=float, default=99.0)
+    parser.add_argument("--preserve-luma-detail", type=float, default=0.0)
+    parser.add_argument("--chroma-curve-strength", type=float, default=0.0)
     parser.add_argument("--output-margin", type=int, default=0, help="Reserve 8-bit output headroom, e.g. 4 -> [4, 251].")
     parser.add_argument("--format", choices=("auto", "png", "jpeg"), default="auto")
     parser.add_argument("--fail-on-clip", action="store_true", help="Exit nonzero if the saved output has new hard clipping.")
@@ -135,14 +140,16 @@ def compress_chroma_to_srgb_gamut(target_lab: np.ndarray, iterations: int = 14) 
     return neutral + delta * low
 
 
-def apply_tone_rolloff(lab: np.ndarray, strength: float) -> np.ndarray:
+def apply_tone_rolloff(lab: np.ndarray, strength: float, shadow_floor_l: float, highlight_ceiling_l: float) -> np.ndarray:
     if strength <= 0:
         return lab
     strength = float(np.clip(strength, 0.0, 1.0))
     out = lab.copy()
     luminance = np.clip(out[..., 0] / 100.0, 0.0, 1.0)
     smooth = luminance * luminance * (3.0 - 2.0 * luminance)
-    rolled = 0.01 + smooth * 0.98
+    low = np.clip(shadow_floor_l / 100.0, 0.0, 0.25)
+    high = np.clip(highlight_ceiling_l / 100.0, 0.75, 1.0)
+    rolled = low + smooth * (high - low)
     out[..., 0] = 100.0 * ((1.0 - strength) * luminance + strength * rolled)
     return out
 
@@ -203,6 +210,32 @@ def apply_color_guardrails(
     return out
 
 
+def apply_chroma_curve(source_lab: np.ndarray, target_lab: np.ndarray, strength: float) -> np.ndarray:
+    if strength <= 0:
+        return target_lab
+    strength = float(np.clip(strength, 0.0, 1.0))
+    out = target_lab.copy()
+    source_chroma = np.linalg.norm(source_lab[..., 1:3], axis=2, keepdims=True)
+    saturated_weight = smoothstep(24.0, 60.0, source_chroma)
+    scale = 1.0 - strength * saturated_weight
+    out[..., 1:3] = source_lab[..., 1:3] + (out[..., 1:3] - source_lab[..., 1:3]) * scale
+    return out
+
+
+def preserve_luma_detail(source_lab: np.ndarray, target_lab: np.ndarray, strength: float) -> np.ndarray:
+    if strength <= 0:
+        return target_lab
+    strength = float(np.clip(strength, 0.0, 1.0))
+    out = target_lab.copy()
+    source_l = source_lab[..., 0]
+    target_l = target_lab[..., 0]
+    source_detail = source_l - gaussian_filter(source_l, sigma=1.1)
+    target_base = gaussian_filter(target_l, sigma=1.1)
+    target_detail = target_l - target_base
+    out[..., 0] = np.clip(target_base + target_detail * (1.0 - strength) + source_detail * strength, 0.0, 100.0)
+    return out
+
+
 def lab_to_rgb_no_clip(lab: np.ndarray) -> np.ndarray:
     linear = lab_to_linear_srgb(lab)
     # Gamut-safe callers should already be inside bounds; this guards tiny float error only.
@@ -215,7 +248,7 @@ def apply_output_margin(rgb: np.ndarray, output_margin: int) -> np.ndarray:
     margin = max(0, min(32, int(output_margin)))
     low = margin / 255.0
     high = 1.0 - low
-    return low + np.clip(rgb, 0.0, 1.0) * (high - low)
+    return np.clip(rgb, low, high)
 
 
 def load_guardrail_config(path: Path, style: str) -> dict:
@@ -242,6 +275,10 @@ def style_transfer(
     gamut_safe: bool,
     gamut_mode: str | None = None,
     tone_rolloff: float = 0.0,
+    shadow_floor_l: float = 1.0,
+    highlight_ceiling_l: float = 99.0,
+    preserve_luma_detail_strength: float = 0.0,
+    chroma_curve_strength: float = 0.0,
     output_margin: int = 0,
     guardrails: dict | None = None,
     neutral_protect: float | None = None,
@@ -269,6 +306,8 @@ def style_transfer(
         contrast = 1.0 + 0.30 * strength
         out[..., 0] = np.clip((out[..., 0] - 50.0) * contrast + 50.0, 0.0, 100.0)
 
+    out = apply_chroma_curve(lab, out, chroma_curve_strength)
+    out = preserve_luma_detail(lab, out, preserve_luma_detail_strength)
     guardrails = guardrails or {}
     neutral_protect = resolve_guardrail_value(guardrails, neutral_protect, "neutral_protect") or 0.0
     skin_protect = resolve_guardrail_value(guardrails, skin_protect, "skin_protect") or 0.0
@@ -284,7 +323,7 @@ def style_transfer(
         max_chroma_boost=max_chroma_boost,
         max_chroma_absolute=max_chroma_absolute,
     )
-    out = apply_tone_rolloff(out, tone_rolloff)
+    out = apply_tone_rolloff(out, tone_rolloff, shadow_floor_l, highlight_ceiling_l)
 
     resolved_gamut_mode = gamut_mode or ("source" if gamut_safe else "off")
     if resolved_gamut_mode == "source":
@@ -402,6 +441,10 @@ def main() -> int:
                 gamut_safe=args.gamut_safe,
                 gamut_mode=args.gamut_mode,
                 tone_rolloff=args.tone_rolloff,
+                shadow_floor_l=args.shadow_floor_l,
+                highlight_ceiling_l=args.highlight_ceiling_l,
+                preserve_luma_detail_strength=args.preserve_luma_detail,
+                chroma_curve_strength=args.chroma_curve_strength,
                 output_margin=args.output_margin,
                 guardrails=guardrail_config,
                 neutral_protect=args.neutral_protect,
@@ -430,6 +473,10 @@ def main() -> int:
                 "gamut_safe": args.gamut_safe,
                 "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
                 "tone_rolloff": args.tone_rolloff,
+                "shadow_floor_l": args.shadow_floor_l,
+                "highlight_ceiling_l": args.highlight_ceiling_l,
+                "preserve_luma_detail": args.preserve_luma_detail,
+                "chroma_curve_strength": args.chroma_curve_strength,
                 "output_margin": args.output_margin,
                 "guardrails": args.use_guardrails,
                 "output": str(output_path),
