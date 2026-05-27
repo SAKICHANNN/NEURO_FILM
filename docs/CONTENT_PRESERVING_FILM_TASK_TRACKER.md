@@ -390,8 +390,8 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 7 | Tune safe-rich profiles | Order 6 | done | color-stock safe-rich profile passes no-clip and L-SSIM gates on seed set; B&W marked for separate gate | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | done | `--preset safe-rich`, batch eval smoke, and pytest smoke pass | `color: add safe-rich production preset` |
 | 9 | Freeze Part 1 verdict | Order 8 | done | Part 1 final gate table completed; human visual approval remains manual | `color: record stable baseline verdict` |
-| 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
-| 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
+| 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | done | branch created from Part 1 work | branch node B2 |
+| 11 | Neural LUT scaffold | Order 10 | done | differentiable LUT smoke test passes | P2.1 |
 | 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
 | 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
 | 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | pending | branch exists | branch node B3 |
@@ -607,10 +607,10 @@ Rationale: closest engineering match to "AI predicts color transform; determinis
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 2A.1 | Implement differentiable 3D LUT apply op | pending | trilinear interpolation, CPU/CUDA if possible |
-| 2A.2 | Implement basis LUT module | pending | identity plus learnable basis LUTs |
-| 2A.3 | Implement small image encoder | pending | CNN/ConvNeXt-lite; low-res preview input |
-| 2A.4 | Predict basis weights per style | pending | style embedding plus image features |
+| 2A.1 | Implement differentiable 3D LUT apply op | done | trilinear interpolation in `src/models/color_lut/lut.py` |
+| 2A.2 | Implement basis LUT module | done | identity plus learnable basis LUTs |
+| 2A.3 | Implement small image encoder | done | tiny CNN encoder scaffold |
+| 2A.4 | Predict basis weights per style | done | style embedding plus image features |
 | 2A.5 | Train to imitate Part 1 stable renderer first | pending | supervised pseudo-target from safe renderer |
 | 2A.6 | Add unpaired film-stat/style loss only after imitation works | pending | histogram/CLIP/DINO optional, never first |
 | 2A.7 | Export LUT or LUT weights per image | pending | reproducible color transform artifact |
