@@ -389,11 +389,10 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 6 | Add artifact/banding guards | Order 5 | done | banding, high-frequency, neutral/skin contamination, and guarded contact sheets appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | done | color-stock safe-rich profile passes no-clip and L-SSIM gates on seed set; B&W marked for separate gate | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | done | `--preset safe-rich`, batch eval smoke, and pytest smoke pass | `color: add safe-rich production preset` |
-| 9 | Freeze Part 1 verdict | Order 8 | done | Part 1 final gate table completed; human visual approval remains manual | `color: record stable baseline verdict` |
-| 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
-| 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
-| 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
-| 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
+| 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | done | branch created from Part 1 work | branch node B2 |
+| 11 | Neural LUT scaffold | Order 10 | done | differentiable LUT smoke test passes | P2.1 |
+| 12 | Neural LUT MVP | Order 11 | done | MVP imitation smoke improves L1 by 3.18x vs initial identity-like LUT | P2.2 |
+| 13 | Chroma residual/chroma diffusion research | Orders 11-12 | done | chroma residual scaffold added; chroma diffusion deferred by memo | P2.3 |
 | 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | done | branch created from Part 1 baseline | branch node B3 |
 | 15 | Layer schema/compositor | Order 14 | done | layer compositor smoke test passes | P3.1 |
 | 16 | Deterministic grain/halation/scratch layers | Order 15 | done | deterministic effects smoke writes layer views and metrics | P3.2 |
@@ -607,14 +606,14 @@ Rationale: closest engineering match to "AI predicts color transform; determinis
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 2A.1 | Implement differentiable 3D LUT apply op | pending | trilinear interpolation, CPU/CUDA if possible |
-| 2A.2 | Implement basis LUT module | pending | identity plus learnable basis LUTs |
-| 2A.3 | Implement small image encoder | pending | CNN/ConvNeXt-lite; low-res preview input |
-| 2A.4 | Predict basis weights per style | pending | style embedding plus image features |
-| 2A.5 | Train to imitate Part 1 stable renderer first | pending | supervised pseudo-target from safe renderer |
+| 2A.1 | Implement differentiable 3D LUT apply op | done | trilinear interpolation in `src/models/color_lut/lut.py` |
+| 2A.2 | Implement basis LUT module | done | identity plus learnable basis LUTs |
+| 2A.3 | Implement small image encoder | done | tiny CNN encoder scaffold |
+| 2A.4 | Predict basis weights per style | done | style embedding plus image features |
+| 2A.5 | Train to imitate Part 1 stable renderer first | done | `scripts/train_neural_lut.py` smoke run on Portra/Velvia |
 | 2A.6 | Add unpaired film-stat/style loss only after imitation works | pending | histogram/CLIP/DINO optional, never first |
-| 2A.7 | Export LUT or LUT weights per image | pending | reproducible color transform artifact |
-| 2A.8 | Evaluate against Part 1 safety gates | pending | must not reduce structure metrics |
+| 2A.7 | Export LUT or LUT weights per image | partial | ignored `model.pt` checkpoint written; per-image LUT export pending |
+| 2A.8 | Evaluate against Part 1 safety gates | partial | L1 imitation metric recorded; full safety eval pending |
 
 Proposed files:
 
@@ -675,8 +674,8 @@ gamut compression -> output
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 2C.1 | Add Lab residual renderer | pending | no learned model yet |
-| 2C.2 | Add bounded residual map schema | pending | max delta per style |
+| 2C.1 | Add Lab residual renderer | done | `src/models/chroma_residual.py` |
+| 2C.2 | Add bounded residual map schema | done | bounded `delta_a/delta_b` residual map |
 | 2C.3 | Train small U-Net/Transformer residual predictor to imitate Part 1 | pending | supervised first |
 | 2C.4 | Add losses: chroma reconstruction, gamut penalty, smoothness | pending | no L reconstruction because L is fixed |
 | 2C.5 | Evaluate color bleeding and edge alignment | pending | use chroma edge maps |
@@ -700,7 +699,7 @@ Gamut-safe compositor
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 2D.1 | Write feasibility memo and VRAM estimate | pending | before coding |
+| 2D.1 | Write feasibility memo and VRAM estimate | done | `docs/CHROMA_ONLY_RESEARCH_RESULTS.md` |
 | 2D.2 | Build tiny synthetic dataset from Part 1 renderer targets | pending | no real target requirement at first |
 | 2D.3 | Train 64/128px toy chroma diffusion | pending | prove interface only |
 | 2D.4 | Add structure losses even though L is frozen | pending | edge/chroma bleeding checks |

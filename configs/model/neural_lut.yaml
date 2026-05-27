@@ -1,0 +1,15 @@
+schema_version: 1
+model:
+  lut_size: 33
+  num_basis: 4
+  residual_scale: 0.25
+  style_count: 8
+training:
+  target_renderer: safe_lab
+  target_profile: safe_rich
+  first_stage: imitate_safe_renderer
+  loss:
+    rgb_l1: 1.0
+    lab_chroma_l1: 0.5
+    gamut_penalty: 0.1
+    identity_luma_penalty: 0.5
