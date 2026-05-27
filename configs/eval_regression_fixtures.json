@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "image_policy": "Reference ignored local source IDs only; do not commit images.",
+  "fixtures": [
+    {
+      "id": "01",
+      "reason": "identity smoke seed and neutral/low-chroma stress case",
+      "buckets": ["fine_detail", "deep_shadow"]
+    },
+    {
+      "id": "05",
+      "reason": "mid-pack clipping regression sample",
+      "buckets": ["foliage", "saturated_objects"]
+    },
+    {
+      "id": "08",
+      "reason": "high clipping in color styles",
+      "buckets": ["sky", "high_key"]
+    },
+    {
+      "id": "09",
+      "reason": "worst recurring L-SSIM and clipping failure across color styles",
+      "buckets": ["high_key", "saturated_objects"]
+    },
+    {
+      "id": "11",
+      "reason": "worst recurring deep-shadow and B&W clipping failure",
+      "buckets": ["deep_shadow", "tungsten_night"]
+    },
+    {
+      "id": "18",
+      "reason": "low new-clip case to protect against over-conservative flattening",
+      "buckets": ["fine_detail", "text_logo"]
+    }
+  ]
+}

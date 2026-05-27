@@ -384,7 +384,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 1 | Create `feat/color-baseline-stability` | Order 0 | done | branch created from `codex/windows-baseline-handoff-20260527` | branch node B1 |
 | 2 | Define eval source buckets | current rawpixls manifests, no committed images | done | `configs/eval_buckets.yaml` exists; `scripts/list_eval_sources.py --require-existing` passes for seed set | `color: define evaluation source buckets` |
 | 3 | Add safety evaluator | Order 2 | done | identity pair reports zero new clipping and `L_ssim=1.0` | `color: add render safety evaluator` |
-| 4 | Audit current baseline | Order 3 | pending | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table | `color: audit current baseline stability` |
+| 4 | Audit current baseline | Order 3 | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table and ignored metrics exist under `outputs/eval/baseline_current/` | `color: audit current baseline stability` |
 | 5 | Implement no-clipping renderer improvements | Order 4 | pending | no new `0/255` on fixture set | `color: enforce non-clipping output bounds` |
 | 6 | Add artifact/banding guards | Order 5 | pending | banding and high-frequency metrics appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | pending | per-style settings pass gates and visual review | `color: tune rich natural film profiles` |
@@ -486,10 +486,10 @@ git switch -c feat/color-baseline-stability
 
 | ID | Task | Status | Completion Test |
 |----|------|--------|-----------------|
-| 1.0.1 | Run current `pipeline_color_baseline.py` on eval set for each style | pending | `outputs/eval/baseline_current/*/metrics.json` exists |
-| 1.0.2 | Record per-style clipping, banding, colorfulness, L-SSIM | pending | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` started |
-| 1.0.3 | Identify worst styles/images | pending | failure table with image IDs |
-| 1.0.4 | Freeze a "do not regress" fixture set | pending | fixture manifest exists |
+| 1.0.1 | Run current `pipeline_color_baseline.py` on eval set for each style | done | `outputs/eval/baseline_current/*/metrics.json` exists |
+| 1.0.2 | Record per-style clipping, banding, colorfulness, L-SSIM | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has audit table |
+| 1.0.3 | Identify worst styles/images | done | failure summary recorded; worst recurring images include seed IDs 09 and 11 across styles |
+| 1.0.4 | Freeze a "do not regress" fixture set | done | `configs/eval_regression_fixtures.json` references source IDs only |
 
 Commit node: `color: audit current baseline stability`
 
