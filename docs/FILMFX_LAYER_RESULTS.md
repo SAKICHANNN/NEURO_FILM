@@ -39,3 +39,34 @@ Decision:
 - The layer compositor foundation is ready for deterministic grain, halation,
   dust, scratches, and later AI-generated RGBA/residual layers.
 - No film-effect layer is enabled by default yet.
+
+## Deterministic Effect Layers
+
+Implemented:
+
+- `grain_residual_layer`
+  - zero-mean high-frequency residual,
+  - seed-controlled,
+  - luminance-modulated.
+- `halation_layer`
+  - highlight and edge supported only,
+  - red/orange screen layer,
+  - bounded alpha.
+- `dust_scratch_layer`
+  - sparse alpha overlay,
+  - seed-controlled.
+
+Smoke command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\smoke_filmfx_effects.py
+```
+
+Expected:
+
+```text
+bounds=[4, 251]
+grain residual_abs_max=0.0566, residual_abs_mean=0.0078
+halation alpha_max=0.0345, affected_percent=22.02
+dust_scratch alpha_max=0.0360, affected_percent=0.46
+```

@@ -396,7 +396,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
 | 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | done | branch created from Part 1 baseline | branch node B3 |
 | 15 | Layer schema/compositor | Order 14 | done | layer compositor smoke test passes | P3.1 |
-| 16 | Deterministic grain/halation/scratch layers | Order 15 | pending | layer contact sheets and safety metrics exist | P3.2 |
+| 16 | Deterministic grain/halation/scratch layers | Order 15 | done | deterministic effects smoke writes layer views and metrics | P3.2 |
 | 17 | AI artifact layer prototypes | Orders 15-16 | pending | residual/RGBA-only reports exist | P3.3 |
 | 18 | Integration branch | approved outputs from B1/B2/B3 | pending | `render_film.py` final CLI runs | P4 |
 | 19 | Mac/user visual validation | Order 18 | manual | user approves contact sheets | manual |
@@ -800,11 +800,11 @@ Push node: P3.1
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.1.1 | Implement zero-mean high-frequency grain residual | pending | seed-controlled |
-| 3.1.2 | Modulate grain by luminance and film stock | pending | shadows and midtones configurable |
-| 3.1.3 | Add channel-correlated and channel-independent variants | pending | color vs B&W grain |
+| 3.1.1 | Implement zero-mean high-frequency grain residual | done | seed-controlled `grain_residual_layer` |
+| 3.1.2 | Modulate grain by luminance and film stock | partial | luminance modulation exists; stock profiles pending |
+| 3.1.3 | Add channel-correlated and channel-independent variants | done | color flag supports color vs shared-channel grain |
 | 3.1.4 | Add power spectrum metric | pending | compare realism over patches |
-| 3.1.5 | Add contact sheets by ISO/strength | pending | visual review |
+| 3.1.5 | Add contact sheets by ISO/strength | partial | smoke layer views exist; ISO grid pending |
 
 Constraints:
 
@@ -853,11 +853,11 @@ halation_rgba
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.3.1 | Implement highlight mask with soft threshold | pending | linear RGB or Lab L input |
-| 3.3.2 | Restrict halation to high-contrast highlight boundaries | pending | no glow in unsupported areas |
-| 3.3.3 | Add red/orange spectral profile | pending | stock-specific |
-| 3.3.4 | Add multi-radius blur/scatter | pending | small core plus broad falloff |
-| 3.3.5 | Add alpha cap and affected-area cap | pending | safety gate |
+| 3.3.1 | Implement highlight mask with soft threshold | done | `halation_layer` |
+| 3.3.2 | Restrict halation to high-contrast highlight boundaries | done | highlight x edge support |
+| 3.3.3 | Add red/orange spectral profile | done | fixed red/orange screen profile |
+| 3.3.4 | Add multi-radius blur/scatter | done | core plus broad Gaussian support |
+| 3.3.5 | Add alpha cap and affected-area cap | partial | alpha cap exists; affected-area gate pending |
 | 3.3.6 | Validate on night lights, windows, snow, specular highlights | pending | contact sheets |
 
 Commit node: `filmfx: add constrained halation layer`
@@ -883,7 +883,7 @@ Rationale: can be modeled as sparse alpha overlays and should not need to unders
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.5.1 | Implement procedural sparse dust/scratch alpha masks | pending | statistical baseline |
+| 3.5.1 | Implement procedural sparse dust/scratch alpha masks | done | `dust_scratch_layer` |
 | 3.5.2 | Add avoid-face/avoid-subject optional mask slot | pending | manual/heuristic first |
 | 3.5.3 | Add style controls: clean scan, archival, damaged, dusty | pending | user-facing |
 | 3.5.4 | Explore FilmDamageSimulator-like statistics | pending | source-compatible implementation only |
