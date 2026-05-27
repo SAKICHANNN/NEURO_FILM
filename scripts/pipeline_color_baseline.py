@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+from omegaconf import OmegaConf
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from scipy.ndimage import gaussian_filter
 from skimage.color import lab2rgb, rgb2lab
@@ -21,6 +22,7 @@ from skimage.color import lab2rgb, rgb2lab
 ROOT = Path(__file__).resolve().parents[1]
 B_AND_W_STYLES = {"hp5", "tri_x_400"}
 DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
+DEFAULT_PROFILES = ROOT / "configs" / "color_rendering_profiles.yaml"
 
 
 def parse_float_list(raw: str) -> list[float]:
@@ -33,6 +35,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--style", default="portra_800")
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--stats", type=Path, default=ROOT / "configs" / "film_color_stats.json")
+    parser.add_argument("--preset", choices=("none", "safe-rich"), default="none")
+    parser.add_argument("--profile-config", type=Path, default=DEFAULT_PROFILES)
     parser.add_argument("--strength", type=float, default=0.55)
     parser.add_argument("--strengths", default=None, help="Comma-separated grid, e.g. 0.35,0.55,0.75")
     parser.add_argument("--luma-strength", type=float, default=0.35)
@@ -260,6 +264,23 @@ def load_guardrail_config(path: Path, style: str) -> dict:
     return config
 
 
+def load_profile_values(path: Path, preset: str, style: str) -> dict:
+    if preset == "none":
+        return {}
+    profile_name = preset.replace("-", "_")
+    doc = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
+    profile = doc.get("profiles", {}).get(profile_name)
+    if not profile:
+        raise ValueError(f"Preset {preset!r} was not found in {path}")
+    values = dict(profile.get("defaults", {}))
+    values.update(profile.get("styles", {}).get(style, {}))
+    return values
+
+
+def profile_value(profile: dict, key: str, fallback):
+    return profile.get(key, fallback)
+
+
 def resolve_guardrail_value(config: dict, cli_value: float | None, key: str) -> float | None:
     return cli_value if cli_value is not None else config.get(key)
 
@@ -427,25 +448,30 @@ def main() -> int:
     for style in styles:
         if style not in stats_doc["styles"]:
             raise ValueError(f"Style not found in stats: {style}")
-        guardrail_config = load_guardrail_config(args.guardrails, style) if args.use_guardrails else {}
+        profile = load_profile_values(args.profile_config, args.preset, style)
+        use_guardrails = bool(profile_value(profile, "use_guardrails", args.use_guardrails))
+        guardrail_config = load_guardrail_config(args.guardrails, style) if use_guardrails else {}
         style_rows = []
-        for strength in strengths:
+        style_strengths = strengths if args.strengths else [float(profile_value(profile, "strength", args.strength))]
+        for strength in style_strengths:
             out = style_transfer(
                 image,
                 stats_doc["styles"][style],
                 style,
                 strength=strength,
-                luma_strength=args.luma_strength,
-                grain=args.grain,
+                luma_strength=float(profile_value(profile, "luma_strength", args.luma_strength)),
+                grain=float(profile_value(profile, "grain", args.grain)),
                 seed=args.seed,
-                gamut_safe=args.gamut_safe,
-                gamut_mode=args.gamut_mode,
-                tone_rolloff=args.tone_rolloff,
-                shadow_floor_l=args.shadow_floor_l,
-                highlight_ceiling_l=args.highlight_ceiling_l,
-                preserve_luma_detail_strength=args.preserve_luma_detail,
-                chroma_curve_strength=args.chroma_curve_strength,
-                output_margin=args.output_margin,
+                gamut_safe=bool(profile_value(profile, "gamut_safe", args.gamut_safe)),
+                gamut_mode=profile_value(profile, "gamut_mode", args.gamut_mode),
+                tone_rolloff=float(profile_value(profile, "tone_rolloff", args.tone_rolloff)),
+                shadow_floor_l=float(profile_value(profile, "shadow_floor_l", args.shadow_floor_l)),
+                highlight_ceiling_l=float(profile_value(profile, "highlight_ceiling_l", args.highlight_ceiling_l)),
+                preserve_luma_detail_strength=float(
+                    profile_value(profile, "preserve_luma_detail", args.preserve_luma_detail)
+                ),
+                chroma_curve_strength=float(profile_value(profile, "chroma_curve_strength", args.chroma_curve_strength)),
+                output_margin=int(profile_value(profile, "output_margin", args.output_margin)),
                 guardrails=guardrail_config,
                 neutral_protect=args.neutral_protect,
                 skin_protect=args.skin_protect,
@@ -461,24 +487,27 @@ def main() -> int:
                 output_path = output_dir / f"{args.input.stem}_{style}_s{slug_float(strength)}{suffix}"
             output_path.parent.mkdir(parents=True, exist_ok=True)
             save_output(out, output_path, args.format)
-            failed_clip_gate, clip_stats = saved_output_has_new_clip(image, output_path, args.output_margin)
+            output_margin = int(profile_value(profile, "output_margin", args.output_margin))
+            failed_clip_gate, clip_stats = saved_output_has_new_clip(image, output_path, output_margin)
             if args.fail_on_clip and failed_clip_gate:
                 raise RuntimeError(f"Output clipping gate failed for {output_path}: {clip_stats}")
             row = {
                 "input": str(args.input.resolve()),
                 "style": style,
+                "preset": args.preset,
                 "strength": strength,
-                "luma_strength": args.luma_strength,
-                "grain": args.grain,
-                "gamut_safe": args.gamut_safe,
-                "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
-                "tone_rolloff": args.tone_rolloff,
-                "shadow_floor_l": args.shadow_floor_l,
-                "highlight_ceiling_l": args.highlight_ceiling_l,
-                "preserve_luma_detail": args.preserve_luma_detail,
-                "chroma_curve_strength": args.chroma_curve_strength,
-                "output_margin": args.output_margin,
-                "guardrails": args.use_guardrails,
+                "luma_strength": profile_value(profile, "luma_strength", args.luma_strength),
+                "grain": profile_value(profile, "grain", args.grain),
+                "gamut_safe": profile_value(profile, "gamut_safe", args.gamut_safe),
+                "gamut_mode": profile_value(profile, "gamut_mode", args.gamut_mode)
+                or ("source" if profile_value(profile, "gamut_safe", args.gamut_safe) else "off"),
+                "tone_rolloff": profile_value(profile, "tone_rolloff", args.tone_rolloff),
+                "shadow_floor_l": profile_value(profile, "shadow_floor_l", args.shadow_floor_l),
+                "highlight_ceiling_l": profile_value(profile, "highlight_ceiling_l", args.highlight_ceiling_l),
+                "preserve_luma_detail": profile_value(profile, "preserve_luma_detail", args.preserve_luma_detail),
+                "chroma_curve_strength": profile_value(profile, "chroma_curve_strength", args.chroma_curve_strength),
+                "output_margin": output_margin,
+                "guardrails": use_guardrails,
                 "output": str(output_path),
                 "label": f"{style} s={strength}",
                 **clip_stats,

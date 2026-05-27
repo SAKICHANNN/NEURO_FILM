@@ -67,7 +67,7 @@ outputs/eval/identity_smoke/contact_sheet.png
 
 ## Next Action
 
-Add production CLI/regression tests and separate B&W gates from color-only gates.
+Freeze the Part 1 verdict and keep B&W gates separate from color-only gates.
 
 ## Current Baseline Audit
 
@@ -247,3 +247,29 @@ Decision:
 - Color stocks pass the current color-only structure gate on the 20-image seed set: no new clipping, output bounds inside `[4, 251]`, and minimum L-SSIM at or above 0.995.
 - B&W stocks are correctly near-monochrome and no-clip, but they should use a separate B&W tone-conversion gate because converting a color image to monochrome changes Lab L by design.
 - The current profile prioritizes safety over maximum Velvia-style saturation. Later visual review can raise stock-specific strength only if the safety gates remain green.
+
+## Production Preset And Regression Smoke
+
+Implementation changes:
+
+- `scripts/pipeline_color_baseline.py` supports `--preset safe-rich`.
+- `scripts/evaluate_color_pipeline.py` provides the batch evaluation entry point for the profiled renderer.
+- `tests/test_color_baseline_safety.py` covers a synthetic no-clip safe-rich render.
+
+Smoke commands:
+
+```powershell
+$input = Get-ChildItem outputs\color_baseline\velvia50_rawpixls20_s0p50_gamutsafe\inputs\*.jpg | Select-Object -First 1 -ExpandProperty FullName
+.\.venv\Scripts\python.exe scripts\pipeline_color_baseline.py $input --style velvia_50 --preset safe-rich --format png --fail-on-clip --output outputs\eval\preset_smoke\velvia_safe_rich.png
+.\.venv\Scripts\python.exe scripts\evaluate_render_safety.py --before $input --after outputs\eval\preset_smoke\velvia_safe_rich.png --fail-on-clip --output-margin 4
+.\.venv\Scripts\python.exe scripts\evaluate_color_pipeline.py --limit 1 --styles velvia_50,portra_400 --output-dir outputs\eval\evaluate_color_pipeline_smoke --profile configs\color_rendering_profiles.yaml --profile-name safe_rich
+.\.venv\Scripts\python.exe -m pytest tests\test_color_baseline_safety.py
+```
+
+Results:
+
+```text
+preset smoke: after_min=4, after_max=251, new_clipped_pixel_count=0, L_ssim=0.999465
+batch eval smoke: velvia_50 and portra_400 image 01 passed with zero new clipping
+pytest: 1 passed
+```

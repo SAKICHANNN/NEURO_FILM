@@ -388,7 +388,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 5 | Implement no-clipping renderer improvements | Order 4 | done | full 20-image x 8-style safe pass has zero new `0/255` and output bounds `4..251` | `color: enforce non-clipping output bounds` |
 | 6 | Add artifact/banding guards | Order 5 | done | banding, high-frequency, neutral/skin contamination, and guarded contact sheets appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | done | color-stock safe-rich profile passes no-clip and L-SSIM gates on seed set; B&W marked for separate gate | `color: tune rich natural film profiles` |
-| 8 | Add production preset/regression tests | Order 7 | pending | pytest smoke + batch eval pass | `color: add safe-rich production preset` |
+| 8 | Add production preset/regression tests | Order 7 | done | `--preset safe-rich`, batch eval smoke, and pytest smoke pass | `color: add safe-rich production preset` |
 | 9 | Freeze Part 1 verdict | Order 8 | pending | Part 1 final gate table completed | `color: record stable baseline verdict` |
 | 10 | Branch `research/ai-color-rendering` | Orders 3 and 5 | pending | branch exists | branch node B2 |
 | 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
@@ -543,11 +543,11 @@ Commit node: `color: tune rich natural film profiles`
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 1.4.1 | Add production preset CLI | pending | `--preset safe-rich` |
-| 1.4.2 | Add batch eval CLI | pending | `scripts/evaluate_color_pipeline.py` |
-| 1.4.3 | Add pytest smoke tests for no-clipping fixtures | pending | tiny synthetic images only |
-| 1.4.4 | Add docs with recommended per-style settings | pending | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` |
-| 1.4.5 | Generate final 20-image contact sheet per priority style | pending | outputs ignored; manifest tracked only if safe |
+| 1.4.1 | Add production preset CLI | done | `--preset safe-rich` |
+| 1.4.2 | Add batch eval CLI | done | `scripts/evaluate_color_pipeline.py` |
+| 1.4.3 | Add pytest smoke tests for no-clipping fixtures | done | `tests/test_color_baseline_safety.py` |
+| 1.4.4 | Add docs with recommended per-style settings | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` |
+| 1.4.5 | Generate final 20-image contact sheet per priority style | done | `outputs/eval/baseline_saferich/<style>/contact_sheet.png`, ignored |
 
 Commit node: `color: add safe-rich production preset`
 
