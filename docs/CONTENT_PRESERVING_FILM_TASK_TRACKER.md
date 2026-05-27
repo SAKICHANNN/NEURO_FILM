@@ -385,7 +385,7 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 2 | Define eval source buckets | current rawpixls manifests, no committed images | done | `configs/eval_buckets.yaml` exists; `scripts/list_eval_sources.py --require-existing` passes for seed set | `color: define evaluation source buckets` |
 | 3 | Add safety evaluator | Order 2 | done | identity pair reports zero new clipping and `L_ssim=1.0` | `color: add render safety evaluator` |
 | 4 | Audit current baseline | Order 3 | done | `docs/COLOR_BASELINE_STABILITY_RESULTS.md` has baseline table and ignored metrics exist under `outputs/eval/baseline_current/` | `color: audit current baseline stability` |
-| 5 | Implement no-clipping renderer improvements | Order 4 | pending | no new `0/255` on fixture set | `color: enforce non-clipping output bounds` |
+| 5 | Implement no-clipping renderer improvements | Order 4 | done | full 20-image x 8-style safe pass has zero new `0/255` and output bounds `4..251` | `color: enforce non-clipping output bounds` |
 | 6 | Add artifact/banding guards | Order 5 | pending | banding and high-frequency metrics appear in report | `color: add artifact and banding guards` |
 | 7 | Tune safe-rich profiles | Order 6 | pending | per-style settings pass gates and visual review | `color: tune rich natural film profiles` |
 | 8 | Add production preset/regression tests | Order 7 | pending | pytest smoke + batch eval pass | `color: add safe-rich production preset` |
@@ -497,12 +497,12 @@ Commit node: `color: audit current baseline stability`
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 1.1.1 | Promote gamut-safe path from ad-hoc flag to default-safe mode | pending | CLI default can remain explicit at first; production preset must use it |
-| 1.1.2 | Add output margin option to baseline pipeline, not only raw preview script | pending | `--output-margin 4` supported |
-| 1.1.3 | Use PNG for no-clipping validation outputs | pending | avoid JPEG overshoot |
-| 1.1.4 | Add perceptual gamut compression strategy variants | pending | binary-search, chroma scaling, hue-preserving compression |
-| 1.1.5 | Add monotonic tone roll-off before output bounds | pending | prevent flat clipped highlights |
-| 1.1.6 | Add hard failure mode if clipping exceeds gate | pending | script exits nonzero in CI/eval mode |
+| 1.1.1 | Promote gamut-safe path from ad-hoc flag to default-safe mode | done | `--gamut-safe` resolves to formal `source` gamut mode; production preset still pending |
+| 1.1.2 | Add output margin option to baseline pipeline, not only raw preview script | done | `--output-margin 4` supported |
+| 1.1.3 | Use PNG for no-clipping validation outputs | done | `--format png` and `.png` suffix save real PNG |
+| 1.1.4 | Add perceptual gamut compression strategy variants | done | source binary-search and hue-preserving chroma compression modes exist |
+| 1.1.5 | Add monotonic tone roll-off before output bounds | done | `--tone-rolloff` hook supported |
+| 1.1.6 | Add hard failure mode if clipping exceeds gate | done | `--fail-on-clip` exits nonzero after saved-output validation |
 
 Completion test:
 

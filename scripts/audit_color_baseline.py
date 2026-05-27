@@ -35,6 +35,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--luma-strength", type=float, default=0.35)
     parser.add_argument("--grain", type=float, default=0.012)
     parser.add_argument("--gamut-safe", action="store_true", help="Audit the existing optional gamut-safe flag.")
+    parser.add_argument("--gamut-mode", choices=("off", "source", "chroma"), default=None)
+    parser.add_argument("--tone-rolloff", type=float, default=0.0)
+    parser.add_argument("--output-margin", type=int, default=0)
     return parser.parse_args()
 
 
@@ -120,6 +123,8 @@ def main() -> int:
     run_id = f"s{slug_float(args.strength)}_l{slug_float(args.luma_strength)}_g{slug_float(args.grain)}"
     if args.gamut_safe:
         run_id += "_gamutsafe"
+    if args.output_margin > 0:
+        run_id += f"_m{args.output_margin}"
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     summary = {
@@ -130,6 +135,9 @@ def main() -> int:
         "luma_strength": args.luma_strength,
         "grain": args.grain,
         "gamut_safe": args.gamut_safe,
+        "gamut_mode": args.gamut_mode or ("source" if args.gamut_safe else "off"),
+        "tone_rolloff": args.tone_rolloff,
+        "output_margin": args.output_margin,
         "styles": {},
     }
 
@@ -154,6 +162,9 @@ def main() -> int:
                 grain=args.grain,
                 seed=42 + int(source["id"]),
                 gamut_safe=args.gamut_safe,
+                gamut_mode=args.gamut_mode,
+                tone_rolloff=args.tone_rolloff,
+                output_margin=args.output_margin,
             )
             after_path = after_dir / f"{source['id']}_{style}_{run_id}.png"
             diff_path = diff_dir / f"{source['id']}_{style}_{run_id}_diff.png"

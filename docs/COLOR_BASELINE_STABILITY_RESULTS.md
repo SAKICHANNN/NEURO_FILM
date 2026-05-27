@@ -4,7 +4,8 @@
 
 ## Current Verdict
 
-Status: current baseline audit complete; renderer stabilization is required.
+Status: no-clipping renderer path implemented; color naturalness and artifact
+guards still need tuning.
 
 The first milestone establishes the shared benchmark configuration and render
 safety metrics before changing renderer behavior. Generated outputs remain under
@@ -65,9 +66,7 @@ outputs/eval/identity_smoke/contact_sheet.png
 
 ## Next Action
 
-Implement no-clipping renderer improvements: promote gamut-safe mode for the
-production path, add output margin support to the baseline CLI, keep validation
-exports as PNG, and make clipping gates fail nonzero.
+Add artifact/banding guards and then tune rich-but-natural per-style profiles.
 
 ## Current Baseline Audit
 
@@ -126,3 +125,54 @@ Conclusion:
 - L-channel structure is not stable enough for the final color-only gate; the worst styles/images are far below `L_ssim >= 0.995`.
 - B&W styles are especially aggressive because current contrast logic changes luminance too strongly.
 - Velvia 50 has the highest neutral contamination in this run, so chroma gain needs bounded compression and neutral protection.
+
+## No-Clipping Renderer Pass
+
+Implementation changes:
+
+- `scripts/pipeline_color_baseline.py` now supports `--output-margin`, `--format png`, and `--fail-on-clip`.
+- `--gamut-safe` is formalized through `--gamut-mode source`; `--gamut-mode chroma` is available as a hue-preserving chroma compression variant.
+- `--tone-rolloff` adds an optional monotonic Lab L roll-off hook.
+- The CLI now saves PNG when requested or when the output suffix is `.png`; it no longer forces JPEG for every output.
+
+Tracker completion command:
+
+```powershell
+$input = Get-ChildItem outputs\color_baseline\velvia50_rawpixls20_s0p50_gamutsafe\inputs\*.jpg | Select-Object -First 1 -ExpandProperty FullName
+.\.venv\Scripts\python.exe scripts\pipeline_color_baseline.py $input --style velvia_50 --strength 0.50 --luma-strength 0.25 --grain 0 --gamut-safe --output-margin 4 --format png --fail-on-clip --output outputs\eval\noclip_smoke\velvia_50_safe.png
+.\.venv\Scripts\python.exe scripts\evaluate_render_safety.py --before $input --after outputs\eval\noclip_smoke\velvia_50_safe.png --fail-on-clip --output-margin 4
+```
+
+Single-image result:
+
+```text
+after_min=4
+after_max=251
+new_clipped_pixel_count=0
+L_ssim=0.996379
+```
+
+Full seed-set command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\audit_color_baseline.py --output-dir outputs\eval\baseline_noclip_s0p50 --strength 0.50 --luma-strength 0.25 --grain 0 --gamut-safe --output-margin 4
+```
+
+Summary:
+
+| Style | New-Clip Images | Hard-Bound Images | Total New Clipped Pixels | Min L-SSIM | Mean L-SSIM | Output Bounds | Max Neutral Contam. |
+|------|:---:|:---:|---:|---:|---:|:---:|---:|
+| ektar_100 | 0/20 | 0/20 | 0 | 0.9004 | 0.9806 | 4..251 | 2.754% |
+| hp5 | 0/20 | 0/20 | 0 | 0.9244 | 0.9579 | 4..251 | 0.000% |
+| portra_400 | 0/20 | 0/20 | 0 | 0.8800 | 0.9789 | 4..251 | 1.191% |
+| portra_800 | 0/20 | 0/20 | 0 | 0.9031 | 0.9824 | 4..251 | 7.810% |
+| tri_x_400 | 0/20 | 0/20 | 0 | 0.9217 | 0.9552 | 4..251 | 0.000% |
+| velvia_50 | 0/20 | 0/20 | 0 | 0.9361 | 0.9874 | 4..251 | 17.386% |
+| vision3_250d | 0/20 | 0/20 | 0 | 0.9045 | 0.9824 | 4..251 | 8.489% |
+| vision3_500t | 0/20 | 0/20 | 0 | 0.9067 | 0.9834 | 4..251 | 1.575% |
+
+Conclusion:
+
+- The no-clipping gate now passes across all 160 seed renders with `[4, 251]` output headroom.
+- L-SSIM still does not pass the final Part 1 gate on difficult images, mainly because the current renderer still modifies luminance.
+- Neutral contamination remains high for Velvia 50 and some Vision3/Portra settings. This moves directly into the artifact/banding and safe-rich profile work.
