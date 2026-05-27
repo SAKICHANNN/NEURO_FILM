@@ -1,0 +1,12 @@
+schema_version: 1
+profiles:
+  clean:
+    output_margin: 4
+    layers: []
+  debug_warm_screen:
+    output_margin: 4
+    layers:
+      - name: warm_debug
+        mode: screen
+        color: [1.0, 0.42, 0.12]
+        alpha: 0.08
