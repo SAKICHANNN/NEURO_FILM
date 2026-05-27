@@ -49,6 +49,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--image-size", type=int, default=128)
     parser.add_argument("--lut-size", type=int, default=17)
     parser.add_argument("--num-basis", type=int, default=4)
+    parser.add_argument("--basis-init-std", type=float, default=0.0)
     parser.add_argument("--steps", type=int, default=80)
     parser.add_argument("--lr", type=float, default=3e-3)
     parser.add_argument("--seed", type=int, default=7)
@@ -146,6 +147,9 @@ def main() -> int:
     examples = build_examples(args, styles)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     basis = BasisLUT(size=args.lut_size, num_basis=args.num_basis).to(device)
+    if args.basis_init_std > 0.0:
+        with torch.no_grad():
+            basis.basis.normal_(mean=0.0, std=args.basis_init_std)
     encoder = TinyLUTEncoder(num_basis=args.num_basis, style_count=len(STYLE_NAMES)).to(device)
     optimizer = torch.optim.AdamW(list(basis.parameters()) + list(encoder.parameters()), lr=args.lr)
     loss_fn = nn.L1Loss()
@@ -191,6 +195,7 @@ def main() -> int:
         "styles": styles,
         "example_count": len(examples),
         "steps": args.steps,
+        "basis_init_std": args.basis_init_std,
         "initial_l1": initial_loss,
         "final_l1": final_loss,
         "improvement_ratio": initial_loss / max(final_loss, 1e-8),

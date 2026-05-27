@@ -72,12 +72,12 @@ If a challenger improves richness but misses a safety gate, mark it
 | Order | Task | Depends On | Status | Completion Test | Commit Node |
 |:---:|------|------------|:---:|-----------------|-------------|
 | 0 | Create tracker and branch | clean integration branch | done | branch `research/color-engines-beat-safe-lab` exists | `docs: add ai color engine challenge tracker` |
-| 1 | Add challenger comparison evaluator | Order 0 | pending | evaluator compares safe_lab vs challenger metrics | `eval: add color engine challenger comparison` |
-| 2 | Neural LUT larger imitation run | Order 1 | pending | all color stocks train/eval smoke with metrics | `research: tune neural lut challenger` |
-| 3 | Neural LUT safety comparison | Order 2 | pending | report decides if #2 beats #1 | `research: evaluate neural lut against safe lab` |
-| 4 | Local bounded map engine scaffold | Order 1 | pending | local maps render and pass no-clip smoke | `research: add local bounded color maps` |
-| 5 | Tune local maps against safe_lab | Order 4 | pending | local maps improve richness while passing gates | `research: tune local color map challenger` |
-| 6 | Final challenge verdict | Orders 3 and 5 | pending | result doc ranks #1/#2/#3 with evidence | `research: record color engine challenge verdict` |
+| 1 | Add challenger comparison evaluator | Order 0 | done | evaluator compares safe_lab vs challenger metrics | `research: evaluate color engine challengers` |
+| 2 | Neural LUT larger imitation run | Order 1 | done | all color stocks train/eval smoke with metrics | `research: evaluate color engine challengers` |
+| 3 | Neural LUT safety comparison | Order 2 | done | report decides if #2 beats #1 | `research: evaluate color engine challengers` |
+| 4 | Local bounded map engine scaffold | Order 1 | done | local maps render and pass no-clip smoke | `research: evaluate color engine challengers` |
+| 5 | Tune local maps against safe_lab | Order 4 | done | local maps improve richness while passing gates | `research: evaluate color engine challengers` |
+| 6 | Final challenge verdict | Orders 3 and 5 | done | result doc ranks #1/#2/#3 with evidence | `research: evaluate color engine challengers` |
 
 ## Challenger A: Image-Adaptive Neural LUT
 
@@ -101,6 +101,18 @@ Failure modes:
 - introduces clipping after LUT interpolation,
 - decreases L-SSIM through RGB interpolation artifacts,
 - overfits the tiny seed set.
+
+Result:
+
+- Trained all six color stocks with 120 examples and 300 steps.
+- Added a Neural LUT evaluator that writes the same `summary.json` shape as the
+  Part 1 evaluator.
+- Neural LUT did not beat `safe_lab`: it increased chroma, but failed L-SSIM and
+  high-frequency gates.
+- A second tuning run with 12 basis LUTs, 800 steps, and random basis
+  initialization still collapsed the softmax weights to one basis. The current
+  architecture needs an anti-collapse redesign before more parameter sweeps are
+  useful.
 
 ## Challenger B: Local/Semantic Bounded Maps
 
@@ -130,6 +142,16 @@ Failure modes:
 - excessive landscape-only tuning that hurts general photos,
 - no measurable improvement over safe_lab.
 
+Result:
+
+- Implemented heuristic sky, foliage, warm-highlight, neutral, and skin masks.
+- Added bounded Lab-space local shifts on top of `safe_lab + safe-rich`.
+- Added semantic chroma gain with gamut compression and `[4, 251]` output
+  margin.
+- Tuned stock scales at `local-strength=1.2`.
+- Result `local_maps_tuned_s1p2` passed all automatic gates for all six color
+  stocks and is the first promote candidate over the current champion.
+
 ## Output Locations
 
 Ignored outputs:
@@ -152,4 +174,5 @@ docs/AI_COLOR_ENGINE_CHALLENGE_TRACKER.md
 - User visual approval of side-by-side contact sheets.
 - Any decision that a richer but less neutral-safe output is aesthetically
   preferable.
-
+- Promotion of `local_maps_tuned_s1p2` from research branch into the production
+  default path after visual review.
