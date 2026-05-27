@@ -394,8 +394,8 @@ This is the execution contract. Work from top to bottom; skip only blocked/manua
 | 11 | Neural LUT scaffold | Order 10 | pending | differentiable LUT smoke test passes | P2.1 |
 | 12 | Neural LUT MVP | Order 11 | pending | result doc compares vs Part 1 | P2.2 |
 | 13 | Chroma residual/chroma diffusion research | Orders 11-12 | pending | research doc decides promote/archive | P2.3 |
-| 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | pending | branch exists | branch node B3 |
-| 15 | Layer schema/compositor | Order 14 | pending | layer compositor smoke test passes | P3.1 |
+| 14 | Branch `research/film-fx-layers` | Orders 3 and 5 | done | branch created from Part 1 baseline | branch node B3 |
+| 15 | Layer schema/compositor | Order 14 | done | layer compositor smoke test passes | P3.1 |
 | 16 | Deterministic grain/halation/scratch layers | Order 15 | pending | layer contact sheets and safety metrics exist | P3.2 |
 | 17 | AI artifact layer prototypes | Orders 15-16 | pending | residual/RGBA-only reports exist | P3.3 |
 | 18 | Integration branch | approved outputs from B1/B2/B3 | pending | `render_film.py` final CLI runs | P4 |
@@ -776,11 +776,11 @@ final = composite(base_color_render, effect_layers)
 
 | ID | Task | Status | Details |
 |----|------|--------|---------|
-| 3.0.1 | Define layer schema | pending | JSON manifest for layers |
-| 3.0.2 | Implement compositor | pending | alpha, screen/additive, residual, soft-light modes |
-| 3.0.3 | Add layer visualizer | pending | export each layer separately |
-| 3.0.4 | Add safety metrics for layers | pending | alpha bounds, residual bounds, affected area |
-| 3.0.5 | Add CLI | pending | `scripts/pipeline_filmfx_layers.py` |
+| 3.0.1 | Define layer schema | done | `src/filmfx/layers.py` |
+| 3.0.2 | Implement compositor | done | alpha, screen/additive, residual, soft-light modes |
+| 3.0.3 | Add layer visualizer | done | `--write-layers` exports layer views |
+| 3.0.4 | Add safety metrics for layers | done | alpha bounds, residual bounds, affected area |
+| 3.0.5 | Add CLI | done | `scripts/pipeline_filmfx_layers.py` |
 
 Proposed files:
 
