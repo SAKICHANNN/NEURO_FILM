@@ -141,3 +141,55 @@ to help without an architecture or loss change.
    approval.
 3. Neural LUT remains research-only; the next real fix is anti-collapse training
    or explicit style-separated basis heads, not another small parameter sweep.
+
+## Follow-Up: Film Response Volume V1
+
+User visual feedback on #3:
+
+- even the strongest local-map outputs looked mostly like saturation gain,
+- the output did not read as stock-specific film style.
+
+New experiment:
+
+- `src/models/film_response_volume.py`
+- `scripts/evaluate_film_response_volume.py`
+
+Design:
+
+```text
+safe-rich base
+  -> stock-specific tone response
+  -> shadow/midtone/highlight color casts
+  -> hue-sector pushes
+  -> neutral/skin protection
+  -> gamut-safe compression
+  -> [4, 251] output margin
+```
+
+Full output runs:
+
+```text
+outputs/eval/color_engine_challenge/film_response_v1_s1p0/
+outputs/eval/color_engine_challenge/film_response_v1_s1p4/
+```
+
+Each stock contact sheet has three columns:
+
+```text
+before | safe-rich | response
+```
+
+Automatic comparison:
+
+| Run | Promote Count | Boundary | Style Strength |
+|-----|---:|:---:|---------------|
+| `film_response_v1_s1p0` | 0/6 | 4..251, no clipping | medium |
+| `film_response_v1_s1p4` | 0/6 | 4..251, no clipping | strong |
+
+Interpretation:
+
+- This is not a safe-baseline replacement; it intentionally changes tone and
+  therefore fails the old L-SSIM/HF gates.
+- It is a visual style candidate for the next branch of work: film response
+  should be judged by a different metric bundle than the conservative
+  content-preserving color baseline.
