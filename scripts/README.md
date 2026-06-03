@@ -25,6 +25,14 @@ files.
 | `evaluate_film_response_volume.py` | Evaluate stock-specific film response volume experiments. |
 | `train_neural_lut.py` | Train Neural LUT imitation experiments. |
 | `evaluate_neural_lut.py` | Evaluate trained Neural LUT checkpoints. |
+| `build_neural_film_targets.py` | Build Neural Film LUT V2 pseudo-target images. |
+| `fit_distilled_film_lut.py` | Fit the distilled Scheme A SepLUT candidate. |
+| `evaluate_distilled_film_lut.py` | Evaluate the distilled Scheme A SepLUT candidate. |
+| `fit_distilled_neural_variants.py` | Fit distilled Scheme B NILUT and Scheme C context-4D candidates. |
+| `evaluate_distilled_neural_variants.py` | Evaluate distilled Scheme B/C candidates. |
+| `summarize_neural_lut_results.py` | Summarize Neural Film LUT V2 candidate metrics. |
+| `train_neural_film_seplut.py` | Torch scaffold for Scheme A Style-Separated SepLUT. |
+| `evaluate_neural_film_seplut.py` | Evaluate torch Scheme A SepLUT checkpoints. |
 | `train_lut.py` | Older LUT training script. |
 
 ## Safety, Audit, And Contact Sheets

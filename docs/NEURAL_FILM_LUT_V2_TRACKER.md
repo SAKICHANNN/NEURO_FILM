@@ -415,16 +415,16 @@ before | safe-rich | model s1p0 | model current strength
 | Order | Task | Depends On | Status | Completion Test | Commit Node |
 |:---:|------|------------|:---:|-----------------|-------------|
 | 0 | Create branch and V2 tracker | clean previous branch | done | branch + tracker exist | `docs: add neural film lut v2 tracker` |
-| 1 | Add style-separation metrics | Order 0 | pending | report stock clustering and style distance | `eval: add neural lut style metrics` |
-| 2 | Build pseudo-target generator | Order 1 | pending | emits identity/safe/film-response target set | `data: add neural lut target generator` |
-| 3 | Scheme A SepLUT scaffold | Order 2 | pending | smoke train over 2 stocks, 2 images | `research: add seplut neural film scaffold` |
-| 4 | Scheme A full six-stock run | Order 3 | pending | exports s0p5/s1p0/s1p5/s2p0 | `research: evaluate seplut neural film v2` |
-| 5 | Scheme B NILUT scaffold | Order 2 | pending | sampled grid smoke passes identity and bounds | `research: add conditional nilut scaffold` |
-| 6 | Scheme B full six-stock run | Order 5 | pending | exports strengths and compare metrics | `research: evaluate conditional nilut` |
-| 7 | Scheme C 4D LUT scaffold | Order 2 | pending | deterministic context smoke has no halos/clips | `research: add context 4d lut scaffold` |
-| 8 | Scheme C full six-stock run | Order 7 | pending | exports strengths and context diagnostics | `research: evaluate context 4d lut` |
-| 9 | Scheme D fallback decision | Orders 4,6,8 | pending | only run if A/B/C fail visual style or safety | `research: decide bilateral fallback` |
-| 10 | Final visual candidate report | Orders 4,6,8,9 | pending | ranks schemes and points to contact sheets | `research: report neural film lut v2 candidates` |
+| 1 | Add style-separation metrics | Order 0 | done | `candidate_summary_v1.json/csv` reports style chroma range | included in V2 commit |
+| 2 | Build pseudo-target generator | Order 1 | done | emits identity/safe/soft-film/full-film target set | included in V2 commit |
+| 3 | Scheme A SepLUT scaffold | Order 2 | done | torch scaffold plus numpy distilled smoke/eval | included in V2 commit |
+| 4 | Scheme A full six-stock run | Order 3 | done | exports s0p5/s1p0/s1p5/s2p0 plus subtle strengths | included in V2 commit |
+| 5 | Scheme B NILUT scaffold | Order 2 | done | smoke fit/eval passed identity/bounds path | included in V2 commit |
+| 6 | Scheme B full six-stock run | Order 5 | done | exports s0p5/s1p0/s1p5/s2p0 and compare metrics | included in V2 commit |
+| 7 | Scheme C 4D LUT scaffold | Order 2 | done | deterministic context smoke passed bounds path | included in V2 commit |
+| 8 | Scheme C full six-stock run | Order 7 | done | exports s0p5/s1p0/s1p5/s2p0 and context diagnostics | included in V2 commit |
+| 9 | Scheme D fallback decision | Orders 4,6,8 | done | not run because A/B/C all produced safe candidates | included in V2 commit |
+| 10 | Final visual candidate report | Orders 4,6,8,9 | done | ranks schemes and points to contact sheets | `docs/NEURAL_FILM_LUT_V2_RESULTS.md` |
 
 ## First Implementation Choice
 
@@ -468,3 +468,43 @@ The user must review:
 4. final choice of scheme/strength to promote into a production-facing branch.
 
 Everything else should be automated or documented here.
+
+## Execution Results: 2026-06-03
+
+Implemented and evaluated three distilled V2 candidate families:
+
+| Scheme | Output Prefix | Result |
+|--------|---------------|--------|
+| A Style-Separated SepLUT | `scheme_a_distilled_v1_*` | safe, controllable, usable around `s0p35-s0p5`; heavy above `s1p0` |
+| B Conditional NILUT proxy | `scheme_b_nilut_distilled_v1_*` | best first-pass balance of style, safety, and neutral stability |
+| C Context-aware 4D LUT proxy | `scheme_c_context4d_distilled_v1_*` | strongest stock separation, but neutral contamination grows quickly |
+
+All A/B/C main runs:
+
+- rendered six stocks over the 20-image eval set,
+- exported `s0p5`, `s1p0`, `s1p5`, and `s2p0`,
+- produced per-stock `metrics.json`, `manifest.csv`, `contact_sheet.png`,
+  `after/`, and `diff_maps/`,
+- had zero new clipped pixels,
+- stayed inside `[4,251]`.
+
+Key generated artifacts:
+
+```text
+outputs/neural_film_lut_v2/targets_v1/targets_manifest.csv
+outputs/eval/neural_film_lut_v2/candidate_summary_v1.json
+outputs/eval/neural_film_lut_v2/candidate_summary_v1.csv
+docs/NEURAL_FILM_LUT_V2_RESULTS.md
+```
+
+Current ranking:
+
+1. **Scheme B NILUT `s1p0`** for first manual visual review.
+2. **Scheme A SepLUT `s0p35` or `s0p5`** as safer backup.
+3. **Scheme C Context4D `s0p5`** as next architecture to optimize, not promote
+   yet above subtle strength.
+
+Scheme D is deliberately not started because A/B/C did not fail the basic
+visual-style and safety gates. The next useful engineering step is not another
+fallback architecture; it is neutral/skin protection for C or full safety
+promotion for B.
