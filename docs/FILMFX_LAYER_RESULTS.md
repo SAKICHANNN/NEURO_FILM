@@ -68,7 +68,7 @@ Expected:
 ```text
 bounds=[4, 251]
 grain residual_abs_max=0.0566, residual_abs_mean=0.0078
-halation alpha_max=0.0345, affected_percent=22.02
+halation alpha_max=0.0088, affected_percent=29.85
 dust_scratch alpha_max=0.0360, affected_percent=0.46
 continuous halation smoke bounds=[4, 251], alpha_max=0.0137
 ```
@@ -86,6 +86,43 @@ The implementation approximates spatially varying convolution by softly assignin
 each source pixel into Gaussian scale-space, then summing the blurred support.
 This avoids visible threshold bands while keeping the effect deterministic and
 bounded.
+
+Physical Halation V2 update:
+
+`physical_halation_layer` adds a more explicit film-prior model:
+
+- approximate scene-linear/log-exposure source map,
+- separate `amplify` and `impact` controls,
+- red dominant long-tail layer,
+- green coupling only for stronger cores,
+- blue leakage near zero,
+- dark-background/high-contrast visibility weighting,
+- `vision3_500t` and `cinestill_800t` style profiles.
+
+Sweep outputs:
+
+```text
+outputs/eval/halation_v2/vision3_restrained/contact_sheet.png
+outputs/eval/halation_v2/vision3_standard/contact_sheet.png
+outputs/eval/halation_v2/cinestill_no_remjet/contact_sheet.png
+outputs/eval/halation_v2/cinestill_aggressive/contact_sheet.png
+outputs/eval/halation_v2/impact_low/contact_sheet.png
+outputs/eval/halation_v2/impact_high/contact_sheet.png
+```
+
+The integrated renderer now supports:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
+  --style vision3_500t `
+  --halation 1.1 `
+  --halation-model physical `
+  --halation-profile cinestill_800t `
+  --halation-impact 0.85 `
+  --output output.png `
+  --write-layers `
+  --write-metrics
+```
 
 ## AI Artifact Layer Prototype Decision
 

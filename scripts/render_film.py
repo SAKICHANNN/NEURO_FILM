@@ -16,7 +16,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
-from src.filmfx import composite_layers, dust_scratch_layer, grain_residual_layer, halation_layer, layer_metrics  # noqa: E402
+from src.filmfx import (  # noqa: E402
+    composite_layers,
+    dust_scratch_layer,
+    grain_residual_layer,
+    halation_layer,
+    layer_metrics,
+    physical_halation_layer,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -30,6 +37,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
+    parser.add_argument("--halation-model", choices=("simple", "physical"), default="simple")
+    parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default="cinestill_800t")
+    parser.add_argument("--halation-impact", type=float, default=0.85)
+    parser.add_argument("--halation-source-limiter", type=float, default=2.0)
+    parser.add_argument("--halation-local-diffusion", type=float, default=1.0)
+    parser.add_argument("--halation-global-diffusion", type=float, default=0.18)
+    parser.add_argument("--halation-hue-green", type=float, default=0.28)
+    parser.add_argument("--halation-background-gain", type=float, default=1.25)
+    parser.add_argument("--halation-no-remjet", type=float, default=-1.0)
     parser.add_argument("--dust", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--output", type=Path, required=True)
@@ -80,7 +96,24 @@ def main() -> int:
     if args.grain > 0:
         layers.append(grain_residual_layer(base, strength=args.grain, seed=args.seed, color=args.style not in {"hp5", "tri_x_400"}))
     if args.halation > 0:
-        layers.append(halation_layer(base, strength=args.halation))
+        if args.halation_model == "physical":
+            no_remjet = None if args.halation_no_remjet < 0 else args.halation_no_remjet
+            layers.append(
+                physical_halation_layer(
+                    base,
+                    profile=args.halation_profile,
+                    amplify=args.halation,
+                    impact=args.halation_impact,
+                    source_limiter_stops=args.halation_source_limiter,
+                    local_diffusion=args.halation_local_diffusion,
+                    global_diffusion=args.halation_global_diffusion,
+                    hue_green=args.halation_hue_green,
+                    background_gain=args.halation_background_gain,
+                    no_remjet=no_remjet,
+                )
+            )
+        else:
+            layers.append(halation_layer(base, strength=args.halation))
     if args.dust > 0:
         layers.append(dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17))
     out = composite_layers(base, layers, output_margin=4)

@@ -26,6 +26,7 @@ resume without reading generated outputs.
 | `CHROMA_ONLY_RESEARCH_RESULTS.md` | Chroma residual research notes. |
 | `NEURAL_LUT_RESULTS.md` | Neural LUT scaffold and MVP imitation results. |
 | `FILMFX_LAYER_RESULTS.md` | Deterministic film-effects layer results. |
+| `PHYSICAL_HALATION_V2_TRACKER.md` | Physical-prior halation V2 plan, implementation, and sweep results. |
 
 ## Diffusion, LoRA, And Historical Experiments
 

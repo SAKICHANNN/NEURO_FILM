@@ -17,6 +17,20 @@ def _smoothstep(edge0: float, edge1: float, value: np.ndarray) -> np.ndarray:
     return x * x * (3.0 - 2.0 * x)
 
 
+def _sigmoid(value: np.ndarray) -> np.ndarray:
+    return 1.0 / (1.0 + np.exp(-np.clip(value, -40.0, 40.0)))
+
+
+def _softplus(value: np.ndarray) -> np.ndarray:
+    value = np.clip(value, -30.0, 30.0)
+    return np.log1p(np.exp(value))
+
+
+def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:
+    rgb = np.clip(rgb.astype(np.float32), 0.0, 1.0)
+    return np.where(rgb <= 0.04045, rgb / 12.92, np.power((rgb + 0.055) / 1.055, 2.4)).astype(np.float32)
+
+
 def grain_residual_layer(
     base_rgb: np.ndarray,
     *,
@@ -84,6 +98,112 @@ def halation_layer(
     rgb[..., 1] = 0.34
     rgb[..., 2] = 0.12
     return FilmLayer(name=name, mode="screen", rgb=rgb, alpha=alpha[..., None].astype(np.float32))
+
+
+def physical_halation_layer(
+    base_rgb: np.ndarray,
+    *,
+    profile: str = "cinestill_800t",
+    amplify: float = 1.0,
+    impact: float = 0.85,
+    source_limiter_stops: float = 2.0,
+    source_softness: float = 0.42,
+    source_gamma: float = 1.45,
+    local_diffusion: float = 1.0,
+    global_diffusion: float = 0.18,
+    hue_green: float = 0.28,
+    background_gain: float = 1.25,
+    no_remjet: float | None = None,
+    skin_protect: float = 0.55,
+    output_alpha_cap: float = 0.32,
+    name: str = "physical_halation",
+) -> FilmLayer:
+    """Build a physically inspired red/orange halation screen layer.
+
+    ``amplify`` changes the secondary exposure coupling. ``impact`` changes the
+    final display mix. Keeping these separate avoids treating halation as only a
+    red opacity slider.
+    """
+    base_rgb = np.clip(base_rgb.astype(np.float32), 0.0, 1.0)
+    linear = _srgb_to_linear(base_rgb)
+    y = np.maximum(luminance(linear), 1e-6)
+    log_e = np.log2(y / 0.18 + 1e-6)
+
+    if no_remjet is None:
+        no_remjet = 1.0 if profile == "cinestill_800t" else 0.35
+    if profile == "vision3_500t":
+        red_backscatter = 0.40
+        green_backscatter = 0.12
+    elif profile == "cinestill_800t":
+        red_backscatter = 1.00
+        green_backscatter = 0.34
+    else:
+        red_backscatter = 0.72
+        green_backscatter = 0.22
+
+    source_raw = _softplus((log_e - float(source_limiter_stops)) / max(float(source_softness), 1e-4))
+    source = np.power(source_raw, float(source_gamma))
+    source = source / max(float(np.percentile(source, 99.7)), 1e-6)
+    source = np.clip(source, 0.0, 2.5)
+
+    maxc = base_rgb.max(axis=2)
+    minc = base_rgb.min(axis=2)
+    chroma = maxc - minc
+    white_hot = _smoothstep(0.62, 0.94, maxc) * (1.0 - _smoothstep(0.22, 0.55, chroma))
+    color_hot = _smoothstep(0.58, 0.92, maxc) * _smoothstep(0.05, 0.45, chroma)
+    specular_confidence = np.clip(0.45 + 0.70 * white_hot + 0.45 * color_hot, 0.0, 1.35)
+
+    gy, gx = np.gradient(y)
+    edge = np.hypot(gx, gy)
+    edge_confidence = 0.35 + 0.65 * _smoothstep(0.002, 0.045, edge)
+    source = source * specular_confidence * edge_confidence
+
+    bg_sigma = max(4.0, 24.0 * float(local_diffusion))
+    local_mean = gaussian_filter(y, sigma=bg_sigma)
+    local_abs = gaussian_filter(np.abs(y - local_mean), sigma=max(2.0, bg_sigma * 0.35))
+    dark_visibility = _sigmoid((0.34 - local_mean) * float(background_gain) * 10.0)
+    contrast_visibility = _smoothstep(0.008, 0.16, local_abs + edge * 2.0)
+
+    r, g, b = base_rgb[..., 0], base_rgb[..., 1], base_rgb[..., 2]
+    skin = (
+        _smoothstep(0.16, 0.42, r)
+        * _smoothstep(0.09, 0.34, g)
+        * (1.0 - _smoothstep(0.02, 0.30, b - g))
+        * _smoothstep(0.02, 0.20, r - b)
+        * (1.0 - _smoothstep(0.42, 0.72, chroma))
+    )
+    visibility = dark_visibility * (0.45 + 0.55 * contrast_visibility) * (1.0 - np.clip(skin * skin_protect, 0.0, 0.9))
+
+    diffusion = max(0.15, float(local_diffusion))
+    red_near = gaussian_filter(source, sigma=2.0 * diffusion)
+    red_mid = gaussian_filter(source, sigma=8.0 * diffusion)
+    red_tail = gaussian_filter(source, sigma=18.0 * diffusion)
+    red_glare = gaussian_filter(source, sigma=max(24.0, 52.0 * diffusion)) * float(global_diffusion)
+    red_exposure = 0.50 * red_near + 0.34 * red_mid + 0.16 * red_tail + red_glare
+
+    source_high = _softplus((log_e - (float(source_limiter_stops) + 1.35)) / max(float(source_softness) * 1.15, 1e-4))
+    source_high = np.power(source_high, float(source_gamma) + 0.35)
+    source_high = source_high / max(float(np.percentile(source_high, 99.8)), 1e-6)
+    source_high = np.clip(source_high, 0.0, 2.0) * specular_confidence * edge_confidence
+    green_near = gaussian_filter(source_high, sigma=0.75 * diffusion)
+    green_mid = gaussian_filter(source_high, sigma=3.0 * diffusion)
+    green_exposure = 0.68 * green_near + 0.32 * green_mid
+
+    coupling = float(amplify) * float(no_remjet)
+    h_r = coupling * red_backscatter * visibility * red_exposure
+    h_g = coupling * green_backscatter * float(hue_green) * visibility * green_exposure
+    h_b = np.zeros_like(h_r, dtype=np.float32)
+
+    halation = np.stack([h_r, h_g, h_b], axis=2).astype(np.float32)
+    energy = np.maximum(halation.max(axis=2, keepdims=True), 1e-6)
+    color = np.clip(halation / energy, 0.0, 1.0)
+    color[..., 0] = np.maximum(color[..., 0], 0.72)
+    color[..., 1] = np.clip(color[..., 1] + 0.10, 0.08, 0.72)
+    color[..., 2] = np.minimum(color[..., 2], 0.03)
+
+    alpha = 1.0 - np.exp(-energy[..., 0] * 0.42)
+    alpha = np.clip(alpha * float(impact), 0.0, min(float(output_alpha_cap), 1.0))
+    return FilmLayer(name=name, mode="screen", rgb=color.astype(np.float32), alpha=alpha[..., None].astype(np.float32))
 
 
 def dust_scratch_layer(
