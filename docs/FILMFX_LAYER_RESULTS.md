@@ -110,6 +110,41 @@ outputs/eval/halation_v2/impact_low/contact_sheet.png
 outputs/eval/halation_v2/impact_high/contact_sheet.png
 ```
 
+Physical Halation V2.1 adds:
+
+- absolute/no-normalization source mode for synthetic HDR diagnostics,
+- optional `source_linear_rgb` input for tests where scene exposure is known,
+- source-suppressed background estimation,
+- stricter bright-background suppression,
+- four-column contact sheets:
+
+```text
+original | halation on black | halation on white | combined
+```
+
+V2.1 outputs:
+
+```text
+outputs/eval/halation_v2p1/vision3_restrained/contact_sheet.png
+outputs/eval/halation_v2p1/vision3_standard/contact_sheet.png
+outputs/eval/halation_v2p1/cinestill_no_remjet/contact_sheet.png
+outputs/eval/halation_v2p1/cinestill_aggressive/contact_sheet.png
+outputs/eval/halation_v2p1/impact_low/contact_sheet.png
+outputs/eval/halation_v2p1/impact_high/contact_sheet.png
+outputs/eval/halation_v2p1_physics/exposure_radius_contact_sheet.png
+```
+
+V2.1 physics checks:
+
+```text
+radius_monotonic=true
+radius gains px=9.85, 8.83, 8.55, 6.06, 5.60
+dark_to_bright_radius_ratio=2.26
+dark_to_bright_alpha_sum_ratio=1.72
+blue_leakage_max=0.0
+center_green_ratio_gt_outer_count=6/6
+```
+
 The integrated renderer now supports:
 
 ```powershell

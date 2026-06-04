@@ -40,11 +40,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--halation-model", choices=("simple", "physical"), default="simple")
     parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default="cinestill_800t")
     parser.add_argument("--halation-impact", type=float, default=0.85)
+    parser.add_argument("--halation-source-normalization", choices=("percentile", "none"), default="percentile")
     parser.add_argument("--halation-source-limiter", type=float, default=2.0)
     parser.add_argument("--halation-local-diffusion", type=float, default=1.0)
     parser.add_argument("--halation-global-diffusion", type=float, default=0.18)
     parser.add_argument("--halation-hue-green", type=float, default=0.28)
     parser.add_argument("--halation-background-gain", type=float, default=1.25)
+    parser.add_argument("--halation-background-luma-target", type=float, default=0.20)
     parser.add_argument("--halation-no-remjet", type=float, default=-1.0)
     parser.add_argument("--dust", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=7)
@@ -102,6 +104,7 @@ def main() -> int:
                 physical_halation_layer(
                     base,
                     profile=args.halation_profile,
+                    source_normalization=args.halation_source_normalization,
                     amplify=args.halation,
                     impact=args.halation_impact,
                     source_limiter_stops=args.halation_source_limiter,
@@ -109,6 +112,7 @@ def main() -> int:
                     global_diffusion=args.halation_global_diffusion,
                     hue_green=args.halation_hue_green,
                     background_gain=args.halation_background_gain,
+                    background_luma_target=args.halation_background_luma_target,
                     no_remjet=no_remjet,
                 )
             )

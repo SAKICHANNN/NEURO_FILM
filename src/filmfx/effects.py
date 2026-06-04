@@ -103,6 +103,9 @@ def halation_layer(
 def physical_halation_layer(
     base_rgb: np.ndarray,
     *,
+    source_linear_rgb: np.ndarray | None = None,
+    source_normalization: str = "percentile",
+    source_reference_percentile: float = 99.7,
     profile: str = "cinestill_800t",
     amplify: float = 1.0,
     impact: float = 0.85,
@@ -113,6 +116,7 @@ def physical_halation_layer(
     global_diffusion: float = 0.18,
     hue_green: float = 0.28,
     background_gain: float = 1.25,
+    background_luma_target: float = 0.20,
     no_remjet: float | None = None,
     skin_protect: float = 0.55,
     output_alpha_cap: float = 0.32,
@@ -125,7 +129,12 @@ def physical_halation_layer(
     red opacity slider.
     """
     base_rgb = np.clip(base_rgb.astype(np.float32), 0.0, 1.0)
-    linear = _srgb_to_linear(base_rgb)
+    if source_linear_rgb is None:
+        linear = _srgb_to_linear(base_rgb)
+    else:
+        linear = np.maximum(source_linear_rgb.astype(np.float32), 0.0)
+        if linear.shape != base_rgb.shape:
+            raise ValueError(f"source_linear_rgb shape {linear.shape} does not match base image {base_rgb.shape}")
     y = np.maximum(luminance(linear), 1e-6)
     log_e = np.log2(y / 0.18 + 1e-6)
 
@@ -143,8 +152,11 @@ def physical_halation_layer(
 
     source_raw = _softplus((log_e - float(source_limiter_stops)) / max(float(source_softness), 1e-4))
     source = np.power(source_raw, float(source_gamma))
-    source = source / max(float(np.percentile(source, 99.7)), 1e-6)
-    source = np.clip(source, 0.0, 2.5)
+    if source_normalization == "percentile":
+        source = source / max(float(np.percentile(source, float(source_reference_percentile))), 1e-6)
+        source = np.clip(source, 0.0, 2.5)
+    elif source_normalization != "none":
+        raise ValueError(f"Unsupported source_normalization: {source_normalization}")
 
     maxc = base_rgb.max(axis=2)
     minc = base_rgb.min(axis=2)
@@ -159,9 +171,13 @@ def physical_halation_layer(
     source = source * specular_confidence * edge_confidence
 
     bg_sigma = max(4.0, 24.0 * float(local_diffusion))
-    local_mean = gaussian_filter(y, sigma=bg_sigma)
-    local_abs = gaussian_filter(np.abs(y - local_mean), sigma=max(2.0, bg_sigma * 0.35))
-    dark_visibility = _sigmoid((0.34 - local_mean) * float(background_gain) * 10.0)
+    # Estimate the surrounding background, not the light source core itself.
+    # Otherwise stronger sources can incorrectly suppress their own halo by
+    # raising the local mean used by the dark-background gate.
+    background_probe = np.minimum(y, 0.35)
+    local_mean = gaussian_filter(background_probe, sigma=bg_sigma)
+    local_abs = gaussian_filter(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
+    dark_visibility = _sigmoid((float(background_luma_target) - local_mean) * float(background_gain) * 10.0)
     contrast_visibility = _smoothstep(0.008, 0.16, local_abs + edge * 2.0)
 
     r, g, b = base_rgb[..., 0], base_rgb[..., 1], base_rgb[..., 2]
@@ -183,8 +199,10 @@ def physical_halation_layer(
 
     source_high = _softplus((log_e - (float(source_limiter_stops) + 1.35)) / max(float(source_softness) * 1.15, 1e-4))
     source_high = np.power(source_high, float(source_gamma) + 0.35)
-    source_high = source_high / max(float(np.percentile(source_high, 99.8)), 1e-6)
-    source_high = np.clip(source_high, 0.0, 2.0) * specular_confidence * edge_confidence
+    if source_normalization == "percentile":
+        source_high = source_high / max(float(np.percentile(source_high, 99.8)), 1e-6)
+        source_high = np.clip(source_high, 0.0, 2.0)
+    source_high = source_high * specular_confidence * edge_confidence
     green_near = gaussian_filter(source_high, sigma=0.75 * diffusion)
     green_mid = gaussian_filter(source_high, sigma=3.0 * diffusion)
     green_exposure = 0.68 * green_near + 0.32 * green_mid

@@ -35,7 +35,7 @@ The supplied prompt argues that halation should be:
    - `vision3_500t`: remjet present, restrained,
    - `cinestill_800t`: no-remjet-like, stronger red/orange halation.
 9. **Review contract**:
-   - contact sheets must be `original | halation layer on black | combined`,
+   - contact sheets must be `original | halation layer on black | halation layer on white | combined`,
    - multiple parameter combinations must be exported.
 
 ## Online Research Notes
@@ -149,7 +149,7 @@ outputs/eval/halation_v2/<run_name>/metrics.json
 The contact sheet layout is:
 
 ```text
-original | halation layer on black | combined
+original | halation layer on black | halation layer on white | combined
 ```
 
 ## Current Status
@@ -261,3 +261,174 @@ Known limitations:
 - The model can still trigger on bright flowers/color charts because there is no
   semantic light-source classifier.
 - Blue leakage is intentionally zero in the layer model.
+
+## Deep Reflection: Remaining Autonomous Work
+
+After re-reading the prompt and checking current online references, the V2 commit
+is not the maximum independent implementation. It is a useful first renderer, but
+several prompt requirements can still be implemented without user intervention.
+
+Online corrections checked on 2026-06-04:
+
+| Source | Correction / Reinforcement | Implementation Impact |
+|--------|----------------------------|-----------------------|
+| Kodak VISION3 500T 5219/7219 technical information | current 5219/7219 material says an anti-halation undercoat replaces the traditional remjet backing layer | describe `vision3_500t` as restrained anti-halation-present, not literally old remjet-present |
+| CineStill help / film notes | CineStill films do not have remjet backing; remjet protects against halation of highlights | keep no-remjet-like profile as stronger red/orange halation |
+| Dehancer desktop manual | `Amplify` affects emulsion sensitivity to scattered light, while `Impact` controls overall effect; `Local Diffusion` controls geometric radius | keep `amplify` separate from `impact`; do not let amplify directly change radius |
+
+Critical prompt check:
+
+> The scattering kernel should be mostly fixed. Strength slider A should mainly
+> change scattered exposure, not directly change blur radius. Visible radius
+> grows because stronger tails exceed a visibility threshold.
+
+Current V2 mostly follows this because `amplify` multiplies exposure after fixed
+red/green convolution kernels. However, it is still incomplete:
+
+1. Source map uses per-image percentile normalization.
+   - Good for preview.
+   - Not physically absolute.
+   - Fix: add `source_normalization=none|percentile`.
+2. Source exposure is reconstructed from display RGB.
+   - Better than sRGB thresholding.
+   - Not true scene exposure.
+   - Fix: allow an optional `source_linear_rgb` array for HDR/synthetic/RAW-like
+     tests.
+3. No quantitative radius test exists.
+   - Fix: create synthetic point-light exposure sweeps and measure visible radius
+     against source exposure.
+4. No halation-specific metrics exist.
+   - Fix: implement a local HalationEvalSuite with:
+     - `visible_radius_vs_exposure`,
+     - `radial_falloff`,
+     - `hue_radius_curve`,
+     - `dark_side_ratio`,
+     - `background_suppression`,
+     - `blue_leakage`,
+     - `bounds`.
+5. Contact sheets show black-background layer only.
+   - User now asks for black and white layer views.
+   - Fix: contact sheets become:
+     `original | layer on black | layer on white | combined`.
+6. Edge-side-aware behavior is only approximate.
+   - Current implementation convolves symmetrically, then applies visibility.
+   - Fix now: evaluate dark-side/bright-side ratio on synthetic diagnostic
+     scenes; deeper directional convolution is future work if metrics fail.
+7. Real film patch calibration is not done.
+   - Fully robust calibration needs curated real film image licensing and patch
+     extraction.
+   - Autonomous now: add script structure and synthetic metrics; defer real patch
+     fitting until a source list/license boundary is chosen.
+
+## V2.1 Autonomous Task Plan
+
+| Order | Task | Status | Completion Test |
+|:---:|------|:---:|-----------------|
+| 6 | Add absolute/relative source normalization | done | evaluator can run `source_normalization=none` for diagnostics |
+| 7 | Allow synthetic HDR source exposure | done | point-light test can pass `source_linear_rgb` > 1.0 |
+| 8 | Add HalationEvalSuite | done | writes `halation_eval.json` with radius, hue, background, blue leakage metrics |
+| 9 | Add black+white layer contact sheets | done | sheets use 4 columns |
+| 10 | Export V2.1 parameter sweeps | done | outputs under `outputs/eval/halation_v2p1/` |
+| 11 | Update final ranking | done | tracker summarizes best parameters and remaining manual review |
+
+## Execution Results: V2.1
+
+Implemented:
+
+- `source_normalization="none"` for absolute/HDR diagnostics.
+- `source_linear_rgb` for synthetic RAW/HDR-like source exposure.
+- Source-suppressed background estimation so bright source cores do not suppress
+  their own halation.
+- `background_luma_target`, defaulted to `0.20` after synthetic suppression
+  testing.
+- Four-column contact sheets:
+
+```text
+original | halation on black | halation on white | combined
+```
+
+- `scripts/evaluate_halation_physics_suite.py` for synthetic halation metrics.
+
+V2.1 visual sweep:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_physical_halation_v2.py `
+  --limit 20 `
+  --max-side 768 `
+  --include-diagnostics `
+  --output-root outputs\eval\halation_v2p1
+```
+
+V2.1 outputs:
+
+```text
+outputs/eval/halation_v2p1/vision3_restrained/contact_sheet.png
+outputs/eval/halation_v2p1/vision3_standard/contact_sheet.png
+outputs/eval/halation_v2p1/cinestill_no_remjet/contact_sheet.png
+outputs/eval/halation_v2p1/cinestill_aggressive/contact_sheet.png
+outputs/eval/halation_v2p1/impact_low/contact_sheet.png
+outputs/eval/halation_v2p1/impact_high/contact_sheet.png
+outputs/eval/halation_v2p1/summary.json
+```
+
+V2.1 visual sweep metrics:
+
+| Run | Alpha Max | Alpha Mean | Visible Mean | Bounds |
+|-----|----------:|-----------:|-------------:|--------|
+| `vision3_restrained` | 0.0274 | 0.00019 | 0.01% | 4..251 |
+| `vision3_standard` | 0.0634 | 0.00050 | 0.51% | 4..251 |
+| `cinestill_no_remjet` | 0.3200 | 0.00459 | 11.03% | 4..251 |
+| `cinestill_aggressive` | 0.3200 | 0.01051 | 24.90% | 4..251 |
+| `impact_low` | 0.2158 | 0.00371 | 9.00% | 4..251 |
+| `impact_high` | 0.3200 | 0.00824 | 19.70% | 4..251 |
+
+Physics suite:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_halation_physics_suite.py `
+  --output-root outputs\eval\halation_v2p1_physics `
+  --profile cinestill_800t `
+  --amplify 1.15 `
+  --impact 0.90 `
+  --source-limiter 1.8 `
+  --local-diffusion 1.25 `
+  --global-diffusion 0.18 `
+  --hue-green 0.34 `
+  --background-gain 1.45 `
+  --background-luma-target 0.20
+```
+
+Physics outputs:
+
+```text
+outputs/eval/halation_v2p1_physics/halation_eval.json
+outputs/eval/halation_v2p1_physics/exposure_radius_contact_sheet.png
+```
+
+Physics metrics:
+
+- Visible radius by exposure stop:
+  - stop 1: `0.0 px`
+  - stop 2: `9.85 px`
+  - stop 3: `18.68 px`
+  - stop 4: `27.23 px`
+  - stop 5: `33.30 px`
+  - stop 6: `38.90 px`
+- Radius monotonic: `true`
+- Radius gains: `9.85, 8.83, 8.55, 6.06, 5.60 px`
+- Radius gain decelerates after threshold: `true`
+- Dark/bright visible-radius ratio: `2.26x`
+- Dark/bright alpha-sum ratio: `1.72x`
+- Blue leakage max: `0.0`
+- Center green/red ratio >= outer green/red ratio: `6/6`
+
+Interpretation:
+
+- The core prompt requirement is now quantitatively checked: fixed kernels plus
+  stronger exposure make the visible radius grow monotonically and with
+  decelerating increments.
+- `amplify` still does not directly change kernel radius.
+- `impact` remains a display mix control.
+- Bright background suppression is now measured, not only eyeballed.
+- Remaining non-autonomous work is real-film patch calibration against a curated
+  and license-safe image set.

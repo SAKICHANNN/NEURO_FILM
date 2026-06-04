@@ -201,30 +201,40 @@ def layer_view(layer) -> np.ndarray:
     return np.clip(layer.rgb * alpha, 0.0, 1.0)
 
 
+def layer_on_white_view(layer) -> np.ndarray:
+    alpha = layer.alpha
+    if alpha.ndim == 2:
+        alpha = alpha[..., None]
+    return np.clip(1.0 * (1.0 - alpha) + layer.rgb * alpha, 0.0, 1.0)
+
+
 def make_contact_sheet(rows: list[dict], output: Path, title: str) -> None:
     font = ImageFont.load_default()
     tiles = []
     for row in rows:
         original = Image.open(row["original"]).convert("RGB")
-        layer = Image.open(row["layer"]).convert("RGB")
+        layer_black = Image.open(row["layer_black"]).convert("RGB")
+        layer_white = Image.open(row["layer_white"]).convert("RGB")
         combined = Image.open(row["combined"]).convert("RGB")
-        for image in (original, layer, combined):
-            image.thumbnail((230, 170), Image.Resampling.LANCZOS)
-        tile = Image.new("RGB", (690, 210), "white")
+        for image in (original, layer_black, layer_white, combined):
+            image.thumbnail((220, 165), Image.Resampling.LANCZOS)
+        tile = Image.new("RGB", (880, 208), "white")
         draw = ImageDraw.Draw(tile)
         label = (
             f"{row['id']} alpha_max={row['alpha_max']:.4f} "
             f"visible={row['visible_affected_percent']:.2f}% bounds={row['min']}..{row['max']}"
         )
         draw.text((8, 8), label, fill="black", font=font)
-        tile.paste(original, ((230 - original.width) // 2, 34))
-        tile.paste(layer, (230 + (230 - layer.width) // 2, 34))
-        tile.paste(combined, (460 + (230 - combined.width) // 2, 34))
+        tile.paste(original, ((220 - original.width) // 2, 34))
+        tile.paste(layer_black, (220 + (220 - layer_black.width) // 2, 34))
+        tile.paste(layer_white, (440 + (220 - layer_white.width) // 2, 34))
+        tile.paste(combined, (660 + (220 - combined.width) // 2, 34))
         draw.text((8, 188), "original", fill="black", font=font)
-        draw.text((238, 188), "halation layer on black", fill="black", font=font)
-        draw.text((468, 188), "combined", fill="black", font=font)
+        draw.text((228, 188), "halation on black", fill="black", font=font)
+        draw.text((448, 188), "halation on white", fill="black", font=font)
+        draw.text((668, 188), "combined", fill="black", font=font)
         tiles.append(tile)
-    sheet = Image.new("RGB", (690, 34 + len(tiles) * 210), "white")
+    sheet = Image.new("RGB", (880, 34 + len(tiles) * 208), "white")
     ImageDraw.Draw(sheet).text((8, 10), title, fill="black", font=font)
     for index, tile in enumerate(tiles):
         sheet.paste(tile, (0, 34 + index * 210))
@@ -253,6 +263,7 @@ def main() -> int:
             base = load_rgb(path, args.max_side)
             layer = physical_halation_layer(
                 base,
+                source_normalization=str(config.get("source_normalization", "percentile")),
                 profile=config["profile"],
                 amplify=float(config["amplify"]),
                 impact=float(config["impact"]),
@@ -261,15 +272,19 @@ def main() -> int:
                 global_diffusion=float(config["global_diffusion"]),
                 hue_green=float(config["hue_green"]),
                 background_gain=float(config["background_gain"]),
+                background_luma_target=float(config.get("background_luma_target", 0.20)),
                 no_remjet=float(config["no_remjet"]),
             )
             combined = composite_layers(base, [layer], output_margin=args.output_margin)
-            view = layer_view(layer)
+            view_black = layer_view(layer)
+            view_white = layer_on_white_view(layer)
             original_path = run_dir / "original" / f"{index:02d}_original.png"
-            layer_path = run_dir / "layers" / f"{index:02d}_halation_layer.png"
+            layer_black_path = run_dir / "layers_black" / f"{index:02d}_halation_layer_black.png"
+            layer_white_path = run_dir / "layers_white" / f"{index:02d}_halation_layer_white.png"
             combined_path = run_dir / "combined" / f"{index:02d}_combined.png"
             save_rgb(base, original_path)
-            save_rgb(view, layer_path)
+            save_rgb(view_black, layer_black_path)
+            save_rgb(view_white, layer_white_path)
             save_rgb(combined, combined_path)
             combined_u8 = np.rint(combined * 255.0).astype(np.uint8)
             metrics = layer_metrics(layer)
@@ -280,7 +295,8 @@ def main() -> int:
                 "id": f"{index:02d}",
                 "source": str(path),
                 "original": str(original_path),
-                "layer": str(layer_path),
+                "layer_black": str(layer_black_path),
+                "layer_white": str(layer_white_path),
                 "combined": str(combined_path),
                 "min": int(combined_u8.min()),
                 "max": int(combined_u8.max()),
