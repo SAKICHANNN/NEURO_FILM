@@ -52,7 +52,7 @@ files.
 |--------|---------|
 | `smoke_filmfx_layers.py` | Smoke test film-effects layer rendering. |
 | `smoke_filmfx_effects.py` | Smoke test lower-level film-effects functions. |
-| `evaluate_physical_halation_v2.py` | Evaluate physical-prior halation V2 parameter sweeps and contact sheets. |
+| `evaluate_physical_halation_v2.py` | Evaluate physical-prior halation V2 expert or locked-control sweeps and contact sheets. |
 | `evaluate_halation_physics_suite.py` | Run synthetic halation radius, hue, background, and blue-leakage checks. |
 | `smoke_chroma_residual.py` | Smoke test bounded chroma residual module. |
 

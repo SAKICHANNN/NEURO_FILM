@@ -145,6 +145,43 @@ blue_leakage_max=0.0
 center_green_ratio_gt_outer_count=6/6
 ```
 
+Physical Halation V2.2 adds a locked control surface:
+
+- `--halation-control-mode locked` is the default for physical halation in
+  `scripts/render_film.py`.
+- `--halation-physics-lock` is an alias for the locked path.
+- `--halation-expert-controls` keeps the previous low-level controls available.
+- Locked `amount` changes only scattered exposure (`amplify`), not radius.
+- Locked `diffusion` is the only user slider that changes local/global radius
+  terms.
+
+Locked slider contact sheets:
+
+```text
+outputs/eval/halation_v2p2_locked/locked_vision3_clean/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_vision3_push/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_cinestill_balanced/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_cinestill_strong/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_amount_low/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_amount_high/contact_sheet.png
+outputs/eval/halation_v2p2_locked_physics/exposure_radius_contact_sheet.png
+```
+
+V2.2 locked metrics:
+
+```text
+locked_vision3_clean: alpha_max=0.0291 alpha_mean=0.00016 visible=0.01% bounds=4..251
+locked_vision3_push: alpha_max=0.0627 alpha_mean=0.00041 visible=0.45% bounds=4..251
+locked_cinestill_balanced: alpha_max=0.3200 alpha_mean=0.00524 visible=12.42% bounds=4..251
+locked_cinestill_strong: alpha_max=0.3200 alpha_mean=0.00978 visible=22.26% bounds=4..251
+locked_amount_low: alpha_max=0.2582 alpha_mean=0.00333 visible=7.91% bounds=4..251
+locked_amount_high: alpha_max=0.3200 alpha_mean=0.00815 visible=18.60% bounds=4..251
+```
+
+The `locked_amount_low/high` pair keeps the same diffusion geometry and changes
+only `amount`, so the larger visible area comes from more scattered exposure
+crossing the visibility threshold.
+
 The integrated renderer now supports:
 
 ```powershell
@@ -153,6 +190,9 @@ The integrated renderer now supports:
   --halation 1.1 `
   --halation-model physical `
   --halation-profile cinestill_800t `
+  --halation-physics-lock `
+  --halation-diffusion 0.55 `
+  --halation-anti-halation 0.78 `
   --halation-impact 0.85 `
   --output output.png `
   --write-layers `

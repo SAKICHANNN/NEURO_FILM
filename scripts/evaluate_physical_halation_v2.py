@@ -17,7 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.filmfx import composite_layers, layer_metrics, physical_halation_layer  # noqa: E402
+from src.filmfx import (  # noqa: E402
+    PhysicalHalationControls,
+    composite_layers,
+    layer_metrics,
+    physical_halation_layer,
+    resolve_physical_halation_controls,
+)
 
 
 DEFAULT_RUNS = [
@@ -96,6 +102,76 @@ DEFAULT_RUNS = [
 ]
 
 
+LOCKED_RUNS = [
+    {
+        "name": "locked_vision3_clean",
+        "profile": "vision3_500t",
+        "amount": 0.65,
+        "impact": 0.72,
+        "anti_halation": 0.10,
+        "source_selectivity": 0.76,
+        "diffusion": 0.30,
+        "warm_core": 0.18,
+        "background_visibility": 0.64,
+    },
+    {
+        "name": "locked_vision3_push",
+        "profile": "vision3_500t",
+        "amount": 0.95,
+        "impact": 0.86,
+        "anti_halation": 0.32,
+        "source_selectivity": 0.62,
+        "diffusion": 0.46,
+        "warm_core": 0.30,
+        "background_visibility": 0.70,
+    },
+    {
+        "name": "locked_cinestill_balanced",
+        "profile": "cinestill_800t",
+        "amount": 1.08,
+        "impact": 0.86,
+        "anti_halation": 0.78,
+        "source_selectivity": 0.48,
+        "diffusion": 0.55,
+        "warm_core": 0.45,
+        "background_visibility": 0.78,
+    },
+    {
+        "name": "locked_cinestill_strong",
+        "profile": "cinestill_800t",
+        "amount": 1.40,
+        "impact": 0.96,
+        "anti_halation": 1.00,
+        "source_selectivity": 0.36,
+        "diffusion": 0.70,
+        "warm_core": 0.60,
+        "background_visibility": 0.86,
+    },
+    {
+        "name": "locked_amount_low",
+        "profile": "cinestill_800t",
+        "amount": 0.68,
+        "impact": 0.86,
+        "anti_halation": 0.78,
+        "source_selectivity": 0.48,
+        "diffusion": 0.55,
+        "warm_core": 0.45,
+        "background_visibility": 0.78,
+    },
+    {
+        "name": "locked_amount_high",
+        "profile": "cinestill_800t",
+        "amount": 1.70,
+        "impact": 0.86,
+        "anti_halation": 0.78,
+        "source_selectivity": 0.48,
+        "diffusion": 0.55,
+        "warm_core": 0.45,
+        "background_visibility": 0.78,
+    },
+]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate physical halation V2 sweeps.")
     parser.add_argument(
@@ -107,6 +183,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=20)
     parser.add_argument("--max-side", type=int, default=768)
     parser.add_argument("--runs-json", type=Path, default=None)
+    parser.add_argument("--control-mode", choices=("locked", "expert"), default="expert")
     parser.add_argument("--output-margin", type=int, default=4)
     parser.add_argument("--include-diagnostics", action="store_true")
     return parser.parse_args()
@@ -245,7 +322,38 @@ def make_contact_sheet(rows: list[dict], output: Path, title: str) -> None:
 def run_configurations(args: argparse.Namespace) -> list[dict]:
     if args.runs_json:
         return json.loads(args.runs_json.read_text(encoding="utf-8"))
+    if args.control_mode == "locked":
+        return LOCKED_RUNS
     return DEFAULT_RUNS
+
+
+def resolve_run_config(config: dict, control_mode: str) -> dict:
+    if control_mode == "locked" or "amount" in config:
+        controls = PhysicalHalationControls(
+            profile=str(config["profile"]),
+            amount=float(config["amount"]),
+            impact=float(config["impact"]),
+            anti_halation=float(config["anti_halation"]),
+            source_selectivity=float(config["source_selectivity"]),
+            diffusion=float(config["diffusion"]),
+            warm_core=float(config["warm_core"]),
+            background_visibility=float(config["background_visibility"]),
+            source_normalization=str(config.get("source_normalization", "percentile")),
+        )
+        return resolve_physical_halation_controls(controls)
+    return {
+        "source_normalization": str(config.get("source_normalization", "percentile")),
+        "profile": config["profile"],
+        "amplify": float(config["amplify"]),
+        "impact": float(config["impact"]),
+        "source_limiter_stops": float(config["source_limiter_stops"]),
+        "local_diffusion": float(config["local_diffusion"]),
+        "global_diffusion": float(config["global_diffusion"]),
+        "hue_green": float(config["hue_green"]),
+        "background_gain": float(config["background_gain"]),
+        "background_luma_target": float(config.get("background_luma_target", 0.20)),
+        "no_remjet": float(config["no_remjet"]),
+    }
 
 
 def main() -> int:
@@ -257,23 +365,14 @@ def main() -> int:
     all_summary = {"runs": []}
     for config in run_configurations(args):
         run_name = config["name"]
+        resolved = resolve_run_config(config, args.control_mode)
         run_dir = output_root / run_name
         rows = []
         for index, path in enumerate(paths, start=1):
             base = load_rgb(path, args.max_side)
             layer = physical_halation_layer(
                 base,
-                source_normalization=str(config.get("source_normalization", "percentile")),
-                profile=config["profile"],
-                amplify=float(config["amplify"]),
-                impact=float(config["impact"]),
-                source_limiter_stops=float(config["source_limiter_stops"]),
-                local_diffusion=float(config["local_diffusion"]),
-                global_diffusion=float(config["global_diffusion"]),
-                hue_green=float(config["hue_green"]),
-                background_gain=float(config["background_gain"]),
-                background_luma_target=float(config.get("background_luma_target", 0.20)),
-                no_remjet=float(config["no_remjet"]),
+                **resolved,
             )
             combined = composite_layers(base, [layer], output_margin=args.output_margin)
             view_black = layer_view(layer)
@@ -312,6 +411,8 @@ def main() -> int:
             )
         metrics_summary = {
             "config": config,
+            "control_mode": "locked" if "amount" in config else args.control_mode,
+            "resolved": resolved,
             "image_count": len(rows),
             "alpha_max_max": max(row["alpha_max"] for row in rows),
             "alpha_mean_mean": mean(row["alpha_mean"] for row in rows),

@@ -432,3 +432,136 @@ Interpretation:
 - Bright background suppression is now measured, not only eyeballed.
 - Remaining non-autonomous work is real-film patch calibration against a curated
   and license-safe image set.
+
+## V2.2 Physical-Lock Control Surface
+
+User feedback on 2026-06-05:
+
+> Avoid exposing all low-level parameters in a way that lets users break physical
+> rigor. Create packaged sliders, or a "physical rigor" checkbox that links
+> controls like Photoshop's aspect-ratio lock.
+
+Updated online reference check on 2026-06-05:
+
+| Source | Constraint Used | Locked-Control Consequence |
+|--------|-----------------|----------------------------|
+| Kodak motion-picture glossary / essential reference | anti-halation backing absorbs light that would otherwise reflect back into the emulsion | model halation as secondary backscatter exposure; anti-halation controls coupling, not blur geometry |
+| Kodak VISION3 500T 5219/7219 technical information | current 5219/7219 has anti-halation undercoat, so stock halation should be restrained | `vision3_500t` profile has lower backscatter and tighter alpha cap |
+| CineStill film notes/help | 800T is no-remjet-like and has stronger red/orange highlight halation | `cinestill_800t` profile has higher backscatter coupling and broader diffusion range |
+| Dehancer desktop manual/article | Source Limiter, Background Gain, Local Diffusion, Global Diffusion, Amplify, and Impact are distinct controls; Local Diffusion controls radius; Amplify is glare energy, not simple opacity | expose locked sliders that map to the same physical roles without letting one slider alter unrelated terms |
+| User prompt | strength slider A should mainly change scattered exposure, not directly change blur radius; visible radius grows because stronger tails cross visibility threshold | `amount` maps only to `amplify`; only `diffusion` changes local/global radius terms |
+
+### Locked Slider Contract
+
+Implemented in `src/filmfx/halation_controls.py`.
+
+Default physical mode in `scripts/render_film.py` is now locked. Expert mode is
+still available with `--halation-control-mode expert` or
+`--halation-expert-controls`, but normal UI/CLI controls should bind to the
+locked surface.
+
+| User Slider | Physical Meaning | Allowed Low-Level Effects |
+|-------------|------------------|---------------------------|
+| `amount` | effective secondary scattered exposure | `amplify` only |
+| `impact` | display/output mix after the layer is formed | `impact` only |
+| `anti_halation` | anti-halation/remjet suppression vs no-remjet-like backscatter | `no_remjet` only |
+| `source_selectivity` | how bright a source must be before it contributes | `source_limiter_stops` only |
+| `diffusion` | film/emulsion scatter geometry | `local_diffusion` and `global_diffusion` only |
+| `warm_core` | green-layer coupling in the hottest core | `hue_green` only |
+| `background_visibility` | dark/high-contrast background gating | `background_gain` and `background_luma_target` only |
+
+Locked invariants are now tested in `tests/test_halation_controls.py`:
+
+- changing `amount` cannot change radius, source gating, background gating, hue,
+  or no-remjet coupling,
+- changing `impact` cannot change physical layer formation,
+- changing `diffusion` only changes local/global diffusion geometry,
+- changing `anti_halation` only changes backscatter coupling,
+- source and background gates stay separate.
+
+### V2.2 Locked Output Sweep
+
+Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_physical_halation_v2.py `
+  --limit 20 `
+  --max-side 768 `
+  --include-diagnostics `
+  --control-mode locked `
+  --output-root outputs\eval\halation_v2p2_locked
+```
+
+Contact sheets:
+
+```text
+outputs/eval/halation_v2p2_locked/locked_vision3_clean/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_vision3_push/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_cinestill_balanced/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_cinestill_strong/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_amount_low/contact_sheet.png
+outputs/eval/halation_v2p2_locked/locked_amount_high/contact_sheet.png
+outputs/eval/halation_v2p2_locked/summary.json
+```
+
+Each contact sheet keeps the requested format:
+
+```text
+original | halation on black | halation on white | combined
+```
+
+Locked sweep metrics:
+
+| Run | Alpha Max | Alpha Mean | Visible Mean | Bounds |
+|-----|----------:|-----------:|-------------:|--------|
+| `locked_vision3_clean` | 0.0291 | 0.00016 | 0.01% | 4..251 |
+| `locked_vision3_push` | 0.0627 | 0.00041 | 0.45% | 4..251 |
+| `locked_cinestill_balanced` | 0.3200 | 0.00524 | 12.42% | 4..251 |
+| `locked_cinestill_strong` | 0.3200 | 0.00978 | 22.26% | 4..251 |
+| `locked_amount_low` | 0.2582 | 0.00333 | 7.91% | 4..251 |
+| `locked_amount_high` | 0.3200 | 0.00815 | 18.60% | 4..251 |
+
+The `locked_amount_low` and `locked_amount_high` runs share the same geometric
+diffusion values. Their visible coverage difference is therefore caused by
+stronger scattered exposure crossing the visibility threshold, not by changing
+kernel radius.
+
+### V2.2 Physics Check
+
+Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_halation_physics_suite.py `
+  --output-root outputs\eval\halation_v2p2_locked_physics `
+  --profile cinestill_800t `
+  --amplify 1.15 `
+  --impact 0.90 `
+  --source-limiter 1.8 `
+  --local-diffusion 1.25 `
+  --global-diffusion 0.18 `
+  --hue-green 0.34 `
+  --background-gain 1.45 `
+  --background-luma-target 0.20
+```
+
+Outputs:
+
+```text
+outputs/eval/halation_v2p2_locked_physics/halation_eval.json
+outputs/eval/halation_v2p2_locked_physics/exposure_radius_contact_sheet.png
+```
+
+Metrics:
+
+- Radius monotonic: `true`
+- Radius gains: `9.85, 8.83, 8.55, 6.06, 5.60 px`
+- Dark/bright visible-radius ratio: `2.26x`
+- Dark/bright alpha-sum ratio: `1.72x`
+- Blue leakage max: `0.0`
+
+### Rollback Note
+
+V2.2 is intentionally isolated on `research/physical-halation-v2p2-calibration`.
+The previous V2.1 baseline is commit `2001e1c` / branch
+`research/physical-halation-v2`. If visual review rejects V2.2 locked controls,
+revert the V2.2 commit or switch back to the V2.1 branch.
