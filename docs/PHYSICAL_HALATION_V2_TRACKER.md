@@ -565,3 +565,149 @@ V2.2 is intentionally isolated on `research/physical-halation-v2p2-calibration`.
 The previous V2.1 baseline is commit `2001e1c` / branch
 `research/physical-halation-v2`. If visual review rejects V2.2 locked controls,
 revert the V2.2 commit or switch back to the V2.1 branch.
+
+## V2.3 Physical Rule Families
+
+User feedback on 2026-06-05:
+
+> Discrete mode choices should not only select discrete parameters; their larger
+> meaning is that they represent different physical rules.
+
+Reflection after reading `halationguide.md` and current online sources:
+
+- A mode such as `cinestill_no_remjet` is not merely "more amount"; it changes
+  the backscatter path and anti-halation suppression.
+- A mode such as `bw_clear_base` should not reuse the color-negative
+  red/green-layer equation with saturation removed; it needs a separate
+  density-domain rule family.
+- Color response choices should be bounded laws: red outer / orange core, deep
+  red, amber core, or neutral density. They should not open arbitrary blue,
+  cyan, or purple halation, which is more like bloom, lens flare, or optical
+  scatter.
+
+Online reference check on 2026-06-05:
+
+| Source | Constraint Used |
+|--------|-----------------|
+| Kodak motion-picture glossary | halation is caused by scattering/reflection through emulsion/base surfaces; anti-halation backing absorbs light that would reflect back into the emulsion |
+| Dehancer halation docs/manual | Halation Profiles are separated from Source Limiter, Background Gain, Local/Global Diffusion, Amplify, Hue, Blue Comp., and Impact; profiles also separate standard emulsion and No Remjet |
+| CineStill remjet help | remjet protects against highlight halation; CineStill films do not have remjet backing |
+| Black-and-white film references | some B&W/reversal/clear-base stocks have their own halation/glow behavior, so neutral density glow is a separate rule family from color-negative red-layer backscatter |
+
+### Rule-Family Design
+
+Implemented:
+
+- `src/filmfx/effects.py`
+  - `physical_halation_layer`: color-negative backscatter family.
+  - `density_halation_layer`: black-and-white / density-domain family.
+- `src/filmfx/halation_controls.py`
+  - `model_family`
+  - `halation_type`
+  - `color_response`
+  - locked sliders
+  - `build_physical_halation_layer`
+
+Discrete control levels:
+
+| Level | Field | Current Values | Meaning |
+|-------|-------|----------------|---------|
+| Physical rule family | `model_family` | `color_negative_backscatter`, `bw_density_halation` | Selects the equation family |
+| Backing / stock structure | `halation_type` | `vision3_ahu`, `cinestill_no_remjet`, `classic_dense_base`, `bw_clear_base` | Selects anti-halation/backing and allowed parameter ranges |
+| Color response law | `color_response` | `red_orange_core`, `deep_red`, `amber_core`, `neutral_density`, `warm_neutral_density` | Selects bounded hue/density behavior |
+| Locked sliders | `amount`, `impact`, `anti_halation`, `source_selectivity`, `diffusion`, `warm_core`, `background_visibility` | Continuous control within the selected law | Fine adjustment without breaking the rule family |
+
+Rule differences:
+
+```text
+color_negative_backscatter:
+  H_R = A * beta_R * V * conv(S, K_R)
+  H_G = A * beta_G * V * conv(S_high, K_G)
+  H_B = 0
+
+bw_density_halation:
+  H_density = A * V * conv(S, K_density)
+  no red/green hue-radius law
+  no no_remjet/hue_green/profile controls in resolved parameter surface
+```
+
+### V2.3 Locked Family Output Sweep
+
+Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_physical_halation_v2.py `
+  --limit 20 `
+  --max-side 768 `
+  --include-diagnostics `
+  --control-mode family `
+  --output-root outputs\eval\halation_v2p3_families
+```
+
+Contact sheets:
+
+```text
+outputs/eval/halation_v2p3_families/family_vision3_ahu_red_orange/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_cinestill_no_remjet_deep_red/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_cinestill_no_remjet_amber_core/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_classic_dense_base_soft_red/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_bw_clear_base_neutral_density/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_bw_clear_base_warm_density/contact_sheet.png
+outputs/eval/halation_v2p3_families/summary.json
+```
+
+Each sheet keeps:
+
+```text
+original | halation on black | halation on white | combined
+```
+
+V2.3 family metrics:
+
+| Run | Family | Type | Color Response | Alpha Max | Alpha Mean | Visible Mean | Bounds |
+|-----|--------|------|----------------|----------:|-----------:|-------------:|--------|
+| `family_vision3_ahu_red_orange` | `color_negative_backscatter` | `vision3_ahu` | `red_orange_core` | 0.0478 | 0.00026 | 0.04% | 4..251 |
+| `family_cinestill_no_remjet_deep_red` | `color_negative_backscatter` | `cinestill_no_remjet` | `deep_red` | 0.3200 | 0.00708 | 16.81% | 4..251 |
+| `family_cinestill_no_remjet_amber_core` | `color_negative_backscatter` | `cinestill_no_remjet` | `amber_core` | 0.3200 | 0.00708 | 16.81% | 4..251 |
+| `family_classic_dense_base_soft_red` | `color_negative_backscatter` | `classic_dense_base` | `red_orange_core` | 0.1418 | 0.00211 | 4.94% | 4..251 |
+| `family_bw_clear_base_neutral_density` | `bw_density_halation` | `bw_clear_base` | `neutral_density` | 0.2132 | 0.00521 | 13.87% | 4..251 |
+| `family_bw_clear_base_warm_density` | `bw_density_halation` | `bw_clear_base` | `warm_neutral_density` | 0.2132 | 0.00521 | 13.87% | 4..251 |
+
+The two CineStill color-response runs intentionally share alpha/visible metrics:
+their geometry and scattered exposure are held fixed; only the red/green
+response law changes. Likewise, the two B&W density runs share alpha/visible
+metrics and differ only in neutral vs warm density tint.
+
+### V2.3 Verification
+
+Commands:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests\test_color_baseline_safety.py tests\test_halation_controls.py
+.\.venv\Scripts\python.exe scripts\evaluate_halation_physics_suite.py `
+  --output-root outputs\eval\halation_v2p3_family_physics `
+  --profile cinestill_800t `
+  --amplify 1.15 `
+  --impact 0.90 `
+  --source-limiter 1.8 `
+  --local-diffusion 1.25 `
+  --global-diffusion 0.18 `
+  --hue-green 0.34 `
+  --background-gain 1.45 `
+  --background-luma-target 0.20
+```
+
+Results:
+
+- Pytest: `8 passed`
+- Radius monotonic: `true`
+- Radius gains: `9.85, 8.83, 8.55, 6.06, 5.60 px`
+- Dark/bright visible-radius ratio: `2.26x`
+- Blue leakage max: `0.0`
+
+Integrated renderer smoke outputs:
+
+```text
+outputs/integration/render_film_halation_v2p3_amber_core_smoke.png
+outputs/integration/render_film_halation_v2p3_bw_density_smoke.png
+```

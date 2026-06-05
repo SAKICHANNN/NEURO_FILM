@@ -224,6 +224,95 @@ def physical_halation_layer(
     return FilmLayer(name=name, mode="screen", rgb=color.astype(np.float32), alpha=alpha[..., None].astype(np.float32))
 
 
+def density_halation_layer(
+    base_rgb: np.ndarray,
+    *,
+    source_linear_rgb: np.ndarray | None = None,
+    source_normalization: str = "percentile",
+    source_reference_percentile: float = 99.7,
+    amplify: float = 1.0,
+    impact: float = 0.85,
+    source_limiter_stops: float = 2.2,
+    source_softness: float = 0.46,
+    source_gamma: float = 1.35,
+    local_diffusion: float = 1.0,
+    global_diffusion: float = 0.20,
+    background_gain: float = 1.25,
+    background_luma_target: float = 0.20,
+    density_tint: tuple[float, float, float] = (1.0, 0.96, 0.86),
+    skin_protect: float = 0.35,
+    output_alpha_cap: float = 0.26,
+    name: str = "density_halation",
+) -> FilmLayer:
+    """Build a monochrome/density-domain halation layer.
+
+    This is a separate rule family from color-negative backscatter. It models
+    classic black-and-white or clear-base glow as a neutral density response
+    instead of red-layer-dominant secondary exposure.
+    """
+
+    base_rgb = np.clip(base_rgb.astype(np.float32), 0.0, 1.0)
+    if source_linear_rgb is None:
+        linear = _srgb_to_linear(base_rgb)
+    else:
+        linear = np.maximum(source_linear_rgb.astype(np.float32), 0.0)
+        if linear.shape != base_rgb.shape:
+            raise ValueError(f"source_linear_rgb shape {linear.shape} does not match base image {base_rgb.shape}")
+    y = np.maximum(luminance(linear), 1e-6)
+    log_e = np.log2(y / 0.18 + 1e-6)
+
+    source_raw = _softplus((log_e - float(source_limiter_stops)) / max(float(source_softness), 1e-4))
+    source = np.power(source_raw, float(source_gamma))
+    if source_normalization == "percentile":
+        source = source / max(float(np.percentile(source, float(source_reference_percentile))), 1e-6)
+        source = np.clip(source, 0.0, 2.5)
+    elif source_normalization != "none":
+        raise ValueError(f"Unsupported source_normalization: {source_normalization}")
+
+    maxc = base_rgb.max(axis=2)
+    minc = base_rgb.min(axis=2)
+    chroma = maxc - minc
+    white_hot = _smoothstep(0.60, 0.94, maxc) * (1.0 - _smoothstep(0.20, 0.60, chroma))
+    color_hot = _smoothstep(0.64, 0.96, maxc) * _smoothstep(0.08, 0.55, chroma)
+    specular_confidence = np.clip(0.50 + 0.65 * white_hot + 0.25 * color_hot, 0.0, 1.20)
+
+    gy, gx = np.gradient(y)
+    edge = np.hypot(gx, gy)
+    edge_confidence = 0.30 + 0.70 * _smoothstep(0.002, 0.045, edge)
+    source = source * specular_confidence * edge_confidence
+
+    diffusion = max(0.15, float(local_diffusion))
+    bg_sigma = max(4.0, 28.0 * diffusion)
+    background_probe = np.minimum(y, 0.36)
+    local_mean = gaussian_filter(background_probe, sigma=bg_sigma)
+    local_abs = gaussian_filter(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
+    dark_visibility = _sigmoid((float(background_luma_target) - local_mean) * float(background_gain) * 8.0)
+    contrast_visibility = _smoothstep(0.006, 0.14, local_abs + edge * 1.8)
+
+    r, g, b = base_rgb[..., 0], base_rgb[..., 1], base_rgb[..., 2]
+    skin = (
+        _smoothstep(0.16, 0.42, r)
+        * _smoothstep(0.09, 0.34, g)
+        * (1.0 - _smoothstep(0.02, 0.30, b - g))
+        * _smoothstep(0.02, 0.20, r - b)
+        * (1.0 - _smoothstep(0.42, 0.72, chroma))
+    )
+    visibility = dark_visibility * (0.40 + 0.60 * contrast_visibility) * (1.0 - np.clip(skin * skin_protect, 0.0, 0.75))
+
+    near = gaussian_filter(source, sigma=2.4 * diffusion)
+    mid = gaussian_filter(source, sigma=10.0 * diffusion)
+    tail = gaussian_filter(source, sigma=26.0 * diffusion)
+    glare = gaussian_filter(source, sigma=max(32.0, 70.0 * diffusion)) * float(global_diffusion)
+    density_exposure = float(amplify) * visibility * (0.42 * near + 0.33 * mid + 0.25 * tail + glare)
+
+    alpha = 1.0 - np.exp(-density_exposure * 0.34)
+    alpha = np.clip(alpha * float(impact), 0.0, min(float(output_alpha_cap), 1.0))
+    rgb = np.ones_like(base_rgb, dtype=np.float32)
+    tint = np.asarray(density_tint, dtype=np.float32).reshape(1, 1, 3)
+    rgb *= np.clip(tint, 0.0, 1.0)
+    return FilmLayer(name=name, mode="screen", rgb=rgb.astype(np.float32), alpha=alpha[..., None].astype(np.float32))
+
+
 def dust_scratch_layer(
     shape: tuple[int, int, int],
     *,

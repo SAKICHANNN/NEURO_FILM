@@ -54,3 +54,26 @@ def test_locked_source_and_background_sliders_stay_separate() -> None:
     assert selective["source_limiter_stops"] > base["source_limiter_stops"]
     assert background["background_gain"] > base["background_gain"]
     assert background["background_luma_target"] > base["background_luma_target"]
+
+
+def test_color_response_changes_color_law_not_geometry() -> None:
+    deep_red = resolve_physical_halation_controls(
+        PhysicalHalationControls(halation_type="cinestill_no_remjet", color_response="deep_red")
+    )
+    amber = resolve_physical_halation_controls(
+        PhysicalHalationControls(halation_type="cinestill_no_remjet", color_response="amber_core")
+    )
+
+    assert changed_keys(deep_red, amber) == {"hue_green"}
+    assert amber["hue_green"] > deep_red["hue_green"]
+
+
+def test_bw_density_family_uses_neutral_rule_surface() -> None:
+    resolved = resolve_physical_halation_controls(
+        PhysicalHalationControls(halation_type="bw_clear_base", color_response="neutral_density")
+    )
+
+    assert "density_tint" in resolved
+    assert "hue_green" not in resolved
+    assert "no_remjet" not in resolved
+    assert "profile" not in resolved

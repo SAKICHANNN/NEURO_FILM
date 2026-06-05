@@ -182,6 +182,44 @@ The `locked_amount_low/high` pair keeps the same diffusion geometry and changes
 only `amount`, so the larger visible area comes from more scattered exposure
 crossing the visibility threshold.
 
+Physical Halation V2.3 adds discrete physical rule families:
+
+- `color_negative_backscatter`: red-layer-dominant color negative halation with
+  green-layer coupling only for strong cores.
+- `bw_density_halation`: separate black-and-white / density-domain glow, without
+  `hue_green`, `no_remjet`, or color-negative profile parameters.
+
+V2.3 discrete controls:
+
+```text
+model_family: color_negative_backscatter | bw_density_halation
+halation_type: vision3_ahu | cinestill_no_remjet | classic_dense_base | bw_clear_base
+color_response: red_orange_core | deep_red | amber_core | neutral_density | warm_neutral_density
+```
+
+V2.3 contact sheets:
+
+```text
+outputs/eval/halation_v2p3_families/family_vision3_ahu_red_orange/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_cinestill_no_remjet_deep_red/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_cinestill_no_remjet_amber_core/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_classic_dense_base_soft_red/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_bw_clear_base_neutral_density/contact_sheet.png
+outputs/eval/halation_v2p3_families/family_bw_clear_base_warm_density/contact_sheet.png
+outputs/eval/halation_v2p3_family_physics/exposure_radius_contact_sheet.png
+```
+
+V2.3 metrics:
+
+```text
+family_vision3_ahu_red_orange: family=color_negative_backscatter type=vision3_ahu color=red_orange_core alpha_max=0.0478 alpha_mean=0.00026 visible=0.04% bounds=4..251
+family_cinestill_no_remjet_deep_red: family=color_negative_backscatter type=cinestill_no_remjet color=deep_red alpha_max=0.3200 alpha_mean=0.00708 visible=16.81% bounds=4..251
+family_cinestill_no_remjet_amber_core: family=color_negative_backscatter type=cinestill_no_remjet color=amber_core alpha_max=0.3200 alpha_mean=0.00708 visible=16.81% bounds=4..251
+family_classic_dense_base_soft_red: family=color_negative_backscatter type=classic_dense_base color=red_orange_core alpha_max=0.1418 alpha_mean=0.00211 visible=4.94% bounds=4..251
+family_bw_clear_base_neutral_density: family=bw_density_halation type=bw_clear_base color=neutral_density alpha_max=0.2132 alpha_mean=0.00521 visible=13.87% bounds=4..251
+family_bw_clear_base_warm_density: family=bw_density_halation type=bw_clear_base color=warm_neutral_density alpha_max=0.2132 alpha_mean=0.00521 visible=13.87% bounds=4..251
+```
+
 The integrated renderer now supports:
 
 ```powershell
@@ -189,7 +227,8 @@ The integrated renderer now supports:
   --style vision3_500t `
   --halation 1.1 `
   --halation-model physical `
-  --halation-profile cinestill_800t `
+  --halation-type cinestill_no_remjet `
+  --halation-color-response amber_core `
   --halation-physics-lock `
   --halation-diffusion 0.55 `
   --halation-anti-halation 0.78 `

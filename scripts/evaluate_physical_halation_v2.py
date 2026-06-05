@@ -19,7 +19,9 @@ if str(ROOT) not in sys.path:
 
 from src.filmfx import (  # noqa: E402
     PhysicalHalationControls,
+    build_physical_halation_layer,
     composite_layers,
+    describe_physical_halation_controls,
     layer_metrics,
     physical_halation_layer,
     resolve_physical_halation_controls,
@@ -172,6 +174,94 @@ LOCKED_RUNS = [
 ]
 
 
+FAMILY_RUNS = [
+    {
+        "name": "family_vision3_ahu_red_orange",
+        "model_family": "auto",
+        "halation_type": "vision3_ahu",
+        "color_response": "red_orange_core",
+        "profile": "vision3_500t",
+        "amount": 0.88,
+        "impact": 0.82,
+        "anti_halation": 0.22,
+        "source_selectivity": 0.72,
+        "diffusion": 0.40,
+        "warm_core": 0.30,
+        "background_visibility": 0.68,
+    },
+    {
+        "name": "family_cinestill_no_remjet_deep_red",
+        "model_family": "auto",
+        "halation_type": "cinestill_no_remjet",
+        "color_response": "deep_red",
+        "profile": "cinestill_800t",
+        "amount": 1.20,
+        "impact": 0.88,
+        "anti_halation": 0.84,
+        "source_selectivity": 0.46,
+        "diffusion": 0.56,
+        "warm_core": 0.34,
+        "background_visibility": 0.78,
+    },
+    {
+        "name": "family_cinestill_no_remjet_amber_core",
+        "model_family": "auto",
+        "halation_type": "cinestill_no_remjet",
+        "color_response": "amber_core",
+        "profile": "cinestill_800t",
+        "amount": 1.20,
+        "impact": 0.88,
+        "anti_halation": 0.84,
+        "source_selectivity": 0.46,
+        "diffusion": 0.56,
+        "warm_core": 0.58,
+        "background_visibility": 0.78,
+    },
+    {
+        "name": "family_classic_dense_base_soft_red",
+        "model_family": "auto",
+        "halation_type": "classic_dense_base",
+        "color_response": "red_orange_core",
+        "profile": "generic",
+        "amount": 1.05,
+        "impact": 0.82,
+        "anti_halation": 0.52,
+        "source_selectivity": 0.56,
+        "diffusion": 0.68,
+        "warm_core": 0.30,
+        "background_visibility": 0.70,
+    },
+    {
+        "name": "family_bw_clear_base_neutral_density",
+        "model_family": "auto",
+        "halation_type": "bw_clear_base",
+        "color_response": "neutral_density",
+        "profile": "generic",
+        "amount": 1.18,
+        "impact": 0.84,
+        "anti_halation": 0.0,
+        "source_selectivity": 0.50,
+        "diffusion": 0.66,
+        "warm_core": 0.0,
+        "background_visibility": 0.76,
+    },
+    {
+        "name": "family_bw_clear_base_warm_density",
+        "model_family": "auto",
+        "halation_type": "bw_clear_base",
+        "color_response": "warm_neutral_density",
+        "profile": "generic",
+        "amount": 1.18,
+        "impact": 0.84,
+        "anti_halation": 0.0,
+        "source_selectivity": 0.50,
+        "diffusion": 0.66,
+        "warm_core": 0.0,
+        "background_visibility": 0.76,
+    },
+]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate physical halation V2 sweeps.")
     parser.add_argument(
@@ -183,7 +273,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=20)
     parser.add_argument("--max-side", type=int, default=768)
     parser.add_argument("--runs-json", type=Path, default=None)
-    parser.add_argument("--control-mode", choices=("locked", "expert"), default="expert")
+    parser.add_argument("--control-mode", choices=("locked", "expert", "family"), default="expert")
     parser.add_argument("--output-margin", type=int, default=4)
     parser.add_argument("--include-diagnostics", action="store_true")
     return parser.parse_args()
@@ -322,25 +412,33 @@ def make_contact_sheet(rows: list[dict], output: Path, title: str) -> None:
 def run_configurations(args: argparse.Namespace) -> list[dict]:
     if args.runs_json:
         return json.loads(args.runs_json.read_text(encoding="utf-8"))
+    if args.control_mode == "family":
+        return FAMILY_RUNS
     if args.control_mode == "locked":
         return LOCKED_RUNS
     return DEFAULT_RUNS
 
 
+def controls_from_config(config: dict) -> PhysicalHalationControls:
+    return PhysicalHalationControls(
+        model_family=str(config.get("model_family", "auto")),
+        halation_type=str(config.get("halation_type", "auto")),
+        color_response=str(config.get("color_response", "red_orange_core")),
+        profile=str(config["profile"]),
+        amount=float(config["amount"]),
+        impact=float(config["impact"]),
+        anti_halation=float(config["anti_halation"]),
+        source_selectivity=float(config["source_selectivity"]),
+        diffusion=float(config["diffusion"]),
+        warm_core=float(config["warm_core"]),
+        background_visibility=float(config["background_visibility"]),
+        source_normalization=str(config.get("source_normalization", "percentile")),
+    )
+
+
 def resolve_run_config(config: dict, control_mode: str) -> dict:
-    if control_mode == "locked" or "amount" in config:
-        controls = PhysicalHalationControls(
-            profile=str(config["profile"]),
-            amount=float(config["amount"]),
-            impact=float(config["impact"]),
-            anti_halation=float(config["anti_halation"]),
-            source_selectivity=float(config["source_selectivity"]),
-            diffusion=float(config["diffusion"]),
-            warm_core=float(config["warm_core"]),
-            background_visibility=float(config["background_visibility"]),
-            source_normalization=str(config.get("source_normalization", "percentile")),
-        )
-        return resolve_physical_halation_controls(controls)
+    if control_mode in {"locked", "family"} or "amount" in config:
+        return resolve_physical_halation_controls(controls_from_config(config))
     return {
         "source_normalization": str(config.get("source_normalization", "percentile")),
         "profile": config["profile"],
@@ -366,14 +464,19 @@ def main() -> int:
     for config in run_configurations(args):
         run_name = config["name"]
         resolved = resolve_run_config(config, args.control_mode)
+        controls = controls_from_config(config) if "amount" in config else None
+        metadata = describe_physical_halation_controls(controls) if controls else None
         run_dir = output_root / run_name
         rows = []
         for index, path in enumerate(paths, start=1):
             base = load_rgb(path, args.max_side)
-            layer = physical_halation_layer(
-                base,
-                **resolved,
-            )
+            if controls:
+                layer = build_physical_halation_layer(base, controls)
+            else:
+                layer = physical_halation_layer(
+                    base,
+                    **resolved,
+                )
             combined = composite_layers(base, [layer], output_margin=args.output_margin)
             view_black = layer_view(layer)
             view_white = layer_on_white_view(layer)
@@ -411,7 +514,8 @@ def main() -> int:
             )
         metrics_summary = {
             "config": config,
-            "control_mode": "locked" if "amount" in config else args.control_mode,
+            "control_mode": args.control_mode if "amount" in config else "expert",
+            "metadata": metadata,
             "resolved": resolved,
             "image_count": len(rows),
             "alpha_max_max": max(row["alpha_max"] for row in rows),

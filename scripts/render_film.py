@@ -18,7 +18,9 @@ if str(ROOT) not in sys.path:
 from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
 from src.filmfx import (  # noqa: E402
     PhysicalHalationControls,
+    build_physical_halation_layer,
     composite_layers,
+    describe_physical_halation_controls,
     dust_scratch_layer,
     grain_residual_layer,
     halation_layer,
@@ -40,6 +42,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
     parser.add_argument("--halation-model", choices=("simple", "physical"), default="simple")
+    parser.add_argument("--halation-model-family", choices=("auto", "color_negative_backscatter", "bw_density_halation"), default="auto")
+    parser.add_argument(
+        "--halation-type",
+        choices=("auto", "vision3_ahu", "cinestill_no_remjet", "classic_dense_base", "bw_clear_base"),
+        default="auto",
+    )
+    parser.add_argument(
+        "--halation-color-response",
+        choices=("red_orange_core", "deep_red", "amber_core", "neutral_density", "warm_neutral_density"),
+        default="red_orange_core",
+    )
     parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default="cinestill_800t")
     parser.add_argument("--halation-control-mode", choices=("locked", "expert"), default="locked")
     parser.add_argument("--halation-physics-lock", dest="halation_control_mode", action="store_const", const="locked")
@@ -107,12 +120,16 @@ def main() -> int:
     base = np.asarray(color_image, dtype=np.float32) / 255.0
     layers = []
     halation_resolved = None
+    halation_metadata = None
     if args.grain > 0:
         layers.append(grain_residual_layer(base, strength=args.grain, seed=args.seed, color=args.style not in {"hp5", "tri_x_400"}))
     if args.halation > 0:
         if args.halation_model == "physical":
             if args.halation_control_mode == "locked":
                 controls = PhysicalHalationControls(
+                    model_family=args.halation_model_family,
+                    halation_type=args.halation_type,
+                    color_response=args.halation_color_response,
                     profile=args.halation_profile,
                     amount=args.halation if args.halation_amount is None else args.halation_amount,
                     impact=args.halation_impact,
@@ -124,6 +141,8 @@ def main() -> int:
                     source_normalization=args.halation_source_normalization,
                 )
                 halation_resolved = resolve_physical_halation_controls(controls)
+                halation_metadata = describe_physical_halation_controls(controls)
+                layers.append(build_physical_halation_layer(base, controls))
             else:
                 no_remjet = None if args.halation_no_remjet < 0 else args.halation_no_remjet
                 halation_resolved = {
@@ -139,12 +158,12 @@ def main() -> int:
                     "background_luma_target": args.halation_background_luma_target,
                     "no_remjet": no_remjet,
                 }
-            layers.append(
-                physical_halation_layer(
-                    base,
-                    **halation_resolved,
+                layers.append(
+                    physical_halation_layer(
+                        base,
+                        **halation_resolved,
+                    )
                 )
-            )
         else:
             layers.append(halation_layer(base, strength=args.halation))
     if args.dust > 0:
@@ -171,6 +190,7 @@ def main() -> int:
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],
             "halation_control_mode": args.halation_control_mode if halation_resolved else None,
+            "halation_metadata": halation_metadata,
             "halation_resolved": halation_resolved,
         }
         args.output.with_suffix(".metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
