@@ -85,6 +85,35 @@ When this document says a type is "Vision3-like", "CineStill-like",
 heuristic parameter envelope. It does not mean the renderer has been calibrated
 against measured samples of that exact stock.
 
+## Limitations At A Glance
+
+Read these limitations before using this document as a scientific or product
+source of truth:
+
+1. This is a physically constrained renderer, not a fully measured film
+   simulator.
+2. The numeric ranges in `halation_type` profiles are current engineering
+   heuristics, not stock-calibrated constants.
+3. The integrated renderer currently estimates scene exposure from rendered RGB
+   unless a lower-level function is given `source_linear_rgb`.
+4. Halation is currently added as a post-color-render screen layer, not inside a
+   full film exposure, negative-density, dye-density, and scan pipeline.
+5. Directionality is approximate: scatter is convolved symmetrically and then
+   visibility-gated, rather than simulated as fully directional light transport.
+6. `bw_density_halation` is a separate rule family, but it is still a
+   density-like screen-layer approximation, not a true B&W sensitometric model.
+7. Real-film patch calibration has not been performed, so visual defaults are
+   review targets rather than final measured truth.
+8. The GUI rules intentionally forbid some combinations that the Python resolver
+   may currently tolerate as fallbacks; product UI should enforce the stricter
+   rules.
+9. The evaluator checks useful synthetic properties, but it does not prove
+   perceptual authenticity across all real photographs or film stocks.
+10. Temporal consistency for video has not been evaluated.
+
+Detailed limitations and future work are repeated near the end of this document
+after the test and evaluation sections.
+
 ## Source References And Model Constraints
 
 This implementation is based on the project's `halationguide.md`, prior online
