@@ -29,6 +29,7 @@ resume without reading generated outputs.
 | `PHYSICAL_HALATION_V2_TRACKER.md` | Physical-prior halation V2 plan, implementation, and sweep results. |
 | `HALATION_SYSTEM_SPEC.md` | Complete halation architecture, parameter, evaluation, and GUI integration specification. |
 | `HALATION_GUI_READINESS_TRACKER.md` | Autonomous tracker for strict validation, presets, GUI schema, layer outputs, and evaluator readiness. |
+| `HALATION_REAL_PHOTO_VALIDATION_TRACKER.md` | Tracker for license-aware unpaired real-photo halation validation and display-level calibration. |
 
 ## Diffusion, LoRA, And Historical Experiments
 
