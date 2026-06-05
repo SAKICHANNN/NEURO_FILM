@@ -27,6 +27,7 @@ resume without reading generated outputs.
 | `NEURAL_LUT_RESULTS.md` | Neural LUT scaffold and MVP imitation results. |
 | `FILMFX_LAYER_RESULTS.md` | Deterministic film-effects layer results. |
 | `PHYSICAL_HALATION_V2_TRACKER.md` | Physical-prior halation V2 plan, implementation, and sweep results. |
+| `HALATION_SYSTEM_SPEC.md` | Complete halation architecture, parameter, evaluation, and GUI integration specification. |
 
 ## Diffusion, LoRA, And Historical Experiments
 
