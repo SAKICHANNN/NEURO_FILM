@@ -104,9 +104,9 @@ source of truth:
    density-like screen-layer approximation, not a true B&W sensitometric model.
 7. Real-film patch calibration has not been performed, so visual defaults are
    review targets rather than final measured truth.
-8. The GUI rules intentionally forbid some combinations that the Python resolver
-   may currently tolerate as fallbacks; product UI should enforce the stricter
-   rules.
+8. The GUI rules intentionally forbid some combinations. The default Python
+   resolver now enforces those rules in strict mode, while compatibility mode
+   can still tolerate selected fallbacks for research/debug use.
 9. The evaluator checks useful synthetic properties, but it does not prove
    perceptual authenticity across all real photographs or film stocks.
 10. Temporal consistency for video has not been evaluated.
@@ -206,6 +206,9 @@ Relevant public functions:
 | `resolve_physical_halation_controls` | `src/filmfx/halation_controls.py` | Converts locked controls to low-level kwargs. |
 | `describe_physical_halation_controls` | `src/filmfx/halation_controls.py` | Returns metadata for UI/metrics. |
 | `build_physical_halation_layer` | `src/filmfx/halation_controls.py` | Selects the correct rule-family renderer. |
+| `validate_physical_halation_controls` | `src/filmfx/halation_controls.py` | Enforces strict GUI/product type and color-response combinations. |
+| `get_halation_preset` / `list_halation_presets` | `src/filmfx/halation_controls.py` | Provides named GUI/API presets. |
+| `halation_gui_schema` | `src/filmfx/halation_controls.py` | Returns a machine-readable GUI contract. |
 | `physical_halation_layer` | `src/filmfx/effects.py` | Color-negative red/green backscatter renderer. |
 | `density_halation_layer` | `src/filmfx/effects.py` | B&W/density-domain renderer. |
 | `halation_layer` | `src/filmfx/effects.py` | Legacy/simple glow layer. |
@@ -740,6 +743,39 @@ Expected visual, not measured stock claim:
 
 ## CLI Integration
 
+### Preset-Based Physical Halation
+
+Named presets are available for GUI/API convenience:
+
+```text
+vision3_clean
+vision3_push
+cinestill_balanced
+cinestill_strong
+cinestill_amber
+classic_soft
+bw_neutral
+bw_warm
+```
+
+CLI example:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
+  --style vision3_500t `
+  --halation 1.2 `
+  --halation-model physical `
+  --halation-physics-lock `
+  --halation-preset cinestill_amber `
+  --output output.png `
+  --write-layers `
+  --write-metrics
+```
+
+`--halation` still supplies the active amount/strength for the integrated CLI.
+The preset supplies type, color response, and the other locked defaults unless
+explicit CLI flags override them.
+
 ### Basic Physical Halation
 
 ```powershell
@@ -861,6 +897,34 @@ resolved = resolve_physical_halation_controls(controls)
 metrics = layer_metrics(layer)
 ```
 
+GUI schema export:
+
+```python
+from src.filmfx import halation_gui_schema
+
+schema = halation_gui_schema()
+```
+
+CLI schema export:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\export_halation_gui_schema.py `
+  --output outputs\schema\halation_gui_schema.json
+```
+
+The schema includes:
+
+```text
+version
+model_families
+types
+color_responses
+sliders
+preview_modes
+presets
+evidence_levels
+```
+
 ## Output Artifacts
 
 Integrated renderer can write:
@@ -870,6 +934,17 @@ Integrated renderer can write:
 | output image | `--output` | Final composite. |
 | layer preview folder | `--write-layers` | Layer previews saved next to output. |
 | metrics JSON | `--write-metrics` | Bounds, layer metrics, halation metadata, and resolved kwargs. |
+
+For halation screen layers, `--write-layers` writes:
+
+```text
+<output_stem>_layers/<layer_name>.png
+<output_stem>_layers/<layer_name>_on_black.png
+<output_stem>_layers/<layer_name>_on_white.png
+```
+
+The default `<layer_name>.png` currently matches the black-background layer
+view for compatibility.
 
 Metrics contain:
 
@@ -1037,8 +1112,8 @@ Important invariants tested:
 8. `bw_density_halation` is a separate rule family, but it is still an
    uncalibrated density-like screen layer, not a real B&W sensitometric model.
 9. Some invalid GUI combinations are intentionally described as forbidden for
-   product UX even though the current Python resolver may tolerate a fallback
-   tint in the B&W family.
+   product UX. The current Python resolver enforces this by default; `strict=False`
+   can still be used to reach compatibility fallback tint behavior.
 
 ## Future Work
 
@@ -1051,10 +1126,8 @@ Recommended next steps:
    inputs.
 5. Add full density-domain insertion before display color transform.
 6. Add temporal metrics for video sequences.
-7. Add stricter GUI validation so invalid type/color-response combinations are
-   impossible to select.
-8. Optionally make invalid API combinations raise errors instead of falling back
-   silently, once GUI and CLI compatibility requirements are settled.
+7. Add GUI-side validation so invalid type/color-response combinations are
+   impossible to select before calling the renderer.
 
 ## Extreme GUI Integration Guide
 
@@ -1602,9 +1675,10 @@ negative sliders
 diffusion > 1 in normal mode
 ```
 
-Implementation note: the current Python resolver is more permissive for some
-B&W color-response inputs and may map them to a warm-neutral density fallback.
-The GUI should not expose that fallback as an intentional user-facing mode.
+Implementation note: the Python resolver enforces this in strict mode, which is
+the default path. Research code can still opt into `strict=False`, where some
+B&W color-response inputs may map to a warm-neutral density fallback. The GUI
+should not expose that fallback as an intentional user-facing mode.
 
 ### Resolved Parameter Debug Panel
 
@@ -1664,15 +1738,8 @@ final.metrics.json
 final_layers/physical_halation.png
 ```
 
-For better GUI review, add optional future exports:
-
-```text
-final_layers/halation_on_black.png
-final_layers/halation_on_white.png
-```
-
-The evaluator already writes black/white layer views; integrated renderer only
-writes the default layer preview at the moment.
+The evaluator and integrated renderer both write black/white layer views for
+halation review.
 
 ### Error Handling
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 import numpy as np
 
@@ -10,6 +10,9 @@ MODEL_FAMILY_CHOICES = ("auto", "color_negative_backscatter", "bw_density_halati
 HALATION_TYPE_CHOICES = ("auto", "vision3_ahu", "cinestill_no_remjet", "classic_dense_base", "bw_clear_base")
 COLOR_RESPONSE_CHOICES = ("red_orange_core", "deep_red", "amber_core", "neutral_density", "warm_neutral_density")
 PROFILE_CHOICES = ("vision3_500t", "cinestill_800t", "generic")
+COLOR_NEGATIVE_RESPONSES = ("red_orange_core", "deep_red", "amber_core")
+BW_DENSITY_RESPONSES = ("neutral_density", "warm_neutral_density")
+EVIDENCE_HEURISTIC = "uncalibrated_heuristic"
 
 
 @dataclass(frozen=True)
@@ -33,6 +36,17 @@ class PhysicalHalationControls:
     warm_core: float = 0.45
     background_visibility: float = 0.75
     source_normalization: str = "percentile"
+
+
+@dataclass(frozen=True)
+class HalationPreset:
+    """Named GUI/API preset for locked halation controls."""
+
+    preset_id: str
+    label: str
+    description: str
+    controls: PhysicalHalationControls
+    evidence_level: str = EVIDENCE_HEURISTIC
 
 
 def _clamp(value: float, low: float, high: float) -> float:
@@ -177,6 +191,14 @@ def _type_defaults(halation_type: str, profile: str) -> dict[str, float | str | 
     raise ValueError(f"Unsupported halation_type: {halation_type}")
 
 
+def _valid_color_responses_for_family(family: str) -> tuple[str, ...]:
+    if family == "bw_density_halation":
+        return BW_DENSITY_RESPONSES
+    if family == "color_negative_backscatter":
+        return COLOR_NEGATIVE_RESPONSES
+    raise ValueError(f"Unsupported model_family: {family}")
+
+
 def _resolve_type_and_family(controls: PhysicalHalationControls) -> tuple[str, str, dict[str, float | str | tuple[float, float, float]]]:
     if controls.model_family not in MODEL_FAMILY_CHOICES:
         raise ValueError(f"Unsupported model_family: {controls.model_family}")
@@ -188,6 +210,27 @@ def _resolve_type_and_family(controls: PhysicalHalationControls) -> tuple[str, s
         raise ValueError(f"Unsupported resolved model_family: {family}")
     halation_type = controls.halation_type if controls.halation_type != "auto" else _infer_type_from_profile(controls.profile)
     return halation_type, family, defaults
+
+
+def validate_physical_halation_controls(controls: PhysicalHalationControls, *, strict: bool = True) -> None:
+    """Validate locked halation controls.
+
+    Strict mode matches the GUI/product contract. Compatibility mode keeps
+    historical resolver fallback behavior for research use.
+    """
+
+    halation_type, family, _ = _resolve_type_and_family(controls)
+    if controls.source_normalization not in {"percentile", "none"}:
+        raise ValueError(f"Unsupported source_normalization: {controls.source_normalization}")
+    if not strict:
+        return
+    valid_responses = _valid_color_responses_for_family(family)
+    if controls.color_response not in valid_responses:
+        raise ValueError(
+            f"color_response={controls.color_response!r} is invalid for "
+            f"halation_type={halation_type!r} / model_family={family!r}; "
+            f"valid responses are {valid_responses}"
+        )
 
 
 def _color_response_modifiers(color_response: str, family: str) -> dict[str, float | tuple[float, float, float]]:
@@ -208,7 +251,10 @@ def _color_response_modifiers(color_response: str, family: str) -> dict[str, flo
     return {"green_scale": 1.0}
 
 
-def describe_physical_halation_controls(controls: PhysicalHalationControls) -> dict[str, float | str | tuple[float, float, float]]:
+def describe_physical_halation_controls(
+    controls: PhysicalHalationControls, *, strict: bool = True
+) -> dict[str, float | str | tuple[float, float, float]]:
+    validate_physical_halation_controls(controls, strict=strict)
     halation_type, family, defaults = _resolve_type_and_family(controls)
     return {
         "model_family": family,
@@ -218,7 +264,9 @@ def describe_physical_halation_controls(controls: PhysicalHalationControls) -> d
     }
 
 
-def resolve_physical_halation_controls(controls: PhysicalHalationControls) -> dict[str, float | str]:
+def resolve_physical_halation_controls(
+    controls: PhysicalHalationControls, *, strict: bool = True
+) -> dict[str, float | str | tuple[float, float, float]]:
     """Resolve locked user controls to ``physical_halation_layer`` kwargs.
 
     Locked invariants:
@@ -230,6 +278,7 @@ def resolve_physical_halation_controls(controls: PhysicalHalationControls) -> di
     - ``background_visibility`` maps only to dark-background gating.
     """
 
+    validate_physical_halation_controls(controls, strict=strict)
     _, family, defaults = _resolve_type_and_family(controls)
     color_mod = _color_response_modifiers(controls.color_response, family)
     amount = _clamp(controls.amount, 0.0, 2.4)
@@ -285,11 +334,226 @@ def resolve_physical_halation_controls(controls: PhysicalHalationControls) -> di
     }
 
 
-def build_physical_halation_layer(base_rgb: np.ndarray, controls: PhysicalHalationControls):
+HALATION_PRESETS = {
+    "vision3_clean": HalationPreset(
+        preset_id="vision3_clean",
+        label="Vision3 Clean",
+        description="Restrained Vision3/AHU-like red-orange edge behavior.",
+        controls=PhysicalHalationControls(
+            halation_type="vision3_ahu",
+            color_response="red_orange_core",
+            profile="vision3_500t",
+            amount=0.65,
+            impact=0.72,
+            anti_halation=0.10,
+            source_selectivity=0.76,
+            diffusion=0.30,
+            warm_core=0.18,
+            background_visibility=0.64,
+        ),
+    ),
+    "vision3_push": HalationPreset(
+        preset_id="vision3_push",
+        label="Vision3 Push",
+        description="Still restrained, but with a more visible pushed highlight edge.",
+        controls=PhysicalHalationControls(
+            halation_type="vision3_ahu",
+            color_response="red_orange_core",
+            profile="vision3_500t",
+            amount=0.95,
+            impact=0.86,
+            anti_halation=0.32,
+            source_selectivity=0.62,
+            diffusion=0.46,
+            warm_core=0.30,
+            background_visibility=0.70,
+        ),
+    ),
+    "cinestill_balanced": HalationPreset(
+        preset_id="cinestill_balanced",
+        label="CineStill Balanced",
+        description="No-remjet-like red/orange halation with balanced visibility.",
+        controls=PhysicalHalationControls(
+            halation_type="cinestill_no_remjet",
+            color_response="red_orange_core",
+            profile="cinestill_800t",
+            amount=1.08,
+            impact=0.86,
+            anti_halation=0.78,
+            source_selectivity=0.48,
+            diffusion=0.55,
+            warm_core=0.45,
+            background_visibility=0.78,
+        ),
+    ),
+    "cinestill_strong": HalationPreset(
+        preset_id="cinestill_strong",
+        label="CineStill Strong",
+        description="More assertive no-remjet-like halation for high-impact previews.",
+        controls=PhysicalHalationControls(
+            halation_type="cinestill_no_remjet",
+            color_response="red_orange_core",
+            profile="cinestill_800t",
+            amount=1.40,
+            impact=0.96,
+            anti_halation=1.00,
+            source_selectivity=0.36,
+            diffusion=0.70,
+            warm_core=0.60,
+            background_visibility=0.86,
+        ),
+    ),
+    "cinestill_amber": HalationPreset(
+        preset_id="cinestill_amber",
+        label="CineStill Amber",
+        description="No-remjet-like geometry with stronger amber core response.",
+        controls=PhysicalHalationControls(
+            halation_type="cinestill_no_remjet",
+            color_response="amber_core",
+            profile="cinestill_800t",
+            amount=1.20,
+            impact=0.88,
+            anti_halation=0.84,
+            source_selectivity=0.46,
+            diffusion=0.56,
+            warm_core=0.58,
+            background_visibility=0.78,
+        ),
+    ),
+    "classic_soft": HalationPreset(
+        preset_id="classic_soft",
+        label="Classic Soft",
+        description="Soft dense-base-like color negative glow.",
+        controls=PhysicalHalationControls(
+            halation_type="classic_dense_base",
+            color_response="red_orange_core",
+            profile="generic",
+            amount=1.05,
+            impact=0.82,
+            anti_halation=0.52,
+            source_selectivity=0.56,
+            diffusion=0.68,
+            warm_core=0.30,
+            background_visibility=0.70,
+        ),
+    ),
+    "bw_neutral": HalationPreset(
+        preset_id="bw_neutral",
+        label="B&W Neutral",
+        description="Neutral density-family halation for monochrome-like looks.",
+        controls=PhysicalHalationControls(
+            halation_type="bw_clear_base",
+            color_response="neutral_density",
+            profile="generic",
+            amount=1.18,
+            impact=0.84,
+            anti_halation=0.0,
+            source_selectivity=0.50,
+            diffusion=0.66,
+            warm_core=0.0,
+            background_visibility=0.76,
+        ),
+    ),
+    "bw_warm": HalationPreset(
+        preset_id="bw_warm",
+        label="B&W Warm",
+        description="Warm-neutral density-family halation.",
+        controls=PhysicalHalationControls(
+            halation_type="bw_clear_base",
+            color_response="warm_neutral_density",
+            profile="generic",
+            amount=1.18,
+            impact=0.84,
+            anti_halation=0.0,
+            source_selectivity=0.50,
+            diffusion=0.66,
+            warm_core=0.0,
+            background_visibility=0.76,
+        ),
+    ),
+}
+
+
+def get_halation_preset(preset_id: str) -> HalationPreset:
+    try:
+        return HALATION_PRESETS[preset_id]
+    except KeyError as exc:
+        choices = tuple(HALATION_PRESETS)
+        raise ValueError(f"Unsupported halation preset: {preset_id}; choices are {choices}") from exc
+
+
+def list_halation_presets() -> list[HalationPreset]:
+    return list(HALATION_PRESETS.values())
+
+
+def halation_gui_schema() -> dict:
+    """Return a machine-readable GUI contract for locked halation controls."""
+
+    sliders = {
+        "amount": {"label": "Amount", "min": 0.0, "max": 2.4, "step": 0.01, "default": 1.0},
+        "impact": {"label": "Impact", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.85},
+        "anti_halation": {"label": "Anti-Halation Loss", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.75},
+        "source_selectivity": {"label": "Source Selectivity", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.45},
+        "diffusion": {"label": "Diffusion", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.55},
+        "warm_core": {"label": "Warm Core", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.45},
+        "background_visibility": {
+            "label": "Background Visibility",
+            "min": 0.0,
+            "max": 1.0,
+            "step": 0.01,
+            "default": 0.75,
+        },
+    }
+    types = []
+    for halation_type in HALATION_TYPE_CHOICES:
+        if halation_type == "auto":
+            continue
+        defaults = _type_defaults(halation_type, "generic")
+        family = str(defaults["model_family"])
+        types.append(
+            {
+                "id": halation_type,
+                "model_family": family,
+                "valid_color_responses": list(_valid_color_responses_for_family(family)),
+                "show_sliders": [
+                    name
+                    for name in sliders
+                    if family == "color_negative_backscatter" or name not in {"anti_halation", "warm_core"}
+                ],
+                "evidence_level": EVIDENCE_HEURISTIC,
+            }
+        )
+    return {
+        "version": "halation_v2p3",
+        "model_families": [choice for choice in MODEL_FAMILY_CHOICES if choice != "auto"],
+        "types": types,
+        "color_responses": list(COLOR_RESPONSE_CHOICES),
+        "sliders": sliders,
+        "preview_modes": ["combined", "layer_black", "layer_white", "original"],
+        "presets": [
+            {
+                "id": preset.preset_id,
+                "label": preset.label,
+                "description": preset.description,
+                "controls": asdict(preset.controls),
+                "metadata": describe_physical_halation_controls(preset.controls),
+                "evidence_level": preset.evidence_level,
+            }
+            for preset in list_halation_presets()
+        ],
+        "evidence_levels": {
+            "presets": EVIDENCE_HEURISTIC,
+            "slider_ranges": EVIDENCE_HEURISTIC,
+            "valid_combinations": "code_fact",
+        },
+    }
+
+
+def build_physical_halation_layer(base_rgb: np.ndarray, controls: PhysicalHalationControls, *, strict: bool = True):
     """Build a halation layer from locked controls and its resolved rule family."""
 
     _, family, _ = _resolve_type_and_family(controls)
-    resolved = resolve_physical_halation_controls(controls)
+    resolved = resolve_physical_halation_controls(controls, strict=strict)
     if family == "bw_density_halation":
         from .effects import density_halation_layer
 

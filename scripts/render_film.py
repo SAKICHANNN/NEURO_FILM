@@ -26,6 +26,7 @@ from src.filmfx import (  # noqa: E402
     halation_layer,
     layer_metrics,
     physical_halation_layer,
+    get_halation_preset,
     resolve_physical_halation_controls,
 )
 
@@ -42,6 +43,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
     parser.add_argument("--halation-model", choices=("simple", "physical"), default="simple")
+    parser.add_argument("--halation-preset", default=None)
     parser.add_argument("--halation-model-family", choices=("auto", "color_negative_backscatter", "bw_density_halation"), default="auto")
     parser.add_argument(
         "--halation-type",
@@ -51,19 +53,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--halation-color-response",
         choices=("red_orange_core", "deep_red", "amber_core", "neutral_density", "warm_neutral_density"),
-        default="red_orange_core",
+        default=None,
     )
-    parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default="cinestill_800t")
+    parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default=None)
     parser.add_argument("--halation-control-mode", choices=("locked", "expert"), default="locked")
     parser.add_argument("--halation-physics-lock", dest="halation_control_mode", action="store_const", const="locked")
     parser.add_argument("--halation-expert-controls", dest="halation_control_mode", action="store_const", const="expert")
     parser.add_argument("--halation-amount", type=float, default=None)
-    parser.add_argument("--halation-impact", type=float, default=0.85)
-    parser.add_argument("--halation-anti-halation", type=float, default=0.75)
-    parser.add_argument("--halation-source-selectivity", type=float, default=0.45)
-    parser.add_argument("--halation-diffusion", type=float, default=0.55)
-    parser.add_argument("--halation-warm-core", type=float, default=0.45)
-    parser.add_argument("--halation-background-visibility", type=float, default=0.75)
+    parser.add_argument("--halation-impact", type=float, default=None)
+    parser.add_argument("--halation-anti-halation", type=float, default=None)
+    parser.add_argument("--halation-source-selectivity", type=float, default=None)
+    parser.add_argument("--halation-diffusion", type=float, default=None)
+    parser.add_argument("--halation-warm-core", type=float, default=None)
+    parser.add_argument("--halation-background-visibility", type=float, default=None)
     parser.add_argument("--halation-source-normalization", choices=("percentile", "none"), default="percentile")
     parser.add_argument("--halation-source-limiter", type=float, default=2.0)
     parser.add_argument("--halation-local-diffusion", type=float, default=1.0)
@@ -87,6 +89,24 @@ def load_image(path: Path) -> Image.Image:
 def save_rgb(rgb: np.ndarray, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     Image.fromarray(np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8), mode="RGB").save(path, "PNG")
+
+
+def _arg_or(value, fallback):
+    return fallback if value is None else value
+
+
+def layer_on_black(layer) -> np.ndarray:
+    alpha = layer.alpha
+    if alpha.ndim == 2:
+        alpha = alpha[..., None]
+    return np.clip(layer.rgb * alpha, 0.0, 1.0)
+
+
+def layer_on_white(layer) -> np.ndarray:
+    alpha = layer.alpha
+    if alpha.ndim == 2:
+        alpha = alpha[..., None]
+    return np.clip(1.0 * (1.0 - alpha) + layer.rgb * alpha, 0.0, 1.0)
 
 
 def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Image:
@@ -121,23 +141,36 @@ def main() -> int:
     layers = []
     halation_resolved = None
     halation_metadata = None
+    halation_preset_id = None
     if args.grain > 0:
         layers.append(grain_residual_layer(base, strength=args.grain, seed=args.seed, color=args.style not in {"hp5", "tri_x_400"}))
     if args.halation > 0:
         if args.halation_model == "physical":
             if args.halation_control_mode == "locked":
+                base_controls = (
+                    get_halation_preset(args.halation_preset).controls
+                    if args.halation_preset
+                    else PhysicalHalationControls()
+                )
+                halation_preset_id = args.halation_preset
                 controls = PhysicalHalationControls(
-                    model_family=args.halation_model_family,
-                    halation_type=args.halation_type,
-                    color_response=args.halation_color_response,
-                    profile=args.halation_profile,
+                    model_family=base_controls.model_family
+                    if args.halation_model_family == "auto"
+                    else args.halation_model_family,
+                    halation_type=base_controls.halation_type
+                    if args.halation_type == "auto"
+                    else args.halation_type,
+                    color_response=_arg_or(args.halation_color_response, base_controls.color_response),
+                    profile=_arg_or(args.halation_profile, base_controls.profile),
                     amount=args.halation if args.halation_amount is None else args.halation_amount,
-                    impact=args.halation_impact,
-                    anti_halation=args.halation_anti_halation,
-                    source_selectivity=args.halation_source_selectivity,
-                    diffusion=args.halation_diffusion,
-                    warm_core=args.halation_warm_core,
-                    background_visibility=args.halation_background_visibility,
+                    impact=_arg_or(args.halation_impact, base_controls.impact),
+                    anti_halation=_arg_or(args.halation_anti_halation, base_controls.anti_halation),
+                    source_selectivity=_arg_or(args.halation_source_selectivity, base_controls.source_selectivity),
+                    diffusion=_arg_or(args.halation_diffusion, base_controls.diffusion),
+                    warm_core=_arg_or(args.halation_warm_core, base_controls.warm_core),
+                    background_visibility=_arg_or(
+                        args.halation_background_visibility, base_controls.background_visibility
+                    ),
                     source_normalization=args.halation_source_normalization,
                 )
                 halation_resolved = resolve_physical_halation_controls(controls)
@@ -146,10 +179,10 @@ def main() -> int:
             else:
                 no_remjet = None if args.halation_no_remjet < 0 else args.halation_no_remjet
                 halation_resolved = {
-                    "profile": args.halation_profile,
+                    "profile": _arg_or(args.halation_profile, "cinestill_800t"),
                     "source_normalization": args.halation_source_normalization,
                     "amplify": args.halation if args.halation_amount is None else args.halation_amount,
-                    "impact": args.halation_impact,
+                    "impact": _arg_or(args.halation_impact, 0.85),
                     "source_limiter_stops": args.halation_source_limiter,
                     "local_diffusion": args.halation_local_diffusion,
                     "global_diffusion": args.halation_global_diffusion,
@@ -177,8 +210,11 @@ def main() -> int:
             if layer.mode == "residual":
                 view = np.clip(0.5 + layer.residual * 8.0, 0.0, 1.0)
             else:
-                view = layer.rgb * layer.alpha
+                view = layer_on_black(layer)
             save_rgb(view, layer_dir / f"{layer.name}.png")
+            if layer.name in {"halation", "physical_halation", "density_halation"} and layer.mode == "screen":
+                save_rgb(layer_on_black(layer), layer_dir / f"{layer.name}_on_black.png")
+                save_rgb(layer_on_white(layer), layer_dir / f"{layer.name}_on_white.png")
     if args.write_metrics:
         arr = np.rint(out * 255.0).astype(np.uint8)
         metrics = {
@@ -190,6 +226,7 @@ def main() -> int:
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],
             "halation_control_mode": args.halation_control_mode if halation_resolved else None,
+            "halation_preset": halation_preset_id,
             "halation_metadata": halation_metadata,
             "halation_resolved": halation_resolved,
         }

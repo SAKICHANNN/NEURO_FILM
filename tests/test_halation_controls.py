@@ -1,6 +1,17 @@
 from __future__ import annotations
 
-from src.filmfx import PhysicalHalationControls, resolve_physical_halation_controls
+import numpy as np
+import pytest
+
+from src.filmfx import (
+    PhysicalHalationControls,
+    build_physical_halation_layer,
+    get_halation_preset,
+    halation_gui_schema,
+    list_halation_presets,
+    resolve_physical_halation_controls,
+    validate_physical_halation_controls,
+)
 
 
 def changed_keys(left: dict, right: dict) -> set[str]:
@@ -77,3 +88,53 @@ def test_bw_density_family_uses_neutral_rule_surface() -> None:
     assert "hue_green" not in resolved
     assert "no_remjet" not in resolved
     assert "profile" not in resolved
+
+
+def test_strict_validation_rejects_invalid_color_family_combinations() -> None:
+    with pytest.raises(ValueError):
+        validate_physical_halation_controls(
+            PhysicalHalationControls(halation_type="bw_clear_base", color_response="amber_core")
+        )
+    with pytest.raises(ValueError):
+        validate_physical_halation_controls(
+            PhysicalHalationControls(halation_type="cinestill_no_remjet", color_response="neutral_density")
+        )
+
+
+def test_compat_validation_preserves_bw_fallback() -> None:
+    resolved = resolve_physical_halation_controls(
+        PhysicalHalationControls(halation_type="bw_clear_base", color_response="amber_core"),
+        strict=False,
+    )
+
+    assert resolved["density_tint"] == (1.0, 0.98, 0.92)
+
+
+def test_all_halation_presets_resolve_and_build_layers() -> None:
+    base = np.zeros((48, 64, 3), dtype=np.float32)
+    base[18:28, 28:38, :] = 1.0
+
+    for preset in list_halation_presets():
+        controls = get_halation_preset(preset.preset_id).controls
+        validate_physical_halation_controls(controls)
+        resolved = resolve_physical_halation_controls(controls)
+        layer = build_physical_halation_layer(base, controls)
+
+        assert resolved["amplify"] == controls.amount
+        assert layer.alpha.shape == (48, 64, 1)
+        assert layer.rgb.shape == base.shape
+
+
+def test_halation_gui_schema_contains_only_valid_combinations() -> None:
+    schema = halation_gui_schema()
+
+    assert schema["version"] == "halation_v2p3"
+    assert "sliders" in schema
+    assert "presets" in schema
+    assert {preset["id"] for preset in schema["presets"]} >= {"cinestill_amber", "bw_neutral"}
+    for type_info in schema["types"]:
+        controls = PhysicalHalationControls(
+            halation_type=type_info["id"],
+            color_response=type_info["valid_color_responses"][0],
+        )
+        validate_physical_halation_controls(controls)

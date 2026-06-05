@@ -4,7 +4,7 @@
 >
 > Branch: `research/physical-halation-v2p2-calibration`
 >
-> Status: planned
+> Status: Orders 1-5 implemented on 2026-06-06
 >
 > Goal: turn the V2.3 halation research implementation into a safer,
 > GUI-ready subsystem with strict validation, presets, schema export,
@@ -79,11 +79,11 @@ The first five tasks are the highest-value GUI-readiness work.
 
 | Order | Task | Status | Depends On | Completion Test |
 |:---:|------|:---:|------------|-----------------|
-| 1 | Strict validation layer | planned | V2.3 controls | invalid GUI combinations fail in strict mode and existing compatible paths can still opt into fallback |
-| 2 | Halation preset system | planned | Order 1 | named presets resolve to `PhysicalHalationControls` and are covered by tests |
-| 3 | GUI schema / contract JSON | planned | Order 1, 2 | schema describes valid types, responses, slider ranges, defaults, visibility rules, evidence levels |
-| 4 | Integrated renderer black/white layer outputs | planned | Order 1 | `--write-layers` exports default layer, layer-on-black, and layer-on-white previews |
-| 5 | More halation control tests | planned | Order 1-4 | pytest covers strict validation, presets, schema, output metadata, and family invariants |
+| 1 | Strict validation layer | done | V2.3 controls | invalid GUI combinations fail in strict mode and existing compatible paths can still opt into fallback |
+| 2 | Halation preset system | done | Order 1 | named presets resolve to `PhysicalHalationControls` and are covered by tests |
+| 3 | GUI schema / contract JSON | done | Order 1, 2 | schema describes valid types, responses, slider ranges, defaults, visibility rules, evidence levels |
+| 4 | Integrated renderer black/white layer outputs | done | Order 1 | `--write-layers` exports default layer, layer-on-black, and layer-on-white previews |
+| 5 | More halation control tests | done | Order 1-4 | pytest covers strict validation, presets, schema, output metadata, and family invariants |
 | 6 | Family-specific evaluator | planned | Order 2, 5 | new or extended evaluator checks family and color-response behavior across diagnostic scenes |
 | 7 | Source-linear sidecar support | planned | Order 1 | integrated renderer can accept `--halation-source-linear-npy` for RAW/HDR/synthetic exposure input |
 | 8 | Arbitrary halation contact-sheet helper | planned | Order 4 | script can build four-column sheets from existing render/layer outputs |
@@ -94,6 +94,16 @@ The first five tasks are the highest-value GUI-readiness work.
 | 13 | Performance preview optimization | deferred | after GUI path exists | reduced-resolution preview or cache path improves latency without changing full-res output |
 
 ## Order 1: Strict Validation Layer
+
+Status: done on 2026-06-06.
+
+Implemented:
+
+- `validate_physical_halation_controls(controls, strict=True)`.
+- `resolve_physical_halation_controls(..., strict=True)`.
+- `build_physical_halation_layer(..., strict=True)`.
+- Strict mode rejects GUI-invalid type/color-response combinations.
+- Compatibility mode keeps the B&W fallback tint behavior with `strict=False`.
 
 ### Problem
 
@@ -146,6 +156,35 @@ type=classic_dense_base + color_response=neutral_density
 
 ## Order 2: Halation Preset System
 
+Status: done on 2026-06-06.
+
+Implemented presets:
+
+```text
+vision3_clean
+vision3_push
+cinestill_balanced
+cinestill_strong
+cinestill_amber
+classic_soft
+bw_neutral
+bw_warm
+```
+
+Public helpers:
+
+```python
+get_halation_preset(...)
+list_halation_presets()
+HALATION_PRESETS
+```
+
+CLI:
+
+```powershell
+--halation-preset cinestill_amber
+```
+
 ### Problem
 
 GUI should not have to hard-code all recommended defaults from the spec.
@@ -194,6 +233,19 @@ individual values.
 - Presets are listed in GUI schema from Order 3.
 
 ## Order 3: GUI Schema / Contract JSON
+
+Status: done on 2026-06-06.
+
+Implemented:
+
+- `halation_gui_schema()` in `src/filmfx/halation_controls.py`.
+- `scripts/export_halation_gui_schema.py`.
+
+Smoke output:
+
+```text
+outputs/schema/halation_gui_schema.json
+```
 
 ### Problem
 
@@ -246,6 +298,27 @@ schema under `configs/` is more appropriate. Decide based on repo pattern.
 
 ## Order 4: Integrated Renderer Black/White Layer Outputs
 
+Status: done on 2026-06-06.
+
+Implemented for halation screen layers:
+
+```text
+<layer_name>.png
+<layer_name>_on_black.png
+<layer_name>_on_white.png
+```
+
+Smoke outputs:
+
+```text
+outputs/integration/render_film_halation_preset_schema_smoke_layers/physical_halation.png
+outputs/integration/render_film_halation_preset_schema_smoke_layers/physical_halation_on_black.png
+outputs/integration/render_film_halation_preset_schema_smoke_layers/physical_halation_on_white.png
+outputs/integration/render_film_halation_bw_preset_schema_smoke_layers/density_halation.png
+outputs/integration/render_film_halation_bw_preset_schema_smoke_layers/density_halation_on_black.png
+outputs/integration/render_film_halation_bw_preset_schema_smoke_layers/density_halation_on_white.png
+```
+
 ### Problem
 
 The evaluator writes layer-on-black and layer-on-white views, but
@@ -271,6 +344,22 @@ Only halation-like screen layers need the extra black/white exports.
 - Existing non-halation layers are not broken.
 
 ## Order 5: More Halation Control Tests
+
+Status: done on 2026-06-06.
+
+Implemented test coverage in `tests/test_halation_controls.py`:
+
+- strict validation rejects invalid family/color combinations;
+- compatibility mode preserves B&W fallback;
+- every preset resolves and builds a layer;
+- schema has required keys and valid combinations;
+- previous slider invariants remain covered.
+
+Latest targeted result:
+
+```text
+tests/test_halation_controls.py: 11 passed
+```
 
 ### Problem
 
