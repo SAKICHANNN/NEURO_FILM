@@ -64,6 +64,27 @@ The current implementation is still a simplified post-color-render layer. The
 longer-term ideal remains to insert halation in a fuller exposure/density/scan
 pipeline.
 
+## Truth Level / Evidence Level
+
+This document is an engineering specification for the current renderer. It is
+not a claim that the current numeric constants are fully measured film physics.
+
+Use the following evidence levels when reading or extending this document:
+
+| Level | Meaning | Examples In This Document |
+|-------|---------|---------------------------|
+| Code fact | Directly true of the checked-in implementation. | `PhysicalHalationControls` fields, CLI flags, function names, generated output paths, tested invariants. |
+| Measured project result | Produced by local scripts and recorded in repo outputs/metrics. | V2.3 alpha/visible metrics, physics-suite radius monotonicity, contact-sheet paths. |
+| External-source-supported claim | Supported by Kodak/CineStill/Dehancer references, but not necessarily measured inside this repo. | Anti-halation backing suppresses reflected light; no-remjet-like stocks can show stronger halation; Amplify and Impact should be separate controls. |
+| Physically motivated model assumption | Reasonable model form derived from prompt/references, but simplified. | Red-layer-dominant color-negative backscatter; green-layer strong-core coupling; visible radius grows by threshold crossing. |
+| Uncalibrated heuristic | Current numeric choice made for stable visual behavior, not fitted to real film patches. | Type-specific slider ranges, kernel weights, alpha caps, source threshold ranges, density tint values. |
+| Future ideal | Desired architecture not yet implemented. | Full negative density / dye-density / scan transform; real-film patch calibration; RAW/HDR source exposure path in integrated renderer. |
+
+When this document says a type is "Vision3-like", "CineStill-like",
+"classic", or "B&W", it describes the intended rule-family behavior and current
+heuristic parameter envelope. It does not mean the renderer has been calibrated
+against measured samples of that exact stock.
+
 ## Source References And Model Constraints
 
 This implementation is based on the project's `halationguide.md`, prior online
@@ -116,6 +137,11 @@ r_vis ~= lambda * log(A * alpha * E_s / T)
 This is why `amount` may visually expand the halo but must not directly edit
 the blur radius. The tail becomes visible; the physical kernel is not being
 linearly stretched by source brightness.
+
+The equations above are model constraints, not a fitted film stock transfer
+function. They protect the qualitative relationship between source exposure,
+kernel tails, and visible radius, while leaving numeric calibration for future
+real-film patch fitting.
 
 ## Architecture
 
@@ -310,6 +336,11 @@ Detailed behavior:
 | `classic_dense_base` | `color_negative_backscatter` | Softer classic negative / dense-base behavior. | Softer, more diffuse, less aggressive than no-remjet. |
 | `bw_clear_base` | `bw_density_halation` | B&W / clear-base density glow. | Neutral or warm-neutral glow, no red/green-layer law. |
 
+These modes are current model categories, not measured stock definitions. Their
+names indicate the intended physical behavior envelope used by the renderer.
+The numeric ranges below are uncalibrated heuristics until real-film patch
+fitting is added.
+
 ### `halation_color_response`
 
 CLI/API values:
@@ -344,6 +375,11 @@ arbitrary hue wheel
 Reason: blue/cyan/purple glow is usually bloom, lens flare, sensor flare, or
 creative optical scatter, not physically constrained film-base halation in this
 model.
+
+This is a product/GUI rule. The renderer is intentionally conservative, but the
+GUI should still enforce valid combinations before calling the renderer so users
+do not create settings that look physically meaningful while actually relying on
+fallback behavior.
 
 ## Locked Slider Surface
 
@@ -585,6 +621,11 @@ Recommendation:
 
 These are internal ranges used by `resolve_physical_halation_controls`.
 
+Evidence level: code fact for the current resolver values; uncalibrated
+heuristic for any claim that the numbers match real film. These ranges were
+chosen to preserve the intended behavior ordering and produce reviewable
+outputs, not to serve as measured stock data.
+
 ### `vision3_ahu`
 
 | Resolved Field | Range / Value |
@@ -600,7 +641,7 @@ These are internal ranges used by `resolve_physical_halation_controls`.
 | `source_gamma` | 1.48 |
 | `output_alpha_cap` | 0.20 |
 
-Expected visual:
+Expected visual, not measured stock claim:
 
 - very restrained;
 - high trigger threshold;
@@ -622,7 +663,7 @@ Expected visual:
 | `source_gamma` | 1.45 |
 | `output_alpha_cap` | 0.32 |
 
-Expected visual:
+Expected visual, not measured stock claim:
 
 - strong red/orange halation;
 - especially visible around bright light on dark backgrounds;
@@ -643,7 +684,7 @@ Expected visual:
 | `source_gamma` | 1.36 |
 | `output_alpha_cap` | 0.24 |
 
-Expected visual:
+Expected visual, not measured stock claim:
 
 - softer and more diffuse;
 - less aggressive than no-remjet;
@@ -662,7 +703,7 @@ Expected visual:
 | `density_tint` | from color response |
 | `output_alpha_cap` | 0.28 |
 
-Expected visual:
+Expected visual, not measured stock claim:
 
 - neutral or warm density glow;
 - no red/green hue-radius curve;
@@ -964,6 +1005,11 @@ Important invariants tested:
 6. Video temporal consistency is not evaluated.
 7. Layer output is screen-composited; a future density pipeline may need a
    different compositor or pre-display working space.
+8. `bw_density_halation` is a separate rule family, but it is still an
+   uncalibrated density-like screen layer, not a real B&W sensitometric model.
+9. Some invalid GUI combinations are intentionally described as forbidden for
+   product UX even though the current Python resolver may tolerate a fallback
+   tint in the B&W family.
 
 ## Future Work
 
@@ -978,6 +1024,8 @@ Recommended next steps:
 6. Add temporal metrics for video sequences.
 7. Add stricter GUI validation so invalid type/color-response combinations are
    impossible to select.
+8. Optionally make invalid API combinations raise errors instead of falling back
+   silently, once GUI and CLI compatibility requirements are settled.
 
 ## Extreme GUI Integration Guide
 
@@ -1515,7 +1563,7 @@ if type in vision3_ahu, cinestill_no_remjet, classic_dense_base:
   show warmCore
 ```
 
-Do not permit:
+Do not permit in the GUI:
 
 ```text
 type=bw_clear_base + colorResponse=amber_core
@@ -1524,6 +1572,10 @@ arbitrary hue color picker
 negative sliders
 diffusion > 1 in normal mode
 ```
+
+Implementation note: the current Python resolver is more permissive for some
+B&W color-response inputs and may map them to a warm-neutral density fallback.
+The GUI should not expose that fallback as an intentional user-facing mode.
 
 ### Resolved Parameter Debug Panel
 
