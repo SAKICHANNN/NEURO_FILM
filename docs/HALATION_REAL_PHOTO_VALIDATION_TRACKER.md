@@ -2,9 +2,9 @@
 
 > Created: 2026-06-06
 >
-> Branch: `research/physical-halation-v2p2-calibration`
+> Branch: `research/halation-real-photo-validation-v1`
 >
-> Status: planned
+> Status: V1 implemented, measured, not adopted as defaults
 >
 > Goal: add a license-aware, unpaired real-photo validation and display-level
 > statistical calibration path for the V2.3 halation renderer.
@@ -231,16 +231,127 @@ Order 10: Documentation and evidence-level update
 
 | Order | Task | Status | Depends On | Completion Test |
 |:---:|------|:---:|------------|-----------------|
-| 1 | Source/license audit plan | planned | none | candidate source list has license policy and allowed actions |
-| 2 | Source manifest builder | planned | Order 1 | writes manifest with URL/license/stock/use fields |
-| 3 | Download/cache policy implementation | planned | Order 2 | only allowed assets are downloaded; URL-only entries are skipped |
-| 4 | Real-photo patch miner | planned | Order 3 | produces candidate patches and confidence scores |
-| 5 | Real patch metrics | planned | Order 4 | writes real patch metrics JSON |
-| 6 | Simulator patch generation | planned | Order 5 | renders comparable simulator outputs for patch/source classes |
-| 7 | Alignment report/contact sheets | planned | Order 5, 6 | writes JSON summary, report, and contact sheets |
-| 8 | Parameter suggestion pass | planned | Order 7 | proposes heuristic range changes without modifying defaults |
-| 9 | Optional parameter update experiment | planned | Order 8 | branch/flagged experiment produces before/after contact sheets |
-| 10 | Evidence/documentation update | planned | Order 7-9 | spec/tracker records what was measured vs inferred |
+| 1 | Source/license audit plan | done | none | candidate source list has license policy and allowed actions |
+| 2 | Source manifest builder | done | Order 1 | writes manifest with URL/license/stock/use fields |
+| 3 | Download/cache policy implementation | done | Order 2 | only allowed assets are downloaded; URL-only entries are skipped |
+| 4 | Real-photo patch miner | done | Order 3 | produces candidate patches and confidence scores |
+| 5 | Real patch metrics | done | Order 4 | writes real patch metrics JSON |
+| 6 | Simulator patch generation | done | Order 5 | renders comparable simulator outputs for patch/source classes |
+| 7 | Alignment report/contact sheets | done | Order 5, 6 | writes JSON summary, report, and contact sheets |
+| 8 | Parameter suggestion pass | done | Order 7 | proposes heuristic range changes without modifying defaults |
+| 9 | Optional parameter update experiment | deferred | Order 8 | branch/flagged experiment produces before/after contact sheets |
+| 10 | Evidence/documentation update | done | Order 7-9 | spec/tracker records what was measured vs inferred |
+
+## V1 Execution Result
+
+Date: 2026-06-07
+
+Branch:
+
+```text
+research/halation-real-photo-validation-v1
+```
+
+Committed source files:
+
+```text
+scripts/build_halation_real_photo_manifest.py
+scripts/mine_halation_patches.py
+scripts/evaluate_halation_real_photo_alignment.py
+scripts/README.md
+docs/HALATION_REAL_PHOTO_VALIDATION_TRACKER.md
+```
+
+Generated outputs, intentionally ignored by git:
+
+```text
+outputs/eval/halation_real_photo_v1/
+  sources_manifest.csv
+  source_audit.json
+  downloaded/
+  patches/
+    real/
+    simulated/
+  metrics/
+    real_patch_metrics.json
+    simulated_patch_metrics.json
+    alignment_summary.json
+    parameter_suggestions.json
+  contact_sheets/
+    real_patches_contact_sheet.png
+    alignment_contact_sheet.png
+  report.md
+```
+
+Commands used for the final V1 run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_halation_real_photo_manifest.py `
+  --output-root outputs\eval\halation_real_photo_v1 `
+  --max-pages 8 `
+  --download `
+  --max-downloads 8 `
+  --search 'Kodak Vision3 500T night' `
+  --search 'Kodak Vision3 500T lights'
+
+.\.venv\Scripts\python.exe scripts\mine_halation_patches.py `
+  --manifest outputs\eval\halation_real_photo_v1\sources_manifest.csv `
+  --output-root outputs\eval\halation_real_photo_v1 `
+  --max-patches 36 `
+  --max-patches-per-source 4 `
+  --threshold-percentile 99.25 `
+  --min-confidence 0.30
+
+.\.venv\Scripts\python.exe scripts\evaluate_halation_real_photo_alignment.py `
+  --metrics outputs\eval\halation_real_photo_v1\metrics\real_patch_metrics.json `
+  --output-root outputs\eval\halation_real_photo_v1 `
+  --max-real-patches 10
+```
+
+Measured V1 summary:
+
+| Item | Value |
+|------|------:|
+| Manifest rows | 15 |
+| Locally cached analysis images | 10 |
+| Accepted candidate patches | 13 |
+| Real patches used in alignment | 10 |
+| Simulated preset patches | 60 |
+
+The most useful autonomous sources were Wikimedia Commons files whose pages or
+categories state Kodak Vision3 500T and whose licenses permit local analysis.
+Kodak, CineStill, and Dehancer pages were retained as citation/reference rows
+only, not downloaded as image data.
+
+Observed result:
+
+- The first naive miner accepted false positives from bright sky, snow, and
+  tree branches. This was rejected after visual contact-sheet review.
+- The final miner requires dark/medium surroundings, red-orange outer response
+  or orange core, warm source evidence, source de-duplication, and a per-source
+  patch cap.
+- The remaining accepted set still contains imperfect candidates. It should be
+  treated as a display-level candidate set, not ground truth.
+- Current physical presets, especially weak/mid Vision3 and balanced CineStill,
+  measured smaller visible radii than the candidate real patches. The script
+  therefore suggests testing higher diffusion before changing amount.
+- The same comparison also suggests testing warmer outer response, but this is
+  not strong enough to change defaults because the real patch set is small and
+  unpaired.
+
+Rollback and safety:
+
+- No halation defaults were changed.
+- No downloaded photos or contact sheets were committed.
+- The whole experiment can be discarded by switching away from or deleting
+  `research/halation-real-photo-validation-v1`.
+
+Manual decision still needed:
+
+- Whether the accepted real patch contact sheet is visually trustworthy enough
+  to justify a follow-up experimental preset.
+- Whether to provide or approve a stronger curated film-scan dataset for true
+  held-out validation.
 
 ## Order 1: Source/license Audit Plan
 

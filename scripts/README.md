@@ -55,6 +55,9 @@ files.
 | `evaluate_physical_halation_v2.py` | Evaluate physical-prior halation V2/V2.3 expert, locked-control, or rule-family sweeps and contact sheets. |
 | `evaluate_halation_physics_suite.py` | Run synthetic halation radius, hue, background, and blue-leakage checks. |
 | `export_halation_gui_schema.py` | Export machine-readable locked halation GUI schema, presets, valid combinations, and slider contract. |
+| `build_halation_real_photo_manifest.py` | Build a license-aware Commons/citation manifest and optional ignored local analysis cache for real-photo halation validation. |
+| `mine_halation_patches.py` | Mine candidate real-photo halation patches, metrics, and review contact sheets from the manifest. |
+| `evaluate_halation_real_photo_alignment.py` | Compare mined display-level patch statistics with current physical halation presets and write alignment contact sheets/reports. |
 | `smoke_chroma_residual.py` | Smoke test bounded chroma residual module. |
 
 ## Data And Stats
