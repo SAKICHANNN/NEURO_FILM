@@ -239,7 +239,7 @@ Order 10: Documentation and evidence-level update
 | 6 | Simulator patch generation | done | Order 5 | renders comparable simulator outputs for patch/source classes |
 | 7 | Alignment report/contact sheets | done | Order 5, 6 | writes JSON summary, report, and contact sheets |
 | 8 | Parameter suggestion pass | done | Order 7 | proposes heuristic range changes without modifying defaults |
-| 9 | Optional parameter update experiment | deferred | Order 8 | branch/flagged experiment produces before/after contact sheets |
+| 9 | Optional parameter update experiment | done | Order 8 | branch/flagged experiment produces before/after contact sheets |
 | 10 | Evidence/documentation update | done | Order 7-9 | spec/tracker records what was measured vs inferred |
 
 ## V1 Execution Result
@@ -338,6 +338,28 @@ Observed result:
 - The same comparison also suggests testing warmer outer response, but this is
   not strong enough to change defaults because the real patch set is small and
   unpaired.
+
+Experimental parameter follow-up:
+
+- Added `realphoto_v1_wide` as a separate preset, not as a default replacement.
+- Evidence level: `display_level_unpaired_real_photo_v1_experimental`.
+- The preset primarily pushes `diffusion` to the current locked upper bound,
+  raises scattered exposure (`amount`) enough to make the wider tail visible,
+  lowers `source_selectivity`, and warms the color response.
+- It uses the existing locked `cinestill_no_remjet` / `amber_core` rule family
+  because the V1 candidate set suggests wider visible red-orange spread than
+  the earlier conservative presets. This is still not a stock constant.
+- A small display-level grid search over the accepted V1 candidate patches
+  selected this point because it brought median visible radius close to the
+  candidate median without changing the renderer's physical-rule family.
+
+Resolved comparison against nearby presets:
+
+| Preset | local_diffusion | global_diffusion | Red sigmas |
+|--------|----------------:|-----------------:|------------|
+| `cinestill_amber` | 1.398 | 0.266 | 2.8, 11.2, 25.2, 72.7 |
+| `cinestill_strong` | 1.510 | 0.302 | 3.0, 12.1, 27.2, 78.5 |
+| `realphoto_v1_wide` | 1.750 | 0.380 | 3.5, 14.0, 31.5, 91.0 |
 
 Rollback and safety:
 

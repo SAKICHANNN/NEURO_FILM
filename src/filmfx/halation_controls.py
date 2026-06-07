@@ -13,6 +13,7 @@ PROFILE_CHOICES = ("vision3_500t", "cinestill_800t", "generic")
 COLOR_NEGATIVE_RESPONSES = ("red_orange_core", "deep_red", "amber_core")
 BW_DENSITY_RESPONSES = ("neutral_density", "warm_neutral_density")
 EVIDENCE_HEURISTIC = "uncalibrated_heuristic"
+EVIDENCE_REALPHOTO_V1 = "display_level_unpaired_real_photo_v1_experimental"
 
 
 @dataclass(frozen=True)
@@ -419,6 +420,27 @@ HALATION_PRESETS = {
             warm_core=0.58,
             background_visibility=0.78,
         ),
+    ),
+    "realphoto_v1_wide": HalationPreset(
+        preset_id="realphoto_v1_wide",
+        label="Real Photo V1 Wide",
+        description=(
+            "Experimental unpaired real-photo V1 alignment with wider diffusion "
+            "and warmer outer response; not a physical stock calibration."
+        ),
+        controls=PhysicalHalationControls(
+            halation_type="cinestill_no_remjet",
+            color_response="amber_core",
+            profile="cinestill_800t",
+            amount=2.00,
+            impact=0.96,
+            anti_halation=1.00,
+            source_selectivity=0.18,
+            diffusion=1.00,
+            warm_core=0.82,
+            background_visibility=0.96,
+        ),
+        evidence_level=EVIDENCE_REALPHOTO_V1,
     ),
     "classic_soft": HalationPreset(
         preset_id="classic_soft",
