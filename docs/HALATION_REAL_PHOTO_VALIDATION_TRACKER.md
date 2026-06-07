@@ -339,39 +339,46 @@ Observed result:
   not strong enough to change defaults because the real patch set is small and
   unpaired.
 
-Experimental parameter follow-up:
+Preset-wide parameter follow-up:
 
-- Added `realphoto_v1_wide` as a separate preset, not as a default replacement.
-- Evidence level: `display_level_unpaired_real_photo_v1_experimental`.
-- The preset primarily pushes `diffusion` to the current locked upper bound,
-  raises scattered exposure (`amount`) enough to make the wider tail visible,
-  lowers `source_selectivity`, and warms the color response.
-- It uses the existing locked `cinestill_no_remjet` / `amber_core` rule family
-  because the V1 candidate set suggests wider visible red-orange spread than
-  the earlier conservative presets. This is still not a stock constant.
-- A small display-level grid search over the accepted V1 candidate patches
-  selected this point because it brought median visible radius close to the
-  candidate median without changing the renderer's physical-rule family.
+- The first follow-up added a standalone `realphoto_v1_wide` preset. That was
+  rejected as the wrong product shape.
+- The final follow-up removes that standalone preset and enhances the existing
+  preset family instead.
+- The renderer's physical-rule families are unchanged. The update only changes
+  preset values within the existing locked control surface.
+- The adjustment mainly increases `diffusion`, lowers `source_selectivity`, and
+  moderately increases visible scattered exposure/background visibility.
+- The relative hierarchy is preserved: Vision3 remains restrained, CineStill
+  receives the strongest visible expansion, classic color negative stays soft,
+  and B&W remains density-like rather than red/orange.
 
-Resolved comparison against nearby presets:
+Resolved post-update comparison:
 
-| Preset | local_diffusion | global_diffusion | Red sigmas |
-|--------|----------------:|-----------------:|------------|
-| `cinestill_amber` | 1.398 | 0.266 | 2.8, 11.2, 25.2, 72.7 |
-| `cinestill_strong` | 1.510 | 0.302 | 3.0, 12.1, 27.2, 78.5 |
-| `realphoto_v1_wide` | 1.750 | 0.380 | 3.5, 14.0, 31.5, 91.0 |
+| Preset | local_diffusion | global_diffusion | Effective sigmas |
+|--------|----------------:|-----------------:|------------------|
+| `vision3_clean` | 0.901 | 0.091 | 1.8, 7.2, 16.2, 46.8 |
+| `vision3_push` | 0.987 | 0.110 | 2.0, 7.9, 17.8, 51.3 |
+| `cinestill_balanced` | 1.574 | 0.323 | 3.1, 12.6, 28.3, 81.8 |
+| `cinestill_strong` | 1.718 | 0.370 | 3.4, 13.7, 30.9, 89.3 |
+| `cinestill_amber` | 1.654 | 0.349 | 3.3, 13.2, 29.8, 86.0 |
+| `classic_soft` | 1.697 | 0.231 | 3.4, 13.6, 30.5, 88.2 |
+| `bw_neutral` | 1.716 | 0.308 | 4.1, 17.2, 44.6, 120.1 |
+| `bw_warm` | 1.716 | 0.308 | 4.1, 17.2, 44.6, 120.1 |
 
 Rollback and safety:
 
-- No halation defaults were changed.
+- The bottom-level renderer rules were not changed.
+- Existing preset values were changed and can be rolled back by reverting the
+  preset-wide follow-up commit.
 - No downloaded photos or contact sheets were committed.
 - The whole experiment can be discarded by switching away from or deleting
   `research/halation-real-photo-validation-v1`.
 
 Manual decision still needed:
 
-- Whether the accepted real patch contact sheet is visually trustworthy enough
-  to justify a follow-up experimental preset.
+- Whether the enhanced preset family is visually preferable across the normal
+  seed image set.
 - Whether to provide or approve a stronger curated film-scan dataset for true
   held-out validation.
 

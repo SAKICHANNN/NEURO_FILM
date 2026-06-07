@@ -131,9 +131,7 @@ def test_halation_gui_schema_contains_only_valid_combinations() -> None:
     assert schema["version"] == "halation_v2p3"
     assert "sliders" in schema
     assert "presets" in schema
-    assert {preset["id"] for preset in schema["presets"]} >= {"cinestill_amber", "bw_neutral", "realphoto_v1_wide"}
-    realphoto = next(preset for preset in schema["presets"] if preset["id"] == "realphoto_v1_wide")
-    assert realphoto["evidence_level"] == "display_level_unpaired_real_photo_v1_experimental"
+    assert {preset["id"] for preset in schema["presets"]} >= {"cinestill_amber", "bw_neutral"}
     for type_info in schema["types"]:
         controls = PhysicalHalationControls(
             halation_type=type_info["id"],
