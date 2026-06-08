@@ -30,6 +30,7 @@ resume without reading generated outputs.
 | `HALATION_SYSTEM_SPEC.md` | Complete halation architecture, parameter, evaluation, and GUI integration specification. |
 | `HALATION_GUI_READINESS_TRACKER.md` | Autonomous tracker for strict validation, presets, GUI schema, layer outputs, and evaluator readiness. |
 | `HALATION_REAL_PHOTO_VALIDATION_TRACKER.md` | Tracker for license-aware unpaired real-photo halation validation and display-level calibration. |
+| `HALATION_PERFORMANCE_TRACKER.md` | Tracker for large-sigma halation performance safety and future 100MP rendering work. |
 
 ## Diffusion, LoRA, And Historical Experiments
 

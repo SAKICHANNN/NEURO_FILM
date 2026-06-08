@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import numpy as np
-from scipy.ndimage import gaussian_filter
 
+from .fast_blur import gaussian_filter_safe
 from .layers import FilmLayer
 
 
@@ -45,7 +45,7 @@ def grain_residual_layer(
     noise = rng.normal(0.0, 1.0, size=base_rgb.shape[:2] + (channels,)).astype(np.float32)
     if not color:
         noise = np.repeat(noise, 3, axis=2)
-    noise = noise - gaussian_filter(noise, sigma=(1.2, 1.2, 0.0))
+    noise = noise - gaussian_filter_safe(noise, sigma=(1.2, 1.2, 0.0))
     noise = noise - noise.mean(axis=(0, 1), keepdims=True)
     noise = noise / max(float(noise.std()), 1e-6)
     envelope = 0.45 + 0.75 * (1.0 - lum)
@@ -90,7 +90,7 @@ def halation_layer(
     halo = np.zeros_like(lum, dtype=np.float32)
     for index, sigma in enumerate(sigmas):
         source = support * scale_weights[..., index]
-        halo += gaussian_filter(source, sigma=float(sigma))
+        halo += gaussian_filter_safe(source, sigma=float(sigma))
 
     alpha = np.clip(halo * strength, 0.0, min(0.22, strength))
     rgb = np.zeros_like(base_rgb, dtype=np.float32)
@@ -175,8 +175,8 @@ def physical_halation_layer(
     # Otherwise stronger sources can incorrectly suppress their own halo by
     # raising the local mean used by the dark-background gate.
     background_probe = np.minimum(y, 0.35)
-    local_mean = gaussian_filter(background_probe, sigma=bg_sigma)
-    local_abs = gaussian_filter(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
+    local_mean = gaussian_filter_safe(background_probe, sigma=bg_sigma)
+    local_abs = gaussian_filter_safe(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
     dark_visibility = _sigmoid((float(background_luma_target) - local_mean) * float(background_gain) * 10.0)
     contrast_visibility = _smoothstep(0.008, 0.16, local_abs + edge * 2.0)
 
@@ -191,10 +191,10 @@ def physical_halation_layer(
     visibility = dark_visibility * (0.45 + 0.55 * contrast_visibility) * (1.0 - np.clip(skin * skin_protect, 0.0, 0.9))
 
     diffusion = max(0.15, float(local_diffusion))
-    red_near = gaussian_filter(source, sigma=2.0 * diffusion)
-    red_mid = gaussian_filter(source, sigma=8.0 * diffusion)
-    red_tail = gaussian_filter(source, sigma=18.0 * diffusion)
-    red_glare = gaussian_filter(source, sigma=max(24.0, 52.0 * diffusion)) * float(global_diffusion)
+    red_near = gaussian_filter_safe(source, sigma=2.0 * diffusion)
+    red_mid = gaussian_filter_safe(source, sigma=8.0 * diffusion)
+    red_tail = gaussian_filter_safe(source, sigma=18.0 * diffusion)
+    red_glare = gaussian_filter_safe(source, sigma=max(24.0, 52.0 * diffusion)) * float(global_diffusion)
     red_exposure = 0.50 * red_near + 0.34 * red_mid + 0.16 * red_tail + red_glare
 
     source_high = _softplus((log_e - (float(source_limiter_stops) + 1.35)) / max(float(source_softness) * 1.15, 1e-4))
@@ -203,8 +203,8 @@ def physical_halation_layer(
         source_high = source_high / max(float(np.percentile(source_high, 99.8)), 1e-6)
         source_high = np.clip(source_high, 0.0, 2.0)
     source_high = source_high * specular_confidence * edge_confidence
-    green_near = gaussian_filter(source_high, sigma=0.75 * diffusion)
-    green_mid = gaussian_filter(source_high, sigma=3.0 * diffusion)
+    green_near = gaussian_filter_safe(source_high, sigma=0.75 * diffusion)
+    green_mid = gaussian_filter_safe(source_high, sigma=3.0 * diffusion)
     green_exposure = 0.68 * green_near + 0.32 * green_mid
 
     coupling = float(amplify) * float(no_remjet)
@@ -284,8 +284,8 @@ def density_halation_layer(
     diffusion = max(0.15, float(local_diffusion))
     bg_sigma = max(4.0, 28.0 * diffusion)
     background_probe = np.minimum(y, 0.36)
-    local_mean = gaussian_filter(background_probe, sigma=bg_sigma)
-    local_abs = gaussian_filter(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
+    local_mean = gaussian_filter_safe(background_probe, sigma=bg_sigma)
+    local_abs = gaussian_filter_safe(np.abs(background_probe - local_mean), sigma=max(2.0, bg_sigma * 0.35))
     dark_visibility = _sigmoid((float(background_luma_target) - local_mean) * float(background_gain) * 8.0)
     contrast_visibility = _smoothstep(0.006, 0.14, local_abs + edge * 1.8)
 
@@ -299,10 +299,10 @@ def density_halation_layer(
     )
     visibility = dark_visibility * (0.40 + 0.60 * contrast_visibility) * (1.0 - np.clip(skin * skin_protect, 0.0, 0.75))
 
-    near = gaussian_filter(source, sigma=2.4 * diffusion)
-    mid = gaussian_filter(source, sigma=10.0 * diffusion)
-    tail = gaussian_filter(source, sigma=26.0 * diffusion)
-    glare = gaussian_filter(source, sigma=max(32.0, 70.0 * diffusion)) * float(global_diffusion)
+    near = gaussian_filter_safe(source, sigma=2.4 * diffusion)
+    mid = gaussian_filter_safe(source, sigma=10.0 * diffusion)
+    tail = gaussian_filter_safe(source, sigma=26.0 * diffusion)
+    glare = gaussian_filter_safe(source, sigma=max(32.0, 70.0 * diffusion)) * float(global_diffusion)
     density_exposure = float(amplify) * visibility * (0.42 * near + 0.33 * mid + 0.25 * tail + glare)
 
     alpha = 1.0 - np.exp(-density_exposure * 0.34)
