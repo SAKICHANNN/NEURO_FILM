@@ -1,18 +1,22 @@
 # Halation System Specification
 
-> Status: V2.3 rule-family implementation
+> Status: V2.3 rule-family implementation with real-photo V1 preset follow-up
+> and safe blur performance backend
 >
 > Primary code:
 >
 > - `src/filmfx/effects.py`
+> - `src/filmfx/fast_blur.py`
 > - `src/filmfx/halation_controls.py`
 > - `scripts/render_film.py`
 > - `scripts/evaluate_physical_halation_v2.py`
+> - `scripts/evaluate_halation_real_photo_alignment.py`
 >
 > Generated review outputs:
 >
 > - `outputs/eval/halation_v2p3_families/`
 > - `outputs/eval/halation_v2p3_family_physics/`
+> - `outputs/eval/halation_real_photo_v1/contact_sheets/alignment_contact_sheet.png`
 
 ## Purpose
 
@@ -54,6 +58,10 @@ The system can currently:
   threshold, not because the amount slider directly widens blur kernels;
 - emit either color-negative red/orange halation or B&W/density-domain halation;
 - write layer previews and metrics through the integrated renderer;
+- use a bounded-cost Gaussian blur backend for large diffusion values instead
+  of calling `scipy.ndimage` directly in the filmfx hot path;
+- compare display-level, unpaired real-photo halo candidates against simulator
+  outputs through a license-aware validation script;
 - generate contact sheets with:
 
 ```text
@@ -74,10 +82,10 @@ Use the following evidence levels when reading or extending this document:
 | Level | Meaning | Examples In This Document |
 |-------|---------|---------------------------|
 | Code fact | Directly true of the checked-in implementation. | `PhysicalHalationControls` fields, CLI flags, function names, generated output paths, tested invariants. |
-| Measured project result | Produced by local scripts and recorded in repo outputs/metrics. | V2.3 alpha/visible metrics, physics-suite radius monotonicity, contact-sheet paths. |
+| Measured project result | Produced by local scripts and recorded in repo outputs/metrics. | V2.3 alpha/visible metrics, physics-suite radius monotonicity, real-photo V1 candidate metrics, contact-sheet paths. |
 | External-source-supported claim | Supported by Kodak/CineStill/Dehancer references, but not necessarily measured inside this repo. | Anti-halation backing suppresses reflected light; no-remjet-like stocks can show stronger halation; Amplify and Impact should be separate controls. |
 | Physically motivated model assumption | Reasonable model form derived from prompt/references, but simplified. | Red-layer-dominant color-negative backscatter; green-layer strong-core coupling; visible radius grows by threshold crossing. |
-| Uncalibrated heuristic | Current numeric choice made for stable visual behavior, not fitted to real film patches. | Type-specific slider ranges, kernel weights, alpha caps, source threshold ranges, density tint values. |
+| Uncalibrated heuristic | Current numeric choice made for stable visual behavior, with real-photo V1 used only as display-level unpaired pressure, not stock fitting. | Type-specific slider ranges, kernel weights, alpha caps, source threshold ranges, density tint values, preset-wide V1 adjustments. |
 | Future ideal | Desired architecture not yet implemented. | Full negative density / dye-density / scan transform; real-film patch calibration; RAW/HDR source exposure path in integrated renderer. |
 
 When this document says a type is "Vision3-like", "CineStill-like",
@@ -102,14 +110,17 @@ source of truth:
    visibility-gated, rather than simulated as fully directional light transport.
 6. `bw_density_halation` is a separate rule family, but it is still a
    density-like screen-layer approximation, not a true B&W sensitometric model.
-7. Real-film patch calibration has not been performed, so visual defaults are
-   review targets rather than final measured truth.
+7. License-aware real-photo V1 validation has been performed at display level,
+   but true paired/scene-linear real-film patch calibration has not.
 8. The GUI rules intentionally forbid some combinations. The default Python
    resolver now enforces those rules in strict mode, while compatibility mode
    can still tolerate selected fallbacks for research/debug use.
-9. The evaluator checks useful synthetic properties, but it does not prove
-   perceptual authenticity across all real photographs or film stocks.
-10. Temporal consistency for video has not been evaluated.
+9. The evaluator checks useful synthetic and display-level properties, but it
+   does not prove perceptual authenticity across all real photographs or film
+   stocks.
+10. The current safe blur backend is a performance/safety approximation for
+   large halation tails, not the final 100MP tiled production renderer.
+11. Temporal consistency for video has not been evaluated.
 
 Detailed limitations and future work are repeated near the end of this document
 after the test and evaluation sections.
@@ -212,6 +223,42 @@ Relevant public functions:
 | `physical_halation_layer` | `src/filmfx/effects.py` | Color-negative red/green backscatter renderer. |
 | `density_halation_layer` | `src/filmfx/effects.py` | B&W/density-domain renderer. |
 | `halation_layer` | `src/filmfx/effects.py` | Legacy/simple glow layer. |
+| `gaussian_filter_safe` | `src/filmfx/fast_blur.py` | Bounded-cost Gaussian approximation used by film-effect blur paths. |
+
+## Blur / Performance Backend
+
+Earlier V2/V2.3 implementations called `scipy.ndimage.gaussian_filter`
+directly for every blur scale. The current filmfx hot path uses:
+
+```text
+src/filmfx/fast_blur.py::gaussian_filter_safe
+```
+
+Behavior:
+
+- small/medium sigma: direct separable Gaussian in NumPy;
+- large sigma: downsample the low-frequency energy field, blur at lower
+  resolution, then upsample;
+- channel-axis blur is intentionally unsupported in the safe helper;
+- generated halation remains an approximation suitable for low-frequency
+  film-effect layers, not scientific image analysis.
+
+Why this exists:
+
+- preset-wide real-photo follow-up increased diffusion enough to expose a
+  performance bug in the original direct blur path;
+- GUI previews and future large still-photo exports must not be able to hang
+  simply because a physically valid preset requests a wide tail;
+- full 100MP production rendering still needs a tiled/cache-aware export path.
+
+Evidence level:
+
+| Item | Evidence Level |
+|------|----------------|
+| `src.filmfx` no longer imports `scipy.ndimage` through `effects.py` | code fact |
+| Large-sigma small-image regression test | measured project result |
+| Downsampled large-sigma blur visual equivalence | uncalibrated engineering approximation |
+| Full 100MP renderer readiness | future ideal |
 
 ## Data Types
 
@@ -796,17 +843,17 @@ explicit CLI flags override them.
 ```powershell
 .\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
   --style vision3_500t `
-  --halation 1.2 `
+  --halation 1.62 `
   --halation-model physical `
   --halation-physics-lock `
   --halation-type cinestill_no_remjet `
   --halation-color-response amber_core `
-  --halation-anti-halation 0.84 `
-  --halation-source-selectivity 0.46 `
-  --halation-diffusion 0.56 `
-  --halation-warm-core 0.58 `
-  --halation-background-visibility 0.78 `
-  --halation-impact 0.88 `
+  --halation-anti-halation 0.94 `
+  --halation-source-selectivity 0.28 `
+  --halation-diffusion 0.88 `
+  --halation-warm-core 0.80 `
+  --halation-background-visibility 0.90 `
+  --halation-impact 0.92 `
   --output outputs\integration\render_film_halation_v2p3_amber_core_smoke.png `
   --write-layers `
   --write-metrics
@@ -817,15 +864,15 @@ explicit CLI flags override them.
 ```powershell
 .\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
   --style vision3_500t `
-  --halation 1.18 `
+  --halation 1.38 `
   --halation-model physical `
   --halation-physics-lock `
   --halation-type bw_clear_base `
   --halation-color-response neutral_density `
-  --halation-source-selectivity 0.50 `
-  --halation-diffusion 0.66 `
-  --halation-background-visibility 0.76 `
-  --halation-impact 0.84 `
+  --halation-source-selectivity 0.38 `
+  --halation-diffusion 0.80 `
+  --halation-background-visibility 0.84 `
+  --halation-impact 0.88 `
   --output outputs\integration\render_film_halation_v2p3_bw_density_smoke.png `
   --write-layers `
   --write-metrics
@@ -870,13 +917,13 @@ base_rgb = np.asarray(image, dtype=np.float32) / 255.0
 controls = PhysicalHalationControls(
     halation_type="cinestill_no_remjet",
     color_response="amber_core",
-    amount=1.2,
-    impact=0.88,
-    anti_halation=0.84,
-    source_selectivity=0.46,
-    diffusion=0.56,
-    warm_core=0.58,
-    background_visibility=0.78,
+    amount=1.62,
+    impact=0.92,
+    anti_halation=0.94,
+    source_selectivity=0.28,
+    diffusion=0.88,
+    warm_core=0.80,
+    background_visibility=0.90,
 )
 
 layer = build_physical_halation_layer(base_rgb, controls)
@@ -1076,13 +1123,16 @@ Interpreting identical metrics:
 Current targeted tests:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest tests\test_color_baseline_safety.py tests\test_halation_controls.py
+.\.venv\Scripts\python.exe -m pytest `
+  tests\test_fast_blur.py `
+  tests\test_color_baseline_safety.py `
+  tests\test_halation_controls.py
 ```
 
 Current result:
 
 ```text
-8 passed
+14 passed
 ```
 
 Important invariants tested:
@@ -1095,6 +1145,7 @@ Important invariants tested:
 - `background_visibility` changes only background gate parameters;
 - color response changes color law, not geometry;
 - B&W/density family does not expose color-negative-only resolved parameters.
+- large-sigma blur on small images returns quickly and preserves array shape.
 
 ## Known Limitations
 
@@ -1105,7 +1156,8 @@ Important invariants tested:
 3. Directional dark-side halation is approximated by visibility weighting after
    symmetric convolution, not by fully directional scatter transport.
 4. Expert mode currently routes only to the color-negative renderer.
-5. Real-film patch calibration is not done.
+5. Real-photo V1 validation is display-level and unpaired; true film patch
+   calibration is not done.
 6. Video temporal consistency is not evaluated.
 7. Layer output is screen-composited; a future density pipeline may need a
    different compositor or pre-display working space.
@@ -1114,20 +1166,25 @@ Important invariants tested:
 9. Some invalid GUI combinations are intentionally described as forbidden for
    product UX. The current Python resolver enforces this by default; `strict=False`
    can still be used to reach compatibility fallback tint behavior.
+10. Large-sigma blur now has a bounded-cost approximation, but the final
+    100MP tiled/cache-aware production renderer is still future work.
 
 ## Future Work
 
 Recommended next steps:
 
 1. Add GUI preview toggles for combined / layer on black / layer on white.
-2. Add family-specific default presets for user-facing film stocks.
-3. Add a real-film halo patch calibration dataset and fitter.
+2. Add visual QA for the preset-wide real-photo V1 enhancement across the
+   normal seed image set.
+3. Add a paired or curated real-film halo patch calibration dataset and fitter.
 4. Add optional `source_linear_rgb` path to integrated renderer for RAW/HDR
    inputs.
 5. Add full density-domain insertion before display color transform.
 6. Add temporal metrics for video sequences.
 7. Add GUI-side validation so invalid type/color-response combinations are
    impossible to select before calling the renderer.
+8. Add tile + overlap/cache execution for memory-bounded 100MP still-photo
+   exports.
 
 ## Extreme GUI Integration Guide
 
@@ -1318,13 +1375,13 @@ hide:
 Recommended defaults:
 
 ```text
-amount = 0.88
-impact = 0.82
-anti_halation = 0.22
-source_selectivity = 0.72
-diffusion = 0.40
-warm_core = 0.30
-background_visibility = 0.68
+amount = 0.78 for clean, 1.12 for push
+impact = 0.76 for clean, 0.88 for push
+anti_halation = 0.16 for clean, 0.42 for push
+source_selectivity = 0.66 for clean, 0.50 for push
+diffusion = 0.46 for clean, 0.64 for push
+warm_core = 0.22 for clean, 0.36 for push
+background_visibility = 0.70 for clean, 0.78 for push
 color_response = red_orange_core
 ```
 
@@ -1351,13 +1408,13 @@ show:
 Recommended defaults:
 
 ```text
-amount = 1.20
-impact = 0.88
-anti_halation = 0.84
-source_selectivity = 0.46
-diffusion = 0.56
-warm_core = 0.58 for amber_core, 0.34 for deep_red
-background_visibility = 0.78
+amount = 1.34 for balanced, 1.82 for strong, 1.62 for amber
+impact = 0.90 for balanced, 0.96 for strong, 0.92 for amber
+anti_halation = 0.90 for balanced, 1.00 for strong, 0.94 for amber
+source_selectivity = 0.34 for balanced, 0.20 for strong, 0.28 for amber
+diffusion = 0.78 for balanced, 0.96 for strong, 0.88 for amber
+warm_core = 0.54 for balanced, 0.72 for strong, 0.80 for amber
+background_visibility = 0.86 for balanced, 0.94 for strong, 0.90 for amber
 color_response = amber_core or red_orange_core
 ```
 
@@ -1384,13 +1441,13 @@ show:
 Recommended defaults:
 
 ```text
-amount = 1.05
-impact = 0.82
-anti_halation = 0.52
-source_selectivity = 0.56
-diffusion = 0.68
-warm_core = 0.30
-background_visibility = 0.70
+amount = 1.24
+impact = 0.86
+anti_halation = 0.64
+source_selectivity = 0.42
+diffusion = 0.84
+warm_core = 0.38
+background_visibility = 0.80
 color_response = red_orange_core
 ```
 
@@ -1416,11 +1473,11 @@ hide:
 Recommended defaults:
 
 ```text
-amount = 1.18
-impact = 0.84
-source_selectivity = 0.50
-diffusion = 0.66
-background_visibility = 0.76
+amount = 1.38
+impact = 0.88
+source_selectivity = 0.38
+diffusion = 0.80
+background_visibility = 0.84
 color_response = neutral_density
 ```
 
@@ -1505,10 +1562,10 @@ Example for `cinestill_no_remjet`:
 
 | Preset | Amount | Impact | Anti-Halation | Selectivity | Diffusion | Warm Core | Background |
 |--------|-------:|-------:|---------------:|------------:|----------:|----------:|-----------:|
-| Clean | 0.85 | 0.75 | 0.65 | 0.58 | 0.42 | 0.35 | 0.70 |
-| Balanced | 1.20 | 0.88 | 0.84 | 0.46 | 0.56 | 0.50 | 0.78 |
-| Strong | 1.55 | 0.95 | 1.00 | 0.36 | 0.70 | 0.62 | 0.86 |
-| Extreme | 1.90 | 1.00 | 1.00 | 0.28 | 0.82 | 0.70 | 0.92 |
+| Clean | 0.95 | 0.82 | 0.72 | 0.48 | 0.62 | 0.42 | 0.78 |
+| Balanced | 1.34 | 0.90 | 0.90 | 0.34 | 0.78 | 0.54 | 0.86 |
+| Strong | 1.82 | 0.96 | 1.00 | 0.20 | 0.96 | 0.72 | 0.94 |
+| Amber | 1.62 | 0.92 | 0.94 | 0.28 | 0.88 | 0.80 | 0.90 |
 
 ### Preview Modes
 
@@ -1554,8 +1611,10 @@ export:
   render full resolution
 ```
 
-The current implementation is CPU/NumPy/SciPy based. Large previews can be slow.
-Use thumbnail preview for interactive UI.
+The current implementation is CPU/NumPy based and uses `gaussian_filter_safe`
+for large diffusion values. Use thumbnail preview for interactive UI. Full
+100MP exports still need the future tiled/cache-aware renderer described in
+`docs/HALATION_PERFORMANCE_TRACKER.md`.
 
 ### GUI State Object
 
@@ -1568,13 +1627,13 @@ Suggested frontend state:
   "modelFamily": "auto",
   "type": "cinestill_no_remjet",
   "colorResponse": "amber_core",
-  "amount": 1.2,
-  "impact": 0.88,
-  "antiHalation": 0.84,
-  "sourceSelectivity": 0.46,
-  "diffusion": 0.56,
-  "warmCore": 0.58,
-  "backgroundVisibility": 0.78,
+  "amount": 1.62,
+  "impact": 0.92,
+  "antiHalation": 0.94,
+  "sourceSelectivity": 0.28,
+  "diffusion": 0.88,
+  "warmCore": 0.80,
+  "backgroundVisibility": 0.90,
   "sourceNormalization": "percentile",
   "previewMode": "combined"
 }
@@ -1782,13 +1841,13 @@ Use:
 
 ```text
 Type: Vision3 AHU
-Amount: 0.88
-Impact: 0.82
-Anti-Halation Loss: 0.22
-Source Selectivity: 0.72
-Diffusion: 0.40
-Warm Core: 0.30
-Background Visibility: 0.68
+Amount: 0.78
+Impact: 0.76
+Anti-Halation Loss: 0.16
+Source Selectivity: 0.66
+Diffusion: 0.46
+Warm Core: 0.22
+Background Visibility: 0.70
 ```
 
 If the selected look is CineStill-like:
@@ -1796,13 +1855,13 @@ If the selected look is CineStill-like:
 ```text
 Type: CineStill No-Remjet
 Color Response: Amber Core
-Amount: 1.20
-Impact: 0.88
-Anti-Halation Loss: 0.84
-Source Selectivity: 0.46
-Diffusion: 0.56
-Warm Core: 0.58
-Background Visibility: 0.78
+Amount: 1.62
+Impact: 0.92
+Anti-Halation Loss: 0.94
+Source Selectivity: 0.28
+Diffusion: 0.88
+Warm Core: 0.80
+Background Visibility: 0.90
 ```
 
 If the selected look is B&W:
@@ -1810,11 +1869,11 @@ If the selected look is B&W:
 ```text
 Type: B&W Clear Base
 Color Response: Neutral Density
-Amount: 1.18
-Impact: 0.84
-Source Selectivity: 0.50
-Diffusion: 0.66
-Background Visibility: 0.76
+Amount: 1.38
+Impact: 0.88
+Source Selectivity: 0.38
+Diffusion: 0.80
+Background Visibility: 0.84
 hide Warm Core
 hide Anti-Halation Loss
 ```

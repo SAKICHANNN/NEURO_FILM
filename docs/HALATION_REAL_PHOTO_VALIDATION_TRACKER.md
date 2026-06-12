@@ -4,7 +4,7 @@
 >
 > Branch: `research/halation-real-photo-validation-v1`
 >
-> Status: V1 implemented, measured, not adopted as defaults
+> Status: V1 implemented and measured; preset-wide heuristic follow-up applied
 >
 > Goal: add a license-aware, unpaired real-photo validation and display-level
 > statistical calibration path for the V2.3 halation renderer.
@@ -61,6 +61,9 @@ The correct claim target is:
 The V2.3 halation renderer has been constrained and adjusted against
 display-level, unpaired real-photo halo patch statistics from audited sources.
 ```
+
+This does not mean the adjusted presets are true stock constants. They remain
+uncalibrated product heuristics with display-level real-photo pressure.
 
 ## Evidence Levels
 

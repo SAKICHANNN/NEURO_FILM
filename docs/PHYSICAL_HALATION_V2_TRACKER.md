@@ -711,3 +711,61 @@ Integrated renderer smoke outputs:
 outputs/integration/render_film_halation_v2p3_amber_core_smoke.png
 outputs/integration/render_film_halation_v2p3_bw_density_smoke.png
 ```
+
+## Post-V2.3 Addendum: Real-Photo V1 And Performance Safety
+
+Date: 2026-06-08
+
+Follow-up trackers:
+
+```text
+docs/HALATION_REAL_PHOTO_VALIDATION_TRACKER.md
+docs/HALATION_PERFORMANCE_TRACKER.md
+```
+
+Real-photo V1:
+
+- Added a license-aware, unpaired real-photo validation path.
+- Generated source manifests, mined candidate patches, and compared display-level
+  candidate statistics against current presets.
+- The first attempted product shape, a standalone `realphoto_v1_wide` preset,
+  was rejected.
+- The final product shape enhanced the existing preset family instead.
+- Evidence level remains uncalibrated heuristic with display-level real-photo
+  pressure, not true stock calibration.
+
+Preset-wide enhancement summary:
+
+| Preset | Role After Follow-Up |
+|--------|----------------------|
+| `vision3_clean` | still restrained, slightly wider/more visible than original |
+| `vision3_push` | pushed Vision3 behavior with more visible diffusion |
+| `cinestill_balanced` | materially wider no-remjet-like baseline |
+| `cinestill_strong` | strongest red/orange no-remjet-like preset |
+| `cinestill_amber` | warmest CineStill-family preset |
+| `classic_soft` | wider soft dense-base behavior |
+| `bw_neutral` | wider neutral density glow |
+| `bw_warm` | wider warm density glow |
+
+Performance safety:
+
+- The increased diffusion values exposed a performance bug in the original
+  direct `scipy.ndimage.gaussian_filter` path.
+- `src/filmfx/effects.py` now calls `src/filmfx/fast_blur.py::gaussian_filter_safe`.
+- The new backend uses direct separable blur for small/medium sigma and
+  downsampled blur for wide low-frequency tails.
+- This fixes the immediate hang class and keeps tests fast.
+- It is not the final 100MP tiled/cache-aware renderer.
+
+Verification:
+
+```text
+python -m pytest tests/test_fast_blur.py tests/test_halation_controls.py tests/test_color_baseline_safety.py -q
+14 passed
+```
+
+Regenerated output:
+
+```text
+outputs/eval/halation_real_photo_v1/contact_sheets/alignment_contact_sheet.png
+```

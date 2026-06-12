@@ -2,9 +2,10 @@
 
 > Created: 2026-06-06
 >
-> Branch: `research/physical-halation-v2p2-calibration`
+> Branch: `research/halation-real-photo-validation-v1`
 >
-> Status: Orders 1-5 implemented on 2026-06-06
+> Status: Orders 1-5 implemented on 2026-06-06; performance safety backend
+> implemented on 2026-06-08
 >
 > Goal: turn the V2.3 halation research implementation into a safer,
 > GUI-ready subsystem with strict validation, presets, schema export,
@@ -23,6 +24,7 @@ The current halation system has:
   - `color_negative_backscatter`,
   - `bw_density_halation`;
 - integrated CLI entry via `scripts/render_film.py`;
+- safe large-sigma blur backend in `src/filmfx/fast_blur.py`;
 - V2.3 contact sheets under:
   `outputs/eval/halation_v2p3_families/`.
 
@@ -91,7 +93,7 @@ The first five tasks are the highest-value GUI-readiness work.
 | 10 | Evidence metadata propagation | planned | Order 2, 3, 9 | presets/schema/metrics report evidence level for values and outputs |
 | 11 | Directional dark-side prototype | deferred | Order 6, visual approval | prototype outputs side-by-side sheets and can be reverted easily |
 | 12 | Source-map improvement prototype | deferred | Order 6, visual approval | new source map improves diagnostics without increasing false positives on white walls/skin |
-| 13 | Performance preview optimization | deferred | after GUI path exists | reduced-resolution preview or cache path improves latency without changing full-res output |
+| 13 | Performance safety backend | done | preset enhancement exposed large-sigma risk | `src.filmfx` imports without `scipy.ndimage`; large sigma small-image test passes |
 
 ## Order 1: Strict Validation Layer
 
@@ -358,7 +360,7 @@ Implemented test coverage in `tests/test_halation_controls.py`:
 Latest targeted result:
 
 ```text
-tests/test_halation_controls.py: 11 passed
+tests/test_fast_blur.py tests/test_halation_controls.py tests/test_color_baseline_safety.py: 14 passed
 ```
 
 ### Problem
@@ -589,15 +591,26 @@ Risk:
 
 Completion should require diagnostics and contact sheets.
 
-### Order 13: Performance Preview Optimization
+### Order 13: Performance Safety Backend
 
-Potential work:
+Status: done on 2026-06-08.
 
-- reduced-resolution preview path;
-- kernel/cache reuse;
-- output-equivalent full-res path preserved.
+Implemented:
 
-This should wait until a GUI or preview loop exists.
+- `src/filmfx/fast_blur.py`;
+- `gaussian_filter_safe`;
+- `tests/test_fast_blur.py`;
+- `src/filmfx/effects.py` now uses the safe helper for film-effect blurs.
+
+This is not the final GUI preview/cache system. It is a safety backend that
+prevents wide diffusion presets from hanging small images or previews.
+
+Remaining future work:
+
+- reduced-resolution interactive preview policy;
+- tile + overlap full-resolution export;
+- kernel/cache reuse across preset sweeps;
+- quality modes for exact-ish vs preview rendering.
 
 ## Output / Commit Discipline
 

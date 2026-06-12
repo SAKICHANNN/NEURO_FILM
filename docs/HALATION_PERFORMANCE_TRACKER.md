@@ -4,7 +4,7 @@
 >
 > Branch: `research/halation-real-photo-validation-v1`
 >
-> Status: in progress
+> Status: V1 safety backend implemented; 100MP production renderer still future work
 >
 > Goal: make halation rendering robust for large diffusion presets, GUI
 > previews, and eventual still-photo inputs up to 100 megapixels.
