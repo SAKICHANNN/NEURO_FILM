@@ -987,3 +987,127 @@ outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_comparison/contact_sh
 outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_neutral/contact_sheet.png
 outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_medium/contact_sheet.png
 ```
+
+## 20. ICC V6 Filtered Target Plan
+
+User validation after V5:
+
+- V5 candidates still look too similar to each other.
+- The remaining objection is not that Expert C ICC is unchanged relative to RAW;
+  it is that Expert C ICC still does not improve the core objection relative to
+  the previous round: it remains too saturated and still slightly over-corrects
+  white balance.
+- Therefore the next fix must change the target used to fit response stats, not
+  only guard the final baseline output.
+
+New target construction:
+
+```text
+RAW/default render + Expert C ICC
+  -> take most of Expert C luma/tone movement
+  -> take only a small fraction of Expert C chroma-vector movement
+  -> cap chroma growth relative to RAW/default
+  -> anchor global R/G and B/G back toward RAW/default
+  -> save as filtered pseudo-target
+  -> extract response stats from RAW/default -> filtered pseudo-target
+  -> evaluate baseline from filtered response stats
+```
+
+New script:
+
+```text
+scripts/build_fivek_filtered_targets.py
+```
+
+Initial V6 target parameters:
+
+```text
+luma_strength=0.82
+chroma_strength=0.18
+chroma_headroom=0.02
+wb_anchor_strength=1.00
+```
+
+Expected behavior:
+
+- The filtered target should be visibly closer to Expert C in exposure/tone than
+  RAW/default.
+- It should not inherit Expert C's full saturation increase.
+- It should not inherit Expert C's global WB/color-temperature correction.
+- If it is too weak, increase luma response before increasing chroma response.
+
+Outputs to generate:
+
+```text
+outputs/fivek_auto_optimize/filtered_targets_v1_mini64_icc/
+outputs/fivek_auto_optimize/response_stats_v3_filtered_mini64_icc/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_wb_c025/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_tone115/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_comparison/contact_sheet.png
+```
+
+## 21. ICC V6 Filtered Target Result
+
+Filtered target command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_fivek_filtered_targets.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64_icc\manifest.csv `
+  --output-dir outputs\fivek_auto_optimize\filtered_targets_v1_mini64_icc `
+  --luma-strength 0.82 `
+  --chroma-strength 0.18 `
+  --chroma-headroom 0.02 `
+  --wb-anchor-strength 1.0
+```
+
+Generated response/baseline outputs:
+
+```text
+outputs/fivek_auto_optimize/response_stats_v3_filtered_mini64_icc/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_wb_c025/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_tone115/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_comparison/contact_sheet.png
+```
+
+Filtered target metrics:
+
+```text
+Expert C ICC vs RAW rgb_mae:        0.080232
+filtered target vs RAW rgb_mae:     0.059612
+Expert C ICC luma_delta_mean:       +0.048099
+filtered target luma_delta_mean:    +0.039425
+Expert C ICC chroma_delta_mean:     +0.040522
+filtered target chroma_delta_mean:  +0.006971
+filtered target vs Expert rgb_mae:  0.035523
+```
+
+Baseline metrics against the filtered target:
+
+```text
+candidate       luma_mae  rgb_mae   chroma_mae  chroma_delta  R/G delta   B/G delta
+v6 tone          0.047629  0.047344  0.011798    +0.010850    -0.000428  -0.003292
+v6 wb c0.25      0.047637  0.047169  0.008995    +0.007946    +0.000157  -0.000050
+v6 tone115       0.047860  0.047587  0.012815    +0.012383    -0.000740  -0.003880
+```
+
+Interpretation:
+
+- V6 changes the fitting target itself rather than only guarding the final
+  output.
+- The filtered target keeps most of Expert C's luma lift while reducing average
+  chroma growth by roughly 83 percent.
+- `v6 wb c0.25` is currently the best technical candidate for the user's stated
+  preference: it keeps WB drift near zero and tracks the filtered target's low
+  chroma growth.
+- `v6 tone115` is not preferred unless the user finds V6 too weak; it increases
+  tone/chroma movement without improving WB.
+
+Manual visual validation priority:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_comparison/contact_sheet.png
+outputs/fivek_auto_optimize/filtered_targets_v1_mini64_icc/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_wb_c025/contact_sheet.png
+```
