@@ -279,9 +279,9 @@ The candidate must be optional, controllable, and easy to disable.
 | 3 | Generate Cache V1 | done | manifest, summary, and contact sheet exist |
 | 4 | Build RAW-derived Cache V2 | partial | 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; user visual validation pending |
 | 5 | Extract compact response assets | partial | mini64 tone/chroma/luma response assets written; broader representative cache pending |
-| 6 | Fit deterministic response baseline | pending | response assets produce neutral film-ready base on validation subset |
+| 6 | Fit deterministic response baseline | partial | mini64 RGB-delta response baseline generated; user visual validation pending |
 | 7 | Train first lightweight candidate | pending | candidate improves base tone without stock-style drift |
-| 8 | Compare to Expert C | pending | objective metrics and contact sheets generated |
+| 8 | Compare to Expert C | partial | mini64 baseline metrics and contact sheet generated |
 | 9 | Storage recommendation | pending | explicit keep/cold-store/delete recommendation for FiveK assets |
 
 ## 9. Non-Goals
@@ -415,4 +415,68 @@ Storage decision remains unchanged:
 ```text
 Do not delete data/raw/fivek/.
 Mini64 response stats are useful compression artifacts, not deletion proof.
+```
+
+## 12. Deterministic Response Baseline V1 Mini64
+
+Generated baseline command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v1_mini64 `
+  --strength 1.0
+```
+
+Generated ignored outputs:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v1_mini64/baseline/
+outputs/fivek_auto_optimize/response_baseline_v1_mini64/manifest.csv
+outputs/fivek_auto_optimize/response_baseline_v1_mini64/summary.json
+outputs/fivek_auto_optimize/response_baseline_v1_mini64/contact_sheet.png
+```
+
+Mean metrics on the 64-image mini subset:
+
+```text
+raw_target_luma_mae:       0.061296
+baseline_target_luma_mae:  0.055659
+raw_target_rgb_mae:        0.064870
+baseline_target_rgb_mae:   0.060201
+raw_target_chroma_mae:     0.031508
+baseline_target_chroma_mae:0.030872
+baseline_luma_delta_mean:  0.017139
+baseline_chroma_delta_mean:-0.001175
+```
+
+Interpretation:
+
+- The deterministic baseline modestly moves RAW/default renders toward Expert C
+  in luma, RGB, and chroma MAE.
+- The transform is compact and explainable: it applies an interpolated RGB delta
+  as a function of RAW/default luminance.
+- The result is intentionally not stock-specific and should remain a neutral
+  photographic base, not a Velvia/Portra/Vision3 look.
+
+What this proves:
+
+- The compact response assets can be applied back to images without training.
+- The response baseline gives a measurable improvement over RAW/default render
+  on the same Mini64 subset.
+- The baseline provides a conservative first candidate for later lightweight
+  model comparisons.
+
+What this does not prove yet:
+
+- It does not prove the response baseline is visually preferable.
+- It does not prove generalization beyond the Mini64 subset.
+- It does not replace a future train/validation split.
+- It does not justify deleting `data/raw/fivek/`.
+
+Manual visual validation needed:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v1_mini64/contact_sheet.png
 ```
