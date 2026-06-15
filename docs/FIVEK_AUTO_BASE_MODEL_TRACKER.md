@@ -1237,3 +1237,62 @@ Deletion implication:
   - validating 16-bit/high-pixel pipeline behavior on selected samples,
   - refitting compact response curves,
   - checking future color-management regressions.
+
+## 23. Large FiveK Source Deletion
+
+Deletion date:
+
+```text
+2026-06-15
+```
+
+Deleted after freeze-pack verification:
+
+```text
+data/raw/fivek/expert_tiff/
+data/raw/fivek/fivek_dataset.tar
+```
+
+Pre-delete verification:
+
+```text
+freeze_v1 summary missing: []
+raw_default_srgb16 TIFFs:       128
+expert_c_icc_srgb16 TIFFs:      128
+filtered_target_srgb16 TIFFs:   128
+gold original RAW files:         64
+gold original Expert TIFF files: 64
+freeze_v1 size before delete:    6.98 GB
+```
+
+Post-delete verification:
+
+```text
+Test-Path data/raw/fivek/expert_tiff:       False
+Test-Path data/raw/fivek/fivek_dataset.tar: False
+freeze_v1 files:                            903
+freeze_v1 size:                             6.98 GB
+C: free after deletion:                     333.4 GB
+```
+
+Remaining local FiveK source metadata:
+
+```text
+data/raw/fivek/fivek_dataset.tar.sha1
+data/raw/fivek/fivek_expert_a_paths.txt
+data/raw/fivek/fivek_expert_c_paths.txt
+data/raw/fivek/fivek_index.html
+```
+
+Important consequence:
+
+- Full FiveK-scale supervised experiments are no longer possible from local
+  disk without re-downloading or restoring the deleted sources.
+- Current local development should use:
+
+```text
+outputs/fivek_auto_optimize/freeze_v1/
+outputs/fivek_auto_optimize/freeze_v1/response_stats_filtered_srgb16/
+outputs/fivek_auto_optimize/filtered_targets_v1_mini64_icc/
+outputs/fivek_auto_optimize/response_baseline_v6_filtered_comparison/
+```

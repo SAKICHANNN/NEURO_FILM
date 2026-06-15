@@ -91,7 +91,7 @@ The wording should be **film-ready photographic base**, not "film style".
 | 8 | FiveK RAW-derived Cache V2 | partial | ICC-corrected 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; manual visual validation pending |
 | 9 | Compact FiveK response assets | partial | ICC-corrected mini64 tone/chroma/luma response assets exist; broader representative cache pending |
 | 10 | Auto-base candidate | partial | filtered pseudo-target flow added to preserve Expert C tone while rejecting saturation/WB overcorrection |
-| 11 | Storage decision | partial | freeze_v1 preserves 128 high-precision pairs and 64 original gold pairs before any large FiveK deletion |
+| 11 | Storage decision | done | large FiveK Expert TIFF directory and RAW tar deleted after freeze_v1 verification |
 
 ## 5. Current FiveK Source State
 
