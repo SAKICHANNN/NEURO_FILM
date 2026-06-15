@@ -621,7 +621,26 @@ Interpretation:
   increases R/G drift enough that it should not become the default without
   visual approval.
 
-Current recommended validation priority:
+User visual validation result:
+
+```text
+legacy_rgb:
+  rejected as a default candidate.
+  Reason: strong white-balance/color-temperature movement and no trustworthy
+  product improvement despite slightly better Expert C metrics.
+
+tone_locked c0.00:
+  rejected as a useful default candidate.
+  Reason: it suppresses WB drift numerically, but the user saw no meaningful
+  visual improvement.
+
+tone_locked c0.10:
+  rejected as a default candidate.
+  Reason: it starts reintroducing color/WB drift without solving the usefulness
+  problem.
+```
+
+Archived validation priority:
 
 ```text
 1. outputs/fivek_auto_optimize/response_baseline_v2_tone_locked/contact_sheet.png
@@ -631,7 +650,13 @@ Current recommended validation priority:
 
 Product implication:
 
-- The default auto-base candidate should be `tone_locked` with
-  `color_strength=0.0`.
-- Any later color/WB correction must be a separately named control or learned
-  module, not hidden inside "strength".
+- Do not promote the Mini64 deterministic response baseline to a default
+  product layer.
+- Do not use Expert C closeness as the primary success criterion for product
+  color or WB.
+- FiveK may still be useful for input-format coverage, RAW/default render
+  study, exposure statistics, and future supervised experiments, but the
+  current compact response baseline should be treated as a rejected baseline.
+- Any later auto-base layer needs a better objective than "move toward Expert C",
+  and should probably avoid learning global WB/color-temperature corrections
+  unless that control is explicit and separately validated.
