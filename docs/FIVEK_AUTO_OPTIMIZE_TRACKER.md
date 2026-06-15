@@ -90,7 +90,7 @@ The wording should be **film-ready photographic base**, not "film style".
 | 7 | RAW decode V1 | partial | rawpy/LibRaw inspection and generic decode path exist; broader camera validation pending |
 | 8 | FiveK RAW-derived Cache V2 | partial | 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; manual visual validation pending |
 | 9 | Compact FiveK response assets | partial | mini64 tone/chroma/luma response assets exist; broader representative cache pending |
-| 10 | Auto-base candidate | partial | mini64 deterministic response baseline exists; user visual validation pending |
+| 10 | Auto-base candidate | partial | mini64 baseline split into tone-locked default and optional color/WB residual; user visual validation pending |
 | 11 | Storage decision | pending | explicit keep/cold-store/delete recommendation for FiveK raw assets |
 
 ## 5. Current FiveK Source State

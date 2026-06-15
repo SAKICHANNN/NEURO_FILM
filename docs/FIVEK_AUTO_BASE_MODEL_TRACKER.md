@@ -279,7 +279,7 @@ The candidate must be optional, controllable, and easy to disable.
 | 3 | Generate Cache V1 | done | manifest, summary, and contact sheet exist |
 | 4 | Build RAW-derived Cache V2 | partial | 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; user visual validation pending |
 | 5 | Extract compact response assets | partial | mini64 tone/chroma/luma response assets written; broader representative cache pending |
-| 6 | Fit deterministic response baseline | partial | mini64 RGB-delta response baseline generated; user visual validation pending |
+| 6 | Fit deterministic response baseline | partial | mini64 response baseline split into tone-locked and optional color/WB residual modes; user visual validation pending |
 | 7 | Train first lightweight candidate | pending | candidate improves base tone without stock-style drift |
 | 8 | Compare to Expert C | partial | mini64 baseline metrics and contact sheet generated |
 | 9 | Storage recommendation | pending | explicit keep/cold-store/delete recommendation for FiveK assets |
@@ -474,9 +474,164 @@ What this does not prove yet:
 - It does not prove generalization beyond the Mini64 subset.
 - It does not replace a future train/validation split.
 - It does not justify deleting `data/raw/fivek/`.
+- User feedback on the 0.25/0.50/0.75/1.00 legacy RGB-delta sweep showed
+  that even low strength can visibly over-correct color temperature and that
+  the strength ladder is not perceptually well separated.
 
 Manual visual validation needed:
 
 ```text
 outputs/fivek_auto_optimize/response_baseline_v1_mini64/contact_sheet.png
 ```
+
+## 13. Response Split Plan: Tone vs Color/WB
+
+Reason for the split:
+
+- The first deterministic baseline applied a single RGB-delta curve learned
+  from RAW/default to Expert C.
+- That approach improved numeric distance to Expert C, but it mixed exposure,
+  tone curve, chroma, and white-balance decisions into one scalar strength.
+- User visual review found that even `strength=0.25` changed color temperature
+  too much, while `0.25` and `0.75` did not feel clearly separated in the
+  contact sheets.
+- Therefore the single `strength` control is not a valid product abstraction
+  for a neutral auto-base layer.
+
+New decomposition:
+
+```text
+RAW/default render
+  -> tone_locked pass
+       Uses luma_delta_by_raw_luma.
+       Scales RGB channels together to target luminance.
+       Intention: change exposure/tone while preserving source RGB ratios.
+  -> optional color/WB residual pass
+       Computes old legacy_rgb response minus tone_locked response.
+       Controlled separately by color_strength.
+       Default: 0.0.
+```
+
+CLI modes:
+
+```text
+--mode tone_locked
+  Default. Preserves source RGB ratios during the tone pass.
+
+--mode legacy_rgb
+  Reproduces the original RGB-delta baseline for failure comparison.
+```
+
+Primary controls:
+
+```text
+--tone-strength
+  Amount of luma response to apply.
+
+--color-strength
+  Amount of Expert C residual color/WB response to add after tone locking.
+  Default must stay 0.0 until user visual validation supports raising it.
+
+--strength
+  Backward-compatible alias for tone strength.
+```
+
+Required measurements:
+
+```text
+baseline_target_luma_mae
+baseline_target_rgb_mae
+baseline_target_chroma_mae
+baseline_luma_delta_mean
+baseline_chroma_delta_mean
+baseline_red_green_ratio_delta
+baseline_blue_green_ratio_delta
+```
+
+Acceptance rule for this stage:
+
+- Prefer a candidate that preserves small red/green and blue/green ratio deltas
+  over one that wins Expert C RGB MAE by moving white balance aggressively.
+- A neutral auto-base default should be judged first by visual non-annoyance
+  and stable WB, second by Expert C metric improvement.
+- `legacy_rgb` remains useful as a warning baseline, not a default.
+
+Manual validation outputs to generate:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v2_tone_locked/
+outputs/fivek_auto_optimize/response_baseline_v2_tone_color_s010/
+outputs/fivek_auto_optimize/response_baseline_v2_legacy_rgb/
+```
+
+## 14. Response Split V2 Mini64 Result
+
+Generated commands:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v2_tone_locked `
+  --mode tone_locked `
+  --tone-strength 1.0 `
+  --color-strength 0.0
+
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v2_tone_color_s010 `
+  --mode tone_locked `
+  --tone-strength 1.0 `
+  --color-strength 0.10
+
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v2_legacy_rgb `
+  --mode legacy_rgb `
+  --tone-strength 1.0
+```
+
+Generated ignored outputs:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v2_tone_locked/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v2_tone_color_s010/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v2_legacy_rgb/contact_sheet.png
+```
+
+Mean metrics:
+
+```text
+candidate                  luma_mae  rgb_mae   chroma_mae  R/G delta   B/G delta
+raw/default -> Expert C     0.061296  0.064870  0.031508    n/a         n/a
+tone_locked c0.00           0.055659  0.060514  0.032865   -0.000994  -0.002551
+tone_locked c0.10           0.055659  0.060446  0.032547   -0.006802  -0.000824
+legacy_rgb                  0.055659  0.060201  0.030872   -0.058393  +0.014512
+```
+
+Interpretation:
+
+- `tone_locked c0.00` keeps almost the same luma improvement as `legacy_rgb`
+  while dramatically reducing red/green and blue/green ratio drift.
+- `legacy_rgb` still wins Expert C RGB/chroma MAE, but it does so by moving
+  white balance strongly, matching the user's visual complaint.
+- `tone_locked c0.10` is a cautious diagnostic point; even 0.10 color residual
+  increases R/G drift enough that it should not become the default without
+  visual approval.
+
+Current recommended validation priority:
+
+```text
+1. outputs/fivek_auto_optimize/response_baseline_v2_tone_locked/contact_sheet.png
+2. outputs/fivek_auto_optimize/response_baseline_v2_tone_color_s010/contact_sheet.png
+3. outputs/fivek_auto_optimize/response_baseline_v2_legacy_rgb/contact_sheet.png
+```
+
+Product implication:
+
+- The default auto-base candidate should be `tone_locked` with
+  `color_strength=0.0`.
+- Any later color/WB correction must be a separately named control or learned
+  module, not hidden inside "strength".

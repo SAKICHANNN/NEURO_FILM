@@ -36,7 +36,20 @@ def parse_args() -> argparse.Namespace:
         default=ROOT / "outputs" / "fivek_auto_optimize" / "response_baseline_v1_mini64",
     )
     parser.add_argument("--contact-sheet-count", type=int, default=24)
-    parser.add_argument("--strength", type=float, default=1.0)
+    parser.add_argument(
+        "--mode",
+        choices=("tone_locked", "legacy_rgb"),
+        default="tone_locked",
+        help="tone_locked preserves source RGB ratios for the tone pass; legacy_rgb applies the old RGB-delta response.",
+    )
+    parser.add_argument("--strength", type=float, default=None, help="Legacy alias for --tone-strength in tone_locked mode.")
+    parser.add_argument("--tone-strength", type=float, default=1.0)
+    parser.add_argument(
+        "--color-strength",
+        type=float,
+        default=0.0,
+        help="Amount of residual Expert C color/WB response to add after the tone-locked pass.",
+    )
     return parser.parse_args()
 
 
@@ -69,15 +82,47 @@ def chroma(rgb: np.ndarray) -> np.ndarray:
     return np.sqrt(((rgb - rgb.mean(axis=2, keepdims=True)) ** 2).sum(axis=2))
 
 
-def apply_response(raw: np.ndarray, curves: np.lib.npyio.NpzFile, strength: float) -> np.ndarray:
-    raw_l = luma(raw)
+def interpolated_rgb_delta(raw_l: np.ndarray, curves: np.lib.npyio.NpzFile) -> np.ndarray:
     centers = curves["bin_centers"]
     rgb_delta = curves["rgb_delta_by_raw_luma"]
     delta_r = np.interp(raw_l, centers, rgb_delta[:, 0])
     delta_g = np.interp(raw_l, centers, rgb_delta[:, 1])
     delta_b = np.interp(raw_l, centers, rgb_delta[:, 2])
-    delta = np.stack([delta_r, delta_g, delta_b], axis=2).astype(np.float32)
+    return np.stack([delta_r, delta_g, delta_b], axis=2).astype(np.float32)
+
+
+def apply_legacy_rgb_response(raw: np.ndarray, curves: np.lib.npyio.NpzFile, strength: float) -> np.ndarray:
+    raw_l = luma(raw)
+    delta = interpolated_rgb_delta(raw_l, curves)
     return np.clip(raw + delta * float(strength), 0.0, 1.0)
+
+
+def apply_tone_locked_response(
+    raw: np.ndarray,
+    curves: np.lib.npyio.NpzFile,
+    tone_strength: float,
+    color_strength: float,
+) -> np.ndarray:
+    raw_l = luma(raw)
+    centers = curves["bin_centers"]
+    luma_delta = np.interp(raw_l, centers, curves["luma_delta_by_raw_luma"]).astype(np.float32)
+    target_l = np.clip(raw_l + luma_delta * float(tone_strength), 0.0, 1.0)
+    scale = target_l / np.maximum(raw_l, 1e-4)
+    tone_locked = np.clip(raw * scale[..., None], 0.0, 1.0)
+
+    if color_strength == 0:
+        return tone_locked
+
+    legacy_full = apply_legacy_rgb_response(raw, curves, tone_strength)
+    residual = legacy_full - tone_locked
+    return np.clip(tone_locked + residual * float(color_strength), 0.0, 1.0)
+
+
+def apply_response(raw: np.ndarray, curves: np.lib.npyio.NpzFile, args: argparse.Namespace) -> np.ndarray:
+    tone_strength = args.strength if args.strength is not None else args.tone_strength
+    if args.mode == "legacy_rgb":
+        return apply_legacy_rgb_response(raw, curves, tone_strength)
+    return apply_tone_locked_response(raw, curves, tone_strength, args.color_strength)
 
 
 def metrics(raw: np.ndarray, baseline: np.ndarray, target: np.ndarray) -> dict[str, float]:
@@ -96,6 +141,14 @@ def metrics(raw: np.ndarray, baseline: np.ndarray, target: np.ndarray) -> dict[s
         "baseline_target_chroma_mae": float(np.abs(base_c - target_c).mean()),
         "baseline_luma_delta_mean": float((base_l - raw_l).mean()),
         "baseline_chroma_delta_mean": float((base_c - raw_c).mean()),
+        "baseline_red_green_ratio_delta": float(
+            baseline[..., 0].mean() / (baseline[..., 1].mean() + 1e-6)
+            - raw[..., 0].mean() / (raw[..., 1].mean() + 1e-6)
+        ),
+        "baseline_blue_green_ratio_delta": float(
+            baseline[..., 2].mean() / (baseline[..., 1].mean() + 1e-6)
+            - raw[..., 2].mean() / (raw[..., 1].mean() + 1e-6)
+        ),
     }
 
 
@@ -140,7 +193,10 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
         "response": repo_path(args.response),
         "output_dir": repo_path(args.output_dir),
         "row_count": len(rows),
+        "mode": args.mode,
         "strength": args.strength,
+        "tone_strength": args.strength if args.strength is not None else args.tone_strength,
+        "color_strength": args.color_strength,
         "means": {
             "raw_target_luma_mae": mean("raw_target_luma_mae"),
             "baseline_target_luma_mae": mean("baseline_target_luma_mae"),
@@ -150,8 +206,13 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
             "baseline_target_chroma_mae": mean("baseline_target_chroma_mae"),
             "baseline_luma_delta_mean": mean("baseline_luma_delta_mean"),
             "baseline_chroma_delta_mean": mean("baseline_chroma_delta_mean"),
+            "baseline_red_green_ratio_delta": mean("baseline_red_green_ratio_delta"),
+            "baseline_blue_green_ratio_delta": mean("baseline_blue_green_ratio_delta"),
         },
-        "note": "Deterministic RGB-delta response baseline from compact stats; not a trained final auto-base model.",
+        "note": (
+            "Deterministic response baseline from compact stats. tone_locked mode preserves source RGB ratios "
+            "for the tone pass and keeps Expert C color/WB residual disabled unless color_strength is raised."
+        ),
     }
 
 
@@ -166,7 +227,7 @@ def main() -> int:
     for row in rows:
         raw = load_rgb(ROOT / row["raw_render"])
         target = load_rgb(ROOT / row["target"])
-        baseline = apply_response(raw, curves, args.strength)
+        baseline = apply_response(raw, curves, args)
         baseline_path = baseline_dir / f"{row['id']}_response_baseline.png"
         save_rgb(baseline, baseline_path)
         metric = metrics(raw, baseline, target)
