@@ -277,7 +277,7 @@ The candidate must be optional, controllable, and easy to disable.
 | 1 | Inspect FiveK layout | done | local source paths and sizes recorded |
 | 2 | Implement Cache V1 builder | done | `scripts/build_fivek_auto_optimize_cache.py` builds Expert C proxy cache |
 | 3 | Generate Cache V1 | done | manifest, summary, and contact sheet exist |
-| 4 | Build RAW-derived Cache V2 | pending | neutral RAW/default render paired with Expert C target and validation sheets |
+| 4 | Build RAW-derived Cache V2 | partial | 8-image smoke cache pairs RAW/default render with Expert C target; user visual validation pending |
 | 5 | Extract compact response assets | pending | tone/chroma/histogram/local-bucket assets exist without full-size TIFF dependency |
 | 6 | Fit deterministic response baseline | pending | response assets produce neutral film-ready base on validation subset |
 | 7 | Train first lightweight candidate | pending | candidate improves base tone without stock-style drift |
@@ -292,3 +292,58 @@ The candidate must be optional, controllable, and easy to disable.
 - Do not replace `data/film_domain` with FiveK.
 - Do not make the FiveK auto-base layer responsible for stock-specific film
   identity.
+
+## 10. RAW-Derived Cache V2 Smoke Result
+
+Generated command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_fivek_raw_cache.py `
+  --count 8 `
+  --size 512 `
+  --output-dir outputs\fivek_auto_optimize\raw_cache_v2_smoke
+```
+
+Generated ignored outputs:
+
+```text
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/raw_renders_512/
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/targets_512/
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/pairs_512/
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/manifest.csv
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/summary.json
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/contact_sheet.png
+```
+
+Measured smoke size:
+
+```text
+raw_renders_512: 8 files, about 0.37 MB
+targets_512:     8 files, about 2.09 MB
+pairs_512:       8 files, about 0.82 MB
+manifest.csv:    8 rows
+missing_count:   0
+```
+
+What this proves:
+
+- FiveK Expert C TIFF names can be matched to RAW/DNG tar members by stem.
+- The local `fivek_dataset.tar` can be read without full extraction.
+- RAW members can be temporarily extracted, decoded through the shared
+  `src.preprocess` path, and paired with Expert C targets.
+- The smoke contact sheet is nonblank and correctly laid out as
+  `RAW/default render | Expert C`.
+
+What this does not prove yet:
+
+- The generic LibRaw/rawpy RAW render is the best input representation for the
+  final auto-base model.
+- The Expert C target is the preferred product aesthetic.
+- The 8-image smoke subset is representative enough to justify deleting or
+  cold-storing FiveK.
+
+Manual visual validation needed:
+
+```text
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/contact_sheet.png
+```

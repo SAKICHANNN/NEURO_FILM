@@ -88,7 +88,7 @@ The wording should be **film-ready photographic base**, not "film style".
 | 5 | SDR raster decode | partial | JPEG/PNG/TIFF decode to float32 `linear_srgb`; HEIF support pending |
 | 6 | HDR/gain-map detection | pending | HDR/gain-map images are detected and preserved/flagged instead of silently flattened |
 | 7 | RAW decode V1 | partial | rawpy/LibRaw inspection and generic decode path exist; broader camera validation pending |
-| 8 | FiveK RAW-derived Cache V2 | pending | neutral RAW/default render paired with Expert C target and validation sheets |
+| 8 | FiveK RAW-derived Cache V2 | partial | 8-image smoke cache pairs RAW/default render with Expert C target; manual visual validation pending |
 | 9 | Compact FiveK response assets | pending | tone/chroma/histogram/local-bucket assets exist without full-size TIFF dependency |
 | 10 | Auto-base candidate | pending | candidate outputs neutral photographic base without stock-style drift |
 | 11 | Storage decision | pending | explicit keep/cold-store/delete recommendation for FiveK raw assets |
