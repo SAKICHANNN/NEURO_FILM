@@ -796,3 +796,78 @@ outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c025/contact_sheet.pn
 outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c050/contact_sheet.png
 outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c100/contact_sheet.png
 ```
+
+## 17. Expert TIFF ICC Bug And V4 Rebuild
+
+Bug:
+
+- FiveK Expert C TIFF files are 16-bit RGB TIFFs with embedded ICC profiles.
+- Local inspection found the embedded profile is `ProPhoto RGB` / ROMM.
+- The original cache builders used `ImageOps.exif_transpose(image).convert("RGB")`.
+- That path converts image mode, but does not perform embedded ICC -> sRGB
+  color management.
+- Therefore old cached Expert C PNG targets interpreted ProPhoto RGB values as
+  if they were already sRGB.
+
+Impact:
+
+- Previous Expert C target PNGs under these outputs are color-managed
+  incorrectly:
+
+```text
+outputs/fivek_auto_optimize/cache_v1/
+outputs/fivek_auto_optimize/raw_cache_v2_smoke/
+outputs/fivek_auto_optimize/raw_cache_v2_mini64/
+outputs/fivek_auto_optimize/response_stats_v1_mini64/
+outputs/fivek_auto_optimize/response_baseline_v1_mini64*
+outputs/fivek_auto_optimize/response_baseline_v2_*
+outputs/fivek_auto_optimize/response_baseline_v3_*
+```
+
+- The old baseline images themselves may be internally reproducible, but their
+  target reference and response statistics were learned against the wrong
+  target color interpretation.
+- All product judgment must use ICC-corrected V4 or later outputs.
+
+Fix:
+
+- `scripts/build_fivek_raw_cache.py` now converts Expert TIFF targets from the
+  embedded ICC profile to sRGB before resizing/caching.
+- `scripts/build_fivek_auto_optimize_cache.py` applies the same fix for the
+  older proxy cache builder.
+
+Measured smoke difference:
+
+```text
+old naive target vs ICC-corrected target mean MAE on 8-image smoke: 0.034654
+```
+
+V4 generated outputs:
+
+```text
+outputs/fivek_auto_optimize/raw_cache_v2_icc_smoke/
+outputs/fivek_auto_optimize/raw_cache_v2_mini64_icc/
+outputs/fivek_auto_optimize/response_stats_v2_mini64_icc/
+outputs/fivek_auto_optimize/response_baseline_v4_icc_tone_locked/
+outputs/fivek_auto_optimize/response_baseline_v4_icc_wb_anchor_c050/
+outputs/fivek_auto_optimize/response_baseline_v4_icc_legacy_rgb/
+outputs/fivek_auto_optimize/response_baseline_v4_icc_comparison/contact_sheet.png
+```
+
+V4 mean metrics:
+
+```text
+candidate              luma_mae  rgb_mae   chroma_mae  R/G delta   B/G delta
+raw/default -> Expert   0.073732  0.080232  0.055720    n/a         n/a
+tone_locked ICC         0.058086  0.068083  0.051858   -0.000924  -0.004172
+wb_anchor ICC c0.50     0.058124  0.068616  0.053264   -0.000706  +0.000772
+legacy_rgb ICC          0.058163  0.068684  0.053362   -0.070292  -0.015197
+```
+
+Manual visual validation priority after the fix:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v4_icc_comparison/contact_sheet.png
+outputs/fivek_auto_optimize/raw_cache_v2_mini64_icc/contact_sheet.png
+outputs/fivek_auto_optimize/raw_cache_v2_icc_smoke/contact_sheet.png
+```

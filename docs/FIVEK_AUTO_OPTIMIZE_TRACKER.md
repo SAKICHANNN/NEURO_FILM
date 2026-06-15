@@ -88,9 +88,9 @@ The wording should be **film-ready photographic base**, not "film style".
 | 5 | SDR raster decode | partial | JPEG/PNG/TIFF decode to float32 `linear_srgb`; HEIF support pending |
 | 6 | HDR/gain-map detection | pending | HDR/gain-map images are detected and preserved/flagged instead of silently flattened |
 | 7 | RAW decode V1 | partial | rawpy/LibRaw inspection and generic decode path exist; broader camera validation pending |
-| 8 | FiveK RAW-derived Cache V2 | partial | 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; manual visual validation pending |
-| 9 | Compact FiveK response assets | partial | mini64 tone/chroma/luma response assets exist; broader representative cache pending |
-| 10 | Auto-base candidate | partial | RGB-delta and tone-locked were rejected; WB-anchored residual candidate is under validation |
+| 8 | FiveK RAW-derived Cache V2 | partial | ICC-corrected 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; manual visual validation pending |
+| 9 | Compact FiveK response assets | partial | ICC-corrected mini64 tone/chroma/luma response assets exist; broader representative cache pending |
+| 10 | Auto-base candidate | partial | pre-ICC baselines invalidated; ICC-corrected tone/legacy/WB-anchored candidates are under validation |
 | 11 | Storage decision | pending | explicit keep/cold-store/delete recommendation for FiveK raw assets |
 
 ## 5. Current FiveK Source State

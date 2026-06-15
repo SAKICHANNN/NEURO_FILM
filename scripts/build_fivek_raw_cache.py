@@ -11,10 +11,11 @@ import sys
 import tarfile
 import tempfile
 from datetime import datetime
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageCms, ImageDraw, ImageFont, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -65,9 +66,18 @@ def build_tar_index(tar_path: Path) -> dict[str, str]:
     return index
 
 
+def convert_to_srgb(image: Image.Image) -> Image.Image:
+    icc = image.info.get("icc_profile")
+    if not icc:
+        return image.convert("RGB")
+    src = ImageCms.ImageCmsProfile(BytesIO(icc))
+    dst = ImageCms.createProfile("sRGB")
+    return ImageCms.profileToProfile(image.convert("RGB"), src, dst, outputMode="RGB")
+
+
 def load_target(path: Path, size: int) -> Image.Image:
     with Image.open(path) as image:
-        image = ImageOps.exif_transpose(image).convert("RGB")
+        image = convert_to_srgb(ImageOps.exif_transpose(image))
         image.thumbnail((size, size), Image.Resampling.LANCZOS)
         canvas = Image.new("RGB", (size, size), "black")
         canvas.paste(image, ((size - image.width) // 2, (size - image.height) // 2))
@@ -227,7 +237,10 @@ def main() -> int:
         "missing_count": len(missing),
         "missing": missing,
         "size": args.size,
-        "note": "RAW/default render is generic LibRaw/rawpy output, not an exact vendor or Adobe rendering.",
+        "note": (
+            "RAW/default render is generic LibRaw/rawpy output, not an exact vendor or Adobe rendering. "
+            "Expert TIFF targets are converted from embedded ICC profiles to sRGB before caching."
+        ),
     }
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     make_contact_sheet(rows, output_dir / "contact_sheet.png", args.contact_sheet_count)

@@ -9,10 +9,11 @@ import json
 import random
 import sys
 from datetime import datetime
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from PIL import Image, ImageCms, ImageDraw, ImageEnhance, ImageFont, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,9 +60,18 @@ def list_targets(expert_dir: Path, count: int, seed: int) -> list[Path]:
     return sorted(targets)
 
 
+def convert_to_srgb(image: Image.Image) -> Image.Image:
+    icc = image.info.get("icc_profile")
+    if not icc:
+        return image.convert("RGB")
+    src = ImageCms.ImageCmsProfile(BytesIO(icc))
+    dst = ImageCms.createProfile("sRGB")
+    return ImageCms.profileToProfile(image.convert("RGB"), src, dst, outputMode="RGB")
+
+
 def load_target(path: Path, size: int) -> Image.Image:
     with Image.open(path) as image:
-        image = ImageOps.exif_transpose(image).convert("RGB")
+        image = convert_to_srgb(ImageOps.exif_transpose(image))
         image.thumbnail((size, size), Image.Resampling.LANCZOS)
         canvas = Image.new("RGB", (size, size), "black")
         canvas.paste(image, ((size - image.width) // 2, (size - image.height) // 2))
@@ -158,6 +168,7 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
             "post_offset": 0.018,
             "note": "Proxy only; true RAW-derived inputs are a future cache version.",
         },
+        "target_color_management": "embedded ICC converted to sRGB before cache generation",
         "means": {
             "target_luma_mean": mean("target_luma_mean"),
             "target_luma_std": mean("target_luma_std"),
