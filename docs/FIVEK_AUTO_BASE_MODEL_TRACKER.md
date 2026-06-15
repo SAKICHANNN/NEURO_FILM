@@ -277,8 +277,8 @@ The candidate must be optional, controllable, and easy to disable.
 | 1 | Inspect FiveK layout | done | local source paths and sizes recorded |
 | 2 | Implement Cache V1 builder | done | `scripts/build_fivek_auto_optimize_cache.py` builds Expert C proxy cache |
 | 3 | Generate Cache V1 | done | manifest, summary, and contact sheet exist |
-| 4 | Build RAW-derived Cache V2 | partial | 8-image smoke cache pairs RAW/default render with Expert C target; user visual validation pending |
-| 5 | Extract compact response assets | pending | tone/chroma/histogram/local-bucket assets exist without full-size TIFF dependency |
+| 4 | Build RAW-derived Cache V2 | partial | 8-image smoke and 64-image mini cache pair RAW/default render with Expert C target; user visual validation pending |
+| 5 | Extract compact response assets | partial | mini64 tone/chroma/luma response assets written; broader representative cache pending |
 | 6 | Fit deterministic response baseline | pending | response assets produce neutral film-ready base on validation subset |
 | 7 | Train first lightweight candidate | pending | candidate improves base tone without stock-style drift |
 | 8 | Compare to Expert C | pending | objective metrics and contact sheets generated |
@@ -346,4 +346,73 @@ Manual visual validation needed:
 
 ```text
 outputs/fivek_auto_optimize/raw_cache_v2_smoke/contact_sheet.png
+```
+
+## 11. RAW-Derived Mini64 And Response Stats
+
+Generated mini cache command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_fivek_raw_cache.py `
+  --count 64 `
+  --size 512 `
+  --output-dir outputs\fivek_auto_optimize\raw_cache_v2_mini64
+```
+
+Generated compact response command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\extract_fivek_response_stats.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --output-dir outputs\fivek_auto_optimize\response_stats_v1_mini64 `
+  --bins 32 `
+  --sample-stride 2
+```
+
+Generated ignored outputs:
+
+```text
+outputs/fivek_auto_optimize/raw_cache_v2_mini64/
+outputs/fivek_auto_optimize/response_stats_v1_mini64/response_stats.json
+outputs/fivek_auto_optimize/response_stats_v1_mini64/response_curves.npz
+outputs/fivek_auto_optimize/response_stats_v1_mini64/per_image_stats.csv
+outputs/fivek_auto_optimize/response_stats_v1_mini64/response_curves.png
+```
+
+Measured response stats:
+
+```text
+raw_cache_v2_mini64 rows: 64
+missing_count: 0
+response bins: 32
+per_image_stats rows: 64
+NPZ keys:
+  bin_centers
+  counts
+  target_luma_by_raw_luma
+  luma_delta_by_raw_luma
+  target_chroma_by_raw_luma
+  chroma_delta_by_raw_luma
+  rgb_delta_by_raw_luma
+```
+
+What this proves:
+
+- The response extractor can turn a RAW-derived cache into small tone/chroma
+  response assets.
+- The output is small enough to keep while raw TIFF/RAW data remains ignored.
+- The assets are suitable for deterministic baseline experiments and for
+  initializing lightweight auto-base candidates.
+
+What this does not prove yet:
+
+- The 64-image sample is representative enough for product behavior.
+- The response assets are sufficient to delete or cold-store FiveK.
+- The selected Expert C target is the final product aesthetic.
+
+Storage decision remains unchanged:
+
+```text
+Do not delete data/raw/fivek/.
+Mini64 response stats are useful compression artifacts, not deletion proof.
 ```
