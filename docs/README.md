@@ -23,6 +23,7 @@ resume without reading generated outputs.
 | `AI_COLOR_ENGINE_CHALLENGE_RESULTS.md` | Results for Neural LUT, local maps, and film response volume experiments. |
 | `NEURAL_FILM_LUT_V2_TRACKER.md` | New Neural LUT V2 plan for image-specific and stock-specific film rendering. |
 | `NEURAL_FILM_LUT_V2_RESULTS.md` | Results for Neural LUT V2 Scheme A/B/C distilled candidates. |
+| `FIVEK_AUTO_OPTIMIZE_TRACKER.md` | Tracker for FiveK cache extraction, future pre-film auto-optimization, and shared input preprocessing boundaries. |
 | `CHROMA_ONLY_RESEARCH_RESULTS.md` | Chroma residual research notes. |
 | `NEURAL_LUT_RESULTS.md` | Neural LUT scaffold and MVP imitation results. |
 | `FILMFX_LAYER_RESULTS.md` | Deterministic film-effects layer results. |
