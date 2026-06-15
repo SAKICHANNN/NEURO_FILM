@@ -135,13 +135,13 @@ decoded. Silent assumptions should become explicit warnings.
 
 | Order | Task | Status | Completion Test |
 |------:|------|:---:|-----------------|
-| 1 | Design `WorkingImage` schema | pending | typed contract documents pixels, color state, HDR state, source metadata, warnings |
-| 2 | Implement input inspector | pending | reports format, bit depth, ICC/CICP/nclx, HDR/gain-map, EXIF orientation, RAW metadata |
-| 3 | Implement SDR raster decode path | pending | JPEG/PNG/TIFF/SDR HEIF decode to high-precision working RGB with profile handling |
-| 4 | Implement color-management utilities | pending | ICC-tagged sRGB/P3/AdobeRGB images map consistently to working RGB |
+| 1 | Design `WorkingImage` schema | done | `src/preprocess/types.py` documents pixels, color state, HDR state, source metadata, warnings |
+| 2 | Implement input inspector | done | `scripts/inspect_image_input.py` reports raster and RAW metadata; smoke outputs written under `outputs/eval/preprocess_smoke/` |
+| 3 | Implement SDR raster decode path | partial | JPEG/PNG/TIFF decode to float32 `linear_srgb`; HEIF backend support still pending |
+| 4 | Implement color-management utilities | partial | embedded ICC conversion to sRGB exists; full P3/AdobeRGB/Rec.2020 working transform still pending |
 | 5 | Implement HDR/gain-map detection | pending | HDR and gain-map images are detected and preserved/flagged instead of silently flattened |
-| 6 | Implement RAW decode V1 | pending | common RAW formats decode through LibRaw/rawpy into a high-bit-depth working image |
-| 7 | Add evaluation fixtures | pending | small local fixtures cover SDR, wide-gamut, TIFF, HEIF, HDR/gain-map, and RAW cases |
+| 6 | Implement RAW decode V1 | partial | rawpy/LibRaw inspection and generic linear decode path exist; broader camera fixture validation pending |
+| 7 | Add evaluation fixtures | partial | tests cover missing file, PNG, JPEG, TIFF; HEIF/HDR/gain-map/RAW decode fixtures pending |
 | 8 | Connect FiveK RAW cache builder | pending | FiveK RAW-derived cache generation uses shared preprocessing APIs |
 
 ## 7. Accuracy Rules
@@ -176,3 +176,80 @@ FiveK deletion remains blocked until:
 2. FiveK RAW-derived Cache V2 is generated through this preprocessing layer.
 3. Decode parameters and representative regression fixtures are preserved.
 ```
+
+## 10. Current Implementation Snapshot
+
+Implemented files:
+
+```text
+src/preprocess/__init__.py
+src/preprocess/types.py
+src/preprocess/raster_decode.py
+src/preprocess/raw_decode.py
+src/preprocess/pipeline.py
+scripts/inspect_image_input.py
+tests/test_preprocess_pipeline.py
+```
+
+Current capabilities:
+
+```text
+inspect_input(path)
+load_working_image(path)
+```
+
+Raster path:
+
+- inspects JPEG/PNG/TIFF metadata through Pillow;
+- records dimensions, mode, inferred bit depth, alpha presence, frame count,
+  EXIF orientation, ICC presence, and warnings;
+- decodes SDR raster images to float32 `linear_srgb`;
+- applies EXIF transpose before decode;
+- converts embedded ICC profiles to sRGB through Pillow ImageCms when possible;
+- assumes sRGB with explicit warnings when ICC is missing.
+
+RAW path:
+
+- detects common RAW suffixes;
+- inspects RAW metadata through rawpy/LibRaw when available;
+- records visible size, raw size, color description, black level, white level,
+  camera white balance, and daylight white balance;
+- includes a generic `load_raw_working_image` path using camera WB,
+  `no_auto_bright=True`, `output_bps=16`, and linear gamma.
+
+Verification run:
+
+```powershell
+.\.venv\Scripts\python.exe -m py_compile `
+  src\preprocess\types.py `
+  src\preprocess\raster_decode.py `
+  src\preprocess\raw_decode.py `
+  src\preprocess\pipeline.py `
+  scripts\inspect_image_input.py
+
+.\.venv\Scripts\python.exe -m pytest tests\test_preprocess_pipeline.py -q
+```
+
+Result:
+
+```text
+4 passed
+```
+
+Smoke outputs:
+
+```text
+outputs/eval/preprocess_smoke/inspect_rawpixls_jpg.json
+outputs/eval/preprocess_smoke/inspect_rawpixls_raw.json
+```
+
+Important limitations:
+
+- internal working space is currently `linear_srgb`, not yet ACEScg or linear
+  Rec.2020;
+- HEIF/HDR/gain-map support is only represented in the contract and warning
+  policy, not fully implemented;
+- RAW decode is generic LibRaw/rawpy rendering and does not promise exact
+  vendor, Adobe, or Apple rendering;
+- alpha handling is recorded but not yet exposed as a full alpha-preserving
+  `WorkingImage` channel.

@@ -83,11 +83,11 @@ The wording should be **film-ready photographic base**, not "film style".
 |------:|------|:---:|-----------------|
 | 1 | FiveK source inspection | done | local `data/raw/fivek` structure and sizes recorded |
 | 2 | Cache V1 scaffold | done | Expert C proxy cache, manifest, summary, and contact sheet generated |
-| 3 | Shared preprocessing API | pending | `WorkingImage` schema and decoder contracts documented |
-| 4 | Input inspector | pending | reports format, bit depth, ICC/CICP/nclx, HDR/gain-map, EXIF orientation, RAW metadata |
-| 5 | SDR raster decode | pending | JPEG/PNG/TIFF/SDR HEIF decode to high-precision working RGB with profile handling |
+| 3 | Shared preprocessing API | done | `WorkingImage` schema and decoder contracts implemented under `src/preprocess/` |
+| 4 | Input inspector | done | `scripts/inspect_image_input.py` reports raster and RAW metadata |
+| 5 | SDR raster decode | partial | JPEG/PNG/TIFF decode to float32 `linear_srgb`; HEIF support pending |
 | 6 | HDR/gain-map detection | pending | HDR/gain-map images are detected and preserved/flagged instead of silently flattened |
-| 7 | RAW decode V1 | pending | common RAW formats decode through LibRaw/rawpy into a high-bit-depth working image |
+| 7 | RAW decode V1 | partial | rawpy/LibRaw inspection and generic decode path exist; broader camera validation pending |
 | 8 | FiveK RAW-derived Cache V2 | pending | neutral RAW/default render paired with Expert C target and validation sheets |
 | 9 | Compact FiveK response assets | pending | tone/chroma/histogram/local-bucket assets exist without full-size TIFF dependency |
 | 10 | Auto-base candidate | pending | candidate outputs neutral photographic base without stock-style drift |

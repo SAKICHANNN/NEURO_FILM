@@ -66,6 +66,7 @@ files.
 |--------|---------|
 | `download_data.py` | Download configured datasets. |
 | `build_fivek_auto_optimize_cache.py` | Build compact paired FiveK Expert C cache for future auto-optimization layer experiments. |
+| `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |
