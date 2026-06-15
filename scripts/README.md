@@ -69,7 +69,9 @@ files.
 | `build_fivek_raw_cache.py` | Build RAW/default render to Expert C FiveK cache smoke assets from the local FiveK tar. |
 | `evaluate_fivek_response_baseline.py` | Render/evaluate deterministic FiveK response baselines, including tone-locked, WB-anchored, chroma-guarded, and legacy RGB-delta modes. |
 | `extract_fivek_response_stats.py` | Extract compact tone/chroma response statistics from a FiveK RAW-derived cache. |
+| `extract_fivek_freeze_response_stats.py` | Extract response statistics from high-precision FiveK freeze-pack TIFFs. |
 | `build_fivek_filtered_targets.py` | Build conservative FiveK pseudo-targets that keep Expert C tone while guarding WB and chroma. |
+| `build_fivek_freeze_pack.py` | Build bounded high-precision FiveK freeze assets before deleting the large raw dataset. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |

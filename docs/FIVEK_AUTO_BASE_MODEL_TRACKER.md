@@ -1111,3 +1111,129 @@ outputs/fivek_auto_optimize/response_baseline_v6_filtered_comparison/contact_she
 outputs/fivek_auto_optimize/filtered_targets_v1_mini64_icc/contact_sheet.png
 outputs/fivek_auto_optimize/response_baseline_v6_filtered_target_wb_c025/contact_sheet.png
 ```
+
+## 22. Delete-Prep Freeze Pack V1
+
+Reason:
+
+- The project may delete the large local FiveK source data to recover disk
+  space.
+- Before deletion, the useful results must be preserved in a compact,
+  reproducible, higher-precision form.
+- The freeze pack must avoid carrying obsolete pre-ICC outputs or large
+  low-value duplicates.
+
+Budget decision:
+
+```text
+target budget: 20-24 GB
+hard budget:   30 GB
+actual:         6.98 GB
+```
+
+Generated command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_fivek_freeze_pack.py `
+  --hp-count 128 `
+  --gold-count 64 `
+  --max-size 1536 `
+  --output-dir outputs\fivek_auto_optimize\freeze_v1 `
+  --max-gb 30
+```
+
+Generated high-precision assets:
+
+```text
+outputs/fivek_auto_optimize/freeze_v1/
+outputs/fivek_auto_optimize/freeze_v1/manifest.csv
+outputs/fivek_auto_optimize/freeze_v1/summary.json
+outputs/fivek_auto_optimize/freeze_v1/contact_sheet.png
+
+outputs/fivek_auto_optimize/freeze_v1/hp128_1536_srgb16/raw_default_srgb16/
+outputs/fivek_auto_optimize/freeze_v1/hp128_1536_srgb16/expert_c_icc_srgb16/
+outputs/fivek_auto_optimize/freeze_v1/hp128_1536_srgb16/filtered_target_srgb16/
+outputs/fivek_auto_optimize/freeze_v1/hp128_1536_srgb16/previews/
+
+outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples/raw/
+outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples/expert_tiff_c/
+```
+
+Counts verified:
+
+```text
+raw_default_srgb16 TIFFs:       128
+expert_c_icc_srgb16 TIFFs:      128
+filtered_target_srgb16 TIFFs:   128
+gold original RAW files:         64
+gold original Expert TIFF files: 64
+missing source pairs:             0
+```
+
+Precision verified:
+
+```text
+sample raw_default_srgb16:      uint16, shape (1023, 1536, 3)
+sample expert_c_icc_srgb16:     uint16, shape (1023, 1536, 3)
+sample filtered_target_srgb16:  uint16, shape (1023, 1536, 3)
+```
+
+Color/target policy:
+
+```text
+RAW/default:
+  rawpy/LibRaw generic decode through src.preprocess.
+  display sRGB transfer encoded to uint16 TIFF.
+
+Expert C:
+  original 16-bit TIFF read with tifffile.
+  ProPhoto/ROMM transfer decoded.
+  Bradford D50 -> D65 chromatic adaptation.
+  matrix conversion to sRGB.
+  sRGB transfer encoded to uint16 TIFF.
+
+Filtered target:
+  luma_strength=0.82
+  chroma_strength=0.18
+  chroma_headroom=0.02
+  wb_anchor_strength=1.00
+```
+
+High-precision response stats:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\extract_fivek_freeze_response_stats.py `
+  --manifest outputs\fivek_auto_optimize\freeze_v1\manifest.csv `
+  --output-dir outputs\fivek_auto_optimize\freeze_v1\response_stats_filtered_srgb16 `
+  --bins 64 `
+  --sample-stride 3
+```
+
+Generated stats:
+
+```text
+outputs/fivek_auto_optimize/freeze_v1/response_stats_filtered_srgb16/response_stats.json
+outputs/fivek_auto_optimize/freeze_v1/response_stats_filtered_srgb16/response_curves.npz
+outputs/fivek_auto_optimize/freeze_v1/response_stats_filtered_srgb16/per_image_stats.csv
+outputs/fivek_auto_optimize/freeze_v1/response_stats_filtered_srgb16/response_curves.png
+```
+
+Disk result:
+
+```text
+freeze_v1 total files: 903
+freeze_v1 total size:  6.98 GB
+C: free after build:   43.32 GB
+```
+
+Deletion implication:
+
+- The freeze pack preserves the current useful FiveK direction without keeping
+  all 5000 Expert TIFFs or the full RAW tar.
+- It does not replace the complete dataset for future large-scale supervised
+  training.
+- It is sufficient for:
+  - reproducing current v6 filtered-target direction,
+  - validating 16-bit/high-pixel pipeline behavior on selected samples,
+  - refitting compact response curves,
+  - checking future color-management regressions.
