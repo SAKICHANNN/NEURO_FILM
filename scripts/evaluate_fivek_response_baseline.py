@@ -59,6 +59,18 @@ def parse_args() -> argparse.Namespace:
         default=1.0,
         help="How strongly wb_anchored mode restores the source global R/G and B/G ratios.",
     )
+    parser.add_argument(
+        "--chroma-anchor-strength",
+        type=float,
+        default=0.0,
+        help="How strongly the output chroma magnitude is limited toward the source chroma magnitude.",
+    )
+    parser.add_argument(
+        "--chroma-headroom",
+        type=float,
+        default=0.10,
+        help="Allowed chroma increase over source before chroma anchoring clamps the candidate.",
+    )
     return parser.parse_args()
 
 
@@ -161,6 +173,29 @@ def anchor_white_balance(raw: np.ndarray, candidate: np.ndarray, anchor_strength
     return np.clip(relit, 0.0, 1.0)
 
 
+def anchor_chroma(raw: np.ndarray, candidate: np.ndarray, anchor_strength: float, headroom: float) -> np.ndarray:
+    strength = float(anchor_strength)
+    if strength <= 0:
+        return candidate
+
+    raw_l = luma(raw)
+    candidate_l = luma(candidate)
+    raw_vec = raw - raw_l[..., None]
+    candidate_vec = candidate - candidate_l[..., None]
+    raw_c = np.sqrt((raw_vec * raw_vec).sum(axis=2))
+    candidate_c = np.sqrt((candidate_vec * candidate_vec).sum(axis=2))
+    max_c = raw_c * (1.0 + float(headroom))
+    target_scale = np.minimum(1.0, max_c / np.maximum(candidate_c, 1e-6))
+    scale = 1.0 + (target_scale - 1.0) * strength
+    guarded = candidate_l[..., None] + candidate_vec * scale[..., None]
+    guarded = np.clip(guarded, 0.0, 1.0)
+
+    # Re-apply candidate luminance after clipping/guarding to avoid accidental tone loss.
+    guarded_l = luma(guarded)
+    relit = guarded * (candidate_l / np.maximum(guarded_l, 1e-4))[..., None]
+    return np.clip(relit, 0.0, 1.0)
+
+
 def apply_wb_anchored_response(
     raw: np.ndarray,
     curves: np.lib.npyio.NpzFile,
@@ -177,10 +212,15 @@ def apply_wb_anchored_response(
 def apply_response(raw: np.ndarray, curves: np.lib.npyio.NpzFile, args: argparse.Namespace) -> np.ndarray:
     tone_strength = args.strength if args.strength is not None else args.tone_strength
     if args.mode == "legacy_rgb":
-        return apply_legacy_rgb_response(raw, curves, tone_strength)
-    if args.mode == "wb_anchored":
-        return apply_wb_anchored_response(raw, curves, tone_strength, args.color_strength, args.wb_anchor_strength)
-    return apply_tone_locked_response(raw, curves, tone_strength, args.color_strength)
+        candidate = apply_legacy_rgb_response(raw, curves, tone_strength)
+    elif args.mode == "wb_anchored":
+        candidate = apply_wb_anchored_response(raw, curves, tone_strength, args.color_strength, args.wb_anchor_strength)
+    else:
+        candidate = apply_tone_locked_response(raw, curves, tone_strength, args.color_strength)
+    candidate = anchor_chroma(raw, candidate, args.chroma_anchor_strength, args.chroma_headroom)
+    if args.mode == "wb_anchored" and args.chroma_anchor_strength > 0:
+        candidate = anchor_white_balance(raw, candidate, args.wb_anchor_strength)
+    return candidate
 
 
 def metrics(raw: np.ndarray, baseline: np.ndarray, target: np.ndarray) -> dict[str, float]:
@@ -256,6 +296,8 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
         "tone_strength": args.strength if args.strength is not None else args.tone_strength,
         "color_strength": args.color_strength,
         "wb_anchor_strength": args.wb_anchor_strength,
+        "chroma_anchor_strength": args.chroma_anchor_strength,
+        "chroma_headroom": args.chroma_headroom,
         "means": {
             "raw_target_luma_mae": mean("raw_target_luma_mae"),
             "baseline_target_luma_mae": mean("baseline_target_luma_mae"),
@@ -271,7 +313,7 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
         "note": (
             "Deterministic response baseline from compact stats. tone_locked preserves source RGB ratios "
             "for the tone pass; wb_anchored allows color residuals but restores global source WB ratios; "
-            "legacy_rgb is the original failure baseline."
+            "chroma anchoring optionally limits saturation growth; legacy_rgb is the original failure baseline."
         ),
     }
 

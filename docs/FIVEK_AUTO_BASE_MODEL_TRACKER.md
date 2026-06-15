@@ -871,3 +871,119 @@ outputs/fivek_auto_optimize/response_baseline_v4_icc_comparison/contact_sheet.pn
 outputs/fivek_auto_optimize/raw_cache_v2_mini64_icc/contact_sheet.png
 outputs/fivek_auto_optimize/raw_cache_v2_icc_smoke/contact_sheet.png
 ```
+
+## 18. ICC V5 Chroma/WB Guard Plan
+
+User validation after the ICC fix:
+
+- The ICC-corrected Expert C column is now visually plausible and much better
+  than the pre-ICC target.
+- It is still a stronger human edit than the desired default auto-base layer.
+- Main remaining complaints:
+  - Slightly too saturated.
+  - White balance/color temperature still feels over-calibrated.
+
+New candidate rule:
+
+```text
+RAW/default render
+  -> apply ICC-corrected response statistics
+  -> use WB anchoring to suppress global R/G and B/G drift
+  -> use chroma anchoring to limit saturation growth over the source
+  -> keep the luma/tone response as intact as possible
+```
+
+Why this is different from earlier attempts:
+
+- `legacy_rgb` learned Expert C color/WB too directly.
+- `tone_locked` protected WB but had too little useful visual effect.
+- `wb_anchored` protected global WB but could still inherit too much saturation
+  or local chroma growth from Expert C.
+- V5 adds an explicit chroma guard so saturation becomes a separate, bounded
+  control rather than an accidental side effect.
+
+New CLI controls:
+
+```text
+--chroma-anchor-strength
+  0.0 disables chroma guarding.
+  1.0 fully limits chroma growth to the configured source-relative headroom.
+
+--chroma-headroom
+  Allowed chroma increase over the source before guarding clamps the candidate.
+  Example: 0.05 allows up to about 5 percent chroma growth.
+```
+
+Validation outputs to generate:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_soft/
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_medium/
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_strict/
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_neutral/
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_comparison/contact_sheet.png
+```
+
+## 19. ICC V5 Chroma/WB Guard Result
+
+Generated candidates:
+
+```text
+soft:
+  tone_strength=1.00
+  color_strength=0.50
+  wb_anchor_strength=1.00
+  chroma_anchor_strength=0.35
+  chroma_headroom=0.15
+
+medium:
+  tone_strength=1.00
+  color_strength=0.35
+  wb_anchor_strength=1.00
+  chroma_anchor_strength=0.70
+  chroma_headroom=0.08
+
+strict:
+  tone_strength=1.00
+  color_strength=0.25
+  wb_anchor_strength=1.00
+  chroma_anchor_strength=1.00
+  chroma_headroom=0.03
+
+neutral:
+  tone_strength=0.85
+  color_strength=0.20
+  wb_anchor_strength=1.00
+  chroma_anchor_strength=1.00
+  chroma_headroom=0.00
+```
+
+Mean metrics:
+
+```text
+candidate           luma_mae  rgb_mae   chroma_mae  chroma_delta  R/G delta   B/G delta
+v4 wb c0.50          0.058124  0.068616  0.053264    +0.011377    -0.000706  +0.000772
+v5 soft              0.058123  0.068781  0.053597    +0.011087    +0.000263  +0.000863
+v5 medium            0.058111  0.069009  0.054197    +0.010099    -0.000076  +0.000451
+v5 strict            0.058103  0.069484  0.055468    +0.008485    -0.000465  +0.000092
+v5 neutral           0.058553  0.069826  0.055861    +0.006766    -0.000212  -0.000009
+Expert C target      n/a       n/a       n/a          strongest    human edit  human edit
+```
+
+Interpretation:
+
+- V5 keeps WB movement very small after the final WB-anchor pass.
+- Chroma growth decreases from `v4 wb c0.50` to `v5 neutral`, but the tradeoff
+  is reduced closeness to Expert C RGB/chroma metrics.
+- `neutral` is the best technical answer to the user's "less saturated and less
+  over-calibrated" feedback.
+- `medium` is the more balanced candidate if `neutral` feels too weak.
+- These are still Mini64 deterministic baselines, not product defaults.
+
+Manual visual validation priority:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_comparison/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_neutral/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v5_icc_guard_medium/contact_sheet.png
+```
