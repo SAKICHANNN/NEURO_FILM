@@ -67,7 +67,7 @@ files.
 | `download_data.py` | Download configured datasets. |
 | `build_fivek_auto_optimize_cache.py` | Build compact paired FiveK Expert C cache for future auto-optimization layer experiments. |
 | `build_fivek_raw_cache.py` | Build RAW/default render to Expert C FiveK cache smoke assets from the local FiveK tar. |
-| `evaluate_fivek_response_baseline.py` | Render/evaluate deterministic FiveK response baselines, including tone-locked and legacy RGB-delta modes. |
+| `evaluate_fivek_response_baseline.py` | Render/evaluate deterministic FiveK response baselines, including tone-locked, WB-anchored, and legacy RGB-delta modes. |
 | `extract_fivek_response_stats.py` | Extract compact tone/chroma response statistics from a FiveK RAW-derived cache. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |

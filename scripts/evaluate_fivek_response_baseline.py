@@ -38,9 +38,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--contact-sheet-count", type=int, default=24)
     parser.add_argument(
         "--mode",
-        choices=("tone_locked", "legacy_rgb"),
+        choices=("tone_locked", "wb_anchored", "legacy_rgb"),
         default="tone_locked",
-        help="tone_locked preserves source RGB ratios for the tone pass; legacy_rgb applies the old RGB-delta response.",
+        help=(
+            "tone_locked preserves source RGB ratios for the tone pass; wb_anchored allows color residuals "
+            "then anchors global R/G and B/G ratios; legacy_rgb applies the old RGB-delta response."
+        ),
     )
     parser.add_argument("--strength", type=float, default=None, help="Legacy alias for --tone-strength in tone_locked mode.")
     parser.add_argument("--tone-strength", type=float, default=1.0)
@@ -49,6 +52,12 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=0.0,
         help="Amount of residual Expert C color/WB response to add after the tone-locked pass.",
+    )
+    parser.add_argument(
+        "--wb-anchor-strength",
+        type=float,
+        default=1.0,
+        help="How strongly wb_anchored mode restores the source global R/G and B/G ratios.",
     )
     return parser.parse_args()
 
@@ -80,6 +89,14 @@ def luma(rgb: np.ndarray) -> np.ndarray:
 
 def chroma(rgb: np.ndarray) -> np.ndarray:
     return np.sqrt(((rgb - rgb.mean(axis=2, keepdims=True)) ** 2).sum(axis=2))
+
+
+def robust_channel_mean(rgb: np.ndarray) -> np.ndarray:
+    lum = luma(rgb)
+    mask = (lum > 0.05) & (lum < 0.95)
+    if not np.any(mask):
+        return rgb.reshape(-1, 3).mean(axis=0)
+    return rgb[mask].reshape(-1, 3).mean(axis=0)
 
 
 def interpolated_rgb_delta(raw_l: np.ndarray, curves: np.lib.npyio.NpzFile) -> np.ndarray:
@@ -118,10 +135,51 @@ def apply_tone_locked_response(
     return np.clip(tone_locked + residual * float(color_strength), 0.0, 1.0)
 
 
+def anchor_white_balance(raw: np.ndarray, candidate: np.ndarray, anchor_strength: float) -> np.ndarray:
+    raw_mean = robust_channel_mean(raw)
+    candidate_mean = robust_channel_mean(candidate)
+    raw_rg = raw_mean[0] / max(raw_mean[1], 1e-6)
+    raw_bg = raw_mean[2] / max(raw_mean[1], 1e-6)
+    candidate_rg = candidate_mean[0] / max(candidate_mean[1], 1e-6)
+    candidate_bg = candidate_mean[2] / max(candidate_mean[1], 1e-6)
+
+    strength = float(anchor_strength)
+    gains = np.array(
+        [
+            (raw_rg / max(candidate_rg, 1e-6)) ** strength,
+            1.0,
+            (raw_bg / max(candidate_bg, 1e-6)) ** strength,
+        ],
+        dtype=np.float32,
+    )
+    adjusted = np.clip(candidate * gains[None, None, :], 0.0, 1.0)
+
+    # Keep the already-computed tone response while removing mostly-global WB drift.
+    candidate_l = luma(candidate)
+    adjusted_l = luma(adjusted)
+    relit = adjusted * (candidate_l / np.maximum(adjusted_l, 1e-4))[..., None]
+    return np.clip(relit, 0.0, 1.0)
+
+
+def apply_wb_anchored_response(
+    raw: np.ndarray,
+    curves: np.lib.npyio.NpzFile,
+    tone_strength: float,
+    color_strength: float,
+    wb_anchor_strength: float,
+) -> np.ndarray:
+    tone_locked = apply_tone_locked_response(raw, curves, tone_strength, 0.0)
+    legacy_full = apply_legacy_rgb_response(raw, curves, tone_strength)
+    candidate = np.clip(tone_locked + (legacy_full - tone_locked) * float(color_strength), 0.0, 1.0)
+    return anchor_white_balance(raw, candidate, wb_anchor_strength)
+
+
 def apply_response(raw: np.ndarray, curves: np.lib.npyio.NpzFile, args: argparse.Namespace) -> np.ndarray:
     tone_strength = args.strength if args.strength is not None else args.tone_strength
     if args.mode == "legacy_rgb":
         return apply_legacy_rgb_response(raw, curves, tone_strength)
+    if args.mode == "wb_anchored":
+        return apply_wb_anchored_response(raw, curves, tone_strength, args.color_strength, args.wb_anchor_strength)
     return apply_tone_locked_response(raw, curves, tone_strength, args.color_strength)
 
 
@@ -197,6 +255,7 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
         "strength": args.strength,
         "tone_strength": args.strength if args.strength is not None else args.tone_strength,
         "color_strength": args.color_strength,
+        "wb_anchor_strength": args.wb_anchor_strength,
         "means": {
             "raw_target_luma_mae": mean("raw_target_luma_mae"),
             "baseline_target_luma_mae": mean("baseline_target_luma_mae"),
@@ -210,8 +269,9 @@ def summarize(rows: list[dict[str, object]], args: argparse.Namespace) -> dict[s
             "baseline_blue_green_ratio_delta": mean("baseline_blue_green_ratio_delta"),
         },
         "note": (
-            "Deterministic response baseline from compact stats. tone_locked mode preserves source RGB ratios "
-            "for the tone pass and keeps Expert C color/WB residual disabled unless color_strength is raised."
+            "Deterministic response baseline from compact stats. tone_locked preserves source RGB ratios "
+            "for the tone pass; wb_anchored allows color residuals but restores global source WB ratios; "
+            "legacy_rgb is the original failure baseline."
         ),
     }
 

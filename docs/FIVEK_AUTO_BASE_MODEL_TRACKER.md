@@ -660,3 +660,139 @@ Product implication:
 - Any later auto-base layer needs a better objective than "move toward Expert C",
   and should probably avoid learning global WB/color-temperature corrections
   unless that control is explicit and separately validated.
+
+## 15. WB-Anchored Color Residual Plan
+
+Reason for this follow-up:
+
+- Fully removing color response with `tone_locked` also removed visible
+  usefulness.
+- Applying the full RGB response with `legacy_rgb` produced unacceptable
+  color-temperature/WB drift.
+- The next hypothesis is that the useful part, if any, may live in local color,
+  saturation, or scene-dependent residuals, while the harmful part is mostly a
+  global illuminant shift.
+
+Implementation rule:
+
+```text
+RAW/default render
+  -> tone_locked luma response
+  -> add a controllable fraction of the legacy RGB residual
+  -> measure robust source and candidate channel ratios on midtones
+  -> diagonally correct candidate so global R/G and B/G return toward source
+  -> restore candidate luminance so the WB anchor does not undo tone response
+```
+
+CLI mode:
+
+```text
+--mode wb_anchored
+```
+
+Controls:
+
+```text
+--tone-strength
+  Luma response strength.
+
+--color-strength
+  Amount of legacy RGB residual to test before WB anchoring.
+
+--wb-anchor-strength
+  Strength of global R/G and B/G restoration.
+  Default: 1.0.
+```
+
+Why this differs from `tone_locked`:
+
+- `tone_locked` blocks nearly all color residuals.
+- `wb_anchored` allows color residuals, but removes their global
+  color-temperature component.
+
+Why this differs from `legacy_rgb`:
+
+- `legacy_rgb` can freely move the whole image white balance toward Expert C.
+- `wb_anchored` treats global WB as an input property unless the user exposes a
+  separate WB control later.
+
+Generated validation outputs:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c025/
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c050/
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c100/
+```
+
+## 16. WB-Anchored Residual V3 Mini64 Result
+
+Generated commands:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v3_wb_anchor_c025 `
+  --mode wb_anchored `
+  --tone-strength 1.0 `
+  --color-strength 0.25 `
+  --wb-anchor-strength 1.0
+
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v3_wb_anchor_c050 `
+  --mode wb_anchored `
+  --tone-strength 1.0 `
+  --color-strength 0.50 `
+  --wb-anchor-strength 1.0
+
+.\.venv\Scripts\python.exe scripts\evaluate_fivek_response_baseline.py `
+  --manifest outputs\fivek_auto_optimize\raw_cache_v2_mini64\manifest.csv `
+  --response outputs\fivek_auto_optimize\response_stats_v1_mini64\response_curves.npz `
+  --output-dir outputs\fivek_auto_optimize\response_baseline_v3_wb_anchor_c100 `
+  --mode wb_anchored `
+  --tone-strength 1.0 `
+  --color-strength 1.0 `
+  --wb-anchor-strength 1.0
+```
+
+Generated ignored outputs:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c025/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c050/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c100/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_comparison/contact_sheet.png
+```
+
+Mean metrics:
+
+```text
+candidate                  luma_mae  rgb_mae   chroma_mae  R/G delta   B/G delta
+tone_locked c0.00           0.055659  0.060514  0.032865   -0.000994  -0.002551
+wb_anchor c0.25             0.055659  0.060552  0.032787   +0.000318  +0.001707
+wb_anchor c0.50             0.055659  0.060551  0.032736   +0.000027  +0.002219
+wb_anchor c1.00             0.055658  0.060632  0.032958   -0.000848  +0.003086
+legacy_rgb                  0.055659  0.060201  0.030872   -0.058393  +0.014512
+```
+
+Interpretation:
+
+- The WB anchor suppresses the strongest failure mode of `legacy_rgb`: global
+  R/G drift drops from about `-0.058` to roughly `0.000` to `0.001`.
+- The anchored variants keep the same luma improvement as the previous
+  deterministic baselines.
+- RGB/chroma MAE no longer beats `legacy_rgb`; this is expected because the
+  metric rewards movement toward Expert C's WB choice.
+- Whether the anchored residuals are visually useful remains unresolved and
+  requires user review.
+
+Manual visual validation priority:
+
+```text
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_comparison/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c025/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c050/contact_sheet.png
+outputs/fivek_auto_optimize/response_baseline_v3_wb_anchor_c100/contact_sheet.png
+```
