@@ -105,3 +105,17 @@ No production code, data, model, output or user-owned untracked file was modifie
 - **Verification intent:** freeze severe/moderate/intended-style examples; rerender `53/55/56/09/01` on one gold/stress set; blind-rate style strength, appeal and artifact severity separately
 - **Risk/unknown:** the severe rubric, gold/stress membership and quantitative preference threshold are not implemented yet; no universal zero-artifact claim is permitted
 - **Handoff state:** U0.3/U0.4 remain the next ready prerequisites, followed by U4.1/U4.2; optional U3 paired calibration no longer blocks Style-safe product work
+
+---
+
+## 2026-07-11 — First vision-led Velvia style audit
+
+- **Node/parent goal:** `U4.9` / `ULT`
+- **Trigger:** user asked whether visual capability could actively advance the style/artifact objective
+- **Skills used:** direct visual inspection; `plan-tracker-discipline` primary; `project-agent-log-discipline` secondary
+- **Evidence inspected:** numbered 56-scheme overview; preferred #01/#09/#53/#55/#56 contact sheets; safe-rich, local-map, NILUT and context-4D comparators; union-40 metrics; full-resolution union IDs 09/11/29
+- **Findings:** preferred family shows stable cyan/blue shadow versus warm red/orange/yellow separation and accepts medium-high luma movement; safe-rich/local maps are technically clean but bland; NILUT movement is less coherent; clipping/chroma/L-SSIM alone do not predict preference
+- **New artifact evidence:** union ID 11 exposes neon-red highlight speckling in #09/#56 even when #09 reports zero new clipping, proving clipping is not a sufficient artifact gate
+- **Files changed:** added `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`; updated `docs/ULTIMATE_EXECUTION_TRACKER.md` and this log
+- **Verification:** scheme recipes cross-checked against manifests; union summaries parsed for 01/09/53/55/56/10/local-map/NILUT; source and output images inspected at original resolution; no output image or user-owned untracked file modified
+- **Handoff state:** after U0.3/U0.4 and U4 gold/stress freeze, run `EXP-VIS-00`: #56-like palette strength with #09-like containment, comparing source versus chroma gamut compression

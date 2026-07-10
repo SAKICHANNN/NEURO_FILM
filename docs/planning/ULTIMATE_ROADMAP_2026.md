@@ -524,6 +524,8 @@ SSIM/CW-SSIM/GMSD/DISTS、OCR、face/keypoint、clipping、banding 和 seam dete
 
 晋级顺序为：先通过 severe artifact gate，然后在幸存候选中寻找 style strength × appeal 的 Pareto 前沿。技术上更优但肉眼寡淡的方案在此停止；风格很强但不像目标 stock 的方案可以作为 `film-inspired` look 发布，只是不能标 calibrated。
 
+2026-07-11 首轮视觉审计把下一目标进一步收敛为：**#56 式青蓝阴影/暖红橙黄的调色强度 + #09 式输出 containment，并修复红光金属区域出现的局部 neon-red chroma speckling。** 证据与八候选 bridge sweep 见 `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`。
+
 ### 8.3 C：内容与效果质量（分级诊断）
 
 通过 severe gate 后，仍需用连续指标区分“优秀”和“勉强可用”：

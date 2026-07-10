@@ -203,6 +203,7 @@ Go/No-Go:
 | U4.6 | ready | Conditional calibrated-authenticity scorecard | U2.2, U3.2 | chart/EV/illuminant/roll/lab slices + CIs for profiles claiming calibrated |
 | U4.7 | complete | Record the user's known Velvia 50 preference anchor | numbered 56-scheme sheet | Mapping and evidence weights recorded; 2026-07-11 |
 | U4.8 | complete | Record the true standard: strong style without severe glitch/artifact | user feedback | Product objective and promotion order updated; 2026-07-11 |
+| U4.9 | complete | Initial visual audit of preferred and technical-comparator schemes | existing contact sheets + full-resolution stress cases | `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`; 2026-07-11 |
 
 Five reports stay separate:
 
@@ -368,6 +369,7 @@ No film purchase, lab booking, model download or GPU training occurs without the
 
 | Experiment | Hypothesis | Fixed baseline | One changed variable | Promotion gate | Stop condition |
 |---|---|---|---|---|---|
+| EXP-VIS-00 | A normalized deterministic bridge can preserve #56 style with #09 containment | #09 and #56 on one manifest | strength/luma + source/chroma gamut mode | Higher style/appeal than #09; no severe gold failure | red-speckle/gradient artifact or no style gain |
 | EXP-COLOR-01 | 1D + 3D LUT can move beyond the preferred deterministic anchors | `53/55/56/09/01` on one frozen set | global transform | Higher style/preference; zero severe gold-set artifacts | Severe artifact or no style gain |
 | EXP-COLOR-02 | SepLUT can increase style without instability | EXP-COLOR-01 | representation | Higher style frontier; no severe gold-set artifacts | Same/poorer, bland or artifact-prone result |
 | EXP-LOCAL-01 | Bilateral grid adds scene-aware style safely | current global winner | local grid | Local style/preference improves; no severe halo/tile/color artifacts | Severe artifact, blandness or no independent gain |
@@ -445,6 +447,7 @@ Current approval state: research and local documentation are authorized; all ite
 - Halation evidence limits: `docs/HALATION_SYSTEM_SPEC.md`
 - Data rights boundary: `docs/data/DATA_LICENSE_BOUNDARIES.md`
 - Research synthesis and primary external links: `docs/planning/ULTIMATE_ROADMAP_2026.md`
+- Initial visual audit and deterministic bridge experiment: `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`
 
 ---
 
