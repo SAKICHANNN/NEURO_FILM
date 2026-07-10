@@ -8,24 +8,26 @@
 
 ## 0. 一页结论
 
-要把 K-MCFM 做成真正的 ultimate，目标不能再是“看起来像胶片的滤镜”，而应是下面这个产品定义：
+用户在 2026-07-11 明确了 K-MCFM 的真正标准：**看起来很风格化，同时不能出现严重 glitch/artifact。** 因而产品目标不是最小化所有像素变化，也不是要求每个方案都精确复刻某一 stock，而是下面这个受约束优化问题：
 
-> **一个以零几何位移和零语义重写为硬约束、色彩状态可追溯、胶片/冲洗/印放或扫描解释显式、效果可校准、支持 RAW/HDR/高分辨率，并能在 12GB Windows GPU 与 Apple Silicon 上稳定运行的非破坏性胶片成像系统。**
+> **在冻结 gold set 上零确认严重 artifact 的约束下，最大化可感知的胶片风格强度与用户偏好；在更大 stress set 上报告 artifact rate 和置信区间。**
+
+这里的“严重 artifact”包括明显的人脸/肢体/对象/文字破坏、几何崩坏、VAE 涂抹、posterization/banding、大片 clipping、tile seam、异常色块、重复纹理和视频闪烁。强烈的 tone、color、grain、halation 和 bloom 是预期风格，不因变化大就自动算 artifact。
 
 最终架构采用三层隔离：
 
-1. **Reference 核心层（默认）**：确定性的高精度色彩与物理成像管线；不生成新像素语义，不改变几何。
+1. **Style-safe 核心层（默认）**：确定性高精度色彩与受控物理效果；允许强烈风格化，但以严重 artifact gate 约束。
 2. **Bounded AI 层（可选、仍属内容安全）**：小模型只预测曲线、LUT、双边网格和掩码等受约束参数；全分辨率渲染仍由确定性算子完成。
-3. **Creative Generative 层（明确隔离）**：FLUX.2/Kontext 等模型只用于创意重绘或低分辨率教师探索，输出不得冒充 Reference 结果。
+3. **Calibrated/Creative 分支（明确标注）**：自有实拍数据支持可选 calibrated profile；FLUX.2/Kontext 等生成模型只用于创意重绘或低分辨率教师探索。
 
 决定项目上限的不是更大的扩散模型，而是四件事：
 
-- 自有、可授权、可复现的真实胶片标定数据；
+- 冻结的风格偏好锚点、严重 artifact 定义与压力测试集；
 - 正确的场景线性、胶片密度、印放/扫描和显示变换边界；
-- 分离“可感知胶片签名”“真实性”“偏好”“内容安全”和“性能”的评测体系；
+- 分离“严重 artifact”“风格/偏好”“内容质量”“条件真实性”和“性能”的评测体系；
 - 可审计的 profile、recipe、数据谱系、版本与发布许可证。
 
-建议先用 **Portra 400（彩色负片）+ Velvia 50（反转片）** 做两条正交标定线；它们通过后再扩展 Vision3 500T/250D、Ektar 100、Portra 800、Tri-X 400、HP5 Plus。负片、电影负片、反转片、黑白片必须使用不同的解释模型，不能共用“一个 stock 一个 LUT”的简化定义。
+Style-safe 产品主线先围绕用户已偏好的 `53/55/56/09/01` 确定性家族建立风格前沿。**Portra 400 + Velvia 50** 保留为可选 calibrated 分支；只有带 calibrated/named-stock 强声明时，才必须经过自有配对数据、process/scan 解释和完整留出验证。
 
 ---
 
@@ -50,7 +52,7 @@
 | E2 本地实验 | 可说明“在固定样本上观察到” | 保存的 grid、JSON、报告 |
 | E3 外部一手资料 | 可支持方法/接口/许可事实 | 论文、官方模型卡、厂商数据表 |
 | E4 受控标定 | 可支持有限 stock/process 声明 | 自有色卡、阶梯曝光、固定冲扫 |
-| E5 独立复现 | 才能支持强真实性/产品声明 | 留出胶卷/实验室/相机与盲测 |
+| E5 独立复现 | 才能支持强 calibrated 真实性声明 | 留出胶卷/实验室/相机与盲测 |
 
 规则：低等级证据不得升级成高等级营销主张。厂商特性曲线是先验，不是端到端目标；无配对 Flickr 图是审美参考，不是 stock 真值；Capture One recipe 是软件风格监督，不是真实胶片扫描。
 
@@ -104,6 +106,10 @@
 
 ### 3.1 两种输入契约
 
+#### Style-safe mode（产品默认）
+
+普通 JPEG/HEIC/PNG、已知或未知后期图片都可以进入强风格化流程。系统必须保留输入色彩状态提示，但这不会阻止 `film-inspired` look；晋级依据是风格/偏好和严重 artifact gate，而不是 stock 准确性。
+
 #### Reference mode
 
 只在输入色彩状态可证明时启用：相机 RAW/DNG、已知 log、带可靠 ICC/传递函数的 HDR/SDR，或已知 scene-linear 数据。输出可以做 stock/process/interpretation 级别的受限真实性声明。
@@ -114,27 +120,29 @@
 
 当输入色彩状态不明时，系统应 fail closed 到 Approximation，而不是猜测并继续使用 Reference 标签。
 
-### 3.2 三种输出安全等级
+### 3.2 三种产品标签
 
 | 模式 | 可改变什么 | 禁止什么 | UI/元数据标签 |
 |---|---|---|---|
-| Reference | 固定像素网格上的颜色、曝光、局部仿射参数与非扭曲物理效果 | 几何、对象、文字、身份 | `reference` |
-| Adaptive | 受限曲线/LUT/grid/mask 参数 | 生成纹理/语义、重采样几何 | `adaptive-bounded` |
-| Creative | 可生成或重绘 | 不得冒充真实性结果 | `creative-generative` |
+| Style-safe（默认） | 强烈曲线/LUT/grid/effect 风格化 | 已定义的严重 glitch/artifact | `film-inspired` |
+| Calibrated Reference | 固定网格颜色/效果 + 有证据的 stock/process/interpretation | 未经证据的真实性声明 | `calibrated-reference` |
+| Creative Generative | 可生成或重绘 | 不得冒充 artifact-safe 或 calibrated 结果 | `creative-generative` |
 
 ### 3.3 产品级 DoD
 
 “Ultimate v1”至少满足：
 
-- 两种经过 E4/E5 验证的正交 stock profile；
+- 至少两种在盲测中明显风格化并优于寡淡基线的核心 look；
+- 冻结 gold set 上 0 个确认严重 artifact，并在更大 stress set 上报告 artifact rate/CI；
 - RAW、带 ICC 的 16-bit TIFF、普通 JPEG/PNG 的明确输入契约；
 - 16-bit SDR 输出和可追溯 recipe/profile；
-- 无几何重采样的 Reference/Adaptive 路径；
+- Style-safe 路径稳定、可复现且不会产生严重内容/几何/色彩崩坏；
 - 24MP 与 100MP 的 tile-safe 导出，无接缝；
 - Windows 12GB、Apple Silicon、CPU fallback 均通过固定 benchmark；
 - 数据卡、模型卡、profile card、许可证和第三方归属完整；
-- 盲测和留出胶卷/实验室评测通过，且失败样本公开记录；
-- Creative 模式在代码、UI、输出目录和元数据上与 Reference 隔离。
+- 盲测风格强度、偏好和 artifact severity 通过，且失败样本公开记录；
+- 若发布 calibrated profile，再额外满足 E4/E5 配对数据和完整胶卷/实验室留出；
+- Creative 模式在代码、UI、输出目录和元数据上与 Style-safe/Calibrated 隔离。
 
 ---
 
@@ -285,7 +293,7 @@ grain 使用干净室实现的随机几何/统计模型或自有代码；IPOL �
 - 输入 hash、decode transform、working/output color space；
 - profile ID/version/hash、模型/代码 commit；
 - 随机种子、所有参数与自动决策；
-- Reference/Adaptive/Creative 标签；
+- Style-safe/Calibrated/Creative 标签；
 - SDR/P3/HDR/gain-map 输出 transform；
 - 第三方 profile/model/data attribution。
 
@@ -418,13 +426,13 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 | 级别 | 候选 | 晋级条件 |
 |---|---|---|
 | B0 | 当前 `safe_lab` / safe-rich | legacy 下限 |
-| B1 | 单调 1D curves + 3D LUT | 必须优于 B0 的真实性且无新风险 |
-| B2 | SepLUT / NILUT | 只有 B1 残差呈系统性时进入 |
-| B3 | bilateral grid / HDRNet-style | 只有局部残差显著且可泛化时进入 |
+| B1 | 强风格 1D curves + 3D LUT | 必须优于偏好锚点的 style/appeal 且无 severe artifact |
+| B2 | SepLUT / NILUT | 只有 B1 风格前沿仍有明确空间时进入 |
+| B3 | bilateral grid / HDRNet-style | 只有局部场景自适应能提高偏好且不增 artifact 时进入 |
 | B4 | bounded semantic masks | 只有 B3 在肤色/天空等区域仍系统失败时进入 |
 | G | diffusion/generative | 永不与 B0–B4 共用 Reference 晋级门槛 |
 
-简单模型若达到 gate，立即停止增加复杂度。现有 NILUT/SepLUT 代码可复用为候选，但必须用真实 paired target 重新训练，不能把 pseudo-teacher 成绩当作真实性证据。
+简单模型若达到 style/artifact gate，立即停止增加复杂度。现有 NILUT/SepLUT 代码可用于 Style-safe challenger，但训练目标必须来自权利清晰的输入和冻结偏好/目标；pseudo-teacher 只能支持“复现该风格目标”的证据。只有 calibrated lane 才必须改用真实 paired target，并且不能把 pseudo-teacher 成绩当作真实性证据。
 
 ### 7.2 损失与约束
 
@@ -435,7 +443,7 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 - structure：禁止 resampling；grid smoothness、mask TV、parameter bounds；
 - generalization：roll/lab/illuminant/camera group holdout；
 - effects：halation radial profile、grain NPS/autocorrelation、MTF；
-- preference：只用于排序候选或个性化，不替代真实性监督。
+- preference：Style-safe 主线的核心优化信号；calibrated lane 中仍不能替代真实性监督。
 
 所有 checkpoint 保存：数据 manifest hash、split hash、配置、seed、代码 commit、依赖 lock、设备、训练日志、完整评测和失败样本。
 
@@ -475,28 +483,29 @@ InstantRetouch 的“扩散教师蒸馏到 bilateral space”与 HDRNet/3D-LUT �
 
 JSON 经过 schema、范围、互斥规则和 preview diff 验证后才执行。IEA、RetouchIQ 等 2026 工作说明“让语言模型调用明确的修图工具/参数”是一条合理方向，但本项目必须用自己的安全 schema 和 benchmark 验证。
 
-个性化可在 v1 之后引入：从 A/B 选择学习用户偏好，优化低维参数或 profile mix；真实性 profile 保持不变，个人偏好作为独立 recipe overlay。RLPixTuner 一类低查询控制优化可作为研究参考。
+个性化可在 v1 之后引入：从 A/B 选择学习用户偏好，优化低维参数或 profile mix；calibrated profile 的证据参数保持不变，个人偏好作为独立 recipe overlay。RLPixTuner 一类低查询控制优化可作为研究参考。
 
 ---
 
 ## 8. 评测系统：五张独立成绩单
 
-### 8.1 A：内容与几何安全
+### 8.1 A：严重 glitch/artifact 一票否决
 
-Reference/Adaptive 的强约束是“不做几何采样”。验证包括：
+Style-safe 产品不是要求“几乎不改变输入”，而是允许很强的风格，同时拒绝明显损坏成片的失败。严重程度由预先冻结的正例/反例手册定义：
 
-- 尺寸、坐标、alpha 和裁切完全一致；
-- 代码路径静态检查禁止 warp/resample/generative decoder；
-- edge/keypoint 位置一致；
-- OCR 字符、face embedding、细纹理 patch 作为额外回归；
-- tile 与非 tile 输出在定义容差内一致；
-- seed 固定时逐位或规定容差内确定。
+| 级别 | 示例 | 处理 |
+|---|---|---|
+| Severe | 人脸/肢体/对象/文字破坏，几何崩坏，大片 VAE 涂抹，posterization/banding，大片 clipping，tile seam，异常色块，重复纹理，视频闪烁 | 一票否决 |
+| Moderate | 局部 halo、肤色偏移、细字轻微模糊、颗粒过粗、局部色噪 | 降低质量/偏好排名，是否阻断由预注册规则决定 |
+| Intended style | 强 tone/color、toe/shoulder、grain、halation、bloom、可控 softness | 不因变化明显就算 artifact |
 
-SSIM/CW-SSIM/GMSD/DISTS 可用于诊断，但不能把“输出必须接近输入亮度”当作真实性 gate；真正的胶片 tone 变化会被旧 L-SSIM 错罚。
+Gold set 覆盖脸、手、文字、织物、树叶、天空/墙面渐变、霓虹、高光、深阴影、饱和物和 tile 边界。产品 gate 为 **0 个经人工确认的 severe artifact**；更大 stress set 报告发生率、95% CI、最差场景和类型分布，不声称现实世界绝对零缺陷。
+
+SSIM/CW-SSIM/GMSD/DISTS、OCR、face/keypoint、clipping、banding 和 seam detector 只做筛查与定位，最终 severe 判定由冻结 rubric + 盲化人工复核完成。旧 L-SSIM 不能因为风格变化大就把好方案误杀。
 
 ### 8.2 B：可感知的胶片签名
 
-用户明确指出：很多理论指标更好的方案看起来依然没有什么胶片风格。因此，“技术正确”只负责不出错，不能替代最低风格强度门。
+用户明确指出：很多理论指标更好的方案看起来依然没有什么胶片风格。因此，“技术正确”只负责不出错；真正优化目标是在通过 severe gate 的候选中尽量提高风格强度与吸引力。
 
 这一成绩单回答三个独立问题：
 
@@ -510,11 +519,26 @@ SSIM/CW-SSIM/GMSD/DISTS 可用于诊断，但不能把“输出必须接近输�
 - 再做 full-look 盲测，验证完整体验；
 - 同时展示 neutral input、当前偏好冠军、候选和真实 film reference；
 - 诊断 exposure-dependent hue、toe/shoulder、neutral-axis、局部对比与色域行为，但不把 global chroma 增量当作晋级指标；
-- 最低 salience 阈值由 pilot 预注册；目标是“清晰可感知但不过度”，不是最大化风格强度。
+- 用 `53/55/56/09/01` 作为第一代完整偏好锚点，并在同一冻结图集上重渲染；
+- 同时记录 style strength 和 overall appeal，避免“风格最重”被误当作“最好看”。
 
-晋级顺序为：先通过内容安全，再达到最低胶片签名，随后才比较 stock/process 真实性。技术上更优但肉眼寡淡的方案在此停止；风格很强但不像目标 stock 的方案只能保留为 heuristic/Creative look。
+晋级顺序为：先通过 severe artifact gate，然后在幸存候选中寻找 style strength × appeal 的 Pareto 前沿。技术上更优但肉眼寡淡的方案在此停止；风格很强但不像目标 stock 的方案可以作为 `film-inspired` look 发布，只是不能标 calibrated。
 
-### 8.3 C：stock/process/interpretation 真实性
+### 8.3 C：内容与效果质量（分级诊断）
+
+通过 severe gate 后，仍需用连续指标区分“优秀”和“勉强可用”：
+
+- 尺寸、裁切、alpha、tile 与 seed determinism；
+- edge/keypoint、OCR、face/skin、细纹理与局部对比；
+- clipping、banding、posterization、halo、color blotch 和 seam 强度；
+- grain 的均匀性/密度依赖，halation/bloom 的边缘质量，MTF/softness；
+- 按脸、文字、天空、绿植、夜景、高光和相机来源报告 P50/P95/最差样本。
+
+这些指标用于排序和定位，不要求输出接近输入。一个强烈且好看的色调变化可以比寡淡方案获得更低 SSIM，却仍是更好的产品结果。
+
+### 8.4 D：Calibrated 真实性与物理性（条件成绩单）
+
+只有 profile 使用 `calibrated-reference` 或强 named-stock 声明时，下面的 stock/process/interpretation 指标才是晋级硬门：
 
 | 维度 | 指标 |
 |---|---|
@@ -525,20 +549,22 @@ SSIM/CW-SSIM/GMSD/DISTS 可用于诊断，但不能把“输出必须接近输�
 | Generalization | 新 roll/lab/scanner/camera/session 的独立结果 |
 | Identity | stock 识别与真实 scan 匹配，和“更喜欢哪张”分开 |
 
-Pilot 暂定 gate（随后由方差重定）：
+Calibrated pilot 暂定 gate（随后由方差重定）：
 
 - 相对最佳非学习基线，受控 chart 与真实场景的主要真实性指标都有统计上稳定的改善；
 - 不能以平均改善掩盖 P95/最差场景退化；
 - 完整留出 roll 不劣化；
 - 盲测 stock-match 胜率的 95% CI 下界高于 50%；目标为明显高于 60%，但不提前把该数值当科学定律。
 
-### 8.4 D：效果物理性
+物理效果在 calibrated lane 额外检查：
 
 - grain：2D NPS、径向 NPS、自相关、density dependence、色层相关、输出尺寸/缩放稳定性；
 - halation：径向强度、半径、红/橙谱偏、暗侧泄漏、source selectivity、exposure dependence；
 - MTF：边缘扩散/线对、方向性；
 - bloom：与 halation 独立；
 - 视频：帧间参数、grain 时间行为和闪烁。
+
+一个没有 calibrated 证据但强风格、无 severe artifact 的方案可以进入 `film-inspired` 产品；profile card 必须明确证据等级，避免把审美成功包装成测量真实性。
 
 ### 8.5 E：产品与性能
 
@@ -550,15 +576,15 @@ Pilot 暂定 gate（随后由方差重定）：
 - 24MP Reference 渲染在目标设备上达到“秒级”而非分钟级；
 - 100MP 使用受控 tile/halo，峰值内存不随像素数无界增长；
 - GPU 不可用时结果质量一致，只有速度下降；
-- Adaptive 模型失败时自动回退确定性核心。
+- bounded predictor 失败时自动回退确定性 Style-safe 核心。
 
 精确时延 SLO 只在参考实现 benchmark 后冻结。
 
 ### 8.6 主观实验设计
 
 - 已知个人偏好锚点：用户在 2026-07-11 指定 Velvia 50 总表中的 `53, 55, 56, 33, 09, 03, 02, 01`。其中 `53/55/56/09/01` 各有 20 张完整输出，均属于确定性 baseline 或 gamut-safe Lab 家族；`33/03/02` 只有 1–2 张 smoke，只能作为方向提示。下一轮应把五个完整方案统一到同一冻结图集并盲化复测；该偏好不能替代真实胶片真实性评测；
-- 随机、盲化、配对展示真实 scan、K-MCFM、当前 safe_lab 和至少两个竞争参考；
-- 分开问“更像目标 stock/process”与“更喜欢”；
+- 随机、盲化、配对展示输入、当前偏好锚点、K-MCFM 候选和合法获得的竞争参考；真实 scan 只在 calibrated 评测中作为真实性参考；
+- 主产品分开问“风格有多强”“有多喜欢”“是否存在 severe artifact”；calibrated 分支再问“更像目标 stock/process 吗”；
 - 场景、stock、观察者做分层；
 - 使用 Bradley–Terry 或 mixed-effects 分析并报告置信区间；
 - 预注册排除规则、样本量和主指标；
@@ -592,14 +618,14 @@ kmcfm benchmark --suite reference-24mp
 - profile card 展示 stock/process/interpretation/evidence grade；
 - exposure、print/scan、color、grain、halation、bloom 分组；
 - 非破坏性 history、copy/paste、batch、favorite recipe；
-- “Reference / Adaptive / Creative” 永久可见，切换有解释；
+- “Style-safe / Calibrated / Creative” 永久可见，切换有解释；
 - input color-state 警告和 Approximation 降级提示；
 - 导出前显示输出 gamut/HDR/bit-depth/profile；
 - 所有自动参数可展开、锁定和重置。
 
 ### 9.3 平台策略
 
-- Python/NumPy/PyTorch 先做 reference truth implementation；
+- Python/NumPy/PyTorch 先做 style-safe truth implementation；
 - 性能核只在 profile 和评测冻结后迁移到 C++/Rust/Metal/CUDA；
 - Windows 优先 ONNX Runtime/CUDA 或小型 PyTorch 模型；
 - Apple 路径优先 Core ML/Metal 验证；转换失败时 deterministic CPU/Metal fallback；
@@ -612,35 +638,34 @@ kmcfm benchmark --suite reference-24mp
 
 ```mermaid
 flowchart TD
-    A["P0 truth reset"] --> B{"Input color state reliable?"}
-    B -->|No| B1["Approximation only; repair ingest"]
-    B -->|Yes| C["Reference renderer + profile schema"]
-    C --> D["Two-stock paired pilot"]
-    D --> E{"Capture/scan reproducible?"}
-    E -->|No| E1["Repair rig, lab, scanner; do not scale model"]
-    E -->|Yes| F["1D + 3D LUT baseline"]
-    F --> G{"Meets authenticity gates?"}
+    A["P0 truth reset"] --> C["Style-safe renderer + profile schema"]
+    C --> D["Freeze severe-artifact + style/preference benchmark"]
+    D --> F["Preferred deterministic LUT frontier"]
+    F --> G{"Strong style and zero severe gold failures?"}
     G -->|Yes| G1["Ship deterministic; skip neural complexity"]
-    G -->|No, local residual| H["Bilateral grid challenge"]
-    G -->|No, global residual| I["SepLUT/NILUT challenge"]
-    H --> J{"Held-out improvement without drift?"}
+    G -->|No, local opportunity| H["Bilateral grid challenge"]
+    G -->|No, global opportunity| I["SepLUT/NILUT challenge"]
+    H --> J{"Style/preference gain without severe artifacts?"}
     I --> J
-    J -->|No| J1["Keep simpler model; inspect data/model mismatch"]
+    J -->|No| J1["Keep simpler model; inspect blandness/artifact cause"]
     J -->|Yes| K["Promote bounded AI"]
-    K --> L["Calibrate grain/halation/MTF"]
+    K --> L["Tune artifact-safe grain/halation/bloom"]
     L --> M["Product + cross-platform + release gates"]
-    N["Generative R&D"] --> O{"Identity drift/license/VRAM clean?"}
+    P["Optional paired capture"] --> Q{"Capture/scan reproducible?"}
+    Q -->|No| Q1["Repair measurement; no calibrated claim"]
+    Q -->|Yes| Q2["Calibrated profile lane"]
+    N["Generative R&D"] --> O{"Severe artifacts/license/VRAM clean?"}
     O -->|No| O1["Creative mode only or drop"]
     O -->|Yes| O2["Teacher or isolated creative feature"]
 ```
 
 硬停止规则：
 
-- 没有自有/cleared paired data：不得宣传“准确再现某胶片”；
-- 输入色彩状态不明：不得标 Reference；
-- 简单模型达到 gate：停止增加网络复杂度；
-- bounded AI 在完整留出组无稳定改善：不晋级；
-- 生成模型产生几何/身份漂移：永不进入 Reference；
+- 没有自有/cleared paired data：可以发布明确标记的 `film-inspired` look，但不得宣传“准确再现某胶片”；
+- 输入色彩状态不明：可以走 Style-safe，但不得标 Calibrated Reference；
+- 简单模型达到 style/artifact gate：停止增加网络复杂度；
+- bounded AI 没有稳定 style/preference 增益，或在 gold set 出现任何确认 severe artifact：不晋级；
+- 生成模型产生严重内容/几何/纹理 artifact：不进入 Style-safe/Calibrated；只留 R&D 或丢弃；
 - 许可证或训练数据来源不清：不得发布相应权重/profile；
 - 12GB 实测 OOM：只允许量化/offload 研究，不修改主产品硬件承诺；
 - 需要付费数据、实验室、云 GPU、公开发布或外部消息：先取得人工批准。
@@ -659,25 +684,30 @@ flowchart TD
 交付：`WorkingImage` 接主 renderer；scene/display 状态；ICC/RAW/16-bit；profile/recipe schema；tile-safe 基础。
 退出：同一输入/recipe 在三后端达到定义容差；未知色彩状态正确降级。
 
-### Phase 2：Reference renderer（3–5 周）
+### Phase 2：Style-safe renderer（3–5 周）
 
-交付：单调 sensitometry、global LUT、negative/slide/B&W interpretation 接口、legacy safe_lab 兼容。
-退出：合成和现有 regression 集通过；没有真实数据时只标 heuristic。
+交付：强风格曲线/global LUT、profile/recipe、legacy safe_lab 兼容、`film-inspired` 标签。
+退出：可重放，强风格候选可生成，严重 artifact 类型有明确保护和回退。
 
-### Phase 3：Paired calibration pilot（4–8 周，受实验室节奏影响）
+### Phase 3：Artifact/style benchmark（2–4 周）
 
-交付：Portra 400 + Velvia 50 charts/scene/EV/roll 数据、扫描标定、E4 profile、留出报告。
-退出：process 和 scan 重复性足以分辨模型误差；否则回到采集系统。
+交付：gold/stress sets、severity rubric、`53/55/56/09/01` 同图重渲染、style strength/appeal 盲测。
+退出：gold set 0 确认 severe artifact；候选在风格/偏好上明显优于寡淡基线。
 
 ### Phase 4：Bounded AI challenge（3–6 周）
 
-交付：B1–B4 公平挑战、ablation、模型卡、跨 roll/lab 结果。
-退出：只有通过完整 gate 的最简单候选进入产品；允许结论为“无需 AI”。
+交付：B1–B4 公平挑战、ablation、模型卡、跨场景 stress 结果。
+退出：只有提高 style/preference 且不产生 severe artifact 的最简单候选进入产品；允许结论为“无需 AI”。
 
 ### Phase 5：Physical effects（3–6 周，可与 Phase 4 部分并行）
 
 交付：曝光域 halation、density-aware grain、MTF、bloom 分离、100MP tile、视频研究报告。
-退出：效果指标和盲测同时过关；heuristic 与 calibrated preset 分开。
+退出：效果提升 full-look 偏好且不触发 severe artifact；heuristic 与 calibrated preset 分开。
+
+### Optional Calibrated Lane：Paired pilot（4–8 周，可并行）
+
+交付：Portra 400 + Velvia 50 charts/scene/EV/roll 数据、扫描标定、E4 profile、留出报告。
+退出：process 和 scan 重复性足以分辨模型误差；只约束标记为 calibrated 的 profile，不阻塞 Style-safe 产品。
 
 ### Phase 6：Productization（6–10 周）
 
@@ -692,7 +722,7 @@ flowchart TD
 #### 人力与日历估计
 
 - 1 名强工程师 + 按需色彩科学/实验室支持：研究级双 stock v1 约 5–8 个月，完整产品约 9–12 个月；
-- 2–3 人（color/data、engine/product、QA/infra）可并行缩短，但实验室批次和主观实验仍是关键路径；
+- 2–3 人（color/style、engine/product、QA/infra）可并行缩短；主产品关键路径是 artifact/style 人评，实验室批次只约束可选 calibrated lane；
 - 远程大 GPU 不是 P0；主要计算可在现有 12GB GPU/M5 完成。只有生成式 LoRA 或大规模对照试验可能需要付费 24GB+ 资源，必须单独批准。
 
 这些是范围估计，不是工期承诺；Phase 3 的测量质量决定后续是否值得扩张。
@@ -720,13 +750,13 @@ flowchart TD
 
 ## 13. 成功指标
 
-North Star 不设为单一 LPIPS/SSIM，而是五个并列指标：
+North Star 是一个主目标加四个约束/支持指标：
 
-1. **Reference safety**：架构禁止 warp/生成式重建，留出回归在预注册容差内无几何、身份或文字退化；
-2. **Measured fidelity**：完整留出 roll/process 上 stock-match 优于所有内部基线；
-3. **Human validity**：盲测“更像目标”显著胜出，且与“更喜欢”分开；
-4. **Reproducibility**：recipe、profile、数据和代码 hash 可重放；
-5. **Product viability**：24MP/100MP、Windows/Mac/CPU、batch 和导出稳定。
+1. **Style × appeal（主目标）**：通过 severe gate 的候选中，盲测风格强度和总体偏好优于 `53/55/56/09/01` 统一重渲染冠军；
+2. **Severe artifact constraint**：冻结 gold set 0 个确认 severe failure；stress set 报告 rate、CI 和类型；
+3. **Graded quality**：内容、效果、tile、banding、clipping 和稳定性用于排序和诊断；
+4. **Reproducibility/product viability**：recipe/hash 可重放，24MP/100MP、Windows/Mac/CPU、batch 和导出稳定；
+5. **Conditional fidelity**：只有 calibrated profile 才要求完整留出 roll/process 上 stock-match 过关。
 
 不接受的替代指标：下载量、prompt 示例、单张 contact sheet、训练 loss、总体平均 SSIM、色度增益、社区 LoRA 数量。
 
@@ -802,6 +832,6 @@ North Star 不设为单一 LPIPS/SSIM，而是五个并列指标：
 
 ## 15. 最终决策
 
-项目应保留现有确定性 renderer 作为兼容基线，但立即停止围绕 SDXL/IP2P 继续扩张主架构。下一笔工程时间应投入到 `WorkingImage → profile schema → reference renderer → 两 stock 标定 pilot → bounded-AI challenge` 这一条关键路径。
+项目应保留现有确定性 renderer 作为兼容基线，但立即停止围绕 SDXL/IP2P 继续扩张主架构。下一笔工程时间应投入到 `WorkingImage → Style-safe profile/renderer → severe-artifact gold/stress set → 53/55/56/09/01 同图盲测 → bounded style challenge` 这一条关键路径。Portra/Velvia 配对标定作为独立可选 lane，不再阻塞主产品。
 
-如果两 stock pilot 证明简单的 sensitometry + 3D LUT 已足够，ultimate 版本完全可以不依赖神经网络；如果局部残差确实存在，再用 bilateral grid。生成式模型可以让产品更“会创作”，但不能让 Reference 更“真实”。真实度来自测量、解释边界、留出验证和可追溯性。
+如果偏好锚点上的简单曲线 + 3D LUT 已达到强风格且无 severe artifact，ultimate 版本完全可以不依赖神经网络；只有在明确提高风格前沿时才引入 bilateral grid/小模型。生成式模型可以提出更激进的审美目标，但必须经过 artifact gate 或投影回受控变换。对于 calibrated 分支，真实性仍来自测量、解释边界、留出验证和可追溯性。

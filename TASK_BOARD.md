@@ -1,4 +1,4 @@
-# TASK_BOARD.md — Ultimate calibrated film-imaging path
+# TASK_BOARD.md — Ultimate strongly stylized, artifact-safe film-imaging path
 
 > Updated 2026-07-10. Detailed DoR/DoD, dependencies, gates and evidence live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
 > SDXL/IP2P/SDEdit is a retired production direction and an optional research/Creative comparator only.
@@ -13,7 +13,8 @@
 | Diffusion/IP2P | retired as default | detail/identity drift; tested SDXL full-UNet OOM on 12GB |
 | Neural LUT/local maps | research-only | pseudo-teacher or saturation-gate evidence is insufficient |
 | Input pipeline | partial | `WorkingImage` exists but is not used by final renderer |
-| Stock accuracy | uncalibrated | requires owned paired stock/process/scan data |
+| Product standard | decided | strongly stylized output with no severe glitch/artifact |
+| Stock accuracy | optional calibrated lane | requires owned paired stock/process/scan data before using calibrated claims |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
 | Tests | baseline passes | 18 tests passed on 2026-07-10; no CI yet |
 
@@ -25,13 +26,13 @@
 |---:|---|---|---|---|
 | 0 | U0.1 | Reconcile active README/status/docs; archive stale diffusion instructions | complete | completed 2026-07-10 |
 | 1 | U0.3 | Manifest v2, data lanes, group split, duplicate/leakage repair | ready | none for local audit |
-| 2 | U4.6 | Retire chroma-gain promotion gate; create five scorecards including film-style salience | ready | none |
-| 3 | U0.4 | CI, environment capture and frozen benchmark registry | ready | none |
+| 2 | U0.4 | CI, environment capture and frozen benchmark registry | ready | none |
+| 3 | U4.1/U4.2 | Implement severe-artifact veto + style/preference optimization scorecards | pending on U0.4 | none |
 | 4 | U1.1 | Make `WorkingImage` the only `render_film` ingress | pending on U0.4 | none |
 | 5 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | pending | none |
 | 6 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | license decision for public schema assets |
-| 7 | U3.1–U3.4 | Portra 400 + Velvia 50 paired calibration pilot | blocked | budget/lab/rights approval |
-| 8 | U5/U6 | Bounded LUT/grid challenge and calibrated effects | pending on U3/U4 | GPU/cost gate if needed |
+| 7 | U5/U6 | Bounded LUT/grid style challenge and artifact-safe effects | pending on U4 | GPU/cost gate if needed |
+| 8 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | blocked | budget/lab/rights approval |
 | 9 | U7/U8 | Product, beta, release and stock expansion | pending | release/legal approval |
 
 ---
@@ -58,7 +59,7 @@ Current branch is local research work with commits not represented by a matching
 
 ## Success gate
 
-The project advances only when the simplest candidate improves stock/process authenticity on whole-roll/lab holdouts, keeps content/geometry hard gates intact, wins a preregistered blind comparison, and remains reproducible on Windows 12GB, M5 and CPU fallback. If a deterministic model passes, do not add neural complexity.
+The product advances when a candidate is strongly stylized, wins a preregistered preference comparison, produces zero confirmed severe artifacts on the frozen gold set, reports artifact rate on the wider stress set, and remains reproducible on Windows 12GB, M5 and CPU fallback. Stock/process holdouts are additionally required only for profiles labeled calibrated. If a deterministic model passes, do not add neural complexity.
 
 ---
 

@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
 > **Current truth: 2026-07-10.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
-> **Target direction:** a calibrated, color-managed Reference renderer with optional bounded-AI parameter prediction; generative editing remains isolated as Creative/R&D.
+> **Target direction:** a strongly stylized, color-managed Style-safe renderer with optional bounded-AI parameter prediction; calibrated profiles and generative editing remain separately labeled branches.
 
 ---
 
@@ -11,8 +11,9 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | measured stock + process + scan/print interpretation profiles, high-precision RAW/HDR pipeline, bounded local color model |
-| Content contract | Reference/Adaptive paths may change color and non-warping effects on a fixed pixel grid, never intentionally change geometry, objects, text or identity |
+| Ultimate target | strongly stylized film-inspired output with no severe glitch/artifact; optional calibrated stock/process profiles, high-precision RAW/HDR and bounded local color |
+| Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
+| Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
 | Current evidence | 18 local tests pass; deterministic renderer is usable; stock accuracy is not yet calibrated |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
@@ -95,8 +96,8 @@ Architecture rules:
 
 1. `WorkingImage` becomes the only production ingress.
 2. Unknown color state fails closed to **Look Approximation**, not Reference.
-3. The full-resolution path remains deterministic and does not spatially resample in Reference/Adaptive modes.
-4. A learned model may predict curves, LUT weights, grids, masks or effect parameters; it may not produce the final Reference RGB image.
+3. The full-resolution Style-safe/Calibrated path remains deterministic and does not spatially resample.
+4. A learned model may predict curves, LUT weights, grids, masks or effect parameters; it may not directly produce the final Style-safe RGB image.
 5. Generative models can be low-resolution teachers or Creative output only.
 6. Use the simplest candidate that passes held-out gates; a no-neural-network winner is acceptable.
 
@@ -106,10 +107,9 @@ Architecture rules:
 
 | Mode | Allowed | Forbidden | Output label |
 |---|---|---|---|
-| Reference | calibrated fixed-grid color and non-warping effects with known input state | geometry/object/text/identity changes | `reference` |
-| Adaptive | bounded parameter prediction + deterministic render | generative RGB, spatial warp | `adaptive-bounded` |
-| Look Approximation | deterministic rendering from unknown/display-referred input | reference-grade authenticity claim | `look-approximation` |
-| Creative | explicit generative editing | presenting output as calibrated or identity-safe | `creative-generative` |
+| Style-safe | strong deterministic/bounded color and effects | confirmed severe glitch/artifact | `film-inspired` |
+| Calibrated Reference | Style-safe render plus owned/cleared stock/process evidence | unsupported authenticity claims | `calibrated-reference` |
+| Creative | explicit generative editing | presenting output as artifact-safe or calibrated | `creative-generative` |
 
 Every render records input hash/color state, profile and model hashes, code commit, seed, parameters, output transform, evidence grade and mode.
 
@@ -128,7 +128,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 ### Research-only candidates
 
-- existing SepLUT/NILUT/4D proxies: must be retrained on real paired targets;
+- existing SepLUT/NILUT/4D proxies: may challenge the Style-safe frontier on rights-cleared preference targets; real paired targets are required only for calibrated claims;
 - local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
 - FLUX.2 Klein 4B: promising Apache-2.0 creative/teacher challenger, but official sources conflict on roughly 8GB vs 13GB VRAM; 12GB support requires FP8/offload measurement;
 - community film LoRAs: asset-level license and base-model compatibility must be audited.
@@ -155,15 +155,19 @@ All new manifest rows need source URL/ID, author, license snapshot/date, rights 
 
 ## 8. Evaluation contract
 
-Never use one aggregate score for promotion. Maintain five independent scorecards:
+The product objective is constrained optimization:
 
-1. **content/geometry safety** — dimensions, no warp, edge/keypoint location, face/text diagnostics, tile/determinism;
-2. **film-style salience** — the result must visibly read as film-like rather than a neutral digital edit or generic saturation change;
-3. **stock/process authenticity** — exposure/density curves, chart color, illuminant/EV/roll/lab/scanner slices and complete holdouts;
-4. **physical effects** — grain NPS/autocorrelation/density dependence, halation radial/color/exposure behavior, MTF and bloom separation;
-5. **human/product** — blinded stock-match vs preference, confidence intervals, latency/RAM/VRAM/cross-platform stability.
+> **Maximize film-style strength and user preference among candidates with no confirmed severe glitch/artifact on the frozen gold set.** Report artifact rate and confidence intervals on the wider stress set instead of claiming universal zero defects.
 
-Promotion order is safety → minimum film-style salience → authenticity → effects/product. A technically clean but visually neutral result fails the salience gate; a strong but generic “film filter” may pass salience while still failing stock authenticity. L-SSIM and the current `[4,251]` range remain legacy 8-bit regression diagnostics, not universal 16-bit/HDR or film-authenticity gates. Freeze test groups and thresholds before seeing final results; report tails and failures, not only means.
+Maintain five independent scorecards:
+
+1. **severe artifact veto** — face/limb/object/text corruption, broken geometry, VAE smearing, posterization, banding, large unintended clipping, tile seams, color blocks, repeated textures or temporal flicker;
+2. **style salience and appeal** — visibly stylized, recognizably film-inspired, and preferred over the technically clean bland baseline;
+3. **content retention** — graded edge/keypoint/face/text/texture diagnostics after the severe veto, not a requirement to stay visually close to the input;
+4. **calibrated authenticity** — stock/process/scan evidence only when a profile claims `calibrated`; film-inspired looks may ship without this label;
+5. **physical/product quality** — effect plausibility, determinism, latency, memory and cross-platform stability.
+
+Promotion order is severe-artifact veto → maximize style/appeal → check graded content and product quality. Authenticity is a conditional gate for calibrated claims, not the universal product objective. Intended grain, halation, bloom and strong tone/color are not artifacts by themselves; they fail only when they create objectionable corruption or instability. L-SSIM and `[4,251]` remain legacy diagnostics, not universal style gates.
 
 ---
 
@@ -186,11 +190,11 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | P0 | U0.3 | Repair manifest lineage and cross-split leakage |
-| P0 | U0.4/U4 | Add CI, frozen benchmark and five scorecards including film-style salience |
+| P0 | U0.4/U4 | Freeze severe-artifact gold set and style/preference benchmark |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
-| P1 | U3 | Run rights-cleared Portra/Velvia calibration pilot after approval |
-| P1 | U5/U6 | Challenge bounded AI and calibrate effects only after data/eval gates |
+| P1 | U3 | Run optional rights-cleared Portra/Velvia calibration lane after approval |
+| P1 | U5/U6 | Maximize bounded style under severe-artifact and product-quality gates |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 
 The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
@@ -200,7 +204,7 @@ The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION
 ## 11. Hardware and risk gates
 
 - RTX target is a 12GB Laptop GPU; do not use desktop 5070 Ti figures.
-- Reference renderer and small predictor should fit comfortably; leave peak-memory headroom.
+- Style-safe renderer and small predictor should fit comfortably; leave peak-memory headroom.
 - FLUX.2 Klein BF16 is not assumed to fit 12GB; FP8/offload is an optional measured experiment.
 - Apple unified memory success must include swap and thermal behavior, not only successful load.
 - Do not start paid cloud/GPU work, large downloads, film/lab purchases, external recruiting, release or deployment without explicit approval.

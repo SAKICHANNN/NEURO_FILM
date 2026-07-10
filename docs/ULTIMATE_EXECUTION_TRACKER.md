@@ -8,7 +8,7 @@
 
 ## 1. Parent goal and task contract
 
-**Parent goal `ULT`**: deliver a local-first, content-safe, color-managed, calibrated film-imaging product whose Reference path never rewrites geometry or identity and whose stock/process claims are supported by owned or cleared measurements.
+**Parent goal `ULT`**: deliver a local-first, color-managed film-imaging product that looks strongly stylized while producing no confirmed severe glitch/artifact on the frozen gold set. Calibrated stock/process reproduction is an optional evidence lane with stricter claim requirements.
 
 ### Definition of Ready
 
@@ -44,9 +44,10 @@
 
 | Decision | State | Rationale | Revisit trigger |
 |---|---|---|---|
-| Deterministic full-resolution renderer is the Reference core | accepted for plan | Current diffusion paths changed detail/identity; color operators can guarantee no geometry resampling | Only if a new method passes all hard gates |
-| Small model may predict bounded parameters | candidate | LUT/grid/curve prediction adds context without generating pixels | Real paired residual remains after simple baseline |
-| Generative editing is isolated | accepted for plan | Useful for creative target/teacher, unsafe as identity-preserving renderer | Never merged into Reference without new architecture proof |
+| Product objective is strong style under a severe-artifact constraint | user-authoritative | User explicitly defined this as the true standard on 2026-07-11 | Only an explicit user product-goal change |
+| Deterministic full-resolution renderer is the Style-safe core | accepted for plan | Current diffusion paths produced severe detail/identity artifacts; bounded color operators offer a stronger style/artifact frontier | Only if a new method passes the same severe-artifact and preference gates |
+| Small model may predict bounded parameters | candidate | LUT/grid/curve prediction adds style/context with controlled artifact risk | Preferred deterministic family cannot reach the style frontier |
+| Generative editing is isolated | accepted for plan | Useful for creative target/teacher, but current paths are artifact-prone | Never merged into Style-safe without passing the same frozen gates |
 | Stock profile includes process and interpretation | accepted for plan | Negative/slide/B&W do not have one intrinsic display RGB look | None; schema invariant |
 | Portra 400 + Velvia 50 are pilot stocks | proposed | Orthogonal negative/slide behaviors and high user value | Availability, rights or lab feasibility fails |
 | FiveK is optional neutral auto-base only | accepted for plan | Expert retouch is not film identity; full local sources were deleted | Sources/rights restored and product evidence supports it |
@@ -57,7 +58,7 @@
 ## 3. DRPT node tree
 
 ```text
-ULT  Ultimate calibrated film-imaging product
+ULT  Ultimate strongly stylized, artifact-safe film-imaging product
 ├── U0  Truth, rights and reproducibility reset
 │   ├── U0.1 Reconcile active docs and archive obsolete claims
 │   ├── U0.2 Decide repository license and third-party notice policy
@@ -68,22 +69,23 @@ ULT  Ultimate calibrated film-imaging product
 │   ├── U1.2 Implement color-state contract and fail-closed modes
 │   ├── U1.3 Implement correct 8/16-bit/profile-aware export
 │   └── U1.4 Tile/cache/reference backend and parity vectors
-├── U2  Reference film renderer and profile system
+├── U2  Style-safe renderer and profile system
 │   ├── U2.1 Profile/recipe schema and provenance
 │   ├── U2.2 Monotone sensitometry + global LUT renderer
 │   ├── U2.3 Negative/slide/B&W interpretation interfaces
 │   └── U2.4 Legacy safe_lab compatibility and migration
-├── U3  Owned paired calibration
+├── U3  Optional owned paired calibration lane
 │   ├── U3.1 Capture protocol, rights and lab/scanner SOP
 │   ├── U3.2 Portra 400 pilot
 │   ├── U3.3 Velvia 50 pilot
 │   └── U3.4 Frozen roll/lab/scanner holdout
 ├── U4  Evaluation V2
-│   ├── U4.1 Content and geometry hard gates
-│   ├── U4.2 Color/sensitometry authenticity scorecard
-│   ├── U4.3 Grain/halation/MTF measurement
+│   ├── U4.1 Severe artifact gold/stress gates
+│   ├── U4.2 Style salience and preference scorecard
+│   ├── U4.3 Content/effect quality diagnostics
 │   ├── U4.4 Blind human study protocol
-│   └── U4.5 Performance/cross-platform benchmark
+│   ├── U4.5 Performance/cross-platform benchmark
+│   └── U4.6 Conditional calibrated-authenticity scorecard
 ├── U5  Bounded-AI challenge
 │   ├── U5.1 1D + 3D LUT baseline
 │   ├── U5.2 SepLUT/NILUT challenge
@@ -109,8 +111,8 @@ ULT  Ultimate calibrated film-imaging product
 Critical path:
 
 ```text
-U0 → U1 → U2 → U3 → (U5 || U6) → U7 → U8
-             ↘ U4 starts early and gates every later promotion
+U0 → U1 → U2 → U4 artifact/style gates → (U5 || U6) → U7 → U8
+                 ↘ U3 calibration runs as an optional parallel evidence lane
 ```
 
 U4 is a continuous validation sibling, not an end-of-project QA phase.
@@ -150,7 +152,7 @@ Restrictions:
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
 
-### U2 — Reference renderer and profile system
+### U2 — Style-safe renderer and profile system
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
@@ -161,9 +163,9 @@ Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade came
 | U2.5 | pending | Legacy `safe_lab` adapter | U2.1, U1.3 | Old recipes render within frozen tolerance |
 | U2.6 | pending | Profile evidence labels | U2.1 | `heuristic/measured/paired/held-out` visible in CLI/API |
 
-U2 can be implemented with synthetic/unit data. It cannot be promoted as an accurate named-stock renderer before U3/U4.
+U2 can ship strongly stylized `film-inspired` profiles after U4 artifact/style gates. It cannot use `calibrated` or strong named-stock reproduction claims before U3 and the conditional authenticity gate.
 
-### U3 — Owned paired calibration
+### U3 — Optional owned paired calibration lane
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
@@ -193,33 +195,32 @@ Go/No-Go:
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U4.1 | ready | Frozen content/geometry hard-gate suite | U0.4 | face/text/edge/keypoint/tile/determinism report |
-| U4.2 | pending | Color/sensitometry scorecard | U2.2, U3.2 | chart/EV/illuminant/roll/lab slices + CIs |
-| U4.3 | pending | Grain/halation/MTF suite | U3.2 | NPS/radial/MTF test vectors and repeatability |
+| U4.1 | pending | Frozen severe-artifact gold set + wider stress set | U0.4 | 0 confirmed severe failures on gold; stress-set rate + CI |
+| U4.2 | pending | Style salience and preference scorecard | U4.1 | blind comparisons against `53/55/56/09/01` and neutral/bland baselines |
+| U4.3 | pending | Graded content/effect quality diagnostics | U4.1 | face/text/edge/texture plus NPS/radial/MTF/tile/determinism report |
 | U4.4 | ready | Blind pairwise study protocol | competitor-output rights check | preregistered questions, exclusions, analysis |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |
-| U4.6 | ready | Replace chroma-gain promotion with five scorecards | none | Salience is independent from safety, authenticity and saturation magnitude |
+| U4.6 | ready | Conditional calibrated-authenticity scorecard | U2.2, U3.2 | chart/EV/illuminant/roll/lab slices + CIs for profiles claiming calibrated |
 | U4.7 | complete | Record the user's known Velvia 50 preference anchor | numbered 56-scheme sheet | Mapping and evidence weights recorded; 2026-07-11 |
-| U4.8 | complete | Record “technically better but no film style” as a hard planning constraint | user feedback | Minimum film-style salience added before authenticity promotion; 2026-07-11 |
+| U4.8 | complete | Record the true standard: strong style without severe glitch/artifact | user feedback | Product objective and promotion order updated; 2026-07-11 |
 
 Five reports stay separate:
 
-1. content/geometry safety;
-2. perceptible film-style salience;
-3. stock/process/interpretation authenticity;
-4. physical-effect fidelity;
-5. human preference and product performance.
+1. severe glitch/artifact veto;
+2. style salience and user appeal;
+3. graded content/effect quality diagnostics;
+4. calibrated authenticity when that claim is requested;
+5. product performance and reliability.
 
 Never collapse them into one score.
 
 Provisional promotion rules, frozen before each experiment:
 
-- hard safety: no new text errors; no geometry resampling; face/keypoint diagnostics within benign-control tolerance;
-- film-style salience: in a blinded test, the candidate must be detectably more film-like than the neutral input/current technically clean bland baseline, without relying only on global saturation; thresholds are preregistered after pilot calibration;
-- authenticity: full-roll holdout improves against the strongest simpler baseline, including P95/tails;
-- blind stock-match: lower bound of 95% CI > 50% against the current champion;
-- content-preservation human score non-inferior to deterministic baseline by a preregistered margin;
-- exact thresholds for ΔE, repeatability and latency are calibrated by the pilot, not invented after seeing test results.
+- severe artifact veto: zero confirmed severe face/text/object/geometry, smearing, banding, large unintended clipping, seam, color-block, repeated-texture or flicker failures on the frozen gold set; report rate + CI on the wider stress set;
+- style objective: among survivors, maximize blinded style strength and preference against the neutral/bland baseline and the current preferred anchors;
+- graded quality: moderate/local defects reduce ranking but only preregistered severe defects cause automatic rejection;
+- calibrated claims only: full-roll holdout and stock-match evidence apply when a profile is labeled calibrated;
+- exact thresholds and severity examples are frozen before final evaluation, not chosen after seeing candidate results.
 
 #### Known user preference anchor — Velvia 50
 
@@ -250,15 +251,15 @@ User feedback also states that many theoretically stronger candidates look techn
 - a candidate cannot be promoted merely for better safety, clipping, SSIM, ΔE or smoothness if observers cannot perceive a film signature;
 - “film-style salience” is not “maximum effect strength”: generic saturation, crushed contrast, noise or orange highlights do not pass by themselves;
 - evaluate a color-only pass with grain/halation disabled and a full-look pass with effects enabled, so effects cannot hide a weak color model;
-- a salient but stock-inaccurate result remains a heuristic/Creative look; Reference promotion still requires the independent authenticity gate.
+- a salient but stock-inaccurate result may ship as a clearly labeled `film-inspired` style after artifact/product gates; it cannot use a calibrated stock claim.
 
 ### U5 — Bounded-AI challenge
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U5.0 | pending | Challenge protocol and fixed split | U3.5, U4.1, U4.2 | Signed experiment spec |
-| U5.1 | pending | 1D + 33³/65³ 3D LUT baseline | U5.0 | Full scorecard and artifacts |
-| U5.2 | pending | Existing SepLUT/NILUT retrained on real paired targets | U5.1 | Same compute/data/eval; no pseudo-teacher claim |
+| U5.0 | pending | Style challenge protocol and fixed gold/stress sets | U4.1, U4.2 | Signed experiment spec and severity examples |
+| U5.1 | pending | Preferred deterministic 1D + 3D LUT frontier | U5.0 | Style/preference gain with no severe gold-set artifacts |
+| U5.2 | pending | SepLUT/NILUT style challenger on cleared targets | U5.1 | Same inputs/eval; beats style frontier without severe artifacts |
 | U5.3 | pending | Low-resolution bilateral-grid predictor | U5.1 | Held-out local residual improvement; no halo |
 | U5.4 | pending | Bounded masks/semantic conditioning | U5.3 failure pattern | Only if systematic region errors remain |
 | U5.5 | research-only | FLUX.2 Klein/IP2P target→LUT projection | U4.1 | Isolated report; generated RGB never Reference output |
@@ -313,7 +314,7 @@ These are product targets, not measured current claims.
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
 | U8.1 | pending | 20–50 photographer closed beta | U7, legal/consent | preregistered study and issue closure |
-| U8.2 | pending | Datasheet, model/profile cards, SPDX/CycloneDX BOM | U0.2, U3–U7 | Release bundle audit |
+| U8.2 | pending | Datasheet, model/profile cards, SPDX/CycloneDX BOM | U0.2, U4–U7 | Release bundle audit; U3 additionally required for calibrated packs |
 | U8.3 | pending | Signed/versioned profile packs and rollback | U8.2 | signature/update/rollback tests |
 | U8.4 | pending | Vision3/Ektar/Portra800 expansion | Pilot success | Each profile independently gated |
 | U8.5 | pending | Tri-X/HP5 process-specific profiles | B&W schema + data | Developer/process evidence |
@@ -330,7 +331,7 @@ Public release requires explicit human approval and written license/trademark/se
 
 1. `U0.1` (complete 2026-07-10): reconcile active docs and mark diffusion/IP2P as retired research.
 2. `U0.3`: define manifest v2; tag every current source `production/research/eval/blocked`.
-3. `U4.6`: replace the chroma-gain promotion rule with five scorecards, including minimum film-style salience.
+3. `U4.1/U4.2`: freeze severe-artifact examples and the style/preference scorecard; `U4.6` is only for calibrated profile claims.
 4. `U0.2`: ask owner to confirm intended code license and release posture.
 
 Evidence bundle: document diff, manifest schema, duplicate/leakage report, release-blocker list.
@@ -356,8 +357,8 @@ Evidence bundle: schema fixtures/migrations, property tests, identity golden vec
 
 1. `U4.1`: expand the frozen safety corpus with face/text/skin/sky/ramp/texture/highlight cases.
 2. `U4.4`: preregister blind-study protocol.
-3. `U3.1`: finalize capture/lab/scanner/rights SOP and obtain quotes/approval.
-4. `U4.5`: benchmark current renderer on exact target hardware.
+3. `U4.5`: benchmark current renderer on exact target hardware.
+4. Optional parallel `U3.1`: finalize capture/lab/scanner/rights SOP only if the calibrated lane is funded.
 
 No film purchase, lab booking, model download or GPU training occurs without the corresponding approval.
 
@@ -367,9 +368,9 @@ No film purchase, lab booking, model download or GPU training occurs without the
 
 | Experiment | Hypothesis | Fixed baseline | One changed variable | Promotion gate | Stop condition |
 |---|---|---|---|---|---|
-| EXP-COLOR-01 | Monotone curves + 3D LUT capture stock response | safe_lab + measured target | global transform | Safety passes, minimum salience passes, authenticity improves on held-out roll | Bland output or no stable held-out gain |
-| EXP-COLOR-02 | SepLUT models global residual better | EXP-COLOR-01 | representation | Salience is retained and authenticity tail metrics improve enough to justify complexity | Same/poorer or less film-like result |
-| EXP-LOCAL-01 | Bilateral grid fixes scene-local residual | current global winner | local grid | Local authenticity/salience slices improve; no halo/tile seam | Artifact, blandness or no independent gain |
+| EXP-COLOR-01 | 1D + 3D LUT can move beyond the preferred deterministic anchors | `53/55/56/09/01` on one frozen set | global transform | Higher style/preference; zero severe gold-set artifacts | Severe artifact or no style gain |
+| EXP-COLOR-02 | SepLUT can increase style without instability | EXP-COLOR-01 | representation | Higher style frontier; no severe gold-set artifacts | Same/poorer, bland or artifact-prone result |
+| EXP-LOCAL-01 | Bilateral grid adds scene-aware style safely | current global winner | local grid | Local style/preference improves; no severe halo/tile/color artifacts | Severe artifact, blandness or no independent gain |
 | EXP-FX-01 | Exposure-domain halation matches real radial behavior | current display-level halation | composition domain | Held-out point/edge profile improves | Lens/scanner confound unresolved |
 | EXP-FX-02 | Density-aware grain matches real NPS | current procedural grain | density-conditioned params | Held-out NPS/ACF within repeatability | Scanner noise not separated |
 | EXP-GEN-01 | FLUX.2 FP8 is a better color oracle than IP2P | IP2P fixed grid | teacher model | LUT projection gains salience/preference without safety loss; authenticity remains separately labeled | OOM, license issue, blandness or no gain |

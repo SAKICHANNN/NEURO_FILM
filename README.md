@@ -38,11 +38,13 @@ Current output should use a `.png` name: the existing save path writes 8-bit PNG
 
 ## Ultimate direction
 
+The primary product standard is **strong, attractive film-inspired stylization without severe glitch/artifact**. Stock/process authenticity is an optional calibrated-profile claim, not a prerequisite for every useful look.
+
 The target is a three-layer system:
 
-1. **Reference** — color-managed, deterministic stock/process/scan-or-print profiles with no geometry or identity changes.
-2. **Adaptive** — a small model predicts bounded curves, LUTs or bilateral grids; full-resolution rendering remains deterministic.
-3. **Creative** — generative editing is clearly isolated and never presented as calibrated or identity-safe output.
+1. **Style-safe core** — strong color/effect styling with a hard severe-artifact veto.
+2. **Bounded AI** — a small model predicts curves, LUTs or bilateral grids; full-resolution rendering remains deterministic.
+3. **Calibrated/Creative branches** — paired film evidence supports optional calibrated profiles; generative editing stays clearly isolated.
 
 The critical path is:
 
@@ -50,8 +52,9 @@ The critical path is:
 truth / rights / reproducibility reset
   -> WorkingImage + high-precision color I/O
   -> deterministic profile/reference renderer
-  -> owned Portra 400 + Velvia 50 paired calibration pilot
-  -> bounded-AI and physical-effects challenges
+  -> frozen severe-artifact + style/preference benchmark
+  -> bounded-AI and physical-effects style challenges
+  -> optional Portra 400 + Velvia 50 calibrated profile lane
   -> Windows/Mac/CPU productization and release gates
 ```
 

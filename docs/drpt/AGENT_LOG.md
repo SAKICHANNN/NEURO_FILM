@@ -90,3 +90,18 @@ No production code, data, model, output or user-owned untracked file was modifie
 - **Verification intent:** future U4 evaluation must run separate color-only and full-look blind tests against neutral input, the preferred deterministic anchors and real film references; global saturation alone cannot pass
 - **Risk/unknown:** salience thresholds remain a preregistered pilot decision; this feedback establishes the gate but does not yet quantify it
 - **Handoff state:** U4.6 remains ready for evaluator implementation; no render, model, data or user-owned untracked artifact was modified
+
+---
+
+## 2026-07-11 — Make strong style under severe-artifact constraint the product standard
+
+- **Node/parent goal:** `ULT` architecture decision / U4 objective propagation
+- **Trigger:** user explicitly defined the true standard as “looks highly stylized while showing no severe glitch/artifact”
+- **Skills used:** `plan-tracker-discipline` primary; `project-agent-log-discipline` secondary
+- **Decision:** product optimization is now `maximize(style strength × appeal) subject to no confirmed severe artifact on the frozen gold set`; report artifact rate/CI on the wider stress set
+- **Claim boundary:** stock/process authenticity is conditional for profiles labeled calibrated; strong `film-inspired` styles can ship without paired-film evidence if artifact, rights and product gates pass
+- **Propagation:** updated project identity/modes, critical path, U3 calibration dependency, U4 scorecards, U5 experiment gates, phase order, North Star and user-facing README/TASK_BOARD
+- **Files changed:** `AGENTS.md`, `README.md`, `TASK_BOARD.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/planning/ULTIMATE_ROADMAP_2026.md`, `docs/drpt/AGENT_LOG.md`
+- **Verification intent:** freeze severe/moderate/intended-style examples; rerender `53/55/56/09/01` on one gold/stress set; blind-rate style strength, appeal and artifact severity separately
+- **Risk/unknown:** the severe rubric, gold/stress membership and quantitative preference threshold are not implemented yet; no universal zero-artifact claim is permitted
+- **Handoff state:** U0.3/U0.4 remain the next ready prerequisites, followed by U4.1/U4.2; optional U3 paired calibration no longer blocks Style-safe product work
