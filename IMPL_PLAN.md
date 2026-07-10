@@ -1,4 +1,24 @@
-# K-MCFM V3: Diffusion-Based Film Translation — 实施计划
+# K-MCFM 实施计划（历史 V3 + 2026-07-10 现行指针）
+
+> **现行计划已迁移。** 后续执行以 `docs/ULTIMATE_EXECUTION_TRACKER.md` 为 active authority，以 `docs/planning/ULTIMATE_ROADMAP_2026.md` 为研究和架构依据。
+> 下方 V3 diffusion-first 计划保留为历史记录；SD1.5 IP2P、SDXL full-UNet IP2P 与 SDXL LoRA/SDEdit 已被后续本地实验否决为默认生产路径，不得按下方 Phase 1–3 直接重启。
+
+## 2026-07-10 当前关键路径
+
+```text
+U0 truth/rights/repro reset
+  -> U1 WorkingImage + high-precision color I/O
+  -> U2 deterministic profile/reference renderer
+  -> U3 owned Portra 400 + Velvia 50 paired pilot
+  -> U5 bounded LUT/grid challenge + U6 calibrated effects
+  -> U7 productization -> U8 release/stock expansion
+```
+
+`U0.1` 文档真相对齐已完成。最近可执行叶任务：`U0.3` 数据谱系/泄漏修复、`U0.4/U4` CI 与新评测、随后 `U1.1` 把 `WorkingImage` 接入主 renderer。许可证、真实拍摄/冲扫、模型下载、付费 GPU、push/release 均保留人工批准门。
+
+---
+
+## 以下为历史 V3 计划（不再是 active authority）
 
 > SDEdit + 胶片 LoRA + IP-Adapter 内容保真方案
 > **工期**: 5-6 周 | **VRAM**: ≤12 GB | **平台**: CUDA + MLX/MPS

@@ -1,197 +1,224 @@
-# AGENTS.md — K-MCFM Project Knowledge Base (V3)
+# AGENTS.md — K-MCFM Project Knowledge Base
 
-> **架构 V3 (2026-05-23)**。采用扩散模型 SDEdit + LoRA + IP-Adapter 做内容保真的胶片翻译。
-> V2 的 CUT/LUT 方案已升级为深度扩散模型方案。
-
----
-
-## 1. 项目身份卡片
-
-| 字段 | 值 |
-|------|-----|
-| **项目名** | K-MCFM: Film Translation via InstructPix2Pix |
-| **一句话** | 用 InstructPix2Pix 指令编辑模型做内容保真的胶片色彩转换 |
-| **核心方法** | SDXL SDEdit/img2img + 胶片 LoRA；IP2P (ig=1.5, tg=7.5) 保留为实测最佳 fallback |
-| **目标硬件** | M5 32GB (MPS推理) / RTX 5070 Ti 12GB (CUDA训练+推理) |
-| **当前阶段** | 9 轮实验完成；V3 脚本已入库，社区 SDXL LoRA/数据缺口已在 2026-05-25 复核 |
-| **许可** | MIT |
+> **Current truth: 2026-07-10.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
+> **Target direction:** a calibrated, color-managed Reference renderer with optional bounded-AI parameter prediction; generative editing remains isolated as Creative/R&D.
 
 ---
 
-## 2. 核心文档地图
+## 1. Project identity
 
-| 文件 | 内容 | 使用场景 |
-|------|------|---------|
-| `AGENTS.md` | 本文件 | 每次新会话先读 |
-| `docs/EXPERIMENT_LOG.md` | 9 轮完整实验日志 | 理解项目历史 |
-| `docs/ARCH_REDESIGN.md` | 架构演进：V1(CFM+Mamba) → V2(CUT+LUT) → V3(SDEdit+LoRA) | 理解方向 |
-| `docs/ONLINE_DATA_AUDIT.md` | 2026-05-25 联网核实的 LoRA/依赖/数据缺口 | 查最新补齐记录 |
-| `docs/PROJECT_STRUCTURE.md` | 仓库目录结构和安全整理规则 | 移动/整理文件前查阅 |
-| `docs/CONTENT_PRESERVING_FILM_TASK_TRACKER.md` | 下一阶段三大任务：稳定当前方案、AI 色彩层、胶片特效层 | 继续独立开发前查阅 |
-| `IMPL_PLAN.md` | 当前实施计划 | 编码前查阅 |
-| `TASK_BOARD.md` | 任务分配 | 第二个读 |
-| `README.md` | 面向人类 | 对外 |
+| Field | Value |
+|---|---|
+| Project | K-MCFM — content-preserving film imaging |
+| Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
+| Ultimate target | measured stock + process + scan/print interpretation profiles, high-precision RAW/HDR pipeline, bounded local color model |
+| Content contract | Reference/Adaptive paths may change color and non-warping effects on a fixed pixel grid, never intentionally change geometry, objects, text or identity |
+| Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
+| Current evidence | 18 local tests pass; deterministic renderer is usable; stock accuracy is not yet calibrated |
+| License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
+
+Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
 
 ---
 
-## 3. 技术架构
+## 2. Read order
 
-```
-Input Image (H, W, 3)
-    │
-    ▼
-[Preprocess] → 1024², normalize
-    │
-    ▼
-[VAE Encode] → z_0 (4, H/8, W/8)
-    │
-    ▼
-[Forward Diffuse] → z_t = noise(z_0, t_start=0.4-0.5)
-    │
-    ▼
-[Denoise with Conditioning]:
-  ├─ Film LoRA            ← 每胶片一个，2-5MB
-  ├─ Text Prompt          ← "cinematic Kodak Portra 400 photo, film grain"
-  ├─ IP-Adapter (可选)     ← 输入图为内容锚点
-  └─ ControlNet (可选)    ← 深度/边缘结构锁
-    │
-    ▼
-[VAE Decode] → (H, W, 3)
-    │
-    ▼
-[Optional: Grain + Halation]
-    │
-    ▼
-Output
+| Order | File | Purpose |
+|---:|---|---|
+| 1 | `AGENTS.md` | Current truth and invariants |
+| 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
+| 3 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Research synthesis, target architecture and primary sources |
+| 4 | `TASK_BOARD.md` | Compact active board/pointer |
+| 5 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
+| 6 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
+| 7 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
+| 8 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
+| 9 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
+
+The following are historical context, not active authority: `docs/ARCH_REDESIGN.md`, `docs/planning/GAP_ANALYSIS.md`, `docs/ONLINE_DATA_AUDIT.md`, and the diffusion sections below the supersession banner in `IMPL_PLAN.md`.
+
+---
+
+## 3. Current implementation
+
+```text
+PIL 8-bit RGB input
+  -> deterministic CIELAB mean/std transfer (`safe_lab`, safe-rich guards)
+  -> optional deterministic grain / physical-inspired halation / dust
+  -> bounded 8-bit output
+  -> PNG encoder
 ```
 
-### 关键原理
+Current strengths:
 
-**SDEdit 内容保真机制**：
-- `strength` 参数控制加噪量 = 控制内容保留度
-- strength=0.0: 完全不变
-- strength=0.45: 内容基本保留，色调胶片化 ← 推荐
-- strength=0.6: 明显风格，小细节可能变
-- strength=1.0: 纯文生图，内容全丢失
+- fixed-grid deterministic color transform; no generative geometry rewrite;
+- stable safe-rich guardrails and fixed test artifacts;
+- modular grain/halation/dust layers;
+- `WorkingImage`, ICC-aware raster helpers and generic RAW decoding exist under `src/preprocess/`;
+- substantial experiment logs and comparison artifacts are preserved.
 
-**为什么扩散模型比 CUT/LUT 好**：
-- 扩散模型在数十亿张图片上预训练，已学会"照片应该长什么样"
-- LoRA 在预训练模型上注入胶片美学，只需 2MB
-- 通过噪声级别精确控制"改多少"，而非 GAN 的黑盒映射
-- 社区已有 30+ 胶片 LoRA 可直接使用
+Current limitations:
 
----
-
-## 4. VRAM 预算
-
-| 配置 | 推理 (1024²) | LoRA 训练 (512²) |
-|------|:---:|:---:|
-| SDXL FP16 | 7.5 GB | — |
-| SDXL + LoRA + IP-Adapter | 8.5 GB | — |
-| SDXL LoRA 训练 | — | 8-10 GB |
-| SD 3.5 Medium FP16 | 6 GB | 7-9 GB |
-| Flux.1 Schnell GGUF Q4 | 12 GB | >12 GB (云) |
-| **可用余量 (12GB)** | **3.5-6 GB** | **2-4 GB** |
-
-### 如果 OOM
-1. 降到 768² 推理（~5 GB）
-2. 用 SD 3.5 Medium 代替 SDXL（~6 GB）
-3. 关掉 ControlNet（省 1.5 GB）
-4. 关掉 IP-Adapter（省 1 GB）
+- `scripts/render_film.py` does not use `WorkingImage`; it converts input to PIL RGB and writes 8-bit PNG;
+- no complete HEIF/HDR/gain-map or wide-gamut production path;
+- no stock/process/scanner-calibrated ground truth;
+- existing Lab statistics can make stocks look similar;
+- current halation numbers are explicitly uncalibrated heuristics;
+- current neural LUTs were mainly distilled from a pseudo-teacher;
+- no CI, packaging, stable engine API, production GUI or cross-platform parity suite.
 
 ---
 
-## 5. 胶片清单
+## 4. Target architecture
 
-| 胶片 | LoRA 状态 | 优先级 |
-|------|:---:|:---:|
-| Kodak Portra 400 | Civitai SDXL 已验证：model `723250`, version `808680` | P0 |
-| Kodak Vision3 500T | Civitai SDXL 已验证：model `725625`, version `820808` | P0 |
-| Kodak Vision3 250D | Civitai SDXL 已验证：model `725620`, version `820761` | P0 |
-| Kodak Ektar 100 | Civitai SDXL 已验证：model `779013`, version `1167852` | P1 |
-| Kodak Portra 800 | 未验证到精确 SDXL LoRA；需自训练或重新搜索 | P1 |
-| Fujifilm Velvia 50 | 未验证到精确 SDXL LoRA；需自训练 | P1 |
-| Ilford HP5 Plus | 仅找到 SD1.5 泛 Ilford LoRA；SDXL 需自训练 | P2 |
-| Kodak Tri-X 400 | 未验证到精确 SDXL LoRA；旧 id `521049` 为无关模型 | P2 |
-
----
-
-## 6. 实施计划
-
-### Phase 1: SDXL 基线 + 社区 LoRA（1 周）
-
-| 任务 | 内容 |
-|------|------|
-| 1.1 | 安装 diffusers + SDXL，搭建 img2img pipeline |
-| 1.2 | 从 Civitai 下载胶片 LoRA (Portra 400, Vision3 500T) |
-| 1.3 | 调优 strength 参数，找到内容/风格最佳平衡 |
-| 1.4 | 实现 CLI: `python scripts/pipeline.py img.jpg --style portra_400` |
-
-### Phase 2: 自训练胶片 LoRA（2 周）
-
-| 任务 | 内容 |
-|------|------|
-| 2.1 | 收集每胶片 200-500 张高质量扫描图 |
-| 2.2 | 用 kohya-ss/diffusers 训练 SDXL LoRA |
-| 2.3 | 验证训练效果，调优 rank/alpha |
-| 2.4 | 训练 Velvia 50, HP5 (社区无现成) |
-
-### Phase 3: 增强 + 管线 + 多平台（2 周）
-
-| 任务 | 内容 |
-|------|------|
-| 3.1 | IP-Adapter 集成 (h94/IP-Adapter SDXL) |
-| 3.2 | 后处理颗粒+光晕 (可选) |
-| 3.3 | Mac MLX 适配 |
-| 3.4 | 全管线 CLI + 批量处理 |
-| 3.5 | 主观 + 定量评估 |
-
----
-
-## 7. 关键依赖
-
-| 包 | 用途 | 版本 |
-|----|------|------|
-| diffusers | SDXL/SD3.5 pipeline | 项目锁定/PyPI 0.38.0 |
-| torch | 核心框架 | 项目锁定 2.11.0(+cu128)；PyPI 2.12.0 |
-| safetensors | LoRA 权重加载 | 项目锁定 0.8.0rc0 |
-| accelerate | 推理加速 | 项目锁定/PyPI 1.13.0 |
-| transformers | CLIP 文本编码器 | PyPI 5.9.0 |
-| peft | LoRA adapter 支持 | PyPI 0.19.1 |
-| filmgrainer | 可选后处理颗粒 | GitHub MIT；未发布 PyPI |
-| mlx (Mac) | Apple Silicon 加速 | 需按 Mac 环境单独验证 |
-
-关键依赖下限（requirements 已锁定具体版本）：
-```
-diffusers>=0.38.0
-peft>=0.19.1
-safetensors>=0.8.0rc0
-kornia                  # 已有
+```text
+RAW / Log / HDR / SDR
+  -> color-state validation (`scene`, `display`, `unknown`)
+  -> high-precision WorkingImage + versioned input transform
+  -> optional neutral auto-base
+  -> stock exposure + monotone sensitometry curves
+  -> global 3D LUT / SepLUT / NILUT
+  -> optional bounded bilateral-grid local residual
+  -> explicit interpretation:
+       color negative -> neutral scan or print chain
+       motion negative -> neutral scan or print stock
+       slide -> direct scan
+       B&W -> developer + scan/print chain
+  -> exposure/density-domain halation
+  -> density-aware grain + MTF
+  -> separate bloom / creative defects
+  -> versioned OCIO/ACES output transform
+  -> image + replayable recipe + provenance
 ```
 
----
+Architecture rules:
 
-## 8. 已知陷阱
-
-| 陷阱 | 说明 |
-|------|------|
-| **LoRA 与 base model 不匹配** | SD 1.5 LoRA 不能用于 SDXL。必须同架构。 |
-| **strength 过大内容崩塌** | >0.7 时人脸/文字会变形。从 0.4 开始，逐步增加。 |
-| **IP-Adapter 与提示词冲突** | 设置 `ip_adapter_scale=0.3-0.6`，过高会让提示词失效。 |
-| **Mac 上第一次推理极慢** | MPS/MLX 首次加载需编译内核。加载后复用 pipeline。 |
-| **Flux GGUF LoRA 不成熟** | Flux LoRA 生态 2026 年仍不如 SDXL。优先用 SDXL。 |
-| **Civitai LoRA 许可** | 部分 LoRA 标注"不能商用"。学术研究 OK，发布前检查。 |
+1. `WorkingImage` becomes the only production ingress.
+2. Unknown color state fails closed to **Look Approximation**, not Reference.
+3. The full-resolution path remains deterministic and does not spatially resample in Reference/Adaptive modes.
+4. A learned model may predict curves, LUT weights, grids, masks or effect parameters; it may not produce the final Reference RGB image.
+5. Generative models can be low-resolution teachers or Creative output only.
+6. Use the simplest candidate that passes held-out gates; a no-neural-network winner is acceptable.
 
 ---
 
-## 9. 更新协议
+## 5. Mode contract
 
-Agent 应在以下情况更新本文件：
-1. 实现状态变更（更新 §6）
-2. 新增胶片 LoRA（更新 §5）
-3. 发现新陷阱（追加 §8）
-4. 架构变更（更新 §3）
+| Mode | Allowed | Forbidden | Output label |
+|---|---|---|---|
+| Reference | calibrated fixed-grid color and non-warping effects with known input state | geometry/object/text/identity changes | `reference` |
+| Adaptive | bounded parameter prediction + deterministic render | generative RGB, spatial warp | `adaptive-bounded` |
+| Look Approximation | deterministic rendering from unknown/display-referred input | reference-grade authenticity claim | `look-approximation` |
+| Creative | explicit generative editing | presenting output as calibrated or identity-safe | `creative-generative` |
+
+Every render records input hash/color state, profile and model hashes, code commit, seed, parameters, output transform, evidence grade and mode.
 
 ---
 
-*最后更新: 2026-05-23 | V3: Diffusion-Based Film Translation*
+## 6. Experiment truth
+
+### Retired as default
+
+- SD1.5 IP2P: fine-tuning produced severe painterly smearing.
+- SDXL full-UNet IP2P: OOM on the 12GB GPU even at very low resolution in tested settings.
+- SDXL LoRA + SDEdit: low strength had little effect; useful-looking strength rewrote faces, clothing and details.
+- IP-Adapter/ControlNet: conditions do not create a pixel-identity guarantee.
+
+Keep these artifacts for research and regression. Do not restart the same grid without a new falsifiable hypothesis.
+
+### Research-only candidates
+
+- existing SepLUT/NILUT/4D proxies: must be retrained on real paired targets;
+- local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
+- FLUX.2 Klein 4B: promising Apache-2.0 creative/teacher challenger, but official sources conflict on roughly 8GB vs 13GB VRAM; 12GB support requires FP8/offload measurement;
+- community film LoRAs: asset-level license and base-model compatibility must be audited.
+
+---
+
+## 7. Data and claim boundaries
+
+| Source | Default lane | Valid use | Invalid default use |
+|---|---|---|---|
+| Self-owned paired digital/film captures | production candidate | calibration/training/evaluation after rights closure | none until rights and split are complete |
+| Flickr film images | research-only | unpaired aesthetics/failure analysis | commercial weights or stock truth |
+| FilmSet | research-only | Capture One recipe baseline/warmup | real film scan truth |
+| MIT-Adobe FiveK | research-only | neutral auto-base research | film identity or automatic public-weight clearance |
+| FilmGrainStyle740k | research-only | academic comparison under its terms | commercial development/training |
+| Manufacturer data sheets | prior | curve/sensitivity/MTF/granularity initialization | end-to-end RGB target |
+| Community LoRAs | research-only until audited | Creative comparison | Reference core |
+
+Full FiveK RAW/TIFF sources were deleted locally on 2026-06-15 after a verified 6.98GB freeze pack was retained. Do not plan full-scale FiveK work unless sources are restored.
+
+All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
+
+---
+
+## 8. Evaluation contract
+
+Never use one aggregate score for promotion. Maintain four independent scorecards:
+
+1. **content/geometry safety** — dimensions, no warp, edge/keypoint location, face/text diagnostics, tile/determinism;
+2. **stock/process authenticity** — exposure/density curves, chart color, illuminant/EV/roll/lab/scanner slices and complete holdouts;
+3. **physical effects** — grain NPS/autocorrelation/density dependence, halation radial/color/exposure behavior, MTF and bloom separation;
+4. **human/product** — blinded stock-match vs preference, confidence intervals, latency/RAM/VRAM/cross-platform stability.
+
+L-SSIM and the current `[4,251]` range remain legacy 8-bit regression diagnostics, not universal 16-bit/HDR or film-authenticity gates. Freeze test groups and thresholds before seeing final results; report tails and failures, not only means.
+
+---
+
+## 9. Pilot stocks and capture order
+
+1. Portra 400: C-41 color negative + explicit neutral scan interpretation.
+2. Velvia 50: E-6 slide + direct scan interpretation.
+3. Vision3 500T/250D: ECN-2, with neutral scan and print-film interpretations separated.
+4. Ektar 100 / Portra 800.
+5. Tri-X 400 / HP5 Plus: developer/process-specific B&W profiles.
+
+Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mixed lighting, real scenes, repeated scans, at least three independent rolls per stock spanning at least two recorded process sessions, and a whole-roll holdout. Pilot quantities are engineering starts, not statistical guarantees.
+
+---
+
+## 10. Immediate priorities
+
+| Priority | Node | Work |
+|---:|---|---|
+| Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
+| P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
+| P0 | U0.3 | Repair manifest lineage and cross-split leakage |
+| P0 | U0.4/U4 | Add CI, frozen benchmark and four scorecards |
+| P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
+| P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
+| P1 | U3 | Run rights-cleared Portra/Velvia calibration pilot after approval |
+| P1 | U5/U6 | Challenge bounded AI and calibrate effects only after data/eval gates |
+| P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
+
+The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
+
+---
+
+## 11. Hardware and risk gates
+
+- RTX target is a 12GB Laptop GPU; do not use desktop 5070 Ti figures.
+- Reference renderer and small predictor should fit comfortably; leave peak-memory headroom.
+- FLUX.2 Klein BF16 is not assumed to fit 12GB; FP8/offload is an optional measured experiment.
+- Apple unified memory success must include swap and thermal behavior, not only successful load.
+- Do not start paid cloud/GPU work, large downloads, film/lab purchases, external recruiting, release or deployment without explicit approval.
+
+---
+
+## 12. Update protocol
+
+Update this file when:
+
+1. the production default or architecture boundary changes;
+2. a candidate is promoted/retired by a complete evidence bundle;
+3. data rights, split or source availability changes;
+4. a stock profile reaches a new evidence grade;
+5. hardware support is measured on a new target;
+6. release/license posture changes.
+
+For non-trivial changes, also update `docs/ULTIMATE_EXECUTION_TRACKER.md` and `docs/drpt/AGENT_LOG.md`, run propagation checks, preserve unrelated user files and make a scoped local commit.
+
+---
+
+*Last updated: 2026-07-10 | Current implementation: deterministic content-safe renderer | Target: calibrated hybrid film-imaging system*

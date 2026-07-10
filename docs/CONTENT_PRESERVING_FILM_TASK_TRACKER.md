@@ -1,5 +1,7 @@
 # Content-Preserving Film Rendering Task Tracker
 
+> **Superseded for active planning on 2026-07-10 by `docs/ULTIMATE_EXECUTION_TRACKER.md`.** Keep this file as detailed historical evidence for the deterministic renderer, AI-color and effects work; do not infer current priorities or promotion state from it without checking the new tracker.
+
 > Created: 2026-05-27
 >
 > Purpose: a detailed execution guide for independent development after the diffusion-first route failed content preservation. This tracker splits the next work into three major missions:

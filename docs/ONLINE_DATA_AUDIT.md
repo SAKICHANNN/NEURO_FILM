@@ -1,5 +1,7 @@
 # Online Data Audit — 2026-05-25
 
+> **Historical snapshot.** Local data/LoRA state and FiveK availability changed after this audit. Use `AGENTS.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`, and the later dataset-specific trackers for current truth.
+
 > Scope: reconciled current docs with git history and live source checks. This file is the short source-of-truth for data that was previously marked as possible, missing, or placeholder.
 
 ## Git History Reconciliation

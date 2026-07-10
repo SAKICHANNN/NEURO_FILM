@@ -1,51 +1,65 @@
-# TASK_BOARD.md — V3 Diffusion-Based Film Translation
+# TASK_BOARD.md — Ultimate calibrated film-imaging path
 
-> 架构 V3 (2026-05-23)：SDEdit + 胶片 LoRA + IP-Adapter
-
----
-
-## Phase 1: SDXL 基线 + 社区 LoRA — 1 周
-
-| ID | Task | Status | Priority | Estimated |
-|----|------|--------|----------|-----------|
-| 1.1 | 环境搭建 (diffusers + SDXL + peft) | documented | P0 | 0.5d |
-| 1.2 | SDXL img2img pipeline 搭建 (`scripts/pipeline.py`) | implemented-unverified | P0 | 0.5d |
-| 1.3 | 下载已验证社区 SDXL LoRA (Portra 400, Vision3 500T, Vision3 250D, Ektar 100) | ready | P0 | 0.5d |
-| 1.4 | strength 参数调优 (grid search per film) | available | P0 | 1d |
-| 1.5 | CLI 实现 (pipeline.py) | implemented-unverified | P0 | 1d |
-
-## Phase 2: 自训练胶片 LoRA — 2 周
-
-| ID | Task | Status | Priority | Estimated |
-|----|------|--------|----------|-----------|
-| 2.1 | 胶片域数据收集 (Flickr/API 恢复 3,896 张记录数据, ≥200/film) | blocked-local-data-missing | P1 | 2d |
-| 2.2 | kohya-ss/diffusers LoRA 训练环境 | available | P1 | 0.5d |
-| 2.3 | 训练 Portra 800 LoRA (无精确 SDXL 社区 LoRA) | available | P1 | 1d |
-| 2.4 | 训练 Tri-X 400 LoRA (无精确 SDXL 社区 LoRA) | available | P1 | 1d |
-| 2.5 | 训练 Velvia 50 LoRA (正片特化) | available | P1 | 1d |
-| 2.6 | 训练 HP5 LoRA (黑白特化) | available | P2 | 1d |
-| 2.7 | 训练/复训其余胶片 LoRA（社区质量不足时替代） | available | P2 | 2d |
-| 2.8 | 验收测试 (A/B 对比 + 量化) | available | P1 | 1d |
-
-## Phase 3: 增强管线 + 多平台 — 2 周
-
-| ID | Task | Status | Priority | Estimated |
-|----|------|--------|----------|-----------|
-| 3.1 | IP-Adapter 集成 (h94/IP-Adapter SDXL) | available | P1 | 2d |
-| 3.2 | ControlNet-depth 可选集成 | available | P2 | 1d |
-| 3.3 | 后处理颗粒+光晕 (filmgrainer + Gaussian) | available | P2 | 1d |
-| 3.4 | Mac MLX 适配 | available | P2 | 2d |
-| 3.5 | 全管线 CLI | available | P1 | 1d |
-| 3.6 | 定量 + 主观评估 | available | P1 | 1d |
+> Updated 2026-07-10. Detailed DoR/DoD, dependencies, gates and evidence live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
+> SDXL/IP2P/SDEdit is a retired production direction and an optional research/Creative comparator only.
 
 ---
 
-## 锁文件
+## Current truth
 
-| Agent | Files |
-|-------|-------|
-| codex | AGENTS.md, IMPL_PLAN.md, TASK_BOARD.md, docs/ARCH_REDESIGN.md |
+| Area | State | Evidence/next action |
+|---|---|---|
+| Deterministic renderer | current default | `safe_lab`/safe-rich + optional grain/halation/dust |
+| Diffusion/IP2P | retired as default | detail/identity drift; tested SDXL full-UNet OOM on 12GB |
+| Neural LUT/local maps | research-only | pseudo-teacher or saturation-gate evidence is insufficient |
+| Input pipeline | partial | `WorkingImage` exists but is not used by final renderer |
+| Stock accuracy | uncalibrated | requires owned paired stock/process/scan data |
+| License/release | blocked | docs say MIT but root `LICENSE` is absent |
+| Tests | baseline passes | 18 tests passed on 2026-07-10; no CI yet |
 
 ---
 
-*V3 基线: 2026-05-23 | 数据核实: 2026-05-25 | 下一步: 运行 Phase 1.3 下载与 Phase 1.4 调参*
+## Ready queue
+
+| Order | Node | Task | Status | Approval |
+|---:|---|---|---|---|
+| 0 | U0.1 | Reconcile active README/status/docs; archive stale diffusion instructions | complete | completed 2026-07-10 |
+| 1 | U0.3 | Manifest v2, data lanes, group split, duplicate/leakage repair | ready | none for local audit |
+| 2 | U4.6 | Retire chroma-gain promotion gate; create four scorecards | ready | none |
+| 3 | U0.4 | CI, environment capture and frozen benchmark registry | ready | none |
+| 4 | U1.1 | Make `WorkingImage` the only `render_film` ingress | pending on U0.4 | none |
+| 5 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | pending | none |
+| 6 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | license decision for public schema assets |
+| 7 | U3.1–U3.4 | Portra 400 + Velvia 50 paired calibration pilot | blocked | budget/lab/rights approval |
+| 8 | U5/U6 | Bounded LUT/grid challenge and calibrated effects | pending on U3/U4 | GPU/cost gate if needed |
+| 9 | U7/U8 | Product, beta, release and stock expansion | pending | release/legal approval |
+
+---
+
+## Human decisions required
+
+1. Confirm intended code/profile/data release model and repository license.
+2. Approve or reject the two-stock capture pilot and external lab/scanner budget.
+3. Decide whether “ultimate” initially targets still-photo desktop only or also video/plugin hosts; still-photo is the recommended first contract.
+4. Approve any large model/data download, paid GPU, external participant contact, push/merge or public release before it occurs.
+
+---
+
+## Protected current work
+
+Do not touch or stage the existing untracked user files:
+
+- `halationguide.md`
+- `scripts/make_velvia50_scheme_comparison_sheets.py`
+
+Current branch is local research work with commits not represented by a matching remote branch. Do not push unless explicitly requested.
+
+---
+
+## Success gate
+
+The project advances only when the simplest candidate improves stock/process authenticity on whole-roll/lab holdouts, keeps content/geometry hard gates intact, wins a preregistered blind comparison, and remains reproducible on Windows 12GB, M5 and CPU fallback. If a deterministic model passes, do not add neural complexity.
+
+---
+
+*Active parent: `ULT` | Next ready leaf: `U0.3` | Integration owner: repository owner or explicitly assigned root agent*

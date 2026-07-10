@@ -1,5 +1,7 @@
 # Windows Task Tracker
 
+> **Historical machine-task snapshot.** Active cross-platform work is tracked in `docs/ULTIMATE_EXECUTION_TRACKER.md` as of 2026-07-10.
+
 > Purpose: track all tasks assigned to the Windows RTX 5070 Ti machine by the latest 10 commits.
 > Last updated: 2026-05-26
 

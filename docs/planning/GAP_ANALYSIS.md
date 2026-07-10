@@ -1,5 +1,7 @@
 # K-MCFM 项目缺口分析（V3 — Diffusion-Based Edition）
 
+> **Historical analysis, superseded 2026-07-10.** Later local experiments disproved diffusion-first content preservation. Use `docs/planning/ULTIMATE_ROADMAP_2026.md` for current conclusions.
+
 > 基于 V3 扩散模型方案（SDEdit + LoRA + IP-Adapter）重新评估。
 
 ---
