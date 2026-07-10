@@ -1,20 +1,23 @@
-# K-MCFM 实施计划（历史 V3 + 2026-07-10 现行指针）
+# K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
 
 > **现行计划已迁移。** 后续执行以 `docs/ULTIMATE_EXECUTION_TRACKER.md` 为 active authority，以 `docs/planning/ULTIMATE_ROADMAP_2026.md` 为研究和架构依据。
 > 下方 V3 diffusion-first 计划保留为历史记录；SD1.5 IP2P、SDXL full-UNet IP2P 与 SDXL LoRA/SDEdit 已被后续本地实验否决为默认生产路径，不得按下方 Phase 1–3 直接重启。
 
-## 2026-07-10 当前关键路径
+## 2026-07-11 当前关键路径
 
 ```text
 U0 truth/rights/repro reset
   -> U1 WorkingImage + high-precision color I/O
   -> U2 deterministic profile/reference renderer
-  -> U3 owned Portra 400 + Velvia 50 paired pilot
-  -> U5 bounded LUT/grid challenge + U6 calibrated effects
+  -> U4 autonomous severe-artifact/style evaluator
+  -> U5 FilmCase identifiability -> Oracle -> simplest retrieval/ranker
+  -> U6 artifact-safe effects
   -> U7 productization -> U8 release/stock expansion
+
+U3 paired calibration is a deferred optional side lane, not a dependency.
 ```
 
-`U0.1` 文档真相对齐已完成。最近可执行叶任务：`U0.3` 数据谱系/泄漏修复、`U0.4/U4` CI 与新评测、随后 `U1.1` 把 `WorkingImage` 接入主 renderer。许可证、真实拍摄/冲扫、模型下载、付费 GPU、push/release 均保留人工批准门。
+`U0.1` 文档真相对齐和 `U5.FC0` 自主无配对 FilmCase 计划已完成。最近可执行叶任务：`U0.3` 数据谱系/分组/泄漏与 FilmCase eligibility 审计、`U0.4/U4` CI 与自主评测、随后 `U1.1` 把 `WorkingImage` 接入主 renderer。详细科研 DAG 见 `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`。用户不会提供新图、配对或标签；这些不是依赖。许可证、大下载、付费 GPU、外部联络、push/release 仍保留人工批准门。
 
 ---
 

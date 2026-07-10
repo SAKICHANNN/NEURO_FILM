@@ -119,3 +119,61 @@ No production code, data, model, output or user-owned untracked file was modifie
 - **Files changed:** added `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`; updated `docs/ULTIMATE_EXECUTION_TRACKER.md` and this log
 - **Verification:** scheme recipes cross-checked against manifests; union summaries parsed for 01/09/53/55/56/10/local-map/NILUT; source and output images inspected at original resolution; no output image or user-owned untracked file modified
 - **Handoff state:** after U0.3/U0.4 and U4 gold/stress freeze, run `EXP-VIS-00`: #56-like palette strength with #09-like containment, comparing source versus chroma gamut compression
+
+---
+
+## 2026-07-11 — Freeze the autonomous unpaired FilmCase research DAG
+
+- **Parent goal / node:** `ULT` / `U5.FC0`
+- **DRPT level / mode:** L2, Mode B; root integration owner with three read-only leaves for experiment design, literature review and authority/propagation audit
+- **User objective:** create a complete stepwise research plan for a non-generative ML method that learns strong film-like color without film/digital pairs, new user data or further user labeling
+- **Primary workflow:** `plan-tracker-discipline`
+- **Routing / secondary skills:** `codex-super-router`, `drpt-bi-governance`, `project-agent-log-discipline`, `project-structure-steward`, `codex-super-research-harness`, `codex-super-aiml-harness`, `scientific-research-harness`, `dev-research-reliability`
+
+### Decisions
+
+1. Added FilmCase as the primary bounded-ML research hypothesis: source-controlled identifiability, explicit bounded case transforms, Evaluator Oracle, generic retrieval, optional transform-aware asymmetric ranking, hard sparse routing and OOD fallback.
+2. Made the no-user-input constraint an architecture invariant. Images, film/digital pairs, new preference votes and manual labels are not active dependencies; `53/55/56/33/09/03/02/01` remains the only owner-preference evidence.
+3. Defined a case as a replayable bounded transform plus applicability descriptor, unpaired/anchor evidence, artifact state, rights and lineage. An unpaired scan is never treated as an input/output transformation.
+4. Added two hard scientific stop gates before router training: unpaired style identifiability after source/uploader/scanner/scene controls, and Oracle-over-global routing value.
+5. Selected the capacity ladder `CCM + monotone curves → smooth 3D LUT → SepLUT → global + bounded case residual → optional bilateral grid`. This incorporates 2026 unpaired-ISP evidence that noisy pseudo-pairs can make a more expressive 3D LUT less stable than a constrained linear color head.
+6. Selected cross-application applicability ranking rather than dense RGB reconstruction. Default inference is hard Top-1/medoid selection; low confidence, OOD or unknown color state falls back to the global deterministic champion.
+7. Froze an autonomous visual protocol with shuffled repeated passes, nuisance-matched controls, full-resolution adjudication and preserved raw votes. It is explicitly not represented as population preference.
+8. Limited the autonomous claim ceiling to `film-inspired/unpaired-evidence`; calibrated named-stock claims still require a separate paired measurement lane.
+9. Marked U3 calibration and external human validation deferred. They are not repeatedly requested from the user and do not block FilmCase.
+10. Excluded generative image models from FilmCase. Existing generative entries remain isolated historical/Creative work requiring a future explicit instruction.
+11. Kept internal U2 schema/renderer research independent of the blocked repository-license decision; U0.2 remains a public-release gate.
+12. Ordered the deterministic global frontier (`U5.1`) before case-bank construction (`U5.FC2`) and made legacy bilateral/mask nodes explicit FC7 implementation subleaves.
+13. Defined Oracle-gap closure on one lexicographic scene-group pairwise endpoint, using cluster bootstrap/permutation; repeated vision shuffles measure consistency and do not inflate statistical N.
+14. Made CaseRecord rights per-reference with a strict allowed-use intersection and prohibited gold/stress/final-test samples from active case memory.
+
+### Files changed
+
+- `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` — complete scientific contract, architecture, data/evidence lanes, hypotheses, DRPT nodes, numeric preregistration defaults, experiment DAG, failure branches, risk register and source matrix
+- `docs/ULTIMATE_EXECUTION_TRACKER.md` — U5.FC0–U5.FC8 subtree, autonomy/claim ADRs, deferred U3/U4.4, EXP-FC-00–08 and next-leaf handoff
+- `docs/planning/ULTIMATE_ROADMAP_2026.md` — FilmCase-first rationale, unpaired data lane, Oracle tree, evaluation protocol, risk and primary sources
+- `AGENTS.md`, `README.md`, `IMPL_PLAN.md`, `TASK_BOARD.md` — propagated current truth, critical path and no-user-input boundary
+- `docs/planning/README.md`, `docs/PROJECT_STRUCTURE.md` — indexed the subplan without creating a second active tracker or new top-level structure
+- `docs/drpt/AGENT_LOG.md` — this entry
+
+No renderer code, data, model, output or user-owned untracked file was modified.
+
+### Evidence and verification
+
+- Rechecked local V1 shared-basis/L1 collapse, V2 pseudo-teacher evidence, local-map saturation shortcut, the preferred anchor mapping and the union ID 11 red-speckle failure.
+- Read-only design audit confirmed current local query assets: union40 and the FiveK freeze pack; FiveK remains query diversity only, never film truth. Current Velvia Flickr rows lack sufficient uploader/roll/scanner lineage for immediate identifiability claims.
+- Primary-source review covered context-based enhancement, retrieval-augmented retouching, semantic/OT unpaired pseudo-pairing, Neural Preset, Modulated Flows, SepLUT, HDRNet, SA-LUT and RSFNet. No paper was treated as an end-to-end solution to this project.
+- Checked all changed-document local Markdown targets: `LOCAL_LINKS_OK`.
+- Checked Markdown fence balance: `FENCES_OK`.
+- Checked the new plan for trailing whitespace: none.
+- Ran `git diff --check`: clean; only line-ending notices.
+- Ran `.\.venv\Scripts\python.exe -m pytest -q`: `18 passed in 6.37s`.
+- Final read-only propagation audit found all substantive P0/P1 authority, dependency, statistic and rights issues resolved; the scoped commit remained the only procedural completion condition.
+- Protected untracked `halationguide.md` and `scripts/make_velvia50_scheme_comparison_sheets.py` remain untouched and unstaged.
+
+### Risks, approvals and handoff
+
+- Current Flickr/FilmSet evidence remains research-only and may fail source-controlled identifiability; that is an intended falsification outcome, not a reason to loosen splits.
+- Autonomous visual evidence can optimize the frozen owner-style direction but cannot substitute for an external population study or calibrated stock truth.
+- License, large downloads, paid GPU/cloud, external contact, push/merge and public release still require explicit approval.
+- `U5.FC0` is complete. The next ready implementation leaf remains `U0.3`, beginning with the read-only/current-asset FilmCase eligibility, recoverable-lineage and group-split audit. No expert/router training is allowed before U0.3/U0.4/U4 and U5.FC1 pass.

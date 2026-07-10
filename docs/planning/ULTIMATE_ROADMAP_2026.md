@@ -1,8 +1,8 @@
-# K-MCFM Ultimate 路线图（2026-07-10）
+# K-MCFM Ultimate 路线图（更新至 2026-07-11）
 
-> 状态：研究完成、等待执行决策；不是“已实现”声明。
+> 状态：战略研究与 FilmCase 科研分支已冻结；执行状态以 `docs/ULTIMATE_EXECUTION_TRACKER.md` 为准，不是“已实现”声明。
 > 适用仓库：`neuro_film` 当前分支及其后续演进。
-> 核心判断：项目应从“扩散模型生成胶片感”转向“可校准的胶片成像系统”，并把生成式编辑隔离为可选创意模式。
+> 核心判断：项目应从“扩散模型生成胶片感”转向“Style-safe 确定性渲染 + 自主无配对 FilmCase 路由”，把 calibrated measurement 保留为长期可选分支，并把生成式编辑隔离为 Creative。
 
 ---
 
@@ -17,17 +17,18 @@
 最终架构采用三层隔离：
 
 1. **Style-safe 核心层（默认）**：确定性高精度色彩与受控物理效果；允许强烈风格化，但以严重 artifact gate 约束。
-2. **Bounded AI 层（可选、仍属内容安全）**：小模型只预测曲线、LUT、双边网格和掩码等受约束参数；全分辨率渲染仍由确定性算子完成。
-3. **Calibrated/Creative 分支（明确标注）**：自有实拍数据支持可选 calibrated profile；FLUX.2/Kontext 等生成模型只用于创意重绘或低分辨率教师探索。
+2. **FilmCase bounded-ML 层（可选、仍属内容安全）**：先检验无配对证据可识别性与 Oracle routing value，再用 transform-aware 非对称检索硬选择曲线/LUT 专家；全分辨率渲染仍由确定性算子完成。
+3. **Calibrated/Creative 分支（明确标注）**：paired measurement 是不阻塞主线的长期可选证据；生成模型不进入 FilmCase，只能处于单独批准的 Creative/R&D。
 
 决定项目上限的不是更大的扩散模型，而是四件事：
 
 - 冻结的风格偏好锚点、严重 artifact 定义与压力测试集；
+- 能控制 scene/uploader/scanner 混杂的 identifiability gate，以及能否胜过全局方案的 Oracle gate；
 - 正确的场景线性、胶片密度、印放/扫描和显示变换边界；
 - 分离“严重 artifact”“风格/偏好”“内容质量”“条件真实性”和“性能”的评测体系；
 - 可审计的 profile、recipe、数据谱系、版本与发布许可证。
 
-Style-safe 产品主线先围绕用户已偏好的 `53/55/56/09/01` 确定性家族建立风格前沿。**Portra 400 + Velvia 50** 保留为可选 calibrated 分支；只有带 calibrated/named-stock 强声明时，才必须经过自有配对数据、process/scan 解释和完整留出验证。
+Style-safe 产品主线先围绕用户已偏好的 `53/55/56/09/01` 确定性家族建立风格前沿，再用 FilmCase 验证“相似场景应选择相似显式变换”的假设。用户不会提供新照片、配对或标签；这些不能成为 active DoR。**Portra 400 + Velvia 50** 只保留为 deferred calibrated 分支；只有未来使用 calibrated/named-stock 强声明时，才需要另行获得配对测量证据。
 
 ---
 
@@ -35,13 +36,14 @@ Style-safe 产品主线先围绕用户已偏好的 `53/55/56/09/01` 确定性家
 
 ### 1.1 研究问题
 
-本路线图回答五个问题：
+本路线图回答六个问题：
 
 1. 当前仓库真正可用的基线是什么，哪些旧主张已被实验否证？
 2. 2026 年可用的模型/渲染架构中，哪种最适合内容保真的胶片转换？
 3. 要从“风格模拟”升级为“可验证的 stock/process/interpretation profile”，缺什么数据？
 4. 什么评测能够阻止“自动指标很好、肉眼只是加饱和度”的再次发生？
 5. 在 RTX 5070 Ti Laptop 12GB 与 M5 32GB 的约束下，怎样形成可发布产品？
+6. 在没有新用户数据、没有胶片/数码配对且排除生成式图像模型时，案例检索能否避免平均化并自主学到稳定的强风格？
 
 ### 1.2 证据等级
 
@@ -146,7 +148,7 @@ Style-safe 产品主线先围绕用户已偏好的 `53/55/56/09/01` 确定性家
 
 ---
 
-## 4. 目标架构：校准优先的混合胶片成像系统
+## 4. 目标架构：Style-safe / FilmCase 优先，校准可选
 
 ```mermaid
 flowchart LR
@@ -156,7 +158,9 @@ flowchart LR
     C -->|No| E["Look Approximation\ndisplay-referred"]
     D --> F["Optional neutral auto-base"]
     E --> F
-    F --> G["Stock exposure + sensitometry\nmonotone 1D curves"]
+    F --> R["FilmCase eligibility + OOD\nhard case expert or global fallback"]
+    S["Case memory\nscene descriptor + bounded transform + evidence"] --> R
+    R --> G["Style exposure/tone\nmonotone 1D curves"]
     G --> H["Dye/crosstalk + global color\n3D LUT / NILUT / SepLUT"]
     H --> I["Bounded local residual\nbilateral grid + masks"]
     I --> J["Interpretation\nnegative→scan/print; slide direct; B&W process"]
@@ -352,7 +356,7 @@ Profile card 必须区分：
 
 ---
 
-## 6. 数据战略：从“风格图片”转向“测量系统”
+## 6. 数据战略：自主无配对主线，测量校准可选
 
 ### 6.1 现有数据如何使用
 
@@ -371,7 +375,26 @@ Profile card 必须区分：
 
 立即动作：为所有现有 manifest 增加 `source_url`、`uploader/group_id`、`capture_or_scan_id`、`license_snapshot`、`rights_scope`、`split_group`、`content_hash`、`perceptual_hash`、`derived_from`；按 scene/roll/uploader 分组后重新划分，清除跨 split 近重复。
 
-### 6.2 自有 paired calibration pilot
+### 6.2 自主无配对 FilmCase lane
+
+详细科学 DAG 见 `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`。关键规则：
+
+- 无配对 film scan 只提供 style distribution/reference，不能直接成为 input→output transform；
+- 一个 FilmCase 由可重放 bounded transform、适用场景 descriptor、reference/anchor evidence、artifact/rights/lineage 状态组成；
+- 现有 `53/55/56/09/01` 是冻结正锚点；`33/03/02` 只是 smoke direction cues，不制造内部排名；
+- 先修 source URL/uploader/roll/scanner group，再做 source-confound-controlled identifiability；
+- identifiability 只支持全局信号时，只拟合 global prior；严格 split 无信号时关闭 unpaired-reference lane；
+- 先从 CCM + monotone curves 开始，再依次挑战 3D LUT、SepLUT、离散 case experts；
+- 必须先证明 Evaluator Oracle 胜过全局冠军，才能训练 generic 或 transform-aware router；
+- 默认 hard Top-1/medoid selection；低 confidence/OOD 回退全局冠军；不默认平均所有专家；
+- FiveK freeze_v1 只能扩充 digital query diversity，不能作为 film truth；
+- 当前 Flickr/FilmSet 权利 lane 训练出的任何资产保持 research-only，除非以 production-cleared 数据重新闭环。
+
+这一 lane 的最高自主声明是 `film-inspired/unpaired-evidence`。它不等待用户补数据，也不因缺少 paired pilot 而阻塞。
+
+### 6.3 Deferred paired calibration pilot
+
+本节是未来 evidence design，不是当前请求或 active dependency。用户已经明确不会提供 paired capture/data；只有未来出现新的显式 scope、预算和权利条件时才重开。
 
 首轮只做两种 stock：Portra 400 与 Velvia 50。目的是验证测量闭环，而不是堆数量。
 
@@ -405,7 +428,7 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 
 工程起点：每 stock 30–50 个有效场景、至少 3 个 roll、至少 2 个 process session，加完整 chart/exposure 序列；闭环稳定后扩到每 stock 至少约 100 个有效配对场景。这里的数字不是统计保证；在 pilot 后用 roll/lab 间方差、效果量和置信区间决定扩量。
 
-### 6.3 扩展 stock 顺序
+### 6.4 扩展 stock 顺序
 
 | 波次 | Stock | 原因 | 先决条件 |
 |---|---|---|---|
@@ -419,20 +442,25 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 
 ## 7. 模型与训练方案
 
-### 7.1 一个变量一轮的挑战阶梯
+### 7.1 FilmCase 门与容量阶梯
 
-每个 stock/process profile 使用同一数据 split、同一输出解释和同一评测：
+先验证研究命题，再增加表示能力：
 
-| 级别 | 候选 | 晋级条件 |
+| 级别 | 候选/门 | 晋级条件 |
 |---|---|---|
-| B0 | 当前 `safe_lab` / safe-rich | legacy 下限 |
-| B1 | 强风格 1D curves + 3D LUT | 必须优于偏好锚点的 style/appeal 且无 severe artifact |
-| B2 | SepLUT / NILUT | 只有 B1 风格前沿仍有明确空间时进入 |
-| B3 | bilateral grid / HDRNet-style | 只有局部场景自适应能提高偏好且不增 artifact 时进入 |
-| B4 | bounded semantic masks | 只有 B3 在肤色/天空等区域仍系统失败时进入 |
-| G | diffusion/generative | 永不与 B0–B4 共用 Reference 晋级门槛 |
+| F0 | lineage + source-confound identifiability | reference signal 在 group holdout 中超过 permutation/source/content controls |
+| F1 | CCM + monotone curves global prior | 明确风格增益且无 severe artifact |
+| F2 | 17³ 3D LUT / SepLUT global challenger | 扩大 style–artifact Pareto frontier；不能只是 loss 更低 |
+| F3 | 离散 bounded case experts | transform modes 稳定、非 saturation-only |
+| F4 | Evaluator Oracle | 明显胜过最佳 global expert，否则停止 retrieval |
+| F5 | handcrafted/generic retrieval | 若关闭 ≥80% Oracle gap，停止增加模型 |
+| F6 | transform-aware asymmetric ranker | 只有 F5 留有 gap 且 F4 强时进入 |
+| F7 | hard sparse router + OOD fallback | 路由稳定；低置信度回退 global |
+| F8 | bilateral grid / bounded masks | 只有 F7 仍有预注册的局部系统失败时进入 |
 
-简单模型若达到 style/artifact gate，立即停止增加复杂度。现有 NILUT/SepLUT 代码可用于 Style-safe challenger，但训练目标必须来自权利清晰的输入和冻结偏好/目标；pseudo-teacher 只能支持“复现该风格目标”的证据。只有 calibrated lane 才必须改用真实 paired target，并且不能把 pseudo-teacher 成绩当作真实性证据。
+变换表示也遵循容量阶梯：`CCM + monotone curves → smooth 3D LUT → SepLUT → global + bounded case residual → optional local grid`。2026 unpaired ISP 的消融提示，噪声 pseudo-pair 下高表达 3D LUT 可能比受限线性颜色头更不稳定，因此不能默认“模型越强越好”。
+
+现有 NILUT/SepLUT 代码可以作为 representation challenger，但 pseudo-teacher 只能支持“复现该目标”的工程证据。FilmCase 的核心训练目标是 cross-application applicability ranking，不是多种合理输出的平均 RGB reconstruction。
 
 ### 7.2 损失与约束
 
@@ -449,13 +477,12 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 
 ### 7.3 生成式模型的正确位置
 
-截至 2026-07-10，FLUX.2 Klein 4B 是值得跟踪的新候选：4B 权重为 Apache-2.0，支持单/多参考编辑，官方仓库称约 8GB，而官方 Hugging Face 模型卡称约 13GB。对 12GB Laptop GPU 必须先用 FP8/offload 做实测，不能写成确定支持。
+截至 2026-07-10，FLUX.2 Klein 4B 是 Creative/R&D 的可跟踪候选：4B 权重为 Apache-2.0，支持单/多参考编辑，官方仓库称约 8GB，而官方 Hugging Face 模型卡称约 13GB。对 12GB Laptop GPU 必须先用 FP8/offload 做实测，不能写成确定支持。
 
-它可用于：
+它不属于当前 FilmCase 研究，也不会被下载或运行。未来只有在新的明确指令和批准下才可用于：
 
 - Creative mode；
-- 低分辨率“想要的方向”教师，再把结果拟合为受约束 LUT/grid；
-- 少量 paired edit LoRA 的研究分支。
+- 与 Style-safe 完全隔离的创意比较。
 
 它不可用于：
 
@@ -464,7 +491,7 @@ Pilot 可先用刚性三脚架、静态场景、短时间顺序拍摄，并在�
 - 将 50–200 个营销示例数量当作本项目充分样本量；
 - 未经单独 GPU/许可审批就启动训练。
 
-InstantRetouch 的“扩散教师蒸馏到 bilateral space”与 HDRNet/3D-LUT 系列支持本项目的 bounded-AI 方向；但其仓库当前没有足以作为本项目即插即用依赖的成熟预训练资产。借鉴架构，不绑定上游。
+InstantRetouch 的 retrieval-augmented retouching 支持“相似内容检索相似历史调色”的方向，但其核心 style latent 来自 paired before/after examples；本项目只能借鉴检索结构，不能把它当无配对解法或即插即用依赖。
 
 ### 7.4 自然语言与个性化
 
@@ -483,7 +510,7 @@ InstantRetouch 的“扩散教师蒸馏到 bilateral space”与 HDRNet/3D-LUT �
 
 JSON 经过 schema、范围、互斥规则和 preview diff 验证后才执行。IEA、RetouchIQ 等 2026 工作说明“让语言模型调用明确的修图工具/参数”是一条合理方向，但本项目必须用自己的安全 schema 和 benchmark 验证。
 
-个性化可在 v1 之后引入：从 A/B 选择学习用户偏好，优化低维参数或 profile mix；calibrated profile 的证据参数保持不变，个人偏好作为独立 recipe overlay。RLPixTuner 一类低查询控制优化可作为研究参考。
+FilmCase 的 scene-conditioned retrieval 不是等待用户 A/B 的“未来个性化”：它使用冻结的现有偏好锚点、无配对 reference evidence 和 cross-application utility 自主选择变换。额外 A/B personalization 只能在 v1 之后作为 deferred overlay；当前用户不会提供新标签，因此它不在依赖图中。calibrated profile 的证据参数始终与个人 recipe overlay 分离。
 
 ---
 
@@ -499,9 +526,9 @@ Style-safe 产品不是要求“几乎不改变输入”，而是允许很强的
 | Moderate | 局部 halo、肤色偏移、细字轻微模糊、颗粒过粗、局部色噪 | 降低质量/偏好排名，是否阻断由预注册规则决定 |
 | Intended style | 强 tone/color、toe/shoulder、grain、halation、bloom、可控 softness | 不因变化明显就算 artifact |
 
-Gold set 覆盖脸、手、文字、织物、树叶、天空/墙面渐变、霓虹、高光、深阴影、饱和物和 tile 边界。产品 gate 为 **0 个经人工确认的 severe artifact**；更大 stress set 报告发生率、95% CI、最差场景和类型分布，不声称现实世界绝对零缺陷。
+Gold set 覆盖脸、手、文字、织物、树叶、天空/墙面渐变、霓虹、高光、深阴影、饱和物和 tile 边界。研究 gate 为 **0 个经盲化全分辨率自主视觉裁决确认的 severe artifact**；更大 stress set 报告发生率、95% CI、最差场景和类型分布，不声称现实世界绝对零缺陷。
 
-SSIM/CW-SSIM/GMSD/DISTS、OCR、face/keypoint、clipping、banding 和 seam detector 只做筛查与定位，最终 severe 判定由冻结 rubric + 盲化人工复核完成。旧 L-SSIM 不能因为风格变化大就把好方案误杀。
+SSIM/CW-SSIM/GMSD/DISTS、OCR、face/keypoint、clipping、banding 和 seam detector 只做筛查与定位，最终 severe 判定由冻结 rubric + 三次随机顺序/crop 的自主视觉复核完成；`2/3` 阳性 veto，未决样本标 `AMBIGUOUS` 且不得晋级。外部人类验证留到 U8 beta。旧 L-SSIM 不能因为风格变化大就把好方案误杀。
 
 ### 8.2 B：可感知的胶片签名
 
@@ -509,7 +536,7 @@ SSIM/CW-SSIM/GMSD/DISTS、OCR、face/keypoint、clipping、banding 和 seam dete
 
 这一成绩单回答三个独立问题：
 
-1. 与 neutral digital input/当前寡淡基线相比，观察者能否稳定感知到胶片化方向？
+1. 与 neutral digital input/当前寡淡基线相比，冻结的自主视觉协议能否稳定识别胶片化方向？
 2. 它是否读作胶片成像特征，而不是单纯加饱和、压黑、泛黄或叠噪声？
 3. 该签名能否跨肤色、天空、绿植、夜景、中性灰和不同曝光保持，而不是只在精选图片上成立？
 
@@ -582,15 +609,16 @@ Calibrated pilot 暂定 gate（随后由方差重定）：
 
 精确时延 SLO 只在参考实现 benchmark 后冻结。
 
-### 8.6 主观实验设计
+### 8.6 自主视觉研究与 deferred 外部验证
 
-- 已知个人偏好锚点：用户在 2026-07-11 指定 Velvia 50 总表中的 `53, 55, 56, 33, 09, 03, 02, 01`。其中 `53/55/56/09/01` 各有 20 张完整输出，均属于确定性 baseline 或 gamut-safe Lab 家族；`33/03/02` 只有 1–2 张 smoke，只能作为方向提示。下一轮应把五个完整方案统一到同一冻结图集并盲化复测；该偏好不能替代真实胶片真实性评测；
-- 随机、盲化、配对展示输入、当前偏好锚点、K-MCFM 候选和合法获得的竞争参考；真实 scan 只在 calibrated 评测中作为真实性参考；
-- 主产品分开问“风格有多强”“有多喜欢”“是否存在 severe artifact”；calibrated 分支再问“更像目标 stock/process 吗”；
-- 场景、stock、观察者做分层；
-- 使用 Bradley–Terry 或 mixed-effects 分析并报告置信区间；
-- 预注册排除规则、样本量和主指标；
-- 保存所有失败样本，不只做 contact-sheet 精选。
+- 已知个人偏好锚点：用户在 2026-07-11 指定 `53, 55, 56, 33, 09, 03, 02, 01`；`53/55/56/09/01` 是完整正锚点，`33/03/02` 仅作方向提示，不推断内部排名；
+- 研发阶段不再索取用户 vote。随机、盲化展示 input、锚点、global champion、FilmCase 候选和合法 reference；
+- 三次独立 shuffle/crop pass 分开判断 severe、style strength、appeal 和 `only contrast/saturation`；
+- severe `2/3` 阳性直接 veto；`1/3` 进入原分辨率 adjudication；仍不一致则 `AMBIGUOUS`，禁止晋级；
+- 加入 saturation/contrast/luma-matched controls、wrong-stock/source-only controls 和 union ID 11 red-speckle positive control；
+- 保存原始 votes、全部失败样本、scene-group slices 和判断一致性，不只保存 contact-sheet winner；
+- 研发结论明确写成“冻结自主视觉代理下的证据”，不冒充人口级偏好；
+- 外部 Bradley–Terry/mixed-effects 人类研究 deferred 到 U8 beta，需单独参与者/权利批准，不阻塞 FilmCase 科研。
 
 ---
 
@@ -641,24 +669,31 @@ kmcfm benchmark --suite reference-24mp
 ```mermaid
 flowchart TD
     A["P0 truth reset"] --> C["Style-safe renderer + profile schema"]
-    C --> D["Freeze severe-artifact + style/preference benchmark"]
-    D --> F["Preferred deterministic LUT frontier"]
-    F --> G{"Strong style and zero severe gold failures?"}
-    G -->|Yes| G1["Ship deterministic; skip neural complexity"]
-    G -->|No, local opportunity| H["Bilateral grid challenge"]
-    G -->|No, global opportunity| I["SepLUT/NILUT challenge"]
-    H --> J{"Style/preference gain without severe artifacts?"}
-    I --> J
-    J -->|No| J1["Keep simpler model; inspect blandness/artifact cause"]
-    J -->|Yes| K["Promote bounded AI"]
-    K --> L["Tune artifact-safe grain/halation/bloom"]
+    C --> D["Freeze severe-artifact + autonomous style benchmark"]
+    D --> E{"Unpaired reference identifiable after source controls?"}
+    E -->|No| E1["Anchor-only case lane"]
+    E -->|Global only| E2["One unpaired global prior"]
+    E -->|Multimodal| E3["Bounded case bank"]
+    E1 --> F["Evaluator Oracle"]
+    E2 --> F
+    E3 --> F
+    F --> G{"Oracle beats global champion?"}
+    G -->|No| G1["Stop retrieval; keep deterministic global"]
+    G -->|Yes| H["Generic context retrieval"]
+    H --> I{"Closes at least 80% Oracle gap?"}
+    I -->|Yes| I1["Use simple retrieval + OOD fallback"]
+    I -->|No| J["Transform-aware asymmetric reranker"]
+    J --> K{"Beats generic without severe artifacts?"}
+    K -->|No| K1["Keep generic/global winner"]
+    K -->|Yes| K2["Hard sparse router + OOD fallback"]
+    I1 --> L["Tune artifact-safe grain/halation/bloom"]
+    K1 --> L
+    K2 --> L
     L --> M["Product + cross-platform + release gates"]
-    P["Optional paired capture"] --> Q{"Capture/scan reproducible?"}
+    P["Deferred paired calibration"] --> Q{"New scope and capture/scan reproducible?"}
     Q -->|No| Q1["Repair measurement; no calibrated claim"]
     Q -->|Yes| Q2["Calibrated profile lane"]
-    N["Generative R&D"] --> O{"Severe artifacts/license/VRAM clean?"}
-    O -->|No| O1["Creative mode only or drop"]
-    O -->|Yes| O2["Teacher or isolated creative feature"]
+    N["Generative R&D outside FilmCase"] --> O["Only future explicitly approved Creative mode"]
 ```
 
 硬停止规则：
@@ -666,7 +701,10 @@ flowchart TD
 - 没有自有/cleared paired data：可以发布明确标记的 `film-inspired` look，但不得宣传“准确再现某胶片”；
 - 输入色彩状态不明：可以走 Style-safe，但不得标 Calibrated Reference；
 - 简单模型达到 style/artifact gate：停止增加网络复杂度；
-- bounded AI 没有稳定 style/preference 增益，或在 gold set 出现任何确认 severe artifact：不晋级；
+- unpaired reference 在 source/uploader/scanner/scene 控制后不可识别：关闭 reference-derived case lane；
+- Evaluator Oracle 不能稳定胜过 global champion：停止 retrieval/router 研究；
+- generic retrieval 已关闭至少 80% Oracle gap：停止增加 learned complexity；
+- bounded AI 没有稳定 style/appeal 增益，或在 gold set 出现任何确认 severe artifact：不晋级；
 - 生成模型产生严重内容/几何/纹理 artifact：不进入 Style-safe/Calibrated；只留 R&D 或丢弃；
 - 许可证或训练数据来源不清：不得发布相应权重/profile；
 - 12GB 实测 OOM：只允许量化/offload 研究，不修改主产品硬件承诺；
@@ -693,22 +731,22 @@ flowchart TD
 
 ### Phase 3：Artifact/style benchmark（2–4 周）
 
-交付：gold/stress sets、severity rubric、`53/55/56/09/01` 同图重渲染、style strength/appeal 盲测。
+交付：gold/stress sets、severity rubric、`53/55/56/09/01` 同图重渲染、style strength/appeal 自主盲化审阅。
 退出：gold set 0 确认 severe artifact；候选在风格/偏好上明显优于寡淡基线。
 
 ### Phase 4：Bounded AI challenge（3–6 周）
 
-交付：B1–B4 公平挑战、ablation、模型卡、跨场景 stress 结果。
-退出：只有提高 style/preference 且不产生 severe artifact 的最简单候选进入产品；允许结论为“无需 AI”。
+交付：FilmCase identifiability、bounded case bank、Oracle gate、generic retrieval、必要时的 transform-aware ranker、hard routing/OOD、完整 ablation。
+退出：只有关闭足够 Oracle gap、提高 style/appeal 且不产生 severe artifact 的最简单候选进入产品；允许在 identifiability、Oracle 或 routing 任一门得出“无需 AI”。
 
 ### Phase 5：Physical effects（3–6 周，可与 Phase 4 部分并行）
 
 交付：曝光域 halation、density-aware grain、MTF、bloom 分离、100MP tile、视频研究报告。
 退出：效果提升 full-look 偏好且不触发 severe artifact；heuristic 与 calibrated preset 分开。
 
-### Optional Calibrated Lane：Paired pilot（4–8 周，可并行）
+### Deferred Calibrated Lane：Paired pilot（未来新 scope 才开启）
 
-交付：Portra 400 + Velvia 50 charts/scene/EV/roll 数据、扫描标定、E4 profile、留出报告。
+当前不向用户索取任何数据，也不把此 lane 写入主线依赖。未来若有新的明确 scope，交付可包括 Portra 400 + Velvia 50 charts/scene/EV/roll 数据、扫描标定、E4 profile、留出报告。
 退出：process 和 scan 重复性足以分辨模型误差；只约束标记为 calibrated 的 profile，不阻塞 Style-safe 产品。
 
 ### Phase 6：Productization（6–10 周）
@@ -724,7 +762,7 @@ flowchart TD
 #### 人力与日历估计
 
 - 1 名强工程师 + 按需色彩科学/实验室支持：研究级双 stock v1 约 5–8 个月，完整产品约 9–12 个月；
-- 2–3 人（color/style、engine/product、QA/infra）可并行缩短；主产品关键路径是 artifact/style 人评，实验室批次只约束可选 calibrated lane；
+- 2–3 个执行角色（color/style、engine/product、QA/infra）可并行缩短；主产品研发关键路径是冻结的 autonomous artifact/style audit，外部人类验证 deferred 到 U8，实验室批次只约束 deferred calibrated lane；
 - 远程大 GPU 不是 P0；主要计算可在现有 12GB GPU/M5 完成。只有生成式 LoRA 或大规模对照试验可能需要付费 24GB+ 资源，必须单独批准。
 
 这些是范围估计，不是工期承诺；Phase 3 的测量质量决定后续是否值得扩张。
@@ -739,8 +777,13 @@ flowchart TD
 | lab/scanner 变化大于 stock 信号 | 高/高 | 同 stock 跨批差异过大 | 重复 roll、固定 SOP、分层 profile |
 | “负片 look”定义含混 | 高/高 | 评审偏好互相矛盾 | stock/process/interpretation 拆分 |
 | 现有数据权利不清 | 高/高 | 无 license snapshot/uploader | 研究隔离、自有数据、发布 gate |
+| 无配对 signal 实为 scene/uploader/scanner | 高/高 | random split 高、group holdout 崩溃 | identifiability、permutation、leave-source-out；失败即关闭 reference lane |
+| FilmCase Oracle 没有价值 | 中/高 | per-scene best 不胜 global champion | Oracle 作为训练前硬门；失败即停止 retrieval |
+| kNN / router case collapse | 中/中 | 少数 case 占据全部 query、style 变淡 | OT 用于 case construction、medoid、hard Top-1、cross-application rank |
 | ICC/HDR 处理错误 | 中/高 | 肤色/白平衡系统偏差 | color-state contract、golden vectors、fail closed |
-| AI 只学到饱和度 | 高/中 | 自动指标过、stock 盲测不过 | 曝光/stock 指标、真实 paired holdout |
+| AI 只学到饱和度/对比度 | 高/中 | 自动指标过、matched controls 排名反转 | hue×luma descriptor、saturation/contrast/luma controls、重复自主视觉审阅 |
+| 高表达 LUT 过拟合 noisy pseudo-pair | 中/高 | green cast、hue shelf、red speckle | CCM/curves 先行、容量阶梯、global+bounded residual、gold veto |
+| OOD 错路由 | 中/高 | low margin 仍选强 expert | confidence calibration、known-state gate、global fallback |
 | 12GB OOM | 中/中 | 官方显存口径冲突 | 主路径 tiny/bounded；FP8/offload 仅 R&D |
 | profile 过拟合单实验室 | 高/高 | 新 batch 崩溃 | 完整 roll/lab 留出、层级 profile |
 | 100MP tile 接缝 | 中/中 | 大 blur/halation 边界 | halo-aware tiling、reference full-frame 对照 |
@@ -754,11 +797,13 @@ flowchart TD
 
 North Star 是一个主目标加四个约束/支持指标：
 
-1. **Style × appeal（主目标）**：通过 severe gate 的候选中，盲测风格强度和总体偏好优于 `53/55/56/09/01` 统一重渲染冠军；
+1. **Style × appeal（主目标）**：通过 severe gate 的候选中，冻结自主视觉协议下的风格强度和 appeal 证据优于 `53/55/56/09/01` 统一重渲染冠军；外部人群偏好是 U8 的独立验证；
 2. **Severe artifact constraint**：冻结 gold set 0 个确认 severe failure；stress set 报告 rate、CI 和类型；
 3. **Graded quality**：内容、效果、tile、banding、clipping 和稳定性用于排序和诊断；
 4. **Reproducibility/product viability**：recipe/hash 可重放，24MP/100MP、Windows/Mac/CPU、batch 和导出稳定；
 5. **Conditional fidelity**：只有 calibrated profile 才要求完整留出 roll/process 上 stock-match 过关。
+
+FilmCase 另有两个先行硬指标：source-controlled identifiability 和 Oracle-over-global routing value。任何一个失败，都优先选择更简单的全局确定性方案，而不是扩大模型。
 
 不接受的替代指标：下载量、prompt 示例、单张 contact sheet、训练 loss、总体平均 SSIM、色度增益、社区 LoRA 数量。
 
@@ -780,13 +825,20 @@ North Star 是一个主目标加四个约束/支持指标：
 
 ### 高保真颜色模型与编辑架构
 
+- [Context-Based Automatic Local Image Enhancement](https://www.microsoft.com/en-us/research/publication/context-based-automatic-local-image-enhancement/)
+- [InstantRetouch: Personalized Image Retouching with Retrieval-Augmented Retouching](https://arxiv.org/abs/2602.17044)
+- [Lightweight Unpaired Smartphone ISP Transfer with Semantic Pseudo-Pairing](https://arxiv.org/html/2605.07495)
+- [Neural Preset for Color Style Transfer](https://openaccess.thecvf.com/content/CVPR2023/html/Ke_Neural_Preset_for_Color_Style_Transfer_CVPR_2023_paper.html)
+- [Color Transfer with Modulated Flows](https://ojs.aaai.org/index.php/AAAI/article/view/32470)
 - [HDRNet: Deep Bilateral Learning for Real-Time Image Enhancement](https://arxiv.org/abs/1707.02880)
 - [Image-Adaptive 3D LUT](https://arxiv.org/abs/2009.14468)
 - [SepLUT](https://arxiv.org/abs/2207.08351)
 - [NILUT](https://arxiv.org/abs/2306.11920)
 - [4D LUT official repository](https://github.com/ChengxuLiu/4DLUT)
-- [InstantRetouch, CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Wu_InstantRetouch_Efficient_and_High-Fidelity_Instruction-Guided_Image_Retouching_with_Bilateral_Space_CVPR_2026_paper.html)
-- [InstantRetouch official code](https://github.com/OpenImagingLab/InstantRetouch)
+- [SA-LUT](https://openaccess.thecvf.com/content/ICCV2025/html/Gong_SA-LUT_Spatial_Adaptive_4D_Look-Up_Table_for_Photorealistic_Style_Transfer_ICCV_2025_paper.html)
+- [RSFNet](https://openaccess.thecvf.com/content/ICCV2023/papers/Ouyang_RSFNet_A_White-Box_Image_Retouching_Approach_using_Region-Specific_Color_Filters_ICCV_2023_paper.pdf)
+- [InstantRetouch: instruction-guided bilateral-space method, CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Wu_InstantRetouch_Efficient_and_High-Fidelity_Instruction-Guided_Image_Retouching_with_Bilateral_Space_CVPR_2026_paper.html)
+- [Instruction-guided InstantRetouch official code](https://github.com/OpenImagingLab/InstantRetouch)
 - [RLPixTuner](https://arxiv.org/abs/2503.07300)
 - [IEA, CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026F/html/Zhu_IEA_Amateur-Friendly_Conversational_Image_Editing_Agent_via_Three_Stages_of_CVPRF_2026_paper.html)
 - [RetouchIQ, CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Wu_RetouchIQ_MLLM_Agents_for_Instruction-Based_Image_Retouching_with_Generalist_Reward_CVPR_2026_paper.html)
@@ -834,6 +886,6 @@ North Star 是一个主目标加四个约束/支持指标：
 
 ## 15. 最终决策
 
-项目应保留现有确定性 renderer 作为兼容基线，但立即停止围绕 SDXL/IP2P 继续扩张主架构。下一笔工程时间应投入到 `WorkingImage → Style-safe profile/renderer → severe-artifact gold/stress set → 53/55/56/09/01 同图盲测 → bounded style challenge` 这一条关键路径。Portra/Velvia 配对标定作为独立可选 lane，不再阻塞主产品。
+项目应保留现有确定性 renderer 作为兼容基线，并停止围绕 SDXL/IP2P 扩张主架构。下一笔工程时间应投入到 `U0.3 lineage/group split → U0.4/U4 autonomous evaluator → WorkingImage/Profile renderer → FilmCase identifiability → bounded case bank → Oracle gate → simplest retrieval/ranker` 这一条关键路径。详细执行树见 `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`。Portra/Velvia 配对标定为 deferred lane，不向用户索取数据，也不阻塞主产品。
 
-如果偏好锚点上的简单曲线 + 3D LUT 已达到强风格且无 severe artifact，ultimate 版本完全可以不依赖神经网络；只有在明确提高风格前沿时才引入 bilateral grid/小模型。生成式模型可以提出更激进的审美目标，但必须经过 artifact gate 或投影回受控变换。对于 calibrated 分支，真实性仍来自测量、解释边界、留出验证和可追溯性。
+如果偏好锚点上的简单 CCM/曲线/LUT 已达到强风格且无 severe artifact，或者 Oracle 不能胜过 global champion，ultimate 版本就不依赖神经网络。只有 generic retrieval 留有可验证 gap 时才训练 transform-aware ranker；只有全局方案仍有系统性局部失败时才引入 bilateral grid。当前 FilmCase 明确排除生成式图像模型。对于未来 calibrated 分支，真实性仍只能来自测量、解释边界、留出验证和可追溯性。

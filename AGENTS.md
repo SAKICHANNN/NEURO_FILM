@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-10.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
-> **Target direction:** a strongly stylized, color-managed Style-safe renderer with optional bounded-AI parameter prediction; calibrated profiles and generative editing remain separately labeled branches.
+> **Current truth: 2026-07-11.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
+> **Target direction:** a strongly stylized, color-managed Style-safe renderer plus an autonomous, unpaired FilmCase research branch that hard-selects bounded color experts; calibrated profiles are deferred and generative editing remains separately labeled Creative work.
 
 ---
 
@@ -11,7 +11,7 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | strongly stylized film-inspired output with no severe glitch/artifact; optional calibrated stock/process profiles, high-precision RAW/HDR and bounded local color |
+| Ultimate target | strongly stylized film-inspired output with no severe glitch/artifact; optional FilmCase retrieval of bounded transforms, high-precision RAW/HDR and deferred calibrated profiles |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
@@ -29,12 +29,13 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 | 1 | `AGENTS.md` | Current truth and invariants |
 | 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
 | 3 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Research synthesis, target architecture and primary sources |
-| 4 | `TASK_BOARD.md` | Compact active board/pointer |
-| 5 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
-| 6 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
-| 7 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
-| 8 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
-| 9 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
+| 4 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | Detailed autonomous unpaired U5 hypotheses, experiment DAG and stop branches |
+| 5 | `TASK_BOARD.md` | Compact active board/pointer |
+| 6 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
+| 7 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
+| 8 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
+| 9 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
+| 10 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
 
 The following are historical context, not active authority: `docs/ARCH_REDESIGN.md`, `docs/planning/GAP_ANALYSIS.md`, `docs/ONLINE_DATA_AUDIT.md`, and the diffusion sections below the supersession banner in `IMPL_PLAN.md`.
 
@@ -77,7 +78,9 @@ RAW / Log / HDR / SDR
   -> color-state validation (`scene`, `display`, `unknown`)
   -> high-precision WorkingImage + versioned input transform
   -> optional neutral auto-base
-  -> stock exposure + monotone sensitometry curves
+  -> FilmCase eligibility/OOD:
+       global deterministic fallback or hard-selected bounded case expert
+  -> style/stock exposure + monotone curves
   -> global 3D LUT / SepLUT / NILUT
   -> optional bounded bilateral-grid local residual
   -> explicit interpretation:
@@ -98,8 +101,11 @@ Architecture rules:
 2. Unknown color state fails closed to **Look Approximation**, not Reference.
 3. The full-resolution Style-safe/Calibrated path remains deterministic and does not spatially resample.
 4. A learned model may predict curves, LUT weights, grids, masks or effect parameters; it may not directly produce the final Style-safe RGB image.
-5. Generative models can be low-resolution teachers or Creative output only.
-6. Use the simplest candidate that passes held-out gates; a no-neural-network winner is acceptable.
+5. FilmCase cannot depend on new user images, film/digital pairs, per-image labels or additional preference votes.
+6. Unpaired film images are style references, never input/output pairs; FilmCase output stays labeled `film-inspired/unpaired-evidence`.
+7. FilmCase uses hard Top-1/medoid selection by default; low confidence, OOD or unknown state falls back to the global deterministic champion.
+8. Generative image models are excluded from FilmCase and can only exist in a separately approved Creative branch.
+9. Use the simplest candidate that passes held-out gates; a no-neural-network winner is acceptable.
 
 ---
 
@@ -128,9 +134,10 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 ### Research-only candidates
 
+- FilmCase: source-controlled identifiability → bounded case bank → Evaluator Oracle → simplest generic or transform-aware retrieval → hard sparse router/OOD fallback;
 - existing SepLUT/NILUT/4D proxies: may challenge the Style-safe frontier on rights-cleared preference targets; real paired targets are required only for calibrated claims;
 - local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
-- FLUX.2 Klein 4B: promising Apache-2.0 creative/teacher challenger, but official sources conflict on roughly 8GB vs 13GB VRAM; 12GB support requires FP8/offload measurement;
+- FLUX.2 Klein 4B: excluded from FilmCase; a future Creative-only candidate requiring separate instruction/approval, with unresolved 12GB support;
 - community film LoRAs: asset-level license and base-model compatibility must be audited.
 
 ---
@@ -139,7 +146,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 | Source | Default lane | Valid use | Invalid default use |
 |---|---|---|---|
-| Self-owned paired digital/film captures | production candidate | calibration/training/evaluation after rights closure | none until rights and split are complete |
+| Self-owned paired digital/film captures | deferred calibration candidate | future calibration after a new explicit scope and rights closure | active FilmCase dependency or current user ask |
 | Flickr film images | research-only | unpaired aesthetics/failure analysis | commercial weights or stock truth |
 | FilmSet | research-only | Capture One recipe baseline/warmup | real film scan truth |
 | MIT-Adobe FiveK | research-only | neutral auto-base research | film identity or automatic public-weight clearance |
@@ -169,9 +176,13 @@ Maintain five independent scorecards:
 
 Promotion order is severe-artifact veto → maximize style/appeal → check graded content and product quality. Authenticity is a conditional gate for calibrated claims, not the universal product objective. Intended grain, halation, bloom and strong tone/color are not artifacts by themselves; they fail only when they create objectionable corruption or instability. L-SSIM and `[4,251]` remain legacy diagnostics, not universal style gates.
 
+For autonomous FilmCase research, `53/55/56/09/01` are the complete frozen owner-preference anchors; `33/03/02` are smoke-only cues. Repeated blind Codex vision audits, nuisance-matched controls and full-resolution adjudication replace new owner votes. These results must be labeled autonomous visual evidence, not population preference. External human validation is deferred to U8.
+
 ---
 
-## 9. Pilot stocks and capture order
+## 9. Deferred calibrated stock order
+
+This is a future evidence design, not an active request for user data and not a FilmCase dependency:
 
 1. Portra 400: C-41 color negative + explicit neutral scan interpretation.
 2. Velvia 50: E-6 slide + direct scan interpretation.
@@ -190,11 +201,11 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | P0 | U0.3 | Repair manifest lineage and cross-split leakage |
-| P0 | U0.4/U4 | Freeze severe-artifact gold set and style/preference benchmark |
+| P0 | U0.4/U4 | Freeze severe-artifact gold set and autonomous style/appeal benchmark |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
-| P1 | U3 | Run optional rights-cleared Portra/Velvia calibration lane after approval |
-| P1 | U5/U6 | Maximize bounded style under severe-artifact and product-quality gates |
+| Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
+| P1 | U5.FC1–U5.FC8/U6 | Test FilmCase identifiability and Oracle value, then use the simplest retrieval/ranker under severe-artifact and OOD gates |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 
 The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
@@ -205,7 +216,7 @@ The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION
 
 - RTX target is a 12GB Laptop GPU; do not use desktop 5070 Ti figures.
 - Style-safe renderer and small predictor should fit comfortably; leave peak-memory headroom.
-- FLUX.2 Klein BF16 is not assumed to fit 12GB; FP8/offload is an optional measured experiment.
+- FLUX.2 Klein is outside FilmCase; if a future Creative instruction reopens it, BF16 is not assumed to fit 12GB and FP8/offload must be measured.
 - Apple unified memory success must include swap and thermal behavior, not only successful load.
 - Do not start paid cloud/GPU work, large downloads, film/lab purchases, external recruiting, release or deployment without explicit approval.
 
@@ -226,4 +237,4 @@ For non-trivial changes, also update `docs/ULTIMATE_EXECUTION_TRACKER.md` and `d
 
 ---
 
-*Last updated: 2026-07-10 | Current implementation: deterministic content-safe renderer | Target: calibrated hybrid film-imaging system*
+*Last updated: 2026-07-11 | Current implementation: deterministic content-safe renderer | Target: Style-safe deterministic core + autonomous unpaired FilmCase; calibrated lane deferred*

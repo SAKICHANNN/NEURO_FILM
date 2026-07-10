@@ -7,5 +7,6 @@ Keep active execution state in `TASK_BOARD.md` and `docs/ULTIMATE_EXECUTION_TRAC
 Current strategic plan:
 
 - `ULTIMATE_ROADMAP_2026.md` — evidence-backed target architecture, data, evaluation, product and release route.
+- `FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` — detailed autonomous, unpaired, non-generative U5 scientific DAG, subordinate to the active tracker.
 
 Active execution state for that strategy is maintained in `docs/ULTIMATE_EXECUTION_TRACKER.md`.

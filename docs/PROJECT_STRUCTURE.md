@@ -7,7 +7,7 @@ This document records the intended repository layout. Keep executable entrypoint
 ```text
 AGENTS.md                  Agent/project knowledge base. Read first in new sessions.
 README.md                  Human-facing overview.
-IMPL_PLAN.md               Current implementation plan.
+IMPL_PLAN.md               Active-plan pointer plus historical V3 implementation plan.
 TASK_BOARD.md              Task ownership and board.
 requirements*.txt          Environment requirements.
 configs/                   Runtime, model, training, and style configuration.
@@ -27,7 +27,7 @@ logs/                      Ignored local run logs.
 ```text
 docs/
   data/                    Data-license notes, request templates, and dataset-specific docs.
-  planning/                Gap analyses and planning notes that are not active task boards.
+  planning/                Strategic plans and research subplans that are not active task boards.
   reference/               External reference files such as PDFs.
 ```
 
@@ -40,6 +40,8 @@ Core status and experiment docs remain directly under `docs/` so the next agent 
 - `docs/COLOR_BASELINE_RESULTS.md`
 - `docs/IP2P_GRID_SEARCH_RESULTS.md`
 - `docs/SDXL_LORA_VALIDATION_RESULTS.md`
+
+Strategic rationale and detailed scientific subplans belong under `docs/planning/`; active status, owners and next leaves remain in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
 
 ## Scripts
 
@@ -65,4 +67,3 @@ Current categories:
 git status --short --branch
 python -m py_compile scripts/pipeline_color_baseline.py scripts/make_rawpixls_velvia_preview.py
 ```
-
