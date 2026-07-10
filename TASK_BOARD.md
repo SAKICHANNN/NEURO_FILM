@@ -25,7 +25,7 @@
 |---:|---|---|---|---|
 | 0 | U0.1 | Reconcile active README/status/docs; archive stale diffusion instructions | complete | completed 2026-07-10 |
 | 1 | U0.3 | Manifest v2, data lanes, group split, duplicate/leakage repair | ready | none for local audit |
-| 2 | U4.6 | Retire chroma-gain promotion gate; create four scorecards | ready | none |
+| 2 | U4.6 | Retire chroma-gain promotion gate; create five scorecards including film-style salience | ready | none |
 | 3 | U0.4 | CI, environment capture and frozen benchmark registry | ready | none |
 | 4 | U1.1 | Make `WorkingImage` the only `render_film` ingress | pending on U0.4 | none |
 | 5 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | pending | none |

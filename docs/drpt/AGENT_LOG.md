@@ -19,7 +19,7 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 3. Defined named-film identity as `stock + exposure/process + scan/print interpretation`, not one prompt or LUT per stock.
 4. Selected Portra 400 and Velvia 50 as the proposed two-stock calibration pilot; no capture/purchase was authorized or started.
 5. Classified Flickr, FilmSet, FiveK, FilmGrainStyle and community LoRAs as research-only by default; production claims require owned/cleared paired data.
-6. Replaced a single aggregate evaluator with four scorecards: safety, authenticity, physical effects, and human/product performance.
+6. Replaced a single aggregate evaluator with an initial four-part design: safety, authenticity, physical effects, and human/product performance. This was superseded on 2026-07-11 by the five-scorecard design that adds film-style salience.
 7. Kept FLUX.2 Klein 4B as an optional teacher/Creative challenger. Official sources conflict on roughly 8GB versus 13GB VRAM, so 12GB compatibility is not assumed.
 
 ### Files changed
@@ -77,3 +77,16 @@ No production code, data, model, output or user-owned untracked file was modifie
 - **Files changed:** `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/planning/ULTIMATE_ROADMAP_2026.md`, `docs/drpt/AGENT_LOG.md`
 - **Verification:** exact scheme labels and render counts checked against `NUMBER_MAP.csv`; no output image, mapping file or user-owned untracked file modified
 - **Handoff:** include the five full anchors in the frozen U4 blind-study set and rerender them on one common held-out image set before inferring strength/style parameters
+
+---
+
+## 2026-07-11 — Add minimum film-style salience gate
+
+- **Node/parent goal:** `U4.8` / `ULT`
+- **Trigger:** user reported that many theoretically stronger schemes look technically clean but have little film style
+- **Skills used:** `plan-tracker-discipline` primary; `project-agent-log-discipline` secondary
+- **Decision:** expand evaluation from four to five independent scorecards by adding film-style salience between safety and stock authenticity
+- **Files changed:** `AGENTS.md`, `TASK_BOARD.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/planning/ULTIMATE_ROADMAP_2026.md`, `docs/drpt/AGENT_LOG.md`
+- **Verification intent:** future U4 evaluation must run separate color-only and full-look blind tests against neutral input, the preferred deterministic anchors and real film references; global saturation alone cannot pass
+- **Risk/unknown:** salience thresholds remain a preregistered pilot decision; this feedback establishes the gate but does not yet quantify it
+- **Handoff state:** U4.6 remains ready for evaluator implementation; no render, model, data or user-owned untracked artifact was modified

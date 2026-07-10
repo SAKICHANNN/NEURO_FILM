@@ -155,14 +155,15 @@ All new manifest rows need source URL/ID, author, license snapshot/date, rights 
 
 ## 8. Evaluation contract
 
-Never use one aggregate score for promotion. Maintain four independent scorecards:
+Never use one aggregate score for promotion. Maintain five independent scorecards:
 
 1. **content/geometry safety** — dimensions, no warp, edge/keypoint location, face/text diagnostics, tile/determinism;
-2. **stock/process authenticity** — exposure/density curves, chart color, illuminant/EV/roll/lab/scanner slices and complete holdouts;
-3. **physical effects** — grain NPS/autocorrelation/density dependence, halation radial/color/exposure behavior, MTF and bloom separation;
-4. **human/product** — blinded stock-match vs preference, confidence intervals, latency/RAM/VRAM/cross-platform stability.
+2. **film-style salience** — the result must visibly read as film-like rather than a neutral digital edit or generic saturation change;
+3. **stock/process authenticity** — exposure/density curves, chart color, illuminant/EV/roll/lab/scanner slices and complete holdouts;
+4. **physical effects** — grain NPS/autocorrelation/density dependence, halation radial/color/exposure behavior, MTF and bloom separation;
+5. **human/product** — blinded stock-match vs preference, confidence intervals, latency/RAM/VRAM/cross-platform stability.
 
-L-SSIM and the current `[4,251]` range remain legacy 8-bit regression diagnostics, not universal 16-bit/HDR or film-authenticity gates. Freeze test groups and thresholds before seeing final results; report tails and failures, not only means.
+Promotion order is safety → minimum film-style salience → authenticity → effects/product. A technically clean but visually neutral result fails the salience gate; a strong but generic “film filter” may pass salience while still failing stock authenticity. L-SSIM and the current `[4,251]` range remain legacy 8-bit regression diagnostics, not universal 16-bit/HDR or film-authenticity gates. Freeze test groups and thresholds before seeing final results; report tails and failures, not only means.
 
 ---
 
@@ -185,7 +186,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | P0 | U0.3 | Repair manifest lineage and cross-split leakage |
-| P0 | U0.4/U4 | Add CI, frozen benchmark and four scorecards |
+| P0 | U0.4/U4 | Add CI, frozen benchmark and five scorecards including film-style salience |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
 | P1 | U3 | Run rights-cleared Portra/Velvia calibration pilot after approval |

@@ -22,7 +22,7 @@
 
 - 自有、可授权、可复现的真实胶片标定数据；
 - 正确的场景线性、胶片密度、印放/扫描和显示变换边界；
-- 分离“真实性”“偏好”“内容安全”和“性能”的评测体系；
+- 分离“可感知胶片签名”“真实性”“偏好”“内容安全”和“性能”的评测体系；
 - 可审计的 profile、recipe、数据谱系、版本与发布许可证。
 
 建议先用 **Portra 400（彩色负片）+ Velvia 50（反转片）** 做两条正交标定线；它们通过后再扩展 Vision3 500T/250D、Ektar 100、Portra 800、Tri-X 400、HP5 Plus。负片、电影负片、反转片、黑白片必须使用不同的解释模型，不能共用“一个 stock 一个 LUT”的简化定义。
@@ -479,7 +479,7 @@ JSON 经过 schema、范围、互斥规则和 preview diff 验证后才执行。
 
 ---
 
-## 8. 评测系统：四张独立成绩单
+## 8. 评测系统：五张独立成绩单
 
 ### 8.1 A：内容与几何安全
 
@@ -494,7 +494,27 @@ Reference/Adaptive 的强约束是“不做几何采样”。验证包括：
 
 SSIM/CW-SSIM/GMSD/DISTS 可用于诊断，但不能把“输出必须接近输入亮度”当作真实性 gate；真正的胶片 tone 变化会被旧 L-SSIM 错罚。
 
-### 8.2 B：stock/process/interpretation 真实性
+### 8.2 B：可感知的胶片签名
+
+用户明确指出：很多理论指标更好的方案看起来依然没有什么胶片风格。因此，“技术正确”只负责不出错，不能替代最低风格强度门。
+
+这一成绩单回答三个独立问题：
+
+1. 与 neutral digital input/当前寡淡基线相比，观察者能否稳定感知到胶片化方向？
+2. 它是否读作胶片成像特征，而不是单纯加饱和、压黑、泛黄或叠噪声？
+3. 该签名能否跨肤色、天空、绿植、夜景、中性灰和不同曝光保持，而不是只在精选图片上成立？
+
+验证设计：
+
+- 先做 color-only 盲测，关闭 grain/halation/bloom，防止效果层掩盖色彩模型寡淡；
+- 再做 full-look 盲测，验证完整体验；
+- 同时展示 neutral input、当前偏好冠军、候选和真实 film reference；
+- 诊断 exposure-dependent hue、toe/shoulder、neutral-axis、局部对比与色域行为，但不把 global chroma 增量当作晋级指标；
+- 最低 salience 阈值由 pilot 预注册；目标是“清晰可感知但不过度”，不是最大化风格强度。
+
+晋级顺序为：先通过内容安全，再达到最低胶片签名，随后才比较 stock/process 真实性。技术上更优但肉眼寡淡的方案在此停止；风格很强但不像目标 stock 的方案只能保留为 heuristic/Creative look。
+
+### 8.3 C：stock/process/interpretation 真实性
 
 | 维度 | 指标 |
 |---|---|
@@ -512,7 +532,7 @@ Pilot 暂定 gate（随后由方差重定）：
 - 完整留出 roll 不劣化；
 - 盲测 stock-match 胜率的 95% CI 下界高于 50%；目标为明显高于 60%，但不提前把该数值当科学定律。
 
-### 8.3 C：效果物理性
+### 8.4 D：效果物理性
 
 - grain：2D NPS、径向 NPS、自相关、density dependence、色层相关、输出尺寸/缩放稳定性；
 - halation：径向强度、半径、红/橙谱偏、暗侧泄漏、source selectivity、exposure dependence；
@@ -520,7 +540,7 @@ Pilot 暂定 gate（随后由方差重定）：
 - bloom：与 halation 独立；
 - 视频：帧间参数、grain 时间行为和闪烁。
 
-### 8.4 D：产品与性能
+### 8.5 E：产品与性能
 
 固定设备矩阵：Windows RTX 5070 Ti Laptop 12GB、M5 32GB、CPU fallback。
 
@@ -534,7 +554,7 @@ Pilot 暂定 gate（随后由方差重定）：
 
 精确时延 SLO 只在参考实现 benchmark 后冻结。
 
-### 8.5 主观实验设计
+### 8.6 主观实验设计
 
 - 已知个人偏好锚点：用户在 2026-07-11 指定 Velvia 50 总表中的 `53, 55, 56, 33, 09, 03, 02, 01`。其中 `53/55/56/09/01` 各有 20 张完整输出，均属于确定性 baseline 或 gamut-safe Lab 家族；`33/03/02` 只有 1–2 张 smoke，只能作为方向提示。下一轮应把五个完整方案统一到同一冻结图集并盲化复测；该偏好不能替代真实胶片真实性评测；
 - 随机、盲化、配对展示真实 scan、K-MCFM、当前 safe_lab 和至少两个竞争参考；

@@ -198,21 +198,24 @@ Go/No-Go:
 | U4.3 | pending | Grain/halation/MTF suite | U3.2 | NPS/radial/MTF test vectors and repeatability |
 | U4.4 | ready | Blind pairwise study protocol | competitor-output rights check | preregistered questions, exclusions, analysis |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |
-| U4.6 | ready | Retire chroma-gain promotion gate | none | New evaluator does not reward saturation as identity |
+| U4.6 | ready | Replace chroma-gain promotion with five scorecards | none | Salience is independent from safety, authenticity and saturation magnitude |
 | U4.7 | complete | Record the user's known Velvia 50 preference anchor | numbered 56-scheme sheet | Mapping and evidence weights recorded; 2026-07-11 |
+| U4.8 | complete | Record “technically better but no film style” as a hard planning constraint | user feedback | Minimum film-style salience added before authenticity promotion; 2026-07-11 |
 
-Four reports stay separate:
+Five reports stay separate:
 
 1. content/geometry safety;
-2. stock/process/interpretation authenticity;
-3. physical-effect fidelity;
-4. human preference and product performance.
+2. perceptible film-style salience;
+3. stock/process/interpretation authenticity;
+4. physical-effect fidelity;
+5. human preference and product performance.
 
 Never collapse them into one score.
 
 Provisional promotion rules, frozen before each experiment:
 
 - hard safety: no new text errors; no geometry resampling; face/keypoint diagnostics within benign-control tolerance;
+- film-style salience: in a blinded test, the candidate must be detectably more film-like than the neutral input/current technically clean bland baseline, without relying only on global saturation; thresholds are preregistered after pilot calibration;
 - authenticity: full-roll holdout improves against the strongest simpler baseline, including P95/tails;
 - blind stock-match: lower bound of 95% CI > 50% against the current champion;
 - content-preservation human score non-inferior to deterministic baseline by a preregistered margin;
@@ -241,6 +244,13 @@ Interpretation:
 - the three smoke choices (`02/03/33`) are not promotion evidence because they cover only one or two images;
 - these choices measure personal aesthetic preference, not stock/process authenticity;
 - future blind studies should include `53/55/56/09/01` as anchors, normalize them onto one frozen image set, and test whether their apparent ranking survives randomized labels and new scenes.
+
+User feedback also states that many theoretically stronger candidates look technically clean but have little film style. Therefore:
+
+- a candidate cannot be promoted merely for better safety, clipping, SSIM, ΔE or smoothness if observers cannot perceive a film signature;
+- “film-style salience” is not “maximum effect strength”: generic saturation, crushed contrast, noise or orange highlights do not pass by themselves;
+- evaluate a color-only pass with grain/halation disabled and a full-look pass with effects enabled, so effects cannot hide a weak color model;
+- a salient but stock-inaccurate result remains a heuristic/Creative look; Reference promotion still requires the independent authenticity gate.
 
 ### U5 — Bounded-AI challenge
 
@@ -320,7 +330,7 @@ Public release requires explicit human approval and written license/trademark/se
 
 1. `U0.1` (complete 2026-07-10): reconcile active docs and mark diffusion/IP2P as retired research.
 2. `U0.3`: define manifest v2; tag every current source `production/research/eval/blocked`.
-3. `U4.6`: replace the chroma-gain promotion rule with four scorecards.
+3. `U4.6`: replace the chroma-gain promotion rule with five scorecards, including minimum film-style salience.
 4. `U0.2`: ask owner to confirm intended code license and release posture.
 
 Evidence bundle: document diff, manifest schema, duplicate/leakage report, release-blocker list.
@@ -357,12 +367,12 @@ No film purchase, lab booking, model download or GPU training occurs without the
 
 | Experiment | Hypothesis | Fixed baseline | One changed variable | Promotion gate | Stop condition |
 |---|---|---|---|---|---|
-| EXP-COLOR-01 | Monotone curves + 3D LUT capture stock response | safe_lab + measured target | global transform | Authenticity improves on held-out roll; safety unchanged | No stable held-out gain |
-| EXP-COLOR-02 | SepLUT models global residual better | EXP-COLOR-01 | representation | Tail metrics improve, complexity justified | Same/poorer result |
-| EXP-LOCAL-01 | Bilateral grid fixes scene-local residual | current global winner | local grid | Local slices improve; no halo/tile seam | Artifact or no independent gain |
+| EXP-COLOR-01 | Monotone curves + 3D LUT capture stock response | safe_lab + measured target | global transform | Safety passes, minimum salience passes, authenticity improves on held-out roll | Bland output or no stable held-out gain |
+| EXP-COLOR-02 | SepLUT models global residual better | EXP-COLOR-01 | representation | Salience is retained and authenticity tail metrics improve enough to justify complexity | Same/poorer or less film-like result |
+| EXP-LOCAL-01 | Bilateral grid fixes scene-local residual | current global winner | local grid | Local authenticity/salience slices improve; no halo/tile seam | Artifact, blandness or no independent gain |
 | EXP-FX-01 | Exposure-domain halation matches real radial behavior | current display-level halation | composition domain | Held-out point/edge profile improves | Lens/scanner confound unresolved |
 | EXP-FX-02 | Density-aware grain matches real NPS | current procedural grain | density-conditioned params | Held-out NPS/ACF within repeatability | Scanner noise not separated |
-| EXP-GEN-01 | FLUX.2 FP8 is a better color oracle than IP2P | IP2P fixed grid | teacher model | LUT projection gains preference without safety loss | OOM, license issue or no gain |
+| EXP-GEN-01 | FLUX.2 FP8 is a better color oracle than IP2P | IP2P fixed grid | teacher model | LUT projection gains salience/preference without safety loss; authenticity remains separately labeled | OOM, license issue, blandness or no gain |
 | EXP-RUNTIME-01 | FP16/CoreML/ONNX is color-noninferior | FP32 reference | runtime/precision | ΔE/golden parity + speed gain | Neutral/skin drift or instability |
 
 Each experiment produces: contract, config, input manifest hash, environment, raw per-image metrics, failure gallery, aggregate with CI, decision and scoped commit. No result may update a profile merely because one contact sheet looks good.
