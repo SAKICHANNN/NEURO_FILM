@@ -199,6 +199,7 @@ Go/No-Go:
 | U4.4 | ready | Blind pairwise study protocol | competitor-output rights check | preregistered questions, exclusions, analysis |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |
 | U4.6 | ready | Retire chroma-gain promotion gate | none | New evaluator does not reward saturation as identity |
+| U4.7 | complete | Record the user's known Velvia 50 preference anchor | numbered 56-scheme sheet | Mapping and evidence weights recorded; 2026-07-11 |
 
 Four reports stay separate:
 
@@ -216,6 +217,30 @@ Provisional promotion rules, frozen before each experiment:
 - blind stock-match: lower bound of 95% CI > 50% against the current champion;
 - content-preservation human score non-inferior to deterministic baseline by a preregistered margin;
 - exact thresholds for ΔE, repeatability and latency are calibrated by the pilot, not invented after seeing test results.
+
+#### Known user preference anchor — Velvia 50
+
+Source artifact: `outputs/contact_sheets/velvia50_all_schemes_numbered_20260616/ALL_SCHEMES_NUMBERED.png`; mapping authority: sibling `NUMBER_MAP.csv`.
+
+The user reported the preferred set `53, 55, 56, 33, 09, 03, 02, 01` on 2026-07-11. The list order is preserved as stated but is not treated as a ranking or converted into cardinal score gaps.
+
+| Number | Scheme label | Render count | Evidence use |
+|---:|---|---:|---|
+| 53 | `velvia50_digital20_s0p72_gamutsafe` | 20 | full-set preference baseline |
+| 55 | `velvia50_rawpixls20_s0p50_gamutsafe` | 20 | full-set preference baseline |
+| 56 | `velvia50_rawpixls20_s0p58_gamutsafe` | 20 | full-set preference baseline |
+| 33 | `evaluate_color_pipeline_smoke` | 1 | direction cue only |
+| 09 | `baseline_noclip_s0p50` | 20 | full-set preference baseline |
+| 03 | `baseline_current_smoke2` | 1 | direction cue only |
+| 02 | `baseline_current_smoke` | 2 | direction cue only |
+| 01 | `baseline_current` | 20 | full-set preference baseline |
+
+Interpretation:
+
+- the five comparable full-set choices (`01/09/53/55/56`) all belong to deterministic baseline or gamut-safe Lab families; this strengthens the decision to keep the deterministic family as the preference champion;
+- the three smoke choices (`02/03/33`) are not promotion evidence because they cover only one or two images;
+- these choices measure personal aesthetic preference, not stock/process authenticity;
+- future blind studies should include `53/55/56/09/01` as anchors, normalize them onto one frozen image set, and test whether their apparent ranking survives randomized labels and new scenes.
 
 ### U5 — Bounded-AI challenge
 

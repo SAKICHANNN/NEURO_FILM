@@ -63,3 +63,17 @@ No production code, data, model, output or user-owned untracked file was modifie
 ### Handoff
 
 `U0.1` was completed in this change set. Next ready leaf is `U0.3`: manifest/leakage repair, followed by `U0.4/U4` CI/evaluation foundation. Code implementation should not begin before refreshing Git state and claiming bounded files in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
+
+---
+
+## 2026-07-11 — Velvia 50 user-preference anchor
+
+- **Parent goal / node:** `ULT` / `U4.7`
+- **DRPT level / mode:** L1, Mode A
+- **Input:** user stated the preferred numbered schemes as `53, 55, 56, 33, 09, 03, 02, 01`
+- **Resolution:** mapped the numbers through `outputs/contact_sheets/velvia50_all_schemes_numbered_20260616/NUMBER_MAP.csv`
+- **Decision:** retain the set as qualitative preference evidence without assuming list order is a ranking; treat `53/55/56/09/01` as full 20-render anchors and `33/03/02` as smoke-only direction cues
+- **Interpretation:** all five comparable choices are deterministic baseline/gamut-safe Lab variants, supporting the calibrated deterministic core; this is preference evidence, not film-authenticity evidence
+- **Files changed:** `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/planning/ULTIMATE_ROADMAP_2026.md`, `docs/drpt/AGENT_LOG.md`
+- **Verification:** exact scheme labels and render counts checked against `NUMBER_MAP.csv`; no output image, mapping file or user-owned untracked file modified
+- **Handoff:** include the five full anchors in the frozen U4 blind-study set and rerender them on one common held-out image set before inferring strength/style parameters
