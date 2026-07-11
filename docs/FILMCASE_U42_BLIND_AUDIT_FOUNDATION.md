@@ -76,3 +76,9 @@ This is only a one-image, directed visual and diagnostic check. It permits the
 margin-bounded chroma variant to enter the frozen nine-sample replay and blind
 review; it does not promote it, nor does it demonstrate that style salience is
 preserved across the gold set.
+
+The permitted replay completed on 2026-07-11: 9 gold inputs × 7 columns
+(five anchors, bland control and unpromoted challenger) = 63 color-only
+renders, followed by 189 anonymous assets across three blind rounds. The
+replay manifest and review assets remain ignored local evidence. No rating has
+yet been entered or unblinded.

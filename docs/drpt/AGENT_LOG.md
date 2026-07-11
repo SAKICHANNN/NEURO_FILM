@@ -269,3 +269,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Controlled result:** `gamut_mode=chroma` visibly removed the speckle but, without an output margin, created 26.06% new hard clipping. Adding only `output_margin=4` produced `[4,251]`, zero new clipping and visually smooth highlights on ID 11.
 - **Trade-off:** the margin-bounded candidate reduces mean chroma substantially; it is eligible only for full nine-gold replay and blind style/severe review, not promotion.
 - **Boundary:** no model was trained and no existing renderer code/profile was changed.
+
+---
+
+## 2026-07-11 — Full-gold margin-bounded chroma challenger replay
+
+- **Parent/node:** `ULT > U4 > EXP-VIS-00/U4.2` (candidate evidence collection)
+- **Implementation:** the anchor replay tool now accepts an opt-in, separately named `anchor56_chroma_margin4_challenger`; default historical-anchor runs remain unchanged. A relative-output-dir bug was caught after the first rendered file, fixed by resolving under repository root, and rerun with a complete manifest.
+- **Evidence:** replayed all 9 gold inputs across 7 columns (63 render records) and materialized 189 anonymous assets for 3 rounds. The challenger remains unpromoted and is visually/safety unreviewed outside its ID 11 counterfactual.
+- **Handoff:** execute blind reviews using only the new anonymous asset paths, then aggregate raw records before opening the private mapping. Any gold severe/uncertain outcome remains a hard stop.

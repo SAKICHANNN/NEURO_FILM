@@ -32,6 +32,12 @@ RECIPES: dict[str, tuple[str, ...]] = {
     "bland_safe_rich_control": ("--preset", "safe-rich"),
 }
 
+# EXP-VIS-00 challenger: entered only after its single red-highlight check
+# passed with the explicit output margin. It is not an owner-preference anchor.
+CHALLENGER_RECIPES: dict[str, tuple[str, ...]] = {
+    "anchor56_chroma_margin4_challenger": ("--strength", "0.58", "--luma-strength", "0.35", "--gamut-safe", "--gamut-mode", "chroma", "--output-margin", "4"),
+}
+
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
@@ -63,16 +69,19 @@ def main() -> int:
     parser.add_argument("--frozen-set", type=Path, default=DEFAULT_SET)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--include-stress", action="store_true", help="Also render stress samples after the gold replay is established.")
+    parser.add_argument("--include-exp-vis-challenger", action="store_true", help="Include the unpromoted margin-bounded chroma challenger in an EXP-VIS-00 comparison.")
     parser.add_argument("--write", action="store_true", help="Run rendering; otherwise print the replay plan only.")
     args = parser.parse_args()
     samples = load_frozen_set(args.frozen_set, include_stress=args.include_stress)
-    plan = [{"candidate_id": candidate, "sample_id": str(sample["id"]), "source": sample["source_path"]} for candidate in RECIPES for sample in samples]
+    recipes = {**RECIPES, **CHALLENGER_RECIPES} if args.include_exp_vis_challenger else RECIPES
+    output_dir = args.output_dir if args.output_dir.is_absolute() else ROOT / args.output_dir
+    plan = [{"candidate_id": candidate, "sample_id": str(sample["id"]), "source": sample["source_path"]} for candidate in recipes for sample in samples]
     if not args.write:
         print(json.dumps({"render_count": len(plan), "plan": plan}, indent=2))
         return 0
     records: list[dict[str, Any]] = []
-    for candidate_id, recipe in RECIPES.items():
-        candidate_dir = args.output_dir / candidate_id
+    for candidate_id, recipe in recipes.items():
+        candidate_dir = output_dir / candidate_id
         candidate_dir.mkdir(parents=True, exist_ok=True)
         for sample in samples:
             source = Path(str(sample["source_path"]))
@@ -82,9 +91,9 @@ def main() -> int:
             command = build_command(source, destination, recipe)
             subprocess.run(command, cwd=ROOT, check=True, capture_output=True, text=True)
             records.append({"candidate_id": candidate_id, "sample_id": sample["id"], "source_sha256": sample["source_sha256"], "output": str(destination.relative_to(ROOT)).replace("\\", "/"), "output_sha256": sha256_file(destination), "command": command})
-    manifest = {"schema_version": 1, "claim_boundary": "normalized color-only anchor-inspired replay; not historical pixel-identical output", "frozen_set_sha256": sha256_file(args.frozen_set), "recipes": {key: list(value) for key, value in RECIPES.items()}, "records": records}
-    (args.output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"render_count": len(records), "manifest": str((args.output_dir / 'manifest.json'))}, indent=2))
+    manifest = {"schema_version": 1, "claim_boundary": "normalized color-only anchor-inspired replay; not historical pixel-identical output", "frozen_set_sha256": sha256_file(args.frozen_set), "recipes": {key: list(value) for key, value in recipes.items()}, "records": records}
+    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"render_count": len(records), "manifest": str((output_dir / 'manifest.json'))}, indent=2))
     return 0
 
 
