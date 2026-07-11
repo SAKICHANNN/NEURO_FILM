@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
 > **Current truth: 2026-07-11.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
-> **Target direction:** a strongly stylized, color-managed Style-safe renderer plus an autonomous, unpaired FilmCase research branch that hard-selects bounded color experts; calibrated profiles are deferred and generative editing remains separately labeled Creative work.
+> **Target direction:** a strongly stylized, color-managed Style-safe renderer plus a ChromaticTail/FilmStyleSafe benchmark and FARO system using existing selection-aware risk control for the complete fixed-budget explicit-operator policy. FilmCase and counterfactual scoring remain baselines/components; a new statistical method is explicitly unresolved, calibrated profiles are deferred, and generative RGB editing remains separately labeled Creative work.
 
 ---
 
@@ -11,7 +11,7 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | strongly stylized film-inspired output with no severe glitch/artifact; optional FilmCase retrieval of bounded transforms, high-precision RAW/HDR and deferred calibrated profiles |
+| Ultimate target | strongly stylized film-inspired output under an explicit severe-artifact budget; FARO selective operator policy, high-precision RAW/HDR and deferred calibrated profiles |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
@@ -28,14 +28,15 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 |---:|---|---|
 | 1 | `AGENTS.md` | Current truth and invariants |
 | 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
-| 3 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Research synthesis, target architecture and primary sources |
-| 4 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | Detailed autonomous unpaired U5 hypotheses, experiment DAG and stop branches |
-| 5 | `TASK_BOARD.md` | Compact active board/pointer |
-| 6 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
-| 7 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
-| 8 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
-| 9 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
-| 10 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
+| 3 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Current publication-oriented problem, novelty audit, method and benchmark DAG |
+| 4 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
+| 5 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to FARO |
+| 6 | `TASK_BOARD.md` | Compact active board/pointer |
+| 7 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
+| 8 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
+| 9 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
+| 10 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
+| 11 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
 
 The following are historical context, not active authority: `docs/ARCH_REDESIGN.md`, `docs/planning/GAP_ANALYSIS.md`, `docs/ONLINE_DATA_AUDIT.md`, and the diffusion sections below the supersession banner in `IMPL_PLAN.md`.
 

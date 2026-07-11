@@ -244,6 +244,12 @@ Provisional promotion rules, frozen before each experiment:
 - calibrated claims only: full-roll holdout and stock-match evidence apply when a profile is labeled calibrated;
 - exact thresholds and severity examples are frozen before final evaluation, not chosen after seeing candidate results.
 
+These U4 rules remain product/exploratory promotion rules. They do not define
+the confirmatory FARO endpoint: U5.R1+ evaluates the frozen deployed policy on
+every independent scene including fallback, uses a marginal scene-level risk
+bound plus non-trivial coverage, and never estimates preference only on a
+method-dependent survivor subset.
+
 #### Known user preference anchor — Velvia 50
 
 Source artifact: `outputs/contact_sheets/velvia50_all_schemes_numbered_20260616/ALL_SCHEMES_NUMBERED.png`; mapping authority: sibling `NUMBER_MAP.csv`.
@@ -279,6 +285,20 @@ User feedback also states that many theoretically stronger candidates look techn
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
+| U5.R0 | complete | FARO literature/novelty audit, problem formulation and research DAG | user research reframe + current evidence | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`; 2026-07-11 |
+| U5.R0T | ready, optional | Dedicated statistical novelty audit and theorem-or-close decision | U5.R0 | Distinguish LTT, two-stage/joint selective certificates, noisy-label and non-exchangeable CRC before any method-paper claim |
+| U5.R1A | ready | ChromaticTail/FilmStyleSafe ontology, annotation schema, A0/A1 + B0-B4 split contract and sampling/preregistration/power worksheet | U4 foundation | Transformation-induced chromatic-severe labels, legitimate-local hard negatives, traceable look rubric, multirater error rule, scene/rater frames and exact estimands |
+| U5.R1B | pending | Stress generator plus real cross-algorithm failure suite | U5.R1A | Parent-scene grouping, no final-test leakage, current known failures represented |
+| U5.R1C | pending | Conventional-metric failure study plus prospective intent-aware SCIS v0 | U5.R1B | A0 development and A1 hidden low-FPR sensitivity on unseen transform families/legitimate-local hard negatives; pass/fail novelty decision |
+| U5.R2A | pending | Versioned numerically constrained operator contract | U1/U2 renderer foundation | Identity/curve/LUT property tests, golden vectors and explicit non-safety counterexample |
+| U5.R2B | pending | Strong global operator frontier | U5.R2A, U5.R1 | Frozen strongest eligible global policy under identical renderer/export, both risk gates and target-look gate |
+| U5.R2C | pending | B1 complete fixed-bank cross-rater empirical-ceiling policy and annotation budget | U5.R2B | Best qualified nonsevere candidate or identity on every scene; supported all-scene tie-score gain or adaptive branches stop |
+| U5.R3 | blocked on U5.R2C pass | Fixed-bank transform-conditioned counterfactual scorer | U5.R2C pass | Beats source similarity/reward/transform-only baselines and reduces empirical-ceiling regret without shortcuts |
+| U5.R4A | blocked on U5.R3 | Adopted LTT/two-stage/joint certificate for the complete deterministic fixed-`K` policy | U5.R1, U5.R3 | Reproduced overall/selected-risk, look, coverage and utility guarantees include proposer, scene-hash seeds, final-resolution audit and identity fallback |
+| U5.R4T | blocked on U5.R0T gap | Optional new statistical method | U5.R0T distinct gap | New theorem and tighter matched-valid frontier; otherwise branch closes as redundant |
+| U5.R5 | blocked on U5.R4A | B3 hidden end-to-end policy test | U5.R4A + participant approval | Both risk UCBs, look LCB, style-qualified coverage LCB and all-scene tie-score LCB conjunction passes |
+| U5.R6 | blocked on U5.R5 | Optional proposer/local/physical/counterexample-monitor extensions | U5.R5 | Independent frontier gain at identical `K`/compute without breaking either risk or style gate |
+| U5.R7 | blocked on U5.R5 | B4 external replication and full paper ablation | U5.R5 + participant approval | New source clusters/raters, label-error sensitivity, explicit marginal-guarantee limits and publication decision |
 | U5.FC0 | complete | Autonomous FilmCase research/claim contract | user constraints + current evidence | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`; 2026-07-11 |
 | U5.FC1 | pending | Lineage/rights eligibility, source-controlled identifiability, normalized anchors and evaluator freeze | U0.3, U0.4, U4.1, U4.2 | strong/weak/fail/ambiguous/invalid decision; no unresolved split leakage |
 | U5.FC2 | pending | Explicit bounded transform and CaseRecord/case-bank representation | U5.FC1, U5.1 | Replayable CCM/curves/LUT experts; case evidence and cross-application matrix |
@@ -296,9 +316,9 @@ User feedback also states that many theoretically stronger candidates look techn
 | U5.5 | research-only | Generative target/Creative comparison outside FilmCase | separate future explicit instruction + U4.1 | Not run by the autonomous non-generative FilmCase plan |
 | U5.6 | pending | Winner distillation/runtime conversion | U5.FC8 winner | Non-inferior FP32/FP16/CoreML/ONNX parity |
 
-Stop at the simplest passing model. A valid result is “the analytic/global renderer wins; delete the retrieval and neural dependency.” Identifiability failure closes the unpaired-reference lane; Oracle failure closes routing. A film scan is never treated as an input/output pair.
+FARO is the publication-oriented parent hypothesis. FilmCase, source retrieval, hard expert selection and its FC nodes remain required baselines/ablations; they are no longer assumed to be the final novel method. Complete-policy certification is existing statistical machinery unless U5.R0T/R4T proves a distinct extension; the default FARO result is a CV system/application paper, while ChromaticTail/FilmStyleSafe is the primary novelty path. Stop at the simplest passing model. A valid result is “the analytic/global renderer wins; delete the retrieval and neural dependency.” Identifiability failure closes the unpaired-reference lane; failure of the fixed-bank empirical-ceiling gate closes all adaptive routing/proposal work. Candidate-level risk calibration never licenses the final selected policy. A film scan is never treated as an input/output pair.
 
-The detailed hypotheses, CaseRecord schema, evaluator protocol, experiment DAG, numeric preregistration defaults and failure branches live in `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`.
+The current novelty audit, FARO system, ChromaticTail/FilmStyleSafe benchmark and experiment DAG live in `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`. The earlier CaseRecord schema and FilmCase-specific baselines remain in `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`.
 
 FLUX.2 gate:
 

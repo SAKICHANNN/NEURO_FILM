@@ -43,7 +43,7 @@ The primary product standard is **strong, attractive film-inspired stylization w
 The target is a three-part system:
 
 1. **Style-safe core** — strong color/effect styling with a hard severe-artifact veto.
-2. **FilmCase bounded ML** — after identifiability and Oracle gates, a small retriever hard-selects explicit curve/LUT experts; low-confidence/OOD inputs fall back to the global deterministic champion.
+2. **FARO bounded operator policy** — after the ChromaticTail/FilmStyleSafe benchmark and fixed-bank empirical-ceiling gate, a complete fixed-budget policy renders/ranks explicit curve/LUT experts, audits the finalist at full resolution and otherwise returns identity. FilmCase retrieval remains a baseline/ablation.
 3. **Deferred calibrated / isolated Creative branches** — paired film evidence would be required only for a future calibrated claim; generative editing is excluded from FilmCase.
 
 The autonomous FilmCase path does not depend on the owner supplying images, film/digital pairs, per-image labels or additional preference votes. Unpaired reference images can support only `film-inspired/unpaired-evidence`, not calibrated stock reproduction.
@@ -54,9 +54,10 @@ The critical path is:
 truth / rights / reproducibility reset
   -> WorkingImage + high-precision color I/O
   -> deterministic profile/reference renderer
-  -> frozen severe-artifact + autonomous style benchmark
-  -> FilmCase identifiability -> bounded cases -> Oracle gate
-  -> simplest useful retrieval/ranker + physical-effects challenge
+  -> ChromaticTail/FilmStyleSafe ontology + hidden benchmark
+  -> eligible global frontier -> fixed-bank complete-policy empirical ceiling
+  -> counterfactual scorer + adopted full-policy risk certificate
+  -> hidden overall/selected-risk + look + coverage + preference gates
   -> Windows/Mac/CPU productization and release gates
 
 deferred side lane: future paired Portra 400 + Velvia 50 calibration
@@ -66,8 +67,9 @@ Read:
 
 - [`AGENTS.md`](AGENTS.md) — current project truth and invariants
 - [`docs/ULTIMATE_EXECUTION_TRACKER.md`](docs/ULTIMATE_EXECUTION_TRACKER.md) — active task tree and gates
+- [`docs/planning/FARO_RESEARCH_PROGRAM_2026.md`](docs/planning/FARO_RESEARCH_PROGRAM_2026.md) — current novelty audit, benchmark, engineering path and falsifiable paper program
 - [`docs/planning/ULTIMATE_ROADMAP_2026.md`](docs/planning/ULTIMATE_ROADMAP_2026.md) — full research and architecture proposal
-- [`docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`](docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md) — detailed unpaired, non-generative research DAG and stop rules
+- [`docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`](docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md) — retained unpaired retrieval baseline and ablations
 - [`docs/CURRENT_STATUS_2026-05-27.md`](docs/CURRENT_STATUS_2026-05-27.md) — local diffusion/IP2P findings
 - [`docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md`](docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md) — current deterministic renderer
 
@@ -101,4 +103,4 @@ The repository does not currently contain a root `LICENSE` file. Older documents
 
 ---
 
-*Last updated: 2026-07-11. Current default: deterministic content-safe renderer. Target: Style-safe core + autonomous unpaired FilmCase; calibrated lane deferred.*
+*Last updated: 2026-07-11. Current default: deterministic content-safe renderer. Target: Style-safe product core + FARO/ChromaticTail research; calibrated lane deferred.*
