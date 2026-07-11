@@ -259,3 +259,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added an ignored-report CLI that reads raw review JSONL and the separate private mapping, validates every record through the existing protocol, then writes a traceable aggregate. It cannot create a review value or infer a visual preference.
 - **Verification:** parser rejects malformed/non-object records; all 37 local tests pass.
 - **Handoff:** populate raw review JSONL only after actual anonymous visual passes. Any missing, duplicate, uncertain or contradictory review remains fail-closed under the protocol.
+
+---
+
+## 2026-07-11 — EXP-VIS-00 red-highlight counterfactual
+
+- **Parent/node:** `ULT > U4 > EXP-VIS-00` (single-case evidence only)
+- **Question:** can #56-like palette strength retain containment while removing the known red metal speckle?
+- **Controlled result:** `gamut_mode=chroma` visibly removed the speckle but, without an output margin, created 26.06% new hard clipping. Adding only `output_margin=4` produced `[4,251]`, zero new clipping and visually smooth highlights on ID 11.
+- **Trade-off:** the margin-bounded candidate reduces mean chroma substantially; it is eligible only for full nine-gold replay and blind style/severe review, not promotion.
+- **Boundary:** no model was trained and no existing renderer code/profile was changed.

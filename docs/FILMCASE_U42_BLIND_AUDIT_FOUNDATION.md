@@ -61,3 +61,18 @@ red-lit bicycle/ColorChecker case remains discriminative: normalized
 whereas the bland safe-rich control suppresses it at the cost of palette
 strength. This observation is a rubric/failure-gallery check only; it is not a
 substitute for the blinded three-pass verdict.
+
+## EXP-VIS-00 single-case evidence
+
+On the red bicycle/ColorChecker failure case (ID 11), the controlled
+`anchor56` chroma-gamut variant initially removed visible red speckling but
+created 26.06% new hard clipping because it omitted the mandated output margin.
+The same variant with `output_margin=4` visibly retained smooth red highlights,
+reported zero new clipping and an output range of `[4,251]`. Its L-SSIM was
+0.9647 and its mean chroma fell from 30.93 to 21.46, so the result is a
+trade-off candidate, not a free safety win.
+
+This is only a one-image, directed visual and diagnostic check. It permits the
+margin-bounded chroma variant to enter the frozen nine-sample replay and blind
+review; it does not promote it, nor does it demonstrate that style salience is
+preserved across the gold set.
