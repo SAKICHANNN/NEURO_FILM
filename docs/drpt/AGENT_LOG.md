@@ -212,3 +212,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** 8 reproducibly hashed gold seeds and 32 stress rows froze from union-40. The seed covers seven required categories but has no face sample. Existing ID 11 remains included because it exposes the known red-highlight speckle issue.
 - **Decision:** no candidate can receive a gold pass from this set. The contract requires `final` status, complete coverage, availability, one non-uncertain verdict for every gold sample, and zero severe verdicts; stress output is a Wilson interval only.
 - **Handoff/risk:** acquire neither data nor votes automatically. Continue only with local deterministic/anchor work while a valid cleared/local source can close the category gap; U4.2 likewise cannot make a promotion claim before U4.1 finalizes.
+
+---
+
+## 2026-07-11 — U4.2 blind style/appeal protocol foundation
+
+- **Parent/node:** `ULT > U4 > U4.2` (in progress, gated)
+- **Implementation:** added isolated three-round candidate blinding and review aggregation. It requires separate severe, style and appeal fields; candidate names are excluded from the public sheet.
+- **Pre-registered safety rule:** 2/3 severe votes veto; one severe, uncertain or missing record escalates to original-resolution adjudication; unresolved ambiguity cannot support promotion.
+- **Evidence:** a dry run generated 24 blinded rows from eight provisional seed samples and the five owner anchors plus a bland control. It contains no review result and has no effect on U4.1 status.
+- **Handoff:** normalize all anchor renders on the eventual final U4.1 source set and add matched nuisance controls before collecting autonomous vision reviews. No external validation, image acquisition, upload or generative method is authorized or required here.

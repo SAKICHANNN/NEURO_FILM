@@ -217,7 +217,7 @@ Go/No-Go:
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
 | U4.1 | in progress | Fail-closed frozen-set/adjudication module plus provisional union-40 seed | U0.4 | Evaluation foundation and 8/32 seed frozen; blocked from final-gold promotion by missing face coverage and absent full adjudications; evidence: `docs/FILMCASE_U41_EVALUATION_FOUNDATION.md` |
-| U4.2 | pending | Autonomous style-salience/appeal proxy scorecard | U4.1 | blind, shuffled repeated vision audits against `53/55/56/09/01`, neutral/bland and matched nuisance controls |
+| U4.2 | in progress | Three-round blinded style/appeal protocol and isolated review machinery | U4.1 | Anonymous 3-pass protocol, `2/3` severe veto and ambiguous fail-closed rules are implemented; final scorecard remains gated on U4.1 + normalized anchor/control renders; evidence: `docs/FILMCASE_U42_BLIND_AUDIT_FOUNDATION.md` |
 | U4.3 | pending | Graded content/effect quality diagnostics | U4.1 | face/text/edge/texture plus NPS/radial/MTF/tile/determinism report |
 | U4.4 | deferred | External blind pairwise human validation | U8 beta + participant/rights approval | preregistered questions, exclusions and analysis; not a FilmCase research dependency |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |

@@ -78,6 +78,7 @@ files.
 | `audit_filmcase_manifest.py` | Read-only legacy-manifest audit that writes quarantined FilmCase manifest-v2 and duplicate evidence under ignored `outputs/filmcase/`; never modifies source data. |
 | `verify_reproducibility_baseline.py` | Verify tracked checksums/tests/benchmark registries and optionally write an ignored local environment report; never renders or reads image assets. |
 | `freeze_filmcase_evaluation_set.py` | Freeze hashes and split membership from the local union source index into an ignored provisional FilmCase artifact-evaluation set; never copies or renders images. |
+| `build_filmcase_blind_audit.py` | Create a three-round anonymous FilmCase style/artifact review sheet and a private ignored label map; it records no score and never alters images. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |
 | `combine_ip2p_dataset.py` | Combine IP2P dataset shards. |
