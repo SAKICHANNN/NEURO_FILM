@@ -241,3 +241,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** scanned 5,285 local FilmSet input images using OpenCV only to locate candidates, then visually verified `DSCF01200 iso1600.png` as a child-face stress image. The local `kaggle_view.json` snapshot identifies FilmSet as MIT; its image and metadata hashes are recorded in the ignored frozen-set artifact.
 - **Decision:** added it as `FS_FACE_01`, `research-only`, and explicitly `filmcase_reference_eligible=false`. It closes the face category gap for internal artifact evaluation without weakening U0.3 lineage quarantine or creating a film/authenticity claim.
 - **Gate:** all required content categories are now present in the 9 gold / 32 stress seed, but U4.1 remains provisional until normalized candidate outputs have complete three-pass visual severe adjudications.
+
+---
+
+## 2026-07-11 — Executable anonymous review assets
+
+- **Parent/node:** `ULT > U4 > U4.2` (evidence collection prepared, no rating asserted)
+- **Implementation:** extended the blind-audit builder to consume the normalized replay manifest and materialize only anonymous review copies under `assets/round_N/sample_ID/A.png`. Candidate names remain absent from the public sheet and asset path; the mapping is separate and ignored.
+- **Evidence:** generated 27 blinded rows and 162 anonymous assets for 9 samples × 6 candidates × 3 rounds. An initial PowerShell invocation coerced unquoted `01` to `1` and failed before a usable sheet; quoted arguments generated the final complete assets.
+- **Handoff:** record raw review rows before unblinding, then apply the fail-closed aggregation rule. Asset preparation itself yields no score, safety pass or promotion.

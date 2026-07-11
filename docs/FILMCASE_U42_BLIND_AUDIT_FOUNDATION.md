@@ -31,7 +31,9 @@ when a candidate claims palette rather than generic effect strength.
 - `src/filmcase/vision_audit.py` builds deterministic permutations and applies
   the rule above from recorded reviews.
 - `scripts/build_filmcase_blind_audit.py` writes a public review sheet and a
-  private label map only under ignored `outputs/filmcase/`.
+  private label map only under ignored `outputs/filmcase/`. Given the
+  normalized replay manifest, it also writes anonymous assets such as
+  `assets/round_1/sample_11/A.png`, with no candidate directory name exposed.
 - `tests/test_filmcase_vision_audit.py` covers deterministic hiding, `2/3`
   veto, one-vote escalation and duplicate-record rejection.
 
@@ -49,6 +51,9 @@ inputs × 6 candidates = 54 renders), disables grain, records input/output
 hashes and preserves the recovered union-40 color/luma/gamut parameters. The
 outputs are explicitly `anchor-inspired normalized replays`, not claims of
 pixel-identical historical reproduction.
+
+On PowerShell, quote comma-separated `--samples` and `--candidates` arguments
+so it does not split or numerically normalize identifiers such as `01`.
 
 A directed, non-blind sanity inspection confirms that the known union ID 11
 red-lit bicycle/ColorChecker case remains discriminative: normalized

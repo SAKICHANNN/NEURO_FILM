@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import pytest
+from pathlib import Path
+import json
 
 from src.filmcase.vision_audit import VisionAuditError, aggregate_reviews, build_blind_audit
+from scripts.build_filmcase_blind_audit import load_render_records
 
 
 def _all_reviews(plan, *, severe_for: tuple[str, str] | None = None):
@@ -47,3 +50,10 @@ def test_duplicate_review_is_rejected() -> None:
     reviews = _all_reviews(plan)
     with pytest.raises(VisionAuditError, match="duplicate"):
         aggregate_reviews(plan, [*reviews, reviews[0]])
+
+
+def test_missing_render_manifest_asset_is_rejected(tmp_path: Path) -> None:
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps({"records": [{"candidate_id": "anchor", "sample_id": "01", "output": "outputs/does_not_exist.png"}]}), encoding="utf-8")
+    with pytest.raises(VisionAuditError, match="missing"):
+        load_render_records(manifest)
