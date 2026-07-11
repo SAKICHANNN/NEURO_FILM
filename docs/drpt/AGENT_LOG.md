@@ -296,3 +296,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added a public-asset-only contact-sheet generator. It reads the anonymous review sheet and assets for one round, never the private mapping, and produced three local round sheets.
 - **Visual preparation evidence:** all three anonymous round sheets were inspected. Eight non-red-highlight rows preserve geometry/text/texture and show only modest cross-column color/tone differences; ID 11 remains the discriminating red-speckle row.
 - **Boundary:** no raw review JSONL has been written and no candidate was unblinded, scored or promoted. The sheets make later independent per-cell review practical; they do not substitute for it.
+## 2026-07-11 - Start data-independent WorkingImage ingress
+
+- Node/parent goal: `U1.1` under `ULT`; prioritize ready engineering that does not require new external data.
+- Trigger: owner redirected work away from the provenance-blocked data lane.
+- Skills used: `codex-super-router`, `codex-super-aiml-harness`, `dev-research-reliability`, `drpt-bi-governance`, `project-agent-log-discipline`.
+- Decisions: stop the attempted Flickr provenance pilot before it produced data; keep FilmCase reference-derived work blocked; route `render_film` through `WorkingImage` while retaining an explicit, fail-closed legacy sRGB8 adapter until U1.3.
+- Files changed: `src/preprocess/raster_decode.py`, `src/preprocess/__init__.py`, `scripts/render_film.py`, `tests/test_render_film_ingress.py`, and the U1 tracker row.
+- Verification evidence: 6 targeted preprocessing/ingress tests passed under the existing local Python 3.9 environment; the Python 3.12 reproducibility verifier returned `BASELINE_OK`; `git diff --check` passed.
+- Risks or unknowns: the renderer still becomes 8-bit at the named compatibility adapter; full pytest was not rerun because the checked-in `.venv` is Python 3.9 while the current baseline requires Python 3.12.
+- Handoff state: U1.1 is in progress; next data-independent leaf is high-precision render/export integration and end-to-end raster/RAW fixtures.

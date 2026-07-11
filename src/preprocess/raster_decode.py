@@ -113,6 +113,22 @@ def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:
     return np.where(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055) ** 2.4).astype(np.float32)
 
 
+def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
+    """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
+    if working.working_space != "linear_srgb" or working.transfer_state != "display_linear":
+        raise ValueError(
+            "legacy adapter requires linear_srgb/display_linear WorkingImage; "
+            f"got {working.working_space}/{working.transfer_state}"
+        )
+    clipped = np.clip(working.pixels, 0.0, 1.0)
+    encoded = np.where(
+        clipped <= 0.0031308,
+        clipped * 12.92,
+        1.055 * np.power(clipped, 1.0 / 2.4) - 0.055,
+    )
+    return Image.fromarray(np.rint(encoded * 255.0).astype(np.uint8), mode="RGB")
+
+
 def load_raster_working_image(path: Path) -> WorkingImage:
     inspection = inspect_raster(path)
     warnings = list(inspection.warnings)

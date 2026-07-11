@@ -9,13 +9,14 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageOps
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
+from src.preprocess import load_working_image, working_image_to_legacy_srgb8  # noqa: E402
 from src.filmfx import (  # noqa: E402
     PhysicalHalationControls,
     build_physical_halation_layer,
@@ -82,10 +83,6 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_image(path: Path) -> Image.Image:
-    return ImageOps.exif_transpose(Image.open(path)).convert("RGB")
-
-
 def save_rgb(rgb: np.ndarray, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     Image.fromarray(np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8), mode="RGB").save(path, "PNG")
@@ -135,7 +132,8 @@ def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Im
 
 def main() -> int:
     args = parse_args()
-    image = load_image(args.input)
+    working = load_working_image(args.input)
+    image = working_image_to_legacy_srgb8(working)
     color_image = build_color_render(image, args)
     base = np.asarray(color_image, dtype=np.float32) / 255.0
     layers = []
@@ -223,6 +221,17 @@ def main() -> int:
             "style": args.style,
             "color_engine": args.color_engine,
             "preset": args.preset,
+            "input_decode": {
+                "working_space": working.working_space,
+                "transfer_state": working.transfer_state,
+                "source_profile_kind": working.source_profile.kind,
+                "source_profile_description": working.source_profile.description,
+                "bit_depth_in": working.bit_depth_in,
+                "orientation_applied": working.orientation_applied,
+                "alpha_policy": working.alpha_policy,
+                "warnings": [warning.__dict__ for warning in working.warnings],
+                "legacy_8bit_adapter": True,
+            },
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],
             "halation_control_mode": args.halation_control_mode if halation_resolved else None,
