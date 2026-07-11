@@ -1,5 +1,13 @@
 # FARO Research Program — Strong Film-Inspired Colour Under Controlled Policy Risk
 
+> **Publication-priority update, 2026-07-12:** this document is no longer the
+> primary paper route. The algorithm-first colour-transfer program is
+> [`ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`](ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md).
+> ChromaticTail/FilmStyleSafe is supporting evaluation, and FARO is a product
+> safety/system wrapper. A standalone benchmark paper is not the fallback if
+> Roll2Film fails. The historical FARO method and experiment design below are
+> retained as baselines, evaluation assets and system-engineering context.
+
 > Status: research source of truth from 2026-07-11. This document defines a
 > falsifiable scientific program, not an implemented-model claim.
 >
@@ -55,9 +63,9 @@ operator, this claim is false and the adaptive branch stops. If the frozen
 policy does not satisfy its pre-registered marginal empirical risk gates on
 hidden scenes, the project must not make a risk-control claim.
 
-The research priority is therefore:
+The historical FARO priority was:
 
-1. **Paper A first:** establish that local severe chromatic failures are a
+1. **Paper A first (superseded 2026-07-12):** establish that local severe chromatic failures are a
    real, measurable evaluation gap;
 2. **FARO system paper only after four gates:** a frozen operator bank has
    useful empirical-ceiling headroom, complete-policy calibration works,
@@ -963,7 +971,7 @@ lineage are complete. Quantity cannot override provenance.
 
 ## 10. Paper plan
 
-### Paper A — benchmark/evaluation (primary publication path)
+### Historical Paper A — benchmark/evaluation (primary path superseded 2026-07-12)
 
 Working title:
 

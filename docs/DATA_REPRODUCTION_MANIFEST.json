@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_updated": "2026-07-11",
+  "last_updated": "2026-07-12",
   "purpose": "Committed reproduction manifest for rebuilding ignored data/ contents on a new machine.",
   "target_mac": {
     "machine": "Apple Silicon Mac",
@@ -10,13 +10,94 @@
   },
   "notes": [
     "Do not commit downloaded dataset files, manufacturer PDFs, calibration CSVs, generated manifests, checkpoints, or outputs.",
-    "Local Windows source state was recorded from data/raw/dataset_status.json, which is intentionally ignored by Git.",
-    "Observed 2026-07-11: data/processed/manifest.jsonl exists locally as an ignored legacy 4,210-row manifest. It lacks durable source/uploader/roll/scanner grouping and is quarantined from FilmCase reference-derived use; see docs/FILMCASE_U03_LINEAGE_AUDIT.md.",
+    "Windows source state below is historical and must not be read as current Mac availability.",
+    "Observed 2026-07-12 on the current Mac: data/processed/manifest.jsonl is absent. The committed U0.3 report records a prior 4,210-row audit with 0 eligible rows; see docs/FILMCASE_U03_LINEAGE_AUDIT.md.",
     "Online data audit added in docs/ONLINE_DATA_AUDIT.md on 2026-05-25."
   ],
+  "current_mac_audit_2026_07_12": {
+    "film_domain": {
+      "path": "data/film_domain",
+      "present": true,
+      "jpeg_files": 3896,
+      "named_stock_files": 3786,
+      "vintage_generic_files": 110,
+      "approx_gib": 8.355,
+      "scientific_status": "quarantine",
+      "reason": "No durable per-image rights/source/roll/scanner groups; prior 4,210-row audit found 0 eligible rows."
+    },
+    "filmcase_velvia_references": {
+      "path": "data/filmcase_references/velvia_50",
+      "present": true,
+      "manifest_rows": 28,
+      "unique_images": 26,
+      "owners": 8,
+      "largest_owner_rows": 15,
+      "scientific_status": "development_only"
+    },
+    "ip2p_train": {
+      "path": "data/ip2p_train",
+      "present": true,
+      "pseudo_pairs": 100,
+      "scientific_status": "smoke_only",
+      "reason": "Inputs were deterministically colour-corrupted from film targets; these are not captured digital/film pairs."
+    },
+    "legacy_processed_manifest": {
+      "path": "data/processed/manifest.jsonl",
+      "present": false
+    },
+    "fivek_source": {
+      "path": "data/raw/fivek",
+      "present": false
+    },
+    "fivek_freeze_v1": {
+      "path": "outputs/fivek_auto_optimize/freeze_v1",
+      "present": false,
+      "note": "The documented 903-file/6.98GB freeze is historical Windows evidence, not current Mac data."
+    },
+    "filmset": {
+      "path": "data/raw/filmset",
+      "present": false,
+      "remote_status": "verified_sample_download_2026_07_12",
+      "public_archive_bytes": 11262805356,
+      "verified_member": "FilmSet/test/Cinema/DSCF7071.png",
+      "verified_member_sha256": "7c4b1b8f716448941135eef5dc7d4f9d0a0575d0a5d859ca33a7b3e1745fc9d2",
+      "research_role": "approval-gated paired-blind film-recipe colour-transfer development"
+    },
+    "blueneg": {
+      "path": "data/raw/blueneg",
+      "present": false,
+      "remote_status": "verified_file_tree_and_range_read_2026_07_12",
+      "metadata_rows": 491,
+      "roll_ids": 53,
+      "film_type_strings": 13,
+      "preview_8bit_bytes": 687735976,
+      "pseudogt_8bit_bytes": 268012985,
+      "research_role": "approval-gated grouped-real-film mechanism pilot, not digital-to-film truth"
+    },
+    "digitalfilm_dataset": {
+      "path": "data/raw/digitalfilm_dataset",
+      "present": false,
+      "remote_status": "verified_ungated_file_tree_2026_07_12",
+      "zip_bytes": 3351489014,
+      "scientific_status": "quarantine",
+      "reason": "The dataset card is MIT, but the description says film samples were collected from the Internet and does not provide per-image rights/roll/scanner lineage."
+    },
+    "dped": {
+      "path": "data/raw/dped",
+      "present": false
+    },
+    "physics": {
+      "path": "data/physics",
+      "present": true,
+      "present_pdfs": 11,
+      "recorded_pdfs": 13,
+      "scientific_status": "prior_only"
+    }
+  },
   "resources": {
     "fivek_dng": {
       "status_on_windows": "complete",
+      "status_current_mac": "absent_2026_07_12",
       "target_path": "data/raw/fivek/fivek_dataset.tar",
       "expected_files": 5000,
       "sha1": "ebb1669430652167ffcc2153d9e1b211d0843bd4",
@@ -26,6 +107,7 @@
     },
     "fivek_expert_c_tiff16": {
       "status_on_windows": "complete",
+      "status_current_mac": "absent_2026_07_12",
       "target_path": "data/raw/fivek/expert_tiff/c",
       "expected_files": 5000,
       "expected_bytes": 260847672320,
@@ -35,6 +117,7 @@
     },
     "filmset": {
       "status_on_windows": "complete",
+      "status_current_mac": "absent_remote_verified_2026_07_12",
       "archive": "data/raw/filmset/filmset.zip",
       "target_path": "data/raw/filmset/FilmSet",
       "expected_files": 21140,
@@ -44,10 +127,17 @@
         "python -m zipfile -e data/raw/filmset/filmset.zip data/raw/filmset"
       ],
       "source": "https://www.kaggle.com/datasets/xuhangc/filmset",
-      "license_note": "Check Kaggle dataset terms before publishing weights or examples."
+      "public_archive_bytes_checked_2026_07_12": 11262805356,
+      "reachability_evidence": {
+        "method": "official Kaggle CLI unauthenticated file listing plus one-member download",
+        "member": "FilmSet/test/Cinema/DSCF7071.png",
+        "sha256": "7c4b1b8f716448941135eef5dc7d4f9d0a0575d0a5d859ca33a7b3e1745fc9d2"
+      },
+      "license_note": "Kaggle API metadata labels the dataset MIT. Snapshot archive-level terms and attribution before publishing weights or examples; targets are Capture One recipes, not real-film scans."
     },
     "dped": {
       "status_on_windows": "complete_archives_downloaded",
+      "status_current_mac": "absent_2026_07_12",
       "target_path": "data/raw/dped",
       "restore_command": "python scripts/download_data.py dped --dped-part all",
       "archives": [
@@ -155,7 +245,8 @@
       "contact": "filmgrainstylemanagement@interdigital.com"
     },
     "film_domain_flickr": {
-      "status_on_windows": "complete_in_git_history_but_missing_from_current_checkout",
+      "status_on_windows": "complete_in_git_history",
+      "status_current_mac": "present_but_quarantined_2026_07_12",
       "target_path": "data/film_domain",
       "restore_action": "Use scripts/scrape_films.py with a local .env containing Flickr credentials, or rsync from the authorized machine.",
       "source": "Flickr API",
@@ -170,7 +261,51 @@
         "velvia_50": 384,
         "hp5": 500
       },
-      "license_note": "User/API-collected images; do not redistribute. Verify Flickr license metadata before training public or commercial checkpoints."
+      "current_mac_files": 3896,
+      "current_mac_named_stock_files": 3786,
+      "current_mac_vintage_generic_files": 110,
+      "license_note": "User/API-collected images; do not redistribute or train paper/public/commercial checkpoints. The current files lack the durable rights/source/roll/scanner groups required to reopen the quarantined lane."
+    },
+    "blueneg": {
+      "status_current_mac": "absent_remote_verified_2026_07_12",
+      "target_path": "data/raw/blueneg",
+      "source": "https://huggingface.co/datasets/ttgroup/blueneg-release",
+      "metadata_source": "https://huggingface.co/datasets/ttgroup/blueneg-release/resolve/main/meta.json",
+      "metadata_rows": 491,
+      "roll_ids": 53,
+      "film_type_strings": 13,
+      "initial_optional_lanes": {
+        "negative-preview-8bit": 687735976,
+        "pseudogt-8bit": 268012985
+      },
+      "restore_action": "After explicit approval and U5.CT3 pass, snapshot LICENSE/meta.json first and download only the two 8-bit lanes needed for U5.CT6.",
+      "reachability_evidence": {
+        "method": "Hugging Face file-tree API plus 1024-byte HTTP range read",
+        "member": "negative-preview-8bit/blue-intact/19880215B-26-tama-safari-bogor.preview.png",
+        "reported_bytes": 1707444
+      },
+      "license_note": "Custom attribution license permits academic and commercial use with the prescribed credit. Recheck and preserve the exact LICENSE before use.",
+      "claim_note": "Negative restoration/archive data with physical roll groups; not captured digital-to-film ground truth."
+    },
+    "digitalfilm_dataset": {
+      "status_current_mac": "absent_remote_verified_2026_07_12",
+      "target_path": "data/raw/digitalfilm_dataset",
+      "source": "https://huggingface.co/datasets/Richards-Sheehy-sudo/DigitalFilm_dataset",
+      "remote_zip_bytes_checked_2026_07_12": 3351489014,
+      "reachability_evidence": {
+        "method": "Hugging Face file-tree API plus 1024-byte HTTP range read",
+        "member": "Kodak_gold_200.zip",
+        "reported_bytes": 849129648
+      },
+      "remote_files": [
+        "Kodak_Aerochrome.zip",
+        "Kodak_E100.zip",
+        "Kodak_gold_200.zip",
+        "fuji_color_200.zip",
+        "rollei_infrared_400.zip"
+      ],
+      "license_note": "The Hugging Face card labels the repository MIT, but image-level source rights are not demonstrated.",
+      "claim_note": "Downloadable but quarantined: Internet-collected film samples lack per-image rights/roll/scanner lineage and cannot support confirmatory training."
     },
     "cinestill800t": {
       "status_on_windows": "blocked_dataset_not_published_in_repo",
@@ -184,13 +319,11 @@
     }
   },
   "recommended_restore_order": [
-    "python scripts/download_data.py cie",
-    "python scripts/download_data.py physics",
-    "python scripts/download_data.py camera-spectral",
-    "python scripts/download_data.py fivek-dng",
-    "python scripts/download_data.py fivek-expert --expert c --workers 8",
-    "python scripts/download_data.py filmset-zip",
-    "python -m zipfile -e data/raw/filmset/filmset.zip data/raw/filmset",
-    "python scripts/download_data.py dped --dped-part all"
+    "Complete U5.CT1/U5.CT3 no-data identifiability gate before any large acquisition.",
+    "After U5.CT3 pass and explicit approval: python scripts/download_data.py filmset-zip",
+    "After FilmSet download: python -m zipfile -e data/raw/filmset/filmset.zip data/raw/filmset",
+    "After U5.CT3 pass and explicit approval: snapshot BlueNeg LICENSE/meta.json, then use the official Hugging Face client to fetch only negative-preview-8bit/** and pseudogt-8bit/**.",
+    "Restore CIE/physics/camera-spectral only for files missing from the current Mac.",
+    "Restore DPED or FiveK only for a separately justified auxiliary baseline; neither is film truth."
   ]
 }

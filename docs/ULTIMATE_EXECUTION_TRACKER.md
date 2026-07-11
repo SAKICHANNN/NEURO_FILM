@@ -1,7 +1,7 @@
 # K-MCFM Ultimate Execution Tracker
 
-> Active planning authority from 2026-07-10.
-> Strategy and research basis: `docs/planning/ULTIMATE_ROADMAP_2026.md`.
+> Active planning authority from 2026-07-10; publication priority corrected on 2026-07-12.
+> Primary research basis: `docs/planning/ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`. Product strategy: `docs/planning/ULTIMATE_ROADMAP_2026.md`.
 > This tracker records intended work; only rows marked `complete` are implemented facts.
 
 ---
@@ -10,7 +10,14 @@
 
 **Parent goal `ULT`**: deliver a local-first, color-managed film-imaging product that looks strongly stylized while producing no confirmed severe glitch/artifact on the frozen gold set. Calibrated stock/process reproduction is a deferred optional evidence lane with stricter claim requirements.
 
-**Autonomy invariant**: the active Style-safe/FilmCase path cannot depend on the owner supplying images, film/digital pairs, per-image labels, new preference votes or manual annotation. The frozen preference set `53/55/56/33/09/03/02/01` is the only current owner-preference evidence. Research may proceed autonomously within existing rights/cost gates; external human validation is a later release activity, not a prerequisite for the research DAG.
+**Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
+depend on the owner supplying images, film/digital pairs, per-image labels, new
+preference votes or manual annotation. Public online data is an allowed source
+when concrete file access is verified and rights/size/claim gates are recorded;
+mere paper mentions or placeholder links do not count. The frozen preference
+set `53/55/56/33/09/03/02/01` is the only current owner-preference evidence.
+External human validation is a later gated activity, not a prerequisite for
+the no-data research DAG.
 
 ### Definition of Ready
 
@@ -51,14 +58,16 @@
 | Active research cannot depend on new user data or labels | user-authoritative | User explicitly stated that no film/digital pairs or other assistance will be supplied | Only an explicit user capability/scope change |
 | Deterministic full-resolution renderer is the Style-safe core | accepted for plan | Current diffusion paths produced severe detail/identity artifacts; bounded color operators offer a stronger style/artifact frontier | Only if a new method passes the same severe-artifact and preference gates |
 | Small model may predict bounded parameters | candidate | LUT/grid/curve prediction adds style/context with controlled artifact risk | Preferred deterministic family cannot reach the style frontier |
-| FilmCase is the primary bounded-ML research hypothesis | candidate | Learn which explicit transformation applies to a scene instead of regressing an average RGB target | Retire if identifiability or Oracle-routing gates fail |
+| Roll2Film is the primary method-paper hypothesis | candidate | The paper must perform colour transfer; roll-group repeated measures may identify a shared explicit operator without same-scene pairs | Retire if synthetic group scaling, matched real-roll evidence, hidden transfer or novelty gates fail |
+| FilmCase/FARO are supporting baselines and product-system work | accepted for plan | Retrieval, selection, risk audit and fallback remain useful but do not replace an algorithmic colour-transfer contribution | Reopen as a separate system paper only after Roll2Film/product evidence and an explicit scope decision |
 | Unpaired evidence supports only film-inspired claims | accepted for plan | A film scan does not identify the stock/process/scanner transform without a matched input | Only a rights-cleared paired measurement lane can promote calibrated claims |
 | Generative image models are excluded from FilmCase | accepted for plan | User explicitly excluded the class; FilmCase renderer and supervision remain non-generative | Only a new explicit user instruction |
 | Generative editing is isolated | accepted for plan | User excluded it from FilmCase; current paths are also artifact-prone | Future Creative work requires a separate explicit instruction and approval |
 | Stock profile includes process and interpretation | accepted for plan | Negative/slide/B&W do not have one intrinsic display RGB look | None; schema invariant |
 | Portra 400 + Velvia 50 are pilot stocks | proposed | Orthogonal negative/slide behaviors and high user value | Availability, rights or lab feasibility fails |
-| FiveK is optional neutral auto-base only | accepted for plan | Expert retouch is not film identity; full local sources were deleted | Sources/rights restored and product evidence supports it |
-| Community/Flickr/FilmSet assets are research-only by default | accepted for plan | Missing or limited rights; FilmSet is Capture One recipe target | Per-asset legal clearance |
+| FiveK is optional neutral auto-base only | accepted for plan | Expert retouch is not film identity; source and historical freeze pack are absent on the current Mac | Sources/rights restored and product evidence supports it |
+| Local Flickr assets are quarantined | observed | 3,896 JPEGs exist, but the 4,210-row legacy audit found 0 eligible rows and no roll/source/scanner grouping | New durable lineage, rights and group audit |
+| FilmSet/BlueNeg are approval-gated research lanes | accepted for plan | FilmSet supplies hidden film-recipe pairs; BlueNeg supplies 53 real roll groups, but neither is named-stock digital/film truth | No-data gates pass, download approval and license snapshot |
 
 ---
 
@@ -94,6 +103,16 @@ ULT  Ultimate strongly stylized, artifact-safe film-imaging product
 │   ├── U4.5 Performance/cross-platform benchmark
 │   └── U4.6 Conditional calibrated-authenticity scorecard
 ├── U5  Bounded-AI challenge
+│   ├── U5.CT0 Algorithm-first colour-transfer reframe and data/novelty audit
+│   ├── U5.CT1 Explicit invertible operator contract and pseudo-roll simulator
+│   ├── U5.CT2 Metadata-only FilmSet/BlueNeg grouping and pair-blinding contracts
+│   ├── U5.CT3 Known-operator group-size/nuisance identifiability gate
+│   ├── U5.CT4 Approval-gated FilmSet restore and frozen paired-blind split
+│   ├── U5.CT5 Unpaired pseudo-roll transfer baselines and Roll2Film solver
+│   ├── U5.CT6 Approval-gated BlueNeg correct-roll matched-control pilot
+│   ├── U5.CT7 Amortised set inference and complete ablation
+│   ├── U5.CT8 Hidden transfer/style/artifact evaluation
+│   ├── U5.CT9 Optional controlled named-stock calibration
 │   ├── U5.FC0 Autonomous FilmCase research and claim contract
 │   ├── U5.FC1 Lineage, identifiability, anchors and evaluator freeze
 │   ├── U5.FC2 Bounded transform/case bank
@@ -130,7 +149,7 @@ Critical path:
 
 ```text
 U0 ─┬→ U1 → U2 deterministic transform foundation ─┐
-    └→ U4 artifact/style/evaluator foundation ─────┼→ U5 FilmCase + U6 effects → U7 → U8
+    └→ U4 artifact/style/evaluator foundation ─────┼→ U5 Roll2Film + supporting FilmCase/FARO → U7 → U8
                                                    └→ U3 remains a deferred optional evidence lane
 ```
 
@@ -149,11 +168,11 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | U0.2 | blocked | Root `LICENSE`, NOTICE and public-claim decision | owner/legal choice | License file exists; dependencies/assets audited |
 | U0.3 | complete (reference lane blocked) | Isolated manifest-v2 lineage/eligibility audit; all uncertain rows quarantined | none | 4,210/4,210 classified; 0 source groups/0 eligible rows; 140 near pairs retained inside quarantine; evidence: `docs/FILMCASE_U03_LINEAGE_AUDIT.md` |
 | U0.4 | complete | CPU-safe CI, checksum baseline, local environment capture and explicit non-gold benchmark registry | U0.1 | `configs/reproducibility_baseline.json`, verifier, CI workflow, 25 local tests; evidence: `docs/REPRODUCIBILITY_BASELINE.md` |
-| U0.5 | complete | Correct stale FiveK/data reproduction state | U0.1 | Reproduction manifest now records the local legacy manifest and deleted full-source boundary; 2026-07-11 |
+| U0.5 | complete, corrected | Reconcile local bytes, historical Windows state and verified remote access | U0.1 | 2026-07-12 audit records 3,896 quarantined local Flickr JPEGs, absent legacy manifest/FiveK freeze, 26 unique Velvia references and 100 synthetic pseudo-pairs; FilmSet member download and BlueNeg/DigitalFilm range reads prove remote availability |
 
 Restrictions:
 
-- preserve untracked user files `halationguide.md` and `scripts/make_velvia50_scheme_comparison_sheets.py`;
+- preserve and do not stage the existing user deletion of `data/raw/.gitkeep`;
 - do not delete old experiments; mark them historical;
 - do not push the current local-only branch without explicit approval;
 - do not add an MIT license merely because old docs say MIT—the owner must confirm.
@@ -244,11 +263,12 @@ Provisional promotion rules, frozen before each experiment:
 - calibrated claims only: full-roll holdout and stock-match evidence apply when a profile is labeled calibrated;
 - exact thresholds and severity examples are frozen before final evaluation, not chosen after seeing candidate results.
 
-These U4 rules remain product/exploratory promotion rules. They do not define
-the confirmatory FARO endpoint: U5.R1+ evaluates the frozen deployed policy on
-every independent scene including fallback, uses a marginal scene-level risk
-bound plus non-trivial coverage, and never estimates preference only on a
-method-dependent survivor subset.
+These U4 rules remain product/exploratory promotion rules and supporting
+Roll2Film evaluation. They do not define the primary algorithmic claim. FARO's
+complete-policy endpoint remains valid only for a later system/product claim;
+it evaluates every independent scene including fallback, uses a marginal
+scene-level risk bound plus non-trivial coverage, and never estimates
+preference only on a method-dependent survivor subset.
 
 #### Known user preference anchor — Velvia 50
 
@@ -281,13 +301,23 @@ User feedback also states that many theoretically stronger candidates look techn
 - evaluate a color-only pass with grain/halation disabled and a full-look pass with effects enabled, so effects cannot hide a weak color model;
 - a salient but stock-inaccurate result may ship as a clearly labeled `film-inspired` style after artifact/product gates; it cannot use a calibrated stock claim.
 
-### U5 — Bounded-AI challenge
+### U5 — Algorithmic colour transfer plus bounded product baselines
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U5.R0 | complete | FARO literature/novelty audit, problem formulation and research DAG | user research reframe + current evidence | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`; 2026-07-11 |
-| U5.R0T | ready, optional | Dedicated statistical novelty audit and theorem-or-close decision | U5.R0 | Distinguish LTT, two-stage/joint selective certificates, noisy-label and non-exchangeable CRC before any method-paper claim |
-| U5.R1A | ready | ChromaticTail/FilmStyleSafe ontology, annotation schema, A0/A1 + B0-B4 split contract and sampling/preregistration/power worksheet | U4 foundation | Transformation-induced chromatic-severe labels, legitimate-local hard negatives, traceable look rubric, multirater error rule, scene/rater frames and exact estimands |
+| U5.CT0 | complete | Roll2Film algorithm-first problem, current-data audit, claim ladder, nearest-work boundary and research DAG | user correction + local/public evidence | `docs/planning/ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`; 2026-07-12 |
+| U5.CT1 | ready | Versioned invertible explicit-operator contract plus known-operator pseudo-roll simulator | U1/U2 interfaces; no external data | Forward/inverse/Jacobian/identity/property tests and deterministic synthetic fixtures |
+| U5.CT2 | ready | Metadata-only FilmSet/BlueNeg eligibility, grouping, license snapshot and FilmSet pair-blinding contract | U0.3; no image download | Fail-closed manifests, hashes, zero group leakage and tests proving training cannot access pairs |
+| U5.CT3 | pending on CT1 | Group-size, content-coverage and nuisance identifiability study | CT1 | Known-operator recovery improves from 1 to 2/4/8/16/32 independent scenes; shuffled groups and flexible-nuisance controls fail as expected |
+| U5.CT4 | approval-gated | Restore/download FilmSet and freeze 4,657-train/638-hidden-test paired-blind corpus | CT2/CT3 pass | Explicit approval, archive/terms/hash evidence and immutable split |
+| U5.CT5 | pending on CT3/CT4 | Strong unpaired colour-transfer baselines plus Roll2Film solver on pseudo-rolls | CT3/CT4 | Method frozen before hidden pairs; group-conditioned gain over single-reference and pooled-unpaired baselines |
+| U5.CT6 | approval-gated | BlueNeg 8-bit preview/pseudo-GT correct-roll matched-control pilot | CT2/CT3 pass | Explicit approval; correct roll beats random, same-film wrong-roll, date/location/scene-matched and shuffled-label controls |
+| U5.CT7 | blocked on CT5/CT6 | Optional permutation-invariant amortised set inference and complete ablation | CT5/CT6 pass | Simplest survivor; no gain from shortcut, kitchen-sink or unsupported spatial branch |
+| U5.CT8 | blocked on CT7 | Hidden transfer/style/artifact evaluation | CT7 + participant approval for human claims | Actual transformed outputs pass target/style/artifact endpoints with uncertainty and failure gallery |
+| U5.CT9 | deferred | Controlled named-stock/process/scan calibration | new explicit capture/lab scope | Multiple rolls/process-scan sessions and whole-roll holdout; only then Level-C language |
+| U5.R0 | complete, supporting | FARO literature/novelty audit, problem formulation and system DAG | user research reframe + current evidence | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`; 2026-07-11; paper priority superseded 2026-07-12 |
+| U5.R0T | deferred optional support | Dedicated statistical novelty audit and theorem-or-close decision | separate future FARO system-paper scope | Distinguish LTT, two-stage/joint selective certificates, noisy-label and non-exchangeable CRC before any statistical-method claim |
+| U5.R1A | ready support | ChromaticTail/FilmStyleSafe ontology, annotation schema, split and sampling/preregistration worksheet | U4 foundation | Supporting transformation-induced chromatic-severe labels, legitimate-local hard negatives and traceable look rubric for CT5-CT8/product QA |
 | U5.R1B | pending | Stress generator plus real cross-algorithm failure suite | U5.R1A | Parent-scene grouping, no final-test leakage, current known failures represented |
 | U5.R1C | pending | Conventional-metric failure study plus prospective intent-aware SCIS v0 | U5.R1B | A0 development and A1 hidden low-FPR sensitivity on unseen transform families/legitimate-local hard negatives; pass/fail novelty decision |
 | U5.R2A | pending | Versioned numerically constrained operator contract | U1/U2 renderer foundation | Identity/curve/LUT property tests, golden vectors and explicit non-safety counterexample |
@@ -316,9 +346,29 @@ User feedback also states that many theoretically stronger candidates look techn
 | U5.5 | research-only | Generative target/Creative comparison outside FilmCase | separate future explicit instruction + U4.1 | Not run by the autonomous non-generative FilmCase plan |
 | U5.6 | pending | Winner distillation/runtime conversion | U5.FC8 winner | Non-inferior FP32/FP16/CoreML/ONNX parity |
 
-FARO is the publication-oriented parent hypothesis. FilmCase, source retrieval, hard expert selection and its FC nodes remain required baselines/ablations; they are no longer assumed to be the final novel method. Complete-policy certification is existing statistical machinery unless U5.R0T/R4T proves a distinct extension; the default FARO result is a CV system/application paper, while ChromaticTail/FilmStyleSafe is the primary novelty path. Stop at the simplest passing model. A valid result is “the analytic/global renderer wins; delete the retrieval and neural dependency.” Identifiability failure closes the unpaired-reference lane; failure of the fixed-bank empirical-ceiling gate closes all adaptive routing/proposal work. Candidate-level risk calibration never licenses the final selected policy. A film scan is never treated as an input/output pair.
+Roll2Film is the publication-oriented parent hypothesis. It must infer and
+apply an explicit colour operator; benchmark, selection and rejection work
+cannot substitute for transfer. Its central falsifiable claim is that
+content-diverse frames grouped by physical roll provide repeated-measure weak
+supervision for a reusable roll-look operator. A film scan is never silently
+treated as an input/output pair, and a roll-look is never called stock truth
+without controlled paired evidence. Failure of CT3, CT5, CT6, CT8 or the
+dedicated novelty gate closes the method-paper route; it does not promote a
+standalone benchmark fallback.
 
-The current novelty audit, FARO system, ChromaticTail/FilmStyleSafe benchmark and experiment DAG live in `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`. The earlier CaseRecord schema and FilmCase-specific baselines remain in `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`.
+FARO, ChromaticTail/FilmStyleSafe, FilmCase, source retrieval, hard expert
+selection and the FC/R nodes remain evaluation assets, engineering/system
+baselines and possible later product work. Complete-policy certification is
+existing statistical machinery unless a separately scoped R0T/R4T audit proves
+a distinct extension. Candidate-level risk calibration never licenses a final
+selected policy.
+
+The current algorithm/data/experiment authority is
+`docs/planning/ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`. Supporting FARO
+system/evaluation context remains in
+`docs/planning/FARO_RESEARCH_PROGRAM_2026.md`; the earlier CaseRecord schema and
+FilmCase baselines remain in
+`docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`.
 
 FLUX.2 gate:
 
@@ -385,8 +435,11 @@ Public release requires explicit human approval and written license/trademark/se
 1. `U0.1` (complete 2026-07-10): reconcile active docs and mark diffusion/IP2P as retired research.
 2. `U5.FC0` (complete 2026-07-11): freeze the autonomous, unpaired, non-generative FilmCase research contract.
 3. `U0.3` (complete, reference lane blocked): isolated manifest-v2 audit classified all 4,210 rows; no source/uploader/roll/scanner group was recoverable, so all 4,210 rows are quarantined and reference-derived FilmCase is closed pending auditable provenance. See `docs/FILMCASE_U03_LINEAGE_AUDIT.md`.
-4. `U4.1/U4.2`: freeze severe-artifact examples and the autonomous style/appeal scorecard; `U4.6` is only for calibrated profile claims.
-5. `U0.2`: ask owner to confirm intended code license and release posture.
+4. `U5.CT0` (complete 2026-07-12): make Roll2Film colour transfer the primary paper and demote benchmark/system work to support.
+5. `U5.CT1`: freeze the explicit invertible operator contract and known-operator pseudo-roll simulator.
+6. `U5.CT2`: build metadata-only FilmSet/BlueNeg grouping, eligibility and pair-blinding contracts.
+7. `U4.1/U4.2`: maintain severe-artifact examples and style/appeal scorecard as CT evaluation support; `U4.6` remains calibrated-only.
+8. `U0.2`: ask owner to confirm intended code license and release posture.
 
 Evidence bundle: document diff, manifest schema, duplicate/leakage report, release-blocker list.
 
@@ -407,12 +460,13 @@ Stop if the new path cannot reproduce current 8-bit legacy fixtures; repair comp
 
 Evidence bundle: schema fixtures/migrations, property tests, identity golden vectors, CLI `inspect` prototype.
 
-### Week 4 — evaluation and FilmCase identifiability
+### Week 4 — colour-transfer identifiability and supporting evaluation
 
-1. `U4.1`: expand the frozen safety corpus with face/text/skin/sky/ramp/texture/highlight cases.
-2. `U4.2/U5.FC1`: preregister the autonomous blind visual protocol, nuisance-matched controls and source-controlled identifiability test.
-3. `U4.5`: benchmark current renderer on exact target hardware.
-4. Keep `U3` deferred; it is not an owner-data request or dependency.
+1. `U5.CT3`: run group-size/coverage/nuisance curves on known synthetic operators.
+2. Stop the data-bearing paper route immediately if roll grouping adds no identifiable information.
+3. `U4.1/U4.2`: expand the supporting safety/style corpus with face/text/skin/sky/ramp/texture/highlight cases.
+4. `U4.5`: benchmark current renderer on exact target hardware for product evidence.
+5. Keep `U3` deferred; it is not an owner-data request or dependency.
 
 No film purchase, lab booking, model download or GPU training occurs without the corresponding approval.
 
@@ -422,6 +476,10 @@ No film purchase, lab booking, model download or GPU training occurs without the
 
 | Experiment | Hypothesis | Fixed baseline | One changed variable | Promotion gate | Stop condition |
 |---|---|---|---|---|---|
+| EXP-CT-00 | Independent frames from one shared operator make that operator increasingly identifiable | known synthetic matrix/spline/LUT operators | pseudo-roll group size and colour coverage | monotonic recovery gain over single/shuffled groups under restricted nuisance | no group-size gain or nuisance absorbs the operator |
+| EXP-CT-01 | Roll grouping helps recover an unpaired film-recipe transfer | FilmSet training targets with all pair access destroyed | correct pseudo-roll group versus pooled/shuffled groups | hidden 638-pair transfer gain over strong unpaired baselines while retaining style | no meaningful gap closure to paired upper bound |
+| EXP-CT-02 | Real physical roll ID contains stable reusable colour-operator evidence | BlueNeg 8-bit preview/pseudo-GT, metadata matched | correct roll versus random/same-film/date-location-scene-matched wrong roll | correct-roll hidden-frame advantage survives all controls | advantage disappears or is driven by deterioration/scanner/exposure |
+| EXP-CT-03 | Support shrinkage prevents unsupported strong-colour extrapolation without washing out the look | strongest CT-01 explicit operator | support-aware prior/identity shrinkage | fewer hidden severe chromatic failures at matched style strength | gain comes only from weakening the transfer |
 | EXP-VIS-00 | A normalized deterministic bridge can preserve #56 style with #09 containment | #09 and #56 on one manifest | strength/luma + source/chroma gamut mode | Higher style/appeal than #09; no severe gold failure | red-speckle/gradient artifact or no style gain |
 | EXP-FC-00 | A stock-associated unpaired signal survives source/scene controls | current random file split | group split + identifiability controls | Signal exceeds permutation/source/grayscale controls | Close reference-derived lane |
 | EXP-FC-01 | Multiple stable bounded case transforms exist | normalized #09/#56 + global champion | case construction/capacity ladder | Nontrivial stable modes after saturation/contrast matching | Keep one global transform |
@@ -445,6 +503,12 @@ Each experiment produces: contract, config, input manifest hash, environment, ra
 ---
 
 ## 7. Multi-agent / multi-chat ownership protocol
+
+Default execution mode is **Mode A** (one writer). **Mode B** may be used for
+independent read-only literature, data and hostile-review leaves; the root
+integration owner alone edits shared authority files and commits the integrated
+evidence bundle. Mode C requires an explicit same-project coordination artifact
+before any write.
 
 Before parallel writes, each leaf declares:
 
@@ -479,6 +543,11 @@ For every meaningful node change:
 - [ ] make one narrow local commit;
 - [ ] record remaining approval and unknowns.
 
+After propagation, re-integrate bottom-up: verify changed leaves first, then
+their U5.CT parent, sibling evaluation/product contracts, `ULT`, active docs and
+the final evidence bundle. Record propagation evidence in the project agent log
+before closure.
+
 ---
 
 ## 9. Approval gates
@@ -505,13 +574,15 @@ Current approval state: research and local documentation are authorized; all ite
 - Saturation-gate failure: `docs/AI_COLOR_ENGINE_CHALLENGE_RESULTS.md`
 - Pseudo-teacher LUTs: `docs/NEURAL_FILM_LUT_V2_RESULTS.md`
 - Input path: `docs/PREPROCESSING_INPUT_PIPELINE_TRACKER.md`, `src/preprocess/`, `scripts/render_film.py`
-- FiveK deletion/freeze state: `docs/FIVEK_AUTO_BASE_MODEL_TRACKER.md`
+- Current data and algorithm-paper authority: `docs/planning/ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`, `docs/DATA_REPRODUCTION_MANIFEST.json`
+- Historical FiveK deletion/freeze state: `docs/FIVEK_AUTO_BASE_MODEL_TRACKER.md`; do not treat it as current-Mac availability
 - Halation evidence limits: `docs/HALATION_SYSTEM_SPEC.md`
 - Data rights boundary: `docs/data/DATA_LICENSE_BOUNDARIES.md`
-- Research synthesis and primary external links: `docs/planning/ULTIMATE_ROADMAP_2026.md`
+- Product research synthesis and earlier external links: `docs/planning/ULTIMATE_ROADMAP_2026.md`
+- Supporting artifact/system-risk research: `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`
 - Autonomous unpaired FilmCase scientific DAG: `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`
 - Initial visual audit and deterministic bridge experiment: `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`
 
 ---
 
-*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11. U0.3/U0.4/U0.5 completed 2026-07-11; reference-derived FilmCase is blocked by missing provenance, while frozen-anchor, deterministic-renderer and U4 gold/stress evaluation leaves remain ready. Integration owner: repository owner or explicitly assigned Codex root agent.*
+*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11; Roll2Film algorithm-paper subtree opened: 2026-07-12. U0.3 remains a fail-closed 4,210-row legacy audit while the current disk contains 3,896 quarantined JPEGs. Next research leaves are data-independent U5.CT1/U5.CT2; FilmSet/BlueNeg downloads remain approval-gated. Integration owner: repository owner or explicitly assigned Codex root agent.*

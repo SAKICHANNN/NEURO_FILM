@@ -1,5 +1,13 @@
 # K-MCFM Ultimate 路线图（更新至 2026-07-11）
 
+> **2026-07-12 研究优先级修正：**产品架构内容继续有效，但本文的
+> FilmCase/FARO 论文优先级已被
+> [`ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md`](ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md)
+> 取代。主论文必须是直接执行色彩迁移的算法；FilmCase、FARO 与
+> FilmStyleSafe 降为工程基线、产品安全层和评估支持。网上数据只要经
+> 具体文件列表与实际字节下载验证即可计入 available data，不以是否已
+> 存在本机为界。
+
 > 状态：战略研究与 FilmCase 科研分支已冻结；执行状态以 `docs/ULTIMATE_EXECUTION_TRACKER.md` 为准，不是“已实现”声明。
 > 适用仓库：`neuro_film` 当前分支及其后续演进。
 > 核心判断：项目应从“扩散模型生成胶片感”转向“Style-safe 确定性渲染 + 自主无配对 FilmCase 路由”，把 calibrated measurement 保留为长期可选分支，并把生成式编辑隔离为 Creative。
