@@ -192,3 +192,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Files changed:** `src/filmcase/__init__.py`, `src/filmcase/lineage.py`, `scripts/audit_filmcase_manifest.py`, `tests/test_filmcase_lineage.py`, `docs/FILMCASE_U03_LINEAGE_AUDIT.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/DATA_REPRODUCTION_MANIFEST.json`, `docs/data/DATA_LICENSE_BOUNDARIES.md`, `scripts/README.md`, this log.
 - **Verification:** targeted tests, compile checks, two full local audits (final audit 4,210 rows), JSON parse and diff check; full project regression is required before commit.
 - **Risk/handoff:** recovery needs durable per-row provenance and a new group-aware duplicate audit. Do not infer it, download new data, train an expert/router, publish data-derived assets, or weaken quarantine without a valid evidence source and applicable approval.
+
+---
+
+## 2026-07-11 — U0.4 local reproducibility baseline
+
+- **Parent/node:** `ULT > U0 > U0.4`
+- **Implementation:** added a checksum-pinned reproducibility configuration, a read-only verifier with optional ignored environment capture, focused tests, and a CPU-only GitHub Actions workflow. The existing benchmark/fixture registries remain explicitly non-gold until U4.1 freezes the severe-artifact corpus.
+- **Evidence:** local verifier passed against the committed config hashes and wrote an ignored report for Python 3.12.10, Windows 11, Pillow 12.1.1, OmegaConf 2.3.0, pytest 9.0.3 and torch 2.11.0+cu128 at commit `87b5d69`.
+- **Containment:** no renderer, training path, image, output (other than ignored environment report), data manifest, user file, remote run or dependency download was changed.
+- **Handoff:** U0 reproducibility prerequisites are now complete except the owner-controlled license decision. U4.1/U4.2 are next safe evaluation leaves; no claim of zero severe artifacts is allowed yet.

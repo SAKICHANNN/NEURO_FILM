@@ -1,0 +1,19 @@
+name: Local-safe CI
+
+on:
+  pull_request:
+  push:
+    branches: ["research/**", "codex/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install pillow omegaconf pytest
+      - run: python scripts/verify_reproducibility_baseline.py
+      - run: python -m pytest -q

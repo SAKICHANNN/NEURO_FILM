@@ -76,6 +76,7 @@ files.
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
 | `audit_filmcase_manifest.py` | Read-only legacy-manifest audit that writes quarantined FilmCase manifest-v2 and duplicate evidence under ignored `outputs/filmcase/`; never modifies source data. |
+| `verify_reproducibility_baseline.py` | Verify tracked checksums/tests/benchmark registries and optionally write an ignored local environment report; never renders or reads image assets. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |
 | `combine_ip2p_dataset.py` | Combine IP2P dataset shards. |

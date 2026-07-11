@@ -148,7 +148,7 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | U0.1 | complete | Active docs agree on deterministic current baseline and retired diffusion path | U0.0 | AGENTS/README/IMPL_PLAN/TASK_BOARD and planning index agree; 2026-07-10 |
 | U0.2 | blocked | Root `LICENSE`, NOTICE and public-claim decision | owner/legal choice | License file exists; dependencies/assets audited |
 | U0.3 | complete (reference lane blocked) | Isolated manifest-v2 lineage/eligibility audit; all uncertain rows quarantined | none | 4,210/4,210 classified; 0 source groups/0 eligible rows; 140 near pairs retained inside quarantine; evidence: `docs/FILMCASE_U03_LINEAGE_AUDIT.md` |
-| U0.4 | ready | CI + lock capture + frozen benchmark registry | U0.1 | Clean clone tests; checksums; device/env report |
+| U0.4 | complete | CPU-safe CI, checksum baseline, local environment capture and explicit non-gold benchmark registry | U0.1 | `configs/reproducibility_baseline.json`, verifier, CI workflow, 25 local tests; evidence: `docs/REPRODUCIBILITY_BASELINE.md` |
 | U0.5 | complete | Correct stale FiveK/data reproduction state | U0.1 | Reproduction manifest now records the local legacy manifest and deleted full-source boundary; 2026-07-11 |
 
 Restrictions:
@@ -494,4 +494,4 @@ Current approval state: research and local documentation are authorized; all ite
 
 ---
 
-*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11. U0.3/U0.5 completed 2026-07-11; reference-derived FilmCase is blocked by missing provenance, while frozen-anchor, deterministic-renderer and evaluation leaves remain ready. Integration owner: repository owner or explicitly assigned Codex root agent.*
+*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11. U0.3/U0.4/U0.5 completed 2026-07-11; reference-derived FilmCase is blocked by missing provenance, while frozen-anchor, deterministic-renderer and U4 gold/stress evaluation leaves remain ready. Integration owner: repository owner or explicitly assigned Codex root agent.*
