@@ -82,3 +82,11 @@ The permitted replay completed on 2026-07-11: 9 gold inputs × 7 columns
 renders, followed by 189 anonymous assets across three blind rounds. The
 replay manifest and review assets remain ignored local evidence. No rating has
 yet been entered or unblinded.
+
+The three public contact sheets were visually inspected without opening the
+private mapping. Across the eight non-red-highlight samples, the seven columns
+showed only modest color/tone differences and no visible geometry, text or
+texture rewrite. ID 11 remained the discriminating red-speckle case. This is a
+review-preparation observation, not a completed blind score: raw per-cell
+severe/style/appeal records must still be entered before aggregation or
+unblinding.

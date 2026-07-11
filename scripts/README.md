@@ -80,6 +80,7 @@ files.
 | `freeze_filmcase_evaluation_set.py` | Freeze hashes and split membership from the local union source index into an ignored provisional FilmCase artifact-evaluation set; never copies or renders images. |
 | `build_filmcase_blind_audit.py` | Create a three-round anonymous FilmCase review sheet, anonymous copied assets and a private ignored label map; it records no score and never alters source images. Quote comma-separated PowerShell arguments. |
 | `aggregate_filmcase_blind_audit.py` | Aggregate existing raw blind-review JSONL against the private label mapping into an ignored fail-closed report; never generates review scores. |
+| `make_filmcase_blind_contact_sheet.py` | Make a review-only contact sheet from public anonymous assets for one blind round; never reads the private label map or alters inputs. |
 | `diagnose_filmcase_chroma_speckle.py` | Write diagnostic-only high-frequency chroma-island metrics for a before/after pair to guide full-resolution artifact review; never makes a pass/fail decision. |
 | `render_filmcase_anchor_set.py` | Re-render the five owner anchors plus a bland control as color-only, same-input gold replays under ignored `outputs/filmcase/`; defaults to gold only and records input/output hashes. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |

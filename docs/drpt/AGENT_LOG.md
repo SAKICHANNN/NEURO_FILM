@@ -287,3 +287,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added a separate full-resolution high-frequency chroma-island diagnostic and ignored JSON CLI, with synthetic-island and shape-validation tests.
 - **Evidence:** on ID 11, #56 source reported 4,517 candidate pixels (0.314%) versus 3,206 (0.223%) for chroma+margin4. Island counts moved in the opposite direction, so no one-dimensional quality claim is allowed.
 - **Decision:** diagnostics direct reviewers to potential speckle regions; they cannot veto, clear or rank any candidate without the visual protocol.
+
+---
+
+## 2026-07-11 — Anonymous contact-sheet review preparation
+
+- **Parent/node:** `ULT > U4 > U4.2` (not a completed scorecard)
+- **Implementation:** added a public-asset-only contact-sheet generator. It reads the anonymous review sheet and assets for one round, never the private mapping, and produced three local round sheets.
+- **Visual preparation evidence:** all three anonymous round sheets were inspected. Eight non-red-highlight rows preserve geometry/text/texture and show only modest cross-column color/tone differences; ID 11 remains the discriminating red-speckle row.
+- **Boundary:** no raw review JSONL has been written and no candidate was unblinded, scored or promoted. The sheets make later independent per-cell review practical; they do not substitute for it.
