@@ -40,3 +40,19 @@ seed samples × 6 columns (`01/09/53/55/56` plus bland control) × 3 rounds.
 It contains no review result and cannot complete U4.2. Final U4.2 needs the
 U4.1 final set, normalized same-input anchor renders, nuisance controls and
 recorded repeated visual reviews.
+
+## Normalized color-only replay
+
+`scripts/render_filmcase_anchor_set.py` now replays the five anchors plus the
+bland control on the same frozen gold inputs. It defaults to gold only (9
+inputs × 6 candidates = 54 renders), disables grain, records input/output
+hashes and preserves the recovered union-40 color/luma/gamut parameters. The
+outputs are explicitly `anchor-inspired normalized replays`, not claims of
+pixel-identical historical reproduction.
+
+A directed, non-blind sanity inspection confirms that the known union ID 11
+red-lit bicycle/ColorChecker case remains discriminative: normalized
+`09/56/53` all exhibit conspicuous red highlight speckling on the metal frame,
+whereas the bland safe-rich control suppresses it at the cost of palette
+strength. This observation is a rubric/failure-gallery check only; it is not a
+substitute for the blinded three-pass verdict.

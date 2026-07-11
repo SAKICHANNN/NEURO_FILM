@@ -225,6 +225,16 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 ---
 
+## 2026-07-11 — Normalized owner-anchor color replay
+
+- **Parent/node:** `ULT > U4 > U4.1/U4.2` (evidence preparation only)
+- **Implementation:** added an isolated batch caller for the legacy deterministic color CLI. It rendered 54 outputs: five owner-anchor-inspired recipes plus safe-rich bland control over all nine frozen gold samples, with grain disabled and source/output hashes captured.
+- **Recipe provenance:** values were recovered from the union-40 run IDs. The replay is explicitly not a pixel-identical historical anchor reproduction because original contact sheets mix source sets and some include grain.
+- **Visual sanity evidence:** full-resolution face replay preserves geometry/content across all six candidates. The red bicycle/ColorChecker replay confirms the known red-highlight speckling remains visible in normalized 09/56/53, while bland safe-rich suppresses it with weaker style.
+- **Gate:** these directed checks establish a usable failure gallery and normalized comparison inputs; blind three-pass adjudication remains required before any severe/style conclusion or promotion.
+
+---
+
 ## 2026-07-11 — U4.1 face coverage from existing FilmSet input
 
 - **Parent/node:** `ULT > U4 > U4.1` (still in progress)

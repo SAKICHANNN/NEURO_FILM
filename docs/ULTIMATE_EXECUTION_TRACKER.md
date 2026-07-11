@@ -217,7 +217,7 @@ Go/No-Go:
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
 | U4.1 | in progress | Fail-closed frozen-set/adjudication module plus provisional 9/32 seed | U0.4 | All required content categories now covered, including a research-only FilmSet face stress input; final-gold promotion remains blocked by absent complete per-candidate adjudications; evidence: `docs/FILMCASE_U41_EVALUATION_FOUNDATION.md` |
-| U4.2 | in progress | Three-round blinded style/appeal protocol and isolated review machinery | U4.1 | Anonymous 3-pass protocol, `2/3` severe veto and ambiguous fail-closed rules are implemented; final scorecard remains gated on U4.1 + normalized anchor/control renders; evidence: `docs/FILMCASE_U42_BLIND_AUDIT_FOUNDATION.md` |
+| U4.2 | in progress | Three-round blinded style/appeal protocol plus normalized same-input anchor replay | U4.1 | 54 color-only anchor/control renders and anonymous 3-pass protocol exist; final scorecard remains gated on recorded blind reviews and U4.1 finalization; evidence: `docs/FILMCASE_U42_BLIND_AUDIT_FOUNDATION.md` |
 | U4.3 | pending | Graded content/effect quality diagnostics | U4.1 | face/text/edge/texture plus NPS/radial/MTF/tile/determinism report |
 | U4.4 | deferred | External blind pairwise human validation | U8 beta + participant/rights approval | preregistered questions, exclusions and analysis; not a FilmCase research dependency |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |
