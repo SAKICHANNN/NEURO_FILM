@@ -250,3 +250,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** extended the blind-audit builder to consume the normalized replay manifest and materialize only anonymous review copies under `assets/round_N/sample_ID/A.png`. Candidate names remain absent from the public sheet and asset path; the mapping is separate and ignored.
 - **Evidence:** generated 27 blinded rows and 162 anonymous assets for 9 samples × 6 candidates × 3 rounds. An initial PowerShell invocation coerced unquoted `01` to `1` and failed before a usable sheet; quoted arguments generated the final complete assets.
 - **Handoff:** record raw review rows before unblinding, then apply the fail-closed aggregation rule. Asset preparation itself yields no score, safety pass or promotion.
+
+---
+
+## 2026-07-11 — Blind-audit aggregation boundary
+
+- **Parent/node:** `ULT > U4 > U4.2` (tooling only)
+- **Implementation:** added an ignored-report CLI that reads raw review JSONL and the separate private mapping, validates every record through the existing protocol, then writes a traceable aggregate. It cannot create a review value or infer a visual preference.
+- **Verification:** parser rejects malformed/non-object records; all 37 local tests pass.
+- **Handoff:** populate raw review JSONL only after actual anonymous visual passes. Any missing, duplicate, uncertain or contradictory review remains fail-closed under the protocol.

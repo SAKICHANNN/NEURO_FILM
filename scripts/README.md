@@ -79,6 +79,7 @@ files.
 | `verify_reproducibility_baseline.py` | Verify tracked checksums/tests/benchmark registries and optionally write an ignored local environment report; never renders or reads image assets. |
 | `freeze_filmcase_evaluation_set.py` | Freeze hashes and split membership from the local union source index into an ignored provisional FilmCase artifact-evaluation set; never copies or renders images. |
 | `build_filmcase_blind_audit.py` | Create a three-round anonymous FilmCase review sheet, anonymous copied assets and a private ignored label map; it records no score and never alters source images. Quote comma-separated PowerShell arguments. |
+| `aggregate_filmcase_blind_audit.py` | Aggregate existing raw blind-review JSONL against the private label mapping into an ignored fail-closed report; never generates review scores. |
 | `render_filmcase_anchor_set.py` | Re-render the five owner anchors plus a bland control as color-only, same-input gold replays under ignored `outputs/filmcase/`; defaults to gold only and records input/output hashes. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |

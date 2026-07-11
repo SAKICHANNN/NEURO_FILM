@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 from pathlib import Path
 import json
+from scripts.aggregate_filmcase_blind_audit import read_jsonl
 
 from src.filmcase.vision_audit import VisionAuditError, aggregate_reviews, build_blind_audit
 from scripts.build_filmcase_blind_audit import load_render_records
@@ -57,3 +58,10 @@ def test_missing_render_manifest_asset_is_rejected(tmp_path: Path) -> None:
     manifest.write_text(json.dumps({"records": [{"candidate_id": "anchor", "sample_id": "01", "output": "outputs/does_not_exist.png"}]}), encoding="utf-8")
     with pytest.raises(VisionAuditError, match="missing"):
         load_render_records(manifest)
+
+
+def test_review_jsonl_reader_rejects_non_object(tmp_path: Path) -> None:
+    path = tmp_path / "reviews.jsonl"
+    path.write_text("[]\n", encoding="utf-8")
+    with pytest.raises(VisionAuditError, match="must be an object"):
+        read_jsonl(path)
