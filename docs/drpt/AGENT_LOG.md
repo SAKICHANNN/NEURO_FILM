@@ -202,3 +202,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** local verifier passed against the committed config hashes and wrote an ignored report for Python 3.12.10, Windows 11, Pillow 12.1.1, OmegaConf 2.3.0, pytest 9.0.3 and torch 2.11.0+cu128 at commit `87b5d69`.
 - **Containment:** no renderer, training path, image, output (other than ignored environment report), data manifest, user file, remote run or dependency download was changed.
 - **Handoff:** U0 reproducibility prerequisites are now complete except the owner-controlled license decision. U4.1/U4.2 are next safe evaluation leaves; no claim of zero severe artifacts is allowed yet.
+
+---
+
+## 2026-07-11 — U4.1 fail-closed evaluation foundation
+
+- **Parent/node:** `ULT > U4 > U4.1` (in progress, not promoted)
+- **Implementation boundary:** added the isolated `src/filmcase/evaluation.py` contract, a source-freeze CLI and unit tests. It reads only the pre-existing local union source index and writes its generated manifest only under ignored `outputs/filmcase/`.
+- **Evidence:** 8 reproducibly hashed gold seeds and 32 stress rows froze from union-40. The seed covers seven required categories but has no face sample. Existing ID 11 remains included because it exposes the known red-highlight speckle issue.
+- **Decision:** no candidate can receive a gold pass from this set. The contract requires `final` status, complete coverage, availability, one non-uncertain verdict for every gold sample, and zero severe verdicts; stress output is a Wilson interval only.
+- **Handoff/risk:** acquire neither data nor votes automatically. Continue only with local deterministic/anchor work while a valid cleared/local source can close the category gap; U4.2 likewise cannot make a promotion claim before U4.1 finalizes.

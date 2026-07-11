@@ -216,7 +216,7 @@ Go/No-Go:
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U4.1 | pending | Frozen severe-artifact gold set + wider stress set | U0.4 | 0 confirmed severe failures on gold; stress-set rate + CI |
+| U4.1 | in progress | Fail-closed frozen-set/adjudication module plus provisional union-40 seed | U0.4 | Evaluation foundation and 8/32 seed frozen; blocked from final-gold promotion by missing face coverage and absent full adjudications; evidence: `docs/FILMCASE_U41_EVALUATION_FOUNDATION.md` |
 | U4.2 | pending | Autonomous style-salience/appeal proxy scorecard | U4.1 | blind, shuffled repeated vision audits against `53/55/56/09/01`, neutral/bland and matched nuisance controls |
 | U4.3 | pending | Graded content/effect quality diagnostics | U4.1 | face/text/edge/texture plus NPS/radial/MTF/tile/determinism report |
 | U4.4 | deferred | External blind pairwise human validation | U8 beta + participant/rights approval | preregistered questions, exclusions and analysis; not a FilmCase research dependency |
