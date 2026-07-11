@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_updated": "2026-05-25",
+  "last_updated": "2026-07-11",
   "purpose": "Committed reproduction manifest for rebuilding ignored data/ contents on a new machine.",
   "target_mac": {
     "machine": "Apple Silicon Mac",
@@ -11,7 +11,7 @@
   "notes": [
     "Do not commit downloaded dataset files, manufacturer PDFs, calibration CSVs, generated manifests, checkpoints, or outputs.",
     "Local Windows source state was recorded from data/raw/dataset_status.json, which is intentionally ignored by Git.",
-    "The next implementation task is still 1.2 data pipeline; data/processed/manifest.jsonl does not exist yet.",
+    "Observed 2026-07-11: data/processed/manifest.jsonl exists locally as an ignored legacy 4,210-row manifest. It lacks durable source/uploader/roll/scanner grouping and is quarantined from FilmCase reference-derived use; see docs/FILMCASE_U03_LINEAGE_AUDIT.md.",
     "Online data audit added in docs/ONLINE_DATA_AUDIT.md on 2026-05-25."
   ],
   "resources": {

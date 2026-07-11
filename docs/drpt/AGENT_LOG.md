@@ -177,3 +177,18 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - Autonomous visual evidence can optimize the frozen owner-style direction but cannot substitute for an external population study or calibrated stock truth.
 - License, large downloads, paid GPU/cloud, external contact, push/merge and public release still require explicit approval.
 - `U5.FC0` is complete. The next ready implementation leaf remains `U0.3`, beginning with the read-only/current-asset FilmCase eligibility, recoverable-lineage and group-split audit. No expert/router training is allowed before U0.3/U0.4/U4 and U5.FC1 pass.
+
+---
+
+## 2026-07-11 — U0.3 FilmCase lineage audit and isolated module
+
+- **Parent/node:** `ULT > U0 > U0.3`, with stale reproduction correction `U0.5`
+- **DRPT level/mode:** L2, Mode A; no shared legacy renderer, training path, manifest, or source asset was modified
+- **Primary workflow:** `plan-tracker-discipline`
+- **Secondary disciplines:** `codex-super-router`, `codex-super-aiml-harness`, `dev-research-reliability`, `drpt-bi-governance`, `project-agent-log-discipline`, `project-structure-steward`
+- **Implementation boundary:** added only `src/filmcase/` (lineage contract), `scripts/audit_filmcase_manifest.py` (thin CLI) and dedicated tests. The legacy manifest is read-only; artifacts write only below ignored `outputs/filmcase/`.
+- **Evidence:** audited all 4,210 local legacy rows. 2,320 rows match caption-only sidecars; 1,890 are unresolved; 0 have an auditable source/uploader/roll/scanner group. All 4,210 remain quarantined. Legacy SHA-256 has 0 exact duplicate groups; local dHash at distance <=4 found 140 near pairs. One over-limit raster is recorded as `perceptual_hash_failed`, never bypassed. With no eligible group split, 0 cross-split conflicts is a quarantine result, not a claim that the historical random split was safe.
+- **Decision:** U0.3 is complete as a fail-closed classification/audit. The reference-derived FilmCase lane is blocked; only frozen-anchor/deterministic work may continue. U0.5 is complete because the reproduction manifest now states the existing legacy-manifest and deleted-full-source boundary.
+- **Files changed:** `src/filmcase/__init__.py`, `src/filmcase/lineage.py`, `scripts/audit_filmcase_manifest.py`, `tests/test_filmcase_lineage.py`, `docs/FILMCASE_U03_LINEAGE_AUDIT.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`, `docs/DATA_REPRODUCTION_MANIFEST.json`, `docs/data/DATA_LICENSE_BOUNDARIES.md`, `scripts/README.md`, this log.
+- **Verification:** targeted tests, compile checks, two full local audits (final audit 4,210 rows), JSON parse and diff check; full project regression is required before commit.
+- **Risk/handoff:** recovery needs durable per-row provenance and a new group-aware duplicate audit. Do not infer it, download new data, train an expert/router, publish data-derived assets, or weaken quarantine without a valid evidence source and applicable approval.

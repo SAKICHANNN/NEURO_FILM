@@ -9,6 +9,7 @@ This file is the project-level warning label for dataset licensing, publication,
 - Do not train a publicly released or commercial model on datasets whose license is research-only, non-commercial, or unclear.
 - Record every manifest row with `source`, `license`, `split`, `task`, `style`, and `redistributable`.
 - Treat scanner output, lab correction, ICC profiles, and negative conversion settings as dataset metadata, not incidental details.
+- For FilmCase, a caption alone is not source lineage: no row may enter case memory, identifiability, router supervision, or a group split without source ID/URL, a durable source/uploader or scan/roll group, and a license snapshot.
 
 ## Current Dataset Boundaries
 
@@ -21,6 +22,16 @@ This file is the project-level warning label for dataset licensing, publication,
 | Cinestill800T | Future sanity-check validation if released | Small validation data only; verify license before use. |
 | Self-built L5 pairs | Final physical validation | Release only if subject, lab, scanner, and photographer rights are cleared. |
 | PBR synthetic data | Generated physical-pair training | Prefer for redistributable training data when all assets and renderer licenses allow it. |
+
+### FilmCase audit state (2026-07-11)
+
+The local legacy film manifest contains 4,210 rows, but its current Flickr
+license value is `unknown-flickr-user-content` and no usable
+source/uploader/roll/scanner groups were recovered.  The isolated U0.3 audit
+quarantined every row from FilmCase reference-derived research.  Existing film
+images may remain for historical visual research, but they must not become
+case-memory/training evidence or public-weight provenance.  See
+`docs/FILMCASE_U03_LINEAGE_AUDIT.md`.
 
 ## Release Checklist
 

@@ -147,9 +147,9 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | U0.0 | complete | Ultimate research synthesis and execution tree | none | Roadmap + this tracker; 2026-07-10 |
 | U0.1 | complete | Active docs agree on deterministic current baseline and retired diffusion path | U0.0 | AGENTS/README/IMPL_PLAN/TASK_BOARD and planning index agree; 2026-07-10 |
 | U0.2 | blocked | Root `LICENSE`, NOTICE and public-claim decision | owner/legal choice | License file exists; dependencies/assets audited |
-| U0.3 | ready | Manifest v2, research/production lanes, group split, cross-split duplicate audit | none | 100% lineage class; 0 unresolved cross-split near duplicates |
+| U0.3 | complete (reference lane blocked) | Isolated manifest-v2 lineage/eligibility audit; all uncertain rows quarantined | none | 4,210/4,210 classified; 0 source groups/0 eligible rows; 140 near pairs retained inside quarantine; evidence: `docs/FILMCASE_U03_LINEAGE_AUDIT.md` |
 | U0.4 | ready | CI + lock capture + frozen benchmark registry | U0.1 | Clean clone tests; checksums; device/env report |
-| U0.5 | ready | Correct stale FiveK/data reproduction state | U0.1 | Manifest no longer claims deleted full sources exist |
+| U0.5 | complete | Correct stale FiveK/data reproduction state | U0.1 | Reproduction manifest now records the local legacy manifest and deleted full-source boundary; 2026-07-11 |
 
 Restrictions:
 
@@ -364,7 +364,7 @@ Public release requires explicit human approval and written license/trademark/se
 
 1. `U0.1` (complete 2026-07-10): reconcile active docs and mark diffusion/IP2P as retired research.
 2. `U5.FC0` (complete 2026-07-11): freeze the autonomous, unpaired, non-generative FilmCase research contract.
-3. `U0.3`: define manifest v2; tag every current source `production/research/eval/blocked`, recover source/uploader groups where possible and quarantine unrecoverable FilmCase rows.
+3. `U0.3` (complete, reference lane blocked): isolated manifest-v2 audit classified all 4,210 rows; no source/uploader/roll/scanner group was recoverable, so all 4,210 rows are quarantined and reference-derived FilmCase is closed pending auditable provenance. See `docs/FILMCASE_U03_LINEAGE_AUDIT.md`.
 4. `U4.1/U4.2`: freeze severe-artifact examples and the autonomous style/appeal scorecard; `U4.6` is only for calibrated profile claims.
 5. `U0.2`: ask owner to confirm intended code license and release posture.
 
@@ -494,4 +494,4 @@ Current approval state: research and local documentation are authorized; all ite
 
 ---
 
-*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11. Next ready leaf: U0.3, beginning with FilmCase asset eligibility/lineage audit. Integration owner: repository owner or explicitly assigned Codex root agent.*
+*Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11. U0.3/U0.5 completed 2026-07-11; reference-derived FilmCase is blocked by missing provenance, while frozen-anchor, deterministic-renderer and evaluation leaves remain ready. Integration owner: repository owner or explicitly assigned Codex root agent.*
