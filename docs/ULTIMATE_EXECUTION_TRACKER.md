@@ -218,7 +218,7 @@ Go/No-Go:
 |---|---|---|---|---|
 | U4.1 | in progress | Fail-closed frozen-set/adjudication module plus provisional 9/32 seed | U0.4 | All required content categories now covered, including a research-only FilmSet face stress input; final-gold promotion remains blocked by absent complete per-candidate adjudications; evidence: `docs/FILMCASE_U41_EVALUATION_FOUNDATION.md` |
 | U4.2 | in progress | Three-round blinded style/appeal protocol plus normalized same-input anchor replay | U4.1 | 54 color-only anchor/control renders and anonymous 3-pass protocol exist; final scorecard remains gated on recorded blind reviews and U4.1 finalization; evidence: `docs/FILMCASE_U42_BLIND_AUDIT_FOUNDATION.md` |
-| U4.3 | pending | Graded content/effect quality diagnostics | U4.1 | face/text/edge/texture plus NPS/radial/MTF/tile/determinism report |
+| U4.3 | in progress | Diagnostic-only high-frequency chroma-island report plus future content/effect suite | U4.1 | Red-highlight diagnostic foundation is implemented and explicitly non-veto; face/text/edge/texture and effect diagnostics remain pending; evidence: `docs/FILMCASE_U43_DIAGNOSTICS_FOUNDATION.md` |
 | U4.4 | deferred | External blind pairwise human validation | U8 beta + participant/rights approval | preregistered questions, exclusions and analysis; not a FilmCase research dependency |
 | U4.5 | pending | Windows/M5/CPU performance matrix | U1.6 | cold/warm p50/p95, RAM/VRAM, 24/100MP, batch |
 | U4.6 | deferred | Conditional calibrated-authenticity scorecard | U2.2, U3.2 | chart/EV/illuminant/roll/lab slices + CIs for profiles claiming calibrated |

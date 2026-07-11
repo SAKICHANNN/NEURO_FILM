@@ -278,3 +278,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** the anchor replay tool now accepts an opt-in, separately named `anchor56_chroma_margin4_challenger`; default historical-anchor runs remain unchanged. A relative-output-dir bug was caught after the first rendered file, fixed by resolving under repository root, and rerun with a complete manifest.
 - **Evidence:** replayed all 9 gold inputs across 7 columns (63 render records) and materialized 189 anonymous assets for 3 rounds. The challenger remains unpromoted and is visually/safety unreviewed outside its ID 11 counterfactual.
 - **Handoff:** execute blind reviews using only the new anonymous asset paths, then aggregate raw records before opening the private mapping. Any gold severe/uncertain outcome remains a hard stop.
+
+---
+
+## 2026-07-11 — U4.3 chroma-speckle diagnostic foundation
+
+- **Parent/node:** `ULT > U4 > U4.3` (in progress; non-promotional)
+- **Implementation:** added a separate full-resolution high-frequency chroma-island diagnostic and ignored JSON CLI, with synthetic-island and shape-validation tests.
+- **Evidence:** on ID 11, #56 source reported 4,517 candidate pixels (0.314%) versus 3,206 (0.223%) for chroma+margin4. Island counts moved in the opposite direction, so no one-dimensional quality claim is allowed.
+- **Decision:** diagnostics direct reviewers to potential speckle regions; they cannot veto, clear or rank any candidate without the visual protocol.
