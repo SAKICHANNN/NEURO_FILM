@@ -10,22 +10,34 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.filmcase.evaluation import EvaluationContractError, coverage_report, freeze_union_sources
+from src.filmcase.evaluation import EvaluationContractError, add_local_research_sample, coverage_report, freeze_union_sources
 
 DEFAULT_SOURCE = ROOT / "outputs" / "contact_sheets" / "velvia50_union_all_models_20260616" / "UNION_SOURCES.json"
 DEFAULT_OUTPUT = ROOT / "outputs" / "filmcase" / "u41_provisional_eval_set.json"
 DEFAULT_GOLD = ("01", "05", "08", "09", "11", "18", "21", "29")
 BUCKETS = {"01": ["fine_detail", "deep_shadow"], "05": ["foliage", "saturated_objects"], "08": ["sky", "high_key"], "09": ["high_key", "saturated_objects"], "11": ["deep_shadow", "saturated_objects"], "18": ["fine_detail", "text_logo"], "21": ["fine_detail"], "29": ["sky", "high_key"]}
+FILMSET_FACE = ROOT / "data" / "raw" / "filmset" / "FilmSet" / "train" / "input" / "DSCF01200 iso1600.png"
+FILMSET_PROVENANCE = ROOT / "data" / "raw" / "filmset" / "kaggle_view.json"
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Freeze a provisional FilmCase artifact-evaluation seed set.")
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--gold-ids", default=",".join(DEFAULT_GOLD))
+    parser.add_argument("--include-filmset-face", action="store_true", help="Add the visually verified FilmSet face input as research-only content stress; never FilmCase reference evidence.")
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     try:
         frozen = freeze_union_sources(args.source, root=ROOT, gold_ids=args.gold_ids.split(","), bucket_map=BUCKETS)
+        if args.include_filmset_face:
+            frozen = add_local_research_sample(
+                frozen,
+                root=ROOT,
+                sample_id="FS_FACE_01",
+                source_path=FILMSET_FACE,
+                buckets=["face", "fine_detail", "skin"],
+                provenance_path=FILMSET_PROVENANCE,
+            )
     except EvaluationContractError as exc:
         print(f"ERROR: {exc}")
         return 2

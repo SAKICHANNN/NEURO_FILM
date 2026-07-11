@@ -105,6 +105,47 @@ def freeze_union_sources(
     }
 
 
+def add_local_research_sample(
+    frozen_set: dict[str, Any],
+    *,
+    root: Path,
+    sample_id: str,
+    source_path: Path,
+    buckets: Iterable[str],
+    provenance_path: Path,
+    allowed_use: str = "research-only",
+) -> dict[str, Any]:
+    """Add a locally available, explicitly bounded research evaluation input.
+
+    This helper is intentionally for content/artifact evaluation only. It does
+    not make an image eligible for FilmCase reference lineage, case memory, or
+    stock/process authenticity evidence.
+    """
+
+    if not source_path.is_file() or not provenance_path.is_file():
+        raise EvaluationContractError("research sample and provenance paths must exist")
+    samples = frozen_set.get("samples")
+    if not isinstance(samples, list) or any(str(row.get("id")) == sample_id for row in samples):
+        raise EvaluationContractError(f"invalid or duplicate additional sample id: {sample_id}")
+    copied = {**frozen_set, "samples": [*samples]}
+    copied["samples"].append(
+        {
+            "id": sample_id,
+            "key": "local_research_content_stress",
+            "source_path": str(source_path.relative_to(root)).replace("\\", "/") if source_path.is_relative_to(root) else str(source_path),
+            "source_sha256": sha256_file(source_path),
+            "availability": "available",
+            "split": "gold",
+            "buckets": sorted(set(buckets)),
+            "allowed_use": allowed_use,
+            "provenance_path": str(provenance_path.relative_to(root)).replace("\\", "/") if provenance_path.is_relative_to(root) else str(provenance_path),
+            "provenance_sha256": sha256_file(provenance_path),
+            "filmcase_reference_eligible": False,
+        }
+    )
+    return copied
+
+
 def coverage_report(frozen_set: dict[str, Any]) -> dict[str, Any]:
     samples = frozen_set.get("samples")
     if not isinstance(samples, list):

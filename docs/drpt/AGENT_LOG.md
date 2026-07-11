@@ -222,3 +222,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Pre-registered safety rule:** 2/3 severe votes veto; one severe, uncertain or missing record escalates to original-resolution adjudication; unresolved ambiguity cannot support promotion.
 - **Evidence:** a dry run generated 24 blinded rows from eight provisional seed samples and the five owner anchors plus a bland control. It contains no review result and has no effect on U4.1 status.
 - **Handoff:** normalize all anchor renders on the eventual final U4.1 source set and add matched nuisance controls before collecting autonomous vision reviews. No external validation, image acquisition, upload or generative method is authorized or required here.
+
+---
+
+## 2026-07-11 — U4.1 face coverage from existing FilmSet input
+
+- **Parent/node:** `ULT > U4 > U4.1` (still in progress)
+- **Evidence:** scanned 5,285 local FilmSet input images using OpenCV only to locate candidates, then visually verified `DSCF01200 iso1600.png` as a child-face stress image. The local `kaggle_view.json` snapshot identifies FilmSet as MIT; its image and metadata hashes are recorded in the ignored frozen-set artifact.
+- **Decision:** added it as `FS_FACE_01`, `research-only`, and explicitly `filmcase_reference_eligible=false`. It closes the face category gap for internal artifact evaluation without weakening U0.3 lineage quarantine or creating a film/authenticity claim.
+- **Gate:** all required content categories are now present in the 9 gold / 32 stress seed, but U4.1 remains provisional until normalized candidate outputs have complete three-pass visual severe adjudications.

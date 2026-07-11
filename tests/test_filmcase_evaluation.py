@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.filmcase.evaluation import adjudicate, coverage_report, freeze_union_sources
+from src.filmcase.evaluation import add_local_research_sample, adjudicate, coverage_report, freeze_union_sources
 
 
 def _source_index(root: Path) -> Path:
@@ -33,6 +33,18 @@ def test_provisional_or_uncertain_gold_never_promotes(tmp_path: Path) -> None:
     )
     assert result.report["splits"]["gold"]["uncertain_count"] == 1
     assert not result.report["gold_promotion_pass"]
+
+
+def test_research_only_face_stress_can_close_coverage_but_never_changes_reference_eligibility(tmp_path: Path) -> None:
+    frozen = freeze_union_sources(_source_index(tmp_path), root=tmp_path, gold_ids=["01"], bucket_map={"01": ["sky", "foliage", "high_key", "deep_shadow", "saturated_objects", "fine_detail", "text_logo"]})
+    face = tmp_path / "data" / "face.png"
+    face.write_bytes(b"face-fixture")
+    provenance = tmp_path / "filmset.json"
+    provenance.write_text("{}\n", encoding="utf-8")
+    augmented = add_local_research_sample(frozen, root=tmp_path, sample_id="FS_FACE_01", source_path=face, buckets=["face"], provenance_path=provenance)
+    assert coverage_report(augmented)["coverage_complete"]
+    assert augmented["samples"][-1]["allowed_use"] == "research-only"
+    assert augmented["samples"][-1]["filmcase_reference_eligible"] is False
 
 
 def test_final_complete_coverage_with_no_severe_can_promote() -> None:

@@ -26,10 +26,20 @@ requirement.
 The union-40 seed froze 8 available gold samples and 32 stress samples. Its
 gold sample IDs are `01,05,08,09,11,18,21,29`; all have source SHA-256 values
 in the ignored frozen-set output. It covers deep shadow, fine detail, foliage,
-high key, saturated objects, sky and text/logo. It lacks **face** coverage.
+high key, saturated objects, sky and text/logo.
 
-Therefore its status is `provisional`, its coverage is incomplete, and it
-cannot prove a zero-severe-artifact result. This intentionally preserves the
+The local FilmSet input `DSCF01200 iso1600.png` was then visually verified as
+a clear child-face stress input and added as `FS_FACE_01`. Its local Kaggle
+metadata snapshot declares FilmSet `MIT`; the frozen record carries both image
+and metadata hashes and explicitly remains `research-only` and
+`filmcase_reference_eligible=false`. It fills face coverage for internal
+content/artifact evaluation only. It cannot act as an unpaired reference,
+case-memory asset, stock truth, or release evidence.
+
+The resulting 9/32 set now covers every required category, but its status is
+still `provisional` and it cannot prove a zero-severe-artifact result: each
+candidate still needs complete three-pass visual reviews and any escalation
+must reach original-resolution adjudication. This intentionally preserves the
 known red-highlight failure at ID 11 as a discriminating stress/gold seed
 rather than allowing a clipping-only check to conceal it.
 
