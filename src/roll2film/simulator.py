@@ -1,0 +1,114 @@
+"""Known-truth pseudo-roll simulator for the CT1/E0 identifiability gate."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import numpy as np
+
+from .operators import AffineColorOperator
+
+
+BASE_MEAN = np.array([0.46, 0.49, 0.43], dtype=np.float64)
+BASE_COVARIANCE = np.array(
+    [[0.020, 0.008, 0.005], [0.008, 0.018, 0.007], [0.005, 0.007, 0.017]],
+    dtype=np.float64,
+)
+
+
+@dataclass(frozen=True)
+class PseudoRollConfig:
+    frames: int
+    pixels_per_frame: int = 128
+    exposure_sigma: float = 0.0
+    scene_mean_sigma: float = 0.0
+    sensor_noise_sigma: float = 0.0
+    seed: int = 0
+
+    def __post_init__(self) -> None:
+        if self.frames < 1:
+            raise ValueError("frames must be positive")
+        if self.pixels_per_frame < 16:
+            raise ValueError("pixels_per_frame must be at least 16")
+        for name in ("exposure_sigma", "scene_mean_sigma", "sensor_noise_sigma"):
+            if getattr(self, name) < 0:
+                raise ValueError(f"{name} must be non-negative")
+
+
+@dataclass(frozen=True)
+class PseudoRoll:
+    target_frames: tuple[np.ndarray, ...]
+    source_frames: tuple[np.ndarray, ...]
+    operator: AffineColorOperator
+    exposure_gains: tuple[float, ...]
+    config: PseudoRollConfig
+
+    @property
+    def target_pixels(self) -> np.ndarray:
+        return np.concatenate(self.target_frames, axis=0)
+
+    @property
+    def source_pixels(self) -> np.ndarray:
+        return np.concatenate(self.source_frames, axis=0)
+
+
+def default_truth_operator() -> AffineColorOperator:
+    """Return a stable non-identity SPD transform recoverable from moments."""
+    rotation = np.array(
+        [[0.80, -0.48, 0.36], [0.60, 0.64, -0.48], [0.00, 0.60, 0.80]],
+        dtype=np.float64,
+    )
+    scales = np.diag([1.16, 0.91, 1.07])
+    matrix = rotation @ scales @ rotation.T
+    return AffineColorOperator(matrix=matrix, bias=np.array([0.018, -0.012, 0.010]))
+
+
+def alternate_truth_operator() -> AffineColorOperator:
+    rotation = np.array(
+        [[0.72, -0.64, 0.267], [0.69, 0.69, -0.219], [-0.044, 0.338, 0.940]],
+        dtype=np.float64,
+    )
+    q, _ = np.linalg.qr(rotation)
+    matrix = q @ np.diag([0.88, 1.14, 1.03]) @ q.T
+    return AffineColorOperator(matrix=matrix, bias=np.array([-0.012, 0.016, -0.006]))
+
+
+def sample_neutral_prior(pixel_count: int, seed: int) -> np.ndarray:
+    if pixel_count < 16:
+        raise ValueError("pixel_count must be at least 16")
+    rng = np.random.default_rng(seed)
+    return rng.multivariate_normal(BASE_MEAN, BASE_COVARIANCE, size=pixel_count)
+
+
+def simulate_pseudo_roll(
+    config: PseudoRollConfig,
+    operator: AffineColorOperator | None = None,
+) -> PseudoRoll:
+    truth = operator or default_truth_operator()
+    rng = np.random.default_rng(config.seed)
+    source_frames: list[np.ndarray] = []
+    target_frames: list[np.ndarray] = []
+    gains: list[float] = []
+    for _ in range(config.frames):
+        scene_shift = rng.normal(0.0, config.scene_mean_sigma, size=3)
+        source = rng.multivariate_normal(
+            BASE_MEAN + scene_shift,
+            BASE_COVARIANCE,
+            size=config.pixels_per_frame,
+        )
+        gain = float(np.exp(rng.normal(0.0, config.exposure_sigma)))
+        target = truth.apply(source) * gain
+        if config.sensor_noise_sigma:
+            target += rng.normal(0.0, config.sensor_noise_sigma, size=target.shape)
+        source_frames.append(source)
+        target_frames.append(target)
+        gains.append(gain)
+    return PseudoRoll(tuple(target_frames), tuple(source_frames), truth, tuple(gains), config)
+
+
+def mix_target_frames(first: PseudoRoll, second: PseudoRoll) -> tuple[np.ndarray, ...]:
+    """Build a hostile shuffled-label group without exposing source pairs."""
+    if len(first.target_frames) != len(second.target_frames):
+        raise ValueError("rolls must have equal frame counts")
+    cutoff = max(1, len(first.target_frames) // 2)
+    return first.target_frames[:cutoff] + second.target_frames[cutoff:]

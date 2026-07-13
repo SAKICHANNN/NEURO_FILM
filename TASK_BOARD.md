@@ -34,9 +34,9 @@
 | 0a | U5.FC0 | Freeze autonomous unpaired non-generative FilmCase plan | complete | completed 2026-07-11 |
 | 0b | U5.R0 | Freeze FARO novelty audit and publication research program | complete | completed 2026-07-11 |
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
-| 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | ready, no data | none |
+| 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | in progress; affine v1 foundation passes | extend truth family to monotone curves/LUT residuals |
 | 2 | U5.CT2 | Build metadata-only FilmSet/BlueNeg eligibility, grouping and pair-blinding contracts | ready, no images | none |
-| 3 | U5.CT3 | Run group-size, coverage and nuisance identifiability curves | pending on CT1 | none; stop before data download if the hypothesis fails |
+| 3 | U5.CT3 | Run group-size, coverage and nuisance identifiability curves | in progress; restricted SPD-affine E0 passes | coverage/strong-nuisance/curve-LUT/novelty gates remain; no data download yet |
 | 4 | U5.CT4 | Restore/download FilmSet and freeze paired-blind splits only after CT3 passes | approval-gated | explicit large-download approval |
 | 5 | U5.CT5 | Compare unpaired transfer baselines with Roll2Film on hidden FilmSet pairs | pending on CT3/CT4 | GPU/cost gate only if required |
 | 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | approval-gated | explicit download approval |

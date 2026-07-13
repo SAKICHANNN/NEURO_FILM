@@ -23,6 +23,7 @@ files.
 | `evaluate_local_color_maps.py` | Evaluate Local/Semantic bounded color maps. |
 | `evaluate_local_color_map_strength_sweep.py` | Render multiple local-map strengths in one pass. |
 | `evaluate_film_response_volume.py` | Evaluate stock-specific film response volume experiments. |
+| `run_roll2film_e0.py` | Run the data-independent known-operator/group-size/shuffled-control Roll2Film identifiability gate. |
 | `train_neural_lut.py` | Train Neural LUT imitation experiments. |
 | `evaluate_neural_lut.py` | Evaluate trained Neural LUT checkpoints. |
 | `build_neural_film_targets.py` | Build Neural Film LUT V2 pseudo-target images. |

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-00-affine-v1",
+  "seed": 20260713,
+  "group_sizes": [1, 2, 4, 8, 16, 32],
+  "replicates": 48,
+  "pixels_per_frame": 128,
+  "neutral_prior_pixels": 4096,
+  "holdout_pixels": 2048,
+  "conditions": {
+    "primary_no_nuisance": {
+      "exposure_sigma": 0.0,
+      "scene_mean_sigma": 0.0,
+      "sensor_noise_sigma": 0.0,
+      "normalize_frame_exposure": false
+    },
+    "stress_mild_exposure": {
+      "exposure_sigma": 0.025,
+      "scene_mean_sigma": 0.005,
+      "sensor_noise_sigma": 0.002,
+      "normalize_frame_exposure": true
+    }
+  },
+  "gate": {
+    "primary_condition": "primary_no_nuisance",
+    "metric": "holdout_rgb_rmse",
+    "endpoint_relative_gain_min": 0.2,
+    "correct_vs_shuffled_final_gap_min": 0.2,
+    "log2_group_size_slope_must_be_negative": true
+  },
+  "claim_boundary": "Known-truth affine/SPD synthetic identifiability only; no real-film, stock, or product claim."
+}

@@ -46,7 +46,9 @@ The following are historical context, not active authority: `docs/ARCH_REDESIGN.
 ## 3. Current implementation
 
 ```text
-PIL 8-bit RGB input
+WorkingImage linear-sRGB input
+  -> explicit temporary sRGB8 compatibility adapter
+  -> PIL 8-bit RGB legacy renderer
   -> deterministic CIELAB mean/std transfer (`safe_lab`, safe-rich guards)
   -> optional deterministic grain / physical-inspired halation / dust
   -> bounded 8-bit output
@@ -63,13 +65,13 @@ Current strengths:
 
 Current limitations:
 
-- `scripts/render_film.py` does not use `WorkingImage`; it converts input to PIL RGB and writes 8-bit PNG;
+- `scripts/render_film.py` now uses `WorkingImage` as ingress, but immediately crosses an explicit legacy sRGB8 adapter and still writes 8-bit PNG;
 - no complete HEIF/HDR/gain-map or wide-gamut production path;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;
 - current halation numbers are explicitly uncalibrated heuristics;
 - current neural LUTs were mainly distilled from a pseudo-teacher;
-- no CI, packaging, stable engine API, production GUI or cross-platform parity suite.
+- CPU-safe CI exists; packaging, stable engine API, production GUI and cross-platform parity suite remain incomplete.
 
 ---
 
