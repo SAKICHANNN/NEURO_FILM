@@ -1,7 +1,7 @@
 # Roll2Film CT1/E0 Affine Identifiability Foundation
 
-> Date: 2026-07-13  
-> Scope: data-independent, CPU-only, known-truth synthetic evidence  
+> Date: 2026-07-13
+> Scope: data-independent, CPU-only, known-truth synthetic evidence
 > Decision: **restricted pass; CT3 remains in progress**
 
 ## Question
