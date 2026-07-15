@@ -11,6 +11,7 @@ from typing import Any, Callable
 import numpy as np
 
 from src.preprocess.pipeline import load_working_image
+from src.preprocess.types import WorkingImage
 
 from .manifests import FILMSET_MANIFEST_SCHEMA, FilmSetManifestError
 
@@ -154,12 +155,7 @@ def sample_ct5_internal_dev(
     progress: Callable[[str], None] | None = None,
 ) -> CT5DevSamples:
     """Evaluator-only decoder. Training code has no manifest-path parameter."""
-    rows = _read_role_manifest(
-        contract.evidence_dir / "internal_dev_lockbox.jsonl",
-        contract.manifest_hashes["internal_dev_lockbox"],
-        "internal_dev_lockbox",
-    )
-    contract.verify_final_lockbox_sealed()
+    rows = load_ct5_internal_dev_rows(contract)
     by_content: dict[str, dict[str, dict[str, Any]]] = {}
     clusters: dict[str, str] = {}
     for row in rows:
@@ -256,6 +252,23 @@ def _sample_rows(
 
 
 def _load_pixels(contract: CT5DataContract, row: dict[str, Any]) -> np.ndarray:
+    return load_ct5_working_image(contract, row).pixels.reshape(-1, 3)
+
+
+def load_ct5_internal_dev_rows(contract: CT5DataContract) -> list[dict[str, Any]]:
+    rows = _read_role_manifest(
+        contract.evidence_dir / "internal_dev_lockbox.jsonl",
+        contract.manifest_hashes["internal_dev_lockbox"],
+        "internal_dev_lockbox",
+    )
+    contract.verify_final_lockbox_sealed()
+    return rows
+
+
+def load_ct5_working_image(
+    contract: CT5DataContract,
+    row: dict[str, Any],
+) -> WorkingImage:
     relative = Path(str(row["path"]))
     if relative.is_absolute() or ".." in relative.parts:
         raise FilmSetManifestError("manifest path escapes the FilmSet root")
@@ -271,10 +284,9 @@ def _load_pixels(contract: CT5DataContract, row: dict[str, Any]) -> np.ndarray:
         raise FilmSetManifestError(f"unexpected decoded colour state: {relative.as_posix()}")
     if any(warning.code == "icc_convert_failed" for warning in working.warnings):
         raise FilmSetManifestError(f"ICC conversion failed: {relative.as_posix()}")
-    pixels = working.pixels.reshape(-1, 3)
-    if not np.all(np.isfinite(pixels)):
+    if not np.all(np.isfinite(working.pixels)):
         raise FilmSetManifestError(f"non-finite decoded pixels: {relative.as_posix()}")
-    return pixels
+    return working
 
 
 def _sample_indices(total: int, count: int, seed: int, identity: str) -> np.ndarray:
