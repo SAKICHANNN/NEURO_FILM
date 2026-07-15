@@ -40,6 +40,7 @@ def full_resolution_diagnostics(
         raise ValueError("full-resolution output contains non-finite values")
     source_u8 = linear_to_u8(source)
     output_u8 = linear_to_u8(output)
+    target_u8 = linear_to_u8(target)
     target_encoded = linear_to_srgb(target)
     output_encoded = linear_to_srgb(output)
     source_lab = rgb2lab(linear_to_srgb(source))
@@ -55,6 +56,13 @@ def full_resolution_diagnostics(
         (np.abs(output[..., 0] - output[..., 1]) > 0.25)
         | (np.abs(output[..., 0] - output[..., 2]) > 0.25)
     ) & (np.max(output, axis=-1) > 0.75)
+    lower_excursion = np.maximum(-output, 0.0)
+    upper_excursion = np.maximum(output - 1.0, 0.0)
+    excursion = np.maximum(lower_excursion, upper_excursion)
+    nonzero_excursion = excursion[excursion > 0.0]
+    source_clip_pixels = np.any((source_u8 == 0) | (source_u8 == 255), axis=-1)
+    target_clip_pixels = np.any((target_u8 == 0) | (target_u8 == 255), axis=-1)
+    output_clip_pixels = np.any((output_u8 == 0) | (output_u8 == 255), axis=-1)
     return {
         "mean_delta_e00_to_target": float(np.mean(target_delta)),
         "p95_delta_e00_to_target": float(np.percentile(target_delta, 95)),
@@ -64,8 +72,26 @@ def full_resolution_diagnostics(
         "raw_out_of_range_pixel_fraction": float(
             np.mean(np.any((output < 0.0) | (output > 1.0), axis=-1))
         ),
+        "raw_undershoot_channel_fraction": float(np.mean(output < 0.0)),
+        "raw_overshoot_channel_fraction": float(np.mean(output > 1.0)),
+        "raw_excursion_mean_among_oob_channels": float(
+            np.mean(nonzero_excursion) if nonzero_excursion.size else 0.0
+        ),
+        "raw_excursion_p95_among_oob_channels": float(
+            np.percentile(nonzero_excursion, 95) if nonzero_excursion.size else 0.0
+        ),
+        "raw_excursion_max": float(np.max(excursion)),
         "display_clip_channel_fraction": float(
             np.mean((output_u8 == 0) | (output_u8 == 255))
+        ),
+        "display_clip_pixel_fraction": float(np.mean(output_clip_pixels)),
+        "source_display_clip_pixel_fraction": float(np.mean(source_clip_pixels)),
+        "target_display_clip_pixel_fraction": float(np.mean(target_clip_pixels)),
+        "new_display_clip_pixel_fraction_vs_source": float(
+            np.mean(output_clip_pixels & ~source_clip_pixels)
+        ),
+        "new_display_clip_pixel_fraction_vs_target": float(
+            np.mean(output_clip_pixels & ~target_clip_pixels)
         ),
         "luma_empty_bin_fraction": float(1.0 - np.count_nonzero(active) / max(len(active), 1)),
         "luma_max_bin_fraction": float(active.max() / max(active.sum(), 1)),
