@@ -77,6 +77,17 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT / "outputs" / "roll2film" / "ct5_v1" / "fullres",
     )
+    parser.add_argument(
+        "--adjudication-domain",
+        choices=("cinema", "classneg", "velvia"),
+        help="Render only named confirmatory cases for targeted visual adjudication.",
+    )
+    parser.add_argument(
+        "--adjudication-content-id",
+        action="append",
+        default=[],
+        help="Confirmatory content ID to render; may be supplied more than once.",
+    )
     return parser.parse_args()
 
 
@@ -131,6 +142,90 @@ def _save_png(path: Path, linear: np.ndarray) -> None:
     Image.fromarray(linear_to_u8(linear), mode="RGB").save(path, "PNG")
 
 
+def _candidate_names(
+    final_decision: dict[str, Any], domain: str
+) -> tuple[dict[str, Any], list[str]]:
+    recipe = final_decision["recipe_finalists"][domain]
+    names = list(dict.fromkeys([recipe["primary"], *recipe["comparators"]]))
+    return recipe, names
+
+
+def _render_targeted_adjudication(
+    *,
+    args: argparse.Namespace,
+    policy: dict[str, Any],
+    pilot_decision: dict[str, Any],
+    final_decision: dict[str, Any],
+    pilot: dict[str, Any],
+    contract: CT5DataContract,
+    by_content: dict[str, dict[str, dict[str, Any]]],
+    confirm_ids: set[str],
+) -> int:
+    if not args.adjudication_domain:
+        raise ValueError("--adjudication-domain is required with targeted content IDs")
+    requested = list(dict.fromkeys(args.adjudication_content_id))
+    forbidden = sorted(set(requested) - confirm_ids)
+    if forbidden:
+        raise ValueError(
+            "targeted adjudication is restricted to frozen confirmatory IDs: "
+            + ", ".join(forbidden)
+        )
+    domain = args.adjudication_domain
+    recipe, candidate_names = _candidate_names(final_decision, domain)
+    operators = {
+        name: _operator(pilot["operator_bundles"][domain][name]) for name in candidate_names
+    }
+    primary_stratum = pilot_decision["candidate_stratum_by_domain"][domain].get(
+        recipe["primary"], "strong"
+    )
+    best_basic_name = pilot_decision["best_basic_by_domain_and_stratum"][domain][
+        primary_stratum
+    ]
+    if best_basic_name not in operators:
+        operators[best_basic_name] = _operator(
+            pilot["operator_bundles"][domain][best_basic_name]
+        )
+    output_dir = args.output_dir.resolve() / "targeted_adjudication" / domain
+    report_rows: list[dict[str, Any]] = []
+    for content_id in requested:
+        domain_rows = by_content[content_id]
+        source = load_ct5_working_image(contract, domain_rows["input"]).pixels
+        target = load_ct5_working_image(contract, domain_rows[domain]).pixels
+        case_dir = output_dir / content_id.replace(":", "_")
+        _save_png(case_dir / "input.png", source)
+        _save_png(case_dir / "target.png", target)
+        candidate_metrics: dict[str, Any] = {}
+        for name, operator in operators.items():
+            rendered = operator.apply(source.reshape(-1, 3)).reshape(source.shape)
+            _save_png(case_dir / f"candidate_{name}.png", rendered)
+            candidate_metrics[name] = full_resolution_diagnostics(source, target, rendered)
+        report_rows.append(
+            {
+                "content_id": content_id,
+                "case_dir": str(case_dir),
+                "candidates": candidate_metrics,
+            }
+        )
+    report = {
+        "schema_version": 1,
+        "mode": "targeted_confirmatory_visual_adjudication",
+        "experiment_id": policy["experiment_id"],
+        "domain": domain,
+        "primary": recipe["primary"],
+        "best_basic": best_basic_name,
+        "confirmatory_decision_sha256": _sha(args.confirmatory_decision),
+        "confirmatory_report_sha256": _sha(args.confirmatory_report),
+        "software_commit": _commit(),
+        "rows": report_rows,
+        "final_628_parsed_or_decoded": False,
+    }
+    report_path = output_dir / "report.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_bytes((json.dumps(report, indent=2, sort_keys=True) + "\n").encode())
+    print(json.dumps({"report": str(report_path), "cases": len(report_rows)}, indent=2))
+    return 0
+
+
 def main() -> int:
     args = parse_args()
     policy = json.loads(args.policy_config.read_text(encoding="utf-8"))
@@ -163,15 +258,32 @@ def main() -> int:
     if set(by_content) != confirm_ids:
         raise ValueError("full-resolution confirmatory membership mismatch")
 
+    if args.adjudication_content_id:
+        return _render_targeted_adjudication(
+            args=args,
+            policy=policy,
+            pilot_decision=pilot_decision,
+            final_decision=final_decision,
+            pilot=pilot,
+            contract=contract,
+            by_content=by_content,
+            confirm_ids=confirm_ids,
+        )
+    if args.adjudication_domain:
+        raise ValueError(
+            "--adjudication-domain requires at least one --adjudication-content-id"
+        )
+
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     report_domains: dict[str, Any] = {}
-    save_count = int(final_decision["full_resolution_adjudication"]["save_worst_cases_per_recipe_candidate"])
+    save_count = int(
+        final_decision["full_resolution_adjudication"]
+        ["save_worst_cases_per_recipe_candidate"]
+    )
     for domain in policy["dataset"]["domains"]:
         print(f"CT5 fullres {domain}", flush=True)
-        recipe = final_decision["recipe_finalists"][domain]
-        candidate_names = [recipe["primary"], *recipe["comparators"]]
-        candidate_names = list(dict.fromkeys(candidate_names))
+        recipe, candidate_names = _candidate_names(final_decision, domain)
         operators = {
             name: _operator(pilot["operator_bundles"][domain][name]) for name in candidate_names
         }
