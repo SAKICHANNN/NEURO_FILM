@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
+  "decision_date": "2026-07-15",
+  "confirmatory_report_sha256": "4c30a9887069e4921233e9b4b4e7ecbce3e3e8a84e4aa4c74708c856be4f6af8",
+  "software_commit": "c79c8ddb54a1d78e8d957ab7e4b72a53506ebd3f",
+  "selected_family": "lab_mean_std",
+  "decision": "ambiguous_roll_information",
+  "correct_roll_mean_delta_e00": 5.2008325,
+  "correct_roll_mean_style_delta_e00": 7.0191837,
+  "best_control_composite_mean_delta_e00": 5.2455163,
+  "cluster_equal_gain": 0.0446837,
+  "cluster_bootstrap_ci95": [-0.2200901, 0.3094576],
+  "per_roll_gain_vs_own_best_control": {
+    "19960817H": -0.2200901,
+    "19970620C": 0.3094576
+  },
+  "per_roll_best_control": {
+    "19960817H": "pooled_development_rolls",
+    "19970620C": "development_wrong_roll_19960816G"
+  },
+  "location_strata_gain": {
+    "seen_in_support": {"queries": 7, "mean_gain": 0.0431407},
+    "unseen_in_support": {"queries": 5, "mean_gain": 0.0468439}
+  },
+  "sampled_raw_out_of_range_fraction": 0.0,
+  "original_resolution_severe_adjudication": "not_run_because_statistical_promotion_gate_failed",
+  "promotion": {
+    "roll_information_established": false,
+    "run_amortized_set_inference_ct7": false,
+    "reason": "only one of two physical rolls has positive correct-roll gain and the roll-cluster interval crosses zero"
+  },
+  "reopen_condition": "several additional independent matched-control rolls across multiple dates and locations with a new preregistered freeze",
+  "product_consequence": "none; retain the independent CT5 deterministic fixed recipe bank",
+  "filmset_final_628_parsed_or_decoded": false,
+  "claim_boundary": "No reusable physical-roll information, stock-response, digital-to-film, calibration, or broad generalization claim is supported."
+}

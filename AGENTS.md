@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
 > **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
-> **Target direction:** engineering may use the strongest rights-compatible colour-transfer method, but the primary research paper must itself perform colour transfer. The product path is now independent: fixed strong explicit experts, optional transform-aware hard selection, image-level validated support/strength and a severe-artifact veto. Roll2Film remains an offline research challenger whose special group-information hypothesis is not established until fixed-sample matched controls pass. ChromaticTail/FilmStyleSafe is supporting evaluation, FARO is a product safety/system wrapper, FilmCase opens only after diversity and Oracle gates, calibrated profiles are deferred, and generative RGB editing remains separately labeled Creative work.
+> **Target direction:** the independent product path uses the strongest rights-compatible deterministic explicit expert bank, image-level validated support/strength and a severe-artifact veto. Roll2Film completed its fixed-sample BlueNeg challenge but correct-roll gain changed sign across two held-out rolls, so special group information is not established and amortized ML is stopped. Reopen only with materially more independent matched-control rolls and a new freeze. ChromaticTail/FilmStyleSafe remains supporting evaluation, FARO is a product safety/system wrapper, calibrated profiles are deferred, and generative RGB editing remains separately labeled Creative work.
 
 ---
 
@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 90 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; BlueNeg development selects Lab on two rolls while two confirmatory rolls remain unopened; stock accuracy is not calibrated |
+| Current evidence | 92 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; BlueNeg correct-roll gains are -0.220/+0.309 across two held-out rolls and ambiguous; stock accuracy is not calibrated |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -141,7 +141,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 ### Research-only candidates
 
-- Roll2Film: unpaired roll-set repeated measures -> shared explicit roll-look operator -> hidden transfer evaluation; fixed-budget affine method controls pass, but physical-roll information remains unestablished until matched real-roll controls;
+- Roll2Film: fixed-budget method controls and FilmSet transfer pass, but BlueNeg correct-roll gains change sign across held-out rolls and the roll-cluster interval crosses zero; physical-roll information is not established and CT7 stops;
 - FilmCase: source-controlled identifiability → bounded case bank → Evaluator Oracle → simplest generic or transform-aware retrieval → hard sparse router/OOD fallback;
 - existing SepLUT/NILUT/4D proxies: may challenge the Style-safe frontier on rights-cleared preference targets; real paired targets are required only for calibrated claims;
 - local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
@@ -210,16 +210,16 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Priority | Node | Work |
 |---:|---|---|
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
-| Done | U5.CT0 | Reframe primary publication work as Roll2Film colour-transfer algorithm; demote benchmark/system work to support |
-| P0 | U5.CT1/U5.CT3 | Fixed-budget affine and L2 controls pass; finish explicit L0/gauge/shaper closure and matched real-roll controls before any roll-information promotion |
-| Done/in progress | U5.CT2/U5.CT4 | FilmSet archive/pair-blind/628 lockbox freeze passed; CT2 continues only for BlueNeg metadata and whole-roll gates |
+| Done/closed | U5.CT0 | Roll2Film algorithm hypothesis was correctly framed and tested; current paper route closes because BlueNeg matched-roll replication is ambiguous |
+| Done | U5.CT1/U5.CT3/U5.CT6 | Fixed-budget method controls pass, but real-roll correct-group gain changes sign; no roll-information promotion |
+| Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |
 | Done/ongoing | U0.4/U4 | CI/registry foundation is complete; maintain severe-artifact/style evaluation as Roll2Film support and product QA, not the primary paper |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
 | Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
-| Done/conditional | U5.CT5–U5.CT8 | CT5 internal confirmatory is complete: Lab for Cinema and pooled L2 for ClassNeg/Velvia pass the all-238 full-resolution severe veto. CT6 real-roll evidence and a complete policy freeze still precede final-628 use |
+| Done/ready | U5.CT5–U5.CT8 | CT5 internal recipe bank passes; CT6 real-roll evidence is ambiguous and CT7 is stopped. The fixed recipe policy can proceed to one-shot final-628 non-human recipe/style/artifact confirmation without a roll-information claim |
 | P0 product | U5.FC1–U5.FC8/U6 | Build fixed explicit champion/bank independently; FilmCase routing requires ≥2 modes plus an Oracle gap, otherwise use champion + bounded strength |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 

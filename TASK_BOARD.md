@@ -12,7 +12,7 @@
 | Deterministic renderer | current default | `safe_lab`/safe-rich + optional grain/halation/dust |
 | Diffusion/IP2P | retired as default | detail/identity drift; tested SDXL full-UNet OOM on 12GB |
 | Neural LUT/local maps | research-only | pseudo-teacher or saturation-gate evidence is insufficient |
-| Roll2Film research | **conditional algorithm-paper challenger** | fixed-budget affine and L2 method controls pass; real-roll matched controls must still establish special group information |
+| Roll2Film research | **ambiguous / not promoted** | BlueNeg correct-roll gains are `-0.220/+0.309`; the roll-cluster interval crosses zero, so CT7 ML/set inference stops |
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Input pipeline | partial | `render_film` now enters through `WorkingImage`; an explicit legacy sRGB8 adapter remains |
@@ -22,7 +22,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 90 tests pass after CT5 severity and BlueNeg metadata/download/alignment/development diagnostics; CI exists |
+| Tests | baseline passes | 92 tests pass after CT5 and complete BlueNeg matched-control diagnostics; CI exists |
 
 ---
 
@@ -38,8 +38,8 @@
 | 2 | U5.CT2/U5.CT4 | Freeze FilmSet pair blindness and BlueNeg metadata/licence/whole-roll acquisition | complete | BlueNeg full archive forbidden; exact bounded manifest only |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
-| 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | Lab family frozen from development; two-roll confirmatory next | location/date coupling can force an ambiguous result |
-| 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
+| 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | complete: ambiguous across two held-out rolls | roll information not established |
+| 7 | U5.CT7/U5.CT8 | Stop amortized set inference; run one-shot final FilmSet recipe-bank confirmation | CT7 stopped; CT8 execution freeze next | no human claim; 628 opens once only |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
@@ -86,4 +86,4 @@ named-stock claims require controlled paired whole-roll evidence.
 
 ---
 
-*Active parent: `ULT > U5.CT` | Next leaves: `U5.CT2/U5.CT6` BlueNeg whole-roll contract and matched-control pilot, plus `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > deterministic product bank` | Next leaves: `U5.CT8` one-shot final recipe confirmation and `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
