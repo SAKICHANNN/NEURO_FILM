@@ -595,9 +595,9 @@ Parent: `ULT > U5.CT — algorithmic colour transfer`.
 | U5.CT2 | in progress; FilmSet complete | FilmSet/BlueNeg manifest adapters, licence snapshots, group/split schema | FilmSet passed; BlueNeg metadata/whole-roll contract remains |
 | U5.CT3 | in progress; affine and L2 fixed-budget controls pass | fixed-total-sample identifiability plus stronger nuisance/prior/scanner factorials | physical-roll information remains unestablished until matched real-roll controls |
 | U5.CT4 | complete | FilmSet paired-blind corpus, 4,657 internal identities and frozen 628 lockbox | archive hashes, role isolation, zero cross-pool leakage and no final-payload decoding pass |
-| U5.CT5 | pending on baseline freeze | matched-strength baselines and Roll2Film solver | internal hidden protocol passes; official 628 remains sealed before final policy freeze |
+| U5.CT5 | complete on internal confirmatory | matched-strength baselines and Roll2Film solver | fixed Lab/pooled-L2 recipe bank passes sampled fidelity/style and all-238 full-resolution severe veto; official 628 remains sealed |
 | U5.CT6 | scientifically gated; download pre-authorized | BlueNeg preview roll pilot | metadata/whole-roll split plus correct-roll matched-control result and G2 decision |
-| U5.CT7 | conditional on MAP/CT5/CT6 | optional amortised set inference and complete ablation | simplest survivor; no kitchen-sink additions |
+| U5.CT7 | conditional on MAP/CT6; CT5 complete | optional amortised set inference and complete ablation | simplest survivor; no kitchen-sink additions |
 | U5.CT8 | policy-freeze/participant-gated | one-shot 628 transfer and preference study | G3-G6 decision with confidence intervals and no post-hoc retuning |
 | U5.CT9 | future external-data gate | controlled named-stock calibration | whole-roll/process/scan holdout; Level-C claim only |
 

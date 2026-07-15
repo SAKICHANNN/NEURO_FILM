@@ -22,7 +22,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 64 tests pass after FilmSet and L2 operator/falsification implementation; CI exists |
+| Tests | baseline passes | 77 tests pass after CT5 full-resolution severity diagnostics; CI exists |
 
 ---
 
@@ -37,7 +37,7 @@
 | 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | L2 spline core passes; full CT1 still needs explicit L0/gauge/shaper closure | preserve analytic inverse/Jacobian and bake parity |
 | 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | FilmSet CT4 complete; CT2 continues only for BlueNeg metadata | none for local internal work |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
-| 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | 238-identity confirmatory complete; fixed per-recipe finalists frozen; full-res severe gate next | CPU v1 needs no approval; official 628 remains sealed |
+| 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
 | 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | scientifically gated; owner pre-authorized necessary downloads 2026-07-15 | CT3/metadata gate, whole-roll split and storage/retention record |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
@@ -57,7 +57,7 @@
 ## Human decisions required
 
 1. Confirm intended code/profile/data release model and repository license.
-2. Approve any large model/data download, paid GPU, external participant contact, push/merge or public release before it occurs.
+2. Approve paid GPU, external participant contact, merge or public release before it occurs. Necessary research-data downloads and pushes are pre-authorized for the active autonomous goal.
 
 Still-photo desktop is the default first contract. Paired capture and external human validation remain deferred rather than repeatedly requested.
 
@@ -68,7 +68,7 @@ Still-photo desktop is the default first contract. Paired capture and external h
 Do not touch or stage the existing user deletion of `data/raw/.gitkeep`; it is
 outside this research-document leaf.
 
-Current branch is local research work with commits not represented by a matching remote branch. Do not push unless explicitly requested.
+The active autonomous goal explicitly authorizes scoped commits and pushes. Preserve unrelated user work and never merge or release without a separate gate.
 
 ---
 
@@ -86,4 +86,4 @@ named-stock claims require controlled paired whole-roll evidence.
 
 ---
 
-*Active parent: `ULT > U5.CT` | Next leaves: `U5.CT3` nonlinear fixed-budget identifiability, matched-strength CT5 baseline freeze and `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > U5.CT` | Next leaves: `U5.CT2/U5.CT6` BlueNeg whole-roll contract and matched-control pilot, plus `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-01-filmset-internal-v1",
+  "decision_date": "2026-07-15",
+  "fullres_report_sha256": "edc761d25cc87b7321acbb28a744ddb9c0af1800a7e6ce588bcc7d45e2a037d6",
+  "software_commit": "8bf1f5725fbbd91debfed72f175cbac45b8abd50",
+  "final_628_parsed_or_decoded": false,
+  "decision_scope": "FilmSet internal confirmatory recipe transfer only",
+  "recipe_survivors": {
+    "cinema": {
+      "primary": "lab_mean_std",
+      "confirmatory_visual_severe_veto": "pass_no_confirmed_severe",
+      "mean_delta_e00_to_target": 1.8771,
+      "mean_style_delta_e00_from_input": 3.4607,
+      "raw_excursion_max": 0.0
+    },
+    "classneg": {
+      "primary": "pooled_l2",
+      "confirmatory_visual_severe_veto": "pass_no_confirmed_severe",
+      "mean_delta_e00_to_target": 2.3221,
+      "mean_style_delta_e00_from_input": 4.8406,
+      "raw_excursion_p95_across_images": 0.00214451,
+      "raw_excursion_max": 0.00214451
+    },
+    "velvia": {
+      "primary": "pooled_l2",
+      "confirmatory_visual_severe_veto": "pass_no_confirmed_severe",
+      "mean_delta_e00_to_target": 3.4620,
+      "mean_style_delta_e00_from_input": 4.4127,
+      "raw_excursion_p95_across_images": 0.0616976,
+      "raw_excursion_max": 0.0890066
+    }
+  },
+  "visual_evidence": {
+    "primary_review_sheet_sha256": {
+      "cinema_lab_mean_std": "1bd5a1985afb9ebcdadc9a8ad2681554011bbc684d6b96f08ef3374f465b4364",
+      "classneg_pooled_l2": "3742d8eec2a3eb214b46f4b12324e8b413e969e508bbff57fa7dae779ac758b2",
+      "velvia_pooled_l2": "5246456a2d9b1451631e5b7f958656546d1cf37478cf1461e8295ce3304e479c"
+    },
+    "classneg_targeted_report_sha256": "588fcdfcf6d78d6872f86d6cd6858d2d129fa3bf4f2e17a9e4b3f13b24e0739a",
+    "velvia_targeted_report_sha256": "4418d27c7d665a1fc0fef71ce5e2f7def9e5fa7fbd75eb22087903fa553a3c0b",
+    "observed_failures": []
+  },
+  "automatic_escalation_for_final": {
+    "nonfinite_output": "hard_fail",
+    "any_confirmed_spatial_or_content_severe": "hard_fail",
+    "per_image_raw_excursion_max_at_least": 0.05,
+    "per_image_new_display_clip_fraction_vs_target_at_least": 0.10,
+    "trigger_action": "mandatory_original_resolution_visual_adjudication_not_automatic_failure"
+  },
+  "output_policy": {
+    "research_operator": "preserve_raw_explicit_operator_output",
+    "review_transform": "explicit_hard_clip_then_srgb8",
+    "product_requirement": "versioned_explicit_output_transform_and_provenance",
+    "new_gamut_safety_operator": "not_justified_by_internal_confirmatory_evidence",
+    "fallback": "reopen_only_if_final_or_product_stress_evidence_confirms_unintended_severe_clipping"
+  },
+  "promotion_state": "internal_confirmatory_survivor_not_final_or_product_release",
+  "claim_boundary": "No physical-film, named-stock, calibrated-authenticity, population-preference, or public-release claim."
+}

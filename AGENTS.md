@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 18 local tests pass; deterministic renderer is usable; stock accuracy is not yet calibrated |
+| Current evidence | 77 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; stock accuracy is not calibrated |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -219,7 +219,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
 | Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
-| Conditional | U5.CT5–U5.CT8 | Sampled FilmSet confirmatory rejects one universal operator and supports fixed recipe finalists; full-resolution severe gate precedes any promotion or final-628 use |
+| Done/conditional | U5.CT5–U5.CT8 | CT5 internal confirmatory is complete: Lab for Cinema and pooled L2 for ClassNeg/Velvia pass the all-238 full-resolution severe veto. CT6 real-roll evidence and a complete policy freeze still precede final-628 use |
 | P0 product | U5.FC1–U5.FC8/U6 | Build fixed explicit champion/bank independently; FilmCase routing requires ≥2 modes plus an Oracle gap, otherwise use champion + bounded strength |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 
