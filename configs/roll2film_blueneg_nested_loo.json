@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF1.2-blueneg-nested-loo-diagnostic-v1",
+  "freeze_date": "2026-07-15",
+  "purpose": "diagnose the prior two-roll sign reversal without adding model capacity or making a promotion claim",
+  "source_contract": {
+    "repo_id": "ttgroup/blueneg-release",
+    "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+    "metadata_report_sha256": "2703d07036f7bdc5ac296df7bfa9617e294562dacd2b75bb27623dc037b50232",
+    "frames_manifest_sha256": "9fdcf9b652d6c18f52d1135c738ac6c42050604f8db50a5ece043ff2da3a0dd6",
+    "acquisition_manifest_sha256": "c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067",
+    "download_report_sha256": "f77f7f7e2699cc3cc12e73267adfc6a77da44150ad7bebcc90f3fae194abb764",
+    "transformations_sha256": "d552b5c4606099234ccf02cfd252dc5652c5aa0a89fa3e002d8cba5252429601",
+    "development_report_sha256": "d66cfbae2777e2522b8587164c21af46c916e5203ec10e723dc75a24fbf3a897",
+    "confirmatory_report_sha256": "4c30a9887069e4921233e9b4b4e7ecbce3e3e8a84e4aa4c74708c856be4f6af8",
+    "confirmatory_decision_sha256": "ee48ff93f50f591f74c899d9b5eaed40050b8c18a438da51c2a61a2e72c2f6a8"
+  },
+  "cohort": {
+    "film_type": "Kodak Gold 100-5",
+    "rolls": ["19960816G", "19960816H", "19960817H", "19970620C"],
+    "complete_aligned_frames_per_roll": {
+      "19960816G": 13,
+      "19960816H": 6,
+      "19960817H": 12,
+      "19970620C": 12
+    },
+    "queries": "every one of the 43 locally complete aligned frames exactly once",
+    "query_excluded_from_every_support_arm": true
+  },
+  "operator": {
+    "family": "lab_mean_std",
+    "new_capacity": false,
+    "spatial_resampling": "forbidden",
+    "support_source_target_alignment_exposed": false,
+    "support_frames": 3,
+    "support_pixels_per_frame_per_domain": 4096,
+    "query_pixels_per_frame": 8192,
+    "minimum_aligned_side": 64
+  },
+  "selection": {
+    "seed": 2026071512,
+    "correct_roll": "hash-select three non-query frames from the query physical roll",
+    "each_wrong_roll": "hash-select three frames independently from each other physical roll",
+    "pooled_wrong": "hash-select three frames from the union of all other physical rolls",
+    "content_retrieval_wrong": "three nearest source-only frame descriptors from other physical rolls",
+    "shuffled_roll": "fixed count-preserving permutation of roll labels; select three frames assigned the query pseudo-roll",
+    "identity": "no transform"
+  },
+  "content_descriptor": {
+    "uses_target": false,
+    "features": "linear-RGB channel mean/std plus Lab L percentiles 10/50/90 and Lab chroma mean/std",
+    "standardization": "robust median/IQR over the 43 source frames",
+    "distance": "Euclidean after robust standardization"
+  },
+  "strength_control": {
+    "report_raw": true,
+    "report_source_only_style_matched": true,
+    "blend": "input + alpha * (candidate - input)",
+    "alpha_range": [0.0, 1.5],
+    "target_style": "correct-roll mean Delta-E00 from query input",
+    "fit_uses_query_target": false
+  },
+  "statistics": {
+    "primary": "per-query target Delta-E00 gain versus the strongest fixed control",
+    "secondary": [
+      "raw and style-matched gain by physical roll",
+      "win rate versus every individual wrong roll",
+      "gain versus pooled-wrong, retrieval and shuffled-roll arms",
+      "association with location, scene_property and source-descriptor distance"
+    ],
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 2026071513,
+    "cluster": "physical roll, with query-frame resampling inside roll",
+    "minimum_replication": "all four physical-roll point estimates must be positive for any renewed group-information hypothesis"
+  },
+  "decision": {
+    "diagnostic_support": "correct-roll is positive on all four rolls and remains positive against pooled, retrieval, shuffled and every wrong-roll control after source-only style matching",
+    "nuisance_explanation": "correct-roll loses to retrieval/pooled/shuffled or gain is explained by source descriptor/location/scene_property",
+    "heterogeneous_or_unidentified": "roll signs disagree, the four-roll cluster interval includes zero, or no single explanation replicates",
+    "no_promotion": true
+  },
+  "claim_ceiling": "Retrospective archive/scanner-specific mechanism diagnosis only; not stock truth, calibration, digital-to-film evidence or a fresh confirmatory result."
+}

@@ -46,7 +46,7 @@
 | 7 | U5.CT7/U5.CT8 | Stop amortized set inference; close one-shot FilmSet auxiliary confirmation | complete: Cinema/ClassNeg pass digital recipe control; Velvia fidelity fails; no severe confirmed | cannot promote Ultimate or real-film claims |
 | 1 | RF0.1/RF0.2 | Acquire, verify and gate CC-BY FILM-R real scans | complete/limited | 88 files verified; only `real-film-derived/unknown-look`; restoration is nuisance, not truth |
 | 2 | RF1.1 | Test FILM-R signal vs content/damage/source nuisance | ready | source/pair holdouts, content-balanced controls and leakage report |
-| 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | ready | nested LOO correct/pooled/wrong/shuffled/retrieval controls |
+| 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | executing | 43-query nested LOO contract frozen before rerun |
 | 4 | RF2/RF3 | CPU expert ladder, then bounded GPU challengers if justified | pending RF1 | real-film gates, matched style, severe veto |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
