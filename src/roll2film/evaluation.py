@@ -113,6 +113,33 @@ def classify_fixed_budget_e0(
     }
 
 
+def classify_fixed_budget_l2(
+    *,
+    partition_operator_grid_max_abs: float,
+    nuisance_boundary: dict[str, float],
+    independent_support: dict[str, float],
+    mixed_operator: dict[str, float],
+    partition_tolerance: float = 1e-12,
+    relative_improvement_min: float = 0.10,
+) -> dict[str, object]:
+    """Classify L2 simulator controls without promoting real-roll evidence."""
+
+    affine_result = classify_fixed_budget_e0(
+        partition_parameter_max_abs=partition_operator_grid_max_abs,
+        nuisance_boundary=nuisance_boundary,
+        independent_support=independent_support,
+        mixed_operator=mixed_operator,
+        partition_tolerance=partition_tolerance,
+        relative_improvement_min=relative_improvement_min,
+    )
+    affine_result["claim_boundary"] = (
+        "Passing validates fixed-budget affine-plus-monotone-spline method controls only; "
+        "it does not establish physical-roll information, film identity, stock calibration, "
+        "or product safety."
+    )
+    return affine_result
+
+
 def classify_e0(
     correct_by_size: dict[int, float],
     shuffled_by_size: dict[int, float],
