@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 77 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; stock accuracy is not calibrated |
+| Current evidence | 81 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; BlueNeg metadata gate supports only a four-roll matched core; stock accuracy is not calibrated |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -165,7 +165,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 Current Windows audit, 2026-07-15: `data/film_domain` contains 4,212 JPEGs, while the earlier 4,210-row legacy lineage audit remains 0 eligible/4,210 quarantined and must not be silently generalized to new files. `data/processed/manifest.jsonl` exists. The complete decompressed FilmSet image tree is local: 21,140 files / 11,262,805,356 bytes, with 4,657 identities per train domain and **628** per test domain. The paper-reported 638 is retained as a publication contradiction, never used at runtime. A partial FiveK freeze is present; it is not the complete source.
 
-BlueNeg remains absent but remote-verified through its public file tree and a successful range read; its metadata records 491 frames, 53 rolls and 13 film-type strings, while its initial 8-bit preview plus pseudo-ground-truth lanes are about 956MB. FilmSet local internal use needs no new download approval, but its final 628 lockbox requires access controls and release rights remain unresolved. On 2026-07-15 the owner pre-authorized necessary data downloads; BlueNeg still waits on the scientific CT3/metadata/whole-roll-split gate rather than another permission request. Neither resource changes the claim boundaries above.
+BlueNeg metadata/licence/inventory are now local at exact revision `b038a1ae...`; pixels remain absent. Whole-roll preflight seals 17 rolls containing official test frames and finds only five operator-eligible rolls. Four `Kodak Gold 100-5` rolls form the sole same-film matched-control core; the exact acquisition is 101 files / 118,929,719 bytes, not the full 956MB lanes or 290GB archive. This can test a narrow archive/scanner-specific roll-information mechanism, not 13-film-type generalization. On 2026-07-15 the owner pre-authorized necessary data downloads. Neither resource changes the claim boundaries above.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
 

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
+  "decision_date": "2026-07-15",
+  "metadata_report_sha256": "28464a68993bf7316476ef983804cbb34d7a6e7c4f940cfb977e08bac03ba2a6",
+  "acquisition_manifest_sha256": "c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067",
+  "repo_id": "ttgroup/blueneg-release",
+  "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+  "acquisition_files": 101,
+  "acquisition_bytes": 118929719,
+  "full_two_lane_bytes": 955748961,
+  "full_archive_forbidden": true,
+  "whole_roll_policy": {
+    "official_test_rolls_sealed": 17,
+    "operator_rolls": 5,
+    "matched_control_operator_rolls": 4,
+    "development_rolls": 3,
+    "confirmatory_rolls": 2,
+    "whole_roll_overlap": 0
+  },
+  "matched_core": {
+    "film_type": "Kodak Gold 100-5",
+    "rolls": ["19960816G", "19960816H", "19960817H", "19970620C"],
+    "development_rolls": ["19960816G", "19960816H"],
+    "confirmatory_rolls": ["19960817H", "19970620C"],
+    "claim": "single-film-string matched roll-information mechanism pilot"
+  },
+  "exploratory_only": {
+    "film_type": "Kodak Gold 100",
+    "roll": "19941219C",
+    "reason": "no same-film wrong-roll control"
+  },
+  "download_authorization": "owner pre-authorized necessary research data on 2026-07-15",
+  "required_credit": "Copyrighted by Tien-Tsin Wong",
+  "release_policy": "no redistribution, example publication, derivative release, or weights claim without separate review",
+  "claim_boundary": "archive/scanner-specific roll-look information only; not digital-to-film, stock response, named-stock calibration, or broad multi-stock generalization"
+}
