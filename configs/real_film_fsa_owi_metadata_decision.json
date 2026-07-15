@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-metadata-decision",
+  "source_contract_sha256": "f5ba4323aef4ca9e5b747157987c65317e79db14c40911614d1f9954d238f4db",
+  "metadata_report_sha256": "67db03a94de75a47cf2f7504ae82739b812e3fcc5340dd7945a6aec758a75416",
+  "raw_manifest_sha256": "dcdea06dcef1d51720d3ef02eb1b3e917a1be5a706cb2a30a141860d73943352",
+  "canonical_manifest_sha256": "914a659e5c88795f352aaf36a1bc08dfe5774bd7e1f8c8c75b7c318d4c39a12e",
+  "software_commit": "0dbb52a1aae2796607e98d78afdd14a303e9a1ff",
+  "raw_category_decision": "metadata_ineligible",
+  "canonical_subset_decision": "canonical_pilot_allowed",
+  "raw_records": 1031,
+  "canonical_unique_loc_records": 558,
+  "duplicate_representations_removed": 419,
+  "creator_group_coverage": 0.8189964157706093,
+  "phase_b_authorized_by_gate": true,
+  "phase_b_limits": {
+    "maximum_images": 64,
+    "maximum_total_bytes": 67108864,
+    "purpose": "decode, lineage and visual-nuisance audit only; no model training"
+  },
+  "claim_ceiling": "real-film-derived archive scan look with a common 2003-2004 LOC capture procedure plus Commons derivative nuisance; not calibrated Kodachrome response, not digital-to-film ground truth, and not a physical-roll label"
+}
