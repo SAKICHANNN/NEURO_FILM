@@ -19,6 +19,9 @@ downloaded or decoded while making this decision.
 - Repository: `ttgroup/blueneg-release`
 - Exact revision: `b038a1ae68f42067ff12b5e79ddbe62919b7af23`
 - Metadata: 491 frames, 53 rolls and 13 film-type strings
+- Alignment metadata: 428 restricted-unpickler-validated matrix/bbox records;
+  five bboxes extend slightly beyond preview bounds and require intersection
+  cropping rather than negative indexing
 - Full public 8-bit lanes at that revision: 491 previews / 687,735,976 bytes
   and 247 pseudo-GT files / 268,012,985 bytes
 - Licence snapshot SHA-256:
@@ -66,11 +69,11 @@ overlap.
 - Evidence report:
   `outputs/roll2film/blueneg_v1/evidence/report.json`
 - Report SHA-256:
-  `28464a68993bf7316476ef983804cbb34d7a6e7c4f940cfb977e08bac03ba2a6`
+  `2703d07036f7bdc5ac296df7bfa9617e294562dacd2b75bb27623dc037b50232`
 - Acquisition manifest SHA-256:
   `c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067`
-- Evidence software commit: `e034e7a1f9cc85450e2e77bfe6fb83cb7515f298`
-- Tests: 81 pass
+- Evidence software commit: `d9965e9d4e2e5d3d0da8b269a8a0933a6b1f55be`
+- Tests: 86 pass
 - Frozen acquisition decision:
   `configs/roll2film_blueneg_acquisition_decision.json`
 

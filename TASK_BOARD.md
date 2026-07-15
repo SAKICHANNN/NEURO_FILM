@@ -22,7 +22,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 84 tests pass after CT5 severity and BlueNeg metadata/download-contract diagnostics; CI exists |
+| Tests | baseline passes | 86 tests pass after CT5 severity and BlueNeg metadata/download/alignment-contract diagnostics; CI exists |
 
 ---
 

@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 84 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; 101 BlueNeg pilot files are hash-verified for a four-roll matched core but pixels remain undecoded; stock accuracy is not calibrated |
+| Current evidence | 86 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; 101 BlueNeg pilot files plus restricted alignment metadata are hash-verified for a four-roll matched core but pixels remain undecoded; stock accuracy is not calibrated |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.

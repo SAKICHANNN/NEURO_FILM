@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
   "decision_date": "2026-07-15",
-  "metadata_report_sha256": "28464a68993bf7316476ef983804cbb34d7a6e7c4f940cfb977e08bac03ba2a6",
+  "metadata_report_sha256": "2703d07036f7bdc5ac296df7bfa9617e294562dacd2b75bb27623dc037b50232",
   "acquisition_manifest_sha256": "c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067",
   "repo_id": "ttgroup/blueneg-release",
   "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
