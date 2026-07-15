@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-sequence-group-gate",
+  "source_contract_sha256": "f5ba4323aef4ca9e5b747157987c65317e79db14c40911614d1f9954d238f4db",
+  "metadata_decision_sha256": "d51c4a331bd5770a636eef5724fe48de2a77a0f6c0db900d29c7f3b3d04fac1c",
+  "pilot_decision_sha256": "37e43c6024e93965bf3af198c1c4dcf852404c62e6635c414be65bb47f7cdf3b",
+  "canonical_manifest_sha256": "914a659e5c88795f352aaf36a1bc08dfe5774bd7e1f8c8c75b7c318d4c39a12e",
+  "group_method": {
+    "name": "creator_plus_loc_sequence_guard",
+    "maximum_adjacent_numeric_gap": 5,
+    "unknown_creator_policy": "stress_only",
+    "interpretation": "conservative leakage guard inferred from creator and sequential LOC digital ids; not a recovered LOT, assignment, roll, process or scanner batch",
+    "primary_source": "https://findingaids.loc.gov/exist_collections/ead3pdf/pnp/2020/pp020002.pdf",
+    "source_basis": "LOC states that each photographic assignment is usually given a block of sequential negatives."
+  },
+  "gates": {
+    "minimum_known_creator_records": 400,
+    "minimum_creators_with_eight_records": 7,
+    "minimum_sequence_groups_with_three_records": 12,
+    "maximum_largest_sequence_group_fraction": 0.3,
+    "minimum_known_creator_coverage": 0.75
+  },
+  "evaluation_contract": {
+    "primary": "leave-one-creator-out over creator groups with at least eight records",
+    "secondary": "leave-one-sequence-guard-group-out over groups with at least three records",
+    "unknown_creator_records": "stress and failure analysis only",
+    "scanner_out": "not identifiable within this common LOC capture lane; must be evaluated on an independent real-film source",
+    "forbidden": "random image split or treating sequence_guard_group as physical roll truth"
+  },
+  "claim_ceiling": "real-film-derived archive scan look under creator and conservative sequence holdouts; no calibrated stock, physical-roll, process or scanner-setting claim"
+}
