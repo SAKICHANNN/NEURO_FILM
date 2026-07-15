@@ -467,3 +467,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Confirmatory gate:** correct-roll inference must beat identity, pooled development, each development wrong roll, the other confirmatory roll and deterministic shuffled groups at equal budget. Both rolls must be positive and the 10,000-resample query-frame-cluster bootstrap lower bound versus best control must exceed zero; one-roll or nuisance-dependent gains are ambiguous.
 - **Claim ceiling:** at most narrow archive/scanner-specific group-information evidence in four Kodak Gold 100-5 rolls. Even a pass cannot establish multi-stock Roll2Film, digital-to-film or calibration.
 - **Evidence/handoff:** `configs/roll2film_blueneg_evaluator.json` and `docs/data/ROLL2FILM_BLUENEG_EVALUATOR_CONTRACT.md`. Implement alignment/cache/development runner, test it, commit it, then decode development pixels only.
+
+## 2026-07-15 - Select BlueNeg operator family on development rolls only
+
+- **Node/parent goal:** `ULT > U5.CT6`; select one explicit family without decoding held-out roll pixels.
+- **Implementation/access:** ICC-aware linear-sRGB decoder, strict development-only loader, official-bbox intersection cropping, independent support source/target sampling and aligned query sampling. Confirmatory role access fails before file decode. Four focused tests cover negative bbox intersection, shape mismatch, role rejection and deterministic sampling.
+- **Result:** Lab mean/std is the development winner (`Delta-E=5.576`, style `5.184`) and beats identity (`8.289`) on both rolls. Basic/Bures score about `6.26`; pooled L2 is stronger (`style=7.544`) but worse overall (`6.962`) and unstable (`5.297` versus `8.627`, with 8.72% OOR on the second roll).
+- **Decision:** freeze Lab mean/std for all correct/wrong/pooled/shuffled confirmatory arms. Do not reopen L2 or tune strength after held-out decode. Report SHA-256 `d66cfbae2777e2522b8587164c21af46c916e5203ec10e723dc75a24fbf3a897` reruns byte-identically; `confirmatory_roll_pixels_decoded=false`.
+- **Nuisance risk:** both development rolls are Stanford/date coupled; held-out support/query locations overlap within rolls. Query-location strata are mandatory, and location-dependent gain is ambiguous rather than a pass.
+- **Evidence/handoff:** `configs/roll2film_blueneg_development_decision.json`, `docs/ROLL2FILM_BLUENEG_DEVELOPMENT_RESULTS.md`. Implement the fixed Lab confirmatory controls, test/commit, then decode the two held-out rolls once.

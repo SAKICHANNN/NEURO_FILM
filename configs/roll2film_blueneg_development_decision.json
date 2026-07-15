@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
+  "decision_date": "2026-07-15",
+  "evaluator_policy_sha256": "e06089f8d9814b8f6518a8a330462469b2ab7d6e6ef9b271f8d51c31a3280eea",
+  "development_report_sha256": "d66cfbae2777e2522b8587164c21af46c916e5203ec10e723dc75a24fbf3a897",
+  "software_commit": "fd2a816703b9de1cb919f6aa05cf7ef876e49d9d",
+  "selected_family": "lab_mean_std",
+  "selection_rule": "simplest eligible family within 0.25 Delta-E00 of the development winner",
+  "aggregate": {
+    "identity": {"target_delta_e00": 8.2890105, "style_delta_e00": 0.0},
+    "lab_mean_std": {"target_delta_e00": 5.5764192, "style_delta_e00": 5.1839334},
+    "wb_contrast_saturation": {"target_delta_e00": 6.2552349, "style_delta_e00": 3.5599627},
+    "gaussian_bures": {"target_delta_e00": 6.2860574, "style_delta_e00": 7.3889273},
+    "pooled_l2": {"target_delta_e00": 6.9620838, "style_delta_e00": 7.5435304},
+    "per_channel_quantile": {"target_delta_e00": 7.0807845, "style_delta_e00": 4.9262071}
+  },
+  "selected_family_per_roll_target_delta_e00": {
+    "19960816G": 5.3225889,
+    "19960816H": 5.8302494
+  },
+  "confirmatory_roll_pixels_decoded": false,
+  "confirmatory_family_locked": true,
+  "nuisance_warning": "roll, date and location are coupled; confirmatory results must be stratified by query location and cannot establish a stock response",
+  "claim_boundary": "development selection only; no roll-information result until the frozen confirmatory controls run"
+}
