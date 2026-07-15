@@ -21,3 +21,18 @@ exact LOTs.
 The gate and thresholds are in
 `configs/real_film_fsa_owi_grouping.json`. Passing permits a bounded Phase C
 download and RF1 identifiability work. It does not establish film signal.
+
+## Location recovery amendment
+
+The first sequence-only run failed: it produced only eleven known-creator
+groups with at least three records, below the frozen minimum of twelve. The
+failure remains an explicit report field. Before retrying, a second route was
+frozen from the official LOC FSA and OWI shooting-assignment tables, which are
+organized by state, assignment and photographer.
+
+The recovery extracts only explicit state/territory text from the catalogued
+caption, combines it with creator, and falls back to the original sequence
+guard when no location is present. It intentionally merges all assignments by
+the same creator in one state. Cross-state assignments may still be split, so
+this remains a leakage guard rather than exact assignment truth. Creator-out
+is still the primary result; location-out is secondary.

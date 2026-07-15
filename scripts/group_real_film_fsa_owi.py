@@ -14,8 +14,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.real_film.fsa_owi_grouping import (  # noqa: E402
+    build_location_guard_groups,
     build_sequence_guard_groups,
     evaluate_group_gate,
+    evaluate_location_recovery_gate,
 )
 
 
@@ -46,11 +48,13 @@ def main() -> int:
     if sha256(pilot_decision) != config["pilot_decision_sha256"]:
         raise ValueError("pilot decision hash mismatch")
     records = [json.loads(line) for line in args.canonical_manifest.read_text(encoding="utf-8").splitlines() if line]
-    rows = build_sequence_guard_groups(
+    sequence_rows = build_sequence_guard_groups(
         records,
         maximum_adjacent_gap=int(config["group_method"]["maximum_adjacent_numeric_gap"]),
     )
-    gate = evaluate_group_gate(rows, config)
+    sequence_gate = evaluate_group_gate(sequence_rows, config)
+    rows = build_location_guard_groups(sequence_rows)
+    recovery_gate = evaluate_location_recovery_gate(rows, config)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output_dir / "manifest.jsonl"
     manifest = b"".join(
@@ -69,7 +73,8 @@ def main() -> int:
         "canonical_manifest_sha256": sha256(args.canonical_manifest),
         "pilot_decision_sha256": sha256(pilot_decision),
         "grouped_manifest_sha256": hashlib.sha256(manifest).hexdigest(),
-        "gate": gate,
+        "sequence_only_gate": sequence_gate,
+        "location_recovery_gate": recovery_gate,
         "group_interpretation": config["group_method"]["interpretation"],
         "evaluation_contract": config["evaluation_contract"],
         "claim_ceiling": config["claim_ceiling"],
@@ -78,14 +83,16 @@ def main() -> int:
     report_path = args.output_dir / "report.json"
     report_path.write_bytes(encoded)
     print(json.dumps({
-        "decision": gate["decision"],
-        "records": gate["records"],
-        "known_creator_records": gate["known_creator_records"],
-        "sequence_groups": gate["sequence_group_count"],
+        "decision": recovery_gate["decision"],
+        "sequence_only_decision": sequence_gate["decision"],
+        "records": len(rows),
+        "known_creator_records": recovery_gate["known_creator_records"],
+        "sequence_groups": sequence_gate["sequence_group_count"],
+        "location_guard_groups": recovery_gate["location_guard_group_count"],
         "report_sha256": hashlib.sha256(encoded).hexdigest(),
         "manifest_sha256": report["grouped_manifest_sha256"],
     }, indent=2, sort_keys=True))
-    return 0 if gate["passed"] else 2
+    return 0 if recovery_gate["passed"] else 2
 
 
 if __name__ == "__main__":

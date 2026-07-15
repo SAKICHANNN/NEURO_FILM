@@ -20,9 +20,18 @@
     "maximum_largest_sequence_group_fraction": 0.3,
     "minimum_known_creator_coverage": 0.75
   },
+  "location_recovery": {
+    "status": "predeclared after sequence-only grouping failed its independent-group gate",
+    "minimum_location_coverage": 0.5,
+    "minimum_location_guard_groups_with_three_records": 20,
+    "maximum_largest_location_guard_fraction": 0.2,
+    "interpretation": "creator plus caption-derived state or territory, with the sequence group retained as fallback when no location is recovered; not an exact assignment label",
+    "fsa_assignment_source": "https://www.loc.gov/collections/fsa-owi-color-photographs/articles-and-essays/fsa-shooting-assignments/",
+    "owi_assignment_source": "https://www.loc.gov/pictures/collection/fsac/owiassignments.html"
+  },
   "evaluation_contract": {
     "primary": "leave-one-creator-out over creator groups with at least eight records",
-    "secondary": "leave-one-sequence-guard-group-out over groups with at least three records",
+    "secondary": "leave-one-location-guard-group-out over groups with at least three records; also report sequence-only sensitivity",
     "unknown_creator_records": "stress and failure analysis only",
     "scanner_out": "not identifiable within this common LOC capture lane; must be evaluated on an independent real-film source",
     "forbidden": "random image split or treating sequence_guard_group as physical roll truth"
