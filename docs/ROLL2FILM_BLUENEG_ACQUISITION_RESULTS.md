@@ -19,9 +19,9 @@ The frozen BlueNeg pilot acquisition completed successfully.
 
 The deterministic download report is
 `outputs/roll2film/blueneg_v1/download_report.json`, SHA-256
-`f20d83a4378ee5a4306ffa02ea04f7f2ead6c0c58c79aa36152e3bd199b934a7`.
+`f77f7f7e2699cc3cc12e73267adfc6a77da44150ad7bebcc90f3fae194abb764`.
 It was produced at software commit
-`14946319cb47588a02448006f3e3cb14ff40eec8` and reran byte-identically from
+`c0f6647346ccc055920242d615d0e35ffd052271` and reran byte-identically from
 the local cache.
 
 Source bytes are ignored under `data/raw/blueneg`. The downloader rejects path
