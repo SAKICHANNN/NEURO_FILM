@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-phase-c-pixels",
+  "grouping_decision_sha256": "e5a8f95610d54335518b90df48843ade6f02de962886db70ee5e1f285e5d34a4",
+  "grouped_manifest_sha256": "ec7f6f685a1b4d965e5179138a0676aa38f0e57a1324b668bbaf7ed110e258b5",
+  "expected_records": 558,
+  "maximum_total_bytes": 1073741824,
+  "request_interval_seconds": 1.0,
+  "timeout_seconds": 60,
+  "max_retries": 5,
+  "reuse_verified_pilot": true,
+  "pixel_role": {
+    "known_creator": "eligible for the later identifiability audit only",
+    "unknown_creator": "stress-only",
+    "training_allowed": false
+  },
+  "gates": {
+    "all_records_decode": true,
+    "exact_duplicate_payloads": 0,
+    "maximum_near_duplicate_pairs_dhash_le_4": 0,
+    "maximum_total_bytes": 1073741824
+  },
+  "next_gate": "deterministic border/interior masks, full-corpus content descriptors and creator/location nuisance-identifiability controls",
+  "claim_ceiling": "real-film-derived archive scan pixels with common LOC capture and Commons derivative nuisance; not digital-to-film pairs, physical rolls or calibrated Kodachrome"
+}
