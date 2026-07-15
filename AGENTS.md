@@ -211,7 +211,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 |---:|---|---|
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | Done | U5.CT0 | Reframe primary publication work as Roll2Film colour-transfer algorithm; demote benchmark/system work to support |
-| P0 | U5.CT1/U5.CT3 | Fixed-budget affine controls pass; finish L2 nonlinear truth plus stronger prior/scanner/nuisance controls before any roll-information promotion |
+| P0 | U5.CT1/U5.CT3 | Fixed-budget affine and L2 controls pass; finish explicit L0/gauge/shaper closure and matched real-roll controls before any roll-information promotion |
 | Done/in progress | U5.CT2/U5.CT4 | FilmSet archive/pair-blind/628 lockbox freeze passed; CT2 continues only for BlueNeg metadata and whole-roll gates |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |

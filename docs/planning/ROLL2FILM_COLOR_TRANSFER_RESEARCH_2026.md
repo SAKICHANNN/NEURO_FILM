@@ -4,9 +4,9 @@
 
 **Paper type:** colour-transfer method, not a benchmark paper
 
-**Current execution state:** fixed-budget affine controls pass without establishing roll information; local FilmSet evidence freeze and L2 operator work are next
+**Current execution state:** fixed-budget affine and L2 method controls plus the local FilmSet pair-blind freeze pass; roll information remains unestablished and matched-strength baselines are next
 
-**Download/training state:** FilmSet is already local and may be used internally after pair-blind/access freeze; no new dataset download, costly GPU training, participant study or external contact is authorized by this document
+**Download/training state:** FilmSet is local and its pair-blind/access freeze passed; the owner pre-authorized necessary downloads, but BlueNeg still waits on metadata/whole-roll scientific gates and costly GPU, participant, release or external-contact actions remain separately gated
 
 > **2026-07-15 integration correction:** the current E0 is a restricted
 > estimator unit test, not evidence that roll labels add information, because
@@ -591,12 +591,12 @@ Parent: `ULT > U5.CT — algorithmic colour transfer`.
 | Node | State | Deliverable | Exit evidence |
 |---|---|---|---|
 | U5.CT0 | complete, re-gated 2026-07-15 | corrected problem, current data audit, nearest-work boundary and claim ladder | paper core remains colour transfer, but Roll2Film requires fixed-budget promotion evidence |
-| U5.CT1 | in progress; affine foundation complete | L0–L2 invertible operator contract and known-operator simulator | inverse/Jacobian/bake property tests plus fixed-budget recovery curves |
-| U5.CT2 | ready | FilmSet/BlueNeg manifest adapters, licence snapshots, group/split schema | metadata hashes and fail-closed eligibility report |
-| U5.CT3 | in progress; affine fixed-budget controls pass | extend fixed-total-sample identifiability from affine to L2 truth and stronger nuisance/prior/scanner factorials | physical-roll information remains unestablished until matched real-roll controls |
-| U5.CT4 | ready; local, no download | FilmSet paired-blind corpus, 4,657 internal identities and frozen 628 lockbox | archive/licence snapshot, hashes, access controls and pair-blinding tests |
-| U5.CT5 | pending on CT2/CT3/CT4 | matched-strength baselines and Roll2Film solver | internal hidden protocol passes; official 628 remains sealed before final policy freeze |
-| U5.CT6 | approval-gated download | BlueNeg preview roll pilot | correct-roll matched-control result and G2 decision |
+| U5.CT1 | in progress; L2 spline core passes | L0–L2 invertible operator contract and known-operator simulator | explicit L0/gauge/shaper closure remains; L2 inverse/Jacobian/bake and fixed-budget recovery pass |
+| U5.CT2 | in progress; FilmSet complete | FilmSet/BlueNeg manifest adapters, licence snapshots, group/split schema | FilmSet passed; BlueNeg metadata/whole-roll contract remains |
+| U5.CT3 | in progress; affine and L2 fixed-budget controls pass | fixed-total-sample identifiability plus stronger nuisance/prior/scanner factorials | physical-roll information remains unestablished until matched real-roll controls |
+| U5.CT4 | complete | FilmSet paired-blind corpus, 4,657 internal identities and frozen 628 lockbox | archive hashes, role isolation, zero cross-pool leakage and no final-payload decoding pass |
+| U5.CT5 | pending on baseline freeze | matched-strength baselines and Roll2Film solver | internal hidden protocol passes; official 628 remains sealed before final policy freeze |
+| U5.CT6 | scientifically gated; download pre-authorized | BlueNeg preview roll pilot | metadata/whole-roll split plus correct-roll matched-control result and G2 decision |
 | U5.CT7 | conditional on MAP/CT5/CT6 | optional amortised set inference and complete ablation | simplest survivor; no kitchen-sink additions |
 | U5.CT8 | policy-freeze/participant-gated | one-shot 628 transfer and preference study | G3-G6 decision with confidence intervals and no post-hoc retuning |
 | U5.CT9 | future external-data gate | controlled named-stock calibration | whole-roll/process/scan holdout; Level-C claim only |

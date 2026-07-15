@@ -12,7 +12,7 @@
 | Deterministic renderer | current default | `safe_lab`/safe-rich + optional grain/halation/dust |
 | Diffusion/IP2P | retired as default | detail/identity drift; tested SDXL full-UNet OOM on 12GB |
 | Neural LUT/local maps | research-only | pseudo-teacher or saturation-gate evidence is insufficient |
-| Roll2Film research | **conditional algorithm-paper challenger** | current E0 is a matched-affine method test; fixed-sample grouping, nuisance and real-roll controls must establish special group information |
+| Roll2Film research | **conditional algorithm-paper challenger** | fixed-budget affine and L2 method controls pass; real-roll matched controls must still establish special group information |
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Input pipeline | partial | `render_film` now enters through `WorkingImage`; an explicit legacy sRGB8 adapter remains |
@@ -22,7 +22,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 58 tests pass after FilmSet manifest/access implementation; CI exists |
+| Tests | baseline passes | 64 tests pass after FilmSet and L2 operator/falsification implementation; CI exists |
 
 ---
 
@@ -34,9 +34,9 @@
 | 0a | U5.FC0 | Freeze autonomous unpaired non-generative FilmCase plan | complete | completed 2026-07-11 |
 | 0b | U5.R0 | Freeze FARO novelty audit and publication research program | complete | completed 2026-07-11 |
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
-| 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | in progress; affine v1 foundation passes | extend truth family to monotone curves/LUT residuals |
+| 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | L2 spline core passes; full CT1 still needs explicit L0/gauge/shaper closure | preserve analytic inverse/Jacobian and bake parity |
 | 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | FilmSet CT4 complete; CT2 continues only for BlueNeg metadata | none for local internal work |
-| 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | in progress; affine method controls pass, roll information not established | nonlinear recovery and matched real-roll evidence remain |
+| 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | pending on nonlinear CT3 and baseline freeze; FilmSet data gate passed | GPU/cost gate only if required; official 628 remains sealed |
 | 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | scientifically gated; owner pre-authorized necessary downloads 2026-07-15 | CT3/metadata gate, whole-roll split and storage/retention record |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |

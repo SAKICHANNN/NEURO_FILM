@@ -79,9 +79,9 @@ The phrase “this photo resembles a training case, so grade it that way” ther
 
 1. Freeze this response, attachment evidence and local dataset counts/hashes.
 2. Finish the high-precision colour-state path; the legacy early sRGB8 adapter can create or hide exactly the artefacts under study.
-3. Implement and validate canonical L0 exposure/WB, L1 orientation-preserving affine and L2 affine-plus-monotone-spline operators, including inverse/Jacobian and 33³/65³ bake parity.
-4. Redo E0 with a fixed sample budget and the complete falsification matrix. Failure closes the special roll-information claim but retains pooled explicit operators.
-5. Freeze FilmSet manifest and pair blindness. Use only the 4,657 training identities for development; keep all 628 official test identities inaccessible until policy freeze.
+3. Implement and validate canonical L0 exposure/WB, L1 orientation-preserving affine and L2 affine-plus-monotone-spline operators, including inverse/Jacobian and 33³/65³ bake parity. **L2 core passed; explicit L0/gauge/shaper closure remains.**
+4. Redo E0 with a fixed sample budget and the complete falsification matrix. **Affine and L2 method controls passed without establishing real-roll information.**
+5. Freeze FilmSet manifest and pair blindness. **Complete: 4,657 identities split 2,096/2,096/465; all 628 official test identities remain inaccessible until policy freeze.**
 6. Build strength-matched deterministic/classical/learned baselines and test whether at least two substantive expert modes exist.
 7. Run the Oracle gate. No Oracle gap means no FilmCase. A rules-based selector victory is an acceptable final result.
 8. Pilot image-level support strength against simple global-strength and chroma/gamut margins on ID 11 and the wider stress set.
