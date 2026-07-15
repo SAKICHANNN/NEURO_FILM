@@ -6,6 +6,16 @@ Keep active execution state in `TASK_BOARD.md` and `docs/ULTIMATE_EXECUTION_TRAC
 
 Current strategic plan:
 
+- `REAL_FILM_ULTIMATE_REOPEN_2026.md` - active stock-first real-film success
+  condition and RF decision DAG. Specific `film_stock_id` experts are primary;
+  historical/unknown-stock film is an independent auxiliary class.
+- `STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` - active source matrix, first four
+  evidence pilots, stock-specific experiment DAG, promotion gates and failure
+  branches.
+- `../data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` - authoritative stock label
+  grades, nested nuisance schema, separate named/historical coverage and
+  current candidate ledger.
+
 - `ROLL2FILM_WEB_DEEP_RESEARCH_PROMPT_CN.md` - upload-ready Chinese prompt bound to packaged visual evidence, the current local data audit, algorithm alternatives and executable deliverables.
 - `ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` — adjudication of the returned external audit: preserved source hash, verified facts, non-results, corrected product/research split and revised execution order.
 

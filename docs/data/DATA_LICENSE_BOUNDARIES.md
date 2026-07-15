@@ -20,8 +20,9 @@ This file is the project-level warning label for dataset licensing, publication,
 | FilmGrainStyle740k | Grain/NPS prior, if access is granted | Research/evaluation only; no redistribution; keep isolated from public artifacts. |
 | DPED | Optional auxiliary enhancement pretraining | Academic dataset; not film ground truth. |
 | Cinestill800T | Future sanity-check validation if released | Small validation data only; verify license before use. |
+| BlueNeg | Bounded stock-labelled negative/archive research | Custom attribution licence permits academic/commercial use with required credit. `film_type` is dataset-declared, not manufacturer/edge-code proof; process/lab/scanner are unknown; never redistribute without the required credit or claim calibration. |
 | Self-built L5 pairs | Final physical validation | Release only if subject, lab, scanner, and photographer rights are cleared. |
-| LOC FSA/OWI colour archive | Public-domain real-film archive research | Keep LOC/Commons identifiers, rights snapshot and hashes; unknown creators stress-only; no physical-roll, pure-stock or calibrated claim. |
+| LOC FSA/OWI colour archive | Public-domain real-film archive research | `H historical/unknown` only. Keep LOC/Commons identifiers, rights snapshot and hashes; unknown creators stress-only; no named-stock coverage, physical-roll, pure-stock or calibrated claim. Phase C is currently sealed at 258 derivatives / 81,016,399 bytes. |
 | PBR synthetic data | Generated physical-pair training | Prefer for redistributable training data when all assets and renderer licenses allow it. |
 
 ### FilmCase audit state (2026-07-11)

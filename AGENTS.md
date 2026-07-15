@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires learning from verifiable real photographic-film scans; FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are auxiliary controls only.
-> **Target direction:** compare global, hierarchical, retrieval and bounded conditional explicit operators on real-film data. Roll2Film remains a falsifiable challenger, not the sole route; BlueNeg roll information is currently ambiguous. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`.
+> **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
+> **Target direction:** compare stock-specific global, hierarchical, retrieval and bounded conditional explicit operators. Roll, process, scanner, source and content are nested nuisance/group variables. The physical-roll-only Roll2Film hypothesis remains closed under current BlueNeg evidence. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`.
 
 ---
 
@@ -11,11 +11,11 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | transferable, visibly stylized real-film-derived colour under an explicit severe-artifact budget, with unseen roll/source validation and honest claim labels |
+| Ultimate target | as many evidence-backed, distinguishable stock-specific real-film-derived experts as practical, visibly stylized under a severe-artifact budget, with unseen roll/source validation; historical/unknown-stock is separate and cannot replace named stocks |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 104 local tests pass; BlueNeg favours wrong-roll content retrieval over physical-roll grouping; FILM-R stage-zero content gate fails with only one cross-content family and no comparable cross-content set, so no classifier was trained; real-film stock signal is not established |
+| Current evidence | 120 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; BlueNeg favours wrong-roll content retrieval over physical-roll grouping; FILM-R stage-zero content gate fails, so real-film stock signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -29,16 +29,18 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 | 1 | `AGENTS.md` | Current truth and invariants |
 | 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
 | 3 | `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` | Active real-film success condition, evidence ledger, data/algorithm gates and RF execution tree |
-| 4 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Prior evidence adjudication and product/research split |
-| 5 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Supporting artifact evaluation and product/system-risk program; historical paper priority is superseded |
-| 6 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
-| 7 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to diversity/Oracle gates |
-| 8 | `TASK_BOARD.md` | Compact active board/pointer |
-| 9 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
-| 10 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
-| 11 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
-| 12 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
-| 13 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
+| 4 | `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` | Active stock-first source matrix, first pilots, experiment DAG, gates and failure branches |
+| 5 | `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` | Primary stock label hierarchy, evidence grades, separate named/historical coverage and current data ledger |
+| 6 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Prior evidence adjudication and product/research split |
+| 7 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Supporting artifact evaluation and product/system-risk program; historical paper priority is superseded |
+| 8 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
+| 9 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to diversity/Oracle gates |
+| 10 | `TASK_BOARD.md` | Compact active board/pointer |
+| 11 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
+| 12 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
+| 13 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
+| 14 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
+| 15 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
 
 The following are historical context, not active authority: `docs/ARCH_REDESIGN.md`, `docs/planning/GAP_ANALYSIS.md`, `docs/ONLINE_DATA_AUDIT.md`, and the diffusion sections below the supersession banner in `IMPL_PLAN.md`.
 
@@ -113,6 +115,9 @@ Architecture rules:
 9. Use the simplest candidate that passes held-out gates; a no-neural-network winner is acceptable.
 10. The research method must render a transformed image through an explicit colour operator; a metric, benchmark, selector or rejection policy alone is not the primary paper contribution.
 11. Roll2Film treats a roll as a repeated-measure weak-supervision group. Without roll/process/scanner metadata, its inferred transform is a `roll-look`, not a stock response.
+12. `film_stock_id` is the highest-level real-film expert class. Physical roll, process, scanner, source and content are nested controls, not replacements for stock identity.
+13. `historical-film/unknown-stock` is a valid independent expert/stress lane, but it never counts toward named-stock coverage or substitutes for a specific stock.
+14. At inference the user selects the target stock; content-aware routing stays inside that stock and never guesses a film identity for the input digital photograph.
 
 ---
 
@@ -158,7 +163,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 | Local Flickr film images | quarantined | internal aesthetics/failure analysis only | paper training, released weights, commercial weights or stock truth |
 | FilmSet | locally present, research-only | paired-blind Capture One recipe transfer and supervised upper bound | real film scan truth |
 | BlueNeg | remote-verified, research-only, custom attribution license | roll-group information pilot using metadata and small preview lanes | digital-to-film ground truth or clean named-stock target |
-| LOC FSA/OWI colour archive | public domain; metadata/pilot/group verified | current real-film archive lane with creator-out and conservative location/sequence holdouts | physical-roll, pure Kodachrome, calibrated stock or scanner-out truth |
+| LOC FSA/OWI colour archive | public domain; metadata/pilot/group verified | `historical-film/unknown-stock` expert, ageing/scanner nuisance and stress lane | named-stock coverage, physical-roll, pure Kodachrome, calibrated stock or scanner-out truth |
 | MIT-Adobe FiveK | partial local freeze only, auxiliary | neutral auto-base research after a separate restore decision | film identity or automatic public-weight clearance |
 | FilmGrainStyle740k | research-only | academic comparison under its terms | commercial development/training |
 | Manufacturer data sheets | prior | curve/sensitivity/MTF/granularity initialization | end-to-end RGB target |
@@ -166,9 +171,9 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 Current Windows audit, 2026-07-15: `data/film_domain` contains 4,212 JPEGs, while the earlier 4,210-row legacy lineage audit remains 0 eligible/4,210 quarantined and must not be silently generalized to new files. `data/processed/manifest.jsonl` exists. The complete decompressed FilmSet image tree is local: 21,140 files / 11,262,805,356 bytes, with 4,657 identities per train domain and **628** per test domain. The paper-reported 638 is retained as a publication contradiction, never used at runtime. A partial FiveK freeze is present; it is not the complete source.
 
-BlueNeg metadata/licence/inventory and the exact 101-file / 118,929,719-byte pixel acquisition are now local at revision `b038a1ae...`; all LFS hashes pass and pixels remain undecoded pending evaluator freeze. Whole-roll preflight seals 17 rolls containing official test frames and finds only five operator-eligible rolls. Four `Kodak Gold 100-5` rolls form the sole same-film matched-control core; the full 956MB lanes and 290GB archive remain absent. This can test a narrow archive/scanner-specific roll-information mechanism, not 13-film-type generalization. Neither resource changes the claim boundaries above.
+BlueNeg metadata/licence/inventory and the exact 101-file / 118,929,719-byte pixel acquisition are local at revision `b038a1ae...`; all LFS hashes pass. The frozen four-roll `Kodak Gold 100-5` development/confirmatory and nested-LOO diagnostics are complete: correct physical-roll support loses to content-similar wrong-roll retrieval across all four raw roll means. The full 956MB lanes and 290GB archive remain absent. This is provisional single-stock archive/restoration evidence below transferable `S2`, not 13-film-type generalization or stock calibration.
 
-FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C is allowed; training is not yet allowed. These are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
+FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
 
@@ -218,8 +223,9 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
 | Done/limited | RF0.1/RF0.2 | FILM-R acquired and visually/integrity audited; use only as real-film unknown-look/nuisance evidence, never stock or clean-target truth |
 | Done/data stop | RF1.1/RF1.2 | RF1.2 elevates retrieval as a challenger; RF1.1 proves FILM-R cannot separate family from content and forbids classifier training |
-| P0 | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts; FILM-R remains stress evidence |
-| Data-gated | RF2 | Compare CPU global, hierarchical, retrieval and conditional explicit experts only after the FSA/OWI nuisance-identifiability gate |
+| P0 named-stock | RF0.4/RF1.4 | Build the authoritative stock registry, audit obtainable stock-labelled sources, select 2-4 first pilots, then freeze per-stock label/content/nuisance gates |
+| P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
+| Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |

@@ -1,3 +1,23 @@
+# Active stock-first pointer — 2026-07-15
+
+The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
+`docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
+`docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`.
+
+Ultimate learns multiple specific, evidence-backed `film_stock_id` experts
+from real film scans. Roll/process/scanner/source/content are nested controls.
+`historical-film/unknown-stock` is a valid auxiliary expert and stress lane but
+never substitutes for, or counts toward, named-stock coverage. FilmSet,
+Capture One recipes, camera Film Simulations, LUTs and the diffusion-first V3
+content below are historical/control material, not the active success path.
+
+The current data leaf is `RF0.4/SF0.1`: validate the authoritative registry and
+freeze exact paths/hashes for four bounded BlueNeg stock pilots. LOC Phase C is
+sealed at 258 derivatives as an independent historical/unknown auxiliary lane.
+No colour expert fits before its own RF1 identifiability gate passes.
+
+---
+
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
 
 > **现行计划已迁移。** 后续执行以 `docs/ULTIMATE_EXECUTION_TRACKER.md` 为 active authority，以 `docs/planning/ULTIMATE_ROADMAP_2026.md` 为研究和架构依据。

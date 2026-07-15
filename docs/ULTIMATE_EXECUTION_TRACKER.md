@@ -8,16 +8,24 @@
 
 ## 1. Parent goal and task contract
 
-**Parent goal `ULT`**: learn a transferable, visibly stylised and artifact-safe
-explicit colour transformation primarily from verifiable real photographic-film
-scans. FilmSet and other digital simulations remain auxiliary controls. Exact
-stock reproduction remains a stricter calibrated subset requiring controlled
-stock/process/scanner evidence.
+**Parent goal `ULT`**: learn as many evidence-backed, distinguishable and
+artifact-safe stock-specific explicit colour experts as practical from
+verifiable real photographic-film scans. `film_stock_id` is the primary class;
+roll, process, scanner, source and content are nested controls. Historical or
+unknown-stock film is a separate auxiliary class and never substitutes for or
+counts toward named-stock coverage. FilmSet and other digital simulations
+remain controls. Calibrated reproduction is a stricter subset requiring
+controlled stock/process/scanner evidence.
 
 **Real-film authority, 2026-07-15:**
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` supersedes any priority or
 success condition below that treats FilmSet, camera simulations, recipes, LUTs
 or pseudo-teachers as final truth.
+
+**Stock evidence authority, 2026-07-15:**
+`docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` defines label grades,
+stock/nuisance hierarchy, separate named/historical coverage and the RF0.4
+entry gate. Unknown historical archives cannot satisfy a named-stock node.
 
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
@@ -67,24 +75,39 @@ the no-data research DAG.
 | Active research cannot depend on new user data or labels | user-authoritative | User explicitly stated that no film/digital pairs or other assistance will be supplied | Only an explicit user capability/scope change |
 | Deterministic full-resolution renderer is the Style-safe core | accepted for plan | Current diffusion paths produced severe detail/identity artifacts; bounded color operators offer a stronger style/artifact frontier | Only if a new method passes the same severe-artifact and preference gates |
 | Small model may predict bounded parameters | candidate | LUT/grid/curve prediction adds style/context with controlled artifact risk | Preferred deterministic family cannot reach the style frontier |
-| Roll2Film is a conditional method-paper challenger | candidate, not established | Current E0 couples frame count to total pixels and only validates restricted affine estimation; special grouped-observation information requires fixed-budget and real-group controls | Promote only after fixed-N/nuisance gates; retire the special group claim if matched controls erase the gain |
+| Roll2Film special group-information claim is closed on current evidence | failed challenger | Fixed-budget mechanics pass, but BlueNeg correct-roll support loses to content-similar wrong-roll retrieval and does not replicate | Reopen only with new independent same-stock rolls and a preregistered test |
 | Fixed explicit experts can independently win the product | accepted for plan | The product objective is style under a severe veto, not proving that ML is necessary | Replace only if a learned bounded method wins the same frozen policy comparison |
 | FilmCase/FARO are gated product-system work and supporting research | accepted for plan | Hard selection may help applicability/safety only if the bank has multiple real modes and an Oracle beats the champion | Close FilmCase if diversity or Oracle gates fail; retain FARO/product QA |
-| Unpaired evidence supports only film-inspired claims | accepted for plan | A film scan does not identify the stock/process/scanner transform without a matched input | Only a rights-cleared paired measurement lane can promote calibrated claims |
+| Unpaired evidence may support graded stock-specific real-film-derived claims, never calibration | accepted for plan | Authoritative stock labels plus independent roll/source and nuisance controls can support `S1/S2`; a film scan alone cannot identify a calibrated response | Only controlled paired measurement can promote `S3 calibrated-reference` |
 | Generative image models are excluded from FilmCase | accepted for plan | User explicitly excluded the class; FilmCase renderer and supervision remain non-generative | Only a new explicit user instruction |
 | Generative editing is isolated | accepted for plan | User excluded it from FilmCase; current paths are also artifact-prone | Future Creative work requires a separate explicit instruction and approval |
 | Stock profile includes process and interpretation | accepted for plan | Negative/slide/B&W do not have one intrinsic display RGB look | None; schema invariant |
-| Portra 400 + Velvia 50 are pilot stocks | proposed | Orthogonal negative/slide behaviors and high user value | Availability, rights or lab feasibility fails |
+| First 2-4 stock pilots are selected by RF0.4 evidence, not preference names alone | user-authoritative | Specific stocks are primary, but labels, rolls/sources, content overlap, rights and attainable grade must pass before selection | RF0.4 registry comparison promotes each pilot separately |
 | FiveK is optional neutral auto-base only | accepted for plan | Expert retouch is not film identity; only a partial 903-file freeze is present on the current Windows host and the complete source is absent | Complete sources/rights restored and product evidence supports it |
 | Local Flickr-derived assets are quarantined | observed | 4,212 JPEGs exist on the current Windows host, but the 4,210-row legacy audit found 0 eligible rows and no roll/source/scanner grouping; two additional files lack propagated eligibility | New durable lineage, rights and group audit |
 | FilmSet is local; BlueNeg remains approval-gated | accepted for plan | FilmSet supplies local hidden film-recipe pairs; BlueNeg supplies 53 real roll groups, but neither is named-stock digital/film truth | FilmSet needs manifest/access freeze, not download; BlueNeg needs no-data gates, approval and licence snapshot |
 | Real-film scans are the Ultimate P0 evidence | user-authoritative | Digital recipes proved method control but cannot establish film learning | Only a future explicit goal change |
+| Specific `film_stock_id` is the primary class | user-authoritative | The owner requires learning real, concrete film stocks; generic old film may coexist but cannot replace them | Only a future explicit goal change |
+| Historical/unknown film is a separate auxiliary class | user-authoritative | Old film is useful for archive look and stress evidence, but it is not a named stock | Never count it toward named-stock coverage |
 | FilmSet is auxiliary only | user-authoritative | Cinema/ClassNeg/Velvia targets are Capture One recipes, not physical-film scans | Never promote RF/Ultimate nodes from FilmSet |
 | Roll2Film is one challenger, not the sole answer | user-authoritative | BlueNeg correct-roll effects reverse sign and CI crosses zero | Compare global, hierarchical, retrieval and bounded conditional operators |
 
 ---
 
 ## 3. DRPT node tree
+
+Stock-first RF overlay (authoritative over the older U5-oriented tree below):
+
+```text
+ULT
+`- RF  Stock-first real-film evidence and expert mainline
+   |- RF0.3 / RF1.3  Historical/unknown FSA/OWI auxiliary lane
+   |- RF0.4           Authoritative stock registry and first-pilot audit
+   |- RF1.4           Per-stock label/content/nuisance identifiability
+   |- RF2.H           Historical/unknown explicit expert, separate coverage
+   |- RF2.S           Stock-specific CPU explicit expert ladder
+   `- RF3-RF5         Per-stock bounded GPU challenge, confirmation and product
+```
 
 ```text
 ULT  Ultimate strongly stylized, artifact-safe film-imaging product
@@ -179,13 +202,16 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | RF0 | in progress | Real-film evidence ledger, source/rights/group gates | none | Reopen report plus hashed manifests |
 | RF0.1 | complete | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | 88/88 files, 437,570,872 bytes, all remote MD5 and local SHA-256 verified |
 | RF0.2 | complete/limited | Fail-closed FILM-R manifest, visual audit and group ceiling | RF0.1 | `docs/data/REAL_FILM_FILMR_V2_GATE.md`; unknown roll/process/scanner; `real-film-derived/unknown-look` only |
-| RF0.3 | Phase C ready | FSA/OWI public-domain archive: metadata, 64-image visual pilot and creator/location grouping | RF0.1 + RF1.1 stop | 558 unique LOC scans; 457 known-creator records; 43 conservative location guard groups; bounded full download next |
+| RF0.3 | sealed auxiliary partial | FSA/OWI public-domain archive: metadata, 64-image visual pilot and creator/location grouping | RF0.1 + RF1.1 stop | 558 canonical records; 258 derivatives / 81,016,399 bytes retained; no further download while named-stock P0 advances |
+| RF0.4 | ready, P0 named-stock | Authoritative stock registry, obtainable-source audit and evidence-based selection of first 2-4 stock pilots | current evidence ledger | `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`; no pilot beyond provisional BlueNeg Kodak Gold is promoted yet |
 | RF1.1 | complete: unidentified | Real-film signal/nuisance/content separability audit | RF0.2 | only Velvia spans two supported content cells; no comparable cross-content families; no classifier trained |
 | RF1.2 | complete: nuisance | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 + RF0.2 | retrieval-wrong beats correct roll on all four raw roll means; `docs/ROLL2FILM_BLUENEG_NESTED_LOO_RESULTS.md` |
-| RF1.3 | ready after RF0.3 pixels | Freeze FSA/OWI creator-out and location-group-out real-film holdouts | RF0.3 grouping | unknown creators stress-only; groups are not physical rolls |
-| RF2 | data-gated on RF1 FSA audit | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 + FSA/OWI border/content gate | FILM-R failed; FSA/OWI metadata/grouping passed but no colour expert may fit yet |
-| RF3 | conditional | GPU bounded parameter challengers | RF2 residual value | curves/LUT/router/grid only; no RGB generator |
-| RF4 | pending | Unseen roll/source style and severe-artifact confirmation | RF2/RF3 | all RF-G0..RF-G8 gates |
+| RF1.3 | deferred auxiliary | Freeze FSA/OWI creator-out and location-group-out real-film holdouts | RF0.3 grouping | partial pixels retained; resume only without blocking named-stock work; groups are not physical rolls |
+| RF1.4 | blocked on RF0.4 pilot selection | Per-stock label/content/nuisance identifiability and leakage-safe holdouts | RF0.4 | correct stock must beat pooled, wrong-stock, generic historical, retrieval and nuisance controls |
+| RF2.H | data-gated on RF1.3 | CPU historical/unknown-stock explicit expert, reported outside named-stock coverage | RF1.3 | useful independent archive look without stock claims |
+| RF2.S | data-gated on RF1.4 | Per-stock CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1.4 per stock | stock-specific gain and distinctiveness after matching saturation/contrast/style |
+| RF3 | conditional per stock | GPU bounded parameter challengers | a specific RF2.S residual value | curves/LUT/router/grid only; no RGB generator or cross-stock averaging |
+| RF4 | pending | Unseen stock/roll/source style and severe-artifact confirmation | RF2.S/RF3 | all RF-G0..RF-G8 gates, per stock; named/historical coverage separate |
 | RF5 | pending | Product integration and OOD fallback | RF4 | deterministic replay and provenance |
 
 ### U0 — Truth, rights and reproducibility reset
@@ -375,15 +401,15 @@ User feedback also states that many theoretically stronger candidates look techn
 | U5.5 | research-only | Generative target/Creative comparison outside FilmCase | separate future explicit instruction + U4.1 | Not run by the autonomous non-generative FilmCase plan |
 | U5.6 | pending | Winner distillation/runtime conversion | U5.FC8 winner | Non-inferior FP32/FP16/CoreML/ONNX parity |
 
-Roll2Film is the publication-oriented parent hypothesis. It must infer and
-apply an explicit colour operator; benchmark, selection and rejection work
-cannot substitute for transfer. Its central falsifiable claim is that
-content-diverse frames grouped by physical roll provide repeated-measure weak
-supervision for a reusable roll-look operator. A film scan is never silently
-treated as an input/output pair, and a roll-look is never called stock truth
-without controlled paired evidence. Failure of CT3, CT5, CT6, CT8 or the
-dedicated novelty gate closes the method-paper route; it does not promote a
-standalone benchmark fallback.
+The stock-first RF tree is the publication/research parent. Its method must
+infer and apply explicit colour operators for evidence-backed stocks;
+benchmark, selection and rejection work cannot substitute for transfer.
+Roll2Film's physical-roll group-information hypothesis is a retained negative
+result under current BlueNeg evidence, not the active parent. A film scan is
+never silently treated as an input/output pair, an unknown archive is never
+called a stock, and an uncalibrated stock-derived look is never called a
+measured stock response. Failure of a per-stock RF1/RF2 gate closes or
+downgrades that stock branch rather than promoting a generic benchmark.
 
 FARO, ChromaticTail/FilmStyleSafe, FilmCase, source retrieval, hard expert
 selection and the FC/R nodes remain evaluation assets, engineering/system

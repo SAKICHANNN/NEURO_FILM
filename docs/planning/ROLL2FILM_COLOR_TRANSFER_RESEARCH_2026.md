@@ -5,7 +5,10 @@
 > FilmSet E1/CT5/CT8 is only a digital Capture One recipe control. Roll2Film is
 > one falsifiable challenger among global, hierarchical, retrieval and bounded
 > conditional explicit-operator methods; BlueNeg did not establish roll
-> information. Nothing below may promote a method without real-film RF gates.
+> information. The stock-first programme in
+> `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` is authoritative over
+> every data/priority statement below. Nothing below may promote a method
+> without per-stock real-film RF gates.
 
 **Status:** conditional publication-oriented research hypothesis, amended 2026-07-15
 
@@ -153,7 +156,7 @@ Two consequences are non-negotiable:
 |---|---|---|---|
 | FilmSet | **local on current Windows host**; remote source remains verified | 5,285 digital originals + three paired film-recipe targets; hidden-pair transfer evaluation | primary Level-A corpus; freeze locally without another download |
 | BlueNeg | **remote-verified** by file tree and actual range read | 491 physical-film frames, 53 roll groups, 13 film-type strings | primary Level-B mechanism pilot |
-| LOC FSA/OWI colour archive | **metadata/pilot/group verified**; public domain | 558 unique LOC scans; 457 known-creator records; 43 conservative creator/location groups | current real-film archive mainline; no roll or calibrated-stock truth |
+| LOC FSA/OWI colour archive | **metadata/pilot/group verified**; public domain | 558 unique LOC scans; 258 bounded derivatives currently retained; 457 known-creator records; 43 conservative creator/location groups | sealed `H historical/unknown` auxiliary lane; never named-stock coverage |
 | DigitalFilm_dataset | **remote-verified** by file tree and actual ZIP range read | about 3.35GB of unpaired film-labelled images | quarantined: Internet-image lineage is insufficient |
 | PhotoGAN C200 | paper description found; no first-party corpus endpoint verified | unpaired Fuji-C200-labelled/digital images | not counted as available |
 | SillyStill CineStill pairs | repository found; dataset links still say “Not yet available” | tiny real same-scene paired set if ever released | unavailable |

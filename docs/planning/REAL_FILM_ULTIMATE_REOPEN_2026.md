@@ -6,12 +6,22 @@ Node: `ULT > RF`
 
 Status: active planning authority for Ultimate evidence
 
+> **Stock-first correction, 2026-07-15:** specific, evidence-backed
+> `film_stock_id` classes now own the main learning and coverage objective.
+> Historical/unknown-stock film remains a valid independent class, but it
+> cannot replace or count toward named-stock coverage. The active evidence
+> schema and current ledger live in
+> `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`; the executable source and
+> experiment plan is `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md`.
+
 ## 1. Corrected success condition
 
-Ultimate succeeds only when a bounded explicit colour system learns from
-verifiable scans of physical photographic film, remains visibly stylised on
-unseen real rolls or independent sources, beats matched-strength pooled and
-nuisance controls, and passes original-resolution severe-artifact review.
+Ultimate succeeds only when a bounded explicit colour system learns distinct
+experts for multiple specific, evidence-backed photographic-film stocks from
+verifiable physical-film scans, remains visibly stylised on unseen real rolls
+or independent sources, beats matched-strength pooled, wrong-stock, generic
+historical and nuisance controls, and passes original-resolution
+severe-artifact review.
 
 FilmSet, camera Film Simulations, Capture One recipes, hand LUTs and
 pseudo-teachers are controls or pretraining material. They are never final
@@ -19,6 +29,31 @@ film truth. Unknown process/scanner data can support only
 `real-film-derived/unknown-look`; grouped archive scans can support only an
 archive/scanner-specific `roll-look`. `calibrated-reference` requires controlled
 stock, process, scanner and whole-roll holdout evidence.
+
+Historical or unknown-stock film is retained as the separate
+`historical-film/unknown-stock` class. It may support a generic archive-look
+expert, ageing/scanner analysis and stress evaluation, but it never substitutes
+for a specific stock and is reported in a separate coverage ledger.
+
+The first stock-first research milestone is at least three distinguishable,
+transferable `real-film-derived/<stock>` experts plus one independent
+historical/unknown expert. It is a milestone, not a stopping condition; the
+programme continues to add as many scientifically eligible stocks as practical.
+
+### 1.1 Primary class and nested nuisance contract
+
+The highest-level training/product class is `film_stock_id`: manufacturer,
+product line, nominal ISO, negative/reversal/motion/B&W type and, when
+available, emulsion generation or catalogue code. `physical_roll_id`, process,
+lab/development batch, scanner/settings/profile, photographer/source, content,
+era, ageing and restoration are nested repeated-measure or nuisance variables.
+
+At inference the user selects a target stock. Content-aware routing may choose
+only among bounded cases or experts inside that stock. It does not classify the
+input digital photograph as if the input already had a film identity.
+
+Filename, folder, Capture One, Film Simulation, LUT or visually inferred labels
+never become authoritative stock truth without independent provenance.
 
 ## 2. Evidence ledger
 
@@ -83,7 +118,8 @@ archive/restoration mechanism test, not fresh-film emulation truth.
 
 | Candidate | Exact/advertised scale | Rights state | Metadata strengths | Cost and decision |
 |---|---:|---|---|---|
-| FILM-R, Figshare 21803304 v2 | 88 files; 437,570,872 bytes; 44 damaged + 44 restored real scans | CC BY 4.0 | filenames identify 11 stock/format families; one contributor | download now; bounded RF0.1 ready leaf |
+| FILM-R, Figshare 21803304 v2 | 88 files; 437,570,872 bytes; 44 damaged + 44 restored real scans | CC BY 4.0 | filenames identify 11 stock/format families; one contributor | acquired; family/content gate failed, so stress only |
+| LOC FSA/OWI colour archive | 558 canonical public scans; 258 bounded derivatives currently retained | US federal public domain | creator/location/sequence guards; no reliable per-image stock | sealed partial `H historical/unknown`, never a named-stock pilot |
 | FILM-AA, Figshare 21803292 | 20 files; 122,164,960 bytes; 10 empty damaged frames + annotations | CC BY 4.0 | authentic damage, no scene/roll colour truth | optional artifact-control sibling, not colour training |
 | BlueNeg exact revision | 491 previews, 53 rolls, 13 film strings; current bounded lane 118,929,719 bytes | custom attribution license already snapshotted | physical roll/date/location/film string, alignment metadata | already acquired bounded subset; expand only under a preregistered whole-roll gate |
 | NASA Apollo flight-film scans | almost 25,000 catalog images; raw examples about 1.2 GB each | NASA raw scans public domain with credit; ASU processed products restrict derivatives/commercial use | magazine, mission, film type, frame; scanner provenance | metadata/sample audit first; do not bulk-download raw |
@@ -91,6 +127,13 @@ archive/restoration mechanism test, not fresh-film emulation truth.
 | SillyStill | paper: 41 raw pairs, 38 processed | official repo has no root license and full dataset links remain unavailable | paired tripod scenes, one claimed stock | blocked for training; metadata/reference only |
 | Emulating Emulsion | 33 chart image pairs / 3,168 unique patches, one Velvia 100 roll | publication accessible; public data/license not found | controlled illuminant, exposure, camera, D50 scan | method precedent only until data becomes verifiably available |
 | archival motion collections | 44 to 81,576+ frames depending source | source-specific and often unclear | reel/frame continuity, authentic damage | artifact research only until stock/scanner/license audit passes |
+
+Candidate availability is not stock eligibility. `RF0.4` now audits label
+authority, stock-by-content support, independent rolls/sources, process/scanner
+metadata, rights and attainable evidence grade before choosing the first 2-4
+stock pilots. BlueNeg Kodak Gold remains provisional; no second stock is
+currently promoted. LOC FSA/OWI is an `H historical/unknown` auxiliary lane and
+cannot fill a named-stock pilot slot.
 
 Primary sources:
 
@@ -123,13 +166,13 @@ fallback and severe veto remain mandatory.
 | Gate | Pass evidence | Stop/fallback |
 |---|---|---|
 | RF-G0 provenance | physical film verified; source/revision/license/hash/credit recorded | quarantine unverifiable or unclear-rights bytes |
-| RF-G1 grouping | roll/uploader/scanner/process fields support leakage-free holdouts | label unknown-look; no roll/stock claim |
-| RF-G2 identifiability | correct group beats pooled, shuffled, nuisance and retrieval controls with roll-cluster CI above zero | close group claim; do not scale model |
+| RF-G1 stock label/grouping | authoritative `film_stock_id` plus roll/source/scanner/process fields support leakage-free holdouts | grade `S0` or `H`; no stock expert/claim |
+| RF-G2 stock identifiability | correct stock beats pooled, wrong-stock, shuffled, generic historical, nuisance and retrieval controls with group-aware CI above zero | close or downgrade that stock; do not scale model |
 | RF-G3 style | visible style exceeds safe bland baseline and matched simple enhancement | reject saturation/contrast-only gain |
-| RF-G4 transfer | unseen real rolls/sources retain the gain after style matching | source-specific label or stop |
+| RF-G4 transfer | unseen real rolls/sources retain the stock-specific gain after style matching | source-specific or `S1` label; no `S2` promotion |
 | RF-G5 artifacts | no confirmed severe issue on frozen full-resolution gold; stress rate reported with CI | deterministic fallback or candidate rejection |
 | RF-G6 content | face/text/object/geometry retained; intended grain/halation judged separately | reject spatial residual/model |
-| RF-G7 claims | label matches evidence: film-inspired, real-film-derived roll-look, or calibrated-reference | fail closed to lower claim |
+| RF-G7 claims/coverage | label matches `S0/S1/S2/S3/H`; named-stock and historical coverage remain separate | fail closed to lower claim; never count `H` as a stock |
 | RF-G8 reproducibility | configs, seeds, hashes, split groups, software and evidence reports frozen | no promotion |
 
 ## 7. Dependency-ordered execution plan
@@ -138,34 +181,40 @@ fallback and severe veto remain mandatory.
 RF0 truth/data gate
   RF0.1 acquire and hash FILM-R under CC BY 4.0
   RF0.2 build source/rights/group manifest; unknown fields remain explicit
-  RF0.3 metadata-only Apollo/DOCUMERICA/SillyStill/Emulsion audit
-    -> RF1 signal audit
-       RF1.1 real-scan distribution and nuisance separability
-       RF1.2 BlueNeg nested leave-one-frame-out diagnostic
-       RF1.3 freeze any larger whole-roll holdout before pixels
-         -> RF2 CPU explicit expert ladder
-            global -> hierarchical -> retrieval -> conditional
-              -> RF3 GPU bounded challengers only if RF2 leaves residual value
-                 -> RF4 unseen source/roll style and artifact confirmation
-                    -> RF5 product integration with OOD fallback
+  RF0.3 LOC FSA/OWI historical/unknown metadata, pixels and nuisance gate
+  RF0.4 authoritative stock registry and obtainable named-stock audit
+    -> RF1 signal audits
+       RF1.1 FILM-R family/content audit (stopped: unidentified)
+       RF1.2 BlueNeg roll diagnostic (closed: content retrieval wins)
+       RF1.3 LOC creator/location holdouts for the `H` auxiliary lane
+       RF1.4 per-stock label/content/nuisance identifiability for first 2-4 pilots
+         -> RF2 CPU explicit expert parent
+            RF2.H independent historical/unknown expert
+            RF2.S stock-specific global -> hierarchical -> retrieval -> conditional
+              -> RF3 GPU bounded challengers only after a stock-specific RF2 residual
+                 -> RF4 unseen stock/roll/source style and artifact confirmation
+                    -> RF5 stock-selectable product integration with OOD fallback
 ```
 
 Each leaf freezes a hypothesis, controls, metric, gate and failure branch before
 pixel access. FilmSet remains a software regression and pretraining/control
 lane; it cannot promote RF nodes.
 
-## 8. Nearest ready leaf
+## 8. Nearest ready leaves
 
-`RF0.1` is ready: acquire Figshare FILM-R v2 exactly, verify every supplied MD5
-and local SHA-256, snapshot the API metadata and CC BY 4.0 license, create a
-manifest that pairs damaged/restored scans without inventing roll/scanner
-fields, and run a visual/source integrity audit. The 417.3 MB bounded download
-is scientifically justified and cannot by itself promote a model.
+Two non-substitutable leaves are ready:
 
-After RF0.1, the next leaf is `RF0.2`: determine whether filename families are
-stock labels, physical rolls or merely contributor naming; until proven, set
-`roll_id`, `process_id` and `scanner_id` to unknown and enforce source-level
-holdout only.
+1. `RF0.4` (named-stock P0): build the authoritative stock-data comparison and
+   select no more than 2-4 first pilots only after label, content, roll/source,
+   nuisance, rights, size and evidence-grade gates pass. This is the nearest
+   leaf that advances the corrected Ultimate success condition.
+2. `RF0.3` (historical auxiliary): preserve the 258 already downloaded FSA/OWI
+   derivatives and defer further acquisition while named-stock P0 advances.
+   Its output remains `historical-film/unknown-stock` and never substitutes
+   for `RF0.4`.
+
+Do not fit a colour expert on either branch until its own RF1 gate is frozen and
+passed. FILM-R acquisition and its family/content stop are already complete.
 
 ### RF1.2 update, 2026-07-15
 
@@ -176,3 +225,40 @@ interval `[-0.4956,-0.2071]`. Physical-roll information remains closed. The
 result elevates similar-case retrieval of bounded explicit operators as an RF2
 challenger, but only as archive-restoration mechanism evidence until it passes
 the real-film RF1.1 gate.
+
+## 9. Governance, scope and closure
+
+### Non-goals
+
+- do not reinterpret FilmSet, camera Film Simulations, LUTs or filename hints
+  as physical stock truth;
+- do not count historical/unknown archives as named stocks;
+- do not reopen Roll2Film or train a larger model merely because its current
+  physical-roll hypothesis failed;
+- do not claim calibration without controlled paired stock/process/scan data;
+- do not modify frozen experiment results, manifests or source bytes as part of
+  this planning correction.
+
+### Definition of done
+
+A stock leaf is done only when its label evidence, rights, grouping, content
+support, nuisance controls, split, baselines, metrics, claim ceiling, hashes and
+per-stock decision are durable. Ultimate's first stock-first milestone requires
+at least three independently validated `S2` experts plus one separately
+reported `H` expert; severe-artifact and visible-style gates remain mandatory.
+
+### Change propagation and bottom-up reintegration
+
+Every stock/data decision propagates to the evidence registry, this plan, the
+Ultimate tracker, task board, AGENTS current truth and agent log. It must also
+check sibling historical, product, evaluator and calibration lanes. Reintegrate
+bottom-up: validate the dataset/stock leaf first, then RF1, RF2, RF parent,
+Ultimate success/coverage and the user-visible claim label.
+
+### Rollback and recovery
+
+Planning changes are one docs-only commit and can be reverted without changing
+data, configs, code or results. Later stock acquisitions use new manifests and
+policy IDs; a failed or invalid stock is downgraded/quarantined while previous
+experts and historical evidence remain reproducible. Never rewrite a frozen
+holdout or relabel old results to preserve a preferred conclusion.
