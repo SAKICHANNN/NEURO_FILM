@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.1-filmr-v2-acquisition",
+  "article_id": 21803304,
+  "article_version": 2,
+  "doi": "10.6084/m9.figshare.21803304.v2",
+  "expected_files": 88,
+  "expected_bytes": 437570872,
+  "expected_pairs": 44,
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "required_attribution": "Daniela Ivanova; original scans contributed by d@analog.cafe"
+  },
+  "dataset_claim": "verifiable real 35mm colour-film scans with expert artifact restorations",
+  "claim_ceiling": "real-film-derived unknown-roll/source look and artifact evidence only; filenames do not establish physical roll, process, scanner, fresh-film response or calibrated named-stock truth",
+  "unknown_fields": ["physical_roll_id", "process_id", "scanner_id", "scanner_settings", "development_batch"],
+  "source_url": "https://figshare.com/articles/dataset/Authentically_damaged_film_scans/21803304"
+}
