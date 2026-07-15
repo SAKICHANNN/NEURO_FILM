@@ -90,6 +90,7 @@ files.
 | `run_roll2film_e0_l2_fixed_budget.py` | Run fixed-total-pixel affine-plus-monotone-spline controls with exposure/WB/scene nuisance, prior, scanner, Jacobian, and LUT-bake diagnostics. |
 | `audit_roll2film_filmset.py` | Hash the local FilmSet tree with a resumable cache and write isolated pair-blind source/target, internal-dev, and sealed final-628 manifests under ignored outputs. |
 | `build_roll2film_ct5_cache.py` | Verify frozen CT5 manifest/payload hashes and build deterministic equal-image linear-sRGB training caches; internal-dev decoding requires an explicit evaluator flag. |
+| `run_roll2film_ct5_pilot.py` | Fit the frozen CPU baseline ladder from unpaired CT5 training caches and evaluate only the internal pilot fold; confirmatory and final-628 data are not loaded. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |
 | `combine_ip2p_dataset.py` | Combine IP2P dataset shards. |
 | `download_loras.py` | Download LoRA files. |

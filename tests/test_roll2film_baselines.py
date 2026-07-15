@@ -5,7 +5,9 @@ import json
 import numpy as np
 
 from src.roll2film.baselines import (
+    LabMeanStdOperator,
     fit_basic_adjustment_family,
+    fit_lab_mean_std_operator,
     fit_per_channel_quantile_operator,
     fit_sliced_transport_operator,
     SlicedTransportOperator,
@@ -61,3 +63,15 @@ def test_sliced_transport_is_deterministic_invertible_and_improves_distribution(
     assert np.max(np.abs(first.inverse(rendered) - source)) < 1e-9
     assert np.array_equal(replay.apply(source), rendered)
     assert _moment_error(rendered, target) < _moment_error(source, target) * 0.25
+
+
+def test_lab_mean_std_baseline_is_replayable_and_bounded() -> None:
+    source = np.clip(sample_neutral_prior(4096, seed=504), 0.0, 1.0)
+    target = np.clip(source * np.array([1.06, 0.94, 1.02]) + 0.01, 0.0, 1.0)
+    operator = fit_lab_mean_std_operator(source, target)
+    replay = LabMeanStdOperator.from_dict(operator.to_dict())
+    rendered = replay.apply(source)
+
+    assert np.all(np.isfinite(rendered))
+    assert float(rendered.min()) >= 0.0
+    assert float(rendered.max()) <= 1.0

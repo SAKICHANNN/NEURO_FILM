@@ -7,12 +7,14 @@ from typing import Any
 
 import numpy as np
 from scipy.optimize import least_squares
+from skimage.color import lab2rgb, rgb2lab
 
 from .operators import AffineColorOperator, _validate_rgb
 from .splines import AffineMonotoneSplineOperator, RationalQuadraticSpline
 
 
 SLICED_SCHEMA = "roll2film.sliced_transport.v1"
+LAB_STATS_SCHEMA = "roll2film.lab_mean_std.v1"
 LUMA = np.array([0.2126, 0.7152, 0.0722], dtype=np.float64)
 
 
@@ -77,6 +79,76 @@ def fit_per_channel_quantile_operator(
     return AffineMonotoneSplineOperator(
         AffineColorOperator.identity(),
         tuple(splines),  # type: ignore[arg-type]
+    )
+
+
+@dataclass(frozen=True)
+class LabMeanStdOperator:
+    source_mean: np.ndarray
+    source_std: np.ndarray
+    target_mean: np.ndarray
+    target_std: np.ndarray
+    working_space: str = "linear_srgb"
+
+    def __post_init__(self) -> None:
+        arrays = tuple(
+            np.asarray(value, dtype=np.float64)
+            for value in (self.source_mean, self.source_std, self.target_mean, self.target_std)
+        )
+        if any(value.shape != (3,) or not np.all(np.isfinite(value)) for value in arrays):
+            raise ValueError("Lab statistics must be finite three-vectors")
+        if np.any(arrays[1] <= 0.0) or np.any(arrays[3] <= 0.0):
+            raise ValueError("Lab standard deviations must be positive")
+        for name, value in zip(
+            ("source_mean", "source_std", "target_mean", "target_std"), arrays
+        ):
+            object.__setattr__(self, name, value)
+
+    def apply(self, rgb: np.ndarray) -> np.ndarray:
+        values = _validate_rgb(rgb)
+        encoded = _linear_to_srgb(values)
+        lab = rgb2lab(encoded.reshape(-1, 1, 3)).reshape(values.shape)
+        transferred = (lab - self.source_mean) / self.source_std * self.target_std + self.target_mean
+        rendered = lab2rgb(transferred.reshape(-1, 1, 3)).reshape(values.shape)
+        return _srgb_to_linear(rendered)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": LAB_STATS_SCHEMA,
+            "working_space": self.working_space,
+            "source_mean": self.source_mean.tolist(),
+            "source_std": self.source_std.tolist(),
+            "target_mean": self.target_mean.tolist(),
+            "target_std": self.target_std.tolist(),
+            "implicit_gamut_clip": True,
+        }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "LabMeanStdOperator":
+        if payload.get("schema") != LAB_STATS_SCHEMA:
+            raise ValueError(f"unsupported Lab stats schema: {payload.get('schema')!r}")
+        return cls(
+            payload["source_mean"],
+            payload["source_std"],
+            payload["target_mean"],
+            payload["target_std"],
+            str(payload["working_space"]),
+        )
+
+
+def fit_lab_mean_std_operator(
+    source_pixels: np.ndarray,
+    target_pixels: np.ndarray,
+) -> LabMeanStdOperator:
+    source = _pixels(source_pixels)
+    target = _pixels(target_pixels)
+    source_lab = rgb2lab(_linear_to_srgb(source).reshape(-1, 1, 3)).reshape(-1, 3)
+    target_lab = rgb2lab(_linear_to_srgb(target).reshape(-1, 1, 3)).reshape(-1, 3)
+    return LabMeanStdOperator(
+        source_lab.mean(axis=0),
+        np.maximum(source_lab.std(axis=0), 1e-6),
+        target_lab.mean(axis=0),
+        np.maximum(target_lab.std(axis=0), 1e-6),
     )
 
 
@@ -257,3 +329,19 @@ def _pixels(values: np.ndarray) -> np.ndarray:
     if len(pixels) < 16 or not np.all(np.isfinite(pixels)):
         raise ValueError("pixels must contain at least sixteen finite RGB samples")
     return pixels
+
+
+def _linear_to_srgb(values: np.ndarray) -> np.ndarray:
+    return np.where(
+        values <= 0.0031308,
+        values * 12.92,
+        1.055 * np.power(np.maximum(values, 0.0), 1.0 / 2.4) - 0.055,
+    )
+
+
+def _srgb_to_linear(values: np.ndarray) -> np.ndarray:
+    return np.where(
+        values <= 0.04045,
+        values / 12.92,
+        np.power((values + 0.055) / 1.055, 2.4),
+    )
