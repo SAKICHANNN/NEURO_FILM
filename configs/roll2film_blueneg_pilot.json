@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
+  "repo_id": "ttgroup/blueneg-release",
+  "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+  "root": "data/raw/blueneg",
+  "evidence_dir": "outputs/roll2film/blueneg_v1/evidence",
+  "metadata_sha256": {
+    "LICENSE": "ce5b4aae6ae83158b950bac00107bab6ff20466e47a0f4771a2606bb7660aeda",
+    "README.md": "f04d37b57a9f3aab292e3520aebe736c38b7d59ef47fedec442782878ec8a123",
+    "meta.json": "643be7f59102258a34ea14ed40476c9fac95151535fb51740b0c592f24df4078"
+  },
+  "expected": {
+    "metadata_rows": 491,
+    "rolls": 53,
+    "film_types": 13,
+    "preview_files": 491,
+    "preview_bytes": 687735976,
+    "pseudogt_files": 247,
+    "pseudogt_bytes": 268012985
+  },
+  "split": {
+    "seed": 2026071506,
+    "minimum_paired_frames_per_operator_roll": 4,
+    "seal_entire_roll_if_any_frame_is_official_test": true,
+    "confirmatory_rolls_per_film_if_at_least_four": 2,
+    "confirmatory_rolls_per_film_if_at_least_two": 1
+  },
+  "acquisition": {
+    "scope": "exact preview and pseudo-GT paths for operator-eligible non-official-test rolls only",
+    "full_290gb_archive_forbidden": true,
+    "redistribution": false,
+    "retention": "keep ignored local source bytes for reproducible internal research; delete only through a separately reviewed cleanup",
+    "required_credit": "Copyrighted by Tien-Tsin Wong"
+  },
+  "claim_boundary": "Grouped negative-restoration/archive mechanism pilot only; not digital-to-film truth, clean stock response, named-stock calibration, or release clearance."
+}
