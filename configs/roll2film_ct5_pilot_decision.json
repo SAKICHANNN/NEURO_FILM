@@ -26,6 +26,29 @@
       "strong": "wb_contrast_saturation"
     }
   },
+  "candidate_stratum_by_domain": {
+    "cinema": {
+      "lab_mean_std": "strong",
+      "per_channel_quantile": "strong",
+      "gaussian_bures": "strong",
+      "sliced_ot": "strong",
+      "pooled_l2": "strong"
+    },
+    "classneg": {
+      "lab_mean_std": "strong",
+      "per_channel_quantile": "strong",
+      "gaussian_bures": "strong",
+      "sliced_ot": "strong",
+      "pooled_l2": "strong"
+    },
+    "velvia": {
+      "lab_mean_std": "moderate",
+      "per_channel_quantile": "strong",
+      "gaussian_bures": "strong",
+      "sliced_ot": "strong",
+      "pooled_l2": "strong"
+    }
+  },
   "confirmatory_candidates": [
     "lab_mean_std",
     "per_channel_quantile",

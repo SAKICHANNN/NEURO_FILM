@@ -74,6 +74,11 @@ paired per-image improvement over that fixed adversary and bootstrap duplicate
 clusters. No candidate strength, parameter, stratum or best-basic identity may
 change after confirmatory results are observed.
 
+Candidate-to-stratum assignments are also frozen from pilot strength. All five
+confirmatory challengers are `strong` for Cinema and ClassNeg. For Velvia,
+Lab mean/std is `moderate`; quantile, Gaussian/Bures, sliced OT and pooled L2
+are `strong`.
+
 ## Interpretation
 
 The pilot rejects a simple story in which one theoretically superior method
@@ -103,7 +108,7 @@ visual severe adjudication and best-basic residuals remain mandatory.
 - pilot report SHA-256:
   `145a3bca313212d625a0245b6366d77ceb5732e883d8f87255bab53aeaa434fa`;
 - frozen pilot-decision SHA-256:
-  `0d80f9ac3e372b5c9820a8c47cec7436396adb90e0195454745f3a3daf53202b`;
+  `68bd158a9f3d0d9dfd3229ef84a5e950fef3d474f772185405a3b6e462744f23`;
 - a complete rerun produced the same pilot report byte for byte;
 - 74 repository tests pass after the quantized-knot failure shield.
 
