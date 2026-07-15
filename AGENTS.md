@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. The earlier SDXL/IP2P/SDEdit direction was experimentally rejected as the default because it rewrites detail/identity or is infeasible on the 12GB target GPU.
-> **Target direction:** the independent product path uses the strongest rights-compatible deterministic explicit expert bank, image-level validated support/strength and a severe-artifact veto. Roll2Film completed its fixed-sample BlueNeg challenge but correct-roll gain changed sign across two held-out rolls, so special group information is not established and amortized ML is stopped. Reopen only with materially more independent matched-control rolls and a new freeze. ChromaticTail/FilmStyleSafe remains supporting evaluation, FARO is a product safety/system wrapper, calibrated profiles are deferred, and generative RGB editing remains separately labeled Creative work.
+> **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires learning from verifiable real photographic-film scans; FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are auxiliary controls only.
+> **Target direction:** compare global, hierarchical, retrieval and bounded conditional explicit operators on real-film data. Roll2Film remains a falsifiable challenger, not the sole route; BlueNeg roll information is currently ambiguous. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`.
 
 ---
 
@@ -11,11 +11,11 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | strongly stylized film-inspired output under an explicit severe-artifact budget; independent deterministic product winner, conditional Roll2Film algorithm research, high-precision RAW/HDR rendering and deferred calibrated profiles |
+| Ultimate target | transferable, visibly stylized real-film-derived colour under an explicit severe-artifact budget, with unseen roll/source validation and honest claim labels |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 92 local tests pass; CT5 fixed recipe bank passes the all-238 internal full-resolution severe veto; BlueNeg correct-roll gains are -0.220/+0.309 across two held-out rolls and ambiguous; stock accuracy is not calibrated |
+| Current evidence | 94 local tests pass; FilmSet digital-recipe controls are strong but cannot establish film learning; BlueNeg correct-roll gains are -0.220/+0.309 and ambiguous; real-film stock signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -28,8 +28,8 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 |---:|---|---|
 | 1 | `AGENTS.md` | Current truth and invariants |
 | 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
-| 3 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Current evidence adjudication, product/research split and corrected execution order |
-| 4 | `docs/planning/ROLL2FILM_COLOR_TRANSFER_RESEARCH_2026.md` | Conditional algorithm-first colour-transfer hypothesis, data gates, novelty boundary and experiment DAG |
+| 3 | `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` | Active real-film success condition, evidence ledger, data/algorithm gates and RF execution tree |
+| 4 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Prior evidence adjudication and product/research split |
 | 5 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Supporting artifact evaluation and product/system-risk program; historical paper priority is superseded |
 | 6 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
 | 7 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to diversity/Oracle gates |
@@ -213,13 +213,17 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | U5.CT0 | Roll2Film algorithm hypothesis was correctly framed and tested; current paper route closes because BlueNeg matched-roll replication is ambiguous |
 | Done | U5.CT1/U5.CT3/U5.CT6 | Fixed-budget method controls pass, but real-roll correct-group gain changes sign; no roll-information promotion |
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
+| P0 | RF0.1/RF0.2 | Acquire and manifest bounded CC-BY FILM-R real scans without inventing roll/process/scanner truth |
+| P0 | RF1.1/RF1.2 | Test real-film signal against pooled, shuffled, nuisance, retrieval and matched-strength controls; diagnose BlueNeg sign reversal |
+| P0 | RF2 | Compare CPU global, hierarchical, retrieval and conditional explicit experts on real-film gates |
+| Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |
 | Done/ongoing | U0.4/U4 | CI/registry foundation is complete; maintain severe-artifact/style evaluation as Roll2Film support and product QA, not the primary paper |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
-| Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
-| Done/ready | U5.CT5–U5.CT8 | CT5 internal recipe bank passes; CT6 real-roll evidence is ambiguous and CT7 is stopped. The fixed recipe policy can proceed to one-shot final-628 non-human recipe/style/artifact confirmation without a roll-information claim |
+| Deferred | U3 | Controlled named-stock calibration remains unavailable; do not weaken real-film RF requirements |
+| Done/auxiliary | U5.CT5–U5.CT8 | FilmSet one-shot complete: Cinema/ClassNeg pass digital recipe control, Velvia fidelity fails; no Ultimate promotion |
 | P0 product | U5.FC1–U5.FC8/U6 | Build fixed explicit champion/bank independently; FilmCase routing requires ≥2 modes plus an Oracle gap, otherwise use champion + bounded strength |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 

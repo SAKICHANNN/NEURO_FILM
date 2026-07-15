@@ -1,5 +1,12 @@
 # Roll2Film Research Program — Colour-Transfer Algorithms from Unpaired Roll Sets
 
+> **Superseded priority notice, 2026-07-15:** Ultimate is now a real-film-first
+> program governed by `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`.
+> FilmSet E1/CT5/CT8 is only a digital Capture One recipe control. Roll2Film is
+> one falsifiable challenger among global, hierarchical, retrieval and bounded
+> conditional explicit-operator methods; BlueNeg did not establish roll
+> information. Nothing below may promote a method without real-film RF gates.
+
 **Status:** conditional publication-oriented research hypothesis, amended 2026-07-15
 
 **Paper type:** colour-transfer method, not a benchmark paper

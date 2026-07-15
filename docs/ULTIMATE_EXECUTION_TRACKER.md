@@ -8,7 +8,16 @@
 
 ## 1. Parent goal and task contract
 
-**Parent goal `ULT`**: deliver a local-first, color-managed film-imaging product that looks strongly stylized while producing no confirmed severe glitch/artifact on the frozen gold set. Calibrated stock/process reproduction is a deferred optional evidence lane with stricter claim requirements.
+**Parent goal `ULT`**: learn a transferable, visibly stylised and artifact-safe
+explicit colour transformation primarily from verifiable real photographic-film
+scans. FilmSet and other digital simulations remain auxiliary controls. Exact
+stock reproduction remains a stricter calibrated subset requiring controlled
+stock/process/scanner evidence.
+
+**Real-film authority, 2026-07-15:**
+`docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` supersedes any priority or
+success condition below that treats FilmSet, camera simulations, recipes, LUTs
+or pseudo-teachers as final truth.
 
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
@@ -69,6 +78,9 @@ the no-data research DAG.
 | FiveK is optional neutral auto-base only | accepted for plan | Expert retouch is not film identity; only a partial 903-file freeze is present on the current Windows host and the complete source is absent | Complete sources/rights restored and product evidence supports it |
 | Local Flickr-derived assets are quarantined | observed | 4,212 JPEGs exist on the current Windows host, but the 4,210-row legacy audit found 0 eligible rows and no roll/source/scanner grouping; two additional files lack propagated eligibility | New durable lineage, rights and group audit |
 | FilmSet is local; BlueNeg remains approval-gated | accepted for plan | FilmSet supplies local hidden film-recipe pairs; BlueNeg supplies 53 real roll groups, but neither is named-stock digital/film truth | FilmSet needs manifest/access freeze, not download; BlueNeg needs no-data gates, approval and licence snapshot |
+| Real-film scans are the Ultimate P0 evidence | user-authoritative | Digital recipes proved method control but cannot establish film learning | Only a future explicit goal change |
+| FilmSet is auxiliary only | user-authoritative | Cinema/ClassNeg/Velvia targets are Capture One recipes, not physical-film scans | Never promote RF/Ultimate nodes from FilmSet |
+| Roll2Film is one challenger, not the sole answer | user-authoritative | BlueNeg correct-roll effects reverse sign and CI crosses zero | Compare global, hierarchical, retrieval and bounded conditional operators |
 
 ---
 
@@ -159,6 +171,22 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 ---
 
 ## 4. Integrated work board
+
+### RF — real-film Ultimate mainline (priority reset 2026-07-15)
+
+| ID | Status | Deliverable | Dependencies | Exit evidence |
+|---|---|---|---|---|
+| RF0 | in progress | Real-film evidence ledger, source/rights/group gates | none | Reopen report plus hashed manifests |
+| RF0.1 | ready/executing | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | exact 437,570,872-byte acquisition, MD5/SHA-256, visual integrity |
+| RF0.2 | pending | Fail-closed FILM-R manifest and group ceiling | RF0.1 | unknown roll/process/scanner stay unknown; no stock-truth claim |
+| RF0.3 | pending | Metadata-only Apollo/DOCUMERICA/paired-data audit | RF0.1 | bounded candidates and no speculative bulk download |
+| RF1.1 | pending | Real-film signal/nuisance separability audit | RF0.2 | group/source holdouts and leakage report |
+| RF1.2 | ready after RF0.2 | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 | correct/pooled/wrong/shuffled/retrieval controls; no added capacity |
+| RF1.3 | conditional | Freeze larger whole-roll real-film holdout | RF1.1/RF1.2 | access contract before pixels |
+| RF2 | pending | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 | matched-style real-film controls |
+| RF3 | conditional | GPU bounded parameter challengers | RF2 residual value | curves/LUT/router/grid only; no RGB generator |
+| RF4 | pending | Unseen roll/source style and severe-artifact confirmation | RF2/RF3 | all RF-G0..RF-G8 gates |
+| RF5 | pending | Product integration and OOD fallback | RF4 | deterministic replay and provenance |
 
 ### U0 — Truth, rights and reproducibility reset
 

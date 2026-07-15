@@ -1,5 +1,9 @@
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+> **Ultimate priority reset, 2026-07-15:** real-film scans now own the final
+> success criterion. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`.
+> FilmSet CT5/CT8 is an auxiliary digital-recipe control only.
+
 > Updated 2026-07-15. Detailed DoR/DoD, dependencies, gates and evidence live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
 > SDXL/IP2P/SDEdit is a retired production direction and an optional research/Creative comparator only.
 
@@ -39,7 +43,11 @@
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
 | 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | complete: ambiguous across two held-out rolls | roll information not established |
-| 7 | U5.CT7/U5.CT8 | Stop amortized set inference; run one-shot final FilmSet recipe-bank confirmation | CT7 stopped; CT8 policy frozen, final still sealed | no human claim; 628 opens once only |
+| 7 | U5.CT7/U5.CT8 | Stop amortized set inference; close one-shot FilmSet auxiliary confirmation | complete: Cinema/ClassNeg pass digital recipe control; Velvia fidelity fails; no severe confirmed | cannot promote Ultimate or real-film claims |
+| 1 | RF0.1 | Acquire and verify CC-BY FILM-R real scans | ready/executing | 88 files / 437,570,872 bytes; no invented roll/scanner metadata |
+| 2 | RF0.2/RF1.1 | Freeze real-film manifest and test signal vs nuisance | pending RF0.1 | source/roll/uploader/scanner holdouts and claim ceiling |
+| 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | ready after RF0.2 | nested LOO correct/pooled/wrong/shuffled/retrieval controls |
+| 4 | RF2/RF3 | CPU expert ladder, then bounded GPU challengers if justified | pending RF1 | real-film gates, matched style, severe veto |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
