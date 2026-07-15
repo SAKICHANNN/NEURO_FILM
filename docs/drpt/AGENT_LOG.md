@@ -341,3 +341,14 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - Verification evidence: 48-replicate E0 uses group sizes 1/2/4/8/16/32. Primary correct-group holdout RGB RMSE falls from 0.017172 to 0.004224 (75.4%); the 32-frame mixed-operator control remains 0.064019. Mild exposure/scene/noise stress falls from 0.021609 to 0.005464 versus 0.070120 mixed. Focused tests pass and the raw ignored report records config hash/environment.
 - Risks or unknowns: the pass is conditional on a known SPD affine truth and matched neutral distribution. It is not real-film, named-stock, general unpaired-transfer or product evidence; it does not authorize FilmSet/BlueNeg downloads.
 - Handoff state: extend CT1/E0 to monotone curves/smooth LUT residuals, support breadth and hostile nuisance absorption. Only a complete CT3 pass can reopen the acquisition gate.
+
+## 2026-07-15 - Package visual evidence for external deep research
+
+- Node/parent goal: `ULT > U5.CT` research handoff support; make the external review prompt evidence-bearing instead of referring to opaque historical scheme numbers.
+- Skills used: `dev-research-reliability` as the write workflow, with plan/DRPT/log/structure disciplines as governance reviewers.
+- Decisions: package the 3900x9480 historical 56-scheme sheet and mapping, all 54 same-input normalized anchor renders, the four-file ID 11 red-highlight counterfactual, CT1/E0 raw evidence and current project authority. The prompt states that 02/03/33 are smoke cues and requires the reviewer to stop visual inference if attachments cannot be read.
+- Current-data correction: live Windows inspection found the complete FilmSet tree locally (21,140 files / 11,262,805,356 bytes), with 4,657 files per train branch and 628 per test branch. This conflicts with older active text saying 638 test images and is surfaced as an explicit primary-source audit question. The 903-file FiveK freeze pack is also present, while BlueNeg remains absent.
+- Files changed: `docs/planning/ROLL2FILM_WEB_DEEP_RESEARCH_PROMPT_CN.md`, planning index, package/counterfactual readmes and this log. Generated ignored artifact: `outputs/research_handoff/ROLL2FILM_RESEARCH_HANDOFF_20260715.zip` plus its unpacked directory and checksum manifest.
+- Verification evidence: package contains 73 files / 119,556,049 unpacked bytes; ZIP is 119,258,248 bytes with SHA-256 `A452473C69FFCA9BE5D0528FCCCC9D04CBAC5D6822BA8D53500451E7FE34C88D`. `CHECKSUMS.csv` records every non-manifest file.
+- Risks or unknowns: uploading the ZIP to an external web researcher is a user action; archive readability and source licenses do not imply public-release clearance. FilmSet is recipe data, not physical-film truth.
+- Handoff state: upload the ZIP and `PROMPT_CN.md` together. The reviewer must inspect attachments, resolve the FilmSet 628/638 discrepancy and return an executable evidence-gated plan.
