@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-01-filmset-internal-v1",
+  "confirmatory_report_sha256": "51e16eb047296e93b3bc7c739adf5a499a7f80f3d48bf95a228db059614d5fe3",
+  "confirmatory_software_commit": "58c1799a3ca923303915cf60b514761f5829cfef",
+  "global_single_operator_decision": "fail",
+  "recipe_finalists": {
+    "cinema": {
+      "primary": "lab_mean_std",
+      "comparators": ["wb_contrast_saturation"],
+      "reason": "only challenger passing confirmatory fidelity CI and frozen style floor"
+    },
+    "classneg": {
+      "primary": "pooled_l2",
+      "comparators": ["sliced_ot", "gaussian_bures", "wb_contrast_saturation"],
+      "reason": "largest fidelity gain and style-floor pass; raw gamut risk requires full-resolution veto"
+    },
+    "velvia": {
+      "primary": "pooled_l2",
+      "comparators": ["lab_mean_std", "sliced_ot", "wb_contrast_saturation"],
+      "reason": "strongest eligible style with better fidelity than Lab; raw gamut risk requires full-resolution veto"
+    }
+  },
+  "full_resolution_adjudication": {
+    "fold": "confirmatory",
+    "render_all_identities_for_metrics": true,
+    "save_worst_cases_per_recipe_candidate": 12,
+    "worst_case_axes": [
+      "raw_out_of_range_fraction",
+      "mean_delta_e00_to_target",
+      "red_cyan_boundary_occupancy",
+      "gradient_banding_proxy"
+    ],
+    "contact_sheet_includes": ["input", "hidden_target", "frozen_best_basic", "candidate"],
+    "severe_visual_veto_required": true,
+    "automatic_metrics_cannot_clear_severe": true
+  },
+  "promotion_boundary": {
+    "statistical_pass_is_not_product_promotion": true,
+    "filmset_label": "film-inspired Capture One recipe evidence",
+    "named_stock_claim_forbidden": true,
+    "official_628_must_remain_unopened": true,
+    "per_photo_ml_routing_not_justified": true,
+    "fixed_per_recipe_champion_bank_is_allowed": true
+  }
+}

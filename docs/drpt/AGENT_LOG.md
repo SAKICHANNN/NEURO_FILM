@@ -420,3 +420,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Freeze:** low/moderate/strong style strata are `[0,1.5)`, `[1.5,2.75)` and `[2.75,infinity)`. `configs/roll2film_ct5_pilot_decision.json` freezes the best-basic candidate per domain/stratum and the cluster-bootstrap confirmatory endpoint.
 - **Verification:** 74 tests pass; the complete pilot report reruns byte-identically with SHA-256 `145a3bca313212d625a0245b6366d77ceb5732e883d8f87255bab53aeaa434fa`. Evidence: `docs/ROLL2FILM_CT5_PILOT_RESULTS.md`.
 - **Handoff:** commit this freeze, then run the 238-identity confirmatory fold without changing parameters, strata or adversaries. Full-resolution severe adjudication remains required; official 628 stays sealed.
+
+## 2026-07-15 - Complete CT5 sampled confirmatory evaluation
+
+- **Node/parent goal:** `ULT > U5.CT5`; test frozen pilot operators on 238 untouched identities against fixed strength-stratum best-basic adversaries.
+- **Method:** no refitting; duplicate-cluster bootstrap with 5,000 resamples; target Delta-E fidelity and input Delta-E style floor are separate gates. Spatial SSIM and visual severe remain not-run.
+- **Results:** Cinema passes only Lab mean/std. ClassNeg passes pooled L2, sliced OT and Bures, with pooled L2 strongest (`Delta-E=2.321`, improvement CI `[2.709,2.928]`). Velvia passes pooled L2, sliced OT and moderate-stratum Lab; pooled L2 is the strongest eligible style (`4.407`) with target Delta-E `3.456`.
+- **Negative evidence:** no single candidate passes all domains; pooled L2 loses decisively to strong basic on Cinema. Raw OOR is nonzero for pooled L2 (`0.743%/2.286%/1.244%`) and much larger for some Bures/sliced arms, so sampled statistical success is not product safety.
+- **Decision:** freeze Lab for Cinema and pooled L2 for ClassNeg/Velvia as primary full-resolution finalists, with simpler/risk comparators. This supports a fixed per-recipe deterministic bank, not per-photo ML routing or a universal Roll2Film operator.
+- **Verification:** 75 tests passed before execution; confirmatory report reruns byte-identically with SHA-256 `51e16eb047296e93b3bc7c739adf5a499a7f80f3d48bf95a228db059614d5fe3`; final 628 remained unparsed/undecoded. Evidence: `docs/ROLL2FILM_CT5_CONFIRMATORY_RESULTS.md`.
+- **Handoff:** commit the confirmatory decision, render all confirmatory identities at full resolution for automatic metrics, save deterministic worst cases/contact sheets and perform the severe visual veto. Do not open final 628.

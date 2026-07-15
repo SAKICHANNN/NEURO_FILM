@@ -219,7 +219,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
 | Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
-| Conditional | U5.CT5–U5.CT8 | FilmSet data gate passed; run internal pair-blind development only after nonlinear CT3 and matched-strength baseline freeze, then continue the simplest survivor |
+| Conditional | U5.CT5–U5.CT8 | Sampled FilmSet confirmatory rejects one universal operator and supports fixed recipe finalists; full-resolution severe gate precedes any promotion or final-628 use |
 | P0 product | U5.FC1–U5.FC8/U6 | Build fixed explicit champion/bank independently; FilmCase routing requires ≥2 modes plus an Oracle gap, otherwise use champion + bounded strength |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 
