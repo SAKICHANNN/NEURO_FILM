@@ -151,13 +151,75 @@ def load_development_roll_samples(
     minimum_side: int,
 ) -> BlueNegRollSamples:
     """Decode only a development roll under the frozen support/query roles."""
+    return _load_roll_samples(
+        root=root,
+        rows=rows,
+        transformations=transformations,
+        roll_id=roll_id,
+        expected_pool="development_roll",
+        support_frames=support_frames,
+        support_pixels=support_pixels,
+        query_frames=query_frames,
+        query_pixels=query_pixels,
+        support_seed=support_seed,
+        query_seed=query_seed,
+        minimum_side=minimum_side,
+    )
+
+
+def load_confirmatory_roll_samples(
+    *,
+    root: Path,
+    rows: list[dict[str, Any]],
+    transformations: dict[str, dict[str, np.ndarray]],
+    roll_id: str,
+    support_frames: int,
+    support_pixels: int,
+    query_frames: int,
+    query_pixels: int,
+    support_seed: int,
+    query_seed: int,
+    minimum_side: int,
+) -> BlueNegRollSamples:
+    """Decode only a confirmatory roll after the family decision is frozen."""
+    return _load_roll_samples(
+        root=root,
+        rows=rows,
+        transformations=transformations,
+        roll_id=roll_id,
+        expected_pool="confirmatory_roll",
+        support_frames=support_frames,
+        support_pixels=support_pixels,
+        query_frames=query_frames,
+        query_pixels=query_pixels,
+        support_seed=support_seed,
+        query_seed=query_seed,
+        minimum_side=minimum_side,
+    )
+
+
+def _load_roll_samples(
+    *,
+    root: Path,
+    rows: list[dict[str, Any]],
+    transformations: dict[str, dict[str, np.ndarray]],
+    roll_id: str,
+    expected_pool: str,
+    support_frames: int,
+    support_pixels: int,
+    query_frames: int,
+    query_pixels: int,
+    support_seed: int,
+    query_seed: int,
+    minimum_side: int,
+) -> BlueNegRollSamples:
     roll_rows = [row for row in rows if str(row["roll_id"]) == roll_id]
     if not roll_rows:
         raise BlueNegEvaluationError(f"roll not found in frame manifest: {roll_id}")
     pools = {str(row["research_pool"]) for row in roll_rows}
-    if pools != {"development_roll"}:
+    if pools != {expected_pool}:
         raise BlueNegEvaluationError(
-            f"development loader rejects non-development roll {roll_id}: {sorted(pools)}"
+            f"{expected_pool} loader rejects roll {roll_id}: {sorted(pools)}"
         )
     support_rows = _ordered(
         [row for row in roll_rows if row["frame_role"] == "unpaired_support"],
@@ -214,3 +276,30 @@ def load_development_roll_samples(
         query_source=np.asarray(query_source),
         query_target=np.asarray(query_target),
     )
+
+
+def shuffled_target_support_groups(
+    rolls: tuple[BlueNegRollSamples, BlueNegRollSamples],
+    *,
+    frames_per_roll: int,
+    pixels_per_frame: int,
+    seed: int,
+) -> dict[str, np.ndarray]:
+    """Reassign complete target-support frames between two rolls deterministically."""
+    chunks = []
+    ownership = []
+    for roll in rolls:
+        expected = frames_per_roll * pixels_per_frame
+        if roll.support_target.shape != (expected, 3):
+            raise BlueNegEvaluationError("support target does not match frozen frame budget")
+        chunks.extend(np.split(roll.support_target, frames_per_roll))
+        ownership.extend([roll.roll_id] * frames_per_roll)
+    rng = np.random.default_rng(seed)
+    order = rng.permutation(len(chunks))
+    first_owners = {ownership[int(index)] for index in order[:frames_per_roll]}
+    if first_owners == {rolls[0].roll_id}:
+        order = np.roll(order, 1)
+    return {
+        rolls[0].roll_id: np.concatenate([chunks[int(index)] for index in order[:frames_per_roll]]),
+        rolls[1].roll_id: np.concatenate([chunks[int(index)] for index in order[frames_per_roll:]]),
+    }

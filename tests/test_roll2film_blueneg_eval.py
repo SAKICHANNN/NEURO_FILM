@@ -7,9 +7,12 @@ import pytest
 from PIL import Image
 
 from src.roll2film.blueneg_eval import (
+    BlueNegRollSamples,
     BlueNegEvaluationError,
     align_blueneg_pair,
+    load_confirmatory_roll_samples,
     load_development_roll_samples,
+    shuffled_target_support_groups,
 )
 
 
@@ -52,7 +55,7 @@ def test_development_loader_rejects_confirmatory_roll_before_decode(
         }
     ]
 
-    with pytest.raises(BlueNegEvaluationError, match="rejects non-development"):
+    with pytest.raises(BlueNegEvaluationError, match="development_roll loader rejects"):
         load_development_roll_samples(
             root=tmp_path,
             rows=rows,
@@ -116,3 +119,58 @@ def test_development_sampling_is_deterministic_and_pair_blind(tmp_path: Path) ->
     np.testing.assert_array_equal(first.query_source, second.query_source)
     np.testing.assert_array_equal(first.query_target, second.query_target)
     assert first.query_source.shape == (2, 32, 3)
+
+
+def test_confirmatory_loader_rejects_development_roll_before_decode(
+    tmp_path: Path,
+) -> None:
+    rows = [
+        {
+            "filename": "dev-frame",
+            "roll_id": "dev-roll",
+            "research_pool": "development_roll",
+            "frame_role": "unpaired_support",
+        }
+    ]
+
+    with pytest.raises(BlueNegEvaluationError, match="confirmatory_roll loader rejects"):
+        load_confirmatory_roll_samples(
+            root=tmp_path,
+            rows=rows,
+            transformations={},
+            roll_id="dev-roll",
+            support_frames=1,
+            support_pixels=16,
+            query_frames=1,
+            query_pixels=16,
+            support_seed=1,
+            query_seed=2,
+            minimum_side=4,
+        )
+
+
+def test_shuffled_support_groups_mix_whole_frames_deterministically() -> None:
+    def roll(roll_id: str, offset: int) -> BlueNegRollSamples:
+        target = np.concatenate(
+            [np.full((4, 3), offset + index, dtype=np.float64) for index in range(3)]
+        )
+        return BlueNegRollSamples(
+            roll_id=roll_id,
+            support_content_ids=(),
+            query_content_ids=(),
+            support_source=np.zeros_like(target),
+            support_target=target,
+            query_source=np.empty((0, 4, 3)),
+            query_target=np.empty((0, 4, 3)),
+        )
+
+    rolls = (roll("a", 0), roll("b", 10))
+    first = shuffled_target_support_groups(
+        rolls, frames_per_roll=3, pixels_per_frame=4, seed=9
+    )
+    second = shuffled_target_support_groups(
+        rolls, frames_per_roll=3, pixels_per_frame=4, seed=9
+    )
+
+    np.testing.assert_array_equal(first["a"], second["a"])
+    assert np.any(first["a"] >= 10)
