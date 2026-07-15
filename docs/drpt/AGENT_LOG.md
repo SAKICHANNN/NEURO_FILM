@@ -450,3 +450,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** CT2 metadata gate passes, but CT6 is narrowed to a single-film-string mechanism pilot. The exact manifest contains 101 files / 118,929,719 bytes. A pass can support only archive/scanner-specific roll-look information; it cannot support digital-to-film, stock calibration or broad multi-stock claims.
 - **Evidence/verification:** 81 tests pass; metadata report SHA-256 `28464a68993bf7316476ef983804cbb34d7a6e7c4f940cfb977e08bac03ba2a6`; acquisition manifest SHA-256 `c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067`; zero whole-roll overlap and no pixels downloaded/decoded. Evidence: `docs/ROLL2FILM_BLUENEG_METADATA_FREEZE.md`.
 - **Handoff:** implement a resumable exact-path downloader with byte/LFS-SHA verification, acquire only the frozen 101 files under the owner's standing authorization, then freeze fixed-budget correct/wrong-roll evaluator policy before decoding pixels.
+
+## 2026-07-15 - Complete bounded BlueNeg pilot acquisition
+
+- **Node/parent goal:** `ULT > U5.CT6`; acquire only the metadata-approved payloads without decoding them or expanding scope.
+- **Implementation:** added an exact-path resumable downloader with repository/revision/report hash gates, path traversal and lane-boundary checks, concurrent cache-safe fetch, byte/LFS-SHA verification, manifest-external file rejection and deterministic reporting. Three focused tests cover corruption repair, extra-file rejection and traversal rejection.
+- **Evidence:** all 101 files / 118,929,719 bytes verify against the exact-revision LFS hashes; zero manifest-external lane files; `image_payloads_decoded=false`. The cached rerun is byte-identical. Download report SHA-256: `f20d83a4378ee5a4306ffa02ea04f7f2ead6c0c58c79aa36152e3bd199b934a7`; software commit `14946319cb47588a02448006f3e3cb14ff40eec8`.
+- **Verification:** 84 tests pass before acquisition; source bytes remain ignored and the full 955MB lanes/290GB archive remain absent. Evidence: `docs/ROLL2FILM_BLUENEG_ACQUISITION_RESULTS.md`.
+- **Handoff:** freeze the fixed-budget CT6 evaluator and stop/ambiguity rules before first pixel decode. The matched confirmatory core remains only two held-out Kodak Gold 100-5 rolls against two development same-film wrong-roll controls.

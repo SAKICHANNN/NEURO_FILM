@@ -17,12 +17,12 @@
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Input pipeline | partial | `render_film` now enters through `WorkingImage`; an explicit legacy sRGB8 adapter remains |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
-| Current local data | FilmSet freeze plus BlueNeg metadata freeze | FilmSet official 628 remains sealed; BlueNeg metadata/licence/inventory are local, pixels absent, and exact 101-file / 118,929,719-byte acquisition is frozen |
+| Current local data | FilmSet freeze plus verified BlueNeg pilot | FilmSet official 628 remains sealed; BlueNeg exact 101 files / 118,929,719 bytes are local and hash-verified, with pixels still undecoded before evaluator freeze |
 | Remote-verified research data | BlueNeg narrow pilot ready | only four Kodak Gold 100-5 rolls support same-film matched controls; 13-film-type generalization is unavailable |
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 81 tests pass after CT5 severity and BlueNeg metadata-contract diagnostics; CI exists |
+| Tests | baseline passes | 84 tests pass after CT5 severity and BlueNeg metadata/download-contract diagnostics; CI exists |
 
 ---
 
@@ -38,7 +38,7 @@
 | 2 | U5.CT2/U5.CT4 | Freeze FilmSet pair blindness and BlueNeg metadata/licence/whole-roll acquisition | complete | BlueNeg full archive forbidden; exact bounded manifest only |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
-| 6 | U5.CT6 | Download exact BlueNeg eligible paths and run correct-roll matched-control pilot | acquisition ready; metadata/whole-roll/storage gate passed | 101 files / 118,929,719 bytes; one film string only |
+| 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | exact acquisition complete; evaluator freeze next, pixels still undecoded | 101 files / 118,929,719 bytes; one film string only |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
