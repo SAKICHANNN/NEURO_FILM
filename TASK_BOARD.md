@@ -51,7 +51,8 @@
 | 1 | RF0.1/RF0.2 | Acquire, verify and gate CC-BY FILM-R real scans | complete/limited | 88 files verified; only `real-film-derived/unknown-look`; restoration is nuisance, not truth |
 | 2 | RF1.1 | Test FILM-R signal vs content/damage/source nuisance | complete: unidentified | no comparable cross-content families; classifier correctly stopped |
 | 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | complete: nuisance | wrong-roll content retrieval beats correct roll; physical-roll hypothesis stays closed |
-| 1 | RF0.4 | Build authoritative stock registry and choose first 2-4 evidence-backed stock pilots | ready, P0 named-stock | label authority, rolls/sources, content overlap, nuisance, rights, size and attainable grade must pass; LOC cannot fill a slot |
+| 1 | RF0.4/SF0.1 | Build registry and freeze exact four-pilot acquisition | complete | 189 files / 227,287,697 bytes; Gold 400-5 failed whole-test-roll preflight and was replaced by GA 100 5095 |
+| 1a | SF0.2 | Download/hash-verify frozen stock pilot pixels in isolated root | ready, P0 | no decode; 189/189 size+LFS hashes; zero external files |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 3 | RF1.4 | Freeze per-stock label/content/nuisance and holdout gates | blocked on RF0.4 selections | correct stock must beat pooled, wrong-stock, generic historical, retrieval and nuisance controls |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
@@ -104,4 +105,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | Next data leaf: `RF0.4/SF0.1` named-stock registry and exact four-stock acquisition freeze; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | Next data leaf: `SF0.2` exact isolated four-stock pixel download/hash verification; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

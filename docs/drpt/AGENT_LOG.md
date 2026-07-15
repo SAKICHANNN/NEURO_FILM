@@ -570,3 +570,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **FSA propagation:** stop the running historical auxiliary expansion and retain 258 FSA/OWI derivatives / 81,016,399 bytes. Do not delete them, resume them as a named-stock source, or let the auxiliary lane block RF0.4.
 - **Files changed:** stock registry/config/validator/tests; `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md`; active authorities, tracker, board, data boundaries and superseded Roll2Film pointer.
 - **Verification/handoff:** JSON parses; all 124 repository tests pass; the exact BlueNeg 13-string/53-roll/491-frame cross-check passes with no mismatches. The acquisition contract freezes all four physical input hashes, seals every official-test roll, requires each preview and public proxy in the exact-revision LFS inventory, rejects missing hashes/duplicate paths, and reports aligned-but-unavailable proxies separately. After a scoped commit, rerun at the committed software identity and freeze the final manifest/report before downloading pixels.
+
+## 2026-07-15 - Pass SF0.1 and freeze exact stock-pilot bytes
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.1`; execute the committed stock registry/acquisition contract before accessing new pixels.
+- **Result:** two executions at commit `70fe95bb...` are byte-identical. The exact manifest has 189 objects / 227,287,697 bytes and SHA-256 `1ac2dfce6060d0094d221e8776f4318ebdd144a86194c534daca01ae3749324e`; report SHA-256 is `9ba954cffd5f47839fcb14fe7b025bb8be27ca48256baf7b579dce4c21e756d3`.
+- **Split evidence:** 17 official-test rolls are globally sealed. Gold 100-5 retains 7 rolls/50 previews/47 proxies; Konica retains 7/22/1; NPH400 retains 4/53/0; GA 100 5095 retains 3/16/0. Gold 400-5 was removed because only one roll/frame survives sealing.
+- **Decision:** `SF0.1 passed`; `SF0.2` may download only the exact manifest into isolated `data/raw/blueneg_stock_pilots_v1`. The old 101-file pilot and 258 FSA derivatives remain untouched. No pixels have yet been decoded and no stock signal/transfer claim is promoted.
+- **Files/handoff:** add the acquisition decision, frozen result document and isolated downloader; commit/push, then run resumable download and verify every size/LFS hash before any visual or feature audit.

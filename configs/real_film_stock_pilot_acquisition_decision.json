@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "decision_id": "stock-first-blueneg-four-pilot-acquisition-v1",
+  "decision": "download_exact_frozen_manifest",
+  "repo_id": "ttgroup/blueneg-release",
+  "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+  "evidence_software_commit": "70fe95bb129ffb278391fd385db6cf5ed12946fd",
+  "acquisition_manifest": "outputs/real_film/stock_pilots_v1/acquisition.json",
+  "acquisition_manifest_sha256": "1ac2dfce6060d0094d221e8776f4318ebdd144a86194c534daca01ae3749324e",
+  "metadata_report": "outputs/real_film/stock_pilots_v1/report.json",
+  "metadata_report_sha256": "9ba954cffd5f47839fcb14fe7b025bb8be27ca48256baf7b579dce4c21e756d3",
+  "expected_files": 189,
+  "expected_bytes": 227287697,
+  "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "selected_film_stock_ids": [
+    "fujifilm_nph_400",
+    "kodak_ga_100_5095",
+    "kodak_gold_100_gen5",
+    "konica_super_xg_100"
+  ],
+  "official_test_roll_policy": "seal_entire_physical_roll",
+  "full_16bit_archive_forbidden": true,
+  "decode_during_download": false,
+  "required_credit": "Copyrighted by Tien-Tsin Wong",
+  "claim_boundary": "bounded acquisition only; no stock signal, S2 transfer, calibration or release claim"
+}
