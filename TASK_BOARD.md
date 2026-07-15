@@ -30,7 +30,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 120 tests pass after the stock registry validator and propagation |
+| Tests | baseline passes | 124 tests pass after the stock registry and whole-test-roll acquisition contracts |
 
 ---
 

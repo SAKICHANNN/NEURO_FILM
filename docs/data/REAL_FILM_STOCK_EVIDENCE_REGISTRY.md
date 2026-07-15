@@ -127,8 +127,10 @@ fails regardless of model capacity or visual saturation.
 ## 7. Immediate gate
 
 `RF0.4` has selected four bounded BlueNeg audit pilots in the machine-readable
-registry: Kodak Gold 100-5, Kodak Gold 400-5, Fuji NPH400 and Konica Super XG
-100. Selection authorises metadata/acquisition gating, not an expert claim.
+registry: Kodak Gold 100-5, Kodak GA 100 5095, Fuji NPH400 and Konica Super XG
+100. Kodak Gold 400-5 was removed when whole-test-roll sealing left only one
+eligible roll/frame. Selection authorises metadata/acquisition gating, not an
+expert claim.
 The comparison, rationale, experiment DAG and failure branches live in
 `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md`.
 

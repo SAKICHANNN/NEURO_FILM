@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 120 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; BlueNeg favours wrong-roll content retrieval over physical-roll grouping; FILM-R stage-zero content gate fails, so real-film stock signal is not established |
+| Current evidence | 124 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; whole-test-roll preflight retains four metadata pilots but only Gold 100-5 has a viable display-proxy lane; real-film stock signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.

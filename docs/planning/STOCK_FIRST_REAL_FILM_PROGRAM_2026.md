@@ -74,14 +74,20 @@ and pixels are obtainable now and together permit a real wrong-stock control:
 
 1. `kodak_gold_100_gen5`: 19 rolls / 226 frames / 189 public aligned frames;
    strongest sample base, but the prior four-roll result is nuisance-negative.
-2. `kodak_gold_400_gen5`: 3 rolls / 38 frames / 30 aligned frames; same product
-   family with a different speed/generation label, useful as a hard collapse
-   and label-validity test.
+2. `kodak_ga_100_5095`: 3 unsealed rolls / 16 frames / no aligned proxy;
+   exact dataset-declared product/code string and the minimum independent-roll
+   count for a density-domain identifiability pilot.
 3. `fujifilm_nph_400`: 4 rolls / 53 frames / no aligned proxy; density/preview
    identifiability only until a valid display-positive lane exists.
 4. `konica_super_xg_100`: 8 rolls / 30 frames / 6 aligned frames; manufacturer
    diversity, but the aligned lane is too small for promotion without a
    whole-roll/source-safe split.
+
+The initial paper selection included `kodak_gold_400_gen5`, but whole-test-roll
+preflight reduced it from 3 nominal rolls / 38 frames to 1 unsealed roll / 1
+frame. It was therefore removed before acquisition and replaced by GA 100 5095.
+This failure is retained as evidence that nominal dataset counts cannot choose
+pilots before split sealing.
 
 Selection means “audit first”, not “stock expert established”. `Fuji 100` and
 `Fuji 400` remain `S0` because the product line is ambiguous. Every pilot has

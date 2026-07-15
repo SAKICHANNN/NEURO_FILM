@@ -51,7 +51,7 @@
       "roll_count": 3,
       "frame_count": 16,
       "aligned_public_frame_count": 0,
-      "selected_first_pilot": false,
+      "selected_first_pilot": true,
       "claim_ceiling": "dataset-declared real negative stock; density-only until positive/reference lane exists"
     },
     {
@@ -198,7 +198,7 @@
       "roll_count": 3,
       "frame_count": 38,
       "aligned_public_frame_count": 30,
-      "selected_first_pilot": true,
+      "selected_first_pilot": false,
       "claim_ceiling": "provisional real-film-derived stock research after whole-roll/content controls"
     },
     {
