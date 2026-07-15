@@ -410,3 +410,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Access/evaluation contract:** training uses only disjoint source/target manifests; 465 internal-dev clusters are deterministically split pilot/confirmatory; final 628 is forbidden. Style strength, hidden recipe fidelity and severe artifacts remain independent scorecards. Comparisons use frozen strength strata rather than post-hoc RGB weakening.
 - **Files:** `configs/roll2film_ct5_baselines.json`, `docs/data/ROLL2FILM_CT5_BASELINE_EVALUATOR_CONTRACT.md`, active tracker/task board and this log.
 - **Handoff:** implement hash/role-enforcing loaders, deterministic equal-image pixel caches and the basic/Gaussian/quantile/L2 baselines. Commit the implementation before the evaluator opens internal-dev target payloads.
+
+## 2026-07-15 - Run CT5 internal FilmSet pilot and freeze confirmatory adversaries
+
+- **Node/parent goal:** `ULT > U5.CT5`; use only the 227-identity pilot fold to freeze strength strata and best-basic comparators.
+- **Data/access evidence:** hash-verified equal-image caches contain 2,096 source and 2,096 target identities per recipe, plus 227 pilot/238 untouched confirmatory identities. ICC decode is linear-sRGB. The pilot runner loads only pilot files; final 628 remains unparsed/undecoded.
+- **Failure shield:** the first pilot attempt stopped on repeated 8-bit Velvia tail quantiles violating strict spline knots. A fixed epsilon strictification and quantized-tail regression test were committed before rerun; no partial report or confirmatory data was used.
+- **Pilot result:** Lab mean/std leads Cinema (`Delta-E=1.730`), pooled L2 leads ClassNeg (`2.106`) and per-channel quantile leads Velvia (`3.121`). Pooled L2 style strength is `3.686/4.912/4.603` across the three recipes, but raw out-of-range risk is `0.515%/1.808%/1.003%`; no product promotion is made.
+- **Freeze:** low/moderate/strong style strata are `[0,1.5)`, `[1.5,2.75)` and `[2.75,infinity)`. `configs/roll2film_ct5_pilot_decision.json` freezes the best-basic candidate per domain/stratum and the cluster-bootstrap confirmatory endpoint.
+- **Verification:** 74 tests pass; the complete pilot report reruns byte-identically with SHA-256 `145a3bca313212d625a0245b6366d77ceb5732e883d8f87255bab53aeaa434fa`. Evidence: `docs/ROLL2FILM_CT5_PILOT_RESULTS.md`.
+- **Handoff:** commit this freeze, then run the 238-identity confirmatory fold without changing parameters, strata or adversaries. Full-resolution severe adjudication remains required; official 628 stays sealed.

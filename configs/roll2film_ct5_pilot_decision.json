@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-01-filmset-internal-v1",
+  "pilot_report_sha256": "145a3bca313212d625a0245b6366d77ceb5732e883d8f87255bab53aeaa434fa",
+  "pilot_software_commit": "9843bb2e892f0a7badf9fbc4088b6e15b756bb78",
+  "strength_metric": "mean_over_images_of_per_image_median_delta_e00_from_input",
+  "strength_strata": {
+    "low": {"minimum_inclusive": 0.0, "maximum_exclusive": 1.5},
+    "moderate": {"minimum_inclusive": 1.5, "maximum_exclusive": 2.75},
+    "strong": {"minimum_inclusive": 2.75, "maximum_exclusive": null}
+  },
+  "best_basic_by_domain_and_stratum": {
+    "cinema": {
+      "low": "exposure_only",
+      "moderate": "saturation_only",
+      "strong": "wb_contrast_saturation"
+    },
+    "classneg": {
+      "low": "saturation_only",
+      "moderate": "exposure_only",
+      "strong": "wb_contrast_saturation"
+    },
+    "velvia": {
+      "low": "exposure_only",
+      "moderate": "saturation_only",
+      "strong": "wb_contrast_saturation"
+    }
+  },
+  "confirmatory_candidates": [
+    "lab_mean_std",
+    "per_channel_quantile",
+    "gaussian_bures",
+    "sliced_ot",
+    "pooled_l2"
+  ],
+  "confirmatory_primary": "paired_per_image_mean_delta_e00_improvement_over_stratum_best_basic",
+  "bootstrap": {
+    "resamples": 5000,
+    "unit": "duplicate_cluster",
+    "ci95_low_must_exceed_zero": true,
+    "seed": 2026071506
+  },
+  "artifact_status": {
+    "sampled_raw_out_of_range_is_risk_flag": true,
+    "automatic_metrics_cannot_clear_severe_gate": true,
+    "full_resolution_visual_adjudication_required_before_promotion": true
+  },
+  "policy": {
+    "candidate_parameters_frozen": true,
+    "confirmatory_may_not_change_strength_strata_or_best_basic": true,
+    "official_628_must_remain_unopened": true,
+    "pilot_is_not_promotion_evidence": true
+  }
+}
