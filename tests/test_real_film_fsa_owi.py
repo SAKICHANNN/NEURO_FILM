@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from src.real_film.fsa_owi import (
+    build_canonical_subset,
     evaluate_metadata_gate,
     extract_loc_id,
     merge_api_pages,
@@ -55,11 +56,21 @@ def _config() -> dict:
             "required_commons_category": "PD US FSA/OWI",
             "required_source_category": "Images from the Library of Congress",
         },
+        "canonical_recovery": {
+            "minimum_unique_loc_records": 1,
+            "minimum_creator_group_coverage": 0.0,
+            "minimum_creators_with_eight_records": 0,
+            "creator_category_prefix": "Farm Security Administration photographs by ",
+            "forbidden_title_tokens": ["cropped"],
+        },
     }
 
 
 def test_extract_and_parse_loc_metadata() -> None:
     assert extract_loc_id("https://hdl.loc.gov/loc.pnp/fsac.1A34354") == "fsac.1a34354"
+    assert extract_loc_id(
+        "https://cdn.loc.gov/service/pnp/fsac/1a34000/1a34200/1a34297v.jpg"
+    ) == "fsac.1a34297"
     record = parse_page(_page())
     assert record["loc_fsac_id"] == "fsac.1a34354"
     assert record["creator"] == "Jane Doe"
@@ -86,3 +97,17 @@ def test_metadata_gate_rejects_duplicate_loc_ids() -> None:
     result = evaluate_metadata_gate([left, right], _config())
     assert result["decision"] == "metadata_ineligible"
     assert result["checks"]["unique_loc_identifiers"] is False
+
+
+def test_canonical_subset_prefers_loc_service_file_and_removes_duplicates() -> None:
+    direct = parse_page(_page(7))
+    direct["commons_title"] = "File:Example 1a34354v.jpg"
+    direct["categories"].append("Farm Security Administration photographs by Jane Doe")
+    crop = dict(direct)
+    crop["commons_page_id"] = 8
+    crop["commons_title"] = "File:Example cropped.jpg"
+    selected, audit = build_canonical_subset([crop, direct], _config())
+    assert audit["decision"] == "canonical_pilot_allowed"
+    assert audit["duplicate_representations_removed"] == 1
+    assert selected[0]["commons_page_id"] == 7
+    assert selected[0]["creator_group"] == "Jane Doe"

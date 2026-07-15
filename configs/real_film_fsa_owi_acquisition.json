@@ -34,6 +34,32 @@
     "minimum_public_domain_coverage": 1.0,
     "minimum_loc_source_coverage": 0.95
   },
+  "canonical_recovery": {
+    "status": "predeclared after the raw Commons mirror failed on duplicate LOC ids",
+    "minimum_unique_loc_records": 500,
+    "minimum_creator_group_coverage": 0.75,
+    "minimum_creators_with_eight_records": 5,
+    "creator_category_prefix": "Farm Security Administration photographs by ",
+    "forbidden_title_tokens": [
+      "cropped",
+      "adjusted",
+      "banner",
+      "detail",
+      "restored",
+      "retouched",
+      "colorized",
+      "colourized"
+    ],
+    "selection_order": [
+      "strict public-domain and LOC-source eligibility",
+      "exclude obvious edit/crop filenames when another record exists",
+      "prefer an explicit LOC v-service filename",
+      "prefer LCCN-titled records",
+      "prefer JPEG",
+      "prefer larger pixel area only as a late tie-break",
+      "stable lexical title tie-break"
+    ]
+  },
   "phase_b_pilot": {
     "enabled_only_after_phase_a_pass": true,
     "maximum_images": 64,

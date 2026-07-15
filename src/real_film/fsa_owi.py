@@ -14,7 +14,12 @@ from urllib.parse import quote
 import requests
 
 
-LOC_ID_RE = re.compile(r"\bfsac[./]([0-9a-z]+)\b", re.IGNORECASE)
+DIRECT_LOC_ID_RE = re.compile(r"\bfsac\.([0-9a-z]+)\b", re.IGNORECASE)
+LOC_PATH_ID_RE = re.compile(
+    r"/fsac/(?:[^\s\"'<>]+/)*([0-9a-z]+?)(?:_150px|[rtvu])?\."
+    r"(?:jpe?g|gif|tiff?)\b",
+    re.IGNORECASE,
+)
 TAG_RE = re.compile(r"<[^>]+>")
 
 
@@ -30,8 +35,12 @@ def plain_text(value: object) -> str:
 
 def extract_loc_id(credit_html: object) -> str | None:
     """Extract and normalize the LOC digital id carried by Commons credit data."""
-    match = LOC_ID_RE.search(html.unescape(str(credit_html or "")))
-    return f"fsac.{match.group(1).lower()}" if match else None
+    credit = html.unescape(str(credit_html or ""))
+    direct = DIRECT_LOC_ID_RE.search(credit)
+    if direct:
+        return f"fsac.{direct.group(1).lower()}"
+    paths = LOC_PATH_ID_RE.findall(credit)
+    return f"fsac.{paths[-1].lower()}" if paths else None
 
 
 def _metadata_value(metadata: Mapping[str, Any], key: str) -> str:
@@ -111,8 +120,11 @@ def fetch_category_records(
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Enumerate the frozen Commons category and return records plus page evidence."""
     client = session or requests.Session()
-    client.headers.setdefault(
-        "User-Agent", "neuro-film-research/0.1 (metadata provenance audit)"
+    # requests.Session already carries a generic python-requests user agent;
+    # replace it because Wikimedia requires an identifying bot/research agent.
+    client.headers["User-Agent"] = (
+        "neuro-film-research/0.1 "
+        "(https://github.com/SAKICHANNN/NEURO_FILM; metadata provenance audit)"
     )
     phase = config["phase_a_metadata"]
     collection = config["collection"]
@@ -238,3 +250,91 @@ def evaluate_metadata_gate(
         "mime_counts": dict(sorted(Counter(str(row.get("mime")) for row in records).items())),
         "total_original_bytes_metadata": sum(int(row.get("original_bytes", 0)) for row in records),
     }
+
+
+def creator_group(record: Mapping[str, Any], config: Mapping[str, Any]) -> str | None:
+    """Recover the curated photographer category, avoiding free-text aliases."""
+    prefix = str(config["canonical_recovery"]["creator_category_prefix"])
+    names = sorted(
+        {
+            str(category)[len(prefix) :].strip()
+            for category in record.get("categories", [])
+            if str(category).startswith(prefix) and str(category)[len(prefix) :].strip()
+        }
+    )
+    return " + ".join(names) if names else None
+
+
+def _canonical_rank(record: Mapping[str, Any], config: Mapping[str, Any]) -> tuple[Any, ...]:
+    title = str(record["commons_title"])
+    title_lower = title.lower()
+    identifier = str(record["loc_fsac_id"]).split(".", 1)[-1]
+    forbidden = tuple(
+        str(token).lower() for token in config["canonical_recovery"]["forbidden_title_tokens"]
+    )
+    edited = any(token in title_lower for token in forbidden)
+    explicit_v = bool(re.search(rf"\b{re.escape(identifier)}v\b", title_lower))
+    lccn = "lccn" in title_lower
+    jpeg = str(record.get("mime")) == "image/jpeg"
+    area = int(record.get("original_width", 0)) * int(record.get("original_height", 0))
+    return (edited, not explicit_v, not lccn, not jpeg, -area, title_lower)
+
+
+def build_canonical_subset(
+    records: Sequence[Mapping[str, Any]], config: Mapping[str, Any]
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Select one strict, deterministic Commons representation per LOC scan id."""
+    license_gate = config["license_gate"]
+    grouped: dict[str, list[Mapping[str, Any]]] = {}
+    excluded = Counter()
+    for record in records:
+        identifier = record.get("loc_fsac_id")
+        if not identifier:
+            excluded["missing_loc_id"] += 1
+            continue
+        if str(record.get("license")) != license_gate["required_license_short_name"]:
+            excluded["license_mismatch"] += 1
+            continue
+        categories = record.get("categories", [])
+        if license_gate["required_commons_category"] not in categories:
+            excluded["missing_public_domain_category"] += 1
+            continue
+        if license_gate["required_source_category"] not in categories:
+            excluded["missing_loc_source_category"] += 1
+            continue
+        grouped.setdefault(str(identifier), []).append(record)
+    selected: list[dict[str, Any]] = []
+    for identifier, candidates in sorted(grouped.items()):
+        chosen = dict(min(candidates, key=lambda row: _canonical_rank(row, config)))
+        chosen["creator_group"] = creator_group(chosen, config)
+        chosen["canonical_loc_family_size"] = len(candidates)
+        chosen["canonical_selection_rank"] = list(_canonical_rank(chosen, config)[:-1])
+        selected.append(chosen)
+    recovery = config["canonical_recovery"]
+    known = [row for row in selected if row["creator_group"]]
+    creator_counts = Counter(str(row["creator_group"]) for row in known)
+    checks = {
+        "minimum_unique_loc_records": len(selected)
+        >= int(recovery["minimum_unique_loc_records"]),
+        "minimum_creator_group_coverage": (len(known) / len(selected) if selected else 0.0)
+        >= float(recovery["minimum_creator_group_coverage"]),
+        "minimum_creators_with_eight_records": sum(
+            count >= 8 for count in creator_counts.values()
+        )
+        >= int(recovery["minimum_creators_with_eight_records"]),
+        "one_record_per_loc_id": len(selected)
+        == len({str(row["loc_fsac_id"]) for row in selected}),
+    }
+    passed = bool(selected and all(checks.values()))
+    audit = {
+        "passed": passed,
+        "decision": "canonical_pilot_allowed" if passed else "canonical_ineligible",
+        "checks": checks,
+        "canonical_records": len(selected),
+        "raw_eligible_records": sum(len(value) for value in grouped.values()),
+        "duplicate_representations_removed": sum(len(value) - 1 for value in grouped.values()),
+        "excluded_records": dict(sorted(excluded.items())),
+        "creator_group_coverage": len(known) / len(selected) if selected else 0.0,
+        "creator_group_counts": dict(sorted(creator_counts.items())),
+    }
+    return selected, audit

@@ -3,6 +3,13 @@
 **State:** acquisition contract frozen; metadata enumeration is the next ready
 leaf. No bulk image download is authorized by this document alone.
 
+**Phase-A amendment after the first live enumeration:** the raw Commons
+category contains multiple representations of the same LOC scan and therefore
+failed the frozen unique-identifier gate. A separately reported canonical
+recovery now permits exactly one strict public-domain/LOC-source record per
+`fsac.*` identifier. Its thresholds and selection order were frozen before the
+recovery run; the original raw failure remains in the report.
+
 ## Why this source is materially better than FILM-R
 
 The Library of Congress (LOC) describes about 1,600 FSA/OWI colour photographs
@@ -53,6 +60,15 @@ if all of the frozen thresholds in
 `configs/real_film_fsa_owi_acquisition.json` hold. A category count is not
 enough: LOC identifier, public-domain and LOC-source coverage are independent
 gates.
+
+The raw category is never itself the research corpus. If it fails only because
+multiple Commons pages point to the same LOC identifier, a canonical recovery
+may select one representation per identifier under the frozen order in the
+config. Obvious crop/edit filenames lose to an unmarked representation; an
+explicit LOC `v` service filename wins next, followed by an LCCN title, JPEG
+format and a stable tie-break. Recovery still requires at least 500 unique LOC
+records, at least 75% curated photographer-category coverage and five
+photographers with eight or more records.
 
 ### Phase B -- 64-image decode/visual pilot
 

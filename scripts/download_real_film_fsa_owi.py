@@ -13,7 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.fsa_owi import evaluate_metadata_gate, fetch_category_records  # noqa: E402
+from src.real_film.fsa_owi import (  # noqa: E402
+    build_canonical_subset,
+    evaluate_metadata_gate,
+    fetch_category_records,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -49,7 +53,8 @@ def main() -> int:
     args = parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     records, api_evidence = fetch_category_records(config)
-    gate = evaluate_metadata_gate(records, config)
+    raw_gate = evaluate_metadata_gate(records, config)
+    canonical, canonical_gate = build_canonical_subset(records, config)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output_dir / "manifest.jsonl"
     manifest = b"".join(
@@ -57,6 +62,12 @@ def main() -> int:
         for record in records
     )
     manifest_path.write_bytes(manifest)
+    canonical_path = args.output_dir / "canonical_manifest.jsonl"
+    canonical_manifest = b"".join(
+        (json.dumps(record, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8")
+        for record in canonical
+    )
+    canonical_path.write_bytes(canonical_manifest)
     report = {
         "schema_version": 1,
         "experiment_id": config["experiment_id"],
@@ -64,9 +75,11 @@ def main() -> int:
         "software_commit": commit(),
         "config_sha256": sha256(args.config),
         "manifest_sha256": hashlib.sha256(manifest).hexdigest(),
+        "canonical_manifest_sha256": hashlib.sha256(canonical_manifest).hexdigest(),
         "api_calls": len(api_evidence),
         "api_response_evidence": api_evidence,
-        "gate": gate,
+        "raw_gate": raw_gate,
+        "canonical_gate": canonical_gate,
         "phase_b_images_downloaded": 0,
         "claim_ceiling": config["claim_ceiling"],
     }
@@ -80,15 +93,17 @@ def main() -> int:
                 "report_sha256": hashlib.sha256(encoded).hexdigest(),
                 "manifest": str(manifest_path),
                 "manifest_sha256": report["manifest_sha256"],
-                "decision": gate["decision"],
-                "records": gate["records"],
-                "unique_creators": gate["unique_creators"],
+                "decision": canonical_gate["decision"],
+                "raw_decision": raw_gate["decision"],
+                "records": raw_gate["records"],
+                "canonical_records": canonical_gate["canonical_records"],
+                "unique_creators": raw_gate["unique_creators"],
             },
             indent=2,
             sort_keys=True,
         )
     )
-    return 0 if gate["passed"] else 2
+    return 0 if canonical_gate["passed"] else 2
 
 
 if __name__ == "__main__":
