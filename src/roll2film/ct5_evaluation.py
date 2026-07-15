@@ -98,6 +98,40 @@ def summarize_operator_output(operator: Any, input_pixels: np.ndarray) -> np.nda
     return rendered.reshape(source.shape)
 
 
+def cluster_bootstrap_improvement(
+    baseline_values: np.ndarray | list[float],
+    candidate_values: np.ndarray | list[float],
+    cluster_ids: tuple[str, ...] | list[str],
+    *,
+    seed: int,
+    resamples: int = 5000,
+) -> dict[str, float | int]:
+    baseline = np.asarray(baseline_values, dtype=np.float64)
+    candidate = np.asarray(candidate_values, dtype=np.float64)
+    clusters = np.asarray(cluster_ids, dtype=str)
+    if baseline.ndim != 1 or candidate.shape != baseline.shape or clusters.shape != baseline.shape:
+        raise ValueError("cluster bootstrap inputs must be equally sized one-dimensional arrays")
+    if len(baseline) < 2 or resamples < 100 or not np.all(np.isfinite(baseline - candidate)):
+        raise ValueError("cluster bootstrap requires finite values, two images, and 100 resamples")
+    unique = np.unique(clusters)
+    cluster_delta = np.asarray(
+        [np.mean((baseline - candidate)[clusters == cluster]) for cluster in unique],
+        dtype=np.float64,
+    )
+    rng = np.random.default_rng(seed)
+    indices = rng.integers(0, len(unique), size=(resamples, len(unique)))
+    bootstrap = cluster_delta[indices].mean(axis=1)
+    return {
+        "images": len(baseline),
+        "clusters": len(unique),
+        "baseline_mean": float(baseline.mean()),
+        "candidate_mean": float(candidate.mean()),
+        "cluster_equal_absolute_improvement_mean": float(cluster_delta.mean()),
+        "ci95_low": float(np.quantile(bootstrap, 0.025)),
+        "ci95_high": float(np.quantile(bootstrap, 0.975)),
+    }
+
+
 def _image_pixels(values: np.ndarray) -> np.ndarray:
     pixels = np.asarray(values, dtype=np.float64)
     if pixels.ndim != 3 or pixels.shape[-1] != 3 or pixels.shape[1] < 16:

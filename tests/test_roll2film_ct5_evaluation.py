@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 
 from src.roll2film.ct5_evaluation import (
+    cluster_bootstrap_improvement,
     evaluate_sampled_candidate,
     paired_per_image_affine_oracle,
 )
@@ -29,3 +30,16 @@ def test_paired_affine_oracle_recovers_affine_targets() -> None:
     rendered = paired_per_image_affine_oracle(source, target)
 
     assert np.sqrt(np.mean((rendered - target) ** 2)) < 1e-7
+
+
+def test_cluster_bootstrap_uses_cluster_not_pixel_units() -> None:
+    summary = cluster_bootstrap_improvement(
+        [5.0, 5.2, 4.8, 6.0],
+        [3.0, 3.2, 2.8, 5.0],
+        ["a", "a", "b", "c"],
+        seed=8,
+        resamples=500,
+    )
+
+    assert summary["clusters"] == 3
+    assert summary["ci95_low"] > 0.0
