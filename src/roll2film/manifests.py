@@ -438,18 +438,20 @@ def _atomic_jsonl(path: Path, rows: list[dict[str, Any]]) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     payload = "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows)
-    temporary.write_text(payload, encoding="utf-8")
+    encoded = payload.encode("utf-8")
+    temporary.write_bytes(encoded)
     os.replace(temporary, path)
-    return _sha256_bytes(payload.encode("utf-8"))
+    return _sha256_bytes(encoded)
 
 
 def _atomic_json(path: Path, payload: dict[str, Any]) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     text = json.dumps(payload, indent=2, sort_keys=True) + "\n"
-    temporary.write_text(text, encoding="utf-8")
+    encoded = text.encode("utf-8")
+    temporary.write_bytes(encoded)
     os.replace(temporary, path)
-    return _sha256_bytes(text.encode("utf-8"))
+    return _sha256_bytes(encoded)
 
 
 def _load_role_manifest(path: Path, expected_role: str) -> list[dict[str, Any]]:

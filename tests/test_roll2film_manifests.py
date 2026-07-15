@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -75,6 +76,9 @@ def test_filmset_evidence_is_pair_blind_and_test_payload_stays_sealed(tmp_path: 
     assert len(final_rows) == 3 * 4
     assert {row["payload_access"] for row in final_rows} == {"final_evaluator_only"}
     assert all(row["width"] is None and row["dhash64"] is None for row in final_rows)
+    for role, expected_hash in result.report["manifest_sha256"].items():
+        payload = result.manifest_paths[role].read_bytes()
+        assert hashlib.sha256(payload).hexdigest() == expected_hash
 
 
 def test_training_loader_rejects_lockbox_manifest(tmp_path: Path) -> None:
