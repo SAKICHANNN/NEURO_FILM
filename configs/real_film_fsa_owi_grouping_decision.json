@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-grouping-decision",
+  "grouping_config_sha256": "ed939719f79659cf7d2730ab5b5da4ac49924d3910f305e2437eb7c05f8c65b6",
+  "grouping_report_sha256": "4bbf331383e2f1c376e2a95dbd24d3fe29c46fd29ea219d3e5fc84645f0498e9",
+  "grouped_manifest_sha256": "ec7f6f685a1b4d965e5179138a0676aa38f0e57a1324b668bbaf7ed110e258b5",
+  "software_commit": "84e16021a496b1eed7b023dbe5e96287dc83f3be",
+  "sequence_only_decision": "grouping_ineligible",
+  "location_recovery_decision": "grouped_phase_c_allowed",
+  "canonical_records": 558,
+  "known_creator_records": 457,
+  "unknown_creator_stress_records": 101,
+  "creator_groups_with_eight_records": 7,
+  "caption_location_coverage": 0.5951859956236324,
+  "location_guard_groups": 43,
+  "location_guard_groups_with_three_records": 30,
+  "largest_location_guard_fraction": 0.1422319474835886,
+  "phase_c_download_allowed": true,
+  "training_allowed": false,
+  "next_required_gate": "bounded Phase C download, deterministic border/interior masks, content descriptors and creator/location nuisance identifiability audit before fitting any colour expert",
+  "group_claim": "creator/location/sequence leakage guard only; not exact assignment, LOT, physical roll, process or scanner batch",
+  "claim_ceiling": "real-film-derived archive scan look under creator and conservative location/sequence holdouts; no calibrated stock, physical-roll, process or scanner-setting claim"
+}

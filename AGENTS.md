@@ -158,6 +158,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 | Local Flickr film images | quarantined | internal aesthetics/failure analysis only | paper training, released weights, commercial weights or stock truth |
 | FilmSet | locally present, research-only | paired-blind Capture One recipe transfer and supervised upper bound | real film scan truth |
 | BlueNeg | remote-verified, research-only, custom attribution license | roll-group information pilot using metadata and small preview lanes | digital-to-film ground truth or clean named-stock target |
+| LOC FSA/OWI colour archive | public domain; metadata/pilot/group verified | current real-film archive lane with creator-out and conservative location/sequence holdouts | physical-roll, pure Kodachrome, calibrated stock or scanner-out truth |
 | MIT-Adobe FiveK | partial local freeze only, auxiliary | neutral auto-base research after a separate restore decision | film identity or automatic public-weight clearance |
 | FilmGrainStyle740k | research-only | academic comparison under its terms | commercial development/training |
 | Manufacturer data sheets | prior | curve/sensitivity/MTF/granularity initialization | end-to-end RGB target |
@@ -166,6 +167,8 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 Current Windows audit, 2026-07-15: `data/film_domain` contains 4,212 JPEGs, while the earlier 4,210-row legacy lineage audit remains 0 eligible/4,210 quarantined and must not be silently generalized to new files. `data/processed/manifest.jsonl` exists. The complete decompressed FilmSet image tree is local: 21,140 files / 11,262,805,356 bytes, with 4,657 identities per train domain and **628** per test domain. The paper-reported 638 is retained as a publication contradiction, never used at runtime. A partial FiveK freeze is present; it is not the complete source.
 
 BlueNeg metadata/licence/inventory and the exact 101-file / 118,929,719-byte pixel acquisition are now local at revision `b038a1ae...`; all LFS hashes pass and pixels remain undecoded pending evaluator freeze. Whole-roll preflight seals 17 rolls containing official test frames and finds only five operator-eligible rolls. Four `Kodak Gold 100-5` rolls form the sole same-film matched-control core; the full 956MB lanes and 290GB archive remain absent. This can test a narrow archive/scanner-specific roll-information mechanism, not 13-film-type generalization. Neither resource changes the claim boundaries above.
+
+FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C is allowed; training is not yet allowed. These are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
 
@@ -215,8 +218,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
 | Done/limited | RF0.1/RF0.2 | FILM-R acquired and visually/integrity audited; use only as real-film unknown-look/nuisance evidence, never stock or clean-target truth |
 | Done/data stop | RF1.1/RF1.2 | RF1.2 elevates retrieval as a challenger; RF1.1 proves FILM-R cannot separate family from content and forbids classifier training |
-| P0 | RF0.3 | Audit and acquire a content-balanced real-film source with source-level holdouts; FILM-R remains stress evidence |
-| Data-gated | RF2 | Compare CPU global, hierarchical, retrieval and conditional explicit experts only after RF0.3 restores identifiability |
+| P0 | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts; FILM-R remains stress evidence |
+| Data-gated | RF2 | Compare CPU global, hierarchical, retrieval and conditional explicit experts only after the FSA/OWI nuisance-identifiability gate |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |

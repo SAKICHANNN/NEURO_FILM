@@ -1,8 +1,8 @@
 # RF0.3 FSA/OWI real-film source gate
 
-**State:** metadata and the bounded 64-image pilot are complete. The source is
-eligible only with creator/assignment grouping and border controls; Phase C
-remains closed pending that grouping gate.
+**State:** metadata, the bounded 64-image pilot and conservative
+creator/location grouping are complete. Bounded Phase C is allowed; training
+remains closed pending border, content and nuisance-identifiability gates.
 
 **Phase-A amendment after the first live enumeration:** the raw Commons
 category contains multiple representations of the same LOC scan and therefore

@@ -21,6 +21,7 @@ This file is the project-level warning label for dataset licensing, publication,
 | DPED | Optional auxiliary enhancement pretraining | Academic dataset; not film ground truth. |
 | Cinestill800T | Future sanity-check validation if released | Small validation data only; verify license before use. |
 | Self-built L5 pairs | Final physical validation | Release only if subject, lab, scanner, and photographer rights are cleared. |
+| LOC FSA/OWI colour archive | Public-domain real-film archive research | Keep LOC/Commons identifiers, rights snapshot and hashes; unknown creators stress-only; no physical-roll, pure-stock or calibrated claim. |
 | PBR synthetic data | Generated physical-pair training | Prefer for redistributable training data when all assets and renderer licenses allow it. |
 
 ### FilmCase audit state (2026-07-11)

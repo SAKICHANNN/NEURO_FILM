@@ -47,8 +47,8 @@
 | 1 | RF0.1/RF0.2 | Acquire, verify and gate CC-BY FILM-R real scans | complete/limited | 88 files verified; only `real-film-derived/unknown-look`; restoration is nuisance, not truth |
 | 2 | RF1.1 | Test FILM-R signal vs content/damage/source nuisance | complete: unidentified | no comparable cross-content families; classifier correctly stopped |
 | 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | complete: nuisance | wrong-roll content retrieval beats correct roll; physical-roll hypothesis stays closed |
-| 1 | RF0.3 | Find content-balanced, rights-clear real-film evidence | executing | metadata-first Apollo/DOCUMERICA/other audit; bounded downloads only |
-| 4 | RF2/RF3 | CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires content-balanced real-film source and held-out source groups |
+| 1 | RF0.3 | Build content-balanced, public-domain FSA/OWI archive lane | Phase C ready | 558 unique LOC scans; 64-image visual pilot passes; 43 conservative creator/location guards; bounded full download next |
+| 4 | RF2/RF3 | CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires FSA/OWI border/content/nuisance audit under creator-out and location-out controls |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
