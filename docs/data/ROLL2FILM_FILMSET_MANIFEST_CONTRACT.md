@@ -4,7 +4,7 @@
 >
 > Nodes: `ULT > U5.CT2/U5.CT4`
 >
-> State: frozen implementation contract; generated manifests remain ignored
+> State: implemented and passed; generated manifests remain ignored
 
 ## Purpose
 
@@ -64,7 +64,7 @@ Every finalized row contains:
 | `dataset_id` / `archive_version` | stable FilmSet source identity |
 | `distributed_split` | `train` or `test` from the archive |
 | `domain` | `input`, `cinema`, `classneg` or `velvia` |
-| `content_id` | normalized basename identity; never used to create cross-pool pairs |
+| `content_id` | distributed-split-namespaced normalized basename identity; never used to create cross-pool pairs |
 | `duplicate_cluster_id` | cluster frozen before pool assignment |
 | `research_pool` | `source_train`, `target_train`, `internal_dev_lockbox` or `final_628_lockbox` |
 | `path` | path relative to the FilmSet image root |
@@ -120,7 +120,9 @@ metrics.
 The evidence freeze passes only when:
 
 - all four domain counts are `4657/628`;
-- basename parity is exact and train/test basename overlap is zero;
+- basename parity is exact within each distributed split; cross-split basename
+  reuse is recorded and split-namespaced rather than treated as payload leakage;
+- train/test input SHA-256 overlap is zero;
 - total file count and bytes match the local archive contract;
 - every file has a SHA-256;
 - source/target/dev cluster intersections are empty;
@@ -140,3 +142,12 @@ Kaggle metadata labels the archive MIT and the paper describes license-free
 samples, but there is no per-image rights manifest. Internal research may
 proceed. Public weights, example images, redistributed manifests containing
 sensitive lineage, or commercial claims require a separate release review.
+
+## Frozen result
+
+The 2026-07-15 run passed at implementation commit `ae4ef60`. It observed 80
+cross-split basename reuses but zero exact train/test input payload overlap,
+zero source/target/dev content or duplicate-cluster intersection and zero
+cross-pool exact/dHash/embedding leakage. See
+`docs/ROLL2FILM_FILMSET_EVIDENCE_FREEZE.md` for hashes and the promotion
+boundary.

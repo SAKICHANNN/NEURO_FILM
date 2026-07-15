@@ -212,14 +212,14 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | Done | U5.CT0 | Reframe primary publication work as Roll2Film colour-transfer algorithm; demote benchmark/system work to support |
 | P0 | U5.CT1/U5.CT3 | Fixed-budget affine controls pass; finish L2 nonlinear truth plus stronger prior/scanner/nuisance controls before any roll-information promotion |
-| P0 | U5.CT2/U5.CT4 | Freeze the local FilmSet archive/628 lockbox and pair-blinding contract; keep BlueNeg metadata-only until CT3 and whole-roll metadata gates pass |
+| Done/in progress | U5.CT2/U5.CT4 | FilmSet archive/pair-blind/628 lockbox freeze passed; CT2 continues only for BlueNeg metadata and whole-roll gates |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |
 | Done/ongoing | U0.4/U4 | CI/registry foundation is complete; maintain severe-artifact/style evaluation as Roll2Film support and product QA, not the primary paper |
 | P0 | U1 | Connect `WorkingImage`, 16-bit/profile-aware I/O and color-state contract |
 | P1 | U2 | Implement profile/recipe schema and deterministic reference renderer |
 | Deferred | U3 | Reopen paired Portra/Velvia calibration only after a future explicit scope |
-| Conditional | U5.CT5–U5.CT8 | Run FilmSet internal pair-blind development after manifest freeze; only after fixed-N gates request BlueNeg and continue the simplest Roll2Film survivor |
+| Conditional | U5.CT5–U5.CT8 | FilmSet data gate passed; run internal pair-blind development only after nonlinear CT3 and matched-strength baseline freeze, then continue the simplest survivor |
 | P0 product | U5.FC1–U5.FC8/U6 | Build fixed explicit champion/bank independently; FilmCase routing requires ≥2 modes plus an Oracle gap, otherwise use champion + bounded strength |
 | P2 | U7/U8 | Productize, beta, expand stocks and isolate Creative mode |
 
