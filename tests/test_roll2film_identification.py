@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import numpy as np
 
-from src.roll2film.evaluation import classify_e0, recovery_metrics
+from src.roll2film.evaluation import (
+    classify_e0,
+    classify_fixed_budget_e0,
+    paired_improvement_summary,
+    recovery_metrics,
+)
 from src.roll2film.identification import estimate_gaussian_transport_operator
 from src.roll2film.simulator import PseudoRollConfig, sample_neutral_prior, simulate_pseudo_roll
 
@@ -46,3 +51,28 @@ def test_e0_gate_requires_scaling_and_shuffled_gap() -> None:
         {1: 0.10, 2: 0.10, 4: 0.10, 8: 0.10},
     )
     assert failed["decision"] == "fail"
+
+
+def test_fixed_budget_gate_separates_method_controls_from_roll_claim() -> None:
+    summary = paired_improvement_summary(
+        [0.10, 0.12, 0.11, 0.09],
+        [0.05, 0.06, 0.055, 0.045],
+        seed=7,
+        bootstrap_resamples=500,
+    )
+    result = classify_fixed_budget_e0(
+        partition_parameter_max_abs=0.0,
+        nuisance_boundary=summary,
+        independent_support=summary,
+        mixed_operator=summary,
+    )
+
+    assert result["method_control_decision"] == "pass"
+    assert result["roll_information_decision"] == "not_established"
+
+
+def test_paired_improvement_rejects_mismatched_inputs() -> None:
+    import pytest
+
+    with pytest.raises(ValueError, match="equally sized"):
+        paired_improvement_summary([0.1, 0.2], [0.1], seed=1)

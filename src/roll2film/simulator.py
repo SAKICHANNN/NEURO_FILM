@@ -73,6 +73,15 @@ def alternate_truth_operator() -> AffineColorOperator:
     return AffineColorOperator(matrix=matrix, bias=np.array([-0.012, 0.016, -0.006]))
 
 
+def scanner_truth_operator() -> AffineColorOperator:
+    """Return a small scanner/profile transform for confounding diagnostics."""
+    matrix = np.array(
+        [[1.035, -0.018, 0.006], [0.012, 0.972, 0.011], [-0.008, 0.021, 1.026]],
+        dtype=np.float64,
+    )
+    return AffineColorOperator(matrix=matrix, bias=np.array([0.006, -0.004, 0.008]))
+
+
 def sample_neutral_prior(pixel_count: int, seed: int) -> np.ndarray:
     if pixel_count < 16:
         raise ValueError("pixel_count must be at least 16")
@@ -112,3 +121,29 @@ def mix_target_frames(first: PseudoRoll, second: PseudoRoll) -> tuple[np.ndarray
         raise ValueError("rolls must have equal frame counts")
     cutoff = max(1, len(first.target_frames) // 2)
     return first.target_frames[:cutoff] + second.target_frames[cutoff:]
+
+
+def partition_pixels(pixels: np.ndarray, frame_count: int) -> tuple[np.ndarray, ...]:
+    """Partition one fixed pixel pool without changing its concatenated values."""
+    values = np.asarray(pixels, dtype=np.float64)
+    if values.ndim != 2 or values.shape[1] != 3:
+        raise ValueError("pixels must have shape (N, 3)")
+    if frame_count < 1 or len(values) % frame_count:
+        raise ValueError("frame_count must be positive and divide the pixel count")
+    return tuple(np.split(values, frame_count, axis=0))
+
+
+def shuffle_frame_boundaries(
+    frames: tuple[np.ndarray, ...],
+    seed: int,
+) -> tuple[np.ndarray, ...]:
+    """Destroy true frame boundaries while preserving pixels and frame sizes."""
+    if not frames:
+        raise ValueError("at least one frame is required")
+    lengths = [len(frame) for frame in frames]
+    if min(lengths) < 4:
+        raise ValueError("every frame must contain at least four pixels")
+    pixels = np.concatenate(frames, axis=0)
+    shuffled = pixels[np.random.default_rng(seed).permutation(len(pixels))]
+    cuts = np.cumsum(lengths[:-1])
+    return tuple(np.split(shuffled, cuts, axis=0))

@@ -36,7 +36,7 @@
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
 | 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | in progress; affine v1 foundation passes | extend truth family to monotone curves/LUT residuals |
 | 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | ready, local images already present | none for local internal work |
-| 3 | U5.CT3 | Redo E0 at fixed total pixels with coverage, nuisance, partition, prior-swap and scanner controls | in progress; old affine run is a method unit test | special roll-information claim remains unestablished |
+| 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | in progress; affine method controls pass, roll information not established | nonlinear recovery and matched real-roll evidence remain |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | pending on CT2/CT3 contract freeze | GPU/cost gate only if required; official 628 remains sealed |
 | 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | approval-gated | explicit download approval |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |

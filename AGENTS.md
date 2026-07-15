@@ -141,7 +141,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 ### Research-only candidates
 
-- Roll2Film: unpaired roll-set repeated measures -> shared explicit roll-look operator -> hidden transfer evaluation; this is a conditional method challenger until fixed-budget grouping controls establish special information;
+- Roll2Film: unpaired roll-set repeated measures -> shared explicit roll-look operator -> hidden transfer evaluation; fixed-budget affine method controls pass, but physical-roll information remains unestablished until matched real-roll controls;
 - FilmCase: source-controlled identifiability → bounded case bank → Evaluator Oracle → simplest generic or transform-aware retrieval → hard sparse router/OOD fallback;
 - existing SepLUT/NILUT/4D proxies: may challenge the Style-safe frontier on rights-cleared preference targets; real paired targets are required only for calibrated claims;
 - local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
@@ -211,7 +211,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 |---:|---|---|
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | Done | U5.CT0 | Reframe primary publication work as Roll2Film colour-transfer algorithm; demote benchmark/system work to support |
-| P0 | U5.CT1/U5.CT3 | Finish L0–L2 operator contract and redo E0 with fixed total samples, coverage and nuisance controls; current E0 is a method unit test, not roll evidence |
+| P0 | U5.CT1/U5.CT3 | Fixed-budget affine controls pass; finish L2 nonlinear truth plus stronger prior/scanner/nuisance controls before any roll-information promotion |
 | P0 | U5.CT2/U5.CT4 | Freeze the local FilmSet archive/628 lockbox and pair-blinding contract; keep BlueNeg metadata-only until approval |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |

@@ -4,7 +4,7 @@
 
 **Paper type:** colour-transfer method, not a benchmark paper
 
-**Current execution state:** fixed-budget falsification, local FilmSet evidence freeze and L0–L2 operator work
+**Current execution state:** fixed-budget affine controls pass without establishing roll information; local FilmSet evidence freeze and L2 operator work are next
 
 **Download/training state:** FilmSet is already local and may be used internally after pair-blind/access freeze; no new dataset download, costly GPU training, participant study or external contact is authorized by this document
 
@@ -593,7 +593,7 @@ Parent: `ULT > U5.CT — algorithmic colour transfer`.
 | U5.CT0 | complete, re-gated 2026-07-15 | corrected problem, current data audit, nearest-work boundary and claim ladder | paper core remains colour transfer, but Roll2Film requires fixed-budget promotion evidence |
 | U5.CT1 | in progress; affine foundation complete | L0–L2 invertible operator contract and known-operator simulator | inverse/Jacobian/bake property tests plus fixed-budget recovery curves |
 | U5.CT2 | ready | FilmSet/BlueNeg manifest adapters, licence snapshots, group/split schema | metadata hashes and fail-closed eligibility report |
-| U5.CT3 | in progress; previous E0 is a unit test | fixed-total-sample identifiability, coverage, nuisance, partition, prior and scanner audit | special group-information pass/fail decision |
+| U5.CT3 | in progress; affine fixed-budget controls pass | extend fixed-total-sample identifiability from affine to L2 truth and stronger nuisance/prior/scanner factorials | physical-roll information remains unestablished until matched real-roll controls |
 | U5.CT4 | ready; local, no download | FilmSet paired-blind corpus, 4,657 internal identities and frozen 628 lockbox | archive/licence snapshot, hashes, access controls and pair-blinding tests |
 | U5.CT5 | pending on CT2/CT3/CT4 | matched-strength baselines and Roll2Film solver | internal hidden protocol passes; official 628 remains sealed before final policy freeze |
 | U5.CT6 | approval-gated download | BlueNeg preview roll pilot | correct-roll matched-control result and G2 decision |

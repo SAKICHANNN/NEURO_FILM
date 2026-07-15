@@ -39,6 +39,80 @@ def recovery_metrics(
     return RecoveryMetrics(matrix_rmse, bias_rmse, holdout_rmse, style_ratio)
 
 
+def paired_improvement_summary(
+    baseline_errors: list[float] | np.ndarray,
+    candidate_errors: list[float] | np.ndarray,
+    *,
+    seed: int,
+    bootstrap_resamples: int = 5000,
+) -> dict[str, float]:
+    """Summarize paired error reduction with a deterministic bootstrap CI.
+
+    Positive values mean the candidate improves on the baseline. Replicates,
+    rather than correlated pixels, are the resampling unit.
+    """
+    baseline = np.asarray(baseline_errors, dtype=np.float64)
+    candidate = np.asarray(candidate_errors, dtype=np.float64)
+    if baseline.ndim != 1 or candidate.ndim != 1 or len(baseline) != len(candidate):
+        raise ValueError("paired errors must be one-dimensional and equally sized")
+    if len(baseline) < 2 or bootstrap_resamples < 100:
+        raise ValueError("at least two pairs and 100 bootstrap resamples are required")
+    if not np.all(np.isfinite(baseline)) or not np.all(np.isfinite(candidate)):
+        raise ValueError("paired errors must be finite")
+    delta = baseline - candidate
+    rng = np.random.default_rng(seed)
+    indices = rng.integers(0, len(delta), size=(bootstrap_resamples, len(delta)))
+    bootstrap_means = delta[indices].mean(axis=1)
+    baseline_mean = float(baseline.mean())
+    return {
+        "baseline_mean": baseline_mean,
+        "candidate_mean": float(candidate.mean()),
+        "absolute_improvement_mean": float(delta.mean()),
+        "relative_improvement_mean": float(delta.mean() / max(baseline_mean, 1e-12)),
+        "ci95_low": float(np.quantile(bootstrap_means, 0.025)),
+        "ci95_high": float(np.quantile(bootstrap_means, 0.975)),
+    }
+
+
+def classify_fixed_budget_e0(
+    *,
+    partition_parameter_max_abs: float,
+    nuisance_boundary: dict[str, float],
+    independent_support: dict[str, float],
+    mixed_operator: dict[str, float],
+    partition_tolerance: float = 1e-12,
+    relative_improvement_min: float = 0.10,
+) -> dict[str, object]:
+    """Classify implementation controls without claiming real-roll evidence."""
+
+    def passes(summary: dict[str, float]) -> bool:
+        return (
+            summary["relative_improvement_mean"] >= relative_improvement_min
+            and summary["ci95_low"] > 0.0
+        )
+
+    checks = {
+        "partition_equivalence": partition_parameter_max_abs <= partition_tolerance,
+        "nuisance_boundary_information": passes(nuisance_boundary),
+        "independent_support_information": passes(independent_support),
+        "mixed_operator_rejection": passes(mixed_operator),
+    }
+    return {
+        "method_control_decision": "pass" if all(checks.values()) else "fail",
+        "roll_information_decision": "not_established",
+        "checks": checks,
+        "thresholds": {
+            "partition_parameter_max_abs": partition_tolerance,
+            "paired_relative_improvement_min": relative_improvement_min,
+            "paired_bootstrap_ci95_low_must_exceed_zero": True,
+        },
+        "claim_boundary": (
+            "Passing validates fixed-budget affine controls and frame-boundary/support diagnostics only; "
+            "it does not establish physical-roll information or real-film identifiability."
+        ),
+    }
+
+
 def classify_e0(
     correct_by_size: dict[int, float],
     shuffled_by_size: dict[int, float],

@@ -56,6 +56,21 @@ class AffineColorOperator:
         inverse_matrix = np.linalg.inv(self.matrix)
         return (values - self.bias) @ inverse_matrix.T
 
+    def then(self, following: "AffineColorOperator") -> "AffineColorOperator":
+        """Compose this operator with ``following`` without sampling a LUT.
+
+        ``first.then(second).apply(x)`` is exactly ``second.apply(first.apply(x))``.
+        The working space must match so scanner/film composition experiments do
+        not silently combine incompatible colour states.
+        """
+        if self.working_space != following.working_space:
+            raise ValueError("cannot compose operators in different working spaces")
+        return AffineColorOperator(
+            matrix=following.matrix @ self.matrix,
+            bias=following.matrix @ self.bias + following.bias,
+            working_space=self.working_space,
+        )
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "schema": OPERATOR_SCHEMA,

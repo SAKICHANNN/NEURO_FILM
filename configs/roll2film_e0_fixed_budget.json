@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-00-affine-fixed-budget-v2",
+  "seed": 20260715,
+  "group_sizes": [1, 2, 4, 8, 16, 32],
+  "total_target_pixels": 4096,
+  "neutral_prior_pixels": 8192,
+  "holdout_pixels": 4096,
+  "replicates": 64,
+  "bootstrap_resamples": 5000,
+  "nuisance": {
+    "exposure_sigma": 0.12,
+    "scene_mean_sigma": 0.0,
+    "sensor_noise_sigma": 0.001
+  },
+  "prior_swap_offset": [0.035, -0.025, 0.02],
+  "gate": {
+    "gate_group_size": 32,
+    "partition_parameter_max_abs": 1e-12,
+    "paired_relative_improvement_min": 0.1,
+    "paired_bootstrap_ci95_low_must_exceed_zero": true
+  },
+  "claim_boundary": "Fixed-budget affine method controls only. Passing does not establish physical-roll information, real-film identification, stock calibration, or product safety."
+}

@@ -85,6 +85,8 @@ files.
 | `diagnose_filmcase_chroma_speckle.py` | Write diagnostic-only high-frequency chroma-island metrics for a before/after pair to guide full-resolution artifact review; never makes a pass/fail decision. |
 | `render_filmcase_anchor_set.py` | Re-render the five owner anchors plus a bland control as color-only, same-input gold replays under ignored `outputs/filmcase/`; defaults to gold only and records input/output hashes. |
 | `build_film_color_stats.py` | Build per-stock Lab color statistics. |
+| `run_roll2film_e0.py` | Run the preserved variable-sample affine E0 foundation experiment. |
+| `run_roll2film_e0_fixed_budget.py` | Run fixed-total-pixel affine controls for partition, nuisance boundaries, independent support, mixed operators, prior sensitivity, and scanner confounding. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |
 | `combine_ip2p_dataset.py` | Combine IP2P dataset shards. |
 | `download_loras.py` | Download LoRA files. |

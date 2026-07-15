@@ -2,7 +2,13 @@
 
 > Date: 2026-07-13
 > Scope: data-independent, CPU-only, known-truth synthetic evidence
-> Decision: **restricted pass; CT3 remains in progress**
+> Decision: **historical variable-sample method foundation; CT3 remains in progress**
+
+> **2026-07-15 correction:** frame count and total target pixels changed
+> together in this v1 run, so it does not establish group-label or roll
+> information. The fixed-budget successor is
+> `docs/ROLL2FILM_E0_FIXED_BUDGET_V2.md`; v1 remains valid only as an estimator
+> and mixed-operator unit-test record.
 
 ## Question
 
@@ -66,7 +72,8 @@ nuisance model.
 This result establishes only that the implementation can recover a restricted
 known SPD affine operator from increasing unpaired group evidence and that an
 incorrect mixed group does not mimic the same convergence. It validates the
-CT1 test harness and keeps the Roll2Film hypothesis alive.
+CT1 estimator/test harness and mixed-operator diagnostic. It does not
+independently keep or close the physical-roll hypothesis.
 
 It does **not** complete CT3 or authorize data acquisition. Before the CT3
 gate can pass, the same framework must cover:
@@ -79,8 +86,8 @@ gate can pass, the same framework must cover:
 6. a dedicated nearest-work/novelty check for grouped operator identification.
 
 If gains disappear outside the SPD affine case, the claim must shrink to that
-case or the Roll2Film method route must stop. FilmSet and BlueNeg remain
-approval-gated and were not downloaded.
+case or the Roll2Film method route must stop. FilmSet is now present locally;
+BlueNeg pixels remain absent. This historical run downloaded neither.
 
 ## Reproduction
 
