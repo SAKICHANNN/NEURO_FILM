@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+import time
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -85,6 +86,7 @@ def download_pilot(
     maximum_total_bytes: int,
     timeout_seconds: int,
     max_retries: int,
+    request_interval_seconds: float = 1.0,
     session: requests.Session | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Download, decode and hash a bounded pilot without modifying pixels."""
@@ -100,25 +102,42 @@ def download_pilot(
         url = str(record.get("derivative_url") or record.get("original_url") or "")
         if not url:
             raise FsaOwiAcquisitionError("pilot record has no image URL")
+        identifier = str(record["loc_fsac_id"]).replace(".", "_")
+        existing = sorted(
+            image_dir.glob(f"{int(record['pilot_index']):03d}_{identifier}.*")
+        )
+        if len(existing) > 1:
+            raise FsaOwiAcquisitionError("multiple resumed files match one pilot record")
         response: requests.Response | None = None
-        last_error: Exception | None = None
-        for attempt in range(max_retries):
-            try:
-                response = client.get(url, timeout=timeout_seconds)
-                response.raise_for_status()
-                last_error = None
-                break
-            except requests.RequestException as error:
-                last_error = error
-                if attempt + 1 == max_retries:
+        if existing:
+            payload = existing[0].read_bytes()
+            content_type = ""
+        else:
+            last_error: Exception | None = None
+            for attempt in range(max_retries):
+                try:
+                    response = client.get(url, timeout=timeout_seconds)
+                    response.raise_for_status()
+                    last_error = None
                     break
-        if response is None or last_error is not None:
-            raise FsaOwiAcquisitionError(f"pilot image request failed: {last_error}")
-        payload = response.content
+                except requests.RequestException as error:
+                    last_error = error
+                    if attempt + 1 < max_retries:
+                        retry_after = 0.0
+                        if getattr(error, "response", None) is not None:
+                            try:
+                                retry_after = float(error.response.headers.get("retry-after", 0))
+                            except (TypeError, ValueError):
+                                retry_after = 0.0
+                        time.sleep(max(retry_after, float(2 ** (attempt + 1))))
+            if response is None or last_error is not None:
+                raise FsaOwiAcquisitionError(f"pilot image request failed: {last_error}")
+            payload = response.content
+            content_type = response.headers.get("content-type", "").split(";", 1)[0]
+            time.sleep(request_interval_seconds)
         if not payload or total + len(payload) > maximum_total_bytes:
             raise FsaOwiAcquisitionError("pilot aggregate byte cap would be exceeded")
-        content_type = response.headers.get("content-type", "").split(";", 1)[0]
-        if content_type not in {"image/jpeg", "image/png", "image/tiff"}:
+        if content_type and content_type not in {"image/jpeg", "image/png", "image/tiff"}:
             raise FsaOwiAcquisitionError(f"unexpected pilot content type: {content_type}")
         try:
             with Image.open(io.BytesIO(payload)) as verify_image:
@@ -136,9 +155,15 @@ def download_pilot(
         suffix = {"JPEG": ".jpg", "PNG": ".png", "TIFF": ".tif"}.get(
             str(image_format), ".bin"
         )
-        identifier = str(record["loc_fsac_id"]).replace(".", "_")
         path = image_dir / f"{int(record['pilot_index']):03d}_{identifier}{suffix}"
-        path.write_bytes(payload)
+        if not existing:
+            path.write_bytes(payload)
+        elif existing[0] != path:
+            raise FsaOwiAcquisitionError("resumed pilot file extension disagrees with decode")
+        if not content_type:
+            content_type = {"JPEG": "image/jpeg", "PNG": "image/png", "TIFF": "image/tiff"}.get(
+                str(image_format), "application/octet-stream"
+            )
         total += len(payload)
         rows.append(
             {
