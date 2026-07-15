@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "audit_id": "stock-first-blueneg-four-pilot-integrity-v1",
+  "node": "ULT > RF0.4 > SF0.3",
+  "acquisition_manifest": "outputs/real_film/stock_pilots_v1/acquisition.json",
+  "download_report": "outputs/real_film/stock_pilots_v1/download_report.json",
+  "metadata_report": "outputs/real_film/stock_pilots_v1/report.json",
+  "frames_jsonl": "outputs/roll2film/blueneg_v1/evidence/frames.jsonl",
+  "rolls_jsonl": "outputs/roll2film/blueneg_v1/evidence/rolls.jsonl",
+  "output_report": "outputs/real_film/stock_pilots_v1/integrity_audit/report.json",
+  "dhash_threshold": 4,
+  "decode_required": true,
+  "colour_fit_forbidden": true,
+  "border_mask_required": false,
+  "claim_ceiling": "integrity/support audit only; no stock signal, S2 transfer, calibration or release claim"
+}
