@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 94 local tests pass; FilmSet digital-recipe controls are strong but cannot establish film learning; BlueNeg correct-roll gains are -0.220/+0.309 and ambiguous; real-film stock signal is not established |
+| Current evidence | 96 local tests pass; FilmSet digital-recipe controls are strong but cannot establish film learning; BlueNeg correct-roll gains are -0.220/+0.309 and ambiguous; FILM-R 88-file integrity passes but lacks roll/process/scanner truth and is content-imbalanced; real-film stock signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -213,7 +213,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | U5.CT0 | Roll2Film algorithm hypothesis was correctly framed and tested; current paper route closes because BlueNeg matched-roll replication is ambiguous |
 | Done | U5.CT1/U5.CT3/U5.CT6 | Fixed-budget method controls pass, but real-roll correct-group gain changes sign; no roll-information promotion |
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
-| P0 | RF0.1/RF0.2 | Acquire and manifest bounded CC-BY FILM-R real scans without inventing roll/process/scanner truth |
+| Done/limited | RF0.1/RF0.2 | FILM-R acquired and visually/integrity audited; use only as real-film unknown-look/nuisance evidence, never stock or clean-target truth |
 | P0 | RF1.1/RF1.2 | Test real-film signal against pooled, shuffled, nuisance, retrieval and matched-strength controls; diagnose BlueNeg sign reversal |
 | P0 | RF2 | Compare CPU global, hierarchical, retrieval and conditional explicit experts on real-film gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |

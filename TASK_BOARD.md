@@ -44,9 +44,9 @@
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
 | 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | complete: ambiguous across two held-out rolls | roll information not established |
 | 7 | U5.CT7/U5.CT8 | Stop amortized set inference; close one-shot FilmSet auxiliary confirmation | complete: Cinema/ClassNeg pass digital recipe control; Velvia fidelity fails; no severe confirmed | cannot promote Ultimate or real-film claims |
-| 1 | RF0.1 | Acquire and verify CC-BY FILM-R real scans | ready/executing | 88 files / 437,570,872 bytes; no invented roll/scanner metadata |
-| 2 | RF0.2/RF1.1 | Freeze real-film manifest and test signal vs nuisance | pending RF0.1 | source/roll/uploader/scanner holdouts and claim ceiling |
-| 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | ready after RF0.2 | nested LOO correct/pooled/wrong/shuffled/retrieval controls |
+| 1 | RF0.1/RF0.2 | Acquire, verify and gate CC-BY FILM-R real scans | complete/limited | 88 files verified; only `real-film-derived/unknown-look`; restoration is nuisance, not truth |
+| 2 | RF1.1 | Test FILM-R signal vs content/damage/source nuisance | ready | source/pair holdouts, content-balanced controls and leakage report |
+| 3 | RF1.2 | Diagnose BlueNeg roll sign reversal without added capacity | ready | nested LOO correct/pooled/wrong/shuffled/retrieval controls |
 | 4 | RF2/RF3 | CPU expert ladder, then bounded GPU challengers if justified | pending RF1 | real-film gates, matched style, severe veto |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |

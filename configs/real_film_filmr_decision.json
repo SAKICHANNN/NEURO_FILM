@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "decision_id": "RF0.2-filmr-v2-use-boundary",
+  "dataset": "FILM-R Figshare 21803304 v2",
+  "acquisition_report_sha256": "07e3a26daec77d754203bff05376ff485b65d09821912a443f8f0622c284b79c",
+  "pairs_manifest_sha256": "a9075014e4fe6063c0137dc4de6af5b8222c54480a237a513f42027ebcf5b6ba",
+  "integrity_report_sha256": "f24bfe74a6eee979c3ec0f3d466da0419aa5f38558c22632be9b76d75cb6ec26",
+  "review_sheet_sha256": {
+    "filmr_pairs_page_01.jpg": "2cf0c0a37fce13a16478b0c1d4d54a00560fcd462a11e74730be83a47c946dd3",
+    "filmr_pairs_page_02.jpg": "cd6cf3c33eb3a3251820033bdd6f139f5804b7df2dcaca0e4dfe9e27e767377b"
+  },
+  "decision": "eligible_with_strict_limits",
+  "eligible_uses": [
+    "real-film scan style and nuisance characterization",
+    "source/pair-held-out exploratory real-film-look evaluation",
+    "damage/restoration nuisance controls",
+    "artifact and robustness stress cases"
+  ],
+  "forbidden_uses": [
+    "named-stock calibration or authenticity truth",
+    "physical-roll generalization claims",
+    "scanner-independent film response claims",
+    "digital-to-film paired supervision",
+    "treating restored files as neutral digital or clean colour targets",
+    "random image splits that leak source pairs or filename-family siblings"
+  ],
+  "unknown_fields": [
+    "physical_roll_id",
+    "process_id",
+    "scanner_id",
+    "capture_exposure",
+    "authoritative_stock_label"
+  ],
+  "observed_limits": {
+    "pairs": 44,
+    "files": 88,
+    "icc_profiles": 0,
+    "exif_records": 0,
+    "filename_families": 11,
+    "largest_filename_family_count": 17,
+    "content_balance": "many product, camera, film-strip and archival-object views; ordinary scenes are a minority",
+    "restoration_scope": "usually local damage removal, but several pairs contain image-wide pixel changes; restoration is a nuisance sibling only"
+  },
+  "claim_ceiling": "real-film-derived/unknown-look",
+  "visual_review": {
+    "reviewed_all_pairs": true,
+    "geometry_or_identity_corruption_observed": false,
+    "pair_mismatch_observed": false,
+    "global_colour_neutrality_established": false,
+    "decision_date": "2026-07-15"
+  }
+}

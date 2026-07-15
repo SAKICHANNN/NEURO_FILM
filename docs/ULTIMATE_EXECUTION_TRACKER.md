@@ -177,11 +177,11 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
 | RF0 | in progress | Real-film evidence ledger, source/rights/group gates | none | Reopen report plus hashed manifests |
-| RF0.1 | ready/executing | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | exact 437,570,872-byte acquisition, MD5/SHA-256, visual integrity |
-| RF0.2 | pending | Fail-closed FILM-R manifest and group ceiling | RF0.1 | unknown roll/process/scanner stay unknown; no stock-truth claim |
+| RF0.1 | complete | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | 88/88 files, 437,570,872 bytes, all remote MD5 and local SHA-256 verified |
+| RF0.2 | complete/limited | Fail-closed FILM-R manifest, visual audit and group ceiling | RF0.1 | `docs/data/REAL_FILM_FILMR_V2_GATE.md`; unknown roll/process/scanner; `real-film-derived/unknown-look` only |
 | RF0.3 | pending | Metadata-only Apollo/DOCUMERICA/paired-data audit | RF0.1 | bounded candidates and no speculative bulk download |
-| RF1.1 | pending | Real-film signal/nuisance separability audit | RF0.2 | group/source holdouts and leakage report |
-| RF1.2 | ready after RF0.2 | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 | correct/pooled/wrong/shuffled/retrieval controls; no added capacity |
+| RF1.1 | ready | Real-film signal/nuisance/content separability audit | RF0.2 | source/pair holdouts, content-balanced controls and leakage report |
+| RF1.2 | ready | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 + RF0.2 | correct/pooled/wrong/shuffled/retrieval controls; no added capacity |
 | RF1.3 | conditional | Freeze larger whole-roll real-film holdout | RF1.1/RF1.2 | access contract before pixels |
 | RF2 | pending | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 | matched-style real-film controls |
 | RF3 | conditional | GPU bounded parameter challengers | RF2 residual value | curves/LUT/router/grid only; no RGB generator |
