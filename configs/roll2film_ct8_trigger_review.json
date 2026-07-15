@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-03-filmset-final-628-trigger-review-v1",
+  "source_report_sha256": "04f3e254a16316af62f30f380651fdcf134ef8e9d38bbdf9cf11c7eb2d8acefe",
+  "source_policy_sha256": "21f3eb401c62b77bf77e3f8634357cc1151a29054d96c4c038c6be90864c3776",
+  "scope": "render every already-frozen automatic-trigger identity without changing metrics, operators, thresholds, candidates or decisions",
+  "rows_per_sheet": 48,
+  "tile_size": 128,
+  "columns": ["input", "target", "best_basic", "primary"],
+  "save_original_resolution_pngs": true,
+  "claim_boundary": "Supplemental severe-artifact visual evidence only; cannot rescue a statistical failure or change the frozen CT8 bank."
+}
