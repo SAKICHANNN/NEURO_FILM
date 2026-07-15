@@ -100,3 +100,15 @@ def test_affine_spline_transport_recovers_l2_truth_without_pairs() -> None:
 
     assert error < 0.02
     assert float(estimate.jacobian_determinant(holdout).min()) > 0.0
+
+
+def test_affine_spline_transport_handles_quantized_tail_ties() -> None:
+    neutral = np.round(sample_neutral_prior(4096, seed=304) * 255.0) / 255.0
+    target = np.clip(np.round((neutral * 1.1 - 0.03) * 255.0) / 255.0, 0.0, 1.0)
+    target[:256, 2] = 1.0
+
+    estimate = estimate_affine_spline_transport_operator(neutral, [target], iterations=3)
+    rendered = estimate.apply(neutral[:256])
+
+    assert np.all(np.isfinite(rendered))
+    assert float(estimate.jacobian_determinant(neutral[:256]).min()) > 0.0

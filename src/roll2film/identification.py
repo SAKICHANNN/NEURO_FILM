@@ -87,8 +87,8 @@ def estimate_affine_spline_transport_operator(
         intermediate = affine.apply(source)
         fitted: list[RationalQuadraticSpline] = []
         for channel in range(3):
-            x_knots = np.quantile(intermediate[:, channel], quantiles)
-            y_knots = np.quantile(target[:, channel], quantiles)
+            x_knots = _strictly_increasing(np.quantile(intermediate[:, channel], quantiles))
+            y_knots = _strictly_increasing(np.quantile(target[:, channel], quantiles))
             fitted.append(RationalQuadraticSpline.from_knots(x_knots, y_knots))
         splines = tuple(fitted)
         linearized_target = np.stack(
@@ -132,3 +132,10 @@ def _pixels(values: np.ndarray) -> np.ndarray:
     if len(pixels) < 4 or not np.all(np.isfinite(pixels)):
         raise ValueError("pixels must contain at least four finite RGB samples")
     return pixels
+
+
+def _strictly_increasing(values: np.ndarray, epsilon: float = 1e-8) -> np.ndarray:
+    result = np.asarray(values, dtype=np.float64).copy()
+    for index in range(1, len(result)):
+        result[index] = max(result[index], result[index - 1] + epsilon)
+    return result
