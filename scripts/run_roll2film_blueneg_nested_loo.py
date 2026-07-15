@@ -345,6 +345,26 @@ def main() -> int:
                 "descriptor_distance_to_retrieval_support": float(
                     np.linalg.norm(standardized[query] - retrieval_center)
                 ),
+                "correct_support_same_location_fraction": float(
+                    np.mean(
+                        [metadata[name]["location"] == metadata[query]["location"] for name in correct_names]
+                    )
+                ),
+                "retrieval_support_same_location_fraction": float(
+                    np.mean(
+                        [metadata[name]["location"] == metadata[query]["location"] for name in retrieval_names]
+                    )
+                ),
+                "correct_support_same_scene_property_fraction": float(
+                    np.mean(
+                        [metadata[name]["scene_property"] == metadata[query]["scene_property"] for name in correct_names]
+                    )
+                ),
+                "retrieval_support_same_scene_property_fraction": float(
+                    np.mean(
+                        [metadata[name]["scene_property"] == metadata[query]["scene_property"] for name in retrieval_names]
+                    )
+                ),
                 "arms": arm_results,
             }
         )
@@ -369,6 +389,28 @@ def main() -> int:
         best_control = min(common_arms, key=lambda arm: arm_means[arm])
         best_values = np.asarray(
             [row["arms"][best_control][mode]["mean_delta_e00_to_target"] for row in query_results]
+        )
+        wrong_mean_values = np.asarray(
+            [
+                np.mean(
+                    [
+                        arm[mode]["mean_delta_e00_to_target"]
+                        for name, arm in row["arms"].items()
+                        if name.startswith("wrong_roll_")
+                    ]
+                )
+                for row in query_results
+            ]
+        )
+        wrong_oracle_values = np.asarray(
+            [
+                min(
+                    arm[mode]["mean_delta_e00_to_target"]
+                    for name, arm in row["arms"].items()
+                    if name.startswith("wrong_roll_")
+                )
+                for row in query_results
+            ]
         )
         clusters = [row["roll_id"] for row in query_results]
         versus = {}
@@ -400,6 +442,15 @@ def main() -> int:
             "arm_means": arm_means,
             "best_common_control": best_control,
             "versus_controls": versus,
+            "individual_wrong_roll_diagnostic": {
+                "mean_of_wrong_rolls_delta_e00": float(np.mean(wrong_mean_values)),
+                "per_query_oracle_wrong_roll_delta_e00": float(np.mean(wrong_oracle_values)),
+                "gain_vs_mean_wrong_roll": float(np.mean(wrong_mean_values - correct_values)),
+                "gain_vs_per_query_oracle_wrong_roll": float(np.mean(wrong_oracle_values - correct_values)),
+                "correct_win_rate_vs_mean_wrong_roll": float(np.mean(correct_values < wrong_mean_values)),
+                "correct_win_rate_vs_per_query_oracle_wrong_roll": float(np.mean(correct_values < wrong_oracle_values)),
+                "oracle_is_diagnostic_not_a_fixed_deployable_control": True,
+            },
             "per_roll_vs_best_common_control": per_roll,
         }
 
@@ -451,6 +502,24 @@ def main() -> int:
         "summaries": summaries,
         "associations": {
             "pearson_gain_vs_correct_support_descriptor_distance": correlation,
+            "mean_correct_support_descriptor_distance": _mean(
+                [row["descriptor_distance_to_correct_support"] for row in query_results]
+            ),
+            "mean_retrieval_support_descriptor_distance": _mean(
+                [row["descriptor_distance_to_retrieval_support"] for row in query_results]
+            ),
+            "mean_correct_support_same_location_fraction": _mean(
+                [row["correct_support_same_location_fraction"] for row in query_results]
+            ),
+            "mean_retrieval_support_same_location_fraction": _mean(
+                [row["retrieval_support_same_location_fraction"] for row in query_results]
+            ),
+            "mean_correct_support_same_scene_property_fraction": _mean(
+                [row["correct_support_same_scene_property_fraction"] for row in query_results]
+            ),
+            "mean_retrieval_support_same_scene_property_fraction": _mean(
+                [row["retrieval_support_same_scene_property_fraction"] for row in query_results]
+            ),
             "by_location": _categorical_means(
                 query_results, "location", "style_matched_gain_vs_best_common_control"
             ),
