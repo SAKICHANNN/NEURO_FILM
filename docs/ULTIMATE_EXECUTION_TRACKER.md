@@ -179,11 +179,11 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | RF0 | in progress | Real-film evidence ledger, source/rights/group gates | none | Reopen report plus hashed manifests |
 | RF0.1 | complete | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | 88/88 files, 437,570,872 bytes, all remote MD5 and local SHA-256 verified |
 | RF0.2 | complete/limited | Fail-closed FILM-R manifest, visual audit and group ceiling | RF0.1 | `docs/data/REAL_FILM_FILMR_V2_GATE.md`; unknown roll/process/scanner; `real-film-derived/unknown-look` only |
-| RF0.3 | pending | Metadata-only Apollo/DOCUMERICA/paired-data audit | RF0.1 | bounded candidates and no speculative bulk download |
-| RF1.1 | executing | Real-film signal/nuisance/content separability audit | RF0.2 | manual content labels and stage-zero support gate frozen before feature decode |
+| RF0.3 | executing | Metadata-only Apollo/DOCUMERICA/paired-data audit | RF0.1 + RF1.1 stop | bounded candidates and no speculative bulk download |
+| RF1.1 | complete: unidentified | Real-film signal/nuisance/content separability audit | RF0.2 | only Velvia spans two supported content cells; no comparable cross-content families; no classifier trained |
 | RF1.2 | complete: nuisance | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 + RF0.2 | retrieval-wrong beats correct roll on all four raw roll means; `docs/ROLL2FILM_BLUENEG_NESTED_LOO_RESULTS.md` |
 | RF1.3 | conditional | Freeze larger whole-roll real-film holdout | RF1.1/RF1.2 | access contract before pixels |
-| RF2 | pending | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 | matched-style real-film controls |
+| RF2 | data-gated | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 + new balanced source | FILM-R alone structurally fails content separation |
 | RF3 | conditional | GPU bounded parameter challengers | RF2 residual value | curves/LUT/router/grid only; no RGB generator |
 | RF4 | pending | Unseen roll/source style and severe-artifact confirmation | RF2/RF3 | all RF-G0..RF-G8 gates |
 | RF5 | pending | Product integration and OOD fallback | RF4 | deterministic replay and provenance |

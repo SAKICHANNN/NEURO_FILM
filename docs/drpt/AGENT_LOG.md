@@ -533,3 +533,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Stage-zero gate:** before feature decode, require each eligible family to have at least two samples in two content cells and require at least three mutually comparable families with a shared supported cell. Structural zeros stop the classifier route rather than permitting random-split accuracy.
 - **Conditional controls:** only after support passes, compare colour-only, grayscale-structure-only, damage-only and combined descriptors under grouped leave-one-out, leave-one-content-category-out, stratified permutations and restoration perturbation.
 - **Evidence/handoff:** `configs/real_film_filmr_signal_audit.json`, `docs/data/REAL_FILM_FILMR_SIGNAL_AUDIT_CONTRACT.md`. Implement the metadata-only support-matrix gate, test/commit it, then execute before decoding new feature pixels.
+
+## 2026-07-15 - Stop FILM-R family learning at structural identifiability gate
+
+- **Node/parent goal:** `ULT > RF1.1`; execute the stage-zero family-by-content support audit before any feature decode or classifier fit.
+- **Result:** among five filename families with at least three pairs, only Velvia 50 has two content cells with at least two samples. The largest comparable clique (Cinestill 800T, Ektachrome 100, Portra 400) overlaps only on product/equipment; there are zero comparable cross-content families. Family/content Cramér's V is `0.6298`.
+- **Decision:** `structurally_unidentified`. No new feature pixels were decoded and no classifier was trained. FILM-R cannot support family/stock, Roll2Film or retrieval training; it remains valid for unknown-look, damage and artifact stress evidence.
+- **Reproducibility:** 104 tests pass; metadata gate reruns byte-identically with report SHA-256 `88c3d771617469a624e57729320e63462332ca0525f605cbd747e2679c055ba8`.
+- **Propagation/handoff:** added `configs/real_film_filmr_signal_decision.json` and `docs/REAL_FILM_FILMR_SIGNAL_AUDIT_RESULTS.md`; RF2 becomes data-gated and RF0.3 is now executing to locate a content-balanced, rights-clear real-film source with honest source-level holdouts.

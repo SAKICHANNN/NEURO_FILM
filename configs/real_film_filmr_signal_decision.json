@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "decision_id": "RF1.1-filmr-stage-zero-result-v1",
+  "config_sha256": "6bece27b270bbb2e5bed01caaaee5e7115d921c4f656873e2e49899e8f2cbc58",
+  "report_sha256": "88c3d771617469a624e57729320e63462332ca0525f605cbd747e2679c055ba8",
+  "software_commit": "2a8304f9a7f42093677572a779edb27180d7f412",
+  "rerun_byte_identical": true,
+  "decision": "structurally_unidentified",
+  "feature_audit_executed": false,
+  "new_image_feature_pixels_decoded": false,
+  "eligible_filename_families": [
+    "cinestill800t",
+    "ektachrome100",
+    "portra400",
+    "provia100",
+    "velvia50"
+  ],
+  "cross_content_families": ["velvia50"],
+  "family_content_cramers_v": 0.6297665638779874,
+  "descriptive_chi_square_p": 0.006977591393694514,
+  "largest_pairwise_comparable_clique": [
+    "cinestill800t",
+    "ektachrome100",
+    "portra400"
+  ],
+  "comparable_cross_content_families": [],
+  "reason": "family labels are structurally confounded with content; the frozen cross-content multiclass comparison is not estimable",
+  "dataset_role": "real-film unknown-look, damage and artifact stress only",
+  "next_action": "acquire or assemble content-balanced real-film scans with source-level holdouts before RF2 training",
+  "claim_ceiling": "no reusable family-colour signal established"
+}
