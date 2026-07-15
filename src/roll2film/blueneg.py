@@ -157,7 +157,7 @@ def build_blueneg_metadata_evidence(
         roll_id: [
             row
             for row in rows
-            if row.get("pseudogt_path") and not bool(row["is_testset"])
+            if row.get("pseudogt_path") in inventory and not bool(row["is_testset"])
         ]
         for roll_id, rows in by_roll.items()
     }
@@ -199,7 +199,7 @@ def build_blueneg_metadata_evidence(
         support = set(ordered_names[:support_count])
         for row in by_roll[roll_id]:
             filename = str(row["filename"])
-            if not row.get("pseudogt_path"):
+            if row.get("pseudogt_path") not in inventory:
                 frame_role[filename] = "support_source_only"
             elif filename in support:
                 frame_role[filename] = "unpaired_support"
@@ -239,7 +239,10 @@ def build_blueneg_metadata_evidence(
             role = frame_role.get(filename, "metadata_only")
             if roll_id in operator_rolls:
                 acquisition_paths.add(str(row["preview_path"]))
-                if row.get("pseudogt_path") and not bool(row["is_testset"]):
+                if (
+                    row.get("pseudogt_path") in inventory
+                    and not bool(row["is_testset"])
+                ):
                     acquisition_paths.add(str(row["pseudogt_path"]))
             frame_rows.append(
                 {

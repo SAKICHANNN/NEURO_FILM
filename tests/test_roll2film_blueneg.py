@@ -138,3 +138,35 @@ def test_blueneg_fails_closed_on_remote_lane_size_drift(tmp_path: Path) -> None:
 
     with pytest.raises(BlueNegContractError, match="byte count mismatch"):
         build_blueneg_metadata_evidence(config)
+
+
+def test_blueneg_does_not_treat_unpublished_pseudogt_path_as_pair(
+    tmp_path: Path,
+) -> None:
+    config = _fixture(tmp_path)
+    inventory_path = config.root / "remote_inventory.json"
+    inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
+    missing = "pseudogt-8bit/x/a1-0.pseudogt.png"
+    inventory["files"] = [row for row in inventory["files"] if row["path"] != missing]
+    inventory_path.write_text(json.dumps(inventory), encoding="utf-8")
+    config = BlueNegEvidenceConfig(
+        **{
+            **config.__dict__,
+            "expected": {
+                **config.expected,
+                "pseudogt_files": 15,
+                "pseudogt_bytes": 75,
+            },
+        }
+    )
+    result = build_blueneg_metadata_evidence(config)
+    frames = [
+        json.loads(line) for line in result.paths["frames"].read_text().splitlines()
+    ]
+    row = next(value for value in frames if value["filename"] == "a1-0")
+
+    assert row["frame_role"] == "metadata_only"
+    acquisition = json.loads(
+        result.paths["acquisition"].read_text(encoding="utf-8")
+    )
+    assert missing not in {value["path"] for value in acquisition["files"]}
