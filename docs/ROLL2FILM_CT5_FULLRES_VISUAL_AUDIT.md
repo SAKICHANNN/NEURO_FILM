@@ -1,7 +1,9 @@
 # Roll2Film CT5 full-resolution visual audit
 
-Date: 2026-07-15  
-Node: `ULT > U5.CT5`  
+Date: 2026-07-15
+
+Node: `ULT > U5.CT5`
+
 Scope: FilmSet internal confirmatory recipe transfer only
 
 ## Decision
