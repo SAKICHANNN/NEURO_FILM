@@ -578,3 +578,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Split evidence:** 17 official-test rolls are globally sealed. Gold 100-5 retains 7 rolls/50 previews/47 proxies; Konica retains 7/22/1; NPH400 retains 4/53/0; GA 100 5095 retains 3/16/0. Gold 400-5 was removed because only one roll/frame survives sealing.
 - **Decision:** `SF0.1 passed`; `SF0.2` may download only the exact manifest into isolated `data/raw/blueneg_stock_pilots_v1`. The old 101-file pilot and 258 FSA derivatives remain untouched. No pixels have yet been decoded and no stock signal/transfer claim is promoted.
 - **Files/handoff:** add the acquisition decision, frozen result document and isolated downloader; commit/push, then run resumable download and verify every size/LFS hash before any visual or feature audit.
+
+## 2026-07-16 - Pass SF0.2 bounded stock-pilot download
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.2`; download only the frozen 189-object four-stock manifest into an isolated root and verify sizes/LFS hashes without decoding pixels.
+- **Engineering protocol:** Cursor takeover under the stock-first handoff rules; reuse `src/roll2film/blueneg_download.py`; no GPU, no archive expansion, no old-pilot mutation.
+- **Result:** two executions at commit `873376443c3cf6be6f5db292fcf062f1bacf523f` are byte-identical. Verified 189 files / 227,287,697 bytes; zero manifest-external lane files; `image_payloads_decoded=false`; download report SHA-256 `de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3`. Existing `data/raw/blueneg` remained 213 files; FSA/OWI cache untouched.
+- **Decision:** `SF0.2 passed`; claim ceiling remains bounded hash-verified acquisition only. No stock signal, display expert, `S2`, calibration or release claim.
+- **Files/handoff:** `configs/real_film_stock_pilot_download_decision.json`, `docs/REAL_FILM_STOCK_PILOT_DOWNLOAD_RESULTS.md`, tracker/board/stock-first/AGENTS/IMPL_PLAN updates. Next ready leaf is `SF0.3` decode/integrity/support audit before RF1.4.

@@ -174,14 +174,15 @@ gain to stock identity.
 
 ## 7. Immediate ready leaf and evidence bundle
 
-`SF0.1` is complete. The committed contract cross-checks 13 strings / 53 rolls /
-491 frames, seals all official-test rolls, and freezes 189 exact objects /
-227,287,697 bytes. Gold 400-5 failed preflight and was replaced by GA 100 5095.
-The evidence reruns byte-identically; see
-`docs/REAL_FILM_STOCK_PILOT_ACQUISITION_FREEZE.md`.
+`SF0.1` and `SF0.2` are complete. The committed contract cross-checks 13 strings
+/ 53 rolls / 491 frames, seals all official-test rolls, and freezes 189 exact
+objects / 227,287,697 bytes. Gold 400-5 failed preflight and was replaced by
+GA 100 5095. Download verification at commit `87337644...` is byte-identical
+with report SHA-256
+`de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3`; see
+`docs/REAL_FILM_STOCK_PILOT_DOWNLOAD_RESULTS.md`.
 
-The next leaf is `SF0.2`: download only the frozen manifest into the isolated
-ignored root, verify 189/189 sizes and LFS SHA-256 hashes, reject external lane
-files, and keep pixels undecoded. After commit/push, `SF0.3` performs decode,
-duplicate/border/content/support audits before RF1.4. No GPU job is justified at
-SF0/SF1.
+The next leaf is `SF0.3`: decode all verified payloads, run exact/perceptual
+duplicate and border/content audits, publish stock × roll × content × proxy
+support matrices, and decide density-only versus display-operator eligibility
+before RF1.4. No GPU job is justified at SF0/SF1.

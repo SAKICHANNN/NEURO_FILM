@@ -11,11 +11,13 @@ never substitutes for, or counts toward, named-stock coverage. FilmSet,
 Capture One recipes, camera Film Simulations, LUTs and the diffusion-first V3
 content below are historical/control material, not the active success path.
 
-`RF0.4/SF0.1` is complete: four pilots and 189 exact BlueNeg objects /
-227,287,697 bytes are frozen after whole-test-roll sealing. The current leaf is
-`SF0.2`: isolated download and size/LFS-hash verification without pixel decode.
-LOC Phase C is sealed at 258 derivatives as an independent historical/unknown
-auxiliary lane. No colour expert fits before its own RF1 gate passes.
+`RF0.4/SF0.1` and `SF0.2` are complete: 189 exact BlueNeg objects /
+227,287,697 bytes are frozen, downloaded and LFS-hash verified under
+`data/raw/blueneg_stock_pilots_v1` without pixel decode. The current leaf is
+`SF0.3`: decode integrity, duplicate/border/content and support-matrix audits
+before RF1.4. LOC Phase C is sealed at 258 derivatives as an independent
+historical/unknown auxiliary lane. No colour expert fits before its own RF1
+gate passes.
 
 ---
 
