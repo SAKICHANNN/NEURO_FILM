@@ -8,8 +8,16 @@ from src.roll2film.evaluation import (
     paired_improvement_summary,
     recovery_metrics,
 )
-from src.roll2film.identification import estimate_gaussian_transport_operator
-from src.roll2film.simulator import PseudoRollConfig, sample_neutral_prior, simulate_pseudo_roll
+from src.roll2film.identification import (
+    estimate_affine_spline_transport_operator,
+    estimate_gaussian_transport_operator,
+)
+from src.roll2film.simulator import (
+    PseudoRollConfig,
+    default_l2_truth_operator,
+    sample_neutral_prior,
+    simulate_pseudo_roll,
+)
 
 
 def test_gaussian_transport_recovers_known_spd_operator_without_pairs() -> None:
@@ -76,3 +84,19 @@ def test_paired_improvement_rejects_mismatched_inputs() -> None:
 
     with pytest.raises(ValueError, match="equally sized"):
         paired_improvement_summary([0.1, 0.2], [0.1], seed=1)
+
+
+def test_affine_spline_transport_recovers_l2_truth_without_pairs() -> None:
+    truth = default_l2_truth_operator()
+    roll = simulate_pseudo_roll(
+        PseudoRollConfig(frames=32, pixels_per_frame=512, seed=301),
+        truth,
+    )
+    neutral = sample_neutral_prior(32768, seed=302)
+    holdout = sample_neutral_prior(8192, seed=303)
+
+    estimate = estimate_affine_spline_transport_operator(neutral, roll.target_frames)
+    error = float(np.sqrt(np.mean((estimate.apply(holdout) - truth.apply(holdout)) ** 2)))
+
+    assert error < 0.02
+    assert float(estimate.jacobian_determinant(holdout).min()) > 0.0

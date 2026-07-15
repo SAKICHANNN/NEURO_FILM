@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from .operators import AffineColorOperator
+from .splines import AffineMonotoneSplineOperator, RationalQuadraticSpline
 
 
 BASE_MEAN = np.array([0.46, 0.49, 0.43], dtype=np.float64)
@@ -39,7 +40,7 @@ class PseudoRollConfig:
 class PseudoRoll:
     target_frames: tuple[np.ndarray, ...]
     source_frames: tuple[np.ndarray, ...]
-    operator: AffineColorOperator
+    operator: AffineColorOperator | AffineMonotoneSplineOperator
     exposure_gains: tuple[float, ...]
     config: PseudoRollConfig
 
@@ -82,6 +83,18 @@ def scanner_truth_operator() -> AffineColorOperator:
     return AffineColorOperator(matrix=matrix, bias=np.array([0.006, -0.004, 0.008]))
 
 
+def default_l2_truth_operator() -> AffineMonotoneSplineOperator:
+    """Return a smooth, globally invertible affine-plus-spline truth."""
+    x = np.array([-0.25, 0.0, 0.18, 0.45, 0.75, 1.0, 1.35], dtype=np.float64)
+    y_by_channel = (
+        np.array([-0.24, 0.0, 0.15, 0.47, 0.82, 1.04, 1.37]),
+        np.array([-0.27, -0.01, 0.17, 0.44, 0.72, 0.98, 1.32]),
+        np.array([-0.23, 0.01, 0.20, 0.49, 0.78, 1.02, 1.36]),
+    )
+    splines = tuple(RationalQuadraticSpline.from_knots(x, y) for y in y_by_channel)
+    return AffineMonotoneSplineOperator(default_truth_operator(), splines)  # type: ignore[arg-type]
+
+
 def sample_neutral_prior(pixel_count: int, seed: int) -> np.ndarray:
     if pixel_count < 16:
         raise ValueError("pixel_count must be at least 16")
@@ -91,7 +104,7 @@ def sample_neutral_prior(pixel_count: int, seed: int) -> np.ndarray:
 
 def simulate_pseudo_roll(
     config: PseudoRollConfig,
-    operator: AffineColorOperator | None = None,
+    operator: AffineColorOperator | AffineMonotoneSplineOperator | None = None,
 ) -> PseudoRoll:
     truth = operator or default_truth_operator()
     rng = np.random.default_rng(config.seed)
