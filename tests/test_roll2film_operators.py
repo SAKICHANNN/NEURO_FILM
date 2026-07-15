@@ -35,6 +35,10 @@ def test_identity_operator_and_simulator_are_deterministic() -> None:
     first = simulate_pseudo_roll(config)
     second = simulate_pseudo_roll(config)
     assert all(np.array_equal(a, b) for a, b in zip(first.target_frames, second.target_frames))
+    assert all(
+        np.array_equal(a, b)
+        for a, b in zip(first.white_balance_gains, second.white_balance_gains)
+    )
 
 
 def test_affine_operator_rejects_singular_or_wrong_shape() -> None:

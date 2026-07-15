@@ -22,6 +22,7 @@ class PseudoRollConfig:
     frames: int
     pixels_per_frame: int = 128
     exposure_sigma: float = 0.0
+    white_balance_sigma: float = 0.0
     scene_mean_sigma: float = 0.0
     sensor_noise_sigma: float = 0.0
     seed: int = 0
@@ -31,7 +32,12 @@ class PseudoRollConfig:
             raise ValueError("frames must be positive")
         if self.pixels_per_frame < 16:
             raise ValueError("pixels_per_frame must be at least 16")
-        for name in ("exposure_sigma", "scene_mean_sigma", "sensor_noise_sigma"):
+        for name in (
+            "exposure_sigma",
+            "white_balance_sigma",
+            "scene_mean_sigma",
+            "sensor_noise_sigma",
+        ):
             if getattr(self, name) < 0:
                 raise ValueError(f"{name} must be non-negative")
 
@@ -42,6 +48,7 @@ class PseudoRoll:
     source_frames: tuple[np.ndarray, ...]
     operator: AffineColorOperator | AffineMonotoneSplineOperator
     exposure_gains: tuple[float, ...]
+    white_balance_gains: tuple[np.ndarray, ...]
     config: PseudoRollConfig
 
     @property
@@ -95,6 +102,18 @@ def default_l2_truth_operator() -> AffineMonotoneSplineOperator:
     return AffineMonotoneSplineOperator(default_truth_operator(), splines)  # type: ignore[arg-type]
 
 
+def alternate_l2_truth_operator() -> AffineMonotoneSplineOperator:
+    """Return a distinct smooth L2 truth for mixed-operator controls."""
+    x = np.array([-0.25, 0.0, 0.18, 0.45, 0.75, 1.0, 1.35], dtype=np.float64)
+    y_by_channel = (
+        np.array([-0.28, -0.01, 0.19, 0.43, 0.69, 0.95, 1.29]),
+        np.array([-0.22, 0.01, 0.14, 0.48, 0.84, 1.06, 1.39]),
+        np.array([-0.26, 0.00, 0.16, 0.42, 0.70, 0.97, 1.31]),
+    )
+    splines = tuple(RationalQuadraticSpline.from_knots(x, y) for y in y_by_channel)
+    return AffineMonotoneSplineOperator(alternate_truth_operator(), splines)  # type: ignore[arg-type]
+
+
 def sample_neutral_prior(pixel_count: int, seed: int) -> np.ndarray:
     if pixel_count < 16:
         raise ValueError("pixel_count must be at least 16")
@@ -111,6 +130,7 @@ def simulate_pseudo_roll(
     source_frames: list[np.ndarray] = []
     target_frames: list[np.ndarray] = []
     gains: list[float] = []
+    white_balance_gains: list[np.ndarray] = []
     for _ in range(config.frames):
         scene_shift = rng.normal(0.0, config.scene_mean_sigma, size=3)
         source = rng.multivariate_normal(
@@ -119,13 +139,27 @@ def simulate_pseudo_roll(
             size=config.pixels_per_frame,
         )
         gain = float(np.exp(rng.normal(0.0, config.exposure_sigma)))
-        target = truth.apply(source) * gain
+        if config.white_balance_sigma:
+            log_white_balance = rng.normal(0.0, config.white_balance_sigma, size=3)
+            log_white_balance -= log_white_balance.mean()
+            white_balance = np.exp(log_white_balance)
+        else:
+            white_balance = np.ones(3, dtype=np.float64)
+        target = truth.apply(source) * gain * white_balance
         if config.sensor_noise_sigma:
             target += rng.normal(0.0, config.sensor_noise_sigma, size=target.shape)
         source_frames.append(source)
         target_frames.append(target)
         gains.append(gain)
-    return PseudoRoll(tuple(target_frames), tuple(source_frames), truth, tuple(gains), config)
+        white_balance_gains.append(white_balance)
+    return PseudoRoll(
+        tuple(target_frames),
+        tuple(source_frames),
+        truth,
+        tuple(gains),
+        tuple(white_balance_gains),
+        config,
+    )
 
 
 def mix_target_frames(first: PseudoRoll, second: PseudoRoll) -> tuple[np.ndarray, ...]:

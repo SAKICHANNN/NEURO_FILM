@@ -48,6 +48,7 @@ def estimate_affine_spline_transport_operator(
     knot_quantiles: tuple[float, ...] = (0.001, 0.03, 0.12, 0.35, 0.65, 0.88, 0.97, 0.999),
     iterations: int = 8,
     regularization: float = 1e-6,
+    normalize_frame_photometric: bool = False,
 ) -> AffineMonotoneSplineOperator:
     """Fit an L2 affine-plus-monotone map from unmatched source/target pixels.
 
@@ -59,6 +60,8 @@ def estimate_affine_spline_transport_operator(
     frames = tuple(_pixels(frame) for frame in target_frames)
     if not frames:
         raise ValueError("at least one target frame is required")
+    if normalize_frame_photometric:
+        frames = _normalize_frame_rgb_means(frames)
     target = np.concatenate(frames, axis=0)
     quantiles = np.asarray(knot_quantiles, dtype=np.float64)
     if (
@@ -98,6 +101,15 @@ def estimate_affine_spline_transport_operator(
             regularization=regularization,
         )
     return AffineMonotoneSplineOperator(affine, splines)  # type: ignore[arg-type]
+
+
+def _normalize_frame_rgb_means(frames: tuple[np.ndarray, ...]) -> tuple[np.ndarray, ...]:
+    means = np.asarray([frame.mean(axis=0) for frame in frames], dtype=np.float64)
+    reference = np.median(means, axis=0)
+    return tuple(
+        frame * (reference / np.maximum(mean, 1e-8))
+        for frame, mean in zip(frames, means)
+    )
 
 
 def _normalize_exposure(frames: tuple[np.ndarray, ...]) -> tuple[np.ndarray, ...]:
