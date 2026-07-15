@@ -1,7 +1,7 @@
 # Roll2Film FilmSet evidence freeze
 
-> Date: 2026-07-15  
-> Nodes: `ULT > U5.CT2/U5.CT4`  
+> Date: 2026-07-15
+> Nodes: `ULT > U5.CT2/U5.CT4`
 > Decision: **pass for internal paired-blind recipe research**
 
 ## What was frozen
