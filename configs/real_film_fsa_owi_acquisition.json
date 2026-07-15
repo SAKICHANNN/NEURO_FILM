@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-metadata-gate",
+  "collection": {
+    "name": "Farm Security Administration/Office of War Information Color Photographs",
+    "loc_collection_code": "fsac",
+    "loc_collection_url": "https://www.loc.gov/collections/fsa-owi-color-photographs/",
+    "loc_guide_record_url": "https://www.loc.gov/pictures/item/93845501/",
+    "commons_category": "Category:Color photographs from the Farm Security Administration",
+    "commons_api_url": "https://commons.wikimedia.org/w/api.php"
+  },
+  "source_priority": [
+    "Library of Congress collection and technical records",
+    "Wikimedia Commons API mirror carrying Library of Congress fsac identifiers",
+    "Library of Congress Flickr Commons album as an independent count and metadata cross-check"
+  ],
+  "license_gate": {
+    "required_license_short_name": "Public domain",
+    "required_commons_category": "PD US FSA/OWI",
+    "required_source_category": "Images from the Library of Congress",
+    "required_loc_identifier_pattern": "^fsac\\.[0-9a-z]+$",
+    "rights_snapshot_url": "https://www.loc.gov/collections/fsa-owi-color-photographs/about-this-collection/rights-and-access/",
+    "redistribution_policy": "Do not commit or redistribute image pixels; retain source URLs, metadata and hashes locally."
+  },
+  "phase_a_metadata": {
+    "max_response_bytes": 16777216,
+    "page_size": 100,
+    "timeout_seconds": 60,
+    "max_retries": 4,
+    "minimum_unique_records": 600,
+    "minimum_unique_photographers": 8,
+    "minimum_loc_identifier_coverage": 0.95,
+    "minimum_public_domain_coverage": 1.0,
+    "minimum_loc_source_coverage": 0.95
+  },
+  "phase_b_pilot": {
+    "enabled_only_after_phase_a_pass": true,
+    "maximum_images": 64,
+    "maximum_total_bytes": 67108864,
+    "thumbnail_width": 1280,
+    "selection": "deterministic photographer-balanced sample",
+    "purpose": "decode, lineage and visual-nuisance audit only; no model training"
+  },
+  "phase_c_dataset": {
+    "enabled_only_after_manual_pilot_decision": true,
+    "maximum_images": 1100,
+    "maximum_total_bytes": 1073741824,
+    "preferred_derivative": "Commons 1280px thumbnail of a LOC-identified source",
+    "forbidden_default": [
+      "bulk LOC archival TIFF download",
+      "records without a LOC fsac identifier",
+      "files with non-public-domain metadata",
+      "files whose edit or restoration lineage cannot be bounded"
+    ]
+  },
+  "grouping_contract": {
+    "required_fields": [
+      "loc_fsac_id",
+      "creator",
+      "date",
+      "commons_page_id",
+      "commons_title",
+      "commons_sha1",
+      "source_url",
+      "derivative_url",
+      "license",
+      "categories"
+    ],
+    "primary_holdout": "creator",
+    "secondary_holdout_candidates": [
+      "shooting_assignment_or_lot",
+      "year_month",
+      "fsa_or_owi_series"
+    ],
+    "leakage_rule": "Exact LOC identifiers and exact/perceptual image duplicates must not cross splits."
+  },
+  "claim_ceiling": "real-film-derived archive scan look with a common 2003-2004 LOC capture procedure plus Commons derivative nuisance; not calibrated Kodachrome response, not digital-to-film ground truth, and not a physical-roll label"
+}
