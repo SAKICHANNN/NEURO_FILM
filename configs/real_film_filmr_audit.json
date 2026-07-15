@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.2-filmr-v2-integrity-audit",
+  "acquisition_report_sha256": "07e3a26daec77d754203bff05376ff485b65d09821912a443f8f0622c284b79c",
+  "pairs_manifest_sha256": "a9075014e4fe6063c0137dc4de6af5b8222c54480a237a513f42027ebcf5b6ba",
+  "expected_pairs": 44,
+  "rows_per_sheet": 22,
+  "tile_size": 256,
+  "exact_cross_pair_duplicate_maximum": 0,
+  "perceptual_hamming_threshold": 4,
+  "primary_style_role": "original authentic film scan",
+  "restoration_role": "same scan with manually removed physical artifacts; never a separate film style or digital-to-film target",
+  "group_policy": {
+    "filename_family_is_claimed_stock_hint_only": true,
+    "physical_roll_id": null,
+    "process_id": null,
+    "scanner_id": null,
+    "allowed_holdout": "source/pair and provisional filename-family only",
+    "forbidden_claim": "named-stock truth, roll generalization, calibrated reference or scanner-independent response"
+  }
+}
