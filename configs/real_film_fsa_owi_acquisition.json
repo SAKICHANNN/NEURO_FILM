@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "experiment_id": "RF0.3-fsa-owi-metadata-gate",
+  "metadata_snapshot_date": "2026-07-15",
   "collection": {
     "name": "Farm Security Administration/Office of War Information Color Photographs",
     "loc_collection_code": "fsac",
