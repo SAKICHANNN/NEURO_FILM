@@ -1,7 +1,8 @@
 # RF0.3 FSA/OWI real-film source gate
 
-**State:** acquisition contract frozen; metadata enumeration is the next ready
-leaf. No bulk image download is authorized by this document alone.
+**State:** metadata and the bounded 64-image pilot are complete. The source is
+eligible only with creator/assignment grouping and border controls; Phase C
+remains closed pending that grouping gate.
 
 **Phase-A amendment after the first live enumeration:** the raw Commons
 category contains multiple representations of the same LOC scan and therefore

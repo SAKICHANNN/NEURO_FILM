@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment_id": "RF0.3-fsa-owi-pilot-decision",
+  "source_contract_sha256": "f5ba4323aef4ca9e5b747157987c65317e79db14c40911614d1f9954d238f4db",
+  "metadata_decision_sha256": "d51c4a331bd5770a636eef5724fe48de2a77a0f6c0db900d29c7f3b3d04fac1c",
+  "pilot_report_sha256": "3eac975d4012d3d13cd4953a64930b2ef69e2ccd2441763146e25a70018aaa15",
+  "pilot_manifest_sha256": "d2da35974a9af509f0969424396da6892b42ada059feaf2610fd37f02c05fc98",
+  "contact_sheet_sha256": {
+    "contact_sheet_01.jpg": "3503abdf89f8bd8da19f563752a7679e0a4e16e7c16ab1becb0f17923ad1501b",
+    "contact_sheet_02.jpg": "410bac7f9813168b55cf7dc08b30e5214682e610111eb5ceb9aca36f4baab648"
+  },
+  "software_commit": "544a043b4f0033070a3f7d7cfae71898c3a260d1",
+  "decision": "pilot_eligible_with_grouping_and_border_constraints",
+  "images_adjudicated": 64,
+  "total_bytes": 20570056,
+  "automated_integrity": {
+    "decode_failures": 0,
+    "exact_duplicate_payloads": 0,
+    "near_duplicate_pairs_dhash_le_4": 0,
+    "formats": {"JPEG": 64},
+    "modes": {"RGB": 64},
+    "icc_present": 4,
+    "icc_absent": 60
+  },
+  "manual_visual_audit": {
+    "review_surface": "two 32-image contact sheets with identifiers and creator groups",
+    "confirmed_severe_glitch_or_geometry_failure": 0,
+    "confirmed_caption_image_mismatch": 0,
+    "confirmed_modern_colorization": 0,
+    "strong_cast_or_age_scan_nuisance_indices": [9, 17, 21, 35, 41, 50],
+    "clear_related_shooting_sequence_clusters": [
+      [6, 15, 23, 31, 39],
+      [7, 40],
+      [47, 55]
+    ],
+    "border_or_mount_observation": "Film/mount borders are common and sometimes strongly colored; border-safe statistics or a deterministic interior mask is mandatory.",
+    "content_observation": "The pilot spans people, farms, shops, industry, towns, landscapes, signs and architecture, but creator and shooting assignment remain visibly entangled."
+  },
+  "phase_c_download_allowed": false,
+  "next_required_gate": "recover or conservatively infer shooting-assignment groups and freeze creator-plus-assignment leakage controls before expanding pixels",
+  "training_allowed": false,
+  "claim_ceiling": "real-film-derived archive scan look with common LOC capture plus ageing, exposure, format and Commons derivative nuisance; not calibrated Kodachrome response"
+}
