@@ -525,3 +525,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Nuisance diagnosis:** retrieval descriptor distance is `1.355` versus correct-support `2.458`. Retrieval rarely shares location (`2.3%`) but more often shares day/night plus indoor/outdoor scene properties (`77.5%`). Physical-roll labels are not identified; content/illumination-conditioned restoration mapping is the supported mechanism.
 - **Reproducibility/decision:** 101 tests pass. Two complete executions are byte-identical; report SHA-256 is `3b87a8604667bceae9bdd9506daa60f7380ef574fd20145732c9fcf96c1fb333`. Decision is `nuisance_explanation`; keep roll information closed and promote bounded similar-case retrieval only as an RF2 challenger pending RF1.1 real-film gates.
 - **Evidence/handoff:** `configs/roll2film_blueneg_nested_loo_decision.json`, `docs/ROLL2FILM_BLUENEG_NESTED_LOO_RESULTS.md`. Next ready leaf is RF1.1 FILM-R signal/content/damage separability.
+
+## 2026-07-15 - Freeze FILM-R signal/content/nuisance audit
+
+- **Node/parent goal:** `ULT > RF1.1`; determine whether FILM-R filename-family signal is identifiable beyond the visibly severe content imbalance before fitting any expert.
+- **Visual labels:** all 44 pairs receive one of four coarse content categories using the already hashed review sheets. The mapping is frozen in config; restored siblings inherit the pair label and may never cross a split.
+- **Stage-zero gate:** before feature decode, require each eligible family to have at least two samples in two content cells and require at least three mutually comparable families with a shared supported cell. Structural zeros stop the classifier route rather than permitting random-split accuracy.
+- **Conditional controls:** only after support passes, compare colour-only, grayscale-structure-only, damage-only and combined descriptors under grouped leave-one-out, leave-one-content-category-out, stratified permutations and restoration perturbation.
+- **Evidence/handoff:** `configs/real_film_filmr_signal_audit.json`, `docs/data/REAL_FILM_FILMR_SIGNAL_AUDIT_CONTRACT.md`. Implement the metadata-only support-matrix gate, test/commit it, then execute before decoding new feature pixels.

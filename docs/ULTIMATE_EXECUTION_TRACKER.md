@@ -180,7 +180,7 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | RF0.1 | complete | Acquire FILM-R v2, verify 88 files and CC BY 4.0 snapshot | reopen report | 88/88 files, 437,570,872 bytes, all remote MD5 and local SHA-256 verified |
 | RF0.2 | complete/limited | Fail-closed FILM-R manifest, visual audit and group ceiling | RF0.1 | `docs/data/REAL_FILM_FILMR_V2_GATE.md`; unknown roll/process/scanner; `real-film-derived/unknown-look` only |
 | RF0.3 | pending | Metadata-only Apollo/DOCUMERICA/paired-data audit | RF0.1 | bounded candidates and no speculative bulk download |
-| RF1.1 | ready | Real-film signal/nuisance/content separability audit | RF0.2 | source/pair holdouts, content-balanced controls and leakage report |
+| RF1.1 | executing | Real-film signal/nuisance/content separability audit | RF0.2 | manual content labels and stage-zero support gate frozen before feature decode |
 | RF1.2 | complete: nuisance | BlueNeg nested leave-one-frame-out sign-reversal diagnostic | current CT6 + RF0.2 | retrieval-wrong beats correct roll on all four raw roll means; `docs/ROLL2FILM_BLUENEG_NESTED_LOO_RESULTS.md` |
 | RF1.3 | conditional | Freeze larger whole-roll real-film holdout | RF1.1/RF1.2 | access contract before pixels |
 | RF2 | pending | CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1 | matched-style real-film controls |
