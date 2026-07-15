@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-03-filmset-final-628-v1",
+  "policy_freeze_date": "2026-07-15",
+  "source_contract": {
+    "filmset_evidence_report_sha256": "f3ff191622592996d36033ca2acda10c39510c79f4520f28033b48df2ca471b0",
+    "final_628_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "pilot_report_sha256": "145a3bca313212d625a0245b6366d77ceb5732e883d8f87255bab53aeaa434fa",
+    "pilot_decision_sha256": "68bd158a9f3d0d9dfd3229ef84a5e950fef3d474f772185405a3b6e462744f23",
+    "confirmatory_report_sha256": "51e16eb047296e93b3bc7c739adf5a499a7f80f3d48bf95a228db059614d5fe3",
+    "confirmatory_decision_sha256": "7b38f46ae0414d2bcf33164f651e757122ffceb20da991eaf21a19fa66600879",
+    "fullres_report_sha256": "edc761d25cc87b7321acbb28a744ddb9c0af1800a7e6ce588bcc7d45e2a037d6",
+    "fullres_decision_sha256": "fccf792d7ec47d2f121ac5ec5b6544d75ddaeecf4416e02e8e09d7f1d239361a",
+    "blueneg_confirmatory_decision_sha256": "ee48ff93f50f591f74c899d9b5eaed40050b8c18a438da51c2a61a2e72c2f6a8"
+  },
+  "expected": {
+    "identities": 628,
+    "domains_per_identity": 4,
+    "manifest_rows": 2512,
+    "domains": ["cinema", "classneg", "velvia"]
+  },
+  "frozen_recipe_bank": {
+    "cinema": {
+      "primary": "lab_mean_std",
+      "best_basic": "wb_contrast_saturation"
+    },
+    "classneg": {
+      "primary": "pooled_l2",
+      "best_basic": "wb_contrast_saturation"
+    },
+    "velvia": {
+      "primary": "pooled_l2",
+      "best_basic": "wb_contrast_saturation"
+    }
+  },
+  "execution": {
+    "open_final_manifest_once_after_this_policy_commit": true,
+    "verify_every_payload_sha256_before_decode": true,
+    "decode": "ICC-aware raster to linear-sRGB WorkingImage",
+    "spatial_resampling": "forbidden",
+    "operators_refit_on_final": false,
+    "post_hoc_strength_or_family_changes": false,
+    "render_full_resolution": true,
+    "display_review_transform": "explicit hard clip then sRGB8"
+  },
+  "statistics": {
+    "unit": "final identity / duplicate cluster",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 2026071510,
+    "confidence": 0.95,
+    "fidelity_primary": "mean_delta_e00_to_hidden_recipe_target",
+    "style_primary": "median_delta_e00_from_input",
+    "primary_must_beat_best_basic_ci95_low": 0.0,
+    "primary_style_ratio_to_best_basic_minimum": 1.0
+  },
+  "severe_review": {
+    "save_composite_worst_per_domain": 12,
+    "save_axis_extremes_per_domain": 5,
+    "axes": [
+      "raw_excursion_max",
+      "new_display_clip_pixel_fraction_vs_target",
+      "mean_delta_e00_to_target",
+      "red_cyan_boundary_occupancy",
+      "speckle_candidate_percent"
+    ],
+    "automatic_review_triggers": {
+      "raw_excursion_max_at_least": 0.05,
+      "new_display_clip_pixel_fraction_vs_target_at_least": 0.10
+    },
+    "hard_fail": [
+      "nonfinite output",
+      "confirmed face/text/object or geometry corruption",
+      "confirmed posterization, banding, seams, colour blocks or unstable speckle",
+      "confirmed unintended large-area clipping"
+    ],
+    "automatic_metrics_never_clear_severe_without_visual_review": true
+  },
+  "promotion": {
+    "per_domain": "fidelity CI pass AND style ratio pass AND no confirmed severe",
+    "bank": "all three domains pass",
+    "fallback_if_domain_fails": "retain existing safe_lab/safe-rich product default for that domain",
+    "human_preference_claim": false,
+    "physical_film_or_stock_claim": false
+  },
+  "claim_boundary": "One-shot FilmSet Capture One recipe-transfer confirmation only; not real film, named stock, calibration, population preference, release rights, or Roll2Film group-information evidence."
+}
