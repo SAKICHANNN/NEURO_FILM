@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-02-blueneg-roll-information-v1",
+  "policy_freeze_date": "2026-07-15",
+  "source_contract": {
+    "repo_id": "ttgroup/blueneg-release",
+    "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+    "metadata_report_sha256": "2703d07036f7bdc5ac296df7bfa9617e294562dacd2b75bb27623dc037b50232",
+    "frames_manifest_sha256": "9fdcf9b652d6c18f52d1135c738ac6c42050604f8db50a5ece043ff2da3a0dd6",
+    "acquisition_manifest_sha256": "c221016837284c0a8110909852480a118db29ebd9a2e44a59c9dc6ac11798067",
+    "download_report_sha256": "f77f7f7e2699cc3cc12e73267adfc6a77da44150ad7bebcc90f3fae194abb764",
+    "transformations_sha256": "d552b5c4606099234ccf02cfd252dc5652c5aa0a89fa3e002d8cba5252429601"
+  },
+  "matched_core": {
+    "film_type": "Kodak Gold 100-5",
+    "development_rolls": ["19960816G", "19960816H"],
+    "confirmatory_rolls": ["19960817H", "19970620C"],
+    "exploratory_rolls_excluded_from_promotion": ["19941219C"]
+  },
+  "decode_and_alignment": {
+    "decode": "ICC-aware raster to linear-sRGB WorkingImage",
+    "spatial_resampling": "forbidden",
+    "alignment": "intersection of preview bounds and official bbox; apply identical offset crop to pre-warped pseudo-GT",
+    "negative_bbox_indexing": "forbidden",
+    "require_exact_aligned_shape": true,
+    "minimum_aligned_side": 64
+  },
+  "fixed_budget": {
+    "support_frames_per_roll": 3,
+    "support_pixels_per_frame_per_domain": 4096,
+    "development_query_frames_per_roll": 3,
+    "confirmatory_query_frames_per_roll": 6,
+    "query_pixels_per_frame": 16384,
+    "image_equal_weighting": true,
+    "support_source_target_alignment_exposed": false,
+    "support_target_permutation_seed": 2026071507,
+    "query_sampling_seed": 2026071508
+  },
+  "development_candidate_order": [
+    "identity",
+    "wb_contrast_saturation",
+    "lab_mean_std",
+    "per_channel_quantile",
+    "gaussian_bures",
+    "pooled_l2"
+  ],
+  "development_selection": {
+    "primary": "mean_delta_e00_to_hidden_query_target",
+    "style_floor_median_delta_e00_from_query_input": 0.5,
+    "simplest_within_delta_e00_of_best": 0.25,
+    "must_beat_identity_on_both_development_rolls": true,
+    "freeze_one_operator_family_before_confirmatory_decode": true
+  },
+  "confirmatory_controls": [
+    "identity",
+    "pooled_development_rolls",
+    "development_wrong_roll_19960816G",
+    "development_wrong_roll_19960816H",
+    "other_confirmatory_roll",
+    "deterministic_shuffled_support_groups"
+  ],
+  "statistics": {
+    "unit": "hidden query frame clustered within physical roll",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 2026071509,
+    "confidence": 0.95,
+    "primary_gain": "best_control_delta_e00_minus_correct_roll_delta_e00"
+  },
+  "decision": {
+    "pass": [
+      "correct-roll gain is positive on both confirmatory rolls",
+      "cluster-bootstrap lower confidence bound versus the best control exceeds zero",
+      "correct roll beats identity and every frozen control in aggregate",
+      "style floor passes",
+      "no confirmed severe artifact at original resolution"
+    ],
+    "ambiguous": [
+      "only one confirmatory roll has positive gain",
+      "bootstrap interval includes zero",
+      "gain depends on one query frame or one nuisance stratum",
+      "correct-roll advantage disappears against a matched wrong-roll control"
+    ],
+    "fail": [
+      "both confirmatory rolls are nonpositive",
+      "identity or a frozen control is at least as good with no uncertainty overlap",
+      "style collapses below the floor",
+      "any confirmed severe artifact"
+    ]
+  },
+  "claim_ceiling": "At most narrow archive/scanner-specific roll-group mechanism evidence for four Kodak Gold 100-5 rolls; never broad stock, digital-to-film, calibration, or population-style evidence.",
+  "filmset_final_628_parsed_or_decoded": false
+}

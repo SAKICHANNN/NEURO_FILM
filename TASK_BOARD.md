@@ -38,7 +38,7 @@
 | 2 | U5.CT2/U5.CT4 | Freeze FilmSet pair blindness and BlueNeg metadata/licence/whole-roll acquisition | complete | BlueNeg full archive forbidden; exact bounded manifest only |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |
-| 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | exact acquisition complete; evaluator freeze next, pixels still undecoded | 101 files / 118,929,719 bytes; one film string only |
+| 6 | U5.CT6 | Run BlueNeg correct-roll matched-control pilot | evaluator frozen before pixel decode; development-only family selection next | 101 files / 118,929,719 bytes; one film string only |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |

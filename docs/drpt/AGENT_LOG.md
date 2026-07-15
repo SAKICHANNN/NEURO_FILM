@@ -458,3 +458,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** all 101 files / 118,929,719 bytes verify against the exact-revision LFS hashes; zero manifest-external lane files; `image_payloads_decoded=false`. After adding the required alignment snapshot, the cached rerun remains byte-identical. Refreshed download report SHA-256: `f77f7f7e2699cc3cc12e73267adfc6a77da44150ad7bebcc90f3fae194abb764`; software commit `c0f6647346ccc055920242d615d0e35ffd052271`.
 - **Verification:** 86 tests pass; source bytes remain ignored and the full 955MB lanes/290GB archive remain absent. Evidence: `docs/ROLL2FILM_BLUENEG_ACQUISITION_RESULTS.md`.
 - **Handoff:** freeze the fixed-budget CT6 evaluator and stop/ambiguity rules before first pixel decode. The matched confirmatory core remains only two held-out Kodak Gold 100-5 rolls against two development same-film wrong-roll controls.
+
+## 2026-07-15 - Freeze CT6 BlueNeg evaluator before pixel decode
+
+- **Node/parent goal:** `ULT > U5.CT6`; prevent family, budget, control or threshold tuning on the two held-out physical rolls.
+- **Policy:** exactly three unpaired support frames and 4,096 pixels/frame/domain per roll; three development or six confirmatory hidden queries at 16,384 aligned pixels/frame. ICC-aware linear-sRGB decode and bbox-intersection alignment are fixed; resize and negative indexing are forbidden.
+- **Development gate:** compare identity, basic WB/contrast/saturation, Lab, quantile, Bures affine and pooled L2 on only the two development rolls. Freeze the simplest family within 0.25 Delta-E00 of best that beats identity on both rolls and keeps median style Delta-E at least 0.5. Stop without confirmatory decode if none passes.
+- **Confirmatory gate:** correct-roll inference must beat identity, pooled development, each development wrong roll, the other confirmatory roll and deterministic shuffled groups at equal budget. Both rolls must be positive and the 10,000-resample query-frame-cluster bootstrap lower bound versus best control must exceed zero; one-roll or nuisance-dependent gains are ambiguous.
+- **Claim ceiling:** at most narrow archive/scanner-specific group-information evidence in four Kodak Gold 100-5 rolls. Even a pass cannot establish multi-stock Roll2Film, digital-to-film or calibration.
+- **Evidence/handoff:** `configs/roll2film_blueneg_evaluator.json` and `docs/data/ROLL2FILM_BLUENEG_EVALUATOR_CONTRACT.md`. Implement alignment/cache/development runner, test it, commit it, then decode development pixels only.
