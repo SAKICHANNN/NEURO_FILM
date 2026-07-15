@@ -139,3 +139,57 @@ def test_filmset_evidence_fails_closed_on_basename_mismatch(tmp_path: Path) -> N
                 expected_bytes=None,
             )
         )
+
+
+def test_train_and_test_basename_reuse_is_namespaced_not_treated_as_leakage(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "FilmSet"
+    output = tmp_path / "evidence"
+    _fixture(root)
+    test_input = root / "test" / "input" / "image_test_000.png"
+    reused_name = root / "test" / "input" / "image_train_002.png"
+    test_input.rename(reused_name)
+    for directory in ("Cinema", "ClassNeg", "Velvia"):
+        (root / "test" / directory / "image_test_000.png").rename(
+            root / "test" / directory / "image_train_002.png"
+        )
+
+    result = build_filmset_evidence(
+        FilmSetEvidenceConfig(
+            root=root,
+            output_dir=output,
+            expected_train=12,
+            expected_test=3,
+            expected_files=None,
+            expected_bytes=None,
+        )
+    )
+
+    assert result.report["archive_observed"]["train_test_basename_overlap"] == 1
+    final_ids = {
+        row["content_id"] for row in _read_jsonl(result.manifest_paths["final_628_lockbox"])
+    }
+    assert "test:image_train_002.png" in final_ids
+
+
+def test_filmset_evidence_fails_closed_on_exact_train_test_payload_overlap(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "FilmSet"
+    _fixture(root)
+    source = root / "train" / "input" / "image_train_002.png"
+    target = root / "test" / "input" / "image_test_000.png"
+    target.write_bytes(source.read_bytes())
+
+    with pytest.raises(FilmSetManifestError, match="input payloads overlap exactly"):
+        build_filmset_evidence(
+            FilmSetEvidenceConfig(
+                root=root,
+                output_dir=tmp_path / "evidence",
+                expected_train=12,
+                expected_test=3,
+                expected_files=None,
+                expected_bytes=None,
+            )
+        )

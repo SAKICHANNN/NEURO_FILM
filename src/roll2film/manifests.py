@@ -272,8 +272,6 @@ def _validate_tree(config: FilmSetEvidenceConfig) -> dict[str, dict[str, list[Pa
         for domain in FILMSET_DOMAINS:
             if content_ids[f"{distributed_split}:{domain}"] != reference:
                 raise FilmSetManifestError(f"basename parity failed for {distributed_split}/{domain}")
-    if content_ids["train:input"] & content_ids["test:input"]:
-        raise FilmSetManifestError("distributed train/test basenames overlap")
     return tree
 
 
@@ -522,9 +520,20 @@ def build_filmset_evidence(
         )
 
     train_input_records = {
-        path.name.casefold(): records[path.relative_to(root).as_posix()]
+        f"train:{path.name.casefold()}": records[path.relative_to(root).as_posix()]
         for path in tree["train"]["input"]
     }
+    train_input_hashes = {str(row["sha256"]) for row in train_input_records.values()}
+    test_input_hashes = {
+        str(records[path.relative_to(root).as_posix()]["sha256"])
+        for path in tree["test"]["input"]
+    }
+    exact_train_test_overlap = train_input_hashes & test_input_hashes
+    if exact_train_test_overlap:
+        raise FilmSetManifestError(
+            "distributed train/test input payloads overlap exactly: "
+            f"{len(exact_train_test_overlap)} SHA-256 values"
+        )
     cluster_ids, duplicate_report = _clusters(train_input_records, config)
     pool_by_content = _assign_pools(cluster_ids, config)
     rows_by_role: dict[str, list[dict[str, Any]]] = {
@@ -534,7 +543,7 @@ def build_filmset_evidence(
         "final_628_lockbox": [],
     }
     train_paths = {
-        domain: {path.name.casefold(): path for path in paths}
+        domain: {f"train:{path.name.casefold()}": path for path in paths}
         for domain, paths in tree["train"].items()
     }
     for content_id in sorted(train_input_records):
@@ -558,7 +567,7 @@ def build_filmset_evidence(
             )
 
     test_paths = {
-        domain: {path.name.casefold(): path for path in paths}
+        domain: {f"test:{path.name.casefold()}": path for path in paths}
         for domain, paths in tree["test"].items()
     }
     for content_id in sorted(test_paths["input"]):
@@ -643,7 +652,11 @@ def build_filmset_evidence(
             "image_bytes": total_bytes,
             "tree_sha256": tree_hash,
             "basename_parity": True,
-            "train_test_basename_overlap": 0,
+            "train_test_basename_overlap": len(
+                {path.name.casefold() for path in tree["train"]["input"]}
+                & {path.name.casefold() for path in tree["test"]["input"]}
+            ),
+            "train_test_exact_input_sha256_overlap": 0,
         },
         "split_contract": {
             "split_seed": config.split_seed,
