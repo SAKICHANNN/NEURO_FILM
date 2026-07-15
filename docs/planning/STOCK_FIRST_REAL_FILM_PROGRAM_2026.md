@@ -174,15 +174,15 @@ gain to stock identity.
 
 ## 7. Immediate ready leaf and evidence bundle
 
-`SF0.1` and `SF0.2` are complete. The committed contract cross-checks 13 strings
-/ 53 rolls / 491 frames, seals all official-test rolls, and freezes 189 exact
-objects / 227,287,697 bytes. Gold 400-5 failed preflight and was replaced by
-GA 100 5095. Download verification at commit `87337644...` is byte-identical
-with report SHA-256
-`de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3`; see
-`docs/REAL_FILM_STOCK_PILOT_DOWNLOAD_RESULTS.md`.
+`SF0.1`, `SF0.2` and `SF0.3` are complete. Download verification and decode
+integrity both rerun byte-identically. Integrity report SHA-256
+`0e09c90106824425ceaa57dead73155229c35997ae933db55f88420c70e93f0a` at commit
+`c952309b...` shows 189 RGB PNG files, zero exact duplicates, zero cross-frame
+dHash≤4 pairs, and eight review-only contact sheets pending Codex vision
+adjudication. See `docs/REAL_FILM_STOCK_PILOT_INTEGRITY_RESULTS.md`.
 
-The next leaf is `SF0.3`: decode all verified payloads, run exact/perceptual
-duplicate and border/content audits, publish stock × roll × content × proxy
-support matrices, and decide density-only versus display-operator eligibility
-before RF1.4. No GPU job is justified at SF0/SF1.
+The next leaf is `RF1.4`: freeze and run per-stock leave-one-roll-out
+identifiability with pooled/wrong-stock/retrieval/historical/shuffled and
+simple enhancement controls. Keep density-domain and display-proxy domains
+separate. Only Gold currently opens a display-operator research lane. No GPU
+job is justified at SF0/SF1.

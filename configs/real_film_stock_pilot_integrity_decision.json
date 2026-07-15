@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "decision_id": "stock-first-blueneg-four-pilot-integrity-v1",
+  "node": "ULT > RF0.4 > SF0.3",
+  "decision": "integrity_support_audit_pass",
+  "software_commit": "c952309bbee4da51f3849e155c49ddca2706dac3",
+  "integrity_report": "outputs/real_film/stock_pilots_v1/integrity_audit/report.json",
+  "integrity_report_sha256": "0e09c90106824425ceaa57dead73155229c35997ae933db55f88420c70e93f0a",
+  "download_report_sha256": "de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3",
+  "acquisition_manifest_sha256": "1ac2dfce6060d0094d221e8776f4318ebdd144a86194c534daca01ae3749324e",
+  "files_decoded": 189,
+  "decode_failures": 0,
+  "exact_sha_duplicate_groups": 0,
+  "cross_frame_dhash_near_pairs": 0,
+  "same_frame_preview_proxy_near_pairs": 3,
+  "contact_sheets": 8,
+  "border_mask_status": "not_implemented",
+  "visual_adjudication_status": "pending Codex vision adjudication",
+  "eligibility_by_stock": {
+    "kodak_gold_100_gen5": "display_operator_research_candidate",
+    "fujifilm_nph_400": "density_identifiability_candidate",
+    "konica_super_xg_100": "density_identifiability_candidate",
+    "kodak_ga_100_5095": "density_identifiability_candidate"
+  },
+  "structural_content_diversity_weak": [
+    "kodak_ga_100_5095",
+    "konica_super_xg_100"
+  ],
+  "claim_ceiling": "integrity/support audit only; no stock signal, S2 transfer, calibration, authenticity or release claim",
+  "next_leaf": "RF1.4"
+}

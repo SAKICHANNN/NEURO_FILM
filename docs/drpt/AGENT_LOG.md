@@ -586,3 +586,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Result:** two executions at commit `873376443c3cf6be6f5db292fcf062f1bacf523f` are byte-identical. Verified 189 files / 227,287,697 bytes; zero manifest-external lane files; `image_payloads_decoded=false`; download report SHA-256 `de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3`. Existing `data/raw/blueneg` remained 213 files; FSA/OWI cache untouched.
 - **Decision:** `SF0.2 passed`; claim ceiling remains bounded hash-verified acquisition only. No stock signal, display expert, `S2`, calibration or release claim.
 - **Files/handoff:** `configs/real_film_stock_pilot_download_decision.json`, `docs/REAL_FILM_STOCK_PILOT_DOWNLOAD_RESULTS.md`, tracker/board/stock-first/AGENTS/IMPL_PLAN updates. Next ready leaf is `SF0.3` decode/integrity/support audit before RF1.4.
+
+## 2026-07-16 - Pass SF0.3 stock-pilot integrity/support audit
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.3`; decode the frozen 189 payloads, audit exact/perceptual duplicates and stock×roll×content×proxy support, and decide density vs display research eligibility without colour fitting.
+- **Engineering protocol:** Cursor takeover under the stock-first handoff rules; reuse `fsa_owi_pilot.dhash64/hamming64` and BlueNeg hash helpers; no GPU; no archive expansion; no sealed-roll access.
+- **Result:** two executions at commit `c952309bbee4da51f3849e155c49ddca2706dac3` are byte-identical. Report SHA-256 `0e09c90106824425ceaa57dead73155229c35997ae933db55f88420c70e93f0a`. All 189 files decode as RGB PNG with zero ICC; zero exact SHA duplicate groups; zero cross-frame dHash≤4 pairs; three same-frame preview/proxy near pairs only. Eight review-only contact sheets were written and marked pending Codex vision adjudication. Border masks remain unimplemented.
+- **Eligibility:** `kodak_gold_100_gen5` is the only display-operator research candidate; `fujifilm_nph_400`, `konica_super_xg_100` and `kodak_ga_100_5095` remain density/metadata candidates. GA and Konica have weak structural content diversity.
+- **Decision:** `SF0.3 passed` with claim ceiling limited to integrity/support. No stock signal, `S2`, calibration or release claim.
+- **Files/handoff:** integrity module/script/tests, decision/results docs, tracker/board updates and `docs/CURSOR_STOCK_FIRST_HANDOFF.md`. Next ready leaf is `RF1.4`.

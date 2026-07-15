@@ -11,13 +11,12 @@ never substitutes for, or counts toward, named-stock coverage. FilmSet,
 Capture One recipes, camera Film Simulations, LUTs and the diffusion-first V3
 content below are historical/control material, not the active success path.
 
-`RF0.4/SF0.1` and `SF0.2` are complete: 189 exact BlueNeg objects /
-227,287,697 bytes are frozen, downloaded and LFS-hash verified under
-`data/raw/blueneg_stock_pilots_v1` without pixel decode. The current leaf is
-`SF0.3`: decode integrity, duplicate/border/content and support-matrix audits
-before RF1.4. LOC Phase C is sealed at 258 derivatives as an independent
-historical/unknown auxiliary lane. No colour expert fits before its own RF1
-gate passes.
+`RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
+227,287,697 bytes are hash-verified and decode-clean under
+`data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
+research candidate; NPH400/Konica/GA remain density/metadata candidates. The
+current leaf is `RF1.4` per-stock identifiability. LOC Phase C remains a sealed
+historical/unknown auxiliary lane. No colour expert fits before RF1.4 passes.
 
 ---
 

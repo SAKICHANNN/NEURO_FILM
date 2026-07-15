@@ -223,7 +223,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
 | Done/limited | RF0.1/RF0.2 | FILM-R acquired and visually/integrity audited; use only as real-film unknown-look/nuisance evidence, never stock or clean-target truth |
 | Done/data stop | RF1.1/RF1.2 | RF1.2 elevates retrieval as a challenger; RF1.1 proves FILM-R cannot separate family from content and forbids classifier training |
-| P0 named-stock | SF0.3/RF1.4 | Audit decoded four-stock pilots for integrity/support, then freeze per-stock label/content/nuisance gates; no colour fit yet |
+| P0 named-stock | RF1.4 | Freeze and run per-stock leave-one-roll-out identifiability; Gold may open a display domain, others density-only; no colour expert promotion yet |
 | P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
 | Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |
