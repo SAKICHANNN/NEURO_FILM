@@ -1,6 +1,6 @@
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
-> Updated 2026-07-12. Detailed DoR/DoD, dependencies, gates and evidence live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
+> Updated 2026-07-15. Detailed DoR/DoD, dependencies, gates and evidence live in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
 > SDXL/IP2P/SDEdit is a retired production direction and an optional research/Creative comparator only.
 
 ---
@@ -12,13 +12,13 @@
 | Deterministic renderer | current default | `safe_lab`/safe-rich + optional grain/halation/dust |
 | Diffusion/IP2P | retired as default | detail/identity drift; tested SDXL full-UNet OOM on 12GB |
 | Neural LUT/local maps | research-only | pseudo-teacher or saturation-gate evidence is insufficient |
-| Roll2Film research | **primary algorithm-paper hypothesis** | unpaired physical-roll sets → shared explicit colour-operator identification → actual transfer → hidden target/style/artifact gates |
+| Roll2Film research | **conditional algorithm-paper challenger** | current E0 is a matched-affine method test; fixed-sample grouping, nuisance and real-roll controls must establish special group information |
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
-| FilmCase ML | baseline/ablation | source-controlled retrieval and hard expert selection remain comparison branches |
+| FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Input pipeline | partial | `render_film` now enters through `WorkingImage`; an explicit legacy sRGB8 adapter remains |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
-| Current local data | insufficient by itself for honest main-paper training | 3,896 local Flickr JPEGs quarantined; 26 unique traceable Velvia references; 100 synthetic pseudo-pairs; no current FiveK/FilmSet/BlueNeg files |
-| Remote-verified research data | feasible, not yet local | FilmSet ~11.26GB: official CLI listed files and one member downloaded successfully; BlueNeg ~956MB initial 8-bit lanes: file tree and range read verified for 53-roll pilot |
+| Current local data | FilmSet recipe research is ready for manifest freeze | FilmSet 21,140-image tree is local: 4,657 train + 628 test identities per domain; `film_domain` has 4,212 JPEGs but prior lineage eligibility remains fail-closed; partial FiveK freeze present; BlueNeg absent |
+| Remote-verified research data | BlueNeg feasible, not local | ~956MB initial 8-bit lanes: file tree and range read verified for 53-roll pilot; download remains approval-gated |
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | deferred calibrated lane | paired evidence is required only for future calibrated claims; it does not block FilmSet/BlueNeg Level-A/B research |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
@@ -35,12 +35,11 @@
 | 0b | U5.R0 | Freeze FARO novelty audit and publication research program | complete | completed 2026-07-11 |
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
 | 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | in progress; affine v1 foundation passes | extend truth family to monotone curves/LUT residuals |
-| 2 | U5.CT2 | Build metadata-only FilmSet/BlueNeg eligibility, grouping and pair-blinding contracts | ready, no images | none |
-| 3 | U5.CT3 | Run group-size, coverage and nuisance identifiability curves | in progress; restricted SPD-affine E0 passes | coverage/strong-nuisance/curve-LUT/novelty gates remain; no data download yet |
-| 4 | U5.CT4 | Restore/download FilmSet and freeze paired-blind splits only after CT3 passes | approval-gated | explicit large-download approval |
-| 5 | U5.CT5 | Compare unpaired transfer baselines with Roll2Film on hidden FilmSet pairs | pending on CT3/CT4 | GPU/cost gate only if required |
+| 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | ready, local images already present | none for local internal work |
+| 3 | U5.CT3 | Redo E0 at fixed total pixels with coverage, nuisance, partition, prior-swap and scanner controls | in progress; old affine run is a method unit test | special roll-information claim remains unestablished |
+| 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | pending on CT2/CT3 contract freeze | GPU/cost gate only if required; official 628 remains sealed |
 | 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | approval-gated | explicit download approval |
-| 7 | U5.CT7/U5.CT8 | Amortised set inference, complete ablation and hidden transfer/preference study | blocked on CT5/CT6 | participant approval for human study |
+| 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
@@ -75,17 +74,16 @@ Current branch is local research work with commits not represented by a matching
 
 ## Success gate
 
-The primary research route advances only when a frozen algorithm applies an
-explicit colour operator and group-conditioned inference beats matched
-single-reference and pooled-unpaired colour-transfer baselines on hidden
-targets while preserving a preregistered style floor and artifact ceiling.
-Group-size/coverage scaling, shuffled-roll controls and scanner/exposure/WB
-shortcut tests are mandatory. If Roll2Film fails, close the algorithm paper;
-do not relabel the supporting benchmark as the main result. FARO/FilmStyleSafe
-continues independently as product QA. External population preference remains
-approval-gated, and named-stock claims require controlled paired whole-roll
-evidence.
+The deterministic product route advances independently. Roll2Film becomes the
+primary method-paper route only when fixed-total-sample group-conditioned
+inference beats matched partitions, pooled/shuffled groups and strong unpaired
+baselines while preserving a frozen style floor and artifact ceiling.
+Coverage, nuisance-capacity, prior-swap, scanner/exposure/WB and shortcut tests
+are mandatory. Failure closes the special group-information claim and permits a
+fixed champion or rules-based system to win; it does not relabel a benchmark as
+the main paper. External population preference remains approval-gated, and
+named-stock claims require controlled paired whole-roll evidence.
 
 ---
 
-*Active parent: `ULT > U5.CT` | Next research leaves: `U5.CT1` explicit operator/simulator and `U5.CT2` metadata-only data contracts | Next engineering leaf: continue `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > U5.CT` | Next leaves: `U5.CT2/U5.CT4` local FilmSet evidence freeze, `U5.CT3` fixed-budget E0 and `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

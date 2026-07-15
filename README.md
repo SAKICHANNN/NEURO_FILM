@@ -92,15 +92,15 @@ The Style-safe path uses low-resolution routing/parameter prediction and full-re
 
 ## Data and claims
 
-- The current Mac has no real same-scene digital/film pairs. Its 3,896 local Flickr JPEGs are quarantined: the historical 4,210-row lineage audit found 0 eligible rows and no usable roll/source/scanner grouping.
+- The current Windows host has no real same-scene digital/film pairs. Its 4,212 local `film_domain` JPEGs remain quarantined by default: the historical 4,210-row lineage audit found 0 eligible rows and no usable roll/source/scanner grouping, and the two additional files still need lineage propagation.
 - The traceable local Velvia lane has only 26 unique images, and the 100 IP2P pairs are synthetic smoke data.
-- FilmSet is currently absent but **downloadability is verified**, not inferred from a paper: the official Kaggle CLI listed its files and one 412KB member was fetched successfully. The ~11.26GB corpus has 5,285 RAW originals and paired Cinema/ClassNeg/Velvia Capture One targets; it can support paired-blind film-recipe transfer research, not real-film truth.
+- FilmSet is present locally as a complete 21,140-image decompressed tree (~11.26GB): 4,657 train and 628 test identities in each input/target domain. The paper-reported 638 test count is retained as provenance, but runtime uses the archive-observed 628. It can support access-controlled paired-blind film-recipe transfer research, not real-film truth.
 - BlueNeg is currently absent but **downloadability is verified** through its public file tree and a successful byte-range read. It offers 491 frames grouped into 53 rolls; the ~956MB initial 8-bit lanes can test the roll-group hypothesis, not digital-to-film ground truth.
 - The local Flickr and remote DigitalFilm collections are quarantined despite being physically downloadable. FilmSet and BlueNeg remain research-only until their exact terms and release obligations are frozen; FiveK/community assets require their own scope and rights audit.
 - An unpaired film scan is a target observation, not an input/output pair; Roll2Film must pass synthetic identifiability, shuffled-roll, matched wrong-roll and hidden-transfer gates before using it as method evidence.
 - Accurate named-stock claims require owned or explicitly cleared paired digital/film captures, process/scanner metadata and whole-roll/lab holdouts.
 - FilmSet targets are Capture One recipes, not real film scans.
-- The full FiveK source archive and the historical freeze pack are both absent on this Mac; full-scale FiveK work requires restoring sources and still cannot establish film identity.
+- A partial 903-file FiveK freeze is present on this Windows host, while the complete source archive is absent; full-scale FiveK work still requires a separate restore/rights decision and cannot establish film identity.
 
 ## Tests
 
