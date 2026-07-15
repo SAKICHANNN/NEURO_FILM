@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-CT-01-filmset-internal-v1",
+  "seed": 2026071505,
+  "dataset": {
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+    "target_manifest_sha256": "740019507339bb156a7b73061571209145447a3774f1c5319dbc4f9555c0db4f",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domains": ["cinema", "classneg", "velvia"]
+  },
+  "sampling": {
+    "pixels_per_training_image": 512,
+    "pixels_per_dev_image": 2048,
+    "image_equal_weighting": true,
+    "decode": "icc_to_linear_srgb_float32",
+    "pilot_fraction": 0.5,
+    "pilot_assignment": "sha256(seed:duplicate_cluster_id) lower half",
+    "confirmatory_assignment": "remaining internal-dev clusters"
+  },
+  "baseline_order": [
+    "identity",
+    "exposure_only",
+    "white_balance_only",
+    "contrast_only",
+    "saturation_only",
+    "wb_contrast_saturation",
+    "lab_mean_std",
+    "per_channel_quantile",
+    "gaussian_bures",
+    "sliced_ot",
+    "pooled_l2",
+    "paired_per_image_oracle"
+  ],
+  "baseline_roles": {
+    "identity": "floor",
+    "exposure_only": "best_basic_candidate",
+    "white_balance_only": "best_basic_candidate",
+    "contrast_only": "best_basic_candidate",
+    "saturation_only": "best_basic_candidate",
+    "wb_contrast_saturation": "best_basic_candidate",
+    "lab_mean_std": "classical_unpaired",
+    "per_channel_quantile": "classical_unpaired",
+    "gaussian_bures": "classical_unpaired",
+    "sliced_ot": "classical_unpaired",
+    "pooled_l2": "roll2film_no_group_baseline",
+    "paired_per_image_oracle": "evaluator_only_upper_bound"
+  },
+  "style_strength": {
+    "primary": "median_delta_e00_from_input",
+    "secondary": [
+      "mean_delta_e00_from_input",
+      "mean_chroma_delta",
+      "luma_quantile_displacement",
+      "rgb_displacement_rms"
+    ],
+    "matching": "report within frozen pilot-derived strength strata; do not post-hoc RGB blend candidates"
+  },
+  "recipe_fidelity": {
+    "primary": "mean_delta_e00_to_hidden_target",
+    "secondary": ["linear_rgb_rmse", "srgb_psnr", "ssim"],
+    "aggregation": "identity-cluster bootstrap with images equally weighted"
+  },
+  "promotion": {
+    "severe_veto_first": true,
+    "best_basic_residual_required": true,
+    "paired_gap_closure_report_required": true,
+    "confirmatory_ci95_improvement_low_must_exceed_zero": true,
+    "style_floor_relative_to_best_basic": 1.0,
+    "official_628_must_remain_unopened": true
+  },
+  "not_run_without_new_freeze": [
+    "image_adaptive_3d_lut",
+    "seplut",
+    "nilut",
+    "canoncgt",
+    "statlut",
+    "learned_selector"
+  ],
+  "claim_boundary": "FilmSet Capture One recipe transfer only; not physical film, named stock, public release clearance, or population preference."
+}

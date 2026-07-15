@@ -402,3 +402,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Negative evidence:** prior swap raises error from `0.005412` to `0.031684`; the estimator recovers an input-side scanner/profile composite closer than its film-only component; unnecessary flexible frame normalization degrades a clean roll. None is used to pass the gate.
 - **Verification:** 64 tests pass, compileall and `git diff --check` pass, and the ignored report reruns byte-identically with SHA-256 `dc85c9e035d644f93bbeddbd444393cfadb7b902220d6e19e9cb19086826c04c`. Evidence: `docs/ROLL2FILM_E0_L2_FIXED_BUDGET_V3.md`.
 - **Decision/propagation:** `method_control=pass`, `roll_information=not_established`. CT1 retains explicit L0/gauge/shaper work; CT3 retains matched real-roll controls. CT5 baseline/policy freeze is the next data-bearing leaf; final FilmSet 628 remains sealed.
+
+## 2026-07-15 - Freeze CT5 baseline and internal evaluator policy
+
+- **Node/parent goal:** `ULT > U5.CT5`; prevent hidden-target tuning and saturation-only wins before any FilmSet internal-dev payload is decoded.
+- **Decision:** froze a CPU-safe v1 ladder from identity/basic adjustments through Lab statistics, quantile, Gaussian/Bures, sliced OT and pooled L2, plus a non-deployable paired oracle. Learned/adaptive LUT challengers are recorded `not-run` until a new implementation/compute freeze.
+- **Access/evaluation contract:** training uses only disjoint source/target manifests; 465 internal-dev clusters are deterministically split pilot/confirmatory; final 628 is forbidden. Style strength, hidden recipe fidelity and severe artifacts remain independent scorecards. Comparisons use frozen strength strata rather than post-hoc RGB weakening.
+- **Files:** `configs/roll2film_ct5_baselines.json`, `docs/data/ROLL2FILM_CT5_BASELINE_EVALUATOR_CONTRACT.md`, active tracker/task board and this log.
+- **Handoff:** implement hash/role-enforcing loaders, deterministic equal-image pixel caches and the basic/Gaussian/quantile/L2 baselines. Commit the implementation before the evaluator opens internal-dev target payloads.
