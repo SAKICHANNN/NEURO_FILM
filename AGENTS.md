@@ -165,7 +165,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 Current Windows audit, 2026-07-15: `data/film_domain` contains 4,212 JPEGs, while the earlier 4,210-row legacy lineage audit remains 0 eligible/4,210 quarantined and must not be silently generalized to new files. `data/processed/manifest.jsonl` exists. The complete decompressed FilmSet image tree is local: 21,140 files / 11,262,805,356 bytes, with 4,657 identities per train domain and **628** per test domain. The paper-reported 638 is retained as a publication contradiction, never used at runtime. A partial FiveK freeze is present; it is not the complete source.
 
-BlueNeg remains absent but remote-verified through its public file tree and a successful range read; its metadata records 491 frames, 53 rolls and 13 film-type strings, while its initial 8-bit preview plus pseudo-ground-truth lanes are about 956MB. FilmSet local internal use needs no new download approval, but its final 628 lockbox requires access controls and release rights remain unresolved. BlueNeg image download remains separately approval-gated. Neither resource changes the claim boundaries above.
+BlueNeg remains absent but remote-verified through its public file tree and a successful range read; its metadata records 491 frames, 53 rolls and 13 film-type strings, while its initial 8-bit preview plus pseudo-ground-truth lanes are about 956MB. FilmSet local internal use needs no new download approval, but its final 628 lockbox requires access controls and release rights remain unresolved. On 2026-07-15 the owner pre-authorized necessary data downloads; BlueNeg still waits on the scientific CT3/metadata/whole-roll-split gate rather than another permission request. Neither resource changes the claim boundaries above.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
 
@@ -212,7 +212,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U0.1 | Active docs reconciled and stale diffusion instructions marked historical on 2026-07-10 |
 | Done | U5.CT0 | Reframe primary publication work as Roll2Film colour-transfer algorithm; demote benchmark/system work to support |
 | P0 | U5.CT1/U5.CT3 | Fixed-budget affine controls pass; finish L2 nonlinear truth plus stronger prior/scanner/nuisance controls before any roll-information promotion |
-| P0 | U5.CT2/U5.CT4 | Freeze the local FilmSet archive/628 lockbox and pair-blinding contract; keep BlueNeg metadata-only until approval |
+| P0 | U5.CT2/U5.CT4 | Freeze the local FilmSet archive/628 lockbox and pair-blinding contract; keep BlueNeg metadata-only until CT3 and whole-roll metadata gates pass |
 | P0 | U0.2 | Owner decides repository license; add legal artifacts only after approval |
 | Done/blocked | U0.3 | Legacy 4,210-row audit completed fail-closed with 0 eligible rows; new remote-data grouping contracts move to U5.CT2 |
 | Done/ongoing | U0.4/U4 | CI/registry foundation is complete; maintain severe-artifact/style evaluation as Roll2Film support and product QA, not the primary paper |
@@ -233,7 +233,7 @@ The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION
 - Style-safe renderer and small predictor should fit comfortably; leave peak-memory headroom.
 - FLUX.2 Klein is outside FilmCase; if a future Creative instruction reopens it, BF16 is not assumed to fit 12GB and FP8/offload must be measured.
 - Apple unified memory success must include swap and thermal behavior, not only successful load.
-- Do not start paid cloud/GPU work, large downloads, film/lab purchases, external recruiting, release or deployment without explicit approval.
+- Necessary dataset downloads are owner-authorized as of 2026-07-15, but must still have a scientific gate, source/licence snapshot, storage/retention plan and bounded scope; this does not justify the 290GB BlueNeg full archive while the 0.956GB pilot suffices. Do not start paid cloud/GPU work, film/lab purchases, external recruiting, release or deployment without separate explicit approval.
 
 ---
 

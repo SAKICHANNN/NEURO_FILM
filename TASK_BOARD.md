@@ -35,10 +35,10 @@
 | 0b | U5.R0 | Freeze FARO novelty audit and publication research program | complete | completed 2026-07-11 |
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
 | 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | in progress; affine v1 foundation passes | extend truth family to monotone curves/LUT residuals |
-| 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | ready, local images already present | none for local internal work |
+| 2 | U5.CT2/U5.CT4 | Freeze local FilmSet manifest, rights caveat, pair blindness and inaccessible 628 lockbox; keep BlueNeg metadata-only | in progress; manifest/lockbox contract frozen | none for local internal work |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | in progress; affine method controls pass, roll information not established | nonlinear recovery and matched real-roll evidence remain |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | pending on CT2/CT3 contract freeze | GPU/cost gate only if required; official 628 remains sealed |
-| 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | approval-gated | explicit download approval |
+| 6 | U5.CT6 | Download only BlueNeg preview/pseudo-GT lanes and run correct-roll matched-control pilot | scientifically gated; owner pre-authorized necessary downloads 2026-07-15 | CT3/metadata gate, whole-roll split and storage/retention record |
 | 7 | U5.CT7/U5.CT8 | Optional amortised set inference, complete ablation and final hidden transfer/preference study | blocked on MAP/diversity/Oracle gates | participant approval for human study; 628 opens once after full policy freeze |
 | 8 | U5.CT9 | Optional controlled named-stock calibration | future | new capture/lab scope and approval |
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |

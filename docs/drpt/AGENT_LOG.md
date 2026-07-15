@@ -376,3 +376,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Files changed:** `src/roll2film/`, focused tests, `configs/roll2film_e0_fixed_budget.json`, `scripts/run_roll2film_e0_fixed_budget.py`, script index, evidence docs, active tracker/task board/current truth and this log. Ignored raw report: `outputs/roll2film/e0_fixed_budget/report.json`.
 - **Verification:** 10 focused Roll2Film tests pass; runner exits 0 with the decisions above; config SHA-256 `c90a63f9802df7e5f6c80496f671e3fb32bafa882317cb49480f6d2676c48c06`.
 - **Handoff state:** freeze local FilmSet manifest/pair-blind access contract and implement L2 truth/stronger nuisance controls. BlueNeg pixels are not needed yet; official FilmSet 628 remains closed.
+
+## 2026-07-15 - Freeze FilmSet manifest and lockbox implementation contract
+
+- **Changed:** moved `U5.CT2/U5.CT4` to in progress and froze `docs/data/ROLL2FILM_FILMSET_MANIFEST_CONTRACT.md`: four isolated ignored manifests, cluster-before-split pair blindness, resumable integrity cache, test-payload no-decode rule, deterministic report hashes and fail-closed training/lockbox roles.
+- **Evidence/propagation:** current FilmSet counts/bytes and 628/638 policy remain unchanged; active tracker, task board and `AGENTS.md` now record the owner’s 2026-07-15 pre-authorization for necessary downloads while retaining scientific/licence/storage gates. BlueNeg full 290GB remains unjustified.
+- **Next:** implement the isolated `src/roll2film` manifest module, CLI and tests, then run the 11.26GB local evidence freeze. No source image or legacy manifest may be modified.
