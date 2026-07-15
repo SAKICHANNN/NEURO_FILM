@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "decision_id": "RF1.2-blueneg-nested-loo-result-v1",
+  "policy_sha256": "b0d741e036b5102c3ae9fd0bca9197bc9fd56c69899bdc01c0344717b4b160bd",
+  "report_sha256": "3b87a8604667bceae9bdd9506daa60f7380ef574fd20145732c9fcf96c1fb333",
+  "software_commit": "ebcc73c9f84c84b004328c6bbbd1b641b425ba48",
+  "rerun_byte_identical": true,
+  "decision": "nuisance_explanation",
+  "physical_roll_information_reopened": false,
+  "primary_explanation": "source-content retrieval across wrong rolls outperforms the correct physical-roll operator",
+  "raw_result": {
+    "correct_roll_delta_e00": 5.60437283302231,
+    "content_retrieval_wrong_delta_e00": 5.1805173240370035,
+    "cluster_equal_gain": -0.38560210148056534,
+    "ci95": [-0.4955901117048035, -0.20713580360641312],
+    "all_four_roll_gains_negative": true,
+    "maximum_raw_out_of_range_fraction": 0.0
+  },
+  "source_only_style_matched_result": {
+    "correct_roll_delta_e00": 5.604368537061097,
+    "content_retrieval_wrong_delta_e00": 5.493309582805072,
+    "cluster_equal_gain": -0.11302155248812545,
+    "ci95": [-0.23025643590240785, 0.057409528931991305],
+    "positive_rolls": ["19970620C"],
+    "negative_rolls": ["19960816G", "19960816H", "19960817H"],
+    "maximum_raw_out_of_range_fraction": 0.20629883,
+    "interpretation": "secondary diagnostic only because extrapolative matching can leave gamut"
+  },
+  "retrieval_diagnostic": {
+    "mean_correct_support_descriptor_distance": 2.4575263225827197,
+    "mean_retrieval_support_descriptor_distance": 1.3545499100238814,
+    "retrieval_same_location_fraction": 0.023255813953488372,
+    "retrieval_same_scene_property_fraction": 0.7751937984496124
+  },
+  "next_architecture_implication": "promote bounded similar-case retrieval of explicit operators as an RF2 challenger; do not promote BlueNeg or physical-roll labels as film-style truth",
+  "claim_ceiling": "archive-specific restoration-mapping diagnostic only"
+}

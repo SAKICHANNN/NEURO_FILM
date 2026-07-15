@@ -166,3 +166,13 @@ After RF0.1, the next leaf is `RF0.2`: determine whether filename families are
 stock labels, physical rolls or merely contributor naming; until proven, set
 `roll_id`, `process_id` and `scanner_id` to unknown and enforce source-level
 holdout only.
+
+### RF1.2 update, 2026-07-15
+
+The four-roll 43-query BlueNeg nested LOO diagnosis is complete. Wrong-roll
+source-content retrieval beats the correct physical-roll operator on all four
+raw roll means; the cluster-equal correct-roll gain is -0.3856 Delta-E with 95%
+interval `[-0.4956,-0.2071]`. Physical-roll information remains closed. The
+result elevates similar-case retrieval of bounded explicit operators as an RF2
+challenger, but only as archive-restoration mechanism evidence until it passes
+the real-film RF1.1 gate.
