@@ -49,7 +49,7 @@ def main() -> int:
         repo_id=payload["repo_id"],
         repo_type="dataset",
         revision=payload["revision"],
-        allow_patterns=["LICENSE", "README.md", "meta.json"],
+        allow_patterns=["LICENSE", "README.md", "meta.json", "transformations.pkl"],
         local_dir=root,
     )
     info = HfApi().dataset_info(

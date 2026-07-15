@@ -2,14 +2,17 @@ from __future__ import annotations
 
 import hashlib
 import json
+import pickle
 from pathlib import Path
 
+import numpy as np
 import pytest
 
 from src.roll2film.blueneg import (
     BlueNegContractError,
     BlueNegEvidenceConfig,
     build_blueneg_metadata_evidence,
+    load_blueneg_transformations,
 )
 
 
@@ -54,6 +57,17 @@ def _fixture(tmp_path: Path) -> BlueNegEvidenceConfig:
                 )
     meta_payload = json.dumps(rows).encode()
     meta_hash = _write(root / "meta.json", meta_payload)
+    transformations = {
+        row["filename"]: {
+            "matrix": np.eye(3, dtype=np.float64),
+            "bbox": np.array([0, 0, 10, 10], dtype=np.int64),
+        }
+        for row in rows
+    }
+    transformations_hash = _write(
+        root / "transformations.pkl",
+        pickle.dumps(transformations, protocol=4),
+    )
     (root / "remote_inventory.json").write_text(
         json.dumps(
             {
@@ -73,6 +87,7 @@ def _fixture(tmp_path: Path) -> BlueNegEvidenceConfig:
             "LICENSE": license_hash,
             "README.md": readme_hash,
             "meta.json": meta_hash,
+            "transformations.pkl": transformations_hash,
         },
         expected={
             "metadata_rows": 16,
@@ -82,6 +97,7 @@ def _fixture(tmp_path: Path) -> BlueNegEvidenceConfig:
             "preview_bytes": 160,
             "pseudogt_files": 16,
             "pseudogt_bytes": 80,
+            "transformations": 16,
         },
         split_seed=7,
     )
@@ -138,6 +154,33 @@ def test_blueneg_fails_closed_on_remote_lane_size_drift(tmp_path: Path) -> None:
 
     with pytest.raises(BlueNegContractError, match="byte count mismatch"):
         build_blueneg_metadata_evidence(config)
+
+
+def test_blueneg_restricted_unpickler_rejects_non_numpy_global(tmp_path: Path) -> None:
+    path = tmp_path / "unsafe.pkl"
+    path.write_bytes(pickle.dumps(Path("not-allowed"), protocol=4))
+
+    with pytest.raises(BlueNegContractError, match="unsafe global"):
+        load_blueneg_transformations(path)
+
+
+def test_blueneg_alignment_allows_bbox_extending_past_preview(tmp_path: Path) -> None:
+    path = tmp_path / "alignment.pkl"
+    path.write_bytes(
+        pickle.dumps(
+            {
+                "frame": {
+                    "matrix": np.eye(3, dtype=np.float64),
+                    "bbox": np.array([43, -3, 1149, 770], dtype=np.int64),
+                }
+            },
+            protocol=4,
+        )
+    )
+
+    loaded = load_blueneg_transformations(path)
+
+    assert loaded["frame"]["bbox"].tolist() == [43, -3, 1149, 770]
 
 
 def test_blueneg_does_not_treat_unpublished_pseudogt_path_as_pair(

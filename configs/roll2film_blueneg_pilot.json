@@ -8,7 +8,8 @@
   "metadata_sha256": {
     "LICENSE": "ce5b4aae6ae83158b950bac00107bab6ff20466e47a0f4771a2606bb7660aeda",
     "README.md": "f04d37b57a9f3aab292e3520aebe736c38b7d59ef47fedec442782878ec8a123",
-    "meta.json": "643be7f59102258a34ea14ed40476c9fac95151535fb51740b0c592f24df4078"
+    "meta.json": "643be7f59102258a34ea14ed40476c9fac95151535fb51740b0c592f24df4078",
+    "transformations.pkl": "d552b5c4606099234ccf02cfd252dc5652c5aa0a89fa3e002d8cba5252429601"
   },
   "expected": {
     "metadata_rows": 491,
@@ -17,7 +18,8 @@
     "preview_files": 491,
     "preview_bytes": 687735976,
     "pseudogt_files": 247,
-    "pseudogt_bytes": 268012985
+    "pseudogt_bytes": 268012985,
+    "transformations": 428
   },
   "split": {
     "seed": 2026071506,

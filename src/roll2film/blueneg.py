@@ -5,9 +5,13 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import pickle
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+import numpy as np
+from numpy._core.multiarray import _reconstruct as _numpy_reconstruct
 
 
 BLUENEG_FRAME_SCHEMA = "roll2film.blueneg_frame.v1"
@@ -16,6 +20,49 @@ BLUENEG_ROLL_SCHEMA = "roll2film.blueneg_roll.v1"
 
 class BlueNegContractError(ValueError):
     """Raised when BlueNeg metadata, split, or remote inventory fails closed."""
+
+
+class _RestrictedNumpyUnpickler(pickle.Unpickler):
+    _ALLOWED = {
+        ("numpy.core.multiarray", "_reconstruct"): _numpy_reconstruct,
+        ("numpy._core.multiarray", "_reconstruct"): _numpy_reconstruct,
+        ("numpy", "ndarray"): np.ndarray,
+        ("numpy", "dtype"): np.dtype,
+    }
+
+    def find_class(self, module: str, name: str) -> Any:
+        try:
+            return self._ALLOWED[(module, name)]
+        except KeyError as exc:
+            raise BlueNegContractError(
+                f"unsafe global in transformations pickle: {module}.{name}"
+            ) from exc
+
+
+def load_blueneg_transformations(path: Path) -> dict[str, dict[str, np.ndarray]]:
+    """Load the official alignment metadata without permitting arbitrary globals."""
+    try:
+        with path.open("rb") as handle:
+            payload = _RestrictedNumpyUnpickler(handle).load()
+    except (OSError, pickle.UnpicklingError, EOFError) as exc:
+        raise BlueNegContractError("invalid transformations.pkl") from exc
+    if not isinstance(payload, dict):
+        raise BlueNegContractError("transformations.pkl must contain a dictionary")
+    result: dict[str, dict[str, np.ndarray]] = {}
+    for key, value in payload.items():
+        if not isinstance(key, str) or not isinstance(value, dict):
+            raise BlueNegContractError("invalid transformation record")
+        matrix = np.asarray(value.get("matrix"), dtype=np.float64)
+        bbox = np.asarray(value.get("bbox"), dtype=np.int64)
+        if matrix.shape != (3, 3) or bbox.shape != (4,):
+            raise BlueNegContractError(f"invalid transformation shape for {key}")
+        if not np.all(np.isfinite(matrix)):
+            raise BlueNegContractError(f"non-finite transformation matrix for {key}")
+        x0, y0, x1, y1 = (int(item) for item in bbox)
+        if x1 <= x0 or y1 <= y0:
+            raise BlueNegContractError(f"invalid transformation bbox for {key}")
+        result[key] = {"matrix": matrix, "bbox": bbox}
+    return result
 
 
 def _sha256(path: Path) -> str:
@@ -139,6 +186,9 @@ def build_blueneg_metadata_evidence(
     """Freeze whole-roll pools without decoding or downloading image payloads."""
     metadata = _load_metadata(config)
     inventory = _load_inventory(config)
+    transformations = load_blueneg_transformations(config.root / "transformations.pkl")
+    if len(transformations) != config.expected["transformations"]:
+        raise BlueNegContractError("unexpected BlueNeg transformation count")
     by_roll: dict[str, list[dict[str, Any]]] = {}
     for row in metadata:
         by_roll.setdefault(str(row["roll_id"]), []).append(row)
@@ -157,7 +207,11 @@ def build_blueneg_metadata_evidence(
         roll_id: [
             row
             for row in rows
-            if row.get("pseudogt_path") in inventory and not bool(row["is_testset"])
+            if (
+                row.get("pseudogt_path") in inventory
+                and str(row["filename"]) in transformations
+                and not bool(row["is_testset"])
+            )
         ]
         for roll_id, rows in by_roll.items()
     }
@@ -256,6 +310,7 @@ def build_blueneg_metadata_evidence(
                     "scene_property": row["scene_property"],
                     "preview_path": row["preview_path"],
                     "pseudogt_path": row["pseudogt_path"],
+                    "alignment_available": filename in transformations,
                     "research_pool": pool,
                     "frame_role": role,
                     "matched_control_eligible": matched_control,
@@ -309,6 +364,7 @@ def build_blueneg_metadata_evidence(
             "frames": len(metadata),
             "rolls": len(by_roll),
             "film_types": len(film_types),
+            "transformations": len(transformations),
             "sealed_official_test_rolls": len(sealed_rolls),
             "usable_nonsealed_frames": sum(
                 len(rows) for roll_id, rows in by_roll.items() if roll_id not in sealed_rolls
