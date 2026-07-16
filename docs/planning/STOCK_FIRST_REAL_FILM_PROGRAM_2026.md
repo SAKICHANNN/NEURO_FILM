@@ -76,9 +76,9 @@ and pixels are obtainable now and together permit a real wrong-stock control:
    strongest sample base, but the prior four-roll result is nuisance-negative.
 2. `kodak_ga_100_5095`: 3 unsealed rolls / 16 frames / no aligned proxy;
    exact dataset-declared product/code string and the minimum independent-roll
-   count for a density-domain identifiability pilot.
-3. `fujifilm_nph_400`: 4 rolls / 53 frames / no aligned proxy; density/preview
-   identifiability only until a valid display-positive lane exists.
+   count for a post-negation-preview label/shortcut identifiability pilot.
+3. `fujifilm_nph_400`: 4 rolls / 53 frames / no aligned proxy;
+   post-negation-preview identifiability only until a valid proxy lane exists.
 4. `konica_super_xg_100`: 8 rolls / 30 frames / 6 aligned frames; manufacturer
    diversity, but the aligned lane is too small for promotion without a
    whole-roll/source-safe split.
@@ -117,9 +117,10 @@ For each stock, preregister and run:
 - leave-one-roll-out and, if possible, leave-one-source/scanner-out;
 - correct-stock versus pooled-all-stock, wrong-stock, content retrieval,
   generic historical, and WB/curve/saturation controls;
-- raw-negative/density descriptors separately from positive/display proxies.
+- post-negation 8-bit preview descriptors separately from display proxies.
 
-Do not mix negative density and display-positive targets into one loss. If the
+Do not treat the post-negation preview as physical density or mix its
+descriptors with display-proxy targets. If the
 correct stock cannot beat matched nuisance/retrieval controls with a
 roll-cluster confidence interval above zero, close that stock mechanism rather
 than add model capacity.
@@ -166,7 +167,7 @@ gain to stock identity.
 |---|---|
 | outputs collapse after matched-strength normalisation | reject pooled/averaged representation; retain independent experts or close unsupported stocks |
 | wrong-stock or content retrieval wins | label content/source-confounded; do not scale |
-| preview signal exists but positive lane absent | density-domain research only; no display-colour expert claim |
+| post-negation preview signal exists but proxy lane absent | label/shortcut research only; no physical-density or display-colour expert claim |
 | train rolls win but unseen roll/source does not | remain `S1`/source-specific; no `S2` |
 | local model adds seams, banding or unstable colour | reject local residual and fall back to global operator |
 | simple global operator ties ML | promote the simpler explicit operator |
@@ -176,13 +177,15 @@ gain to stock identity.
 
 `SF0.1`, `SF0.2` and `SF0.3` are complete. Download verification and decode
 integrity both rerun byte-identically. Integrity report SHA-256
-`0e09c90106824425ceaa57dead73155229c35997ae933db55f88420c70e93f0a` at commit
-`c952309b...` shows 189 RGB PNG files, zero exact duplicates, zero cross-frame
-dHash≤4 pairs, and eight review-only contact sheets pending Codex vision
-adjudication. See `docs/REAL_FILM_STOCK_PILOT_INTEGRITY_RESULTS.md`.
+`a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa`
+at commit `3c52a31a...` shows 189 RGB PNG files, zero exact duplicates and
+zero cross-frame dHash≤4 pairs after fail-closed manifest/metadata cross-checks.
+All eight contact sheets were reviewed and expose substantial shortcut risk.
+See `docs/REAL_FILM_STOCK_PILOT_INTEGRITY_RESULTS.md`.
 
 The next leaf is `RF1.4`: freeze and run per-stock leave-one-roll-out
 identifiability with pooled/wrong-stock/retrieval/historical/shuffled and
-simple enhancement controls. Keep density-domain and display-proxy domains
-separate. Only Gold currently opens a display-operator research lane. No GPU
+simple enhancement controls. Keep post-negation-preview descriptors and
+display-proxy targets separate. Only Gold currently opens a display-operator
+research lane. No GPU
 job is justified at SF0/SF1.

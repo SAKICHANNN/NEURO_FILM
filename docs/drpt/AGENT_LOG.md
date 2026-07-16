@@ -595,3 +595,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Eligibility:** `kodak_gold_100_gen5` is the only display-operator research candidate; `fujifilm_nph_400`, `konica_super_xg_100` and `kodak_ga_100_5095` remain density/metadata candidates. GA and Konica have weak structural content diversity.
 - **Decision:** `SF0.3 passed` with claim ceiling limited to integrity/support. No stock signal, `S2`, calibration or release claim.
 - **Files/handoff:** integrity module/script/tests, decision/results docs, tracker/board updates and `docs/CURSOR_STOCK_FIRST_HANDOFF.md`. Next ready leaf is `RF1.4`.
+
+## 2026-07-16 - Codex acceptance correction and SF0.3 visual adjudication
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.3/SF0.3V`; independently accept or reject the Cursor handoff before RF1.4.
+- **Skills:** `dev-research-reliability` primary; router, code-review, AI/ML, scientific research, DRPT-BI, plan/log and structure disciplines as read-only reviewers.
+- **Corrections:** integrity audit now fail-closes on acquisition byte totals, duplicate metadata IDs, stock/source/roll/lane/path mismatches and unaligned proxies. The report interface is v2. BlueNeg's documented post-negation 8-bit previews are no longer called physical density.
+- **Evidence:** targeted tests passed; full suite reached 126 before the new regression and is rerun at closure. Two v2 audits at commit `3c52a31a...` were byte-identical, SHA-256 `a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa`, with 189/189 decoded.
+- **Vision:** 8/8 contact sheets (141 previews) reviewed. No severe glitch was confirmed at contact-sheet scale; full-resolution adjudication was not performed. Date stamps, borders/crops, exposure/scan variance and roll-content-location coupling are material shortcut risks. GA100 is imbalanced 13/1/2 frames across its three rolls.
+- **Propagation:** tracker, board, AGENTS, implementation pointer, acquisition/integrity results, stock-first programme, handoff and machine decisions were corrected. RF1.4 must start with shortcut/null gates; preview-only evidence cannot promote a colour expert.
+- **Handoff:** next ready leaf remains RF1.4 contract freeze and minimum CPU shortcut diagnostics. No GPU, archive expansion, release or paid action is authorized.

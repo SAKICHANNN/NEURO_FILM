@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "decision_id": "stock-first-blueneg-four-pilot-contact-sheet-vision-v1",
+  "node": "ULT > RF0.4 > SF0.3V",
+  "review_type": "autonomous_codex_contact_sheet_visual_audit",
+  "reviewed_contact_sheets": 8,
+  "reviewed_preview_frames": 141,
+  "integrity_report_schema": 2,
+  "integrity_report_sha256": "a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa",
+  "decision": "usable_for_shortcut_audit_only_before_rf1_4",
+  "confirmed_severe_glitch_at_contact_sheet_scale": 0,
+  "full_resolution_severe_artifact_adjudication": "not_performed",
+  "global_observations": [
+    "negative-preview-8bit images are visually positive post-negation previews, not raw negative density measurements",
+    "date imprints, black or dark frame edges, crop/aspect differences, exposure and scan/render variation are visible shortcut cues",
+    "roll identity is strongly entangled with place, event, lighting and content; ordinary frame-random classification is forbidden"
+  ],
+  "stock_observations": {
+    "fujifilm_nph_400": "four rolls but strong roll-to-event/location/lighting coupling; date imprints, dark borders and extreme night/exposure variation are visible",
+    "kodak_ga_100_5095": "severely imbalanced: 13 frames from the main zoo roll, one frame from a second roll and two from a third; content/location separation is structurally weak",
+    "kodak_gold_100_gen5": "seven preview rolls and a separate proxy lane, but location/content/date/crop cues remain strongly roll-linked; bright clipping and scan marks require nuisance controls",
+    "konica_super_xg_100": "mostly daytime outdoor travel frames with roll/location/date coupling, visible date imprints and border/crop/cast variation"
+  },
+  "contact_sheet_sha256": [
+    "d868af566fc796c2ad65c8eb774e85063d5927fc80ab24420b2efa8dae3fc63a",
+    "03b7ef5eac3f0f30747d73d056e3f4c8c52fd89d8500851cd60611440d61197a",
+    "4859abe7314bdbe2ad5b41c04cd7b3338a63d55006ad5566212b3d0c9cf99660",
+    "a16d78ad0b67742f0cb50ae1645950da096b5464fb79dd1bd63c160a8fcf138b",
+    "ce8a5eec1c4b7cc9b1dc390e71a609cb65a752cfba7b2b0a860bef67ce03da12",
+    "cdf3f9659eed2f75f9f79ec430444eb12f87442bd7a2a325df509bba609b53fb",
+    "82a0996577c6ebb1cd03bb41daa87f81941a5bed3e0e099033107b5be55f1f97",
+    "e4b4009a9625ff8893d16b609a5dfd7c5b55d5c9bd1c5448e4ee57381421d12f"
+  ],
+  "rf1_4_gate": "preregister shortcut/null tests, whole-roll folds and crop/date/border sensitivity before any stock-signal interpretation",
+  "claim_ceiling": "autonomous visual evidence at contact-sheet scale only; no stock signal, authenticity, calibration, full-resolution artifact or population preference claim"
+}

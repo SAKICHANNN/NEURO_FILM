@@ -33,9 +33,14 @@ software identity rather than a dirty worktree identity.
 | Stock ID | Unsealed rolls | Preview frames | Public display proxies / rolls | Pre-download decision |
 |---|---:|---:|---:|---|
 | `kodak_gold_100_gen5` | 7 | 50 | 47 / 6 | only current display-operator candidate; prior physical-roll result remains nuisance-negative |
-| `konica_super_xg_100` | 7 | 22 | 1 / 1 | density/metadata identifiability only |
-| `fujifilm_nph_400` | 4 | 53 | 0 / 0 | density/metadata identifiability only |
-| `kodak_ga_100_5095` | 3 | 16 | 0 / 0 | minimum density/metadata identifiability pilot |
+| `konica_super_xg_100` | 7 | 22 | 1 / 1 | post-negation-preview label/shortcut audit only |
+| `fujifilm_nph_400` | 4 | 53 | 0 / 0 | post-negation-preview label/shortcut audit only |
+| `kodak_ga_100_5095` | 3 | 16 | 0 / 0 | minimum post-negation-preview identifiability pilot |
+
+Correction, 2026-07-16: BlueNeg documents this lane as a negative preview
+"after negation". Earlier `density` wording in the frozen registry/report is
+historical input text, not permission to interpret these 8-bit previews as
+physical density or as display-colour targets.
 
 `kodak_gold_400_gen5` was rejected before download: sealing its two
 official-test rolls leaves only one roll and one frame. Its nominal 3-roll / 38

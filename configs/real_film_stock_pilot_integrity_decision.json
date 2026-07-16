@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
-  "decision_id": "stock-first-blueneg-four-pilot-integrity-v1",
+  "schema_version": 2,
+  "decision_id": "stock-first-blueneg-four-pilot-integrity-v2",
   "node": "ULT > RF0.4 > SF0.3",
   "decision": "integrity_support_audit_pass",
-  "software_commit": "c952309bbee4da51f3849e155c49ddca2706dac3",
+  "software_commit": "3c52a31a2632a18e3fff03ee5da8c11eef07444e",
   "integrity_report": "outputs/real_film/stock_pilots_v1/integrity_audit/report.json",
-  "integrity_report_sha256": "0e09c90106824425ceaa57dead73155229c35997ae933db55f88420c70e93f0a",
+  "integrity_report_sha256": "a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa",
   "download_report_sha256": "de286950dd78970281b592ffd1975f26db9b2a56565d92d84043bf3eafb348b3",
   "acquisition_manifest_sha256": "1ac2dfce6060d0094d221e8776f4318ebdd144a86194c534daca01ae3749324e",
   "files_decoded": 189,
@@ -15,17 +15,19 @@
   "same_frame_preview_proxy_near_pairs": 3,
   "contact_sheets": 8,
   "border_mask_status": "not_implemented",
-  "visual_adjudication_status": "pending Codex vision adjudication",
+  "visual_adjudication_status": "completed autonomous contact-sheet review; full-resolution adjudication not performed",
+  "visual_decision": "configs/real_film_stock_pilot_visual_decision.json",
+  "visual_decision_sha256": "185ecab781a864f8aa9bcbf78eca91c4cb0f851c19f05cd0d7c13d441b20056d",
   "eligibility_by_stock": {
     "kodak_gold_100_gen5": "display_operator_research_candidate",
-    "fujifilm_nph_400": "density_identifiability_candidate",
-    "konica_super_xg_100": "density_identifiability_candidate",
-    "kodak_ga_100_5095": "density_identifiability_candidate"
+    "fujifilm_nph_400": "negative_preview_identifiability_candidate",
+    "konica_super_xg_100": "negative_preview_identifiability_candidate",
+    "kodak_ga_100_5095": "negative_preview_identifiability_candidate"
   },
   "structural_content_diversity_weak": [
     "kodak_ga_100_5095",
     "konica_super_xg_100"
   ],
-  "claim_ceiling": "integrity/support audit only; no stock signal, S2 transfer, calibration, authenticity or release claim",
+  "claim_ceiling": "integrity/support audit only; negative-preview-8bit is post-negation preview, not verified physical density; no stock signal, S2 transfer, calibration, authenticity or release claim",
   "next_leaf": "RF1.4"
 }

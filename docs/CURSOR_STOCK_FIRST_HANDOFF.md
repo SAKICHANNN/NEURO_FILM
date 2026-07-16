@@ -4,8 +4,9 @@ Date/time: 2026-07-16 (local Asia/Shanghai session)
 
 Branch: `research/fivek-auto-optimize-cache`
 
-HEAD: `fc0b23385737c971b3b19ef3926726e32702f382`
-`real-film: freeze stock pilot integrity results`
+Accepted evidence-freeze commit: `fc0b23385737c971b3b19ef3926726e32702f382`
+`real-film: freeze stock pilot integrity results`. This handoff is historical;
+Codex acceptance corrections begin at `2475d35` and `3c52a31`.
 
 Remote push status: local == `origin/research/fivek-auto-optimize-cache`
 
@@ -110,5 +111,5 @@ objects.
 ## Recommended first three Codex steps
 
 1. Vision-adjudicate the eight stock-pilot contact sheets; record border/base/caption notes without claiming stock signal.
-2. Freeze the RF1.4 evaluator contract before any operator fitting: LOO-roll, pooled/wrong-stock/retrieval/historical/shuffled/simple controls, separate density vs display domains, claim ceiling.
-3. Implement and run RF1.4 for Gold display and the three density candidates; stop/downgrade stocks that fail structural or nuisance gates rather than adding capacity.
+2. Freeze the RF1.4 evaluator contract before any operator fitting: shortcut/null checks, LOO-roll, pooled/wrong-stock/retrieval/historical/shuffled/simple controls, separate post-negation-preview and display-proxy domains, claim ceiling.
+3. Implement and run RF1.4 for Gold display and the three preview-label diagnostics; stop/downgrade stocks that fail structural or nuisance gates rather than adding capacity.
