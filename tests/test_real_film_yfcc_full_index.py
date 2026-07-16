@@ -53,6 +53,20 @@ def test_exact_rows_and_shared_uid_gate() -> None:
     assert audit_candidate_rows(reversed(rows), _config()) == report
 
 
+def test_multi_stock_photo_is_ambiguous_and_cannot_create_shared_author_support() -> None:
+    row = {
+        "photoid": 1, "uid": "one", "unickname": "", "title": "Ektar 100 vs Velvia 50",
+        "description": "", "usertags": "", "pageurl": "p", "downloadurl": "d",
+        "licensename": "by", "licenseurl": "cc-by", "serverid": 1, "farmid": 1,
+        "secret": "s", "secretoriginal": "o", "ext": "jpg", "marker": 0,
+    }
+    report = audit_candidate_rows([row], _config())
+    assert report["matches"] == []
+    assert report["ambiguous_multi_stock_row_count"] == 1
+    assert report["ambiguous_multi_stock_rows"][0]["matched_stock_ids"] == ["ektar", "velvia"]
+    assert report["shared_author_results"]["pair"]["metadata_gate_passed"] is False
+
+
 def test_sqlite_scan_applies_licence_and_photo_filter(tmp_path: Path) -> None:
     path = tmp_path / "tiny.sqlite"
     columns = _config()["scan"]["required_columns"]

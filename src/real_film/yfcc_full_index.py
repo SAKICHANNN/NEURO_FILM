@@ -171,11 +171,14 @@ def _normalized_text(row: Mapping[str, Any]) -> str:
 def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str, Any]) -> dict[str, Any]:
     patterns = [(str(row["film_stock_id"]), re.compile(str(row["exact_regex"]), re.IGNORECASE)) for row in config["stock_patterns"]]
     matches: list[dict[str, Any]] = []
+    ambiguous_matches: list[dict[str, Any]] = []
     for source in rows:
         text = _normalized_text(source)
-        for stock_id, pattern in patterns:
-            if pattern.search(text):
-                matches.append({"film_stock_id": stock_id, **dict(source)})
+        matched_stock_ids = [stock_id for stock_id, pattern in patterns if pattern.search(text)]
+        if len(matched_stock_ids) == 1:
+            matches.append({"film_stock_id": matched_stock_ids[0], **dict(source)})
+        elif len(matched_stock_ids) > 1:
+            ambiguous_matches.append({"matched_stock_ids": matched_stock_ids, **dict(source)})
     matches.sort(
         key=lambda row: (
             str(row["film_stock_id"]),
@@ -183,6 +186,7 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
             int(row["photoid"]),
         )
     )
+    ambiguous_matches.sort(key=lambda row: (str(row["uid"]).casefold(), int(row["photoid"])))
     results: dict[str, Any] = {}
     for stock_id, _ in patterns:
         stock_rows = [row for row in matches if row["film_stock_id"] == stock_id]
@@ -215,6 +219,8 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
         "candidate_results": results,
         "shared_author_results": overlap_gates,
         "matches": matches,
+        "ambiguous_multi_stock_rows": ambiguous_matches,
+        "ambiguous_multi_stock_row_count": len(ambiguous_matches),
         "any_shared_author_gate_passed": any(row["metadata_gate_passed"] for row in overlap_gates.values()),
         "image_payloads_downloaded_or_decoded": False,
         "claim_ceiling": config["claim_ceiling"],

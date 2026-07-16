@@ -836,3 +836,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added `src/preprocess/output_encode.py`; finite HxWx3 arrays now encode as real PNG/JPEG/TIFF according to the suffix, embed a standard LittleCMS sRGB ICC profile and reject unknown extensions/non-finite pixels. Metrics record format, 8-bit depth, sRGB transfer and ICC.
 - **Evidence:** module tests inspect decoded format and ICC for all three encodings; script E2E pairs JPEG/PNG/TIFF ingress and egress. All 174 tests pass.
 - **Boundary:** this closes only the 8-bit SDR subleaf. The legacy renderer quantization, true 16-bit export, RAW E2E, HDR/HEIF and adapter removal remain open.
+
+## 2026-07-16 - Harden SF1.1 against multi-stock post leakage
+
+- **Risk:** one Flickr comparison/listing photo mentioning multiple stock names could previously enter every matched class and manufacture shared-author support without separate stock exposures.
+- **Fix:** exact-stock candidates now require exactly one matched stock per photo. Multi-stock rows are retained in a deterministic `ambiguous_multi_stock_rows` audit ledger but excluded from all stock and shared-author gates.
+- **Evidence:** a synthetic `Ektar 100 vs Velvia 50` row cannot create an overlap; reversed input order produces an identical report. The frozen YFCC15M Ektar/Velvia/UltraMax rows contain zero such ambiguous photos, so prior small-pool counts do not change.
+- **Verification:** five targeted SF1.1 tests pass; full-suite count is 175 after the new guard test.
