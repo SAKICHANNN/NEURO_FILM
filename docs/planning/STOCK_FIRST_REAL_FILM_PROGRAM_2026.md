@@ -195,5 +195,8 @@ gold clipping is 8.70%; weaker strengths get blander. `SF0.4` then froze 658
 Wikimedia Commons metadata rows: exact Ektar100, Superia X-TRA400 and Gold200
 categories pass source/rights/uploader gates, while Velvia remains family-only;
 no pixels were downloaded. The next leaf is `SF0.5`, a licence-URL-complete,
-uploader-capped 1600px derivative pilot under 192 files/512MiB, followed by
-integrity/content/source-group gates before any training. No GPU job is justified.
+uploader-capped 1600px derivative pilot under 192 files/512MiB. `SF0.5` is now
+complete: all 36 derivatives are integrity/visual clean, but only Ektar passes
+true-author support (26 files/eight authors); Superia and Gold stop. `SF0.6`
+must add at least two independent exact stocks before any comparative learning.
+No GPU job is justified.

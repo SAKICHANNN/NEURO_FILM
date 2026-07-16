@@ -22,10 +22,11 @@ transplant to digital images: OOD coverage passes, while style/residual floors
 and clipping fail at every fixed strength. `SF0.4` now freezes 658 Wikimedia
 Commons metadata rows and passes the source gate for exact Ektar100, Superia
 X-TRA400 and Gold200 categories without downloading pixels. The current leaf
-is `SF0.5`: freeze and acquire only licence-URL-complete, uploader-capped
-1600px derivatives under the 192-file/512MiB ceiling, then run integrity,
-content and source-group gates before any training. The failed archive matrix
-is not teacher truth. LOC Phase C remains a sealed historical/unknown lane.
+was `SF0.5`: 36 derivative-only files are clean, but only Ektar passes true
+author/source gates; Superia and Gold stop and no training opens. The current
+leaf is `SF0.6`: obtain at least two additional exact stocks with explicit
+derivative rights and independent author/content support. The failed archive
+matrix is not teacher truth. LOC Phase C remains a sealed historical/unknown lane.
 
 ---
 

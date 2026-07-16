@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 147 local tests pass; RF2.S0 closes BlueNeg matrix transplant; Commons SF0.4 snapshots 658 metadata rows and passes source/rights/uploader gates for exact Ektar100, Superia X-TRA400 and Gold200 without downloading pixels; stock signal remains unestablished |
+| Current evidence | 151 local tests pass; Commons SF0.5 audits 36 clean derivatives but only Ektar100 passes author/source gates (26 files/8 authors); Superia and Gold stop, no training starts, and stock signal remains unestablished |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -173,6 +173,8 @@ Current Windows audit, 2026-07-15: `data/film_domain` contains 4,212 JPEGs, whil
 
 BlueNeg metadata/licence/inventory and the exact 101-file / 118,929,719-byte pixel acquisition are local at revision `b038a1ae...`; all LFS hashes pass. The frozen four-roll `Kodak Gold 100-5` development/confirmatory and nested-LOO diagnostics are complete: correct physical-roll support loses to content-similar wrong-roll retrieval across all four raw roll means. The full 956MB lanes and 290GB archive remain absent. This is provisional single-stock archive/restoration evidence below transferable `S2`, not 13-film-type generalization or stock calibration.
 
+Commons SF0.5, 2026-07-16: 36 derivative-only files / 27,812,816 bytes are hash/decode clean with zero exact or dHash<=4 pairs and no confirmed severe visual corruption. Only Ektar100 passes the source gate (26 files, eight normalized authors, 30.77% largest share). Superia has 2 files/2 authors; Gold has 8/4 and 62.5% largest share plus a repeated same-author content cluster. All remain `S0`; one passing stock cannot open learning.
+
 FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
@@ -228,7 +230,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/limited pass | RF1.4B1 | All metric/visual gates pass for Gold archive preview-to-display mapping; bounded 3x3 affine beats SepLUT overall; no stock-response claim |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
-| P0 named-stock pixels | SF0.5 | Download only uploader-capped permissive Commons 1600px derivatives and run integrity/content/group gates before training |
+| Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |
+| P0 named-stock sources | SF0.6 | Obtain at least two further exact stocks that independently pass derivative-rights, author-group and content gates |
 | P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
 | Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |

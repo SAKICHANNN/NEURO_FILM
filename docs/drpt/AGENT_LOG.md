@@ -707,3 +707,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen selection evidence:** implementation commit `75e4f4c...`; two byte-identical 52-row manifests, SHA-256 `441eae9b...`, with Ektar/Superia/Gold counts 27/14/11. The downloader refuses to run unless this hash matches the ignored manifest.
 - **Pre-download correction:** the first bounded request received Wikimedia HTTP 429 and exposed that `thumburl` can equal `original_url` when the original is already small. Five files/5,309,604 bytes arrived before failure; three were such original-URL rows. All five are moved out of the dataset into an ignored quarantine, not deleted. The contract now excludes URL equality, checkpoints after every verified file and waits 1.5 seconds between requests. Corrected expectation is 26/2/8 (36 total); the old 52-row selection is retired before training or audit.
 - **Corrected selection evidence:** implementation commit `f2179b3...`; two byte-identical 36-row derivative-only manifests, SHA-256 `174aee33...`; download is blocked unless this exact ignored manifest is present.
+
+## 2026-07-16 - Close SF0.5 with one-stock source pass
+
+- **Evidence:** provenance-sealed commit `4754978...`; 36 derivative files / 27,812,816 bytes; download manifest `3b4bdb46...`; two byte-identical audits `93d6a218...`; 151 tests pass.
+- **Integrity/vision:** 36/36 hash and decode clean; zero exact or dHash<=4 pairs; four contact sheets and three full-resolution risk cases show no confirmed severe glitch. Real overexposure, silhouettes, vignetting and grain remain source characteristics.
+- **Per-stock gate:** Ektar passes with 26 files/eight authors/30.77% largest share. Superia stops at 2/2; Gold stops at 8/4/62.5% and a visually obvious same-author damaged-object/floor content cluster.
+- **Decision/change propagation:** retain Ektar as a provisional `S0` unpaired positive reference only. One passing stock cannot distinguish stock signal from source/content/scanner nuisance, so training stays forbidden and RF2/RF3 remain data-gated.
+- **Handoff:** `SF0.6` must obtain at least two further exact-stock sources independently passing derivative rights, >=5 author groups, <=60% dominance and content/integrity gates.

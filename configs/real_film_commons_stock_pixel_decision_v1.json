@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.5-wikimedia-commons-stock-pixel-decision-v1",
+  "node": "ULT > RF0.4 > SF0.5",
+  "decision": "integrity_pass_one_stock_source_gate_only_expand_sources_before_learning",
+  "software_commit": "4754978d45db8d8ae344009f5e0ac5e0fa3a078c",
+  "config_sha256": "a22934e5bcd684aace578971a61bee5d1074893026923358fa622057d6bda449",
+  "selection_manifest_sha256": "174aee331a07a5d206fd6586b57b723789eacfbd7864dd2df939e197642451f4",
+  "download_manifest_sha256": "3b4bdb465b0b990177bdd36197d6aeeeee73460ee01e4dcf3adffa7091ef9614",
+  "audit_report_sha256": "93d6a218c4b9342bb6a1bd0e08cbb0ca41b941a19fbdc6ad9b9ef380e3cf48b0",
+  "byte_identical_offline_audit_runs": 2,
+  "downloaded_files": 36,
+  "downloaded_bytes": 27812816,
+  "exact_duplicate_groups": 0,
+  "dhash_near_pairs_le_4": 0,
+  "cross_stock_duplicate_pairs": 0,
+  "confirmed_severe_visual_corruption": 0,
+  "stock_decisions": {
+    "kodak_ektar_100": {
+      "files": 26,
+      "normalized_author_groups": 8,
+      "largest_author_share": 0.3076923076923077,
+      "source_gate_passed": true,
+      "decision": "retain_as_provisional_unpaired_positive_reference_only"
+    },
+    "fujifilm_superia_xtra_400": {
+      "files": 2,
+      "normalized_author_groups": 2,
+      "largest_author_share": 0.5,
+      "source_gate_passed": false,
+      "decision": "stop_insufficient_derivative_and_author_support"
+    },
+    "kodak_gold_200": {
+      "files": 8,
+      "normalized_author_groups": 4,
+      "largest_author_share": 0.625,
+      "source_gate_passed": false,
+      "decision": "stop_author_dominance_and_content_cluster"
+    }
+  },
+  "visual_decision": "All four contact sheets and three full-resolution risk cases show no confirmed severe glitch; real overexposure, dark silhouettes, vignetting and grain are source characteristics. Gold contains a repeated same-author floor/damaged-object content cluster and is not a learning source.",
+  "next_leaf": "SF0.6 obtain at least two additional exact-stock sources that independently pass derivative rights, author-group and content gates; do not train on the current one-stock pass",
+  "training_allowed": false,
+  "claim_ceiling": "one provisional Ektar community-category reference set plus two stopped source lanes; no stock signal, response, calibration, S1/S2, authenticity, training or release claim"
+}
