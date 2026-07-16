@@ -176,6 +176,13 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
         for stock_id, pattern in patterns:
             if pattern.search(text):
                 matches.append({"film_stock_id": stock_id, **dict(source)})
+    matches.sort(
+        key=lambda row: (
+            str(row["film_stock_id"]),
+            str(row["uid"]).casefold(),
+            int(row["photoid"]),
+        )
+    )
     results: dict[str, Any] = {}
     for stock_id, _ in patterns:
         stock_rows = [row for row in matches if row["film_stock_id"] == stock_id]

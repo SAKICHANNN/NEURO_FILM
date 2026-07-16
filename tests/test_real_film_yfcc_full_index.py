@@ -50,6 +50,7 @@ def test_exact_rows_and_shared_uid_gate() -> None:
     ]
     report = audit_candidate_rows(rows, _config())
     assert report["shared_author_results"]["pair"]["metadata_gate_passed"] is True
+    assert audit_candidate_rows(reversed(rows), _config()) == report
 
 
 def test_sqlite_scan_applies_licence_and_photo_filter(tmp_path: Path) -> None:
