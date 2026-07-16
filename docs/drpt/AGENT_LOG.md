@@ -613,3 +613,5 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decisions:** GA100 is expected to fail the every-roll support rule (13/1/2 frames) but remains to be evaluated by code. Preview-only evidence can never promote a colour operator. Any null, shortcut or crop failure closes rather than scales the mechanism.
 - **Artifacts:** `configs/real_film_stock_identifiability_v1.json` and `docs/planning/RF1_4_STOCK_IDENTIFIABILITY_CONTRACT.md`.
 - **Next leaf:** implement/test the deterministic evaluator, verify pinned hashes before decode, run twice byte-identically, then propagate the branch result.
+
+- **Pre-run contract correction:** before any RF1.4A result existed, added an explicit RGB mean/std-only baseline and a required +0.10 primary margin. This prevents mean cast/contrast/saturation from being misreported as learned stock character.

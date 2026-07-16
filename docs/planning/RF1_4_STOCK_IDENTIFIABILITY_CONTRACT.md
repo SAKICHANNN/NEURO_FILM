@@ -47,7 +47,9 @@ center 80 percent crop. Required controls are:
 1. full-frame and center-60-percent versions for border/date/crop sensitivity;
 2. luminance-only quantiles;
 3. per-channel-standardized RGB quantiles, which remove mean/scale colour cues;
-4. metadata/shortcut features from date, dimensions/aspect, partition,
+4. RGB mean/standard deviation only, representing the simple global cast,
+   contrast and saturation family that previously produced bland pseudo-style;
+5. metadata/shortcut features from date, dimensions/aspect, partition,
    coarse content cell and measured border darkness.
 
 All features are standardized from the training folds only. Classification is
@@ -60,6 +62,7 @@ The primary score is compared with 999 deterministic count-preserving stock
 label permutations at the roll level. A candidate requires all of:
 
 - permutation p-value <= 0.05;
+- primary accuracy at least 0.10 above RGB mean/standard-deviation only;
 - primary accuracy at least 0.10 above the shortcut baseline;
 - full versus center-80 absolute accuracy delta <= 0.10;
 - center-60 versus center-80 absolute delta <= 0.15;

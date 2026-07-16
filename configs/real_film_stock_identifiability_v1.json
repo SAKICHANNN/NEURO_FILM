@@ -31,6 +31,7 @@
       "luma_quantiles_center80",
       "per_channel_standardized_rgb_quantiles_center80"
     ],
+    "simple_global": "rgb_mean_std_center80",
     "shortcut": "metadata_border_date_content"
   },
   "classifier": "roll_balanced_nearest_stock_centroid",
@@ -39,6 +40,7 @@
   "permutation_seed": 1401,
   "gates": {
     "maximum_roll_permutation_p_value": 0.05,
+    "minimum_primary_over_simple_global_accuracy": 0.10,
     "minimum_primary_over_shortcut_accuracy": 0.10,
     "maximum_full_vs_center80_accuracy_delta": 0.10,
     "maximum_center60_vs_center80_accuracy_delta": 0.15,
