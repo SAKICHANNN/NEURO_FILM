@@ -45,8 +45,9 @@ anchors produced these gold-set image medians:
 
 The candidate must reach style `>=7.0` and residual `>=4.9`. The matched basic
 operator is fitted per image to the candidate output for diagnostic purposes
-only; it is not fitted to a film target, anchor or held-out truth and cannot be
-selected as the product result.
+only; existing anchor outputs were used once to freeze the floors above, but
+no anchor or film target is fitted during candidate selection. The diagnostic
+operator cannot be selected as the product result.
 
 ## Domain and safety gates
 

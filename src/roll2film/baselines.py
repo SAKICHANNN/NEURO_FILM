@@ -62,6 +62,18 @@ def fit_basic_adjustment_family(
     }
 
 
+def fit_joint_basic_adjustment(
+    source_pixels: np.ndarray,
+    target_pixels: np.ndarray,
+) -> AffineColorOperator:
+    """Fit only the joint EV/WB/contrast/saturation diagnostic operator."""
+    source = _pixels(source_pixels)
+    target = _pixels(target_pixels)
+    if source.shape != target.shape:
+        raise ValueError("joint basic source and target shapes must match")
+    return _fit_joint_basic(source, target, float(np.median(source @ LUMA)))
+
+
 def fit_per_channel_quantile_operator(
     source_pixels: np.ndarray,
     target_pixels: np.ndarray,

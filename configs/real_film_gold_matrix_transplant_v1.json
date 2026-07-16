@@ -32,7 +32,8 @@
   "matched_basic_diagnostic": {
     "family": "per_image_ev_wb_contrast_saturation",
     "fit_target": "candidate_output",
-    "test_target_or_anchor_fitting": false,
+    "candidate_selection_uses_test_target_or_anchor_fitting": false,
+    "anchor_floor_calibration_uses_existing_anchor_outputs": true,
     "diagnostic_only_not_a_product_candidate": true
   },
   "ood": {
