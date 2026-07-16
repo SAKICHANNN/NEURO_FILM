@@ -5,6 +5,8 @@
   "metadata_snapshot": "outputs/real_film/commons_stock_v1/metadata_snapshot.json",
   "metadata_snapshot_sha256": "f7ee9db16b198f3ce59c2cea887792e82f6dce8109ae6a79cb17c4ef7f10e5cd",
   "selection_manifest": "outputs/real_film/commons_stock_v1/pixel_selection_manifest.json",
+  "selection_manifest_sha256": "174aee331a07a5d206fd6586b57b723789eacfbd7864dd2df939e197642451f4",
+  "selection_software_commit": "f2179b37a1a641ccb06f416fd62624dac283c67a",
   "download_root": "data/raw/commons_stock_pilot_v1",
   "download_manifest": "outputs/real_film/commons_stock_v1/pixel_download_manifest.json",
   "audit_report": "outputs/real_film/commons_stock_v1/pixel_audit_report.json",
