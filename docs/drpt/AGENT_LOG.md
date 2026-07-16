@@ -851,6 +851,7 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** the final sequential file pass now computes SHA-256 and every part MD5 together, reconstructs the multipart ETag, and fails unless both the ETag and 7,826-part count match the frozen source. The audit refuses manifests without this verification.
 - **Evidence:** a synthetic three-part object reproduces its independently computed S3 multipart ETag; six SF1.1 tests pass and the full-suite count becomes 176.
 - **Operational note:** the already-running transfer uses the preceding process image; after it atomically completes, rerun the updated downloader once to perform and record the strengthened hash gate before auditing.
+- **External method check:** AWS's official multipart integrity tutorial confirms binary concatenation of part MD5 digests followed by MD5. The config records that source; the rule remains object-specific and promotion still requires an empirical exact ETag match.
 
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 

@@ -8,6 +8,7 @@
     "expected_etag": "cdac6677292ef841f53c56be25c66630-7826",
     "expected_multipart_parts": 7826,
     "multipart_part_bytes": 8388608,
+    "multipart_etag_method_reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/tutorial-s3-mpu-additional-checksums.html",
     "expected_last_modified": "Sun, 31 Mar 2019 00:53:31 GMT",
     "source_listing": "https://multimedia-commons.s3.amazonaws.com/?prefix=tools/etc/yfcc100m_dataset.sql",
     "rights_snapshot_date": "2026-07-16"
