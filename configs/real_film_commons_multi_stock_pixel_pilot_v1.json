@@ -7,7 +7,10 @@
     {"path": "outputs/real_film/commons_third_stock_v1/metadata_snapshot.json", "sha256": "a38a6409dbbb70e1c899241f124b05dc5a5ed5606edebdcd29967c98130f9fa7"}
   ],
   "merged_metadata_snapshot": "outputs/real_film/commons_multi_stock_v1/merged_metadata_snapshot.json",
+  "merged_metadata_snapshot_sha256": "169de5d20f3babd6b5c42f7a6cbf28af7a066751839bc1062454658928d15827",
   "selection_manifest": "outputs/real_film/commons_multi_stock_v1/pixel_selection_manifest.json",
+  "selection_manifest_sha256": "673f2f2cabf498529398b6568c5a4665154544d92e794d2cd9c7ac88eaac4de7",
+  "selection_software_commit": "b461ae4f7c3e238a78995b3c2b85737729a65658",
   "download_root": "data/raw/commons_multi_stock_pilot_v1",
   "download_manifest": "outputs/real_film/commons_multi_stock_v1/pixel_download_manifest.json",
   "audit_report": "outputs/real_film/commons_multi_stock_v1/pixel_audit_report.json",

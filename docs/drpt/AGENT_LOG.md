@@ -751,3 +751,4 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Inputs:** immutable SF0.6A `59820e7d...` and SF0.6B `a38a6409...` snapshots; merge only UltraMax400/Kodachrome64 rows.
 - **Selection:** same dual author/uploader cap and derivative-only rights filter; expected 37 UltraMax + 14 Kodachrome64.
 - **Limits/DoD:** <=128/512MiB, per-file checkpoints, hash/decode/dHash/source/content/vision; each stock passes independently before comparative work.
+- **Frozen selection:** two byte-identical merged snapshots `169de5d2...` and 51-row manifests `673f2f2c...`; implementation `b461ae4...`; exact counts 37 UltraMax/14 Kodachrome64.
