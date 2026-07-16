@@ -753,3 +753,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Limits/DoD:** <=128/512MiB, per-file checkpoints, hash/decode/dHash/source/content/vision; each stock passes independently before comparative work.
 - **Frozen selection:** two byte-identical merged snapshots `169de5d2...` and 51-row manifests `673f2f2c...`; implementation `b461ae4...`; exact counts 37 UltraMax/14 Kodachrome64.
 - **Rate correction:** first window checkpoints 13 files/11,203,012 bytes; second receives HTTP 429. Preserve the same selection/domain, raise interval to 4s and retry backoff to 5/10/20/40s (never >60s). API standard-cache `1920px` names are allowed only when distinct from originals; decoded dimensions remain audited.
+
+## 2026-07-16 - Close SF0.7 with UltraMax pixel pass only
+
+- **Evidence:** 51 files/42,255,167 bytes; download `3af06556...`; two byte-identical audits `785ec527...`; zero exact/dHash<=4 conflicts; 154 tests pass.
+- **Vision:** three contact sheets plus three full-resolution risks show no confirmed severe glitch. Casts, grain, clipping and silhouettes are source characteristics.
+- **Decision:** UltraMax passes at 37 files/eight authors/32.43%. Kodachrome stops at 14/two/85.71% and visibly separates into bridge/rail versus stone-carving content clusters.
+- **Propagation:** Ektar+UltraMax are only two pixel-passing stocks. A bounded-small-original preflight produces no new raw-pool pass; training remains forbidden.
+- **Handoff:** `SF0.8` must freeze a new source or prospective group-balancing hypothesis and produce a third independent pixel pass without post-hoc threshold weakening.

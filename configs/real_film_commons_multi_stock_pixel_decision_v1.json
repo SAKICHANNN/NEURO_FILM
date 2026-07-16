@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.7-wikimedia-commons-multi-stock-pixel-decision-v1",
+  "node": "ULT > RF0.4 > SF0.7",
+  "decision": "integrity_pass_ultramax_source_pass_kodachrome_source_fail_continue_third_stock_search",
+  "software_commit": "2c4680c0d7bb62b435ee6d09f3e7a586b8cc80a3",
+  "config_sha256": "bb761f10b5ab8833018b3caa58d93bb9d2e5bdcf8b564a0602ac79ce6ab3ca3a",
+  "selection_manifest_sha256": "673f2f2cabf498529398b6568c5a4665154544d92e794d2cd9c7ac88eaac4de7",
+  "download_manifest_sha256": "3af06556afc564158f99d8cbc34915cf9409ab51c7a5e785d31609dbebcd2565",
+  "audit_report_sha256": "785ec52708c3b098ff77f675dc949c43761c4d800d88bf2ce03767b3fe02b982",
+  "byte_identical_offline_audit_runs": 2,
+  "downloaded_files": 51,
+  "downloaded_bytes": 42255167,
+  "exact_duplicate_groups": 0,
+  "dhash_near_pairs_le_4": 0,
+  "confirmed_severe_visual_corruption": 0,
+  "stock_decisions": {
+    "kodak_ultramax_400": {"files": 37, "normalized_author_groups": 8, "largest_author_share": 0.32432432432432434, "source_gate_passed": true, "decision": "retain_as_provisional_unpaired_positive_reference"},
+    "kodak_kodachrome_64": {"files": 14, "normalized_author_groups": 2, "largest_author_share": 0.8571428571428571, "source_gate_passed": false, "decision": "stop_strict_pixel_pool_collapses_to_two_author_content_clusters"}
+  },
+  "visual_decision": "No confirmed severe glitch in three contact sheets or full-resolution clipping risks. Kodachrome64 visibly collapses to bridge/rail and stone-carving author-content clusters. UltraMax remains varied enough for a provisional source pass but retains road/forest author clusters for later nuisance controls.",
+  "next_leaf": "SF0.8 obtain a third rights-complete pixel source; bounded-small-original preflight alone yields no new raw-pool pass, so freeze a new source or balanced-group hypothesis before pixels",
+  "training_allowed": false,
+  "claim_ceiling": "two provisional Commons pixel source passes, Ektar100 and UltraMax400; no three-stock signal, response, calibration, S1/S2, authenticity, training or release claim"
+}
