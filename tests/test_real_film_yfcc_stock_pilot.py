@@ -4,6 +4,7 @@ from src.real_film.yfcc_stock_pilot import (
     balanced_candidate_order,
     candidate_image_urls,
     eligible_rows,
+    is_flickr_original_url,
 )
 
 
@@ -37,3 +38,8 @@ def test_large_flickr_url_precedes_frozen_fallback() -> None:
         "https://farm1.staticflickr.com/2/3_abcd_b.jpg",
         "https://farm1.staticflickr.com/2/3_abcd.jpg",
     ]
+
+
+def test_original_flickr_suffix_is_detected_fail_closed() -> None:
+    assert is_flickr_original_url("https://live.staticflickr.com/1/2_key_o.jpg?x=1") is True
+    assert is_flickr_original_url("https://live.staticflickr.com/1/2_key_b.jpg") is False

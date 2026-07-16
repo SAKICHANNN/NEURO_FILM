@@ -6,7 +6,9 @@
   "input_metadata_report_sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2",
   "input_rights_report": "outputs/real_film/yfcc100m_shared_author_rights_v1/preflight_report.json",
   "input_rights_report_sha256": "a16391c068aa4a5275aa74bbaf4bd4e3462d3020f15490ad789f6c1a413a938a",
+  "source_rights_config": "configs/real_film_yfcc_shared_author_rights_v1.json",
   "source_rights_config_sha256": "2dea85054ade237fddc36cbdd23d96bf2da59766c56a01579d4e225c9fc5b760",
+  "user_agent": "K-MCFM-research-yfcc-shared-author-pixels/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded rights-current derivative pilot)",
   "stock_ids": ["kodak_ektar_100", "fujifilm_velvia_50"],
   "expected_usable_shared_author_uids": [
     "27760134@N03",

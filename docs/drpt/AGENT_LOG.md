@@ -984,3 +984,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Claim:** rights/connectivity feasibility only. No pixel quality, content balance, stock identifiability, operator, training, LSM, `S1/S2`, calibration or authenticity evidence is established.
 - **SF1.3A freeze:** exact eight UIDs, prospective order, at most four candidates per UID/stock, 38 candidates, 32MiB/file and 512MiB total; sequential bounded derivatives only, live page reverified per image, originals forbidden. Require at least eight files/stock and five bilateral pixel authors plus hash/decode/duplicate/content/full-resolution vision gates.
 - **Files/handoff:** SF1.2 result, SF1.3A config/contract and authority propagation. Commit/push before implementing or running image acquisition. A clean pixel pass may open only a newly frozen stock-identifiability diagnostic; fitting/training/LSM remain false.
+
+## 2026-07-16 - Implement the bounded SF1.3A derivative acquisition
+
+- **Node/parent goal:** `ULT > RF0.4 > SF1.3A`; implement the already committed exact-scope pixel contract before issuing an image request.
+- **Implementation:** hash-bind the SF1.1 metadata report/decision and SF1.2 rights report/config; reconstruct the exact prospective matrix for the eight bilateral authors; preserve the four-file per-UID/stock cap; download sequentially under shared 32 MiB/file and 512 MiB aggregate ceilings; combine stock manifests and evaluate the frozen per-stock/bilateral-author acquisition gate.
+- **Original boundary:** Flickr `_o` source URLs and final redirects are explicitly rejected whenever the contract forbids originals. Only bounded derivative candidates may be retained, and each file page is rechecked for current CC BY 2.0 before its image request.
+- **Evidence:** the frozen inputs reconstruct exactly 21 Ektar100 and 17 Velvia50 candidates, with all eight expected UIDs represented in both arms. Five focused tests pass and the complete CPU suite passes (`205 passed`); `git diff --check` passes.
+- **Claim ceiling:** acquisition and the next hash/decode/duplicate/content/vision audit only. Training, operator fitting, latent-mode discovery, stock-response, calibration and authenticity claims remain forbidden.
+- **Handoff:** commit/push this implementation before network access, run it once, then freeze any integrity/identifiability diagnostic separately from its execution.

@@ -76,6 +76,12 @@ def candidate_image_urls(download_url: str) -> list[str]:
     return list(dict.fromkeys((large, secure)))
 
 
+def is_flickr_original_url(url: str) -> bool:
+    """Return whether a Flickr image URL explicitly selects the original suffix."""
+    path = str(url).split("?", 1)[0].split("#", 1)[0]
+    return re.search(r"(?i)_o\.[a-z0-9]+$", path) is not None
+
+
 def _verify_payload(payload: bytes, minimum_short_dimension: int) -> dict[str, Any]:
     try:
         with Image.open(io.BytesIO(payload)) as image:
@@ -144,7 +150,12 @@ def download_live_pixels(
             selected_url = ""
             content_type = ""
             for image_url in candidate_image_urls(str(candidate["downloadurl"])):
+                if bool(limits.get("original_download_forbidden")) and is_flickr_original_url(image_url):
+                    continue
                 response = client.get(image_url, timeout=float(limits["timeout_seconds"]), stream=True, allow_redirects=True)
+                if bool(limits.get("original_download_forbidden")) and is_flickr_original_url(str(response.url)):
+                    response.close()
+                    continue
                 if response.status_code != 200 or not str(response.headers.get("Content-Type", "")).casefold().startswith("image/"):
                     response.close()
                     continue

@@ -84,6 +84,7 @@ files.
 | `decide_real_film_yfcc_full_index.py` | Require two identical full-index audits and apply the SF1.1 pass/close branch. |
 | `repair_yfcc_full_index_range.py` | Repair a rejected full-index byte interval through validated fixed Range chunks. |
 | `audit_real_film_yfcc_shared_author_rights.py` | Run the SF1.2 bounded Flickr-page-only live-rights feasibility gate. |
+| `download_real_film_yfcc_shared_author_pixels.py` | Acquire only the frozen SF1.3A shared-author Ektar/Velvia derivatives. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
