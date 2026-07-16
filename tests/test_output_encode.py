@@ -29,6 +29,7 @@ def test_save_srgb8_encoding_matches_extension_and_embeds_icc(
         profile = image.info.get("icc_profile", b"")
         assert len(profile) > 0
         assert hashlib.sha256(profile).hexdigest() == srgb_icc_profile_sha256()
+    assert not path.with_suffix(path.suffix + ".tmp").exists()
 
 
 def test_save_srgb8_rejects_unsupported_extension_and_nonfinite_values(tmp_path: Path) -> None:
@@ -49,6 +50,7 @@ def test_save_srgb16_tiff_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> N
     with tifffile.TiffFile(path) as image:
         profile = bytes(image.pages[0].tags[34675].value)
     assert hashlib.sha256(profile).hexdigest() == srgb_icc_profile_sha256()
+    assert not path.with_suffix(path.suffix + ".tmp").exists()
 
 
 def test_save_srgb16_tiff_rejects_non_tiff_extension(tmp_path: Path) -> None:
@@ -68,6 +70,7 @@ def test_save_srgb16_png_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> No
     with Image.open(path) as image:
         profile = image.info.get("icc_profile", b"")
     assert hashlib.sha256(profile).hexdigest() == srgb_icc_profile_sha256()
+    assert not path.with_suffix(path.suffix + ".tmp").exists()
 
 
 def test_save_srgb16_png_rejects_non_png_extension(tmp_path: Path) -> None:

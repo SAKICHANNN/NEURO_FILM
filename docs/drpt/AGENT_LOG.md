@@ -889,3 +889,8 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** OpenCV emits lossless uint16 BGR PNG bytes, which are converted from the RGB contract and receive a standards-compliant ICC `iCCP` chunk with checked length/CRC before atomic promotion.
 - **Evidence:** OpenCV reads back the exact uint16 RGB values and Pillow exposes ICC bytes whose SHA equals the frozen runtime profile; non-PNG extensions fail closed. Full-suite target becomes 182 tests.
 - **Boundary:** like TIFF16, PNG16 remains an isolated encoder until the renderer stops quantizing its colour stage to 8-bit.
+
+## 2026-07-16 - Make all SDR encoder promotion atomic
+
+- **Change:** sRGB8 PNG/JPEG/TIFF and uint16 PNG/TIFF now write a same-directory temporary file, atomically replace the destination only after a successful encode, and clean temporary files on failure.
+- **Evidence:** 13 output/render targeted tests pass and assert no success-path temporary files remain. Pixel, format, ICC and claim contracts are unchanged.

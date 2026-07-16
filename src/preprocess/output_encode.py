@@ -47,7 +47,13 @@ def save_srgb8(rgb: np.ndarray, path: Path) -> str:
     encoded = np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
     image = Image.fromarray(encoded, mode="RGB")
     path.parent.mkdir(parents=True, exist_ok=True)
-    image.save(path, format_name, icc_profile=srgb_icc_profile(), **options)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    try:
+        image.save(temporary, format_name, icc_profile=srgb_icc_profile(), **options)
+        os.replace(temporary, path)
+    except Exception:
+        temporary.unlink(missing_ok=True)
+        raise
     return format_name
 
 
@@ -62,14 +68,21 @@ def save_srgb16_tiff(rgb: np.ndarray, path: Path) -> str:
     encoded = np.rint(np.clip(rgb, 0.0, 1.0) * 65535.0).astype(np.uint16)
     profile = srgb_icc_profile()
     path.parent.mkdir(parents=True, exist_ok=True)
-    tifffile.imwrite(
-        path,
-        encoded,
-        photometric="rgb",
-        planarconfig="contig",
-        metadata=None,
-        extratags=[(34675, "B", len(profile), profile, False)],
-    )
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    try:
+        with temporary.open("wb") as handle:
+            tifffile.imwrite(
+                handle,
+                encoded,
+                photometric="rgb",
+                planarconfig="contig",
+                metadata=None,
+                extratags=[(34675, "B", len(profile), profile, False)],
+            )
+        os.replace(temporary, path)
+    except Exception:
+        temporary.unlink(missing_ok=True)
+        raise
     return "TIFF"
 
 
@@ -110,6 +123,10 @@ def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
     payload = _inject_png_icc(buffer.tobytes(), srgb_icc_profile())
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_bytes(payload)
-    os.replace(temporary, path)
+    try:
+        temporary.write_bytes(payload)
+        os.replace(temporary, path)
+    except Exception:
+        temporary.unlink(missing_ok=True)
+        raise
     return "PNG"
