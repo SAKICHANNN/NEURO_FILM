@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf1.0a2-yfcc-ektar100-pixel-bridge-pass-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF1 > SF1.0A2",
+  "decision": "retain_as_yfcc_ektar_source_bridge_for_connected_identifiability_only",
+  "acquisition": {
+    "uid_capped_candidates": 23,
+    "retained_files": 16,
+    "bytes": 3625011,
+    "author_uids": 5,
+    "largest_author_share": 0.25,
+    "download_manifest_sha256": "9ef85792835a577e6523014e46c66949bdfdcd15018af659288d9cda9188360a",
+    "live_cc_by_2_rejections": 7
+  },
+  "integrity": {
+    "pixel_audit_sha256": "6a78c1f3fbe3ea96baa8410a6779748aaef54ff80af1e9c9c0b39262951d1bf0",
+    "repeat_sha256_identical": true,
+    "exact_duplicate_groups": 0,
+    "dhash_le_4_pairs": 0,
+    "source_gate_passed": true
+  },
+  "visual_adjudication": {
+    "reviewed_contact_sheets": 1,
+    "confirmed_severe_glitch_or_artifact": 0,
+    "content_coverage": ["underwater", "food", "snow", "park", "city", "people", "harbour"],
+    "decision": "pass_for_diagnostic_bridge_with_small_group_warning"
+  },
+  "learning_allowed": false,
+  "next_leaf": "SF1.0B connected four-cell nuisance-identifiability diagnostics; no colour operator fitting",
+  "claim_ceiling": "same-stock source bridge for diagnostic identifiability only; no stock response, calibration, S1/S2, training, authenticity, released weights or commercial-use claim"
+}

@@ -799,3 +799,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Design decision:** if YFCC Ektar pixels pass, Ektar becomes a bridge between YFCC Ektar--Velvia and Commons Ektar--UltraMax, making source effects estimable/falsifiable. UltraMax receives no YFCC pixels.
 - **Contract:** SF1.0A2 may retain at most 20 Ektar pixels, max four per UID, using the same process exclusions, live CC-BY, decode, duplicate, source and vision gates as Velvia.
 - **Handoff:** run and visually adjudicate the Ektar bridge pilot; no classifier or operator fitting before it passes.
+
+## 2026-07-16 - Close SF1.0A2 YFCC Ektar bridge
+
+- **Evidence:** 23 reachable candidates yield 16 live-rights pixels / 3,625,011 bytes across five UIDs; seven live-licence failures are rejected. Manifest SHA `9ef857...360a`.
+- **Integrity / vision:** repeat audit SHA `6a78c1...1bf0`; zero exact/dHash<=4 duplicates; 25% largest UID share. Complete contact sheet has broad content and no severe artifact.
+- **Decision:** pass only as the small Ektar source bridge. Five UIDs is the exact minimum and requires group-aware uncertainty. No operator fitting or stock-response claim.
+- **Handoff:** SF1.0B evaluates the connected four-cell graph with colour, grayscale/content, geometry/source and shuffled-label controls.
