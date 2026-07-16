@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_id": "rf2.s0-gold100-archive-matrix-transplant-v1",
+  "node": "ULT > RF2.S > RF2.S0",
+  "rf1_4b1_decision": "configs/real_film_gold_transform_consistency_decision_v1.json",
+  "rf1_4b1_decision_sha256": "cadc12f74e98991d38403309025ba08c2c27dfa9d6dbdbf86d89b8f7e318fd62",
+  "alignment_report": "outputs/real_film/stock_pilots_v1/rf1_4b0/report.json",
+  "alignment_report_sha256": "f562141ac0b836efa0f361ca730d2d69d8ec197a1c09be366a7543b8fc27ff4c",
+  "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "digital_frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "digital_frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "normalized_anchor_manifest": "outputs/filmcase/u42_normalized_anchors/manifest.json",
+  "normalized_anchor_manifest_sha256": "d124c77e043e9b391c6478fc034b4c29ea3855b7d642ec8d43df2eb0fc4dc6fc",
+  "working_space": "unprofiled_srgb_encoded_8bit_compatibility",
+  "all_roll_fit": {
+    "operator": "bounded_ridge_3x3_affine",
+    "sampling_method": "deterministic_uniform_grid",
+    "maximum_pixels_per_frame": 4096,
+    "balance_frames_within_roll": true,
+    "balance_rolls": true,
+    "channel_bias": [-0.25, 0.25],
+    "matrix_coefficient": [-2.0, 2.0],
+    "ridge": 0.001,
+    "positive_determinant_identity_shrinkage": true
+  },
+  "transplant_strengths_strongest_first": [1.0, 0.75, 0.5],
+  "strength_definition": "source + strength * (all_roll_affine(source) - source)",
+  "digital_sampling": {
+    "method": "deterministic_uniform_grid",
+    "maximum_pixels_per_image": 4096
+  },
+  "matched_basic_diagnostic": {
+    "family": "per_image_ev_wb_contrast_saturation",
+    "fit_target": "candidate_output",
+    "test_target_or_anchor_fitting": false,
+    "diagnostic_only_not_a_product_candidate": true
+  },
+  "ood": {
+    "descriptor": "rgb_mean_rgb_std_luma_q05_q50_q95",
+    "standardization": "archive_frame_median_and_mad_floor_1e-4",
+    "distance": "euclidean_to_nearest_archive_frame",
+    "threshold_source": "archive_leave_one_physical_roll_out_nearest_neighbor_distances_only",
+    "threshold_quantile": 0.95,
+    "digital_samples_never_set_threshold": true,
+    "fallback": "safe_lab_safe_rich"
+  },
+  "anchor_derived_floors_frozen_before_candidate_render": {
+    "anchor55_gold_median_style_delta_e76": 7.176888699815313,
+    "anchor55_gold_median_residual_delta_e76_after_matched_basic": 4.971120359033787,
+    "anchor56_gold_median_style_delta_e76": 8.133699731732442,
+    "anchor56_gold_median_residual_delta_e76_after_matched_basic": 6.206203232319067,
+    "safe_rich_gold_median_style_delta_e76": 3.578768320733077,
+    "safe_rich_gold_median_residual_delta_e76_after_matched_basic": 2.145150083989445,
+    "minimum_candidate_gold_median_style_delta_e76": 7.0,
+    "minimum_candidate_gold_median_residual_delta_e76_after_matched_basic": 4.9
+  },
+  "gates": {
+    "minimum_gold_ood_eligible_images": 8,
+    "minimum_stress_ood_eligible_fraction": 0.75,
+    "maximum_gold_per_image_raw_clip_fraction": 0.005,
+    "require_finite_outputs": true,
+    "require_positive_composite_determinant": true,
+    "require_all_nine_gold_visual_reviews": true,
+    "maximum_confirmed_severe_gold_artifacts": 0
+  },
+  "visual_protocol": {
+    "only_after_automatic_gates": true,
+    "three_deterministic_blind_rounds": true,
+    "panels": [
+      "source",
+      "safe_rich",
+      "anchor55",
+      "anchor56",
+      "selected_matrix_strength",
+      "matched_basic_diagnostic"
+    ],
+    "full_resolution_risk_review": ["face", "text_logo", "high_key", "deep_shadow", "saturated_objects"],
+    "severe_artifact_veto": true
+  },
+  "branches": {
+    "ood_coverage_fail": "close automatic transplant and retain safe-rich fallback",
+    "style_or_residual_floor_fail": "classify as bland/basic adjustment and close RF2.S0",
+    "clip_or_visual_fail": "reject Style-safe transplant; do not add capacity",
+    "all_pass": "retain fixed matrix as a film-inspired Look-Approximation challenger only; stock distinctiveness remains unproven"
+  },
+  "claim_ceiling": "BlueNeg Kodak Gold 100-5 archive-display-matrix-inspired Look Approximation on unprofiled digital sRGB; not a Kodak Gold stock response, calibrated profile, digital-to-film ground truth, authenticity, S2 expert or release evidence"
+}

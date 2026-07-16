@@ -660,3 +660,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Visual result:** six contact sheets and three full-resolution risk strips show no confirmed added banding, posterization, colour blocks, red speckles, seams, geometry damage or texture rewrite. Existing archive flare/exposure/scan defects remain nuisance evidence. This is autonomous Codex vision, not owner/population preference.
 - **Decision/propagation:** `metric_and_visual_pass_simple_matrix_preferred`. Extra SepLUT capacity is not justified. This establishes only a repeatable BlueNeg Gold archive preview-to-display-proxy mapping, not emulsion response, digital-to-film truth, authenticity or S2.
 - **Handoff:** open `RF2.S0`: freeze an all-six-roll matrix fit and falsify its transplant on the existing digital gold/stress set under Look-Approximation-only labeling with matched simple controls and severe-artifact/style gates. No GPU or new download is justified.
+
+## 2026-07-16 - Freeze RF2.S0 Gold matrix transplant falsification
+
+- **Node/parent goal:** `ULT > RF2.S > RF2.S0`; test whether the RF1.4B1 archive-display matrix has any bounded product value on ordinary digital inputs without mislabeling it as stock truth.
+- **Inputs:** existing 47 Gold pairs/six rolls, provisional 9-gold/32-stress FilmCase set and normalized 55/56/safe-rich replays; no download or new vote.
+- **Pre-candidate floors:** the exact matched-basic diagnostic gives anchor 55 style/residual medians `7.1769/4.9711`, anchor 56 `8.1337/6.2062`, safe-rich `3.5788/2.1452`. Freeze candidate floors at `7.0/4.9` before rendering it.
+- **Contract:** fit one all-roll bounded 3x3 matrix from archive pairs only; test fixed strengths 1/.75/.5 strongest-first; derive OOD threshold solely from leave-one-roll archive descriptors; require >=8/9 gold and >=75% stress coverage, <=0.5% worst gold raw clipping, finite/positive orientation, then nine-image/three-round blind severe-artifact review.
+- **Claim/stop:** pass means Look Approximation challenger only. OOD, bland/basic, clip or visual failure closes transplant without adding neural capacity or weakening stock evidence rules.
+- **Artifacts:** `configs/real_film_gold_matrix_transplant_v1.json`, `docs/planning/RF2_S0_GOLD_MATRIX_TRANSPLANT_CONTRACT.md`.
