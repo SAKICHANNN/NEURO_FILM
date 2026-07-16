@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.8a-yfcc15m-stock-metadata-pass-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF0.4 > SF0.8A",
+  "decision": "retain_yfcc15m_as_a_new_exact_text_candidate_source_and_open_velvia50_pixel_preflight",
+  "download": {
+    "parquet_files": 10,
+    "bytes": 1738329293,
+    "download_manifest_sha256": "b6e507005540769badcf0a52eff3eebbd63415df215f3c7770b8b34f6652d581",
+    "images_downloaded_or_decoded": 0
+  },
+  "audit": {
+    "report_sha256": "32f5e2865bddd0e6b4ddfffd455adfd65de1d27dd0567fbca649d6e97fc33ef9",
+    "repeat_sha256_identical": true,
+    "rows_scanned": 7350000,
+    "exact_phrase_cc_by_2_matches": 332,
+    "raw_gate_passes": ["fujifilm_pro_160s", "fujifilm_pro_400h", "fujifilm_velvia_50", "kodak_ektachrome_e100vs", "kodak_gold_200", "kodak_portra_160", "kodak_portra_400"]
+  },
+  "selected_next_stock": {
+    "film_stock_id": "fujifilm_velvia_50",
+    "raw_exact_rows": 51,
+    "raw_author_uids": 26,
+    "raw_largest_author_share": 0.13725490196078433,
+    "prospective_process_contamination_exclusions": 6,
+    "preflight_remaining_rows": 45,
+    "preflight_remaining_author_uids": 23,
+    "preflight_largest_author_share": 0.15555555555555556
+  },
+  "adjudication": {
+    "portra_generation_mixing_blocks_direct_promotion": true,
+    "explicit_cross_process_hdr_multiple_exposure_and_bw_development_rows_must_be_excluded_before_pixel_selection": true,
+    "flickr_uid_is_a_group_key_not_proof_of_distinct_person_identity": true,
+    "live_page_pixel_and_license_reverification_required": true,
+    "metadata_text_is_weak_stock_evidence_not_stock_response_truth": true
+  },
+  "next_leaf": "SF0.8B freeze a maximum-32 Velvia50 live-page and pixel pilot with maximum four rows per Flickr UID, explicit process-contamination exclusions, hash/decode/duplicate/content/vision gates and no training",
+  "claim_ceiling": "YFCC15M exact user-text candidate-source pass only; no verified live pixels, stock response, calibration, S1/S2, authenticity, training, released weights or commercial-use claim"
+}

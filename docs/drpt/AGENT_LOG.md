@@ -769,3 +769,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** isolate a metadata-only YFCC15M source module with frozen 10-shard/1,738,329,293-byte index, atomic resume, exact stock regexes, CC-BY-only filtering and Flickr UID group gates. Pixels and the 61.1GB complete YFCC index remain forbidden until this subset produces a pass.
 - **Verification / risk:** remote range-query preflight hit HTTP 429, so local sequential Parquet acquisition is selected. YFCC text is still weak user evidence and every surviving page/pixel licence must be reverified before pixels.
 - **Handoff:** verify module tests and contract, commit, download the bounded metadata subset, then run the deterministic local scan twice.
+
+## 2026-07-16 - Close SF0.8A YFCC15M metadata gate
+
+- **Evidence:** froze ten Parquet shards, 7,350,000 rows / 1,738,329,293 bytes, manifest SHA `b6e507...d581`; no pixels. Two local scans are byte-identical at report SHA `32f5e286...33ef9` and retain 332 CC-BY-2.0 exact-phrase matches.
+- **Decision:** seven stock strings pass the raw 8-row/5-UID/60% gate. Velvia50 is the next pilot: 51 rows/26 UIDs/13.73% largest share; six prospectively defined cross-process/HDR rows leave 45/23/15.56%. Portra pools are not promoted because NC/VC and unspecified generations mix.
+- **Verification:** three focused tests and 157 full tests pass; module/scripts compile; contract commit `ad27ee9` was pushed before acquisition.
+- **Risks:** text labels remain weak, UID is not person identity, old Flickr URLs and licences may have changed, and scan/process/content shortcuts remain possible.
+- **Handoff:** `SF0.8B` implements a separate max-32/max-four-per-UID live-page and pixel pipeline. Stop below eight files/five UIDs; no training before full pixel/content/vision gates.
