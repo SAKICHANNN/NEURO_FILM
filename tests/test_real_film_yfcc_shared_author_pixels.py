@@ -81,4 +81,5 @@ def test_offline_audit_reports_bilateral_support(tmp_path) -> None:
     manifest = {"acquisition_gate_passed": True, "rows": rows}
     report = audit_shared_author_pixels(manifest, root=tmp_path, pixel_config=config)
     assert report["bilateral_pixel_authors"] == ["u1"]
+    assert report["stock_source_gates"]["left"]["learning_source_gate_passed"] is False
     assert report["operator_fitting_allowed"] is False

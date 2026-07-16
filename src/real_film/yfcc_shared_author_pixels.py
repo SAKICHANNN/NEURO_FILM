@@ -146,6 +146,14 @@ def audit_shared_author_pixels(
         "claim_ceiling": pixel_config["claim_ceiling"],
     }
     report = audit_download_manifest(manifest, root=root, config=adapter)
+    for stock_report in report["stock_source_gates"].values():
+        stock_report["bounded_source_support_gate_passed"] = bool(
+            stock_report.pop("learning_source_gate_passed")
+        )
+        stock_report["learning_source_gate_passed"] = False
+        stock_report["learning_gate_reason"] = (
+            "SF1.3A measures bounded source support only; stock identifiability has not passed"
+        )
     stocks = [str(value) for value in pixel_config["stock_ids"]]
     support = {
         uid: {

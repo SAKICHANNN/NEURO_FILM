@@ -30,6 +30,12 @@ def main() -> int:
         type=Path,
         default=ROOT / "configs" / "real_film_yfcc_shared_author_pixel_v1.json",
     )
+    parser.add_argument(
+        "--visual-verdict",
+        choices=("pending", "pass_no_confirmed_severe", "fail_confirmed_severe"),
+        default="pending",
+    )
+    parser.add_argument("--visual-notes", default="")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     manifest_path = ROOT / config["download_manifest"]
@@ -73,6 +79,15 @@ def main() -> int:
         }
         for row in risk_rows
     ]
+    report["autonomous_visual_adjudication"] = {
+        "verdict": args.visual_verdict,
+        "reviewed_contact_sheets": len(report["contact_sheets"]),
+        "reviewed_full_resolution_risk_cases": len(risk_rows),
+        "confirmed_severe_count": 0 if args.visual_verdict == "pass_no_confirmed_severe" else None,
+        "notes": args.visual_notes,
+        "claim_scope": "autonomous Codex visual evidence, not population preference or stock identifiability",
+    }
+    report["visual_adjudication_status"] = args.visual_verdict
     digest = atomic_json(ROOT / config["audit_report"], report)
     print(
         json.dumps(
