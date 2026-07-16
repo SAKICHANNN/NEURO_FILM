@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "rf1.4-stock-preview-shortcut-identifiability-v1",
+  "node": "ULT > RF1.4 > RF1.4A",
+  "integrity_decision": "configs/real_film_stock_pilot_integrity_decision.json",
+  "integrity_decision_sha256": "40c975c8dce8b7c09a14ed88877ad8860ee1f2f9b3f7d802b90ccb08e968d95c",
+  "visual_decision": "configs/real_film_stock_pilot_visual_decision.json",
+  "visual_decision_sha256": "185ecab781a864f8aa9bcbf78eca91c4cb0f851c19f05cd0d7c13d441b20056d",
+  "integrity_report": "outputs/real_film/stock_pilots_v1/integrity_audit/report.json",
+  "integrity_report_sha256": "a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa",
+  "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "domain": "post_negation_8bit_preview_descriptor_only",
+  "display_proxy_operator_fit_forbidden": true,
+  "frame_random_split_forbidden": true,
+  "holdout_unit": "physical_roll",
+  "stage_zero": {
+    "minimum_rolls_per_stock": 3,
+    "minimum_frames_each_roll": 2,
+    "minimum_supported_content_cells_per_stock": 2,
+    "minimum_frames_per_supported_content_cell": 2,
+    "minimum_shared_supported_content_cells_per_stock_pair": 2,
+    "minimum_stocks_in_comparable_clique": 2
+  },
+  "descriptors": {
+    "primary": "rgb_quantiles_center80",
+    "crop_sensitivity": [
+      "rgb_quantiles_full",
+      "rgb_quantiles_center60"
+    ],
+    "ablation": [
+      "luma_quantiles_center80",
+      "per_channel_standardized_rgb_quantiles_center80"
+    ],
+    "shortcut": "metadata_border_date_content"
+  },
+  "classifier": "roll_balanced_nearest_stock_centroid",
+  "aggregation": "one_vote_per_held_out_roll",
+  "permutations": 999,
+  "permutation_seed": 1401,
+  "gates": {
+    "maximum_roll_permutation_p_value": 0.05,
+    "minimum_primary_over_shortcut_accuracy": 0.10,
+    "maximum_full_vs_center80_accuracy_delta": 0.10,
+    "maximum_center60_vs_center80_accuracy_delta": 0.15,
+    "minimum_per_stock_roll_recall": 0.50
+  },
+  "branches": {
+    "structural_fail": "close that stock preview mechanism; no feature-capacity escalation",
+    "shortcut_tie_or_win": "classify as nuisance-confounded and close preview stock-signal claim",
+    "crop_unstable": "classify as border/date/crop shortcut and close preview stock-signal claim",
+    "permutation_fail": "classify as unidentified and close preview stock-signal claim",
+    "weak_pass": "run the smallest ambiguity-resolving matched-content diagnostic only",
+    "pass": "retain as preview-label evidence only; it still cannot promote a colour operator"
+  },
+  "claim_ceiling": "post-negation preview label identifiability under current BlueNeg archive/scanner/content distribution only; never physical density, calibrated stock response, display operator, S2 transfer or authenticity"
+}

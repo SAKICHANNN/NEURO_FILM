@@ -605,3 +605,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Vision:** 8/8 contact sheets (141 previews) reviewed. No severe glitch was confirmed at contact-sheet scale; full-resolution adjudication was not performed. Date stamps, borders/crops, exposure/scan variance and roll-content-location coupling are material shortcut risks. GA100 is imbalanced 13/1/2 frames across its three rolls.
 - **Propagation:** tracker, board, AGENTS, implementation pointer, acquisition/integrity results, stock-first programme, handoff and machine decisions were corrected. RF1.4 must start with shortcut/null gates; preview-only evidence cannot promote a colour expert.
 - **Handoff:** next ready leaf remains RF1.4 contract freeze and minimum CPU shortcut diagnostics. No GPU, archive expansion, release or paid action is authorized.
+
+## 2026-07-16 - Freeze RF1.4A preview shortcut/identifiability contract
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4A`; preregister the minimum discriminating CPU audit before extracting new image features.
+- **Contract:** physical-roll holdout/votes/permutations; roll-balanced centroids; structural support first; center-crop sensitivity, luma and standardized-colour ablations, and date/content/border shortcut baseline.
+- **Decisions:** GA100 is expected to fail the every-roll support rule (13/1/2 frames) but remains to be evaluated by code. Preview-only evidence can never promote a colour operator. Any null, shortcut or crop failure closes rather than scales the mechanism.
+- **Artifacts:** `configs/real_film_stock_identifiability_v1.json` and `docs/planning/RF1_4_STOCK_IDENTIFIABILITY_CONTRACT.md`.
+- **Next leaf:** implement/test the deterministic evaluator, verify pinned hashes before decode, run twice byte-identically, then propagate the branch result.
