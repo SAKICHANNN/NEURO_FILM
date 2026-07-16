@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf1.0b-connected-four-cell-identifiability-v1",
+  "node": "ULT > RF1 > SF1.0B",
+  "report_output": "outputs/real_film/connected_stock_v1/identifiability_report.json",
+  "cells": [
+    {"cell_id": "commons_ektar100", "source_id": "wikimedia_commons", "film_stock_id": "kodak_ektar_100", "manifest": "outputs/real_film/commons_stock_v1/pixel_download_manifest.json", "manifest_sha256": "3b4bdb465b0b990177bdd36197d6aeeeee73460ee01e4dcf3adffa7091ef9614", "pixel_root": "data/raw/commons_stock_pilot_v1", "expected_files": 26},
+    {"cell_id": "commons_ultramax400", "source_id": "wikimedia_commons", "film_stock_id": "kodak_ultramax_400", "manifest": "outputs/real_film/commons_multi_stock_v1/pixel_download_manifest.json", "manifest_sha256": "3af06556afc564158f99d8cbc34915cf9409ab51c7a5e785d31609dbebcd2565", "pixel_root": "data/raw/commons_multi_stock_pilot_v1", "expected_files": 37},
+    {"cell_id": "yfcc_ektar100", "source_id": "yfcc15m_flickr", "film_stock_id": "kodak_ektar_100", "manifest": "outputs/real_film/yfcc_ektar100_v1/pixel_download_manifest.json", "manifest_sha256": "9ef85792835a577e6523014e46c66949bdfdcd15018af659288d9cda9188360a", "pixel_root": "data/raw/yfcc_ektar100_pilot_v1", "expected_files": 16},
+    {"cell_id": "yfcc_velvia50", "source_id": "yfcc15m_flickr", "film_stock_id": "fujifilm_velvia_50", "manifest": "outputs/real_film/yfcc_velvia50_v1/pixel_download_manifest.json", "manifest_sha256": "6a7d84978bfb70433c03558a5abe0959b71959dc5ff4d12ca34d7f0874ca2011", "pixel_root": "data/raw/yfcc_velvia50_pilot_v1", "expected_files": 25}
+  ],
+  "author_group_aliases": {
+    "svetlov artem": "artem svetlov"
+  },
+  "descriptors": ["rgb_distribution", "luma_distribution", "hog_grayscale", "low_frequency_rgb_4x4", "standardized_rgb_distribution", "geometry_border_source"],
+  "contrasts": [
+    {"contrast_id": "commons_ektar_vs_ultramax", "kind": "stock", "filter_field": "source_id", "filter_values": ["wikimedia_commons"], "label_field": "film_stock_id", "label_values": ["kodak_ektar_100", "kodak_ultramax_400"]},
+    {"contrast_id": "yfcc_ektar_vs_velvia", "kind": "stock", "filter_field": "source_id", "filter_values": ["yfcc15m_flickr"], "label_field": "film_stock_id", "label_values": ["kodak_ektar_100", "fujifilm_velvia_50"]},
+    {"contrast_id": "ektar_commons_vs_yfcc", "kind": "source", "filter_field": "film_stock_id", "filter_values": ["kodak_ektar_100"], "label_field": "source_id", "label_values": ["wikimedia_commons", "yfcc15m_flickr"]}
+  ],
+  "statistics": {"permutations": 499, "permutation_seed": 1701, "bootstrap_iterations": 4000, "bootstrap_seed": 1702},
+  "gates": {
+    "minimum_groups_per_label": 5,
+    "primary_descriptor": "rgb_distribution",
+    "nuisance_control_descriptors": ["luma_distribution", "hog_grayscale", "geometry_border_source"],
+    "minimum_primary_balanced_accuracy": 0.7,
+    "maximum_primary_permutation_p": 0.05,
+    "minimum_delta_vs_nuisance": 0.1,
+    "maximum_hog_control_accuracy": 0.65
+  },
+  "claim_ceiling": "connected four-cell source/content/colour identifiability diagnostic only; no stock response, colour operator, calibration, S1/S2, training, authenticity or release claim"
+}

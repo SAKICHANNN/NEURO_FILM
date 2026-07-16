@@ -806,3 +806,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Integrity / vision:** repeat audit SHA `6a78c1...1bf0`; zero exact/dHash<=4 duplicates; 25% largest UID share. Complete contact sheet has broad content and no severe artifact.
 - **Decision:** pass only as the small Ektar source bridge. Five UIDs is the exact minimum and requires group-aware uncertainty. No operator fitting or stock-response claim.
 - **Handoff:** SF1.0B evaluates the connected four-cell graph with colour, grayscale/content, geometry/source and shuffled-label controls.
+
+## 2026-07-16 - Freeze SF1.0B connected identifiability diagnostic
+
+- **Contract:** 104 hash-verified pixels in four cells. Compare Commons Ektar--UltraMax, YFCC Ektar--Velvia, and same-stock Ektar Commons--YFCC with author-group-centroid leave-one-group-out.
+- **Descriptors / controls:** RGB distribution primary; luma, grayscale HOG and geometry/border nuisance controls; low-frequency RGB and per-image standardized RGB diagnostics. Use 499 count-preserving group-label permutations and 4,000 class-stratified paired group bootstraps.
+- **Gate:** each same-source stock edge needs >=70% balanced accuracy, permutation p<=0.05, >=10 points over the strongest nuisance control with CI above zero, HOG <=65%, and >=5 groups per class.
+- **Boundary:** this is a diagnostic classifier only. It saves no trained model, predicts no render parameters, fits no colour operator and cannot open RGB generation.
+- **Handoff:** verify all tests, commit the frozen contract, run twice and adjudicate every failed check before deciding whether any edge advances.
