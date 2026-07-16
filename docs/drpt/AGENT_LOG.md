@@ -704,3 +704,4 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Selection:** stable uploader round-robin with simultaneous 12-row author and uploader caps, maximum 64/stock. Frozen expectation: Ektar 27, Superia 14, Gold 11.
 - **Risk/change propagation:** 103/105 permissive Superia rows share one author. The pilot may inspect a bounded 14-row sample, but uploader diversity cannot satisfy the learning group gate; no capacity or training is justified by clean pixels alone.
 - **DoD:** deterministic selection/download manifests, SHA/decode/dimension and exact/dHash audits, content/contact-sheet review, byte-identical offline rerun and per-stock fail-closed decision.
+- **Frozen selection evidence:** implementation commit `75e4f4c...`; two byte-identical 52-row manifests, SHA-256 `441eae9b...`, with Ektar/Superia/Gold counts 27/14/11. The downloader refuses to run unless this hash matches the ignored manifest.
