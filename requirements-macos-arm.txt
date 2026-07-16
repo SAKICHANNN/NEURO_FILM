@@ -23,6 +23,7 @@ opencv-python-headless==4.13.0.92
 scikit-image==0.26.0
 rawpy==0.26.1
 pillow==12.1.1
+tifffile==2026.4.11
 
 # --- Tensor operations ---
 einops==0.8.2

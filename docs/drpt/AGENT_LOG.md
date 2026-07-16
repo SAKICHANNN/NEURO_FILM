@@ -871,3 +871,8 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added a pure colour-state claim resolver and embedded its complete decision in render metrics.
 - **Evidence:** known and unknown state unit tests plus three raster script E2Es pass; the full-suite target is 178 tests.
 - **Boundary:** this does not create Reference mode or infer missing colorimetry. A future Reference path still requires explicit evidence gating and separate implementation.
+
+## 2026-07-16 - Declare direct high-precision TIFF dependency
+
+- **Finding:** high-precision FiveK scripts directly import `tifffile`, but both environment lock files obtained it only transitively through scikit-image.
+- **Change:** pinned the locally verified `tifffile==2026.4.11` in Windows and Apple ARM requirements. No environment mutation or pixel behavior changed.
