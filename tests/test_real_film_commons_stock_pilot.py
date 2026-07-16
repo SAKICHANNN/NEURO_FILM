@@ -11,6 +11,7 @@ from src.real_film.commons_stock_pilot import (
     audit_download_manifest,
     build_selection_manifest,
     download_selected_rows,
+    merge_metadata_snapshots,
     normalize_author,
 )
 
@@ -140,3 +141,13 @@ def test_untracked_resume_fails_closed(tmp_path: Path) -> None:
         assert "untracked resumed file" in str(exc)
     else:
         raise AssertionError("expected untracked resume failure")
+
+
+def test_merge_metadata_snapshots_keeps_only_allowed_stocks() -> None:
+    snapshot = _snapshot()
+    merged = merge_metadata_snapshots(
+        [{"categories": snapshot["categories"][:2]}, {"categories": snapshot["categories"][2:]}],
+        allowed_stock_ids=["a", "c"],
+    )
+    assert [row["film_stock_id"] for row in merged["categories"]] == ["a", "c"]
+    assert merged["image_payloads_downloaded_or_decoded"] is False

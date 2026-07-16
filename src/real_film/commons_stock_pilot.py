@@ -143,6 +143,32 @@ def build_selection_manifest(
     }
 
 
+def merge_metadata_snapshots(
+    snapshots: Sequence[Mapping[str, Any]], *, allowed_stock_ids: Sequence[str]
+) -> dict[str, Any]:
+    """Merge only named stock categories from already hash-verified snapshots."""
+    allowed = set(allowed_stock_ids)
+    categories: dict[str, dict[str, Any]] = {}
+    for snapshot in snapshots:
+        for category in snapshot.get("categories", []):
+            stock = str(category["film_stock_id"])
+            if stock not in allowed:
+                continue
+            if stock in categories:
+                raise CommonsStockPilotError(f"duplicate stock across snapshots: {stock}")
+            categories[stock] = dict(category)
+    if set(categories) != allowed:
+        raise CommonsStockPilotError(
+            f"merged snapshot stock mismatch: {sorted(categories)} != {sorted(allowed)}"
+        )
+    return {
+        "schema_version": 1,
+        "merge_policy": "exact allowed stock categories from hash-verified snapshots only",
+        "image_payloads_downloaded_or_decoded": False,
+        "categories": [categories[stock] for stock in sorted(categories)],
+    }
+
+
 def _verify_image_payload(
     payload: bytes,
     minimum_short_dimension: int,
