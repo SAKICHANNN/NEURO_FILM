@@ -72,10 +72,13 @@ def main() -> int:
             "iiprop": "url|size|sha1|user|timestamp|mime|mediatype|extmetadata",
             "iiurlwidth": str(config["api_query"]["thumbnail_url_width_for_future_pilot"]),
         }, config["user_agent"])
-        if "continue" in member_response:
+        continuation = member_response.get("continue", {})
+        if set(continuation) - {"continue", "iicontinue"}:
             raise CommonsStockSourceError(f"category exceeds one frozen page: {category_title}")
         pages = member_response.get("query", {}).get("pages", [])
         normalized = sorted((normalize_file_page(page) for page in pages), key=lambda row: row["title"])
+        if len(normalized) != int(category_page["categoryinfo"]["files"]):
+            raise CommonsStockSourceError(f"category member count mismatch: {category_title}")
         categories.append({
             "film_stock_id": configured["film_stock_id"],
             "category": configured["category"],
