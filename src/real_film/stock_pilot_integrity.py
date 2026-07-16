@@ -91,12 +91,22 @@ def audit_stock_pilot_integrity(
     if int(download_report.get("manifest_external_lane_files", -1)) != 0:
         raise StockPilotIntegrityError("download report reports external lane files")
 
+    if sum(int(row.get("size", -1)) for row in files) != int(
+        acquisition.get("bytes", -2)
+    ):
+        raise StockPilotIntegrityError("acquisition byte total mismatch")
+
     sealed_rolls = {
         str(row["roll_id"])
         for row in roll_rows
         if bool(row.get("contains_official_test_frame"))
     }
     frames_by_id = {str(row["filename"]): row for row in frame_rows}
+    if len(frames_by_id) != len(frame_rows):
+        raise StockPilotIntegrityError("duplicate BlueNeg frame metadata ids")
+    rolls_by_id = {str(row["roll_id"]): row for row in roll_rows}
+    if len(rolls_by_id) != len(roll_rows):
+        raise StockPilotIntegrityError("duplicate BlueNeg roll metadata ids")
     inventory = {str(row["path"]): row for row in files}
     if len(inventory) != len(files):
         raise StockPilotIntegrityError("duplicate acquisition paths")
@@ -124,6 +134,43 @@ def audit_stock_pilot_integrity(
         meta = frames_by_id.get(frame_id)
         if meta is None:
             raise StockPilotIntegrityError(f"missing BlueNeg frame metadata for {frame_id}")
+        roll_id = str(row["roll_id"])
+        source_label = str(row["source_label"])
+        stock_id = str(row["film_stock_id"])
+        lane = str(row["lane"])
+        summary = metadata_report.get("stock_summaries", {}).get(stock_id)
+        if not isinstance(summary, Mapping):
+            raise StockPilotIntegrityError(
+                f"missing stock summary for manifest stock id: {stock_id}"
+            )
+        if str(summary.get("source_label")) != source_label:
+            raise StockPilotIntegrityError(
+                f"stock/source label mismatch for {frame_id}: {stock_id} / {source_label}"
+            )
+        if str(meta.get("film_type")) != source_label:
+            raise StockPilotIntegrityError(
+                f"frame/source label mismatch for {frame_id}: {source_label}"
+            )
+        if str(meta.get("roll_id")) != roll_id or roll_id not in rolls_by_id:
+            raise StockPilotIntegrityError(
+                f"frame/manifest roll mismatch for {frame_id}: {roll_id}"
+            )
+        if str(rolls_by_id[roll_id].get("film_type")) != source_label:
+            raise StockPilotIntegrityError(
+                f"roll/source label mismatch for {roll_id}: {source_label}"
+            )
+        expected_path = {
+            "negative_preview": meta.get("preview_path"),
+            "display_proxy": meta.get("pseudogt_path"),
+        }.get(lane)
+        if expected_path is None or str(expected_path) != remote_path:
+            raise StockPilotIntegrityError(
+                f"lane/path mismatch for {frame_id}: {lane} / {remote_path}"
+            )
+        if lane == "display_proxy" and not bool(meta.get("alignment_available")):
+            raise StockPilotIntegrityError(
+                f"display proxy lacks alignment metadata for {frame_id}"
+            )
         try:
             with Image.open(target) as image:
                 image.verify()
@@ -144,11 +191,11 @@ def audit_stock_pilot_integrity(
             continue
         record = {
             "path": remote_path,
-            "film_stock_id": str(row["film_stock_id"]),
-            "source_label": str(row["source_label"]),
-            "roll_id": str(row["roll_id"]),
+            "film_stock_id": stock_id,
+            "source_label": source_label,
+            "roll_id": roll_id,
             "frame_id": frame_id,
-            "lane": str(row["lane"]),
+            "lane": lane,
             "size": size,
             "sha256": digest,
             "width": int(width),
@@ -195,15 +242,15 @@ def audit_stock_pilot_integrity(
         content_counts = Counter(row["content_cell"] for row in previews)
         location_counts = Counter(row["location"] for row in previews)
         summary = metadata_report.get("stock_summaries", {}).get(stock_id, {})
-        density_ok = len(rolls) >= 3 and len(previews) >= 3
+        preview_descriptor_ok = len(rolls) >= 3 and len(previews) >= 3
         display_ok = bool(summary.get("display_operator_candidate")) and len(proxies) > 0
         # Structural content support: at least two content cells with >=2 preview frames.
         supported_cells = sorted(
             cell for cell, count in content_counts.items() if count >= 2
         )
         structural_content_ok = len(supported_cells) >= 2
-        decision = "density_identifiability_candidate"
-        if not density_ok:
+        decision = "negative_preview_identifiability_candidate"
+        if not preview_descriptor_ok:
             decision = "downgrade_insufficient_rolls_or_frames"
         elif display_ok:
             decision = "display_operator_research_candidate"
@@ -229,15 +276,15 @@ def audit_stock_pilot_integrity(
         }
         eligibility[stock_id] = {
             "decision": decision,
-            "density_identifiability_eligible": density_ok,
+            "negative_preview_identifiability_eligible": preview_descriptor_ok,
             "display_operator_research_eligible": display_ok,
             "structural_content_diversity": structural_content_ok,
             "notes": (
                 "display proxy lane present; still requires RF1.4 stock/content/nuisance gates"
                 if decision == "display_operator_research_candidate"
                 else (
-                    "density/metadata only until a verified display-positive lane exists"
-                    if density_ok
+                    "post-negation 8-bit preview descriptors only; not a physical-density or display-operator lane"
+                    if preview_descriptor_ok
                     else "insufficient independent rolls/frames after sealing"
                 )
             ),
