@@ -12,6 +12,7 @@ from src.real_film.gold_transform_consistency import (
     fit_per_channel_affine,
     fit_seplut17,
     load_paired_frame_samples,
+    operator_from_dict,
     run_whole_roll_evaluation,
 )
 
@@ -85,6 +86,8 @@ def test_seplut_is_strictly_monotone_and_models_nonlinearity() -> None:
     assert np.all(np.diff(seplut.y_knots, axis=1) > 0.0)
     assert np.linalg.det(seplut.affine.matrix) > 0.0
     assert np.mean(np.abs(seplut.apply(source) - target)) < np.mean(np.abs(affine.apply(source) - target))
+    restored = operator_from_dict(seplut.to_dict())
+    assert np.array_equal(restored.apply(source), seplut.apply(source))
 
 
 def test_orientation_repair_is_positive_and_deterministic() -> None:

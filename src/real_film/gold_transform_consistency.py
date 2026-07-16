@@ -123,6 +123,30 @@ class SepLUT17Operator:
         }
 
 
+def operator_from_dict(record: Mapping[str, Any]) -> ColorOperator:
+    """Reconstruct a frozen explicit operator without refitting pixels."""
+    kind = str(record["kind"])
+    if kind == "identity":
+        return IdentityOperator(str(record["working_space"]))
+    if kind == "bounded_affine":
+        return BoundedAffineOperator(
+            np.asarray(record["matrix"], dtype=np.float64),
+            np.asarray(record["bias"], dtype=np.float64),
+            str(record["working_space"]),
+            float(record.get("identity_shrinkage", 0.0)),
+        )
+    if kind == "seplut17_monotone_plus_bounded_ridge_3x3":
+        affine = operator_from_dict(record["affine"])
+        if not isinstance(affine, BoundedAffineOperator):
+            raise GoldTransformConsistencyError("SepLUT affine payload is not affine")
+        return SepLUT17Operator(
+            np.asarray(record["x_knots"], dtype=np.float64),
+            np.asarray(record["y_knots"], dtype=np.float64),
+            affine,
+        )
+    raise GoldTransformConsistencyError(f"unknown operator kind: {kind}")
+
+
 def load_paired_frame_samples(
     *,
     download_root: Path,
