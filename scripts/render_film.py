@@ -228,6 +228,7 @@ def main() -> int:
             "input_decode": {
                 "working_space": working.working_space,
                 "transfer_state": working.transfer_state,
+                "source_transfer_state": working.source_transfer_state,
                 "source_profile_kind": working.source_profile.kind,
                 "source_profile_description": working.source_profile.description,
                 "bit_depth_in": working.bit_depth_in,

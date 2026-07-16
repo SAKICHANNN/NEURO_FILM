@@ -28,6 +28,7 @@ def test_working_image_legacy_adapter_round_trips_srgb_fixture(tmp_path: Path) -
 
     assert working.working_space == "linear_srgb"
     assert working.transfer_state == "display_linear"
+    assert working.source_transfer_state == "display_referred"
     assert np.max(np.abs(adapted.astype(np.int16) - source.astype(np.int16))) <= 1
 
 
@@ -83,6 +84,7 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     metrics = json.loads(output_path.with_suffix(".metrics.json").read_text(encoding="utf-8"))
     assert metrics["input_decode"]["working_space"] == "linear_srgb"
     assert metrics["input_decode"]["transfer_state"] == "display_linear"
+    assert metrics["input_decode"]["source_transfer_state"] == "display_referred"
     assert metrics["input_decode"]["bit_depth_in"] == 8
     assert metrics["input_decode"]["legacy_8bit_adapter"] is True
     assert metrics["output_encode"]["format"] == expected_output_format

@@ -146,6 +146,7 @@ def load_raster_working_image(path: Path) -> WorkingImage:
         pixels=pixels,
         working_space="linear_srgb",
         transfer_state="display_linear",
+        source_transfer_state=inspection.transfer_state,
         source_profile=inspection.source_profile,
         hdr_metadata=inspection.hdr_metadata,
         orientation_applied=True,

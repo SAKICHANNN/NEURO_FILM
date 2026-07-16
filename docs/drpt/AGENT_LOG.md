@@ -857,3 +857,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.
 - **Propagation:** replaced the stale immediate-leaf tail with the retained four pools, exact SF1.0B shortcut evidence, current training/operator prohibition, SHA/S3-bound metadata-only SF1.1 gate and its pass/fail branches.
 - **Boundary:** no experimental result or gate changed; this is authority reconciliation so future agents cannot follow the superseded SF0.5 instruction.
+
+## 2026-07-16 - Preserve pre-decode colour state in WorkingImage
+
+- **Defect:** `WorkingImage.transfer_state` described the post-decode working pixels, so raster `display_referred` versus RAW `scene_linear` source state was lost after ingress.
+- **Implementation:** added a separate typed `source_transfer_state`; raster and RAW loaders populate it from `InputInspection`, and inspection/render provenance records both source and working transfer states.
+- **Evidence:** raster decode, render ingress and Roll2Film CT5 compatibility tests pass (12 targeted; 176 full-suite baseline).
+- **Boundary:** no pixels changed. U1.2 remains open for explicit unknown-state warning/fail-closed mode routing and Reference/Approximation policy.

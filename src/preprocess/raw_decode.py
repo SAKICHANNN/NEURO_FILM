@@ -129,6 +129,7 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
         pixels=pixels,
         working_space="camera_rgb_linear",
         transfer_state="scene_linear",
+        source_transfer_state=inspection.transfer_state,
         source_profile=SourceProfile("raw_metadata", "LibRaw camera metadata"),
         hdr_metadata={},
         orientation_applied=False,

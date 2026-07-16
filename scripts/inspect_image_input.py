@@ -34,6 +34,7 @@ def main() -> int:
             "dtype": str(working.pixels.dtype),
             "working_space": working.working_space,
             "transfer_state": working.transfer_state,
+            "source_transfer_state": working.source_transfer_state,
             "min": float(working.pixels.min()),
             "max": float(working.pixels.max()),
             "mean": float(working.pixels.mean()),

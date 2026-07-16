@@ -86,6 +86,7 @@ class WorkingImage:
     pixels: np.ndarray
     working_space: str
     transfer_state: TransferState
+    source_transfer_state: TransferState
     source_profile: SourceProfile
     hdr_metadata: dict[str, Any]
     orientation_applied: bool
