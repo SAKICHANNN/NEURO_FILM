@@ -312,8 +312,8 @@ def audit_stock_pilot_integrity(
         and not checks["colour_fit_performed"]
     )
     report = {
-        "schema_version": 1,
-        "audit_id": "stock-first-blueneg-four-pilot-integrity-v1",
+        "schema_version": 2,
+        "audit_id": "stock-first-blueneg-four-pilot-integrity-v2",
         "software_commit": software_commit,
         "download_root": str(download_root.as_posix()),
         "acquisition_manifest_id": acquisition.get("manifest_id"),
@@ -331,7 +331,8 @@ def audit_stock_pilot_integrity(
         "border_mask_status": "not_implemented",
         "visual_adjudication_status": "pending Codex vision adjudication",
         "claim_ceiling": (
-            "integrity/support audit only; no stock signal, S2 transfer, "
+            "integrity/support audit only; negative-preview-8bit is a post-negation "
+            "preview, not verified physical density; no stock signal, S2 transfer, "
             "calibration, authenticity or release claim"
         ),
         "file_records": decoded,
