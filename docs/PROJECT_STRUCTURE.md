@@ -53,15 +53,16 @@ to individual scripts.
 src/preprocess/
   types.py                Typed inspection and WorkingImage contracts.
   pipeline.py             Shared raster/RAW inspection and decode entrypoints.
-  raster_decode.py        ICC-aware SDR/guarded TIFF16 decode and legacy sRGB8 adapter.
+  raster_decode.py        ICC-aware SDR/guarded 16-bit decode plus float/legacy sRGB adapters.
   raw_decode.py           Generic LibRaw scene-linear decode.
   color_state.py          Fail-closed output-claim policy.
-  output_encode.py        Profiled sRGB8 and isolated PNG/TIFF16 encoders.
+  output_encode.py        Profiled sRGB8 and true PNG/TIFF16 encoders.
 ```
 
-`WorkingImage` remains the only intended production ingress. High-precision
-encoder availability does not authorize wiring it behind an 8-bit renderer;
-the internal colour path must preserve the claimed precision first.
+`WorkingImage` remains the only intended production ingress. The compatibility
+path stays 8-bit, while explicit PNG/TIFF16 uses the float safe-Lab/effect path
+and quantizes only in `output_encode.py`. Keep future HDR/wide-gamut or tone-map
+work inside these same boundaries rather than adding a parallel renderer.
 
 ## Scripts
 

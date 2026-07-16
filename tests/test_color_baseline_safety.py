@@ -7,7 +7,12 @@ import numpy as np
 from PIL import Image
 
 from scripts.evaluate_render_safety import evaluate
-from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer
+from scripts.pipeline_color_baseline import (
+    load_guardrail_config,
+    load_profile_values,
+    style_transfer,
+    style_transfer_rgb,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,3 +59,24 @@ def test_safe_rich_render_reserves_output_headroom(tmp_path: Path) -> None:
     output.save(after_path, "PNG")
     metrics = evaluate(before_path, after_path)
     assert metrics["clip"]["new_clipped_pixel_count"] == 0
+
+
+def test_pil_wrapper_is_explicit_quantization_of_float_core() -> None:
+    image = synthetic_rgb()
+    stats = {"mean": [52.0, 8.0, -4.0], "std": [18.0, 14.0, 12.0]}
+    kwargs = {
+        "strength": 0.7,
+        "luma_strength": 0.5,
+        "grain": 0.0,
+        "seed": 11,
+        "gamut_safe": True,
+        "output_margin": 4,
+    }
+    wrapped = np.asarray(style_transfer(image, stats, "velvia_50", **kwargs))
+    floating = style_transfer_rgb(
+        np.asarray(image, dtype=np.float32) / 255.0,
+        stats,
+        "velvia_50",
+        **kwargs,
+    )
+    assert np.array_equal(wrapped, np.rint(floating * 255.0).astype(np.uint8))

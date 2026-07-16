@@ -8,6 +8,8 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+import cv2
+import tifffile
 from PIL import Image
 
 from src.preprocess import (
@@ -15,6 +17,7 @@ from src.preprocess import (
     save_srgb16_png,
     save_srgb16_tiff,
     working_image_to_legacy_srgb8,
+    working_image_to_srgb_float,
 )
 
 
@@ -60,6 +63,8 @@ def test_working_image_legacy_adapter_accepts_explicit_linear_srgb_scene_state(t
     adapted = working_image_to_legacy_srgb8(working)
     assert adapted.mode == "RGB"
     assert adapted.size == (2, 2)
+    encoded_float = working_image_to_srgb_float(working)
+    assert encoded_float.dtype == np.float32
 
 
 @pytest.mark.parametrize(
@@ -144,3 +149,64 @@ def test_render_film_e2e_records_tiff_png16_ingress_and_legacy_output_boundary(
     assert metrics["input_decode"]["bit_depth_in"] == 16
     assert metrics["input_decode"]["legacy_8bit_adapter"] is True
     assert metrics["output_encode"]["bit_depth"] == 8
+
+
+@pytest.mark.parametrize("suffix", [".png", ".tiff"])
+def test_render_film_opt_in_float_path_writes_true_srgb16(tmp_path: Path, suffix: str) -> None:
+    rgb = np.linspace(0.01, 0.99, 24 * 32 * 3, dtype=np.float32).reshape(24, 32, 3)
+    input_path = tmp_path / "input16.tiff"
+    output_path = tmp_path / f"output16{suffix}"
+    save_srgb16_tiff(rgb, input_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--output-bit-depth",
+            "16",
+            "--write-metrics",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    if suffix == ".png":
+        decoded = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)[..., ::-1]
+    else:
+        decoded = tifffile.imread(output_path)
+    assert decoded.dtype == np.uint16
+    assert len(np.unique(decoded)) > 256
+    with Image.open(output_path) as rendered:
+        assert rendered.info.get("icc_profile")
+    metrics = json.loads(output_path.with_suffix(".metrics.json").read_text(encoding="utf-8"))
+    assert metrics["input_decode"]["legacy_8bit_adapter"] is False
+    assert metrics["input_decode"]["internal_color_precision"] == "float32"
+    assert metrics["output_encode"]["bit_depth"] == 16
+
+
+def test_render_film_rejects_16bit_jpeg_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "input.png"
+    output_path = tmp_path / "output.jpg"
+    Image.new("RGB", (4, 4), (30, 60, 90)).save(input_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--output-bit-depth",
+            "16",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "16-bit output requires" in completed.stderr
+    assert not output_path.exists()

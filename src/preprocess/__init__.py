@@ -11,7 +11,7 @@ from .output_encode import (
     srgb_icc_profile_fingerprint_sha256,
     srgb_icc_profile_sha256,
 )
-from .raster_decode import working_image_to_legacy_srgb8
+from .raster_decode import working_image_to_legacy_srgb8, working_image_to_srgb_float
 from .types import (
     DecodeWarning,
     InputInspection,
@@ -35,4 +35,5 @@ __all__ = [
     "srgb_icc_profile_fingerprint_sha256",
     "srgb_icc_profile_sha256",
     "working_image_to_legacy_srgb8",
+    "working_image_to_srgb_float",
 ]

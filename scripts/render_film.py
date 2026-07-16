@@ -15,14 +15,22 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
+from scripts.pipeline_color_baseline import (  # noqa: E402
+    load_guardrail_config,
+    load_profile_values,
+    style_transfer,
+    style_transfer_rgb,
+)
 from src.preprocess import (  # noqa: E402
     load_working_image,
     resolve_look_approximation_claim,
     save_srgb8,
+    save_srgb16_png,
+    save_srgb16_tiff,
     srgb_icc_profile_fingerprint_sha256,
     srgb_icc_profile_sha256,
     working_image_to_legacy_srgb8,
+    working_image_to_srgb_float,
 )
 from src.filmfx import (  # noqa: E402
     PhysicalHalationControls,
@@ -85,13 +93,20 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dust", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output-bit-depth", type=int, choices=(8, 16), default=8)
     parser.add_argument("--write-layers", action="store_true")
     parser.add_argument("--write-metrics", action="store_true")
     return parser.parse_args()
 
 
-def save_rgb(rgb: np.ndarray, path: Path) -> str:
-    return save_srgb8(rgb, path)
+def save_rgb(rgb: np.ndarray, path: Path, bit_depth: int = 8) -> str:
+    if bit_depth == 8:
+        return save_srgb8(rgb, path)
+    if path.suffix.casefold() == ".png":
+        return save_srgb16_png(rgb, path)
+    if path.suffix.casefold() in {".tif", ".tiff"}:
+        return save_srgb16_tiff(rgb, path)
+    raise ValueError("16-bit output requires .png, .tif or .tiff")
 
 
 def _arg_or(value, fallback):
@@ -136,13 +151,42 @@ def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Im
     )
 
 
+def build_color_render_float(rgb: np.ndarray, args: argparse.Namespace) -> np.ndarray:
+    stats = json.loads(args.stats.read_text(encoding="utf-8"))
+    profile = load_profile_values(args.profile_config, args.preset, args.style)
+    return style_transfer_rgb(
+        rgb,
+        stats["styles"][args.style],
+        args.style,
+        strength=profile["strength"],
+        luma_strength=profile["luma_strength"],
+        grain=profile["grain"],
+        seed=args.seed,
+        gamut_safe=profile["gamut_safe"],
+        gamut_mode=profile["gamut_mode"],
+        tone_rolloff=profile["tone_rolloff"],
+        shadow_floor_l=profile["shadow_floor_l"],
+        highlight_ceiling_l=profile["highlight_ceiling_l"],
+        preserve_luma_detail_strength=profile["preserve_luma_detail"],
+        chroma_curve_strength=profile["chroma_curve_strength"],
+        output_margin=profile["output_margin"],
+        guardrails=load_guardrail_config(args.guardrails, args.style),
+        dither=profile["dither"],
+    )
+
+
 def main() -> int:
     args = parse_args()
+    if args.output_bit_depth == 16 and args.output.suffix.casefold() not in {".png", ".tif", ".tiff"}:
+        raise ValueError("16-bit output requires .png, .tif or .tiff")
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
-    image = working_image_to_legacy_srgb8(working)
-    color_image = build_color_render(image, args)
-    base = np.asarray(color_image, dtype=np.float32) / 255.0
+    if args.output_bit_depth == 16:
+        base = build_color_render_float(working_image_to_srgb_float(working), args)
+    else:
+        image = working_image_to_legacy_srgb8(working)
+        color_image = build_color_render(image, args)
+        base = np.asarray(color_image, dtype=np.float32) / 255.0
     layers = []
     halation_resolved = None
     halation_metadata = None
@@ -207,7 +251,7 @@ def main() -> int:
     if args.dust > 0:
         layers.append(dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17))
     out = composite_layers(base, layers, output_margin=4)
-    output_format = save_rgb(out, args.output)
+    output_format = save_rgb(out, args.output, args.output_bit_depth)
 
     if args.write_layers:
         layer_dir = args.output.parent / f"{args.output.stem}_layers"
@@ -221,7 +265,10 @@ def main() -> int:
                 save_rgb(layer_on_black(layer), layer_dir / f"{layer.name}_on_black.png")
                 save_rgb(layer_on_white(layer), layer_dir / f"{layer.name}_on_white.png")
     if args.write_metrics:
-        arr = np.rint(out * 255.0).astype(np.uint8)
+        quantization_max = 65535 if args.output_bit_depth == 16 else 255
+        arr = np.rint(out * quantization_max).astype(
+            np.uint16 if args.output_bit_depth == 16 else np.uint8
+        )
         metrics = {
             "input": str(args.input),
             "output": str(args.output),
@@ -239,11 +286,12 @@ def main() -> int:
                 "orientation_applied": working.orientation_applied,
                 "alpha_policy": working.alpha_policy,
                 "warnings": [warning.__dict__ for warning in working.warnings],
-                "legacy_8bit_adapter": True,
+                "legacy_8bit_adapter": args.output_bit_depth == 8,
+                "internal_color_precision": "float32" if args.output_bit_depth == 16 else "legacy_uint8_compatibility",
             },
             "output_encode": {
                 "format": output_format,
-                "bit_depth": 8,
+                "bit_depth": args.output_bit_depth,
                 "transfer": "sRGB",
                 "icc_profile": "embedded standard sRGB",
                 "icc_profile_sha256": srgb_icc_profile_sha256(),

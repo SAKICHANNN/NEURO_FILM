@@ -181,14 +181,14 @@ def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
     return array_bgr[..., ::-1].astype(np.float32) / 65535.0
 
 
-def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
-    """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
+def working_image_to_srgb_float(working: WorkingImage) -> np.ndarray:
+    """Encode known linear-sRGB WorkingImage pixels to float display sRGB."""
     if working.working_space != "linear_srgb" or working.transfer_state not in {
         "display_linear",
         "scene_linear",
     }:
         raise ValueError(
-            "legacy adapter requires linear_srgb with display_linear or scene_linear pixels; "
+            "sRGB adapter requires linear_srgb with display_linear or scene_linear pixels; "
             f"got {working.working_space}/{working.transfer_state}"
         )
     clipped = np.clip(working.pixels, 0.0, 1.0)
@@ -197,6 +197,12 @@ def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
         clipped * 12.92,
         1.055 * np.power(clipped, 1.0 / 2.4) - 0.055,
     )
+    return np.asarray(np.clip(encoded, 0.0, 1.0), dtype=np.float32)
+
+
+def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
+    """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
+    encoded = working_image_to_srgb_float(working)
     return Image.fromarray(np.rint(encoded * 255.0).astype(np.uint8), mode="RGB")
 
 

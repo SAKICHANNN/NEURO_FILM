@@ -15,7 +15,7 @@ input image
 
 Earlier SDXL SDEdit, LoRA and InstructPix2Pix paths are retained as research history, not the default. Local experiments found either visible detail/identity rewriting or an impractical memory/quality trade-off on the 12GB target GPU.
 
-The renderer is currently a safe engineering baseline, not yet a calibrated reproduction of named film stocks. Its main known limitation is an 8-bit PIL RGB input/output path; high-precision `WorkingImage`, RAW/HDR and profile-preserving output exist only partially and are the next foundation work.
+The renderer is currently a safe engineering baseline, not yet a calibrated reproduction of named film stocks. The compatibility default remains 8-bit; an opt-in float32 safe-Lab/effects path can now write true 16-bit sRGB PNG/TIFF. HDR, wide gamut and calibrated scene-to-display mapping remain foundation work.
 
 ## Current CLI
 
@@ -34,7 +34,7 @@ Inspect all current controls with:
 .\.venv\Scripts\python.exe scripts\render_film.py --help
 ```
 
-Current output supports extension-correct 8-bit PNG, JPEG and TIFF with an embedded standard sRGB ICC profile. True 16-bit/high-precision export remains tracked as P0 foundation work.
+Current output supports extension-correct 8-bit PNG, JPEG and TIFF with an embedded standard sRGB ICC profile. Add `--output-bit-depth 16` with a `.png`, `.tif` or `.tiff` output for the opt-in float32-to-uint16 path; 16-bit JPEG fails closed.
 
 ## Ultimate direction
 

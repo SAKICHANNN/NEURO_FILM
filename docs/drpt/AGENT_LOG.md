@@ -1040,3 +1040,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** decoded uint16 output, exact ICC, more than 256 sample levels, invalid-suffix fail-closed, precision provenance, compatibility tests, full CPU suite and real-image vision smoke.
 - **Boundaries:** no JPEG16, HDR/HEIF/wide-gamut expansion, calibrated scene-to-display claim, stock-learning permission or production-default switch.
 - **Handoff:** commit/push the contract before code, then implement the core extraction and CLI integration as separate verified leaves.
+
+## 2026-07-16 - Implement opt-in float safe-Lab to true PNG/TIFF16
+
+- **Implementation:** extracted `style_transfer_rgb` as the float32 deterministic core while retaining the public PIL wrapper as its explicit uint8 quantization. Added a known-state float sRGB adapter and `--output-bit-depth 16`; PNG/TIFF16 now stay float through safe-Lab and procedural compositing and quantize once in the existing encoders.
+- **Compatibility/safety:** default output remains the legacy 8-bit path. JPEG16 and all unsupported suffixes fail before output creation. Metrics record legacy-adapter use, internal colour precision, output bit depth and ICC identity.
+- **Automated evidence:** the PIL wrapper is exactly equal to explicit 8-bit quantization of the float core. PNG/TIFF E2Es decode as uint16, carry ICC and contain more than 256 sample values. Invalid JPEG16 is rejected. Focused suite passes 24 tests; full CPU suite passes 212 tests.
+- **Real-image evidence:** full 6024x4024 Sony ARW renders to a 113,031,104-byte PNG16; decode is uint16 with 63,480 distinct sample values and range [1028,64507]. Metrics confirm `legacy_8bit_adapter=false`, `internal_color_precision=float32` and output depth 16. Downsampled autonomous vision smoke shows no confirmed severe artifact.
+- **Claim boundary:** this remains SDR sRGB and `film-inspired/look-approximation`; generic RAW still lacks calibrated scene-to-display mapping. HDR, HEIF, wide gamut and default-path migration remain open.
