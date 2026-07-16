@@ -785,3 +785,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** Velvia50 joins Ektar100 and UltraMax400 as the third provisional unpaired `S0` pixel candidate. Strong reversal colour, clipping, borders and grain are source characteristics, not glitches. No stock-response or training claim.
 - **Verification:** 159 full tests passed before acquisition; download/audit reports are deterministic and all retained files are hash/decode verified.
 - **Handoff:** `SF1.0` freezes the combined support matrix and runs author-group-held-out stock versus source/content/grayscale/low-frequency-colour/matched-strength/shuffle controls. Operator fitting remains closed.
+
+## 2026-07-16 - Freeze SF1.0A YFCC same-source support scan
+
+- **Structural finding:** the current three pixel stocks are not source-balanced: Ektar/UltraMax are Commons while Velvia50 is YFCC. A direct three-stock classifier can exploit source and must not be interpreted as stock signal.
+- **Prospective contract:** reuse the already frozen 7.35M YFCC15M rows and scan exact `Ektar 100` and `UltraMax/Ultra Max 400` phrases under unchanged CC-BY-2.0, >=8-row, >=5-UID and <=60% dominance gates.
+- **Stop rule:** if neither existing Commons stock gains same-source support, do not fit a three-stock classifier and record source structural confounding. If one or both pass, reverify pixels before constructing the support matrix.
+- **Handoff:** run the local scan twice and propagate the result; no image download or operator fitting in SF1.0A.

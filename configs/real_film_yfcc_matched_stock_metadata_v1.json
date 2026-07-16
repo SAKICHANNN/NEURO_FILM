@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "dataset_id": "sf1.0a-yfcc15m-matched-stock-metadata-v1",
+  "node": "ULT > RF1 > SF1.0A",
+  "source": {
+    "parent_freeze": "sf0.8-yfcc15m-exact-stock-metadata-v1",
+    "parquet_root": "data/raw/yfcc15m_metadata_v1",
+    "parent_manifest_sha256": "b6e507005540769badcf0a52eff3eebbd63415df215f3c7770b8b34f6652d581",
+    "purpose": "prospective same-source support test for the two Commons stocks against existing YFCC Velvia50"
+  },
+  "metadata_freeze": {
+    "download_root": "data/raw/yfcc15m_metadata_v1",
+    "expected_filenames": ["0000.parquet", "0001.parquet", "0002.parquet", "0003.parquet", "0004.parquet", "0005.parquet", "0006.parquet", "0007.parquet", "0008.parquet", "0009.parquet"],
+    "audit_report": "outputs/real_film/yfcc_matched_stock_v1/stock_metadata_audit.json"
+  },
+  "rights_filter": {
+    "allowed_license_urls": ["http://creativecommons.org/licenses/by/2.0/", "https://creativecommons.org/licenses/by/2.0/"],
+    "live_page_and_pixel_license_reverification_required_before_any_pixel_download": true
+  },
+  "stock_patterns": [
+    {"film_stock_id": "kodak_ektar_100", "exact_regex": "(^|[^a-z0-9])(?:kodak )?ektar 100([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_ultramax_400", "exact_regex": "(^|[^a-z0-9])(?:kodak )?ultra ?max 400([^a-z0-9]|$)"}
+  ],
+  "metadata_gates": {
+    "minimum_rows": 8,
+    "minimum_author_uids": 5,
+    "maximum_largest_author_share": 0.6
+  },
+  "claim_ceiling": "prospective YFCC15M same-source support discovery for Ektar100 and UltraMax400 only; no pixels, stock signal, operator fitting, calibration, S1/S2, training or release claim"
+}

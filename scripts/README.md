@@ -77,6 +77,7 @@ files.
 | `audit_real_film_yfcc_stock_metadata.py` | Scan frozen YFCC15M metadata for exact stock phrases under licence and UID gates. |
 | `download_real_film_yfcc_velvia50.py` | Reverify live CC-BY pages and download the bounded Velvia50 pixel pilot. |
 | `audit_real_film_yfcc_velvia50.py` | Run pixel integrity/source gates and render Velvia50 contact sheets. |
+| `audit_real_film_yfcc_matched_stock_metadata.py` | Test prospective YFCC same-source support for Ektar100 and UltraMax400. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
