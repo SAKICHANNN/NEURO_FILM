@@ -696,3 +696,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision/claim:** `metadata_pass_freeze_bounded_pixel_pilot`; grade remains `S0 candidate`. Community labels, unknown roll/process/scanner and content/source confounding block stock response or `S1/S2`.
 - **Handoff:** `SF0.5` may freeze/download only permissive uploader-capped 1600px derivatives for the three exact stocks, <=192 files/512MiB, then run hash/decode/duplicate/content/source-group audits before training.
 - **Propagation clarification:** pixel selection is stricter than the metadata gate: 18 Ektar `Attribution` rows lack a licence URL and are excluded; explicit public-domain usage terms plus the Commons file page are accepted. Strict pre-download availability is Ektar 27, Superia 105 and Gold 11 before source-group caps.
+
+## 2026-07-16 - Freeze SF0.5 Commons pixel pilot
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.5`; bounded real-pixel/source audit before any learning.
+- **DoR/limits:** immutable SF0.4 snapshot; exact stocks only; explicit licence URL except public-domain usage-terms case; 1600px derivatives only; <=192 files/512MiB, <=32MiB each; atomic resume.
+- **Selection:** stable uploader round-robin with simultaneous 12-row author and uploader caps, maximum 64/stock. Frozen expectation: Ektar 27, Superia 14, Gold 11.
+- **Risk/change propagation:** 103/105 permissive Superia rows share one author. The pilot may inspect a bounded 14-row sample, but uploader diversity cannot satisfy the learning group gate; no capacity or training is justified by clean pixels alone.
+- **DoD:** deterministic selection/download manifests, SHA/decode/dimension and exact/dHash audits, content/contact-sheet review, byte-identical offline rerun and per-stock fail-closed decision.
