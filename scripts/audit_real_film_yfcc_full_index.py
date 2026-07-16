@@ -19,6 +19,7 @@ from src.real_film.yfcc_stock_source import atomic_json  # noqa: E402
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=ROOT / "configs" / "real_film_yfcc_full_index_v1.json")
+    parser.add_argument("--report", type=Path, default=None)
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     source_path = ROOT / config["download"]["destination"]
@@ -30,7 +31,8 @@ def main() -> int:
         **source_evidence,
         "download_manifest_sha256": hashlib.sha256(manifest_payload).hexdigest(),
     }
-    digest = atomic_json(ROOT / config["scan"]["report"], report)
+    report_path = args.report or (ROOT / config["scan"]["report_a"])
+    digest = atomic_json(report_path, report)
     print(json.dumps({"matches": len(report["matches"]), "any_gate_passed": report["any_shared_author_gate_passed"], "report_sha256": digest}, indent=2))
     return 0
 

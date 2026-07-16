@@ -860,6 +860,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Fix:** duplicate photo IDs fail the full scan immediately. Exact-stock rows with missing UIDs are retained in a deterministic exclusion ledger but cannot enter stock or overlap gates.
 - **Evidence:** dedicated duplicate and missing-UID regressions pass; targeted SF1.1 count is eight and full-suite target becomes 190 tests.
 
+## 2026-07-16 - Automate repeated SF1.1 adjudication
+
+- **Implementation:** audit CLI can write independent run A/B artifacts; a separate decision CLI requires byte-identical reports, complete SHA-bound lineage, the exact frozen gate set and the ambiguity/missing-UID ledgers.
+- **Branches:** any passing edge opens only `SF1.2` bounded live-rights feasibility; no passing edge closes current public community expansion for stock learning. Both branches explicitly keep operator fitting and pixel download false.
+- **Evidence:** pass, close and report-drift regressions pass; targeted SF1.1 count becomes ten and full-suite target becomes 192 tests.
+
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 
 - **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.

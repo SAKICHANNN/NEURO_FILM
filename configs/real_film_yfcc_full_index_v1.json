@@ -52,7 +52,9 @@
   "scan": {
     "required_columns": ["photoid", "uid", "unickname", "title", "description", "usertags", "pageurl", "downloadurl", "licensename", "licenseurl", "serverid", "farmid", "secret", "secretoriginal", "ext", "marker"],
     "broad_prefilter_terms": ["ektar", "ultramax", "ultra max", "velvia", "pro 400h", "portra", "gold 200", "e100vs"],
-    "report": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit.json"
+    "report_a": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+    "report_b": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_b.json",
+    "decision": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_decision.json"
   },
   "claim_ceiling": "full-YFCC metadata-only exact-stock/shared-author feasibility; no pixels, stock response, colour operator, calibration, S1/S2, training, authenticity or release claim"
 }

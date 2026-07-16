@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import sqlite3
 from pathlib import Path
 
@@ -10,6 +11,7 @@ import requests
 from src.real_film.yfcc_full_index import (
     YfccFullIndexError,
     audit_candidate_rows,
+    decide_repeated_audits,
     download_full_index,
     hash_file_evidence,
     scan_full_index,
@@ -114,6 +116,41 @@ def test_duplicate_photoid_fails_closed() -> None:
     }
     with pytest.raises(YfccFullIndexError, match="duplicate photoid"):
         audit_candidate_rows([row, dict(row)], _config())
+
+
+def _decision_report(passed: bool) -> bytes:
+    report = {
+        "dataset_id": "test",
+        "image_payloads_downloaded_or_decoded": False,
+        "source_evidence": {
+            "sqlite_sha256": "a" * 64,
+            "download_manifest_sha256": "b" * 64,
+        },
+        "candidate_results": {},
+        "ambiguous_multi_stock_row_count": 0,
+        "missing_uid_row_count": 0,
+        "shared_author_results": {
+            "pair": {"metadata_gate_passed": passed},
+        },
+    }
+    return (json.dumps(report, sort_keys=True) + "\n").encode()
+
+
+def test_repeated_audit_decision_opens_only_metadata_preflight() -> None:
+    payload = _decision_report(True)
+    decision = decide_repeated_audits(payload, payload, _config())
+    assert decision["decision"] == "open_bounded_live_rights_preflight"
+    assert decision["passing_gate_ids"] == ["pair"]
+    assert decision["operator_fitting_allowed"] is False
+    assert decision["pixel_download_allowed"] is False
+
+
+def test_repeated_audit_decision_closes_or_rejects_drift() -> None:
+    closed = _decision_report(False)
+    decision = decide_repeated_audits(closed, closed, _config())
+    assert decision["decision"] == "close_current_public_community_expansion_for_stock_learning"
+    with pytest.raises(YfccFullIndexError, match="reports differ"):
+        decide_repeated_audits(closed, _decision_report(True), _config())
 
 
 def test_sqlite_scan_applies_licence_and_photo_filter(tmp_path: Path) -> None:

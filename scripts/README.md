@@ -81,6 +81,7 @@ files.
 | `run_real_film_connected_stock_identifiability.py` | Run the four-cell author-held-out stock/source/content/colour diagnostic. |
 | `download_real_film_yfcc_full_index.py` | Resume and hash the frozen 65.64GB full YFCC100M metadata SQLite. |
 | `audit_real_film_yfcc_full_index.py` | Filter full YFCC metadata for exact stocks and shared-author support. |
+| `decide_real_film_yfcc_full_index.py` | Require two identical full-index audits and apply the SF1.1 pass/close branch. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |

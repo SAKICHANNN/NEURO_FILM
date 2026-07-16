@@ -331,3 +331,54 @@ def scan_full_index(path: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         cursor = connection.execute(query, parameters)
         rows = (dict(zip(columns, row, strict=True)) for row in cursor)
         return audit_candidate_rows(rows, config)
+
+
+def decide_repeated_audits(
+    report_a_payload: bytes, report_b_payload: bytes, config: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Fail closed unless two complete full-index audits are byte-identical."""
+    if report_a_payload != report_b_payload:
+        raise YfccFullIndexError("repeated full-index audit reports differ")
+    report = json.loads(report_a_payload)
+    if report.get("dataset_id") != config["dataset_id"]:
+        raise YfccFullIndexError("audit report dataset drifted")
+    if report.get("image_payloads_downloaded_or_decoded") is not False:
+        raise YfccFullIndexError("audit report violates metadata-only contract")
+    for key in ("candidate_results", "ambiguous_multi_stock_row_count", "missing_uid_row_count"):
+        if key not in report:
+            raise YfccFullIndexError(f"audit report lacks {key}")
+    evidence = report.get("source_evidence", {})
+    for key in ("sqlite_sha256", "download_manifest_sha256"):
+        if not re.fullmatch(r"[0-9a-f]{64}", str(evidence.get(key, ""))):
+            raise YfccFullIndexError(f"audit report source evidence lacks {key}")
+    gate_rows = report.get("shared_author_results")
+    if not isinstance(gate_rows, dict) or set(gate_rows) != {
+        str(row["gate_id"]) for row in config["shared_author_gates"]
+    }:
+        raise YfccFullIndexError("audit report shared-author gate set drifted")
+    passing = sorted(
+        gate_id for gate_id, row in gate_rows.items()
+        if row.get("metadata_gate_passed") is True
+    )
+    opened = bool(passing)
+    return {
+        "schema_version": 1,
+        "decision_id": "sf1.1-full-yfcc-shared-author-decision-v1",
+        "dataset_id": config["dataset_id"],
+        "report_sha256": hashlib.sha256(report_a_payload).hexdigest(),
+        "repeat_sha256_identical": True,
+        "passing_gate_ids": passing,
+        "decision": (
+            "open_bounded_live_rights_preflight"
+            if opened
+            else "close_current_public_community_expansion_for_stock_learning"
+        ),
+        "next_leaf": (
+            "SF1.2 shared-author live-rights feasibility; no pixels until a new frozen scope"
+            if opened
+            else "continue deterministic product foundation; stock learning remains data-gated"
+        ),
+        "operator_fitting_allowed": False,
+        "pixel_download_allowed": False,
+        "claim_ceiling": config["claim_ceiling"],
+    }
