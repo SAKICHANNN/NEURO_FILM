@@ -231,20 +231,15 @@ colour reaches 89.29%/p=0.002. Same-stock Ektar source geometry is
 92.86%/p=0.016. Larger models and colour-operator fitting are therefore
 forbidden on these cells.
 
-The sole open data expansion is `SF1.1`: acquire the public
-65,644,027,904-byte full YFCC100M SQLite metadata index, verify both SHA-256
-and its 7,826-part S3 ETag, and scan permissive exact-stock text without
-downloading pixels. A photo mentioning multiple stocks is ambiguous and
-cannot enter any gate. Continue to a bounded live-rights preflight only if an
-edge has at least 100 exclusive rows and 30 UIDs per stock plus 12 shared
-author UIDs. If no edge passes, close current public community acquisition for
-stock learning; preserve the pools for retrieval/aesthetic/failure evidence
-and continue the deterministic product foundation or a separately approved
-licensed/controlled acquisition programme. If an edge passes, live rights
-must still project at least five usable shared authors before any pixel scope
-is frozen. No GPU job is justified in either branch at this stage.
+`SF1.1` is complete. The exact 65,644,027,904-byte public YFCC100M SQLite
+passes SHA-256 and its 7,826-part S3 ETag; two full scans are byte-identical.
+Ektar100/Velvia50 passes the frozen metadata edge at 780/240 rows, 122/62 UIDs
+and 16 shared UIDs. Ektar/UltraMax fails because UltraMax has only 27 UIDs
+versus the frozen 30. No threshold is changed.
 
-`SF1.1` is upstream of, and unchanged by, the latent-mode hypothesis. A pass
-opens only the frozen live-rights preflight; a failure says the current data
-cannot identify the required connectivity, not that latent modes do not
-exist. Neither branch directly opens LSM clustering or operator fitting.
+The sole open data leaf is now `SF1.2`: request at most 128 Flickr HTML pages,
+never image URLs, and require at least five shared authors with a current CC BY
+2.0 page for both Ektar100 and Velvia50. A pass opens only a separately frozen
+pixel preflight proposal; a failure closes this public shared-author expansion.
+No pixel, training, operator fitting, LSM or GPU work is justified by SF1.1 or
+SF1.2 metadata/rights evidence alone.

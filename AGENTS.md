@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 196 local tests pass; the 104-file connected audit closes both stock-learning edges: global RGB is nonsignificant while low-frequency scene colour/content predicts labels, and Ektar source geometry is 92.86% separable. No training/operator fitting starts; only a metadata-only full-YFCC shared-author expansion remains open |
+| Current evidence | 199 local tests pass; the 104-file connected audit closes current pixels for learning. SF1.1 then passes one full-YFCC metadata-only edge: Ektar100/Velvia50 has 780/240 rows, 122/62 UIDs and 16 shared UIDs. This opens only SF1.2 page-only live-rights feasibility; pixels, training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -197,6 +197,8 @@ YFCC SF1.0A/A2, 2026-07-16: exact YFCC Ektar metadata passes 26/10 while YFCC Ul
 
 SF1.0B, 2026-07-16: both same-source stock edges fail. Commons RGB is 59.82%/p=.280 while 4x4 scene colour is 80.36%/p=.024. YFCC RGB is 65.71%/p=.188 while luma/HOG/geometry are 72--76% and 4x4 scene colour is 89.29%/p=.002. Same-stock Ektar source geometry is 92.86%/p=.016. Current pools are closed for stock learning; larger models are forbidden. A full-YFCC metadata-only shared-author gate is the sole data expansion.
 
+SF1.1, 2026-07-16: the exact 65,644,027,904-byte YFCC100M SQLite passes SHA-256 and its 7,826-part S3 ETag. Two full scans are byte-identical at SHA-256 `19fd20b3...`; Ektar100/Velvia50 passes metadata connectivity with 780/240 rows, 122/62 UIDs and 16 shared UIDs. Ektar/UltraMax fails because UltraMax has only 27 UIDs. This opens SF1.2 bounded page-only live-rights feasibility only; image payloads, operator fitting, training, LSM and stock claims remain forbidden.
+
 FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
@@ -254,7 +256,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed current pools | SF1.0 | Connected diagnostics confirm source/content/scene-colour shortcuts; no operator fitting |
 | Done/diagnostic bridge | SF1.0A/A2 | YFCC Ektar passes metadata/live pixel gates at 16 files/5 UIDs; YFCC UltraMax stops; connected design is available |
 | Done/closed | SF1.0B | Both stock edges fail; Ektar source fingerprint is strong; current pools remain aesthetic/failure evidence only |
-| P0 metadata only | SF1.1 | Freeze/download/filter the 65.64GB public YFCC100M SQLite index for same-author exact-stock support; no pixels |
+| Done/metadata pass | SF1.1 | Full YFCC Ektar/Velvia shared-author gate passes with 16 UIDs; exact source integrity and repeat audit complete; no pixels |
+| P0 page-only | SF1.2 | Verify current CC BY pages for both stocks across shared authors; require at least five usable authors; image requests and fitting forbidden |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

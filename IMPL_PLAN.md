@@ -1,4 +1,4 @@
-# Active stock-first pointer — 2026-07-15
+# Active stock-first pointer — 2026-07-16
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
@@ -33,13 +33,13 @@ Commons metadata rows and passes the source gate for exact Ektar100, Superia
 X-TRA400 and Gold200 categories without downloading pixels. The community
 programme subsequently reached a 104-file connected audit, but both stock
 edges failed because scene colour/content and source geometry dominate. Those
-pixels remain closed for training and operator fitting. The current leaf is
-`SF1.1`: complete the 65,644,027,904-byte YFCC100M SQLite metadata-only
-shared-author gate under its frozen SHA/S3, identity and repeat-audit contract.
-A pass opens live-rights preflight only; a failure closes that public
-expansion. Neither branch opens latent-mode clustering. The failed archive
-matrix is not teacher truth. LOC Phase C remains a sealed historical/unknown
-lane.
+pixels remain closed for training and operator fitting. `SF1.1` now passes one
+metadata-only edge after exact SHA/S3 verification and two byte-identical full
+scans: Ektar100/Velvia50 has 16 shared UIDs. The current leaf is `SF1.2`, a
+max-128-page live-rights feasibility test requiring five authors with a
+current page for both stocks. It requests no images and opens no pixel,
+training, operator or latent-mode permission. The failed archive matrix is not
+teacher truth. LOC Phase C remains a sealed historical/unknown lane.
 
 ---
 

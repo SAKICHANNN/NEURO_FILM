@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "preflight_id": "sf1.2-yfcc-ektar-velvia-shared-author-rights-v1",
+  "node": "ULT > RF0.4 > SF1.2",
+  "input_report": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+  "input_report_sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2",
+  "input_decision": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_decision.json",
+  "input_decision_sha256": "34254d047c56820286aec03dd08b178f9a30afa1dc2e479776ce3bf167549e85",
+  "passing_gate_id": "ektar_velvia",
+  "left_stock_id": "kodak_ektar_100",
+  "right_stock_id": "fujifilm_velvia_50",
+  "expected_support": {
+    "shared_author_uids": 16,
+    "exclusive_candidate_rows": 154
+  },
+  "selection": {
+    "algorithm": "shared UID, then stock order [kodak_ektar_100,fujifilm_velvia_50], then numeric photoid; stop a UID-stock arm at first live-rights pass or after four candidates",
+    "maximum_candidates_per_stock_per_author": 4,
+    "maximum_page_requests": 128,
+    "image_urls_requested": false
+  },
+  "process_contamination_exclusions": [
+    "cross[ -]?process|crossprocess|xpro|x-process|c41\\s*(?:as|in)\\s*e6",
+    "\\bhdr\\b|tone[ -]?map",
+    "multiple[ -]?exposure|double[ -]?exposure",
+    "rodinal|black[ -]?(?:and|&)\\s*white|\\bb/?w\\b"
+  ],
+  "live_rights": {
+    "required_snapshot_license_url": "http://creativecommons.org/licenses/by/2.0/",
+    "required_page_regex": "creativecommons\\.org/licenses/by/2\\.0/",
+    "page_status_200_required": true,
+    "required_content_type_prefix": "text/html",
+    "maximum_html_bytes": 2097152,
+    "licence_downgrade_missing_or_oversize_page_rejects_candidate": true
+  },
+  "request_limits": {
+    "timeout_seconds": 60,
+    "request_retries": 2,
+    "retry_backoff_seconds": 2,
+    "request_interval_seconds": 1.0
+  },
+  "decision_gates": {
+    "minimum_usable_shared_authors": 5,
+    "usable_author_requires_live_page_for_each_stock": true
+  },
+  "report": "outputs/real_film/yfcc100m_shared_author_rights_v1/preflight_report.json",
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "bounded page-only live-rights feasibility for shared-author Ektar100/Velvia50 metadata; no pixels, stock response, operator, latent mode, calibration, S1/S2, training, authenticity or release claim"
+}

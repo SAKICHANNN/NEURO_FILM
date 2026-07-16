@@ -217,16 +217,17 @@ lane; it cannot promote RF nodes.
 
 ## 8. Nearest ready leaves
 
-Two non-substitutable leaves are ready:
+The named-stock data mainline has advanced through SF1.1. The exact full-YFCC
+metadata index passes SHA/S3 integrity and two byte-identical scans;
+Ektar100/Velvia50 has 16 shared UIDs and opens only `SF1.2`. The current P0 leaf
+is a bounded page-only live-rights check requiring at least five authors with a
+current CC BY page for each stock. It requests no image URLs and cannot open
+training, operator fitting or LSM mode discovery by itself.
 
-1. `RF0.4` (named-stock P0): build the authoritative stock-data comparison and
-   select no more than 2-4 first pilots only after label, content, roll/source,
-   nuisance, rights, size and evidence-grade gates pass. This is the nearest
-   leaf that advances the corrected Ultimate success condition.
-2. `RF0.3` (historical auxiliary): preserve the 258 already downloaded FSA/OWI
-   derivatives and defer further acquisition while named-stock P0 advances.
-   Its output remains `historical-film/unknown-stock` and never substitutes
-   for `RF0.4`.
+The historical sibling remains unchanged: preserve the 258 already downloaded
+FSA/OWI derivatives and defer further acquisition while named-stock P0
+advances. Its output remains `historical-film/unknown-stock` and never
+substitutes for a named-stock leaf.
 
 Do not fit a colour expert on either branch until its own RF1 gate is frozen and
 passed. FILM-R acquisition and its family/content stop are already complete.

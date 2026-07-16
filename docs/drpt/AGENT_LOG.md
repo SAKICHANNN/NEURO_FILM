@@ -955,3 +955,14 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Prevention:** downloader, bounded repair and audit CLIs now share an atomic fail-closed dataset lock. A surviving lock requires process inspection before manual removal; this prevents two processes from mutating or reading the SQLite during a write.
 - **Verification:** 13 focused SF1.1/repair tests and the complete CPU suite pass (`199 passed`). Python compile checks pass. The first full metadata audit is running; no SF1.1 pass/fail branch is claimed until two byte-identical reports and the frozen decision exist.
 - **Files:** `src/real_film/yfcc_full_index.py`, the download/audit/repair CLIs, script index, focused tests and this log. Existing data, frozen config/gates and prior reports remain unchanged.
+
+## 2026-07-16 - Pass SF1.1 metadata connectivity and freeze SF1.2 rights preflight
+
+- **Node/parent goal:** `ULT > RF0.4 > SF1.1/SF1.2`; complete the exact full-YFCC metadata gate and freeze the only allowed next branch before live-page access.
+- **Source integrity:** 65,644,027,904-byte SQLite SHA-256 `dc373975...83a1c`; expected 7,826-part S3 ETag; download manifest SHA-256 `39563843...b560c`.
+- **Repeat evidence:** audit A/B are byte-identical at SHA-256 `19fd20b3...3723c2` and retain 2,441 exclusive exact-stock rows, three excluded ambiguous multi-stock rows and zero missing-UID stock rows. A used the pre-lock process image at `80f80bf`; B used `7fa5ed4`; the scan/filter implementation is identical and the latter only adds the outer process lock.
+- **Gate result:** Ektar100/Velvia50 passes with 780/240 rows, 122/62 UIDs and 16 shared UIDs. Ektar/UltraMax fails despite 13 shared UIDs because UltraMax has 27 UIDs versus the frozen minimum 30. No threshold changes.
+- **Decision:** `open_bounded_live_rights_preflight`; decision SHA-256 `34254d04...9e85`. `operator_fitting_allowed=false` and `pixel_download_allowed=false` remain explicit. This is metadata connectivity only, not stock identifiability or LSM eligibility.
+- **SF1.2 freeze:** at most 128 sequential Flickr HTML page requests across the 16 shared authors and two stocks, maximum four candidates per author/stock arm. A usable author needs a live CC BY 2.0 page for each stock; at least five are required. No image/download URL may be requested and no HTML body is retained.
+- **Files:** `docs/REAL_FILM_YFCC_FULL_INDEX_RESULTS.md`, `configs/real_film_yfcc_shared_author_rights_v1.json`, `docs/planning/SF1_2_YFCC_SHARED_AUTHOR_RIGHTS_CONTRACT.md` and current authority propagation.
+- **Handoff:** commit/push the contract before network access, then implement/test the bounded page-only preflight and execute it once. Pass opens only a separately frozen pixel proposal; fail closes this public shared-author expansion. Ultimate remains active in either branch.

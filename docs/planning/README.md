@@ -15,6 +15,9 @@ Current strategic plan:
 - `LATENT_STOCK_MODE_PROGRAM_2026.md` - conditional `H-LSM-1` programme under
   stock-first: observed/latent epistemic boundary, formal `K=1` branch,
   LSM0-LSM8 gates and no-current-mode claim ceiling.
+- `SF1_2_YFCC_SHARED_AUTHOR_RIGHTS_CONTRACT.md` - current bounded page-only
+  Ektar100/Velvia50 shared-author live-rights gate after SF1.1 metadata pass;
+  image requests and operator fitting remain forbidden.
 - `../data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` - authoritative stock label
   grades, nested nuisance schema, separate named/historical coverage and
   current candidate ledger.

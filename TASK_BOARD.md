@@ -69,7 +69,8 @@
 | 1n | SF1.0A | YFCC same-source support | complete | Ektar 26/10 passes; UltraMax 16/5 but 68.75% dominance fails; connected bridge possible |
 | 1o | SF1.0A2 | YFCC Ektar pixel bridge | complete: diagnostic | 16 files/5 UIDs; live rights, zero duplicates and vision pass; exact minimum group warning |
 | 1p | SF1.0B | Connected-design nuisance identifiability | complete: closed | RGB fails; scene colour/content/source controls dominate; no operator fitting |
-| 1q | SF1.1 | Full YFCC shared-author metadata | ready, P0 metadata | 65.64GB SQLite only; exact stock/shared UID stop rules; no pixels |
+| 1q | SF1.1 | Full YFCC shared-author metadata | complete: one metadata edge passes | 65.64GB SHA/S3 verified; repeat-identical scans; Ektar/Velvia 16 shared UIDs; no pixels |
+| 1q2 | SF1.2 | Shared-author live-rights feasibility | ready, P0 page-only | max 128 HTML pages; need five authors live for both stocks; image requests/fitting forbidden |
 | 1r | LSM0 | Freeze within-stock latent-mode ontology and epistemic contract | complete after propagation | hypothesis only; observed/latent ledgers separate; no stock has proved multiple modes |
 | 1s | LSM1 | Build per-stock data/connectivity feasibility decisions | data-gated; current pools ineligible | no clustering/training; SF1.1 remains an unchanged upstream metadata gate |
 | 1t | LSM2-LSM8 | Residual/operator identifiability, mode existence, fixed bank, Oracle, routing and product validation | conditional | requires full stock/connectivity/identifiability/pixel-rights pass; K=1/no Oracle/severe artifact closes routing |
@@ -124,4 +125,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: complete the in-progress `SF1.1` public full-YFCC metadata-only shared-author gate; LSM0/LSM1 is a conditional hypothesis subtree and opens no training; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: `SF1.2` page-only Ektar/Velvia shared-author live-rights feasibility; LSM0/LSM1 remains data-gated and opens no training; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
