@@ -24,7 +24,9 @@ must snapshot category revision IDs/timestamps and every returned row, then all
 scientific audits rerun offline from that immutable snapshot. Each category
 uses at most two API requests: one category revision/count request and one
 single-page file/imageinfo request. A future 1600px derivative URL may be
-recorded, but no image bytes are fetched here.
+recorded, but no image bytes are fetched here. Unrelated per-file category tags
+are intentionally excluded because their pagination is not part of the stock
+membership or rights contract.
 
 Primary pages:
 

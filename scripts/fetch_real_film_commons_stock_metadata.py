@@ -68,7 +68,7 @@ def main() -> int:
             "action": "query", "format": "json", "formatversion": "2",
             "generator": "categorymembers", "gcmtitle": category_title,
             "gcmtype": "file", "gcmlimit": "500", "gcmsort": "sortkey",
-            "prop": "imageinfo|categories", "cllimit": "max",
+            "prop": "imageinfo",
             "iiprop": "url|size|sha1|user|timestamp|mime|mediatype|extmetadata",
             "iiurlwidth": str(config["api_query"]["thumbnail_url_width_for_future_pilot"]),
         }, config["user_agent"])
