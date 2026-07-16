@@ -1032,3 +1032,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Claim boundary:** add a durable `generic_raw_display_mapping` warning: the adapter gamma-encodes linear-sRGB RAW without a calibrated scene-to-display tone map. Output remains Style-safe `film-inspired/look-approximation`; calibrated Reference remains false.
 - **Verification:** 19 focused preprocessing/render-ingress tests pass. A real 24,969,216-byte Sony ARW renders end to end to a 27,609,485-byte ICC-tagged PNG with recorded 16-bit input, scene-linear source/working state, 8-bit output and bounds [4,251]. Autonomous visual inspection finds no confirmed severe artifact.
 - **Structure:** the change stays inside the existing `src/preprocess/` colour-state boundary and adds no parallel RAW path. The explicit legacy adapter remains a named debt; U1.3 high-precision integration is still open.
+
+## 2026-07-16 - Freeze the U1.3A high-precision render contract
+
+- **Problem:** uint16 PNG/TIFF encoders exist, but safe-Lab currently quantizes at both its input adapter and return boundary. Exposing a 16-bit flag without removing those boundaries would only repackage 8-bit pixels.
+- **Design:** preserve the default compatibility path, extract a pixel-equivalent float safe-Lab core, add a known-state float sRGB adapter and allow explicit 16-bit PNG/TIFF encoding only after float procedural compositing.
+- **Gates:** decoded uint16 output, exact ICC, more than 256 sample levels, invalid-suffix fail-closed, precision provenance, compatibility tests, full CPU suite and real-image vision smoke.
+- **Boundaries:** no JPEG16, HDR/HEIF/wide-gamut expansion, calibrated scene-to-display claim, stock-learning permission or production-default switch.
+- **Handoff:** commit/push the contract before code, then implement the core extraction and CLI integration as separate verified leaves.
