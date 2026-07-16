@@ -876,3 +876,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 - **Finding:** high-precision FiveK scripts directly import `tifffile`, but both environment lock files obtained it only transitively through scikit-image.
 - **Change:** pinned the locally verified `tifffile==2026.4.11` in Windows and Apple ARM requirements. No environment mutation or pixel behavior changed.
+
+## 2026-07-16 - Add true 16-bit RGB TIFF output primitive
+
+- **Implementation:** added a fail-closed `.tif/.tiff` encoder that quantizes finite display-sRGB floats directly to uint16 RGB, writes contiguous TIFF samples and embeds the exact standard sRGB ICC tag.
+- **Evidence:** `tifffile` reads back an exactly equal uint16 array and the embedded ICC SHA matches the renderer profile hash; non-TIFF extensions are rejected. The full-suite target becomes 180 tests.
+- **Boundary:** this is an encoder primitive only. It is deliberately not exposed through the current legacy renderer because that renderer already quantizes its colour stage to 8-bit; 16-bit renderer integration and PNG16 remain open.

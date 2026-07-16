@@ -5,9 +5,10 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+import tifffile
 from PIL import Image
 
-from src.preprocess import save_srgb8, srgb_icc_profile_sha256
+from src.preprocess import save_srgb8, save_srgb16_tiff, srgb_icc_profile_sha256
 
 
 @pytest.mark.parametrize(
@@ -36,3 +37,19 @@ def test_save_srgb8_rejects_unsupported_extension_and_nonfinite_values(tmp_path:
     rgb[0, 0, 0] = np.nan
     with pytest.raises(ValueError, match="non-finite"):
         save_srgb8(rgb, tmp_path / "render.png")
+
+
+def test_save_srgb16_tiff_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> None:
+    rgb = np.linspace(0.0, 1.0, 8 * 10 * 3, dtype=np.float32).reshape(8, 10, 3)
+    path = tmp_path / "render.tiff"
+    assert save_srgb16_tiff(rgb, path) == "TIFF"
+    expected = np.rint(rgb * 65535.0).astype(np.uint16)
+    assert np.array_equal(tifffile.imread(path), expected)
+    with tifffile.TiffFile(path) as image:
+        profile = bytes(image.pages[0].tags[34675].value)
+    assert hashlib.sha256(profile).hexdigest() == srgb_icc_profile_sha256()
+
+
+def test_save_srgb16_tiff_rejects_non_tiff_extension(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="requires a .tif"):
+        save_srgb16_tiff(np.zeros((2, 3, 3), dtype=np.float32), tmp_path / "render.png")
