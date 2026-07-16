@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "decision_id": "rf1.4b1-gold100-display-transform-consistency-v1",
+  "node": "ULT > RF1.4 > RF1.4B1",
+  "decision": "metric_and_visual_pass_simple_matrix_preferred",
+  "evaluation_software_commit": "81938b4718dbc0570b305fa473631e8a9a5daf19",
+  "visual_renderer_commit": "6723f8dcb43c7fe7e5d3624047949efca67798ba",
+  "report": "outputs/real_film/stock_pilots_v1/rf1_4b1/report.json",
+  "report_sha256": "f1771c6b6c509b2489b00fdb1478a2b3a4cf3e05915b068296851cf0ba1a488a",
+  "byte_identical_evaluation_runs": 2,
+  "visual_manifest": "outputs/real_film/stock_pilots_v1/rf1_4b1/visual/manifest.json",
+  "visual_manifest_sha256": "7f270a153b59a2112b8d073fb72584bb7bc179e90147938cd5021fcbdad0e969",
+  "metric_result": {
+    "rolls": 6,
+    "frames": 47,
+    "channel_affine_mean_delta_e76": 8.052181346225673,
+    "matrix_affine_mean_delta_e76": 5.3071751063571515,
+    "seplut17_matrix_mean_delta_e76": 5.379995108122221,
+    "seplut_relative_improvement_over_channel_affine": 0.3318586757060552,
+    "matrix_relative_improvement_over_channel_affine": 0.3409021880953039,
+    "seplut_relative_change_vs_matrix": -0.013721047507522923,
+    "rolls_seplut_improved_over_channel_affine": 6,
+    "rolls_seplut_beating_median_wrong_roll": 6,
+    "bootstrap_absolute_improvement_ci95": [2.2431477745992763, 3.1441149698551967],
+    "median_seplut_delta_e76_from_identity": 9.66519805561045,
+    "seplut_clip_fraction_increase": -0.02465026664030401
+  },
+  "visual_adjudication": {
+    "evidence_class": "autonomous_codex_vision",
+    "roll_contact_sheets_reviewed": 6,
+    "full_resolution_risk_strips_reviewed": 3,
+    "confirmed_severe_artifact": false,
+    "visible_global_style_change": true,
+    "geometry_or_texture_rewrite_possible_by_operator": false,
+    "notes": "No added banding, colour blocks, seams, red speckles, geometry damage or texture rewrite was confirmed. Existing flare, exposure and archive-scan defects remain source/target properties. Matrix and SepLUT renders are visually near-indistinguishable at review scale."
+  },
+  "selected_operator_class": "bounded_ridge_3x3_affine",
+  "seplut_status": "retained_as_nonwinning_control; extra nonlinear capacity is not justified",
+  "next_leaf": "RF2.S0 freeze an all-six-roll matrix fit and falsify its bounded Look-Approximation transplant on the existing digital gold/stress set against matched simple-enhancement controls",
+  "claim_ceiling": "repeatable BlueNeg Kodak Gold 100-5 archive preview-to-display-proxy chain mapping; not isolated emulsion response, calibrated stock, digital-to-film ground truth, authenticity, S2 transfer or commercial release evidence"
+}

@@ -650,3 +650,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** SepLUT must beat simple affine by 5%, improve 5/6 rolls, have positive lower cluster bound, beat median wrong-roll on 4/6, create visible Delta E>=3 and stay within clipping/finite/monotonicity limits.
 - **Visual branch:** full-resolution contact sheets and severe-artifact/style adjudication occur only after all metric gates pass.
 - **Claim boundary:** at most a BlueNeg Gold100 archive print/scan display-chain operator; never isolated emulsion response, calibration, authenticity or S2.
+
+## 2026-07-16 - Pass RF1.4B1 and select the simpler Gold archive-display matrix
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4B1`; implement and execute the frozen whole-roll paired-transform test, then perform the mandatory visual gate.
+- **Skills:** `dev-research-reliability` primary writer; router, AI/ML, scientific research, DRPT-BI, agent-log and structure disciplines as read-only governance.
+- **Engineering evidence:** evaluator commit `81938b4...`; 139 tests pass. Two 47-pair/six-roll evaluations are byte-identical, report SHA-256 `f1771c6b...`. Visual renderer commit `6723f8d...` replays report parameters without refitting and emits 47 full-resolution strips plus six roll sheets, manifest SHA-256 `7f270a15...`.
+- **Metric result:** SepLUT passes all preregistered gates: 33.19% better than per-channel affine, 6/6 improved rolls, 6/6 beat median wrong roll, cluster interval `[+2.2431,+3.1441]`, style Delta E 9.665 and no sampled clipping. However, bounded ridge 3x3 affine is simpler and better overall (5.3072 versus 5.3800 Delta E76) and on four of six roll point estimates.
+- **Visual result:** six contact sheets and three full-resolution risk strips show no confirmed added banding, posterization, colour blocks, red speckles, seams, geometry damage or texture rewrite. Existing archive flare/exposure/scan defects remain nuisance evidence. This is autonomous Codex vision, not owner/population preference.
+- **Decision/propagation:** `metric_and_visual_pass_simple_matrix_preferred`. Extra SepLUT capacity is not justified. This establishes only a repeatable BlueNeg Gold archive preview-to-display-proxy mapping, not emulsion response, digital-to-film truth, authenticity or S2.
+- **Handoff:** open `RF2.S0`: freeze an all-six-roll matrix fit and falsify its transplant on the existing digital gold/stress set under Look-Approximation-only labeling with matched simple controls and severe-artifact/style gates. No GPU or new download is justified.

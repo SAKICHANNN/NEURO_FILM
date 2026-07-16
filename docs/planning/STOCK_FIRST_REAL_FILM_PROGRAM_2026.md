@@ -183,10 +183,11 @@ zero cross-frame dHash≤4 pairs after fail-closed manifest/metadata cross-check
 All eight contact sheets were reviewed and expose substantial shortcut risk.
 See `docs/REAL_FILM_STOCK_PILOT_INTEGRITY_RESULTS.md`.
 
-`RF1.4A` is complete and closes preview-only stock learning. GA100/Konica fail
-structural support; the NPH400/Gold100 comparison gives primary roll accuracy
-0.727, permutation p=0.191 and a stronger 0.909 nuisance shortcut. The next
-`RF1.4B0` then passes all 47 official bbox/proxy pairs across six rolls without
-colour fitting. The next leaf is `RF1.4B1`: freeze Gold100 display-transform
-consistency, simple-global and wrong-roll controls. No GPU job is justified at
-SF0/SF1.
+`RF1.4A` closes preview-only stock learning. GA100/Konica fail structural
+support; NPH400/Gold100 gives primary roll accuracy 0.727, permutation p=0.191
+and a stronger 0.909 nuisance shortcut. `RF1.4B0` passes all 47 official
+bbox/proxy pairs across six rolls. `RF1.4B1` then passes every frozen metric
+and visual gate for the archive preview-to-display chain, but bounded 3x3
+affine (5.307 Delta E76) slightly beats SepLUT17+3x3 (5.380). The next leaf is
+`RF2.S0`, a fail-closed transplant test on existing digital gold/stress images
+under a Look-Approximation-only claim. No GPU job is justified.
