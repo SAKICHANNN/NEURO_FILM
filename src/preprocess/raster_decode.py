@@ -62,6 +62,14 @@ def _hdr_metadata(image: Image.Image) -> dict[str, Any]:
     return keys
 
 
+def _png_bit_depth(path: Path) -> int:
+    with path.open("rb") as handle:
+        header = handle.read(26)
+    if len(header) < 26 or not header.startswith(b"\x89PNG\r\n\x1a\n") or header[12:16] != b"IHDR":
+        raise ValueError("invalid PNG IHDR")
+    return int(header[24])
+
+
 def inspect_raster(path: Path) -> InputInspection:
     warnings: list[DecodeWarning] = []
     try:
@@ -86,6 +94,11 @@ def inspect_raster(path: Path) -> InputInspection:
                         bit_depth = int(samples[0])
                 except (KeyError, OSError, tifffile.TiffFileError, TypeError, ValueError):
                     warnings.append(DecodeWarning("tiff_bit_depth_unknown", "TIFF BitsPerSample could not be read."))
+            elif image.format == "PNG":
+                try:
+                    bit_depth = _png_bit_depth(path)
+                except (OSError, ValueError):
+                    warnings.append(DecodeWarning("png_bit_depth_unknown", "PNG IHDR bit depth could not be read."))
             return InputInspection(
                 path=path,
                 exists=True,
@@ -145,6 +158,23 @@ def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
     return array.astype(np.float32) / 65535.0
 
 
+def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
+    import cv2
+
+    array_bgr = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+    if array_bgr is None or array_bgr.dtype != np.uint16 or array_bgr.ndim != 3 or array_bgr.shape[2] != 3:
+        raise ValueError("high-precision PNG ingress requires contiguous uint16 RGB")
+    if inspection.orientation not in {None, 1}:
+        raise ValueError("high-precision PNG orientation handling is not implemented")
+    with Image.open(path) as image:
+        profile = bytes(image.info.get("icc_profile") or b"")
+    if profile and hashlib.sha256(profile).hexdigest() != srgb_icc_profile_sha256():
+        raise ValueError("16-bit PNG embedded ICC conversion is not implemented for this profile")
+    if inspection.source_profile.kind == "icc" and not profile:
+        raise ValueError("PNG ICC inspection/decode mismatch")
+    return array_bgr[..., ::-1].astype(np.float32) / 65535.0
+
+
 def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
     """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
     if working.working_space != "linear_srgb" or working.transfer_state != "display_linear":
@@ -168,6 +198,9 @@ def load_raster_working_image(path: Path) -> WorkingImage:
         raise ValueError(f"Unsupported raster input: {path}")
     if inspection.format_name == "TIFF" and inspection.bit_depth == 16:
         arr = _load_srgb16_tiff(path, inspection)
+        alpha_policy = "absent"
+    elif inspection.format_name == "PNG" and inspection.bit_depth == 16:
+        arr = _load_srgb16_png(path, inspection)
         alpha_policy = "absent"
     else:
         with Image.open(path) as raw_image:

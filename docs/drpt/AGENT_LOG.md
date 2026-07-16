@@ -903,3 +903,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** TIFF inspection now reads `BitsPerSample`; uint16 RGB uses tifffile directly. Exact runtime sRGB ICC is accepted, unprofiled files preserve samples under an explicit assumed-sRGB warning, non-sRGB/unknown embedded profiles and unsupported orientation/layout fail closed.
 - **Evidence:** profiled TIFF16 matches independently computed linear-sRGB values within 1e-7; unprofiled TIFF16 retains more than 8 sample levels; an unknown embedded profile is rejected. Full-suite target becomes 185 tests.
 - **Boundary:** this is high-precision ingress only. The active style renderer still crosses the explicit sRGB8 adapter, so no high-precision end-to-end claim is made.
+
+## 2026-07-16 - Preserve 16-bit RGB PNG raster ingress
+
+- **Implementation:** PNG IHDR now supplies the actual bit depth; PNG16 uses OpenCV unchanged-sample decode, restores RGB order and validates orientation/layout plus the exact supported sRGB ICC.
+- **Evidence:** profiled PNG16 matches independently computed linear-sRGB values within 1e-7, unprofiled PNG16 retains uint16 levels with an explicit assumed-sRGB warning, and an unknown embedded ICC fails closed. Full-suite target becomes 188 tests.
+- **Boundary:** high-precision ingress/egress primitives are now symmetric for PNG/TIFF, but the legacy style stage still prevents an end-to-end high-precision claim.
