@@ -253,7 +253,7 @@ Restrictions:
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
 | U1.1 | in progress | `render_film` consumes `WorkingImage` | U0.4 | Production ingress uses `load_working_image` and records decode provenance; JPEG/PNG/TIFF script-level E2E fixtures pass. RAW E2E and removal of the explicit legacy sRGB8 adapter remain pending until U1.3. |
-| U1.2 | in progress: source state retained | `scene/display/unknown` state and Reference/Approximation policy | U1.1 | `WorkingImage` now keeps source and post-decode transfer states separately and metrics round-trip them. Unknown-state policy/mode routing remains pending. |
+| U1.2 | in progress: approximation policy pass | `scene/display/unknown` state and Reference/Approximation policy | U1.1 | Source/post-decode states round-trip separately. Current renderer always labels `film-inspired/look-approximation`; unknown fails closed explicitly and calibrated Reference is false. A future evidence-gated Reference mode remains unimplemented. |
 | U1.3 | in progress: sRGB8 pass | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | PNG/JPEG/TIFF extensions now select real encodings and embed standard sRGB ICC; format/profile/fail-closed tests pass. True 16-bit export remains pending. |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |
 | U1.5 | pending | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | Fixtures for supported/unsupported variants |

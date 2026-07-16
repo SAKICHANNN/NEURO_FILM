@@ -87,6 +87,9 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     assert metrics["input_decode"]["source_transfer_state"] == "display_referred"
     assert metrics["input_decode"]["bit_depth_in"] == 8
     assert metrics["input_decode"]["legacy_8bit_adapter"] is True
+    assert metrics["output_claim"]["output_label"] == "film-inspired"
+    assert metrics["output_claim"]["color_state_policy"] == "look_approximation_only"
+    assert metrics["output_claim"]["calibrated_reference_allowed"] is False
     assert metrics["output_encode"]["format"] == expected_output_format
     assert metrics["output_encode"]["bit_depth"] == 8
     assert metrics["output_encode"]["transfer"] == "sRGB"

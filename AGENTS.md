@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 176 local tests pass; the 104-file connected audit closes both stock-learning edges: global RGB is nonsignificant while low-frequency scene colour/content predicts labels, and Ektar source geometry is 92.86% separable. No training/operator fitting starts; only a metadata-only full-YFCC shared-author expansion remains open |
+| Current evidence | 178 local tests pass; the 104-file connected audit closes both stock-learning edges: global RGB is nonsignificant while low-frequency scene colour/content predicts labels, and Ektar source geometry is 92.86% separable. No training/operator fitting starts; only a metadata-only full-YFCC shared-author expansion remains open |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.

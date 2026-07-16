@@ -864,3 +864,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added a separate typed `source_transfer_state`; raster and RAW loaders populate it from `InputInspection`, and inspection/render provenance records both source and working transfer states.
 - **Evidence:** raster decode, render ingress and Roll2Film CT5 compatibility tests pass (12 targeted; 176 full-suite baseline).
 - **Boundary:** no pixels changed. U1.2 remains open for explicit unknown-state warning/fail-closed mode routing and Reference/Approximation policy.
+
+## 2026-07-16 - Add fail-closed current-renderer claim policy
+
+- **Policy:** the current uncalibrated safe renderer always emits `Style-safe` / `film-inspired` / `look-approximation`; known source state does not elevate the claim. Unknown source state records `look_approximation_fail_closed`. `calibrated_reference_allowed` is always false.
+- **Implementation:** added a pure colour-state claim resolver and embedded its complete decision in render metrics.
+- **Evidence:** known and unknown state unit tests plus three raster script E2Es pass; the full-suite target is 178 tests.
+- **Boundary:** this does not create Reference mode or infer missing colorimetry. A future Reference path still requires explicit evidence gating and separate implementation.

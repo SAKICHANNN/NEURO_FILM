@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
 from src.preprocess import (  # noqa: E402
     load_working_image,
+    resolve_look_approximation_claim,
     save_srgb8,
     srgb_icc_profile_sha256,
     working_image_to_legacy_srgb8,
@@ -137,6 +138,7 @@ def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Im
 def main() -> int:
     args = parse_args()
     working = load_working_image(args.input)
+    output_claim = resolve_look_approximation_claim(working)
     image = working_image_to_legacy_srgb8(working)
     color_image = build_color_render(image, args)
     base = np.asarray(color_image, dtype=np.float32) / 255.0
@@ -225,6 +227,7 @@ def main() -> int:
             "style": args.style,
             "color_engine": args.color_engine,
             "preset": args.preset,
+            "output_claim": output_claim,
             "input_decode": {
                 "working_space": working.working_space,
                 "transfer_state": working.transfer_state,
