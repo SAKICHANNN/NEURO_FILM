@@ -43,7 +43,7 @@
     "page_properties": ["revisions"],
     "category_revision_fields": ["ids", "timestamp"],
     "thumbnail_url_width_for_future_pilot": 1600,
-    "maximum_requests_per_category": 2
+    "maximum_requests_per_category": 10
   },
   "license_policy": {
     "metadata_only_stage": true,

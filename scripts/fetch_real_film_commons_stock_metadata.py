@@ -64,19 +64,39 @@ def main() -> int:
         if len(category_pages) != 1 or category_pages[0].get("missing"):
             raise CommonsStockSourceError(f"missing Commons category: {category_title}")
         category_page = category_pages[0]
-        member_response = _request(config["api_endpoint"], {
+        member_parameters = {
             "action": "query", "format": "json", "formatversion": "2",
             "generator": "categorymembers", "gcmtitle": category_title,
             "gcmtype": "file", "gcmlimit": "500", "gcmsort": "sortkey",
             "prop": "imageinfo",
             "iiprop": "url|size|sha1|user|timestamp|mime|mediatype|extmetadata",
+            "iilimit": "1",
             "iiurlwidth": str(config["api_query"]["thumbnail_url_width_for_future_pilot"]),
-        }, config["user_agent"])
-        continuation = member_response.get("continue", {})
-        if set(continuation) - {"continue", "iicontinue"}:
-            raise CommonsStockSourceError(f"category exceeds one frozen page: {category_title}")
-        pages = member_response.get("query", {}).get("pages", [])
-        normalized = sorted((normalize_file_page(page) for page in pages), key=lambda row: row["title"])
+        }
+        normalized_by_title: dict[str, dict] = {}
+        member_requests = 0
+        while True:
+            member_requests += 1
+            if 1 + member_requests > int(config["api_query"]["maximum_requests_per_category"]):
+                raise CommonsStockSourceError(f"imageinfo request cap exceeded: {category_title}")
+            member_response = _request(
+                config["api_endpoint"], member_parameters, config["user_agent"]
+            )
+            for page in member_response.get("query", {}).get("pages", []):
+                if len(page.get("imageinfo", [])) == 1:
+                    normalized = normalize_file_page(page)
+                    normalized_by_title[normalized["title"]] = normalized
+            continuation = member_response.get("continue", {})
+            if set(continuation) - {"continue", "iicontinue"}:
+                raise CommonsStockSourceError(f"category member pagination is forbidden: {category_title}")
+            if "iicontinue" not in continuation:
+                break
+            member_parameters = {
+                **member_parameters,
+                "continue": str(continuation["continue"]),
+                "iicontinue": str(continuation["iicontinue"]),
+            }
+        normalized = sorted(normalized_by_title.values(), key=lambda row: row["title"])
         if len(normalized) != int(category_page["categoryinfo"]["files"]):
             raise CommonsStockSourceError(f"category member count mismatch: {category_title}")
         categories.append({
@@ -86,13 +106,14 @@ def main() -> int:
             "category_page_id": int(category_page["pageid"]),
             "category_revision": category_page["revisions"][0],
             "category_info": category_page["categoryinfo"],
+            "api_requests": 1 + member_requests,
             "files": normalized,
         })
     snapshot = {
         "schema_version": 1,
         "audit_id": config["audit_id"],
         "api_endpoint": config["api_endpoint"],
-        "requests_per_category": 2,
+        "request_policy": "one category revision request plus current-imageinfo continuation only",
         "image_payloads_downloaded_or_decoded": False,
         "categories": categories,
     }

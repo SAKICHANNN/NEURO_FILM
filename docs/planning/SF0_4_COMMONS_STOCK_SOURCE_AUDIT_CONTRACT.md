@@ -22,13 +22,14 @@ This stage fetches metadata only. It does not download or decode image pixels.
 Counts are discovery observations dated 2026-07-16, not hashes. The fetcher
 must snapshot category revision IDs/timestamps and every returned row, then all
 scientific audits rerun offline from that immutable snapshot. Each category
-uses at most two API requests: one category revision/count request and one
-single-page file/imageinfo request. A future 1600px derivative URL may be
+uses one category revision/count request, then follows only the current
+`imageinfo` module's 50-file continuation until every member has metadata, with
+a hard ten-request cap. A future 1600px derivative URL may be
 recorded, but no image bytes are fetched here. Unrelated per-file category tags
 are intentionally excluded because their pagination is not part of the stock
-membership or rights contract. A pure `iicontinue` token for historical file
-revisions is ignored because only current imageinfo is in scope; any category
-member continuation still fails, and returned files must equal `categoryinfo`.
+membership or rights contract. Any category-member continuation fails; only
+`iicontinue` for missing current imageinfo is followed, and the final unique
+file count must equal `categoryinfo`.
 
 Primary pages:
 
