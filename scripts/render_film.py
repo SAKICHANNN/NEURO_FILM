@@ -20,6 +20,7 @@ from src.preprocess import (  # noqa: E402
     load_working_image,
     resolve_look_approximation_claim,
     save_srgb8,
+    srgb_icc_profile_fingerprint_sha256,
     srgb_icc_profile_sha256,
     working_image_to_legacy_srgb8,
 )
@@ -246,6 +247,7 @@ def main() -> int:
                 "transfer": "sRGB",
                 "icc_profile": "embedded standard sRGB",
                 "icc_profile_sha256": srgb_icc_profile_sha256(),
+                "icc_profile_fingerprint_sha256": srgb_icc_profile_fingerprint_sha256(),
             },
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],

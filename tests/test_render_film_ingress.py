@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 import json
 import subprocess
 import sys
@@ -9,7 +10,12 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from src.preprocess import load_working_image, working_image_to_legacy_srgb8
+from src.preprocess import (
+    load_working_image,
+    save_srgb16_png,
+    save_srgb16_tiff,
+    working_image_to_legacy_srgb8,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,3 +101,36 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     assert metrics["output_encode"]["transfer"] == "sRGB"
     assert metrics["output_encode"]["icc_profile"] == "embedded standard sRGB"
     assert len(metrics["output_encode"]["icc_profile_sha256"]) == 64
+    assert len(metrics["output_encode"]["icc_profile_fingerprint_sha256"]) == 64
+
+
+@pytest.mark.parametrize(
+    ("suffix", "writer"),
+    [(".png", save_srgb16_png), (".tiff", save_srgb16_tiff)],
+)
+def test_render_film_e2e_records_tiff_png16_ingress_and_legacy_output_boundary(
+    tmp_path: Path, suffix: str, writer: Callable[[np.ndarray, Path], str]
+) -> None:
+    rgb = np.linspace(0.0, 1.0, 18 * 24 * 3, dtype=np.float32).reshape(18, 24, 3)
+    input_path = tmp_path / f"input16{suffix}"
+    output_path = tmp_path / f"output16_{suffix[1:]}.png"
+    writer(rgb, input_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--write-metrics",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    metrics = json.loads(output_path.with_suffix(".metrics.json").read_text(encoding="utf-8"))
+    assert metrics["input_decode"]["bit_depth_in"] == 16
+    assert metrics["input_decode"]["legacy_8bit_adapter"] is True
+    assert metrics["output_encode"]["bit_depth"] == 8

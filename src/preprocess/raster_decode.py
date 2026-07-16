@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 from io import BytesIO
 from pathlib import Path
 from typing import Any
@@ -11,7 +10,7 @@ import numpy as np
 import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
-from .output_encode import srgb_icc_profile_sha256
+from .output_encode import normalized_icc_profile_sha256, srgb_icc_profile_fingerprint_sha256
 from .types import DecodeWarning, InputInspection, SourceProfile, WorkingImage
 
 
@@ -139,6 +138,13 @@ def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:
     return np.where(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055) ** 2.4).astype(np.float32)
 
 
+def _is_supported_srgb_profile(profile: bytes) -> bool:
+    try:
+        return normalized_icc_profile_sha256(profile) == srgb_icc_profile_fingerprint_sha256()
+    except ValueError:
+        return False
+
+
 def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
     with tifffile.TiffFile(path) as tif:
         page = tif.pages[0]
@@ -151,7 +157,7 @@ def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
         raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
     if orientation != 1:
         raise ValueError("high-precision TIFF orientation handling is not implemented")
-    if profile and hashlib.sha256(profile).hexdigest() != srgb_icc_profile_sha256():
+    if profile and not _is_supported_srgb_profile(profile):
         raise ValueError("16-bit TIFF embedded ICC conversion is not implemented for this profile")
     if inspection.source_profile.kind == "icc" and not profile:
         raise ValueError("TIFF ICC inspection/decode mismatch")
@@ -168,7 +174,7 @@ def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
         raise ValueError("high-precision PNG orientation handling is not implemented")
     with Image.open(path) as image:
         profile = bytes(image.info.get("icc_profile") or b"")
-    if profile and hashlib.sha256(profile).hexdigest() != srgb_icc_profile_sha256():
+    if profile and not _is_supported_srgb_profile(profile):
         raise ValueError("16-bit PNG embedded ICC conversion is not implemented for this profile")
     if inspection.source_profile.kind == "icc" and not profile:
         raise ValueError("PNG ICC inspection/decode mismatch")

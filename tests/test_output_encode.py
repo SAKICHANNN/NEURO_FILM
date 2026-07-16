@@ -9,7 +9,14 @@ import pytest
 import tifffile
 from PIL import Image
 
-from src.preprocess import save_srgb8, save_srgb16_png, save_srgb16_tiff, srgb_icc_profile_sha256
+from src.preprocess import (
+    normalized_icc_profile_sha256,
+    save_srgb8,
+    save_srgb16_png,
+    save_srgb16_tiff,
+    srgb_icc_profile,
+    srgb_icc_profile_sha256,
+)
 
 
 @pytest.mark.parametrize(
@@ -76,3 +83,12 @@ def test_save_srgb16_png_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> No
 def test_save_srgb16_png_rejects_non_png_extension(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="requires a .png"):
         save_srgb16_png(np.zeros((2, 3, 3), dtype=np.float32), tmp_path / "render.tiff")
+
+
+def test_normalized_icc_fingerprint_ignores_creation_time_and_profile_id() -> None:
+    original = srgb_icc_profile()
+    changed = bytearray(original)
+    changed[24:36] = bytes(range(12))
+    changed[84:100] = bytes(range(16))
+    assert hashlib.sha256(changed).hexdigest() != hashlib.sha256(original).hexdigest()
+    assert normalized_icc_profile_sha256(changed) == normalized_icc_profile_sha256(original)

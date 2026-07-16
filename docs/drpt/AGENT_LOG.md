@@ -871,6 +871,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Contract:** the unique production ingress type now rejects NaN and infinity in addition to wrong shape/dtype. It deliberately does not clamp or reject finite HDR >1/scene-linear negative values.
 - **Evidence:** a non-finite construction regression passes; full-suite target becomes 193 tests. No valid decode/render pixels change.
 
+## 2026-07-16 - Fix cross-process sRGB ICC recognition and add TIFF/PNG16 render E2E
+
+- **Failure found:** LittleCMS-generated standard sRGB profiles carry a mutable ICC creation timestamp, so exact whole-profile SHA comparison rejected a valid profile written by a different process/second.
+- **Fix:** profile acceptance now uses a normalized semantic fingerprint with ICC creation time and optional profile-ID header fields zeroed; provenance still records the exact full SHA plus the stable fingerprint. Short/malformed/other profiles remain rejected.
+- **E2E evidence:** real renderer subprocesses accept profiled PNG16/TIFF16, record 16-bit ingress and explicitly record the legacy adapter plus 8-bit output. The normalized-header regression and two subprocess cases raise the full-suite target to 196 tests.
+- **Boundary:** normalized matching is limited to profiles otherwise byte-identical to the generated standard sRGB profile; it is not a generic ICC conversion shortcut.
+
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 
 - **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.

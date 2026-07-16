@@ -34,6 +34,21 @@ def srgb_icc_profile_sha256() -> str:
     return hashlib.sha256(srgb_icc_profile()).hexdigest()
 
 
+def normalized_icc_profile_sha256(profile: bytes) -> str:
+    """Fingerprint ICC semantics while ignoring standard mutable header fields."""
+    if len(profile) < 128:
+        raise ValueError("ICC profile is shorter than the 128-byte header")
+    normalized = bytearray(profile)
+    normalized[24:36] = b"\x00" * 12  # profile creation date/time
+    normalized[84:100] = b"\x00" * 16  # optional profile ID
+    return hashlib.sha256(normalized).hexdigest()
+
+
+def srgb_icc_profile_fingerprint_sha256() -> str:
+    """Return the stable normalized fingerprint of the generated sRGB profile."""
+    return normalized_icc_profile_sha256(srgb_icc_profile())
+
+
 def save_srgb8(rgb: np.ndarray, path: Path) -> str:
     """Encode finite HxWx3 display-sRGB values according to the file extension."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
