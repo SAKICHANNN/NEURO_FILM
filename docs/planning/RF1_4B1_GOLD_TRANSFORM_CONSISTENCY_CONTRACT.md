@@ -21,6 +21,12 @@ pass is not isolated emulsion response or calibrated Kodak Gold authenticity.
 - frames are balanced within rolls and rolls within each training fold;
 - no frame-random split, target leakage or per-test-image fitting.
 
+All 47 source and proxy PNGs are unprofiled 8-bit RGB. Operator fitting is
+therefore frozen in an explicit `unprofiled_srgb_encoded_8bit_compatibility`
+domain. It must not be described as linear light, scene-referred RGB or
+physical negative density. CIELAB metrics decode those values as sRGB only for
+relative candidate comparison.
+
 ## Frozen operator ladder
 
 1. identity;
@@ -30,7 +36,9 @@ pass is not isolated emulsion response or calibrated Kodak Gold authenticity.
 
 The fourth operator is the primary nontrivial challenger. LUT outputs stay in
 `[0,1]`, knots remain monotone, matrix coefficients are bounded, and the
-full-resolution renderer is global and deterministic. No spatial resampling,
+mixing matrix is forced to retain a positive determinant by deterministic
+identity shrinkage if needed. All fit statistics and weights come from the
+training rolls only. The full-resolution renderer is global and deterministic. No spatial resampling,
 local mask or final-RGB neural generator is allowed.
 
 ## Evaluation and controls

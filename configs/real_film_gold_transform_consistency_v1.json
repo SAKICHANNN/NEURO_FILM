@@ -7,6 +7,7 @@
   "alignment_report": "outputs/real_film/stock_pilots_v1/rf1_4b0/report.json",
   "alignment_report_sha256": "f562141ac0b836efa0f361ca730d2d69d8ec197a1c09be366a7543b8fc27ff4c",
   "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "working_space": "unprofiled_srgb_encoded_8bit_compatibility",
   "holdout_unit": "physical_roll",
   "frame_random_split_forbidden": true,
   "sampling": {
@@ -49,7 +50,8 @@
     "minimum_median_render_delta_e76_from_identity": 3.0,
     "maximum_output_clip_fraction_increase": 0.01,
     "require_finite_outputs": true,
-    "require_monotone_lut": true
+    "require_monotone_lut": true,
+    "require_positive_matrix_determinant": true
   },
   "visual_gate_after_metrics": {
     "render_full_resolution_contact_sheets": true,
