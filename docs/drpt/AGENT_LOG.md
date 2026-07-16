@@ -678,3 +678,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Style/safety result:** strength 1.0 yields style Delta E 6.251<7.0, matched-basic residual 1.942<4.9 and worst gold raw clipping 8.700%>0.5%. Strengths .75/.5 reduce style/residual and still clip 8.594%/8.374% in the worst image.
 - **Decision:** `closed_bland_basic_and_clip_unsafe`. The matrix is largely explainable as EV/WB/contrast/saturation on digital inputs. Automatic gates fail, so the preregistered visual run is correctly not generated. No neural or nonlinear capacity escalation is allowed on this teacher.
 - **Handoff:** `SF0.4` refreshes current obtainable multi-source named-stock positive-scan evidence and freezes the smallest unpaired stock-internal retrieval/explicit-operator pilot, if any source passes label/rights/group/content gates.
+
+## 2026-07-16 - Freeze SF0.4 Commons named-stock metadata audit
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.4`; locate obtainable multi-source positive scans after the BlueNeg transplant failure without buying data or weakening stock labels.
+- **Current primary-source discovery:** Commons exact categories expose Ektar100 163 files/19 uploaders, Superia X-TRA400 133/13 and Gold200 21/8. Velvia exposes 341/59 but only at family scope and cannot count as Velvia 50. Per-file free licences, author/credit, uploader, original URL, SHA1 and dimensions are API-accessible.
+- **Contract:** metadata snapshot only; freeze category revisions and rows before offline audit. Exact stocks require >=20 files, >=5 uploaders, <=60% largest share, >=8 permissive rows and complete rights/source/integrity metadata. Keep CC BY-SA internal-only pending legal review.
+- **Pixel stop:** only three exact-stock passes can open a separately frozen 1600px derivative pilot capped at 192 files/512MiB and 12 files per source group. No current pixels or model training are authorized by this node.
+- **Artifacts:** `configs/real_film_commons_stock_source_audit_v1.json`, `docs/planning/SF0_4_COMMONS_STOCK_SOURCE_AUDIT_CONTRACT.md`.

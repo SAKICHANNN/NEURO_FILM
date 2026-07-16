@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf0.4-wikimedia-commons-stock-source-audit-v1",
+  "node": "ULT > RF0.4 > SF0.4",
+  "api_endpoint": "https://commons.wikimedia.org/w/api.php",
+  "user_agent": "K-MCFM-research-audit/1.0 (local stock-source metadata audit)",
+  "snapshot_output": "outputs/real_film/commons_stock_v1/metadata_snapshot.json",
+  "report_output": "outputs/real_film/commons_stock_v1/source_audit_report.json",
+  "categories": [
+    {
+      "film_stock_id": "kodak_ektar_100",
+      "category": "Photographs taken on Kodak Ektar 100 film",
+      "label_scope": "exact_stock_community_category",
+      "preflight_files_2026_07_16": 163,
+      "preflight_uploaders_2026_07_16": 19
+    },
+    {
+      "film_stock_id": "fujifilm_superia_xtra_400",
+      "category": "Taken on Fuji Superia X-TRA 400",
+      "label_scope": "exact_stock_community_category",
+      "preflight_files_2026_07_16": 133,
+      "preflight_uploaders_2026_07_16": 13
+    },
+    {
+      "film_stock_id": "kodak_gold_200",
+      "category": "Photographs taken on Kodak Gold 200 film",
+      "label_scope": "exact_stock_community_category",
+      "preflight_files_2026_07_16": 21,
+      "preflight_uploaders_2026_07_16": 8
+    },
+    {
+      "film_stock_id": "fujifilm_velvia_family",
+      "category": "Taken on Fuji Velvia",
+      "label_scope": "family_only_control_not_exact_stock",
+      "preflight_files_2026_07_16": 341,
+      "preflight_uploaders_2026_07_16": 59
+    }
+  ],
+  "api_query": {
+    "category_members_type": "file",
+    "category_members_limit": 500,
+    "image_info": ["url", "size", "sha1", "user", "timestamp", "mime", "mediatype", "extmetadata"],
+    "page_properties": ["categories", "revisions"],
+    "category_revision_fields": ["ids", "timestamp"],
+    "maximum_one_request_per_category": true
+  },
+  "license_policy": {
+    "metadata_only_stage": true,
+    "research_free_licenses": [
+      "CC0", "Public domain", "Attribution", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0",
+      "CC BY-SA 2.0", "CC BY-SA 2.0 fr", "CC BY-SA 2.5", "CC BY-SA 3.0", "CC BY-SA 3.0 de", "CC BY-SA 4.0"
+    ],
+    "permissive_candidate_licenses": [
+      "CC0", "Public domain", "Attribution", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0"
+    ],
+    "share_alike_rows_internal_research_only_until_legal_review": true,
+    "per_file_author_credit_license_url_and_source_url_required_before_pixels": true
+  },
+  "metadata_flags": {
+    "non_scene_title_patterns": ["film strip", "filmstrip", "cartridge", "canister", "grain scan", "test strip", "contact sheet"],
+    "author_group_preferred_over_uploader": true,
+    "bot_uploader_is_never_an_author_group": true
+  },
+  "gates_for_exact_stock_pilot": {
+    "minimum_files": 20,
+    "minimum_unique_uploaders": 5,
+    "maximum_largest_uploader_share": 0.6,
+    "minimum_permissive_candidate_files": 8,
+    "minimum_fraction_minimum_dimension_512": 0.95,
+    "maximum_non_scene_title_flag_fraction": 0.1,
+    "require_every_row_free_license": true,
+    "require_every_row_source_url": true,
+    "require_every_row_sha1_and_dimensions": true
+  },
+  "conditional_pixel_pilot": {
+    "allowed_only_if_at_least_three_exact_stocks_pass_metadata_gates": true,
+    "derivative_width": 1600,
+    "maximum_files_total": 192,
+    "maximum_files_per_author_or_uploader_group_per_stock": 12,
+    "maximum_download_bytes": 536870912,
+    "full_original_download_forbidden_at_this_stage": true,
+    "training_before_pixel_integrity_content_and_group_audit_forbidden": true
+  },
+  "claim_ceiling": "Wikimedia Commons community-category and per-file rights/source metadata eligibility only; no physical-roll, lab, scanner, stock response, S1/S2, authenticity, training or release claim"
+}
