@@ -42,7 +42,8 @@
     "image_info": ["url", "size", "sha1", "user", "timestamp", "mime", "mediatype", "extmetadata"],
     "page_properties": ["categories", "revisions"],
     "category_revision_fields": ["ids", "timestamp"],
-    "maximum_one_request_per_category": true
+    "thumbnail_url_width_for_future_pilot": 1600,
+    "maximum_requests_per_category": 2
   },
   "license_policy": {
     "metadata_only_stage": true,
