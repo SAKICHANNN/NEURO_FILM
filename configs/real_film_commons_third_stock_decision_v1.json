@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.6b-wikimedia-commons-third-stock-decision-v1",
+  "node": "ULT > RF0.4 > SF0.6B",
+  "decision": "kodachrome64_metadata_pass_freeze_bounded_multi_stock_pixel_pilot",
+  "software_commit": "2502eba",
+  "snapshot_sha256": "a38a6409dbbb70e1c899241f124b05dc5a5ed5606edebdcd29967c98130f9fa7",
+  "report_sha256": "4161da5cf6caee028f9b9cb9d3b135801d7769d7b3185f1fe0bec61af2310c78",
+  "byte_identical_offline_audit_runs": 2,
+  "categories": 6,
+  "metadata_rows": 192,
+  "image_payloads_downloaded_or_decoded": false,
+  "pass": {"film_stock_id": "kodak_kodachrome_64", "files": 51, "normalized_authors": 22, "largest_author_share": 0.2549019607843137, "strict_derivative_rights_files": 15},
+  "stopped_stocks": ["kodak_kodachrome_25", "kodak_ektachrome_elite_100_5045_eb", "kodak_ektachrome_elite_200", "kodak_vision3_50d", "kodak_vision3_250d"],
+  "gfdl_policy": "GFDL 1.2 is accepted only for metadata free-licence completeness; it is excluded from strict pixel candidates",
+  "next_leaf": "SF0.7 bounded derivative-only pixel audit for UltraMax400 and Kodachrome64, combined with existing Ektar evidence only after independent gates",
+  "training_allowed": false,
+  "claim_ceiling": "third S0 Commons metadata source pass; no new pixels, stock signal, response, calibration, S1/S2, authenticity, training or release claim"
+}

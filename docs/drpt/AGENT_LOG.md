@@ -737,3 +737,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Invariant:** do not pool family names or process interpretations; same >=5 authors, <=60% dominance and >=8 strict derivative-rights rows.
 - **Stop:** metadata only. One pass opens a separately frozen pixel audit, never direct training.
 - **Licence correction after first audit:** Kodachrome64's sole all-row failure is one `GFDL 1.2` record among 51. FSF identifies GFDL 1.2 as a free copyleft documentation licence. Add it only to metadata research-free enumeration, never to strict pixel candidates; author and 15-candidate support are unchanged.
+
+## 2026-07-16 - Close SF0.6B with Kodachrome64 metadata pass
+
+- **Evidence:** six categories/192 rows/zero pixels; snapshot `a38a6409...`; two byte-identical reports `4161da5c...`; 153 tests pass.
+- **Pass:** Kodachrome64 51 files/22 normalized authors/25.49% largest share/15 strict derivative rows. GFDL row remains metadata-only.
+- **Stops:** Kodachrome25 author dominance; Elite100 author count; Elite200 strict rights; both Vision3 categories source concentration.
+- **Propagation:** Ektar, UltraMax and Kodachrome64 now meet metadata/source prerequisites, but only Ektar passed pixels. Training remains forbidden.
+- **Handoff:** `SF0.7` freezes and audits bounded derivative-only UltraMax/Kodachrome64 pixels independently.

@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 152 local tests pass; Commons source gates retain Ektar100 plus metadata-only UltraMax400 (84 files/15 authors/51 strict derivatives); a third stock is still required, no training starts, and stock signal remains unestablished |
+| Current evidence | 153 local tests pass; Commons source gates retain Ektar100 pixels plus metadata-only UltraMax400 and Kodachrome64 (51 files/22 authors/15 strict derivatives); new pixels must pass before training, and stock signal remains unestablished |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -176,6 +176,8 @@ BlueNeg metadata/licence/inventory and the exact 101-file / 118,929,719-byte pix
 Commons SF0.5, 2026-07-16: 36 derivative-only files / 27,812,816 bytes are hash/decode clean with zero exact or dHash<=4 pairs and no confirmed severe visual corruption. Only Ektar100 passes the source gate (26 files, eight normalized authors, 30.77% largest share). Superia has 2 files/2 authors; Gold has 8/4 and 62.5% largest share plus a repeated same-author content cluster. All remain `S0`; one passing stock cannot open learning.
 
 Commons SF0.6A, 2026-07-16: a metadata-only sweep of 10 further exact categories / 393 rows yields one new pass, UltraMax400 (84 files, 15 normalized authors, 35.71% largest share, 51 strict derivative-rights rows). Ektar+UltraMax is still below the three-stock comparative minimum; SF0.6B continues and no new pixels or learning are allowed yet.
+
+Commons SF0.6B, 2026-07-16: Kodachrome64 adds the third metadata source pass (51 files, 22 authors, 25.49% largest share, 15 strict derivative rows). One GFDL1.2 row is metadata-only and excluded from pixels. UltraMax/Kodachrome pixels still require SF0.7; three metadata passes do not establish stock signal.
 
 FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
