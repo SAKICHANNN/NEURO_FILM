@@ -993,3 +993,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** the frozen inputs reconstruct exactly 21 Ektar100 and 17 Velvia50 candidates, with all eight expected UIDs represented in both arms. Five focused tests pass and the complete CPU suite passes (`205 passed`); `git diff --check` passes.
 - **Claim ceiling:** acquisition and the next hash/decode/duplicate/content/vision audit only. Training, operator fitting, latent-mode discovery, stock-response, calibration and authenticity claims remain forbidden.
 - **Handoff:** commit/push this implementation before network access, run it once, then freeze any integrity/identifiability diagnostic separately from its execution.
+
+## 2026-07-16 - Pass SF1.3A acquisition and implement its offline audit
+
+- **Acquisition result:** the committed `0afcc03` downloader retained 37/38 bounded derivatives (21 Ektar100, 16 Velvia50), 7,975,459 bytes total and all eight bilateral authors. The frozen acquisition gate passes; manifest SHA-256 is `33395e5bfa765d0a28d0162e5ad40b79b9d54744995623122fe238d072768ba3`.
+- **Audit implementation:** reuse the established stock-pilot hash/decode/dHash/contact-sheet primitives, add exact UID-by-stock support, preserve explicit no-training/no-fitting flags, and select 12 endpoint-fraction risk cases for original-resolution visual review without treating that heuristic as an artifact verdict.
+- **Provenance limitation:** the first acquisition implementation preserved each live-page result and pixel lineage but omitted an exact per-request UTC field. The audit records this honestly; no timestamp is imputed or backfilled as observed truth.
+- **Boundary:** acquisition success is not stock identifiability and cannot open operator fitting, latent clustering or authenticity claims. The audit implementation must be committed before it is run; its visual verdict remains pending.

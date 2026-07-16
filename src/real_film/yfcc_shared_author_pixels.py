@@ -4,8 +4,10 @@ from __future__ import annotations
 
 from collections import Counter
 from collections.abc import Mapping, Sequence
+from pathlib import Path
 from typing import Any
 
+from src.real_film.commons_stock_pilot import audit_download_manifest
 from src.real_film.yfcc_shared_author_rights import select_shared_author_candidates
 
 
@@ -122,3 +124,54 @@ def evaluate_shared_author_pixel_download(
         "training_allowed": False,
         "claim_ceiling": pixel_config["claim_ceiling"],
     }
+
+
+def audit_shared_author_pixels(
+    manifest: Mapping[str, Any], *, root: Path, pixel_config: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Run the frozen offline integrity audit and add shared-author support evidence."""
+    if manifest.get("acquisition_gate_passed") is not True:
+        raise YfccSharedAuthorPixelError("pixel acquisition gate did not pass")
+    gates = pixel_config["pixel_gate"]
+    adapter = {
+        "pilot_id": pixel_config["pilot_id"],
+        "allowed_stock_ids": list(pixel_config["stock_ids"]),
+        "pixel_audit": {
+            "minimum_short_dimension": gates["minimum_short_dimension"],
+            "near_duplicate_hamming_threshold": gates["near_duplicate_hamming_threshold"],
+            "minimum_retained_files_per_stock": gates["minimum_retained_files_per_stock"],
+            "minimum_normalized_author_groups_for_learning": gates["minimum_usable_shared_authors"],
+            "maximum_largest_normalized_author_share_for_learning": 1.0,
+        },
+        "claim_ceiling": pixel_config["claim_ceiling"],
+    }
+    report = audit_download_manifest(manifest, root=root, config=adapter)
+    stocks = [str(value) for value in pixel_config["stock_ids"]]
+    support = {
+        uid: {
+            stock: sum(
+                1
+                for row in report["file_records"]
+                if str(row["author_uid"]) == uid and str(row["film_stock_id"]) == stock
+            )
+            for stock in stocks
+        }
+        for uid in sorted(
+            {str(row["author_uid"]) for row in report["file_records"]}, key=str.casefold
+        )
+    }
+    bilateral = [uid for uid, counts in support.items() if all(counts[stock] > 0 for stock in stocks)]
+    report.update(
+        {
+            "shared_author_stock_support": support,
+            "bilateral_pixel_authors": bilateral,
+            "bilateral_pixel_author_count": len(bilateral),
+            "source_content_interpretation": (
+                "UID/stock support only; content requires contact-sheet review and no exposure, "
+                "process, scanner, roll or physical label is imputed"
+            ),
+            "operator_fitting_allowed": False,
+            "training_allowed": False,
+        }
+    )
+    return report
