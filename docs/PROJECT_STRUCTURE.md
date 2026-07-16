@@ -53,7 +53,7 @@ to individual scripts.
 src/preprocess/
   types.py                Typed inspection and WorkingImage contracts.
   pipeline.py             Shared raster/RAW inspection and decode entrypoints.
-  raster_decode.py        ICC-aware SDR raster decode and legacy sRGB8 adapter.
+  raster_decode.py        ICC-aware SDR/guarded TIFF16 decode and legacy sRGB8 adapter.
   raw_decode.py           Generic LibRaw scene-linear decode.
   color_state.py          Fail-closed output-claim policy.
   output_encode.py        Profiled sRGB8 and isolated PNG/TIFF16 encoders.

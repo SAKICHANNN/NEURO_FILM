@@ -896,3 +896,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Change:** sRGB8 PNG/JPEG/TIFF and uint16 PNG/TIFF now write a same-directory temporary file, atomically replace the destination only after a successful encode, and clean temporary files on failure.
 - **Evidence:** 13 output/render targeted tests pass and assert no success-path temporary files remain. Pixel, format, ICC and claim contracts are unchanged.
 - **Structure propagation:** `docs/PROJECT_STRUCTURE.md` now records the touched preprocessing module boundary and explicitly forbids presenting isolated 16-bit encoders as a high-precision renderer while the legacy colour stage remains 8-bit.
+
+## 2026-07-16 - Preserve 16-bit RGB TIFF raster ingress
+
+- **Defect:** Pillow exposes many RGB TIFFs through an 8-bit `RGB` mode, so the shared raster loader silently quantized TIFF16 before creating `WorkingImage`.
+- **Implementation:** TIFF inspection now reads `BitsPerSample`; uint16 RGB uses tifffile directly. Exact runtime sRGB ICC is accepted, unprofiled files preserve samples under an explicit assumed-sRGB warning, non-sRGB/unknown embedded profiles and unsupported orientation/layout fail closed.
+- **Evidence:** profiled TIFF16 matches independently computed linear-sRGB values within 1e-7; unprofiled TIFF16 retains more than 8 sample levels; an unknown embedded profile is rejected. Full-suite target becomes 185 tests.
+- **Boundary:** this is high-precision ingress only. The active style renderer still crosses the explicit sRGB8 adapter, so no high-precision end-to-end claim is made.

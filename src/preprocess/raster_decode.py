@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import hashlib
 from io import BytesIO
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
+from .output_encode import srgb_icc_profile_sha256
 from .types import DecodeWarning, InputInspection, SourceProfile, WorkingImage
 
 
@@ -73,6 +76,16 @@ def inspect_raster(path: Path) -> InputInspection:
                         "HEIF/AVIF HDR or gain-map reconstruction is not implemented in this backend.",
                     )
                 )
+            bit_depth = _MODE_BIT_DEPTH.get(image.mode)
+            if image.format == "TIFF":
+                try:
+                    with tifffile.TiffFile(path) as tif:
+                        values = tif.pages[0].tags["BitsPerSample"].value
+                    samples = (values,) if isinstance(values, int) else tuple(values)
+                    if samples and len(set(int(value) for value in samples)) == 1:
+                        bit_depth = int(samples[0])
+                except (KeyError, OSError, tifffile.TiffFileError, TypeError, ValueError):
+                    warnings.append(DecodeWarning("tiff_bit_depth_unknown", "TIFF BitsPerSample could not be read."))
             return InputInspection(
                 path=path,
                 exists=True,
@@ -81,7 +94,7 @@ def inspect_raster(path: Path) -> InputInspection:
                 mode=image.mode,
                 width=image.width,
                 height=image.height,
-                bit_depth=_MODE_BIT_DEPTH.get(image.mode),
+                bit_depth=bit_depth,
                 has_alpha=image.mode in {"LA", "RGBA"} or "transparency" in image.info,
                 orientation=_orientation(image),
                 frame_count=getattr(image, "n_frames", 1),
@@ -113,6 +126,25 @@ def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:
     return np.where(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055) ** 2.4).astype(np.float32)
 
 
+def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
+    with tifffile.TiffFile(path) as tif:
+        page = tif.pages[0]
+        array = page.asarray()
+        profile_tag = page.tags.get(34675)
+        profile = bytes(profile_tag.value) if profile_tag is not None else b""
+        orientation_tag = page.tags.get("Orientation")
+        orientation = int(orientation_tag.value) if orientation_tag is not None else 1
+    if array.dtype != np.uint16 or array.ndim != 3 or array.shape[2] != 3:
+        raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
+    if orientation != 1:
+        raise ValueError("high-precision TIFF orientation handling is not implemented")
+    if profile and hashlib.sha256(profile).hexdigest() != srgb_icc_profile_sha256():
+        raise ValueError("16-bit TIFF embedded ICC conversion is not implemented for this profile")
+    if inspection.source_profile.kind == "icc" and not profile:
+        raise ValueError("TIFF ICC inspection/decode mismatch")
+    return array.astype(np.float32) / 65535.0
+
+
 def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
     """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
     if working.working_space != "linear_srgb" or working.transfer_state != "display_linear":
@@ -134,13 +166,17 @@ def load_raster_working_image(path: Path) -> WorkingImage:
     warnings = list(inspection.warnings)
     if inspection.source_kind != "raster":
         raise ValueError(f"Unsupported raster input: {path}")
-    with Image.open(path) as raw_image:
-        oriented = ImageOps.exif_transpose(raw_image)
+    if inspection.format_name == "TIFF" and inspection.bit_depth == 16:
+        arr = _load_srgb16_tiff(path, inspection)
         alpha_policy = "absent"
-        if oriented.mode in {"LA", "RGBA"}:
-            alpha_policy = "preserved"
-        rgb_image = _convert_with_icc(oriented, warnings)
-        arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
+    else:
+        with Image.open(path) as raw_image:
+            oriented = ImageOps.exif_transpose(raw_image)
+            alpha_policy = "absent"
+            if oriented.mode in {"LA", "RGBA"}:
+                alpha_policy = "preserved"
+            rgb_image = _convert_with_icc(oriented, warnings)
+            arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
     pixels = _srgb_to_linear(np.clip(arr, 0.0, 1.0))
     return WorkingImage(
         pixels=pixels,

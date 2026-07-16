@@ -3,9 +3,11 @@ from __future__ import annotations
 from pathlib import Path
 
 import numpy as np
+import pytest
+import tifffile
 from PIL import Image
 
-from src.preprocess import inspect_input, load_working_image
+from src.preprocess import inspect_input, load_working_image, save_srgb16_tiff
 
 
 def _rgb_fixture(path: Path) -> None:
@@ -58,3 +60,47 @@ def test_tiff_inspection_and_decode(tmp_path: Path) -> None:
     assert report.format_name == "TIFF"
     assert image.bit_depth_in == 8
     assert image.alpha_policy == "absent"
+
+
+def test_profiled_srgb16_tiff_decode_preserves_uint16_precision(tmp_path: Path) -> None:
+    rgb = np.linspace(0.0, 1.0, 7 * 9 * 3, dtype=np.float32).reshape(7, 9, 3)
+    path = tmp_path / "sample16.tiff"
+    save_srgb16_tiff(rgb, path)
+    report = inspect_input(path)
+    image = load_working_image(path)
+    encoded = np.rint(rgb * 65535.0).astype(np.uint16).astype(np.float32) / 65535.0
+    expected = np.where(
+        encoded <= 0.04045,
+        encoded / 12.92,
+        ((encoded + 0.055) / 1.055) ** 2.4,
+    ).astype(np.float32)
+    assert report.bit_depth == 16
+    assert image.bit_depth_in == 16
+    assert image.source_profile.kind == "icc"
+    assert np.max(np.abs(image.pixels - expected)) < 1e-7
+
+
+def test_unknown_profiled_tiff16_fails_closed(tmp_path: Path) -> None:
+    path = tmp_path / "unknown_profile.tiff"
+    array = np.zeros((3, 4, 3), dtype=np.uint16)
+    profile = b"not-a-supported-icc-profile"
+    tifffile.imwrite(
+        path,
+        array,
+        photometric="rgb",
+        metadata=None,
+        extratags=[(34675, "B", len(profile), profile, False)],
+    )
+    with pytest.raises(ValueError, match="ICC conversion is not implemented"):
+        load_working_image(path)
+
+
+def test_unprofiled_tiff16_preserves_precision_with_explicit_srgb_assumption(tmp_path: Path) -> None:
+    path = tmp_path / "unprofiled.tiff"
+    array = np.arange(3 * 4 * 3, dtype=np.uint16).reshape(3, 4, 3) * 1733
+    tifffile.imwrite(path, array, photometric="rgb", metadata=None)
+    image = load_working_image(path)
+    assert image.bit_depth_in == 16
+    assert image.source_profile.kind == "assumed_srgb"
+    assert any(warning.code == "assumed_srgb" for warning in image.warnings)
+    assert len(np.unique(image.pixels[..., 0])) > 8
