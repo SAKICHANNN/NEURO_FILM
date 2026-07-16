@@ -792,3 +792,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Prospective contract:** reuse the already frozen 7.35M YFCC15M rows and scan exact `Ektar 100` and `UltraMax/Ultra Max 400` phrases under unchanged CC-BY-2.0, >=8-row, >=5-UID and <=60% dominance gates.
 - **Stop rule:** if neither existing Commons stock gains same-source support, do not fit a three-stock classifier and record source structural confounding. If one or both pass, reverify pixels before constructing the support matrix.
 - **Handoff:** run the local scan twice and propagate the result; no image download or operator fitting in SF1.0A.
+
+## 2026-07-16 - Close SF1.0A and freeze Ektar bridge pixels
+
+- **Evidence:** repeat-identical local report SHA `966032...10b5`; YFCC Ektar100 passes at 26 rows/10 UIDs/23.08%, while UltraMax400 fails at 16/5/68.75% due one dominant UID.
+- **Design decision:** if YFCC Ektar pixels pass, Ektar becomes a bridge between YFCC Ektar--Velvia and Commons Ektar--UltraMax, making source effects estimable/falsifiable. UltraMax receives no YFCC pixels.
+- **Contract:** SF1.0A2 may retain at most 20 Ektar pixels, max four per UID, using the same process exclusions, live CC-BY, decode, duplicate, source and vision gates as Velvia.
+- **Handoff:** run and visually adjudicate the Ektar bridge pilot; no classifier or operator fitting before it passes.

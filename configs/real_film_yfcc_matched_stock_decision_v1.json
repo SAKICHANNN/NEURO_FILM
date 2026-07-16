@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf1.0a-yfcc15m-matched-stock-support-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF1 > SF1.0A",
+  "decision": "retain_yfcc_ektar_as_source_bridge_candidate_and_reject_yfcc_ultramax_pool",
+  "audit_report_sha256": "966032057c1b490760060f14e3dbe8ba5e7e1702a38184e83434e5ce9f9e10b5",
+  "repeat_sha256_identical": true,
+  "results": {
+    "kodak_ektar_100": {"rows": 26, "author_uids": 10, "largest_author_share": 0.23076923076923078, "metadata_gate_passed": true},
+    "kodak_ultramax_400": {"rows": 16, "author_uids": 5, "largest_author_share": 0.6875, "metadata_gate_passed": false}
+  },
+  "connected_design_if_ektar_pixels_pass": {
+    "yfcc_edges": ["kodak_ektar_100", "fujifilm_velvia_50"],
+    "commons_edges": ["kodak_ektar_100", "kodak_ultramax_400"],
+    "bridge_stock": "kodak_ektar_100",
+    "purpose": "estimate or falsify source effects separately from stock contrasts"
+  },
+  "next_leaf": "SF1.0A2 reverify a maximum-20 YFCC Ektar100 live-rights pixel bridge under the existing pixel/vision gates; UltraMax YFCC receives no pixels",
+  "claim_ceiling": "same-source metadata support topology only; no pixels, stock signal, operator fitting, calibration, S1/S2, training or release claim"
+}

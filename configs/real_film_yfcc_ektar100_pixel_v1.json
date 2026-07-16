@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sf1.0a2-yfcc-ektar100-pixel-v1",
+  "node": "ULT > RF1 > SF1.0A2",
+  "target_stock_id": "kodak_ektar_100",
+  "metadata_report": "outputs/real_film/yfcc_matched_stock_v1/stock_metadata_audit.json",
+  "metadata_report_sha256": "966032057c1b490760060f14e3dbe8ba5e7e1702a38184e83434e5ce9f9e10b5",
+  "download_root": "data/raw/yfcc_ektar100_pilot_v1",
+  "download_manifest": "outputs/real_film/yfcc_ektar100_v1/pixel_download_manifest.json",
+  "audit_report": "outputs/real_film/yfcc_ektar100_v1/pixel_audit_report.json",
+  "contact_sheet_root": "outputs/real_film/yfcc_ektar100_v1/contact_sheets",
+  "user_agent": "K-MCFM-research-yfcc-ektar-pilot/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded rights audit)",
+  "process_contamination_exclusions": [
+    "cross[ -]?process|crossprocess|xpro|x-process|c41\\s*(?:as|in)\\s*e6",
+    "\\bhdr\\b|tone[ -]?map",
+    "multiple[ -]?exposure|double[ -]?exposure",
+    "rodinal|black[ -]?(?:and|&)[ -]?white|\\bb/?w\\b"
+  ],
+  "selection": {
+    "algorithm": "stable Flickr-UID round robin ordered by numeric photoid; live failures advance to the next frozen candidate",
+    "maximum_files_per_uid": 4,
+    "maximum_retained_files": 20,
+    "preflight_expected": {"eligible_rows": 26, "author_uids": 10, "largest_author_share": 0.23076923076923078}
+  },
+  "live_rights": {
+    "required_snapshot_license_url": "http://creativecommons.org/licenses/by/2.0/",
+    "required_page_regex": "creativecommons\\.org/licenses/by/2\\.0/",
+    "page_status_200_required": true,
+    "licence_downgrade_or_missing_page_rejects_pixel": true
+  },
+  "download_limits": {
+    "maximum_bytes_total": 268435456,
+    "maximum_bytes_per_file": 33554432,
+    "timeout_seconds": 60,
+    "request_interval_seconds": 1.0,
+    "original_download_forbidden": true
+  },
+  "allowed_stock_ids": ["kodak_ektar_100"],
+  "pixel_audit": {
+    "minimum_short_dimension": 512,
+    "allowed_decoded_modes": ["RGB", "L", "RGBA", "P", "CMYK"],
+    "near_duplicate_hamming_threshold": 4,
+    "minimum_retained_files_per_stock": 8,
+    "minimum_normalized_author_groups_for_learning": 5,
+    "maximum_largest_normalized_author_share_for_learning": 0.6,
+    "confirmed_severe_corruption_blocks_learning": true,
+    "training_before_audit_and_visual_decision_forbidden": true
+  },
+  "claim_ceiling": "bounded YFCC Ektar100 exact-text/live-CC-BY source-bridge pixel pilot only; no stock response, calibration, S1/S2, authenticity, training, released weights or commercial-use claim"
+}
