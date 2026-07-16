@@ -245,9 +245,19 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
     patterns = [(str(row["film_stock_id"]), re.compile(str(row["exact_regex"]), re.IGNORECASE)) for row in config["stock_patterns"]]
     matches: list[dict[str, Any]] = []
     ambiguous_matches: list[dict[str, Any]] = []
+    missing_uid_rows: list[dict[str, Any]] = []
+    seen_photoids: set[int] = set()
     for source in rows:
+        photoid = int(source["photoid"])
+        if photoid in seen_photoids:
+            raise YfccFullIndexError(f"duplicate photoid in full-index scan: {photoid}")
+        seen_photoids.add(photoid)
         text = _normalized_text(source)
         matched_stock_ids = [stock_id for stock_id, pattern in patterns if pattern.search(text)]
+        uid = source.get("uid")
+        if matched_stock_ids and (uid is None or not str(uid).strip()):
+            missing_uid_rows.append({"matched_stock_ids": matched_stock_ids, **dict(source)})
+            continue
         if len(matched_stock_ids) == 1:
             matches.append({"film_stock_id": matched_stock_ids[0], **dict(source)})
         elif len(matched_stock_ids) > 1:
@@ -260,6 +270,7 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
         )
     )
     ambiguous_matches.sort(key=lambda row: (str(row["uid"]).casefold(), int(row["photoid"])))
+    missing_uid_rows.sort(key=lambda row: int(row["photoid"]))
     results: dict[str, Any] = {}
     for stock_id, _ in patterns:
         stock_rows = [row for row in matches if row["film_stock_id"] == stock_id]
@@ -294,6 +305,8 @@ def audit_candidate_rows(rows: Iterable[Mapping[str, Any]], config: Mapping[str,
         "matches": matches,
         "ambiguous_multi_stock_rows": ambiguous_matches,
         "ambiguous_multi_stock_row_count": len(ambiguous_matches),
+        "missing_uid_rows": missing_uid_rows,
+        "missing_uid_row_count": len(missing_uid_rows),
         "any_shared_author_gate_passed": any(row["metadata_gate_passed"] for row in overlap_gates.values()),
         "image_payloads_downloaded_or_decoded": False,
         "claim_ceiling": config["claim_ceiling"],

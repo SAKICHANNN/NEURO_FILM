@@ -92,6 +92,30 @@ def test_multi_stock_photo_is_ambiguous_and_cannot_create_shared_author_support(
     assert report["shared_author_results"]["pair"]["metadata_gate_passed"] is False
 
 
+def test_missing_uid_is_audited_and_excluded_from_stock_gates() -> None:
+    row = {
+        "photoid": 1, "uid": "", "unickname": "", "title": "Ektar 100",
+        "description": "", "usertags": "", "pageurl": "p", "downloadurl": "d",
+        "licensename": "by", "licenseurl": "cc-by", "serverid": 1, "farmid": 1,
+        "secret": "s", "secretoriginal": "o", "ext": "jpg", "marker": 0,
+    }
+    report = audit_candidate_rows([row], _config())
+    assert report["matches"] == []
+    assert report["missing_uid_row_count"] == 1
+    assert report["candidate_results"]["ektar"]["rows"] == 0
+
+
+def test_duplicate_photoid_fails_closed() -> None:
+    row = {
+        "photoid": 1, "uid": "one", "unickname": "", "title": "Ektar 100",
+        "description": "", "usertags": "", "pageurl": "p", "downloadurl": "d",
+        "licensename": "by", "licenseurl": "cc-by", "serverid": 1, "farmid": 1,
+        "secret": "s", "secretoriginal": "o", "ext": "jpg", "marker": 0,
+    }
+    with pytest.raises(YfccFullIndexError, match="duplicate photoid"):
+        audit_candidate_rows([row, dict(row)], _config())
+
+
 def test_sqlite_scan_applies_licence_and_photo_filter(tmp_path: Path) -> None:
     path = tmp_path / "tiny.sqlite"
     columns = _config()["scan"]["required_columns"]

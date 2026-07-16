@@ -854,6 +854,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **External method check:** AWS's official multipart integrity tutorial confirms binary concatenation of part MD5 digests followed by MD5. The config records that source; the rule remains object-specific and promotion still requires an empirical exact ETag match.
 - **Resume header:** a fresh source HEAD also confirms `Accept-Ranges: bytes` with the same frozen length/ETag/Last-Modified and no returned SSE/KMS header. Production validation now fails if byte-range support drifts.
 
+## 2026-07-16 - Harden SF1.1 author and row identity
+
+- **Risk:** duplicate photo IDs can inflate row support, while null/blank UIDs can collapse unrelated photos into a fake shared-author group.
+- **Fix:** duplicate photo IDs fail the full scan immediately. Exact-stock rows with missing UIDs are retained in a deterministic exclusion ledger but cannot enter stock or overlap gates.
+- **Evidence:** dedicated duplicate and missing-UID regressions pass; targeted SF1.1 count is eight and full-suite target becomes 190 tests.
+
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 
 - **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.
