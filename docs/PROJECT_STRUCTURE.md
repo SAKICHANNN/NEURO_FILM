@@ -43,6 +43,26 @@ Core status and experiment docs remain directly under `docs/` so the next agent 
 
 Strategic rationale and detailed scientific subplans belong under `docs/planning/`; active status, owners and next leaves remain in `docs/ULTIMATE_EXECUTION_TRACKER.md`.
 
+## Preprocessing library
+
+`src/preprocess/` is the product colour-ingress/output boundary. Keep reusable
+colour-state and encoding logic here rather than adding format-specific helpers
+to individual scripts.
+
+```text
+src/preprocess/
+  types.py                Typed inspection and WorkingImage contracts.
+  pipeline.py             Shared raster/RAW inspection and decode entrypoints.
+  raster_decode.py        ICC-aware SDR raster decode and legacy sRGB8 adapter.
+  raw_decode.py           Generic LibRaw scene-linear decode.
+  color_state.py          Fail-closed output-claim policy.
+  output_encode.py        Profiled sRGB8 and isolated PNG/TIFF16 encoders.
+```
+
+`WorkingImage` remains the only intended production ingress. High-precision
+encoder availability does not authorize wiring it behind an 8-bit renderer;
+the internal colour path must preserve the claimed precision first.
+
 ## Scripts
 
 `scripts/` intentionally remains flat. Many commands in docs and handoff notes call these files directly, so moving them into subfolders would break reproducibility. Prefer adding a README/category index before reorganizing script paths.

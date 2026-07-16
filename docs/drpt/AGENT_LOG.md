@@ -895,3 +895,4 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 - **Change:** sRGB8 PNG/JPEG/TIFF and uint16 PNG/TIFF now write a same-directory temporary file, atomically replace the destination only after a successful encode, and clean temporary files on failure.
 - **Evidence:** 13 output/render targeted tests pass and assert no success-path temporary files remain. Pixel, format, ICC and claim contracts are unchanged.
+- **Structure propagation:** `docs/PROJECT_STRUCTURE.md` now records the touched preprocessing module boundary and explicitly forbids presenting isolated 16-bit encoders as a high-precision renderer while the legacy colour stage remains 8-bit.
