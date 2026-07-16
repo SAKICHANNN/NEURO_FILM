@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "decision_id": "rf1.4b0-gold100-display-proxy-alignment-v1",
+  "node": "ULT > RF1.4 > RF1.4B0",
+  "decision": "alignment_and_support_pass",
+  "software_commit": "929131c4cd5f87be6b3962ea3f44ca4588f4cc4c",
+  "config_sha256": "f676ca3341ce5add9205f08b169d58409608d40ff52f7c630383c592e2f49883",
+  "report": "outputs/real_film/stock_pilots_v1/rf1_4b0/report.json",
+  "report_sha256": "f562141ac0b836efa0f361ca730d2d69d8ec197a1c09be366a7543b8fc27ff4c",
+  "byte_identical_runs": 2,
+  "paired_frames": 47,
+  "paired_rolls": 6,
+  "pairs_by_roll": {
+    "19960806A": 2,
+    "19960816G": 13,
+    "19960816H": 6,
+    "19960817H": 12,
+    "19960818I": 2,
+    "19970620C": 12
+  },
+  "all_official_transform_keys_present": true,
+  "all_matrices_finite_nonsingular": true,
+  "all_bboxes_in_bounds": true,
+  "all_bbox_proxy_dimensions_equal": true,
+  "restricted_pickle_loader_used": true,
+  "colour_fit_performed": false,
+  "next_leaf": "RF1.4B1 paired display-transform consistency contract",
+  "claim_ceiling": "alignment/support eligibility only; no colour transform, isolated stock response, calibration, authenticity or S2 claim"
+}

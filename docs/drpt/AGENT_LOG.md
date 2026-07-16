@@ -632,3 +632,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Contract:** restricted unpickling, exact 47-pair support, minimum five rolls/two pairs each, finite nonsingular 3x3 matrices, in-bounds bboxes and exact bbox/proxy dimensions.
 - **Stop rule:** any alignment failure closes the lane; no inferred homography, resizing, pair dropping or colour fitting.
 - **Artifacts:** `configs/real_film_gold_proxy_alignment_v1.json`, `docs/planning/RF1_4B_GOLD_PROXY_ALIGNMENT_CONTRACT.md`.
+
+## 2026-07-16 - Pass RF1.4B0 Gold proxy alignment/support
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4B0`; run the restricted official-alignment gate twice before colour fitting.
+- **Evidence:** two byte-identical runs at `929131c...`, report SHA-256 `f562141ac0b836efa0f361ca730d2d69d8ec197a1c09be366a7543b8fc27ff4c`.
+- **Result:** 47/47 exact preview/proxy siblings across six rolls (2/13/6/12/2/12); all official keys present, matrices finite/nonsingular, bboxes in bounds and bbox/proxy dimensions exact.
+- **Security:** restricted NumPy-only unpickling used after hash/opcode checks; no ordinary pickle load.
+- **Decision:** pass only alignment/support eligibility. No colour fit, stock response, calibration, authenticity or S2 claim.
+- **Next leaf:** RF1.4B1 paired display-transform consistency contract with identity, simple-global, explicit and wrong-roll controls.

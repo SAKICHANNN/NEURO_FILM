@@ -16,8 +16,9 @@ content below are historical/control material, not the active success path.
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
 research candidate. `RF1.4A` closed all preview-only stock learning: GA/Konica
 failed structural support, while NPH/Gold failed the roll-null and nuisance
-controls. The current leaf is `RF1.4B`, Gold100 display-proxy paired-transform
-identifiability. LOC Phase C remains a sealed historical/unknown auxiliary
+controls. `RF1.4B0` passes 47 exact official bbox/proxy pairs across six rolls.
+The current leaf is `RF1.4B1`, Gold100 display-proxy paired-transform
+consistency. LOC Phase C remains a sealed historical/unknown auxiliary
 lane. No colour expert fits before RF1.4B passes.
 
 ---
