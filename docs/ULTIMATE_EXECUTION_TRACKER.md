@@ -252,7 +252,7 @@ Restrictions:
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U1.1 | in progress | `render_film` consumes `WorkingImage` | U0.4 | Production ingress now uses `load_working_image` and records decode provenance; an explicit legacy sRGB8 adapter remains until U1.3. JPEG/PNG/TIFF/RAW E2E fixtures and removal of the adapter remain pending. |
+| U1.1 | in progress | `render_film` consumes `WorkingImage` | U0.4 | Production ingress uses `load_working_image` and records decode provenance; JPEG/PNG/TIFF script-level E2E fixtures pass. RAW E2E and removal of the explicit legacy sRGB8 adapter remain pending until U1.3. |
 | U1.2 | pending | `scene/display/unknown` state and Reference/Approximation policy | U1.1 | Unknown inputs warn/fail closed; metadata round-trip |
 | U1.3 | pending | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | Extension=encoding; bit-depth/profile tests |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |

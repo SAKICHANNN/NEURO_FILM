@@ -822,3 +822,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Shared-author audit:** retained Commons edge has one shared author; retained YFCC edge zero. Raw YFCC pools have three shared UIDs, but all fail current live-rights verification.
 - **Next bounded expansion:** SF1.1 may acquire the public 65,644,027,904-byte YFCC100M SQLite metadata index only. No pixels. Stop unless >=100 rows and >=30 UIDs per Ektar/Velvia plus >=12 shared UIDs project enough live usable groups.
 - **Handoff:** freeze source headers/hash/space/retention/resume contract and downloader before starting the large metadata transfer.
+
+## 2026-07-16 - Strengthen SF1.1 resume and U1.1 ingress evidence
+
+- **SF1.1 reliability:** bounded HTTP connect/read stalls at 30/120 seconds, removed final retry sleep, and added a simulated mid-stream failure test proving exact-byte resume, response closure, atomic SQLite promotion and byte identity.
+- **Label sensitivity:** the frozen YFCC15M subset adds zero Ektar rows and only six Velvia rows/three UIDs from unambiguous joined tokens; the Ektar/Velvia shared-UID count remains three, so the strict phrase contract is retained.
+- **U1.1 evidence:** real `render_film.py` subprocess tests now pass for JPEG, PNG and TIFF ingress, preserve dimensions, emit PNG and record `linear_srgb/display_linear`, 8-bit input and the explicit legacy-adapter flag.
+- **Verification:** 170 local tests pass. U1.1 remains open for RAW E2E and adapter removal through U1.3; no production renderer behavior changed.
