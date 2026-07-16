@@ -851,3 +851,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** the final sequential file pass now computes SHA-256 and every part MD5 together, reconstructs the multipart ETag, and fails unless both the ETag and 7,826-part count match the frozen source. The audit refuses manifests without this verification.
 - **Evidence:** a synthetic three-part object reproduces its independently computed S3 multipart ETag; six SF1.1 tests pass and the full-suite count becomes 176.
 - **Operational note:** the already-running transfer uses the preceding process image; after it atomically completes, rerun the updated downloader once to perform and record the strengthened hash gate before auditing.
+
+## 2026-07-16 - Propagate current stock-first state into the programme authority
+
+- **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.
+- **Propagation:** replaced the stale immediate-leaf tail with the retained four pools, exact SF1.0B shortcut evidence, current training/operator prohibition, SHA/S3-bound metadata-only SF1.1 gate and its pass/fail branches.
+- **Boundary:** no experimental result or gate changed; this is authority reconciliation so future agents cannot follow the superseded SF0.5 instruction.

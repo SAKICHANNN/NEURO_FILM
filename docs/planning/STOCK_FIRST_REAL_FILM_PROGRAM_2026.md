@@ -191,12 +191,32 @@ and visual gate for the archive preview-to-display chain, but bounded 3x3
 affine (5.307 Delta E76) slightly beats SepLUT17+3x3 (5.380). `RF2.S0` closes
 direct transplant: archive-only OOD coverage passes, but full-strength style is
 6.25 below the 7.0 floor, matched-basic residual is 1.94 below 4.9 and worst
-gold clipping is 8.70%; weaker strengths get blander. `SF0.4` then froze 658
-Wikimedia Commons metadata rows: exact Ektar100, Superia X-TRA400 and Gold200
-categories pass source/rights/uploader gates, while Velvia remains family-only;
-no pixels were downloaded. The next leaf is `SF0.5`, a licence-URL-complete,
-uploader-capped 1600px derivative pilot under 192 files/512MiB. `SF0.5` is now
-complete: all 36 derivatives are integrity/visual clean, but only Ektar passes
-true-author support (26 files/eight authors); Superia and Gold stop. `SF0.6`
-must add at least two independent exact stocks before any comparative learning.
-No GPU job is justified.
+gold clipping is 8.70%; weaker strengths get blander.
+
+The community-source sequence is now much further advanced. Commons retains
+clean provisional `S0` Ektar100 (26 files/eight authors) and UltraMax400
+(37/eight), while YFCC retains Velvia50 (25/14 UIDs) and a diagnostic Ektar100
+bridge (16/five). Every retained pixel passed bounded rights, decode,
+duplicate, content and repeated visual severe-artifact review. These facts
+establish usable aesthetic/failure-analysis pools, not stock response.
+
+`SF1.0B` closes all current pools for stock learning. In the Commons edge,
+global RGB reaches only 59.82% balanced accuracy with permutation p=0.280,
+while 4x4 scene colour reaches 80.36%/p=0.024. In the YFCC edge, RGB reaches
+65.71%/p=0.188, while luma/HOG/geometry already reach 72--76% and 4x4 scene
+colour reaches 89.29%/p=0.002. Same-stock Ektar source geometry is
+92.86%/p=0.016. Larger models and colour-operator fitting are therefore
+forbidden on these cells.
+
+The sole open data expansion is `SF1.1`: acquire the public
+65,644,027,904-byte full YFCC100M SQLite metadata index, verify both SHA-256
+and its 7,826-part S3 ETag, and scan permissive exact-stock text without
+downloading pixels. A photo mentioning multiple stocks is ambiguous and
+cannot enter any gate. Continue to a bounded live-rights preflight only if an
+edge has at least 100 exclusive rows and 30 UIDs per stock plus 12 shared
+author UIDs. If no edge passes, close current public community acquisition for
+stock learning; preserve the pools for retrieval/aesthetic/failure evidence
+and continue the deterministic product foundation or a separately approved
+licensed/controlled acquisition programme. If an edge passes, live rights
+must still project at least five usable shared authors before any pixel scope
+is frozen. No GPU job is justified in either branch at this stage.
