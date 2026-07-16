@@ -64,7 +64,8 @@
 | 1j | SF0.6B | Third-stock source sweep | complete: Kodachrome64 pass | 51 files/22 authors/15 strict rows; five stocks stop; zero pixels |
 | 1k | SF0.7 | UltraMax + Kodachrome64 pixel audit | complete: UltraMax pass, Kodachrome stop | 51 clean files; UltraMax 37/8 authors; Kodachrome 14/2 authors/85.71% |
 | 1l | SF0.8A | YFCC15M stock metadata | complete | 7.35M rows; repeat-identical exact-text audit; Velvia50 51/26 UID raw, 45/23 after prospective contamination exclusions |
-| 1m | SF0.8B | Velvia50 third pixel stock | ready, P0 | max 32/max 4 per UID; live rights, pixels, duplicates, content and vision must independently pass; no training |
+| 1m | SF0.8B | Velvia50 third pixel stock | complete: provisional S0 | 25 files/14 UIDs; live rights, duplicates, source gate and vision pass; no stock-response claim |
+| 1n | SF1.0 | Three-stock nuisance identifiability | ready, P0 | Ektar/UltraMax/Velvia versus author/source/content/grayscale/colour/shuffle controls; no operator fitting |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |
@@ -116,4 +117,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: `SF0.8B` bounded YFCC Velvia50 live-page/pixel pilot; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: `SF1.0` three-stock source/content/colour shortcut identifiability; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

@@ -777,3 +777,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** three focused tests and 157 full tests pass; module/scripts compile; contract commit `ad27ee9` was pushed before acquisition.
 - **Risks:** text labels remain weak, UID is not person identity, old Flickr URLs and licences may have changed, and scan/process/content shortcuts remain possible.
 - **Handoff:** `SF0.8B` implements a separate max-32/max-four-per-UID live-page and pixel pipeline. Stop below eight files/five UIDs; no training before full pixel/content/vision gates.
+
+## 2026-07-16 - Close SF0.8B YFCC Velvia50 pixel gate
+
+- **Evidence:** 41 UID-capped candidates yield 25 live-CC-BY, decoded >=512-short-side files / 4,575,435 bytes across 14 UIDs; 13 live-rights and three dimension failures are fail-closed. Manifest SHA `6a7d84...2011`.
+- **Integrity / vision:** repeat-identical audit SHA `210594...4ec5`; zero exact/dHash<=4 duplicates; source gate passes at 16% largest UID share. Two contact sheets and two full-resolution clipping risks show no severe artifact and broad content coverage.
+- **Decision:** Velvia50 joins Ektar100 and UltraMax400 as the third provisional unpaired `S0` pixel candidate. Strong reversal colour, clipping, borders and grain are source characteristics, not glitches. No stock-response or training claim.
+- **Verification:** 159 full tests passed before acquisition; download/audit reports are deterministic and all retained files are hash/decode verified.
+- **Handoff:** `SF1.0` freezes the combined support matrix and runs author-group-held-out stock versus source/content/grayscale/low-frequency-colour/matched-strength/shuffle controls. Operator fitting remains closed.

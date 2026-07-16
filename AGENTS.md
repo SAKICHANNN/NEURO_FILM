@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 157 local tests pass; Commons pixels retain Ektar100 and UltraMax400. SF0.8A freezes 7.35M CC-BY-filtered YFCC15M metadata rows and finds a 51-row/26-UID Velvia50 text-evidence pool; pixels/live rights remain unverified, so a third stock is still not passed, no training starts, and stock signal remains unestablished |
+| Current evidence | 159 local tests pass; provisional unpaired `S0` pixels now retain Ektar100 (26/8 authors), UltraMax400 (37/8) and live-rights-verified YFCC Velvia50 (25/14 UIDs). Velvia has no severe visual artifact and passes duplicate/source gates, but three-stock nuisance identifiability is not run, no training starts, and stock signal remains unestablished |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -183,6 +183,8 @@ Commons SF0.7, 2026-07-16: 51 UltraMax/Kodachrome derivatives / 42,255,167 bytes
 
 YFCC SF0.8A, 2026-07-16: the bounded YFCC15M metadata freeze contains 7,350,000 rows in ten Parquet files / 1,738,329,293 bytes and no image payloads. A deterministic CC-BY-2.0 exact-text audit retains 51 Velvia50 rows across 26 Flickr UIDs; prospective process/HDR exclusions leave 45/23. This opens only a maximum-32 live-page/pixel pilot. YFCC user text is weak label evidence, UID is not person identity, Portra generation strings remain mixed, and no third pixel stock or stock signal is established.
 
+YFCC SF0.8B, 2026-07-16: live page/licence, decode and dimension checks retain 25 Velvia50 files / 4,575,435 bytes across 14 UIDs at 16% largest share. Two repeated audits find zero exact or dHash<=4 duplicates. Two contact sheets plus full-resolution clipping risks show no confirmed severe glitch and broad content. Velvia50 is the third provisional unpaired `S0` pixel stock; learning remains forbidden until SF1.0 stock-versus-source/content/colour controls pass.
+
 FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
@@ -236,7 +238,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | RF1.4A | Preview route closed: GA/Konica structurally unidentified; NPH/Gold roll-null not rejected and nuisance shortcut wins |
 | Done/pass | RF1.4B0 | Gold100 official alignment/support: 47 exact pairs across six rolls; no colour fit or stock-response claim |
 | Done/limited pass | RF1.4B1 | All metric/visual gates pass for Gold archive preview-to-display mapping; bounded 3x3 affine beats SepLUT overall; no stock-response claim |
-| P0 named-stock | SF0.8B | Freeze and audit a maximum-32 YFCC Velvia50 live-page/pixel pilot; no learning until rights, pixels, grouping, content and vision independently pass |
+| Done/provisional S0 | SF0.8B | YFCC Velvia50 passes live rights, pixels, grouping, duplicate, content and vision gates with 25 files/14 UIDs; no stock-response claim |
+| P0 named-stock | SF1.0 | Freeze three-stock support and source/content/colour shortcut identifiability for Ektar100, UltraMax400 and Velvia50 before any operator fitting |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
 | Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |

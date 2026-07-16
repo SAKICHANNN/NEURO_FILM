@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.8b-yfcc-velvia50-pixel-pass-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF0.4 > SF0.8B",
+  "decision": "retain_as_third_provisional_s0_unpaired_pixel_stock_and_open_sf1_identifiability",
+  "acquisition": {
+    "frozen_candidates_after_process_exclusions": 45,
+    "candidates_reachable_under_uid_cap": 41,
+    "retained_files": 25,
+    "bytes": 4575435,
+    "author_uids": 14,
+    "largest_author_share": 0.16,
+    "download_manifest_sha256": "6a7d84978bfb70433c03558a5abe0959b71959dc5ff4d12ca34d7f0874ca2011",
+    "live_cc_by_2_rejections": 13,
+    "minimum_dimension_rejections": 3
+  },
+  "integrity": {
+    "pixel_audit_sha256": "21059438f6fb335173e912d8cf1673d5bd82a3f345a87a6b5f62502075054ec5",
+    "repeat_sha256_identical": true,
+    "exact_duplicate_groups": 0,
+    "dhash_le_4_pairs": 0,
+    "source_gate_passed": true
+  },
+  "visual_adjudication": {
+    "reviewed_contact_sheets": 2,
+    "reviewed_full_resolution_risks": [4117145905, 2297923048],
+    "confirmed_severe_glitch_or_artifact": 0,
+    "content_coverage": ["landscape", "architecture", "people", "wedding", "night", "plants", "animals", "underwater"],
+    "source_characteristics_not_artifacts": ["strong blue green red saturation", "reversal-film contrast", "real highlight clipping", "film and scan borders", "grain"],
+    "decision": "pass_severe_artifact_and_content_diversity_review"
+  },
+  "evidence_grade": "S0 claimed physical film via exact user text plus live CC-BY pixel; unpaired and nuisance-bearing",
+  "learning_allowed": false,
+  "next_leaf": "SF1.0 freeze and run three-stock source/content/colour identifiability controls for Ektar100, UltraMax400 and Velvia50 before fitting any colour operator",
+  "claim_ceiling": "third provisional unpaired S0 pixel stock only; no stock response, calibration, S1/S2, authenticity, training, released weights or commercial-use claim"
+}
