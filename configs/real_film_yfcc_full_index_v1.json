@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "dataset_id": "sf1.1-full-yfcc100m-shared-author-metadata-v1",
+  "node": "ULT > RF1 > SF1.1",
+  "source": {
+    "url": "https://multimedia-commons.s3.amazonaws.com/tools/etc/yfcc100m_dataset.sql",
+    "expected_bytes": 65644027904,
+    "expected_etag": "cdac6677292ef841f53c56be25c66630-7826",
+    "expected_last_modified": "Sun, 31 Mar 2019 00:53:31 GMT",
+    "source_listing": "https://multimedia-commons.s3.amazonaws.com/?prefix=tools/etc/yfcc100m_dataset.sql",
+    "rights_snapshot_date": "2026-07-16"
+  },
+  "user_agent": "K-MCFM-research-full-yfcc-index/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; metadata only)",
+  "download": {
+    "destination": "data/raw/yfcc100m_full_metadata_v1/yfcc100m_dataset.sqlite",
+    "progress": "outputs/real_film/yfcc100m_full_v1/download_progress.json",
+    "manifest": "outputs/real_film/yfcc100m_full_v1/download_manifest.json",
+    "retention": "retain immutable source until filtered manifest and repeated audit are complete; no deletion without a later explicit cleanup decision"
+  },
+  "download_limits": {
+    "minimum_free_space_after_download_bytes": 107374182400,
+    "chunk_bytes": 8388608,
+    "progress_checkpoint_bytes": 268435456,
+    "timeout_seconds": 600,
+    "request_retries": 6,
+    "retry_backoff_seconds": 10.0,
+    "image_payloads_forbidden": true
+  },
+  "rights_filter": {
+    "allowed_license_urls": ["http://creativecommons.org/licenses/by/2.0/", "https://creativecommons.org/licenses/by/2.0/"],
+    "live_page_and_pixel_license_reverification_required_after_metadata_gate": true
+  },
+  "stock_patterns": [
+    {"film_stock_id": "kodak_ektar_100", "exact_regex": "(^|[^a-z0-9])(?:kodak )?ektar 100([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_ultramax_400", "exact_regex": "(^|[^a-z0-9])(?:kodak )?ultra ?max 400([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_velvia_50", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film|chrome)? )?velvia (?:50|rvp ?50)([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_pro_400h", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film)? )?pro 400h([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_portra_160", "exact_regex": "(^|[^a-z0-9])(?:kodak )?portra 160([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_portra_400", "exact_regex": "(^|[^a-z0-9])(?:kodak )?portra 400([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_gold_200", "exact_regex": "(^|[^a-z0-9])(?:kodak )?gold 200([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_ektachrome_e100vs", "exact_regex": "(^|[^a-z0-9])(?:kodak )?(?:ektachrome )?e100vs([^a-z0-9]|$)"}
+  ],
+  "shared_author_gates": [
+    {"gate_id": "ektar_velvia", "left_stock_id": "kodak_ektar_100", "right_stock_id": "fujifilm_velvia_50", "minimum_rows_each_stock": 100, "minimum_uids_each_stock": 30, "minimum_shared_uids": 12},
+    {"gate_id": "ektar_ultramax", "left_stock_id": "kodak_ektar_100", "right_stock_id": "kodak_ultramax_400", "minimum_rows_each_stock": 100, "minimum_uids_each_stock": 30, "minimum_shared_uids": 12}
+  ],
+  "scan": {
+    "required_columns": ["photoid", "uid", "unickname", "title", "description", "usertags", "pageurl", "downloadurl", "licensename", "licenseurl", "serverid", "farmid", "secret", "secretoriginal", "ext", "marker"],
+    "broad_prefilter_terms": ["ektar", "ultramax", "ultra max", "velvia", "pro 400h", "portra", "gold 200", "e100vs"],
+    "report": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit.json"
+  },
+  "claim_ceiling": "full-YFCC metadata-only exact-stock/shared-author feasibility; no pixels, stock response, colour operator, calibration, S1/S2, training, authenticity or release claim"
+}

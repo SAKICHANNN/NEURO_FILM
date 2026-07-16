@@ -79,6 +79,8 @@ files.
 | `audit_real_film_yfcc_velvia50.py` | Run pixel integrity/source gates and render Velvia50 contact sheets. |
 | `audit_real_film_yfcc_matched_stock_metadata.py` | Test prospective YFCC same-source support for Ektar100 and UltraMax400. |
 | `run_real_film_connected_stock_identifiability.py` | Run the four-cell author-held-out stock/source/content/colour diagnostic. |
+| `download_real_film_yfcc_full_index.py` | Resume and hash the frozen 65.64GB full YFCC100M metadata SQLite. |
+| `audit_real_film_yfcc_full_index.py` | Filter full YFCC metadata for exact stocks and shared-author support. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
