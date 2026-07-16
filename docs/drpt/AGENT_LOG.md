@@ -761,3 +761,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** UltraMax passes at 37 files/eight authors/32.43%. Kodachrome stops at 14/two/85.71% and visibly separates into bridge/rail versus stone-carving content clusters.
 - **Propagation:** Ektar+UltraMax are only two pixel-passing stocks. A bounded-small-original preflight produces no new raw-pool pass; training remains forbidden.
 - **Handoff:** `SF0.8` must freeze a new source or prospective group-balancing hypothesis and produce a third independent pixel pass without post-hoc threshold weakening.
+
+## 2026-07-16 - Open SF0.8 bounded YFCC15M metadata gate
+
+- **Node / skills:** `ULT > RF0.4 > SF0.8`; dev-research reliability primary, ML/research/DRPT/log/structure secondary.
+- **Evidence decision:** Commons Provia, Velvia/Portra family labels, Ektachrome family labels and four remaining 8--11-file colour categories fail unchanged row/true-author/licence gates. Newgrain forbids automated scraping and cannot supply user-content rights. No threshold is weakened.
+- **Implementation:** isolate a metadata-only YFCC15M source module with frozen 10-shard/1,738,329,293-byte index, atomic resume, exact stock regexes, CC-BY-only filtering and Flickr UID group gates. Pixels and the 61.1GB complete YFCC index remain forbidden until this subset produces a pass.
+- **Verification / risk:** remote range-query preflight hit HTTP 429, so local sequential Parquet acquisition is selected. YFCC text is still weak user evidence and every surviving page/pixel licence must be reverified before pixels.
+- **Handoff:** verify module tests and contract, commit, download the bounded metadata subset, then run the deterministic local scan twice.

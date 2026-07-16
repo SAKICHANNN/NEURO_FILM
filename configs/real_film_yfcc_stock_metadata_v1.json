@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "dataset_id": "sf0.8-yfcc15m-exact-stock-metadata-v1",
+  "node": "ULT > RF0.4 > SF0.8",
+  "source": {
+    "parent_dataset": "YFCC100M",
+    "subset": "mehdidc/yfcc15m",
+    "subset_scope": "public converted Parquet subset of the OpenAI CLIP YFCC IDs; 7.35M rows, not the complete YFCC100M population",
+    "primary_dataset_paper": "https://doi.org/10.1145/2812802",
+    "official_flickr_description": "https://code.flickr.net/2014/10/15/the-ins-and-outs-of-the-yahoo-flickr-creative-commons-100-million-dataset/",
+    "subset_page": "https://huggingface.co/datasets/mehdidc/yfcc15m",
+    "rights_snapshot_date": "2026-07-16"
+  },
+  "user_agent": "K-MCFM-research-yfcc-preflight/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded metadata audit)",
+  "metadata_freeze": {
+    "index_url": "https://datasets-server.huggingface.co/parquet?dataset=mehdidc/yfcc15m",
+    "split": "train",
+    "expected_shards": 10,
+    "expected_filenames": ["0000.parquet", "0001.parquet", "0002.parquet", "0003.parquet", "0004.parquet", "0005.parquet", "0006.parquet", "0007.parquet", "0008.parquet", "0009.parquet"],
+    "expected_total_bytes": 1738329293,
+    "index_snapshot": "outputs/real_film/yfcc_stock_v1/parquet_index.json",
+    "download_root": "data/raw/yfcc15m_metadata_v1",
+    "download_manifest": "outputs/real_film/yfcc_stock_v1/download_manifest.json",
+    "audit_report": "outputs/real_film/yfcc_stock_v1/stock_metadata_audit.json"
+  },
+  "download_limits": {
+    "metadata_only": true,
+    "maximum_total_bytes": 1738329293,
+    "request_retries": 5,
+    "retry_backoff_seconds": 10.0,
+    "request_interval_seconds": 5.0,
+    "timeout_seconds": 600
+  },
+  "rights_filter": {
+    "allowed_license_urls": ["http://creativecommons.org/licenses/by/2.0/", "https://creativecommons.org/licenses/by/2.0/"],
+    "share_alike_noncommercial_and_no_derivatives_excluded": true,
+    "live_page_and_pixel_license_reverification_required_before_any_pixel_download": true
+  },
+  "stock_patterns": [
+    {"film_stock_id": "kodak_portra_160", "exact_regex": "(^|[^a-z0-9])(?:kodak )?portra 160([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_portra_400", "exact_regex": "(^|[^a-z0-9])(?:kodak )?portra 400([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_portra_800", "exact_regex": "(^|[^a-z0-9])(?:kodak )?portra 800([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_velvia_50", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film|chrome)? )?velvia (?:50|rvp ?50)([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_velvia_100f", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film|chrome)? )?velvia 100f([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_pro_400h", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film)? )?pro 400h([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_pro_160c", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film)? )?pro 160c([^a-z0-9]|$)"},
+    {"film_stock_id": "fujifilm_pro_160s", "exact_regex": "(^|[^a-z0-9])(?:fuji(?:film)? )?pro 160s([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_colorplus_200", "exact_regex": "(^|[^a-z0-9])(?:kodak )?colorplus 200([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_gold_200", "exact_regex": "(^|[^a-z0-9])(?:kodak )?gold 200([^a-z0-9]|$)"},
+    {"film_stock_id": "agfaphoto_vistaplus_200", "exact_regex": "(^|[^a-z0-9])(?:agfa(?:photo)? )?vista(?:plus)? 200([^a-z0-9]|$)"},
+    {"film_stock_id": "kodak_ektachrome_e100vs", "exact_regex": "(^|[^a-z0-9])(?:kodak )?(?:ektachrome )?e100vs([^a-z0-9]|$)"},
+    {"film_stock_id": "cinestill_800t", "exact_regex": "(^|[^a-z0-9])cinestill 800t([^a-z0-9]|$)"},
+    {"film_stock_id": "lomography_color_negative_400", "exact_regex": "(^|[^a-z0-9])(?:lomography )?color negative 400([^a-z0-9]|$)"}
+  ],
+  "metadata_gates": {
+    "minimum_rows": 8,
+    "minimum_author_uids": 5,
+    "maximum_largest_author_share": 0.6,
+    "pixel_download_before_metadata_gate_forbidden": true,
+    "complete_yfcc100m_download_if_no_subset_pass_forbidden": true
+  },
+  "claim_ceiling": "YFCC15M user-text exact-stock candidate discovery only; no verified live pixels, stock response, calibration, S1/S2, authenticity, training, released weights or commercial-use claim"
+}

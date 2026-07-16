@@ -73,6 +73,8 @@ files.
 | `extract_fivek_freeze_response_stats.py` | Extract response statistics from high-precision FiveK freeze-pack TIFFs. |
 | `build_fivek_filtered_targets.py` | Build conservative FiveK pseudo-targets that keep Expert C tone while guarding WB and chroma. |
 | `build_fivek_freeze_pack.py` | Build bounded high-precision FiveK freeze assets before deleting the large raw dataset. |
+| `download_real_film_yfcc_stock_metadata.py` | Freeze and resume the bounded YFCC15M metadata-only stock-discovery subset. |
+| `audit_real_film_yfcc_stock_metadata.py` | Scan frozen YFCC15M metadata for exact stock phrases under licence and UID gates. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
