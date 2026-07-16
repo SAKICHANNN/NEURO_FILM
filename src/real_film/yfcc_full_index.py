@@ -11,6 +11,7 @@ import sqlite3
 import time
 from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote_plus
@@ -22,6 +23,28 @@ from src.real_film.yfcc_stock_source import atomic_json
 
 class YfccFullIndexError(ValueError):
     """Raised when the frozen SF1.1 source or scan contract fails closed."""
+
+
+@contextmanager
+def exclusive_dataset_lock(dataset_path: Path):
+    """Prevent concurrent download, repair or audit access to one SQLite file."""
+    lock_path = dataset_path.with_suffix(dataset_path.suffix + ".lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError as exc:
+        raise YfccFullIndexError(
+            f"dataset lock already exists: {lock_path}; inspect the owning process before removal"
+        ) from exc
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
+            json.dump({"pid": os.getpid(), "dataset": str(dataset_path.resolve())}, handle, sort_keys=True)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        yield lock_path
+    finally:
+        lock_path.unlink(missing_ok=True)
 
 
 def hash_file_evidence(path: Path, multipart_part_bytes: int) -> dict[str, Any]:

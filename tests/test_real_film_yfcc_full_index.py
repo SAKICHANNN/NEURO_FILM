@@ -13,11 +13,24 @@ from src.real_film.yfcc_full_index import (
     audit_candidate_rows,
     decide_repeated_audits,
     download_full_index,
+    exclusive_dataset_lock,
     hash_file_evidence,
     scan_full_index,
     validate_download_manifest,
     validate_source_headers,
 )
+
+
+def test_dataset_lock_is_exclusive_and_cleans_up(tmp_path: Path) -> None:
+    dataset = tmp_path / "index.sqlite"
+    lock = dataset.with_suffix(".sqlite.lock")
+    with exclusive_dataset_lock(dataset) as acquired:
+        assert acquired == lock
+        assert json.loads(lock.read_text(encoding="utf-8"))["dataset"] == str(dataset.resolve())
+        with pytest.raises(YfccFullIndexError, match="lock already exists"):
+            with exclusive_dataset_lock(dataset):
+                pass
+    assert not lock.exists()
 
 
 def _config() -> dict:
