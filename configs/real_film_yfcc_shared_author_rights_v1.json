@@ -9,6 +9,7 @@
   "passing_gate_id": "ektar_velvia",
   "left_stock_id": "kodak_ektar_100",
   "right_stock_id": "fujifilm_velvia_50",
+  "user_agent": "K-MCFM-research-yfcc-shared-author-rights/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded page-only rights audit)",
   "expected_support": {
     "shared_author_uids": 16,
     "exclusive_candidate_rows": 154

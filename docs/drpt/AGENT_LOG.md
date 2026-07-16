@@ -966,3 +966,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **SF1.2 freeze:** at most 128 sequential Flickr HTML page requests across the 16 shared authors and two stocks, maximum four candidates per author/stock arm. A usable author needs a live CC BY 2.0 page for each stock; at least five are required. No image/download URL may be requested and no HTML body is retained.
 - **Files:** `docs/REAL_FILM_YFCC_FULL_INDEX_RESULTS.md`, `configs/real_film_yfcc_shared_author_rights_v1.json`, `docs/planning/SF1_2_YFCC_SHARED_AUTHOR_RIGHTS_CONTRACT.md` and current authority propagation.
 - **Handoff:** commit/push the contract before network access, then implement/test the bounded page-only preflight and execute it once. Pass opens only a separately frozen pixel proposal; fail closes this public shared-author expansion. Ultimate remains active in either branch.
+
+## 2026-07-16 - Implement the SF1.2 page-only verifier
+
+- **Node/parent goal:** `ULT > RF0.4 > SF1.2`; implement the committed live-rights contract before any network request.
+- **Implementation:** hash-bind the SF1.1 report/decision, reconstruct the exact shared-author matrix, apply prospective contamination exclusions and a four-page-per-author/stock ceiling, validate Flickr page URLs, stream at most 2 MiB of HTML, record status/final URL/content type/body hash/timestamp and stop each arm on the first current CC BY 2.0 page.
+- **Safety:** candidate construction rejects any SF1.1 decision that permits pixels or fitting. The verifier never reads `downloadurl`, never requests image URLs, retains no HTML body and caps the complete run at 128 sequential page requests.
+- **Decision:** an author is usable only if both stock arms pass; at least five are required. Either branch keeps image payload and operator fitting false.
+- **Verification:** three focused tests cover bounded prospective selection, bilateral author rights, closed responses and image-URL non-use; the full CPU suite passes (`202 passed`); module/script compile and `git diff --check` pass.
+- **Files/handoff:** `src/real_film/yfcc_shared_author_rights.py`, `scripts/audit_real_film_yfcc_shared_author_rights.py`, focused tests, script index and explicit user-agent config. Commit/push before executing the live preflight.
