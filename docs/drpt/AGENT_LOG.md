@@ -715,3 +715,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Per-stock gate:** Ektar passes with 26 files/eight authors/30.77% largest share. Superia stops at 2/2; Gold stops at 8/4/62.5% and a visually obvious same-author damaged-object/floor content cluster.
 - **Decision/change propagation:** retain Ektar as a provisional `S0` unpaired positive reference only. One passing stock cannot distinguish stock signal from source/content/scanner nuisance, so training stays forbidden and RF2/RF3 remain data-gated.
 - **Handoff:** `SF0.6` must obtain at least two further exact-stock sources independently passing derivative rights, >=5 author groups, <=60% dominance and content/integrity gates.
+
+## 2026-07-16 - Freeze SF0.6 exact-stock metadata expansion
+
+- **Source discovery:** official Commons Kodak/Fujifilm parent categories expose ten exact colour-stock categories with 24-84 current direct files. Mixed Portra and family-only/B&W lanes are excluded.
+- **Question/DoR:** can at least two new stocks pass strict derivative rights plus true-author support, supplementing the sole Ektar pass?
+- **Gates:** >=20 files, >=5 uploaders and normalized authors, <=60% largest uploader/author, >=8 strict rights-complete derivative rows, >=95% minimum dimension 512 and complete free-licence/source/SHA1 metadata.
+- **Stop:** metadata only. Fewer than two passes returns to source discovery; >=2 passes opens a separately frozen <=128-file/512MiB pixel pilot. No training, colour fit or GPU work.
