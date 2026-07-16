@@ -116,6 +116,7 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
             use_camera_wb=use_camera_wb,
             no_auto_bright=no_auto_bright,
             output_bps=16,
+            output_color=rawpy.ColorSpace.sRGB,
             gamma=(1, 1),
         )
     pixels = (rgb16.astype(np.float32) / 65535.0).clip(0.0, 1.0)
@@ -125,9 +126,15 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
             "RAW decoded through LibRaw/rawpy generic path; exact vendor/Adobe rendering is not promised.",
         )
     )
+    warnings.append(
+        DecodeWarning(
+            "generic_raw_display_mapping",
+            "Linear-sRGB RAW decode is gamma-encoded by the temporary legacy adapter without a calibrated scene-to-display tone map.",
+        )
+    )
     return WorkingImage(
         pixels=pixels,
-        working_space="camera_rgb_linear",
+        working_space="linear_srgb",
         transfer_state="scene_linear",
         source_transfer_state=inspection.transfer_state,
         source_profile=SourceProfile("raw_metadata", "LibRaw camera metadata"),

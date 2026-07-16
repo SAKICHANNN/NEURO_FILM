@@ -278,9 +278,9 @@ Restrictions:
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U1.1 | in progress | `render_film` consumes `WorkingImage` | U0.4 | JPEG/PNG/TIFF8 and PNG/TIFF16 script E2Es pass with explicit input/output bit-depth provenance; unsupported ICC fails closed. RAW E2E and removal of the explicit legacy sRGB8 adapter remain pending. |
+| U1.1 | in progress: RAW E2E pass | `render_film` consumes `WorkingImage` | U0.4 | JPEG/PNG/TIFF8, PNG/TIFF16 ingress and real ARW script E2Es pass with explicit provenance; unsupported ICC fails closed. Removal of the explicit legacy sRGB8 adapter remains pending. |
 | U1.2 | in progress: approximation policy pass | `scene/display/unknown` state and Reference/Approximation policy | U1.1 | Source/post-decode states round-trip separately. Current renderer always labels `film-inspired/look-approximation`; unknown fails closed explicitly and calibrated Reference is false. A future evidence-gated Reference mode remains unimplemented. |
-| U1.3 | in progress: sRGB8 + PNG/TIFF16 primitives | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | PNG/JPEG/TIFF sRGB8 plus true uint16 RGB PNG/TIFF with embedded ICC pass exact format/profile/pixel tests. Legacy high-precision renderer integration remains pending. |
+| U1.3 | in progress: sRGB8 + PNG/TIFF16 primitives | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | PNG/JPEG/TIFF sRGB8 plus true uint16 RGB PNG/TIFF with embedded ICC pass exact format/profile/pixel tests. RAW ingress is explicit linear-sRGB/scene-linear, but legacy high-precision renderer integration and calibrated scene-to-display mapping remain pending. |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |
 | U1.5 | pending | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | Fixtures for supported/unsupported variants |
 | U1.6 | pending | Halo-aware tile/cache renderer | U1.3 | Full-frame vs tiled tolerance; bounded memory |

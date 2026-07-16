@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 206 local tests pass; current community pixels remain closed for learning. SF1.3A retains 37 clean shared-author Ektar100/Velvia50 pixels, but SF1.3B fails identifiability: RGB 56.25%/p=.464 versus best nuisance 68.75%, delta -12.5 points (95% CI -31.25..0). This pool is closed for learning; training, operator fitting and LSM remain forbidden |
+| Current evidence | 208 local tests pass; current community pixels remain closed for learning. SF1.3A retains 37 clean shared-author Ektar100/Velvia50 pixels, but SF1.3B fails identifiability: RGB 56.25%/p=.464 versus best nuisance 68.75%, delta -12.5 points (95% CI -31.25..0). This pool is closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -71,6 +71,7 @@ Current strengths:
 Current limitations:
 
 - `scripts/render_film.py` now uses `WorkingImage` as ingress, but immediately crosses an explicit legacy sRGB8 adapter and still quantizes the renderer output to 8-bit SDR;
+- generic RAW now enters as explicit linear-sRGB/scene-linear and renders end to end, but the temporary adapter only gamma-encodes it and does not provide a calibrated scene-to-display tone map;
 - no complete HEIF/HDR/gain-map or wide-gamut production path;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;

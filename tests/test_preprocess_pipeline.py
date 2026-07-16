@@ -10,6 +10,7 @@ from PIL import Image
 
 from src.preprocess import inspect_input, load_working_image, save_srgb16_png, save_srgb16_tiff
 from src.preprocess.output_encode import _inject_png_icc
+from src.preprocess.raw_decode import load_raw_working_image
 
 
 def _rgb_fixture(path: Path) -> None:
@@ -145,3 +146,45 @@ def test_unknown_profiled_png16_fails_closed(tmp_path: Path) -> None:
     path.write_bytes(_inject_png_icc(encoded.tobytes(), b"not-a-supported-icc-profile"))
     with pytest.raises(ValueError, match="ICC conversion is not implemented"):
         load_working_image(path)
+
+
+def test_raw_decode_requests_linear_srgb_and_preserves_scene_state(monkeypatch, tmp_path: Path) -> None:
+    from types import SimpleNamespace
+    from src.preprocess import raw_decode
+
+    calls = []
+
+    class FakeRaw:
+        raw_type = "flat"
+        color_desc = b"RGBG"
+        num_colors = 3
+        black_level_per_channel = [0, 0, 0, 0]
+        white_level = 16383
+        camera_whitebalance = [2.0, 1.0, 1.5, 1.0]
+        daylight_whitebalance = [2.0, 1.0, 1.5, 1.0]
+        sizes = SimpleNamespace(raw_width=6, raw_height=4, width=4, height=3)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return None
+
+        def postprocess(self, **kwargs):
+            calls.append(kwargs)
+            return np.full((3, 4, 3), 32768, dtype=np.uint16)
+
+    fake_rawpy = SimpleNamespace(
+        ColorSpace=SimpleNamespace(sRGB="explicit-srgb"),
+        imread=lambda _path: FakeRaw(),
+    )
+    monkeypatch.setattr(raw_decode, "_rawpy", lambda: fake_rawpy)
+    path = tmp_path / "sample.dng"
+    path.write_bytes(b"fixture")
+    working = load_raw_working_image(path)
+    assert calls[0]["output_color"] == "explicit-srgb"
+    assert calls[0]["gamma"] == (1, 1)
+    assert working.working_space == "linear_srgb"
+    assert working.transfer_state == "scene_linear"
+    assert working.source_transfer_state == "scene_linear"
+    assert any(warning.code == "generic_raw_display_mapping" for warning in working.warnings)

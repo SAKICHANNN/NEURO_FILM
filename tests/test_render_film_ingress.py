@@ -47,9 +47,19 @@ def test_working_image_legacy_adapter_rejects_wrong_color_state(tmp_path: Path) 
     try:
         working_image_to_legacy_srgb8(working)
     except ValueError as exc:
-        assert "requires linear_srgb/display_linear" in str(exc)
+        assert "requires linear_srgb with display_linear or scene_linear" in str(exc)
     else:
         raise AssertionError("wrong color state must fail closed")
+
+
+def test_working_image_legacy_adapter_accepts_explicit_linear_srgb_scene_state(tmp_path: Path) -> None:
+    path = tmp_path / "fixture.png"
+    Image.new("RGB", (2, 2), (128, 64, 32)).save(path)
+    working = load_working_image(path)
+    working.transfer_state = "scene_linear"
+    adapted = working_image_to_legacy_srgb8(working)
+    assert adapted.mode == "RGB"
+    assert adapted.size == (2, 2)
 
 
 @pytest.mark.parametrize(

@@ -1024,3 +1024,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Interpretation:** same-author connectivity removes the across-uploader design failure but does not identify stock signal in this pool. This is a dataset/design limitation, not evidence that the physical stocks lack distinguishable appearance.
 - **Binding branch:** close the 37 pixels for stock learning, operator fitting and latent-mode discovery; forbid larger-model, router, clustering and threshold-weakening fallbacks. Propagate the negative evidence to RF/SF and LSM authorities.
 - **Goal continuation:** Ultimate remains active. The next ready local leaf returns to U1.1/U1.3 deterministic high-precision product work while other evidence-backed stock/data options remain a separate research branch.
+
+## 2026-07-16 - Repair real RAW render ingress
+
+- **Defect evidence:** the first real ARW E2E decoded successfully but `render_film.py` rejected `camera_rgb_linear/scene_linear` at the legacy adapter, proving the claimed generic RAW production ingress was not executable.
+- **Fix:** request rawpy/LibRaw `ColorSpace.sRGB` explicitly with linear gamma, label the postprocessed pixels `linear_srgb/scene_linear`, and allow that exact known state through the temporary linear-to-sRGB8 adapter. Unknown state and non-linear-sRGB working spaces still fail closed.
+- **Claim boundary:** add a durable `generic_raw_display_mapping` warning: the adapter gamma-encodes linear-sRGB RAW without a calibrated scene-to-display tone map. Output remains Style-safe `film-inspired/look-approximation`; calibrated Reference remains false.
+- **Verification:** 19 focused preprocessing/render-ingress tests pass. A real 24,969,216-byte Sony ARW renders end to end to a 27,609,485-byte ICC-tagged PNG with recorded 16-bit input, scene-linear source/working state, 8-bit output and bounds [4,251]. Autonomous visual inspection finds no confirmed severe artifact.
+- **Structure:** the change stays inside the existing `src/preprocess/` colour-state boundary and adds no parallel RAW path. The explicit legacy adapter remains a named debt; U1.3 high-precision integration is still open.

@@ -183,9 +183,12 @@ def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
 
 def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
     """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
-    if working.working_space != "linear_srgb" or working.transfer_state != "display_linear":
+    if working.working_space != "linear_srgb" or working.transfer_state not in {
+        "display_linear",
+        "scene_linear",
+    }:
         raise ValueError(
-            "legacy adapter requires linear_srgb/display_linear WorkingImage; "
+            "legacy adapter requires linear_srgb with display_linear or scene_linear pixels; "
             f"got {working.working_space}/{working.transfer_state}"
         )
     clipped = np.clip(working.pixels, 0.0, 1.0)

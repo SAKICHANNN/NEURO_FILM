@@ -84,7 +84,7 @@
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | ready support | none for local schema/tooling; participants later require approval |
-| 13 | U1.1 | Make `WorkingImage` the only `render_film` ingress | in progress; first ingress adapter committed | none |
+| 13 | U1.1 | Make `WorkingImage` the only `render_film` ingress | in progress; real ARW E2E now passes | generic RAW is explicit linear-sRGB/scene-linear; calibrated scene-to-display mapping still absent |
 | 14 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | in progress; sRGB8 encoder pass | PNG/JPEG/TIFF now match extensions and embed sRGB ICC; 16-bit/HDR remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | none for local research; U0.2 before public release |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
