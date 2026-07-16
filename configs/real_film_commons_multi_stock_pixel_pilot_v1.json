@@ -35,7 +35,7 @@
   },
   "download_limits": {
     "derivative_width": 1600, "maximum_bytes_total": 536870912, "maximum_bytes_per_file": 33554432,
-    "request_retries": 6, "request_interval_seconds": 1.5, "full_original_download_forbidden": true,
+    "request_retries": 5, "retry_backoff_seconds": 5.0, "request_interval_seconds": 4.0, "full_original_download_forbidden": true,
     "temporary_suffix": ".part", "resume_only_after_sha256_and_decode_validation": true
   },
   "pixel_audit": {

@@ -200,6 +200,7 @@ def download_selected_rows(
     session: requests.Session | None = None,
     timeout_seconds: int = 60,
     retries: int = 3,
+    retry_backoff_seconds: float = 1.0,
     request_interval_seconds: float = 0.0,
     checkpoint_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -250,7 +251,7 @@ def download_selected_rows(
                                 retry_after = float(exc.response.headers.get("retry-after", 0))
                             except (TypeError, ValueError):
                                 retry_after = 0.0
-                        time.sleep(max(retry_after, float(2 ** attempt)))
+                        time.sleep(min(60.0, max(retry_after, retry_backoff_seconds * float(2 ** attempt))))
             if response is None or error is not None:
                 raise CommonsStockPilotError(f"download failed for page {page_id}: {error}")
             content_type = response.headers.get("content-type", "").split(";", 1)[0].lower()

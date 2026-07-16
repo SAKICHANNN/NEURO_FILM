@@ -6,11 +6,16 @@ the same stable dual author/uploader-capped round robin as SF0.5. The frozen
 expectation is 37 UltraMax and 14 Kodachrome64 rows; GFDL, share-alike, bare
 Attribution and derivative==original rows are excluded.
 
-The pilot remains <=128 files/512 MiB, <=32 MiB each and waits 1.5 seconds
-between requests with atomic per-file checkpoints. Every pixel must pass
+The pilot remains <=128 files/512 MiB and <=32 MiB each. After Wikimedia 429,
+the frozen polite policy is four seconds between requests plus 5/10/20/40
+second retry backoff, with atomic per-file checkpoints. Every pixel must pass
 hash/decode/dimensions, exact/dHash<=4 collision checks, >=8 retained files,
 >=5 normalized authors, <=60% largest author and full contact-sheet plus
 full-resolution risk review. Each stock is adjudicated independently.
+
+MediaWiki may answer a requested 1600px thumbnail with a standard-cache URL
+whose path is labelled `1920px`. It remains eligible only when the URL differs
+from the original; actual decoded dimensions are recorded and bounded.
 
 Even if both pass, the result only opens a three-stock comparative
 identifiability design with the existing Ektar set. It does not directly

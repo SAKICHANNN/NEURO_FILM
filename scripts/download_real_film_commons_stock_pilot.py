@@ -35,6 +35,7 @@ def main() -> int:
         config=config,
         prior_manifest=prior,
         retries=int(config["download_limits"]["request_retries"]),
+        retry_backoff_seconds=float(config["download_limits"].get("retry_backoff_seconds", 1.0)),
         request_interval_seconds=float(config["download_limits"]["request_interval_seconds"]),
         checkpoint_path=output,
     )
