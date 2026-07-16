@@ -866,6 +866,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Branches:** any passing edge opens only `SF1.2` bounded live-rights feasibility; no passing edge closes current public community expansion for stock learning. Both branches explicitly keep operator fitting and pixel download false.
 - **Evidence:** pass, close and report-drift regressions pass; targeted SF1.1 count becomes ten and full-suite target becomes 192 tests.
 
+## 2026-07-16 - Reject non-finite WorkingImage pixels
+
+- **Contract:** the unique production ingress type now rejects NaN and infinity in addition to wrong shape/dtype. It deliberately does not clamp or reject finite HDR >1/scene-linear negative values.
+- **Evidence:** a non-finite construction regression passes; full-suite target becomes 193 tests. No valid decode/render pixels change.
+
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 
 - **Drift found:** `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` still described SF0.5 as the next leaf and omitted the YFCC cells, connected nuisance failure and SF1.1 stop tree.

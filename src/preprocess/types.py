@@ -100,3 +100,5 @@ class WorkingImage:
             raise ValueError("WorkingImage.pixels must be HxWx3.")
         if self.pixels.dtype != np.float32:
             raise TypeError("WorkingImage.pixels must be float32.")
+        if not np.isfinite(self.pixels).all():
+            raise ValueError("WorkingImage.pixels must contain only finite values.")
