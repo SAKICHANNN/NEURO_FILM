@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sf0.8b-yfcc-velvia50-pixel-v1",
+  "node": "ULT > RF0.4 > SF0.8B",
+  "target_stock_id": "fujifilm_velvia_50",
+  "metadata_report": "outputs/real_film/yfcc_stock_v1/stock_metadata_audit.json",
+  "metadata_report_sha256": "32f5e2865bddd0e6b4ddfffd455adfd65de1d27dd0567fbca649d6e97fc33ef9",
+  "download_root": "data/raw/yfcc_velvia50_pilot_v1",
+  "download_manifest": "outputs/real_film/yfcc_velvia50_v1/pixel_download_manifest.json",
+  "audit_report": "outputs/real_film/yfcc_velvia50_v1/pixel_audit_report.json",
+  "contact_sheet_root": "outputs/real_film/yfcc_velvia50_v1/contact_sheets",
+  "user_agent": "K-MCFM-research-yfcc-pixel-pilot/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded rights audit)",
+  "process_contamination_exclusions": [
+    "cross[ -]?process|crossprocess|xpro|x-process|e6\\s*(?:as|in)\\s*c41",
+    "\\bhdr\\b|tone[ -]?map",
+    "multiple[ -]?exposure|double[ -]?exposure",
+    "rodinal|black[ -]?(?:and|&)[ -]?white|\\bb/?w\\b"
+  ],
+  "selection": {
+    "algorithm": "stable Flickr-UID round robin ordered by numeric photoid; live failures advance to the next frozen candidate",
+    "maximum_files_per_uid": 4,
+    "maximum_retained_files": 32,
+    "preflight_expected": {"eligible_rows": 45, "author_uids": 23, "largest_author_share": 0.15555555555555556}
+  },
+  "live_rights": {
+    "required_snapshot_license_url": "http://creativecommons.org/licenses/by/2.0/",
+    "required_page_regex": "creativecommons\\.org/licenses/by/2\\.0/",
+    "page_status_200_required": true,
+    "licence_downgrade_or_missing_page_rejects_pixel": true
+  },
+  "download_limits": {
+    "maximum_bytes_total": 268435456,
+    "maximum_bytes_per_file": 33554432,
+    "timeout_seconds": 60,
+    "request_interval_seconds": 1.0,
+    "original_download_forbidden": true
+  },
+  "allowed_stock_ids": ["fujifilm_velvia_50"],
+  "pixel_audit": {
+    "minimum_short_dimension": 512,
+    "allowed_decoded_modes": ["RGB", "L", "RGBA", "P", "CMYK"],
+    "near_duplicate_hamming_threshold": 4,
+    "minimum_retained_files_per_stock": 8,
+    "minimum_normalized_author_groups_for_learning": 5,
+    "maximum_largest_normalized_author_share_for_learning": 0.6,
+    "confirmed_severe_corruption_blocks_learning": true,
+    "training_before_audit_and_visual_decision_forbidden": true
+  },
+  "claim_ceiling": "bounded YFCC Velvia50 exact-text/live-CC-BY community pixel pilot only; no stock response, calibration, S1/S2, authenticity, training, released weights or commercial-use claim"
+}

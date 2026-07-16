@@ -75,6 +75,8 @@ files.
 | `build_fivek_freeze_pack.py` | Build bounded high-precision FiveK freeze assets before deleting the large raw dataset. |
 | `download_real_film_yfcc_stock_metadata.py` | Freeze and resume the bounded YFCC15M metadata-only stock-discovery subset. |
 | `audit_real_film_yfcc_stock_metadata.py` | Scan frozen YFCC15M metadata for exact stock phrases under licence and UID gates. |
+| `download_real_film_yfcc_velvia50.py` | Reverify live CC-BY pages and download the bounded Velvia50 pixel pilot. |
+| `audit_real_film_yfcc_velvia50.py` | Run pixel integrity/source gates and render Velvia50 contact sheets. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |
 | `scrape_films.py` | Film reference scraping helper. |
 | `build_data_manifest.py` | Build local dataset manifest. |
