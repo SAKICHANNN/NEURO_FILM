@@ -35,6 +35,14 @@ Historical or unknown-stock film is retained as the separate
 expert, ageing/scanner analysis and stress evaluation, but it never substitutes
 for a specific stock and is reported in a separate coverage ledger.
 
+Within an evidence-backed stock, `H-LSM-1` allows but does not presume two or
+more stable latent appearance/operator modes. No current stock has proved
+`K>1`, and no current unpaired method has identified a true digital-to-film
+operator. `K=1` is a formal branch that retains the stock global champion plus
+bounded strength. The complete conditional gates and observed/latent ledger
+separation live in `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md` and
+`docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md`.
+
 The first stock-first research milestone is at least three distinguishable,
 transferable `real-film-derived/<stock>` experts plus one independent
 historical/unknown expert. It is a milestone, not a stopping condition; the
@@ -54,6 +62,10 @@ input digital photograph as if the input already had a film identity.
 
 Filename, folder, Capture One, Film Simulation, LUT or visually inferred labels
 never become authoritative stock truth without independent provenance.
+Exposure, metered EI, illuminant, push/pull, process and scanner interpretations
+also remain `unknown` unless independently observed. A latent cluster may be
+called only `Mode A/B/C` or given a nonphysical visual description; it cannot
+backfill those fields.
 
 ## 2. Evidence ledger
 
@@ -188,6 +200,9 @@ RF0 truth/data gate
        RF1.2 BlueNeg roll diagnostic (closed: content retrieval wins)
        RF1.3 LOC creator/location holdouts for the `H` auxiliary lane
        RF1.4 per-stock label/content/nuisance identifiability for first 2-4 pilots
+         -> LSM0/LSM1 conditional ontology and feasibility
+            -> LSM2-LSM8 only after stock, connectivity, identifiability,
+               pixel/rights and leakage gates all pass
          -> RF2 CPU explicit expert parent
             RF2.H independent historical/unknown expert
             RF2.S stock-specific global -> hierarchical -> retrieval -> conditional
@@ -238,6 +253,12 @@ the real-film RF1.1 gate.
 - do not claim calibration without controlled paired stock/process/scan data;
 - do not modify frozen experiment results, manifests or source bytes as part of
   this planning correction.
+- do not cluster raw appearance, content, source or scanner proxies and call
+  them stock modes; do not interpret a latent mode physically without
+  independent metadata;
+- do not use RF2.S0, current community pixels or 53/55/56 as latent-mode teacher
+  truth. RF2.S0 and SF1.0B remain frozen negative evidence, while 53/55/56 is a
+  required strength-path negative control.
 
 ### Definition of done
 

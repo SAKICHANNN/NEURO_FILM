@@ -26,6 +26,11 @@ This registry is an evidence ledger, not a claim that every listed candidate is
 ready to train. Pixel acquisition and fitting remain behind source-specific
 contracts and frozen gates.
 
+Within-stock latent modes are recorded only in the separate
+`docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md`. `H-LSM-1` is a conditional
+hypothesis: no current stock has proved `K>1`, and latent inference must never
+be copied back into this observed-evidence registry.
+
 ## 2. Canonical hierarchy
 
 ```text
@@ -45,6 +50,11 @@ film_stock_id
 source and content are nested repeated-measure or nuisance variables. Missing
 fields remain explicit `unknown`; they are never inferred from appearance and
 then reused as truth.
+
+This rule includes exposure offset, metered EI, box-speed deviation, push/pull,
+illuminant spectrum, process session, filtration, reciprocity state and scanner
+profile. User text may be retained as an auditable weak hint, but never becomes
+structured physical truth without independent evidence.
 
 At inference the user chooses the desired stock. A router may select only among
 bounded experts or cases inside that stock. It must not guess that the input
@@ -96,6 +106,8 @@ Before any stock-specific fit, freeze:
    WB/contrast/saturation controls;
 9. stock-specific claim ceiling and fail branch;
 10. manifest/config/report hashes and software identity.
+11. before any latent-mode study, a separate connectivity and stock-
+    identifiability pass under the LSM1 contract.
 
 A filename-only family, one source with stock/content structural zeros, or an
 unknown-stock archive cannot pass this contract by using a larger model.

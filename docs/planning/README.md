@@ -12,6 +12,9 @@ Current strategic plan:
 - `STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` - active source matrix, first four
   evidence pilots, stock-specific experiment DAG, promotion gates and failure
   branches.
+- `LATENT_STOCK_MODE_PROGRAM_2026.md` - conditional `H-LSM-1` programme under
+  stock-first: observed/latent epistemic boundary, formal `K=1` branch,
+  LSM0-LSM8 gates and no-current-mode claim ceiling.
 - `../data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` - authoritative stock label
   grades, nested nuisance schema, separate named/historical coverage and
   current candidate ledger.

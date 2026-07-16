@@ -2,7 +2,9 @@
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
-`docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`.
+`docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock
+mode research is governed by `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`
+and `docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md`.
 
 Ultimate learns multiple specific, evidence-backed `film_stock_id` experts
 from real film scans. Roll/process/scanner/source/content are nested controls.
@@ -10,6 +12,13 @@ from real film scans. Roll/process/scanner/source/content are nested controls.
 never substitutes for, or counts toward, named-stock coverage. FilmSet,
 Capture One recipes, camera Film Simulations, LUTs and the diffusion-first V3
 content below are historical/control material, not the active success path.
+
+`H-LSM-1` allows but does not assert multiple latent modes inside an eligible
+stock. No current stock has proved `K>1`; unpaired digital-to-film operator
+identification remains unresolved. `K=1` formally selects the stock global
+champion plus bounded strength. Mode discovery is forbidden until stock,
+connectivity, identifiability, pixel/rights and leakage gates all pass, and
+mode/content representations remain separate.
 
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
@@ -21,12 +30,16 @@ controls. `RF1.4B0` passes 47 exact official bbox/proxy pairs across six rolls.
 transplant to digital images: OOD coverage passes, while style/residual floors
 and clipping fail at every fixed strength. `SF0.4` now freezes 658 Wikimedia
 Commons metadata rows and passes the source gate for exact Ektar100, Superia
-X-TRA400 and Gold200 categories without downloading pixels. The current leaf
-was `SF0.5`: 36 derivative-only files are clean, but only Ektar passes true
-author/source gates; Superia and Gold stop and no training opens. The current
-leaf is `SF0.6`: obtain at least two additional exact stocks with explicit
-derivative rights and independent author/content support. The failed archive
-matrix is not teacher truth. LOC Phase C remains a sealed historical/unknown lane.
+X-TRA400 and Gold200 categories without downloading pixels. The community
+programme subsequently reached a 104-file connected audit, but both stock
+edges failed because scene colour/content and source geometry dominate. Those
+pixels remain closed for training and operator fitting. The current leaf is
+`SF1.1`: complete the 65,644,027,904-byte YFCC100M SQLite metadata-only
+shared-author gate under its frozen SHA/S3, identity and repeat-audit contract.
+A pass opens live-rights preflight only; a failure closes that public
+expansion. Neither branch opens latent-mode clustering. The failed archive
+matrix is not teacher truth. LOC Phase C remains a sealed historical/unknown
+lane.
 
 ---
 

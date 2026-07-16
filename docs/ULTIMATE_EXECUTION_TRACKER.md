@@ -27,6 +27,13 @@ or pseudo-teachers as final truth.
 stock/nuisance hierarchy, separate named/historical coverage and the RF0.4
 entry gate. Unknown historical archives cannot satisfy a named-stock node.
 
+**Conditional latent-mode authority, 2026-07-16:**
+`docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md` and
+`docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md` define `H-LSM-1`, the
+formal `K=1` branch and the separation between observed evidence and latent
+inference. No current stock has proved multiple transferable modes; unpaired
+digital-to-film operator identification remains unresolved.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source
@@ -91,6 +98,9 @@ the no-data research DAG.
 | Historical/unknown film is a separate auxiliary class | user-authoritative | Old film is useful for archive look and stress evidence, but it is not a named stock | Never count it toward named-stock coverage |
 | FilmSet is auxiliary only | user-authoritative | Cinema/ClassNeg/Velvia targets are Capture One recipes, not physical-film scans | Never promote RF/Ultimate nodes from FilmSet |
 | Roll2Film is one challenger, not the sole answer | user-authoritative | BlueNeg correct-roll effects reverse sign and CI crosses zero | Compare global, hierarchical, retrieval and bounded conditional operators |
+| A stock may conditionally contain multiple latent modes | research hypothesis | Averaging could hide stable appearance/operator structure, but current data prove no stock with `K>1` | Test only after stock/connectivity/identifiability/rights gates; `K=1` is a formal result |
+| Physical interpretation of latent modes is unknown by default | accepted epistemic boundary | Current sources lack trustworthy exposure/EI/illuminant/push-pull/process/scanner labels | Upgrade only from independent structured evidence; appearance never backfills truth |
+| Mode and content spaces remain separate | accepted research contract | Current 4x4 scene colour and geometry/source shortcuts can manufacture clusters and routing | Revisit only if a preregistered nuisance-controlled study demonstrates a safer representation |
 
 ---
 
@@ -104,6 +114,10 @@ ULT
    |- RF0.3 / RF1.3  Historical/unknown FSA/OWI auxiliary lane
    |- RF0.4           Authoritative stock registry and first-pilot audit
    |- RF1.4           Per-stock label/content/nuisance identifiability
+   |- LSM             Conditional within-stock latent-mode hypothesis
+   |  |- LSM0         Ontology/epistemic contract and formal K=1 branch
+   |  |- LSM1         Data/connectivity feasibility; no fitting
+   |  `- LSM2-LSM8    Residual/operator identifiability through product validation, gated
    |- RF2.H           Historical/unknown explicit expert, separate coverage
    |- RF2.S           Stock-specific CPU explicit expert ladder
    `- RF3-RF5         Per-stock bounded GPU challenge, confirmation and product
@@ -224,6 +238,15 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | SF1.0A2 | complete: small diagnostic bridge | Reverify/audit at most 20 YFCC Ektar100 pixels, max four per UID | SF1.0A | 16 files/3.63MB/5 UIDs/25%; live rights, duplicates, source and vision pass; `docs/REAL_FILM_YFCC_EKTAR100_BRIDGE_RESULTS.md` |
 | SF1.0B | complete: current pools closed | Falsify Ektar100/UltraMax400/Velvia50 stock signal against source/content/colour shortcuts | SF1.0A2 | both RGB edges fail; scene colour/content dominate; Ektar source geometry 92.86%/p=.016; `docs/REAL_FILM_CONNECTED_STOCK_IDENTIFIABILITY_RESULTS.md` |
 | SF1.1 | in progress: full-YFCC metadata-only shared-author gate | Acquire/filter public 65,644,027,904-byte YFCC100M SQLite for exact stocks and shared authors | SF1.0B | no pixels; SHA/ETag and identity guards; two byte-identical audits; deterministic pass opens live-rights preflight only, otherwise close; no operator/pixel permission |
+| LSM0 | complete: hypothesis contract | Ontology, observed/latent/physical interpretation split, legal naming and formal K=1 branch | stock-first authorities + frozen negative evidence | `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`; no claim that any stock has multiple modes |
+| LSM1 | data-gated: no eligible stock | Per-stock support/connectivity/rights/identifiability feasibility matrix | a stock's RF/SF evidence | only six legal decisions; no training/clustering; current community pools are unidentified and SF1.1 is metadata-only |
+| LSM2 | data-gated | Basic/strength-normalised residual appearance identifiability | LSM1 full pass | stable residual evidence across groups or K=1/unidentified stop; no operator claim |
+| LSM3 | data-gated | Compare appearance-only and assumption-sensitive explicit operator signatures | LSM2 pass + separately eligible neutral controls | film-inspired hypothesis only; disagreement across matcher/canonicalizer/pool closes unidentified |
+| LSM4 | data-gated | K=1/HDBSCAN/GMM/factor-mixture group-aware mode existence audit | LSM3 pass + frozen development policy | stable cross-group modes after nuisance/negative controls, or accept K=1/close |
+| LSM5 | data-gated | Fixed simplest explicit mode bank | LSM4 K>1 support | correct/wrong/shuffled/global/basic/style-matched/OOD/severe comparison |
+| LSM6 | data-gated | Evaluator Oracle over stock global champion | frozen LSM5 bank | significant group-aware value or product routing closes |
+| LSM7 | data-gated | Hard medoid, then sparse retrieval, then bounded router if necessary | LSM6 pass | stable routing with confidence/OOD fallback; no dense averaging/direct RGB |
+| LSM8 | data-gated | Full-resolution unseen-group/product validation | frozen LSM7 policy | severe veto, stress CI, deterministic replay and target-hardware evidence |
 | RF2.H | data-gated on RF1.3 | CPU historical/unknown-stock explicit expert, reported outside named-stock coverage | RF1.3 | useful independent archive look without stock claims |
 | RF2.S | data-gated on RF1.4 | Per-stock CPU global/hierarchical/retrieval/conditional explicit expert ladder | RF1.4 per stock | stock-specific gain and distinctiveness after matching saturation/contrast/style |
 | RF3 | conditional per stock | GPU bounded parameter challengers | a specific RF2.S residual value | curves/LUT/router/grid only; no RGB generator or cross-stock averaging |
@@ -561,6 +584,8 @@ No film purchase, lab booking, model download or GPU training occurs without the
 | EXP-FC-06 | Confidence/OOD fallback contains routing risk | router without fallback | calibrated reject/fallback | High-risk OOD miss ≤5%; unknown state 100% fail closed | Do not productize router |
 | EXP-FC-07 | Bounded local residual fixes a systematic local class | global FilmCase winner | bilateral-grid residual | Independent local gain; no halo/seam/speckle | Delete local branch |
 | EXP-FC-08 | Every retained component has independent value | simplest global champion | frozen ablation | Full system passes rights/safety/style/OOD/product gates | Remove unsupported complexity |
+| EXP-LSM-00 | One stock may retain stable residual modes after all prerequisite gates | K=1 stock global; 53/55/56 strength-path negative control | group-aware residual signature and mixture candidate | preregistered cross-group stability beyond content/source/basic/strength controls | accept K=1 or close as nuisance/unidentified; never add capacity to rescue |
+| EXP-LSM-01 | A statistically stable mode bank may have product routing value | stock global champion | frozen Evaluator Oracle over fixed modes | significant Oracle gain with no severe artifact | keep descriptive modes only; product remains global |
 | EXP-COLOR-01 | 1D + 3D LUT can move beyond the preferred deterministic anchors | `53/55/56/09/01` on one frozen set | global transform | Higher style/preference; zero severe gold-set artifacts | Severe artifact or no style gain |
 | EXP-COLOR-02 | SepLUT can increase style without instability | EXP-COLOR-01 | representation | Higher style frontier; no severe gold-set artifacts | Same/poorer, bland or artifact-prone result |
 | EXP-LOCAL-01 | Bilateral grid adds scene-aware style safely | current global winner | local grid | Local style/preference improves; no severe halo/tile/color artifacts | Severe artifact, blandness or no independent gain |

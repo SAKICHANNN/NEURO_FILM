@@ -19,6 +19,13 @@ content, era, ageing and restoration are nested controls. Missing facts remain
 `unknown`. A user chooses the output stock; content-aware selection may happen
 inside that stock but never substitutes one stock for another.
 
+After stock identifiability, the conditional `H-LSM-1` programme may test
+whether one stock contains multiple stable latent modes. It does not presume
+that it does: `K=1` remains a formal result, no current stock has proved
+multiple transferable modes, and unpaired digital-to-film operator
+identification remains unresolved. See
+`docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`.
+
 This programme does not treat a Capture One recipe, camera simulation, LUT,
 filename hint, generic old-film archive or learned average of all film as stock
 truth. Direct generative RGB editing remains excluded.
@@ -139,6 +146,22 @@ All candidates render through an inspectable operator. Regularise monotonicity,
 LUT smoothness, gamut, local-residual amplitude and temporal/spatial stability.
 The deterministic safe-rich renderer is the fallback, not the teacher truth.
 
+### Conditional LSM — within-stock mode hypothesis
+
+Before SF2 can expose more than a global stock champion, the stock must pass
+label/rights, connectivity, stock-identifiability, pixel and leakage gates.
+`LSM0` freezes ontology and the observed/latent split; `LSM1` produces a
+feasibility decision without training or clustering. Only a complete LSM1 pass
+may open residual appearance/operator identifiability and a preregistered
+`K=1` versus group-aware mixture audit.
+
+Mode space is separate from within-mode content retrieval. Clusters explained
+by strength, content, source, scanner, geometry or basic EV/WB/contrast/
+saturation/luma are merged or rejected. Physical labels remain `unknown` or
+`hypothesis_only`. Even stable modes do not enter product routing unless a
+fixed-bank Evaluator Oracle significantly beats the stock global champion and
+the full-resolution severe veto passes.
+
 ### SF3 — bounded ML challenge
 
 Only if SF2 leaves measured residual value may a small encoder predict curve,
@@ -220,3 +243,8 @@ and continue the deterministic product foundation or a separately approved
 licensed/controlled acquisition programme. If an edge passes, live rights
 must still project at least five usable shared authors before any pixel scope
 is frozen. No GPU job is justified in either branch at this stage.
+
+`SF1.1` is upstream of, and unchanged by, the latent-mode hypothesis. A pass
+opens only the frozen live-rights preflight; a failure says the current data
+cannot identify the required connectivity, not that latent modes do not
+exist. Neither branch directly opens LSM clustering or operator fitting.

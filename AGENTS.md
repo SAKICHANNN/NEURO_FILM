@@ -1,7 +1,7 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-15.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
-> **Target direction:** compare stock-specific global, hierarchical, retrieval and bounded conditional explicit operators. Roll, process, scanner, source and content are nested nuisance/group variables. The physical-roll-only Roll2Film hypothesis remains closed under current BlueNeg evidence. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`.
+> **Current truth: 2026-07-16.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
+> **Target direction:** compare stock-specific global, hierarchical, retrieval and bounded conditional explicit operators. A stock may conditionally expose latent `Mode A/B/C`, but multi-mode structure is an unproved, data-gated hypothesis and `K=1` remains a formal outcome. Roll, process, scanner, source and content are nested nuisance/group variables. The physical-roll-only Roll2Film hypothesis remains closed under current BlueNeg evidence. Unpaired digital-to-film operator identification remains unresolved. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`, `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` and `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`.
 
 ---
 
@@ -31,16 +31,18 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 | 3 | `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` | Active real-film success condition, evidence ledger, data/algorithm gates and RF execution tree |
 | 4 | `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` | Active stock-first source matrix, first pilots, experiment DAG, gates and failure branches |
 | 5 | `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` | Primary stock label hierarchy, evidence grades, separate named/historical coverage and current data ledger |
-| 6 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Prior evidence adjudication and product/research split |
-| 7 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Supporting artifact evaluation and product/system-risk program; historical paper priority is superseded |
-| 8 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
-| 9 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to diversity/Oracle gates |
-| 10 | `TASK_BOARD.md` | Compact active board/pointer |
-| 11 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
-| 12 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
-| 13 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
-| 14 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
-| 15 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
+| 6 | `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md` | Conditional within-stock mode hypothesis, K=1 branch and LSM0-LSM8 gates |
+| 7 | `docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md` | Strictly separated observed-evidence and latent-inference ledgers |
+| 8 | `docs/planning/ROLL2FILM_ULTIMATE_RESEARCH_AUDIT_INTEGRATION_20260715.md` | Prior evidence adjudication and product/research split |
+| 9 | `docs/planning/FARO_RESEARCH_PROGRAM_2026.md` | Supporting artifact evaluation and product/system-risk program; historical paper priority is superseded |
+| 10 | `docs/planning/ULTIMATE_ROADMAP_2026.md` | Earlier strategic synthesis, product architecture and primary sources |
+| 11 | `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md` | FilmCase baseline hypotheses and ablations, subordinate to diversity/Oracle gates |
+| 12 | `TASK_BOARD.md` | Compact active board/pointer |
+| 13 | `IMPL_PLAN.md` | Active-plan pointer plus historical V3 plan |
+| 14 | `docs/CURRENT_STATUS_2026-05-27.md` | Diffusion/IP2P failure and deterministic pivot |
+| 15 | `docs/CONTENT_PRESERVING_RENDERER_FINAL_REPORT.md` | Current renderer implementation and promoted effects |
+| 16 | `docs/PROJECT_STRUCTURE.md` | Repository placement and safe cleanup rules |
+| 17 | `docs/EXPERIMENT_LOG.md` | Historical experiments |
 
 The following are historical context, not active authority: `docs/ARCH_REDESIGN.md`, `docs/planning/GAP_ANALYSIS.md`, `docs/ONLINE_DATA_AUDIT.md`, and the diffusion sections below the supersession banner in `IMPL_PLAN.md`.
 
@@ -86,7 +88,8 @@ RAW / Log / HDR / SDR
   -> high-precision WorkingImage + versioned input transform
   -> optional neutral auto-base
   -> FilmCase eligibility/OOD:
-       global deterministic fallback or hard-selected bounded case expert
+       stock global deterministic fallback
+       or, only after LSM gates, one hard latent mode + bounded case expert
   -> style/stock exposure + monotone curves
   -> global 3D LUT / SepLUT / NILUT
   -> optional bounded bilateral-grid local residual
@@ -118,6 +121,10 @@ Architecture rules:
 12. `film_stock_id` is the highest-level real-film expert class. Physical roll, process, scanner, source and content are nested controls, not replacements for stock identity.
 13. `historical-film/unknown-stock` is a valid independent expert/stress lane, but it never counts toward named-stock coverage or substitutes for a specific stock.
 14. At inference the user selects the target stock; content-aware routing stays inside that stock and never guesses a film identity for the input digital photograph.
+15. `H-LSM-1` is a hypothesis: an evidence-backed stock may have multiple stable latent modes, but no current stock has proved `K>1`; `K=1` closes latent routing and keeps global champion plus bounded strength.
+16. Mode discovery is forbidden until stock evidence, connectivity, stock identifiability, pixel/rights and leakage gates pass. Raw appearance, CLIP/content, uploader, geometry or scanner/source clusters are not film modes.
+17. Without independent metadata, latent modes use `Mode A/B/C`; exposure, EI, illuminant, push/pull, process and scanner interpretations remain `unknown` or `hypothesis_only` and never backfill observed metadata.
+18. Mode-space evidence and within-mode content retrieval use separate representations. Unpaired operator candidates remain `film-inspired/unpaired-evidence`, not identified digital-to-film or calibrated stock response.
 
 ---
 
@@ -148,6 +155,7 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 - Roll2Film: fixed-budget method controls and FilmSet transfer pass, but BlueNeg correct-roll gains change sign across held-out rolls and the roll-cluster interval crosses zero; physical-roll information is not established and CT7 stops;
 - FilmCase: source-controlled identifiability → bounded case bank → Evaluator Oracle → simplest generic or transform-aware retrieval → hard sparse router/OOD fallback;
+- Latent stock modes: conditional LSM0-LSM8 hypothesis under stock-first. Current pools are not eligible; `K=1`, strength-only, content/source nuisance, no Oracle gain or severe artifacts all close routing without stopping Ultimate;
 - existing SepLUT/NILUT/4D proxies: may challenge the Style-safe frontier on rights-cleared preference targets; real paired targets are required only for calibrated claims;
 - local bounded maps: old automatic gate rewarded at least 3% chroma and the user judged outputs mainly as saturation gain;
 - FLUX.2 Klein 4B: excluded from FilmCase; a future Creative-only candidate requiring separate instruction/approval, with unresolved 12GB support;
@@ -247,6 +255,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/diagnostic bridge | SF1.0A/A2 | YFCC Ektar passes metadata/live pixel gates at 16 files/5 UIDs; YFCC UltraMax stops; connected design is available |
 | Done/closed | SF1.0B | Both stock edges fail; Ektar source fingerprint is strong; current pools remain aesthetic/failure evidence only |
 | P0 metadata only | SF1.1 | Freeze/download/filter the 65.64GB public YFCC100M SQLite index for same-author exact-stock support; no pixels |
+| Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
 | Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |
