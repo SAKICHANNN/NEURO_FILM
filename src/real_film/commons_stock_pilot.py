@@ -61,7 +61,7 @@ def _rights_eligible(row: Mapping[str, Any], config: Mapping[str, Any]) -> bool:
         str(row.get(key, "")).strip()
         for key in ("author_raw_html", "file_page_url", "original_url", "derivative_1600_url")
     )
-    if not common:
+    if not common or row["derivative_1600_url"] == row["original_url"]:
         return False
     if licence in set(policy["allowed_licenses_with_explicit_url"]):
         return bool(str(row.get("license_url", "")).strip())
@@ -184,6 +184,8 @@ def download_selected_rows(
     session: requests.Session | None = None,
     timeout_seconds: int = 60,
     retries: int = 3,
+    request_interval_seconds: float = 0.0,
+    checkpoint_path: Path | None = None,
 ) -> dict[str, Any]:
     """Download selected derivatives atomically, with strict aggregate limits."""
     limits = config["download_limits"]
@@ -226,7 +228,13 @@ def download_selected_rows(
                 except requests.RequestException as exc:
                     error = exc
                     if attempt + 1 < retries:
-                        time.sleep(2 ** attempt)
+                        retry_after = 0.0
+                        if getattr(exc, "response", None) is not None:
+                            try:
+                                retry_after = float(exc.response.headers.get("retry-after", 0))
+                            except (TypeError, ValueError):
+                                retry_after = 0.0
+                        time.sleep(max(retry_after, float(2 ** attempt)))
             if response is None or error is not None:
                 raise CommonsStockPilotError(f"download failed for page {page_id}: {error}")
             content_type = response.headers.get("content-type", "").split(";", 1)[0].lower()
@@ -247,6 +255,7 @@ def download_selected_rows(
             payload = bytes(payload_buffer)
             if not payload:
                 raise CommonsStockPilotError(f"per-file byte cap failed for page {page_id}")
+            response.close()
         if total + len(payload) > int(limits["maximum_bytes_total"]):
             raise CommonsStockPilotError("aggregate byte cap would be exceeded")
         decoded = _verify_image_payload(
@@ -281,11 +290,25 @@ def download_selected_rows(
             "content_type": content_type,
             **decoded,
         })
+        if checkpoint_path is not None:
+            atomic_json(checkpoint_path, {
+                "schema_version": 1,
+                "pilot_id": config["pilot_id"],
+                "files": len(records),
+                "bytes": total,
+                "complete": False,
+                "all_files_sha256_and_decode_verified": True,
+                "rows": records,
+                "claim_ceiling": config["claim_ceiling"],
+            })
+        if previous is None and request_interval_seconds > 0:
+            time.sleep(request_interval_seconds)
     return {
         "schema_version": 1,
         "pilot_id": config["pilot_id"],
         "files": len(records),
         "bytes": total,
+        "complete": True,
         "all_files_sha256_and_decode_verified": True,
         "rows": records,
         "claim_ceiling": config["claim_ceiling"],

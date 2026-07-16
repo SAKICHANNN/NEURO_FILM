@@ -78,6 +78,9 @@ class _Response:
     def raise_for_status(self) -> None:
         return None
 
+    def close(self) -> None:
+        return None
+
 
 class _Session:
     def __init__(self, payloads: dict[str, bytes]):

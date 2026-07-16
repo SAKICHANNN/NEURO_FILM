@@ -19,7 +19,8 @@ substitute for authors.
 - CC0/CC BY rows require an explicit licence URL;
 - public-domain rows require explicit usage terms and a Commons file page;
 - exclude bare `Attribution`, all share-alike rows, missing author/source URLs,
-  and missing 1600px derivative URLs;
+  missing 1600px derivative URLs, and API rows whose derivative URL equals the
+  original URL;
 - preserve raw author, uploader, credit, licence, file-page, original URL,
   Commons SHA1 and derivative URL in every manifest row.
 
@@ -32,10 +33,12 @@ Only the 1600px derivative may be fetched, with a 32 MiB per-file fail-closed
 limit and atomic `.part` replacement. Existing files are resumed only after
 their recorded SHA-256 and decode checks pass.
 
-The frozen preflight expectation is 27 Ektar, 14 Superia and 11 Gold rows.
-Superia's 105 nominally permissive rows reduce to 14 because 103 share one
-author. This is evidence of source confounding, not a reason to reinterpret
-nine uploader accounts as nine independent photographers.
+The corrected preflight expectation is 26 Ektar, 2 Superia and 8 Gold rows.
+The earlier 27/14/11 count failed to exclude API responses where the requested
+1600px thumbnail resolves to the original file. Superia's 105 nominally
+permissive rows contain 103 from one author and 116 category rows whose
+thumbnail URL is the original URL. This is source/support evidence, not a
+reason to weaken the no-original or author-group rules.
 
 ## Evidence bundle and promotion boundary
 

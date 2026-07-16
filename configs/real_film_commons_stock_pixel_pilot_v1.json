@@ -5,8 +5,6 @@
   "metadata_snapshot": "outputs/real_film/commons_stock_v1/metadata_snapshot.json",
   "metadata_snapshot_sha256": "f7ee9db16b198f3ce59c2cea887792e82f6dce8109ae6a79cb17c4ef7f10e5cd",
   "selection_manifest": "outputs/real_film/commons_stock_v1/pixel_selection_manifest.json",
-  "selection_manifest_sha256": "441eae9b743c4e6f9ab01ae3aa9bc1f6a41d4e8f1a1532cb589365295b9063c0",
-  "selection_software_commit": "75e4f4c722748663ed0b13b0014af13130388e12",
   "download_root": "data/raw/commons_stock_pilot_v1",
   "download_manifest": "outputs/real_film/commons_stock_v1/pixel_download_manifest.json",
   "audit_report": "outputs/real_film/commons_stock_v1/pixel_audit_report.json",
@@ -37,9 +35,9 @@
     "maximum_files_per_normalized_author_per_stock": 12,
     "maximum_files_per_uploader_per_stock": 12,
     "preflight_expected_selected": {
-      "kodak_ektar_100": 27,
-      "fujifilm_superia_xtra_400": 14,
-      "kodak_gold_200": 11
+      "kodak_ektar_100": 26,
+      "fujifilm_superia_xtra_400": 2,
+      "kodak_gold_200": 8
     },
     "maximum_files_total": 192
   },
@@ -47,6 +45,8 @@
     "derivative_width": 1600,
     "maximum_bytes_total": 536870912,
     "maximum_bytes_per_file": 33554432,
+    "request_retries": 6,
+    "request_interval_seconds": 1.5,
     "full_original_download_forbidden": true,
     "temporary_suffix": ".part",
     "resume_only_after_sha256_and_decode_validation": true

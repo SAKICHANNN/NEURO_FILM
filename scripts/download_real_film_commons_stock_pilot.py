@@ -28,7 +28,15 @@ def main() -> int:
     selection = json.loads(selection_path.read_text(encoding="utf-8"))
     output = ROOT / config["download_manifest"]
     prior = json.loads(output.read_text(encoding="utf-8")) if output.exists() else None
-    manifest = download_selected_rows(selection["rows"], root=ROOT / config["download_root"], config=config, prior_manifest=prior)
+    manifest = download_selected_rows(
+        selection["rows"],
+        root=ROOT / config["download_root"],
+        config=config,
+        prior_manifest=prior,
+        retries=int(config["download_limits"]["request_retries"]),
+        request_interval_seconds=float(config["download_limits"]["request_interval_seconds"]),
+        checkpoint_path=output,
+    )
     digest = atomic_json(output, manifest)
     print(json.dumps({"manifest": str(output), "sha256": digest, "files": manifest["files"], "bytes": manifest["bytes"]}, indent=2, sort_keys=True))
     return 0
