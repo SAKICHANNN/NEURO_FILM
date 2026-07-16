@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import sqlite3
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from src.real_film.yfcc_full_index import (
     YfccFullIndexError,
     audit_candidate_rows,
     download_full_index,
+    hash_file_evidence,
     scan_full_index,
     validate_download_manifest,
     validate_source_headers,
@@ -41,6 +43,18 @@ def test_source_headers_fail_closed_on_etag_drift() -> None:
     headers["ETag"] = '"other"'
     with pytest.raises(YfccFullIndexError, match="ETag"):
         validate_source_headers(headers, _config())
+
+
+def test_hash_file_evidence_reproduces_s3_multipart_etag(tmp_path: Path) -> None:
+    payload = b"abcdefghij"
+    path = tmp_path / "object.bin"
+    path.write_bytes(payload)
+    evidence = hash_file_evidence(path, 4)
+    parts = [payload[index:index + 4] for index in range(0, len(payload), 4)]
+    digests = [hashlib.md5(part, usedforsecurity=False).digest() for part in parts]
+    expected = hashlib.md5(b"".join(digests), usedforsecurity=False).hexdigest() + "-3"
+    assert evidence["multipart_etag"] == expected
+    assert evidence["sha256"] == hashlib.sha256(payload).hexdigest()
 
 
 def test_exact_rows_and_shared_uid_gate() -> None:
@@ -140,10 +154,20 @@ def test_download_resumes_after_stream_interruption_and_closes_responses(tmp_pat
     with sqlite3.connect(source) as connection:
         connection.execute("CREATE TABLE yfcc100m_dataset (photoid INTEGER, uid TEXT)")
     payload = source.read_bytes()
-    headers = {"Content-Length": str(len(payload)), "ETag": '"etag"', "Last-Modified": "date"}
+    part_bytes = 128
+    part_digests = [
+        hashlib.md5(payload[index:index + part_bytes], usedforsecurity=False).digest()
+        for index in range(0, len(payload), part_bytes)
+    ]
+    etag = hashlib.md5(b"".join(part_digests), usedforsecurity=False).hexdigest() + f"-{len(part_digests)}"
+    headers = {"Content-Length": str(len(payload)), "ETag": f'"{etag}"', "Last-Modified": "date"}
     config = {
         "dataset_id": "test", "claim_ceiling": "test", "user_agent": "test",
-        "source": {"url": "https://example.invalid/index", "expected_bytes": len(payload), "expected_etag": "etag", "expected_last_modified": "date"},
+        "source": {
+            "url": "https://example.invalid/index", "expected_bytes": len(payload),
+            "expected_etag": etag, "expected_last_modified": "date",
+            "expected_multipart_parts": len(part_digests), "multipart_part_bytes": part_bytes,
+        },
         "download_limits": {
             "minimum_free_space_after_download_bytes": 0, "chunk_bytes": 64,
             "progress_checkpoint_bytes": len(payload), "connect_timeout_seconds": 1,

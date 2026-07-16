@@ -24,12 +24,25 @@ class YfccFullIndexError(ValueError):
     """Raised when the frozen SF1.1 source or scan contract fails closed."""
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
+def hash_file_evidence(path: Path, multipart_part_bytes: int) -> dict[str, Any]:
+    """Compute SHA-256 and an S3 multipart ETag in one sequential pass."""
+    if multipart_part_bytes <= 0:
+        raise YfccFullIndexError("multipart part size must be positive")
+    sha256 = hashlib.sha256()
+    part_digests: list[bytes] = []
     with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(8 * 1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+        while chunk := handle.read(multipart_part_bytes):
+            sha256.update(chunk)
+            part_digests.append(hashlib.md5(chunk, usedforsecurity=False).digest())
+    if not part_digests:
+        raise YfccFullIndexError("cannot hash an empty multipart object")
+    multipart = hashlib.md5(b"".join(part_digests), usedforsecurity=False).hexdigest()
+    return {
+        "sha256": sha256.hexdigest(),
+        "multipart_etag": f"{multipart}-{len(part_digests)}",
+        "multipart_parts": len(part_digests),
+        "multipart_part_bytes": multipart_part_bytes,
+    }
 
 
 def validate_source_headers(headers: Mapping[str, str], config: Mapping[str, Any]) -> dict[str, Any]:
@@ -78,6 +91,14 @@ def validate_download_manifest(
     digest = str(manifest.get("sha256", ""))
     if not re.fullmatch(r"[0-9a-f]{64}", digest):
         raise YfccFullIndexError("download manifest SHA-256 is invalid")
+    if manifest.get("multipart_etag_verified") is not True:
+        raise YfccFullIndexError("download manifest lacks multipart ETag verification")
+    if manifest.get("multipart_etag") != config["source"]["expected_etag"]:
+        raise YfccFullIndexError("download manifest multipart ETag drifted")
+    if int(manifest.get("multipart_parts", -1)) != int(config["source"]["expected_multipart_parts"]):
+        raise YfccFullIndexError("download manifest multipart part count drifted")
+    if int(manifest.get("multipart_part_bytes", -1)) != int(config["source"]["multipart_part_bytes"]):
+        raise YfccFullIndexError("download manifest multipart part size drifted")
     if manifest.get("image_payloads_downloaded_or_decoded") is not False:
         raise YfccFullIndexError("download manifest violates metadata-only contract")
     return {
@@ -168,7 +189,12 @@ def download_full_index(
                 raise YfccFullIndexError("full-index download failed after retries") from last_error
         validate_sqlite_header(temporary, expected_bytes)
         os.replace(temporary, destination)
-    digest = sha256_file(destination)
+    multipart_part_bytes = int(source["multipart_part_bytes"])
+    file_evidence = hash_file_evidence(destination, multipart_part_bytes)
+    if file_evidence["multipart_etag"] != str(source["expected_etag"]):
+        raise YfccFullIndexError("source multipart ETag verification failed")
+    if file_evidence["multipart_parts"] != int(source["expected_multipart_parts"]):
+        raise YfccFullIndexError("source multipart part count drifted")
     with sqlite3.connect(f"file:{destination.as_posix()}?mode=ro", uri=True) as connection:
         table = connection.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='yfcc100m_dataset'"
@@ -184,7 +210,11 @@ def download_full_index(
         "dataset_id": config["dataset_id"],
         "path": destination.as_posix(),
         "bytes": destination.stat().st_size,
-        "sha256": digest,
+        "sha256": file_evidence["sha256"],
+        "multipart_etag": file_evidence["multipart_etag"],
+        "multipart_parts": file_evidence["multipart_parts"],
+        "multipart_part_bytes": file_evidence["multipart_part_bytes"],
+        "multipart_etag_verified": True,
         "source": evidence,
         "sqlite_table": "yfcc100m_dataset",
         "sqlite_columns": columns,

@@ -844,3 +844,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** a synthetic `Ektar 100 vs Velvia 50` row cannot create an overlap; reversed input order produces an identical report. The frozen YFCC15M Ektar/Velvia/UltraMax rows contain zero such ambiguous photos, so prior small-pool counts do not change.
 - **Verification:** five targeted SF1.1 tests pass; full-suite count is 175 after the new guard test.
 - **Lineage hardening:** the audit now fails closed unless the download manifest matches dataset ID, absolute path, exact bytes, frozen source headers, SQLite header, metadata-only flag and a valid SHA-256. Every report carries both the manifest SHA and immutable SQLite SHA without an unnecessary third 61GB hash pass.
+
+## 2026-07-16 - Add independent S3 multipart integrity gate
+
+- **Derivation:** the 65,644,027,904-byte object and `-7826` ETag uniquely match 7,825 full 8MiB parts plus a 3,170,304-byte final part.
+- **Implementation:** the final sequential file pass now computes SHA-256 and every part MD5 together, reconstructs the multipart ETag, and fails unless both the ETag and 7,826-part count match the frozen source. The audit refuses manifests without this verification.
+- **Evidence:** a synthetic three-part object reproduces its independently computed S3 multipart ETag; six SF1.1 tests pass and the full-suite count becomes 176.
+- **Operational note:** the already-running transfer uses the preceding process image; after it atomically completes, rerun the updated downloader once to perform and record the strengthened hash gate before auditing.
