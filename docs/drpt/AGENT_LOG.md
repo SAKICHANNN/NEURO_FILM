@@ -736,3 +736,4 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Candidates:** exact Kodachrome25/64, Ektachrome Elite100 5045 EB/Elite200 and Vision3 50D/250D categories, 20-51 direct files each.
 - **Invariant:** do not pool family names or process interpretations; same >=5 authors, <=60% dominance and >=8 strict derivative-rights rows.
 - **Stop:** metadata only. One pass opens a separately frozen pixel audit, never direct training.
+- **Licence correction after first audit:** Kodachrome64's sole all-row failure is one `GFDL 1.2` record among 51. FSF identifies GFDL 1.2 as a free copyleft documentation licence. Add it only to metadata research-free enumeration, never to strict pixel candidates; author and 15-candidate support are unchanged.

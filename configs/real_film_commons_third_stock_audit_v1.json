@@ -17,7 +17,7 @@
   "api_query": {"category_members_type": "file", "category_members_limit": 500, "image_info": ["url", "size", "sha1", "user", "timestamp", "mime", "mediatype", "extmetadata"], "page_properties": ["revisions"], "category_revision_fields": ["ids", "timestamp"], "thumbnail_url_width_for_future_pilot": 1600, "maximum_requests_per_category": 10},
   "license_policy": {
     "metadata_only_stage": true,
-    "research_free_licenses": ["CC0", "Public domain", "Attribution", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0", "CC BY-SA 2.0", "CC BY-SA 2.0 fr", "CC BY-SA 2.5", "CC BY-SA 3.0", "CC BY-SA 3.0 de", "CC BY-SA 4.0"],
+    "research_free_licenses": ["CC0", "Public domain", "Attribution", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0", "CC BY-SA 2.0", "CC BY-SA 2.0 fr", "CC BY-SA 2.5", "CC BY-SA 3.0", "CC BY-SA 3.0 de", "CC BY-SA 4.0", "GFDL 1.2"],
     "permissive_candidate_licenses": ["CC0", "Public domain", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0"],
     "share_alike_rows_internal_research_only_until_legal_review": true,
     "per_file_author_credit_license_url_and_source_url_required_before_pixels": true

@@ -14,4 +14,9 @@ This is metadata-only. One further pass is sufficient to reach three
 provisional Commons source candidates (with Ektar and UltraMax) and open a
 separately frozen bounded pixel audit. A pass does not open training directly.
 
+Licence enumeration correction: one Kodachrome64 row uses `GFDL 1.2`, which
+the FSF publishes as a free copyleft documentation licence. It is accepted for
+the all-row metadata sanity check but remains excluded from strict pixel
+candidates; the latter stay limited to the frozen CC0/CC BY/public-domain set.
+
 Machine contract: `configs/real_film_commons_third_stock_audit_v1.json`.
