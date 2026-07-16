@@ -1015,3 +1015,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen gate:** global RGB must reach 0.70 and p<=.05, beat the best luma/HOG/4x4 scene-colour/standardized-RGB/geometry nuisance by >=0.10 with bootstrap lower bound >0, while HOG remains <=0.65. No result-dependent threshold change is allowed.
 - **Propagation:** SF1.3A moves to bounded pixel/integrity pass in the root authority, tracker, RF/SF plans, observed/latent registries, task board and implementation pointer. LSM1 remains ineligible pending stock identifiability.
 - **Boundary/handoff:** commit/push the result and contract before executing the existing connected-identifiability runner with the SF1.3B config. Pass opens evidence design only; fail/ambiguity closes this pool for learning. Training, operator fitting and LSM remain false.
+
+## 2026-07-16 - Close SF1.3B on held-out-UID identifiability failure
+
+- **Frozen execution:** 37 rows, eight held-out UIDs, config SHA-256 `69504c72...e634b`, report SHA-256 `bf303e68...968af`; no threshold, feature or seed changed after reading results.
+- **Result:** global RGB balanced accuracy 56.25%, p=.464. Luma and geometry each reach 62.5%; 4x4 scene colour and standardized RGB each reach 68.75%; HOG is 43.75%. Best nuisance is standardized RGB.
+- **Decisive failure:** RGB minus best nuisance is -12.5 points with paired-bootstrap 95% CI [-31.25%, 0]. Primary accuracy, permutation, nuisance margin and positive-CI gates all fail. Only group support and HOG ceiling pass.
+- **Interpretation:** same-author connectivity removes the across-uploader design failure but does not identify stock signal in this pool. This is a dataset/design limitation, not evidence that the physical stocks lack distinguishable appearance.
+- **Binding branch:** close the 37 pixels for stock learning, operator fitting and latent-mode discovery; forbid larger-model, router, clustering and threshold-weakening fallbacks. Propagate the negative evidence to RF/SF and LSM authorities.
+- **Goal continuation:** Ultimate remains active. The next ready local leaf returns to U1.1/U1.3 deterministic high-precision product work while other evidence-backed stock/data options remain a separate research branch.

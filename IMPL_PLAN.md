@@ -37,10 +37,11 @@ pixels remain closed for training and operator fitting. `SF1.1` now passes one
 metadata-only edge after exact SHA/S3 verification and two byte-identical full
 scans: Ektar100/Velvia50 has 16 shared UIDs. `SF1.2` confirms eight authors
 with a current CC BY page for both stocks without requesting images. The
-SF1.3A retains 37 clean pixels across eight bilateral UIDs. The current leaf is
-`SF1.3B`, a frozen leave-one-UID-out stock-identifiability diagnostic against
-content/colour/geometry controls. It opens no training, operator or latent-mode
-permission. The failed archive matrix is not teacher truth. LOC
+SF1.3A retains 37 clean pixels across eight bilateral UIDs, but SF1.3B fails:
+global RGB is 56.25%/p=.464 and loses to 68.75% nuisance controls. This pool is
+closed for learning. The next ready local leaf returns to `U1.1/U1.3`
+deterministic high-precision product work; no operator or latent-mode permission
+opens. The failed archive matrix is not teacher truth. LOC
 Phase C remains a sealed historical/unknown lane.
 
 ---

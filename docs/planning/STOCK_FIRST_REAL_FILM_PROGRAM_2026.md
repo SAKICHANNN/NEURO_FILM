@@ -243,6 +243,7 @@ retains 37 clean derivatives across all eight bilateral UIDs and passes
 integrity, duplicate and autonomous full-resolution visual gates.
 
 SF1.3A remains an `S0` acquisition/diagnostic pilot. It opens only the frozen
-`SF1.3B` shared-author leave-one-UID-out stock-identifiability diagnostic. No training,
-operator fitting, LSM or GPU work is justified by metadata, rights or clean
-pixels alone.
+`SF1.3B` shared-author leave-one-UID-out stock-identifiability diagnostic. It
+fails because global RGB is 56.25%/p=.464 and weaker than 68.75% nuisance
+controls. The pool is closed for stock learning; no training, operator fitting,
+LSM or GPU work is justified.

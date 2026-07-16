@@ -224,8 +224,10 @@ current CC BY page for each stock without requesting image URLs. `SF1.3A`
 retains 37 clean derivatives across all eight bilateral UIDs with no
 exact/dHash<=4 duplicates or confirmed severe artifact. The current P0 leaf is
 `SF1.3B`, a preregistered leave-one-UID-out stock-identifiability diagnostic.
-Neither pixel cleanliness nor the diagnostic contract opens training, operator
-fitting or LSM mode discovery by itself.
+It fails: global RGB is 56.25%/p=.464 and loses to 68.75% nuisance controls,
+so this pool is closed for learning. The local ready branch returns to the
+independent deterministic U1 high-precision product path while other stock/data
+evidence is researched; training, operator fitting and LSM remain closed.
 
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0

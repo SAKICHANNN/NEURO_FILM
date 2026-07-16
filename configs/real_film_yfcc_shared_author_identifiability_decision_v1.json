@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf1.3b-yfcc-shared-author-identifiability-closed-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF1 > SF1.3B",
+  "decision": "close_shared_author_pixel_pool_for_stock_learning",
+  "config_sha256": "69504c7246908ad770504d25d1b3e1612c71c9899110ce1637957e91d72e634b",
+  "report_sha256": "bf303e68fe1c253e85ec88107d8e6c99e417534901cae25f30e946b2466968af",
+  "rgb_balanced_accuracy": 0.5625,
+  "rgb_permutation_p": 0.464,
+  "best_nuisance_descriptor": "standardized_rgb_distribution",
+  "best_nuisance_balanced_accuracy": 0.6875,
+  "rgb_minus_best_nuisance": -0.125,
+  "rgb_minus_best_nuisance_ci95": [-0.3125, 0.0],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_discovery_allowed": false,
+  "forbidden_fallbacks": ["larger model", "router training", "image clustering", "threshold weakening", "operator fitting"],
+  "next_branch": "continue other evidence-authorized stock/data acquisition or independent deterministic product leaves",
+  "claim_ceiling": "this shared-author pool is unidentified for stock learning; no nonexistence claim about stock appearance and no stock response, operator, latent mode, calibration, authenticity, weights or release claim"
+}

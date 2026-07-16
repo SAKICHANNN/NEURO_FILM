@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 206 local tests pass; current community pixels remain closed for learning. SF1.3A retains 37 clean Ektar100/Velvia50 derivatives across eight bilateral UIDs with zero exact/dHash<=4 duplicates and no confirmed severe visual artifact. Only the frozen SF1.3B held-out-UID identifiability diagnostic opens; training, operator fitting and LSM remain forbidden |
+| Current evidence | 206 local tests pass; current community pixels remain closed for learning. SF1.3A retains 37 clean shared-author Ektar100/Velvia50 pixels, but SF1.3B fails identifiability: RGB 56.25%/p=.464 versus best nuisance 68.75%, delta -12.5 points (95% CI -31.25..0). This pool is closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -203,6 +203,8 @@ SF1.2, 2026-07-16: 61 sequential bounded HTML requests confirm eight shared UIDs
 
 SF1.3A, 2026-07-16: 37 bounded derivatives pass hash/decode/dimension, exact/dHash<=4 duplicate and autonomous visual gates: 21 Ektar100, 16 Velvia50 and all eight bilateral UIDs. Content remains heterogeneous/unbalanced and this is not stock evidence. Only the preregistered leave-one-UID-out SF1.3B diagnostic opens; training, operator fitting and LSM remain forbidden.
 
+SF1.3B, 2026-07-16: leave-one-UID-out global RGB is 56.25%/p=.464; standardized RGB and 4x4 scene colour each reach 68.75%, while geometry reaches 62.5%. RGB minus best nuisance is -12.5 points with 95% CI [-31.25%, 0]. The shared-author pool is unidentified and closed for learning; do not add model capacity, fit operators or cluster modes.
+
 FSA/OWI RF0.3 audit, 2026-07-15: the Commons mirror exposed 1,031 pages but strict filtering/canonicalization retained 558 public-domain LOC scan identifiers after removing 419 repeated representations. A 64-image/20.57MB visual pilot had zero decode, exact-duplicate or dHash<=4 failures and no confirmed severe glitch. Creator/location grouping leaves 457 learning-eligible records, 101 unknown-creator stress records and 43 conservative location guard groups. Phase C was stopped and retained at 258 downloaded derivatives / 81,016,399 bytes when the stock-first objective became authoritative. Training is not allowed; these are archive-scan leakage groups, not physical rolls or calibrated Kodachrome.
 
 All new manifest rows need source URL/ID, author, license snapshot/date, rights scope, scene/roll/lab/scanner/uploader group, content and perceptual hashes, derivation lineage and allowed-use fields. Split by group; exact/perceptual cross-split leakage must be zero before training.
@@ -263,7 +265,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/metadata pass | SF1.1 | Full YFCC Ektar/Velvia shared-author gate passes with 16 UIDs; exact source integrity and repeat audit complete; no pixels |
 | Done/rights pass | SF1.2 | Eight shared authors have a current CC BY page for both stocks; 61 HTML requests, no image access |
 | Done/pixel pass | SF1.3A | 37 clean bounded Ektar/Velvia derivatives, eight bilateral UIDs, zero duplicate pairs, no confirmed severe artifact; no fitting/training |
-| P0 diagnostic | SF1.3B | Frozen leave-one-UID-out Ektar/Velvia stock-identifiability audit against colour/content/geometry controls; no fitting/training |
+| Done/closed | SF1.3B | Shared-author Ektar/Velvia RGB fails held-out-UID identifiability and loses to nuisance controls; pool closed for learning |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
