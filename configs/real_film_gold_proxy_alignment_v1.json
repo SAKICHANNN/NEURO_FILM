@@ -23,6 +23,7 @@
     "restricted_unpickler_required": true,
     "allowed_globals": [
       "numpy.core.multiarray._reconstruct",
+      "numpy._core.multiarray._reconstruct",
       "numpy.ndarray",
       "numpy.dtype"
     ],
