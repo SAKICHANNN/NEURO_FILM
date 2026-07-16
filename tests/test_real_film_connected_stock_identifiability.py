@@ -19,7 +19,8 @@ def _separable() -> tuple[np.ndarray, list[str], list[str]]:
 def test_group_loo_centroid_uses_equal_author_group_votes() -> None:
     features, groups, labels = _separable()
     result = group_loo_centroid(features, groups, labels)
-    assert result["groups"] == 10
+    assert result["held_out_author_groups"] == 10
+    assert result["author_label_units"] == 10
     assert result["balanced_accuracy"] == 1.0
     assert result["per_class_group_recall"] == {"a": 1.0, "b": 1.0}
 
@@ -41,3 +42,16 @@ def test_paired_bootstrap_reports_positive_primary_delta() -> None:
     assert first == second
     assert first["observed_delta"] > 0
     assert first["ci95_low"] > 0
+
+
+def test_multilabel_author_is_held_out_as_one_split_group() -> None:
+    features, groups, labels = _separable()
+    features = np.concatenate([features, np.asarray([[0.05], [10.05]])])
+    groups = [*groups, "paired", "paired"]
+    labels = [*labels, "a", "b"]
+    result = group_loo_centroid(features, groups, labels)
+    paired = [row for row in result["predictions"] if row["held_out_author_group"] == "paired"]
+    assert result["held_out_author_groups"] == 11
+    assert result["author_label_units"] == 12
+    assert {row["true_label"] for row in paired} == {"a", "b"}
+    assert all(row["correct"] for row in paired)

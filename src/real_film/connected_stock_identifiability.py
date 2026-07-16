@@ -122,47 +122,47 @@ def extract_descriptors(row: Mapping[str, Any]) -> dict[str, np.ndarray]:
 
 
 def group_loo_centroid(features: np.ndarray, groups: Sequence[str], labels: Sequence[str]) -> dict[str, Any]:
-    """Classify held-out author groups using equal-weight training group centroids."""
+    """Hold out whole authors and classify equal-weight author-by-label units."""
     matrix = np.asarray(features, dtype=np.float64)
     if matrix.ndim != 2 or len(matrix) != len(groups) or len(matrix) != len(labels):
         raise ConnectedStockIdentifiabilityError("feature/group/label shape mismatch")
-    group_indices: dict[str, list[int]] = defaultdict(list)
-    group_label: dict[str, str] = {}
+    unit_indices: dict[tuple[str, str], list[int]] = defaultdict(list)
     for index, (group, label) in enumerate(zip(groups, labels, strict=True)):
         group, label = str(group), str(label)
-        if group in group_label and group_label[group] != label:
-            raise ConnectedStockIdentifiabilityError("one group has multiple labels")
-        group_indices[group].append(index)
-        group_label[group] = label
-    unique_labels = sorted(set(group_label.values()))
-    if any(sum(value == label for value in group_label.values()) < 2 for label in unique_labels):
+        unit_indices[(group, label)].append(index)
+    unique_groups = sorted(set(str(group) for group in groups))
+    unique_labels = sorted(set(str(label) for label in labels))
+    if any(sum(unit_label == label for _, unit_label in unit_indices) < 2 for label in unique_labels):
         raise ConnectedStockIdentifiabilityError("each class needs at least two author groups")
     predictions: list[dict[str, Any]] = []
-    for held_out in sorted(group_indices):
-        training_groups = [group for group in sorted(group_indices) if group != held_out]
-        centroids = np.stack([matrix[group_indices[group]].mean(axis=0) for group in training_groups])
+    for held_out in unique_groups:
+        training_units = sorted(unit for unit in unit_indices if unit[0] != held_out)
+        centroids = np.stack([matrix[unit_indices[unit]].mean(axis=0) for unit in training_units])
         mean, scale = centroids.mean(axis=0), np.maximum(centroids.std(axis=0), 1e-8)
         standardized = (centroids - mean) / scale
         label_centroids = {
-            label: standardized[[group_label[group] == label for group in training_groups]].mean(axis=0)
+            label: standardized[[unit[1] == label for unit in training_units]].mean(axis=0)
             for label in unique_labels
         }
-        test = (matrix[group_indices[held_out]].mean(axis=0) - mean) / scale
-        distances = {label: float(np.linalg.norm(test - center)) for label, center in label_centroids.items()}
-        predicted = min(distances, key=lambda label: (distances[label], label))
-        predictions.append({
-            "group_id": held_out,
-            "true_label": group_label[held_out],
-            "predicted_label": predicted,
-            "correct": predicted == group_label[held_out],
-            "distances": dict(sorted(distances.items())),
-        })
+        for unit in sorted(unit for unit in unit_indices if unit[0] == held_out):
+            test = (matrix[unit_indices[unit]].mean(axis=0) - mean) / scale
+            distances = {label: float(np.linalg.norm(test - center)) for label, center in label_centroids.items()}
+            predicted = min(distances, key=lambda label: (distances[label], label))
+            predictions.append({
+                "group_id": f"{held_out}::{unit[1]}",
+                "held_out_author_group": held_out,
+                "true_label": unit[1],
+                "predicted_label": predicted,
+                "correct": predicted == unit[1],
+                "distances": dict(sorted(distances.items())),
+            })
     recalls = {
         label: float(np.mean([row["correct"] for row in predictions if row["true_label"] == label]))
         for label in unique_labels
     }
     return {
-        "groups": len(predictions),
+        "held_out_author_groups": len(unique_groups),
+        "author_label_units": len(predictions),
         "balanced_accuracy": float(np.mean(list(recalls.values()))),
         "per_class_group_recall": recalls,
         "predictions": predictions,
@@ -178,15 +178,27 @@ def group_label_permutation_test(
     seed: int,
 ) -> dict[str, Any]:
     observed = group_loo_centroid(features, groups, labels)["balanced_accuracy"]
-    unique_groups = sorted(set(str(group) for group in groups))
-    label_by_group = {str(group): str(label) for group, label in zip(groups, labels, strict=True)}
-    original = np.asarray([label_by_group[group] for group in unique_groups], dtype=object)
+    unique_units = sorted(set((str(group), str(label)) for group, label in zip(groups, labels, strict=True)))
+    units_by_author: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    for unit in unique_units:
+        units_by_author[unit[0]].append(unit)
     rng = np.random.default_rng(seed)
     null: list[float] = []
     for _ in range(permutations):
-        shuffled = original[rng.permutation(len(original))]
-        mapping = dict(zip(unique_groups, shuffled, strict=True))
-        permuted = [mapping[str(group)] for group in groups]
+        mapping: dict[tuple[str, str], str] = {}
+        singleton_units: list[tuple[str, str]] = []
+        for author in sorted(units_by_author):
+            author_units = sorted(units_by_author[author])
+            if len(author_units) == 1:
+                singleton_units.extend(author_units)
+                continue
+            author_labels = np.asarray([unit[1] for unit in author_units], dtype=object)
+            shuffled_author_labels = author_labels[rng.permutation(len(author_labels))]
+            mapping.update(dict(zip(author_units, shuffled_author_labels, strict=True)))
+        singleton_labels = np.asarray([unit[1] for unit in singleton_units], dtype=object)
+        shuffled_singleton_labels = singleton_labels[rng.permutation(len(singleton_labels))]
+        mapping.update(dict(zip(singleton_units, shuffled_singleton_labels, strict=True)))
+        permuted = [mapping[(str(group), str(label))] for group, label in zip(groups, labels, strict=True)]
         null.append(group_loo_centroid(features, groups, permuted)["balanced_accuracy"])
     values = np.asarray(null)
     return {
@@ -266,7 +278,7 @@ def run_connected_audit(rows: Sequence[Mapping[str, Any]], config: Mapping[str, 
         checks = {
             "minimum_groups_per_label": all(
                 count >= int(config["gates"]["minimum_groups_per_label"])
-                for count in Counter(dict(zip(groups, labels, strict=True)).values()).values()
+                for count in Counter(label for _, label in set(zip(groups, labels, strict=True))).values()
             ),
             "primary_accuracy": descriptor_results[primary_name]["balanced_accuracy"] >= float(config["gates"]["minimum_primary_balanced_accuracy"]),
             "primary_permutation": descriptor_results[primary_name]["permutation"]["p_value_greater_equal"] <= float(config["gates"]["maximum_primary_permutation_p"]),
@@ -276,8 +288,8 @@ def run_connected_audit(rows: Sequence[Mapping[str, Any]], config: Mapping[str, 
         }
         contrasts[str(contrast["contrast_id"])] = {
             "rows": len(selected),
-            "groups": len(set(groups)),
-            "group_counts_by_label": dict(sorted(Counter(dict(zip(groups, labels, strict=True)).values()).items())),
+            "author_groups": len(set(groups)),
+            "author_label_unit_counts": dict(sorted(Counter(label for _, label in set(zip(groups, labels, strict=True))).items())),
             "descriptor_results": descriptor_results,
             "best_nuisance_control": best_control,
             "primary_minus_best_nuisance": delta,
