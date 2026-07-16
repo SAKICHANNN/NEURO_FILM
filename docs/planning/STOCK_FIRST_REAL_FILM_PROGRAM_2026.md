@@ -183,9 +183,8 @@ zero cross-frame dHash≤4 pairs after fail-closed manifest/metadata cross-check
 All eight contact sheets were reviewed and expose substantial shortcut risk.
 See `docs/REAL_FILM_STOCK_PILOT_INTEGRITY_RESULTS.md`.
 
-The next leaf is `RF1.4`: freeze and run per-stock leave-one-roll-out
-identifiability with pooled/wrong-stock/retrieval/historical/shuffled and
-simple enhancement controls. Keep post-negation-preview descriptors and
-display-proxy targets separate. Only Gold currently opens a display-operator
-research lane. No GPU
-job is justified at SF0/SF1.
+`RF1.4A` is complete and closes preview-only stock learning. GA100/Konica fail
+structural support; the NPH400/Gold100 comparison gives primary roll accuracy
+0.727, permutation p=0.191 and a stronger 0.909 nuisance shortcut. The next
+leaf is `RF1.4B`: freeze Gold100 display-proxy paired-transform consistency,
+correct-pair and wrong-roll controls. No GPU job is justified at SF0/SF1.

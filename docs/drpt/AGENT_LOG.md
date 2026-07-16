@@ -615,3 +615,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Next leaf:** implement/test the deterministic evaluator, verify pinned hashes before decode, run twice byte-identically, then propagate the branch result.
 
 - **Pre-run contract correction:** before any RF1.4A result existed, added an explicit RGB mean/std-only baseline and a required +0.10 primary margin. This prevents mean cast/contrast/saturation from being misreported as learned stock character.
+
+## 2026-07-16 - Close RF1.4A preview stock-signal route
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4A`; run the frozen physical-roll shortcut/null audit twice and branch fail-closed.
+- **Evidence:** two byte-identical runs at `f5a7bbd...`, report SHA-256 `6ca752d0ddfed89d70f25843e7da6adb2936e8bb47e917caedeae85f899982c9`.
+- **Structural branch:** GA100 and Konica fail due to an under-supported roll and only one supported content cell. Only NPH400/Gold100 enter features (103 frames/11 rolls).
+- **Result:** primary RGB accuracy 0.727, roll permutation p=0.191 and null q95=0.818. RGB mean/std ties at 0.727; luma/full-frame reach 0.818; metadata/date/content/border shortcut reaches 0.909. Permutation, simple-global and shortcut gates fail.
+- **Decision:** close preview-only named-stock learning. No model-capacity escalation, frame-random rescue, physical-density interpretation, display operator or S2 claim.
+- **Propagation:** decision/results, tracker, board and AGENTS updated. Next leaf is the independent `RF1.4B` Gold100 display-proxy paired-transform contract.

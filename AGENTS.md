@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 127 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; whole-test-roll preflight retains four metadata pilots but only Gold 100-5 has a viable display-proxy lane; real-film stock signal is not established |
+| Current evidence | 130 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; RF1.4A closes preview-only stock learning; only Gold 100-5 retains a display-proxy research lane; real-film stock signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -223,7 +223,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done | U5.CT2/U5.CT4 | FilmSet and BlueNeg metadata/licence/access/whole-roll contracts pass |
 | Done/limited | RF0.1/RF0.2 | FILM-R acquired and visually/integrity audited; use only as real-film unknown-look/nuisance evidence, never stock or clean-target truth |
 | Done/data stop | RF1.1/RF1.2 | RF1.2 elevates retrieval as a challenger; RF1.1 proves FILM-R cannot separate family from content and forbids classifier training |
-| P0 named-stock | RF1.4 | Freeze shortcut/null gates, then run per-stock leave-one-roll-out identifiability; Gold may open a display-proxy domain, others are post-negation-preview diagnostics only; no colour expert promotion yet |
+| Done/closed | RF1.4A | Preview route closed: GA/Konica structurally unidentified; NPH/Gold roll-null not rejected and nuisance shortcut wins |
+| P0 named-stock | RF1.4B | Freeze and run Gold100 display-proxy paired-transform identifiability; no colour expert promotion until correct-pair/whole-roll controls pass |
 | P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
 | Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |

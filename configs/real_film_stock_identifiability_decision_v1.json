@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "decision_id": "rf1.4-stock-preview-shortcut-identifiability-v1",
+  "node": "ULT > RF1.4 > RF1.4A",
+  "decision": "close_preview_stock_signal_nuisance_confounded",
+  "software_commit": "f5a7bbd845dfd29d61181e03554d40a19f26936d",
+  "config_sha256": "39878ccf935cd7ae06124d7fd8b619cdb57b0e235463723f268cd11cfcbedcac",
+  "report": "outputs/real_film/stock_pilots_v1/rf1_4/report.json",
+  "report_sha256": "6ca752d0ddfed89d70f25843e7da6adb2936e8bb47e917caedeae85f899982c9",
+  "byte_identical_runs": 2,
+  "structurally_closed_stocks": {
+    "kodak_ga_100_5095": [
+      "under_supported_roll",
+      "too_few_supported_content_cells"
+    ],
+    "konica_super_xg_100": [
+      "under_supported_roll",
+      "too_few_supported_content_cells"
+    ]
+  },
+  "evaluated_stocks": [
+    "fujifilm_nph_400",
+    "kodak_gold_100_gen5"
+  ],
+  "evaluated_rolls": 11,
+  "evaluated_frames": 103,
+  "primary_roll_accuracy": 0.7272727272727273,
+  "primary_roll_permutation_p_value": 0.191,
+  "permutation_null_q95": 0.8181818181818182,
+  "simple_global_rgb_mean_std_accuracy": 0.7272727272727273,
+  "luma_only_accuracy": 0.8181818181818182,
+  "metadata_border_date_content_accuracy": 0.9090909090909091,
+  "gate_checks": {
+    "permutation": false,
+    "beats_simple_global": false,
+    "beats_shortcut": false,
+    "full_crop_stable": true,
+    "center60_crop_stable": true,
+    "minimum_stock_recall": true
+  },
+  "forbidden_followup": "do not add classifier/model capacity, use frame-random splits, or interpret preview accuracy as physical density or a colour operator",
+  "next_leaf": "RF1.4B Gold100 display-proxy transform identifiability contract",
+  "claim_ceiling": "negative result under the current BlueNeg preview distribution; no named-stock preview signal established"
+}

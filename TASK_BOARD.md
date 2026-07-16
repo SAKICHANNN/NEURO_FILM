@@ -30,7 +30,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 127 tests pass after the hardened stock-pilot metadata audit |
+| Tests | baseline passes | 130 tests pass after the RF1.4A shortcut evaluator |
 
 ---
 
@@ -54,7 +54,8 @@
 | 1 | RF0.4/SF0.1 | Build registry and freeze exact four-pilot acquisition | complete | 189 files / 227,287,697 bytes; Gold 400-5 failed whole-test-roll preflight and was replaced by GA 100 5095 |
 | 1a | SF0.2 | Download/hash-verify frozen stock pilot pixels in isolated root | complete | 189/189 size+LFS hashes; report SHA-256 `de286950...`; zero external files; no decode |
 | 1b | SF0.3 | Decode integrity, duplicate/border/content and support-matrix audits | complete | 189 RGB PNG; Gold display-candidate; NPH/Konica/GA preview-identifiability only; 8/8 contact sheets reviewed |
-| 1c | RF1.4 | Freeze/run per-stock leave-one-roll-out identifiability gates | ready, P0 | shortcut/null gate first; post-negation preview vs display-proxy domains separate; no colour expert promotion yet |
+| 1c | RF1.4A | Run preview leave-one-roll-out shortcut/null gates | complete: closed | GA/Konica structural fail; NPH/Gold p=0.191, simple-global ties, nuisance 10/11 |
+| 1d | RF1.4B | Gold100 display-proxy paired-transform identifiability | ready, P0 | freeze correct-pair/wrong-roll/whole-roll controls before any operator fit |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |
@@ -106,4 +107,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | Next data leaf: `RF1.4` per-stock identifiability before any colour expert; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | Next data leaf: `RF1.4B` Gold100 display-proxy identifiability before any colour expert; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

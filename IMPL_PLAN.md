@@ -14,9 +14,11 @@ content below are historical/control material, not the active success path.
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
-research candidate; NPH400/Konica/GA remain post-negation-preview label-audit candidates, not density or colour-operator candidates. The
-current leaf is `RF1.4` per-stock identifiability. LOC Phase C remains a sealed
-historical/unknown auxiliary lane. No colour expert fits before RF1.4 passes.
+research candidate. `RF1.4A` closed all preview-only stock learning: GA/Konica
+failed structural support, while NPH/Gold failed the roll-null and nuisance
+controls. The current leaf is `RF1.4B`, Gold100 display-proxy paired-transform
+identifiability. LOC Phase C remains a sealed historical/unknown auxiliary
+lane. No colour expert fits before RF1.4B passes.
 
 ---
 
