@@ -71,7 +71,8 @@
 | 1p | SF1.0B | Connected-design nuisance identifiability | complete: closed | RGB fails; scene colour/content/source controls dominate; no operator fitting |
 | 1q | SF1.1 | Full YFCC shared-author metadata | complete: one metadata edge passes | 65.64GB SHA/S3 verified; repeat-identical scans; Ektar/Velvia 16 shared UIDs; no pixels |
 | 1q2 | SF1.2 | Shared-author live-rights feasibility | complete: pass | 61 HTML pages; eight bilateral CC BY authors; no image requests |
-| 1q3 | SF1.3A | Bounded shared-author pixel/integrity pilot | ready, P0 | max 38 derivatives/512MiB; need five bilateral pixel authors; fitting/training forbidden |
+| 1q3 | SF1.3A | Bounded shared-author pixel/integrity pilot | complete: pass | 37 clean pixels; eight bilateral UIDs; zero duplicates; no confirmed severe artifact |
+| 1q4 | SF1.3B | Shared-author stock-identifiability diagnostic | ready, P0 | leave-one-UID-out against luma/HOG/4x4 colour/geometry controls; fitting/training forbidden |
 | 1r | LSM0 | Freeze within-stock latent-mode ontology and epistemic contract | complete after propagation | hypothesis only; observed/latent ledgers separate; no stock has proved multiple modes |
 | 1s | LSM1 | Build per-stock data/connectivity feasibility decisions | data-gated; current pools ineligible | no clustering/training; SF1.1 remains an unchanged upstream metadata gate |
 | 1t | LSM2-LSM8 | Residual/operator identifiability, mode existence, fixed bank, Oracle, routing and product validation | conditional | requires full stock/connectivity/identifiability/pixel-rights pass; K=1/no Oracle/severe artifact closes routing |
@@ -126,4 +127,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: `SF1.3A` bounded Ektar/Velvia shared-author pixel/integrity pilot; LSM0/LSM1 remains data-gated and opens no training; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | Next leaf: `SF1.3B` frozen Ektar/Velvia leave-one-UID-out stock-identifiability diagnostic; LSM0/LSM1 remains data-gated and opens no training; FSA/OWI is sealed auxiliary; product sibling: `U1.1/U1.3` high-precision path | Integration owner: repository owner or explicitly assigned root agent*

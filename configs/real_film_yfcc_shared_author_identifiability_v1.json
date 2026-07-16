@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf1.3b-yfcc-shared-author-identifiability-v1",
+  "node": "ULT > RF1 > SF1.3B",
+  "report_output": "outputs/real_film/yfcc_shared_author_identifiability_v1/identifiability_report.json",
+  "cells": [
+    {"cell_id": "shared_yfcc_ektar100", "source_id": "yfcc_shared_author", "film_stock_id": "kodak_ektar_100", "manifest": "outputs/real_film/yfcc_shared_author_pixel_v1/download_manifest.json", "manifest_sha256": "33395e5bfa765d0a28d0162e5ad40b79b9d54744995623122fe238d072768ba3", "pixel_root": "data/raw/yfcc_shared_author_pilot_v1", "expected_files": 21},
+    {"cell_id": "shared_yfcc_velvia50", "source_id": "yfcc_shared_author", "film_stock_id": "fujifilm_velvia_50", "manifest": "outputs/real_film/yfcc_shared_author_pixel_v1/download_manifest.json", "manifest_sha256": "33395e5bfa765d0a28d0162e5ad40b79b9d54744995623122fe238d072768ba3", "pixel_root": "data/raw/yfcc_shared_author_pilot_v1", "expected_files": 16}
+  ],
+  "author_group_aliases": {},
+  "descriptors": ["rgb_distribution", "luma_distribution", "hog_grayscale", "low_frequency_rgb_4x4", "standardized_rgb_distribution", "geometry_border_source"],
+  "contrasts": [
+    {"contrast_id": "shared_uid_ektar_vs_velvia", "kind": "stock", "filter_field": "source_id", "filter_values": ["yfcc_shared_author"], "label_field": "film_stock_id", "label_values": ["kodak_ektar_100", "fujifilm_velvia_50"]}
+  ],
+  "statistics": {"permutations": 499, "permutation_seed": 1801, "bootstrap_iterations": 4000, "bootstrap_seed": 1802},
+  "gates": {
+    "minimum_groups_per_label": 5,
+    "primary_descriptor": "rgb_distribution",
+    "nuisance_control_descriptors": ["luma_distribution", "hog_grayscale", "low_frequency_rgb_4x4", "standardized_rgb_distribution", "geometry_border_source"],
+    "minimum_primary_balanced_accuracy": 0.7,
+    "maximum_primary_permutation_p": 0.05,
+    "minimum_delta_vs_nuisance": 0.1,
+    "maximum_hog_control_accuracy": 0.65
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "shared-author group-held-out stock-signal diagnostic only; no stock response, colour operator, latent mode, calibration, S1/S2, training, authenticity, weights or release claim"
+}

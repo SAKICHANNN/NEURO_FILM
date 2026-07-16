@@ -238,12 +238,11 @@ and 16 shared UIDs. Ektar/UltraMax fails because UltraMax has only 27 UIDs
 versus the frozen 30. No threshold is changed.
 
 `SF1.2` passes: 61 bounded HTML requests confirm eight shared authors with a
-current CC BY 2.0 page for both stocks; no image URL was requested. The open
-leaf is `SF1.3A`, frozen at eight UIDs, at most four rows per UID/stock, 38
-candidates and 512 MiB. It must retain at least five bilateral pixel authors
-and pass integrity, duplicate, content and full-resolution visual gates.
+current CC BY 2.0 page for both stocks; no image URL was requested. `SF1.3A`
+retains 37 clean derivatives across all eight bilateral UIDs and passes
+integrity, duplicate and autonomous full-resolution visual gates.
 
-SF1.3A is still an `S0` acquisition/diagnostic pilot. A pass may open only a
-newly preregistered shared-author stock-identifiability diagnostic. No training,
+SF1.3A remains an `S0` acquisition/diagnostic pilot. It opens only the frozen
+`SF1.3B` shared-author leave-one-UID-out stock-identifiability diagnostic. No training,
 operator fitting, LSM or GPU work is justified by metadata, rights or clean
 pixels alone.

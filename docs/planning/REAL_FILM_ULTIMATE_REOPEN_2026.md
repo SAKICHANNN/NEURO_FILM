@@ -220,10 +220,12 @@ lane; it cannot promote RF nodes.
 The named-stock data mainline has advanced through SF1.1. The exact full-YFCC
 metadata index passes SHA/S3 integrity and two byte-identical scans;
 Ektar100/Velvia50 has 16 shared UIDs. `SF1.2` confirms eight authors with a
-current CC BY page for each stock without requesting image URLs. The current
-P0 leaf is `SF1.3A`, the separately frozen maximum-38 derivative/512MiB
-integrity pilot. It cannot open training, operator fitting or LSM mode
-discovery by itself.
+current CC BY page for each stock without requesting image URLs. `SF1.3A`
+retains 37 clean derivatives across all eight bilateral UIDs with no
+exact/dHash<=4 duplicates or confirmed severe artifact. The current P0 leaf is
+`SF1.3B`, a preregistered leave-one-UID-out stock-identifiability diagnostic.
+Neither pixel cleanliness nor the diagnostic contract opens training, operator
+fitting or LSM mode discovery by itself.
 
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
