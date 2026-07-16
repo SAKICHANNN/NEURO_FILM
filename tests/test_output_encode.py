@@ -3,12 +3,13 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
+import cv2
 import numpy as np
 import pytest
 import tifffile
 from PIL import Image
 
-from src.preprocess import save_srgb8, save_srgb16_tiff, srgb_icc_profile_sha256
+from src.preprocess import save_srgb8, save_srgb16_png, save_srgb16_tiff, srgb_icc_profile_sha256
 
 
 @pytest.mark.parametrize(
@@ -53,3 +54,22 @@ def test_save_srgb16_tiff_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> N
 def test_save_srgb16_tiff_rejects_non_tiff_extension(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="requires a .tif"):
         save_srgb16_tiff(np.zeros((2, 3, 3), dtype=np.float32), tmp_path / "render.png")
+
+
+def test_save_srgb16_png_round_trips_uint16_pixels_and_icc(tmp_path: Path) -> None:
+    rgb = np.linspace(0.0, 1.0, 8 * 10 * 3, dtype=np.float32).reshape(8, 10, 3)
+    path = tmp_path / "render.png"
+    assert save_srgb16_png(rgb, path) == "PNG"
+    expected = np.rint(rgb * 65535.0).astype(np.uint16)
+    decoded_bgr = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+    assert decoded_bgr is not None
+    assert decoded_bgr.dtype == np.uint16
+    assert np.array_equal(decoded_bgr[..., ::-1], expected)
+    with Image.open(path) as image:
+        profile = image.info.get("icc_profile", b"")
+    assert hashlib.sha256(profile).hexdigest() == srgb_icc_profile_sha256()
+
+
+def test_save_srgb16_png_rejects_non_png_extension(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="requires a .png"):
+        save_srgb16_png(np.zeros((2, 3, 3), dtype=np.float32), tmp_path / "render.tiff")

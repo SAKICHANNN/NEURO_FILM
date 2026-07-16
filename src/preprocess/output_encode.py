@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import hashlib
+import os
+import struct
+import zlib
 from functools import lru_cache
 from pathlib import Path
 
@@ -68,3 +71,45 @@ def save_srgb16_tiff(rgb: np.ndarray, path: Path) -> str:
         extratags=[(34675, "B", len(profile), profile, False)],
     )
     return "TIFF"
+
+
+def _png_iccp_chunk(profile: bytes) -> bytes:
+    chunk_type = b"iCCP"
+    payload = b"K-MCFM sRGB\x00\x00" + zlib.compress(profile, level=9)
+    checksum = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
+    return struct.pack(">I", len(payload)) + chunk_type + payload + struct.pack(">I", checksum)
+
+
+def _inject_png_icc(png: bytes, profile: bytes) -> bytes:
+    signature = b"\x89PNG\r\n\x1a\n"
+    if not png.startswith(signature) or png[12:16] != b"IHDR":
+        raise ValueError("encoder returned an invalid PNG stream")
+    ihdr_length = struct.unpack(">I", png[8:12])[0]
+    ihdr_end = 8 + 12 + ihdr_length
+    return png[:ihdr_end] + _png_iccp_chunk(profile) + png[ihdr_end:]
+
+
+def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
+    """Encode finite HxWx3 display-sRGB values as true uint16 RGB PNG."""
+    if rgb.ndim != 3 or rgb.shape[2] != 3:
+        raise ValueError("sRGB output must be an HxWx3 array")
+    if not np.isfinite(rgb).all():
+        raise ValueError("sRGB output contains non-finite values")
+    if path.suffix.casefold() != ".png":
+        raise ValueError("16-bit PNG output requires a .png extension")
+    import cv2
+
+    encoded_rgb = np.rint(np.clip(rgb, 0.0, 1.0) * 65535.0).astype(np.uint16)
+    succeeded, buffer = cv2.imencode(
+        ".png",
+        encoded_rgb[..., ::-1],
+        [cv2.IMWRITE_PNG_COMPRESSION, 6],
+    )
+    if not succeeded:
+        raise ValueError("OpenCV failed to encode 16-bit PNG")
+    payload = _inject_png_icc(buffer.tobytes(), srgb_icc_profile())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_bytes(payload)
+    os.replace(temporary, path)
+    return "PNG"

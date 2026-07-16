@@ -882,3 +882,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Implementation:** added a fail-closed `.tif/.tiff` encoder that quantizes finite display-sRGB floats directly to uint16 RGB, writes contiguous TIFF samples and embeds the exact standard sRGB ICC tag.
 - **Evidence:** `tifffile` reads back an exactly equal uint16 array and the embedded ICC SHA matches the renderer profile hash; non-TIFF extensions are rejected. The full-suite target becomes 180 tests.
 - **Boundary:** this is an encoder primitive only. It is deliberately not exposed through the current legacy renderer because that renderer already quantizes its colour stage to 8-bit; 16-bit renderer integration and PNG16 remain open.
+
+## 2026-07-16 - Add true 16-bit RGB PNG output primitive
+
+- **Implementation:** OpenCV emits lossless uint16 BGR PNG bytes, which are converted from the RGB contract and receive a standards-compliant ICC `iCCP` chunk with checked length/CRC before atomic promotion.
+- **Evidence:** OpenCV reads back the exact uint16 RGB values and Pillow exposes ICC bytes whose SHA equals the frozen runtime profile; non-PNG extensions fail closed. Full-suite target becomes 182 tests.
+- **Boundary:** like TIFF16, PNG16 remains an isolated encoder until the renderer stops quantizing its colour stage to 8-bit.
