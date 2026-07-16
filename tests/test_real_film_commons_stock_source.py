@@ -92,3 +92,27 @@ def test_non_scene_title_fraction_fails() -> None:
     result = audit_snapshot({"categories": categories}, config)
     row = next(item for item in result["category_results"] if item["film_stock_id"] == "b")
     assert row["checks"]["non_scene_title_fraction"] is False
+
+
+def test_true_author_and_strict_derivative_gates_fail_closed() -> None:
+    config = _config()
+    config["gates_for_exact_stock_pilot"].update({
+        "minimum_unique_normalized_authors": 3,
+        "maximum_largest_normalized_author_share": 0.6,
+        "minimum_strict_derivative_rights_rows": 4,
+    })
+    categories = []
+    for configured in config["categories"]:
+        pages = [_api_page(index) for index in range(5)]
+        files = [normalize_file_page(page) for page in pages]
+        if configured["film_stock_id"] == "a":
+            for row in files:
+                row["author_raw_html"] = "same author"
+            files[0]["derivative_1600_url"] = files[0]["original_url"]
+        categories.append({**configured, "files": files})
+    result = audit_snapshot({"categories": categories}, config)
+    row = next(item for item in result["category_results"] if item["film_stock_id"] == "a")
+    assert row["checks"]["minimum_unique_normalized_authors"] is False
+    assert row["checks"]["largest_normalized_author_share"] is False
+    assert row["strict_derivative_rights_files"] == 4
+    assert row["metadata_gate_passed"] is False

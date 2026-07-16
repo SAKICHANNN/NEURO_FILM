@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 import hashlib
-import html
 import io
 import json
 import os
-import re
 import time
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
@@ -17,6 +15,7 @@ from typing import Any
 import requests
 from PIL import Image, ImageDraw, ImageOps, ImageStat
 
+from src.real_film.commons_stock_source import normalize_author
 from src.real_film.fsa_owi_pilot import dhash64, hamming64
 
 
@@ -43,15 +42,6 @@ def atomic_json(path: Path, payload: Mapping[str, Any]) -> str:
     temporary.write_bytes(encoded)
     os.replace(temporary, path)
     return sha256_bytes(encoded)
-
-
-_TAG = re.compile(r"<[^>]+>")
-
-
-def normalize_author(value: str) -> str:
-    """Conservatively normalize visible author text without inventing identities."""
-    visible = html.unescape(_TAG.sub(" ", value or ""))
-    return " ".join(visible.casefold().split())
 
 
 def _rights_eligible(row: Mapping[str, Any], config: Mapping[str, Any]) -> bool:
