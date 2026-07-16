@@ -833,7 +833,7 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 ## 2026-07-16 - Complete U1.3 extension-correct sRGB8 encoder leaf
 
 - **Defect:** `render_film.py` always encoded PNG regardless of the requested output suffix, allowing mislabeled JPEG/TIFF paths and omitting explicit output-profile provenance.
-- **Implementation:** added `src/preprocess/output_encode.py`; finite HxWx3 arrays now encode as real PNG/JPEG/TIFF according to the suffix, embed a standard LittleCMS sRGB ICC profile and reject unknown extensions/non-finite pixels. Metrics record format, 8-bit depth, sRGB transfer and ICC.
+- **Implementation:** added `src/preprocess/output_encode.py`; finite HxWx3 arrays now encode as real PNG/JPEG/TIFF according to the suffix, embed a standard LittleCMS sRGB ICC profile and reject unknown extensions/non-finite pixels. Metrics record format, 8-bit depth, sRGB transfer and the exact embedded ICC SHA-256.
 - **Evidence:** module tests inspect decoded format and ICC for all three encodings; script E2E pairs JPEG/PNG/TIFF ingress and egress. All 174 tests pass.
 - **Boundary:** this closes only the 8-bit SDR subleaf. The legacy renderer quantization, true 16-bit export, RAW E2E, HDR/HEIF and adapter removal remain open.
 

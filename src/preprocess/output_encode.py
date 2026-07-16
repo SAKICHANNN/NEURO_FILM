@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from functools import lru_cache
 from pathlib import Path
 
@@ -22,6 +23,11 @@ _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
 def srgb_icc_profile() -> bytes:
     """Return the LittleCMS-generated standard sRGB output profile."""
     return ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
+
+
+def srgb_icc_profile_sha256() -> str:
+    """Identify the exact generated profile bytes for replay provenance."""
+    return hashlib.sha256(srgb_icc_profile()).hexdigest()
 
 
 def save_srgb8(rgb: np.ndarray, path: Path) -> str:

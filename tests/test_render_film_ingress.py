@@ -85,9 +85,8 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     assert metrics["input_decode"]["transfer_state"] == "display_linear"
     assert metrics["input_decode"]["bit_depth_in"] == 8
     assert metrics["input_decode"]["legacy_8bit_adapter"] is True
-    assert metrics["output_encode"] == {
-        "format": expected_output_format,
-        "bit_depth": 8,
-        "transfer": "sRGB",
-        "icc_profile": "embedded standard sRGB",
-    }
+    assert metrics["output_encode"]["format"] == expected_output_format
+    assert metrics["output_encode"]["bit_depth"] == 8
+    assert metrics["output_encode"]["transfer"] == "sRGB"
+    assert metrics["output_encode"]["icc_profile"] == "embedded standard sRGB"
+    assert len(metrics["output_encode"]["icc_profile_sha256"]) == 64

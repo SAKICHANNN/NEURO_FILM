@@ -16,7 +16,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values, style_transfer  # noqa: E402
-from src.preprocess import load_working_image, save_srgb8, working_image_to_legacy_srgb8  # noqa: E402
+from src.preprocess import (  # noqa: E402
+    load_working_image,
+    save_srgb8,
+    srgb_icc_profile_sha256,
+    working_image_to_legacy_srgb8,
+)
 from src.filmfx import (  # noqa: E402
     PhysicalHalationControls,
     build_physical_halation_layer,
@@ -236,6 +241,7 @@ def main() -> int:
                 "bit_depth": 8,
                 "transfer": "sRGB",
                 "icc_profile": "embedded standard sRGB",
+                "icc_profile_sha256": srgb_icc_profile_sha256(),
             },
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],
