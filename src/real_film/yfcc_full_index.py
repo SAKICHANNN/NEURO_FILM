@@ -66,7 +66,11 @@ def download_full_index(
     client.headers["User-Agent"] = str(config["user_agent"])
     source = config["source"]
     limits = config["download_limits"]
-    head = client.head(str(source["url"]), timeout=float(limits["timeout_seconds"]), allow_redirects=True)
+    timeout = (
+        float(limits["connect_timeout_seconds"]),
+        float(limits["read_timeout_seconds"]),
+    )
+    head = client.head(str(source["url"]), timeout=timeout, allow_redirects=True)
     head.raise_for_status()
     evidence = validate_source_headers(head.headers, config)
     head.close()
@@ -92,7 +96,7 @@ def download_full_index(
                 try:
                     response = client.get(
                         str(source["url"]), headers=request_headers,
-                        timeout=float(limits["timeout_seconds"]), stream=True, allow_redirects=True,
+                        timeout=timeout, stream=True, allow_redirects=True,
                     )
                     expected_status = 206 if current else 200
                     if response.status_code != expected_status:
@@ -122,7 +126,8 @@ def download_full_index(
                     last_error = exc
                     current = temporary.stat().st_size if temporary.exists() else 0
                     request_headers = {"Range": f"bytes={current}-"} if current else {}
-                    time.sleep(float(limits["retry_backoff_seconds"]) * (2 ** attempt))
+                    if attempt + 1 < retries:
+                        time.sleep(float(limits["retry_backoff_seconds"]) * (2 ** attempt))
                 finally:
                     if response is not None:
                         response.close()

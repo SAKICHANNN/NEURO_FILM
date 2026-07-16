@@ -21,7 +21,8 @@
     "minimum_free_space_after_download_bytes": 107374182400,
     "chunk_bytes": 8388608,
     "progress_checkpoint_bytes": 268435456,
-    "timeout_seconds": 600,
+    "connect_timeout_seconds": 30,
+    "read_timeout_seconds": 120,
     "request_retries": 6,
     "retry_backoff_seconds": 10.0,
     "image_payloads_forbidden": true
