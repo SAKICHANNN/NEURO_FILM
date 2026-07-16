@@ -686,3 +686,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Contract:** metadata snapshot only; freeze category revisions and rows before offline audit. Exact stocks require >=20 files, >=5 uploaders, <=60% largest share, >=8 permissive rows and complete rights/source/integrity metadata. Keep CC BY-SA internal-only pending legal review.
 - **Pixel stop:** only three exact-stock passes can open a separately frozen 1600px derivative pilot capped at 192 files/512MiB and 12 files per source group. No current pixels or model training are authorized by this node.
 - **Artifacts:** `configs/real_film_commons_stock_source_audit_v1.json`, `docs/planning/SF0_4_COMMONS_STOCK_SOURCE_AUDIT_CONTRACT.md`.
+
+## 2026-07-16 - Pass SF0.4 Commons named-stock metadata gate
+
+- **Node/parent goal:** `ULT > RF0.4 > SF0.4`; fetch one immutable Commons metadata snapshot, then audit it twice offline without image payloads.
+- **Reproducibility:** fetcher commit `0d3bad1...`; 658 rows/four categories, snapshot SHA-256 `f7ee9db1...`; two byte-identical offline audits, report SHA-256 `5b51fada...`; 147 tests pass. Three fail-closed API corrections were committed before any snapshot was written.
+- **Exact-stock result:** Superia X-TRA400 133 files/13 uploaders/105 permissive; Ektar100 163/19/45; Gold200 21/8/11. Largest uploader shares are 35.34%, 47.85%, 38.10%; every row passes frozen free-licence/source/SHA1/dimension gates.
+- **Family control:** Velvia 341/59 passes metadata quality but is only a family category; it cannot count as Velvia50 or exact named-stock coverage.
+- **Decision/claim:** `metadata_pass_freeze_bounded_pixel_pilot`; grade remains `S0 candidate`. Community labels, unknown roll/process/scanner and content/source confounding block stock response or `S1/S2`.
+- **Handoff:** `SF0.5` may freeze/download only permissive uploader-capped 1600px derivatives for the three exact stocks, <=192 files/512MiB, then run hash/decode/duplicate/content/source-group audits before training.
+- **Propagation clarification:** pixel selection is stricter than the metadata gate: 18 Ektar `Attribution` rows lack a licence URL and are excluded; explicit public-domain usage terms plus the Commons file page are accepted. Strict pre-download availability is Ektar 27, Superia 105 and Gold 11 before source-group caps.

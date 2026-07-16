@@ -19,10 +19,13 @@ failed structural support, while NPH/Gold failed the roll-null and nuisance
 controls. `RF1.4B0` passes 47 exact official bbox/proxy pairs across six rolls.
 `RF1.4B1` passes the archive display-chain test, but `RF2.S0` closes direct
 transplant to digital images: OOD coverage passes, while style/residual floors
-and clipping fail at every fixed strength. The current leaf is `SF0.4`: refresh
-obtainable multi-source named-stock positive-scan evidence for an unpaired
-retrieval/explicit-operator pilot. The failed archive matrix is not teacher
-truth. LOC Phase C remains a sealed historical/unknown auxiliary lane.
+and clipping fail at every fixed strength. `SF0.4` now freezes 658 Wikimedia
+Commons metadata rows and passes the source gate for exact Ektar100, Superia
+X-TRA400 and Gold200 categories without downloading pixels. The current leaf
+is `SF0.5`: freeze and acquire only licence-URL-complete, uploader-capped
+1600px derivatives under the 192-file/512MiB ceiling, then run integrity,
+content and source-group gates before any training. The failed archive matrix
+is not teacher truth. LOC Phase C remains a sealed historical/unknown lane.
 
 ---
 

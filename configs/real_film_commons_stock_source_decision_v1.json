@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.4-wikimedia-commons-stock-source-audit-v1",
+  "node": "ULT > RF0.4 > SF0.4",
+  "decision": "metadata_pass_freeze_bounded_pixel_pilot",
+  "software_commit": "0d3bad1d9bb888be426a5377036ce6d7f4049f63",
+  "snapshot": "outputs/real_film/commons_stock_v1/metadata_snapshot.json",
+  "snapshot_sha256": "f7ee9db16b198f3ce59c2cea887792e82f6dce8109ae6a79cb17c4ef7f10e5cd",
+  "report": "outputs/real_film/commons_stock_v1/source_audit_report.json",
+  "report_sha256": "5b51fada9c6cfc01a32ecf32cbdb130135a4ed027e734c30b954319e0fc23a2b",
+  "byte_identical_offline_audit_runs": 2,
+  "image_payloads_downloaded_or_decoded": false,
+  "exact_stock_results": {
+    "fujifilm_superia_xtra_400": {"files": 133, "uploaders": 13, "largest_uploader_share": 0.3533834586466165, "permissive_files": 105},
+    "kodak_ektar_100": {"files": 163, "uploaders": 19, "largest_uploader_share": 0.4785276073619632, "permissive_files": 45},
+    "kodak_gold_200": {"files": 21, "uploaders": 8, "largest_uploader_share": 0.38095238095238093, "permissive_files": 11}
+  },
+  "family_control": {
+    "film_stock_id": "fujifilm_velvia_family",
+    "files": 341,
+    "uploaders": 59,
+    "exact_stock_coverage_forbidden": true
+  },
+  "next_leaf": "SF0.5 freeze and download only uploader-capped permissive 1600px derivatives with explicit licence URL, except public-domain rows with explicit usage terms and file page, for the three exact stocks; then run integrity/content/source audits before training",
+  "claim_ceiling": "community-category metadata and per-file rights/source eligibility only; no physical-roll, scanner, stock-response, S1/S2, training, authenticity or release claim"
+}

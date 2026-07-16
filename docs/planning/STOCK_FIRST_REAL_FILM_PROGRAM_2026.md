@@ -191,6 +191,9 @@ and visual gate for the archive preview-to-display chain, but bounded 3x3
 affine (5.307 Delta E76) slightly beats SepLUT17+3x3 (5.380). `RF2.S0` closes
 direct transplant: archive-only OOD coverage passes, but full-strength style is
 6.25 below the 7.0 floor, matched-basic residual is 1.94 below 4.9 and worst
-gold clipping is 8.70%; weaker strengths get blander. The next leaf is `SF0.4`,
-a current source/rights/group refresh for obtainable multi-source named-stock
-positive scans. No GPU job is justified.
+gold clipping is 8.70%; weaker strengths get blander. `SF0.4` then froze 658
+Wikimedia Commons metadata rows: exact Ektar100, Superia X-TRA400 and Gold200
+categories pass source/rights/uploader gates, while Velvia remains family-only;
+no pixels were downloaded. The next leaf is `SF0.5`, a licence-URL-complete,
+uploader-capped 1600px derivative pilot under 192 files/512MiB, followed by
+integrity/content/source-group gates before any training. No GPU job is justified.

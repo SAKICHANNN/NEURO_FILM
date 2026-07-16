@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 143 local tests pass; RF1.4A closes preview-only stock learning; Gold RF1.4B1 finds a repeatable archive display-chain mapping, but RF2.S0 transplant to digital fails style/non-basic/clipping gates; real-film stock identity or digital-to-film signal is not established |
+| Current evidence | 147 local tests pass; RF2.S0 closes BlueNeg matrix transplant; Commons SF0.4 snapshots 658 metadata rows and passes source/rights/uploader gates for exact Ektar100, Superia X-TRA400 and Gold200 without downloading pixels; stock signal remains unestablished |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -227,7 +227,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/pass | RF1.4B0 | Gold100 official alignment/support: 47 exact pairs across six rolls; no colour fit or stock-response claim |
 | Done/limited pass | RF1.4B1 | All metric/visual gates pass for Gold archive preview-to-display mapping; bounded 3x3 affine beats SepLUT overall; no stock-response claim |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
-| P0 named-stock data | SF0.4 | Refresh obtainable multi-source stock-labelled positive scans for unpaired retrieval/explicit-operator identifiability |
+| Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
+| P0 named-stock pixels | SF0.5 | Download only uploader-capped permissive Commons 1600px derivatives and run integrity/content/group gates before training |
 | P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
 | Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |
