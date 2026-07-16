@@ -641,3 +641,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Security:** restricted NumPy-only unpickling used after hash/opcode checks; no ordinary pickle load.
 - **Decision:** pass only alignment/support eligibility. No colour fit, stock response, calibration, authenticity or S2 claim.
 - **Next leaf:** RF1.4B1 paired display-transform consistency contract with identity, simple-global, explicit and wrong-roll controls.
+
+## 2026-07-16 - Freeze RF1.4B1 Gold transform-consistency contract
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4B1`; define the first colour-fitting test only after B0 alignment passed.
+- **Operators:** identity, bounded per-channel affine, bounded ridge 3x3 affine and monotone SepLUT17 plus bounded 3x3 mixing. Global deterministic output only.
+- **Validation:** six whole-roll folds, roll/frame-balanced deterministic paired samples, wrong-roll single-operator controls and 10,000-resample roll-cluster bootstrap.
+- **Gates:** SepLUT must beat simple affine by 5%, improve 5/6 rolls, have positive lower cluster bound, beat median wrong-roll on 4/6, create visible Delta E>=3 and stay within clipping/finite/monotonicity limits.
+- **Visual branch:** full-resolution contact sheets and severe-artifact/style adjudication occur only after all metric gates pass.
+- **Claim boundary:** at most a BlueNeg Gold100 archive print/scan display-chain operator; never isolated emulsion response, calibration, authenticity or S2.

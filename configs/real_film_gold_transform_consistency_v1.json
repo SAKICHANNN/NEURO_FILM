@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "rf1.4b1-gold100-display-transform-consistency-v1",
+  "node": "ULT > RF1.4 > RF1.4B1",
+  "alignment_decision": "configs/real_film_gold_proxy_alignment_decision_v1.json",
+  "alignment_decision_sha256": "95dff0636b7f17e6df3733648dcee990659acffe7c1e194e52b6f1e419ec502e",
+  "alignment_report": "outputs/real_film/stock_pilots_v1/rf1_4b0/report.json",
+  "alignment_report_sha256": "f562141ac0b836efa0f361ca730d2d69d8ec197a1c09be366a7543b8fc27ff4c",
+  "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "holdout_unit": "physical_roll",
+  "frame_random_split_forbidden": true,
+  "sampling": {
+    "method": "deterministic_uniform_grid",
+    "maximum_pixels_per_frame": 4096,
+    "balance_frames_within_roll": true,
+    "balance_rolls_within_training": true
+  },
+  "operators": [
+    "identity",
+    "bounded_per_channel_affine",
+    "bounded_ridge_3x3_affine",
+    "seplut17_monotone_plus_bounded_ridge_3x3"
+  ],
+  "operator_bounds": {
+    "channel_gain": [0.5, 2.0],
+    "channel_bias": [-0.25, 0.25],
+    "matrix_coefficient": [-2.0, 2.0],
+    "lut_knots": 17,
+    "lut_output": [0.0, 1.0],
+    "ridge": 0.001
+  },
+  "evaluation": {
+    "primary_metric": "roll_balanced_mean_cielab_delta_e76",
+    "secondary_metrics": [
+      "roll_balanced_rgb_mae",
+      "roll_balanced_delta_e76_p95",
+      "output_clip_fraction",
+      "median_render_delta_e76_from_identity"
+    ],
+    "wrong_roll_control": "fit the same operator on each single training roll and use the median held-out score",
+    "cluster_bootstrap_resamples": 10000,
+    "bootstrap_seed": 1411
+  },
+  "gates": {
+    "minimum_primary_relative_improvement_over_simple_affine": 0.05,
+    "minimum_rolls_improved_over_simple_affine": 5,
+    "minimum_cluster_bootstrap_lower_improvement": 0.0,
+    "minimum_rolls_beating_median_wrong_roll_operator": 4,
+    "minimum_median_render_delta_e76_from_identity": 3.0,
+    "maximum_output_clip_fraction_increase": 0.01,
+    "require_finite_outputs": true,
+    "require_monotone_lut": true
+  },
+  "visual_gate_after_metrics": {
+    "render_full_resolution_contact_sheets": true,
+    "severe_artifact_veto": true,
+    "compare_identity_simple_affine_seplut_target": true,
+    "promotion_before_visual_gate_forbidden": true
+  },
+  "branches": {
+    "simple_affine_ties_or_wins": "close nontrivial display-transform value; retain only simple archive correction control",
+    "wrong_roll_ties_or_wins": "classify transform as roll/process/print-scanner specific and close transferable Gold expert",
+    "cluster_interval_crosses_zero": "run only the smallest registered ambiguity diagnostic; do not add capacity",
+    "metric_pass_visual_fail": "reject candidate under severe-artifact/style gate",
+    "all_pass": "open RF2.S Gold archive-display explicit-operator candidate only"
+  },
+  "claim_ceiling": "Kodak Gold 100-5 archive print/scan display-chain consistency within BlueNeg; not isolated emulsion response, calibrated stock, authenticity, S2 transfer or commercial release evidence"
+}
