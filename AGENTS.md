@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 170 local tests pass; the 104-file connected audit closes both stock-learning edges: global RGB is nonsignificant while low-frequency scene colour/content predicts labels, and Ektar source geometry is 92.86% separable. No training/operator fitting starts; only a metadata-only full-YFCC shared-author expansion remains open |
+| Current evidence | 174 local tests pass; the 104-file connected audit closes both stock-learning edges: global RGB is nonsignificant while low-frequency scene colour/content predicts labels, and Ektar source geometry is 92.86% separable. No training/operator fitting starts; only a metadata-only full-YFCC shared-author expansion remains open |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -55,7 +55,7 @@ WorkingImage linear-sRGB input
   -> deterministic CIELAB mean/std transfer (`safe_lab`, safe-rich guards)
   -> optional deterministic grain / physical-inspired halation / dust
   -> bounded 8-bit output
-  -> PNG encoder
+  -> extension-correct sRGB8 PNG/JPEG/TIFF encoder with embedded ICC
 ```
 
 Current strengths:
@@ -68,7 +68,7 @@ Current strengths:
 
 Current limitations:
 
-- `scripts/render_film.py` now uses `WorkingImage` as ingress, but immediately crosses an explicit legacy sRGB8 adapter and still writes 8-bit PNG;
+- `scripts/render_film.py` now uses `WorkingImage` as ingress, but immediately crosses an explicit legacy sRGB8 adapter and still quantizes the renderer output to 8-bit SDR;
 - no complete HEIF/HDR/gain-map or wide-gamut production path;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;

@@ -78,7 +78,7 @@
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | ready support | none for local schema/tooling; participants later require approval |
 | 13 | U1.1 | Make `WorkingImage` the only `render_film` ingress | in progress; first ingress adapter committed | none |
-| 14 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | pending | none |
+| 14 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | in progress; sRGB8 encoder pass | PNG/JPEG/TIFF now match extensions and embed sRGB ICC; 16-bit/HDR remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | none for local research; U0.2 before public release |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
 | 17 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | deferred | not an active user ask or dependency |

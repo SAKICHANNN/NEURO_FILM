@@ -45,14 +45,19 @@ def test_working_image_legacy_adapter_rejects_wrong_color_state(tmp_path: Path) 
         raise AssertionError("wrong color state must fail closed")
 
 
-@pytest.mark.parametrize("suffix", [".jpg", ".png", ".tiff"])
-def test_render_film_e2e_uses_working_image_for_sdr_rasters(tmp_path: Path, suffix: str) -> None:
+@pytest.mark.parametrize(
+    ("suffix", "expected_output_format"),
+    [(".jpg", "JPEG"), (".png", "PNG"), (".tiff", "TIFF")],
+)
+def test_render_film_e2e_uses_working_image_for_sdr_rasters(
+    tmp_path: Path, suffix: str, expected_output_format: str
+) -> None:
     source = np.zeros((18, 24, 3), dtype=np.uint8)
     source[..., 0] = np.arange(24, dtype=np.uint8)[None, :] * 10
     source[..., 1] = 96
     source[..., 2] = np.arange(18, dtype=np.uint8)[:, None] * 12
     input_path = tmp_path / f"input{suffix}"
-    output_path = tmp_path / f"output_{suffix[1:]}.png"
+    output_path = tmp_path / f"output{suffix}"
     Image.fromarray(source, mode="RGB").save(input_path)
 
     completed = subprocess.run(
@@ -72,7 +77,7 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(tmp_path: Path, suff
 
     assert completed.returncode == 0, completed.stderr
     with Image.open(output_path) as rendered:
-        assert rendered.format == "PNG"
+        assert rendered.format == expected_output_format
         assert rendered.mode == "RGB"
         assert rendered.size == (24, 18)
     metrics = json.loads(output_path.with_suffix(".metrics.json").read_text(encoding="utf-8"))
@@ -80,3 +85,9 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(tmp_path: Path, suff
     assert metrics["input_decode"]["transfer_state"] == "display_linear"
     assert metrics["input_decode"]["bit_depth_in"] == 8
     assert metrics["input_decode"]["legacy_8bit_adapter"] is True
+    assert metrics["output_encode"] == {
+        "format": expected_output_format,
+        "bit_depth": 8,
+        "transfer": "sRGB",
+        "icc_profile": "embedded standard sRGB",
+    }

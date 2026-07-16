@@ -829,3 +829,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Label sensitivity:** the frozen YFCC15M subset adds zero Ektar rows and only six Velvia rows/three UIDs from unambiguous joined tokens; the Ektar/Velvia shared-UID count remains three, so the strict phrase contract is retained.
 - **U1.1 evidence:** real `render_film.py` subprocess tests now pass for JPEG, PNG and TIFF ingress, preserve dimensions, emit PNG and record `linear_srgb/display_linear`, 8-bit input and the explicit legacy-adapter flag.
 - **Verification:** 170 local tests pass. U1.1 remains open for RAW E2E and adapter removal through U1.3; no production renderer behavior changed.
+
+## 2026-07-16 - Complete U1.3 extension-correct sRGB8 encoder leaf
+
+- **Defect:** `render_film.py` always encoded PNG regardless of the requested output suffix, allowing mislabeled JPEG/TIFF paths and omitting explicit output-profile provenance.
+- **Implementation:** added `src/preprocess/output_encode.py`; finite HxWx3 arrays now encode as real PNG/JPEG/TIFF according to the suffix, embed a standard LittleCMS sRGB ICC profile and reject unknown extensions/non-finite pixels. Metrics record format, 8-bit depth, sRGB transfer and ICC.
+- **Evidence:** module tests inspect decoded format and ICC for all three encodings; script E2E pairs JPEG/PNG/TIFF ingress and egress. All 174 tests pass.
+- **Boundary:** this closes only the 8-bit SDR subleaf. The legacy renderer quantization, true 16-bit export, RAW E2E, HDR/HEIF and adapter removal remain open.

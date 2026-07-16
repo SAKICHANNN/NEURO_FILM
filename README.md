@@ -34,7 +34,7 @@ Inspect all current controls with:
 .\.venv\Scripts\python.exe scripts\render_film.py --help
 ```
 
-Current output should use a `.png` name: the existing save path writes 8-bit PNG regardless of extension. Correct multi-format, 16-bit and ICC-aware export is tracked as P0 foundation work.
+Current output supports extension-correct 8-bit PNG, JPEG and TIFF with an embedded standard sRGB ICC profile. True 16-bit/high-precision export remains tracked as P0 foundation work.
 
 ## Ultimate direction
 
