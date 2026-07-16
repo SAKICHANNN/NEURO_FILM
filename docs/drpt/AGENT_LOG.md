@@ -722,3 +722,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Question/DoR:** can at least two new stocks pass strict derivative rights plus true-author support, supplementing the sole Ektar pass?
 - **Gates:** >=20 files, >=5 uploaders and normalized authors, <=60% largest uploader/author, >=8 strict rights-complete derivative rows, >=95% minimum dimension 512 and complete free-licence/source/SHA1 metadata.
 - **Stop:** metadata only. Fewer than two passes returns to source discovery; >=2 passes opens a separately frozen <=128-file/512MiB pixel pilot. No training, colour fit or GPU work.
+
+## 2026-07-16 - Close SF0.6A with UltraMax metadata pass
+
+- **Evidence:** 10 exact categories / 393 rows; zero pixels; snapshot `59820e7d...`; two byte-identical reports `54abe0f3...`; 152 tests pass.
+- **Pass:** UltraMax400 has 84 files, 15 normalized authors, 35.71% largest share and 51 strict derivative-rights rows.
+- **Stops:** C200 only five strict rows; ProImage largest author 66.67%; Reala only three authors; Provia100F/Sensia100 only two strict rows; remaining categories fail more strongly.
+- **Propagation:** Commons now supplies Ektar plus metadata-only UltraMax, still below the three-stock comparative minimum. No pixels/training open.
+- **Handoff:** `SF0.6B` audits exact Kodachrome25/64, Ektachrome Elite100/200 and Vision3 50D/250D; one further independent pass is required.

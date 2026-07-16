@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf0.6a-wikimedia-commons-stock-expansion-decision-v1",
+  "node": "ULT > RF0.4 > SF0.6A",
+  "decision": "one_new_stock_pass_continue_metadata_expansion_no_pixels",
+  "software_commit": "8222b29",
+  "snapshot_sha256": "59820e7deea0880f37f6c5dfcf62e03656ee1f71e9e231fe0fcf021eb24c5ecb",
+  "report_sha256": "54abe0f394c669f1120ab0de9939e9c3e0eb0ad71d50b31e8903e79100524f00",
+  "byte_identical_offline_audit_runs": 2,
+  "categories": 10,
+  "metadata_rows": 393,
+  "image_payloads_downloaded_or_decoded": false,
+  "new_stock_passes": ["kodak_ultramax_400"],
+  "pass": {
+    "kodak_ultramax_400": {"files": 84, "normalized_authors": 15, "largest_author_share": 0.35714285714285715, "strict_derivative_rights_files": 51}
+  },
+  "near_misses": {
+    "fujifilm_c200": "7 authors and 45.95% dominance pass, but only 5 strict derivative-rights rows",
+    "kodak_proimage_100": "30 strict rows and 5 authors, but largest author share is 66.67%",
+    "fujifilm_superia_reala": "16 strict rows, but only 3 authors",
+    "fujifilm_provia_100f": "11 authors, but only 2 strict derivative-rights rows",
+    "fujifilm_sensia_100": "9 authors, but only 2 strict derivative-rights rows"
+  },
+  "next_leaf": "SF0.6B audit exact Kodachrome 25/64, Ektachrome Elite 100/200 and Vision3 50D/250D categories; need at least one further pass before pixels",
+  "training_allowed": false,
+  "claim_ceiling": "one additional S0 Commons metadata source pass; no pixels, stock signal, response, calibration, S1/S2, authenticity, training or release claim"
+}
