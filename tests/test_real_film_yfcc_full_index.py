@@ -11,6 +11,7 @@ from src.real_film.yfcc_full_index import (
     audit_candidate_rows,
     download_full_index,
     scan_full_index,
+    validate_download_manifest,
     validate_source_headers,
 )
 
@@ -157,3 +158,10 @@ def test_download_resumes_after_stream_interruption_and_closes_responses(tmp_pat
     assert manifest["bytes"] == len(payload)
     assert session.get_calls == 2
     assert all(response.closed for response in session.responses)
+
+    evidence = validate_download_manifest(manifest, config, destination)
+    assert evidence["sqlite_sha256"] == manifest["sha256"]
+    drifted = dict(manifest)
+    drifted["path"] = str(tmp_path / "other.sqlite")
+    with pytest.raises(YfccFullIndexError, match="path drifted"):
+        validate_download_manifest(drifted, config, destination)

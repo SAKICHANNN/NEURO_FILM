@@ -54,6 +54,39 @@ def validate_sqlite_header(path: Path, expected_bytes: int) -> None:
             raise YfccFullIndexError("SQLite header mismatch")
 
 
+def validate_download_manifest(
+    manifest: Mapping[str, Any], config: Mapping[str, Any], path: Path
+) -> dict[str, Any]:
+    """Bind an audit to the hash-complete downloader manifest and local SQLite."""
+    expected_bytes = int(config["source"]["expected_bytes"])
+    validate_sqlite_header(path, expected_bytes)
+    if manifest.get("dataset_id") != config["dataset_id"]:
+        raise YfccFullIndexError("download manifest dataset drifted")
+    if int(manifest.get("bytes", -1)) != expected_bytes:
+        raise YfccFullIndexError("download manifest byte size drifted")
+    if Path(str(manifest.get("path", ""))).resolve() != path.resolve():
+        raise YfccFullIndexError("download manifest path drifted")
+    source = manifest.get("source", {})
+    validate_source_headers(
+        {
+            "Content-Length": str(source.get("content_length", -1)),
+            "ETag": str(source.get("etag", "")),
+            "Last-Modified": str(source.get("last_modified", "")),
+        },
+        config,
+    )
+    digest = str(manifest.get("sha256", ""))
+    if not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise YfccFullIndexError("download manifest SHA-256 is invalid")
+    if manifest.get("image_payloads_downloaded_or_decoded") is not False:
+        raise YfccFullIndexError("download manifest violates metadata-only contract")
+    return {
+        "sqlite_sha256": digest,
+        "sqlite_bytes": expected_bytes,
+        "source": source,
+    }
+
+
 def download_full_index(
     config: Mapping[str, Any],
     destination: Path,
