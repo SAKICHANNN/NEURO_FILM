@@ -116,3 +116,20 @@ def test_true_author_and_strict_derivative_gates_fail_closed() -> None:
     assert row["checks"]["largest_normalized_author_share"] is False
     assert row["strict_derivative_rights_files"] == 4
     assert row["metadata_gate_passed"] is False
+
+
+def test_required_exact_pass_count_is_configurable() -> None:
+    config = _config()
+    config["conditional_pixel_pilot"] = {
+        "allowed_only_if_at_least_one_new_exact_stock_passes_metadata_gates": True
+    }
+    categories = []
+    for configured in config["categories"]:
+        files = [normalize_file_page(_api_page(index)) for index in range(5)]
+        if configured["film_stock_id"] in {"b", "c"}:
+            files[0]["license_short_name"] = "UNKNOWN"
+        categories.append({**configured, "files": files})
+    result = audit_snapshot({"categories": categories}, config)
+    assert result["exact_stock_metadata_passes"] == 1
+    assert result["required_exact_stock_metadata_passes"] == 1
+    assert result["conditional_pixel_pilot_allowed"] is True

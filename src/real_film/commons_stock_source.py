@@ -165,11 +165,12 @@ def audit_snapshot(snapshot: Mapping[str, Any], config: Mapping[str, Any]) -> di
         raise CommonsStockSourceError(f"configured categories missing from snapshot: {missing}")
     exact_passes = sum(row["exact_stock_pilot_eligible"] for row in results)
     conditional = config.get("conditional_pixel_pilot", {})
-    required_exact_passes = (
-        2
-        if conditional.get("allowed_only_if_at_least_two_new_exact_stocks_pass_metadata_gates")
-        else 3
-    )
+    if conditional.get("allowed_only_if_at_least_one_new_exact_stock_passes_metadata_gates"):
+        required_exact_passes = 1
+    elif conditional.get("allowed_only_if_at_least_two_new_exact_stocks_pass_metadata_gates"):
+        required_exact_passes = 2
+    else:
+        required_exact_passes = 3
     pixel_allowed = exact_passes >= required_exact_passes
     return {
         "category_results": results,
