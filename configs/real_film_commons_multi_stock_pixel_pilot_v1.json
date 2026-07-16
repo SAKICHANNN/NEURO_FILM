@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sf0.7-wikimedia-commons-multi-stock-pixel-pilot-v1",
+  "node": "ULT > RF0.4 > SF0.7",
+  "metadata_snapshots": [
+    {"path": "outputs/real_film/commons_stock_expansion_v1/metadata_snapshot.json", "sha256": "59820e7deea0880f37f6c5dfcf62e03656ee1f71e9e231fe0fcf021eb24c5ecb"},
+    {"path": "outputs/real_film/commons_third_stock_v1/metadata_snapshot.json", "sha256": "a38a6409dbbb70e1c899241f124b05dc5a5ed5606edebdcd29967c98130f9fa7"}
+  ],
+  "merged_metadata_snapshot": "outputs/real_film/commons_multi_stock_v1/merged_metadata_snapshot.json",
+  "selection_manifest": "outputs/real_film/commons_multi_stock_v1/pixel_selection_manifest.json",
+  "download_root": "data/raw/commons_multi_stock_pilot_v1",
+  "download_manifest": "outputs/real_film/commons_multi_stock_v1/pixel_download_manifest.json",
+  "audit_report": "outputs/real_film/commons_multi_stock_v1/pixel_audit_report.json",
+  "contact_sheet_root": "outputs/real_film/commons_multi_stock_v1/contact_sheets",
+  "allowed_label_scope": "exact_stock_community_category",
+  "allowed_stock_ids": ["kodak_kodachrome_64", "kodak_ultramax_400"],
+  "rights_filter": {
+    "allowed_licenses_with_explicit_url": ["CC0", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0"],
+    "allow_public_domain_with_usage_terms_and_file_page": true,
+    "attribution_only_without_license_url_forbidden": true,
+    "share_alike_forbidden": true,
+    "gfdl_metadata_only_forbidden_from_pixels": true,
+    "require_author_file_page_original_url_and_derivative_url": true
+  },
+  "selection": {
+    "algorithm": "stable uploader-round-robin with simultaneous normalized-author and uploader caps; title is the within-uploader tie break",
+    "maximum_files_per_stock": 48,
+    "maximum_files_per_normalized_author_per_stock": 12,
+    "maximum_files_per_uploader_per_stock": 12,
+    "preflight_expected_selected": {"kodak_kodachrome_64": 14, "kodak_ultramax_400": 37},
+    "maximum_files_total": 128
+  },
+  "download_limits": {
+    "derivative_width": 1600, "maximum_bytes_total": 536870912, "maximum_bytes_per_file": 33554432,
+    "request_retries": 6, "request_interval_seconds": 1.5, "full_original_download_forbidden": true,
+    "temporary_suffix": ".part", "resume_only_after_sha256_and_decode_validation": true
+  },
+  "pixel_audit": {
+    "minimum_short_dimension": 512, "allowed_decoded_modes": ["RGB", "L", "RGBA", "P", "CMYK"],
+    "perceptual_hash": "dhash64", "near_duplicate_hamming_threshold": 4,
+    "cross_stock_exact_or_near_duplicate_pairs_required": 0, "minimum_retained_files_per_stock": 8,
+    "minimum_normalized_author_groups_for_learning": 5, "maximum_largest_normalized_author_share_for_learning": 0.6,
+    "confirmed_severe_corruption_blocks_learning": true, "training_before_audit_and_visual_decision_forbidden": true
+  },
+  "claim_ceiling": "bounded UltraMax400/Kodachrome64 community-category pixel/source pilot only; no stock response, calibration, S1/S2, authenticity, released weight or commercial-use claim"
+}

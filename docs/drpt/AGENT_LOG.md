@@ -745,3 +745,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Stops:** Kodachrome25 author dominance; Elite100 author count; Elite200 strict rights; both Vision3 categories source concentration.
 - **Propagation:** Ektar, UltraMax and Kodachrome64 now meet metadata/source prerequisites, but only Ektar passed pixels. Training remains forbidden.
 - **Handoff:** `SF0.7` freezes and audits bounded derivative-only UltraMax/Kodachrome64 pixels independently.
+
+## 2026-07-16 - Freeze SF0.7 multi-stock pixel audit
+
+- **Inputs:** immutable SF0.6A `59820e7d...` and SF0.6B `a38a6409...` snapshots; merge only UltraMax400/Kodachrome64 rows.
+- **Selection:** same dual author/uploader cap and derivative-only rights filter; expected 37 UltraMax + 14 Kodachrome64.
+- **Limits/DoD:** <=128/512MiB, per-file checkpoints, hash/decode/dHash/source/content/vision; each stock passes independently before comparative work.
