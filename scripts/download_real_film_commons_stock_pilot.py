@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -37,6 +38,12 @@ def main() -> int:
         request_interval_seconds=float(config["download_limits"]["request_interval_seconds"]),
         checkpoint_path=output,
     )
+    manifest["software_commit"] = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
+    manifest["config_sha256"] = sha256_file(args.config)
+    manifest["selection_manifest_sha256"] = expected_selection_hash
     digest = atomic_json(output, manifest)
     print(json.dumps({"manifest": str(output), "sha256": digest, "files": manifest["files"], "bytes": manifest["bytes"]}, indent=2, sort_keys=True))
     return 0
