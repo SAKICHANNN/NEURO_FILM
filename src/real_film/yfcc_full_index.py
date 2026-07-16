@@ -50,13 +50,22 @@ def validate_source_headers(headers: Mapping[str, str], config: Mapping[str, Any
     content_length = int(headers.get("Content-Length", "-1"))
     etag = str(headers.get("ETag", "")).strip('"')
     last_modified = str(headers.get("Last-Modified", ""))
+    accept_ranges = str(headers.get("Accept-Ranges", ""))
     if content_length != int(source["expected_bytes"]):
         raise YfccFullIndexError("source Content-Length drifted")
     if etag != str(source["expected_etag"]):
         raise YfccFullIndexError("source ETag drifted")
     if last_modified != str(source["expected_last_modified"]):
         raise YfccFullIndexError("source Last-Modified drifted")
-    return {"content_length": content_length, "etag": etag, "last_modified": last_modified}
+    expected_ranges = source.get("expected_accept_ranges")
+    if expected_ranges is not None and accept_ranges.casefold() != str(expected_ranges).casefold():
+        raise YfccFullIndexError("source Accept-Ranges drifted")
+    return {
+        "content_length": content_length,
+        "etag": etag,
+        "last_modified": last_modified,
+        "accept_ranges": accept_ranges or None,
+    }
 
 
 def validate_sqlite_header(path: Path, expected_bytes: int) -> None:
@@ -85,6 +94,7 @@ def validate_download_manifest(
             "Content-Length": str(source.get("content_length", -1)),
             "ETag": str(source.get("etag", "")),
             "Last-Modified": str(source.get("last_modified", "")),
+            "Accept-Ranges": str(source.get("accept_ranges", "")),
         },
         config,
     )

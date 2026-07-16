@@ -852,6 +852,7 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** a synthetic three-part object reproduces its independently computed S3 multipart ETag; six SF1.1 tests pass and the full-suite count becomes 176.
 - **Operational note:** the already-running transfer uses the preceding process image; after it atomically completes, rerun the updated downloader once to perform and record the strengthened hash gate before auditing.
 - **External method check:** AWS's official multipart integrity tutorial confirms binary concatenation of part MD5 digests followed by MD5. The config records that source; the rule remains object-specific and promotion still requires an empirical exact ETag match.
+- **Resume header:** a fresh source HEAD also confirms `Accept-Ranges: bytes` with the same frozen length/ETag/Last-Modified and no returned SSE/KMS header. Production validation now fails if byte-range support drifts.
 
 ## 2026-07-16 - Propagate current stock-first state into the programme authority
 

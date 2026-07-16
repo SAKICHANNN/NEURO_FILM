@@ -21,7 +21,10 @@ from src.real_film.yfcc_full_index import (
 def _config() -> dict:
     return {
         "dataset_id": "test", "claim_ceiling": "test",
-        "source": {"expected_bytes": 10, "expected_etag": "etag", "expected_last_modified": "date"},
+        "source": {
+            "expected_bytes": 10, "expected_etag": "etag",
+            "expected_last_modified": "date", "expected_accept_ranges": "bytes",
+        },
         "rights_filter": {"allowed_license_urls": ["cc-by"]},
         "stock_patterns": [
             {"film_stock_id": "ektar", "exact_regex": "(^|[^a-z0-9])ektar 100([^a-z0-9]|$)"},
@@ -38,10 +41,17 @@ def _config() -> dict:
 
 
 def test_source_headers_fail_closed_on_etag_drift() -> None:
-    headers = {"Content-Length": "10", "ETag": '"etag"', "Last-Modified": "date"}
+    headers = {
+        "Content-Length": "10", "ETag": '"etag"',
+        "Last-Modified": "date", "Accept-Ranges": "bytes",
+    }
     assert validate_source_headers(headers, _config())["etag"] == "etag"
     headers["ETag"] = '"other"'
     with pytest.raises(YfccFullIndexError, match="ETag"):
+        validate_source_headers(headers, _config())
+    headers["ETag"] = '"etag"'
+    headers["Accept-Ranges"] = "none"
+    with pytest.raises(YfccFullIndexError, match="Accept-Ranges"):
         validate_source_headers(headers, _config())
 
 
