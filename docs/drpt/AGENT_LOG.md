@@ -624,3 +624,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Result:** primary RGB accuracy 0.727, roll permutation p=0.191 and null q95=0.818. RGB mean/std ties at 0.727; luma/full-frame reach 0.818; metadata/date/content/border shortcut reaches 0.909. Permutation, simple-global and shortcut gates fail.
 - **Decision:** close preview-only named-stock learning. No model-capacity escalation, frame-random rescue, physical-density interpretation, display operator or S2 claim.
 - **Propagation:** decision/results, tracker, board and AGENTS updated. Next leaf is the independent `RF1.4B` Gold100 display-proxy paired-transform contract.
+
+## 2026-07-16 - Freeze RF1.4B0 official alignment preflight
+
+- **Node/parent goal:** `ULT > RF1.4 > RF1.4B0`; validate Gold100 proxy alignment/support before any colour fit.
+- **Evidence discovery:** the pinned BlueNeg README identifies `transformations.pkl`; local SHA-256 matches the remote inventory. Opcode inspection found only NumPy ndarray reconstruction globals, but ordinary pickle loading remains forbidden.
+- **Contract:** restricted unpickling, exact 47-pair support, minimum five rolls/two pairs each, finite nonsingular 3x3 matrices, in-bounds bboxes and exact bbox/proxy dimensions.
+- **Stop rule:** any alignment failure closes the lane; no inferred homography, resizing, pair dropping or colour fitting.
+- **Artifacts:** `configs/real_film_gold_proxy_alignment_v1.json`, `docs/planning/RF1_4B_GOLD_PROXY_ALIGNMENT_CONTRACT.md`.

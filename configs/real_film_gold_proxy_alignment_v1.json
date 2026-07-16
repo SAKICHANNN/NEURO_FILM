@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "audit_id": "rf1.4b0-gold100-display-proxy-alignment-v1",
+  "node": "ULT > RF1.4 > RF1.4B0",
+  "preview_decision": "configs/real_film_stock_identifiability_decision_v1.json",
+  "preview_decision_sha256": "aaac084b7b82b7cbd5bbc08edb874470f679755989f4561835bca0e26531ddc1",
+  "integrity_report": "outputs/real_film/stock_pilots_v1/integrity_audit/report.json",
+  "integrity_report_sha256": "a93257ee45e14ac0519dc1ce76a840ebe4f517a8d5c413e33b17c915160d1caa",
+  "transformations": "data/raw/blueneg/transformations.pkl",
+  "transformations_sha256": "d552b5c4606099234ccf02cfd252dc5652c5aa0a89fa3e002d8cba5252429601",
+  "download_root": "data/raw/blueneg_stock_pilots_v1",
+  "film_stock_id": "kodak_gold_100_gen5",
+  "gates": {
+    "expected_pairs": 47,
+    "minimum_rolls": 5,
+    "minimum_pairs_each_roll": 2,
+    "require_all_transform_keys": true,
+    "require_all_bbox_in_bounds": true,
+    "require_all_bbox_proxy_dimensions_equal": true,
+    "require_finite_nonsingular_matrices": true
+  },
+  "pickle_policy": {
+    "restricted_unpickler_required": true,
+    "allowed_globals": [
+      "numpy.core.multiarray._reconstruct",
+      "numpy.ndarray",
+      "numpy.dtype"
+    ],
+    "forbidden_persistent_ids_extensions_and_object_constructors": true
+  },
+  "colour_fit_forbidden": true,
+  "branches": {
+    "invalid_pickle_or_hash": "stop as evidence-contract failure",
+    "alignment_gate_fail": "close current proxy lane; do not infer alignment or fit colour",
+    "alignment_gate_pass": "freeze RF1.4B1 paired-transform consistency and operator controls before fitting"
+  },
+  "claim_ceiling": "official BlueNeg bbox/matrix and pixel-shape eligibility only; no colour transform, stock signal, calibration, authenticity or S2 claim"
+}
