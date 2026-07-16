@@ -975,3 +975,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** an author is usable only if both stock arms pass; at least five are required. Either branch keeps image payload and operator fitting false.
 - **Verification:** three focused tests cover bounded prospective selection, bilateral author rights, closed responses and image-URL non-use; the full CPU suite passes (`202 passed`); module/script compile and `git diff --check` pass.
 - **Files/handoff:** `src/real_film/yfcc_shared_author_rights.py`, `scripts/audit_real_film_yfcc_shared_author_rights.py`, focused tests, script index and explicit user-agent config. Commit/push before executing the live preflight.
+
+## 2026-07-16 - Pass SF1.2 and freeze the shared-author pixel pilot
+
+- **Node/parent goal:** `ULT > RF0.4 > SF1.2/SF1.3A`; execute the committed page-only rights gate and freeze the smallest exact pixel scope before image access.
+- **Execution:** commit `583dae8`; 61 sequential HTML requests; no image/download URL requested; report SHA-256 `a16391c0...938a`; config SHA-256 `2dea8505...b760`.
+- **Result:** eight of 16 shared UIDs have a current CC BY 2.0 page for both Ektar100 and Velvia50, exceeding the frozen minimum five. Eighteen UID/stock arms pass in total. Decision is `pass_live_rights_feasibility`.
+- **Claim:** rights/connectivity feasibility only. No pixel quality, content balance, stock identifiability, operator, training, LSM, `S1/S2`, calibration or authenticity evidence is established.
+- **SF1.3A freeze:** exact eight UIDs, prospective order, at most four candidates per UID/stock, 38 candidates, 32MiB/file and 512MiB total; sequential bounded derivatives only, live page reverified per image, originals forbidden. Require at least eight files/stock and five bilateral pixel authors plus hash/decode/duplicate/content/full-resolution vision gates.
+- **Files/handoff:** SF1.2 result, SF1.3A config/contract and authority propagation. Commit/push before implementing or running image acquisition. A clean pixel pass may open only a newly frozen stock-identifiability diagnostic; fitting/training/LSM remain false.

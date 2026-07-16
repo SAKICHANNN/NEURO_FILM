@@ -237,9 +237,13 @@ Ektar100/Velvia50 passes the frozen metadata edge at 780/240 rows, 122/62 UIDs
 and 16 shared UIDs. Ektar/UltraMax fails because UltraMax has only 27 UIDs
 versus the frozen 30. No threshold is changed.
 
-The sole open data leaf is now `SF1.2`: request at most 128 Flickr HTML pages,
-never image URLs, and require at least five shared authors with a current CC BY
-2.0 page for both Ektar100 and Velvia50. A pass opens only a separately frozen
-pixel preflight proposal; a failure closes this public shared-author expansion.
-No pixel, training, operator fitting, LSM or GPU work is justified by SF1.1 or
-SF1.2 metadata/rights evidence alone.
+`SF1.2` passes: 61 bounded HTML requests confirm eight shared authors with a
+current CC BY 2.0 page for both stocks; no image URL was requested. The open
+leaf is `SF1.3A`, frozen at eight UIDs, at most four rows per UID/stock, 38
+candidates and 512 MiB. It must retain at least five bilateral pixel authors
+and pass integrity, duplicate, content and full-resolution visual gates.
+
+SF1.3A is still an `S0` acquisition/diagnostic pilot. A pass may open only a
+newly preregistered shared-author stock-identifiability diagnostic. No training,
+operator fitting, LSM or GPU work is justified by metadata, rights or clean
+pixels alone.

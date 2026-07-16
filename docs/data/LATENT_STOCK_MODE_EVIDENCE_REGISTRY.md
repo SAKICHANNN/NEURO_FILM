@@ -47,7 +47,7 @@ Each source row records only independently verifiable fields:
 | Candidate/pool | Observed state | LSM1 decision | Operator fitting |
 |---|---|---|---:|
 | Commons Ektar100/UltraMax400 plus YFCC Ektar100/Velvia50 connected pool | 104 bounded pixels; stock/source/content graph audited; source geometry and low-frequency scene colour dominate | `unidentified`; source/content confounded | false |
-| SF1.1 full YFCC metadata index | exact source and repeat scan pass; Ektar100/Velvia50 has 16 shared UIDs; no image payloads permitted | `metadata only`; connectivity feasibility passes one edge, while rights/pixels/stock identifiability remain absent | false |
+| SF1.1/SF1.2 full YFCC connectivity/rights | exact source and repeat scan pass; 16 shared UIDs, eight with bilateral current CC BY pages; no shared-author pixels yet | `metadata only`; rights/connectivity feasibility passes, while pixels and stock identifiability remain absent | false |
 | BlueNeg Gold archive display-proxy pairs | 47 exact pairs/six rolls; archive preview-to-display mapping only; process/scanner interpretation unknown | not an eligible latent-mode teacher; RF2.S0 is frozen negative transplant evidence | false |
 | BlueNeg physical-roll pilot | correct-roll advantage fails replication and loses to content-similar wrong-roll retrieval | `unidentified` for reusable roll information | false |
 | FILM-R | physical scans but family/content structural confounding; roll/process/scanner unknown | `source/content confounded` | false |

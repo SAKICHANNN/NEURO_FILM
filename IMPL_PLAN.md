@@ -35,11 +35,12 @@ programme subsequently reached a 104-file connected audit, but both stock
 edges failed because scene colour/content and source geometry dominate. Those
 pixels remain closed for training and operator fitting. `SF1.1` now passes one
 metadata-only edge after exact SHA/S3 verification and two byte-identical full
-scans: Ektar100/Velvia50 has 16 shared UIDs. The current leaf is `SF1.2`, a
-max-128-page live-rights feasibility test requiring five authors with a
-current page for both stocks. It requests no images and opens no pixel,
-training, operator or latent-mode permission. The failed archive matrix is not
-teacher truth. LOC Phase C remains a sealed historical/unknown lane.
+scans: Ektar100/Velvia50 has 16 shared UIDs. `SF1.2` confirms eight authors
+with a current CC BY page for both stocks without requesting images. The
+current leaf is `SF1.3A`, a frozen 38-candidate/512MiB pixel and integrity
+pilot requiring five bilateral pixel authors. It opens no training, operator
+or latent-mode permission. The failed archive matrix is not teacher truth. LOC
+Phase C remains a sealed historical/unknown lane.
 
 ---
 

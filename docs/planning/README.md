@@ -18,6 +18,9 @@ Current strategic plan:
 - `SF1_2_YFCC_SHARED_AUTHOR_RIGHTS_CONTRACT.md` - current bounded page-only
   Ektar100/Velvia50 shared-author live-rights gate after SF1.1 metadata pass;
   image requests and operator fitting remain forbidden.
+- `SF1_3A_YFCC_SHARED_AUTHOR_PIXEL_CONTRACT.md` - exact maximum-38 derivative
+  acquisition/integrity scope for the eight SF1.2-passing authors; no fitting
+  or training.
 - `../data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` - authoritative stock label
   grades, nested nuisance schema, separate named/historical coverage and
   current candidate ledger.

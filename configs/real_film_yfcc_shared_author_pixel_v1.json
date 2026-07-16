@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sf1.3a-yfcc-ektar-velvia-shared-author-pixels-v1",
+  "node": "ULT > RF0.4 > SF1.3A",
+  "input_metadata_report": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+  "input_metadata_report_sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2",
+  "input_rights_report": "outputs/real_film/yfcc100m_shared_author_rights_v1/preflight_report.json",
+  "input_rights_report_sha256": "a16391c068aa4a5275aa74bbaf4bd4e3462d3020f15490ad789f6c1a413a938a",
+  "source_rights_config_sha256": "2dea85054ade237fddc36cbdd23d96bf2da59766c56a01579d4e225c9fc5b760",
+  "stock_ids": ["kodak_ektar_100", "fujifilm_velvia_50"],
+  "expected_usable_shared_author_uids": [
+    "27760134@N03",
+    "32676622@N05",
+    "36084044@N07",
+    "36521968871@N01",
+    "37089490@N06",
+    "50893125@N03",
+    "77971723@N00",
+    "79259760@N00"
+  ],
+  "selection": {
+    "algorithm": "for the eight SF1.2-passing UIDs, retain the already frozen prospective candidate order with at most four rows per UID and stock",
+    "maximum_files_per_uid_per_stock": 4,
+    "expected_candidate_rows": 38,
+    "maximum_retained_files": 38
+  },
+  "live_rights": {
+    "required_snapshot_license_url": "http://creativecommons.org/licenses/by/2.0/",
+    "required_page_regex": "creativecommons\\.org/licenses/by/2\\.0/",
+    "page_status_200_required": true,
+    "licence_downgrade_or_missing_page_rejects_pixel": true
+  },
+  "download_limits": {
+    "maximum_bytes_total": 536870912,
+    "maximum_bytes_per_file": 33554432,
+    "timeout_seconds": 60,
+    "request_interval_seconds": 1.5,
+    "original_download_forbidden": true,
+    "sequential_requests_only": true
+  },
+  "pixel_gate": {
+    "minimum_short_dimension": 512,
+    "minimum_retained_files_per_stock": 8,
+    "minimum_usable_shared_authors": 5,
+    "usable_author_requires_retained_pixel_for_each_stock": true,
+    "near_duplicate_hamming_threshold": 4,
+    "confirmed_severe_corruption_blocks_next_stage": true
+  },
+  "download_root": "data/raw/yfcc_shared_author_pilot_v1",
+  "download_manifest": "outputs/real_film/yfcc_shared_author_pixel_v1/download_manifest.json",
+  "audit_report": "outputs/real_film/yfcc_shared_author_pixel_v1/pixel_audit_report.json",
+  "contact_sheet_root": "outputs/real_film/yfcc_shared_author_pixel_v1/contact_sheets",
+  "image_payload_download_allowed_within_exact_scope": true,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "bounded Ektar100/Velvia50 shared-author S0 pixel-connectivity and nuisance audit only; no stock response, operator, latent mode, calibration, S1/S2, authenticity, training, weights or release claim"
+}
