@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf1.0b-connected-stock-identifiability-closed-v1",
+  "date": "2026-07-16",
+  "node": "ULT > RF1 > SF1.0B",
+  "decision": "close_current_four_cell_pools_for_stock_learning_and_open_metadata_only_full_yfcc_shared_author_gate",
+  "report_sha256": "a5877346c8a56edb7ca338f564bb7750dc3d439d1a017a02127e956cbd7a68d8",
+  "repeat_sha256_identical": true,
+  "edges": {
+    "commons_ektar_vs_ultramax": {
+      "rgb_balanced_accuracy": 0.5982142857142857,
+      "rgb_permutation_p": 0.28,
+      "low_frequency_rgb_balanced_accuracy": 0.8035714285714286,
+      "low_frequency_rgb_permutation_p": 0.024,
+      "decision": "fail_global_colour; low_frequency_scene_colour_signal_is_not_stock_specific"
+    },
+    "yfcc_ektar_vs_velvia": {
+      "rgb_balanced_accuracy": 0.6571428571428571,
+      "rgb_permutation_p": 0.188,
+      "luma_balanced_accuracy": 0.7571428571428571,
+      "hog_balanced_accuracy": 0.7214285714285714,
+      "geometry_balanced_accuracy": 0.7571428571428571,
+      "low_frequency_rgb_balanced_accuracy": 0.8928571428571428,
+      "decision": "fail_content_luma_and_acquisition_shortcuts"
+    },
+    "ektar_commons_vs_yfcc": {
+      "geometry_balanced_accuracy": 0.9285714285714286,
+      "geometry_permutation_p": 0.016,
+      "rgb_balanced_accuracy": 0.4857142857142857,
+      "decision": "strong_source_fingerprint_confirmed"
+    }
+  },
+  "shared_author_support": {
+    "retained_commons_ektar_ultramax_authors": 1,
+    "retained_yfcc_ektar_velvia_authors": 0,
+    "raw_yfcc_ektar_velvia_authors": 3,
+    "raw_yfcc_shared_authors_live_rights_confirmed": 0
+  },
+  "operator_fitting_allowed": false,
+  "next_leaf": "SF1.1 freeze and acquire the public 65,644,027,904-byte full YFCC100M SQLite metadata index, then filter exact stock/shared-author support before any pixels",
+  "claim_ceiling": "current community pools are source/content confounded and closed for stock learning; no stock response, calibration, S1/S2, training, authenticity or release claim"
+}

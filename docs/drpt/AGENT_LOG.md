@@ -814,3 +814,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gate:** each same-source stock edge needs >=70% balanced accuracy, permutation p<=0.05, >=10 points over the strongest nuisance control with CI above zero, HOG <=65%, and >=5 groups per class.
 - **Boundary:** this is a diagnostic classifier only. It saves no trained model, predicts no render parameters, fits no colour operator and cannot open RGB generation.
 - **Handoff:** verify all tests, commit the frozen contract, run twice and adjudicate every failed check before deciding whether any edge advances.
+
+## 2026-07-16 - Close SF1.0B current community pools
+
+- **Evidence:** repeat-identical report SHA `a58773...68d8`. Commons RGB 59.82%/p=.280 versus low-frequency scene colour 80.36%/p=.024. YFCC RGB 65.71%/p=.188 versus luma/HOG/geometry 72--76% and low-frequency RGB 89.29%/p=.002. Ektar source geometry 92.86%/p=.016.
+- **Decision:** both stock edges fail; current unpaired pixels are closed for stock learning. Low-frequency/standardized performance is content-aware retrieval evidence only. Increasing model capacity is forbidden.
+- **Shared-author audit:** retained Commons edge has one shared author; retained YFCC edge zero. Raw YFCC pools have three shared UIDs, but all fail current live-rights verification.
+- **Next bounded expansion:** SF1.1 may acquire the public 65,644,027,904-byte YFCC100M SQLite metadata index only. No pixels. Stop unless >=100 rows and >=30 UIDs per Ektar/Velvia plus >=12 shared UIDs project enough live usable groups.
+- **Handoff:** freeze source headers/hash/space/retention/resume contract and downloader before starting the large metadata transfer.
