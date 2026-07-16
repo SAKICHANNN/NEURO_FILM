@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf0.6b-wikimedia-commons-third-stock-audit-v1",
+  "node": "ULT > RF0.4 > SF0.6B",
+  "api_endpoint": "https://commons.wikimedia.org/w/api.php",
+  "user_agent": "K-MCFM-research-audit/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded stock metadata audit)",
+  "snapshot_output": "outputs/real_film/commons_third_stock_v1/metadata_snapshot.json",
+  "report_output": "outputs/real_film/commons_third_stock_v1/source_audit_report.json",
+  "categories": [
+    {"film_stock_id": "kodak_kodachrome_25", "category": "Photographs taken on Kodachrome 25 film", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 35},
+    {"film_stock_id": "kodak_kodachrome_64", "category": "Photographs taken on Kodachrome 64 film", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 51},
+    {"film_stock_id": "kodak_ektachrome_elite_100_5045_eb", "category": "Photographs taken on Kodak EKTACHROME ELITE 100 5045 EB", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 34},
+    {"film_stock_id": "kodak_ektachrome_elite_200", "category": "Photographs taken on Kodak EKTACHROME ELITE 200", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 20},
+    {"film_stock_id": "kodak_vision3_50d", "category": "Photographs taken on Kodak Vision3 50D film", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 29},
+    {"film_stock_id": "kodak_vision3_250d", "category": "Photographs taken on Kodak Vision3 250D film", "label_scope": "exact_stock_community_category", "preflight_files_2026_07_16": 23}
+  ],
+  "api_query": {"category_members_type": "file", "category_members_limit": 500, "image_info": ["url", "size", "sha1", "user", "timestamp", "mime", "mediatype", "extmetadata"], "page_properties": ["revisions"], "category_revision_fields": ["ids", "timestamp"], "thumbnail_url_width_for_future_pilot": 1600, "maximum_requests_per_category": 10},
+  "license_policy": {
+    "metadata_only_stage": true,
+    "research_free_licenses": ["CC0", "Public domain", "Attribution", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0", "CC BY-SA 2.0", "CC BY-SA 2.0 fr", "CC BY-SA 2.5", "CC BY-SA 3.0", "CC BY-SA 3.0 de", "CC BY-SA 4.0"],
+    "permissive_candidate_licenses": ["CC0", "Public domain", "CC BY 2.0", "CC BY 2.0 fr", "CC BY 3.0", "CC BY 3.0 de", "CC BY 4.0"],
+    "share_alike_rows_internal_research_only_until_legal_review": true,
+    "per_file_author_credit_license_url_and_source_url_required_before_pixels": true
+  },
+  "metadata_flags": {"non_scene_title_patterns": ["film strip", "filmstrip", "cartridge", "canister", "grain scan", "test strip", "contact sheet"], "author_group_preferred_over_uploader": true, "bot_uploader_is_never_an_author_group": true},
+  "gates_for_exact_stock_pilot": {
+    "minimum_files": 20, "minimum_unique_uploaders": 5, "maximum_largest_uploader_share": 0.6,
+    "minimum_permissive_candidate_files": 8, "minimum_fraction_minimum_dimension_512": 0.95,
+    "maximum_non_scene_title_flag_fraction": 0.1, "require_every_row_free_license": true,
+    "require_every_row_source_url": true, "require_every_row_sha1_and_dimensions": true,
+    "minimum_unique_normalized_authors": 5, "maximum_largest_normalized_author_share": 0.6,
+    "minimum_strict_derivative_rights_rows": 8
+  },
+  "conditional_pixel_pilot": {
+    "allowed_only_if_at_least_one_new_exact_stock_passes_metadata_gates": true,
+    "derivative_width": 1600, "maximum_files_total": 128,
+    "maximum_files_per_normalized_author_or_uploader_group_per_stock": 12,
+    "maximum_download_bytes": 536870912, "full_original_or_equal_url_download_forbidden": true,
+    "training_before_pixel_integrity_content_and_group_audit_forbidden": true
+  },
+  "claim_ceiling": "third-stock Commons metadata and true-author/derivative-rights eligibility only; no pixels, stock response, calibration, S1/S2, authenticity, training or release claim"
+}

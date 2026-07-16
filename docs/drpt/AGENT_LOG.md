@@ -730,3 +730,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Stops:** C200 only five strict rows; ProImage largest author 66.67%; Reala only three authors; Provia100F/Sensia100 only two strict rows; remaining categories fail more strongly.
 - **Propagation:** Commons now supplies Ektar plus metadata-only UltraMax, still below the three-stock comparative minimum. No pixels/training open.
 - **Handoff:** `SF0.6B` audits exact Kodachrome25/64, Ektachrome Elite100/200 and Vision3 50D/250D; one further independent pass is required.
+
+## 2026-07-16 - Freeze SF0.6B third-stock metadata sweep
+
+- **Candidates:** exact Kodachrome25/64, Ektachrome Elite100 5045 EB/Elite200 and Vision3 50D/250D categories, 20-51 direct files each.
+- **Invariant:** do not pool family names or process interpretations; same >=5 authors, <=60% dominance and >=8 strict derivative-rights rows.
+- **Stop:** metadata only. One pass opens a separately frozen pixel audit, never direct training.
