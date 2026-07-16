@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 139 local tests pass; the stock registry exactly matches BlueNeg's 13 strings / 53 rolls / 491 frames; RF1.4A closes preview-only stock learning; Gold RF1.4B1 finds a repeatable six-roll archive display-chain mapping, with bounded 3x3 affine simpler/better than SepLUT; real-film stock identity or digital-to-film signal is not established |
+| Current evidence | 143 local tests pass; RF1.4A closes preview-only stock learning; Gold RF1.4B1 finds a repeatable archive display-chain mapping, but RF2.S0 transplant to digital fails style/non-basic/clipping gates; real-film stock identity or digital-to-film signal is not established |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -226,7 +226,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | RF1.4A | Preview route closed: GA/Konica structurally unidentified; NPH/Gold roll-null not rejected and nuisance shortcut wins |
 | Done/pass | RF1.4B0 | Gold100 official alignment/support: 47 exact pairs across six rolls; no colour fit or stock-response claim |
 | Done/limited pass | RF1.4B1 | All metric/visual gates pass for Gold archive preview-to-display mapping; bounded 3x3 affine beats SepLUT overall; no stock-response claim |
-| P0 product falsification | RF2.S0 | Freeze all-roll Gold matrix and test transplant on existing digital gold/stress images as Look Approximation against matched simple controls |
+| Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
+| P0 named-stock data | SF0.4 | Refresh obtainable multi-source stock-labelled positive scans for unpaired retrieval/explicit-operator identifiability |
 | P0 historical auxiliary | RF0.3/RF1.3 | Complete bounded FSA/OWI pixels, deterministic border/content audit and creator/location holdouts as `historical-film/unknown-stock`; never count it as a named stock |
 | Data-gated | RF2.S/RF2.H | Compare stock-specific CPU global/hierarchical/retrieval/conditional experts separately from the historical/unknown expert after their own RF1 gates |
 | Conditional | RF3 | Train lightweight bounded GPU challengers only after data/identifiability gates pass |

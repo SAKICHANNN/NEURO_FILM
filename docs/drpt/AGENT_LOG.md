@@ -669,3 +669,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Contract:** fit one all-roll bounded 3x3 matrix from archive pairs only; test fixed strengths 1/.75/.5 strongest-first; derive OOD threshold solely from leave-one-roll archive descriptors; require >=8/9 gold and >=75% stress coverage, <=0.5% worst gold raw clipping, finite/positive orientation, then nine-image/three-round blind severe-artifact review.
 - **Claim/stop:** pass means Look Approximation challenger only. OOD, bland/basic, clip or visual failure closes transplant without adding neural capacity or weakening stock evidence rules.
 - **Artifacts:** `configs/real_film_gold_matrix_transplant_v1.json`, `docs/planning/RF2_S0_GOLD_MATRIX_TRANSPLANT_CONTRACT.md`.
+
+## 2026-07-16 - Close RF2.S0 direct Gold archive-matrix transplant
+
+- **Node/parent goal:** `ULT > RF2.S > RF2.S0`; execute the frozen archive-only fit/OOD and digital transplant gates twice before any visual rendering.
+- **Reproducibility:** evaluator commit `ba62ca2...`; 143 tests pass; two reports are byte-identical, SHA-256 `1cdd2ab4...`.
+- **OOD result:** threshold 2.5722 derives only from archive cross-roll support. Coverage passes narrowly at 8/9 gold and 78.125% stress; domain rejection is not used to explain away the result.
+- **Style/safety result:** strength 1.0 yields style Delta E 6.251<7.0, matched-basic residual 1.942<4.9 and worst gold raw clipping 8.700%>0.5%. Strengths .75/.5 reduce style/residual and still clip 8.594%/8.374% in the worst image.
+- **Decision:** `closed_bland_basic_and_clip_unsafe`. The matrix is largely explainable as EV/WB/contrast/saturation on digital inputs. Automatic gates fail, so the preregistered visual run is correctly not generated. No neural or nonlinear capacity escalation is allowed on this teacher.
+- **Handoff:** `SF0.4` refreshes current obtainable multi-source named-stock positive-scan evidence and freezes the smallest unpaired stock-internal retrieval/explicit-operator pilot, if any source passes label/rights/group/content gates.

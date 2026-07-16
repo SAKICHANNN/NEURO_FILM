@@ -188,6 +188,9 @@ support; NPH400/Gold100 gives primary roll accuracy 0.727, permutation p=0.191
 and a stronger 0.909 nuisance shortcut. `RF1.4B0` passes all 47 official
 bbox/proxy pairs across six rolls. `RF1.4B1` then passes every frozen metric
 and visual gate for the archive preview-to-display chain, but bounded 3x3
-affine (5.307 Delta E76) slightly beats SepLUT17+3x3 (5.380). The next leaf is
-`RF2.S0`, a fail-closed transplant test on existing digital gold/stress images
-under a Look-Approximation-only claim. No GPU job is justified.
+affine (5.307 Delta E76) slightly beats SepLUT17+3x3 (5.380). `RF2.S0` closes
+direct transplant: archive-only OOD coverage passes, but full-strength style is
+6.25 below the 7.0 floor, matched-basic residual is 1.94 below 4.9 and worst
+gold clipping is 8.70%; weaker strengths get blander. The next leaf is `SF0.4`,
+a current source/rights/group refresh for obtainable multi-source named-stock
+positive scans. No GPU job is justified.

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "decision_id": "rf2.s0-gold100-archive-matrix-transplant-v1",
+  "node": "ULT > RF2.S > RF2.S0",
+  "decision": "closed_bland_basic_and_clip_unsafe",
+  "software_commit": "ba62ca2cacf6a35614fb2574fcc2c6548f53d28d",
+  "report": "outputs/real_film/stock_pilots_v1/rf2_s0/report.json",
+  "report_sha256": "1cdd2ab4e5ab3beb12e0a5afa14d460312f20ec8a6b9b206d6c6daa110abedab",
+  "byte_identical_runs": 2,
+  "archive_ood_threshold": 2.5721655217561583,
+  "gold_ood_eligible_images": 8,
+  "stress_ood_eligible_fraction": 0.78125,
+  "full_strength": {
+    "gold_median_style_delta_e76": 6.251161946500728,
+    "gold_median_residual_delta_e76_after_matched_basic": 1.9424820031438559,
+    "gold_maximum_per_image_raw_clip_fraction": 0.08699544270833333
+  },
+  "anchor_floors": {
+    "minimum_style_delta_e76": 7.0,
+    "minimum_residual_delta_e76_after_matched_basic": 4.9,
+    "maximum_per_image_raw_clip_fraction": 0.005
+  },
+  "weaker_strengths": {
+    "0.75": {"style_delta_e76": 4.6904148019231595, "residual_delta_e76": 1.458337861181994, "maximum_raw_clip_fraction": 0.0859375},
+    "0.5": {"style_delta_e76": 3.1274349842126066, "residual_delta_e76": 0.9783709034515485, "maximum_raw_clip_fraction": 0.083740234375}
+  },
+  "visual_adjudication": "not_run_automatic_gate_failed",
+  "interpretation": "The archive display-chain matrix is largely explainable by basic EV/WB/contrast/saturation adjustment on digital inputs and produces excessive raw clipping; weakening it makes it blander without fixing the worst case.",
+  "next_leaf": "SF0.4 refresh obtainable multi-source named-stock real-scan evidence and freeze the smallest unpaired stock-internal retrieval/explicit-operator identifiability pilot",
+  "claim_ceiling": "negative RF2.S0 transplant evidence only; no Kodak Gold product look, stock response, authenticity, S2 or release claim"
+}
