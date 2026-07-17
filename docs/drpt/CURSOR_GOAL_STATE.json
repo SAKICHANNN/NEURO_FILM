@@ -5,12 +5,12 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "0ed4c8638321a6847ccfb774ae00c4387bc5e3c3",
-  "iteration": 8,
+  "head": "a5535b320e0d26f9803854f912696ac3ac15f148",
+  "iteration": 9,
   "current_node": "ULT > U5.R1 > U5.R1B4",
-  "current_leaf": "U5.R1B4 synthetic prototype",
-  "phase": "COMMIT",
-  "last_verified_commit": "0ed4c8638321a6847ccfb774ae00c4387bc5e3c3",
+  "current_leaf": "U5.R1B5 ready",
+  "phase": "CONTINUE",
+  "last_verified_commit": "a5535b320e0d26f9803854f912696ac3ac15f148",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 391,
@@ -21,7 +21,7 @@
     "U5.R1B5",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "After commit/push of R1B4, start U5.R1B5 (refine speckle-like synthetic family and/or bind RF2.C0 control) or a U1 colour-state product leaf; Goal remains ACTIVE",
+  "next_action": "Start U5.R1B5: refine synthetic family toward speckled high-frequency chroma islands and/or bind RF2.C0 Ektar/fixed-e0 as A0 control; or advance U1 colour-state product leaf; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -35,6 +35,6 @@
     "src/eval/filmstylesafe_synthetic.py"
   ],
   "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T14:35:00Z",
+  "last_update_utc": "2026-07-17T14:30:46Z",
   "selection_rationale": "R1B4 closes the first executable synthetic failure prototype under the frozen FilmStyleSafe contract."
 }
