@@ -1104,3 +1104,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decisive failure:** Velvia has only two independent rolls versus the preregistered minimum four. Frame count cannot replace group support, so the deterministic decision is `insufficient_stock_roll_support`.
 - **Binding branch:** do not open SF2.0B1, lower the roll gate, substitute another film code post-result or request photographs. Retain the snapshot as exact source-support negative evidence; fitting, training, LSM and `S1/S2` remain false.
 - **Goal continuation:** Ultimate remains active. Return to the independent U1 high-precision product leaf while future stock-source discovery remains evidence-gated.
+
+## 2026-07-17 - Freeze U1.3B default float-internal migration
+
+- **Node/parent goal:** `ULT > U1 > U1.3B`; remove the last default-path early quantization without changing default 8-bit formats or the Style-safe claim ceiling.
+- **Pre-implementation diagnostic:** three deterministic image families, five styles and colour-only/combined-effect conditions produce exact sRGB8 colour output and at most one code of sRGB8 effect-chain difference. High-bit-depth inputs have mean differences below 0.268 code but sparse B&W outliers up to 88 codes after removal of premature quantization.
+- **Frozen interpretation:** 8-bit sources require strict compatibility. High-bit-depth sources are an intentional precision change, not an exact-compatibility claim; their sparse outliers require numerical regression plus autonomous full-output severe-artifact review.
+- **Allowed change:** route both output depths through the existing float adapter/core/effect path, quantize only in the existing encoder, update internal-path provenance and retain the PIL wrapper for external compatibility consumers.
+- **Stop conditions:** any sRGB8 colour mismatch, effect delta above one code or confirmed new high-bit-depth severe artifact preserves the legacy default. HDR, wide gamut, calibrated RAW, stock fitting/training and LSM remain outside this leaf.
+- **Handoff:** commit/push this frozen contract before implementation, then add boundary regressions and perform targeted/full-suite plus real-image visual verification.
