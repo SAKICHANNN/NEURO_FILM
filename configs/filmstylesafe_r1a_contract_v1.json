@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1a.v1",
+  "node": "ULT > U5.R1 > U5.R1A",
+  "status": "frozen_before_schema_implementation",
+  "scope": "supporting colour-operator evaluation and product QA; not a primary paper, label generator, stock-authenticity test or model-training authorization",
+  "severity_labels": ["safe", "minor", "severe", "uncertain"],
+  "chromatic_categories": [
+    "large_smooth_region_cast",
+    "skin_or_neutral_contamination",
+    "neon_chroma_island_or_highlight_speckle",
+    "banding_posterization_or_colour_shelf",
+    "clipping_or_gamut_hard_boundary",
+    "local_hue_jump_grid_seam_or_halo",
+    "benign_perturbation_chromatic_instability"
+  ],
+  "nonsevere_diagnostics": [
+    "global_exposure_policy_instability",
+    "global_tone_or_contrast_strength",
+    "global_saturation_strength",
+    "global_white_balance_or_palette_shift",
+    "style_blandness",
+    "style_target_mismatch"
+  ],
+  "structural_categories_for_generative_controls_only": [
+    "face_or_limb_corruption",
+    "text_or_logo_corruption",
+    "object_or_geometry_corruption",
+    "texture_smearing_or_repetition"
+  ],
+  "legitimate_local_hard_negatives": [
+    "local_dodge_or_burn",
+    "skin_protection",
+    "sky_densification",
+    "mixed_illuminant_correction",
+    "intentional_local_colour_accent",
+    "bounded_bloom_or_halation"
+  ],
+  "label_rule": {
+    "initial_blind_raters": 3,
+    "initial_all_safe_or_minor_scene_label": 0,
+    "escalate_on": ["severe", "uncertain", "missing"],
+    "senior_blind_raters": 3,
+    "senior_majority_severe_scene_label": 1,
+    "senior_majority_nonsevere_scene_label": 0,
+    "unresolved_or_missing_primary_scene_label": 1,
+    "confidence_unit": "independent_parent_scene"
+  },
+  "style_rubric": {
+    "look_id_required": true,
+    "independent_reference_board_required": true,
+    "traceable_film_origin_required_for_film_name": true,
+    "otherwise_name": "photographic_look",
+    "look_adherence_labels": ["pass", "fail", "uncertain"],
+    "style_strength_scale": [1, 2, 3, 4, 5],
+    "keep_preference_labels": ["left", "tie", "right"],
+    "nuisance_controls": ["mean_luminance", "contrast", "white_balance", "total_chroma"],
+    "generic_saturation_or_contrast_is_not_style_proof": true
+  },
+  "splits": {
+    "A0": "ontology, annotation, metric and legitimate-local hard-negative development",
+    "A1": "one hidden benchmark confirmation on unseen transform families",
+    "B0": "operator-bank, scorer, monitor and strongest-global development",
+    "B1": "fixed-bank complete all-scene empirical ceiling with disjoint selection and evaluation panels",
+    "B2": "complete-policy calibration and selection of exactly one frozen policy",
+    "B3": "one hidden end-to-end policy test with no pre-lock error inspection",
+    "B4": "new-source, new-cluster and external-rater replication"
+  },
+  "split_keys": [
+    "parent_scene_id",
+    "source_id",
+    "uploader_or_creator_group",
+    "camera_group",
+    "roll_group",
+    "exact_hash",
+    "perceptual_hash",
+    "transform_family",
+    "failure_family"
+  ],
+  "current_evidence_assignment": {
+    "u41_provisional_gold": "A0_only",
+    "u42_owner_anchor_replays": "A0_only",
+    "rf2_c0_spektrafilm_outputs": "A0_only",
+    "known_id11_red_speckle": "A0_only",
+    "hidden_split_eligibility": false
+  },
+  "preregistration_planning_values": {
+    "epsilon_policy": 0.01,
+    "epsilon_selected": 0.01,
+    "confidence_level_one_sided": 0.95,
+    "minimum_look_adherence": 0.70,
+    "minimum_style_qualified_coverage": 0.50,
+    "minimum_all_scene_tie_score": 0.55,
+    "planning_candidate_budget_k": 8,
+    "planning_zero_event_selected_scenes_near_one_percent_bound": 300,
+    "planning_total_scenes_at_fifty_percent_coverage_before_adjustments": 600,
+    "binding_sample_size": null,
+    "binding_sample_size_status": "unknown_until_cluster_label_error_and_tie_model_pilots"
+  },
+  "study_authorization": {
+    "local_schema_and_tooling": true,
+    "autonomous_vlm_secondary_review": true,
+    "external_human_recruitment": false,
+    "public_release": false,
+    "paid_resource": false,
+    "model_training": false
+  },
+  "claim_ceiling": "protocol and machine-readable tooling for future FilmStyleSafe colour-operator evaluation; no human-population result, metric validity, severe-risk guarantee, film authenticity, stock response or product promotion"
+}

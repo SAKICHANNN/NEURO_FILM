@@ -1399,3 +1399,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Visual result:** before reveal, three blind rounds cover input, safe-rich, five owner anchors and three external candidates on all nine gold samples. After reveal, 27 external outputs are reviewed at 1024 long edge; no confirmed severe artifact or ID11 red-speckle/posterization recurrence occurs.
 - **Adjudication:** retain Ektar100/fixed-e0 only as an external future comparison control. Pro400H/auto and UltraMax400/auto span 0.205--4.208 and 0.244--4.171 mean-luma ratios; auto profiles are near duplicates and remain negative adaptation evidence, not stock distinctions.
 - **Boundary/handoff:** outputs remain ignored and cannot train, teach, fit, calibrate or integrate the product. Community pixels and LSM remain closed. Next independently ready work should freeze a bounded U5.R1A artifact/style-ontology support leaf or another legal deterministic product prerequisite; Ultimate Goal remains paused at the product layer rather than complete.
+
+## 2026-07-17 - Freeze U5.R1A FilmStyleSafe ontology and study contract
+
+- **Node/skills:** `ULT > U5.R1 > U5.R1A`; dev-research sole writer with research, DRPT, plan, structure and agent-log review. This is local evaluation tooling, not a participant study.
+- **Frozen semantics:** colour-operator severe categories are separated from global exposure/tone/style diagnostics and from generative-only structural corruption. Legitimate local edits are hard negatives rather than automatic artifacts.
+- **Labels/splits:** three-rater initial and senior escalation rules fail missing/unresolved primary evidence closed; autonomous VLM evidence cannot populate human fields. A0/A1 and B0--B4 barriers use parent-scene/source/uploader/camera/roll/hash/transform/failure keys.
+- **Evidence boundary:** current U4 seed, owner-anchor replays, RF2.C0 and ID11 are A0-only forever. Planning risk/style/coverage/tie-score values remain non-binding; binding sample size is unknown until cluster/label-error/tie-model pilots.
+- **DoR/handoff:** implement strict machine-readable annotation/split validators and tests under `src/eval/`; no image acquisition, SCIS training, external recruitment, paid resource, renderer change or population claim.
