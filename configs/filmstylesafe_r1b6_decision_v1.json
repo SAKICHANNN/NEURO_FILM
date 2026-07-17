@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1B6",
+  "status": "complete",
+  "decision": "legitimate_local_hardneg_bloom_halation_bound",
+  "operator_id": "explicit-bounded-bloom-halation-hardneg-v0",
+  "hard_negative_label": "bounded_bloom_or_halation",
+  "output_hash": "87f111a20a6a47823bc4294cf636eb4057db8a106f75f4ce4ede48e83db2514a",
+  "parameter_hash": "834a15ce888f0798fa4318684bfa4a37f07565828a691098779904d408236966",
+  "input_hash": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+  "a0_inventory_bound_members": 9,
+  "a0_inventory_unbound_placeholders": 0,
+  "visual_adjudication": "autonomous_cursor_inspection_subtle_warm_highlight_bloom_no_neon_speckle_geometry_intact",
+  "r1c_readiness": {
+    "a0_executed_leakage_safe_suite": true,
+    "opens_r1c_planning": true,
+    "still_forbidden": [
+      "hidden_A1_population",
+      "external_human_recruitment",
+      "SCIS_training",
+      "risk_or_population_claim"
+    ]
+  },
+  "opens": [
+    "U5.R1C_planning_conventional_metric_failure_study",
+    "optional_additional_hardneg_labels",
+    "parallel_U1_colour_state_product_leaves"
+  ],
+  "does_not_open": [
+    "hidden_split_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 legitimate-local bloom/halation hard-negative bound; intentional film-like bloom must not auto-label as severe; no population preference or risk guarantee"
+}

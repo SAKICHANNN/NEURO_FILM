@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "operator_id": "explicit-bounded-bloom-halation-hardneg-v0",
+  "node": "ULT > U5.R1 > U5.R1B6",
+  "role": "legitimate_local_hard_negative",
+  "hard_negative_label": "bounded_bloom_or_halation",
+  "transform_family": "safe_lab_global",
+  "failure_family": "legitimate_local_hard_negative",
+  "strength": 0.28,
+  "threshold": 0.74,
+  "edge_threshold": 0.06,
+  "min_radius": 1.2,
+  "max_radius": 8.0,
+  "radius_gamma": 1.25,
+  "scale_count": 6,
+  "input_member_id": "a0-source-u41-01",
+  "input_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+  "output_path": "outputs/filmstylesafe/r1b6/a0_hardneg_halation_001.png",
+  "claim_ceiling": "A0 legitimate-local hard-negative prototype only; intentional bloom/halation must not be auto-labeled severe; not a population preference or risk claim"
+}

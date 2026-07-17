@@ -235,3 +235,91 @@ def run_highlight_chroma_speckle_v1(
         parameters=parameters,
         result=result,
     )
+
+
+def bounded_bloom_halation_hardneg_v0(
+    image: Image.Image,
+    *,
+    strength: float,
+    threshold: float,
+    edge_threshold: float,
+    min_radius: float,
+    max_radius: float,
+    radius_gamma: float,
+    scale_count: int,
+) -> Image.Image:
+    """Apply deterministic simple screen-halation as a legitimate-local hard negative.
+
+    Intentional warm highlight bloom must remain distinguishable from neon chroma
+    islands / ID11 speckles. Reuses the production ``halation_layer`` operator;
+    no generative RGB rewrite.
+    """
+    from src.filmfx import composite_layers, halation_layer
+
+    if image.mode != "RGB":
+        image = image.convert("RGB")
+    if not (0.0 < float(strength) <= 0.45):
+        raise SyntheticFailureError("hard-negative strength must be in (0, 0.45]")
+    if float(max_radius) <= float(min_radius):
+        raise SyntheticFailureError("max_radius must exceed min_radius")
+    base = np.asarray(image, dtype=np.float32) / 255.0
+    layer = halation_layer(
+        base,
+        strength=float(strength),
+        threshold=float(threshold),
+        edge_threshold=float(edge_threshold),
+        min_radius=float(min_radius),
+        max_radius=float(max_radius),
+        radius_gamma=float(radius_gamma),
+        scale_count=int(scale_count),
+        name="filmstylesafe_hardneg_halation_v0",
+    )
+    out = composite_layers(base, [layer], output_margin=0)
+    encoded = np.round(np.clip(out, 0.0, 1.0) * 255.0).astype(np.uint8)
+    source_u8 = np.round(np.clip(base, 0.0, 1.0) * 255.0).astype(np.uint8)
+    if np.array_equal(encoded, source_u8):
+        raise SyntheticFailureError("bounded bloom/halation hard-negative produced no visible change")
+    return Image.fromarray(encoded, mode="RGB")
+
+
+def run_bounded_bloom_halation_hardneg_v0(
+    input_path: Path,
+    output_path: Path,
+    parameters: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Apply the frozen hard-negative operator and write a PNG evidence file."""
+    required = {
+        "operator_id",
+        "hard_negative_label",
+        "strength",
+        "threshold",
+        "edge_threshold",
+        "min_radius",
+        "max_radius",
+        "radius_gamma",
+        "scale_count",
+    }
+    if set(parameters) < required:
+        raise SyntheticFailureError(f"missing parameters: {sorted(required - set(parameters))}")
+    if parameters["operator_id"] != "explicit-bounded-bloom-halation-hardneg-v0":
+        raise SyntheticFailureError("unexpected operator_id")
+    if parameters["hard_negative_label"] != "bounded_bloom_or_halation":
+        raise SyntheticFailureError("unexpected hard_negative_label")
+    with Image.open(input_path) as image:
+        image.load()
+        result = bounded_bloom_halation_hardneg_v0(
+            image,
+            strength=float(parameters["strength"]),
+            threshold=float(parameters["threshold"]),
+            edge_threshold=float(parameters["edge_threshold"]),
+            min_radius=float(parameters["min_radius"]),
+            max_radius=float(parameters["max_radius"]),
+            radius_gamma=float(parameters["radius_gamma"]),
+            scale_count=int(parameters["scale_count"]),
+        )
+    return _write_operator_png(
+        input_path=input_path,
+        output_path=output_path,
+        parameters=parameters,
+        result=result,
+    )

@@ -1470,3 +1470,14 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Limits:** hard-negative card still unbound; no hidden splits/participants/training; spektrafilm remains external A0-only control.
 - **Verification:** 15 focused FilmStyleSafe tests; 394 full CPU tests.
 - **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1B6` (hard-negative bind) then R1C gate review, or parallel U1.2/U1.4/U1.5.
+
+## 2026-07-17 - Execute U5.R1B6 legitimate-local hard-negative bind
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B6`; continue Ultimate Goal from ACTIVE state.
+- **Selection:** chose R1B6 over U1 because Goal state required hard-negative binding before R1C suite-closure review.
+- **Implementation:** `explicit-bounded-bloom-halation-hardneg-v0` reuses deterministic `halation_layer`; inventory remaps parent to `u41-01`; 9/9 A0 members bound.
+- **Hashes:** out `87f111a2...`, params `834a15ce...`.
+- **Autonomous vision:** subtle warm highlight bloom; no neon/ID11-style severe chroma failure; must not auto-label as severe.
+- **R1C readiness:** opens R1C planning only; hidden A1 population, recruitment and SCIS training remain forbidden.
+- **Verification:** 10 focused synthetic/hardneg tests; 397 full CPU tests.
+- **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1C` planning/contract freeze, or parallel U1.2/U1.4/U1.5.
