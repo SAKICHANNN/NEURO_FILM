@@ -5,36 +5,36 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "05a2f0d183daff534563be23a3f02f5b4fa2dda7",
-  "iteration": 10,
-  "current_node": "ULT > U5.R1 > U5.R1B5",
-  "current_leaf": "U5.R1B6 ready",
+  "head": "38151359cbff71308aa7665dcfa5d7ab11c81650",
+  "iteration": 11,
+  "current_node": "ULT > U5.R1 > U5.R1B6",
+  "current_leaf": "U5.R1C ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "05a2f0d183daff534563be23a3f02f5b4fa2dda7",
+  "last_verified_commit": "38151359cbff71308aa7665dcfa5d7ab11c81650",
   "last_full_test": {
     "command": ".\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q",
-    "passed": 394,
+    "passed": 397,
     "failed": 0,
-    "timestamp": "2026-07-17T14:35:29Z"
+    "timestamp": "2026-07-17T14:40:54Z"
   },
   "ready_leaves": [
-    "U5.R1B6",
+    "U5.R1C",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "Start U5.R1B6: bind a legitimate-local hard-negative A0 member (bounded bloom/halation), then review whether the executed A0 suite can open U5.R1C planning; or advance U1 colour-state product leaf; Goal remains ACTIVE",
+  "next_action": "Start U5.R1C planning/contract freeze for conventional-metric failure study on the fully bound A0 suite; still no hidden A1 population, recruitment or SCIS training; or advance U1 colour-state product leaf; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1b5_synthetic_operator_v1.json",
-    "configs/filmstylesafe_r1b5_a0_inventory_v1.json",
-    "configs/filmstylesafe_r1b5_decision_v1.json",
-    "docs/FILMSTYLESAFE_R1B5_RESULTS.md",
+    "configs/filmstylesafe_r1b6_hardneg_operator_v0.json",
+    "configs/filmstylesafe_r1b6_a0_inventory_v1.json",
+    "configs/filmstylesafe_r1b6_decision_v1.json",
+    "docs/FILMSTYLESAFE_R1B6_HARDNEG.md",
     "src/eval/filmstylesafe_synthetic.py"
   ],
   "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T14:35:29Z",
-  "selection_rationale": "R1B5 closes HF-speckle synthetic refinement and binds the RF2.C0 Ektar/fixed-e0 external style control under the extended FilmStyleSafe membership contract."
+  "last_update_utc": "2026-07-17T14:40:54Z",
+  "selection_rationale": "R1B6 closes the last unbound A0 card with a legitimate-local bloom/halation hard-negative and opens R1C planning under existing authorization limits."
 }
