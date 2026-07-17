@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -18,11 +20,97 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from scipy.ndimage import gaussian_filter
 from skimage.color import lab2rgb, rgb2lab
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.inference.tiled_render import TiledExecutionMetadata, TileWindow, execute_tiled_local_operator
+
+
 B_AND_W_STYLES = {"hp5", "tri_x_400"}
 DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
 DEFAULT_PROFILES = ROOT / "configs" / "color_rendering_profiles.yaml"
+
+
+@dataclass(frozen=True)
+class SafeLabSourceContext:
+    """Immutable full-image reduction needed by the safe-Lab operator."""
+
+    source_shape: tuple[int, int, int]
+    pixel_count: int
+    lab_mean: tuple[float, float, float]
+    lab_std: tuple[float, float, float]
+
+
+def _validate_style_rgb(rgb: np.ndarray) -> np.ndarray:
+    value = np.asarray(rgb, dtype=np.float32)
+    if value.ndim != 3 or value.shape[2] != 3 or not np.isfinite(value).all():
+        raise ValueError("style_transfer_rgb requires finite HxWx3 RGB")
+    if value.shape[0] == 0 or value.shape[1] == 0:
+        raise ValueError("style_transfer_rgb requires non-empty spatial dimensions")
+    return np.clip(value, 0.0, 1.0)
+
+
+def _safe_lab_context_from_lab(lab: np.ndarray, source_shape: tuple[int, int, int]) -> SafeLabSourceContext:
+    flattened = lab.reshape(-1, 3)
+    mean = flattened.mean(axis=0)
+    std = np.maximum(flattened.std(axis=0), 1e-3)
+    return SafeLabSourceContext(
+        source_shape=source_shape,
+        pixel_count=int(flattened.shape[0]),
+        lab_mean=tuple(float(value) for value in mean),
+        lab_std=tuple(float(value) for value in std),
+    )
+
+
+def build_safe_lab_source_context(rgb: np.ndarray) -> SafeLabSourceContext:
+    """Compute the exact legacy full-image Lab mean/std reduction once."""
+
+    value = _validate_style_rgb(rgb)
+    return _safe_lab_context_from_lab(rgb2lab(value), tuple(int(size) for size in value.shape))
+
+
+def _validate_safe_lab_source_context(context: SafeLabSourceContext) -> None:
+    if not isinstance(context, SafeLabSourceContext):
+        raise ValueError("source_context must be SafeLabSourceContext")
+    height, width, channels = context.source_shape
+    if channels != 3 or height <= 0 or width <= 0 or context.pixel_count != height * width:
+        raise ValueError("source_context shape/pixel_count is invalid")
+    mean = np.asarray(context.lab_mean, dtype=np.float32)
+    std = np.asarray(context.lab_std, dtype=np.float32)
+    if mean.shape != (3,) or std.shape != (3,) or not np.isfinite(mean).all() or not np.isfinite(std).all():
+        raise ValueError("source_context Lab statistics must be finite three-channel values")
+    if np.any(std < 1e-3):
+        raise ValueError("source_context Lab std violates the legacy floor")
+
+
+def legacy_uniform_dither_window(
+    *,
+    seed: int,
+    full_shape: tuple[int, int, int],
+    y0: int,
+    y1: int,
+    x0: int,
+    x1: int,
+) -> np.ndarray:
+    """Replay a window of the legacy full-frame PCG64 uniform sequence."""
+
+    height, width, channels = full_shape
+    if channels != 3 or height <= 0 or width <= 0:
+        raise ValueError("full_shape must be positive HxWx3")
+    if not (0 <= y0 < y1 <= height and 0 <= x0 < x1 <= width):
+        raise ValueError("dither window is outside full_shape")
+    noise = np.empty((y1 - y0, x1 - x0, channels), dtype=np.float32)
+    for output_y, source_y in enumerate(range(y0, y1)):
+        bit_generator = np.random.PCG64(seed + 1009)
+        bit_generator.advance((source_y * width + x0) * channels)
+        row_rng = np.random.Generator(bit_generator)
+        noise[output_y] = row_rng.uniform(
+            -0.5,
+            0.5,
+            size=(x1 - x0, channels),
+        ).astype(np.float32)
+    return noise
 
 
 def parse_float_list(raw: str) -> list[float]:
@@ -302,7 +390,7 @@ def resolve_guardrail_value(config: dict, cli_value: float | None, key: str) -> 
     return cli_value if cli_value is not None else config.get(key)
 
 
-def style_transfer_rgb(
+def _style_transfer_rgb_with_context(
     rgb: np.ndarray,
     stats: dict,
     style: str,
@@ -325,14 +413,21 @@ def style_transfer_rgb(
     max_chroma_boost: float | None = None,
     max_chroma_absolute: float | None = None,
     dither: float | None = None,
+    *,
+    source_context: SafeLabSourceContext,
+    dither_window: TileWindow | None = None,
+    precomputed_lab: np.ndarray | None = None,
 ) -> np.ndarray:
-    rgb = np.asarray(rgb, dtype=np.float32)
-    if rgb.ndim != 3 or rgb.shape[2] != 3 or not np.isfinite(rgb).all():
-        raise ValueError("style_transfer_rgb requires finite HxWx3 RGB")
-    rgb = np.clip(rgb, 0.0, 1.0)
-    lab = rgb2lab(rgb)
-    src_mean = lab.reshape(-1, 3).mean(axis=0)
-    src_std = np.maximum(lab.reshape(-1, 3).std(axis=0), 1e-3)
+    rgb = _validate_style_rgb(rgb)
+    _validate_safe_lab_source_context(source_context)
+    if precomputed_lab is None:
+        lab = rgb2lab(rgb)
+    else:
+        lab = np.asarray(precomputed_lab)
+        if lab.shape != rgb.shape or not np.isfinite(lab).all():
+            raise ValueError("precomputed_lab must be finite and match rgb shape")
+    src_mean = np.asarray(source_context.lab_mean, dtype=np.float32)
+    src_std = np.asarray(source_context.lab_std, dtype=np.float32)
     dst_mean = np.asarray(stats["mean"], dtype=np.float32)
     dst_std = np.asarray(stats["std"], dtype=np.float32)
 
@@ -387,13 +482,148 @@ def style_transfer_rgb(
 
     dither = resolve_guardrail_value(guardrails, dither, "dither") or 0.0
     if dither > 0:
-        rng = np.random.default_rng(seed + 1009)
-        result = np.clip(result + rng.uniform(-0.5, 0.5, size=result.shape).astype(np.float32) * (float(dither) / 255.0), 0.0, 1.0)
+        if dither_window is None:
+            rng = np.random.default_rng(seed + 1009)
+            noise = rng.uniform(-0.5, 0.5, size=result.shape).astype(np.float32)
+        else:
+            noise = legacy_uniform_dither_window(
+                seed=seed,
+                full_shape=source_context.source_shape,
+                y0=dither_window.expanded_y0,
+                y1=dither_window.expanded_y1,
+                x0=dither_window.expanded_x0,
+                x1=dither_window.expanded_x1,
+            )
+            if noise.shape != result.shape:
+                raise ValueError("dither window does not match the current tile")
+        result = np.clip(result + noise * (float(dither) / 255.0), 0.0, 1.0)
 
     result = apply_output_margin(result, output_margin)
     if style in B_AND_W_STYLES:
         result = project_to_neutral_srgb(result)
     return np.asarray(np.clip(result, 0.0, 1.0), dtype=np.float32)
+
+
+def style_transfer_rgb(
+    rgb: np.ndarray,
+    stats: dict,
+    style: str,
+    strength: float,
+    luma_strength: float,
+    grain: float,
+    seed: int,
+    gamut_safe: bool,
+    gamut_mode: str | None = None,
+    tone_rolloff: float = 0.0,
+    shadow_floor_l: float = 1.0,
+    highlight_ceiling_l: float = 99.0,
+    preserve_luma_detail_strength: float = 0.0,
+    chroma_curve_strength: float = 0.0,
+    output_margin: int = 0,
+    guardrails: dict | None = None,
+    neutral_protect: float | None = None,
+    skin_protect: float | None = None,
+    max_chroma_gain: float | None = None,
+    max_chroma_boost: float | None = None,
+    max_chroma_absolute: float | None = None,
+    dither: float | None = None,
+) -> np.ndarray:
+    """Apply the legacy full-frame safe-Lab operator without changing pixels."""
+
+    value = _validate_style_rgb(rgb)
+    lab = rgb2lab(value)
+    source_context = _safe_lab_context_from_lab(lab, tuple(int(size) for size in value.shape))
+    return _style_transfer_rgb_with_context(
+        value,
+        stats,
+        style,
+        strength,
+        luma_strength,
+        grain,
+        seed,
+        gamut_safe,
+        gamut_mode=gamut_mode,
+        tone_rolloff=tone_rolloff,
+        shadow_floor_l=shadow_floor_l,
+        highlight_ceiling_l=highlight_ceiling_l,
+        preserve_luma_detail_strength=preserve_luma_detail_strength,
+        chroma_curve_strength=chroma_curve_strength,
+        output_margin=output_margin,
+        guardrails=guardrails,
+        neutral_protect=neutral_protect,
+        skin_protect=skin_protect,
+        max_chroma_gain=max_chroma_gain,
+        max_chroma_boost=max_chroma_boost,
+        max_chroma_absolute=max_chroma_absolute,
+        dither=dither,
+        source_context=source_context,
+        precomputed_lab=lab,
+    )
+
+
+def style_transfer_rgb_tiled(
+    rgb: np.ndarray,
+    stats: dict,
+    style: str,
+    strength: float,
+    luma_strength: float,
+    grain: float,
+    seed: int,
+    gamut_safe: bool,
+    gamut_mode: str | None = None,
+    tone_rolloff: float = 0.0,
+    shadow_floor_l: float = 1.0,
+    highlight_ceiling_l: float = 99.0,
+    preserve_luma_detail_strength: float = 0.0,
+    chroma_curve_strength: float = 0.0,
+    output_margin: int = 0,
+    guardrails: dict | None = None,
+    neutral_protect: float | None = None,
+    skin_protect: float | None = None,
+    max_chroma_gain: float | None = None,
+    max_chroma_boost: float | None = None,
+    max_chroma_absolute: float | None = None,
+    dither: float | None = None,
+    *,
+    tile_size: int,
+) -> tuple[np.ndarray, TiledExecutionMetadata]:
+    """Apply experimental two-pass safe-Lab tiling with the legacy pixels."""
+
+    if grain > 0:
+        raise ValueError("tiled safe-Lab does not support legacy colour-core grain")
+    value = _validate_style_rgb(rgb)
+    source_context = build_safe_lab_source_context(value)
+    halo = 5 if preserve_luma_detail_strength > 0 else 0
+
+    def render_tile(tile: np.ndarray, window: TileWindow) -> np.ndarray:
+        return _style_transfer_rgb_with_context(
+            tile,
+            stats,
+            style,
+            strength,
+            luma_strength,
+            grain,
+            seed,
+            gamut_safe,
+            gamut_mode=gamut_mode,
+            tone_rolloff=tone_rolloff,
+            shadow_floor_l=shadow_floor_l,
+            highlight_ceiling_l=highlight_ceiling_l,
+            preserve_luma_detail_strength=preserve_luma_detail_strength,
+            chroma_curve_strength=chroma_curve_strength,
+            output_margin=output_margin,
+            guardrails=guardrails,
+            neutral_protect=neutral_protect,
+            skin_protect=skin_protect,
+            max_chroma_gain=max_chroma_gain,
+            max_chroma_boost=max_chroma_boost,
+            max_chroma_absolute=max_chroma_absolute,
+            dither=dither,
+            source_context=source_context,
+            dither_window=window,
+        )
+
+    return execute_tiled_local_operator(value, render_tile, tile_size=tile_size, halo=halo)
 
 
 def style_transfer(
