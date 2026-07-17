@@ -1,7 +1,9 @@
 # U2.1A Versioned Render Contract Results
 
-**Date:** 2026-07-17  
-**Node:** `ULT > U2.1 > U2.1A`  
+**Date:** 2026-07-17
+
+**Node:** `ULT > U2.1 > U2.1A`
+
 **Decision:** **pass** — promote the v1 identity and replay envelope; broader U2.1 remains active.
 
 ## Delivered contract
