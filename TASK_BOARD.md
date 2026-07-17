@@ -90,7 +90,7 @@
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | ready support | none for local schema/tooling; participants later require approval |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
 | 14 | U1.2–U1.5/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF and B&W safety | in progress; float default, PNG/TIFF16, B&W invariant and U1.5A rejection pass | actual HDR/HEIF/wide-gamut and calibrated scene-to-display support remain pending |
-| 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | U2.1A frozen/ready | strict v1 identity/provenance first; no current profile becomes calibrated; U0.2 before public release |
+| 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | U2.1A complete; U2.1 in progress | strict v1 profile/recipe, exact migration and hash verifier pass; broader API/operator schemas pending; no current profile calibrated |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
 | 17 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | deferred | not an active user ask or dependency |
 | 18 | U7/U8 | Product, beta, release and stock expansion | pending | release/legal approval |

@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 242 local tests pass. SF2.1A closes Openverse relevance search: 960 metadata rows contain 19 repeated Ektar identities and only UltraMax passes the per-stock gate. Current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
+| Current evidence | 248 local tests pass. U2.1A adds strict v1 profile/recipe schemas, exact safe-rich migration and verified replay hashes without changing pixels; all current profiles remain heuristic look approximations. SF2.1A/Openverse and current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -63,6 +63,7 @@ Current strengths:
 
 - fixed-grid deterministic color transform; no generative geometry rewrite;
 - stable safe-rich guardrails and fixed test artifacts;
+- strict opt-in v1 profile/recipe identity with asset/input/output hash verification;
 - exact neutral-axis output for current HP5/Tri-X B&W profiles;
 - modular grain/halation/dust layers;
 - `WorkingImage`, ICC-aware raster helpers and generic RAW decoding exist under `src/preprocess/`;
@@ -271,6 +272,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | SF2.0B0 | STS098 exact-code rows pass at 168/329/10, but Velvia has only two rolls below frozen four-roll minimum; insufficient support, no B1/photo/images/fitting/training/LSM |
 | Done/closed | SF2.0C0 | Cross-mission exact-code census finds 25 missions but only STS098 joins Velvia50 and Portra400NC; no candidate mission, no photos/pixels/fitting/training/LSM |
 | Done/closed | SF2.1A | Openverse returns 960 metadata rows, but Ektar pagination repeats 19 identities and only UltraMax passes per-stock support; no live pages/pixels/fitting/training/LSM |
+| Done/pass | U2.1A | Strict v1 profile/recipe schemas, exact safe-rich migration, deterministic ICC bytes and committed replay verification pass; no calibrated profile claim |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

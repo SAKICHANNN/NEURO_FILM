@@ -1236,3 +1236,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Discovered reproducibility defect:** cross-process PNG bytes differed because Pillow generated a fresh ICC creation timestamp. The output boundary now freezes a valid 2000-01-01 ICC header and zero optional ID while preserving all colour tags and the normalized semantic fingerprint; LittleCMS reopens it successfully.
 - **Verification:** 30 focused contract/output/ingress tests pass; opt-in recipe output is byte-identical to plain output across processes; the complete CPU suite passes `248 passed`.
 - **Handoff:** commit/push implementation, then render a formal committed smoke recipe, verify hashes/commit and propagate U2.1A results. U2.1 remains broader than this first schema/provenance leaf.
+
+## 2026-07-17 - Promote U2.1A v1 replay envelope
+
+- **Committed smoke:** plain and opt-in-recipe PNGs are byte-identical at output hash `8fee12da...b968`. Recipe hash is `96bf93d0...901c`, profile hash is `72a9948e...c79`, and recorded software commit exactly equals `d0197f2`.
+- **Replay evidence:** verifier rechecks the profile, three immutable assets, local input and local output hashes. Output claim remains `film-inspired/look-approximation` with calibrated Reference false.
+- **Verification:** 30 focused tests and the complete `248 passed` CPU suite; LittleCMS accepts the fixed deterministic ICC profile; default CLI remains recipe-free and compatible.
+- **Claim/structure:** current style names are not promoted to evidence-backed stock profiles. The smoke input is quarantined and provides no label/right/style evidence. Contract code remains in `src/inference`, not a parallel renderer.
+- **Propagation/Goal:** U2.1A closes, broader U2.1 remains in progress, and Ultimate stays active. Update authorities/results, commit/push, then select the next ready product/data leaf.

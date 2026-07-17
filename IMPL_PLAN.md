@@ -96,6 +96,15 @@ JPEG no-output fixtures pass, ordinary profile/SDR/RAW behavior remains green,
 and the full CPU suite now passes 233 tests. Arbitrary ICC/wide-gamut/Reference
 support is not claimed.
 
+`U2.1A` now provides the first strict product replay envelope. Versioned
+profile/recipe schemas, validators, exact safe-rich migration, immutable asset
+hashes and opt-in post-encode recipes pass 248 CPU tests and a committed
+byte-identical smoke. A pre-existing ICC creation-time instability was repaired
+with a fixed valid sRGB header while preserving colour tags and semantic
+fingerprint. All current profiles remain heuristic
+`film-inspired/look-approximation`; broader U2.1 API/evolution/operator work is
+still pending and no fitting/training/LSM opens.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

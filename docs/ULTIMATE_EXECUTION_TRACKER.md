@@ -299,8 +299,8 @@ Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade came
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U2.1 | pending | Versioned profile + recipe JSON schema | U1.2 | Schema tests, migrations, provenance card |
-| U2.1A | frozen/ready | Strict v1 profile/recipe identity, safe-rich migration and optional provenance writer | U1.2 approximation policy + U1.3B float core | exact pixel compatibility; schema/hash/claim fail-closed tests; current profile remains heuristic look approximation |
+| U2.1 | in progress: v1 contract pass | Versioned profile + recipe JSON schema | U1.2 | U2.1A supplies strict v1 schemas, exact safe-rich migration and replay verifier; broader API/evolution/operator profiles remain pending |
+| U2.1A | complete: pass | Strict v1 profile/recipe identity, safe-rich migration and optional provenance writer | U1.2 approximation policy + U1.3B float core | 30 focused/248 full tests pass; committed output byte parity and all hashes verify; current profile remains heuristic look approximation; `docs/U2_1A_VERSIONED_RENDER_CONTRACT_RESULTS.md` |
 | U2.2 | pending | Monotone exposure/sensitometry curves | U1.4, U2.1 | Monotonicity/property tests; curve report |
 | U2.3 | pending | Tetrahedral 3D LUT/global residual | U2.2 | Identity/gamut/interpolation tests |
 | U2.4 | pending | Negative/slide/B&W interpretation plugin boundary | U2.1 | Three synthetic reference profiles and contracts |
