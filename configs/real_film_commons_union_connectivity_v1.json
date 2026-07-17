@@ -29,6 +29,7 @@
     "require_nonempty_normalized_author": true,
     "require_file_page_original_and_derivative_urls": true,
     "require_derivative_url_distinct_from_original": true,
+    "require_page_id_and_api_sha1": true,
     "require_license_url_or_public_domain_usage_terms": true,
     "bot_uploader_never_substitutes_for_author": true
   },
@@ -36,7 +37,7 @@
     "normalization": "html-unescape, strip tags, Unicode casefold, collapse whitespace",
     "verified_aliases": {},
     "unverified_alias_merging_allowed": false,
-    "string-reversal_alias_inference_allowed": false
+    "string_reversal_alias_inference_allowed": false
   },
   "connectivity_gate": {
     "minimum_strict_rows_per_eligible_stock": 8,
