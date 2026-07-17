@@ -1203,3 +1203,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen gate:** at most 48 official API metadata requests; strict exact title/tag alias plus CC BY/CC0/PDM rows; per-stock creator diversity and a same-source shared-creator component spanning at least three stocks. Cross-stock ID/landing overlap fails closed.
 - **Access boundary:** no thumbnail, detail, related, upstream landing-page or image request; no raw response/image URL retention. A pass opens only a separately frozen live-rights/label preflight.
 - **Claim/Goal:** physical stock, live rights, pixels, fitting, training, LSM, `S1/S2` and product claims remain false. Commit/push the contract before implementation and formal execution.
+
+## 2026-07-17 - Implement SF2.1A bounded Openverse audit
+
+- **Implementation:** added a dedicated source module with a single bounded Openverse search route, size/content/status/final-path validation, response closure, finite pagination and omission of image/thumbnail URLs. Snapshot acquisition and pure offline graph audit are separate scripts.
+- **Label/rights discipline:** exact normalized title/tag aliases are retained preferentially inside the bounded tag set. Only complete CC BY/CC0/PDM metadata can be strict; product/test text remains explicitly flagged rather than silently inferred as physical stock.
+- **Graph/integrity:** creator identity is source plus creator URL; edges are same-source by construction. Within-stock duplicate IDs/landing URLs are contract failures, and cross-stock overlaps fail closed before connectivity can pass.
+- **Verification:** five focused acquisition/audit/branch tests pass; response payload URLs are absent from snapshots; repeated offline audit is exact; the complete CPU suite passes `242 passed`.
+- **Handoff:** commit/push implementation before formal acquisition. Then fetch once, audit the immutable snapshot twice, and obey the frozen pass/insufficient/integrity branch without altering thresholds.
