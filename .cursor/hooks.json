@@ -5,7 +5,7 @@
       {
         "command": ".venv/Scripts/python.exe .cursor/hooks/ultimate_goal_stop.py",
         "timeout": 30,
-        "loop_limit": 10
+        "loop_limit": 25
       }
     ]
   }

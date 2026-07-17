@@ -442,7 +442,8 @@ User feedback also states that many theoretically stronger candidates look techn
 | U5.R1B5 | complete: HF-speckle + RF2.C0 bind | Speckle-v1 synthetic and Ektar/fixed-e0 A0 external control | U5.R1B4 | HF dots `73af7d4e...`; Ektar `d23ddd75...`; hardneg still unbound; `docs/FILMSTYLESAFE_R1B5_RESULTS.md` |
 | GH0 | complete | Cursor Goal harness: rule, skill, state, stop hook, protocol, tests | none | `docs/drpt/CURSOR_GOAL_PROTOCOL.md`; Goal state ACTIVE |
 | U5.R1B6 | complete: hard-negative bound | Bind legitimate-local bloom/halation A0 member | U5.R1B5 | output `87f111a2...`; 9/9 A0 members bound; opens R1C planning only; `docs/FILMSTYLESAFE_R1B6_HARDNEG.md` |
-| U5.R1C | ready: planning | Conventional-metric failure study plus prospective intent-aware SCIS v0 | U5.R1B6 | A0 suite fully bound; still no hidden A1 population, recruitment or SCIS training |
+| U5.R1C | complete: A0 pilot inconclusive | Conventional-metric failure study plus prospective SCIS v0 | U5.R1B6 | Conv gap confirmed (sens 0.33); SCIS v0 0.67 vs hardneg/external; candidate not promoted; `docs/FILMSTYLESAFE_R1C_A0_PILOT.md` |
+| U5.R1C2 | ready | Refine SCIS v0 for sparse HF speckles / style-robust residual | U5.R1C | Still no hidden A1, recruitment or training |
 | U5.R2A | pending | Versioned numerically constrained operator contract | U1/U2 renderer foundation | Identity/curve/LUT property tests, golden vectors and explicit non-safety counterexample |
 | U5.R2B | pending | Strong global operator frontier | U5.R2A, U5.R1 | Frozen strongest eligible global policy under identical renderer/export, both risk gates and target-look gate |
 | U5.R2C | pending | B1 complete fixed-bank cross-rater empirical-ceiling policy and annotation budget | U5.R2B | Best qualified nonsevere candidate or identity on every scene; supported all-scene tie-score gain or adaptive branches stop |

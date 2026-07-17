@@ -1481,3 +1481,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **R1C readiness:** opens R1C planning only; hidden A1 population, recruitment and SCIS training remain forbidden.
 - **Verification:** 10 focused synthetic/hardneg tests; 397 full CPU tests.
 - **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1C` planning/contract freeze, or parallel U1.2/U1.4/U1.5.
+
+## 2026-07-17 - Execute U5.R1C A0 metric-failure pilot and SCIS v0
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1C`; autonomous continue after user requested full auto.
+- **Selection:** R1C over U1 because A0 suite was fully bound and Goal next_action required the metric pilot.
+- **Facts:** conventional PSNR/SSIM/DeltaE miss sparse HF speckles at zero FPR (best sens 0.33); SCIS v0 reaches 0.67 vs hardneg/external, ranks bloom hard-neg below all positives, but misses sparse HF and is style-contaminated by 53/55/56.
+- **Decision:** conventional gap confirmed; SCIS v0 remains unpromoted candidate (`inconclusive_candidate_continues`). No A1/recruitment/training/gate promotion.
+- **Harness:** raised stop-hook `loop_limit` to 25 for longer autonomous Goal continuation.
+- **Verification:** 6 focused R1C tests pass; full suite pending in commit step.
+- **Handoff:** Goal ACTIVE. Next `U5.R1C2` SCIS refinement or parallel U1 product leaf.

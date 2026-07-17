@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1C",
+  "status": "complete_a0_pilot_inconclusive_candidate",
+  "decision": "conventional_metric_gap_confirmed_scis_v0_candidate_not_promoted",
+  "contract_id": "kmcfm.filmstylesafe-r1c.v1",
+  "inventory_id": "kmcfm.filmstylesafe-r1b6-a0-inventory.v1",
+  "pilot_summary": {
+    "n_positives": 3,
+    "n_negatives": 5,
+    "conventional_best_sensitivity_all_nonsevere": 0.3333333333333333,
+    "conventional_best_sensitivity_hardneg_external": 0.3333333333333333,
+    "scis_v0_sensitivity_all_nonsevere": 0.3333333333333333,
+    "scis_v0_sensitivity_hardneg_external": 0.6666666666666666,
+    "hardneg_scis_below_all_positives": true
+  },
+  "facts": [
+    "PSNR/SSIM/mean-abs/mean-DeltaE76 miss sparse HF chroma speckles at zero FPR because strong owner-anchor style and even mild global shifts dominate global fidelity",
+    "SCIS v0 detects the solid chroma island and ranks the bloom hard-negative below all proxy-severe members",
+    "SCIS v0 still misses the sparse HF speckles at residual_threshold=12 and is contaminated by strong global style when FPR includes 53/55/56"
+  ],
+  "novelty_branch": "inconclusive_candidate_continues",
+  "opens": [
+    "U5.R1C2_scis_v0_refinement_for_sparse_speckle",
+    "parallel_U1_colour_state_product_leaves"
+  ],
+  "does_not_open": [
+    "hidden_A1_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "promoted_safety_gate",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 proxy-label development evidence only; conventional global fidelity metrics are insufficient for chromatic severe detection on this suite; SCIS v0 is an unpromoted explicit candidate"
+}
