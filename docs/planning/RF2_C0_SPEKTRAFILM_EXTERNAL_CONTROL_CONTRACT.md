@@ -71,6 +71,13 @@ A candidate reaches visual review only if all are true:
 4. median residual after EV/WB/contrast/saturation/global-luma matching is at
    least 4.9 Delta E76.
 
+Automatic colour metrics use at most 65,536 deterministic uniform pixels per
+image. A newly hard-clipped channel is one whose output is within 0.5/255 of an
+endpoint while the corresponding source channel was not already within that
+same endpoint. The reported fraction is over all sampled channels, and the
+candidate gate uses the worst of its nine images. These definitions are frozen
+before the first formal Phase A render and may not be retuned after inspection.
+
 These style/non-basic thresholds reuse the frozen RF2.S0 screen; they do not
 validate authenticity. Pairwise profile distinctiveness is diagnostic because
 no confirmatory threshold has been established.

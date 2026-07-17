@@ -70,6 +70,9 @@
   "automatic_gates": {
     "all_outputs_finite": true,
     "all_outputs_bounded_0_1": true,
+    "metric_sample_pixels_per_image": 65536,
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "new_hard_clipping_definition": "per-channel output <= epsilon or >= 1-epsilon while the corresponding source channel is not already at that endpoint",
     "maximum_worst_new_hard_clipping_fraction": 0.005,
     "minimum_gold_median_style_delta_e76": 7.0,
     "minimum_gold_median_non_basic_residual_delta_e76": 4.9,
