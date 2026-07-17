@@ -92,6 +92,15 @@ spans roughly 0.2x--4.2x and closely repeats across profiles, showing exposure
 adaptation rather than useful stock distinction. No code/profile/LUT is
 integrated and no fitting, training, LSM, teacher or calibrated claim opens.
 
+`U5.R1A` is complete as local evaluation tooling. A strict annotation schema
+and pure `src/eval/filmstylesafe.py` validators separate chromatic severe
+events, global style/quality diagnostics and generative-only structural
+corruption; enforce VLM/human evidence isolation and conservative 3+3 scene
+labels; reject lineage/family leakage; and keep the power result non-binding.
+Seven focused and 363 full CPU tests pass. Current U4/RF2.C0 evidence remains
+A0-only. Only bounded R1B failure-suite design opens; no participant, training,
+hidden-test, adaptive-routing or risk claim is authorized.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

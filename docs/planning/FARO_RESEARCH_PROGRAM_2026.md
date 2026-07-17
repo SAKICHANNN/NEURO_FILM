@@ -1059,8 +1059,8 @@ software.
 |---|---|---|---|
 | FARO-R0 | complete by this document | Literature/novelty audit and new problem statement | Links and claims independently checked |
 | FARO-R0T | ready, optional | Dedicated statistical novelty audit and theorem-or-close decision | Must distinguish LTT, two-stage, joint selective certificates, noisy-label and non-exchangeable risk control before Paper B-T opens |
-| FARO-R1A | ready | Chromatic ontology + annotation schema + A0/A1 and B0-B4 split contract + sampling/preregistration/power worksheet | Covers current failures, legitimate-local hard negatives, rater error, style rubric, scene/rater frames and exact estimands |
-| FARO-R1B | pending on R1A | Synthetic stress generator and baseline failure suite | No test leakage; parent-scene grouping |
+| FARO-R1A | complete: strict local tooling | Chromatic ontology + annotation schema + A0/A1 and B0-B4 split contract + sampling/preregistration/power worksheet | 7 focused/363 full tests; current U4/RF2.C0 evidence is A0-only; no human or risk claim |
+| FARO-R1B | ready for bounded design | Synthetic stress generator and baseline failure suite | No test leakage; parent-scene grouping; no model/participant action from design alone |
 | FARO-R1C | pending on R1B | Metric-failure pilot and SCIS v0 | A0 development; A1 hidden low-FPR validation on unseen transform families |
 | FARO-R2A | ready after current renderer foundation | Versioned identity/curve/LUT operator contract | Property/golden tests |
 | FARO-R2B | pending on R2A | Global operator frontier | Frozen strongest eligible champion |

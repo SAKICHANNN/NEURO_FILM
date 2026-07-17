@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1a.v1",
+  "node": "ULT > U5.R1 > U5.R1A",
+  "status": "complete",
+  "decision": "strict_local_evaluation_contract_pass",
+  "contract_commit": "1a5b2c4",
+  "artifacts": {
+    "contract_sha256": "a076809382248eed53f42473d694d365b5f408e768a53d169ae86e543c4b2a8a",
+    "annotation_schema_sha256": "a5ce7ca9588332d7a169898c5d7dfc455d974ca2623bb55bd1c3107b10e7fc31",
+    "validator_module_sha256": "78532057b0192ef39ebd7b43d18181c2f1d0601b8988a9d397134603c5e35aae",
+    "test_module_sha256": "c271c1d17a5fea1450b0f6973dddb2b2957ef3fdcb1a49a33fd682d3f3055194"
+  },
+  "implemented": [
+    "strict_severity_and_style_annotation_validation",
+    "autonomous_vlm_vs_human_primary_evidence_isolation",
+    "three_plus_three_scene_severity_aggregation",
+    "conservative_missing_and_unresolved_adjudication",
+    "A0_A1_B0_B4_lineage_and_family_leakage_audit",
+    "current_seen_evidence_A0_only_enforcement",
+    "non_binding_zero_event_power_worksheet"
+  ],
+  "verification": {
+    "targeted_tests": 7,
+    "targeted_tests_passed": 7,
+    "full_cpu_tests": 363,
+    "full_cpu_tests_passed": 363,
+    "compileall_passed": true,
+    "json_syntax_passed": true,
+    "diff_check_passed": true
+  },
+  "planning_example": {
+    "epsilon": 0.01,
+    "expected_coverage": 0.5,
+    "zero_event_independent_accepted_scenes": 299,
+    "total_independent_scenes_before_adjustments": 598,
+    "binding_sample_size": null
+  },
+  "opens": ["U5.R1B_synthetic_and_real_failure_suite_design"],
+  "does_not_open": [
+    "external_human_recruitment",
+    "paid_annotation",
+    "SCIS_training",
+    "artifact_model_training",
+    "hidden_split_population",
+    "adaptive_routing",
+    "risk_or_population_claim",
+    "public_release"
+  ],
+  "claim_ceiling": "strict local protocol and machine-readable validation tooling for future FilmStyleSafe colour-operator evaluation; no human-population result, metric validity, severe-risk guarantee, film authenticity, stock response or product promotion"
+}

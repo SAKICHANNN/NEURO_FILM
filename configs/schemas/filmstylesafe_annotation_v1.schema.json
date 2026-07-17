@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kmcfm.local/schemas/filmstylesafe_annotation_v1.schema.json",
+  "title": "K-MCFM FilmStyleSafe annotation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id", "record_id", "record_kind", "split", "evidence_origin",
+    "parent_scene_id", "candidate_id", "input_sha256", "output_sha256",
+    "transform_family", "failure_family", "reviewer", "viewing", "severity", "style"
+  ],
+  "properties": {
+    "schema_id": {"const": "kmcfm.filmstylesafe-annotation.v1"},
+    "record_id": {"$ref": "#/$defs/identifier"},
+    "record_kind": {"enum": ["severity_rating", "style_rating"]},
+    "split": {"enum": ["A0", "A1", "B0", "B1", "B2", "B3", "B4"]},
+    "evidence_origin": {"type": "string", "minLength": 1, "maxLength": 128},
+    "parent_scene_id": {"$ref": "#/$defs/identifier"},
+    "candidate_id": {"$ref": "#/$defs/identifier"},
+    "input_sha256": {"$ref": "#/$defs/sha256"},
+    "output_sha256": {"$ref": "#/$defs/sha256"},
+    "transform_family": {"$ref": "#/$defs/identifier"},
+    "failure_family": {"$ref": "#/$defs/identifier"},
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer_id_hash", "reviewer_kind", "panel_id", "blind", "qualification_version", "primary_evidence"],
+      "properties": {
+        "reviewer_id_hash": {"$ref": "#/$defs/sha256"},
+        "reviewer_kind": {"enum": ["human_initial", "human_senior", "autonomous_vlm_secondary"]},
+        "panel_id": {"$ref": "#/$defs/identifier"},
+        "blind": {"const": true},
+        "qualification_version": {"$ref": "#/$defs/identifier"},
+        "primary_evidence": {"type": "boolean"}
+      }
+    },
+    "viewing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_resolution", "zoom_percent", "input_visible", "effects_disabled", "display_protocol_id", "colour_state"],
+      "properties": {
+        "full_resolution": {"const": true},
+        "zoom_percent": {"type": "integer", "minimum": 100},
+        "input_visible": {"const": true},
+        "effects_disabled": {"const": true},
+        "display_protocol_id": {"$ref": "#/$defs/identifier"},
+        "colour_state": {"enum": ["display_srgb", "declared_display", "unknown_look_approximation"]}
+      }
+    },
+    "severity": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/severity"}
+      ]
+    },
+    "style": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/style"}
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"record_kind": {"const": "severity_rating"}}},
+      "then": {"properties": {"severity": {"$ref": "#/$defs/severity"}, "style": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"record_kind": {"const": "style_rating"}}},
+      "then": {"properties": {"severity": {"type": "null"}, "style": {"$ref": "#/$defs/style"}}}
+    }
+  ],
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "category": {
+      "enum": [
+        "large_smooth_region_cast",
+        "skin_or_neutral_contamination",
+        "neon_chroma_island_or_highlight_speckle",
+        "banding_posterization_or_colour_shelf",
+        "clipping_or_gamut_hard_boundary",
+        "local_hue_jump_grid_seam_or_halo",
+        "benign_perturbation_chromatic_instability"
+      ]
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["region_id", "kind", "artifact_category", "asset_path", "asset_sha256"],
+      "properties": {
+        "region_id": {"$ref": "#/$defs/identifier"},
+        "kind": {"enum": ["mask", "polygon", "whole_frame"]},
+        "artifact_category": {"$ref": "#/$defs/category"},
+        "asset_path": {"type": "string", "minLength": 1},
+        "asset_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "severity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "categories", "regions", "notes"],
+      "properties": {
+        "label": {"enum": ["safe", "minor", "severe", "uncertain"]},
+        "categories": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/category"}},
+        "regions": {"type": "array", "items": {"$ref": "#/$defs/region"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["look_id", "reference_board_sha256", "film_origin_traceable", "look_adherence", "style_strength", "keep_preference", "comparator_id"],
+      "properties": {
+        "look_id": {"$ref": "#/$defs/identifier"},
+        "reference_board_sha256": {"$ref": "#/$defs/sha256"},
+        "film_origin_traceable": {"type": "boolean"},
+        "look_adherence": {"enum": ["pass", "fail", "uncertain"]},
+        "style_strength": {"type": "integer", "minimum": 1, "maximum": 5},
+        "keep_preference": {"enum": ["left", "tie", "right"]},
+        "comparator_id": {"$ref": "#/$defs/identifier"}
+      }
+    }
+  }
+}

@@ -90,7 +90,7 @@
 | 9 | U5.R0T | Audit theorem-level gap in FARO certification | deferred optional support | not a primary paper dependency |
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
-| 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | U5.R1A contract frozen; implementation ready | current U4/RF2.C0 evidence is A0-only; local strict schema/validation allowed, participants later require approval |
+| 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | U5.R1A complete; R1B design ready | strict schema/3+3 aggregation/leakage/power tooling passes 363 tests; current evidence remains A0-only and participants later require approval |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
 | 14 | U1.2–U1.6/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF, B&W safety and tiled foundation | U1.6A-D/F pass; U1.6E/G0 direct shortcuts closed | next freeze shape-stable global-resample primitive or orchestration/resource policy; streaming/total memory, HDR/HEIF/wide-gamut remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | U2.1A complete; U2.1 in progress | strict v1 profile/recipe, exact migration and hash verifier pass; broader API/operator schemas pending; no current profile calibrated |

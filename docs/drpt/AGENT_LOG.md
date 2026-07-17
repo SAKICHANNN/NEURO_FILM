@@ -1407,3 +1407,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Labels/splits:** three-rater initial and senior escalation rules fail missing/unresolved primary evidence closed; autonomous VLM evidence cannot populate human fields. A0/A1 and B0--B4 barriers use parent-scene/source/uploader/camera/roll/hash/transform/failure keys.
 - **Evidence boundary:** current U4 seed, owner-anchor replays, RF2.C0 and ID11 are A0-only forever. Planning risk/style/coverage/tie-score values remain non-binding; binding sample size is unknown until cluster/label-error/tie-model pilots.
 - **DoR/handoff:** implement strict machine-readable annotation/split validators and tests under `src/eval/`; no image acquisition, SCIS training, external recruitment, paid resource, renderer change or population claim.
+
+## 2026-07-17 - Implement and complete U5.R1A strict tooling
+
+- **Implementation:** added strict JSON schema plus `src/eval/filmstylesafe.py` for annotation validation, autonomous-VLM/human isolation, frozen 3+3 aggregation, A0/A1/B0--B4 leakage audit and a zero-event planning worksheet.
+- **Scientific guards:** severe needs category/region evidence; global exposure/tone/style remains a diagnostic unless it satisfies a severe category; untraceable boards cannot name a film stock; missing/unresolved senior evidence is conservative severe.
+- **Leakage/power:** U4/RF2.C0/ID11 origins are enforced A0-only; parent/source/creator/camera/roll/hash leakage and A0/A1 family reuse fail. The 1%/95%/50%-coverage example yields 299 accepted/598 total scenes, but binding sample size remains null pending pilots.
+- **Verification:** 7 focused and 363 full CPU tests pass; compile, JSON and diff checks pass. `docs/FILMSTYLESAFE_R1A_RESULTS.md` and the decision JSON are authoritative.
+- **Handoff:** U5.R1B becomes ready for bounded synthetic/real failure-suite design only. Recruitment, paid annotation, SCIS/model training, hidden split population, adaptive routing, public release and human risk/preference claims remain closed. Ultimate Goal continues.
