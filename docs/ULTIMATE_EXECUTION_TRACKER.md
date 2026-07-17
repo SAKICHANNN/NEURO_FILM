@@ -287,6 +287,7 @@ Restrictions:
 | U1.3B | complete: float default | Remove the default renderer's early sRGB8 quantization while preserving 8-bit export compatibility | U1.3A | sRGB8 colour exact; deterministic effects <=1 code; 223 tests and full-resolution RAW colour/B&W audit pass; pre-existing B&W chroma defect remains separate |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |
 | U1.5 | pending | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | Fixtures for supported/unsupported variants |
+| U1.5A | frozen/ready | Fail closed on HEIF/AVIF and recognized HDR/gain-map signals before pixel conversion | U1.5 | structured inspection plus deterministic rejection fixtures; SDR regression and full CPU suite pass |
 | U1.6 | pending | Halo-aware tile/cache renderer | U1.3 | Full-frame vs tiled tolerance; bounded memory |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.

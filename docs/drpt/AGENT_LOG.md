@@ -1139,3 +1139,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Autonomous vision:** the prior orange high-light speckles are gone. No new posterization, banding, clipping block, geometry corruption or objectionable tone discontinuity is visible.
 - **Claim/structure:** current HP5/Tri-X look approximations are achromatic; no calibrated B&W response claim. The change stays in the existing explicit colour core and tests, adds no model/data/dependency/module and leaves colour-style behavior frozen.
 - **Goal continuation:** U2.5A closes, but Ultimate remains active; remaining local product gaps are U1.2/U1.4/U1.5 while stock learning remains data-gated.
+
+## 2026-07-17 - Freeze U1.5A HDR/gain-map fail-closed ingress
+
+- **Live defect:** the current environment can decode AVIF through Pillow. Inspection warns that HDR/gain-map reconstruction is limited, but loading continues through the base image, allowing silent SDR downgrade and metadata loss.
+- **Primary-source basis:** Android identifies Ultra HDR JPEG through `hdrgm:Version`/Adobe gain-map XMP plus GContainer/MPF semantics; Apple documents gain maps as auxiliary JPEG/HEIF data that must be applied to the SDR base. Base decode alone is not preservation.
+- **Frozen policy:** reject HEIF/HEIC/AVIF, recognized HDR/gain-map/CICP/NCLX/mastering metadata, and official Ultra HDR/Apple gain-map payload markers before pixel conversion. ICC alone remains legal.
+- **Scope:** existing preprocessing boundary only, no decoder/tone map/dependency/output expansion. Inspection stays informative; load fails closed with deterministic signal evidence.
+- **Handoff:** commit/push the contract, then implement bounded detection and fixtures, verify renderer no-output failure, run focused/full CPU suites and propagate.
