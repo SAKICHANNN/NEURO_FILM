@@ -92,7 +92,8 @@
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | U5.R1A complete; R1B design complete | R1B2 ready for A0 inventory/prototypes; evidence remains A0-only; participants later require approval |
 | 12a | GH0 | Cursor Ultimate Goal harness (rule/skill/state/stop hook) | complete | Goal ACTIVE; stop loop_limit 10; see `docs/drpt/CURSOR_GOAL_PROTOCOL.md` |
-| 12b | U5.R1B | FilmStyleSafe failure-suite design/membership contract | complete | contract+validator+6 tests; no generator corpus yet |
+| 12b | U5.R1B | FilmStyleSafe failure-suite design/membership contract | complete | contract+validator+tests; no generator corpus yet |
+| 12c | U5.R1B2 | Provisional A0 inventory + synthetic operator card scaffold | complete | 7 cards; placeholder hashes; 386 tests; no pixels |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
 | 14 | U1.2–U1.6/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF, B&W safety and tiled foundation | U1.6A-D/F pass; U1.6E/G0 direct shortcuts closed | next freeze shape-stable global-resample primitive or orchestration/resource policy; streaming/total memory, HDR/HEIF/wide-gamut remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | U2.1A complete; U2.1 in progress | strict v1 profile/recipe, exact migration and hash verifier pass; broader API/operator schemas pending; no current profile calibrated |

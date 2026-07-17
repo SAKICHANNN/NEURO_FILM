@@ -1432,3 +1432,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 6 targeted + 385 full CPU tests pass.
 - **Boundary:** no participants, paid resources, SCIS/training, hidden-split population or risk claims. Generator corpus execution is `U5.R1B2`.
 - **Handoff:** Goal ACTIVE; next_action is R1B2 inventory/prototypes or parallel U1 colour-state leaves.
+
+## 2026-07-17 - Scaffold U5.R1B2 A0 inventory and synthetic operator card
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B2`.
+- **Delivered:** provisional inventory JSON, audit script, inventory doc; one card-only synthetic highlight-speckle operator prototype; strength 53/55/56 and ID11 regression slots.
+- **Limits:** hashes are placeholders, not bound to real U4/RF2.C0 bytes; `pixels_generated=false`; hidden splits empty.
+- **Verification:** inventory audit pass; 7 targeted + 386 full CPU tests.
+- **Handoff:** Goal ACTIVE. Next is `U5.R1B3` (bind real hashes or implement first explicit operator) or parallel U1 colour-state product leaves.

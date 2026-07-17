@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -121,3 +122,19 @@ def test_suite_leakage_rejects_shared_parent_and_family() -> None:
     )
     with pytest.raises(FilmStyleSafeR1BError, match="family pair"):
         audit_suite_leakage([a0, a1b])
+
+
+def test_r1b2_inventory_pack_validates() -> None:
+    contract = load_r1b_contract(CONTRACT)
+    inventory = json.loads(
+        (ROOT / "configs" / "filmstylesafe_r1b2_a0_inventory_v1.json").read_text(encoding="utf-8")
+    )
+    members = inventory["members"]
+    for row in members:
+        validate_suite_member(row, contract)
+    audit = audit_suite_leakage(members)
+    assert audit["passed"] is True
+    roles = {row["role"] for row in members}
+    assert "synthetic_failure" in roles
+    assert "regression_case" in roles
+    assert "strength_control" in roles

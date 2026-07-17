@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "inventory_id": "kmcfm.filmstylesafe-r1b2-a0-inventory.v1",
+  "node": "ULT > U5.R1 > U5.R1B2",
+  "split": "A0",
+  "claim_ceiling": "local inventory and synthetic operator cards only; no executed pixel corpus, hidden splits, participants or risk claims",
+  "members": [
+    {
+      "member_id": "a0-source-u41-placeholder",
+      "role": "source_scene",
+      "split": "A0",
+      "parent_scene_id": "u41-parent-placeholder-001",
+      "source_id": "u41-provisional-gold",
+      "transform_family": "identity_control",
+      "failure_family": "none",
+      "origin": "u41_provisional_gold",
+      "exact_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "perceptual_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "notes": "placeholder grouping keys until real U4 hashes are bound in a later inventory freeze"
+    },
+    {
+      "member_id": "a0-strength-53",
+      "role": "strength_control",
+      "split": "A0",
+      "parent_scene_id": "u42-anchor-parent-001",
+      "source_id": "u42-owner-anchors",
+      "transform_family": "owner_anchor_53_55_56_strength_path",
+      "failure_family": "none",
+      "origin": "u42_owner_anchor_replays",
+      "exact_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "perceptual_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "owner_scheme_id": "53"
+    },
+    {
+      "member_id": "a0-strength-55",
+      "role": "strength_control",
+      "split": "A0",
+      "parent_scene_id": "u42-anchor-parent-001",
+      "source_id": "u42-owner-anchors",
+      "transform_family": "owner_anchor_53_55_56_strength_path",
+      "failure_family": "none",
+      "origin": "u42_owner_anchor_replays",
+      "exact_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "perceptual_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "owner_scheme_id": "55"
+    },
+    {
+      "member_id": "a0-strength-56",
+      "role": "strength_control",
+      "split": "A0",
+      "parent_scene_id": "u42-anchor-parent-001",
+      "source_id": "u42-owner-anchors",
+      "transform_family": "owner_anchor_53_55_56_strength_path",
+      "failure_family": "none",
+      "origin": "u42_owner_anchor_replays",
+      "exact_hash": "7777777777777777777777777777777777777777777777777777777777777777",
+      "perceptual_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "owner_scheme_id": "56"
+    },
+    {
+      "member_id": "a0-id11-regression",
+      "role": "regression_case",
+      "split": "A0",
+      "parent_scene_id": "u41-id11-parent",
+      "source_id": "u41-provisional-gold",
+      "transform_family": "owner_anchor_53_55_56_strength_path",
+      "failure_family": "id11_red_speckle_regression",
+      "origin": "known_id11_red_speckle",
+      "exact_hash": "9999999999999999999999999999999999999999999999999999999999999999",
+      "perceptual_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "member_id": "a0-synth-speckle-proto-001",
+      "role": "synthetic_failure",
+      "split": "A0",
+      "parent_scene_id": "synth-parent-001",
+      "source_id": "synthetic-lab",
+      "transform_family": "safe_lab_global",
+      "failure_family": "neon_chroma_island_or_highlight_speckle",
+      "origin": "synthetic_lab",
+      "exact_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "perceptual_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "operator_card": {
+        "operator_id": "explicit-highlight-chroma-island-v0",
+        "parameter_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "transform_family": "safe_lab_global",
+        "failure_family": "neon_chroma_island_or_highlight_speckle",
+        "seed": 20260717,
+        "input_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "implementation_status": "card_only_no_pixels",
+        "description": "Prototype card for a future explicit high-chroma highlight island operator; pixels not generated in R1B2."
+      }
+    },
+    {
+      "member_id": "a0-hardneg-halation",
+      "role": "legitimate_local_hard_negative",
+      "split": "A0",
+      "parent_scene_id": "hardneg-parent-001",
+      "source_id": "synthetic-lab",
+      "transform_family": "safe_lab_global",
+      "failure_family": "legitimate_local_hard_negative",
+      "origin": "synthetic_lab",
+      "exact_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "perceptual_hash": "abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "hard_negative_label": "bounded_bloom_or_halation"
+    }
+  ]
+}
