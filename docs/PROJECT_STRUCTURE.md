@@ -64,6 +64,26 @@ path stays 8-bit, while explicit PNG/TIFF16 uses the float safe-Lab/effect path
 and quantizes only in `output_encode.py`. Keep future HDR/wide-gamut or tone-map
 work inside these same boundaries rather than adding a parallel renderer.
 
+## Inference and replay contracts
+
+`src/inference/` owns reusable deterministic render identity and replay
+contracts. Versioned JSON schemas live under `configs/schemas/`, while tracked
+immutable profile instances live under `configs/render_profiles/`.
+
+```text
+src/inference/
+  render_contract.py      Strict profile/recipe validation, migration, hashing and replay verification.
+configs/schemas/
+  render_profile_v1.schema.json
+  render_recipe_v1.schema.json
+configs/render_profiles/
+  safe_rich_v1.json       Heuristic look-approximation migration; never calibrated stock truth.
+```
+
+Keep renderer algorithms in their established colour/effect modules. Contract
+files may identify and hash an operator, but they must not become a second
+implementation of that operator or load executable code from profile data.
+
 ## Scripts
 
 `scripts/` intentionally remains flat. Many commands in docs and handoff notes call these files directly, so moving them into subfolders would break reproducibility. Prefer adding a README/category index before reorganizing script paths.

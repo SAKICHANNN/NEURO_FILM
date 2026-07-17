@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import hashlib
+import struct
+from io import BytesIO
 from pathlib import Path
 
 import cv2
 import numpy as np
 import pytest
 import tifffile
-from PIL import Image
+from PIL import Image, ImageCms
 
 from src.preprocess import (
     normalized_icc_profile_sha256,
@@ -92,3 +94,11 @@ def test_normalized_icc_fingerprint_ignores_creation_time_and_profile_id() -> No
     changed[84:100] = bytes(range(16))
     assert hashlib.sha256(changed).hexdigest() != hashlib.sha256(original).hexdigest()
     assert normalized_icc_profile_sha256(changed) == normalized_icc_profile_sha256(original)
+
+
+def test_standard_srgb_profile_has_stable_valid_header() -> None:
+    profile = srgb_icc_profile()
+    assert struct.unpack(">6H", profile[24:36]) == (2000, 1, 1, 0, 0, 0)
+    assert profile[84:100] == b"\x00" * 16
+    opened = ImageCms.ImageCmsProfile(BytesIO(profile))
+    assert ImageCms.getProfileName(opened).strip() == "sRGB built-in"

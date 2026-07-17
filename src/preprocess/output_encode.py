@@ -25,8 +25,11 @@ _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
 
 @lru_cache(maxsize=1)
 def srgb_icc_profile() -> bytes:
-    """Return the LittleCMS-generated standard sRGB output profile."""
-    return ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
+    """Return semantically standard sRGB with a stable, valid ICC header."""
+    profile = bytearray(ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes())
+    profile[24:36] = struct.pack(">6H", 2000, 1, 1, 0, 0, 0)
+    profile[84:100] = b"\x00" * 16
+    return bytes(profile)
 
 
 def srgb_icc_profile_sha256() -> str:

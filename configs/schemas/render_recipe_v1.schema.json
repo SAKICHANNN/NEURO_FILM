@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kmcfm.local/schemas/render_recipe_v1.schema.json",
+  "title": "K-MCFM deterministic replay recipe v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "profile", "assets", "input", "render", "output", "claim", "software"],
+  "properties": {
+    "schema_id": {"const": "kmcfm.render-recipe.v1"},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "profile_version", "sha256"],
+      "properties": {
+        "profile_id": {"$ref": "#/$defs/identifier"},
+        "profile_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "assets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/asset"}},
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "color_state", "working_space", "source_profile_kind", "source_profile_fingerprint_sha256", "bit_depth", "warnings"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "color_state": {"enum": ["scene_linear", "display_linear", "display_referred", "unknown"]},
+        "working_space": {"const": "linear_srgb"},
+        "source_profile_kind": {"enum": ["icc", "cicp", "nclx", "raw_metadata", "assumed_srgb", "unknown"]},
+        "source_profile_fingerprint_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "bit_depth": {"type": "integer", "minimum": 1, "maximum": 32},
+        "warnings": {"type": "array", "items": {"$ref": "#/$defs/warning"}}
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine_id", "preset", "style", "seed", "color_parameters", "effects"],
+      "properties": {
+        "engine_id": {"const": "safe_lab_v1"},
+        "preset": {"const": "safe-rich"},
+        "style": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_]{0,63}$"},
+        "seed": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "color_parameters": {"$ref": "render_profile_v1.schema.json#/$defs/color_parameters"},
+        "effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["grain", "halation", "dust"],
+          "properties": {
+            "grain": {"$ref": "#/$defs/grain"},
+            "halation": {"$ref": "#/$defs/halation"},
+            "dust": {"$ref": "#/$defs/dust"}
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "format", "bit_depth", "transfer", "icc_profile_fingerprint_sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "format": {"enum": ["PNG", "JPEG", "TIFF"]},
+        "bit_depth": {"enum": [8, 16]},
+        "transfer": {"const": "sRGB"},
+        "icc_profile_fingerprint_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["render_mode", "output_label", "evidence_grade", "input_color_state", "color_state_policy", "calibrated_reference_allowed", "claim_ceiling"],
+      "properties": {
+        "render_mode": {"const": "Style-safe"},
+        "output_label": {"const": "film-inspired"},
+        "evidence_grade": {"const": "look-approximation"},
+        "input_color_state": {"enum": ["scene_linear", "display_linear", "display_referred", "unknown"]},
+        "color_state_policy": {"enum": ["look_approximation_only", "look_approximation_fail_closed"]},
+        "calibrated_reference_allowed": {"const": false},
+        "claim_ceiling": {"type": "string", "minLength": 1}
+      }
+    },
+    "software": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit"],
+      "properties": {"commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}}
+    }
+  },
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "path", "sha256"],
+      "properties": {"role": {"$ref": "#/$defs/identifier"}, "path": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {"code": {"$ref": "#/$defs/identifier"}, "message": {"type": "string", "minLength": 1}}
+    },
+    "grain": {
+      "type": "object", "additionalProperties": false, "required": ["strength", "seed", "color"],
+      "properties": {"strength": {"type": "number", "minimum": 0, "maximum": 1}, "seed": {"type": "integer"}, "color": {"type": "boolean"}}
+    },
+    "halation": {
+      "type": "object", "additionalProperties": false, "required": ["strength", "model", "preset", "control_mode", "resolved_parameters"],
+      "properties": {"strength": {"type": "number", "minimum": 0, "maximum": 1}, "model": {"enum": ["simple", "physical"]}, "preset": {"oneOf": [{"$ref": "#/$defs/identifier"}, {"type": "null"}]}, "control_mode": {"enum": ["locked", "expert"]}, "resolved_parameters": {"type": ["object", "null"]}}
+    },
+    "dust": {
+      "type": "object", "additionalProperties": false, "required": ["strength", "seed"],
+      "properties": {"strength": {"type": "number", "minimum": 0, "maximum": 1}, "seed": {"type": "integer"}}
+    }
+  }
+}

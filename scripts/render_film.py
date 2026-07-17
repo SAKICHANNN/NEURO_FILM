@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -44,6 +45,12 @@ from src.filmfx import (  # noqa: E402
     get_halation_preset,
     resolve_physical_halation_controls,
 )
+from src.inference import (  # noqa: E402
+    atomic_write_json,
+    build_render_recipe,
+    load_render_profile,
+    sha256_file,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -54,6 +61,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--preset", choices=("safe-rich",), default="safe-rich")
     parser.add_argument("--stats", type=Path, default=ROOT / "configs" / "film_color_stats.json")
     parser.add_argument("--profile-config", type=Path, default=ROOT / "configs" / "color_rendering_profiles.yaml")
+    parser.add_argument(
+        "--render-profile",
+        type=Path,
+        default=ROOT / "configs" / "render_profiles" / "safe_rich_v1.json",
+    )
     parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
@@ -95,6 +107,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-bit-depth", type=int, choices=(8, 16), default=8)
     parser.add_argument("--write-layers", action="store_true")
     parser.add_argument("--write-metrics", action="store_true")
+    parser.add_argument("--write-recipe", action="store_true")
     return parser.parse_args()
 
 
@@ -110,6 +123,19 @@ def save_rgb(rgb: np.ndarray, path: Path, bit_depth: int = 8) -> str:
 
 def _arg_or(value, fallback):
     return fallback if value is None else value
+
+
+def _verify_recipe_profile_assets(profile: dict, args: argparse.Namespace) -> None:
+    expected = {
+        "legacy_profile_config": args.profile_config.resolve(),
+        "style_statistics": args.stats.resolve(),
+        "color_guardrails": args.guardrails.resolve(),
+    }
+    for asset in profile["assets"]:
+        role = asset["role"]
+        path = (ROOT / asset["path"]).resolve()
+        if expected.get(role) != path or sha256_file(expected[role]) != asset["sha256"]:
+            raise ValueError(f"Recipe profile asset mismatch for {role}")
 
 
 def layer_on_black(layer) -> np.ndarray:
@@ -246,6 +272,59 @@ def main() -> int:
         layers.append(dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17))
     out = composite_layers(base, layers, output_margin=4)
     output_format = save_rgb(out, args.output, args.output_bit_depth)
+    recipe_path = None
+    recipe_sha256 = None
+    if args.write_recipe:
+        profile_manifest = load_render_profile(args.render_profile, root=ROOT)
+        _verify_recipe_profile_assets(profile_manifest, args)
+        color_parameters = load_profile_values(args.profile_config, args.preset, args.style)
+        if profile_manifest["style_parameters"].get(args.style) != color_parameters:
+            raise ValueError(f"Recipe profile does not exactly migrate style {args.style!r}")
+        recipe = build_render_recipe(
+            profile_path=args.render_profile,
+            profile=profile_manifest,
+            input_path=args.input,
+            input_metadata={
+                "color_state": working.source_transfer_state,
+                "working_space": working.working_space,
+                "source_profile_kind": working.source_profile.kind,
+                "source_profile_fingerprint_sha256": None,
+                "bit_depth": working.bit_depth_in,
+                "warnings": [warning.__dict__ for warning in working.warnings],
+            },
+            render_metadata={
+                "engine_id": "safe_lab_v1",
+                "preset": args.preset,
+                "style": args.style,
+                "seed": args.seed,
+                "color_parameters": color_parameters,
+                "effects": {
+                    "grain": {
+                        "strength": args.grain,
+                        "seed": args.seed,
+                        "color": args.style not in {"hp5", "tri_x_400"},
+                    },
+                    "halation": {
+                        "strength": args.halation,
+                        "model": args.halation_model,
+                        "preset": halation_preset_id,
+                        "control_mode": args.halation_control_mode,
+                        "resolved_parameters": halation_resolved,
+                    },
+                    "dust": {"strength": args.dust, "seed": args.seed + 17},
+                },
+            },
+            output_path=args.output,
+            output_format=output_format,
+            output_bit_depth=args.output_bit_depth,
+            output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
+            output_claim=output_claim,
+            software_commit=subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, encoding="utf-8"
+            ).strip(),
+        )
+        recipe_path = args.output.with_suffix(".recipe.json")
+        recipe_sha256 = atomic_write_json(recipe_path, recipe)
 
     if args.write_layers:
         layer_dir = args.output.parent / f"{args.output.stem}_layers"
@@ -298,6 +377,12 @@ def main() -> int:
             "halation_metadata": halation_metadata,
             "halation_resolved": halation_resolved,
         }
+        if recipe_path is not None:
+            metrics["render_recipe"] = {
+                "schema_id": recipe["schema_id"],
+                "path": str(recipe_path),
+                "sha256": recipe_sha256,
+            }
         args.output.with_suffix(".metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
     print(args.output)
     return 0

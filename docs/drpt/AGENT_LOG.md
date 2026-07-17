@@ -1227,3 +1227,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen scope:** dependency-free v1 JSON schemas/validators, exact safe-rich migration and optional post-encode recipe writer. Default rendered bytes and legacy metrics stay compatible.
 - **Safety/epistemics:** existing looks remain heuristic `film-inspired/look-approximation`; no profile gains stock, mode, paired or calibrated truth. Unknown fields, non-finite/out-of-range values, malformed/mismatched hashes and claim escalation fail closed.
 - **Handoff:** commit/push the contract before implementation; then add targeted parity/schema/security tests, run the complete CPU suite, propagate and make a scoped implementation commit.
+
+## 2026-07-17 - Implement U2.1A profile and replay contracts
+
+- **Structure:** added `src/inference/render_contract.py`, strict Draft 2020-12 schema documents, and `configs/render_profiles/safe_rich_v1.json`; renderer algorithms remain in existing modules. The tracked profile exactly equals a programmatic migration of all eight legacy safe-rich styles and locks YAML/stats/guardrails hashes.
+- **Recipe path:** `--write-recipe` is opt-in and writes only after successful encode. It records profile/assets, input/output hashes, colour state, warnings, resolved colour/effects, output transform, claim ceiling and full Git commit. A verifier checks profile/assets and local input/output hashes.
+- **Fail-closed evidence:** unknown keys, unsafe paths/IDs, malformed or mismatched hashes, duplicate assets, NaN/Inf, range errors, unsupported engine/output, claim/color-state mismatch and calibrated escalation reject. Existing profile remains heuristic `film-inspired/look-approximation` with no stock/mode truth.
+- **Discovered reproducibility defect:** cross-process PNG bytes differed because Pillow generated a fresh ICC creation timestamp. The output boundary now freezes a valid 2000-01-01 ICC header and zero optional ID while preserving all colour tags and the normalized semantic fingerprint; LittleCMS reopens it successfully.
+- **Verification:** 30 focused contract/output/ingress tests pass; opt-in recipe output is byte-identical to plain output across processes; the complete CPU suite passes `248 passed`.
+- **Handoff:** commit/push implementation, then render a formal committed smoke recipe, verify hashes/commit and propagate U2.1A results. U2.1 remains broader than this first schema/provenance leaf.

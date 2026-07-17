@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kmcfm.local/schemas/render_profile_v1.schema.json",
+  "title": "K-MCFM deterministic render profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "profile_id", "profile_version", "display_name", "engine_id", "identity", "evidence", "assets", "style_parameters", "effect_defaults", "output", "fallback_profile_id"],
+  "properties": {
+    "schema_id": {"const": "kmcfm.render-profile.v1"},
+    "profile_id": {"$ref": "#/$defs/identifier"},
+    "profile_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "engine_id": {"const": "safe_lab_v1"},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["film_stock_id", "latent_mode_id", "interpretation"],
+      "properties": {
+        "film_stock_id": {"oneOf": [{"$ref": "#/$defs/identifier"}, {"type": "null"}]},
+        "latent_mode_id": {"oneOf": [{"type": "string", "pattern": "^Mode [A-Z]$"}, {"type": "null"}]},
+        "interpretation": {"enum": ["look_approximation", "color_negative_neutral_scan", "color_negative_print", "slide_direct_scan", "bw_developer_scan"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_grade", "expert_grade", "method", "claim_ceiling", "calibrated_reference_allowed"],
+      "properties": {
+        "data_grade": {"enum": ["none", "S0", "S1", "S2", "S3", "H"]},
+        "expert_grade": {"enum": ["none", "S2", "S3"]},
+        "method": {"enum": ["heuristic", "measured", "paired", "held-out"]},
+        "claim_ceiling": {"type": "string", "minLength": 1},
+        "calibrated_reference_allowed": {"type": "boolean"}
+      }
+    },
+    "assets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/asset"}},
+    "style_parameters": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[a-z0-9][a-z0-9_]{0,63}$"},
+      "additionalProperties": {"$ref": "#/$defs/color_parameters"}
+    },
+    "effect_defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grain", "halation", "dust", "halation_model"],
+      "properties": {
+        "grain": {"type": "number", "minimum": 0, "maximum": 1},
+        "halation": {"type": "number", "minimum": 0, "maximum": 1},
+        "dust": {"type": "number", "minimum": 0, "maximum": 1},
+        "halation_model": {"enum": ["simple", "physical"]}
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["working_space", "transfer", "icc_profile", "supported_bit_depths"],
+      "properties": {
+        "working_space": {"const": "linear_srgb"},
+        "transfer": {"const": "sRGB"},
+        "icc_profile": {"const": "standard_sRGB"},
+        "supported_bit_depths": {"const": [8, 16]}
+      }
+    },
+    "fallback_profile_id": {"$ref": "#/$defs/identifier"}
+  },
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "path", "sha256"],
+      "properties": {
+        "role": {"$ref": "#/$defs/identifier"},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "color_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strength", "luma_strength", "grain", "gamut_safe", "gamut_mode", "output_margin", "use_guardrails", "chroma_curve_strength", "tone_rolloff", "shadow_floor_l", "highlight_ceiling_l", "preserve_luma_detail", "dither"],
+      "properties": {
+        "strength": {"type": "number", "minimum": 0, "maximum": 1},
+        "luma_strength": {"type": "number", "minimum": 0, "maximum": 1},
+        "grain": {"type": "number", "minimum": 0, "maximum": 1},
+        "gamut_safe": {"type": "boolean"},
+        "gamut_mode": {"enum": ["off", "source", "chroma"]},
+        "output_margin": {"type": "integer", "minimum": 0, "maximum": 32},
+        "use_guardrails": {"type": "boolean"},
+        "chroma_curve_strength": {"type": "number", "minimum": 0, "maximum": 1},
+        "tone_rolloff": {"type": "number", "minimum": 0, "maximum": 1},
+        "shadow_floor_l": {"type": "number", "minimum": 0, "maximum": 49},
+        "highlight_ceiling_l": {"type": "number", "minimum": 51, "maximum": 100},
+        "preserve_luma_detail": {"type": "number", "minimum": 0, "maximum": 1},
+        "dither": {"type": "number", "minimum": 0, "maximum": 2}
+      }
+    }
+  }
+}
