@@ -120,12 +120,13 @@ safe-rich styles and a fixed real-raster crop byte-for-byte; 284 CPU tests pass.
 Nonzero legacy colour-core grain rejects, physical halation/grain/dust remain
 full-frame, and the experimental path is not a CLI default.
 
-`U1.6C` is frozen for the current simple-halation fallback only. Its actual
-finite support is one gradient pixel plus the largest direct Gaussian kernel,
-giving halo 31 at the default radius. The adapter must reuse the existing
-effect/compositor, pass float/seam and real-raster sRGB8 parity, and remain
-experimental. Physical/density halation keeps its unresolved percentile and
-shape-dependent downsample context and is explicitly excluded.
+`U1.6C` now passes for the current simple-halation fallback only. Its adapter
+reuses the existing effect/compositor and derives halo 31 from one gradient
+pixel plus the largest direct Gaussian kernel. An active-effect real-raster
+smoke changes 19,337 quantized channel values while keeping full/tiled seam and
+maximum error at `5.96e-08` and sRGB8 bytes identical; 305 CPU tests pass. The
+path remains experimental. Physical/density halation keeps its unresolved
+percentile and shape-dependent downsample context and is explicitly excluded.
 
 ---
 

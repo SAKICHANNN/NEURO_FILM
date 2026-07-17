@@ -1288,3 +1288,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** radius/boundary variants and real-raster float/seam `<=1e-6`, sRGB8 byte parity, repeat determinism, expanded-window bound, fail-closed parameters, targeted/full regressions.
 - **Exclusions/claim:** physical/density halation remains blocked on global percentiles and shape-dependent downsample context. A pass is numerical heuristic-effect parity only, not physical accuracy, complete renderer tiling or 100MP readiness.
 - **Handoff:** validate and commit/push the contract before implementation; then obey the frozen pass/fail branches without changing thresholds.
+
+## 2026-07-17 - Pass U1.6C active simple-halation tiling
+
+- **Implementation/structure:** added `src/filmfx/tiled_effects.py`; the adapter derives halo, validates the direct-radius contract and reuses existing halation/compositor plus U1.6A. It is exported but not wired to CLI/defaults. Physical halation is not routed through it.
+- **Variant evidence:** default and three boundary/radius variants pass full/tiled and two-sided seam `<=1e-6`, repeat bytes, metadata bounds and fail-closed parameter/downsample branches. Dedicated/targeted tests pass `21/70`.
+- **Committed active-effect smoke:** at `a254b84`, a fixed 257x389 quarantined real-raster crop after heuristic safe-Lab changes 19,337 sRGB8 channel values under strength .3/threshold .4. Full/tiled and seam max are `5.96e-08`; sRGB8 bytes match at hash `d337fe90...5fee`; max expanded tile is 126x126x3.
+- **Full verification:** complete suite passes `305 passed`; diff/compile checks pass. The raster is mechanics only and supplies no stock/style/right/preference evidence.
+- **Claim/branch:** numerical simple-halation parity passes. Physical/density halation, grain, dust, integration, streaming/cache, bounded total memory and 100MP remain open. No physical, stock or calibrated claim changes.
+- **Propagation/Goal:** close U1.6C, keep U1.6 and Ultimate active, update authorities/structure/results, commit/push, then select the next legal leaf.

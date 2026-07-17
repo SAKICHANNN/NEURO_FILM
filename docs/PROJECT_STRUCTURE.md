@@ -74,6 +74,8 @@ immutable profile instances live under `configs/render_profiles/`.
 src/inference/
   render_contract.py      Strict profile/recipe validation, migration, hashing and replay verification.
   tiled_render.py         Local finite-support halo planning, strict execution and core stitching.
+src/filmfx/
+  tiled_effects.py        Effect-owned adapters that reuse existing effect/compositor math and the generic tiler.
 configs/schemas/
   render_profile_v1.schema.json
   render_recipe_v1.schema.json
@@ -87,6 +89,8 @@ implementation of that operator or load executable code from profile data.
 The tiled primitive likewise executes caller-supplied local operators without
 reimplementing them; global-statistic and coordinate-random operators require
 an explicit later context contract before integration.
+Effect-specific adapters remain under `src/filmfx`; they may consume the
+generic tiler but cannot move or duplicate effect algorithms into inference.
 
 ## Scripts
 
