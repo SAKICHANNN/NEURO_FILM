@@ -298,3 +298,14 @@ frozen two. There are zero retained edges and no component. Do not merge
 unverified aliases or relax the graph after this result; no live pages, pixels,
 fitting, training or LSM open. See
 `docs/REAL_FILM_COMMONS_UNION_CONNECTIVITY_RESULTS.md`.
+
+`RF2.C0` is also complete as a strictly separate external-control sibling. At
+the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343
+matched-basic residual Delta E76 with zero new hard clipping and no confirmed
+severe failure in three blind rounds plus 27 full-resolution external reviews.
+It is retained only as a future Look Approximation comparison. Center-auto
+colour-negative profiles span about 0.2x--4.2x scene mean luma and are retained
+as negative adaptation evidence; they do not establish stock distinction.
+This result uses no eligible real-film pixels and does not change any SF gate,
+open operator fitting, provide teachers or raise an evidence grade. See
+`docs/REAL_FILM_SPEKTRAFILM_EXTERNAL_CONTROL_RESULTS.md`.

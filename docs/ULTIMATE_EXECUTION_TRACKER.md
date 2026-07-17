@@ -227,7 +227,7 @@ U4 is a continuous validation sibling, not an end-of-project QA phase.
 | RF1.4B0 | complete: pass | Gold100 official bbox/matrix alignment and support gate | RF1.4A | 47/47 exact bbox/proxy pairs, six rolls, restricted pickle, byte-identical report `f562141a...`; no colour fit; `docs/REAL_FILM_GOLD_PROXY_ALIGNMENT_RESULTS.md` |
 | RF1.4B1 | complete: metric+visual pass, simple matrix wins | Gold100 display-proxy paired-transform identifiability | RF1.4B0 | 47 pairs/6 LOO rolls; SepLUT passes all frozen gates, but bounded 3x3 affine is simpler and better overall (5.307 vs 5.380 Delta E76); no severe visual artifact; `docs/REAL_FILM_GOLD_TRANSFORM_CONSISTENCY_RESULTS.md` |
 | RF2.S0 | complete: closed | Freeze all-roll Gold archive-display matrix and test bounded transplant on existing digital gold/stress images | RF1.4B1 | OOD coverage passes, but style 6.25<7, non-basic residual 1.94<4.9 and worst clipping 8.70%; weaker strengths worsen style; no visual run; `docs/REAL_FILM_GOLD_MATRIX_TRANSPLANT_RESULTS.md` |
-| RF2.C0 | contract frozen; runtime ready | Isolated external spektrafilm spectral prior/control on the provisional nine-image gold set | RF2.S0 negative gates + current external revision/licence audit | six profiles x fixed/auto exposure, spatial effects off; no tracked code/profile/LUT, training, fitting, stock truth or integration; `docs/planning/RF2_C0_SPEKTRAFILM_EXTERNAL_CONTROL_CONTRACT.md` |
+| RF2.C0 | complete: one external control only | Isolated external spektrafilm spectral prior/control on the provisional nine-image gold set | RF2.S0 negative gates + current external revision/licence audit | Ektar100/fixed-e0: style 8.034, non-basic residual 7.343, zero new clipping and no severe visual failure across 3 blind rounds/9 gold; auto policies are exposure-dominated negative diagnostics; no tracked code/profile/LUT, training, fitting, stock truth or integration; `docs/REAL_FILM_SPEKTRAFILM_EXTERNAL_CONTROL_RESULTS.md` |
 | SF0.4 | complete: metadata pass | Audit Commons exact Ektar100/Superia X-TRA400/Gold200 plus Velvia-family control | RF2.S0 close | 658 rows; 3 exact stocks pass source/rights/uploader gates; zero pixels; snapshot `f7ee9db...`; `docs/REAL_FILM_COMMONS_STOCK_SOURCE_AUDIT_RESULTS.md` |
 | SF0.5 | complete: one-stock pass, learning closed | Audit derivative-only Commons pixels and true source groups | SF0.4 | 36 files/27.81MB clean; Ektar 26/8 authors passes, Superia 2/2 and Gold 8/4 fail; `docs/REAL_FILM_COMMONS_STOCK_PIXEL_PILOT_RESULTS.md` |
 | SF0.6A | complete: one new metadata pass | Audit ten exact Commons stock categories for true-author and derivative-rights support | SF0.5 | UltraMax400 passes 84/15 authors/51 strict rows; 9 stop; zero pixels; `docs/REAL_FILM_COMMONS_STOCK_EXPANSION_RESULTS.md` |
@@ -701,6 +701,7 @@ Current approval state: research and local documentation are authorized; all ite
 - Supporting artifact/system-risk research: `docs/planning/FARO_RESEARCH_PROGRAM_2026.md`
 - Autonomous unpaired FilmCase scientific DAG: `docs/planning/FILMCASE_AUTONOMOUS_RESEARCH_PLAN.md`
 - Initial visual audit and deterministic bridge experiment: `docs/VISUAL_STYLE_AUDIT_2026-07-11.md`
+- Isolated external spectral-prior control: `docs/REAL_FILM_SPEKTRAFILM_EXTERNAL_CONTROL_RESULTS.md`; external outputs are ignored comparison evidence, never stock truth or teachers
 
 ---
 

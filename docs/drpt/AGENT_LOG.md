@@ -1391,3 +1391,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Epistemic/licence:** GPLv3 code and CC BY-SA profiles/LUTs stay outside tracked project files. Profiles derive from data sheets/papers and include hand-modelled/eyeballed coupler settings, so outputs are physically informed controls, never real-film truth or teachers.
 - **Frozen experiment:** official isolated Python 3.13.14, nine provisional gold display-sRGB proxies, six stock/interpretation chains, fixed versus center-auto exposure, direct spectral colour with all spatial/stochastic effects off.
 - **Gates:** finite/bounded, <=0.5% new hard clipping, median style >=7 and matched-basic residual >=4.9 before at most three candidates enter three blind autonomous visual rounds. No training, fitting, LSM, integration or licence decision opens.
+
+## 2026-07-17 - Execute and close RF2.C0 with one external control
+
+- **Runtime/evidence:** isolated CPython 3.13.14 and spektrafilm 0.3.4 at pinned revision `3bb2c2d...32bc`; no GPU, paid resource or tracked external code/profile/LUT. Two 108-output formal runs have identical PNG hashes, metrics and decisions; timing-normalized report SHA is `a11901b...34c6`.
+- **Automatic result:** 9/12 candidates pass. Velvia100 fixed/auto is rejected at 7.11%/7.30% worst new clipping. Ektar100/fixed-e0 reaches style 8.0337, matched-basic residual 7.3435 and zero new clipping.
+- **Visual result:** before reveal, three blind rounds cover input, safe-rich, five owner anchors and three external candidates on all nine gold samples. After reveal, 27 external outputs are reviewed at 1024 long edge; no confirmed severe artifact or ID11 red-speckle/posterization recurrence occurs.
+- **Adjudication:** retain Ektar100/fixed-e0 only as an external future comparison control. Pro400H/auto and UltraMax400/auto span 0.205--4.208 and 0.244--4.171 mean-luma ratios; auto profiles are near duplicates and remain negative adaptation evidence, not stock distinctions.
+- **Boundary/handoff:** outputs remain ignored and cannot train, teach, fit, calibrate or integrate the product. Community pixels and LSM remain closed. Next independently ready work should freeze a bounded U5.R1A artifact/style-ontology support leaf or another legal deterministic product prerequisite; Ultimate Goal remains paused at the product layer rather than complete.

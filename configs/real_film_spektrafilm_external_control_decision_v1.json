@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "audit_id": "rf2.c0-spektrafilm-external-spectral-control-v1",
+  "node": "ULT > RF2.C > RF2.C0",
+  "status": "complete_external_control_only",
+  "decision": "promote_one_external_control_for_future_comparison_only",
+  "external_revision": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+  "software_commit": "69f4e5f2b2e543e2cbed236ba95bbf16602827e8",
+  "config_sha256": "c859b74d4fa9e1ce0b0ae412090193cb75ee5765feb22c9196d9b04444829125",
+  "runtime": {
+    "python": "3.13.14",
+    "spektrafilm": "0.3.4",
+    "headless_core_import_and_render_pass": true,
+    "gui_only_dependencies_intentionally_absent": ["markdown", "napari", "pyconify", "pyside6", "qtpy"],
+    "gpu_used": false,
+    "paid_resource_used": false
+  },
+  "repeatability": {
+    "formal_runs": 2,
+    "records_per_run": 108,
+    "output_png_hashes_identical": true,
+    "automatic_metrics_identical": true,
+    "branch_decision_identical": true,
+    "normalized_report_sha256": "a11901b127ae19276df28cd3bf9d81dbc58b24e300d775a831af8583c9cb34c6",
+    "run_1_report_sha256": "5b139492cb416318dc562f44b7c9cf342ffd2d728ef2dba59f1f900b5ec46662",
+    "run_2_report_sha256": "4c3bd0b6b0ae0bdd538ba4dd07200554646595cd5781cd338d847473656ef8e0",
+    "ignored_output_files": 108,
+    "ignored_output_bytes": 91621829
+  },
+  "automatic_gate": {
+    "candidates": 12,
+    "survivors": 9,
+    "velvia100_fixed_worst_new_hard_clipping_fraction": 0.07106205828250557,
+    "velvia100_auto_worst_new_hard_clipping_fraction": 0.07301364069482448,
+    "velvia100_rejected_for_clipping": true
+  },
+  "visual_selection": {
+    "selection_stage": "after automatic metrics and before any image inspection",
+    "selection_rule": "highest residual within each exposure policy, then highest residual from an as-yet-unrepresented profile until three candidates",
+    "candidates": [
+      "fujifilm_pro_400h__negative_to_print__auto_center",
+      "kodak_ektar_100__negative_to_print__fixed_e0",
+      "kodak_ultramax_400__negative_to_print__auto_center"
+    ],
+    "blind_rounds": 3,
+    "gold_samples_per_round": 9,
+    "full_resolution_outputs_reviewed": 27,
+    "confirmed_severe_artifacts": 0
+  },
+  "promoted_external_control": {
+    "candidate_id": "kodak_ektar_100__negative_to_print__fixed_e0",
+    "gold_median_style_delta_e76": 8.03374754319963,
+    "gold_median_non_basic_residual_delta_e76": 7.343494060655502,
+    "worst_new_hard_clipping_fraction": 0.0,
+    "scene_mean_luma_ratio_min": 0.833,
+    "scene_mean_luma_ratio_max": 1.020,
+    "allowed_use": "isolated future comparison control only"
+  },
+  "negative_diagnostics": [
+    {
+      "candidate_id": "fujifilm_pro_400h__negative_to_print__auto_center",
+      "scene_mean_luma_ratio_min": 0.205,
+      "scene_mean_luma_ratio_max": 4.208,
+      "reason": "scene-dependent exposure adaptation dominates apparent style"
+    },
+    {
+      "candidate_id": "kodak_ultramax_400__negative_to_print__auto_center",
+      "scene_mean_luma_ratio_min": 0.244,
+      "scene_mean_luma_ratio_max": 4.171,
+      "reason": "scene-dependent exposure adaptation dominates apparent style"
+    },
+    {
+      "candidate_pair": [
+        "kodak_portra_400__negative_to_print__auto_center",
+        "kodak_ultramax_400__negative_to_print__auto_center"
+      ],
+      "diagnostic_median_delta_e76": 1.1784,
+      "reason": "near-duplicate auto-exposure profile behavior; not stock distinction evidence"
+    }
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "stock_truth_claim_allowed": false,
+  "root_license_decision_made": false,
+  "claim_ceiling": "isolated external deterministic spectral-prior/control behavior on display-sRGB proxy inputs; no real-film pixels, identified operator, stock response, mode, calibration, authenticity, training, product integration or licence decision"
+}

@@ -276,6 +276,15 @@ single shared author is below the frozen two-author edge minimum, yielding zero
 retained edges and no component. Do not merge aliases or lower the gate after
 the result; no live preflight, pixels, fitting, training or LSM open.
 
+The independent `RF2.C0` external spectral-prior control is complete without
+changing this data stop. One pinned spektrafilm Ektar100/fixed-e0 chain is
+visibly stylised and non-basic while passing the provisional gold severe veto,
+so it is retained only as an external comparison control. Auto-exposure chains
+show much larger apparent style but unstable roughly 0.2x--4.2x scene-luma
+response and near-duplicate profile behaviour; they are nuisance/adaptation
+evidence, not stock experts. No external output is a teacher, identified
+operator, stock response or calibration target.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

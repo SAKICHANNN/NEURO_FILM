@@ -82,6 +82,16 @@ share one author, below the frozen two-author edge minimum, so there are zero
 retained edges and no component. Do not merge aliases or relax gates after the
 result; no live preflight, pixels, fitting, training or LSM opens.
 
+`RF2.C0` is complete as an isolated external-control leaf. Two formal
+spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
+the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new
+hard clipping) and three blind rounds plus all selected full-resolution severe
+checks. It remains an external Look Approximation only. The stronger
+center-auto results are not promoted because their scene mean-luma response
+spans roughly 0.2x--4.2x and closely repeats across profiles, showing exposure
+adaptation rather than useful stock distinction. No code/profile/LUT is
+integrated and no fitting, training, LSM, teacher or calibrated claim opens.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

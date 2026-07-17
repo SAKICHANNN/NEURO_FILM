@@ -93,6 +93,7 @@ experts plus one independent `H` expert; it is a milestone, not a stop rule.
 | SillyStill | claimed yes | one claimed Cinestill stock | small paired capture described by paper | blocked candidate | full data unavailable; repository lacks a root data license |
 | Emulating Emulsion | yes | controlled Velvia 100, one roll | chart pairs under controlled capture/scan | strong method precedent; candidate only | public data and reusable licence not verified |
 | Manufacturer sensitometry | physical prior | authoritative stock/process documents | no scene-level RGB targets | operator prior/constraint | not an end-to-end image target |
+| spektrafilm pinned external simulator | no observed film pixels in this project | data-sheet/paper-derived spectral profiles with heuristic coupler parameters | no roll/source/process observations; display-sRGB proxy controls only | RF2.C0 external Look Approximation comparison; Ektar100/fixed-e0 retained | not evidence for stock identity, response, calibration, fitting, training or latent modes |
 
 ## 5. Stock eligibility contract
 
