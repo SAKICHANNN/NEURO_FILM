@@ -1383,3 +1383,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Result:** 294 strict rows/19 stocks/30 authors, but only Ektar100 (26/8/30.77%) and UltraMax400 (51/8/50.98%) are eligible. They share only `toomore chiang`; zero two-author edges and zero components remain.
 - **Binding branch:** `insufficient_shared_author_connectivity`. Do not merge unverified aliases, lower the graph gates, open live pages or download pixels. Fitting, training, LSM and stock claims remain false.
 - **Verification/Goal:** 18 focused/adjacent and 356 full CPU tests pass. SF2.3 closes, while Ultimate remains active and must select another independently frozen stock/data or deterministic product leaf.
+
+## 2026-07-17 - Freeze RF2.C0 external spectral-control protocol
+
+- **Node/parent:** `ULT > RF2.C > RF2.C0`; bounded external control after SF2.3 closes and Commons category reconnaissance finds no credible exact-stock connectivity repair.
+- **Source/revision:** spektrafilm `3bb2c2d...32bc`, 35,142,687-byte shallow checkout; 20 capture-film profiles, six papers and two cine print stocks; no official release assets.
+- **Epistemic/licence:** GPLv3 code and CC BY-SA profiles/LUTs stay outside tracked project files. Profiles derive from data sheets/papers and include hand-modelled/eyeballed coupler settings, so outputs are physically informed controls, never real-film truth or teachers.
+- **Frozen experiment:** official isolated Python 3.13.14, nine provisional gold display-sRGB proxies, six stock/interpretation chains, fixed versus center-auto exposure, direct spectral colour with all spatial/stochastic effects off.
+- **Gates:** finite/bounded, <=0.5% new hard clipping, median style >=7 and matched-basic residual >=4.9 before at most three candidates enter three blind autonomous visual rounds. No training, fitting, LSM, integration or licence decision opens.

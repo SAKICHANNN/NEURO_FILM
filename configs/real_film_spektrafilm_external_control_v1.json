@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "audit_id": "rf2.c0-spektrafilm-external-spectral-control-v1",
+  "node": "ULT > RF2.C > RF2.C0",
+  "external_source": {
+    "repository": "https://github.com/andreavolpato/spektrafilm.git",
+    "revision": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+    "observed_bytes_in_shallow_checkout": 35142687,
+    "code_license": "GPL-3.0-or-later",
+    "profile_and_lut_license": "CC-BY-SA-4.0",
+    "profile_license_path": "SPEKTRAFILM_LICENSE.txt",
+    "release_assets_available": false,
+    "tracked_copy_or_integration_allowed": false,
+    "profile_or_lut_copy_into_project_allowed": false,
+    "output_use": "non-commercial internal research comparison only; never training data or teacher truth"
+  },
+  "runtime": {
+    "python_version": "3.13.14",
+    "python_installer_url": "https://www.python.org/ftp/python/3.13.14/python-3.13.14-amd64.exe",
+    "python_installer_sha256": "c54d9b9bbb8a36e6489363ddd01139707fd781d72f1f9e90c7ec65d0061368e0",
+    "isolated_temporary_install_required": true,
+    "path_launcher_shortcut_file_association_changes_allowed": false,
+    "maximum_download_bytes": 1073741824,
+    "maximum_temporary_storage_bytes": 3221225472,
+    "gpu_allowed": false,
+    "paid_resource_allowed": false
+  },
+  "inputs": {
+    "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "split": "gold",
+    "expected_samples": 9,
+    "input_interpretation": "display-sRGB proxy decoded to linear sRGB; Look Approximation only, not scene-linear calibrated input",
+    "input_color_space": "sRGB",
+    "input_cctf_decoding": true,
+    "output_color_space": "sRGB",
+    "output_cctf_encoding": true,
+    "maximum_long_edge_phase_a": 1024
+  },
+  "profiles": [
+    {"film": "kodak_ektar_100", "print": "kodak_portra_endura", "interpretation": "negative_to_print"},
+    {"film": "kodak_ultramax_400", "print": "kodak_portra_endura", "interpretation": "negative_to_print"},
+    {"film": "kodak_portra_400", "print": "kodak_portra_endura", "interpretation": "negative_to_print"},
+    {"film": "fujifilm_pro_400h", "print": "fujifilm_crystal_archive_typeii", "interpretation": "negative_to_print"},
+    {"film": "fujifilm_velvia_100", "print": "fujifilm_crystal_archive_typeii", "interpretation": "positive_direct_scan"},
+    {"film": "fujifilm_provia_100f", "print": "fujifilm_crystal_archive_typeii", "interpretation": "positive_direct_scan"}
+  ],
+  "exposure_policies": [
+    {"policy_id": "fixed_e0", "auto_exposure": false, "exposure_compensation_ev": 0.0},
+    {"policy_id": "auto_center", "auto_exposure": true, "auto_exposure_method": "center_weighted", "exposure_compensation_ev": 0.0}
+  ],
+  "renderer_freeze": {
+    "direct_spectral_path": true,
+    "enlarger_lut": false,
+    "scanner_lut": false,
+    "grain": false,
+    "halation": false,
+    "film_glare": false,
+    "print_glare": false,
+    "camera_diffusion": false,
+    "enlarger_diffusion": false,
+    "camera_lens_blur": 0.0,
+    "enlarger_lens_blur": 0.0,
+    "scanner_lens_blur": 0.0,
+    "scanner_unsharp_mask": [0.0, 0.0],
+    "dir_couplers": true,
+    "default_stock_specific_overrides": true,
+    "seed": 20260717
+  },
+  "automatic_gates": {
+    "all_outputs_finite": true,
+    "all_outputs_bounded_0_1": true,
+    "maximum_worst_new_hard_clipping_fraction": 0.005,
+    "minimum_gold_median_style_delta_e76": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 4.9,
+    "basic_match_factors": ["ev", "white_balance", "contrast", "saturation", "global_luma_curve"],
+    "pairwise_profile_distinctiveness_is_diagnostic_only": true
+  },
+  "visual_gate": {
+    "automatic_survivors_only": true,
+    "maximum_external_candidates": 3,
+    "include_input_safe_rich_and_owner_anchor_controls": true,
+    "blind_rounds": 3,
+    "all_nine_gold_samples_required": true,
+    "confirmed_severe_artifact_veto": true,
+    "visual_claim": "autonomous visual evidence only; not owner or population preference"
+  },
+  "allowed_decisions": [
+    "promote_external_control_for_future_comparison_only",
+    "close_bland_or_basic_only",
+    "close_clipping_or_severe_artifact",
+    "close_runtime_or_contract_failure"
+  ],
+  "output_root": "outputs/external_controls/spektrafilm_v1",
+  "tracked_external_code_allowed": false,
+  "tracked_external_profiles_or_luts_allowed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "stock_truth_claim_allowed": false,
+  "claim_ceiling": "isolated external deterministic spectral-prior/control behavior on display-sRGB proxy inputs; no real-film pixels, identified operator, stock response, mode, calibration, authenticity, training, product integration or licence decision"
+}
