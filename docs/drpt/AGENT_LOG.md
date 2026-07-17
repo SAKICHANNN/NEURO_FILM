@@ -1306,3 +1306,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Bounded probe:** inspect the same eight of 256 hash shards per unit in memory for exact stock-family/product terms, retain no bodies and request no media. NMAH/EEPA expose Kodachrome-family text, SIA sparse Ektachrome, and the other units expose no exact connected product-variant design; loose `Portra` also demonstrates `portrait` false positives.
 - **Decision:** `no_formal_audit_dor`. Do not download the 6.64GB corpus or union unit/collection/content signatures into a stock label. No stock grade, pixel, operator fitting, training or LSM permission changes.
 - **Propagation/handoff:** record the source-gap result in RF/SF authorities, registry, tracker, task board and implementation pointer. Ultimate remains active and moves to another independently gated source design or deterministic product leaf.
+
+## 2026-07-17 - Freeze U1.6D sparse dust/scratch tiled context
+
+- **Node/parent:** `ULT > U1.6 > U1.6D`; deterministic product child selected after SF2.2R closes without a data-audit DoR.
+- **Dependency finding:** current dust/scratch is a sparse PCG64 sequence of clipped rectangles combined by `maximum`; unlike grain, it has no blur or global normalisation and can be represented exactly without a full-frame layer.
+- **Frozen design:** immutable compact event arrays, exact legacy RNG replay, zero-halo tile intersection, existing compositor and U1.6A reuse. No CLI/default/profile/recipe change.
+- **Gates:** legacy layer reconstruction and tiled float/sRGB8 byte parity, cross-tile/overlap/boundary cases, active real-raster smoke, repeat determinism, compact-context evidence, fail-closed validation, targeted compatibility and full CPU suite.
+- **Forbidden scope:** no per-tile reseed, dense layer cache, grain/physical-halation claim, 100MP performance claim, stock/authenticity claim or weakened parity gate.
+- **Handoff:** commit/push the frozen contract before implementation; implement additively in `src/filmfx/tiled_effects.py` with tests in the established test directory.

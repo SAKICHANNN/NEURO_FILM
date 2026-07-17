@@ -136,6 +136,12 @@ maximum error at `5.96e-08` and sRGB8 bytes identical; 305 CPU tests pass. The
 path remains experimental. Physical/density halation keeps its unresolved
 percentile and shape-dependent downsample context and is explicitly excluded.
 
+`U1.6D` is frozen and ready. It will replay the existing procedural dust and
+scratch RNG into a compact geometry/alpha event context, then composite only
+events intersecting each zero-halo tile. Legacy layer and tiled composite must
+be byte-identical; no full-frame layer cache, reseeding, default integration,
+grain claim or 100MP performance claim is allowed.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
