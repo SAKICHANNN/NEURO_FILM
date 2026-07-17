@@ -11,6 +11,13 @@ from .render_contract import (
     validate_render_recipe,
     verify_render_recipe_files,
 )
+from .tiled_render import (
+    TileWindow,
+    TiledExecutionMetadata,
+    TiledRenderError,
+    execute_tiled_local_operator,
+    plan_tile_windows,
+)
 
 __all__ = [
     "PROFILE_SCHEMA_ID",
@@ -24,4 +31,9 @@ __all__ = [
     "validate_render_profile",
     "validate_render_recipe",
     "verify_render_recipe_files",
+    "TileWindow",
+    "TiledExecutionMetadata",
+    "TiledRenderError",
+    "execute_tiled_local_operator",
+    "plan_tile_windows",
 ]
