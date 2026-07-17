@@ -144,11 +144,12 @@ byte-for-byte. The committed real-raster smoke uses 3,660 context bytes across
 the inherited heuristic effect quality, so no realism, default integration,
 grain or 100MP performance claim opens.
 
-`U1.6E` is frozen and ready as the narrow integration child. It will generate
-only the eligible simple-halation and sparse-dust layers from the same expanded
-base tile, composite them in renderer order and apply output margin once at the
-end. Grain, physical/density halation, safe-Lab/encode orchestration, CLI,
-recipes, defaults and end-to-end memory remain outside this leaf.
+`U1.6E` closes without implementation. White-alpha dust and screen halation
+both reduce to multiplicative complements and commute per channel; reversing
+them differs only `1.19e-07`, inside the frozen `1e-6` equivalence gate. The
+required output-identifiable order cannot be proved without changing effect
+math or weakening the gate, so no combined adapter is retained. U1.6C/D remain
+valid independently and U1.6 moves to a truthful grain/global-context child.
 
 ---
 

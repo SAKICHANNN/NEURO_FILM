@@ -1332,3 +1332,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** none/simple/dust/both variants, observable non-commutative order, float/seam `<=1e-6`, sRGB8 byte parity, uint16 within one code, repeat/metadata/fail-closed evidence, committed real-raster smoke and full CPU suite.
 - **Forbidden/claim:** grain, physical/density halation, safe-Lab/encode orchestration, CLI/default/profile/recipe changes and 24MP/100MP claims remain forbidden. A pass is heuristic-effect numerical evidence only.
 - **Handoff:** commit/push this contract separately, then implement additively in `src/filmfx/tiled_effects.py` with a dedicated test module.
+
+## 2026-07-17 - Close U1.6E at observable-order gate
+
+- **Development evidence:** with active strength .8 simple halation and strength 1.0 dust on a 97x137 float32 case, forward versus reversed layer order differs by only `1.1920928955078125e-07`, below the frozen `1e-6` equivalence tolerance.
+- **Structural cause:** both white-alpha dust and screen halation have form `1-(1-x)(1-q)` per channel, so they commute algebraically; the residual is only finite-precision/clipping order.
+- **Binding decision:** the contract required reversed order to be observable. Do not lower the gate or change effect pixels. Remove the uncommitted adapter/tests and close U1.6E with negative evidence.
+- **Regression:** established U1.6C/U1.6D focused tests pass 44; complete CPU suite passes 328 after removal. No production or experimental API changed.
+- **Propagation/Goal:** U1.6C/D remain valid, U1.6 and Ultimate remain active, and the next candidate is a separately frozen grain/global-normalisation context leaf.

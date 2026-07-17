@@ -281,7 +281,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/pass | U1.6B | All eight safe-rich styles and a fixed real-raster crop have byte-identical full/tiled safe-Lab output; effects, integration, streaming and total-memory/100MP remain open |
 | Done/pass | U1.6C | Active simple-halation real-raster composite has `5.96e-08` full/seam error and sRGB8 byte parity; physical halation, integration and 100MP remain open |
 | Done/pass | U1.6D | Compact zero-halo event context reproduces legacy dust/scratch float and sRGB8 bytes exactly; stress visuals remain conspicuously heuristic, so no realism/default/grain/100MP claim opens |
-| Ready/frozen | U1.6E | Combine only simple halation then sparse dust in one same-base tiled pass; preserve final-margin order, reject grain/physical halation, no CLI/default/recipe/100MP claim |
+| Done/closed | U1.6E | Simple-halation screen and white-alpha dust commute algebraically; reversed output differs only `1.19e-07`, inside the frozen `1e-6` equivalence gate, so no combined adapter is retained |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
