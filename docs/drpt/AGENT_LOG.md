@@ -1156,3 +1156,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence basis:** Android's official Ultra HDR v1.1 identifies `hdrgm:Version`/Adobe XMP and GContainer/MPF `GainMap` semantics; Apple documents auxiliary JPEG/HEIF gain maps whose application is required for HDR appearance. Base decode alone is not preservation.
 - **Claim ceiling:** this is explicit rejection, not HEIF/AVIF/HDR support or complete ISO 21496-1 detection. Unknown future binary signalling and validated reconstruction remain open.
 - **Structure/Goal:** changes remain in existing preprocessing/tests and add no dependency or renderer branch. U1.5A closes; Ultimate stays active.
+
+## 2026-07-17 - Freeze U1.2A ICC conversion fail-closed repair
+
+- **Live reproduction:** a PNG with a ten-byte invalid ICC inspects as profiled and currently loads successfully after `ImageCms` failure by discarding the profile; the returned object still claims ICC provenance. This is a pixel/provenance contradiction.
+- **Frozen policy:** absent ICC keeps assumed-sRGB behavior; explicitly convertible ICC uses LittleCMS; any embedded-profile parse/conversion failure raises before `WorkingImage` or renderer output.
+- **Gates:** malformed PNG/JPEG and renderer no-output fixtures, ordinary unprofiled/sRGB/high-precision ICC regressions and full suite. No wide-gamut/Reference claim or new profile engine.
+- **Handoff:** commit/push the contract before changing the catch branch, then implement the smallest error-path repair and propagate.
