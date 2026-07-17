@@ -1179,3 +1179,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Access/scope:** three exact-code POST+GET pairs, six requests maximum; no raw HTML or frame rows retained and no photo page/image/API/mask/ZIP/KML access. Portra 400VC is auxiliary only.
 - **Branch:** a pass opens only a separately frozen metadata nuisance audit; no candidate closes NASA/JSC cross-mission expansion. Pixels, fitting, training, LSM and stock claims remain false.
 - **Handoff:** validate and commit/push config/contract before refactoring the existing source client; test aggregate-only behavior before any live query.
+
+## 2026-07-17 - Implement SF2.0C0 aggregate-only census client
+
+- **Implementation:** reused the bounded exact-code NASA/JSC client, generalized only the optional mission prefix, and added transient frame parsing followed by immediate mission/stock/roll aggregation. The report retains no raw HTML or frame rows.
+- **Reproducibility:** aggregation and frozen branch selection are separate pure functions. The retained query evidence, mission aggregates and overlap evidence reproduce the exact decision offline without source access.
+- **Safety:** the runner permits exactly the three frozen POST+GET pairs and retains the existing NASA hostname/path, response-size, content-type and response-close checks. Photo pages, images, API, masks, ZIP and KML remain unreachable.
+- **Verification:** old SF2.0B0 plus new SF2.0C0 focused tests pass (`8 passed`); compile and diff checks pass; the full CPU suite passes `237 passed`.
+- **Handoff:** commit/push the implementation before running the six-request formal census. The live result must follow the frozen pass/no-candidate/integrity branch without changing codes or gates.

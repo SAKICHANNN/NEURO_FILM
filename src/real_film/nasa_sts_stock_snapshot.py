@@ -269,7 +269,7 @@ def _query_stock(
             "error": "query_contract_mismatch",
             "detail": str(exc),
         }, []
-    prefix = str(config["result_contract"]["target_mission_prefix"])
+    prefix = str(config["result_contract"].get("target_mission_prefix", ""))
     target_rows: list[dict[str, Any]] = []
     for row in all_rows:
         if row["Photo ID"].startswith(prefix):
@@ -390,6 +390,190 @@ def run_snapshot(
         "query_evidence": evidence,
         "records": sorted(records, key=lambda row: (row["film_code"], row["roll"], row["frame"])),
         "summary": decision,
+        "photo_page_access_allowed": False,
+        "image_payload_download_allowed": False,
+        "operator_fitting_allowed": False,
+        "training_allowed": False,
+        "latent_mode_study_allowed": False,
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    return report, decision
+
+
+def aggregate_cross_mission_records(
+    records: Sequence[Mapping[str, Any]],
+    config: Mapping[str, Any],
+) -> tuple[list[dict[str, Any]], list[str]]:
+    """Reduce transient frame rows to the only persistent mission/roll evidence."""
+    gate = config["support_gate"]
+    primary_ids = [str(value) for value in gate["primary_stock_ids"]]
+    stock_ids = [str(stock["film_stock_id"]) for stock in config["stocks"]]
+    minimum_rows_per_roll = int(gate["minimum_rows_per_supported_roll"])
+    minimum_supported_rolls = int(gate["minimum_supported_rolls_per_primary_stock"])
+    minimum_total_rows = int(gate["minimum_total_rows_per_primary_stock"])
+
+    id_to_stocks: dict[str, set[str]] = {}
+    mission_counts: dict[str, dict[str, dict[str, int]]] = {}
+    for row in records:
+        stock_id = str(row["film_stock_id"])
+        mission = str(row["mission"])
+        roll = str(row["roll"])
+        photo_id = str(row["photo_id"])
+        id_to_stocks.setdefault(photo_id, set()).add(stock_id)
+        stock_counts = mission_counts.setdefault(mission, {}).setdefault(stock_id, {})
+        stock_counts[roll] = stock_counts.get(roll, 0) + 1
+
+    overlaps = sorted(photo_id for photo_id, values in id_to_stocks.items() if len(values) > 1)
+    mission_aggregates: list[dict[str, Any]] = []
+    for mission in sorted(mission_counts):
+        stock_results: dict[str, Any] = {}
+        for stock_id in stock_ids:
+            roll_counts = mission_counts[mission].get(stock_id, {})
+            rolls = [
+                {
+                    "roll": roll,
+                    "rows": count,
+                    "supported": count >= minimum_rows_per_roll,
+                }
+                for roll, count in sorted(roll_counts.items())
+            ]
+            total_rows = sum(roll_counts.values())
+            supported_roll_count = sum(bool(item["supported"]) for item in rolls)
+            stock_results[stock_id] = {
+                "rows": total_rows,
+                "roll_count": len(rolls),
+                "supported_roll_count": supported_roll_count,
+                "rolls": rolls,
+            }
+        primary_pass = {
+            stock_id: stock_results[stock_id]["supported_roll_count"] >= minimum_supported_rolls
+            and stock_results[stock_id]["rows"] >= minimum_total_rows
+            for stock_id in primary_ids
+        }
+        eligible = all(primary_pass.values())
+        item = {
+            "mission": mission,
+            "stocks": stock_results,
+            "primary_pass": primary_pass,
+            "eligible": eligible,
+        }
+        mission_aggregates.append(item)
+    return mission_aggregates, overlaps
+
+
+def decide_cross_mission_aggregates(
+    query_evidence: Sequence[Mapping[str, Any]],
+    mission_aggregates: Sequence[Mapping[str, Any]],
+    cross_stock_photo_id_overlap: Sequence[str],
+    config: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Apply the frozen C0 branch using only persistent aggregate evidence."""
+    gate = config["support_gate"]
+    primary_ids = [str(value) for value in gate["primary_stock_ids"]]
+    candidates: list[dict[str, Any]] = []
+    for aggregate in mission_aggregates:
+        if not bool(aggregate["eligible"]):
+            continue
+        stocks = aggregate["stocks"]
+        candidates.append(
+            {
+                "mission": str(aggregate["mission"]),
+                "minimum_primary_supported_roll_count": min(
+                    int(stocks[stock_id]["supported_roll_count"]) for stock_id in primary_ids
+                ),
+                "minimum_primary_row_count": min(int(stocks[stock_id]["rows"]) for stock_id in primary_ids),
+            }
+        )
+    candidates.sort(
+        key=lambda item: (
+            -int(item["minimum_primary_supported_roll_count"]),
+            -int(item["minimum_primary_row_count"]),
+            str(item["mission"]),
+        )
+    )
+    errors = [str(value.get("error")) for value in query_evidence if value.get("error")]
+    if any(error == "query_contract_mismatch" for error in errors):
+        decision_name = "query_contract_mismatch"
+    elif errors:
+        decision_name = "source_unavailable"
+    elif cross_stock_photo_id_overlap:
+        decision_name = "cross_stock_id_overlap"
+    elif candidates:
+        decision_name = "candidate_mission_found_open_metadata_connectivity"
+    else:
+        decision_name = "no_candidate_mission"
+    if decision_name not in config["allowed_decisions"]:
+        raise NasaStsStockSnapshotError("cross-mission decision is outside the frozen branch set")
+    return {
+        "schema_version": 1,
+        "census_id": config["census_id"],
+        "decision": decision_name,
+        "candidate_missions": candidates,
+        "selected_mission": candidates[0]["mission"] if candidates else None,
+        "cross_stock_photo_id_overlap": sorted(str(value) for value in cross_stock_photo_id_overlap),
+        "query_errors": errors,
+        "support_gate": dict(gate),
+        "photo_page_access_allowed": False,
+        "image_payload_download_allowed": False,
+        "operator_fitting_allowed": False,
+        "training_allowed": False,
+        "latent_mode_study_allowed": False,
+        "claim_ceiling": config["claim_ceiling"],
+    }
+
+
+def run_cross_mission_census(
+    config: Mapping[str, Any],
+    *,
+    session: requests.Session | None = None,
+    sleep_fn: Callable[[float], None] = time.sleep,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Aggregate exact-code result tables by mission and roll without retaining frames."""
+    _validate_config(config)
+    if config["query"].get("frame_rows_retained") is not False:
+        raise NasaStsStockSnapshotError("cross-mission census must not retain frame rows")
+    primary_ids = [str(value) for value in config["support_gate"]["primary_stock_ids"]]
+    known_ids = {str(stock["film_stock_id"]) for stock in config["stocks"]}
+    if len(primary_ids) < 2 or not set(primary_ids).issubset(known_ids):
+        raise NasaStsStockSnapshotError("primary stock IDs are invalid")
+
+    client = session or requests.Session()
+    client.headers["User-Agent"] = str(config["request_limits"]["user_agent"])
+    evidence: list[dict[str, Any]] = []
+    transient_records: list[dict[str, Any]] = []
+    for index, stock in enumerate(config["stocks"]):
+        item, rows = _query_stock(client, stock, config, sleep_fn=sleep_fn)
+        evidence.append(item)
+        transient_records.extend(rows)
+        if index + 1 < len(config["stocks"]):
+            sleep_fn(float(config["request_limits"]["request_interval_seconds"]))
+    requests_made = sum(1 + int(item.get("result") is not None) for item in evidence)
+    if requests_made > int(config["query"]["maximum_total_requests"]):
+        raise NasaStsStockSnapshotError("frozen request ceiling exceeded")
+
+    mission_aggregates, overlaps = aggregate_cross_mission_records(transient_records, config)
+    query_summary = [
+        {
+            "stock": item["stock"],
+            "query": item["query"],
+            "result": item.get("result"),
+            "error": item.get("error"),
+            "required_headers": item.get("required_headers"),
+            "all_mission_rows": item.get("all_mission_rows", 0),
+        }
+        for item in evidence
+    ]
+    decision = decide_cross_mission_aggregates(query_summary, mission_aggregates, overlaps, config)
+    report = {
+        "schema_version": 1,
+        "census_id": config["census_id"],
+        "source": dict(config["source"]),
+        "requests_made": requests_made,
+        "query_evidence": query_summary,
+        "mission_aggregates": mission_aggregates,
+        "summary": decision,
+        "frame_rows_retained": False,
+        "raw_html_retained": False,
         "photo_page_access_allowed": False,
         "image_payload_download_allowed": False,
         "operator_fitting_allowed": False,
