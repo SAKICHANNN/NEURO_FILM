@@ -113,6 +113,13 @@ statistics, percentile-normalized halation, grain normalization and
 coordinate-seeded dust remain full-frame/global-state concerns. The primitive
 is not connected to the CLI and makes no 100MP end-to-end memory claim.
 
+`U1.6B` is now frozen to address the first verified global dependency without
+pretending the effects are local. It permits one full-image safe-Lab mean/std
+prepass, a five-pixel luma-detail halo and coordinate-exact replay of the legacy
+safe-rich dither stream. Nonzero legacy colour-core grain must reject, physical
+halation/grain/dust remain full-frame, and the new path cannot become a CLI
+default in this leaf.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

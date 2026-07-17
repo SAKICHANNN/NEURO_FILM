@@ -1261,3 +1261,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Full verification:** complete CPU suite passes `269 passed`; diff checks pass. Synthetic data is appropriate only for execution/numerical evidence and supplies no style, stock or rights evidence.
 - **Claim/branch:** callback transient working set is bounded, excluding full-frame input/output. Safe-Lab statistics, percentile-normalized halation, normalized grain and coordinate-seeded dust remain global-state concerns. U1.6A closes, U1.6 stays active, and no complete renderer or 100MP product claim opens.
 - **Goal continuation:** propagate authorities/results, commit/push, then freeze an operator-locality/global-context child or another higher-value legal ready leaf. Ultimate remains active.
+
+## 2026-07-17 - Freeze U1.6B safe-Lab global context
+
+- **Node/parent:** `ULT > U1.6 > U1.6B`; direct child of the passed finite-support executor. Live refresh found a clean branch at `17b7e01`, no project download/test/render process and no user/Cursor dirty files.
+- **Dependency audit:** safe-Lab mean/std is a two-pass reduction; luma-detail preservation has finite support; safe-rich dither is a global legacy PCG64 sequence that can be replayed by coordinates. Legacy colour-core grain, percentile/downsample physical halation, residual grain normalization and dust coordinates remain ineligible.
+- **Frozen implementation:** add an immutable source context and experimental tiled safe-Lab function beside the existing algorithm, reuse U1.6A, preserve the default CLI, refuse nonzero colour-core grain and allocate only expanded-tile dither windows.
+- **Gates:** pre-refactor/full-frame compatibility, all eight safe-rich style max/seam error `<=1e-6`, real-raster sRGB8 byte parity, exact dither slices, fail-closed context/grain/tile errors, repeat determinism, bounded metadata and full CPU regression.
+- **Claim/rollback:** a pass proves numerical two-pass colour equivalence only, not effects, total memory, streaming, 100MP, style or stock truth. Contract, implementation and evidence remain separate revertable commits.
+- **Skills/governance:** `dev-research-reliability` is the sole writer; router, DRPT-BI, plan/tracker, agent-log and structure stewardship are read-only governance. DRPT L2 Mode A, risk R1, no human gate.

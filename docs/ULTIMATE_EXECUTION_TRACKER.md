@@ -293,6 +293,7 @@ Restrictions:
 | U1.5A | complete: fail-closed pass | Fail closed on HEIF/AVIF and recognized HDR/gain-map signals before pixel conversion | U1.5 | AVIF, Adobe/Android, Apple and PNG metadata fixtures reject before output; SDR regressions and 230-test suite pass |
 | U1.6 | in progress: local primitive pass | Halo-aware tile/cache renderer | U1.3 | U1.6A proves the finite-support executor; global-context operators, streaming encode/cache and bounded total memory remain pending |
 | U1.6A | complete: pass | Deterministic finite-support halo-aware tiled-execution primitive | U1.3B | 21 focused/269 full tests; exact coverage; committed Gaussian full/seam error 0.0; maximum expanded window equals frozen bound; no renderer integration or 100MP claim; `docs/U1_6A_HALO_AWARE_TILING_RESULTS.md` |
+| U1.6B | frozen/ready | Experimental two-pass safe-Lab source context and coordinate-exact dither | U1.6A | all eight safe-rich styles full/tiled max and seam error <=1e-6; real-raster sRGB8 byte parity; nonzero colour-core grain rejects; default CLI unchanged; `docs/planning/U1_6B_SAFE_LAB_GLOBAL_CONTEXT_CONTRACT.md` |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
 
