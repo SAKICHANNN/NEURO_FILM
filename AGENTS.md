@@ -283,6 +283,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/pass | U1.6D | Compact zero-halo event context reproduces legacy dust/scratch float and sRGB8 bytes exactly; stress visuals remain conspicuously heuristic, so no realism/default/grain/100MP claim opens |
 | Done/closed | U1.6E | Simple-halation screen and white-alpha dust commute algebraically; reversed output differs only `1.19e-07`, inside the frozen `1e-6` equivalence gate, so no combined adapter is retained |
 | Done/pass | U1.6F | Exact colour/B&W legacy grain uses private two-field memmap staging with byte parity and cleanup; 0.018 smoke passes mechanics while 0.35 stress is visually rejected; no physical/default/100MP claim |
+| Done/closed | U1.6G0 | Physical/density halation is not finite-halo local: sigma-52 full-grid resample differs by `5.81e-4` even with halo 156; require percentile/global-resample/field-DAG primitives before staging |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

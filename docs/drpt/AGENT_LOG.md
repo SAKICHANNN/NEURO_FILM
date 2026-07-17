@@ -1358,3 +1358,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Visual veto:** .018 shows fine grain without confirmed seam/block/corruption on the mechanics crop. Strength .35 dominates both outputs with severe high-frequency noise and is rejected despite parity; no strength policy is promoted from numerical evidence.
 - **Verification:** 21 dedicated, 127 adjacent and 349 full CPU tests pass; compile/diff checks pass.
 - **Claim/Goal:** this proves exact legacy grain with bounded RAM by O(image) temporary disk only. No physical/default/latency/SSD/total-memory/100MP claim opens. U1.6 and Ultimate remain active; next choose physical-halation context or orchestration/resource policy.
+
+## 2026-07-17 - Close U1.6G0 direct physical-halation tiling shortcut
+
+- **Node/parent:** `ULT > U1.6 > U1.6G0`; dependency audit after staged grain passes.
+- **Inventory:** colour physical halation has two global percentiles and eight Gaussian fields up to sigma 52; density has one percentile and six fields up to sigma 70. Large fields use full-shape BOX/downsample/blur/BILINEAR grids.
+- **Decisive counterexample:** deterministic 257x389 sigma-52 blur, tile 64 and nominal halo 156 still yields max/seam error `0.0005808473`; expanded tiles choose different resample grids from the full image.
+- **Decision:** do not wrap current physical/density effects in a halo adapter, hide full arrays or duplicate effect math. No code change is retained.
+- **Prerequisites:** exact/versioned staged percentile, original-coordinate shape-stable global resample, scratch-field DAG/lifetimes and separate colour/density graphs before U1.6G1 implementation.
+- **Goal:** simple halation remains eligible; physical effect itself is not visually rejected. U1.6 and Ultimate remain active and move to a prerequisite dataflow or another ready leaf.

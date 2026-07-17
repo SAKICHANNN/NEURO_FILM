@@ -159,6 +159,13 @@ confirmed mechanics artifact, while .35 is visually rejected as severe noise.
 This is bounded RAM with two O(image) scratch fields, not streaming, physical
 grain, production integration or 100MP total-memory readiness.
 
+`U1.6G0` closes the direct physical/density-halation tiling shortcut. Default
+sigma-52 glare uses an 8x full-image resample grid; even halo 156 leaves
+full/tiled max and seam error `5.81e-4`. Percentiles and chained background
+fields add further global dependencies. A later route requires separately
+versioned percentile, original-coordinate global-resample and scratch-field DAG
+primitives before any physical adapter or memory claim.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
