@@ -113,12 +113,12 @@ statistics, percentile-normalized halation, grain normalization and
 coordinate-seeded dust remain full-frame/global-state concerns. The primitive
 is not connected to the CLI and makes no 100MP end-to-end memory claim.
 
-`U1.6B` is now frozen to address the first verified global dependency without
-pretending the effects are local. It permits one full-image safe-Lab mean/std
-prepass, a five-pixel luma-detail halo and coordinate-exact replay of the legacy
-safe-rich dither stream. Nonzero legacy colour-core grain must reject, physical
-halation/grain/dust remain full-frame, and the new path cannot become a CLI
-default in this leaf.
+`U1.6B` now passes the first global-context child without pretending the
+effects are local. One full-image safe-Lab mean/std prepass, a five-pixel
+luma-detail halo and coordinate-exact legacy dither reproduce all eight
+safe-rich styles and a fixed real-raster crop byte-for-byte; 284 CPU tests pass.
+Nonzero legacy colour-core grain rejects, physical halation/grain/dust remain
+full-frame, and the experimental path is not a CLI default.
 
 ---
 

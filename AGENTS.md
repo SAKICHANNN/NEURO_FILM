@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 269 local tests pass. U1.6A proves an exact finite-support halo-aware tiled primitive with bounded callback windows, but not complete renderer/100MP memory; U2.1A provides verified replay identity. Current profiles remain heuristic look approximations and current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
+| Current evidence | 284 local tests pass. U1.6A/U1.6B prove exact finite-support execution and an experimental byte-identical two-pass safe-Lab context/dither path, but effects, complete renderer and 100MP memory remain open; U2.1A provides verified replay identity. Current profiles remain heuristic look approximations and current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -65,6 +65,7 @@ Current strengths:
 - stable safe-rich guardrails and fixed test artifacts;
 - strict opt-in v1 profile/recipe identity with asset/input/output hash verification;
 - exact finite-support halo-aware tiled execution primitive with bounded callback windows;
+- experimental two-pass safe-Lab tiling with full-frame context and coordinate-exact legacy dither;
 - exact neutral-axis output for current HP5/Tri-X B&W profiles;
 - modular grain/halation/dust layers;
 - `WorkingImage`, ICC-aware raster helpers and generic RAW decoding exist under `src/preprocess/`;
@@ -275,6 +276,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | SF2.1A | Openverse returns 960 metadata rows, but Ektar pagination repeats 19 identities and only UltraMax passes per-stock support; no live pages/pixels/fitting/training/LSM |
 | Done/pass | U2.1A | Strict v1 profile/recipe schemas, exact safe-rich migration, deterministic ICC bytes and committed replay verification pass; no calibrated profile claim |
 | Done/pass | U1.6A | Finite-support tiled primitive has exact coverage, zero committed Gaussian full/seam error and bounded expanded windows; complete renderer/global context/100MP remain open |
+| Done/pass | U1.6B | All eight safe-rich styles and a fixed real-raster crop have byte-identical full/tiled safe-Lab output; effects, integration, streaming and total-memory/100MP remain open |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

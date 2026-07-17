@@ -1270,3 +1270,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** pre-refactor/full-frame compatibility, all eight safe-rich style max/seam error `<=1e-6`, real-raster sRGB8 byte parity, exact dither slices, fail-closed context/grain/tile errors, repeat determinism, bounded metadata and full CPU regression.
 - **Claim/rollback:** a pass proves numerical two-pass colour equivalence only, not effects, total memory, streaming, 100MP, style or stock truth. Contract, implementation and evidence remain separate revertable commits.
 - **Skills/governance:** `dev-research-reliability` is the sole writer; router, DRPT-BI, plan/tracker, agent-log and structure stewardship are read-only governance. DRPT L2 Mode A, risk R1, no human gate.
+
+## 2026-07-17 - Pass U1.6B safe-Lab two-pass context
+
+- **Implementation:** `SafeLabSourceContext`, context-aware safe-Lab core, coordinate-exact PCG64 dither windows and experimental `style_transfer_rgb_tiled` now live beside the established algorithm. U1.6A supplies planning/stitching. Nonzero legacy colour-core grain rejects; no CLI/default/profile/effect change was made.
+- **Compatibility:** pre-refactor 17x19 zero/0.35-dither hashes remain exactly `3229cf98...bfd0a` and `10eea738...9d7a`. Standalone CLI help and compile checks pass.
+- **Committed evidence:** at `600c3bd`, every one of the eight tracked safe-rich styles is byte-identical full versus tiled with max/seam error 0.0. A fixed 257x389 crop from a quarantined real raster is also float/sRGB8 byte-identical across 35 tiles; maximum expanded tile is 74x74x3 and sRGB8 hash is `f0dcc1e2...a772`.
+- **Verification:** 15 dedicated tests, 55 targeted compatibility tests and the full `284 passed` CPU suite. Coordinate dither slices, repeat determinism, context/grain/window/tile fail-closed paths and existing renderer regressions pass.
+- **Epistemic/structural boundary:** the quarantined raster is mechanics only. Existing heuristic names gain no stock truth. Safe-Lab remains in the established script rather than a parallel engine; the reusable executor remains in `src/inference`.
+- **Propagation/Goal:** U1.6B closes, U1.6 remains active. Effects, integration, streaming/cache, total memory and 100MP stay unresolved. Propagate, commit/push, then choose the next explicitly gated leaf; Ultimate remains active.
