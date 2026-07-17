@@ -120,6 +120,13 @@ safe-rich styles and a fixed real-raster crop byte-for-byte; 284 CPU tests pass.
 Nonzero legacy colour-core grain rejects, physical halation/grain/dust remain
 full-frame, and the experimental path is not a CLI default.
 
+`U1.6C` is frozen for the current simple-halation fallback only. Its actual
+finite support is one gradient pixel plus the largest direct Gaussian kernel,
+giving halo 31 at the default radius. The adapter must reuse the existing
+effect/compositor, pass float/seam and real-raster sRGB8 parity, and remain
+experimental. Physical/density halation keeps its unresolved percentile and
+shape-dependent downsample context and is explicitly excluded.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

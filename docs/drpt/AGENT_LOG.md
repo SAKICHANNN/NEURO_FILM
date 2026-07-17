@@ -1279,3 +1279,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 15 dedicated tests, 55 targeted compatibility tests and the full `284 passed` CPU suite. Coordinate dither slices, repeat determinism, context/grain/window/tile fail-closed paths and existing renderer regressions pass.
 - **Epistemic/structural boundary:** the quarantined raster is mechanics only. Existing heuristic names gain no stock truth. Safe-Lab remains in the established script rather than a parallel engine; the reusable executor remains in `src/inference`.
 - **Propagation/Goal:** U1.6B closes, U1.6 remains active. Effects, integration, streaming/cache, total memory and 100MP stay unresolved. Propagate, commit/push, then choose the next explicitly gated leaf; Ultimate remains active.
+
+## 2026-07-17 - Freeze U1.6C simple-halation tiled composite
+
+- **Node/parent:** `ULT > U1.6 > U1.6C`; effect-specific child after U1.6A execution and U1.6B safe-Lab context pass.
+- **Locality evidence:** current simple halation uses a one-pixel gradient plus direct Gaussian kernels. Required halo is frozen as `1 + round(3*resolved_max_radius)`, or 31 for the default radius 10. A bounded pre-contract probe gives max error `5.96e-08` and seam error `0.0`; it does not pass the node by itself.
+- **Scope/structure:** add a narrow `src/filmfx/tiled_effects.py` adapter that reuses existing halation/compositor and imports only the generic tiler. No duplicate effect math, CLI change, profile change or full-frame cache.
+- **Gates:** radius/boundary variants and real-raster float/seam `<=1e-6`, sRGB8 byte parity, repeat determinism, expanded-window bound, fail-closed parameters, targeted/full regressions.
+- **Exclusions/claim:** physical/density halation remains blocked on global percentiles and shape-dependent downsample context. A pass is numerical heuristic-effect parity only, not physical accuracy, complete renderer tiling or 100MP readiness.
+- **Handoff:** validate and commit/push the contract before implementation; then obey the frozen pass/fail branches without changing thresholds.
