@@ -62,6 +62,12 @@ pre-existing HP5 extreme-highlight residual-chroma defect as the next separate
 safety leaf; it is not evidence against the float migration and must not be
 hidden or rewritten.
 
+That follow-up is now complete as `U2.5A`. HP5 and Tri-X receive a B&W-only
+linear-luminance neutral-axis projection after internal grain/dither/margin;
+uint8/uint16 channels are exactly equal, the frozen Velvia output hash is
+unchanged, the same 6024x4024 RAW has zero non-neutral pixels, and 225 CPU tests
+pass. This is an artifact-safety invariant, not a calibrated B&W stock claim.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

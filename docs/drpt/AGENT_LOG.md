@@ -1130,3 +1130,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen invariant:** `hp5` and `tri_x_400` final float RGB must lie on the neutral axis within `2e-6` and quantize to exactly equal channels, including guardrails, dither and nonzero internal grain. Colour-style output must remain bit-exact.
 - **Scope:** a minimal final projection inside the existing explicit safe-Lab core plus focused tests. No new style/model/data/dependency, no colour-profile changes and no calibrated B&W claim.
 - **Handoff:** commit/push this contract before implementation, then run property/parity tests, full CPU suite and the same full-resolution RAW HP5 visual smoke.
+
+## 2026-07-17 - Promote U2.5A B&W chroma invariant
+
+- **Implementation:** added one B&W-only final neutral-axis projection to the existing safe-Lab core. It preserves linear-light relative luminance, re-encodes a scalar sRGB value and repeats it across channels after internal grain, dither and output margin.
+- **Invariant evidence:** HP5/Tri-X randomized, neutral and saturated fixtures pass with guardrails and nonzero noise. Float spread stays within `2e-6`; uint8/uint16 channels are exactly equal. Frozen Velvia output remains bit-exact at SHA-256 `72a7e30e...e85307`.
+- **Verification:** 17 focused tests and the complete CPU suite pass (`225 passed`). The same 6024x4024 Sony ARW produces an ICC-tagged HP5 PNG8 with [4,251] bounds, maximum channel spread zero and zero non-neutral pixels.
+- **Autonomous vision:** the prior orange high-light speckles are gone. No new posterization, banding, clipping block, geometry corruption or objectionable tone discontinuity is visible.
+- **Claim/structure:** current HP5/Tri-X look approximations are achromatic; no calibrated B&W response claim. The change stays in the existing explicit colour core and tests, adds no model/data/dependency/module and leaves colour-style behavior frozen.
+- **Goal continuation:** U2.5A closes, but Ultimate remains active; remaining local product gaps are U1.2/U1.4/U1.5 while stock learning remains data-gated.

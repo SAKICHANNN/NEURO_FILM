@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 223 local tests pass; U1.3B removes the default renderer's early sRGB8 quantization with exact sRGB8 colour parity and <=1-code effect parity. Current community pixels remain closed for learning. SF1.3B, SF2.0A and SF2.0B0 are closed. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 225 local tests pass; U1.3B removes early sRGB8 quantization and U2.5A makes HP5/Tri-X exactly achromatic without changing frozen Velvia output. Current community pixels remain closed for learning. SF1.3B, SF2.0A and SF2.0B0 are closed. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -63,6 +63,7 @@ Current strengths:
 
 - fixed-grid deterministic color transform; no generative geometry rewrite;
 - stable safe-rich guardrails and fixed test artifacts;
+- exact neutral-axis output for current HP5/Tri-X B&W profiles;
 - modular grain/halation/dust layers;
 - `WorkingImage`, ICC-aware raster helpers and generic RAW decoding exist under `src/preprocess/`;
 - substantial experiment logs and comparison artifacts are preserved.
@@ -71,7 +72,6 @@ Current limitations:
 
 - `scripts/render_film.py` now uses one float32 safe-Lab/effect path for both output depths, but remains SDR/sRGB;
 - generic RAW enters as explicit linear-sRGB/scene-linear and renders end to end, but still lacks a calibrated scene-to-display tone map;
-- current HP5/B&W rendering has sparse pre-existing residual chroma around extreme highlights; it is not worsened by U1.3B, but blocks B&W promotion pending a separate invariant fix;
 - no complete HEIF/HDR/gain-map or wide-gamut production path;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;

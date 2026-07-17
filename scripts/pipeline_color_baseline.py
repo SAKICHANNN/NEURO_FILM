@@ -109,6 +109,23 @@ def linear_to_srgb(linear_rgb: np.ndarray) -> np.ndarray:
     )
 
 
+def project_to_neutral_srgb(rgb: np.ndarray) -> np.ndarray:
+    """Project display-sRGB onto its neutral axis while preserving luminance."""
+    rgb = np.asarray(rgb, dtype=np.float32)
+    linear = np.where(
+        rgb <= 0.04045,
+        rgb / 12.92,
+        np.power((rgb + 0.055) / 1.055, 2.4),
+    )
+    luminance = np.sum(
+        linear * np.asarray([0.2126, 0.7152, 0.0722], dtype=np.float32),
+        axis=2,
+        keepdims=True,
+    )
+    gray = linear_to_srgb(np.clip(luminance, 0.0, 1.0))
+    return np.repeat(gray, 3, axis=2).astype(np.float32)
+
+
 def in_srgb_gamut(lab: np.ndarray) -> np.ndarray:
     linear = lab_to_linear_srgb(lab)
     return np.all((linear >= 0.0) & (linear <= 1.0), axis=-1)
@@ -374,6 +391,8 @@ def style_transfer_rgb(
         result = np.clip(result + rng.uniform(-0.5, 0.5, size=result.shape).astype(np.float32) * (float(dither) / 255.0), 0.0, 1.0)
 
     result = apply_output_margin(result, output_margin)
+    if style in B_AND_W_STYLES:
+        result = project_to_neutral_srgb(result)
     return np.asarray(np.clip(result, 0.0, 1.0), dtype=np.float32)
 
 
