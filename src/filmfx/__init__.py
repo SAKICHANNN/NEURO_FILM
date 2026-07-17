@@ -15,19 +15,32 @@ from .halation_controls import (
     validate_physical_halation_controls,
 )
 from .layers import FilmLayer, layer_metrics
-from .tiled_effects import composite_simple_halation_tiled, simple_halation_required_halo
+from .tiled_effects import (
+    DustScratchContext,
+    DustScratchExecutionMetadata,
+    build_dust_scratch_context,
+    composite_dust_scratch_tiled,
+    composite_simple_halation_tiled,
+    dust_scratch_alpha_window,
+    simple_halation_required_halo,
+)
 
 __all__ = [
     "FilmLayer",
+    "DustScratchContext",
+    "DustScratchExecutionMetadata",
     "HALATION_PRESETS",
     "HalationPreset",
     "PhysicalHalationControls",
     "build_physical_halation_layer",
+    "build_dust_scratch_context",
     "composite_layers",
+    "composite_dust_scratch_tiled",
     "composite_simple_halation_tiled",
     "density_halation_layer",
     "describe_physical_halation_controls",
     "dust_scratch_layer",
+    "dust_scratch_alpha_window",
     "grain_residual_layer",
     "halation_layer",
     "get_halation_preset",
