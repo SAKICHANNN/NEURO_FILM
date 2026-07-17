@@ -5,36 +5,35 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "38151359cbff71308aa7665dcfa5d7ab11c81650",
-  "iteration": 11,
-  "current_node": "ULT > U5.R1 > U5.R1B6",
-  "current_leaf": "U5.R1C ready",
+  "head": "80d4bbd71ce11308b9fcdbb981ca8e3f4825dbae",
+  "iteration": 12,
+  "current_node": "ULT > U5.R1 > U5.R1C",
+  "current_leaf": "U5.R1C2 ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "38151359cbff71308aa7665dcfa5d7ab11c81650",
+  "last_verified_commit": "80d4bbd71ce11308b9fcdbb981ca8e3f4825dbae",
   "last_full_test": {
     "command": ".\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q",
-    "passed": 397,
+    "passed": 403,
     "failed": 0,
-    "timestamp": "2026-07-17T14:40:54Z"
+    "timestamp": "2026-07-17T14:57:15Z"
   },
   "ready_leaves": [
-    "U5.R1C",
+    "U5.R1C2",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "Start U5.R1C planning/contract freeze for conventional-metric failure study on the fully bound A0 suite; still no hidden A1 population, recruitment or SCIS training; or advance U1 colour-state product leaf; Goal remains ACTIVE",
+  "next_action": "Continue autonomously: start U5.R1C2 SCIS v0 refinement for sparse HF speckles and style-robust residuals, or advance U1.2/U1.4/U1.5; do not wait for another user continue; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1b6_hardneg_operator_v0.json",
-    "configs/filmstylesafe_r1b6_a0_inventory_v1.json",
-    "configs/filmstylesafe_r1b6_decision_v1.json",
-    "docs/FILMSTYLESAFE_R1B6_HARDNEG.md",
-    "src/eval/filmstylesafe_synthetic.py"
+    "configs/filmstylesafe_r1c_contract_v1.json",
+    "configs/filmstylesafe_r1c_decision_v1.json",
+    "docs/FILMSTYLESAFE_R1C_A0_PILOT.md",
+    "src/eval/filmstylesafe_r1c.py"
   ],
-  "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T14:40:54Z",
-  "selection_rationale": "R1B6 closes the last unbound A0 card with a legitimate-local bloom/halation hard-negative and opens R1C planning under existing authorization limits."
+  "max_session_stop_loops": 20,
+  "last_update_utc": "2026-07-17T14:57:15Z",
+  "selection_rationale": "R1C confirms conventional metric gap on A0 proxy labels; SCIS v0 stays an unpromoted candidate. Autonomous continue to R1C2 or U1."
 }

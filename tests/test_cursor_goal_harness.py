@@ -84,7 +84,7 @@ def test_hooks_json_keeps_stop_entry() -> None:
     stop = data["hooks"]["stop"]
     assert isinstance(stop, list) and stop
     assert "ultimate_goal_stop.py" in stop[0]["command"]
-    assert stop[0]["loop_limit"] == 25
+    assert stop[0]["loop_limit"] == 20
 
 
 def test_objective_hash_mismatch_fails() -> None:
