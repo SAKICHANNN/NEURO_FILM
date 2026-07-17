@@ -229,6 +229,13 @@ so this pool is closed for learning. The local ready branch returns to the
 independent deterministic U1 high-precision product path while other stock/data
 evidence is researched; training, operator fitting and LSM remain closed.
 
+That stock/data research now has one frozen metadata-only leaf: `SF2.0A`
+samples exactly 63 NASA/JSC Apollo 7 photo pages across two SO-368 and five
+SO-121 colour magazines. It tests only whether stock, physical-magazine,
+filter, exposure and preregistered content-tag connectivity is sufficient to
+justify a larger metadata audit. It requests no image payload. A pass cannot
+open pixels, operator fitting, training, LSM or a stock-response claim.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

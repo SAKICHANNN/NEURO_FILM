@@ -1048,3 +1048,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Automated evidence:** the PIL wrapper is exactly equal to explicit 8-bit quantization of the float core. PNG/TIFF E2Es decode as uint16, carry ICC and contain more than 256 sample values. Invalid JPEG16 is rejected. Focused suite passes 24 tests; full CPU suite passes 212 tests.
 - **Real-image evidence:** full 6024x4024 Sony ARW renders to a 113,031,104-byte PNG16; decode is uint16 with 63,480 distinct sample values and range [1028,64507]. Metrics confirm `legacy_8bit_adapter=false`, `internal_color_precision=float32` and output depth 16. Downsampled autonomous vision smoke shows no confirmed severe artifact.
 - **Claim boundary:** this remains SDR sRGB and `film-inspired/look-approximation`; generic RAW still lacks calibrated scene-to-display mapping. HDR, HEIF, wide gamut and default-path migration remain open.
+
+## 2026-07-17 - Freeze SF2.0A Apollo 7 metadata feasibility
+
+- **Node/parent goal:** `ULT > RF0.4 > SF2.0A`; continue stock-first evidence search after SF1.3B closes the current community pixels.
+- **Source finding:** NASA/JSC provides authoritative Apollo 7 magazine, film, filter and frame ranges plus public photo-page metadata. Two SO-368 and five SO-121 colour magazines share one mission/camera context. NASA raw scans and ASU processed products have different rights and remain strictly separated.
+- **Frozen scope:** exactly nine evenly spaced frames from each of seven colour magazines, 63 sequential HTML requests maximum. Record bounded page metadata/hash/time only; never request offered image, ZIP, KML or cloud-mask payloads and retain no HTML body.
+- **Gate:** require per-stock/per-magazine support, two shared preregistered content tags across two magazines per stock, a filter-free cross-stock bridge and visible exposure-state variation. Stock/filter or content confounding closes the branch rather than opening model capacity.
+- **Claim boundary:** a pass permits only a separately frozen larger metadata audit. Image acquisition, operator fitting, training, LSM, `S1/S2`, calibration and product claims remain false.
+- **Skills/governance:** `dev-research-reliability` is the sole writer; router, research, ML, plan, DRPT, log and structure skills are read-only governance. DRPT L2/Mode A, exactly one writer.
+- **Handoff:** validate JSON/docs and authority propagation, commit/push the contract, then implement/test the bounded page-only audit before any live execution.

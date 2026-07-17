@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf2.0a-apollo7-stock-magazine-metadata-feasibility-v1",
+  "node": "ULT > RF0.4 > SF2.0A",
+  "source": {
+    "mission": "AS07",
+    "authoritative_mission_report_url": "https://eol.jsc.nasa.gov/searchphotos/Metadata/Apollo7.htm",
+    "photo_page_template": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission={mission}&roll={roll}&frame={frame}",
+    "scan_rights_url": "https://apollo.im-ldi.com/ABOUT_SCANS/index.html",
+    "api_used": false,
+    "api_key_required": false
+  },
+  "magazines": [
+    {"physical_magazine": "M", "photo_roll": "3", "frame_start": 1511, "frame_end": 1557, "film_stock_id": "kodak_ektachrome_so_368", "film_code": "SO368", "filter": "none"},
+    {"physical_magazine": "N", "photo_roll": "4", "frame_start": 1558, "frame_end": 1612, "film_stock_id": "kodak_ektachrome_so_368", "film_code": "SO368", "filter": "none"},
+    {"physical_magazine": "Q", "photo_roll": "5", "frame_start": 1613, "frame_end": 1671, "film_stock_id": "kodak_ektachrome_so_121", "film_code": "SO121", "filter": "wratten_2a"},
+    {"physical_magazine": "O", "photo_roll": "6", "frame_start": 1672, "frame_end": 1737, "film_stock_id": "kodak_ektachrome_so_121", "film_code": "SO121", "filter": "wratten_2a"},
+    {"physical_magazine": "S", "photo_roll": "7", "frame_start": 1738, "frame_end": 1879, "film_stock_id": "kodak_ektachrome_so_121", "film_code": "SO121", "filter": "wratten_2a"},
+    {"physical_magazine": "R", "photo_roll": "8", "frame_start": 1880, "frame_end": 1943, "film_stock_id": "kodak_ektachrome_so_121", "film_code": "SO121", "filter": "wratten_2a"},
+    {"physical_magazine": "P", "photo_roll": "11", "frame_start": 1979, "frame_end": 2043, "film_stock_id": "kodak_ektachrome_so_121", "film_code": "SO121", "filter": "none"}
+  ],
+  "selection": {
+    "frames_per_magazine": 9,
+    "algorithm": "for i=0..8 use floor(frame_start + i*(frame_end-frame_start)/8); preserve magazine order",
+    "expected_page_requests": 63,
+    "maximum_page_requests": 63,
+    "image_urls_requested": false,
+    "html_bodies_retained": false
+  },
+  "page_contract": {
+    "required_status": 200,
+    "required_content_type_prefix": "text/html",
+    "maximum_html_bytes": 2097152,
+    "required_nasa_photo_id_match": true,
+    "required_film_code_match": true,
+    "record_fields": [
+      "nasa_photo_id",
+      "film_code",
+      "film_exposure",
+      "geographic_name",
+      "features",
+      "caption",
+      "offered_image_metadata_only",
+      "page_sha256",
+      "request_utc"
+    ]
+  },
+  "content_tags": {
+    "ocean_water": ["ocean", "sea", "gulf", "water", "coast", "shore"],
+    "land_terrain": ["land", "desert", "mountain", "terrain", "state", "country", "peninsula", "island"],
+    "cloud_weather": ["cloud", "storm", "weather", "hurricane", "typhoon"],
+    "sun_glint": ["sun", "sunglint", "sun glint", "reflection", "reflects"],
+    "spacecraft_hardware": ["spacecraft", "rocket", "module", "interior", "window", "hardware"]
+  },
+  "request_limits": {
+    "timeout_seconds": 60,
+    "request_retries": 2,
+    "retry_backoff_seconds": 2,
+    "request_interval_seconds": 1.0,
+    "user_agent": "K-MCFM-research-apollo7-metadata/1.0 (bounded metadata-only feasibility audit)"
+  },
+  "decision_gates": {
+    "minimum_valid_pages_per_stock": 12,
+    "minimum_valid_pages_per_magazine": 4,
+    "minimum_independent_magazines_per_stock": 2,
+    "minimum_shared_content_tags": 2,
+    "minimum_rows_per_stock_per_shared_tag": 3,
+    "minimum_magazines_per_stock_per_shared_tag": 2,
+    "minimum_filter_free_rows_per_stock": 4,
+    "minimum_distinct_reported_exposure_states": 2
+  },
+  "allowed_decisions": [
+    "metadata_connectivity_candidate",
+    "insufficient_connectivity",
+    "stock_filter_confounded",
+    "content_confounded",
+    "source_unavailable",
+    "metadata_mismatch"
+  ],
+  "report": "outputs/real_film/apollo7_metadata_feasibility_v1/audit_report.json",
+  "decision": "outputs/real_film/apollo7_metadata_feasibility_v1/decision.json",
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "authoritative Apollo 7 stock/magazine metadata feasibility only; no pixel quality, stock identifiability, digital-to-film operator, latent mode, calibration, S1/S2, training, authenticity or product claim"
+}

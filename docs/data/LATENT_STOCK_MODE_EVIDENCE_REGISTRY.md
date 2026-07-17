@@ -52,6 +52,7 @@ Each source row records only independently verifiable fields:
 | BlueNeg physical-roll pilot | correct-roll advantage fails replication and loses to content-similar wrong-roll retrieval | `unidentified` for reusable roll information | false |
 | FILM-R | physical scans but family/content structural confounding; roll/process/scanner unknown | `source/content confounded` | false |
 | LOC FSA/OWI | historical physical film; stock, roll, process and scanner settings unknown | historical/unknown nuisance lane, not named-stock mode study | false |
+| Apollo 7 SF2.0A | authoritative SO-368/SO-121 magazine/filter/frame mapping; bounded HTML feasibility only, no pixels | `metadata only`; must first survive stock/filter/content connectivity and later stock-identifiability gates | false |
 | 53/55/56 deterministic anchors | same-input normalisation indicates near-collinear direction; not real-stock observations | required strength-path negative control; not modes | false |
 
 Current trusted metadata does not provide actual exposure offset, metered EI,

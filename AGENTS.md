@@ -267,6 +267,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/rights pass | SF1.2 | Eight shared authors have a current CC BY page for both stocks; 61 HTML requests, no image access |
 | Done/pixel pass | SF1.3A | 37 clean bounded Ektar/Velvia derivatives, eight bilateral UIDs, zero duplicate pairs, no confirmed severe artifact; no fitting/training |
 | Done/closed | SF1.3B | Shared-author Ektar/Velvia RGB fails held-out-UID identifiability and loses to nuisance controls; pool closed for learning |
+| Ready/metadata only | SF2.0A | Audit 63 deterministic Apollo 7 NASA/JSC HTML pages for SO-368/SO-121 magazine/filter/content connectivity; no images, fitting, training or LSM |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

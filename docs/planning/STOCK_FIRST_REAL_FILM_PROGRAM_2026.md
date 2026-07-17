@@ -49,7 +49,7 @@ against the exact-revision frozen metadata.
 |---|---|---|---|---|---|---|
 | BlueNeg | dataset-declared `film_type` at frozen revision; not edge-code/manufacturer proof | 53 physical rolls / 491 frames | 491 negated previews; 247 printed-photo proxy alignments | old negative, restoration target, unknown process/lab/scanner | public academic/commercial use with mandatory credit; bounded lanes about 956 MB | only immediately executable multi-stock source; select four pilots but keep all below `S2` until controls pass |
 | Xi Film marketplace | contributor/platform-verified stock, camera and scan per licensed frame | contributor/source; roll identity not advertised | high-resolution positive scans | lab/scanner/process fields require contract | paid per-image licensing and manual delivery | promising future source-diversification lane; no purchase or training until licence explicitly covers ML and grouping is verified |
-| Apollo flight archive | documented mission/magazine/film metadata | magazine/frame | high-resolution scans | extreme lunar/space content and archive processing | public archive access; derivative terms require a source-specific freeze | metadata/sample audit only; unsuitable as a general stock pilot without cross-content evidence |
+| Apollo flight archive | documented mission/magazine/film metadata | magazine/frame | raw flight-film scans are a future rights-separated possibility | extreme orbital content, exposure/filter association and archive processing | NASA raw scans public domain with credit; ASU processed products restricted | `SF2.0A` freezes a 63-page Apollo 7 metadata-only feasibility audit; no pixels or learning |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -247,3 +247,13 @@ SF1.3A remains an `S0` acquisition/diagnostic pilot. It opens only the frozen
 fails because global RGB is 56.25%/p=.464 and weaker than 68.75% nuisance
 controls. The pool is closed for stock learning; no training, operator fitting,
 LSM or GPU work is justified.
+
+The next stock-source leaf is `SF2.0A`, not a model fallback. NASA/JSC's Apollo
+7 report provides exact SO-368/SO-121 magazine, filter and frame ranges inside
+one mission. The frozen feasibility audit requests nine evenly spaced HTML
+pages from each of seven colour magazines (63 maximum) and records only stock,
+exposure, geographic/features/caption and offered-file metadata. Its gate
+requires independent magazine support, shared preregistered content tags and a
+filter-free cross-stock bridge. Even a pass opens only a separately frozen
+larger metadata audit; image payloads, training, operator fitting and LSM stay
+forbidden.
