@@ -1459,3 +1459,14 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Inventory:** R1B4 A0 inventory binds the executed synthetic member to parent `u41-01`; hard-negative card remains unbound.
 - **Verification:** 391 CPU tests pass.
 - **Handoff:** Goal ACTIVE. Next `U5.R1B5` refine speckle family / bind RF2.C0, or parallel U1 product leaf.
+
+## 2026-07-17 - Execute U5.R1B5 HF-speckle and RF2.C0 control binding
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B5`; continue Ultimate Goal from ACTIVE state.
+- **Selection:** chose R1B5 over U1 because Goal state listed HF-speckle refinement / RF2.C0 bind as the next FilmStyleSafe leaf and local ignored RF2.C0 outputs exist on This Computer.
+- **Implementation:** `explicit-highlight-chroma-speckle-v1`; contract role `external_style_control`; inventory binds HF synth + Ektar/fixed-e0@01; R1B4 solid synth retained.
+- **Hashes:** synth out `73af7d4e...`, params `0cdb2e52...`; Ektar `d23ddd75...`.
+- **Autonomous vision:** HF magenta dots (not solid disk); Ektar@01 clean warm Look Approximation; gates not lowered; still regional vs fine ID11.
+- **Limits:** hard-negative card still unbound; no hidden splits/participants/training; spektrafilm remains external A0-only control.
+- **Verification:** 15 focused FilmStyleSafe tests; 394 full CPU tests.
+- **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1B6` (hard-negative bind) then R1C gate review, or parallel U1.2/U1.4/U1.5.

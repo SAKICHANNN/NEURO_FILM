@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "operator_id": "explicit-highlight-chroma-speckle-v1",
+  "node": "ULT > U5.R1 > U5.R1B5",
+  "transform_family": "safe_lab_global",
+  "failure_family": "neon_chroma_island_or_highlight_speckle",
+  "seed": 20260717,
+  "center_xy_norm": [0.62, 0.28],
+  "radius_norm": 0.14,
+  "luma_threshold": 0.70,
+  "chroma_boost": 1.55,
+  "speckle_density": 0.045,
+  "blob_radius_px": 1,
+  "input_member_id": "a0-source-u41-01",
+  "input_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+  "output_path": "outputs/filmstylesafe/r1b5/a0_synth_speckle_hf_001.png",
+  "claim_ceiling": "A0 synthetic HF-speckle stress prototype only; autonomous visual adjudication pending; not a population preference or risk claim"
+}

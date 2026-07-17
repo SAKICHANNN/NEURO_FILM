@@ -439,9 +439,10 @@ User feedback also states that many theoretically stronger candidates look techn
 | U5.R1B2 | complete: provisional inventory scaffold | Bounded A0 inventory and synthetic operator prototype cards | U5.R1B | 7 validated cards; placeholder hashes; no pixels; `docs/FILMSTYLESAFE_R1B2_INVENTORY.md` |
 | U5.R1B3 | complete: A0 identity binding | Bind real A0 hashes/IDs from U4.1/U4.2/ID11 local artifacts | U5.R1B2 | 5/7 members bound with verified SHA-256; synth/hardneg still placeholders; `docs/FILMSTYLESAFE_R1B3_BINDING.md` |
 | U5.R1B4 | complete: synthetic prototype | First explicit highlight-chroma-island failure operator | U5.R1B3 | Deterministic PNG on u41-01; output `c04a9237...`; large magenta disk noted by autonomous vision; `docs/FILMSTYLESAFE_R1B4_SYNTHETIC.md` |
-| U5.R1B5 | ready | Refine speckle-like synthetic family and/or bind RF2.C0 A0 control | U5.R1B4 | Still no hidden splits, recruitment or SCIS training |
+| U5.R1B5 | complete: HF-speckle + RF2.C0 bind | Speckle-v1 synthetic and Ektar/fixed-e0 A0 external control | U5.R1B4 | HF dots `73af7d4e...`; Ektar `d23ddd75...`; hardneg still unbound; `docs/FILMSTYLESAFE_R1B5_RESULTS.md` |
 | GH0 | complete | Cursor Goal harness: rule, skill, state, stop hook, protocol, tests | none | `docs/drpt/CURSOR_GOAL_PROTOCOL.md`; Goal state ACTIVE |
-| U5.R1C | pending | Conventional-metric failure study plus prospective intent-aware SCIS v0 | U5.R1B5 | A0 development and A1 hidden low-FPR sensitivity on unseen transform families/legitimate-local hard negatives; pass/fail novelty decision |
+| U5.R1B6 | ready | Bind legitimate-local hard-negative A0 member | U5.R1B5 | Still no hidden splits, recruitment or SCIS training |
+| U5.R1C | pending | Conventional-metric failure study plus prospective intent-aware SCIS v0 | U5.R1B6 | A0 development and A1 hidden low-FPR sensitivity on unseen transform families/legitimate-local hard negatives; pass/fail novelty decision |
 | U5.R2A | pending | Versioned numerically constrained operator contract | U1/U2 renderer foundation | Identity/curve/LUT property tests, golden vectors and explicit non-safety counterexample |
 | U5.R2B | pending | Strong global operator frontier | U5.R2A, U5.R1 | Frozen strongest eligible global policy under identical renderer/export, both risk gates and target-look gate |
 | U5.R2C | pending | B1 complete fixed-bank cross-rater empirical-ceiling policy and annotation budget | U5.R2B | Best qualified nonsevere candidate or identity on every scene; supported all-scene tie-score gain or adaptive branches stop |

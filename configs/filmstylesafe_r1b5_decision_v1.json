@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1B5",
+  "status": "complete",
+  "decision": "hf_speckle_synthetic_and_rf2c0_control_bound",
+  "operator_id": "explicit-highlight-chroma-speckle-v1",
+  "synthetic_output_hash": "73af7d4e49c3d28a714f172a974714551360497033eb9c07493f990163012085",
+  "synthetic_parameter_hash": "0cdb2e526108993a56428086abdbec9edbfcd7f1b879f76912e464bcbe2db4d8",
+  "rf2c0_control_hash": "d23ddd7510c137b3116f7f647a83a5fa25675ddb1a6f0d1af22d5c40f35d182e",
+  "rf2c0_control_id": "kodak_ektar_100__negative_to_print__fixed_e0",
+  "contract_role_extension": "external_style_control",
+  "visual_adjudication": {
+    "synthetic_hf": "autonomous_cursor_inspection_clustered_magenta_dots_not_solid_disk_still_regional_vs_fine_id11",
+    "rf2c0_ektar_01": "autonomous_cursor_inspection_clean_warm_look_no_confirmed_severe_artifact_on_sample_01"
+  },
+  "opens": [
+    "U5.R1B6_or_hardneg_binding_then_R1C_gate_review",
+    "optional_finer_speckle_density_ablation_without_lowering_gates"
+  ],
+  "does_not_open": [
+    "hidden_split_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "U5.R1C_without_leakage_safe_executed_suite_closure",
+    "stock_truth_or_product_integration_of_spektrafilm",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 HF-speckle prototype plus one bound RF2.C0 external style control; autonomous vision only; no population preference, stock authenticity, or severe-risk guarantee"
+}

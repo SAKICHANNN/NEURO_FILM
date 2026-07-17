@@ -20,6 +20,7 @@ ROLES = frozenset(
         "real_failure",
         "legitimate_local_hard_negative",
         "strength_control",
+        "external_style_control",
         "regression_case",
     }
 )
@@ -139,6 +140,19 @@ def validate_suite_member(record: Mapping[str, Any], contract: Mapping[str, Any]
         )
         if scheme not in allowed:
             raise FilmStyleSafeR1BError(f"unknown owner_scheme_id: {scheme}")
+    if role == "external_style_control":
+        if transform_family != "external_spektrafilm_look_approximation_control":
+            raise FilmStyleSafeR1BError(
+                "external_style_control requires external_spektrafilm_look_approximation_control"
+            )
+        if failure_family != "none":
+            raise FilmStyleSafeR1BError("external_style_control failure_family must be none")
+        if origin != "rf2_c0_spektrafilm_outputs":
+            raise FilmStyleSafeR1BError("external_style_control currently limited to RF2.C0 origin")
+        control_id = record.get("external_control_id")
+        if not isinstance(control_id, str) or not control_id:
+            raise FilmStyleSafeR1BError("external_style_control requires external_control_id")
+        _identifier(control_id, "external_control_id")
     if role == "regression_case":
         if origin != "known_id11_red_speckle":
             raise FilmStyleSafeR1BError("regression_case currently limited to ID11 origin")

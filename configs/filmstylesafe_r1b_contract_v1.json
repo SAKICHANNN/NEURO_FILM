@@ -102,6 +102,7 @@
     "real_failure",
     "legitimate_local_hard_negative",
     "strength_control",
+    "external_style_control",
     "regression_case"
   ],
   "authorization": {
