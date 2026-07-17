@@ -1058,3 +1058,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Claim boundary:** a pass permits only a separately frozen larger metadata audit. Image acquisition, operator fitting, training, LSM, `S1/S2`, calibration and product claims remain false.
 - **Skills/governance:** `dev-research-reliability` is the sole writer; router, research, ML, plan, DRPT, log and structure skills are read-only governance. DRPT L2/Mode A, exactly one writer.
 - **Handoff:** validate JSON/docs and authority propagation, commit/push the contract, then implement/test the bounded page-only audit before any live execution.
+
+## 2026-07-17 - Implement the SF2.0A bounded metadata auditor
+
+- **Implementation:** added an isolated `src/real_film` module that validates the exact 63-page sample, streams bounded NASA/JSC HTML, verifies photo ID and film code, extracts only preregistered exposure/geographic/features/caption and offered-file metadata, applies deterministic content tags and emits separate report/decision artifacts.
+- **Network safety:** the client requests only the configured `photo.pl` URLs. Offered JPG/PNG/TIFF links are recorded as metadata and never followed; no HTML body is retained in output. Host, HTTPS, unique sample count, response size and decision vocabulary fail closed.
+- **Decision:** support, magazine, filter-free bridge, exposure-state and shared-content gates are explicit. Metadata mismatch, source failure, insufficient connectivity, filter confounding and content confounding have separate stop branches. Every branch keeps pixels, fitting, training and LSM false.
+- **Verification:** five focused tests pass, including exact 63-page selection, parser behavior, no-image-request enforcement, mismatch rejection and filter-confounding branch. Compile/sample smoke and `git diff --check` pass. The complete CPU suite passes (`217 passed`).
+- **Structure:** implementation stays under the existing `src/real_film`, `scripts`, `tests` and ignored `outputs/real_film` boundaries; no parallel data subsystem or production renderer dependency was introduced.
+- **Handoff:** commit/push the verified implementation before issuing any of the frozen 63 live requests; then execute once and propagate the evidence without loosening gates.
