@@ -1349,3 +1349,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen design:** dedicated `src/filmfx/tiled_grain.py`, private caller-rooted temporary directory, raw plus high-pass memmaps, U1.6A filtering, legacy-order in-place reductions, strict scratch budget and cleanup on success/failure.
 - **Gates/claim:** byte-identical layer/composite, colour/B&W, metadata, injected-failure cleanup, real-raster mechanics and full suite. This may prove bounded RAM with O(image) disk scratch only; no physical, persistent-cache, default, total-memory or 100MP claim.
 - **Handoff:** commit/push the contract separately, then implement without changing `grain_residual_layer` or production renderer paths.
+
+## 2026-07-17 - Pass U1.6F exact staged legacy grain
+
+- **Implementation/structure:** commit `cbb6c6c` adds dedicated `src/filmfx/tiled_grain.py`: row-chunked PCG64 raw memmap, radius-4 U1.6A window high-pass, legacy-order global reductions, strict two-field budget and private cleanup. Legacy layer and renderer paths are unchanged.
+- **Exactness/lifecycle:** four colour/B&W and boundary variants have byte-identical residual, composited float and sRGB8 output. Budget failure and injected blur failure leave no scratch; repeat metadata excludes temporary path identity.
+- **Committed mechanics smoke:** fixed 257x389 colour/B&W bases, strength .018, 35 tiles, max expanded 72x72x3 and 2,399,352 peak scratch bytes. Both modes are residual/float/sRGB8 byte-identical with zero scratch residue and active pixel changes.
+- **Visual veto:** .018 shows fine grain without confirmed seam/block/corruption on the mechanics crop. Strength .35 dominates both outputs with severe high-frequency noise and is rejected despite parity; no strength policy is promoted from numerical evidence.
+- **Verification:** 21 dedicated, 127 adjacent and 349 full CPU tests pass; compile/diff checks pass.
+- **Claim/Goal:** this proves exact legacy grain with bounded RAM by O(image) temporary disk only. No physical/default/latency/SSD/total-memory/100MP claim opens. U1.6 and Ultimate remain active; next choose physical-halation context or orchestration/resource policy.

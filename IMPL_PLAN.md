@@ -151,11 +151,13 @@ required output-identifiable order cannot be proved without changing effect
 math or weakening the gate, so no combined adapter is retained. U1.6C/D remain
 valid independently and U1.6 moves to a truthful grain/global-context child.
 
-`U1.6F` is frozen as an exact-legacy, bounded-RAM staging pilot. Development
-probes show row-chunked PCG64 normal generation and memmap reductions can retain
-bytes, while the grain high-pass has radius four. The implementation may use
-private temporary raw/high-pass memmaps with strict budget and cleanup, but may
-not call this compact context, streaming, physical grain or 100MP readiness.
+`U1.6F` now passes exact-legacy temporary-disk staging. Colour and monochrome
+residuals/composites are byte-identical through row-chunked PCG64, radius-four
+tiles and legacy-order memmap reductions; budget and injected-failure cleanup
+leave zero residue, and 349 CPU tests pass. Default strength .018 has no
+confirmed mechanics artifact, while .35 is visually rejected as severe noise.
+This is bounded RAM with two O(image) scratch fields, not streaming, physical
+grain, production integration or 100MP total-memory readiness.
 
 ---
 
