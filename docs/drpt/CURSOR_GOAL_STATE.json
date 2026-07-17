@@ -5,12 +5,12 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "593a9e6332ca15e7ca6be77203a074f098048649",
-  "iteration": 2,
+  "head": "8dd733be1c1ed9f72c596c1166e6d74268abec06",
+  "iteration": 3,
   "current_node": "ULT > U5.R1 > U5.R1B",
-  "current_leaf": "U5.R1B failure-suite design contract",
-  "phase": "PROPAGATE",
-  "last_verified_commit": "593a9e6332ca15e7ca6be77203a074f098048649",
+  "current_leaf": "U5.R1B2 ready",
+  "phase": "CONTINUE",
+  "last_verified_commit": "8dd733be1c1ed9f72c596c1166e6d74268abec06",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 385,
@@ -21,7 +21,7 @@
     "U5.R1B2",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "After commit/push of R1B design, start U5.R1B2 bounded A0 inventory or explicit synthetic operator prototypes still without participants/training/hidden splits",
+  "next_action": "Begin U5.R1B2: create bounded A0 inventory manifest stubs and at least one explicit synthetic operator prototype card under the frozen R1B contract; no hidden splits or training",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -34,6 +34,6 @@
     "docs/FILMSTYLESAFE_R1B_DESIGN.md"
   ],
   "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T08:05:00Z",
+  "last_update_utc": "2026-07-17T08:02:38Z",
   "selection_rationale": "R1B design DoD met; next is executed inventory/prototypes under the frozen contract, or parallel U1 colour-state product leaves."
 }
