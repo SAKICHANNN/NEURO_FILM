@@ -23,7 +23,7 @@
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Latent stock modes | hypothesis only; data-gated | no stock has proved `K>1`; LSM0 freezes semantics, LSM1 requires stock/connectivity/identifiability/rights gates, and `K=1` remains a formal branch |
-| Input pipeline | partial | `render_film` now enters through `WorkingImage`; an explicit legacy sRGB8 adapter remains |
+| Input pipeline | float32 default pass | `render_film` enters through `WorkingImage`, uses one float32 safe-Lab/effect path and quantizes only at final 8/16-bit export |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
 | Current local data | FilmSet, BlueNeg bounded pilot, stock-pilot v1, FILM-R and FSA/OWI pilot | stock-pilot v1: 189 hash+decode verified files; Gold display-candidate; NPH/Konica/GA post-negation-preview diagnostics only; FSA/OWI remains historical/unknown-stock |
 | Named-stock coverage | **not established** | BlueNeg Kodak Gold is provisional single-stock evidence below transferable `S2`; no second stock is promoted |
@@ -31,7 +31,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 221 CPU tests pass with the SF2.0B0 implementation |
+| Tests | baseline passes | 223 CPU tests pass after the U1.3B default float-internal migration |
 
 ---
 
@@ -86,8 +86,8 @@
 | 10 | U0.3 | Legacy manifest-v2 lineage audit | complete; reference-derived lane blocked | 4,210/4,210 quarantined; new public-data contracts live under U5.CT2 |
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | ready support | none for local schema/tooling; participants later require approval |
-| 13 | U1.1 | Make `WorkingImage` the only `render_film` ingress | in progress; real ARW E2E now passes | generic RAW is explicit linear-sRGB/scene-linear; calibrated scene-to-display mapping still absent |
-| 14 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | in progress; opt-in true PNG/TIFF16 pass | float32 safe-Lab/effects to PNG/TIFF16 now passes; HDR/HEIF/wide-gamut and calibrated scene-to-display remain pending |
+| 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
+| 14 | U1.2–U1.5 | Color-state contract, 16-bit/ICC export, HDR/HEIF handling | in progress; float default + true PNG/TIFF16 pass | HDR/HEIF/wide-gamut and calibrated scene-to-display remain pending; B&W chroma invariant is a safety follow-up |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | none for local research; U0.2 before public release |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
 | 17 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | deferred | not an active user ask or dependency |
@@ -129,4 +129,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; next ready local leaf returns to `U1.1/U1.3` deterministic high-precision product work while other stock/data evidence is researched; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; U1.3B default float-internal migration is complete and the next local safety leaf is the observed B&W chroma invariant; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*

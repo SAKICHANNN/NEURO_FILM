@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 from collections.abc import Callable
 import json
 import subprocess
@@ -12,6 +13,9 @@ import cv2
 import tifffile
 from PIL import Image
 
+from scripts.render_film import build_color_render, build_color_render_float
+from src.filmfx import composite_layers, dust_scratch_layer, grain_residual_layer, halation_layer
+
 from src.preprocess import (
     load_working_image,
     save_srgb16_png,
@@ -22,6 +26,21 @@ from src.preprocess import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _render_args(style: str = "velvia_50") -> argparse.Namespace:
+    return argparse.Namespace(
+        stats=ROOT / "configs" / "film_color_stats.json",
+        profile_config=ROOT / "configs" / "color_rendering_profiles.yaml",
+        preset="safe-rich",
+        style=style,
+        seed=7,
+        guardrails=ROOT / "configs" / "color_guardrails.json",
+    )
+
+
+def _quantize8(rgb: np.ndarray) -> np.ndarray:
+    return np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
 
 
 def test_working_image_legacy_adapter_round_trips_srgb_fixture(tmp_path: Path) -> None:
@@ -107,7 +126,8 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     assert metrics["input_decode"]["transfer_state"] == "display_linear"
     assert metrics["input_decode"]["source_transfer_state"] == "display_referred"
     assert metrics["input_decode"]["bit_depth_in"] == 8
-    assert metrics["input_decode"]["legacy_8bit_adapter"] is True
+    assert metrics["input_decode"]["legacy_8bit_adapter"] is False
+    assert metrics["input_decode"]["internal_color_precision"] == "float32"
     assert metrics["output_claim"]["output_label"] == "film-inspired"
     assert metrics["output_claim"]["color_state_policy"] == "look_approximation_only"
     assert metrics["output_claim"]["calibrated_reference_allowed"] is False
@@ -123,7 +143,7 @@ def test_render_film_e2e_uses_working_image_for_sdr_rasters(
     ("suffix", "writer"),
     [(".png", save_srgb16_png), (".tiff", save_srgb16_tiff)],
 )
-def test_render_film_e2e_records_tiff_png16_ingress_and_legacy_output_boundary(
+def test_render_film_e2e_records_tiff_png16_ingress_and_float_output_boundary(
     tmp_path: Path, suffix: str, writer: Callable[[np.ndarray, Path], str]
 ) -> None:
     rgb = np.linspace(0.0, 1.0, 18 * 24 * 3, dtype=np.float32).reshape(18, 24, 3)
@@ -147,8 +167,87 @@ def test_render_film_e2e_records_tiff_png16_ingress_and_legacy_output_boundary(
     assert completed.returncode == 0, completed.stderr
     metrics = json.loads(output_path.with_suffix(".metrics.json").read_text(encoding="utf-8"))
     assert metrics["input_decode"]["bit_depth_in"] == 16
-    assert metrics["input_decode"]["legacy_8bit_adapter"] is True
+    assert metrics["input_decode"]["legacy_8bit_adapter"] is False
+    assert metrics["input_decode"]["internal_color_precision"] == "float32"
     assert metrics["output_encode"]["bit_depth"] == 8
+
+
+def test_default_float_path_is_exact_for_srgb8_colour_and_bounded_for_effects(tmp_path: Path) -> None:
+    y, x = np.mgrid[0:48, 0:64]
+    source = np.stack((x * 4, y * 5, (x + y) * 2), axis=2).clip(0, 255).astype(np.uint8)
+    input_path = tmp_path / "input.png"
+    Image.fromarray(source, mode="RGB").save(input_path)
+    working = load_working_image(input_path)
+    render_args = _render_args()
+
+    legacy = np.asarray(
+        build_color_render(working_image_to_legacy_srgb8(working), render_args),
+        dtype=np.float32,
+    ) / 255.0
+    floating = build_color_render_float(working_image_to_srgb_float(working), render_args)
+    assert np.array_equal(_quantize8(legacy), _quantize8(floating))
+
+    def with_effects(base: np.ndarray) -> np.ndarray:
+        layers = [
+            grain_residual_layer(base, strength=0.35, seed=7, color=True),
+            halation_layer(base, strength=0.35),
+            dust_scratch_layer(base.shape, strength=0.25, seed=24),
+        ]
+        return composite_layers(base, layers, output_margin=4)
+
+    delta = np.abs(
+        _quantize8(with_effects(legacy)).astype(np.int16)
+        - _quantize8(with_effects(floating)).astype(np.int16)
+    )
+    assert int(delta.max()) <= 1
+
+
+def test_default_8bit_export_uses_float_detail_from_16bit_input(tmp_path: Path) -> None:
+    rgb = np.random.default_rng(20260717).random((48, 64, 3), dtype=np.float32)
+    input_path = tmp_path / "input16.tiff"
+    output_path = tmp_path / "output.png"
+    save_srgb16_tiff(rgb, input_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--style",
+            "hp5",
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+
+    working = load_working_image(input_path)
+    render_args = _render_args("hp5")
+    expected_float = _quantize8(
+        composite_layers(
+            build_color_render_float(working_image_to_srgb_float(working), render_args),
+            [],
+            output_margin=4,
+        )
+    )
+    expected_legacy = _quantize8(
+        composite_layers(
+            np.asarray(
+                build_color_render(working_image_to_legacy_srgb8(working), render_args),
+                dtype=np.float32,
+            )
+            / 255.0,
+            [],
+            output_margin=4,
+        )
+    )
+    with Image.open(output_path) as rendered:
+        actual = np.asarray(rendered.convert("RGB"))
+    assert np.array_equal(actual, expected_float)
+    assert not np.array_equal(actual, expected_legacy)
 
 
 @pytest.mark.parametrize("suffix", [".png", ".tiff"])

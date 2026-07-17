@@ -187,4 +187,8 @@ def test_raw_decode_requests_linear_srgb_and_preserves_scene_state(monkeypatch, 
     assert working.working_space == "linear_srgb"
     assert working.transfer_state == "scene_linear"
     assert working.source_transfer_state == "scene_linear"
-    assert any(warning.code == "generic_raw_display_mapping" for warning in working.warnings)
+    display_warning = next(
+        warning for warning in working.warnings if warning.code == "generic_raw_display_mapping"
+    )
+    assert "SDR sRGB look pipeline" in display_warning.message
+    assert "legacy adapter" not in display_warning.message

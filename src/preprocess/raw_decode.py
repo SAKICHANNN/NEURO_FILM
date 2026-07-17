@@ -129,7 +129,7 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
     warnings.append(
         DecodeWarning(
             "generic_raw_display_mapping",
-            "Linear-sRGB RAW decode is gamma-encoded by the temporary legacy adapter without a calibrated scene-to-display tone map.",
+            "Linear-sRGB RAW decode enters the SDR sRGB look pipeline without a calibrated scene-to-display tone map.",
         )
     )
     return WorkingImage(

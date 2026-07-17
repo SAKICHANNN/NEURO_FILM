@@ -1113,3 +1113,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Allowed change:** route both output depths through the existing float adapter/core/effect path, quantize only in the existing encoder, update internal-path provenance and retain the PIL wrapper for external compatibility consumers.
 - **Stop conditions:** any sRGB8 colour mismatch, effect delta above one code or confirmed new high-bit-depth severe artifact preserves the legacy default. HDR, wide gamut, calibrated RAW, stock fitting/training and LSM remain outside this leaf.
 - **Handoff:** commit/push this frozen contract before implementation, then add boundary regressions and perform targeted/full-suite plus real-image visual verification.
+
+## 2026-07-17 - Promote U1.3B default float-internal renderer
+
+- **Implementation:** both output depths now use `WorkingImage -> working_image_to_srgb_float -> style_transfer_rgb -> float32 effects`; only the suffix-aware encoder quantizes. The PIL wrapper and legacy adapter remain compatibility APIs, not renderer ingress.
+- **Compatibility:** sRGB8 colour output is exact against the old path; deterministic combined grain/halation/dust differs by at most one code. A 16-bit E2E proves default sRGB8 output consumes float source detail and no longer reproduces the early-quantized path.
+- **Format/provenance:** PNG/JPEG/TIFF8 defaults, dimensions, ICC and `film-inspired/look-approximation` remain unchanged. Metrics report `legacy_8bit_adapter=false` and `internal_color_precision=float32`; PNG/TIFF16 and JPEG16 rejection remain intact. The RAW warning now describes the missing calibrated tone map without claiming a removed adapter.
+- **Verification:** 15 focused tests and the full CPU suite pass (`223 passed`). A 6024x4024 Sony ARW renders with ICC, [4,251] bounds and no new full-resolution severe colour artifact. Velvia old/new mean delta is 0.2953 code with 0.0960% above one code.
+- **B&W finding:** HP5 has sparse orange extreme-highlight residuals in both old and new paths. Float rendering slightly reduces pixels with channel spread above 20 codes (0.1233% to 0.1195%; 392 new versus 1,322 resolved). This is a pre-existing profile defect, not a U1.3B regression, and remains a separate safety leaf before B&W promotion.
+- **Claim boundary:** U1.1 main-ingress debt and U1.3B close. HDR/HEIF/wide gamut, calibrated RAW scene-to-display, stock learning/fitting and LSM remain open or forbidden by their existing gates. Goal stays active.

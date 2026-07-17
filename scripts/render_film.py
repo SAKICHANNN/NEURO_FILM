@@ -29,7 +29,6 @@ from src.preprocess import (  # noqa: E402
     save_srgb16_tiff,
     srgb_icc_profile_fingerprint_sha256,
     srgb_icc_profile_sha256,
-    working_image_to_legacy_srgb8,
     working_image_to_srgb_float,
 )
 from src.filmfx import (  # noqa: E402
@@ -181,12 +180,7 @@ def main() -> int:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
-    if args.output_bit_depth == 16:
-        base = build_color_render_float(working_image_to_srgb_float(working), args)
-    else:
-        image = working_image_to_legacy_srgb8(working)
-        color_image = build_color_render(image, args)
-        base = np.asarray(color_image, dtype=np.float32) / 255.0
+    base = build_color_render_float(working_image_to_srgb_float(working), args)
     layers = []
     halation_resolved = None
     halation_metadata = None
@@ -286,8 +280,8 @@ def main() -> int:
                 "orientation_applied": working.orientation_applied,
                 "alpha_policy": working.alpha_policy,
                 "warnings": [warning.__dict__ for warning in working.warnings],
-                "legacy_8bit_adapter": args.output_bit_depth == 8,
-                "internal_color_precision": "float32" if args.output_bit_depth == 16 else "legacy_uint8_compatibility",
+                "legacy_8bit_adapter": False,
+                "internal_color_precision": "float32",
             },
             "output_encode": {
                 "format": output_format,

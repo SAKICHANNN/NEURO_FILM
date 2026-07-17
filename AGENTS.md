@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 221 local tests pass; current community pixels remain closed for learning. SF1.3B fails shared-author identifiability. SF2.0A closes Apollo 7 as content-confounded. SF2.0B0 finds 168/329/10 STS098 VELVI/5775/5776 rows but Velvia spans only two rolls below the frozen four-roll minimum, so that edge also closes. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 223 local tests pass; U1.3B removes the default renderer's early sRGB8 quantization with exact sRGB8 colour parity and <=1-code effect parity. Current community pixels remain closed for learning. SF1.3B, SF2.0A and SF2.0B0 are closed. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -52,12 +52,11 @@ The following are historical context, not active authority: `docs/ARCH_REDESIGN.
 
 ```text
 WorkingImage linear-sRGB input
-  -> explicit temporary sRGB8 compatibility adapter
-  -> PIL 8-bit RGB legacy renderer
-  -> deterministic CIELAB mean/std transfer (`safe_lab`, safe-rich guards)
+  -> explicit float32 sRGB look adapter
+  -> deterministic float32 CIELAB mean/std transfer (`safe_lab`, safe-rich guards)
   -> optional deterministic grain / physical-inspired halation / dust
   -> bounded float output
-  -> compatibility sRGB8 PNG/JPEG/TIFF or opt-in true PNG/TIFF16 with embedded ICC
+  -> one final quantization to sRGB8 PNG/JPEG/TIFF or opt-in sRGB16 PNG/TIFF with embedded ICC
 ```
 
 Current strengths:
@@ -70,8 +69,9 @@ Current strengths:
 
 Current limitations:
 
-- `scripts/render_film.py` keeps the 8-bit legacy adapter as its compatibility default; opt-in PNG/TIFF16 now keeps the safe-Lab/effect path float32, but remains SDR/sRGB;
-- generic RAW now enters as explicit linear-sRGB/scene-linear and renders end to end, but the temporary adapter only gamma-encodes it and does not provide a calibrated scene-to-display tone map;
+- `scripts/render_film.py` now uses one float32 safe-Lab/effect path for both output depths, but remains SDR/sRGB;
+- generic RAW enters as explicit linear-sRGB/scene-linear and renders end to end, but still lacks a calibrated scene-to-display tone map;
+- current HP5/B&W rendering has sparse pre-existing residual chroma around extreme highlights; it is not worsened by U1.3B, but blocks B&W promotion pending a separate invariant fix;
 - no complete HEIF/HDR/gain-map or wide-gamut production path;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;

@@ -280,11 +280,11 @@ Restrictions:
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|
-| U1.1 | in progress: RAW E2E pass | `render_film` consumes `WorkingImage` | U0.4 | JPEG/PNG/TIFF8, PNG/TIFF16 ingress and real ARW script E2Es pass with explicit provenance; unsupported ICC fails closed. Removal of the explicit legacy sRGB8 adapter remains pending. |
+| U1.1 | complete: single ingress | `render_film` consumes `WorkingImage` | U0.4 | JPEG/PNG/TIFF8, PNG/TIFF16 ingress and real ARW script E2Es pass with explicit provenance; the renderer main path no longer uses the legacy sRGB8 adapter |
 | U1.2 | in progress: approximation policy pass | `scene/display/unknown` state and Reference/Approximation policy | U1.1 | Source/post-decode states round-trip separately. Current renderer always labels `film-inspired/look-approximation`; unknown fails closed explicitly and calibrated Reference is false. A future evidence-gated Reference mode remains unimplemented. |
-| U1.3 | in progress: opt-in true 16-bit pass | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | compatibility sRGB8 plus opt-in float32 safe-Lab/effects to true PNG/TIFF16 with embedded ICC pass; calibrated scene-to-display, HDR and wide gamut remain pending |
+| U1.3 | in progress: float default pass | Correct TIFF/PNG/JPEG encoding, 8/16-bit and ICC | U1.1 | one float32 safe-Lab/effect core feeds default sRGB8 and opt-in PNG/TIFF16 with embedded ICC; calibrated scene-to-display, HDR and wide gamut remain pending |
 | U1.3A | complete: opt-in float path | Opt-in float safe-Lab path to true PNG/TIFF16 without changing default 8-bit compatibility | U1.1/U1.3 primitives | uint16 decode/ICC/>256 levels and real ARW vision smoke pass; default remains 8-bit; no calibrated claim |
-| U1.3B | frozen/ready | Remove the default renderer's early sRGB8 quantization while preserving 8-bit export compatibility | U1.3A | sRGB8 colour exact; deterministic effects <=1 code; high-bit-depth outliers explicitly audited; all output/provenance/full-suite gates pass |
+| U1.3B | complete: float default | Remove the default renderer's early sRGB8 quantization while preserving 8-bit export compatibility | U1.3A | sRGB8 colour exact; deterministic effects <=1 code; 223 tests and full-resolution RAW colour/B&W audit pass; pre-existing B&W chroma defect remains separate |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |
 | U1.5 | pending | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | Fixtures for supported/unsupported variants |
 | U1.6 | pending | Halo-aware tile/cache renderer | U1.3 | Full-frame vs tiled tolerance; bounded memory |

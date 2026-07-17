@@ -53,6 +53,15 @@ The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 against the frozen four-roll primary minimum. No B1, photo-page/image access,
 fitting, training or LSM opens.
 
+The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
+opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
+at export. sRGB8 colour parity is exact, deterministic effect parity is within
+one code, the complete CPU suite passes 223 tests and a full-resolution Sony
+ARW colour/B&W audit passes the migration gate. The audit also preserves a
+pre-existing HP5 extreme-highlight residual-chroma defect as the next separate
+safety leaf; it is not evidence against the float migration and must not be
+hidden or rewritten.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
