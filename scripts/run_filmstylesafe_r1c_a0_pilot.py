@@ -35,6 +35,12 @@ def main() -> int:
         type=Path,
         default=ROOT / "outputs" / "filmstylesafe" / "r1c" / "a0_metric_pilot_report.json",
     )
+    parser.add_argument(
+        "--max-side",
+        type=int,
+        default=0,
+        help="Optional longest-side downsample for faster development runs (0=full).",
+    )
     args = parser.parse_args()
     contract = load_r1c_contract(args.contract)
     inventory = json.loads(args.inventory.read_text(encoding="utf-8"))
@@ -43,6 +49,7 @@ def main() -> int:
         root=ROOT,
         parent_sources=contract["parent_sources"],
         scis_params=contract["scis_v0"],
+        max_side=(args.max_side or None),
     )
     report = {
         "contract_id": contract["contract_id"],
@@ -68,11 +75,18 @@ def main() -> int:
         ],
         "scis_v0_zero_fpr_all_nonsevere": report["scis_v0_zero_fpr_all_nonsevere"],
         "scis_v0_zero_fpr_hardneg_external": report["scis_v0_zero_fpr_hardneg_external"],
+        "scis_v0_1_zero_fpr_all_nonsevere": report["scis_v0_1_zero_fpr_all_nonsevere"],
+        "scis_v0_1_zero_fpr_hardneg_external": report["scis_v0_1_zero_fpr_hardneg_external"],
         "scis_v0_perfect_sensitivity_at_zero_fpr": report[
             "scis_v0_perfect_sensitivity_at_zero_fpr"
         ],
         "scis_v0_perfect_vs_hardneg_external": report["scis_v0_perfect_vs_hardneg_external"],
+        "scis_v0_1_perfect_sensitivity_at_zero_fpr": report[
+            "scis_v0_1_perfect_sensitivity_at_zero_fpr"
+        ],
+        "scis_v0_1_perfect_vs_hardneg_external": report["scis_v0_1_perfect_vs_hardneg_external"],
         "hardneg_scis_below_all_positives": report["hardneg_scis_below_all_positives"],
+        "hardneg_scis_v0_1_below_all_positives": report["hardneg_scis_v0_1_below_all_positives"],
         "report_path": str(args.report.as_posix()),
     }
     print(json.dumps(summary, indent=2))

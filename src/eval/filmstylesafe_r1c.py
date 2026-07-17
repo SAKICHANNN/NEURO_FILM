@@ -125,6 +125,73 @@ def scis_v0(
     }
 
 
+def scis_v0_1(
+    reference: np.ndarray,
+    candidate: np.ndarray,
+    *,
+    smooth_grad_threshold: float = 0.035,
+    residual_thresholds: Sequence[float] | None = None,
+    min_component_pixels: int = 4,
+    low_frequency_sigma: float = 8.0,
+    sparse_threshold: float = 6.0,
+) -> dict[str, float]:
+    """SCIS v0.1: style-robust high-frequency residual + multi-threshold islands.
+
+    Removes a blurred low-frequency ab residual so strong global looks (53/55/56)
+    contribute less, then scores both large islands and sparse speckles.
+    """
+    from src.filmfx.fast_blur import gaussian_filter_safe
+
+    if reference.shape != candidate.shape:
+        raise FilmStyleSafeR1CError("reference/candidate shape mismatch")
+    thresholds = list(residual_thresholds or (4.0, 8.0, 12.0))
+    lab_ref = rgb2lab(np.clip(reference, 0.0, 1.0))
+    lab_cand = rgb2lab(np.clip(candidate, 0.0, 1.0))
+    global_shift = lab_cand[..., 1:3].reshape(-1, 2).mean(axis=0) - lab_ref[..., 1:3].reshape(
+        -1, 2
+    ).mean(axis=0)
+    residual_ab = lab_cand[..., 1:3] - (lab_ref[..., 1:3] + global_shift.reshape(1, 1, 2))
+    low = np.stack(
+        [
+            gaussian_filter_safe(residual_ab[..., 0], sigma=float(low_frequency_sigma)),
+            gaussian_filter_safe(residual_ab[..., 1], sigma=float(low_frequency_sigma)),
+        ],
+        axis=2,
+    )
+    high = residual_ab - low
+    residual = np.linalg.norm(high, axis=2)
+    luma = lab_ref[..., 0] / 100.0
+    gy, gx = np.gradient(luma)
+    smooth = np.hypot(gx, gy) <= float(smooth_grad_threshold)
+    masked = residual.copy()
+    masked[~smooth] = 0.0
+    q99 = float(np.quantile(masked[smooth], 0.99)) if np.any(smooth) else 0.0
+    total = float(reference.shape[0] * reference.shape[1])
+    best_max_frac = 0.0
+    best_components = 0.0
+    for thr in thresholds:
+        binary = (masked >= float(thr)) & smooth
+        labeled = label(binary, connectivity=2)
+        areas = []
+        for idx in range(1, int(labeled.max()) + 1):
+            area = int(np.sum(labeled == idx))
+            if area >= int(min_component_pixels):
+                areas.append(area)
+        max_frac = (float(max(areas)) / total) if areas else 0.0
+        if max_frac > best_max_frac:
+            best_max_frac = max_frac
+            best_components = float(len(areas))
+    sparse = float(np.mean((masked >= float(sparse_threshold)) & smooth))
+    score = float(best_max_frac * 1000.0 + q99 + sparse * 200.0)
+    return {
+        "scis_v0_1_score": score,
+        "scis_v0_1_max_component_area_frac": best_max_frac,
+        "scis_v0_1_q99_hf_residual": q99,
+        "scis_v0_1_sparse_density": sparse,
+        "scis_v0_1_component_count": best_components,
+    }
+
+
 def proxy_severe_label(role: str) -> bool | None:
     """A0 development proxy labels from suite roles (not human population labels)."""
     if role in {"synthetic_failure", "regression_case"}:
@@ -144,17 +211,18 @@ def evaluate_pair_metrics(
     candidate_path: Path,
     *,
     scis_params: Mapping[str, Any] | None = None,
+    max_side: int | None = None,
 ) -> dict[str, float]:
     with Image.open(reference_path) as ref_im, Image.open(candidate_path) as cand_im:
         ref_im.load()
         cand_im.load()
+        ref_im = ref_im.convert("RGB")
+        cand_im = cand_im.convert("RGB")
+        if max_side is not None and max_side > 0:
+            ref_im.thumbnail((int(max_side), int(max_side)), Image.Resampling.BICUBIC)
+        if ref_im.size != cand_im.size:
+            cand_im = cand_im.resize(ref_im.size, Image.Resampling.BICUBIC)
         reference = _as_rgb_float(ref_im)
-        candidate = _as_rgb_float(cand_im)
-    if reference.shape != candidate.shape:
-        # Phase-A external controls are 1024-wide; resize candidate to reference for A0 pilot.
-        cand_im = Image.open(candidate_path).convert("RGB").resize(
-            (reference.shape[1], reference.shape[0]), Image.Resampling.BICUBIC
-        )
         candidate = _as_rgb_float(cand_im)
     metrics = conventional_pair_metrics(reference, candidate)
     params = {
@@ -168,6 +236,22 @@ def evaluate_pair_metrics(
         }
     }
     metrics.update(scis_v0(reference, candidate, **params))
+    v01_params = {
+        key: value
+        for key, value in dict(scis_params or {}).items()
+        if key
+        in {
+            "smooth_grad_threshold",
+            "min_component_pixels",
+            "low_frequency_sigma",
+            "sparse_threshold",
+            "residual_thresholds",
+        }
+    }
+    # v0.1 uses a lower default min component size than v0.
+    if "min_component_pixels" not in v01_params:
+        v01_params["min_component_pixels"] = 4
+    metrics.update(scis_v0_1(reference, candidate, **v01_params))
     return metrics
 
 
@@ -177,6 +261,7 @@ def run_a0_metric_pilot(
     root: Path,
     parent_sources: Mapping[str, str],
     scis_params: Mapping[str, Any] | None = None,
+    max_side: int | None = None,
 ) -> dict[str, Any]:
     """Score bound A0 members against parent sources using frozen metrics."""
     rows: list[dict[str, Any]] = []
@@ -193,7 +278,9 @@ def run_a0_metric_pilot(
         cand = root / str(member["artifact_path"])
         if not ref.is_file() or not cand.is_file():
             raise FilmStyleSafeR1CError(f"missing artifact for {member['member_id']}")
-        metrics = evaluate_pair_metrics(ref, cand, scis_params=scis_params)
+        metrics = evaluate_pair_metrics(
+            ref, cand, scis_params=scis_params, max_side=max_side
+        )
         label = proxy_severe_label(role)
         rows.append(
             {
@@ -273,6 +360,12 @@ def analyze_metric_separation(rows: Sequence[Mapping[str, Any]]) -> dict[str, An
     scis_hardneg = _roc_at_zero_fpr(
         "scis_v0_score", hardneg_like, higher_is_more_severe=True, cohort="hardneg_external"
     )
+    scis01_all = _roc_at_zero_fpr(
+        "scis_v0_1_score", negatives, higher_is_more_severe=True, cohort="all_nonsevere"
+    )
+    scis01_hardneg = _roc_at_zero_fpr(
+        "scis_v0_1_score", hardneg_like, higher_is_more_severe=True, cohort="hardneg_external"
+    )
     best_conventional_all = max(conventional_all, key=lambda row: row["sensitivity_at_zero_fpr"])
     best_conventional_hardneg = max(
         conventional_hardneg, key=lambda row: row["sensitivity_at_zero_fpr"]
@@ -287,6 +380,8 @@ def analyze_metric_separation(rows: Sequence[Mapping[str, Any]]) -> dict[str, An
         "conventional_zero_fpr_hardneg_external": conventional_hardneg,
         "scis_v0_zero_fpr_all_nonsevere": scis_all,
         "scis_v0_zero_fpr_hardneg_external": scis_hardneg,
+        "scis_v0_1_zero_fpr_all_nonsevere": scis01_all,
+        "scis_v0_1_zero_fpr_hardneg_external": scis01_hardneg,
         "best_conventional_zero_fpr_all_nonsevere": best_conventional_all,
         "best_conventional_zero_fpr_hardneg_external": best_conventional_hardneg,
         "conventional_metric_gap_at_zero_fpr": best_conventional_all["sensitivity_at_zero_fpr"] < 1.0,
@@ -296,9 +391,18 @@ def analyze_metric_separation(rows: Sequence[Mapping[str, Any]]) -> dict[str, An
         < 1.0,
         "scis_v0_perfect_sensitivity_at_zero_fpr": scis_all["sensitivity_at_zero_fpr"] == 1.0,
         "scis_v0_perfect_vs_hardneg_external": scis_hardneg["sensitivity_at_zero_fpr"] == 1.0,
+        "scis_v0_1_perfect_sensitivity_at_zero_fpr": scis01_all["sensitivity_at_zero_fpr"] == 1.0,
+        "scis_v0_1_perfect_vs_hardneg_external": scis01_hardneg["sensitivity_at_zero_fpr"] == 1.0,
         "hardneg_scis_below_all_positives": (
             hardneg is not None
             and all(float(hardneg["scis_v0_score"]) < float(row["scis_v0_score"]) for row in positives)
+        ),
+        "hardneg_scis_v0_1_below_all_positives": (
+            hardneg is not None
+            and "scis_v0_1_score" in hardneg
+            and all(
+                float(hardneg["scis_v0_1_score"]) < float(row["scis_v0_1_score"]) for row in positives
+            )
         ),
         "claim_ceiling": (
             "A0 development proxy-label pilot only; not human population evidence, "

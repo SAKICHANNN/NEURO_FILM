@@ -13,6 +13,7 @@ from src.eval.filmstylesafe_r1c import (
     proxy_severe_label,
     run_a0_metric_pilot,
     scis_v0,
+    scis_v0_1,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,19 @@ def test_scis_v0_higher_on_chroma_island_than_mild_shift() -> None:
     mild_score = scis_v0(base, mild)["scis_v0_score"]
     island_score = scis_v0(base, island)["scis_v0_score"]
     assert island_score > mild_score
+
+
+def test_scis_v0_1_prefers_sparse_speckle_over_global_tint() -> None:
+    base = np.full((64, 64, 3), 0.82, dtype=np.float32)
+    tint = np.clip(base + np.array([0.08, -0.02, 0.0], dtype=np.float32), 0.0, 1.0)
+    speckled = base.copy()
+    for y, x in ((10, 12), (14, 40), (30, 22), (44, 50), (50, 18), (18, 55)):
+        speckled[y : y + 2, x : x + 2, 0] = 1.0
+        speckled[y : y + 2, x : x + 2, 1] = 0.05
+        speckled[y : y + 2, x : x + 2, 2] = 0.9
+    tint_score = scis_v0_1(base, tint)["scis_v0_1_score"]
+    speck_score = scis_v0_1(base, speckled)["scis_v0_1_score"]
+    assert speck_score > tint_score
 
 
 def test_conventional_metrics_deterministic() -> None:
@@ -64,6 +78,7 @@ def test_analyze_metric_separation_reports_gap() -> None:
             "psnr": 20.0,
             "ssim": 0.8,
             "scis_v0_score": 50.0,
+            "scis_v0_1_score": 50.0,
         },
         {
             "member_id": "neg_style",
@@ -75,6 +90,7 @@ def test_analyze_metric_separation_reports_gap() -> None:
             "psnr": 15.0,
             "ssim": 0.7,
             "scis_v0_score": 5.0,
+            "scis_v0_1_score": 5.0,
         },
         {
             "member_id": "neg_hard",
@@ -86,12 +102,14 @@ def test_analyze_metric_separation_reports_gap() -> None:
             "psnr": 40.0,
             "ssim": 0.99,
             "scis_v0_score": 1.0,
+            "scis_v0_1_score": 1.0,
         },
     ]
     result = analyze_metric_separation(rows)
     assert result["conventional_metric_gap_at_zero_fpr"] is True
     assert result["scis_v0_perfect_sensitivity_at_zero_fpr"] is True
     assert result["scis_v0_perfect_vs_hardneg_external"] is True
+    assert result["scis_v0_1_perfect_vs_hardneg_external"] is True
 
 
 def test_a0_pilot_runs_on_bound_inventory() -> None:
@@ -111,7 +129,9 @@ def test_a0_pilot_runs_on_bound_inventory() -> None:
         root=ROOT,
         parent_sources=contract["parent_sources"],
         scis_params=contract["scis_v0"],
+        max_side=256,
     )
     assert result["n_positives"] >= 2
     assert result["n_negatives"] >= 2
     assert "conventional_metric_gap_at_zero_fpr" in result
+    assert "scis_v0_1_zero_fpr_hardneg_external" in result

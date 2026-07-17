@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1C2",
+  "status": "complete_candidate_improved_not_promoted",
+  "decision": "scis_v0_1_perfect_on_hardneg_external_still_style_contaminated",
+  "scis_v0_1_sensitivity_hardneg_external": 1.0,
+  "scis_v0_1_sensitivity_all_nonsevere": 0.3333333333333333,
+  "scis_v0_sensitivity_hardneg_external": 0.6666666666666666,
+  "conventional_best_sensitivity_hardneg_external": 0.3333333333333333,
+  "hardneg_scis_v0_1_below_all_positives": true,
+  "facts": [
+    "SCIS v0.1 high-frequency residual + sparse density reaches perfect zero-FPR sensitivity against hardneg+external on the A0 proxy suite",
+    "Strong owner-anchor style (53/55/56) still contaminates zero-FPR when treated as non-severe negatives",
+    "Conventional metrics remain at 0.33 sensitivity on the same hardneg/external cohort"
+  ],
+  "novelty_branch": "candidate_improved_continues_no_gate",
+  "opens": [
+    "U5.R1C3_or_style_control_exclusion_protocol",
+    "parallel_U1_colour_state_product_leaves"
+  ],
+  "does_not_open": [
+    "hidden_A1_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "promoted_safety_gate",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 proxy-label development only; SCIS v0.1 improved on the intended hard-negative cohort but is not a frozen safety gate"
+}

@@ -1491,3 +1491,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Harness:** raised stop-hook `loop_limit` to 25 for longer autonomous Goal continuation.
 - **Verification:** 6 focused R1C tests pass; full suite pending in commit step.
 - **Handoff:** Goal ACTIVE. Next `U5.R1C2` SCIS refinement or parallel U1 product leaf.
+
+## 2026-07-17 - Execute U5.R1C2 SCIS v0.1 refinement
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1C2`; autonomous continue after user requested full auto.
+- **Change:** style-robust HF residual, multi-threshold islands, sparse-density term.
+- **Result:** SCIS v0.1 sensitivity 1.0 vs hardneg/external at zero FPR (v0 was 0.67; conventional 0.33); still 0.33 vs all non-severe because 53/55/56 contaminate.
+- **Decision:** candidate improved, not promoted to safety gate; no A1/recruitment/training.
+- **Verification:** focused R1C unit tests pass; A0 inventory test uses max_side=256.
+- **Handoff:** Goal ACTIVE. Next `U5.R1C3` or parallel U1.
