@@ -1195,3 +1195,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Result:** `VELVI`/`5775`/`5776` contain 13,255/397/122 rows across 25 missions. Only STS098 contains both primary stocks; its Velvia arm still has two supported rolls versus the frozen four, while Portra400NC has ten.
 - **Binding branch:** `no_candidate_mission` closes NASA/JSC cross-mission expansion. Do not change codes/gates, reopen STS098 or request pixels. Fitting, training, LSM and stock claims remain forbidden.
 - **Propagation/Goal:** add the formal result and update AGENTS, tracker, real-film/stock-first plans, observed registry, task board and implementation pointer. Ultimate remains active and returns to another evidence-gated named-stock source or deterministic product leaf.
+
+## 2026-07-17 - Freeze SF2.1A Openverse shared-creator metadata gate
+
+- **Node/parent:** `ULT > RF0.4 > SF2.1A`; new independent source discovery after all NASA/JSC branches close.
+- **Reconnaissance:** bounded anonymous exact-phrase searches show result depth and cross-stock creator names for Ektar100, Velvia50, Portra400 and UltraMax400. Openverse is an index and disclaims licence accuracy; these are design observations, not stock/right evidence.
+- **Frozen gate:** at most 48 official API metadata requests; strict exact title/tag alias plus CC BY/CC0/PDM rows; per-stock creator diversity and a same-source shared-creator component spanning at least three stocks. Cross-stock ID/landing overlap fails closed.
+- **Access boundary:** no thumbnail, detail, related, upstream landing-page or image request; no raw response/image URL retention. A pass opens only a separately frozen live-rights/label preflight.
+- **Claim/Goal:** physical stock, live rights, pixels, fitting, training, LSM, `S1/S2` and product claims remain false. Commit/push the contract before implementation and formal execution.

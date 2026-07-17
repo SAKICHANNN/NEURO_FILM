@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf2.1a-openverse-exact-stock-shared-creator-v1",
+  "node": "ULT > RF0.4 > SF2.1A",
+  "source": {
+    "api_endpoint": "https://api.openverse.org/v1/images/",
+    "documentation_url": "https://api.openverse.org/",
+    "terms_url": "https://docs.openverse.org/terms_of_service.html",
+    "authentication": "anonymous",
+    "openverse_license_accuracy_claimed": false,
+    "upstream_live_verification_required": true
+  },
+  "stocks": [
+    {
+      "film_stock_id": "kodak_ektar_100",
+      "query": "\"Kodak Ektar 100\"",
+      "title_aliases": ["kodak ektar 100"],
+      "tag_aliases": ["kodakektar100", "ektar100"]
+    },
+    {
+      "film_stock_id": "fujifilm_velvia_50",
+      "query": "\"Fujifilm Velvia 50\"",
+      "title_aliases": ["fujifilm velvia 50", "fuji velvia 50"],
+      "tag_aliases": ["fujifilmvelvia50", "fujivelvia50", "velvia50", "rvp50"]
+    },
+    {
+      "film_stock_id": "kodak_portra_400",
+      "query": "\"Kodak Portra 400\"",
+      "title_aliases": ["kodak portra 400"],
+      "tag_aliases": ["kodakportra400", "portra400"]
+    },
+    {
+      "film_stock_id": "kodak_ultramax_400",
+      "query": "\"Kodak UltraMax 400\"",
+      "title_aliases": ["kodak ultramax 400"],
+      "tag_aliases": ["kodakultramax400", "ultramax400"]
+    }
+  ],
+  "query": {
+    "method": "GET",
+    "page_size": 20,
+    "maximum_pages_per_stock": 12,
+    "maximum_total_requests": 48,
+    "required_status": 200,
+    "required_content_type_prefix": "application/json",
+    "maximum_response_bytes": 2097152,
+    "maximum_retained_tags_per_row": 64,
+    "maximum_retained_tag_characters": 128,
+    "sort": "relevance",
+    "image_payload_requests_allowed": false,
+    "thumbnail_requests_allowed": false,
+    "detail_requests_allowed": false,
+    "landing_page_requests_allowed": false,
+    "related_requests_allowed": false,
+    "raw_response_retained": false
+  },
+  "retained_fields": [
+    "id",
+    "film_stock_id",
+    "title",
+    "indexed_on",
+    "foreign_landing_url",
+    "creator",
+    "creator_url",
+    "license",
+    "license_version",
+    "license_url",
+    "provider",
+    "source",
+    "category",
+    "tags",
+    "fields_matched",
+    "mature",
+    "height",
+    "width"
+  ],
+  "label_policy": {
+    "require_exact_title_or_tag_alias": true,
+    "require_fields_matched_title_or_tags": true,
+    "flag_title_patterns": ["film box", "filmbox", "canister", "cartridge", "packaging", "test roll", "test shot", "film stock"],
+    "claim_grade": "S0_claimed_text_only"
+  },
+  "license_policy": {
+    "strict_derivative_license_codes": ["by", "cc0", "pdm"],
+    "strict_license_versions": ["1.0", "2.0", "2.5", "3.0", "4.0"],
+    "exclude_nc": true,
+    "exclude_nd": true,
+    "exclude_sa_until_legal_review": true,
+    "live_upstream_page_required_before_pixels": true
+  },
+  "connectivity_gate": {
+    "minimum_strict_rows_per_eligible_stock": 20,
+    "minimum_unique_creators_per_eligible_stock": 5,
+    "maximum_largest_creator_share_per_eligible_stock": 0.4,
+    "minimum_connected_stocks": 3,
+    "minimum_shared_creators_total": 5,
+    "minimum_shared_creators_per_graph_edge": 2,
+    "require_same_source_shared_creator_edges": true,
+    "minimum_distinct_sources_in_connected_component": 1,
+    "cross_stock_openverse_id_overlap_must_be_zero": true,
+    "cross_stock_landing_url_overlap_must_be_zero": true
+  },
+  "request_limits": {
+    "timeout_seconds": 60,
+    "request_retries": 1,
+    "retry_backoff_seconds": 3,
+    "request_interval_seconds": 1.0,
+    "user_agent": "K-MCFM-research-openverse-metadata/1.0 (bounded exact-stock shared-creator audit)"
+  },
+  "allowed_decisions": [
+    "open_bounded_live_rights_label_preflight",
+    "insufficient_shared_creator_connectivity",
+    "cross_stock_identity_overlap",
+    "query_contract_mismatch",
+    "source_unavailable"
+  ],
+  "snapshot": "outputs/real_film/openverse_shared_creator_v1/metadata_snapshot.json",
+  "report": "outputs/real_film/openverse_shared_creator_v1/source_audit_report.json",
+  "decision": "outputs/real_film/openverse_shared_creator_v1/decision.json",
+  "image_payload_download_allowed": false,
+  "photo_page_access_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "Openverse-indexed exact-stock text, strict licence metadata and same-source shared-creator connectivity feasibility only; no live upstream rights or label verification, pixels, stock identifiability, operator, latent mode, S1/S2, calibration, authenticity or product claim"
+}
