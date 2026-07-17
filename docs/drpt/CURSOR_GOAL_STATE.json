@@ -5,35 +5,34 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "80d4bbd71ce11308b9fcdbb981ca8e3f4825dbae",
-  "iteration": 12,
-  "current_node": "ULT > U5.R1 > U5.R1C",
-  "current_leaf": "U5.R1C2 ready",
+  "head": "58ccdc81d5f52ca6db1932edd1b59885d55f6b4c",
+  "iteration": 13,
+  "current_node": "ULT > U5.R1 > U5.R1C2",
+  "current_leaf": "U5.R1C3 ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "80d4bbd71ce11308b9fcdbb981ca8e3f4825dbae",
+  "last_verified_commit": "58ccdc81d5f52ca6db1932edd1b59885d55f6b4c",
   "last_full_test": {
-    "command": ".\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q",
-    "passed": 403,
+    "command": "pytest focused filmstylesafe_r1c+harness",
+    "passed": 23,
     "failed": 0,
-    "timestamp": "2026-07-17T14:57:15Z"
+    "timestamp": "2026-07-17T15:05:48Z"
   },
   "ready_leaves": [
-    "U5.R1C2",
+    "U5.R1C3",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "Continue autonomously: start U5.R1C2 SCIS v0 refinement for sparse HF speckles and style-robust residuals, or advance U1.2/U1.4/U1.5; do not wait for another user continue; Goal remains ACTIVE",
+  "next_action": "Continue autonomously without waiting for user: start U5.R1C3 style-control exclusion/calibration for SCIS, or advance U1.2/U1.4/U1.5 colour-state product leaf; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1c_contract_v1.json",
-    "configs/filmstylesafe_r1c_decision_v1.json",
-    "docs/FILMSTYLESAFE_R1C_A0_PILOT.md",
+    "configs/filmstylesafe_r1c2_decision_v1.json",
+    "docs/FILMSTYLESAFE_R1C2_SCIS_V01.md",
     "src/eval/filmstylesafe_r1c.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-17T14:57:15Z",
-  "selection_rationale": "R1C confirms conventional metric gap on A0 proxy labels; SCIS v0 stays an unpromoted candidate. Autonomous continue to R1C2 or U1."
+  "last_update_utc": "2026-07-17T15:05:48Z",
+  "selection_rationale": "R1C2 improved SCIS to perfect hardneg/external sensitivity; continue autonomously to R1C3 or U1."
 }
