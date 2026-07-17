@@ -1,6 +1,6 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-16.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
+> **Current truth: 2026-07-17.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
 > **Target direction:** compare stock-specific global, hierarchical, retrieval and bounded conditional explicit operators. A stock may conditionally expose latent `Mode A/B/C`, but multi-mode structure is an unproved, data-gated hypothesis and `K=1` remains a formal outcome. Roll, process, scanner, source and content are nested nuisance/group variables. The physical-roll-only Roll2Film hypothesis remains closed under current BlueNeg evidence. Unpaired digital-to-film operator identification remains unresolved. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`, `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` and `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`.
 
 ---
@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 233 local tests pass; U1.3B removes early sRGB8 quantization, U2.5A makes HP5/Tri-X exactly achromatic, U1.5A rejects unsupported HDR/gain-map ingress, and U1.2A rejects embedded ICC conversion failure instead of discarding the profile. Current community pixels remain closed for learning. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 237 local tests pass. SF2.0C0 closes NASA/JSC cross-mission expansion: exact-code tables contain 13,255/397/122 rows across 25 missions, but only STS098 joins both primary stocks and Velvia still has two supported rolls below the frozen four-roll gate. Current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -269,6 +269,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | SF1.3B | Shared-author Ektar/Velvia RGB fails held-out-UID identifiability and loses to nuisance controls; pool closed for learning |
 | Done/closed | SF2.0A | 63/63 Apollo 7 metadata pages validate and support/filter bridge pass, but only one of two required shared content tags passes; content-confounded, no pixels/fitting/training/LSM |
 | Done/closed | SF2.0B0 | STS098 exact-code rows pass at 168/329/10, but Velvia has only two rolls below frozen four-roll minimum; insufficient support, no B1/photo/images/fitting/training/LSM |
+| Done/closed | SF2.0C0 | Cross-mission exact-code census finds 25 missions but only STS098 joins Velvia50 and Portra400NC; no candidate mission, no photos/pixels/fitting/training/LSM |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
@@ -316,4 +317,4 @@ For non-trivial changes, also update `docs/ULTIMATE_EXECUTION_TRACKER.md` and `d
 
 ---
 
-*Last updated: 2026-07-16 | Current implementation: deterministic content-safe renderer | Research target: stock-first bounded explicit operators | Product target: Style-safe deterministic/operator core | Calibrated lane deferred*
+*Last updated: 2026-07-17 | Current implementation: deterministic content-safe renderer | Research target: stock-first bounded explicit operators | Product target: Style-safe deterministic/operator core | Calibrated lane deferred*

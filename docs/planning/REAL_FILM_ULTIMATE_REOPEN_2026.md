@@ -243,6 +243,14 @@ only two rolls versus the frozen four-roll minimum. The edge closes for
 insufficient independent support; no B1, photo pages, images, fitting, training
 or LSM opens.
 
+`SF2.0C0` then tests the same exact codes across the full result tables without
+reopening STS098. The bounded aggregate-only census finds 13,255 Velvia50, 397
+Portra400NC and 122 auxiliary Portra400VC rows across 25 missions. Only STS098
+contains both primary stocks, and its Velvia arm still has two supported rolls
+against the frozen minimum four. The decision is `no_candidate_mission`:
+NASA/JSC cross-mission expansion closes with no photo pages or images requested,
+and no fitting, training, LSM or stock claim opens.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

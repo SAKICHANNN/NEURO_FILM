@@ -53,6 +53,13 @@ The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 against the frozen four-roll primary minimum. No B1, photo-page/image access,
 fitting, training or LSM opens.
 
+`SF2.0C0` closes the remaining NASA/JSC exact-code cross-mission expansion.
+The aggregate-only census covers 25 missions and 13,255/397/122 rows, but only
+STS098 contains both Velvia50 and Portra400NC; Velvia remains at two supported
+rolls below the frozen four. No alternative mission, photo access, fitting,
+training or LSM branch opens. Ultimate remains active and must move to another
+independently gated named-stock source or deterministic product leaf.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

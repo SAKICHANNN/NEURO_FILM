@@ -50,7 +50,7 @@ against the exact-revision frozen metadata.
 | BlueNeg | dataset-declared `film_type` at frozen revision; not edge-code/manufacturer proof | 53 physical rolls / 491 frames | 491 negated previews; 247 printed-photo proxy alignments | old negative, restoration target, unknown process/lab/scanner | public academic/commercial use with mandatory credit; bounded lanes about 956 MB | only immediately executable multi-stock source; select four pilots but keep all below `S2` until controls pass |
 | Xi Film marketplace | contributor/platform-verified stock, camera and scan per licensed frame | contributor/source; roll identity not advertised | high-resolution positive scans | lab/scanner/process fields require contract | paid per-image licensing and manual delivery | promising future source-diversification lane; no purchase or training until licence explicitly covers ML and grouping is verified |
 | Apollo flight archive | documented mission/magazine/film metadata | magazine/frame | raw flight-film scans remain rights-separated and unacquired | extreme orbital content, exposure/filter association and archive processing | NASA raw scans public domain with credit; ASU processed products restricted | `SF2.0A` closes Apollo 7 as content-confounded after 63/63 valid pages; no pixels or learning |
-| NASA/JSC astronaut Earth photography | official exact media codes and mission-roll-frame IDs | mission/film roll/frame | photographs remain unrequested | mission/date/roll/geography/focal length/camera and scan pipeline can dominate | NASA/JSC credit/non-endorsement/third-party caveats; keyless public HTML query | `SF2.0B0` closes STS098 edge: Velvia has only two rolls below the frozen four-roll minimum |
+| NASA/JSC astronaut Earth photography | official exact media codes and mission-roll-frame IDs | mission/film roll/frame | photographs remain unrequested | mission/date/roll/geography/focal length/camera and scan pipeline can dominate | NASA/JSC credit/non-endorsement/third-party caveats; keyless public HTML query | `SF2.0C0` closes the source expansion: 25 missions, but only failed STS098 joins Velvia50/Portra400NC |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -262,3 +262,10 @@ validates 168 Velvia 50, 329 Portra 400NC and 10 Portra 400VC STS098 rows with
 zero cross-code ID overlap. Portra 400NC spans 12 rolls, but Velvia spans only
 rolls 701 and 720A, below the frozen four-roll primary minimum. Do not open
 SF2.0B1, lower the gate, substitute a post-result code or request photographs.
+
+`SF2.0C0` is also complete and closes the broader exact-code source expansion.
+Its six-request, aggregate-only census covers 25 missions and 13,255/397/122
+rows for `VELVI`/`5775`/`5776`, but only STS098 contains both primary stocks.
+Velvia therefore remains at two supported rolls below the frozen four-roll
+gate. No alternative candidate mission exists; do not change codes or gates,
+request photographs, fit/train, or open LSM from this result.

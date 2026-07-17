@@ -1187,3 +1187,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Safety:** the runner permits exactly the three frozen POST+GET pairs and retains the existing NASA hostname/path, response-size, content-type and response-close checks. Photo pages, images, API, masks, ZIP and KML remain unreachable.
 - **Verification:** old SF2.0B0 plus new SF2.0C0 focused tests pass (`8 passed`); compile and diff checks pass; the full CPU suite passes `237 passed`.
 - **Handoff:** commit/push the implementation before running the six-request formal census. The live result must follow the frozen pass/no-candidate/integrity branch without changing codes or gates.
+
+## 2026-07-17 - Close SF2.0C0 with no candidate mission
+
+- **Execution:** exactly three frozen exact-code POST+GET pairs completed at software commit `6a9d784`; all responses passed NASA/JSC endpoint, status, content-type and size contracts. No photo page, image, API, mask, ZIP or KML was requested.
+- **Integrity/replay:** config hash `fcefeb5e...2ce6`; report hash `8e33c396...08b5`; decision hash `379b9771...f7e1`. No query errors or cross-stock IDs occurred. The report retains no raw HTML/frame rows and reproduces the decision exactly offline.
+- **Result:** `VELVI`/`5775`/`5776` contain 13,255/397/122 rows across 25 missions. Only STS098 contains both primary stocks; its Velvia arm still has two supported rolls versus the frozen four, while Portra400NC has ten.
+- **Binding branch:** `no_candidate_mission` closes NASA/JSC cross-mission expansion. Do not change codes/gates, reopen STS098 or request pixels. Fitting, training, LSM and stock claims remain forbidden.
+- **Propagation/Goal:** add the formal result and update AGENTS, tracker, real-film/stock-first plans, observed registry, task board and implementation pointer. Ultimate remains active and returns to another evidence-gated named-stock source or deterministic product leaf.
