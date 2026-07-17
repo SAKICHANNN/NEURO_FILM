@@ -85,6 +85,7 @@ files.
 | `repair_yfcc_full_index_range.py` | Repair a rejected full-index byte interval through validated fixed Range chunks. |
 | `audit_real_film_yfcc_shared_author_rights.py` | Run the SF1.2 bounded Flickr-page-only live-rights feasibility gate. |
 | `audit_real_film_apollo7_metadata.py` | Run the SF2.0A bounded NASA/JSC Apollo 7 stock-magazine metadata feasibility gate; never requests image payloads. |
+| `audit_real_film_nasa_sts098_snapshot.py` | Run the SF2.0B0 keyless NASA/JSC STS098 exact-stock result-table snapshot; never requests photo pages or images. |
 | `download_real_film_yfcc_shared_author_pixels.py` | Acquire only the frozen SF1.3A shared-author Ektar/Velvia derivatives. |
 | `audit_real_film_yfcc_shared_author_pixels.py` | Verify SF1.3A hashes, decodes, duplicates and shared-author support, then render contact sheets. |
 | `inspect_image_input.py` | Inspect raster/RAW metadata for the shared preprocessing pipeline. |

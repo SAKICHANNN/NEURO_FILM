@@ -1086,3 +1086,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen access:** one exact-code POST plus one generated result-table GET per code, six requests maximum. Parse the nine official table columns, retain STS098 rows and response hashes, and request no photo page, image, mask, ZIP, KML or API.
 - **Gate/claim:** require minimum target rows/rolls and zero cross-stock photo-ID overlap. A pass opens only a separately frozen content/date/focal/roll nuisance audit; pixels, fitting, training, LSM and stock claims remain false.
 - **Handoff:** validate/commit/push the contract, then implement and test the parser/query client before live execution.
+
+## 2026-07-17 - Implement the SF2.0B0 keyless table snapshot
+
+- **Implementation:** added an isolated `src/real_film` client/parser for one exact NASA media code per query. It validates the forwarding token and NASA/JSC endpoints, parses the nine frozen result columns using the Python standard library, retains only STS098 rows plus response evidence, and applies row/roll/overlap support gates.
+- **No-pixel boundary:** only `Technical.pl` POST and generated `ShowQueryResults-TextTable.pl` GET endpoints are reachable. Tests assert that neither `photo.pl` nor image paths are requested; raw HTML is transient and not written.
+- **Pre-execution correction:** the committed config initially allowed two retries while the contract capped physical requests at six. Before any formal execution or result access, retries were reduced to one so three stock queries make at most three POSTs plus three GETs. Stocks, thresholds and branches are unchanged.
+- **Verification:** four focused tests pass for tracked config safety, table parsing, exact bounded endpoint use and overlap rejection. Module/script compile, JSON validation and `git diff --check` pass. The complete CPU suite passes (`221 passed`).
+- **Structure:** new code stays in existing `src/real_film`, `scripts`, `tests` and ignored-output boundaries; it adds no production or ML dependency.
+- **Handoff:** commit/push the corrected config and verified implementation before issuing the six formal requests; execute once, replay offline and branch without changing support minima.

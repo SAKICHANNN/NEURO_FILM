@@ -67,7 +67,7 @@
   },
   "request_limits": {
     "timeout_seconds": 180,
-    "request_retries": 2,
+    "request_retries": 1,
     "retry_backoff_seconds": 3,
     "request_interval_seconds": 1.0,
     "user_agent": "K-MCFM-research-nasa-sts098-metadata/1.0 (bounded exact-stock table audit)"

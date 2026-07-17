@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 217 local tests pass; current community pixels remain closed for learning. SF1.3B fails shared-author identifiability. SF2.0A validates 63/63 Apollo 7 SO-368/SO-121 metadata pages and the filter bridge, but only one of two required shared content tags passes, so Apollo 7 closes as content-confounded. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 221 local tests pass; current community pixels remain closed for learning. SF1.3B fails shared-author identifiability. SF2.0A validates 63/63 Apollo 7 SO-368/SO-121 metadata pages and the filter bridge, but only one of two required shared content tags passes, so Apollo 7 closes as content-confounded. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
