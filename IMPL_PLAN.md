@@ -60,6 +60,13 @@ rolls below the frozen four. No alternative mission, photo access, fitting,
 training or LSM branch opens. Ultimate remains active and must move to another
 independently gated named-stock source or deterministic product leaf.
 
+`SF2.1A` also closes. Openverse returns 960 bounded metadata rows without any
+image access, but Ektar relevance pagination repeats 19 identities and violates
+the frozen stable-census contract. Only UltraMax passes the independent
+strict-row/creator gate, so no three-stock graph exists. Do not deduplicate or
+relax gates after the result; no live-page, pixel, fitting, training or LSM
+branch opens.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

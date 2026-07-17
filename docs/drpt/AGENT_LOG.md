@@ -1211,3 +1211,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Graph/integrity:** creator identity is source plus creator URL; edges are same-source by construction. Within-stock duplicate IDs/landing URLs are contract failures, and cross-stock overlaps fail closed before connectivity can pass.
 - **Verification:** five focused acquisition/audit/branch tests pass; response payload URLs are absent from snapshots; repeated offline audit is exact; the complete CPU suite passes `242 passed`.
 - **Handoff:** commit/push implementation before formal acquisition. Then fetch once, audit the immutable snapshot twice, and obey the frozen pass/insufficient/integrity branch without altering thresholds.
+
+## 2026-07-17 - Close SF2.1A on search contract mismatch
+
+- **Execution/integrity:** 48/48 official API metadata requests return four 240-row result sets at commit `2a608a5`; no query error, thumbnail, detail, related, landing page or pixel request. Snapshot/report/decision hashes are `64b68082...af95`, `0a8240e9...00fc` and `36bd2da1...4b56`; offline audit repeats exactly.
+- **Decisive failure:** Ektar pagination repeats 19 Openverse IDs and the same 19 landing URLs, leaving 221 unique works from 240 rows. The preregistered/implemented stable-identity contract therefore selects `query_contract_mismatch`; post-result deduplication is forbidden.
+- **Secondary diagnostic:** strict rows/creator dominance are Ektar 41/51.22%, Velvia 1/100%, Portra 43/62.79%, UltraMax 30/36.67%. Only UltraMax passes per-stock eligibility, so no three-stock graph exists regardless of the integrity precedence.
+- **Binding branch:** close Openverse relevance search; do not loosen licences/creator gates, change queries, open upstream pages or request pixels. Fitting, training, LSM and stock claims remain false.
+- **Goal continuation:** propagate the negative evidence, run the full suite, commit/push, then move to another legal data or deterministic product leaf. Ultimate remains active.

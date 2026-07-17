@@ -251,6 +251,14 @@ against the frozen minimum four. The decision is `no_candidate_mission`:
 NASA/JSC cross-mission expansion closes with no photo pages or images requested,
 and no fitting, training, LSM or stock claim opens.
 
+`SF2.1A` tests Openverse as a separate openly licensed discovery index. The
+bounded four-stock search returns 960 metadata rows without requesting images,
+but Ektar relevance pagination repeats 19 identities and violates the frozen
+stable-census contract. Only UltraMax passes the independent strict-row/creator
+gate; Velvia has one strict row and Ektar/Portra exceed the 40% creator-share
+ceiling. The decision is `query_contract_mismatch`; no live-page preflight,
+pixels, fitting, training, LSM or stock claim opens.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never
