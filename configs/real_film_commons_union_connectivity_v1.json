@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf2.3-commons-union-shared-author-connectivity-v1",
+  "node": "ULT > RF0.4 > SF2.3",
+  "inputs": [
+    {
+      "snapshot": "outputs/real_film/commons_stock_v1/metadata_snapshot.json",
+      "snapshot_sha256": "f7ee9db16b198f3ce59c2cea887792e82f6dce8109ae6a79cb17c4ef7f10e5cd",
+      "source_config": "configs/real_film_commons_stock_source_audit_v1.json",
+      "source_config_sha256": "b5efcc0f3a617dc2bd98527770c82de675af74de95b702a28f4511c43213c00a"
+    },
+    {
+      "snapshot": "outputs/real_film/commons_stock_expansion_v1/metadata_snapshot.json",
+      "snapshot_sha256": "59820e7deea0880f37f6c5dfcf62e03656ee1f71e9e231fe0fcf021eb24c5ecb",
+      "source_config": "configs/real_film_commons_stock_expansion_audit_v1.json",
+      "source_config_sha256": "3eb734b84feb135e8f715f485a82c8ac453e6e7065dea181188ec0adb2ad4a55"
+    },
+    {
+      "snapshot": "outputs/real_film/commons_third_stock_v1/metadata_snapshot.json",
+      "snapshot_sha256": "a38a6409dbbb70e1c899241f124b05dc5a5ed5606edebdcd29967c98130f9fa7",
+      "source_config": "configs/real_film_commons_third_stock_audit_v1.json",
+      "source_config_sha256": "ff0d709029fb479e50c916a55de459aa5f51723dbb2b1ad55f2fb193d416dd48"
+    }
+  ],
+  "eligibility": {
+    "required_label_scope": "exact_stock_community_category",
+    "use_each_source_config_permissive_candidate_licenses": true,
+    "use_each_source_config_non_scene_title_patterns": true,
+    "require_nonempty_normalized_author": true,
+    "require_file_page_original_and_derivative_urls": true,
+    "require_derivative_url_distinct_from_original": true,
+    "require_license_url_or_public_domain_usage_terms": true,
+    "bot_uploader_never_substitutes_for_author": true
+  },
+  "author_identity": {
+    "normalization": "html-unescape, strip tags, Unicode casefold, collapse whitespace",
+    "verified_aliases": {},
+    "unverified_alias_merging_allowed": false,
+    "string-reversal_alias_inference_allowed": false
+  },
+  "connectivity_gate": {
+    "minimum_strict_rows_per_eligible_stock": 8,
+    "minimum_unique_authors_per_eligible_stock": 5,
+    "maximum_largest_author_share_per_eligible_stock": 0.6,
+    "minimum_connected_stocks": 3,
+    "minimum_shared_authors_total": 5,
+    "minimum_shared_authors_per_graph_edge": 2,
+    "minimum_shared_authors_per_stock_in_component": 2,
+    "minimum_component_edges": 3,
+    "minimum_component_cycle_rank": 1,
+    "maximum_largest_shared_author_edge_share": 0.4,
+    "cross_stock_page_id_overlap_must_be_zero": true,
+    "cross_stock_file_page_url_overlap_must_be_zero": true,
+    "cross_stock_original_url_overlap_must_be_zero": true,
+    "cross_stock_api_sha1_overlap_must_be_zero": true
+  },
+  "development_evidence_seen_before_freeze": {
+    "strict_scene_rows": 294,
+    "normalized_authors": 30,
+    "stocks": 17,
+    "shared_author_strings": 8,
+    "shared_author_stock_edges": 20,
+    "cross_stock_strict_page_conflicts": 0,
+    "confirmatory_use_forbidden": true
+  },
+  "allowed_decisions": [
+    "open_bounded_commons_live_label_rights_preflight",
+    "insufficient_shared_author_connectivity",
+    "cross_stock_identity_overlap",
+    "input_contract_mismatch"
+  ],
+  "report": "outputs/real_film/commons_union_connectivity_v1/connectivity_report.json",
+  "decision": "outputs/real_film/commons_union_connectivity_v1/decision.json",
+  "network_access_allowed": false,
+  "image_payload_download_allowed": false,
+  "photo_page_access_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "immutable Commons exact-stock metadata union and conservative shared-author graph feasibility only; no live label or rights verification, pixels, stock identifiability, operator, latent mode, S1/S2, calibration, authenticity or product claim"
+}

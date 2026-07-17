@@ -289,3 +289,12 @@ design. The seven complete unit indexes total 6,642,017,079 bytes. Do not fetch
 that corpus merely to union disconnected unit/source/content signatures; no
 pixel, fitting, training or LSM branch opens. See
 `docs/REAL_FILM_INSTITUTIONAL_SOURCE_RECONNAISSANCE_RESULTS.md`.
+
+`SF2.3` is frozen as the next stock-data leaf. It does not acquire a new source
+or reopen prior Commons pixels: it unions the three immutable Commons metadata
+snapshots under one conservative author identity policy and asks whether a
+redundant exact-stock graph exists. Development counts were seen before freeze
+and cannot confirm the result. The formal graph requires two authors per edge,
+at least one cycle, bounded author-edge dominance and zero cross-stock identity
+overlap. Passing would open only a new bounded live page/label/rights preflight;
+every branch keeps pixels, fitting, training and LSM closed.

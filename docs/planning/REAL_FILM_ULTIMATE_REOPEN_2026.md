@@ -269,6 +269,14 @@ decision is `no_formal_audit_dor`: do not download a disconnected corpus whose
 unit/collection/content signatures would stand in for stock. No media, fitting,
 training, LSM or stock claim opens.
 
+`SF2.3` now revisits no frozen experiment and requests no new source. It tests
+whether the union of the three immutable Commons metadata snapshots has
+redundant shared-author connectivity that the original batch-local audits did
+not measure. Conservative author strings are not auto-merged, and the frozen
+graph requires two authors per retained edge plus cycle/redundancy and identity-
+overlap controls. A pass would authorize only a separately frozen bounded live
+page/label/rights preflight, never pixels, fitting, training or LSM.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

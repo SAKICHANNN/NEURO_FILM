@@ -75,6 +75,14 @@ inside common independent groups. The complete selected scope would be
 confounding rather than repair identifiability. No media, fitting, training or
 LSM branch opens.
 
+`SF2.3` is the current stock-data ready leaf. It asks a new question of three
+already immutable Commons snapshots: whether their union contains a redundant
+exact-stock/shared-author graph. A read-only development census is recorded but
+cannot confirm the hypothesis. The committed contract freezes conservative
+author identity, two-author edges, cycle/redundancy and cross-stock identity
+gates before implementation. This node is metadata-only and cannot open pixels,
+fitting, training or LSM by itself.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

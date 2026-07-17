@@ -1367,3 +1367,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** do not wrap current physical/density effects in a halo adapter, hide full arrays or duplicate effect math. No code change is retained.
 - **Prerequisites:** exact/versioned staged percentile, original-coordinate shape-stable global resample, scratch-field DAG/lifetimes and separate colour/density graphs before U1.6G1 implementation.
 - **Goal:** simple halation remains eligible; physical effect itself is not visually rejected. U1.6 and Ultimate remain active and move to a prerequisite dataflow or another ready leaf.
+
+## 2026-07-17 - Freeze SF2.3 Commons-union shared-author connectivity
+
+- **Node/parent:** `ULT > RF0.4 > SF2.3`; return from the lower-value physical-halation infrastructure prerequisite to the stock-first data mainline.
+- **DoR:** three immutable Commons metadata snapshots were previously audited only batch-by-batch. A read-only development union found possible cross-stock author strings; those observed counts are recorded and barred from confirmatory use.
+- **Frozen design:** exact-stock strict derivative rows only; conservative author normalization; empty verified-alias map; no uploader substitution or string-reversal alias inference; all six input hashes pinned.
+- **Gates:** existing 8-row/5-author/60% per-stock support plus at least three stocks, five shared authors, two authors per retained edge, two per stock, three edges, one cycle, 40% maximum author edge share and zero cross-stock identity overlap.
+- **Boundary/handoff:** commit/push the contract before code, then implement a pure offline deterministic auditor with focused branch tests. No network, pixels, fitting, training, LSM or stock claim opens from this freeze.
