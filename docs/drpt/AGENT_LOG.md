@@ -1170,3 +1170,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** malformed PNG/JPEG fixtures reject, and a renderer subprocess creates no output. Existing SDR, standard ICC, PNG/TIFF16, RAW and HDR/gain-map rejection regressions remain green. Focused suite passes 32 tests; complete CPU suite passes `233 passed`.
 - **Claim/structure:** this repairs pixel/provenance consistency only. It adds no profile engine, dependency, wide-gamut working space, OCIO/ACES transform or calibrated Reference claim; changes stay in the existing preprocessing/tests boundary.
 - **Goal continuation:** U1.2A closes and Ultimate remains active. Remaining U1 work is the broader validated wide-gamut/OCIO and actual HDR/HEIF support programme.
+
+## 2026-07-17 - Freeze SF2.0C0 NASA/JSC cross-mission connectivity census
+
+- **Node/parent:** `ULT > RF0.4 > SF2.0C0`; return from completed U1 safety leaves to the stock-first P0 data mainline.
+- **New question:** query the verified exact NASA codes across all missions and retain only mission×stock×roll aggregates, seeking one mission where Velvia 50 and Portra 400NC each have at least four rolls with at least eight rows and 32 total rows.
+- **Historical boundary:** STS098 remains closed at its frozen result. This node neither lowers its gate nor substitutes another code; it tests whether a materially different mission design exists.
+- **Access/scope:** three exact-code POST+GET pairs, six requests maximum; no raw HTML or frame rows retained and no photo page/image/API/mask/ZIP/KML access. Portra 400VC is auxiliary only.
+- **Branch:** a pass opens only a separately frozen metadata nuisance audit; no candidate closes NASA/JSC cross-mission expansion. Pixels, fitting, training, LSM and stock claims remain false.
+- **Handoff:** validate and commit/push config/contract before refactoring the existing source client; test aggregate-only behavior before any live query.

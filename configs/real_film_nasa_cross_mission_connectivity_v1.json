@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "census_id": "sf2.0c0-nasa-cross-mission-exact-stock-connectivity-v1",
+  "node": "ULT > RF0.4 > SF2.0C0",
+  "source": {
+    "search_form_url": "https://eol.jsc.nasa.gov/SearchPhotos/",
+    "query_endpoint": "https://eol.jsc.nasa.gov/SearchPhotos/Technical.pl",
+    "result_base_url": "https://eol.jsc.nasa.gov/SearchPhotos/",
+    "rights_url": "https://eol.jsc.nasa.gov/FAQ/",
+    "api_used": false,
+    "api_key_required": false
+  },
+  "stocks": [
+    {"film_code": "VELVI", "film_stock_id": "fujifilm_velvia_50", "description": "Fuji Velvia 50, NASA/JSC media code VELVI", "primary": true},
+    {"film_code": "5775", "film_stock_id": "kodak_portra_400nc", "description": "Kodak Portra 400NC, NASA/JSC media code 5775", "primary": true},
+    {"film_code": "5776", "film_stock_id": "kodak_portra_400vc", "description": "Kodak Portra 400VC, NASA/JSC media code 5776", "primary": false, "auxiliary_only": true}
+  ],
+  "query": {
+    "method": "POST",
+    "form_fields": {"mode": "db"},
+    "one_exact_film_code_per_query": true,
+    "maximum_post_requests": 3,
+    "maximum_result_get_requests": 3,
+    "maximum_total_requests": 6,
+    "photo_page_requests_allowed": false,
+    "image_payload_requests_allowed": false,
+    "raw_html_retained": false,
+    "frame_rows_retained": false
+  },
+  "result_contract": {
+    "required_status": 200,
+    "required_content_type_prefix": "text/html",
+    "maximum_result_bytes": 16777216,
+    "required_headers": ["Photo ID", "Photo Date", "Lat", "Lon", "Geographic Name", "Features Identified Manually", "Features Identified by Machine Learning", "Focal Length (mm)", "Record Type"],
+    "photo_id_regex": "^[A-Z0-9]+-[A-Z0-9]+-[A-Z0-9]+$",
+    "cross_stock_photo_id_overlap_must_be_zero": true
+  },
+  "support_gate": {
+    "minimum_supported_rolls_per_primary_stock": 4,
+    "minimum_rows_per_supported_roll": 8,
+    "minimum_total_rows_per_primary_stock": 32,
+    "same_mission_required": true,
+    "primary_stock_ids": ["fujifilm_velvia_50", "kodak_portra_400nc"],
+    "candidate_ranking": ["minimum_primary_supported_roll_count_desc", "minimum_primary_row_count_desc", "mission_asc"]
+  },
+  "request_limits": {
+    "timeout_seconds": 180,
+    "request_retries": 1,
+    "retry_backoff_seconds": 3,
+    "request_interval_seconds": 1.0,
+    "user_agent": "K-MCFM-research-nasa-cross-mission-metadata/1.0 (bounded exact-stock connectivity census)"
+  },
+  "allowed_decisions": ["candidate_mission_found_open_metadata_connectivity", "no_candidate_mission", "cross_stock_id_overlap", "query_contract_mismatch", "source_unavailable"],
+  "report": "outputs/real_film/nasa_cross_mission_connectivity_v1/census_report.json",
+  "decision": "outputs/real_film/nasa_cross_mission_connectivity_v1/decision.json",
+  "image_payload_download_allowed": false,
+  "photo_page_access_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "NASA/JSC exact-film-code mission-by-roll metadata connectivity feasibility only; no pixels, content balance, stock identifiability, operator, latent mode, S1/S2, calibration, authenticity or product claim"
+}
