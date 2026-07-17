@@ -1147,3 +1147,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen policy:** reject HEIF/HEIC/AVIF, recognized HDR/gain-map/CICP/NCLX/mastering metadata, and official Ultra HDR/Apple gain-map payload markers before pixel conversion. ICC alone remains legal.
 - **Scope:** existing preprocessing boundary only, no decoder/tone map/dependency/output expansion. Inspection stays informative; load fails closed with deterministic signal evidence.
 - **Handoff:** commit/push the contract, then implement bounded detection and fixtures, verify renderer no-output failure, run focused/full CPU suites and propagate.
+
+## 2026-07-17 - Promote U1.5A fail-closed HDR/gain-map ingress
+
+- **Implementation:** raster inspection now identifies unsupported HEIF/HEIC/AVIF containers, HDR/gain/CICP/NCLX/mastering metadata and bounded recognized Adobe/Android/Apple gain-map payload markers. Loading rejects before conversion with deterministic signals; ICC alone remains legal.
+- **Boundedness/privacy:** payload detection reads at most the first and last 4 MiB and retains only marker identities, not image payload or metadata bodies.
+- **Verification:** valid local AVIF inspection plus rejection, two JPEG gain-map marker variants, PNG gain metadata and renderer no-output failure pass. Ordinary SDR/ICC/high-precision ingress remains green. Focused suite passes 29 tests; complete CPU suite passes `230 passed`.
+- **Evidence basis:** Android's official Ultra HDR v1.1 identifies `hdrgm:Version`/Adobe XMP and GContainer/MPF `GainMap` semantics; Apple documents auxiliary JPEG/HEIF gain maps whose application is required for HDR appearance. Base decode alone is not preservation.
+- **Claim ceiling:** this is explicit rejection, not HEIF/AVIF/HDR support or complete ISO 21496-1 detection. Unknown future binary signalling and validated reconstruction remain open.
+- **Structure/Goal:** changes remain in existing preprocessing/tests and add no dependency or renderer branch. U1.5A closes; Ultimate stays active.

@@ -309,3 +309,29 @@ def test_render_film_rejects_16bit_jpeg_before_output(tmp_path: Path) -> None:
     assert completed.returncode != 0
     assert "16-bit output requires" in completed.stderr
     assert not output_path.exists()
+
+
+def test_render_film_rejects_ultra_hdr_marker_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "ultra_hdr.jpg"
+    output_path = tmp_path / "output.png"
+    Image.new("RGB", (8, 6), (30, 60, 90)).save(input_path)
+    input_path.write_bytes(
+        input_path.read_bytes()
+        + b'<rdf:Description xmlns:hdrgm="http://ns.adobe.com/hdr-gain-map/1.0/" hdrgm:Version="1.0"/>'
+    )
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "refusing SDR fallback" in completed.stderr
+    assert not output_path.exists()

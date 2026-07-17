@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 225 local tests pass; U1.3B removes early sRGB8 quantization and U2.5A makes HP5/Tri-X exactly achromatic without changing frozen Velvia output. Current community pixels remain closed for learning. SF1.3B, SF2.0A and SF2.0B0 are closed. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 230 local tests pass; U1.3B removes early sRGB8 quantization, U2.5A makes HP5/Tri-X exactly achromatic, and U1.5A rejects HEIF/AVIF or recognized HDR/gain-map inputs before silent SDR fallback. Current community pixels remain closed for learning. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -72,7 +72,7 @@ Current limitations:
 
 - `scripts/render_film.py` now uses one float32 safe-Lab/effect path for both output depths, but remains SDR/sRGB;
 - generic RAW enters as explicit linear-sRGB/scene-linear and renders end to end, but still lacks a calibrated scene-to-display tone map;
-- no complete HEIF/HDR/gain-map or wide-gamut production path;
+- no complete HEIF/HDR/gain-map or wide-gamut production path; recognized unsupported inputs now fail closed instead of silently decoding an SDR base;
 - no stock/process/scanner-calibrated ground truth;
 - existing Lab statistics can make stocks look similar;
 - current halation numbers are explicitly uncalibrated heuristics;

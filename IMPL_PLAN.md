@@ -68,6 +68,13 @@ uint8/uint16 channels are exactly equal, the frozen Velvia output hash is
 unchanged, the same 6024x4024 RAW has zero non-neutral pixels, and 225 CPU tests
 pass. This is an artifact-safety invariant, not a calibrated B&W stock claim.
 
+`U1.5A` now closes the immediate silent-HDR-downgrade defect. HEIF/HEIC/AVIF,
+recognized Adobe/Android/Apple gain-map payload signals and HDR/gain/CICP/NCLX
+metadata reject before pixel conversion or output creation; ordinary SDR and
+ICC regressions remain green and 230 CPU tests pass. This is explicit
+unsupported-format rejection, not HEIF/AVIF/HDR support; complete ISO 21496-1
+detection, reconstruction and display mapping remain pending.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

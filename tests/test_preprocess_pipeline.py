@@ -6,7 +6,8 @@ import cv2
 import numpy as np
 import pytest
 import tifffile
-from PIL import Image
+from PIL import Image, features
+from PIL.PngImagePlugin import PngInfo
 
 from src.preprocess import inspect_input, load_working_image, save_srgb16_png, save_srgb16_tiff
 from src.preprocess.output_encode import _inject_png_icc
@@ -145,6 +146,47 @@ def test_unknown_profiled_png16_fails_closed(tmp_path: Path) -> None:
     assert succeeded
     path.write_bytes(_inject_png_icc(encoded.tobytes(), b"not-a-supported-icc-profile"))
     with pytest.raises(ValueError, match="ICC conversion is not implemented"):
+        load_working_image(path)
+
+
+def test_avif_inspects_but_fails_closed_before_sdr_fallback(tmp_path: Path) -> None:
+    if not features.check("avif"):
+        pytest.skip("Pillow AVIF support is unavailable")
+    path = tmp_path / "sample.avif"
+    _rgb_fixture(path)
+    inspection = inspect_input(path)
+    assert inspection.format_name == "AVIF"
+    warning = next(w for w in inspection.warnings if w.code == "unsupported_dynamic_range")
+    assert "container:AVIF" in warning.message
+    with pytest.raises(ValueError, match="refusing SDR fallback"):
+        load_working_image(path)
+
+
+@pytest.mark.parametrize(
+    "marker",
+    [
+        b'<rdf:Description xmlns:hdrgm="http://ns.adobe.com/hdr-gain-map/1.0/" hdrgm:Version="1.0"/>',
+        b"urn:com:apple:photo:2020:aux:hdrgainmap",
+    ],
+)
+def test_jpeg_gain_map_payload_markers_fail_closed(tmp_path: Path, marker: bytes) -> None:
+    path = tmp_path / "gainmap.jpg"
+    _rgb_fixture(path)
+    path.write_bytes(path.read_bytes() + marker)
+    inspection = inspect_input(path)
+    assert any(w.code == "unsupported_dynamic_range" for w in inspection.warnings)
+    with pytest.raises(ValueError, match="HDR/gain-map reconstruction is not implemented"):
+        load_working_image(path)
+
+
+def test_png_gain_map_metadata_fails_closed(tmp_path: Path) -> None:
+    path = tmp_path / "gainmap.png"
+    metadata = PngInfo()
+    metadata.add_text("hdr_gain_map", "present")
+    Image.new("RGB", (8, 6), (32, 96, 160)).save(path, pnginfo=metadata)
+    inspection = inspect_input(path)
+    assert "hdr_gain_map" in inspection.hdr_metadata
+    with pytest.raises(ValueError, match="metadata:hdr_gain_map"):
         load_working_image(path)
 
 

@@ -23,7 +23,7 @@
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Latent stock modes | hypothesis only; data-gated | no stock has proved `K>1`; LSM0 freezes semantics, LSM1 requires stock/connectivity/identifiability/rights gates, and `K=1` remains a formal branch |
-| Input pipeline | float32 default pass | `render_film` enters through `WorkingImage`, uses one float32 safe-Lab/effect path and quantizes only at final 8/16-bit export |
+| Input pipeline | float32 + fail-closed HDR pass | one float32 main path; HEIF/AVIF and recognized HDR/gain-map signals reject before silent SDR fallback |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
 | Current local data | FilmSet, BlueNeg bounded pilot, stock-pilot v1, FILM-R and FSA/OWI pilot | stock-pilot v1: 189 hash+decode verified files; Gold display-candidate; NPH/Konica/GA post-negation-preview diagnostics only; FSA/OWI remains historical/unknown-stock |
 | Named-stock coverage | **not established** | BlueNeg Kodak Gold is provisional single-stock evidence below transferable `S2`; no second stock is promoted |
@@ -31,7 +31,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 225 CPU tests pass after U1.3B and the U2.5A B&W neutral-axis invariant |
+| Tests | baseline passes | 230 CPU tests pass after U1.5A HDR/gain-map rejection fixtures |
 
 ---
 
@@ -87,7 +87,7 @@
 | 11 | U0.4 | CPU-safe CI, environment capture and explicit non-gold registry | complete | current U4 evaluation assets remain supporting work |
 | 12 | U5.R1A/U4.1/U4.2 | Maintain chromatic ontology/look rubric and stress evidence as CT evaluation support | ready support | none for local schema/tooling; participants later require approval |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
-| 14 | U1.2–U1.5/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF and B&W safety | in progress; float default, PNG/TIFF16 and B&W invariant pass | HDR/HEIF/wide-gamut and calibrated scene-to-display remain pending; HP5/Tri-X are now exactly achromatic |
+| 14 | U1.2–U1.5/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF and B&W safety | in progress; float default, PNG/TIFF16, B&W invariant and U1.5A rejection pass | actual HDR/HEIF/wide-gamut and calibrated scene-to-display support remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | pending | none for local research; U0.2 before public release |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
 | 17 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | deferred | not an active user ask or dependency |

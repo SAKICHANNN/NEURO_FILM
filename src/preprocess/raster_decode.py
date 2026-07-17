@@ -30,6 +30,15 @@ _MODE_BIT_DEPTH = {
     "F": 32,
 }
 
+_UNSUPPORTED_DYNAMIC_RANGE_FORMATS = {"HEIF", "HEIC", "AVIF"}
+_GAIN_MAP_PAYLOAD_MARKERS = (
+    b"http://ns.adobe.com/hdr-gain-map/1.0/",
+    b"hdrgm:version",
+    b"item:semantic=\"gainmap\"",
+    b"urn:com:apple:photo:2020:aux:hdrgainmap",
+)
+_PAYLOAD_SCAN_BYTES = 4 * 1024 * 1024
+
 
 def _orientation(image: Image.Image) -> int | None:
     try:
@@ -69,6 +78,33 @@ def _png_bit_depth(path: Path) -> int:
     return int(header[24])
 
 
+def _bounded_payload_markers(path: Path) -> list[str]:
+    size = path.stat().st_size
+    with path.open("rb") as handle:
+        payload = handle.read(_PAYLOAD_SCAN_BYTES)
+        if size > _PAYLOAD_SCAN_BYTES:
+            handle.seek(max(0, size - _PAYLOAD_SCAN_BYTES))
+            payload += handle.read(_PAYLOAD_SCAN_BYTES)
+    lowered = payload.lower()
+    return [marker.decode("ascii") for marker in _GAIN_MAP_PAYLOAD_MARKERS if marker in lowered]
+
+
+def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -> list[str]:
+    """Return deterministic signals that require an unavailable HDR decode path."""
+    signals: list[str] = []
+    if inspection.format_name in _UNSUPPORTED_DYNAMIC_RANGE_FORMATS:
+        signals.append(f"container:{inspection.format_name}")
+    for key in sorted(inspection.hdr_metadata, key=lambda value: str(value).casefold()):
+        lowered = str(key).casefold()
+        if lowered in {"icc", "icc_profile"}:
+            continue
+        if any(token in lowered for token in ("hdr", "gain", "cicp", "nclx", "mastering")):
+            signals.append(f"metadata:{key}")
+    if inspection.format_name in {"JPEG", "PNG"}:
+        signals.extend(f"payload:{marker}" for marker in _bounded_payload_markers(path))
+    return list(dict.fromkeys(signals))
+
+
 def inspect_raster(path: Path) -> InputInspection:
     warnings: list[DecodeWarning] = []
     try:
@@ -98,7 +134,7 @@ def inspect_raster(path: Path) -> InputInspection:
                     bit_depth = _png_bit_depth(path)
                 except (OSError, ValueError):
                     warnings.append(DecodeWarning("png_bit_depth_unknown", "PNG IHDR bit depth could not be read."))
-            return InputInspection(
+            inspection = InputInspection(
                 path=path,
                 exists=True,
                 source_kind="raster",
@@ -115,6 +151,15 @@ def inspect_raster(path: Path) -> InputInspection:
                 hdr_metadata=_hdr_metadata(image),
                 warnings=warnings,
             )
+            signals = unsupported_dynamic_range_signals(path, inspection)
+            if signals:
+                inspection.warnings.append(
+                    DecodeWarning(
+                        "unsupported_dynamic_range",
+                        "HDR/gain-map reconstruction is not implemented; signals=" + ",".join(signals),
+                    )
+                )
+            return inspection
     except UnidentifiedImageError:
         return InputInspection(path=path, exists=path.exists(), source_kind="unknown")
 
@@ -211,6 +256,12 @@ def load_raster_working_image(path: Path) -> WorkingImage:
     warnings = list(inspection.warnings)
     if inspection.source_kind != "raster":
         raise ValueError(f"Unsupported raster input: {path}")
+    dynamic_range_signals = unsupported_dynamic_range_signals(path, inspection)
+    if dynamic_range_signals:
+        raise ValueError(
+            "HDR/gain-map reconstruction is not implemented; refusing SDR fallback: "
+            + ",".join(dynamic_range_signals)
+        )
     if inspection.format_name == "TIFF" and inspection.bit_depth == 16:
         arr = _load_srgb16_tiff(path, inspection)
         alpha_policy = "absent"

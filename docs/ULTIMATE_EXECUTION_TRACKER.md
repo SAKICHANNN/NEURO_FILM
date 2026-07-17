@@ -286,8 +286,8 @@ Restrictions:
 | U1.3A | complete: opt-in float path | Opt-in float safe-Lab path to true PNG/TIFF16 without changing default 8-bit compatibility | U1.1/U1.3 primitives | uint16 decode/ICC/>256 levels and real ARW vision smoke pass; default remains 8-bit; no calibrated claim |
 | U1.3B | complete: float default | Remove the default renderer's early sRGB8 quantization while preserving 8-bit export compatibility | U1.3A | sRGB8 colour exact; deterministic effects <=1 code; 223 tests and full-resolution RAW colour/B&W audit pass; pre-existing B&W chroma defect remains separate |
 | U1.4 | pending | ACEScg or validated wide-gamut working contract | U1.2 | OCIO config/version pinned; golden transform vectors |
-| U1.5 | pending | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | Fixtures for supported/unsupported variants |
-| U1.5A | frozen/ready | Fail closed on HEIF/AVIF and recognized HDR/gain-map signals before pixel conversion | U1.5 | structured inspection plus deterministic rejection fixtures; SDR regression and full CPU suite pass |
+| U1.5 | in progress: explicit rejection pass | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | U1.5A rejects current unsupported containers/signals; complete ISO 21496-1 detection and real format support remain pending |
+| U1.5A | complete: fail-closed pass | Fail closed on HEIF/AVIF and recognized HDR/gain-map signals before pixel conversion | U1.5 | AVIF, Adobe/Android, Apple and PNG metadata fixtures reject before output; SDR regressions and 230-test suite pass |
 | U1.6 | pending | Halo-aware tile/cache renderer | U1.3 | Full-frame vs tiled tolerance; bounded memory |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
