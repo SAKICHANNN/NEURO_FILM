@@ -41,9 +41,10 @@ SF1.3A retains 37 clean pixels across eight bilateral UIDs, but SF1.3B fails:
 global RGB is 56.25%/p=.464 and loses to 68.75% nuisance controls. This pool is
 closed for learning. The next ready local leaf returns to `U1.1/U1.3`
 deterministic high-precision product work; no operator or latent-mode permission
-opens. The next stock-data sibling is frozen as `SF2.0A`: a 63-page,
-metadata-only Apollo 7 SO-368/SO-121 magazine/filter/content feasibility audit.
-It requests no images and cannot open fitting, training or LSM. The failed
+opens. The stock-data sibling `SF2.0A` is now closed: all 63 Apollo 7 metadata
+pages validate and the filter-free bridge passes, but only one of two required
+shared content tags survives, so the source is content-confounded. It requested
+no images and opens no fitting, training or LSM. The failed
 archive matrix is not teacher truth. LOC
 Phase C remains a sealed historical/unknown lane.
 

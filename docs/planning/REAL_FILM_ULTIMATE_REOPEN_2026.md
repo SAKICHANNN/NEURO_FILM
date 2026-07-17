@@ -77,7 +77,7 @@ backfill those fields.
 | local Flickr-derived files | claimed film, not sufficiently verified | 4,210-row audit has zero eligible rows and no reliable roll/scanner lineage | quarantined; no training or truth use |
 | manufacturer sensitometry | physical prior, not image target | stock/process curves and partial spectral information | initialise/constrain a model only |
 | FILM-R candidate | yes; 44 4K 35mm colour scans | stock-like filenames, one contributor; roll/process/scanner unreported | rights-clear real-film target/style and artifact evidence after local acquisition; not stock truth |
-| Apollo candidate | yes; original NASA flight film | physical magazines and documented film types; scene domain is extremely narrow | possible roll-identifiability stress source; raw scans are huge and processed products have stricter rights |
+| Apollo candidate | yes; original NASA flight film | physical magazines and documented film types; SF2.0A validates Apollo 7 metadata but closes content-confounded | narrow archive/stress source only; no Apollo 7 page/pixel expansion, while raw scans remain huge and processed products have stricter rights |
 | DOCUMERICA candidate | yes; federal documentary slides/negatives | photographer and archival metadata, but no reliable roll/scanner/process fields | diverse public-domain real-film archive look; uploader/era/scan nuisance dominates stock claims |
 | SillyStill candidate | yes, paired digital/Cinestill claimed | paper reports 41 raw / 38 processed pairs | full dataset is not present at the official repo and no root data license exists; one example pair is insufficient |
 | Emulating Emulsion candidate | yes, controlled Velvia 100 | one 36-exposure roll, 33 chart pairs / 3,168 unique patch correspondences | scientifically strong single-roll calibration precedent; public dataset/license was not found |
@@ -134,7 +134,7 @@ archive/restoration mechanism test, not fresh-film emulation truth.
 | LOC FSA/OWI colour archive | 558 canonical public scans; 258 bounded derivatives currently retained | US federal public domain | creator/location/sequence guards; no reliable per-image stock | sealed partial `H historical/unknown`, never a named-stock pilot |
 | FILM-AA, Figshare 21803292 | 20 files; 122,164,960 bytes; 10 empty damaged frames + annotations | CC BY 4.0 | authentic damage, no scene/roll colour truth | optional artifact-control sibling, not colour training |
 | BlueNeg exact revision | 491 previews, 53 rolls, 13 film strings; current bounded lane 118,929,719 bytes | custom attribution license already snapshotted | physical roll/date/location/film string, alignment metadata | already acquired bounded subset; expand only under a preregistered whole-roll gate |
-| NASA Apollo flight-film scans | almost 25,000 catalog images; raw examples about 1.2 GB each | NASA raw scans public domain with credit; ASU processed products restrict derivatives/commercial use | magazine, mission, film type, frame; scanner provenance | metadata/sample audit first; do not bulk-download raw |
+| NASA Apollo flight-film scans | almost 25,000 catalog images; raw examples about 1.2 GB each | NASA raw scans public domain with credit; ASU processed products restrict derivatives/commercial use | magazine, mission, film type, frame; scanner provenance | SF2.0A Apollo 7 sample closes content-confounded; do not expand pages or download pixels |
 | DOCUMERICA | about 15,981 online public-domain scans | US federal public domain | photographer, place/date/series; Kodachrome/Ektachrome collection-level history | metadata-only audit, then small photographer/source-stratified sample |
 | SillyStill | paper: 41 raw pairs, 38 processed | official repo has no root license and full dataset links remain unavailable | paired tripod scenes, one claimed stock | blocked for training; metadata/reference only |
 | Emulating Emulsion | 33 chart image pairs / 3,168 unique patches, one Velvia 100 roll | publication accessible; public data/license not found | controlled illuminant, exposure, camera, D50 scan | method precedent only until data becomes verifiably available |
@@ -229,12 +229,12 @@ so this pool is closed for learning. The local ready branch returns to the
 independent deterministic U1 high-precision product path while other stock/data
 evidence is researched; training, operator fitting and LSM remain closed.
 
-That stock/data research now has one frozen metadata-only leaf: `SF2.0A`
-samples exactly 63 NASA/JSC Apollo 7 photo pages across two SO-368 and five
-SO-121 colour magazines. It tests only whether stock, physical-magazine,
-filter, exposure and preregistered content-tag connectivity is sufficient to
-justify a larger metadata audit. It requests no image payload. A pass cannot
-open pixels, operator fitting, training, LSM or a stock-response claim.
+That stock/data research completed the metadata-only `SF2.0A` leaf. All 63
+NASA/JSC Apollo 7 pages pass ID, stock, magazine, exposure-support and
+filter-free bridge checks, but only `spacecraft_hardware` satisfies the frozen
+cross-stock/two-magazine content rule; two shared tags were required. The
+deterministic decision is `content_confounded`. Apollo 7 page/pixel expansion
+closes, no image payload was requested, and fitting/training/LSM remain false.
 
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0

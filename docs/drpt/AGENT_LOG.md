@@ -1067,3 +1067,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** five focused tests pass, including exact 63-page selection, parser behavior, no-image-request enforcement, mismatch rejection and filter-confounding branch. Compile/sample smoke and `git diff --check` pass. The complete CPU suite passes (`217 passed`).
 - **Structure:** implementation stays under the existing `src/real_film`, `scripts`, `tests` and ignored `outputs/real_film` boundaries; no parallel data subsystem or production renderer dependency was introduced.
 - **Handoff:** commit/push the verified implementation before issuing any of the frozen 63 live requests; then execute once and propagate the evidence without loosening gates.
+
+## 2026-07-17 - Close SF2.0A on Apollo 7 content connectivity
+
+- **Execution identity:** committed implementation `4a5bc085...57b0`; 63 sequential NASA/JSC HTML pages; report SHA-256 `afb8b150...3ee9`; decision SHA-256 `b63e2dcb...ba7`.
+- **Integrity:** 63/63 pages return HTTP 200 HTML, remain on NASA/JSC `photo.pl`, match expected photo ID and stock code and stay below 22,953 bytes. Every magazine contributes 9/9 pages. Offline decision replay is exact and no image URL was requested.
+- **Passing controls:** SO-368 has 18 rows/two magazines, SO-121 45/five; filter-free rows are 18/9; reported exposure states are Normal, Over Exposed and Under Exposed. Support and filter-bridge gates pass.
+- **Decisive failure:** only `spacecraft_hardware` passes the frozen cross-stock requirement of at least three rows and two magazines per stock. Cloud/weather, land/terrain and ocean/water support for SO-368 is concentrated in magazine M; sun/glint is sparse. One shared tag is below the frozen minimum two, so the deterministic decision is `content_confounded`.
+- **Binding branch:** close Apollo 7 page/pixel expansion. Do not weaken content gates, download offered images, fit operators, train models, cluster modes or claim `S1/S2`. Retain the source as authoritative metadata and negative source-design evidence.
+- **Execution note:** the outer command wrapper timed out at 244 seconds while the single child process continued; process inspection prevented a duplicate run, and the original process completed atomically. No checkpoint change is needed for this completed leaf.
+- **Goal continuation:** Ultimate remains active; return to another evidence-authorised named-stock source search or the independent deterministic product queue.
