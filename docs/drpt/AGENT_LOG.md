@@ -1077,3 +1077,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Binding branch:** close Apollo 7 page/pixel expansion. Do not weaken content gates, download offered images, fit operators, train models, cluster modes or claim `S1/S2`. Retain the source as authoritative metadata and negative source-design evidence.
 - **Execution note:** the outer command wrapper timed out at 244 seconds while the single child process continued; process inspection prevented a duplicate run, and the original process completed atomically. No checkpoint change is needed for this completed leaf.
 - **Goal continuation:** Ultimate remains active; return to another evidence-authorised named-stock source search or the independent deterministic product queue.
+
+## 2026-07-17 - Freeze SF2.0B0 STS098 exact-code metadata snapshot
+
+- **Node/parent goal:** `ULT > RF0.4 > SF2.0B0`; test the broader NASA/JSC astronaut Earth-photography database as a new source design, not an Apollo 7 expansion.
+- **Reconnaissance:** keyless official table queries expose 13,255 Velvia rows and 1,339 combined Portra rows across the database. STS098 is the observed shared mission: 168 `VELVI`, 329 `5775` and 10 `5776` rows. These counts guide the development feasibility minima but are not yet frozen evidence.
+- **Rights:** NASA/JSC requests source credit and prohibits implied endorsement; NASA material is generally not copyrighted unless noted, with third-party/personality caveats. SF2.0B0 requests metadata only.
+- **Frozen access:** one exact-code POST plus one generated result-table GET per code, six requests maximum. Parse the nine official table columns, retain STS098 rows and response hashes, and request no photo page, image, mask, ZIP, KML or API.
+- **Gate/claim:** require minimum target rows/rolls and zero cross-stock photo-ID overlap. A pass opens only a separately frozen content/date/focal/roll nuisance audit; pixels, fitting, training, LSM and stock claims remain false.
+- **Handoff:** validate/commit/push the contract, then implement and test the parser/query client before live execution.

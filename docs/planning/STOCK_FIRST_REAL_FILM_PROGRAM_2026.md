@@ -50,6 +50,7 @@ against the exact-revision frozen metadata.
 | BlueNeg | dataset-declared `film_type` at frozen revision; not edge-code/manufacturer proof | 53 physical rolls / 491 frames | 491 negated previews; 247 printed-photo proxy alignments | old negative, restoration target, unknown process/lab/scanner | public academic/commercial use with mandatory credit; bounded lanes about 956 MB | only immediately executable multi-stock source; select four pilots but keep all below `S2` until controls pass |
 | Xi Film marketplace | contributor/platform-verified stock, camera and scan per licensed frame | contributor/source; roll identity not advertised | high-resolution positive scans | lab/scanner/process fields require contract | paid per-image licensing and manual delivery | promising future source-diversification lane; no purchase or training until licence explicitly covers ML and grouping is verified |
 | Apollo flight archive | documented mission/magazine/film metadata | magazine/frame | raw flight-film scans remain rights-separated and unacquired | extreme orbital content, exposure/filter association and archive processing | NASA raw scans public domain with credit; ASU processed products restricted | `SF2.0A` closes Apollo 7 as content-confounded after 63/63 valid pages; no pixels or learning |
+| NASA/JSC astronaut Earth photography | official exact media codes and mission-roll-frame IDs | mission/film roll/frame | photographs remain out of SF2.0B0 scope | mission/date/roll/geography/focal length/camera and scan pipeline can dominate | NASA/JSC credit/non-endorsement/third-party caveats; keyless public HTML query | `SF2.0B0` freezes a six-request STS098 exact-code metadata snapshot for VELVI/5775/5776 only |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -255,3 +256,10 @@ reported exposure states pass, but only `spacecraft_hardware` spans the
 required rows and two magazines per stock. The frozen requirement was two
 shared content tags, so the result is `content_confounded`. Do not expand to
 more Apollo 7 pages or pixels, and keep training, fitting and LSM forbidden.
+
+`SF2.0B0` is the next source leaf. Unlike Apollo 7, the broader astronaut Earth
+photography database has an observed same-mission candidate edge: STS098 uses
+exact NASA/JSC codes for Velvia 50 and two Portra 400 variants across film
+rolls. The first formal step is only a keyless three-query metadata snapshot;
+content/date/focal/roll connectivity is a separate future gate, and no photo
+page or image request is allowed.

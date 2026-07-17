@@ -236,6 +236,12 @@ cross-stock/two-magazine content rule; two shared tags were required. The
 deterministic decision is `content_confounded`. Apollo 7 page/pixel expansion
 closes, no image payload was requested, and fitting/training/LSM remain false.
 
+The broader NASA/JSC database is a materially different source candidate, not
+an Apollo 7 rescue. `SF2.0B0` freezes three exact-code public table queries for
+STS098 (`VELVI`, `5775`, `5776`) under a six-request ceiling. It may open only
+a separately frozen metadata nuisance/connectivity design. Photo pages, image
+payloads, fitting, training and LSM remain forbidden.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

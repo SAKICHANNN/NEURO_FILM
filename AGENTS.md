@@ -268,6 +268,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/pixel pass | SF1.3A | 37 clean bounded Ektar/Velvia derivatives, eight bilateral UIDs, zero duplicate pairs, no confirmed severe artifact; no fitting/training |
 | Done/closed | SF1.3B | Shared-author Ektar/Velvia RGB fails held-out-UID identifiability and loses to nuisance controls; pool closed for learning |
 | Done/closed | SF2.0A | 63/63 Apollo 7 metadata pages validate and support/filter bridge pass, but only one of two required shared content tags passes; content-confounded, no pixels/fitting/training/LSM |
+| Ready/metadata only | SF2.0B0 | Freeze keyless STS098 NASA/JSC result-table rows for exact VELVI/5775/5776 codes under six requests; no photo pages/images/fitting/training/LSM |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

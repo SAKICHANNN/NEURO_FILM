@@ -48,6 +48,11 @@ no images and opens no fitting, training or LSM. The failed
 archive matrix is not teacher truth. LOC
 Phase C remains a sealed historical/unknown lane.
 
+The next stock-data leaf is `SF2.0B0`: a keyless, maximum-six-request
+NASA/JSC result-table snapshot for STS098 exact codes `VELVI`, `5775` and
+`5776`. It is metadata discovery only and forbids photo-page/image access,
+fitting, training and LSM.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
