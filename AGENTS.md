@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 221 local tests pass; current community pixels remain closed for learning. SF1.3B fails shared-author identifiability. SF2.0A validates 63/63 Apollo 7 SO-368/SO-121 metadata pages and the filter bridge, but only one of two required shared content tags passes, so Apollo 7 closes as content-confounded. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 221 local tests pass; current community pixels remain closed for learning. SF1.3B fails shared-author identifiability. SF2.0A closes Apollo 7 as content-confounded. SF2.0B0 finds 168/329/10 STS098 VELVI/5775/5776 rows but Velvia spans only two rolls below the frozen four-roll minimum, so that edge also closes. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -268,7 +268,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/pixel pass | SF1.3A | 37 clean bounded Ektar/Velvia derivatives, eight bilateral UIDs, zero duplicate pairs, no confirmed severe artifact; no fitting/training |
 | Done/closed | SF1.3B | Shared-author Ektar/Velvia RGB fails held-out-UID identifiability and loses to nuisance controls; pool closed for learning |
 | Done/closed | SF2.0A | 63/63 Apollo 7 metadata pages validate and support/filter bridge pass, but only one of two required shared content tags passes; content-confounded, no pixels/fitting/training/LSM |
-| Ready/metadata only | SF2.0B0 | Freeze keyless STS098 NASA/JSC result-table rows for exact VELVI/5775/5776 codes under six requests; no photo pages/images/fitting/training/LSM |
+| Done/closed | SF2.0B0 | STS098 exact-code rows pass at 168/329/10, but Velvia has only two rolls below frozen four-roll minimum; insufficient support, no B1/photo/images/fitting/training/LSM |
 | Done ontology / data-gated | LSM0/LSM1 | Freeze observed-vs-latent semantics, K=1 and conditional feasibility matrix; no current stock is mode-study eligible and no clustering/training opens |
 | Done/closed | RF2.S0 | Direct Gold archive-matrix transplant passes OOD coverage but fails style, non-basic residual and clipping; do not add capacity |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |

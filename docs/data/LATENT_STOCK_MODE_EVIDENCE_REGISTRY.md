@@ -53,7 +53,7 @@ Each source row records only independently verifiable fields:
 | FILM-R | physical scans but family/content structural confounding; roll/process/scanner unknown | `source/content confounded` | false |
 | LOC FSA/OWI | historical physical film; stock, roll, process and scanner settings unknown | historical/unknown nuisance lane, not named-stock mode study | false |
 | Apollo 7 SF2.0A | 63/63 authoritative SO-368/SO-121 pages validate; stock/magazine/filter support passes but only one of two required shared content tags survives | `source/content confounded`; closed before pixels or identifiability | false |
-| NASA/JSC STS098 SF2.0B0 | exact VELVI/5775/5776 public-table snapshot contract frozen; no formal snapshot result yet | `metadata only`; later content/date/focal/roll controls required before identifiability | false |
+| NASA/JSC STS098 SF2.0B0 | exact VELVI/5775/5776 snapshot passes rows and zero-overlap, but Velvia has two rolls below the frozen four-roll minimum | `insufficient connectivity`; closed before nuisance/identifiability/pixels | false |
 | 53/55/56 deterministic anchors | same-input normalisation indicates near-collinear direction; not real-stock observations | required strength-path negative control; not modes | false |
 
 Current trusted metadata does not provide actual exposure offset, metered EI,

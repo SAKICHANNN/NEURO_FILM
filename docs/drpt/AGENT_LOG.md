@@ -1095,3 +1095,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** four focused tests pass for tracked config safety, table parsing, exact bounded endpoint use and overlap rejection. Module/script compile, JSON validation and `git diff --check` pass. The complete CPU suite passes (`221 passed`).
 - **Structure:** new code stays in existing `src/real_film`, `scripts`, `tests` and ignored-output boundaries; it adds no production or ML dependency.
 - **Handoff:** commit/push the corrected config and verified implementation before issuing the six formal requests; execute once, replay offline and branch without changing support minima.
+
+## 2026-07-17 - Close SF2.0B0 on insufficient Velvia rolls
+
+- **Execution identity:** committed implementation `e973be41...5efb`; exactly six NASA/JSC query/result-table requests; report SHA-256 `8c373de3...ff43`; decision SHA-256 `759867b9...2f8a`.
+- **Integrity:** all three exact-code tables parse with the frozen nine columns; no query error or cross-stock photo-ID overlap. Offline decision replay is exact. No photo page, image, API, cloud mask, ZIP or KML was requested.
+- **Support:** STS098 contains 168 `VELVI` rows over rolls 701/720A; 329 `5775` rows over 12 rolls; 10 auxiliary `5776` rows over roll 373. All row minima pass and both Portra roll minima pass.
+- **Decisive failure:** Velvia has only two independent rolls versus the preregistered minimum four. Frame count cannot replace group support, so the deterministic decision is `insufficient_stock_roll_support`.
+- **Binding branch:** do not open SF2.0B1, lower the roll gate, substitute another film code post-result or request photographs. Retain the snapshot as exact source-support negative evidence; fitting, training, LSM and `S1/S2` remain false.
+- **Goal continuation:** Ultimate remains active. Return to the independent U1 high-precision product leaf while future stock-source discovery remains evidence-gated.
