@@ -56,6 +56,16 @@ def test_load_raster_working_image_is_float32_linear(tmp_path: Path) -> None:
     assert any(warning.code == "assumed_srgb" for warning in image.warnings)
 
 
+@pytest.mark.parametrize("suffix", [".png", ".jpg"])
+def test_malformed_embedded_icc_fails_closed(tmp_path: Path, suffix: str) -> None:
+    path = tmp_path / f"malformed{suffix}"
+    Image.new("RGB", (8, 6), (32, 96, 160)).save(path, icc_profile=b"not-an-icc")
+    inspection = inspect_input(path)
+    assert inspection.source_profile.kind == "icc"
+    with pytest.raises(ValueError, match="refusing unprofiled RGB fallback"):
+        load_working_image(path)
+
+
 def test_tiff_inspection_and_decode(tmp_path: Path) -> None:
     path = tmp_path / "sample.tiff"
     _rgb_fixture(path)

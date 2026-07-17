@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 230 local tests pass; U1.3B removes early sRGB8 quantization, U2.5A makes HP5/Tri-X exactly achromatic, and U1.5A rejects HEIF/AVIF or recognized HDR/gain-map inputs before silent SDR fallback. Current community pixels remain closed for learning. Training, operator fitting and LSM remain forbidden |
+| Current evidence | 233 local tests pass; U1.3B removes early sRGB8 quantization, U2.5A makes HP5/Tri-X exactly achromatic, U1.5A rejects unsupported HDR/gain-map ingress, and U1.2A rejects embedded ICC conversion failure instead of discarding the profile. Current community pixels remain closed for learning. Training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.

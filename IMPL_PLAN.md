@@ -75,6 +75,13 @@ ICC regressions remain green and 230 CPU tests pass. This is explicit
 unsupported-format rejection, not HEIF/AVIF/HDR support; complete ISO 21496-1
 detection, reconstruction and display mapping remain pending.
 
+`U1.2A` also closes an ordinary-raster colour-state contradiction: malformed or
+unconvertible embedded ICC now rejects before `WorkingImage`/output instead of
+discarding the profile and returning pixels still labeled ICC-managed. PNG and
+JPEG no-output fixtures pass, ordinary profile/SDR/RAW behavior remains green,
+and the full CPU suite now passes 233 tests. Arbitrary ICC/wide-gamut/Reference
+support is not claimed.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

@@ -174,9 +174,8 @@ def _convert_with_icc(image: Image.Image, warnings: list[DecodeWarning]) -> Imag
         dst = ImageCms.createProfile("sRGB")
         converted = ImageCms.profileToProfile(image.convert("RGB"), src, dst, outputMode="RGB")
         return converted
-    except Exception as exc:  # noqa: BLE001 - fallback should stay non-fatal.
-        warnings.append(DecodeWarning("icc_convert_failed", f"ICC conversion failed; used RGB fallback: {exc!r}"))
-        return image.convert("RGB")
+    except Exception as exc:  # noqa: BLE001 - Pillow/LittleCMS exposes several profile failures.
+        raise ValueError("embedded ICC conversion failed; refusing unprofiled RGB fallback") from exc
 
 
 def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:

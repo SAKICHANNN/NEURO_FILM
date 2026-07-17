@@ -1163,3 +1163,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen policy:** absent ICC keeps assumed-sRGB behavior; explicitly convertible ICC uses LittleCMS; any embedded-profile parse/conversion failure raises before `WorkingImage` or renderer output.
 - **Gates:** malformed PNG/JPEG and renderer no-output fixtures, ordinary unprofiled/sRGB/high-precision ICC regressions and full suite. No wide-gamut/Reference claim or new profile engine.
 - **Handoff:** commit/push the contract before changing the catch branch, then implement the smallest error-path repair and propagate.
+
+## 2026-07-17 - Promote U1.2A ICC conversion fail-closed repair
+
+- **Implementation:** embedded-profile parse/conversion failure now raises from the existing raster conversion boundary instead of returning unprofiled RGB pixels with ICC provenance. Absent ICC still uses explicit assumed-sRGB; valid convertible profiles are unchanged.
+- **Verification:** malformed PNG/JPEG fixtures reject, and a renderer subprocess creates no output. Existing SDR, standard ICC, PNG/TIFF16, RAW and HDR/gain-map rejection regressions remain green. Focused suite passes 32 tests; complete CPU suite passes `233 passed`.
+- **Claim/structure:** this repairs pixel/provenance consistency only. It adds no profile engine, dependency, wide-gamut working space, OCIO/ACES transform or calibrated Reference claim; changes stay in the existing preprocessing/tests boundary.
+- **Goal continuation:** U1.2A closes and Ultimate remains active. Remaining U1 work is the broader validated wide-gamut/OCIO and actual HDR/HEIF support programme.

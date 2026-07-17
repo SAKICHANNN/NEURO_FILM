@@ -335,3 +335,25 @@ def test_render_film_rejects_ultra_hdr_marker_before_output(tmp_path: Path) -> N
     assert completed.returncode != 0
     assert "refusing SDR fallback" in completed.stderr
     assert not output_path.exists()
+
+
+def test_render_film_rejects_malformed_icc_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "malformed_icc.png"
+    output_path = tmp_path / "output.png"
+    Image.new("RGB", (8, 6), (30, 60, 90)).save(input_path, icc_profile=b"not-an-icc")
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "refusing unprofiled RGB fallback" in completed.stderr
+    assert not output_path.exists()
