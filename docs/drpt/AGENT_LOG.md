@@ -1340,3 +1340,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Binding decision:** the contract required reversed order to be observable. Do not lower the gate or change effect pixels. Remove the uncommitted adapter/tests and close U1.6E with negative evidence.
 - **Regression:** established U1.6C/U1.6D focused tests pass 44; complete CPU suite passes 328 after removal. No production or experimental API changed.
 - **Propagation/Goal:** U1.6C/D remain valid, U1.6 and Ultimate remain active, and the next candidate is a separately frozen grain/global-normalisation context leaf.
+
+## 2026-07-17 - Freeze U1.6F staged legacy-grain context
+
+- **Node/parent:** `ULT > U1.6 > U1.6F`; global-context child after U1.6E closes without retained code.
+- **Dependency audit:** legacy residual grain combines variable-consumption PCG64 normal noise, radius-4 Gaussian high-pass, per-channel mean, scalar std, base-luminance envelope and a second per-channel mean.
+- **Development feasibility only:** row-chunked normal bytes equal one-shot generation; float32 memmap mean/std bytes equal ndarray on the bounded probe; sigma 1.2 remains on the direct radius-4 path.
+- **Frozen design:** dedicated `src/filmfx/tiled_grain.py`, private caller-rooted temporary directory, raw plus high-pass memmaps, U1.6A filtering, legacy-order in-place reductions, strict scratch budget and cleanup on success/failure.
+- **Gates/claim:** byte-identical layer/composite, colour/B&W, metadata, injected-failure cleanup, real-raster mechanics and full suite. This may prove bounded RAM with O(image) disk scratch only; no physical, persistent-cache, default, total-memory or 100MP claim.
+- **Handoff:** commit/push the contract separately, then implement without changing `grain_residual_layer` or production renderer paths.

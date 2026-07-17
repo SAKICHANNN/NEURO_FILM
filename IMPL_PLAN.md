@@ -151,6 +151,12 @@ required output-identifiable order cannot be proved without changing effect
 math or weakening the gate, so no combined adapter is retained. U1.6C/D remain
 valid independently and U1.6 moves to a truthful grain/global-context child.
 
+`U1.6F` is frozen as an exact-legacy, bounded-RAM staging pilot. Development
+probes show row-chunked PCG64 normal generation and memmap reductions can retain
+bytes, while the grain high-pass has radius four. The implementation may use
+private temporary raw/high-pass memmaps with strict budget and cleanup, but may
+not call this compact context, streaming, physical grain or 100MP readiness.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

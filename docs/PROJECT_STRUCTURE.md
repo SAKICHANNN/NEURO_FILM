@@ -91,6 +91,9 @@ reimplementing them; global-statistic and coordinate-random operators require
 an explicit context contract before integration. Safe-Lab and sparse
 dust/scratch now have experimental context adapters, while grain and physical
 halation remain unresolved.
+Exact legacy-grain staging, if it passes U1.6F, belongs in a dedicated
+`src/filmfx/tiled_grain.py` module because temporary-resource lifecycle and
+global reductions are materially different from local effect adapters.
 Effect-specific adapters remain under `src/filmfx`; they may consume the
 generic tiler but cannot move or duplicate effect algorithms into inference.
 
