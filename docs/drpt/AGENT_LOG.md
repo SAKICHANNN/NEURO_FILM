@@ -1244,3 +1244,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 30 focused tests and the complete `248 passed` CPU suite; LittleCMS accepts the fixed deterministic ICC profile; default CLI remains recipe-free and compatible.
 - **Claim/structure:** current style names are not promoted to evidence-backed stock profiles. The smoke input is quarantined and provides no label/right/style evidence. Contract code remains in `src/inference`, not a parallel renderer.
 - **Propagation/Goal:** U2.1A closes, broader U2.1 remains in progress, and Ultimate stays active. Update authorities/results, commit/push, then select the next ready product/data leaf.
+
+## 2026-07-17 - Freeze U1.6A halo-aware tiling primitive
+
+- **Node/parent:** `ULT > U1.6 > U1.6A`; next data-independent product foundation after the U2.1A replay envelope passes and bounded NASA/Openverse source expansions close.
+- **Scope:** one reusable `src/inference` primitive for strict HWC validation, row-major core/halo planning, exact core stitching and execution metadata. It does not enter the production renderer in this leaf.
+- **Frozen gates:** exact planner coverage; identity/pointwise bit parity; direct finite-support Gaussian max error and seam peak `<=1e-6` when halo covers the kernel radius; repeat determinism; fail-closed callback/array validation; bounded expanded tile shape; full CPU suite.
+- **Claim boundary:** only the callback transient working set is bounded. Output remains full-frame. Safe-Lab global statistics, percentile-normalized halation, normalized grain and coordinate-seeded dust require later explicit global-context work; no 100MP product claim is allowed.
+- **Handoff:** validate and commit/push this contract, then implement only the frozen primitive and focused tests before any integration decision.

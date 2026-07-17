@@ -105,6 +105,14 @@ fingerprint. All current profiles remain heuristic
 `film-inspired/look-approximation`; broader U2.1 API/evolution/operator work is
 still pending and no fitting/training/LSM opens.
 
+The next data-independent leaf is frozen as `U1.6A`: a reusable halo-aware
+tiled-execution primitive for explicitly finite-support local operators. It
+must prove exact coverage, pointwise parity, finite-support Gaussian parity and
+a bounded transient tile window before any renderer integration. Current
+safe-Lab statistics, percentile-normalized halation, grain normalization and
+coordinate-seeded dust remain full-frame/global-state concerns; this leaf makes
+no 100MP end-to-end memory claim.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

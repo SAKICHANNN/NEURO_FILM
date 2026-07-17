@@ -292,6 +292,7 @@ Restrictions:
 | U1.5 | in progress: explicit rejection pass | HEIF/HDR/gain-map detect/preserve or explicit rejection | U1.2 | U1.5A rejects current unsupported containers/signals; complete ISO 21496-1 detection and real format support remain pending |
 | U1.5A | complete: fail-closed pass | Fail closed on HEIF/AVIF and recognized HDR/gain-map signals before pixel conversion | U1.5 | AVIF, Adobe/Android, Apple and PNG metadata fixtures reject before output; SDR regressions and 230-test suite pass |
 | U1.6 | pending | Halo-aware tile/cache renderer | U1.3 | Full-frame vs tiled tolerance; bounded memory |
+| U1.6A | frozen/ready | Deterministic finite-support halo-aware tiled-execution primitive | U1.3B | exact planner coverage; pointwise bit parity; finite-support Gaussian max error <=1e-6; bounded transient tile window; no renderer integration or 100MP claim; `docs/planning/U1_6A_HALO_AWARE_TILING_CONTRACT.md` |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
 
