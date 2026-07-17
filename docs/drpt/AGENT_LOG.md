@@ -1297,3 +1297,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Full verification:** complete suite passes `305 passed`; diff/compile checks pass. The raster is mechanics only and supplies no stock/style/right/preference evidence.
 - **Claim/branch:** numerical simple-halation parity passes. Physical/density halation, grain, dust, integration, streaming/cache, bounded total memory and 100MP remain open. No physical, stock or calibrated claim changes.
 - **Propagation/Goal:** close U1.6C, keep U1.6 and Ultimate active, update authorities/structure/results, commit/push, then select the next legal leaf.
+
+## 2026-07-17 - Close SF2.2R institutional source reconnaissance before acquisition
+
+- **Node/parent:** `ULT > RF0.4 > SF2.2R`; return to named-stock source discovery after SF2.1A closes and U1.6C passes.
+- **Skills/governance:** `dev-research-reliability` is the sole writer; scientific research, DRPT-BI, plan tracking, agent-log and structure stewardship are secondary review layers. DRPT L2 Mode A; no subagents.
+- **Official-source evidence:** Smithsonian Open Access publishes official CC0 metadata separately from media rights through hash-sharded AWS unit indexes. Seven photography-relevant units total 6,642,017,079 bytes.
+- **Bounded probe:** inspect the same eight of 256 hash shards per unit in memory for exact stock-family/product terms, retain no bodies and request no media. NMAH/EEPA expose Kodachrome-family text, SIA sparse Ektachrome, and the other units expose no exact connected product-variant design; loose `Portra` also demonstrates `portrait` false positives.
+- **Decision:** `no_formal_audit_dor`. Do not download the 6.64GB corpus or union unit/collection/content signatures into a stock label. No stock grade, pixel, operator fitting, training or LSM permission changes.
+- **Propagation/handoff:** record the source-gap result in RF/SF authorities, registry, tracker, task board and implementation pointer. Ultimate remains active and moves to another independently gated source design or deterministic product leaf.

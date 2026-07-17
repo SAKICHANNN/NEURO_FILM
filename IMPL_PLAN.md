@@ -67,6 +67,14 @@ strict-row/creator gate, so no three-stock graph exists. Do not deduplicate or
 relax gates after the result; no live-page, pixel, fitting, training or LSM
 branch opens.
 
+`SF2.2R` closes before a formal Smithsonian audit. Fixed hash-shard probes of
+seven official Open Access metadata units find broad Kodachrome evidence in
+NMAH/EEPA and sparse Ektachrome in SIA, not exact product variants connected
+inside common independent groups. The complete selected scope would be
+6,642,017,079 metadata bytes, so a full transfer would scale source/content
+confounding rather than repair identifiability. No media, fitting, training or
+LSM branch opens.
+
 The independent product leaf `U1.3B` is complete. Default PNG/JPEG/TIFF8 and
 opt-in PNG/TIFF16 now share one float32 safe-Lab/effect core and quantize only
 at export. sRGB8 colour parity is exact, deterministic effect parity is within

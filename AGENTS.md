@@ -15,7 +15,7 @@
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |
-| Current evidence | 305 local tests pass. U1.6A/U1.6B/U1.6C prove finite-support execution, byte-identical two-pass safe-Lab and active simple-halation tiled parity, but physical/grain/dust effects, complete renderer and 100MP memory remain open; U2.1A provides verified replay identity. Current profiles remain heuristic look approximations and current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
+| Current evidence | 305 local tests pass. U1.6A/U1.6B/U1.6C prove finite-support execution, byte-identical two-pass safe-Lab and active simple-halation tiled parity, but physical/grain/dust effects, complete renderer and 100MP memory remain open; U2.1A provides verified replay identity. SF2.2R also rejects a 6.64GB Smithsonian metadata expansion because sampled stock-family evidence is disconnected by unit and lacks exact connected variants. Current profiles remain heuristic look approximations and current pixels remain closed for learning; training, operator fitting and LSM remain forbidden |
 | License | old docs say MIT, but no root `LICENSE` exists; public release is blocked until the owner decides and adds one |
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
@@ -275,6 +275,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | SF2.0B0 | STS098 exact-code rows pass at 168/329/10, but Velvia has only two rolls below frozen four-roll minimum; insufficient support, no B1/photo/images/fitting/training/LSM |
 | Done/closed | SF2.0C0 | Cross-mission exact-code census finds 25 missions but only STS098 joins Velvia50 and Portra400NC; no candidate mission, no photos/pixels/fitting/training/LSM |
 | Done/closed | SF2.1A | Openverse returns 960 metadata rows, but Ektar pagination repeats 19 identities and only UltraMax passes per-stock support; no live pages/pixels/fitting/training/LSM |
+| Done/closed | SF2.2R | Smithsonian fixed-shard reconnaissance finds family-level Kodachrome/Ektachrome evidence split across owning units, not an exact connected stock graph; reject 6.64GB full metadata transfer, no pixels/fitting/training/LSM |
 | Done/pass | U2.1A | Strict v1 profile/recipe schemas, exact safe-rich migration, deterministic ICC bytes and committed replay verification pass; no calibrated profile claim |
 | Done/pass | U1.6A | Finite-support tiled primitive has exact coverage, zero committed Gaussian full/seam error and bounded expanded windows; complete renderer/global context/100MP remain open |
 | Done/pass | U1.6B | All eight safe-rich styles and a fixed real-raster crop have byte-identical full/tiled safe-Lab output; effects, integration, streaming and total-memory/100MP remain open |

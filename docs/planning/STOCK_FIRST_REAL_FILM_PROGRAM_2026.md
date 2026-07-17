@@ -52,6 +52,7 @@ against the exact-revision frozen metadata.
 | Apollo flight archive | documented mission/magazine/film metadata | magazine/frame | raw flight-film scans remain rights-separated and unacquired | extreme orbital content, exposure/filter association and archive processing | NASA raw scans public domain with credit; ASU processed products restricted | `SF2.0A` closes Apollo 7 as content-confounded after 63/63 valid pages; no pixels or learning |
 | NASA/JSC astronaut Earth photography | official exact media codes and mission-roll-frame IDs | mission/film roll/frame | photographs remain unrequested | mission/date/roll/geography/focal length/camera and scan pipeline can dominate | NASA/JSC credit/non-endorsement/third-party caveats; keyless public HTML query | `SF2.0C0` closes the source expansion: 25 missions, but only failed STS098 joins Velvia50/Portra400NC |
 | Openverse search index | weak exact title/tag text only; upstream label unverified | source plus creator URL | no pixels requested | relevance pagination repeats, indexed licence may be stale, Flickr/source/content dominance | anonymous official API; every upstream right still requires live verification | `SF2.1A` closes: Ektar repeats 19 identities and only UltraMax passes per-stock gate |
+| Smithsonian Open Access metadata | institution-authored object/archive metadata, usually stock-family rather than exact product identity | owning unit, collection and record; no demonstrated connected exact-stock graph | no pixels requested | unit/collection/era/content/scanner can become stock proxies; media rights are separate | official CC0 metadata mirror; seven relevant units total 6.64GB | `SF2.2R` closes before a formal audit: deterministic shard probes split Kodachrome and Ektachrome evidence across units and expose no exact connected multi-stock design |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -278,3 +279,13 @@ stable-census contract. Only UltraMax passes the strict per-stock gate; Velvia
 has one strict row, while Ektar and Portra fail creator dominance. Do not apply
 post-result deduplication, relax licence/creator gates, open live pages or use
 this index for fitting, training or LSM.
+
+`SF2.2R` completes a bounded institutional-source reconnaissance without
+opening a formal experiment. Smithsonian Open Access is an authoritative,
+machine-readable metadata source, but fixed 8/256-shard probes across seven
+photography-relevant units find family-level Kodachrome concentrated in
+NMAH/EEPA and sparse Ektachrome in SIA, with no exact connected multi-stock
+design. The seven complete unit indexes total 6,642,017,079 bytes. Do not fetch
+that corpus merely to union disconnected unit/source/content signatures; no
+pixel, fitting, training or LSM branch opens. See
+`docs/REAL_FILM_INSTITUTIONAL_SOURCE_RECONNAISSANCE_RESULTS.md`.

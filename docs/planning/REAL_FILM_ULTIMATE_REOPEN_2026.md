@@ -259,6 +259,16 @@ gate; Velvia has one strict row and Ektar/Portra exceed the 40% creator-share
 ceiling. The decision is `query_contract_mismatch`; no live-page preflight,
 pixels, fitting, training, LSM or stock claim opens.
 
+`SF2.2R` then checks whether an authoritative institutional open-metadata source
+has a materially better pre-contract design. Smithsonian's official hash-
+sharded mirror is machine-readable, but deterministic 8/256-shard probes across
+seven relevant units expose broad Kodachrome evidence in NMAH/EEPA and sparse
+Ektachrome in SIA rather than exact product variants connected inside common
+groups. The complete selected metadata scope is 6,642,017,079 bytes. The
+decision is `no_formal_audit_dor`: do not download a disconnected corpus whose
+unit/collection/content signatures would stand in for stock. No media, fitting,
+training, LSM or stock claim opens.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never
