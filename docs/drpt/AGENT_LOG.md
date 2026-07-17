@@ -1219,3 +1219,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Secondary diagnostic:** strict rows/creator dominance are Ektar 41/51.22%, Velvia 1/100%, Portra 43/62.79%, UltraMax 30/36.67%. Only UltraMax passes per-stock eligibility, so no three-stock graph exists regardless of the integrity precedence.
 - **Binding branch:** close Openverse relevance search; do not loosen licences/creator gates, change queries, open upstream pages or request pixels. Fitting, training, LSM and stock claims remain false.
 - **Goal continuation:** propagate the negative evidence, run the full suite, commit/push, then move to another legal data or deterministic product leaf. Ultimate remains active.
+
+## 2026-07-17 - Freeze U2.1A versioned render contract
+
+- **Node/parent:** `ULT > U2.1 > U2.1A`; highest-value data-independent product leaf after NASA/Openverse data stops.
+- **Current gap:** YAML defaults, stats, guardrails, CLI arguments, output claim and metrics are individually reproducible but lack one strict profile identity and replay recipe with immutable hashes/evidence ceiling.
+- **Frozen scope:** dependency-free v1 JSON schemas/validators, exact safe-rich migration and optional post-encode recipe writer. Default rendered bytes and legacy metrics stay compatible.
+- **Safety/epistemics:** existing looks remain heuristic `film-inspired/look-approximation`; no profile gains stock, mode, paired or calibrated truth. Unknown fields, non-finite/out-of-range values, malformed/mismatched hashes and claim escalation fail closed.
+- **Handoff:** commit/push the contract before implementation; then add targeted parity/schema/security tests, run the complete CPU suite, propagate and make a scoped implementation commit.
