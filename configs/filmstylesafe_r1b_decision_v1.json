@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1b.v1",
+  "node": "ULT > U5.R1 > U5.R1B",
+  "status": "design_complete",
+  "decision": "failure_suite_design_and_membership_contract_pass",
+  "artifacts": {
+    "contract_sha256": "9ec20681d94bea2fd6b1d7babde55acbe52cf5d6f65cab7d8da8531054e6357b",
+    "validator_sha256": "d8968ac3bf3446d155b3cb8b66e8c5d589697014649de23ebeb2271f46a911f5",
+    "tests_sha256": "6ec53109a3e2e86d943776f7a20018b7000c30411606c8573f305cff869f672e",
+    "design_sha256": "6dbff914a66abb5ae80007a353a0d4c4f0096f6eabd023d428a2bf2c25ab5547"
+  },
+  "verification": {
+    "targeted_tests": 6,
+    "targeted_tests_passed": 6,
+    "full_cpu_tests": 385,
+    "full_cpu_tests_passed": 385
+  },
+  "opens": [
+    "U5.R1B2_bounded_A0_inventory_or_synthetic_operator_prototypes"
+  ],
+  "does_not_open": [
+    "external_human_recruitment",
+    "paid_annotation",
+    "SCIS_training",
+    "hidden_split_population",
+    "risk_or_population_claim",
+    "U5.R1C"
+  ],
+  "claim_ceiling": "design and membership validation for a future FilmStyleSafe failure suite; no executed generator corpus, human-population result or severe-risk guarantee"
+}

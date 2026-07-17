@@ -1423,3 +1423,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Safety:** stop hook fails closed to `{}` on abort/error/PAUSED/COMPLETE/BLOCKED/authority/missing next_action/max loops; hooks.json `loop_limit=10`; no Bun/Node dependency; additive install (`.cursor` was previously absent).
 - **Verification:** 16 harness tests + stdin/stdout script checks pass; full suite 379 passed. No live infinite Agent loop was triggered for testing.
 - **Handoff:** Goal remains `ACTIVE`. Next scientific leaf is `U5.R1B` bounded FilmStyleSafe failure-suite design. Local Agent preferred for ignored-data leaves.
+
+## 2026-07-17 - Freeze U5.R1B FilmStyleSafe failure-suite design
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B`; design/membership leaf after R1A tooling.
+- **Delivered:** `configs/filmstylesafe_r1b_contract_v1.json`, `src/eval/filmstylesafe_r1b.py`, tests, `docs/FILMSTYLESAFE_R1B_DESIGN.md`, decision JSON.
+- **Frozen content:** transform/failure family inventories, parent-scene grouping, synthetic explicit non-generative operator-card requirements, legitimate-local hard negatives, ID11 regression, 53/55/56 strength-path negative control, A0-only origins, A0↔A1 leakage audit.
+- **Verification:** 6 targeted + 385 full CPU tests pass.
+- **Boundary:** no participants, paid resources, SCIS/training, hidden-split population or risk claims. Generator corpus execution is `U5.R1B2`.
+- **Handoff:** Goal ACTIVE; next_action is R1B2 inventory/prototypes or parallel U1 colour-state leaves.

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1b.v1",
+  "node": "ULT > U5.R1 > U5.R1B",
+  "status": "frozen_design",
+  "depends_on": ["kmcfm.filmstylesafe-r1a.v1"],
+  "scope": "bounded design and machine-readable membership contract for a leakage-safe synthetic/real FilmStyleSafe failure suite; not generator execution, participant study, SCIS training or risk claims",
+  "non_goals": [
+    "external_human_recruitment",
+    "paid_annotation",
+    "model_or_SCIS_training",
+    "hidden_A1_or_B3_population",
+    "adaptive_routing",
+    "stock_authenticity_claims",
+    "generative_RGB_failure_synthesis_as_style_safe_evidence"
+  ],
+  "parent_scene_grouping": {
+    "required_keys": [
+      "parent_scene_id",
+      "source_id",
+      "exact_hash",
+      "perceptual_hash"
+    ],
+    "optional_group_keys": [
+      "uploader_or_creator_group",
+      "camera_group",
+      "roll_group"
+    ],
+    "rule": "crops, candidates, perturbations and contact-sheet tiles inherit parent_scene_id and never inflate independent scene N"
+  },
+  "transform_families_a0": [
+    "identity_control",
+    "safe_lab_global",
+    "safe_rich_global",
+    "owner_anchor_53_55_56_strength_path",
+    "owner_anchor_09_01_containment_path",
+    "basic_wb_contrast_saturation",
+    "bounded_3x3_affine_ccm",
+    "monotone_curve_plus_global_lut",
+    "seplut_or_nilut_challenger",
+    "archive_matrix_transplant_closed_negative",
+    "external_spektrafilm_look_approximation_control"
+  ],
+  "failure_families_a0": [
+    "neon_chroma_island_or_highlight_speckle",
+    "banding_posterization_or_colour_shelf",
+    "clipping_or_gamut_hard_boundary",
+    "local_hue_jump_grid_seam_or_halo",
+    "large_smooth_region_cast",
+    "skin_or_neutral_contamination",
+    "benign_perturbation_chromatic_instability",
+    "id11_red_speckle_regression"
+  ],
+  "synthetic_explicit_non_generative_failures": {
+    "allowed": true,
+    "requirement": "every synthetic failure must be produced by a replayable explicit colour/effects operator with frozen parameters; no diffusion/GAN RGB rewrite",
+    "minimum_parameter_card_fields": [
+      "operator_id",
+      "parameter_hash",
+      "transform_family",
+      "failure_family",
+      "seed",
+      "input_hash"
+    ]
+  },
+  "legitimate_local_hard_negatives": [
+    "local_dodge_or_burn",
+    "skin_protection",
+    "sky_densification",
+    "mixed_illuminant_correction",
+    "intentional_local_colour_accent",
+    "bounded_bloom_or_halation"
+  ],
+  "required_regression_cases": [
+    {
+      "case_id": "id11_red_speckle_09_53_55_56",
+      "origin": "known_id11_red_speckle",
+      "split": "A0_only",
+      "notes": "union ID11 outputs for schemes 09/53/55/56 flagged for neon-red highlight speckle/posterization"
+    }
+  ],
+  "owner_strength_controls": {
+    "full_anchors": ["53", "55", "56", "09", "01"],
+    "smoke_cues": ["33", "03", "02"],
+    "rule": "53/55/56 are a strength-path negative control: a method that splits them into three stable 'modes' is unqualified; they are preference/strength evidence, not stock truth"
+  },
+  "leakage_rules": {
+    "forbid_cross_split_parent_scene": true,
+    "forbid_cross_split_source_uploader_camera_roll": true,
+    "forbid_cross_split_exact_or_perceptual_hash": true,
+    "forbid_a1_reuse_of_a0_transform_or_failure_family": true,
+    "current_seen_origins_a0_only": [
+      "u41_provisional_gold",
+      "u42_owner_anchor_replays",
+      "rf2_c0_spektrafilm_outputs",
+      "known_id11_red_speckle"
+    ]
+  },
+  "suite_membership_roles": [
+    "source_scene",
+    "synthetic_failure",
+    "real_failure",
+    "legitimate_local_hard_negative",
+    "strength_control",
+    "regression_case"
+  ],
+  "authorization": {
+    "design_and_schema": true,
+    "synthetic_operator_cards": true,
+    "local_inventory_without_hidden_decode": true,
+    "external_human_recruitment": false,
+    "paid_resource": false,
+    "model_training": false,
+    "hidden_split_population": false,
+    "risk_or_population_claim": false
+  },
+  "claim_ceiling": "design and membership validation for a future FilmStyleSafe failure suite; no executed generator corpus claim, no human-population result, no severe-risk guarantee"
+}
