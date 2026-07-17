@@ -1375,3 +1375,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen design:** exact-stock strict derivative rows only; conservative author normalization; empty verified-alias map; no uploader substitution or string-reversal alias inference; all six input hashes pinned.
 - **Gates:** existing 8-row/5-author/60% per-stock support plus at least three stocks, five shared authors, two authors per retained edge, two per stock, three edges, one cycle, 40% maximum author edge share and zero cross-stock identity overlap.
 - **Boundary/handoff:** commit/push the contract before code, then implement a pure offline deterministic auditor with focused branch tests. No network, pixels, fitting, training, LSM or stock claim opens from this freeze.
+
+## 2026-07-17 - Implement and close SF2.3 on insufficient connectivity
+
+- **Implementation:** `src/real_film/commons_union_connectivity.py` and its CLI validate all six hashes, strict-row eligibility, conservative author identity, within/cross-stock identities, raw/retained edges, components and decision priority. Seven focused tests cover pass, single-author close, alias non-merging and identity/input failures.
+- **Formal evidence:** two full executions from commit `44cf22f` are byte-identical at report SHA `0e29ef44...59914` and decision SHA `ffcd15fc...961d`; inputs/errors/identity conflicts all pass.
+- **Result:** 294 strict rows/19 stocks/30 authors, but only Ektar100 (26/8/30.77%) and UltraMax400 (51/8/50.98%) are eligible. They share only `toomore chiang`; zero two-author edges and zero components remain.
+- **Binding branch:** `insufficient_shared_author_connectivity`. Do not merge unverified aliases, lower the graph gates, open live pages or download pixels. Fitting, training, LSM and stock claims remain false.
+- **Verification/Goal:** 18 focused/adjacent and 356 full CPU tests pass. SF2.3 closes, while Ultimate remains active and must select another independently frozen stock/data or deterministic product leaf.

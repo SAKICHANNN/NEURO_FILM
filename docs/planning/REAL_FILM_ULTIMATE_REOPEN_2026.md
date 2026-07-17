@@ -269,13 +269,12 @@ decision is `no_formal_audit_dor`: do not download a disconnected corpus whose
 unit/collection/content signatures would stand in for stock. No media, fitting,
 training, LSM or stock claim opens.
 
-`SF2.3` now revisits no frozen experiment and requests no new source. It tests
-whether the union of the three immutable Commons metadata snapshots has
-redundant shared-author connectivity that the original batch-local audits did
-not measure. Conservative author strings are not auto-merged, and the frozen
-graph requires two authors per retained edge plus cycle/redundancy and identity-
-overlap controls. A pass would authorize only a separately frozen bounded live
-page/label/rights preflight, never pixels, fitting, training or LSM.
+`SF2.3` closes the frozen Commons union without network access. The audit finds
+294 strict rows across 19 exact-stock categories and 30 author strings, but
+only Ektar100 and UltraMax400 pass the established per-stock support gate. Their
+single shared author is below the frozen two-author edge minimum, yielding zero
+retained edges and no component. Do not merge aliases or lower the gate after
+the result; no live preflight, pixels, fitting, training or LSM open.
 
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0

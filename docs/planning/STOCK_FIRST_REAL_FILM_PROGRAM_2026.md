@@ -290,11 +290,11 @@ that corpus merely to union disconnected unit/source/content signatures; no
 pixel, fitting, training or LSM branch opens. See
 `docs/REAL_FILM_INSTITUTIONAL_SOURCE_RECONNAISSANCE_RESULTS.md`.
 
-`SF2.3` is frozen as the next stock-data leaf. It does not acquire a new source
-or reopen prior Commons pixels: it unions the three immutable Commons metadata
-snapshots under one conservative author identity policy and asks whether a
-redundant exact-stock graph exists. Development counts were seen before freeze
-and cannot confirm the result. The formal graph requires two authors per edge,
-at least one cycle, bounded author-edge dominance and zero cross-stock identity
-overlap. Passing would open only a new bounded live page/label/rights preflight;
-every branch keeps pixels, fitting, training and LSM closed.
+`SF2.3` is complete and closes before live verification. Its byte-identical
+offline audits retain 294 strict rows across 19 exact stocks and 30 normalized
+author strings, with zero identity conflicts. Only Ektar100 and UltraMax400
+pass the per-stock support gate, and they share one author rather than the
+frozen two. There are zero retained edges and no component. Do not merge
+unverified aliases or relax the graph after this result; no live pages, pixels,
+fitting, training or LSM open. See
+`docs/REAL_FILM_COMMONS_UNION_CONNECTIVITY_RESULTS.md`.

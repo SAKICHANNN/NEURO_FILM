@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf2.3-commons-union-shared-author-connectivity-closed-v1",
+  "date": "2026-07-17",
+  "node": "ULT > RF0.4 > SF2.3",
+  "decision": "insufficient_shared_author_connectivity",
+  "software_commit": "44cf22fd9a5a59edd848973af61903067637dddb",
+  "config_sha256": "92fd5c47b77d79edf0132487afc5f6baea7b83181bf9259770568e0dfbbe74d2",
+  "report_sha256": "0e29ef44a98bba39647c2d5e11f02e55d404455c1ec747758eac172961559914",
+  "decision_sha256": "ffcd15fcaccc17c34198329298ae792a7699208b43489f3a401e24280425961d",
+  "repeat_file_hashes_identical": true,
+  "strict_rows": 294,
+  "stocks_with_strict_rows": 19,
+  "unique_normalized_author_strings": 30,
+  "eligible_stocks": ["kodak_ektar_100", "kodak_ultramax_400"],
+  "eligible_raw_edges": [
+    {
+      "stocks": ["kodak_ektar_100", "kodak_ultramax_400"],
+      "shared_author_count": 1,
+      "shared_author": "toomore chiang"
+    }
+  ],
+  "retained_two_author_edges": 0,
+  "passing_components": 0,
+  "input_contract_errors": 0,
+  "cross_stock_identity_overlaps": 0,
+  "live_preflight_allowed": false,
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "next_rule": "do not merge unverified author aliases, relax gates, access live pages or download pixels; continue via another independently frozen stock/data source or deterministic product leaf",
+  "claim_ceiling": "the current three immutable Commons snapshots lack redundant shared-author connectivity under the frozen exact-stock metadata contract; no claim about all Commons, stock appearance, stock identifiability, operators, modes or authenticity"
+}
