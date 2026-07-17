@@ -5,34 +5,35 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "56639be31c850bd8961e0a6ea943ecec4c3139af",
-  "iteration": 5,
-  "current_node": "ULT > U5.R1 > U5.R1B2",
-  "current_leaf": "U5.R1B3 ready",
-  "phase": "CONTINUE",
-  "last_verified_commit": "56639be31c850bd8961e0a6ea943ecec4c3139af",
+  "head": "737f3572cc7f319f94f9d9f815b1e4f19b171f73",
+  "iteration": 6,
+  "current_node": "ULT > U5.R1 > U5.R1B3",
+  "current_leaf": "U5.R1B3 A0 identity binding",
+  "phase": "COMMIT",
+  "last_verified_commit": "737f3572cc7f319f94f9d9f815b1e4f19b171f73",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 386,
+    "passed": 387,
     "failed": 0,
-    "timestamp": "2026-07-17T08:10:00Z"
+    "timestamp": "2026-07-17T14:27:15Z"
   },
   "ready_leaves": [
-    "U5.R1B3",
+    "U5.R1B4",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "Select U5.R1B3 to bind real A0 artifact hashes/IDs, or U1.2/U1.4/U1.5 colour-state product leaf; Goal remains ACTIVE",
+  "next_action": "After commit/push of R1B3 binding, start U5.R1B4 (first explicit synthetic failure operator and/or RF2.C0 A0 control member) or a U1 colour-state product leaf; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1b2_a0_inventory_v1.json",
-    "scripts/audit_filmstylesafe_r1b2_inventory.py",
-    "docs/FILMSTYLESAFE_R1B2_INVENTORY.md"
+    "configs/filmstylesafe_r1b3_a0_inventory_v1.json",
+    "configs/filmstylesafe_r1b3_decision_v1.json",
+    "docs/FILMSTYLESAFE_R1B3_BINDING.md",
+    "scripts/audit_filmstylesafe_r1b3_inventory.py"
   ],
   "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T08:04:27Z",
-  "selection_rationale": "R1B2 scaffold closes the immediate design-to-inventory gap without claiming real pixel binding."
+  "last_update_utc": "2026-07-17T14:28:00Z",
+  "selection_rationale": "R1B3 binds real local A0 identities required before synthetic operator execution or R1C."
 }

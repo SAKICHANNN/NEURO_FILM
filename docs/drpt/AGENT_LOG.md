@@ -1440,3 +1440,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Limits:** hashes are placeholders, not bound to real U4/RF2.C0 bytes; `pixels_generated=false`; hidden splits empty.
 - **Verification:** inventory audit pass; 7 targeted + 386 full CPU tests.
 - **Handoff:** Goal ACTIVE. Next is `U5.R1B3` (bind real hashes or implement first explicit operator) or parallel U1 colour-state product leaves.
+
+## 2026-07-17 - Bind U5.R1B3 A0 inventory identities
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B3`; continue Ultimate Goal from ACTIVE state.
+- **Selection:** chose R1B3 over U1 colour-state because Goal state listed identity binding as the highest-value FilmStyleSafe next leaf and local ignored U4/U42 outputs are present on This Computer.
+- **Delivered:** `configs/filmstylesafe_r1b3_a0_inventory_v1.json`, binding audit script, decision/results docs; 5 members bound to verified U4.1/U4.2 files; ID11 siblings recorded; perceptual hashes are parent-input dHash64 padded to 64 hex.
+- **Limits:** synthetic and hard-negative cards remain placeholders; no pixels generated; no hidden splits/participants/training.
+- **Verification:** inventory audit pass; 8 targeted R1B tests; 387 full CPU tests.
+- **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1B4` (first explicit synthetic operator and/or RF2.C0 control member) or parallel U1.2/U1.4/U1.5.

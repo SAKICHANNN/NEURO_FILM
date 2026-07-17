@@ -138,3 +138,25 @@ def test_r1b2_inventory_pack_validates() -> None:
     assert "synthetic_failure" in roles
     assert "regression_case" in roles
     assert "strength_control" in roles
+
+
+def test_r1b3_bound_inventory_validates_and_matches_files() -> None:
+    from src.roll2film.blueneg_download import sha256_file
+
+    contract = load_r1b_contract(CONTRACT)
+    inventory = json.loads(
+        (ROOT / "configs" / "filmstylesafe_r1b3_a0_inventory_v1.json").read_text(encoding="utf-8")
+    )
+    members = inventory["members"]
+    for row in members:
+        validate_suite_member(row, contract)
+    assert audit_suite_leakage(members)["passed"] is True
+    bound = [row for row in members if row.get("binding_status") == "bound"]
+    assert len(bound) == 5
+    for row in bound:
+        path = ROOT / row["artifact_path"]
+        assert path.is_file(), row["member_id"]
+        assert sha256_file(path) == row["exact_hash"]
+    # strength controls share parent scene with source 01
+    parents = {row["parent_scene_id"] for row in members if row["role"] == "strength_control"}
+    assert parents == {"u41-01"}

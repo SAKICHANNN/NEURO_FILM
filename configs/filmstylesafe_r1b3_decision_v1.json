@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "inventory_id": "kmcfm.filmstylesafe-r1b3-a0-inventory.v1",
+  "node": "ULT > U5.R1 > U5.R1B3",
+  "status": "complete",
+  "decision": "a0_identity_binding_pass",
+  "bound_members": 5,
+  "unbound_placeholder_members": 2,
+  "verification": {
+    "inventory_audit_passed": true,
+    "full_cpu_tests": 387,
+    "full_cpu_tests_passed": 387
+  },
+  "opens": [
+    "U5.R1B4_first_explicit_synthetic_failure_operator_or_rf2c0_control_member"
+  ],
+  "does_not_open": [
+    "hidden_split_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "U5.R1C",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 membership identity binding for U4.1/U4.2/ID11 slots only; no executed synthetic corpus or human/risk claim"
+}
