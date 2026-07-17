@@ -105,13 +105,13 @@ fingerprint. All current profiles remain heuristic
 `film-inspired/look-approximation`; broader U2.1 API/evolution/operator work is
 still pending and no fitting/training/LSM opens.
 
-The next data-independent leaf is frozen as `U1.6A`: a reusable halo-aware
-tiled-execution primitive for explicitly finite-support local operators. It
-must prove exact coverage, pointwise parity, finite-support Gaussian parity and
-a bounded transient tile window before any renderer integration. Current
-safe-Lab statistics, percentile-normalized halation, grain normalization and
-coordinate-seeded dust remain full-frame/global-state concerns; this leaf makes
-no 100MP end-to-end memory claim.
+`U1.6A` now passes as a reusable halo-aware tiled-execution primitive for
+explicitly finite-support local operators. A committed 257x389 audit has exact
+one-time coverage, a 76x76 maximum expanded window, zero full/seam Gaussian
+error and byte-identical repeats; 269 CPU tests pass. Current safe-Lab
+statistics, percentile-normalized halation, grain normalization and
+coordinate-seeded dust remain full-frame/global-state concerns. The primitive
+is not connected to the CLI and makes no 100MP end-to-end memory claim.
 
 ---
 

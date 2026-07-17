@@ -73,6 +73,7 @@ immutable profile instances live under `configs/render_profiles/`.
 ```text
 src/inference/
   render_contract.py      Strict profile/recipe validation, migration, hashing and replay verification.
+  tiled_render.py         Local finite-support halo planning, strict execution and core stitching.
 configs/schemas/
   render_profile_v1.schema.json
   render_recipe_v1.schema.json
@@ -83,6 +84,9 @@ configs/render_profiles/
 Keep renderer algorithms in their established colour/effect modules. Contract
 files may identify and hash an operator, but they must not become a second
 implementation of that operator or load executable code from profile data.
+The tiled primitive likewise executes caller-supplied local operators without
+reimplementing them; global-statistic and coordinate-random operators require
+an explicit later context contract before integration.
 
 ## Scripts
 

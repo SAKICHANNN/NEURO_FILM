@@ -1252,3 +1252,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen gates:** exact planner coverage; identity/pointwise bit parity; direct finite-support Gaussian max error and seam peak `<=1e-6` when halo covers the kernel radius; repeat determinism; fail-closed callback/array validation; bounded expanded tile shape; full CPU suite.
 - **Claim boundary:** only the callback transient working set is bounded. Output remains full-frame. Safe-Lab global statistics, percentile-normalized halation, normalized grain and coordinate-seeded dust require later explicit global-context work; no 100MP product claim is allowed.
 - **Handoff:** validate and commit/push this contract, then implement only the frozen primitive and focused tests before any integration decision.
+
+## 2026-07-17 - Pass U1.6A finite-support tiled execution
+
+- **Implementation/structure:** added `src/inference/tiled_render.py` with immutable windows/metadata, strict float HWC and callback validation, read-only tile views and core-only stitching. It is exported from `src.inference` but not wired into the CLI or any colour/effect algorithm.
+- **Focused evidence:** 21 tests prove exact planner coverage, identity/pointwise bit parity, finite-support Gaussian parity, repeat determinism, bounded expanded windows and fail-closed invalid input/callback behavior.
+- **Committed audit:** at commit `5fd5036`, a seeded 257x389x3 array with tile 64/halo 6 yields 35 tiles, coverage 1/1, maximum expanded shape 76x76x3, full and seam maximum error 0.0, byte-identical repeats and output hash `f1e386c3...bca8`.
+- **Full verification:** complete CPU suite passes `269 passed`; diff checks pass. Synthetic data is appropriate only for execution/numerical evidence and supplies no style, stock or rights evidence.
+- **Claim/branch:** callback transient working set is bounded, excluding full-frame input/output. Safe-Lab statistics, percentile-normalized halation, normalized grain and coordinate-seeded dust remain global-state concerns. U1.6A closes, U1.6 stays active, and no complete renderer or 100MP product claim opens.
+- **Goal continuation:** propagate authorities/results, commit/push, then freeze an operator-locality/global-context child or another higher-value legal ready leaf. Ultimate remains active.
