@@ -15,6 +15,7 @@ from .halation_controls import (
     validate_physical_halation_controls,
 )
 from .layers import FilmLayer, layer_metrics
+from .tiled_effects import composite_simple_halation_tiled, simple_halation_required_halo
 
 __all__ = [
     "FilmLayer",
@@ -23,6 +24,7 @@ __all__ = [
     "PhysicalHalationControls",
     "build_physical_halation_layer",
     "composite_layers",
+    "composite_simple_halation_tiled",
     "density_halation_layer",
     "describe_physical_halation_controls",
     "dust_scratch_layer",
@@ -33,6 +35,7 @@ __all__ = [
     "list_halation_presets",
     "physical_halation_layer",
     "resolve_physical_halation_controls",
+    "simple_halation_required_halo",
     "validate_physical_halation_controls",
     "layer_metrics",
 ]
