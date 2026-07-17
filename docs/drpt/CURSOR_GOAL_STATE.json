@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "goal_id": "KMCFM_ULTIMATE_STOCK_FIRST_CONTINUOUS_2026_07_17",
+  "status": "ACTIVE",
+  "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
+  "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
+  "branch": "research/fivek-auto-optimize-cache",
+  "head": "0e71da8be993cec8e299672426ca8e4d80931e77",
+  "iteration": 1,
+  "current_node": "ULT > GoalHarness",
+  "current_leaf": "GH0 Cursor Goal harness install",
+  "phase": "VERIFY",
+  "last_verified_commit": "0e71da8be993cec8e299672426ca8e4d80931e77",
+  "last_full_test": {
+    "command": ".\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q",
+    "passed": 379,
+    "failed": 0,
+    "timestamp": "2026-07-17T08:00:13Z"
+  },
+  "ready_leaves": [
+    "U5.R1B",
+    "U1.2/U1.4/U1.5"
+  ],
+  "next_action": "Commit/push Goal harness, then freeze U5.R1B failure-suite design contract without participants or training",
+  "running_processes": [],
+  "waiting_until": null,
+  "needs_human_authority": false,
+  "authority_reason": null,
+  "dirty_files": [],
+  "evidence_paths": [
+    ".cursor/rules/ultimate-goal.mdc",
+    ".cursor/skills/ultimate-goal-loop/SKILL.md",
+    ".cursor/hooks.json",
+    ".cursor/hooks/ultimate_goal_stop.py",
+    "docs/drpt/CURSOR_GOAL_STATE.json",
+    "docs/drpt/CURSOR_GOAL_PROTOCOL.md"
+  ],
+  "max_session_stop_loops": 10,
+  "last_update_utc": "2026-07-17T08:00:13Z",
+  "selection_rationale": "Tracker marks U5.R1B ready after U5.R1A; TASK_BOARD also lists remaining U1 colour-state gaps. Highest-value next leaf after harness is U5.R1B bounded failure-suite design (no participants/training)."
+}

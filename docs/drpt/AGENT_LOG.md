@@ -1415,3 +1415,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Leakage/power:** U4/RF2.C0/ID11 origins are enforced A0-only; parent/source/creator/camera/roll/hash leakage and A0/A1 family reuse fail. The 1%/95%/50%-coverage example yields 299 accepted/598 total scenes, but binding sample size remains null pending pilots.
 - **Verification:** 7 focused and 363 full CPU tests pass; compile, JSON and diff checks pass. `docs/FILMSTYLESAFE_R1A_RESULTS.md` and the decision JSON are authoritative.
 - **Handoff:** U5.R1B becomes ready for bounded synthetic/real failure-suite design only. Recruitment, paid annotation, SCIS/model training, hidden split population, adaptive routing, public release and human risk/preference claims remain closed. Ultimate Goal continues.
+
+## 2026-07-17 - Install Cursor Ultimate Goal harness (GH0)
+
+- **Node/parent:** `ULT > GoalHarness > GH0`; local engineering leaf to approximate Codex Goal Mode without replacing scientific authorities.
+- **Delivered:** always-apply rule `.cursor/rules/ultimate-goal.mdc`; skill `.cursor/skills/ultimate-goal-loop/SKILL.md`; stop hook `.cursor/hooks.json` + `.cursor/hooks/ultimate_goal_stop.py` (stdlib-only, followup when ACTIVE); durable state `docs/drpt/CURSOR_GOAL_STATE.json` with validator `src/drpt/goal_state.py`; protocol `docs/drpt/CURSOR_GOAL_PROTOCOL.md`.
+- **Safety:** stop hook fails closed to `{}` on abort/error/PAUSED/COMPLETE/BLOCKED/authority/missing next_action/max loops; hooks.json `loop_limit=10`; no Bun/Node dependency; additive install (`.cursor` was previously absent).
+- **Verification:** 16 harness tests + stdin/stdout script checks pass; full suite 379 passed. No live infinite Agent loop was triggered for testing.
+- **Handoff:** Goal remains `ACTIVE`. Next scientific leaf is `U5.R1B` bounded FilmStyleSafe failure-suite design. Local Agent preferred for ignored-data leaves.

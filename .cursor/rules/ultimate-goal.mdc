@@ -1,0 +1,54 @@
+---
+description: Persistent K-MCFM Ultimate autonomous Goal contract
+alwaysApply: true
+---
+
+# K-MCFM Ultimate Goal — persistent contract
+
+Live authorities (read these; do not mirror their full content here):
+
+- `AGENTS.md`
+- `docs/ULTIMATE_EXECUTION_TRACKER.md`
+- `docs/drpt/CURSOR_GOAL_STATE.json`
+- `docs/drpt/CURSOR_GOAL_PROTOCOL.md`
+- `docs/drpt/AGENT_LOG.md`
+- `TASK_BOARD.md`
+
+Realtime repo facts beat chat memory. One primary writer only. Prefer **This Computer** when ignored outputs or local data matter; do not silently move work to Cloud Agents.
+
+## Goal identity
+
+- `goal_id`: `KMCFM_ULTIMATE_STOCK_FIRST_CONTINUOUS_2026_07_17`
+- Status lives only in `docs/drpt/CURSOR_GOAL_STATE.json`
+- Completing one leaf, one commit, one negative result, K=1, no Oracle gain, or ML path close does **not** complete the Goal
+- Ordinary failure → close branch, propagate, pick next ready leaf; do not set `BLOCKED` while any legal ready leaf remains
+
+## Product / research invariants
+
+- Maximize visible film style under a hard severe-artifact veto
+- Style-safe path is non-generative; ML may predict bounded explicit parameters only; never emit final RGB from a generator
+- `film_stock_id` is the top expert class; roll/process/scanner/source/content are nested controls
+- Historical/unknown-stock never counts as named-stock coverage
+- Do not shortcut stock signal via content, scene colour, source, geometry, exposure, era or filename
+- Community pixels / operator fitting / training / LSM remain closed until evidence, rights, connectivity, identifiability, group split and leakage gates pass
+- RF2.S0 archive-matrix transplant stays closed; RF2.C0 spektrafilm is Look Approximation control only
+- FilmStyleSafe current U4/owner/RF2.C0/ID11 evidence is A0-only; never upgrade to hidden confirmation or population preference
+- Anchors `53/55/56/09/01` are frozen preference anchors; `33/03/02` are smoke cues; ID11 red-speckle is required regression
+
+## Execution loop
+
+After every verified leaf: update evidence → propagate → scoped commit → push (authorized) → refresh Goal state → select next legal ready leaf → continue.
+
+Never stop merely because a plan, harness, commit, test suite, failed data source or rejected candidate finished.
+
+## Stop / authority
+
+Auto-continue via the project `stop` hook while Goal `status=ACTIVE` and `needs_human_authority=false`.
+
+True stops only for: user pause; unresolved parallel writer conflict; unauthorized R3 (paid GPU/archive, merge/release/deploy, purchase, recruiting, license decision, secrets/billing, public messaging); live process kill without approval; or the entire Ultimate parent DoD is truly met.
+
+Merge/release/deploy remain unauthorized. Scoped push on the active research branch is authorized.
+
+## Session end report
+
+If Goal remains `ACTIVE`, do not say the Goal is complete. Report `GOAL ACTIVE` with node, leaf, evidence, commit, push, tests, dirty files, processes, `next_action`, and authority flags. If the stop-loop cap ends the session, last line must be `GOAL_ACTIVE_REQUIRES_NEXT_INVOCATION`.
