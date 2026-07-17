@@ -1122,3 +1122,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 15 focused tests and the full CPU suite pass (`223 passed`). A 6024x4024 Sony ARW renders with ICC, [4,251] bounds and no new full-resolution severe colour artifact. Velvia old/new mean delta is 0.2953 code with 0.0960% above one code.
 - **B&W finding:** HP5 has sparse orange extreme-highlight residuals in both old and new paths. Float rendering slightly reduces pixels with channel spread above 20 codes (0.1233% to 0.1195%; 392 new versus 1,322 resolved). This is a pre-existing profile defect, not a U1.3B regression, and remains a separate safety leaf before B&W promotion.
 - **Claim boundary:** U1.1 main-ingress debt and U1.3B close. HDR/HEIF/wide gamut, calibrated RAW scene-to-display, stock learning/fitting and LSM remain open or forbidden by their existing gates. Goal stays active.
+
+## 2026-07-17 - Freeze U2.5A B&W chroma invariant
+
+- **Defect evidence:** full-resolution HP5 shows sparse orange extreme-highlight residuals in both legacy and float paths. U1.3B slightly reduces aggregate contamination, so the migration remains valid, but B&W promotion requires a separate fix.
+- **Root cause:** the B&W branch leaves residual Lab chroma; neutral/skin guardrails and source-directed gamut compression can reintroduce source colour; per-channel internal noise can violate neutrality at the final boundary.
+- **Frozen invariant:** `hp5` and `tri_x_400` final float RGB must lie on the neutral axis within `2e-6` and quantize to exactly equal channels, including guardrails, dither and nonzero internal grain. Colour-style output must remain bit-exact.
+- **Scope:** a minimal final projection inside the existing explicit safe-Lab core plus focused tests. No new style/model/data/dependency, no colour-profile changes and no calibrated B&W claim.
+- **Handoff:** commit/push this contract before implementation, then run property/parity tests, full CPU suite and the same full-resolution RAW HP5 visual smoke.
