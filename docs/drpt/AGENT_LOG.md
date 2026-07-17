@@ -1449,3 +1449,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Limits:** synthetic and hard-negative cards remain placeholders; no pixels generated; no hidden splits/participants/training.
 - **Verification:** inventory audit pass; 8 targeted R1B tests; 387 full CPU tests.
 - **Handoff:** Goal ACTIVE. Next ready leaf `U5.R1B4` (first explicit synthetic operator and/or RF2.C0 control member) or parallel U1.2/U1.4/U1.5.
+
+## 2026-07-17 - Execute U5.R1B4 synthetic highlight-chroma-island prototype
+
+- **Node/parent:** `ULT > U5.R1 > U5.R1B4`.
+- **Implementation:** explicit non-generative operator with frozen parameters; deterministic replay; PNG written under ignored `outputs/filmstylesafe/r1b4/`.
+- **Hashes:** input `b551eecc...`, output `c04a9237...`, parameters `af21e971...`.
+- **Autonomous vision:** large saturated magenta circular blotch on snow highlights; not yet a fine ID11-like speckle surrogate; recorded without lowering gates.
+- **Inventory:** R1B4 A0 inventory binds the executed synthetic member to parent `u41-01`; hard-negative card remains unbound.
+- **Verification:** 391 CPU tests pass.
+- **Handoff:** Goal ACTIVE. Next `U5.R1B5` refine speckle family / bind RF2.C0, or parallel U1 product leaf.

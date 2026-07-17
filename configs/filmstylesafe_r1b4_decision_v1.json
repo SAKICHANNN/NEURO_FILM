@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1B4",
+  "status": "complete",
+  "decision": "explicit_synthetic_failure_prototype_pass",
+  "operator_id": "explicit-highlight-chroma-island-v0",
+  "input_hash": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+  "output_hash": "c04a9237d0023cbeb26924be496997cef82e146f0700e97007c1d64cf45929ad",
+  "parameter_hash": "af21e9710ddca57b1ae46da5f42a51046c4c9833ec26359f43c4c2d5e2f3094c",
+  "visual_adjudication": "autonomous_cursor_inspection_large_magenta_disk_not_fine_speckle",
+  "verification": {
+    "full_cpu_tests": 391,
+    "full_cpu_tests_passed": 391
+  },
+  "opens": [
+    "U5.R1B5_refine_speckle_family_or_bind_rf2c0_control"
+  ],
+  "does_not_open": [
+    "hidden_split_population",
+    "external_human_recruitment",
+    "SCIS_training",
+    "U5.R1C",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 synthetic stress prototype only; autonomous visual note recorded; no population preference or risk guarantee"
+}

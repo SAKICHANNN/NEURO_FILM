@@ -5,35 +5,36 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "83c7a4c17b7ba1f0f5482e2d98bcb337b018ddc3",
-  "iteration": 7,
-  "current_node": "ULT > U5.R1 > U5.R1B3",
-  "current_leaf": "U5.R1B4 ready",
-  "phase": "CONTINUE",
-  "last_verified_commit": "83c7a4c17b7ba1f0f5482e2d98bcb337b018ddc3",
+  "head": "0ed4c8638321a6847ccfb774ae00c4387bc5e3c3",
+  "iteration": 8,
+  "current_node": "ULT > U5.R1 > U5.R1B4",
+  "current_leaf": "U5.R1B4 synthetic prototype",
+  "phase": "COMMIT",
+  "last_verified_commit": "0ed4c8638321a6847ccfb774ae00c4387bc5e3c3",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 387,
+    "passed": 391,
     "failed": 0,
-    "timestamp": "2026-07-17T14:27:15Z"
+    "timestamp": "2026-07-17T14:35:00Z"
   },
   "ready_leaves": [
-    "U5.R1B4",
+    "U5.R1B5",
     "U1.2/U1.4/U1.5"
   ],
-  "next_action": "Start U5.R1B4: implement first explicit synthetic highlight-speckle failure operator under the frozen card, or bind RF2.C0 Ektar/fixed-e0 as an additional A0 control member; keep Goal ACTIVE",
+  "next_action": "After commit/push of R1B4, start U5.R1B5 (refine speckle-like synthetic family and/or bind RF2.C0 control) or a U1 colour-state product leaf; Goal remains ACTIVE",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1b3_a0_inventory_v1.json",
-    "configs/filmstylesafe_r1b3_decision_v1.json",
-    "docs/FILMSTYLESAFE_R1B3_BINDING.md",
-    "scripts/audit_filmstylesafe_r1b3_inventory.py"
+    "configs/filmstylesafe_r1b4_synthetic_operator_v0.json",
+    "configs/filmstylesafe_r1b4_a0_inventory_v1.json",
+    "configs/filmstylesafe_r1b4_decision_v1.json",
+    "docs/FILMSTYLESAFE_R1B4_SYNTHETIC.md",
+    "src/eval/filmstylesafe_synthetic.py"
   ],
   "max_session_stop_loops": 10,
-  "last_update_utc": "2026-07-17T14:27:51Z",
-  "selection_rationale": "R1B3 binds real local A0 identities required before synthetic operator execution or R1C."
+  "last_update_utc": "2026-07-17T14:35:00Z",
+  "selection_rationale": "R1B4 closes the first executable synthetic failure prototype under the frozen FilmStyleSafe contract."
 }
