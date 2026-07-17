@@ -1323,3 +1323,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Committed real-raster evidence:** fixed 257x389 mechanics crop, strength 1.0/seed 15, 35 tiles, 179 specks, four scratches and 3,660 context bytes. Full/tiled float and sRGB8 bytes match exactly at sRGB8 hash `8f40d4c...fd18`; the active effect changes 12,429 quantized channels.
 - **Visual/claim boundary:** stress output exposes inherited square specks and straight scratches. Tiling adds no seam/truncation/glitch, but effect realism and strength policy are not promoted. No stock, physical-defect, complete-renderer, default or 100MP claim opens.
 - **Verification/propagation:** 106 targeted and 328 full CPU tests pass; compile/diff checks pass. U1.6D closes as a numerical pass, U1.6 and Ultimate remain active, and the next child must separately freeze ordered integration or truthful grain/global context.
+
+## 2026-07-17 - Freeze U1.6E ordered supported-effects pass
+
+- **Node/parent:** `ULT > U1.6 > U1.6E`; narrow composition child after U1.6C simple-halation and U1.6D sparse-dust numerical passes.
+- **Ordering audit:** the current renderer derives layers from one colour base, composites grain then halation then dust, clips per layer and applies margin only after the last layer. Only simple halation and dust are eligible here.
+- **Frozen design:** one effect-owned tiled pass, U1.6C halo when enabled, one prebuilt U1.6D context, same-base layer generation, simple-halation-before-dust order and final-only margin. No full-frame intermediate.
+- **Gates:** none/simple/dust/both variants, observable non-commutative order, float/seam `<=1e-6`, sRGB8 byte parity, uint16 within one code, repeat/metadata/fail-closed evidence, committed real-raster smoke and full CPU suite.
+- **Forbidden/claim:** grain, physical/density halation, safe-Lab/encode orchestration, CLI/default/profile/recipe changes and 24MP/100MP claims remain forbidden. A pass is heuristic-effect numerical evidence only.
+- **Handoff:** commit/push this contract separately, then implement additively in `src/filmfx/tiled_effects.py` with a dedicated test module.

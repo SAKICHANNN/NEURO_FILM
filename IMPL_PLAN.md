@@ -144,6 +144,12 @@ byte-for-byte. The committed real-raster smoke uses 3,660 context bytes across
 the inherited heuristic effect quality, so no realism, default integration,
 grain or 100MP performance claim opens.
 
+`U1.6E` is frozen and ready as the narrow integration child. It will generate
+only the eligible simple-halation and sparse-dust layers from the same expanded
+base tile, composite them in renderer order and apply output margin once at the
+end. Grain, physical/density halation, safe-Lab/encode orchestration, CLI,
+recipes, defaults and end-to-end memory remain outside this leaf.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
