@@ -136,11 +136,13 @@ maximum error at `5.96e-08` and sRGB8 bytes identical; 305 CPU tests pass. The
 path remains experimental. Physical/density halation keeps its unresolved
 percentile and shape-dependent downsample context and is explicitly excluded.
 
-`U1.6D` is frozen and ready. It will replay the existing procedural dust and
-scratch RNG into a compact geometry/alpha event context, then composite only
-events intersecting each zero-halo tile. Legacy layer and tiled composite must
-be byte-identical; no full-frame layer cache, reseeding, default integration,
-grain claim or 100MP performance claim is allowed.
+`U1.6D` now passes numerical execution. Exact legacy PCG64 replay in a compact
+geometry/alpha context reproduces the dense layer and zero-halo tiled composite
+byte-for-byte. The committed real-raster smoke uses 3,660 context bytes across
+35 tiles, has float/sRGB8 byte parity and changes 12,429 quantized channels;
+328 CPU tests pass. Stress-strength square specks and straight scratches expose
+the inherited heuristic effect quality, so no realism, default integration,
+grain or 100MP performance claim opens.
 
 ---
 

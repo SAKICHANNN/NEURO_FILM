@@ -88,7 +88,9 @@ files may identify and hash an operator, but they must not become a second
 implementation of that operator or load executable code from profile data.
 The tiled primitive likewise executes caller-supplied local operators without
 reimplementing them; global-statistic and coordinate-random operators require
-an explicit later context contract before integration.
+an explicit context contract before integration. Safe-Lab and sparse
+dust/scratch now have experimental context adapters, while grain and physical
+halation remain unresolved.
 Effect-specific adapters remain under `src/filmfx`; they may consume the
 generic tiler but cannot move or duplicate effect algorithms into inference.
 

@@ -1315,3 +1315,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** legacy layer reconstruction and tiled float/sRGB8 byte parity, cross-tile/overlap/boundary cases, active real-raster smoke, repeat determinism, compact-context evidence, fail-closed validation, targeted compatibility and full CPU suite.
 - **Forbidden scope:** no per-tile reseed, dense layer cache, grain/physical-halation claim, 100MP performance claim, stock/authenticity claim or weakened parity gate.
 - **Handoff:** commit/push the frozen contract before implementation; implement additively in `src/filmfx/tiled_effects.py` with tests in the established test directory.
+
+## 2026-07-17 - Pass U1.6D exact sparse dust/scratch execution
+
+- **Implementation/structure:** commit `94e9e11` adds read-only compact event context, exact legacy PCG64 replay, global-coordinate alpha windows and a zero-halo tiled composite beside the existing effect. It reuses U1.6A and the established compositor; CLI, defaults, profiles, recipes and legacy effect remain unchanged.
+- **Exactness:** legacy dense alpha and full composite are byte-identical across irregular/boundary cases, overlaps and a scratch longer than one tile. Context validation happens once before tile execution and finite float32 input fails closed.
+- **Committed real-raster evidence:** fixed 257x389 mechanics crop, strength 1.0/seed 15, 35 tiles, 179 specks, four scratches and 3,660 context bytes. Full/tiled float and sRGB8 bytes match exactly at sRGB8 hash `8f40d4c...fd18`; the active effect changes 12,429 quantized channels.
+- **Visual/claim boundary:** stress output exposes inherited square specks and straight scratches. Tiling adds no seam/truncation/glitch, but effect realism and strength policy are not promoted. No stock, physical-defect, complete-renderer, default or 100MP claim opens.
+- **Verification/propagation:** 106 targeted and 328 full CPU tests pass; compile/diff checks pass. U1.6D closes as a numerical pass, U1.6 and Ultimate remain active, and the next child must separately freeze ordered integration or truthful grain/global context.
