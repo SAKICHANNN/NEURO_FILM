@@ -295,6 +295,10 @@ but every public input/output/gamut boundary and every FilmFX family is
 sRGB-bound. Direct Rec.2020 wiring and sRGB-clip roundtrip claims are forbidden.
 U1.4C1 may proceed only as a pure-Lab/backend split with frozen existing-sRGB
 parity and a colour-only Rec.2020 result; effects remain separate.
+Its frozen first scope is six colour styles with grain/dither/output margin and
+FilmFX disabled. Promotion requires exact legacy hashes plus a styled Rec.2020
+witness that remains materially outside sRGB; otherwise the operator branch
+closes even if the colour-conversion utilities pass.
 
 ---
 

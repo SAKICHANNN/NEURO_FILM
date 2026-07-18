@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "node": "U1.4C1",
+  "title": "Working-space-aware D65 Lab colour kernel",
+  "parent_evidence": [
+    "docs/U1_4A_LINEAR_REC2020_PRIMITIVE_RESULTS.md",
+    "docs/U1_4B_REC2020_SDR_PNG_CICP_RESULTS.md",
+    "docs/U1_4C0_WIDE_GAMUT_OPERATOR_COMPATIBILITY_AUDIT.md"
+  ],
+  "legacy_parity": {
+    "seed": 20260717,
+    "shape": [17, 19, 3],
+    "dither_0_sha256": "3229cf98e4691964b0101c9e2b0288d9fed27e04eac84a9aa6922c0bfa8bfd0a",
+    "dither_0p35_sha256": "10eea738bf9c673ffb017ff093699dcb8425dbb79d5e5a0f1b5650f3bb3a9d7a",
+    "all_safe_rich_full_tiled_max_abs": 0.000001,
+    "byte_identical_frozen_vectors": true
+  },
+  "rec2020_scope": {
+    "input": "WorkingImage(linear_rec2020,display_linear)",
+    "output": "WorkingImage(linear_rec2020,display_linear)",
+    "styles": [
+      "ektar_100",
+      "portra_400",
+      "portra_800",
+      "velvia_50",
+      "vision3_250d",
+      "vision3_500t"
+    ],
+    "gamut_modes": ["source", "chroma"],
+    "grain": 0.0,
+    "dither": 0.0,
+    "output_margin": 0,
+    "filmfx": "forbidden"
+  },
+  "gates": {
+    "srgb_lab_reference_max_abs": 0.0003,
+    "rec2020_lab_roundtrip_max_abs": 0.000003,
+    "output_rec2020_in_gamut_tolerance": 0.000002,
+    "styled_wide_witness_min_srgb_excursion": 0.02,
+    "rec2020_repeat_byte_identical": true,
+    "input_not_mutated": true,
+    "working_image_provenance_preserved": true,
+    "focused_and_full_cpu_tests": true
+  },
+  "stop_conditions": [
+    "legacy frozen output changes",
+    "Rec.2020 path internally clips through sRGB",
+    "no styled wide-gamut witness survives",
+    "effects or production renderer become coupled",
+    "nonfinite or out-of-contract WorkingImage is accepted"
+  ],
+  "claim_ceiling": "isolated colour-only working-space-aware safe-Lab research path; no production renderer, effects, HDR, calibrated output or visual superiority claim"
+}

@@ -5,11 +5,11 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "ac64ab08cbccac1319aa1f95c26b01f7bf002008",
+  "head": "3561c8e6f30c0bbd00366ea332efaeaa78f4c948",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 47,
-  "current_node": "ULT > U1.4 > U1.4C",
-  "current_leaf": "U1.4C0 compatibility audit closed; U1.4C1 pure-Lab/backend split design ready",
+  "iteration": 48,
+  "current_node": "ULT > U1.4 > U1.4C > U1.4C1",
+  "current_leaf": "U1.4C1 working-space-aware Lab kernel contract frozen; implementation ready",
   "phase": "CONTINUE",
   "last_verified_commit": "627a0d9678315742cbe72defa4a5af72c3bcfacf",
   "last_full_test": {
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T07:51:32Z"
   },
   "ready_leaves": [
-    "U1.4C1_working_space_aware_lab_kernel_contract",
+    "U1.4C1_lab_kernel_implementation",
     "U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.4C0 audit, then freeze U1.4C1 around pure Lab-kernel extraction, exact existing-sRGB parity, Rec.2020-specific gamut handling and colour-only WorkingImage output.",
+  "next_action": "Verify and commit/push U1.4C1 contract, then implement shared D65 Lab/kernel primitives with frozen existing-sRGB parity before adding the isolated Rec.2020 adapter.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -69,10 +69,12 @@
     "configs/u1_4b_rec2020_sdr_png_cicp_v1.json",
     "docs/U1_4B_REC2020_SDR_PNG_CICP_RESULTS.md",
     "docs/U1_4C0_WIDE_GAMUT_OPERATOR_COMPATIBILITY_AUDIT.md",
+    "docs/planning/U1_4C1_WORKING_SPACE_LAB_KERNEL_CONTRACT.md",
+    "configs/u1_4c1_working_space_lab_kernel_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T07:55:23Z",
-  "selection_rationale": "Audit proves direct integration would misinterpret or collapse colour; only a backend-separated Lab kernel can create a truthful Rec.2020 colour path while preserving the legacy champion."
+  "last_update_utc": "2026-07-18T07:57:35Z",
+  "selection_rationale": "The smallest truthful implementation is a shared Lab kernel whose first gate is exact legacy parity and whose Rec.2020 branch must retain a styled out-of-sRGB witness without effects or production coupling."
 }

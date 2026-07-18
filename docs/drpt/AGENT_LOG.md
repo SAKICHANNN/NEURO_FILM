@@ -1802,3 +1802,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Propagation:** U1.4B remains an isolated file boundary; renderer, schemas and defaults remain unchanged.
 - **Authorized child:** U1.4C1 pure D65-Lab kernel/backend split with frozen sRGB parity, Rec.2020-specific gamut handling and colour-only scope.
 - **Claim ceiling:** source-code audit and negative integration decision only.
+
+## 2026-07-18 - Freeze U1.4C1 working-space Lab kernel
+
+- **Contract:** exact legacy hashes/full-tiled parity are hard stops before any shared-kernel refactor is retained.
+- **Rec.2020 scope:** six colour styles, display-linear WorkingImage in/out, destination-specific gamut control and a styled out-of-sRGB witness.
+- **Forbidden:** grain, dither, output margin, HP5/Tri-X, FilmFX, renderer/profile/schema changes and sRGB clip-and-return.
+- **Structure:** reusable kernel belongs in `src/color_engine/`; no parallel research-script implementation.
+- **Handoff:** hash/commit/push the contract, then implement conversion/kernel primitives behind focused parity tests before adding the Rec.2020 adapter.
