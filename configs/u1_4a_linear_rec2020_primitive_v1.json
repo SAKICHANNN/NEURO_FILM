@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.4 > U1.4A",
+  "pre_contract_head": "3da2cd53a6a1a0641baecb58c96120861ccafe84",
+  "transform_version": "linear-d65-srgb-rec2020-v1",
+  "source_authorities": {
+    "srgb_xyz_matrix": "https://www.w3.org/TR/css-color-4/#color-conversion-code",
+    "rec2020_xyz_matrix": "https://www.itu.int/rec/R-REC-BT.2020-2-201510-I/en",
+    "rec2020_reference_code": "https://www.w3.org/TR/css-color-4/#color-conversion-code"
+  },
+  "spaces": {
+    "linear_srgb": {"white": "D65", "transfer": "linear"},
+    "linear_rec2020": {"white": "D65", "transfer": "linear"}
+  },
+  "column_vector_matrices": {
+    "linear_srgb_to_linear_rec2020": [
+      [0.6274038959346991, 0.3292830383778836, 0.043313065687417246],
+      [0.06909728935823206, 0.9195403950754587, 0.011362315566309174],
+      [0.01639143887515028, 0.08801330787722576, 0.895595253247624]
+    ],
+    "linear_rec2020_to_linear_srgb": [
+      [1.6604910021084343, -0.5876411387885496, -0.07284986331988486],
+      [-0.12455047452159082, 1.1328998971259603, -0.008349422604369466],
+      [-0.018150763354905307, -0.10057889800800737, 1.1187296613629127]
+    ]
+  },
+  "gates": {
+    "derived_matrix_absolute_error_max": 5e-15,
+    "matrix_inverse_identity_error_max": 5e-15,
+    "float32_extended_roundtrip_absolute_error_max": 1e-6,
+    "neutral_axis_absolute_error_max": 2e-7,
+    "clipping_allowed": false,
+    "nonfinite_allowed": false,
+    "nonlinear_transfer_allowed": false,
+    "input_mutation_allowed": false,
+    "full_cpu_suite_required": true
+  },
+  "production_renderer_integration_allowed_by_pass": false,
+  "claim_ceiling": "validated dependency-free D65 linear-sRGB/linear-Rec.2020 conversion primitive only; no HDR transfer, OCIO/ACES, gamut mapping, renderer integration or wide-gamut output claim"
+}

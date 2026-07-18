@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "e03bf77b35fb8b13f6ace2e18706e933d7cd0e7e",
+  "head": "3da2cd53a6a1a0641baecb58c96120861ccafe84",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 42,
-  "current_node": "ULT > U1.2/U1.4/U1.5",
-  "current_leaf": "U1.2C pass; audit the next WorkingImage or format invariant",
+  "iteration": 43,
+  "current_node": "ULT > U1.4 > U1.4A",
+  "current_leaf": "U1.4A D65 linear Rec.2020 primitive contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "e03bf77b35fb8b13f6ace2e18706e933d7cd0e7e",
+  "last_verified_commit": "3da2cd53a6a1a0641baecb58c96120861ccafe84",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 566,
@@ -19,10 +19,11 @@
     "timestamp": "2026-07-18T07:51:00Z"
   },
   "ready_leaves": [
-    "U1.2/U1.4/U1.5",
+    "U1.4A_linear_rec2020_primitive_implementation",
+    "U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.2C results, then audit WorkingImage runtime state invariants and remaining U1.4/U1.5 support gaps for the next smallest legal leaf.",
+  "next_action": "Verify and commit/push U1.4A contract, implement dependency-free matrices and WorkingImage conversion with config/golden/extended-range tests, then run full CPU verification.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -61,10 +62,12 @@
     "docs/planning/U1_2C_MULTIFRAME_FAIL_CLOSED_CONTRACT.md",
     "configs/u1_2c_multiframe_fail_closed_v1.json",
     "docs/U1_2C_MULTIFRAME_FAIL_CLOSED_RESULTS.md",
+    "docs/planning/U1_4A_LINEAR_REC2020_PRIMITIVE_CONTRACT.md",
+    "configs/u1_4a_linear_rec2020_primitive_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T07:51:00Z",
-  "selection_rationale": "U1.2C closes silent frame-zero truncation. Continue auditing observed ingress invariants before attempting unsupported HDR or wide-gamut expansion."
+  "last_update_utc": "2026-07-18T08:06:00Z",
+  "selection_rationale": "U1.4A adds a real reversible wide-gamut mathematical capability from official D65 matrices without dependency or production-claim expansion."
 }

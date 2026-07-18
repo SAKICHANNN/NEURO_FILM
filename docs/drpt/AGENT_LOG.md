@@ -1759,3 +1759,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 43 focused and 566 complete CPU tests pass.
 - **Boundary:** no animation, video, burst, temporal, stack, frame-selection or multi-page capability.
 - **Handoff:** return to remaining U1.4/U1.5 and WorkingImage invariant gaps.
+
+## 2026-07-18 - Freeze U1.4A linear Rec.2020 primitive contract
+
+- **Parent:** U1.4 validated wide-gamut working contract; U1.2B/C ingress honesty passes.
+- **Decision:** implement only explicit D65 linear-sRGB/linear-Rec.2020 math and WorkingImage conversion; no dependency install or renderer integration.
+- **Authority:** ITU-R BT.2020-2 primaries/D65 plus W3C CSS Color 4 published rational XYZ matrices.
+- **Gates:** `5e-15` composed/inverse matrix error, `1e-6` extended float32 roundtrip, `2e-7` neutral axis, no clamp/nonfinite/mutation.
+- **Change propagation:** new preprocess sibling and public API only; renderer, schemas, output encoder, stock evidence and frozen experiments remain unchanged.
+- **Handoff:** hash/commit/push contract before module and tests.

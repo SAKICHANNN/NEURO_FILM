@@ -274,6 +274,10 @@ but loading takes frame zero. Freeze rejection of any frame count other than
 one until animation/multi-page behavior receives its own contract.
 U1.2C passes: multi-frame GIF and multi-page TIFF reject before pixel decode,
 the renderer creates no output, and the single-frame path remains stable.
+U1.4A now freezes a dependency-free D65 linear-sRGB/linear-Rec.2020 primitive
+from official published matrices. It must preserve extended values and
+WorkingImage provenance; renderer integration, HDR transfers, ACES and output
+profiles remain separate gated work.
 
 ---
 
