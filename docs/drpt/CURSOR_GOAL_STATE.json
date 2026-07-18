@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "fbcef7b4a73d43c1c57b45ebe918f2dbb0e08750",
+  "head": "b64952384d6c569953d2db1749063bf001b59fd2",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 22,
-  "current_node": "ULT > U1.6 > U1.6G4A",
-  "current_leaf": "U1.6G4A passed; U1.6G4B row-chunked global stage contract ready",
+  "iteration": 23,
+  "current_node": "ULT > U1.6 > U1.6G4B",
+  "current_leaf": "U1.6G4B row-chunked global stage contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "fbcef7b4a73d43c1c57b45ebe918f2dbb0e08750",
+  "last_verified_commit": "b64952384d6c569953d2db1749063bf001b59fd2",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 493,
@@ -23,18 +23,18 @@
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.6G4A evidence, then freeze U1.6G4B row-chunked global stage construction from repeatable derived-field windows; do not integrate effects before parity and cleanup/resource gates pass.",
+  "next_action": "Commit/push the U1.6G4B contract, extend G1 with a strict bounded row-reader builder, and prove coarse plus reconstructed byte parity without effect integration.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/u1_6g4a_coordinate_gradient_v1.json",
-    "docs/U1_6G4A_COORDINATE_EXACT_GRADIENT_RESULTS.md",
-    "tests/test_gradient_window.py"
+    "docs/planning/U1_6G4B_ROW_CHUNKED_GLOBAL_STAGE_CONTRACT.md",
+    "src/filmfx/global_resample.py",
+    "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:04:52Z",
-  "selection_rationale": "Coordinate gradients now pass exactly. Row-chunked construction of G1 coarse stages is the sole remaining G3 capability before any staged effect-family executor can be considered."
+  "last_update_utc": "2026-07-18T05:07:28Z",
+  "selection_rationale": "Coordinate gradients now pass exactly. Bounded row-reader construction of the existing G1 coarse stage is the sole remaining G3 capability and avoids materialising derived full-resolution fields."
 }

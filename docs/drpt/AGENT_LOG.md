@@ -1572,3 +1572,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** config SHA-256 `aa62b97d...`; `257x389` tile 37/64 and row 1/19 assemblies have zero `gy/gx` error and the same SHA-256 as full-frame gradients.
 - **Verification:** 34 focused, 62 combined G3/G4A and 493 full CPU tests pass. Borders, corners, thin cores and reader violations are covered.
 - **Branch/claim:** gradient capability passes; G3 now remains false only on `row_chunked_global_stage_builder`. No effect execution, pixel-parity, total-memory or 100MP claim opens.
+
+## 2026-07-18 - Freeze U1.6G4B row-chunked global-stage contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G4B`; final static capability gap from G3 after G4A passes.
+- **Decision:** construct the exact existing G1 coarse stage from bounded full-width source row spans grouped by coarse-row chunks, preserving horizontal/vertical float32 area-reduction order and direct coarse blur.
+- **Resource gate:** coarse chunk must be smaller than coarse height; no reader call may cover full source height. Actual/maximum read bytes and spans are audited; partial stages never escape failure.
+- **Boundary/next:** pass only the builder, then allow G3 static readiness and freeze a simplest density-family staged executor. No effect or renderer integration occurs here.
