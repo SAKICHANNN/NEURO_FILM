@@ -185,6 +185,13 @@ at sRGB16. Profile/asset/style failures now occur before pixels or outputs, and
 675 CPU tests pass. This is current-safe-rich compatibility, not arbitrary
 profile support or evidence promotion.
 
+`U2.4A` adds an isolated fail-closed interpretation-plugin boundary. Three
+negative/slide/B&W synthetic witnesses prove domain, identity, numeric,
+immutability, metadata and production-eligibility contracts; 698 CPU tests
+pass. The witnesses remain test-only and the renderer/schemas/profile are
+untouched. Real interpretation operators and evidence-qualified profiles remain
+pending.
+
 `U1.6A` now passes as a reusable halo-aware tiled-execution primitive for
 explicitly finite-support local operators. A committed 257x389 audit has exact
 one-time coverage, a 76x76 maximum expanded window, zero full/seam Gaussian

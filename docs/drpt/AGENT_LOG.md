@@ -1958,3 +1958,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** deterministic finite bounded float32, shape/input/metadata safety, slide identity, B&W neutral axis, synthetic negative roundtrip and exhaustive fail-closed controls.
 - **Forbidden:** real-film fitting, physical inference, tracked profile/schema/renderer integration, calibration, stock claim or teacher use.
 - **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.
+
+## 2026-07-18 - Pass U2.4A interpretation plugin boundary
+
+- **Implementation:** `909394c` adds a pure request/plugin/result registry boundary; all three operators remain synthetic test-only fixtures.
+- **Evidence:** slide identity, B&W neutral axis and reversible synthetic inversion pass; exhaustive registration/domain/eligibility/input/output/metadata failures close without output.
+- **Isolation:** zero renderer/profile/recipe-schema references, zero production-eligible plugins and no tracked profile change.
+- **Verification:** 23 boundary, 50 focused/adjacent and 698 complete CPU tests plus compile/diff checks pass.
+- **Decision/handoff:** retain the software boundary; U2.4 real operators remain pending. No physical, stock, calibration or integration claim opens; Goal remains ACTIVE.

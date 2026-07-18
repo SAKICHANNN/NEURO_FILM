@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "decision_id": "u2.4a-interpretation-plugin-boundary-v1",
+  "node": "ULT > U2 > U2.4 > U2.4A",
+  "config_sha256": "60cd8f71671f1292771f06fd500a0ffe8cd6fb448801ed4fba7fb8763b4a1be2",
+  "software_commit": "909394c7910f4e7c76f12529e11ddd17ad2c2f4e",
+  "synthetic_witnesses_passed": 3,
+  "boundary_tests_passed": 23,
+  "focused_adjacent_tests_passed": 50,
+  "full_tests_passed": 698,
+  "production_eligible_plugins": 0,
+  "renderer_integration": false,
+  "profile_schema_changed": false,
+  "recipe_schema_changed": false,
+  "tracked_profile_changed": false,
+  "real_interpretation_operator_established": false,
+  "decision": "retain_boundary_keep_u2_4_real_operators_pending",
+  "next_leaf": "select another independent evidence-authorized Ultimate leaf; do not integrate synthetic witnesses",
+  "claim_ceiling": "synthetic-test-only interpretation software boundary; no useful physical interpretation, real-film operator, stock authenticity, calibration, renderer integration or production profile claim"
+}
