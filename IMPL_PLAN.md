@@ -212,8 +212,11 @@ gradient windows and row-chunked global staging pass independently.
 
 `U1.6G4A` passes the first execution gap: one-pixel global-coordinate windows
 reproduce full NumPy `gy/gx` bytes at arbitrary tiles, rows, edges and corners.
-G3 now has only `row_chunked_global_stage_builder` missing; integration remains
-false until that separate capability passes.
+G4B then proves that the existing G1-v1 `tensordot` area reducer is not
+chunk-invariant: bounded chunk-1 scalar stages differ at float32-bit level even
+though some larger chunks happen to match. G1-v1 remains frozen. Integration
+stays false while U1.6G4C defines and validates a separately versioned explicit
+reduction order, including fresh visual/severe and compatibility gates.
 
 ---
 

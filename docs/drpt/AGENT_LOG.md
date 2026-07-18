@@ -1579,3 +1579,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** construct the exact existing G1 coarse stage from bounded full-width source row spans grouped by coarse-row chunks, preserving horizontal/vertical float32 area-reduction order and direct coarse blur.
 - **Resource gate:** coarse chunk must be smaller than coarse height; no reader call may cover full source height. Actual/maximum read bytes and spans are audited; partial stages never escape failure.
 - **Boundary/next:** pass only the builder, then allow G3 static readiness and freeze a simplest density-family staged executor. No effect or renderer integration occurs here.
+
+## 2026-07-18 - Close U1.6G4B on batch-dependent G1-v1 reduction
+
+- **Node/parent:** `ULT > U1.6 > U1.6G4B`; falsification branch of the frozen bounded row-stage contract.
+- **Skills/governance:** `dev-research-reliability` primary writer; DRPT-BI, plan tracking, structure stewardship and agent-log disciplines as read-only secondary governance.
+- **Evidence:** commit `34320e9e89ba30e81b304262ad3c1a7b9f372c7e` provides a reproducible diagnostic. Two executions produce report SHA-256 `e24e9908...` from config SHA-256 `e005e163...`.
+- **Result:** all source reads remain below full height, but scalar chunk-1 cases change 1,201/330 coarse float32 values and 71,678/37,068 reconstructed values. Maximum absolute differences are `4.19e-9` coarse and `4.66e-9` reconstructed. Some chunk sizes and the small RGB case happen to match.
+- **Decision:** close G4B. Batch-height-dependent `np.tensordot` kernels make lucky chunk selection non-portable. Preserve committed G1-v1 pixels and version; do not weaken the byte gate or modify renderer/effect calls.
+- **Verification:** diagnostic report is repeat-byte-identical; config JSON, script compilation and diff checks pass. Product test baseline remains 493 because the diagnostic adds no production path.
+- **Handoff:** Goal ACTIVE. Open U1.6G4C to freeze a separately versioned explicit reduction order shared by full and bounded-row construction. Require fresh numerical, visual/severe-artifact and compatibility evidence before G3 readiness.
