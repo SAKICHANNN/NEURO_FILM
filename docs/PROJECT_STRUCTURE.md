@@ -70,7 +70,10 @@ inside these same boundaries rather than adding a parallel renderer.
 initial `lab.py` primitive converts supported explicit linear working spaces to
 and from D65 CIELAB without clipping. `safe_lab.py` owns the pure Lab-domain
 look kernel and immutable source-statistics context; RGB gamut handling,
-encoding, stochastic effects and file I/O remain outside this package.
+encoding, stochastic effects and file I/O remain outside that kernel.
+`gamut.py` owns explicit destination-working-space gamut policies, while
+`rec2020_safe_lab.py` is an isolated colour-only research adapter and is not a
+production renderer entry point.
 
 ## Inference and replay contracts
 
