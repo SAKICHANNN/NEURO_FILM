@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1C3",
+  "status": "complete_weak_pass_no_candidate_selected",
+  "decision": "affine_two_of_three_quadratic_one_of_three_no_promotion",
+  "contract_id": "kmcfm.filmstylesafe-r1c3.v1",
+  "inventory_id": "kmcfm.filmstylesafe-r1b6-a0-inventory.v1",
+  "repeat_report_sha256": "b37541b02120c867701f709c9f0e62a895b1d0cece169db34aab3922b5ddec39",
+  "parent_report_sha256_before_after_optimization": "a48b1d3735e051131a546cb67e0aa3867d90ebc141c22db404161a92132a4780",
+  "candidates": [
+    {
+      "candidate_id": "conditioned_affine_v1",
+      "zero_fpr_threshold": 57.17353467329229,
+      "positives_detected": 2,
+      "positives_total": 3,
+      "sensitivity_at_zero_fpr": 0.6666666666666666,
+      "hardneg_external_below_all_positives": false
+    },
+    {
+      "candidate_id": "conditioned_quadratic_v1",
+      "zero_fpr_threshold": 53.24819656654775,
+      "positives_detected": 1,
+      "positives_total": 3,
+      "sensitivity_at_zero_fpr": 0.3333333333333333,
+      "hardneg_external_below_all_positives": false
+    }
+  ],
+  "member_mechanism": {
+    "affine_detected": ["a0-id11-regression", "a0-synth-speckle-proto-001"],
+    "affine_missed": ["a0-synth-speckle-hf-001"],
+    "quadratic_detected": ["a0-synth-speckle-proto-001"],
+    "quadratic_missed": ["a0-id11-regression", "a0-synth-speckle-hf-001"],
+    "maximum_negative_both": "a0-strength-53"
+  },
+  "facts": [
+    "Neither frozen candidate reaches the required 3/3 sensitivity at zero false positives across all five non-severe controls",
+    "Affine detects ID11 and the solid synthetic island but reduces the sparse HF synthetic score to 1.242881 below the 57.173535 style-control threshold",
+    "Quadratic additionally reduces ID11 to 30.837189 below its 53.248197 threshold and is worse than affine",
+    "The R1C2 parent report remains byte-identical after replacing repeated component scans with exact bincount aggregation",
+    "Two complete R1C3 reports are byte-identical"
+  ],
+  "inference": "The per-pair fit likely absorbs source-state-correlated sparse failures; higher global colour capacity worsens this mechanism. This is an A0 mechanism hypothesis, not a validated causal conclusion.",
+  "selected_candidate": null,
+  "opens": [
+    "U5.R1C3D_minimal_spatial_crossfit_absorption_diagnostic",
+    "parallel_explicit_U1_product_leaves"
+  ],
+  "does_not_open": [
+    "conditioned_SCIS_promotion",
+    "quadratic_or_higher_capacity",
+    "drop_53_55_56",
+    "hidden_A1_population",
+    "external_human_recruitment",
+    "model_training",
+    "production_gate",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 proxy-label weak-pass evidence only; no conditioned SCIS candidate selected or promoted"
+}

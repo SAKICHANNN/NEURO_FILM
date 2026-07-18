@@ -1869,3 +1869,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen test:** deterministic robust affine and quadratic source-Lab-to-candidate-ab fits; strict zero-FPR evaluation across all five negatives; simplest 3/3 candidate wins.
 - **Forbidden fallback:** no removal of 53/55/56, post-result tuning, cubic/LUT/neural capacity, hidden A1, recruitment, training or production gate.
 - **Handoff:** commit/push contract before code; invalid results repair only, valid fail closes rather than adding capacity; Goal stays ACTIVE.
+
+## 2026-07-18 - Close U5.R1C3 as weak-pass without selection
+
+- **Implementation:** `f0fb467` adds fixed robust affine/quadratic pairwise Lab canonicalizers and an A0 runner; exact `bincount` aggregation preserves the parent report hash while removing repeated full-image component scans.
+- **Evidence:** affine detects 2/3 at zero FPR, quadratic 1/3; scheme 53 remains maximum negative; sparse HF is absorbed by both and quadratic also absorbs ID11 below threshold.
+- **Reproducibility:** parent report remains `a48b1d37...`; two R1C3 reports are byte-identical at `b37541b0...`; 13 focused and 645 full tests pass.
+- **Decision:** no candidate or safety gate selected; no capacity expansion or 53/55/56 exclusion. Only a separately frozen affine spatial-cross-fit absorption diagnostic opens.
+- **Handoff:** Goal ACTIVE; next leaf U5.R1C3D or an independent explicit U1 product gap.

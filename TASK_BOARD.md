@@ -112,7 +112,8 @@
 | 12g | U5.R1B6 | Bind legitimate-local hard-negative A0 member | complete | bloom/halation `87f111a2...`; 9/9 A0 bound; R1C planning opened |
 | 12h | U5.R1C | Conventional-metric failure study / SCIS v0 A0 pilot | complete | conv gap confirmed; SCIS candidate unpromoted |
 | 12i | U5.R1C2 | Refine SCIS v0.1 for sparse HF / HF residual | complete | perfect vs hardneg/external; style contamination remains |
-| 12j | U5.R1C3 | Conditioned style-control SCIS calibration; 53/55/56 cannot be excluded | frozen/ready | fixed affine/quadratic A0 test; no A1/recruitment/training |
+| 12j | U5.R1C3 | Conditioned style-control SCIS calibration; 53/55/56 retained | complete weak-pass | affine 2/3, quadratic 1/3; no candidate selected |
+| 12k | U5.R1C3D | Minimal spatial cross-fit absorption diagnostic | ready | affine only; no capacity/A1/recruitment/training expansion |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
 | 14 | U1.2–U1.6/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF, B&W safety and tiled foundation | U1.6A-D/F/G1/G2/G3/G4A pass; U1.6E/G0 direct shortcuts closed | next row-chunked global staging; streaming/total memory, HDR/HEIF/wide-gamut remain pending |
 | 15 | U2.1–U2.5 | Profile/recipe schema and deterministic reference renderer | U2.1A complete; U2.1 in progress | strict v1 profile/recipe, exact migration and hash verifier pass; broader API/operator schemas pending; no current profile calibrated |
@@ -156,4 +157,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; U1.4C2 and U1.5B are closed without integration/support overclaim; the next ready research leaf is U5.R1C3 conditioned-style control research while other explicit U1 format/product gaps remain available; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; U1.4C2/U1.5B are closed; R1C3 weak-passes with no candidate and opens only the minimal R1C3D cross-fit mechanism diagnostic; other explicit U1 gaps remain available; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*

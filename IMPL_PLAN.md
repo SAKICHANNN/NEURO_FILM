@@ -130,6 +130,12 @@ negative controls still decode and unsafe metadata expansion fails closed.
 The renderer leaves no output and 639 CPU tests pass. This remains detection,
 not complete MPF/ISO 21496-1 parsing, HDR reconstruction or format support.
 
+`U5.R1C3` then tests fixed per-pair affine/quadratic Lab canonicalizers without
+dropping mandatory 53/55/56 style controls. Affine weak-passes at 2/3 proxy
+positives and quadratic falls to 1/3; sparse HF is absorbed and scheme 53
+remains the maximum negative. No candidate or safety gate is selected. Only a
+separately frozen affine spatial-cross-fit mechanism diagnostic may follow.
+
 `U1.2A` also closes an ordinary-raster colour-state contradiction: malformed or
 unconvertible embedded ICC now rejects before `WorkingImage`/output instead of
 discarding the profile and returning pixels still labeled ICC-managed. PNG and

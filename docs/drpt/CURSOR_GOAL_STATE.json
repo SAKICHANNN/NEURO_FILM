@@ -5,24 +5,24 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "0047d93b04caabe4413132637ee4b6a6750103a6",
+  "head": "f0fb467c19291ce806ec8a5e01d6308491aa6cf3",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 53,
-  "current_node": "ULT > U1.5 > U1.5B",
-  "current_leaf": "U1.5B passed bounded structured recognized-signal detection; no HDR/ISO support claim",
+  "iteration": 54,
+  "current_node": "ULT > U5.R1 > U5.R1C3",
+  "current_leaf": "U5.R1C3 closed as a 2/3 affine weak-pass with no candidate selected; one minimal cross-fit mechanism diagnostic opens",
   "phase": "CONTINUE",
-  "last_verified_commit": "0047d93b04caabe4413132637ee4b6a6750103a6",
+  "last_verified_commit": "f0fb467c19291ce806ec8a5e01d6308491aa6cf3",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 639,
+    "passed": 645,
     "failed": 0,
-    "timestamp": "2026-07-18T09:16:34Z"
+    "timestamp": "2026-07-18T09:30:31Z"
   },
   "ready_leaves": [
-    "U1.5_remaining_explicit_format_gaps",
-    "U5.R1C3_conditioned_style_control_research"
+    "U5.R1C3D_minimal_spatial_crossfit_absorption_diagnostic",
+    "U1.5_remaining_explicit_format_gaps"
   ],
-  "next_action": "Refresh U5.R1C3 parent evidence and select its smallest legal conditioned-style control leaf; do not reopen U1.4C2, claim complete U1.5 format support, or bypass current stock-learning gates.",
+  "next_action": "Freeze and execute only the minimal affine spatial-crossfit diagnostic authorized by the R1C3 weak-pass; do not add quadratic/higher capacity, drop 53/55/56, promote SCIS, or bypass stock-learning gates.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -78,13 +78,21 @@
     "configs/u1_4c2_rec2020_visual_ood_v1.json",
     "docs/U1_4C2_REC2020_VISUAL_OOD_RESULTS.md",
     "configs/u1_4c2_rec2020_visual_ood_decision_v1.json",
+    "docs/planning/U1_5B_STRUCTURED_GAINMAP_SIGNAL_SCAN_CONTRACT.md",
+    "configs/u1_5b_structured_gainmap_signal_scan_v1.json",
+    "docs/U1_5B_STRUCTURED_GAINMAP_SIGNAL_SCAN_RESULTS.md",
+    "docs/planning/FILMSTYLESAFE_R1C3_CONDITIONED_STYLE_CONTROL_CONTRACT.md",
+    "configs/filmstylesafe_r1c3_conditioned_style_control_v1.json",
+    "docs/FILMSTYLESAFE_R1C3_CONDITIONED_STYLE_CONTROL_RESULTS.md",
+    "configs/filmstylesafe_r1c3_decision_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
     "src/filmfx/global_resample.py",
-    "src/filmfx/halation_dag.py"
+    "src/filmfx/halation_dag.py",
+    "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T09:17:39Z",
-  "selection_rationale": "U1.5B closes one concrete fail-closed detection defect without opening HDR support; the next independent ready leaf is the preregistered conditioned-style control research under U5.R1C3."
+  "last_update_utc": "2026-07-18T09:31:42Z",
+  "selection_rationale": "R1C3 validly weak-passes because affine separates only two of three proxy positives; the frozen branch permits one minimal spatial-crossfit diagnostic to test self-absorption before the metric route closes."
 }
