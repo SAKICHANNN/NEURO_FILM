@@ -383,3 +383,27 @@ def test_render_film_rejects_transparent_raster_before_output(tmp_path: Path) ->
     assert completed.returncode != 0
     assert "refusing transparent hidden-RGB fallback" in completed.stderr
     assert not output_path.exists()
+
+
+def test_render_film_rejects_multiframe_raster_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "animated.gif"
+    output_path = tmp_path / "output.png"
+    first = Image.new("RGB", (8, 6), (245, 11, 197))
+    second = Image.new("RGB", (8, 6), (13, 173, 41))
+    first.save(input_path, save_all=True, append_images=[second], duration=50, loop=0)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "refusing silent frame-zero fallback" in completed.stderr
+    assert not output_path.exists()

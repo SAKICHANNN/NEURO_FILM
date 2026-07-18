@@ -115,6 +115,27 @@ def test_fully_opaque_alpha_strips_with_warning_and_exact_rgb(tmp_path: Path) ->
     assert any(w.code == "opaque_alpha_discarded" for w in actual.warnings)
 
 
+@pytest.mark.parametrize("suffix", [".gif", ".tiff"])
+def test_multiframe_raster_fails_before_pixel_conversion(
+    tmp_path: Path, monkeypatch, suffix: str
+) -> None:
+    from src.preprocess import raster_decode
+
+    path = tmp_path / f"multiframe{suffix}"
+    first = Image.new("RGB", (7, 5), (241, 13, 199))
+    second = Image.new("RGB", (7, 5), (17, 151, 37))
+    first.save(path, save_all=True, append_images=[second])
+    inspection = inspect_input(path)
+    assert inspection.frame_count == 2
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("multi-frame input must fail before pixel conversion")
+
+    monkeypatch.setattr(raster_decode, "_convert_with_icc", forbidden)
+    with pytest.raises(ValueError, match="refusing silent frame-zero fallback"):
+        load_working_image(path)
+
+
 @pytest.mark.parametrize("suffix", [".png", ".jpg"])
 def test_malformed_embedded_icc_fails_closed(tmp_path: Path, suffix: str) -> None:
     path = tmp_path / f"malformed{suffix}"

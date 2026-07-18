@@ -279,6 +279,11 @@ def load_raster_working_image(path: Path) -> WorkingImage:
     warnings = list(inspection.warnings)
     if inspection.source_kind != "raster":
         raise ValueError(f"Unsupported raster input: {path}")
+    if inspection.frame_count != 1:
+        raise ValueError(
+            "multi-frame raster rendering is not implemented; "
+            f"refusing silent frame-zero fallback (frame_count={inspection.frame_count})"
+        )
     dynamic_range_signals = unsupported_dynamic_range_signals(path, inspection)
     if dynamic_range_signals:
         raise ValueError(
