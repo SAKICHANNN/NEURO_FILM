@@ -55,6 +55,7 @@ src/preprocess/
   pipeline.py             Shared raster/RAW inspection and decode entrypoints.
   raster_decode.py        ICC-aware SDR/guarded 16-bit decode plus float/legacy sRGB adapters.
   raw_decode.py           Generic LibRaw scene-linear decode.
+  color_management.py     Explicit validated linear-sRGB/linear-Rec.2020 working-space math.
   color_state.py          Fail-closed output-claim policy.
   output_encode.py        Profiled sRGB8 and true PNG/TIFF16 encoders.
 ```
