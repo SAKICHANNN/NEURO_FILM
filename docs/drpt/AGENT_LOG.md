@@ -1538,3 +1538,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** config SHA-256 `66c19df1...`; 1,048,613 values at q=99.7/99.8 match NumPy-linear float64 output bytes, pass hash `7f5e6006...`, persistent histogram bytes 1,572,864. A 49,793-value arbitrary finite-bit-pattern audit also matches at 107 q values.
 - **Verification:** 11 focused, 24 combined G1/G2 and 431 complete CPU tests pass. Dtype/finiteness/count/second-pass-stream/percentile violations fail closed.
 - **Claim/branch:** pass only exact bounded-histogram reduction. Existing effects remain unchanged; open scratch-field DAG/lifetime planning before any colour/density family integration or memory claim.
+
+## 2026-07-18 - Freeze U1.6G3 halation field-DAG/lifetime contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G3`; integrates G0 dependency inventory with passed G1/G2 primitives at the planning layer only.
+- **Inventory:** colour has 8 blur/2 percentile fields and density has 6/1. At default diffusion, each family has three true global-grid fields; smaller blurs remain finite-halo and must not become full-resolution coarse caches.
+- **Decision:** add immutable concrete graph specs, topology/fingerprint validation, liveness and separately categorized external/output/context/workspace/scratch accounting. Graph family semantics remain separate.
+- **Readiness boundary:** current G1 lacks a repeatable row-chunk/window stage builder for derived fields. Plans must remain `integration_ready=false` and name that capability; no hidden full field or effect integration is allowed.
+- **Next:** commit/push contract, implement planner/specs, verify 24MP/100MP arithmetic without claiming executable 100MP readiness.

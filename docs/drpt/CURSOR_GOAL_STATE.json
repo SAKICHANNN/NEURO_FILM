@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "746c4f3842dd9495a89a743bc793ada924360e09",
+  "head": "f9360a6f50c814dd76c2dbf7abfd548061918524",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 18,
-  "current_node": "ULT > U1.6 > U1.6G2",
-  "current_leaf": "U1.6G2 passed; U1.6G3 scratch-field DAG/lifetime design ready",
+  "iteration": 19,
+  "current_node": "ULT > U1.6 > U1.6G3",
+  "current_leaf": "U1.6G3 field-DAG/lifetime contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "746c4f3842dd9495a89a743bc793ada924360e09",
+  "last_verified_commit": "f9360a6f50c814dd76c2dbf7abfd548061918524",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 431,
@@ -19,22 +19,22 @@
     "timestamp": "2026-07-18T04:39:10Z"
   },
   "ready_leaves": [
-    "U1.6G3_scratch_field_DAG_lifetime",
+    "U1.6G3_halation_field_DAG_lifetime_planner",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.6G2 results, then freeze U1.6G3 scratch-field DAG/lifetime accounting that composes G1/G2 without integrating an effect prematurely.",
+  "next_action": "Commit/push the U1.6G3 contract, implement validated physical/density graph specs and categorized lifetime accounting, and keep integration false until row-chunked global staging exists.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/u1_6g2_exact_streaming_percentile_v1.json",
-    "docs/U1_6G2_EXACT_STREAMING_PERCENTILE_RESULTS.md",
-    "tests/test_streaming_percentile.py"
+    "docs/U1_6G0_PHYSICAL_HALATION_DATAFLOW_AUDIT.md",
+    "docs/planning/U1_6G3_HALATION_FIELD_DAG_LIFETIME_CONTRACT.md",
+    "src/filmfx/effects.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T04:39:10Z",
-  "selection_rationale": "G1 and G2 now solve grid identity and exact percentile reduction independently. The remaining prerequisite is explicit field-DAG lifetime and scratch accounting before effect integration."
+  "last_update_utc": "2026-07-18T04:43:39Z",
+  "selection_rationale": "The current effect graphs mix global and finite-halo fields. A faithful static DAG and categorized lifetime audit is required to prevent small blurs becoming hidden full-resolution caches and to expose the missing row-chunked stage capability."
 }
