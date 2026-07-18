@@ -1950,3 +1950,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Supporting repair:** `a8545b3` pins G4H historical isolation replay to its actual evaluation head and separately enforces zero current research-adapter imports; frozen config/result remain unchanged.
 - **Verification:** 45 focused/adjacent and 675 complete CPU tests, compile and diff checks pass; v1 schema/profile hashes remain exact.
 - **Decision/handoff:** close U2.5 current-safe-rich compatibility only. No default, arbitrary-profile, quality, calibration or evidence claim opens; Goal remains ACTIVE.
+
+## 2026-07-18 - Freeze U2.4A interpretation plugin boundary
+
+- **Parent/question:** v1 profiles name negative/slide/B&W interpretations but no safe operator boundary exists; current renderer remains Look Approximation only.
+- **Frozen design:** pure request/result/registry contract plus three synthetic-test-only witnesses; explicit colour domains, operator identity, evidence ceiling and production eligibility.
+- **Gates:** deterministic finite bounded float32, shape/input/metadata safety, slide identity, B&W neutral axis, synthetic negative roundtrip and exhaustive fail-closed controls.
+- **Forbidden:** real-film fitting, physical inference, tracked profile/schema/renderer integration, calibration, stock claim or teacher use.
+- **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.

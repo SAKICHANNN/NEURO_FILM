@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "7390d080881c9d6f005dd6750a72cac024a42fb0",
+  "head": "775be4923c225929532eeaf0f11ac8019e9b3868",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 62,
-  "current_node": "ULT > U2 > U2.5 > U2.5B",
-  "current_leaf": "U2.5B passed and current-safe-rich U2.5 compatibility closed; selecting next legal leaf",
+  "iteration": 63,
+  "current_node": "ULT > U2 > U2.4 > U2.4A",
+  "current_leaf": "U2.4A contract frozen for a synthetic-test-only interpretation plugin boundary",
   "phase": "CONTINUE",
-  "last_verified_commit": "7390d080881c9d6f005dd6750a72cac024a42fb0",
+  "last_verified_commit": "775be4923c225929532eeaf0f11ac8019e9b3868",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 675,
@@ -19,9 +19,9 @@
     "timestamp": "2026-07-18T10:54:00Z"
   },
   "ready_leaves": [
-    "select_next_independent_ready_leaf"
+    "U2_4A_interpretation_plugin_boundary"
   ],
-  "next_action": "Refresh the active U/RF trees and select the next smallest evidence-authorized leaf without reopening closed experiments, invalid stock-learning gates or unsupported calibration paths.",
+  "next_action": "Commit and push the U2.4A contract, then implement the isolated request/result/registry boundary and three synthetic witnesses with strict negative controls and zero renderer/schema/profile integration.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -108,6 +108,8 @@
     "tests/test_u2_5b_profile_driven_adapter.py",
     "docs/U2_5B_PROFILE_DRIVEN_SAFE_LAB_ADAPTER_RESULTS.md",
     "configs/u2_5b_profile_driven_safe_lab_decision_v1.json",
+    "docs/planning/U2_4A_INTERPRETATION_PLUGIN_BOUNDARY_CONTRACT.md",
+    "configs/u2_4a_interpretation_plugin_boundary_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -116,6 +118,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T10:56:00Z",
-  "selection_rationale": "U2.5B passed exact current-safe-rich compatibility and repaired pre-output provenance validation without changing default rendering, schemas, operators or evidence grades."
+  "last_update_utc": "2026-07-18T11:03:00Z",
+  "selection_rationale": "U2.4A is the next ready U2 child: create a safe extension boundary before any interpretation operator, while making synthetic witnesses explicitly ineligible for production or physical claims."
 }

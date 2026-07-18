@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U2 > U2.4 > U2.4A",
+  "contract_version": "interpretation-plugin-boundary-v1",
+  "synthetic_test_only_interpretations": [
+    "color_negative_neutral_scan",
+    "slide_direct_scan",
+    "bw_developer_scan"
+  ],
+  "current_production_interpretation": "look_approximation",
+  "synthetic_production_eligible": false,
+  "renderer_integration_allowed": false,
+  "profile_schema_change_allowed": false,
+  "recipe_schema_change_allowed": false,
+  "tracked_profile_change_allowed": false,
+  "operator_fitting_allowed": false,
+  "negative_roundtrip_max_abs": 0.000001,
+  "required_properties": [
+    "deterministic",
+    "float32",
+    "finite",
+    "bounded",
+    "shape_preserving",
+    "input_immutable",
+    "json_safe_metadata",
+    "fail_closed"
+  ],
+  "claim_ceiling": "synthetic-test-only interpretation software boundary; no useful physical interpretation, real-film operator, stock authenticity, calibration, renderer integration or production profile claim"
+}
