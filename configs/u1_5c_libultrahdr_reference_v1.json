@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1 > U1.5 > U1.5C",
+  "title": "libultrahdr real-reference fail-closed regression",
+  "upstream": {
+    "repository": "https://github.com/google/libultrahdr",
+    "commit": "ad4a92eea0d2f39f18b5ecae3165fdd56c6a478b",
+    "data_license": "CC-BY-4.0",
+    "license_path": "tests/data/LICENSE"
+  },
+  "fixtures": [
+    {
+      "name": "apple_gainmap_old.jpg",
+      "upstream_path": "tests/data/apple_gainmap_old.jpg",
+      "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b"
+    },
+    {
+      "name": "apple_gainmap_new.jpg",
+      "upstream_path": "tests/data/apple_gainmap_new.jpg",
+      "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078"
+    }
+  ],
+  "fixture_directory": "tests/fixtures/u1_5c_libultrahdr",
+  "expected": {
+    "source_kind": "raster",
+    "format_name": "MPO",
+    "frame_count": 2,
+    "unsupported_dynamic_range_warning_required": false,
+    "load_rejection_substring": "multi-frame raster rendering is not implemented",
+    "renderer_output_must_not_exist": true
+  },
+  "source_code_change_allowed_only_if_exact_fixture_silently_decodes": true,
+  "hdr_reconstruction_allowed": false,
+  "gain_map_application_allowed": false,
+  "complete_mpf_or_iso21496_claim_allowed": false,
+  "claim_ceiling": "two exact pinned libultrahdr gain-map references fail closed through the existing multi-frame boundary; no complete HDR/gain-map detection or support claim"
+}

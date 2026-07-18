@@ -1902,3 +1902,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Terms decision:** the published Terms expressly prohibit automated searches, requests, queries, scraping and mining. Stop before a formal audit; exposed frontend access is not permission.
 - **Propagation:** record `terms_blocked_no_formal_audit_dor` across the stock-first plans, evidence registry and trackers. Commons/YFCC/NASA/Openverse/Smithsonian results, stock grades and frozen gates remain unchanged.
 - **Boundary/handoff:** no client, snapshot, shared-user graph, pixels, fitting, training or LSM. Goal remains ACTIVE and returns to another independently permitted source design or deterministic product leaf.
+
+## 2026-07-18 - Freeze U1.5C libultrahdr real-reference regression
+
+- **Parent/question:** `ULT > U1 > U1.5`; determine whether exact real gain-map JPEG references fail closed through existing U1.2C without inventing duplicate parsing.
+- **Development evidence:** pinned libultrahdr `ad4a92e...` assets are CC-BY-4.0 and both inspect as two-frame MPO; the current loader rejects them before returning pixels.
+- **Frozen gates:** exact hashes/source/licence, MPO/two-frame inspection, load rejection, integrated renderer no-output and ordinary JPEG regression.
+- **Decision discipline:** a pass adds only real-reference regression evidence; source code may change only if an exact fixture silently decodes. No semantic warning, general MPF/ISO 21496-1 or HDR support claim is required.
+- **Handoff:** commit/push contract before importing the two fixtures and their provenance, then run focused and complete CPU verification.
