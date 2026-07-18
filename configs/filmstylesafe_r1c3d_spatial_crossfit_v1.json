@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1c3d.v1",
+  "node": "ULT > U5.R1 > U5.R1C3D",
+  "parent_decision": "configs/filmstylesafe_r1c3_decision_v1.json",
+  "r1c3_contract": "configs/filmstylesafe_r1c3_conditioned_style_control_v1.json",
+  "grid": {
+    "rows": 4,
+    "columns": 4,
+    "chebyshev_exclusion_radius_tiles": 1,
+    "minimum_fit_pixels": 4096,
+    "boundary_rule": "integer_linspace_full_coverage"
+  },
+  "candidate": "conditioned_affine_spatial_crossfit_v1",
+  "decision": {
+    "strict_threshold": "score > max(all five non-severe scores)",
+    "pass_positives_detected": 3,
+    "style_controls_may_be_excluded": false
+  },
+  "authorization": {
+    "a0_mechanism_diagnostic": true,
+    "parameter_tuning": false,
+    "capacity_expansion": false,
+    "model_training": false,
+    "hidden_split_population": false,
+    "external_human_recruitment": false,
+    "production_gate": false
+  },
+  "claim_ceiling": "A0 spatial self-absorption mechanism diagnostic only; not a validated severe detector or product gate"
+}

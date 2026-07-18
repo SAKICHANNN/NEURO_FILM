@@ -1877,3 +1877,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Reproducibility:** parent report remains `a48b1d37...`; two R1C3 reports are byte-identical at `b37541b0...`; 13 focused and 645 full tests pass.
 - **Decision:** no candidate or safety gate selected; no capacity expansion or 53/55/56 exclusion. Only a separately frozen affine spatial-cross-fit absorption diagnostic opens.
 - **Handoff:** Goal ACTIVE; next leaf U5.R1C3D or an independent explicit U1 product gap.
+
+## 2026-07-18 - Freeze U5.R1C3D spatial cross-fit absorption diagnostic
+
+- **Parent/question:** R1C3 affine misses sparse HF; test only whether local pixels teaching their own pairwise fit causes absorption.
+- **Frozen mechanism:** affine only; 4x4 tile grid; predict each tile from a fit excluding it and all one-tile neighbours; unchanged fit/score/members/threshold.
+- **Decision:** 3/3 and hardneg/external below every positive is a mechanism pass; any valid lower result closes conditioned-SCIS. Pass still opens design only.
+- **Forbidden:** parameter/grid tuning, quadratic/higher capacity, dropped 53/55/56, new data, A1, recruitment, training or production gate.
+- **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.
