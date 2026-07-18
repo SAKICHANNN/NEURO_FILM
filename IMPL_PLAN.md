@@ -240,6 +240,10 @@ integration decision; total 100MP remains unproved. G4G now freezes a 24MP
 analytic workload, fresh-child 20ms peak-RSS sampling, executor/row-composite
 timings, repeat hashes and atomic failure cleanup. A pass is measurement
 evidence only and cannot integrate the module.
+G4G now passes after correcting a Windows launcher-only RSS measurement bug:
+two true process-tree runs peak at 0.963-0.983GiB and repeat all hashes, while
+atomic failure cleanup passes. The next leaf is an isolated research-adapter
+parity/lifetime contract; production renderer/CLI and 100MP remain closed.
 
 ---
 

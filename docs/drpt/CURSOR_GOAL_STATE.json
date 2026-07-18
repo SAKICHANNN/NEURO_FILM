@@ -5,25 +5,25 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "3d529617219f10f50f5bd01d4e4df8d25f86f0c1",
+  "head": "a60fd88501e372e8d336f0a34b839c9310bba4f0",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 33,
-  "current_node": "ULT > U1.6 > U1.6G4G",
-  "current_leaf": "U1.6G4G measured 24MP memory/runtime/orchestration contract frozen; implementation ready",
+  "iteration": 34,
+  "current_node": "ULT > U1.6 > U1.6G4H",
+  "current_leaf": "U1.6G4G local 24MP measured pass; G4H isolated adapter/parity/lifetime contract design ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "3d529617219f10f50f5bd01d4e4df8d25f86f0c1",
+  "last_verified_commit": "a60fd88501e372e8d336f0a34b839c9310bba4f0",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 532,
+    "passed": 536,
     "failed": 0,
-    "timestamp": "2026-07-18T06:29:21Z"
+    "timestamp": "2026-07-18T06:45:04Z"
   },
   "ready_leaves": [
-    "U1.6G4G_24mp_resource_audit_implementation",
+    "U1.6G4H_research_adapter_parity_lifetime_contract",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Verify and commit/push the G4G contract, implement the tested atomic worker/RSS harness, run the failure probe, then execute the frozen 24MP workload twice only if focused gates pass.",
+  "next_action": "Commit/push G4G results, then freeze an isolated research-adapter parity/lifetime/failure contract before any orchestration implementation; keep renderer CLI/default and 100MP closed.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -49,10 +49,11 @@
     "configs/u1_6g4f_autonomous_visual_decision_v1.json",
     "docs/planning/U1_6G4G_24MP_RESOURCE_AUDIT_CONTRACT.md",
     "configs/u1_6g4g_24mp_resource_audit_v1.json",
+    "docs/U1_6G4G_24MP_RESOURCE_AUDIT_RESULTS.md",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T06:35:00Z",
-  "selection_rationale": "The smallest legal continuation is an isolated measured 24MP resource and orchestration audit. It adds falsifiable engineering evidence without modifying production paths or implying 100MP readiness."
+  "last_update_utc": "2026-07-18T06:45:04Z",
+  "selection_rationale": "Measured 24MP execution now passes with valid process-tree RSS. The next smallest leaf is an isolated adapter contract that can establish API parity and lifetime ownership without touching production renderer or default behavior."
 }

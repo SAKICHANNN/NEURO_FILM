@@ -31,7 +31,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 532 CPU tests pass through U1.6G4F; density executor is retained only as an opt-in research candidate |
+| Tests | baseline passes | 536 CPU tests pass through U1.6G4G; local 24MP resource evidence passes, integration remains closed |
 
 ---
 
@@ -87,7 +87,8 @@
 | 1v | U1.6G4D | Bind G4A/G4C capabilities | complete: static pass | exact providers resolve G3; no graph execution or resource drift |
 | 1w | U1.6G4E | Freeze and implement the simplest staged density executor | complete: v2 pass / legacy promotion closed | exact/seam-safe v2 execution; `u41-14` legacy alpha max gate fails; retain unconnected research module |
 | 1x | U1.6G4F | Audit explicit new-operator product value/safety | complete: opt-in research retention pass | 07/12/16 automatic pass; 2/3 localized visual pass; zero severe; legacy/default/integration claims closed |
-| 1y | U1.6G4G | Measure 24MP memory/runtime and orchestration readiness | contract frozen; implementation ready | fixed analytic source; child RSS/time/hash/atomic-cleanup gates; no renderer integration or 100MP claim |
+| 1y | U1.6G4G | Measure 24MP memory/runtime and orchestration readiness | complete: local measured pass | 0.963-0.983GiB peak; repeat hashes/cleanup pass; no renderer integration or 100MP claim |
+| 1z | U1.6G4H | Research adapter/orchestration parity and lifetime contract | contract design ready | isolated opt-in API, parity/lifetime/failure gates; no CLI/default and no 100MP claim |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |

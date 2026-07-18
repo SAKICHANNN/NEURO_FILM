@@ -1680,3 +1680,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** config SHA `33ecdfa3...`; <=4GiB child RSS, <=90s worker, <=75s executor, <=15s composite, finite/bounded outputs, bounded source windows, zero pixel scratch, atomic failure/no orphan.
 - **Boundary:** local Ryzen evidence only; a pass cannot integrate/default the effect or claim M5, cross-platform, file-I/O, full renderer or 100MP readiness.
 - **Handoff:** implement small composite/generator tests and atomic worker harness before any 24MP run.
+
+## 2026-07-18 - Pass U1.6G4G local 24MP audit after RSS correction
+
+- **Rejected evidence:** `formal_0a4f854.json` sampled only the Windows venv launcher (4.9MB) and is invalid for memory claims. Time/hash observations are non-authoritative.
+- **Correction:** commit `a60fd88` samples the complete launcher/worker tree and automatically rejects peaks below the 960MB known-live-array floor; small harness tests pass before rerun.
+- **Authoritative evidence:** report SHA `29a998b4...`; two runs peak at 1,033,719,808 and 1,055,174,656 bytes, with worker totals 29.69/28.64s and executor 27.66/26.73s.
+- **Repeat/cleanup:** source, RGB, alpha, composite and metadata hashes repeat; failure probe publishes no report/temp and all three workers leave zero orphans.
+- **Verification:** 20 focused tests and 536 full CPU tests pass. Production renderer/effect entry/CLI remain unchanged.
+- **Decision:** pass local 24MP measurement only. Next G4H may freeze an isolated research adapter/parity/lifetime contract; no direct integration or 100MP claim.
