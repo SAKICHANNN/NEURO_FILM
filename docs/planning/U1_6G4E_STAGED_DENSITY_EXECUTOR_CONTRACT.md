@@ -6,7 +6,7 @@
 
 **Status:** frozen / implementation ready
 
-**Config SHA-256:** `396ee7dfeb0fcfbc91d2e0d712523c8f329d372e15b53302a16db8c5568138ae`
+**Config SHA-256:** `90785681500d9d2c217a755202591c37edd72ef90de834867e631f1b5f3ae69b`
 
 ## Purpose
 
@@ -90,6 +90,14 @@ their results.
 - development/confirmatory cases are separated;
 - clean pre-contract HEAD is `ac665f4`;
 - no renderer, training, download or GPU process is active.
+
+### Pre-implementation geometry correction
+
+The initial config used coarse-row chunk 17. Before executor code or any
+confirmatory run, DoR arithmetic showed that the `193x277` synthetic glare
+plan has coarse height 17 and therefore requires a smaller strict chunk. The
+uniform chunk is corrected to 7 and the config hash is refrozen below. No case,
+algorithm, threshold or gate changed.
 
 ## DoD and frozen gates
 

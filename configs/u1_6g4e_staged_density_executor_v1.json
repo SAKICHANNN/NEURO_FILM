@@ -3,7 +3,7 @@
   "node": "ULT > U1.6 > U1.6G4E",
   "executor_version": "staged-density-halation-v1-defaults",
   "source_row_chunk": 64,
-  "coarse_row_chunk": 17,
+  "coarse_row_chunk": 7,
   "synthetic_cases": [
     {"case_id": "synthetic_highlight_257x389", "shape": [257, 389, 3], "seed": 431, "kind": "highlight_gradient", "tile_sizes": [37, 64]},
     {"case_id": "synthetic_colour_193x277", "shape": [193, 277, 3], "seed": 432, "kind": "colour_hotspots", "tile_sizes": [31, 71]}

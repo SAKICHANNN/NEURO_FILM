@@ -1635,5 +1635,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Development evidence:** materialized-v2 versus legacy on excluded `u41-01/11` has composite max `1.96e-5/1.06e-4`, mean about `1.3e-6`, changed uint8 fraction below `3.2e-4` and max one code; visual differences at 50x are near-black.
 - **Decision:** fixed-default density family only. G2 resolves the percentile, G4C stages local-mean/tail/glare, G4A supplies source gradients, finite blurs use bounded expanded direct windows, and output tiles are row-major.
 - **Frozen evidence split:** confirmatory uses new seeds plus hashed `u41-02/09/14`; development images cannot promote.
-- **Gates:** config SHA `396ee7df...`; staged-v2/seam `2e-6` plus sRGB8 parity; bounded legacy drift; explicit resource categories/no hidden persistent full scalar; zero severe full-resolution artifact; focused/full CPU tests.
+- **Gates:** initial config SHA `396ee7df...`; staged-v2/seam `2e-6` plus sRGB8 parity; bounded legacy drift; explicit resource categories/no hidden persistent full scalar; zero severe full-resolution artifact; focused/full CPU tests.
 - **Boundary:** research executor only. No renderer/profile/CLI, colour-family, physical calibration, streaming decode or 100MP claim.
+
+### U1.6G4E pre-implementation geometry correction
+
+- DoR arithmetic finds the initial coarse-row chunk 17 equals the `193x277` glare coarse height and violates the strict bounded-builder contract. No executor or confirmatory run exists yet.
+- Correct the uniform chunk to 7 and refreeze config SHA `90785681...`; cases, algorithm, thresholds and gates remain unchanged.
