@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "4184db1cd9f55705d73c73d8380129b4b567c5a1",
+  "head": "9d62dbcebb5249691f48bd7d5ce96743f991976b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
   "iteration": 17,
   "current_node": "ULT > U1.6 > U1.6G2",
   "current_leaf": "U1.6G2 exact streaming-percentile contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "4184db1cd9f55705d73c73d8380129b4b567c5a1",
+  "last_verified_commit": "9d62dbcebb5249691f48bd7d5ce96743f991976b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 420,
@@ -34,5 +34,6 @@
     "docs/planning/U1_6G2_EXACT_STREAMING_PERCENTILE_CONTRACT.md"
   ],
   "max_session_stop_loops": 20,
+  "last_update_utc": "2026-07-18T04:34:41Z",
   "selection_rationale": "An exact two-pass float32 radix reducer solves the next independent global dependency with constant histogram memory and avoids both whole-field sorting and approximate percentile drift."
 }
