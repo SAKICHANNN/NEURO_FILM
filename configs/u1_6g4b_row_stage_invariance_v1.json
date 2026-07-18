@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4B",
+  "candidate": "bounded-row-reader-over-g1-v1-tensordot",
+  "cases": [
+    {"case_id": "scalar_257x389", "shape": [257, 389], "sigma": 52.0, "seed": 307, "coarse_row_chunks": [1, 5, 17]},
+    {"case_id": "scalar_anisotropic", "shape": [193, 277], "sigma": [40.0, 70.0], "seed": 308, "coarse_row_chunks": [1, 3, 11]},
+    {"case_id": "rgb_83x107", "shape": [83, 107, 3], "sigma": 38.0, "seed": 309, "coarse_row_chunks": [1, 4, 9]}
+  ],
+  "gate": {
+    "all_coarse_bytes_equal": true,
+    "all_reconstructed_bytes_equal": true,
+    "reader_call_never_full_height": true
+  },
+  "failure_branch": "close G4B over G1 v1 and open a separately versioned chunk-invariant area reducer",
+  "claim_ceiling": "numerical invariance diagnostic only"
+}
