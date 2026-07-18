@@ -1517,3 +1517,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary:** this is a new versioned mechanical primitive. Current `gaussian_filter_safe`, physical/density halation, renderer and CLI remain untouched; no legacy parity, physical, stock, calibration, streaming or 100MP claim opens.
 - **Frozen gate:** the prior `257x389`, sigma-52 counterexample plus irregular/anisotropic cases require byte-identical full/tiled output and exact zero seam error, strict failure behavior and explicit memory metadata.
 - **Next handoff:** implement and test the independent primitive, then run the complete CPU suite before results propagation.
+
+## 2026-07-18 - Pass U1.6G1 shape-stable global resampling
+
+- **Implementation:** commit `fc8032c0df0ee2d6f35fbec4e8090ce33868acc3` adds an immutable original-grid plan, exact area-overlap coarse stage, public direct reflect blur, global-coordinate half-pixel windows and tiled metadata under `src/filmfx/`; current effect and renderer calls remain unchanged.
+- **Frozen evidence:** config SHA-256 `0b02af4b...`; the U1.6G0 `257x389`, sigma-52 case selects `32x48` coarse data (6,144 bytes). Tile 37/77 windows and tile 64/35 windows both have zero max/seam error and byte-identical SHA-256 `c3a59c15...`.
+- **Verification:** 45 focused tests and 420 complete CPU tests pass. Invalid dtype/shape/bounds, writable stage and internally inconsistent forged plans fail closed.
+- **Claim/branch:** pass only the independent numerical primitive. No legacy halation parity, physical, stock, calibration, renderer, streaming or 100MP claim opens. U1.6 continues through staged percentile/DAG or orchestration work.

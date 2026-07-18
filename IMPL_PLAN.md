@@ -192,6 +192,12 @@ fields add further global dependencies. A later route requires separately
 versioned percentile, original-coordinate global-resample and scratch-field DAG
 primitives before any physical adapter or memory claim.
 
+`U1.6G1` now passes the first prerequisite as a separately versioned numerical
+operator. One original-image `32x48` grid for the frozen `257x389`, sigma-52
+case reconstructs byte-identically at tile sizes 37 and 64 with zero maximum
+and seam error; 420 CPU tests pass. No effect uses it yet. Staged percentiles,
+field-DAG lifetimes and separate colour/density visual gates remain required.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

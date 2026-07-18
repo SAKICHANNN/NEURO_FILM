@@ -5,35 +5,36 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "c1ebb427341e28e4db885451a3eda3433871c65b",
+  "head": "fc8032c0df0ee2d6f35fbec4e8090ce33868acc3",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 15,
+  "iteration": 16,
   "current_node": "ULT > U1.6 > U1.6G1",
-  "current_leaf": "U1.6G1 contract frozen; implementation ready",
+  "current_leaf": "U1.6G1 passed; U1.6G2 staged-percentile/DAG design ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "c1ebb427341e28e4db885451a3eda3433871c65b",
+  "last_verified_commit": "fc8032c0df0ee2d6f35fbec4e8090ce33868acc3",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 407,
+    "passed": 420,
     "failed": 0,
-    "timestamp": "2026-07-18T04:20:31Z"
+    "timestamp": "2026-07-18T04:30:39Z"
   },
   "ready_leaves": [
-    "U1.6G1",
+    "U1.6G2_staged_percentile_or_field_DAG",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push the frozen U1.6G1 contract, then implement shape-stable-global-resample-v1 and prove exact full/tiled equality without effect integration.",
+  "next_action": "Commit/push U1.6G1 results, then freeze the smallest independent U1.6G2 staged-percentile or field-DAG contract; do not integrate physical/density halation before both prerequisites pass.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "docs/U1_6G0_PHYSICAL_HALATION_DATAFLOW_AUDIT.md",
-    "docs/planning/U1_6G1_SHAPE_STABLE_GLOBAL_RESAMPLE_CONTRACT.md"
+    "configs/u1_6g1_shape_stable_global_resample_v1.json",
+    "docs/U1_6G1_SHAPE_STABLE_GLOBAL_RESAMPLE_RESULTS.md",
+    "tests/test_shape_stable_global_resample.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T04:20:31Z",
-  "selection_rationale": "U1.6G0 gives a decisive grid-dependence counterexample. A separately versioned global-coordinate resample primitive is the smallest independent prerequisite with higher evidence value than further tuning on the tiny R1C A0 suite."
+  "last_update_utc": "2026-07-18T04:30:39Z",
+  "selection_rationale": "U1.6G1 removes the proved tile-grid ambiguity without changing production pixels. Staged percentile and field-DAG lifetimes are the remaining explicit prerequisites before any effect-family integration."
 }

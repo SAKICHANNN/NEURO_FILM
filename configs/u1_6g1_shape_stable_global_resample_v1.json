@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G1",
+  "operator_version": "shape-stable-global-resample-v1",
+  "source": {
+    "kind": "deterministic_synthetic_uniform_field",
+    "seed": 71,
+    "shape": [257, 389],
+    "dtype": "float32"
+  },
+  "sigma": [52.0, 52.0],
+  "truncate": 3.0,
+  "max_direct_radius": 32,
+  "target_downsampled_sigma": 6.0,
+  "tile_sizes": [37, 64],
+  "gates": {
+    "maximum_absolute_error": 0.0,
+    "maximum_seam_error": 0.0,
+    "byte_identical": true,
+    "repeat_identical": true,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "forbidden_claims": [
+    "legacy_halation_parity",
+    "physical_accuracy",
+    "renderer_integration",
+    "stock_or_calibration",
+    "streaming_input",
+    "bounded_total_memory",
+    "100MP_readiness"
+  ]
+}
