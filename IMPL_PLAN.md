@@ -248,6 +248,10 @@ G4H now freezes a direct-module research adapter under `src/filmfx`: it must
 reuse the staged executor and current compositor, return only final RGB plus
 ndarray-free metadata, propagate partial-row failures, and remain absent from
 renderer/CLI/profile/recipe imports. No production wiring is implied.
+G4H now passes all 36 frozen parity policies and failure/static isolation gates;
+the adapter remains direct-module only. The next leaf may measure this exact
+adapter at 100MP under a separately frozen process-tree contract, but still
+cannot claim complete renderer or production integration.
 
 ---
 

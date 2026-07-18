@@ -1699,3 +1699,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Failure class:** executor failure and second-row compositor failure must propagate without partial public output. Invalid geometry/nonfinite behavior remains fail-closed.
 - **Boundary:** exact parity and ownership evidence only; no renderer, CLI, schema, recipe, 100MP, physical or stock claim.
 - **Handoff:** verify config hash, commit contract, then implement module/tests/audit without touching production entrypoints.
+
+## 2026-07-18 - Pass U1.6G4H isolated research adapter
+
+- **Implementation:** commit `002c7bf` adds `src/filmfx/staged_density_adapter.py` as a direct-module API that reuses the existing executor and compositor; it is not package-exported or production-imported.
+- **Evidence:** audit commit `70b0a52`; config SHA `f2b18293...`; two complete reports are byte-identical at SHA `72a55c52...`.
+- **Matrix:** 36/36 policies pass float/sRGB8 parity, input preservation, repeated output/metadata, one returned ndarray, ndarray-free metadata and zero scratch gates.
+- **Failure/static:** executor and second-row failures expose no partial result; nonfinite rows fail in tests; production references and sensitive renderer/inference/export/schema changes are both zero.
+- **Verification:** 33 focused tests and 553 full CPU tests pass. No separate visual claim is added because output bytes equal the G4F-reviewed compositor path.
+- **Decision:** retain isolated adapter only. G4I may freeze a local 100MP process-tree resource/determinism audit; complete renderer and production integration remain closed.
