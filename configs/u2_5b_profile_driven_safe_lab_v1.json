@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U2 > U2.5 > U2.5B",
+  "profile": "configs/render_profiles/safe_rich_v1.json",
+  "cli_flag": "--use-render-profile",
+  "styles_srgb8": [
+    "ektar_100",
+    "hp5",
+    "portra_400",
+    "portra_800",
+    "tri_x_400",
+    "velvia_50",
+    "vision3_250d",
+    "vision3_500t"
+  ],
+  "styles_srgb16": ["ektar_100", "hp5", "velvia_50"],
+  "legacy_default_change_allowed": false,
+  "profile_schema_change_allowed": false,
+  "recipe_schema_change_allowed": false,
+  "operator_change_allowed": false,
+  "invalid_profile_output_count_max": 0,
+  "claim_ceiling": "explicit profile-driven replay compatibility and pre-output fail-closed validation for current safe-Lab styles only; no quality, calibration, authenticity or default-promotion claim"
+}

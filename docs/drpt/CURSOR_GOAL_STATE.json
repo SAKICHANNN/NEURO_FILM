@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "34134275bc5ccc483a32c9a631679e1e8548d011",
+  "head": "15c872d962ae8805ca8c23987a01e84b5b9a6d35",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 60,
-  "current_node": "ULT > U2 > U2.6 > U2.6A",
-  "current_leaf": "U2.6A passed and U2.6 declared-evidence visibility closed; selecting next legal leaf",
+  "iteration": 61,
+  "current_node": "ULT > U2 > U2.5 > U2.5B",
+  "current_leaf": "U2.5B contract frozen for explicit profile-driven safe-Lab parity and pre-output validation",
   "phase": "CONTINUE",
-  "last_verified_commit": "34134275bc5ccc483a32c9a631679e1e8548d011",
+  "last_verified_commit": "15c872d962ae8805ca8c23987a01e84b5b9a6d35",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 656,
@@ -19,9 +19,9 @@
     "timestamp": "2026-07-18T10:25:00Z"
   },
   "ready_leaves": [
-    "select_next_independent_ready_leaf"
+    "U2_5B_profile_driven_safe_lab_adapter"
   ],
-  "next_action": "Refresh the active U/RF trees and select the smallest evidence-authorized independent leaf without reopening closed experiments, stock-learning gates or unsupported calibration paths.",
+  "next_action": "Commit and push the U2.5B contract, then add the explicit profile-driven path with exact legacy parity and pre-output fail-closed profile/asset/style validation.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -102,6 +102,8 @@
     "tests/test_u2_6a_profile_evidence_inspection.py",
     "docs/U2_6A_PROFILE_EVIDENCE_INSPECTION_RESULTS.md",
     "configs/u2_6a_profile_evidence_inspection_decision_v1.json",
+    "docs/planning/U2_5B_PROFILE_DRIVEN_SAFE_LAB_ADAPTER_CONTRACT.md",
+    "configs/u2_5b_profile_driven_safe_lab_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -110,6 +112,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T10:27:00Z",
-  "selection_rationale": "U2.6A passed the smallest truthful product-contract closure: existing declared grades are now visible through validated surfaces while calibration and broader schema work remain closed or pending."
+  "last_update_utc": "2026-07-18T10:37:00Z",
+  "selection_rationale": "U2.5B addresses the next concrete product-contract defect: the versioned profile is validated evidence but not yet an actual colour-parameter source, and recipe validation currently occurs after output encoding."
 }

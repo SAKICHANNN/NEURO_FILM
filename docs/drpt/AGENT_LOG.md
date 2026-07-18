@@ -1934,3 +1934,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** two CLI runs byte-match; evidence escalation and asset tamper fail closed; caller mutation cannot alter the source profile; all compatibility hashes are unchanged.
 - **Verification:** 9 focused and 656 complete CPU tests, compile and diff checks pass.
 - **Decision/handoff:** close U2.6 declared-evidence visibility. No evidence upgrade or calibration claim opens; Goal remains ACTIVE and selects another independent legal leaf.
+
+## 2026-07-18 - Freeze U2.5B profile-driven safe-Lab adapter
+
+- **Parent/defect:** U2.1A profile migration is exact, but current colour rendering still reads legacy YAML and validates `--render-profile` only after encoding when writing a recipe.
+- **Frozen design:** explicit `--use-render-profile`; validate profile/assets/style before pixels/output; source only existing colour parameters from the profile and reuse the current kernel/effects/export.
+- **Gates:** eight-style sRGB8 and three-style sRGB16 exact parity, repeat identity, verified recipe, invalid profile/asset/style zero outputs, default/hash/schema invariance.
+- **Forbidden:** default switch, schema/operator/evidence changes, tolerance, calibration or stock claims.
+- **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.
