@@ -254,7 +254,9 @@ def failure_probes() -> dict:
     return results
 
 
-def static_isolation(pre_contract_head: str) -> dict:
+def static_isolation(
+    pre_contract_head: str, *, comparison_head: str = "HEAD"
+) -> dict:
     production_files = [
         ROOT / "scripts/render_film.py",
         ROOT / "src/filmfx/__init__.py",
@@ -272,7 +274,7 @@ def static_isolation(pre_contract_head: str) -> dict:
             if needle in text:
                 references.append({"path": path.relative_to(ROOT).as_posix(), "needle": needle})
     changed = subprocess.check_output(
-        ["git", "diff", "--name-only", f"{pre_contract_head}..HEAD"],
+        ["git", "diff", "--name-only", f"{pre_contract_head}..{comparison_head}"],
         cwd=ROOT,
         text=True,
     ).splitlines()
@@ -290,6 +292,7 @@ def static_isolation(pre_contract_head: str) -> dict:
         "production_references": references,
         "production_import_count": len(references),
         "sensitive_changes_since_pre_contract": sensitive_changes,
+        "comparison_head": comparison_head,
         "renderer_cli_schema_change_count": len(sensitive_changes),
         "passed": not references and not sensitive_changes,
     }

@@ -11,6 +11,7 @@ from scripts.audit_u1_6g4h_research_adapter import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
+FROZEN_G4H_EVALUATION_HEAD = "70b0a52eb3d11ee1750f31eb04ac0ca096df4769"
 
 
 def test_g4h_synthetic_case_is_repeat_identical() -> None:
@@ -34,7 +35,19 @@ def test_g4h_static_isolation_matches_frozen_contract() -> None:
             encoding="utf-8"
         )
     )
-    result = static_isolation(config["pre_contract_head"])
+    result = static_isolation(
+        config["pre_contract_head"], comparison_head=FROZEN_G4H_EVALUATION_HEAD
+    )
     assert result["passed"]
     assert result["production_import_count"] == 0
     assert result["renderer_cli_schema_change_count"] == 0
+
+
+def test_g4h_adapter_remains_absent_from_current_production_imports() -> None:
+    config = json.loads(
+        (ROOT / "configs/u1_6g4h_research_adapter_v1.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    result = static_isolation(config["pre_contract_head"])
+    assert result["production_import_count"] == 0
