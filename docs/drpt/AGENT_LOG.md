@@ -1558,3 +1558,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** config SHA-256 `0652882a...`; AST-backed 41/31-node plans match 8/2 and 6/1 calls. At 24MP, context peaks are 18,164,000/12,791,340 bytes; 100MP arithmetic gives 75,685,556/53,305,124 while separately exposing 1.2GB input and 1.6GB output.
 - **Verification:** 27 focused, 51 combined G1-G3 and 458 full CPU tests pass. A pre-commit review repaired direct-consumer-only liveness so lazy stream dependencies retain contexts/scalars through the true terminal consumer.
 - **Branch/claim:** static planner passes, integration stays false. Open coordinate-exact gradient windows, then row-chunked global stage construction. No effect execution, pixel-parity, total-memory or 100MP claim opens.
+
+## 2026-07-18 - Freeze U1.6G4A coordinate-exact gradient-window contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G4A`; first hard execution prerequisite exposed by G3.
+- **Decision:** request a one-pixel expanded global-coordinate scalar window, run the unchanged NumPy default gradient, and crop to the core. Only true original edges use one-sided differences.
+- **Gates:** byte parity with full `np.gradient` for interiors/edges/corners and assembled irregular tiles; strict reader dtype/shape/finiteness; read-only outputs and bounded metadata.
+- **Boundary/next:** no effect integration. A pass removes only the gradient capability; row-chunked G1 stage construction remains required.
