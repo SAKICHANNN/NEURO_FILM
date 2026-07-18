@@ -5,24 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "f0fb467c19291ce806ec8a5e01d6308491aa6cf3",
+  "head": "38470c56279bf3ca9792859182530490099e167a",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 54,
-  "current_node": "ULT > U5.R1 > U5.R1C3",
-  "current_leaf": "U5.R1C3 closed as a 2/3 affine weak-pass with no candidate selected; one minimal cross-fit mechanism diagnostic opens",
+  "iteration": 55,
+  "current_node": "ULT > U5.R1 > U5.R1C3D",
+  "current_leaf": "U5.R1C3D validly fails at 2/3 and closes the current conditioned-SCIS route without a detector candidate",
   "phase": "CONTINUE",
-  "last_verified_commit": "f0fb467c19291ce806ec8a5e01d6308491aa6cf3",
+  "last_verified_commit": "38470c56279bf3ca9792859182530490099e167a",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 645,
+    "passed": 647,
     "failed": 0,
-    "timestamp": "2026-07-18T09:30:31Z"
+    "timestamp": "2026-07-18T09:40:56Z"
   },
   "ready_leaves": [
-    "U5.R1C3D_minimal_spatial_crossfit_absorption_diagnostic",
-    "U1.5_remaining_explicit_format_gaps"
+    "U1_remaining_explicit_product_and_format_gaps"
   ],
-  "next_action": "Freeze and execute only the minimal affine spatial-crossfit diagnostic authorized by the R1C3 weak-pass; do not add quadratic/higher capacity, drop 53/55/56, promote SCIS, or bypass stock-learning gates.",
+  "next_action": "Refresh the remaining U1 parent evidence and select the smallest independent explicit product/format gap; do not reopen conditioned-SCIS, tune its grid/capacity, drop 53/55/56, or bypass stock-learning gates.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -85,6 +84,10 @@
     "configs/filmstylesafe_r1c3_conditioned_style_control_v1.json",
     "docs/FILMSTYLESAFE_R1C3_CONDITIONED_STYLE_CONTROL_RESULTS.md",
     "configs/filmstylesafe_r1c3_decision_v1.json",
+    "docs/planning/FILMSTYLESAFE_R1C3D_SPATIAL_CROSSFIT_CONTRACT.md",
+    "configs/filmstylesafe_r1c3d_spatial_crossfit_v1.json",
+    "docs/FILMSTYLESAFE_R1C3D_SPATIAL_CROSSFIT_RESULTS.md",
+    "configs/filmstylesafe_r1c3d_decision_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -93,6 +96,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T09:31:42Z",
-  "selection_rationale": "R1C3 validly weak-passes because affine separates only two of three proxy positives; the frozen branch permits one minimal spatial-crossfit diagnostic to test self-absorption before the metric route closes."
+  "last_update_utc": "2026-07-18T09:43:31Z",
+  "selection_rationale": "The only authorized cross-fit mechanism diagnostic remains at two of three, so the current conditioned-SCIS route closes and Ultimate must advance an independent product leaf without rewriting the negative evidence."
 }

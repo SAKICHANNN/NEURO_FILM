@@ -1885,3 +1885,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** 3/3 and hardneg/external below every positive is a mechanism pass; any valid lower result closes conditioned-SCIS. Pass still opens design only.
 - **Forbidden:** parameter/grid tuning, quadratic/higher capacity, dropped 53/55/56, new data, A1, recruitment, training or production gate.
 - **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.
+
+## 2026-07-18 - Close U5.R1C3D and conditioned-SCIS route
+
+- **Implementation:** `38470c5` adds the fixed 4x4 neighbour-exclusion affine cross-fit diagnostic and coverage/determinism tests.
+- **Evidence:** parent 2/3 reproduces; cross-fit stays 2/3, sparse HF is 1.2444, and RF2.C0 external style becomes the 63.9936 maximum negative.
+- **Reproducibility:** two reports byte-identical at `b845fabe...`; 15 focused and 647 full tests pass.
+- **Decision:** spatial self-contamination is insufficient; close current conditioned-SCIS without grid/parameter/capacity tuning or control removal. Metrics remain descriptive; severe veto stays independent.
+- **Handoff:** Goal ACTIVE; refresh and select the smallest independent explicit U1 product/format leaf.

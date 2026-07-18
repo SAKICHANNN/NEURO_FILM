@@ -136,6 +136,12 @@ positives and quadratic falls to 1/3; sparse HF is absorbed and scheme 53
 remains the maximum negative. No candidate or safety gate is selected. Only a
 separately frozen affine spatial-cross-fit mechanism diagnostic may follow.
 
+`U5.R1C3D` executes that final fixed 4×4 neighbour-exclusion diagnostic and
+still separates only 2/3; sparse HF remains at 1.2444 while RF2.C0 external
+style sets a 63.9936 threshold. The current conditioned-SCIS route closes with
+no detector or product gate. The severe-artifact veto remains independently
+binding through explicit regression and visual adjudication.
+
 `U1.2A` also closes an ordinary-raster colour-state contradiction: malformed or
 unconvertible embedded ICC now rejects before `WorkingImage`/output instead of
 discarding the profile and returning pixels still labeled ICC-managed. PNG and

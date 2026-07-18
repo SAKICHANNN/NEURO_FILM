@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U5.R1 > U5.R1C3D",
+  "status": "complete_fail_close_conditioned_scis",
+  "decision": "spatial_crossfit_remains_two_of_three_route_closed",
+  "contract_id": "kmcfm.filmstylesafe-r1c3d.v1",
+  "inventory_id": "kmcfm.filmstylesafe-r1b6-a0-inventory.v1",
+  "repeat_report_sha256": "b845fabeaa03c4cc6d56859694f7bdb98d50007ca385351cb16bcd4b93d22f78",
+  "zero_fpr_threshold": 63.99358888432616,
+  "maximum_negative": "a0-rf2c0-ektar-fixed-e0-01",
+  "positives_detected": 2,
+  "positives_total": 3,
+  "detected": ["a0-id11-regression", "a0-synth-speckle-proto-001"],
+  "missed": ["a0-synth-speckle-hf-001"],
+  "sparse_hf_score": 1.2443932697977311,
+  "hardneg_external_below_all_positives": false,
+  "facts": [
+    "The R1C3 affine 2/3 weak-pass baseline reproduces before both formal diagnostic runs",
+    "Fixed 4x4 neighbour-exclusion spatial cross-fitting remains at 2/3 and does not recover the sparse HF synthetic",
+    "The RF2.C0 external style control becomes the maximum negative at 63.993589",
+    "Two complete diagnostic reports are byte-identical"
+  ],
+  "inference": "The frozen spatial self-contamination explanation is not sufficient for the sparse-HF miss. This does not identify the true mechanism and does not validate or invalidate the proxy label.",
+  "opens": [
+    "parallel_explicit_U1_product_leaves",
+    "future_A1_or_new_transform_family_design_only_after_separate_authority_and_contract"
+  ],
+  "does_not_open": [
+    "another_conditioned_SCIS_candidate",
+    "parameter_or_grid_tuning",
+    "capacity_expansion",
+    "drop_53_55_56",
+    "hidden_A1_population",
+    "external_human_recruitment",
+    "model_training",
+    "production_gate",
+    "risk_or_population_claim"
+  ],
+  "claim_ceiling": "A0 negative mechanism evidence closing the current conditioned-SCIS route; not human confirmation or detector validation"
+}
