@@ -194,10 +194,19 @@ def _launch_worker(
     )
     monitored = psutil.Process(process.pid)
     peak_rss = 0
+    observed_process_ids = {process.pid}
     timed_out = False
     while process.poll() is None:
         try:
-            peak_rss = max(peak_rss, monitored.memory_info().rss)
+            process_tree = [monitored, *monitored.children(recursive=True)]
+            observed_process_ids.update(item.pid for item in process_tree)
+            tree_rss = 0
+            for item in process_tree:
+                try:
+                    tree_rss += item.memory_info().rss
+                except psutil.NoSuchProcess:
+                    pass
+            peak_rss = max(peak_rss, tree_rss)
         except psutil.NoSuchProcess:
             pass
         if perf_counter() - started > timeout:
@@ -207,16 +216,19 @@ def _launch_worker(
         sleep(interval)
     stdout, stderr = process.communicate()
     try:
-        peak_rss = max(peak_rss, monitored.memory_info().rss)
+        process_tree = [monitored, *monitored.children(recursive=True)]
+        observed_process_ids.update(item.pid for item in process_tree)
+        peak_rss = max(peak_rss, sum(item.memory_info().rss for item in process_tree))
     except psutil.NoSuchProcess:
         pass
-    orphan = int(psutil.pid_exists(process.pid))
+    orphan = sum(int(psutil.pid_exists(pid)) for pid in observed_process_ids)
     return {
         "pid": process.pid,
         "exit_code": process.returncode,
         "timed_out": timed_out,
         "parent_wall_seconds": perf_counter() - started,
         "peak_child_rss_bytes": peak_rss,
+        "observed_process_ids": sorted(observed_process_ids),
         "stdout": stdout,
         "stderr": stderr,
         "result_exists": output_path.exists(),
@@ -228,10 +240,12 @@ def _launch_worker(
 def _run_pass(worker_result: dict, monitor: dict, gates: dict) -> bool:
     timings = worker_result["timings_seconds"]
     metadata = worker_result["metadata"]
+    known_live_array_floor = metadata["input_bytes"] * 2 + metadata["output_bytes"]
     return bool(
         monitor["exit_code"] == 0
         and not monitor["timed_out"]
         and monitor["peak_child_rss_bytes"] <= gates["peak_child_rss_bytes_max"]
+        and monitor["peak_child_rss_bytes"] >= known_live_array_floor
         and timings["worker_total"] <= gates["worker_total_seconds_max"]
         and timings["executor"] <= gates["executor_seconds_max"]
         and timings["stream_composite"] <= gates["stream_composite_seconds_max"]

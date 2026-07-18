@@ -71,5 +71,10 @@ def test_small_parent_harness_repeats_and_cleans_injected_failure(tmp_path) -> N
     assert report["failure_probe"]["passed"]
     assert report["repeat_hashes_pass"]
     assert report["gate_result"]["automatic_pass"]
+    for run in report["runs"]:
+        metadata = run["worker"]["metadata"]
+        known_floor = metadata["input_bytes"] * 2 + metadata["output_bytes"]
+        assert run["monitor"]["peak_child_rss_bytes"] >= known_floor
+        assert len(run["monitor"]["observed_process_ids"]) >= 1
     assert not (tmp_path / "workers/failure_probe.json").exists()
     assert not list(tmp_path.rglob("*.tmp"))
