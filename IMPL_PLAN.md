@@ -228,7 +228,11 @@ proves the bounded executor matches its materialized v2 target with zero seams
 and sRGB8 parity, but one frozen legacy alpha maximum gate fails by about 6.8%.
 The module stays research-only and disconnected. Any continuation must be an
 explicit new-operator G4F audit on fresh cases, not a loosened G4E gate or
-silent replacement of the legacy default.
+silent replacement of the legacy default. G4F now freezes disjoint development
+`03/05` and confirmatory `07/12/16`, with explicit non-empty effect,
+highlight-selectivity, clipping, local-runtime and full-resolution severe gates.
+Legacy comparison is diagnostic only and a pass still cannot integrate or
+default the effect.
 
 ---
 

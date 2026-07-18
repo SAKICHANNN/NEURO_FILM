@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4F",
+  "operator_version": "staged-density-halation-v1-defaults",
+  "claim_under_test": "separate opt-in density-halation operator with bounded selective effect; not a legacy replacement",
+  "pre_contract_head": "5fff518c345627659945eb3853ceeb09a9331a75",
+  "source_row_chunk": 64,
+  "coarse_row_chunk": 7,
+  "tile_sizes": [127, 256],
+  "runtime_tile_size": 256,
+  "runtime_repeats": 3,
+  "development_cases": [
+    {
+      "case_id": "u41-03",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/03_Sony_DSLR-A450_Sony_-_DSLR-A450_-_12bit_12bit_compressed_3_2__raw-neutral.jpg",
+      "sha256": "b344857939695dc77ca31eefe8acdae39379636a8c612ebde39ba8e3f68c5493",
+      "shape": [1067, 1600, 3]
+    },
+    {
+      "case_id": "u41-05",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/05_Olympus_E-PL5_Olympus_-_E-PL5_-_16bit_4_3__raw-neutral.jpg",
+      "sha256": "b20093a55650b62626aeb319fced0d2d010ce5ffe1ca2c38ad697ce108081497",
+      "shape": [1197, 1600, 3]
+    }
+  ],
+  "confirmatory_cases": [
+    {
+      "case_id": "u41-07",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/07_Pentax_K-500_Pentax_-_K-500_-_12bit_3_2__raw-neutral.jpg",
+      "sha256": "d8c18b8adcd54bd6ce5b6a92fef789e4feb13338dc70386ca04ff30e2b11447e",
+      "shape": [1061, 1600, 3]
+    },
+    {
+      "case_id": "u41-12",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/12_Canon_EOS_R6_Mark_III_Canon_-_EOS_R6_Mark_III_-_RAW_3_2__raw-neutral.jpg",
+      "sha256": "c580c41e3bb997cdeee01db24bfe3064cdfbf5ef979ff1ef6519bbce5cd2274d",
+      "shape": [1067, 1600, 3]
+    },
+    {
+      "case_id": "u41-16",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/16_Olympus_E-M5_Olympus_-_E-M5_-_16bit_4_3__raw-neutral.jpg",
+      "sha256": "89fba352726e8d0a9a0af0f6709f2fd80c878ebd9df3c73069d400c0c67a203b",
+      "shape": [1197, 1600, 3]
+    }
+  ],
+  "gates": {
+    "staged_v2_alpha_max_error": 2e-6,
+    "staged_v2_composite_max_error": 2e-6,
+    "staged_v2_seam_max_error": 2e-6,
+    "staged_v2_srgb8_byte_identical": true,
+    "effect_changed_uint8_channel_fraction_min": 0.04,
+    "effect_composite_abs_p99_min": 0.0035,
+    "effect_uint8_max_code_delta_min": 3,
+    "effect_alpha_active_fraction_min": 0.05,
+    "effect_highlight_to_other_alpha_ratio_min": 3.0,
+    "effect_new_high_clip_fraction_max": 0.0001,
+    "effect_new_low_clip_fraction_max": 0.0001,
+    "runtime_median_seconds_per_megapixel_max": 2.5,
+    "visually_plausible_localized_effect_cases_min": 2,
+    "confirmed_severe_artifacts": 0,
+    "full_cpu_suite_required": true
+  },
+  "legacy_comparison": "diagnostic_only",
+  "renderer_integration_allowed_by_pass": false,
+  "claim_ceiling": "research-only opt-in density-halation candidate; no legacy replacement, default, physical calibration, stock or 100MP claim"
+}

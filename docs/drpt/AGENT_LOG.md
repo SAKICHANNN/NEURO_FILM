@@ -1652,3 +1652,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Visual diagnosis:** zero confirmed severe artifact and no visible staged-v2 difference; diagnostic only, cannot override automatic failure.
 - **Verification:** 16 executor/107 adjacent tests and 527 full CPU tests pass. Renderer/effects/CLI are unchanged.
 - **Decision/handoff:** retain research executor but close drop-in/default/legacy-compatible promotion. Goal ACTIVE. A G4F explicit-new-operator audit may use fresh confirmatory cases and a separate claim; it must not rewrite G4E.
+
+## 2026-07-18 - Freeze U1.6G4F explicit new-operator audit
+
+- **Parent evidence:** G4E v2 execution passes while legacy-compatible promotion stays closed; no frozen G4E threshold changes.
+- **Development:** only `u41-03/05` informed the gates. Both show non-empty, highly highlight-selective response, zero new clipping and tile-256 medians of 1.16-1.21 seconds/MP; whole-image styling remains intentionally subtle.
+- **Sealed confirmatory:** `u41-07/12/16`; before freeze only path, hash, bytes and decoded shape were inspected. Pixels/metrics/visuals were not viewed.
+- **Contract:** config SHA `c36bc840...`; require per-case non-empty rounded-code/p99/alpha evidence, >=3x top-decile highlight selectivity, clipping <=1e-4, local runtime <=2.5 seconds/MP, deterministic v2 execution and zero severe artifacts; at least 2/3 unamplified 1:1 crops must show plausible localized glow.
+- **Boundary:** legacy drift is diagnostic only. Pass retains an opt-in research candidate but does not permit renderer integration, default promotion, physical/stock or 100MP claims.
+- **Handoff:** implement the frozen audit and tests, run twice, visually adjudicate, then branch without tuning.
