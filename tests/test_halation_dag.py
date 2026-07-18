@@ -7,11 +7,17 @@ from pathlib import Path
 import pytest
 
 from src.filmfx import (
+    CHUNK_INVARIANT_GLOBAL_RESAMPLE_VERSION,
     DENSITY_FAMILY,
+    GRADIENT_WINDOW_VERSION,
     PHYSICAL_COLOUR_FAMILY,
     REQUIRED_INTEGRATION_CAPABILITIES,
+    HalationCapabilityBinding,
     HalationFieldNode,
     build_halation_resource_plan,
+    available_halation_integration_capabilities,
+    resolve_halation_integration_capability_bindings,
+    validate_halation_capability_bindings,
     validate_halation_nodes,
 )
 
@@ -106,6 +112,71 @@ def test_gradient_capability_alone_keeps_row_stage_gate_closed() -> None:
     assert plan.missing_capabilities == ("row_chunked_global_stage_builder",)
     assert plan.integration_ready is False
     assert plan.unresolved_workspace_nodes == plan.global_grid_blurs
+
+
+def test_passed_providers_resolve_exact_required_capabilities() -> None:
+    bindings = resolve_halation_integration_capability_bindings()
+    assert bindings == (
+        HalationCapabilityBinding(
+            "coordinate_exact_gradient_window",
+            GRADIENT_WINDOW_VERSION,
+            "src.filmfx.gradient_window",
+            "coordinate_gradient_window",
+        ),
+        HalationCapabilityBinding(
+            "row_chunked_global_stage_builder",
+            CHUNK_INVARIANT_GLOBAL_RESAMPLE_VERSION,
+            "src.filmfx.global_resample",
+            "build_chunk_invariant_global_stage_from_rows",
+        ),
+    )
+    assert available_halation_integration_capabilities() == REQUIRED_INTEGRATION_CAPABILITIES
+
+
+@pytest.mark.parametrize("family", [PHYSICAL_COLOUR_FAMILY, DENSITY_FAMILY])
+@pytest.mark.parametrize("shape,tile_size", [((1024, 1536), 256), ((4000, 6000), 512)])
+def test_resolved_capabilities_make_static_plan_ready_without_resource_drift(
+    family, shape, tile_size
+) -> None:
+    unbound = _plan(family, shape=shape, tile_size=tile_size)
+    bound = _plan(
+        family,
+        shape=shape,
+        tile_size=tile_size,
+        available_capabilities=available_halation_integration_capabilities(),
+    )
+    assert bound.integration_ready is True
+    assert bound.missing_capabilities == ()
+    assert bound.unresolved_workspace_nodes == ()
+    assert bound.nodes == unbound.nodes
+    assert bound.lifetimes == unbound.lifetimes
+    for field in (
+        "blur_count",
+        "percentile_count",
+        "finite_halo_blurs",
+        "global_grid_blurs",
+        "external_bytes",
+        "required_output_bytes",
+        "peak_context_bytes",
+        "peak_scalar_bytes",
+        "peak_workspace_bytes",
+        "peak_planner_ram_bytes",
+        "scratch_disk_bytes",
+        "maximum_output_input_halo",
+    ):
+        assert getattr(bound, field) == getattr(unbound, field)
+
+
+def test_forged_or_incomplete_provider_bindings_fail_closed() -> None:
+    bindings = resolve_halation_integration_capability_bindings()
+    with pytest.raises(ValueError, match="exactly"):
+        validate_halation_capability_bindings(bindings[:1])
+    with pytest.raises(ValueError, match="metadata mismatch"):
+        validate_halation_capability_bindings(
+            (replace(bindings[0], implementation_version="forged"), bindings[1])
+        )
+    with pytest.raises(ValueError, match="duplicate"):
+        validate_halation_capability_bindings((bindings[0], bindings[0]))
 
 
 def test_diffusion_and_geometry_reclassify_deterministically() -> None:

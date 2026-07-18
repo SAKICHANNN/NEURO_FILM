@@ -11,7 +11,15 @@ from typing import Iterable
 
 import numpy as np
 
-from .global_resample import plan_shape_stable_global_resample
+from .global_resample import (
+    CHUNK_INVARIANT_GLOBAL_RESAMPLE_VERSION,
+    build_chunk_invariant_global_stage_from_rows,
+    plan_shape_stable_global_resample,
+)
+from .gradient_window import (
+    GRADIENT_WINDOW_VERSION,
+    coordinate_gradient_window,
+)
 
 
 HALATION_DAG_VERSION = "halation-field-dag-v1"
@@ -101,6 +109,87 @@ class HalationResourcePlan:
     unresolved_workspace_nodes: tuple[str, ...]
     missing_capabilities: tuple[str, ...]
     integration_ready: bool
+
+
+@dataclass(frozen=True)
+class HalationCapabilityBinding:
+    capability: str
+    implementation_version: str
+    module: str
+    symbol: str
+
+
+_CAPABILITY_PROVIDERS = {
+    "coordinate_exact_gradient_window": (
+        GRADIENT_WINDOW_VERSION,
+        "src.filmfx.gradient_window",
+        "coordinate_gradient_window",
+        coordinate_gradient_window,
+    ),
+    "row_chunked_global_stage_builder": (
+        CHUNK_INVARIANT_GLOBAL_RESAMPLE_VERSION,
+        "src.filmfx.global_resample",
+        "build_chunk_invariant_global_stage_from_rows",
+        build_chunk_invariant_global_stage_from_rows,
+    ),
+}
+
+
+def validate_halation_capability_bindings(
+    bindings: tuple[HalationCapabilityBinding, ...],
+) -> tuple[HalationCapabilityBinding, ...]:
+    """Verify exact provider identity for every required G3 capability."""
+
+    if not isinstance(bindings, tuple) or any(
+        not isinstance(binding, HalationCapabilityBinding) for binding in bindings
+    ):
+        raise ValueError("bindings must be a tuple of HalationCapabilityBinding records")
+    names = tuple(binding.capability for binding in bindings)
+    if len(set(names)) != len(names):
+        raise ValueError("bindings contain duplicate capabilities")
+    if frozenset(names) != REQUIRED_INTEGRATION_CAPABILITIES:
+        raise ValueError("bindings must cover exactly the required integration capabilities")
+    for binding in bindings:
+        expected_version, expected_module, expected_symbol, provider = _CAPABILITY_PROVIDERS[
+            binding.capability
+        ]
+        if binding != HalationCapabilityBinding(
+            capability=binding.capability,
+            implementation_version=expected_version,
+            module=expected_module,
+            symbol=expected_symbol,
+        ):
+            raise ValueError(f"binding metadata mismatch: {binding.capability}")
+        if not callable(provider):
+            raise ValueError(f"binding provider is not callable: {binding.capability}")
+        if provider.__module__ != expected_module or provider.__name__ != expected_symbol:
+            raise ValueError(f"binding provider identity mismatch: {binding.capability}")
+    return bindings
+
+
+def resolve_halation_integration_capability_bindings(
+) -> tuple[HalationCapabilityBinding, ...]:
+    """Resolve the passed G4A/G4C providers into G3 capability records."""
+
+    bindings = tuple(
+        HalationCapabilityBinding(
+            capability=capability,
+            implementation_version=provider[0],
+            module=provider[1],
+            symbol=provider[2],
+        )
+        for capability, provider in sorted(_CAPABILITY_PROVIDERS.items())
+    )
+    return validate_halation_capability_bindings(bindings)
+
+
+def available_halation_integration_capabilities() -> frozenset[str]:
+    """Return capability names only after their concrete providers validate."""
+
+    return frozenset(
+        binding.capability
+        for binding in resolve_halation_integration_capability_bindings()
+    )
 
 
 def _shape2(value: object) -> tuple[int, int]:
