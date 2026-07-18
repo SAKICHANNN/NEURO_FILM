@@ -123,6 +123,13 @@ ICC regressions remain green and 230 CPU tests pass. This is explicit
 unsupported-format rejection, not HEIF/AVIF/HDR support; complete ISO 21496-1
 detection, reconstruction and display mapping remain pending.
 
+`U1.5B` closes U1.5A's first/last-4-MiB sampling blind spot for the frozen
+known-marker vocabulary. Bounded JPEG APP1/APP2/COM and PNG text-chunk traversal
+finds middle-of-file and compressed-text witnesses, while ordinary large
+negative controls still decode and unsafe metadata expansion fails closed.
+The renderer leaves no output and 639 CPU tests pass. This remains detection,
+not complete MPF/ISO 21496-1 parsing, HDR reconstruction or format support.
+
 `U1.2A` also closes an ordinary-raster colour-state contradiction: malformed or
 unconvertible embedded ICC now rejects before `WorkingImage`/output instead of
 discarding the profile and returning pixels still labeled ICC-managed. PNG and

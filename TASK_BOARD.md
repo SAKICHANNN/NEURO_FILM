@@ -23,7 +23,7 @@
 | FARO/ChromaticTail | supporting evaluation/product wrapper | severe-artifact evaluation, fixed-policy audit and fallback; no standalone primary benchmark paper |
 | FilmCase ML | conditional product/research branch | open only if strength-adjusted bank diversity and an applicability/safety Oracle gap exist; otherwise champion + bounded strength wins |
 | Latent stock modes | hypothesis only; data-gated | no stock has proved `K>1`; LSM0 freezes semantics, LSM1 requires stock/connectivity/identifiability/rights gates, and `K=1` remains a formal branch |
-| Input pipeline | float32 + fail-closed HDR pass | one float32 main path; HEIF/AVIF and recognized HDR/gain-map signals reject before silent SDR fallback |
+| Input pipeline | float32 + strengthened fail-closed HDR pass | one float32 main path; HEIF/AVIF and recognized HDR/gain-map signals reject before silent SDR fallback; bounded JPEG APP/PNG text traversal closes the prior edge-sampling blind spot |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
 | Current local data | FilmSet, BlueNeg bounded pilot, stock-pilot v1, FILM-R and FSA/OWI pilot | stock-pilot v1: 189 hash+decode verified files; Gold display-candidate; NPH/Konica/GA post-negation-preview diagnostics only; FSA/OWI remains historical/unknown-stock |
 | Named-stock coverage | **not established** | BlueNeg Kodak Gold is provisional single-stock evidence below transferable `S2`; no second stock is promoted |
@@ -156,4 +156,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; U1.3B and U2.5A product-safety leaves are complete; the next local product leaf returns to remaining U1.2/U1.4/U1.5 colour-state and format gaps; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B is closed and LSM1 remains ineligible; U1.4C2 and U1.5B are closed without integration/support overclaim; the next ready research leaf is U5.R1C3 conditioned-style control research while other explicit U1 format/product gaps remain available; FSA/OWI remains sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*

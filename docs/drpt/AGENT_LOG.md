@@ -1852,3 +1852,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen scope:** traverse JPEG APP1/APP2/COM before SOS and PNG text chunks through IEND, retain the edge scan, bound retained/decompressed metadata, and reject recognized signals before pixel conversion.
 - **Forbidden:** complete ISO 21496-1/MPF support, HDR reconstruction/tone mapping, HEIF/AVIF enablement, new dependency, renderer/default changes or preservation claims.
 - **Handoff:** commit and push the frozen contract before implementation; U1.4C2 remains closed and Ultimate remains ACTIVE.
+
+## 2026-07-18 - Pass U1.5B structured gain-map signal scan
+
+- **Implementation:** `0047d93` traverses bounded JPEG APP1/APP2/COM and PNG `tEXt`/`zTXt`/`iTXt`, validates scanned CRC/compression and retains the U1.5A edge fallback.
+- **Evidence:** official known-marker witnesses more than 4 MiB from both ends reject; equivalent large negatives decode; compressed text detects; over-expansion fails closed; renderer creates no output.
+- **Verification:** 48 focused and 639 complete CPU tests, compile and diff checks pass.
+- **Boundary:** no complete MPF/ISO 21496-1, HEIF/AVIF, HDR reconstruction, tone map, preservation or renderer-support claim opens.
+- **Propagation/handoff:** U1.5B closes; Ultimate remains ACTIVE and the next explicit ready research leaf is U5.R1C3 after refreshing its parent evidence.
