@@ -13,6 +13,12 @@ import numpy as np
 import tifffile
 from PIL import Image, ImageCms
 
+from .color_management import (
+    REC2020_SDR_CICP,
+    linear_rec2020_to_rec2020,
+)
+from .types import WorkingImage
+
 
 _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
     ".png": ("PNG", {}),
@@ -111,6 +117,13 @@ def _png_iccp_chunk(profile: bytes) -> bytes:
     return struct.pack(">I", len(payload)) + chunk_type + payload + struct.pack(">I", checksum)
 
 
+def _png_chunk(chunk_type: bytes, payload: bytes) -> bytes:
+    if len(chunk_type) != 4:
+        raise ValueError("PNG chunk type must contain four bytes")
+    checksum = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
+    return struct.pack(">I", len(payload)) + chunk_type + payload + struct.pack(">I", checksum)
+
+
 def _inject_png_icc(png: bytes, profile: bytes) -> bytes:
     signature = b"\x89PNG\r\n\x1a\n"
     if not png.startswith(signature) or png[12:16] != b"IHDR":
@@ -118,6 +131,17 @@ def _inject_png_icc(png: bytes, profile: bytes) -> bytes:
     ihdr_length = struct.unpack(">I", png[8:12])[0]
     ihdr_end = 8 + 12 + ihdr_length
     return png[:ihdr_end] + _png_iccp_chunk(profile) + png[ihdr_end:]
+
+
+def _inject_png_cicp(png: bytes, cicp: bytes = REC2020_SDR_CICP) -> bytes:
+    signature = b"\x89PNG\r\n\x1a\n"
+    if not png.startswith(signature) or png[12:16] != b"IHDR":
+        raise ValueError("encoder returned an invalid PNG stream")
+    if len(cicp) != 4:
+        raise ValueError("PNG cICP payload must contain four bytes")
+    ihdr_length = struct.unpack(">I", png[8:12])[0]
+    ihdr_end = 8 + 12 + ihdr_length
+    return png[:ihdr_end] + _png_chunk(b"cICP", cicp) + png[ihdr_end:]
 
 
 def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
@@ -139,6 +163,41 @@ def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
     if not succeeded:
         raise ValueError("OpenCV failed to encode 16-bit PNG")
     payload = _inject_png_icc(buffer.tobytes(), srgb_icc_profile())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    try:
+        temporary.write_bytes(payload)
+        os.replace(temporary, path)
+    except Exception:
+        temporary.unlink(missing_ok=True)
+        raise
+    return "PNG"
+
+
+def save_rec2020_16_png(working: WorkingImage, path: Path) -> str:
+    """Encode display-linear Rec.2020 as deterministic full-range RGB16 PNG."""
+    if not isinstance(working, WorkingImage):
+        raise TypeError("working must be a WorkingImage")
+    if working.working_space != "linear_rec2020":
+        raise ValueError("Rec.2020 PNG output requires linear_rec2020 working space")
+    if working.transfer_state != "display_linear":
+        raise ValueError("Rec.2020 PNG output requires display_linear transfer state")
+    if path.suffix.casefold() != ".png":
+        raise ValueError("16-bit Rec.2020 output requires a .png extension")
+    encoded = linear_rec2020_to_rec2020(
+        np.asarray(np.clip(working.pixels, 0.0, 1.0), dtype=np.float32)
+    )
+    encoded_rgb = np.rint(encoded * 65535.0).astype(np.uint16)
+    import cv2
+
+    succeeded, buffer = cv2.imencode(
+        ".png",
+        encoded_rgb[..., ::-1],
+        [cv2.IMWRITE_PNG_COMPRESSION, 6],
+    )
+    if not succeeded:
+        raise ValueError("OpenCV failed to encode 16-bit Rec.2020 PNG")
+    payload = _inject_png_cicp(buffer.tobytes())
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     try:

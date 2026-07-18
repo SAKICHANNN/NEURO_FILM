@@ -53,17 +53,18 @@ to individual scripts.
 src/preprocess/
   types.py                Typed inspection and WorkingImage contracts.
   pipeline.py             Shared raster/RAW inspection and decode entrypoints.
-  raster_decode.py        ICC-aware SDR/guarded 16-bit decode plus float/legacy sRGB adapters.
+  raster_decode.py        ICC/cICP-aware SDR and guarded 16-bit decode plus sRGB adapters.
   raw_decode.py           Generic LibRaw scene-linear decode.
-  color_management.py     Explicit validated linear-sRGB/linear-Rec.2020 working-space math.
+  color_management.py     Validated sRGB/Rec.2020 linear math and BT.2020 SDR transfer.
   color_state.py          Fail-closed output-claim policy.
-  output_encode.py        Profiled sRGB8 and true PNG/TIFF16 encoders.
+  output_encode.py        Profiled sRGB and cICP-tagged BT.2020 SDR encoders.
 ```
 
 `WorkingImage` remains the only intended production ingress. The compatibility
 path stays 8-bit, while explicit PNG/TIFF16 uses the float safe-Lab/effect path
-and quantizes only in `output_encode.py`. Keep future HDR/wide-gamut or tone-map
-work inside these same boundaries rather than adding a parallel renderer.
+and quantizes only in `output_encode.py`. The isolated BT.2020 SDR PNG boundary
+does not imply renderer integration. Keep future HDR/wide-gamut or tone-map work
+inside these same boundaries rather than adding a parallel renderer.
 
 ## Inference and replay contracts
 

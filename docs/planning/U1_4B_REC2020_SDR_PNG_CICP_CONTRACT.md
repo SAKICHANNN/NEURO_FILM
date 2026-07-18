@@ -1,8 +1,8 @@
 # U1.4B BT.2020 SDR PNG cICP Contract
 
-**Status:** frozen before implementation  
-**Parent:** ULT > U1.4  
-**Risk:** R1 local, reversible  
+**Status:** frozen before implementation
+**Parent:** ULT > U1.4
+**Risk:** R1 local, reversible
 **Primary writer:** `dev-research-reliability`
 
 Frozen config SHA-256:

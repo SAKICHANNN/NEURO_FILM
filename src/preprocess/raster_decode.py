@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import zlib
 from io import BytesIO
 from pathlib import Path
 from typing import Any
@@ -10,6 +11,7 @@ import numpy as np
 import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
+from .color_management import REC2020_SDR_CICP, rec2020_to_linear_rec2020
 from .output_encode import normalized_icc_profile_sha256, srgb_icc_profile_fingerprint_sha256
 from .types import DecodeWarning, InputInspection, SourceProfile, WorkingImage
 
@@ -49,7 +51,48 @@ def _orientation(image: Image.Image) -> int | None:
     return int(value) if value else None
 
 
-def _source_profile(image: Image.Image) -> SourceProfile:
+def _png_cicp(path: Path) -> bytes | None:
+    found: bytes | None = None
+    seen_idat = False
+    with path.open("rb") as handle:
+        if handle.read(8) != b"\x89PNG\r\n\x1a\n":
+            return None
+        while True:
+            length_bytes = handle.read(4)
+            if len(length_bytes) != 4:
+                raise ValueError("truncated PNG chunk length")
+            length = int.from_bytes(length_bytes, "big")
+            if length > 0x7FFFFFFF:
+                raise ValueError("invalid PNG chunk length")
+            chunk_type = handle.read(4)
+            if len(chunk_type) != 4:
+                raise ValueError("truncated PNG chunk type")
+            if chunk_type == b"cICP":
+                if seen_idat:
+                    raise ValueError("PNG cICP must precede IDAT")
+                if found is not None:
+                    raise ValueError("PNG must not contain duplicate cICP chunks")
+                payload = handle.read(length)
+                crc_bytes = handle.read(4)
+                if len(payload) != length or len(crc_bytes) != 4:
+                    raise ValueError("truncated PNG cICP chunk")
+                expected = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
+                if int.from_bytes(crc_bytes, "big") != expected:
+                    raise ValueError("PNG cICP CRC mismatch")
+                if length != 4:
+                    raise ValueError("PNG cICP payload must contain four bytes")
+                found = payload
+            else:
+                handle.seek(length + 4, 1)
+            if chunk_type == b"IDAT":
+                seen_idat = True
+            if chunk_type == b"IEND":
+                return found
+
+
+def _source_profile(image: Image.Image, cicp: bytes | None = None) -> SourceProfile:
+    if cicp is not None:
+        return SourceProfile("cicp", f"PNG cICP {cicp.hex()}", len(cicp))
     icc = image.info.get("icc_profile")
     if icc:
         return SourceProfile("icc", "embedded ICC profile", len(icc))
@@ -58,8 +101,10 @@ def _source_profile(image: Image.Image) -> SourceProfile:
     return SourceProfile("assumed_srgb", "no embedded ICC profile; assuming sRGB")
 
 
-def _hdr_metadata(image: Image.Image) -> dict[str, Any]:
+def _hdr_metadata(image: Image.Image, cicp: bytes | None = None) -> dict[str, Any]:
     keys = {}
+    if cicp is not None:
+        keys["cicp"] = cicp.hex()
     for key, value in image.info.items():
         lowered = str(key).lower()
         if any(token in lowered for token in ("hdr", "gain", "cicp", "nclx", "mastering", "icc")):
@@ -96,6 +141,8 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
         signals.append(f"container:{inspection.format_name}")
     for key in sorted(inspection.hdr_metadata, key=lambda value: str(value).casefold()):
         lowered = str(key).casefold()
+        if lowered == "cicp" and inspection.hdr_metadata[key] == REC2020_SDR_CICP.hex():
+            continue
         if lowered in {"icc", "icc_profile"}:
             continue
         if any(token in lowered for token in ("hdr", "gain", "cicp", "nclx", "mastering")):
@@ -108,8 +155,9 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
 def inspect_raster(path: Path) -> InputInspection:
     warnings: list[DecodeWarning] = []
     try:
+        cicp = _png_cicp(path)
         with Image.open(path) as image:
-            profile = _source_profile(image)
+            profile = _source_profile(image, cicp)
             if profile.kind == "assumed_srgb":
                 warnings.append(DecodeWarning("assumed_srgb", profile.description))
             if image.format in {"HEIF", "HEIC", "AVIF"}:
@@ -148,15 +196,19 @@ def inspect_raster(path: Path) -> InputInspection:
                 frame_count=getattr(image, "n_frames", 1),
                 source_profile=profile,
                 transfer_state="display_referred",
-                hdr_metadata=_hdr_metadata(image),
+                hdr_metadata=_hdr_metadata(image, cicp),
                 warnings=warnings,
             )
             signals = unsupported_dynamic_range_signals(path, inspection)
             if signals:
+                if any(signal.startswith("metadata:cicp") for signal in signals):
+                    message = "Unsupported PNG cICP color/dynamic-range signalling; signals="
+                else:
+                    message = "HDR/gain-map reconstruction is not implemented; signals="
                 inspection.warnings.append(
                     DecodeWarning(
                         "unsupported_dynamic_range",
-                        "HDR/gain-map reconstruction is not implemented; signals=" + ",".join(signals),
+                        message + ",".join(signals),
                     )
                 )
             return inspection
@@ -249,6 +301,21 @@ def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
     return array_bgr[..., ::-1].astype(np.float32) / 65535.0
 
 
+def _load_rec2020_16_png(path: Path) -> np.ndarray:
+    import cv2
+
+    array_bgr = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+    if (
+        array_bgr is None
+        or array_bgr.dtype != np.uint16
+        or array_bgr.ndim != 3
+        or array_bgr.shape[2] != 3
+    ):
+        raise ValueError("BT.2020 cICP ingress requires contiguous uint16 RGB PNG")
+    encoded = array_bgr[..., ::-1].astype(np.float32) / 65535.0
+    return rec2020_to_linear_rec2020(encoded)
+
+
 def working_image_to_srgb_float(working: WorkingImage) -> np.ndarray:
     """Encode known linear-sRGB WorkingImage pixels to float display sRGB."""
     if working.working_space != "linear_srgb" or working.transfer_state not in {
@@ -286,9 +353,41 @@ def load_raster_working_image(path: Path) -> WorkingImage:
         )
     dynamic_range_signals = unsupported_dynamic_range_signals(path, inspection)
     if dynamic_range_signals:
+        if any(signal.startswith("metadata:cicp") for signal in dynamic_range_signals):
+            raise ValueError(
+                "unsupported PNG cICP color/dynamic-range signalling; refusing fallback: "
+                + ",".join(dynamic_range_signals)
+            )
         raise ValueError(
             "HDR/gain-map reconstruction is not implemented; refusing SDR fallback: "
             + ",".join(dynamic_range_signals)
+        )
+    supported_rec2020 = (
+        inspection.source_profile.kind == "cicp"
+        and inspection.hdr_metadata.get("cicp") == REC2020_SDR_CICP.hex()
+    )
+    if supported_rec2020:
+        if inspection.has_alpha:
+            raise ValueError("BT.2020 cICP alpha ingress is not implemented")
+        if (
+            inspection.format_name != "PNG"
+            or inspection.bit_depth != 16
+            or inspection.mode != "RGB"
+        ):
+            raise ValueError("BT.2020 cICP ingress is limited to 16-bit RGB PNG")
+        pixels = _load_rec2020_16_png(path)
+        return WorkingImage(
+            pixels=pixels,
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            source_transfer_state=inspection.transfer_state,
+            source_profile=inspection.source_profile,
+            hdr_metadata=inspection.hdr_metadata,
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=inspection.bit_depth,
+            source_path=path,
+            warnings=warnings,
         )
     if inspection.format_name == "TIFF" and inspection.bit_depth == 16:
         arr = _load_srgb16_tiff(path, inspection)

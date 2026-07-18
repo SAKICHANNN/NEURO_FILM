@@ -10,7 +10,12 @@ from .types import DecodeWarning, WorkingImage
 
 
 LINEAR_RGB_TRANSFORM_VERSION = "linear-d65-srgb-rec2020-v1"
+REC2020_TRANSFER_VERSION = "bt2020-2-oetf-v1"
+REC2020_SDR_CICP = bytes((9, 15, 0, 1))
 _SUPPORTED_SPACES = frozenset({"linear_srgb", "linear_rec2020"})
+
+_BT2020_ALPHA = 1.09929682680944
+_BT2020_BETA = 0.018053968510807
 
 # W3C CSS Color 4 rational matrices, column-vector convention, D65 XYZ.
 _LINEAR_SRGB_TO_XYZ_D65 = np.asarray(
@@ -94,6 +99,44 @@ def convert_linear_rgb(
     if not np.isfinite(converted).all():
         raise ValueError("working-space conversion produced non-finite values")
     return converted
+
+
+def _finite_float32_rgb(pixels: np.ndarray) -> None:
+    if not isinstance(pixels, np.ndarray):
+        raise TypeError("pixels must be a numpy ndarray")
+    if pixels.dtype != np.float32:
+        raise TypeError("pixels must be float32")
+    if pixels.ndim != 3 or pixels.shape[2] != 3:
+        raise ValueError("pixels must be HxWx3")
+    if not np.isfinite(pixels).all():
+        raise ValueError("pixels must contain only finite values")
+
+
+def linear_rec2020_to_rec2020(pixels: np.ndarray) -> np.ndarray:
+    """Apply the signed BT.2020-2 opto-electronic transfer function."""
+    _finite_float32_rgb(pixels)
+    absolute = np.abs(pixels.astype(np.float64))
+    encoded = np.where(
+        absolute < _BT2020_BETA,
+        4.5 * absolute,
+        _BT2020_ALPHA * np.power(absolute, 0.45) - (_BT2020_ALPHA - 1.0),
+    )
+    return np.asarray(np.copysign(encoded, pixels), dtype=np.float32)
+
+
+def rec2020_to_linear_rec2020(pixels: np.ndarray) -> np.ndarray:
+    """Invert the signed BT.2020-2 opto-electronic transfer function."""
+    _finite_float32_rgb(pixels)
+    absolute = np.abs(pixels.astype(np.float64))
+    linear = np.where(
+        absolute < 4.5 * _BT2020_BETA,
+        absolute / 4.5,
+        np.power(
+            (absolute + (_BT2020_ALPHA - 1.0)) / _BT2020_ALPHA,
+            1.0 / 0.45,
+        ),
+    )
+    return np.asarray(np.copysign(linear, pixels), dtype=np.float32)
 
 
 def convert_working_image_space(
