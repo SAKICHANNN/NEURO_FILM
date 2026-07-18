@@ -1708,3 +1708,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Failure/static:** executor and second-row failures expose no partial result; nonfinite rows fail in tests; production references and sensitive renderer/inference/export/schema changes are both zero.
 - **Verification:** 33 focused tests and 553 full CPU tests pass. No separate visual claim is added because output bytes equal the G4F-reviewed compositor path.
 - **Decision:** retain isolated adapter only. G4I may freeze a local 100MP process-tree resource/determinism audit; complete renderer and production integration remain closed.
+
+## 2026-07-18 - Freeze U1.6G4I 100MP adapter resource contract
+
+- **Parent evidence:** G4H passes exact adapter/compositor parity and ownership; G4G supplies the corrected Windows process-tree RSS method.
+- **Workload:** exact `10000x10000x3` float32 analytic input, the unchanged G4H adapter and two fresh workers.
+- **Resource gates:** known 4.0GB live-array floor, peak process-tree RSS `<=8GiB`, worker `<=240s`, adapter `<=210s`, input `<=30s`.
+- **Determinism/ownership:** source/output/metadata repeat hashes, one public ndarray, zero scratch bytes, atomic reports and zero orphan workers.
+- **Preflight:** require 12GiB available physical memory, no unrelated process above 4GiB and 1GiB output-volume free space; fail closed without automatic retry.
+- **Boundary:** local effect-only 100MP evidence; no complete-renderer, I/O, M5, cross-platform, production, physical or stock claim.
+- **Handoff:** verify config hash and commit/push the contract before implementing or launching the large audit.

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4I",
+  "adapter_version": "staged-density-halation-research-adapter-v1",
+  "operator_version": "staged-density-halation-v1-defaults",
+  "pre_contract_head": "9c40be664abedb9b9f758d6d759deff6d432e0fc",
+  "shape": [10000, 10000, 3],
+  "pixel_count": 100000000,
+  "input_generator": "u1-6g4g-analytic-highlight-field-v1",
+  "input_generation_row_chunk": 64,
+  "source_row_chunk": 64,
+  "coarse_row_chunk": 7,
+  "tile_size": 512,
+  "composite_row_chunk": 64,
+  "output_margin": 0,
+  "runs": 2,
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 360,
+  "preflight": {
+    "available_physical_memory_bytes_min": 12884901888,
+    "competing_process_rss_bytes_max": 4294967296,
+    "minimum_free_disk_bytes": 1073741824
+  },
+  "gates": {
+    "known_live_array_floor_bytes": 4000000000,
+    "peak_process_tree_rss_bytes_max": 8589934592,
+    "worker_total_seconds_max": 240.0,
+    "adapter_seconds_max": 210.0,
+    "source_generation_seconds_max": 30.0,
+    "source_sha256_repeat_identical": true,
+    "output_sha256_repeat_identical": true,
+    "metadata_sha256_repeat_identical": true,
+    "finite_and_bounded": true,
+    "public_ndarray_count": 1,
+    "scratch_pixel_bytes": 0,
+    "orphan_worker_count": 0,
+    "full_cpu_suite_required": true
+  },
+  "failure_probe": {
+    "inject_stage": "before_input_allocation",
+    "expected_exit_nonzero": true,
+    "partial_public_result_allowed": false,
+    "orphan_worker_allowed": false
+  },
+  "renderer_integration_allowed_by_pass": false,
+  "claim_ceiling": "measured local 100MP isolated-adapter resource and determinism evidence only; no complete-renderer, file-I/O, production-integration, cross-platform or target-M5 claim"
+}

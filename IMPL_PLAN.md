@@ -252,6 +252,10 @@ G4H now passes all 36 frozen parity policies and failure/static isolation gates;
 the adapter remains direct-module only. The next leaf may measure this exact
 adapter at 100MP under a separately frozen process-tree contract, but still
 cannot claim complete renderer or production integration.
+G4I freezes that local-only measurement at exactly 10000x10000: the known live
+array floor is 4.0GB, process-tree RSS must remain at most 8GiB, total worker
+time at most 240 seconds, and two fresh runs must repeat source/output/metadata
+hashes. Preflight and failure cleanup are mandatory; production remains closed.
 
 ---
 
