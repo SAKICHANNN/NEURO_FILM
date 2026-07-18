@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "6197ad225e8e1d52ca87f856dd0e3095711f14ee",
+  "head": "ac665f4986f0495c9f19eb14025d04ef1155957b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 28,
+  "iteration": 29,
   "current_node": "ULT > U1.6 > U1.6G4E",
-  "current_leaf": "U1.6G4D passed; U1.6G4E staged density-executor contract design ready",
+  "current_leaf": "U1.6G4E staged default density-executor contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "6197ad225e8e1d52ca87f856dd0e3095711f14ee",
+  "last_verified_commit": "ac665f4986f0495c9f19eb14025d04ef1155957b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 511,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T05:41:00Z"
   },
   "ready_leaves": [
-    "U1.6G4E_density_executor_contract",
+    "U1.6G4E_staged_density_executor_implementation",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push G4D results, then freeze the smallest density-v1 staged executor contract with explicit legacy/new-operator drift, scheduling, resource, full-resolution visual/severe and failure gates before implementation.",
+  "next_action": "Commit/push the G4E contract, implement the fixed-default research executor and materialized-v2 reference in a new filmfx module, then run focused gates before sealed confirmatory images.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -39,10 +39,12 @@
     "docs/planning/U1_6G4D_HALATION_CAPABILITY_BINDING_CONTRACT.md",
     "configs/u1_6g4d_halation_capability_binding_v1.json",
     "docs/U1_6G4D_HALATION_CAPABILITY_BINDING_RESULTS.md",
+    "docs/planning/U1_6G4E_STAGED_DENSITY_EXECUTOR_CONTRACT.md",
+    "configs/u1_6g4e_staged_density_executor_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:41:00Z",
-  "selection_rationale": "G4D removes the static provider-truth gap without executing effects. Density-v1 is the smaller six-blur/one-percentile family and is the next legal executor pilot after a separately frozen contract."
+  "last_update_utc": "2026-07-18T05:50:06Z",
+  "selection_rationale": "Development evidence shows the versioned materialized density operator remains tightly compatible with legacy. The smaller fixed-default density family is now preregistered for the first bounded executor pilot."
 }

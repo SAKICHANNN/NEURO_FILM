@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4E",
+  "executor_version": "staged-density-halation-v1-defaults",
+  "source_row_chunk": 64,
+  "coarse_row_chunk": 17,
+  "synthetic_cases": [
+    {"case_id": "synthetic_highlight_257x389", "shape": [257, 389, 3], "seed": 431, "kind": "highlight_gradient", "tile_sizes": [37, 64]},
+    {"case_id": "synthetic_colour_193x277", "shape": [193, 277, 3], "seed": 432, "kind": "colour_hotspots", "tile_sizes": [31, 71]}
+  ],
+  "real_confirmatory_cases": [
+    {
+      "case_id": "u41-02",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/02_Nikon_D300_Nikon_-_D300_-_14bit_14bit_compressed_Lossless_3_2__raw-neutral.jpg",
+      "sha256": "010169b430684bc4e8067ddacd65159166ddb2702c7eba53829e3d062ff7debc",
+      "shape": [1062, 1600, 3],
+      "tile_sizes": [127, 256]
+    },
+    {
+      "case_id": "u41-09",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/09_Leica_M9_Leica_-_M9_-_8bit_8bit_compressed_3_2__raw-neutral.jpg",
+      "sha256": "543e5dcc17da0e7f9434fb51c17c380ac2f1cb2614d6ec781909f5d040ffde6f",
+      "shape": [1065, 1600, 3],
+      "tile_sizes": [127, 256]
+    },
+    {
+      "case_id": "u41-14",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/14_Sony_ILME-FX3_Sony_-_ILME-FX3_-_14bit_3_2__raw-neutral.jpg",
+      "sha256": "547d2ff38e592b8d01cc52c227901f516f050353bac16684f679354e6a0fe23b",
+      "shape": [1071, 1600, 3],
+      "tile_sizes": [127, 256]
+    }
+  ],
+  "gates": {
+    "staged_v2_alpha_max_error": 2e-6,
+    "staged_v2_composite_max_error": 2e-6,
+    "staged_v2_seam_max_error": 2e-6,
+    "staged_v2_srgb8_byte_identical": true,
+    "repeat_float_and_metadata_identical": true,
+    "legacy_alpha_max_drift": 5e-4,
+    "legacy_alpha_mean_drift": 2e-5,
+    "legacy_composite_max_drift": 5e-4,
+    "legacy_composite_mean_drift": 2e-5,
+    "legacy_uint8_changed_fraction": 0.003,
+    "legacy_uint8_max_code_delta": 1,
+    "confirmed_severe_artifacts": 0,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "claim_ceiling": "default density research executor only; no renderer, physical calibration or 100MP claim"
+}
