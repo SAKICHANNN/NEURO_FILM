@@ -1612,3 +1612,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Visual evidence:** adjudication config SHA `e3e223d7...`; two v2 scalar fields show no seam/band/block/boundary failure, row/full differences are zero and v1/v2 differences are sparse/unstructured. This is intermediate-field evidence only.
 - **Verification:** 25 focused and 505 complete CPU tests pass. Invalid versions, geometry, reader data and injected failures close.
 - **Decision/handoff:** pass G4C only. Goal ACTIVE. Next U1.6G4D binds actual G4A/G4C capabilities to G3 and freezes the smallest density-family staged executor; no effect integration or 100MP claim opens yet.
+
+## 2026-07-18 - Freeze U1.6G4D provider-binding contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G4D`; static integration-truth child after G4A/G4C pass.
+- **Gap:** G3 can be made ready by caller-supplied strings without establishing that the passed exported functions provide them.
+- **Decision:** config SHA-256 `b641d9d7...`; freeze exact immutable module/symbol/version records for coordinate gradients and v2 bounded row staging. Resolver must verify identity and callability before returning G3 names.
+- **Preservation:** default empty/gradient-only plans and all G3 graph/resource semantics stay unchanged. Effects and renderer remain untouched.
+- **Handoff:** implement and test bindings; a pass opens a separately frozen G4E density executor contract, not effect integration by implication.

@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "a9249e52cff2461229482a52aafa5dd6448f9149",
+  "head": "c707e28b7e9e09d704b09311ec5f55167c0bb085",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 26,
+  "iteration": 27,
   "current_node": "ULT > U1.6 > U1.6G4D",
-  "current_leaf": "U1.6G4C passed; U1.6G4D capability binding and density-executor contract ready",
+  "current_leaf": "U1.6G4D concrete halation capability-binding contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "a9249e52cff2461229482a52aafa5dd6448f9149",
+  "last_verified_commit": "c707e28b7e9e09d704b09311ec5f55167c0bb085",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 505,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T05:34:00Z"
   },
   "ready_leaves": [
-    "U1.6G4D_capability_binding_and_density_executor_contract",
+    "U1.6G4D_concrete_capability_binding",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push G4C results, bind the exported coordinate-gradient and chunk-invariant-row-stage capabilities to the G3 readiness audit, and freeze the simplest density-family staged executor before any effect code.",
+  "next_action": "Commit/push the G4D contract, implement exact provider bindings and verify both family plans become statically ready without changing any default G3 graph/resource evidence.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -36,10 +36,12 @@
     "configs/u1_6g4c_chunk_invariant_global_resample_v2.json",
     "docs/U1_6G4C_CHUNK_INVARIANT_GLOBAL_RESAMPLE_RESULTS.md",
     "configs/u1_6g4c_field_visual_adjudication_v1.json",
+    "docs/planning/U1_6G4D_HALATION_CAPABILITY_BINDING_CONTRACT.md",
+    "configs/u1_6g4d_halation_capability_binding_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:34:00Z",
-  "selection_rationale": "G4C passes all frozen numerical and intermediate-field gates while preserving v1. Static capability binding and an independently preregistered density executor are now the smallest legal path toward physical-halation execution."
+  "last_update_utc": "2026-07-18T05:38:20Z",
+  "selection_rationale": "G4A/G4C providers now pass, but G3 currently trusts arbitrary capability strings. Exact provider binding is the smallest falsifiable step before any density executor contract."
 }

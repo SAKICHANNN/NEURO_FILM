@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4D",
+  "bindings": [
+    {
+      "capability": "coordinate_exact_gradient_window",
+      "implementation_version": "coordinate-gradient-window-v1",
+      "module": "src.filmfx.gradient_window",
+      "symbol": "coordinate_gradient_window"
+    },
+    {
+      "capability": "row_chunked_global_stage_builder",
+      "implementation_version": "shape-stable-global-resample-v2-explicit-f32",
+      "module": "src.filmfx.global_resample",
+      "symbol": "build_chunk_invariant_global_stage_from_rows"
+    }
+  ],
+  "families": ["physical-colour-v1", "density-v1"],
+  "cases": [
+    {"source_shape": [1024, 1536], "tile_size": 256},
+    {"source_shape": [4000, 6000], "tile_size": 512}
+  ],
+  "gates": {
+    "exact_provider_identity": true,
+    "resolved_capabilities_equal_required": true,
+    "bound_plans_integration_ready": true,
+    "unbound_graph_and_resources_unchanged": true,
+    "default_behavior_unchanged": true,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "claim_ceiling": "static provider binding and readiness only"
+}
