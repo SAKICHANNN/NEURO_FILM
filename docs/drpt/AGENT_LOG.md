@@ -1603,3 +1603,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 - The first audit invocation failed closed on the second real-file SHA before writing a report. The config transcribed authoritative `...c9cdcdbb...` as `...c9cdcb4d...`; file timestamp/size and four older FilmStyleSafe inventories confirm the former.
 - Correct only that SHA and refreeze config SHA-256 as `157d586b...`. Algorithm, cases, thresholds and gates are unchanged; confirmatory execution begins only after this correction commit.
+
+## 2026-07-18 - Pass U1.6G4C chunk-invariant global resampling
+
+- **Implementation:** commit `52dcb793e187e64d2921090b778d4dbb7d9c34ae` adds version-separated explicit float32 full/row builders, strict metadata/failure gates and v2 reconstruction entrypoints without changing v1/effects/renderer.
+- **Confirmatory evidence:** audit commit `a9249e52cff2461229482a52aafa5dd6448f9149`; config SHA `157d586b...`. Two runs produce identical report SHA `e7b0dfa5...` and contact-sheet SHA `2cdbca0c...`.
+- **Numerical result:** all five fields pass every full/row/tiled/repeat byte gate and bounded-read check. Frozen v1 output SHA `c3a59c15...` is unchanged. The available real comparison has max/mean drift `2.38e-7`/`8.65e-9`, three one-code uint8 changes; v2 completes the second field where v1 retains its last-cell failure.
+- **Visual evidence:** adjudication config SHA `e3e223d7...`; two v2 scalar fields show no seam/band/block/boundary failure, row/full differences are zero and v1/v2 differences are sparse/unstructured. This is intermediate-field evidence only.
+- **Verification:** 25 focused and 505 complete CPU tests pass. Invalid versions, geometry, reader data and injected failures close.
+- **Decision/handoff:** pass G4C only. Goal ACTIVE. Next U1.6G4D binds actual G4A/G4C capabilities to G3 and freezes the smallest density-family staged executor; no effect integration or 100MP claim opens yet.

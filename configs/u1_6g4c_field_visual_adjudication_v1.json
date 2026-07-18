@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4C",
+  "review_type": "autonomous_visual_field_adjudication",
+  "software_commit": "a9249e52cff2461229482a52aafa5dd6448f9149",
+  "contact_sheet_path": "outputs/u1_6g4c/field_contact_sheet_a.png",
+  "contact_sheet_sha256": "2cdbca0c5f33f38de533092a484c3de893fc0784548ec2a95a395e99f672fe83",
+  "reviewed_cases": ["u41_01_luma", "u41_11_luma"],
+  "checks": {
+    "v2_field_seams": 0,
+    "v2_field_bands": 0,
+    "v2_field_blocks": 0,
+    "v2_field_boundary_failures": 0,
+    "structured_row_vs_full_difference": false,
+    "structured_v1_vs_v2_difference": false,
+    "confirmed_severe_field_artifacts": 0
+  },
+  "observations": [
+    "Both v2 fields are spatially continuous and smooth at the audited scale.",
+    "Normalized row-minus-full panels are uniformly black because the numerical difference is exactly zero.",
+    "The available normalized v1-minus-v2 panel contains sparse unstructured least-significant-bit noise and no tile or boundary alignment.",
+    "This adjudication concerns intermediate scalar fields, not a rendered halation effect or final RGB image."
+  ],
+  "decision": "pass_field_visual_gate_only",
+  "claim_ceiling": "autonomous visual evidence for two fixed intermediate luma fields"
+}

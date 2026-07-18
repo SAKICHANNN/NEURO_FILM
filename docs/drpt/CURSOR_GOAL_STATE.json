@@ -5,25 +5,25 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "7789aee229235ffebbf217f439e34cb4a14dbd4b",
+  "head": "a9249e52cff2461229482a52aafa5dd6448f9149",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 25,
-  "current_node": "ULT > U1.6 > U1.6G4C",
-  "current_leaf": "U1.6G4C chunk-invariant global-resample contract frozen; implementation ready",
+  "iteration": 26,
+  "current_node": "ULT > U1.6 > U1.6G4D",
+  "current_leaf": "U1.6G4C passed; U1.6G4D capability binding and density-executor contract ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "7789aee229235ffebbf217f439e34cb4a14dbd4b",
+  "last_verified_commit": "a9249e52cff2461229482a52aafa5dd6448f9149",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 493,
+    "passed": 505,
     "failed": 0,
-    "timestamp": "2026-07-18T05:04:52Z"
+    "timestamp": "2026-07-18T05:34:00Z"
   },
   "ready_leaves": [
-    "U1.6G4C_chunk_invariant_area_reducer_implementation",
+    "U1.6G4D_capability_binding_and_density_executor_contract",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push the frozen G4C contract, implement version-specific full and bounded-row builders with one explicit float32 reduction kernel, then run new-seed and fixed-real compatibility gates without effect integration.",
+  "next_action": "Commit/push G4C results, bind the exported coordinate-gradient and chunk-invariant-row-stage capabilities to the G3 readiness audit, and freeze the simplest density-family staged executor before any effect code.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -34,10 +34,12 @@
     "configs/u1_6g4b_row_stage_invariance_v1.json",
     "docs/planning/U1_6G4C_CHUNK_INVARIANT_GLOBAL_RESAMPLE_CONTRACT.md",
     "configs/u1_6g4c_chunk_invariant_global_resample_v2.json",
+    "docs/U1_6G4C_CHUNK_INVARIANT_GLOBAL_RESAMPLE_RESULTS.md",
+    "configs/u1_6g4c_field_visual_adjudication_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:42:00Z",
-  "selection_rationale": "Development evidence selects explicit sequential float32 as the closest fixed-order successor. Exact terminal bounds also close a newly reproduced v1 last-cell overrun without modifying the frozen v1 operator."
+  "last_update_utc": "2026-07-18T05:34:00Z",
+  "selection_rationale": "G4C passes all frozen numerical and intermediate-field gates while preserving v1. Static capability binding and an independently preregistered density executor are now the smallest legal path toward physical-halation execution."
 }

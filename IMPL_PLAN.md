@@ -215,8 +215,11 @@ reproduce full NumPy `gy/gx` bytes at arbitrary tiles, rows, edges and corners.
 G4B then proves that the existing G1-v1 `tensordot` area reducer is not
 chunk-invariant: bounded chunk-1 scalar stages differ at float32-bit level even
 though some larger chunks happen to match. G1-v1 remains frozen. Integration
-stays false while U1.6G4C defines and validates a separately versioned explicit
-reduction order, including fresh visual/severe and compatibility gates.
+stays false. U1.6G4C now passes the separately versioned explicit-float32
+successor: five frozen fields reproduce full/row/tiled bytes, the G1-v1 hash is
+unchanged, fixed real-field drift passes and no severe intermediate-field
+artifact is observed. Next bind the exported G4A/G4C capabilities to G3, then
+freeze a density-family executor with separate effect-level gates.
 
 ---
 
