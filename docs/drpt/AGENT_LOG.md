@@ -1727,3 +1727,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Ownership:** one public ndarray, zero scratch bytes, atomic reports, no temporary files or surviving observed PIDs.
 - **Verification:** 23 focused tests before formal execution; 558 full CPU tests after it.
 - **Decision:** retain local effect-only 100MP evidence. Production integration and complete-renderer 100MP remain closed; return to U1.2/U1.4/U1.5 product gaps.
+
+## 2026-07-18 - Freeze U1.2B raster-alpha fail-closed contract
+
+- **Defect:** current RGBA/LA decode drops alpha but records `alpha_policy=preserved`; palette transparency is also silently lost, allowing hidden RGB into rendering.
+- **Decision:** no-alpha inputs remain unchanged; fully opaque alpha may strip with `opaque_alpha_discarded`; any alpha below 255 fails before RGB conversion.
+- **Evidence plan:** RGBA, LA, palette/`tRNS`, opaque-equivalence and ordinary RGB fixtures; zero false preservation claims.
+- **Boundary:** no matte choice, alpha output, CLI/schema, HDR, wide-gamut or calibrated claim.
+- **Handoff:** hash and commit/push the contract, then implement only in raster ingress with focused and full tests.

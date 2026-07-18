@@ -261,6 +261,11 @@ G4I passes both fresh 100MP runs at 4.066-4.072GB process-tree RSS and
 hashes. This closes the isolated effect measurement only. Work now returns to
 remaining U1.2/U1.4/U1.5 colour-state and format gaps; a complete-renderer
 100MP claim still requires a separate end-to-end lifetime contract.
+U1.2B then identifies a concrete ingress contract defect: RGBA/LA alpha is
+discarded while metadata says `preserved`, and palette transparency is silently
+lost. Freeze fail-closed handling: only fully opaque alpha may be stripped with
+an explicit warning; any real transparency rejects before RGB conversion until
+a separate matte or alpha-output contract exists.
 
 ---
 

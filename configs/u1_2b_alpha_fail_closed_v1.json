@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.2 > U1.2B",
+  "pre_contract_head": "723ba75bd067f48257229258251f09a0759aece3",
+  "policy_version": "raster-alpha-ingress-v1",
+  "allowed": {
+    "no_alpha": "decode_as_before",
+    "fully_opaque_alpha": "strip_alpha_and_record_warning"
+  },
+  "rejected": {
+    "partially_or_fully_transparent_alpha": "fail_before_rgb_decode",
+    "palette_transparency": "fail_if_any_resolved_alpha_is_below_255"
+  },
+  "required_fixtures": [
+    "rgba_partial_png",
+    "la_partial_png",
+    "palette_trns_png",
+    "rgba_fully_opaque_png",
+    "ordinary_rgb_regression"
+  ],
+  "gates": {
+    "false_preserved_claim_count": 0,
+    "transparent_hidden_rgb_reaches_working_pixels": false,
+    "opaque_rgb_bytes_match_explicit_rgb_equivalent": true,
+    "full_cpu_suite_required": true
+  },
+  "matte_or_alpha_output_added": false,
+  "claim_ceiling": "honest SDR raster alpha ingress only; no alpha preservation, matte compositing, HDR, wide-gamut or reference claim"
+}
