@@ -1818,3 +1818,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** Rec.2020 roundtrip `4.77e-7`; linear-sRGB roundtrip `1.07e-6`; same-colour cross-space Lab `6.10e-5`.
 - **Verification:** 33 focused and 593 full CPU tests pass.
 - **Handoff:** extract the pure Lab transformation kernel while preserving the two frozen output hashes and all eight full/tiled style results; do not add the Rec.2020 adapter yet.
+
+## 2026-07-18 - Pass U1.4C1B pure safe-Lab kernel extraction
+
+- **Skills/node:** `dev-research-reliability` primary; DRPT, plan, structure and agent-log governance; `ULT > U1.4 > U1.4C > U1.4C1B`.
+- **Implementation:** `12222bd` moves the single maintained Lab-domain transfer, detail, guardrail and tone math into `src/color_engine/safe_lab.py`; the legacy script delegates to it.
+- **Boundary:** RGB conversion, sRGB gamut compression, grain, dither, output margin and neutral projection remain in the adapter. No Rec.2020 adapter, renderer/schema/default, FilmFX, HDR/ACES or calibration claim opens.
+- **Evidence:** both frozen seeded hashes are exact; all eight safe-rich full/tiled gates pass unchanged; kernel determinism, nonmutation, tile/full-context and invalid-stat fail-closed tests pass.
+- **Verification:** 56 focused and 600 complete CPU tests, compile check and `git diff --check` pass.
+- **Propagation/handoff:** parent advances to shared-kernel pass. Next ready child is U1.4C1C destination-space gamut policy plus isolated six-colour-style Rec.2020 adapter/witness under the already frozen contract.

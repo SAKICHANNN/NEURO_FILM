@@ -301,8 +301,11 @@ witness that remains materially outside sRGB; otherwise the operator branch
 closes even if the colour-conversion utilities pass.
 U1.4C1A passes the conversion layer: legacy-skimage Lab error is zero,
 linear-Rec.2020 Lab roundtrip is `4.77e-7`, and same physical colours agree
-across spaces within `6.11e-5`. The safe-Lab transformation kernel has not yet
-been moved; its frozen output hashes remain the next hard gate.
+across spaces within `6.11e-5`. U1.4C1B passes the pure-kernel extraction: both
+seeded legacy hashes remain exact, all eight safe-rich full/tiled gates remain
+unchanged, and 600 CPU tests pass. Destination-space gamut handling and the
+isolated six-style Rec.2020 adapter/witness remain the next hard gate; no
+production renderer or FilmFX integration is authorized.
 
 ---
 

@@ -5,25 +5,25 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "9abc3083b16e1d06691a47191a48ac0b44b5d7fc",
+  "head": "12222bd877fbfaad0520ade1600ca63be379c700",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 49,
+  "iteration": 50,
   "current_node": "ULT > U1.4 > U1.4C > U1.4C1",
-  "current_leaf": "U1.4C1A Lab primitive pass; shared safe-Lab kernel extraction ready",
+  "current_leaf": "U1.4C1B pure safe-Lab kernel extraction pass; destination-space gamut/Rec.2020 adapter ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "9abc3083b16e1d06691a47191a48ac0b44b5d7fc",
+  "last_verified_commit": "12222bd877fbfaad0520ade1600ca63be379c700",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 593,
+    "passed": 600,
     "failed": 0,
-    "timestamp": "2026-07-18T08:04:57Z"
+    "timestamp": "2026-07-18T08:16:31Z"
   },
   "ready_leaves": [
-    "U1.4C1B_pure_lab_kernel_extraction",
+    "U1.4C1C_destination_gamut_and_rec2020_adapter",
     "U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.4C1A results, then extract the pure Lab transformation kernel behind the existing legacy API and require exact frozen hashes plus all-style full/tiled parity before retaining it.",
+  "next_action": "Freeze the U1.4C1C implementation child within the existing parent contract, then add destination-working-space gamut tests/compression and the isolated six-colour-style Rec.2020 adapter; require the preregistered out-of-sRGB witness and all frozen legacy gates before retention.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -72,10 +72,12 @@
     "docs/planning/U1_4C1_WORKING_SPACE_LAB_KERNEL_CONTRACT.md",
     "configs/u1_4c1_working_space_lab_kernel_v1.json",
     "docs/U1_4C1A_WORKING_SPACE_LAB_PRIMITIVE_RESULTS.md",
+    "docs/U1_4C1B_PURE_SAFE_LAB_KERNEL_RESULTS.md",
+    "src/color_engine/safe_lab.py",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T08:04:57Z",
-  "selection_rationale": "Conversion math now matches the frozen legacy PCS; the next risk-bearing step is extracting the shared Lab transform without changing a single existing style output."
+  "last_update_utc": "2026-07-18T08:16:31Z",
+  "selection_rationale": "The shared Lab transform now preserves every frozen legacy gate; the next risk-bearing step is destination-space gamut control and an isolated Rec.2020 colour-only witness without production integration."
 }
