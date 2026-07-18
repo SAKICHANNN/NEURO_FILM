@@ -14,6 +14,17 @@ from .halation_controls import (
     resolve_physical_halation_controls,
     validate_physical_halation_controls,
 )
+from .halation_dag import (
+    DENSITY_FAMILY,
+    HALATION_DAG_VERSION,
+    PHYSICAL_COLOUR_FAMILY,
+    REQUIRED_INTEGRATION_CAPABILITIES,
+    FieldLifetime,
+    HalationFieldNode,
+    HalationResourcePlan,
+    build_halation_resource_plan,
+    validate_halation_nodes,
+)
 from .global_resample import (
     GLOBAL_RESAMPLE_VERSION,
     GlobalResampleExecutionMetadata,
@@ -48,20 +59,28 @@ from .tiled_effects import (
 
 __all__ = [
     "FilmLayer",
+    "FieldLifetime",
     "GLOBAL_RESAMPLE_VERSION",
     "GlobalResampleExecutionMetadata",
     "GlobalResamplePlan",
+    "HALATION_DAG_VERSION",
+    "HalationFieldNode",
+    "HalationResourcePlan",
     "GRAIN_BLUR_HALO",
     "DustScratchContext",
     "DustScratchExecutionMetadata",
     "HALATION_PRESETS",
     "HalationPreset",
     "PhysicalHalationControls",
+    "PHYSICAL_COLOUR_FAMILY",
+    "DENSITY_FAMILY",
+    "REQUIRED_INTEGRATION_CAPABILITIES",
     "StagedGrainMetadata",
     "StagedGlobalField",
     "STREAMING_PERCENTILE_VERSION",
     "StreamingPercentileResult",
     "build_physical_halation_layer",
+    "build_halation_resource_plan",
     "build_shape_stable_global_stage",
     "build_dust_scratch_context",
     "composite_layers",
@@ -86,5 +105,6 @@ __all__ = [
     "simple_halation_required_halo",
     "staged_grain_residual_layer",
     "validate_physical_halation_controls",
+    "validate_halation_nodes",
     "layer_metrics",
 ]
