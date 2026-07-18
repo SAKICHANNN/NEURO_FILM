@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "fc8032c0df0ee2d6f35fbec4e8090ce33868acc3",
+  "head": "4184db1cd9f55705d73c73d8380129b4b567c5a1",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 16,
-  "current_node": "ULT > U1.6 > U1.6G1",
-  "current_leaf": "U1.6G1 passed; U1.6G2 staged-percentile/DAG design ready",
+  "iteration": 17,
+  "current_node": "ULT > U1.6 > U1.6G2",
+  "current_leaf": "U1.6G2 exact streaming-percentile contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "fc8032c0df0ee2d6f35fbec4e8090ce33868acc3",
+  "last_verified_commit": "4184db1cd9f55705d73c73d8380129b4b567c5a1",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 420,
@@ -19,22 +19,20 @@
     "timestamp": "2026-07-18T04:30:39Z"
   },
   "ready_leaves": [
-    "U1.6G2_staged_percentile_or_field_DAG",
+    "U1.6G2_exact_streaming_percentile",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.6G1 results, then freeze the smallest independent U1.6G2 staged-percentile or field-DAG contract; do not integrate physical/density halation before both prerequisites pass.",
+  "next_action": "Commit/push the U1.6G2 contract, implement float32-radix-percentile-v1, and prove exact NumPy-linear parity without effect integration.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/u1_6g1_shape_stable_global_resample_v1.json",
-    "docs/U1_6G1_SHAPE_STABLE_GLOBAL_RESAMPLE_RESULTS.md",
-    "tests/test_shape_stable_global_resample.py"
+    "docs/U1_6G0_PHYSICAL_HALATION_DATAFLOW_AUDIT.md",
+    "docs/planning/U1_6G2_EXACT_STREAMING_PERCENTILE_CONTRACT.md"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T04:30:39Z",
-  "selection_rationale": "U1.6G1 removes the proved tile-grid ambiguity without changing production pixels. Staged percentile and field-DAG lifetimes are the remaining explicit prerequisites before any effect-family integration."
+  "selection_rationale": "An exact two-pass float32 radix reducer solves the next independent global dependency with constant histogram memory and avoids both whole-field sorting and approximate percentile drift."
 }

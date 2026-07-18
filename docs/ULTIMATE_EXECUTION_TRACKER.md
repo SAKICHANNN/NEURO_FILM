@@ -303,6 +303,7 @@ Restrictions:
 | U1.6F | complete: numerical/resource pass | Exact legacy grain with bounded-RAM temporary-disk staging | U1.6A/U1.6E | 21 focused/127 adjacent/349 full tests; colour/B&W residual/float/sRGB8 byte parity, two-field scratch budget and zero residue; 0.35 stress visually rejected; `docs/U1_6F_GRAIN_STAGED_CONTEXT_RESULTS.md` |
 | U1.6G0 | complete: direct route closed | Physical/density-halation tiled dataflow audit | U1.6A/U1.6C/U1.6F | sigma-52 full-grid blur differs by max/seam `5.81e-4` with nominal halo 156 because downsample grids depend on full shape; require percentile/global-resample/field-DAG primitives; `docs/U1_6G0_PHYSICAL_HALATION_DATAFLOW_AUDIT.md` |
 | U1.6G1 | complete: pass | Shape-stable global-resample primitive | U1.6G0 | sigma-52 counterexample now has byte-identical full/tiled output and zero max/seam error at tile 37/64; 45 focused and 420 full CPU tests pass; no effect integration or legacy/physical claim; `docs/U1_6G1_SHAPE_STABLE_GLOBAL_RESAMPLE_RESULTS.md` |
+| U1.6G2 | contract frozen / implementation ready | Exact two-pass float32 streaming percentile | U1.6G0/U1.6G1 | order-preserving uint32 radix histograms recover NumPy-linear ranks with constant histogram memory and repeat-stream hash audit; no effect integration or 100MP claim; `docs/planning/U1_6G2_EXACT_STREAMING_PERCENTILE_CONTRACT.md` |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
 

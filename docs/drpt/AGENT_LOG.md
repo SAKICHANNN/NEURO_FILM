@@ -1524,3 +1524,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen evidence:** config SHA-256 `0b02af4b...`; the U1.6G0 `257x389`, sigma-52 case selects `32x48` coarse data (6,144 bytes). Tile 37/77 windows and tile 64/35 windows both have zero max/seam error and byte-identical SHA-256 `c3a59c15...`.
 - **Verification:** 45 focused tests and 420 complete CPU tests pass. Invalid dtype/shape/bounds, writable stage and internally inconsistent forged plans fail closed.
 - **Claim/branch:** pass only the independent numerical primitive. No legacy halation parity, physical, stock, calibration, renderer, streaming or 100MP claim opens. U1.6 continues through staged percentile/DAG or orchestration work.
+
+## 2026-07-18 - Freeze U1.6G2 exact streaming-percentile contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G2`; second independent global-field prerequisite from U1.6G0.
+- **Decision:** use a two-pass order-preserving float32 radix histogram: high-16 counts locate required linear-quantile ranks; low-16 counts resolve exact keys. This avoids whole-field sorting and approximate value bins.
+- **Safety:** both passes must reproduce count and SHA-256 byte stream; dtype, finiteness, repeatability and declared count fail closed. Existing percentile/effect/renderer code is untouched.
+- **Boundary/next:** prove exact NumPy-linear parity and bounded histogram bytes before scratch-field DAG planning. No physical, effect-parity, streaming-decode or 100MP claim opens.
