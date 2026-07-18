@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,8 @@ ALLOWED_PHASE = frozenset(
         "HANDOFF",
     }
 )
+_GIT_COMMIT = re.compile(r"^[0-9a-f]{40}$")
+HEAD_SEMANTICS = "repository_head_observed_before_state_checkpoint_edit"
 
 
 class GoalStateError(ValueError):
@@ -44,6 +47,7 @@ def validate_goal_state(state: Mapping[str, Any]) -> dict[str, Any]:
         "objective_hash",
         "branch",
         "head",
+        "head_semantics",
         "iteration",
         "current_node",
         "current_leaf",
@@ -79,6 +83,11 @@ def validate_goal_state(state: Mapping[str, Any]) -> dict[str, Any]:
         raise GoalStateError("objective_hash mismatch")
     if not isinstance(state["iteration"], int) or state["iteration"] < 0:
         raise GoalStateError("iteration must be a non-negative int")
+    if state["head_semantics"] != HEAD_SEMANTICS:
+        raise GoalStateError("unexpected head_semantics")
+    for key in ("head", "last_verified_commit"):
+        if not isinstance(state[key], str) or not _GIT_COMMIT.fullmatch(state[key]):
+            raise GoalStateError(f"{key} must be a full lowercase Git commit")
     if not isinstance(state["max_session_stop_loops"], int) or not (
         1 <= state["max_session_stop_loops"] <= 20
     ):

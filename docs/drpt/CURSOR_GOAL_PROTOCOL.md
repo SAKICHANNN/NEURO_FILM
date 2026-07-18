@@ -33,6 +33,12 @@ Ordinary leaf failure, K=1, no Oracle gain, ML close, or one finished commit mus
 3. Follow skill `ultimate-goal-loop`.
 4. If hooks are unavailable, manually paste the Goal state's `next_action` or use CLI `--resume`.
 
+`head` and `last_verified_commit` record the repository HEAD observed before the
+state checkpoint is edited. A commit that contains the checkpoint necessarily
+advances HEAD, so equality with the containing commit is neither possible nor
+required. The explicit `head_semantics` field prevents a future agent from
+mistaking this one-commit checkpoint relation for stale evidence.
+
 ## Stop hook behaviour
 
 Continue only when:
@@ -41,7 +47,9 @@ Continue only when:
 - Goal `status == ACTIVE`
 - `needs_human_authority == false`
 - `next_action` non-empty
-- `loop_count < max_session_stop_loops` (default 10; hooks.json `loop_limit` 10)
+- `loop_count < max_session_stop_loops` (current maximum 20; hooks.json `loop_limit` 20)
+- the state passes the complete project validator
+- live Git has no merge/rebase/cherry-pick marker or unmerged index entry
 
 Otherwise emit `{}`. Reaching the loop cap does **not** complete the Goal; the agent must report `GOAL_ACTIVE_REQUIRES_NEXT_INVOCATION`.
 

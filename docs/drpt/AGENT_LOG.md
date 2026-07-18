@@ -1500,3 +1500,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** candidate improved, not promoted to safety gate; no A1/recruitment/training.
 - **Verification:** focused R1C unit tests pass; A0 inventory test uses max_side=256.
 - **Handoff:** Goal ACTIVE. Next `U5.R1C3` or parallel U1.
+
+## 2026-07-18 - Accept Cursor work and repair Goal harness invariants
+
+- **Node/parent:** `ULT > GoalHarness > GH1`; Codex acceptance after Cursor/Grok completed GH0, R1B1-6 and R1C/R1C2.
+- **Acceptance:** no model training, hidden split population, recruitment or risk claim was introduced. R1B/R1C artifacts remain explicitly A0 development evidence. The working tree and remote were synchronized at inspection.
+- **Repairs:** the stop hook now validates the complete Goal state, checks live merge/rebase/cherry-pick markers and unmerged index entries, and fails closed on audit errors. Goal checkpoints declare that `head` is the commit observed before the state edit, avoiding an impossible self-referential containing-commit requirement. Protocol and hook now agree on the 20-loop cap.
+- **Verification:** 19 focused harness tests pass, including malformed-active-state and live-conflict vetoes; stdin/stdout follow-up smoke and `git diff --check` pass.
+- **Scientific review:** SCIS v0.1's 1.0 sensitivity applies only to three A0 proxy positives against two hard-negative/external negatives. It remains 0.333 against all five non-severe controls. Do not remove 53/55/56 from the product false-positive obligation; a future R1C3 must condition or canonicalize style without excluding these required controls.
+- **Handoff:** complete full regression, commit/push GH1, then prefer an independent deterministic U1 product leaf over further tuning to the eight-member A0 metric pilot.

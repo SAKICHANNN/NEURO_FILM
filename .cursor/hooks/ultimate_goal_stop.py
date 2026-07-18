@@ -4,10 +4,16 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.drpt.goal_state import GoalStateError, validate_goal_state
+
 STATE_PATH = ROOT / "docs" / "drpt" / "CURSOR_GOAL_STATE.json"
 DEFAULT_MAX_LOOPS = 10
 FOLLOWUP = (
@@ -29,12 +35,45 @@ def _empty() -> None:
     _emit({})
 
 
-def decide(hook_input: dict, state: dict | None) -> dict:
+def repository_has_conflict(root: Path = ROOT) -> bool:
+    """Return True, including on audit failure, when Git cannot safely continue."""
+    git_dir = root / ".git"
+    if any(
+        (git_dir / marker).exists()
+        for marker in ("MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "rebase-apply", "rebase-merge")
+    ):
+        return True
+    try:
+        completed = subprocess.run(
+            ["git", "diff", "--name-only", "--diff-filter=U"],
+            cwd=root,
+            capture_output=True,
+            check=False,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return True
+    return completed.returncode != 0 or bool(completed.stdout.strip())
+
+
+def decide(
+    hook_input: dict,
+    state: dict | None,
+    *,
+    repository_conflicted: bool = False,
+) -> dict:
     """Return stop-hook stdout payload. Pure function for unit tests."""
     status = str(hook_input.get("status") or "")
     if status != "completed":
         return {}
     if not isinstance(state, dict):
+        return {}
+    try:
+        validate_goal_state(state)
+    except (GoalStateError, TypeError, ValueError):
+        return {}
+    if repository_conflicted:
         return {}
     if state.get("status") != "ACTIVE":
         return {}
@@ -75,7 +114,13 @@ def main() -> int:
             _empty()
             return 0
         state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
-        _emit(decide(hook_input, state if isinstance(state, dict) else None))
+        _emit(
+            decide(
+                hook_input,
+                state if isinstance(state, dict) else None,
+                repository_conflicted=repository_has_conflict(),
+            )
+        )
         return 0
     except Exception:
         # Fail open for hook runtime errors: never force an infinite loop.

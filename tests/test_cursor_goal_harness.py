@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from src.drpt.goal_state import (
+    HEAD_SEMANTICS,
     GoalStateError,
     load_and_validate_goal_state,
     objective_hash,
@@ -41,12 +42,13 @@ def _base_state(**overrides):
         "objective": objective,
         "objective_hash": objective_hash(objective),
         "branch": "research/fivek-auto-optimize-cache",
-        "head": "abc",
+        "head": "a" * 40,
+        "head_semantics": HEAD_SEMANTICS,
         "iteration": 0,
         "current_node": "ULT",
         "current_leaf": "test",
         "phase": "CONTINUE",
-        "last_verified_commit": "abc",
+        "last_verified_commit": "a" * 40,
         "last_full_test": {
             "command": "pytest",
             "passed": 1,
@@ -140,6 +142,30 @@ def test_stop_hook_no_followup_cases(hook_input, state_overrides) -> None:
 def test_stop_hook_malformed_state_fail_closed() -> None:
     hook = _load_hook_module()
     assert hook.decide({"status": "completed", "loop_count": 0}, ["not-a-dict"]) == {}
+
+
+def test_stop_hook_incomplete_active_state_fails_closed() -> None:
+    hook = _load_hook_module()
+    assert hook.decide(
+        {"status": "completed", "loop_count": 0},
+        {"status": "ACTIVE", "next_action": "continue"},
+    ) == {}
+
+
+def test_stop_hook_live_repository_conflict_fails_closed() -> None:
+    hook = _load_hook_module()
+    assert hook.decide(
+        {"status": "completed", "loop_count": 0},
+        _base_state(),
+        repository_conflicted=True,
+    ) == {}
+
+
+def test_goal_state_requires_full_commit_and_declared_head_semantics() -> None:
+    with pytest.raises(GoalStateError, match="head must"):
+        validate_goal_state(_base_state(head="abc"))
+    with pytest.raises(GoalStateError, match="head_semantics"):
+        validate_goal_state(_base_state(head_semantics="live_head"))
 
 
 def test_rule_and_skill_exist() -> None:

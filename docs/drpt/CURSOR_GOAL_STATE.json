@@ -5,34 +5,37 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "58ccdc81d5f52ca6db1932edd1b59885d55f6b4c",
-  "iteration": 13,
-  "current_node": "ULT > U5.R1 > U5.R1C2",
-  "current_leaf": "U5.R1C3 ready",
+  "head": "31d5dc6580c4e0e6f7d2943413dc985fe78d54e9",
+  "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
+  "iteration": 14,
+  "current_node": "ULT > GoalHarness > GH1",
+  "current_leaf": "GH1 complete; U1.6G1 design ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "58ccdc81d5f52ca6db1932edd1b59885d55f6b4c",
+  "last_verified_commit": "31d5dc6580c4e0e6f7d2943413dc985fe78d54e9",
   "last_full_test": {
-    "command": "pytest focused filmstylesafe_r1c+harness",
-    "passed": 23,
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
+    "passed": 407,
     "failed": 0,
-    "timestamp": "2026-07-17T15:05:48Z"
+    "timestamp": "2026-07-18T04:20:31Z"
   },
   "ready_leaves": [
-    "U5.R1C3",
-    "U1.2/U1.4/U1.5"
+    "U1.6G1",
+    "U1.2/U1.4/U1.5",
+    "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Continue autonomously without waiting for user: start U5.R1C3 style-control exclusion/calibration for SCIS, or advance U1.2/U1.4/U1.5 colour-state product leaf; Goal remains ACTIVE",
+  "next_action": "Commit/push GH1, then freeze an independent U1.6G1 shape-stable global-resample or staged-percentile contract. Do not exclude 53/55/56 from future SCIS false-positive controls; R1C3 may continue only as conditioned/canonicalized A0 research.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "configs/filmstylesafe_r1c2_decision_v1.json",
-    "docs/FILMSTYLESAFE_R1C2_SCIS_V01.md",
-    "src/eval/filmstylesafe_r1c.py"
+    "docs/drpt/CURSOR_GOAL_PROTOCOL.md",
+    ".cursor/hooks/ultimate_goal_stop.py",
+    "tests/test_cursor_goal_harness.py",
+    "outputs/filmstylesafe/r1c/a0_metric_pilot_report.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-17T15:05:48Z",
-  "selection_rationale": "R1C2 improved SCIS to perfect hardneg/external sensitivity; continue autonomously to R1C3 or U1."
+  "last_update_utc": "2026-07-18T04:20:31Z",
+  "selection_rationale": "Cursor R1B/R1C work passes A0 claim-boundary review, but further tiny-suite metric tuning risks overfit. GH1 repairs the Goal harness, then an independent deterministic U1 product leaf has higher evidence value."
 }
