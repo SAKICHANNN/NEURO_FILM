@@ -1,9 +1,13 @@
 # U1.4C1B Pure Safe-Lab Kernel Results
 
-**Status:** pass  
-**Parent:** `ULT > U1.4 > U1.4C > U1.4C1`  
-**Contract:** `docs/planning/U1_4C1_WORKING_SPACE_LAB_KERNEL_CONTRACT.md`  
-**Implementation commit:** `12222bd877fbfaad0520ade1600ca63be379c700`  
+**Status:** pass
+
+**Parent:** `ULT > U1.4 > U1.4C > U1.4C1`
+
+**Contract:** `docs/planning/U1_4C1_WORKING_SPACE_LAB_KERNEL_CONTRACT.md`
+
+**Implementation commit:** `12222bd877fbfaad0520ade1600ca63be379c700`
+
 **Claim ceiling:** pure reusable Lab-domain look kernel with frozen legacy sRGB parity
 
 ## Change
