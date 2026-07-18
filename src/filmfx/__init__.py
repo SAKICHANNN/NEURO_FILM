@@ -14,6 +14,17 @@ from .halation_controls import (
     resolve_physical_halation_controls,
     validate_physical_halation_controls,
 )
+from .global_resample import (
+    GLOBAL_RESAMPLE_VERSION,
+    GlobalResampleExecutionMetadata,
+    GlobalResamplePlan,
+    StagedGlobalField,
+    build_shape_stable_global_stage,
+    plan_shape_stable_global_resample,
+    reconstruct_shape_stable_full,
+    reconstruct_shape_stable_tiled,
+    reconstruct_shape_stable_window,
+)
 from .layers import FilmLayer, layer_metrics
 from .tiled_grain import (
     GRAIN_BLUR_HALO,
@@ -32,6 +43,9 @@ from .tiled_effects import (
 
 __all__ = [
     "FilmLayer",
+    "GLOBAL_RESAMPLE_VERSION",
+    "GlobalResampleExecutionMetadata",
+    "GlobalResamplePlan",
     "GRAIN_BLUR_HALO",
     "DustScratchContext",
     "DustScratchExecutionMetadata",
@@ -39,7 +53,9 @@ __all__ = [
     "HalationPreset",
     "PhysicalHalationControls",
     "StagedGrainMetadata",
+    "StagedGlobalField",
     "build_physical_halation_layer",
+    "build_shape_stable_global_stage",
     "build_dust_scratch_context",
     "composite_layers",
     "composite_dust_scratch_tiled",
@@ -54,6 +70,10 @@ __all__ = [
     "halation_gui_schema",
     "list_halation_presets",
     "physical_halation_layer",
+    "plan_shape_stable_global_resample",
+    "reconstruct_shape_stable_full",
+    "reconstruct_shape_stable_tiled",
+    "reconstruct_shape_stable_window",
     "resolve_physical_halation_controls",
     "simple_halation_required_halo",
     "staged_grain_residual_layer",

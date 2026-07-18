@@ -66,6 +66,28 @@ def _resize_spatial(array: np.ndarray, shape: tuple[int, int], *, resample: int)
     return np.stack(channels, axis=2).astype(np.float32, copy=False)
 
 
+def gaussian_filter_direct(
+    array: np.ndarray,
+    sigma: float | tuple[float, ...],
+    *,
+    truncate: float = 3.0,
+) -> np.ndarray:
+    """Apply the existing separable reflect Gaussian without resampling."""
+
+    arr = np.asarray(array, dtype=np.float32)
+    if arr.ndim not in {2, 3}:
+        raise ValueError(f"gaussian_filter_direct expects 2D or 3D arrays, got {arr.shape}")
+    if not np.isfinite(arr).all():
+        raise ValueError("gaussian_filter_direct expects only finite values")
+    if not math.isfinite(float(truncate)) or float(truncate) <= 0.0:
+        raise ValueError("truncate must be finite and positive")
+    sigma_tuple = _as_sigma_tuple(sigma, arr.ndim)
+    channel_sigma = sigma_tuple[2] if arr.ndim == 3 else 0.0
+    if channel_sigma > 1e-6:
+        raise ValueError("gaussian_filter_direct does not support channel-axis blur")
+    return _direct_gaussian_filter(arr, sigma_tuple, truncate=float(truncate))
+
+
 def gaussian_filter_safe(
     array: np.ndarray,
     sigma: float | tuple[float, ...],
