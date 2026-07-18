@@ -272,6 +272,8 @@ leaves no output on rejection. Alpha preservation/compositing remains open.
 U1.2C next closes a separate silent truncation: inspection knows `n_frames`,
 but loading takes frame zero. Freeze rejection of any frame count other than
 one until animation/multi-page behavior receives its own contract.
+U1.2C passes: multi-frame GIF and multi-page TIFF reject before pixel decode,
+the renderer creates no output, and the single-frame path remains stable.
 
 ---
 

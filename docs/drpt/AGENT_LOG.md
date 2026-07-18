@@ -1751,3 +1751,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence plan:** two-frame GIF, two-page TIFF, renderer no-output and single-frame regression.
 - **Boundary:** no frame selector, animation, video, burst, stack, temporal or multi-page capability.
 - **Handoff:** hash and commit/push contract, then implement the smallest load-boundary check and tests.
+
+## 2026-07-18 - Pass U1.2C multi-frame raster fail-closed ingress
+
+- **Implementation:** `e03bf77` requires exactly one inspected frame before raster pixel decode.
+- **Evidence:** two-frame GIF and two-page TIFF reject; integrated renderer creates no output; ordinary single-frame regressions pass.
+- **Verification:** 43 focused and 566 complete CPU tests pass.
+- **Boundary:** no animation, video, burst, temporal, stack, frame-selection or multi-page capability.
+- **Handoff:** return to remaining U1.4/U1.5 and WorkingImage invariant gaps.
