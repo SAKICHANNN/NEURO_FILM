@@ -16,6 +16,7 @@ from omegaconf import OmegaConf
 
 PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
+PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID = "kmcfm.profile-evidence-summary.v1"
 _HASH = re.compile(r"^[0-9a-f]{64}$")
 _COMMIT = re.compile(r"^[0-9a-f]{40}$")
 _IDENTIFIER = re.compile(r"^[a-z0-9][a-z0-9._-]{0,127}$")
@@ -256,6 +257,26 @@ def load_render_profile(path: Path, *, root: Path | None = None) -> dict[str, An
     profile = json.loads(path.read_text(encoding="utf-8"))
     validate_render_profile(profile, root=root)
     return profile
+
+
+def summarize_render_profile_evidence(profile: Mapping[str, Any]) -> dict[str, Any]:
+    """Return a validated, non-escalating profile evidence summary."""
+    validate_render_profile(profile)
+    identity = _mapping(profile["identity"], "profile.identity")
+    evidence = _mapping(profile["evidence"], "profile.evidence")
+    return {
+        "schema_id": PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID,
+        "profile_id": profile["profile_id"],
+        "profile_version": profile["profile_version"],
+        "film_stock_id": identity["film_stock_id"],
+        "latent_mode_id": identity["latent_mode_id"],
+        "interpretation": identity["interpretation"],
+        "data_grade": evidence["data_grade"],
+        "expert_grade": evidence["expert_grade"],
+        "method": evidence["method"],
+        "calibrated_reference_allowed": evidence["calibrated_reference_allowed"],
+        "claim_ceiling": evidence["claim_ceiling"],
+    }
 
 
 def _asset(root: Path, path: Path, role: str) -> dict[str, str]:
