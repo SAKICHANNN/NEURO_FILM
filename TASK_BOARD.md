@@ -31,7 +31,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 511 CPU tests pass through U1.6G4D; G3 providers are bound but no effect executor exists |
+| Tests | baseline passes | 527 CPU tests pass through U1.6G4E; density executor is research-only after legacy gate failure |
 
 ---
 
@@ -85,7 +85,8 @@
 | 1t | LSM2-LSM8 | Residual/operator identifiability, mode existence, fixed bank, Oracle, routing and product validation | conditional | requires full stock/connectivity/identifiability/pixel-rights pass; K=1/no Oracle/severe artifact closes routing |
 | 1u | U1.6G4B/U1.6G4C | Close batch-sensitive G1-v1 row staging; validate a new deterministic reducer | G4B closed; G4C numerical/field pass | v1 preserved; five fields pass cross-chunk/tile/repeat and limited visual compatibility; no effect integration |
 | 1v | U1.6G4D | Bind G4A/G4C capabilities | complete: static pass | exact providers resolve G3; no graph execution or resource drift |
-| 1w | U1.6G4E | Freeze and implement the simplest staged density executor | contract design ready | preregister operator drift, effect/resource/full-res visual/failure gates before code; no renderer integration |
+| 1w | U1.6G4E | Freeze and implement the simplest staged density executor | complete: v2 pass / legacy promotion closed | exact/seam-safe v2 execution; `u41-14` legacy alpha max gate fails; retain unconnected research module |
+| 1x | U1.6G4F | Audit explicit new-operator product value/safety | contract design ready | fresh confirmatory cases; legacy drift reported, not erased; no integration without separate gates |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |

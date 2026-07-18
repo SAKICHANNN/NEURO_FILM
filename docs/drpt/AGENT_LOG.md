@@ -1642,3 +1642,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 - DoR arithmetic finds the initial coarse-row chunk 17 equals the `193x277` glare coarse height and violates the strict bounded-builder contract. No executor or confirmatory run exists yet.
 - Correct the uniform chunk to 7 and refreeze config SHA `90785681...`; cases, algorithm, thresholds and gates remain unchanged.
+
+## 2026-07-18 - Close U1.6G4E legacy-compatible promotion after executor pass
+
+- **Implementation:** commit `25cb3858c31390dd89f3dfa4fd20aa1b1bd58811` adds the fixed-default staged executor/materialized-v2 reference as an unconnected module. Commit `57ac77a...` is the final path-stable, resource-correct audit.
+- **Evidence:** config SHA `90785681...`; two reports SHA `4caa78fe...` and sheets SHA `a4876a85...` are byte-identical; non-promoting visual-diagnostic config SHA `4c943c33...`.
+- **Executor result:** all ten tile policies pass staged-v2 accuracy, zero-seam, sRGB8, repeat, bounded-source and resource gates. Real maxima are `1.02e-7` alpha and `5.96e-8` composite.
+- **Frozen failure:** both `u41-14` policies have legacy alpha max drift `5.337968e-4`, above the `5e-4` gate. All other legacy and automatic fields pass. Threshold stays frozen.
+- **Visual diagnosis:** zero confirmed severe artifact and no visible staged-v2 difference; diagnostic only, cannot override automatic failure.
+- **Verification:** 16 executor/107 adjacent tests and 527 full CPU tests pass. Renderer/effects/CLI are unchanged.
+- **Decision/handoff:** retain research executor but close drop-in/default/legacy-compatible promotion. Goal ACTIVE. A G4F explicit-new-operator audit may use fresh confirmatory cases and a separate claim; it must not rewrite G4E.

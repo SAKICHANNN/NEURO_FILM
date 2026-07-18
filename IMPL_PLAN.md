@@ -223,7 +223,12 @@ freeze a density-family executor with separate effect-level gates. G4D now
 passes that binding: concrete provider identity makes both G3 families
 statically ready without graph or resource drift. Execution is still absent;
 U1.6G4E must preregister the density graph's operator-version compatibility,
-resource and full-resolution visual gates before implementing it.
+resource and full-resolution visual gates before implementing it. G4E now
+proves the bounded executor matches its materialized v2 target with zero seams
+and sRGB8 parity, but one frozen legacy alpha maximum gate fails by about 6.8%.
+The module stays research-only and disconnected. Any continuation must be an
+explicit new-operator G4F audit on fresh cases, not a loosened G4E gate or
+silent replacement of the legacy default.
 
 ---
 

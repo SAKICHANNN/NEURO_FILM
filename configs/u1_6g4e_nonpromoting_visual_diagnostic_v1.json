@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4E",
+  "review_type": "autonomous_nonpromoting_effect_visual_diagnostic",
+  "software_commit": "57ac77a317c7936c1fa067dd0eaf36fa527b5ced",
+  "report_sha256": "4caa78fe89d4a05a0bbbaaa342268c7ce16080d1d5c6fed79cb545425d2d8d48",
+  "contact_sheet_path": "outputs/u1_6g4e/formal_57ac77a_a.png",
+  "contact_sheet_sha256": "a4876a85184accff186a7ac56799d7f9d0a8b142dc1b41cfd65238b1c514c274",
+  "reviewed_cases": ["u41-02", "u41-09", "u41-14"],
+  "checks": {
+    "confirmed_seams": 0,
+    "confirmed_bands": 0,
+    "confirmed_blocks": 0,
+    "confirmed_clipping_expansion": 0,
+    "confirmed_other_severe_artifacts": 0,
+    "staged_v2_difference_visibly_structured": false
+  },
+  "observations": [
+    "Staged and materialized-v2 panels are visually indistinguishable on all three fixed real cases.",
+    "Amplified staged-minus-v2 panels are black at contact-sheet scale and numerical seam maxima are zero.",
+    "Legacy and v2 behavior is also visually indistinguishable, but u41-14 exceeds the frozen legacy alpha maximum drift gate.",
+    "This visual result is diagnostic only and cannot override the failed automatic gate."
+  ],
+  "decision": "zero_severe_visual_diagnostic_but_no_promotion",
+  "claim_ceiling": "nonpromoting autonomous visual evidence only"
+}

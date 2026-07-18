@@ -5,25 +5,25 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "ac665f4986f0495c9f19eb14025d04ef1155957b",
+  "head": "57ac77a317c7936c1fa067dd0eaf36fa527b5ced",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 29,
-  "current_node": "ULT > U1.6 > U1.6G4E",
-  "current_leaf": "U1.6G4E staged default density-executor contract frozen; implementation ready",
+  "iteration": 30,
+  "current_node": "ULT > U1.6 > U1.6G4F",
+  "current_leaf": "U1.6G4E staged-v2 passed but legacy promotion closed; G4F explicit new-operator audit design ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "ac665f4986f0495c9f19eb14025d04ef1155957b",
+  "last_verified_commit": "57ac77a317c7936c1fa067dd0eaf36fa527b5ced",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 511,
+    "passed": 527,
     "failed": 0,
-    "timestamp": "2026-07-18T05:41:00Z"
+    "timestamp": "2026-07-18T06:11:00Z"
   },
   "ready_leaves": [
-    "U1.6G4E_staged_density_executor_implementation",
+    "U1.6G4F_explicit_new_operator_value_safety_contract",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push the G4E contract, implement the fixed-default research executor and materialized-v2 reference in a new filmfx module, then run focused gates before sealed confirmatory images.",
+  "next_action": "Commit/push G4E results, then freeze an explicit-new-operator G4F value/safety audit on fresh cases; preserve the failed legacy gate and keep renderer integration closed.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -41,10 +41,12 @@
     "docs/U1_6G4D_HALATION_CAPABILITY_BINDING_RESULTS.md",
     "docs/planning/U1_6G4E_STAGED_DENSITY_EXECUTOR_CONTRACT.md",
     "configs/u1_6g4e_staged_density_executor_v1.json",
+    "docs/U1_6G4E_STAGED_DENSITY_EXECUTOR_RESULTS.md",
+    "configs/u1_6g4e_nonpromoting_visual_diagnostic_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:50:06Z",
-  "selection_rationale": "Development evidence shows the versioned materialized density operator remains tightly compatible with legacy. The smaller fixed-default density family is now preregistered for the first bounded executor pilot."
+  "last_update_utc": "2026-07-18T06:11:00Z",
+  "selection_rationale": "G4E validates bounded v2 execution but fails one frozen legacy-compatibility gate. The only legal continuation is a separately claimed new-operator audit on fresh cases, not threshold relaxation or silent default replacement."
 }
