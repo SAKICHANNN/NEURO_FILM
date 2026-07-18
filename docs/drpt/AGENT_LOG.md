@@ -1565,3 +1565,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** request a one-pixel expanded global-coordinate scalar window, run the unchanged NumPy default gradient, and crop to the core. Only true original edges use one-sided differences.
 - **Gates:** byte parity with full `np.gradient` for interiors/edges/corners and assembled irregular tiles; strict reader dtype/shape/finiteness; read-only outputs and bounded metadata.
 - **Boundary/next:** no effect integration. A pass removes only the gradient capability; row-chunked G1 stage construction remains required.
+
+## 2026-07-18 - Pass U1.6G4A coordinate-exact gradient windows
+
+- **Implementation:** commit `efd125a875287e4d12f2f6c9db0106ec49de5450` adds a strict scalar reader, one-pixel original-coordinate expansion, unchanged NumPy gradient/crop and immutable resource metadata. Commit `fbcef7b...` binds the capability to the G3 gate.
+- **Evidence:** config SHA-256 `aa62b97d...`; `257x389` tile 37/64 and row 1/19 assemblies have zero `gy/gx` error and the same SHA-256 as full-frame gradients.
+- **Verification:** 34 focused, 62 combined G3/G4A and 493 full CPU tests pass. Borders, corners, thin cores and reader violations are covered.
+- **Branch/claim:** gradient capability passes; G3 now remains false only on `row_chunked_global_stage_builder`. No effect execution, pixel-parity, total-memory or 100MP claim opens.

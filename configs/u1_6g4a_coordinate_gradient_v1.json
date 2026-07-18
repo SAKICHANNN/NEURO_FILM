@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4A",
+  "primitive_version": "coordinate-gradient-window-v1",
+  "source": {
+    "kind": "deterministic_synthetic_normal_float32_field",
+    "seed": 223,
+    "shape": [257, 389]
+  },
+  "tile_sizes": [37, 64],
+  "row_chunks": [1, 19],
+  "reference": "numpy.gradient(edge_order=1, unit spacing)",
+  "gates": {
+    "gradient_y_bytes_equal": true,
+    "gradient_x_bytes_equal": true,
+    "maximum_input_halo": 1,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "remaining_missing_capability": "row_chunked_global_stage_builder",
+  "claim_ceiling": "gradient-window parity only; not effect execution, pixel parity, total-memory or 100MP readiness"
+}

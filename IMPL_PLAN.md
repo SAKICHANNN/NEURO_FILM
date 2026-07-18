@@ -210,6 +210,11 @@ finite-halo. Transitive lazy-stream lifetimes and external/output/context/
 workspace categories are explicit. Integration remains closed until exact
 gradient windows and row-chunked global staging pass independently.
 
+`U1.6G4A` passes the first execution gap: one-pixel global-coordinate windows
+reproduce full NumPy `gy/gx` bytes at arbitrary tiles, rows, edges and corners.
+G3 now has only `row_chunked_global_stage_builder` missing; integration remains
+false until that separate capability passes.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

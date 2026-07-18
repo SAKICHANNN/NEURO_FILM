@@ -5,36 +5,36 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "f5be8a8790638d24165b75f452dab94c18b11f45",
+  "head": "fbcef7b4a73d43c1c57b45ebe918f2dbb0e08750",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 21,
+  "iteration": 22,
   "current_node": "ULT > U1.6 > U1.6G4A",
-  "current_leaf": "U1.6G4A coordinate-exact gradient contract frozen; implementation ready",
+  "current_leaf": "U1.6G4A passed; U1.6G4B row-chunked global stage contract ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "f5be8a8790638d24165b75f452dab94c18b11f45",
+  "last_verified_commit": "fbcef7b4a73d43c1c57b45ebe918f2dbb0e08750",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 458,
+    "passed": 493,
     "failed": 0,
-    "timestamp": "2026-07-18T04:57:13Z"
+    "timestamp": "2026-07-18T05:04:52Z"
   },
   "ready_leaves": [
-    "U1.6G4A_coordinate_exact_gradient_window",
+    "U1.6G4B_row_chunked_global_stage_builder",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push the U1.6G4A contract, implement strict one-pixel original-coordinate gradient windows, and prove full/window byte parity without changing effects.",
+  "next_action": "Commit/push U1.6G4A evidence, then freeze U1.6G4B row-chunked global stage construction from repeatable derived-field windows; do not integrate effects before parity and cleanup/resource gates pass.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
   "dirty_files": [],
   "evidence_paths": [
-    "docs/planning/U1_6G4A_COORDINATE_EXACT_GRADIENT_WINDOW_CONTRACT.md",
-    "src/filmfx/effects.py",
-    "src/filmfx/halation_dag.py"
+    "configs/u1_6g4a_coordinate_gradient_v1.json",
+    "docs/U1_6G4A_COORDINATE_EXACT_GRADIENT_RESULTS.md",
+    "tests/test_gradient_window.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T04:59:26Z",
-  "selection_rationale": "G3 proves the static graphs and exposes two hard execution gaps. A one-pixel original-coordinate gradient window is the smaller upstream dependency needed by every weighted-source producer and can be proved independently before row-chunked global staging."
+  "last_update_utc": "2026-07-18T05:04:52Z",
+  "selection_rationale": "Coordinate gradients now pass exactly. Row-chunked construction of G1 coarse stages is the sole remaining G3 capability before any staged effect-family executor can be considered."
 }
