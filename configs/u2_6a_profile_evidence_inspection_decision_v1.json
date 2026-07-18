@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "decision_id": "u2.6a-profile-evidence-inspection-v1",
+  "node": "ULT > U2 > U2.6 > U2.6A",
+  "config_sha256": "a048906c94948dadebf2ac17ce6f24f2393a6b2ac4ea0d3a4cb442ad96c6f750",
+  "software_commit": "34134275bc5ccc483a32c9a631679e1e8548d011",
+  "summary_schema_id": "kmcfm.profile-evidence-summary.v1",
+  "api_pass": true,
+  "cli_pass": true,
+  "two_run_byte_identity": true,
+  "evidence_escalation_fails_closed": true,
+  "asset_tamper_fails_closed": true,
+  "profile_schema_changed": false,
+  "recipe_schema_changed": false,
+  "tracked_profile_changed": false,
+  "renderer_changed": false,
+  "focused_tests_passed": 9,
+  "full_tests_passed": 656,
+  "decision": "close_u2_6_declared_evidence_visibility_pass",
+  "next_leaf": "select another independent evidence-authorized Ultimate leaf",
+  "claim_ceiling": "deterministic validated exposure of evidence already declared by a render profile; no evidence upgrade, stock authenticity, calibration or safety claim"
+}

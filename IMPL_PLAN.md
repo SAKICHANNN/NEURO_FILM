@@ -172,6 +172,12 @@ fingerprint. All current profiles remain heuristic
 `film-inspired/look-approximation`; broader U2.1 API/evolution/operator work is
 still pending and no fitting/training/LSM opens.
 
+`U2.6A` closes the declared-evidence visibility gap without revising that
+envelope. A validated public API and deterministic read-only CLI expose profile
+identity, data/expert grades, evidence method, calibration permission and claim
+ceiling. Safe-rich truthfully reports none/none/heuristic/false; 656 CPU tests
+pass and the v1 schemas, tracked profile and renderer remain exact.
+
 `U1.6A` now passes as a reusable halo-aware tiled-execution primitive for
 explicitly finite-support local operators. A committed 257x389 audit has exact
 one-time coverage, a 76x76 maximum expanded window, zero full/seam Gaussian

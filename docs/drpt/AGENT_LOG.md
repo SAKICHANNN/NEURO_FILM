@@ -1926,3 +1926,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Compatibility:** no profile/recipe schema, renderer, render bytes, profile data or evidence grade may change.
 - **Gates:** exact safe-rich none/none/heuristic/false output, two-run byte identity, invalid/escalated/tampered profiles fail closed, focused/full/compile/diff checks.
 - **Handoff:** commit/push this contract before implementation; Goal remains ACTIVE.
+
+## 2026-07-18 - Pass U2.6A profile-evidence inspection
+
+- **Implementation:** `3413427` adds a validating non-mutating summary API and deterministic read-only inspect CLI; no schema, profile or renderer file changed.
+- **Truth exposed:** safe-rich is none/none/heuristic/non-calibrated, with no stock or latent-mode identity and the existing Look Approximation claim ceiling.
+- **Evidence:** two CLI runs byte-match; evidence escalation and asset tamper fail closed; caller mutation cannot alter the source profile; all compatibility hashes are unchanged.
+- **Verification:** 9 focused and 656 complete CPU tests, compile and diff checks pass.
+- **Decision/handoff:** close U2.6 declared-evidence visibility. No evidence upgrade or calibration claim opens; Goal remains ACTIVE and selects another independent legal leaf.

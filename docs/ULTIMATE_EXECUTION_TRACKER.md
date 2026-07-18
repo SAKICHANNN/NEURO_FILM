@@ -341,8 +341,8 @@ Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade came
 | U2.4 | pending | Negative/slide/B&W interpretation plugin boundary | U2.1 | Three synthetic reference profiles and contracts |
 | U2.5 | pending | Legacy `safe_lab` adapter | U2.1, U1.3 | Old recipes render within frozen tolerance |
 | U2.5A | complete: invariant pass | Enforce exact neutral-axis RGB for existing HP5/Tri-X safe-Lab profiles | U1.3B defect evidence | B&W float/8/16-bit achromatic invariant, frozen Velvia hash, 225 tests and full-resolution RAW vision pass |
-| U2.6 | pending | Profile evidence labels | U2.1 | `heuristic/measured/paired/held-out` visible in CLI/API |
-| U2.6A | ready: contract frozen | Deterministic validated read-only profile-evidence summary API and CLI | U2.1A | expose exact declared identity/evidence fields; safe-rich must remain none/none/heuristic/non-calibrated; no schema, renderer or evidence-grade change |
+| U2.6 | complete: declared-evidence visibility pass | Profile evidence labels | U2.1A | validated API/CLI expose `heuristic/measured/paired/held-out` and identity/grade/claim fields without inference or schema change; current safe-rich truth remains none/none/heuristic/non-calibrated |
+| U2.6A | complete: pass | Deterministic validated read-only profile-evidence summary API and CLI | U2.1A | exact declared fields, two-run byte identity and fail-closed escalation/tamper gates pass; 9 focused/656 full tests; no schema, renderer or evidence-grade change; `docs/U2_6A_PROFILE_EVIDENCE_INSPECTION_RESULTS.md` |
 
 U2 internal/local schema and renderer research is not blocked by the repository-license decision. U0.2 remains mandatory before publishing code, schema assets, profiles or weights. U2 can ship strongly stylized `film-inspired` profiles only after U0.2 and U4 artifact/style gates. It cannot use `calibrated` or strong named-stock reproduction claims before U3 and the conditional authenticity gate.
 
