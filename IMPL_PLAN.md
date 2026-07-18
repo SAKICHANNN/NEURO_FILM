@@ -256,6 +256,11 @@ G4I freezes that local-only measurement at exactly 10000x10000: the known live
 array floor is 4.0GB, process-tree RSS must remain at most 8GiB, total worker
 time at most 240 seconds, and two fresh runs must repeat source/output/metadata
 hashes. Preflight and failure cleanup are mandatory; production remains closed.
+G4I passes both fresh 100MP runs at 4.066-4.072GB process-tree RSS and
+123.8-131.8 seconds worker time with repeat-identical source/output/metadata
+hashes. This closes the isolated effect measurement only. Work now returns to
+remaining U1.2/U1.4/U1.5 colour-state and format gaps; a complete-renderer
+100MP claim still requires a separate end-to-end lifetime contract.
 
 ---
 

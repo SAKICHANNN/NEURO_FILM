@@ -1718,3 +1718,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Preflight:** require 12GiB available physical memory, no unrelated process above 4GiB and 1GiB output-volume free space; fail closed without automatic retry.
 - **Boundary:** local effect-only 100MP evidence; no complete-renderer, I/O, M5, cross-platform, production, physical or stock claim.
 - **Handoff:** verify config hash and commit/push the contract before implementing or launching the large audit.
+
+## 2026-07-18 - Pass U1.6G4I local 100MP isolated adapter
+
+- **Implementation/evidence:** harness commit `6d325df`; formal report SHA `25248cdf...`; preflight and pre-allocation failure probe pass.
+- **Resources:** two exact 100MP workers peak at 4,072,169,472 and 4,065,918,976 bytes complete process-tree RSS; worker totals are 131.759s and 123.847s.
+- **Determinism:** source `f15598be...`, output `4819c828...` and metadata `43b9f31c...` repeat exactly across fresh workers.
+- **Ownership:** one public ndarray, zero scratch bytes, atomic reports, no temporary files or surviving observed PIDs.
+- **Verification:** 23 focused tests before formal execution; 558 full CPU tests after it.
+- **Decision:** retain local effect-only 100MP evidence. Production integration and complete-renderer 100MP remain closed; return to U1.2/U1.4/U1.5 product gaps.
