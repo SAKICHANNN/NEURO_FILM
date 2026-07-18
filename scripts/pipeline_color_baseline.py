@@ -11,35 +11,29 @@ import argparse
 import csv
 import json
 import sys
-from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
 from omegaconf import OmegaConf
 from PIL import Image, ImageDraw, ImageFont, ImageOps
-from scipy.ndimage import gaussian_filter
 from skimage.color import lab2rgb, rgb2lab
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.color_engine.safe_lab import (
+    B_AND_W_STYLES,
+    SafeLabSourceContext,
+    apply_safe_lab_transform,
+    safe_lab_context_from_lab,
+    validate_safe_lab_source_context,
+)
 from src.inference.tiled_render import TiledExecutionMetadata, TileWindow, execute_tiled_local_operator
 
 
-B_AND_W_STYLES = {"hp5", "tri_x_400"}
 DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
 DEFAULT_PROFILES = ROOT / "configs" / "color_rendering_profiles.yaml"
-
-
-@dataclass(frozen=True)
-class SafeLabSourceContext:
-    """Immutable full-image reduction needed by the safe-Lab operator."""
-
-    source_shape: tuple[int, int, int]
-    pixel_count: int
-    lab_mean: tuple[float, float, float]
-    lab_std: tuple[float, float, float]
 
 
 def _validate_style_rgb(rgb: np.ndarray) -> np.ndarray:
@@ -52,15 +46,7 @@ def _validate_style_rgb(rgb: np.ndarray) -> np.ndarray:
 
 
 def _safe_lab_context_from_lab(lab: np.ndarray, source_shape: tuple[int, int, int]) -> SafeLabSourceContext:
-    flattened = lab.reshape(-1, 3)
-    mean = flattened.mean(axis=0)
-    std = np.maximum(flattened.std(axis=0), 1e-3)
-    return SafeLabSourceContext(
-        source_shape=source_shape,
-        pixel_count=int(flattened.shape[0]),
-        lab_mean=tuple(float(value) for value in mean),
-        lab_std=tuple(float(value) for value in std),
-    )
+    return safe_lab_context_from_lab(lab, source_shape)
 
 
 def build_safe_lab_source_context(rgb: np.ndarray) -> SafeLabSourceContext:
@@ -71,17 +57,7 @@ def build_safe_lab_source_context(rgb: np.ndarray) -> SafeLabSourceContext:
 
 
 def _validate_safe_lab_source_context(context: SafeLabSourceContext) -> None:
-    if not isinstance(context, SafeLabSourceContext):
-        raise ValueError("source_context must be SafeLabSourceContext")
-    height, width, channels = context.source_shape
-    if channels != 3 or height <= 0 or width <= 0 or context.pixel_count != height * width:
-        raise ValueError("source_context shape/pixel_count is invalid")
-    mean = np.asarray(context.lab_mean, dtype=np.float32)
-    std = np.asarray(context.lab_std, dtype=np.float32)
-    if mean.shape != (3,) or std.shape != (3,) or not np.isfinite(mean).all() or not np.isfinite(std).all():
-        raise ValueError("source_context Lab statistics must be finite three-channel values")
-    if np.any(std < 1e-3):
-        raise ValueError("source_context Lab std violates the legacy floor")
+    validate_safe_lab_source_context(context)
 
 
 def legacy_uniform_dither_window(
@@ -249,102 +225,6 @@ def compress_chroma_to_srgb_gamut(target_lab: np.ndarray, iterations: int = 14) 
     return neutral + delta * low
 
 
-def apply_tone_rolloff(lab: np.ndarray, strength: float, shadow_floor_l: float, highlight_ceiling_l: float) -> np.ndarray:
-    if strength <= 0:
-        return lab
-    strength = float(np.clip(strength, 0.0, 1.0))
-    out = lab.copy()
-    luminance = np.clip(out[..., 0] / 100.0, 0.0, 1.0)
-    smooth = luminance * luminance * (3.0 - 2.0 * luminance)
-    low = np.clip(shadow_floor_l / 100.0, 0.0, 0.25)
-    high = np.clip(highlight_ceiling_l / 100.0, 0.75, 1.0)
-    rolled = low + smooth * (high - low)
-    out[..., 0] = 100.0 * ((1.0 - strength) * luminance + strength * rolled)
-    return out
-
-
-def smoothstep(edge0: float, edge1: float, value: np.ndarray) -> np.ndarray:
-    x = np.clip((value - edge0) / max(edge1 - edge0, 1e-6), 0.0, 1.0)
-    return x * x * (3.0 - 2.0 * x)
-
-
-def skin_like_mask(lab: np.ndarray) -> np.ndarray:
-    return (
-        (lab[..., 0] > 20.0)
-        & (lab[..., 0] < 92.0)
-        & (lab[..., 1] > 4.0)
-        & (lab[..., 1] < 28.0)
-        & (lab[..., 2] > 4.0)
-        & (lab[..., 2] < 46.0)
-    )
-
-
-def apply_color_guardrails(
-    source_lab: np.ndarray,
-    target_lab: np.ndarray,
-    neutral_protect: float,
-    skin_protect: float,
-    max_chroma_gain: float | None,
-    max_chroma_boost: float | None,
-    max_chroma_absolute: float | None,
-) -> np.ndarray:
-    out = target_lab.copy()
-    source_ab = source_lab[..., 1:3]
-    out_ab = out[..., 1:3]
-    source_chroma = np.linalg.norm(source_ab, axis=2, keepdims=True)
-    out_chroma = np.linalg.norm(out_ab, axis=2, keepdims=True)
-
-    if neutral_protect > 0:
-        neutral_weight = 1.0 - smoothstep(4.0, 14.0, source_chroma)
-        blend = np.clip(neutral_weight * neutral_protect, 0.0, 1.0)
-        out_ab = out_ab * (1.0 - blend) + source_ab * blend
-
-    if skin_protect > 0:
-        skin_weight = skin_like_mask(source_lab)[..., None].astype(np.float32) * np.clip(skin_protect, 0.0, 1.0)
-        out_ab = out_ab * (1.0 - skin_weight) + source_ab * skin_weight
-
-    if max_chroma_gain is not None or max_chroma_boost is not None or max_chroma_absolute is not None:
-        gain = float(max_chroma_gain if max_chroma_gain is not None else 999.0)
-        boost = float(max_chroma_boost if max_chroma_boost is not None else 999.0)
-        cap = np.maximum(source_chroma * gain, source_chroma + boost)
-        if max_chroma_absolute is not None:
-            cap = np.minimum(cap, float(max_chroma_absolute))
-        out_chroma = np.maximum(np.linalg.norm(out_ab, axis=2, keepdims=True), 1e-6)
-        scale = np.minimum(1.0, cap / out_chroma)
-        # Ease into the cap over the upper chroma range to avoid an obvious hard shelf.
-        knee = smoothstep(0.82, 1.0, out_chroma / np.maximum(cap, 1e-6))
-        out_ab = out_ab * ((1.0 - knee) + knee * scale)
-
-    out[..., 1:3] = out_ab
-    return out
-
-
-def apply_chroma_curve(source_lab: np.ndarray, target_lab: np.ndarray, strength: float) -> np.ndarray:
-    if strength <= 0:
-        return target_lab
-    strength = float(np.clip(strength, 0.0, 1.0))
-    out = target_lab.copy()
-    source_chroma = np.linalg.norm(source_lab[..., 1:3], axis=2, keepdims=True)
-    saturated_weight = smoothstep(24.0, 60.0, source_chroma)
-    scale = 1.0 - strength * saturated_weight
-    out[..., 1:3] = source_lab[..., 1:3] + (out[..., 1:3] - source_lab[..., 1:3]) * scale
-    return out
-
-
-def preserve_luma_detail(source_lab: np.ndarray, target_lab: np.ndarray, strength: float) -> np.ndarray:
-    if strength <= 0:
-        return target_lab
-    strength = float(np.clip(strength, 0.0, 1.0))
-    out = target_lab.copy()
-    source_l = source_lab[..., 0]
-    target_l = target_lab[..., 0]
-    source_detail = source_l - gaussian_filter(source_l, sigma=1.1)
-    target_base = gaussian_filter(target_l, sigma=1.1)
-    target_detail = target_l - target_base
-    out[..., 0] = np.clip(target_base + target_detail * (1.0 - strength) + source_detail * strength, 0.0, 100.0)
-    return out
-
-
 def lab_to_rgb_no_clip(lab: np.ndarray) -> np.ndarray:
     linear = lab_to_linear_srgb(lab)
     # Gamut-safe callers should already be inside bounds; this guards tiny float error only.
@@ -426,40 +306,33 @@ def _style_transfer_rgb_with_context(
         lab = np.asarray(precomputed_lab)
         if lab.shape != rgb.shape or not np.isfinite(lab).all():
             raise ValueError("precomputed_lab must be finite and match rgb shape")
-    src_mean = np.asarray(source_context.lab_mean, dtype=np.float32)
-    src_std = np.asarray(source_context.lab_std, dtype=np.float32)
     dst_mean = np.asarray(stats["mean"], dtype=np.float32)
     dst_std = np.asarray(stats["std"], dtype=np.float32)
-
-    transferred = (lab - src_mean) / src_std * dst_std + dst_mean
-    out = lab.copy()
-    out[..., 0] = lab[..., 0] + luma_strength * strength * (transferred[..., 0] - lab[..., 0])
-    out[..., 1:] = lab[..., 1:] + strength * (transferred[..., 1:] - lab[..., 1:])
-
-    if style in B_AND_W_STYLES:
-        gray_strength = min(1.0, strength * 1.35)
-        out[..., 1:] *= 1.0 - gray_strength
-        contrast = 1.0 + 0.30 * strength
-        out[..., 0] = np.clip((out[..., 0] - 50.0) * contrast + 50.0, 0.0, 100.0)
-
-    out = apply_chroma_curve(lab, out, chroma_curve_strength)
-    out = preserve_luma_detail(lab, out, preserve_luma_detail_strength)
     guardrails = guardrails or {}
     neutral_protect = resolve_guardrail_value(guardrails, neutral_protect, "neutral_protect") or 0.0
     skin_protect = resolve_guardrail_value(guardrails, skin_protect, "skin_protect") or 0.0
     max_chroma_gain = resolve_guardrail_value(guardrails, max_chroma_gain, "max_chroma_gain")
     max_chroma_boost = resolve_guardrail_value(guardrails, max_chroma_boost, "max_chroma_boost")
     max_chroma_absolute = resolve_guardrail_value(guardrails, max_chroma_absolute, "max_chroma_absolute")
-    out = apply_color_guardrails(
+    out = apply_safe_lab_transform(
         lab,
-        out,
+        source_context=source_context,
+        destination_mean=dst_mean,
+        destination_std=dst_std,
+        style=style,
+        strength=strength,
+        luma_strength=luma_strength,
+        tone_rolloff=tone_rolloff,
+        shadow_floor_l=shadow_floor_l,
+        highlight_ceiling_l=highlight_ceiling_l,
+        preserve_luma_detail_strength=preserve_luma_detail_strength,
+        chroma_curve_strength=chroma_curve_strength,
         neutral_protect=float(neutral_protect),
         skin_protect=float(skin_protect),
         max_chroma_gain=max_chroma_gain,
         max_chroma_boost=max_chroma_boost,
         max_chroma_absolute=max_chroma_absolute,
     )
-    out = apply_tone_rolloff(out, tone_rolloff, shadow_floor_l, highlight_ceiling_l)
 
     resolved_gamut_mode = gamut_mode or ("source" if gamut_safe else "off")
     if resolved_gamut_mode == "source":

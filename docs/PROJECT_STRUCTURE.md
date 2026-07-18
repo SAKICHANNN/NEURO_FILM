@@ -68,7 +68,9 @@ inside these same boundaries rather than adding a parallel renderer.
 
 `src/color_engine/` owns reusable deterministic colour-operator math. Its
 initial `lab.py` primitive converts supported explicit linear working spaces to
-and from D65 CIELAB without clipping. It must not absorb file I/O or FilmFX.
+and from D65 CIELAB without clipping. `safe_lab.py` owns the pure Lab-domain
+look kernel and immutable source-statistics context; RGB gamut handling,
+encoding, stochastic effects and file I/O remain outside this package.
 
 ## Inference and replay contracts
 
