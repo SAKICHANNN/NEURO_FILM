@@ -1910,3 +1910,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen gates:** exact hashes/source/licence, MPO/two-frame inspection, load rejection, integrated renderer no-output and ordinary JPEG regression.
 - **Decision discipline:** a pass adds only real-reference regression evidence; source code may change only if an exact fixture silently decodes. No semantic warning, general MPF/ISO 21496-1 or HDR support claim is required.
 - **Handoff:** commit/push contract before importing the two fixtures and their provenance, then run focused and complete CPU verification.
+
+## 2026-07-18 - Pass U1.5C libultrahdr real-reference regression
+
+- **Implementation:** `a31ea2e` pins two unmodified CC-BY-4.0 libultrahdr gain-map references, exact hashes/source provenance and five regression cases; no production source changed.
+- **Evidence:** both inspect as raster MPO with two frames, reject through U1.2C before working pixels and leave no renderer image or metrics output.
+- **Verification:** 53 focused and 652 complete CPU tests pass; compile and diff checks pass.
+- **Decision:** retain exact real-reference fail-closed regressions. Do not claim semantic gain-map recognition, complete MPF/ISO 21496-1 detection, HDR reconstruction or HDR output.
+- **Handoff:** U1.5C closes; Goal remains ACTIVE and returns to the smallest independent deterministic product or permitted stock-data leaf.

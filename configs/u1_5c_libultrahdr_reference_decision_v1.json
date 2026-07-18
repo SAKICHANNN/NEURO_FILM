@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "decision_id": "u1.5c-libultrahdr-reference-v1",
+  "node": "ULT > U1 > U1.5 > U1.5C",
+  "config_sha256": "e36c5227e7c4430be02c9184c3d4cc063cc410400acc914dee6418010a6e336e",
+  "software_commit": "a31ea2e91f0eb9279730f09f2207f0ca685657a6",
+  "upstream_commit": "ad4a92eea0d2f39f18b5ecae3165fdd56c6a478b",
+  "fixture_count": 2,
+  "fixtures_exact_hash_pass": true,
+  "source_and_license_pass": true,
+  "all_inspect_as_mpo": true,
+  "all_have_two_frames": true,
+  "all_reject_before_working_pixels": true,
+  "renderer_output_count": 0,
+  "production_source_changed": false,
+  "focused_tests_passed": 53,
+  "full_tests_passed": 652,
+  "decision": "retain_exact_real_reference_fail_closed_regressions",
+  "next_leaf": "select another independent deterministic product or permitted data-source leaf",
+  "claim_ceiling": "two exact pinned libultrahdr gain-map references fail closed through the existing multi-frame boundary; no complete HDR, gain-map, MPF or ISO 21496-1 detection/support claim"
+}

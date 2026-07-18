@@ -138,6 +138,12 @@ negative controls still decode and unsafe metadata expansion fails closed.
 The renderer leaves no output and 639 CPU tests pass. This remains detection,
 not complete MPF/ISO 21496-1 parsing, HDR reconstruction or format support.
 
+`U1.5C` pins two exact CC-BY-4.0 gain-map JPEG references from Google
+libultrahdr. Both inspect as two-frame MPO files and the existing U1.2C
+boundary rejects them before working pixels or renderer output; 652 CPU tests
+pass and no production source change is needed. This is exact real-reference
+regression evidence, not complete MPF/ISO 21496-1 recognition or HDR support.
+
 `U5.R1C3` then tests fixed per-pair affine/quadratic Lab canonicalizers without
 dropping mandatory 53/55/56 style controls. Affine weak-passes at 2/3 proxy
 positives and quadratic falls to 1/3; sparse HF is absorbed and scheme 53

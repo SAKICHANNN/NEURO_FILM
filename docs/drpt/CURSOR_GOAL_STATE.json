@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "31bcf9ea92fa315d26077d4002897c7c5c14e129",
+  "head": "a31ea2e91f0eb9279730f09f2207f0ca685657a6",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 57,
+  "iteration": 58,
   "current_node": "ULT > U1 > U1.5 > U1.5C",
-  "current_leaf": "U1.5C contract frozen for exact rights-cleared libultrahdr real-reference fail-closed regressions",
+  "current_leaf": "U1.5C passed with exact real-reference fail-closed regressions; selecting next legal leaf",
   "phase": "CONTINUE",
-  "last_verified_commit": "31bcf9ea92fa315d26077d4002897c7c5c14e129",
+  "last_verified_commit": "a31ea2e91f0eb9279730f09f2207f0ca685657a6",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 647,
+    "passed": 652,
     "failed": 0,
-    "timestamp": "2026-07-18T09:53:36Z"
+    "timestamp": "2026-07-18T10:08:00Z"
   },
   "ready_leaves": [
-    "U1_5C_libultrahdr_real_reference_regression"
+    "select_next_independent_ready_leaf"
   ],
-  "next_action": "Commit and push the U1.5C contract, import only the two pinned CC-BY-4.0 fixtures plus provenance, and execute exact inspection/load/renderer regression gates without adding a duplicate MPF parser if U1.2C passes.",
+  "next_action": "Refresh the U1 and stock-data trees, select the smallest evidence-authorized independent leaf, freeze its contract, and continue without reopening closed experiments or data gates.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -91,6 +91,10 @@
     "docs/REAL_FILM_NEWGRAIN_SOURCE_RECONNAISSANCE_RESULTS.md",
     "docs/planning/U1_5C_LIBULTRAHDR_REFERENCE_REGRESSION_CONTRACT.md",
     "configs/u1_5c_libultrahdr_reference_v1.json",
+    "tests/fixtures/u1_5c_libultrahdr/SOURCE.json",
+    "tests/test_u1_5c_libultrahdr_reference.py",
+    "docs/U1_5C_LIBULTRAHDR_REFERENCE_REGRESSION_RESULTS.md",
+    "configs/u1_5c_libultrahdr_reference_decision_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -99,6 +103,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T10:11:00Z",
-  "selection_rationale": "U1.5C is the smallest independent product-format leaf: exact real gain-map references can harden the existing fail-closed boundary without adding unsupported HDR reconstruction or redundant parser capacity."
+  "last_update_utc": "2026-07-18T10:10:22Z",
+  "selection_rationale": "U1.5C passed without source changes: exact real references now harden the fail-closed boundary while leaving complete gain-map/HDR support explicitly open."
 }
