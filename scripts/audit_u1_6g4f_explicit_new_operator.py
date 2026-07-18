@@ -232,12 +232,22 @@ def _run_case(case: dict, config: dict) -> tuple[dict, dict]:
     return result, visual
 
 
-def _panel(array: np.ndarray, label: str, *, amplify: float = 1.0) -> Image.Image:
+def _panel(
+    array: np.ndarray,
+    label: str,
+    *,
+    amplify: float = 1.0,
+    preserve_1to1: bool = False,
+) -> Image.Image:
     display = np.clip(array * np.float32(amplify), 0.0, 1.0)
     image = Image.fromarray(np.rint(display * 255).astype(np.uint8), "RGB")
-    image.thumbnail((340, 250), Image.Resampling.LANCZOS)
-    canvas = Image.new("RGB", (360, 285), "white")
-    canvas.paste(image, ((360 - image.width) // 2, 28))
+    if preserve_1to1:
+        canvas = Image.new("RGB", (image.width + 20, image.height + 35), "white")
+        canvas.paste(image, (10, 28))
+    else:
+        image.thumbnail((340, 250), Image.Resampling.LANCZOS)
+        canvas = Image.new("RGB", (360, 285), "white")
+        canvas.paste(image, ((360 - image.width) // 2, 28))
     ImageDraw.Draw(canvas).text((8, 8), label, fill="black")
     return canvas
 
@@ -265,11 +275,20 @@ def _write_visuals(items: list[tuple[str, dict]], path: Path) -> dict:
             _panel(item["output"], "v2 output"),
             _panel(item["effect"], "abs effect x20", amplify=20.0),
             _panel(alpha_rgb, "alpha x10", amplify=10.0),
-            _panel(_crop(item["base"], center), "1:1 crop input"),
-            _panel(_crop(item["output"], center), "1:1 crop output"),
-            _panel(_crop(item["effect"], center), "crop effect x20", amplify=20.0),
+            _panel(_crop(item["base"], center), "1:1 crop input", preserve_1to1=True),
+            _panel(_crop(item["output"], center), "1:1 crop output", preserve_1to1=True),
+            _panel(
+                _crop(item["effect"], center),
+                "1:1 crop effect x20",
+                amplify=20.0,
+                preserve_1to1=True,
+            ),
         ]
-        row = Image.new("RGB", (sum(panel.width for panel in panels), 285), "white")
+        row = Image.new(
+            "RGB",
+            (sum(panel.width for panel in panels), max(panel.height for panel in panels)),
+            "white",
+        )
         x = 0
         for panel in panels:
             row.paste(panel, (x, 0))

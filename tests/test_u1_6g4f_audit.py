@@ -5,6 +5,7 @@ import numpy as np
 from scripts.audit_u1_6g4f_explicit_new_operator import (
     _deterministic_payload_sha,
     _effect_pass,
+    _panel,
     _seam_max,
     effect_metrics,
 )
@@ -57,3 +58,9 @@ def test_deterministic_payload_ignores_runtime_only() -> None:
     assert _deterministic_payload_sha(first) == _deterministic_payload_sha(second)
     second[0]["metric"] = 2.0
     assert _deterministic_payload_sha(first) != _deterministic_payload_sha(second)
+
+
+def test_visual_crop_panel_preserves_one_input_pixel_per_output_pixel() -> None:
+    field = np.zeros((32, 48, 3), np.float32)
+    panel = _panel(field, "crop", preserve_1to1=True)
+    assert panel.size == (68, 67)
