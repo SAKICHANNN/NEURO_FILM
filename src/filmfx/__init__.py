@@ -36,6 +36,13 @@ from .global_resample import (
     reconstruct_shape_stable_tiled,
     reconstruct_shape_stable_window,
 )
+from .gradient_window import (
+    GRADIENT_WINDOW_VERSION,
+    GradientWindowMetadata,
+    array_scalar_window_reader,
+    coordinate_gradient_window,
+    coordinate_gradient_window_from_array,
+)
 from .layers import FilmLayer, layer_metrics
 from .tiled_grain import (
     GRAIN_BLUR_HALO,
@@ -63,6 +70,8 @@ __all__ = [
     "GLOBAL_RESAMPLE_VERSION",
     "GlobalResampleExecutionMetadata",
     "GlobalResamplePlan",
+    "GRADIENT_WINDOW_VERSION",
+    "GradientWindowMetadata",
     "HALATION_DAG_VERSION",
     "HalationFieldNode",
     "HalationResourcePlan",
@@ -80,12 +89,15 @@ __all__ = [
     "STREAMING_PERCENTILE_VERSION",
     "StreamingPercentileResult",
     "build_physical_halation_layer",
+    "array_scalar_window_reader",
     "build_halation_resource_plan",
     "build_shape_stable_global_stage",
     "build_dust_scratch_context",
     "composite_layers",
     "composite_dust_scratch_tiled",
     "composite_simple_halation_tiled",
+    "coordinate_gradient_window",
+    "coordinate_gradient_window_from_array",
     "density_halation_layer",
     "describe_physical_halation_controls",
     "dust_scratch_layer",
