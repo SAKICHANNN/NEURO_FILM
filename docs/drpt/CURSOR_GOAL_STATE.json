@@ -5,25 +5,25 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "3561c8e6f30c0bbd00366ea332efaeaa78f4c948",
+  "head": "9abc3083b16e1d06691a47191a48ac0b44b5d7fc",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 48,
+  "iteration": 49,
   "current_node": "ULT > U1.4 > U1.4C > U1.4C1",
-  "current_leaf": "U1.4C1 working-space-aware Lab kernel contract frozen; implementation ready",
+  "current_leaf": "U1.4C1A Lab primitive pass; shared safe-Lab kernel extraction ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "627a0d9678315742cbe72defa4a5af72c3bcfacf",
+  "last_verified_commit": "9abc3083b16e1d06691a47191a48ac0b44b5d7fc",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 584,
+    "passed": 593,
     "failed": 0,
-    "timestamp": "2026-07-18T07:51:32Z"
+    "timestamp": "2026-07-18T08:04:57Z"
   },
   "ready_leaves": [
-    "U1.4C1_lab_kernel_implementation",
+    "U1.4C1B_pure_lab_kernel_extraction",
     "U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Verify and commit/push U1.4C1 contract, then implement shared D65 Lab/kernel primitives with frozen existing-sRGB parity before adding the isolated Rec.2020 adapter.",
+  "next_action": "Commit/push U1.4C1A results, then extract the pure Lab transformation kernel behind the existing legacy API and require exact frozen hashes plus all-style full/tiled parity before retaining it.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -71,10 +71,11 @@
     "docs/U1_4C0_WIDE_GAMUT_OPERATOR_COMPATIBILITY_AUDIT.md",
     "docs/planning/U1_4C1_WORKING_SPACE_LAB_KERNEL_CONTRACT.md",
     "configs/u1_4c1_working_space_lab_kernel_v1.json",
+    "docs/U1_4C1A_WORKING_SPACE_LAB_PRIMITIVE_RESULTS.md",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T07:57:35Z",
-  "selection_rationale": "The smallest truthful implementation is a shared Lab kernel whose first gate is exact legacy parity and whose Rec.2020 branch must retain a styled out-of-sRGB witness without effects or production coupling."
+  "last_update_utc": "2026-07-18T08:04:57Z",
+  "selection_rationale": "Conversion math now matches the frozen legacy PCS; the next risk-bearing step is extracting the shared Lab transform without changing a single existing style output."
 }

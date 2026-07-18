@@ -1810,3 +1810,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Forbidden:** grain, dither, output margin, HP5/Tri-X, FilmFX, renderer/profile/schema changes and sRGB clip-and-return.
 - **Structure:** reusable kernel belongs in `src/color_engine/`; no parallel research-script implementation.
 - **Handoff:** hash/commit/push the contract, then implement conversion/kernel primitives behind focused parity tests before adding the Rec.2020 adapter.
+
+## 2026-07-18 - Pass U1.4C1A working-space Lab primitive
+
+- **Implementation:** `9abc308` adds `src/color_engine/lab.py` and reference/roundtrip/fail-closed tests without changing legacy safe-Lab callers.
+- **Gate discipline:** the first official-matrix attempt missed frozen skimage Lab by `0.02045`; the `3e-4` gate was not widened. The retained shared legacy PCS reaches exact sRGB reference parity.
+- **Evidence:** Rec.2020 roundtrip `4.77e-7`; linear-sRGB roundtrip `1.07e-6`; same-colour cross-space Lab `6.10e-5`.
+- **Verification:** 33 focused and 593 full CPU tests pass.
+- **Handoff:** extract the pure Lab transformation kernel while preserving the two frozen output hashes and all eight full/tiled style results; do not add the Rec.2020 adapter yet.

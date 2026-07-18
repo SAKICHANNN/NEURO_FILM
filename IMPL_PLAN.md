@@ -299,6 +299,10 @@ Its frozen first scope is six colour styles with grain/dither/output margin and
 FilmFX disabled. Promotion requires exact legacy hashes plus a styled Rec.2020
 witness that remains materially outside sRGB; otherwise the operator branch
 closes even if the colour-conversion utilities pass.
+U1.4C1A passes the conversion layer: legacy-skimage Lab error is zero,
+linear-Rec.2020 Lab roundtrip is `4.77e-7`, and same physical colours agree
+across spaces within `6.11e-5`. The safe-Lab transformation kernel has not yet
+been moved; its frozen output hashes remain the next hard gate.
 
 ---
 
