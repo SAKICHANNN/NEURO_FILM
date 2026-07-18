@@ -267,7 +267,7 @@ def _write_visuals(items: list[tuple[str, dict]], sheet_path: Path, output_dir: 
             output_path, "PNG"
         )
         outputs[case_id] = {
-            "path": str(output_path.as_posix()),
+            "artifact_name": output_path.name,
             "sha256": _sha_path(output_path),
         }
     sheet = Image.new(
