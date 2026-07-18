@@ -6,7 +6,7 @@
 
 **Status:** frozen / implementation ready
 
-**Config SHA-256:** `8671ba7c89437275bcbdd4136ae0988f13d6da1cc23689864f4712d260625aed`
+**Config SHA-256:** `157d586b9b1e32c57f791171bdca2f81d2ced0a56a402488cfb473ed6944e8a3`
 
 ## Purpose
 
@@ -84,6 +84,14 @@ that historical failure is recorded rather than repaired in place.
 - G4A coordinate-exact gradients pass;
 - clean pre-contract HEAD is `7789aee`;
 - no effect, renderer, download or training process is active.
+
+### Pre-run clerical correction
+
+The first audit invocation stopped at the second real-file hash check before
+writing a report. Its SHA had been transcribed incorrectly as `...c9cdcb4d...`.
+The unchanged 2026-05-26 file and four pre-existing FilmStyleSafe inventories
+all record `...c9cdcdbb...`. The corrected config hash above was frozen before
+the confirmatory audit was rerun; no gate or algorithm changed.
 
 ## DoD and frozen gates
 

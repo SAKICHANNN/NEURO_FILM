@@ -21,7 +21,7 @@
     {
       "case_id": "u41_11_luma",
       "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/11_Sigma_fp_Sigma_-_fp_-_12bit_16_9__raw-neutral.jpg",
-      "sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcb4d0369ebb20d",
+      "sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcdbb4d0369ebb20d",
       "shape": [900, 1600],
       "sigma": 52.0,
       "coarse_row_chunks": [1, 13, 61],

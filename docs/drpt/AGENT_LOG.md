@@ -1598,3 +1598,8 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** `shape-stable-global-resample-v2-explicit-f32` uses increasing-index float32 multiply/add only, with no reduced-axis BLAS. Full and bounded-row paths must share this kernel.
 - **Frozen gates:** config SHA-256 `8671ba7c...`; new-seed cross-chunk/full/tiled/repeat bytes, bounded reader metadata, fixed v1 drift ceilings, two hashed real-luma cases, zero severe field artifacts, v1 regressions and full CPU tests.
 - **Boundary/handoff:** no effect integration. Implement in the existing module with version-specific APIs; a pass opens only capability binding and a separately contracted density executor.
+
+### U1.6G4C pre-run clerical correction
+
+- The first audit invocation failed closed on the second real-file SHA before writing a report. The config transcribed authoritative `...c9cdcdbb...` as `...c9cdcb4d...`; file timestamp/size and four older FilmStyleSafe inventories confirm the former.
+- Correct only that SHA and refreeze config SHA-256 as `157d586b...`. Algorithm, cases, thresholds and gates are unchanged; confirmatory execution begins only after this correction commit.
