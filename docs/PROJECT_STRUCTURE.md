@@ -66,6 +66,10 @@ and quantizes only in `output_encode.py`. The isolated BT.2020 SDR PNG boundary
 does not imply renderer integration. Keep future HDR/wide-gamut or tone-map work
 inside these same boundaries rather than adding a parallel renderer.
 
+`src/color_engine/` owns reusable deterministic colour-operator math. Its
+initial `lab.py` primitive converts supported explicit linear working spaces to
+and from D65 CIELAB without clipping. It must not absorb file I/O or FilmFX.
+
 ## Inference and replay contracts
 
 `src/inference/` owns reusable deterministic render identity and replay
