@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.4 > U1.4C > U1.4C2",
+  "title": "Bounded real-image Rec.2020 safe-Lab visual/OOD audit",
+  "parent_results": "docs/U1_4C1C_REC2020_SAFE_LAB_ADAPTER_RESULTS.md",
+  "source_manifest": "outputs/real_film/filmr_v2/evidence/pairs.jsonl",
+  "source_manifest_sha256": "a9075014e4fe6063c0137dc4de6af5b8222c54480a237a513f42027ebcf5b6ba",
+  "rights": {
+    "license": "CC BY 4.0",
+    "attribution": "Daniela Ivanova; original scans contributed by d@analog.cafe",
+    "allowed_use": "internal research visual/OOD audit with attribution",
+    "claim_ceiling": "real-film-derived/unknown-look OOD stress; filename families are selection strata only"
+  },
+  "selection": {
+    "rule": "lowest expert-restoration SHA-256 within each provisional filename family, then first eight families by SHA-256(family string)",
+    "pixel_blind_at_freeze": true,
+    "previous_dataset_contact_sheets_may_have_been_viewed": true,
+    "confirmatory_claim_allowed": false,
+    "samples": [
+      {"family_hint": "ektachrome100", "pair_id": "ektachrome100_135_3", "filename": "ektachrome100_135_3_restored.jpg", "sha256": "4d46d96af3a55a54da8d988119032896bd0b56dfb41e3baf2d505f5c46fac205", "bytes": 4493282},
+      {"family_hint": "superia400", "pair_id": "superia400_135_1", "filename": "superia400_135_1_restored.jpg", "sha256": "6268316572cefbbabafb9819f294d123475e7f2f98425fd4003931354f3b4cb0", "bytes": 6083266},
+      {"family_hint": "portra160", "pair_id": "portra160_half_1", "filename": "portra160_half_1_restored.jpg", "sha256": "6897163ab456e58ee15b4c77fc87685ba8b5d64e6c7fcf45869cefac5cf200e9", "bytes": 4923692},
+      {"family_hint": "cinestill800t", "pair_id": "cinestill800t_half_17", "filename": "cinestill800t_half_17_restored.jpg", "sha256": "02490e7a7f691a396d3adf8d0d4ee54b99e4bfcf54a9fd14a26b57af739a811b", "bytes": 5733382},
+      {"family_hint": "cinestill50d", "pair_id": "cinestill50d_half_1", "filename": "cinestill50d_half_1_restored.jpg", "sha256": "123058ae3c52ba969a62ee14b3054e060e5926b127985b075048c143b5280cf8", "bytes": 5272799},
+      {"family_hint": "velvia50", "pair_id": "velvia50_half_2", "filename": "velvia50_half_2_restored.jpg", "sha256": "324584e09b8d413d920fc9300deed01b05fb9d4d00daab404219e5931d29dace", "bytes": 4386489},
+      {"family_hint": "provia100", "pair_id": "provia100_135_1", "filename": "provia100_135_1_restored.jpg", "sha256": "14fe4e97413ff138c269f941cf5afd1d5e397d1e86d968181879b0c812f29d30", "bytes": 2803792},
+      {"family_hint": "ektar100", "pair_id": "ektar100_135_1", "filename": "ektar100_135_1_restored.jpg", "sha256": "d55463b2359bfb5d8a079daf7b5171d723bf4f5946be4f4a7041489b6b4f48dd", "bytes": 5166047}
+    ]
+  },
+  "render": {
+    "input_assumption": "unprofiled FILM-R JPEG decoded as display sRGB solely for OOD stress",
+    "working_space": "linear_rec2020",
+    "styles": ["ektar_100", "portra_400", "portra_800", "velvia_50", "vision3_250d", "vision3_500t"],
+    "gamut_modes": ["source", "chroma"],
+    "profile_parameters": "safe-rich colour parameters with grain=0, dither=0, output_margin=0",
+    "output_root": "outputs/u1_4c2_rec2020_visual_ood_v1",
+    "rec2020_master": "16-bit RGB PNG with BT.2020 SDR CICP",
+    "visual_preview": "explicit clipped display-sRGB diagnostic only; never used for wide-gamut metrics"
+  },
+  "automatic_gates": {
+    "expected_sources": 8,
+    "expected_renders": 96,
+    "two_pass_byte_identity": true,
+    "require_exact_source_hash_bytes_decode": true,
+    "require_finite_in_gamut_outputs": true,
+    "require_shape_identity": true,
+    "rec2020_boundary_epsilon": 0.0000152587890625,
+    "maximum_new_rec2020_boundary_fraction": 0.005,
+    "legacy_regression_required": true
+  },
+  "visual_protocol": {
+    "two_deterministic_anonymous_contact_layouts": true,
+    "all_96_outputs_present_each_layout": true,
+    "full_resolution_risk_ranked_outputs": 12,
+    "severe_categories": ["posterization", "banding", "colour_blocks", "unstable_highlights", "large_unintended_clipping", "detail_corruption", "seams"],
+    "any_severe_or_uncertain_requires_full_resolution_adjudication": true,
+    "maximum_confirmed_severe": 0,
+    "style_or_preference_scoring_forbidden": true
+  },
+  "branches": {
+    "automatic_fail": "close U1.4C2 and retain C1A/B primitives only as applicable",
+    "confirmed_severe": "reject the affected policy; do not integrate or widen thresholds",
+    "uncertain": "remain A0 research-only and do not open integration",
+    "pass": "retain A0 real-image OOD evidence and define a separate integration-readiness contract; no automatic production wiring"
+  },
+  "claim_ceiling": "A0 autonomous visual/OOD evidence for an isolated colour-only Rec.2020 research adapter on previously available CC-BY film scans; no digital-photo, preference, stock authenticity, calibration, renderer or user-facing support claim"
+}
