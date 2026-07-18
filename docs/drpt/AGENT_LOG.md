@@ -1546,3 +1546,8 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** add immutable concrete graph specs, topology/fingerprint validation, liveness and separately categorized external/output/context/workspace/scratch accounting. Graph family semantics remain separate.
 - **Readiness boundary:** current G1 lacks a repeatable row-chunk/window stage builder for derived fields. Plans must remain `integration_ready=false` and name that capability; no hidden full field or effect integration is allowed.
 - **Next:** commit/push contract, implement planner/specs, verify 24MP/100MP arithmetic without claiming executable 100MP readiness.
+
+### U1.6G3 pre-implementation contract correction
+
+- Dependency expansion shows that every weighted-source blur also consumes `np.gradient(y)`. A repeatable row-chunk stage alone would still permit chunk-edge gradient seams.
+- The readiness gate now requires both `row_chunked_global_stage_builder` and `coordinate_exact_gradient_window`; this correction precedes implementation and changes no frozen experiment or effect pixel.

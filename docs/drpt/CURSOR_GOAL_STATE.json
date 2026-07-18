@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "f9360a6f50c814dd76c2dbf7abfd548061918524",
+  "head": "7a0010e88615f2c109ac80dd1aa9dc9f34a54405",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
   "iteration": 19,
   "current_node": "ULT > U1.6 > U1.6G3",
   "current_leaf": "U1.6G3 field-DAG/lifetime contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "f9360a6f50c814dd76c2dbf7abfd548061918524",
+  "last_verified_commit": "7a0010e88615f2c109ac80dd1aa9dc9f34a54405",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 431,
@@ -23,7 +23,7 @@
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push the U1.6G3 contract, implement validated physical/density graph specs and categorized lifetime accounting, and keep integration false until row-chunked global staging exists.",
+  "next_action": "Implement validated physical/density graph specs and categorized lifetime accounting; keep integration false until row-chunked global staging and coordinate-exact gradient windows both exist.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -35,6 +35,6 @@
     "src/filmfx/effects.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T04:43:39Z",
-  "selection_rationale": "The current effect graphs mix global and finite-halo fields. A faithful static DAG and categorized lifetime audit is required to prevent small blurs becoming hidden full-resolution caches and to expose the missing row-chunked stage capability."
+  "last_update_utc": "2026-07-18T04:46:58Z",
+  "selection_rationale": "The current effect graphs mix global and finite-halo fields. A faithful static DAG and categorized lifetime audit is required to prevent small blurs becoming hidden full-resolution caches and to expose both missing row-chunked staging and coordinate-exact gradient capabilities."
 }

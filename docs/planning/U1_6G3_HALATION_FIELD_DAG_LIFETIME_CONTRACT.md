@@ -68,15 +68,18 @@ are transient G2 workspace and the resolved percentile is scalar context.
 ## Hard integration readiness rules
 
 The plan must report `integration_ready=false` while any required capability is
-absent. Current known missing capability:
+absent. Current known missing capabilities:
 
 - U1.6G1 can stage from a full ndarray but cannot yet consume a repeatable
   row-chunk/window factory. Derived source, deviation and weighted-source fields
   therefore cannot be global-staged without materialising a hidden full field.
+- weighted source fields depend on `np.gradient(y)`, but there is not yet a
+  coordinate-exact original-boundary/chunk-boundary gradient-window primitive.
 
-The planner must name this as `row_chunked_global_stage_builder`. It is forbidden
-to hide that full field, mislabel it as bounded context, or integrate an effect
-before the capability passes a later child contract.
+The planner must name these as `row_chunked_global_stage_builder` and
+`coordinate_exact_gradient_window`. It is forbidden to hide a full field,
+mislabel it as bounded context, accept chunk-edge gradients, or integrate an
+effect before both capabilities pass later child contracts.
 
 ## Resource rules
 
@@ -112,8 +115,8 @@ before the capability passes a later child contract.
 5. peak resource accounting is independently recomputed by tests;
 6. 24MP and 100MP arithmetic plans are deterministic, overflow-safe and keep
    external/output/context/workspace/scratch categories separate;
-7. both plans remain `integration_ready=false` with the exact missing
-   row-chunked-stage capability;
+7. both plans remain `integration_ready=false` with both exact missing
+   row-chunked-stage and coordinate-gradient capabilities;
 8. malformed graphs, storage classes, cycles, duplicate/unknown nodes and
    invalid shapes/parameters fail closed;
 9. focused tests and the complete CPU suite pass;
