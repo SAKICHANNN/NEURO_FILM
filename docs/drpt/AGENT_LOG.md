@@ -1671,3 +1671,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 21 post-fix focused tests and 532 full CPU tests pass. Existing renderer/effect entry point/CLI remain unchanged.
 - **Decision:** retain v2 as separately versioned opt-in research evidence only. Do not call it strong global style, legacy-compatible, default or integrated.
 - **Handoff:** G4G may freeze a measured 24MP peak-memory/runtime/orchestration audit. It cannot imply integration or 100MP readiness.
+
+## 2026-07-18 - Freeze U1.6G4G 24MP resource/orchestration audit
+
+- **Question:** measure one fixed 24MP staged executor plus row-stream composite in an isolated child; do not infer complete-renderer or 100MP readiness.
+- **Workload:** analytic float32 4000x6000 RGB field built in 64-row chunks; tile 512/source 64/coarse 7; full RGB+alpha layer and separate row-filled RGB composite.
+- **Measurement:** parent samples child RSS every 20ms via local `psutil 7.2.2`; two independent runs must repeat source/layer/composite/metadata hashes.
+- **Gates:** config SHA `33ecdfa3...`; <=4GiB child RSS, <=90s worker, <=75s executor, <=15s composite, finite/bounded outputs, bounded source windows, zero pixel scratch, atomic failure/no orphan.
+- **Boundary:** local Ryzen evidence only; a pass cannot integrate/default the effect or claim M5, cross-platform, file-I/O, full renderer or 100MP readiness.
+- **Handoff:** implement small composite/generator tests and atomic worker harness before any 24MP run.

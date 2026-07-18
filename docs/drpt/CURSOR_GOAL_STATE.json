@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "1220d8d46568dcd5a99cc2fef3299fd772330a3d",
+  "head": "3d529617219f10f50f5bd01d4e4df8d25f86f0c1",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 32,
+  "iteration": 33,
   "current_node": "ULT > U1.6 > U1.6G4G",
-  "current_leaf": "U1.6G4F passes opt-in research retention only; G4G measured 24MP memory/runtime contract design ready",
+  "current_leaf": "U1.6G4G measured 24MP memory/runtime/orchestration contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "1220d8d46568dcd5a99cc2fef3299fd772330a3d",
+  "last_verified_commit": "3d529617219f10f50f5bd01d4e4df8d25f86f0c1",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 532,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T06:29:21Z"
   },
   "ready_leaves": [
-    "U1.6G4G_24mp_measured_memory_runtime_contract",
+    "U1.6G4G_24mp_resource_audit_implementation",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push G4F results, then freeze a 24MP measured peak-memory/runtime and orchestration-readiness contract before executing any large case; keep renderer integration and 100MP claims closed.",
+  "next_action": "Verify and commit/push the G4G contract, implement the tested atomic worker/RSS harness, run the failure probe, then execute the frozen 24MP workload twice only if focused gates pass.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -47,10 +47,12 @@
     "configs/u1_6g4f_explicit_new_operator_audit_v1.json",
     "docs/U1_6G4F_EXPLICIT_NEW_OPERATOR_AUDIT_RESULTS.md",
     "configs/u1_6g4f_autonomous_visual_decision_v1.json",
+    "docs/planning/U1_6G4G_24MP_RESOURCE_AUDIT_CONTRACT.md",
+    "configs/u1_6g4g_24mp_resource_audit_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T06:29:21Z",
-  "selection_rationale": "G4F passes only the bounded opt-in effect claim. A measured 24MP resource/runtime audit is the smallest legal leaf before considering orchestration or integration, while 100MP remains explicitly open."
+  "last_update_utc": "2026-07-18T06:35:00Z",
+  "selection_rationale": "The smallest legal continuation is an isolated measured 24MP resource and orchestration audit. It adds falsifiable engineering evidence without modifying production paths or implying 100MP readiness."
 }

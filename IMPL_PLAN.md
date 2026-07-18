@@ -236,7 +236,10 @@ default the effect. G4F now passes its fresh automatic and visual gates: all
 three cases are safe and non-empty, while exactly two show a plausible
 unamplified localized response. Retain as opt-in research only. The next leaf
 must measure 24MP peak memory/runtime and orchestration readiness before any
-integration decision; total 100MP remains unproved.
+integration decision; total 100MP remains unproved. G4G now freezes a 24MP
+analytic workload, fresh-child 20ms peak-RSS sampling, executor/row-composite
+timings, repeat hashes and atomic failure cleanup. A pass is measurement
+evidence only and cannot integrate the module.
 
 ---
 
