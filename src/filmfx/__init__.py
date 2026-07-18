@@ -31,6 +31,11 @@ from .tiled_grain import (
     StagedGrainMetadata,
     staged_grain_residual_layer,
 )
+from .streaming_percentile import (
+    STREAMING_PERCENTILE_VERSION,
+    StreamingPercentileResult,
+    exact_streaming_percentiles,
+)
 from .tiled_effects import (
     DustScratchContext,
     DustScratchExecutionMetadata,
@@ -54,6 +59,8 @@ __all__ = [
     "PhysicalHalationControls",
     "StagedGrainMetadata",
     "StagedGlobalField",
+    "STREAMING_PERCENTILE_VERSION",
+    "StreamingPercentileResult",
     "build_physical_halation_layer",
     "build_shape_stable_global_stage",
     "build_dust_scratch_context",
@@ -64,6 +71,7 @@ __all__ = [
     "describe_physical_halation_controls",
     "dust_scratch_layer",
     "dust_scratch_alpha_window",
+    "exact_streaming_percentiles",
     "grain_residual_layer",
     "halation_layer",
     "get_halation_preset",
