@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "contract_id": "kmcfm.filmstylesafe-r1c3.v1",
+  "node": "ULT > U5.R1 > U5.R1C3",
+  "parent_decision": "configs/filmstylesafe_r1c2_decision_v1.json",
+  "inventory": "configs/filmstylesafe_r1b6_a0_inventory_v1.json",
+  "baseline_contract": "configs/filmstylesafe_r1c_contract_v1.json",
+  "question": "Can fixed low-capacity pairwise global colour canonicalization suppress legitimate 53/55/56 style response without absorbing three A0 proxy-severe failures?",
+  "candidates": [
+    {"id": "conditioned_affine_v1", "degree": 1},
+    {"id": "conditioned_quadratic_v1", "degree": 2}
+  ],
+  "fit": {
+    "maximum_sample_pixels": 65536,
+    "ridge": 0.0001,
+    "huber_delta": 0.04,
+    "irls_iterations": 4,
+    "lab_scaling": {"L": 100.0, "a": 128.0, "b": 128.0}
+  },
+  "score": {
+    "smooth_grad_threshold": 0.035,
+    "residual_thresholds": [4.0, 8.0, 12.0],
+    "min_component_pixels": 4,
+    "sparse_threshold": 6.0,
+    "island_weight": 1000.0,
+    "sparse_weight": 200.0,
+    "quantile": 0.99
+  },
+  "decision": {
+    "strict_threshold": "score > max(all five non-severe scores)",
+    "pass_positives_detected": 3,
+    "weak_pass_positives_detected": 2,
+    "fail_max_positives_detected": 1,
+    "retain_simplest_full_pass": true,
+    "style_controls_may_be_excluded": false
+  },
+  "authorization": {
+    "a0_pairwise_explicit_canonicalization": true,
+    "model_training": false,
+    "hidden_split_population": false,
+    "external_human_recruitment": false,
+    "paid_resource": false,
+    "production_gate": false
+  },
+  "forbidden_fallbacks": [
+    "drop_53_55_56",
+    "cubic_or_higher_capacity",
+    "LUT_or_spatial_network",
+    "learned_features",
+    "label_conditioned_threshold",
+    "post_result_tuning"
+  ],
+  "claim_ceiling": "A0 proxy-label conditioned-style-control research only; not human confirmation, population risk evidence, a validated severe detector or a production gate"
+}

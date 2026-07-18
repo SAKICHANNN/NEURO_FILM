@@ -1860,3 +1860,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 48 focused and 639 complete CPU tests, compile and diff checks pass.
 - **Boundary:** no complete MPF/ISO 21496-1, HEIF/AVIF, HDR reconstruction, tone map, preservation or renderer-support claim opens.
 - **Propagation/handoff:** U1.5B closes; Ultimate remains ACTIVE and the next explicit ready research leaf is U5.R1C3 after refreshing its parent evidence.
+
+## 2026-07-18 - Freeze U5.R1C3 conditioned style-control protocol
+
+- **Parent/skills:** R1C2 A0 result; `dev-research-reliability` primary, research/branch-tree, DRPT, plan, structure and log secondary.
+- **Question:** can a fixed per-pair global colour relation suppress legitimate 53/55/56 response without absorbing the three bound proxy-severe failures?
+- **Competing hypotheses:** removable global style (H1), spatial interaction (H2), or severe-signal absorption (H3).
+- **Frozen test:** deterministic robust affine and quadratic source-Lab-to-candidate-ab fits; strict zero-FPR evaluation across all five negatives; simplest 3/3 candidate wins.
+- **Forbidden fallback:** no removal of 53/55/56, post-result tuning, cubic/LUT/neural capacity, hidden A1, recruitment, training or production gate.
+- **Handoff:** commit/push contract before code; invalid results repair only, valid fail closes rather than adding capacity; Goal stays ACTIVE.
