@@ -1768,3 +1768,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** `5e-15` composed/inverse matrix error, `1e-6` extended float32 roundtrip, `2e-7` neutral axis, no clamp/nonfinite/mutation.
 - **Change propagation:** new preprocess sibling and public API only; renderer, schemas, output encoder, stock evidence and frozen experiments remain unchanged.
 - **Handoff:** hash/commit/push contract before module and tests.
+
+## 2026-07-18 - Pass U1.4A validated linear Rec.2020 primitive
+
+- **Implementation:** `bd5b193` adds the preprocess colour-management module, public API, config-driven tests and structure record.
+- **Math evidence:** config discrepancy 0; inverse identity `2.3593e-16`; extended float32 roundtrip `2.3842e-7`; neutral-axis error 0; extended values remain unclipped.
+- **Provenance:** WorkingImage state/profile/HDR/orientation/alpha/bit-depth/path are preserved without mutable metadata aliasing.
+- **Verification:** 53 focused and 576 full CPU tests pass.
+- **Propagation:** parent U1.4 advances to primitive pass; renderer, I/O, schemas, stock/research evidence and frozen experiments remain unchanged.
+- **Handoff:** audit the smallest file-ingress/output or operator-compatibility leaf; do not integrate production merely because math exists.

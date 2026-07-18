@@ -278,6 +278,10 @@ U1.4A now freezes a dependency-free D65 linear-sRGB/linear-Rec.2020 primitive
 from official published matrices. It must preserve extended values and
 WorkingImage provenance; renderer integration, HDR transfers, ACES and output
 profiles remain separate gated work.
+U1.4A passes with zero frozen-matrix discrepancy, `2.36e-16` matrix identity
+error, `2.38e-7` extended float32 roundtrip error and zero neutral-axis error.
+The primitive is public under `src.preprocess`; file I/O and renderer/operator
+compatibility remain the next U1.4 boundary.
 
 ---
 
