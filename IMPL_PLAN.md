@@ -307,8 +307,12 @@ unchanged, and 600 CPU tests pass. U1.4C1C now passes destination-space source/
 chroma gamut policies and the isolated six-style Rec.2020 adapter; its frozen
 Velvia witness remains outside linear sRGB by `0.4797`, and 625 CPU tests pass.
 This is mathematical/engineering evidence only. A separate bounded real-image
-visual/OOD audit is required before any production renderer or FilmFX
-integration can be considered.
+visual/OOD audit was required before integration. U1.4C2 executes 96 full-
+resolution renders twice with exact repeat identity, but 66/96 exceed the
+frozen 0.5% new Rec.2020 boundary gate and the worst reaches 6.7808%. The visual
+stage was therefore forbidden and not opened. Retain C1A/B primitives and C1C
+synthetic research evidence, but close this first wide-gamut operator for
+renderer/FilmFX/profile/schema/default integration.
 
 ---
 

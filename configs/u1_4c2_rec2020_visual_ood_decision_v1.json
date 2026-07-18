@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "decision_id": "u1.4c2-rec2020-visual-ood-v1",
+  "node": "ULT > U1.4 > U1.4C > U1.4C2",
+  "config_sha256": "9747f1ba93fdefe1b409a3a2197ffe77a0fe6e04469e4c7b8f1c967bb726b57b",
+  "report": "outputs/u1_4c2_rec2020_visual_ood_v1/report.json",
+  "report_sha256": "3b52032ea01a023189c4e03e6071cec3ae2e7c18f9dad63c6bb3ae08a8b8a118",
+  "software_commit": "9699d7198f825a146c1e6cd59f6c78051b6ba5cf",
+  "automatic_pass": false,
+  "sources": 8,
+  "renders_each_pass": 96,
+  "repeat_normalized_manifest_identical": true,
+  "maximum_new_rec2020_boundary_fraction": 0.06780815521049896,
+  "maximum_allowed_new_rec2020_boundary_fraction": 0.005,
+  "renders_over_boundary_gate": 66,
+  "renders_total": 96,
+  "source_mode_over_gate": 33,
+  "chroma_mode_over_gate": 33,
+  "visual_stage_opened": false,
+  "anonymous_sheets_created": false,
+  "private_mapping_created": false,
+  "confirmed_visual_severe_artifacts": null,
+  "decision": "close_u1_4c2_automatic_gate_fail",
+  "retained": [
+    "C1A working-space Lab conversion primitive",
+    "C1B pure Lab kernel with frozen legacy parity",
+    "C1C synthetic mathematical research evidence",
+    "C2 deterministic harness and negative OOD evidence"
+  ],
+  "forbidden": [
+    "visual promotion from C2",
+    "production renderer/profile/schema/default integration",
+    "threshold widening after result",
+    "claiming confirmed severe visual artifacts without visual review",
+    "digital-photo safety, preference, calibration or stock authenticity claims"
+  ],
+  "next_leaf": "return to another legal Ultimate product/research leaf; do not rescue C2 by adding capacity or weakening the boundary gate",
+  "claim_ceiling": "repeatable automatic negative OOD evidence on eight CC-BY FILM-R restoration scans; no visual-severe verdict or ordinary-digital-photo generalization"
+}

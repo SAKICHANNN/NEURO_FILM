@@ -1835,3 +1835,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Safety/evidence:** source/chroma 12/12 pass; endpoints, state/space/style/mode/input fail closed; repeated bytes, source nonmutation and nested provenance isolation pass. No sRGB render path, effects or production imports are used.
 - **Verification:** 55 core focused, 101 wider boundary and 625 complete CPU tests pass; compile and diff checks pass. One unnormalised development assertion was corrected to its dimensionless angular property without changing implementation or frozen gates.
 - **Decision/handoff:** U1.4C1 closes as an isolated research pass. U1.4C2 real-image visual/OOD audit is required before integration; no preference, authenticity, calibration, HDR/ACES, renderer, schema or user-facing claim opens.
+
+## 2026-07-18 - Close U1.4C2 at automatic real-image OOD gate
+
+- **Rights/scope:** eight exact FILM-R v2 CC-BY restorations selected by frozen hash/family-stratified metadata rule; A0 OOD stress only under explicit unprofiled-sRGB assumption.
+- **Execution:** harness `9699d71`; 96 full-resolution RGB16 Rec.2020 masters per pass, two passes, normalized manifests identical; formal runtime 1,463.1s.
+- **Frozen failure:** 66/96 exceed the 0.5% new Rec.2020 boundary gate; worst is 6.7808%. Source and chroma each fail 33/48, so neither policy escapes. Red-high and blue/green-low mechanisms appear on different source/style cells.
+- **Visual boundary:** automatic failure prohibited anonymous sheets/private mapping and visual review. No confirmed visual-severe verdict exists; this is boundary/clipping-risk evidence only.
+- **Decision:** close C2, retain C1A/B and C1C synthetic research evidence, forbid renderer/profile/schema/default integration and threshold widening. Ultimate remains ACTIVE and returns to another legal leaf.
