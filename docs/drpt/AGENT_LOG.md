@@ -1794,3 +1794,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 52 focused and 584 full CPU tests pass; existing renderer/schema/default paths remain unchanged.
 - **Propagation:** U1.4 advances to math/file-boundary pass; HDR, ACES/OCIO, arbitrary profiles, viewer compatibility and renderer integration remain open.
 - **Handoff:** audit U1.4C operator compatibility without silently narrowing Rec.2020 or treating an sRGB roundtrip as wide-gamut rendering.
+
+## 2026-07-18 - Close U1.4C0 operator-compatibility audit
+
+- **Evidence:** safe-Lab input/output/gamut/B&W/grain/dither are sRGB-bound; FilmFX uses Rec.709 luminance, sRGB inverse transfer and encoded-component blending.
+- **Decision:** direct Rec.2020 integration is forbidden; sRGB clip-and-return is not a wide-gamut renderer.
+- **Propagation:** U1.4B remains an isolated file boundary; renderer, schemas and defaults remain unchanged.
+- **Authorized child:** U1.4C1 pure D65-Lab kernel/backend split with frozen sRGB parity, Rec.2020-specific gamut handling and colour-only scope.
+- **Claim ceiling:** source-code audit and negative integration decision only.

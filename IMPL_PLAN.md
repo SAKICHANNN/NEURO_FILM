@@ -290,6 +290,11 @@ U1.4B passes: its uint16 samples are exact, repeat files are byte-identical,
 seeded linear roundtrip error is `1.44e-5`, and unsupported/malformed signalling
 fails closed. Operator compatibility and user-facing renderer integration remain
 separate gates.
+U1.4C0 finds that the current Lab transformation concepts are partly portable,
+but every public input/output/gamut boundary and every FilmFX family is
+sRGB-bound. Direct Rec.2020 wiring and sRGB-clip roundtrip claims are forbidden.
+U1.4C1 may proceed only as a pure-Lab/backend split with frozen existing-sRGB
+parity and a colour-only Rec.2020 result; effects remain separate.
 
 ---
 
