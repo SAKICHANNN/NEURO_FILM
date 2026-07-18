@@ -11,6 +11,7 @@ from src.eval.filmstylesafe_r1c import FilmStyleSafeR1CError
 from src.eval.filmstylesafe_r1c3 import (
     analyze_conditioned_rows,
     conditioned_scis,
+    conditioned_scis_spatial_crossfit,
     load_r1c3_contract,
 )
 
@@ -29,6 +30,12 @@ SCORE = {
     "island_weight": 1000.0,
     "sparse_weight": 200.0,
     "quantile": 0.99,
+}
+GRID = {
+    "rows": 4,
+    "columns": 4,
+    "chebyshev_exclusion_radius_tiles": 1,
+    "minimum_fit_pixels": 4096,
 }
 
 
@@ -78,6 +85,30 @@ def test_conditioned_scis_rejects_invalid_capacity() -> None:
     reference, styled, _ = _fixture()
     with pytest.raises(FilmStyleSafeR1CError, match="degree must be 1 or 2"):
         conditioned_scis(reference, styled, degree=3, fit=FIT, score=SCORE)
+
+
+def test_spatial_crossfit_preserves_local_anomaly_over_global_style() -> None:
+    reference, styled, anomalous = _fixture()
+    style = conditioned_scis_spatial_crossfit(
+        reference, styled, fit=FIT, score=SCORE, grid=GRID
+    )
+    anomaly = conditioned_scis_spatial_crossfit(
+        reference, anomalous, fit=FIT, score=SCORE, grid=GRID
+    )
+    key = "conditioned_affine_spatial_crossfit_v1_score"
+    assert anomaly[key] > style[key] + 20.0
+    assert style["conditioned_affine_spatial_crossfit_v1_tiles"] == 16.0
+
+
+def test_spatial_crossfit_is_deterministic() -> None:
+    reference, _, anomalous = _fixture()
+    first = conditioned_scis_spatial_crossfit(
+        reference, anomalous, fit=FIT, score=SCORE, grid=GRID
+    )
+    second = conditioned_scis_spatial_crossfit(
+        reference, anomalous, fit=FIT, score=SCORE, grid=GRID
+    )
+    assert first == second
 
 
 def test_analysis_selects_simplest_full_pass() -> None:
