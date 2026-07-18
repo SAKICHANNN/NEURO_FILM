@@ -13,6 +13,18 @@ from .render_contract import (
     validate_render_recipe,
     verify_render_recipe_files,
 )
+from .interpretation import (
+    COLOR_DOMAINS,
+    EVIDENCE_SCOPES,
+    INTERPRETATION_CONTRACT_VERSION,
+    INTERPRETATION_IDS,
+    InterpretationContractError,
+    InterpretationMetadata,
+    InterpretationPlugin,
+    InterpretationRequest,
+    InterpretationResult,
+    execute_interpretation,
+)
 from .tiled_render import (
     TileWindow,
     TiledExecutionMetadata,
@@ -22,6 +34,16 @@ from .tiled_render import (
 )
 
 __all__ = [
+    "COLOR_DOMAINS",
+    "EVIDENCE_SCOPES",
+    "INTERPRETATION_CONTRACT_VERSION",
+    "INTERPRETATION_IDS",
+    "InterpretationContractError",
+    "InterpretationMetadata",
+    "InterpretationPlugin",
+    "InterpretationRequest",
+    "InterpretationResult",
+    "execute_interpretation",
     "PROFILE_SCHEMA_ID",
     "PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID",
     "RECIPE_SCHEMA_ID",
