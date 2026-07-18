@@ -1509,3 +1509,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 19 focused harness tests pass, including malformed-active-state and live-conflict vetoes; stdin/stdout follow-up smoke and `git diff --check` pass.
 - **Scientific review:** SCIS v0.1's 1.0 sensitivity applies only to three A0 proxy positives against two hard-negative/external negatives. It remains 0.333 against all five non-severe controls. Do not remove 53/55/56 from the product false-positive obligation; a future R1C3 must condition or canonicalize style without excluding these required controls.
 - **Handoff:** complete full regression, commit/push GH1, then prefer an independent deterministic U1 product leaf over further tuning to the eight-member A0 metric pilot.
+
+## 2026-07-18 - Freeze U1.6G1 shape-stable global-resample contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G1`; prerequisite child of the closed U1.6G0 direct-adapter route.
+- **Decision:** define `shape-stable-global-resample-v1` around one original-image coarse grid, exact area-overlap downsampling, direct coarse-grid reflect blur and original-coordinate half-pixel bilinear windows. Full and tiled paths must share the same reconstruction function.
+- **Boundary:** this is a new versioned mechanical primitive. Current `gaussian_filter_safe`, physical/density halation, renderer and CLI remain untouched; no legacy parity, physical, stock, calibration, streaming or 100MP claim opens.
+- **Frozen gate:** the prior `257x389`, sigma-52 counterexample plus irregular/anisotropic cases require byte-identical full/tiled output and exact zero seam error, strict failure behavior and explicit memory metadata.
+- **Next handoff:** implement and test the independent primitive, then run the complete CPU suite before results propagation.

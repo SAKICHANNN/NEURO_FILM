@@ -302,6 +302,7 @@ Restrictions:
 | U1.6E | complete: closed | One-pass ordered simple-halation then sparse-dust composite | U1.6A/U1.6C/U1.6D | reversed order differs only `1.19e-07`, inside frozen `1e-6`; screen/white-alpha operators commute algebraically, so observable-order gate fails and no adapter remains; `docs/U1_6E_ORDERED_SUPPORTED_EFFECTS_RESULTS.md` |
 | U1.6F | complete: numerical/resource pass | Exact legacy grain with bounded-RAM temporary-disk staging | U1.6A/U1.6E | 21 focused/127 adjacent/349 full tests; colour/B&W residual/float/sRGB8 byte parity, two-field scratch budget and zero residue; 0.35 stress visually rejected; `docs/U1_6F_GRAIN_STAGED_CONTEXT_RESULTS.md` |
 | U1.6G0 | complete: direct route closed | Physical/density-halation tiled dataflow audit | U1.6A/U1.6C/U1.6F | sigma-52 full-grid blur differs by max/seam `5.81e-4` with nominal halo 156 because downsample grids depend on full shape; require percentile/global-resample/field-DAG primitives; `docs/U1_6G0_PHYSICAL_HALATION_DATAFLOW_AUDIT.md` |
+| U1.6G1 | contract frozen / implementation ready | Shape-stable global-resample primitive | U1.6G0 | one original-image coarse grid, area BOX stage, direct coarse blur and global-coordinate half-pixel reconstruction; exact full/tiled equality required; no effect integration or legacy/physical claim; `docs/planning/U1_6G1_SHAPE_STABLE_GLOBAL_RESAMPLE_CONTRACT.md` |
 
 Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade camera paths require a known DNG/IDT/profile; generic development remains labeled.
 
