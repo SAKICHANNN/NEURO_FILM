@@ -1785,3 +1785,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen scope:** 16-bit RGB PNG, exact full-range BT.2020 SDR tuple `09 0F 00 01`, deterministic CRC/order and fail-closed unsupported signalling.
 - **Exclusions:** renderer/schema integration, scene-linear output, alpha, arbitrary profiles, TIFF, HDR/PQ/HLG, ACES/OCIO and calibration.
 - **Handoff:** hash/commit/push the contract, then implement only the frozen boundary and gates.
+
+## 2026-07-18 - Pass U1.4B BT.2020 SDR PNG cICP boundary
+
+- **Implementation:** `627a0d9` adds exact BT.2020 transfer helpers, CICP parsing/writing, WorkingImage RGB16 ingress/egress and nine focused test cases.
+- **Evidence:** repeat bytes and stored uint16 samples are exact; seeded linear max error `1.4424e-5`; Rec.2020-green sRGB excursion `0.5876`.
+- **Safety:** malformed/duplicate/late/unsupported CICP, 8-bit, alpha and incompatible WorkingImage states fail closed.
+- **Verification:** 52 focused and 584 full CPU tests pass; existing renderer/schema/default paths remain unchanged.
+- **Propagation:** U1.4 advances to math/file-boundary pass; HDR, ACES/OCIO, arbitrary profiles, viewer compatibility and renderer integration remain open.
+- **Handoff:** audit U1.4C operator compatibility without silently narrowing Rec.2020 or treating an sRGB roundtrip as wide-gamut rendering.

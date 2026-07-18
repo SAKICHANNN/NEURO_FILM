@@ -286,6 +286,10 @@ U1.4B freezes the first real boundary as 16-bit RGB PNG with the PNG Third
 Edition/H.273 BT.2020 SDR CICP tuple `09 0F 00 01`. It must decode to and encode
 from display-linear Rec.2020, reject unsupported signalling, and remain isolated
 from production renderer schemas and HDR claims.
+U1.4B passes: its uint16 samples are exact, repeat files are byte-identical,
+seeded linear roundtrip error is `1.44e-5`, and unsupported/malformed signalling
+fails closed. Operator compatibility and user-facing renderer integration remain
+separate gates.
 
 ---
 
