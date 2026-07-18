@@ -56,6 +56,65 @@ def test_load_raster_working_image_is_float32_linear(tmp_path: Path) -> None:
     assert any(warning.code == "assumed_srgb" for warning in image.warnings)
 
 
+@pytest.mark.parametrize("mode", ["RGBA", "LA"])
+def test_real_alpha_fails_before_rgb_conversion(
+    tmp_path: Path, monkeypatch, mode: str
+) -> None:
+    from src.preprocess import raster_decode
+
+    path = tmp_path / f"transparent_{mode}.png"
+    if mode == "RGBA":
+        array = np.zeros((5, 7, 4), dtype=np.uint8)
+        array[..., :3] = [241, 17, 203]
+        array[..., 3] = 255
+        array[2, 3, 3] = 0
+    else:
+        array = np.zeros((5, 7, 2), dtype=np.uint8)
+        array[..., 0] = 173
+        array[..., 1] = 255
+        array[2, 3, 1] = 127
+    Image.fromarray(array, mode=mode).save(path)
+    assert inspect_input(path).has_alpha
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("transparent input must fail before RGB conversion")
+
+    monkeypatch.setattr(raster_decode, "_convert_with_icc", forbidden)
+    with pytest.raises(ValueError, match="refusing transparent hidden-RGB fallback"):
+        load_working_image(path)
+
+
+def test_palette_transparency_fails_closed(tmp_path: Path) -> None:
+    path = tmp_path / "palette_transparency.png"
+    image = Image.new("P", (7, 5), color=1)
+    palette = [0] * 768
+    palette[0:6] = [251, 9, 199, 17, 121, 33]
+    image.putpalette(palette)
+    image.putpixel((3, 2), 0)
+    image.info["transparency"] = 0
+    image.save(path)
+    inspection = inspect_input(path)
+    assert inspection.has_alpha
+    with pytest.raises(ValueError, match="alpha preservation/compositing"):
+        load_working_image(path)
+
+
+def test_fully_opaque_alpha_strips_with_warning_and_exact_rgb(tmp_path: Path) -> None:
+    rgb = np.arange(5 * 7 * 3, dtype=np.uint8).reshape(5, 7, 3) * 2
+    rgba = np.concatenate(
+        [rgb, np.full((*rgb.shape[:2], 1), 255, dtype=np.uint8)], axis=2
+    )
+    rgba_path = tmp_path / "opaque_rgba.png"
+    rgb_path = tmp_path / "equivalent_rgb.png"
+    Image.fromarray(rgba, mode="RGBA").save(rgba_path)
+    Image.fromarray(rgb, mode="RGB").save(rgb_path)
+    actual = load_working_image(rgba_path)
+    expected = load_working_image(rgb_path)
+    assert actual.alpha_policy == "absent"
+    assert actual.pixels.tobytes() == expected.pixels.tobytes()
+    assert any(w.code == "opaque_alpha_discarded" for w in actual.warnings)
+
+
 @pytest.mark.parametrize("suffix", [".png", ".jpg"])
 def test_malformed_embedded_icc_fails_closed(tmp_path: Path, suffix: str) -> None:
     path = tmp_path / f"malformed{suffix}"

@@ -357,3 +357,29 @@ def test_render_film_rejects_malformed_icc_before_output(tmp_path: Path) -> None
     assert completed.returncode != 0
     assert "refusing unprofiled RGB fallback" in completed.stderr
     assert not output_path.exists()
+
+
+def test_render_film_rejects_transparent_raster_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "transparent.png"
+    output_path = tmp_path / "output.png"
+    rgba = np.zeros((6, 8, 4), dtype=np.uint8)
+    rgba[..., :3] = [245, 11, 197]
+    rgba[..., 3] = 255
+    rgba[2:4, 3:5, 3] = 0
+    Image.fromarray(rgba, mode="RGBA").save(input_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "refusing transparent hidden-RGB fallback" in completed.stderr
+    assert not output_path.exists()

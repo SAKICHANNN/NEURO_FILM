@@ -178,6 +178,30 @@ def _convert_with_icc(image: Image.Image, warnings: list[DecodeWarning]) -> Imag
         raise ValueError("embedded ICC conversion failed; refusing unprofiled RGB fallback") from exc
 
 
+def _reject_or_strip_alpha(
+    image: Image.Image,
+    inspection: InputInspection,
+    warnings: list[DecodeWarning],
+) -> Image.Image:
+    """Fail closed on real transparency; strip only a provably opaque channel."""
+    if not inspection.has_alpha:
+        return image
+    alpha = image.convert("RGBA").getchannel("A")
+    minimum, maximum = alpha.getextrema()
+    if minimum < 255 or maximum < 255:
+        raise ValueError(
+            "raster alpha preservation/compositing is not implemented; "
+            "refusing transparent hidden-RGB fallback"
+        )
+    warnings.append(
+        DecodeWarning(
+            "opaque_alpha_discarded",
+            "Fully opaque alpha was verified and stripped before RGB rendering.",
+        )
+    )
+    return image
+
+
 def _srgb_to_linear(rgb: np.ndarray) -> np.ndarray:
     return np.where(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055) ** 2.4).astype(np.float32)
 
@@ -270,9 +294,8 @@ def load_raster_working_image(path: Path) -> WorkingImage:
     else:
         with Image.open(path) as raw_image:
             oriented = ImageOps.exif_transpose(raw_image)
+            oriented = _reject_or_strip_alpha(oriented, inspection, warnings)
             alpha_policy = "absent"
-            if oriented.mode in {"LA", "RGBA"}:
-                alpha_policy = "preserved"
             rgb_image = _convert_with_icc(oriented, warnings)
             arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
     pixels = _srgb_to_linear(np.clip(arr, 0.0, 1.0))
