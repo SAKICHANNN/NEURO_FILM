@@ -1661,3 +1661,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Contract:** config SHA `c36bc840...`; require per-case non-empty rounded-code/p99/alpha evidence, >=3x top-decile highlight selectivity, clipping <=1e-4, local runtime <=2.5 seconds/MP, deterministic v2 execution and zero severe artifacts; at least 2/3 unamplified 1:1 crops must show plausible localized glow.
 - **Boundary:** legacy drift is diagnostic only. Pass retains an opt-in research candidate but does not permit renderer integration, default promotion, physical/stock or 100MP claims.
 - **Handoff:** implement the frozen audit and tests, run twice, visually adjudicate, then branch without tuning.
+
+## 2026-07-18 - Pass U1.6G4F as opt-in research candidate only
+
+- **Audit correction:** the first sheet downscaled panels labelled 1:1. Commit `1220d8d` preserves exact 512-pixel crops and adds a regression test; all formal evidence was rerun after the fix.
+- **Repeat evidence:** deterministic payload SHA `5f49cd5f...` and contact-sheet SHA `76304ade...` match across two runs. Runtime-only report hashes differ as expected.
+- **Automatic result:** all `07/12/16` gates pass; changed uint8 fraction 10.06-17.41%, p99 effect 0.00612-0.01060, selectivity 3.65-18.41x, zero new clipping, and 1.14-1.33 seconds/MP across both runs.
+- **Visual result:** decision config SHA `72be2db7...`; zero severe artifacts on all cases. `12/16` show plausible localized unamplified response; `07` is safe but weak. The frozen 2/3 gate passes exactly.
+- **Verification:** 21 post-fix focused tests and 532 full CPU tests pass. Existing renderer/effect entry point/CLI remain unchanged.
+- **Decision:** retain v2 as separately versioned opt-in research evidence only. Do not call it strong global style, legacy-compatible, default or integrated.
+- **Handoff:** G4G may freeze a measured 24MP peak-memory/runtime/orchestration audit. It cannot imply integration or 100MP readiness.

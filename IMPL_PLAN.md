@@ -232,7 +232,11 @@ silent replacement of the legacy default. G4F now freezes disjoint development
 `03/05` and confirmatory `07/12/16`, with explicit non-empty effect,
 highlight-selectivity, clipping, local-runtime and full-resolution severe gates.
 Legacy comparison is diagnostic only and a pass still cannot integrate or
-default the effect.
+default the effect. G4F now passes its fresh automatic and visual gates: all
+three cases are safe and non-empty, while exactly two show a plausible
+unamplified localized response. Retain as opt-in research only. The next leaf
+must measure 24MP peak memory/runtime and orchestration readiness before any
+integration decision; total 100MP remains unproved.
 
 ---
 

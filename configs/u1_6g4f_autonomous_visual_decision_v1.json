@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4F",
+  "review_type": "autonomous_fixed_new_operator_visual_gate",
+  "software_commit": "1220d8d46568dcd5a99cc2fef3299fd772330a3d",
+  "audit_config_sha256": "c36bc840c5acdc603800abc33a12ede59ebf82e107aa352073ec88cfa7773133",
+  "report_a_sha256": "6fd139079d1101289c24ff82124bbe6e7929d056a4dedc2f8f98678990ab9b57",
+  "report_b_sha256": "68be3bb4b5ec90b6ba621daae916c2de18f5ab0e43c3714f4fd79bd7eec5f968",
+  "deterministic_payload_sha256": "5f49cd5f82ce23bc01a05aada0f7a6417d4a47acf2a032e8629619d942913d71",
+  "contact_sheet_sha256": "76304ade3b6f935a31586f2345b22714a34a9f850560f04b202ecac39e18ddbf",
+  "reviewed_cases": ["u41-07", "u41-12", "u41-16"],
+  "unamplified_plausible_localized_effect_cases": ["u41-12", "u41-16"],
+  "weak_but_safe_case": "u41-07",
+  "checks": {
+    "confirmed_seams": 0,
+    "confirmed_bands": 0,
+    "confirmed_posterization": 0,
+    "confirmed_colour_blocks": 0,
+    "confirmed_clipping_expansion": 0,
+    "confirmed_objectionable_broad_veil": 0,
+    "confirmed_other_severe_artifacts": 0,
+    "plausible_localized_effect_case_count": 2,
+    "plausible_localized_effect_required": 2
+  },
+  "observations": [
+    "u41-07 is safe but the unamplified whole/crop effect is weak.",
+    "u41-12 shows a restrained localized response around bright windmill blades and highlights.",
+    "u41-16 shows a restrained localized response around high-reflectance colour-chart patches.",
+    "The effect is not a strong global film look and is not evaluated as one.",
+    "Amplified effect and alpha panels were used only for localization and artifact diagnosis."
+  ],
+  "decision": "visual_gate_pass_retain_opt_in_research_candidate",
+  "renderer_integration_allowed": false,
+  "claim_ceiling": "autonomous optical-effect evidence only; no owner/population preference, default, physical, stock or 100MP claim"
+}
