@@ -339,9 +339,9 @@ Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade came
 | U2.2 | pending | Monotone exposure/sensitometry curves | U1.4, U2.1 | Monotonicity/property tests; curve report |
 | U2.3 | pending | Tetrahedral 3D LUT/global residual | U2.2 | Identity/gamut/interpolation tests |
 | U2.4 | pending | Negative/slide/B&W interpretation plugin boundary | U2.1 | Three synthetic reference profiles and contracts |
-| U2.5 | pending | Legacy `safe_lab` adapter | U2.1, U1.3 | Old recipes render within frozen tolerance |
+| U2.5 | complete: current-safe-rich compatibility pass | Legacy `safe_lab` adapter | U2.1A, U1.3 | explicit profile-driven path exactly matches all eight current styles at sRGB8 and three at sRGB16; invalid profile/recipe provenance fails before output; arbitrary future profiles remain outside the claim |
 | U2.5A | complete: invariant pass | Enforce exact neutral-axis RGB for existing HP5/Tri-X safe-Lab profiles | U1.3B defect evidence | B&W float/8/16-bit achromatic invariant, frozen Velvia hash, 225 tests and full-resolution RAW vision pass |
-| U2.5B | ready: contract frozen | Explicit profile-driven safe-Lab colour adapter with pre-output profile validation | U2.1A/U2.6A | eight-style sRGB8 and three-style sRGB16 exact legacy parity; invalid profile/asset/style leaves no output; default and v1 schemas unchanged |
+| U2.5B | complete: pass | Explicit profile-driven safe-Lab colour adapter with pre-output profile validation | U2.1A/U2.6A | 8/8 sRGB8 byte and 3/3 sRGB16 sample parity; invalid profile/asset/style zero outputs; verified recipe, explicit metrics and 675 tests; default/schemas/operators unchanged; `docs/U2_5B_PROFILE_DRIVEN_SAFE_LAB_ADAPTER_RESULTS.md` |
 | U2.6 | complete: declared-evidence visibility pass | Profile evidence labels | U2.1A | validated API/CLI expose `heuristic/measured/paired/held-out` and identity/grade/claim fields without inference or schema change; current safe-rich truth remains none/none/heuristic/non-calibrated |
 | U2.6A | complete: pass | Deterministic validated read-only profile-evidence summary API and CLI | U2.1A | exact declared fields, two-run byte identity and fail-closed escalation/tamper gates pass; 9 focused/656 full tests; no schema, renderer or evidence-grade change; `docs/U2_6A_PROFILE_EVIDENCE_INSPECTION_RESULTS.md` |
 

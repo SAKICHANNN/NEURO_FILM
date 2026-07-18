@@ -1942,3 +1942,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Gates:** eight-style sRGB8 and three-style sRGB16 exact parity, repeat identity, verified recipe, invalid profile/asset/style zero outputs, default/hash/schema invariance.
 - **Forbidden:** default switch, schema/operator/evidence changes, tolerance, calibration or stock claims.
 - **Handoff:** commit/push contract before implementation; Goal remains ACTIVE.
+
+## 2026-07-18 - Pass U2.5B profile-driven safe-Lab adapter
+
+- **Implementation:** `7390d08` adds explicit profile-driven colour parameters and moves profile/asset/style validation before pixels/output for opt-in and recipe paths; default remains legacy-backed.
+- **Parity:** 8/8 sRGB8 outputs byte-match and 3/3 sRGB16 outputs sample-match; repeat, metrics and recipe verification pass; invalid profiles leave zero outputs.
+- **Supporting repair:** `a8545b3` pins G4H historical isolation replay to its actual evaluation head and separately enforces zero current research-adapter imports; frozen config/result remain unchanged.
+- **Verification:** 45 focused/adjacent and 675 complete CPU tests, compile and diff checks pass; v1 schema/profile hashes remain exact.
+- **Decision/handoff:** close U2.5 current-safe-rich compatibility only. No default, arbitrary-profile, quality, calibration or evidence claim opens; Goal remains ACTIVE.

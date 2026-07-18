@@ -178,6 +178,13 @@ identity, data/expert grades, evidence method, calibration permission and claim
 ceiling. Safe-rich truthfully reports none/none/heuristic/false; 656 CPU tests
 pass and the v1 schemas, tracked profile and renderer remain exact.
 
+`U2.5B` makes that versioned profile an actual explicit colour-parameter source
+through `--use-render-profile`, while leaving the legacy default unchanged.
+All eight styles match byte-for-byte at sRGB8 and three match sample-for-sample
+at sRGB16. Profile/asset/style failures now occur before pixels or outputs, and
+675 CPU tests pass. This is current-safe-rich compatibility, not arbitrary
+profile support or evidence promotion.
+
 `U1.6A` now passes as a reusable halo-aware tiled-execution primitive for
 explicitly finite-support local operators. A committed 257x389 audit has exact
 one-time coverage, a 76x76 maximum expanded window, zero full/seam Gaussian

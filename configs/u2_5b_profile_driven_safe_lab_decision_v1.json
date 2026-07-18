@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "decision_id": "u2.5b-profile-driven-safe-lab-v1",
+  "node": "ULT > U2 > U2.5 > U2.5B",
+  "config_sha256": "5c62c5484d3cfd5b0731d9cf18cd6e0ab78ffb213f661355114d4dc434c1e766",
+  "software_commit": "7390d080881c9d6f005dd6750a72cac024a42fb0",
+  "supporting_test_commit": "a8545b3",
+  "styles_srgb8_exact": 8,
+  "styles_srgb16_exact": 3,
+  "repeat_byte_identical": true,
+  "recipe_verification_pass": true,
+  "invalid_profile_output_count": 0,
+  "legacy_default_changed": false,
+  "profile_schema_changed": false,
+  "recipe_schema_changed": false,
+  "tracked_profile_changed": false,
+  "operator_changed": false,
+  "focused_adjacent_tests_passed": 45,
+  "full_tests_passed": 675,
+  "decision": "close_u2_5_current_safe_rich_compatibility_pass",
+  "next_leaf": "select another independent evidence-authorized Ultimate leaf",
+  "claim_ceiling": "explicit current-safe-rich profile-driven compatibility and pre-output fail-closed validation only; no arbitrary-profile, quality, calibration, authenticity or default-promotion claim"
+}

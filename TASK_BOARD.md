@@ -98,7 +98,7 @@
 | 1af | U1.4C0-C2 | Make the colour operator working-space aware | first operator closed at C2 automatic gate | C1 math/legacy parity retained; real-image OOD has 66/96 over 0.5% new Rec.2020 boundary gate, so no visual run or integration |
 | 1ag | U1.5C | Pin real libultrahdr gain-map ingress regressions | complete: real-reference pass | two exact CC-BY-4.0 MPO fixtures reject before working pixels and renderer output through U1.2C; 53 focused/652 full tests; no duplicate parser or broad HDR claim |
 | 1ah | U2.6A | Expose existing profile evidence labels through validated read-only API/CLI | complete: pass | safe-rich reports none/none/heuristic/non-calibrated; deterministic/fail-closed gates and 656 tests pass; no schema/render/evidence-grade change |
-| 1ai | U2.5B | Add explicit profile-driven safe-Lab compatibility adapter | ready: contract frozen | exact legacy parity plus pre-output profile/asset/style validation; default, schemas and operators remain unchanged |
+| 1ai | U2.5B | Add explicit profile-driven safe-Lab compatibility adapter | complete: pass | 8/8 sRGB8 and 3/3 sRGB16 exact parity; invalid profile zero outputs; default/schemas/operators unchanged; 675 tests pass |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |
@@ -120,7 +120,7 @@
 | 12k | U5.R1C3D | Minimal spatial cross-fit absorption diagnostic | complete fail/route closed | remains 2/3; sparse HF missed; no more conditioned-SCIS capacity/tuning |
 | 13 | U1.1/U1.3B | Make `WorkingImage` the only render ingress and remove early sRGB8 quantization | complete | one float32 main path; exact sRGB8 colour parity, <=1-code effect parity and real RAW audit pass |
 | 14 | U1.2–U1.6/U2.5A | Color-state contract, 16-bit/ICC export, HDR/HEIF, B&W safety and tiled foundation | U1.6A-D/F/G1/G2/G3/G4A pass; U1.6E/G0 direct shortcuts closed | next row-chunked global staging; streaming/total memory, HDR/HEIF/wide-gamut remain pending |
-| 15 | U2.1–U2.6 | Profile/recipe schema and deterministic reference renderer | U2.1A/U2.6 complete; U2.1 in progress | strict v1 replay and validated evidence inspection pass; broader API/operator schemas pending; no current profile calibrated |
+| 15 | U2.1–U2.6 | Profile/recipe schema and deterministic reference renderer | U2.1A/U2.5/U2.6 complete; U2.1 in progress | strict replay, explicit current-profile adapter and evidence inspection pass; broader API/operator schemas pending; no current profile calibrated |
 | 16 | U5.R2–U5.R7/U5.FC1–U5.FC8/U6 | FARO/FilmCase baselines, product fallback and artifact-safe effects | supporting/conditional | GPU/cost and participant gates only if later needed |
 | 17 | U3.1–U3.4 | Optional Portra 400 + Velvia 50 calibrated profile lane | deferred | not an active user ask or dependency |
 | 18 | U7/U8 | Product, beta, release and stock expansion | pending | release/legal approval |
@@ -161,4 +161,4 @@ named-stock milestone.
 
 ---
 
-*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C and U2.6 now close exact real-reference rejection and evidence-visibility gaps without overclaim; next selection remains evidence-gated; FSA/OWI stays sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*
+*Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C, U2.5 and U2.6 now close bounded product-contract gaps without overclaim; next selection remains evidence-gated; FSA/OWI stays sealed auxiliary | Integration owner: repository owner or explicitly assigned root agent*
