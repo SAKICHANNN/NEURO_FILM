@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G3",
+  "planner_version": "halation-field-dag-v1",
+  "families": ["physical-colour-v1", "density-v1"],
+  "cases": [
+    {"case_id": "24mp", "source_shape": [4000, 6000], "tile_size": 512},
+    {"case_id": "100mp_arithmetic_only", "source_shape": [10000, 10000], "tile_size": 512}
+  ],
+  "local_diffusion": 1.0,
+  "source_linear_provided": false,
+  "available_capabilities": [],
+  "expected_inventory": {
+    "physical-colour-v1": {
+      "blur_count": 8,
+      "percentile_count": 2,
+      "finite_halo_blurs": ["local_abs", "red_near", "red_mid", "green_near", "green_mid"],
+      "global_grid_blurs": ["local_mean", "red_tail", "red_glare"]
+    },
+    "density-v1": {
+      "blur_count": 6,
+      "percentile_count": 1,
+      "finite_halo_blurs": ["local_abs", "near", "mid"],
+      "global_grid_blurs": ["local_mean", "tail", "glare"]
+    }
+  },
+  "expected_missing_capabilities": [
+    "coordinate_exact_gradient_window",
+    "row_chunked_global_stage_builder"
+  ],
+  "gates": {
+    "inventory_matches_effects_ast": true,
+    "topology_and_transitive_lifetimes_valid": true,
+    "resource_categories_separate": true,
+    "integration_ready": false,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "claim_ceiling": "static arithmetic plan only; not effect execution, pixel parity, total-memory or 100MP readiness"
+}

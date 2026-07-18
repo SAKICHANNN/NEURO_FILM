@@ -1551,3 +1551,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 
 - Dependency expansion shows that every weighted-source blur also consumes `np.gradient(y)`. A repeatable row-chunk stage alone would still permit chunk-edge gradient seams.
 - The readiness gate now requires both `row_chunked_global_stage_builder` and `coordinate_exact_gradient_window`; this correction precedes implementation and changes no frozen experiment or effect pixel.
+
+## 2026-07-18 - Pass U1.6G3 static halation DAG/lifetime planning
+
+- **Implementation:** commit `5fd5c6b98a916195aee77b41135229832f557496` adds strict graph vocabulary/topology validation, current-code physical/density specs, geometry/diffusion blur classification, transitive lazy-stream liveness, fingerprints and separate resource categories.
+- **Evidence:** config SHA-256 `0652882a...`; AST-backed 41/31-node plans match 8/2 and 6/1 calls. At 24MP, context peaks are 18,164,000/12,791,340 bytes; 100MP arithmetic gives 75,685,556/53,305,124 while separately exposing 1.2GB input and 1.6GB output.
+- **Verification:** 27 focused, 51 combined G1-G3 and 458 full CPU tests pass. A pre-commit review repaired direct-consumer-only liveness so lazy stream dependencies retain contexts/scalars through the true terminal consumer.
+- **Branch/claim:** static planner passes, integration stays false. Open coordinate-exact gradient windows, then row-chunked global stage construction. No effect execution, pixel-parity, total-memory or 100MP claim opens.

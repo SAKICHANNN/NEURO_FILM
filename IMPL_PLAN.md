@@ -204,6 +204,12 @@ sorting the full field. The million-value formal case uses 1.5MiB of persistent
 histograms and 431 CPU tests pass. Existing effect calls remain unchanged;
 scratch-field DAG/lifetime planning is the next prerequisite.
 
+`U1.6G3` now passes a static 41-node colour / 31-node density graph audit.
+Only three blur fields per family are global-grid stages; smaller fields remain
+finite-halo. Transitive lazy-stream lifetimes and external/output/context/
+workspace categories are explicit. Integration remains closed until exact
+gradient windows and row-chunked global staging pass independently.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）
