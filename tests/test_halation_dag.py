@@ -98,6 +98,16 @@ def test_capabilities_are_explicit_and_do_not_change_graph_pixels_contract() -> 
     assert ready.fingerprint != missing.fingerprint
 
 
+def test_gradient_capability_alone_keeps_row_stage_gate_closed() -> None:
+    plan = _plan(
+        PHYSICAL_COLOUR_FAMILY,
+        available_capabilities=("coordinate_exact_gradient_window",),
+    )
+    assert plan.missing_capabilities == ("row_chunked_global_stage_builder",)
+    assert plan.integration_ready is False
+    assert plan.unresolved_workspace_nodes == plan.global_grid_blurs
+
+
 def test_diffusion_and_geometry_reclassify_deterministically() -> None:
     default = _plan(PHYSICAL_COLOUR_FAMILY)
     repeated = _plan(PHYSICAL_COLOUR_FAMILY)
