@@ -33,6 +33,44 @@ def in_working_gamut(
     return np.all((linear >= -tolerance) & (linear <= 1.0 + tolerance), axis=-1)
 
 
+def _binary_gamut_scale(
+    origin_lab: np.ndarray,
+    delta_lab: np.ndarray,
+    *,
+    working_space: str,
+    iterations: int,
+) -> np.ndarray:
+    """Return the legacy fixed-iteration scale while iterating only invalid targets."""
+
+    target_lab = np.asarray(origin_lab + delta_lab, dtype=np.float32)
+    target_valid = in_working_gamut(target_lab, working_space=working_space)
+
+    # This scalar is exactly the value produced for every always-valid target
+    # by the original float32 full-array binary loop.
+    valid_low = np.float32(0.0)
+    valid_high = np.float32(1.0)
+    for _ in range(iterations):
+        valid_low = np.float32((valid_low + valid_high) * np.float32(0.5))
+
+    scale = np.full(origin_lab.shape[:2] + (1,), valid_low, dtype=np.float32)
+    invalid_y, invalid_x = np.nonzero(~target_valid)
+    if invalid_y.size == 0:
+        return scale
+
+    origin = origin_lab[invalid_y, invalid_x].reshape(-1, 1, 3)
+    delta = delta_lab[invalid_y, invalid_x].reshape(-1, 1, 3)
+    low = np.zeros((invalid_y.size, 1, 1), dtype=np.float32)
+    high = np.ones_like(low)
+    for _ in range(iterations):
+        mid = (low + high) * 0.5
+        candidate = origin + delta * mid
+        valid = in_working_gamut(candidate, working_space=working_space).reshape(-1, 1, 1)
+        low = np.where(valid, mid, low)
+        high = np.where(valid, high, mid)
+    scale[invalid_y, invalid_x, 0] = low[:, 0, 0]
+    return scale
+
+
 def compress_source_to_working_gamut(
     source_lab: np.ndarray,
     target_lab: np.ndarray,
@@ -52,16 +90,14 @@ def compress_source_to_working_gamut(
     if not in_working_gamut(source_lab, working_space=working_space, tolerance=tolerance).all():
         raise ValueError("source Lab endpoint is outside destination working gamut")
 
-    low = np.zeros(source_lab.shape[:2] + (1,), dtype=np.float32)
-    high = np.ones_like(low)
     delta = target_lab - source_lab
-    for _ in range(iterations):
-        mid = (low + high) * 0.5
-        candidate = source_lab + delta * mid
-        valid = in_working_gamut(candidate, working_space=working_space)[..., None]
-        low = np.where(valid, mid, low)
-        high = np.where(valid, high, mid)
-    result = np.asarray(source_lab + delta * low, dtype=np.float32)
+    scale = _binary_gamut_scale(
+        source_lab,
+        delta,
+        working_space=working_space,
+        iterations=iterations,
+    )
+    result = np.asarray(source_lab + delta * scale, dtype=np.float32)
     if not in_working_gamut(result, working_space=working_space, tolerance=tolerance).all():
         raise ValueError("source compression did not produce destination-gamut Lab")
     return result
@@ -84,16 +120,14 @@ def compress_chroma_to_working_gamut(
     if not in_working_gamut(neutral, working_space=working_space, tolerance=tolerance).all():
         raise ValueError("same-L neutral endpoint is outside destination working gamut")
 
-    low = np.zeros(target_lab.shape[:2] + (1,), dtype=np.float32)
-    high = np.ones_like(low)
     delta = target_lab - neutral
-    for _ in range(iterations):
-        mid = (low + high) * 0.5
-        candidate = neutral + delta * mid
-        valid = in_working_gamut(candidate, working_space=working_space)[..., None]
-        low = np.where(valid, mid, low)
-        high = np.where(valid, high, mid)
-    result = np.asarray(neutral + delta * low, dtype=np.float32)
+    scale = _binary_gamut_scale(
+        neutral,
+        delta,
+        working_space=working_space,
+        iterations=iterations,
+    )
+    result = np.asarray(neutral + delta * scale, dtype=np.float32)
     if not in_working_gamut(result, working_space=working_space, tolerance=tolerance).all():
         raise ValueError("chroma compression did not produce destination-gamut Lab")
     return result

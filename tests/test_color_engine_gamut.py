@@ -16,6 +16,19 @@ def _source_lab() -> np.ndarray:
     return linear_rgb_to_lab(pixels, working_space="linear_rec2020")
 
 
+def _full_array_reference(origin: np.ndarray, target: np.ndarray, iterations: int = 24) -> np.ndarray:
+    low = np.zeros(origin.shape[:2] + (1,), dtype=np.float32)
+    high = np.ones_like(low)
+    delta = target - origin
+    for _ in range(iterations):
+        mid = (low + high) * 0.5
+        candidate = origin + delta * mid
+        valid = in_working_gamut(candidate, working_space="linear_rec2020")[..., None]
+        low = np.where(valid, mid, low)
+        high = np.where(valid, high, mid)
+    return np.asarray(origin + delta * low, dtype=np.float32)
+
+
 def test_source_compression_returns_destination_gamut_without_mutation() -> None:
     source = _source_lab()
     frozen_source = source.copy()
@@ -35,6 +48,20 @@ def test_source_compression_returns_destination_gamut_without_mutation() -> None
     np.testing.assert_array_equal(target, frozen_target)
 
 
+def test_sparse_source_compression_is_byte_exact_to_full_array_reference() -> None:
+    source = _source_lab()
+    target = source.copy()
+    target[::2, ::3, 1] += 180.0
+    target[1::3, 1::2, 2] -= 160.0
+    expected = _full_array_reference(source, target)
+    actual = compress_source_to_working_gamut(
+        source,
+        target,
+        working_space="linear_rec2020",
+    )
+    np.testing.assert_array_equal(actual, expected)
+
+
 def test_chroma_compression_preserves_luminance_and_hue_direction() -> None:
     target = _source_lab()
     target[..., 1:] *= 7.0
@@ -52,6 +79,19 @@ def test_chroma_compression_preserves_luminance_and_hue_direction() -> None:
     )
     assert float(np.max(np.abs(cross) / norm_product)) <= 2e-6
     assert np.all(np.sum(output[..., 1:] * target[..., 1:], axis=-1) >= 0.0)
+
+
+def test_sparse_chroma_compression_is_byte_exact_to_full_array_reference() -> None:
+    target = _source_lab()
+    target[::2, ::2, 1:] *= 8.0
+    neutral = target.copy()
+    neutral[..., 1:] = 0.0
+    expected = _full_array_reference(neutral, target)
+    actual = compress_chroma_to_working_gamut(
+        target,
+        working_space="linear_rec2020",
+    )
+    np.testing.assert_array_equal(actual, expected)
 
 
 def test_source_compression_rejects_out_of_gamut_source_endpoint() -> None:

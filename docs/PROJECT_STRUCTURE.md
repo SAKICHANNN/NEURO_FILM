@@ -81,6 +81,10 @@ production renderer entry point.
 contracts. Versioned JSON schemas live under `configs/schemas/`, while tracked
 immutable profile instances live under `configs/render_profiles/`.
 
+Audit-specific scoring, anonymous-sheet construction and manifest validation
+belong under `src/eval/`; execution CLIs remain thin scripts and generated
+visual evidence stays under ignored `outputs/` roots.
+
 ```text
 src/inference/
   render_contract.py      Strict profile/recipe validation, migration, hashing and replay verification.
