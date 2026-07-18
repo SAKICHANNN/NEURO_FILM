@@ -102,11 +102,8 @@ def scis_v0(
     q99 = float(np.quantile(masked[smooth], 0.99)) if np.any(smooth) else 0.0
     binary = (masked >= float(residual_threshold)) & smooth
     labeled = label(binary, connectivity=2)
-    areas = []
-    for idx in range(1, int(labeled.max()) + 1):
-        area = int(np.sum(labeled == idx))
-        if area >= int(min_component_pixels):
-            areas.append(area)
+    counts = np.bincount(labeled.reshape(-1))[1:]
+    areas = [int(area) for area in counts if area >= int(min_component_pixels)]
     total = float(reference.shape[0] * reference.shape[1])
     max_area = float(max(areas)) if areas else 0.0
     topk = float(sum(sorted(areas, reverse=True)[:3]))
@@ -172,11 +169,8 @@ def scis_v0_1(
     for thr in thresholds:
         binary = (masked >= float(thr)) & smooth
         labeled = label(binary, connectivity=2)
-        areas = []
-        for idx in range(1, int(labeled.max()) + 1):
-            area = int(np.sum(labeled == idx))
-            if area >= int(min_component_pixels):
-                areas.append(area)
+        counts = np.bincount(labeled.reshape(-1))[1:]
+        areas = [int(area) for area in counts if area >= int(min_component_pixels)]
         max_frac = (float(max(areas)) / total) if areas else 0.0
         if max_frac > best_max_frac:
             best_max_frac = max_frac
