@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4C",
+  "operator_version": "shape-stable-global-resample-v2-explicit-f32",
+  "confirmatory_cases": [
+    {"case_id": "scalar_263x397", "shape": [263, 397], "sigma": 52.0, "seed": 401, "coarse_row_chunks": [1, 5, 19], "tile_sizes": [37, 64]},
+    {"case_id": "scalar_anisotropic_197x281", "shape": [197, 281], "sigma": [41.0, 69.0], "seed": 402, "coarse_row_chunks": [1, 3, 13], "tile_sizes": [31, 71]},
+    {"case_id": "rgb_89x113", "shape": [89, 113, 3], "sigma": 39.0, "seed": 403, "coarse_row_chunks": [1, 4, 9], "tile_sizes": [23, 47]}
+  ],
+  "real_compatibility_cases": [
+    {
+      "case_id": "u41_01_luma",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+      "sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+      "shape": [1204, 1600],
+      "sigma": 52.0,
+      "coarse_row_chunks": [1, 17, 73],
+      "tile_sizes": [127, 256],
+      "v1_expected": "available"
+    },
+    {
+      "case_id": "u41_11_luma",
+      "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/11_Sigma_fp_Sigma_-_fp_-_12bit_16_9__raw-neutral.jpg",
+      "sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcb4d0369ebb20d",
+      "shape": [900, 1600],
+      "sigma": 52.0,
+      "coarse_row_chunks": [1, 13, 61],
+      "tile_sizes": [127, 256],
+      "v1_expected": "frozen_last_cell_shape_mismatch"
+    }
+  ],
+  "gates": {
+    "full_row_coarse_byte_identical": true,
+    "full_row_reconstruction_byte_identical": true,
+    "full_tiled_reconstruction_byte_identical": true,
+    "repeat_identical": true,
+    "reader_never_full_height": true,
+    "v1_max_absolute_drift": 5e-7,
+    "v1_mean_absolute_drift": 5e-8,
+    "v1_uint8_changed_fraction": 1e-5,
+    "v1_uint8_max_code_delta": 1,
+    "confirmed_severe_field_artifacts": 0,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "forbidden_claims": [
+    "effect_parity",
+    "physical_accuracy",
+    "renderer_integration",
+    "streaming_decode",
+    "bounded_total_memory",
+    "stock_or_calibration",
+    "100MP_readiness"
+  ]
+}

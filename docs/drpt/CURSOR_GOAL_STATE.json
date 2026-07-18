@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "34320e9e89ba30e81b304262ad3c1a7b9f372c7e",
+  "head": "7789aee229235ffebbf217f439e34cb4a14dbd4b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 24,
+  "iteration": 25,
   "current_node": "ULT > U1.6 > U1.6G4C",
-  "current_leaf": "U1.6G4B closed; U1.6G4C deterministic area-reducer contract design ready",
+  "current_leaf": "U1.6G4C chunk-invariant global-resample contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "34320e9e89ba30e81b304262ad3c1a7b9f372c7e",
+  "last_verified_commit": "7789aee229235ffebbf217f439e34cb4a14dbd4b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 493,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T05:04:52Z"
   },
   "ready_leaves": [
-    "U1.6G4C_chunk_invariant_area_reducer_contract",
+    "U1.6G4C_chunk_invariant_area_reducer_implementation",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Freeze U1.6G4C as a new versioned deterministic reducer without changing G1-v1, then implement one explicit reduction order shared by full and bounded-row builders and run fresh parity plus visual/severe compatibility gates.",
+  "next_action": "Commit/push the frozen G4C contract, implement version-specific full and bounded-row builders with one explicit float32 reduction kernel, then run new-seed and fixed-real compatibility gates without effect integration.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -32,10 +32,12 @@
   "evidence_paths": [
     "docs/U1_6G4B_ROW_STAGE_INVARIANCE_RESULTS.md",
     "configs/u1_6g4b_row_stage_invariance_v1.json",
+    "docs/planning/U1_6G4C_CHUNK_INVARIANT_GLOBAL_RESAMPLE_CONTRACT.md",
+    "configs/u1_6g4c_chunk_invariant_global_resample_v2.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T05:28:00Z",
-  "selection_rationale": "G4B falsifies exact bounded batching of G1-v1 because its float32 reduction order changes with batch shape. A separately versioned chunk-invariant reducer is the smallest legal path that preserves frozen v1 evidence."
+  "last_update_utc": "2026-07-18T05:42:00Z",
+  "selection_rationale": "Development evidence selects explicit sequential float32 as the closest fixed-order successor. Exact terminal bounds also close a newly reproduced v1 last-cell overrun without modifying the frozen v1 operator."
 }

@@ -1589,3 +1589,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** close G4B. Batch-height-dependent `np.tensordot` kernels make lucky chunk selection non-portable. Preserve committed G1-v1 pixels and version; do not weaken the byte gate or modify renderer/effect calls.
 - **Verification:** diagnostic report is repeat-byte-identical; config JSON, script compilation and diff checks pass. Product test baseline remains 493 because the diagnostic adds no production path.
 - **Handoff:** Goal ACTIVE. Open U1.6G4C to freeze a separately versioned explicit reduction order shared by full and bounded-row construction. Require fresh numerical, visual/severe-artifact and compatibility evidence before G3 readiness.
+
+## 2026-07-18 - Freeze U1.6G4C chunk-invariant resample contract
+
+- **Node/parent:** `ULT > U1.6 > U1.6G4C`; versioned successor research leaf after G4B closes exact G1-v1 batching.
+- **Development evidence:** explicit sequential float32 accumulation stays within `5.59e-9` of blurred v1 coarse fields on the three G4B synthetic cases. On fixed `1204x1600` luma, reconstructed max/mean drift is `2.38e-7`/`8.65e-9` and three uint8 pixels move one code.
+- **Additional finding:** G1-v1 raises a last-cell `shape-mismatch` on fixed `900x1600` luma because its floating endpoint can ceil beyond source height. Preserve the old version and evidence; v2 freezes exact first/final bounds.
+- **Decision:** `shape-stable-global-resample-v2-explicit-f32` uses increasing-index float32 multiply/add only, with no reduced-axis BLAS. Full and bounded-row paths must share this kernel.
+- **Frozen gates:** config SHA-256 `8671ba7c...`; new-seed cross-chunk/full/tiled/repeat bytes, bounded reader metadata, fixed v1 drift ceilings, two hashed real-luma cases, zero severe field artifacts, v1 regressions and full CPU tests.
+- **Boundary/handoff:** no effect integration. Implement in the existing module with version-specific APIs; a pass opens only capability binding and a separately contracted density executor.
