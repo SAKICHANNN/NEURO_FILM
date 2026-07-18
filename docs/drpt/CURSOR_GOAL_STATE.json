@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "a60fd88501e372e8d336f0a34b839c9310bba4f0",
+  "head": "60adc953aef4db4862a80f0443e939b607d50068",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 34,
+  "iteration": 35,
   "current_node": "ULT > U1.6 > U1.6G4H",
-  "current_leaf": "U1.6G4G local 24MP measured pass; G4H isolated adapter/parity/lifetime contract design ready",
+  "current_leaf": "U1.6G4H isolated research-adapter parity/lifetime contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "a60fd88501e372e8d336f0a34b839c9310bba4f0",
+  "last_verified_commit": "60adc953aef4db4862a80f0443e939b607d50068",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 536,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T06:45:04Z"
   },
   "ready_leaves": [
-    "U1.6G4H_research_adapter_parity_lifetime_contract",
+    "U1.6G4H_research_adapter_implementation",
     "U1.2/U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push G4G results, then freeze an isolated research-adapter parity/lifetime/failure contract before any orchestration implementation; keep renderer CLI/default and 100MP closed.",
+  "next_action": "Verify and commit/push the G4H contract, implement the isolated direct-module adapter and frozen parity/lifetime/failure/static audit, then run focused and full CPU tests.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -50,10 +50,12 @@
     "docs/planning/U1_6G4G_24MP_RESOURCE_AUDIT_CONTRACT.md",
     "configs/u1_6g4g_24mp_resource_audit_v1.json",
     "docs/U1_6G4G_24MP_RESOURCE_AUDIT_RESULTS.md",
+    "docs/planning/U1_6G4H_RESEARCH_ADAPTER_CONTRACT.md",
+    "configs/u1_6g4h_research_adapter_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T06:45:04Z",
-  "selection_rationale": "Measured 24MP execution now passes with valid process-tree RSS. The next smallest leaf is an isolated adapter contract that can establish API parity and lifetime ownership without touching production renderer or default behavior."
+  "last_update_utc": "2026-07-18T07:02:00Z",
+  "selection_rationale": "G4H creates the smallest reusable boundary around validated executor/compositor behavior while explicitly preventing production import, schema, CLI or default drift."
 }

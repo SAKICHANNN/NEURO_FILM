@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G4H",
+  "adapter_version": "staged-density-halation-research-adapter-v1",
+  "executor_version": "staged-density-halation-v1-defaults",
+  "pre_contract_head": "60adc953aef4db4862a80f0443e939b607d50068",
+  "synthetic_cases": [
+    {
+      "case_id": "adapter_highlight_131x197",
+      "shape": [131, 197, 3],
+      "seed": 451,
+      "tile_sizes": [37, 64]
+    },
+    {
+      "case_id": "adapter_colour_173x239",
+      "shape": [173, 239, 3],
+      "seed": 452,
+      "tile_sizes": [41, 73]
+    }
+  ],
+  "real_case": {
+    "case_id": "u41-12",
+    "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/12_Canon_EOS_R6_Mark_III_Canon_-_EOS_R6_Mark_III_-_RAW_3_2__raw-neutral.jpg",
+    "sha256": "c580c41e3bb997cdeee01db24bfe3064cdfbf5ef979ff1ef6519bbce5cd2274d",
+    "shape": [1067, 1600, 3],
+    "tile_sizes": [127, 256]
+  },
+  "source_row_chunk": 64,
+  "coarse_row_chunk": 7,
+  "composite_row_chunks": [17, 64, 113],
+  "output_margins": [0, 4],
+  "gates": {
+    "compositor_float_byte_identical": true,
+    "compositor_srgb8_byte_identical": true,
+    "input_byte_unchanged": true,
+    "repeat_output_and_metadata_identical": true,
+    "metadata_contains_ndarray": false,
+    "returned_array_count": 1,
+    "scratch_bytes": 0,
+    "failure_partial_result_count": 0,
+    "production_import_count": 0,
+    "renderer_cli_schema_change_count": 0,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  },
+  "renderer_integration_allowed_by_pass": false,
+  "claim_ceiling": "isolated research adapter parity/lifetime evidence only; no renderer, CLI, default, recipe, 100MP or physical claim"
+}

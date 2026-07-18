@@ -244,6 +244,10 @@ G4G now passes after correcting a Windows launcher-only RSS measurement bug:
 two true process-tree runs peak at 0.963-0.983GiB and repeat all hashes, while
 atomic failure cleanup passes. The next leaf is an isolated research-adapter
 parity/lifetime contract; production renderer/CLI and 100MP remain closed.
+G4H now freezes a direct-module research adapter under `src/filmfx`: it must
+reuse the staged executor and current compositor, return only final RGB plus
+ndarray-free metadata, propagate partial-row failures, and remain absent from
+renderer/CLI/profile/recipe imports. No production wiring is implied.
 
 ---
 

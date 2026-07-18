@@ -1689,3 +1689,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Repeat/cleanup:** source, RGB, alpha, composite and metadata hashes repeat; failure probe publishes no report/temp and all three workers leave zero orphans.
 - **Verification:** 20 focused tests and 536 full CPU tests pass. Production renderer/effect entry/CLI remain unchanged.
 - **Decision:** pass local 24MP measurement only. Next G4H may freeze an isolated research adapter/parity/lifetime contract; no direct integration or 100MP claim.
+
+## 2026-07-18 - Freeze U1.6G4H isolated research-adapter contract
+
+- **Parent evidence:** G4G validates local 24MP executor/composite resources but does not provide a reusable or integrated API.
+- **Placement:** new direct-module adapter belongs beside existing `src/filmfx` effect adapters; it is not exported at package level and cannot be imported by renderer/inference/profile/recipe/CLI code.
+- **Contract:** config SHA `f2b18293...`; reuse the existing staged executor and call `composite_layers` per bounded row; return exactly one RGB ndarray plus frozen ndarray-free metadata; input unchanged and scratch zero.
+- **Frozen evidence:** two seeded non-divisible synthetic cases plus already-viewed hashed `u41-12`; cross tile sizes, row chunks 17/64/113 and output margins 0/4.
+- **Failure class:** executor failure and second-row compositor failure must propagate without partial public output. Invalid geometry/nonfinite behavior remains fail-closed.
+- **Boundary:** exact parity and ownership evidence only; no renderer, CLI, schema, recipe, 100MP, physical or stock claim.
+- **Handoff:** verify config hash, commit contract, then implement module/tests/audit without touching production entrypoints.
