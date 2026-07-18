@@ -1827,3 +1827,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence:** both frozen seeded hashes are exact; all eight safe-rich full/tiled gates pass unchanged; kernel determinism, nonmutation, tile/full-context and invalid-stat fail-closed tests pass.
 - **Verification:** 56 focused and 600 complete CPU tests, compile check and `git diff --check` pass.
 - **Propagation/handoff:** parent advances to shared-kernel pass. Next ready child is U1.4C1C destination-space gamut policy plus isolated six-colour-style Rec.2020 adapter/witness under the already frozen contract.
+
+## 2026-07-18 - Pass U1.4C1C isolated Rec.2020 safe-Lab adapter
+
+- **Contract/implementation:** contract `3172ac64...`; implementation `5791bf9` adds explicit destination gamut math and a display-linear Rec.2020-only WorkingImage adapter for six colour styles.
+- **Wide-colour evidence:** the preregistered Velvia field remains outside linear sRGB by `0.479715288`; Rec.2020 output spans `0.023341233..0.975545287`.
+- **Safety/evidence:** source/chroma 12/12 pass; endpoints, state/space/style/mode/input fail closed; repeated bytes, source nonmutation and nested provenance isolation pass. No sRGB render path, effects or production imports are used.
+- **Verification:** 55 core focused, 101 wider boundary and 625 complete CPU tests pass; compile and diff checks pass. One unnormalised development assertion was corrected to its dimensionless angular property without changing implementation or frozen gates.
+- **Decision/handoff:** U1.4C1 closes as an isolated research pass. U1.4C2 real-image visual/OOD audit is required before integration; no preference, authenticity, calibration, HDR/ACES, renderer, schema or user-facing claim opens.

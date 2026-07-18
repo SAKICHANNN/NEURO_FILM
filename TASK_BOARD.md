@@ -94,7 +94,7 @@
 | 1ac | U1.2C | Make multi-frame raster ingress truthful | complete: fail-closed pass | GIF/TIFF multi-frame rejects before decode and renderer emits no output; no animation claim |
 | 1ad | U1.4A | Establish validated wide-gamut math primitive | complete: primitive pass | matrix/roundtrip/neutral/provenance gates pass; no renderer/HDR/ACES/file-output claim |
 | 1ae | U1.4B | Add one standards-backed wide-gamut file boundary | complete: file-boundary pass | exact deterministic RGB16 PNG CICP and roundtrip/fail-closed gates pass; no production/HDR/arbitrary-profile claim |
-| 1af | U1.4C0/U1.4C1 | Make the colour operator working-space aware | C1B shared-kernel pass; Rec.2020 gamut/adapter next | Pure Lab extraction preserves both frozen hashes and eight-style parity; destination gamut plus six-style Rec.2020 witness remain gated |
+| 1af | U1.4C0/U1.4C1 | Make the colour operator working-space aware | C1 isolated research pass; visual/OOD next | C1A-C preserve legacy parity and pass Rec.2020 gamut plus `0.4797` wide-colour witness; no renderer/effect/user-facing claim |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |
