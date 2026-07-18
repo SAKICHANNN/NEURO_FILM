@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.2 > U1.2C",
+  "pre_contract_head": "7a1a9b435998415f5225a0983b23b006d2a5d347",
+  "policy_version": "raster-multiframe-ingress-v1",
+  "allowed_frame_count": 1,
+  "rejected": "frame_count_not_equal_to_one",
+  "required_fixtures": [
+    "animated_gif_two_frames",
+    "multipage_tiff_two_pages",
+    "single_frame_rgb_regression",
+    "renderer_no_output_on_rejection"
+  ],
+  "gates": {
+    "silent_first_frame_fallback": false,
+    "reject_before_pixel_decode": true,
+    "full_cpu_suite_required": true
+  },
+  "animation_or_stack_support_added": false,
+  "claim_ceiling": "honest single-frame raster ingress only; no animation, video, burst or multipage rendering claim"
+}

@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "56a1e9159304b300221a2fbb394cd0300369acb6",
+  "head": "7a1a9b435998415f5225a0983b23b006d2a5d347",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 40,
-  "current_node": "ULT > U1.2/U1.4/U1.5",
-  "current_leaf": "U1.2B pass; select next smallest colour-state/format invariant",
+  "iteration": 41,
+  "current_node": "ULT > U1.2 > U1.2C",
+  "current_leaf": "U1.2C multi-frame raster fail-closed contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "56a1e9159304b300221a2fbb394cd0300369acb6",
+  "last_verified_commit": "7a1a9b435998415f5225a0983b23b006d2a5d347",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 563,
@@ -19,10 +19,11 @@
     "timestamp": "2026-07-18T07:38:00Z"
   },
   "ready_leaves": [
-    "U1.2/U1.4/U1.5",
+    "U1.2C_multiframe_fail_closed_implementation",
+    "U1.4/U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.2B results, then audit WorkingImage state invariants and remaining U1.4/U1.5 gaps to freeze the smallest legal next leaf.",
+  "next_action": "Verify and commit/push U1.2C contract, implement frame-count rejection before raster pixel decode, add GIF/TIFF/renderer fixtures, then run full tests.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -58,10 +59,12 @@
     "docs/planning/U1_2B_ALPHA_FAIL_CLOSED_CONTRACT.md",
     "configs/u1_2b_alpha_fail_closed_v1.json",
     "docs/U1_2B_ALPHA_FAIL_CLOSED_RESULTS.md",
+    "docs/planning/U1_2C_MULTIFRAME_FAIL_CLOSED_CONTRACT.md",
+    "configs/u1_2c_multiframe_fail_closed_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T07:38:00Z",
-  "selection_rationale": "U1.2B closes the false alpha-preservation claim. The next leaf should address another observed contract gap rather than invent unsupported HDR or wide-gamut support."
+  "last_update_utc": "2026-07-18T07:45:00Z",
+  "selection_rationale": "U1.2C closes an observed silent content-truncation path using the smallest fail-closed boundary without inventing temporal support."
 }

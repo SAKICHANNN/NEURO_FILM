@@ -1743,3 +1743,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 40 focused tests and 563 complete CPU tests pass.
 - **Boundary:** no matte, alpha output, HDR, wide gamut, schema or calibrated claim.
 - **Handoff:** propagate and return to the smallest remaining U1 colour-state/format invariant.
+
+## 2026-07-18 - Freeze U1.2C multi-frame raster fail-closed contract
+
+- **Defect:** inspection records `n_frames`, while load silently decodes frame/page zero.
+- **Policy:** exactly one frame is allowed; any other count rejects before pixel decode.
+- **Evidence plan:** two-frame GIF, two-page TIFF, renderer no-output and single-frame regression.
+- **Boundary:** no frame selector, animation, video, burst, stack, temporal or multi-page capability.
+- **Handoff:** hash and commit/push contract, then implement the smallest load-boundary check and tests.

@@ -269,6 +269,9 @@ a separate matte or alpha-output contract exists.
 U1.2B passes: real transparency now rejects before RGB working pixels, opaque
 alpha strips with a warning and byte-exact RGB equivalence, and the renderer
 leaves no output on rejection. Alpha preservation/compositing remains open.
+U1.2C next closes a separate silent truncation: inspection knows `n_frames`,
+but loading takes frame zero. Freeze rejection of any frame count other than
+one until animation/multi-page behavior receives its own contract.
 
 ---
 
