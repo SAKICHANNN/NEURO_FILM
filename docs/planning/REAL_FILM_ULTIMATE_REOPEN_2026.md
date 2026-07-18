@@ -276,6 +276,16 @@ single shared author is below the frozen two-author edge minimum, yielding zero
 retained edges and no component. Do not merge aliases or lower the gate after
 the result; no live preflight, pixels, fitting, training or LSM open.
 
+`SF2.4R` then checks a film-specific community source with a controlled stock
+catalogue. A minimal anonymous pre-contract probe confirms 385 approved stock
+entries and technically useful pseudonymous-user/lab/scanner/process metadata,
+but Newgrain's published Terms expressly prohibit automated searches, requests,
+queries, scraping and mining. The decision is
+`terms_blocked_no_formal_audit_dor`: exposed frontend access is not permission,
+so no client, retained snapshot, shared-user graph, pixel request, fitting,
+training or LSM opens. A future child requires written platform permission or
+an officially licensed research export and separate pixel rights.
+
 The independent `RF2.C0` external spectral-prior control is complete without
 changing this data stop. One pinned spektrafilm Ektar100/fixed-e0 chain is
 visibly stylised and non-basic while passing the provisional gold severe veto,

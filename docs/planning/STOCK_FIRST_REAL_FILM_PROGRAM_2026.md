@@ -53,6 +53,7 @@ against the exact-revision frozen metadata.
 | NASA/JSC astronaut Earth photography | official exact media codes and mission-roll-frame IDs | mission/film roll/frame | photographs remain unrequested | mission/date/roll/geography/focal length/camera and scan pipeline can dominate | NASA/JSC credit/non-endorsement/third-party caveats; keyless public HTML query | `SF2.0C0` closes the source expansion: 25 missions, but only failed STS098 joins Velvia50/Portra400NC |
 | Openverse search index | weak exact title/tag text only; upstream label unverified | source plus creator URL | no pixels requested | relevance pagination repeats, indexed licence may be stale, Flickr/source/content dominance | anonymous official API; every upstream right still requires live verification | `SF2.1A` closes: Ektar repeats 19 identities and only UltraMax passes per-stock gate |
 | Smithsonian Open Access metadata | institution-authored object/archive metadata, usually stock-family rather than exact product identity | owning unit, collection and record; no demonstrated connected exact-stock graph | no pixels requested | unit/collection/era/content/scanner can become stock proxies; media rights are separate | official CC0 metadata mirror; seven relevant units total 6.64GB | `SF2.2R` closes before a formal audit: deterministic shard probes split Kodachrome and Ektachrome evidence across units and expose no exact connected multi-stock design |
+| Newgrain public application | controlled exact-stock catalogue, but post labels remain community claims | pseudonymous user plus optional lab/scanner/process fields | no pixels requested or retained | platform/source workflow and self-report remain nuisance; no rights-cleared manifest | public frontend is technically readable, but Terms prohibit automated queries/scraping/mining and user content remains uploader-owned | `SF2.4R` closes before a formal audit; written permission or an officially licensed export is required |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -298,6 +299,15 @@ frozen two. There are zero retained edges and no component. Do not merge
 unverified aliases or relax the graph after this result; no live pages, pixels,
 fitting, training or LSM open. See
 `docs/REAL_FILM_COMMONS_UNION_CONNECTIVITY_RESULTS.md`.
+
+`SF2.4R` closes a Newgrain source-design reconnaissance before any formal
+audit. The public application exposes a 385-entry approved stock catalogue and
+the desired pseudonymous-user/lab/scanner/process schema, but its published
+Terms prohibit automated searches, requests, queries, scraping and mining.
+The project therefore retains no snapshot, implements no client and requests
+no images. Written platform permission or an officially licensed export would
+be a new external-authority branch; technical accessibility alone is not DoR.
+See `docs/REAL_FILM_NEWGRAIN_SOURCE_RECONNAISSANCE_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343

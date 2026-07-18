@@ -1893,3 +1893,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Reproducibility:** two reports byte-identical at `b845fabe...`; 15 focused and 647 full tests pass.
 - **Decision:** spatial self-contamination is insufficient; close current conditioned-SCIS without grid/parameter/capacity tuning or control removal. Metrics remain descriptive; severe veto stays independent.
 - **Handoff:** Goal ACTIVE; refresh and select the smallest independent explicit U1 product/format leaf.
+
+## 2026-07-18 - Accept Cursor handoff and close SF2.4R at the terms gate
+
+- **Acceptance:** branch and origin are synchronized at `6271eac`; the worktree was clean, R1C3D code/diff review passed, eight focused and 647 complete CPU tests pass.
+- **Parent/skills:** `ULT > RF0.4 > SF2.4R`; `dev-research-reliability` primary with research, web-source, DRPT, plan, structure and agent-log governance.
+- **Source evidence:** a minimal anonymous Newgrain reconnaissance found a 385-entry approved stock catalogue and technically useful stock/user/lab/scanner/process fields; no login, account or image access occurred and no response body/user identifier was retained.
+- **Terms decision:** the published Terms expressly prohibit automated searches, requests, queries, scraping and mining. Stop before a formal audit; exposed frontend access is not permission.
+- **Propagation:** record `terms_blocked_no_formal_audit_dor` across the stock-first plans, evidence registry and trackers. Commons/YFCC/NASA/Openverse/Smithsonian results, stock grades and frozen gates remain unchanged.
+- **Boundary/handoff:** no client, snapshot, shared-user graph, pixels, fitting, training or LSM. Goal remains ACTIVE and returns to another independently permitted source design or deterministic product leaf.

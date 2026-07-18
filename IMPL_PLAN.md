@@ -82,6 +82,14 @@ share one author, below the frozen two-author edge minimum, so there are zero
 retained edges and no component. Do not merge aliases or relax gates after the
 result; no live preflight, pixels, fitting, training or LSM opens.
 
+`SF2.4R` closes before a formal Newgrain audit. A minimal anonymous source
+probe confirms a 385-entry approved film-stock catalogue and post metadata with
+the desired stock, pseudonymous-user, lab, scanner and process structure, but
+the published Terms expressly prohibit automated searches, requests, queries,
+scraping and mining. Technical public access is not permission. No client,
+snapshot, graph or pixel acquisition opens; written platform permission or an
+officially licensed research export would be a new external-authority branch.
+
 `RF2.C0` is complete as an isolated external-control leaf. Two formal
 spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
 the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new
