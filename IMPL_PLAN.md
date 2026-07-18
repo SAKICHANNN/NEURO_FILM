@@ -198,6 +198,12 @@ case reconstructs byte-identically at tile sizes 37 and 64 with zero maximum
 and seam error; 420 CPU tests pass. No effect uses it yet. Staged percentiles,
 field-DAG lifetimes and separate colour/density visual gates remain required.
 
+`U1.6G2` also passes independently. A two-pass order-preserving float32 radix
+reducer reproduces NumPy-linear percentiles byte-for-byte without retaining or
+sorting the full field. The million-value formal case uses 1.5MiB of persistent
+histograms and 431 CPU tests pass. Existing effect calls remain unchanged;
+scratch-field DAG/lifetime planning is the next prerequisite.
+
 ---
 
 # K-MCFM 实施计划（历史 V3 + 2026-07-11 现行指针）

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1.6 > U1.6G2",
+  "algorithm_version": "float32-radix-percentile-v1",
+  "source": {
+    "kind": "deterministic_synthetic_lognormal_float32_stream",
+    "seed": 91,
+    "count": 1048613,
+    "chunk_values": 65537,
+    "mean": -1.0,
+    "sigma": 1.4
+  },
+  "percentiles": [99.7, 99.8],
+  "reference": "numpy.percentile(method=linear)",
+  "gates": {
+    "float64_output_bytes_equal": true,
+    "pass_stream_sha256_equal": true,
+    "pass_counts_equal": true,
+    "focused_tests_required": true,
+    "full_cpu_suite_required": true
+  }
+}

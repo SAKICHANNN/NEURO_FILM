@@ -1531,3 +1531,10 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** use a two-pass order-preserving float32 radix histogram: high-16 counts locate required linear-quantile ranks; low-16 counts resolve exact keys. This avoids whole-field sorting and approximate value bins.
 - **Safety:** both passes must reproduce count and SHA-256 byte stream; dtype, finiteness, repeatability and declared count fail closed. Existing percentile/effect/renderer code is untouched.
 - **Boundary/next:** prove exact NumPy-linear parity and bounded histogram bytes before scratch-field DAG planning. No physical, effect-parity, streaming-decode or 100MP claim opens.
+
+## 2026-07-18 - Pass U1.6G2 exact streaming percentiles
+
+- **Implementation:** commit `746c4f3842dd9495a89a743bc793ada924360e09` adds two-pass order-preserving float32 radix reduction with count/SHA repeat audits and immutable metadata; no existing effect call changed.
+- **Evidence:** config SHA-256 `66c19df1...`; 1,048,613 values at q=99.7/99.8 match NumPy-linear float64 output bytes, pass hash `7f5e6006...`, persistent histogram bytes 1,572,864. A 49,793-value arbitrary finite-bit-pattern audit also matches at 107 q values.
+- **Verification:** 11 focused, 24 combined G1/G2 and 431 complete CPU tests pass. Dtype/finiteness/count/second-pass-stream/percentile violations fail closed.
+- **Claim/branch:** pass only exact bounded-histogram reduction. Existing effects remain unchanged; open scratch-field DAG/lifetime planning before any colour/density family integration or memory claim.
