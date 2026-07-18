@@ -40,6 +40,11 @@ _GAIN_MAP_PAYLOAD_MARKERS = (
     b"urn:com:apple:photo:2020:aux:hdrgainmap",
 )
 _PAYLOAD_SCAN_BYTES = 4 * 1024 * 1024
+_MAX_METADATA_PAYLOAD_BYTES = 1024 * 1024
+_MAX_DECODED_METADATA_BYTES = 4 * 1024 * 1024
+_JPEG_SCANNED_METADATA_MARKERS = {0xE1, 0xE2, 0xFE}
+_JPEG_STANDALONE_MARKERS = {0x01, 0xD8, 0xD9, *range(0xD0, 0xD8)}
+_PNG_TEXT_CHUNKS = {b"tEXt", b"zTXt", b"iTXt"}
 
 
 def _orientation(image: Image.Image) -> int | None:
@@ -134,6 +139,155 @@ def _bounded_payload_markers(path: Path) -> list[str]:
     return [marker.decode("ascii") for marker in _GAIN_MAP_PAYLOAD_MARKERS if marker in lowered]
 
 
+def _recognized_payload_markers(payload: bytes) -> list[str]:
+    lowered = payload.lower()
+    return [marker.decode("ascii") for marker in _GAIN_MAP_PAYLOAD_MARKERS if marker in lowered]
+
+
+def _jpeg_metadata_markers(path: Path) -> list[str]:
+    """Scan bounded JPEG metadata segments before entropy-coded image data."""
+    matches: list[str] = []
+    inspected_bytes = 0
+    with path.open("rb") as handle:
+        if handle.read(2) != b"\xff\xd8":
+            raise ValueError("invalid JPEG SOI")
+        while True:
+            prefix = handle.read(1)
+            if not prefix:
+                raise ValueError("truncated JPEG before SOS/EOI")
+            if prefix != b"\xff":
+                raise ValueError("invalid JPEG marker prefix")
+            while True:
+                code_bytes = handle.read(1)
+                if not code_bytes:
+                    raise ValueError("truncated JPEG marker")
+                if code_bytes != b"\xff":
+                    break
+            code = code_bytes[0]
+            if code == 0x00:
+                raise ValueError("stuffed JPEG byte outside entropy data")
+            if code == 0xDA or code == 0xD9:
+                return list(dict.fromkeys(matches))
+            if code in _JPEG_STANDALONE_MARKERS:
+                continue
+            length_bytes = handle.read(2)
+            if len(length_bytes) != 2:
+                raise ValueError("truncated JPEG segment length")
+            length = int.from_bytes(length_bytes, "big")
+            if length < 2:
+                raise ValueError("invalid JPEG segment length")
+            payload_length = length - 2
+            if code in _JPEG_SCANNED_METADATA_MARKERS:
+                if payload_length > _MAX_METADATA_PAYLOAD_BYTES:
+                    raise ValueError("JPEG metadata payload exceeds scan budget")
+                inspected_bytes += payload_length
+                if inspected_bytes > _MAX_DECODED_METADATA_BYTES:
+                    raise ValueError("JPEG metadata exceeds cumulative scan budget")
+                payload = handle.read(payload_length)
+                if len(payload) != payload_length:
+                    raise ValueError("truncated JPEG metadata segment")
+                matches.extend(_recognized_payload_markers(payload))
+            else:
+                handle.seek(payload_length, 1)
+
+
+def _bounded_zlib_text(payload: bytes, maximum_bytes: int) -> bytes:
+    decoder = zlib.decompressobj()
+    decoded = decoder.decompress(payload, maximum_bytes + 1)
+    if len(decoded) > maximum_bytes or not decoder.eof or decoder.unconsumed_tail:
+        raise ValueError("compressed PNG text exceeds scan budget or is incomplete")
+    if decoder.unused_data:
+        raise ValueError("compressed PNG text has trailing data")
+    return decoded
+
+
+def _png_text_payload(payload: bytes, chunk_type: bytes) -> bytes:
+    if chunk_type == b"tEXt":
+        if b"\x00" not in payload:
+            raise ValueError("invalid PNG tEXt payload")
+        return payload
+    if chunk_type == b"zTXt":
+        try:
+            keyword, remainder = payload.split(b"\x00", 1)
+        except ValueError as exc:
+            raise ValueError("invalid PNG zTXt payload") from exc
+        if not keyword or len(remainder) < 2 or remainder[0] != 0:
+            raise ValueError("invalid PNG zTXt compression fields")
+        return keyword + b"\x00" + _bounded_zlib_text(
+            remainder[1:], _MAX_METADATA_PAYLOAD_BYTES
+        )
+
+    try:
+        keyword, remainder = payload.split(b"\x00", 1)
+    except ValueError as exc:
+        raise ValueError("invalid PNG iTXt keyword") from exc
+    if not keyword or len(remainder) < 2:
+        raise ValueError("invalid PNG iTXt compression fields")
+    compressed, method = remainder[0], remainder[1]
+    if compressed not in {0, 1} or method != 0:
+        raise ValueError("invalid PNG iTXt compression fields")
+    remainder = remainder[2:]
+    try:
+        language, remainder = remainder.split(b"\x00", 1)
+        translated, text = remainder.split(b"\x00", 1)
+    except ValueError as exc:
+        raise ValueError("invalid PNG iTXt language fields") from exc
+    if compressed:
+        text = _bounded_zlib_text(text, _MAX_METADATA_PAYLOAD_BYTES)
+    return b"\x00".join((keyword, language, translated, text))
+
+
+def _png_metadata_markers(path: Path) -> list[str]:
+    """Scan PNG textual metadata chunks without retaining image payloads."""
+    matches: list[str] = []
+    decoded_bytes = 0
+    with path.open("rb") as handle:
+        if handle.read(8) != b"\x89PNG\r\n\x1a\n":
+            raise ValueError("invalid PNG signature")
+        while True:
+            length_bytes = handle.read(4)
+            if len(length_bytes) != 4:
+                raise ValueError("truncated PNG chunk length")
+            length = int.from_bytes(length_bytes, "big")
+            if length > 0x7FFFFFFF:
+                raise ValueError("invalid PNG chunk length")
+            chunk_type = handle.read(4)
+            if len(chunk_type) != 4:
+                raise ValueError("truncated PNG chunk type")
+            if chunk_type in _PNG_TEXT_CHUNKS:
+                if length > _MAX_METADATA_PAYLOAD_BYTES:
+                    raise ValueError("PNG text payload exceeds scan budget")
+                payload = handle.read(length)
+                crc_bytes = handle.read(4)
+                if len(payload) != length or len(crc_bytes) != 4:
+                    raise ValueError("truncated PNG text chunk")
+                expected = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
+                if int.from_bytes(crc_bytes, "big") != expected:
+                    raise ValueError("PNG text CRC mismatch")
+                decoded = _png_text_payload(payload, chunk_type)
+                decoded_bytes += len(decoded)
+                if decoded_bytes > _MAX_DECODED_METADATA_BYTES:
+                    raise ValueError("PNG text exceeds cumulative scan budget")
+                matches.extend(_recognized_payload_markers(decoded))
+            else:
+                handle.seek(length, 1)
+                if len(handle.read(4)) != 4:
+                    raise ValueError("truncated PNG chunk")
+            if chunk_type == b"IEND":
+                return list(dict.fromkeys(matches))
+
+
+def _structured_payload_markers(path: Path, format_name: str) -> tuple[list[str], list[str]]:
+    try:
+        if format_name == "JPEG":
+            return _jpeg_metadata_markers(path), []
+        if format_name == "PNG":
+            return _png_metadata_markers(path), []
+    except (OSError, ValueError, zlib.error):
+        return [], [f"structured:{format_name.casefold()}_metadata_untrusted"]
+    return [], []
+
+
 def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -> list[str]:
     """Return deterministic signals that require an unavailable HDR decode path."""
     signals: list[str] = []
@@ -148,6 +302,9 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
         if any(token in lowered for token in ("hdr", "gain", "cicp", "nclx", "mastering")):
             signals.append(f"metadata:{key}")
     if inspection.format_name in {"JPEG", "PNG"}:
+        structured, failures = _structured_payload_markers(path, inspection.format_name)
+        signals.extend(f"payload:{marker}" for marker in structured)
+        signals.extend(failures)
         signals.extend(f"payload:{marker}" for marker in _bounded_payload_markers(path))
     return list(dict.fromkeys(signals))
 

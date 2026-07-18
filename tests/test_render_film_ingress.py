@@ -337,6 +337,45 @@ def test_render_film_rejects_ultra_hdr_marker_before_output(tmp_path: Path) -> N
     assert not output_path.exists()
 
 
+def test_render_film_rejects_structured_middle_gainmap_before_output(tmp_path: Path) -> None:
+    input_path = tmp_path / "middle_gainmap.jpg"
+    output_path = tmp_path / "output.png"
+    marker = b"http://ns.adobe.com/hdr-gain-map/1.0/"
+    Image.new("RGB", (8, 6), (30, 60, 90)).save(input_path)
+    original = input_path.read_bytes()
+    padding_payload = b"p" * 65520
+    padding_segment = (
+        b"\xff\xef"
+        + (len(padding_payload) + 2).to_bytes(2, "big")
+        + padding_payload
+    )
+    metadata_segment = b"\xff\xe1" + (len(marker) + 2).to_bytes(2, "big") + marker
+    padding = padding_segment * 65
+    input_path.write_bytes(
+        original[:2] + padding + metadata_segment + padding + original[2:]
+    )
+    marker_position = input_path.read_bytes().index(marker)
+    assert marker_position > 4 * 1024 * 1024
+    assert input_path.stat().st_size - marker_position - len(marker) > 4 * 1024 * 1024
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "refusing SDR fallback" in completed.stderr
+    assert not output_path.exists()
+
+
 def test_render_film_rejects_malformed_icc_before_output(tmp_path: Path) -> None:
     input_path = tmp_path / "malformed_icc.png"
     output_path = tmp_path / "output.png"
