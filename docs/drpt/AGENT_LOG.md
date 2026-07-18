@@ -1777,3 +1777,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 53 focused and 576 full CPU tests pass.
 - **Propagation:** parent U1.4 advances to primitive pass; renderer, I/O, schemas, stock/research evidence and frozen experiments remain unchanged.
 - **Handoff:** audit the smallest file-ingress/output or operator-compatibility leaf; do not integrate production merely because math exists.
+
+## 2026-07-18 - Freeze U1.4B BT.2020 SDR PNG cICP boundary
+
+- **Parent/skills:** ULT > U1.4; `dev-research-reliability` primary with DRPT, plan, structure and agent-log governance.
+- **Selection:** official PNG Third Edition CICP plus H.273 code points provides a real wide-gamut boundary without inventing or importing an ICC profile.
+- **Frozen scope:** 16-bit RGB PNG, exact full-range BT.2020 SDR tuple `09 0F 00 01`, deterministic CRC/order and fail-closed unsupported signalling.
+- **Exclusions:** renderer/schema integration, scene-linear output, alpha, arbitrary profiles, TIFF, HDR/PQ/HLG, ACES/OCIO and calibration.
+- **Handoff:** hash/commit/push the contract, then implement only the frozen boundary and gates.

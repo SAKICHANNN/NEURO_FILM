@@ -282,6 +282,10 @@ U1.4A passes with zero frozen-matrix discrepancy, `2.36e-16` matrix identity
 error, `2.38e-7` extended float32 roundtrip error and zero neutral-axis error.
 The primitive is public under `src.preprocess`; file I/O and renderer/operator
 compatibility remain the next U1.4 boundary.
+U1.4B freezes the first real boundary as 16-bit RGB PNG with the PNG Third
+Edition/H.273 BT.2020 SDR CICP tuple `09 0F 00 01`. It must decode to and encode
+from display-linear Rec.2020, reject unsupported signalling, and remain isolated
+from production renderer schemas and HDR claims.
 
 ---
 

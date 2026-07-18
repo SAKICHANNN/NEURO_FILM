@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "bd5b19367943eaa37a99fa5bfd80cd23043318cf",
+  "head": "6b69d8dc6971342b6e285c1d16817c36589a789e",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 44,
-  "current_node": "ULT > U1.4",
-  "current_leaf": "U1.4A validated wide-gamut primitive pass; select file-I/O or operator-compatibility child",
+  "iteration": 45,
+  "current_node": "ULT > U1.4 > U1.4B",
+  "current_leaf": "U1.4B BT.2020 SDR 16-bit PNG cICP contract frozen; implementation ready",
   "phase": "CONTINUE",
-  "last_verified_commit": "bd5b19367943eaa37a99fa5bfd80cd23043318cf",
+  "last_verified_commit": "6b69d8dc6971342b6e285c1d16817c36589a789e",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 576,
@@ -19,11 +19,11 @@
     "timestamp": "2026-07-18T08:14:00Z"
   },
   "ready_leaves": [
-    "U1.4_file_io_or_operator_compatibility_audit",
+    "U1.4B_rec2020_sdr_png_cicp_implementation",
     "U1.5",
     "U5.R1C3_conditioned_style_control_research"
   ],
-  "next_action": "Commit/push U1.4A results, then inspect current 16-bit TIFF/PNG profile and safe-Lab operator contracts to choose the smallest evidence-backed U1.4 file-I/O or operator-compatibility leaf.",
+  "next_action": "Verify and commit/push the frozen U1.4B contract, then implement exact CICP parsing/writing, BT.2020 transfer, RGB16 WorkingImage ingress/egress and focused/full tests.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -65,10 +65,12 @@
     "docs/planning/U1_4A_LINEAR_REC2020_PRIMITIVE_CONTRACT.md",
     "configs/u1_4a_linear_rec2020_primitive_v1.json",
     "docs/U1_4A_LINEAR_REC2020_PRIMITIVE_RESULTS.md",
+    "docs/planning/U1_4B_REC2020_SDR_PNG_CICP_CONTRACT.md",
+    "configs/u1_4b_rec2020_sdr_png_cicp_v1.json",
     "src/filmfx/global_resample.py",
     "src/filmfx/halation_dag.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T08:14:00Z",
-  "selection_rationale": "U1.4A proves reversible wide-gamut math. The next leaf must connect a real boundary without silently narrowing gamut or overstating complete HDR/ACES support."
+  "last_update_utc": "2026-07-18T08:32:00Z",
+  "selection_rationale": "PNG Third Edition CICP and H.273 provide a standards-backed BT.2020 SDR file boundary without an invented ICC profile or production claim expansion."
 }

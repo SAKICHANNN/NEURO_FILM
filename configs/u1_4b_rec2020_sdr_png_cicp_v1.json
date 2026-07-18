@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "node": "U1.4B",
+  "title": "BT.2020 SDR 16-bit PNG cICP boundary",
+  "standards": {
+    "png_third_edition": "https://www.w3.org/TR/png-3/#cICP-chunk",
+    "itu_t_h273_v3": "https://www.itu.int/rec/T-REC-H.273-202309-I/en",
+    "itu_r_bt2020_2": "https://www.itu.int/rec/R-REC-BT.2020-2-201510-I/en",
+    "w3c_css_color_4": "https://www.w3.org/TR/css-color-4/#predefined-rec2020"
+  },
+  "supported_cicp": {
+    "colour_primaries": 9,
+    "transfer_characteristics": 15,
+    "matrix_coefficients": 0,
+    "video_full_range_flag": 1,
+    "bytes_hex": "090f0001"
+  },
+  "input_contract": {
+    "container": "PNG",
+    "bit_depth": 16,
+    "colour_type": "RGB",
+    "alpha": "forbidden",
+    "frames": 1,
+    "unsupported_cicp": "fail_closed",
+    "decoded_working_space": "linear_rec2020",
+    "decoded_transfer_state": "display_linear"
+  },
+  "output_contract": {
+    "container": "PNG",
+    "bit_depth": 16,
+    "colour_type": "RGB",
+    "input_working_space": "linear_rec2020",
+    "input_transfer_state": "display_linear",
+    "range_policy": "clip_only_at_explicit_file_boundary",
+    "colour_chunk": "cICP_only",
+    "deterministic": true
+  },
+  "gates": {
+    "cicp_payload_exact": true,
+    "crc_valid": true,
+    "cicp_before_idat": true,
+    "forbid_output_iccp_srgb_chunks": true,
+    "encoded_sample_roundtrip_exact": true,
+    "linear_roundtrip_max_abs": 0.00005,
+    "wide_gamut_witness_min_srgb_excursion": 0.05,
+    "byte_identical_repeat": true,
+    "existing_srgb_regressions_pass": true
+  },
+  "forbidden_claims": [
+    "HDR",
+    "PQ_or_HLG",
+    "ACES_or_OCIO",
+    "wide_gamut_renderer_integration",
+    "gamut_mapping",
+    "calibrated_display_output",
+    "support_for_arbitrary_CICP_or_ICC_profiles"
+  ],
+  "claim_ceiling": "deterministic BT.2020 SDR 16-bit RGB PNG cICP ingress/egress boundary only"
+}
