@@ -1620,3 +1620,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Decision:** config SHA-256 `b641d9d7...`; freeze exact immutable module/symbol/version records for coordinate gradients and v2 bounded row staging. Resolver must verify identity and callability before returning G3 names.
 - **Preservation:** default empty/gradient-only plans and all G3 graph/resource semantics stay unchanged. Effects and renderer remain untouched.
 - **Handoff:** implement and test bindings; a pass opens a separately frozen G4E density executor contract, not effect integration by implication.
+
+## 2026-07-18 - Pass U1.6G4D concrete capability binding
+
+- **Implementation:** commit `973b82c9c778bbab17c90190e0483a555afe1ae2` adds immutable binding records, exact provider validation/resolution and package exports; default G3 semantics remain unchanged.
+- **Evidence:** audit commit `6197ad225e8e1d52ca87f856dd0e3095711f14ee`; config SHA `b641d9d7...`; two reports are byte-identical at SHA `7fd7afcb...`.
+- **Result:** exact G4A/G4C providers resolve both required names. Physical-colour/density plans at 1.5MP and 24MP are statically ready with no missing/unresolved nodes and unchanged nodes, lifetimes and resource fields.
+- **Verification:** 80 focused and 511 full CPU tests pass. Incomplete, duplicate and forged bindings fail closed.
+- **Decision/handoff:** pass static binding only; no graph executor exists. Goal ACTIVE. Freeze U1.6G4E density executor gates before effect code.

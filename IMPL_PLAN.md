@@ -219,7 +219,11 @@ stays false. U1.6G4C now passes the separately versioned explicit-float32
 successor: five frozen fields reproduce full/row/tiled bytes, the G1-v1 hash is
 unchanged, fixed real-field drift passes and no severe intermediate-field
 artifact is observed. Next bind the exported G4A/G4C capabilities to G3, then
-freeze a density-family executor with separate effect-level gates.
+freeze a density-family executor with separate effect-level gates. G4D now
+passes that binding: concrete provider identity makes both G3 families
+statically ready without graph or resource drift. Execution is still absent;
+U1.6G4E must preregister the density graph's operator-version compatibility,
+resource and full-resolution visual gates before implementing it.
 
 ---
 
