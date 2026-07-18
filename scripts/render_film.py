@@ -66,6 +66,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT / "configs" / "render_profiles" / "safe_rich_v1.json",
     )
+    parser.add_argument(
+        "--use-render-profile",
+        action="store_true",
+        help="Source colour parameters from the validated versioned render profile.",
+    )
     parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
@@ -176,9 +181,18 @@ def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Im
     )
 
 
-def build_color_render_float(rgb: np.ndarray, args: argparse.Namespace) -> np.ndarray:
+def build_color_render_float(
+    rgb: np.ndarray,
+    args: argparse.Namespace,
+    *,
+    profile_values: dict | None = None,
+) -> np.ndarray:
     stats = json.loads(args.stats.read_text(encoding="utf-8"))
-    profile = load_profile_values(args.profile_config, args.preset, args.style)
+    profile = (
+        load_profile_values(args.profile_config, args.preset, args.style)
+        if profile_values is None
+        else profile_values
+    )
     return style_transfer_rgb(
         rgb,
         stats["styles"][args.style],
@@ -204,9 +218,25 @@ def main() -> int:
     args = parse_args()
     if args.output_bit_depth == 16 and args.output.suffix.casefold() not in {".png", ".tif", ".tiff"}:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
+    profile_manifest = None
+    profile_values = None
+    if args.use_render_profile or args.write_recipe:
+        profile_manifest = load_render_profile(args.render_profile, root=ROOT)
+        _verify_recipe_profile_assets(profile_manifest, args)
+        if args.style not in profile_manifest["style_parameters"]:
+            raise ValueError(f"Render profile does not contain style {args.style!r}")
+        profile_values = dict(profile_manifest["style_parameters"][args.style])
+        if not args.use_render_profile:
+            legacy_values = load_profile_values(args.profile_config, args.preset, args.style)
+            if profile_values != legacy_values:
+                raise ValueError(f"Recipe profile does not exactly migrate style {args.style!r}")
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
-    base = build_color_render_float(working_image_to_srgb_float(working), args)
+    base = build_color_render_float(
+        working_image_to_srgb_float(working),
+        args,
+        profile_values=profile_values if args.use_render_profile else None,
+    )
     layers = []
     halation_resolved = None
     halation_metadata = None
@@ -275,11 +305,7 @@ def main() -> int:
     recipe_path = None
     recipe_sha256 = None
     if args.write_recipe:
-        profile_manifest = load_render_profile(args.render_profile, root=ROOT)
-        _verify_recipe_profile_assets(profile_manifest, args)
-        color_parameters = load_profile_values(args.profile_config, args.preset, args.style)
-        if profile_manifest["style_parameters"].get(args.style) != color_parameters:
-            raise ValueError(f"Recipe profile does not exactly migrate style {args.style!r}")
+        assert profile_manifest is not None and profile_values is not None
         recipe = build_render_recipe(
             profile_path=args.render_profile,
             profile=profile_manifest,
@@ -297,7 +323,7 @@ def main() -> int:
                 "preset": args.preset,
                 "style": args.style,
                 "seed": args.seed,
-                "color_parameters": color_parameters,
+                "color_parameters": profile_values,
                 "effects": {
                     "grain": {
                         "strength": args.grain,
@@ -348,6 +374,7 @@ def main() -> int:
             "style": args.style,
             "color_engine": args.color_engine,
             "preset": args.preset,
+            "profile_driven_adapter": args.use_render_profile,
             "output_claim": output_claim,
             "input_decode": {
                 "working_space": working.working_space,
