@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "a31ea2e91f0eb9279730f09f2207f0ca685657a6",
+  "head": "914d40f2725fcb51213dd153f9ba2ce75cb3a174",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 58,
-  "current_node": "ULT > U1 > U1.5 > U1.5C",
-  "current_leaf": "U1.5C passed with exact real-reference fail-closed regressions; selecting next legal leaf",
+  "iteration": 59,
+  "current_node": "ULT > U2 > U2.6 > U2.6A",
+  "current_leaf": "U2.6A contract frozen for deterministic validated read-only profile-evidence inspection",
   "phase": "CONTINUE",
-  "last_verified_commit": "a31ea2e91f0eb9279730f09f2207f0ca685657a6",
+  "last_verified_commit": "914d40f2725fcb51213dd153f9ba2ce75cb3a174",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 652,
@@ -19,9 +19,9 @@
     "timestamp": "2026-07-18T10:08:00Z"
   },
   "ready_leaves": [
-    "select_next_independent_ready_leaf"
+    "U2_6A_profile_evidence_inspection"
   ],
-  "next_action": "Refresh the U1 and stock-data trees, select the smallest evidence-authorized independent leaf, freeze its contract, and continue without reopening closed experiments or data gates.",
+  "next_action": "Commit and push the U2.6A contract, then implement the exact non-mutating evidence-summary API and deterministic read-only inspect CLI without changing v1 schemas or renderer output.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -95,6 +95,8 @@
     "tests/test_u1_5c_libultrahdr_reference.py",
     "docs/U1_5C_LIBULTRAHDR_REFERENCE_REGRESSION_RESULTS.md",
     "configs/u1_5c_libultrahdr_reference_decision_v1.json",
+    "docs/planning/U2_6A_PROFILE_EVIDENCE_INSPECTION_CONTRACT.md",
+    "configs/u2_6a_profile_evidence_inspection_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -103,6 +105,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T10:10:22Z",
-  "selection_rationale": "U1.5C passed without source changes: exact real references now harden the fail-closed boundary while leaving complete gain-map/HDR support explicitly open."
+  "last_update_utc": "2026-07-18T10:18:00Z",
+  "selection_rationale": "U2.6A closes a truthful product-contract gap using the already-passed U2.1A evidence ledger: expose exact declared grades through validated read-only surfaces without schema or renderer churn."
 }

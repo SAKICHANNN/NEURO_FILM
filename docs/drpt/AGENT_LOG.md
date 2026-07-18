@@ -1918,3 +1918,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** 53 focused and 652 complete CPU tests pass; compile and diff checks pass.
 - **Decision:** retain exact real-reference fail-closed regressions. Do not claim semantic gain-map recognition, complete MPF/ISO 21496-1 detection, HDR reconstruction or HDR output.
 - **Handoff:** U1.5C closes; Goal remains ACTIVE and returns to the smallest independent deterministic product or permitted stock-data leaf.
+
+## 2026-07-18 - Freeze U2.6A profile-evidence inspection
+
+- **Parent/question:** U2.1A already validates evidence fields and the held-out-S3 calibration gate; U2.6 still lacks a supported read-only CLI/API display surface.
+- **Frozen design:** exact non-mutating summary of profile identity and declared evidence, plus deterministic inspect CLI with full profile/asset validation.
+- **Compatibility:** no profile/recipe schema, renderer, render bytes, profile data or evidence grade may change.
+- **Gates:** exact safe-rich none/none/heuristic/false output, two-run byte identity, invalid/escalated/tampered profiles fail closed, focused/full/compile/diff checks.
+- **Handoff:** commit/push this contract before implementation; Goal remains ACTIVE.

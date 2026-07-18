@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U2 > U2.6 > U2.6A",
+  "summary_schema_id": "kmcfm.profile-evidence-summary.v1",
+  "profile": "configs/render_profiles/safe_rich_v1.json",
+  "required_keys": [
+    "schema_id",
+    "profile_id",
+    "profile_version",
+    "film_stock_id",
+    "latent_mode_id",
+    "interpretation",
+    "data_grade",
+    "expert_grade",
+    "method",
+    "calibrated_reference_allowed",
+    "claim_ceiling"
+  ],
+  "expected_safe_rich": {
+    "data_grade": "none",
+    "expert_grade": "none",
+    "method": "heuristic",
+    "calibrated_reference_allowed": false
+  },
+  "profile_schema_change_allowed": false,
+  "recipe_schema_change_allowed": false,
+  "renderer_change_allowed": false,
+  "evidence_inference_allowed": false,
+  "claim_ceiling": "deterministic validated exposure of the evidence already declared by a render profile; no evidence upgrade, stock authenticity, calibration or safety claim"
+}

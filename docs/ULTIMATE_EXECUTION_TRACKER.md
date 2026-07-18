@@ -342,6 +342,7 @@ Do not claim camera-accurate RAW solely from generic rawpy. Reference-grade came
 | U2.5 | pending | Legacy `safe_lab` adapter | U2.1, U1.3 | Old recipes render within frozen tolerance |
 | U2.5A | complete: invariant pass | Enforce exact neutral-axis RGB for existing HP5/Tri-X safe-Lab profiles | U1.3B defect evidence | B&W float/8/16-bit achromatic invariant, frozen Velvia hash, 225 tests and full-resolution RAW vision pass |
 | U2.6 | pending | Profile evidence labels | U2.1 | `heuristic/measured/paired/held-out` visible in CLI/API |
+| U2.6A | ready: contract frozen | Deterministic validated read-only profile-evidence summary API and CLI | U2.1A | expose exact declared identity/evidence fields; safe-rich must remain none/none/heuristic/non-calibrated; no schema, renderer or evidence-grade change |
 
 U2 internal/local schema and renderer research is not blocked by the repository-license decision. U0.2 remains mandatory before publishing code, schema assets, profiles or weights. U2 can ship strongly stylized `film-inspired` profiles only after U0.2 and U4 artifact/style gates. It cannot use `calibrated` or strong named-stock reproduction claims before U3 and the conditional authenticity gate.
 
