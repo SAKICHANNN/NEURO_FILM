@@ -266,6 +266,9 @@ discarded while metadata says `preserved`, and palette transparency is silently
 lost. Freeze fail-closed handling: only fully opaque alpha may be stripped with
 an explicit warning; any real transparency rejects before RGB conversion until
 a separate matte or alpha-output contract exists.
+U1.2B passes: real transparency now rejects before RGB working pixels, opaque
+alpha strips with a warning and byte-exact RGB equivalence, and the renderer
+leaves no output on rejection. Alpha preservation/compositing remains open.
 
 ---
 

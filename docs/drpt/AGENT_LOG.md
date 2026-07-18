@@ -1735,3 +1735,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Evidence plan:** RGBA, LA, palette/`tRNS`, opaque-equivalence and ordinary RGB fixtures; zero false preservation claims.
 - **Boundary:** no matte choice, alpha output, CLI/schema, HDR, wide-gamut or calibrated claim.
 - **Handoff:** hash and commit/push the contract, then implement only in raster ingress with focused and full tests.
+
+## 2026-07-18 - Pass U1.2B raster-alpha fail-closed ingress
+
+- **Implementation:** `56a1e91` removes the false `preserved` state and resolves alpha before RGB working-pixel conversion.
+- **Evidence:** RGBA, LA and palette transparency reject; opaque RGBA matches explicit RGB bytes and records `opaque_alpha_discarded`; renderer rejection creates no output.
+- **Verification:** 40 focused tests and 563 complete CPU tests pass.
+- **Boundary:** no matte, alpha output, HDR, wide gamut, schema or calibrated claim.
+- **Handoff:** propagate and return to the smallest remaining U1 colour-state/format invariant.

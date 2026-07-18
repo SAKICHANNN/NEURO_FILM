@@ -31,7 +31,7 @@
 | User contribution | not a current dependency | no new owner images, pairs, labels or votes are required for the no-data/FilmSet/BlueNeg stages |
 | Stock accuracy | stock-first research active; calibration deferred | authoritative labels and unseen roll/source controls can support graded `S1/S2` real-film-derived experts; paired controlled evidence is required for `S3 calibrated-reference` |
 | License/release | blocked | docs say MIT but root `LICENSE` is absent |
-| Tests | baseline passes | 558 CPU tests pass through U1.6G4I; exact 100MP isolated-adapter resource/determinism evidence passes, complete renderer remains closed |
+| Tests | baseline passes | 563 CPU tests pass through U1.2B; transparent raster ingress now fails closed and opaque alpha is truthfully stripped |
 
 ---
 
@@ -90,7 +90,7 @@
 | 1y | U1.6G4G | Measure 24MP memory/runtime and orchestration readiness | complete: local measured pass | 0.963-0.983GiB peak; repeat hashes/cleanup pass; no renderer integration or 100MP claim |
 | 1z | U1.6G4H | Research adapter/orchestration parity and lifetime contract | complete: isolated adapter pass | 36/36 parity policies, ownership/failure/static isolation pass; no CLI/default/100MP claim |
 | 1aa | U1.6G4I | Measure isolated adapter at 100MP | complete: local adapter pass | two exact runs at 4.066-4.072GB and 123.8-131.8s; hashes/cleanup pass; no complete renderer/integration claim |
-| 1ab | U1.2B | Make raster alpha ingress truthful | contract frozen; implementation ready | reject any non-opaque alpha before RGB conversion; strip fully opaque alpha with warning; no matte/preservation claim |
+| 1ab | U1.2B | Make raster alpha ingress truthful | complete: fail-closed pass | RGBA/LA/palette transparency rejects; opaque alpha exact-equivalent strip; no matte/preservation claim |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |
