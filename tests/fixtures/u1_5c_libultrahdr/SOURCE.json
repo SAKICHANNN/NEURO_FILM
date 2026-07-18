@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/google/libultrahdr",
+  "source_commit": "ad4a92eea0d2f39f18b5ecae3165fdd56c6a478b",
+  "source_directory": "tests/data",
+  "license": "CC-BY-4.0",
+  "license_file": "LICENSE-CC-BY-4.0.txt",
+  "files": [
+    {
+      "name": "apple_gainmap_old.jpg",
+      "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b"
+    },
+    {
+      "name": "apple_gainmap_new.jpg",
+      "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078"
+    }
+  ],
+  "modifications": "none; fixture bytes copied unmodified",
+  "purpose": "U1.5C fail-closed real gain-map ingress regression"
+}
