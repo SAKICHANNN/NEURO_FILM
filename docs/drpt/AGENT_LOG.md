@@ -1843,3 +1843,12 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Frozen failure:** 66/96 exceed the 0.5% new Rec.2020 boundary gate; worst is 6.7808%. Source and chroma each fail 33/48, so neither policy escapes. Red-high and blue/green-low mechanisms appear on different source/style cells.
 - **Visual boundary:** automatic failure prohibited anonymous sheets/private mapping and visual review. No confirmed visual-severe verdict exists; this is boundary/clipping-risk evidence only.
 - **Decision:** close C2, retain C1A/B and C1C synthetic research evidence, forbid renderer/profile/schema/default integration and threshold widening. Ultimate remains ACTIVE and returns to another legal leaf.
+
+## 2026-07-18 - Freeze U1.5B structured gain-map signal scan
+
+- **Parent/skills:** `ULT > U1 > U1.5`; `dev-research-reliability` primary with DRPT, plan, structure, log and research-source discipline.
+- **Defect:** U1.5A samples only the first and last 4 MiB, while legal JPEG APP and PNG textual metadata may occur in the unsampled middle.
+- **Authority:** Android Ultra HDR XMP/MPF model, ITU-T T.86 APPn semantics and PNG Third Edition chunk ordering.
+- **Frozen scope:** traverse JPEG APP1/APP2/COM before SOS and PNG text chunks through IEND, retain the edge scan, bound retained/decompressed metadata, and reject recognized signals before pixel conversion.
+- **Forbidden:** complete ISO 21496-1/MPF support, HDR reconstruction/tone mapping, HEIF/AVIF enablement, new dependency, renderer/default changes or preservation claims.
+- **Handoff:** commit and push the frozen contract before implementation; U1.4C2 remains closed and Ultimate remains ACTIVE.

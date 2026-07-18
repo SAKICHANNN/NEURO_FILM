@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1 > U1.5 > U1.5B",
+  "title": "Structured recognized gain-map signal scan",
+  "parent_results": "docs/U1_5A_HDR_GAINMAP_FAIL_CLOSED_RESULTS.md",
+  "jpeg": {
+    "start": "SOI",
+    "stop_before_entropy": "first SOS",
+    "scanned_segments": ["APP1", "APP2", "COM"]
+  },
+  "png": {
+    "stop": "IEND",
+    "scanned_chunks": ["tEXt", "zTXt", "iTXt"],
+    "pixel_chunks_skipped": ["IDAT"],
+    "validate_scanned_chunk_crc": true
+  },
+  "limits": {
+    "maximum_single_metadata_payload_bytes": 1048576,
+    "maximum_cumulative_decoded_text_bytes": 4194304,
+    "legacy_edge_scan_bytes_per_end": 4194304
+  },
+  "required_middle_distance_bytes": 4194304,
+  "recognized_markers": [
+    "http://ns.adobe.com/hdr-gain-map/1.0/",
+    "hdrgm:version",
+    "item:semantic=\"gainmap\"",
+    "urn:com:apple:photo:2020:aux:hdrgainmap"
+  ],
+  "claim_ceiling": "bounded structured detection of known gain-map signals; no complete ISO 21496-1, HDR reconstruction, preservation or format-support claim"
+}
