@@ -7,10 +7,10 @@
   "branch": "research/fivek-auto-optimize-cache",
   "head": "cf984cbb7dad6c68c93d9c5054a946e20cfb0300",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 66,
+  "iteration": 67,
   "current_node": "ULT > U5 > U5.R2 > U5.R2B",
-  "current_leaf": "U5.R2A numerical representation passed with semantic non-safety counterexample; freeze U5.R2B global frontier",
-  "phase": "SELECT_AND_FREEZE",
+  "current_leaf": "U5.R2B fixed global operator frontier contract frozen; implementation and execution pending",
+  "phase": "EXECUTE",
   "last_verified_commit": "cf984cbb7dad6c68c93d9c5054a946e20cfb0300",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
@@ -19,9 +19,9 @@
     "timestamp": "2026-07-23T03:53:00Z"
   },
   "ready_leaves": [
-    "freeze_u5_r2b_global_operator_frontier"
+    "implement_and_execute_u5_r2b_global_operator_frontier"
   ],
-  "next_action": "Freeze U5.R2B before seeing new frontier results: bind the eligible global candidate bank, identical renderer/export, target-look controls, severe-artifact evidence, development/confirmatory split and branch rules; keep current stock pixels closed to fitting.",
+  "next_action": "Commit the frozen U5.R2B contract, implement its isolated fixed-bank evaluator, regenerate all seven primary candidates on 9 gold plus 32 stress inputs, run automatic gates and inspect only automatic survivors.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -122,6 +122,8 @@
     "tests/test_u5_r2a_constrained_operator.py",
     "docs/U5_R2A_CONSTRAINED_GLOBAL_OPERATOR_RESULTS.md",
     "configs/u5_r2a_constrained_global_operator_decision_v1.json",
+    "docs/planning/U5_R2B_GLOBAL_OPERATOR_FRONTIER_CONTRACT.md",
+    "configs/u5_r2b_global_operator_frontier_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -130,6 +132,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T03:53:00Z",
-  "selection_rationale": "U5.R2A closed its reusable numerical representation without claiming safety. U5.R2B is now the nearest film-colour algorithm leaf and can compare only evidence-eligible fixed global policies without violating stock identifiability, fitting, training or LSM closures."
+  "last_update_utc": "2026-07-23T04:55:00Z",
+  "selection_rationale": "U5.R2B is the nearest algorithm leaf after U5.R2A. Its frozen bank reuses only existing fixed same-renderer policies and A0/B0 development evidence, so it cannot bypass stock identifiability, fitting, training, hidden-confirmation or LSM closures."
 }

@@ -2015,3 +2015,21 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   U5.R2B becomes the next algorithm leaf. Current stock pixels, training,
   operator fitting, LSM and production integration remain closed; Goal stays
   ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2B fixed global operator frontier
+
+- **Parent/question:** `ULT > U5 > U5.R2 > U5.R2B`; determine whether an
+  existing fixed same-renderer global policy is meaningfully stronger and
+  non-basic versus safe-rich without a confirmed severe gold failure.
+- **Bank:** safe-rich, five owner anchors and the already defined
+  anchor56/chroma/margin-4 challenger. Identity is a control; RF2.C0 Ektar is
+  external-reference-only and cannot win the primary frontier.
+- **Data/evidence:** B0 development only on the existing 9 provisional gold +
+  32 stress A0 inputs; no hidden or population claim. All current real-film
+  pixels remain forbidden for fitting/training/LSM.
+- **Frozen gates:** identical legacy renderer/export, complete repeatable
+  41-image bank, style Delta E76 >=7.0, matched-basic residual >=4.9, worst
+  gold new clipping <=0.5%, then three blind contact-sheet rounds and complete
+  full-resolution survivor veto including ID11.
+- **Handoff:** commit/push the contract before rendering or inspecting U5.R2B
+  results, then implement the isolated evaluator. Goal remains ACTIVE.
