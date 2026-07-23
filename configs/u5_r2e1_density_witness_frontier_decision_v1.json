@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2e1-density-witness-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2E1",
+  "decision": "retain_one_B0_density_challenger",
+  "config_sha256": "02f6bdd4d3a016c9617076187de6dfe7c1d0013659d18d413bf6d8d99f70b6e2",
+  "render_manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
+  "automatic_report_sha256": "2278b82f2bfa0a221574264166a6d5f30eb1504330a7287e8c8bc34a5771ab06",
+  "autonomous_blind_review_sha256": "8a8e8f223a9354cedfe7aab60255f2f49a5e8d2de6318315420493b4ea86678e",
+  "full_resolution_review_sha256": "d129003142f9283cc0b31db774df4f7bae48d1b41d050585c6bdd257c6b9ace5",
+  "software_commit": "675542b097142e376f386dc2a166158327e5bed0",
+  "candidate_count": 20,
+  "automatic_survivor_count": 8,
+  "shortlist": [
+    "cross_processed_like__s50",
+    "cyan_shadow_warm_highlight_like__s50",
+    "warm_dense_like__s50"
+  ],
+  "retained_candidate": "cyan_shadow_warm_highlight_like__s50",
+  "retained_gold_median_style_delta_e76": 13.4944,
+  "retained_gold_median_non_basic_residual_delta_e76": 7.3946,
+  "retained_worst_gold_new_hard_clipping_fraction": 0.0,
+  "retained_worst_stress_new_hard_clipping_fraction": 0.0,
+  "blind_votes": {
+    "cyan_shadow_warm_highlight_like__s50": 2,
+    "warm_dense_like__s50": 1,
+    "cross_processed_like__s50": 0
+  },
+  "shortlist_full_resolution_render_count": 27,
+  "confirmed_severe_failures": 0,
+  "id11_red_speckle_or_posterization_reproduced": false,
+  "production_default_changed": false,
+  "named_stock_claim_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "latent_mode_learning_allowed": false,
+  "next_leaf": "freeze and run U5.R2F1 no-training CanonCGT E2E reference-condition safety pilot",
+  "claim_ceiling": "autonomous B0 development evidence for one original deterministic film-inspired density challenger on the frozen gold/stress set; no universal safety, owner or independent-human preference, measured film response, named stock, calibration, latent mode or production promotion"
+}

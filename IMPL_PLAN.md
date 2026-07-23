@@ -96,10 +96,13 @@ U5.R2E0 now supplies that primitive. All five descriptive witnesses are
 bounded, non-affine, partition/replay exact and pairwise distinct on the
 frozen grid; all sampled Jacobians and channel-direction derivatives remain
 positive. This is only a numerical/diversity pass, not film plausibility,
-visual safety, preference or stock evidence. U5.R2E1 is the next ready
-algorithm leaf: a bounded-strength gold/stress frontier with the unchanged
-severe-artifact veto and at most three automatic survivors for blinded visual
-review.
+visual safety, preference or stock evidence. U5.R2E1 now retains
+cyan-shadow/warm-highlight at strength 0.50 as one B0 density challenger: it
+blind-wins 2/3, reaches style 13.49 and non-basic residual 7.39 with zero new
+clipping, and has no confirmed severe failure across 27 full-resolution
+shortlist renders including ID11. This remains autonomous development
+evidence, not stock or production truth. U5.R2F1 is the next ready algorithm
+leaf: a frozen no-training CanonCGT E2E reference-condition safety pilot.
 
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls

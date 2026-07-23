@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "774758ee308102e80068943d0445552b2e96324e",
+  "head": "675542b097142e376f386dc2a166158327e5bed0",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 74,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2E1",
-  "current_leaf": "Freeze and run the bounded-strength density-witness gold/stress frontier",
+  "iteration": 75,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2F1",
+  "current_leaf": "Freeze and run the no-training CanonCGT E2E reference-condition safety pilot",
   "phase": "EXECUTE",
-  "last_verified_commit": "774758ee308102e80068943d0445552b2e96324e",
+  "last_verified_commit": "675542b097142e376f386dc2a166158327e5bed0",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 748,
+    "passed": 754,
     "failed": 0,
-    "timestamp": "2026-07-23T08:54:00Z"
+    "timestamp": "2026-07-23T06:25:00Z"
   },
   "ready_leaves": [
-    "freeze_and_run_u5_r2e1_density_witness_gold_stress_frontier"
+    "freeze_and_run_u5_r2f1_canoncgt_reference_condition_safety_pilot"
   ],
-  "next_action": "Commit and push the frozen U5.R2E1 contract before any E1 render, then implement an isolated exact renderer/evaluator with double-render identity, inherited R2B metrics, deterministic one-strength-per-witness shortlist and blinded comparator sheets.",
+  "next_action": "Freeze and commit an exact rights/hash/reference manifest plus U5.R2F1 contract before inference, then implement an isolated weights-only CanonCGT E2E adapter and audit both LUTs, excursions, determinism, reference sensitivity, inherited frontier metrics and the full severe veto.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -172,9 +172,13 @@
     "docs/U5_R2E0_DENSITY_DOMAIN_OPERATOR_RESULTS.md",
     "configs/u5_r2e0_density_domain_operator_decision_v1.json",
     "docs/planning/U5_R2E1_DENSITY_WITNESS_FRONTIER_CONTRACT.md",
-    "configs/u5_r2e1_density_witness_frontier_v1.json"
+    "configs/u5_r2e1_density_witness_frontier_v1.json",
+    "docs/U5_R2E1_DENSITY_WITNESS_FRONTIER_RESULTS.md",
+    "configs/u5_r2e1_density_witness_frontier_decision_v1.json",
+    "docs/CANONCGT_EXTERNAL_ML_SOURCE_AUDIT.md",
+    "configs/u5_r2f0_canoncgt_external_source_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T09:02:00Z",
-  "selection_rationale": "U5.R2E1 is now frozen before results. Its 5x4 bank, inherited R2B gates, bounded shortlist and all-nine severe veto directly test whether the numerically valid E0 primitive has practical film-inspired value without parameter leakage or stock overclaim."
+  "last_update_utc": "2026-07-23T06:19:07Z",
+  "selection_rationale": "U5.R2E1 retains one severe-clean B0 density challenger without stock overclaim. U5.R2F0 establishes that the public CanonCGT E2E path is runnable but unbounded; U5.R2F1 is now the smallest legal ML algorithm leaf and tests whether immutable unpaired A0 reference conditions yield non-basic, reference-sensitive value under explicit LUT and clamp audits."
 }

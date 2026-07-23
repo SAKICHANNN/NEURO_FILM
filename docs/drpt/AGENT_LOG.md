@@ -2339,3 +2339,30 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   stock identification. Open only a separately frozen U5.R2D1 CPU synthetic
   known-operator benchmark. No data, model or renderer integration opened;
   Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2E1 with one B0 density challenger
+
+- **Integrity:** two complete 820-output render passes share manifest SHA-256
+  `8173ce87...390`; the automatic report is
+  `2278b82f...b06` and all render stderr logs are empty.
+- **Test isolation:** the ignored official CanonCGT checkout exposed that
+  default pytest collection still traversed `outputs/`; `pytest.ini` now
+  scopes collection to project `tests/` and excludes output/data/runtime
+  trees. The unchanged default command passes all 754 project tests.
+- **Automatic result:** eight candidates pass the unchanged R2B gates. The
+  frozen shortlist is cross-processed, cyan-shadow/warm-highlight and
+  warm-dense, all at strength 0.50 and all with zero new hard clipping.
+- **Blind result:** after all three randomized sheets were reviewed and only
+  then unblinded, cyan-shadow/warm-highlight wins 2/3 and warm-dense wins 1/3.
+  Cross-processed is visibly strong but has incoherent magenta/green casts.
+- **Severe veto:** all 27 shortlist-by-gold original-resolution renders pass.
+  ID11 shows no red speckle, posterization or broken gradient in any
+  shortlist member.
+- **Decision/boundary:** retain
+  `cyan_shadow_warm_highlight_like__s50` as an autonomous B0 density
+  challenger only. It is not a measured film response, named stock, latent
+  mode, independent-human preference or production default.
+- **Handoff:** U5.R2F1 becomes ready. Freeze exact rights/hashes and a small
+  immutable A0 reference-condition bank before any CanonCGT inference; no
+  training, stock truth, current-pool fitting, LSM or production integration
+  opens. Goal remains ACTIVE.
