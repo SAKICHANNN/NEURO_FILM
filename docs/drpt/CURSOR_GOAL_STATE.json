@@ -5,18 +5,18 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "b03fcbc2856839b2acadefd1f361cf9026d8e50e",
+  "head": "734334f4111665f7bb0325584153ed15e55ed29b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
   "iteration": 83,
   "current_node": "ULT > U5 > U5.R2 > U5.R2G1",
   "current_leaf": "Implement and run fixed quantization-headroom adapter over immutable G0 operators",
   "phase": "EXECUTE",
-  "last_verified_commit": "b03fcbc2856839b2acadefd1f361cf9026d8e50e",
+  "last_verified_commit": "734334f4111665f7bb0325584153ed15e55ed29b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 768,
+    "passed": 770,
     "failed": 0,
-    "timestamp": "2026-07-23T09:45:00Z"
+    "timestamp": "2026-07-23T11:05:00Z"
   },
   "ready_leaves": [
     "freeze_u5_r2g0_constrained_explicit_distillation"

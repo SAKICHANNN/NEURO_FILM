@@ -113,7 +113,7 @@
 | 1at | U5.R2F1 | Run bounded external CanonCGT E2E reference-condition safety pilot | complete: reference-sensitive, raw policies safety-fail | bank pairwise DE 8.53; 6/9 style+non-basic pass but 0/9 pass clipping/range; exact 81x2 and replay; no visual shortlist |
 | 1au | U5.R2F2 | Test data-independent bounded projection of predicted explicit LUTs | complete: no automatic survivor | node clip retains style but fails structure/safety; both safe contractions pass structure/range 9/9 but style/non-basic 0/9; exact 243x2; no visual shortlist |
 | 1av | U5.R2G0 | Refit immutable ML LUT controls into a bounded explicit operator family | complete: style retained, boundary safety fail | style 9/9, non-basic 6/9, sensitivity 10.07, +4.77 vs F2; clipping 0/9 and no survivor; exact 81x2 |
-| 1aw | U5.R2G1 | Apply one fixed RGB8 quantization-headroom adapter to immutable G0 operators | in progress: contract frozen | exact h=1/255 only; no refit/capacity; must retain G0 style and eliminate boundary/clipping failure |
+| 1aw | U5.R2G1 | Apply one fixed RGB8 quantization-headroom adapter to immutable G0 operators | in progress: implementation verified | exact h=1/255 only; explicit replay/audits and 770 tests pass; formal 81x2 next |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |

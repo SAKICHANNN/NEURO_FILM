@@ -2547,3 +2547,15 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   than 0.5 median style or non-basic loss against matched G0 policies.
 - **Boundary:** no fit, inference, capacity, film pixels, stock truth, LSM or
   production claim. Goal remains ACTIVE.
+
+## 2026-07-23 - Verify U5.R2G1 explicit headroom replay
+
+- **Implementation:** immutable G0 operator JSON is hash-checked and wrapped
+  by one serialized explicit affine headroom map; source RGB is replayed
+  directly and G0 PNGs are never processing inputs.
+- **Safety:** output codes are required in `[1,254]`; raw range, baked
+  corresponding steps, tetrahedral Jacobians and serialized replay are
+  fail-closed.
+- **Verification:** two focused tests and all 770 repository tests pass.
+- **Handoff:** commit implementation, then run exact double 81-render formal
+  evaluation without changing the policy or gates. Goal remains ACTIVE.
