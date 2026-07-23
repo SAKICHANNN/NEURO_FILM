@@ -6,6 +6,8 @@
   "input_manifest_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
   "routing_report": "outputs/u5_r2h1_safe_bank_content_routing_v1/report.json",
   "routing_report_sha256": "ae4e160aa4e622591d4a709a4e0e22d354e5f3bebbc6d47237bf776660740464",
+  "routing_config": "configs/u5_r2h1_safe_bank_content_routing_v1.json",
+  "routing_config_sha256": "f9db09f8986c1e0e053191b261991bc6da29d57ad0696c9fba481f15a9483f04",
   "routing_view": "style_plus_non_basic",
   "router_id": "hard_1nn",
   "class_map": {
@@ -15,8 +17,12 @@
   "unassigned_fallback_class": 1,
   "anchor_manifest": "outputs/u5_r2b_global_frontier_v1/render_pass1/manifest.json",
   "anchor_manifest_sha256": "e0410f9ab8e5efe76a866fe8478148b0bb270651d560225d63eeb7faabe4f769",
+  "anchor_report": "outputs/u5_r2b_global_frontier_v1/automatic_report.json",
+  "anchor_report_sha256": "bf5cfc7ae20057be965cc72524aa59cee72d342f6ad34389de942c07dd5c2b1b",
   "density_manifest": "outputs/u5_r2e1_density_witness_frontier_v1/render_pass1/manifest.json",
   "density_manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
+  "density_report": "outputs/u5_r2e1_density_witness_frontier_v1/automatic_report.json",
+  "density_report_sha256": "2278b82f2bfa0a221574264166a6d5f30eb1504330a7287e8c8bc34a5771ab06",
   "blind_seed": 20260723,
   "rounds": [
     {"round_id": "full_fit", "presentation": "full_frame"},

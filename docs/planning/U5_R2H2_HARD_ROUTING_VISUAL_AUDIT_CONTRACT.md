@@ -21,8 +21,9 @@ Hash-verify:
 - the 41-source U4.1 A0 manifest;
 - the U5.R2H1 formal report and its exact composite-view `hard_1nn`
   predictions;
-- the U5.R2B anchor56 render manifest;
-- the U5.R2E1 cyan-shadow/warm-highlight density render manifest.
+- the frozen U5.R2H1 config, including the `0.5` assignment margin;
+- the U5.R2B anchor56 report and render manifest;
+- the U5.R2E1 cyan-shadow/warm-highlight density report and render manifest.
 
 Class `0` is
 `anchor56_chroma_margin4_challenger`; class `1` is

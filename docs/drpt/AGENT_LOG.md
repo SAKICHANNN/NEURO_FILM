@@ -2654,3 +2654,7 @@ viewed. The contract therefore corrects the blind population from 13 to all
 ten actual interventions and preserves the original roughly 69% win-or-tie
 proportion as 7/10. This is a pre-observation factual erratum, not post-view
 gate tuning.
+
+The frozen H1 config and both candidate automatic reports are also hash-pinned
+before tooling so the H2 manifest can record agreement with the exact H1
+metric Oracle rather than reconstructing an unstated label.
