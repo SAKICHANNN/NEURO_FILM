@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2g0_constrained_explicit_distillation_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2G0",
+  "source_f1_config": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+  "source_f1_config_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+  "source_f1_manifest": "outputs/u5_r2f1_canoncgt_reference_condition_v1/render_pass1/manifest.json",
+  "source_f1_manifest_sha256": "77c25ad0d75c9ec5d0eca66a60a133b6e6a0d48f719e6121d3540fc53bfc3f7c",
+  "source_f1_report": "outputs/u5_r2f1_canoncgt_reference_condition_v1/automatic_report.json",
+  "source_f1_report_sha256": "f5b510282cef4e8ce9ac780d5389c6c4a8eb1d26e3611e7eae13fa1b4b8002a8",
+  "source_f2_config": "configs/u5_r2f2_projected_lut_frontier_v1.json",
+  "source_f2_config_sha256": "7204d5e9998b2d3bfd671c0681c97e87c862d63d1a350d2338b4692a8adc775f",
+  "source_f2_report": "outputs/u5_r2f2_projected_lut_frontier_v1/automatic_report.json",
+  "source_f2_report_sha256": "d20e9592ad7e84450b5acea393013e7354d0ea42016eb5fcefd3123188bd3a7d",
+  "reference_ids": [
+    "a0_ref_01",
+    "a0_ref_02",
+    "a0_ref_03",
+    "a0_ref_04",
+    "a0_ref_05",
+    "a0_ref_06",
+    "a0_ref_07",
+    "a0_ref_08",
+    "a0_ref_09"
+  ],
+  "sample_ids": [
+    "01",
+    "05",
+    "08",
+    "09",
+    "11",
+    "18",
+    "21",
+    "29",
+    "FS_FACE_01"
+  ],
+  "fit": {
+    "synthetic_grid_size": 17,
+    "curve_knot_count": 9,
+    "minimum_curve_interval": 0.0001,
+    "maximum_matrix_mix": 0.45,
+    "seed": 20260723,
+    "restarts": 3,
+    "steps": 600,
+    "learning_rate": 0.03,
+    "identity_regularization": 0.0001,
+    "dtype": "float64",
+    "device": "cpu",
+    "target_policy": "clip_composed_f1_to_unit_cube"
+  },
+  "structure_gates": {
+    "matrix_minimum_determinant": 0.05,
+    "matrix_minimum_entry": -1e-12,
+    "matrix_maximum_row_sum_error": 1e-12,
+    "minimum_curve_interval": 0.0001,
+    "node_minimum": 0.0,
+    "node_maximum": 1.0,
+    "minimum_corresponding_channel_grid_step": 1e-7,
+    "minimum_tetrahedron_jacobian_determinant": 1e-8,
+    "maximum_replay_absolute_error": 1e-12
+  },
+  "automatic_gates": {
+    "gold_median_style_delta_e76_minimum": 7.0,
+    "gold_median_non_basic_residual_delta_e76_minimum": 4.9,
+    "worst_gold_new_hard_clipping_fraction_maximum": 0.005,
+    "worst_gold_raw_final_out_of_range_fraction_maximum": 0.0,
+    "reference_sensitivity_median_pairwise_delta_e76_minimum": 2.0,
+    "branch_median_style_advantage_over_f2_cap100_minimum": 0.25,
+    "minimum_automatic_survivors": 1
+  },
+  "output_root": "outputs/u5_r2g0_constrained_explicit_distillation_v1",
+  "claim_ceiling": "generic reference-conditioned external-ML transform approximated by a bounded explicit operator on a synthetic colour grid"
+}

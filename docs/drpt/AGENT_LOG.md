@@ -2478,3 +2478,23 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   synthetic-grid refit into a bounded explicit family. No real-film fitting,
   CanonCGT training, stock claim or production integration opens. Goal remains
   ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2G0 constrained explicit distillation
+
+- **Question:** test whether redistributing an immutable ML transform inside a
+  small bounded explicit family preserves style better than F2 uniform
+  contraction.
+- **Inputs:** all 81 F1 LUT pairs, composed only on a fixed 17-cube. The
+  optimizer cannot read source/reference/evaluation photographs or metrics.
+- **Family:** three strictly monotone nine-knot curves followed by a
+  non-negative row-stochastic matrix on a nonsingular identity-mixture path.
+  No bias, LUT residual, spatial term, clipping or effects.
+- **Optimizer:** frozen float64 CPU Adam, seed, three restarts, 600 steps and
+  identity regularization; no early stopping or post-result tuning.
+- **Gates:** exact structural/replay audit plus unchanged style, non-basic,
+  clipping, raw-range and reference-sensitivity gates. A branch-level pass
+  additionally requires at least one survivor and median style advantage over
+  F2 cap100 of 0.25.
+- **Boundary:** generic external-control evidence only. No photograph fitting,
+  CanonCGT training, real-film/stock/LSM claim or production integration.
+  Goal remains ACTIVE.
