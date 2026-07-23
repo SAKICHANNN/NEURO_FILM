@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "7e2cd83b3b9ea16d9baf0a5d978921a10db76335",
+  "head": "5ebfd9aecca0ec6fa004055e1c96c6793404f94a",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 76,
+  "iteration": 77,
   "current_node": "ULT > U5 > U5.R2 > U5.R2F1",
-  "current_leaf": "Implement and run the frozen no-training CanonCGT E2E reference-condition safety pilot",
+  "current_leaf": "Run and adjudicate the frozen no-training CanonCGT E2E reference-condition safety pilot",
   "phase": "EXECUTE",
-  "last_verified_commit": "7e2cd83b3b9ea16d9baf0a5d978921a10db76335",
+  "last_verified_commit": "5ebfd9aecca0ec6fa004055e1c96c6793404f94a",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 754,
+    "passed": 760,
     "failed": 0,
-    "timestamp": "2026-07-23T06:25:00Z"
+    "timestamp": "2026-07-23T06:54:00Z"
   },
   "ready_leaves": [
     "freeze_and_run_u5_r2f1_canoncgt_reference_condition_safety_pilot"
   ],
-  "next_action": "Commit and push the frozen U5.R2F1 contract/reference bank before inference, then implement an isolated weights-only adapter with explicit two-LUT replay, complete range/hash evidence, double-pass determinism and inherited frontier evaluation.",
+  "next_action": "Commit and push the verified isolated adapter, then run two complete 81-output CUDA passes, require byte-identical manifests, evaluate inherited gates and reference sensitivity, and perform blinded/full-resolution review only for the frozen shortlist.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +181,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T06:35:00Z",
-  "selection_rationale": "U5.R2F1 is frozen before inference with exact public-model and nine-reference hashes. It is the smallest legal ML leaf: no training, no stock truth and no RGB generator, only two predicted explicit LUTs under replay, range, sensitivity and severe-artifact gates."
+  "last_update_utc": "2026-07-23T06:54:00Z",
+  "selection_rationale": "The isolated F1 adapter now proves exact explicit two-LUT replay and deterministic repeated CUDA execution without importing external code into production modules. The complete frozen 81x2 run is the current ready leaf."
 }

@@ -2389,3 +2389,20 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary:** no stock response, calibration, LSM, independent-human
   preference, production integration or redistribution claim opens. Goal
   remains ACTIVE.
+
+## 2026-07-23 - Verify U5.R2F1 isolated explicit-LUT adapter
+
+- **Implementation:** external imports are delayed inside the isolated eval
+  function; production modules never import CanonCGT. The fixed checkpoint is
+  weights-only loaded and exactly 5,056,383 forward parameters are accepted.
+- **Explicit renderer:** final full-resolution RGB is replayed solely through
+  the predicted canonicalizer and restyler 17-cube LUTs. The one-pair smoke
+  has zero canonical and final replay error.
+- **Determinism:** two independent CUDA smoke directories have byte-identical
+  manifests at `8bcbebcf...5920`.
+- **Risk evidence:** A0 ref01 on gold01 already shows 13.72% canonical-LUT
+  node excursion and 0.679% raw-final excursion, so that pair exceeds the
+  frozen 0.5% candidate risk gate despite no obvious spatial artifact.
+- **Verification/handoff:** six focused tests and all 760 project tests pass.
+  Commit the adapter, then run the unchanged formal 81x2 bank; do not tune
+  references, gates or model. Goal remains ACTIVE.
