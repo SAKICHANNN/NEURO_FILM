@@ -2383,6 +2383,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   and replay error `<=1e-6`.
 - **Visual:** at most one survivor per provenance bucket and three total;
   three blind rounds plus all-nine original-resolution severe veto and ID11.
+- **Comparator integrity:** the exact R2B safe-rich/anchor56 and R2E1 density
+  manifests are now hash-pinned before inference; they are display
+  comparators only.
 - **Boundary:** no stock response, calibration, LSM, independent-human
   preference, production integration or redistribution claim opens. Goal
   remains ACTIVE.

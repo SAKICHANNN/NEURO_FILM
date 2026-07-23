@@ -109,6 +109,9 @@ margin-4 anchor56, the retained U5.R2E1 density challenger and the shortlisted
 ML candidates. If sheet width requires separate matched panels, keep the
 same randomization seed and private mapping.
 
+Comparator paths are fixed by the byte-identical R2B and R2E1 manifests
+recorded in the frozen configuration; they remain comparators, never targets.
+
 Inspect every shortlisted ML candidate at full resolution on all nine gold
 images. Sample 11 remains the explicit red-speckle/posterization regression.
 Also inspect faces, smooth gradients, saturated reds/blues, text, fine
