@@ -2221,6 +2221,28 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   calibration, population preference, production change, fitting, training or
   LSM. Goal remains ACTIVE.
 
+## 2026-07-23 - Audit CanonCGT as an external canonical-pivot LUT control
+
+- **Primary evidence:** CVPR 2026 paper plus official Apache-2.0 repository
+  commit `229a7d3`; formal PDF, code, licence and public weights are hash-pinned.
+- **Availability correction:** public `E2E.pth` is a valid 20.9MB epoch-9
+  checkpoint; the advertised `SSL.pth` is only two bytes. Full published
+  self-supervised reproduction is unavailable and cannot be claimed.
+- **Architecture:** input-conditioned canonicalizer LUT followed by
+  reference-conditioned grader LUT, both `17^3`; ML predicts explicit global
+  operators and never spatially generates RGB.
+- **Smoke:** all 5,056,383 forward parameters load with zero missing keys;
+  official pair is repeat-exact, style Delta E `14.03`, matched-basic residual
+  `3.57`, new clipping `0.150%`.
+- **Risk:** canonical LUT has 12.68% out-of-range entries and final tensor
+  0.132% out-of-range values; official saving clamps. Explicit LUT form is not
+  bounded safety.
+- **Boundary/handoff:** retain only as a generic supervised reference-grading
+  external control. U5.R2F1 may freeze a small no-training reference-bank
+  pilot after E1 adjudication; references are conditions, never film truth.
+  No SSL, stock, calibration, fitting, LSM or production claim opens. Goal
+  remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256
