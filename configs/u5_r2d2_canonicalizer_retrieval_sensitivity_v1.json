@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2d2-canonicalizer-retrieval-sensitivity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2D2",
+  "parent": {
+    "config": "configs/u5_r2d1_synthetic_operator_recovery_v1.json",
+    "config_sha256": "fc1939a394d30e6c84a017095ca47ce84abf6ee6a7a6b62de68cc83fbc4c83ec",
+    "report": "outputs/u5_r2d1_synthetic_operator_recovery_v1/report.json",
+    "report_sha256": "6fd2b4bc84b18d4a38b7daf6118d67fb6730520129485bf1eea62846c7eebdd5",
+    "manifest": "outputs/u5_r2d1_synthetic_operator_recovery_v1/operator_manifest.json",
+    "manifest_sha256": "76c71291d7b6309da20c691d301a71609137879655663adeb43fc01e13fde9be",
+    "canonical_oracle_confirmation_rgb_rmse": 0.056384
+  },
+  "neutral_bank": {
+    "seed": 2026072303,
+    "clouds_per_palette": 8,
+    "pixels_per_cloud": 1024,
+    "palette_families": [
+      "balanced",
+      "warm",
+      "cool",
+      "foliage_like",
+      "skin_like",
+      "low_key",
+      "red_omitted_narrow",
+      "blue_omitted_narrow",
+      "green_omitted_narrow"
+    ],
+    "rgb_quantiles": 33,
+    "minimum_iqr": 0.000001
+  },
+  "canonicalizers": [
+    "query_as_neutral",
+    "nearest_raw_lab",
+    "nearest_basic_normalized_quantiles",
+    "fixed_gaussian_neutralization",
+    "palette_oracle_nearest",
+    "exact_raw_reference_oracle"
+  ],
+  "practical_canonicalizers": [
+    "query_as_neutral",
+    "nearest_raw_lab",
+    "nearest_basic_normalized_quantiles",
+    "fixed_gaussian_neutralization"
+  ],
+  "policies": {
+    "pca_components": 48,
+    "ridge_alphas": [
+      0.0001,
+      0.01,
+      1.0,
+      100.0
+    ],
+    "hard_case_neighbors": 1,
+    "sparse_case_neighbors": 3,
+    "distance_epsilon": 1e-12,
+    "preprocessing_fit_split": "fit",
+    "hyperparameter_selection_split": "validation",
+    "confirmation_tuning_allowed": false
+  },
+  "evaluation": {
+    "uniform_probe_grid_size": 17,
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 2026072304,
+    "maximum_neutral_item_share_reported": true,
+    "leave_one_palette_family_out": true
+  },
+  "gates": {
+    "maximum_parent_oracle_relative_reproduction_error": 0.05,
+    "minimum_practical_improvement_over_global_fraction": 0.1,
+    "minimum_practical_captured_style_fraction": 0.3,
+    "maximum_practical_family_degradation_over_global_fraction": 0.1,
+    "minimum_independently_useful_practical_canonicalizers": 3,
+    "maximum_practical_pairwise_rendered_rgb_rmse": 0.03,
+    "minimum_hard_top1_improvement_over_ridge_fraction": 0.05,
+    "maximum_hard_top1_family_degradation_fraction": 0.1,
+    "minimum_sparse_top3_improvement_over_top1_fraction": 0.03,
+    "projected_policy_valid_fraction": 1.0,
+    "cross_split_operator_overlap": 0,
+    "two_run_report_byte_identity": true
+  },
+  "image_download_allowed": false,
+  "external_lut_allowed": false,
+  "pretrained_weight_allowed": false,
+  "real_film_pixel_allowed": false,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "direct_rgb_generation_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "CPU generated-truth sensitivity of explicit neutral-control hypotheses and hard case retrieval; no validated real-photo canonicalizer, real-film operator identification, stock response, calibration, authenticity, population preference, routing value or production promotion"
+}

@@ -2119,6 +2119,25 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   retrieval on generated truth. Real-film fitting/training/LSM and production
   integration remain forbidden; Goal remains ACTIVE.
 
+## 2026-07-23 - Freeze U5.R2D2 canonicalizer/retrieval sensitivity
+
+- **Parent branch:** exact canonical delta carries some useful information;
+  ordinary unpaired interaction fails. Gates and manifest remain unchanged.
+- **Neutral bank:** 72 independently seeded, untransformed synthetic clouds
+  across nine palette families, with no operator or split information.
+- **Canonicalizers:** query control, raw-Lab nearest bank item,
+  basic-normalized quantile retrieval, fixed Gaussian neutralization,
+  palette-label oracle and exact-raw oracle.
+- **Policies:** development-only PCA/ridge versus hard Top-1 exact-case
+  retrieval and projected sparse Top-3.
+- **Decision gates:** practical success requires improvement, captured style
+  and per-family safety; at least three of four practical canonicalizers must
+  pass independently and agree within RGB RMSE `0.03`. Retrieval needs a
+  separate 5% win.
+- **Boundary:** generated-truth sensitivity only; instability is
+  `canonicalizer_sensitive/unidentified`, not a request for a larger model.
+  Real-film fitting/training/LSM and production remain closed; Goal ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256
