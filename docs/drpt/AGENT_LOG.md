@@ -2033,3 +2033,21 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   full-resolution survivor veto including ID11.
 - **Handoff:** commit/push the contract before rendering or inspecting U5.R2B
   results, then implement the isolated evaluator. Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze SF2.5R PROV negative-register reconnaissance
+
+- **Opportunity:** official descriptions link 6,832-item VPRS 17684, including
+  6,716 catalogued digital negatives, to VPRS 17690, a register explicitly
+  described as tracking film stock.
+- **Epistemic boundary:** discovery sees only 30 catalogue-level register
+  items, with sampled rows marked physical. It has not observed any
+  per-negative stock entry or pixel right.
+- **Frozen audit:** two official API metadata passes, normalized only for
+  response QTime; record register formats/consignments/digital fields and the
+  VPRS 17684 format facet.
+- **Stops:** no TIFF/VEO/IIIF/image payload, external message, physical order,
+  fitting, training or LSM. A physical-only register closes this source until
+  an independently accessible transcription/digitization exists.
+- **Coordination:** U5.R2B remains the primary algorithm leaf and continues
+  rendering in the background; SF2.5R is a non-overlapping bounded metadata
+  sibling used instead of idle polling.

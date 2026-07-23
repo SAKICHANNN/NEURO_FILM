@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf2.5r-prov-negative-register-recon-v1",
+  "node": "ULT > SF2 > SF2.5R",
+  "source": {
+    "organization": "Public Record Office Victoria",
+    "api_base": "https://api.prov.vic.gov.au/search/query",
+    "api_information_url": "https://prov.vic.gov.au/about-us/our-blog/new-prov-public-api",
+    "open_data_url": "https://prov.vic.gov.au/about-uspartnerships-and-collaborations/open-data",
+    "api_use": "non-commercial research under CC-BY-NC",
+    "register_description_url": "https://researchdata.edu.au/vprs-17690-photographic-negative-register/489934"
+  },
+  "queries": {
+    "negative_register": {
+      "q": "(category:Item AND series_id:17690)",
+      "rows": 100,
+      "wt": "json"
+    },
+    "digitised_negative_collection": {
+      "q": "(category:Item AND series_id:17684)",
+      "rows": 0,
+      "wt": "json",
+      "facet": "true",
+      "facet.field": "format"
+    }
+  },
+  "expected_discovery_bounds": {
+    "negative_register_minimum_items": 1,
+    "negative_register_maximum_items": 100,
+    "digitised_collection_minimum_items": 1000
+  },
+  "repeat_audits": 2,
+  "normalization": {
+    "remove_response_header_qtime_only": true,
+    "canonical_json_sort_keys": true
+  },
+  "allowed_actions": [
+    "two bounded official API metadata passes",
+    "write ignored normalized reports",
+    "record catalogue and access facts"
+  ],
+  "forbidden_actions": [
+    "request image, TIFF, VEO, IIIF or other pixel payloads",
+    "order or purchase physical copies",
+    "send external messages or create an account",
+    "fit operators, train models or start latent-mode discovery",
+    "infer stock labels from image appearance",
+    "claim register catalogue metadata contains per-negative stock truth"
+  ],
+  "pixel_acquisition_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "bounded public-catalogue source reconnaissance; no accessible per-negative stock labels, pixel rights, stock signal, identified operator, training or calibration claim unless a later branch is separately authorized"
+}
