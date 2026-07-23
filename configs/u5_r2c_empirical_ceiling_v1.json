@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2c-fixed-bank-empirical-ceiling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2C",
+  "status": "contract_and_budget_feasibility_only",
+  "candidate_budget_k": 7,
+  "candidate_ids": [
+    "bland_safe_rich_control",
+    "anchor01_color_only",
+    "anchor09_color_only",
+    "anchor53_color_only",
+    "anchor55_color_only",
+    "anchor56_color_only",
+    "anchor56_chroma_margin4_challenger"
+  ],
+  "identity_fallback": true,
+  "identity_counts_toward_k": false,
+  "global_comparator": "anchor56_chroma_margin4_challenger",
+  "selection_panel": {
+    "panel_id": "S",
+    "initial_severity_raters_per_candidate": 3,
+    "senior_severity_raters_on_escalation": 3,
+    "look_raters_per_candidate": 3,
+    "minimum_look_pass_votes": 2,
+    "ranking_raters_per_scene": 3,
+    "ties_allowed": true,
+    "selection_rule": "lowest_mean_rank_then_higher_median_style_strength_then_frozen_candidate_order",
+    "no_eligible_candidate_action": "identity"
+  },
+  "evaluation_panel": {
+    "panel_id": "E",
+    "must_be_disjoint_from_selection_panel": true,
+    "preference_raters_per_scene": 3,
+    "deployed_severity_raters_per_scene": 3,
+    "senior_deployed_severity_raters_on_escalation": 3,
+    "deployed_look_raters_per_scene": 3,
+    "ties_allowed": true,
+    "identical_to_comparator_preference": "deterministic_tie",
+    "all_scenes_remain_in_every_denominator": true
+  },
+  "planning_endpoint": {
+    "tie_score": "P(win)+0.5*P(tie)",
+    "one_sided_confidence_level": 0.95,
+    "minimum_lower_bound": 0.55,
+    "binding_estimator": null,
+    "binding_sample_size": null,
+    "binding_status": "unknown_until_cluster_label_error_and_tie_model_pilot"
+  },
+  "workload_scenarios_n": [
+    100,
+    300,
+    600
+  ],
+  "forbidden_b1_evidence_assignments": [
+    "u41_provisional_gold",
+    "u42_owner_anchor_replays",
+    "rf2_c0_spektrafilm_outputs",
+    "known_id11_red_speckle",
+    "u5_r2b_render_bank"
+  ],
+  "external_human_recruitment_authorized": false,
+  "pixel_acquisition_authorized": false,
+  "model_training_authorized": false,
+  "operator_fitting_authorized": false,
+  "adaptive_routing_authorized": false,
+  "production_integration_authorized": false,
+  "claim_ceiling": "local B1 fixed-bank protocol and non-binding annotation workload feasibility only; no participants, B1 outcomes, population preference, risk guarantee, routing value, stock response, calibration, authenticity or production promotion"
+}

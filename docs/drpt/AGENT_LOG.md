@@ -2100,3 +2100,22 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   feasibility becomes ready; actual external recruitment remains authority
   gated. Current real-film fitting, training and LSM stay forbidden and Goal
   remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2C empirical-ceiling contract
+
+- **Parent/question:** U5.R2B retains one B0 global challenger; U5.R2C asks
+  whether a complete per-scene policy from the unchanged bank can
+  independently beat that global comparator.
+- **Frozen bank:** exact U5.R2B `K=7`; identity is a fallback, not an eighth
+  proposal; global comparator is margin-4 anchor56.
+- **Isolation:** selection panel S performs conservative severity/look
+  qualification and complete ranking; disjoint panel E evaluates deployed
+  output versus comparator. Identity and comparator-equal scenes stay in all
+  denominators.
+- **Budget:** base workload is `54N`; all-severity-escalation upper workload
+  is `78N`, or 32,400--46,800 judgements at planning `N=600`. Binding sample
+  size remains unknown.
+- **Boundary:** local validation/workload tooling only. Current A0/B0 outputs
+  cannot become B1; no pixels, recruitment, participant contact, fitting,
+  training, routing, R3 or production change is authorized. Goal remains
+  ACTIVE.
