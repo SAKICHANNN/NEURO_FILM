@@ -2515,3 +2515,22 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   all 768 repository tests pass.
 - **Handoff:** commit implementation before the exact double 81-pair formal
   run. No fit/gate change is allowed. Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2G0 on quantized boundary safety
+
+- **Integrity:** both 81-operator/81-render passes share manifest SHA-256
+  `2dc6fd90...e48e`; report SHA-256 is `70db7f59...45b9`; stderr is empty.
+- **Positive evidence:** style passes 9/9, non-basic residual passes 6/9,
+  reference sensitivity is 10.0674 and median style advantage over F2 cap100
+  is +4.7740.
+- **Failure:** clipping passes 0/9 with worst 16.3178%; structure/range pass
+  only 4/9 and 6/9. Seven records reach floating maximum
+  `1.0000000000000002`, while RGB8 rounding creates much larger exact-boundary
+  occupancy.
+- **Visual discipline:** zero automatic survivors; no visual review.
+- **Interpretation:** explicit refitting avoids F2 style collapse, but G0's
+  exact-endpoint output contract is not quantization-safe. G0 closes without
+  tuning.
+- **Handoff:** a separately frozen G1 may apply one fixed interior-headroom
+  affine map to immutable G0 operators. No refit, capacity increase, film
+  fitting or claim expansion. Goal remains ACTIVE.

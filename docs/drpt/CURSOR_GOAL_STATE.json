@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "d3bfbd63cb59c6fb6e2948db7ff47bf15312ef8f",
+  "head": "ecd44034ae31a2d503e6805bf5fdc6eac0482b93",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 81,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2G0",
-  "current_leaf": "Implement and run constrained explicit distillation over all immutable ML LUT controls",
-  "phase": "EXECUTE",
-  "last_verified_commit": "d3bfbd63cb59c6fb6e2948db7ff47bf15312ef8f",
+  "iteration": 82,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2G1",
+  "current_leaf": "Freeze fixed quantization-headroom adapter over immutable G0 operators",
+  "phase": "PLAN",
+  "last_verified_commit": "ecd44034ae31a2d503e6805bf5fdc6eac0482b93",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 768,
@@ -21,7 +21,7 @@
   "ready_leaves": [
     "freeze_u5_r2g0_constrained_explicit_distillation"
   ],
-  "next_action": "Commit and push the frozen G0 contract, then implement the isolated deterministic fitter, serialization/replay, structural audits, double render, automatic frontier and conditional visual review.",
+  "next_action": "Close G0 formally, then freeze one fixed interior affine headroom value derived from RGB8 quantization geometry before applying it to immutable G0 operators.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +181,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T09:20:00Z",
-  "selection_rationale": "G0 is frozen as an 81-operator synthetic-only refit. Its small explicit family guarantees bounded output by construction and tests a distinct redistribution hypothesis without touching unidentified film pixels."
+  "last_update_utc": "2026-07-23T10:20:00Z",
+  "selection_rationale": "G0 preserves strong style but universally fails quantized boundary safety. G1 isolates the identified mechanism with one geometry-derived interior map and adds no fit or capacity."
 }

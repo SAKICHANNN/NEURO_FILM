@@ -115,6 +115,14 @@ family. It may test whether redistributing a transform outperforms uniform
 contraction, but may not train CanonCGT, fit current real-film pixels, or claim
 stock authenticity.
 
+U5.R2G0 demonstrates that bounded explicit refitting can retain the external
+ML transform's style: all nine references pass style, six pass non-basic
+residual, sensitivity is 10.07 and median style improves 4.77 over F2 uniform
+contraction. It still closes because all nine fail the RGB8 new-clipping gate
+and no automatic survivor exists. U5.R2G1 is the next ready leaf: freeze one
+data-independent interior quantization-headroom map over immutable G0
+operators, with no refit or added capacity.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

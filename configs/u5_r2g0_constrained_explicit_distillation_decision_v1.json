@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2g0_constrained_explicit_distillation_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2G0",
+  "decision": "closed_no_automatic_survivor",
+  "config_sha256": "8767a5762af8aa6d2ab4760228a369769bc294c51530374283c39b287adce9ce",
+  "software_commit": "ecd44034ae31a2d503e6805bf5fdc6eac0482b93",
+  "manifest_sha256": "2dc6fd9082f139f3710577051c6520bc7b46b53556f2f4fdb892d1557b52e48e",
+  "automatic_report_sha256": "70db7f59a9df7dee1caefeed7e9da1c563d4471f7f42d04088124fc1970545b9",
+  "automatic_survivor_count": 0,
+  "visual_review_allowed": false,
+  "positive_evidence": {
+    "style_pass_count": 9,
+    "non_basic_pass_count": 6,
+    "reference_sensitivity_median_pairwise_delta_e76": 10.067425920195568,
+    "median_style_advantage_over_f2_cap100": 4.773957749527273
+  },
+  "failure_evidence": {
+    "clipping_pass_count": 0,
+    "structure_pass_count": 4,
+    "exact_raw_range_pass_count": 6,
+    "worst_new_hard_clipping_fraction": 0.16317844815969623,
+    "floating_maximum_node": 1.0000000000000002
+  },
+  "forbidden_fallbacks": [
+    "refit or retune G0",
+    "increase operator capacity to rescue G0",
+    "change completed gates",
+    "fit photographs or real-film pixels",
+    "perform visual promotion with an empty shortlist"
+  ],
+  "next_leaf": "freeze U5.R2G1 fixed quantization-headroom adapter over immutable G0 operators",
+  "claim_ceiling": "generic reference-conditioned external-ML transform approximated by a bounded explicit operator on a synthetic colour grid",
+  "goal_status": "ACTIVE"
+}
