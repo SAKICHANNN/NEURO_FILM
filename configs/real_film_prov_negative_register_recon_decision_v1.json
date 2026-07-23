@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf2.5r-prov-negative-register-recon-decision-v1",
+  "node": "ULT > SF2 > SF2.5R",
+  "software_commit": "162eedc791de72a9636ca67bcf7ef7e90c3b8850",
+  "normalized_pass_sha256": "dc2f7a35ac52b8e5b922ce2a214587449d9f1bb0966bff20465b497f8d03c954",
+  "report_sha256": "0f7a514397dc836b60a21db2e7633f872107c4fde984da3981b7c6f8ce5b792a",
+  "normalized_passes_byte_identical": true,
+  "vprs_17684_items": 6832,
+  "vprs_17684_digital_items": 6716,
+  "vprs_17690_items": 30,
+  "vprs_17690_physical_items": 30,
+  "vprs_17690_digital_or_iiif_records": 0,
+  "image_or_pixel_request_count": 0,
+  "decision": "closed_register_catalogue_is_physical_only",
+  "reopen_condition": "official register transcription, digitisation, licensed export, or separately approved bounded physical-copy workflow",
+  "pixel_acquisition_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "claim_ceiling": "catalogue structure and current machine inaccessibility only; no per-negative stock label, pixel right, stock signal, identified operator, training, LSM, calibration or authenticity claim"
+}

@@ -54,7 +54,7 @@ against the exact-revision frozen metadata.
 | Openverse search index | weak exact title/tag text only; upstream label unverified | source plus creator URL | no pixels requested | relevance pagination repeats, indexed licence may be stale, Flickr/source/content dominance | anonymous official API; every upstream right still requires live verification | `SF2.1A` closes: Ektar repeats 19 identities and only UltraMax passes per-stock gate |
 | Smithsonian Open Access metadata | institution-authored object/archive metadata, usually stock-family rather than exact product identity | owning unit, collection and record; no demonstrated connected exact-stock graph | no pixels requested | unit/collection/era/content/scanner can become stock proxies; media rights are separate | official CC0 metadata mirror; seven relevant units total 6.64GB | `SF2.2R` closes before a formal audit: deterministic shard probes split Kodachrome and Ektachrome evidence across units and expose no exact connected multi-stock design |
 | Newgrain public application | controlled exact-stock catalogue, but post labels remain community claims | pseudonymous user plus optional lab/scanner/process fields | no pixels requested or retained | platform/source workflow and self-report remain nuisance; no rights-cleared manifest | public frontend is technically readable, but Terms prohibit automated queries/scraping/mining and user content remains uploader-owned | `SF2.4R` closes before a formal audit; written permission or an officially licensed export is required |
-| PROV VPRS 17684/17690 | institutional digitised negative collection linked to a physical register described as tracking film stock | same agency and negative-number ranges could supply strong grouping if register contents are accessible | metadata-only reconnaissance; pixels forbidden | catalogue linkage is promising, but per-negative stock fields may exist only in physical volumes | official API is permitted for non-commercial research under CC BY-NC; image reuse is not inferred | `SF2.5R` first tests machine accessibility of the register; no pixel or learning branch opens from catalogue counts |
+| PROV VPRS 17684/17690 | institutional digitised negative collection linked to a physical register described as tracking film stock | same agency and negative-number ranges could supply strong grouping if register contents become accessible | SF2.5R metadata-only result; pixels forbidden | two byte-identical audits find all 30 register items physical-only and no digital/IIIF field | official API is permitted for non-commercial research under CC BY-NC; image reuse is not inferred | source closes before pixels; reopen only on official transcription/digitisation/licensed export or separately approved bounded physical-copy workflow |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -309,6 +309,14 @@ The project therefore retains no snapshot, implements no client and requests
 no images. Written platform permission or an officially licensed export would
 be a new external-authority branch; technical accessibility alone is not DoR.
 See `docs/REAL_FILM_NEWGRAIN_SOURCE_RECONNAISSANCE_RESULTS.md`.
+
+`SF2.5R` closes the PROV register linkage at machine accessibility. VPRS 17684
+has 6,716 catalogued digital items and VPRS 17690 is described as its
+film-stock register, but two normalized API passes find all 30 register items
+physical-only with no digital/IIIF field. Downloading the image collection
+without the register would not create stock labels, so no pixels, fitting,
+training or LSM open. See
+`docs/REAL_FILM_PROV_NEGATIVE_REGISTER_RECONNAISSANCE_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343

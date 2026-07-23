@@ -2051,3 +2051,17 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Coordination:** U5.R2B remains the primary algorithm leaf and continues
   rendering in the background; SF2.5R is a non-overlapping bounded metadata
   sibling used instead of idle polling.
+
+## 2026-07-23 - Close SF2.5R at physical-register accessibility gate
+
+- **Reproducibility:** two normalized API passes are byte-identical at
+  `dc2f7a35...c954`; report SHA-256 `0f7a5143...792a`.
+- **Result:** VPRS 17684 exposes 6,832 catalogue items, including 6,716 digital.
+  VPRS 17690 exposes 30 register items across six consignments, all 30 marked
+  physical, with zero digital/IIIF/VEO fields.
+- **Decision:** do not acquire thousands of collection TIFFs without the
+  inaccessible register labels. Close the source until an official
+  transcription/digitisation/licensed export or separately approved physical
+  workflow exists.
+- **Boundary:** zero pixel requests; no stock labels, rights upgrade, fitting,
+  training, LSM or authenticity claim. U5.R2B continues and Goal stays ACTIVE.
