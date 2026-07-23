@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2h1_safe_bank_content_routing_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2H1",
+  "decision": "retain_hard_1nn_for_a0_visual_diagnostic_only",
+  "config_sha256": "f9db09f8986c1e0e053191b261991bc6da29d57ad0696c9fba481f15a9483f04",
+  "software_commit": "ea5db6640a61ebeece23eb7177c5905f7e28562a",
+  "report_sha256": "ae4e160aa4e622591d4a709a4e0e22d354e5f3bebbc6d47237bf776660740464",
+  "primary_view": "style_plus_non_basic",
+  "assigned_count": 37,
+  "class_counts": [13, 24],
+  "oracle_median_gain_fraction": 0.1876482678308189,
+  "retained_router": {
+    "router_id": "hard_1nn",
+    "balanced_accuracy": 0.7067307692307692,
+    "permutation_p_value": 0.00999000999000999,
+    "fraction_mean_regret_closed": 0.4561
+  },
+  "component_evidence": {
+    "style_balanced_accuracy": 0.6591,
+    "style_permutation_p_value": 0.03996,
+    "non_basic_balanced_accuracy": 0.455,
+    "non_basic_permutation_p_value": 0.6284
+  },
+  "allowed_next": "freeze U5.R2H2 exact hard-1NN full-resolution and blind visual diagnostic",
+  "forbidden": [
+    "increase router capacity",
+    "add learned or semantic embeddings",
+    "soft blend operators",
+    "claim preference or generalization",
+    "claim stock or film-mode learning",
+    "production integration"
+  ],
+  "goal_status": "ACTIVE"
+}

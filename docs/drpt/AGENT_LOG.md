@@ -2611,3 +2611,18 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** two focused tests and all 772 repository tests pass.
 - **Handoff:** commit implementation before the frozen 1,000-permutation
   formal run; no feature/model/gate changes afterward. Goal remains ACTIVE.
+
+## 2026-07-23 - Retain U5.R2H1 hard 1-NN for visual diagnosis
+
+- **Formal result:** composite hard 1-NN reaches 70.67% balanced accuracy,
+  permutation p=.010 and closes 45.61% of mean global-to-Oracle regret on 37
+  assigned A0 rows. Logistic also weak-passes; simpler 1-NN wins.
+- **Oracle:** composite median gain is 18.76% with class support 13/24.
+- **Component qualification:** style 1-NN independently passes at 65.91% and
+  p=.040; non-basic 1-NN fails at 45.50% and p=.628.
+- **Interpretation:** source resemblance contains useful information for the
+  style-oriented hard choice between these two safe operators, but not for a
+  universal preference or residual target.
+- **Handoff:** freeze H2 over exact existing predictions and renders for blind
+  disagreement and all-41 severe inspection. No larger model, embedding,
+  blend, stock claim or production path opens. Goal remains ACTIVE.
