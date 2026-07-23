@@ -2577,3 +2577,23 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Handoff:** U5.R2H0 is an independent primary-source audit of film-specific
   spectral/sensitometric explicit algorithms and actually obtainable inputs.
   Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2H1 safe-bank content routing
+
+- **Known disclosure:** before freeze, anchor56/density winner direction was
+  already inspected: residual and style agree 30/41, and the gold composite
+  metric Oracle is about 9.1% above the better single operator. H1 is A0
+  development, never confirmatory.
+- **Bank:** exactly two project-owned deterministic operators that already
+  passed full-resolution severe review; no unsafe or external profile enters.
+- **Content space:** source-only luma/saturation histograms, luma quantiles,
+  4x4 luma/chroma layout and RGB mean/std. Fold-local standardization; no
+  output pixels or shared mode embedding.
+- **Targets:** disclose separate residual, style and sum Oracles; margin below
+  0.5 remains unassigned rather than forced.
+- **Routers:** majority, hard 1NN, hard weighted 3NN and L2 logistic under
+  exact LOO; 1,000 full-path label permutations.
+- **Gate:** composite Oracle >=5%, class support, balanced accuracy >=65%,
+  p<=.05, >=30% regret closure and no two-view contradiction.
+- **Boundary:** A0 metric-derived feasibility only; no stock, preference,
+  generalization or production claim. Goal remains ACTIVE.

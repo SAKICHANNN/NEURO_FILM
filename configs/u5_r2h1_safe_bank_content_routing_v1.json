@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2h1_safe_bank_content_routing_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2H1",
+  "input_manifest": "outputs/filmcase/u41_provisional_eval_set.json",
+  "input_manifest_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "anchor_manifest": "outputs/u5_r2b_global_frontier_v1/render_pass1/manifest.json",
+  "anchor_manifest_sha256": "e0410f9ab8e5efe76a866fe8478148b0bb270651d560225d63eeb7faabe4f769",
+  "anchor_report": "outputs/u5_r2b_global_frontier_v1/automatic_report.json",
+  "anchor_report_sha256": "bf5cfc7ae20057be965cc72524aa59cee72d342f6ad34389de942c07dd5c2b1b",
+  "anchor_candidate_id": "anchor56_chroma_margin4_challenger",
+  "density_manifest": "outputs/u5_r2e1_density_witness_frontier_v1/render_pass1/manifest.json",
+  "density_manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
+  "density_report": "outputs/u5_r2e1_density_witness_frontier_v1/automatic_report.json",
+  "density_report_sha256": "2278b82f2bfa0a221574264166a6d5f30eb1504330a7287e8c8bc34a5771ab06",
+  "density_candidate_id": "cyan_shadow_warm_highlight_like__s50",
+  "content_descriptor": {
+    "resize": [64, 64],
+    "luma_histogram_bins": 16,
+    "luma_quantiles": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "saturation_histogram_bins": 8,
+    "spatial_grid": [4, 4],
+    "include_spatial_luma": true,
+    "include_spatial_chroma_magnitude": true,
+    "include_global_rgb_mean_std": true
+  },
+  "oracle_views": [
+    "non_basic_residual",
+    "style_delta_e76",
+    "style_plus_non_basic"
+  ],
+  "primary_view": "style_plus_non_basic",
+  "minimum_assignment_margin": 0.5,
+  "routers": [
+    {"router_id": "majority", "kind": "majority"},
+    {"router_id": "hard_1nn", "kind": "knn", "k": 1, "distance_weighted": false},
+    {"router_id": "hard_3nn", "kind": "knn", "k": 3, "distance_weighted": true},
+    {"router_id": "logistic_l2_c1", "kind": "logistic", "c": 1.0, "seed": 20260723}
+  ],
+  "permutations": 1000,
+  "seed": 20260723,
+  "gates": {
+    "minimum_composite_oracle_median_gain_fraction": 0.05,
+    "minimum_assigned_rows_per_class": 8,
+    "minimum_router_balanced_accuracy": 0.65,
+    "maximum_permutation_p_value": 0.05,
+    "minimum_fraction_mean_regret_closed": 0.3,
+    "component_view_contradiction_allowed": false
+  },
+  "output": "outputs/u5_r2h1_safe_bank_content_routing_v1/report.json",
+  "claim_ceiling": "A0 development evidence for or against hard content-based selection between two already safe deterministic operators under autonomous metric-derived labels"
+}
