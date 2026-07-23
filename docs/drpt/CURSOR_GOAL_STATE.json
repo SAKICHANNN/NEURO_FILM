@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "ea5db6640a61ebeece23eb7177c5905f7e28562a",
+  "head": "5871ef5",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 86,
+  "iteration": 87,
   "current_node": "ULT > U5 > U5.R2 > U5.R2H2",
-  "current_leaf": "Freeze exact hard-1NN full-resolution and blind visual diagnostic",
-  "phase": "PLAN",
-  "last_verified_commit": "ea5db6640a61ebeece23eb7177c5905f7e28562a",
+  "current_leaf": "Build exact hard-1NN replay manifest and blind visual panels",
+  "phase": "IMPLEMENT",
+  "last_verified_commit": "5871ef5",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 772,
@@ -19,9 +19,10 @@
     "timestamp": "2026-07-23T12:35:00Z"
   },
   "ready_leaves": [
-    "freeze_u5_r2g0_constrained_explicit_distillation"
+    "implement_u5_r2h2_visual_audit_tooling",
+    "research_u5_r2h0_primary_sources_when_network_recovers"
   ],
-  "next_action": "Close H1 formally, freeze its exact hard-1NN predictions, then build blind disagreement panels and inspect every routed full-resolution output for severe failures without changing the router.",
+  "next_action": "Hash-verify H1 and both safe render banks, emit the exact 41-row replay manifest and three blinded panels for all 13 interventions, then inspect every routed full-resolution output under the frozen rubric.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +182,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T13:05:00Z",
-  "selection_rationale": "H1 passes its frozen A0 routing gates with the simplest 1-NN. H2 is the only allowed continuation: visual and severe diagnostics over immutable choices, not capacity expansion."
+  "last_update_utc": "2026-07-23T13:25:00Z",
+  "selection_rationale": "H2 is frozen over the exact H1 choices. It audits all 41 routed outputs and all 13 policy interventions without changing the router or operators."
 }

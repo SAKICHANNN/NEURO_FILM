@@ -135,9 +135,11 @@ U5.R2H1 gives positive A0 evidence for the user's hard case-retrieval idea.
 The source-only hard 1-NN reaches 70.67% balanced accuracy, permutation
 `p=.010` and closes 45.61% of composite global-to-Oracle regret. The style
 component independently passes while non-basic residual does not. U5.R2H2 is
-the next local algorithm leaf: freeze the exact 1-NN predictions and inspect
-their existing full-resolution outputs and blind disagreement panels, without
-changing the descriptor, router, bank or labels.
+now frozen over the exact 1-NN predictions: 37 assigned rows replay unchanged,
+four unassigned rows use the density global fallback, all 41 routed outputs
+receive full-resolution severe review, and all 13 actual anchor interventions
+enter three deterministic blind rounds. The descriptor, router, bank, labels
+and outputs cannot change.
 
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls

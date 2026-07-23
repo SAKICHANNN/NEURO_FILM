@@ -2626,3 +2626,21 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Handoff:** freeze H2 over exact existing predictions and renders for blind
   disagreement and all-41 severe inspection. No larger model, embedding,
   blend, stock claim or production path opens. Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2H2 exact hard-routing visual audit
+
+- **Policy:** replay the 37 immutable H1 composite hard-1NN choices; the four
+  unassigned rows use the frozen density best-global fallback.
+- **Coverage:** inspect all 41 routed full-resolution outputs. Every one of the
+  13 anchor choices differs from the density global policy, so all 13 enter
+  blind comparison and no visual shortlist is selected after viewing.
+- **Blinding:** three deterministic rounds use SHA-derived side assignment:
+  full-frame, central 60% detail, and independently ordered full-frame.
+- **Gates:** zero routed/new severe failures; routed win+tie at least 9/13 in
+  every round; positive routed-minus-global score in at least two rounds.
+- **Boundary:** one autonomous evaluator and exposed A0 images; no independent
+  rater, preference, stock, mode, generalization or production claim. No
+  post-view feature, threshold, bank, strength or fallback change.
+- **Handoff:** implement only integrity, replay manifest and presentation
+  tooling, commit it, then perform the frozen visual audit. Goal remains
+  ACTIVE.
