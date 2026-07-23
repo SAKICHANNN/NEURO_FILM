@@ -22,7 +22,7 @@
     "implement_u5_r2h2_visual_audit_tooling",
     "research_u5_r2h0_primary_sources_when_network_recovers"
   ],
-  "next_action": "Hash-verify H1 and both safe render banks, emit the exact 41-row replay manifest and three blinded panels for all 13 interventions, then inspect every routed full-resolution output under the frozen rubric.",
+  "next_action": "Hash-verify H1 and both safe render banks, emit the exact 41-row replay manifest and three blinded panels for all ten interventions, then inspect every routed full-resolution output under the frozen rubric.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -183,5 +183,5 @@
   ],
   "max_session_stop_loops": 20,
   "last_update_utc": "2026-07-23T13:25:00Z",
-  "selection_rationale": "H2 is frozen over the exact H1 choices. It audits all 41 routed outputs and all 13 policy interventions without changing the router or operators."
+  "selection_rationale": "H2 is frozen over the exact H1 choices. It audits all 41 routed outputs and all ten policy interventions without changing the router or operators."
 }

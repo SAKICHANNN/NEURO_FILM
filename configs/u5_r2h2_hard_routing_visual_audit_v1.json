@@ -26,7 +26,7 @@
   "gates": {
     "maximum_routed_severe_failures": 0,
     "maximum_new_intervention_severe_failures": 0,
-    "minimum_routed_win_plus_tie_per_round": 9,
+    "minimum_routed_win_plus_tie_per_round": 7,
     "minimum_positive_score_rounds": 2
   },
   "output_dir": "outputs/u5_r2h2_hard_routing_visual_audit_v1",

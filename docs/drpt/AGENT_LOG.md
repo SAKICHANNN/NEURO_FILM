@@ -2632,11 +2632,11 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Policy:** replay the 37 immutable H1 composite hard-1NN choices; the four
   unassigned rows use the frozen density best-global fallback.
 - **Coverage:** inspect all 41 routed full-resolution outputs. Every one of the
-  13 anchor choices differs from the density global policy, so all 13 enter
+  ten anchor choices differs from the density global policy, so all ten enter
   blind comparison and no visual shortlist is selected after viewing.
 - **Blinding:** three deterministic rounds use SHA-derived side assignment:
   full-frame, central 60% detail, and independently ordered full-frame.
-- **Gates:** zero routed/new severe failures; routed win+tie at least 9/13 in
+- **Gates:** zero routed/new severe failures; routed win+tie at least 7/10 in
   every round; positive routed-minus-global score in at least two rounds.
 - **Boundary:** one autonomous evaluator and exposed A0 images; no independent
   rater, preference, stock, mode, generalization or production claim. No
@@ -2644,3 +2644,13 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Handoff:** implement only integrity, replay manifest and presentation
   tooling, commit it, then perform the frozen visual audit. Goal remains
   ACTIVE.
+
+### Pre-panel factual correction
+
+Machine reading of the immutable H1 predictions found ten predicted anchor
+choices and 27 predicted density choices; `13/24` in H1 is Oracle truth-class
+support, not prediction counts. No H2 panel or output had been generated or
+viewed. The contract therefore corrects the blind population from 13 to all
+ten actual interventions and preserves the original roughly 69% win-or-tie
+proportion as 7/10. This is a pre-observation factual erratum, not post-view
+gate tuning.

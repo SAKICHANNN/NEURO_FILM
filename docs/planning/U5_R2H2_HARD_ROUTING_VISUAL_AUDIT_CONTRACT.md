@@ -38,9 +38,9 @@ used to change a prediction. Contact-sheet resizing is presentation only.
   H1 best-global density class.
 - Inspect all 41 routed full-resolution files for the severe-artifact rubric.
 - The global comparator is density for all 41 rows.
-- The blind comparison population is all and only the rows routed to class
-  `0`. These are every actual intervention relative to global density; no
-  post-hoc visual shortlist is permitted.
+- The blind comparison population is all and only the ten rows routed to
+  class `0`. These are every actual intervention relative to global density;
+  no post-hoc visual shortlist is permitted.
 
 Record source ID, H1 prediction or fallback, selected H1 training neighbour,
 source/output hashes, exact routed path, global path, and whether the routed
@@ -87,7 +87,7 @@ Retain the exact policy as an A0 research challenger only if:
 1. all 41 routed full-resolution outputs have zero confirmed severe failures;
 2. no intervention introduces a severe failure absent from global density;
 3. in every blind round, routed wins plus ties on overall direction are at
-   least 9 of the 13 interventions;
+   least 7 of the 10 interventions;
 4. the summed routed-minus-global overall score (`win=+1`, `tie=0`,
    `loss=-1`) is positive in at least two of three rounds.
 

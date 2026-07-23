@@ -137,7 +137,7 @@ The source-only hard 1-NN reaches 70.67% balanced accuracy, permutation
 component independently passes while non-basic residual does not. U5.R2H2 is
 now frozen over the exact 1-NN predictions: 37 assigned rows replay unchanged,
 four unassigned rows use the density global fallback, all 41 routed outputs
-receive full-resolution severe review, and all 13 actual anchor interventions
+receive full-resolution severe review, and all 10 actual anchor interventions
 enter three deterministic blind rounds. The descriptor, router, bank, labels
 and outputs cannot change.
 
