@@ -54,8 +54,15 @@ replay/property audits and 704 complete CPU tests pass. Its required smooth
 blue-to-purple counterexample also passes every numerical constraint, so
 monotonicity, smoothness, gamut and Jacobian checks do not replace semantic
 severe-artifact evaluation. No stock fit or production integration opened.
-The next film-colour algorithm leaf is `U5.R2B`, beginning with a frozen
-identical-renderer global-frontier contract.
+`U5.R2B` now retains the margin-4 anchor56 policy as one B0 fixed-global
+challenger. It passes the frozen salience/non-basic/clipping screen and all
+nine full-resolution severe-artifact inspections. Anchor09 is vetoed by the
+confirmed ID11 neon-red speckle/posterization regression; raw 01/53/55/56 fail
+at roughly 9--10.5% worst-gold new clipping, while safe-rich is materially
+bland. This does not change the production default or establish a stock
+response. The next gated leaf is U5.R2C contract and annotation-budget
+feasibility; actual cross-rater recruitment remains separately authority
+gated.
 
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2b-fixed-global-operator-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2B",
+  "decision": "qualified_B0_challenger_no_production_promotion",
+  "qualified_candidate": "anchor56_chroma_margin4_challenger",
+  "vetoed_automatic_survivor": "anchor09_color_only",
+  "veto_reason": "confirmed severe neon-red speckle/posterization on full-resolution gold sample 11",
+  "automatic_survivors": [
+    "anchor09_color_only",
+    "anchor56_chroma_margin4_challenger"
+  ],
+  "repeat_render_manifest_sha256": "e0410f9ab8e5efe76a866fe8478148b0bb270651d560225d63eeb7faabe4f769",
+  "repeat_automatic_report_sha256": "bf5cfc7ae20057be965cc72524aa59cee72d342f6ad34389de942c07dd5c2b1b",
+  "config_sha256": "209d9a0676f4ce887bee463f1de26eff52eaba727df8015764d0755429231ad6",
+  "blind_review_sha256": "331db3c97faf228dbfdae8fd88e72117d23501df3efe50a98db90b2ec1a1ea8c",
+  "full_resolution_review_sha256": "2a20ac95f1d1f69d27f5f23c0ebf6c7284212dddf3a8a70ea14839061e7d29c5",
+  "gold_samples_full_resolution_reviewed_per_survivor": 9,
+  "confirmed_severe_gold_artifacts": {
+    "anchor09_color_only": 1,
+    "anchor56_chroma_margin4_challenger": 0
+  },
+  "production_default_change_allowed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "next_leaf": "freeze U5.R2C B1 fixed-bank cross-rater empirical-ceiling policy and annotation-budget feasibility without external recruitment",
+  "claim_ceiling": "B0 autonomous development evidence for one fixed global film-inspired Look Approximation challenger; no hidden confirmation, owner or cross-rater preference, population claim, identified digital-to-film operator, stock response, calibration, authenticity or production promotion"
+}

@@ -2079,3 +2079,24 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary:** this is an epistemic label correction, not a result-driven
   threshold or candidate change. The repeat render continues unchanged and
   Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2B with one B0 global challenger
+
+- **Repeatability:** two 287-output renders share manifest SHA-256
+  `e0410f9a...f769`; two complete automatic evaluations share report SHA-256
+  `bf5cfc7a...b1b`; stderr is empty.
+- **Automatic result:** anchor09 and margin-4 anchor56 survive. Raw
+  01/53/55/56 fail at 8.95--10.49% worst-gold new clipping, and safe-rich
+  fails the style/non-basic floors.
+- **Blind visual evidence:** before unblinding, safe-rich is identified as
+  bland in all three rounds. Anchor09 is preferred once and margin-4 anchor56
+  twice; this remains autonomous B0 development evidence.
+- **Full-resolution veto:** anchor09 reproduces the frozen ID11 neon-red
+  speckle/posterization over the bicycle-stem highlight and is rejected.
+  Margin-4 anchor56 has no confirmed severe failure across all nine gold
+  images and is retained as the qualified B0 challenger.
+- **Boundary/handoff:** no production-default, stock, calibration, owner,
+  cross-rater or population claim opens. U5.R2C contract/annotation-budget
+  feasibility becomes ready; actual external recruitment remains authority
+  gated. Current real-film fitting, training and LSM stay forbidden and Goal
+  remains ACTIVE.
