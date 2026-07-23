@@ -87,6 +87,16 @@ larger network. U5.R2D2 may test multiple imperfect canonicalizers and hard
 operator retrieval on the same generated truth; instability across plausible
 canonicalizers must return `unidentified`.
 
+U5.R2D2 now returns exactly that result: zero of four practical
+canonicalizers pass independently, their median rendered-operator
+disagreement is `0.1567` against `0.03`, and hard Top-1/Top-3 retrieval has no
+value on a qualified canonicalizer. Raw “similar photo” retrieval therefore
+closes until a future dataset supplies stable neutral/operator connectivity.
+The next algorithm leaf is U5.R2E0: an original, data-independent
+density/sensitometry-domain explicit Look Approximation primitive. It may
+challenge current styles without copying the external spectral control or
+claiming stock truth.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

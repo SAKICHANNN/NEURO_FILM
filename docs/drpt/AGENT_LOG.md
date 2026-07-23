@@ -2138,6 +2138,28 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   `canonicalizer_sensitive/unidentified`, not a request for a larger model.
   Real-film fitting/training/LSM and production remain closed; Goal ACTIVE.
 
+## 2026-07-23 - Close U5.R2D2 as canonicalizer-sensitive/unidentified
+
+- **Integrity:** parent hashes/splits, 72-item neutral bank and exact oracle
+  reproduce; all policies remain bounded and numerically valid.
+- **Best aggregate practical lane:** nearest raw-Lab/ridge RMSE `0.05706`,
+  17.3% better than global with 30.9% captured style, but matrix-family
+  degradation is 22.3% above the frozen 10% gate.
+- **Stability:** zero of four practical canonicalizers pass; median/maximum
+  pairwise rendered disagreement is `0.15667/0.20436` versus `0.03`.
+- **Connectivity evidence:** raw-Lab retrieves the correct palette family
+  95.31%; palette oracle reaches `0.05345`, but coarse content connectivity
+  still does not yield a stable all-family policy.
+- **Retrieval decision:** Top-1 wins only on already-invalid canonicalizers
+  and loses 20.7--33.3% on the plausible nearest-neutral lanes. Top-3 also
+  fails. Do not add capacity or promote raw case retrieval.
+- **Verification:** two report hashes `d3620491...` match; 17 focused and 743
+  full CPU tests pass; Hald review shows smooth but wrong tone/hue directions.
+- **Handoff:** open U5.R2E0 source audit/contract for an original explicit
+  density/sensitometry-domain Look Approximation family. It may not copy
+  external profiles, use external controls as teachers, or claim stock truth.
+  Goal remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256

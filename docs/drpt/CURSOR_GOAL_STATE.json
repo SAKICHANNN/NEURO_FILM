@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "118d72b18122a3cd1717b1bcee0f28f46632eb92",
+  "head": "01a2a077d7f733aaf24d0e320d8723e2788a4544",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 71,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2D2",
-  "current_leaf": "Freeze imperfect-canonicalizer sensitivity and hard retrieval",
-  "phase": "VERIFY",
-  "last_verified_commit": "118d72b18122a3cd1717b1bcee0f28f46632eb92",
+  "iteration": 72,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2E0",
+  "current_leaf": "Audit and freeze an original density-domain explicit film-inspired operator",
+  "phase": "RECON",
+  "last_verified_commit": "01a2a077d7f733aaf24d0e320d8723e2788a4544",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 737,
+    "passed": 743,
     "failed": 0,
-    "timestamp": "2026-07-23T07:10:00Z"
+    "timestamp": "2026-07-23T08:10:00Z"
   },
   "ready_leaves": [
-    "freeze_u5_r2d2_imperfect_canonicalizer_and_hard_retrieval_sensitivity"
+    "audit_and_freeze_u5_r2e0_density_domain_explicit_look_primitive"
   ],
-  "next_action": "Commit and push the U5.R2D1 result, then freeze U5.R2D2: replace the unavailable exact delta with multiple explicit canonicalization hypotheses and neutral pools, compare hard operator retrieval against regression, and return unidentified if the result is canonicalizer-sensitive.",
+  "next_action": "Commit and push the U5.R2D2 result, then audit primary sensitometry/dye-density sources and freeze U5.R2E0: implement an original bounded density-domain explicit Look Approximation family without copying external profiles or using any control as teacher truth.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -156,9 +156,16 @@
     "scripts/run_u5_r2d1_synthetic_operator_recovery.py",
     "tests/test_roll2film_synthetic_recovery.py",
     "docs/U5_R2D1_SYNTHETIC_OPERATOR_RECOVERY_RESULTS.md",
-    "configs/u5_r2d1_synthetic_operator_recovery_decision_v1.json"
+    "configs/u5_r2d1_synthetic_operator_recovery_decision_v1.json",
+    "docs/planning/U5_R2D2_CANONICALIZER_RETRIEVAL_SENSITIVITY_CONTRACT.md",
+    "configs/u5_r2d2_canonicalizer_retrieval_sensitivity_v1.json",
+    "src/roll2film/canonicalizer_sensitivity.py",
+    "scripts/run_u5_r2d2_canonicalizer_retrieval_sensitivity.py",
+    "tests/test_roll2film_canonicalizer_sensitivity.py",
+    "docs/U5_R2D2_CANONICALIZER_RETRIEVAL_SENSITIVITY_RESULTS.md",
+    "configs/u5_r2d2_canonicalizer_retrieval_sensitivity_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T07:10:00Z",
-  "selection_rationale": "U5.R2D1 closes ordinary unpaired interaction but shows that exact canonical deltas contain additional recoverable operator information. U5.R2D2 is the nearest autonomous algorithm leaf because it can test whether any practical explicit canonicalizer and hard case retrieval preserve that gain without using closed real-film pixels or increasing model capacity."
+  "last_update_utc": "2026-07-23T08:10:00Z",
+  "selection_rationale": "U5.R2D2 returns canonicalizer-sensitive/unidentified and closes raw hard retrieval without adding capacity. U5.R2E0 is the nearest autonomous algorithm leaf because a bounded density/sensitometry-domain formulation can create strong explicit film-inspired colour hypotheses while remaining deterministic, artifact-safe and honest about the absence of identified stock truth."
 }
