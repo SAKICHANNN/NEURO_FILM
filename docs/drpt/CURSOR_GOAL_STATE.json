@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "5ebfd9aecca0ec6fa004055e1c96c6793404f94a",
+  "head": "3a975bb261022c75a73c207c0d421cd2d1ebbcc7",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 77,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2F1",
-  "current_leaf": "Run and adjudicate the frozen no-training CanonCGT E2E reference-condition safety pilot",
+  "iteration": 78,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2F2",
+  "current_leaf": "Freeze and run a data-independent bounded projection frontier over immutable F1 LUTs",
   "phase": "EXECUTE",
-  "last_verified_commit": "5ebfd9aecca0ec6fa004055e1c96c6793404f94a",
+  "last_verified_commit": "3a975bb261022c75a73c207c0d421cd2d1ebbcc7",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 760,
@@ -21,7 +21,7 @@
   "ready_leaves": [
     "freeze_and_run_u5_r2f1_canoncgt_reference_condition_safety_pilot"
   ],
-  "next_action": "Commit and push the verified isolated adapter, then run two complete 81-output CUDA passes, require byte-identical manifests, evaluate inherited gates and reference sensitivity, and perform blinded/full-resolution review only for the frozen shortlist.",
+  "next_action": "Close and push the F1 safety-fail evidence, then freeze U5.R2F2 before any projected render: a small data-independent LUT-node gamut projection and identity-contraction bank with monotonicity/Jacobian diagnostics and unchanged style/non-basic/clipping gates.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +181,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T06:54:00Z",
-  "selection_rationale": "The isolated F1 adapter now proves exact explicit two-LUT replay and deterministic repeated CUDA execution without importing external code into production modules. The complete frozen 81x2 run is the current ready leaf."
+  "last_update_utc": "2026-07-23T07:10:00Z",
+  "selection_rationale": "F1 proves the ML route is reference-sensitive and often non-basic, but all raw policies fail frozen clipping/range safety. F2 is the smallest falsifiable follow-up: constrain the already explicit LUT parameters without training, new data or post-result reference selection."
 }

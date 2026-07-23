@@ -2406,3 +2406,25 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification/handoff:** six focused tests and all 760 project tests pass.
   Commit the adapter, then run the unchanged formal 81x2 bank; do not tune
   references, gates or model. Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2F1 raw CanonCGT policies on safety
+
+- **Integrity:** two 81-output/162-LUT passes share manifest SHA-256
+  `77c25ad0...3f7c`; every two-LUT replay error is exactly zero and stderr is
+  empty.
+- **Positive evidence:** reference conditioning is material, with matched
+  pairwise output Delta E76 median `8.5322`. Six of nine policies pass both
+  the style and non-basic floors.
+- **Safety failure:** zero references pass all gates. Worst candidate-level
+  new clipping ranges up to 8.93% and raw-final excursions to 12.24%.
+  Ref08 is closest but ID11 reaches 0.5702% clipping and 0.5060% raw OOR,
+  narrowly above both frozen 0.5% limits.
+- **Visual discipline:** the automatic shortlist is empty, so no blind sheet
+  is generated and visual promotion is forbidden.
+- **Interpretation:** raw CanonCGT is not bland, but its unbounded LUT
+  parameterization is incompatible with the current severe-first product
+  contract. This is not stock evidence.
+- **Handoff:** open only a separately frozen U5.R2F2 data-independent
+  projected-LUT safety frontier over immutable F1 evidence. No training,
+  reference selection, current-pixel fitting, LSM or production integration
+  opens. Goal remains ACTIVE.
