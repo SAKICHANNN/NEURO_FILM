@@ -25,6 +25,7 @@ files.
 | `evaluate_film_response_volume.py` | Evaluate stock-specific film response volume experiments. |
 | `run_u5_r2a_constrained_operator_audit.py` | Audit the reusable constrained affine/spline/tetrahedral-LUT representation. |
 | `run_u5_r2b_global_operator_frontier.py` | Audit the frozen fixed global-policy bank and build survivor-only blind sheets. |
+| `audit_real_film_prov_register_recon.py` | Run the bounded metadata-only PROV negative-register accessibility audit. |
 | `run_roll2film_e0.py` | Run the data-independent known-operator/group-size/shuffled-control Roll2Film identifiability gate. |
 | `train_neural_lut.py` | Train Neural LUT imitation experiments. |
 | `evaluate_neural_lut.py` | Evaluate trained Neural LUT checkpoints. |
