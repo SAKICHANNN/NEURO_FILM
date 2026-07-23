@@ -2119,3 +2119,22 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   cannot become B1; no pixels, recruitment, participant contact, fitting,
   training, routing, R3 or production change is authorized. Goal remains
   ACTIVE.
+
+## 2026-07-23 - Pass U5.R2C local tooling and retain the external B1 gate
+
+- **Implementation:** strict contract loader, 54N--78N workload calculator,
+  reviewer-panel isolation, proposed-B1 lineage/origin checks, complete-policy
+  identity fallback and descriptive all-scene tie-score validation.
+- **Evidence:** two worksheets are byte-identical at
+  `b8f8e6bf...4874f`; N=600 requires 32,400 base judgements or 46,800 under
+  all-severity escalation. Binding estimator and sample size remain null.
+- **Verification correction:** a complete-suite run rejected the new Goal
+  phase label `DESIGN`; changing it to the existing allowed `VERIFY` value
+  restores 25 focused and 716 complete CPU tests. No test or gate changed.
+- **Decision:** local R2C feasibility passes. Actual B1 still requires new
+  rights-cleared independent scenes, two disjoint human panels and explicit
+  external-contact authority; R3 stays closed.
+- **Handoff:** open only a separately frozen U5.R2D non-generative
+  statistics-to-explicit-LUT shortcut audit on synthetic known operators.
+  Current real-film fitting/training/LSM and production integration remain
+  forbidden; Goal stays ACTIVE.

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2c-fixed-bank-empirical-ceiling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2C",
+  "decision": "local_contract_and_workload_tooling_pass_actual_b1_gated",
+  "candidate_budget_k": 7,
+  "identity_fallback_outside_k": true,
+  "global_comparator": "anchor56_chroma_margin4_challenger",
+  "worksheet_sha256": "b8f8e6bf4e77f4a871cd0dbdb1f9b1eb1df6820850f6db9adf2455d5df74874f",
+  "planning_workload": {
+    "N100": {
+      "base": 5400,
+      "all_severity_escalates": 7800
+    },
+    "N300": {
+      "base": 16200,
+      "all_severity_escalates": 23400
+    },
+    "N600": {
+      "base": 32400,
+      "all_severity_escalates": 46800
+    }
+  },
+  "binding_estimator": null,
+  "binding_sample_size": null,
+  "actual_b1_open": false,
+  "u5_r3_open": false,
+  "external_human_authority_required": true,
+  "pixel_manifest_required": true,
+  "model_training_allowed": false,
+  "operator_fitting_allowed": false,
+  "adaptive_routing_allowed": false,
+  "production_integration_allowed": false,
+  "next_leaf": "freeze a data-independent U5.R2D statistics-to-explicit-LUT shortcut audit; exclude generative text branches and closed real-film pixels",
+  "claim_ceiling": "local fixed-bank protocol, validation and non-binding workload feasibility; no B1 outcome, population preference, risk guarantee, routing value, stock response, calibration, authenticity or production promotion"
+}

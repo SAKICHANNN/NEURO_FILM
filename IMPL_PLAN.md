@@ -64,6 +64,16 @@ response. The next gated leaf is U5.R2C contract and annotation-budget
 feasibility; actual cross-rater recruitment remains separately authority
 gated.
 
+U5.R2C local tooling now passes: the exact seven-policy bank, identity
+fallback, panel isolation, B1 lineage exclusion, complete all-scene policy and
+descriptive tie score fail closed. Its deterministic annotation workload is
+`54N` base and `78N` if every severity review escalates; binding sample size
+remains unknown and actual B1 stays externally gated. The next autonomous
+algorithm leaf is U5.R2D, a non-generative StatLUT-style
+statistics-to-explicit-LUT shortcut audit on synthetic known operators and
+rights-cleared controls. It cannot use closed real-film pixels or infer stock
+truth.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

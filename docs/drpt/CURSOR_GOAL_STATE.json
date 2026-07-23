@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "5cff939046b136bf229280cca087d63c963176e3",
+  "head": "625dd098f3bc1bd719e6fa9051c7e4c43f161289",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 68,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2C",
-  "current_leaf": "Freeze the B1 complete fixed-bank empirical-ceiling policy and annotation-budget feasibility; no external recruitment",
-  "phase": "DESIGN",
-  "last_verified_commit": "5cff939046b136bf229280cca087d63c963176e3",
+  "iteration": 69,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2D",
+  "current_leaf": "Freeze a data-independent non-generative statistics-to-explicit-LUT shortcut audit",
+  "phase": "FREEZE",
+  "last_verified_commit": "625dd098f3bc1bd719e6fa9051c7e4c43f161289",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 710,
+    "passed": 716,
     "failed": 0,
-    "timestamp": "2026-07-23T04:37:32Z"
+    "timestamp": "2026-07-23T04:48:03Z"
   },
   "ready_leaves": [
-    "freeze_u5_r2c_empirical_ceiling_contract_and_annotation_budget_feasibility"
+    "freeze_u5_r2d_statistics_to_explicit_lut_shortcut_audit"
   ],
-  "next_action": "Commit and push the closed U5.R2B evidence bundle, then freeze U5.R2C selection/evaluation separation, identity fallback, all-scene tie-score endpoint and a non-binding feasible N*K*r annotation budget without recruiting or messaging anyone.",
+  "next_action": "Commit and push the U5.R2C local-tooling result, then freeze U5.R2D around the non-generative StatLUT image branch: implement spatially agnostic Lab statistics, distinguish patch-shuffle invariance from scene-palette/content dependence, and use only synthetic known operators before any learned LUT work.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -134,9 +134,16 @@
     "scripts/run_u5_r2b_global_operator_frontier.py",
     "tests/test_u5_r2b_global_frontier.py",
     "docs/U5_R2B_GLOBAL_OPERATOR_FRONTIER_RESULTS.md",
-    "configs/u5_r2b_global_operator_frontier_decision_v1.json"
+    "configs/u5_r2b_global_operator_frontier_decision_v1.json",
+    "docs/planning/U5_R2C_EMPIRICAL_CEILING_CONTRACT.md",
+    "configs/u5_r2c_empirical_ceiling_v1.json",
+    "src/eval/empirical_ceiling.py",
+    "scripts/build_u5_r2c_empirical_ceiling_worksheet.py",
+    "tests/test_u5_r2c_empirical_ceiling.py",
+    "docs/U5_R2C_EMPIRICAL_CEILING_TOOLING_RESULTS.md",
+    "configs/u5_r2c_empirical_ceiling_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T04:37:32Z",
-  "selection_rationale": "U5.R2B retains one nonsevere B0 global challenger and therefore opens only the preregistered U5.R2C complete-policy contract and annotation-budget feasibility. Actual cross-rater recruitment remains authority-gated, and stock fitting, training, operator identification and LSM remain closed."
+  "last_update_utc": "2026-07-23T04:48:03Z",
+  "selection_rationale": "U5.R2C local protocol/tooling passes but actual B1 and R3 remain data/human gated. U5.R2D is the nearest autonomous algorithm leaf because it can falsify statistics-to-LUT shortcut assumptions with synthetic known operators and no closed stock pixels, participant contact, production change or generative RGB."
 }
