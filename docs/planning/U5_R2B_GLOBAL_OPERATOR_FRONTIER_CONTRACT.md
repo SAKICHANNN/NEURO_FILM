@@ -64,8 +64,8 @@ Metrics use a deterministic uniform grid with at most 65,536 pixels per image.
 For every candidate/image report:
 
 - median CIELAB Delta E76 from input;
-- median residual Delta E76 after matched EV, white balance, contrast,
-  saturation and global-luma basic adjustment;
+- median residual Delta E76 after the frozen RF2.S0 implementation's joint
+  EV, white-balance, contrast and saturation affine diagnostic;
 - new hard clipping fraction, with endpoint epsilon `0.5/255`;
 - output bounds and finite state.
 
@@ -81,6 +81,19 @@ A primary candidate is an automatic survivor only if:
 These floors are inherited from the pre-existing RF2.S0/RF2.C0 anchor-derived
 screen. They measure salience/non-basic structure, not film authenticity or
 appeal.
+
+### Pre-result metric-label correction
+
+Before the first U5.R2B metric report was generated, source inspection found
+that the inherited `style_and_basic_residual()` implementation calls
+`fit_joint_basic_adjustment()`, whose five fitted parameters are EV, two
+white-balance coordinates, contrast and saturation. It does **not** fit a
+separate global-luma curve. The original prose and config label incorrectly
+included `global-luma`, although the inherited numerical thresholds were
+derived with the affine implementation. This correction changes only the
+metric label and claim boundary; it preserves the implementation, candidate
+bank and every frozen numeric gate. Adding a new luma-curve fitter now would
+change the diagnostic and invalidate the inherited thresholds.
 
 ## Visual gate
 

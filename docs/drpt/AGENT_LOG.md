@@ -2065,3 +2065,17 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   workflow exists.
 - **Boundary:** zero pixel requests; no stock labels, rights upgrade, fitting,
   training, LSM or authenticity claim. U5.R2B continues and Goal stays ACTIVE.
+
+## 2026-07-23 - Repair U5.R2B inherited metric label before results
+
+- **Finding:** direct source inspection shows the inherited
+  `style_and_basic_residual()` diagnostic fits only a joint affine EV,
+  two-coordinate white balance, contrast and saturation operator. It has no
+  separate global-luma-curve fit.
+- **Repair:** remove `global-luma` from the U5.R2B contract/config label before
+  generating the first metric report. Preserve the exact inherited
+  implementation and all numeric gates; introducing a new fitter would make
+  the RF2-derived thresholds non-comparable.
+- **Boundary:** this is an epistemic label correction, not a result-driven
+  threshold or candidate change. The repeat render continues unchanged and
+  Goal remains ACTIVE.

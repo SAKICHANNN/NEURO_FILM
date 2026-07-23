@@ -39,7 +39,7 @@
   "metrics": {
     "maximum_pixels_per_image": 65536,
     "style": "median_delta_e76_from_input",
-    "non_basic": "median_delta_e76_after_matched_ev_wb_contrast_saturation_global_luma",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
     "new_hard_clipping_epsilon": 0.00196078431372549,
     "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
     "minimum_gold_median_style_delta_e76": 7.0,
