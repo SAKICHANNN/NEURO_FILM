@@ -2457,3 +2457,24 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   pass. Formal 243x2 rendering is now ready under the frozen config.
 - **Handoff:** commit implementation before rendering; do not alter the bank,
   coefficients or gates. Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2F2 projected-LUT frontier
+
+- **Integrity:** two complete 243-render/486-LUT passes are byte-identical at
+  manifest SHA-256 `fbee9cba...776`; report SHA-256 is
+  `d20e9592...a7d`; stderr is empty.
+- **Negative control:** node clipping retains both style floors for 6/9
+  reference policies, but 0/9 is structure-safe and only 1/9 passes each
+  complete clipping and raw-range gate.
+- **Safe projections:** both identity contractions are structure/range safe
+  for 9/9 policies, but each is 0/9 on style and non-basic residual. Median
+  contraction is 0.6861 and the minimum is 0.2682.
+- **Visual discipline:** no automatic survivor means no visual shortlist or
+  promotion review is allowed.
+- **Interpretation:** reference-conditioned ML is not shown to be bland, but
+  clipping or uniformly weakening its LUTs does not yield a Style-safe
+  candidate. The raw and uniform-projection branches close.
+- **Handoff:** freeze U5.R2G0 to test a scientifically distinct
+  synthetic-grid refit into a bounded explicit family. No real-film fitting,
+  CanonCGT training, stock claim or production integration opens. Goal remains
+  ACTIVE.

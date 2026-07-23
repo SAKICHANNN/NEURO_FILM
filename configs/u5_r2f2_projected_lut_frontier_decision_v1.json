@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2f2_projected_lut_frontier_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2F2",
+  "decision": "closed_no_automatic_survivor",
+  "config_sha256": "7204d5e9998b2d3bfd671c0681c97e87c862d63d1a350d2338b4692a8adc775f",
+  "software_commit": "94ad7a0215394633c381c266141d3cc6ead0f62d",
+  "manifest_sha256": "fbee9cbae18763751bb60ae24de1e35763b98b80f402f136cb20d4282b0da776",
+  "automatic_report_sha256": "d20e9592ad7e84450b5acea393013e7354d0ea42016eb5fcefd3123188bd3a7d",
+  "candidate_count": 27,
+  "render_count_per_pass": 243,
+  "automatic_survivor_count": 0,
+  "visual_review_allowed": false,
+  "findings": {
+    "clip_only": "retains style in 6/9 but passes neither structure nor complete range/clipping safety",
+    "safe_contract_cap075": "9/9 structure and range safe, 0/9 style and non-basic pass",
+    "safe_contract_cap100": "9/9 structure and range safe, 0/9 style and non-basic pass",
+    "minimum_applied_alpha": 0.26816687546670437,
+    "median_applied_alpha": 0.6861159456893802
+  },
+  "claim_ceiling": "generic external ML explicit-LUT safety evidence only; no stock, calibration, latent-mode, preference, or production claim",
+  "forbidden_fallbacks": [
+    "modify completed F1 or F2 gates",
+    "increase or retrain CanonCGT capacity",
+    "select references after seeing results",
+    "fit current real-film pixels",
+    "perform visual promotion with an empty automatic shortlist"
+  ],
+  "next_leaf": "freeze U5.R2G0 constrained explicit distillation over immutable LUT controls",
+  "goal_status": "ACTIVE"
+}

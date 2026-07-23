@@ -105,9 +105,15 @@ evidence, not stock or production truth. U5.R2F1's completed no-training
 CanonCGT reference-condition result is informative but negative for raw deployment:
 reference sensitivity is strong (median pairwise Delta E76 8.53) and six of
 nine policies pass style/non-basic floors, yet none passes clipping/range.
-U5.R2F2 is the next ready algorithm leaf: a preregistered data-independent
-bounded projection of the already frozen explicit LUT evidence, with no new
-training or model capacity.
+U5.R2F2 closes with no automatic survivor. Node clipping retains style in 6/9
+policies but fails structural and complete range/clipping safety. Both
+structure-safe identity contractions pass structure and range for 9/9
+references, but none reaches either frozen style floor. The next ready
+algorithm leaf is U5.R2G0: preregister a data-independent synthetic-grid
+distillation of the immutable LUT controls into a bounded explicit operator
+family. It may test whether redistributing a transform outperforms uniform
+contraction, but may not train CanonCGT, fit current real-film pixels, or claim
+stock authenticity.
 
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
