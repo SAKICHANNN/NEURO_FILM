@@ -1,7 +1,9 @@
 # U5.R2E1 density-witness frontier results
 
-Date: 2026-07-23  
-Node: `ULT > U5 > U5.R2 > U5.R2E1`  
+Date: 2026-07-23
+
+Node: `ULT > U5 > U5.R2 > U5.R2E1`
+
 Decision: **retain one B0 density challenger; no stock or production claim**
 
 ## Result

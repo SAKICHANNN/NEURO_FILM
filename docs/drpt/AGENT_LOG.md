@@ -2366,3 +2366,23 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   immutable A0 reference-condition bank before any CanonCGT inference; no
   training, stock truth, current-pool fitting, LSM or production integration
   opens. Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2F1 CanonCGT reference-condition pilot
+
+- **Model:** exact Apache-2.0 source commit, Stage2 config, 20.9MB E2E
+  checkpoint and MobileNet initializer hashes are frozen; weights-only load
+  and zero training/fine-tuning are mandatory.
+- **References:** nine hash-verified CC BY local images span nine independent
+  groups and three provenance/category pools. They are A0 runtime conditions,
+  never pairs, targets, teacher truth, fitted data or named-stock evidence.
+- **Execution:** exact 9 references x 9 frozen gold inputs, two complete
+  passes, explicit replay of both predicted 17-cube LUTs and one final RGB8
+  serialization. No output resampling, effect or per-image adjustment.
+- **Gates:** inherit R2B style/non-basic/clipping; add raw-final excursion
+  `<=0.5%`, reference-bank median pairwise Delta E76 `>=2.0`, exact hashes
+  and replay error `<=1e-6`.
+- **Visual:** at most one survivor per provenance bucket and three total;
+  three blind rounds plus all-nine original-resolution severe veto and ID11.
+- **Boundary:** no stock response, calibration, LSM, independent-human
+  preference, production integration or redistribution claim opens. Goal
+  remains ACTIVE.
