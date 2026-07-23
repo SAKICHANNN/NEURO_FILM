@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2d-statistics-to-explicit-lut-shortcut-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2D",
+  "decision": "representation_properties_pass_operator_identification_shortcut_rejected",
+  "config_sha256": "4de4f3351cee383998319c3b0c54c1c4858a65888884c51c0947329e4d5a8283",
+  "audit_sha256": "7622e4a5c15374fb7c9095016c391b18cc9fd98ffd645dd8a3545e1db6928d58",
+  "software_commit": "3b2a5026bcf1c0d4c25f94c2ee3074dddda976a9",
+  "metrics": {
+    "descriptor_length": 2304,
+    "lightness_mass_absolute_error": 0.0,
+    "raw_chroma_mass_absolute_error": 0.0,
+    "permutation_component_maximum_absolute_error": 4.263256414560601e-14,
+    "palette_witness_descriptor_l2": 111.69224616013756,
+    "reference_pixel_maximum_absolute_error": 0.0,
+    "reference_descriptor_maximum_absolute_error": 0.0,
+    "held_out_probe_rgb_l2_difference": 1.0
+  },
+  "descriptor_control_allowed": true,
+  "synthetic_known_operator_benchmark_allowed": true,
+  "operator_identification_claim_allowed": false,
+  "real_film_fitting_allowed": false,
+  "stock_learning_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "next_leaf": "freeze U5.R2D1 CPU synthetic known-operator recovery benchmark with operator-family and palette-support holdouts",
+  "claim_ceiling": "data-independent paper-compatible representation properties and explicit non-identifiability counterexample; no exact StatLUT reproduction, real operator recovery, stock response, calibration, authenticity, routing value or production promotion"
+}

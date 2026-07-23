@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "625dd098f3bc1bd719e6fa9051c7e4c43f161289",
+  "head": "3b2a5026bcf1c0d4c25f94c2ee3074dddda976a9",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 69,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2D",
-  "current_leaf": "Freeze a data-independent non-generative statistics-to-explicit-LUT shortcut audit",
-  "phase": "FREEZE",
-  "last_verified_commit": "625dd098f3bc1bd719e6fa9051c7e4c43f161289",
+  "iteration": 70,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2D1",
+  "current_leaf": "Freeze a CPU synthetic known-operator recovery benchmark",
+  "phase": "VERIFY",
+  "last_verified_commit": "3b2a5026bcf1c0d4c25f94c2ee3074dddda976a9",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 716,
+    "passed": 726,
     "failed": 0,
-    "timestamp": "2026-07-23T04:48:03Z"
+    "timestamp": "2026-07-23T06:20:00Z"
   },
   "ready_leaves": [
-    "freeze_u5_r2d_statistics_to_explicit_lut_shortcut_audit"
+    "freeze_u5_r2d1_synthetic_known_operator_recovery_benchmark"
   ],
-  "next_action": "Commit and push the U5.R2C local-tooling result, then freeze U5.R2D around the non-generative StatLUT image branch: implement spatially agnostic Lab statistics, distinguish patch-shuffle invariance from scene-palette/content dependence, and use only synthetic known operators before any learned LUT work.",
+  "next_action": "Commit and push the U5.R2D result, then freeze U5.R2D1: generate bounded explicit operators locally, separate operator-family and palette-support holdouts, compare descriptor-only/content-only/source-plus-target/difference/best-basic controls, and score held-out colours and constraint failures without stock claims.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -141,9 +141,16 @@
     "scripts/build_u5_r2c_empirical_ceiling_worksheet.py",
     "tests/test_u5_r2c_empirical_ceiling.py",
     "docs/U5_R2C_EMPIRICAL_CEILING_TOOLING_RESULTS.md",
-    "configs/u5_r2c_empirical_ceiling_decision_v1.json"
+    "configs/u5_r2c_empirical_ceiling_decision_v1.json",
+    "docs/planning/U5_R2D_STATISTICS_TO_LUT_SHORTCUT_AUDIT_CONTRACT.md",
+    "configs/u5_r2d_statistics_to_lut_shortcut_v1.json",
+    "src/roll2film/lab_statistics.py",
+    "scripts/run_u5_r2d_statistics_to_lut_shortcut_audit.py",
+    "tests/test_roll2film_lab_statistics.py",
+    "docs/U5_R2D_STATISTICS_TO_LUT_SHORTCUT_AUDIT_RESULTS.md",
+    "configs/u5_r2d_statistics_to_lut_shortcut_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T04:48:03Z",
-  "selection_rationale": "U5.R2C local protocol/tooling passes but actual B1 and R3 remain data/human gated. U5.R2D is the nearest autonomous algorithm leaf because it can falsify statistics-to-LUT shortcut assumptions with synthetic known operators and no closed stock pixels, participant contact, production change or generative RGB."
+  "last_update_utc": "2026-07-23T06:20:00Z",
+  "selection_rationale": "U5.R2D proves permutation invariance but also strong palette dependence and absent-colour operator non-identifiability. U5.R2D1 is the nearest autonomous algorithm leaf because exact generated operators can test which non-generative representation recovers bounded explicit transforms under family and support shift without touching closed real-film data."
 }

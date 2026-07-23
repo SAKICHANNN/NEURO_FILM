@@ -69,9 +69,14 @@ fallback, panel isolation, B1 lineage exclusion, complete all-scene policy and
 descriptive tie score fail closed. Its deterministic annotation workload is
 `54N` base and `78N` if every severity review escalates; binding sample size
 remains unknown and actual B1 stays externally gated. The next autonomous
-algorithm leaf is U5.R2D, a non-generative StatLUT-style
-statistics-to-explicit-LUT shortcut audit on synthetic known operators and
-rights-cleared controls. It cannot use closed real-film pixels or infer stock
+algorithm leaf U5.R2D is now complete. Its 2,304-D Lab descriptor is
+permutation-stable to `4.26e-14`, but red/blue palettes separate by L2
+`111.69`; two LUTs can also produce identical reference pixels and descriptors
+while differing by RGB L2 `1.0` on an absent colour. This rejects unpaired
+operator-identification language without rejecting bounded conditional
+explicit operators. U5.R2D1 is the next autonomous leaf: a CPU-only,
+locally-generated known-operator recovery benchmark with operator-family and
+palette-support holdouts. It cannot use closed real-film pixels or infer stock
 truth.
 
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds

@@ -2156,3 +2156,23 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary:** isolated NumPy descriptor only; no download, professional LUT
   asset, GPU, model training, fitting, renderer integration, stock identity or
   exact-paper-reproduction claim. Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2D properties and reject the identification shortcut
+
+- **Implementation:** added an immutable 2,304-D paper-compatible Lab
+  descriptor with explicit encoded-sRGB ingress, soft lightness/chroma bins,
+  square-root chroma histogram, conditioned lightness and raw audit mass.
+- **Positive properties:** permutation maximum error `4.2633e-14`; both
+  histogram mass errors zero; all shapes, finiteness and invalid-input gates
+  pass.
+- **Negative evidence:** equal-size red/blue palettes separate by descriptor
+  L2 `111.6922`. Two tetrahedral LUTs produce exactly equal reference pixels
+  and descriptors but RGB L2 `1.0` on an absent-blue probe.
+- **Reproducibility:** two reports are byte-identical at
+  `7622e4a5c15374fb7c9095016c391b18cc9fd98ffd645dd8a3545e1db6928d58`;
+  16 focused and 726 complete CPU tests pass.
+- **Decision:** retain the descriptor as a content/palette-sensitive control
+  and synthetic-recovery candidate, never as proof of unpaired operator or
+  stock identification. Open only a separately frozen U5.R2D1 CPU synthetic
+  known-operator benchmark. No data, model or renderer integration opened;
+  Goal remains ACTIVE.
