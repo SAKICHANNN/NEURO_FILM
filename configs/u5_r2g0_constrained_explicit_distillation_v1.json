@@ -34,6 +34,8 @@
     "29",
     "FS_FACE_01"
   ],
+  "sample_count": 9,
+  "candidate_count": 9,
   "fit": {
     "synthetic_grid_size": 17,
     "curve_knot_count": 9,

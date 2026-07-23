@@ -2498,3 +2498,20 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary:** generic external-control evidence only. No photograph fitting,
   CanonCGT training, real-film/stock/LSM claim or production integration.
   Goal remains ACTIVE.
+
+## 2026-07-23 - Verify U5.R2G0 isolated fitter
+
+- **Implementation:** an isolated float64 CPU optimizer composes immutable F1
+  LUTs on a synthetic cube, fits only monotone curves plus a bounded convex
+  RGB matrix, serializes the explicit operator, and evaluates photographs only
+  after the fit.
+- **Safety:** the family is range-bounded by construction and is independently
+  audited for curve steps, matrix determinant/row sums, baked nodes,
+  corresponding-channel steps, tetrahedral Jacobians and exact replay.
+- **Smoke:** fixed ref08/ID11 finishes three restarts in 3.7 seconds, passes
+  every structure gate with minimum Jacobian 0.0701 and exact replay, while
+  retaining a non-trivial 0.0969 target RMSE.
+- **Verification:** three focused tests, 22 combined harness/focused tests and
+  all 768 repository tests pass.
+- **Handoff:** commit implementation before the exact double 81-pair formal
+  run. No fit/gate change is allowed. Goal remains ACTIVE.
