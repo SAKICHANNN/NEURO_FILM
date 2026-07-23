@@ -75,6 +75,13 @@ encoding, stochastic effects and file I/O remain outside that kernel.
 `rec2020_safe_lab.py` is an isolated colour-only research adapter and is not a
 production renderer entry point.
 
+`src/roll2film/` owns isolated research representations and audits for explicit
+film-inspired colour operators. `constrained.py` composes the bounded affine,
+monotone-spline and dense-LUT stages; `lut.py` owns versioned trilinear and
+tetrahedral interpolation plus serialization/Jacobian primitives. These
+modules are not production renderer entry points and must not absorb data
+acquisition, fitting, evaluation or profile concerns.
+
 ## Inference and replay contracts
 
 `src/inference/` owns reusable deterministic render identity and replay

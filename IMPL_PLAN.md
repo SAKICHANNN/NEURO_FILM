@@ -48,6 +48,15 @@ no images and opens no fitting, training or LSM. The failed
 archive matrix is not teacher truth. LOC
 Phase C remains a sealed historical/unknown lane.
 
+`U5.R2A` now passes as a reusable numerical representation only:
+deterministic affine + monotone splines + exact tetrahedral LUT,
+replay/property audits and 704 complete CPU tests pass. Its required smooth
+blue-to-purple counterexample also passes every numerical constraint, so
+monotonicity, smoothness, gamut and Jacobian checks do not replace semantic
+severe-artifact evaluation. No stock fit or production integration opened.
+The next film-colour algorithm leaf is `U5.R2B`, beginning with a frozen
+identical-renderer global-frontier contract.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

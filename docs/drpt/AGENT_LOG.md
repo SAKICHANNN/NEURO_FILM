@@ -1995,3 +1995,23 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   result, replace it with a convex row-sum-one matrix and explicitly audit
   residual-axis differences. No numeric threshold or result-driven gate
   changed.
+
+## 2026-07-23 - Pass U5.R2A numerical representation and preserve non-safety evidence
+
+- **Implementation:** `cf984cb` adds a fail-closed affine + monotone spline +
+  exact tetrahedral LUT research primitive, deterministic serialization and
+  full residual/neutral/range/Jacobian audits; no production renderer, profile
+  or schema integration is present.
+- **Evidence:** two complete audit executions are byte-identical at
+  `481a3cb...1ca`, with exact identity, replay and independent scalar
+  tetrahedral parity. The curve roundtrip error is `2.22e-16` and its minimum
+  derivative is `0.7340`.
+- **Negative result:** the frozen smooth neutral-preserving blue-to-purple
+  transform changes `[0.1,0.25,0.85]` to `[0.3625,0.25,0.64]` while passing
+  every numerical gate. Numerical regularity does not certify semantic safety.
+- **Verification:** 15 focused, 63 Roll2Film/adjacent and 704 complete CPU
+  tests pass; compile/diff checks pass.
+- **Decision/handoff:** retain U5.R2A as a representation primitive only.
+  U5.R2B becomes the next algorithm leaf. Current stock pixels, training,
+  operator fitting, LSM and production integration remain closed; Goal stays
+  ACTIVE.

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2a-constrained-global-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2A",
+  "config_sha256": "8b7934878655866bb97355459d9732f51416a063eb5ce39831154a31eefb6a3d",
+  "software_commit": "cf984cbb7dad6c68c93d9c5054a946e20cfb0300",
+  "repeat_report_sha256": "481a3cb90b6f4ded0314cd1815859d165dcc3ea3245e123513881478f1aa81ca",
+  "focused_tests_passed": 15,
+  "roll2film_adjacent_tests_passed": 63,
+  "full_tests_passed": 704,
+  "identity_maximum_absolute_error": 0.0,
+  "serialization_replay_maximum_absolute_error": 0.0,
+  "tetrahedral_reference_maximum_absolute_error": 0.0,
+  "counterexample_numerical_contract_passed": true,
+  "counterexample_semantic_safety_claim": false,
+  "renderer_integration": false,
+  "profile_schema_changed": false,
+  "stock_operator_fitted": false,
+  "decision": "retain_numerical_representation_open_u5_r2b_keep_semantic_safety_independent",
+  "next_leaf": "freeze U5.R2B strongest eligible global operator frontier under identical renderer/export and independent target-look and severe-artifact gates",
+  "claim_ceiling": "reusable numerically constrained deterministic global colour-operator representation; no semantic safety, film authenticity, identified digital-to-film operator, stock calibration or production integration claim"
+}
