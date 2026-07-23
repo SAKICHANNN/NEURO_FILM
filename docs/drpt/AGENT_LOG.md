@@ -1989,3 +1989,9 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary/handoff:** no fitting, training, LSM, renderer/profile/schema
   integration or stock/calibration claim. Commit and push this contract before
   implementation; Goal remains ACTIVE.
+- **Pre-result repair:** the first property run found that the drafted
+  counterexample matrix did not preserve neutral and that first-difference
+  wording could include the identity grid step. Before producing an audit
+  result, replace it with a convex row-sum-one matrix and explicitly audit
+  residual-axis differences. No numeric threshold or result-driven gate
+  changed.

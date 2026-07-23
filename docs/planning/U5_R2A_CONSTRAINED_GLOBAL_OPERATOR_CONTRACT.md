@@ -71,7 +71,7 @@ Rules:
    fails before an output is returned;
 4. serialization is versioned and deterministic;
 5. the source array is never mutated;
-6. the LUT audit records residual amplitude, first and second axis
+6. the LUT audit records residual amplitude, first and second residual-axis
    differences, neutral-axis error and every tetrahedron's affine Jacobian
    determinant;
 7. constraints are enforced by validation, not described only as a training
@@ -148,3 +148,12 @@ the result is propagated to tracker, board and agent log.
 - no release, deployment, paid compute or participant action.
 
 Ultimate remains active after this leaf regardless of pass or fail.
+
+## 9. Pre-result contract repair
+
+Before any audit result was produced, the first focused property run exposed
+two specification defects. The counterexample matrix did not preserve the
+neutral axis, and the first-difference wording could count the identity grid
+step rather than the identity-plus-residual field. The matrix was replaced by
+a convex, row-sum-one transform and the wording was made explicit. All numeric
+thresholds, the blue-probe shift gate and every branch rule remain unchanged.
