@@ -79,6 +79,14 @@ locally-generated known-operator recovery benchmark with operator-family and
 palette-support holdouts. It cannot use closed real-film pixels or infer stock
 truth.
 
+U5.R2D1 now closes ordinary unpaired interaction: its confirmation RGB RMSE
+`0.1551` is 125% worse than the global mean. Exact canonical-reference delta
+reaches `0.0564`, 54.3% better than target-only but still captures only 29.8%
+of true style. This is a missing-information result, not permission for a
+larger network. U5.R2D2 may test multiple imperfect canonicalizers and hard
+operator retrieval on the same generated truth; instability across plausible
+canonicalizers must return `unidentified`.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

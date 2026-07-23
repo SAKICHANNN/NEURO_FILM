@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2d1-synthetic-known-operator-recovery-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2D1",
+  "decision": "canonical_information_passes_unpaired_interaction_closes",
+  "config_sha256": "fc1939a394d30e6c84a017095ca47ce84abf6ee6a7a6b62de68cc83fbc4c83ec",
+  "report_sha256": "6fd2b4bc84b18d4a38b7daf6118d67fb6730520129485bf1eea62846c7eebdd5",
+  "manifest_sha256": "76c71291d7b6309da20c691d301a71609137879655663adeb43fc01e13fde9be",
+  "software_commit": "118d72b18122a3cd1717b1bcee0f28f46632eb92",
+  "confirmation_median_uniform_rgb_rmse": {
+    "global_mean": 0.068971,
+    "source_content_only_negative": 0.070935,
+    "style_target_only": 0.123363,
+    "interaction_source_target": 0.155118,
+    "canonical_reference_delta_oracle": 0.056384,
+    "matched_query_delta_oracle": 0.057158,
+    "shuffled_operator_negative": 0.102504
+  },
+  "canonical_improvement_over_target_only_fraction": 0.5429409984561043,
+  "interaction_improvement_over_global_fraction": -1.2490328185553474,
+  "interaction_improvement_over_target_only_fraction": -0.25740901399127813,
+  "best_non_oracle_captured_style_fraction": -0.6453504145446443,
+  "canonical_information_gate_passed": true,
+  "deployable_interaction_gate_passed": false,
+  "useful_non_oracle_recovery_gate_passed": false,
+  "larger_interaction_model_allowed": false,
+  "canonicalizer_sensitivity_study_allowed": true,
+  "hard_retrieval_comparison_allowed": true,
+  "real_film_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "next_leaf": "freeze U5.R2D2 multiple-canonicalizer sensitivity and hard operator retrieval on generated truth",
+  "claim_ceiling": "CPU synthetic evidence that exact reference deltas contain more operator information than unpaired target statistics; no valid real-photo canonicalizer, real-film operator identification, stock response, calibration, authenticity, population preference, routing value or production promotion"
+}

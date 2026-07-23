@@ -2100,6 +2100,25 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   fitting/training/LSM and production integration remain forbidden. Goal
   remains ACTIVE.
 
+## 2026-07-23 - Close U5.R2D1 with canonical-information-only result
+
+- **Formal evidence:** 384 exact operators/768 observations, zero cross-split
+  operator overlap, all projected policies valid and two byte-identical
+  reports at `6fd2b4bc...`.
+- **Positive lane:** canonical-reference delta RMSE `0.05638`, a 54.29%
+  improvement over target-only `0.12336` and 18.25% over global `0.06897`.
+  Captured style remains only 29.8%, so this is incomplete recovery.
+- **Closed lane:** unpaired source/target interaction RMSE `0.15512`, 125%
+  worse than global and 25.7% worse than target-only. The best non-oracle
+  captured-style fraction is negative. No larger interaction model opens.
+- **Controls:** source-only and shuffled targets do not pass; numerical severe
+  veto, truth strength and leakage gates pass. Non-binding Hald review agrees
+  with large tone/hue direction errors and shows no geometry rewrite.
+- **Verification:** 21 focused and 737 full CPU tests pass.
+- **Handoff:** open only U5.R2D2 imperfect-canonicalizer sensitivity plus hard
+  retrieval on generated truth. Real-film fitting/training/LSM and production
+  integration remain forbidden; Goal remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256
