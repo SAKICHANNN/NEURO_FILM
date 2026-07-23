@@ -2080,6 +2080,25 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   threshold or candidate change. The repeat render continues unchanged and
   Goal remains ACTIVE.
 
+## 2026-07-23 - Freeze U5.R2E0 density-domain operator primitive
+
+- **Primary synthesis:** photographic sensitometry separates log-exposure
+  characteristic response from spectral sensitivity/dye absorption;
+  controlled paired-chart work can fit a compact matrix/curve/matrix model,
+  but this project has no such pairs and cannot claim calibration.
+- **Clean-room chain:** linear RGB exposure -> row-stochastic capture matrix ->
+  per-layer logistic negative density -> dye absorption/transmission ->
+  print matrix -> logistic paper density/reflectance -> theoretical endpoint
+  normalization. No per-image auto statistics or spatial operation.
+- **Witnesses:** one neutral and four descriptive non-stock directions;
+  parameters are project-authored and data-independent.
+- **Gates:** exact endpoints/strength/replay/partition, bounded 17-cube,
+  positive finite-difference Jacobian, non-negative derivatives, non-trivial
+  identity distance, pairwise diversity and non-affine residual.
+- **Boundary:** no external GPL code, CC BY-SA profile, LUT, generated teacher,
+  stock pixel, fitting, GPU, neural network or production integration. Passing
+  opens only a separately frozen gold/stress frontier. Goal remains ACTIVE.
+
 ## 2026-07-23 - Freeze U5.R2D1 synthetic operator recovery benchmark
 
 - **Research synthesis:** StatLUT motivates global Lab statistics, MRStyle
