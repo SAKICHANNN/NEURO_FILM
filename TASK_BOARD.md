@@ -115,7 +115,7 @@
 | 1av | U5.R2G0 | Refit immutable ML LUT controls into a bounded explicit operator family | complete: style retained, boundary safety fail | style 9/9, non-basic 6/9, sensitivity 10.07, +4.77 vs F2; clipping 0/9 and no survivor; exact 81x2 |
 | 1aw | U5.R2G1 | Apply one fixed RGB8 quantization-headroom adapter to immutable G0 operators | complete: no survivor, branch closed | structure/range/style 9/9 and retention pass; clipping 0/9 because codes 1/254 remain inside frozen epsilon; exact 81x2 |
 | 1ax | U5.R2H0 | Audit film-specific spectral/sensitometric prior algorithms and obtainable data | next ready: deep research | independent of CanonCGT; manufacturer/paper/source evidence only; no calibrated claim or fitting before data/identifiability gate |
-| 1ay | U5.R2H1 | Test hard content routing between two project-owned safe operators | in progress: contract frozen | A0 disclosed development; source-only descriptor; residual/style/composite Oracles; LOO simple routers + 1000 permutations; no stock/preference claim |
+| 1ay | U5.R2H1 | Test hard content routing between two project-owned safe operators | in progress: implementation verified | 71-D source-only descriptor; exact LOO routers/permutations; 772 tests; formal 1000-permutation audit next |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |

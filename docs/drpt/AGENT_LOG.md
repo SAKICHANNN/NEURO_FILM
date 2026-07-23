@@ -2597,3 +2597,17 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   p<=.05, >=30% regret closure and no two-view contradiction.
 - **Boundary:** A0 metric-derived feasibility only; no stock, preference,
   generalization or production claim. Goal remains ACTIVE.
+
+## 2026-07-23 - Verify U5.R2H1 routing harness
+
+- **Implementation:** deterministic 71-D source-only content descriptor,
+  fold-local standardization, unassigned margins, hard majority/1NN/weighted
+  3NN/logistic LOO, selected-neighbour trace, three utility views and
+  full-path permutations.
+- **Lineage:** every source, candidate output, report and manifest hash is
+  checked before labels or descriptors are constructed.
+- **Smoke:** a 10-permutation full-path run completes and currently finds no
+  viable primary router; this is non-binding.
+- **Verification:** two focused tests and all 772 repository tests pass.
+- **Handoff:** commit implementation before the frozen 1,000-permutation
+  formal run; no feature/model/gate changes afterward. Goal remains ACTIVE.
