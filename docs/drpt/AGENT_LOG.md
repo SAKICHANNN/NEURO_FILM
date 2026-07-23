@@ -2658,3 +2658,19 @@ gate tuning.
 The frozen H1 config and both candidate automatic reports are also hash-pinned
 before tooling so the H2 manifest can record agreement with the exact H1
 metric Oracle rather than reconstructing an unstated label.
+
+## 2026-07-23 - Verify U5.R2H2 replay and presentation tooling
+
+- **Integrity:** the builder validates all seven frozen source/report/config
+  manifests, all 41 source hashes, both 41-output candidate banks, lineage,
+  assignment membership, prediction count and exact ten-intervention policy.
+- **Replay:** 37 assigned choices and four density fallbacks emit a 41-row
+  manifest; all ten anchor interventions are included in every blind round.
+- **Presentation:** six blind sheets cover three rounds in two sheets each;
+  six severe sheets cover all 41 routed outputs with full-frame and central
+  crops. The blind key and empty scoring template are separate.
+- **Verification:** two focused H2 tests, 21 H2/Goal tests, and all 774
+  repository tests pass.
+- **Handoff:** commit tooling before opening any blind key; score the six blind
+  sheets first, then decode and audit every routed severe sheet under the
+  frozen gate. Goal remains ACTIVE.
