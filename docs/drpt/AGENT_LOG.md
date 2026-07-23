@@ -2534,3 +2534,16 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Handoff:** a separately frozen G1 may apply one fixed interior-headroom
   affine map to immutable G0 operators. No refit, capacity increase, film
   fitting or claim expansion. Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2G1 quantization headroom
+
+- **Input:** all 81 hash-fixed G0 serialized operators; G0 cannot be refitted
+  and its PNGs cannot be used as processing inputs.
+- **Only policy:** `y_safe = 1/255 + 253/255 * y`. This maps continuous
+  endpoints to RGB8 codes 1 and 254 and has no tunable alternative.
+- **Integrity:** double source replay, transformed-operator and PNG identity;
+  strictly interior raw range, positive Jacobians and exact replay.
+- **Gates:** unchanged style/non-basic/clipping/range/sensitivity plus no more
+  than 0.5 median style or non-basic loss against matched G0 policies.
+- **Boundary:** no fit, inference, capacity, film pixels, stock truth, LSM or
+  production claim. Goal remains ACTIVE.

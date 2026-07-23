@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2g1_quantization_headroom_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2G1",
+  "source_g0_config": "configs/u5_r2g0_constrained_explicit_distillation_v1.json",
+  "source_g0_config_sha256": "8767a5762af8aa6d2ab4760228a369769bc294c51530374283c39b287adce9ce",
+  "source_g0_manifest": "outputs/u5_r2g0_constrained_explicit_distillation_v1/render_pass1/manifest.json",
+  "source_g0_manifest_sha256": "2dc6fd9082f139f3710577051c6520bc7b46b53556f2f4fdb892d1557b52e48e",
+  "source_g0_report": "outputs/u5_r2g0_constrained_explicit_distillation_v1/automatic_report.json",
+  "source_g0_report_sha256": "70db7f59a9df7dee1caefeed7e9da1c563d4471f7f42d04088124fc1970545b9",
+  "headroom": {
+    "lower": 0.00392156862745098,
+    "upper": 0.996078431372549,
+    "formula": "lower + (upper - lower) * g0_output",
+    "target_quantization": "round_to_nearest_rgb8"
+  },
+  "structure_gates": {
+    "minimum_raw_output": 0.00392156862745098,
+    "maximum_raw_output": 0.996078431372549,
+    "minimum_corresponding_channel_grid_step": 1e-7,
+    "minimum_tetrahedron_jacobian_determinant": 1e-8,
+    "maximum_replay_absolute_error": 1e-12
+  },
+  "automatic_gates": {
+    "gold_median_style_delta_e76_minimum": 7.0,
+    "gold_median_non_basic_residual_delta_e76_minimum": 4.9,
+    "worst_gold_new_hard_clipping_fraction_maximum": 0.005,
+    "worst_gold_raw_final_out_of_range_fraction_maximum": 0.0,
+    "reference_sensitivity_median_pairwise_delta_e76_minimum": 2.0,
+    "maximum_median_style_loss_vs_g0": 0.5,
+    "maximum_median_non_basic_loss_vs_g0": 0.5,
+    "minimum_automatic_survivors": 1
+  },
+  "reference_ids": [
+    "a0_ref_01",
+    "a0_ref_02",
+    "a0_ref_03",
+    "a0_ref_04",
+    "a0_ref_05",
+    "a0_ref_06",
+    "a0_ref_07",
+    "a0_ref_08",
+    "a0_ref_09"
+  ],
+  "sample_ids": [
+    "01",
+    "05",
+    "08",
+    "09",
+    "11",
+    "18",
+    "21",
+    "29",
+    "FS_FACE_01"
+  ],
+  "output_root": "outputs/u5_r2g1_quantization_headroom_v1",
+  "claim_ceiling": "generic external-ML reference condition distilled into a deterministic bounded explicit RGB operator with fixed RGB8 serialization headroom"
+}
