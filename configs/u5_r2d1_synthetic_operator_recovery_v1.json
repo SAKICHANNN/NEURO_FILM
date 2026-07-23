@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2d1-synthetic-known-operator-recovery-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2D1",
+  "seed": 2026072301,
+  "colour_state": "encoded_srgb_float",
+  "operator": {
+    "parameter_count": 9,
+    "families": [
+      "matrix_only",
+      "tone_only",
+      "combined"
+    ],
+    "operators_per_family": 128,
+    "fit_per_family": 48,
+    "validation_per_family": 16,
+    "confirmation_per_family": 32,
+    "stress_per_family": 32,
+    "matrix_maximum_total_off_diagonal_per_row": 0.3,
+    "matrix_minimum_determinant": 0.2,
+    "tone_x_knots": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "tone_minimum_knot_increment": 0.08,
+    "neutral_axis_maximum_error": 1e-10,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0
+  },
+  "palettes": {
+    "pixels_per_cloud": 1024,
+    "development": [
+      "balanced",
+      "warm",
+      "cool",
+      "foliage_like"
+    ],
+    "confirmation": [
+      "skin_like",
+      "low_key"
+    ],
+    "stress": [
+      "red_omitted_narrow",
+      "blue_omitted_narrow",
+      "green_omitted_narrow"
+    ],
+    "query_and_reference_must_differ": true
+  },
+  "representations": [
+    "global_mean",
+    "source_content_only_negative",
+    "style_target_only",
+    "interaction_source_target",
+    "canonical_reference_delta_oracle",
+    "matched_query_delta_oracle",
+    "shuffled_operator_negative"
+  ],
+  "predictors": {
+    "pca_components": 48,
+    "ridge_alphas": [
+      0.0001,
+      0.01,
+      1.0,
+      100.0
+    ],
+    "knn_neighbors": [
+      1,
+      3,
+      5,
+      9
+    ],
+    "preprocessing_fit_split": "fit",
+    "hyperparameter_selection_split": "validation",
+    "confirmation_tuning_allowed": false
+  },
+  "evaluation": {
+    "uniform_probe_grid_size": 17,
+    "operator_group_bootstrap_replicates": 1000,
+    "bootstrap_seed": 2026072302,
+    "report_parameter_rmse": true,
+    "report_rgb_rmse_p95_max": true,
+    "report_delta_e76_median_p95": true,
+    "report_projection_movement": true,
+    "report_family_leave_one_out_sensitivity": true
+  },
+  "gates": {
+    "minimum_truth_identity_rgb_rmse_each_family": 0.02,
+    "maximum_source_content_improvement_over_global_fraction": 0.05,
+    "maximum_shuffle_improvement_over_global_fraction": 0.02,
+    "minimum_canonical_delta_improvement_over_target_only_fraction": 0.2,
+    "minimum_interaction_improvement_over_global_fraction": 0.1,
+    "minimum_interaction_improvement_over_target_only_fraction": 0.05,
+    "minimum_best_non_oracle_captured_style_fraction": 0.5,
+    "projected_policy_valid_fraction": 1.0,
+    "maximum_neutral_axis_error": 1e-10,
+    "two_run_report_byte_identity": true,
+    "cross_split_operator_overlap": 0
+  },
+  "image_download_allowed": false,
+  "external_lut_allowed": false,
+  "pretrained_weight_allowed": false,
+  "real_film_pixel_allowed": false,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "direct_rgb_generation_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "CPU synthetic known-operator method-identifiability evidence under generated palette and family shifts; no real-film operator identification, stock response, calibration, authenticity, population preference, routing value or production promotion"
+}

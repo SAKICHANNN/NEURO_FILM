@@ -2080,6 +2080,26 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   threshold or candidate change. The repeat render continues unchanged and
   Goal remains ACTIVE.
 
+## 2026-07-23 - Freeze U5.R2D1 synthetic operator recovery benchmark
+
+- **Research synthesis:** StatLUT motivates global Lab statistics, MRStyle
+  motivates source/reference interaction and dual mapping, and CanonCGT
+  motivates a canonical pivot. None supplies real-film operator truth here.
+- **Generated truth:** 384 locally generated encoded-sRGB operators across
+  matrix-only, tone-only and combined families; exact 48/16/32/32
+  fit/validation/confirmation/stress operator-group splits per family.
+- **Controls:** global mean, content-only negative, target-only, unpaired
+  source/target interaction, exact canonical-reference delta oracle,
+  matched-query delta oracle and shuffled-operator negative.
+- **Models:** development-only standardized PCA(48) plus ridge or KNN; no
+  neural network, GPU, external image/LUT/checkpoint or confirmatory tuning.
+- **Gates:** leakage, non-trivial truth, negative controls, canonical
+  information, deployable interaction, captured style and a hard numerical
+  validity veto are frozen before implementation.
+- **Claim boundary:** synthetic method-identifiability only; current real-film
+  fitting/training/LSM and production integration remain forbidden. Goal
+  remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256
