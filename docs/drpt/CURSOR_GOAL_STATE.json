@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "3a975bb261022c75a73c207c0d421cd2d1ebbcc7",
+  "head": "df0a9d7f6b1969c3c4ae0d4a6300dd681901785b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 78,
+  "iteration": 79,
   "current_node": "ULT > U5 > U5.R2 > U5.R2F2",
-  "current_leaf": "Freeze and run a data-independent bounded projection frontier over immutable F1 LUTs",
+  "current_leaf": "Implement and run the frozen data-independent bounded projection frontier",
   "phase": "EXECUTE",
-  "last_verified_commit": "3a975bb261022c75a73c207c0d421cd2d1ebbcc7",
+  "last_verified_commit": "df0a9d7f6b1969c3c4ae0d4a6300dd681901785b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 760,
@@ -21,7 +21,7 @@
   "ready_leaves": [
     "freeze_and_run_u5_r2f1_canoncgt_reference_condition_safety_pilot"
   ],
-  "next_action": "Close and push the F1 safety-fail evidence, then freeze U5.R2F2 before any projected render: a small data-independent LUT-node gamut projection and identity-contraction bank with monotonicity/Jacobian diagnostics and unchanged style/non-basic/clipping gates.",
+  "next_action": "Commit and push the frozen U5.R2F2 contract before projected rendering, then implement exact LUT layout conversion, prefix-safe identity contraction, project trilinear replay, double-pass integrity, unchanged frontier metrics and conditional blind review.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +181,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T07:10:00Z",
-  "selection_rationale": "F1 proves the ML route is reference-sensitive and often non-basic, but all raw policies fail frozen clipping/range safety. F2 is the smallest falsifiable follow-up: constrain the already explicit LUT parameters without training, new data or post-result reference selection."
+  "last_update_utc": "2026-07-23T07:25:00Z",
+  "selection_rationale": "F2 is now frozen before projected results as a complete 27-candidate bank. It isolates whether data-independent gamut and structure projection can preserve the positive F1 style/sensitivity evidence while satisfying the existing severe-first safety contract."
 }

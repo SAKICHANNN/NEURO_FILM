@@ -2428,3 +2428,20 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   projected-LUT safety frontier over immutable F1 evidence. No training,
   reference selection, current-pixel fitting, LSM or production integration
   opens. Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2F2 projected-LUT safety frontier
+
+- **Bank:** all nine references cross a node-clip control and two
+  structure-safe identity-contraction caps (`1.0`, `0.75`) for exactly 27
+  candidates and 243 renders per pass.
+- **Projection:** convert fixed `[3,B,G,R]` LUTs to project
+  `[R,G,B,3]`, clip nodes, then search only the contiguous identity-to-cap
+  prefix. Corresponding-channel steps and all tetrahedral Jacobians must stay
+  positive.
+- **Isolation:** immutable F1 LUTs only; no CanonCGT import/inference,
+  training, new weights, reference selection or image-fitted parameter.
+- **Gates:** structure-safe plus unchanged style `>=7`, non-basic `>=4.9`,
+  new clipping `<=0.5%`, raw OOR zero and bank pairwise Delta E76 `>=2`.
+- **Boundary/handoff:** contract must commit before any projected render.
+  No stock, calibration, latent-mode or production claim opens; Goal remains
+  ACTIVE.

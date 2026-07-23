@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2f2-projected-lut-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2F2",
+  "split": "B0_development",
+  "source_f1_config": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+  "source_f1_config_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+  "source_f1_manifest": "outputs/u5_r2f1_canoncgt_reference_condition_v1/render_pass1/manifest.json",
+  "source_f1_manifest_sha256": "77c25ad0d75c9ec5d0eca66a60a133b6e6a0d48f719e6121d3540fc53bfc3f7c",
+  "source_f1_report": "outputs/u5_r2f1_canoncgt_reference_condition_v1/automatic_report.json",
+  "source_f1_report_sha256": "f5b510282cef4e8ce9ac780d5389c6c4a8eb1d26e3611e7eae13fa1b4b8002a8",
+  "reference_ids": [
+    "a0_ref_01",
+    "a0_ref_02",
+    "a0_ref_03",
+    "a0_ref_04",
+    "a0_ref_05",
+    "a0_ref_06",
+    "a0_ref_07",
+    "a0_ref_08",
+    "a0_ref_09"
+  ],
+  "projection_policies": [
+    {
+      "policy_id": "clip_only_cap100",
+      "node_projection": "clip_0_1",
+      "identity_contraction_cap": 1.0,
+      "enforce_structure_prefix": false,
+      "role": "bounded_node_negative_control"
+    },
+    {
+      "policy_id": "safe_contract_cap100",
+      "node_projection": "clip_0_1",
+      "identity_contraction_cap": 1.0,
+      "enforce_structure_prefix": true,
+      "role": "maximum_structure_safe_projection"
+    },
+    {
+      "policy_id": "safe_contract_cap075",
+      "node_projection": "clip_0_1",
+      "identity_contraction_cap": 0.75,
+      "enforce_structure_prefix": true,
+      "role": "conservative_structure_safe_projection"
+    }
+  ],
+  "candidate_id_format": "{reference_id}__{policy_id}",
+  "candidate_count": 27,
+  "sample_count": 9,
+  "render_count_per_pass": 243,
+  "seed": 20260723,
+  "output_root": "outputs/u5_r2f2_projected_lut_frontier_v1",
+  "projection": {
+    "lut_layout_input": "3_b_g_r",
+    "lut_layout_renderer": "r_g_b_3",
+    "interpolation": "trilinear",
+    "node_minimum": 0.0,
+    "node_maximum": 1.0,
+    "minimum_corresponding_channel_grid_step": 1e-7,
+    "minimum_tetrahedron_jacobian_determinant": 1e-8,
+    "alpha_prefix_grid_samples": 33,
+    "alpha_bisection_iterations": 24,
+    "alpha_tolerance": 1e-6,
+    "require_all_structure_constrained_luts_to_pass": true
+  },
+  "rendering": {
+    "input_transfer": "srgb",
+    "working_domain": "encoded_srgb_float64_0_1",
+    "output_transfer": "srgb",
+    "output_format": "rgb8_png",
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_adjustment_allowed": false,
+    "model_inference_allowed": false,
+    "training_allowed": false,
+    "require_repeat_manifest_byte_identity": true,
+    "verify_all_source_reference_lut_and_output_hashes": true
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "minimum_gold_median_style_delta_e76": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 4.9,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "maximum_worst_gold_raw_final_out_of_range_fraction": 0.0,
+    "minimum_reference_bank_median_pairwise_output_delta_e76": 2.0
+  },
+  "shortlist": {
+    "automatic_survivors_only": true,
+    "one_policy_per_reference": true,
+    "within_reference_order": [
+      "descending_gold_median_non_basic_residual_delta_e76",
+      "descending_gold_median_style_delta_e76",
+      "descending_applied_alpha_minimum",
+      "ascending_candidate_id"
+    ],
+    "one_reference_per_provenance_bucket": true,
+    "maximum_candidates": 3
+  },
+  "comparators": [
+    "bland_safe_rich_control",
+    "anchor56_chroma_margin4_challenger",
+    "cyan_shadow_warm_highlight_like__s50"
+  ],
+  "visual": {
+    "automatic_shortlist_only": true,
+    "blind_rounds": 3,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "claim": "autonomous B0 development evidence only; not owner, independent-human or population preference"
+  },
+  "operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "internal B0 development evidence for data-independent gamut and structure projection of immutable generic grading LUTs; no new model inference, training, fitted film pixels, measured film response, named-stock simulation, calibration, latent mode, independent-human preference or production promotion"
+}
