@@ -5,23 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "01a2a077d7f733aaf24d0e320d8723e2788a4544",
+  "head": "500df31c70e0e8bb2aefeaf6c6dd7d760690e96b",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 72,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2E0",
-  "current_leaf": "Audit and freeze an original density-domain explicit film-inspired operator",
-  "phase": "RECON",
-  "last_verified_commit": "01a2a077d7f733aaf24d0e320d8723e2788a4544",
+  "iteration": 73,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2E1",
+  "current_leaf": "Freeze and run the bounded-strength density-witness gold/stress frontier",
+  "phase": "FREEZE",
+  "last_verified_commit": "500df31c70e0e8bb2aefeaf6c6dd7d760690e96b",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 743,
+    "passed": 748,
     "failed": 0,
-    "timestamp": "2026-07-23T08:10:00Z"
+    "timestamp": "2026-07-23T08:54:00Z"
   },
   "ready_leaves": [
-    "audit_and_freeze_u5_r2e0_density_domain_explicit_look_primitive"
+    "freeze_and_run_u5_r2e1_density_witness_gold_stress_frontier"
   ],
-  "next_action": "Commit and push the U5.R2D2 result, then audit primary sensitometry/dye-density sources and freeze U5.R2E0: implement an original bounded density-domain explicit Look Approximation family without copying external profiles or using any control as teacher truth.",
+  "next_action": "Commit and push the U5.R2E0 result, then freeze U5.R2E1 before inspecting outcomes: render five descriptive witnesses over bounded strengths on the unchanged U5.R2B gold/stress sets, run the frozen automatic screen and ID11 regression, and admit at most three survivors to blinded visual review.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -163,9 +163,16 @@
     "scripts/run_u5_r2d2_canonicalizer_retrieval_sensitivity.py",
     "tests/test_roll2film_canonicalizer_sensitivity.py",
     "docs/U5_R2D2_CANONICALIZER_RETRIEVAL_SENSITIVITY_RESULTS.md",
-    "configs/u5_r2d2_canonicalizer_retrieval_sensitivity_decision_v1.json"
+    "configs/u5_r2d2_canonicalizer_retrieval_sensitivity_decision_v1.json",
+    "docs/planning/U5_R2E0_DENSITY_DOMAIN_OPERATOR_CONTRACT.md",
+    "configs/u5_r2e0_density_domain_operator_v1.json",
+    "src/roll2film/density_domain.py",
+    "scripts/run_u5_r2e0_density_operator_audit.py",
+    "tests/test_roll2film_density_domain.py",
+    "docs/U5_R2E0_DENSITY_DOMAIN_OPERATOR_RESULTS.md",
+    "configs/u5_r2e0_density_domain_operator_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T08:10:00Z",
-  "selection_rationale": "U5.R2D2 returns canonicalizer-sensitive/unidentified and closes raw hard retrieval without adding capacity. U5.R2E0 is the nearest autonomous algorithm leaf because a bounded density/sensitometry-domain formulation can create strong explicit film-inspired colour hypotheses while remaining deterministic, artifact-safe and honest about the absence of identified stock truth."
+  "last_update_utc": "2026-07-23T08:54:00Z",
+  "selection_rationale": "U5.R2E0 passes the frozen numerical and diversity gates but has no visual safety or product evidence. U5.R2E1 is the nearest ready algorithm leaf because it can test the five explicit witnesses over bounded strengths on the already frozen U5.R2B gold/stress inputs under the unchanged severe-artifact-first policy."
 }

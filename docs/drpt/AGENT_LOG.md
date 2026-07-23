@@ -2179,6 +2179,28 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   external profiles, use external controls as teachers, or claim stock truth.
   Goal remains ACTIVE.
 
+## 2026-07-23 - Pass U5.R2E0 density-domain numerical/diversity primitive
+
+- **Implementation:** original clean-room linear-RGB capture matrix, logistic
+  negative density/transmission, print matrix, paper density/reflectance and
+  bounded strength chain; five descriptive non-stock witnesses.
+- **Numerical evidence:** all outputs stay in `[0,1]`; endpoint, strength,
+  partition and serialization errors are zero; all frozen directional
+  derivatives and finite-difference Jacobian determinants are positive.
+- **Nontriviality/diversity:** best-affine residual RMSE is
+  `0.15457--0.16847`; pairwise witness RMSE is `0.07319--0.14704`, above the
+  frozen `0.015` floor.
+- **Reproducibility:** two formal reports are byte-identical at
+  `82d63ad5...dcc3`; implementation commit `500df31`; 748 full CPU tests pass.
+- **Boundary:** this is numerical and representational evidence only. It does
+  not establish visual safety, film plausibility, preference, a named stock
+  response, calibration or production readiness. No external code/profile/LUT
+  or output was copied or used as teacher.
+- **Handoff:** open U5.R2E1 bounded-strength gold/stress frontier using the
+  existing U5.R2B inputs, ID11 regression and severe-artifact-first ordering.
+  Real-film fitting, training, LSM and production integration remain closed;
+  Goal remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256
