@@ -1966,3 +1966,26 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Isolation:** zero renderer/profile/recipe-schema references, zero production-eligible plugins and no tracked profile change.
 - **Verification:** 23 boundary, 50 focused/adjacent and 698 complete CPU tests plus compile/diff checks pass.
 - **Decision/handoff:** retain the software boundary; U2.4 real operators remain pending. No physical, stock, calibration or integration claim opens; Goal remains ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2A constrained global colour operator
+
+- **Acceptance:** worktree is clean at `a36cfdd`, branch and origin match, 698
+  tests are the last complete baseline, and no data/training/download process is
+  running.
+- **Parent/skills:** `ULT > U5 > U5.R2 > U5.R2A`;
+  `dev-research-reliability` primary with AI/ML, research, DRPT, tracker,
+  structure, source and agent-log governance as read-only secondary disciplines.
+- **Question:** can affine + strictly monotone splines + exact tetrahedral LUT
+  form a versioned, replayable, numerically bounded global film-inspired colour
+  operator without using unidentified stock pixels?
+- **Frozen gates:** identity/golden vectors, curve roundtrip/derivative,
+  independent scalar tetrahedral parity, exact serialization replay,
+  nonmutation/fail-closed inputs, LUT residual/derivative/neutral/Jacobian
+  audits and two-run report identity.
+- **Required negative evidence:** a smooth, in-gamut, neutral-preserving,
+  positive-Jacobian blue-to-purple operator must pass the numerical contract.
+  This demonstrates that regularity is not semantic colour safety and preserves
+  the independent severe-artifact veto.
+- **Boundary/handoff:** no fitting, training, LSM, renderer/profile/schema
+  integration or stock/calibration claim. Commit and push this contract before
+  implementation; Goal remains ACTIVE.

@@ -100,6 +100,7 @@
 | 1ah | U2.6A | Expose existing profile evidence labels through validated read-only API/CLI | complete: pass | safe-rich reports none/none/heuristic/non-calibrated; deterministic/fail-closed gates and 656 tests pass; no schema/render/evidence-grade change |
 | 1ai | U2.5B | Add explicit profile-driven safe-Lab compatibility adapter | complete: pass | 8/8 sRGB8 and 3/3 sRGB16 exact parity; invalid profile zero outputs; default/schemas/operators unchanged; 675 tests pass |
 | 1aj | U2.4A | Freeze safe negative/slide/B&W interpretation plugin boundary | complete: boundary pass | 3/3 synthetic-test-only witnesses and fail-closed controls pass; no real operator, production eligibility or renderer/schema/profile integration; 698 tests |
+| 1ak | U5.R2A | Build the versioned constrained global colour-operator primitive | contract frozen; implementation next | reuse affine/spline core, add exact tetrahedral LUT/property audit and reproduce a numerical-pass semantic non-safety counterexample; no film fitting or renderer integration |
 | 2 | RF0.3/RF1.3 | Preserve bounded FSA/OWI historical/unknown lane | sealed partial, auxiliary | 258 derivatives / 81,016,399 bytes retained; never count as named-stock coverage or block RF0.4 |
 | 4 | RF2.S/RF3 | Per-stock CPU expert ladder, then bounded GPU challengers if justified | data-gated | requires that stock's RF1.4 pass; no cross-stock averaging or RGB generator |
 | 4a | RF2.H | Independent historical/unknown CPU expert | data-gated on RF1.3 | separate coverage ledger and claim class |

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "node": "U5.R2A",
+  "title": "Versioned numerically constrained global colour operator",
+  "seed": 250723,
+  "working_space": "linear_srgb",
+  "input_domain": [0.0, 1.0],
+  "operator_order": [
+    "orientation_preserving_affine",
+    "strictly_monotone_channel_curves",
+    "tetrahedral_3d_lut"
+  ],
+  "lut": {
+    "interpolation": "tetrahedral",
+    "minimum_size": 2,
+    "audit_size": 17,
+    "implicit_clipping": false,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_residual_amplitude": 0.4,
+    "maximum_first_axis_step": 0.125,
+    "maximum_second_axis_difference": 1e-12,
+    "maximum_neutral_axis_error": 1e-12,
+    "minimum_tetrahedron_jacobian_determinant": 0.1
+  },
+  "property_gates": {
+    "identity_maximum_absolute_error": 0.0,
+    "curve_roundtrip_maximum_absolute_error": 5e-12,
+    "curve_minimum_derivative": 0.0,
+    "tetrahedral_scalar_reference_maximum_absolute_error": 1e-12,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true,
+    "invalid_input_fails_closed": true
+  },
+  "golden_vectors": [
+    [0.0, 0.0, 0.0],
+    [1.0, 1.0, 1.0],
+    [0.5, 0.5, 0.5],
+    [0.125, 0.25, 0.75],
+    [0.9, 0.1, 0.4]
+  ],
+  "non_safety_counterexample": {
+    "matrix": [
+      [1.0, 0.0, 0.35],
+      [0.0, 1.0, 0.0],
+      [0.0, 0.0, 0.65]
+    ],
+    "blue_probe": [0.1, 0.25, 0.85],
+    "minimum_red_increase": 0.25,
+    "maximum_neutral_axis_error": 1e-12,
+    "must_pass_numerical_contract": true,
+    "claim": "Numerical regularity is not semantic colour safety."
+  },
+  "allowed_actions": [
+    "add reusable deterministic research operator primitives",
+    "add focused property and golden-vector tests",
+    "run a synthetic data-independent audit",
+    "write an ignored deterministic report"
+  ],
+  "forbidden_actions": [
+    "fit any current real-film pixel pool",
+    "change operator_fitting_allowed or training_allowed",
+    "integrate into the production renderer or tracked profiles",
+    "claim stock response, calibration, authenticity, or semantic safety",
+    "add neural or generative RGB rendering",
+    "weaken the severe-artifact veto"
+  ]
+}

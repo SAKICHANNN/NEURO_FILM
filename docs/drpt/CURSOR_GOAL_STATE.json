@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "909394c7910f4e7c76f12529e11ddd17ad2c2f4e",
+  "head": "a36cfddbacfbd8e1b6e8e1b08c82221b5c5e376f",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 64,
-  "current_node": "ULT > U2 > U2.4 > U2.4A",
-  "current_leaf": "U2.4A software boundary passed; real U2.4 operators remain pending; selecting next legal leaf",
-  "phase": "CONTINUE",
-  "last_verified_commit": "909394c7910f4e7c76f12529e11ddd17ad2c2f4e",
+  "iteration": 65,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2A",
+  "current_leaf": "U5.R2A constrained global colour-operator contract frozen; implementation pending",
+  "phase": "EXECUTE",
+  "last_verified_commit": "a36cfddbacfbd8e1b6e8e1b08c82221b5c5e376f",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 698,
@@ -19,9 +19,9 @@
     "timestamp": "2026-07-18T11:14:00Z"
   },
   "ready_leaves": [
-    "select_next_independent_ready_leaf"
+    "implement_u5_r2a_constrained_global_operator"
   ],
-  "next_action": "Refresh the active U/RF trees and select another smallest evidence-authorized leaf; keep synthetic interpretation witnesses isolated and current stock/operator gates closed.",
+  "next_action": "Commit the frozen U5.R2A contract, then implement only its reusable affine/spline/tetrahedral-LUT numerical boundary and synthetic non-safety audit; keep all stock fitting/training/LSM and renderer integration closed.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -114,6 +114,8 @@
     "tests/test_u2_4a_interpretation_boundary.py",
     "docs/U2_4A_INTERPRETATION_PLUGIN_BOUNDARY_RESULTS.md",
     "configs/u2_4a_interpretation_plugin_boundary_decision_v1.json",
+    "docs/planning/U5_R2A_CONSTRAINED_GLOBAL_OPERATOR_CONTRACT.md",
+    "configs/u5_r2a_constrained_global_operator_v1.json",
     "src/color_engine/safe_lab.py",
     "src/color_engine/gamut.py",
     "src/color_engine/rec2020_safe_lab.py",
@@ -122,6 +124,6 @@
     "src/eval/filmstylesafe_r1c3.py"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-18T11:16:00Z",
-  "selection_rationale": "U2.4A passed only the software boundary; keeping U2.4 real operators pending preserves the unresolved unpaired/physical-identification limits."
+  "last_update_utc": "2026-07-23T04:45:00Z",
+  "selection_rationale": "U5.R2A is the smallest ready film-colour algorithm leaf that can advance the explicit operator frontier without violating current stock identifiability, fitting, training or LSM closures."
 }
