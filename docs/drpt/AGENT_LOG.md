@@ -2138,3 +2138,21 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   statistics-to-explicit-LUT shortcut audit on synthetic known operators.
   Current real-film fitting/training/LSM and production integration remain
   forbidden; Goal stays ACTIVE.
+
+## 2026-07-23 - Freeze U5.R2D statistics-to-LUT shortcut audit
+
+- **Source boundary:** StatLUT v1 specifies 2,304-D Lab statistics and a
+  residual 16-cube Transformer LUT, but currently provides no official
+  runnable code. Its 4,000 professional LUT sources/rights are unspecified
+  and its reported 8xA800 training is outside this leaf. H-Diffuser is
+  excluded.
+- **Project question:** distinguish exact pixel-permutation invariance from
+  content/palette independence and from unpaired operator identification.
+- **Frozen witnesses:** red-vs-blue palette distance and two LUTs that agree
+  on all reference colours but diverge on an absent-colour probe.
+- **Gates:** 2,304 finite values and soft-bin mass; permutation/reference
+  parity `<=1e-12`; palette distance `>0.1`; held-out LUT divergence
+  `>=0.1`.
+- **Boundary:** isolated NumPy descriptor only; no download, professional LUT
+  asset, GPU, model training, fitting, renderer integration, stock identity or
+  exact-paper-reproduction claim. Goal remains ACTIVE.

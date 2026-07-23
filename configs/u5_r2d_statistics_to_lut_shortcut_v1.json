@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2d-statistics-to-explicit-lut-shortcut-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2D",
+  "representation_id": "paper_compatible_lab_statistics_v1",
+  "input_colour_state": "encoded_srgb_float",
+  "lab": {
+    "l_bins": 256,
+    "ab_bins": 32,
+    "chroma_gamma": 0.5,
+    "chroma_scale": 128.0,
+    "l_minimum": 0.0,
+    "l_maximum": 100.0,
+    "stretched_chroma_minimum": -1.0,
+    "stretched_chroma_maximum": 1.0,
+    "soft_binning": true,
+    "sqrt_chroma_histogram": true,
+    "epsilon": 1e-12,
+    "descriptor_length": 2304
+  },
+  "gates": {
+    "permutation_component_maximum_absolute_error": 1e-12,
+    "palette_witness_minimum_descriptor_l2": 0.1,
+    "reference_pixel_maximum_absolute_error": 1e-12,
+    "reference_descriptor_maximum_absolute_error": 1e-12,
+    "held_out_probe_minimum_rgb_l2_difference": 0.1,
+    "histogram_mass_absolute_error": 1e-12
+  },
+  "synthetic_seed": 20260723,
+  "paper_exact_reproduction_claim_allowed": false,
+  "operator_identification_claim_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "image_download_allowed": false,
+  "professional_lut_assets_allowed": false,
+  "gpu_allowed": false,
+  "model_training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "generative_text_branch_allowed": false,
+  "claim_ceiling": "data-independent paper-compatible Lab-statistics representation/property and non-identifiability audit; no exact StatLUT reproduction, model training, operator recovery, stock response, calibration, authenticity, routing value or production promotion"
+}
