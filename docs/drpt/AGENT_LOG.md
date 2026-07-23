@@ -2445,3 +2445,15 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Boundary/handoff:** contract must commit before any projected render.
   No stock, calibration, latent-mode or production claim opens; Goal remains
   ACTIVE.
+
+## 2026-07-23 - Verify U5.R2F2 projection implementation
+
+- **Implementation:** pure NumPy layout conversion, node projection,
+  deterministic contiguous-prefix contraction, project trilinear rendering,
+  structure diagnostics and unchanged frontier evaluation.
+- **Isolation:** the implementation imports neither torch nor external
+  CanonCGT code and performs no model inference or training.
+- **Verification:** five focused projection tests and all 765 project tests
+  pass. Formal 243x2 rendering is now ready under the frozen config.
+- **Handoff:** commit implementation before rendering; do not alter the bank,
+  coefficients or gates. Goal remains ACTIVE.
