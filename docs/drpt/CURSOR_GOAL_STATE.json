@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "734334f4111665f7bb0325584153ed15e55ed29b",
+  "head": "e175a9541e34c7baf4fbcde1de9e908105c9737d",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 83,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2G1",
-  "current_leaf": "Implement and run fixed quantization-headroom adapter over immutable G0 operators",
-  "phase": "EXECUTE",
-  "last_verified_commit": "734334f4111665f7bb0325584153ed15e55ed29b",
+  "iteration": 84,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2H0",
+  "current_leaf": "Audit film-specific spectral and sensitometric explicit algorithms and obtainable priors",
+  "phase": "RESEARCH",
+  "last_verified_commit": "e175a9541e34c7baf4fbcde1de9e908105c9737d",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 770,
@@ -21,7 +21,7 @@
   "ready_leaves": [
     "freeze_u5_r2g0_constrained_explicit_distillation"
   ],
-  "next_action": "Commit the frozen G1 contract, implement transformed explicit-operator replay and audits, then run exact double 81-render evaluation and conditional visual review.",
+  "next_action": "Close G1 formally, then search current primary sources for film spectral/sensitometric explicit models, enumerate exact public/manufacturer inputs, audit rights and identifiability, and freeze only the strongest data-feasible pilot.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -181,6 +181,6 @@
     "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T10:40:00Z",
-  "selection_rationale": "G1 is frozen to one quantization-lattice-derived affine map. It directly tests G0's identified boundary mechanism without adding fit, capacity or data dependence."
+  "last_update_utc": "2026-07-23T11:35:00Z",
+  "selection_rationale": "G1 closes without a survivor under its immutable epsilon. H0 returns to film-specific evidence and searches for explicit physical priors that do not require unavailable film/digital pairs."
 }

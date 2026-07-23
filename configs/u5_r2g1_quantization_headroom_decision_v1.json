@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2g1_quantization_headroom_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2G1",
+  "decision": "closed_no_automatic_survivor",
+  "config_sha256": "58c28b2b35aa979dc3e86cd2dd9ea51573dd94b7c10fbf145b352790d7319699",
+  "software_commit": "e175a9541e34c7baf4fbcde1de9e908105c9737d",
+  "manifest_sha256": "6bd7131d0ba75a0f787f4a3e9c33225f3852071d12f7044474cffdcd2878ca98",
+  "automatic_report_sha256": "9de823ec7b2c7274ef1cc89163465baa2204d331733475c1737ee4cb18c0e581",
+  "automatic_survivor_count": 0,
+  "visual_review_allowed": false,
+  "passes": {
+    "structure_reference_count": 9,
+    "raw_range_reference_count": 9,
+    "style_reference_count": 9,
+    "non_basic_reference_count": 6,
+    "reference_sensitivity": true,
+    "style_retention": true,
+    "non_basic_retention": true
+  },
+  "failure": {
+    "clipping_reference_count": 0,
+    "reason": "RGB8 codes 1 and 254 remain inside the frozen <=1/255 hard-clipping epsilon",
+    "maximum_worst_new_hard_clipping_fraction": 0.072818
+  },
+  "closed_branches": [
+    "raw CanonCGT LUT deployment",
+    "uniform projected CanonCGT LUT deployment",
+    "G0 constrained explicit distillation",
+    "G1 fixed 1/255 quantization headroom"
+  ],
+  "forbidden_fallbacks": [
+    "try a different headroom value",
+    "refit or increase G0 capacity",
+    "change completed gates",
+    "perform visual promotion with an empty shortlist"
+  ],
+  "next_leaf": "U5.R2H0 film-specific spectral and sensitometric prior feasibility audit",
+  "goal_status": "ACTIVE"
+}

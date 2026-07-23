@@ -123,6 +123,14 @@ and no automatic survivor exists. U5.R2G1 is the next ready leaf: freeze one
 data-independent interior quantization-headroom map over immutable G0
 operators, with no refit or added capacity.
 
+U5.R2G1 makes every operator structurally and raw-range safe and retains G0
+style, but closes with no survivor because RGB8 codes 1/254 are still within
+the frozen `<=1/255` hard-clipping epsilon. Its contract forbids a second
+headroom attempt, so the CanonCGT distillation branch is closed. The next ready
+algorithm leaf is U5.R2H0: a current, primary-source audit of film-specific
+spectral and sensitometric priors whose required data can actually be
+obtained, followed only by a separately frozen feasibility experiment.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

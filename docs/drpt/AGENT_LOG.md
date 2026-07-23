@@ -2559,3 +2559,21 @@ No renderer code, data, model, output or user-owned untracked file was modified.
 - **Verification:** two focused tests and all 770 repository tests pass.
 - **Handoff:** commit implementation, then run exact double 81-render formal
   evaluation without changing the policy or gates. Goal remains ACTIVE.
+
+## 2026-07-23 - Close U5.R2G1 and CanonCGT distillation branch
+
+- **Integrity:** two 81-record passes share manifest SHA-256
+  `6bd7131d...ca98`; report SHA-256 is `9de823ec...e581`; stderr is empty.
+- **Passes:** structure/range/style 9/9, non-basic 6/9, sensitivity 9.9725 and
+  both G0 retention gates pass.
+- **Failure:** clipping passes 0/9. Codes 1/254 are not exact endpoints but
+  remain inside the frozen `<=1/255` hard-clipping epsilon.
+- **Discipline:** G1 forbids a second headroom value; no survivor means no
+  visual review. Raw, uniform projection, constrained distillation and fixed
+  headroom CanonCGT product branches close.
+- **Learning:** ML conditioning was strongly stylized and low-dimensional
+  refitting retained it; future safe parameterizations must reserve headroom
+  greater than the evaluator epsilon before fitting.
+- **Handoff:** U5.R2H0 is an independent primary-source audit of film-specific
+  spectral/sensitometric explicit algorithms and actually obtainable inputs.
+  Goal remains ACTIVE.
