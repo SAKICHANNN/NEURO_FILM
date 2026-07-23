@@ -58,7 +58,11 @@ def main() -> int:
         return 0
 
     manifest = args.manifest or output_root / "render_pass1" / "manifest.json"
+    if not manifest.is_absolute():
+        manifest = ROOT / manifest
     output = args.output or output_root / "automatic_report.json"
+    if not output.is_absolute():
+        output = ROOT / output
     result = evaluate_bank(
         root=ROOT,
         config=config,

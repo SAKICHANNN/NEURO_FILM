@@ -14,6 +14,18 @@ from src.eval.density_witness_frontier import (
 )
 
 
+def test_frontier_script_normalizes_explicit_relative_paths() -> None:
+    source = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "run_u5_r2e1_density_witness_frontier.py"
+    ).read_text(encoding="utf-8")
+    assert "if not manifest.is_absolute():" in source
+    assert "manifest = ROOT / manifest" in source
+    assert "if not output.is_absolute():" in source
+    assert "output = ROOT / output" in source
+
+
 def test_srgb_roundtrip_is_exact_at_codes_within_float_tolerance() -> None:
     codes = np.arange(256, dtype=np.float64) / 255.0
     first, second = np.meshgrid(codes[::31], codes[::29], indexing="ij")
