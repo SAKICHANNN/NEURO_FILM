@@ -2201,6 +2201,26 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   Real-film fitting, training, LSM and production integration remain closed;
   Goal remains ACTIVE.
 
+## 2026-07-23 - Freeze U5.R2E1 density-witness frontier
+
+- **Question:** can any fixed bounded-strength E0 witness visibly exceed
+  safe-rich without violating the unchanged R2B severe-artifact-first
+  contract?
+- **Bank:** five immutable witnesses crossed with strengths
+  `0.20/0.35/0.50/0.65`; no exposure/WB normalization, fitting, per-image
+  route, local residual, effect or post-result parameter change.
+- **Screen:** inherit exact nine-gold/32-stress inputs and R2B style `7.0`,
+  non-basic `4.9` and worst-gold new-clipping `0.5%` gates.
+- **Shortlist:** strongest passing style within each witness, exact ties to
+  lower strength; rank representatives by non-basic residual then style;
+  admit at most three.
+- **Visual veto:** three anonymous rounds include input, safe-rich, anchor56
+  margin-4 and shortlisted E1 candidates; every candidate requires all-nine
+  full-resolution inspection and explicit ID11 red-speckle regression.
+- **Boundary:** B0 autonomous development only; no teacher, stock response,
+  calibration, population preference, production change, fitting, training or
+  LSM. Goal remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2B with one B0 global challenger
 
 - **Repeatability:** two 287-output renders share manifest SHA-256

@@ -5,13 +5,13 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "500df31c70e0e8bb2aefeaf6c6dd7d760690e96b",
+  "head": "774758ee308102e80068943d0445552b2e96324e",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 73,
+  "iteration": 74,
   "current_node": "ULT > U5 > U5.R2 > U5.R2E1",
   "current_leaf": "Freeze and run the bounded-strength density-witness gold/stress frontier",
-  "phase": "FREEZE",
-  "last_verified_commit": "500df31c70e0e8bb2aefeaf6c6dd7d760690e96b",
+  "phase": "EXECUTE",
+  "last_verified_commit": "774758ee308102e80068943d0445552b2e96324e",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
     "passed": 748,
@@ -21,7 +21,7 @@
   "ready_leaves": [
     "freeze_and_run_u5_r2e1_density_witness_gold_stress_frontier"
   ],
-  "next_action": "Commit and push the U5.R2E0 result, then freeze U5.R2E1 before inspecting outcomes: render five descriptive witnesses over bounded strengths on the unchanged U5.R2B gold/stress sets, run the frozen automatic screen and ID11 regression, and admit at most three survivors to blinded visual review.",
+  "next_action": "Commit and push the frozen U5.R2E1 contract before any E1 render, then implement an isolated exact renderer/evaluator with double-render identity, inherited R2B metrics, deterministic one-strength-per-witness shortlist and blinded comparator sheets.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -170,9 +170,11 @@
     "scripts/run_u5_r2e0_density_operator_audit.py",
     "tests/test_roll2film_density_domain.py",
     "docs/U5_R2E0_DENSITY_DOMAIN_OPERATOR_RESULTS.md",
-    "configs/u5_r2e0_density_domain_operator_decision_v1.json"
+    "configs/u5_r2e0_density_domain_operator_decision_v1.json",
+    "docs/planning/U5_R2E1_DENSITY_WITNESS_FRONTIER_CONTRACT.md",
+    "configs/u5_r2e1_density_witness_frontier_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T08:54:00Z",
-  "selection_rationale": "U5.R2E0 passes the frozen numerical and diversity gates but has no visual safety or product evidence. U5.R2E1 is the nearest ready algorithm leaf because it can test the five explicit witnesses over bounded strengths on the already frozen U5.R2B gold/stress inputs under the unchanged severe-artifact-first policy."
+  "last_update_utc": "2026-07-23T09:02:00Z",
+  "selection_rationale": "U5.R2E1 is now frozen before results. Its 5x4 bank, inherited R2B gates, bounded shortlist and all-nine severe veto directly test whether the numerically valid E0 primitive has practical film-inspired value without parameter leakage or stock overclaim."
 }
