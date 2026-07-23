@@ -108,6 +108,7 @@ files.
 | `run_roll2film_ct5_pilot.py` | Fit the frozen CPU baseline ladder from unpaired CT5 training caches and evaluate only the internal pilot fold; confirmatory and final-628 data are not loaded. |
 | `run_roll2film_ct5_confirmatory.py` | Replay frozen pilot operator bundles on the untouched internal confirmatory fold and run cluster-bootstrap best-basic comparisons without loading final-628 data. |
 | `run_roll2film_ct5_fullres.py` | Render frozen CT5 finalists on all confirmatory images, compute full-resolution diagnostics, and save deterministic worst-case review sheets; automatic metrics never clear the severe gate. |
+| `run_u5_r2a_constrained_operator_audit.py` | Audit the versioned affine/spline/tetrahedral-LUT numerical contract and its required semantic non-safety counterexample without fitting film pixels. |
 | `build_ip2p_dataset.py` | Build InstructPix2Pix dataset artifacts. |
 | `combine_ip2p_dataset.py` | Combine IP2P dataset shards. |
 | `download_loras.py` | Download LoRA files. |

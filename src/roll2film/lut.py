@@ -1,11 +1,15 @@
-"""Deterministic dense 3D-LUT baking and trilinear evaluation."""
+"""Deterministic dense 3D-LUT baking and explicit interpolation."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Any, Protocol
 
 import numpy as np
+
+
+LUT_SCHEMA = "roll2film.dense_lut_3d.v1"
+_INTERPOLATIONS = frozenset({"trilinear", "tetrahedral"})
 
 
 class ColorOperator(Protocol):
@@ -17,6 +21,7 @@ class DenseLUT3D:
     values: np.ndarray
     domain_min: np.ndarray
     domain_max: np.ndarray
+    interpolation: str = "trilinear"
 
     def __post_init__(self) -> None:
         values = np.asarray(self.values, dtype=np.float64)
@@ -26,8 +31,15 @@ class DenseLUT3D:
             raise ValueError("LUT values must have shape (N, N, N, 3)")
         if values.shape[0] < 2 or minimum.shape != (3,) or maximum.shape != (3,):
             raise ValueError("LUT domain must contain three channels and at least two grid points")
-        if np.any(maximum <= minimum) or not np.all(np.isfinite(values)):
+        if (
+            np.any(maximum <= minimum)
+            or not np.all(np.isfinite(values))
+            or not np.all(np.isfinite(minimum))
+            or not np.all(np.isfinite(maximum))
+        ):
             raise ValueError("LUT values/domain must be finite with a positive domain extent")
+        if self.interpolation not in _INTERPOLATIONS:
+            raise ValueError(f"unsupported LUT interpolation: {self.interpolation!r}")
         object.__setattr__(self, "values", values)
         object.__setattr__(self, "domain_min", minimum)
         object.__setattr__(self, "domain_max", maximum)
@@ -47,6 +59,16 @@ class DenseLUT3D:
         lower = np.floor(coordinates).astype(np.int64)
         lower = np.minimum(lower, self.size - 2)
         fraction = coordinates - lower
+        if self.interpolation == "tetrahedral":
+            return self._apply_tetrahedral(inputs, lower, fraction)
+        return self._apply_trilinear(inputs, lower, fraction)
+
+    def _apply_trilinear(
+        self,
+        inputs: np.ndarray,
+        lower: np.ndarray,
+        fraction: np.ndarray,
+    ) -> np.ndarray:
         result = np.zeros_like(inputs)
         for red in (0, 1):
             for green in (0, 1):
@@ -64,6 +86,122 @@ class DenseLUT3D:
                     result += weight[..., None] * sample
         return result
 
+    def _apply_tetrahedral(
+        self,
+        inputs: np.ndarray,
+        lower: np.ndarray,
+        fraction: np.ndarray,
+    ) -> np.ndarray:
+        flat_lower = lower.reshape(-1, 3)
+        flat_fraction = fraction.reshape(-1, 3)
+        r_index, g_index, b_index = flat_lower.T
+        c000 = self.values[r_index, g_index, b_index]
+        c100 = self.values[r_index + 1, g_index, b_index]
+        c010 = self.values[r_index, g_index + 1, b_index]
+        c001 = self.values[r_index, g_index, b_index + 1]
+        c110 = self.values[r_index + 1, g_index + 1, b_index]
+        c101 = self.values[r_index + 1, g_index, b_index + 1]
+        c011 = self.values[r_index, g_index + 1, b_index + 1]
+        c111 = self.values[r_index + 1, g_index + 1, b_index + 1]
+        red, green, blue = flat_fraction.T
+
+        result = np.empty_like(c000)
+        rgb = (red >= green) & (green >= blue)
+        rbg = (red >= blue) & (blue > green)
+        brg = (blue > red) & (red >= green)
+        grb = (green > red) & (red >= blue)
+        gbr = (green >= blue) & (blue > red)
+        bgr = (blue > green) & (green > red)
+
+        result[rgb] = (
+            c000[rgb]
+            + red[rgb, None] * (c100[rgb] - c000[rgb])
+            + green[rgb, None] * (c110[rgb] - c100[rgb])
+            + blue[rgb, None] * (c111[rgb] - c110[rgb])
+        )
+        result[rbg] = (
+            c000[rbg]
+            + red[rbg, None] * (c100[rbg] - c000[rbg])
+            + blue[rbg, None] * (c101[rbg] - c100[rbg])
+            + green[rbg, None] * (c111[rbg] - c101[rbg])
+        )
+        result[brg] = (
+            c000[brg]
+            + blue[brg, None] * (c001[brg] - c000[brg])
+            + red[brg, None] * (c101[brg] - c001[brg])
+            + green[brg, None] * (c111[brg] - c101[brg])
+        )
+        result[grb] = (
+            c000[grb]
+            + green[grb, None] * (c010[grb] - c000[grb])
+            + red[grb, None] * (c110[grb] - c010[grb])
+            + blue[grb, None] * (c111[grb] - c110[grb])
+        )
+        result[gbr] = (
+            c000[gbr]
+            + green[gbr, None] * (c010[gbr] - c000[gbr])
+            + blue[gbr, None] * (c011[gbr] - c010[gbr])
+            + red[gbr, None] * (c111[gbr] - c011[gbr])
+        )
+        result[bgr] = (
+            c000[bgr]
+            + blue[bgr, None] * (c001[bgr] - c000[bgr])
+            + green[bgr, None] * (c011[bgr] - c001[bgr])
+            + red[bgr, None] * (c111[bgr] - c011[bgr])
+        )
+        if not np.all(rgb | rbg | brg | grb | gbr | bgr):
+            raise RuntimeError("tetrahedral interpolation did not partition the LUT cell")
+        return result.reshape(inputs.shape)
+
+    def tetrahedron_jacobian_determinants(self) -> np.ndarray:
+        """Return exact affine Jacobian determinants for all six cell tetrahedra."""
+        c000 = self.values[:-1, :-1, :-1]
+        c100 = self.values[1:, :-1, :-1]
+        c010 = self.values[:-1, 1:, :-1]
+        c001 = self.values[:-1, :-1, 1:]
+        c110 = self.values[1:, 1:, :-1]
+        c101 = self.values[1:, :-1, 1:]
+        c011 = self.values[:-1, 1:, 1:]
+        c111 = self.values[1:, 1:, 1:]
+        steps = (self.domain_max - self.domain_min) / (self.size - 1)
+
+        columns = (
+            (c100 - c000, c110 - c100, c111 - c110),
+            (c100 - c000, c111 - c101, c101 - c100),
+            (c101 - c001, c111 - c101, c001 - c000),
+            (c110 - c010, c010 - c000, c111 - c110),
+            (c111 - c011, c010 - c000, c011 - c010),
+            (c111 - c011, c011 - c001, c001 - c000),
+        )
+        determinants = []
+        for red, green, blue in columns:
+            jacobian = np.stack(
+                (red / steps[0], green / steps[1], blue / steps[2]),
+                axis=-1,
+            )
+            determinants.append(np.linalg.det(jacobian))
+        return np.stack(determinants, axis=-1)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": LUT_SCHEMA,
+            "interpolation": self.interpolation,
+            "domain_min": self.domain_min.tolist(),
+            "domain_max": self.domain_max.tolist(),
+            "values": self.values.tolist(),
+        }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "DenseLUT3D":
+        if payload.get("schema") != LUT_SCHEMA:
+            raise ValueError(f"unsupported LUT schema: {payload.get('schema')!r}")
+        return cls(
+            values=np.asarray(payload["values"], dtype=np.float64),
+            domain_min=np.asarray(payload["domain_min"], dtype=np.float64),
+            domain_max=np.asarray(payload["domain_max"], dtype=np.float64),
+            interpolation=str(payload["interpolation"]),
+        )
+
 
 def bake_dense_lut(
     operator: ColorOperator,
@@ -71,6 +209,7 @@ def bake_dense_lut(
     *,
     domain_min: np.ndarray | tuple[float, float, float] = (0.0, 0.0, 0.0),
     domain_max: np.ndarray | tuple[float, float, float] = (1.0, 1.0, 1.0),
+    interpolation: str = "trilinear",
 ) -> DenseLUT3D:
     if size < 2:
         raise ValueError("LUT size must be at least two")
@@ -80,4 +219,4 @@ def bake_dense_lut(
         raise ValueError("LUT domain must contain three positive extents")
     axes = [np.linspace(minimum[channel], maximum[channel], size) for channel in range(3)]
     grid = np.stack(np.meshgrid(*axes, indexing="ij"), axis=-1)
-    return DenseLUT3D(operator.apply(grid), minimum, maximum)
+    return DenseLUT3D(operator.apply(grid), minimum, maximum, interpolation)
