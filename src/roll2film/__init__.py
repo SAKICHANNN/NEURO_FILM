@@ -12,6 +12,7 @@ from .constrained import (
     identity_lut,
 )
 from .lut import DenseLUT3D, bake_dense_lut
+from .lab_statistics import LabStatisticsDescriptor, extract_lab_statistics
 from .operators import AffineColorOperator
 from .simulator import PseudoRoll, PseudoRollConfig, simulate_pseudo_roll
 from .splines import AffineMonotoneSplineOperator, RationalQuadraticSpline
@@ -23,6 +24,7 @@ __all__ = [
     "DenseLUT3D",
     "LUTConstraintReport",
     "LUTConstraintSpec",
+    "LabStatisticsDescriptor",
     "PseudoRoll",
     "PseudoRollConfig",
     "RationalQuadraticSpline",
@@ -30,6 +32,7 @@ __all__ = [
     "bake_dense_lut",
     "estimate_affine_spline_transport_operator",
     "estimate_gaussian_transport_operator",
+    "extract_lab_statistics",
     "identity_lut",
     "simulate_pseudo_roll",
 ]
