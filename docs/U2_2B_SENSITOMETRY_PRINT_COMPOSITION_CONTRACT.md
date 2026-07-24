@@ -81,3 +81,10 @@ All existing density-domain tests and exact witness hashes must remain valid.
 Uncalibrated clean-room numerical composition of one exposure-to-density curve
 bank and one explicit density-to-print interpretation.
 
+## Pre-result implementation note
+
+The first audit attempt wrote no report because the existing U5.R2E0 finite-
+difference helper always passes a `strength` keyword, while this composition
+intentionally has no strength control. The evaluator now applies the identical
+central-difference formula directly without changing step, probes, operator or
+gates; neither public operator API was widened.

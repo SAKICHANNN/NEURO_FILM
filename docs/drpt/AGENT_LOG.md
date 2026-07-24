@@ -3032,3 +3032,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** descriptive clean-room witness only; no stock, calibration,
   renderer/profile integration, visual safety or preference claim. Goal remains
   ACTIVE.
+- **Pre-result implementation note:** first audit wrote no report because the
+  legacy Jacobian helper injects `strength=` and the new composition has no
+  strength API. Use the same central-difference formula locally; no step,
+  probe, operator or gate change.

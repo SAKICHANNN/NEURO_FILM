@@ -10,11 +10,24 @@ import numpy as np
 from src.eval.cave_conditional_variability import array_sha256
 from src.eval.hard_spectrum_canonicalizer import canonical_sha256
 from src.eval.sensitometry_primitive import build_operator as build_sensitometry
-from src.roll2film.density_domain import finite_difference_jacobians
 from src.roll2film.sensitometry_print import (
     DensityToPrintInterpretation,
     SensitometryPrintOperator,
 )
+
+
+def _finite_difference_jacobians(
+    operator: SensitometryPrintOperator, points: np.ndarray, step: float
+) -> np.ndarray:
+    columns = []
+    for channel in range(3):
+        offset = np.zeros(3, dtype=np.float64)
+        offset[channel] = step
+        columns.append(
+            (operator.apply(points + offset) - operator.apply(points - offset))
+            / (2.0 * step)
+        )
+    return np.stack(columns, axis=-1)
 
 
 def build_composition(
@@ -70,8 +83,8 @@ def evaluate_composition(
         np.meshgrid(interior_axis, interior_axis, interior_axis, indexing="ij"),
         axis=-1,
     ).reshape(-1, 3)
-    jacobians = finite_difference_jacobians(
-        operator, interior, step=float(config["finite_difference_step"])
+    jacobians = _finite_difference_jacobians(
+        operator, interior, float(config["finite_difference_step"])
     )
     determinants = np.linalg.det(jacobians)
     minimum_direction = float(np.min(jacobians))
@@ -163,4 +176,3 @@ def result_hashes(report: Mapping[str, Any], arrays: Mapping[str, np.ndarray]) -
         "report": canonical_sha256(report),
         "arrays": {name: array_sha256(value) for name, value in sorted(arrays.items())},
     }
-
