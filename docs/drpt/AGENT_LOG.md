@@ -2933,3 +2933,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   because the lineage regex named `ASDFR` but omitted official `ASDHR/ASDNG`
   tokens. Widen to the intended `ASD*` family only; no data, gate, threshold,
   feature or policy changes.
+
+## 2026-07-24 - Close U5.R2H0C3 external replication
+
+- **Integrity:** 1,732 eligible USGS AREF queries / 1,592 sample groups / seven
+  chapters; unchanged 5,951-row CAVE bank; zero USGS bank rows; two exact
+  runs. Report SHA-256 `ed263e7e...bfdf` and complete 1,732-row lineage CSV.
+- **Result:** frozen T=1 selects 184 queries but wins 6.52% and loses 93.48%.
+  Smooth selected error .271/4.331 beats hard 1.561/5.690 median/p95; median
+  relative reduction is -475.08%; 0/4 evaluable chapter directions pass; full
+  policy p95 worsens by .2122.
+- **Decision:** external replication fails. H0C2 remains CAVE-conditional
+  mechanism evidence only. Close broad hard-spectrum prior; forbid radius
+  retuning, USGS bank expansion, Top-K blending and neural confirmatory rescue.
+- **Verification:** 15 focused tests and all 790 CPU tests pass. No film pixel,
+  visual shortlist, RGB-spectrum, stock/calibration, product, training or LSM
+  permission opens. Goal remains ACTIVE; select another justified explicit
+  film algorithm or deterministic product leaf.

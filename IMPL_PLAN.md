@@ -183,6 +183,14 @@ tails, so the hard OOD boundary is substantive. H0C3 must freeze this policy
 and replicate on an independent measured-spectrum source before any visual,
 film, neural or product branch.
 
+U5.R2H0C3 rejects that broad prior on independent USGS measurements. The fixed
+CAVE bank at T=1 covers 184/1,732 external queries but wins only 6.52%; smooth
+selected error is .271/4.331 versus hard 1.561/5.690 median/p95, all chapter
+directions favour smooth and complete-policy p95 worsens. H0C2 was therefore
+source-conditional mechanism evidence. No retuning, USGS bank expansion,
+Top-K blend or neural rescue is permitted, and no RGB-spectrum/film/photo leaf
+opens from this branch.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

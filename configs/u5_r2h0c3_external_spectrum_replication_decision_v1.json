@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0c3-external-spectrum-replication-v1",
+  "date": "2026-07-24",
+  "decision": "external_replication_failed",
+  "report_sha256": "ed263e7ef6c4815eb3fa8f545b3a0ec7dc4c6967d0deb7b8b70d521e15c8bfdf",
+  "queries_csv_sha256": "dc2e38a2984af8932f222d24de08681a6570484558822952989253c768b28c1c",
+  "population": {
+    "queries": 1732,
+    "sample_groups": 1592,
+    "chapters": 7,
+    "cave_bank_rows": 5951,
+    "cave_bank_scenes": 31
+  },
+  "frozen_policy": {
+    "threshold_delta_e76": 1.0,
+    "selected_queries": 184,
+    "coverage": 0.10623556581986143,
+    "selected_sample_groups": 175,
+    "selected_chapters": 7,
+    "win_rate": 0.06521739130434782,
+    "loss_rate": 0.9347826086956522,
+    "smooth_selected_error_delta_e76_median": 0.2714334338690719,
+    "smooth_selected_error_delta_e76_p95": 4.330840888929775,
+    "hard_selected_error_delta_e76_median": 1.560965864206945,
+    "hard_selected_error_delta_e76_p95": 5.68975183199865,
+    "median_relative_error_reduction": -4.750823846409022,
+    "chapters_with_lower_hard_median_share": 0.0,
+    "fallback_policy_p95_change_vs_smooth": 0.21219254838501023
+  },
+  "failed_checks": [
+    "chapter_direction",
+    "full_p95_noninferiority",
+    "median_reduction",
+    "median_reduction_bootstrap",
+    "win_rate",
+    "win_rate_bootstrap"
+  ],
+  "branch": {
+    "broad_empirical_spectrum_prior": "closed",
+    "threshold_retuning_allowed": false,
+    "same_source_bank_rescue_allowed": false,
+    "topk_blending_rescue_allowed": false,
+    "neural_rescue_allowed": false,
+    "rgb_spectrum_leaf_opened": false
+  },
+  "claim_ceiling": "one failed cross-source replication of a fixed hard measured-spectrum prior under a synthetic datasheet-prior witness"
+}

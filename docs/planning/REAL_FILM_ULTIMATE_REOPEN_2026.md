@@ -321,6 +321,15 @@ reduction, so smooth OOD fallback remains mandatory. This is an empirical
 canonicalizer mechanism, not film evidence; an independent spectrum source
 must replicate the frozen T=1 policy before any broader branch.
 
+That required `U5.R2H0C3` replication fails decisively on the independent
+public-domain USGS library. The fixed CAVE bank selects 184/1,732 USGS AREF
+queries at T=1 but wins only 6.52%; selected smooth error is .271/4.331 versus
+hard 1.561/5.690 median/p95, every chapter direction favours smooth and the
+complete fallback-policy p95 worsens. H0C2 is therefore retained only as
+within-source mechanism evidence. Broad cross-source spectral canonicalization
+closes without retuning, adding USGS to the bank, Top-K blending or neural
+rescue; it never opens RGB spectral recovery, film fitting or stock truth.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never
