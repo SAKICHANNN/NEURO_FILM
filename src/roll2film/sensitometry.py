@@ -15,6 +15,7 @@ EXPOSURE_ENCODER_SCHEMA = "roll2film.log_exposure_encoder.v1"
 CHARACTERISTIC_CURVE_SCHEMA = "roll2film.anchored_characteristic_curve.v1"
 SENSITOMETRY_SCHEMA = "roll2film.rgb_sensitometry.v1"
 _ANCHOR_TOLERANCE = 1e-12
+_BOUNDARY_ROUNDOFF_TOLERANCE = 1e-12
 
 
 @dataclass(frozen=True)
@@ -54,8 +55,10 @@ class LogExposureEncoder:
         values = np.asarray(log_exposure, dtype=np.float64)
         if not np.all(np.isfinite(values)):
             raise ValueError("log exposure must be finite")
-        if np.any(values < self.minimum_log_exposure):
+        boundary = self.minimum_log_exposure
+        if np.any(values < boundary - _BOUNDARY_ROUNDOFF_TOLERANCE):
             raise ValueError("log exposure is below the zero-exposure boundary")
+        values = np.where(values < boundary, boundary, values)
         linear = (self.reference_linear + self.black_offset) * np.power(10.0, values)
         linear -= self.black_offset
         if np.any(linear < -1e-15):
@@ -215,4 +218,3 @@ class RGBSensitometryOperator:
             str(payload["input_space"]),
             str(payload["output_space"]),
         )
-

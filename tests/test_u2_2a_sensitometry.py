@@ -51,6 +51,7 @@ def test_sensitometry_roundtrip_jacobian_anchor_and_replay() -> None:
     assert np.min(operator.jacobian_determinant(rgb)) > 0.0
     assert np.array_equal(replay.apply(rgb), density)
     assert np.array_equal(operator.apply(np.full((1, 3), 0.18)), np.ones((1, 3)))
+    assert np.max(np.abs(operator.inverse(operator.apply(np.zeros((1, 3)))))) < 1e-15
 
 
 def test_characteristic_curve_requires_shared_physical_anchor() -> None:
@@ -59,3 +60,9 @@ def test_characteristic_curve_requires_shared_physical_anchor() -> None:
     with pytest.raises(ValueError, match="neutral anchor"):
         AnchoredCharacteristicCurve(spline, 0.0, 1.1, "red")
 
+
+def test_encoder_allows_only_roundoff_at_zero_boundary() -> None:
+    encoder = LogExposureEncoder(0.18, 0.0001)
+    assert encoder.inverse(np.array([encoder.minimum_log_exposure - 1e-13]))[0] == 0.0
+    with pytest.raises(ValueError, match="below"):
+        encoder.inverse(np.array([encoder.minimum_log_exposure - 2e-12]))

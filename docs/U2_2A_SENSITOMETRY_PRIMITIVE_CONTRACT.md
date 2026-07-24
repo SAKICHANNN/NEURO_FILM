@@ -96,3 +96,10 @@ implementation or result generation, structure review found that this would
 make reusable production math depend on an isolated research spline. Placement
 was corrected to `src/roll2film`, the existing home for unintegrated explicit
 film-inspired operators. API, mathematics, data and every gate are unchanged.
+
+The first complete audit attempt then stopped before report creation because
+an exact zero exposure returned through the spline was one floating-point ulp
+below the analytic encoder boundary. Inverse validation now normalizes only
+downward drift within `1e-12` to the exact zero boundary; larger excursions
+still fail closed. A full-path zero regression was added. This is numerical
+boundary handling, not an exposure clamp or gate change.

@@ -3000,3 +3000,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `src/color_engine` to existing research boundary `src/roll2film` so the
   production colour engine does not depend on research spline code. No API,
   math, source or gate changes.
+- **Pre-result numerical erratum:** first formal attempt wrote no report because
+  zero exposure round-tripped through the spline one ulp below the encoder
+  boundary. Normalize only <=`1e-12` downward roundoff to exact zero; larger
+  underflow still rejects. Add full-path zero and beyond-tolerance regressions;
+  no curve, population or gate change.
