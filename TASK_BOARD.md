@@ -43,7 +43,7 @@
 | 0a | U5.FC0 | Freeze autonomous unpaired non-generative FilmCase plan | complete | completed 2026-07-11 |
 | 0b | U5.R0 | Freeze FARO novelty audit and publication research program | complete | completed 2026-07-11 |
 | 0c | U5.CT0 | Correct publication priority to Roll2Film colour-transfer algorithm and audit data/nearest work | complete | completed 2026-07-12 |
-| 1 | U5.CT1 | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | L2 spline core passes; full CT1 still needs explicit L0/gauge/shaper closure | preserve analytic inverse/Jacobian and bake parity |
+| 1 | U5.CT1/CT1C | Freeze invertible explicit-operator API and known-operator pseudo-roll simulator | L2 core passes; L0/gauge/shaper contract frozen | implement analytic L0/gauge and `[0,16]` shaped 33/65 LUT parity; no renderer integration |
 | 2 | U5.CT2/U5.CT4 | Freeze FilmSet pair blindness and BlueNeg metadata/licence/whole-roll acquisition | complete | BlueNeg full archive forbidden; exact bounded manifest only |
 | 3 | U5.CT3 | Extend fixed-budget E0 from affine to L2 truth and stronger nuisance/prior/scanner factorials | L2 method controls pass; roll information not established | matched real-roll evidence remains |
 | 4 | U5.CT5 | Build matched-strength deterministic/classical baselines and run FilmSet internal paired-blind development | complete on internal confirmatory: fixed Lab/pooled-L2 recipe bank passes all-238 full-res severe veto; final 628 remains sealed | frozen decision in `configs/roll2film_ct5_fullres_decision.json` |

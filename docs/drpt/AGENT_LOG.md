@@ -2950,3 +2950,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   visual shortlist, RGB-spectrum, stock/calibration, product, training or LSM
   permission opens. Goal remains ACTIVE; select another justified explicit
   film algorithm or deterministic product leaf.
+
+## 2026-07-24 - Freeze U5.CT1C L0/gauge/shaper closure
+
+- **Parent/goal:** `U5.CT1` / stock-first Ultimate explicit film-operator
+  infrastructure.
+- **Question:** can the remaining L0 photometric, roll-gauge and linear/HDR
+  shaped-LUT contracts close with analytic inverse/Jacobian and deterministic
+  33/65-cube parity?
+- **Frozen design:** exact log exposure plus unit-geometric-mean WB; explicit
+  mean-exposure roll gauge; reversible log1p `[0,16]` shaper; shaped input LUT
+  with unclamped linear output.
+- **Gates:** exact roundtrip/replay/gauge, positive derivatives, 33/65 HDR bake
+  error and two hash-identical runs. No real pixels or result-driven tuning.
+- **Boundary:** isolated research primitives only; no production renderer,
+  stock claim, roll-information claim or frozen experiment change. Goal remains
+  ACTIVE.
