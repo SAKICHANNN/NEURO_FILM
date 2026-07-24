@@ -2692,3 +2692,25 @@ metric Oracle rather than reconstructing an unstated label.
 - **Handoff:** U5.R2H0 becomes active: primary-source research into
   film-specific spectral/sensitometric explicit algorithms and inputs that
   can actually be obtained. Goal remains ACTIVE.
+
+## 2026-07-24 - Complete U5.R2H0 spectral/sensitometric source audit
+
+- **Primary workflow:** `dev-research-reliability`; research, AI/ML,
+  structure and project-log skills were read-only governance reviewers.
+- **Local source truth:** all 13 scripted manufacturer PDFs exist. Velvia 50
+  supplies characteristic, sensitivity and separated Y/M/C dye-density
+  graphs. Portra 400 and Ektar 100 supply only total midscale-neutral and
+  minimum-density spectra, not independent CMY dye bases.
+- **Primary evidence:** Fujifilm's published PFS validates the spectral
+  negative-to-print factorization but does not release its complete numerical
+  profiles. Mallett-Yuksel and Jakob-Hanika provide valid but non-unique RGB
+  spectral canonicalizers, so metamer sensitivity is a mandatory gate.
+- **Licence isolation:** current spektrafilm is GPLv3 with separately licensed
+  profiles; no code, profile, LUT, trace or method-specific implementation is
+  incorporated. Existing RF2.C0 remains an isolated external control.
+- **Decision:** open only H0A, a synthetic Velvia 50 datasheet witness with
+  graph-overlay evidence and colour-matched metamer stress. Portra/Ektar
+  full-spectral and negative-to-print branches close until missing measured or
+  public inputs exist.
+- **Boundary:** no current real-film pixels, fitting, training, visual tuning,
+  stock response, calibration, product or LSM claim. Goal remains ACTIVE.

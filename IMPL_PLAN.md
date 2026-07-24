@@ -142,6 +142,14 @@ feature, label, margin, neighbour count, bank or threshold is retuned. H0 is
 the active algorithm leaf for film-specific spectral/sensitometric priors and
 obtainable inputs.
 
+U5.R2H0 finds one narrow clean-room path. The official Velvia 50 bulletin
+publishes characteristic, spectral-sensitivity and separated CMY dye-density
+graphs, while the inspected Portra 400 and Ektar 100 sheets do not publish
+independent dye bases and no complete public negative-to-print parameter set
+was found. H0A is now the active synthetic-only leaf: freeze graph
+digitization/overlay and test a datasheet spectral witness against
+D65-colour-matched metamer alternatives before any visual-image evaluation.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "audit_id": "u5.r2h0-spectral-sensitometric-source-audit-v1",
+  "date": "2026-07-24",
+  "node": "ULT > U5 > U5.R2 > U5.R2H0",
+  "decision": "velvia50_datasheet_witness_feasible_only",
+  "source_inventory": {
+    "velvia50": {
+      "path": "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
+      "bytes": 524708,
+      "sha256": "bebfb4305fd3edc5e3505a9a0f4a0a1078da1db7672aacb4aa1bac1de3d64cfd",
+      "characteristic_curves": true,
+      "spectral_sensitivity_curves": true,
+      "separated_cmy_dye_density_curves": true,
+      "numerical_tables": false
+    },
+    "portra400": {
+      "path": "data/physics/kodak_portra_400/technical_data.pdf",
+      "bytes": 262115,
+      "sha256": "e83ac6775d37832a4cb466892a3e1cf4c88917a6ee93384e59d6924b1cd97e3a",
+      "separated_cmy_dye_density_curves": false
+    },
+    "ektar100": {
+      "path": "data/physics/kodak_ektar_100/technical_data.pdf",
+      "bytes": 276841,
+      "sha256": "e39971d16dc8679fb92742a229c237acde5b0dddb0428a708f8ad68d7a1d5590",
+      "separated_cmy_dye_density_curves": false
+    },
+    "cie": {
+      "path": "data/calibration/cie",
+      "required": [
+        "CIE_xyz_1931_2deg.csv",
+        "CIE_std_illum_D65.csv",
+        "CIE_std_illum_D50.csv"
+      ]
+    }
+  },
+  "method_evidence": {
+    "fujifilm_pfs": "factorization_only_complete_numerical_profiles_not_public",
+    "mallett_yuksel_2019": "valid_nonunique_rgb_reflectance_canonicalizer",
+    "jakob_hanika_2019": "valid_nonunique_rgb_reflectance_canonicalizer_bsd3_reference_implementation",
+    "spektrafilm": "isolated_external_control_only_no_code_profile_lut_or_method_copy"
+  },
+  "opened_leaf": "U5.R2H0A Velvia 50 datasheet spectral witness numerical identifiability pilot",
+  "opened_actions": [
+    "digitize and overlay-audit official Velvia 50 graphs",
+    "implement clean-room bounded smooth spectral canonicalization",
+    "construct D65-colour-matched metamer stress alternatives",
+    "evaluate only synthetic numerical identifiability before any visual images"
+  ],
+  "forbidden_actions": [
+    "fit or train on current real-film pixels",
+    "copy spektrafilm code profiles LUTs graph traces or method-specific implementation",
+    "invent missing Portra or Ektar CMY dye bases",
+    "claim calibrated stock response or identified digital-to-film operator",
+    "use visual images to select curves exposure white balance illuminant strength or gates",
+    "open latent stock mode learning"
+  ],
+  "claim_ceiling": "deterministic datasheet-constrained film-inspired Look Approximation feasibility and missing-spectrum sensitivity only; no calibrated or identified stock operator, original scene spectrum, process/scanner profile, authenticity, preference, product or latent-mode claim"
+}
