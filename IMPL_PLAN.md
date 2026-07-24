@@ -158,6 +158,13 @@ spectrum dominates the operator; no white-balance, exposure or visual rescue
 is allowed. H0C may only ask the distinct data question of how broad the
 conditional distribution is among measured natural/material reflectances.
 
+U5.R2H0C selects the official Columbia CAVE 31-band approximate-reflectance
+archive for a research-only empirical-prior pilot. H0C1 must hash, inventory
+and decode the 405,988,465-byte archive and freeze grouped conditional-pair
+gates before observing any witness-output result. It cannot erase H0A metamer
+non-identifiability, fit film pixels, train RGB-to-spectrum, or create a
+calibrated/stock claim.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

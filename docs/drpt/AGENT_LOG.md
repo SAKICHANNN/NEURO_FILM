@@ -2790,3 +2790,23 @@ changed and no experiment result existed.
   to measure empirical conditional variability. It is a new data question and
   cannot erase H0A non-identifiability or open stock claims. Goal remains
   ACTIVE.
+
+## 2026-07-24 - Complete U5.R2H0C measured-reflectance source audit
+
+- **Question:** test whether measured real-material reflectances close under
+  D65 colour have narrower frozen-witness variation than H0A's adversarial
+  feasible metamers; this is not an H0A rescue.
+- **Selected source:** the official Columbia CAVE full archive is reachable on
+  the legacy official host at 405,988,465 bytes with Range support and fixed
+  ETag. The newer repository endpoint currently returns 502.
+- **Evidence boundary:** 32 claimed scenes, 31 approximate reflectance bands
+  at 400--700 nm / 10 nm. Official text makes the database available to the
+  research community but supplies no reusable licence grant, so use remains
+  internal/non-commercial with aggregate outputs only and no redistribution.
+- **Alternatives:** USGS v7 is a strong public replication source but its full
+  archive is 5.48 GB; Bristol is intermittently unavailable; Harvard is 7.5 GB
+  and explicitly non-commercial. None is needed before the bounded first
+  pilot.
+- **Decision:** open H0C1 exact acquisition/integrity and preregistration. No
+  film pixels, fitting, training, visual selection, stock response or
+  calibrated claim. Goal remains ACTIVE.

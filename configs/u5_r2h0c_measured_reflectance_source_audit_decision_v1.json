@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "node": "U5.R2H0C",
+  "date": "2026-07-24",
+  "decision": "cave_research_only_acquisition_eligible",
+  "parent_evidence": "U5.R2H0A numerically invalid and canonicalizer-sensitive/unidentified",
+  "selected_source": {
+    "name": "Columbia CAVE Multispectral Image Database",
+    "official_page": "https://cave.cs.columbia.edu/repository/Multispectral",
+    "archive_url": "https://www.cs.columbia.edu/CAVE/databases/multispectral/zip/complete_ms_data.zip",
+    "expected_bytes": 405988465,
+    "http_etag": "\"1832e471-4630073df3380\"",
+    "bands": 31,
+    "wavelength_nm_start": 400,
+    "wavelength_nm_end": 700,
+    "wavelength_nm_step": 10,
+    "scene_count_claimed": 32,
+    "rights_scope": "internal non-commercial research only; no source-pixel or trained-weight redistribution",
+    "reflectance_quality": "calibrated close approximation, not exact physical measurement"
+  },
+  "reserves": [
+    "USGS Spectral Library v7 bounded ASCII subset",
+    "Bristol hyperspectral natural images after live rights snapshot",
+    "Harvard hyperspectral database non-commercial replication"
+  ],
+  "opened_leaf": "U5.R2H0C1 CAVE acquisition, integrity and preregistered conditional-support feasibility",
+  "forbidden": [
+    "film-pixel fitting",
+    "RGB-to-spectrum training before feasibility",
+    "H0A rescue or threshold changes",
+    "source pixel redistribution",
+    "calibrated Velvia or identified operator claim",
+    "380-720 nm measured-coverage claim"
+  ],
+  "claim_ceiling": "source-limited empirical conditional variability under one frozen datasheet-prior witness"
+}
