@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2i0-sensitometry-print-frontier-v1",
+  "date": "2026-07-24",
+  "decision": "automatic_style_pass_severe_clean_visual_value_closed",
+  "config_sha256": "c5a7790dfc6f6639014261c6cb06e063cc915cb94bdde111c2a80282d939d5b4",
+  "render_manifest_sha256": "c4903f53ec8e285ceeed8b3dd281f43cc55c6a3fd7a0119ad95156a57e62d210",
+  "automatic_report_sha256": "afcc0b2b4d29a8d033e143d8cee680bc4f8332692685f6d54ef5250199338406",
+  "autonomous_blind_review_sha256": "0d61a65139ed55bb92b521fae436467208ac5b9f39f0f48656c793b87de31e2d",
+  "full_resolution_review_sha256": "92bbff121fe372ffb231c4b20e85f0364fbda72c77d3600685d22c853e6e9c7d",
+  "software_commit": "dcb8400",
+  "full_tests_passed": 808,
+  "candidate_count": 5,
+  "automatic_survivor_count": 5,
+  "shortlist": ["sensitometry_print__s100", "sensitometry_print__s080"],
+  "strongest_metrics": {
+    "gold_median_style_delta_e76": 19.283031485648827,
+    "gold_median_non_basic_residual_delta_e76": 14.396350053139367,
+    "worst_gold_new_hard_clipping_fraction": 0.00213623046875,
+    "worst_stress_new_hard_clipping_fraction": 0.00970695690722595
+  },
+  "blind_votes": {
+    "bland_safe_rich_control": 3,
+    "sensitometry_print__s080": 0,
+    "sensitometry_print__s100": 0
+  },
+  "shortlist_full_resolution_render_count": 18,
+  "confirmed_severe_failures": 0,
+  "id11_red_speckle_or_posterization_reproduced": false,
+  "retained_B0_challenger": null,
+  "diagnosis": "stable uniform green cast creates high style/non-basic metrics but loses all blind rounds",
+  "production_default_changed": false,
+  "named_stock_claim_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "latent_mode_learning_allowed": false,
+  "next_leaf": "freeze U5.R2I1 data-independent neutral-axis gauge canonicalization before any real-image result",
+  "claim_ceiling": "autonomous B0 negative visual-value evidence for one clean-room sensitometry-print strength path; no universal safety, owner preference, stock response, calibration or production promotion"
+}

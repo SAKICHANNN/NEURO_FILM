@@ -36,10 +36,12 @@ U2.2B must audit explicit density-to-display/print composition before U2.2 can
 advance.
 
 U2.2B completes that numerical representation without duplicating its negative
-stage. The clean-room density-to-print composition is exact at endpoints and
-under partition/replay, bounded on `[0,1]`, locally orientation-preserving and
-materially non-affine. U2.3 may now study an explicit smooth residual, while
-profile/renderer integration and stock claims remain closed.
+stage. U2.3A preserves it exactly through an identity tetrahedral LUT but
+rejects one nontrivial residual on frozen smoothness gates. U5.R2I0 then finds
+the ungauged U2.2B path strong, non-basic and severe-clean, yet uniformly green
+and 0/3 in blind comparison against safe-rich. No challenger is retained. The
+next algorithm hypothesis is a separately frozen data-independent neutral-axis
+gauge; profile/renderer integration and stock claims remain closed.
 
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under

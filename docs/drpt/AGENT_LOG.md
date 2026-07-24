@@ -3075,3 +3075,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `9227e8a...e0f4`, `git diff --check`, and all 803 CPU tests pass. Goal remains
   ACTIVE; next ready algorithm leaf is the U2.2B real-image style/artifact
   frontier under a new contract.
+
+## 2026-07-24 - Freeze and resolve U5.R2I0 sensitometry-print frontier
+
+- **Parent/goal:** `U5.R2` / algorithm-first film Look Approximation research;
+  DRPT L2, one primary writer.
+- **Design:** immutable U2.2B base, five explicit linear-RGB identity-blend
+  strengths, frozen 9-gold/32-stress set, inherited R2B metrics/gates, top-two
+  visual shortlist and three comparator blind sheets. Strength is continuous,
+  never a latent mode.
+- **Implementation correction:** first visual build wrote no report because
+  global comparator outputs are repository-relative while density outputs are
+  manifest-relative. Add explicit fail-closed dual-convention resolution and
+  a regression test; candidate pixels, metrics, gates and order are unchanged.
+- **Automatic result:** all five strengths pass. S1.0 reaches style `19.2830`,
+  non-basic `14.3964`, worst gold/stress new clipping `.2136%/.9707%`.
+  Two render manifests and two reports are byte-identical.
+- **Visual result:** before unblinding, C/E/D win the three rounds; all are
+  safe-rich. S0.8/S1.0 show a stable green cast and receive zero votes. All 18
+  full-resolution shortlist renders are severe-clean; ID11 has no red
+  speckle/posterization.
+- **Decision:** no B0 challenger. Retain U2.2B only as a numerical/negative
+  control. Open a separately frozen data-independent neutral-axis gauge
+  hypothesis; do not fit a correction from photographs or relax current data
+  stops.
+- **Verification:** five focused frontier tests, report/manifests/reviews
+  hashed, `git diff --check`, and all 808 CPU tests pass. Goal remains ACTIVE.
