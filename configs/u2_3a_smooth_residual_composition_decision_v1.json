@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u2.3a-smooth-residual-composition-v1",
+  "date": "2026-07-24",
+  "decision": "identity_composition_pass_nontrivial_witness_closed",
+  "report_sha256": "9227e8a71cf2c1d86a82b24695211dffbe43e1261eb14037c1d299a5e50de0f4",
+  "software_commit": "8b288dd3f5ae14322dec9f77b875a06befd7d56e",
+  "focused_tests_passed": 11,
+  "full_tests_passed": 803,
+  "metrics": {
+    "identity_composition_max_abs": 0.0,
+    "tetrahedral_scalar_reference_max_abs": 0.0,
+    "maximum_residual_amplitude": 0.025000000000000022,
+    "maximum_first_axis_step": 0.005859375,
+    "maximum_second_axis_difference": 0.0007812500000000666,
+    "maximum_neutral_axis_error": 0.0,
+    "minimum_tetrahedron_jacobian_determinant": 0.98590087890625,
+    "maximum_tetrahedron_jacobian_determinant": 1.0066361999511728
+  },
+  "branch": {
+    "identity_residual_representation_retained": true,
+    "cyclic_nontrivial_residual_retained": false,
+    "u2_3b_visual_frontier_opened_by_this_result": false,
+    "u2_2b_base_visual_evaluation_allowed_under_separate_contract": true,
+    "renderer_integration_allowed": false,
+    "stock_fit_allowed": false
+  },
+  "claim_ceiling": "exact identity tetrahedral composition and fail-closed bounded-residual wrapper; no retained nontrivial residual, visual safety, stock response, calibration or production integration"
+}

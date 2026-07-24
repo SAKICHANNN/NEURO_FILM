@@ -3049,3 +3049,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or training permission opens.
 - **Verification:** two exact runs, report SHA-256 `97a7a2f3...8886`; all 800
   CPU tests pass. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze and resolve U2.3A smooth residual composition
+
+- **Parent/goal:** `U2.3` / stock-first Ultimate explicit film-algorithm
+  infrastructure; DRPT L2, one primary writer.
+- **Question/design:** compose the passed U2.2B base with a 17-cube
+  tetrahedral identity or one frozen cyclic neutral-preserving residual at
+  amplitude `.1`; reuse U5.R2A interpolation/constraint primitives rather
+  than duplicate them.
+- **Gates:** exact identity composition and scalar tetrahedral parity; fixed
+  range/amplitude/first/second/neutral/Jacobian limits; positive composed
+  Jacobian, nontrivial bounded residual, style retention, replay, partition,
+  source preservation and two exact runs. No film fitting, stock claim or
+  integration.
+- **Result:** identity composition and independent interpolation parity are
+  exact. The cyclic witness stays in gamut, preserves neutral, has residual
+  `.0250` and positive tetrahedral determinants `.9859..1.0066`, but first
+  step `.005859 > .004` and second difference `.000781 > .0005` fail.
+- **Decision:** reject this nontrivial witness without weakening or retuning;
+  retain the generic fail-closed wrapper and exact identity path. U2.3A does
+  not open its visual branch. A separately frozen evaluation may test U2.2B
+  itself on real images as an uncalibrated clean-room challenger.
+- **Verification:** 11 focused tests, two exact formal runs, report SHA-256
+  `9227e8a...e0f4`, `git diff --check`, and all 803 CPU tests pass. Goal remains
+  ACTIVE; next ready algorithm leaf is the U2.2B real-image style/artifact
+  frontier under a new contract.
