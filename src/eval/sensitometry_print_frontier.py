@@ -187,11 +187,14 @@ def build_blind_sheets(*, root: Path, config: Mapping[str, Any], manifest_path: 
     validated = validate_contract(root, config)
     candidate_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     paths = {(str(row["candidate_id"]), str(row["sample_id"])): manifest_path.parent / str(row["output"]) for row in candidate_manifest["records"]}
-    for manifest in validated["comparators"].values():
+    for prefix, manifest in validated["comparators"].items():
+        comparator_manifest_path = root / str(config[f"{prefix}_comparator_manifest"])
         for row in manifest["records"]:
             candidate_id = str(row["candidate_id"])
             if candidate_id in config["comparators"]:
-                paths[(candidate_id, str(row["sample_id"]))] = root / str(row["output"])
+                paths[(candidate_id, str(row["sample_id"]))] = _resolve_manifest_output(
+                    root, comparator_manifest_path, str(row["output"])
+                )
     columns = [*config["comparators"], *shortlist]
     gold_ids = [sample_id for sample_id, row in validated["samples"].items() if row["split"] == "gold"]
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -209,6 +212,17 @@ def build_blind_sheets(*, root: Path, config: Mapping[str, Any], manifest_path: 
     mapping_path = output_dir / "private_mapping.json"
     mapping_path.write_text(json.dumps(mappings, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return {"rounds": round_paths, "mapping": str(mapping_path.relative_to(root)).replace("\\", "/")}
+
+
+def _resolve_manifest_output(root: Path, manifest_path: Path, output: str) -> Path:
+    """Resolve the two explicit output conventions used by frozen comparators."""
+
+    relative = Path(output)
+    if relative.is_absolute():
+        raise SensitometryFrontierError("comparator output must be relative")
+    if relative.parts and relative.parts[0] == "outputs":
+        return root / relative
+    return manifest_path.parent / relative
 
 
 def _contact_sheet(root: Path, samples: Mapping[str, Mapping[str, Any]], gold_ids: Sequence[str], columns: Sequence[str], labels: Mapping[str, str], paths: Mapping[tuple[str, str], Path]) -> Image.Image:

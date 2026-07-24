@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from src.eval.sensitometry_print_frontier import SensitometryFrontierError, candidate_bank, shortlist_candidates, validate_contract
+from src.eval.sensitometry_print_frontier import SensitometryFrontierError, _resolve_manifest_output, candidate_bank, shortlist_candidates, validate_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,3 +43,12 @@ def test_tampered_parent_hash_fails_closed() -> None:
     config["composition_config_sha256"] = "0" * 64
     with pytest.raises(SensitometryFrontierError, match="hash mismatch"):
         validate_contract(ROOT, config)
+
+
+def test_comparator_paths_resolve_declared_manifest_conventions() -> None:
+    global_manifest = ROOT / "outputs/global/render_pass1/manifest.json"
+    density_manifest = ROOT / "outputs/density/render_pass1/manifest.json"
+    assert _resolve_manifest_output(ROOT, global_manifest, "outputs/global/render_pass1/a/01.png") == ROOT / "outputs/global/render_pass1/a/01.png"
+    assert _resolve_manifest_output(ROOT, density_manifest, "a/01.png") == density_manifest.parent / "a/01.png"
+    with pytest.raises(SensitometryFrontierError, match="relative"):
+        _resolve_manifest_output(ROOT, global_manifest, str((ROOT / "escape.png").resolve()))
