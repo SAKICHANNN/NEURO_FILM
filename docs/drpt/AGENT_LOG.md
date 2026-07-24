@@ -2810,3 +2810,23 @@ changed and no experiment result existed.
 - **Decision:** open H0C1 exact acquisition/integrity and preregistration. No
   film pixels, fitting, training, visual selection, stock response or
   calibrated claim. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U5.R2H0C1 before witness-output evaluation
+
+- **Official lineage:** the 1 MiB tail of the official Columbia ZIP proves an
+  EOCD with 1,120 entries and a 112,226-byte central directory at offset
+  405,876,217; central-directory SHA-256 is `cad6a8d0...fe7a6`.
+- **Transfer policy:** because the official host is throttled, a faster mirror
+  may supply bytes only when every spectral PNG matches the official path,
+  uncompressed size and CRC32. Mirror metadata/licence is not source truth.
+- **Population:** fixed 16x16 spatial cells per scene, median 31-band spectrum,
+  scene-level groups, 400--700 nm only and no RGB preview selection.
+- **Primary condition:** cross-scene, input Delta E76 <=1, spectral RMS >=.01,
+  unique representatives with fixed scene/pair caps. Binding support requires
+  256 pairs across 16 scenes and 32 scene pairs.
+- **Decision tree:** broad ambiguity, materially narrower but unbounded, or a
+  bounded empirical-prior candidate. Only the last may open a separately
+  frozen simple canonicalizer comparison; none changes H0A or opens fitting,
+  training, visual selection, stock/calibration or product claims.
+- **Handoff:** complete transfer, official CRC/decode audit, implement the
+  isolated evaluator, run exact repeats and branch. Goal remains ACTIVE.

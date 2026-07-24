@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0c1-cave-conditional-variability-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "source": {
+    "official_archive_url": "https://www.cs.columbia.edu/CAVE/databases/multispectral/zip/complete_ms_data.zip",
+    "expected_bytes": 405988465,
+    "http_etag": "\"1832e471-4630073df3380\"",
+    "official_entry_count": 1120,
+    "central_directory_offset": 405876217,
+    "central_directory_bytes": 112226,
+    "central_directory_sha256": "cad6a8d0c5b8f83c3d3695200ebc03784bb275e9d4eba093fc232018625fe7a6",
+    "transfer_snapshot": "data/real_film/cave/hf_snapshot",
+    "transfer_repository": "https://huggingface.co/datasets/danaroth/cave",
+    "verification": ["normalized_path", "uncompressed_size", "crc32"],
+    "rights_scope": "internal non-commercial research; no source-pixel or learned-weight redistribution"
+  },
+  "spectral_population": {
+    "wavelength_nm_start": 400,
+    "wavelength_nm_end": 700,
+    "wavelength_nm_step": 10,
+    "bands": 31,
+    "image_width": 512,
+    "image_height": 512,
+    "grid_rows": 16,
+    "grid_columns": 16,
+    "cell_statistic": "per_band_median",
+    "uint16_scale": 65535,
+    "valid_pixel_fraction_min": 0.9,
+    "relative_y_min": 0.01,
+    "relative_y_max": 0.95,
+    "primary_group": "scene",
+    "forbid_rgb_preview_selection": true
+  },
+  "pair_policy": {
+    "cross_scene_only": true,
+    "input_delta_e76_max": 1.0,
+    "spectral_rms_min": 0.01,
+    "sort_keys": ["input_delta_e76", "scene_a", "cell_a", "scene_b", "cell_b"],
+    "representative_use_max": 1,
+    "pairs_per_scene_pair_max": 16,
+    "pair_incidences_per_scene_max": 64,
+    "diagnostic_radii_delta_e76": [2.0, 3.0]
+  },
+  "support_gates": {
+    "pairs_min": 256,
+    "scenes_min": 16,
+    "scene_pairs_min": 32,
+    "max_scene_incidence_share": 0.15,
+    "max_scene_pair_share": 0.0625
+  },
+  "comparators": {
+    "h0a_adversarial_output_delta_e76_median": 82.69825514272178,
+    "h0a_adversarial_output_delta_e76_p95": 144.34857413603848
+  },
+  "gates": {
+    "materially_narrower_ratio_max": 0.25,
+    "bounded_output_delta_e76_median_max": 5.0,
+    "bounded_output_delta_e76_p95_max": 12.0,
+    "bounded_median_bootstrap_95_ucb_max": 7.5,
+    "bounded_p95_bootstrap_95_ucb_max": 18.0,
+    "scene_bootstrap_repeats": 1000,
+    "exact_repeats": 2
+  },
+  "allowed_inputs": [
+    "official CAVE central-directory evidence",
+    "CRC-identical CAVE spectral PNG transfer bytes",
+    "official CIE CMFs and D65",
+    "frozen H0A graph curves"
+  ],
+  "forbidden_inputs": [
+    "film pixels",
+    "project photographs",
+    "owner anchors or preferences",
+    "supplied RGB preview selection",
+    "RGB-to-spectrum training",
+    "visual candidate selection"
+  ],
+  "claim_ceiling": "source-limited empirical conditional variability under one overlap-only datasheet-prior witness"
+}
