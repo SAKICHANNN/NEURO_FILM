@@ -25,6 +25,34 @@ def logistic_density(
     return density_values / (1.0 + np.exp(-argument))
 
 
+def density_to_print_reflectance(
+    negative_density: np.ndarray,
+    dye_absorption_matrix: np.ndarray,
+    print_matrix: np.ndarray,
+    paper_midpoints: np.ndarray,
+    paper_slopes: np.ndarray,
+    paper_maximum_densities: np.ndarray,
+    *,
+    exposure_floor: float,
+) -> np.ndarray:
+    """Apply only dye, print-exposure and paper-density interpretation stages."""
+
+    density = np.asarray(negative_density, dtype=np.float64)
+    if density.ndim < 2 or density.shape[-1] != 3 or not np.all(np.isfinite(density)):
+        raise ValueError("negative density must be finite with shape (..., 3)")
+    absorption_density = density @ np.asarray(dye_absorption_matrix, dtype=np.float64).T
+    negative_transmission = np.power(10.0, -absorption_density)
+    print_exposure = negative_transmission @ np.asarray(print_matrix, dtype=np.float64).T
+    paper_log_exposure = np.log2(print_exposure + float(exposure_floor))
+    paper_density = logistic_density(
+        paper_log_exposure,
+        paper_midpoints,
+        paper_slopes,
+        paper_maximum_densities,
+    )
+    return np.power(10.0, -paper_density)
+
+
 def _readonly_vector(value: np.ndarray, name: str) -> np.ndarray:
     array = np.asarray(value, dtype=np.float64)
     if array.shape != (3,) or not np.all(np.isfinite(array)):
@@ -118,17 +146,15 @@ class DensityDomainNegativePrintOperator:
             self.negative_slopes,
             self.negative_maximum_densities,
         )
-        absorption_density = negative_density @ self.dye_absorption_matrix.T
-        negative_transmission = np.power(10.0, -absorption_density)
-        print_exposure = negative_transmission @ self.print_matrix.T
-        paper_log_exposure = np.log2(print_exposure + self.exposure_floor)
-        paper_density = logistic_density(
-            paper_log_exposure,
+        return density_to_print_reflectance(
+            negative_density,
+            self.dye_absorption_matrix,
+            self.print_matrix,
             self.paper_midpoints,
             self.paper_slopes,
             self.paper_maximum_densities,
+            exposure_floor=self.exposure_floor,
         )
-        return np.power(10.0, -paper_density)
 
     def _raw_endpoints(self) -> tuple[np.ndarray, np.ndarray]:
         endpoints = self._raw_reflectance(
