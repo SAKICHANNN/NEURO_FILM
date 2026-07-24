@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0c3-external-spectrum-source-audit-v1",
+  "date": "2026-07-24",
+  "decision": "source_pass_external_replication_only",
+  "source": {
+    "name": "USGS Spectral Library Version 7 measured ASCII",
+    "doi": "10.5066/F7RR1WDJ",
+    "sciencebase_parent_item": "5807a2a2e4b0841e59e3a18d",
+    "sciencebase_ascii_item": "586e8c88e4b0f5ce109fccae",
+    "file": "ASCIIdata_splib07a.zip",
+    "bytes": 21812828,
+    "md5": "bfe74068d85811e52e5e07d017720a17",
+    "sha256": "d232645740869a82aafcad5839448c50b1dc72965ce042d1374f29b7a798a91c",
+    "zip_members": 3156,
+    "uncompressed_bytes": 110402184,
+    "rights": "US_public_domain",
+    "allowed_use": "internal_research_aggregate_evaluation",
+    "redistribute_source_payload": false
+  },
+  "eligibility": {
+    "measurement_type": "AREF",
+    "wavelength_nm_start": 400,
+    "wavelength_nm_end": 700,
+    "wavelength_nm_step": 10,
+    "reflectance_min": 0.0,
+    "reflectance_max": 1.0,
+    "relative_y_min": 0.005,
+    "relative_y_max": 0.95,
+    "missing_value_below": -1e20,
+    "exclude_errorbars": true,
+    "reject_out_of_bounds_without_clipping": true
+  },
+  "pre_target_feasibility": {
+    "eligible_records": 1732,
+    "chapters": 7,
+    "fixed_threshold_delta_e76": 1.0,
+    "selected_records": 184,
+    "coverage": 0.10623556581986143,
+    "selected_chapters": 7,
+    "max_selected_chapter_share": 0.4891304347826087
+  },
+  "external_test": {
+    "bank": "frozen H0C2 CAVE representative population",
+    "queries": "eligible USGS splib07a records",
+    "threshold_delta_e76": 1.0,
+    "fallback": "smooth_bounded_reflectance_reconstruction",
+    "usgs_records_allowed_in_bank": false,
+    "retuning_allowed": false,
+    "neural_rescue_allowed": false
+  },
+  "claim_ceiling": "source eligibility and pre-target support for a cross-source synthetic-witness mechanism replication"
+}

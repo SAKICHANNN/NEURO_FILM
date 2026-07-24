@@ -2895,3 +2895,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration claim.
 - **Verification:** 11 focused and all 786 CPU tests pass. Report SHA-256
   `f074c0c3...ca45`. Goal remains ACTIVE.
+
+## 2026-07-24 - Complete U5.R2H0C3 external spectrum source audit
+
+- **Parent/goal:** `U5.R2H0C2` / stock-first Ultimate algorithm research.
+- **Skills:** `dev-research-reliability` primary; research, AI/ML, DRPT,
+  agent-log and structure disciplines as read-only reviewers.
+- **Decision:** select the official public-domain USGS Spectral Library
+  Version 7 original measured `splib07a` ASCII package. Avoid the unnecessary
+  5.48GB aggregate bundle.
+- **Evidence:** acquired 21,812,828 bytes; official/local MD5
+  `bfe74068d85811e52e5e07d017720a17`; SHA-256
+  `d232645740869a82aafcad5839448c50b1dc72965ce042d1374f29b7a798a91c`;
+  3,156 ZIP members / 110,402,184 uncompressed bytes.
+- **Pre-target feasibility:** 1,732 bounded AREF records across seven chapters;
+  fixed CAVE-bank T=1 covers 184/10.62% across every chapter. No witness target
+  was rendered while setting support gates.
+- **Boundary:** USGS remains query-only; no same-source bank, retuning,
+  clipping, neural rescue, film/Velvia/photo/product claim or source-payload
+  release.
+- **Handoff:** freeze H0C3 performance and reproducibility gates, then
+  implement the cross-source evaluator. Goal remains ACTIVE.
