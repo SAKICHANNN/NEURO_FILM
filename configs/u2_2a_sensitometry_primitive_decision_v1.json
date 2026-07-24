@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u2.2a-sensitometry-primitive-v1",
+  "date": "2026-07-24",
+  "decision": "sensitometry_primitive_pass",
+  "report_sha256": "d15021f60e415d8acfd5ed8a925efb30ec9cd7b0c45abf354eb9a944ff2f08e9",
+  "metrics": {
+    "roundtrip_max_abs": 3.730349362740526e-14,
+    "encoder_roundtrip_max_abs": 7.105427357601002e-15,
+    "neutral_anchor_density_error_max": 0.0,
+    "jacobian_determinant_min": 4.895514497995215e-7,
+    "minimum_pairwise_layer_separation": 0.07046646798585776,
+    "replay_exact": true,
+    "domain_guards": true
+  },
+  "branch": {
+    "retain_research_primitive": true,
+    "u2_2_complete": false,
+    "u2_2b_composition_audit_open": true,
+    "u2_3_open": false,
+    "renderer_integration_allowed": false,
+    "stock_claim_allowed": false
+  },
+  "claim_ceiling": "uncalibrated monotone linear-exposure-to-layer-density numerical primitive"
+}

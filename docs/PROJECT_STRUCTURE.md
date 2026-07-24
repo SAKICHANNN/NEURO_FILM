@@ -81,6 +81,10 @@ monotone-spline and dense-LUT stages; `lut.py` owns versioned trilinear and
 tetrahedral interpolation plus serialization/Jacobian primitives. These
 modules are not production renderer entry points and must not absorb data
 acquisition, fitting, evaluation or profile concerns.
+`photometric.py` owns canonical L0 exposure/WB and roll-gauge primitives;
+`sensitometry.py` owns the unintegrated linear-exposure-to-layer-density
+characteristic-curve representation. Neither module implies a production or
+calibrated stock operator.
 
 ## Inference and replay contracts
 

@@ -27,6 +27,14 @@ reach .0351/.00899 maximum RGB error and miss their .02/.006 frozen gates.
 Retain the analytic primitives and exact L1/L2 path; do not claim or integrate
 HDR shaped-LUT parity.
 
+U2.2A now supplies a separate semantic sensitometry primitive instead of
+treating all tone shaping as generic RGB curves. It maps declared nonnegative
+linear exposure through an invertible log encoder into three neutral-anchored
+layer-density curves with explicit toe/mid/shoulder behaviour, 3.73e-14
+roundtrip error and positive Jacobian. It remains an uncalibrated intermediate;
+U2.2B must audit explicit density-to-display/print composition before U2.2 can
+advance.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

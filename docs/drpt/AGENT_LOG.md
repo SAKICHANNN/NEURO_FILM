@@ -3005,3 +3005,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   boundary. Normalize only <=`1e-12` downward roundoff to exact zero; larger
   underflow still rejects. Add full-path zero and beyond-tolerance regressions;
   no curve, population or gate change.
+
+## 2026-07-24 - Complete U2.2A sensitometry primitive
+
+- **Result:** 16,387 boundary/generated samples pass at `3.73e-14` complete
+  roundtrip and `7.11e-15` encoder error; neutral 0.18 maps exactly to density
+  `[1,1,1]`; minimum Jacobian is `4.90e-7` and replay is exact.
+- **Shape:** all red/green/blue toe and shoulder slopes are below midscale;
+  minimum pairwise layer separation is `.07047` above `.05`.
+- **Decision:** retain one explicit uncalibrated exposure-to-layer-density
+  research primitive. Open U2.2B composition audit only; do not call layer
+  density display RGB, fit a stock or integrate the renderer.
+- **Verification:** two exact formal runs, report SHA-256
+  `d15021f6...f08e9`; all 798 CPU tests pass. Goal remains ACTIVE.
