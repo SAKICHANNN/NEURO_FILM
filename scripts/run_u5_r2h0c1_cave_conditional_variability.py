@@ -101,20 +101,36 @@ def main() -> int:
             writer.writerow(
                 [
                     "first",
+                    "first_scene",
+                    "first_cell_row",
+                    "first_cell_column",
                     "second",
+                    "second_scene",
+                    "second_cell_row",
+                    "second_cell_column",
                     "input_delta_e76",
                     "spectral_rms",
                     "output_delta_e76",
                 ]
             )
-            for row in zip(
-                arrays["pair_first"],
-                arrays["pair_second"],
-                arrays["pair_input_delta_e76"],
-                arrays["pair_spectral_rms"],
-                arrays["pair_output_delta_e76"],
+            for index, (first, second) in enumerate(
+                zip(arrays["pair_first"], arrays["pair_second"])
             ):
-                writer.writerow(row)
+                writer.writerow(
+                    [
+                        first,
+                        arrays["representative_scene"][first],
+                        arrays["representative_cell_row"][first],
+                        arrays["representative_cell_column"][first],
+                        second,
+                        arrays["representative_scene"][second],
+                        arrays["representative_cell_row"][second],
+                        arrays["representative_cell_column"][second],
+                        arrays["pair_input_delta_e76"][index],
+                        arrays["pair_spectral_rms"][index],
+                        arrays["pair_output_delta_e76"][index],
+                    ]
+                )
     print(json.dumps(report, indent=2, sort_keys=True))
     print(f"report_sha256={sha256_file(report_path)}")
     return 0
