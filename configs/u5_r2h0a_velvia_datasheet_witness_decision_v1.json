@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0a-velvia50-datasheet-spectral-witness-v1",
+  "date": "2026-07-24",
+  "decision": "numerically_invalid",
+  "independent_identifiability_decision": "canonicalizer_sensitive_unidentified",
+  "formal_report": "outputs/u5_r2h0a_velvia_datasheet_witness/formal/report.json",
+  "formal_report_sha256": "de0bb65699a19554b6da3090bfe3829e41b72c203a56c01c552692e282ab08ac",
+  "config_sha256": "0342eb4d4213f82e8afb6c9c58f7f15831cc83ac869cecd6dad2872946c208c1",
+  "curve_data_sha256": "bf1cca83e7f81521ff623c3921412e835c3dd09366b1997d69da31262ef637c4",
+  "software_commit": "3d91dcdeca456fbc86b58ae41fa1d7adbb81d948",
+  "repeat_runs": 2,
+  "repeat_exact": true,
+  "population": {"encoded_srgb": 729, "analysis_non_neutral": 714, "neutral_ramp": 33, "wavelengths": 69},
+  "key_metrics": {
+    "base_reconstruction_delta_e76_max": 0.02933539649897333,
+    "base_witness_effect_delta_e76_median": 20.913114183840406,
+    "base_witness_effect_delta_e76_p95": 45.79212049718868,
+    "neutral_chroma_max": 6.224664163615926,
+    "metamer_output_delta_e76_median": 82.69825514272178,
+    "metamer_output_delta_e76_p95": 144.34857413603848,
+    "metamer_to_effect_ratio_median": 4.159600263174468,
+    "metamer_to_effect_ratio_p95": 14.176851769343717,
+    "raw_linear_srgb_out_of_gamut_fraction": 0.22527053802773966
+  },
+  "visual_review": "forbidden_no_automatic_survivor",
+  "closed_actions": [
+    "H0B visual frontier",
+    "post-hoc exposure or white-balance rescue",
+    "claiming a Velvia response or calibrated operator",
+    "using current film pixels or a learned model to hide missing-spectrum sensitivity"
+  ],
+  "allowed_next": "separately frozen measured-natural-reflectance conditional-variability feasibility audit; must retain theoretical non-identifiability and cannot reopen H0A",
+  "claim_ceiling": "strong deterministic datasheet-witness mechanism and negative RGB-to-film spectral identifiability evidence on a synthetic grid; no stock authenticity calibration product or visual-value claim"
+}

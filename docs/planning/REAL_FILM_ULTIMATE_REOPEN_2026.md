@@ -295,6 +295,16 @@ response and near-duplicate profile behaviour; they are nuisance/adaptation
 evidence, not stock experts. No external output is a teacher, identified
 operator, stock response or calibration target.
 
+The clean-room `U5.R2H0A` datasheet sibling now supplies a stronger negative
+identifiability result without changing any stock-data gate. Its Velvia 50
+base witness is strongly nonlinear, but D65-colour-matched bounded spectra
+produce output differences much larger than the witness effect and its fixed
+neutral axis also fails. Display-sRGB therefore does not identify the
+stock-layer exposure even when official sensitivity and dye graphs exist. No
+visual frontier, fitting, calibration or teacher opens. A measured-natural-
+reflectance pilot may study a narrower empirical prior, but can never erase
+the theoretical ambiguity or become stock truth.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

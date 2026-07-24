@@ -2767,3 +2767,26 @@ The first formal CLI invocation stopped before imports because direct script
 execution did not expose the repository root to `sys.path`. The runner alone
 was corrected to add its own repository root; no evaluator/config/data/output
 changed and no experiment result existed.
+
+## 2026-07-24 - Close U5.R2H0A before visual evaluation
+
+- **Integrity:** two 729-colour runs are exact; report SHA-256
+  `de0bb656...08ac`, config `0342eb4d...08c1`, curves `bf1cca83...7c4`.
+  All 127 annotations sit on native non-grid ink; maximum axis residual 1.4 px.
+- **Positive mechanism evidence:** smooth-base reconstruction max Delta E76 is
+  0.0293 and its median witness effect is 20.91. A datasheet spectral chain can
+  be strongly stylized rather than merely increasing saturation.
+- **Numerical failure:** neutral chroma is 6.2247 above the frozen 4.0 gate.
+- **Identifiability failure:** exactly D65-matched bounded metamer extrema give
+  output Delta E76 82.70 median / 144.35 p95 and effect ratios 4.16 / 14.18,
+  far above every frozen gate.
+- **Product diagnostic:** raw linear sRGB has 22.53% channel excursions;
+  silent clipping was not used to create a pass.
+- **Decision:** `numerically_invalid` and independently
+  `canonicalizer_sensitive_unidentified`. H0B visual review is forbidden; no
+  exposure/WB/curve/metamer/strength/threshold rescue.
+- **Verification:** five focused and all 780 repository tests pass.
+- **Handoff:** H0C may audit rights-eligible measured natural/material spectra
+  to measure empirical conditional variability. It is a new data question and
+  cannot erase H0A non-identifiability or open stock claims. Goal remains
+  ACTIVE.

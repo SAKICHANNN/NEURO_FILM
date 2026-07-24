@@ -150,6 +150,14 @@ was found. H0A is now the active synthetic-only leaf: freeze graph
 digitization/overlay and test a datasheet spectral witness against
 D65-colour-matched metamer alternatives before any visual-image evaluation.
 
+U5.R2H0A closes before visual work. The smooth base witness is strongly
+stylized on its synthetic grid (median effect Delta E76 20.91), but the fixed
+neutral chroma is 6.22 above the 4.0 gate and exactly D65-matched bounded
+metamers produce median/p95 output differences of 82.70/144.35. The missing
+spectrum dominates the operator; no white-balance, exposure or visual rescue
+is allowed. H0C may only ask the distinct data question of how broad the
+conditional distribution is among measured natural/material reflectances.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,
