@@ -14,6 +14,7 @@ from .constrained import (
 from .lut import DenseLUT3D, bake_dense_lut
 from .lab_statistics import LabStatisticsDescriptor, extract_lab_statistics
 from .operators import AffineColorOperator
+from .residual import SensitometryResidualLUTOperator
 from .simulator import PseudoRoll, PseudoRollConfig, simulate_pseudo_roll
 from .splines import AffineMonotoneSplineOperator, RationalQuadraticSpline
 
@@ -28,6 +29,7 @@ __all__ = [
     "PseudoRoll",
     "PseudoRollConfig",
     "RationalQuadraticSpline",
+    "SensitometryResidualLUTOperator",
     "audit_lut_constraints",
     "bake_dense_lut",
     "estimate_affine_spline_transport_operator",
