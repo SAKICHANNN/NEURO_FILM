@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2i1b-neutral-gauge-frontier-v1",
+  "date": "2026-07-24",
+  "decision": "no_automatic_survivor_route_closed",
+  "config_sha256": "1a94b2aa868ec7dc2acca22f64c89d6d590788ee4212e8d825fd275a20e83a55",
+  "render_manifest_sha256": "b0df240eea533e998d9b5b433446bab9dfa8b4ebe9cce271a5ea27a88fd7cd33",
+  "automatic_report_sha256": "83d0efa995a2dbdaa217622c8931762d8eb21f1e910428a9316747ca4e78aef3",
+  "software_commit": "f9a33a5",
+  "full_tests_passed": 813,
+  "candidate_count": 5,
+  "automatic_survivor_count": 0,
+  "strongest_metrics": {
+    "gold_median_style_delta_e76": 5.655783837323857,
+    "gold_median_non_basic_residual_delta_e76": 0.7211158129265132,
+    "worst_gold_new_hard_clipping_fraction": 0.0
+  },
+  "visual_candidates_generated": false,
+  "diagnosis": "neutral-axis canonicalization removes the green cast but exposes that most remaining real-image change is weak and basic-adjustment-equivalent",
+  "retained_B0_challenger": null,
+  "post_result_rescue_allowed": false,
+  "claim_ceiling": "negative B0 evidence that this data-independent neutral gauge does not retain a salient non-basic photographic look"
+}

@@ -40,8 +40,10 @@ stage. U2.3A preserves it exactly through an identity tetrahedral LUT but
 rejects one nontrivial residual on frozen smoothness gates. U5.R2I0 then finds
 the ungauged U2.2B path strong, non-basic and severe-clean, yet uniformly green
 and 0/3 in blind comparison against safe-rich. No challenger is retained. The
-next algorithm hypothesis is a separately frozen data-independent neutral-axis
-gauge; profile/renderer integration and stock claims remain closed.
+next data-independent neutral-axis gauge passes numerical gates, but its frozen
+real-image frontier has no survivor: s1.0 reaches only style 5.66 and non-basic
+.72. This exact clean-room sensitometry/gauge route is closed without rescue;
+profile/renderer integration and stock claims remain closed.
 
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under

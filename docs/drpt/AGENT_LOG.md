@@ -3115,3 +3115,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock, fitting, training, LSM, calibration or preference claim.
 - **Verification:** five focused tests, two exact formal runs, report SHA-256
   `c3746f59...b00d`, and all 811 CPU tests pass. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze and resolve U5.R2I1B real-image frontier
+
+- **Design:** exact I1 gauge plus the unchanged I0 strength path, frozen
+  9-gold/32-stress set, R2B metrics and comparators. Two independent 205-output
+  render/evaluation passes; visual work only after automatic survival.
+- **Result:** manifests/reports are byte-identical. S0.35..1.0 style rises only
+  `1.99 -> 5.66`; non-basic residual rises `.345 -> .721`; all have zero new
+  gold clipping but all fail both frozen style/non-basic floors.
+- **Decision:** no visual candidates. The ungauged strength was predominantly
+  neutral-axis green cast; the gauge removes it but leaves weak/basic real-image
+  change. Close this exact route without knot/strength/residual rescue.
+- **Verification:** 10 focused adjacent tests, two render and metric passes,
+  hashes recorded, all 813 CPU tests pass. Goal remains ACTIVE; select another
+  evidence-authorized explicit algorithm/data leaf.
