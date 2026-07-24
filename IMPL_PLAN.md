@@ -20,6 +20,13 @@ champion plus bounded strength. Mode discovery is forbidden until stock,
 connectivity, identifiability, pixel/rights and leakage gates all pass, and
 mode/content representations remain separate.
 
+CT1C closes the remaining analytic L0 and gauge gap but not fixed-resolution
+HDR LUT parity. Exposure/WB roundtrip, roll-gauge recomposition and log1p
+shaper inversion pass near machine precision; `[0,16]` shaped 33/65 cubes
+reach .0351/.00899 maximum RGB error and miss their .02/.006 frozen gates.
+Retain the analytic primitives and exact L1/L2 path; do not claim or integrate
+HDR shaped-LUT parity.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

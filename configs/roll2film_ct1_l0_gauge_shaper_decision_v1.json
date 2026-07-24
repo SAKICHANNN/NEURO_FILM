@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "roll2film-ct1-l0-gauge-shaper-v1",
+  "date": "2026-07-24",
+  "decision": "analytic_primitives_pass_shaped_lut_parity_fail",
+  "report_sha256": "9be0fdc52105c9703fb5d56cf7be459120bcc7b138c00cf723c5246ed777a6b5",
+  "passes": {
+    "l0_roundtrip_max_abs": 1.7763568394002505e-15,
+    "l0_replay_exact": true,
+    "l0_jacobian_determinant": 2.857651118063164,
+    "gauge_wb_row_sum_max_abs": 1.3877787807814457e-17,
+    "gauge_exposure_mean_max_abs": 1.6653345369377347e-17,
+    "gauge_recomposition_max_abs": 5.551115123125783e-17,
+    "shaper_roundtrip_max_abs": 1.1102230246251565e-16,
+    "shaper_derivative_min": 0.014746782023894645,
+    "domain_guards": true,
+    "lut_replay_exact": true,
+    "lut65_to_lut33_error_ratio": 0.2559981344113099
+  },
+  "failures": {
+    "lut33_max_abs_rgb_error": 0.03510936511420937,
+    "lut33_gate": 0.02,
+    "lut65_max_abs_rgb_error": 0.008987931969603125,
+    "lut65_gate": 0.006
+  },
+  "branch": {
+    "retain_analytic_l0": true,
+    "retain_roll_gauge": true,
+    "retain_log_shaper": true,
+    "claim_hdr_33_65_bake_parity": false,
+    "production_integration_allowed": false,
+    "post_result_gate_relaxation_allowed": false,
+    "post_result_interpolation_selection_allowed": false
+  },
+  "claim_ceiling": "analytic primitive validation plus failed fixed-resolution HDR shaped-LUT parity"
+}

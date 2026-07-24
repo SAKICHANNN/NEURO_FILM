@@ -2966,3 +2966,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** isolated research primitives only; no production renderer,
   stock claim, roll-information claim or frozen experiment change. Goal remains
   ACTIVE.
+
+## 2026-07-24 - Resolve U5.CT1C L0/gauge/shaper closure
+
+- **Passing primitives:** L0 roundtrip `1.78e-15`, exact replay, positive
+  determinant; gauge WB/exposure/recomposition `1.39e-17/1.67e-17/5.55e-17`;
+  shaper roundtrip `1.11e-16`, positive derivative and fail-closed domain.
+- **Failed fixed bake:** shaped 33/65 cubes have max RGB error
+  `.03511/.00899` above `.02/.006`; refinement ratio `.256` passes, so the
+  implementation converges but mandated resolutions are insufficient.
+- **Decision:** retain isolated analytic L0/gauge/shaper primitives; do not
+  claim HDR 33/65 bake parity, relax gates, select interpolation after the
+  result or integrate with production. Analytic L1/L2 remains authoritative.
+- **Verification:** two exact formal runs, report SHA-256
+  `9be0fdc5...a6b5`; all 794 CPU tests pass. No roll/stock/style/calibration
+  evidence opens. Goal remains ACTIVE.
