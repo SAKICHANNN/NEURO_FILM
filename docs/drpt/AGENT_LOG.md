@@ -2762,3 +2762,8 @@ integrity gate prevented contaminated execution as designed.
   result is used to alter gates, exposure, white balance or the witness.
 - **Verification:** five focused tests pass. Commit the implementation before
   running the frozen 729-colour evaluator twice. Goal remains ACTIVE.
+
+The first formal CLI invocation stopped before imports because direct script
+execution did not expose the repository root to `sys.path`. The runner alone
+was corrected to add its own repository root; no evaluator/config/data/output
+changed and no experiment result existed.

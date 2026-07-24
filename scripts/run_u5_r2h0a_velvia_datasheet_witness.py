@@ -6,10 +6,15 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.velvia_datasheet_witness import (
     canonical_sha256,
@@ -18,9 +23,6 @@ from src.eval.velvia_datasheet_witness import (
     render_curve_overlays,
     sha256_file,
 )
-
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def array_fingerprints(arrays: dict[str, np.ndarray]) -> dict[str, dict[str, Any]]:
