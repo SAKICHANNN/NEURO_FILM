@@ -67,11 +67,12 @@ toe/shoulder shapes. The audit uses 16,384 generated RGB samples across
 
 ## Engineering boundary
 
-Reusable pure math belongs in `src/color_engine/sensitometry.py`. Formal
-evaluation belongs in `src/eval`; the CLI stays under `scripts/`. Existing
-roll2film splines may be reused, but their schemas and behaviour cannot be
-changed. No renderer, profile schema, stock data, frozen experiment or default
-output may be modified.
+The unintegrated film-inspired representation belongs in
+`src/roll2film/sensitometry.py`, consistent with the existing project
+structure and spline dependency. Formal evaluation belongs in `src/eval`; the
+CLI stays under `scripts/`. Existing roll2film splines may be reused, but their
+schemas and behaviour cannot be changed. No renderer, profile schema, stock
+data, frozen experiment or default output may be modified.
 
 ## Decisions
 
@@ -88,3 +89,10 @@ output may be modified.
 Deterministic numerical validation of an uncalibrated monotone
 linear-exposure-to-layer-density sensitometry primitive.
 
+## Pre-result structure erratum
+
+The first draft named `src/color_engine` as the file location. Before
+implementation or result generation, structure review found that this would
+make reusable production math depend on an isolated research spline. Placement
+was corrected to `src/roll2film`, the existing home for unintegrated explicit
+film-inspired operators. API, mathematics, data and every gate are unchanged.

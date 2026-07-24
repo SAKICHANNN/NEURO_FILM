@@ -2996,3 +2996,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   midscale, layer diversity, replay, domain guards and two exact runs.
 - **Boundary:** pure math/evaluation only; no stock fit, film pixels, renderer,
   schema/default change or calibration claim. Goal remains ACTIVE.
+- **Pre-result structure erratum:** move the intended module home from
+  `src/color_engine` to existing research boundary `src/roll2film` so the
+  production colour engine does not depend on research spline code. No API,
+  math, source or gate changes.
