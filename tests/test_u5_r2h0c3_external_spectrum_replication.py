@@ -10,7 +10,7 @@ from src.eval.external_spectrum_replication import (
 )
 
 
-PATTERN = r"^splib07a_(.*)_(?:ASDFR|BECK|AVIRIS|NIC4)[A-Za-z]*_(?:AREF|RREF|TRAN|RTGC)$"
+PATTERN = r"^splib07a_(.*)_(?:ASD|BECK|AVIRIS|NIC4)[A-Za-z]*_(?:AREF|RREF|TRAN|RTGC)$"
 
 
 def test_sample_group_preserves_observed_sample_identity() -> None:
@@ -19,6 +19,14 @@ def test_sample_group_preserves_observed_sample_identity() -> None:
         "splib07a_Actinolite_HS116.3B_ASDFRa_AREF.txt"
     )
     assert sample_group_from_member(member, PATTERN) == "Actinolite_HS116.3B"
+
+
+def test_sample_group_accepts_other_official_asd_families() -> None:
+    member = (
+        "ASCIIdata_splib07a/ChapterA_ArtificialMaterials/"
+        "splib07a_Iron_Oxide_SA-480665_gamma_ASDHRa_AREF.txt"
+    )
+    assert sample_group_from_member(member, PATTERN) == "Iron_Oxide_SA-480665_gamma"
 
 
 def test_sample_group_fails_closed_on_unknown_name() -> None:
@@ -35,4 +43,3 @@ def test_group_bootstrap_is_exact_and_group_weighted() -> None:
     assert first == second
     assert first["win_rate"]["lower"] == 1.0
     assert first["median_relative_error_reduction"]["lower"] == 0.75
-

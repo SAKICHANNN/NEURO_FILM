@@ -11,7 +11,7 @@
   "threshold_delta_e76": 1.0,
   "tie_tolerance_delta_e76": 1e-12,
   "fallback": "smooth_bounded_reflectance_reconstruction",
-  "sample_group_regex": "^splib07a_(.*)_(?:ASDFR|BECK|AVIRIS|NIC4)[A-Za-z]*_(?:AREF|RREF|TRAN|RTGC)$",
+  "sample_group_regex": "^splib07a_(.*)_(?:ASD|BECK|AVIRIS|NIC4)[A-Za-z]*_(?:AREF|RREF|TRAN|RTGC)$",
   "gates": {
     "eligible_queries_min": 1700,
     "eligible_chapters_min": 7,

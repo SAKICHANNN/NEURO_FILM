@@ -85,3 +85,10 @@ visual safety or product value result.
 Cross-source mechanism replication of one frozen hard measured-spectrum prior
 for a synthetic datasheet-prior witness on bounded measured reflectances.
 
+## Pre-result implementation erratum
+
+The first execution failed before target rendering or output creation because
+the sample-group parser enumerated `ASDFR` but not the official `ASDHR` and
+`ASDNG` terminal instrument tokens. The parser was widened from `ASDFR*` to the
+already intended generic `ASD*` family. Population, threshold, features,
+policies and every support/performance gate are unchanged.

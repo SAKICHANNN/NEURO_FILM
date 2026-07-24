@@ -2929,3 +2929,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Branches:** pass opens only an RGB spectral-estimation value audit; fail
   closes broad empirical-prior claims without threshold retuning, same-source
   bank expansion, blending or neural rescue. Goal remains ACTIVE.
+- **Pre-result erratum:** first execution stopped before rendering/output
+  because the lineage regex named `ASDFR` but omitted official `ASDHR/ASDNG`
+  tokens. Widen to the intended `ASD*` family only; no data, gate, threshold,
+  feature or policy changes.
