@@ -370,3 +370,125 @@ def write_presentations(
         "blind_key": key_rows,
         "scoring_template": scoring,
     }
+
+
+def adjudicate_scores(
+    scoring: Mapping[str, Any],
+    blind_key: list[Mapping[str, Any]],
+    severe_review: Mapping[str, Any],
+    gates: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Decode already-frozen A/B scores and apply the preregistered gates."""
+
+    if scoring.get("status") != "frozen_before_blind_key_open":
+        raise HardRoutingVisualAuditError("blind scores were not frozen")
+    key = {
+        (str(row["round_id"]), str(row["sample_id"])): bool(
+            row["a_is_routed"]
+        )
+        for row in blind_key
+    }
+    if len(key) != len(blind_key):
+        raise HardRoutingVisualAuditError("duplicate blind key row")
+    round_results = []
+    intervention_ids: set[str] | None = None
+    blind_severe = 0
+    for round_row in scoring["rounds"]:
+        round_id = str(round_row["round_id"])
+        rows = list(round_row["rows"])
+        ids = {str(row["sample_id"]) for row in rows}
+        if len(rows) != 10 or len(ids) != 10:
+            raise HardRoutingVisualAuditError(
+                f"{round_id} must score all ten interventions"
+            )
+        if intervention_ids is None:
+            intervention_ids = ids
+        elif ids != intervention_ids:
+            raise HardRoutingVisualAuditError(
+                "blind rounds do not cover identical interventions"
+            )
+        routed_wins = global_wins = ties = 0
+        decoded_rows = []
+        for row in rows:
+            sample_id = str(row["sample_id"])
+            lookup = (round_id, sample_id)
+            if lookup not in key:
+                raise HardRoutingVisualAuditError(f"missing blind key: {lookup}")
+            if bool(row["a_severe"]) or bool(row["b_severe"]):
+                blind_severe += 1
+            choice = str(row["overall"])
+            if choice not in {"A", "B", "tie"}:
+                raise HardRoutingVisualAuditError(
+                    f"invalid overall score: {choice}"
+                )
+            if choice == "tie":
+                decoded = "tie"
+                ties += 1
+            else:
+                chose_routed = (choice == "A") == key[lookup]
+                decoded = "routed" if chose_routed else "global"
+                if chose_routed:
+                    routed_wins += 1
+                else:
+                    global_wins += 1
+            decoded_rows.append(
+                {
+                    "sample_id": sample_id,
+                    "blind_choice": choice,
+                    "decoded_choice": decoded,
+                }
+            )
+        score = routed_wins - global_wins
+        round_results.append(
+            {
+                "round_id": round_id,
+                "routed_wins": routed_wins,
+                "global_wins": global_wins,
+                "ties": ties,
+                "routed_win_plus_tie": routed_wins + ties,
+                "score": score,
+                "win_plus_tie_gate": routed_wins + ties
+                >= int(gates["minimum_routed_win_plus_tie_per_round"]),
+                "rows": decoded_rows,
+            }
+        )
+    expected_ids = {str(row["sample_id"]) for row in severe_review["records"]}
+    if len(expected_ids) != 41 or len(severe_review["records"]) != 41:
+        raise HardRoutingVisualAuditError(
+            "severe review must contain 41 unique rows"
+        )
+    routed_severe = sum(
+        bool(row["routed_severe"]) for row in severe_review["records"]
+    )
+    new_severe = sum(
+        bool(row["routed_severe"]) and not bool(row["global_severe"])
+        for row in severe_review["records"]
+    )
+    positive_rounds = sum(row["score"] > 0 for row in round_results)
+    gate_results = {
+        "routed_severe": routed_severe
+        <= int(gates["maximum_routed_severe_failures"]),
+        "new_intervention_severe": new_severe
+        <= int(gates["maximum_new_intervention_severe_failures"]),
+        "each_round_win_plus_tie": all(
+            row["win_plus_tie_gate"] for row in round_results
+        ),
+        "positive_rounds": positive_rounds
+        >= int(gates["minimum_positive_score_rounds"]),
+    }
+    passed = all(gate_results.values())
+    return {
+        "schema_version": 1,
+        "decision": (
+            "retain_exact_hard_1nn_as_a0_research_challenger"
+            if passed
+            else "close_exact_hard_1nn_visual_policy"
+        ),
+        "intervention_count": len(intervention_ids or set()),
+        "routed_severe_count": routed_severe,
+        "new_intervention_severe_count": new_severe,
+        "blind_presented_severe_marks": blind_severe,
+        "positive_score_rounds": positive_rounds,
+        "rounds": round_results,
+        "gates": gate_results,
+    }
