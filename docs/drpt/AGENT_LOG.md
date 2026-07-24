@@ -2714,3 +2714,20 @@ metric Oracle rather than reconstructing an unstated label.
   public inputs exist.
 - **Boundary:** no current real-film pixels, fitting, training, visual tuning,
   stock response, calibration, product or LSM claim. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U5.R2H0A Velvia datasheet witness
+
+- **Hypothesis:** an official-data-only direct-positive witness may retain a
+  nonlinear colour direction whose effect dominates RGB metamer ambiguity.
+- **Approximation disclosed:** Status-A channel density above D-min scales the
+  corresponding separated dye curve (`B/Y`, `G/M`, `R/C`). This is not
+  analytical dye amount or a calibrated emulsion model.
+- **Population:** fixed 729-colour sRGB cube and 33-step neutral ramp only;
+  no photographs, film pixels, anchors or prior outputs may be read.
+- **Integrity:** exact PDF/embedded-graph/CIE hashes, fixed graph axes,
+  pixel-coordinate annotations, source overlay and repeat hashes.
+- **Primary gate:** two D65-colour-matched null-space metamers must remain
+  materially smaller than the base witness effect. Failure means
+  canonicalizer-sensitive/unidentified, not a larger model or visual rescue.
+- **Handoff:** digitize curves and implement the exact synthetic evaluator.
+  Goal remains ACTIVE.

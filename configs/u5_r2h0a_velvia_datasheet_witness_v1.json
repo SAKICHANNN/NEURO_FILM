@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0a-velvia50-datasheet-spectral-witness-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "source": {
+    "pdf": "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
+    "pdf_sha256": "bebfb4305fd3edc5e3505a9a0f4a0a1078da1db7672aacb4aa1bac1de3d64cfd",
+    "pdf_page_one_based": 8,
+    "embedded_graphs": {
+      "dye_density": {
+        "xobject": "Im14",
+        "width": 1842,
+        "height": 1436,
+        "png_sha256": "2a1be7354789d465299a6892988936e09002c0fcae1600ced0442c7782f00a75"
+      },
+      "characteristic": {
+        "xobject": "Im15",
+        "width": 1896,
+        "height": 1702,
+        "png_sha256": "4dfcadfbcd83fa62de9173ffbf00f4406e7b615224932d225d564a2072d8030a"
+      },
+      "sensitivity": {
+        "xobject": "Im16",
+        "width": 1843,
+        "height": 1684,
+        "png_sha256": "e7fa67d706008e0662ebc9250970ef282547baeeb1cfda2e9360aa0c899a9afb"
+      }
+    },
+    "cie": {
+      "xyz": {
+        "path": "data/calibration/cie/CIE_xyz_1931_2deg.csv",
+        "sha256": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1"
+      },
+      "d65": {
+        "path": "data/calibration/cie/CIE_std_illum_D65.csv",
+        "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+      },
+      "d50": {
+        "path": "data/calibration/cie/CIE_std_illum_D50.csv",
+        "sha256": "b23049c6f7b266c1c1fbe147aa271e8930ca02d6e569c5ae1804c036faea4193"
+      }
+    }
+  },
+  "graph_axes": {
+    "dye_density": {
+      "x_wavelength_nm_pixels": [[400.0, 282.0], [500.0, 746.0], [600.0, 1214.0], [700.0, 1681.0]],
+      "y_value_pixels": [[0.0, 1184.0], [0.5, 721.0], [1.0, 252.0]],
+      "known_vertical_grid_pixels": [282, 746, 1214, 1681],
+      "known_horizontal_grid_pixels": [252, 721, 1184]
+    },
+    "characteristic": {
+      "x_log_h_pixels": [[-3.0, 200.0], [-2.5, 359.0], [-2.0, 521.0], [-1.5, 680.0], [-1.0, 843.0], [-0.5, 1004.0], [0.0, 1167.0], [0.5, 1328.0], [1.0, 1488.0]],
+      "y_density_pixels": [[0.0, 1325.0], [0.5, 1164.0], [1.0, 1001.0], [1.5, 839.0], [2.0, 677.0], [2.5, 515.0], [3.0, 354.0], [3.5, 194.0], [4.0, 34.0]],
+      "known_vertical_grid_pixels": [200, 359, 521, 680, 843, 1004, 1167, 1328, 1488],
+      "known_horizontal_grid_pixels": [34, 194, 354, 515, 677, 839, 1001, 1164, 1325]
+    },
+    "sensitivity": {
+      "x_wavelength_nm_pixels": [[400.0, 255.0], [500.0, 687.0], [600.0, 1120.0], [700.0, 1548.0]],
+      "y_log_sensitivity_pixels": [[-1.0, 1327.0], [0.0, 899.0], [1.0, 470.0], [2.0, 43.0]],
+      "known_vertical_grid_pixels": [255, 687, 1120, 1548],
+      "known_horizontal_grid_pixels": [43, 470, 899, 1327]
+    }
+  },
+  "witness": {
+    "wavelength_min_nm": 380,
+    "wavelength_max_nm": 720,
+    "wavelength_step_nm": 5,
+    "neutral_reflectance": 0.18,
+    "neutral_log_h": -0.65,
+    "layer_to_dye": {"blue": "yellow", "green": "magenta", "red": "cyan"},
+    "viewing_illuminants": ["D65", "D50"],
+    "d50_adaptation": "Bradford_to_D65",
+    "gamut_mapping": "none_report_raw_excursions"
+  },
+  "synthetic_population": {
+    "encoded_srgb_levels_per_channel": 9,
+    "encoded_srgb_samples": 729,
+    "neutral_ramp_samples": 33,
+    "exclude_visual_or_real_film_inputs": true
+  },
+  "gates": {
+    "axis_max_residual_px": 2.0,
+    "annotation_max_ink_distance_px": 2.0,
+    "minimum_points_per_characteristic_curve": 9,
+    "minimum_points_per_sensitivity_curve": 8,
+    "minimum_points_per_dye_curve": 12,
+    "spectrum_bound_tolerance": 1e-09,
+    "base_reconstruction_delta_e76_median_max": 0.25,
+    "base_reconstruction_delta_e76_p95_max": 0.75,
+    "base_reconstruction_delta_e76_max": 2.0,
+    "metamer_reconstruction_delta_e76_p95_max": 0.75,
+    "metamer_reconstruction_delta_e76_max": 2.0,
+    "metamer_spectral_rms_median_min": 0.01,
+    "neutral_y_min_step": -1e-06,
+    "neutral_chroma_max": 4.0,
+    "metamer_output_delta_e76_median_max": 2.0,
+    "metamer_output_delta_e76_p95_max": 5.0,
+    "metamer_to_effect_ratio_median_max": 0.25,
+    "metamer_to_effect_ratio_p95_max": 0.5,
+    "repeat_runs": 2
+  },
+  "allowed_inputs": ["official Velvia 50 bulletin", "official CIE CMFs and illuminants", "synthetic sRGB grid"],
+  "forbidden_inputs": ["real-film pixels", "project photographs", "owner anchors", "style outputs", "external film profiles", "spektrafilm code or traces"],
+  "claim_ceiling": "deterministic datasheet-constrained spectral Look Approximation feasibility and metamer sensitivity on a synthetic sRGB grid only"
+}
