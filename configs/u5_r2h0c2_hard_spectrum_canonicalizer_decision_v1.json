@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "node": "U5.R2H0C2",
+  "date": "2026-07-24",
+  "decision": "hard_empirical_canonicalizer_candidate",
+  "selected_policy": {
+    "method": "hard_top1_measured_spectrum_from_different_scene",
+    "distance": "D65_CIE_Lab_Delta_E76",
+    "threshold": 1.0,
+    "fallback": "smooth_bounded_reflectance_reconstruction",
+    "coverage": 0.3612838178457402,
+    "selected_queries": 2150
+  },
+  "selected_metrics": {
+    "win_rate": 0.7660465116279069,
+    "win_rate_scene_bootstrap_95_lcb": 0.6713934181745874,
+    "median_relative_error_reduction": 0.6205151630480134,
+    "median_reduction_scene_bootstrap_95_lcb": 0.46518439297824626,
+    "smooth_selected_error_median": 0.8942203887354154,
+    "smooth_selected_error_p95": 3.9386695674045367,
+    "hard_selected_error_median": 0.3393430784184013,
+    "hard_selected_error_p95": 2.9750601994604695,
+    "full_policy_error_median": 2.43770645970737,
+    "full_policy_error_p95": 14.882614298097625
+  },
+  "rejected_thresholds": {
+    "2.0": "median reduction scene-bootstrap LCB below zero",
+    "3.0": "point median reduction and scene-bootstrap LCB fail"
+  },
+  "diagnostics": {
+    "known_target_effect_median": 13.758943379036339,
+    "known_target_effect_p95": 25.93238018453529,
+    "smooth_full_error_median": 2.5813354880282104,
+    "smooth_full_error_p95": 14.903145096405988,
+    "raw_hard_full_error_median": 2.4771028437296323,
+    "raw_hard_full_error_p95": 10.61322313642004,
+    "raw_hard_full_error_max": 50.564246372595015,
+    "raw_linear_srgb_out_of_gamut_fraction": 0.052390821337216904
+  },
+  "reproducibility": {
+    "report_sha256": "f074c0c3551b4798f25697b6a912eb195356aceb606b86f00a77d12573cdca45",
+    "config_sha256": "9c300be85cb85918bbf66c38ec1031cacb24fcc52ccfb7c96b7e69a6a404c86f",
+    "software_commit": "e51f34f8200ba92fc36ec34c62b984404f5804f6",
+    "exact_repeats": 2,
+    "full_tests_passed": 786
+  },
+  "opened_leaf": "U5.R2H0C3 external measured-spectrum replication source and data audit",
+  "still_forbidden": [
+    "film-pixel fitting",
+    "threshold retuning on external data",
+    "neural rescue",
+    "project photograph rendering",
+    "visual or production promotion",
+    "identified or calibrated Velvia claim"
+  ],
+  "claim_ceiling": "one-source leave-one-scene-out synthetic-witness prediction by hard measured-spectrum retrieval"
+}

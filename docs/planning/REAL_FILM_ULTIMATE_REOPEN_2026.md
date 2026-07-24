@@ -313,6 +313,14 @@ This supports testing one simple empirical canonicalizer, not physical spectral
 recovery, stock truth, film fitting or visual/product promotion. External
 measured-spectrum replication remains mandatory for a broader claim.
 
+The fixed H0C2 child also passes narrowly: different-scene hard Top-1
+measured-spectrum retrieval at D65 Delta E76 <=1 covers 36.13% of CAVE queries,
+wins 76.60%, and lowers selected synthetic-witness error to .339/2.975
+median/p95 from smooth .894/3.939. Thresholds 2 and 3 fail group-stable median
+reduction, so smooth OOD fallback remains mandatory. This is an empirical
+canonicalizer mechanism, not film evidence; an independent spectrum source
+must replicate the frozen T=1 policy before any broader branch.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

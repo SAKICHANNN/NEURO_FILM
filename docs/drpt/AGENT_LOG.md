@@ -2876,3 +2876,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   CAVE reflectance. No film pixels, neural training, visual selection,
   stock/calibration, production or LSM claim. External spectrum replication is
   required after any pass. Goal remains ACTIVE.
+
+## 2026-07-24 - Complete U5.R2H0C2 hard canonicalizer comparison
+
+- **Leakage/integrity:** 5,951 queries, 31 scene groups, zero same-scene
+  neighbours; two runs exact and all query/retrieval scene-cell lineage saved.
+- **Target strength:** known witness effect is 13.76 median / 25.93 p95 versus
+  identity, so the task is not a near-identity shortcut.
+- **Selected result:** T=1 hard Top-1 covers 36.13%, wins 76.60% (scene LCB
+  67.14%) and gives .339/2.975 median/p95 error versus smooth .894/3.939;
+  median reduction is 62.05% with 46.52% scene-bootstrap LCB.
+- **Rejected scope:** T=2 fails reduction-bootstrap stability; T=3 fails point
+  and bootstrap reduction. Raw hard has a 50.56 worst case. Smooth fallback
+  and the hard OOD boundary remain mandatory.
+- **Decision:** retain only hard T=1 as an internal synthetic-witness empirical
+  canonicalizer candidate. Open H0C3 external measured-spectrum replication;
+  no threshold retuning, neural rescue, film pixels, visual/product, stock or
+  calibration claim.
+- **Verification:** 11 focused and all 786 CPU tests pass. Report SHA-256
+  `f074c0c3...ca45`. Goal remains ACTIVE.

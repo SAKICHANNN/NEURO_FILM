@@ -174,6 +174,15 @@ compare only smooth reconstruction versus simple cross-scene hard measured-
 spectrum retrieval against known CAVE witness targets; film pixels, neural
 training, photographs and product integration stay forbidden.
 
+U5.R2H0C2 retains hard cross-scene Top-1 measured-spectrum retrieval at D65
+Delta E76 <=1 with smooth fallback. It covers 36.13% of CAVE representatives,
+wins 76.60% of selected queries and reduces selected error from smooth
+0.894/3.939 to hard 0.339/2.975 median/p95; scene-bootstrap gates pass. Wider
+T=2/3 policies fail stable median-reduction gates despite better aggregate
+tails, so the hard OOD boundary is substantive. H0C3 must freeze this policy
+and replicate on an independent measured-spectrum source before any visual,
+film, neural or product branch.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,
