@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2i1-neutral-axis-gauge-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "base_composition_config": "configs/u2_2b_sensitometry_print_composition_v1.json",
+  "sensitometry_config": "configs/u2_2a_sensitometry_primitive_v1.json",
+  "print_config": "configs/u5_r2e0_density_domain_operator_v1.json",
+  "gauge_knots": 1025,
+  "neutral_audit_samples": 16385,
+  "random_probes": 8192,
+  "jacobian_probes": 4096,
+  "finite_difference_step": 0.00001,
+  "gates": {
+    "ungauged_neutral_spread_min": 0.1,
+    "gauged_neutral_max_abs": 0.0002,
+    "gauged_neutral_spread_max": 0.00001,
+    "endpoint_max_abs": 1e-12,
+    "output_tolerance": 1e-12,
+    "minimum_jacobian_determinant": 0.01,
+    "identity_rgb_rmse_min": 0.08,
+    "best_affine_residual_rgb_rmse_min": 0.04,
+    "serialization_replay_max_abs": 0.0,
+    "exact_repeats": 2
+  },
+  "claim_ceiling": "data-independent numerical neutral-axis gauge for one clean-room sensitometry-print Look Approximation"
+}
