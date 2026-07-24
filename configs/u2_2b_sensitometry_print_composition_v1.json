@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u2.2b-sensitometry-print-composition-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "parent_config": "configs/u2_2a_sensitometry_primitive_v1.json",
+  "print_source_config": "configs/u5_r2e0_density_domain_operator_v1.json",
+  "print_source_witness": "cyan_shadow_warm_highlight_like",
+  "allowed_print_fields": [
+    "dye_absorption_matrix",
+    "print_matrix",
+    "paper_midpoints",
+    "paper_slopes",
+    "paper_maximum_densities"
+  ],
+  "forbidden_print_fields": [
+    "capture_matrix",
+    "negative_midpoints",
+    "negative_slopes",
+    "negative_maximum_densities"
+  ],
+  "grid_size": 17,
+  "random_probes": 4096,
+  "finite_difference_step": 0.0001,
+  "gates": {
+    "endpoint_max_abs": 1e-12,
+    "range_tolerance": 1e-12,
+    "minimum_directional_derivative": 0.0,
+    "minimum_jacobian_determinant_exclusive": 0.0,
+    "identity_rgb_rmse_min": 0.05,
+    "best_affine_residual_rgb_rmse_min": 0.02,
+    "exact_repeats": 2
+  },
+  "claim_ceiling": "uncalibrated clean-room numerical composition of exposure-to-density and density-to-print primitives"
+}

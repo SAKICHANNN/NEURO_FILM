@@ -3018,3 +3018,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   density display RGB, fit a stock or integrate the renderer.
 - **Verification:** two exact formal runs, report SHA-256
   `d15021f6...f08e9`; all 798 CPU tests pass. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U2.2B sensitometry-to-print composition
+
+- **Question:** can U2.2A compose with the existing clean-room dye/print/paper
+  interpretation without duplicating capture or negative characteristic
+  stages?
+- **Frozen design:** U2.2A runs exactly once; reuse only five U5.R2E0 print
+  fields; explicit density reference endpoints; no clipping or hidden strength.
+- **Gates:** endpoint/range, partition/replay/source preservation, positive
+  finite-difference Jacobian/directions, nonidentity/non-affine floors, guards
+  and two exact runs.
+- **Boundary:** descriptive clean-room witness only; no stock, calibration,
+  renderer/profile integration, visual safety or preference claim. Goal remains
+  ACTIVE.
