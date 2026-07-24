@@ -2916,3 +2916,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   release.
 - **Handoff:** freeze H0C3 performance and reproducibility gates, then
   implement the cross-source evaluator. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U5.R2H0C3 external replication
+
+- **Question:** does the frozen H0C2 CAVE-bank hard Top-1 policy at T=1
+  replicate on independent measured USGS AREF queries?
+- **Leakage:** CAVE-only bank; USGS query/target only. Sample and chapter names
+  are lineage/nuisance controls and cannot be features.
+- **Gates:** source-feasibility support, sample-record-group bootstrap,
+  chapter-direction consistency, H0C2 win/reduction/absolute-error limits,
+  fallback p95 non-inferiority and two exact runs.
+- **Branches:** pass opens only an RGB spectral-estimation value audit; fail
+  closes broad empirical-prior claims without threshold retuning, same-source
+  bank expansion, blending or neural rescue. Goal remains ACTIVE.
