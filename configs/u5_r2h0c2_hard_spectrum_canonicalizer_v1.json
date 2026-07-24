@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2h0c2-hard-spectrum-canonicalizer-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "parent_config": "configs/u5_r2h0c1_cave_conditional_variability_v1.json",
+  "population_contract": "reuse H0C1 exact audited source, overlap witness, scene cells and validity mask",
+  "leakage_group": "scene",
+  "features": ["D65_CIE_Lab"],
+  "baselines": ["identity", "smooth_bounded_reflectance_reconstruction"],
+  "candidate": "hard_top1_measured_spectrum_from_different_scene",
+  "fallback": "smooth_bounded_reflectance_reconstruction",
+  "thresholds_delta_e76": [0.5, 1.0, 2.0, 3.0],
+  "gates": {
+    "selected_queries_min": 256,
+    "coverage_min": 0.1,
+    "selected_scenes_min": 16,
+    "max_selected_scene_share": 0.15,
+    "selected_win_rate_min": 0.6,
+    "selected_win_rate_bootstrap_95_lcb_min": 0.5,
+    "selected_median_relative_error_reduction_min": 0.2,
+    "selected_median_relative_error_reduction_bootstrap_95_lcb_min": 0.0,
+    "selected_hard_error_delta_e76_median_max": 5.0,
+    "selected_hard_error_delta_e76_p95_max": 12.0,
+    "fallback_policy_p95_vs_smooth_max_increase": 0.0,
+    "scene_bootstrap_repeats": 1000,
+    "exact_repeats": 2
+  },
+  "selection_rule": "highest coverage among all passing thresholds; ties choose lower threshold",
+  "allowed_inputs": [
+    "H0C1 official-CRC-verified CAVE reflectances",
+    "official CIE CMFs and D65",
+    "frozen H0A graph curves"
+  ],
+  "forbidden_inputs": [
+    "same-scene retrieval",
+    "film pixels",
+    "RGB previews",
+    "scene names as features",
+    "content embeddings",
+    "witness output as a retrieval feature",
+    "soft blending or Top-K averaging",
+    "neural training",
+    "project photographs or owner preferences"
+  ],
+  "claim_ceiling": "one-source leave-one-scene-out prediction of a synthetic datasheet-prior witness target via a hard empirical canonicalizer"
+}

@@ -2859,3 +2859,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   visual selection, stock/calibration or production claim.
 - **Verification:** eight focused tests and all 783 CPU tests pass. Formal
   report SHA-256 is `e59269d4...280c0`. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U5.R2H0C2 hard canonicalizer comparison
+
+- **Question:** can a single different-scene measured spectrum selected by
+  D65 Lab predict known CAVE witness output better than smooth bounded spectral
+  reconstruction?
+- **Leakage:** strict leave-one-scene-out bank; no RGB preview, content/scene
+  feature, same-scene sample or witness-output feature.
+- **Policies:** identity, smooth baseline, raw hard Top-1 diagnostic and hard
+  Top-1 with smooth fallback at fixed Delta-E thresholds .5/1/2/3.
+- **Gates:** coverage/group support, point and scene-bootstrap win/reduction,
+  absolute median/p95 error and full-policy p95 non-inferiority. Highest
+  coverage passing threshold wins by a frozen rule.
+- **Boundary:** target remains a synthetic datasheet-prior witness of measured
+  CAVE reflectance. No film pixels, neural training, visual selection,
+  stock/calibration, production or LSM claim. External spectrum replication is
+  required after any pass. Goal remains ACTIVE.
