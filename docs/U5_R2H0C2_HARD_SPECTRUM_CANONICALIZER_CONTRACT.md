@@ -63,6 +63,9 @@ Report nearest-distance and known-target effect distributions. Strong style is
 not a pass by itself; the question is whether the missing spectrum is predicted
 more accurately without broadening the tail.
 
+Win/loss uses error difference beyond `1e-12` Delta E76; absolute differences
+at or below that tolerance are ties.
+
 ## Eligibility gates and fixed selection rule
 
 A threshold is eligible only if all hold:
