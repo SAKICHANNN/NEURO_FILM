@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2h2_hard_routing_visual_audit_v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2H2",
+  "decision": "close_exact_hard_1nn_visual_policy",
+  "software_commit": "3de4ef38bccb9df854cd120a5dd4da95070900d4",
+  "config_sha256": "fa7084b3f245da55f6fe9e0946c8a04cb44c752d0fee0cd9c0d67b9c5f3121d5",
+  "replay_manifest_sha256": "c35c335db244e59c405529762552f5485593a715672f96e815a9cad4f6e405c9",
+  "blind_scoring_sha256": "8be8ee65b3fa21586194995ade9a4deaccac98b11574c9febfca3649bb418e0a",
+  "blind_key_sha256": "0aadd3343ae7ace0a0b3158d7e72f42accf3144c9c86ce5619afb7335608a00f",
+  "severe_review_sha256": "d10ad048d7c06ddd53defc921f729693182c943f2be6adae5e4657017fb309fb",
+  "adjudication_sha256": "7b8bad1c16cb58a018fe8159740545c8afa6db811721d5b854ed481ca7ca5947",
+  "sample_count": 41,
+  "intervention_count": 10,
+  "routed_severe_count": 0,
+  "new_intervention_severe_count": 0,
+  "rounds": [
+    {"round_id": "full_fit", "routed_wins": 6, "global_wins": 4, "ties": 0, "score": 2, "gate": false},
+    {"round_id": "detail_crop", "routed_wins": 6, "global_wins": 4, "ties": 0, "score": 2, "gate": false},
+    {"round_id": "full_fit_reversed", "routed_wins": 6, "global_wins": 4, "ties": 0, "score": 2, "gate": false}
+  ],
+  "allowed_next": "U5.R2H0 film-specific spectral and sensitometric prior research; any future router requires a separately frozen non-reuse or held-out-data design",
+  "forbidden": [
+    "relax the 7/10 gate",
+    "tune H1 features, labels, k, margin or bank on these visual outcomes",
+    "increase router capacity on the exposed 41 rows",
+    "claim preference, generalization, stock, mode, authenticity, calibration or production readiness"
+  ],
+  "goal_status": "ACTIVE"
+}

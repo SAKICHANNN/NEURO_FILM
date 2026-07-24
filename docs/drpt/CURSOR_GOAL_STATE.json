@@ -5,24 +5,23 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "3b88bb36a00366f8f1a0473ca6577aecb8790c3b",
+  "head": "3de4ef38bccb9df854cd120a5dd4da95070900d4",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 87,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2H2",
-  "current_leaf": "Build exact hard-1NN replay manifest and blind visual panels",
-  "phase": "VERIFY",
-  "last_verified_commit": "3b88bb36a00366f8f1a0473ca6577aecb8790c3b",
+  "iteration": 88,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2H0",
+  "current_leaf": "Audit film-specific spectral and sensitometric prior algorithms and obtainable data",
+  "phase": "RECON",
+  "last_verified_commit": "3de4ef38bccb9df854cd120a5dd4da95070900d4",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 774,
+    "passed": 775,
     "failed": 0,
-    "timestamp": "2026-07-23T13:45:00Z"
+    "timestamp": "2026-07-24T00:10:00Z"
   },
   "ready_leaves": [
-    "implement_u5_r2h2_visual_audit_tooling",
-    "research_u5_r2h0_primary_sources_when_network_recovers"
+    "research_u5_r2h0_primary_sources_and_obtainable_data"
   ],
-  "next_action": "Hash-verify H1 and both safe render banks, emit the exact 41-row replay manifest and three blinded panels for all ten interventions, then inspect every routed full-resolution output under the frozen rubric.",
+  "next_action": "Search primary papers, official manufacturer data and existing local assets for film-specific spectral/sensitometric explicit algorithms; build a claim-evidence-input matrix before freezing the smallest feasible experiment.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
@@ -179,9 +178,13 @@
     "docs/CANONCGT_EXTERNAL_ML_SOURCE_AUDIT.md",
     "configs/u5_r2f0_canoncgt_external_source_decision_v1.json",
     "docs/planning/U5_R2F1_CANONCGT_REFERENCE_CONDITION_CONTRACT.md",
-    "configs/u5_r2f1_canoncgt_reference_condition_v1.json"
+    "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "docs/planning/U5_R2H2_HARD_ROUTING_VISUAL_AUDIT_CONTRACT.md",
+    "configs/u5_r2h2_hard_routing_visual_audit_v1.json",
+    "docs/U5_R2H2_HARD_ROUTING_VISUAL_AUDIT_RESULTS.md",
+    "configs/u5_r2h2_hard_routing_visual_audit_decision_v1.json"
   ],
   "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-23T13:45:00Z",
-  "selection_rationale": "H2 is frozen over the exact H1 choices. It audits all 41 routed outputs and all ten policy interventions without changing the router or operators."
+  "last_update_utc": "2026-07-24T00:10:00Z",
+  "selection_rationale": "H2 closes the exact router under its frozen visual gate while preserving both safe global looks. H0 is the nearest legal algorithm leaf and can progress through primary-source and obtainable-data research without reopening prohibited stock fitting."
 }

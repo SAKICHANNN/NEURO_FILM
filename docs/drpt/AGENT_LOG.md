@@ -2674,3 +2674,21 @@ metric Oracle rather than reconstructing an unstated label.
 - **Handoff:** commit tooling before opening any blind key; score the six blind
   sheets first, then decode and audit every routed severe sheet under the
   frozen gate. Goal remains ACTIVE.
+
+## 2026-07-24 - Close exact U5.R2H2 hard-routing policy
+
+- **Blind integrity:** A/B scores were frozen at SHA-256 `8be8ee65...e0a`
+  before key access; all ten interventions entered all three rounds.
+- **Safety:** zero confirmed routed severe failures across 41 full/crop
+  reviews and zero newly introduced severe failures across ten interventions.
+- **Visual result:** full, detail and independently reordered/re-sided rounds
+  each decode to the same six routed wins and four global-density wins. The
+  score is positive in 3/3 rounds, but 6/10 fails the frozen 7/10 gate.
+- **Decision:** close the exact H1 policy without changing its descriptor,
+  metric labels, margin, k, operator bank, fallback or threshold. Both global
+  operators remain research looks; no router promotion opens.
+- **Verification:** deterministic adjudication report SHA-256
+  `7b8bad1c...947`; three focused tests and all 775 repository tests pass.
+- **Handoff:** U5.R2H0 becomes active: primary-source research into
+  film-specific spectral/sensitometric explicit algorithms and inputs that
+  can actually be obtained. Goal remains ACTIVE.
