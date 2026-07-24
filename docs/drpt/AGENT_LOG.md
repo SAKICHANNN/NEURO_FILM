@@ -2839,3 +2839,23 @@ computed, decode inspection found 961 16-bit grayscale PNGs and 31 8-bit RGBA
 PNGs, all in `watercolors_ms`. Because the official database describes 16-bit
 grayscale bands, that one scene is excluded rather than reinterpreted. The
 remaining 31 scenes, sampling, pair policy and gates are unchanged.
+
+## 2026-07-24 - Complete U5.R2H0C1 conditional-variability pilot
+
+- **Integrity:** 992/992 spectral PNGs match official Columbia path, size and
+  CRC32. The pre-result `watercolors_ms` exclusion leaves 31 scenes/961 bands.
+- **Support:** 5,951 fixed cell representatives yield 263 unique cross-scene
+  input-DE<=1 pairs across 31 scenes and 157 scene pairs; every preregistered
+  support/concentration gate passes.
+- **Primary result:** output Delta E76 is 1.3757 median / 5.4742 p95 versus
+  H0A adversarial 82.70 / 144.35. Ratios are 1.663% / 3.792%; scene-bootstrap
+  UCBs 1.9088 / 9.7605 pass. Two complete runs are exact.
+- **Tail:** non-binding RMS>=.03 pairs reach 2.41 / 11.49 and the overall worst
+  case is 16.70. Raw output also has 4.41% gamut excursions. Neither is hidden
+  or used to change the frozen pass.
+- **Decision:** `bounded_empirical_prior_candidate`. H0A non-identifiability
+  remains. Open H0C2 only for smooth-vs-hard measured-spectrum canonicalizer
+  comparison on known CAVE witness targets; no film pixels, neural training,
+  visual selection, stock/calibration or production claim.
+- **Verification:** eight focused tests and all 783 CPU tests pass. Formal
+  report SHA-256 is `e59269d4...280c0`. Goal remains ACTIVE.

@@ -305,6 +305,14 @@ visual frontier, fitting, calibration or teacher opens. A measured-natural-
 reflectance pilot may study a narrower empirical prior, but can never erase
 the theoretical ambiguity or become stock truth.
 
+That measured-reflectance child, `U5.R2H0C1`, now supplies a positive but
+strictly subordinate result. Across 263 cross-scene CAVE cell pairs at D65
+input Delta E76 <=1, the overlap-only witness differs 1.38 median / 5.47 p95,
+only 1.66% / 3.79% of H0A's adversarial spread; scene-bootstrap gates pass.
+This supports testing one simple empirical canonicalizer, not physical spectral
+recovery, stock truth, film fitting or visual/product promotion. External
+measured-spectrum replication remains mandatory for a broader claim.
+
 The historical sibling remains unchanged: preserve the 258 already downloaded
 FSA/OWI derivatives and defer further acquisition while named-stock P0
 advances. Its output remains `historical-film/unknown-stock` and never

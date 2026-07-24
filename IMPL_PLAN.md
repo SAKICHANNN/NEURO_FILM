@@ -165,6 +165,15 @@ gates before observing any witness-output result. It cannot erase H0A metamer
 non-identifiability, fit film pixels, train RGB-to-spectrum, or create a
 calibrated/stock claim.
 
+U5.R2H0C1 now passes as a bounded empirical-prior candidate. All 992 spectral
+PNGs match the official ZIP path/size/CRC; after excluding one pre-result RGBA
+format anomaly, 263 cross-scene input-DE<=1 pairs give overlap-witness output
+DE 1.38 median / 5.47 p95 with scene-bootstrap UCBs 1.91 / 9.76. This narrows
+the empirical population but does not identify the missing spectrum. H0C2 may
+compare only smooth reconstruction versus simple cross-scene hard measured-
+spectrum retrieval against known CAVE witness targets; film pixels, neural
+training, photographs and product integration stay forbidden.
+
 The stock-data leaf `SF2.0B0` is now closed. Its keyless STS098 snapshot finds
 168/329/10 rows for `VELVI`/`5775`/`5776`, but Velvia spans only two rolls
 against the frozen four-roll primary minimum. No B1, photo-page/image access,

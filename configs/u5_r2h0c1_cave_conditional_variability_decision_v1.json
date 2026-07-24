@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "node": "U5.R2H0C1",
+  "date": "2026-07-24",
+  "decision": "bounded_empirical_prior_candidate",
+  "integrity": {
+    "official_entries": 1120,
+    "official_spectral_pngs": 992,
+    "path_size_crc_matches": 992,
+    "mismatches": 0,
+    "retained_scenes": 31,
+    "retained_bands": 961,
+    "excluded_scene": "watercolors_ms",
+    "exclusion_reason": "31 official bands are 8-bit RGBA rather than declared 16-bit grayscale"
+  },
+  "support": {
+    "representatives": 5951,
+    "pairs": 263,
+    "scenes": 31,
+    "scene_pairs": 157,
+    "max_scene_incidence_share": 0.09125475285171103,
+    "max_scene_pair_share": 0.030418250950570342
+  },
+  "metrics": {
+    "input_delta_e76_median": 0.6697200242705738,
+    "input_delta_e76_p95": 0.9566998403601201,
+    "spectral_rms_median": 0.013103665654890382,
+    "spectral_rms_p95": 0.04179037639436877,
+    "output_delta_e76_median": 1.3756837222478986,
+    "output_delta_e76_p95": 5.474241097598242,
+    "output_delta_e76_max": 16.702246682879654,
+    "median_h0a_adversarial_ratio": 0.016634978813926907,
+    "p95_h0a_adversarial_ratio": 0.03792376287997934,
+    "median_scene_bootstrap_95_ucb": 1.9087992110526995,
+    "p95_scene_bootstrap_95_ucb": 9.760548692566173,
+    "raw_linear_srgb_out_of_gamut_fraction": 0.04408222707668179
+  },
+  "reproducibility": {
+    "report_sha256": "e59269d40b2d2cb903f47c6b2e190a4755cb7173886d1b2ee6f2ed41169280c0",
+    "config_sha256": "b878aa9e2de93b5f633df084078a12d0ea204d78c6c8ecdc2b67cb03cccfb9d1",
+    "software_commit": "4e3255983e349a9f80d0c003a6c9e10b96876449",
+    "transfer_snapshot_commit": "c7a6862f271b3a958c69a5c020f57064a04cc074",
+    "exact_repeats": 2,
+    "full_tests_passed": 783
+  },
+  "opened_leaf": "U5.R2H0C2 simple group-held-out hard measured-spectrum canonicalizer comparison",
+  "still_forbidden": [
+    "film-pixel fitting",
+    "neural RGB-to-spectrum training",
+    "same-scene retrieval",
+    "visual candidate selection",
+    "production integration",
+    "identified or calibrated Velvia claim"
+  ],
+  "claim_ceiling": "one-source empirical conditional-variability pass under an overlap-only datasheet-prior witness"
+}
