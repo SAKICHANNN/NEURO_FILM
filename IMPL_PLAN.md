@@ -35,6 +35,12 @@ roundtrip error and positive Jacobian. It remains an uncalibrated intermediate;
 U2.2B must audit explicit density-to-display/print composition before U2.2 can
 advance.
 
+U2.2B completes that numerical representation without duplicating its negative
+stage. The clean-room density-to-print composition is exact at endpoints and
+under partition/replay, bounded on `[0,1]`, locally orientation-preserving and
+materially non-affine. U2.3 may now study an explicit smooth residual, while
+profile/renderer integration and stock claims remain closed.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

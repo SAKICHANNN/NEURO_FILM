@@ -3036,3 +3036,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   legacy Jacobian helper injects `strength=` and the new composition has no
   strength API. Use the same central-difference formula locally; no step,
   probe, operator or gate change.
+
+## 2026-07-24 - Complete U2.2B sensitometry-to-print composition
+
+- **Architecture:** U2.2A runs once; only dye absorption, print matrix and
+  paper curve fields are reused; capture/negative parameters are absent.
+- **Result:** endpoint error zero, output exactly `[0,1]`, partition/replay and
+  source preservation exact; min direction `.00379`, min Jacobian `.04701`,
+  identity RMSE `.15958`, affine residual `.10146`; all gates pass.
+- **Decision:** U2.2 numerical representation closes and U2.3 residual audit
+  may open. No stock, calibration, visual safety, renderer/profile integration
+  or training permission opens.
+- **Verification:** two exact runs, report SHA-256 `97a7a2f3...8886`; all 800
+  CPU tests pass. Goal remains ACTIVE.

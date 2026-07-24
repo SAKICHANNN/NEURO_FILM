@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u2.2b-sensitometry-print-composition-v1",
+  "date": "2026-07-24",
+  "decision": "sensitometry_print_composition_pass",
+  "report_sha256": "97a7a2f3d92e914b88cbc12449dfcd6d0e1b1ab3fd7794bf172723287bee8886",
+  "metrics": {
+    "endpoint_max_abs": 0.0,
+    "output_min": 0.0,
+    "output_max": 1.0,
+    "minimum_directional_derivative": 0.0037919147527487596,
+    "minimum_jacobian_determinant": 0.04700984862718615,
+    "identity_rgb_rmse": 0.15957915468736586,
+    "best_affine_residual_rgb_rmse": 0.10146371719276537,
+    "partition_replay_source_exact": true,
+    "forbidden_print_fields_used": []
+  },
+  "branch": {
+    "u2_2_numerical_representation_complete": true,
+    "u2_3_residual_audit_open": true,
+    "renderer_integration_allowed": false,
+    "stock_fit_allowed": false,
+    "calibrated_claim_allowed": false
+  },
+  "claim_ceiling": "uncalibrated clean-room exposure-to-density-to-print numerical composition"
+}
