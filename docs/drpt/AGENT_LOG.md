@@ -3101,3 +3101,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stops.
 - **Verification:** five focused frontier tests, report/manifests/reviews
   hashed, `git diff --check`, and all 808 CPU tests pass. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze and resolve U5.R2I1 neutral-axis gauge
+
+- **Hypothesis:** remove only the uniform output-axis cast by inverting each
+  channel's response to the base operator's own neutral ramp; use 1,025 fixed
+  rational-quadratic knots and no photograph-derived statistic.
+- **Result:** ungauged neutral spread `.1630335`; gauged dense spread
+  `6.4059e-6`, max neutral error `1.8196e-4`, exact endpoints, min sampled
+  Jacobian `.01480`, identity RMSE `.13174`, affine residual `.05493`.
+- **Decision:** all frozen numerical/replay/guard/non-collapse gates pass. Open
+  only a separately frozen real-image style/artifact frontier; no renderer,
+  stock, fitting, training, LSM, calibration or preference claim.
+- **Verification:** five focused tests, two exact formal runs, report SHA-256
+  `c3746f59...b00d`, and all 811 CPU tests pass. Goal remains ACTIVE.

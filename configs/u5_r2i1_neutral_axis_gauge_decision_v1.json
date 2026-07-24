@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2i1-neutral-axis-gauge-v1",
+  "date": "2026-07-24",
+  "decision": "neutral_axis_gauge_numerical_pass",
+  "report_sha256": "c3746f59edd9f242c32b6d83ac5ef0f3c2258367317474096d081de2d435b00d",
+  "software_commit": "b5e5d0444405177b0707bad02373df67fc9e8477",
+  "focused_tests_passed": 5,
+  "full_tests_passed": 811,
+  "metrics": {
+    "ungauged_neutral_maximum_channel_spread": 0.1630335113585965,
+    "gauged_neutral_maximum_absolute_error": 0.0001819632037371401,
+    "gauged_neutral_maximum_channel_spread": 0.0000064058695209052736,
+    "endpoint_maximum_absolute_error": 0.0,
+    "minimum_jacobian_determinant": 0.014798734352544373,
+    "identity_rgb_rmse": 0.13173653967854687,
+    "best_affine_residual_rgb_rmse": 0.05492794384814923,
+    "serialization_replay_maximum_absolute_error": 0.0
+  },
+  "branch": {
+    "real_image_frontier_open": true,
+    "renderer_integration_allowed": false,
+    "stock_fit_allowed": false,
+    "training_allowed": false
+  },
+  "claim_ceiling": "data-independent numerical neutral-axis gauge for one clean-room sensitometry-print Look Approximation"
+}

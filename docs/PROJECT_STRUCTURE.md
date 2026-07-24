@@ -85,7 +85,9 @@ acquisition, fitting, evaluation or profile concerns.
 `sensitometry.py` owns the unintegrated linear-exposure-to-layer-density
 characteristic-curve representation; `sensitometry_print.py` owns the isolated
 non-duplicative density-to-print composition; `residual.py` owns the generic
-fail-closed sensitometry-print plus bounded tetrahedral-LUT wrapper. Neither module implies a
+fail-closed sensitometry-print plus bounded tetrahedral-LUT wrapper;
+`sensitometry_gauge.py` owns the data-independent inverse-neutral coordinate
+gauge. None of these modules implies a
 production or calibrated stock operator.
 
 ## Inference and replay contracts

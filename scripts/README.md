@@ -26,6 +26,7 @@ files.
 | `run_u5_r2a_constrained_operator_audit.py` | Audit the reusable constrained affine/spline/tetrahedral-LUT representation. |
 | `run_u2_3a_smooth_residual_composition.py` | Audit exact identity and one frozen bounded nontrivial tetrahedral residual after the U2.2B base. |
 | `run_u5_r2i0_sensitometry_print_frontier.py` | Render/evaluate the fixed U2.2B operator along one bounded strength path on the frozen gold/stress set. |
+| `run_u5_r2i1_neutral_axis_gauge.py` | Audit the data-independent inverse-neutral gauge for the U2.2B operator. |
 | `run_u5_r2b_global_operator_frontier.py` | Audit the frozen fixed global-policy bank and build survivor-only blind sheets. |
 | `audit_real_film_prov_register_recon.py` | Run the bounded metadata-only PROV negative-register accessibility audit. |
 | `run_roll2film_e0.py` | Run the data-independent known-operator/group-size/shuffled-control Roll2Film identifiability gate. |
