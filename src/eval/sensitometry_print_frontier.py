@@ -16,6 +16,7 @@ from src.eval.density_witness_frontier import encoded_srgb_to_linear, linear_srg
 from src.eval.global_frontier import load_frozen_samples, new_hard_clipping_fraction, sha256_file
 from src.eval.sensitometry_print_composition import build_composition
 from src.real_film.gold_matrix_transplant import sample_rgb_image, style_and_basic_residual
+from src.roll2film.sensitometry_gauge import NeutralAxisGaugeOperator
 
 
 class SensitometryFrontierError(ValueError):
@@ -55,8 +56,19 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         path_key = f"{prefix}_comparator_manifest"
         hash_key = f"{prefix}_comparator_manifest_sha256"
         manifests[prefix] = _load_hashed(root, config, path_key, hash_key)
+    operator = build_composition(composition, parent, print_config)
+    if "neutral_gauge_config" in config:
+        gauge = _load_hashed(
+            root,
+            config,
+            "neutral_gauge_config",
+            "neutral_gauge_config_sha256",
+        )
+        if gauge["base_composition_config"] != config["composition_config"] or gauge["sensitometry_config"] != config["sensitometry_config"] or gauge["print_config"] != config["print_config"]:
+            raise SensitometryFrontierError("neutral gauge parent config lineage mismatch")
+        operator = NeutralAxisGaugeOperator.from_base(operator, int(gauge["gauge_knots"]))
     return {
-        "operator": build_composition(composition, parent, print_config),
+        "operator": operator,
         "samples": load_frozen_samples(root, config),
         "candidates": candidate_bank(config),
         "comparators": manifests,
@@ -96,6 +108,7 @@ def render_bank(*, root: Path, config: Mapping[str, Any], output_dir: Path) -> d
         "frozen_set_sha256": config["frozen_set_sha256"],
         "candidate_count": len(validated["candidates"]),
         "sample_count": len(validated["samples"]),
+        "neutral_gauge_config_sha256": config.get("neutral_gauge_config_sha256"),
         "records": records,
         "claim_ceiling": config["claim_ceiling"],
     }

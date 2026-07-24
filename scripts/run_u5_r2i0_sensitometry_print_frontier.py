@@ -18,9 +18,9 @@ from src.eval.global_frontier import sha256_file  # noqa: E402
 from src.eval.sensitometry_print_frontier import build_blind_sheets, evaluate_bank, render_bank  # noqa: E402
 
 
-def main() -> int:
+def main(default_config: Path | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, default=ROOT / "configs/u5_r2i0_sensitometry_print_frontier_v1.json")
+    parser.add_argument("--config", type=Path, default=default_config or ROOT / "configs/u5_r2i0_sensitometry_print_frontier_v1.json")
     parser.add_argument("--render-dir", type=Path)
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--output", type=Path)
