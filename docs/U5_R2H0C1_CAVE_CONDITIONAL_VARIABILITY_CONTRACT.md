@@ -4,6 +4,16 @@ Date frozen: 2026-07-24
 Parent: `U5.R2H0C`
 Status: **preregistered before witness-output evaluation**
 
+### Pre-result source-format erratum
+
+The official-CRC audit, before any witness output was computed, found that all
+31 `watercolors_ms` bands are 8-bit RGBA with opaque alpha, while the other
+961 spectral PNGs are 16-bit single-channel images. The source page describes
+the database bands as 16-bit grayscale, so `watercolors_ms` is excluded rather
+than converted or reinterpreted. The remaining 31 scenes and every scientific
+gate below are unchanged. This is a source-integrity exclusion, not a result-
+conditioned population change.
+
 ## Hypothesis and non-hypothesis
 
 Question: among approximate measured real-material reflectances, do
@@ -38,6 +48,7 @@ research-only boundary.
 
 - wavelengths: exactly `400..700 nm` in `10 nm` steps;
 - reflectance decoding: unsigned 16-bit PNG divided by `65535`;
+- `watercolors_ms` is excluded by the pre-result format audit above;
 - scene is the primary group; spatial cell is the sampling unit;
 - each 512x512 scene is partitioned into a fixed 16x16 grid of 32x32 cells;
 - each cell spectrum is the per-band median of its pixels;

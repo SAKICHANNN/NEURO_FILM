@@ -2830,3 +2830,12 @@ changed and no experiment result existed.
   training, visual selection, stock/calibration or product claims.
 - **Handoff:** complete transfer, official CRC/decode audit, implement the
   isolated evaluator, run exact repeats and branch. Goal remains ACTIVE.
+
+### H0C1 pre-result source-format erratum
+
+The mirror transfer completed and all 992 spectral PNGs match the official ZIP
+central directory by path, size and CRC32. Before any witness output was
+computed, decode inspection found 961 16-bit grayscale PNGs and 31 8-bit RGBA
+PNGs, all in `watercolors_ms`. Because the official database describes 16-bit
+grayscale bands, that one scene is excluded rather than reinterpreted. The
+remaining 31 scenes, sampling, pair policy and gates are unchanged.

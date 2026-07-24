@@ -21,6 +21,9 @@
     "wavelength_nm_end": 700,
     "wavelength_nm_step": 10,
     "bands": 31,
+    "excluded_scenes": {
+      "watercolors_ms": "official members are 8-bit RGBA rather than declared 16-bit grayscale; excluded before witness evaluation"
+    },
     "image_width": 512,
     "image_height": 512,
     "grid_rows": 16,
