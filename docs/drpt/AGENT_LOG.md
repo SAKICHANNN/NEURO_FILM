@@ -2981,3 +2981,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification:** two exact formal runs, report SHA-256
   `9be0fdc5...a6b5`; all 794 CPU tests pass. No roll/stock/style/calibration
   evidence opens. Goal remains ACTIVE.
+
+## 2026-07-24 - Freeze U2.2A sensitometry primitive
+
+- **Parent/goal:** `U2.2` / stock-first Ultimate explicit film-algorithm
+  infrastructure.
+- **Question:** can a versioned linear-exposure-to-layer-density primitive
+  express distinct toe/mid/shoulder curves with analytic inverse/Jacobian,
+  neutral gauge and no hidden clipping?
+- **Frozen design:** invertible log10 exposure encoder with declared black
+  offset; three anchored rational-quadratic characteristic curves; output is
+  layer density, never display RGB or named-stock response.
+- **Gates:** roundtrip, positive derivative/Jacobian, anchor, toe/shoulder vs
+  midscale, layer diversity, replay, domain guards and two exact runs.
+- **Boundary:** pure math/evaluation only; no stock fit, film pixels, renderer,
+  schema/default change or calibration claim. Goal remains ACTIVE.
