@@ -138,3 +138,20 @@ strength or thresholds in this version.
 
 Claim ceiling: deterministic datasheet-constrained spectral Look Approximation
 feasibility and metamer sensitivity on a synthetic sRGB grid only.
+
+### Pre-result factual erratum
+
+The first source-integrity call stopped before curve interpolation or spectral
+evaluation because the initially rounded characteristic-grid coordinates gave
+`2.08 px` x and `2.02 px` y affine residuals against the frozen `2.0 px`
+gate. Dye y was `2.0000000000005684 px` due the same centring/rounding issue.
+Before any numerical report existed, the grid centres were corrected to the
+nearest equal-spacing centres visible in the printed grid. No threshold,
+curve annotation, physical approximation, population or result was changed.
+
+The subsequent ink-distance check exposed that the first coordinates had in
+fact been estimated from a resized viewer image rather than the native 1-bit
+XObject grid. Still before interpolation or any numerical output, all three
+axis sets were replaced by native-image row/column projection peaks and the
+unrun annotations were reattached to native black pixels. This supersedes the
+earlier axis-only correction. Gates, model and hypothesis remain unchanged.

@@ -2731,3 +2731,34 @@ metric Oracle rather than reconstructing an unstated label.
   canonicalizer-sensitive/unidentified, not a larger model or visual rescue.
 - **Handoff:** digitize curves and implement the exact synthetic evaluator.
   Goal remains ACTIVE.
+
+### H0A pre-result axis-centre erratum
+
+The first integrity-only call stopped before interpolation/evaluation: rounded
+characteristic axes produced 2.08/2.02 px residual and dye y exceeded 2 px by
+floating epsilon. Grid centres were corrected to their equal-spacing printed
+centres. Gates, curve points, model, population and outputs were untouched;
+there was no numerical result to observe.
+
+Native-image projection then showed the initial coordinates came from a
+resized viewer, not the embedded 1-bit coordinate system. Before any curve
+interpolation or spectral result, native black-pixel row/column peaks replaced
+all three axes and the unrun annotations were reattached to source ink. The
+integrity gate prevented contaminated execution as designed.
+
+## 2026-07-24 - Verify U5.R2H0A implementation before formal run
+
+- **Extraction:** pypdf reproduces all four page-8 TIFF/PNG XObjects byte for
+  byte from the hash-pinned PDF.
+- **Digitization:** native overlays were visually inspected; axis residual is
+  at most 1.4 px and all 127 annotations have zero distance to non-grid source
+  ink. Characteristic traces follow all three printed line styles.
+- **Evaluator:** bounded smooth reflectance solve, per-colour D65-observer
+  metamer linear-program extrema, spectral exposure, reversal density,
+  separated dyes, D50/D65 viewing, raw-gamut and neutral diagnostics are
+  isolated under `src/eval/` with no production import.
+- **Mechanics smoke:** 3-cube run is non-binding. It proves exact colour
+  matching and reveals possible neutral-cast and metamer failures; neither
+  result is used to alter gates, exposure, white balance or the witness.
+- **Verification:** five focused tests pass. Commit the implementation before
+  running the frozen 729-colour evaluator twice. Goal remains ACTIVE.
