@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u2.3a-smooth-residual-composition-v1",
+  "date_frozen": "2026-07-24",
+  "seed": 20260724,
+  "base_config": "configs/u2_2b_sensitometry_print_composition_v1.json",
+  "lut_size": 17,
+  "interpolation": "tetrahedral",
+  "residual_family": "cyclic_neutral_preserving_v1",
+  "residual_amplitude": 0.1,
+  "random_probes": 4096,
+  "finite_difference_step": 0.0001,
+  "constraints": {
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_residual_amplitude": 0.03,
+    "maximum_first_axis_step": 0.004,
+    "maximum_second_axis_difference": 0.0005,
+    "maximum_neutral_axis_error": 1e-12,
+    "minimum_tetrahedron_jacobian_determinant": 0.7
+  },
+  "gates": {
+    "identity_composition_max_abs": 0.0,
+    "tetrahedral_scalar_reference_max_abs": 1e-12,
+    "composition_output_tolerance": 1e-12,
+    "minimum_composition_jacobian_determinant_exclusive": 0.0,
+    "residual_rgb_rmse_min": 0.002,
+    "residual_rgb_rmse_max": 0.02,
+    "base_style_retention_ratio_min": 0.9,
+    "serialization_replay_max_abs": 0.0,
+    "exact_repeats": 2
+  },
+  "claim_ceiling": "uncalibrated clean-room numerical composition of a sensitometry-print base and a bounded smooth tetrahedral residual"
+}
