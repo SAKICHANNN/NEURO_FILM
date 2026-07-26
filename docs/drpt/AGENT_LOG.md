@@ -3317,3 +3317,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification/handoff:** four focused tests and all `845` CPU tests pass.
   Select the next independently motivated explicit-algorithm or stronger-data
   leaf; Goal remains active.
+
+## 2026-07-26 - Close U5.R2K2 rational-quadratic coupling representation
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2K2`; dev-research-reliability
+  primary with research, AI/ML, DRPT, structure and log disciplines secondary.
+- **Research boundary:** audited Durkan et al., *Neural Spline Flows* at exact
+  PDF SHA `1f20e349...9b6a0`; independently adopted only the monotonic
+  rational-quadratic scalar formula. No external code/weights, neural
+  conditioner, density objective, generative sampling, photos or film pixels.
+- **Reproducibility:** two formal reports at software commit
+  `c626edf...8511` are byte-identical at `1e8082c4...a2b47`. Exact identity,
+  range, serialization, partition and analytic inverse pass; every sampled
+  determinant remains positive.
+- **Evidence:** density-cyan s0.50 confirms at `.01435` RMSE with `79.55%`
+  affine-relative gain, but maximum Jacobian norm is `9.457 > 8`. Positive-warm
+  s0.35 fits at `.00067` yet confirms at `.01965 > .015`; its gain is
+  `28.67%`. The fixed candidate fails confirmation-fidelity and norm gates.
+- **Decision:** no bin/stage/conditioner/optimizer rescue on the same grid, no
+  threshold relaxation, clamp or real-image frontier. Retain as explicit
+  structural/capacity evidence and choose an independently motivated
+  film-colour factorization or stronger-data leaf.
+- **Verification/handoff:** four focused and all `849` CPU tests pass. Goal
+  remains active.

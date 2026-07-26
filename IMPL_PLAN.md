@@ -337,6 +337,17 @@ float64 ULP against the exact gate. The coupling primitive remains useful
 research evidence, but the fixed K1 capacity must not be enlarged or
 reoptimized on the same confirmation grid.
 
+`U5.R2K2` tests a separately published scalar representation rather than
+enlarging K1: finite monotonic rational-quadratic splines with fixed explicit
+conditioners. Exact range, identity, analytic inverse, positive orientation,
+serialization and partition gates pass. Density-cyan s0.50 reaches `.01435`
+confirmation RMSE and a `79.55%` gain over affine, but its maximum Jacobian
+norm is `9.457` above the frozen `8`. Positive-warm s0.35 fits at `.00067` but
+confirms at `.01965`, above `.015`. Close the fixed candidate without adding
+bins/stages, changing the optimizer or opening real-image work. Retain it as
+evidence that invertible spline capacity improves fidelity but does not by
+itself control local colour gain or confirmation generalization.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span
