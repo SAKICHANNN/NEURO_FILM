@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k2-rational-quadratic-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K2",
+  "status": "complete_closed",
+  "decision": "structural_pass_confirmation_and_jacobian_norm_fail",
+  "software_commit": "c626edfc32acc6af964a9dff6da86a5b5eac8511",
+  "config_sha256": "cefd751de2a79502e710284d6b6121912da80bf2072b39dc65301a0791cf2da5",
+  "formal_report_sha256": "1e8082c4e94840e06fd01bad6440ec6273c1dd7e1f59b7eff5c69029674a2b47",
+  "repeat_report_sha256": "1e8082c4e94840e06fd01bad6440ec6273c1dd7e1f59b7eff5c69029674a2b47",
+  "all_checks_passed": false,
+  "passed_checks": [
+    "identity_exact",
+    "bounded",
+    "coefficient_bound",
+    "bin_floors",
+    "nonlinear_gain",
+    "analytic_stage_derivative",
+    "positive_jacobian",
+    "inverse_roundtrip",
+    "serialization_replay",
+    "partition_parity"
+  ],
+  "failed_checks": [
+    "confirmation_fidelity",
+    "bounded_jacobian_norm"
+  ],
+  "results": {
+    "density_cyan_s50": {
+      "confirmation_rgb_rmse": 0.014345212921353039,
+      "global_affine_confirmation_rgb_rmse": 0.07015506931892528,
+      "improvement_over_global_affine_fraction": 0.7955213634507347,
+      "minimum_jacobian_determinant": 0.030923923689381218,
+      "maximum_jacobian_spectral_norm": 9.457447564910028,
+      "inverse_maximum_error": 1.22124532708767e-15
+    },
+    "positive_warm_s35": {
+      "confirmation_rgb_rmse": 0.019647108883868503,
+      "global_affine_confirmation_rgb_rmse": 0.0275458401572194,
+      "improvement_over_global_affine_fraction": 0.2867486062602721,
+      "minimum_jacobian_determinant": 0.14050710348720696,
+      "maximum_jacobian_spectral_norm": 7.668635653147093,
+      "inverse_maximum_error": 5.55111512312578e-16
+    }
+  },
+  "retained_evidence": "Finite rational-quadratic coupling materially improves the safe invertible representation frontier and fits the density control below the frozen fidelity ceiling, but the fixed candidate misses positive-film confirmation and becomes too locally steep on the density target.",
+  "forbidden_rescues": [
+    "increase_bins_stages_or_conditioner_capacity_on_the_same_confirmation_grid",
+    "change_optimizer_or_fit_steps_after_confirmation",
+    "relax_fidelity_or_jacobian_norm_gates",
+    "clamp_outputs_or_numerically_smooth_the_fitted_operator",
+    "open_real_image_or_real_film_fitting"
+  ],
+  "allowed_next": "retain K2 as a structural and capacity result; choose a separately motivated film-colour factorization or stronger data leaf rather than tuning this spline candidate",
+  "real_image_frontier_allowed": false,
+  "film_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "clean-room data-independent negative representation evidence: monotonic rational-quadratic coupling is bounded, analytically invertible and orientation-preserving and fits one synthetic control well, but fails the fixed positive-film confirmation and density Jacobian-norm gates; no density model, generative sampling, learned style, film operator, stock, calibration, preference or production claim"
+}
