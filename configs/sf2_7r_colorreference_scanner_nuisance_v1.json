@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.7r-colorreference-scanner-nuisance-v1",
+  "node": "ULT > RF0.4 > SF2.7R",
+  "source_page": "https://www.colorreference.de/testdata/index.html",
+  "source_page_last_edited": "2007-03-09",
+  "film_stock_id": "Fujifilm Velvia 100F",
+  "physical_target_set": "Set 3",
+  "output_root": "outputs/sf2_7r_colorreference_scanner_nuisance_v1",
+  "data_root": "data/external/colorreference_velvia_scanner_nuisance_v1",
+  "expected_total_bytes": 71068957,
+  "maximum_download_bytes": 75497472,
+  "assets": [
+    {"path": "source/slidescale1.tif", "url": "https://www.colorreference.de/testdata/slidescale1.tif", "expected_bytes": 88828, "etag": "\"20cb2e-15afc-419712edbd3c0\"", "role": "recorder_space_source"},
+    {"path": "source/slidescale2.tif", "url": "https://www.colorreference.de/testdata/slidescale2.tif", "expected_bytes": 88284, "etag": "\"20cb2f-158dc-419712e804640\"", "role": "recorder_space_source"},
+    {"path": "source/slidescale3.tif", "url": "https://www.colorreference.de/testdata/slidescale3.tif", "expected_bytes": 88608, "etag": "\"20cb30-15a20-419712f83ac80\"", "role": "recorder_space_source"},
+    {"path": "source/slidescale4.tif", "url": "https://www.colorreference.de/testdata/slidescale4.tif", "expected_bytes": 94324, "etag": "\"20cb31-17074-419712f376140\"", "role": "recorder_space_source"},
+    {"path": "source/slidescale5.tif", "url": "https://www.colorreference.de/testdata/slidescale5.tif", "expected_bytes": 102112, "etag": "\"20cb32-18ee0-419712e33fb00\"", "role": "recorder_space_source"},
+    {"path": "references/testscan3.zip", "url": "https://www.colorreference.de/testdata/testscan3.zip", "expected_bytes": 43308, "etag": "\"20cb41-a92c-51046dfdb4e40\"", "role": "it8_reference"},
+    {"path": "references/testscan3cgt.zip", "url": "https://www.colorreference.de/testdata/testscan3cgt.zip", "expected_bytes": 403413, "etag": "\"20cb44-627d5-51046dfea9080\"", "role": "cgats_spectral_reference"},
+    {"path": "scans/NikonLS50ED_Set3_N.zip", "url": "https://www.colorreference.de/testdata/scans/NikonLS50ED_Set3_N.zip", "expected_bytes": 12065983, "etag": "\"22df24-b81cbf-41970ea8d4140\"", "role": "nikon_ls50_nikonscan"},
+    {"path": "scans/NikonLS50ED_Set3_V.zip", "url": "https://www.colorreference.de/testdata/scans/NikonLS50ED_Set3_V.zip", "expected_bytes": 11029682, "etag": "\"22df25-a84cb2-41970bf0a56c0\"", "role": "nikon_ls50_vuescan"},
+    {"path": "scans/NikonLS50ED_Set3_2.zip", "url": "https://www.colorreference.de/testdata/scans/NikonLS50ED_Set3_2.zip", "expected_bytes": 13153813, "etag": "\"22df23-c8b615-41ac541c2af40\"", "role": "nikon_ls50_second_device"},
+    {"path": "scans/Coolscan9000_Set3_N.zip", "url": "https://www.colorreference.de/testdata/scans/Coolscan9000_Set3_N.zip", "expected_bytes": 33910602, "etag": "\"22dbb0-2056f4a-51173fad927c0\"", "role": "nikon_ls9000_nikonscan"}
+  ],
+  "rights": {
+    "page_statement": "user-made scans are made available free to anybody interested for scanner-profiler development/testing and related purposes",
+    "allowed_use": "internal_research_scanner_nuisance_audit",
+    "redistribution_allowed": false,
+    "commercial_training_allowed": false,
+    "licence_spdx": "NOASSERTION"
+  },
+  "gates": {
+    "all_http_200": true,
+    "all_expected_bytes": true,
+    "all_archives_crc_clean": true,
+    "all_images_decode": true,
+    "same_physical_target_set_required": true,
+    "minimum_complete_scan_pipelines": 4,
+    "minimum_complete_slide_ids_per_pipeline": 5,
+    "exact_duplicate_cross_pipeline_fraction_maximum": 0.0
+  },
+  "image_download_allowed": true,
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "redistribution_allowed": false,
+  "claim_ceiling": "bounded internal scanner/software nuisance and same-physical-slide connectivity evidence for one Velvia 100F target set; no digital-to-film pair, stock response, independent-roll generalization, fitting, training, calibration, latent mode or redistribution claim"
+}

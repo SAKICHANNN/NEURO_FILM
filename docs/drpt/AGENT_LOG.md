@@ -3184,3 +3184,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary/handoff:** no retune after results, fitting, training, LSM, named
   stock or production integration. Commit/push contract before evaluator or
   rendering. Goal remains active.
+
+## 2026-07-26 - Freeze SF2.7R ColorReference scanner-nuisance acquisition
+
+- **Opportunity:** the official page publishes same-Set-3 Velvia 100F test
+  slides, measured IT8/CGATS references and several scanner/software outputs,
+  explicitly for free profiler/testing use.
+- **Frozen lane:** 11 assets / `71,068,957` bytes: five recorder-space TIFFs,
+  two reference archives and four complete scan pipelines. Internal research
+  only, no redistribution or inferred commercial-training licence.
+- **Gate/claim:** exact bytes/hash, archive CRC, decode, five-slide completeness
+  and cross-pipeline duplicate audit. A pass is scanner-nuisance evidence only,
+  never a digital-film pair, stock response, independent roll, mode or fitting
+  permission. Commit/push before download; J1 continues concurrently in
+  isolated output paths.
