@@ -258,6 +258,15 @@ scraping and mining. Technical public access is not permission. No client,
 snapshot, graph or pixel acquisition opens; written platform permission or an
 officially licensed research export would be a new external-authority branch.
 
+`SF2.6R` refreshes the strongest current controlled-pair publication leads.
+SillyStill's pinned official repository still exposes only one illustrative
+pair, placeholder Zenodo/Hugging Face links and no root licence. Emulating
+Emulsion publishes a valuable two-matrix/three-sigmoid architecture and
+single-roll chart design, but no measurements, fitted parameters, code or
+reusable data licence. Neither source opens fitting or training. The published
+functional form may motivate only a clean-room, data-independent architecture
+witness under a separate frozen contract.
+
 `RF2.C0` is complete as an isolated external-control leaf. Two formal
 spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
 the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new

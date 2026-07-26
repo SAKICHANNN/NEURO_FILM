@@ -79,8 +79,8 @@ backfill those fields.
 | FILM-R candidate | yes; 44 4K 35mm colour scans | stock-like filenames, one contributor; roll/process/scanner unreported | rights-clear real-film target/style and artifact evidence after local acquisition; not stock truth |
 | Apollo candidate | yes; original NASA flight film | physical magazines and documented film types; SF2.0A validates Apollo 7 metadata but closes content-confounded | narrow archive/stress source only; no Apollo 7 page/pixel expansion, while raw scans remain huge and processed products have stricter rights |
 | DOCUMERICA candidate | yes; federal documentary slides/negatives | photographer and archival metadata, but no reliable roll/scanner/process fields | diverse public-domain real-film archive look; uploader/era/scan nuisance dominates stock claims |
-| SillyStill candidate | yes, paired digital/Cinestill claimed | paper reports 41 raw / 38 processed pairs | full dataset is not present at the official repo and no root data license exists; one example pair is insufficient |
-| Emulating Emulsion candidate | yes, controlled Velvia 100 | one 36-exposure roll, 33 chart pairs / 3,168 unique patch correspondences | scientifically strong single-roll calibration precedent; public dataset/license was not found |
+| SillyStill candidate | yes, paired digital/Cinestill claimed | paper reports 41 raw / 38 processed pairs | SF2.6R pins the current official repo: dataset links remain placeholders, only one illustrative pair is present and no root licence exists |
+| Emulating Emulsion candidate | yes, controlled Velvia 100 | one 36-exposure roll, 33 chart pairs / 3,168 unique patch correspondences | SF2.6R confirms strong method precedent but no public measurements, fitted parameters, code or reusable data licence |
 
 ### CT8 auxiliary closure
 

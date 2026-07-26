@@ -3130,3 +3130,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification:** 10 focused adjacent tests, two render and metric passes,
   hashes recorded, all 813 CPU tests pass. Goal remains ACTIVE; select another
   evidence-authorized explicit algorithm/data leaf.
+
+## 2026-07-26 - Close SF2.6R paired-source availability reconnaissance
+
+- **Node/skills:** `ULT > RF0.4 > SF2.6R`; `dev-research-reliability` is the
+  sole writer, with research, AI/ML, DRPT, structure and log disciplines as
+  read-only reviewers. Native web/GitHub API was used because Exa was not
+  callable in this tool surface.
+- **Evidence:** pinned SillyStill at
+  `b1ebdb971207b403b7126b759c1d30d30954a722` and the Emulating Emulsion
+  portfolio at `6be041ad38fee8052d2f9eecb0414f9ec0c5c2f2`. SillyStill has one
+  illustrative pair, placeholder dataset links and no root licence. Emulating
+  Emulsion publishes the 30-parameter method/design but no measurements,
+  parameters, code or reusable data licence.
+- **Decision/handoff:** both remain unavailable for fitting/training. No pixels
+  were downloaded and no rights were inferred. Open only a separately frozen
+  data-independent analytic-architecture witness; it must not claim Velvia,
+  CineStill, calibration or stock response. Goal remains active.

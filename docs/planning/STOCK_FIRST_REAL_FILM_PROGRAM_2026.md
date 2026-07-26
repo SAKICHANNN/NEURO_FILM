@@ -58,8 +58,8 @@ against the exact-revision frozen metadata.
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
-| SillyStill CineStill | paper-level stock claim | small paired study described | claimed same-scene pair | availability unknown | data unavailable; repository licence insufficient | blocked |
-| Emulating Emulsion | controlled Velvia 100 in publication | one roll and chart patches | controlled chart scans | one-roll/chart domain | public reusable data/licence not verified | method precedent; blocked as a corpus |
+| SillyStill CineStill | paper-level stock claim | 41 raw / 38 processed pairs described | one illustrative pair is public | one-stock/small-study domain | SF2.6R: dataset links remain placeholders and no root data licence exists | blocked; one example is not a fitting corpus |
+| Emulating Emulsion | controlled Velvia 100 in publication | one roll, 33 chart pairs / 3,168 unique patches | no measurements or fitted parameters released | one-roll/chart domain | SF2.6R: method/figures public, but no reusable dataset/code licence | method precedent; blocked as a corpus |
 | Manufacturer data sheets | authoritative product/process prior | no scene groups | no RGB target | measurement/interpretation mismatch | document-specific terms | curve/sensitivity constraints only |
 
 This matrix records attainable evidence, not aesthetic reputation. New sources
@@ -317,6 +317,16 @@ physical-only with no digital/IIIF field. Downloading the image collection
 without the register would not create stock labels, so no pixels, fitting,
 training or LSM open. See
 `docs/REAL_FILM_PROV_NEGATIVE_REGISTER_RECONNAISSANCE_RESULTS.md`.
+
+`SF2.6R` refreshes the two controlled paired-source claims most relevant to an
+explicit film operator. The pinned SillyStill repository still has placeholder
+dataset links, one illustrative pair and no root licence. The Emulating
+Emulsion project publishes its two-matrix/three-sigmoid method and experiment
+design but not its measurements, fitted parameters, source code or reusable
+data licence. Both remain method/metadata precedent only. The functional form
+may be tested separately with original synthetic parameters, but no stock fit,
+training, calibration or latent-mode claim opens. See
+`docs/REAL_FILM_PAIRED_SOURCE_AVAILABILITY_RECONNAISSANCE_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343
