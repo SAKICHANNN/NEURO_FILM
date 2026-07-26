@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf2.8r-ntnu-controlled-reversal-source-v1",
+  "node": "ULT > RF0.4 > SF2.8R",
+  "date": "2026-07-26",
+  "status": "complete_data_unavailable",
+  "primary_publication": {
+    "title": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "doi": "10.1016/j.daach.2026.e00550",
+    "pii": "S2212054826000573",
+    "publication_licence": "CC-BY-4.0"
+  },
+  "primary_thesis": {
+    "title": "The Use of Analogue Photographic Documentation to Infer the Past Appearance of Paintings",
+    "handle": "https://hdl.handle.net/11250/3221327",
+    "nva_publication_id": "0199c398b026-a2da028d-a09e-4961-9651-6eb58addea0f",
+    "file_terms": "https://nva.sikt.no/license/copyright-act/1.0",
+    "pdf_bytes": 472364357,
+    "pdf_sha256": "e231da44fc8163559d8ae6d9b4f41cf825b4106a0316aeeb078efecdb43e8a68",
+    "attachment_zip_bytes": 2225944,
+    "attachment_zip_sha256": "9b150ca59274f8d0c9a01492f1d34347282d4b065ff5ea7500cc1b60aef970b7"
+  },
+  "observed_capture_design": {
+    "film_stocks": [
+      "Kodak Ektachrome E100",
+      "Fujifilm Fujichrome Velvia 50"
+    ],
+    "film_format": "120 reversal film",
+    "camera": "Rolleiflex twin-lens reflex",
+    "fresh_film_claimed": true,
+    "aperture": "f/8",
+    "subjects": [
+      "Yoda mock-up painting",
+      "Cactus mock-up painting"
+    ],
+    "illuminants": [
+      "halogen",
+      "LED panels"
+    ],
+    "exposure_design": "metered plus higher/lower shutter-speed captures",
+    "reference_capture": "HySpex VNIR-1800 hyperspectral scan under matching illumination geometry",
+    "film_digitisation": "ten-band custom multispectral transmission scanner",
+    "chart": "Calibrite Passport ColorChecker in each scene"
+  },
+  "availability_audit": {
+    "nva_public_open_files": 2,
+    "raw_cube_or_tiff_files": 0,
+    "released_measurement_tables": 0,
+    "released_source_code": 0,
+    "released_dataset_manifest": 0,
+    "zip_contents": [
+      "Thesis draft submission GT.pdf",
+      "AI_declaration.pdf"
+    ],
+    "dataset_licence": "NOASSERTION"
+  },
+  "identifiability_limits": {
+    "analysed_representative_frames": 6,
+    "same_scene_same_illuminant_cross_stock_pair_in_analysed_frames": false,
+    "independent_roll_count_per_stock": "unknown",
+    "process_session": "unknown",
+    "stock_effect_separable_from_illuminant_in_reported_cross_stock_comparison": false,
+    "digital_camera_input_pair": false,
+    "film_to_reference_direction_only": true
+  },
+  "decision": {
+    "code": "controlled_source_promising_but_public_data_unavailable",
+    "image_or_measurement_acquisition_allowed": false,
+    "stock_operator_fitting_allowed": false,
+    "training_allowed": false,
+    "latent_mode_study_allowed": false,
+    "production_integration_allowed": false,
+    "reopen_condition": "an official release supplies immutable raw film MSI data, hyperspectral references, condition metadata, alignment lineage and explicit reusable data rights"
+  },
+  "claim_ceiling": "publication and thesis method evidence for a controlled two-stock reversal-film capture design; no reusable pixel corpus, digital-to-film pair, separable stock response, independent-roll generalisation, fitting, training, calibration or latent-mode claim"
+}
