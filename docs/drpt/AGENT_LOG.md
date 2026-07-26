@@ -3258,3 +3258,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   increase or neural generator. Six focused and all `837` CPU tests pass.
   Next algorithm work must structurally preserve orientation; Goal remains
   active.
+
+## 2026-07-26 - Close U5.R2K1 triangular monotone coupling representation
+
+- **Design:** twelve explicit single-channel coupling stages with fixed 2D
+  Gaussian conditioners, bounded coefficients and closed-form inverse. CPU
+  float64 fitting used only the three frozen synthetic explicit controls on a
+  new `8^3/11^3` fit/confirmation split; no external code, images, latent style
+  or generative objective.
+- **Structural evidence:** two reports at commit `fa96a48...789d` are
+  byte-identical at `e37726e2...cbb1`. Density/positive minimum det(J) is
+  `.1677/.3588`, minimum stage derivative `.4938/.6981`, inverse error
+  `5.55e-16/4.44e-16`; range, coefficients, spectral norm and replay pass.
+- **Failure/decision:** confirmation RMSE `.06232/.02819` misses `.015`;
+  affine-relative gains are `11.17%/-2.34%`. Partition parity differs by
+  `1.11e-16`. Close without adding stages, changing optimizer or relaxing
+  gates. Four focused and all `841` CPU tests pass. Goal remains active and
+  should choose independently motivated algorithm or data work.
