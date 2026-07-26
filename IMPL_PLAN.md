@@ -115,6 +115,16 @@ code/checkpoints are absent, and the text diffusion branch is forbidden.
 Retain only the Lab-stat/identity-residual architecture prior; do not reopen
 the closed S2 observation with more capacity.
 
+U5.R2U0 audits ColorFM as the closest recent explicit-flow reference-transfer
+control. Its semantic HCC recursively pairs corresponding source/style RGB
+subsets and can produce smoother, stronger transport than random coupling,
+but those pairs are constructed assumptions rather than observed operator
+truth. ColorFM-L distils 237,408 such outputs and predicts a pixel-MLP
+velocity field. The official repository currently contains only README/static
+assets with no code, checkpoint or licence; its MLP/one-step Euler path lacks
+the project's cube/range/Jacobian guarantees. Retain HCC only for a future
+synthetic clean-room comparison fitted into U5.R2O0 after S3/S4 adjudication.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

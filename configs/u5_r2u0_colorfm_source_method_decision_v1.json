@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2u0-colorfm-source-method-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2U0",
+  "audit_date": "2026-07-26",
+  "paper": {
+    "title": "ColorFM: An Optimization-to-Learning Framework for Color Transfer via Flow Matching",
+    "arxiv_id": "2607.07119v1",
+    "submitted": "2026-07-08",
+    "venue": "ECCV 2026",
+    "paper_url": "https://arxiv.org/abs/2607.07119",
+    "paper_license": "arXiv non-exclusive distribution license"
+  },
+  "official_repository": {
+    "url": "https://github.com/cszn/ColorFM",
+    "audited_commit": "153798ae878c291cdf6cbac71097714e1eb6a578",
+    "tree_entry_count": 14,
+    "source_code_present": false,
+    "checkpoint_present": false,
+    "license_present": false,
+    "content": "README and static image/video assets only"
+  },
+  "method_facts": {
+    "colorfm_o": {
+      "conditioning": "pretrained semantic masks plus corresponding source/style region distributions",
+      "coupling": "recursive mean-centred RGB octant partition with random leaf pairing",
+      "operator": "two-layer bias-free 512-hidden-unit velocity MLP optimized for 700 steps",
+      "renderer": "five-step midpoint ODE integration",
+      "role": "instance-specific pseudo-pair generator"
+    },
+    "colorfm_l": {
+      "training_rows": 237408,
+      "teacher": "ColorFM-O outputs from Unsplash and DIV2K content/style pairs",
+      "conditioning": "ViT-S/16 deep semantic features and cross-attention",
+      "predicted_parameters": "weights of a shared bias-free pixel-wise velocity MLP",
+      "renderer": "bidirectional one-step Euler transport",
+      "reported_compute": "single RTX 4090"
+    }
+  },
+  "project_fit": {
+    "non_generative_colour_transfer": true,
+    "explicit_global_colour_operator": true,
+    "real_unpaired_operator_identification": false,
+    "named_film_stock_evidence": false,
+    "coupling_is_an_assumption_not_observed_pairing": true,
+    "paper_operator_has_project_bounds": false,
+    "current_training_lineage_eligible": false,
+    "current_official_implementation_executable": false
+  },
+  "decision": "retain_hierarchical_colour_coupling_as_clean_room_synthetic_control_only",
+  "reason": "semantic-region matching and hierarchical RGB coupling can impose a useful smooth transport prior, but the constructed pairs are not observed correspondences and cannot identify a real digital-to-film operator. The released repository contains no source, checkpoint or license, and the paper velocity MLP plus one-step Euler path does not enforce the project's cube, range, positive-Jacobian, inverse or coefficient bounds",
+  "allowed_reuse": [
+    "implement the published hierarchical colour coupling pseudocode clean-room on synthetic distributions",
+    "fit only the validated U5.R2O0 cube-preserving explicit flow from the constructed pairs",
+    "compare correct-condition, shuffled-condition, random-pair and distribution-only controls on hidden known operators",
+    "retain ColorFM-O as a future generic reference-transfer baseline after independent rights and data gates"
+  ],
+  "forbidden_actions": [
+    "clone or execute the unlicensed display-only repository as implementation evidence",
+    "call hierarchical coupling true pixel pairing or identified transport",
+    "use current film pixels, stock labels, source or scanner cues",
+    "train ColorFM-L or a direct final-RGB network",
+    "use an unconstrained velocity MLP or one-step Euler output as Style-safe RGB",
+    "claim stock response, calibration, film authenticity or artifact freedom",
+    "interrupt, retune or overwrite the frozen U5.R2S3 or U5.R2S4 experiments"
+  ],
+  "next_candidate": "after U5.R2S3 and its conditionally activated U5.R2S4 are adjudicated, a separately frozen synthetic HCC-to-U5.R2O0 recovery control may test whether explicit coupling bias improves hidden-operator recovery",
+  "claim_ceiling": "paper/source/method audit and clean-room synthetic-control permission only; no reproduction, real-image, film, stock, preference, calibration or unpaired-operator evidence"
+}

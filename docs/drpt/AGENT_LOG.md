@@ -4014,3 +4014,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   The Qwen/CLIP/diffusion text branch, asset download, eight-A800 reproduction,
   capacity rescue, film fitting and stock claims remain closed. S3 continues
   running independently; Goal remains active.
+
+## 2026-07-26 - Audit U5.R2U0 ColorFM and hierarchical coupling
+
+- **Method:** ColorFM-O uses pretrained semantic masks and recursive,
+  mean-centred RGB-octant HCC to construct source/style pseudo-pairs, then fits
+  a global velocity MLP. ColorFM-L distils 237,408 teacher outputs and predicts
+  weights for a global pixel-wise velocity MLP.
+- **Scientific boundary:** HCC can be a strong smooth-transport prior, but its
+  pairs are selected rather than observed. Distribution/semantic
+  correspondence does not identify the physical digital-to-film operator.
+- **Source:** official `cszn/ColorFM` commit
+  `153798ae878c291cdf6cbac71097714e1eb6a578` has 14 entries consisting only of
+  README and static media; no code, checkpoint or licence. Paper data has no
+  project-grade 237,408-row rights/provenance manifest.
+- **Safety:** the published MLP and one-step Euler inference lack cube, range,
+  positive-Jacobian, inverse and coefficient guarantees. Any clean-room
+  project test must fit the existing U5.R2O0 bounded flow instead.
+- **Handoff:** after S3/S4 adjudication, a separately frozen synthetic HCC
+  control may compare correct/shuffled conditions, random pairs and
+  distribution-only fitting against hidden operators. No current pixel,
+  training, stock or calibration permission opens. Goal remains active.
