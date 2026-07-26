@@ -3480,3 +3480,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   inverse, Jacobian, norm or exactness failure closes without rescue.
 - **Handoff:** contract/config are ready for a scoped commit, then operator,
   fitter, audit and tests. Goal remains active.
+- **Pre-result completeness correction:** no fitter or result had run when the
+  zero-start endpoint-head autodiff ambiguity was found. Freeze endpoint bias
+  coefficients at deterministic `1e-4` and all other coefficients at zero;
+  equations, capacity, data, optimizer and gates are unchanged.

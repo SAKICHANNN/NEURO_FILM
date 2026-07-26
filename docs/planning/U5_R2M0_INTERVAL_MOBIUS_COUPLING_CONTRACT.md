@@ -1,8 +1,11 @@
 # U5.R2M0 — Bounded Interval-Möbius Coupling Contract
 
-**Status:** frozen before implementation or result inspection  
-**DRPT level:** L2  
-**Parent:** U5.R2K1/K3 representation failures plus U5.R2L1 policy close  
+**Status:** frozen before implementation or result inspection
+
+**DRPT level:** L2
+
+**Parent:** U5.R2K1/K3 representation failures plus U5.R2L1 policy close
+
 **Primary writer:** current Codex Goal session
 
 ## Question
@@ -69,6 +72,11 @@ Normalization and fitting use development only. Targets are immutable:
 - identity;
 - U5.R2E0 `cyan_shadow_warm_highlight_like` at strength `0.50`;
 - U5.R2J0 `warm_highlight_like` at strength `0.35`.
+
+Each endpoint head starts with only its bias coefficient at deterministic
+`1e-4`; all log-odds and non-bias coefficients start at zero. This keeps the
+one-sided endpoint parameterization on a defined positive derivative branch
+instead of letting an autodiff convention at `max(0,0)` decide trainability.
 
 ## Gates
 

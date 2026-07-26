@@ -57,6 +57,8 @@
     "learning_rate": 0.025,
     "coefficient_l2": 0.00001,
     "gradient_clip_norm": 10.0,
+    "endpoint_head_bias_initialization": 0.0001,
+    "log_odds_head_initialization": 0.0,
     "project_coefficients_each_step": true,
     "development_only": true
   },
