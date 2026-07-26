@@ -3957,3 +3957,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   domains. RGB/scene colour, CLIP, source, uploader, scanner, geometry, date
   and post-hoc clusters cannot substitute. Even a synthetic pass requires a
   separate data-feasibility decision before pixels. Goal remains active.
+
+## 2026-07-26 - Implement grouped distribution-loss foundation
+
+- **Scope:** add equal-weight corresponding-group loss, fit and held-out
+  evaluation adapters to `unpaired_distribution_flow`; add an opt-in
+  `float32` optimizer dtype while preserving the original single-group
+  `float64` default and direct singleton arithmetic.
+- **Tests:** five focused tests pass in the project `.venv`, including exact
+  singleton loss equivalence, correct-versus-shuffled group discrimination,
+  repeated float32 coefficient/metric identity, objective decrease and
+  coefficient bounds. The system Python 3.14 lacks pytest and was not used.
+- **Boundary:** no S4 formal data/report or reserved seed was generated. S4
+  remains pending the S3 repeated branch, whose second CUDA process continued
+  independently during this implementation. No film/project pixel, model,
+  production renderer or frozen S3 config was changed. Goal remains active.
