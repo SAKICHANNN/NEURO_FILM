@@ -85,6 +85,15 @@ raw-histogram hard retrieval for this synthetic score-recovery question.
 Seed `27012` remains untouched pending one frozen confirmation; no real image,
 film or operator permission opens.
 
+U5.R2S1C confirms KDE `.12` on 128 untouched palettes. Median/p90
+oracle-output error is `.03046/.05029`; it reduces median error by `63.46%`
+versus hard Top-1 and `71.88%` versus global mean while retaining `.985`
+style, `.909` non-affine residual and `.934` separation. All structural,
+permutation and repeat gates pass. The result retains a synthetic
+score-recovery mechanism, not an image algorithm: real reference histograms
+mix content with style. A new content-palette nuisance identifiability leaf is
+required before any image frontier.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

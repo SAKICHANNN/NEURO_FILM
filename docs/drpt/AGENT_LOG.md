@@ -3853,3 +3853,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   integrator or neural rescue. A pass remains synthetic mechanism evidence
   and must address content-palette nuisance before images. Goal remains
   active.
+
+## 2026-07-26 - Complete U5.R2S1C untouched confirmation
+
+- **Repeat:** software `d57f6b2...c03e65`, config
+  `cab8930c...a0c91`; both 128-query reports are byte-identical at
+  `2886c049...13739`; seven combined focused tests and the complete
+  `908`-test CPU suite pass.
+- **Accuracy/control:** primary median/p90 `.03046/.05029`; median error is
+  `63.46%` below hard Top-1 and `71.88%` below global mean.
+- **Retention:** direction cosine `.9593`, style `.9845`, non-affine `.9092`,
+  query-density gain `2.7308` and reference separation `.9339`.
+- **Structure:** minimum determinant `.01500`, max norm `3.993`, inverse
+  `7.35e-7`, exact range/permutation/replay/repeat. Every frozen gate passes.
+- **Boundary/handoff:** retain fixed histogram KDE only as a synthetic
+  mechanism prior. A real film histogram entangles content, exposure,
+  illumination, process and scan; direct use would repeat the known
+  scene-colour shortcut. Next freeze a synthetic content-palette nuisance
+  identifiability development with distribution-matched controls and only
+  bounded explicit parameter prediction. Images, film fitting and LSM remain
+  closed. Goal remains active.

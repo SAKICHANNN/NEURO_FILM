@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s1-histogram-score-confirmation-decision-v1",
+  "experiment_id": "u5.r2s1-histogram-score-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S1C",
+  "software_commit": "d57f6b2186e41bd3437f62411e777d4564c03e65",
+  "config_sha256": "cab8930c9676b597ce2e18588d9ebe64a64cf97e0c115049a4f8f5aaef2a0c91",
+  "report_sha256": "2886c049caafb270151d1bd8de2109dafc82919a18d18a1620e8accfa8a13739",
+  "repeat_report_sha256_equal": true,
+  "decision": "all_gates_pass_retain_synthetic_histogram_kde_mechanism",
+  "selected_metrics": {
+    "operator_output_rmse_median": 0.030456453140067036,
+    "operator_output_rmse_p90": 0.050285749211954694,
+    "velocity_direction_cosine_median": 0.9592844756240966,
+    "identity_rmse_retention_ratio_median": 0.9845384420240129,
+    "best_affine_residual_retention_ratio_median": 0.9092378969481176,
+    "query_palette_log_density_gain_median": 2.730838467190907,
+    "reference_separation_ratio_median": 0.9339314725927332,
+    "minimum_jacobian_determinant": 0.014998896077077313,
+    "maximum_jacobian_spectral_norm": 3.9931184927686445,
+    "maximum_inverse_error": 7.349536036427296e-07,
+    "histogram_permutation_error": 0.0,
+    "operator_permutation_error": 0.0
+  },
+  "control_improvements": {
+    "median_error_improvement_over_hard_1nn_fraction": 0.6345780644387873,
+    "median_error_improvement_over_global_fraction": 0.7187500336344689
+  },
+  "gate_results": "all numeric, structural, control, permutation and repeat gates pass",
+  "interpretation": "a fixed nonlearned canonical-histogram KDE can recover the exact analytic score-flow mechanism on untouched synthetic palette distributions substantially better than hard case reuse or averaging",
+  "critical_limitation": "the query histogram directly samples the target latent palette density; real film references instead conflate scene content with style, so the passed mechanism cannot yet be applied to photographs",
+  "next_ready_leaf": "freeze a synthetic content-palette nuisance identifiability development experiment comparing raw KDE, distribution-matched density-ratio controls and a bounded parameter predictor before any image frontier",
+  "claim_ceiling": "untouched synthetic confirmation of canonical-histogram KDE recovery for analytic palette-score diffeomorphic operators; never photograph, film, stock, preference, calibrated, production or unpaired-operator evidence"
+}
