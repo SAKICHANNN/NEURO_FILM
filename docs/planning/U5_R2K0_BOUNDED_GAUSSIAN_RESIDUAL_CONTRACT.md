@@ -5,6 +5,14 @@
 **Parent:** U5.R2 explicit colour-operator research  
 **Primary writer:** current Codex Goal session  
 
+**Pre-run amendment:** the paper-formula negative control uses a `3x3x3`
+centre grid and the full normalized Gaussian density. The initial `2x2x2`
+draft made the paper's fixed `epsilon=1e-6` non-negligible in the RGB-cube
+interior and therefore tested sparse support rather than the affine-branch
+initialization ambiguity. This correction was made after focused unit testing
+and before any formal K0 report; candidate capacities, targets and gates are
+unchanged.
+
 ## Question
 
 Can an independently implemented, fixed-geometry bank of localized Gaussian

@@ -14,7 +14,7 @@
     "external_code_or_parameter_copy_allowed": false
   },
   "paper_formula_negative_control": {
-    "gaussian_axis_size": 2,
+    "gaussian_axis_size": 3,
     "isotropic_sigma": 0.15,
     "epsilon": 0.000001,
     "opacity": 1.0,
