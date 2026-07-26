@@ -1,8 +1,8 @@
 # U5.R2L0 — Density Strength Oracle Contract
 
-**Status:** frozen before implementation and formal report generation  
-**DRPT level:** L2  
-**Parent:** U5.R2E1 retained B0 cyan-shadow/warm-highlight challenger  
+**Status:** frozen before implementation and formal report generation
+**DRPT level:** L2
+**Parent:** U5.R2E1 retained B0 cyan-shadow/warm-highlight challenger
 **Primary writer:** current Codex Goal session
 
 ## Question
