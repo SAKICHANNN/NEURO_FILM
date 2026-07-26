@@ -173,3 +173,8 @@ global-mean control.
 synthetic content under shared style flows and compares raw KDE,
 distribution-ratio, bounded-ridge and global controls using unpaired neutral
 content groups.
+
+`run_u5_r2s3_unpaired_distribution_operator_pilot.py` fits the bounded
+explicit flow from independent neutral/styled sample clouds with fixed sliced
+Wasserstein or RFF-MMD losses and audits distribution fit separately from
+hidden operator recovery.
