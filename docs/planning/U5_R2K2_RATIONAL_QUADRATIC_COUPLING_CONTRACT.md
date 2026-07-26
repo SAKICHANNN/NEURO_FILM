@@ -1,8 +1,8 @@
 # U5.R2K2 — Rational-Quadratic Colour Coupling Contract
 
-**Status:** frozen before implementation or result inspection  
-**DRPT level:** L2  
-**Parent:** U5.R2K1 structural pass / fidelity failure  
+**Status:** frozen before implementation or result inspection
+**DRPT level:** L2
+**Parent:** U5.R2K1 structural pass / fidelity failure
 **Primary writer:** current Codex Goal session
 
 ## Question
