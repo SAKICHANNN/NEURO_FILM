@@ -125,6 +125,15 @@ assets with no code, checkpoint or licence; its MLP/one-step Euler path lacks
 the project's cube/range/Jacobian guarantees. Retain HCC only for a future
 synthetic clean-room comparison fitted into U5.R2O0 after S3/S4 adjudication.
 
+U5.R2U1 now freezes that comparison without executing it. After a repeated
+eligible S4 decision, new synthetic seeds will compare random
+correct-condition pairs, pooled HCC, correct-condition HCC and fixed
+shuffled-condition HCC while every method fits the same bounded O0 flow.
+Constructed-pair loss is diagnostic; hidden-operator error, independent A/B
+stability, control improvements, structure and byte-identical repeat jointly
+gate. Confirmation seed `28403` and all real/project pixels remain
+inaccessible.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

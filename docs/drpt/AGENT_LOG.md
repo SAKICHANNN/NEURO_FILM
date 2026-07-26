@@ -4035,3 +4035,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   control may compare correct/shuffled conditions, random pairs and
   distribution-only fitting against hidden operators. No current pixel,
   training, stock or calibration permission opens. Goal remains active.
+
+## 2026-07-26 - Preregister U5.R2U1D HCC synthetic control
+
+- **Activation:** requires a repeated eligible S4 decision; S4
+  shuffled-negative or structure/repeat failure blocks execution. S3/S4
+  configs and evidence remain frozen.
+- **Data:** four new generated styles/conditions with independent source and
+  target scenes in A/B observations. Seeds `28400-28402` are development;
+  confirmation seed `28403` stays untouched.
+- **Controls:** random pairing inside correct conditions, pooled HCC,
+  correct-condition HCC and fixed shuffled-condition HCC all fit the same
+  bounded `4x4x4` U5.R2O0 flow.
+- **Gates:** pair MSE is diagnostic only. Hidden-operator median/p90, A/B
+  replicate stability, 25% improvements over all controls, shuffled-negative,
+  cube/Jacobian/norm/inverse/coefficient/replay and exact report repeat must
+  jointly pass.
+- **Boundary:** HCC pairs remain constructed assumptions. No ColorFM-L,
+  semantic model, project pixel, film, stock, calibrated or real
+  unpaired-operator claim opens. Goal remains active.

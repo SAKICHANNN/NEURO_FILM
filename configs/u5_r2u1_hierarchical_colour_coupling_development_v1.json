@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2u1-hierarchical-colour-coupling-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2U1D",
+  "status": "pending_u5_r2s4_repeated_adjudication",
+  "parent_evidence": [
+    "U5.R2U0 finds ColorFM hierarchical colour coupling to be a distinct explicit transport prior but not identified pairing",
+    "U5.R2O0 supplies a validated bounded cube-preserving explicit colour representation",
+    "U5.R2S3 and U5.R2S4 separate distribution matching, condition correspondence and hidden-operator recovery"
+  ],
+  "hypothesis": "within several correctly corresponding synthetic content conditions, hierarchical mean-centred RGB-octant coupling may provide pseudo-pairs that recover a hidden bounded colour flow more accurately and stably than random, pooled or shuffled-condition coupling",
+  "epistemic_scope": "small synthetic development of one coupling prior; constructed pairs are never observed truth and a pass cannot identify any real unpaired operator",
+  "activation_gate": {
+    "required_decision_path": "configs/u5_r2s4_diversified_distribution_operator_development_decision_v1.json",
+    "requires_repeat_report_sha256_equal": true,
+    "allowed_parent_branches": [
+      "primary_all_gates_pass",
+      "primary_matches_distribution_but_operator_fails",
+      "primary_fails_or_does_not_beat_pooled"
+    ],
+    "forbidden_parent_branches": [
+      "shuffled_negative_passes",
+      "structure_or_repeat_fails"
+    ]
+  },
+  "style_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "development_style_count": 4,
+    "development_style_seed": 28400,
+    "reserved_confirmation_style_seed": 28403
+  },
+  "content_condition_generator": {
+    "condition_count": 4,
+    "condition_palette_centres": [
+      [0.22, 0.22, 0.22],
+      [0.72, 0.24, 0.20],
+      [0.22, 0.68, 0.28],
+      [0.24, 0.38, 0.76]
+    ],
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.2,
+    "component_mean_jitter_standard_deviation": 0.08,
+    "component_mean_minimum": 0.03,
+    "component_mean_maximum": 0.97,
+    "component_standard_deviation_minimum": 0.04,
+    "component_standard_deviation_maximum": 0.1,
+    "scenes_per_condition_per_domain": 3,
+    "samples_per_scene": 128,
+    "development_observation_seed_a": 28401,
+    "development_observation_seed_b": 28402,
+    "neutral_and_styled_scene_reuse_forbidden": true,
+    "source_and_target_samples_paired": false,
+    "condition_ids_generated_not_inferred": true
+  },
+  "coupling": {
+    "hierarchical_maximum_depth": 3,
+    "partition": "recursively subtract each domain subset mean and match RGB sign octants",
+    "leaf_pairing": "fixed-seed random pairing without replacement up to the smaller leaf size",
+    "fallback": "fixed-seed random pairing when no corresponding non-empty leaves survive",
+    "development_pair_seed_a": 28410,
+    "development_pair_seed_b": 28411,
+    "shuffled_target_condition_permutation": [1, 3, 0, 2]
+  },
+  "methods": [
+    {
+      "id": "random_correct_condition",
+      "role": "pairing baseline",
+      "description": "random source/target pairing independently inside each correct generated condition"
+    },
+    {
+      "id": "pooled_hcc",
+      "role": "condition-ablation control",
+      "description": "discard condition ids and apply HCC to the pooled source and target samples"
+    },
+    {
+      "id": "correct_condition_hcc",
+      "role": "primary",
+      "description": "apply HCC separately inside each correctly corresponding generated condition and fit one shared flow"
+    },
+    {
+      "id": "shuffled_condition_hcc",
+      "role": "condition-label negative",
+      "description": "apply HCC after the fixed non-identity target-condition permutation"
+    }
+  ],
+  "operator": {
+    "representation": "U5.R2O0 cube-preserving stationary velocity flow",
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cuda_if_available_else_cpu",
+    "dtype": "float32",
+    "seed": 28420,
+    "steps": 200,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true,
+    "objective": "mean squared RGB error on constructed pairs only"
+  },
+  "evaluation": {
+    "pair_fit_loss_is_diagnostic_only": true,
+    "operator_truth": "hidden analytic style flow used only after fitting",
+    "heldout_distribution_loss": "fixed RFF-MMD-192 evaluated on correct heldout conditions",
+    "same_style_replicate": "independent observations and independent frozen pair seeds",
+    "pairs_exposed_to_optimizer": "constructed HCC/random pairs only; no real or oracle pairs"
+  },
+  "gates": {
+    "maximum_oracle_operator_output_rmse_median": 0.07,
+    "maximum_oracle_operator_output_rmse_p90": 0.1,
+    "maximum_same_style_fit_replicate_operator_rmse_median": 0.04,
+    "minimum_primary_oracle_error_improvement_over_random_fraction": 0.25,
+    "minimum_primary_oracle_error_improvement_over_pooled_fraction": 0.25,
+    "minimum_primary_oracle_error_improvement_over_shuffled_fraction": 0.25,
+    "shuffled_negative_must_fail_oracle_or_replicate_gate": true,
+    "minimum_identity_rmse_retention_ratio_median": 0.6,
+    "maximum_identity_rmse_retention_ratio_median": 1.4,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "implement the published HCC pseudocode clean-room in a reusable isolated module",
+    "fit only the validated bounded U5.R2O0 flow from constructed synthetic pairs",
+    "use local RTX 5070 Ti Laptop deterministic float32 optimization",
+    "run focused partition, permutation, no-reuse, bound and repeat tests",
+    "run two complete development reports after activation"
+  ],
+  "forbidden_actions": [
+    "execute before a repeated eligible U5.R2S4 decision",
+    "access reserved seed 28403",
+    "expose oracle pairs, grids or coefficients to fitting",
+    "call HCC pairs observed correspondence or identified transport",
+    "infer conditions from RGB, CLIP, content, source, uploader or scanner",
+    "change depth, permutation, seeds, optimization or gates after results",
+    "train ColorFM-L, a semantic encoder or direct final-RGB model",
+    "use project photographs or film pixels"
+  ],
+  "branches": {
+    "primary_all_gates_pass": "retain HCC as a synthetic coupling baseline and require a separate real-data condition/rights DoR before any pixel experiment",
+    "operator_fails_despite_pair_fit": "close as plausible coupling without hidden-operator recovery",
+    "primary_does_not_beat_controls": "close without depth, model or optimizer rescue",
+    "shuffled_negative_passes": "close because condition identity is not discriminating",
+    "structure_or_repeat_fails": "invalidate and debug only representation or deterministic execution"
+  },
+  "claim_ceiling": "synthetic development evidence for or against one published hierarchical colour-coupling prior when fitting a known bounded explicit flow; never observed pairing, real-image, film, stock, calibrated or general unpaired-operator identification"
+}
