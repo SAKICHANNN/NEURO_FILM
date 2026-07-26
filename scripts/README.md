@@ -164,3 +164,7 @@ files.
 `run_u5_r2s1_histogram_case_retrieval_development.py` runs the frozen
 synthetic, spatially permutation-invariant histogram retrieval/KDE/global
 development comparison. It must not access reserved confirmation seed 27012.
+
+`run_u5_r2s1_histogram_score_confirmation.py` runs the subsequently frozen
+untouched seed-27012 confirmation for KDE `.12`, hard Hellinger Top-1 and the
+global-mean control.
