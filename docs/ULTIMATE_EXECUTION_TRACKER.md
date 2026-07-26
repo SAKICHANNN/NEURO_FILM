@@ -576,6 +576,7 @@ FLUX.2 gate:
 | U6.1 | pending | Halation moved to exposure/density domain | U2.2, U4.3 | Real patch radial/color/exposure fit |
 | U6.2 | pending | Density/channel/resolution-aware grain | U4.3 | NPS/autocorrelation/repeat-scan comparison |
 | U6.2A | complete: synthetic representation pass | Clean-room Boolean/Poisson grain representation witness | U6.0 + U1.6F + IPOL model equations | max mean error .0133; midtone variance ratios 2.15/2.25; large-small lag-1 delta .1416; repeat/partition/replay exact; 878 tests; opens crop visual frontier only; `docs/U6_2A_BOOLEAN_GRAIN_REPRESENTATION_RESULTS.md` |
+| U6.2B | complete: automatic pass / visual severe close | Fixed Boolean-grain existing-image crop frontier | U6.2A | both policies pass luma/low-pass/endpoint/repeat gates, but small fails severe 4/5 and large 5/5 with salt-like bright speckles; legacy `.018` is 0/5; 882 tests; no rescue/integration; `docs/U6_2B_BOOLEAN_GRAIN_CROP_FRONTIER_RESULTS.md` |
 | U6.3 | pending | Stock/scanner MTF model | U4.3 | Edge/line-pair validation |
 | U6.4 | pending | Bloom separated from halation | U6.1 | Separate parameter/evaluator/UI layer |
 | U6.5 | pending | Creative dust/scratch/light leak labels | U2.1 | Never included in calibrated score silently |

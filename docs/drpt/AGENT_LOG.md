@@ -3568,3 +3568,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   production integration or realism claim. Commit the freeze before code or
   rendering; then implement, test, run and visually adjudicate. Goal remains
   active.
+
+## 2026-07-26 - Close U6.2B on severe salt-speckle morphology
+
+- **Implementation:** isolated linear-luma downsample, unchanged U6.2A
+  Boolean renderer and structurally bounded signed RGB-headroom composition;
+  legacy `.018` remains an unchanged comparator. Production paths are untouched.
+- **Reproducibility:** two authoritative serial reports at
+  `f938a04...9dd59` are byte-identical at `0d6794e5...94801d4`; five source
+  hashes/sizes/crops match, float repeats are exact, 9 focused and all 882 CPU
+  tests pass. An accidental concurrent duplicate was detected and terminated;
+  it is excluded from the serial evidence.
+- **Automatic evidence:** both candidates pass. Small has mean drift <=.00567,
+  luma RMS .00904--.01553 and low-pass RMSE <=.00635; large has .00734,
+  .01238--.02162 and .00895. Both add zero hard endpoints.
+- **Visual veto:** small fails 4/5 and large 5/5. Bright salt-like points
+  contaminate ID11 red/dark surfaces, sky gradients, faces/skin/hair and
+  uniform detail. Legacy `.018` is severe-clean 5/5.
+- **Decision:** reject both Boolean composition policies without
+  strength/radius/sample-count/crop/gate rescue. Retain U6.2A only as synthetic
+  representation evidence; U6.2 remains data-gated on measured NPS,
+  autocorrelation and repeat scans. Goal remains active.

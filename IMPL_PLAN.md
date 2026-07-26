@@ -394,6 +394,14 @@ partition are bit-exact. The GPL reference implementation was not copied.
 Open only a frozen existing-image crop visual frontier; U6.2 still lacks
 measured NPS, repeat scans and stock/process/scanner calibration.
 
+`U6.2B` closes both frozen real-image Boolean compositions. Small and large
+policies pass all aggregate luma, low-pass, endpoint and repeat gates, but
+full-resolution crops show salt-like bright contamination: severe failures are
+4/5 and 5/5 respectively, while the legacy `.018` comparator is 0/5. Do not
+lower strength, alter radius/sample count or replace the visual veto to rescue
+this node. U6.2A remains synthetic representation evidence only, and U6.2 still
+requires measured NPS/autocorrelation/repeat-scan evidence.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

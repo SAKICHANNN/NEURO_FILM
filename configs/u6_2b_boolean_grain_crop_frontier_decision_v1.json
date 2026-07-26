@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.2b-boolean-grain-crop-frontier-v1",
+  "status": "closed_visual_severe_veto",
+  "software_commit": "f938a040cf8dc54dd690f3171d15db840bc9dd59",
+  "config_sha256": "677dd625beda59977174e220ac3f61d1b38406a8d9ba27ef37852513dc410a3e",
+  "formal_report_sha256": "0d6794e5f729c960111b3058196ca5ce3dccd00da739650cb6203a03e94801d4",
+  "two_formal_reports_byte_identical": true,
+  "full_resolution_review_sha256": "50087b8de107c4f4bd1126b06f8dbafe320460bc883567dcf686001fb8c430fe",
+  "automatic": {
+    "boolean_small_r022_s012": {
+      "passed": true,
+      "maximum_mean_luma_drift": 0.005668570305562329,
+      "residual_rms_range": [0.009039696198467066, 0.015526119926297216],
+      "maximum_lowpass_rmse": 0.006347764266762895,
+      "maximum_new_endpoint_fraction": 0.0
+    },
+    "boolean_large_r038_s012": {
+      "passed": true,
+      "maximum_mean_luma_drift": 0.007344109706788594,
+      "residual_rms_range": [0.012377310726020186, 0.02162445392829505],
+      "maximum_lowpass_rmse": 0.008948130941483435,
+      "maximum_new_endpoint_fraction": 0.0
+    }
+  },
+  "visual": {
+    "boolean_small_r022_s012_confirmed_severe_failures": 4,
+    "boolean_large_r038_s012_confirmed_severe_failures": 5,
+    "legacy_residual_s0018_confirmed_severe_failures": 0,
+    "decisive_failure": "sparse bright salt-like speckles contaminate saturated red, smooth sky, skin, hair, faces and uniform detail"
+  },
+  "branch": {
+    "boolean_small_r022_s012": "reject",
+    "boolean_large_r038_s012": "reject",
+    "legacy_residual_s0018": "retain_existing_comparator_only",
+    "u6_2a": "retain_synthetic_representation_evidence_only",
+    "u6_2": "remains_pending_real_NPS_autocorrelation_repeat_scan_evidence"
+  },
+  "forbidden_rescue": [
+    "lower the frozen composition strength",
+    "change the frozen radii",
+    "increase Monte Carlo count",
+    "change crops or seeds",
+    "replace the severe visual veto with aggregate numeric metrics",
+    "integrate either Boolean policy into production"
+  ],
+  "claim_ceiling": "B0 autonomous existing-image crop evidence showing that two frozen clean-room Boolean grain compositions pass aggregate numeric gates but fail the independent severe-artifact veto; no measured NPS, stock/process/scanner calibration, physical realism, preference, full-frame, production or named-stock claim"
+}
