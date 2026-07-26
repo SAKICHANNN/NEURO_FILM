@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2r1-d-lut-published-asset-structural-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2R1",
+  "parent": "U5.R2R0",
+  "purpose": "deterministically characterize the published D-LUT trajectory under existing project explicit-operator gates",
+  "epistemic_status": "post-exploratory deterministic characterization, not blind confirmatory evidence",
+  "exploratory_disclosure": "before this contract was written, a read-only parser inspection observed out-of-range nodes and negative tetrahedral determinants; gates below are inherited from existing project contracts and were not selected to fit the observed values",
+  "external_source": {
+    "repository": "https://github.com/leemojiang/D-LUT.git",
+    "revision": "01927996eb03ad21be7f9cdbeb7a4c6604e7431c",
+    "license": "Apache-2.0",
+    "asset_root": "outputs/external_controls/d_lut_source_audit/repo",
+    "lut_glob": "LUT/LUT_*.CUBE",
+    "lut_count": 41,
+    "lut_total_bytes": 4156160,
+    "lut_manifest_sha256": "a1263c4e547c8f2f66c44ac927a159c3e9599b73e737a35248601c59d1f2e1e3",
+    "model_path": "Log/models/img0/model_15_0.005.pth",
+    "model_bytes": 374671,
+    "model_sha256": "7686a2b0c42b89b59354a35233c67ef87e298d4cfc1b1073554d4bf03cb9d4f0"
+  },
+  "published_settings": {
+    "style_image_shape": [
+      400,
+      300
+    ],
+    "train_epochs": 15,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "score_sigma": 0.005,
+    "langevin_steps": 40,
+    "langevin_epsilon_demo": 0.0002,
+    "paper_langevin_epsilon": 0.0004,
+    "lut_dimension": 15,
+    "parallel_samples_averaged": 50,
+    "seed": 12213
+  },
+  "audit": {
+    "steps": {
+      "minimum": 0,
+      "maximum": 40,
+      "required_contiguous": true
+    },
+    "cube_axis_order": "standard .cube red-fastest rows parsed from source B-G-R loop into project R-G-B axes",
+    "renderers": [
+      "published-compatible trilinear analytic Jacobian sampled at a frozen 3x3x3 subgrid per cell",
+      "project tetrahedral exact six-simplex Jacobians"
+    ],
+    "trilinear_subcell_axis": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "report_all_steps": true
+  },
+  "gates": {
+    "identity_step_maximum_absolute_error": 1e-06,
+    "minimum_output_node": 0.0,
+    "maximum_output_node": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.0,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "require_at_least_one_nonidentity_structural_survivor": true,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "parse and hash the fixed published LUT files",
+    "compute deterministic range, identity, smoothness and Jacobian diagnostics",
+    "write ignored reports",
+    "add clean-room parser/evaluator tests",
+    "propagate the branch decision"
+  ],
+  "forbidden_actions": [
+    "train or rerun the score network",
+    "apply the LUTs to project photographs before structural survival",
+    "clip, project, smooth, regularize or refit the published LUTs",
+    "change Langevin step, epsilon, sample count or random seed",
+    "treat the style image or mapping as film-stock evidence",
+    "call this audit preregistered confirmatory evidence",
+    "integrate external source into production"
+  ],
+  "branches": {
+    "no_nonidentity_survivor": "close the published D-LUT trajectory before image rendering; retain palette-matching and stochastic-fold evidence only",
+    "one_or_more_survivors": "freeze the earliest and strongest structurally valid steps for a separate A0 real-image severe/style contract",
+    "asset_or_parser_failure": "close as non-reproducible without repairing or replacing source artifacts"
+  },
+  "claim_ceiling": "post-exploratory deterministic structural characterization of one official D-LUT style trajectory; never film-stock, preference, calibration, universal safety or unpaired-operator identification evidence"
+}

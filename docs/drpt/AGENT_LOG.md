@@ -3708,3 +3708,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   explicit 4D-LUT plus separately bounded context-grid prior for a future
   evidence-eligible question. No film fitting, stock/mode claim or production
   integration opens. Goal remains active.
+
+## 2026-07-26 - Audit D-LUT and freeze U5.R2R1 published-asset contract
+
+- **Parent/question:** `ULT > U5 > U5.R2 > U5.R2R0/R1`; test a direct answer
+  to reference-photo-conditioned explicit LUT transfer without a pretrained
+  image generator.
+- **Primary evidence:** WACV PDF `7,265,681` bytes at
+  `ceaaebaa...828d1`; Apache source revision
+  `01927996...431c`; fixed checkpoint `374,671` bytes at
+  `7686a2b0...d4f0`; 41 LUT files / `4,156,160` bytes at manifest
+  `a1263c4e...e1e3`.
+- **Method boundary:** a per-style 93K score MLP estimates one reference
+  image's RGB density; stochastic Langevin trajectories move identity-LUT
+  nodes and 50 trajectories are averaged. It predicts an explicit LUT, not
+  final image pixels, but provides no semantic, stock, range or orientation
+  constraint.
+- **Contradiction:** paper uses epsilon `.0004`; released demo uses `.0002`.
+  The existing trajectory is an official artifact, not an exact claimed paper
+  reproduction.
+- **Epistemic disclosure:** a development parser inspection observed range
+  and determinant concerns before the R1 contract. R1 is explicitly
+  post-exploratory deterministic characterization; inherited project gates
+  were not tuned to it.
+- **Frozen R1:** hash/parse all steps 0--40, exact tetrahedral and analytic
+  trilinear subcell Jacobians, range/norm/identity, and two byte-identical
+  reports. No nonidentity survivor closes before images without
+  clip/project/smooth/retrain/seed/strength rescue. Goal remains active.
