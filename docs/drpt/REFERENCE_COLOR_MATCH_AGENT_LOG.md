@@ -115,3 +115,21 @@
 - Next: consume the main task's committed W1 evidence to select or reject a
   stronger descriptor/head; meanwhile define only non-overlapping product
   composition and adapter boundaries.
+
+## 2026-07-27 - Complete A2 composition contract
+
+- Changed: added a versioned `ReferenceCompositionPlan` and immutable film
+  effect provenance binding.
+- Product decision: uploaded reference matching and film-profile selection are
+  peer colour sources, not two implicit colour stages. Reference mode may add
+  film-derived procedural effects only; this never claims a film-stock
+  identity.
+- Evidence: 66 focused colour-match/Lab/gamut tests pass. Tests prove stable
+  plan identity, exact stage order, profile/hash requirements and fail-closed
+  rejection of hidden film colour stacking or stock-claim escalation.
+- Structure: the adapter lives in `src/color_match`; it consumes the existing
+  render-profile validator without changing `src/inference`, the renderer
+  default, stock profiles or FilmFX.
+- Next: keep W1 descriptor/head consumption active and defer runtime FilmFX
+  execution until the existing product renderer exposes a stable
+  `WorkingImage` effect-only entrypoint.

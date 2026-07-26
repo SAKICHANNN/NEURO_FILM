@@ -19,6 +19,9 @@ render_reference_batch(recipe, N source WorkingImages)
 
 match_reference_files(reference path, N source paths, N output paths)
     -> one recipe + N committed SDR files + hashes/diagnostics
+
+build_reference_composition(recipe, optional verified film profile)
+    -> one colour owner + optional film-effects-only provenance
 ```
 
 The recipe claim ceiling is `reference-look` and its evidence grade is
@@ -32,11 +35,13 @@ permits `calibrated-reference`.
 - `src/color_match/render.py`
 - `src/color_match/replay.py`
 - `src/color_match/files.py`
+- `src/color_match/composition.py`
 - `src/color_match/__init__.py`
 - `tests/test_color_match_contracts.py`
 - `tests/test_color_match_render.py`
 - `tests/test_color_match_replay.py`
 - `tests/test_color_match_files.py`
+- `tests/test_color_match_composition.py`
 - branch-specific coordination, plan, log and this evidence record
 
 No forbidden W1/W2/S4, global tracker, renderer-default or standalone D-PCT
@@ -95,6 +100,15 @@ known-operator cross-content test. The v1 recipe improves its same-content
 positive control but regresses all five held-out-content images. It is
 therefore certified only as a safe operational fallback and contract baseline,
 not as the final photographic matcher.
+
+## Film composition finding
+
+The A2 composition contract prevents reference colour and film-profile colour
+from being silently stacked. A verified film profile can bind grain, halation
+and dust defaults as effect provenance, but the output remains
+`reference-look`, does not claim `film_stock_id`, and executes reference colour
+before effects. The current leaf validates the contract; it does not duplicate
+or bypass the existing FilmFX renderer.
 
 ## Change propagation
 

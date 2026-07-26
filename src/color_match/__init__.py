@@ -10,6 +10,13 @@ from .contracts import (
     recipe_to_json,
     validate_recipe,
 )
+from .composition import (
+    REFERENCE_COMPOSITION_SCHEMA_ID,
+    FilmEffectBinding,
+    ReferenceCompositionPlan,
+    build_reference_composition,
+    validate_reference_composition,
+)
 from .fit import fit_reference_look
 from .files import (
     FileReferenceMatchOutput,
@@ -30,15 +37,19 @@ from .replay import (
 
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
+    "REFERENCE_COMPOSITION_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
+    "FilmEffectBinding",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "ReferenceLookPolicy",
     "ReferenceLookRecipe",
+    "ReferenceCompositionPlan",
     "ReferenceMatchDiagnostics",
     "ReferenceMatchResult",
     "ReferenceMatchContractError",
     "fit_reference_look",
+    "build_reference_composition",
     "load_reference_look_recipe",
     "match_reference_files",
     "recipe_from_json",
@@ -48,4 +59,5 @@ __all__ = [
     "render_reference_look",
     "save_reference_look_recipe",
     "validate_recipe",
+    "validate_reference_composition",
 ]

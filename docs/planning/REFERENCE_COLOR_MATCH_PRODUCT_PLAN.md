@@ -148,7 +148,7 @@ final photographic/aesthetic algorithm.
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
 | A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
-| A2 film-business composition | WAITING | stable stock-expert product interface | add an adapter that keeps `reference-look` and `film_stock_id` claims separate |
+| A2 film-business composition | CONTRACT DONE | existing v1 render-profile contract | reference colour owns the colour stage; an optional verified film profile may supply effects provenance only |
 | A3 media portability | WAITING | standalone D-PCT stable recipe/media contract | map recipe fields through an adapter; do not copy RAW/HDR/video code |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 
@@ -162,6 +162,24 @@ improves median Delta E76 by 59.8%, but every held-out-content image regresses
 `docs/drpt/REFERENCE_COLOR_MATCH_QUALITY_BASELINE.md`. This rejects global
 reference moments as the final algorithm and prevents parameter-tuning from
 being mistaken for content-independent look recovery.
+
+### Film-business composition boundary
+
+`ReferenceCompositionPlan` makes reference matching and film simulation peer
+colour choices. In reference mode:
+
+1. `reference_color` is the sole colour stage;
+2. an optional verified film profile may contribute only procedural
+   `film_effects`;
+3. `film_color_profile_id` must remain null;
+4. film effects never set `film_stock_identity_claimed`;
+5. the output label remains `reference-look` or
+   `reference-look+film-effects`, with claim ceiling `reference-look`.
+
+This prevents a UI choice such as "match this photo, add film grain" from
+silently applying two colour looks or escalating a user reference into a
+stock-authenticity claim. Stock-selection mode continues to use the existing
+render-profile path and is not replaced by this module.
 
 ## Verification and rollback
 
