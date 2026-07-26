@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s2-content-palette-nuisance-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S2D",
+  "parent_evidence": [
+    "U5.R2S1C confirms score recovery only when the observed histogram directly samples the target palette density",
+    "SF1.0B and SF1.3B show real stock pools are dominated by scene colour/content/source nuisance"
+  ],
+  "hypothesis": "multiple independently varying content scenes plus an unpaired distribution-matched neutral control can expose enough aggregate histogram residual to recover a shared bounded style flow more accurately and more content-stably than raw styled-palette KDE or global averaging",
+  "epistemic_scope": "synthetic development of nuisance identifiability only; exact style labels exist only in simulation and no real-data operator claim opens",
+  "style_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "training_style_count": 384,
+    "development_style_count": 96,
+    "training_style_seed": 28100,
+    "development_style_seed": 28102,
+    "reserved_confirmation_style_seed": 28105
+  },
+  "content_generator": {
+    "component_counts": [2, 3, 4, 5],
+    "weight_dirichlet_alpha": 1.2,
+    "mean_minimum": 0.03,
+    "mean_maximum": 0.97,
+    "standard_deviation_minimum": 0.06,
+    "standard_deviation_maximum": 0.22,
+    "styled_scenes_per_style": 6,
+    "neutral_control_scenes_per_style": 6,
+    "samples_per_scene": 1024,
+    "training_observation_seed": 28101,
+    "development_observation_seed_a": 28103,
+    "development_observation_seed_b": 28104,
+    "paired_scene_reuse_forbidden": true
+  },
+  "observations": {
+    "histogram_axis_size": 8,
+    "styled_feature": "aggregate normalized histogram after one shared style flow is applied to independent content scenes",
+    "neutral_feature": "aggregate normalized histogram from separately generated content scenes drawn from the same content meta-distribution",
+    "ridge_feature": "concatenated square-root styled histogram, square-root neutral histogram and their difference",
+    "spatial_semantic_source_features_forbidden": true
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "evaluation_grid_axis_size": 9
+  },
+  "candidate_methods": [
+    {
+      "id": "raw_styled_kde_0p12",
+      "kind": "content_confounded_control",
+      "bandwidth": 0.12
+    },
+    {
+      "id": "density_ratio_0p25",
+      "kind": "nonlearned_distribution_ratio",
+      "bandwidth": 0.12,
+      "score_difference_scale": 0.25
+    },
+    {
+      "id": "density_ratio_0p50",
+      "kind": "nonlearned_distribution_ratio",
+      "bandwidth": 0.12,
+      "score_difference_scale": 0.5
+    },
+    {
+      "id": "density_ratio_1p00",
+      "kind": "nonlearned_distribution_ratio",
+      "bandwidth": 0.12,
+      "score_difference_scale": 1.0
+    },
+    {
+      "id": "ridge_0p1",
+      "kind": "bounded_parameter_ml",
+      "alpha": 0.1
+    },
+    {
+      "id": "ridge_1p0",
+      "kind": "bounded_parameter_ml",
+      "alpha": 1.0
+    },
+    {
+      "id": "ridge_10p0",
+      "kind": "bounded_parameter_ml",
+      "alpha": 10.0
+    },
+    {
+      "id": "global_mean_velocity",
+      "kind": "style_averaging_control"
+    }
+  ],
+  "ml_boundary": {
+    "training_targets": "synthetic analytic 4x4x4x3 style velocity grids",
+    "standardization_fit": "training groups only",
+    "model_fit": "training groups only",
+    "output_projection": "per-grid-node vector norm projected to at most 2",
+    "final_rgb": "fixed deterministic diffeomorphic renderer only",
+    "direct_rgb_prediction_forbidden": true
+  },
+  "development_metrics": [
+    "operator_output_rmse_to_style_oracle",
+    "velocity_direction_cosine",
+    "style_and_non_affine_retention",
+    "reference_separation_ratio",
+    "same_style_replicate_operator_rmse",
+    "same_style_to_between_style_separation_ratio",
+    "raw_styled_kde_and_global_mean_improvement",
+    "identity_style_negative_control",
+    "exact_sample_permutation_invariance",
+    "range_jacobian_norm_inverse_replay"
+  ],
+  "selection_rule": {
+    "eligibility": [
+      "finite bounded coefficients",
+      "exact permutation invariance",
+      "cube range, positive sampled Jacobian and exact replay",
+      "same-style replicate error below between-style predicted separation"
+    ],
+    "ranking": [
+      "lowest median oracle-output RMSE",
+      "lowest median same-style replicate RMSE",
+      "lowest p90 oracle-output RMSE",
+      "highest reference separation",
+      "simpler method"
+    ],
+    "simpler_method_order": [
+      "nonlearned_distribution_ratio",
+      "ridge",
+      "raw_kde",
+      "global_mean"
+    ]
+  },
+  "allowed_actions": [
+    "implement the fixed synthetic style/content group generator",
+    "fit deterministic CPU ridge models on training groups only",
+    "run only training and development seeds",
+    "inspect development results and freeze at most one untouched confirmation",
+    "add focused group-split, permutation and bounded-output tests"
+  ],
+  "forbidden_actions": [
+    "generate reserved confirmation seed 28105 before a new contract is committed",
+    "reuse the same content scene as styled and neutral control",
+    "use project images or film pixels",
+    "infer stock, exposure, illuminant, process or scanner labels",
+    "train a neural network or direct RGB model in this leaf",
+    "fit standardization or ridge coefficients on development groups",
+    "claim synthetic supervised targets are obtainable from current unpaired film data"
+  ],
+  "branches": {
+    "eligible_residual_method_beats_controls": "freeze one method and quantitative gates for untouched confirmation",
+    "raw_kde_wins_but_is_content_unstable": "close because S1 does not survive content nuisance",
+    "global_mean_competitive": "close as style averaging with no identified conditional value",
+    "ridge_beats_nonlearned_controls": "retain only a synthetic bounded-parameter ML mechanism and state that real operator targets remain unavailable",
+    "no_eligible_method": "close without neural-capacity rescue"
+  },
+  "claim_ceiling": "synthetic development evidence about separating independently generated content nuisance from a shared explicit style flow using unpaired distribution-matched controls; never real-image, film, stock, preference, calibrated, production or identified unpaired-operator evidence"
+}

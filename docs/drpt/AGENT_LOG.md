@@ -3873,3 +3873,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   identifiability development with distribution-matched controls and only
   bounded explicit parameter prediction. Images, film fitting and LSM remain
   closed. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2S2D content-palette nuisance development
+
+- **Question:** can a shared explicit style flow be recovered after scene
+  content is varied independently, rather than treating a film photograph's
+  raw palette as style?
+- **Groups:** 384 training and 96 development styles; six independently
+  generated styled scenes plus six different neutral-control scenes per
+  observation. Each development style has two independent content replicates.
+  Seed `28105` stays untouched.
+- **Candidates:** raw KDE `.12`; styled-minus-neutral density scores at
+  `.25/.50/1.0`; deterministic bounded multi-output ridge at
+  `.1/1/10`; global mean.
+- **ML boundary:** ridge sees only canonical aggregate histograms, fits
+  standardization/coefficients on training groups and predicts 192 bounded
+  velocity coefficients. It never predicts RGB. Exact synthetic style labels
+  do not exist in current real film data.
+- **Decision:** require structural/permutation eligibility and within-style
+  content stability, then rank oracle error, replicate error, p90, separation
+  and simplicity. No neural rescue, paired scene reuse, project pixels,
+  fitting or stock/mode claim. Goal remains active.
