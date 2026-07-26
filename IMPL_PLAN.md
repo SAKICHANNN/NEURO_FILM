@@ -411,6 +411,15 @@ incomplete. N1 is synthetic/checkpoint/shortcut evidence only. Stock-labelled
 pixels, film fitting, B6, source copying and production integration remain
 forbidden.
 
+`U5.R2N1` closes that external route before any reference image. The pinned
+B0 weight exactly matches the independently frozen EfficientNet/515 and
+4-64-3 flow interpretation; identity, positive orientation, norm and repeats
+pass. But exact histogram-preserving pixel permutation drops embedding cosine
+to `.7255`, warm/cool palette distance is only `.803x` same-palette geometry
+distance, and raw transfer escapes to `[-.073,1.119]`. The selector is not
+palette-only and the map is not range-safe. Do not clamp, project, fine-tune,
+download B6 or open real/stock pixels as a rescue.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2n1-modflows-b0-synthetic-audit-v1",
+  "status": "closed_palette_shortcut_and_raw_range_failure",
+  "software_commit": "d2cc79b3d1b4a3c8d53f4832bc3713bf6325533b",
+  "config_sha256": "b1fc74faab278ecdc94cb5944b72e52f8f85f60b83db0397fa8d39d4e21079fa",
+  "formal_report_sha256": "0e657a323d84fac6b74ef3cf2a4469765083d0c017b8f7f321e657ccd8434596",
+  "two_formal_reports_byte_identical": true,
+  "checkpoint": {
+    "bytes": 18970914,
+    "sha256": "124f7b42c3bd857a0c20eb5d1a49f873e538e54cb7d44f0aa8d16b1887d3eacb",
+    "weights_only_load": "pass",
+    "exact_efficientnet_b0_515_architecture": "pass"
+  },
+  "passed": {
+    "embedding_finite_and_repeat_exact": true,
+    "same_palette_geometry_cosine": 0.9962783075537042,
+    "same_embedding_identity_maximum_error": 0.0000547840857877402,
+    "minimum_sampled_jacobian_determinant": 0.6368258479071691,
+    "maximum_sampled_jacobian_norm": 1.6068413455727881,
+    "transfer_repeat_exact": true
+  },
+  "failed": {
+    "same_palette_permutation_cosine": {
+      "observed": 0.7254551419619848,
+      "gate": 0.98
+    },
+    "palette_distance_over_geometry_distance_ratio": {
+      "observed": 0.8028625816662516,
+      "gate": 2.0
+    },
+    "raw_transfer_range": {
+      "minimum": -0.07295918678485541,
+      "maximum": 1.1185999332466017,
+      "gate": [0.0, 1.0]
+    }
+  },
+  "interpretation": "The pinned B0 checkpoint is compatible with the independently frozen architecture and produces smooth positive-orientation invertible colour flows, but the encoder is not palette-only under histogram-preserving spatial permutation and geometry effects exceed the warm/cool palette contrast. Raw transfer also leaves the RGB cube. This closes hard palette retrieval and Style-safe raw-flow use before real images.",
+  "branch": {
+    "real_image_reference_pilot": "forbidden",
+    "stock_labelled_pixel_access": "forbidden",
+    "checkpoint_finetuning": "forbidden",
+    "b6_download": "forbidden",
+    "clamp_or_strength_rescue": "forbidden",
+    "external_control_status": "retain synthetic negative evidence only"
+  },
+  "claim_ceiling": "clean-room synthetic evidence that one external ModFlows B0 checkpoint is architecture-compatible and numerically smooth but fails palette/content separation and raw RGB bounds; no unlicensed code reuse, real-image safety, stock identity, film operator, calibration, preference or production claim"
+}

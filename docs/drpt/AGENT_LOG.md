@@ -3624,3 +3624,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   failure closes before real images without source-copy, solver/order,
   fine-tune, clamp or strength rescue. All pass opens only a separate non-stock
   A0 safety pilot. Goal remains active.
+
+## 2026-07-26 - Close U5.R2N1 on palette shortcut and raw range
+
+- **Integrity/compatibility:** exact 18,970,914-byte checkpoint and
+  `124f7b42...d3eacb` hash; tensor-only load; independently frozen
+  EfficientNet-B0/515 and 4-64-3 parameter layout match.
+- **Numerical passes:** embedding/transfer repeats exact; same-flow identity
+  max error `5.48e-5`; minimum determinant `.6368`; maximum Jacobian norm
+  `1.6068`.
+- **Shortcut failure:** exact RGB-histogram-preserving spatial permutation
+  reduces embedding cosine to `.7255` vs `.98`. Warm/cool palette distance is
+  only `.8029x` the same-palette geometry distance vs required `2x`.
+- **Range failure:** raw warm/cool transfers span `[-.07296,1.11860]`.
+  Positive orientation does not provide RGB-cube bounds.
+- **Reproducibility/branch:** two reports at `d2cc79b...25533b` are identical
+  at `0e657a32...34596`; four focused and all 886 CPU tests pass. Close before
+  real images; no clamp/projection/strength/preprocessing/order/solver,
+  fine-tune or B6 rescue. Retain synthetic negative evidence only. Goal remains
+  active.
