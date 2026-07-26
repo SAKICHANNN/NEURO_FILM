@@ -3147,3 +3147,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   were downloaded and no rights were inferred. Open only a separately frozen
   data-independent analytic-architecture witness; it must not claim Velvia,
   CineStill, calibration or stock response. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2J0 positive-film-response contract
+
+- **Parent/hypothesis:** `ULT > U5 > U5.R2 > U5.R2J0`; test whether the simpler
+  positive-film two-matrix/three-sigmoid family retains non-basic colour
+  structure without the failed I0/I1 negative-to-print neutral-axis pathology.
+- **Frozen boundary:** five original synthetic witnesses, 17-cube numerical
+  regularity/diversity gates, no paper parameters, pixels, fitting, training,
+  GPU, LSM, stock label or production integration.
+- **Handoff:** commit/push the contract before implementation or result
+  inspection. A property pass opens only a separately frozen gold/stress
+  frontier. Goal remains active.

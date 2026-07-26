@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2j0-positive-film-response-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2J0",
+  "operator_schema": "roll2film.positive_film_response.v1",
+  "working_space": "linear_srgb_d65",
+  "exposure_floor": 0.0000152587890625,
+  "parameter_bounds": {
+    "matrix_minimum": 0.0,
+    "matrix_row_sum": 1.0,
+    "matrix_minimum_determinant": 0.2,
+    "logistic_minimum_slope": 0.2,
+    "logistic_maximum_slope": 4.0,
+    "log2_minimum_midpoint": -12.0,
+    "log2_maximum_midpoint": 2.0,
+    "minimum_maximum_response": 0.2,
+    "maximum_maximum_response": 4.0,
+    "minimum_endpoint_span": 0.05
+  },
+  "audit_grid_size": 17,
+  "finite_difference_step": 0.000001,
+  "witnesses": {
+    "neutral_positive_reference": {
+      "capture_matrix": [[0.92, 0.05, 0.03], [0.04, 0.92, 0.04], [0.03, 0.06, 0.91]],
+      "response_midpoints": [-3.1, -3.1, -3.1],
+      "response_slopes": [1.0, 1.0, 1.0],
+      "maximum_responses": [1.0, 1.0, 1.0],
+      "scan_matrix": [[0.93, 0.05, 0.02], [0.04, 0.92, 0.04], [0.02, 0.06, 0.92]]
+    },
+    "warm_highlight_like": {
+      "capture_matrix": [[0.91, 0.07, 0.02], [0.05, 0.9, 0.05], [0.03, 0.1, 0.87]],
+      "response_midpoints": [-2.75, -3.15, -3.55],
+      "response_slopes": [0.78, 1.0, 1.35],
+      "maximum_responses": [1.2, 1.0, 0.86],
+      "scan_matrix": [[0.94, 0.05, 0.01], [0.05, 0.91, 0.04], [0.02, 0.09, 0.89]]
+    },
+    "cool_dense_like": {
+      "capture_matrix": [[0.86, 0.1, 0.04], [0.04, 0.91, 0.05], [0.02, 0.05, 0.93]],
+      "response_midpoints": [-3.5, -3.1, -2.7],
+      "response_slopes": [1.3, 1.0, 0.8],
+      "maximum_responses": [0.86, 1.0, 1.18],
+      "scan_matrix": [[0.88, 0.09, 0.03], [0.04, 0.91, 0.05], [0.01, 0.05, 0.94]]
+    },
+    "cyan_shadow_warm_highlight_like": {
+      "capture_matrix": [[0.9, 0.07, 0.03], [0.03, 0.93, 0.04], [0.04, 0.1, 0.86]],
+      "response_midpoints": [-2.65, -3.3, -3.65],
+      "response_slopes": [0.72, 1.05, 1.48],
+      "maximum_responses": [1.18, 1.0, 0.9],
+      "scan_matrix": [[0.93, 0.06, 0.01], [0.04, 0.92, 0.04], [0.04, 0.11, 0.85]]
+    },
+    "cross_bias_like": {
+      "capture_matrix": [[0.84, 0.05, 0.11], [0.1, 0.84, 0.06], [0.07, 0.04, 0.89]],
+      "response_midpoints": [-2.55, -3.65, -3.0],
+      "response_slopes": [0.68, 1.55, 1.2],
+      "maximum_responses": [1.25, 0.82, 1.1],
+      "scan_matrix": [[0.86, 0.04, 0.1], [0.09, 0.86, 0.05], [0.07, 0.04, 0.89]]
+    }
+  },
+  "gates": {
+    "endpoint_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "minimum_directional_derivative": 0.0,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "minimum_non_neutral_identity_rgb_rmse": 0.03,
+    "minimum_pairwise_witness_rgb_rmse": 0.015,
+    "minimum_residual_after_best_affine_rgb_fit": 0.005,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true,
+    "partition_parity": true
+  },
+  "image_download_allowed": false,
+  "external_profile_parameter_or_code_copy_allowed": false,
+  "comparison_output_as_teacher_allowed": false,
+  "real_film_pixel_allowed": false,
+  "operator_fitting_allowed": false,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room data-independent numerical and diversity evidence for a compact two-matrix positive-film-response Look Approximation primitive; no measured film response, Velvia or other named stock, process/scanner calibration, physical accuracy, authenticity, preference or production promotion"
+}

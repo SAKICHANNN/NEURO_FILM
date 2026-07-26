@@ -267,6 +267,13 @@ reusable data licence. Neither source opens fitting or training. The published
 functional form may motivate only a clean-room, data-independent architecture
 witness under a separate frozen contract.
 
+`U5.R2J0` is that separately frozen witness. It independently implements the
+compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
+functional form using five original synthetic parameter sets. A numerical
+diversity/regularity pass may open only a separately frozen real-image
+frontier. No publication parameter, pixel, LUT or output is copied, and no
+Velvia, stock, calibration, training, LSM or production claim opens.
+
 `RF2.C0` is complete as an isolated external-control leaf. Two formal
 spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
 the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new
