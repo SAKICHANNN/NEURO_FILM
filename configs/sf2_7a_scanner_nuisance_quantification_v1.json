@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.7a-scanner-nuisance-quantification-v1",
+  "node": "ULT > RF0.4 > SF2.7A",
+  "parent_config": "configs/sf2_7r_colorreference_scanner_nuisance_v1.json",
+  "parent_config_sha256": "ed44375415b7471aa1b0256d87e086a66c83f55c0cab3d2a25ec33a90e037fa0",
+  "parent_audit": "outputs/sf2_7r_colorreference_scanner_nuisance_v1/audit_pass1.json",
+  "parent_audit_sha256": "b88da41c129b58087c68194f21545c1f7b708be91ba7d1b868ce50579d410fb6",
+  "data_root": "data/external/colorreference_velvia_scanner_nuisance_v1",
+  "output_root": "outputs/sf2_7a_scanner_nuisance_quantification_v1",
+  "slide_ids": ["1", "2", "3", "4", "5"],
+  "pipeline_roles": [
+    "nikon_ls50_nikonscan",
+    "nikon_ls50_vuescan",
+    "nikon_ls50_second_device",
+    "nikon_ls9000_nikonscan"
+  ],
+  "source_grid": {
+    "columns": 22,
+    "rows": 12,
+    "left_edge_px": 56.0,
+    "right_edge_px": 704.0,
+    "top_edge_px": 61.0,
+    "bottom_edge_px": 415.0,
+    "inner_patch_fraction": 0.5
+  },
+  "alignment": {
+    "method": "SIFT_source_to_scan_homography",
+    "maximum_features": 3000,
+    "ratio_test": 0.72,
+    "ransac_reprojection_threshold_px": 3.0,
+    "minimum_good_matches": 50,
+    "minimum_ransac_inliers": 40,
+    "maximum_median_inlier_reprojection_error_px": 1.5
+  },
+  "decode": {
+    "preserve_native_tiff_samples": true,
+    "normalize_by_integer_dtype_maximum": true,
+    "embedded_icc_required": false,
+    "colour_state": "unknown_scanner_device_rgb"
+  },
+  "evaluation": {
+    "paired_pipeline_comparisons": "all_six_unordered_pairs_both_directions",
+    "split": "leave_one_slide_out",
+    "development_slides_per_fold": 4,
+    "confirmatory_slides_per_fold": 1,
+    "patches_per_slide": 264,
+    "models": [
+      "identity",
+      "per_channel_affine",
+      "bounded_full_affine_3x3_plus_bias"
+    ],
+    "fit_domain": "normalized_scanner_device_rgb",
+    "per_channel_scale_bounds": [0.0, 2.0],
+    "per_channel_bias_bounds": [-0.5, 0.5],
+    "full_affine_coefficient_bounds": [-2.0, 2.0],
+    "full_affine_bias_bounds": [-0.5, 0.5],
+    "fit_loss": "least_squares",
+    "test_output_clip": [0.0, 1.0],
+    "primary_metric": "normalized_rgb_euclidean",
+    "sensitivity_metric": "delta_e00_under_explicit_srgb_display_assumption"
+  },
+  "pre_registered_interpretation": {
+    "material_raw_nuisance_aggregate_median_rgb_minimum": 0.04,
+    "material_raw_nuisance_each_pair_median_rgb_minimum": 0.02,
+    "canonicalizer_material_reduction_fraction_minimum": 0.5,
+    "small_residual_aggregate_median_rgb_maximum": 0.02,
+    "alignment_failure_closes_quantification": true,
+    "no_threshold_opens_stock_learning": true
+  },
+  "repeat_report_byte_identity_required": true,
+  "scanner_nuisance_fitting_allowed": true,
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "redistribution_allowed": false,
+  "claim_ceiling": "same-physical-slide scanner/software device-RGB nuisance magnitude and bounded leave-one-slide-out canonicalizer evidence for one Velvia 100F target set; no colourimetric Delta E, digital scene/film pair, stock response, independent-roll generalization, training, latent mode, calibration, authenticity, redistribution or production claim"
+}
