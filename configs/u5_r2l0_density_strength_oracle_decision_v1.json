@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2l0-density-strength-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2L0",
+  "software_commit": "fde5fcacb4744e6350818c2645ff27d6da204644",
+  "config": "configs/u5_r2l0_density_strength_oracle_v1.json",
+  "automatic_report": {
+    "path": "outputs/u5_r2l0_density_strength_oracle_v1/report_pass1.json",
+    "sha256": "d5093264e3b647f0b13e9b99b66715a85a69be4659763ba602dc28d7aace90cc",
+    "repeat_byte_identical": true
+  },
+  "selected_manifest": {
+    "path": "outputs/u5_r2l0_density_strength_oracle_v1/selected_manifest_pass1.json",
+    "sha256": "66d5fbb8cabc100049909c606b25d39e92f0fe6a5487e15cd1a6ede32df7ea72",
+    "repeat_byte_identical": true
+  },
+  "visual_evidence": {
+    "path": "outputs/u5_r2l0_density_strength_oracle_v1/visual/evidence.json",
+    "sha256": "740ad30fe6fbbf350bddac12e37158b2175f4a8b058d42b7000d957615db0b94",
+    "full_resolution_review": "outputs/u5_r2l0_density_strength_oracle_v1/full_resolution_review.json",
+    "full_resolution_review_sha256": "30ae9b47e4ba0fc80ff317ea114ba00af17394e6a3c9574f435dd0a487385140"
+  },
+  "automatic_evidence": {
+    "sample_count": 41,
+    "challenger_selected_count": 36,
+    "baseline_fallback_count": 5,
+    "challenger_selection_fraction": 0.8780487804878049,
+    "mean_style_gain_delta_e76": 3.0675604017214235,
+    "median_style_gain_delta_e76": 3.5642237914788826,
+    "gold_mean_style_gain_delta_e76": 2.6733035803048,
+    "stress_mean_style_gain_delta_e76": 3.1784451327448484,
+    "maximum_selected_new_hard_clipping_fraction": 0.004924704924704925,
+    "all_automatic_gates_passed": true
+  },
+  "visual_evidence_summary": {
+    "reviewed_sample_count": 41,
+    "confirmed_severe_artifact_count": 0,
+    "id11_red_speckle_or_posterization": false,
+    "face_damage": false,
+    "non_severe_limitations": [
+      "inherited sensor/compression noise is visibly amplified on samples 14 and 15",
+      "inherited smooth-gradient/JPEG layering is mildly amplified on sample 37"
+    ]
+  },
+  "decision": "retain_oracle_feasibility_and_open_simplest_inference_time_policy_contract",
+  "production_integration_allowed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "stock_claim_allowed": false,
+  "claim_ceiling": "B0 autonomous development evidence that the immutable density-cyan Look Approximation has a material clipping-limited strength Oracle gap and no confirmed severe artifact on the frozen 41-image review; no deployable routing, general safety, preference, stock, calibration, authenticity or production claim"
+}

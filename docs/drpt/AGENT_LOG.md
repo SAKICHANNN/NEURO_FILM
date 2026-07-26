@@ -3391,3 +3391,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   render manifest. The implementation now validates the manifest field and
   adds a dedicated frozen-set-drift regression test; no experimental result
   was observed before the correction.
+
+## 2026-07-26 - Complete U5.R2L0 density-strength Oracle
+
+- **Reproducibility:** two formal evaluator invocations at software commit
+  `fde5fca...f11aa` are byte-identical: report
+  `d5093264...e90cc`, selected manifest `66d5fbb8...f7ea72`. Parent report,
+  manifest, selected outputs and exact 41-source membership all verify.
+- **Automatic evidence:** hard-select `s0.65` on 36/41 and fallback `s0.50` on
+  five. Mean/median style gains are `3.0676/3.5642` Delta E76, gold mean
+  `2.6733`, stress mean `3.1784`; worst selected clipping is `.4925%`.
+  Every frozen automatic gate passes.
+- **Visual evidence:** inspected all 41 source/fixed/selected overviews plus five
+  unscaled selected-output crops per image and same-coordinate triplets for
+  flagged cases. Confirmed severe count is zero; ID11 does not reproduce red
+  speckles/posterization and the face sample remains coherent. Noise on 14/15
+  and subtle gradient/JPEG layering on 37 are inherited and continuously
+  amplified, retained as non-severe stress limitations.
+- **Decision/boundary:** a material per-image strength Oracle exists, but it is
+  post-output and not deployable; clipping is not a universal severe detector.
+  Open only U5.R2L1 simplest inference-time hard-policy contract, starting with
+  deterministic explicit state and hard fallback. No E1 rewrite, fitting,
+  training, stock, general-safety, preference, calibration or production claim.
+- **Verification/handoff:** eight focused tests and all `861` CPU tests pass.
+  Project structure remains modular. Goal remains active.

@@ -360,6 +360,17 @@ before real-image rendering and do not weaken it. Retain the key research
 result: explicit film-like palette factorization can be both strong and gamut
 safe, but derivative control remains separate from boundedness/invertibility.
 
+`U5.R2L0` returns to the retained R2E1 density-cyan operator and tests whether
+fixed `s0.50` is unnecessarily bland on many inputs. A hash-pinned post-output
+Oracle selects immutable `s0.65` only when that render stays below the inherited
+per-image `.005` clipping ceiling, otherwise hard-falling back to `s0.50`.
+It selects the stronger output on 36/41 images and gains mean/median
+`3.07/3.56` Delta E76 over fixed `s0.50`; 41/41 full-resolution outputs,
+five 1:1 crops each, ID11 and the face regression are severe-clean. This opens
+only a simplest inference-time hard-policy contract. The Oracle is not itself
+deployable and clipping is not a sufficient universal artifact detector; no
+training, stock learning or production integration opens.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span
