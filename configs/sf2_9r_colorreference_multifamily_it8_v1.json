@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.9r-colorreference-multifamily-it8-v1",
+  "node": "ULT > RF0.4 > SF2.9R",
+  "source_page": "https://www.colorreference.de/targets/index.html",
+  "source_page_last_edited": "2024-06-24",
+  "output_root": "outputs/sf2_9r_colorreference_multifamily_it8_v1",
+  "data_root": "data/external/colorreference_multifamily_it8_v1",
+  "expected_total_bytes": 1468016,
+  "maximum_download_bytes": 8388608,
+  "assets": [
+    {
+      "path": "E240220.zip",
+      "url": "https://www.colorreference.de/targets/E240220.zip",
+      "expected_bytes": 293776,
+      "etag": "\"20c436-47b90-614136a282fe3\"",
+      "last_modified": "Wed, 20 Mar 2024 08:31:18 GMT",
+      "declared_family": "Ektachrome (K3)",
+      "exact_stock_id": "unknown"
+    },
+    {
+      "path": "V240219.zip",
+      "url": "https://www.colorreference.de/targets/V240219.zip",
+      "expected_bytes": 293115,
+      "etag": "\"20cb1e-478fb-614136a2a2bb5\"",
+      "last_modified": "Wed, 20 Mar 2024 08:31:18 GMT",
+      "declared_family": "Fujichrome Velvia RVP 50 (V3)",
+      "exact_stock_id": "Fujifilm Fujichrome Velvia 50 family"
+    },
+    {
+      "path": "N230513.zip",
+      "url": "https://www.colorreference.de/targets/N230513.zip",
+      "expected_bytes": 294186,
+      "etag": "\"20ca87-47d2a-614136a2cc3c8\"",
+      "last_modified": "Wed, 20 Mar 2024 08:31:18 GMT",
+      "declared_family": "Velvia 100(F), Provia 400X, Sensia 100, Astia 100F compatible N3",
+      "exact_stock_id": "unknown"
+    },
+    {
+      "path": "A240301.zip",
+      "url": "https://www.colorreference.de/targets/A240301.zip",
+      "expected_bytes": 292423,
+      "etag": "\"20c3fd-47647-616a372fa1589\"",
+      "last_modified": "Sun, 21 Apr 2024 23:12:04 GMT",
+      "declared_family": "Agfa RSX (II) / CT Precisa (A3)",
+      "exact_stock_id": "unknown"
+    },
+    {
+      "path": "F240222.zip",
+      "url": "https://www.colorreference.de/targets/F240222.zip",
+      "expected_bytes": 294516,
+      "etag": "\"20c7bc-47e74-614136a25e5f1\"",
+      "last_modified": "Wed, 20 Mar 2024 08:31:18 GMT",
+      "declared_family": "older Fujichrome Astia, Sensia, RTP II, Provia including Provia 100F compatible F3",
+      "exact_stock_id": "unknown"
+    }
+  ],
+  "rights": {
+    "page_purpose": "downloadable IT8.7 and ISO 12641 scanner-target reference files and updates",
+    "allowed_use": "bounded_internal_reference_schema_and_measurement_audit",
+    "redistribution_allowed": false,
+    "commercial_training_allowed": false,
+    "licence_spdx": "NOASSERTION"
+  },
+  "audit_questions": [
+    "Do all archives pass byte, CRC and deterministic parse checks?",
+    "Which measured colourimetric, density and spectral fields are actually present?",
+    "Are patch identities and measurement conditions comparable across target families?",
+    "Does each archive identify one exact film stock, emulsion/batch, process and target-production chain?",
+    "Were targets deliberately calibrated toward common IT8 aim values, making residual differences unsuitable as stock style?",
+    "Can direct measurements support only nuisance/physical-prior research or a future explicit operator leaf?"
+  ],
+  "gates": {
+    "all_http_200": true,
+    "all_expected_bytes": true,
+    "all_archives_crc_clean": true,
+    "all_reference_files_parse": true,
+    "minimum_common_patch_id_fraction": 0.95,
+    "minimum_families_with_spectral_measurements": 3,
+    "exact_stock_required_for_stock_learning": true,
+    "uncalibrated_common_input_required_for_operator_fitting": true,
+    "explicit_reusable_rights_required_for_training": true
+  },
+  "image_download_allowed": false,
+  "measurement_download_allowed": true,
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "redistribution_allowed": false,
+  "claim_ceiling": "bounded internal schema, spectral-measurement, batch/family and target-manufacturing-nuisance evidence; no camera-scene pair, exact multi-stock response, stock style, operator fitting, training, calibration, latent mode or redistribution claim"
+}
