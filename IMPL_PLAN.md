@@ -284,6 +284,16 @@ frames contain no same-illumination cross-stock pair. Preserve it as high-value
 method/acquisition evidence; do not fit publication figures or infer a stock
 response.
 
+`SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
+references instead of scanner RGB or uncontrolled photographs. Exact
+byte/CRC/parse gates and 288 shared target patches pass twice; each archive
+contains 41 direct spectral samples from 380--780 nm. Pairwise target Lab
+differences are real, but the targets were manufactured for scanner
+calibration and lack a lineaged common uncalibrated recorder input. Treat the
+result only as a physical spectral representation and target-manufacturing
+nuisance source. It does not open stock fitting, training, LSM, redistribution
+or production work.
+
 `U5.R2J0` is that separately frozen witness. It independently implements the
 compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
 functional form using five original synthetic parameter sets. A numerical

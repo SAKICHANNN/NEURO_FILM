@@ -3294,3 +3294,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   but forbid figure extraction, fitting, training, LSM, calibration or stock
   response claims. Reopen only on an official immutable data release with
   explicit reusable rights. Goal remains active.
+
+## 2026-07-26 - Complete SF2.9R multi-family IT8 measurement audit
+
+- **Node/skills:** `ULT > RF0.4 > SF2.9R`; dev-research-reliability primary,
+  with research, AI/ML, DRPT, structure and agent-log disciplines secondary.
+- **Acquisition/integrity:** five frozen ColorReference archives total exactly
+  `1,468,016` bytes. ZIP CRC, deterministic IT8/CGATS parsing, 288 common patch
+  IDs and 41-point 380--780 nm spectral support all pass. Two formal reports
+  at software commit `de6f786...b3eb` are byte-identical at
+  `92246d2b...a39889f`.
+- **Evidence:** four headers identify Velvia 50, Velvia 100, Agfachrome RSX II
+  and Provia 100F; Ektachrome remains family-only. Pairwise common-patch target
+  Lab medians span `1.52--4.22` Delta E76 and within-batch mean-Delta-E
+  medians span `.34--.57`.
+- **Identifiability/decision:** direct spectra remove scene and scanner-RGB
+  shortcuts, but these are manufactured batch-average scanner targets with no
+  common uncalibrated recorder input, camera scene, independent roll/process
+  replication or standard reusable training licence. Retain only physical
+  spectral and target-manufacturing nuisance evidence; no stock operator,
+  fitting, training, LSM, redistribution or integration opens.
+- **Verification/handoff:** four focused tests and all `845` CPU tests pass.
+  Select the next independently motivated explicit-algorithm or stronger-data
+  leaf; Goal remains active.

@@ -57,6 +57,7 @@ against the exact-revision frozen metadata.
 | PROV VPRS 17684/17690 | institutional digitised negative collection linked to a physical register described as tracking film stock | same agency and negative-number ranges could supply strong grouping if register contents become accessible | SF2.5R metadata-only result; pixels forbidden | two byte-identical audits find all 30 register items physical-only and no digital/IIIF field | official API is permitted for non-commercial research under CC BY-NC; image reuse is not inferred | source closes before pixels; reopen only on official transcription/digitisation/licensed export or separately approved bounded physical-copy workflow |
 | ColorReference Set 3 | exact Velvia 100F target-set statement | same five physical slides across four scanner/software pipelines | 20 scaled scans + five recorder-space grids + IT8/CGATS measurements | deliberately exposes scanner hardware/software nuisance; one target set only | free testing/development use stated, no standard redistribution licence | SF2.7R source pass; internal nuisance-control lane only, never stock fitting |
 | NTNU controlled reversal study | publication/thesis exact Ektachrome E100 and Velvia 50 | two mock-up paintings; independent roll/process grouping unreported | matching-geometry hyperspectral captures and ten-band developed-film scans described | six analysed frames do not supply same-illumination cross-stock control | article CC BY; NVA thesis files use general Copyright Act terms; no dataset release | SF2.8R method evidence only; public data unavailable and stock effect unidentified |
+| ColorReference multi-family IT8 references | four exact material headers plus one Ektachrome family header | one manufactured batch-average target per family; no independent roll/process groups | 288 common target IDs with Lab/density and 380--780nm spectra | target aim/manufacturing adjustment is unobserved; no camera-scene or common recorder input | public download page, no standard reusable data licence | SF2.9R physical spectral and target-manufacturing nuisance evidence only; no operator fitting |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -359,6 +360,18 @@ analysis also lack a same-illumination cross-stock comparison, so stock and
 illuminant remain confounded in the reported visual contrast. No fitting,
 training or LSM opens. See
 `docs/REAL_FILM_NTNU_CONTROLLED_REVERSAL_SOURCE_RESULTS.md`.
+
+`SF2.9R` removes scene content and scanner RGB by auditing five direct
+ColorReference IT8/ISO 12641 transmission-reference archives. All five pass
+exact byte/CRC/parse gates twice, share 288 target IDs and provide 41-point
+380--780 nm spectra. Pairwise common-patch target Lab medians span
+`1.52--4.22` Delta E76. These numbers are not stock-look effect sizes: the
+targets are batch-average scanner-calibration products manufactured toward
+common IT8 aims, and no common uncalibrated recorder input, camera scene or
+independent roll/process replication is lineaged. Retain only internal
+physical-spectral and target-manufacturing nuisance evidence. No fitting,
+training, LSM, redistribution or production integration opens. See
+`docs/REAL_FILM_COLORREFERENCE_MULTIFAMILY_IT8_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343
