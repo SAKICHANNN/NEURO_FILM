@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k3-gamut-polar-palette-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K3",
+  "status": "complete_closed",
+  "decision": "representation_and_diversity_pass_jacobian_norm_fail",
+  "software_commit": "43efb5bbe32c1de175e5d076fe882ba9da45971b",
+  "config_sha256": "02634f1f95aa2e397492b0cad1bfcf38335eaa732b09f1ed23df9625dc47f647",
+  "formal_report_sha256": "5def5f9101fa81a40b82d2986c813ff417e615a3b83dfe43446bb645bae15d96",
+  "repeat_report_sha256": "5def5f9101fa81a40b82d2986c813ff417e615a3b83dfe43446bb645bae15d96",
+  "all_checks_passed": false,
+  "passed_checks": [
+    "identity_exact",
+    "neutral_axis_exact",
+    "endpoints_exact",
+    "bounded",
+    "inverse_roundtrip",
+    "positive_jacobian",
+    "pairwise_diversity",
+    "identity_distance",
+    "non_affine",
+    "serialization_replay",
+    "partition_parity"
+  ],
+  "failed_checks": [
+    "bounded_jacobian_norm"
+  ],
+  "witness_maximum_jacobian_spectral_norm": {
+    "identity": 1.0000000001780778,
+    "cyan_shadow_warm_highlight_like": 11.198355665205856,
+    "warm_dense_like": 7.697432592204255,
+    "cool_soft_like": 6.126580477695986,
+    "cross_palette_like": 7.110427993428162
+  },
+  "diversity": {
+    "minimum_pairwise_rgb_rmse": 0.04500811780654965,
+    "non_identity_rgb_rmse_range": [
+      0.06458224205716011,
+      0.10392879470307353
+    ],
+    "non_affine_residual_rgb_rmse_range": [
+      0.05208825160602415,
+      0.0740950920133279
+    ]
+  },
+  "retained_evidence": "Exact RGB-cube gamut-polar factorization can produce diverse strongly non-affine tone/hue/chroma palettes while preserving bounds, neutral axis, endpoints, positive orientation and an analytic inverse. A strong exposure-dependent hue witness nevertheless creates excessive local colour gain.",
+  "forbidden_rescues": [
+    "reduce_or_retune_the_failed_witness_after_viewing_the_jacobian_grid",
+    "relax_the_jacobian_norm_gate",
+    "apply_output_clipping_projection_or_posthoc_smoothing",
+    "open_the_fixed_bank_on_real_images",
+    "claim_ACES_conformance_or_film_response"
+  ],
+  "allowed_next": "retain the coordinate factorization as research evidence; any future derivative-controlled palette family requires a separately motivated and preregistered construction rather than tuning K3",
+  "real_image_frontier_allowed": false,
+  "film_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "clean-room data-independent numerical and diversity evidence: the gamut-polar factorization is bounded, invertible, neutral-safe and strongly non-affine, but one frozen palette exceeds the local Jacobian-norm budget; no ACES conformance, measured film response, stock, calibration, preference or production claim"
+}
