@@ -64,7 +64,7 @@ with a selected stock, but reference matching alone is labeled
 | P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | `cabe6fc` | revert commit |
 | P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | `8c7d45e` | revert commit |
 | P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | `23221fa` | revert commit |
-| P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | evidence commit | release claim |
+| P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | `8d3f60c` | release claim |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

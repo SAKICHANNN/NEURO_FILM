@@ -50,6 +50,7 @@ file was changed.
 - `cabe6fc` - render one reference look across image batches
 - `8c7d45e` - persist and replay reference look recipes
 - `23221fa` - match uploaded reference across SDR image files
+- `8d3f60c` - certify integration boundary and rollback safety
 
 ## Verification
 
