@@ -267,6 +267,14 @@ reusable data licence. Neither source opens fitting or training. The published
 functional form may motivate only a clean-room, data-independent architecture
 witness under a separate frozen contract.
 
+`SF2.7R` now passes as an internal scanner-nuisance source. The exact
+71,068,957-byte ColorReference lane contains four complete pipelines observing
+the same five Velvia 100F Set 3 slides, plus source grids and measured
+references; all CRC/decode/completeness/duplicate gates pass. It opens only a
+separately frozen same-slide nuisance quantification. Recorder-space sources
+are not digital scene-linear pairs, one set is not independent-roll evidence,
+and no stock fit, training, LSM or redistribution opens.
+
 `U5.R2J0` is that separately frozen witness. It independently implements the
 compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
 functional form using five original synthetic parameter sets. A numerical

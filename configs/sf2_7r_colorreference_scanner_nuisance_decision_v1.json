@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.7r-colorreference-scanner-nuisance-v1",
+  "decision": "source_pass_open_separate_scanner_nuisance_quantification",
+  "config_sha256": "ed44375415b7471aa1b0256d87e086a66c83f55c0cab3d2a25ec33a90e037fa0",
+  "software_commit": "cec5cc7355bb764d9e64182dabda57e40ceeeb97",
+  "report_sha256": "b88da41c129b58087c68194f21545c1f7b708be91ba7d1b868ce50579d410fb6",
+  "repeat_report_byte_identity": true,
+  "asset_count": 11,
+  "total_bytes": 71068957,
+  "complete_scan_pipelines": 4,
+  "complete_slide_ids_per_pipeline": 5,
+  "cross_pipeline_exact_duplicate_pairs": 0,
+  "scanner_nuisance_quantification_allowed": true,
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "redistribution_allowed": false,
+  "next_node": "SF2.7A"
+}

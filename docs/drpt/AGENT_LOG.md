@@ -3198,3 +3198,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   never a digital-film pair, stock response, independent roll, mode or fitting
   permission. Commit/push before download; J1 continues concurrently in
   isolated output paths.
+
+## 2026-07-26 - Pass SF2.7R scanner-nuisance source gate
+
+- **Acquisition:** 11/11 assets and exactly `71,068,957` bytes retained under
+  ignored `data/external`; four scan pipelines each contain all five Set 3
+  slide identities.
+- **Integrity:** all frozen bytes, ZIP CRC and image decodes pass; zero
+  cross-pipeline exact duplicate pairs. Two reports at commit
+  `cec5cc7...eeb97` are byte-identical at `b88da41c...0fb6`.
+- **Decision:** open SF2.7A patch/alignment and leave-one-slide-out scanner
+  nuisance quantification only. No digital-film pair, independent-roll, stock
+  response, fitting, training, LSM, redistribution or production claim. Goal
+  remains active.

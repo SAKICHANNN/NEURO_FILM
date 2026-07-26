@@ -55,6 +55,7 @@ against the exact-revision frozen metadata.
 | Smithsonian Open Access metadata | institution-authored object/archive metadata, usually stock-family rather than exact product identity | owning unit, collection and record; no demonstrated connected exact-stock graph | no pixels requested | unit/collection/era/content/scanner can become stock proxies; media rights are separate | official CC0 metadata mirror; seven relevant units total 6.64GB | `SF2.2R` closes before a formal audit: deterministic shard probes split Kodachrome and Ektachrome evidence across units and expose no exact connected multi-stock design |
 | Newgrain public application | controlled exact-stock catalogue, but post labels remain community claims | pseudonymous user plus optional lab/scanner/process fields | no pixels requested or retained | platform/source workflow and self-report remain nuisance; no rights-cleared manifest | public frontend is technically readable, but Terms prohibit automated queries/scraping/mining and user content remains uploader-owned | `SF2.4R` closes before a formal audit; written permission or an officially licensed export is required |
 | PROV VPRS 17684/17690 | institutional digitised negative collection linked to a physical register described as tracking film stock | same agency and negative-number ranges could supply strong grouping if register contents become accessible | SF2.5R metadata-only result; pixels forbidden | two byte-identical audits find all 30 register items physical-only and no digital/IIIF field | official API is permitted for non-commercial research under CC BY-NC; image reuse is not inferred | source closes before pixels; reopen only on official transcription/digitisation/licensed export or separately approved bounded physical-copy workflow |
+| ColorReference Set 3 | exact Velvia 100F target-set statement | same five physical slides across four scanner/software pipelines | 20 scaled scans + five recorder-space grids + IT8/CGATS measurements | deliberately exposes scanner hardware/software nuisance; one target set only | free testing/development use stated, no standard redistribution licence | SF2.7R source pass; internal nuisance-control lane only, never stock fitting |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -327,6 +328,15 @@ data licence. Both remain method/metadata precedent only. The functional form
 may be tested separately with original synthetic parameters, but no stock fit,
 training, calibration or latent-mode claim opens. See
 `docs/REAL_FILM_PAIRED_SOURCE_AVAILABILITY_RECONNAISSANCE_RESULTS.md`.
+
+`SF2.7R` adds a strictly nuisance-focused same-physical-slide control. The
+exact 71,068,957-byte lane contains four complete scanner/software pipelines
+over the same five Velvia 100F Set 3 slides plus recorder-space grids and
+measured references. Integrity and connectivity pass, but the source TIFFs are
+not neutral digital captures and one target set is not independent-roll stock
+evidence. Only a separately frozen scanner-nuisance quantification opens; no
+fit, training, LSM or redistribution opens. See
+`docs/REAL_FILM_COLORREFERENCE_SCANNER_NUISANCE_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343
