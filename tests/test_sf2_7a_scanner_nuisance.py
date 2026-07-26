@@ -1,13 +1,43 @@
 from __future__ import annotations
 
+from io import BytesIO
+from unittest.mock import patch
+
 import numpy as np
+from PIL import Image
 
 from src.real_film.scanner_nuisance import (
+    _native_rgb,
     apply_affine,
     distance_metrics,
     evaluate_leave_one_slide_out,
     patch_medians,
 )
+
+
+def test_native_rgb_preserves_integer_precision() -> None:
+    import tifffile
+
+    values = np.array([[[0, 1024, 65535], [17, 32768, 60000]]], dtype=np.uint16)
+    payload = BytesIO()
+    tifffile.imwrite(payload, values, photometric="rgb")
+    decoded = _native_rgb(payload.getvalue())
+    assert decoded.dtype == np.float64
+    np.testing.assert_allclose(decoded, values.astype(np.float64) / 65535.0)
+
+
+def test_native_rgb_falls_back_for_missing_imagecodecs() -> None:
+    values = np.array([[[0, 64, 255], [17, 128, 200]]], dtype=np.uint8)
+    payload = BytesIO()
+    Image.fromarray(values, mode="RGB").save(payload, format="TIFF")
+    with patch(
+        "src.real_film.scanner_nuisance.tifffile.imread",
+        side_effect=ValueError(
+            "<COMPRESSION.LZW: 5> requires the 'imagecodecs' package"
+        ),
+    ):
+        decoded = _native_rgb(payload.getvalue())
+    np.testing.assert_allclose(decoded, values.astype(np.float64) / 255.0)
 
 
 def test_patch_medians_extract_fixed_grid() -> None:

@@ -18,6 +18,7 @@ from zipfile import ZipFile
 
 import cv2
 import numpy as np
+from PIL import Image
 from scipy.optimize import lsq_linear
 from skimage.color import deltaE_ciede2000, rgb2lab
 import tifffile
@@ -36,7 +37,14 @@ def sha256_file(path: Path) -> str:
 
 
 def _native_rgb(payload: bytes) -> np.ndarray:
-    array = np.asarray(tifffile.imread(BytesIO(payload)))
+    try:
+        array = np.asarray(tifffile.imread(BytesIO(payload)))
+    except ValueError as error:
+        if "requires the 'imagecodecs' package" not in str(error):
+            raise
+        with Image.open(BytesIO(payload)) as image:
+            image.load()
+            array = np.asarray(image)
     if array.ndim != 3 or array.shape[2] != 3:
         raise ScannerNuisanceError(f"expected RGB TIFF, got {array.shape}")
     if not np.issubdtype(array.dtype, np.integer):
