@@ -91,3 +91,27 @@
 - Handoff state: first product vertical slice is ready for integration review.
   Phase-two algorithm promotion remains gated on W1 identifiability and an
   aesthetic/preference evaluation rather than being declared final.
+
+## 2026-07-27 - Reject v1 as the final photographic matcher
+
+- Node: NFCM-A4 known-operator cross-content falsification.
+- Coordination refresh: the main task remains active on W1 reference
+  identifiability; standalone D-PCT is active on corrected RAW/DNG evidence.
+  This leaf reads their state but does not write either task's files.
+- Method: fit one recipe from Velvia-look target `01`, then reuse it for six
+  neutral real-photo sources with corresponding same-look targets available
+  only for evaluation.
+- Evidence: same-content `01` improves median Delta E76 by 59.8%; all five
+  cross-content rows regress, from -3.8% to -175.4%. Visual inspection confirms
+  exposure drift, sky/neutral contamination and content-palette leakage without
+  spatial corruption.
+- Decision: v1 remains the deterministic fallback/API shell but is rejected as
+  the final or strongest matcher. Do not spend the next leaf tuning global
+  moments.
+- Change propagation: A1 is now `BASELINE FAILED`; A4 is
+  `BASELINE REJECTED`. A promotable algorithm must use a canonical or otherwise
+  identified content-independent grade and retain the explicit bounded
+  operator/replay contract.
+- Next: consume the main task's committed W1 evidence to select or reject a
+  stronger descriptor/head; meanwhile define only non-overlapping product
+  composition and adapter boundaries.

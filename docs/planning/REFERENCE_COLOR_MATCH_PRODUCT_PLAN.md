@@ -147,13 +147,21 @@ final photographic/aesthetic algorithm.
 
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
-| A1 reference identifiability | WAITING | main-chat W1 single/multi/paired evidence | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
+| A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
 | A2 film-business composition | WAITING | stable stock-expert product interface | add an adapter that keeps `reference-look` and `film_stock_id` claims separate |
 | A3 media portability | WAITING | standalone D-PCT stable recipe/media contract | map recipe fields through an adapter; do not copy RAW/HDR/video code |
-| A4 photographic preference | NOT_STARTED | frozen reference/source image suite and review contract | compare baseline/challengers under severe-artifact veto and blind aesthetic review |
+| A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 
 Until A1/A4 pass, this implementation is an operational deterministic baseline,
 not the claimed final or strongest colour-matching algorithm.
+
+The first A4 falsification uses one known Velvia-look target as the reference
+and applies its recipe to six neutral sources. The same-content positive control
+improves median Delta E76 by 59.8%, but every held-out-content image regresses
+(-3.8% to -175.4%). See
+`docs/drpt/REFERENCE_COLOR_MATCH_QUALITY_BASELINE.md`. This rejects global
+reference moments as the final algorithm and prevents parameter-tuning from
+being mistaken for content-independent look recovery.
 
 ## Verification and rollback
 

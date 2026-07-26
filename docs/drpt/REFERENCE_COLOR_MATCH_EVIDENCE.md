@@ -88,6 +88,14 @@ For example, `configs/color_rendering_profiles.yaml` has Git-blob SHA-256
 - Single-reference identifiability and stronger content-invariant descriptors
   remain owned by the neuro-film main W1/W2 research.
 
+## Phase-two quality finding
+
+`docs/drpt/REFERENCE_COLOR_MATCH_QUALITY_BASELINE.md` records the first
+known-operator cross-content test. The v1 recipe improves its same-content
+positive control but regresses all five held-out-content images. It is
+therefore certified only as a safe operational fallback and contract baseline,
+not as the final photographic matcher.
+
 ## Change propagation
 
 - Upward: neuro-film now has an implementable peer capability to stock
