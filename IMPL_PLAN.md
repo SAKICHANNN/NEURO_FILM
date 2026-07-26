@@ -376,6 +376,17 @@ the frozen endpoint statistic over the complete RGB8 frame, then hard-fallback
 to `s0.50`. The implementation regenerates both archived strength banks
 RGB8-exactly on all 41 images, but full-frame selection reproduces only 40/41
 sampled-Oracle choices. Stress 20 is `.49247%` in the sampled evaluator and
+.50015% at full-frame, so it conservatively falls back. The frozen exact-policy
+gate closes without threshold, epsilon or sampling rescue.
+
+`U5.R2M0` is the next independently motivated explicit-colour representation
+leaf. It composes six triangular interval-Möbius channel maps: each stage
+independently parameterizes bounded black lift, white compression and log-odds
+bend from the other two channels, giving an analytic reverse-order inverse and
+positive stage derivative. The 108-parameter candidate is smaller than K1 and
+fits only immutable synthetic explicit controls on a development grid. Real
+images, film pixels, neural rendering and stock claims remain forbidden until
+all frozen confirmation, Jacobian, inverse and exact replay gates pass.
 `.50015%` full-frame, crossing the fixed `.5%` boundary. Close the exact policy
 without threshold, epsilon or sampling rescue. Keep L0 as Oracle feasibility
 only and the explicit hard-preflight code as isolated research infrastructure;

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2m0-interval-mobius-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2M0",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": [
+    {
+      "node": "U5.R2K1",
+      "results_sha256": "a987ec3c4694d3aa5deb0a454ee2787d90aeb459ceb9aa72d7e166704f7b846c",
+      "finding": "single-boundary piecewise-affine coupling is structurally safe but underfits both frozen nonlinear controls"
+    },
+    {
+      "node": "U5.R2K3",
+      "results_sha256": "8b02711974f625e89f7301635330d903fe567dca4d202d411a439c545deaf3e0",
+      "finding": "gamut-polar factorization is expressive and invertible but one strong palette exceeds the frozen local-gain budget"
+    },
+    {
+      "node": "U5.R2L1",
+      "results_sha256": "7a49dfd2aeb02925820079559758d67cd913c62686dcf5e37e3f8bb799c204f9",
+      "finding": "post-output strength selection is not an exact deployable policy under the frozen sampled/full-frame contract"
+    }
+  ],
+  "method_prior": {
+    "primary_source": "Zehtab et al., Efficient Neural Network Encoding for 3D Color Lookup Tables, AAAI 2025",
+    "source_url": "https://arxiv.org/abs/2412.15438",
+    "adopted_principles": [
+      "use bounded-coordinate conjugation to keep saturated colours numerically tractable",
+      "compose residual or coupling transforms under an explicit invertibility constraint",
+      "extract a deterministic colour operator rather than spatially generating final RGB"
+    ],
+    "external_code_checkpoint_lut_or_parameters_allowed": false,
+    "paper_network_reimplementation_allowed": false
+  },
+  "candidate": {
+    "schema": "roll2film.interval_mobius_coupling.v1",
+    "stage_channels": [0, 1, 2, 1, 2, 0],
+    "conditioner_basis": [
+      "bias",
+      "centered_left",
+      "centered_right",
+      "centered_product",
+      "centered_left_squared",
+      "centered_right_squared"
+    ],
+    "maximum_lower_lift": 0.18,
+    "maximum_upper_compression": 0.18,
+    "maximum_log_odds_shift": 0.8,
+    "maximum_absolute_coefficient": 2.0,
+    "identity_at_zero_coefficients": true,
+    "implicit_output_clamp_allowed": false
+  },
+  "fit": {
+    "grid_axis_size": 8,
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 260726,
+    "steps": 2400,
+    "learning_rate": 0.025,
+    "coefficient_l2": 0.00001,
+    "gradient_clip_norm": 10.0,
+    "project_coefficients_each_step": true,
+    "development_only": true
+  },
+  "confirmation_grid_axis_size": 11,
+  "jacobian_grid_axis_size": 7,
+  "finite_difference_step": 0.000001,
+  "targets": {
+    "identity": {"family": "identity", "strength": 1.0},
+    "density_cyan_s50": {
+      "family": "u5_r2e0_density",
+      "witness": "cyan_shadow_warm_highlight_like",
+      "strength": 0.5
+    },
+    "positive_warm_s35": {
+      "family": "u5_r2j0_positive",
+      "witness": "warm_highlight_like",
+      "strength": 0.35
+    }
+  },
+  "gates": {
+    "identity_confirmation_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_absolute_coefficient": 2.0,
+    "maximum_confirmation_rgb_rmse": 0.015,
+    "minimum_improvement_over_global_affine_fraction": 0.2,
+    "minimum_analytic_stage_derivative": 0.02,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "inverse_roundtrip_maximum_absolute_error": 1e-10,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "conditional_style_generator_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room data-independent representation evidence for a bounded explicit interval-Mobius coupling operator fitted only to frozen synthetic explicit controls; no external LUT/code/weight reuse, neural renderer, real-film operator identification, named stock, calibration, authenticity, preference or production promotion"
+}

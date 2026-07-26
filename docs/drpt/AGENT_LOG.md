@@ -3457,3 +3457,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   primitive remains research-only and production imports/schema are unchanged.
   Goal remains active; select a separately motivated algorithm or stronger-data
   leaf rather than output-headroom metric gaming already rejected by R2G1.
+
+## 2026-07-26 - Freeze U5.R2M0 interval-Möbius coupling representation
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2M0`;
+  dev-research-reliability primary with research, AI/ML, DRPT, structure and
+  agent-log disciplines secondary.
+- **Live refresh:** branch clean at `4c8f004`; SillyStill official repository
+  remains at its single pinned commit with `data/` ignored/on-request,
+  placeholder public dataset links and no root licence, reproducing SF2.6R.
+  No duplicate source node or pixel acquisition was opened.
+- **Question:** can an explicit six-stage interval-Möbius triangular coupling
+  fit the two frozen nonlinear controls while preserving bounds, invertibility,
+  positive orientation and the local-gain budget?
+- **Independent construction:** each stage predicts bounded lower lift, upper
+  compression and a log-odds bend from only the unchanged channels. Reverse
+  order is analytic. The fixed 108 coefficients are fewer than K1's 144;
+  neither K1 nor K3 is retuned.
+- **Frozen boundary:** synthetic explicit controls only; development `8^3`,
+  confirmation `11^3`; no images, real-film pixels, external LUT/code/weights,
+  neural renderer, stock fitting or production integration. Any fidelity,
+  inverse, Jacobian, norm or exactness failure closes without rescue.
+- **Handoff:** contract/config are ready for a scoped commit, then operator,
+  fitter, audit and tests. Goal remains active.
