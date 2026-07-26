@@ -3159,3 +3159,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** commit/push the contract before implementation or result
   inspection. A property pass opens only a separately frozen gold/stress
   frontier. Goal remains active.
+
+## 2026-07-26 - Pass U5.R2J0 positive-film-response representation
+
+- **Implementation:** added isolated `src/roll2film/positive_film.py`, a
+  fail-closed two-matrix/three-sigmoid operator with exact theoretical endpoint
+  normalization, bounded strength, serialization and finite-difference audit.
+- **Evidence:** all five witnesses pass every gate; minimum Jacobian determinant
+  `3.3423e-5`, minimum directional derivative `.002541`, minimum pairwise RMSE
+  `.0212405`, minimum affine residual `.0959595`. Two reports at commit
+  `251388a...a363e1` are byte-identical at `77fb4ee9...c53`.
+- **Verification/branch:** five focused tests and all 818 CPU tests pass. Open
+  only U5.R2J1 real-image frontier; no paper parameter, stock fit, calibration,
+  training, LSM, preference or production claim. Goal remains active.

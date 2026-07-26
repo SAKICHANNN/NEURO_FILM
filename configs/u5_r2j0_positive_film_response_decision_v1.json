@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2j0-positive-film-response-v1",
+  "decision": "pass_representation_open_separate_real_image_frontier",
+  "config_sha256": "3fa39f74faede3fac5767fca9f29a9ec61859d8b879a2ff95293163811a9fcf2",
+  "software_commit": "251388adeffc0844c50e3843c1e1cb23f5a363e1",
+  "report_sha256": "77fb4ee9695b89735461ece2f23d6b841abd87ba0d1aaebd084f1e5e06fa7c53",
+  "repeat_report_byte_identity": true,
+  "full_cpu_tests_passed": 818,
+  "summary": {
+    "witness_count": 5,
+    "grid_points_per_witness": 4913,
+    "maximum_endpoint_absolute_error": 0.0,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "minimum_finite_difference_jacobian_determinant": 0.0000334233060729875,
+    "minimum_directional_derivative": 0.002541169386027775,
+    "minimum_identity_rgb_rmse": 0.3829537922761702,
+    "minimum_pairwise_witness_rgb_rmse": 0.021240459638447704,
+    "minimum_best_affine_residual_rgb_rmse": 0.09595952568547728
+  },
+  "real_image_frontier_allowed": true,
+  "real_film_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "named_stock_claim_allowed": false,
+  "next_node": "U5.R2J1"
+}

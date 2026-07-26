@@ -274,6 +274,13 @@ diversity/regularity pass may open only a separately frozen real-image
 frontier. No publication parameter, pixel, LUT or output is copied, and no
 Velvia, stock, calibration, training, LSM or production claim opens.
 
+The J0 audit now passes every frozen representation gate. Across five
+witnesses, output remains exactly bounded, the minimum finite-difference
+Jacobian determinant is positive, minimum pairwise RGB RMSE is `.02124`, and
+minimum residual after the best affine RGB fit is `.09596`. Two reports are
+byte-identical and all 818 CPU tests pass. This opens only J1: freeze a
+bounded-strength real-image frontier before any aesthetic/safety conclusion.
+
 `RF2.C0` is complete as an isolated external-control leaf. Two formal
 spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
 the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new
