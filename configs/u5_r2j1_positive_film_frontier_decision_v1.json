@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2j1-positive-film-frontier-v1",
+  "decision": "close_no_visual_gain",
+  "software_commit": "cec5cc7355bb764d9e64182dabda57e40ceeeb97",
+  "config_sha256": "6c34fab9f754610c07e804750dc219f39687fcebd53cab80836cdc85c0e9aee5",
+  "render_manifest_sha256": "a3bd882ea1b21c0426759bde181dcaf376b7aaafb624ab3c25dfa8aff51c213e",
+  "automatic_report_sha256": "07d616c1da23a58fecb720f23b2ddc32bdbabc1a869367a0b4f4cdb13a9c3023",
+  "repeat_render_manifest_byte_identical": true,
+  "repeat_automatic_report_byte_identical": true,
+  "automatic_survivor_count": 7,
+  "shortlist": [
+    "cross_bias_like__s35",
+    "warm_highlight_like__s35",
+    "cyan_shadow_warm_highlight_like__s35"
+  ],
+  "blind_sheet_sha256": [
+    "b9709bb377b96f6f77ed8f3cd01c6ee89d29e5e7ef31f813569471773c94077f",
+    "c9fdf728424c154864cb095718b76ae1f20dce26f7fb432eaa7d3e12b60fa8ba",
+    "6901744ed352d93f21a976bea81a36224cd794f17f7b2d08cac324a2af19153d"
+  ],
+  "private_mapping_sha256": "9203c64aa4a64a2a4a190b4c6e6f9b33f52672f722f15988a860420286cbe9f2",
+  "blind_choices_before_mapping": {
+    "round_1": {
+      "winner": "B",
+      "runner_up": "D"
+    },
+    "round_2": {
+      "winner": "E",
+      "runner_up": "B"
+    },
+    "round_3": {
+      "winner": "C",
+      "runner_up": "B"
+    }
+  },
+  "decoded_blind_choices": {
+    "round_1": {
+      "winner": "cyan_shadow_warm_highlight_like__s50",
+      "runner_up": "bland_safe_rich_control"
+    },
+    "round_2": {
+      "winner": "cyan_shadow_warm_highlight_like__s50",
+      "runner_up": "bland_safe_rich_control"
+    },
+    "round_3": {
+      "winner": "cyan_shadow_warm_highlight_like__s50",
+      "runner_up": "bland_safe_rich_control"
+    }
+  },
+  "full_resolution_shortlist_renders_reviewed": 27,
+  "confirmed_severe_gold_artifacts": 0,
+  "id11_red_speckle_or_posterization_failures": 0,
+  "retained_challenger": "cyan_shadow_warm_highlight_like__s50",
+  "new_challenger_retained": false,
+  "training_allowed": false,
+  "stock_operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "autonomous B0 development evidence only; the fixed positive-film family is numerically valid and artifact-clean at the shortlist but adds no visual value over the existing density challenger; no owner/population preference, stock response, calibration, authenticity, training or production claim"
+}
