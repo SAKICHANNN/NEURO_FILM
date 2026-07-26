@@ -105,6 +105,16 @@ distinct synthetic question may fit the safe explicit flow directly by
 distribution matching and must score distribution fit separately from true
 operator recovery.
 
+U5.R2T0 audits the new StatLUT preprint as a reference-conditioned explicit
+renderer. Its image branch predicts a global `16x16x16` LUT from Lab
+statistics, but training uses known random LUTs applied to the same COCO
+content and directly supervises both LUT and output. Patch-shuffle invariance
+does not answer independent-content or identity-style nuisance controls. The
+4,000 reported professional LUTs have no source/rights manifest, official
+code/checkpoints are absent, and the text diffusion branch is forbidden.
+Retain only the Lab-stat/identity-residual architecture prior; do not reopen
+the closed S2 observation with more capacity.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

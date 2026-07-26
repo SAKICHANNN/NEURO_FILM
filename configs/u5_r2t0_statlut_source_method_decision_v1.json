@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2t0-statlut-source-method-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2T0",
+  "audit_date": "2026-07-26",
+  "paper": {
+    "title": "Multimodal 3D LUT Generation via StatLUT with Statistical Features for Photorealistic Style Transfer",
+    "arxiv_id": "2607.08227v1",
+    "submitted": "2026-07-09",
+    "paper_url": "https://arxiv.org/abs/2607.08227",
+    "paper_license": "arXiv non-exclusive distribution license"
+  },
+  "source_state": {
+    "official_code_found": false,
+    "official_checkpoint_found": false,
+    "paper_reports_10000_training_luts": true,
+    "professional_lut_count": 4000,
+    "synthetic_lut_count": 6000,
+    "professional_lut_source_list_present": false,
+    "professional_lut_rights_manifest_present": false
+  },
+  "method_facts": {
+    "image_condition_features": [
+      "256-bin Lab lightness histogram",
+      "32x32 Lab chrominance histogram",
+      "32x32 chrominance-conditioned mean-lightness map"
+    ],
+    "predicted_operator": "clamped residual 16x16x16 RGB LUT",
+    "training_truth": "random known LUT applied to the same COCO content image, with direct LUT and same-image output supervision",
+    "reported_training_compute": "8 NVIDIA A800 GPUs for approximately 15 hours",
+    "text_branch": "CLIP plus diffusion transformer and Qwen-generated captions",
+    "text_branch_project_eligible": false
+  },
+  "project_fit": {
+    "explicit_final_rgb_renderer": true,
+    "bounded_parameter_prediction": true,
+    "real_unpaired_operator_identification": false,
+    "named_film_stock_evidence": false,
+    "source_content_nuisance_control": false,
+    "formal_positive_jacobian_or_invertibility_guarantee": false,
+    "current_asset_lineage_eligible": false
+  },
+  "decision": "retain_image_driven_architecture_prior_only_close_execution_and_capacity_rescue",
+  "reason": "the image branch learns supervised recovery of synthetic known LUTs and then infers from scene-colour statistics; its patch-shuffle control tests spatial permutation invariance rather than content/style identifiability, while current project evidence already shows scene colour is a dominant shortcut. The paper does not provide an auditable rights manifest for 4000 professional LUTs, official code or checkpoints, or a formal orientation-preserving operator guarantee",
+  "allowed_reuse": [
+    "cite Lab L plus ab plus conditional-L statistics as a reference-conditioned feature prior",
+    "cite identity-residual initialization and explicit LUT rendering as architecture priors",
+    "compare any future clean-room descriptor only under independent-content, identity-style, source and shuffled controls",
+    "replace the clamped LUT with an already validated cube-preserving explicit representation if a future data-identifiable leaf opens"
+  ],
+  "forbidden_actions": [
+    "run or reproduce the H-Diffuser text branch",
+    "treat random-LUT same-image supervision as real unpaired film learning",
+    "use the unspecified professional LUT collection",
+    "increase model capacity on the closed U5.R2S2 observation design",
+    "call patch-shuffle invariance content/style disentanglement",
+    "claim stock response, calibration, film authenticity or artifact freedom",
+    "download PST50, COCO, checkpoints or additional assets under this audit"
+  ],
+  "next_ready_leaf": "complete the already-running U5.R2S3 repeated adjudication, then execute U5.R2S4 only if its frozen activation gate passes",
+  "claim_ceiling": "paper/source/method audit of a synthetic-LUT-supervised reference-conditioned explicit renderer; no reproduction, asset, real-image, film, stock, preference, calibration or unpaired-operator evidence"
+}

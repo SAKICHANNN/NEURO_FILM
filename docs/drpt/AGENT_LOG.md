@@ -3992,3 +3992,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Non-execution:** no S4 report, formal observation, confirmation seed or
   film/project pixel was generated because the S3 repeated activation gate is
   still pending. Goal remains active.
+
+## 2026-07-26 - Audit U5.R2T0 StatLUT source and project fit
+
+- **Trigger:** a 2026-07-09 preprint newly exposes a spatially agnostic
+  Lab-statistics-to-global-LUT architecture not present in the prior source
+  ledger.
+- **Method fact:** the image branch predicts a clamped `16x16x16` residual LUT,
+  but learns from known random LUTs applied to the same COCO content and
+  receives direct LUT plus same-image output supervision. This is synthetic
+  paired operator recovery, not real unpaired-film identification.
+- **Shortcut adjudication:** its patch-shuffle control establishes spatial
+  permutation invariance only. Lab lightness/chrominance and
+  chrominance-conditioned luminance retain scene palette; they do not answer
+  S2's independent-content and identity-style failures.
+- **Lineage/structure:** 4,000 of 10,000 LUTs are attributed only to
+  professional grading resources without an asset rights manifest; no
+  official code/checkpoint was found. Clamp plus monotonicity/TV penalties is
+  not the project's positive-Jacobian guarantee.
+- **Boundary:** retain a clean-room descriptor/identity-residual prior only.
+  The Qwen/CLIP/diffusion text branch, asset download, eight-A800 reproduction,
+  capacity rescue, film fitting and stock claims remain closed. S3 continues
+  running independently; Goal remains active.
