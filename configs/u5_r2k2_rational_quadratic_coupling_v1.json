@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k2-rational-quadratic-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K2",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "node": "U5.R2K1",
+    "report_sha256": "e37726e277b072be71e75f4ecb95021aa847f91b48833929d8ddf4a3b281cbb1",
+    "finding": "simple bounded triangular shifts are structurally safe but underfit both frozen nonlinear explicit controls"
+  },
+  "method_prior": {
+    "paper_title": "Neural Spline Flows",
+    "paper_authors": "Conor Durkan, Artur Bekasov, Iain Murray, George Papamakarios",
+    "paper_url": "https://arxiv.org/abs/1906.04032",
+    "paper_pdf_sha256": "1f20e349d8e77125fc918ca82039f42aa831d0289379fc650960289d9df9b6a0",
+    "adopted_component": "monotonic rational-quadratic scalar bijection inside triangular coupling",
+    "external_code_checkpoint_or_parameters_allowed": false,
+    "density_estimation_allowed": false,
+    "generative_sampling_allowed": false,
+    "neural_conditioner_allowed": false
+  },
+  "candidate": {
+    "schema": "roll2film.rational_quadratic_coupling.v1",
+    "stage_channels": [
+      0,
+      1,
+      2,
+      0,
+      1,
+      2
+    ],
+    "conditioner": "fixed_2x2_2d_gaussian_bias_plus_affine",
+    "gaussian_axis_size": 2,
+    "isotropic_sigma": 0.38,
+    "bin_count": 4,
+    "minimum_bin_width": 0.04,
+    "minimum_bin_height": 0.04,
+    "minimum_derivative": 0.02,
+    "boundary_derivative": 1.0,
+    "epsilon": 1e-12,
+    "maximum_absolute_coefficient": 2.0
+  },
+  "fit": {
+    "grid_axis_size": 8,
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 260726,
+    "steps": 2400,
+    "learning_rate": 0.02,
+    "coefficient_l2": 0.00001,
+    "gradient_clip_norm": 10.0,
+    "project_coefficients_each_step": true,
+    "thread_count": 1
+  },
+  "confirmation_grid_axis_size": 11,
+  "jacobian_grid_axis_size": 7,
+  "finite_difference_step": 0.000001,
+  "targets": {
+    "identity": {
+      "family": "identity",
+      "strength": 1.0
+    },
+    "density_cyan_s50": {
+      "family": "u5_r2e0_density",
+      "witness": "cyan_shadow_warm_highlight_like",
+      "strength": 0.5
+    },
+    "positive_warm_s35": {
+      "family": "u5_r2j0_positive",
+      "witness": "warm_highlight_like",
+      "strength": 0.35
+    }
+  },
+  "gates": {
+    "identity_confirmation_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_absolute_coefficient": 2.0,
+    "minimum_observed_bin_width": 0.04,
+    "minimum_observed_bin_height": 0.04,
+    "maximum_confirmation_rgb_rmse": 0.015,
+    "minimum_improvement_over_global_affine_fraction": 0.2,
+    "minimum_analytic_stage_derivative": 0.02,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "inverse_roundtrip_maximum_absolute_error": 1e-10,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "conditional_style_generator_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room data-independent representation evidence for a finite explicitly parameterized monotonic rational-quadratic colour coupling fitted only to existing synthetic explicit controls; no density model, generative sampling, neural conditioner, learned style latent, real-film operator identification, named stock, calibration, authenticity, preference or production promotion"
+}
