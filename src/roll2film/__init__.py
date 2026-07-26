@@ -14,6 +14,7 @@ from .constrained import (
 from .lut import DenseLUT3D, bake_dense_lut
 from .lab_statistics import LabStatisticsDescriptor, extract_lab_statistics
 from .operators import AffineColorOperator
+from .positive_film import PositiveFilmResponseOperator
 from .residual import SensitometryResidualLUTOperator
 from .sensitometry_gauge import NeutralAxisGaugeOperator
 from .simulator import PseudoRoll, PseudoRollConfig, simulate_pseudo_roll
@@ -29,6 +30,7 @@ __all__ = [
     "LabStatisticsDescriptor",
     "PseudoRoll",
     "PseudoRollConfig",
+    "PositiveFilmResponseOperator",
     "RationalQuadraticSpline",
     "SensitometryResidualLUTOperator",
     "NeutralAxisGaugeOperator",
