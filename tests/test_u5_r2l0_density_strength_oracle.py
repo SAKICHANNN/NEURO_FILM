@@ -68,7 +68,10 @@ def _fixture(tmp_path: Path) -> tuple[dict[str, object], str]:
         {"frozen_set_sha256": "set", "candidates": candidates},
     )
     manifest_path = tmp_path / "parent" / "render" / "manifest.json"
-    manifest_hash = _json(manifest_path, {"records": manifest_records})
+    manifest_hash = _json(
+        manifest_path,
+        {"frozen_set_sha256": "set", "records": manifest_records},
+    )
     config: dict[str, object] = {
         "experiment_id": "test",
         "parent": {
@@ -133,6 +136,18 @@ def test_oracle_fails_closed_on_selected_output_drift(tmp_path: Path) -> None:
     config, _ = _fixture(tmp_path)
     (tmp_path / "parent/render/cyan__s65/a.png").write_bytes(b"drift")
     with pytest.raises(DensityStrengthOracleError, match="selected output hash"):
+        evaluate_oracle(
+            root=tmp_path,
+            config=config,
+            config_sha256="config",
+            software_commit="commit",
+        )
+
+
+def test_oracle_fails_closed_on_frozen_set_drift(tmp_path: Path) -> None:
+    config, _ = _fixture(tmp_path)
+    config["parent"]["frozen_set_sha256"] = "other"  # type: ignore[index]
+    with pytest.raises(DensityStrengthOracleError, match="frozen-set hash drift"):
         evaluate_oracle(
             root=tmp_path,
             config=config,

@@ -3385,3 +3385,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   two byte-identical reports, then full-resolution severe review of all 41
   selected outputs including ID11. A pass opens only a separately frozen
   simplest-policy leaf; no deployable router or general-safety claim.
+- **Implementation correction:** the first formal invocation failed closed
+  before output because the evaluator initially looked for
+  `frozen_set_sha256` in E1's automatic report. E1 stores that authority in its
+  render manifest. The implementation now validates the manifest field and
+  adds a dedicated frozen-set-drift regression test; no experimental result
+  was observed before the correction.

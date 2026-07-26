@@ -104,7 +104,7 @@ def evaluate_oracle(
         str(parent["render_manifest"]),
         str(parent["render_manifest_sha256"]),
     )
-    if str(parent_report.get("frozen_set_sha256", "")) != str(
+    if str(parent_manifest.get("frozen_set_sha256", "")) != str(
         parent["frozen_set_sha256"]
     ):
         raise DensityStrengthOracleError("frozen-set hash drift")
