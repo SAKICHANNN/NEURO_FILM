@@ -3340,3 +3340,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   film-colour factorization or stronger-data leaf.
 - **Verification/handoff:** four focused and all `849` CPU tests pass. Goal
   remains active.
+
+## 2026-07-26 - Close U5.R2K3 gamut-polar palette representation
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2K3`; dev-research-reliability
+  primary with research, AI/ML, DRPT, structure and log disciplines secondary.
+- **Design/boundary:** independently factor exact linear-sRGB cube coordinates
+  into luma, hue and gamut-normalized chroma, with quadratic tone/chroma maps
+  and unit-circle Möbius hue maps. ACES 2.0 supplied only broad invertible
+  polar-gamut principles; no ACES formula/code/constants or conformance claim.
+- **Reproducibility:** two formal reports at commit `43efb5b...5971b` are
+  byte-identical at `5def5f91...15d96`; full grid has 15,625 points and the
+  independent Jacobian grid 729.
+- **Positive evidence:** every witness passes exact bounds, neutral axis,
+  endpoints, analytic inverse below `6.6e-15`, positive determinants and exact
+  replay/partition. Non-affine residuals span `.0521-.0741`; minimum pairwise
+  witness RMSE is `.0450`.
+- **Failure/decision:** the cyan-shadow/warm-highlight witness has maximum
+  Jacobian norm `11.198 > 8`; the remaining non-identity witnesses are
+  `6.127-7.697`. Frozen policy closes the full bank before real-image rendering.
+  No witness reduction, gate relaxation, clipping or post-hoc smoothing.
+- **Verification/handoff:** four focused and all `853` CPU tests pass. Retain
+  palette/gamut factorization evidence, but select a separately preregistered
+  derivative-controlled construction or stronger-data leaf. Goal remains
+  active.

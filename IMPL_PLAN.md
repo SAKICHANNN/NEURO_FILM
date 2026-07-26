@@ -348,6 +348,18 @@ bins/stages, changing the optimizer or opening real-image work. Retain it as
 evidence that invertible spline capacity improves fidelity but does not by
 itself control local colour gain or confirmation generalization.
 
+`U5.R2K3` then moves from generic function capacity to a film-palette-specific
+factorization. It analytically decomposes the exact RGB cube into luma, polar
+hue and boundary-normalized chroma, then applies invertible tone, Möbius hue
+and bounded chroma maps. Five fixed witnesses preserve range, neutral axis,
+endpoints, inverse, positive orientation and exact replay while reaching
+non-affine residual `.0521-.0741` and minimum pairwise RMSE `.0450`. The
+cyan-shadow/warm-highlight witness nevertheless reaches local Jacobian norm
+`11.198 > 8`; the other looks are `6.13-7.70`. Close the entire fixed bank
+before real-image rendering and do not weaken it. Retain the key research
+result: explicit film-like palette factorization can be both strong and gamut
+safe, but derivative control remains separate from boundedness/invertibility.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span
