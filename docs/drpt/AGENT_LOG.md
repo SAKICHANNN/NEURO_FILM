@@ -3894,3 +3894,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   content stability, then rank oracle error, replicate error, p90, separation
   and simplicity. No neural rescue, paired scene reuse, project pixels,
   fitting or stock/mode claim. Goal remains active.
+
+## 2026-07-26 - Close U5.R2S2D without a nuisance-residual winner
+
+- **Repeat:** software `2a6fe62...60feb0`, config
+  `d1a3eb80...815adf`; two full reports are byte-identical at
+  `fe61d784...483798`; ten focused tests and the complete `913`-test CPU
+  suite pass; seed `28105` remains untouched.
+- **Confounded control:** raw styled KDE ranks first at median error `.06393`,
+  but identity-style negative output remains `.10494` and max norm is
+  `8.228`. It follows content and cannot confirm as style recovery.
+- **Bounded ML:** ridge alpha `10` reaches `.07255`, `13.48%` worse than raw,
+  with same-style replicate error `.07789`, identity negative `.09131` and
+  norm `10.702`. Larger capacity on this observation design is forbidden.
+- **Density ratio:** scale `.25` has exact identity-negative behaviour, but
+  error `.10534` is only `4.25%` below global `.11002`. It removes one
+  shortcut without identifying the true operator.
+- **Decision/handoff:** no residual method beats the confounded control, so no
+  confirmation opens. A distinct synthetic leaf may directly fit the safe
+  flow with MMD/fixed-projection distribution matching and must separate
+  distribution fit from oracle-operator recovery. Images, film pixels,
+  fitting and LSM remain closed. Goal remains active.

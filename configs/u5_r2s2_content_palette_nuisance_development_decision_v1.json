@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s2-content-palette-nuisance-development-decision-v1",
+  "experiment_id": "u5.r2s2-content-palette-nuisance-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S2D",
+  "software_commit": "2a6fe625a907459c9ea2eb036d720dab3d60feb0",
+  "config_sha256": "d1a3eb804d038fb9665bf6acbf55fc34b5e2bce943ac46c7d376887c1d815adf",
+  "report_sha256": "fe61d784ae7b1b87af220837d7b2b24ed47e409ec63611f6fc76d9e746483798",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seed_accessed": false,
+  "decision": "no_residual_method_beats_content_confounded_control_no_confirmation",
+  "automatic_development_ranking": [
+    "raw_styled_kde_0p12",
+    "density_ratio_0p25",
+    "density_ratio_0p50",
+    "density_ratio_1p00"
+  ],
+  "key_results": {
+    "raw_styled_kde_0p12": {
+      "operator_output_rmse_median": 0.06393235553312895,
+      "same_style_replicate_rmse_median": 0.060809621462595394,
+      "identity_style_negative_output_rmse_median": 0.10493587889334972,
+      "maximum_jacobian_spectral_norm": 8.227672834907336
+    },
+    "ridge_10p0": {
+      "operator_output_rmse_median": 0.07255100422540339,
+      "same_style_replicate_rmse_median": 0.07788933251692524,
+      "identity_style_negative_output_rmse_median": 0.09131443187385146,
+      "maximum_jacobian_spectral_norm": 10.702085666750346,
+      "median_error_improvement_over_raw_kde_fraction": -0.1348088713516642
+    },
+    "density_ratio_0p25": {
+      "operator_output_rmse_median": 0.10534419164956976,
+      "same_style_replicate_rmse_median": 0.09413671162452844,
+      "identity_style_negative_output_rmse_median": 0.0,
+      "median_error_improvement_over_global_fraction": 0.04249216979201931
+    },
+    "global_mean_velocity": {
+      "operator_output_rmse_median": 0.11001914378777236,
+      "reference_separation_ratio_median": 0.0
+    }
+  },
+  "interpretation": "the lowest-error method is the preregistered content-confounded raw styled KDE, which strongly transforms identity-style negative controls and exceeds the inherited Jacobian norm cap; bounded ridge does not beat it and remains content-sensitive, while density-ratio controls remove the exact identity negative but recover little more operator information than the global mean",
+  "branch": "raw_kde_wins_but_is_content_confounded_and_no_residual_method_beats_controls",
+  "forbidden_rescues": [
+    "confirm raw styled KDE as style identification",
+    "increase ridge or neural capacity on the same observation design",
+    "retune density-ratio scales or KDE bandwidth after results",
+    "access reserved seed 28105",
+    "use current film pixels or claim a real operator"
+  ],
+  "next_ready_leaf": "freeze a small synthetic explicit-operator distribution-matching pilot that fits the safe flow directly from independent neutral/styled samples and separately audits distribution fit versus oracle-operator recovery",
+  "claim_ceiling": "repeated synthetic development failure to separate content nuisance from a shared style flow with raw KDE, simple density ratio or bounded linear parameter prediction; no universal impossibility, photograph, film, stock or real unpaired-operator claim"
+}

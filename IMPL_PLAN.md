@@ -94,6 +94,17 @@ score-recovery mechanism, not an image algorithm: real reference histograms
 mix content with style. A new content-palette nuisance identifiability leaf is
 required before any image frontier.
 
+U5.R2S2D then varies content independently under each shared style. No
+residual method wins. Raw styled KDE has the lowest error (`.06393`) but
+strongly transforms identity-style controls (`.10494`) and exceeds the
+inherited norm cap (`8.228`), proving it follows content. Best ridge is worse
+(`.07255`), retains an identity-negative `.09131` and reaches norm `10.702`.
+Density ratio has exact identity semantics but its best error `.10534` is only
+`4.25%` better than global. No confirmation or capacity rescue opens. The next
+distinct synthetic question may fit the safe explicit flow directly by
+distribution matching and must score distribution fit separately from true
+operator recovery.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
