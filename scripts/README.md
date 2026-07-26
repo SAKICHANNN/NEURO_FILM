@@ -31,6 +31,7 @@ files.
 | `run_u5_r2j0_positive_film_audit.py` | Audit the clean-room two-matrix/three-sigmoid positive-film response witness bank for boundedness, regularity, diversity and exact replay. |
 | `run_u5_r2j1_positive_film_frontier.py` | Render/evaluate the fixed positive-film witness bank on the frozen gold/stress set and build gated blind sheets against safe-rich and R2E1. |
 | `run_u5_r2k0_bounded_gaussian_residual.py` | Audit a clean-room fixed-geometry bounded Gaussian residual representation on disjoint synthetic explicit-control grids, including the published GLUT initialization ambiguity and structural Jacobian gates. |
+| `run_u5_r2k1_triangular_monotone_coupling.py` | Audit a deterministic CPU-fitted composition of analytically bounded and invertible single-channel colour coupling stages on disjoint synthetic explicit-control grids. |
 | `run_sf2_7r_colorreference_acquisition.py` | Resumably acquire and audit the exact ColorReference Set 3 same-slide multi-scanner nuisance lane with byte/hash/CRC/decode lineage. |
 | `run_u5_r2b_global_operator_frontier.py` | Audit the frozen fixed global-policy bank and build survivor-only blind sheets. |
 | `audit_real_film_prov_register_recon.py` | Run the bounded metadata-only PROV negative-register accessibility audit. |

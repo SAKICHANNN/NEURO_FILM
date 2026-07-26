@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k1-triangular-monotone-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K1",
+  "status": "complete_closed_fidelity_failure",
+  "software_commit": "fa96a488f1d44029c5732d86b79b7c00de29789d",
+  "config_sha256": "3466d2737bf3593994f3771ecdbb9f1244a49f2746dbcde3049777d4993163c4",
+  "report_sha256": "e37726e277b072be71e75f4ecb95021aa847f91b48833929d8ddf4a3b281cbb1",
+  "repeat_byte_identical": true,
+  "automatic_gate_passed": false,
+  "passed_structural_checks": [
+    "analytic_stage_derivative",
+    "bounded",
+    "bounded_jacobian_norm",
+    "coefficient_bound",
+    "identity_exact",
+    "inverse_roundtrip",
+    "positive_jacobian",
+    "serialization_replay"
+  ],
+  "failed_checks": [
+    "confirmation_fidelity",
+    "nonlinear_gain",
+    "partition_parity"
+  ],
+  "target_findings": {
+    "density_cyan_s50": {
+      "confirmation_rgb_rmse": 0.062321957465583465,
+      "global_affine_confirmation_rgb_rmse": 0.07015506931892528,
+      "improvement_fraction": 0.11165425291980609,
+      "minimum_jacobian_determinant": 0.1676553874795177,
+      "minimum_analytic_stage_derivative": 0.49377242983792935,
+      "inverse_roundtrip_maximum_absolute_error": 5.55111512312578e-16,
+      "partition_maximum_absolute_error": 1.11022302462516e-16
+    },
+    "positive_warm_s35": {
+      "confirmation_rgb_rmse": 0.02818963290940804,
+      "global_affine_confirmation_rgb_rmse": 0.0275458401572194,
+      "improvement_fraction": -0.023371686923112867,
+      "minimum_jacobian_determinant": 0.35882162087855063,
+      "minimum_analytic_stage_derivative": 0.6980795767833641,
+      "inverse_roundtrip_maximum_absolute_error": 4.44089209850063e-16,
+      "partition_maximum_absolute_error": 1.11022302462516e-16
+    }
+  },
+  "retained_evidence": "Finite bounded single-channel coupling compositions provide structural positive orientation and an analytic inverse, but the frozen 12-stage/144-parameter fixed-Gaussian conditioner underfits both nonlinear controls and does not beat global affine on the positive-film target.",
+  "forbidden_rescue": [
+    "add_stages_or_conditioner_capacity_on_the_same_confirmation_grid",
+    "change_optimizer_or_steps_after_formal_results",
+    "relax_fidelity_or_partition_thresholds",
+    "conditional_style_generator_or_generative_density_training",
+    "real_image_or_real_film_fitting"
+  ],
+  "allowed_next": "retain the coupling primitive as structural research evidence; choose a separately motivated representation or return to evidence/data acquisition rather than tuning K1",
+  "production_integration_allowed": false,
+  "stock_learning_allowed": false,
+  "operator_identification_allowed": false,
+  "claim_ceiling": "clean-room data-independent negative capacity evidence: the fixed triangular coupling is bounded, orientation-preserving and invertible, but underfits frozen synthetic explicit colour controls and fails exact partition parity at floating roundoff; no learned style, film operator, stock, calibration, preference or production claim"
+}
