@@ -3364,3 +3364,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   palette/gamut factorization evidence, but select a separately preregistered
   derivative-controlled construction or stronger-data leaf. Goal remains
   active.
+
+## 2026-07-26 - Freeze U5.R2L0 density-strength Oracle
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2L0`; dev-research-reliability
+  primary with AI/ML, research, DRPT, structure and log disciplines secondary.
+- **Question:** does the retained R2E1 density-cyan operator contain enough
+  heterogeneous strength headroom to justify any later inference-side hard
+  policy, or should the product research retain fixed strength `0.50`?
+- **Epistemic boundary:** the question follows exploratory inspection of the
+  completed E1 B0 report and is explicitly development-only, not hidden
+  confirmation. E1 stays immutable; its no-per-image-adjustment contract and
+  retained fixed challenger are not rewritten.
+- **Frozen design:** hash-pin exact E1 report/manifest; compare only `s0.50`
+  and `s0.65`; Oracle selects `s0.65` only when its existing per-image new-hard
+  clipping is at most `.005`, otherwise hard-fallback to `s0.50`. No blend,
+  new strength, output rewrite, pixel acquisition, fitting or training.
+- **Gates/handoff:** require at least 50% challenger selection, overall/gold
+  mean and overall median style gains each at least `1.0`, exact output hashes,
+  two byte-identical reports, then full-resolution severe review of all 41
+  selected outputs including ID11. A pass opens only a separately frozen
+  simplest-policy leaf; no deployable router or general-safety claim.

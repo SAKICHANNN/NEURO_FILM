@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2l0-density-strength-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2L0",
+  "split": "B0_development_post_e1_exploratory",
+  "parent": {
+    "node": "U5.R2E1",
+    "automatic_report": "outputs/u5_r2e1_density_witness_frontier_v1/automatic_report.json",
+    "automatic_report_sha256": "2278b82f2bfa0a221574264166a6d5f30eb1504330a7287e8c8bc34a5771ab06",
+    "render_manifest": "outputs/u5_r2e1_density_witness_frontier_v1/render_pass1/manifest.json",
+    "render_manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15"
+  },
+  "witness_id": "cyan_shadow_warm_highlight_like",
+  "baseline_candidate_id": "cyan_shadow_warm_highlight_like__s50",
+  "challenger_candidate_id": "cyan_shadow_warm_highlight_like__s65",
+  "baseline_strength": 0.5,
+  "challenger_strength": 0.65,
+  "expected_samples": 41,
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "oracle": {
+    "selection_metric": "challenger_per_image_new_hard_clipping_fraction",
+    "maximum_selected_new_hard_clipping_fraction": 0.005,
+    "fallback": "baseline_candidate_id",
+    "soft_blending_allowed": false,
+    "new_strength_allowed": false,
+    "output_rewrite_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_challenger_selection_fraction": 0.5,
+    "minimum_mean_style_gain_delta_e76": 1.0,
+    "minimum_gold_mean_style_gain_delta_e76": 1.0,
+    "minimum_median_style_gain_delta_e76": 1.0,
+    "maximum_selected_new_hard_clipping_fraction": 0.005,
+    "two_run_report_byte_identity": true
+  },
+  "visual": {
+    "required_if_automatic_passes": true,
+    "all_selected_outputs_full_resolution": true,
+    "explicit_id11_red_speckle_regression": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "claim": "autonomous visual B0 development evidence only; not owner, human-panel or population preference"
+  },
+  "output_root": "outputs/u5_r2l0_density_strength_oracle_v1",
+  "image_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "gpu_required": false,
+  "generative_model_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "B0 autonomous development evidence that a fixed film-inspired density Look Approximation may have heterogeneous clipping-limited strength headroom on the frozen 41-image set; no learned routing, general safety, preference, digital-to-film identification, named-stock response, calibration, authenticity or production claim"
+}
