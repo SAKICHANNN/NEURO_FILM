@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s1-histogram-case-retrieval-development-decision-v1",
+  "experiment_id": "u5.r2s1-histogram-case-retrieval-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S1D",
+  "software_commit": "0477a04799cd8284a14898edc6f789a8bd04d44b",
+  "config_sha256": "5af8fc68e0cc75f97555161b8adaf707dd597a73dc5f8ca200a22b50c8fff766",
+  "report_sha256": "f4804c4ff5dfa5b81f77f2fd918fbdc4d18049d87c80c2beeed9ed6d7004df11",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seed_accessed": false,
+  "decision": "select_query_kde_0p12_for_untouched_confirmation",
+  "development_ranking": [
+    "query_kde_0p12",
+    "query_kde_0p08",
+    "query_kde_0p16",
+    "query_kde_0p20",
+    "top3_inverse_hellinger",
+    "hard_1nn_hellinger",
+    "hard_1nn_jensen_shannon",
+    "global_mean_velocity"
+  ],
+  "selected_metrics": {
+    "operator_output_rmse_median": 0.03267546281294919,
+    "operator_output_rmse_p90": 0.050762841797838514,
+    "velocity_direction_cosine_median": 0.9553493400419982,
+    "identity_rmse_retention_ratio_median": 0.9840093803116803,
+    "best_affine_residual_retention_ratio_median": 0.9089342591601302,
+    "query_palette_log_density_gain_median": 2.7892435893303444,
+    "reference_separation_ratio_median": 0.9349991378769892,
+    "minimum_jacobian_determinant": 0.012592999205049204,
+    "maximum_jacobian_spectral_norm": 4.818958618660105,
+    "maximum_inverse_error": 1.1896304772940347e-06,
+    "permutation_histogram_error": 0.0,
+    "permutation_operator_error": 0.0
+  },
+  "controls": {
+    "hard_1nn_hellinger_operator_rmse_median": 0.08727054068049737,
+    "hard_1nn_hellinger_reference_separation_ratio_median": 0.9562415388103249,
+    "global_mean_operator_rmse_median": 0.11278947543827453,
+    "global_mean_identity_rmse_retention_ratio_median": 0.5521324735785347,
+    "global_mean_best_affine_residual_retention_ratio_median": 0.35176744626930834,
+    "global_mean_reference_separation_ratio_median": 0.0
+  },
+  "interpretation": "the query-only KDE score recovers the synthetic oracle materially better than hard case reuse, sparse blending or a global average while retaining most style, non-affine structure and reference separation; hard retrieval has only a small separation advantage that does not offset its much larger operator error",
+  "boundary": "this closes raw-histogram hard retrieval for this synthetic recovery question, not future within-stock retrieval over evidence-backed operator signatures; query colour density is not stock signal and cannot identify an unpaired digital-to-film transform",
+  "next_ready_leaf": "run one separately frozen confirmation of KDE bandwidth 0.12 against hard Hellinger Top-1 and global mean on untouched seed 27012",
+  "claim_ceiling": "repeated synthetic development evidence selecting one canonical-histogram KDE score estimator; never confirmatory, photograph, film, stock, preference, calibrated, production or unpaired-operator evidence"
+}

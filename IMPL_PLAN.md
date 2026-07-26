@@ -75,6 +75,16 @@ This is synthetic oracle evidence only. It opens a separately frozen
 canonical-histogram score/velocity recovery test, not images, film fitting,
 stock identity, preference or production integration.
 
+U5.R2S1D then tests the literal hard-case intuition using only canonical
+colour histograms. Development instead selects a simpler query KDE `.12`
+score: median/p90 oracle-output error is `.0327/.0508`, versus
+`.0873/.1283` for hard Hellinger Top-1 and `.1128/.1359` for the global
+average. KDE preserves `.984` style, `.909` non-affine residual and `.935`
+reference separation. This repeated development result closes only
+raw-histogram hard retrieval for this synthetic score-recovery question.
+Seed `27012` remains untouched pending one frozen confirmation; no real image,
+film or operator permission opens.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

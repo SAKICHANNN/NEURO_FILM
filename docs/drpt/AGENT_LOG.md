@@ -3816,3 +3816,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   oracle-output error, non-affine retention and simplicity. Current images,
   film pixels, neural RGB, confirmatory claims and stock interpretation remain
   forbidden. Goal remains active.
+
+## 2026-07-26 - Complete U5.R2S1D development and select query KDE
+
+- **Repeat:** software `0477a04...04d44b`, config
+  `5af8fc68...ff766`; both reports are byte-identical at
+  `f4804c4f...04df11`; five focused tests pass without warning. Reserved seed
+  `27012` was not accessed.
+- **Ranking:** query KDE `.12` reaches median/p90 oracle-output RMSE
+  `.03268/.05076`; hard Hellinger Top-1 reaches `.08727/.12829`, Top-3
+  `.07042/.09912`, and global mean `.11279/.13585`.
+- **Semantics:** KDE retains median `.984` style strength, `.909` non-affine
+  residual and `.935` reference separation. Hard Top-1 has only a small
+  separation advantage at `.956`; global averaging falls to `.552/.352/0`.
+- **Structure:** selected KDE has min determinant `.01259`, max norm `4.819`,
+  inverse `1.19e-6`, cube-safe sampled output and exact permutation/replay.
+- **Decision:** select KDE `.12` for one untouched confirmation. Close only
+  raw-histogram hard retrieval for this synthetic recovery question; future
+  evidence-backed operator-signature retrieval remains a different leaf.
+  Query colour is not stock signal, and no film/fitting/LSM permission opens.
+  Goal remains active.
