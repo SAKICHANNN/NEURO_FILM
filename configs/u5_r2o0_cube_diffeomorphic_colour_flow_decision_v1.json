@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2o0-cube-diffeomorphic-colour-flow-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2O0",
+  "decision": "retain_as_synthetic_explicit_operator_representation",
+  "report_sha256": "c8fcd0c19be421ed7d1c5f9adddd6be31ba775254b7ddd70c24d937e67e87bf0",
+  "software_commit": "281004ebb16229d748e4159d8ee67f83852234cb",
+  "two_run_byte_identical": true,
+  "checks": {
+    "identity_exact": true,
+    "endpoints_fixed": true,
+    "bounded": true,
+    "coefficient_bound": true,
+    "confirmation_fidelity": true,
+    "nonlinear_gain": true,
+    "positive_jacobian": true,
+    "bounded_jacobian_norm": true,
+    "inverse_roundtrip": true,
+    "serialization_replay": true,
+    "partition_parity": true
+  },
+  "key_results": {
+    "density_cyan_s50_confirmation_rgb_rmse": 0.010908303621855745,
+    "density_cyan_s50_affine_improvement_fraction": 0.8445115409655354,
+    "density_cyan_s50_minimum_jacobian_determinant": 0.1174195647141521,
+    "density_cyan_s50_maximum_jacobian_spectral_norm": 3.9925533068877774,
+    "positive_warm_s35_confirmation_rgb_rmse": 0.0054361080637671325,
+    "positive_warm_s35_affine_improvement_fraction": 0.8026523049309715,
+    "positive_warm_s35_minimum_jacobian_determinant": 0.27518070839274245,
+    "positive_warm_s35_maximum_jacobian_spectral_norm": 2.780585046836202,
+    "worst_inverse_roundtrip_maximum_absolute_error": 8.401038424921126e-7
+  },
+  "interpretation": "a compact stationary boundary-vanishing RGB velocity field is the first frozen K/O-series candidate to pass the conjunction of nonlinear fidelity, range, orientation, derivative norm, inverse and reproducibility gates on both explicit synthetic controls",
+  "does_not_establish": [
+    "a new film look",
+    "visual preference or product value",
+    "unpaired digital-to-film operator identification",
+    "stock identity, response, mode, calibration or authenticity",
+    "permission to fit current real-film pixels",
+    "production integration"
+  ],
+  "next_action": "preserve R2O0 as an explicit bounded-parameter representation for future evidence-eligible stock or paired-control work; do not run a real-image frontier merely to reproduce the already evaluated R2E1/J1 target looks",
+  "claim_ceiling": "clean-room synthetic representation evidence for a bounded explicit colour operator obtained by deterministic integration of a cube-preserving stationary velocity field; no generative model, learned RGB renderer, film-pixel fitting, unpaired operator identification, named stock, calibration, authenticity, preference or production promotion"
+}

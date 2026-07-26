@@ -3643,3 +3643,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   real images; no clamp/projection/strength/preprocessing/order/solver,
   fine-tune or B6 rescue. Retain synthetic negative evidence only. Goal remains
   active.
+
+## 2026-07-26 - Pass U5.R2O0 cube-diffeomorphic colour-flow representation
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2O0`;
+  dev-research-reliability primary with research, AI/ML, DRPT, structure and
+  agent-log disciplines secondary.
+- **Method:** clean-room 192-parameter trilinear stationary RGB velocity grid,
+  boundary factor `x_i(1-x_i)`, fixed 24-step float64 RK4 and negative-time
+  inverse. No image, film scan, external code/checkpoint, GPU or clamp.
+- **Results:** density/positive confirmation RMSE `.01091/.00544`, affine
+  improvement `84.45%/80.27%`, minimum determinants `.117/.275`, maximum
+  norms `3.993/2.781`, inverse error at most `8.41e-7`; exact identity,
+  endpoints, range, serialization and partition.
+- **Reproducibility:** two independent full optimizations at
+  `281004e...234cb` are byte-identical at
+  `c8fcd0c1...e87bf0`; five focused and all 891 CPU tests pass.
+- **Decision/handoff:** retain as the first K/O-series full synthetic
+  representation pass. It approximates already adjudicated R2E1/J1 looks, so
+  no redundant real-image frontier opens. Preserve it for future
+  evidence-eligible paired/stock work; no unpaired identification, current
+  film fitting, stock/mode, preference or production claim. Goal remains
+  active.

@@ -420,6 +420,18 @@ distance, and raw transfer escapes to `[-.073,1.119]`. The selector is not
 palette-only and the map is not range-safe. Do not clamp, project, fine-tune,
 download B6 or open real/stock pixels as a rescue.
 
+`U5.R2O0` supplies the missing compact explicit representation result without
+reopening CT5 or N1. A clean-room `4x4x4x3` stationary velocity grid with
+boundary factor `x_i(1-x_i)` and fixed float64 RK4 passes both frozen nonlinear
+controls: confirmation RMSE `.01091/.00544`, affine improvements
+`84.45%/80.27%`, minimum determinants `.117/.275` and maximum norms
+`3.993/2.781`. Identity, cube endpoints, range, inverse, serialization,
+partition and two-run determinism all pass. This validates a bounded parameter
+family only. A real-image frontier would duplicate the already adjudicated
+R2E1/J1 target looks, so it does not open; retain R2O0 for future
+evidence-eligible paired or stock work without claiming unpaired
+identification.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span
