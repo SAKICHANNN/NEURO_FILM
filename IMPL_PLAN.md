@@ -275,6 +275,15 @@ separately frozen same-slide nuisance quantification. Recorder-space sources
 are not digital scene-linear pairs, one set is not independent-roll evidence,
 and no stock fit, training, LSM or redistribution opens.
 
+`SF2.8R` audits a newly published NTNU controlled Ektachrome E100/Velvia 50
+study. Its acquisition design includes two paintings, two illuminants, exposure
+variants, matching hyperspectral references and ten-band developed-film scans.
+The exact public NVA record nevertheless releases no raw cube/TIFF,
+measurements, alignment manifest, code or dataset licence, and the six analysed
+frames contain no same-illumination cross-stock pair. Preserve it as high-value
+method/acquisition evidence; do not fit publication figures or infer a stock
+response.
+
 `U5.R2J0` is that separately frozen witness. It independently implements the
 compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
 functional form using five original synthetic parameter sets. A numerical

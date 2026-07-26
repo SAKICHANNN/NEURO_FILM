@@ -56,6 +56,7 @@ against the exact-revision frozen metadata.
 | Newgrain public application | controlled exact-stock catalogue, but post labels remain community claims | pseudonymous user plus optional lab/scanner/process fields | no pixels requested or retained | platform/source workflow and self-report remain nuisance; no rights-cleared manifest | public frontend is technically readable, but Terms prohibit automated queries/scraping/mining and user content remains uploader-owned | `SF2.4R` closes before a formal audit; written permission or an officially licensed export is required |
 | PROV VPRS 17684/17690 | institutional digitised negative collection linked to a physical register described as tracking film stock | same agency and negative-number ranges could supply strong grouping if register contents become accessible | SF2.5R metadata-only result; pixels forbidden | two byte-identical audits find all 30 register items physical-only and no digital/IIIF field | official API is permitted for non-commercial research under CC BY-NC; image reuse is not inferred | source closes before pixels; reopen only on official transcription/digitisation/licensed export or separately approved bounded physical-copy workflow |
 | ColorReference Set 3 | exact Velvia 100F target-set statement | same five physical slides across four scanner/software pipelines | 20 scaled scans + five recorder-space grids + IT8/CGATS measurements | deliberately exposes scanner hardware/software nuisance; one target set only | free testing/development use stated, no standard redistribution licence | SF2.7R source pass; internal nuisance-control lane only, never stock fitting |
+| NTNU controlled reversal study | publication/thesis exact Ektachrome E100 and Velvia 50 | two mock-up paintings; independent roll/process grouping unreported | matching-geometry hyperspectral captures and ten-band developed-film scans described | six analysed frames do not supply same-illumination cross-stock control | article CC BY; NVA thesis files use general Copyright Act terms; no dataset release | SF2.8R method evidence only; public data unavailable and stock effect unidentified |
 | FILM-R v2 | filename-family hints only | 44 sibling pairs, single contributor | damaged/restored positives | family-content structural zeros | local CC BY 4.0 freeze | `S0`/artifact stress only; stock learning closed |
 | LOC FSA/OWI | stock unknown | creator/location/sequence leakage guards | positive archive scans | age, common archive scanner, borders, restoration | public domain; 258 bounded local Phase-C pixels | independent `H` lane only; sealed while named-stock work advances |
 | FilmSet | recipe names, not physical film | exact digital identities | paired Capture One renders | digital recipe | local research source | method/software control only |
@@ -347,6 +348,17 @@ so the preregistered every-pair material gate fails. Future stock evidence must
 report both raw and canonicalized results and must never relabel scanner
 clusters as stock modes. See
 `docs/REAL_FILM_SCANNER_NUISANCE_QUANTIFICATION_RESULTS.md`.
+
+`SF2.8R` audits the strongest newly published controlled-film design found in
+the current search. Fresh Ektachrome E100 and Velvia 50 were captured on one
+Rolleiflex across two paintings, two illuminants and exposure variants, with
+matching hyperspectral references and ten-band film scans. The exact public NVA
+record contains a thesis and submission archive but no raw cube/TIFF,
+measurements, code, manifest or dataset licence. The six frames selected for
+analysis also lack a same-illumination cross-stock comparison, so stock and
+illuminant remain confounded in the reported visual contrast. No fitting,
+training or LSM opens. See
+`docs/REAL_FILM_NTNU_CONTROLLED_REVERSAL_SOURCE_RESULTS.md`.
 
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343

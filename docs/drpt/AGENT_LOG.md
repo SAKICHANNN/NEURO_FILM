@@ -3275,3 +3275,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.11e-16`. Close without adding stages, changing optimizer or relaxing
   gates. Four focused and all `841` CPU tests pass. Goal remains active and
   should choose independently motivated algorithm or data work.
+
+## 2026-07-26 - Close SF2.8R NTNU controlled-reversal source reconnaissance
+
+- **Sources/lineage:** audited the CC-BY 2026 article, exact NVA thesis record,
+  472,364,357-byte thesis PDF (`e231da44...8a68`) and 2,225,944-byte
+  submission archive (`9b150ca5...70b7`). The archive contains only a draft
+  cover PDF and AI declaration, not experimental data.
+- **Positive evidence:** the documented experiment uses fresh Ektachrome E100
+  and Velvia 50, two paintings, halogen/LED, metered exposure variants,
+  matching-geometry hyperspectral references and ten-band film scans.
+- **Data/identifiability close:** no raw cube/TIFF, measurements, code,
+  alignment manifest or dataset licence is public. The six analysed frames do
+  not include a same-illumination cross-stock comparison, and independent
+  roll/process-session support is unknown. Publication stock contrast remains
+  illuminant-confounded.
+- **Decision:** retain a priority official-release lead and method precedent,
+  but forbid figure extraction, fitting, training, LSM, calibration or stock
+  response claims. Reopen only on an official immutable data release with
+  explicit reusable rights. Goal remains active.

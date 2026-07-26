@@ -81,6 +81,7 @@ backfill those fields.
 | DOCUMERICA candidate | yes; federal documentary slides/negatives | photographer and archival metadata, but no reliable roll/scanner/process fields | diverse public-domain real-film archive look; uploader/era/scan nuisance dominates stock claims |
 | SillyStill candidate | yes, paired digital/Cinestill claimed | paper reports 41 raw / 38 processed pairs | SF2.6R pins the current official repo: dataset links remain placeholders, only one illustrative pair is present and no root licence exists |
 | Emulating Emulsion candidate | yes, controlled Velvia 100 | one 36-exposure roll, 33 chart pairs / 3,168 unique patch correspondences | SF2.6R confirms strong method precedent but no public measurements, fitted parameters, code or reusable data licence |
+| NTNU controlled reversal candidate | yes, controlled Ektachrome E100 and Velvia 50 | two paintings, two illuminants, exposure variants, matching hyperspectral captures and ten-band film scans | SF2.8R finds no released raw cube/TIFF, measurements, code, manifest or dataset licence; the six analysed frames lack a same-illumination cross-stock control |
 
 ### CT8 auxiliary closure
 
