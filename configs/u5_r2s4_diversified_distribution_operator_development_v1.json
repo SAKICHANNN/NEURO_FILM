@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s4-diversified-distribution-operator-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S4D",
+  "status": "pending_u5_r2s3_repeat_closure",
+  "parent_evidence": [
+    "U5.R2S3 report A shows that pooled RFF-MMD and sliced-Wasserstein optimization reduce training loss but fail held-out distribution, hidden-operator and replicate gates",
+    "ICLR 2024 diversified distribution matching identifies multiple corresponding conditional distributions as a possible route around measure-preserving ambiguity",
+    "ICML 2025 diversified flow matching shows that a flow implementation needs additional care and that naive conditional flow matching is not automatically equivalent to the identifiable criterion",
+    "U5.R2O0 supplies a validated bounded explicit diffeomorphic colour representation"
+  ],
+  "hypothesis": "one shared bounded explicit colour flow fitted across several independently sampled but correctly corresponding content-condition distribution pairs may recover a synthetic style operator more reliably than pooled marginal matching",
+  "epistemic_scope": "small synthetic development pilot inspired by diversified distribution matching; not a theorem replication, not evidence that project film data contains valid auxiliary conditions, and not a real unpaired-operator claim",
+  "activation_gate": {
+    "requires_u5_r2s3_two_report_repeat": true,
+    "requires_u5_r2s3_branch": "distribution_fail",
+    "on_other_branch": "do not execute; redesign from the adjudicated S3 evidence"
+  },
+  "style_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "development_style_count": 4,
+    "development_style_seed": 28300,
+    "reserved_confirmation_style_seed": 28303
+  },
+  "content_condition_generator": {
+    "condition_count": 4,
+    "condition_definition": "fixed synthetic latent content cells with distinct preregistered palette-centre regions; condition id is generated truth and never inferred from RGB",
+    "scenes_per_condition_per_domain": 3,
+    "samples_per_scene": 128,
+    "development_observation_seed_a": 28301,
+    "development_observation_seed_b": 28302,
+    "neutral_and_styled_scene_reuse_forbidden": true,
+    "source_and_target_samples_paired": false,
+    "condition_ids_shared_across_domains": true,
+    "condition_ids_exposed_to_optimizer": true,
+    "oracle_operator_and_sample_pairs_exposed_to_optimizer": false
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cuda_if_available_else_cpu",
+    "dtype": "float32",
+    "seed": 28320,
+    "steps": 200,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true,
+    "float32_requirement": "optimization may be float32, but exported operators are evaluated by the existing float64 renderer and must pass exact repeated-report plus structure gates"
+  },
+  "loss": {
+    "kind": "fixed_random_fourier_mmd",
+    "frequencies_per_bandwidth": 64,
+    "bandwidths": [0.08, 0.16, 0.32],
+    "feature_seed": 28310
+  },
+  "methods": [
+    {
+      "id": "pooled_rff_mmd_192",
+      "objective": "one RFF-MMD over all condition samples after discarding condition ids",
+      "role": "same-data pooled baseline"
+    },
+    {
+      "id": "conditional_rff_mmd_192",
+      "objective": "equal-weight mean RFF-MMD over the four correctly corresponding source/target condition pairs using one shared flow",
+      "role": "primary"
+    },
+    {
+      "id": "shuffled_condition_rff_mmd_192",
+      "objective": "same conditional objective after one fixed non-identity target-condition permutation",
+      "target_condition_permutation": [1, 3, 0, 2],
+      "role": "condition-label negative control"
+    }
+  ],
+  "fit_and_evaluation_split": {
+    "fit_a": "independent source/target scenes within corresponding conditions from observation seed 28301",
+    "fit_b": "independent source/target scenes within corresponding conditions from observation seed 28302",
+    "heldout_distribution_test": "fit-a operator evaluated on every seed-28302 condition pair and fit-b on every seed-28301 pair",
+    "operator_truth": "analytic style flow used only after fitting for evaluation",
+    "development_only": true,
+    "reserved_confirmation_seed_accessed": false
+  },
+  "gates": {
+    "minimum_heldout_conditional_distribution_loss_improvement_fraction": 0.3,
+    "maximum_oracle_operator_output_rmse_median": 0.07,
+    "maximum_oracle_operator_output_rmse_p90": 0.1,
+    "maximum_same_style_fit_replicate_operator_rmse_median": 0.04,
+    "minimum_primary_oracle_error_improvement_over_pooled_fraction": 0.25,
+    "minimum_primary_oracle_error_improvement_over_shuffled_fraction": 0.25,
+    "shuffled_negative_must_fail_oracle_or_replicate_gate": true,
+    "minimum_identity_rmse_retention_ratio_median": 0.6,
+    "maximum_identity_rmse_retention_ratio_median": 1.4,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "add a reusable grouped distribution-loss adapter without changing S3 defaults",
+    "fit only the 4x4x4x3 explicit velocity grid with the frozen objectives",
+    "use generated condition ids only in this synthetic development",
+    "use the local RTX 5070 Ti Laptop GPU under deterministic settings",
+    "compare pooled, correct-condition and shuffled-condition objectives on identical generated observations",
+    "run two complete reports and focused float32/replay/group-partition tests"
+  ],
+  "forbidden_actions": [
+    "execute before the U5.R2S3 repeated decision satisfies the activation gate",
+    "claim the simple grouped RFF objective reproduces the ICLR or ICML theorem",
+    "infer synthetic condition ids from image colour or embeddings",
+    "reuse source scenes, samples, pixels or palettes as styled target scenes",
+    "expose source/target pairs, oracle grids or confirmation seed 28303 to the optimizer",
+    "change methods, condition permutation, steps, seeds, features, regularization or gates after results",
+    "train a neural network or direct RGB generator",
+    "use project photographs or film pixels",
+    "map any condition to film stock, exposure, illuminant, process, scanner or latent mode"
+  ],
+  "branches": {
+    "primary_all_gates_pass": "open one untouched synthetic confirmation only after a separate real-data auxiliary-condition feasibility decision",
+    "primary_matches_distribution_but_operator_fails": "close as conditional distribution matching without operator identification",
+    "primary_fails_or_does_not_beat_pooled": "close without capacity rescue",
+    "shuffled_negative_passes": "close because condition identity is not causally discriminating",
+    "structure_or_repeat_fails": "invalidate and debug representation or deterministic execution only",
+    "synthetic_pass_but_real_condition_feasibility_fails": "retain mechanism evidence and close real-data application"
+  },
+  "real_data_dor": {
+    "required_before_any_real_pixel_experiment": [
+      "evidence-eligible stock and pixel rights",
+      "multiple corresponding auxiliary content conditions observed in both neutral-digital and target-film domains",
+      "condition definition independent of stock style, scene colour, uploader, scanner, geometry and source",
+      "held-out-group connectivity and leakage audit",
+      "preregistered condition-balance and shuffled-condition controls"
+    ],
+    "current_state": "not established",
+    "forbidden_substitutes": [
+      "CLIP or generic scene embeddings",
+      "raw or low-frequency RGB colour",
+      "day/night or indoor/outdoor inferred solely from appearance",
+      "uploader, source, scanner, border, aspect ratio, resolution or date",
+      "post-hoc clusters"
+    ]
+  },
+  "claim_ceiling": "synthetic development evidence that generated, correctly corresponding auxiliary content distributions can or cannot disambiguate one known bounded colour flow under a fixed grouped RFF objective; never real-image, film, stock, calibrated, theorem-replication or general unpaired-operator identification"
+}

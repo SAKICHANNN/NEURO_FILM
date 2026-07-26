@@ -3933,3 +3933,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Epistemic branch:** distribution pass plus operator failure means
   unpaired operator unidentified. No tuning, loss/optimizer rescue, neural
   RGB, images or film pixels. Goal remains active.
+
+## 2026-07-26 - Preregister conditional U5.R2S4D while S3 repeat runs
+
+- **Trigger/status:** S3 report A reduces both fixed training losses but fails
+  held-out distribution, hidden-operator and A/B replicate gates; report B is
+  still running, so S4 remains `pending_u5_r2s3_repeat_closure`.
+- **Primary basis:** ICLR 2024 diversified distribution matching identifies
+  corresponding conditional distributions as a route around marginal
+  measure-preserving ambiguity. ICML 2025 shows a flow realization is
+  non-trivial; the project grouped-RFF candidate is explicitly not presented
+  as a theorem reproduction.
+- **Frozen design:** four styles, four generated content cells, independent
+  source/target scenes, A/B observations; compare pooled, correctly
+  conditioned and fixed shuffled-condition RFF-MMD using one shared bounded
+  `4x4x4` flow. Hidden-operator, replicate, structure and exact-repeat gates
+  remain mandatory.
+- **Efficiency boundary:** deterministic CUDA float32 is allowed only for S4
+  optimization; exported operators use the existing float64 evaluator and S3
+  defaults/evidence cannot change.
+- **Real-data stop:** current film pools have not established trustworthy
+  corresponding auxiliary conditions across neutral-digital and film
+  domains. RGB/scene colour, CLIP, source, uploader, scanner, geometry, date
+  and post-hoc clusters cannot substitute. Even a synthetic pass requires a
+  separate data-feasibility decision before pixels. Goal remains active.
