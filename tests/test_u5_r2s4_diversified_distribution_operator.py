@@ -8,6 +8,7 @@ import numpy as np
 from scripts.run_u5_r2s4_diversified_distribution_operator_development import (
     _make_condition_distributions,
     _method_groups,
+    _validate_activation,
 )
 
 
@@ -75,3 +76,31 @@ def test_method_groups_keep_fixed_control_semantics() -> None:
         actual is targets[index]
         for actual, index in zip(shuffled_targets, [1, 3, 0, 2], strict=True)
     )
+
+
+def test_activation_requires_repeated_s3_distribution_fail() -> None:
+    config = _config()
+    _validate_activation(
+        config,
+        {
+            "decision_branch": "distribution_fail",
+            "repeat_report_sha256_equal": True,
+        },
+    )
+    for decision in (
+        {
+            "decision_branch": "distribution_pass_operator_fail",
+            "repeat_report_sha256_equal": True,
+        },
+        {
+            "decision_branch": "distribution_fail",
+            "repeat_report_sha256_equal": False,
+        },
+        {},
+    ):
+        try:
+            _validate_activation(config, decision)
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError("invalid parent decision was accepted")

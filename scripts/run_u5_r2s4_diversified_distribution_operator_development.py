@@ -44,6 +44,18 @@ def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def _validate_activation(
+    config: dict[str, Any], parent_decision: dict[str, Any]
+) -> None:
+    gate = config["activation_gate"]
+    if config["status"] != "pending_u5_r2s3_repeat_closure":
+        raise ValueError("unexpected S4 contract status")
+    if parent_decision.get("decision_branch") != gate["requires_u5_r2s3_branch"]:
+        raise RuntimeError("S4 activation rejected by the S3 decision branch")
+    if parent_decision.get("repeat_report_sha256_equal") is not True:
+        raise RuntimeError("S4 activation requires an exact S3 report repeat")
+
+
 def _condition_palette(
     rng: np.random.Generator,
     centre: np.ndarray,
@@ -199,10 +211,13 @@ def _fit_method(
 
 
 def run_development(
-    config: dict[str, Any], *, config_sha256: str, software_commit: str
+    config: dict[str, Any],
+    parent_decision: dict[str, Any],
+    *,
+    config_sha256: str,
+    software_commit: str,
 ) -> dict[str, Any]:
-    if config["status"] != "pending_u5_r2s3_repeat_closure":
-        raise ValueError("unexpected S4 contract status")
+    _validate_activation(config, parent_decision)
     style_config = config["style_generator"]
     content_config = config["content_condition_generator"]
     operator_config = config["operator"]
@@ -398,6 +413,13 @@ def main() -> None:
         / "configs"
         / "u5_r2s4_diversified_distribution_operator_development_v1.json",
     )
+    parser.add_argument(
+        "--parent-decision",
+        type=Path,
+        default=ROOT
+        / "configs"
+        / "u5_r2s3_unpaired_distribution_operator_pilot_decision_v1.json",
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     config_bytes = args.config.read_bytes()
@@ -410,7 +432,10 @@ def main() -> None:
         text=True,
     ).stdout.strip()
     report = run_development(
-        config, config_sha256=_sha256(config_bytes), software_commit=commit
+        config,
+        json.loads(args.parent_decision.read_text(encoding="utf-8")),
+        config_sha256=_sha256(config_bytes),
+        software_commit=commit,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

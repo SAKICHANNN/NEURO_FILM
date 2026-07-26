@@ -3985,6 +3985,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   needed to reproduce the generated condition truth.
 - **Verification:** seven combined S3/S4 focused tests pass; the new script
   compiles, the JSON contract parses and `git diff --check` passes.
+- **Activation hardening:** the runner now requires the retained S3 decision
+  file to state both `decision_branch=distribution_fail` and exact report
+  repeat before generating any S4 observation. Alternate, non-repeated and
+  missing decisions are covered rejection cases; eight focused tests pass.
 - **Non-execution:** no S4 report, formal observation, confirmation seed or
   film/project pixel was generated because the S3 repeated activation gate is
   still pending. Goal remains active.

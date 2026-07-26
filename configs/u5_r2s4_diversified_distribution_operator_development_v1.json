@@ -14,6 +14,7 @@
   "activation_gate": {
     "requires_u5_r2s3_two_report_repeat": true,
     "requires_u5_r2s3_branch": "distribution_fail",
+    "required_decision_path": "configs/u5_r2s3_unpaired_distribution_operator_pilot_decision_v1.json",
     "on_other_branch": "do not execute; redesign from the adjudicated S3 evidence"
   },
   "style_generator": {

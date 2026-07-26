@@ -11,6 +11,12 @@ losses. It may run only if two byte-identical S3 reports close on the frozen
 `distribution_fail` branch. Another S3 outcome requires a new adjudication;
 this contract then remains unexecuted.
 
+The runner enforces this boundary by loading
+`configs/u5_r2s3_unpaired_distribution_operator_pilot_decision_v1.json` and
+requiring both `decision_branch=distribution_fail` and
+`repeat_report_sha256_equal=true`. Missing or mismatched evidence fails before
+any synthetic observation is generated.
+
 S3 report A currently shows the motivating failure: both pooled objectives
 reduce their training losses while failing held-out distribution, hidden
 operator and replicate gates. That observation is provisional until the
