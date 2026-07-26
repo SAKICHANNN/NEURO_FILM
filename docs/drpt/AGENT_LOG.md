@@ -3735,3 +3735,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   trilinear subcell Jacobians, range/norm/identity, and two byte-identical
   reports. No nonidentity survivor closes before images without
   clip/project/smooth/retrain/seed/strength rescue. Goal remains active.
+
+## 2026-07-26 - Close U5.R2R1 published D-LUT trajectory
+
+- **Integrity/repeat:** software `0e28a84...d0a3`, config
+  `7677e430...ac3e`; two complete reports byte-identical at
+  `4250470f...e09c`; five focused tests pass.
+- **Gate counts:** identity passes at max error `4.29e-7`; among 40
+  nonidentity steps, range passes `0`, positive-orientation passes `0`, norm
+  passes `40`, complete survivors `0`.
+- **Immediate failure:** step 1 range `[-.010666,1.019211]`, trilinear/tetra
+  min determinant `-.5052/-.5665`. A lower available positive step cannot
+  rescue the published trajectory.
+- **Strong-but-unsafe endpoint:** step 40 identity RMSE `.2080`, best-affine
+  residual `.05240`, range `[.037599,1.086]`, trilinear/tetra nonpositive
+  fractions `48.02%/48.85%`, max norm only `3.084`.
+- **Decision:** structural failure forbids image rendering. Do not call folds
+  visible artifacts without images and do not clip/project/smooth/contract,
+  step-shop, retrain or change seed/epsilon/sample count.
+- **Handoff:** retain only the hypothesis that a reference-palette score can
+  supply a strong direction. A distinct next contract may express that score
+  through U5.R2O0's boundary-vanishing cube-preserving diffeomorphic flow.
+  Current film pixels, fitting and stock/mode claims remain closed. Goal
+  remains active.

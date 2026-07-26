@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2r1-d-lut-published-asset-decision-v1",
+  "experiment_id": "u5.r2r1-d-lut-published-asset-structural-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2R1",
+  "software_commit": "0e28a845f58a99a577dc779b9c9e810c34d7d0a3",
+  "config_sha256": "7677e4303d49e4395b102b1ab4e032ee5bd13f21c66204cb9e4e1e3e8ddac3e1",
+  "report_sha256": "4250470f284a99ca45fff2148a5a3744254096e15ab8628eef28da261d2ce09c",
+  "repeat_report_sha256_equal": true,
+  "asset_integrity": {
+    "source_revision": "01927996eb03ad21be7f9cdbeb7a4c6604e7431c",
+    "model_sha256": "7686a2b0c42b89b59354a35233c67ef87e298d4cfc1b1073554d4bf03cb9d4f0",
+    "lut_count": 41,
+    "lut_total_bytes": 4156160,
+    "lut_manifest_sha256": "a1263c4e547c8f2f66c44ac927a159c3e9599b73e737a35248601c59d1f2e1e3"
+  },
+  "results": {
+    "identity_maximum_absolute_error": 4.285714285817699e-07,
+    "identity_pass": true,
+    "nonidentity_steps": 40,
+    "nonidentity_range_passes": 0,
+    "nonidentity_orientation_passes": 0,
+    "nonidentity_jacobian_norm_passes": 40,
+    "nonidentity_structural_survivors": [],
+    "step_1": {
+      "minimum_node": -0.010666,
+      "maximum_node": 1.019211,
+      "minimum_trilinear_determinant": -0.5052025983438106,
+      "minimum_tetrahedral_determinant": -0.5665386787973028
+    },
+    "step_40": {
+      "minimum_node": 0.037599,
+      "maximum_node": 1.086,
+      "minimum_trilinear_determinant": -0.8139040225695882,
+      "trilinear_nonpositive_fraction": 0.4801857250836843,
+      "minimum_tetrahedral_determinant": -0.5678551799127141,
+      "tetrahedral_nonpositive_fraction": 0.4885204081632653,
+      "maximum_jacobian_spectral_norm": 3.083746723078989,
+      "identity_rmse": 0.20801124026698672,
+      "best_affine_residual_rmse": 0.05239548164880122
+    }
+  },
+  "decision": "close_published_d_lut_trajectory_before_image_rendering",
+  "interpretation": "the released trajectory is strongly stylized and non-affine, but averaging stochastic independent LUT-node paths does not enforce RGB-cube range or orientation; failure begins at the first nonidentity step and is not a Jacobian-norm failure",
+  "next_research_prior": "retain reference-palette score estimation only as a hypothesis; replace independent stochastic node motion with a bounded cube-preserving diffeomorphic explicit flow under a separately frozen clean-room contract",
+  "forbidden_rescues": [
+    "render project images from the failed trajectory",
+    "clip, smooth, project or identity-contract the official LUTs",
+    "choose a different published step after seeing the audit",
+    "rerun training with another epsilon, seed, sample count or score architecture",
+    "call negative determinants confirmed visible artifacts without rendering",
+    "treat the style reference as film-stock or operator truth"
+  ],
+  "claim_ceiling": "post-exploratory deterministic structural failure of one fixed official D-LUT trajectory; strong non-affine palette transfer is observed at LUT level, but no nonidentity published step satisfies project range/orientation gates and no image, film-stock, preference or universal-method claim opens"
+}

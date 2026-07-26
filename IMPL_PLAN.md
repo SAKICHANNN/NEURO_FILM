@@ -55,6 +55,17 @@ professionally graded style-transfer benchmark, not named-film truth. Retain
 only a future clean-room non-generative 4D-LUT/context-grid prior; no download,
 execution, training, film fitting or stock claim opens.
 
+U5.R2R0/R1 then audit D-LUT, a per-reference RGB score/Langevin route that
+does generate a strong reusable LUT without direct neural RGB rendering. The
+fixed official trajectory has no nonidentity structural survivor: range and
+orientation pass `0/40`, although every step passes the norm cap. Step 40 is
+strong and non-affine (`.2080` identity RMSE, `.05240` affine residual), but
+roughly 48% of its sampled trilinear/tetrahedral local maps reverse
+orientation. Close it before images. The next distinct hypothesis is to keep
+reference-palette score forcing but express it through the already validated
+cube-preserving diffeomorphic representation; this requires a new contract
+and does not open current film fitting.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
