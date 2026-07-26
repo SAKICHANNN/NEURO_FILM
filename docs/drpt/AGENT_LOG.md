@@ -3607,3 +3607,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   range/Jacobian/permutation/content-shortcut controls. No B6, stock pixels,
   operator fitting, source copying, production or film claim. Goal remains
   active.
+
+## 2026-07-26 - Freeze U5.R2N1 ModFlows B0 synthetic audit
+
+- **Asset:** one exact 18,970,914-byte B0 checkpoint at
+  `124f7b42...d3eacb`; weights-only load. B6, dataset and unlicensed source
+  download/copy are forbidden.
+- **Independent interpretation:** standard EfficientNet-B0/515 encoder;
+  canonical `W1,b1,W2,b2` parsing into a 4-64-3 tanh velocity field; fixed
+  eight-step RK4 forward/reverse legs; no output clamp.
+- **Controls:** deterministic warm/cool palette images with geometry changes
+  and exact histogram-preserving pixel permutations, plus gray and RGB-cube
+  probes. Test repeat, palette-vs-geometry separation, same-flow identity,
+  raw range, positive Jacobian and norm <=8.
+- **Branches:** any architecture, shortcut, identity, range or regularity
+  failure closes before real images without source-copy, solver/order,
+  fine-tune, clamp or strength rescue. All pass opens only a separate non-stock
+  A0 safety pilot. Goal remains active.

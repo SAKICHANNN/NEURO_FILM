@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2n1-modflows-b0-synthetic-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2N1",
+  "parent": {
+    "node": "U5.R2N0",
+    "decision": "configs/u5_r2n0_modflows_source_decision_v1.json",
+    "status": "research_control_feasible_clean_room_only"
+  },
+  "checkpoint": {
+    "repository": "MariaLarchenko/modflows_color_encoder",
+    "revision": "f7b7077946ed02d70a410a58b780cdc3b3883635",
+    "file": "modflows_color_encoder_B0_dim_515.pt",
+    "url": "https://huggingface.co/MariaLarchenko/modflows_color_encoder/resolve/f7b7077946ed02d70a410a58b780cdc3b3883635/modflows_color_encoder_B0_dim_515.pt",
+    "expected_bytes": 18970914,
+    "expected_sha256": "124f7b42c3bd857a0c20eb5d1a49f873e538e54cb7d44f0aa8d16b1887d3eacb",
+    "destination": "data/external/modflows_b0_v1/modflows_color_encoder_B0_dim_515.pt",
+    "model_card_license": "MIT",
+    "weights_only_load_required": true
+  },
+  "clean_room_encoder": {
+    "architecture": "torchvision EfficientNet-B0 with final Linear output 515",
+    "input_size": [224, 224],
+    "resize": "bilinear",
+    "input_range": [0.0, 1.0],
+    "normalization_mean": [0.485, 0.456, 0.406],
+    "normalization_std": [0.229, 0.224, 0.225],
+    "output_dimension": 515,
+    "source_code_copy_allowed": false
+  },
+  "clean_room_velocity": {
+    "input_order": ["r", "g", "b", "t"],
+    "parameter_order": ["layer1_weight_row_major", "layer1_bias", "layer2_weight_row_major", "layer2_bias"],
+    "hidden_units": 64,
+    "activation": "tanh",
+    "output_channels": 3,
+    "parameter_count": 515,
+    "integrator": "fixed_step_RK4",
+    "steps_per_leg": 8,
+    "content_leg": [0.0, 1.0],
+    "style_inverse_leg": [1.0, 0.0],
+    "output_clamp_allowed": false
+  },
+  "synthetic_images": {
+    "seed": 260726,
+    "families": [
+      "gray_ramp",
+      "rgb_cube_tiles",
+      "warm_palette_geometry_a",
+      "warm_palette_geometry_b",
+      "warm_palette_pixel_permutation",
+      "cool_palette_geometry_a",
+      "cool_palette_geometry_b",
+      "cool_palette_pixel_permutation"
+    ],
+    "embedding_repeat_count": 2,
+    "cube_grid_size": 9,
+    "jacobian_grid_size": 7,
+    "finite_difference_epsilon": 0.0001
+  },
+  "gates": {
+    "checkpoint_hash_and_size_match": true,
+    "weights_only_load_succeeds": true,
+    "state_dict_architecture_exact": true,
+    "embedding_all_finite": true,
+    "embedding_repeat_maximum_absolute_error": 0.0,
+    "minimum_same_palette_geometry_cosine_similarity": 0.98,
+    "minimum_same_palette_permutation_cosine_similarity": 0.98,
+    "minimum_palette_distance_over_geometry_distance_ratio": 2.0,
+    "maximum_same_embedding_identity_error": 0.005,
+    "raw_transfer_minimum": 0.0,
+    "raw_transfer_maximum": 1.0,
+    "minimum_sampled_jacobian_determinant": 0.0,
+    "maximum_sampled_jacobian_norm": 8.0,
+    "transfer_repeat_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "branches": {
+    "checkpoint_or_architecture_failure": "close; do not read/copy unlicensed source to force compatibility",
+    "palette_shortcut_failure": "close palette-retrieval claim; do not fine-tune encoder",
+    "range_jacobian_or_norm_failure": "close raw flow before images; do not clamp or lower strength",
+    "identity_failure": "close canonical clean-room interpretation; do not change solver after inspection",
+    "all_gates_pass": "open separately frozen A0 non-stock reference safety pilot only"
+  },
+  "real_image_render_allowed": false,
+  "stock_labelled_pixels_allowed": false,
+  "film_operator_fitting_allowed": false,
+  "checkpoint_finetuning_allowed": false,
+  "b6_download_allowed": false,
+  "gpu_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "clean-room checkpoint compatibility and synthetic palette/shortcut/ODE structure evidence for one external B0 ModFlows control; no unlicensed code reuse, real-image safety, stock identity, film operator, calibration, preference or production claim"
+}
