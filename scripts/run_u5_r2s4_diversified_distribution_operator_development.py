@@ -416,14 +416,21 @@ def main() -> None:
     parser.add_argument(
         "--parent-decision",
         type=Path,
-        default=ROOT
-        / "configs"
-        / "u5_r2s3_unpaired_distribution_operator_pilot_decision_v1.json",
+        default=None,
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     config_bytes = args.config.read_bytes()
     config = json.loads(config_bytes)
+    parent_decision_path = args.parent_decision
+    if parent_decision_path is None:
+        parent_decision_path = ROOT / config["activation_gate"][
+            "required_decision_path"
+        ]
+    if not parent_decision_path.is_file():
+        raise SystemExit(
+            f"S4 activation evidence is absent: {parent_decision_path}"
+        )
     commit = subprocess.run(
         ["git", "rev-parse", "HEAD"],
         cwd=ROOT,
@@ -433,7 +440,7 @@ def main() -> None:
     ).stdout.strip()
     report = run_development(
         config,
-        json.loads(args.parent_decision.read_text(encoding="utf-8")),
+        json.loads(parent_decision_path.read_text(encoding="utf-8")),
         config_sha256=_sha256(config_bytes),
         software_commit=commit,
     )
