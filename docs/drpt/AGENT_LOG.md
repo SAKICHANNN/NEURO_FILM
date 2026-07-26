@@ -3683,3 +3683,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision/handoff:** retain as a future controlled misaligned-pair
   calibration prior only. Do not implement on closed film pixels, infer pair
   truth from LoFTR/content, or claim reproduction. Goal remains active.
+
+## 2026-07-26 - Close U5.R2Q0 official SA-LUT route on training provenance
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2Q0`;
+  dev-research-reliability primary with research, AI/ML, DRPT, structure and
+  agent-log disciplines secondary.
+- **Primary evidence:** official ICCV PDF, `14,587,761` bytes at
+  `a8849149...619949`; official source revision
+  `3e62f9c...9a`; HF inference state metadata fixes
+  `218,400,931` bytes at `5ad3685c...92f2b`.
+- **Positive boundary:** inference predicts a 64-way simplex over
+  identity-residual `2 x 17^3` 4D-LUT bases and one bounded context map; final
+  RGB is explicit quadrilinear interpolation.
+- **Closure evidence:** official training freezes a direct
+  `Style2VLogImage2ImageNet` to generate pseudo-Log RGB and uses adversarial
+  style supervision. Committed image/LUT roots are blank and no asset or
+  checkpoint model card closes lineage.
+- **Data boundary:** PST50 is a 35.5GB CC-BY-4.0 generic style-transfer
+  benchmark with professionally LUT/Resolve-graded targets, not a film-stock
+  dataset. It was not downloaded.
+- **Decision/handoff:** do not download/run the official checkpoint or train
+  the released pipeline. Retain only a clean-room, no-generator/no-GAN
+  explicit 4D-LUT plus separately bounded context-grid prior for a future
+  evidence-eligible question. No film fitting, stock/mode claim or production
+  integration opens. Goal remains active.

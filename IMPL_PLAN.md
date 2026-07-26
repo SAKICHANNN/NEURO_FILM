@@ -45,6 +45,16 @@ real-image frontier has no survivor: s1.0 reaches only style 5.66 and non-basic
 .72. This exact clean-room sensitometry/gauge route is closed without rescue;
 profile/renderer integration and stock claims remain closed.
 
+U5.R2Q0 audits SA-LUT as a current reference-conditioned explicit-operator
+candidate. Its inference structure is compatible in principle: ML predicts
+simplex LUT-basis weights and a bounded context map, while quadrilinear
+interpolation renders final RGB. The released checkpoint is not eligible,
+however, because its training uses a frozen direct Style2Log image generator,
+adversarial supervision and undeclared image/LUT roots. PST50 is a generic
+professionally graded style-transfer benchmark, not named-film truth. Retain
+only a future clean-room non-generative 4D-LUT/context-grid prior; no download,
+execution, training, film fitting or stock claim opens.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

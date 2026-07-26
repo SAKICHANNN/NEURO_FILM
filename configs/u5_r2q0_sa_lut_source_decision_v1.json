@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "audit_id": "u5.r2q0-sa-lut-source-training-boundary-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Q0",
+  "paper": {
+    "title": "SA-LUT: Spatial Adaptive 4D Look-Up Table for Photorealistic Style Transfer",
+    "venue": "ICCV 2025",
+    "official_pdf_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Gong_SA-LUT_Spatial_Adaptive_4D_Look-Up_Table_for_Photorealistic_Style_Transfer_ICCV_2025_paper.pdf",
+    "pdf_bytes": 14587761,
+    "pdf_sha256": "a8849149136e7ff1234a720fa759d661c2b0a323d46b8ac740cc0281ca619949"
+  },
+  "source": {
+    "repository": "https://github.com/Ry3nG/SA-LUT.git",
+    "revision": "3e62f9c9b59ea7b30d220ff6ba61047dab898c9a",
+    "tracked_files": 62,
+    "local_source_bytes_including_git_and_lfs": 376235257,
+    "license": "S-Lab License 1.0, non-commercial use only",
+    "vgg_weight": {
+      "bytes": 80102481,
+      "lfs_sha256": "804ca2835ecf7539f0cd2a7ac3c18ce81e6f8468969ae7117ac0c148d286bb4a"
+    },
+    "style2log_checkpoint": {
+      "bytes": 286604792,
+      "lfs_sha256": "c7256590a50fb52176c5fccc83c04f4e362f9ac03e0ccf2ce8569d3ed4c4d790"
+    }
+  },
+  "published_inference_checkpoint": {
+    "repository": "https://huggingface.co/zrgong/SA-LUT",
+    "revision": "940cab98d7a37bea828cfb6efa2433ece5bb423a",
+    "filename": "epoch=100-step=4127466.ckpt.state.pt",
+    "bytes": 218400931,
+    "lfs_sha256": "5ad3685cf6bbf14230d71580b9b93f03e76bf6d7dfaceecd0a3527341cc92f2b",
+    "model_card_available": false,
+    "downloaded": false
+  },
+  "method": {
+    "inference_predictor": "style/content encoder predicts a 64-way simplex weight vector and a one-channel spatial context map",
+    "explicit_operator": "identity-residual 4D LUT with two context bins and 17x17x17 RGB nodes",
+    "renderer": "quadrilinear interpolation over context plus RGB, followed by output save clipping",
+    "operator_node_clamp": "[0,1]",
+    "spatial_parameter": "network-predicted context map resized bilinearly to output resolution",
+    "synthetic_training": "professional 3D LUTs applied to Log-space image pairs",
+    "real_style_training": "frozen direct Style2Log image-to-image network supplies pseudo Log content and a learned discriminator supplies adversarial style supervision",
+    "regularization": [
+      "total variation",
+      "monotonicity",
+      "LPIPS",
+      "adversarial style loss"
+    ]
+  },
+  "training_lineage": {
+    "image_roots_declared_in_committed_config": false,
+    "lut_roots_declared_in_committed_config": false,
+    "training_image_asset_manifest_available": false,
+    "training_lut_asset_manifest_available": false,
+    "style2log_training_manifest_available": false,
+    "checkpoint_model_card_available": false,
+    "complete_reproducible_lineage": false
+  },
+  "pst50": {
+    "repository": "https://huggingface.co/datasets/zrgong/PST50",
+    "revision": "6ed86e34c37c558a0b2401d52f06603d619472e1",
+    "license_label": "CC-BY-4.0",
+    "reported_total_bytes": 35500000000,
+    "rows": 250,
+    "role": "photorealistic style-transfer benchmark, not film-stock training truth",
+    "downloaded": false
+  },
+  "decision": "close_official_checkpoint_and_training_route_retain_clean_room_architecture_prior_only",
+  "current_project_fit": {
+    "inference_final_rgb_is_explicit_lut": true,
+    "official_training_respects_no_direct_rgb_generator": false,
+    "official_training_respects_no_pseudo_teacher": false,
+    "training_lineage_auditable": false,
+    "film_stock_evidence": false,
+    "unpaired_film_operator_identification": false,
+    "current_checkpoint_evaluation_opened": false,
+    "current_dataset_download_opened": false,
+    "implementation_opened": false
+  },
+  "reopen_condition": "a clean-room, non-adversarial, no-direct-image-generator training design plus rights-cleared manifest-complete supervision and a separately frozen question that passes stock/data identifiability gates",
+  "forbidden_rescues": [
+    "download or run the official checkpoint while treating its output as non-generative project evidence",
+    "treat PST50 styles or ground truth as film-stock truth",
+    "use the context map as an unconstrained semantic mask in Style-safe production",
+    "train on current closed Commons/YFCC pixels",
+    "infer an operator from unrelated style photographs",
+    "copy the non-commercial implementation into production",
+    "omit the undeclared image, LUT or Style2Log checkpoint lineage",
+    "present node clamping or monotonicity loss as a severe-artifact guarantee"
+  ],
+  "claim_ceiling": "current primary-source source/method/training-boundary audit: SA-LUT demonstrates a useful explicit 4D-LUT plus spatial-context architecture, but its official checkpoint is trained with a direct pseudo-Log image generator and adversarial supervision under incomplete asset lineage; it provides no film-stock or unpaired-operator evidence and is not executed"
+}
