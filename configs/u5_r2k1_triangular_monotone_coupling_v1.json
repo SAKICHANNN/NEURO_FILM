@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k1-triangular-monotone-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K1",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "node": "U5.R2K0",
+    "report_sha256": "f2cf7323c32daa4808906ca6f3d657c7770a0bc2a541194f1aef5f204ae5dd2a",
+    "finding": "accurate localized Gaussian residual fitting is insufficient because unconstrained local affine fields fold colour space"
+  },
+  "method_prior": {
+    "coupling_layer_prior": "RealNVP-style triangular invertible coupling",
+    "colour_mapping_precedent": "Mustafa, Hanji and Mantiuk, Distilling Style from Image Pairs for Global Forward and Inverse Tone Mapping, CVMP 2022",
+    "external_code_or_checkpoint_copy_allowed": false,
+    "generative_density_model_allowed": false,
+    "style_latent_allowed": false
+  },
+  "candidate": {
+    "schema": "roll2film.triangular_monotone_coupling.v1",
+    "stage_channels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      0,
+      2,
+      0,
+      1,
+      0,
+      1,
+      2
+    ],
+    "conditioner": "fixed_3x3_2d_gaussian_bias_plus_affine",
+    "gaussian_axis_size": 3,
+    "isotropic_sigma": 0.28,
+    "epsilon": 1e-12,
+    "output_mapping": "x_c + (1-x_c)*tanh(max(delta,0)) + x_c*tanh(min(delta,0))",
+    "maximum_absolute_coefficient": 1.5
+  },
+  "fit": {
+    "grid_axis_size": 8,
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 260726,
+    "steps": 1800,
+    "learning_rate": 0.025,
+    "coefficient_l2": 0.00001,
+    "gradient_clip_norm": 10.0,
+    "project_coefficients_each_step": true,
+    "thread_count": 1
+  },
+  "confirmation_grid_axis_size": 11,
+  "jacobian_grid_axis_size": 7,
+  "finite_difference_step": 0.000001,
+  "targets": {
+    "identity": {
+      "family": "identity",
+      "strength": 1.0
+    },
+    "density_cyan_s50": {
+      "family": "u5_r2e0_density",
+      "witness": "cyan_shadow_warm_highlight_like",
+      "strength": 0.5
+    },
+    "positive_warm_s35": {
+      "family": "u5_r2j0_positive",
+      "witness": "warm_highlight_like",
+      "strength": 0.35
+    }
+  },
+  "gates": {
+    "identity_confirmation_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_absolute_coefficient": 1.5,
+    "maximum_confirmation_rgb_rmse": 0.015,
+    "minimum_improvement_over_global_affine_fraction": 0.2,
+    "minimum_analytic_stage_derivative": 0.02,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "inverse_roundtrip_maximum_absolute_error": 1e-10,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "conditional_style_generator_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room data-independent representation evidence for an explicitly invertible bounded triangular colour-coupling operator fitted only to existing synthetic explicit controls; no generative model, learned style latent, real-film operator identification, named stock, calibration, authenticity, preference or production promotion"
+}
