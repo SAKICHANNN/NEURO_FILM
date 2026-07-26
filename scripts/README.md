@@ -29,6 +29,7 @@ files.
 | `run_u5_r2i1_neutral_axis_gauge.py` | Audit the data-independent inverse-neutral gauge for the U2.2B operator. |
 | `run_u5_r2i1b_neutral_gauge_frontier.py` | Render/evaluate the frozen neutral-gauged operator on the inherited gold/stress frontier. |
 | `run_u5_r2j0_positive_film_audit.py` | Audit the clean-room two-matrix/three-sigmoid positive-film response witness bank for boundedness, regularity, diversity and exact replay. |
+| `run_u5_r2j1_positive_film_frontier.py` | Render/evaluate the fixed positive-film witness bank on the frozen gold/stress set and build gated blind sheets against safe-rich and R2E1. |
 | `run_u5_r2b_global_operator_frontier.py` | Audit the frozen fixed global-policy bank and build survivor-only blind sheets. |
 | `audit_real_film_prov_register_recon.py` | Run the bounded metadata-only PROV negative-register accessibility audit. |
 | `run_roll2film_e0.py` | Run the data-independent known-operator/group-size/shuffled-control Roll2Film identifiability gate. |
