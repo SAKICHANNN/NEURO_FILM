@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 import pytest
 
@@ -7,12 +10,15 @@ from scripts.run_u5_r2u1_hierarchical_colour_coupling_development import (
     _couple_method,
     _decision_branch,
     _validate_activation,
+    run_development,
 )
 from src.roll2film.hierarchical_colour_coupling import (
     fit_paired_cube_diffeomorphic_flow,
     hierarchical_colour_coupling,
     random_colour_coupling,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_hierarchical_coupling_is_repeatable_and_non_reusing() -> None:
@@ -212,3 +218,67 @@ def test_runner_decision_separates_pair_fit_nonidentification() -> None:
         _decision_branch(other, shuffled_fails=True)
         == "primary_does_not_beat_controls"
     )
+
+
+def test_tiny_runner_smoke_keeps_formal_seeds_unaccessed() -> None:
+    config = json.loads(
+        (
+            ROOT
+            / "configs"
+            / "u5_r2u1_hierarchical_colour_coupling_development_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    config["style_generator"].update(
+        {
+            "development_style_count": 2,
+            "development_style_seed": 501,
+            "reserved_confirmation_style_seed": 599,
+        }
+    )
+    content = config["content_condition_generator"]
+    content.update(
+        {
+            "condition_count": 2,
+            "condition_palette_centres": [
+                [0.25, 0.25, 0.25],
+                [0.70, 0.25, 0.20],
+            ],
+            "scenes_per_condition_per_domain": 1,
+            "samples_per_scene": 12,
+            "development_observation_seed_a": 502,
+            "development_observation_seed_b": 503,
+        }
+    )
+    config["coupling"].update(
+        {
+            "development_pair_seed_a": 504,
+            "development_pair_seed_b": 505,
+            "shuffled_target_condition_permutation": [1, 0],
+        }
+    )
+    config["operator"].update(
+        {
+            "velocity_grid_axis_size": 3,
+            "integration_steps": 2,
+            "evaluation_grid_axis_size": 3,
+        }
+    )
+    config["optimization"].update({"steps": 2, "seed": 506})
+    report = run_development(
+        config,
+        {
+            "decision_branch": "primary_fails_or_does_not_beat_pooled",
+            "repeat_report_sha256_equal": True,
+        },
+        config_sha256="test-config",
+        software_commit="test-commit",
+    )
+    assert set(report["methods"]) == {
+        "random_correct_condition",
+        "pooled_hcc",
+        "correct_condition_hcc",
+        "shuffled_condition_hcc",
+    }
+    assert report["reserved_confirmation_seed_accessed"] is False
+    assert report["config_sha256"] == "test-config"
+    assert report["software_commit"] == "test-commit"

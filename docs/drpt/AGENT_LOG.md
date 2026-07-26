@@ -4067,8 +4067,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Activation:** require the future S4 decision to be byte-repeat-confirmed
   and on an allowed branch before any U1 observation is generated. A real CLI
   rejection exits `1` with no output when that evidence is absent.
-- **Verification:** seven focused U1 tests pass; sixteen combined S3/S4/U1
-  tests pass. Coupling is repeatable/non-reusing, a monotone-shift unit case
+- **Verification:** eight focused U1 tests pass; the end-to-end tiny runner
+  smoke also covers all four method/report paths without formal seeds.
+  Coupling is repeatable/non-reusing, a monotone-shift unit case
   beats random pairing, paired fitting repeats exactly, reduces loss and
   preserves coefficient/range bounds. The complete CPU suite passes
   `929/929`.
