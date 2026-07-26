@@ -3530,3 +3530,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary/handoff:** synthetic representation only; no measured NPS,
   calibration, stock/process/scanner, production or realism claim. Commit the
   contract, then implement/test/run. Goal remains active.
+
+## 2026-07-26 - Pass U6.2A Boolean grain synthetic structure
+
+- **Implementation:** original isolated Poisson-disk context, global-coordinate
+  grain-wise region renderer, serialization/fingerprint and formal audit. No
+  GPL source was downloaded or copied; production effects/renderer are
+  unchanged.
+- **Reproducibility:** two formal runs at `efd0a62...044a1` are byte-identical
+  at `50d3ba3e...bb46d`; 26 focused/adjacent and all `878` CPU tests pass.
+- **Metrics:** maximum mean error `.01328`; small/large midtone variance ratios
+  `2.148/2.246`; large-minus-small lag-1 correlation `.14162`; grain counts
+  142--8,754; repeat/partition/serialization errors exactly zero.
+- **Decision:** pass the synthetic representation conjunction. This establishes
+  meaningful stochastic geometry beyond additive high-pass noise, not measured
+  film NPS or realism.
+- **Handoff:** freeze one immutable-policy existing-image crop visual/style and
+  severe-artifact frontier. No fitting, stock/process/scanner claim or
+  integration. Goal remains active.

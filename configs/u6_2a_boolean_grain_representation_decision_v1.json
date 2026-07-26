@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.2a-boolean-grain-representation-v1",
+  "node": "ULT > U6 > U6.2 > U6.2A",
+  "status": "complete_pass",
+  "decision": "synthetic_representation_pass_open_visual_crop_frontier_only",
+  "software_commit": "efd0a62f78cf122864de8e17c45b3046441044a1",
+  "config_sha256": "9b13547fa48a01f7c992401400850fea708df9bb91fd64b73a76531ac9417da6",
+  "formal_report_sha256": "50d3ba3ec682c561a59496052e8a8cff291838f867d1b4dbb370e5bd454bb46d",
+  "repeat_report_sha256": "50d3ba3ec682c561a59496052e8a8cff291838f867d1b4dbb370e5bd454bb46d",
+  "repeat_byte_identical": true,
+  "automatic_gate_passed": true,
+  "passed_checks": [
+    "bounded",
+    "flat_mean",
+    "midtone_variance",
+    "radius_autocorrelation",
+    "grain_count",
+    "repeat_exact",
+    "partition_exact",
+    "serialization_replay"
+  ],
+  "summary_metrics": {
+    "maximum_flat_mean_absolute_error": 0.013281249999999994,
+    "small_radius_midtone_variance_ratio": 2.1480796326030984,
+    "large_radius_midtone_variance_ratio": 2.2458420375050867,
+    "large_minus_small_radius_lag1_autocorrelation": 0.14161720871925354,
+    "minimum_grain_count": 142,
+    "maximum_grain_count": 8754,
+    "repeat_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "serialization_replay_maximum_absolute_error": 0.0
+  },
+  "retained_evidence": "The clean-room constant-radius inhomogeneous Boolean/Poisson renderer preserves flat-field means, produces the expected midtone variance peak, exposes radius-dependent spatial correlation and replays exactly across repeats, serialization and arbitrary row partitions.",
+  "allowed_next": "freeze one bounded existing-image crop visual/style/severe frontier using the immutable small/large radius policies without fitting",
+  "forbidden_next": [
+    "claim_measured_NPS_or_real_film_calibration",
+    "name_a_stock_process_or_scanner_profile",
+    "copy_or_link_GPL_reference_code",
+    "fit_parameters_to_quarantined_film_pixels",
+    "integrate_renderer_profile_CLI_or_defaults",
+    "claim_full_resolution_performance_or_universal_realism"
+  ],
+  "production_integration_allowed": false,
+  "stock_learning_allowed": false,
+  "parameter_calibration_allowed": false,
+  "claim_ceiling": "clean-room data-independent numerical and stochastic-structure evidence for a deterministic explicit Boolean/Poisson grain representation; no copied GPL code, measured NPS, real-film calibration, stock/process/scanner identity, preference, production or universal realism claim"
+}

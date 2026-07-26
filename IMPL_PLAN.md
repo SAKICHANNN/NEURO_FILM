@@ -386,13 +386,13 @@ sampled Jacobian norm is only `2.8415`, and positive-warm confirmation RMSE
 the common fitted identity has `5.97e-5` maximum error instead of exact
 identity. Do not special-case identity, add capacity or render real images.
 
-`U6.2A` now tests a separate physical-inspired film algorithm rather than
-another colour-map representation. It implements only the published
-Boolean/Poisson disk equations from Newson et al. in clean-room code; the GPL
-reference implementation is not copied. Synthetic flat fields must preserve
-mean, peak in variance near midtone, show greater lag-1 correlation for larger
-grains, and replay/partition exactly. A pass opens only a separately frozen
-existing-image crop visual frontier, not calibrated or stock-specific grain.
+`U6.2A` passes as a separate physical-inspired film-grain representation. The
+clean-room Boolean/Poisson disk renderer has maximum flat mean error `.0133`,
+small/large midtone variance ratios `2.15/2.25`, and `.1416` more lag-1
+correlation for large grains. Repeat, serialized replay and arbitrary row
+partition are bit-exact. The GPL reference implementation was not copied.
+Open only a frozen existing-image crop visual frontier; U6.2 still lacks
+measured NPS, repeat scans and stock/process/scanner calibration.
 
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
