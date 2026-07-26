@@ -23,6 +23,11 @@ from .files import (
     FileReferenceMatchResult,
     match_reference_files,
 )
+from .evaluation import (
+    KnownOperatorBatchMetrics,
+    KnownOperatorSampleMetrics,
+    evaluate_known_operator_batch,
+)
 from .render import (
     ReferenceMatchDiagnostics,
     ReferenceMatchResult,
@@ -40,6 +45,8 @@ __all__ = [
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
     "FilmEffectBinding",
+    "KnownOperatorBatchMetrics",
+    "KnownOperatorSampleMetrics",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "ReferenceLookPolicy",
@@ -49,6 +56,7 @@ __all__ = [
     "ReferenceMatchResult",
     "ReferenceMatchContractError",
     "fit_reference_look",
+    "evaluate_known_operator_batch",
     "build_reference_composition",
     "load_reference_look_recipe",
     "match_reference_files",

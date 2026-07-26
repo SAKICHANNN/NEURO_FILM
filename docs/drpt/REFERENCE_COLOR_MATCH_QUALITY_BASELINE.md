@@ -44,6 +44,12 @@ The positive control passes, but all five cross-content rows regress. Gamut
 compression touched 21.1% to 63.2% of pixels in four of those five rows and
 50.4%/63.2% in the two strongest failures.
 
+The committed `evaluate_known_operator_batch` harness reproduces the six rows
+and reports one improved / five regressed samples, aggregate median improvement
+`-45.6%`, worst improvement `-175.4%`, and maximum newly introduced encoding
+boundary fraction `10.9%`. Gamut-adjusted fraction and new encoding-boundary
+fraction are separate diagnostics and must not be conflated.
+
 Autonomous visual inspection agrees with the metric direction:
 
 - image `02` becomes too dark and warm;
@@ -88,6 +94,11 @@ A challenger may replace v1 only if it:
 - retains the `reference-look` claim ceiling;
 - reports synthetic/known-operator evidence separately from real-world blind
   aesthetic preference.
+
+The promotion harness is pure `WorkingImage` evaluation: targets are consumed
+only after rendering, shape/colour state/gamut violations fail closed, and the
+reported automated metrics never promote a candidate without the independent
+visual/aesthetic gate.
 
 The main neuro-film W1 task owns the current reference-identifiability research.
 This branch will consume a committed passing descriptor/head through an

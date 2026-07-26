@@ -133,3 +133,18 @@
 - Next: keep W1 descriptor/head consumption active and defer runtime FilmFX
   execution until the existing product renderer exposes a stable
   `WorkingImage` effect-only entrypoint.
+
+## 2026-07-27 - Freeze A4 known-operator evaluation API
+
+- Changed: added a pure `WorkingImage` evaluator for neutral source, known
+  same-content target and candidate triplets.
+- Metrics: median/p95 Delta E76, relative median improvement and newly
+  introduced output-boundary fraction per sample; batch summaries preserve
+  improved/regressed counts and worst tail.
+- Evidence: 69 focused colour-match/Lab/gamut tests pass. The committed harness
+  exactly reproduces the six-image baseline: one improved, five regressed,
+  aggregate median -45.6%, worst -175.4%, maximum new boundary 10.9%.
+- Claim boundary: targets are evaluation-only and automated metrics cannot
+  substitute for severe-artifact and photographic-preference review.
+- Next: use this fixed product gate for any W1-derived challenger after its
+  source task commits and passes its own hidden-operator/source-use gates.

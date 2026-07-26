@@ -36,12 +36,14 @@ permits `calibrated-reference`.
 - `src/color_match/replay.py`
 - `src/color_match/files.py`
 - `src/color_match/composition.py`
+- `src/color_match/evaluation.py`
 - `src/color_match/__init__.py`
 - `tests/test_color_match_contracts.py`
 - `tests/test_color_match_render.py`
 - `tests/test_color_match_replay.py`
 - `tests/test_color_match_files.py`
 - `tests/test_color_match_composition.py`
+- `tests/test_color_match_evaluation.py`
 - branch-specific coordination, plan, log and this evidence record
 
 No forbidden W1/W2/S4, global tracker, renderer-default or standalone D-PCT
@@ -109,6 +111,14 @@ and dust defaults as effect provenance, but the output remains
 `reference-look`, does not claim `film_stock_id`, and executes reference colour
 before effects. The current leaf validates the contract; it does not duplicate
 or bypass the existing FilmFX renderer.
+
+## Promotion metric boundary
+
+`evaluate_known_operator_batch` is the frozen A4 automated comparison surface.
+It fails closed on alignment, display-linear state, working space, finite range
+or duplicate-ID violations and reports both centre and tail Delta E76 plus new
+boundary pixels. Its result is evidence for candidate rejection or progression
+to visual review, never a standalone photographic-aesthetic promotion.
 
 ## Change propagation
 
