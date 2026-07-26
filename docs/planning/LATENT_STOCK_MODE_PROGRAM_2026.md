@@ -208,6 +208,14 @@ before confirmatory access.
 - **Stop:** accept `K=1`, merge strength-only splits, or close nuisance/content
   clusters.
 
+The completed ColorReference `SF2.7A` lane is now a concrete scanner negative
+control, not mode-study data. On identical physical slides, raw scanner-device
+RGB pair medians span `.01464-.09865`, while a leave-one-slide-out bounded
+3x3+bias mapping reduces aggregate median distance by `76.11%`. Therefore a
+candidate mode that disappears under an equally simple global scanner
+canonicalizer is nuisance; a candidate aligned with one scanner/software
+pipeline is not an emulsion mode even when its raw visual separation is large.
+
 The 53/55/56 anchors are a required strength-path negative control. The method
 should prefer one mode plus continuous strength; stable separation into three
 modes is evidence against the method. ID 11's 09/53/55/56 red

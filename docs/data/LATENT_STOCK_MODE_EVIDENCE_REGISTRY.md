@@ -52,6 +52,7 @@ Each source row records only independently verifiable fields:
 | BlueNeg physical-roll pilot | correct-roll advantage fails replication and loses to content-similar wrong-roll retrieval | `unidentified` for reusable roll information | false |
 | FILM-R | physical scans but family/content structural confounding; roll/process/scanner unknown | `source/content confounded` | false |
 | LOC FSA/OWI | historical physical film; stock, roll, process and scanner settings unknown | historical/unknown nuisance lane, not named-stock mode study | false |
+| ColorReference Velvia 100F Set 3 | same five physical slides across four scanner/software pipelines; one target set, no independent rolls | scanner negative control: raw device-RGB pair medians .01464-.09865, bounded global canonicalization removes 76.11% of aggregate median | false |
 | Apollo 7 SF2.0A | 63/63 authoritative SO-368/SO-121 pages validate; stock/magazine/filter support passes but only one of two required shared content tags survives | `source/content confounded`; closed before pixels or identifiability | false |
 | NASA/JSC STS098 SF2.0B0 | exact VELVI/5775/5776 snapshot passes rows and zero-overlap, but Velvia has two rolls below the frozen four-roll minimum | `insufficient connectivity`; closed before nuisance/identifiability/pixels | false |
 | 53/55/56 deterministic anchors | same-input normalisation indicates near-collinear direction; not real-stock observations | required strength-path negative control; not modes | false |

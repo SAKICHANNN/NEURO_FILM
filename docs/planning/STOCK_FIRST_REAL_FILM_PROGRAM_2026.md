@@ -338,6 +338,16 @@ evidence. Only a separately frozen scanner-nuisance quantification opens; no
 fit, training, LSM or redistribution opens. See
 `docs/REAL_FILM_COLORREFERENCE_SCANNER_NUISANCE_RESULTS.md`.
 
+`SF2.7A` quantifies that control without treating untagged scanner RGB as
+colourimetric data. Across all directed leave-one-slide-out comparisons, raw
+median device-RGB distance is `.06055`; a bounded full affine reduces it
+`76.11%` to `.01446`. Pair medians range from `.01464` for two
+LS50/NikonScan devices to `.09865` for LS50/VueScan versus LS9000/NikonScan,
+so the preregistered every-pair material gate fails. Future stock evidence must
+report both raw and canonicalized results and must never relabel scanner
+clusters as stock modes. See
+`docs/REAL_FILM_SCANNER_NUISANCE_QUANTIFICATION_RESULTS.md`.
+
 `RF2.C0` is also complete as a strictly separate external-control sibling. At
 the pinned spektrafilm revision, Ektar100/fixed-e0 reaches 8.034 style and 7.343
 matched-basic residual Delta E76 with zero new hard clipping and no confirmed

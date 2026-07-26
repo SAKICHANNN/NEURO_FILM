@@ -3211,3 +3211,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   nuisance quantification only. No digital-film pair, independent-roll, stock
   response, fitting, training, LSM, redistribution or production claim. Goal
   remains active.
+
+## 2026-07-26 - Close U5.R2J1 positive-film visual frontier
+
+- **Automatic evidence:** two 1,025-render manifests and two metric reports are
+  independently byte-identical. Seven candidates pass; the three shortlist
+  representatives reach style `11.88-13.10`, non-basic `6.42-7.77` and zero
+  new clipping.
+- **Visual evidence:** choices were recorded before mapping. All three blind
+  rounds select retained R2E1 first and safe-rich second; no J1 candidate
+  enters the top two. All 27 J1 shortlist gold renders are full-resolution
+  severe-clean, including three clean ID11 regressions.
+- **Decision:** close for no visual gain, not artifacts. Preserve J0 as a
+  representation/negative control; do not retune the fixed bank. R2E1 remains
+  the B0 challenger and no stock/training/integration permission opens.
+
+## 2026-07-26 - Complete SF2.7A scanner-nuisance quantification
+
+- **Integrity:** all 20 source-to-scan homographies pass with at least 75
+  RANSAC inliers and at most `.644px` median error. Two reports are
+  byte-identical at `bd093389...993ad`; a deterministic 20-panel grid overlay
+  visually passes every slide/pipeline.
+- **Evidence:** raw held-out device-RGB median/p90 are `.06055/.15093`;
+  bounded 3x3+bias reaches `.01446/.06120`, a `76.11%` median reduction.
+  Pair medians span `.01464-.09865`, so the frozen every-pair material gate
+  fails despite large cross-software/model differences.
+- **Decision:** record a scanner negative control and global-canonicalization
+  baseline. Raw scanner clusters are not film modes. No stock fitting,
+  training, LSM, redistribution or production permission opens. Full CPU suite
+  passes `831` tests; Goal remains active.

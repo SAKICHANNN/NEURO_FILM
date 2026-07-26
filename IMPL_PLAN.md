@@ -289,6 +289,21 @@ minimum residual after the best affine RGB fit is `.09596`. Two reports are
 byte-identical and all 818 CPU tests pass. This opens only J1: freeze a
 bounded-strength real-image frontier before any aesthetic/safety conclusion.
 
+`U5.R2J1` closes the fixed positive-film bank on visual value. Seven candidates
+pass the inherited automatic floors and all 27 shortlisted gold renders are
+severe-clean, including ID11, but every blind round chooses the retained R2E1
+density challenger first and safe-rich second. No J1 candidate enters the top
+two. J0 remains a reusable representation/negative control; the same synthetic
+bank must not be retuned or composed with the winner to chase this development
+set.
+
+`SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
+raw held-out scanner-device-RGB median distance is `.06055`, and bounded
+3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span
+`.01464-.09865`, so scanner differences are substantial but not universally
+separate modes. Future stock/mode work must carry raw and canonicalized
+controls; no fitting or LSM permission opens.
+
 `RF2.C0` is complete as an isolated external-control leaf. Two formal
 spektrafilm runs are output/metric/decision-identical. Ektar100/fixed-e0 passes
 the frozen automatic gates (style 8.034, non-basic residual 7.343, zero new
