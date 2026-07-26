@@ -3798,3 +3798,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   leaf with exact spatial-permutation control, group-separated confirmatory
   palettes, simple baselines and inherited structural gates. Current film
   pixels, fitting and LSM remain forbidden. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2S1D canonical-histogram retrieval development
+
+- **Parent/question:** S0 proves exact palette-score flows can be strong and
+  safe. Test the user's hard “looks like this case, therefore use its
+  operator” intuition without opening real pixels or operator claims.
+- **Representation:** normalized `8^3` RGB counts only; all spatial,
+  geometry, semantic, source and scanner features are forbidden. A complete
+  sample-row permutation must preserve histogram and output exactly.
+- **Fixed development:** 384 bank palettes at seed `27010`, 96 development
+  queries at `27011`, 8192 samples each. Seed `27012` is reserved and cannot
+  be generated before a new confirmatory contract is committed.
+- **Candidates:** hard Hellinger/JS Top-1, inverse-distance Hellinger Top-3,
+  query-only KDE at four fixed bandwidths and global-mean velocity.
+- **Discipline:** rank structurally eligible candidates by median then p90
+  oracle-output error, non-affine retention and simplicity. Current images,
+  film pixels, neural RGB, confirmatory claims and stock interpretation remain
+  forbidden. Goal remains active.

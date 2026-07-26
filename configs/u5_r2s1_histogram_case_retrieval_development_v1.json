@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s1-histogram-case-retrieval-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S1D",
+  "parent_evidence": [
+    "U5.R2S0 analytic palette-score diffeomorphic oracle full pass"
+  ],
+  "hypothesis": "a canonical colour histogram can support hard retrieval of a nearby palette-score case without spatial/content shortcuts, preserving more reference-specific explicit-operator structure than a global average or dense case blend",
+  "epistemic_scope": "synthetic development only; no confirmatory, photograph, film, stock, preference or operator-identification claim",
+  "synthetic_palette_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "case_bank_count": 384,
+    "development_query_count": 96,
+    "case_bank_seed": 27010,
+    "development_seed": 27011,
+    "reserved_untouched_confirmation_seed": 27012
+  },
+  "observations": {
+    "samples_per_histogram": 8192,
+    "histogram_axis_size": 8,
+    "histogram_range": [0.0, 1.0],
+    "canonicalization": "normalized lexicographic RGB histogram counts only",
+    "spatial_features_forbidden": true
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "confirmation_grid_axis_size": 9
+  },
+  "candidate_methods": [
+    {
+      "id": "hard_1nn_hellinger",
+      "kind": "nonparametric_ml",
+      "distance": "hellinger"
+    },
+    {
+      "id": "hard_1nn_jensen_shannon",
+      "kind": "nonparametric_ml",
+      "distance": "jensen_shannon"
+    },
+    {
+      "id": "top3_inverse_hellinger",
+      "kind": "sparse_blend_control",
+      "distance": "hellinger",
+      "neighbors": 3,
+      "distance_epsilon": 1e-12
+    },
+    {
+      "id": "query_kde_0p08",
+      "kind": "nonlearned_query_density_control",
+      "bandwidth": 0.08
+    },
+    {
+      "id": "query_kde_0p12",
+      "kind": "nonlearned_query_density_control",
+      "bandwidth": 0.12
+    },
+    {
+      "id": "query_kde_0p16",
+      "kind": "nonlearned_query_density_control",
+      "bandwidth": 0.16
+    },
+    {
+      "id": "query_kde_0p20",
+      "kind": "nonlearned_query_density_control",
+      "bandwidth": 0.2
+    },
+    {
+      "id": "global_mean_velocity",
+      "kind": "style_averaging_control"
+    }
+  ],
+  "development_metrics": [
+    "velocity_grid_rmse_to_analytic_oracle",
+    "operator_output_rmse_to_analytic_oracle",
+    "operator_output_p90_rmse_to_analytic_oracle",
+    "velocity_direction_cosine",
+    "identity_rmse_retention_ratio",
+    "best_affine_residual_retention_ratio",
+    "query_palette_log_density_gain",
+    "reference_separation_ratio",
+    "exact_sample_permutation_histogram_and_operator_error",
+    "cube_range",
+    "minimum_jacobian_determinant",
+    "maximum_jacobian_spectral_norm",
+    "inverse_error",
+    "exact_replay"
+  ],
+  "development_selection_rule": {
+    "eligibility": [
+      "exact permutation histogram and operator error equals zero",
+      "all generated coefficients are finite and vector norms do not exceed 2",
+      "all sampled outputs remain inside the RGB cube",
+      "all sampled Jacobian determinants are positive",
+      "exact replay passes"
+    ],
+    "ranking": [
+      "lowest median operator output RMSE",
+      "lowest p90 operator output RMSE",
+      "highest median affine-residual retention",
+      "simpler method"
+    ],
+    "simpler_method_order": [
+      "query_kde",
+      "hard_1nn",
+      "top3_inverse_blend"
+    ]
+  },
+  "allowed_actions": [
+    "implement deterministic synthetic mixture generation and canonical histograms",
+    "implement the fixed retrieval, KDE and averaging controls",
+    "run only case-bank and development seeds",
+    "inspect development metrics",
+    "freeze exactly one primary method and confirmatory gates in a new committed contract",
+    "add focused deterministic tests"
+  ],
+  "forbidden_actions": [
+    "generate or inspect reserved seed 27012 before the confirmatory contract is committed",
+    "use any project image or film pixel",
+    "add scene, texture, geometry, semantic or spatial features",
+    "train a neural RGB generator",
+    "change the candidate list or generator after development results",
+    "claim development performance is confirmatory",
+    "claim a palette density is a film-stock transform"
+  ],
+  "branches": {
+    "eligible_primary_found": "freeze one method, thresholds and untouched seed 27012 in a separate S1C confirmatory contract",
+    "only_global_or_blend_competitive": "close hard case retrieval as averaging or non-distinct under this observation model",
+    "query_kde_wins_materially": "retain the simpler nonlearned density estimator and close retrieval unless retrieval has an independent diversity advantage",
+    "no_eligible_method": "close canonical histogram recovery without adding neural capacity"
+  },
+  "claim_ceiling": "development evidence about synthetic canonical-histogram recovery of analytic palette-score flows; never confirmatory, photograph, film, stock, preference, calibrated, production or unpaired-operator evidence"
+}
