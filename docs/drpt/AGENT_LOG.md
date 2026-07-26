@@ -3992,6 +3992,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Non-execution:** no S4 report, formal observation, confirmation seed or
   film/project pixel was generated because the S3 repeated activation gate is
   still pending. Goal remains active.
+- **Runner smoke:** a later end-to-end test uses only synthetic test seeds and
+  two-step fits to exercise pooled/correct/shuffled methods plus report
+  construction. Five S4 tests pass; formal `283xx` seeds remain untouched.
 
 ## 2026-07-26 - Audit U5.R2T0 StatLUT source and project fit
 

@@ -10,6 +10,7 @@ from scripts.run_u5_r2s4_diversified_distribution_operator_development import (
     _make_condition_distributions,
     _method_groups,
     _validate_activation,
+    run_development,
 )
 
 
@@ -134,3 +135,54 @@ def test_decision_branch_separates_nonidentification_from_other_failures() -> No
         _decision_branch(distribution_fail, shuffled_fails=True)
         == "primary_fails_or_does_not_beat_pooled"
     )
+
+
+def test_tiny_runner_smoke_keeps_formal_seeds_unaccessed() -> None:
+    config = _config()
+    config["style_generator"].update(
+        {
+            "development_style_count": 2,
+            "development_style_seed": 601,
+            "reserved_confirmation_style_seed": 699,
+        }
+    )
+    content = config["content_condition_generator"]
+    content.update(
+        {
+            "condition_count": 2,
+            "condition_palette_centres": [
+                [0.25, 0.25, 0.25],
+                [0.70, 0.25, 0.20],
+            ],
+            "scenes_per_condition_per_domain": 1,
+            "samples_per_scene": 12,
+            "development_observation_seed_a": 602,
+            "development_observation_seed_b": 603,
+        }
+    )
+    config["methods"][2]["target_condition_permutation"] = [1, 0]
+    config["operator"].update(
+        {
+            "velocity_grid_axis_size": 3,
+            "integration_steps": 2,
+            "evaluation_grid_axis_size": 3,
+        }
+    )
+    config["optimization"].update({"steps": 2, "seed": 604})
+    report = run_development(
+        config,
+        {
+            "decision_branch": "distribution_fail",
+            "repeat_report_sha256_equal": True,
+        },
+        config_sha256="test-config",
+        software_commit="test-commit",
+    )
+    assert set(report["methods"]) == {
+        "pooled_rff_mmd_192",
+        "conditional_rff_mmd_192",
+        "shuffled_condition_rff_mmd_192",
+    }
+    assert report["reserved_confirmation_seed_accessed"] is False
+    assert report["config_sha256"] == "test-config"
+    assert report["software_commit"] == "test-commit"
