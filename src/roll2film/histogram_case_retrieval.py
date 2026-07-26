@@ -176,6 +176,30 @@ def histogram_kde_velocity_grid(
     values = validate_histogram(histogram, expected_bins)
     if not np.isfinite(bandwidth) or bandwidth <= 0.0:
         raise ValueError("bandwidth must be positive")
+    score = histogram_kde_score_grid(
+        values,
+        histogram_axis_size=histogram_axis_size,
+        bandwidth=bandwidth,
+        velocity_grid_axis_size=velocity_grid_axis_size,
+    )
+    return bound_score_grid(
+        score, coefficient_vector_norm_cap=coefficient_vector_norm_cap
+    )
+
+
+def histogram_kde_score_grid(
+    histogram: np.ndarray,
+    *,
+    histogram_axis_size: int,
+    bandwidth: float,
+    velocity_grid_axis_size: int,
+) -> np.ndarray:
+    """Return the unbounded KDE log-density score on a velocity grid."""
+
+    expected_bins = histogram_axis_size**3
+    values = validate_histogram(histogram, expected_bins)
+    if not np.isfinite(bandwidth) or bandwidth <= 0.0:
+        raise ValueError("bandwidth must be positive")
     centres = histogram_bin_centres(axis_size=histogram_axis_size)
     retained = values > 0.0
     weights = values[retained]
@@ -187,11 +211,30 @@ def histogram_kde_velocity_grid(
             (int(np.sum(retained)), 3), bandwidth, dtype=np.float64
         ),
     )
-    return palette_score_velocity_grid(
-        palette,
-        axis_size=velocity_grid_axis_size,
-        coefficient_vector_norm_cap=coefficient_vector_norm_cap,
+    axis = np.linspace(0.0, 1.0, velocity_grid_axis_size, dtype=np.float64)
+    points = np.stack(
+        np.meshgrid(axis, axis, axis, indexing="ij"), axis=-1
     )
+    return palette.score(points.reshape(-1, 3)).reshape(points.shape)
+
+
+def bound_score_grid(
+    score_grid: np.ndarray, *, coefficient_vector_norm_cap: float
+) -> np.ndarray:
+    values = np.asarray(score_grid, dtype=np.float64)
+    cap = float(coefficient_vector_norm_cap)
+    if (
+        values.ndim != 4
+        or values.shape[0] != values.shape[1]
+        or values.shape[1] != values.shape[2]
+        or values.shape[-1] != 3
+        or not np.all(np.isfinite(values))
+        or not np.isfinite(cap)
+        or cap <= 0.0
+    ):
+        raise ValueError("score grid or coefficient cap is invalid")
+    norm = np.linalg.norm(values, axis=-1, keepdims=True)
+    return cap * values / (1.0 + norm)
 
 
 def generate_synthetic_palette(
@@ -245,10 +288,12 @@ def sample_palette(
 
 __all__ = [
     "HistogramCaseBank",
+    "bound_score_grid",
     "canonical_rgb_histogram",
     "generate_synthetic_palette",
     "histogram_bin_centres",
     "histogram_kde_velocity_grid",
+    "histogram_kde_score_grid",
     "sample_palette",
     "validate_histogram",
 ]
