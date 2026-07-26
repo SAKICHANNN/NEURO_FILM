@@ -3508,3 +3508,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stages/features/steps, retune initialization/optimizer or relax gates.
   Retain structural negative evidence and choose a separately motivated
   algorithm/physical-effect or stronger-data leaf. Goal remains active.
+
+## 2026-07-26 - Freeze U6.2A clean-room Boolean grain representation
+
+- **Node/skills:** `ULT > U6 > U6.2 > U6.2A`;
+  dev-research-reliability primary with research, AI/ML, DRPT, structure and
+  agent-log disciplines secondary.
+- **Research basis:** the official IPOL article defines an inhomogeneous
+  Boolean union of Poisson-distributed disks with
+  `lambda=-log(1-u)/(pi*E[r^2])` and Gaussian-shifted Monte Carlo filtering.
+  The pinned low-resolution PDF hashes to `413e28c...2103`.
+- **Licence boundary:** article is CC-BY-NC-SA and reference code GPL-3.0+.
+  Read equations only; do not download/copy/reference GPL implementation
+  source, constants or data structures.
+- **Frozen witness:** original isolated constant-radius grain-wise renderer,
+  radii `.22/.38`, 32 samples, sigma `.8`, zoom 4, seed 260726 and `24x24`
+  flat fields at `.1/.5/.9`.
+- **Gates:** bounds, flat mean error <=.04, midtone variance ratio >=1.4,
+  large-minus-small lag-1 correlation >=.03, bounded grain count and exact
+  repeat/partition/serialization. No real images before the conjunction.
+- **Boundary/handoff:** synthetic representation only; no measured NPS,
+  calibration, stock/process/scanner, production or realism claim. Commit the
+  contract, then implement/test/run. Goal remains active.

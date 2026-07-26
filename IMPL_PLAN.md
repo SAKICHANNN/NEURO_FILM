@@ -386,6 +386,14 @@ sampled Jacobian norm is only `2.8415`, and positive-warm confirmation RMSE
 the common fitted identity has `5.97e-5` maximum error instead of exact
 identity. Do not special-case identity, add capacity or render real images.
 
+`U6.2A` now tests a separate physical-inspired film algorithm rather than
+another colour-map representation. It implements only the published
+Boolean/Poisson disk equations from Newson et al. in clean-room code; the GPL
+reference implementation is not copied. Synthetic flat fields must preserve
+mean, peak in variance near midtone, show greater lag-1 correlation for larger
+grains, and replay/partition exactly. A pass opens only a separately frozen
+existing-image crop visual frontier, not calibrated or stock-specific grain.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

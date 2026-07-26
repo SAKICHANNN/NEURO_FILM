@@ -575,6 +575,7 @@ FLUX.2 gate:
 | U6.0 | complete | Current deterministic halation/grain baseline documented | existing code | Current reports; explicitly heuristic |
 | U6.1 | pending | Halation moved to exposure/density domain | U2.2, U4.3 | Real patch radial/color/exposure fit |
 | U6.2 | pending | Density/channel/resolution-aware grain | U4.3 | NPS/autocorrelation/repeat-scan comparison |
+| U6.2A | frozen; implementation ready | Clean-room Boolean/Poisson grain representation witness | U6.0 + U1.6F + IPOL model equations | synthetic flat-field mean/variance/radius-correlation plus exact seed/partition/replay gates only; no real images, calibration, stock or integration; `docs/planning/U6_2A_BOOLEAN_GRAIN_REPRESENTATION_CONTRACT.md` |
 | U6.3 | pending | Stock/scanner MTF model | U4.3 | Edge/line-pair validation |
 | U6.4 | pending | Bloom separated from halation | U6.1 | Separate parameter/evaluator/UI layer |
 | U6.5 | pending | Creative dust/scratch/light leak labels | U2.1 | Never included in calibrated score silently |
