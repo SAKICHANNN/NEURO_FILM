@@ -3758,3 +3758,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   through U5.R2O0's boundary-vanishing cube-preserving diffeomorphic flow.
   Current film pixels, fitting and stock/mode claims remain closed. Goal
   remains active.
+
+## 2026-07-26 - Freeze U5.R2S0 palette-score diffeomorphic oracle
+
+- **Parent/hypothesis:** `U5.R2O0` proves a safe representation; `U5.R2R1`
+  proves raw palette-score node motion can be strong/non-affine but folded.
+  Test their composition before training any score learner.
+- **Fixed oracle:** three diagonal-Gaussian-mixture palettes; exact analytic
+  score on a `4^3` grid; coefficients
+  `2*s/(1+||s||)`; boundary-vanishing stationary velocity; 32-step float64
+  RK4.
+- **Conjunction:** each palette must improve its own mean log density, exceed
+  fixed identity/non-affine floors, stay in cube, preserve positive
+  orientation/norm/inverse and exact replay/partition; all pairs must remain
+  distinct.
+- **Discipline:** no image, film pixel, external asset, score training or
+  target-output fitting. Mixtures/cap/grids/gates cannot change after result.
+- **Branch:** only an all-gate pass opens a separate canonical
+  histogram-to-score ML recovery leaf. Any semantic, style, separation or
+  structure failure closes without capacity rescue. Goal remains active.

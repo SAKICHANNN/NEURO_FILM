@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s0-palette-score-diffeomorphic-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S0",
+  "parent_evidence": [
+    "U5.R2O0 cube-preserving diffeomorphic representation pass",
+    "U5.R2R1 D-LUT strong non-affine palette transfer with range/orientation failure"
+  ],
+  "hypothesis": "a reference-palette score can provide a strong and reference-sensitive colour direction while a boundary-vanishing stationary flow supplies range, positive orientation and inverse structure",
+  "epistemic_scope": "analytic synthetic palette-score oracle only; no learned score, image, film stock or operator-identification claim",
+  "candidate": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "coefficient_mapping": "cap_times_score_over_one_plus_l2_norm"
+  },
+  "palettes": {
+    "warm_earth": {
+      "weights": [
+        0.45,
+        0.35,
+        0.2
+      ],
+      "means": [
+        [
+          0.72,
+          0.42,
+          0.18
+        ],
+        [
+          0.28,
+          0.12,
+          0.08
+        ],
+        [
+          0.88,
+          0.72,
+          0.52
+        ]
+      ],
+      "standard_deviations": [
+        [
+          0.2,
+          0.17,
+          0.15
+        ],
+        [
+          0.16,
+          0.13,
+          0.12
+        ],
+        [
+          0.16,
+          0.17,
+          0.18
+        ]
+      ]
+    },
+    "cool_aqua": {
+      "weights": [
+        0.45,
+        0.3,
+        0.25
+      ],
+      "means": [
+        [
+          0.18,
+          0.42,
+          0.72
+        ],
+        [
+          0.06,
+          0.15,
+          0.3
+        ],
+        [
+          0.58,
+          0.78,
+          0.82
+        ]
+      ],
+      "standard_deviations": [
+        [
+          0.15,
+          0.18,
+          0.2
+        ],
+        [
+          0.11,
+          0.13,
+          0.17
+        ],
+        [
+          0.18,
+          0.16,
+          0.16
+        ]
+      ]
+    },
+    "cyan_shadow_warm_highlight": {
+      "weights": [
+        0.35,
+        0.4,
+        0.25
+      ],
+      "means": [
+        [
+          0.08,
+          0.25,
+          0.3
+        ],
+        [
+          0.42,
+          0.45,
+          0.36
+        ],
+        [
+          0.92,
+          0.68,
+          0.42
+        ]
+      ],
+      "standard_deviations": [
+        [
+          0.11,
+          0.15,
+          0.16
+        ],
+        [
+          0.18,
+          0.17,
+          0.16
+        ],
+        [
+          0.12,
+          0.16,
+          0.17
+        ]
+      ]
+    }
+  },
+  "evaluation": {
+    "confirmation_grid_axis_size": 9,
+    "jacobian_grid_axis_size": 7,
+    "jacobian_domain_minimum": 0.05,
+    "jacobian_domain_maximum": 0.95,
+    "finite_difference_step": 1e-06,
+    "palette_attraction_grid_axis_size": 11,
+    "partition_split_index": 317
+  },
+  "gates": {
+    "identity_maximum_absolute_error": 0.0,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 1e-05,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_partition_error": 0.0,
+    "minimum_identity_rmse_each_palette": 0.05,
+    "minimum_best_affine_residual_rmse_each_palette": 0.02,
+    "minimum_pairwise_operator_output_rmse": 0.04,
+    "minimum_mean_log_density_gain_each_palette": 0.1,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "implement analytic diagonal-Gaussian-mixture log density and score",
+    "map scores to a fixed bounded velocity grid",
+    "reuse the U5.R2O0 deterministic integrator",
+    "run synthetic grids twice and write ignored reports",
+    "add focused tests and propagate the branch"
+  ],
+  "forbidden_actions": [
+    "train a score model",
+    "use any image or film pixel",
+    "change palette mixtures, cap, grid size, integration steps or gates after results",
+    "fit velocity coefficients to a desired output",
+    "render the gold/stress image set",
+    "claim palette density is a film-stock operator"
+  ],
+  "branches": {
+    "all_gates_pass": "open a separately frozen deterministic histogram-to-score ML recovery leaf with synthetic train/confirm palettes and permutation controls",
+    "style_or_reference_gate_fails": "close palette-score forcing as bland or reference-insensitive without adding ML capacity",
+    "structure_gate_fails": "close the composition without cap/grid/integration rescue",
+    "attraction_gate_fails": "close because the safe flow does not preserve the intended palette-score semantics"
+  },
+  "claim_ceiling": "synthetic analytic evidence that a palette-score direction can or cannot be expressed as a strong, distinct, bounded diffeomorphic RGB operator; never learned-ML, image, film-stock, preference, calibration or unpaired-identification evidence"
+}
