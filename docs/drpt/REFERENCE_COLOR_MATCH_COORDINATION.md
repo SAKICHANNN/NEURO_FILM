@@ -1,0 +1,72 @@
+# Reference Color Match Coordination
+
+## Claim: NFCM-P1 product reference-look engine
+
+- Mode: C (same-project multi-chat concurrency)
+- Owner/chat: `019f9f37-91d9-7b11-b135-ad62bcb32214`
+- Parent: neuro-film product capability — uploaded reference photo matching
+- Status: active
+- Scope: add an image-first product API that fits one replayable reference-look
+  recipe from one uploaded reference and applies it consistently to one or more
+  `WorkingImage` sources.
+- Files/artifacts allowed:
+  - `src/color_match/**`
+  - `tests/test_color_match_*.py`
+  - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
+- Files/artifacts forbidden:
+  - `src/roll2film/reference_look_identifiability.py`
+  - `tests/test_reference_look_identifiability.py`
+  - `configs/u5_r2w1_*`, `configs/u5_r2w2*`
+  - `docs/U5_R2W0_*`, `docs/planning/U5_R2W1_*`,
+    `docs/planning/U5_R2W2*`
+  - S4/U1 experiment code, configs, reports and outputs
+  - `IMPL_PLAN.md`, `TASK_BOARD.md`, `docs/ULTIMATE_EXECUTION_TRACKER.md`,
+    `docs/drpt/AGENT_LOG.md`
+  - the separate `C:\Users\hhvrf\Documents\追色` repository
+- Dependencies:
+  - hard: existing `WorkingImage`, D65 Lab primitives, safe-Lab and gamut
+    policies at base commit `c03c321b9fc642e2e092d59e20dd1b145b96192d`
+  - soft: W1/W2 reference-look identifiability evidence from chat
+    `019f4b76-e70a-75c0-b7ea-b473ab38c200`
+  - soft: D-PCT RAW/HDR/video/media findings from chat
+    `019f9f3b-d0c2-7f21-b486-1dd902148739`
+- Interface contract:
+  - input is one reference `WorkingImage` and one or more source
+    `WorkingImage` objects;
+  - fitting produces immutable, versioned, JSON-serializable `LookRecipe`
+    data;
+  - full-resolution output is produced only by deterministic explicit colour
+    operators;
+  - the first slice accepts explicit supported working spaces and
+    display-linear SDR only, and fails closed elsewhere;
+  - output claim ceiling is `reference-look`; it is never stock identification
+    or `calibrated-reference`;
+  - a fitted recipe is shared across the batch; per-source normalization may
+    adapt to content, but the reference target and policy cannot change.
+- Expected evidence:
+  - focused unit tests for fitting, replay identity, batch invariants,
+    fail-closed boundaries and no input mutation;
+  - existing Lab/gamut/preprocess regression tests;
+  - scoped commits and clean diff review.
+- Stop condition:
+  - pause if another chat claims or modifies `src/color_match/**`, or if the
+    implementation requires changes to a forbidden file/public contract;
+  - do not start GPU training, external downloads, app/UI work or media codec
+    work under this claim.
+- Claim expires: 2026-08-03 or immediately after integration/release.
+- Integration owner: this chat prepares the branch evidence bundle; the
+  neuro-film main development owner decides final merge after its S4/W1/W2
+  dirty state is committed or otherwise reconciled.
+
+## Concurrent work snapshot
+
+Checked on 2026-07-27 before this claim:
+
+- neuro-film main chat is active on S4-B and uncommitted W1/W2 research files;
+- the standalone colour-match chat is active on D-PCT RAW/HDR/video and media
+  execution;
+- this worktree is `codex/reference-color-match` at `c03c321...` and had no
+  file changes before this coordination record.
+
