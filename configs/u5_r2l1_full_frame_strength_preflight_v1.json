@@ -13,6 +13,8 @@
   "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
   "density_operator_config": "configs/u5_r2e0_density_domain_operator_v1.json",
   "density_operator_config_sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337",
+  "archive_render_manifest": "outputs/u5_r2e1_density_witness_frontier_v1/render_pass1/manifest.json",
+  "archive_render_manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
   "witness_id": "cyan_shadow_warm_highlight_like",
   "baseline_strength": 0.5,
   "challenger_strength": 0.65,

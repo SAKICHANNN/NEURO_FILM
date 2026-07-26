@@ -3433,3 +3433,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence. It does not establish universal severe safety or production
   readiness. CPU is the reproducibility primary; the authorized local 5070 Ti
   is unnecessary for this deterministic PNG audit.
+- **Pre-implementation completeness correction:** before reading any
+  full-frame result, add the exact E1 render-pass-1 manifest path and
+  `8173ce87...c7390` hash directly to the L1 config. This makes both archived
+  strength-byte gates direct and fail-closed rather than indirectly inferred
+  through the parent decision.
