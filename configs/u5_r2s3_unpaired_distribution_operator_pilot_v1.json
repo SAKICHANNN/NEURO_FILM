@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s3-unpaired-distribution-operator-pilot-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S3D",
+  "parent_evidence": [
+    "U5.R2S2D finds no aggregate histogram residual method that beats the content-confounded raw KDE",
+    "U5.R2O0 supplies a validated bounded explicit diffeomorphic representation"
+  ],
+  "hypothesis": "directly optimizing the safe explicit flow to match independent neutral and styled distributions may recover the shared synthetic style operator, but distribution match and operator recovery must pass as separate gates",
+  "epistemic_scope": "small synthetic development pilot under an idealized matched content meta-distribution; no real unpaired-operator claim",
+  "style_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "development_style_count": 8,
+    "development_style_seed": 28200,
+    "reserved_confirmation_style_seed": 28203
+  },
+  "content_generator": {
+    "component_counts": [2, 3, 4, 5],
+    "weight_dirichlet_alpha": 1.2,
+    "mean_minimum": 0.03,
+    "mean_maximum": 0.97,
+    "standard_deviation_minimum": 0.06,
+    "standard_deviation_maximum": 0.22,
+    "scenes_per_distribution": 6,
+    "samples_per_scene": 256,
+    "development_observation_seed_a": 28201,
+    "development_observation_seed_b": 28202,
+    "neutral_and_styled_scene_reuse_forbidden": true
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cuda_if_available_else_cpu",
+    "seed": 28220,
+    "steps": 200,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true
+  },
+  "candidate_losses": [
+    {
+      "id": "sliced_wasserstein_24",
+      "kind": "fixed_projection_sorted_quantile",
+      "projection_count": 24,
+      "projection_seed": 28210
+    },
+    {
+      "id": "rff_mmd_192",
+      "kind": "fixed_random_fourier_mmd",
+      "frequencies_per_bandwidth": 64,
+      "bandwidths": [0.08, 0.16, 0.32],
+      "feature_seed": 28211
+    }
+  ],
+  "fit_and_evaluation_split": {
+    "fit_a": "neutral/styled distributions from observation seed 28201",
+    "fit_b": "independent neutral/styled distributions from observation seed 28202",
+    "heldout_distribution_test": "fit-a operator evaluated on seed-28202 neutral/styled distributions and vice versa",
+    "operator_truth": "analytic style flow used only after fitting for evaluation",
+    "pairs_exposed_to_optimizer": false
+  },
+  "gates": {
+    "minimum_heldout_distribution_loss_improvement_fraction": 0.3,
+    "maximum_oracle_operator_output_rmse_median": 0.07,
+    "maximum_oracle_operator_output_rmse_p90": 0.1,
+    "maximum_same_style_fit_replicate_operator_rmse_median": 0.04,
+    "minimum_identity_rmse_retention_ratio_median": 0.6,
+    "maximum_identity_rmse_retention_ratio_median": 1.4,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "fit only the 4x4x4x3 explicit velocity grid with fixed losses",
+    "use the local RTX 5070 Ti Laptop GPU under deterministic settings",
+    "evaluate both independent fit replicates and heldout distributions",
+    "run two complete reports",
+    "add focused loss, bound, split and replay tests"
+  ],
+  "forbidden_actions": [
+    "expose neutral/styled pairs or oracle grids to the optimizer",
+    "generate reserved seed 28203",
+    "change steps, losses, seeds, projections, bandwidths, regularization or gates after results",
+    "train a neural network or direct RGB generator",
+    "use project photographs or film pixels",
+    "call target-distribution match identified operator recovery unless both gate families pass"
+  ],
+  "branches": {
+    "distribution_and_operator_gates_pass": "open one separately frozen larger synthetic confirmation before any image question",
+    "distribution_pass_operator_fail": "close as unpaired operator non-identifiability despite successful distribution matching",
+    "distribution_fail": "close fixed objectives without optimizer or loss rescue",
+    "structure_fail": "close before any further frontier",
+    "repeat_fail": "invalidate and debug deterministic execution only"
+  },
+  "claim_ceiling": "small synthetic evidence that fixed unpaired distribution objectives can or cannot recover a known bounded explicit style flow under matched content meta-distributions; never real-image, film, stock, calibrated or general unpaired-operator identification"
+}

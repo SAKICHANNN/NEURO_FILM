@@ -3915,3 +3915,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   flow with MMD/fixed-projection distribution matching and must separate
   distribution fit from oracle-operator recovery. Images, film pixels,
   fitting and LSM remain closed. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2S3D unpaired distribution/operator pilot
+
+- **Distinct question:** optimize the already-safe explicit flow directly from
+  independent neutral/styled distributions, then score distribution fit and
+  hidden oracle recovery separately.
+- **Data:** eight synthetic styles; A/B each contain six neutral and six
+  different styled content scenes with 256 samples. No scene pairs or oracle
+  coefficients reach the optimizer; seed `28203` stays untouched.
+- **Candidates/resources:** fixed SW-24 and three-band RFF-MMD-192; 200 Adam
+  steps, cap `2`, coefficient/smoothness regularization, 32-step explicit
+  renderer. Local RTX 5070 Ti Laptop deterministic GPU is allowed.
+- **Conjunction:** heldout distribution improvement `>=30%`, oracle median/p90
+  `<=.07/.10`, A/B fit agreement `<=.04`, style retention `[.6,1.4]`, cube,
+  determinant `>.005`, norm `<=8`, inverse `1e-5`, replay and repeat.
+- **Epistemic branch:** distribution pass plus operator failure means
+  unpaired operator unidentified. No tuning, loss/optimizer rescue, neural
+  RGB, images or film pixels. Goal remains active.
