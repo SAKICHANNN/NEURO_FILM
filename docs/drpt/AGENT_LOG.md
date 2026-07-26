@@ -3836,3 +3836,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence-backed operator-signature retrieval remains a different leaf.
   Query colour is not stock signal, and no film/fitting/LSM permission opens.
   Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2S1C untouched histogram-score confirmation
+
+- **Primary:** query KDE bandwidth `.12`; hard Hellinger Top-1 and global mean
+  are the only controls.
+- **Untouched data:** `128` palettes at reserved seed `27012`; development
+  generator, 384-case bank, 8192 samples, `8^3` histogram, `4^3` velocity
+  grid, cap `2` and 32-step renderer remain exact.
+- **Frozen gates:** median/p90 error `.04/.065`, direction `.90`, style
+  `[.80,1.20]`, non-affine `.75`, attraction `1.5`, separation `.80`, median
+  improvement `45%` over hard and `50%` over global, plus exact permutation,
+  cube/range, determinant `>.005`, norm `<=8`, inverse `1e-5`, replay and
+  report-repeat conjunction.
+- **Stop:** no KDE `.08`, bandwidth, seed, threshold, feature, cap, grid,
+  integrator or neural rescue. A pass remains synthetic mechanism evidence
+  and must address content-palette nuisance before images. Goal remains
+  active.

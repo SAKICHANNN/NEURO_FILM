@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2s1-histogram-score-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S1C",
+  "parent_evidence": [
+    "U5.R2S1D repeated development selection at report f4804c4ff5dfa5b81f77f2fd918fbdc4d18049d87c80c2beeed9ed6d7004df11"
+  ],
+  "hypothesis": "the fixed query-histogram KDE bandwidth 0.12 recovers unseen analytic palette-score flows with strong style/non-affine/reference retention and materially lower operator error than frozen hard Top-1 and global-average controls",
+  "epistemic_scope": "synthetic confirmatory mechanism only; no photograph, film, stock, preference or operator-identification claim",
+  "synthetic_palette_generator": {
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.5,
+    "mean_minimum": 0.06,
+    "mean_maximum": 0.94,
+    "standard_deviation_minimum": 0.09,
+    "standard_deviation_maximum": 0.24,
+    "case_bank_count": 384,
+    "confirmation_query_count": 128,
+    "case_bank_seed": 27010,
+    "confirmation_seed": 27012
+  },
+  "observations": {
+    "samples_per_histogram": 8192,
+    "histogram_axis_size": 8,
+    "canonicalization": "normalized lexicographic RGB histogram counts only",
+    "spatial_features_forbidden": true
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "confirmation_grid_axis_size": 9
+  },
+  "methods": [
+    {
+      "id": "query_kde_0p12",
+      "kind": "confirmatory_primary",
+      "bandwidth": 0.12
+    },
+    {
+      "id": "hard_1nn_hellinger",
+      "kind": "frozen_retrieval_control",
+      "distance": "hellinger"
+    },
+    {
+      "id": "global_mean_velocity",
+      "kind": "frozen_averaging_control"
+    }
+  ],
+  "gates": {
+    "maximum_operator_output_rmse_median": 0.04,
+    "maximum_operator_output_rmse_p90": 0.065,
+    "minimum_velocity_direction_cosine_median": 0.9,
+    "minimum_identity_rmse_retention_ratio_median": 0.8,
+    "maximum_identity_rmse_retention_ratio_median": 1.2,
+    "minimum_best_affine_residual_retention_ratio_median": 0.75,
+    "minimum_query_palette_log_density_gain_median": 1.5,
+    "minimum_reference_separation_ratio_median": 0.8,
+    "minimum_median_error_improvement_over_hard_1nn_fraction": 0.45,
+    "minimum_median_error_improvement_over_global_fraction": 0.5,
+    "maximum_histogram_permutation_error": 0.0,
+    "maximum_operator_permutation_error": 0.0,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "generate seed 27012 once the committed contract is the current parent",
+    "evaluate only the three frozen methods",
+    "run two byte-identical formal reports",
+    "propagate the fixed gate result",
+    "add focused tests for confirmatory gate logic"
+  ],
+  "forbidden_actions": [
+    "change bandwidth, histogram bins, case count, sample count, seed, thresholds or controls after confirmation begins",
+    "run another confirmation seed",
+    "use project images or film pixels",
+    "add neural capacity or spatial/content features",
+    "rescue a failed primary with KDE 0.08 or another development candidate",
+    "claim synthetic score recovery identifies a digital-to-film or stock operator"
+  ],
+  "branches": {
+    "all_gates_pass": "retain canonical histogram KDE score recovery as a synthetic explicit-operator mechanism prior; next leaf must address content/palette nuisance before any image frontier",
+    "accuracy_or_retention_fails": "close fixed histogram-score recovery without bandwidth/model rescue",
+    "control_improvement_fails": "close because the selected estimator does not materially beat retrieval/averaging",
+    "structure_fails": "close before images without cap/integration/grid rescue",
+    "repeat_fails": "invalidate the confirmation and debug only deterministic execution"
+  },
+  "claim_ceiling": "untouched synthetic confirmation that a fixed canonical-histogram KDE can or cannot recover analytic palette-score diffeomorphic operators; never photograph, film, stock, preference, calibrated, production or unpaired-operator evidence"
+}
