@@ -48,3 +48,17 @@
 - Boundaries: display-linear SDR only; scene-linear RAW and out-of-gamut source
   pixels fail closed.
 - Next: P3 persists recipe files atomically and proves load/replay identity.
+
+## 2026-07-27 - Complete P3 atomic replay
+
+- Changed: added bounded UTF-8 recipe loading, atomic JSON save and recipe-file
+  batch replay using the existing inference atomic writer.
+- Evidence: 51 focused/existing colour tests pass. Repeated recipe writes are
+  byte-identical; loaded-recipe render bytes and diagnostics equal in-memory
+  execution.
+- Existing failure isolated: the unrelated render-contract suite reports five
+  asset-hash failures because this worktree converts the tracked LF YAML blob
+  (`d919402a...`) to CRLF bytes (`a29663b2...`). Neither asset nor manifest was
+  changed by this branch.
+- Next: P4 adds an SDR file adapter through existing preprocessing/output
+  boundaries without absorbing RAW/HDR/media work.

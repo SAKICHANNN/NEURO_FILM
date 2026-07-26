@@ -17,6 +17,11 @@ from .render import (
     render_reference_batch,
     render_reference_look,
 )
+from .replay import (
+    load_reference_look_recipe,
+    replay_reference_batch,
+    save_reference_look_recipe,
+)
 
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
@@ -27,9 +32,12 @@ __all__ = [
     "ReferenceMatchResult",
     "ReferenceMatchContractError",
     "fit_reference_look",
+    "load_reference_look_recipe",
     "recipe_from_json",
     "recipe_to_json",
+    "replay_reference_batch",
     "render_reference_batch",
     "render_reference_look",
+    "save_reference_look_recipe",
     "validate_recipe",
 ]

@@ -61,9 +61,9 @@ with a selected stock, but reference matching alone is labeled
 |---|---|---|---|---|---|
 | P0 | DONE | Coordination, contract, plan | Git/other-chat snapshot and diff check | `ec001b2`, `acb0c82` | revert commits |
 | P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | `1820af1` | revert commit |
-| P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | renderer commit | revert commit |
-| P3 | IN_PROGRESS | JSON roundtrip and replay | byte-identical recipe JSON and output replay | replay commit | revert commit |
-| P4 | NOT_STARTED | file-level SDR image adapter | focused PNG/JPEG/TIFF smoke, output/profile verification | adapter commit | revert commit |
+| P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | `cabe6fc` | revert commit |
+| P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | replay commit | revert commit |
+| P4 | IN_PROGRESS | file-level SDR image adapter | focused PNG/JPEG/TIFF smoke, output/profile verification | adapter commit | revert commit |
 | P5 | NOT_STARTED | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
@@ -119,6 +119,17 @@ are the final photographic algorithm.
 - P2: `44 passed` after adding deterministic single/batch rendering, including
   repeated-byte identity, batch-order independence, input non-mutation,
   cross-working-space execution and fail-closed source boundaries.
+- P3: `51 passed` after atomic recipe persistence and file replay. Loaded
+  recipes reproduce in-memory batch output bytes and diagnostics exactly.
+
+### Pre-existing worktree-line-ending failure
+
+The unrelated `tests/test_render_contract.py` has five failures in this
+worktree because `configs/color_rendering_profiles.yaml` is checked out with
+48 CRLF line endings. Its worktree SHA-256 is `a29663b2...`, while the Git blob
+and tracked profile manifest both use the LF-byte SHA-256 `d919402a...`. No
+reference-match commit modifies either file. This branch records the failure
+but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 ## Verification and rollback
 
