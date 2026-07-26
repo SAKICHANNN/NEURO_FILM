@@ -4083,3 +4083,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   when the complete root has no pairs. The implementation now preserves those
   local samples and a dedicated disjoint-octant regression passes; nine U1
   tests pass before formal execution.
+
+## 2026-07-26 - Audit U5.R2V0 cmKAN source and method boundary
+
+- **Source:** inspect the complete ICCV-2025 cmKAN repository at pinned commit
+  `91e7f9429f0a7dd7677f20d0fa63de8a566c96ab`, including licence, KAN layer,
+  spatial parameter generator, cycle model, unpaired pipeline and Volga2K
+  configuration.
+- **Method:** the content encoder predicts spline coefficients and residual
+  weights separately at every pixel; the KAN evaluates them and directly
+  returns RGB. The unpaired lane uses two generators, two patch
+  discriminators, least-squares adversarial loss, cycle loss and identity
+  loss.
+- **Decision:** exclude the published training/inference path from
+  Style-safe. It violates the no-direct-neural-RGB and content-shortcut
+  boundaries and lacks cube, positive-Jacobian, inverse and spatial
+  consistency guarantees. This is not repaired merely by calling the inner
+  functions splines.
+- **Data/rights:** the repository includes code, configs, checkpoint and
+  dataset links under CC BY-NC-SA 4.0 plus an academic-research-only notice.
+  Volga2K and the other listed camera tasks are not named-film-stock evidence;
+  no checkpoint or dataset was downloaded.
+- **Retention:** keep cmKAN as an external baseline and retain only the idea
+  of an image-global bounded spline parameterization for a separately frozen
+  future experiment. The active bounded S3/S4/U1 chain is unchanged; Goal
+  remains active.

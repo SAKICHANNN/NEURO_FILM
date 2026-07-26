@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2v0-cmkan-source-method-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2V0",
+  "audit_date": "2026-07-26",
+  "paper": {
+    "title": "Color Matching Using Hypernetwork-Based Kolmogorov-Arnold Networks",
+    "arxiv_id": "2503.11781",
+    "venue": "ICCV 2025",
+    "paper_url": "https://arxiv.org/abs/2503.11781"
+  },
+  "official_repository": {
+    "url": "https://github.com/gosha20777/cmKAN",
+    "audited_commit": "91e7f9429f0a7dd7677f20d0fa63de8a566c96ab",
+    "source_code_present": true,
+    "checkpoint_links_present": true,
+    "dataset_links_present": true,
+    "license": "CC BY-NC-SA 4.0 with an explicit academic-research-only notice"
+  },
+  "method_facts": {
+    "renderer": "a convolutional/attention hypernetwork predicts spatially varying KAN spline and residual weights at every pixel; the KAN directly returns final image RGB",
+    "unsupervised_training": "two generators and two patch discriminators with CycleGAN adversarial, cycle and identity losses",
+    "operator_topology": "spatially varying per-pixel spline coefficients and residual weights, not a single bounded global colour operator",
+    "reported_data": "Volga2K paired camera captures plus Adobe FiveK, Samsung2iPhone and Zurich task-specific datasets",
+    "published_grid": "five intervals with cubic splines over [0,1] in the Volga2K unsupervised example",
+    "published_guarantees": "no project-grade output-range, cube-boundary, positive-Jacobian, inverse, spatial-consistency or severe-artifact guarantee"
+  },
+  "project_fit": {
+    "non_diffusion": true,
+    "generative_adversarial_unsupervised_path": true,
+    "direct_final_rgb_network": true,
+    "content_and_spatial_shortcut_risk": true,
+    "bounded_explicit_global_operator": false,
+    "real_unpaired_operator_identification": false,
+    "named_film_stock_evidence": false,
+    "current_training_lineage_eligible": false,
+    "commercial_or_product_reuse_cleared": false
+  },
+  "decision": "exclude_cmkan_training_and_inference_from_style_safe_mainline",
+  "reason": "cmKAN's unsupervised lane is an adversarial CycleGAN system, and its content encoder predicts spatially varying per-pixel spline parameters that directly generate final RGB. This violates the project's deterministic explicit-renderer boundary, permits content/spatial shortcuts, and lacks the structural and severe-artifact guarantees required for Style-safe promotion. Its research-only licence and camera-pair datasets also do not supply eligible named-stock evidence.",
+  "allowed_reuse": [
+    "retain the paper and pinned source as an external non-film colour-matching baseline",
+    "study KAN spline parameterization only as a representation prior for a separately bounded global operator",
+    "reuse Volga2K only after a separate dataset lineage, rights, leakage and task-fit audit",
+    "compare published claims conceptually against explicit global LUT and diffeomorphic-flow candidates"
+  ],
+  "forbidden_actions": [
+    "run or train the CycleGAN path as a Style-safe film simulator",
+    "allow a neural network to directly output final RGB",
+    "treat spatially varying content-conditioned weights as a stock response",
+    "use camera-to-camera pairs as film evidence",
+    "download checkpoints or datasets without a separately frozen experiment and lineage gate",
+    "claim calibrated, stock-specific or identified unpaired digital-to-film transport"
+  ],
+  "next_candidate": "continue the bounded explicit-flow S3/S4/U1 chain; if KANs are revisited, constrain them to predict a single image-global monotone/cube-safe parameter set and test only after a distinct preregistration",
+  "claim_ceiling": "paper/source/method audit only; no reproduction, data eligibility, image, film, stock, preference, calibration or artifact evidence"
+}

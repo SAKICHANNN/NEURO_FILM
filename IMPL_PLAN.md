@@ -134,6 +134,17 @@ stability, control improvements, structure and byte-identical repeat jointly
 gate. Confirmation seed `28403` and all real/project pixels remain
 inaccessible.
 
+U5.R2V0 audits ICCV-2025 cmKAN at pinned official commit `91e7f94...`.
+Despite its spline vocabulary, the unpaired lane is CycleGAN: a
+convolutional/attention content encoder predicts different KAN spline and
+residual weights for every pixel and directly returns final RGB. It therefore
+does not satisfy the project's global explicit-operator, no-direct-neural-RGB
+or content-shortcut boundaries, and it has no cube, Jacobian, inverse or
+spatial-consistency guarantee. The CC BY-NC-SA research-only source and
+camera-matching datasets are not named-stock evidence. Retain only the idea
+of an image-global bounded spline parameterization; do not run the checkpoint
+or download its data for the current mainline.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
