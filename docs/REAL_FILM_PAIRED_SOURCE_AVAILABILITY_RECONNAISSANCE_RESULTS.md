@@ -1,7 +1,9 @@
 # SF2.6R paired-source availability reconnaissance
 
-Date: 2026-07-26  
-Status: complete; both sources remain unavailable for fitting  
+Date: 2026-07-26
+
+Status: complete; both sources remain unavailable for fitting
+
 Claim ceiling: metadata/method precedent only
 
 ## Question
