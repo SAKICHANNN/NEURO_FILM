@@ -16,4 +16,3 @@
   evidence of final photographic/aesthetic superiority.
 - Handoff state: P0 active; implementation remains gated on committing the
   coordination contract.
-

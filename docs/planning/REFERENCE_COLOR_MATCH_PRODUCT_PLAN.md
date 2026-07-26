@@ -115,4 +115,3 @@ Focused tests run before broad tests. Each verified leaf receives a scoped
 commit. No generated images, datasets, weights or output caches are committed.
 Rollback is commit-level and never requires resetting or rewriting another
 chat's work.
-

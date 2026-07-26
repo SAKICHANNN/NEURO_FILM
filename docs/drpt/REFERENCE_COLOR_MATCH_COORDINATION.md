@@ -69,4 +69,3 @@ Checked on 2026-07-27 before this claim:
   execution;
 - this worktree is `codex/reference-color-match` at `c03c321...` and had no
   file changes before this coordination record.
-
