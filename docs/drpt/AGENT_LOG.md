@@ -4054,3 +4054,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** HCC pairs remain constructed assumptions. No ColorFM-L,
   semantic model, project pixel, film, stock, calibrated or real
   unpaired-operator claim opens. Goal remains active.
+
+## 2026-07-26 - Implement pending U5.R2U1D coupling harness
+
+- **Module:** add deterministic clean-room random/HCC pairing with frozen
+  recursive mean-centred RGB octants, non-reusing indexed leaves and explicit
+  fallback. Add a deterministic float32/float64 paired fitter that predicts
+  only the norm-bounded U5.R2O0 velocity grid.
+- **Runner:** compare random-correct, pooled-HCC, correct-condition-HCC and
+  shuffled-condition-HCC on A/B observations; report pair fit separately from
+  held-out RFF distribution match, hidden operator, replicate and structure.
+- **Activation:** require the future S4 decision to be byte-repeat-confirmed
+  and on an allowed branch before any U1 observation is generated. A real CLI
+  rejection exits `1` with no output when that evidence is absent.
+- **Verification:** seven focused U1 tests pass; sixteen combined S3/S4/U1
+  tests pass. Coupling is repeatable/non-reusing, a monotone-shift unit case
+  beats random pairing, paired fitting repeats exactly, reduces loss and
+  preserves coefficient/range bounds. The complete CPU suite passes
+  `929/929`.
+- **Non-execution:** formal seeds `28400-28403`, project images and film pixels
+  remain untouched. S3 B continued independently. Goal remains active.

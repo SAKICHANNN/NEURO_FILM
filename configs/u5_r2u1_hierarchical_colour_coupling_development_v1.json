@@ -111,6 +111,12 @@
     "pair_fit_loss_is_diagnostic_only": true,
     "operator_truth": "hidden analytic style flow used only after fitting",
     "heldout_distribution_loss": "fixed RFF-MMD-192 evaluated on correct heldout conditions",
+    "heldout_distribution_loss_specification": {
+      "kind": "fixed_random_fourier_mmd",
+      "frequencies_per_bandwidth": 64,
+      "bandwidths": [0.08, 0.16, 0.32],
+      "feature_seed": 28412
+    },
     "same_style_replicate": "independent observations and independent frozen pair seeds",
     "pairs_exposed_to_optimizer": "constructed HCC/random pairs only; no real or oracle pairs"
   },
