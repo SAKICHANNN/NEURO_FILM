@@ -3484,3 +3484,6 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   zero-start endpoint-head autodiff ambiguity was found. Freeze endpoint bias
   coefficients at deterministic `1e-4` and all other coefficients at zero;
   equations, capacity, data, optimizer and gates are unchanged.
+- **Execution completeness correction:** before implementation or result,
+  bind the already specified deterministic CPU optimizer to one Torch thread
+  in config rather than relying on a machine default.

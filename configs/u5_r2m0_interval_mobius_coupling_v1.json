@@ -60,6 +60,7 @@
     "endpoint_head_bias_initialization": 0.0001,
     "log_odds_head_initialization": 0.0,
     "project_coefficients_each_step": true,
+    "thread_count": 1,
     "development_only": true
   },
   "confirmation_grid_axis_size": 11,
