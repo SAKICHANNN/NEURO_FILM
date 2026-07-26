@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.9r-colorreference-multifamily-it8-v1",
+  "node": "ULT > RF0.4 > SF2.9R",
+  "status": "complete_limited_pass",
+  "decision": "physical_spectral_and_target_manufacturing_prior_only",
+  "config_sha256": "03f8025030c0e55d36cc70c57cae99166e372bc151e00e8964b627a6e3af9a34",
+  "software_commit": "de6f786dbf63cf034a98a8e4a4010e80c53bb3eb",
+  "formal_report_sha256": "92246d2b2f1e0f3635734177c76a7f9cacbd26ad9d4b50d0c316d8ea6a39889f",
+  "repeat_report_sha256": "92246d2b2f1e0f3635734177c76a7f9cacbd26ad9d4b50d0c316d8ea6a39889f",
+  "observed_total_bytes": 1468016,
+  "archive_count": 5,
+  "common_patch_count": 288,
+  "spectral_grid": {
+    "start_nm": 380,
+    "end_nm": 780,
+    "step_nm": 10,
+    "sample_count": 41
+  },
+  "automatic_source_gate_passed": true,
+  "observed_exact_materials": [
+    "Fujichrome Velvia (RVP 50)",
+    "Fujichrome Velvia 100 (RVP 100)",
+    "Agfachrome RSX II",
+    "Fujichrome Provia 100F (RDP III)"
+  ],
+  "family_only_materials": [
+    "For Kodak Ektachrome Product Family"
+  ],
+  "identifiability": {
+    "scanner_rgb_removed": true,
+    "scene_content_removed": true,
+    "direct_transmission_spectra_present": true,
+    "common_uncalibrated_recorder_input_present": false,
+    "camera_scene_pair_present": false,
+    "target_manufacturing_and_aim_value_nuisance_present": true,
+    "independent_roll_process_replication_present": false,
+    "stock_appearance_operator_identified": false
+  },
+  "allowed_next_use": [
+    "internal scanner-profile validation",
+    "internal physical spectral representation feasibility",
+    "target-manufacturing and batch nuisance controls",
+    "source discovery for independently lineaged common-input measurements"
+  ],
+  "forbidden_next_use": [
+    "stock operator fitting",
+    "training",
+    "latent mode discovery",
+    "calibrated stock response claims",
+    "redistribution",
+    "production integration"
+  ],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded internal schema, spectral-measurement, batch/family and target-manufacturing-nuisance evidence; no camera-scene pair, exact multi-stock response, stock style, operator fitting, training, calibration, latent mode or redistribution claim"
+}
