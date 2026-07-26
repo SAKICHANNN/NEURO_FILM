@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2k3-gamut-polar-palette-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2K3",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "node": "U5.R2K2",
+    "report_sha256": "1e8082c4e94840e06fd01bad6440ec6273c1dd7e1f59b7eff5c69029674a2b47",
+    "finding": "generic invertible spline capacity improves fidelity but does not structurally control local colour gain or confirmation generalization"
+  },
+  "method_prior": {
+    "source": "ACES 2.0 Invertible Gamut Compression in a Perceptual Polar Space",
+    "source_url": "https://docs.acescentral.com/system-components/output-transforms/technical-details/gamut-compression/",
+    "adopted_principles": [
+      "separate lightness, colorfulness and hue coordinates",
+      "map along an explicit gamut boundary",
+      "prefer monotonic invertible compression over clipping"
+    ],
+    "aces_formula_or_constants_copied": false,
+    "external_code_or_parameters_allowed": false
+  },
+  "candidate": {
+    "schema": "roll2film.gamut_polar_palette.v1",
+    "luma_weights": [
+      0.2126,
+      0.7152,
+      0.0722
+    ],
+    "maximum_mobius_magnitude": 0.28,
+    "maximum_absolute_tone_bend": 0.55,
+    "maximum_absolute_chroma_bend": 0.78,
+    "maximum_absolute_hue_rotation_radians": 0.24,
+    "chroma_conditioner_basis": [
+      "bias",
+      "signed_luma",
+      "cos_hue",
+      "sin_hue",
+      "signed_luma_cos_hue",
+      "signed_luma_sin_hue"
+    ]
+  },
+  "witnesses": {
+    "identity": {
+      "tone_bend": 0.0,
+      "shadow_mobius": [0.0, 0.0],
+      "highlight_mobius": [0.0, 0.0],
+      "shadow_hue_rotation": 0.0,
+      "highlight_hue_rotation": 0.0,
+      "chroma_coefficients": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    "cyan_shadow_warm_highlight_like": {
+      "tone_bend": -0.16,
+      "shadow_mobius": [0.12, -0.08],
+      "highlight_mobius": [-0.08, 0.11],
+      "shadow_hue_rotation": -0.12,
+      "highlight_hue_rotation": 0.09,
+      "chroma_coefficients": [0.45, 0.12, 0.30, -0.18, -0.22, 0.16]
+    },
+    "warm_dense_like": {
+      "tone_bend": -0.28,
+      "shadow_mobius": [0.10, 0.04],
+      "highlight_mobius": [0.15, 0.06],
+      "shadow_hue_rotation": 0.05,
+      "highlight_hue_rotation": 0.12,
+      "chroma_coefficients": [0.38, 0.16, 0.22, 0.10, 0.12, -0.08]
+    },
+    "cool_soft_like": {
+      "tone_bend": 0.20,
+      "shadow_mobius": [-0.10, 0.08],
+      "highlight_mobius": [-0.06, -0.12],
+      "shadow_hue_rotation": -0.10,
+      "highlight_hue_rotation": -0.04,
+      "chroma_coefficients": [-0.12, -0.18, -0.20, 0.24, 0.10, -0.12]
+    },
+    "cross_palette_like": {
+      "tone_bend": -0.10,
+      "shadow_mobius": [0.17, -0.13],
+      "highlight_mobius": [-0.15, 0.16],
+      "shadow_hue_rotation": -0.19,
+      "highlight_hue_rotation": 0.16,
+      "chroma_coefficients": [0.20, 0.25, -0.36, 0.30, 0.28, -0.24]
+    }
+  },
+  "audit_grid_axis_size": 25,
+  "jacobian_grid_axis_size": 9,
+  "finite_difference_step": 0.000001,
+  "gates": {
+    "identity_maximum_absolute_error": 1e-12,
+    "neutral_axis_maximum_chroma": 1e-12,
+    "endpoint_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "inverse_roundtrip_maximum_absolute_error": 1e-10,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "minimum_pairwise_witness_rgb_rmse": 0.015,
+    "minimum_non_identity_rgb_rmse": 0.03,
+    "minimum_residual_after_best_affine_rgb_fit": 0.008,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "operator_fitting_allowed": false,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "real_image_frontier_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room data-independent numerical, diversity and regularity evidence for an analytic gamut-polar palette Look Approximation that factorizes tone, luma-conditioned hue and hue-conditioned chroma; no ACES conformance, perceptual uniformity, measured film response, named stock, calibration, authenticity, preference or production promotion"
+}
