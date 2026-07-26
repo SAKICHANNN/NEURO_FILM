@@ -161,3 +161,6 @@ files.
 - Local datasets, weights, caches, and credentials must not be committed.
 - Before moving any script, update all references in `docs/`, `AGENTS.md`,
   `agent_reminder/`, and command examples.
+`run_u5_r2s1_histogram_case_retrieval_development.py` runs the frozen
+synthetic, spatially permutation-invariant histogram retrieval/KDE/global
+development comparison. It must not access reserved confirmation seed 27012.
