@@ -3487,3 +3487,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Execution completeness correction:** before implementation or result,
   bind the already specified deterministic CPU optimizer to one Torch thread
   in config rather than relying on a machine default.
+
+## 2026-07-26 - Close U5.R2M0 on density fidelity and exact identity
+
+- **Implementation:** isolated explicit interval-Möbius operator, analytic
+  inverse, deterministic CPU fitter, finite-difference audit, formal runner and
+  five property/regression tests. Production renderer, schemas and frozen
+  K1/K3 code remain untouched.
+- **Reproducibility:** two formal runs at `87a3c01...58405` are byte-identical
+  at `c4c469a1...ef898`; 17 combined K1-K3/M0 tests and all `873` CPU tests
+  pass.
+- **Structural evidence:** every output is bounded, every sampled determinant
+  is positive, maximum Jacobian norm is `2.8415`, minimum analytic stage
+  derivative passes, inverse error is below `8.9e-16`, and partition error is
+  exactly zero.
+- **Decisive failures:** positive-warm confirmation RMSE `.01170` passes, but
+  density-cyan `.03089` misses `.015`; fitted identity maximum error
+  `5.97e-5` misses exact `1e-12`. The automatic conjunction fails.
+- **Branch:** no visual render. Do not special-case identity, add
+  stages/features/steps, retune initialization/optimizer or relax gates.
+  Retain structural negative evidence and choose a separately motivated
+  algorithm/physical-effect or stronger-data leaf. Goal remains active.

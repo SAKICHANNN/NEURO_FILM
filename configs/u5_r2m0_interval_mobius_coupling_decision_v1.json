@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2m0-interval-mobius-coupling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2M0",
+  "status": "complete_closed",
+  "decision": "structural_and_positive_control_pass_density_fidelity_and_identity_fail",
+  "software_commit": "87a3c01a422250be3baba783322d8d3ee3458405",
+  "config_sha256": "fd535e9d582d13c6565b47291905d09c636daf88c7c14dfd47ec19a9c476d534",
+  "formal_report_sha256": "c4c469a14f16c1024b4148758900b8bd760ea354a7c207345ec01a2c409ef898",
+  "repeat_report_sha256": "c4c469a14f16c1024b4148758900b8bd760ea354a7c207345ec01a2c409ef898",
+  "repeat_byte_identical": true,
+  "automatic_gate_passed": false,
+  "visual_review_allowed": false,
+  "passed_checks": [
+    "bounded",
+    "coefficient_bound",
+    "nonlinear_gain",
+    "analytic_stage_derivative",
+    "positive_jacobian",
+    "bounded_jacobian_norm",
+    "inverse_roundtrip",
+    "serialization_replay",
+    "partition_parity"
+  ],
+  "failed_checks": [
+    "identity_exact",
+    "confirmation_fidelity"
+  ],
+  "target_findings": {
+    "density_cyan_s50": {
+      "confirmation_rgb_rmse": 0.03088996464925399,
+      "global_affine_confirmation_rgb_rmse": 0.07015506931892528,
+      "improvement_over_global_affine_fraction": 0.5596901984541122,
+      "minimum_jacobian_determinant": 0.07638546952598084,
+      "maximum_jacobian_spectral_norm": 2.841500195626921,
+      "inverse_roundtrip_maximum_absolute_error": 8.881784197001252e-16
+    },
+    "positive_warm_s35": {
+      "confirmation_rgb_rmse": 0.011700436603458314,
+      "global_affine_confirmation_rgb_rmse": 0.0275458401572194,
+      "improvement_over_global_affine_fraction": 0.5752376207558954,
+      "minimum_jacobian_determinant": 0.25591479139416995,
+      "maximum_jacobian_spectral_norm": 1.777546777286324,
+      "inverse_roundtrip_maximum_absolute_error": 6.661338147750939e-16
+    },
+    "identity": {
+      "confirmation_rgb_rmse": 8.714396872204828e-06,
+      "confirmation_maximum_absolute_error": 5.96593569281989e-05,
+      "maximum_jacobian_spectral_norm": 1.0002120054839212
+    }
+  },
+  "retained_evidence": "A six-stage 108-coefficient interval-Mobius coupling is bounded, orientation preserving, analytically invertible, exactly partition stable and locally well conditioned. It materially beats global affine and passes the positive-film control, but lacks the frozen density-cyan fidelity and does not retain exact identity under the frozen common fitter.",
+  "forbidden_rescues": [
+    "special_case_identity_after_formal_results",
+    "increase_stages_features_steps_or_coefficient_bounds",
+    "change_initialization_optimizer_or_regularization",
+    "relax_fidelity_identity_or_jacobian_gates",
+    "fit_real_images_or_real_film_pixels",
+    "open_real_image_visual_frontier"
+  ],
+  "allowed_next": "retain the interval-Mobius primitive as structural negative evidence; choose a separately motivated explicit representation, physical-effect leaf or stronger-data leaf",
+  "production_integration_allowed": false,
+  "stock_learning_allowed": false,
+  "operator_identification_allowed": false,
+  "claim_ceiling": "clean-room data-independent structural and negative fidelity evidence for a bounded explicit interval-Mobius coupling; no external LUT/code/weight reuse, neural renderer, real-film operator identification, named stock, calibration, authenticity, preference or production promotion"
+}
