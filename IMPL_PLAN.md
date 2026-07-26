@@ -371,6 +371,16 @@ only a simplest inference-time hard-policy contract. The Oracle is not itself
 deployable and clipping is not a sufficient universal artifact detector; no
 training, stock learning or production integration opens.
 
+`U5.R2L1` tests the simplest actual inference rule: render `s0.65`, calculate
+the frozen endpoint statistic over the complete RGB8 frame, then hard-fallback
+to `s0.50`. The implementation regenerates both archived strength banks
+RGB8-exactly on all 41 images, but full-frame selection reproduces only 40/41
+sampled-Oracle choices. Stress 20 is `.49247%` in the sampled evaluator and
+`.50015%` full-frame, crossing the fixed `.5%` boundary. Close the exact policy
+without threshold, epsilon or sampling rescue. Keep L0 as Oracle feasibility
+only and the explicit hard-preflight code as isolated research infrastructure;
+no deployable router opens.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

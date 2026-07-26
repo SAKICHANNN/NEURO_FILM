@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2l1-full-frame-strength-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2L1",
+  "software_commit": "12c958a5bf74985cfbc6bb22e3121368cf297eda",
+  "config_sha256": "194aab3a49ad08759c607171b2e601fca525a1f4efe88daf1659a771c0eda36a",
+  "report": {
+    "path": "outputs/u5_r2l1_full_frame_strength_preflight_v1/report_pass1.json",
+    "sha256": "e1aa4271a077bfc8110ee2a691708336edff8bae45c3247fe97290c09f451a4b",
+    "repeat_byte_identical": true
+  },
+  "evidence": {
+    "sample_count": 41,
+    "baseline_archive_rgb8_matches": 41,
+    "challenger_archive_rgb8_matches": 41,
+    "oracle_assignment_matches": 40,
+    "selected_output_rgb8_matches": 40,
+    "full_frame_challenger_selected_count": 35,
+    "full_frame_baseline_fallback_count": 6,
+    "oracle_challenger_selected_count": 36,
+    "oracle_baseline_fallback_count": 5,
+    "mismatch": {
+      "sample_id": "20",
+      "split": "stress",
+      "sampled_oracle_clipping_fraction": 0.004924704924704925,
+      "full_frame_clipping_fraction": 0.005001547508511297,
+      "sampled_oracle_strength": 0.65,
+      "full_frame_policy_strength": 0.5
+    }
+  },
+  "decision": "close_exact_full_frame_preflight_without_threshold_epsilon_or_sampling_rescue",
+  "retained_evidence": [
+    "the explicit renderer regenerates both immutable strengths RGB8-exactly on all 41 images",
+    "sampled and full-frame clipping decisions can differ at a frozen boundary",
+    "U5.R2L0 remains a post-output Oracle feasibility result only"
+  ],
+  "production_integration_allowed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "B0 deterministic replay and negative boundary-sensitivity evidence for one fixed film-inspired density Look Approximation; no accepted inference policy, universal safety, learned routing, preference, stock response, calibration, authenticity or production claim"
+}

@@ -3438,3 +3438,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `8173ce87...c7390` hash directly to the L1 config. This makes both archived
   strength-byte gates direct and fail-closed rather than indirectly inferred
   through the parent decision.
+
+## 2026-07-26 - Close U5.R2L1 exact full-frame preflight
+
+- **Implementation/replay:** the isolated explicit hard-preflight primitive
+  trial-renders `.65`, measures full RGB8 endpoints and renders `.50` only on
+  fallback. Both immutable strength archives replay exactly on all 41 images;
+  seven focused tests pass.
+- **Frozen-gate result:** assignment and selected-output replay are 40/41.
+  Stress 20 has sampled Oracle clipping `.0049247049` but full-frame clipping
+  `.0050015475`, so the primary policy selects `.50` instead of `.65`.
+- **Decision:** close the exact full-frame policy. The miss is numerically
+  marginal but the 41/41 gate is exact; do not change threshold, epsilon,
+  strengths or sampling and do not train a predictor to rescue it. L0 remains
+  post-output Oracle feasibility only.
+- **Reproducibility/verification:** two failure reports are byte-identical at
+  `e1aa4271...51a4b`; all `868` CPU tests pass in 62.81 seconds. The explicit
+  primitive remains research-only and production imports/schema are unchanged.
+  Goal remains active; select a separately motivated algorithm or stronger-data
+  leaf rather than output-headroom metric gaming already rejected by R2G1.
