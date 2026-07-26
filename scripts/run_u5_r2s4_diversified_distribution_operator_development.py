@@ -163,6 +163,21 @@ def _method_groups(
     raise ValueError(f"unsupported S4 method: {method_id}")
 
 
+def _decision_branch(
+    primary_gate_results: dict[str, bool], *, shuffled_fails: bool
+) -> str:
+    if primary_gate_results["all_except_repeat"]:
+        return "pending_repeat_primary_all_gates_pass"
+    if not shuffled_fails:
+        return "shuffled_negative_passes"
+    if primary_gate_results["heldout_distribution"] and not all(
+        primary_gate_results[name]
+        for name in ("oracle_median", "oracle_p90", "replicate")
+    ):
+        return "primary_matches_distribution_but_operator_fails"
+    return "primary_fails_or_does_not_beat_pooled"
+
+
 def _fit_method(
     method: dict[str, Any],
     neutral: list[list[np.ndarray]],
@@ -376,12 +391,8 @@ def run_development(
     primary_gate_results["all_except_repeat"] = bool(
         all(primary_gate_results.values())
     )
-    branch = (
-        "pending_repeat_primary_all_gates_pass"
-        if primary_gate_results["all_except_repeat"]
-        else "shuffled_negative_passes"
-        if not shuffled_fails
-        else "primary_fails_or_does_not_beat_pooled"
+    branch = _decision_branch(
+        primary_gate_results, shuffled_fails=shuffled_fails
     )
     return {
         "schema_version": 1,

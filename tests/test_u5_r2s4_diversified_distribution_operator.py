@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from scripts.run_u5_r2s4_diversified_distribution_operator_development import (
+    _decision_branch,
     _make_condition_distributions,
     _method_groups,
     _validate_activation,
@@ -104,3 +105,32 @@ def test_activation_requires_repeated_s3_distribution_fail() -> None:
             pass
         else:
             raise AssertionError("invalid parent decision was accepted")
+
+
+def test_decision_branch_separates_nonidentification_from_other_failures() -> None:
+    passing = {
+        "all_except_repeat": True,
+        "heldout_distribution": True,
+        "oracle_median": True,
+        "oracle_p90": True,
+        "replicate": True,
+    }
+    assert (
+        _decision_branch(passing, shuffled_fails=True)
+        == "pending_repeat_primary_all_gates_pass"
+    )
+    primary = dict(passing, all_except_repeat=False)
+    assert (
+        _decision_branch(primary, shuffled_fails=False)
+        == "shuffled_negative_passes"
+    )
+    nonidentified = dict(primary, oracle_median=False)
+    assert (
+        _decision_branch(nonidentified, shuffled_fails=True)
+        == "primary_matches_distribution_but_operator_fails"
+    )
+    distribution_fail = dict(primary, heldout_distribution=False)
+    assert (
+        _decision_branch(distribution_fail, shuffled_fails=True)
+        == "primary_fails_or_does_not_beat_pooled"
+    )
