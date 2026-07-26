@@ -80,7 +80,10 @@ def _image_metadata(payload: bytes) -> dict[str, Any]:
 
 def _slide_id(name: str) -> str | None:
     stem = Path(name).stem.lower()
-    matches = re.findall(r"(?:slide|scan|test|img|image)?[_ -]*([1-5])$", stem)
+    matches = re.findall(
+        r"(?:slide|scan|test|img|image)?[_ -]*([1-5])(?:[_ -]?scaled)?$",
+        stem,
+    )
     return matches[-1] if matches else None
 
 

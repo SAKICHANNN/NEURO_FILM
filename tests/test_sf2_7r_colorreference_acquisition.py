@@ -23,6 +23,8 @@ def _tiff_bytes(value: int) -> bytes:
 def test_slide_id_parses_frozen_archive_conventions() -> None:
     assert _slide_id("slide1.tif") == "1"
     assert _slide_id("Scan_5.TIFF") == "5"
+    assert _slide_id("testscan_3_1scaled.tif") == "1"
+    assert _slide_id("Testscan_3_5_scaled.tif") == "5"
     assert _slide_id("readme.txt") is None
 
 
