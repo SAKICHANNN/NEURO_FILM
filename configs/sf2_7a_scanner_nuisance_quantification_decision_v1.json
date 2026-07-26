@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.7a-scanner-nuisance-quantification-v1",
+  "decision": "partial_control_pass_no_stock_permission",
+  "software_commit": "2f77b73a6b3788a997f1f4d457af4fb5e50d09fc",
+  "report_sha256": "bd093389e4e3808979ada7380308b6fe0e573a8421e4ec10c0de797c781993ad",
+  "repeat_report_byte_identical": true,
+  "alignment_sheet_sha256": "fedd19ff325b885983b2a648be3361d14e202ab4db505cf79f1b8f2162e9513c",
+  "alignment_sheet_visual_review": "pass_all_20_overlays_track_the_fixed_22x12_patch_grid",
+  "alignment": {
+    "pairs_passed": 20,
+    "pairs_total": 20,
+    "minimum_ransac_inliers": 75,
+    "maximum_median_inlier_reprojection_error_px": 0.6440471410751343
+  },
+  "aggregate": {
+    "raw_median_rgb_euclidean": 0.06054916498813366,
+    "raw_p90_rgb_euclidean": 0.1509271376604147,
+    "per_channel_affine_median_rgb_euclidean": 0.025486064387177293,
+    "bounded_full_affine_median_rgb_euclidean": 0.014462732544002719,
+    "bounded_full_affine_p90_rgb_euclidean": 0.06119978085787612,
+    "best_median_reduction_fraction": 0.761140677219296
+  },
+  "pre_registered_gates": {
+    "material_raw_nuisance": false,
+    "canonicalizer_material_reduction": true,
+    "small_residual": true
+  },
+  "minimum_pair": {
+    "pair": "nikon_ls50_nikonscan__vs__nikon_ls50_second_device",
+    "median_rgb_euclidean": 0.014643712533409754
+  },
+  "maximum_pair": {
+    "pair": "nikon_ls50_vuescan__vs__nikon_ls9000_nikonscan",
+    "median_rgb_euclidean": 0.09864776924220374
+  },
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "one-target-set same-slide unknown-device-RGB scanner/software nuisance and bounded global canonicalizer evidence; no colourimetric Delta E, digital-to-film pair, stock response, independent-roll generalization, training, latent mode, calibration, authenticity or production claim"
+}
