@@ -3172,3 +3172,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification/branch:** five focused tests and all 818 CPU tests pass. Open
   only U5.R2J1 real-image frontier; no paper parameter, stock fit, calibration,
   training, LSM, preference or production claim. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2J1 positive-film real-image frontier
+
+- **Design:** five immutable J0 witnesses at strengths `.10/.15/.20/.25/.35`
+  on the existing 9-gold/32-stress set; exact inherited R2B metrics and gates.
+- **Comparators:** safe-rich plus the retained R2E1
+  cyan-shadow/warm-highlight s0.50 challenger. Visual work is forbidden until
+  automatic survival and requires three blind rounds plus complete full-res
+  gold review.
+- **Boundary/handoff:** no retune after results, fitting, training, LSM, named
+  stock or production integration. Commit/push contract before evaluator or
+  rendering. Goal remains active.
