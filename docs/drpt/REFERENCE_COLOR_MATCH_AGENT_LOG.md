@@ -16,3 +16,23 @@
   evidence of final photographic/aesthetic superiority.
 - Handoff state: P0 active; implementation remains gated on committing the
   coordination contract.
+
+## 2026-07-27 - Freeze coordination contract
+
+- Changed: P0 coordination, plan and dedicated branch log committed as
+  `ec001b2`; EOF whitespace normalized in `acb0c82`.
+- Evidence: `git diff --check` passes after the normalization commit.
+- Next: P1 implements only the immutable recipe/fitting contract and focused
+  tests under the claimed file scope.
+
+## 2026-07-27 - Complete P1 recipe contract
+
+- Changed: added immutable v1 reference-look policy/recipe, canonical SHA-256
+  identity, strict JSON roundtrip and a `WorkingImage`-only fitting entrypoint.
+- Evidence: 30 tests pass across the new contract tests and existing Lab/gamut
+  regressions. System Python lacked pytest; tests used the project's existing
+  Python 3.12 `.venv` without installing dependencies.
+- Risks: the recipe currently freezes mean/std Lab statistics; it is explicitly
+  labeled a deterministic statistical baseline.
+- Next: P2 adds deterministic single/batch application without changing this
+  recipe contract.

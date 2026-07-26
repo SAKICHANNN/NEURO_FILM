@@ -59,9 +59,9 @@ with a selected stock, but reference matching alone is labeled
 
 | Step | Status | Scope | Required verification | Commit point | Rollback |
 |---|---|---|---|---|---|
-| P0 | IN_PROGRESS | Coordination, contract, plan | Git/other-chat snapshot and diff check | docs-only commit | revert commit |
-| P1 | NOT_STARTED | `LookRecipe` types, fitting and validation | unit tests for schema, deterministic fingerprint, invalid inputs | contract commit | revert commit |
-| P2 | NOT_STARTED | deterministic single/batch render | identity/reference target tests, N-order independence, no mutation | renderer commit | revert commit |
+| P0 | DONE | Coordination, contract, plan | Git/other-chat snapshot and diff check | `ec001b2`, `acb0c82` | revert commits |
+| P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | contract commit | revert commit |
+| P2 | IN_PROGRESS | deterministic single/batch render | identity/reference target tests, N-order independence, no mutation | renderer commit | revert commit |
 | P3 | NOT_STARTED | JSON roundtrip and replay | byte-identical recipe JSON and output replay | replay commit | revert commit |
 | P4 | NOT_STARTED | file-level SDR image adapter | focused PNG/JPEG/TIFF smoke, output/profile verification | adapter commit | revert commit |
 | P5 | NOT_STARTED | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
@@ -108,6 +108,14 @@ are the final photographic algorithm.
   rather than claim recovered look.
 - If D-PCT later publishes a stable shared media/recipe contract, integrate
   through an adapter leaf instead of copying its implementation.
+
+## Execution evidence
+
+- P0: coordination and rollback contract committed as `ec001b2` and
+  whitespace normalization as `acb0c82`.
+- P1: `30 passed` across `test_color_match_contracts.py`,
+  `test_color_engine_lab.py` and `test_color_engine_gamut.py` using the
+  project's existing Python 3.12 virtual environment.
 
 ## Verification and rollback
 
