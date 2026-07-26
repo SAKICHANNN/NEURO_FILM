@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2n0-modflows-source-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2N0",
+  "status": "research_control_feasible_clean_room_only",
+  "primary_paper": {
+    "title": "Color Transfer with Modulated Flows",
+    "venue": "AAAI 2025",
+    "url": "https://arxiv.org/abs/2503.19062",
+    "pdf_sha256": "c9228e04127fa91dd33fade33bad78ce7a28cc2ddea2edd544dd270c54a67449"
+  },
+  "official_code": {
+    "url": "https://github.com/maria-larchenko/modflows",
+    "commit": "e1884a0208160a00e0d48da7cc25e804b92772be",
+    "root_license_present": false,
+    "copy_or_integration_allowed": false,
+    "read_only_method_audit_allowed": true
+  },
+  "official_weight": {
+    "repository": "MariaLarchenko/modflows_color_encoder",
+    "revision": "f7b7077946ed02d70a410a58b780cdc3b3883635",
+    "file": "modflows_color_encoder_B0_dim_515.pt",
+    "bytes": 18970914,
+    "lfs_sha256": "124f7b42c3bd857a0c20eb5d1a49f873e538e54cb7d44f0aa8d16b1887d3eacb",
+    "model_card_license": "MIT",
+    "training_lineage": "paper reports 4,767 rectified flows from laion-art-en-colorcanny; asset-level source/right lineage is incomplete",
+    "allowed_use": "isolated internal external research control only"
+  },
+  "method": {
+    "palette_embedding": true,
+    "content_forward_style_inverse_uniform_latent": true,
+    "b0_flow_parameter_count": 515,
+    "clean_room_flow_architecture": "4 inputs (RGB+t), 64 tanh hidden units, 3 outputs",
+    "pretrained_encoder": "EfficientNet B0 predicting 515 explicit flow parameters",
+    "final_rgb_generated_by_image_decoder": false,
+    "raw_external_flow_structurally_bounded": false,
+    "raw_external_flow_production_eligible": false
+  },
+  "known_risks": [
+    "whole-image encoder may encode content/source shortcuts rather than palette alone",
+    "paper reports unintended color switching such as yellow to red",
+    "artifact risk rises with strength and reduced ODE steps",
+    "reported average Lipschitz constant remains about 37.26",
+    "training data and code licensing do not support production reuse",
+    "reference-palette transfer is not identified digital-to-film or stock response"
+  ],
+  "next_allowed_leaf": {
+    "node": "U5.R2N1",
+    "actions": [
+      "download only the pinned 18,970,914-byte B0 checkpoint",
+      "load with weights-only deserialization and verify the LFS SHA-256",
+      "implement paper equations independently without copying unlicensed code",
+      "audit architecture compatibility, determinism, identity, range, Jacobian, permutation and palette/content shortcut controls on synthetic data"
+    ],
+    "forbidden": [
+      "download B6 checkpoints",
+      "copy or import official unlicensed source",
+      "access current stock-labelled pixels",
+      "fit or claim a stock operator",
+      "production integration",
+      "direct neural final-RGB promotion"
+    ]
+  },
+  "claim_ceiling": "current-source feasibility for one MIT-labelled external B0 palette-flow checkpoint and clean-room synthetic audit only; no code reuse, training-data clearance, stock identity, film operator, safety, preference or production claim"
+}

@@ -402,6 +402,15 @@ lower strength, alter radius/sample count or replace the visual veto to rescue
 this node. U6.2A remains synthetic representation evidence only, and U6.2 still
 requires measured NPS/autocorrelation/repeat-scan evidence.
 
+`U5.R2N0` identifies ModFlows as the next distinct external algorithm control.
+Its per-image 515-parameter invertible RGB flow and palette embedding match the
+hard case-retrieval hypothesis better than another fixed global LUT. Only the
+18.97MB MIT-labelled B0 checkpoint is eligible for an isolated audit; the
+official code has no licence and the LAION-derived training lineage is
+incomplete. N1 is synthetic/checkpoint/shortcut evidence only. Stock-labelled
+pixels, film fitting, B6, source copying and production integration remain
+forbidden.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

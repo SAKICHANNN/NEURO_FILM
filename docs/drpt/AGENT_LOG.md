@@ -3589,3 +3589,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   strength/radius/sample-count/crop/gate rescue. Retain U6.2A only as synthetic
   representation evidence; U6.2 remains data-gated on measured NPS,
   autocorrelation and repeat scans. Goal remains active.
+
+## 2026-07-26 - Audit ModFlows as U5.R2N0 external palette-flow control
+
+- **Research basis:** AAAI 2025 ModFlows maps each image palette through a
+  515-parameter invertible RGB neural ODE to a common uniform cube; encoder
+  parameters also serve as a palette-retrieval embedding.
+- **Availability:** official B0 weight is 18,970,914 bytes at LFS SHA-256
+  `124f7b42...d3eacb` and its HF card says MIT. The official source repository
+  is pinned at `e1884a0...72be` but has no root licence; do not copy/import it.
+- **Risk:** training uses 4,767 LAION-derived flow targets with incomplete
+  asset lineage. The paper reports unintended colour switching, strength/step
+  artifact sensitivity and average Lipschitz about 37.26. Palette-only
+  interpretation and safety are hypotheses, not facts.
+- **Decision/handoff:** open N1 for the B0 checkpoint only: weights-only load,
+  clean-room published equations and synthetic architecture/determinism/
+  range/Jacobian/permutation/content-shortcut controls. No B6, stock pixels,
+  operator fitting, source copying, production or film claim. Goal remains
+  active.
