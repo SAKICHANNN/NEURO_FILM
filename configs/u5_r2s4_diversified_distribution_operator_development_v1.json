@@ -30,6 +30,19 @@
   "content_condition_generator": {
     "condition_count": 4,
     "condition_definition": "fixed synthetic latent content cells with distinct preregistered palette-centre regions; condition id is generated truth and never inferred from RGB",
+    "condition_palette_centres": [
+      [0.22, 0.22, 0.22],
+      [0.72, 0.24, 0.20],
+      [0.22, 0.68, 0.28],
+      [0.24, 0.38, 0.76]
+    ],
+    "component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.2,
+    "component_mean_jitter_standard_deviation": 0.08,
+    "component_mean_minimum": 0.03,
+    "component_mean_maximum": 0.97,
+    "component_standard_deviation_minimum": 0.04,
+    "component_standard_deviation_maximum": 0.1,
     "scenes_per_condition_per_domain": 3,
     "samples_per_scene": 128,
     "development_observation_seed_a": 28301,

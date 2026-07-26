@@ -3972,3 +3972,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   remains pending the S3 repeated branch, whose second CUDA process continued
   independently during this implementation. No film/project pixel, model,
   production renderer or frozen S3 config was changed. Goal remains active.
+
+## 2026-07-26 - Implement pending U5.R2S4D experiment harness
+
+- **Implementation:** add deterministic synthetic condition-palette
+  generation and a frozen runner for pooled, correct-condition and
+  fixed-shuffled RFF-MMD controls. All three fit one shared bounded explicit
+  flow and are evaluated against the correct held-out condition pairs, hidden
+  oracle, A/B replication and inherited structure gates.
+- **Freeze completion:** the config now records all four palette centres,
+  component-count/jitter/deviation ranges and source/target independence
+  needed to reproduce the generated condition truth.
+- **Verification:** seven combined S3/S4 focused tests pass; the new script
+  compiles, the JSON contract parses and `git diff --check` passes.
+- **Non-execution:** no S4 report, formal observation, confirmation seed or
+  film/project pixel was generated because the S3 repeated activation gate is
+  still pending. Goal remains active.
