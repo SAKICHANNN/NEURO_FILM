@@ -33,6 +33,7 @@ files.
 | `run_u5_r2k0_bounded_gaussian_residual.py` | Audit a clean-room fixed-geometry bounded Gaussian residual representation on disjoint synthetic explicit-control grids, including the published GLUT initialization ambiguity and structural Jacobian gates. |
 | `run_u5_r2k1_triangular_monotone_coupling.py` | Audit a deterministic CPU-fitted composition of analytically bounded and invertible single-channel colour coupling stages on disjoint synthetic explicit-control grids. |
 | `run_u5_r2k2_rational_quadratic_coupling.py` | Audit a clean-room finite monotonic rational-quadratic spline coupling representation with analytic inverse, positive orientation and disjoint synthetic explicit-control grids. |
+| `run_u5_r2k3_gamut_polar_palette.py` | Audit an analytic RGB-cube gamut-polar palette factorization with explicit tone, luma-conditioned hue and hue-conditioned chroma witnesses. |
 | `run_sf2_7r_colorreference_acquisition.py` | Resumably acquire and audit the exact ColorReference Set 3 same-slide multi-scanner nuisance lane with byte/hash/CRC/decode lineage. |
 | `run_u5_r2b_global_operator_frontier.py` | Audit the frozen fixed global-policy bank and build survivor-only blind sheets. |
 | `audit_real_film_prov_register_recon.py` | Run the bounded metadata-only PROV negative-register accessibility audit. |
