@@ -62,6 +62,31 @@ def test_hierarchical_coupling_improves_monotone_shift_pairing() -> None:
     assert hcc_error < 0.45 * random_error
 
 
+def test_hierarchical_coupling_falls_back_inside_empty_subtree() -> None:
+    source = np.array(
+        [
+            [0.2, 0.2, 0.2],
+            [0.3, 0.3, 0.3],
+            [0.7, 0.7, 0.7],
+            [0.8, 0.8, 0.8],
+        ]
+    )
+    target = np.array(
+        [
+            [0.2, 0.8, 0.2],
+            [0.3, 0.7, 0.3],
+            [0.7, 0.3, 0.7],
+            [0.8, 0.2, 0.8],
+        ]
+    )
+    pairs = hierarchical_colour_coupling(
+        source, target, maximum_depth=1, seed=27
+    )
+    assert len(pairs.source) == len(source)
+    assert sorted(pairs.source_indices.tolist()) == list(range(len(source)))
+    assert sorted(pairs.target_indices.tolist()) == list(range(len(target)))
+
+
 def test_paired_flow_fit_is_repeatable_bounded_and_improves() -> None:
     rng = np.random.default_rng(31)
     source = rng.uniform(0.08, 0.92, size=(96, 3))

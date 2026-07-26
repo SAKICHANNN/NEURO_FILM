@@ -4078,3 +4078,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `929/929`.
 - **Non-execution:** formal seeds `28400-28403`, project images and film pixels
   remain untouched. S3 B continued independently. Goal remains active.
+- **Faithfulness correction:** paper re-review showed that HCC's random
+  fallback applies inside every recursively empty non-empty subtree, not only
+  when the complete root has no pairs. The implementation now preserves those
+  local samples and a dedicated disjoint-octant regression passes; nine U1
+  tests pass before formal execution.

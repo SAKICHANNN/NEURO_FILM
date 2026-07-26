@@ -145,6 +145,11 @@ def hierarchical_colour_coupling(
                     depth + 1,
                 )
             )
+        if not pairs:
+            left, right = _random_index_pairs(
+                source_indices, target_indices, rng=rng
+            )
+            return [] if len(left) == 0 else [(left, right)]
         return pairs
 
     pair_groups = recurse(
@@ -152,15 +157,8 @@ def hierarchical_colour_coupling(
         np.arange(len(target_array), dtype=np.int64),
         0,
     )
-    if pair_groups:
-        source_indices = np.concatenate([pair[0] for pair in pair_groups])
-        target_indices = np.concatenate([pair[1] for pair in pair_groups])
-    else:
-        source_indices, target_indices = _random_index_pairs(
-            np.arange(len(source_array), dtype=np.int64),
-            np.arange(len(target_array), dtype=np.int64),
-            rng=rng,
-        )
+    source_indices = np.concatenate([pair[0] for pair in pair_groups])
+    target_indices = np.concatenate([pair[1] for pair in pair_groups])
     return CoupledColourPairs(
         source_array[source_indices],
         target_array[target_indices],
