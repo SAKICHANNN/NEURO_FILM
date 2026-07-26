@@ -297,6 +297,17 @@ two. J0 remains a reusable representation/negative control; the same synthetic
 bank must not be retuned or composed with the winner to chase this development
 set.
 
+`U5.R2K0` then audits a newer explicit-colour representation idea without
+copying the paper's unavailable code, parameters or unverified LUT corpus. The
+clean-room signed-headroom renderer is analytically bounded, and 27 fixed
+Gaussian primitives reproduce the frozen density and positive-film controls at
+`.00990/.00344` confirmation RGB RMSE, improving `85.98%/87.65%` over a global
+affine fit. The same fits reverse orientation: minimum sampled Jacobian
+determinants are `-3.31/-1.87`, diagonal derivatives become negative, and the
+density fit exceeds the frozen coefficient limit. K0 closes without clamp,
+capacity, ridge/sigma retuning or conditional-generator rescue. A future
+representation leaf must make orientation preservation structural.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

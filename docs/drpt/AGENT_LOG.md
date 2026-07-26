@@ -3240,3 +3240,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   baseline. Raw scanner clusters are not film modes. No stock fitting,
   training, LSM, redistribution or production permission opens. Full CPU suite
   passes `831` tests; Goal remains active.
+
+## 2026-07-26 - Close U5.R2K0 bounded Gaussian residual representation
+
+- **Source/contract:** audited GLUT arXiv `2605.19889v1` at PDF SHA
+  `2a71064e...c3f` and source SHA `e66f18ac...6d5`. No official code or
+  lineaged 300-LUT set was found. The paper uses a final clamp, leaves global
+  initialization ambiguous and supplies no orientation constraints, so K0 is a
+  clean-room fixed-geometry candidate rather than an exact reproduction.
+- **Evidence:** two formal reports at software commit `5f2c8e2...32db` are
+  byte-identical at `f2cf7323...dd2a`. N27 fits density-cyan s0.50 and
+  positive-warm s0.35 at `.009897/.003442` RMSE, `85.98%/87.65%` better than
+  global affine. Range, identity, replay and spectral-norm gates pass.
+- **Failure/decision:** minimum det(J) reaches `-3.3097/-1.8684`, diagonal
+  derivatives reach `-1.6951/-.9351`, and density max coefficient `7.0855`
+  exceeds the frozen `4.0`. Close without clamp, same-grid retuning, capacity
+  increase or neural generator. Six focused and all `837` CPU tests pass.
+  Next algorithm work must structurally preserve orientation; Goal remains
+  active.
