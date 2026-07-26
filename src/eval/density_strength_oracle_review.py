@@ -145,6 +145,7 @@ def write_review_pages(
     font = ImageFont.load_default()
     overview_pages = []
     crop_pages = []
+    triplet_pages = []
     for page_index in range(0, len(records), 7):
         subset = records[page_index : page_index + 7]
         overview = Image.new("RGB", (1200, 7 * 224 + 36), "#dedede")
@@ -221,12 +222,64 @@ def write_review_pages(
                 "sample_ids": [str(row["sample_id"]) for row in subset],
             }
         )
+    for row in records:
+        canvas = Image.new("RGB", (5 * 198 + 128, 3 * 204 + 36), "#dedede")
+        draw = ImageDraw.Draw(canvas)
+        draw.text(
+            (8, 8),
+            (
+                f"{row['sample_id']} {row['split']} "
+                f"s{float(row['selected_strength']):.2f} / "
+                "1:1 TL TR C BL BR"
+            ),
+            fill="black",
+            font=font,
+        )
+        paths = (
+            ("source", Path(row["source_path"])),
+            ("fixed s0.50", Path(row["baseline_path"])),
+            ("selected", Path(row["selected_path"])),
+        )
+        for path_index, (label, path) in enumerate(paths):
+            y = 36 + path_index * 204
+            draw.text((8, y + 88), label, fill="black", font=font)
+            with Image.open(path) as image:
+                rgb = ImageOps.exif_transpose(image).convert("RGB")
+                if list(rgb.size) != list(row["size"]):
+                    raise DensityStrengthOracleError(
+                        f"review dimension mismatch: {row['sample_id']}/{label}"
+                    )
+                for crop_index, box in enumerate(row["crop_boxes"]):
+                    crop = rgb.crop(tuple(box))
+                    tile = Image.new("RGB", (192, 192), "white")
+                    tile.paste(
+                        crop,
+                        (
+                            (192 - crop.width) // 2,
+                            (192 - crop.height) // 2,
+                        ),
+                    )
+                    x = 128 + crop_index * 198
+                    canvas.paste(tile, (x, y + 8))
+        path = output_dir / f"triplet_1to1_{row['sample_id']}.png"
+        canvas.save(path, format="PNG", compress_level=6)
+        triplet_pages.append(
+            {
+                "path": str(path.resolve()),
+                "sha256": sha256_file(path),
+                "sample_id": str(row["sample_id"]),
+            }
+        )
     return {
         "schema_version": 1,
         "overview_pages": overview_pages,
         "one_to_one_crop_pages": crop_pages,
+        "one_to_one_triplet_pages": triplet_pages,
         "reviewed_sample_count": len(records),
-        "coverage": "full overview plus five unscaled output crops per sample",
+        "coverage": (
+            "full overview plus five unscaled selected-output crops and "
+            "same-coordinate source/baseline/selected triplets per sample"
+        ),
     }
 
 

@@ -84,6 +84,9 @@ def main() -> int:
                 "sha256": evidence_sha256(evidence),
                 "overview_pages": len(evidence["overview_pages"]),
                 "one_to_one_crop_pages": len(evidence["one_to_one_crop_pages"]),
+                "one_to_one_triplet_pages": len(
+                    evidence["one_to_one_triplet_pages"]
+                ),
                 "reviewed_sample_count": evidence["reviewed_sample_count"],
             },
             indent=2,
