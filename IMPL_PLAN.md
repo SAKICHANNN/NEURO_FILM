@@ -432,6 +432,16 @@ R2E1/J1 target looks, so it does not open; retain R2O0 for future
 evidence-eligible paired or stock work without claiming unpaired
 identification.
 
+`U5.R2P0` closes one tempting but epistemically invalid shortcut.
+ChameleonTuner (WACV 2026) can relax pixel alignment for a true same-scene
+source/target pair by using LSC superpixels, LoFTR region correspondence and
+NSGA-II search over source-supported `17^3` LUT vertices. It cannot turn
+unrelated visually similar film/digital photographs into pairs. DPED and FiveK
+are digital same-scene/retouch controls, not stock truth, and the official
+repository currently contains only one 131-byte README with no code,
+checkpoint or licence. Retain the method for future controlled misaligned
+pairs; do not implement it on current closed film pixels.
+
 `SF2.7A` also completes the same-slide nuisance audit. All 20 alignments pass;
 raw held-out scanner-device-RGB median distance is `.06055`, and bounded
 3x3+bias reduces it to `.01446` (`76.11%`). Pair medians span

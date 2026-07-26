@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "audit_id": "u5.r2p0-chameleon-tuner-source-method-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2P0",
+  "paper": {
+    "title": "ChameleonTuner: Automatic ISP Color Tuning in Subjective Scenarios",
+    "venue": "WACV 2026",
+    "doi": "10.1109/WACV61042.2026.00037",
+    "official_pdf_url": "https://openaccess.thecvf.com/content/WACV2026/papers/Tan_ChameleonTuner_Automatic_ISP_Color_Tuning_in_Subjective_Scenarios_WACV_2026_paper.pdf",
+    "pdf_bytes": 3490714,
+    "pdf_sha256": "814ac185346ff87afe0ba9ed6fca1626bd7bab32d3df24003e77cb10100de370"
+  },
+  "source": {
+    "repository": "https://github.com/ZjTan4/ChameleonTuner.git",
+    "revision": "b6ca8954c3f2a0dd0e500a9272cbdaf4e9b06530",
+    "tracked_files": 1,
+    "tracked_payload_bytes": 131,
+    "code_available": false,
+    "checkpoint_available": false,
+    "license_file_available": false,
+    "readme_status": "Stay Tunned, We will release the code soon!"
+  },
+  "method": {
+    "supervision": "same-scene source/target image pairs",
+    "misalignment_scope": "limited FoV/PoV differences between simultaneous or paired captures",
+    "correspondence": "LSC superpixels plus pretrained LoFTR keypoint aggregation",
+    "representative_colour": "Gaussian blur plus within-region IQR filtering and mean",
+    "operator": "17x17x17 trilinear 3D LUT",
+    "search_space": "source-colour-supported LUT control vertices with clustered integer stride offsets",
+    "optimizer": "NSGA-II multi-objective evolutionary search",
+    "objectives": [
+      "CIEDE2000",
+      "Lab hue difference",
+      "saturation difference"
+    ],
+    "reported_cpu_runtime": "approximately one day on DPED",
+    "reported_datasets": [
+      "DPED simultaneous smartphone/DSLR same-scene pairs",
+      "MIT-Adobe FiveK raw/expert-C paired images"
+    ]
+  },
+  "decision": "retain_as_future_misaligned_paired_calibration_prior_only",
+  "current_project_fit": {
+    "arbitrary_similar_photo_retrieval": false,
+    "unpaired_film_archive_operator_identification": false,
+    "current_stock_learning": false,
+    "current_real_film_pixel_access": false,
+    "implementation_opened": false
+  },
+  "failure_reasons_for_current_mainline": [
+    "requires same-scene source/target pairs rather than unrelated film and digital photographs",
+    "LoFTR and superpixel correspondences would reintroduce content/geometry dependence if used on unrelated archives",
+    "the public repository contains no implementation, checkpoint or licence",
+    "DPED and FiveK are digital camera/retouch controls, not film-stock truth",
+    "a reported one-day CPU search is not justified without an eligible paired target"
+  ],
+  "reopen_condition": "rights-cleared same-scene digital/film or scan-pipeline pairs with independent stock/roll/process groups, or an official licensed implementation plus an eligible paired non-stock method-control question",
+  "forbidden_rescues": [
+    "treat visually similar unrelated images as pairs",
+    "use LoFTR match confidence as stock evidence",
+    "apply the method to current closed Commons/YFCC pixels",
+    "infer a film operator from DPED or FiveK",
+    "reimplement unpublished details and claim paper reproduction",
+    "start the one-day search without a new frozen eligible pair contract"
+  ],
+  "claim_ceiling": "current primary-source method and availability audit: region-level correspondence can relax geometric alignment only for same-scene paired colour calibration; it does not solve unpaired digital-to-film identification, provide film-stock evidence or open current implementation"
+}

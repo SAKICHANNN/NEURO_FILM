@@ -3665,3 +3665,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence-eligible paired/stock work; no unpaired identification, current
   film fitting, stock/mode, preference or production claim. Goal remains
   active.
+
+## 2026-07-26 - Close U5.R2P0 ChameleonTuner as a current unpaired route
+
+- **Primary evidence:** official WACV 2026 PDF, 3,490,714 bytes at
+  `814ac185...de370`; official repo revision
+  `b6ca895...06530`.
+- **Method boundary:** LSC regions and LoFTR matches relax geometric alignment
+  only between same-scene source/target pairs. Representative region colours
+  guide NSGA-II over clustered source-supported vertices of a 17-cube LUT.
+- **Data boundary:** DPED is simultaneous smartphone/DSLR same-scene data and
+  FiveK is paired raw/retouch data. Neither identifies film stock, and
+  unrelated similar photographs cannot legally substitute for pairs.
+- **Availability:** repository contains one 131-byte README, no code,
+  checkpoint, dependency freeze or licence; the paper reports roughly one CPU
+  day on DPED.
+- **Decision/handoff:** retain as a future controlled misaligned-pair
+  calibration prior only. Do not implement on closed film pixels, infer pair
+  truth from LoFTR/content, or claim reproduction. Goal remains active.
