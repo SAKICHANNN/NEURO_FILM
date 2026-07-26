@@ -36,3 +36,15 @@
   labeled a deterministic statistical baseline.
 - Next: P2 adds deterministic single/batch application without changing this
   recipe contract.
+
+## 2026-07-27 - Complete P2 batch renderer
+
+- Changed: added deterministic safe-Lab application, explicit source/chroma
+  gamut policy, ordered N-source batch API and per-source diagnostics.
+- Evidence: 44 tests pass across reference-match contracts/rendering and
+  existing Lab/gamut tests. Repeated rendering is byte-identical; batch order
+  does not affect any source result; inputs and metadata containers are not
+  mutated.
+- Boundaries: display-linear SDR only; scene-linear RAW and out-of-gamut source
+  pixels fail closed.
+- Next: P3 persists recipe files atomically and proves load/replay identity.

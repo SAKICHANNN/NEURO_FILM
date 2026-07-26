@@ -60,9 +60,9 @@ with a selected stock, but reference matching alone is labeled
 | Step | Status | Scope | Required verification | Commit point | Rollback |
 |---|---|---|---|---|---|
 | P0 | DONE | Coordination, contract, plan | Git/other-chat snapshot and diff check | `ec001b2`, `acb0c82` | revert commits |
-| P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | contract commit | revert commit |
-| P2 | IN_PROGRESS | deterministic single/batch render | identity/reference target tests, N-order independence, no mutation | renderer commit | revert commit |
-| P3 | NOT_STARTED | JSON roundtrip and replay | byte-identical recipe JSON and output replay | replay commit | revert commit |
+| P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | `1820af1` | revert commit |
+| P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | renderer commit | revert commit |
+| P3 | IN_PROGRESS | JSON roundtrip and replay | byte-identical recipe JSON and output replay | replay commit | revert commit |
 | P4 | NOT_STARTED | file-level SDR image adapter | focused PNG/JPEG/TIFF smoke, output/profile verification | adapter commit | revert commit |
 | P5 | NOT_STARTED | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
 
@@ -116,6 +116,9 @@ are the final photographic algorithm.
 - P1: `30 passed` across `test_color_match_contracts.py`,
   `test_color_engine_lab.py` and `test_color_engine_gamut.py` using the
   project's existing Python 3.12 virtual environment.
+- P2: `44 passed` after adding deterministic single/batch rendering, including
+  repeated-byte identity, batch-order independence, input non-mutation,
+  cross-working-space execution and fail-closed source boundaries.
 
 ## Verification and rollback
 
