@@ -4108,3 +4108,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   of an image-global bounded spline parameterization for a separately frozen
   future experiment. The active bounded S3/S4/U1 chain is unchanged; Goal
   remains active.
+
+## 2026-07-27 - Close U5.R2S3D and activate S4
+
+- **Execution:** complete both frozen deterministic CUDA runs from software
+  commit `c460c2af4818f6c2810909d17839e274a8d58b22`. Reports A/B are
+  byte-identical at SHA-256 `b9d9fd8753b8b7e83c4fb584029e59c287f0a4484d4c661fbe63f2bc71215a55`;
+  config SHA-256 is `862a1c20...b08c93` and reserved seed `28203` remains
+  untouched.
+- **RFF-MMD:** training loss falls `.0004269 -> .0001848`, but held-out
+  improvement is `11.80%`, hidden-operator median/p90 RMSE
+  `.11591/.15423` and A/B operator RMSE `.07902`.
+- **SW-24:** training loss falls `.019866 -> .002610`, but held-out
+  improvement is `3.36%`, hidden-operator median/p90 RMSE
+  `.11444/.16447` and A/B operator RMSE `.13138`.
+- **Decision:** both fail the frozen `30%`, `.07/.10` and `.04` gates. Every
+  range, positive-Jacobian, norm, inverse, coefficient, replay and style gate
+  passes. This is objective-level non-identification, not numerical or
+  structural collapse; no S3 rescue, confirmation or visual shortlist opens.
+- **Verification:** the complete CPU suite passes `932/932`; reports have no
+  stderr and all JSON/config/diff checks pass.
+- **Propagation/branch:** record `distribution_fail` with exact repeat,
+  activate only the already-frozen U5.R2S4D generated correct-condition
+  experiment, and preserve all real-image, film, stock, fitting/training and
+  LSM prohibitions. Goal remains active.

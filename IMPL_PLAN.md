@@ -105,6 +105,17 @@ distinct synthetic question may fit the safe explicit flow directly by
 distribution matching and must score distribution fit separately from true
 operator recovery.
 
+U5.R2S3D now closes that unconditional distribution-fit question. Two
+byte-identical CUDA reports show that RFF-MMD-192 and SW-24 reduce their
+training objectives while held-out distribution improvement is only `11.80%`
+and `3.36%`, below the frozen `30%` gate. Hidden-operator median/p90 RMSE is
+`.11591/.15423` and `.11444/.16447`; independent A/B operator disagreement is
+`.07902` and `.13138`, also failing. Every range, Jacobian, norm, inverse,
+coefficient, replay and style gate passes, so the branch is objective-level
+non-identification, not optimizer collapse. No S3 confirmation, capacity
+rescue, image or visual shortlist opens. Its repeated `distribution_fail`
+activates the already-frozen U5.R2S4D generated-condition experiment.
+
 U5.R2T0 audits the new StatLUT preprint as a reference-conditioned explicit
 renderer. Its image branch predicts a global `16x16x16` LUT from Lab
 statistics, but training uses known random LUTs applied to the same COCO

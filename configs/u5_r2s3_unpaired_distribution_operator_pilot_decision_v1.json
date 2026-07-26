@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s3-unpaired-distribution-operator-pilot-decision-v1",
+  "experiment_id": "u5.r2s3-unpaired-distribution-operator-pilot-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S3D",
+  "software_commit": "c460c2af4818f6c2810909d17839e274a8d58b22",
+  "config_sha256": "862a1c20e2ced3dc18ad7e5039d6656312d4f8d144d528290d0f4f9175b08c93",
+  "report_a_sha256": "b9d9fd8753b8b7e83c4fb584029e59c287f0a4484d4c661fbe63f2bc71215a55",
+  "report_b_sha256": "b9d9fd8753b8b7e83c4fb584029e59c287f0a4484d4c661fbe63f2bc71215a55",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seed_accessed": false,
+  "decision_branch": "distribution_fail",
+  "automatic_visual_shortlist_generated": false,
+  "methods": {
+    "rff_mmd_192": {
+      "heldout_distribution_loss_improvement_fraction_median": 0.1179815807081262,
+      "oracle_operator_output_rmse_median": 0.11591472827603388,
+      "oracle_operator_output_rmse_p90": 0.15423138154366542,
+      "same_style_fit_replicate_operator_rmse_median": 0.07902279033336485,
+      "identity_rmse_retention_ratio_median": 0.6450139111793474,
+      "optimization_initial_loss_median": 0.00042692214800072874,
+      "optimization_final_loss_median": 0.00018483097506357971,
+      "minimum_jacobian_determinant": 0.20430348156553466,
+      "maximum_jacobian_spectral_norm": 2.377681828241271,
+      "maximum_inverse_error": 1.6991140827649076e-08,
+      "distribution_gate": false,
+      "operator_recovery_gates": false,
+      "replicate_gate": false,
+      "style_gate": true,
+      "structure_gates": true
+    },
+    "sliced_wasserstein_24": {
+      "heldout_distribution_loss_improvement_fraction_median": 0.03361459176236009,
+      "oracle_operator_output_rmse_median": 0.11444345126744333,
+      "oracle_operator_output_rmse_p90": 0.16446631411508436,
+      "same_style_fit_replicate_operator_rmse_median": 0.13137860028452727,
+      "identity_rmse_retention_ratio_median": 0.8729948153013427,
+      "optimization_initial_loss_median": 0.019866242423828326,
+      "optimization_final_loss_median": 0.0026098845311314607,
+      "minimum_jacobian_determinant": 0.05627191556167634,
+      "maximum_jacobian_spectral_norm": 3.4176539258119556,
+      "maximum_inverse_error": 1.6639647920646539e-07,
+      "distribution_gate": false,
+      "operator_recovery_gates": false,
+      "replicate_gate": false,
+      "style_gate": true,
+      "structure_gates": true
+    }
+  },
+  "interpretation": "both fixed distribution objectives reduce their fit losses and preserve the bounded explicit-flow structure, but neither reaches the frozen heldout distribution-improvement gate and both fail hidden-operator and independent-fit stability gates; this is objective-level non-identification under the generated observation design, not optimizer collapse or a universal impossibility result",
+  "forbidden_rescues": [
+    "increase steps, grid size, loss bandwidths, projections or model capacity on S3",
+    "select by training loss after heldout gates fail",
+    "generate a visual candidate or use project images",
+    "access reserved confirmation seed 28203",
+    "claim real unpaired digital-to-film operator identification"
+  ],
+  "next_ready_leaf": "U5.R2S4D diversified conditional distribution matching under generated condition truth",
+  "claim_ceiling": "repeat-exact synthetic development evidence that the frozen unconditional RFF-MMD and sliced-Wasserstein objectives fail to identify the known bounded style operator under independent matched-meta-distribution observations; no universal, image, film, stock, calibrated or real unpaired-operator claim"
+}
