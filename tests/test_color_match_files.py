@@ -176,3 +176,46 @@ def test_file_adapter_rejects_16_bit_jpeg(tmp_path: Path) -> None:
             [tmp_path / "output.jpg"],
             output_bit_depth=16,
         )
+
+
+def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source_a = tmp_path / "a.png"
+    source_b = tmp_path / "b.png"
+    output_a = tmp_path / "output-a.png"
+    output_b = tmp_path / "output-b.png"
+    recipe = tmp_path / "look.json"
+    _image(reference, 27318)
+    _image(source_a, 27319)
+    _image(source_b, 27320)
+    output_a.write_bytes(b"old-output-a")
+    output_b.write_bytes(b"old-output-b")
+    recipe.write_bytes(b"old-recipe")
+    original = files._replace
+
+    def fail_second_stage(source: Path, destination: Path) -> None:
+        if (
+            destination == output_b
+            and "reference-match-stage" in source.name
+        ):
+            raise OSError("injected final-commit failure")
+        original(source, destination)
+
+    monkeypatch.setattr(files, "_replace", fail_second_stage)
+    with pytest.raises(OSError, match="injected final-commit failure"):
+        match_reference_files(
+            reference,
+            [source_a, source_b],
+            [output_a, output_b],
+            recipe_path=recipe,
+        )
+    assert output_a.read_bytes() == b"old-output-a"
+    assert output_b.read_bytes() == b"old-output-b"
+    assert recipe.read_bytes() == b"old-recipe"
+    assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+    assert not list(tmp_path.glob(".*.reference-match-backup"))

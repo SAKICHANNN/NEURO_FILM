@@ -75,3 +75,19 @@
   D-PCT work.
 - Next: P5 refreshes concurrent task claims, runs broader CPU regression and
   publishes the integration evidence bundle.
+
+## 2026-07-27 - Complete P5 integration evidence
+
+- Changed: added rollback-safe multi-file commit. A final replacement failure
+  restores every pre-existing output/recipe and removes all stage/backup files.
+- Evidence: 84 focused/preprocess/Lab/gamut tests pass, including injected
+  second-output commit failure. `compileall` and `git diff --check` pass.
+- Broad regression: complete CPU collection produced 939 passed, 1 skipped and
+  36 failures. Failures are confined to missing ignored `outputs/` evidence and
+  CRLF-changed tracked-byte hashes in the worktree; no reference-match test or
+  new failure family failed.
+- Concurrent state: neuro-film main remains on W1/W2/S4 files; standalone
+  D-PCT is clean at `89a1953`; neither overlaps this branch's files.
+- Handoff state: first product vertical slice is ready for integration review.
+  Phase-two algorithm promotion remains gated on W1 identifiability and an
+  aesthetic/preference evaluation rather than being declared final.

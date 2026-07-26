@@ -5,7 +5,8 @@
 - Mode: C (same-project multi-chat concurrency)
 - Owner/chat: `019f9f37-91d9-7b11-b135-ad62bcb32214`
 - Parent: neuro-film product capability — uploaded reference photo matching
-- Status: active
+- Status: ready-for-integration (first vertical slice); phase-two claim remains
+  active for evidence-gated algorithm upgrades
 - Scope: add an image-first product API that fits one replayable reference-look
   recipe from one uploaded reference and applies it consistently to one or more
   `WorkingImage` sources.
@@ -15,6 +16,7 @@
   - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_EVIDENCE.md`
 - Files/artifacts forbidden:
   - `src/roll2film/reference_look_identifiability.py`
   - `tests/test_reference_look_identifiability.py`

@@ -127,6 +127,63 @@ def _stage_path(destination: Path, token: str) -> Path:
     )
 
 
+def _backup_path(destination: Path, token: str) -> Path:
+    return destination.with_name(
+        f".{destination.name}.{token}.reference-match-backup"
+    )
+
+
+def _replace(source: Path, destination: Path) -> None:
+    os.replace(source, destination)
+
+
+def _commit_staged_batch(
+    pairs: tuple[tuple[Path, Path], ...],
+    *,
+    token: str,
+    cleanup: list[Path],
+) -> None:
+    """Commit staged files and restore every prior destination on failure."""
+
+    committed: list[tuple[Path, Path | None]] = []
+    try:
+        for stage, destination in pairs:
+            backup: Path | None = None
+            if destination.exists():
+                backup = _backup_path(destination, token)
+                _replace(destination, backup)
+                cleanup.append(backup)
+            try:
+                _replace(stage, destination)
+            except Exception:
+                if backup is not None and backup.exists():
+                    _replace(backup, destination)
+                    cleanup.remove(backup)
+                raise
+            cleanup.remove(stage)
+            committed.append((destination, backup))
+    except Exception:
+        rollback_errors: list[str] = []
+        for destination, backup in reversed(committed):
+            try:
+                destination.unlink(missing_ok=True)
+                if backup is not None and backup.exists():
+                    _replace(backup, destination)
+                    cleanup.remove(backup)
+            except Exception as exc:  # pragma: no cover - catastrophic filesystem failure.
+                rollback_errors.append(f"{destination}: {exc}")
+        if rollback_errors:
+            raise ReferenceMatchContractError(
+                "batch commit failed and rollback was incomplete: "
+                + "; ".join(rollback_errors)
+            )
+        raise
+    for _destination, backup in committed:
+        if backup is not None:
+            backup.unlink(missing_ok=True)
+            cleanup.remove(backup)
+
+
 def _encode_srgb(
     pixels: np.ndarray,
     destination: Path,
@@ -214,11 +271,17 @@ def match_reference_files(
                 )
             )
 
+        commit_pairs = [
+            (_stage_path(output_path, token), output_path)
+            for _source_path, output_path, _format, _clipped, _diagnostics
+            in staged_outputs
+        ]
+        if recipe_destination is not None and staged_recipe is not None:
+            commit_pairs.append((staged_recipe, recipe_destination))
+        _commit_staged_batch(tuple(commit_pairs), token=token, cleanup=staged)
+
         committed: list[FileReferenceMatchOutput] = []
         for source_path, output_path, output_format, clipped_fraction, diagnostics in staged_outputs:
-            stage = _stage_path(output_path, token)
-            os.replace(stage, output_path)
-            staged.remove(stage)
             committed.append(
                 FileReferenceMatchOutput(
                     source_path=source_path,
@@ -231,9 +294,7 @@ def match_reference_files(
                 )
             )
         recipe_file_sha256: str | None = None
-        if recipe_destination is not None and staged_recipe is not None:
-            os.replace(staged_recipe, recipe_destination)
-            staged.remove(staged_recipe)
+        if recipe_destination is not None:
             recipe_file_sha256 = sha256_file(recipe_destination)
         return FileReferenceMatchResult(
             reference_path=reference,

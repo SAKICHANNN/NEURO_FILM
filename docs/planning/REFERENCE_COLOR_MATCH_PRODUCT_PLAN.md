@@ -63,8 +63,8 @@ with a selected stock, but reference matching alone is labeled
 | P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | `1820af1` | revert commit |
 | P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | `cabe6fc` | revert commit |
 | P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | `8c7d45e` | revert commit |
-| P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | adapter commit | revert commit |
-| P5 | IN_PROGRESS | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
+| P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | `23221fa` | revert commit |
+| P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | evidence commit | release claim |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -134,6 +134,26 @@ worktree because `configs/color_rendering_profiles.yaml` is checked out with
 and tracked profile manifest both use the LF-byte SHA-256 `d919402a...`. No
 reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
+
+The complete CPU collection later reached `939 passed, 1 skipped, 36 failed`.
+All failures were either the same checked-out-byte hash class or tests whose
+ignored `outputs/` evidence is not copied into a new Git worktree. No
+`src/color_match` test failed and no new failure family appeared.
+
+## Phase-two gates
+
+The product shell is ready, but the statistical recipe is not frozen as the
+final photographic/aesthetic algorithm.
+
+| Gate | Status | Dependency | Allowed next action |
+|---|---|---|---|
+| A1 reference identifiability | WAITING | main-chat W1 single/multi/paired evidence | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
+| A2 film-business composition | WAITING | stable stock-expert product interface | add an adapter that keeps `reference-look` and `film_stock_id` claims separate |
+| A3 media portability | WAITING | standalone D-PCT stable recipe/media contract | map recipe fields through an adapter; do not copy RAW/HDR/video code |
+| A4 photographic preference | NOT_STARTED | frozen reference/source image suite and review contract | compare baseline/challengers under severe-artifact veto and blind aesthetic review |
+
+Until A1/A4 pass, this implementation is an operational deterministic baseline,
+not the claimed final or strongest colour-matching algorithm.
 
 ## Verification and rollback
 
