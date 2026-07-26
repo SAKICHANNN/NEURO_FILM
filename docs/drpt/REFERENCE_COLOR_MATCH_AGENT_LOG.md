@@ -62,3 +62,16 @@
   changed by this branch.
 - Next: P4 adds an SDR file adapter through existing preprocessing/output
   boundaries without absorbing RAW/HDR/media work.
+
+## 2026-07-27 - Complete P4 SDR file adapter
+
+- Changed: added one-reference/N-source PNG/JPEG/TIFF adapter, deterministic
+  8-bit and 16-bit SDR output, per-file hashes and hidden staging cleanup.
+- Evidence: 67 tests pass across all reference-match modules and existing
+  preprocessing. Repeated outputs and recipe files are byte-identical. A
+  deliberately invalid late source leaves no output, recipe or staging file.
+- Boundaries: file adapter accepts only display-linear linear-sRGB sources;
+  16-bit JPEG is rejected; RAW/HDR/video/media remain owned by the standalone
+  D-PCT work.
+- Next: P5 refreshes concurrent task claims, runs broader CPU regression and
+  publishes the integration evidence bundle.

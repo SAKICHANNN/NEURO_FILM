@@ -62,9 +62,9 @@ with a selected stock, but reference matching alone is labeled
 | P0 | DONE | Coordination, contract, plan | Git/other-chat snapshot and diff check | `ec001b2`, `acb0c82` | revert commits |
 | P1 | DONE | `LookRecipe` types, fitting and validation | 30 focused/existing colour tests pass | `1820af1` | revert commit |
 | P2 | DONE | deterministic single/batch render | 44 focused/existing colour tests pass | `cabe6fc` | revert commit |
-| P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | replay commit | revert commit |
-| P4 | IN_PROGRESS | file-level SDR image adapter | focused PNG/JPEG/TIFF smoke, output/profile verification | adapter commit | revert commit |
-| P5 | NOT_STARTED | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
+| P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | `8c7d45e` | revert commit |
+| P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | adapter commit | revert commit |
+| P5 | IN_PROGRESS | regression/integration evidence | focused plus relevant existing tests, full CPU suite if feasible | evidence commit | release claim |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -121,6 +121,10 @@ are the final photographic algorithm.
   cross-working-space execution and fail-closed source boundaries.
 - P3: `51 passed` after atomic recipe persistence and file replay. Loaded
   recipes reproduce in-memory batch output bytes and diagnostics exactly.
+- P4: `67 passed` after adding transactional PNG/JPEG/TIFF SDR file matching,
+  8/16-bit outputs and real preprocessing regressions. Repeated output files
+  and recipes are byte-identical; a late invalid source leaves no staged or
+  committed partial batch.
 
 ### Pre-existing worktree-line-ending failure
 

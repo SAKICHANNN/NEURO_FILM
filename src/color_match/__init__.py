@@ -11,6 +11,11 @@ from .contracts import (
     validate_recipe,
 )
 from .fit import fit_reference_look
+from .files import (
+    FileReferenceMatchOutput,
+    FileReferenceMatchResult,
+    match_reference_files,
+)
 from .render import (
     ReferenceMatchDiagnostics,
     ReferenceMatchResult,
@@ -26,6 +31,8 @@ from .replay import (
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
+    "FileReferenceMatchOutput",
+    "FileReferenceMatchResult",
     "ReferenceLookPolicy",
     "ReferenceLookRecipe",
     "ReferenceMatchDiagnostics",
@@ -33,6 +40,7 @@ __all__ = [
     "ReferenceMatchContractError",
     "fit_reference_look",
     "load_reference_look_recipe",
+    "match_reference_files",
     "recipe_from_json",
     "recipe_to_json",
     "replay_reference_batch",
