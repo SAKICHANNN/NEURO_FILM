@@ -66,6 +66,15 @@ reference-palette score forcing but express it through the already validated
 cube-preserving diffeomorphic representation; this requires a new contract
 and does not open current film fitting.
 
+U5.R2S0 confirms that mechanism analytically. Three fixed Gaussian-mixture
+palette scores remain strong, non-affine and mutually distinct when mapped to
+the O0 boundary-vanishing flow: identity RMSE is `.132-.153`, affine residual
+is `.053-.066` and minimum pairwise output RMSE is `.1078`. All range,
+positive-Jacobian, norm, inverse, attraction and exact-repeat gates pass.
+This is synthetic oracle evidence only. It opens a separately frozen
+canonical-histogram score/velocity recovery test, not images, film fitting,
+stock identity, preference or production integration.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

@@ -3777,3 +3777,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Branch:** only an all-gate pass opens a separate canonical
   histogram-to-score ML recovery leaf. Any semantic, style, separation or
   structure failure closes without capacity rescue. Goal remains active.
+
+## 2026-07-26 - Complete U5.R2S0 analytic palette-score mechanism
+
+- **Repeat/evidence:** software `a229f8d...b372e35e`, config
+  `17f4c377...714502`; two reports are byte-identical at
+  `eeaf7b2b...11b2d`; five focused tests and the complete `901`-test CPU
+  suite pass.
+- **Style/reference result:** the three operators have identity RMSE
+  `.132-.153`, best-affine residual `.053-.066`, log-density gain
+  `2.40-3.38` and minimum pairwise output RMSE `.10784`; every frozen floor
+  passes.
+- **Structural result:** output remains inside the cube; minimum determinant
+  is `.01416`, maximum Jacobian norm `4.162`, worst inverse error `1.18e-6`,
+  and replay/partition are exact.
+- **Decision:** the analytic mechanism passes. This distinguishes useful
+  palette-score forcing from D-LUT's unsafe independent node motion, but is
+  not learned-ML, image, film, stock or operator-identification evidence.
+- **Handoff:** freeze a synthetic canonical-histogram score/velocity recovery
+  leaf with exact spatial-permutation control, group-separated confirmatory
+  palettes, simple baselines and inherited structural gates. Current film
+  pixels, fitting and LSM remain forbidden. Goal remains active.

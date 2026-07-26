@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s0-palette-score-diffeomorphic-oracle-decision-v1",
+  "experiment_id": "u5.r2s0-palette-score-diffeomorphic-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S0",
+  "software_commit": "a229f8dadc2beadbc3690b2207ff5e2bb372e35e",
+  "config_sha256": "17f4c377dcb2a534d1bf7ebf5c613bf980b51e1e7aa47db688acceb9ff714502",
+  "report_sha256": "eeaf7b2b72973f7b837e1c3a94d1fda0aca03e008358114b70eab0a09cc11b2d",
+  "repeat_report_sha256_equal": true,
+  "decision": "all_gates_pass_open_histogram_to_score_recovery_contract",
+  "results": {
+    "identity_maximum_absolute_error": 0.0,
+    "minimum_pairwise_output_rmse": 0.10784303305874206,
+    "palette_metrics": {
+      "warm_earth": {
+        "identity_rmse": 0.15267552686378652,
+        "best_affine_residual_rmse": 0.0659850963372218,
+        "mean_log_density_gain": 3.3753870437095177,
+        "minimum_jacobian_determinant": 0.014159652290133442,
+        "maximum_jacobian_spectral_norm": 3.696813923604495,
+        "maximum_inverse_error": 7.894587115142571e-07
+      },
+      "cool_aqua": {
+        "identity_rmse": 0.14930804654229032,
+        "best_affine_residual_rmse": 0.06646850301752716,
+        "mean_log_density_gain": 3.1868422063260033,
+        "minimum_jacobian_determinant": 0.015454212634415845,
+        "maximum_jacobian_spectral_norm": 4.1616155795664955,
+        "maximum_inverse_error": 1.1714720584699023e-06
+      },
+      "cyan_shadow_warm_highlight": {
+        "identity_rmse": 0.13219464710370638,
+        "best_affine_residual_rmse": 0.05321924927625853,
+        "mean_log_density_gain": 2.402496100184539,
+        "minimum_jacobian_determinant": 0.01625643502044427,
+        "maximum_jacobian_spectral_norm": 3.6927761765820164,
+        "maximum_inverse_error": 4.722717689142897e-07
+      }
+    }
+  },
+  "interpretation": "the exact palette score remains strong, non-affine and reference-sensitive when expressed through the boundary-vanishing stationary flow, while the explicit operator preserves cube range, positive orientation, bounded Jacobian, inverse accuracy and exact replay",
+  "next_ready_leaf": "freeze a canonical histogram-to-score or histogram-to-velocity recovery experiment with synthetic development and untouched confirmatory palette families, exact spatial-permutation controls and explicit-operator-only rendering",
+  "forbidden_claims": [
+    "a learned score or router has passed",
+    "the synthetic palettes are photographs or film stocks",
+    "a digital-to-film operator has been identified",
+    "current film pixels may be used for fitting, training or latent-mode discovery",
+    "the operator is preferred, calibrated or production-ready"
+  ],
+  "claim_ceiling": "synthetic analytic mechanism evidence that three fixed reference-palette scores can drive strong, distinct, non-affine and structurally safe explicit RGB diffeomorphisms; no learned-ML, image, film-stock, preference, calibration or operator-identification claim"
+}
