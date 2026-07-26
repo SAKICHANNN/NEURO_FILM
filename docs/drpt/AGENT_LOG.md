@@ -3548,3 +3548,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** freeze one immutable-policy existing-image crop visual/style and
   severe-artifact frontier. No fitting, stock/process/scanner claim or
   integration. Goal remains active.
+
+## 2026-07-26 - Freeze U6.2B Boolean grain crop frontier
+
+- **Node/skills:** `ULT > U6 > U6.2 > U6.2B`;
+  dev-research-reliability primary with research, AI/ML, DRPT, structure and
+  agent-log disciplines secondary.
+- **Inputs:** five source-hashed `512x512` crops from the frozen U41 pool cover
+  ID11 saturated-red/deep-shadow regression, ID14 inherited noise, ID37 sky
+  gradients, the FilmSet face stress sample and ID21 face/uniform detail.
+  Coordinates were selected and frozen before any new grain output.
+- **Policies:** unchanged U6.2A radii `.22/.38`, 32 Monte Carlo samples and
+  zoom 4; both use one frozen `.12` signed linear-luma headroom composition.
+  Legacy `.018` is a visual comparator only.
+- **Gates:** source lineage, structural bounds, luma drift/residual/low-pass
+  limits, `.5%` new endpoint budget, exact repeat/report, then zero severe
+  failures on all full-resolution crops.
+- **Boundary/handoff:** no fitting, retuning, measured NPS, stock calibration,
+  production integration or realism claim. Commit the freeze before code or
+  rendering; then implement, test, run and visually adjudicate. Goal remains
+  active.

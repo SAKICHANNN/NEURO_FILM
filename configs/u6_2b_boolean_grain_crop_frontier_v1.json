@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.2b-boolean-grain-crop-frontier-v1",
+  "node": "ULT > U6 > U6.2 > U6.2B",
+  "parent": {
+    "node": "U6.2A",
+    "config": "configs/u6_2a_boolean_grain_representation_v1.json",
+    "config_sha256": "9b13547fa48a01f7c992401400850fea708df9bb91fd64b73a76531ac9417da6",
+    "finding": "the clean-room Boolean/Poisson representation passes synthetic mean, variance, radius-correlation and exact replay gates"
+  },
+  "source_manifest": "outputs/filmcase/u41_provisional_eval_set.json",
+  "source_manifest_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "development_split": "B0_autonomous_existing_image_crop",
+  "crop_size": 512,
+  "samples": [
+    {
+      "sample_id": "11",
+      "role": "saturated_red_and_deep_shadow_regression",
+      "source_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/11_Sigma_fp_Sigma_-_fp_-_12bit_16_9__raw-neutral.jpg",
+      "source_sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcdbb4d0369ebb20d",
+      "source_size": [1600, 900],
+      "crop_xywh": [544, 194, 512, 512],
+      "seed": 26072601
+    },
+    {
+      "sample_id": "14",
+      "role": "inherited_high_iso_noise_and_soft_detail",
+      "source_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/14_Sony_ILME-FX3_Sony_-_ILME-FX3_-_14bit_3_2__raw-neutral.jpg",
+      "source_sha256": "547d2ff38e592b8d01cc52c227901f516f050353bac16684f679354e6a0fe23b",
+      "source_size": [1600, 1071],
+      "crop_xywh": [544, 279, 512, 512],
+      "seed": 26072602
+    },
+    {
+      "sample_id": "37",
+      "role": "smooth_sky_gradient_and_cloud_texture",
+      "source_path": "outputs/color_baseline/velvia50_digital20_s0p72_gamutsafe/inputs/17_digital_input.jpg",
+      "source_sha256": "59ef33988cb36579a49bc21d61e7f2a835563933df17ba4492becc8a55c5bcb6",
+      "source_size": [1200, 800],
+      "crop_xywh": [0, 0, 512, 512],
+      "seed": 26072603
+    },
+    {
+      "sample_id": "FS_FACE_01",
+      "role": "face_skin_and_hair",
+      "source_path": "data/raw/filmset/FilmSet/train/input/DSCF01200 iso1600.png",
+      "source_sha256": "204d587efad91e41cb01d3de026a5ac837f0402ff8d0a31daca41c7223203ad1",
+      "source_size": [512, 512],
+      "crop_xywh": [0, 0, 512, 512],
+      "seed": 26072604
+    },
+    {
+      "sample_id": "21",
+      "role": "face_uniform_textile_and_fine_insignia",
+      "source_path": "outputs/color_baseline/velvia50_digital10_s1_gamutsafe/inputs/01_digital_input.jpg",
+      "source_sha256": "011901a3f9084e22497e2b27642b44a39e8965c4c2febc5ddf2c3ccf298c8787",
+      "source_size": [512, 512],
+      "crop_xywh": [0, 0, 512, 512],
+      "seed": 26072605
+    }
+  ],
+  "boolean_candidates": [
+    {
+      "candidate_id": "boolean_small_r022_s012",
+      "radius_input_pixels": 0.22,
+      "luma_residual_strength": 0.12
+    },
+    {
+      "candidate_id": "boolean_large_r038_s012",
+      "radius_input_pixels": 0.38,
+      "luma_residual_strength": 0.12
+    }
+  ],
+  "boolean_render": {
+    "linear_luma_weights": [0.2126, 0.7152, 0.0722],
+    "input_shape": [128, 128],
+    "input_downsample": "Pillow_BOX_float32",
+    "reference_upsample": "Pillow_BILINEAR_float32",
+    "output_zoom": 4,
+    "monte_carlo_samples": 32,
+    "gaussian_filter_sigma_output_pixels": 0.8,
+    "maximum_input_intensity": 0.99609375,
+    "epsilon": 1e-12,
+    "composition": "signed_headroom_linear_rgb_v1",
+    "composition_positive": "rgb + strength*(grain-reference)*(1-rgb)",
+    "composition_negative": "rgb + strength*(grain-reference)*rgb",
+    "output_clamp_allowed": false
+  },
+  "legacy_comparator": {
+    "candidate_id": "legacy_residual_s0018",
+    "strength": 0.018,
+    "seed_source": "same_per_sample_seed",
+    "color": true,
+    "status": "existing accepted U1.6F visual comparator; not a physical truth or promotion target"
+  },
+  "automatic_metrics": {
+    "lowpass_sigma_pixels": 4.0,
+    "hard_endpoint_epsilon": 0.00196078431372549
+  },
+  "gates": {
+    "require_source_hash_and_size_match": true,
+    "require_exact_512_crop": true,
+    "require_finite_linear_output": true,
+    "require_structural_linear_bounds": true,
+    "maximum_absolute_mean_linear_luma_drift": 0.015,
+    "minimum_linear_luma_residual_rms": 0.004,
+    "maximum_linear_luma_residual_rms": 0.04,
+    "maximum_lowpass_linear_luma_rmse": 0.02,
+    "maximum_new_hard_endpoint_fraction": 0.005,
+    "repeat_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true,
+    "maximum_confirmed_severe_visual_failures_per_candidate": 0
+  },
+  "visual": {
+    "automatic_survivors_only": true,
+    "full_resolution_crop_review_required": true,
+    "blind_page_candidate_order_seed": 26072691,
+    "compare_source_boolean_and_legacy": true,
+    "vetoes": [
+      "face_or_object_corruption",
+      "red_speckle_or_chroma_speckle",
+      "posterization_or_banding",
+      "block_or_seam",
+      "large_unintended_clipping",
+      "objectionable_noise_domination"
+    ],
+    "claim": "autonomous B0 crop visual evidence only; not owner, human-panel or population preference"
+  },
+  "real_image_render_allowed": true,
+  "real_film_reference_use_allowed": false,
+  "stock_fitting_allowed": false,
+  "parameter_tuning_after_result_allowed": false,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "B0 autonomous existing-image crop evidence for two frozen clean-room Boolean grain policies versus the accepted legacy heuristic; no measured NPS, stock/process/scanner calibration, physical realism, preference, full-frame, production or named-stock claim"
+}
