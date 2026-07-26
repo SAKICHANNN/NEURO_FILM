@@ -3415,3 +3415,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   training, stock, general-safety, preference, calibration or production claim.
 - **Verification/handoff:** eight focused tests and all `861` CPU tests pass.
   Project structure remains modular. Goal remains active.
+
+## 2026-07-26 - Freeze U5.R2L1 full-frame strength preflight
+
+- **Question:** can the L0 post-output Oracle become a simplest legal
+  inference-time policy without ML by trial-rendering fixed `s0.65`, measuring
+  the exact full-frame RGB8 endpoint statistic, and hard-falling back to fixed
+  `s0.50`?
+- **Frozen rule:** exact E0 density-cyan operator, E1 transfer/quantization,
+  strengths `.65/.50`, epsilon `1/510`, clipping ceiling `.005`; no blend,
+  fitting, labels, threshold search or new pixels.
+- **Strict gates:** regenerate both archived candidates byte-exactly for all 41;
+  match all 41 L0 assignments and selected-output bytes; two byte-identical
+  reports and full CPU suite. Any full-frame/sampled disagreement closes the
+  primary rule without epsilon/threshold/sampling rescue.
+- **Boundary/handoff:** exact replay inherits only L0's exact-set B0 visual
+  evidence. It does not establish universal severe safety or production
+  readiness. CPU is the reproducibility primary; the authorized local 5070 Ti
+  is unnecessary for this deterministic PNG audit.

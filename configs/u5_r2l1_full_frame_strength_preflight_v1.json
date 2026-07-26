@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2l1-full-frame-strength-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2L1",
+  "split": "B0_development_replay",
+  "parent": {
+    "decision": "configs/u5_r2l0_density_strength_oracle_decision_v1.json",
+    "decision_sha256": "cbab7db8bd484e4baf2afdf3db3a8f94f038ebf9a95b157b15efaa20dbce4d3d",
+    "selected_manifest": "outputs/u5_r2l0_density_strength_oracle_v1/selected_manifest_pass1.json",
+    "selected_manifest_sha256": "66d5fbb8cabc100049909c606b25d39e92f0fe6a5487e15cd1a6ede32df7ea72"
+  },
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "density_operator_config": "configs/u5_r2e0_density_domain_operator_v1.json",
+  "density_operator_config_sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337",
+  "witness_id": "cyan_shadow_warm_highlight_like",
+  "baseline_strength": 0.5,
+  "challenger_strength": 0.65,
+  "input_encoding": "rgb8_srgb",
+  "working_space": "linear_srgb_d65_float64",
+  "output_encoding": "rgb8_srgb",
+  "new_hard_clipping_epsilon": 0.00196078431372549,
+  "maximum_full_frame_new_hard_clipping_fraction": 0.005,
+  "expected_samples": 41,
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "gates": {
+    "required_challenger_archive_byte_matches": 41,
+    "required_baseline_archive_byte_matches": 41,
+    "required_oracle_assignment_matches": 41,
+    "required_selected_output_byte_matches": 41,
+    "two_run_report_byte_identity": true
+  },
+  "output_root": "outputs/u5_r2l1_full_frame_strength_preflight_v1",
+  "image_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "gpu_required": false,
+  "generative_model_allowed": false,
+  "soft_blending_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "B0 deterministic replay evidence for a full-frame clipping-limited hard strength preflight over one fixed film-inspired density Look Approximation; no universal safety, learned routing, preference, digital-to-film identification, named-stock response, calibration, authenticity or production claim"
+}
