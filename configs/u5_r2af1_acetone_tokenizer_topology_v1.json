@@ -1,0 +1,109 @@
+{
+  "schema_version": "u5-r2af1-acetone-tokenizer-topology-config-v1",
+  "experiment_id": "u5-r2af1-acetone-tokenizer-topology-v1",
+  "parent_decision": "published_selector_excluded_tokenizer_stress_only",
+  "external_source": {
+    "repository": "https://github.com/martian422/AceTone",
+    "revision": "916393b3f26bdf89c3d939cc5f2a9a3c115ccbc5",
+    "model_source_path": "model/vq.py",
+    "model_source_sha256": "e0bb430338f47013f2aef20a819bca0ba22580f4c902bfc946d6d71dfbe8b198",
+    "checkpoint_path": "model/acetone-vqvae-d64.pt",
+    "checkpoint_sha256": "115e4e8c147655fe0ae0c7fd494ec6cd3a8ff5a441ce536a886edb1ea556ef92",
+    "checkpoint_bytes": 21383912,
+    "license": "Apache-2.0"
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "torch": "2.11.0+cu128",
+    "device": "cpu",
+    "torch_threads": 1,
+    "deterministic_algorithms": true,
+    "seed": 29041
+  },
+  "population": {
+    "cube_size": 32,
+    "analytic_form": "curve_c(x)=x+a_c*x*(1-x); output=curve(input)@matrix.T",
+    "records": [
+      {
+        "id": "identity",
+        "curve_a": [0.0, 0.0, 0.0],
+        "matrix": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+      },
+      {
+        "id": "warm_soft",
+        "curve_a": [0.25, 0.1, -0.15],
+        "matrix": [[0.92, 0.06, 0.02], [0.02, 0.96, 0.02], [0.02, 0.08, 0.9]]
+      },
+      {
+        "id": "cool_dense",
+        "curve_a": [-0.2, 0.15, 0.25],
+        "matrix": [[0.9, 0.04, 0.06], [0.03, 0.94, 0.03], [0.08, 0.04, 0.88]]
+      },
+      {
+        "id": "cyan_shadow_warm_highlight",
+        "curve_a": [0.35, -0.1, -0.3],
+        "matrix": [[0.88, 0.09, 0.03], [0.03, 0.9, 0.07], [0.04, 0.12, 0.84]]
+      },
+      {
+        "id": "green_foliage",
+        "curve_a": [0.1, 0.3, -0.1],
+        "matrix": [[0.91, 0.05, 0.04], [0.04, 0.92, 0.04], [0.03, 0.09, 0.88]]
+      },
+      {
+        "id": "red_skin_protect",
+        "curve_a": [-0.1, 0.2, 0.1],
+        "matrix": [[0.95, 0.03, 0.02], [0.04, 0.93, 0.03], [0.03, 0.05, 0.92]]
+      },
+      {
+        "id": "dense_slide",
+        "curve_a": [-0.3, -0.2, -0.1],
+        "matrix": [[0.89, 0.06, 0.05], [0.03, 0.92, 0.05], [0.06, 0.05, 0.89]]
+      },
+      {
+        "id": "pastel_negative",
+        "curve_a": [0.3, 0.2, 0.25],
+        "matrix": [[0.87, 0.08, 0.05], [0.05, 0.9, 0.05], [0.04, 0.1, 0.86]]
+      }
+    ],
+    "duplicate_control_id": "warm_soft",
+    "negative_metric_control": "swap output red and green axes of identity"
+  },
+  "automatic_gates": {
+    "source_all_finite": true,
+    "source_range_min": 0.0,
+    "source_range_max": 1.0,
+    "source_maximum_negative_jacobian_fraction": 0.0,
+    "source_minimum_jacobian_determinant": 0.25,
+    "reconstruction_all_finite": true,
+    "reconstruction_range_min": 0.0,
+    "reconstruction_range_max": 1.0,
+    "exact_repeat": true,
+    "duplicate_exact": true,
+    "negative_metric_control_minimum_fraction": 0.999,
+    "maximum_negative_jacobian_fraction": 0.005,
+    "negative_jacobian_threshold": -0.00001,
+    "maximum_jacobian_spectral_norm": 20.0,
+    "maximum_rgb_rmse": 0.03,
+    "maximum_median_delta_e76": 2.0,
+    "maximum_p95_delta_e76": 5.0,
+    "maximum_new_interior_clipping_fraction": 0.005,
+    "interior_clip_margin": 0.03125
+  },
+  "branch_rules": {
+    "runtime_or_lineage_failure": "close without alternate checkpoint or environment rescue",
+    "source_control_failure": "invalidate experiment",
+    "topology_failure": "close learned tokenizer representation; no decoder, loss, projection, smoothing or threshold rescue",
+    "fidelity_failure": "close learned tokenizer representation; no capacity or checkpoint search",
+    "all_gates_pass": "retain representation feasibility only; requires a separately frozen bounded non-generative predictor hypothesis"
+  },
+  "forbidden": [
+    "Qwen or autoregressive token generation",
+    "GRPO",
+    "photographs or benchmark payloads",
+    "training or fine-tuning",
+    "AE1 LUT repair",
+    "post-result projection, smoothing, clipping or decoder changes",
+    "film, stock, calibrated reference or product claims"
+  ],
+  "claim_ceiling": "synthetic explicit-LUT representation feasibility only"
+}

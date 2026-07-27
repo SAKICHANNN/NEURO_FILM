@@ -5337,3 +5337,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   analytic orientation-preserving LUTs. No Qwen, photographs, benchmark,
   training, decoder repair, film/stock/reference claim or integration. Goal
   remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AF1 tokenizer topology contract
+
+- **Parent/DoR:** AF0 excludes the generative selector and permits only the
+  exact included VQ-VAE checkpoint as a synthetic representation stress.
+- **Population:** freeze eight analytic `32^3` LUTs composed from strictly
+  monotone quadratic curves and positive-determinant row-normalized matrices.
+  All have zero negative cells and minimum determinant above `.25`. Freeze an
+  exact duplicate and a metric-only axis-swap negative control.
+- **Runtime:** CPython 3.12.10, PyTorch 2.11.0+cu128, CPU, one thread,
+  deterministic algorithms, seed 29041, exact external source/checkpoint
+  hashes and `weights_only=True` loading.
+- **Gates:** conjunctive exact repeat/duplicate, range, finite, negative
+  Jacobian at most `.5%`, spectral norm at most 20, RGB RMSE at most `.03`,
+  median/p95 Delta E76 at most `2/5` and new interior clipping at most `.5%`.
+- **Boundary/handoff:** implement an isolated external runner plus
+  project-owned manifest evaluator. No Qwen, photos, benchmark, training,
+  repair, film claim, visual review or integration. Goal remains ACTIVE.
