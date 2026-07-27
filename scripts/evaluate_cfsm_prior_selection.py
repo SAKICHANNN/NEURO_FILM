@@ -24,6 +24,7 @@ from src.color_match.research import (  # noqa: E402
     fit_cfsm_analytic_candidate,
     fit_cfsm_candidate,
     fit_cfsm_empirical_candidate,
+    fit_cfsm_quantile_candidate,
     render_cfsm_candidate,
 )
 from src.inference import atomic_write_json  # noqa: E402
@@ -155,6 +156,8 @@ def _candidate(
             source_pixel_count=empirical_prior.source_pixel_count,
             policy=policy,
         )
+    if prior_kind == "fixed-uniform-cube-monotone-quantile-v1":
+        return fit_cfsm_quantile_candidate(reference, policy=policy)
     return fit_cfsm_analytic_candidate(
         reference,
         prior_kind=prior_kind,

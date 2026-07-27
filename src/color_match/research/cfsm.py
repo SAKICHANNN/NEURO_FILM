@@ -28,9 +28,13 @@ from src.roll2film.constrained import (
     LUTConstraintSpec,
     audit_lut_constraints,
 )
-from src.roll2film.identification import estimate_gaussian_transport_operator
+from src.roll2film.identification import (
+    estimate_affine_spline_transport_operator,
+    estimate_gaussian_transport_operator,
+)
 from src.roll2film.lut import DenseLUT3D
 from src.roll2film.operators import AffineColorOperator
+from src.roll2film.splines import AffineMonotoneSplineOperator
 
 from ..canonical import canonical_sha256
 from ..contracts import ReferenceMatchContractError
@@ -44,6 +48,9 @@ CFSM_ANALYTIC_ALGORITHM_ID = (
 CFSM_EMPIRICAL_ALGORITHM_ID = (
     "canonical-factorized-safe-match.empirical-photo-prior-v1"
 )
+CFSM_QUANTILE_ALGORITHM_ID = (
+    "canonical-factorized-safe-match.monotone-quantile-v1"
+)
 CFSM_CANDIDATE_SCHEMA_ID = "neuro-film.cfsm-candidate.v0"
 _SUPPORTED_ALGORITHM_IDS = frozenset(
     {
@@ -51,6 +58,7 @@ _SUPPORTED_ALGORITHM_IDS = frozenset(
         CFSM_BATCH_ALGORITHM_ID,
         CFSM_ANALYTIC_ALGORITHM_ID,
         CFSM_EMPIRICAL_ALGORITHM_ID,
+        CFSM_QUANTILE_ALGORITHM_ID,
     }
 )
 _ANALYTIC_PRIOR_SEED = 2026072701
@@ -376,6 +384,16 @@ def validate_cfsm_candidate(candidate: CFSMCandidate) -> None:
         raise ReferenceMatchContractError(
             "CFSM empirical canonical-prior diagnostics mismatch"
         )
+    if candidate.algorithm_id == CFSM_QUANTILE_ALGORITHM_ID and (
+        candidate.diagnostics.canonical_prior_mode
+        != "fixed-uniform-cube-monotone-quantile-v1"
+        or candidate.diagnostics.source_image_count != 0
+        or candidate.diagnostics.canonical_prior_sample_count
+        != candidate.policy.prior_axis_size**3
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM quantile canonical-prior diagnostics mismatch"
+        )
     expected_fallback = float(strength) == 0.0
     if (
         candidate.diagnostics.used_identity_fallback != expected_fallback
@@ -447,7 +465,7 @@ def _project_lut(
 
 def _fit_cfsm_from_transport(
     reference: WorkingImage,
-    estimate: AffineColorOperator,
+    estimate: AffineColorOperator | AffineMonotoneSplineOperator,
     *,
     policy: CFSMProjectionPolicy,
     algorithm_id: str,
@@ -465,9 +483,12 @@ def _fit_cfsm_from_transport(
         raise ReferenceMatchContractError(
             "CFSM reference must contain at least 64 pixels"
         )
-    if not isinstance(estimate, AffineColorOperator):
+    if not isinstance(
+        estimate,
+        (AffineColorOperator, AffineMonotoneSplineOperator),
+    ):
         raise ReferenceMatchContractError(
-            "CFSM transport estimate must be AffineColorOperator"
+            "CFSM transport estimate type is unsupported"
         )
     lut_grid = _cube_grid(resolved.lut_size)
     raw_values = estimate.apply(lut_grid)
@@ -648,6 +669,51 @@ def fit_cfsm_empirical_candidate(
         prior_mode=f"empirical-neutral-photo-v1:{prior_id}",
         source_image_count=source_image_count,
         canonical_prior_sample_count=source_pixel_count,
+    )
+
+
+def fit_cfsm_quantile_candidate(
+    reference: WorkingImage,
+    *,
+    policy: CFSMProjectionPolicy | None = None,
+) -> CFSMCandidate:
+    """Fit a fixed affine-plus-monotone-quantile explicit operator."""
+
+    resolved = policy or CFSMProjectionPolicy()
+    _validate_policy(resolved)
+    _validate_image(reference, "reference")
+    prior = _cube_grid(resolved.prior_axis_size).reshape(-1, 3)
+    target = _reference_samples(reference, resolved.maximum_reference_samples)
+    try:
+        estimate = estimate_affine_spline_transport_operator(
+            prior,
+            [target],
+            knot_quantiles=(
+                0.001,
+                0.03,
+                0.12,
+                0.35,
+                0.65,
+                0.88,
+                0.97,
+                0.999,
+            ),
+            iterations=8,
+            regularization=1e-6,
+            normalize_frame_photometric=False,
+        )
+    except (ValueError, np.linalg.LinAlgError) as exc:
+        raise ReferenceMatchContractError(
+            "CFSM could not estimate a finite monotone-quantile transport"
+        ) from exc
+    return _fit_cfsm_from_transport(
+        reference,
+        estimate,
+        policy=resolved,
+        algorithm_id=CFSM_QUANTILE_ALGORITHM_ID,
+        prior_mode="fixed-uniform-cube-monotone-quantile-v1",
+        source_image_count=0,
+        canonical_prior_sample_count=len(prior),
     )
 
 

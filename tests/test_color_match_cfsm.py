@@ -18,6 +18,7 @@ from src.color_match.research import (
     fit_cfsm_analytic_candidate,
     fit_cfsm_batch_candidate,
     fit_cfsm_candidate,
+    fit_cfsm_quantile_candidate,
     render_cfsm_batch,
     render_cfsm_candidate,
 )
@@ -81,6 +82,23 @@ def test_cfsm_fit_is_deterministic_constrained_and_non_identity() -> None:
             axis=-1,
         ),
     )
+
+
+def test_cfsm_quantile_fit_is_deterministic_constrained_and_replayable() -> None:
+    reference = _cube_reference()
+    first = fit_cfsm_quantile_candidate(reference)
+    second = fit_cfsm_quantile_candidate(reference)
+
+    assert first.candidate_id == second.candidate_id
+    assert np.array_equal(first.lut.values, second.lut.values)
+    assert first.diagnostics.constraint_report.passes
+    assert first.diagnostics.canonical_prior_mode == (
+        "fixed-uniform-cube-monotone-quantile-v1"
+    )
+    assert first.diagnostics.source_image_count == 0
+    replay = cfsm_candidate_from_json(cfsm_candidate_to_json(first))
+    assert replay.candidate_id == first.candidate_id
+    assert np.array_equal(replay.lut.values, first.lut.values)
 
 
 def test_cfsm_serialization_replays_and_tampering_fails_closed() -> None:
