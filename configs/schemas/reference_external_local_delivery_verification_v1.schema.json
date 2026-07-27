@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference_external_local_delivery_verification_v1.schema.json",
+  "title": "Neuro-Film External Local Delivery Verification V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "verification_id",
+    "delivery_id",
+    "report_path",
+    "report_file_sha256",
+    "authorization_id",
+    "filmfx_verification_id",
+    "source_count",
+    "state",
+    "outputs",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.external-local-delivery-verification.v1"
+    },
+    "verification_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "delivery_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "report_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_file_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "authorization_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "filmfx_verification_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "source_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "state": {
+      "const": "verified-local-delivery"
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/output"
+      }
+    },
+    "claim_ceiling": {
+      "const": "verified-local-files-reference-look"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_index",
+        "staging_output_path",
+        "staging_output_file_sha256",
+        "delivered_path",
+        "delivered_file_sha256",
+        "output_format",
+        "output_bit_depth"
+      ],
+      "properties": {
+        "source_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "staging_output_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "staging_output_file_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "delivered_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delivered_file_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "output_format": {
+          "enum": [
+            "PNG",
+            "JPEG",
+            "TIFF"
+          ]
+        },
+        "output_bit_depth": {
+          "enum": [
+            8,
+            16
+          ]
+        }
+      }
+    }
+  }
+}
