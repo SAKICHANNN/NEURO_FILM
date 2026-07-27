@@ -193,10 +193,14 @@ with a selected stock, but reference matching alone is labeled
 | P50B | DONE | implement shared output/report staging | preflight all paths and bytes, bind report to P49/P47/P48, then commit all-or-none | `97f4131`; schema + tests | committed staging only |
 | P50C | DONE | prove rollback and transaction identities | collision, injected failure, sparse OOB, foreign authorization/apply and reorder tests | `97f4131`; fault injection | restore prior bytes |
 | P50D | DONE | propagate evidence and peer handoff | 600 combined; 1406 pass/1 skip/36 known; latest-main merge 54 pass | evidence commit | real producer still required |
-| P51A | IN PROGRESS | freeze restart verification for shared staging | bounded reread of exact P50 report plus every output hash/path; no source checkout or producer invocation | plan commit | no delivery |
-| P51B | READY | implement canonical shared staging verification | bind expected report hash/run ID, P49 authorization, P48 guard and ordered output identities | code/schema/tests | verified staging only |
-| P51C | BLOCKED ON P51B | prove tamper/missing/relocation closure | report/output byte tamper, missing file, path relocation, identity/order mutation | adversarial tests | fail closed |
-| P51D | BLOCKED ON P51C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | future composition consumer |
+| P51A | DONE | freeze restart verification for shared staging | bounded reread of exact P50 report plus every output hash/path; no source checkout or producer invocation | `a0740cd` | no delivery |
+| P51B | DONE | implement canonical shared staging verification | bind expected report hash/run ID, P49 authorization, P48 guard and ordered output identities | `9816c4b`; schema + tests | verified staging only |
+| P51C | DONE | prove tamper/missing/relocation closure | report/output byte tamper, missing file, path relocation, identity/order mutation fail closed | `9816c4b`; adversarial tests | no write |
+| P51D | DONE | propagate evidence and peer handoff | 612 combined; 1418 pass/1 skip/36 known; latest-main merge 33 pass | evidence commit | future composition consumer |
+| P52A | IN PROGRESS | freeze shared verified composition boundary | bind P51 verified shared base to optional procedural FilmFX without adding color or relaxing P49 | plan commit | no rendering |
+| P52B | READY | implement shared composition plan | exact P51/run/auth/operator outputs plus FilmFX recipe identity; canonical no-write plan | code/schema/tests | plan only |
+| P52C | BLOCKED ON P52B | prove foreign-chain and color-claim closure | reject foreign verification/output, order, FilmFX identity and stock/calibrated claim mutation | adversarial tests | fail closed |
+| P52D | BLOCKED ON P52C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | later renderer |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

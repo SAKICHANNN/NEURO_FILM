@@ -2007,6 +2007,27 @@
   `verified-shared-staging-not-delivered`; no producer invocation, staging
   mutation, composition, applied state or delivery.
 
+## 2026-07-28 - Implement and verify P51 shared staging verification
+
+- Implementation: `9816c4b` adds bounded no-write P50 restart verification,
+  strict schema, public exports and adversarial tests.
+- Caller-held chain: exact report SHA, run ID, P49 authorization ID, P48 guard
+  ID and P47 operator ID are all mandatory. The verifier reparses P50 and
+  rehashes every ordered file.
+- Immutability: two repeated verifications are exact and leave report/output
+  bytes and mtimes unchanged.
+- Failure closure: report tamper/relocation, chain-ID substitution, output
+  tamper/missing, order/identity duplication and JSON/state/claim mutation
+  reject.
+- Structure: P34 and P51 share bounded verification I/O; P34 wire/identity is
+  unchanged and its adjacent tests pass.
+- State: `verified-shared-staging` /
+  `verified-shared-staging-not-delivered`.
+- Verification: 33 focused, 612 combined and full 1418 pass/1 skip/36
+  unchanged. Latest main `1dce729`, zero overlap, merge tree
+  `03ffb2de...944`; fresh detached merge 33 pass and was removed.
+- Producer: SPGIN-v0 is still running calibration and remains below P45/P49.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
