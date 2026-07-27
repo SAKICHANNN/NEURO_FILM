@@ -73,8 +73,8 @@ file was changed.
 - Injected final-commit failure restored old output A, old output B and old
   recipe, with no stage/backup residue.
 
-The full CPU collection produced 939 passed, 1 skipped and 36 failures. The
-failures are pre-existing worktree conditions:
+The latest full CPU collection produced 952 passed, 1 skipped and 36 failures.
+The failures are pre-existing worktree conditions:
 
 1. historical tests require ignored `outputs/` artifacts that are available in
    the main checkout but not copied into this worktree;

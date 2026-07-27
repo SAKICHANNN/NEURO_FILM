@@ -135,7 +135,8 @@ and tracked profile manifest both use the LF-byte SHA-256 `d919402a...`. No
 reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
-The complete CPU collection later reached `939 passed, 1 skipped, 36 failed`.
+The latest complete CPU collection reached
+`952 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.

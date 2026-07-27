@@ -198,3 +198,13 @@
   luminance scale and full provenance.
 - Ownership: RAW/HDR/video decoding, DNG entropy work and cross-platform media
   remain entirely in D-PCT. No decoder code or mutable D-PCT file was copied.
+
+## 2026-07-27 - Refresh complete CPU regression
+
+- Result: `952 passed, 1 skipped, 36 failed` in 79.40 seconds.
+- Delta: 13 additional tests pass relative to the prior branch snapshot; the
+  36 failures are the same missing ignored-output and CRLF frozen-byte-hash
+  families already classified at P5.
+- No `src/color_match` test and no new failure family appears.
+- Decision: preserve historical assets and hashes; do not rewrite unrelated
+  evidence to make a secondary worktree's full suite artificially green.
