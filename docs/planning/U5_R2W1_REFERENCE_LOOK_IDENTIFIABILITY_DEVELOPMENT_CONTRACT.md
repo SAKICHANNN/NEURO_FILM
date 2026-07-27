@@ -2,7 +2,7 @@
 
 Date: 2026-07-27
 
-Status: **implemented; execution queued behind the active U5.R2S4/U1 leaves**
+Status: **ready; repeated U5.R2U1 decision available**
 
 ## Parent and purpose
 

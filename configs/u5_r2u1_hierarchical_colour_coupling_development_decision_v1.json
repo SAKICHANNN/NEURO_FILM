@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2u1-hierarchical-colour-coupling-development-decision-v1",
+  "experiment_id": "u5.r2u1-hierarchical-colour-coupling-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2U1D",
+  "software_commit": "ed1dbb5784b2519be8d56ff30961bee778995ced",
+  "config_sha256": "53a986860734c3d89b1c2ab84a26adf3263a78e7ad968e61d689a0ed025ebaee",
+  "report_a_sha256": "b0e9a64198414768a23ec183f1d87d016e1304f27314e05b69fc90ba6eda71b3",
+  "report_b_sha256": "b0e9a64198414768a23ec183f1d87d016e1304f27314e05b69fc90ba6eda71b3",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seed_accessed": false,
+  "decision_branch": "operator_fails_despite_pair_fit",
+  "automatic_visual_shortlist_generated": false,
+  "primary_method": {
+    "id": "correct_condition_hcc",
+    "pair_fit_loss_improvement_fraction_median": 0.8471573557683142,
+    "heldout_correct_conditional_loss_improvement_fraction_median": 0.6574897994864142,
+    "oracle_operator_output_rmse_median": 0.08790972706138478,
+    "oracle_operator_output_rmse_p90": 0.09698915655152894,
+    "same_style_fit_replicate_operator_rmse_median": 0.04175921495443066,
+    "identity_rmse_retention_ratio_median": 0.705805331835504,
+    "primary_oracle_error_improvement_over_random_fraction": -0.20821546220795017,
+    "primary_oracle_error_improvement_over_pooled_fraction": -0.012701181722140076,
+    "primary_oracle_error_improvement_over_shuffled_fraction": 0.3181444098710694,
+    "minimum_jacobian_determinant": 0.09782905986953198,
+    "maximum_jacobian_spectral_norm": 2.529691188184749,
+    "maximum_inverse_error": 9.621546842586426e-08,
+    "maximum_coefficient_vector_norm": 1.4393807283291178
+  },
+  "controls": {
+    "random_correct_condition": {
+      "oracle_operator_output_rmse_median": 0.07275997519576051,
+      "oracle_operator_output_rmse_p90": 0.08347981370021205,
+      "same_style_fit_replicate_operator_rmse_median": 0.03995251006840435,
+      "pair_fit_loss_improvement_fraction_median": 0.5345764723448323
+    },
+    "pooled_hcc": {
+      "oracle_operator_output_rmse_median": 0.08680717337753144,
+      "oracle_operator_output_rmse_p90": 0.09638784533674521,
+      "same_style_fit_replicate_operator_rmse_median": 0.029231138162072665,
+      "pair_fit_loss_improvement_fraction_median": 0.7919955739193638
+    },
+    "shuffled_condition_hcc": {
+      "oracle_operator_output_rmse_median": 0.12892719269891462,
+      "oracle_operator_output_rmse_p90": 0.13159905419073967,
+      "same_style_fit_replicate_operator_rmse_median": 0.04148871633429507,
+      "pair_fit_loss_improvement_fraction_median": 0.6059473957727732
+    }
+  },
+  "primary_gates": {
+    "pair_fit": true,
+    "oracle_median": false,
+    "oracle_p90": true,
+    "replicate": false,
+    "beats_random": false,
+    "beats_pooled": false,
+    "beats_shuffled": true,
+    "shuffled_negative": true,
+    "style": true,
+    "structure": true
+  },
+  "interpretation": "correct-condition hierarchical colour coupling fits its constructed pseudo-pairs strongly and separates the shuffled-condition negative, but it does not recover the hidden bounded operator: it is less accurate than random correct-condition pairing and pooled HCC and misses the frozen median-oracle and replicate gates",
+  "forbidden_rescues": [
+    "increase HCC depth, pair count, optimization steps or bounded-flow capacity",
+    "change the HCC pairing rule after seeing the formal results",
+    "relax the frozen oracle, replicate or 25% comparison gates",
+    "access the reserved confirmation seed",
+    "generate a visual candidate or use project images",
+    "claim constructed pseudo-pairs are observed correspondences",
+    "claim real unpaired digital-to-film operator identification"
+  ],
+  "next_ready_leaf": "U5.R2W1D reference-look identifiability development",
+  "claim_ceiling": "repeat-exact synthetic development evidence that HCC can fit plausible constructed pseudo-pairs and reject a shuffled-condition negative without identifying the known bounded colour operator; no universal, image, film, stock, calibrated or real unpaired-operator claim"
+}

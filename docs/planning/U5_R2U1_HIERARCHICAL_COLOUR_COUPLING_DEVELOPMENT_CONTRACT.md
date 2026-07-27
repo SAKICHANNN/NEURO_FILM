@@ -2,7 +2,7 @@
 
 Date: 2026-07-26
 
-Status: **ready; repeated eligible U5.R2S4 branch available**
+Status: **complete; pair fit passes but hidden operator fails**
 
 ## Parent and activation
 
@@ -85,3 +85,7 @@ allowed.
 
 The machine-readable freeze is
 `configs/u5_r2u1_hierarchical_colour_coupling_development_v1.json`.
+
+The repeat-exact formal decision is
+`operator_fails_despite_pair_fit`; see
+`docs/U5_R2U1_HIERARCHICAL_COLOUR_COUPLING_DEVELOPMENT_RESULTS.md`.

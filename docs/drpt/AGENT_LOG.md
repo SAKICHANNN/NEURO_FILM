@@ -4437,3 +4437,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   pseudo-pairs remain hypotheses, never observed correspondences. Current
   pixels, stock learning, LSM, calibration and production integration stay
   closed; Goal continues.
+
+## 2026-07-27 - Close U5.R2U1D and activate U5.R2W1D
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2U1D`; the primary writer follows
+  `dev-research-reliability`, with AI/ML, research, DRPT-BI, tracker,
+  agent-log, structure and code-review disciplines as read-only governance.
+- **Frozen execution:** both formal CUDA float32 runs used software commit
+  `ed1dbb5784b2519be8d56ff30961bee778995ced` and config SHA-256
+  `53a986860734c3d89b1c2ab84a26adf3263a78e7ad968e61d689a0ed025ebaee`.
+  Reports A/B are byte-identical at
+  `B0E9A64198414768A23EC183F1D87D016E1304F27314E05B69FC90BA6EDA71B3`;
+  stdout/stderr are empty and the reserved confirmation seed is untouched.
+- **Primary result:** correct-condition HCC improves constructed-pair loss by
+  `84.72%` and held-out conditional distribution loss by `65.75%`. Its hidden
+  operator median/p90 RMSE is `.08791/.09699`, failing the `.07` median gate,
+  and its A/B operator RMSE is `.04176`, failing `.04`.
+- **Controls:** random correct-condition pairing reaches `.07276/.08348`,
+  pooled HCC `.08681/.09639`, and shuffled HCC `.12893/.13160`. Correct HCC
+  is `20.82%` worse than random and `1.27%` worse than pooled, while correctly
+  rejecting shuffled by `31.81%`.
+- **Decision:** formal branch `operator_fails_despite_pair_fit`. Every range,
+  Jacobian, norm, inverse, replay, coefficient and style gate passes, so the
+  failure is epistemic rather than numerical. No coupling-depth, pairing,
+  optimization or capacity rescue; no confirmation or visual candidate.
+- **Propagation/handoff:** U1 is closed and the already-frozen U5.R2W1D
+  same-known-look/unrelated-content experiment is ready. W1 remains generated
+  mechanism evidence; project images, film pixels, stock learning, LSM,
+  calibration and production integration stay closed; Goal continues.

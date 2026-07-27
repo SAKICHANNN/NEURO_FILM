@@ -148,14 +148,15 @@ assets with no code, checkpoint or licence; its MLP/one-step Euler path lacks
 the project's cube/range/Jacobian guarantees. Retain HCC only for a future
 synthetic clean-room comparison fitted into U5.R2O0 after S3/S4 adjudication.
 
-U5.R2U1 now has the repeated eligible S4 decision required for execution. New
-synthetic seeds compare random
-correct-condition pairs, pooled HCC, correct-condition HCC and fixed
-shuffled-condition HCC while every method fits the same bounded O0 flow.
-Constructed-pair loss is diagnostic; hidden-operator error, independent A/B
-stability, control improvements, structure and byte-identical repeat jointly
-gate. Confirmation seed `28403` and all real/project pixels remain
-inaccessible.
+U5.R2U1 is now complete with two byte-identical CUDA reports. Correct-condition
+HCC improves constructed-pair loss by 84.72% and separates shuffled
+conditions, but its hidden-operator median/p90 RMSE is `.08791/.09699` and
+independent A/B operator RMSE is `.04176`. It is 20.82% worse than random
+correct-condition pairing and 1.27% worse than pooled HCC. The formal branch
+is `operator_fails_despite_pair_fit`: plausible pseudo-pairs do not identify
+the hidden operator. All structural gates pass, so this is not numerical
+collapse. Confirmation, capacity/pairing rescue, visuals and real pixels
+remain closed.
 
 U5.R2V0 audits ICCV-2025 cmKAN at pinned official commit `91e7f94...`.
 Despite its spline vocabulary, the unpaired lane is CycleGAN: a
@@ -192,7 +193,7 @@ one direction with ordered continuous strength. Content/nuisance probes,
 hidden-grid operator error, A/B replication and all O0 structure/replay gates
 must pass before any parameter-only learned challenger; images, film pixels,
 current FiveK, semantic embeddings and direct RGB models remain forbidden.
-Execution is queued behind the already active S4 and implemented U1 leaves.
+Execution is ready after the repeated U1 decision.
 The isolated fixed descriptor, hard bank, separate bounded single/multi ridge,
 activation/partition-gated runner and same-input `53/55/56` fixture pass twelve
 focused tests; the complete CPU suite passes `946/946`. Formal W1 development
