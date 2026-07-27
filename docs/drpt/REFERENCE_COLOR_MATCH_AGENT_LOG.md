@@ -1544,3 +1544,5 @@
 - Handoff: P38 evidence is ready to commit. A later writer may consume this
   exact authorization, but real use remains closed on genuine producer
   invocation and A1/A4/A5.
+- Evidence commit: `fcd3ace` (`docs: record local delivery authorization`).
+  P38 is complete as authorization, not file delivery.
