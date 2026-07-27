@@ -146,6 +146,17 @@ from .dpct_adapter import (
     validate_dpct_producer_failure_v2,
     verify_dpct_failed_diagnostics_v2,
 )
+from .dpct_invocation import (
+    DPCT_INVOCATION_CLAIM_CEILING,
+    DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID,
+    DPCT_INVOCATION_SOURCE_COMMIT,
+    DPCT_INVOCATION_STABLE_COMMIT,
+    DPCT_INVOCATION_WHEEL_SHA256,
+    DpctInvocationOutcomeV1,
+    invoke_dpct_package_v1,
+    prepare_dpct_invocation_request_v1,
+    verify_dpct_invocation_output_v1,
+)
 from .dpct_batch import (
     DPCT_BATCH_POLICY_ID,
     DPCT_BATCH_RESOLUTION_SCHEMA_ID,
@@ -454,6 +465,15 @@ __all__ = [
     "fit_reference_look",
     "admit_core_apply_receipt",
     "adapt_dpct_candidate_v2",
+    "DPCT_INVOCATION_CLAIM_CEILING",
+    "DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID",
+    "DPCT_INVOCATION_SOURCE_COMMIT",
+    "DPCT_INVOCATION_STABLE_COMMIT",
+    "DPCT_INVOCATION_WHEEL_SHA256",
+    "DpctInvocationOutcomeV1",
+    "invoke_dpct_package_v1",
+    "prepare_dpct_invocation_request_v1",
+    "verify_dpct_invocation_output_v1",
     "dpct_producer_view_id_for_prepared_v2",
     "dpct_batch_resolution_from_json",
     "dpct_batch_resolution_to_json",
