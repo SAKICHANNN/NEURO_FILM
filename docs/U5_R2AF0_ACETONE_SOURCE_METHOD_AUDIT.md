@@ -1,7 +1,7 @@
 # U5.R2AF0 — AceTone source and method audit
 
-Date: 2026-07-28  
-Node: `ULT > U5 > U5.R2 > U5.R2AF0`  
+Date: 2026-07-28
+Node: `ULT > U5 > U5.R2 > U5.R2AF0`
 Decision: `published_selector_excluded_tokenizer_stress_only`
 
 ## Question
@@ -95,4 +95,3 @@ outputs, or claim film/reference/product validity.
 - A failed AF1 closes this representation without decoder/loss/threshold
   rescue. A pass would establish representation feasibility only and would
   not open current-pixel learning, FilmCase, LSM, stock claims or production.
-
