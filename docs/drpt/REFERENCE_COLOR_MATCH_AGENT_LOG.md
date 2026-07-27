@@ -957,3 +957,21 @@
 - Handoff: P26 is complete. A separately claimed P27 may audit the fixed
   producer contract and exact-bit fixture, but compatibility remains closed
   until every field/profile/hash mapping passes.
+
+## 2026-07-28 - Pin producer v1 and close candidate bridge
+
+- Node/parent goal: P27A / explicit D-PCT producer compatibility.
+- Source: fixed producer `3c2e9fdf...`; no mutable import or source copy.
+- Independent hashes: MatchView `ac422dd8...`, TransformBundle `e1cf6a7e...`,
+  Diagnostics `f6c1dec0...`, ApplyResult `887e964d...`, exact fixture
+  `c9c8c0ff...e326`, Python contract `98a32053...` and C++ reference
+  `dab41ef6...`; all match the communicated evidence.
+- Mapping: relative display-linear sRGB and exact f32be pixel hash are
+  mappable; producer/consumer canonical record IDs remain separate.
+- Decision: `contract-mapped-candidate-pixel-bridge-closed`. DiagnosticsV1
+  lacks required factual metrics/backend build fields, and ApplyResultV1 does
+  not bind source geometry. No consumer invocation, receipt or admission.
+- Peer response: D-PCT accepted both issues and will add v2 schemas/fixture
+  without changing v1. Its metric definitions remain producer-owned.
+- Verification: four lock/schema tests pass; diff check passes.
+- Handoff: commit P27A. P27B may act only on a fixed v2 snapshot.

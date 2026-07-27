@@ -100,6 +100,11 @@ with a selected stock, but reference matching alone is labeled
 | P26B | DONE | implement prepared output, strict receipt schema/roundtrip and binding validation | 11 dedicated and 68 combined core tests; finite dense float32, same-profile/shape v1, mutation and swap tests | `f9fbd7d` | revert additive receipt commit |
 | P26C | DONE | bind the exact receipt into a v2 guard-candidate admission decision | 11 dedicated and 79 combined core tests; no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | `497748c` | revert additive admission commit |
 | P26D | DONE | run propagation, adjacent/full regression and peer handoff | 304 adjacent tests; full suite 1160 pass/1 skip/36 known failures; zero main-path overlap | evidence commit | retain P25 fallback |
+| P27A | DONE | independently pin and audit D-PCT producer v1 schemas/exact-bit conformance | 4 lock tests; producer commit plus four schema, fixture, Python and C++ hashes; explicit closed verdict | compatibility-lock commit | revert lock/docs |
+| P27B | IN_PROGRESS | consume producer DiagnosticsV2/ApplyResultV2 only after fixed hashes and exact fixture | all required factual diagnostics and source geometry must be producer-bound | v2 lock commit | keep v1 closed |
+| P27C | NOT_STARTED | implement explicit producer-v2 to consumer adapter | exact profile/pixel/hash/ID mapping; no mutable import | adapter commit | identity fallback |
+| P27D | NOT_STARTED | pass producer exact fixture through consumer receipt/admission | producer IDs and regenerated consumer IDs both exact; candidate-only | conformance commit | identity fallback |
+| P27E | NOT_STARTED | run adjacent/full/latest-main propagation and peer handoff | regression, overlap, fixed evidence bundle | evidence commit | retain P26 boundary |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -152,6 +157,16 @@ conversion requires a separately versioned trusted bridge. A v2 candidate
 admission must bind the receipt ID as well as A1/A4/A5; the existing v1
 acceptance record remains valid historical evidence but is insufficient to
 authorize future external pixels by itself.
+
+P27 is a separate compatibility program, not a continuation by naming. Its
+lock independently reproduces producer artifact hashes from a fixed Git
+commit. Producer and consumer canonical IDs remain distinct. A compatibility
+adapter may strip the producer hash prefix for the identical f32be pixel hash,
+but must preserve producer IDs as authoritative aliases and regenerate
+consumer IDs under consumer rules. Producer v1 is deliberately closed because
+its diagnostics do not supply the facts required by the consumer and its
+ApplyResult does not bind source geometry. Only a fixed producer v2 schema,
+fixture and cross-language result may reopen P27B.
 
 ## First-slice algorithm
 

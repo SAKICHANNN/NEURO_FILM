@@ -197,6 +197,25 @@
   producer adapter, execute D-PCT pixels or alter the identity delivery
   default.
 
+### 2026-07-28 P27 producer-v1 compatibility lock
+
+- Consumer independently recomputed raw Git-blob SHA-256 at producer commit
+  `3c2e9fdf...`: all four schema hashes and fixture `c9c8c0ff...e326`
+  exactly match the producer snapshot. Producer Python contract hash is
+  `98a32053...e68c`; C++ reference hash is `dab41ef6...a628`.
+- Relative display-linear sRGB/Rec.709 D65 and dense row-major RGB f32be are
+  explicitly mappable. The pixel SHA is identical after stripping the
+  producer's `sha256:` prefix.
+- Producer and consumer view/bundle/diagnostics/result identities deliberately
+  use different canonical encodings. They must both be retained and must not
+  be compared as equal.
+- V1 remains closed for candidate pixels because required factual diagnostics
+  and source-geometry binding are absent. The machine-readable lock requires
+  identity fallback.
+- D-PCT accepted these blockers and announced additive DiagnosticsV2 and
+  ApplyResultV2 rather than mutating v1. P27B waits only for their fixed
+  hashes/fixture while other audit work continues.
+
 ## Claim: NFCM-P1 product reference-look engine
 
 - Mode: C (same-project multi-chat concurrency)
