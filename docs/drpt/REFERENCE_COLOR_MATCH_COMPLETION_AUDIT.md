@@ -40,7 +40,7 @@ wire contract and not an algorithm promotion.
 | Actual D-PCT algorithm invocation | No frozen library/package/ABI or product invocation exists; P27 consumes fixtures only | BLOCKED ON PRODUCER ARTIFACT | Publish fixed package/ABI, capability identity, invocation conformance and real source-bound receipt / D-PCT |
 | External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
 | Final user-visible delivery state | No P34 state above `verified-staging`; `applied` remains absent | NOT OPEN | Consume the exact P34 verification under a separately authorized delivery and composition decision / Neuro-Film product integration |
-| FilmFX composition | P18 binds local runs; P35 separately binds exact P34 external verification to reference colour plus optional procedural FilmFX | PLAN MECHANICS COMPLETE, RENDER OPEN | Reverify P34 and execute the exact P35 plan through a future atomic FilmFX render / Neuro-Film |
+| FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural simple-grain/halation/dust branch to new staging files | STAGING RENDER COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | Portable consumer identity chain | Python, MSVC and LLVM-MinGW execute exact P28-P30 vectors; Android arm64/x86_64 link | COMPLETE for host identity logic | Android device execution, Apple compiler/runtime, JNI/Swift boundary and real invocation remain open / platform integration |
@@ -59,9 +59,12 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
 4. P33 stages and commits all N outputs and its exact report atomically, then
    P34 restart-verifies the report and every file.
 5. P35 binds optional procedural FilmFX to the exact P34 verification without
-   adding film colour; a later renderer and product-delivery decision consume
-   the exact plan and create a new verified report.
-6. Platform runtime evidence is collected per target; cross-compilation alone
+   adding film colour. P36 re-verifies P34 and atomically renders that exact
+   procedural plan to separate staging outputs with ceiling
+   `filmfx-staging-not-delivered`.
+6. A later product-delivery decision consumes the exact P36 run; physical
+   halation requires a separate resolved-control binding.
+7. Platform runtime evidence is collected per target; cross-compilation alone
    cannot close device support.
 
 ## Non-blocking work policy

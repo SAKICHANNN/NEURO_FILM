@@ -1409,8 +1409,42 @@
 - First profile: simple halation only. Physical halation is rejected because
   the current P35 binding lacks its resolved control set; hidden CLI defaults
   are forbidden.
-- State ceiling: `filmfx-rendered-to-staging-not-delivered`; P33 source files
-  remain immutable and no final delivery/applied state exists.
+- State/ceiling: `filmfx-rendered-to-staging` /
+  `filmfx-staging-not-delivered`; P33 source files remain immutable and no
+  final delivery/applied state exists.
 - Scope: additive consumer executor/schema/tests. Existing FilmFX,
   preprocess, transaction and producer code remain unchanged.
 - Coordination: peer intent sent; no wait or peer action is required.
+
+## 2026-07-28 - Implement and verify P36 atomic FilmFX execution
+
+- Node/parent goal: P36B-D / execute the procedural branch of P35.
+- Implementation: `aafa097` adds a strict FilmFX staging transaction, schema,
+  public exports and eleven adversarial tests. It reuses the existing
+  deterministic grain, simple-halation, dust, compositor, SDR encoder and
+  rollback-safe batch commit primitives.
+- Binding: exact P35 plan plus P34 verification; P34 is rerun against the
+  caller-held report hash/run ID before pixels are read. P33 source outputs
+  and report are protected from overwrite.
+- Determinism: the caller supplies one signed int32 base seed. Ordered source
+  `i` uses grain seed `base + 1009*i` and dust seed `grain + 17`; repeated
+  runs with the same pixels/effects/seeds produce exact output file hashes.
+- Fail-closed boundary: empty effects, physical halation without resolved
+  controls, staging tamper, P33 destination collision, identity/order/seed/
+  claim mutations and injected report-commit failure all reject. The injected
+  failure restores every prior destination and leaves no staging debris.
+- State ceiling: `filmfx-rendered-to-staging` /
+  `filmfx-staging-not-delivered`; no final delivery, applied state, stock
+  identity or film-colour transform is created.
+- Verification: 115 adjacent, 436 combined color-match/FilmFX and compilation
+  checks pass. Full suite is 1276 passed, one skipped and the unchanged 36
+  isolated-worktree output/hash failures; no color-match or FilmFX test fails.
+- Latest-main: `5f99ae9`, 172 consumer versus 102 main changed paths, zero
+  exact overlap, merge tree `5733ee0b...`; a fresh detached synthetic merge
+  passes 102 P33-P36/FilmFX tests and is removed.
+- Concurrent safety: main's dirty DORF research files were read-only. D-PCT
+  `c085bb1` is clean and its AceTone negative resource smoke changes no
+  producer schema, ABI, receipt or HDR rail.
+- Handoff: evidence documentation is ready to commit. P36 completes
+  procedural FilmFX staging mechanics, not real producer invocation or final
+  product delivery.
