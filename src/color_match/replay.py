@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 from typing import Iterable
 
@@ -39,8 +40,10 @@ def save_reference_look_recipe(
     return sha256_file(destination)
 
 
-def load_reference_look_recipe(path: Path | str) -> ReferenceLookRecipe:
-    """Load one bounded UTF-8 recipe file and fail closed on any mismatch."""
+def load_reference_look_recipe_bound(
+    path: Path | str,
+) -> tuple[ReferenceLookRecipe, str]:
+    """Load and hash the exact same bounded recipe bytes in one read."""
 
     source = Path(path)
     if not source.is_file():
@@ -54,10 +57,27 @@ def load_reference_look_recipe(path: Path | str) -> ReferenceLookRecipe:
             "recipe file size must be within the bounded contract"
         )
     try:
-        encoded = source.read_text(encoding="utf-8")
+        raw = source.read_bytes()
     except (OSError, UnicodeError) as exc:
         raise ReferenceMatchContractError("recipe file must be readable UTF-8") from exc
-    return recipe_from_json(encoded)
+    if len(raw) != size:
+        raise ReferenceMatchContractError(
+            "recipe file size changed while it was being read"
+        )
+    try:
+        encoded = raw.decode("utf-8")
+    except UnicodeError as exc:
+        raise ReferenceMatchContractError(
+            "recipe file must be readable UTF-8"
+        ) from exc
+    return recipe_from_json(encoded), hashlib.sha256(raw).hexdigest()
+
+
+def load_reference_look_recipe(path: Path | str) -> ReferenceLookRecipe:
+    """Load one bounded UTF-8 recipe file and fail closed on any mismatch."""
+
+    recipe, _digest = load_reference_look_recipe_bound(path)
+    return recipe
 
 
 def replay_reference_batch(
@@ -86,6 +106,7 @@ def replay_reference_batch_guarded(
 
 __all__ = [
     "load_reference_look_recipe",
+    "load_reference_look_recipe_bound",
     "replay_reference_batch",
     "replay_reference_batch_guarded",
     "save_reference_look_recipe",

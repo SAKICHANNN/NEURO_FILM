@@ -50,7 +50,9 @@ from .fit import fit_reference_look
 from .files import (
     FileReferenceMatchOutput,
     FileReferenceMatchResult,
+    FileReferenceReplayResult,
     match_reference_files,
+    replay_reference_files,
 )
 from .evaluation import (
     KnownOperatorBatchMetrics,
@@ -66,13 +68,17 @@ from .render import (
 )
 from .replay import (
     load_reference_look_recipe,
+    load_reference_look_recipe_bound,
     replay_reference_batch,
     replay_reference_batch_guarded,
     save_reference_look_recipe,
 )
 from .reporting import (
     REFERENCE_MATCH_REPORT_SCHEMA_ID,
+    REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID,
     build_file_match_report,
+    build_file_replay_report,
+    save_file_replay_report,
     save_file_match_report,
 )
 from .promotion import (
@@ -103,6 +109,7 @@ from .safety import (
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
     "REFERENCE_MATCH_REPORT_SCHEMA_ID",
+    "REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID",
     "REFERENCE_RENDER_GUARD_POLICY_ID",
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "PORTABLE_CONFORMANCE_RESULT_SCHEMA_ID",
@@ -126,6 +133,7 @@ __all__ = [
     "PortableConformanceResult",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
+    "FileReferenceReplayResult",
     "ReferenceLookPolicy",
     "ReferenceLookRecipe",
     "ReferenceCompositionPlan",
@@ -153,7 +161,9 @@ __all__ = [
     "composition_plan_from_json",
     "composition_plan_to_json",
     "build_file_match_report",
+    "build_file_replay_report",
     "load_reference_look_recipe",
+    "load_reference_look_recipe_bound",
     "load_portable_conformance_bundle",
     "match_reference_files",
     "make_photographic_probe",
@@ -162,6 +172,7 @@ __all__ = [
     "recipe_to_json",
     "replay_reference_batch",
     "replay_reference_batch_guarded",
+    "replay_reference_files",
     "render_reference_batch",
     "render_reference_batch_guarded",
     "render_reference_look",
@@ -169,6 +180,7 @@ __all__ = [
     "portable_conformance_result_to_json",
     "save_reference_look_recipe",
     "save_file_match_report",
+    "save_file_replay_report",
     "validate_recipe",
     "validate_reference_composition",
     "validate_guard_policy",

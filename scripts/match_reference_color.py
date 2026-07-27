@@ -16,19 +16,32 @@ from src.color_match import (  # noqa: E402
     ReferenceMatchContractError,
     ReferenceRenderGuardPolicy,
     build_file_match_report,
+    build_file_replay_report,
     match_reference_files,
+    replay_reference_files,
     save_file_match_report,
+    save_file_replay_report,
 )
 
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Fit one deterministic reference-look recipe and apply it to N "
-            "SDR source images."
+            "Fit one deterministic reference-look recipe or replay one "
+            "verified recipe across N SDR source images."
         )
     )
-    parser.add_argument("--reference", type=Path, required=True)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(
+        "--reference",
+        type=Path,
+        help="Reference image used to fit a new recipe.",
+    )
+    mode.add_argument(
+        "--recipe-input",
+        type=Path,
+        help="Existing verified recipe replayed without the reference file.",
+    )
     parser.add_argument(
         "--source",
         type=Path,
@@ -43,7 +56,11 @@ def _parser() -> argparse.ArgumentParser:
         required=True,
         help="Output image; repeat in source order.",
     )
-    parser.add_argument("--recipe", type=Path, required=True)
+    parser.add_argument(
+        "--recipe",
+        type=Path,
+        help="Required output recipe path in --reference mode.",
+    )
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument(
         "--bit-depth",
@@ -64,24 +81,55 @@ def _parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
-    try:
-        result = match_reference_files(
-            args.reference,
-            args.source,
-            args.output,
-            recipe_path=args.recipe,
-            output_bit_depth=args.bit_depth,
-            guard_policy=ReferenceRenderGuardPolicy(
-                allow_research_baseline=args.allow_research_baseline,
-            ),
+    if args.reference is not None and args.recipe is None:
+        print(
+            "reference match failed: --reference mode requires --recipe",
+            file=sys.stderr,
         )
-        report_sha256 = save_file_match_report(result, args.report)
+        return 2
+    if args.recipe_input is not None and args.recipe is not None:
+        print(
+            "reference match failed: --recipe is output-only and cannot be "
+            "used with --recipe-input",
+            file=sys.stderr,
+        )
+        return 2
+    guard_policy = ReferenceRenderGuardPolicy(
+        allow_research_baseline=args.allow_research_baseline,
+    )
+    try:
+        if args.reference is not None:
+            result = match_reference_files(
+                args.reference,
+                args.source,
+                args.output,
+                recipe_path=args.recipe,
+                output_bit_depth=args.bit_depth,
+                guard_policy=guard_policy,
+            )
+            report_sha256 = save_file_match_report(result, args.report)
+            report = build_file_match_report(result)
+            operation = "fit-and-render"
+        else:
+            replay_result = replay_reference_files(
+                args.recipe_input,
+                args.source,
+                args.output,
+                output_bit_depth=args.bit_depth,
+                guard_policy=guard_policy,
+            )
+            report_sha256 = save_file_replay_report(
+                replay_result,
+                args.report,
+            )
+            report = build_file_replay_report(replay_result)
+            operation = "recipe-replay"
     except (OSError, ReferenceMatchContractError, ValueError) as exc:
         print(f"reference match failed: {exc}", file=sys.stderr)
         return 2
-    report = build_file_match_report(result)
     summary = {
         "schema_id": report["schema_id"],
+        "operation": operation,
         "recipe_id": report["recipe_id"],
         "report_path": str(args.report.resolve()),
         "report_sha256": report_sha256,

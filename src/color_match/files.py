@@ -26,7 +26,10 @@ from .contracts import (
 )
 from .fit import fit_reference_look
 from .render import ReferenceMatchDiagnostics
-from .replay import save_reference_look_recipe
+from .replay import (
+    load_reference_look_recipe_bound,
+    save_reference_look_recipe,
+)
 from .safety import (
     ReferenceRenderGuardPolicy,
     ReferenceSafetyDecision,
@@ -63,6 +66,16 @@ class FileReferenceMatchResult:
     outputs: tuple[FileReferenceMatchOutput, ...]
 
 
+@dataclass(frozen=True)
+class FileReferenceReplayResult:
+    """One verified stored recipe plus all replayed output identities."""
+
+    recipe: ReferenceLookRecipe
+    recipe_path: Path
+    recipe_file_sha256: str
+    outputs: tuple[FileReferenceMatchOutput, ...]
+
+
 def _paths(values: Iterable[Path | str], label: str) -> tuple[Path, ...]:
     if isinstance(values, (str, bytes, Path)):
         raise ReferenceMatchContractError(f"{label} must be an iterable of paths")
@@ -81,11 +94,12 @@ def _resolved_key(path: Path) -> str:
     return str(path.resolve(strict=False)).casefold()
 
 
-def _validate_file_contract(
-    reference_path: Path,
+def _validate_render_contract(
+    protected_input_paths: tuple[Path, ...],
     source_paths: tuple[Path, ...],
     output_paths: tuple[Path, ...],
-    recipe_path: Path | None,
+    artifact_path: Path | None,
+    artifact_label: str,
     output_bit_depth: int,
 ) -> None:
     if len(source_paths) != len(output_paths):
@@ -94,8 +108,11 @@ def _validate_file_contract(
         )
     if output_bit_depth not in {8, 16}:
         raise ReferenceMatchContractError("output_bit_depth must be 8 or 16")
-    if not reference_path.is_file():
-        raise ReferenceMatchContractError("reference_path must be an existing file")
+    for protected_input in protected_input_paths:
+        if not protected_input.is_file():
+            raise ReferenceMatchContractError(
+                f"{artifact_label} input must be an existing file"
+            )
     for source in source_paths:
         if not source.is_file():
             raise ReferenceMatchContractError(
@@ -104,27 +121,69 @@ def _validate_file_contract(
     output_keys = [_resolved_key(path) for path in output_paths]
     if len(set(output_keys)) != len(output_keys):
         raise ReferenceMatchContractError("output paths must be unique")
-    protected = {_resolved_key(reference_path), *(_resolved_key(path) for path in source_paths)}
-    if recipe_path is not None:
-        if recipe_path.suffix.casefold() != ".json":
-            raise ReferenceMatchContractError("recipe_path must use a .json extension")
-        recipe_key = _resolved_key(recipe_path)
-        if recipe_key in protected or recipe_key in output_keys:
+    protected = {
+        *(_resolved_key(path) for path in protected_input_paths),
+        *(_resolved_key(path) for path in source_paths),
+    }
+    if artifact_path is not None:
+        if artifact_path.suffix.casefold() != ".json":
             raise ReferenceMatchContractError(
-                "recipe path must not overwrite an input or image output"
+                f"{artifact_label} path must use a .json extension"
             )
-        protected.add(recipe_key)
+        artifact_key = _resolved_key(artifact_path)
+        if artifact_key in protected or artifact_key in output_keys:
+            raise ReferenceMatchContractError(
+                f"{artifact_label} path must not overwrite an input or image output"
+            )
+        protected.add(artifact_key)
     for output in output_paths:
+        if _resolved_key(output) in protected:
+            raise ReferenceMatchContractError(
+                "output path must not overwrite a reference, source or recipe"
+            )
         suffix = output.suffix.casefold()
         allowed = _SDR_OUTPUT_EXTENSIONS if output_bit_depth == 8 else _SDR16_OUTPUT_EXTENSIONS
         if suffix not in allowed:
             raise ReferenceMatchContractError(
                 f"unsupported {output_bit_depth}-bit output extension: {suffix or '<none>'}"
             )
-        if _resolved_key(output) in protected:
-            raise ReferenceMatchContractError(
-                "output path must not overwrite a reference, source or recipe"
-            )
+
+
+def _validate_file_contract(
+    reference_path: Path,
+    source_paths: tuple[Path, ...],
+    output_paths: tuple[Path, ...],
+    recipe_path: Path | None,
+    output_bit_depth: int,
+) -> None:
+    _validate_render_contract(
+        (reference_path,),
+        source_paths,
+        output_paths,
+        recipe_path,
+        "recipe",
+        output_bit_depth,
+    )
+
+
+def _validate_replay_file_contract(
+    recipe_path: Path,
+    source_paths: tuple[Path, ...],
+    output_paths: tuple[Path, ...],
+    output_bit_depth: int,
+) -> None:
+    if recipe_path.suffix.casefold() != ".json":
+        raise ReferenceMatchContractError(
+            "recipe_path must use a .json extension"
+        )
+    _validate_render_contract(
+        (recipe_path,),
+        source_paths,
+        output_paths,
+        None,
+        "recipe",
+        output_bit_depth,
+    )
 
 
 def _stage_path(destination: Path, token: str) -> Path:
@@ -210,32 +269,17 @@ def _encode_srgb(
     return output_format, float(np.mean(clipped, dtype=np.float64))
 
 
-def match_reference_files(
-    reference_path: Path | str,
-    source_paths: Iterable[Path | str],
-    output_paths: Iterable[Path | str],
+def _execute_file_render(
+    recipe: ReferenceLookRecipe,
+    sources: tuple[Path, ...],
+    outputs: tuple[Path, ...],
     *,
-    recipe_path: Path | str | None = None,
-    policy: ReferenceLookPolicy | None = None,
-    guard_policy: ReferenceRenderGuardPolicy | None = None,
-    output_bit_depth: int = 16,
-) -> FileReferenceMatchResult:
-    """Fit once and transactionally render one uploaded reference across N files."""
+    guard_policy: ReferenceRenderGuardPolicy | None,
+    output_bit_depth: int,
+    recipe_destination: Path | None = None,
+) -> tuple[tuple[FileReferenceMatchOutput, ...], str | None]:
+    """Render and atomically commit a complete image batch and optional recipe."""
 
-    reference = Path(reference_path)
-    sources = _paths(source_paths, "source_paths")
-    outputs = _paths(output_paths, "output_paths")
-    recipe_destination = Path(recipe_path) if recipe_path is not None else None
-    _validate_file_contract(
-        reference,
-        sources,
-        outputs,
-        recipe_destination,
-        output_bit_depth,
-    )
-
-    reference_working = load_working_image(reference)
-    recipe = fit_reference_look(reference_working, policy=policy)
     token = uuid.uuid4().hex
     staged: list[Path] = []
     staged_outputs: list[
@@ -256,14 +300,17 @@ def match_reference_files(
             staged.append(staged_recipe)
             save_reference_look_recipe(recipe, staged_recipe)
 
-        for index, (source_path, output_path) in enumerate(zip(sources, outputs)):
+        for index, (source_path, output_path) in enumerate(
+            zip(sources, outputs, strict=True)
+        ):
             source = load_working_image(source_path)
             if (
                 source.working_space != "linear_srgb"
                 or source.transfer_state != "display_linear"
             ):
                 raise ReferenceMatchContractError(
-                    "file adapter currently requires display-linear linear_srgb sources"
+                    "file adapter currently requires display-linear "
+                    "linear_srgb sources"
                 )
             rendered = render_reference_look_guarded(
                 recipe,
@@ -305,46 +352,129 @@ def match_reference_files(
         ]
         if recipe_destination is not None and staged_recipe is not None:
             commit_pairs.append((staged_recipe, recipe_destination))
-        _commit_staged_batch(tuple(commit_pairs), token=token, cleanup=staged)
-
-        committed: list[FileReferenceMatchOutput] = []
-        for (
-            source_path,
-            output_path,
-            output_format,
-            clipped_fraction,
-            diagnostics,
-            safety,
-        ) in staged_outputs:
-            committed.append(
-                FileReferenceMatchOutput(
-                    source_path=source_path,
-                    output_path=output_path,
-                    output_sha256=sha256_file(output_path),
-                    output_format=output_format,
-                    output_bit_depth=output_bit_depth,
-                    encode_clipped_fraction=clipped_fraction,
-                    diagnostics=diagnostics,
-                    safety=safety,
-                )
-            )
-        recipe_file_sha256: str | None = None
-        if recipe_destination is not None:
-            recipe_file_sha256 = sha256_file(recipe_destination)
-        return FileReferenceMatchResult(
-            reference_path=reference,
-            recipe=recipe,
-            recipe_path=recipe_destination,
-            recipe_file_sha256=recipe_file_sha256,
-            outputs=tuple(committed),
+        _commit_staged_batch(
+            tuple(commit_pairs),
+            token=token,
+            cleanup=staged,
         )
+
+        committed = tuple(
+            FileReferenceMatchOutput(
+                source_path=source_path,
+                output_path=output_path,
+                output_sha256=sha256_file(output_path),
+                output_format=output_format,
+                output_bit_depth=output_bit_depth,
+                encode_clipped_fraction=clipped_fraction,
+                diagnostics=diagnostics,
+                safety=safety,
+            )
+            for (
+                source_path,
+                output_path,
+                output_format,
+                clipped_fraction,
+                diagnostics,
+                safety,
+            ) in staged_outputs
+        )
+        recipe_file_sha256 = (
+            None
+            if recipe_destination is None
+            else sha256_file(recipe_destination)
+        )
+        return committed, recipe_file_sha256
     finally:
         for path in staged:
             path.unlink(missing_ok=True)
 
 
+def match_reference_files(
+    reference_path: Path | str,
+    source_paths: Iterable[Path | str],
+    output_paths: Iterable[Path | str],
+    *,
+    recipe_path: Path | str | None = None,
+    policy: ReferenceLookPolicy | None = None,
+    guard_policy: ReferenceRenderGuardPolicy | None = None,
+    output_bit_depth: int = 16,
+) -> FileReferenceMatchResult:
+    """Fit once and transactionally render one uploaded reference across N files."""
+
+    reference = Path(reference_path)
+    sources = _paths(source_paths, "source_paths")
+    outputs = _paths(output_paths, "output_paths")
+    recipe_destination = Path(recipe_path) if recipe_path is not None else None
+    _validate_file_contract(
+        reference,
+        sources,
+        outputs,
+        recipe_destination,
+        output_bit_depth,
+    )
+
+    reference_working = load_working_image(reference)
+    recipe = fit_reference_look(reference_working, policy=policy)
+    committed, recipe_file_sha256 = _execute_file_render(
+        recipe,
+        sources,
+        outputs,
+        guard_policy=guard_policy,
+        output_bit_depth=output_bit_depth,
+        recipe_destination=recipe_destination,
+    )
+    return FileReferenceMatchResult(
+        reference_path=reference,
+        recipe=recipe,
+        recipe_path=recipe_destination,
+        recipe_file_sha256=recipe_file_sha256,
+        outputs=committed,
+    )
+
+
+def replay_reference_files(
+    recipe_path: Path | str,
+    source_paths: Iterable[Path | str],
+    output_paths: Iterable[Path | str],
+    *,
+    guard_policy: ReferenceRenderGuardPolicy | None = None,
+    output_bit_depth: int = 16,
+) -> FileReferenceReplayResult:
+    """Transactionally replay one verified stored recipe across N files."""
+
+    recipe_source = Path(recipe_path)
+    sources = _paths(source_paths, "source_paths")
+    outputs = _paths(output_paths, "output_paths")
+    _validate_replay_file_contract(
+        recipe_source,
+        sources,
+        outputs,
+        output_bit_depth,
+    )
+    recipe, recipe_file_sha256 = load_reference_look_recipe_bound(
+        recipe_source
+    )
+    committed, persisted_recipe_sha256 = _execute_file_render(
+        recipe,
+        sources,
+        outputs,
+        guard_policy=guard_policy,
+        output_bit_depth=output_bit_depth,
+    )
+    if persisted_recipe_sha256 is not None:  # pragma: no cover - invariant.
+        raise AssertionError("recipe replay must not persist a second recipe")
+    return FileReferenceReplayResult(
+        recipe=recipe,
+        recipe_path=recipe_source,
+        recipe_file_sha256=recipe_file_sha256,
+        outputs=committed,
+    )
+
+
 __all__ = [
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
+    "FileReferenceReplayResult",
     "match_reference_files",
+    "replay_reference_files",
 ]
