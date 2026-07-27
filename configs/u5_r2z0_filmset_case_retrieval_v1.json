@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2z0-filmset-case-retrieval-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Z0",
+  "status": "implemented_frozen_pending_formal_run",
+  "parent_evidence": [
+    "U5.R2W2F0 repeats exactly and finds ClassNeg/Velvia adaptive_or_spatial_recipe",
+    "W2F1 output-only reference recovery remains closed",
+    "a fixed development case bank is a new paired-control hypothesis, not a W2F0 capacity rescue",
+    "FilmSet recipe domains are software controls and not physical film stocks"
+  ],
+  "activation_gate": {
+    "w2f0_decision_path": "configs/u5_r2w2f0_filmset_recipe_global_explainability_decision_v1.json",
+    "required_w2f0_decision_sha256": "d616e70b613ce81a08d8656154d07772539c12d8399deb22aa236b0f89c3976b",
+    "required_w2f0_report_sha256": "27db75f2e74fe15a2fdfef49ed82f92ac313e44719fbc6220fcba195e51c5b3e",
+    "required_domain_branches": {
+      "classneg": "adaptive_or_spatial_recipe",
+      "velvia": "adaptive_or_spatial_recipe"
+    },
+    "w2f1_output_only_allowed": false,
+    "w2f_preflight_report_a_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_a.json",
+    "w2f_preflight_report_b_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_b.json",
+    "required_w2f_preflight_report_sha256": "ab435e2433373d9fb001c13d20af7b408f0346d1d1f2cf2f989db080c86103c3"
+  },
+  "dataset": {
+    "dataset_id": "xuhangc/filmset",
+    "archive_version": "kaggle-v1-2023-11-29",
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "internal_dev_manifest": "internal_dev_lockbox.jsonl",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest": "final_628_lockbox.jsonl",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domains": [
+      "classneg",
+      "velvia"
+    ],
+    "selected_payload_image_count_expected": 120,
+    "allowed_use": "internal_research_only",
+    "redistribution_allowed": false
+  },
+  "partition": {
+    "algorithm": "sha256_seed_pool_content_id_ascending",
+    "seed": 2026072701,
+    "preflight_internal_development_identities": 256,
+    "preflight_internal_confirmatory_identities": 128,
+    "preflight_internal_stress_identities": 81,
+    "development_identities_used": 24,
+    "confirmatory_identities_used": 16,
+    "unused_partition_members_remain_unread": true
+  },
+  "sampling": {
+    "grid_rows": 4,
+    "grid_columns": 4,
+    "pixels_per_cell_fit": 32,
+    "pixels_per_cell_evaluation": 32,
+    "fit_seed": 28600,
+    "evaluation_seed": 28601,
+    "same_coordinates_across_aligned_domains": true,
+    "full_raster_outputs_generated": false
+  },
+  "operators": {
+    "shared_o0": true,
+    "development_per_case_o0_bank": true,
+    "o0": {
+      "axis_size": 4,
+      "integration_steps": 16,
+      "coefficient_vector_norm_cap": 2.0,
+      "steps": 80,
+      "learning_rate": 0.03,
+      "coefficient_l2": 0.0001,
+      "velocity_smoothness_l2": 0.001,
+      "gradient_clip_norm": 5.0,
+      "device": "cuda_if_available_else_cpu",
+      "optimization_dtype": "float32",
+      "deterministic_algorithms": true,
+      "shared_fit_seed_base": 29610,
+      "case_fit_seed_base": 29700
+    }
+  },
+  "retrieval": {
+    "primary": "development_zscore_spatial_photometric_nearest_neighbour",
+    "secondary": "development_zscore_global_photometric_nearest_neighbour",
+    "mode_space_used": false,
+    "stock_or_recipe_identity_inferred": false,
+    "query_target_used_by_retrieval": false,
+    "hard_top1": true
+  },
+  "controls": {
+    "case_bank_oracle": true,
+    "random_case_expectation": true,
+    "shuffled_feature_to_operator_assignment": true,
+    "wrong_recipe_bank_oracle": true,
+    "shuffle_seed": 29800,
+    "bootstrap_seed": 29810
+  },
+  "gates": {
+    "minimum_case_self_improvement_fraction": 0.25,
+    "minimum_eligible_case_count": 12,
+    "minimum_oracle_improvement_over_shared_fraction": 0.1,
+    "minimum_oracle_win_fraction": 0.75,
+    "minimum_oracle_bootstrap_improvement_lower": 0.0,
+    "minimum_retrieval_oracle_gap_closure": 0.25,
+    "minimum_retrieval_gain_over_random_fraction": 0.02,
+    "minimum_retrieval_gain_over_shuffled_fraction": 0.02,
+    "bootstrap_samples": 10000,
+    "bootstrap_confidence": 0.95,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "branches": [
+    "case_bank_oracle_and_retrieval_pass",
+    "case_bank_oracle_only",
+    "case_bank_no_oracle_value",
+    "case_bank_invalid",
+    "structure_or_repeat_fails"
+  ],
+  "forbidden_actions": [
+    "decode or parse the final 628 lockbox",
+    "run W2F1 output-only reference recovery",
+    "fit a local, semantic, neural or direct RGB model",
+    "choose a descriptor or gate after confirmatory results",
+    "use content features to infer a stock, mode or recipe identity",
+    "call Cinema, ClassNeg or Velvia physical film stocks",
+    "generate a product visual shortlist before a separately frozen gate"
+  ],
+  "claim_ceiling": "repeatable internal paired-software-recipe evidence about fixed-bank Oracle value and input-only within-known-recipe hard case retrieval; no output-only reference recovery, physical film, stock, calibration, commercial-rights, unseen-recipe, current-pixel or real unpaired-operator claim"
+}
