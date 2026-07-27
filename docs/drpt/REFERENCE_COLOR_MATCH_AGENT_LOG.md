@@ -1798,6 +1798,22 @@
 - Handoff: P45 prevents accidental admission while leaving P43/P44 reusable
   for a genuinely new versioned package.
 
+## 2026-07-28 - Freeze P46 P44 failure-signature analysis
+
+- Node/parent goal: P46A-D / product-side algorithm feedback after rejection.
+- Input boundary: consume only the two existing ignored P44 progress files.
+  Do not invoke the wheel, reread known targets, tune thresholds or implement
+  a competing matching algorithm.
+- Analysis: stratify known rows by source/reference, quantify candidate/source
+  error ratios and clipping association, count transform diversity, and
+  aggregate photographic/context failure dimensions.
+- Purpose: distinguish clipping-driven failure from global overcorrection and
+  source-context dependence so the producer can choose a discriminating next
+  hypothesis rather than repeat a failed family.
+- DoD: strict input validation, canonical deterministic output, synthetic
+  mutation tests, exact repeat on both runs, propagation and equal-peer
+  handoff.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -173,6 +173,10 @@ with a selected stock, but reference matching alone is labeled
 | P45B | DONE | implement strict successor declaration and preflight | canonical declaration, schema and fail-closed collision/profile/rights/runtime checks | `7b0ec11`; 11 dedicated tests | no invocation |
 | P45C | DONE | bind unchanged P44 gates and current rejection | policy pins A1/A4/A5/blind thresholds and rejected capability/wheel/producer/evidence identity | `7b0ec11`; mutation tests | no threshold tuning |
 | P45D | DONE | refresh completion/main handoff and peer coordination | 541 combined; 1347 pass/1 skip/36 known; latest-main merge 15 pass/4 expected skip | evidence commit | retain P43 plumbing |
+| P46A | IN_PROGRESS | freeze P44 failure-signature analysis | consume existing progress only; no rerender, target access, tuning or algorithm implementation | plan commit | retain P44 report |
+| P46B | TODO | implement deterministic diagnostic aggregator | source/reference strata, error ratios, clipping relation, bundle diversity, photographic/context tails | focused tests | no candidate decision change |
+| P46C | TODO | execute and repeat on both P44 progress files | exact canonical diagnostic identity and producer-actionable findings | ignored reports | retain P44 rejection |
+| P46D | TODO | propagate evidence and peer handoff | focused/full/latest-main checks and stable summary | evidence commit | no producer code |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
