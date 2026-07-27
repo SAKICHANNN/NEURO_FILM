@@ -356,3 +356,4 @@
   no longer present rejected safe-Lab output as the default deliverable look.
 - Verification: 134 focused tests pass; the full collection is 990 passed,
   one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.
+- Commit: `adae6cb` (`fix: fail closed on unpromoted matcher`).
