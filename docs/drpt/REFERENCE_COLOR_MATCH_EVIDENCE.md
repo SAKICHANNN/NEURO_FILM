@@ -135,12 +135,12 @@ to visual review, never a standalone photographic-aesthetic promotion.
 
 ## Product tail guard
 
-The file adapter and guarded replay now use fixed
-`reference-render-guard.v1`. A candidate exceeding 25% gamut-adjusted pixels or
-5% newly introduced boundary pixels is not written as the delivered look;
-instead, an identity copy is encoded and the candidate diagnostics plus
-rejection reasons remain in the result. This policy catches all five
-cross-content failures in the frozen baseline and accepts its positive control.
+The file adapter and guarded replay now use
+`reference-render-guard.v2`. The current safe-Lab algorithm is unpromoted, so
+default delivery always encodes identity and records
+`algorithm-not-promoted`. Independent 25% gamut-adjusted and 5% new-boundary
+vetoes remain active. An explicit research override can apply the candidate
+only when those pixel-tail gates pass, and the report records the override.
 
 ## D-PCT integration boundary
 
@@ -159,10 +159,14 @@ atomic report. A cardinality mismatch returns code 2 with no partial artifact.
 The report is byte-repeatable and covers all run inputs, outputs, candidate
 diagnostics and product safety decisions.
 
-A full-resolution smoke on the existing Velvia-look baseline also passes:
-`applied_count=1`, `identity_fallback_count=1`, `output_count=2`, with report
-SHA-256 `13560e40...014c1` after portable identity finalization. The fallback
-row records both frozen guard reasons.
+A full-resolution guard-v2 smoke on the existing Velvia-look baseline passes.
+Default mode returns `applied_count=0`,
+`identity_fallback_count=2`, `output_count=2`, report SHA-256
+`1740d166...0f25a`; both rows include `algorithm-not-promoted`. Explicit
+research mode retains the earlier algorithm behavior at `1/1/2`, report
+SHA-256 `47e38275...c7c62`, with
+`research_baseline_override=true` on both rows and the second row still
+rejected by the independent gamut/new-boundary vetoes.
 
 ## Rejected stronger statistical comparator
 

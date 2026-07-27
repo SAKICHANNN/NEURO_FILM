@@ -164,11 +164,12 @@
         "action",
         "reasons",
         "candidate_gamut_adjusted_fraction",
-        "candidate_new_boundary_fraction"
+        "candidate_new_boundary_fraction",
+        "research_baseline_override"
       ],
       "properties": {
         "policy_id": {
-          "const": "reference-render-guard.v1"
+          "const": "reference-render-guard.v2"
         },
         "accepted": {
           "type": "boolean"
@@ -184,7 +185,8 @@
           "items": {
             "enum": [
               "gamut-adjusted-fraction",
-              "new-boundary-fraction"
+              "new-boundary-fraction",
+              "algorithm-not-promoted"
             ]
           },
           "uniqueItems": true
@@ -194,6 +196,9 @@
         },
         "candidate_new_boundary_fraction": {
           "$ref": "#/$defs/fraction"
+        },
+        "research_baseline_override": {
+          "type": "boolean"
         }
       },
       "allOf": [
@@ -222,6 +227,30 @@
               },
               "reasons": {
                 "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "research_baseline_override": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "accepted": {
+                "const": false
+              },
+              "action": {
+                "const": "identity-fallback"
+              },
+              "reasons": {
+                "contains": {
+                  "const": "algorithm-not-promoted"
+                }
               }
             }
           }

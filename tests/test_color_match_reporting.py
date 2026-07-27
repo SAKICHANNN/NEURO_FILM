@@ -55,7 +55,7 @@ def test_report_covers_run_hashes_diagnostics_and_safety(tmp_path: Path) -> None
     assert report["outputs"][0]["source_sha256"] == sha256_file(source)
     assert report["outputs"][0]["output_sha256"] == sha256_file(output)
     assert report["outputs"][0]["safety"]["policy_id"] == (
-        "reference-render-guard.v1"
+        "reference-render-guard.v2"
     )
     first_hash = save_file_match_report(result, report_path)
     first_bytes = report_path.read_bytes()
@@ -137,6 +137,8 @@ def test_cli_runs_one_reference_n_sources_and_writes_report(
     assert (
         summary["applied_count"] + summary["identity_fallback_count"] == 2
     )
+    assert summary["applied_count"] == 0
+    assert summary["identity_fallback_count"] == 2
     assert payload["recipe_id"] == summary["recipe_id"]
     assert first_output.is_file()
     assert second_output.is_file()
@@ -180,3 +182,43 @@ def test_cli_fails_without_partial_outputs_on_batch_mismatch(
     assert not output.exists()
     assert not recipe.exists()
     assert not report.exists()
+
+
+def test_cli_research_override_is_explicit_and_reported(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    output = tmp_path / "output.png"
+    recipe = tmp_path / "recipe.json"
+    report = tmp_path / "report.json"
+    _image(reference, 27410)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--reference",
+            str(reference),
+            "--source",
+            str(reference),
+            "--output",
+            str(output),
+            "--recipe",
+            str(recipe),
+            "--report",
+            str(report),
+            "--allow-research-baseline",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    summary = json.loads(completed.stdout)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    assert summary["applied_count"] == 1
+    assert summary["identity_fallback_count"] == 0
+    assert payload["outputs"][0]["safety"][
+        "research_baseline_override"
+    ] is True

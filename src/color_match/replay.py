@@ -17,6 +17,7 @@ from .contracts import (
 from .render import ReferenceMatchResult, render_reference_batch
 from .safety import (
     GuardedReferenceMatchResult,
+    ReferenceRenderGuardPolicy,
     render_reference_batch_guarded,
 )
 
@@ -71,12 +72,15 @@ def replay_reference_batch(
 def replay_reference_batch_guarded(
     recipe_path: Path | str,
     sources: Iterable[WorkingImage],
+    *,
+    policy: ReferenceRenderGuardPolicy | None = None,
 ) -> tuple[GuardedReferenceMatchResult, ...]:
     """Load a frozen recipe and reproduce the default product guard."""
 
     return render_reference_batch_guarded(
         load_reference_look_recipe(recipe_path),
         sources,
+        policy=policy,
     )
 
 

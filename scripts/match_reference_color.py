@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 
 from src.color_match import (  # noqa: E402
     ReferenceMatchContractError,
+    ReferenceRenderGuardPolicy,
     build_file_match_report,
     match_reference_files,
     save_file_match_report,
@@ -50,6 +51,14 @@ def _parser() -> argparse.ArgumentParser:
         choices=(8, 16),
         default=16,
     )
+    parser.add_argument(
+        "--allow-research-baseline",
+        action="store_true",
+        help=(
+            "Apply the rejected safe-Lab research baseline when pixel guards "
+            "pass. Without this explicit override, delivery is identity."
+        ),
+    )
     return parser
 
 
@@ -62,6 +71,9 @@ def main(argv: list[str] | None = None) -> int:
             args.output,
             recipe_path=args.recipe,
             output_bit_depth=args.bit_depth,
+            guard_policy=ReferenceRenderGuardPolicy(
+                allow_research_baseline=args.allow_research_baseline,
+            ),
         )
         report_sha256 = save_file_match_report(result, args.report)
     except (OSError, ReferenceMatchContractError, ValueError) as exc:

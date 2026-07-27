@@ -337,3 +337,22 @@
   The full collection is 987 passed, one skipped and the unchanged 36 known
   ignored-output/CRLF-hash failures; no new failure family appears.
 - Commit: `4bfd5da` (`feat: enforce reference batch consistency`).
+
+## 2026-07-27 - Fail closed on the rejected product algorithm
+
+- Parent: P11 / product delivery certification boundary.
+- Problem: A1, A4 and A5 all reject the only implemented algorithm, but the
+  default file adapter could still apply it when per-image pixel guards passed.
+- Changed: `reference-render-guard.v2` defaults to
+  `algorithm-not-promoted` and identity delivery. File API, guarded replay,
+  CLI, report payload and strict schema propagate the decision.
+- Research boundary: `--allow-research-baseline` is an explicit opt-in. Every
+  output records `research_baseline_override=true`; gamut/new-boundary vetoes
+  remain active.
+- Full-resolution evidence: default mode is 0 applied / 2 identity fallback,
+  report SHA-256 `1740d166...0f25a`; research override is 1 applied / 1
+  fallback, report SHA-256 `47e38275...c7c62`.
+- Decision: the module remains executable and replayable for research but can
+  no longer present rejected safe-Lab output as the default deliverable look.
+- Verification: 134 focused tests pass; the full collection is 990 passed,
+  one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.

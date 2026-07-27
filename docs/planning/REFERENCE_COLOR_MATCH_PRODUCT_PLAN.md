@@ -72,6 +72,7 @@ with a selected stock, but reference matching alone is labeled
 | P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | `e1f03f6` | revert commit |
 | P9 | DONE | fail-closed photographic-tail and promotion adjudication | 125 focused tests; 30-pair full-resolution repeat; full suite 981 pass/36 known fail | `8e03ed7` | revert commit |
 | P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | `4bfd5da` | revert commit |
+| P11 | DONE | unpromoted-algorithm delivery fail-close + explicit research override | 134 focused tests; default/override CLI; full suite 990 pass/36 known fail | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -158,7 +159,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`987 passed, 1 skipped, 36 failed`.
+`990 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -187,12 +188,17 @@ improves median Delta E76 by 59.8%, but every held-out-content image regresses
 reference moments as the final algorithm and prevents parameter-tuning from
 being mistaken for content-independent look recovery.
 
-The default file path now applies `reference-render-guard.v1` after candidate
-rendering. It returns identity when gamut repair exceeds 25% or newly introduced
-encoding-boundary pixels exceed 5%, while retaining the rejected candidate's
-diagnostics. The six-image baseline accepts only the same-content positive
-control and rejects all five observed cross-content failures. This guard is a
-tail-risk control, not evidence that v1 performs the requested match.
+The default file path now applies `reference-render-guard.v2` after candidate
+rendering. Because the current algorithm fails A1/A4/A5, default delivery
+returns identity with `algorithm-not-promoted`, even when its pixel-tail
+thresholds pass. Gamut repair above 25% or newly introduced encoding-boundary
+pixels above 5% add independent reasons. Candidate diagnostics remain in the
+report.
+
+Research can explicitly request `--allow-research-baseline`. The override is
+recorded as `research_baseline_override=true` on every output and does not
+disable gamut/new-boundary vetoes. This preserves experimentation without
+presenting a rejected algorithm as the product default.
 
 A six-reference/full-cross matrix confirms that distinction. All six
 same-content controls improve, but 25/30 cross-content candidates regress
@@ -263,10 +269,12 @@ python scripts/match_reference_color.py `
   --bit-depth 16
 ```
 
-The command writes one recipe, N ordered image outputs and one deterministic
-provenance report. Its stdout is a compact JSON summary with applied and
-identity-fallback counts. The script is a thin product adapter; algorithm,
-safety and transactional image behavior remain in `src/color_match`.
+The command writes one recipe, N ordered identity-fallback outputs and one
+deterministic provenance report while the only implemented algorithm remains
+unpromoted. Its stdout is a compact JSON summary with applied and
+identity-fallback counts. Add `--allow-research-baseline` only for explicit
+research comparison. The script is a thin product adapter; algorithm, safety
+and transactional image behavior remain in `src/color_match`.
 
 Language-neutral consumers should validate:
 

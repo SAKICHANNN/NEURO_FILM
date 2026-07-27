@@ -56,6 +56,11 @@ maps are recorded for provenance but excluded from `report_id`; the report
 instead binds reference, source and target file SHA-256 maps. Moving identical
 evidence between Windows, macOS, Android or iOS storage therefore does not
 change the content-bound report identity.
+
+The product run report binds `reference-render-guard.v2`. Every safety row
+records `research_baseline_override`. When it is false, the row must be
+`identity-fallback` and include `algorithm-not-promoted`; when true, that
+reason is removed but gamut and new-boundary vetoes remain authoritative.
 6. Encode the digest as 64 lowercase hexadecimal characters.
 
 The run report carries recipe identity but does not have a recursive internal

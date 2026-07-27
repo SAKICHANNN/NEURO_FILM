@@ -28,6 +28,7 @@ from .fit import fit_reference_look
 from .render import ReferenceMatchDiagnostics
 from .replay import save_reference_look_recipe
 from .safety import (
+    ReferenceRenderGuardPolicy,
     ReferenceSafetyDecision,
     render_reference_look_guarded,
 )
@@ -216,6 +217,7 @@ def match_reference_files(
     *,
     recipe_path: Path | str | None = None,
     policy: ReferenceLookPolicy | None = None,
+    guard_policy: ReferenceRenderGuardPolicy | None = None,
     output_bit_depth: int = 16,
 ) -> FileReferenceMatchResult:
     """Fit once and transactionally render one uploaded reference across N files."""
@@ -267,6 +269,7 @@ def match_reference_files(
                 recipe,
                 source,
                 source_index=index,
+                policy=guard_policy,
             )
             encoded = working_image_to_srgb_float(rendered.image)
             output_path.parent.mkdir(parents=True, exist_ok=True)

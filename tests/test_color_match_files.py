@@ -60,7 +60,7 @@ def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
     assert all(row.output_bit_depth == 16 for row in result.outputs)
     assert all(row.diagnostics.recipe_id == result.recipe.recipe_id for row in result.outputs)
     assert all(
-        row.safety.policy_id == "reference-render-guard.v1"
+        row.safety.policy_id == "reference-render-guard.v2"
         for row in result.outputs
     )
     assert all(

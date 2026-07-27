@@ -19,7 +19,7 @@ from .render import (
 )
 
 
-REFERENCE_RENDER_GUARD_POLICY_ID = "reference-render-guard.v1"
+REFERENCE_RENDER_GUARD_POLICY_ID = "reference-render-guard.v2"
 
 
 @dataclass(frozen=True)
@@ -29,6 +29,7 @@ class ReferenceRenderGuardPolicy:
     max_gamut_adjusted_fraction: float = 0.25
     max_new_boundary_fraction: float = 0.05
     boundary_epsilon: float = 1.0 / 65535.0
+    allow_research_baseline: bool = False
 
 
 @dataclass(frozen=True)
@@ -41,6 +42,7 @@ class ReferenceSafetyDecision:
     reasons: tuple[str, ...]
     candidate_gamut_adjusted_fraction: float
     candidate_new_boundary_fraction: float
+    research_baseline_override: bool
 
 
 @dataclass(frozen=True)
@@ -84,6 +86,10 @@ def validate_guard_policy(policy: ReferenceRenderGuardPolicy) -> None:
     ):
         raise ReferenceMatchContractError(
             "guard policy boundary_epsilon must be finite and within [0, 0.5)"
+        )
+    if not isinstance(policy.allow_research_baseline, bool):
+        raise ReferenceMatchContractError(
+            "guard policy allow_research_baseline must be boolean"
         )
 
 
@@ -144,6 +150,8 @@ def render_reference_look_guarded(
         epsilon=float(resolved.boundary_epsilon),
     )
     reasons: list[str] = []
+    if not resolved.allow_research_baseline:
+        reasons.append("algorithm-not-promoted")
     if (
         candidate.diagnostics.gamut_adjusted_fraction
         > resolved.max_gamut_adjusted_fraction
@@ -161,6 +169,7 @@ def render_reference_look_guarded(
             candidate.diagnostics.gamut_adjusted_fraction
         ),
         candidate_new_boundary_fraction=new_boundary,
+        research_baseline_override=resolved.allow_research_baseline,
     )
     return GuardedReferenceMatchResult(
         image=candidate.image if accepted else _clone_source(source),

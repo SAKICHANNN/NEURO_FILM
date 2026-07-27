@@ -52,6 +52,7 @@ def test_permissive_guard_delivers_exact_candidate() -> None:
         policy=ReferenceRenderGuardPolicy(
             max_gamut_adjusted_fraction=1.0,
             max_new_boundary_fraction=1.0,
+            allow_research_baseline=True,
         ),
     )
 
@@ -91,6 +92,7 @@ def test_guarded_batch_is_ordered_and_policy_validation_fails_closed() -> None:
         policy=ReferenceRenderGuardPolicy(
             max_gamut_adjusted_fraction=1.0,
             max_new_boundary_fraction=1.0,
+            allow_research_baseline=True,
         ),
     )
     assert [
@@ -105,3 +107,33 @@ def test_guarded_batch_is_ordered_and_policy_validation_fails_closed() -> None:
                 max_gamut_adjusted_fraction=1.1
             ),
         )
+
+
+def test_default_guard_blocks_unpromoted_research_algorithm() -> None:
+    reference, source = _reference_and_source()
+    guarded = render_reference_look_guarded(
+        fit_reference_look(reference),
+        source,
+    )
+
+    assert guarded.safety.accepted is False
+    assert guarded.safety.action == "identity-fallback"
+    assert "algorithm-not-promoted" in guarded.safety.reasons
+    assert guarded.safety.research_baseline_override is False
+    assert np.array_equal(guarded.image.pixels, source.pixels)
+
+
+def test_research_override_is_explicit_in_decision() -> None:
+    reference, source = _reference_and_source()
+    guarded = render_reference_look_guarded(
+        fit_reference_look(reference),
+        source,
+        policy=ReferenceRenderGuardPolicy(
+            max_gamut_adjusted_fraction=1.0,
+            max_new_boundary_fraction=1.0,
+            allow_research_baseline=True,
+        ),
+    )
+
+    assert guarded.safety.accepted is True
+    assert guarded.safety.research_baseline_override is True
