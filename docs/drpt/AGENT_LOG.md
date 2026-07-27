@@ -4822,3 +4822,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   film/stock/calibration or real unpaired-operator claim. Implement and test
   against the frozen config before any fresh target access. Goal remains
   ACTIVE.
+
+### Pre-result implementation verification
+
+- Added `src/roll2film/filmset_asymmetric_applicability.py`, a scalar-loss-only
+  research module with deterministic z-score/PCA, off-diagonal ridge,
+  leave-one-query-and-operator-out selection, hard Top-1, OOD fallback and
+  explicit gate helpers. The existing Z0 evaluator now exposes its shared O0
+  as private research state without changing its report.
+- Added `scripts/run_u5_r2z1_asymmetric_applicability.py`. It loads the 24
+  development pairs first, stops before fresh loading when no rank passes, and
+  only then can load the frozen fresh 16. Shuffled development controls permute
+  signatures inside each fold after removing the held-out operator signature.
+- Pre-result config erratum: copied the unchanged Z0 case-eligibility and
+  retrieval-control keys required by the reused bank evaluator into the Z1
+  config. No Z1 feature, capacity, threshold, data partition, gate or branch
+  changed, and no fresh target had been accessed.
+- **Verification:** 11 adjacent tests pass; the first full-suite invocation
+  exceeded a 240-second tool timeout and was not counted. A clean rerun passes
+  all 989 tests in 330.12 seconds. `py_compile`, JSON parse and
+  `git diff --check` pass. Formal GPU fitting has not started and fresh targets
+  remain sealed.

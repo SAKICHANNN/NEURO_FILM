@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "u5.r2z1-asymmetric-applicability-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2Z1",
-  "status": "contract_frozen_pending_implementation",
+  "status": "implemented_frozen_pending_formal_run",
   "parent_evidence": {
     "z0_decision_path": "configs/u5_r2z0_filmset_case_retrieval_decision_v1.json",
     "required_z0_decision_sha256": "d7c75d12a1952d810528ef9131b9cc8523cf771b9a842b27c7bf647256a3504e",
@@ -128,6 +128,7 @@
     "additive_operator_only_model": true
   },
   "gates": {
+    "minimum_case_self_improvement_fraction": 0.25,
     "minimum_eligible_case_count": 12,
     "minimum_oracle_improvement_over_shared_fraction": 0.1,
     "minimum_oracle_win_fraction": 0.75,
@@ -138,6 +139,9 @@
     "minimum_policy_improvement_over_spatial_photometric_fraction": 0.02,
     "minimum_policy_improvement_over_random_fraction": 0.02,
     "minimum_policy_improvement_over_shuffled_fraction": 0.02,
+    "minimum_retrieval_oracle_gap_closure": 0.25,
+    "minimum_retrieval_gain_over_random_fraction": 0.02,
+    "minimum_retrieval_gain_over_shuffled_fraction": 0.02,
     "minimum_policy_win_fraction_over_shared": 0.625,
     "minimum_policy_bootstrap_improvement_lower": 0.0,
     "maximum_ood_fallback_fraction": 0.25,

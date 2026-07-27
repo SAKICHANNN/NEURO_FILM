@@ -21,6 +21,7 @@ class CaseBankEvaluation:
     query_input_evaluation: np.ndarray
     query_target_evaluation: np.ndarray
     oracle_rmse: np.ndarray
+    shared_operator: CubeDiffeomorphicColourFlow | None = None
 
 
 def _validate_samples(values: np.ndarray, *, name: str) -> np.ndarray:
@@ -515,6 +516,7 @@ def evaluate_within_recipe_case_bank(
         query_input_evaluation=query_eval,
         query_target_evaluation=query_target,
         oracle_rmse=oracle_rmse,
+        shared_operator=shared,
     )
 
 

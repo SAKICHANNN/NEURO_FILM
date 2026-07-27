@@ -252,6 +252,12 @@ photometric selectors, random expectation and 32 signature shuffles, with a
 development-derived OOD fallback. Only a complete development pass opens fresh
 confirmatory identities 17--32; Z0 confirmatory identities are not reused.
 No neural/router/visual/final-628/film claim opens at contract freeze.
+The isolated implementation now predicts scalar bank-member loss only, exposes
+the unchanged shared O0 from the Z0 evaluator, performs fold-local signature
+shuffles without leaking the held-out operator signature, and keeps fresh
+target loading behind the automatic development branch. Eleven focused tests
+and all 989 CPU tests pass. The next action is a scoped implementation commit
+and push, followed by two commit-bound formal runs.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
