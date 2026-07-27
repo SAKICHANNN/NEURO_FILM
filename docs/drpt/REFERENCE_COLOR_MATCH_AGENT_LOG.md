@@ -1546,3 +1546,21 @@
   invocation and A1/A4/A5.
 - Evidence commit: `fcd3ace` (`docs: record local delivery authorization`).
   P38 is complete as authorization, not file delivery.
+
+## 2026-07-28 - Freeze P39 atomic local export
+
+- Node/parent goal: P39A / local file transaction after P38.
+- Contract: reconstruct and compare the exact P38 authorization immediately
+  before mutation, then copy every ordered P36 verified output byte-for-byte
+  to caller-selected local destinations and atomically commit all files plus
+  one canonical report.
+- Protection: P33/P36 staging inputs and reports are immutable transaction
+  sources and cannot be destinations. Existing destination files may be
+  replaced only through the shared rollback-safe batch commit primitive.
+- State/ceiling: `committed-local-delivery` /
+  `local-files-delivered-reference-look`.
+- Prohibitions: no app-level applied state, stock identity, public/cloud share
+  or producer promotion inference.
+- Scope: additive consumer transaction/schema/tests/docs only. Producer,
+  media/HDR, FilmFX arithmetic and main-project files are forbidden.
+- Coordination: both equal peer tasks received intent and need not wait.
