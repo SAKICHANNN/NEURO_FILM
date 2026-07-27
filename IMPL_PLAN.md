@@ -259,6 +259,18 @@ target loading behind the automatic development branch. Eleven focused tests
 and all 989 CPU tests pass. The next action is a scoped implementation commit
 and push, followed by two commit-bound formal runs.
 
+U5.R2Z1 now closes with two byte-identical commit-bound reports. The literal
+previous-case bank fails before routing: after each query's own operator is
+removed, its Oracle improves shared O0 by only 7.32%, wins 62.5% and has a
+non-positive bootstrap lower bound, below all frozen bank-value gates.
+Rank-2/rank-4 hard asymmetric policies are respectively 28.54%/34.70% worse
+than shared, win only 20.83%/16.67% and close `-389.94%/-474.01%` of the
+remaining Oracle gap. All operators pass structural and replay gates, so this
+is missing transferable case value rather than numerical collapse. Fresh
+targets remain unread and no larger selector, router, visual candidate,
+final-628 access or film/stock claim opens. Ultimate returns to another
+evidence-authorised explicit algorithm or product leaf.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2z1-asymmetric-applicability-decision-v1",
+  "experiment_id": "u5.r2z1-asymmetric-applicability-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Z1",
+  "software_commit": "a33526e8f694f029d92e432444ca8e7140cf1490",
+  "config_sha256": "988f079b8f0d7658af7f352397385a159f7e30fca74ec7c5b7d0f2b515aa4166",
+  "report_a_sha256": "bda10ab453b540e05031a357e50f8d7fac4ba2055a49612827d5263546f93b70",
+  "report_b_sha256": "bda10ab453b540e05031a357e50f8d7fac4ba2055a49612827d5263546f93b70",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "dataset_boundary": {
+    "development_identity_count": 24,
+    "selected_payload_image_count": 48,
+    "fresh_confirmatory_identity_count_accessed": 0,
+    "fresh_target_payloads_accessed": 0,
+    "z0_confirmatory_payloads_reused": 0,
+    "final_manifest_payload_rows_parsed": 0,
+    "unselected_payload_images_read": 0,
+    "full_raster_outputs_generated": 0
+  },
+  "development": {
+    "eligible_case_count": 24,
+    "shared_o0_rmse_mean": 0.013226781634482092,
+    "off_diagonal_case_bank_oracle_rmse_mean": 0.012258545632554725,
+    "oracle_improvement_over_shared_fraction": 0.0732026904718216,
+    "oracle_win_fraction": 0.625,
+    "oracle_bootstrap_lower_rank2": -0.00012406733292013883,
+    "oracle_bootstrap_lower_rank4": -0.0000957835323381092,
+    "rank2": {
+      "policy_rmse_mean": 0.017002273226992364,
+      "policy_improvement_over_shared_fraction": -0.28544295179619517,
+      "policy_win_fraction_over_shared": 0.20833333333333334,
+      "policy_oracle_gap_closure": -3.8993505560573998,
+      "policy_bootstrap_lower": -0.005961727994228514,
+      "ood_fallback_fraction": 0.08333333333333333,
+      "all_gates_pass": false
+    },
+    "rank4": {
+      "policy_rmse_mean": 0.017816284750141898,
+      "policy_improvement_over_shared_fraction": -0.34698562677522515,
+      "policy_win_fraction_over_shared": 0.16666666666666666,
+      "policy_oracle_gap_closure": -4.740066581416058,
+      "policy_bootstrap_lower": -0.006696260967015517,
+      "ood_fallback_fraction": 0.08333333333333333,
+      "all_gates_pass": false
+    },
+    "fixed_medoid_rmse_mean": 0.016205112932311614,
+    "spatial_photometric_rmse_mean": 0.018382915048074464,
+    "random_expected_rmse_mean": 0.020379324163567362,
+    "structure_all": true
+  },
+  "decision_branch": "development_applicability_fail",
+  "fresh_confirmatory_opened": false,
+  "visual_stage_opened": false,
+  "interpretation": "Removing the held-out query's own operator reduces the ClassNeg development case-bank Oracle to 7.32% improvement and 62.5% wins, below the frozen 10% and 75% gates with non-positive bootstrap lower bounds. Both rank-2 and rank-4 hard asymmetric policies are materially worse than shared O0 and the fixed medoid. The transferable previous-case bank lacks sufficient value before selector capacity is considered.",
+  "forbidden_rescues": [
+    "access fresh confirmatory targets after the development failure",
+    "add rank greater than four, kernel, neural, semantic, local or direct RGB capacity",
+    "average or retune fixed operators per query",
+    "change gates, PCA, ridge, shuffle or OOD policy after viewing results",
+    "reopen Z0 or W2F1 output-only recovery",
+    "parse or decode the final 628 lockbox",
+    "generate a Z1 visual shortlist",
+    "claim a physical film stock, latent mode, calibrated response or real unpaired digital-to-film operator"
+  ],
+  "next_ready_leaf": "U5.R2AA0 audit whether official Kodak VISION3 250D and VISION 2383 sensitometric, spectral-sensitivity, separated-dye and LAD materials support a reproducible datasheet-constrained negative-to-print Look Approximation under explicit canonical-spectrum, printer-light and viewing nuisance controls",
+  "claim_ceiling": "repeat-exact internal paired-software-recipe evidence that excluding each query's own operator removes qualifying ClassNeg case-bank Oracle value and that the frozen rank-2/rank-4 asymmetric hard policies lose to shared O0; no fresh-target, visual, deployable-selector, film, stock, calibration or real unpaired-operator claim"
+}

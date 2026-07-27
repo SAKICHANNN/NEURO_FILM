@@ -4855,3 +4855,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   signature shuffles. This changes no data, feature, model, seed, threshold,
   gate, decision branch or report JSON. Relaunch A as a hidden independent
   local process so its lifetime is not coupled to a foreground tool timeout.
+
+### Formal result and integration
+
+- **Repeat evidence:** formal A/B are byte-identical at
+  `bda10ab453b540e05031a357e50f8d7fac4ba2055a49612827d5263546f93b70`;
+  both stderr logs are empty and bind software `a33526e...` plus config
+  `988f079b...`.
+- **Decisive prerequisite failure:** excluding each query's own operator leaves
+  an off-diagonal Oracle mean RMSE of `.012259` versus shared `.013227`, only
+  7.32% improvement and 62.5% wins. Rank-2/rank-4 bootstrap lower bounds are
+  negative, so the bank fails before selector capacity.
+- **Policy result:** rank 2/4 mean RMSE is `.017002/.017816`, 28.54%/34.70%
+  worse than shared, with `-389.94%/-474.01%` Oracle-gap closure and
+  20.83%/16.67% wins. Both also lose to the fixed medoid.
+- **Boundary evidence:** all 24 case operators pass structure/replay; exactly
+  48 development payloads were read. Fresh targets, Z0 confirmatory targets,
+  final 628, other recipes and current stock pixels remain unread; no visual
+  output exists.
+- **Decision/handoff:** close `development_applicability_fail`. Do not add
+  rank/kernel/neural/semantic/local/direct-RGB capacity or reopen Z0. Continue
+  through another evidence-authorised explicit algorithm/product leaf; Goal
+  remains ACTIVE.
