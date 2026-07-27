@@ -1029,3 +1029,19 @@
   separate producer work with no implicit consumer mapping.
 - Structure: no main or producer file changed; temporary merge worktree was
   verified, merge-aborted and removed. Branch is ready for peer handoff.
+
+## 2026-07-28 - Start P28 atomic producer batch intake
+
+- Node/parent goal: P28 / one uploaded reference plus ordered N source product
+  semantics.
+- Ownership: consumer-only batch binding over already verified P27 outcomes.
+  D-PCT remains sole owner of fit/apply/media/native behavior.
+- Contract: contiguous source indices, one exact shared reference, per-source
+  producer and consumer identity validation, no hidden global/shot state.
+- Atomic rule: any producer failure stops before admission; otherwise every
+  candidate requires its own exact receipt plus A1/A4/A5 admission. Any
+  admission fallback makes the full batch identity fallback.
+- State ceiling: all-success is only `pending-product-guard`; partial output
+  and `applied` do not exist.
+- Coordination: producer peer received the non-overlapping intent. Proposed
+  HDR absolute rail remains outside scope.

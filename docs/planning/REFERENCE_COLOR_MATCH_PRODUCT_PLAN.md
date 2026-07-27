@@ -105,6 +105,10 @@ with a selected stock, but reference matching alone is labeled
 | P27C | DONE | implement explicit producer-v2 to consumer adapter | exact byte length, pixel/view/bundle/diagnostics/result recomputation; no mutable import | compatibility-v2 commit | identity fallback |
 | P27D | DONE | pass corrected producer exact fixture through consumer receipt/admission | dual producer/consumer identities, exact output receipt, candidate-only A1/A4/A5 chain | compatibility-v2 commit | identity fallback before guard |
 | P27E | DONE | run adjacent/full/latest-main propagation and peer handoff | 1179 pass/1 skip/36 known environment failures; latest-main synthetic merge 284 pass; zero path overlap | evidence commit | retain P26 boundary |
+| P28A | IN_PROGRESS | freeze atomic one-reference/N-source producer intake | ordered source ownership, all-or-fallback, no applied state | batch contract commit | retain per-source P27 receipts |
+| P28B | NOT_STARTED | implement success/failure batch binding | verify every producer/consumer source and shared reference identity | batch implementation commit | reject mixed/unbound outcomes |
+| P28C | NOT_STARTED | bind per-source A1/A4/A5 admission into atomic batch result | any producer/admission failure makes the entire batch identity fallback | batch admission commit | never expose partial delivery |
+| P28D | NOT_STARTED | run mutation/permutation/full/latest-main propagation and handoff | strict schema, deterministic ID, regression and overlap evidence | evidence commit | retain P27 single-source path |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -187,6 +191,15 @@ its only action is identity fallback. Both pinned fixtures are forced to LF so
 their producer-published artifact SHA-256 survives a fresh Windows checkout.
 The later proposed absolute BT.2020 HDR rail is a separate, currently unmapped
 profile and does not inherit this relative-sRGB compatibility verdict.
+
+P28 is a consumer product-transaction child, not a producer algorithm API.
+The user-visible source order is explicit and contiguous. Every per-source
+candidate must bind its own source and the same reference in both producer and
+consumer identity spaces. A producer failure short-circuits before admission;
+otherwise every source must have a receipt-bound A1/A4/A5 admission. Any
+fallback makes the whole batch identity fallback. Even an all-success batch
+stops at `pending-product-guard`; partial delivery and `applied` are absent
+from the contract.
 
 ## First-slice algorithm
 
