@@ -1135,3 +1135,21 @@
 - Handoff: P29 is stable for equal-peer consumption. A later transaction
   node may consume only the whole-batch eligible state and must still supply
   independent visual/severe-artifact adjudication before delivery.
+
+## 2026-07-28 - Start P30 product transaction authorization
+
+- Node/parent goal: P30 / fail-closed boundary between numeric eligibility and
+  durable product staging.
+- Audit finding: P29 correctly proves only numeric eligibility. The earlier
+  CoreAcceptance contract deliberately permits a research-baseline override,
+  so a transaction boundary must not infer product promotion from admission
+  or numeric success alone.
+- Contract intent: rebind P28 rows, P29 batch identity and the original
+  per-source CoreAcceptance decisions. Require `promotion_status=promoted`,
+  `research_baseline_override=false`, accepted core status and exact ordered
+  acceptance IDs for every source.
+- State ceiling: success only `authorized-for-staging`; failure makes the
+  whole batch identity fallback. No file write, commit, delivery or applied
+  state exists.
+- Coordination: both equal peer tasks received the consumer-only intent;
+  D-PCT has no schema or implementation action.

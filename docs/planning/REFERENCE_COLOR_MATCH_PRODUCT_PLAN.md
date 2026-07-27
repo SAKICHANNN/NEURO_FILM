@@ -113,6 +113,10 @@ with a selected stock, but reference matching alone is labeled
 | P29B | DONE | implement per-source guard decision | exact source/output/admission binding and conservative frozen thresholds | `0fca9d9` | identity fallback |
 | P29C | DONE | implement atomic batch guard | all sources eligible or the full batch falls back | `135f0b9` | no partial/applied state |
 | P29D | DONE | run adversarial/full/latest-main propagation and handoff | 1218 pass/1 skip/36 known environment failures; latest-main synthetic merge 65 pass; zero path overlap | evidence commit | retain P28 resolution |
+| P30A | IN_PROGRESS | freeze product transaction authorization boundary | bind P28/P29 plus original acceptances; forbid research override | authorization contract commit | retain numeric-only state |
+| P30B | NOT_STARTED | implement atomic authorization envelope | every row must be promoted, non-research and identity-bound | authorization implementation commit | full identity fallback |
+| P30C | NOT_STARTED | prove research override and binding mutations fail closed | promoted control plus override/status/order/hash negatives | focused evidence | no staging authorization |
+| P30D | NOT_STARTED | run full/latest-main propagation and peer handoff | unchanged failure baseline and clean synthetic merge | evidence commit | retain P29 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -215,6 +219,14 @@ whole batch is eligible to enter a future durable transaction. Every source
 must pass the same frozen policy or the full batch becomes identity fallback.
 Neither state means delivered or applied. See
 `docs/drpt/REFERENCE_COLOR_MATCH_NUMERIC_GUARD_EVIDENCE.md`.
+
+P30 is the product transaction authorization boundary, not another promotion
+evaluator. It rebinds the original acceptance identities already referenced by
+P28 and requires every source to have `promotion_status=promoted` with
+`research_baseline_override=false`. This prevents an explicitly accepted
+research baseline from crossing a product staging boundary merely because its
+pixels pass P29 numeric thresholds. Success means only
+`authorized-for-staging`; commit and applied delivery remain later states.
 
 ## First-slice algorithm
 
