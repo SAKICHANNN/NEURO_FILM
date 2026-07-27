@@ -402,3 +402,14 @@
   ignored-output/CRLF-hash failures; no new failure family and no
   `src/color_match` failure.
 - Commit: `ec437e1` (`feat: add projected CFSM matcher challenger`).
+
+## 2026-07-27 - Refresh stable external boundaries after P13
+
+- Read-only main snapshot: `ed1dbb5` closes S4 as conditional-distribution
+  success but hidden-operator failure. No W1 canonicalizer is published.
+- Read-only D-PCT snapshot: `e1f67d3` executes 67/67 local compression-7 DNG
+  mosaics and observed profile mechanics to ACEScg, but retains
+  `real_raw_paths=FAIL`.
+- Propagation: P14 cannot consume S4 as identified operator evidence; A3 cannot
+  consume the DNG decoder as a trusted MatchView bridge.
+- Files imported or copied: none. External dirty work remains untouched.

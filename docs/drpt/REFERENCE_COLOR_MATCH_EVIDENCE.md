@@ -146,10 +146,14 @@ only when those pixel-tail gates pass, and the report records the override.
 
 ## D-PCT integration boundary
 
-At committed standalone D-PCT state `413d713...`, its canonical scene rail
+At committed standalone D-PCT state `e1f67d3...`, its canonical scene rail
 (linear ACEScg/D60 scene-relative) and display rail (linear absolute XYZ/D65
 with reference-white nits) are semantically different from this module's
-relative linear-sRGB SDR rail. A3 is therefore contract-mapped but intentionally
+relative linear-sRGB SDR rail. The new commit decodes all 67 local
+lossless-JPEG CFA mosaics and executes observed DNG profile mechanics, but its
+own `real_raw_paths` gate remains failed because no trusted scene-linear
+renderer, representative vendor RAW matrix or qualifying professional
+source/reference pairs exist. A3 is therefore contract-mapped but intentionally
 closed at the pixel bridge. This branch contains no D-PCT RAW, HDR, DNG, video
 or platform decoder implementation.
 
