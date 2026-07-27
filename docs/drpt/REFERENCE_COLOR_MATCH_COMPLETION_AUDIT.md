@@ -38,7 +38,8 @@ wire contract and not an algorithm promotion.
 | A5 album/batch consistency | Baseline failed six shared-colour context probes | GATE IMPLEMENTED, EVIDENCE OPEN | Candidate-specific shared-colour drift pass with source-bound transform policy made explicit / shared evidence, Neuro-Film decision |
 | Exact producer/consumer compatibility | P27 pins corrected D-PCT v2 relative-SDR schemas and exact success/failure fixtures | COMPLETE for the pinned synthetic conformance profile | A real producer package must declare and pass the same explicit compatibility profile / D-PCT then Neuro-Film |
 | Actual D-PCT algorithm invocation | No frozen library/package/ABI or product invocation exists; P27 consumes fixtures only | BLOCKED ON PRODUCER ARTIFACT | Publish fixed package/ABI, capability identity, invocation conformance and real source-bound receipt / D-PCT |
-| External D-PCT output to durable product transaction | P28-P30 stop at batch `authorized-for-staging`; no pixel/path/commit state exists | NOT OPEN | After real promotion and invocation, add an atomic staging/commit adapter that revalidates P30 ID and exact receipts / Neuro-Film |
+| External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers and a strict report | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
+| Final user-visible delivery state | No P33 state above `committed-to-staging`; `applied` remains absent | NOT OPEN | Consume the exact P33 run under a separately authorized delivery and composition decision / Neuro-Film product integration |
 | FilmFX composition | P18 binds effects to verified delivered local-run decisions and rejects mixed/fallback misuse | COMPLETE for current transaction | Reuse only after the external transaction leaf creates an equivalent verified delivered-run report / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
@@ -55,10 +56,10 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
 3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,
    P28 atomic batch resolution, P29 numeric guard and P30 product
    authorization.
-4. A new consumer transaction leaf stages and commits all N outputs, recipe
-   references and report atomically; any mismatch keeps the entire batch at
-   identity.
-5. FilmFX composition consumes only the verified committed-run report.
+4. P33 stages and commits all N outputs and its exact report atomically; any
+   mismatch keeps the entire batch from staging.
+5. A later product-delivery decision consumes the exact P33 run, after which
+   FilmFX composition may consume only the verified delivered-run report.
 6. Platform runtime evidence is collected per target; cross-compilation alone
    cannot close device support.
 
@@ -75,6 +76,6 @@ separate leaves and do not block the relative-SDR product shell from review.
 The independent Neuro-Film reference-match module is implementation-complete
 as a fail-closed local product shell. The broader long-term goal is not
 complete: no real external candidate has both product promotion and a frozen
-invocation artifact, external pixels cannot yet enter the durable
-transaction, Apple/device runtime evidence is absent, and the branch has not
-been merged into the main project.
+invocation artifact, external pixels have only a synthetic-tested staging
+transaction and no final delivery state, Apple/device runtime evidence is
+absent, and the branch has not been merged into the main project.

@@ -123,10 +123,10 @@ with a selected stock, but reference matching alone is labeled
 | P31D | DONE | run full/latest-main propagation and peer handoff | 1235 pass/1 skip/36 known failures; latest-main synthetic merge 82 pass | evidence commit | retain P30 |
 | P31E | DONE | independently execute the same verifier with a second Windows compiler | pinned LLVM-MinGW Clang 22.1.8, 10/10 identities and both states; full 1236 pass | `5d809ef` | same-host evidence only |
 | P32 | DONE | audit the complete long-term goal and freeze the real integration critical path | requirement-by-requirement ownership, evidence, status and next-owner matrix | `f1ea3fb` | remove documentation only |
-| P33A | IN PROGRESS | freeze an external-candidate staging transaction without defining producer invocation | exact P28/P30/intent/receipt binding; all-or-nothing SDR files and report; staging-only claim | intent commit | retain P30 authorization |
-| P33B | PENDING | implement strict transaction report and atomic file staging | rollback fault injection, schema/roundtrip, exact output hashes | implementation commit | revert additive module/schema |
-| P33C | PENDING | prove mutation and fallback branches cannot write | authorization/order/receipt/profile/intent/path/commit negatives | implementation commit | no staged artifacts |
-| P33D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P30/P32 |
+| P33A | DONE | freeze an external-candidate staging transaction without defining producer invocation | exact P28/P30/intent/receipt binding; all-or-nothing SDR files and report; staging-only claim | `ce0ceaa` | retain P30 authorization |
+| P33B | DONE | implement strict transaction report and atomic file staging | rollback fault injection, schema/roundtrip, exact output hashes | `0cb94c3` | revert additive module/schema |
+| P33C | DONE | prove mutation and fallback branches cannot write | authorization/order/receipt/profile/intent/path/commit negatives | `0cb94c3` | no staged artifacts |
+| P33D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 1245 pass/1 skip/36 known failures; latest-main synthetic merge 107 pass | evidence commit | retain P30/P32 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

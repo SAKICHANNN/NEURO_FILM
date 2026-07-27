@@ -1278,3 +1278,31 @@
   algorithms, media, HDR/RAW/video and main files are forbidden.
 - Coordination: both equal peer tasks received intent and may continue their
   independent leaves without waiting.
+
+## 2026-07-28 - Implement and verify P33 external staging transaction
+
+- Node/parent goal: P33B-D / consumer-owned durable staging after P30.
+- Implementation: `0cb94c3` adds one module, strict schema, public exports and
+  nine adversarial tests. It reuses the existing rollback-safe batch commit
+  primitive rather than creating a parallel transaction mechanism.
+- Binding: P28 batch ID, P30 authorization ID, ordered source/transform/apply
+  receipt/output-view IDs and one shared reference intent are revalidated
+  before staging. Only the pinned relative linear-sRGB profile is accepted.
+- State ceiling: success is `committed-to-staging` with claim
+  `staging-files-committed-not-delivered`; no applied/delivered/partial state
+  exists.
+- Fault evidence: research override, permutation, duplicate paths, split
+  intent and canonical mutations fail closed. Injected report replacement
+  failure restores two old outputs and the old report with no debris.
+- Verification: 9 dedicated, 107 combined P27-P33 and 74 adjacent tests pass;
+  compileall and diff check pass. Full suite is 1245 passed, one skipped and
+  the unchanged 36 environment failures; no colour-match failure.
+- Latest-main: `e7da085`, zero overlap across 160 consumer and 94 main paths,
+  merge tree `4344cbf1...`; detached synthetic merge passes 107/107 and is
+  removed.
+- Concurrent safety: main's untracked Kodak AA1 and temporary files were
+  untouched. D-PCT `1bcb1d1` is exploratory/non-promoted and therefore
+  cannot satisfy P33's real authorization prerequisite.
+- Handoff: evidence documentation is ready to commit. Real use remains closed
+  on fixed producer invocation plus A1/A4/A5 promotion; final delivery is a
+  later consumer decision.
