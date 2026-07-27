@@ -1890,6 +1890,23 @@
 - DoD: additive module/schema/tests, adversarial binding mutations,
   adjacent/full/latest-main propagation and peer handoff.
 
+## 2026-07-28 - Implement and verify P48 shared numeric guard
+
+- Implementation: `5c50874` adds producer-fact binding, exact per-source
+  decisions, atomic aggregation, strict JSON schema and 13 tests.
+- Policy: reuses P29 `0.25/0.05/0.25/0.05` thresholds and `1/65535`
+  boundary epsilon without a shared-path exception.
+- Independent facts: live output min/max and new-boundary are recomputed from
+  exact P47 pixels; diagnostics/OOG/clipping/projection remain bound producer
+  facts pending future conformance.
+- Atomicity: one source failure makes the full batch identity fallback.
+  Success reaches only `eligible-for-transaction` under
+  `numeric-only-no-visual-claim`.
+- Verification: 38 focused, 577 combined and full 1383 pass/1 skip/36
+  unchanged. Latest main `2bc968d`, zero overlap, merge tree
+  `4eb40c39...5fe`; fresh merge 51 pass/4 expected wheel-evidence skip.
+- Boundary: no RGIN compatibility or product authorization opens.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
