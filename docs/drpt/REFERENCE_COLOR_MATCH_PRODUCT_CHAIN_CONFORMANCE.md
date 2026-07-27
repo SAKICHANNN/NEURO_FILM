@@ -30,6 +30,7 @@ byte hex with expected SHA-256.
 | fixture schema | `a7864a71faaf9844f6ce3023951499b93b429e692b64e45dbffc9d5c28a8a95e` |
 | C++17 verifier | `6e14ac0a1eb23c9b9494cc0fe6d1b973105d05624d52471b7ff014eba235a290` |
 | consumer Android NDK pin | `d9267d0e364479cd15f49b250862c3d8769ae96e00c07c3e70f2cec0d46693ae` |
+| consumer LLVM-MinGW pin | `f30ca2b5dc0bb90104d6ef911dc6fcdc649f64dc236c9d57b424a583ca1598c8` |
 
 All canonical artifacts are forced to LF and regenerate exactly from the
 corrected P27 producer fixture.
@@ -48,6 +49,13 @@ intermediate state.
 This is same-host independent-language evidence, not an independent algorithm
 or product-quality result.
 
+The consumer subsequently pinned a second compiler independently:
+LLVM-MinGW 20260616, Clang 22.1.8,
+`x86_64-w64-windows-gnu`. Its compiler and license hashes match the consumer
+lock. A static build independently reproduces all ten identities and both
+authorization states. This reduces compiler-specific risk but remains
+same-host Windows x64 evidence.
+
 ## Android cross-compile
 
 The consumer independently pins NDK r27d revision `27.3.13750724`, including
@@ -64,14 +72,13 @@ iOS or macOS evidence.
 
 ## Regression and propagation
 
-- 82 combined P27-P31 tests pass.
-- Full suite: 1235 passed, one skipped and the unchanged 36 environment
+- 83 combined P27-P31 tests pass.
+- Full suite: 1236 passed, one skipped and the unchanged 36 environment
   failures; no colour-match/P31 failure.
-- Latest main is `079c7a1`; common base is `c03c321`.
-- Main changes 88 paths, this branch changes 152 paths, with zero overlap.
-- Clean merge tree: `f3febcf9096b52bb4031c578c2fa4a078a635d9f`.
-- Detached fresh-checkout merge `66d2d6e3...` passes all 82 tests, including
-  MSVC execution and Android arm64/x86_64 cross-linking.
+- Latest main is `a8e5372`; common base is `c03c321`; path overlap is zero.
+- Clean merge tree: `3117e3649da428452f0989f165411336cf7ba7e5`.
+- Detached fresh-checkout merge `8c231adb...` passes all 83 tests, including
+  MSVC and LLVM-MinGW execution plus Android arm64/x86_64 cross-linking.
 - The temporary merge worktree was removed. Main's concurrent dirty files
   were observed read-only and were not included or changed.
 

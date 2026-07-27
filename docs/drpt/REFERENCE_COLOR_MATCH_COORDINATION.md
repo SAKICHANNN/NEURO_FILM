@@ -633,3 +633,7 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   latest main `079c7a1`, zero path overlap, synthetic merge 82 pass.
 - Product commit remains closed pending real promotion and a frozen invocation
   package. No D-PCT interface action is requested.
+- Addendum: consumer commit `5d809ef` independently pins LLVM-MinGW Clang
+  22.1.8 and executes the same ten vectors/two states exactly. Latest full
+  result is 1236 pass/1 skip/36 unchanged failures; latest-main `a8e5372`
+  synthetic merge passes 83. This is same-host second-compiler evidence.

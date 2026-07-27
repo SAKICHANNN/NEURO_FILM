@@ -121,6 +121,7 @@ with a selected stock, but reference matching alone is labeled
 | P31B | DONE | independently recompute identities and staging rule in C++17 | MSVC `/W4 /WX`, 10/10 identities, research override negative | `7e34a83` | retain Python authority |
 | P31C | DONE | cross-compile/link consumer verifier for Android | pinned NDK r27d arm64-v8a and x86_64 ELF evidence | `52d4cd8` | no device-runtime claim |
 | P31D | DONE | run full/latest-main propagation and peer handoff | 1235 pass/1 skip/36 known failures; latest-main synthetic merge 82 pass | evidence commit | retain P30 |
+| P31E | DONE | independently execute the same verifier with a second Windows compiler | pinned LLVM-MinGW Clang 22.1.8, 10/10 identities and both states; full 1236 pass | `5d809ef` | same-host evidence only |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

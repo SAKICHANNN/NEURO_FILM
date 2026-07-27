@@ -1218,3 +1218,17 @@
 - Handoff: P31 is stable for both equal peer tasks. Product commit remains
   closed until a genuinely promoted candidate and frozen invocation package
   exist.
+
+## 2026-07-28 - Add P31E second-compiler execution
+
+- Node/parent goal: P31E / reduce compiler-specific consumer-contract risk.
+- Toolchain: independently hash-pin LLVM-MinGW 20260616, Clang 22.1.8,
+  `x86_64-w64-windows-gnu`; the producer-provided local path is only a hint
+  and is not accepted as evidence.
+- Result: static C++17 build executes all ten identities and both staging
+  states exactly. Seven portability tests and 83 combined P27-P31 tests pass.
+- Full/latest-main propagation: 1236 passed, one skipped and the unchanged 36
+  environment failures; latest main `a8e5372`, zero path overlap, merge tree
+  `3117e364...`; detached merge `8c231adb...` passes 83/83 and was removed.
+- Claim ceiling: second compiler, same Windows x64 host. Apple and Android
+  device execution remain open; no producer, quality or delivery claim.
