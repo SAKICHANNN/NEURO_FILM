@@ -142,7 +142,7 @@ with a selected stock, but reference matching alone is labeled
 | P37A | DONE | freeze restart-safe verification of a P36 run | expected report hash/run ID; strict bounded reread; rehash P33 inputs and P36 outputs | `a468179` | retain P36 staging report |
 | P37B | DONE | implement canonical FilmFX staging verification | bind plan/P34/run/path/file identities; no mutation or delivery state | `c1f4195` | revert additive module/schema |
 | P37C | DONE | prove report/input/output tampering fails closed | report bytes/path/run, missing or changed input/output, order/state/claim mutations | `c1f4195` | no verified FilmFX binding |
-| P37D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 447 combined; 1287 pass/1 skip/36 known; latest-main synthetic merge 113 pass | evidence commit | retain P36 |
+| P37D | DONE | run adjacent/full/latest-main propagation and peer handoff | 447 combined; 1287 pass/1 skip/36 known; latest-main synthetic merge 113 pass | `fd1aa1a` | retain P36 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

@@ -1495,3 +1495,5 @@
   ABI, receipt and HDR rail remain unchanged.
 - Handoff: P37 evidence is ready to commit. It closes restart integrity, not
   real producer invocation or final user-visible delivery.
+- Evidence commit: `fd1aa1a` (`docs: record FilmFX staging verification`).
+  P37 is complete as restart verification, not final delivery.
