@@ -5355,3 +5355,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary/handoff:** implement an isolated external runner plus
   project-owned manifest evaluator. No Qwen, photos, benchmark, training,
   repair, film claim, visual review or integration. Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AF1 tokenizer topology audit
+
+- **External boundary:** the runner verifies exact Git revision, model-source
+  hash, checkpoint hash/size and runtime before importing the ignored
+  external model. It loads with `weights_only=True`, uses CPU inference only
+  and never invokes Qwen or any AceTone selector.
+- **Project evaluator:** generate the frozen analytic LUT population, consume
+  strict hashed manifests/arrays/codes, verify path containment and source
+  reconstruction, then compute exact replay, duplicate, negative-control,
+  range, clipping, Delta E, RMSE and local Jacobian evidence.
+- **Tests:** five focused tests pin source topology, exact identity, negative
+  orientation detection, Delta E identity and invalid-parameter fail-closed
+  behaviour. `py_compile`, `git diff --check` and the complete CPU suite pass
+  (`1024 passed`).
+- **Handoff:** checkpoint outputs and metrics remain unread. Commit the
+  implementation, run two independent formal processes from that revision,
+  then evaluate once. Goal remains ACTIVE.
