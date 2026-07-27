@@ -375,3 +375,4 @@
   cross-field state matrix.
 - Verification: 136 focused tests pass; the full collection is 992 passed,
   one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.
+- Commit: `ba6f2c1` (`fix: propagate matcher certification to composition`).
