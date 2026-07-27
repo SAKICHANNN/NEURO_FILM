@@ -1516,6 +1516,26 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Freeze P49 shared-path staging authorization
+
+- Node/parent goal: P49A-D / product boundary after P45/P47/P48.
+- DoR: P45 successor declaration/admission, P47 one-reference shared operator
+  batch and P48 exact numeric batch guard are stable and independently
+  versioned.
+- Contract: staging requires three independent locks: a product-ready P45
+  decision; exact P47/P48 batch, operator and ordered-source binding; and a
+  consumer promotion binding produced from a `PromotionDecision` for the same
+  capability, model, options, frozen gate policy and stable evidence ID.
+- Threat model: declaration booleans alone cannot authorize; rejected or
+  visual-review-only promotion, identity substitution, foreign evidence,
+  model/options drift, numeric fallback or incomplete/reordered rows must
+  fall back atomically.
+- Claim ceiling: success is only `authorized-for-staging` /
+  `staging-only-not-committed`; no pixels are written and no applied,
+  committed, FilmFX or delivery claim is created.
+- Scope: additive consumer contract/schema/tests/docs only. Producer code,
+  algorithms, media/HDR and Neuro-Film main files remain forbidden.
+
 ## 2026-07-28 - Implement and verify P40 local delivery verification
 
 - Node/parent goal: P40B-D / durable verification after P39.
