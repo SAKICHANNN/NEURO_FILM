@@ -11,6 +11,7 @@ from src.eval.dorf_film_response import (
     strict_rgb_triplets,
 )
 from src.eval.dorf_response_diversity import (
+    _median_de,
     apply_triplet,
     shared_curve_output,
     synthetic_rgb,
@@ -74,3 +75,9 @@ def test_shared_curve_control_uses_one_curve_for_all_channels() -> None:
     output = shared_curve_output(levels, triplets["Portra-400VCCD"])
     np.testing.assert_array_equal(output[:, 0], output[:, 1])
     np.testing.assert_array_equal(output[:, 1], output[:, 2])
+
+
+def test_delta_e_is_computed_once_in_lab_space() -> None:
+    black = np.zeros((1, 3), dtype=np.float64)
+    white = np.ones((1, 3), dtype=np.float64)
+    assert abs(_median_de(black, white) - 100.0) < 1e-5

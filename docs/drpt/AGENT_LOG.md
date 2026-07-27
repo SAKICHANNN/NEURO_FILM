@@ -5043,3 +5043,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   candidate metrics have not been inspected. Commit this implementation
   before two formal runs from the fixed software revision. Goal remains
   ACTIVE.
+
+### Pre-result Delta-E implementation erratum
+
+- The first two diagnostic files from `ba6e9dc` are rejected before scientific
+  interpretation: their impossible five-digit Delta E values exposed that the
+  evaluator converted encoded RGB to Lab and then passed Lab into a helper
+  whose input contract is XYZ, causing a second Lab conversion.
+- Correct only the metric interface to take Euclidean distance between the
+  already computed Lab vectors. Add a black-to-white Delta E = 100 regression.
+  Candidate set, source curves, population, controls, gates and branches do
+  not change. Formal reports must be rerun twice from the corrected commit.

@@ -11,7 +11,6 @@ import numpy as np
 from src.eval.dorf_film_response import DorfCurve
 from src.eval.velvia_datasheet_witness import (
     _RGB_TO_XYZ,
-    delta_e76,
     encoded_srgb_to_linear,
     xyz_to_lab,
 )
@@ -23,7 +22,7 @@ def _lab(encoded: np.ndarray) -> np.ndarray:
 
 
 def _median_de(a: np.ndarray, b: np.ndarray) -> float:
-    return float(np.median(delta_e76(_lab(a), _lab(b))))
+    return float(np.median(np.linalg.norm(_lab(a) - _lab(b), axis=-1)))
 
 
 def synthetic_rgb(levels: list[float]) -> np.ndarray:
