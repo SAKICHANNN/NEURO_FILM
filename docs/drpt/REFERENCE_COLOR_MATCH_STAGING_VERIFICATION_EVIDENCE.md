@@ -83,4 +83,3 @@ decision, but does not authorize one. A real external run still requires a
 fixed D-PCT invocation and A1/A4/A5 promotion. Any future delivery leaf must
 bind the exact P34 verification ID and must not infer `applied` from file
 existence.
-

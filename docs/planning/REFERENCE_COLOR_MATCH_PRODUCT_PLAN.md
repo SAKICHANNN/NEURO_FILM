@@ -130,7 +130,7 @@ with a selected stock, but reference matching alone is labeled
 | P34A | DONE | freeze restart-safe verification of a committed P33 run | expected report hash/run ID, bounded strict read, exact output file hashes | `a21754c` | retain P33 staging report |
 | P34B | DONE | implement canonical verified-staging binding | report/run/output/receipt/path identities; no write or delivery state | `f1e8d35` | revert additive module/schema |
 | P34C | DONE | prove report and output tampering fail closed | report bytes, run ID, output bytes/path/order/hash mutations | `f1e8d35` | no verified binding |
-| P34D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 1254 pass/1 skip/36 known failures; latest-main synthetic merge 144 pass | evidence commit | retain P33 |
+| P34D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1254 pass/1 skip/36 known failures; latest-main synthetic merge 144 pass | `61431b9` | retain P33 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

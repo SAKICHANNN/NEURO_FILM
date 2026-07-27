@@ -1349,3 +1349,5 @@
   read-only; no peer interface changed.
 - Handoff: evidence is ready to commit. Final delivery must bind the P34
   verification ID rather than trust files or the P33 in-memory result.
+- Evidence commit: `61431b9` (`docs: record external staging verification`).
+  P34 is complete as restart verification, not as delivery authorization.
