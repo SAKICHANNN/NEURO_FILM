@@ -2119,6 +2119,31 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   fitting/training/LSM and production integration remain forbidden. Goal
   remains ACTIVE.
 
+### Formal AE1 result and integration
+
+- **Exact lineage:** external `02ecafd...d2e`, evaluator
+  `2afa6c0...a60c`, config `d868ae4a...2801`, formal report
+  `2ec7cd1a...e6b3`; the repeated evaluation report is byte-identical and all
+  external float32 cube/neutral arrays repeat across two process runs.
+- **Negative controls:** the independent duplicate Ektar invocation is exact.
+  The `.75` identity-to-Ektar strength path recovers `.75`, `1.76e-17` RMSE
+  and `1.0` explained energy, so duplicate/strength splits do not create false
+  modes.
+- **Positive evidence:** all eight chains pass style (`19.07–23.96` Delta
+  E76), non-basic (`9.81–23.72` residual), range, zero interior clipping,
+  neutral monotonicity and derivative-amplification gates. All three
+  common-output families contain distinct pairs after symmetric basic matching
+  (`1.44–5.06` residual).
+- **Hard failure:** all eight chains exceed the `.5%` negative-Jacobian-cell
+  ceiling, spanning `1.61–9.50%`; minimum determinants span `-.2031` to
+  `-2.3281`. Identity/folded-axis tests and an explicit external LUT-table
+  ordering check exclude an axis-order or detector explanation.
+- **Decision/handoff:** close `close_range_fold_or_monotonicity_failure`.
+  Synthetic vision and AE2 remain forbidden. No smoothing, projection, clamp,
+  resolution/gate/profile search, teacher, stock claim, fitting, training, LSM
+  or integration. A distinct orientation-preserving explicit method may use
+  this only as motivation. Goal remains ACTIVE.
+
 ## 2026-07-28 - Freeze U5.R2AE1 external structural-bank contract
 
 - **Parent/DoR:** AE0 permits one isolated synthetic audit but blocks profile

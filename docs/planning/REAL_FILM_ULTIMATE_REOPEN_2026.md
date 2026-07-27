@@ -403,3 +403,12 @@ redistribution authority. One de-duplicated, source-bound synthetic structural
 bank audit may proceed. It cannot supply real-film pixels, stock truth,
 operator fitting, teachers, LSM eligibility or product integration. See
 `docs/U5_R2AE0_SPECTRAL_FILM_LUT_SOURCE_AUDIT.md`.
+
+`U5.R2AE1` closes that synthetic child. The eight document-associated chains
+are all visibly strong in metric space and non-basic, with exact replay and
+three distinct common-output families, but each contains `1.61–9.50%`
+negative-Jacobian grid cells against a frozen `.5%` ceiling. This is external
+algorithm evidence only; it opens no visual stage, stock evidence, fitting,
+teacher bank, LSM or integration. Projection, smoothing, clamping and
+post-result profile/threshold search are forbidden by the frozen branch. See
+`docs/U5_R2AE1_SPECTRAL_FILM_LUT_STRUCTURAL_BANK_RESULTS.md`.

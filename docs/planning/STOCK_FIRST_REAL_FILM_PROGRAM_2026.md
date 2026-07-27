@@ -392,3 +392,9 @@ document/page/uncertainty identities and historical datasheets cover only a
 subset. AE1 may test reproducible structural diversity on a fixed synthetic
 cube, but none of its names count toward `S0`, connectivity, identifiability,
 pixel eligibility, fitting, training or latent-mode DoR.
+
+AE1 subsequently rejects the external bank before photographs: despite strong
+non-basic differences in every common-output family, all eight sampled LUTs
+exceed the frozen local-orientation reversal ceiling. This cannot update any
+stock evidence grade or become a teacher. It is retained only as motivation
+for a separately defined orientation-preserving explicit representation.

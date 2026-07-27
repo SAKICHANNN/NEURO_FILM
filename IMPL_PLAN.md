@@ -380,6 +380,16 @@ audit with exact replay, range/folding and matched-basic diversity gates. It
 cannot copy profiles, fit pixels, create teachers, validate stock identity or
 integrate a product path.
 
+AE1 now closes on topology rather than style. All eight chains are strongly
+stylized and non-basic, their outputs repeat exactly, the duplicate/strength
+controls pass, and all three common-output families retain pairwise residual.
+Nevertheless every 17-cube has `1.61–9.50%` cells below the frozen negative
+Jacobian threshold versus a `.5%` ceiling. No photographs or vision open.
+Do not project, smooth, clamp, change resolution/thresholds or replace
+profiles after this result. A future orientation-preserving explicit
+parameterization must be a distinct preregistered hypothesis, not an AE1
+rescue.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

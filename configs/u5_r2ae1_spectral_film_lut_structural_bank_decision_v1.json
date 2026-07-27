@@ -1,0 +1,60 @@
+{
+  "schema_version": "u5-r2ae1-spectral-film-lut-structural-bank-decision-v1",
+  "node": "U5.R2AE1",
+  "decision": "close_range_fold_or_monotonicity_failure",
+  "external_revision": "02ecafd78c4a97bd0708d69a9f5ec39caf492d2e",
+  "evaluator_commit": "2afa6c07c76bd5faea7bca9baac13a785e51a60c",
+  "config_sha256": "d868ae4a005f873e3c6b730c138701364c42558f51b07533615291bbd5f52801",
+  "formal_report_sha256": "2ec7cd1a362facdef198daedfabaa5cd1d6b2af03c8cfea5d49d7a55e41ce6b3",
+  "formal_report_repeat_byte_identical": true,
+  "summary": {
+    "chain_count": 8,
+    "exact_complete_run_replay": true,
+    "duplicate_control_exact": true,
+    "strength_path_fitted_strength": 0.7499999999999999,
+    "strength_path_residual_rgb_rmse": 1.7560699221163522e-17,
+    "strength_path_explained_energy_fraction": 1.0,
+    "stylized_chains": 8,
+    "non_basic_chains": 8,
+    "distinct_family_count": 3,
+    "structurally_safe_chains": 0,
+    "style_delta_e76_median_range": [
+      19.06940148329897,
+      23.96397620338223
+    ],
+    "joint_basic_residual_delta_e76_median_range": [
+      9.80966667075379,
+      23.7156972858103
+    ],
+    "within_family_basic_residual_delta_e76_median_range": [
+      1.4426944054188269,
+      5.060953203529789
+    ],
+    "negative_jacobian_fraction_range": [
+      0.01611328125,
+      0.094970703125
+    ],
+    "minimum_jacobian_determinant_range": [
+      -2.3280876414937994,
+      -0.20309858267496583
+    ],
+    "maximum_jacobian_spectral_norm_range": [
+      3.3096580297402065,
+      7.719240601604541
+    ],
+    "worst_interior_hard_clip_fraction": 0.0
+  },
+  "visual_review_allowed": false,
+  "allowed_next": "a distinct preregistered orientation-preserving explicit operator hypothesis may use the style/diversity result as motivation but may not project, smooth, clamp, refit or otherwise rescue these external LUTs",
+  "forbidden_next": [
+    "ae2_photograph_or_visual_stage",
+    "gate_or_threshold_change",
+    "lut_projection_smoothing_clamping_or_resolution_search",
+    "candidate_or_pipeline_parameter_reselection",
+    "external_outputs_as_teachers",
+    "stock_response_or_calibration_claim",
+    "current_pixel_fitting_training_or_lsm",
+    "production_integration"
+  ],
+  "claim_ceiling": "external simulator shows strong non-basic synthetic diversity but fails local orientation safety; no film authenticity, identified operator, training, or product claim"
+}
