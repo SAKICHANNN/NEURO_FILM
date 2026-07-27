@@ -1,0 +1,47 @@
+{
+  "schema_id": "neuro-film.reference-match-w1-development-intake.v1",
+  "contract_id": "reference-match-w1-development-intake-v1",
+  "source": {
+    "repository_role": "read-only external main neuro_film task",
+    "required_ancestor_commit": "77df1b9004aa0d155ce1b662202db476ec5f677e",
+    "tracked_files": {
+      "configs/u5_r2w1_reference_look_identifiability_development_v1.json": "6599b99e82d21d7dc5e502e2880a83e238fcd15be74ae4c4f220bc7ca0fc0e26",
+      "scripts/run_u5_r2w1_reference_look_identifiability_development.py": "51639cb664a923b01d3b624d3bc63af5802419a0d166fc6d6e431854b7b759ed",
+      "src/roll2film/reference_look_identifiability.py": "79d2413a3ec89317940faf729caa6b44c03861ab0ffa2fbbea8fdd9396ca2dfd",
+      "src/roll2film/cube_diffeomorphic_flow.py": "ac9e331b52f2ded04d97f803be38a49888075c6a90e2e3a46bef4baf16c289b8",
+      "src/roll2film/synthetic_recovery.py": "3ec9ec148920e84d45a6af1ebac782228d34d274661e5ca074d8fbc6dac48da1"
+    }
+  },
+  "report": {
+    "schema_version": 1,
+    "experiment_id": "u5.r2w1-reference-look-identifiability-development-v1",
+    "node": "ULT > U5 > U5.R2 > U5.R2W1D",
+    "config_sha256": "6599b99e82d21d7dc5e502e2880a83e238fcd15be74ae4c4f220bc7ca0fc0e26",
+    "claim_ceiling": "generated development evidence for or against fixed reference descriptors and explicit-operator retrieval/regression across unrelated generated content; never real-image, film, stock, calibrated, professional-preference or general unpaired-operator identification",
+    "gate_result_ids": [
+      "seen_single_retrieval",
+      "seen_four_retrieval",
+      "unseen_single_regression",
+      "unseen_four_regression"
+    ],
+    "allowed_pre_repeat_branches": [
+      "pending_repeat_unseen_regression_passes",
+      "pending_repeat_single_fails_multi_passes",
+      "pending_repeat_seen_retrieval_only_passes",
+      "structure_or_repeat_fails",
+      "content_or_nuisance_control_fails",
+      "paired_upper_bound_only_passes",
+      "all_practical_methods_fail"
+    ]
+  },
+  "intake_policy": {
+    "byte_identical_reports_required": true,
+    "reserved_confirmation_seeds_accessed_required": false,
+    "development_pass_never_opens_product_integration": true,
+    "unseen_single_requires_untouched_confirmation": true,
+    "multi_reference_does_not_satisfy_single_reference_product": true,
+    "seen_retrieval_is_bank_bounded_not_arbitrary_reference": true,
+    "missing_or_invalid_evidence_keeps_identity_default": true
+  },
+  "claim_ceiling": "read-only adjudication of repeated generated W1 development evidence; never an algorithm promotion, real-image result, film claim or production integration"
+}
