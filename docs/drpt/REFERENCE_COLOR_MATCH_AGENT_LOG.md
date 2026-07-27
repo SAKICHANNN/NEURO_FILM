@@ -1232,3 +1232,29 @@
   `3117e364...`; detached merge `8c231adb...` passes 83/83 and was removed.
 - Claim ceiling: second compiler, same Windows x64 host. Apple and Android
   device execution remain open; no producer, quality or delivery claim.
+
+## 2026-07-28 - Audit long-term reference-match completion
+
+- Node/parent goal: P32 / full Neuro-Film reference-match product capability.
+- Skills: `dev-research-reliability` primary; `drpt-bi-governance`,
+  `plan-tracker-discipline`, `project-agent-log-discipline` and
+  `project-structure-steward` as governance reviewers.
+- Live ownership snapshot: consumer `0d23e27` clean; main `e7da085` with its
+  own untracked `.codex/` and `tmp/`; D-PCT `ed01054` with its own uncommitted
+  RPSCT leaf. Only consumer documentation is changed.
+- Decision: P1-P31 complete the fail-closed consumer shell, but do not complete
+  a real D-PCT-backed product render. The missing critical inputs are a
+  genuinely A1/A4/A5-promoted candidate and a fixed producer invocation
+  package/ABI.
+- Completion matrix: records one-reference/N-source, replay, transaction,
+  safety, promotion, compatibility, FilmFX, SDR/HDR/RAW/video, portable
+  runtime and main-integration states with an explicit next owner.
+- Change propagation: no producer or main interface changes. Existing P27-P31
+  hashes and verdicts remain unchanged. External output commit stays closed;
+  synthetic promoted conformance cannot authorize product delivery.
+- Structural result: one evidence document in the established DRPT location
+  plus plan/log pointers; no duplicate ABI, schema, source or media layer.
+- Handoff: after documentation verification and commit, request peer review of
+  the ownership/critical-path facts. The next consumer leaf must not precede
+  a real producer invocation artifact unless it is purely fail-closed
+  readiness evidence.
