@@ -692,3 +692,33 @@
   `0e8235a` (`research: test Lab statistics residual mapper`).
 - Handoff: keep the extractor, close the linear mapper. Do not add capacity on
   the same failed identity/replicate contract without new assets and evidence.
+
+## 2026-07-27 - Reproduce and close obtainable external matchers
+
+- Node/parent goal: P23 / current published reference-grading frontier.
+- Sources: official StatLUT paper; official CanonCGT, SA-LUT, NLUT and Neural
+  Preset repositories; all external files remain ignored and pinned.
+- Rights: CanonCGT Apache-2.0 including weights; NLUT MIT; SA-LUT
+  non-commercial S-Lab 1.0; Neural Preset CC BY-NC-SA 4.0. StatLUT has no
+  located official implementation/weight.
+- CanonCGT: exact 5,056,383-parameter SSL weight load. Published mode improves
+  1/30, median `-61.71%`, worst `-157.12%`, max new boundary `8.532%`,
+  max preclip OOG `9.447%`; target LUT varies with source up to `.11725` RMSE.
+- Innovation: derive one fixed target LUT from the reference's own canonical
+  pivot, then apply it after per-source canonicalization. It improves 0/30,
+  median `-57.52%`, worst `-118.81%`, max new boundary `1.083%`; closed.
+- Repeat: two CanonCGT reports have ID `ec825926...e3efe` and byte-exact SHA
+  `9b954501...e8a3f`.
+- SA-LUT: bundled checkpoint is only the image-to-image pseudo-VLog teacher;
+  the actual 4D-LUT inference network state is absent. Spatial context and
+  non-commercial rights independently block global product promotion.
+- NLUT: official 236,254,785-byte weight loads. Shared no-tune 5/30, median
+  `-59.50%`; representative official-style 40-step batch tuning worsens to
+  median `-100.13%` and 51.07% new boundary, so the tuning grid stops.
+- Verification: 3 dedicated and 20 focused tests pass; evaluator repeats
+  exactly. No external RGB output is retained.
+- Commit: `208dfa8` (`research: audit CanonCGT reference matcher`).
+- Handoff: exact arbitrary-photo look recovery remains underidentified.
+  Preserve the completed guarded product shell and identity default. Keep
+  aesthetic approximation and exact paired look-copy claims distinct; no
+  capacity rescue or third-party promotion opens.

@@ -292,3 +292,21 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   no final-RGB neural generation exists.
 - The linear route closes and creates no main/D-PCT dependency or product
   promotion. The feature extractor remains isolated under research.
+
+### 2026-07-27 external-baseline isolation
+
+- P23 evaluates ignored, pinned external checkouts/assets only through a
+  committed evaluator and immutable hashes. No third-party source or weight is
+  copied into the product tree or Git history.
+- CanonCGT is Apache-2.0 and locally reproducible, but both its published
+  source-conditioned path and the fixed-reference-pivot adaptation fail the
+  frozen 6x6 matrix. No product dependency or promotion opens.
+- SA-LUT and Neural Preset are non-commercial; SA-LUT also lacks the actual
+  inference checkpoint. NLUT is MIT and its official weight loads, but shared
+  batch and representative tuning checks fail. These assets remain ignored
+  research controls.
+- Read-only task refresh: main `019f4b76...` has published W1/W2 negative
+  reference-identifiability evidence and continues its stock-first program;
+  D-PCT `019f9f3b...` is actively validating separate RAW/DNG/media ingress.
+  P23 neither messages nor mutates either task and does not duplicate D-PCT's
+  decoder work.
