@@ -149,7 +149,7 @@ final photographic/aesthetic algorithm.
 |---|---|---|---|
 | A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
 | A2 film-business composition | CONTRACT DONE | existing v1 render-profile contract | reference colour owns the colour stage; an optional verified film profile may supply effects provenance only |
-| A3 media portability | WAITING | standalone D-PCT stable recipe/media contract | map recipe fields through an adapter; do not copy RAW/HDR/video code |
+| A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | committed D-PCT media-frame contract at `413d713`; current NFRM relative-SDR rail is not equivalent | wait for a versioned absolute-XYZ/scene-rail to MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 
 Until A1/A4 pass, this implementation is an operational deterministic baseline,
@@ -194,6 +194,31 @@ This prevents a UI choice such as "match this photo, add film grain" from
 silently applying two colour looks or escalating a user reference into a
 stock-authenticity claim. Stock-selection mode continues to use the existing
 render-profile path and is not replaced by this module.
+
+### D-PCT media boundary
+
+The standalone D-PCT contract has two canonical algorithm rails:
+
+- scene-relative linear ACEScg/AP1/D60 float32;
+- display-absolute linear CIE XYZ/D65 float32 with explicit reference-white
+  luminance.
+
+The current reference matcher accepts display-linear relative linear-sRGB SDR.
+Those are different colour states, so a D-PCT frame cannot be re-labeled as a
+`WorkingImage`. A future adapter must perform a versioned pixel conversion and
+record at least rail/domain, reference-white nits, render-bridge ID, decoder
+provenance and gamut/OOD decision.
+
+Until that bridge exists:
+
+- SDR decoded by D-PCT is not automatically compatible;
+- scene-relative RAW requires a versioned scene-to-display render bridge;
+- PQ/HLG/gain-map HDR remains rejected by this matcher;
+- D-PCT keeps ownership of RAW/HDR/video decoding and cross-platform media
+  execution.
+
+This is an intentional fail-closed integration result, not an unfinished
+metadata rename.
 
 ## Verification and rollback
 

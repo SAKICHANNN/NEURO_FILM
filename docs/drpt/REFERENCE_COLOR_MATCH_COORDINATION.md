@@ -71,3 +71,18 @@ Checked on 2026-07-27 before this claim:
   execution;
 - this worktree is `codex/reference-color-match` at `c03c321...` and had no
   file changes before this coordination record.
+
+## D-PCT contract refresh
+
+Read-only refresh at standalone commit
+`413d7134101e50eb6b9663238dc1c2e14fb42c33` confirms that
+`src/zhuise/contracts.py` and `schemas/media_frame.schema.json` have no
+uncommitted changes while the other task develops a narrow lossless-JPEG DNG
+decoder.
+
+The committed D-PCT scene and display rails are not byte/pixel compatible with
+the current relative linear-sRGB `WorkingImage` matcher. This branch therefore
+claims no RAW/HDR/video decoder or media-frame implementation. Its A3
+integration state is contract-mapped but pixel-bridge closed until D-PCT
+publishes, or neuro-film approves, a versioned render bridge with explicit
+luminance and provenance.

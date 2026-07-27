@@ -184,3 +184,17 @@
 - Next: a W1-derived content-independent descriptor/head must improve the
   cross-content distribution itself; safety fallback cannot substitute for
   algorithm identification.
+
+## 2026-07-27 - Map D-PCT media contract without copying execution
+
+- Source refresh: standalone D-PCT commit `413d713...`; its committed
+  `contracts.py` and media-frame schema are unchanged while the task develops
+  a separate lossless-JPEG DNG subset.
+- Mapping: D-PCT scene rail is linear ACEScg/D60 scene-relative; display rail
+  is linear absolute XYZ/D65 with explicit reference-white nits. Current NFRM
+  is relative linear-sRGB SDR.
+- Decision: A3 is `CONTRACT MAPPED / PIXEL BRIDGE CLOSED`. Re-labeling a frame
+  is forbidden; a future adapter needs a versioned pixel/render bridge,
+  luminance scale and full provenance.
+- Ownership: RAW/HDR/video decoding, DNG entropy work and cross-platform media
+  remain entirely in D-PCT. No decoder code or mutable D-PCT file was copied.

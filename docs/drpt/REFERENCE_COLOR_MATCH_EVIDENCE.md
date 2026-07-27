@@ -131,6 +131,15 @@ instead, an identity copy is encoded and the candidate diagnostics plus
 rejection reasons remain in the result. This policy catches all five
 cross-content failures in the frozen baseline and accepts its positive control.
 
+## D-PCT integration boundary
+
+At committed standalone D-PCT state `413d713...`, its canonical scene rail
+(linear ACEScg/D60 scene-relative) and display rail (linear absolute XYZ/D65
+with reference-white nits) are semantically different from this module's
+relative linear-sRGB SDR rail. A3 is therefore contract-mapped but intentionally
+closed at the pixel bridge. This branch contains no D-PCT RAW, HDR, DNG, video
+or platform decoder implementation.
+
 ## Change propagation
 
 - Upward: neuro-film now has an implementable peer capability to stock
