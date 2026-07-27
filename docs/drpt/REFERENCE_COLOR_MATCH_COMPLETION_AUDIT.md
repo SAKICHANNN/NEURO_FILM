@@ -37,8 +37,8 @@ wire contract and not an algorithm promotion.
 | A1 reference identifiability | Fixed-moment, quantile, linear and current W1 routes are closed by negative evidence | CLOSED CORRECTLY, no promoted algorithm | A genuinely different D-PCT candidate must pass the frozen cross-content gate / D-PCT evidence, Neuro-Film adjudication |
 | A4 photographic preference and severe tail | Baseline rejected; evaluator and ordering are frozen | GATE IMPLEMENTED, EVIDENCE OPEN | Broader frozen suite followed by independent blind aesthetic review for an identified candidate / shared evidence, Neuro-Film decision |
 | A5 album/batch consistency | Baseline failed six shared-colour context probes | GATE IMPLEMENTED, EVIDENCE OPEN | Candidate-specific shared-colour drift pass with source-bound transform policy made explicit / shared evidence, Neuro-Film decision |
-| Exact producer/consumer compatibility | P27 pins corrected D-PCT v2 relative-SDR schemas and exact success/failure fixtures | COMPLETE for the pinned synthetic conformance profile | A real producer package must declare and pass the same explicit compatibility profile / D-PCT then Neuro-Film |
-| Actual D-PCT algorithm invocation | D-PCT `eb4b889` publishes a producer-owned package candidate; no consumer audit, compatibility profile or invocation exists yet | PRODUCER ARTIFACT AVAILABLE, CONSUMER ADMISSION OPEN | Audit package/schema/hash/real receipt, freeze an explicit adapter and prove fail-closed invocation / Neuro-Film |
+| Exact producer/consumer compatibility | P27 pins v2 envelopes; P43 pins producer source/wheel/runtime/request/response and invokes through the P27 adapter | COMPLETE for fixed local relative-SDR package | Preserve both package and lower-envelope identities; re-audit any producer package change / D-PCT then Neuro-Film |
+| Actual D-PCT algorithm invocation | P43 executes exact verified wheel bytes and independently rebuilds a candidate receipt | LOCAL RESEARCH INVOCATION COMPLETE, PRODUCT ADMISSION CLOSED | Pass genuine A1/A4/A5, establish release rights and target runtime evidence / shared evidence then Neuro-Film |
 | External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
 | Final user-visible delivery state | P37 verifies P36; P38 reauthorizes; P39 atomically commits local files; P40 restart-verifies report plus staging/delivered bytes | LOCAL TRANSACTION AND RESTART INTEGRITY COMPLETE, REAL USE CLOSED | Admit a real invocation only after A1/A4/A5 and merge the reviewed module into main / shared evidence and Neuro-Film integration |
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
@@ -51,10 +51,10 @@ wire contract and not an algorithm promotion.
 
 The shortest honest path to a non-identity D-PCT-backed product render is:
 
-1. Neuro-Film audits the producer package now available at D-PCT `eb4b889`,
-   verifies its source-bound factual receipt and freezes an explicit compatible
-   SDR adapter without copying producer parameter layout.
-2. That exact candidate passes A1, A4 and A5 without research override.
+1. The exact P43-invoked candidate passes A1, A4 and A5 without research
+   override; any package change first repeats P43 compatibility audit.
+2. Release rights and required target runtime evidence are established for
+   the fixed package or its future native replacement.
 3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,
    P28 atomic batch resolution, P29 numeric guard and P30 product
    authorization.
@@ -88,7 +88,7 @@ separate leaves and do not block the relative-SDR product shell from review.
 
 The independent Neuro-Film reference-match consumer is implementation-complete
 from fail-closed intake through verified local export mechanics. The broader
-long-term goal is not complete: the newly available producer invocation
-artifact has not passed consumer compatibility/admission, no real external
-candidate is product-promoted, Apple/Android device runtime evidence is
-absent, and the reviewed payload has not been merged into the main project.
+long-term goal is not complete: local exact-wheel invocation is now verified,
+but no real external candidate is product-promoted, producer redistribution
+rights and Apple/Android device runtime evidence are absent, and the reviewed
+payload has not been merged into the main project.

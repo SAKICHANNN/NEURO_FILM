@@ -1686,6 +1686,33 @@
   producer/main worktree writes, no FilmFX/media changes and no package source
   copy.
 
+## 2026-07-28 - Implement and verify P43 exact-wheel invocation
+
+- Implementation: `3d80e0d` adds a strict compatibility lock/schema and local
+  invocation adapter. It verifies wheel bytes and exact runtime before
+  creating a temporary transaction, then independently verifies the producer
+  response and routes candidate facts through P27.
+- Audit negative: stale same-name 94,548-byte wheels fail before mutation.
+  Exact authority is 95,994 bytes / `fd995ad8...c292`.
+- Packaging correction: ZIP import fails because producer source
+  fingerprinting opens module files. The adapter safely expands only the
+  hash-verified wheel into a temporary content tree; it never imports mutable
+  producer source or trusts a persistent installation.
+- Result: one real small synthetic exact-wheel invocation returns a verified
+  `zhuise.dpct-chroma.cpu-reference.v1` candidate and leaves scratch empty.
+  Wrong runtime, source change and stale wheel fail closed.
+- Verification: 24 dedicated/adjacent, 187 D-PCT/core, and 438 combined
+  color-match/FilmFX tests pass. Full suite is 1333 passed, one skipped and
+  the unchanged 36 isolated output/asset failures.
+- Latest main `2afa6c0`: 199 consumer versus 141 main changed paths, zero
+  overlap, merge tree `1ce7695f...e2e7`; fresh detached merge passes 38
+  P42/P43 tests and is removed. Concurrent main dirty research was read-only.
+- Producer advanced to `e73ad14` for ROGR development only; no invocation
+  package/schema change is consumed.
+- Claim ceiling remains
+  `candidate-only-not-promoted-not-applied-not-delivered`; A1/A4/A5,
+  redistribution, native/mobile/Apple runtime and main merge remain open.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
