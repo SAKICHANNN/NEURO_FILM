@@ -5010,3 +5010,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   tests, two byte-identical reports, downloader no-op restore, JSON validation,
   `git diff --check` and the full CPU suite pass (`999 passed`). Goal remains
   ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AB1 DoRF response-diversity contract
+
+- **Parent/DoR:** AB0 provides exact source integrity and only an
+  internal-research historical response-prior claim. No image or fitting
+  permission is inherited.
+- **Population/operator:** strict complete `Red/Green/Blue` triplets in the
+  two graph film scale labels; direct independent channel interpolation over
+  a fixed 1,331-colour grid, 65 neutrals and 2,049 derivative samples.
+- **Controls/gates:** identity, joint basic, shared triplet-mean curve,
+  per-channel power and exact-monotone ceiling; freeze style/non-basic,
+  neutral chroma, derivative, range, survivor-count, pairwise-diversity and
+  exact-repeat gates before numerical evaluation.
+- **Boundary:** no name repair, photos, post-result threshold/candidate
+  selection, clamp, smoothing, neutral gauge, LUT or neural rescue. A full
+  pass can only open a new AB2 contract, not automatically render images.
+  Goal remains ACTIVE.

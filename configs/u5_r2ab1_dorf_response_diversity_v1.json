@@ -1,0 +1,79 @@
+{
+  "schema_version": "u5-r2ab1-dorf-response-diversity-v1",
+  "node": "U5.R2AB1",
+  "parent_decision": {
+    "path": "configs/u5_r2ab0_dorf_source_audit_decision_v1.json",
+    "required_decision": "limited_internal_research_source_pass"
+  },
+  "source": {
+    "archive_config": "configs/u5_r2ab0_dorf_source_audit_v1.json",
+    "strict_triplet_suffixes": {
+      "red": "Red",
+      "green": "Green",
+      "blue": "Blue"
+    },
+    "eligible_scale_labels": [
+      "graph-log-log-neg",
+      "graph-log-log-pos"
+    ],
+    "source_names_are_labels_not_verified_current_stock_ids": true
+  },
+  "synthetic_population": {
+    "encoded_rgb_levels": [
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.35,
+      0.5,
+      0.65,
+      0.8,
+      0.9,
+      0.95,
+      0.98
+    ],
+    "neutral_levels": 65,
+    "derivative_domain": [
+      0.02,
+      0.98
+    ],
+    "derivative_samples": 2049,
+    "interpretation": "normalized DoRF irradiance to normalized display-intensity Look Approximation"
+  },
+  "controls": {
+    "identity": true,
+    "joint_basic_adjustment": true,
+    "shared_triplet_mean_curve": true,
+    "per_channel_power_curve": true,
+    "exact_per_channel_monotone": "descriptive upper-bound identity with the candidate; never a promotion control"
+  },
+  "gates": {
+    "candidate_style_delta_e76_median_min": 7.0,
+    "candidate_shared_curve_residual_delta_e76_median_min": 2.0,
+    "candidate_per_channel_power_residual_delta_e76_median_min": 1.0,
+    "candidate_joint_basic_residual_delta_e76_median_min": 4.9,
+    "neutral_chroma_max": 25.0,
+    "minimum_channel_derivative": 0.01,
+    "maximum_channel_derivative": 8.0,
+    "raw_output_min": 0.0,
+    "raw_output_max": 1.0,
+    "minimum_candidate_survivors": 3,
+    "minimum_survivor_pairwise_output_rmse": 0.02,
+    "exact_repeat_required": true
+  },
+  "branch_rules": {
+    "no_structural_survivor": "close raw DoRF response route; no clamp, smoothing, neutral gauge, LUT, neural or image rescue",
+    "basic_collapse": "retain only as a tone/basic-control prior; do not call it a distinct film operator",
+    "insufficient_diversity": "retain at most one descriptive response prior; do not create a stock bank or router",
+    "full_pass": "open only a separately frozen AB2 internal Look-Approximation contract; no image render is automatically authorized"
+  },
+  "forbidden": [
+    "inspect project photographs before AB1 automatic decision",
+    "repair source names or combine incomplete triplets",
+    "select candidates or thresholds after seeing AB1 metrics",
+    "clamp, gamut-map, smooth, neutralize or refit a failing source curve",
+    "fit current real-film pixels, train a model, route by content, or open LSM",
+    "claim paired digital-to-film truth, calibrated stock response, spectral/process/scanner identity, or product readiness"
+  ],
+  "claim_ceiling": "synthetic structural and diversity evidence for historical normalized per-channel response priors"
+}
