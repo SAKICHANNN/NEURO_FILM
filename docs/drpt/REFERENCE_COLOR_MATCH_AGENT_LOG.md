@@ -820,3 +820,19 @@
 - Handoff: P25D may add a frozen consumer conformance envelope and bind its
   acceptance to existing A1/A4/A5 state. It must not invent a D-PCT producer
   artifact.
+
+## 2026-07-28 - Bind external core intake to A1/A4/A5
+
+- Node/parent goal: P25D1 / external-core product acceptance.
+- Change: add `CoreAcceptanceDecisionV1`, canonical decision identity, strict
+  schema/parser and `adjudicate_core_acceptance`.
+- Product invariant: an external core can produce only identity fallback or a
+  candidate for the existing product guard. It cannot directly produce an
+  applied delivery state.
+- Gates: the decision binds exact `A1/A4/A5`; unpromoted output fails closed
+  unless a recorded research override exists. Non-ok core output fails closed
+  even under that override.
+- Verification: 12 dedicated and 48 combined core tests cover promoted,
+  rejected, override, unsupported/invalid/fallback and inconsistent states.
+- Handoff: P25D2 may freeze consumer-owned synthetic wire vectors. Fixture
+  producer identity must be visibly synthetic and must not be labeled D-PCT.

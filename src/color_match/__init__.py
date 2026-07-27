@@ -42,6 +42,15 @@ from .core_adapter import (
     validate_prepared_match_view,
     validate_prepared_view_support,
 )
+from .core_acceptance import (
+    CORE_ACCEPTANCE_POLICY_ID,
+    CORE_ACCEPTANCE_SCHEMA_ID,
+    CoreAcceptanceDecisionV1,
+    adjudicate_core_acceptance,
+    core_acceptance_from_json,
+    core_acceptance_to_json,
+    validate_core_acceptance_decision,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -155,6 +164,8 @@ from .run_composition import (
 
 __all__ = [
     "CAPABILITIES_SCHEMA_ID",
+    "CORE_ACCEPTANCE_POLICY_ID",
+    "CORE_ACCEPTANCE_SCHEMA_ID",
     "DIAGNOSTICS_SCHEMA_ID",
     "MATCH_PROFILE_ABSOLUTE_XYZ",
     "MATCH_PROFILE_DISPLAY_REC2020",
@@ -177,6 +188,7 @@ __all__ = [
     "PhotographicSafetyBatchMetrics",
     "CanonicalEncodingError",
     "CapabilitiesV1",
+    "CoreAcceptanceDecisionV1",
     "ContextInvarianceBatchMetrics",
     "ContextInvarianceMetrics",
     "ContextInvariancePolicy",
@@ -209,6 +221,7 @@ __all__ = [
     "fit_reference_look",
     "aggregate_known_operator_samples",
     "adjudicate_promotion",
+    "adjudicate_core_acceptance",
     "evaluate_known_operator_batch",
     "evaluate_photographic_probe",
     "evaluate_context_invariance_outputs",
@@ -227,6 +240,8 @@ __all__ = [
     "composition_plan_from_dict",
     "composition_plan_from_json",
     "composition_plan_to_json",
+    "core_acceptance_from_json",
+    "core_acceptance_to_json",
     "diagnostics_from_json",
     "diagnostics_to_json",
     "build_file_match_report",
@@ -262,6 +277,7 @@ __all__ = [
     "transform_bundle_from_json",
     "transform_bundle_to_json",
     "validate_capabilities",
+    "validate_core_acceptance_decision",
     "validate_core_binding",
     "validate_diagnostics",
     "validate_match_view",

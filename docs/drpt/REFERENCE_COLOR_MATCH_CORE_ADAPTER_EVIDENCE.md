@@ -99,3 +99,29 @@ Verification:
 This adapter does not convert relative SDR to D-PCT's scene-relative ACEScg or
 display-absolute XYZ rails. Such conversion still requires a separately
 versioned trusted render bridge.
+
+## P25D1 product intake decision
+
+`src/color_match/core_acceptance.py` binds one internally valid core execution
+to the existing Neuro-Film promotion state:
+
+```text
+valid source/reference/transform/capabilities/diagnostics
+  + A1/A4/A5 PromotionDecision
+  -> identity-fallback
+     or candidate-for-product-guard
+```
+
+`candidate-for-product-guard` is deliberately not `applied`. The candidate
+must still pass Neuro-Film's delivered-pixel guard and transactional product
+path. A non-`ok` core status always falls back to identity, including under the
+explicit research override. An unpromoted algorithm also falls back unless the
+override is explicit and recorded.
+
+Evidence:
+
+- `48 passed` across acceptance, adapter and core contract suites;
+- strict Draft 2020-12 acceptance schema and canonical `decision_id`;
+- A1/A4/A5 are an exact required tuple;
+- promoted, rejected, research-override, unsupported, invalid, fallback,
+  unknown-field and internally inconsistent decisions are covered.
