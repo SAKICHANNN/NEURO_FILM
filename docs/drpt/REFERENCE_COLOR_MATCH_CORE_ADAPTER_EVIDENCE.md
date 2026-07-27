@@ -150,3 +150,20 @@ pass its own fixed conformance bundle before compatibility can be claimed.
 
 Verification: `9 passed` dedicated; `57 passed` across all external-core
 contract, adapter, acceptance and conformance tests.
+
+## P25 integration preflight
+
+Against Neuro-Film main `60617f9`, this consumer branch has zero changed-path
+overlap from common base `c03c321`. Merge tree
+`24ff7653d1ced56c7de6cb82a2204770517e179c` is conflict-free, and its detached
+synthetic merge passes all 282 selected reference-match, preprocess,
+colour-engine and output-encoding tests.
+
+The branch itself passes the same 282 tests. Full collection reports
+`1138 passed, 1 skipped, 36 failed`; all 36 belong to the already classified
+missing ignored-output/CRLF asset-hash families, and no colour-match test
+fails. The temporary integration worktree was removed after verification.
+
+This is consumer integration evidence, not authorization or evidence to merge
+into main. It also does not establish conformance by D-PCT or any mobile/native
+port.

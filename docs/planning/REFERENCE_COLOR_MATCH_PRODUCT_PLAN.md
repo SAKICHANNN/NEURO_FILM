@@ -95,7 +95,7 @@ with a selected stock, but reference matching alone is labeled
 | P25C | DONE | implement `WorkingImage` to compatible MatchView adapter | 16 adapter tests; 36 core tests; 123 adjacent product/preprocess tests; isolated read-only buffer and exact capability gate | adapter commit | revert additive adapter commit |
 | P25D1 | DONE | bind valid core execution to A1/A4/A5 without bypassing delivered-pixel safety | 12 acceptance tests; 48 combined core tests; strict decision schema; only identity or candidate-for-product-guard | acceptance commit | revert additive acceptance commit |
 | P25D2 | DONE | add synthetic consumer conformance fixtures without inventing a D-PCT producer artifact | 9 dedicated tests; 57 combined core tests; exact IEEE-754 vectors, descriptor/hash/schema checks and repeatable result | conformance commit | revert additive conformance commit |
-| P25E | IN_PROGRESS | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | focused/adjacent tests, diff check, overlap audit, peer snapshot | evidence commit | retain prior stable commits |
+| P25E | DONE | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | 282 adjacent tests; full suite 1138 pass/1 skip/36 known failures; zero path overlap; synthetic merge 282 pass | evidence commit | retain prior stable commits |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

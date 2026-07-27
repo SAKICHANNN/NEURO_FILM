@@ -122,6 +122,31 @@
 - Verification at the leaf: 9 dedicated and 57 combined core tests pass.
   P25E owns adjacent regression, overlap and integration preflight.
 
+### 2026-07-28 P25 integration evidence
+
+- Stable inputs: consumer `729810d`, Neuro-Film main `60617f9` and common
+  base `c03c321b9fc642e2e092d59e20dd1b145b96192d`.
+- The consumer branch changes 113 paths and main changes 86 paths from the
+  base; their exact path intersection is zero.
+- `git merge-tree --write-tree` succeeds at tree
+  `24ff7653d1ced56c7de6cb82a2204770517e179c`.
+- The current branch passes 282/282 reference-match, preprocess,
+  colour-engine and output-encoding tests.
+- Full collection is 1138 passed, one skipped and the same 36 classified
+  failures: ignored output/evidence payloads absent from this worktree and
+  the previously recorded CRLF profile-asset hash mismatch. No
+  `src/color_match` test fails and no new failure family appears.
+- A detached synthetic merge commit
+  `d01e2e4bfa3d0d469d9e0bc1c9deae239d0061cd` over the merge tree passes
+  the same 282/282 adjacent tests.
+- The exact temporary worktree
+  `C:\Users\hhvrf\Documents\neuro_film_color_match_p25e_integration` was
+  verified as a registered detached worktree, removed and pruned. Neither
+  main nor D-PCT was checked out, merged, written or interrupted.
+- P25 is integration-ready as a consumer boundary. It still integrates no
+  producer package or pixels, opens no RAW/HDR/video bridge, changes no
+  product default and grants no algorithm promotion.
+
 ## Claim: NFCM-P1 product reference-look engine
 
 - Mode: C (same-project multi-chat concurrency)

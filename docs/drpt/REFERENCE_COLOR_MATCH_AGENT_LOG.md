@@ -862,3 +862,27 @@
   downward adapter/conformance binding is now executable; sideways
   recipe/replay/report/FilmFX behavior is untouched. P25E owns broad
   regression and latest-main integration preflight.
+
+## 2026-07-28 - Close P25 consumer integration evidence
+
+- Node/parent goal: P25E / external-core product consumer boundary.
+- Stable inputs: consumer `729810d`, main `60617f9`, common base `c03c321`.
+- Overlap: 113 consumer paths versus 86 main paths, exact intersection zero.
+  Merge-tree result is `24ff7653...e179c`.
+- Verification: 282/282 adjacent reference-match/ingress tests pass on the
+  branch; full collection is 1138 passed, one skipped and the same 36 known
+  ignored-output/CRLF failures, with no new failure family.
+- Synthetic integration: detached merge `d01e2e4...061cd` passes the same
+  282/282 tests. Its exact temporary worktree was validated, removed and
+  pruned without touching any unrelated path.
+- Change propagation: parent consumer contract is integration-ready;
+  adapter/conformance children remain exact and fail-closed; replay/report,
+  transaction, A1/A4/A5 and FilmFX siblings are unchanged; main and D-PCT
+  retain their respective integration ownership.
+- Remaining risks: there is no D-PCT producer schema/package/ABI conformance,
+  no trusted relative-display compatibility profile, no RAW/HDR/video bridge,
+  no native/mobile parity and no algorithm promotion. Identity remains the
+  product default.
+- Handoff: publish this stable consumer evidence to both equal peer tasks.
+  Future producer integration must pin both commits and a producer-owned
+  conformance bundle; it must not import a mutable checkout.
