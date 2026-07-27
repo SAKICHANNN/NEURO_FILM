@@ -1950,6 +1950,24 @@
 - Producer: RGIN-v0 closes at `fd036aa` with 20/20 frozen projections failing
   calibration and no model/capability/wheel/fixture. P49 has no real candidate.
 
+## 2026-07-28 - Freeze P50 shared authorized staging transaction
+
+- Node/parent goal: P50A-D / durable staging after P49.
+- DoR: P47 exact applies, P48 numeric guard and P49 no-write authorization
+  are stable; the existing P33 rollback-safe writer is proven.
+- Contract: revalidate and cross-bind P47/P48/P49 plus every live prepared
+  output, preflight unique SDR destinations, encode all outputs, build a
+  canonical report and commit outputs/report as one rollback-safe batch.
+- Structure: extract P33's generic SDR destination/encoding helpers into one
+  package-internal module used by both per-source and shared paths. P33 schemas,
+  identities and behavior remain unchanged.
+- Failure policy: fallback authorization, foreign guard/operator/apply,
+  order/inventory/path collision, unsupported format/depth, encoding failure
+  or commit failure must write nothing or restore every prior destination.
+- State ceiling: `committed-to-shared-staging` /
+  `shared-staging-files-committed-not-delivered`; no local delivery, app
+  applied state or FilmFX composition.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
