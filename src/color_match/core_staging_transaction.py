@@ -365,7 +365,7 @@ def commit_external_core_staging_v1(
                     transform_id=receipt.transform_id,
                     apply_receipt_id=receipt.receipt_id,
                     output_view_id=receipt.output_view.view_id,
-                    output_path=str(output),
+                    output_path=str(output.resolve(strict=False)),
                     output_file_sha256=sha256_file(stage),
                     output_format=output_format,
                     output_bit_depth=output_bit_depth,
@@ -381,7 +381,7 @@ def commit_external_core_staging_v1(
             source_count=batch.source_count,
             state=_STATE,
             outputs=tuple(prepared),
-            report_path=str(report),
+            report_path=str(report.resolve(strict=False)),
             claim_ceiling=EXTERNAL_CORE_STAGING_CLAIM_CEILING,
         )
         run = replace(
