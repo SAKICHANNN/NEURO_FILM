@@ -20,8 +20,10 @@ if str(ROOT) not in sys.path:
 from src.color_match import canonical_sha256  # noqa: E402
 from src.color_match.research import (  # noqa: E402
     CFSMProjectionPolicy,
+    EmpiricalNeutralPrior,
     fit_cfsm_analytic_candidate,
     fit_cfsm_candidate,
+    fit_cfsm_empirical_candidate,
     render_cfsm_candidate,
 )
 from src.inference import atomic_write_json  # noqa: E402
@@ -135,9 +137,24 @@ def _candidate(
     prior_kind: str,
     reference: WorkingImage,
     policy: CFSMProjectionPolicy,
+    empirical_prior: EmpiricalNeutralPrior | None = None,
 ):
     if prior_kind == "fixed-uniform-cube":
         return fit_cfsm_candidate(reference, policy=policy)
+    if prior_kind == "empirical-neutral-photo-v1":
+        if empirical_prior is None:
+            raise ValueError(
+                "empirical prior kind requires a validated artifact"
+            )
+        return fit_cfsm_empirical_candidate(
+            reference,
+            prior_mean=empirical_prior.mean,
+            prior_covariance=empirical_prior.covariance,
+            prior_id=empirical_prior.prior_id,
+            source_image_count=empirical_prior.source_image_count,
+            source_pixel_count=empirical_prior.source_pixel_count,
+            policy=policy,
+        )
     return fit_cfsm_analytic_candidate(
         reference,
         prior_kind=prior_kind,
@@ -180,6 +197,7 @@ def evaluate_split(
     *,
     split: str,
     prior_kinds: tuple[str, ...],
+    empirical_prior: EmpiricalNeutralPrior | None = None,
 ) -> dict[str, Any]:
     palette_spec = parent["palettes"]
     pixel_count = int(palette_spec["pixels_per_cloud"])
@@ -227,6 +245,7 @@ def evaluate_split(
                     prior_kind,
                     reference_working,
                     policy,
+                    empirical_prior,
                 )
                 rendered = render_cfsm_candidate(
                     candidate,
