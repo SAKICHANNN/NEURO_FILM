@@ -41,6 +41,22 @@ PHYSICS_JOBS = [
         "data/physics/kodak_vision3_250d/technical_data.pdf",
     ),
     (
+        "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION-Color-Print-Film-2383-3383-technical-information.pdf",
+        "data/physics/kodak_vision_print_2383/technical_data.pdf",
+    ),
+    (
+        "https://www.kodak.com/content/products-brochures/Film/LAD-for-KODAK-VISION-Color-Print-Film-H-61b.pdf",
+        "data/physics/kodak_vision_print_2383/lad_print_h61b.pdf",
+    ),
+    (
+        "https://www.kodak.com/content/products-brochures/Film/LAD-for-KODAK-Color-Negative-Film-H-61a.pdf",
+        "data/physics/kodak_vision_print_2383/lad_negative_h61a.pdf",
+    ),
+    (
+        "https://www.kodak.com/content/products-brochures/Film/Additive-and-Subtractive-Printing-on-Motion-Picture-Film-tib5207.pdf",
+        "data/physics/kodak_vision_print_2383/additive_subtractive_printing_tib5207.pdf",
+    ),
+    (
         "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-500T-5219-7219-technical-information.pdf",
         "data/physics/kodak_vision3_500t/technical_data.pdf",
     ),

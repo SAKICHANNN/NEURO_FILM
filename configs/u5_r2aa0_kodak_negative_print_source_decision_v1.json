@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2aa0-kodak-negative-print-source-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AA0",
+  "date": "2026-07-28",
+  "source_files": [
+    {
+      "role": "negative_250d_technical",
+      "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+      "bytes": 684722,
+      "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16"
+    },
+    {
+      "role": "print_2383_technical",
+      "path": "data/physics/kodak_vision_print_2383/technical_data.pdf",
+      "bytes": 631142,
+      "sha256": "210d5e8ec1ea3a23a003b0c95b66c3688a29088b351124470638de35062a7565"
+    },
+    {
+      "role": "print_lad",
+      "path": "data/physics/kodak_vision_print_2383/lad_print_h61b.pdf",
+      "bytes": 120558,
+      "sha256": "56eab4bb2e7fef2e52d6be113e83fc0c222d429a81b7a86d95e51eac51d4b229"
+    },
+    {
+      "role": "generic_negative_lad_procedure_only",
+      "path": "data/physics/kodak_vision_print_2383/lad_negative_h61a.pdf",
+      "bytes": 107171,
+      "sha256": "2f0969526ac193c59aebd2a4fec3727095ba200af87d51e3f8cf6e19a05d053f"
+    },
+    {
+      "role": "printer_topology_only",
+      "path": "data/physics/kodak_vision_print_2383/additive_subtractive_printing_tib5207.pdf",
+      "bytes": 4567,
+      "sha256": "54d459ba8c232b0bee6119977eb48c13fd5a362c100370b9093394e03ae40017"
+    }
+  ],
+  "available_graph_families": {
+    "negative_250d": [
+      "channel characteristic",
+      "layer spectral sensitivity",
+      "separated peak-normalized CMY spectral dye density",
+      "midscale neutral spectral density",
+      "minimum spectral density"
+    ],
+    "print_2383": [
+      "channel characteristic",
+      "layer spectral sensitivity",
+      "separated visual-neutral CMY spectral dye density"
+    ]
+  },
+  "observed_numeric_anchors": {
+    "print_lad_status_a_density_rgb": [1.09, 1.06, 1.03],
+    "print_lad_visual_density": 1.0,
+    "printer_light_log_exposure_step": 0.025,
+    "approximate_print_density_change_per_light_near_aim": 0.07
+  },
+  "unidentified_variables": [
+    "display RGB to original scene spectrum",
+    "absolute negative analytical dye amount per Status-M density",
+    "printer primary spectral distributions and filtration",
+    "scene-to-scene colour timing",
+    "xenon projector and viewing spectral distribution",
+    "lens screen flare and display encoding",
+    "joint negative and print process batch state"
+  ],
+  "decision_branch": "bounded_nuisance_pilot_feasible",
+  "operator_identified": false,
+  "calibration_opened": false,
+  "current_stock_pixels_opened": false,
+  "real_image_visual_stage_opened": false,
+  "next_ready_leaf": "U5.R2AA1 freeze and run a synthetic-grid datasheet-chain nuisance-identifiability pilot with multiple RGB spectral canonicalizers, printer-primary hypotheses, density-to-dye mappings and viewing illuminants before any real-image render",
+  "claim_ceiling": "source-level feasibility for a deterministic Kodak-datasheet-constrained film-inspired Look Approximation hypothesis under explicit nuisance controls; no real 250D response, real 250D-to-2383 operator, calibration, authenticity, scanner/projector profile, latent mode or product claim"
+}

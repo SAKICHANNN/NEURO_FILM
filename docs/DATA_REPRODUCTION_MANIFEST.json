@@ -179,6 +179,10 @@
       "scripted_files": [
         "data/physics/kodak_vision3_50d/technical_data.pdf",
         "data/physics/kodak_vision3_250d/technical_data.pdf",
+        "data/physics/kodak_vision_print_2383/technical_data.pdf",
+        "data/physics/kodak_vision_print_2383/lad_print_h61b.pdf",
+        "data/physics/kodak_vision_print_2383/lad_negative_h61a.pdf",
+        "data/physics/kodak_vision_print_2383/additive_subtractive_printing_tib5207.pdf",
         "data/physics/kodak_vision3_500t/technical_data.pdf",
         "data/physics/kodak_portra_160/technical_data.pdf",
         "data/physics/kodak_portra_400/technical_data.pdf",
@@ -203,8 +207,41 @@
           "sha256_local": "43DAFE1A93C3110CCCE0D198CB21FD145B28269B4C5936B7A54B97AEC6FA8115"
         }
       ],
+      "newly_confirmed_kodak_print_chain_2026_07_28": [
+        {
+          "file": "data/physics/kodak_vision3_250d/technical_data.pdf",
+          "source": "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION3-250D-5207-7207-technical-information.pdf",
+          "bytes": 684722,
+          "sha256_local": "70ADB298A7AABB285D986B720E07C87C27EB2361F0925AEA2B15903C08282E16"
+        },
+        {
+          "file": "data/physics/kodak_vision_print_2383/technical_data.pdf",
+          "source": "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION-Color-Print-Film-2383-3383-technical-information.pdf",
+          "bytes": 631142,
+          "sha256_local": "210D5E8EC1EA3A23A003B0C95B66C3688A29088B351124470638DE35062A7565"
+        },
+        {
+          "file": "data/physics/kodak_vision_print_2383/lad_print_h61b.pdf",
+          "source": "https://www.kodak.com/content/products-brochures/Film/LAD-for-KODAK-VISION-Color-Print-Film-H-61b.pdf",
+          "bytes": 120558,
+          "sha256_local": "56EAB4BB2E7FEF2E52D6BE113E83FC0C222D429A81B7A86D95E51EAC51D4B229"
+        },
+        {
+          "file": "data/physics/kodak_vision_print_2383/lad_negative_h61a.pdf",
+          "source": "https://www.kodak.com/content/products-brochures/Film/LAD-for-KODAK-Color-Negative-Film-H-61a.pdf",
+          "bytes": 107171,
+          "sha256_local": "2F0969526AC193C59AEBD2A4FEC3727095BA200AF87D51E3F8CF6E19A05D053F"
+        },
+        {
+          "file": "data/physics/kodak_vision_print_2383/additive_subtractive_printing_tib5207.pdf",
+          "source": "https://www.kodak.com/content/products-brochures/Film/Additive-and-Subtractive-Printing-on-Motion-Picture-Film-tib5207.pdf",
+          "bytes": 4567,
+          "sha256_local": "54D459BA8C232B0BEE6119977EB48C13FD5A362C100370B9093394E03AE40017"
+        }
+      ],
       "known_gaps": [
-        "Standalone Fuji Reala public technical PDF not located; Fujifilm Professional Film Data Guide is the fallback."
+        "Standalone Fuji Reala public technical PDF not located; Fujifilm Professional Film Data Guide is the fallback.",
+        "Kodak 250D/2383 graphs are raster plots rather than numerical tables. Printer-primary spectra, scene-to-scene timing, absolute analytical dye amounts and xenon projector/viewing spectra remain unavailable."
       ]
     },
     "camera_spectral_sensitivity": {

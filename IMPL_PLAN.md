@@ -271,6 +271,19 @@ targets remain unread and no larger selector, router, visual candidate,
 final-628 access or film/stock claim opens. Ultimate returns to another
 evidence-authorised explicit algorithm or product leaf.
 
+U5.R2AA0 identifies a more film-specific clean-room algorithm hypothesis from
+data the project can actually obtain. The current official Kodak VISION3 250D
+and VISION 2383 sheets each publish characteristic, layer-sensitivity and
+separated CMY dye-density graphs, while the 2383 LAD sheet supplies a neutral
+print aim and near-aim printer-light slope. This is enough to freeze a
+synthetic-grid nuisance-identifiability pilot, not enough to claim the real
+photochemical chain. Display RGB does not identify the original spectrum;
+Status density does not publish absolute analytical dye amount; additive
+printer SPDs, scene timing and xenon/projector viewing response remain absent.
+AA1 must vary those assumptions prospectively and stop if their spread
+dominates the non-basic effect. No current film pixels, visual anchors,
+external profiles or neural rescue may select the missing variables.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

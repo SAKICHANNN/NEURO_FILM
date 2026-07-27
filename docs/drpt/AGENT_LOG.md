@@ -4877,3 +4877,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rank/kernel/neural/semantic/local/direct-RGB capacity or reopen Z0. Continue
   through another evidence-authorised explicit algorithm/product leaf; Goal
   remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AA0 Kodak negative-to-print source audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AA0`; DRPT L2/Mode A,
+  `dev-research-reliability` writer with research, AI/ML, PDF, tracker,
+  agent-log and structure review.
+- **Primary-source inventory:** the exact local March-2026 Kodak VISION3 250D
+  and VISION 2383 PDFs are 684,722/631,142 bytes at
+  `70adb298...2e16`/`210d5e8e...7565`. Both expose characteristic,
+  sensitivity and separated CMY dye graphs. The 2383 LAD sheet adds
+  `1.09/1.06/1.03` Status-A neutral aims and a `.025` log-exposure printer
+  light relation.
+- **Reproduction:** add the 2383 technical sheet, print/negative LAD sheets and
+  additive-printer topology bulletin to the existing ignored physics-data
+  restore scope with exact URLs, sizes and hashes. No PDF is committed or used
+  as an image target.
+- **Identifiability boundary:** original scene spectrum, absolute analytical
+  dye amounts, dichroic printer-primary SPDs/filtration, scene-to-scene timing,
+  xenon/projector/viewing response and process batch remain missing. Generic
+  H-61A negative aims are not 250D truth.
+- **Decision/handoff:** `bounded_nuisance_pilot_feasible`. AA1 may only run a
+  synthetic-grid, multiple-canonicalizer/printer/viewing/density-mapping
+  sensitivity audit. It must stop before real images if nuisance spread
+  dominates or the result collapses to basic adjustments. No stock response,
+  calibration, current-pixel fitting, visual promotion or production claim
+  opens. Goal remains ACTIVE.
