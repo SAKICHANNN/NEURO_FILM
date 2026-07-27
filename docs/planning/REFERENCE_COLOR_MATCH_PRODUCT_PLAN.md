@@ -67,7 +67,7 @@ with a selected stock, but reference matching alone is labeled
 | P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | `8d3f60c` | release claim |
 | P6 | DONE | thin CLI + deterministic provenance report | 103 focused/preprocess tests pass | `33f5735` | revert commit |
 | P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | `c9fb7d9` | revert commit |
-| P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | pending scoped commit | revert commit |
+| P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | `e1f03f6` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

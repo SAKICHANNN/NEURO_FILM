@@ -284,3 +284,4 @@
 - Compatibility: no recipe artifact is committed or released from this branch,
   so finalizing v1 now does not invalidate an external consumer. Pixel output
   and guard decisions are unchanged.
+- Commit: `e1f03f6` (`fix: make reference identities language neutral`).
