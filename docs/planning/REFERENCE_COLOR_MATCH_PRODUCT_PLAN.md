@@ -30,7 +30,7 @@ with a selected stock, but reference matching alone is labeled
   `src/color_engine/safe_lab.py`, `src/color_engine/gamut.py`
 - Main-chat W1/W2 research and standalone D-PCT media work are concurrent and
   explicitly out of this branch's write scope. The latest consumed read-only
-  boundaries are main `ed1dbb5` and D-PCT `77e64e1`.
+  boundaries are main `ed1dbb5` and D-PCT `d0d4e6c`.
 
 ## Non-goals for the first product slice
 
@@ -79,6 +79,7 @@ with a selected stock, but reference matching alone is labeled
 | P14A | DONE | preregister and test three analytic photographic priors | 10 dedicated tests; byte-exact validation repeat; confirmation correctly closed; full suite 1002 pass/36 known fail | `3debf13` | revert commit |
 | P14B0 | DONE | pin and fail-closed adjudicate stable main-task W1 development evidence | 8 dedicated tests; 138 focused tests; current absent-report decision is identity; full suite 1010 pass/36 known fail | `8e602f5` | revert commit |
 | P14B1 | READY | consume a repeated W1 decision without importing external code | stable repeated W1 reports; untouched confirmation for any single-reference development pass | none | keep identity default |
+| P15 | DONE | freeze language-neutral portable recipe/render conformance vectors | 9 dedicated tests; 147 focused tests; two exact-ID and bounded-numeric cases; full suite 1019 pass/36 known fail | `8b505ca` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -165,10 +166,23 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`1010 passed, 1 skipped, 36 failed`.
+`1019 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
+
+P15 adds a versioned portable conformance bundle rather than assuming Python
+repeatability proves cross-platform agreement. Reference, source and expected
+output pixels use exact IEEE-754 binary32 big-endian hexadecimal bits; recipe
+and reference-pixel identities must match exactly, while rendered pixels use
+explicit linear-RGB, Delta E76 and diagnostic tolerances. The current vectors
+exercise both linear-sRGB source-segment gamut compression and linear-Rec.2020
+chroma-only compression. See
+`docs/drpt/REFERENCE_COLOR_MATCH_PORTABLE_CONFORMANCE.md`.
+
+This makes independent Android/iOS/macOS/Windows ports testable. It does not
+claim that any such port has passed; real platform implementations and device
+results remain required before a cross-platform product-freeze claim.
 
 ## Phase-two gates
 

@@ -471,3 +471,27 @@
   perceptual agreement or a versioned scene/display-to-MatchView bridge.
 - Propagation: A3 remains `CONTRACT MAPPED / PIXEL BRIDGE CLOSED`; no decoder,
   probe, report or mutable file was copied from the standalone task.
+
+## 2026-07-27 - Freeze portable matcher conformance vectors
+
+- Parent: P15 / cross-platform algorithm delivery evidence.
+- Gap closed: prior byte-exact replay evidence covered only the Python
+  implementation and could not adjudicate independent mobile/desktop ports.
+- Added: exact binary32 reference/source/expected-output vectors, strict
+  language-neutral bundle and result schemas, typed bundle identity, a
+  product-facing verifier and a deterministic CLI.
+- Coverage: linear-sRGB source-segment compression and linear-Rec.2020
+  chroma-only compression; both execute full-image reductions and the detail
+  path, with non-zero gamut adjustment.
+- Gates: exact recipe/reference identity; linear RGB max absolute `2e-5`;
+  Delta E76 p95 `0.003`, max `0.01`; diagnostic max absolute `2e-5`.
+- Claim boundary: the reference Python implementation passes, but no Android,
+  iOS, macOS or independent Windows/macOS port has been tested. The baseline
+  remains rejected for final photographic delivery and defaults to identity.
+- Verification: 9 dedicated tests and 147 focused colour-match/preprocess
+  tests pass; complete CPU collection is 1019 passed, one skipped and the same
+  36 ignored-output/CRLF-hash failures.
+- External isolation: main remains `ed1dbb5`; D-PCT stable `d0d4e6c` only
+  improves probe build reproducibility. No external mutable file or code was
+  consumed.
+- Commit: `8b505ca` (`feat: add portable matcher conformance vectors`).

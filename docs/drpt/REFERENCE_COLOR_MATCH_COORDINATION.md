@@ -146,3 +146,18 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   `real_raw_paths=FAIL`.
 - Current propagation: P14B0 returns `not-ready` and identity. P14B1 activates
   only after stable repeated W1 evidence; A3 remains separately closed.
+
+### 2026-07-27 portable conformance leaf
+
+- This branch added only its own language-neutral reference-match conformance
+  bundle, schemas, verifier and tests in `8b505ca`.
+- The bundle consumes neither main-task W1 code/reports nor standalone D-PCT
+  decoder/probe code. It validates the existing display-linear SDR algorithm
+  boundary after ingress.
+- D-PCT stable commit `d0d4e6c` makes its pinned LibRaw probe build
+  reproducible, but the active 67-file agreement queue remains uncommitted.
+  A3 therefore stays pixel-bridge closed.
+- Main remains stable at `ed1dbb5`; no repeated W1 report exists, so P14B1
+  remains ready but unexecuted.
+- The conformance fixture enables future platform-port adjudication; it does
+  not claim current Android/iOS/macOS/Windows parity.
