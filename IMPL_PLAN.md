@@ -260,6 +260,17 @@ automatic global path therefore closes as an affine selector with weaker
 structural guarantees than the current bounded O0 family. Interactive local
 editing remains outside the theorem; no CPLEX/image/capacity rescue opens.
 
+U5.R2Y0 freezes NegClone 0.2.0 as a direct test of the failed “average many
+film photos into a stock fingerprint” strategy. The exact MIT PyPI sdist is
+hash-bound. Its colour estimator uses within-image percentile buckets and
+channel means; tone is the scene luminance histogram/CDF; grain samples
+random patches and measures their standard deviation, autocorrelation and
+FFT. Median aggregation does not remove those nuisance variables. Frozen
+no-film probes vary only scene colour, exposure range or checker texture.
+The output representation is Lightroom/Darktable tone, three-way colour and
+grain controls, not a 3D LUT. Formal repeat must reproduce all shortcuts
+before closure; no community pixels or preset generation opens.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

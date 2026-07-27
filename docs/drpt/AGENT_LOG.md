@@ -4626,3 +4626,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   NegClone stock-fingerprint method learns stock evidence or averages
   content/exposure/texture shortcuts. No film pixels, fitting/training, LSM
   or production integration opens; Goal continues.
+
+## 2026-07-27 - Freeze U5.R2Y0 NegClone content-shortcut audit
+
+- **Node/source:** `ULT > U5 > U5.R2 > U5.R2Y0`; exact PyPI
+  `negclone-0.2.0.tar.gz`, 29 members, SHA-256
+  `4672F11CF98B9D037DEBD0EAB60A3EE9D278A73515B8184D7223B976D6A46387`,
+  MIT. Five implementation-file hashes are frozen; current repository HEAD is
+  recorded only as source metadata.
+- **Method finding before formal evidence:** colour uses within-image
+  percentile masks and channel means; tone uses the scene histogram/CDF and
+  PCHIP; grain uses random-patch standard deviation, autocorrelation and FFT.
+  Image and patch sampling use the global random module without a public seed.
+  Median aggregation does not control source, content, exposure or texture.
+- **Output ceiling:** XMP exposes tone curve, three-way colour grading, shadow
+  tint and grain controls. No 3D LUT or nonlinear cross-channel stock
+  operator is present. Built-in scanner offsets are explicitly approximate,
+  not measurement-lineage calibration.
+- **Frozen probes:** film-free red/blue flats, dark/bright neutral gradients
+  and flat/checker textures isolate scene colour, exposure distribution and
+  scene texture. Exact pinned functions run locally with wrapper seed `27070`.
+- **Boundary:** no network request, external image, community pixel, preset
+  generation, current-pixel fit, training, LSM or visual candidate. Five
+  focused tests and the full `972 passed` CPU suite pass. A commit-bound exact
+  repeat remains ready. Goal continues.

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2y0-negclone-content-shortcut-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Y0",
+  "status": "implemented_frozen_pending_formal_run",
+  "source": {
+    "project": "NegClone",
+    "version": "0.2.0",
+    "pypi_url": "https://pypi.org/project/negclone/0.2.0/",
+    "repository_url": "https://github.com/pfrederiksen/negclone",
+    "repository_head_observed_2026_07_27": "4bd20a2d469bc1f8b3226afa1608a9fec919d4a9",
+    "release_upload_time_utc": "2026-03-20T05:41:40.526593Z",
+    "sdist_path": "outputs/source_recon/negclone_pypi_0_2_0/negclone-0.2.0.tar.gz",
+    "sdist_sha256": "4672f11cf98b9d037debd0eab60a3ee9d278a73515b8184d7223b976d6a46387",
+    "sdist_member_count": 29,
+    "extracted_root": "outputs/source_recon/negclone_pypi_0_2_0/negclone-0.2.0",
+    "license": "MIT",
+    "source_file_sha256": {
+      "negclone/fingerprint.py": "16330257275e7eaba2446e501c1cde9c81b06f27c24b22e056291ce060dabeba",
+      "negclone/scanner_profiles.py": "74fe6dd8a520a296ca5aa210ac42109baa0d943ba43b2594c7e721bee163cc8b",
+      "negclone/presets/lightroom.py": "0282c60691f02f326ab59ab56008594368fcbbba936bac6988fe1b9ddc5f1a70",
+      "pyproject.toml": "eb09e876846b4aeb004f105afe3ed96d34d6771b6eeb958b7b6547bb055b3cb6",
+      "LICENSE": "2e5a24f2d125b52b5f05f83d1998fbdccbf767b726d058a69a2f02b8cd7498be"
+    }
+  },
+  "method_scope": {
+    "question": "does the published scan-aggregation fingerprint isolate stock evidence, or can content, exposure and texture alone determine its exported look parameters?",
+    "minimum_images": 5,
+    "default_sample_size": 20,
+    "synthetic_probe_seed": 27070,
+    "external_image_payloads_allowed": false,
+    "network_allowed": false
+  },
+  "static_contract": {
+    "required_true": [
+      "unseeded_image_sampling",
+      "unseeded_grain_patch_sampling",
+      "within_image_percentile_colour_masks",
+      "scene_histogram_tone_curve",
+      "random_texture_grain_measurement",
+      "median_aggregation_only",
+      "scanner_offsets_declared_approximate",
+      "preset_has_tone_colour_grain"
+    ],
+    "required_false": [
+      "preset_has_3d_lut"
+    ]
+  },
+  "gates": {
+    "minimum_colour_bias_l2_shortcut": 0.5,
+    "minimum_tone_curve_output_difference": 100.0,
+    "maximum_flat_grain_intensity": 1e-12,
+    "minimum_checker_grain_intensity": 0.2,
+    "minimum_checker_clumping": 0.9,
+    "repeat_report_sha256_equal": true
+  },
+  "branches": [
+    "content_histogram_texture_shortcut_close",
+    "source_or_probe_not_reproduced",
+    "shortcut_not_demonstrated"
+  ],
+  "forbidden_actions": [
+    "download Flickr or other community film pixels for this audit",
+    "fit or generate a stock preset from current project pixels",
+    "treat median aggregation as a nuisance-control method",
+    "treat approximate scanner constants as calibrated measurements",
+    "add a neural encoder or more photos as a rescue",
+    "claim tone, color or texture differences identify a film stock"
+  ],
+  "claim_ceiling": "source-bound and synthetic counterfactual evidence about NegClone 0.2.0 fingerprint identifiability; no claim about every possible curated controlled use, no film or stock operator identification, and no real-image product evaluation"
+}
