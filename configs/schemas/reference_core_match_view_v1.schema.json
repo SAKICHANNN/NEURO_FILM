@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-match-view-v1.json",
+  "title": "Neuro-Film external core match view v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "view_id",
+    "profile_id",
+    "pixel_sha256",
+    "shape",
+    "strides_bytes",
+    "channel_layout",
+    "alpha_mode",
+    "domain",
+    "primaries",
+    "white_point",
+    "transfer",
+    "range",
+    "reference_white_nits",
+    "render_bridge_id",
+    "provenance_fingerprint"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-match-view.v1"
+    },
+    "view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "profile_id": {
+      "enum": [
+        "neuro-film.display-relative-linear-srgb-d65.v1",
+        "neuro-film.display-relative-linear-rec2020-d65.v1",
+        "scene-relative-linear-acescg-d60.v1",
+        "display-absolute-linear-xyz-d65.v1"
+      ]
+    },
+    "pixel_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "shape": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "const": 3
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "strides_bytes": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 4
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "channel_layout": {
+      "const": "rgb"
+    },
+    "alpha_mode": {
+      "enum": [
+        "absent",
+        "straight",
+        "premultiplied"
+      ]
+    },
+    "domain": {
+      "enum": [
+        "display-relative-linear",
+        "display-absolute-linear",
+        "scene-relative-linear"
+      ]
+    },
+    "primaries": {
+      "enum": [
+        "srgb-rec709",
+        "rec2020",
+        "aces-ap1",
+        "xyz"
+      ]
+    },
+    "white_point": {
+      "enum": [
+        "D60",
+        "D65"
+      ]
+    },
+    "transfer": {
+      "const": "linear"
+    },
+    "range": {
+      "const": "extended-float"
+    },
+    "reference_white_nits": {
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "render_bridge_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance_fingerprint": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

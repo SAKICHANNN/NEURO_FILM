@@ -78,6 +78,10 @@
   its PNG files lack ICC/CICP, so it cannot open product freeze.
 - There is no P25 compatibility impact. Neuro-Film continues the consumer
   contract leaf without waiting for the 50-row run.
+- D-PCT later published clean HEAD `4b71a8a` with a producer-side SA-LUT
+  interpretation primitive but no shared schema change. Its PST50 sRGB run
+  completed: the frozen candidate wins only 23/50 against identity. This
+  reinforces, but does not replace, Neuro-Film A1/A4/A5 acceptance.
 
 ## Claim: NFCM-P1 product reference-look engine
 

@@ -771,3 +771,30 @@
 - Handoff state: P25A documents the Mode C claim. P25B may implement only an
   additive consumer acceptance contract; a fixed D-PCT producer schema remains
   a future compatibility dependency, not an inferred current API.
+
+## 2026-07-28 - Implement strict external-core consumer contracts
+
+- Node/parent goal: P25B / D-PCT producer-consumer boundary.
+- Change: add immutable `MatchViewV1`, source-bound `TransformBundleV1`,
+  `DiagnosticsV1` and `CapabilitiesV1` records, strict JSON parsers/serializers,
+  canonical identities and cross-record binding validation.
+- Schemas: add four Draft 2020-12
+  `configs/schemas/reference_core_*.schema.json` contracts.
+- Key decision: v1 cannot express a shared operator. A transform is bound to
+  one source and reference; cross-content sharing remains a future
+  A1/A4/A5-gated contract.
+- Verification: 20 dedicated tests; 54 new plus adjacent
+  contract/schema/canonical/replay tests; compileall passes.
+- Failure-path evidence: unknown fields, hash drift, profile semantics,
+  absolute-white omission, source/reference mismatch, producer/build mismatch,
+  unadvertised algorithm/profile/capability and diagnostics mismatch all fail
+  closed.
+- Peer state: D-PCT clean `4b71a8a`; no shared schema change. PST50 sRGB
+  confirms the frozen candidate wins only 23/50 against identity and therefore
+  does not weaken Neuro-Film's identity default.
+- Structure: one additive module in the existing `src/color_match` package,
+  matching schemas/tests/docs; no parallel package, decoder or D-PCT parameter
+  representation was created.
+- Handoff: P25C may adapt current `WorkingImage` only into its exact
+  Neuro-Film relative-display profiles. A producer must explicitly advertise
+  those profiles before invocation.
