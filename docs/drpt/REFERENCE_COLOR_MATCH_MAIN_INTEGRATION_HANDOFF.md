@@ -8,15 +8,15 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P46 implementation head:
-  `d55142ebf7e1189c2e179b7043aefb0419406760`;
+- complete P1-P47 implementation head:
+  `02ba18306173954cffbedb75915e7b776b981970`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
-  `c20c14ef7c77026f3e4c1fe38557654d06609b67`;
+  `cc453e7105ae9ae86cf58dae0bcf4d1dbfbaa09d`;
 - D-PCT read-only snapshot:
   `b9642091223c202bdc5c5321a90e7fe6a4959a2e`;
 - conflict-free main/payload merge tree:
-  `ff0152516edb0349c0471e7a170c0c500f2aa00a`.
+  `8204e0027f4d2e9a528e6467132ab5f160d97742`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -37,6 +37,8 @@ The consumer module implements:
   two-stage successor-candidate intake after the current capability failed;
 - deterministic failure-signature analysis showing universal overcorrection,
   weak clipping association and source-context-dependent bundle drift;
+- one-reference shared-operator semantics with ordered N source-bound exact
+  output receipts for a future reference-only producer;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -63,9 +65,9 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..d55142e`; do not copy files manually and do not import
+2. Review `c03c321..02ba183`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> d55142e`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> 02ba183`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -79,10 +81,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 550 passed;
-- latest isolated consumer full suite: 1356 passed, one skipped, 36 unchanged
+- latest consumer combined color-match/FilmFX suite: 564 passed;
+- latest isolated consumer full suite: 1370 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 24 focused tests passed and four
+- latest detached synthetic main merge: 38 focused tests passed and four
   exact-wheel tests skipped because ignored package evidence is absent; the
   temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.

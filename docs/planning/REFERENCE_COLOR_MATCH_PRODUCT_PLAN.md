@@ -177,10 +177,10 @@ with a selected stock, but reference matching alone is labeled
 | P46B | DONE | implement deterministic diagnostic aggregator | source/reference strata, error ratios, clipping relation, bundle diversity, photographic/context tails | `d55142e`; 9 dedicated tests | no candidate decision change |
 | P46C | DONE | execute and repeat on both P44 progress files | byte-identical reports; stable evidence `b3410168...8fe3` | ignored reports | retain P44 rejection |
 | P46D | DONE | propagate evidence and peer handoff | 550 combined; 1356 pass/1 skip/36 known; latest-main merge 24 pass/4 expected skip | evidence commit | no producer code |
-| P47A | IN_PROGRESS | freeze reference-only shared-bundle consumer semantics | one reference operator identity, ordered N source-bound exact apply receipts, candidate-only | plan commit | retain per-source P28 path |
-| P47B | TODO | implement shared operator/apply/batch contracts | opaque producer bundle; exact output bytes; no producer parameter schema | focused tests/schema | no algorithm |
-| P47C | TODO | reject per-source refit and mixed-bundle batches | duplicate/missing/reordered source, foreign reference/profile, mutable pixels and partial batch fail closed | mutation tests | identity fallback |
-| P47D | TODO | propagate and hand off future producer requirements | adjacent/full/latest-main evidence and peer snapshot | evidence commit | await callable successor |
+| P47A | DONE | freeze reference-only shared-bundle consumer semantics | one reference operator identity, ordered N source-bound exact apply receipts, candidate-only | `f25c697` | retain per-source P28 path |
+| P47B | DONE | implement shared operator/apply/batch contracts | opaque producer bundle; exact output bytes; no producer parameter schema | `02ba183`; schema + 14 tests | no algorithm |
+| P47C | DONE | reject per-source refit and mixed-bundle batches | duplicate/missing/reordered source, foreign reference/profile, mutable pixels and partial batch fail closed | `02ba183`; mutation tests | identity fallback |
+| P47D | DONE | propagate and hand off future producer requirements | 564 combined; 1370 pass/1 skip/36 known; latest-main merge 38 pass/4 expected skip | evidence commit | await callable successor |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

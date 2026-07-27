@@ -1855,6 +1855,26 @@
 - DoD: additive schema/module/tests, no change to P28 per-source semantics,
   adjacent/full/latest-main propagation and equal-peer handoff.
 
+## 2026-07-28 - Implement and verify P47 shared-reference batches
+
+- Implementation: `02ba183` adds consumer-owned operator, exact apply receipt
+  and ordered batch identities plus one strict schema and 14 tests.
+- Identity split: operator binds reference/model/options/capability and has no
+  source; each apply binds one source/result/diagnostics/output to it.
+- Exact pixels: output arrays are copied, float32, finite, hash-bound and
+  read-only. Batch identity binds ordered complete receipts.
+- Fail closure: per-source semantics, mixed bundle/operator, foreign
+  reference/profile, reordered/duplicate/missing sources or results,
+  partial batch, non-finite/shape-invalid pixels and JSON mutation reject.
+- Claim ceiling: candidate-only awaiting A1/A4/A5 and numeric/product guards.
+  P28 remains the distinct per-source-bundle path.
+- Verification: 25 focused, 564 combined and full 1370 pass/1 skip/36
+  unchanged. Latest main `cc453e7`, overlap zero, merge tree
+  `8204e002...742`; fresh merge 38 pass/4 expected wheel-evidence skip.
+- Producer: two-chain build/apply semantics are agreed, but RGIN still has no
+  calibration result, model, fixture, capability or package. No compatibility
+  mapping opens.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
