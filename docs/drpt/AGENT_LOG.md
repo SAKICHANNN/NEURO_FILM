@@ -4967,3 +4967,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   control, threshold or branch rule changes. A dedicated regression now pins
   the channel order and neutral-density roundtrip. The earlier output is an
   invalid implementation diagnostic, not AA1 scientific evidence.
+
+### Formal result and integration
+
+- **Exact lineage:** accepted report binds software `cfd1271...`, config
+  `016e237e...fe71` and curve data `62e463c8...2187d`. Both complete
+  evaluations and every retained array fingerprint are exact; report payload
+  is `8c2fbbc3...3e6b`.
+- **Strong but non-basic:** nominal identity, joint-basic and per-channel
+  affine residual medians are `54.4301`, `31.5805` and `20.6033` Delta E76;
+  all salience/control gates pass.
+- **Identifiability failure:** spectrum, placement, dye mapping and full
+  ensemble nuisance/effect median/p95 ratios are `.7838/2.4622`,
+  `.4078/1.9182`, `.2004/.8720` and `1.4324/4.4665`. Printer and viewer axes
+  alone pass. Nominal/full neutral chroma maxima `65.70/129.36` also fail.
+- **Decision/handoff:** close `nuisance_unidentified`. AA2, real-image visual
+  work, fitting, clamp/gamut-map/LUT/neural rescue, stock/calibration and
+  production integration remain closed. Continue Ultimate through a distinct
+  evidence-authorized algorithm, data-connectivity or product leaf. Goal
+  remains ACTIVE.

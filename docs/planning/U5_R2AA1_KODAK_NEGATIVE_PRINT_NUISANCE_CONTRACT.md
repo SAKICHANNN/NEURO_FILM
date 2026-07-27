@@ -1,6 +1,8 @@
 # U5.R2AA1 Kodak 250D to 2383 Nuisance-Identifiability Contract
 
-Status: **FROZEN BEFORE CURVE ANNOTATION OR NUMERICAL RESULT**
+Status: **COMPLETE — `nuisance_unidentified`; AA2 and visual work closed**
+
+Result: `docs/U5_R2AA1_KODAK_NEGATIVE_PRINT_NUISANCE_RESULTS.md`
 
 Node: `ULT > U5 > U5.R2 > U5.R2AA1`
 

@@ -294,6 +294,17 @@ neutral, range and positive-Jacobian gates must pass twice exactly. AA1 cannot
 clamp, gamut-map or render a photograph; only a complete pass may open AA2
 bounded refitting.
 
+U5.R2AA1 now closes the public-datasheet negative-to-print chain. The nominal
+synthetic look is extremely strong and non-basic (identity/basic/affine median
+Delta E76 `54.43/31.58/20.60`), but the unobserved spectrum, exposure
+placement and density-to-dye assumptions fail their frozen nuisance/effect
+ratios; the complete ensemble reaches `1.432/4.467` median/p95 and neutral
+chroma also fails badly. Source traces, colour reconstruction, range,
+Jacobian, finite arithmetic and exact repeat pass. Do not select missing
+physics on photographs or rescue with refitting, clamp, gamut map, LUT,
+neural capacity or visual preference. AA2 stays closed; Ultimate must choose a
+distinct evidence-authorized algorithm, data-connectivity or product leaf.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

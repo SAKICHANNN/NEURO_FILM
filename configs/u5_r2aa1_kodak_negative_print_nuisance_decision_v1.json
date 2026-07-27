@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2aa1-kodak-negative-print-nuisance-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AA1",
+  "date": "2026-07-28",
+  "decision_branch": "nuisance_unidentified",
+  "software_commit": "cfd1271598534120c14ee215f7560f8dfb382c8b",
+  "config_sha256": "016e237e62a1f8961c1c3e682614d58a497b87fd409a72ff64f46268bc00fe71",
+  "curve_data_sha256": "62e463c8e0f0784da1980b66b0b338a1a2a3f6ece5ffe34268d2bc1987c2187d",
+  "report_payload_sha256": "8c2fbbc30e422c7bf5a4370c0c648010e88ec7b96948c397a1ea7f92a5903e6b",
+  "stored_report_sha256": "c4161c01097dc6028e51352eb204319e55371e7f823bab884de7de249c906e75",
+  "stored_arrays_sha256": "7569d7c0a531d7da3c0667309750f6077b771f9959f2d1e00bc2ab9021882c4b",
+  "repeat_exact": true,
+  "population": {
+    "encoded_srgb_samples": 729,
+    "neutral_ramp_samples": 33,
+    "wavelength_samples": 69,
+    "ensemble_members": 162
+  },
+  "style_and_controls": {
+    "identity_delta_e76_median": 54.430103483747615,
+    "joint_basic_residual_delta_e76_median": 31.580452268250728,
+    "per_channel_affine_residual_delta_e76_median": 20.60328149688994,
+    "joint_basic_residual_delta_e76_ge_2_fraction": 1.0
+  },
+  "nuisance_to_effect_ratio": {
+    "spectrum": {"median": 0.7837658732270829, "p95": 2.462235361980385, "pass": false},
+    "placement": {"median": 0.40784663600700055, "p95": 1.9182494703356674, "pass": false},
+    "dye_mapping": {"median": 0.20038939528981575, "p95": 0.872009213676769, "pass": false},
+    "printer": {"median": 0.07148085782801841, "p95": 0.29813784552040706, "pass": true},
+    "viewer": {"median": 0.06398184948087147, "p95": 0.3114979338143954, "pass": true},
+    "ensemble": {"median": 1.4324220888136463, "p95": 4.466526255636729, "pass": false}
+  },
+  "additional_failures": {
+    "nominal_neutral_chroma_max": 65.70015325919236,
+    "ensemble_neutral_chroma_max": 129.3609038931529
+  },
+  "aa2_opened": false,
+  "real_image_visual_stage_opened": false,
+  "stock_pixels_opened": false,
+  "operator_fitting_opened": false,
+  "training_opened": false,
+  "production_integration_opened": false,
+  "next_ready_leaf": "select and freeze a distinct evidence-authorized explicit algorithm, data-connectivity or product leaf; do not rescue the AA1 datasheet chain",
+  "claim_ceiling": "repeatable synthetic-grid negative evidence that this Kodak-datasheet-constrained Look Approximation is not stable to preregistered missing-variable hypotheses; no real 250D response, real 250D-to-2383 operator, calibration, authenticity, scanner/projector profile, latent mode, product preference or production claim"
+}
