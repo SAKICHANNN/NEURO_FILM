@@ -432,3 +432,25 @@
   complete CPU collection is 1002 passed, one skipped and the unchanged 36
   known ignored-output/CRLF-hash failures; no color-match test failed.
 - Commit: `3debf13` (`feat: test analytic CFSM priors`).
+
+## 2026-07-27 - Add fail-closed W1 development evidence intake
+
+- Parent: P14B0 / independent canonicalizer evidence boundary.
+- External stable source: main-task W1 implementation `77df1b9`, currently
+  reachable under main head `ed1dbb5`; formal W1 execution remains queued.
+- Implementation: pin five critical external source hashes; require two
+  byte-identical reports; validate the recorded external commit and source;
+  validate gate inventory and recompute the decision branch without importing
+  main-task code.
+- Product boundary: development evidence never opens integration. A valid
+  single-reference unseen-look pass opens only untouched confirmation;
+  multi-reference and seen-bank branches do not satisfy arbitrary one-
+  reference upload. Every missing/invalid branch delivers identity.
+- Current execution: no reports exist, so status is `not-ready`, decision ID
+  `26800a73...619f5`, delivery identity.
+- Verification: 8 dedicated and 138 focused tests pass; compileall and diff
+  check pass. Full CPU collection is 1010 passed, one skipped and the same 36
+  ignored-output/CRLF-hash failures; no color-match test failed.
+- Commit: `8e602f5` (`feat: gate external W1 matcher evidence`).
+- Propagation: P14B1 awaits stable repeated W1 reports. Standalone RAW work is
+  still uncommitted and A3 remains closed.

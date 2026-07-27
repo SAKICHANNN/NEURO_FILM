@@ -77,7 +77,8 @@ with a selected stock, but reference matching alone is labeled
 | P12 | DONE | propagate delivery certification into film-effects composition | 136 focused tests; full suite 992 pass/36 known fail | `ba6f2c1` | revert commit |
 | P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | `ec437e1` | revert commit |
 | P14A | DONE | preregister and test three analytic photographic priors | 10 dedicated tests; byte-exact validation repeat; confirmation correctly closed; full suite 1002 pass/36 known fail | `3debf13` | revert commit |
-| P14B | READY | replace the unidentified prior with an independently learned/published canonicalizer | W1 stable evidence plus frozen A1/A4/A5 replay | none | keep v0 rejected |
+| P14B0 | DONE | pin and fail-closed adjudicate stable main-task W1 development evidence | 8 dedicated tests; 138 focused tests; current absent-report decision is identity; full suite 1010 pass/36 known fail | `8e602f5` | revert commit |
+| P14B1 | READY | consume a repeated W1 decision without importing external code | stable repeated W1 reports; untouched confirmation for any single-reference development pass | none | keep identity default |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -164,7 +165,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`1002 passed, 1 skipped, 36 failed`.
+`1010 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -253,6 +254,18 @@ byte-repeatable at report ID `d08ff8b...53fe2`, SHA-256
 and the real 30-pair matrix remain unopened. P14B therefore requires learned
 or otherwise independently identified canonicalization, not another
 hand-shaped moment prior.
+
+P14B0 pins the stable main-task W1 implementation boundary at ancestor
+`77df1b9` and exact SHA-256 identities for its config, runner, descriptor,
+explicit flow and synthetic utilities. Its receiver compares two reports
+byte-for-byte, revalidates the external Git source at the recorded commit,
+recomputes the development decision branch from the gate booleans and rejects
+reserved-confirmation access or source drift. A single-reference unseen-look
+development pass can open only untouched synthetic confirmation. Multi-
+reference or seen-bank-only passes do not satisfy arbitrary one-reference
+upload, and no development branch opens product integration. With no W1
+reports currently published, the canonical decision is `not-ready` and
+delivery remains identity.
 
 ### Film-business composition boundary
 

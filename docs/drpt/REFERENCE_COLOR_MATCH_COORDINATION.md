@@ -125,3 +125,16 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - Uncommitted work remains present in both owning tasks and is not consumed.
   A3 stays pixel-bridge closed; P14B stays dependent on a future stable,
   independently identified canonicalizer.
+
+### 2026-07-27 P14B0 intake refresh
+
+- Main neuro-film has a stable W1 implementation commit `77df1b9` under its
+  current `ed1dbb5` head. The W1 contract says execution remains queued behind
+  repeated S4/U1 adjudication; no repeated W1 report is currently published.
+- This worktree pins only the stable W1 source identities and implements a
+  read-only report receiver. It imports no external module and reads no
+  uncommitted W1 state.
+- Standalone D-PCT remains at stable `e1f67d3` while later vendor RAW/CR2 work
+  is uncommitted. None of it changes the MatchView bridge decision.
+- Current propagation: P14B0 returns `not-ready` and identity. P14B1 activates
+  only after stable repeated W1 evidence; A3 remains separately closed.

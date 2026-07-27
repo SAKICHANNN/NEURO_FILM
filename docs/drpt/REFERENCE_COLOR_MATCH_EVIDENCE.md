@@ -212,6 +212,15 @@ analytic prior. It wins independent validation at 19/24 and +6.92% versus
 (`d08ff8b...53fe2`, `816ba59e...f6549`). The preregistered confirmation and
 real-matrix gates remain closed, preventing post-hoc prior search.
 
+P14B0 converts the active main-task dependency into a machine-checkable,
+read-only intake boundary. It pins W1 ancestor `77df1b9` plus exact hashes for
+the W1 contract, runner, descriptor and explicit-flow dependencies. Missing
+reports, non-identical repeats, non-finite JSON, incomplete gates, decision
+drift or source drift all return identity. Even a valid unseen single-
+reference development pass returns `synthetic-confirmation-required`, never
+product eligibility. The current absent-report result is `not-ready`, ID
+`26800a73...619f5`.
+
 ## Executable photographic promotion gate
 
 The promotion gate now streams known-operator rows, aggregates centre/tail

@@ -92,6 +92,29 @@ evidence bundle, rights-cleared data, leakage controls and an explicit
 teacher/student contract. CanonCGT/StatLUT/ColorFM may act as teachers or
 comparators; production output must remain an audited explicit operator.
 
+### P14B0 stable-evidence intake
+
+The main task has committed the frozen W1 implementation at `77df1b9`, but
+formal execution is still queued behind its S4/U1 ordering. This branch now
+pins the five critical external source files by SHA-256 and accepts no
+uncommitted code.
+
+`reference-match-w1-development-intake-v1` is deliberately stricter than a
+green development metric:
+
+- two formal reports must be byte-identical;
+- the recorded external commit must descend from the approved W1 commit and
+  retain every pinned source hash;
+- the gate inventory and pre-repeat branch are recomputed locally;
+- any single-reference development pass opens only untouched confirmation;
+- multi-reference-only and finite-bank-only outcomes retain identity for the
+  arbitrary uploaded-reference product;
+- development evidence can never open production integration.
+
+The current live adjudication is `not-ready`, decision
+`26800a73...619f5`, because no repeated W1 reports exist. No external Python
+module is imported and no main-task file is copied.
+
 RAW/HDR decoding remains outside this node. A future D-PCT bridge must first
 provide a versioned common MatchView with explicit scene/display and luminance
 semantics.
