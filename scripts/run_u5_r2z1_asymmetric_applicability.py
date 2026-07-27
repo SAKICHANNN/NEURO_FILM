@@ -203,6 +203,13 @@ def _development_rank(
     for shuffle_index in range(
         int(controls["operator_signature_permutations"])
     ):
+        if shuffle_index % 8 == 0:
+            print(
+                f"rank {rank} development shuffle "
+                f"{shuffle_index + 1}/"
+                f"{controls['operator_signature_permutations']}",
+                flush=True,
+            )
         shuffle_seed = int(
             rng.integers(0, np.iinfo(np.int32).max)
         ) + shuffle_index
@@ -567,6 +574,7 @@ def run_experiment(
         config=config,
         device=device,
     )
+    print("fixed ClassNeg case bank complete", flush=True)
     if bank.shared_operator is None:
         raise RuntimeError("Z1 bank did not expose shared O0")
     eligible_indices = np.asarray(
@@ -615,6 +623,7 @@ def run_experiment(
     selected_rank: int | None = None
     selected_development: Any | None = None
     for rank in config["representations"]["candidate_pca_ranks"]:
+        print(f"evaluating development rank {rank}", flush=True)
         rank_report, selection = _development_rank(
             rank=int(rank),
             query_raw=spatial_query,
@@ -630,6 +639,11 @@ def run_experiment(
             config=config,
         )
         rank_reports[str(rank)] = rank_report
+        print(
+            f"development rank {rank} pass="
+            f"{rank_report['all_gates_pass']}",
+            flush=True,
+        )
         if rank_report["all_gates_pass"]:
             selected_rank = int(rank)
             selected_development = selection

@@ -4843,3 +4843,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   all 989 tests in 330.12 seconds. `py_compile`, JSON parse and
   `git diff --check` pass. Formal GPU fitting has not started and fresh targets
   remain sealed.
+
+### Pre-result formal-run lifecycle erratum
+
+- Formal A was first launched through a 15-minute foreground tool window. The
+  tool timed out while the valid child continued; after about 48 minutes the
+  orphan exited with no report, empty stderr and no matching Windows
+  Python/CUDA crash event. Stdout never advanced beyond bank fitting, so no
+  development result or fresh-target access is established.
+- Add flush-only progress at bank completion, rank start/end and every eight
+  signature shuffles. This changes no data, feature, model, seed, threshold,
+  gate, decision branch or report JSON. Relaunch A as a hidden independent
+  local process so its lifetime is not coupled to a foreground tool timeout.
