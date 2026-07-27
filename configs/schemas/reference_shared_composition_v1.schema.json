@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "neuro-film.shared-reference-composition.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "plan_id",
+    "staging_verification_id",
+    "staging_run_id",
+    "authorization_id",
+    "numeric_guard_batch_id",
+    "operator_id",
+    "reference_view_id",
+    "source_count",
+    "state",
+    "color_owner",
+    "reference_color_status",
+    "claim_ceiling",
+    "output_label",
+    "execution_order",
+    "film_color_profile_id",
+    "film_stock_identity_claimed",
+    "calibrated_reference_claimed",
+    "film_effects"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.shared-reference-composition.v1"
+    },
+    "plan_id": {"$ref": "#/$defs/hash"},
+    "staging_verification_id": {"$ref": "#/$defs/hash"},
+    "staging_run_id": {"$ref": "#/$defs/hash"},
+    "authorization_id": {"$ref": "#/$defs/hash"},
+    "numeric_guard_batch_id": {"$ref": "#/$defs/hash"},
+    "operator_id": {"$ref": "#/$defs/hash"},
+    "reference_view_id": {"$ref": "#/$defs/hash"},
+    "source_count": {"type": "integer", "minimum": 1},
+    "state": {"const": "composition-ready-not-rendered"},
+    "color_owner": {"const": "external-shared-reference-look"},
+    "reference_color_status": {"const": "verified-shared-staging"},
+    "claim_ceiling": {"const": "reference-look"},
+    "output_label": {
+      "enum": ["reference-look", "reference-look+film-effects"]
+    },
+    "execution_order": {
+      "oneOf": [
+        {
+          "prefixItems": [
+            {"const": "verified_shared_reference_color"}
+          ],
+          "items": false,
+          "minItems": 1,
+          "maxItems": 1
+        },
+        {
+          "prefixItems": [
+            {"const": "verified_shared_reference_color"},
+            {"const": "film_effects"}
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        }
+      ]
+    },
+    "film_color_profile_id": {"type": "null"},
+    "film_stock_identity_claimed": {"const": false},
+    "calibrated_reference_claimed": {"const": false},
+    "film_effects": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/film_effects"}
+      ]
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "film_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "profile_version",
+        "profile_sha256",
+        "film_stock_id",
+        "interpretation",
+        "grain",
+        "halation",
+        "dust",
+        "halation_model"
+      ],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "profile_version": {"type": "string", "minLength": 1},
+        "profile_sha256": {"$ref": "#/$defs/hash"},
+        "film_stock_id": {
+          "type": ["string", "null"]
+        },
+        "interpretation": {"type": "string", "minLength": 1},
+        "grain": {"type": "number", "minimum": 0, "maximum": 1},
+        "halation": {"type": "number", "minimum": 0, "maximum": 1},
+        "dust": {"type": "number", "minimum": 0, "maximum": 1},
+        "halation_model": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

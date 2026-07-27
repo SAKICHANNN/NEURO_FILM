@@ -254,6 +254,15 @@ from .shared_staging_verification import (
     validate_external_shared_staging_verification_v1,
     verify_external_shared_staging_v1,
 )
+from .shared_composition import (
+    SHARED_REFERENCE_COMPOSITION_SCHEMA_ID,
+    SHARED_REFERENCE_COMPOSITION_STATE,
+    SharedReferenceCompositionV1,
+    build_shared_reference_composition_v1,
+    shared_reference_composition_from_json,
+    shared_reference_composition_to_json,
+    validate_shared_reference_composition_v1,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -601,6 +610,9 @@ __all__ = [
     "EXTERNAL_SHARED_STAGING_VERIFICATION_SCHEMA_ID",
     "ExternalSharedStagingVerificationV1",
     "VerifiedExternalSharedStagingOutputV1",
+    "SHARED_REFERENCE_COMPOSITION_SCHEMA_ID",
+    "SHARED_REFERENCE_COMPOSITION_STATE",
+    "SharedReferenceCompositionV1",
     "evaluate_successor_declaration_v1",
     "successor_declaration_id_v1",
     "make_shared_reference_operator_v1",
@@ -633,6 +645,10 @@ __all__ = [
     "external_shared_staging_verification_to_json",
     "validate_external_shared_staging_verification_v1",
     "verify_external_shared_staging_v1",
+    "build_shared_reference_composition_v1",
+    "shared_reference_composition_from_json",
+    "shared_reference_composition_to_json",
+    "validate_shared_reference_composition_v1",
     "invoke_dpct_package_v1",
     "prepare_dpct_invocation_request_v1",
     "verify_dpct_invocation_output_v1",
