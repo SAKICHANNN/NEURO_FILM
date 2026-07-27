@@ -538,6 +538,14 @@ metadata. A future pixel leaf requires an explicit reuse grant, independent
 roll/process replication and verified pairing structure; the current product
 terms and all-rights-reserved comparison page do not satisfy that DoR.
 
+The SF2.10R formal reports repeat byte-for-byte. They retain 927 embedded
+image URLs, 20 weak stock-looking labels, 471 filename condition keys and 456
+apparent Frontier/Noritsu pairs, while making zero image requests. Fifteen
+keys remain deliberately unmatched because filenames disagree. The topology
+is worth preserving, but rights, verified pairing, a common digital manifest
+and independent roll/process replication all fail the pixel DoR. The source
+closes before acquisition, fitting, training or LSM.
+
 `U5.R2J0` is that separately frozen witness. It independently implements the
 compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
 functional form using five original synthetic parameter sets. A numerical

@@ -83,6 +83,7 @@ backfill those fields.
 | Emulating Emulsion candidate | yes, controlled Velvia 100 | one 36-exposure roll, 33 chart pairs / 3,168 unique patch correspondences | SF2.6R confirms strong method precedent but no public measurements, fitted parameters, code or reusable data licence |
 | NTNU controlled reversal candidate | yes, controlled Ektachrome E100 and Velvia 50 | two paintings, two illuminants, exposure variants, matching hyperspectral captures and ten-band film scans | SF2.8R finds no released raw cube/TIFF, measurements, code, manifest or dataset licence; the six analysed frames lack a same-illumination cross-stock control |
 | ColorReference multi-family IT8 targets | exact material for four archives; Ektachrome family only for one | 288 common manufactured calibration patches, direct Lab/density and 41-point transmission spectra | SF2.9R passes integrity/schema but lacks common uncalibrated recorder input, camera scenes and independent roll/process replication; physical/nuisance evidence only |
+| Color Precision comparison metadata | 20 URL-derived stock-looking labels; physical truth unverified | 927 embedded comparison URLs, 471 condition keys and 456 filename-implied Frontier/Noritsu pairs | SF2.10R repeats exactly offline but scanner auto-adjustment is disclosed and rights, verified pairing, digital counterpart manifest and independent roll/process replication fail before pixels |
 
 ### CT8 auxiliary closure
 

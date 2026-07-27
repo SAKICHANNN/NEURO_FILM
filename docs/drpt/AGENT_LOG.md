@@ -4697,3 +4697,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator fit, training, LSM or production integration opens.
 - **Handoff:** focused/full verification and a commit-bound exact repeat are
   next. Goal continues.
+
+## 2026-07-27 - Close SF2.10R before Color Precision pixel access
+
+- **Evidence identity:** implementation commit
+  `c0021ec9c7934560a6ca730f7c4d55bcf1ea93f8`, config SHA-256
+  `9af77d24b9f3223d35b2ba68585542606ced4ba79675c7248dbb96a13e756bc1`.
+  Formal reports are byte-identical at
+  `2bac9009f5741398c2c5d0a23f42724a4bac82407e1ec5741bb6727c41d03529`;
+  stderr is empty.
+- **Topology:** 927 unique embedded image URLs expose 20 normalized weak
+  stock-looking labels, 95 collection/scene/label cells and 471 filename
+  condition keys. Of these, 456 have exact Frontier/Noritsu suffix partners;
+  15 remain unmatched because names differ or one item is absent.
+- **Nuisance evidence:** the source discloses minor post-scan exposure edits
+  and per-frame scanner colour/WB/contrast adjustment. URL names do not verify
+  physical stock, exposure, illuminant, push, roll, process or scanner profile.
+  A separate product-page paired-capture claim is not a manifest for these
+  comparison assets.
+- **Rights/decision:** no explicit comparison-pixel research reuse grant was
+  found and the page says all rights reserved. Branch
+  `metadata_topology_promising_rights_and_replication_blocked`; record
+  `rights_unknown`, preserve the lead, and request none of the image URLs.
+- **Boundary/handoff:** zero image requests/bytes. Pixels, purchased profiles,
+  operator fitting, training, LSM and production integration stay closed.
+  Reopen only on explicit permission/licensed export, verified pairing and
+  independent replication. Goal returns to an algorithm-priority ready leaf.

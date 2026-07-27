@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "decision_id": "sf2.10r-color-precision-metadata-decision-v1",
+  "experiment_id": "sf2.10r-color-precision-metadata-v1",
+  "node": "ULT > RF > SF2 > SF2.10R",
+  "software_commit": "c0021ec9c7934560a6ca730f7c4d55bcf1ea93f8",
+  "config_sha256": "9af77d24b9f3223d35b2ba68585542606ced4ba79675c7248dbb96a13e756bc1",
+  "report_a_sha256": "2bac9009f5741398c2c5d0a23f42724a4bac82407e1ec5741bb6727c41d03529",
+  "report_b_sha256": "2bac9009f5741398c2c5d0a23f42724a4bac82407e1ec5741bb6727c41d03529",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "decision_branch": "metadata_topology_promising_rights_and_replication_blocked",
+  "inventory": {
+    "retained_html_response_count": 8,
+    "embedded_image_url_count": 927,
+    "image_url_requests": 0,
+    "image_payload_bytes": 0,
+    "stock_looking_label_count": 20,
+    "metadata_cell_count": 95,
+    "filename_implied_condition_count": 471,
+    "filename_implied_complete_scanner_pair_count": 456,
+    "filename_implied_incomplete_scanner_pair_count": 15,
+    "pushed_url_count": 124,
+    "cross_processed_url_count": 34,
+    "tungsten_url_count": 20
+  },
+  "repeat_evidence": {
+    "raw_exact_pages": [
+      "comparison",
+      "terms"
+    ],
+    "normalized_exact_pages": [
+      "comparison",
+      "product",
+      "scanner",
+      "terms"
+    ],
+    "normalization_scope": "only the observed per-request shopify-y UUID"
+  },
+  "observed_source_disclosures": {
+    "minor_exposure_adjustments": true,
+    "per_frame_scanner_colour_white_balance_contrast_adjustment": true,
+    "separate_product_page_claims_same_lens_and_lighting_pairing": true,
+    "scanner_article_claims_selected_same_negative_pair": true
+  },
+  "evidence_boundary": {
+    "stock_process_exposure_illuminant_labels": "weak URL-derived source metadata",
+    "scanner_pairs": "filename-implied candidates, not pixel-verified registration",
+    "physical_roll_id": "unknown",
+    "process_session": "unknown",
+    "scanner_settings_profile": "unknown",
+    "independent_roll_process_replication": "not established",
+    "comparison_digital_counterpart_manifest": "absent"
+  },
+  "rights_status": "no_public_reuse_grant_found/rights_unknown",
+  "interpretation": "The public comparison metadata has unusually rich stock-looking condition and two-scanner topology and is worth preserving as a future source lead. It does not establish physical labels or verified same-negative pairs. Current pages provide no explicit research reuse grant for comparison pixels, no independent roll/process replication and no exposed common digital counterpart manifest, so pixel acquisition and fitting stop.",
+  "forbidden_rescues": [
+    "request any embedded comparison image URL",
+    "infer physical stock, exposure, illuminant, push or process truth from filenames",
+    "call filename-matched scanner entries verified same-negative pairs",
+    "transfer the separate commercial-product pairing claim onto comparison images",
+    "download purchased products, profiles, LUTs or 9.4 GB PDFs",
+    "fit scanner, stock, digital-to-film or latent-mode operators"
+  ],
+  "reopen_only_if": [
+    "explicit comparison-pixel research reuse permission or licensed export",
+    "independent roll/process replication or a preregistered defensible substitute",
+    "verified pairing manifest and bounded pixel-acquisition contract"
+  ],
+  "claim_ceiling": "repeat-exact metadata topology, source-statement and rights-gap evidence only; no pixel access, verified physical pairing, stock identity, roll/process replication, reusable licence, scanner operator, film operator, training or LSM claim"
+}
