@@ -401,3 +401,4 @@
 - Full collection: 998 passed, one skipped and the unchanged 36
   ignored-output/CRLF-hash failures; no new failure family and no
   `src/color_match` failure.
+- Commit: `ec437e1` (`feat: add projected CFSM matcher challenger`).

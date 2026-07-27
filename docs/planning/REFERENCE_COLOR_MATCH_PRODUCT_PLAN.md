@@ -74,7 +74,7 @@ with a selected stock, but reference matching alone is labeled
 | P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | `4bfd5da` | revert commit |
 | P11 | DONE | unpromoted-algorithm delivery fail-close + explicit research override | 134 focused tests; default/override CLI; full suite 990 pass/36 known fail | `adae6cb` | revert commit |
 | P12 | DONE | propagate delivery certification into film-effects composition | 136 focused tests; full suite 992 pass/36 known fail | `ba6f2c1` | revert commit |
-| P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | pending scoped commit | revert commit |
+| P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | `ec437e1` | revert commit |
 | P14 | READY | replace the unidentified prior with an independently learned/published canonicalizer | W1 stable evidence plus frozen A1/A4/A5 replay | none | keep v0 rejected |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
