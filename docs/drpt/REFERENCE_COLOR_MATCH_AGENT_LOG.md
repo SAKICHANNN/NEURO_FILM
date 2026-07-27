@@ -1539,6 +1539,8 @@
   script were read-only. Producer interface state was unchanged.
 - Handoff: P40 evidence is ready to commit. Consumer local-delivery mechanics
   and restart integrity are complete; real use remains externally gated.
+- Evidence commit: `ff6d632` (`docs: record local delivery verification`).
+  P40 is complete as restart integrity, not real candidate admission.
 
 ## 2026-07-28 - Implement and verify P39 atomic local export
 
