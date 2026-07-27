@@ -606,3 +606,16 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   failures; latest-main path overlap zero and synthetic merge 65 pass.
 - HDR note: producer `6c7118c` exact Windows arithmetic remains on an
   absolute BT.2020 cd/m2 rail and is explicitly not mapped to P29.
+
+### 2026-07-28 P30 product staging authorization stable handoff
+
+- Consumer commit before evidence closure: `88b7d53`.
+- P30 adds no producer requirement. It rebinds P28/P29 and original consumer
+  acceptances at the product staging boundary.
+- A research-baseline override can pass upstream guards for explicit research
+  but cannot become product staging authority. Genuine promotion and
+  `research_baseline_override=false` are mandatory per source.
+- Success is only `authorized-for-staging`; one row failure makes the full
+  batch identity fallback. Commit/delivery/applied remain absent.
+- Evidence: 76 focused pass; full 1229 pass/1 skip/36 unchanged environment
+  failures; latest-main path overlap zero and synthetic merge 76 pass.

@@ -1153,3 +1153,25 @@
   state exists.
 - Coordination: both equal peer tasks received the consumer-only intent;
   D-PCT has no schema or implementation action.
+
+## 2026-07-28 - Close P30 product transaction authorization
+
+- Node/parent goal: P30A-D / fail-closed product staging authority.
+- Implementation: add an immutable atomic authorization that cross-binds P28,
+  P29 and original CoreAcceptance identities. All rows must be core-ok,
+  genuinely promoted, non-research and numerically eligible.
+- Discriminating control: a candidate admitted through
+  `research_baseline_override=true` passes P28/P29 but is rejected by P30 with
+  algorithm-not-promoted and research-baseline-override; the full batch falls
+  back. The promoted/non-research control is authorized only for staging.
+- State ceiling: no pixel, path, partial output, commit, delivery or applied
+  state; claim is `staging-only-not-committed`.
+- Verification: 11 dedicated and 76 combined P27-P30 tests pass. Full suite
+  is 1229 passed, one skipped and the unchanged 36 environment failures.
+- Main propagation: stable HEAD `a33526e`, base `c03c321`, zero path overlap,
+  merge tree `5fbb6ca2...`; detached merge `b06748b5...` passes 76/76 and was
+  removed. Main's concurrent untracked Z1 files were not touched.
+- Structure: one additive module/schema/test and one evidence document in
+  established homes; no producer, transaction writer, media or FilmFX change.
+- Handoff: P30 is stable. A later staging/commit integration must consume the
+  exact authorization ID and retain rollback-safe all-or-nothing semantics.
