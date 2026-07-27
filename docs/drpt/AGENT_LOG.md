@@ -4465,3 +4465,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   same-known-look/unrelated-content experiment is ready. W1 remains generated
   mechanism evidence; project images, film pixels, stock learning, LSM,
   calibration and production integration stay closed; Goal continues.
+
+## 2026-07-27 - Add AceTone boundary to U5.R2W0
+
+- **Node/parent:** read-only source child of `ULT > U5 > U5.R2W0`; no
+  algorithm or data branch is activated.
+- **Evidence:** pinned the CVPR 2026 paper and official source at commit
+  `916393b3f26bdf89c3d939cc5f2a9a3c115ccbc5`. The code is Apache-2.0 and
+  includes a VQ LUT weight, but the public 6.87 GB benchmark has no declared
+  dataset-card licence in the audited metadata.
+- **Adjudication:** retain strong explicit-LUT style, LUT-token
+  parameterization and same-known-LUT/across-content evaluation as priors.
+  Reject execution: the method autoregressively generates LUT tokens with a
+  VLM, has no project structural guarantees, and supplies no film/stock
+  truth. Paper-scale visual observations are autonomous qualitative evidence
+  only.
+- **Side effects:** no benchmark payload was downloaded and no model/weight
+  was executed. W1 remains the next ready admissible leaf; Goal continues.

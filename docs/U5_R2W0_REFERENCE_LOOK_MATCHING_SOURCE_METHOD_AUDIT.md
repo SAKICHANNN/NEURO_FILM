@@ -491,6 +491,50 @@ canonicalization prior. It still could not be called a real-film operator,
 calibrated stock response or solution to unpaired digital-to-film
 identification.
 
+### AceTone
+
+[AceTone (CVPR 2026)](https://openaccess.thecvf.com/content/CVPR2026/html/Zhang_AceTone_Bridging_Words_and_Colors_for_Conditional_Image_Grading_CVPR_2026_paper.html)
+is relevant evidence that a compact explicit 3D-LUT representation can carry
+strong, recognizable grading. It VQ-encodes a `3 x 32 x 32 x 32` LUT into 64
+tokens with a 256-entry codebook; the paper reports under 2 Delta E and
+37.5 dB for LUT reconstruction. Its benchmark also applies the same known LUT
+to different images, which is a useful same-look/different-content evaluation
+pattern.
+
+It is not an admissible project algorithm or data source:
+
+- Qwen2.5-VL-3B autoregressively generates LUT tokens from a reference or text,
+  with synthetic instructions from Qwen2.5-VL-32B and GRPO training. That is
+  generative model use even though the final renderer is an explicit LUT;
+- training combines MSCOCO, FiveK, PPR10K and about 34,000
+  Lightroom-exported expert LUTs into a fused 8,192-LUT pool. None is named
+  film-stock operator truth;
+- the released decoder bounds LUT values with a sigmoid but provides no
+  monotonicity, positive-Jacobian, inverse, replay or spectral-norm guarantee;
+- malformed token sequences are padded with the first token, which is not a
+  fail-closed Style-safe boundary;
+- the 6.87 GB public transfer benchmark has no declared dataset-card licence
+  in the audited metadata. The repository's Apache-2.0 code licence does not
+  establish benchmark-image or LUT rights.
+
+Autonomous paper-scale inspection shows conspicuous purple, teal, warm and
+contrast changes without obvious geometry corruption or banding at that
+scale. Several examples are better described as palette transfer than
+film-stock specificity. This is qualitative paper evidence only, not
+full-resolution severe-artifact adjudication.
+
+Retain AceTone solely as:
+
+- evidence that constrained global colour operators need not be visually
+  bland;
+- a low-dimensional LUT token/parameter representation prior;
+- a same-known-LUT/across-content benchmark-design prior.
+
+Do not run its model or bundled weight, download its benchmark, import its
+generative training path, or activate it as a W1 challenger. W1 already tests
+the narrower admissible question with a fixed descriptor and bounded O0
+operator.
+
 ### StatLUT
 
 [StatLUT (arXiv 2026)](https://arxiv.org/abs/2607.08227) is unusually close
@@ -631,6 +675,8 @@ redistributable project assets:
 | Neural Preset supplement | `outputs/source_recon/neural_preset_cvpr2023/supplemental.pdf` | `CFB5553DB153C3E5433ACC74807D175D44ACAC06DAFEBD24A130B64D53FAC9B7` |
 | CanonCGT CVPR 2026 paper | `outputs/source_recon/canoncgt_cvpr2026/paper_cvpr2026.pdf` | `5DE5A83241F5EC4251248A7B5E565F616CF15D40DE6FB6B1C842F15DDDEF9811` |
 | CanonCGT official source | `outputs/source_recon/canoncgt_cvpr2026` at commit `229a7d3ec24af19ea5d97bb136f0317762bb9261` | licence `1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6`; E2E weight `916F7AD5028D3FEF51CF915BB51FEBC9508E7A378C0BABE9FF3D3992B8C594F7` |
+| AceTone CVPR 2026 paper | `outputs/source_recon/acetone_cvpr2026/paper_cvpr2026.pdf` | `8F71D1A9F86B13CE043AF2592F9D4384801FF90664664B2BBBDC615D8A4D6DED` |
+| AceTone official source | `outputs/source_recon/acetone_cvpr2026/source` at commit `916393b3f26bdf89c3d939cc5f2a9a3c115ccbc5` | Apache-2.0 licence `6D1D968FB225ECA367CB7F0B8831AB012A35D92B547E945E17EF8E7B05C3E5CC`; bundled VQ weight `115E4E8C147655FE0AE0C7FD494EC6CD3A8FF5A441CE536A886EDB1EA556EF92`, not executed |
 | StatLUT arXiv v1 paper | `outputs/source_recon/statlut_arxiv2026/paper_v1.pdf` | `A722F9869AB99824855A5A8465DA4730A7FEAC701DDDBA5E98198EA3C8AED9DB` |
 | Distribution-Conditioned Transport paper | `outputs/source_recon/distribution_conditioned_transport_2026/paper.pdf` | `66613EEE32EBA7F19741E2F97443BC60136CB5A99CA50C4F134431D0418C7D19` |
 | MMArt-PPR10K public README | `outputs/source_recon/mmart_ppr10k_readme.md` | `00E81B37E54F3A0D818CA0E49B192399C7589323398A42F7D19A024E3C8F703E` |
