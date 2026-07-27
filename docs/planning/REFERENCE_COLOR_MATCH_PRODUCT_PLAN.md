@@ -131,6 +131,10 @@ with a selected stock, but reference matching alone is labeled
 | P34B | DONE | implement canonical verified-staging binding | report/run/output/receipt/path identities; no write or delivery state | `f1e8d35` | revert additive module/schema |
 | P34C | DONE | prove report and output tampering fail closed | report bytes, run ID, output bytes/path/order/hash mutations | `f1e8d35` | no verified binding |
 | P34D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1254 pass/1 skip/36 known failures; latest-main synthetic merge 144 pass | `61431b9` | retain P33 |
+| P35A | IN PROGRESS | freeze genuine external-reference/FilmFX composition semantics | bind P34; reference colour owns colour; optional procedural effects only | intent commit | retain P18 local composition |
+| P35B | PENDING | implement strict external composition plan | canonical schema/roundtrip; no film colour, stock claim, render or delivery state | implementation commit | revert additive module/schema |
+| P35C | PENDING | prove identity, colour stacking and claim mutations fail closed | verification/run/intent/profile/order/claim/effect negatives | implementation commit | no composition plan |
+| P35D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P34 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -273,6 +277,13 @@ and run ID, the consumer rereads bounded strict JSON, validates its canonical
 identity and verifies every staged file hash. Success is only a
 `verified-staging` binding. It cannot create final delivery or FilmFX
 authority.
+
+P35 is separate from P18 because a genuinely promoted external reference
+candidate is neither an identity fallback nor a research-baseline override.
+The plan binds the exact P34 verification and assigns colour ownership to the
+verified external reference look. It may append only validated procedural
+FilmFX; it cannot add a film colour operator, claim a stock identity, render
+effects, deliver files or mark pixels applied.
 
 ## First-slice algorithm
 

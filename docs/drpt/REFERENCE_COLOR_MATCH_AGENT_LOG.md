@@ -1351,3 +1351,21 @@
   verification ID rather than trust files or the P33 in-memory result.
 - Evidence commit: `61431b9` (`docs: record external staging verification`).
   P34 is complete as restart verification, not as delivery authorization.
+
+## 2026-07-28 - Freeze P35 external reference/FilmFX composition
+
+- Node/parent goal: P35A / external-reference product composition.
+- Gap: P18 correctly models the local rejected baseline, whose only applied
+  path is an explicit research override. It must not be relabeled for a future
+  genuine non-research external candidate.
+- Contract: bind exact P34 verification/run/reference-intent identities;
+  assign colour ownership only to the verified external reference look; append
+  optional validated grain/halation/dust after colour.
+- Prohibitions: no film colour profile, stock identity, research override,
+  rendering, file mutation, delivery or applied state.
+- Claim ceiling: `composition-ready-not-rendered` with output label
+  `reference-look` or `reference-look+film-effects`.
+- Scope: additive consumer composition module/schema/tests plus a small
+  extraction of the existing FilmEffectBinding validator/builder for reuse.
+- Coordination: both equal peers received intent; no producer or main action
+  is requested.
