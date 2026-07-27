@@ -1369,3 +1369,27 @@
   extraction of the existing FilmEffectBinding validator/builder for reuse.
 - Coordination: both equal peers received intent; no producer or main action
   is requested.
+
+## 2026-07-28 - Implement and verify P35 external composition
+
+- Node/parent goal: P35B-D / external-reference product composition.
+- Implementation: `249e415` adds a strict external composition
+  module/schema/tests and extracts the existing FilmEffectBinding
+  builder/validator for shared use. P18 behavior remains unchanged.
+- Binding: exact P34 verification, P33 run, P30 authorization, reference
+  intent and source count. External reference colour is the sole colour
+  owner; optional procedural FilmFX follows it.
+- Prohibitions: film colour remains null, stock identity false and state
+  `composition-ready-not-rendered`. No renderer, file or delivery mutation.
+- Adversarial result: applied state, colour stacking, stock claim, reversed
+  order, identity drift, invalid effects and unknown fields all fail closed.
+- Verification: 40 composition/P34 adjacent and 147 combined P27-P35 tests
+  pass; full suite is 1265 passed, one skipped and the unchanged 36
+  environment failures.
+- Latest-main: `cfd1271`, zero overlap across 168 consumer and 100 main paths,
+  merge tree `ce79f519...`; fresh synthetic merge passes 147/147 and is
+  removed.
+- Concurrent safety: main's Kodak AA1 files and D-PCT `c688c32` were read-only.
+- Handoff: evidence is ready to commit. A future effect renderer must reverify
+  P34, consume exact P35 and produce its own atomic report; no real candidate
+  is currently eligible.
