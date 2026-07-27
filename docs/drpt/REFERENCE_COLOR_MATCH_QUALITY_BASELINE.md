@@ -89,6 +89,28 @@ come from one existing deterministic Velvia-look run. It calibrates failure
 detection and demonstrates the content-dependence problem; it does not prove
 general user preference or real-film fidelity.
 
+### Full-covariance Gaussian/MKL challenger
+
+A stronger non-ML distribution baseline was evaluated on the exact same 6x6
+matrix. For each reference/source pair it fits the unique symmetric
+positive-definite Gaussian optimal-transport map in D65 Lab, uses the same 85%
+luma strength, then applies the existing source-relative gamut compression and
+the frozen product guard.
+
+| Algorithm | Same-content median | Cross-content improved | Cross-content median | Cross-content worst | Guard-accepted cross-content |
+|---|---:|---:|---:|---:|---:|
+| v1 channel mean/std | +60.0% | 5/30 | -92.2% | -344.9% | 3 |
+| Gaussian/MKL covariance | +65.2% | 3/30 | -109.5% | -332.2% | 2 |
+
+The covariance map improves same-content fit but worsens held-out-content
+recovery and produces 27/30 cross-content regressions. This is the expected
+failure of treating each scene's full colour covariance as photographic style.
+
+Decision: reject full-covariance Gaussian/MKL as a product algorithm. It remains
+a research comparator only. Adding histogram iterations, higher moments or
+more aggressive distribution matching is not an allowed rescue without new
+source-use/content-invariance evidence.
+
 Autonomous visual inspection agrees with the metric direction:
 
 - image `02` becomes too dark and warm;

@@ -239,3 +239,17 @@
   present.
 - Artifacts remain ignored under
   `outputs/reference_color_match_cli_smoke`; nothing generated was committed.
+
+## 2026-07-27 - Reject full-covariance Gaussian/MKL challenger
+
+- Challenger: per reference/source D65 Lab symmetric positive-definite
+  Gaussian optimal transport, 85% luma strength, existing source-relative
+  gamut compression and frozen guard.
+- Same-content result: 6/6 improve, median +65.2%, but only 4/6 pass the guard.
+- Cross-content result: 3/30 improve and 27/30 regress; median -109.5%, worst
+  -332.2%, only two candidates pass the guard.
+- Comparison: v1 mean/std is still poor but reaches 5/30 improvements and
+  -92.2% median. Covariance fitting therefore worsens the actual target slice.
+- Decision: do not implement Gaussian/MKL as a product recipe and do not rescue
+  global distribution matching with more histogram/moment capacity. Await an
+  identified content-independent grade representation from W1.

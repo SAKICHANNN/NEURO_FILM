@@ -158,6 +158,15 @@ A full-resolution smoke on the existing Velvia-look baseline also passes:
 `applied_count=1`, `identity_fallback_count=1`, `output_count=2`, with report
 SHA-256 `f59799cc...c5cd9`. The fallback row records both frozen guard reasons.
 
+## Rejected stronger statistical comparator
+
+Full-covariance Gaussian/MKL transport was run on the frozen 6x6 known-look
+matrix and rejected. It improves the same-content median but worsens
+cross-content median recovery to -109.5%, with 27/30 regressions. This evidence
+closes stronger unpaired global moments/distribution fitting as the next
+product algorithm; it does not close canonicalized, paired-supervised or
+otherwise identified explicit-operator prediction.
+
 ## Change propagation
 
 - Upward: neuro-film now has an implementable peer capability to stock

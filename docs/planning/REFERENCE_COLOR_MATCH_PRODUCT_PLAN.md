@@ -184,6 +184,13 @@ while conservatively rejecting three improvements. Its thresholds remain a
 severe-tail veto; they must not be tuned to make the baseline appear more
 successful.
 
+Full-covariance Gaussian/MKL transport was also rejected on the same matrix.
+It raises same-content median improvement from +60.0% to +65.2%, but reduces
+cross-content improvements from 5/30 to 3/30 and worsens cross-content median
+from -92.2% to -109.5%. The next algorithm must recover a content-independent
+grade; stronger unpaired global-distribution fitting is no longer an eligible
+product direction.
+
 ### Film-business composition boundary
 
 `ReferenceCompositionPlan` makes reference matching and film simulation peer
