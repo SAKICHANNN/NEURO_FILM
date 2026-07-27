@@ -591,3 +591,18 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   `10e3b164...`; detached synthetic merge 296/296 pass.
 - D-PCT explicitly confirms no P28 interface overlap. Its evolving HDR
   absolute BT.2020 path remains unmapped and cannot enter this batch profile.
+
+### 2026-07-28 P29 exact-receipt numeric guard stable handoff
+
+- Consumer commits: `0fca9d9` single-source numeric guard and `135f0b9`
+  atomic numeric batch aggregation.
+- Producer impact: none. Producer factual DiagnosticsV2 measurements are
+  thresholded as supplied and never redefined by Neuro-Film.
+- Success ceiling: per-source and whole-batch success mean only
+  `eligible-for-transaction`; no output is delivered or marked applied.
+- Failure rule: exact binding, threshold or any row failure makes the complete
+  batch identity fallback; partial delivery is unrepresentable.
+- Evidence: 65 focused pass; full 1218 pass/1 skip/36 unchanged environment
+  failures; latest-main path overlap zero and synthetic merge 65 pass.
+- HDR note: producer `6c7118c` exact Windows arithmetic remains on an
+  absolute BT.2020 cd/m2 rail and is explicitly not mapped to P29.

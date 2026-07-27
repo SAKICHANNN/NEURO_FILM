@@ -1105,3 +1105,33 @@
   severe artifacts or aesthetic quality; those evidence gates remain
   independent.
 - Coordination: both equal peer tasks received the non-overlapping intent.
+
+## 2026-07-28 - Close P29 exact-receipt numeric guard
+
+- Node/parent goal: P29A-D / post-admission delivered-pixel safety.
+- Single-source change: add an exact receipt-bound decision over producer
+  OOG/clipping/projection facts and consumer new-boundary fraction. Default
+  limits are 0.25/0.05/0.25/0.05 with epsilon `1/65535`; equality passes.
+- Batch change: consume only a P28 `pending-product-guard` resolution, bind
+  every ordered source/receipt/admission and require one policy. Any numeric
+  failure makes the complete batch identity fallback.
+- State/claim ceiling: success is only `eligible-for-transaction`;
+  `applied`, pixels, partial delivery and visual/aesthetic claims are absent.
+- Adversarial evidence: threshold equality, pixel mutation, source/decision
+  swap, policy/reason/action/ID mutation, mixed/missing decisions, upstream
+  short-circuit and strict JSON/schema cases pass.
+- Verification: 65 combined P27-P29 tests pass. Full suite is 1218 passed,
+  one skipped and the same 36 known missing-output/advanced-main asset-hash
+  failures; no colour-match/P29 failure.
+- Main propagation: main remains `a33526e`, base `c03c321`, zero changed-path
+  overlap, clean merge tree `39d578ec...`; detached synthetic merge
+  `d8ae8caa...` passes 65/65 selected tests and was removed.
+- Producer propagation: HEAD `6c7118c` closes Windows x64 arithmetic parity
+  for a separate absolute-HDR Sparks payload, but remains explicitly unmapped
+  to this relative-SDR consumer and changes no P29 schema or threshold.
+- Structure: two additive modules, schemas and tests in existing contract
+  homes plus one evidence record. P27/P28, transactions, media and FilmFX
+  remain unchanged.
+- Handoff: P29 is stable for equal-peer consumption. A later transaction
+  node may consume only the whole-batch eligible state and must still supply
+  independent visual/severe-artifact adjudication before delivery.
