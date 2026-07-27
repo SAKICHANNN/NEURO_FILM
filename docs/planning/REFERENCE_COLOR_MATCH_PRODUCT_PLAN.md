@@ -139,6 +139,10 @@ with a selected stock, but reference matching alone is labeled
 | P36B | DONE | implement N-source FilmFX staging transaction | existing layers/compositor/encoders/rollback reused; strict report | `aafa097` | revert additive module/schema |
 | P36C | DONE | prove physical-default ambiguity and mutations fail closed | no effects, physical controls, live tamper, path/output/commit negatives | `aafa097` | preserve P33 files |
 | P36D | DONE | run adjacent/full/latest-main propagation and peer handoff | 436 combined; 1276 pass/1 skip/36 known; latest-main synthetic merge 102 pass | `b398e53` | retain P35 |
+| P37A | IN PROGRESS | freeze restart-safe verification of a P36 run | expected report hash/run ID; strict bounded reread; rehash P33 inputs and P36 outputs | intent commit | retain P36 staging report |
+| P37B | PENDING | implement canonical FilmFX staging verification | bind plan/P34/run/path/file identities; no mutation or delivery state | implementation commit | revert additive module/schema |
+| P37C | PENDING | prove report/input/output tampering fails closed | report bytes/path/run, missing or changed input/output, order/state/claim mutations | implementation commit | no verified FilmFX binding |
+| P37D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P36 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

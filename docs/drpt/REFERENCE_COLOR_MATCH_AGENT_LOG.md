@@ -1450,3 +1450,20 @@
   product delivery.
 - Evidence commit: `b398e53` (`docs: record external FilmFX execution
   evidence`). P36 is complete as staging execution, not final delivery.
+
+## 2026-07-28 - Freeze P37 restart-safe FilmFX staging verification
+
+- Node/parent goal: P37A / durable integrity after P36 FilmFX staging.
+- Gap: P36 proves atomicity and returns a trustworthy in-memory result at
+  commit time. A later delivery decision must not trust stale objects, paths
+  or mutable files after a process restart.
+- Contract: require caller-held P36 report SHA-256 and run ID; bounded strict
+  UTF-8 reread and canonical validation; verify the report path; then rehash
+  every ordered P33 input and P36 FilmFX output.
+- State/ceiling: `verified-filmfx-staging` /
+  `verified-filmfx-staging-not-delivered`; no file mutation, delivery or
+  applied state.
+- Scope: additive consumer verifier/schema/tests/docs only. Producer
+  algorithms, ABI, HDR/media and main-project files are forbidden.
+- Coordination: both equal peer tasks received intent and can continue
+  independently without waiting.
