@@ -14,11 +14,12 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer payload: `codex/reference-color-match` through P40 at `6db15c4`.
-- Main Neuro-Film read-only snapshot: `9fea35b`; its `.codex/` and `tmp/`
+- Consumer payload: `codex/reference-color-match` through P42 at `618f74e`.
+- Main Neuro-Film read-only snapshot: `bebd34f`; its `.codex/` and `tmp/`
   files belong to the main task and were not touched.
-- D-PCT read-only snapshot: `fa592e2`; its BMKL/Volga2K result is development
-  evidence only and changes no producer contract or receipt.
+- D-PCT read-only snapshot: `eb4b889`; it now contains a producer-owned
+  invocation package candidate that still requires explicit consumer audit
+  and compatibility mapping.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -37,21 +38,22 @@ wire contract and not an algorithm promotion.
 | A4 photographic preference and severe tail | Baseline rejected; evaluator and ordering are frozen | GATE IMPLEMENTED, EVIDENCE OPEN | Broader frozen suite followed by independent blind aesthetic review for an identified candidate / shared evidence, Neuro-Film decision |
 | A5 album/batch consistency | Baseline failed six shared-colour context probes | GATE IMPLEMENTED, EVIDENCE OPEN | Candidate-specific shared-colour drift pass with source-bound transform policy made explicit / shared evidence, Neuro-Film decision |
 | Exact producer/consumer compatibility | P27 pins corrected D-PCT v2 relative-SDR schemas and exact success/failure fixtures | COMPLETE for the pinned synthetic conformance profile | A real producer package must declare and pass the same explicit compatibility profile / D-PCT then Neuro-Film |
-| Actual D-PCT algorithm invocation | No frozen library/package/ABI or product invocation exists; P27 consumes fixtures only | BLOCKED ON PRODUCER ARTIFACT | Publish fixed package/ABI, capability identity, invocation conformance and real source-bound receipt / D-PCT |
+| Actual D-PCT algorithm invocation | D-PCT `eb4b889` publishes a producer-owned package candidate; no consumer audit, compatibility profile or invocation exists yet | PRODUCER ARTIFACT AVAILABLE, CONSUMER ADMISSION OPEN | Audit package/schema/hash/real receipt, freeze an explicit adapter and prove fail-closed invocation / Neuro-Film |
 | External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
 | Final user-visible delivery state | P37 verifies P36; P38 reauthorizes; P39 atomically commits local files; P40 restart-verifies report plus staging/delivered bytes | LOCAL TRANSACTION AND RESTART INTEGRITY COMPLETE, REAL USE CLOSED | Admit a real invocation only after A1/A4/A5 and merge the reviewed module into main / shared evidence and Neuro-Film integration |
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
-| Portable consumer identity chain | Python, MSVC and LLVM-MinGW execute exact P28-P30 vectors; Android arm64/x86_64 link | COMPLETE for host identity logic | Android device execution, Apple compiler/runtime, JNI/Swift boundary and real invocation remain open / platform integration |
+| Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile | COMPLETE for host identity and cross-target core compilation | Android/Apple device runtime, SDK/app/JNI/Swift boundary and real invocation remain open / platform integration |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
 The shortest honest path to a non-identity D-PCT-backed product render is:
 
-1. D-PCT freezes a real invocation package/ABI and emits a source-bound factual
-   receipt under an explicit compatible SDR profile.
+1. Neuro-Film audits the producer package now available at D-PCT `eb4b889`,
+   verifies its source-bound factual receipt and freezes an explicit compatible
+   SDR adapter without copying producer parameter layout.
 2. That exact candidate passes A1, A4 and A5 without research override.
 3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,
    P28 atomic batch resolution, P29 numeric guard and P30 product
@@ -86,6 +88,7 @@ separate leaves and do not block the relative-SDR product shell from review.
 
 The independent Neuro-Film reference-match consumer is implementation-complete
 from fail-closed intake through verified local export mechanics. The broader
-long-term goal is not complete: no real external candidate has both product
-promotion and a frozen invocation artifact, Apple/device runtime evidence is
+long-term goal is not complete: the newly available producer invocation
+artifact has not passed consumer compatibility/admission, no real external
+candidate is product-promoted, Apple/Android device runtime evidence is
 absent, and the reviewed payload has not been merged into the main project.

@@ -1658,6 +1658,10 @@
   compatibility audit and no interface mapping is inferred here.
 - Handoff: P42 completes portable canonical-core compile evidence, not mobile
   runtime or real product admission.
+- Completion propagation: the top-level completion audit now distinguishes
+  producer artifact availability at `eb4b889` from consumer compatibility or
+  admission. P43 becomes the next ready consumer leaf; no package semantics
+  are inferred from commit names alone.
 
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
