@@ -179,6 +179,27 @@ closes stronger unpaired global moments/distribution fitting as the next
 product algorithm; it does not close canonicalized, paired-supervised or
 otherwise identified explicit-operator prediction.
 
+## CFSM explicit-operator frontier
+
+`src/color_match/research/cfsm.py` implements the first fixed explicit-operator
+challenger. It compares the reference with a frozen canonical cube, estimates
+an orientation-preserving transport, pins residuals at all cube faces and
+projects a tetrahedral LUT to explicit range, smoothness, neutral-axis and
+Jacobian constraints. Candidate JSON is canonically identified and fully
+revalidated on replay.
+
+The full six-reference/30-cross-content result is rejected but materially
+stronger than safe-Lab: 19/30 improve, median is +3.851%, worst is -9.649%,
+new boundary is 0%, all six photographic probes pass and all six shared-colour
+context probes pass with zero drift. Two runs produce the same report ID and
+byte SHA-256 (`1ead5590...574c7f`, `ccf34c09...acf243`).
+
+A neutral-axis strength grid does not rescue it. The uploaded-source-batch
+prior is worse at 16/30, +0.571% median and -11.524% worst. These are
+falsifications, not candidates for visual promotion. They preserve default
+identity delivery and direct P14 toward an independently identified
+canonicalizer.
+
 ## Executable photographic promotion gate
 
 The promotion gate now streams known-operator rows, aggregates centre/tail

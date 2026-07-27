@@ -376,3 +376,28 @@
 - Verification: 136 focused tests pass; the full collection is 992 passed,
   one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.
 - Commit: `ba6f2c1` (`fix: propagate matcher certification to composition`).
+
+## 2026-07-27 - CFSM explicit-operator challenger
+
+- Parent: P13 / A1+A4+A5 algorithm frontier.
+- Added: isolated CFSM v0 fit/render/replay candidate, canonical candidate
+  identity, tamper validation, fixed batch operator, boundary-pinned residual
+  and deterministic numerical projection.
+- Synthetic gates: deterministic non-identity fit, exact JSON replay,
+  constrained LUT, four-of-four known-operator improvement and zero
+  shared-colour context drift.
+- Frozen real matrix: 19/30 improve, median +3.851%, worst -9.649%, zero new
+  boundary; 6/6 photographic and 6/6 context probes pass.
+- Repeat: report ID `1ead5590...574c7f` and SHA-256
+  `ccf34c09...acf243` are byte-identical across two runs.
+- Rejected ablations: neutral-axis limits 0.08/0.12 worsen the tail; using the
+  uploaded N-source batch as the prior falls to 16/30, +0.571% median and
+  -11.524% worst.
+- Decision: v0 and batch-v1 remain research-only/rejected. Default delivery
+  remains identity. P14 requires independent canonicalizer evidence, not
+  stronger distribution fitting or post-hoc strength tuning.
+- Verification before full collection: 6 CFSM tests and 126 focused
+  colour-match/preprocess tests pass; compileall and diff check pass.
+- Full collection: 998 passed, one skipped and the unchanged 36
+  ignored-output/CRLF-hash failures; no new failure family and no
+  `src/color_match` failure.

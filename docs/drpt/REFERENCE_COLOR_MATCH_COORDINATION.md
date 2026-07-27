@@ -102,3 +102,11 @@ claims no RAW/HDR/video decoder or media-frame implementation. Its A3
 integration state is contract-mapped but pixel-bridge closed until D-PCT
 publishes, or neuro-film approves, a versioned render bridge with explicit
 luminance and provenance.
+
+## CFSM dependency boundary
+
+P13 adds only isolated deterministic research code and frozen evaluation
+evidence. It does not consume the main task's uncommitted W1/W2/S4 files or the
+standalone task's uncommitted DNG/WIC code. P14 may consume a canonicalizer only
+after the owning task publishes a stable commit and this branch revalidates
+interfaces, rights, leakage and A1/A4/A5 evidence.

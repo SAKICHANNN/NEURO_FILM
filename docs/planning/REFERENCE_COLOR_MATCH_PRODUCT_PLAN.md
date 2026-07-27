@@ -74,6 +74,8 @@ with a selected stock, but reference matching alone is labeled
 | P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | `4bfd5da` | revert commit |
 | P11 | DONE | unpromoted-algorithm delivery fail-close + explicit research override | 134 focused tests; default/override CLI; full suite 990 pass/36 known fail | `adae6cb` | revert commit |
 | P12 | DONE | propagate delivery certification into film-effects composition | 136 focused tests; full suite 992 pass/36 known fail | `ba6f2c1` | revert commit |
+| P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | pending scoped commit | revert commit |
+| P14 | READY | replace the unidentified prior with an independently learned/published canonicalizer | W1 stable evidence plus frozen A1/A4/A5 replay | none | keep v0 rejected |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -160,7 +162,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`992 passed, 1 skipped, 36 failed`.
+`998 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -214,6 +216,29 @@ cross-content improvements from 5/30 to 3/30 and worsens cross-content median
 from -92.2% to -109.5%. The next algorithm must recover a content-independent
 grade; stronger unpaired global-distribution fitting is no longer an eligible
 product direction.
+
+CFSM-v0 is the first challenger to repair the old batch and severe-tail
+failures without collapsing to identity. It estimates an orientation-preserving
+Gaussian transport from an image-independent canonical RGB cube to the
+reference, converts the residual to a boundary-pinned tetrahedral 17-cube, and
+bisects strength until output range, residual, smoothness, neutral-axis and
+positive-Jacobian constraints all pass. The resulting LUT is fixed across N
+sources, canonically identified and JSON replayable.
+
+On the same frozen 30 cross-content rows, CFSM-v0 improves 19/30, reaches
+`+3.851%` median and `-9.649%` worst improvement, and introduces zero boundary
+pixels. All 6/6 photographic probes and 6/6 context-invariance probes pass;
+shared-colour median/p95/max drift is exactly zero. It is nevertheless
+`rejected` because the frozen gates require 75% improved rows and +10% median.
+The repeat report is byte-identical: report ID
+`1ead5590...574c7f`, SHA-256 `ccf34c09...acf243`.
+
+Increasing neutral-axis allowance from 0.04 to 0.08/0.12 worsens the tail and
+does not pass A1. Replacing the fixed cube with the uploaded N-source batch as
+the prior also fails: 16/30 improve, median is `+0.571%`, worst is `-11.524%`.
+This closes naive source-batch distribution fitting. P14 must replace the
+unidentified prior with independent canonicalizer evidence rather than tune
+strength or absorb the current batch's content distribution.
 
 ### Film-business composition boundary
 
