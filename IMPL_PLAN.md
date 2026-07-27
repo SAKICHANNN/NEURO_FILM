@@ -243,7 +243,15 @@ all queries by large margins and every flow passes structure gates. Retain
 only the ClassNeg paired evaluator gap; do not promote a selector, train a
 router, generate visuals, access final 628 or claim film/stock evidence. A
 distinct development-only asymmetric query/operator applicability audit is the
-next algorithm leaf.
+next algorithm leaf. Its contract is now frozen before implementation or fresh
+target access: query-content and explicit operator-signature spaces are
+normalised separately; a leave-one-query-and-operator-out rank-2 then rank-4
+bilinear ridge predicts only bank-member loss and selects one hard operator.
+The policy is compared with shared O0, a fixed operator medoid, the failed Z0
+photometric selectors, random expectation and 32 signature shuffles, with a
+development-derived OOD fallback. Only a complete development pass opens fresh
+confirmatory identities 17--32; Z0 confirmatory identities are not reused.
+No neural/router/visual/final-628/film claim opens at contract freeze.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

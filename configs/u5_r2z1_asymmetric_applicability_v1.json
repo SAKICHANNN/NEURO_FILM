@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2z1-asymmetric-applicability-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Z1",
+  "status": "contract_frozen_pending_implementation",
+  "parent_evidence": {
+    "z0_decision_path": "configs/u5_r2z0_filmset_case_retrieval_decision_v1.json",
+    "required_z0_decision_sha256": "d7c75d12a1952d810528ef9131b9cc8523cf771b9a842b27c7bf647256a3504e",
+    "required_z0_report_sha256": "ffec19f4bbc5068014deef448bf272c10d279b4e869818d831a34be699d7c6dc",
+    "required_z0_domain": "classneg",
+    "required_z0_branch": "case_bank_oracle_only",
+    "required_z0_structure_all": true,
+    "velvia_allowed": false,
+    "w2f1_output_only_allowed": false
+  },
+  "dataset": {
+    "dataset_id": "xuhangc/filmset",
+    "archive_version": "kaggle-v1-2023-11-29",
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "internal_dev_manifest": "internal_dev_lockbox.jsonl",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest": "final_628_lockbox.jsonl",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domains": [
+      "classneg"
+    ],
+    "selected_payload_image_count_expected": 80,
+    "allowed_use": "internal_research_only",
+    "redistribution_allowed": false
+  },
+  "partition": {
+    "algorithm": "sha256_seed_pool_content_id_ascending",
+    "seed": 2026072701,
+    "preflight_internal_development_identities": 256,
+    "preflight_internal_confirmatory_identities": 128,
+    "preflight_internal_stress_identities": 81,
+    "development_offset": 0,
+    "development_identities_used": 24,
+    "fresh_confirmatory_offset": 16,
+    "fresh_confirmatory_identities_used": 16,
+    "z0_confirmatory_offset": 0,
+    "z0_confirmatory_identities_used": 16,
+    "unused_partition_members_remain_unread": true,
+    "fresh_targets_require_development_gate": true
+  },
+  "sampling": {
+    "grid_rows": 4,
+    "grid_columns": 4,
+    "pixels_per_cell_fit": 32,
+    "pixels_per_cell_evaluation": 32,
+    "fit_seed": 28600,
+    "evaluation_seed": 28601,
+    "same_coordinates_across_aligned_domains": true,
+    "full_raster_outputs_generated": false
+  },
+  "operators": {
+    "shared_o0": true,
+    "development_per_case_o0_bank": true,
+    "o0": {
+      "axis_size": 4,
+      "integration_steps": 16,
+      "coefficient_vector_norm_cap": 2.0,
+      "steps": 80,
+      "learning_rate": 0.03,
+      "coefficient_l2": 0.0001,
+      "velocity_smoothness_l2": 0.001,
+      "gradient_clip_norm": 5.0,
+      "device": "cuda_if_available_else_cpu",
+      "optimization_dtype": "float32",
+      "deterministic_algorithms": true,
+      "shared_fit_seed_base": 29610,
+      "case_fit_seed_base": 29700
+    }
+  },
+  "representations": {
+    "query": "z0_spatial_photometric_descriptor",
+    "operator": {
+      "base": "flattened_velocity_grid_minus_shared_velocity_grid",
+      "summaries_in_order": [
+        "signed_output_channel_means_3",
+        "output_channel_rms_3",
+        "global_rms_1",
+        "maximum_node_vector_norm_1"
+      ]
+    },
+    "separate_zscore": true,
+    "separate_pca": true,
+    "development_only_fit": true,
+    "candidate_pca_ranks": [
+      2,
+      4
+    ]
+  },
+  "reranker": {
+    "target": "paired_development_operator_query_evaluation_rmse",
+    "features": [
+      "intercept",
+      "query_pca",
+      "operator_pca",
+      "query_operator_outer_product"
+    ],
+    "ridge_penalty": 0.1,
+    "intercept_penalized": false,
+    "dtype": "float64",
+    "selection": "first_pca_rank_passing_all_development_gates",
+    "hard_top1": true,
+    "tie_break": "ascending_content_id",
+    "leave_one_query_and_operator_out": true,
+    "dense_operator_mixing_allowed": false
+  },
+  "ood": {
+    "space": "independently_standardized_query_descriptor",
+    "statistic": "nearest_development_query_distance",
+    "threshold": "development_leave_one_out_quantile",
+    "quantile": 0.95,
+    "fallback": "shared_o0"
+  },
+  "controls": {
+    "case_bank_oracle": true,
+    "fixed_development_operator_medoid": true,
+    "global_photometric_nearest_neighbour": true,
+    "spatial_photometric_nearest_neighbour": true,
+    "exact_random_case_expectation": true,
+    "operator_signature_permutations": 32,
+    "signature_permutation_seed": 29900,
+    "bootstrap_seed": 29910,
+    "additive_operator_only_model": true
+  },
+  "gates": {
+    "minimum_eligible_case_count": 12,
+    "minimum_oracle_improvement_over_shared_fraction": 0.1,
+    "minimum_oracle_win_fraction": 0.75,
+    "minimum_oracle_bootstrap_improvement_lower": 0.0,
+    "minimum_policy_oracle_gap_closure": 0.25,
+    "minimum_policy_improvement_over_shared_fraction": 0.02,
+    "minimum_policy_improvement_over_medoid_fraction": 0.02,
+    "minimum_policy_improvement_over_spatial_photometric_fraction": 0.02,
+    "minimum_policy_improvement_over_random_fraction": 0.02,
+    "minimum_policy_improvement_over_shuffled_fraction": 0.02,
+    "minimum_policy_win_fraction_over_shared": 0.625,
+    "minimum_policy_bootstrap_improvement_lower": 0.0,
+    "maximum_ood_fallback_fraction": 0.25,
+    "bootstrap_samples": 10000,
+    "bootstrap_confidence": 0.95,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "branches": [
+    "development_applicability_fail",
+    "fresh_case_bank_oracle_fail",
+    "asymmetric_applicability_fail",
+    "asymmetric_applicability_pass",
+    "structure_or_repeat_fail",
+    "invalid"
+  ],
+  "forbidden_actions": [
+    "decode fresh confirmatory targets before the automatic development gate passes",
+    "reuse Z0 confirmatory identities for Z1 confirmation",
+    "decode or parse final 628 payload rows",
+    "load Velvia or Cinema targets",
+    "fit rank greater than four, kernel, neural, semantic, local or direct RGB rescue",
+    "average or alter operators per query",
+    "choose a descriptor, threshold, gate or rank after confirmatory results",
+    "generate a visual shortlist",
+    "call ClassNeg a physical film stock",
+    "claim real unpaired digital-to-film operator identification"
+  ],
+  "claim_ceiling": "repeatable internal paired-software-recipe evidence that a small development-only asymmetric query/operator loss model can or cannot recover a fixed ClassNeg case-bank evaluator gap on fresh unrelated contents while preserving one hard explicit operator and OOD fallback; no output-only recovery, physical film, stock, calibration, commercial-rights, current-pixel or real unpaired-operator claim"
+}

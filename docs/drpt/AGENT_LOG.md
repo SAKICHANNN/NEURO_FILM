@@ -4795,3 +4795,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   merge, release and deploy remain forbidden. Cursor must use This Computer,
   not cloud/background agents, because ignored local evidence and the RTX 5070
   Ti Laptop GPU are required.
+
+## 2026-07-28 - Freeze U5.R2Z1 asymmetric applicability audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2Z1`; DRPT L2, Mode A, with
+  `dev-research-reliability` as sole writer and AI/ML, DRPT, tracker,
+  agent-log and structure disciplines as read-only governance.
+- **Goal refresh:** the long-term stock-first/non-generative/severe-veto Goal
+  remains accurate, while its RF1.4B1 start point is historical. Live Git,
+  tracker and Goal state all place the ready leaf at Z1. No Python/download
+  process is active; user-owned untracked `.codex/` remains untouched.
+- **Distinct hypothesis:** replace failed symmetric raw-photometric retrieval
+  with the smallest asymmetric scalar-loss reranker over strictly separate
+  input-only query-content and explicit O0 operator-signature spaces.
+- **Development protocol:** 24 existing development cases; remove the held-out
+  query and same-case operator in every fold; fit z-score/PCA inside the fold;
+  test rank-2 then rank-4 bilinear ridge and stop at the first passing rank.
+  Shared, fixed medoid, random, 32 signature shuffles and both failed Z0
+  photometric selectors are mandatory controls.
+- **Fresh lock:** only a complete automatic development pass may decode
+  ClassNeg targets for confirmatory identities 17--32. Z0 confirmatory
+  identities 1--16 are not reused; final 628, Velvia/Cinema and current stock
+  pixels remain unread.
+- **Boundary/handoff:** one hard operator or shared OOD fallback only; no
+  operator mixing, neural/kernel/local/direct-RGB rescue, visual shortlist,
+  film/stock/calibration or real unpaired-operator claim. Implement and test
+  against the frozen config before any fresh target access. Goal remains
+  ACTIVE.
