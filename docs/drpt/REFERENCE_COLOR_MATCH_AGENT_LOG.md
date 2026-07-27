@@ -1735,6 +1735,27 @@
 - Scope: additive evaluator/tests/docs/ignored report only. Exact P43 wheel is
   invoked; no producer/main/FilmFX/media schema changes.
 
+## 2026-07-28 - Execute and reject P44 exact D-PCT candidate
+
+- Implementation: `d71aa01` adds a resumable 48-invocation evaluator and
+  focused aggregation/progress tests.
+- A1/A4: 0/30 cross-content rows improve; median/worst improvement
+  `-201.2941%/-569.3720%`; maximum new boundary `21.1987%`.
+- Photographic tail: 0/6 pass; worst neutral chroma `50.1215`, boundary
+  `28.6965%`, semantic hue rotation `89.0774` degrees.
+- A5: 0/6 pass; worst median/p95/max shared-colour drift
+  `72.6391/96.9062/119.6310` Delta E76.
+- Decision: rejected for ten independent reason labels. Blind review, P30 and
+  real P33-P40 remain closed; no threshold tuning or research override.
+- Reproducibility: two complete runs have different timing-bound run IDs but
+  identical metrics/bundles/transforms and stable evidence ID
+  `90d0022c...2d2a`. The evaluator preserves factual timing identities.
+- Verification: 21 focused, 441 combined and full 1336 pass/1 skip/36
+  unchanged. Latest main `209da15`: 202 consumer versus 147 main paths, zero
+  overlap, merge tree `31e9b927...0d35`; fresh merge 21 pass and removed.
+- Propagation: P43 remains useful invocation plumbing. The current capability
+  is not the product algorithm; future versioned candidates rerun P44.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
