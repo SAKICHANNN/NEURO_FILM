@@ -5,12 +5,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 import os
 from pathlib import Path
-from typing import Iterable
+from typing import Any, Callable, Iterable, Mapping
 import uuid
 
 import numpy as np
 
-from src.inference.render_contract import sha256_file
+from src.inference.render_contract import atomic_write_json, sha256_file
 from src.preprocess import (
     load_working_image,
     save_srgb8,
@@ -64,6 +64,8 @@ class FileReferenceMatchResult:
     recipe_path: Path | None
     recipe_file_sha256: str | None
     outputs: tuple[FileReferenceMatchOutput, ...]
+    report_path: Path | None = None
+    report_file_sha256: str | None = None
 
 
 @dataclass(frozen=True)
@@ -74,6 +76,14 @@ class FileReferenceReplayResult:
     recipe_path: Path
     recipe_file_sha256: str
     outputs: tuple[FileReferenceMatchOutput, ...]
+    report_path: Path | None = None
+    report_file_sha256: str | None = None
+
+
+_ReportPayloadFactory = Callable[
+    [tuple[FileReferenceMatchOutput, ...], str | None],
+    Mapping[str, Any],
+]
 
 
 def _paths(values: Iterable[Path | str], label: str) -> tuple[Path, ...]:
@@ -186,6 +196,30 @@ def _validate_replay_file_contract(
     )
 
 
+def _validate_report_contract(
+    report_path: Path | None,
+    *,
+    protected_paths: tuple[Path, ...],
+) -> None:
+    if report_path is None:
+        return
+    report_key = _resolved_key(report_path)
+    if report_key in {
+        _resolved_key(path) for path in protected_paths
+    }:
+        raise ReferenceMatchContractError(
+            "reference-match report must not overwrite a run artifact"
+        )
+    if report_path.suffix.casefold() != ".json":
+        raise ReferenceMatchContractError(
+            "reference-match report path must use a .json extension"
+        )
+    if report_path.exists() and report_path.is_dir():
+        raise ReferenceMatchContractError(
+            "reference-match report path must not be a directory"
+        )
+
+
 def _stage_path(destination: Path, token: str) -> Path:
     return destination.with_name(
         f".{destination.stem}.{token}.reference-match-stage{destination.suffix}"
@@ -277,8 +311,19 @@ def _execute_file_render(
     guard_policy: ReferenceRenderGuardPolicy | None,
     output_bit_depth: int,
     recipe_destination: Path | None = None,
-) -> tuple[tuple[FileReferenceMatchOutput, ...], str | None]:
-    """Render and atomically commit a complete image batch and optional recipe."""
+    report_destination: Path | None = None,
+    report_payload_factory: _ReportPayloadFactory | None = None,
+) -> tuple[
+    tuple[FileReferenceMatchOutput, ...],
+    str | None,
+    str | None,
+]:
+    """Commit a complete image/recipe/report run as one transaction."""
+
+    if (report_destination is None) != (report_payload_factory is None):
+        raise ReferenceMatchContractError(
+            "report destination and payload factory must be supplied together"
+        )
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
@@ -293,6 +338,7 @@ def _execute_file_render(
         ]
     ] = []
     staged_recipe: Path | None = None
+    staged_report: Path | None = None
     try:
         if recipe_destination is not None:
             recipe_destination.parent.mkdir(parents=True, exist_ok=True)
@@ -338,31 +384,13 @@ def _execute_file_render(
                 )
             )
 
-        commit_pairs = [
-            (_stage_path(output_path, token), output_path)
-            for (
-                _source_path,
-                output_path,
-                _format,
-                _clipped,
-                _diagnostics,
-                _safety,
-            )
-            in staged_outputs
-        ]
-        if recipe_destination is not None and staged_recipe is not None:
-            commit_pairs.append((staged_recipe, recipe_destination))
-        _commit_staged_batch(
-            tuple(commit_pairs),
-            token=token,
-            cleanup=staged,
-        )
-
-        committed = tuple(
+        prepared = tuple(
             FileReferenceMatchOutput(
                 source_path=source_path,
                 output_path=output_path,
-                output_sha256=sha256_file(output_path),
+                output_sha256=sha256_file(
+                    _stage_path(output_path, token)
+                ),
                 output_format=output_format,
                 output_bit_depth=output_bit_depth,
                 encode_clipped_fraction=clipped_fraction,
@@ -380,10 +408,48 @@ def _execute_file_render(
         )
         recipe_file_sha256 = (
             None
-            if recipe_destination is None
-            else sha256_file(recipe_destination)
+            if staged_recipe is None
+            else sha256_file(staged_recipe)
         )
-        return committed, recipe_file_sha256
+        commit_pairs = [
+            (_stage_path(output_path, token), output_path)
+            for (
+                _source_path,
+                output_path,
+                _format,
+                _clipped,
+                _diagnostics,
+                _safety,
+            )
+            in staged_outputs
+        ]
+        if recipe_destination is not None and staged_recipe is not None:
+            commit_pairs.append((staged_recipe, recipe_destination))
+        report_file_sha256: str | None = None
+        if (
+            report_destination is not None
+            and report_payload_factory is not None
+        ):
+            report_destination.parent.mkdir(parents=True, exist_ok=True)
+            staged_report = _stage_path(report_destination, token)
+            staged.append(staged_report)
+            payload = report_payload_factory(
+                prepared,
+                recipe_file_sha256,
+            )
+            if not isinstance(payload, Mapping):
+                raise ReferenceMatchContractError(
+                    "report payload factory must return an object"
+                )
+            atomic_write_json(staged_report, payload)
+            report_file_sha256 = sha256_file(staged_report)
+            commit_pairs.append((staged_report, report_destination))
+        _commit_staged_batch(
+            tuple(commit_pairs),
+            token=token,
+            cleanup=staged,
+        )
+        return prepared, recipe_file_sha256, report_file_sha256
     finally:
         for path in staged:
             path.unlink(missing_ok=True)
@@ -395,6 +461,7 @@ def match_reference_files(
     output_paths: Iterable[Path | str],
     *,
     recipe_path: Path | str | None = None,
+    report_path: Path | str | None = None,
     policy: ReferenceLookPolicy | None = None,
     guard_policy: ReferenceRenderGuardPolicy | None = None,
     output_bit_depth: int = 16,
@@ -405,6 +472,7 @@ def match_reference_files(
     sources = _paths(source_paths, "source_paths")
     outputs = _paths(output_paths, "output_paths")
     recipe_destination = Path(recipe_path) if recipe_path is not None else None
+    report_destination = Path(report_path) if report_path is not None else None
     _validate_file_contract(
         reference,
         sources,
@@ -412,16 +480,47 @@ def match_reference_files(
         recipe_destination,
         output_bit_depth,
     )
+    _validate_report_contract(
+        report_destination,
+        protected_paths=(
+            reference,
+            *sources,
+            *outputs,
+            *((recipe_destination,) if recipe_destination is not None else ()),
+        ),
+    )
 
     reference_working = load_working_image(reference)
     recipe = fit_reference_look(reference_working, policy=policy)
-    committed, recipe_file_sha256 = _execute_file_render(
+
+    def report_factory(
+        prepared: tuple[FileReferenceMatchOutput, ...],
+        recipe_file_sha256: str | None,
+    ) -> Mapping[str, Any]:
+        from .reporting import build_file_match_report
+
+        return build_file_match_report(
+            FileReferenceMatchResult(
+                reference_path=reference,
+                recipe=recipe,
+                recipe_path=recipe_destination,
+                recipe_file_sha256=recipe_file_sha256,
+                outputs=prepared,
+                report_path=report_destination,
+            )
+        )
+
+    committed, recipe_file_sha256, report_file_sha256 = _execute_file_render(
         recipe,
         sources,
         outputs,
         guard_policy=guard_policy,
         output_bit_depth=output_bit_depth,
         recipe_destination=recipe_destination,
+        report_destination=report_destination,
+        report_payload_factory=(
+            report_factory if report_destination is not None else None
+        ),
     )
     return FileReferenceMatchResult(
         reference_path=reference,
@@ -429,6 +528,8 @@ def match_reference_files(
         recipe_path=recipe_destination,
         recipe_file_sha256=recipe_file_sha256,
         outputs=committed,
+        report_path=report_destination,
+        report_file_sha256=report_file_sha256,
     )
 
 
@@ -437,6 +538,7 @@ def replay_reference_files(
     source_paths: Iterable[Path | str],
     output_paths: Iterable[Path | str],
     *,
+    report_path: Path | str | None = None,
     guard_policy: ReferenceRenderGuardPolicy | None = None,
     output_bit_depth: int = 16,
 ) -> FileReferenceReplayResult:
@@ -445,21 +547,51 @@ def replay_reference_files(
     recipe_source = Path(recipe_path)
     sources = _paths(source_paths, "source_paths")
     outputs = _paths(output_paths, "output_paths")
+    report_destination = Path(report_path) if report_path is not None else None
     _validate_replay_file_contract(
         recipe_source,
         sources,
         outputs,
         output_bit_depth,
     )
+    _validate_report_contract(
+        report_destination,
+        protected_paths=(recipe_source, *sources, *outputs),
+    )
     recipe, recipe_file_sha256 = load_reference_look_recipe_bound(
         recipe_source
     )
-    committed, persisted_recipe_sha256 = _execute_file_render(
+
+    def report_factory(
+        prepared: tuple[FileReferenceMatchOutput, ...],
+        _persisted_recipe_sha256: str | None,
+    ) -> Mapping[str, Any]:
+        from .reporting import build_file_replay_report
+
+        return build_file_replay_report(
+            FileReferenceReplayResult(
+                recipe=recipe,
+                recipe_path=recipe_source,
+                recipe_file_sha256=recipe_file_sha256,
+                outputs=prepared,
+                report_path=report_destination,
+            )
+        )
+
+    (
+        committed,
+        persisted_recipe_sha256,
+        report_file_sha256,
+    ) = _execute_file_render(
         recipe,
         sources,
         outputs,
         guard_policy=guard_policy,
         output_bit_depth=output_bit_depth,
+        report_destination=report_destination,
+        report_payload_factory=(
+            report_factory if report_destination is not None else None
+        ),
     )
     if persisted_recipe_sha256 is not None:  # pragma: no cover - invariant.
         raise AssertionError("recipe replay must not persist a second recipe")
@@ -468,6 +600,8 @@ def replay_reference_files(
         recipe_path=recipe_source,
         recipe_file_sha256=recipe_file_sha256,
         outputs=committed,
+        report_path=report_destination,
+        report_file_sha256=report_file_sha256,
     )
 
 

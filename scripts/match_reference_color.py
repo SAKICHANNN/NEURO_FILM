@@ -19,8 +19,6 @@ from src.color_match import (  # noqa: E402
     build_file_replay_report,
     match_reference_files,
     replay_reference_files,
-    save_file_match_report,
-    save_file_replay_report,
 )
 
 
@@ -104,10 +102,11 @@ def main(argv: list[str] | None = None) -> int:
                 args.source,
                 args.output,
                 recipe_path=args.recipe,
+                report_path=args.report,
                 output_bit_depth=args.bit_depth,
                 guard_policy=guard_policy,
             )
-            report_sha256 = save_file_match_report(result, args.report)
+            report_sha256 = result.report_file_sha256
             report = build_file_match_report(result)
             operation = "fit-and-render"
         else:
@@ -115,17 +114,21 @@ def main(argv: list[str] | None = None) -> int:
                 args.recipe_input,
                 args.source,
                 args.output,
+                report_path=args.report,
                 output_bit_depth=args.bit_depth,
                 guard_policy=guard_policy,
             )
-            report_sha256 = save_file_replay_report(
-                replay_result,
-                args.report,
-            )
+            report_sha256 = replay_result.report_file_sha256
             report = build_file_replay_report(replay_result)
             operation = "recipe-replay"
     except (OSError, ReferenceMatchContractError, ValueError) as exc:
         print(f"reference match failed: {exc}", file=sys.stderr)
+        return 2
+    if report_sha256 is None:  # pragma: no cover - CLI invariant.
+        print(
+            "reference match failed: transactional report was not committed",
+            file=sys.stderr,
+        )
         return 2
     summary = {
         "schema_id": report["schema_id"],
