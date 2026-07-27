@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2x0-palette-transfer-affine-collapse-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2X0",
+  "status": "implemented_frozen_pending_formal_run",
+  "source": {
+    "title": "Palette-Based Color Transfer for Images and Videos",
+    "authors": "Yue Zhao, Xiaowu Chen, Changbo Wang, et al.",
+    "venue": "Journal of Computer Science and Technology 40(5), 2025",
+    "doi": "10.1007/s11390-025-5290-6",
+    "official_pdf_url": "https://jcst.ict.ac.cn/en/article/pdf/preview/10.1007/s11390-025-5290-6.pdf",
+    "official_pdf_sha256": "5d135d8cf58b0d04ff65f9317ef223d95de70aa626f0cf5e398d8526d882bc09",
+    "official_code_or_reusable_implementation_found": false,
+    "published_optimizer": "IBM ILOG CPLEX",
+    "implementation_policy": "clean_room_analytic_equations_only"
+  },
+  "scope": {
+    "included": "automatic global palette transfer after palettes and transport T are fixed",
+    "excluded": [
+      "interactive local-region palette constraints",
+      "palette extraction and clean-up quality",
+      "the proprietary CPLEX optimization",
+      "video palette interpolation beyond the per-frame fixed affine observation"
+    ]
+  },
+  "equivalence": {
+    "seed": 2026072702,
+    "source_palette_count": 7,
+    "target_palette_count": 7,
+    "query_count": 10000,
+    "transport_identity_weight": 0.37
+  },
+  "gates": {
+    "maximum_direct_vs_affine_error": 1e-12,
+    "maximum_weight_sum_error": 1e-12,
+    "maximum_source_colour_reconstruction_error": 1e-12,
+    "orientation_preserving_requires_positive_determinant": true,
+    "cube_safe_requires_output_minimum_at_least": 0.0,
+    "cube_safe_requires_output_maximum_at_most": 1.0,
+    "repeat_report_sha256_equal": true
+  },
+  "expected_witnesses": {
+    "orientation": {
+      "description": "standard RGB tetrahedron with a valid red/blue permutation transport",
+      "determinant": -1.0
+    },
+    "range": {
+      "description": "source tetrahedron spanning [0.4,0.6] mapped to the standard RGB tetrahedron",
+      "matrix_diagonal": 5.0,
+      "bias": -2.0,
+      "cube_output_minimum": -2.0,
+      "cube_output_maximum": 3.0
+    }
+  },
+  "branches": [
+    "analytic_affine_only_close",
+    "published_equation_not_reproduced",
+    "witness_or_repeat_invalid"
+  ],
+  "forbidden_actions": [
+    "download or execute CPLEX",
+    "reimplement palette extraction or optimization as a capacity rescue",
+    "apply the method to project or film images",
+    "call a reference-conditioned affine mapping a film or stock operator",
+    "claim the interactive local path is affine-only without a separate audit"
+  ],
+  "claim_ceiling": "analytic and synthetic evidence about the automatic global path for fixed palettes and transport only; no claim about interactive local editing, real-image quality, film, stock, calibration or unpaired operator identification"
+}

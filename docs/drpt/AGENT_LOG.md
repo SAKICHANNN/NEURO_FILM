@@ -4573,3 +4573,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fitting/training, LSM, calibration and production integration remain
   forbidden. The next algorithm-priority leaf is U5.R2X0, an analytic audit
   of the 2025 automatic palette-transfer path; Goal remains active.
+
+## 2026-07-27 - Freeze U5.R2X0 palette-transfer affine-collapse audit
+
+- **Node/parent:** `ULT > U5 > U5.R2 > U5.R2X0`, opened after W2F0 closes
+  without a coherent global recipe champion.
+- **Primary source:** the official JCST 2025 paper at DOI
+  `10.1007/s11390-025-5290-6`, retained locally at SHA-256
+  `5D135D8CF58B0D04FF65F9317EF223D95DE70AA626F0CF5E398D8526D882BC09`.
+  No official reusable implementation was found; the published optimizer is
+  proprietary CPLEX and is not executed.
+- **Analytic contract:** for fixed source/target palettes and valid transport,
+  equations (2)/(5) collapse exactly to one row-vector affine operator
+  `p' = pA + b`. The clean-room module exposes both direct and collapsed
+  evaluations so the equality is testable rather than asserted.
+- **Frozen controls:** 10,000 deterministic queries test equivalence. A valid
+  red/blue permutation gives determinant `-1`; a valid `[.4,.6]` source
+  tetrahedron mapped to the RGB tetrahedron gives `5p-2` and output range
+  `[-2,3]`. These show missing guarantees, not universal natural-image
+  failure.
+- **Boundary:** no image, CPLEX, palette extraction, film pixel, training,
+  operator fitting, LSM or production code is touched. The interactive local
+  path is explicitly outside the theorem.
+- **Verification:** the initial pre-formal test correctly rejected an invalid
+  one-hot assumption for redundant generalized barycentric coordinates. The
+  frozen gate now checks equation (3), `w(p)U=p`, rather than falsely requiring
+  source vertices to map one-to-one to `TV`. Six focused tests and the full
+  `967 passed` CPU suite now pass. Formal exact-repeat execution is the next
+  ready action; Goal continues.
