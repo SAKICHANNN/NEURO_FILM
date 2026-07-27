@@ -577,3 +577,17 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - No producer algorithm/media code, mutable import, main worktree edit, merge,
   push or product applied state exists. The proposed producer HDR absolute
   rail is outside this compatibility claim until separately frozen/audited.
+
+### 2026-07-28 P28 atomic batch stable handoff
+
+- Consumer HEAD before evidence-only closure: `cdd66be`.
+- One exact shared reference plus ordered N sources is now bound across
+  producer/consumer identities. Any producer failure short-circuits admission;
+  any admission fallback makes the whole batch identity fallback.
+- All-success stops at `pending-product-guard`. The schema contains no
+  `applied` or partial-delivery state and stores no output pixel buffer.
+- Evidence: 65 focused tests; full 1191 pass/1 skip/36 known unrelated
+  failures; stable-main `a33526e` path overlap zero; merge tree
+  `10e3b164...`; detached synthetic merge 296/296 pass.
+- D-PCT explicitly confirms no P28 interface overlap. Its evolving HDR
+  absolute BT.2020 path remains unmapped and cannot enter this batch profile.

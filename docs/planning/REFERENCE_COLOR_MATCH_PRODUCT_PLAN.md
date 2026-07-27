@@ -108,7 +108,7 @@ with a selected stock, but reference matching alone is labeled
 | P28A | DONE | freeze atomic one-reference/N-source producer intake | ordered source ownership, all-or-fallback, no applied state | `ccc721c` | retain per-source P27 receipts |
 | P28B | DONE | implement success/failure batch binding | verify every producer/consumer source and shared reference identity | batch implementation commit | reject mixed/unbound outcomes |
 | P28C | DONE | bind per-source A1/A4/A5 admission into atomic batch result | any producer/admission failure makes the entire batch identity fallback | batch implementation commit | never expose partial delivery |
-| P28D | IN_PROGRESS | run mutation/permutation/full/latest-main propagation and handoff | strict schema, deterministic ID, regression and overlap evidence | evidence commit | retain P27 single-source path |
+| P28D | DONE | run mutation/permutation/full/latest-main propagation and handoff | 1191 pass/1 skip/36 known environment failures; latest-main synthetic merge 296 pass; zero path overlap | evidence commit | retain P27 single-source path |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

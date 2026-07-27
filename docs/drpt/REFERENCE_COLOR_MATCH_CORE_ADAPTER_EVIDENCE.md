@@ -253,3 +253,23 @@ producer artifact hash. After the explicit rule, a clean detached
 hashes. Full local verification reports 1179 passed, one skipped and the same
 36 unrelated known environment failures. Changed-path overlap with stable
 main is zero and merge-tree construction is conflict-free.
+
+## P28 atomic one-reference/N-source intake
+
+`DpctBatchResolutionV1` binds an ordered source list to one exact reference.
+For every source it records both view identity spaces, producer outcome,
+consumer transform/receipt and, when evaluated, acceptance/admission IDs.
+Source indices are contiguous user order; complete tuple reordering produces a
+different deterministic batch identity, while outcome-only reassignment fails
+the source binding.
+
+A producer failure has no transform or receipt and short-circuits the entire
+batch before admission. With all producer candidates, every source requires a
+receipt-bound A1/A4/A5 admission. One fallback makes the full batch identity
+fallback; all acceptance stops only at `pending-product-guard`. The strict
+schema has neither applied nor partial-delivery state.
+
+Verification: 65 focused contract tests; full suite 1191 passed, one skipped
+and 36 unchanged unrelated environment failures. A detached merge over main
+`a33526e` passes 296/296 selected tests, with zero changed-path overlap and
+conflict-free merge tree `10e3b164...`.

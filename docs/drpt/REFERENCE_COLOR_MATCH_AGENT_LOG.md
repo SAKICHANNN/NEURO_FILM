@@ -1070,3 +1070,23 @@
 - Structure: one additive batch module/schema/test beside P27 contracts; no
   file output, producer invocation, media/native/HDR code or FilmFX change.
 - Handoff: commit P28B-C, then P28D runs broad/latest-main propagation.
+
+## 2026-07-28 - Close P28 atomic batch propagation
+
+- Node/parent goal: P28D / one-reference/N-source product intake.
+- Full verification: 1191 passed, one skipped and the same 36 known
+  ignored-output/CRLF environment failures; no colour-match or batch failure.
+- Latest-main preflight: main `a33526e`, common base `c03c321`; 132 consumer
+  versus 86 main paths and zero intersection; merge tree `10e3b164...`.
+- Detached synthetic merge passes 296/296 selected colour-match tests. The
+  temporary merge was aborted and its verified worktree removed.
+- Propagation: P27 single-source receipts remain valid. P28 adds only an
+  immutable batch resolution; it does not deliver pixels, write files or
+  mutate admissions. File transaction, replay/report and FilmFX siblings are
+  unchanged.
+- Producer coordination: D-PCT confirms P28 has no producer interface impact.
+  Its later SDR numeric/backend-fingerprint hardening and absolute HDR rail
+  remain producer-owned; HDR stays explicitly unmapped.
+- Handoff: P28 is stable and ready for both equal peer tasks. Next product
+  work may bind this resolution to a durable batch transaction envelope, but
+  may not invent producer invocation/package compatibility.
