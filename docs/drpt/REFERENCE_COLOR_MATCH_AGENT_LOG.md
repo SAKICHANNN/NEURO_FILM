@@ -2028,6 +2028,22 @@
   `03ffb2de...944`; fresh detached merge 33 pass and was removed.
 - Producer: SPGIN-v0 is still running calibration and remains below P45/P49.
 
+## 2026-07-28 - Freeze P52 shared verified composition boundary
+
+- Node/parent goal: P52A-D / product ownership split after P51.
+- Contract: one canonical no-write plan binds exact P51 verification,
+  P50/P49/P48/P47 identities and optional Neuro-Film procedural FilmFX.
+- Colour ownership: the verified shared reference look remains the sole colour
+  owner. FilmFX may add only profile-bound grain, halation and dust after
+  colour; it cannot add film colour, stock identity or calibrated claims.
+- States: `composition-ready-not-rendered`; output label is
+  `reference-look` or `reference-look+film-effects`; execution order is fixed.
+- Failure closure: foreign verification/chain identity, FilmFX profile/hash/
+  strength mutation, reordered execution, film-colour profile, stock claim,
+  applied/delivered state or unknown fields reject.
+- Scope: plan/schema/tests only; no staging files are read or written and no
+  producer or FilmFX arithmetic changes.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
