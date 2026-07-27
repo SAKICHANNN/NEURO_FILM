@@ -1324,3 +1324,28 @@
   and existing composition modules remain unchanged.
 - Coordination: equal producer and main tasks received intent without a wait
   dependency.
+
+## 2026-07-28 - Implement and verify P34 restart binding
+
+- Node/parent goal: P34B-D / durable verification after P33.
+- Implementation: `f1e8d35` adds a bounded read-only verifier, strict schema,
+  public exports and nine adversarial tests. P33 v1 paths are hardened to
+  absolute transaction-bound paths.
+- Binding: caller-held expected report SHA and run ID are mandatory. The
+  verifier recomputes report bytes, strict P33 canonical identity, absolute
+  path and every ordered output file hash before issuing one verification ID.
+- State ceiling: `verified-staging` /
+  `verified-staging-not-delivered`; no mutation, delivery, applied state or
+  FilmFX authority.
+- Adversarial result: report/output mutation, missing output, report
+  relocation, wrong run ID, order/state/claim/identity drift all fail closed.
+- Verification: 18 P33-P34 and 144 combined P27-P34/transaction/composition
+  tests pass; full suite is 1254 passed, one skipped and the unchanged 36
+  environment failures.
+- Latest-main: `b71fb68`, zero overlap across 164 consumer and 100 main paths,
+  merge tree `d9d6fe5b...`; fresh detached merge passes 144/144 and is
+  removed.
+- Concurrent safety: main's modified Kodak AA1 work and D-PCT `c688c32` were
+  read-only; no peer interface changed.
+- Handoff: evidence is ready to commit. Final delivery must bind the P34
+  verification ID rather than trust files or the P33 in-memory result.

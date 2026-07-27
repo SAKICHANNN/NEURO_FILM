@@ -38,8 +38,8 @@ wire contract and not an algorithm promotion.
 | A5 album/batch consistency | Baseline failed six shared-colour context probes | GATE IMPLEMENTED, EVIDENCE OPEN | Candidate-specific shared-colour drift pass with source-bound transform policy made explicit / shared evidence, Neuro-Film decision |
 | Exact producer/consumer compatibility | P27 pins corrected D-PCT v2 relative-SDR schemas and exact success/failure fixtures | COMPLETE for the pinned synthetic conformance profile | A real producer package must declare and pass the same explicit compatibility profile / D-PCT then Neuro-Film |
 | Actual D-PCT algorithm invocation | No frozen library/package/ABI or product invocation exists; P27 consumes fixtures only | BLOCKED ON PRODUCER ARTIFACT | Publish fixed package/ABI, capability identity, invocation conformance and real source-bound receipt / D-PCT |
-| External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers and a strict report | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
-| Final user-visible delivery state | No P33 state above `committed-to-staging`; `applied` remains absent | NOT OPEN | Consume the exact P33 run under a separately authorized delivery and composition decision / Neuro-Film product integration |
+| External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
+| Final user-visible delivery state | No P34 state above `verified-staging`; `applied` remains absent | NOT OPEN | Consume the exact P34 verification under a separately authorized delivery and composition decision / Neuro-Film product integration |
 | FilmFX composition | P18 binds effects to verified delivered local-run decisions and rejects mixed/fallback misuse | COMPLETE for current transaction | Reuse only after the external transaction leaf creates an equivalent verified delivered-run report / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
@@ -56,9 +56,10 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
 3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,
    P28 atomic batch resolution, P29 numeric guard and P30 product
    authorization.
-4. P33 stages and commits all N outputs and its exact report atomically; any
-   mismatch keeps the entire batch from staging.
-5. A later product-delivery decision consumes the exact P33 run, after which
+4. P33 stages and commits all N outputs and its exact report atomically, then
+   P34 restart-verifies the report and every file.
+5. A later product-delivery decision consumes the exact P34 verification,
+   after which
    FilmFX composition may consume only the verified delivered-run report.
 6. Platform runtime evidence is collected per target; cross-compilation alone
    cannot close device support.

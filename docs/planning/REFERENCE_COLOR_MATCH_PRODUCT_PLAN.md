@@ -127,10 +127,10 @@ with a selected stock, but reference matching alone is labeled
 | P33B | DONE | implement strict transaction report and atomic file staging | rollback fault injection, schema/roundtrip, exact output hashes | `0cb94c3` | revert additive module/schema |
 | P33C | DONE | prove mutation and fallback branches cannot write | authorization/order/receipt/profile/intent/path/commit negatives | `0cb94c3` | no staged artifacts |
 | P33D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1245 pass/1 skip/36 known failures; latest-main synthetic merge 107 pass | `36a1a98` | retain P30/P32 |
-| P34A | IN PROGRESS | freeze restart-safe verification of a committed P33 run | expected report hash/run ID, bounded strict read, exact output file hashes | intent commit | retain P33 staging report |
-| P34B | PENDING | implement canonical verified-staging binding | report/run/output/receipt/path identities; no write or delivery state | implementation commit | revert additive module/schema |
-| P34C | PENDING | prove report and output tampering fail closed | report bytes, run ID, output bytes/path/order/hash mutations | implementation commit | no verified binding |
-| P34D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P33 |
+| P34A | DONE | freeze restart-safe verification of a committed P33 run | expected report hash/run ID, bounded strict read, exact output file hashes | `a21754c` | retain P33 staging report |
+| P34B | DONE | implement canonical verified-staging binding | report/run/output/receipt/path identities; no write or delivery state | `f1e8d35` | revert additive module/schema |
+| P34C | DONE | prove report and output tampering fail closed | report bytes, run ID, output bytes/path/order/hash mutations | `f1e8d35` | no verified binding |
+| P34D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 1254 pass/1 skip/36 known failures; latest-main synthetic merge 144 pass | evidence commit | retain P33 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
