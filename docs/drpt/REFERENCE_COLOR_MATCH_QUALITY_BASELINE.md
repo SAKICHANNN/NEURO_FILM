@@ -64,6 +64,31 @@ reasons preserved.
 This is a safety result, not look-recovery success. Returning the source avoids
 the visible failure but does not satisfy the requested aesthetic match.
 
+### Six-reference matrix
+
+The same six known-look targets were then rotated through the reference role,
+producing 36 full-resolution reference/source combinations:
+
+| Slice | Count | Improved | Regressed | Guard accepted | Regressions accepted | Improvements rejected |
+|---|---:|---:|---:|---:|---:|---:|
+| Same-content positive controls | 6 | 6 | 0 | 5 | 0 | 1 |
+| Cross-content | 30 | 5 | 25 | 3 | 0 | 2 |
+
+Same-content median improvement is `+60.0%` with worst `+39.7%`.
+Cross-content median improvement is `-92.2%` with worst `-344.9%`.
+
+Within this bounded slice, the guard has zero false acceptance among the 25
+known regressions. It is conservative: one same-content control and two
+cross-content improvements are also rejected. The rejected same-content
+control needs an 11.8% new-boundary allowance; raising the current 5% threshold
+that far would also admit known regressions at 7.7% and 10.7%. Therefore the
+threshold is retained as a safety veto rather than relaxed to optimize recall.
+
+This matrix is not an independent photographic preference study: all targets
+come from one existing deterministic Velvia-look run. It calibrates failure
+detection and demonstrates the content-dependence problem; it does not prove
+general user preference or real-film fidelity.
+
 Autonomous visual inspection agrees with the metric direction:
 
 - image `02` becomes too dark and warm;

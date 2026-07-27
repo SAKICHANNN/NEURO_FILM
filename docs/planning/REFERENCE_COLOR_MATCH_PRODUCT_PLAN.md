@@ -170,6 +170,13 @@ diagnostics. The six-image baseline accepts only the same-content positive
 control and rejects all five observed cross-content failures. This guard is a
 tail-risk control, not evidence that v1 performs the requested match.
 
+A six-reference/full-cross matrix confirms that distinction. All six
+same-content controls improve, but 25/30 cross-content candidates regress
+(median -92.2%, worst -344.9%). The guard admits none of those 25 regressions,
+while conservatively rejecting three improvements. Its thresholds remain a
+severe-tail veto; they must not be tuned to make the baseline appear more
+successful.
+
 ### Film-business composition boundary
 
 `ReferenceCompositionPlan` makes reference matching and film simulation peer

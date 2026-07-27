@@ -165,3 +165,22 @@
 - Interpretation: the guard prevents delivery of known severe colour failures;
   it does not improve v1 look identification and therefore does not close A1
   or the photographic-preference gate.
+
+## 2026-07-27 - Calibrate guard on a 6x6 reference/source matrix
+
+- Method: rotate all six known Velvia-look targets through the reference role
+  and render all six neutral sources, yielding six same-content controls and 30
+  cross-content comparisons.
+- Algorithm result: every same-content control improves (median +60.0%); only
+  5/30 cross-content combinations improve, with cross-content median -92.2%
+  and worst -344.9%.
+- Guard result: zero of 25 cross-content regressions is accepted. The guard
+  rejects one same-content improvement and two cross-content improvements, so
+  it is correctly classified as a conservative veto rather than an aesthetic
+  ranker.
+- Threshold decision: do not raise the 5% new-boundary gate to rescue the one
+  positive-control rejection; the required 11.8% allowance would also admit
+  known regressions.
+- Next: a W1-derived content-independent descriptor/head must improve the
+  cross-content distribution itself; safety fallback cannot substitute for
+  algorithm identification.
