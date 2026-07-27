@@ -1546,6 +1546,20 @@
 - Evidence commit: `4e5788b` (`docs: record atomic local delivery`). P39 is
   complete as local transaction mechanics, not real candidate admission.
 
+## 2026-07-28 - Freeze P40 restart-safe local delivery verification
+
+- Node/parent goal: P40A / durable verification after P39.
+- Contract: require caller-held P39 report SHA-256 and delivery ID; bounded
+  strict UTF-8 reread and canonical validation; then rehash every recorded
+  P36 staging source and P39 delivered file.
+- State/ceiling: `verified-local-delivery` /
+  `verified-local-files-reference-look`.
+- Prohibitions: read-only; no applied state, public share, stock identity or
+  producer promotion inference.
+- Scope: additive consumer verifier/schema/tests/docs only. Producer,
+  media/HDR and main-project files are forbidden.
+- Coordination: both equal peer tasks received intent and need not wait.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
