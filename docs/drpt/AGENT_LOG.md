@@ -5190,3 +5190,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Eleven focused tests and the complete CPU suite pass (`1011 passed`);
   compile and diff checks pass. No external output or metric has been
   inspected yet. Goal remains ACTIVE.
+
+### Formal AD1 result and integration
+
+- **Exact lineage:** two isolated 9x2-arm renders from external revision
+  `3bb2c2d...32bc`; evaluator commit `80cfc0e...6cd13`, config
+  `d669bb46...a19d8`, formal report `241c7ac3...99de` and payload
+  `b617cc48...ee5ce`. A second evaluation report is byte-identical.
+- **Replay:** all nine spatial-off PNGs exactly match RF2.C0 and all nine
+  spatial-on PNGs repeat. Every spatial-on float64 hash differs, with maximum
+  absolute difference `7.61e-15`; the frozen complete-run exact replay gate
+  therefore fails.
+- **Mechanism evidence:** median paired effect is `.5458` Delta E76 and
+  residual after the matched local-contrast control is `.5696`; worst control
+  explanation is 77.60%. Style/non-basic, clipping, gradient and chroma-HF
+  gates pass.
+- **Independent artifact failure:** worst new isolated-red-speckle fraction is
+  `.1481%` on sample 29 versus frozen `.1%`; sample 08 is also over. This is
+  automatic evidence only. Visual review remains forbidden and no output was
+  opened.
+- **Decision/handoff:** close `runtime_or_replay_failure`, with red-speckle
+  failure independently sufficient to reject. No FFT/thread/diffusion search,
+  threshold change, smoothing/clamp, vision exception, AD2, teacher, fitting,
+  training, stock claim or integration. Continue a distinct ready leaf; Goal
+  remains ACTIVE.

@@ -361,6 +361,15 @@ nuisance explanation; paired strength, residual, explained-energy, clipping,
 gradient, chroma, red-speckle, style and non-basic gates precede all vision.
 Failure closes without source, parameter, threshold or smoothing rescue.
 
+AD1 now closes. Both runs exactly reproduce all nine RF2.C0 spatial-off PNGs
+and the spatial-on PNGs, and the spatial effect is measurable (`0.5458`
+median Delta E76) with `0.5696` residual after the matched local-contrast
+control. Nevertheless every spatial-on float hash differs between runs by up
+to `7.61e-15`, failing exact complete-run replay, and sample 29 adds `.1481%`
+isolated red speckles versus the frozen `.1%` limit. Automatic failure forbids
+vision. Do not search FFT/thread/diffusion settings, weaken gates, smooth or
+open AD2; retain only negative external-mechanism evidence.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.
