@@ -1,0 +1,78 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-match-portable-conformance-result-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm_id": {
+      "const": "safe-lab-reference-statistics.v1"
+    },
+    "case_results": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "diagnostics_max_abs": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "lab_delta_e76_max": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "lab_delta_e76_p95": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "linear_rgb_max_abs": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "recipe_identity_match": {
+            "type": "boolean"
+          },
+          "reference_pixel_identity_match": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "case_id",
+          "passed",
+          "recipe_identity_match",
+          "reference_pixel_identity_match",
+          "linear_rgb_max_abs",
+          "lab_delta_e76_p95",
+          "lab_delta_e76_max",
+          "diagnostics_max_abs"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "fixture_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-portable-conformance-result.v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "fixture_id",
+    "algorithm_id",
+    "passed",
+    "case_results"
+  ],
+  "title": "Neuro-Film portable reference-match conformance result v1",
+  "type": "object"
+}
