@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2w1-reference-look-identifiability-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2W1D",
+  "status": "implemented_execution_queued_behind_active_s4_u1_leaves",
+  "parent_evidence": [
+    "U5.R2W0 accepts same-look/different-content supervision as a useful reference-matching experiment while rejecting NFRM as an established film algorithm",
+    "U5.R2O0 supplies a validated cube-preserving explicit colour flow",
+    "U5.R2S1 and U5.R2S2 show that marginal histograms and palette scores are content-dominated",
+    "U5.R2S3 shows that reducing pooled distribution loss does not identify the hidden operator"
+  ],
+  "hypothesis": "a factorized spatially invariant descriptor trained on repeated same-known-look and different-generated-content groups may retrieve or regress the hidden bounded colour operator with less content dependence than raw marginal histograms",
+  "epistemic_scope": "generated development evidence for reference-look representation and explicit-operator recovery only; not real pixels, film, stock, calibrated grading or general unpaired-operator identification",
+  "execution_order": {
+    "current_ready_leaf_must_finish_first": "U5.R2S4D repeated formal adjudication",
+    "then_already_implemented_leaf": "U5.R2U1D repeated formal adjudication",
+    "w1_activation_after": "S4 reaches a valid repeated decision and, when its branch activates U1, U1 also reaches a valid repeated decision; their scientific outcome does not rewrite this frozen W1 contract"
+  },
+  "activation_gate": {
+    "s4_decision_path": "configs/u5_r2s4_diversified_distribution_operator_development_decision_v1.json",
+    "s4_requires_repeat_report_sha256_equal": true,
+    "s4_valid_branches": [
+      "primary_all_gates_pass",
+      "primary_matches_distribution_but_operator_fails",
+      "primary_fails_or_does_not_beat_pooled",
+      "shuffled_negative_passes",
+      "structure_or_repeat_fails"
+    ],
+    "u1_required_on_s4_branches": [
+      "primary_all_gates_pass",
+      "primary_matches_distribution_but_operator_fails",
+      "primary_fails_or_does_not_beat_pooled"
+    ],
+    "u1_decision_path": "configs/u5_r2u1_hierarchical_colour_coupling_development_decision_v1.json",
+    "u1_requires_repeat_report_sha256_equal": true,
+    "u1_valid_branches": [
+      "primary_all_gates_pass",
+      "operator_fails_despite_pair_fit",
+      "primary_does_not_beat_controls",
+      "shuffled_negative_passes",
+      "structure_or_repeat_fails"
+    ]
+  },
+  "look_generator": {
+    "representation": "U5.R2O0 cube-preserving stationary velocity flow",
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 32,
+    "coefficient_vector_norm_cap": 2.0,
+    "base_direction_generators": [
+      {
+        "id": "palette_score_velocity_grid",
+        "direction_count": 16,
+        "seed": 28500
+      },
+      {
+        "id": "smooth_random_velocity_grid",
+        "direction_count": 16,
+        "seed": 28512,
+        "smoothing_passes": 4,
+        "minimum_maximum_vector_norm": 1.1,
+        "maximum_maximum_vector_norm": 1.7
+      }
+    ],
+    "base_direction_generator_parameters": {
+      "component_counts": [2, 3, 4],
+      "weight_dirichlet_alpha": 1.5,
+      "mean_minimum": 0.06,
+      "mean_maximum": 0.94,
+      "standard_deviation_minimum": 0.09,
+      "standard_deviation_maximum": 0.24
+    },
+    "development_base_direction_count": 32,
+    "development_fit_direction_ids": [
+      0, 1, 2, 3, 4, 5, 6, 7,
+      8, 9, 10, 11, 12, 13, 14, 15,
+      16, 17, 18, 19, 20, 21, 22, 23
+    ],
+    "development_unseen_direction_ids": [24, 25, 26, 27, 28, 29, 30, 31],
+    "strengths": [0.35, 0.5, 0.72, 1.0],
+    "development_operator_instance_count": 128,
+    "reserved_confirmation_base_direction_count": 24,
+    "reserved_confirmation_direction_seed": 28590,
+    "reserved_confirmation_operator_family": "monotone_curves_plus_positive_matrix_composed_into_o0",
+    "strength_interpolation": "velocity_parameter_space_from_exact_identity",
+    "owner_anchor_strength_path": {
+      "53": 0.72,
+      "55": 0.5,
+      "56": 0.58,
+      "required_interpretation": "one direction with continuous strength, never three categorical modes"
+    }
+  },
+  "content_generator": {
+    "independent_content_groups_per_operator_instance": 8,
+    "fit_and_bank_content_group_ids": [0, 1, 2, 3],
+    "heldout_query_content_group_ids": [4, 5, 6, 7],
+    "single_reference_evaluation": "score each heldout query group independently",
+    "four_reference_evaluation": "aggregate fixed descriptors from heldout query groups 4-7 symmetrically",
+    "ridge_regularization_selection": "group cross-validation inside fit groups 0-3 only",
+    "scenes_per_group": 4,
+    "samples_per_scene": 256,
+    "mixture_component_counts": [2, 3, 4],
+    "weight_dirichlet_alpha": 1.2,
+    "content_group_palette_centres": [
+      [0.22, 0.22, 0.22],
+      [0.72, 0.24, 0.20],
+      [0.22, 0.68, 0.28],
+      [0.24, 0.38, 0.76],
+      [0.7, 0.7, 0.7],
+      [0.12, 0.12, 0.12],
+      [0.62, 0.48, 0.3],
+      [0.3, 0.48, 0.62]
+    ],
+    "component_mean_jitter_standard_deviation": 0.1,
+    "mean_minimum": 0.03,
+    "mean_maximum": 0.97,
+    "standard_deviation_minimum": 0.04,
+    "standard_deviation_maximum": 0.2,
+    "fit_content_seed": 28501,
+    "heldout_content_seed": 28502,
+    "reserved_confirmation_content_seed": 28591,
+    "identity_reference_fit_content_seed": 28504,
+    "identity_reference_heldout_content_seed": 28505,
+    "owner_strength_fixture_content_seed": 28506,
+    "cross_group_sample_scene_palette_reuse_forbidden": true,
+    "look_and_content_random_streams_separate": true
+  },
+  "reference_nuisance": {
+    "application_order": "generated_content_then_bounded_basic_nuisance_then_hidden_look",
+    "families": [
+      "identity",
+      "exposure",
+      "white_balance",
+      "monotone_basic_tone"
+    ],
+    "maximum_absolute_exposure_ev": 0.5,
+    "maximum_white_balance_log_gain": 0.08,
+    "maximum_basic_tone_deviation": 0.08,
+    "fit_nuisance_seed": 28503,
+    "heldout_nuisance_seed": 28507,
+    "identity_fit_nuisance_seed": 28508,
+    "identity_heldout_nuisance_seed": 28509,
+    "owner_strength_fixture_nuisance_seed": 28510,
+    "reserved_confirmation_seed": 28592,
+    "parameters_visible_to_output_only_methods": false,
+    "parameters_visible_to_paired_upper_bound": true,
+    "claim_limit": "does not model arbitrary camera, RAW, HDR, scanner or prior-grade canonicalization"
+  },
+  "information_regimes": [
+    {
+      "id": "seen_look_single_output_only",
+      "query": "one final styled reference from a heldout content group",
+      "look_bank": "same operator instances, different development content groups"
+    },
+    {
+      "id": "seen_look_four_output_only",
+      "query": "four final styled references from unrelated heldout content groups",
+      "aggregation": "symmetric mean of fixed descriptors"
+    },
+    {
+      "id": "unseen_direction_single_output_only",
+      "query": "one final styled reference whose base direction is excluded from all fitting and bank construction"
+    },
+    {
+      "id": "unseen_direction_four_output_only",
+      "query": "four final styled references sharing one unseen base direction"
+    },
+    {
+      "id": "paired_reference_upper_bound",
+      "query": "exact pre-look and post-look observations for one generated content group",
+      "role": "non-product information upper bound"
+    }
+  ],
+  "descriptor": {
+    "fit_only_on_development_groups": true,
+    "spatially_invariant_components": [
+      "log_luma_quantiles",
+      "chroma_by_luma_summaries",
+      "cyclic_hue_moments",
+      "neutral_axis_summaries",
+      "shadow_midtone_highlight_channel_relations"
+    ],
+    "forbidden_components": [
+      "semantic labels",
+      "CLIP or scene embeddings",
+      "geometry or spatial layout",
+      "filename or source identity",
+      "generator content ids",
+      "hidden operator coefficients or oracle grid"
+    ],
+    "normalization_scope": "development groups only",
+    "pca_authorized": false,
+    "raw_histogram_bins_per_channel": 16,
+    "ridge_alpha_candidates": [0.1, 1.0, 10.0, 100.0],
+    "ridge_alpha_selection": {
+      "single_reference": "four joint group-direction folds; fold k validates direction ids with id mod 4 equal k and content group k, fitting all other fit directions and content groups",
+      "four_reference": "four direction folds over symmetric group-0-3 aggregates; fold k validates directions with id mod 4 equal k and fits the other directions"
+    }
+  },
+  "methods": [
+    {
+      "id": "identity",
+      "role": "no-look baseline"
+    },
+    {
+      "id": "global_mean_operator",
+      "role": "style-averaging baseline"
+    },
+    {
+      "id": "raw_rgb_histogram_nearest",
+      "role": "content-shortcut negative control"
+    },
+    {
+      "id": "factorized_descriptor_hard_retrieval",
+      "role": "categorical strength-splitting control"
+    },
+    {
+      "id": "factorized_direction_strength_retrieval",
+      "role": "seen-direction primary",
+      "description": "hard direction over piecewise-linear descriptor paths with continuous parameter-space strength"
+    },
+    {
+      "id": "factorized_descriptor_ridge_operator",
+      "role": "unseen-look primary",
+      "regularization_selection": "development groups only"
+    },
+    {
+      "id": "paired_reference_bounded_flow_fit",
+      "role": "non-product information upper bound"
+    }
+  ],
+  "evaluation": {
+    "operator_truth": "hidden uniform-grid outputs and coefficients used only after prediction for evaluation",
+    "uniform_grid_axis_size": 9,
+    "same_look_replicate": "independent heldout content and nuisance groups",
+    "content_nuisance_probe": "ridge one-hot probe on within-look-centred predicted velocity grids; fit directions 0-23, test unseen directions 24-31",
+    "probe_ridge_alpha": 1.0,
+    "ood": "deferred conditional child; W1D does not generate OOD rows or fit an abstention threshold before a practical operator method passes",
+    "distribution_similarity_is_diagnostic_only": true
+  },
+  "paired_upper_bound_optimization": {
+    "development_scope": "unseen directions 24-31 at all four strengths, one heldout content group each",
+    "device": "cuda_if_available_else_cpu",
+    "dtype": "float32",
+    "seed": 28520,
+    "steps": 120,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true,
+    "oracle_coefficients_exposed": false,
+    "paired_samples_exposed": true
+  },
+  "gates": {
+    "minimum_seen_look_retrieval_accuracy": 0.75,
+    "maximum_seen_strength_absolute_error": 0.12,
+    "maximum_oracle_operator_output_rmse_median": 0.07,
+    "maximum_oracle_operator_output_rmse_p90": 0.1,
+    "maximum_same_look_replicate_operator_rmse_median": 0.04,
+    "minimum_operator_error_improvement_over_identity_fraction": 0.25,
+    "minimum_operator_error_improvement_over_global_mean_fraction": 0.25,
+    "maximum_identity_reference_grid_rmse": 0.01,
+    "minimum_strength_order_spearman": 0.9,
+    "minimum_53_55_56_direction_cosine": 0.95,
+    "maximum_content_or_nuisance_probe_above_chance": 0.1,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 1e-05,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "generate all development contents, nuisances and looks programmatically",
+    "reuse the validated U5.R2O0 explicit flow and existing synthetic utilities",
+    "fit fixed descriptor normalization and ridge only on development groups",
+    "use the local RTX 5070 Ti Laptop if beneficial",
+    "run exact repeated development reports and focused leakage, strength, identity and structure tests"
+  ],
+  "forbidden_actions": [
+    "execute before the current S4 and U1 leaves have valid repeated decisions",
+    "access any reserved confirmation seed during development",
+    "use film, Commons, YFCC, FiveK or other project photograph pixels",
+    "expose content ids, nuisance parameters, hidden coefficients or oracle grids to output-only methods",
+    "reuse samples, scenes or palettes across heldout groups",
+    "train a neural encoder or any direct final-RGB model",
+    "use generative-AI-derived images, edits, embeddings or teachers",
+    "use one embedding for both look selection and content/application routing",
+    "change methods, seeds, splits, thresholds or gates after development results"
+  ],
+  "branches": {
+    "seen_retrieval_only_passes": "retain a bounded hard reference-bank retriever; do not claim unseen-look regression",
+    "single_output_only_passes": "retain a single-reference explicit-operator challenger",
+    "single_fails_multi_passes": "require multiple same-look references",
+    "paired_upper_bound_only_passes": "close practical output-only inference as unidentified",
+    "content_or_nuisance_control_fails": "close the descriptor without capacity rescue",
+    "unseen_regression_passes": "open only untouched synthetic confirmation before considering a small parameter-only predictor",
+    "structure_or_repeat_fails": "invalidate and debug only the explicit operator or deterministic boundary",
+    "all_practical_methods_fail": "retain the global deterministic champion"
+  },
+  "real_data_dor": {
+    "current_state": "not established",
+    "required_before_pixels": [
+      "rights and exact lineage",
+      "repeated same-look groups independent of scene content and source",
+      "group-heldout leakage-free split",
+      "explicit colour-state contract",
+      "separate claim ceiling"
+    ],
+    "current_film_pools_forbidden": true,
+    "partial_fivek_requires_separate_restore_and_lineage_decision": true
+  },
+  "claim_ceiling": "generated development evidence for or against fixed reference descriptors and explicit-operator retrieval/regression across unrelated generated content; never real-image, film, stock, calibrated, professional-preference or general unpaired-operator identification"
+}

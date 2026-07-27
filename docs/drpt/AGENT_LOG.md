@@ -4132,3 +4132,244 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   activate only the already-frozen U5.R2S4D generated correct-condition
   experiment, and preserve all real-image, film, stock, fitting/training and
   LSM prohibitions. Goal remains active.
+
+## 2026-07-27 - Audit submitted NFRM/CFSM and preregister U5.R2W1D
+
+- **Parent/current leaf:** U5.R2 remains the algorithm parent. U5.R2S4D stays
+  the active frozen execution leaf at software commit `c03c321`; W0/W1 are a
+  non-interfering sibling audit and queued experiment contract.
+- **Accepted contribution:** retain same-known-look/different-content groups
+  as a direct test of whether a reference representation recovers operator
+  identity rather than scene palette. Keep deterministic explicit rendering,
+  factorized normalization/look, album consistency and global-first/local-
+  later gates.
+- **Epistemic correction:** a single final reference does not identify its
+  capture/exposure/WB/prior-grade nuisance separately from the desired look.
+  Separate output-only single reference, output-only multiple references and
+  a paired synthetic upper bound. Reject `NFRM` as an established film
+  algorithm; retain provisional `CFSM` only as `reference-look`.
+- **Prior-art audit:** Deep Preset supplies same-preset/different-content
+  supervision; Neural Preset supplies normalization/stylization and explicit
+  parameter prediction; Hist2Style supplies a strong local-render/product
+  precedent but has generative teacher lineage and reported histogram/grid
+  limitations; DCT explicitly does not resolve within-distribution coupling.
+  Capture One supports the product factorization but remains a black box.
+- **Later evidence:** weakly supervised/multi-view identifiability theory
+  supports explicit shared-factor groups, not unlabelled final-image
+  disentanglement. InstantRetouch most closely separates paired look encoding
+  from within-look content retrieval and finds dense all-reference use worse
+  than a relevant sparse subset, but directly predicts RGB through a
+  sigmoid-ended MLP. Retain the grouping and sparse-routing lessons only.
+- **W1 freeze:** 32 generated O0 directions x four strengths across eight
+  unrelated content groups; bounded reference nuisances; identity/global/raw-
+  histogram controls; fixed-descriptor hard retrieval and ridge; single/four-
+  reference output-only and paired-upper-bound regimes. `53/55/56` are one
+  ordered strength path. Reserved confirmation directions/seeds remain
+  inaccessible.
+- **Boundaries:** no neural encoder, generative teacher, image pixels, FiveK,
+  film, stock, calibrated, professional-preference or unpaired-operator claim.
+  Real pixels require a new rights/lineage/repeated-look DoR. S4/U1 execute
+  and adjudicate first; Goal remains active.
+- **Explicit-parameter source audit:** public MMArt-PPR10K metadata lists
+  4,055 Lightroom XMP/Lua recipes over 1,412 base content IDs, and one
+  inspected configuration confirms an explicit WB/exposure/tone/HSL/curve/
+  detail parameterization. Retain this only as parameter-manifold evidence.
+  The mirror's Apache-2.0 declaration conflicts with upstream PPR10K's
+  non-commercial and derived-data restrictions, while its language rationale
+  is generated rather than observed. No image payload or bulk recipe was
+  acquired; training, fitting and redistribution stay closed pending a
+  separate lineage/rights decision.
+
+## 2026-07-27 - Implement queued U5.R2W1D reference-look pilot
+
+- **Structure:** add one isolated `src/roll2film` module for a fixed,
+  permutation-invariant reference descriptor, symmetric multi-reference
+  aggregation, raw-histogram negative, train-only-standardized hard bank and
+  norm-bounded ridge-to-O0 parameters. No parallel renderer or new product
+  package is introduced.
+- **Leakage controls:** directions `0-23` train the bank/regressor and
+  directions `24-31` are unseen development queries; content groups `0-3`
+  fit and `4-7` query. Ridge alpha uses four joint direction/content folds.
+  Descriptor fitting never receives content IDs, nuisance parameters, hidden
+  coefficients or oracle-grid values as inputs.
+- **Information regimes:** the runner covers seen/unseen direction crossed
+  with one/four output-only references, plus an explicitly non-product paired
+  synthetic upper bound. Identity/global mean and raw-histogram controls use
+  the same observations.
+- **Nuisance/strength:** bounded exposure, white-balance and monotone-tone
+  nuisance precede the hidden look. Linear probes operate on within-look-
+  centred predicted grids. A same-input fixture applies one direction at
+  owner-anchor strengths `53=.72`, `55=.50`, `56=.58` and gates direction
+  cosine plus ordered continuous strength.
+- **Safety/reproducibility:** every candidate becomes the existing O0 flow and
+  is checked on hidden-grid error, range, Jacobian, norm, inverse, coefficient
+  and replay. Single- and four-reference ridge models have separate frozen
+  group/direction CV, and an explicit partition/seed validator rejects
+  development-confirmation leakage. Tiny end-to-end A/B reports are exact.
+  Twelve focused tests and the complete `946/946` CPU suite pass. A hard
+  direction plus continuous piecewise-linear strength retriever now preserves
+  `53/55/56` as one operator direction with ordered strength, and all ridge
+  coefficient caps project one float step inside the frozen boundary.
+- **Non-execution:** formal `285xx` development and `2859x` confirmation seeds
+  remain untouched. W1 waits for repeated S4 and, when activated, U1
+  adjudication. No images, neural encoder, film/stock claim or capacity rescue
+  opens; Goal remains active.
+
+## 2026-07-27 - Identify conditional INRetouch RTD bridge
+
+- **Source:** official WACV 2026 project, GitHub repository and Hugging Face
+  dataset card. A read-only API audit pins dataset revision
+  `3e100e1fa896d9ed023cd1545890400edd67f949`.
+- **Topology:** 167 Lightroom presets are repeated across 569 selected
+  MIT-Adobe FiveK contents with paired `natural` and preset-rendered images.
+  The published split holds out both contents and presets. The API lists
+  96,164 files: 74,168 Train, 8,906 Validation, 1,403 Benchmark/Test and
+  11,684 Benchmark/Test_References; hosting reports about 18 GB.
+- **Value:** this is the strongest discovered real-raster control for W1's
+  same-known-look/different-content question and could distinguish
+  single-reference, multi-reference and paired-before/after regimes.
+- **Boundary:** it is batch-applied Lightroom-preset/FiveK evidence, not film,
+  stock or per-image professional grading. Access is gated, requires contact
+  disclosure and acceptance of CC BY-NC-SA 4.0, while project release
+  licensing remains unresolved.
+- **Decision:** register U5.R2W2R as a conditional, not-ready source leaf. No
+  gated file or pixel was accessed. A later human click-through decision,
+  exact lineage/manifest audit, non-commercial isolation and positive W1
+  evidence are required before even a bounded benchmark acquisition. S4
+  remains the active frozen execution leaf; Goal remains active.
+- **Preflight propagation:** freeze the future DoR, evidence class, smallest
+  benchmark-first acquisition order, controls and branches in
+  `docs/planning/U5_R2W2R_INRETOUCH_RTD_SOURCE_PREFLIGHT.md`. The source
+  preflight is complete; its pixel child remains not ready.
+- **Method boundary:** public code commit
+  `cbf0db19487222c21d63116c320357764438360d` directly predicts RGB from
+  absolute coordinates and input RGB with a sine/depthwise-convolution INR.
+  It has no explicit cube, positive-Jacobian or identity-strength guarantee
+  and is incompatible with the project renderer contract. Retain only as a
+  research comparison; the dataset topology is independently valuable.
+- **Challenge evidence:** the NTIRE 2026 report is retained at
+  `9C0E31B3...BDAF6`. Its 18-preset development and 12-preset automatic-test
+  sets establish an unseen-preset evaluation pattern. The most relevant
+  submission retrieves preset initializations using a 57-dimensional
+  aligned before/after residual descriptor, then fits a direct-RGB INR. This
+  supports W1's paired upper-bound and hard-retrieval controls, not
+  output-only identification or an admissible renderer.
+- **Truth-class correction:** the pinned WACV paper
+  (`C4AC0F73B70F829EEE0683D78B40FDD7E67279C59286EE21F0ACA433EF9A2823`)
+  says one preset can transform different contents differently. Freeze a
+  pairwise/shared O0 global-explainability audit before treating preset IDs as
+  global-look labels. Adaptive/local recipes become a separate stress class,
+  not false global-operator truth or permission for direct RGB.
+- **Local lineage join:** RTD's 569 public natural filenames intersect 15 of
+  the 128 local `freeze_v1` identities. Correct role-aware counts are 13 Train
+  plus the same 13 Test_References, and two Validation plus the same two
+  Benchmark/Test. This confirms the source-name bridge only. Existing
+  RAW/Expert-C/project representations cannot substitute for gated preset
+  renders.
+- **Retained public evidence:** ignored repository-API snapshot
+  6,293,126 bytes / SHA-256
+  `3ACFAC6F57EC469E04670DEE500E64050D51FF401D3E43998FEDA7AA1A407E2F`;
+  paths/metadata only, no gated pixel payload.
+- **Verification:** decision JSON parses; retained API/card/paper hashes pass;
+  96,164-path partition counts, 569 natural IDs, 128 local IDs and the
+  15-identity role-aware overlap reproduce exactly. This pure offline audit
+  corrected an earlier lossy single-partition map that had overwritten the
+  paired RTD role for each source ID. A later review also closed a
+  count-preserving substitution hole: all 334 partition/preset content-ID
+  matrices now equal their natural-ID sets, and two reports repeat exactly at
+  `9F9C0935...DC35`. Three focused RTD tests pass; the combined/full suite is
+  rerun at the next scoped evidence boundary.
+
+## 2026-07-27 - Register local FilmSet as the first W2 reference-look bridge
+
+- **Node/parent:** `ULT > U5.R2W2F`, conditional child of repeated W1.
+- **Why now:** the existing FilmSet freeze already supplies the submitted
+  architecture's required topology without another download: 2,096 target-
+  only identities across three repeated recipe domains, 2,096 disjoint
+  input-only identities and 465 aligned evaluator identities.
+- **Capability boundary:** FilmSet is Capture One recipe data. It can test
+  output-only reference-look recovery and content-matched application but
+  cannot establish real film, a Velvia stock response, calibration or unseen-
+  recipe generalization.
+- **Protocol:** require W1 activation; reuse its fixed descriptor/operator;
+  classify recipe global explainability before CFSM scoring; separate look
+  and within-recipe content spaces; compare single/multi/medoid/hard content
+  retrieval against basic, global, wrong/shuffled and paired Oracle controls.
+- **Preservation:** final 628 and historical CT8 remain frozen and forbidden
+  to W2F. No new FilmSet pixel was decoded during this source/contract leaf.
+  No neural RGB, capacity rescue, production path or release claim opens.
+- **Preflight evidence:** a dedicated fail-closed metadata module validates
+  exact manifests/roles/domains/counts, freezes all partitions by seeded
+  SHA-256 order and never parses the final manifest or reads an image payload.
+  Two reports are byte-identical at
+  `EF789FDB0F5496E1A500E6393CE3D4BBEC433DF621420E6D41DE2B0C16F9E4E0`;
+  four focused tests pass. Frozen counts are 512 target references, 256
+  source probes and 256/128/81 internal development/confirmatory/stress.
+  This is implementation-stage evidence while S4 pins the current HEAD; rerun
+  it on the later scoped implementation commit before calling W2F preflight
+  closed.
+
+## 2026-07-27 - Register a provenance-rich but permission-blocked film source design
+
+- **Source evidence:** Gelatin Labs publicly documents signed per-frame roll,
+  stock, processing, scanner, GelForm, bit-depth, frame/format and date
+  metadata, plus 11 scan styles and Noritsu/Fujifilm Frontier scanners.
+- **Potential value:** a separately consented export could supply the nested
+  stock/roll/scanner/output-profile connectivity missing from current
+  community pools.
+- **Hard boundary:** the scans are private, no research export/API/licence is
+  offered, and the official page marks them against training, inference and
+  data mining. Do not crawl the community page, contact the lab under the
+  current Goal or acquire pixels/metadata. This is a future written-
+  permission/owner-consent design only, not a ready leaf.
+
+## 2026-07-27 - Audit StatLUT as a parameter-only reference-look challenger
+
+- **Node/parent:** source/method evidence under `ULT > U5.R2W0`; W1, S4 and U1
+  gates are unchanged.
+- **Method evidence:** the 2026 StatLUT v1 preprint uses spatially invariant
+  Lab statistics (`L`, joint `ab`, and mean `L|ab`) from content and reference
+  images to predict a residual `16^3` 3D LUT. Its patch-shuffling control and
+  factorized descriptor are directly relevant to content-shortcut rejection.
+- **Epistemic boundary:** training uses known random LUTs and derives style
+  references from transformed content. This is synthetic operator
+  supervision, not output-only film identification. The 4,000 professional
+  plus 6,000 synthetic LUT corpus has no linked release/lineage in v1.
+- **Safety boundary:** clamping plus monotonicity/TV penalties is not an exact
+  cube-preserving guarantee. The H-Diffuser text branch is generative and
+  excluded. A future candidate may predict only the existing bounded O0 flow
+  or a separately projected safe LUT after W1 shows that representation, not
+  information, is the bottleneck.
+- **Retained evidence:** official arXiv v1 PDF, 32,495,874 bytes, SHA-256
+  `A722F9869AB99824855A5A8465DA4730A7FEAC701DDDBA5E98198EA3C8AED9DB`.
+  No LUT corpus, code, weights or image data were acquired.
+
+## 2026-07-27 - Reconcile CanonCGT prior with CFSM/W1
+
+- **Parent/current leaf:** U5.R2W0 source/method audit; S4 repeated execution
+  remains the active frozen leaf and is not modified.
+- **Existing evidence inheritance:** U5.R2F0 already pinned the official CVPR
+  2026 repository/paper/E2E weight at the same commit and hashes. U5.R2F1
+  proved strong reference sensitivity but 0/9 clipping/range survivors;
+  U5.R2F2 safe contractions erased the required style; U5.R2G0/G1 ended with
+  no complete severe-first survivor. Those gates and the closed
+  deployment/distillation branch remain frozen.
+- **Useful result:** CanonCGT is direct prior for decomposing source
+  canonicalization from reference-driven grading. Both stages predict global
+  `17^3` LUTs, so the method stays structurally closer to the project's
+  parameter-only boundary than a direct RGB network.
+- **Identification boundary:** its canonical domain is FiveK Expert C; its
+  supervision is FiveK plus 56 Lightroom presets and known perturbations on
+  different crops of the same image. This is not unrelated-content
+  output-only identification, film evidence or a neutral physical pivot.
+- **Safety boundary:** source inspection finds `identity + residual` LUT
+  generation without exact range, Jacobian, norm, inverse, coefficient or
+  replay guarantees. Both grade extraction and LUT prediction use spatial
+  image features, so content substitution remains a mandatory control.
+- **Decision:** retain only the architectural prior for W1's scientifically
+  different same-known-look/unrelated-content supervision question. A later
+  child may compare source-only canonicalization and fixed versus frozen grade
+  descriptors only after W1 passes, with new preregistered groups and an
+  already proven bounded operator. Do not rerun/rescue F1/F2/G1 or alter their
+  gates. No current pixels, training, production integration or authenticity
+  claim opens; Goal remains active.

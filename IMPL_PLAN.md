@@ -156,6 +156,58 @@ camera-matching datasets are not named-stock evidence. Retain only the idea
 of an image-global bounded spline parameterization; do not run the checkpoint
 or download its data for the current mainline.
 
+U5.R2W0 now adjudicates the submitted NFRM/CFSM proposal. Its strongest
+addition is not a new colour renderer but a better supervision unit: generate
+one known explicit look over several unrelated contents and require the
+recovered operator to remain invariant to content. Deep Preset and Neural
+Preset establish prior art for same-preset supervision and factorized
+parameter prediction, so this is a project-specific constrained development
+branch rather than an already original/final algorithm. A single final
+reference still entangles content, capture response, exposure/WB, prior grade
+and output interpretation; source-only canonicalization cannot remove that
+gauge ambiguity. `NFRM` is therefore rejected as an authenticity-bearing
+name, while provisional `CFSM` remains a `reference-look` candidate.
+
+U5.R2W1D freezes and implements the first admissible test without touching
+real images.
+Thirty-two generated O0 operator directions at four parameter-space strengths
+are applied across independent generated content and bounded basic nuisance
+groups. Identity/global/raw-hist controls challenge fixed-descriptor hard
+retrieval and ridge operator regression under seen and entirely unseen
+directions. Single output-only, four-reference output-only and exact paired
+synthetic-upper-bound regimes are reported separately. `53/55/56` must remain
+one direction with ordered continuous strength. Content/nuisance probes,
+hidden-grid operator error, A/B replication and all O0 structure/replay gates
+must pass before any parameter-only learned challenger; images, film pixels,
+current FiveK, semantic embeddings and direct RGB models remain forbidden.
+Execution is queued behind the already active S4 and implemented U1 leaves.
+The isolated fixed descriptor, hard bank, separate bounded single/multi ridge,
+activation/partition-gated runner and same-input `53/55/56` fixture pass twelve
+focused tests; the complete CPU suite passes `946/946`. Formal W1 development
+and confirmation seeds remain untouched.
+
+U5.R2W2F registers the complete local FilmSet as the first bounded real-raster
+mechanism bridge. Its frozen pair-blind pools provide 2,096 target-only
+reference identities, 2,096 content-disjoint input-only identities and 465
+aligned internal evaluator identities across three repeated Capture One
+recipe domains. W2F first classifies each recipe as globally coherent,
+basic-only, adaptive/spatial, unidentified or invalid, then permits only a
+W1-surviving fixed mechanism to compare single, symmetric multi, medoid and
+within-recipe hard content retrieval. The final 628 and historical CT8 result
+are not reopened. This can prove at most three-domain recipe-look transfer,
+never film or stock learning.
+
+U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
+real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
+with paired natural outputs and held-out contents/presets. It is not ready.
+Preset ID is a shared recipe rather than presumed global-operator truth; a
+pairwise/shared O0 global-explainability gate precedes CFSM scoring.
+The roughly 18 GB repository is gated and CC BY-NC-SA 4.0; access requires
+contact disclosure and a click-through decision. No gated file was accessed.
+W2R additionally requires positive W1 evidence, exact FiveK lineage and
+non-commercial/share-alike isolation and remains preset—not film or stock—
+evidence.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
@@ -373,10 +425,11 @@ officially licensed research export would be a new external-authority branch.
 SillyStill's pinned official repository still exposes only one illustrative
 pair, placeholder Zenodo/Hugging Face links and no root licence. Emulating
 Emulsion publishes a valuable two-matrix/three-sigmoid architecture and
-single-roll chart design, but no measurements, fitted parameters, code or
-reusable data licence. Neither source opens fitting or training. The published
-functional form may motivate only a clean-room, data-independent architecture
-witness under a separate frozen contract.
+single-roll chart design. Its public full paper includes aggregate measurements,
+figures and cross-validation errors, but no raw patch table, fitted parameters,
+code or reusable data licence. Neither source opens fitting or training. The
+published functional form may motivate only a clean-room, data-independent
+architecture witness under a separate frozen contract.
 
 `SF2.7R` now passes as an internal scanner-nuisance source. The exact
 71,068,957-byte ColorReference lane contains four complete pipelines observing

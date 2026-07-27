@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5_r2w2f_filmset_reference_look_preflight_v1",
+  "node": "U5.R2W2F",
+  "status": "source_ready_execution_queued_behind_repeated_w1",
+  "dataset": {
+    "dataset_id": "xuhangc/filmset",
+    "archive_version": "kaggle-v1-2023-11-29",
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "source_manifest": "source_train.jsonl",
+    "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+    "target_manifest": "target_train.jsonl",
+    "target_manifest_sha256": "740019507339bb156a7b73061571209145447a3774f1c5319dbc4f9555c0db4f",
+    "internal_dev_manifest": "internal_dev_lockbox.jsonl",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest": "final_628_lockbox.jsonl",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domains": [
+      "cinema",
+      "classneg",
+      "velvia"
+    ],
+    "expected_source_identities": 2096,
+    "expected_target_identities": 2096,
+    "expected_internal_identities": 465,
+    "expected_source_rows": 2096,
+    "expected_target_rows": 6288,
+    "expected_internal_rows": 1860
+  },
+  "partition": {
+    "algorithm": "sha256_seed_pool_content_id_ascending",
+    "seed": 2026072701,
+    "target_reference_bank_identities": 512,
+    "source_probe_identities": 256,
+    "internal_development_identities": 256,
+    "internal_confirmatory_identities": 128,
+    "internal_stress_identities": 81
+  },
+  "activation_gate": {
+    "required_w1_decision_path": "configs/u5_r2w1_reference_look_identifiability_development_decision_v1.json",
+    "requires_repeat_report_sha256_equal": true,
+    "allowed_w1_branches": [
+      "unseen_regression_passes",
+      "single_fails_multi_passes",
+      "seen_retrieval_only_passes",
+      "paired_upper_bound_only_passes"
+    ],
+    "paired_upper_bound_only_action": "open_w2f0_global_explainability_only",
+    "practical_output_only_action": "open_w2f0_then_conditionally_w2f1",
+    "capacity_rescue_allowed": false
+  },
+  "pixel_policy": {
+    "preflight_decodes_pixels": false,
+    "preflight_reads_payloads": false,
+    "final_628_payloads_forbidden": true,
+    "new_downloads": false
+  },
+  "allowed_use": "internal_research_only",
+  "claim_ceiling": "FilmSet Capture One recipe reference-look mechanism preflight only; no film, stock, calibration, commercial-rights or output-only recovery claim."
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2w2r-inretouch-rtd-source-preflight-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2W2R",
+  "decision": "source_preflight_pass_pixel_leaf_not_ready",
+  "audit_date": "2026-07-27",
+  "source": {
+    "project_url": "https://omaralezaby.github.io/inretouch/",
+    "code_url": "https://github.com/omarAlezaby/InRetouch",
+    "dataset_url": "https://huggingface.co/datasets/omaralezaby/Retouch_Transfer_Dataset",
+    "dataset_repository_revision": "3e100e1fa896d9ed023cd1545890400edd67f949",
+    "code_commit": "cbf0db19487222c21d63116c320357764438360d",
+    "gated": true,
+    "contact_information_disclosure_required": true,
+    "dataset_card_license": "CC-BY-NC-SA-4.0",
+    "reported_total_bytes": "approximately 18 GB"
+  },
+  "retained_public_evidence": {
+    "repository_api_snapshot": {
+      "path": "outputs/source_recon/inretouch_rtd_metadata/repository_api.json",
+      "bytes": 6293126,
+      "sha256": "3ACFAC6F57EC469E04670DEE500E64050D51FF401D3E43998FEDA7AA1A407E2F"
+    },
+    "dataset_card_readme": {
+      "path": "outputs/source_recon/inretouch_rtd_metadata/README.md",
+      "bytes": 3726,
+      "sha256": "ACB9BD2C04C1979CA92E74826B855A25FA13F3DEF6A869701211B1BE8ED20D36"
+    },
+    "paper": {
+      "path": "outputs/source_recon/inretouch_wacv2026_paper/paper.pdf",
+      "bytes": 12910437,
+      "sha256": "C4AC0F73B70F829EEE0683D78B40FDD7E67279C59286EE21F0ACA433EF9A2823"
+    },
+    "ntire_2026_challenge_report": {
+      "url": "https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/html/Elezabi_Photography_Retouching_Transfer_NTIRE_2026_Challenge_Report_CVPRW_2026_paper.html",
+      "path": "outputs/source_recon/ntire2026_retouch_transfer/paper.pdf",
+      "bytes": 10125117,
+      "sha256": "9C0E31B36E77A6CC4EFDCCE12DD1DEF2ADAEFFA377D6D12B226314EA600BDAF6",
+      "unseen_development_presets": 18,
+      "unseen_automatic_test_presets": 12,
+      "reference_regime": "aligned before and after edit pair",
+      "admissible_use": "evaluation topology and paired-information control only"
+    },
+    "code_license_sha256": "0FAFE8C0D5DF2A65B16E99D27DD658E0626F5CCE346ACECE07F8969716591E97",
+    "offline_audit": {
+      "report_a_path": "outputs/source_recon/inretouch_rtd_metadata/audit_report_a.json",
+      "report_b_path": "outputs/source_recon/inretouch_rtd_metadata/audit_report_b.json",
+      "report_a_sha256": "9F9C0935D2F20EB0AF20E386B4F6D29A0724EBA876A03FA6E703DCF0FDB8DC35",
+      "report_b_sha256": "9F9C0935D2F20EB0AF20E386B4F6D29A0724EBA876A03FA6E703DCF0FDB8DC35",
+      "repeat_report_sha256_equal": true,
+      "local_manifest_sha256": "F820FAF3DC872597B5259181040C07A2FC044C22423E05BC9DB05096D88FC174"
+    }
+  },
+  "public_topology": {
+    "listed_files": 96164,
+    "natural_content_ids": 569,
+    "preset_recipe_ids": 167,
+    "development_content_ids": 508,
+    "benchmark_content_ids": 61,
+    "development_preset_ids": 145,
+    "benchmark_preset_ids": 22,
+    "partition_file_counts": {
+      "Train": 74168,
+      "Validation": 8906,
+      "Benchmark/Test": 1403,
+      "Benchmark/Test_References": 11684
+    },
+    "published_split_arithmetic_exact": true,
+    "preset_content_matrix_exact_in_every_partition": true
+  },
+  "local_fivek_identity_join": {
+    "local_freeze_path": "outputs/fivek_auto_optimize/freeze_v1",
+    "local_freeze_files": 903,
+    "local_freeze_bytes": 7493737879,
+    "local_freeze_identities": 128,
+    "exact_source_name_overlap": 15,
+    "overlap_by_rtd_partition": {
+      "Train": 13,
+      "Validation": 2,
+      "Benchmark/Test": 2,
+      "Benchmark/Test_References": 13
+    },
+    "partition_roles_share_identity_sets": true,
+    "pixel_equivalence_claimed": false
+  },
+  "epistemic_decisions": {
+    "preset_id_is_shared_recipe_not_presumed_global_operator": true,
+    "global_explainability_required_before_cfsm_scoring": true,
+    "adaptive_or_spatial_recipes_are_separate_stress_class": true,
+    "released_direct_rgb_inr_is_admissible_renderer": false,
+    "ntire_retrieval_inr_is_admissible_renderer": false,
+    "paired_residual_descriptor_is_output_only_evidence": false,
+    "film_or_stock_evidence": false,
+    "professional_per_image_grade_evidence": false,
+    "real_unpaired_operator_identification": false
+  },
+  "access_decisions": {
+    "public_metadata_accessed": true,
+    "public_paper_and_code_accessed": true,
+    "gated_files_or_pixels_accessed": false,
+    "terms_accepted": false,
+    "contact_information_disclosed": false,
+    "full_18gb_download_open": false
+  },
+  "pixel_leaf_dor": {
+    "w1_exact_repeated_decision": false,
+    "human_clickthrough_and_contact_disclosure": false,
+    "noncommercial_sharealike_isolation": false,
+    "benchmark_byte_budget_and_manifest": false,
+    "global_explainability_contract": true,
+    "ready": false
+  },
+  "next_if_dor_passes": "bounded benchmark metadata and fixed-reference acquisition only; do not acquire Train/Validation or the full corpus by default",
+  "claim_ceiling": "public metadata, source-code and paper evidence that RTD has a useful same-preset recipe topology and paired natural/preset structure; no gated-pixel, global-operator, film, stock, calibrated, commercial-use or production-weight claim"
+}
