@@ -1606,6 +1606,31 @@
   media/HDR and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Freeze P42 portable consumer canonical core
+
+- Node/parent goal: P42A / cross-platform conformance boundary after P41.
+- Gap: the existing C++ verifier executes exact consumer canonical vectors on
+  Windows and cross-links Android executables, but its hashing primitive is
+  coupled to the hosted C++ runner and has no honest Apple compile evidence.
+- Contract: extract one freestanding, header-free C ABI that computes SHA-256
+  over arbitrary canonical bytes. The existing runner must call that exact
+  core, so the already frozen P28-P30 vectors remain the semantic authority.
+- Platform evidence: MSVC and pinned LLVM-MinGW execute the vectors; pinned
+  Android NDK links arm64-v8a and x86_64 executables; pinned LLVM/Clang emits
+  macOS arm64 and iOS arm64 Mach-O relocatable objects from the same core.
+- Claim boundary: Apple object compilation is not SDK linking, app
+  invocation, simulator/device execution, Swift interoperability, image I/O,
+  performance or product compatibility. Android remains compile/link only.
+- Scope: consumer canonical hashing and conformance scripts/tests/docs only.
+  Product states, P33-P40 schemas, D-PCT producer algorithms/contracts/media,
+  FilmFX arithmetic and both peer worktrees are forbidden.
+- Probe evidence: a minimal no-header C file compiled warning-free into both
+  macOS arm64 and iOS arm64 Mach-O objects. A hosted C++ Apple attempt failed
+  at incompatible LLVM-MinGW CRT headers, confirming the narrower boundary.
+- Coordination: both equal peer tasks will receive the committed intent and
+  need not wait. The producer's announced invocation package remains a later
+  explicit adapter leaf and is not guessed or preimplemented here.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
