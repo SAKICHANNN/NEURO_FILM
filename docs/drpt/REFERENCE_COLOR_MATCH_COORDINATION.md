@@ -310,3 +310,17 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   D-PCT `019f9f3b...` is actively validating separate RAW/DNG/media ingress.
   P23 neither messages nor mutates either task and does not duplicate D-PCT's
   decoder work.
+
+### 2026-07-27 final delivery preflight
+
+- Stable read-only heads are main `350b687` and D-PCT `d2c7eff`; both
+  project worktrees are clean apart from main's own untracked `.codex/`.
+- From common base `c03c321`, this branch changes 95 paths and main changes
+  81; the exact path intersection is zero.
+- `git merge-tree --write-tree` succeeds. A temporary detached latest-main
+  worktree accepted the full branch merge and passed 196/196 module plus
+  adjacent-ingress tests, then was safely removed.
+- Final local CLI fit/replay outputs are hash-identical, and an explicit
+  guarded research application succeeds on its positive control.
+- No merge, push, main-worktree edit, D-PCT edit or external task message
+  occurred. Integration remains a repository-owner action.

@@ -722,3 +722,24 @@
   Preserve the completed guarded product shell and identity default. Keep
   aesthetic approximation and exact paired look-copy claims distinct; no
   capacity rescue or third-party promotion opens.
+
+## 2026-07-27 - Close delivery and latest-main integration evidence
+
+- Node/parent goal: P24 / complete reference-colour-match module delivery.
+- Concurrent snapshot: main clean except `.codex/` at `350b687`; D-PCT clean
+  at `d2c7eff`; this branch remains the only writer to its worktree.
+- Full branch collection: 1081 pass, one skip and the same 36 classified
+  missing-ignored-output/CRLF-hash failures; no module test fails.
+- CLI: two-source default fit and stored replay use recipe
+  `12c084ad...e7cacd`; both output pairs are hash-identical. Explicit
+  research positive control applies successfully under the unchanged guard.
+- Merge evidence: base `c03c321`, ours 95 paths, main 81, intersection zero;
+  synthetic merge tree `97263dc4...f61e`; temporary latest-main merge passes
+  all 196 selected module/ingress tests.
+- Cleanup: the exact temporary integration worktree was removed and Git
+  worktree metadata pruned; no user or unrelated file was removed.
+- Decision: delivery is ready without algorithm promotion. Default identity,
+  SDR-only ingress, D-PCT media ownership and film-claim separation remain
+  mandatory.
+- Handoff: repository owner may review and merge the branch. No push or merge
+  into main was authorized or performed.

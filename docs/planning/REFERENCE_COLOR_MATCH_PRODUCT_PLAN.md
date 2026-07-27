@@ -28,9 +28,10 @@ with a selected stock, but reference matching alone is labeled
 - Reusable product ingress: `src/preprocess/types.py::WorkingImage`
 - Reusable deterministic math: `src/color_engine/lab.py`,
   `src/color_engine/safe_lab.py`, `src/color_engine/gamut.py`
-- Main-chat W1/W2 research and standalone D-PCT media work are concurrent and
-  explicitly out of this branch's write scope. The latest consumed read-only
-  boundaries are main `c5b7c04` and D-PCT `bd3ff70`.
+- Main-chat stock-first research and standalone D-PCT media work are
+  concurrent and explicitly out of this branch's write scope. The latest
+  read-only delivery-preflight boundaries are main `350b687` and D-PCT
+  `d2c7eff`; no mutable file from either checkout is consumed.
 
 ## Non-goals for the first product slice
 
@@ -87,6 +88,8 @@ with a selected stock, but reference matching alone is labeled
 | P20 | DONE / ROUTE CLOSED | test a bounded affine plus monotone-quantile non-moment challenger | 14 dedicated tests; 171 focused tests; two byte-exact stress-confirmation runs | `f73e3ef` | retain negative evidence; do not tune same candidate |
 | P21 | DONE / ROUTE CLOSED | test source-batch-conditioned monotone quantiles against source-batch Gaussian | 12 dedicated tests; 175 focused tests; two byte-exact unused-row confirmations | `bdffb94` | retain Gaussian mechanism evidence; reject quantile extension |
 | P22 | DONE / LINEAR ROUTE CLOSED | reproduce spatially invariant Lab statistics and test a generated-data residual ridge mapper | 8 dedicated tests; 183 focused tests; two byte-exact reserved-row runs | `104d7b3`, `0e8235a` | keep extractor; reject linear mapper and nonlinear rescue on same contract |
+| P23 | DONE / EXTERNAL ROUTES CLOSED | reproduce obtainable CanonCGT/NLUT assets and audit StatLUT/SA-LUT/Neural Preset release boundaries | CanonCGT 20 focused tests and two byte-exact 6x6 reports; pinned rights/assets; no RGB retained | `208dfa8`, `f406234` | retain controls; no product promotion |
+| P24 | DONE / DELIVERY READY | refresh both concurrent tasks, exercise fit/replay/research CLI, run full and clean-merge test evidence | 1081 pass/1 skip/36 known environment failures; fit/replay output hashes exact; latest-main synthetic merge 196/196 pass | delivery evidence commit | repository owner may merge after normal review |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
