@@ -5439,3 +5439,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   range, norm and inverse gates plus parameter/strength/bias bounds. Failure
   closes without anchors, temperature, affine wrapper, optimizer or gate
   rescue. A pass is representation evidence only. Goal remains ACTIVE.
+
+## 2026-07-28 - Implement and close U5.R2AG1 bounded convex-gradient map
+
+- **Implementation:** add a project-owned 16-anchor explicit map with
+  no-clamp in-cube output, analytic SPD Jacobian, strict serialization and a
+  bounded damped-Newton inverse. Fit only 65 raw scalars with deterministic
+  CPU float64 Adam; no neural network, photograph or external implementation.
+- **Verification before formal execution:** five focused tests cover exact
+  identity/replay/partition, analytic-versus-finite-difference Jacobian,
+  bounded SPD inversion, deterministic fitting and invalid input rejection.
+  `compileall`, `git diff --check` and the complete CPU suite pass
+  (`1030 passed`). Implementation commit is `608bcd0...ebe11f`.
+- **Formal evidence:** two independent reports are byte-identical at
+  `33cdc6b...c2df`; repeated decisions are byte-identical at
+  `7a265ba0...be0e`. Config SHA is `224ce225...91a9e`.
+- **Result:** exact identity, 65-parameter, range, strength/bias, analytic
+  eigenvalue/determinant/norm, inverse and serialization gates pass.
+  Positive-warm passes fidelity (`.009446`, `65.71%` affine gain), while
+  density-cyan fails at `.040467` versus `.015` despite `42.32%` affine gain.
+  Non-identity partition parity also misses exactness by 1–2 float64 ulps.
+- **Decision/propagation:** `close_frozen_gate_failure`. Do not add anchors,
+  affine wrappers, lower temperature, search optimizer, relax tolerance or
+  repair partition arithmetic. O0 remains the retained synthetic-capable safe
+  representation. Stock/data/LSM gates remain unchanged. Goal stays ACTIVE
+  and selects a distinct algorithm-priority leaf.

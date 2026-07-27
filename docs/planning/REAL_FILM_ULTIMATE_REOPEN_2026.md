@@ -436,3 +436,13 @@ positive-orientation explicit map by construction. AG1 may test its 65 fitted
 scalars on O0's existing paired synthetic controls only. Optimal transport
 still selects a canonical distribution map rather than identifying a
 physical film transform; no real pixels, unpaired fit or stock claim opens.
+
+AG1 closes that compact family without weakening the construction. Exact
+repeat, range, identity, analytic SPD/determinant/norm, inverse and
+serialization gates pass. The positive-film control passes at `.00945` RGB
+RMSE, but the density control remains `.04047` against the frozen `.015`
+ceiling; whole/partition execution also differs by 1–2 float64 ulps against
+an exact gate. No anchor-count, affine-wrapper, temperature, optimizer or
+tolerance rescue opens. O0 remains the retained synthetic-capable safe
+representation. See
+`docs/U5_R2AG1_BOUNDED_CONVEX_GRADIENT_RESULTS.md`.

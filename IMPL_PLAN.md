@@ -421,6 +421,13 @@ challenge O0 on the same paired synthetic controls and gates. This does not
 authorize unpaired histogram fitting: quadratic-cost OT is a canonical
 palette map, not the physical digital-to-film operator.
 
+AG1 is complete and closed. Two reports are byte-identical and every analytic
+safety, inverse and serialization gate passes. Positive-warm reaches `.00945`
+confirmation RMSE, but density-cyan remains `.04047` against `.015`;
+whole/partition evaluation additionally differs by 1–2 ulps against the exact
+gate. Do not add anchors, attach affine, search temperature/optimizer or relax
+exactness. O0 remains the retained safe synthetic representation.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

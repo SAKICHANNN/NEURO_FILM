@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ag1-bounded-convex-gradient-representation-v1",
+  "decision": "close_frozen_gate_failure",
+  "software_commit": "608bcd0db4074d3e71f12c35cdfc3cc91febe11f",
+  "config_file_sha256": "224ce2256c88188a9145d6d81ac50d1eb26820117608bc051e42b2160c191a9e",
+  "run_a_report_sha256": "33cdc6b6931c94a134c957dbf2f9d186e27878803f42a0ba65f3a981b910c2df",
+  "run_b_report_sha256": "33cdc6b6931c94a134c957dbf2f9d186e27878803f42a0ba65f3a981b910c2df",
+  "formal_decision_sha256": "7a265ba00a3e39c5a72a9ab211b0e67258c96ab53747d57ebfcfa00651adbe0e",
+  "reports_byte_identical": true,
+  "failed_checks": [
+    "confirmation_fidelity",
+    "partition_parity"
+  ],
+  "targets": {
+    "density_cyan_s50": {
+      "confirmation_rgb_rmse": 0.04046688473680557,
+      "global_affine_confirmation_rgb_rmse": 0.07015506931892528,
+      "improvement_over_global_affine_fraction": 0.42317946329946704,
+      "minimum_analytic_jacobian_eigenvalue": 0.44497464499257394,
+      "minimum_analytic_jacobian_determinant": 0.0906736178691382,
+      "maximum_analytic_jacobian_spectral_norm": 1.855363524971047,
+      "inverse_roundtrip_maximum_absolute_error": 1.9656498650988397e-12,
+      "partition_maximum_absolute_error": 2.220446049250313e-16
+    },
+    "identity": {
+      "confirmation_rgb_rmse": 0.0,
+      "minimum_analytic_jacobian_eigenvalue": 1.0,
+      "minimum_analytic_jacobian_determinant": 1.0,
+      "inverse_roundtrip_maximum_absolute_error": 0.0,
+      "partition_maximum_absolute_error": 0.0
+    },
+    "positive_warm_s35": {
+      "confirmation_rgb_rmse": 0.009446311202836668,
+      "global_affine_confirmation_rgb_rmse": 0.0275458401572194,
+      "improvement_over_global_affine_fraction": 0.6570694105200158,
+      "minimum_analytic_jacobian_eigenvalue": 0.6513199953794138,
+      "minimum_analytic_jacobian_determinant": 0.27824639596226897,
+      "maximum_analytic_jacobian_spectral_norm": 1.3868856200932065,
+      "inverse_roundtrip_maximum_absolute_error": 1.375788372115494e-12,
+      "partition_maximum_absolute_error": 1.1102230246251565e-16
+    }
+  },
+  "branch": "Close without anchor-count, affine-wrapper, temperature, optimizer, tolerance, or partition-parity rescue. Retain O0 as the synthetic-capable safe representation.",
+  "claim_ceiling": "clean-room paired-synthetic representation evidence for a compact bounded convex-gradient explicit colour operator; no unpaired operator identification, film, stock, calibration, authenticity, preference or production claim"
+}

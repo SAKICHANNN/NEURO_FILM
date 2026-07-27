@@ -415,3 +415,6 @@ AG0/AG1 are likewise representation controls outside the stock evidence DAG.
 The bounded convex-gradient map may be safe and compact, but fitting it to
 unpaired stock histograms remains forbidden and would not identify a film
 operator. No outcome changes current stock, pixel, connectivity or LSM gates.
+AG1 now closes on insufficient density-control capacity: all analytic safety
+properties hold, while the frozen density fidelity gate fails. This does not
+alter any stock evidence grade or authorize a larger unpaired model.
