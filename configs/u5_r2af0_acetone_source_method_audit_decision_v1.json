@@ -1,0 +1,56 @@
+{
+  "schema_version": "u5-r2af0-acetone-source-method-audit-decision-v1",
+  "decision": "published_selector_excluded_tokenizer_stress_only",
+  "paper": {
+    "arxiv_id": "2604.00530",
+    "version": "v1",
+    "date": "2026-04-01"
+  },
+  "official_repository": {
+    "url": "https://github.com/martian422/AceTone",
+    "revision": "916393b3f26bdf89c3d939cc5f2a9a3c115ccbc5",
+    "license": "Apache-2.0",
+    "license_sha256": "6d1d968fb225eca367cb7f0b8831ab012a35d92b547e945e17ef8e7b05c3e5cc"
+  },
+  "tokenizer_checkpoint": {
+    "path_in_external_repository": "model/acetone-vqvae-d64.pt",
+    "bytes": 21383912,
+    "sha256": "115e4e8c147655fe0ae0c7fd494ec6cd3a8ff5a441ce536a886edb1ea556ef92",
+    "epoch": 489,
+    "reported_validation_psnr_db": 35.17987159921341,
+    "codebook_size": 256,
+    "embedding_dim": 64,
+    "hidden_channels": 64
+  },
+  "public_assets": {
+    "preview_model_revision": "9416b259dec1bf7bb01ba2dab38cf6470cfa98f0",
+    "preview_model_card_license": "apache-2.0",
+    "transfer_benchmark_revision": "b504dfc28882281b1e77511227153294a6782360",
+    "transfer_benchmark_rows": 1024,
+    "transfer_benchmark_declared_license": null
+  },
+  "findings": {
+    "complete_selector_is_generative": true,
+    "final_rgb_is_explicit_lut_render": true,
+    "tokenizer_output_bounded_by_sigmoid": true,
+    "tokenizer_has_positive_jacobian_constraint": false,
+    "tokenizer_has_monotonicity_constraint": false,
+    "tokenizer_has_invertibility_constraint": false,
+    "training_lut_asset_manifest_released": false,
+    "acetone_800k_released": false,
+    "stock_or_film_operator_evidence": false
+  },
+  "allowed_next": [
+    "one exact-checkpoint synthetic topology stress test on analytic safe LUTs"
+  ],
+  "forbidden": [
+    "Qwen or autoregressive LUT-token generation",
+    "GRPO or generative training",
+    "benchmark image download",
+    "training or fine-tuning",
+    "current-project pixel fitting",
+    "decoder modification or topology repair",
+    "film, stock, calibration, reference or product claim"
+  ],
+  "claim_ceiling": "external learned LUT representation source audit only"
+}

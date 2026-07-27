@@ -398,3 +398,10 @@ non-basic differences in every common-output family, all eight sampled LUTs
 exceed the frozen local-orientation reversal ceiling. This cannot update any
 stock evidence grade or become a teacher. It is retained only as motivation
 for a separately defined orientation-preserving explicit representation.
+
+AF0 is another algorithm-control sibling, not a stock-data node. AceTone's
+published Qwen/GRPO reference selector is generative and excluded; its
+training LUT corpus is not an evidence-backed film corpus. The exact released
+VQ-VAE may be tested only on synthetic, analytic safe LUTs to determine
+whether compression introduces colour-space folds. Even a pass would be
+representation evidence only and cannot change any SF/RF/LSM data gate.

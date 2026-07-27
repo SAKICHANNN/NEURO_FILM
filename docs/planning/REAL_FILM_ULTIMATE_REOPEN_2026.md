@@ -412,3 +412,12 @@ algorithm evidence only; it opens no visual stage, stock evidence, fitting,
 teacher bank, LSM or integration. Projection, smoothing, clamping and
 post-result profile/threshold search are forbidden by the frozen branch. See
 `docs/U5_R2AE1_SPECTRAL_FILM_LUT_STRUCTURAL_BANK_RESULTS.md`.
+
+`U5.R2AF0` separately audits AceTone and rejects its published Qwen/GRPO
+selector under the non-generative contract. The released tokenizer is a
+compact explicit-LUT representation, but `[0,1]` sigmoid output is not a
+topology certificate: its objective has no monotonicity, positive-Jacobian or
+invertibility term, and its training LUT corpus is not lineage-released. One
+synthetic AF1 stress may test whether the exact checkpoint preserves already
+safe analytic LUTs. No photos, benchmark acquisition, training, film evidence
+or AE1 repair opens. See `docs/U5_R2AF0_ACETONE_SOURCE_METHOD_AUDIT.md`.

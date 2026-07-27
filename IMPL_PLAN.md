@@ -390,6 +390,18 @@ profiles after this result. A future orientation-preserving explicit
 parameterization must be a distinct preregistered hypothesis, not an AE1
 rescue.
 
+U5.R2AF0 audits AceTone as one such distinct representation lead. Its complete
+reference/text selector is explicitly generative: Qwen autoregressively emits
+64 LUT tokens and GRPO aligns sampled outputs. That path is excluded even
+though final pixels are rendered by a LUT. The reported 10,000-filter
+lineage/full AceTone-800K corpus is not released, and the public 1,024-row
+benchmark has no declared dataset licence. Only the repository-included
+Apache-2.0 VQ-VAE checkpoint may enter AF1 as a synthetic representation
+stress. Its sigmoid bounds values, but MSE/commitment training and
+unconstrained noise/matrix augmentation provide no topology guarantee. AF1
+must test already safe analytic LUTs under frozen Jacobian gates; it cannot
+run Qwen, use photographs, train, repair the decoder or claim film validity.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

@@ -5315,3 +5315,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   replay, folding/range and matched-basic diversity gates. No current-pixel
   fitting/training, teacher, LSM, stock truth or product integration. Goal
   remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AF0 AceTone source/method audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AF0`; DRPT L2/Mode A,
+  `dev-research-reliability` primary with AI/ML, research, plan, agent-log and
+  structure disciplines as read-only secondary reviewers.
+- **Exact source:** pin official `martian422/AceTone` at
+  `916393b...ccbc5`, arXiv `2604.00530v1`, Apache-2.0 code and the included
+  21,383,912-byte tokenizer checkpoint at SHA-256 `115e4e8c...6ef92`.
+- **Boundary:** the complete method autoregressively generates LUT tokens with
+  Qwen and GRPO and is therefore excluded by the non-generative-AI contract.
+  The 10,000-filter manifest/full AceTone-800K corpus is not released; the
+  public 1,024-row transfer benchmark has no declared dataset licence and was
+  not downloaded.
+- **Topology finding:** the tokenizer uses voxel MSE plus VQ commitment and a
+  sigmoid output, without monotonicity, positive-Jacobian or invertibility
+  constraints. Training augmentation includes sigma `.05` smooth noise and
+  an unconstrained random `3x3` warp.
+- **Decision/handoff:** allow one exact-checkpoint AF1 synthetic stress on
+  analytic orientation-preserving LUTs. No Qwen, photographs, benchmark,
+  training, decoder repair, film/stock/reference claim or integration. Goal
+  remains ACTIVE.
