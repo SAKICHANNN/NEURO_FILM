@@ -8,15 +8,15 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P45 implementation head:
-  `7b0ec11dbc9433e8babe5b3727e5a41138eba43f`;
+- complete P1-P46 implementation head:
+  `d55142ebf7e1189c2e179b7043aefb0419406760`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
-  `f309c978522874f585ab8ed0edc008505045544b`;
+  `c20c14ef7c77026f3e4c1fe38557654d06609b67`;
 - D-PCT read-only snapshot:
-  `ef9a4cd4ed174ba28ff88b50d93d97af8e900603`;
+  `b9642091223c202bdc5c5321a90e7fe6a4959a2e`;
 - conflict-free main/payload merge tree:
-  `d69c3b3c03cf2b262b7bd453e81f62fbeab874e7`.
+  `ff0152516edb0349c0471e7a170c0c500f2aa00a`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -35,6 +35,8 @@ The consumer module implements:
   guards;
 - exact-wheel local invocation, frozen A1/A4/A5 execution and a strict
   two-stage successor-candidate intake after the current capability failed;
+- deterministic failure-signature analysis showing universal overcorrection,
+  weak clipping association and source-context-dependent bundle drift;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -61,9 +63,9 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..7b0ec11`; do not copy files manually and do not import
+2. Review `c03c321..d55142e`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 7b0ec11`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> d55142e`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -77,10 +79,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 541 passed;
-- latest isolated consumer full suite: 1347 passed, one skipped, 36 unchanged
+- latest consumer combined color-match/FilmFX suite: 550 passed;
+- latest isolated consumer full suite: 1356 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 15 focused tests passed and four
+- latest detached synthetic main merge: 24 focused tests passed and four
   exact-wheel tests skipped because ignored package evidence is absent; the
   temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
@@ -96,7 +98,8 @@ dirty worktree, Ultimate tracker and product integration decisions.
    open; cross-compilation is not runtime proof.
 4. The main owner must review and merge the payload.
 
-D-PCT `ef9a4cd` closes ROGR-v0 after its preregistered development gate fails;
-it does not open the confirmatory set or publish a successor package. BMKL and
-other development results likewise remain non-callable research evidence.
-None may be substituted into the consumer by algorithm name.
+D-PCT `b964209` starts sealed RGIN-v0 under
+`reference-only-shared/shared-bundle` semantics, but it has no calibration
+pass, model or invocation package. BMKL, ROGR and other development results
+likewise remain non-callable research evidence. None may be substituted into
+the consumer by algorithm name.

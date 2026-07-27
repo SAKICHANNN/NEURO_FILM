@@ -1814,6 +1814,30 @@
   mutation tests, exact repeat on both runs, propagation and equal-peer
   handoff.
 
+## 2026-07-28 - Execute P46 and isolate failure mechanisms
+
+- Implementation: `d55142e` adds a strict timing-independent aggregator and
+  nine mutation/identity/signature tests.
+- Replay: both complete P44 progress inputs produce byte-identical report SHA
+  `3512d4f4...c9fc` and stable evidence `b3410168...8fe3`.
+- Known rows: 30/30 candidate errors exceed source errors; median/min/max
+  magnification `3.013/1.117/6.694`; 30 unique bundles/transforms.
+- Gamut diagnosis: 28/30 regressions occur at clipping <=5%; median clipping
+  `0.894%`; clipping/error-ratio Pearson `0.143`. Clipping alone is not the
+  dominant mechanism.
+- Context diagnosis: 6/6 bundle pairs change and 6/6 probes fail despite
+  median invocation clipping `0.401%`. Joint source/reference fitting is an
+  A5 hazard.
+- Photographic diagnosis: neutral 6/6, boundary 4/6 and semantic hue 1/6
+  fail, so shared semantics alone cannot replace bounded neutral/boundary
+  controls.
+- Verification: 12 focused, 550 combined and full 1356 pass/1 skip/36
+  unchanged. Latest main `c20c14e`, zero overlap, merge tree
+  `ff015251...00a`; fresh merge 24 pass/4 expected wheel-evidence skip.
+- Producer propagation: RGIN-v0 at `b964209` declares the relevant
+  reference-only/shared future semantics and uncertainty shrinkage, but has
+  no pass/model/capability/package. It remains below P45 intake.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
