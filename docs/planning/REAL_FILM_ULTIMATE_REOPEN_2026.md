@@ -421,3 +421,11 @@ invertibility term, and its training LUT corpus is not lineage-released. One
 synthetic AF1 stress may test whether the exact checkpoint preserves already
 safe analytic LUTs. No photos, benchmark acquisition, training, film evidence
 or AE1 repair opens. See `docs/U5_R2AF0_ACETONE_SOURCE_METHOD_AUDIT.md`.
+
+AF1 then rejects that tokenizer before photographs. All controls and exact
+repeat pass, but every decoded safe analytic LUT has `7.54–10.60%` negative
+Jacobian cells and fails RGB/Delta-E fidelity; identity itself folds at
+`10.60%`. The sigmoid range bound and zero interior clipping do not rescue
+orientation. No decoder, checkpoint, projection, Qwen, visual, training or
+product branch opens. See
+`docs/U5_R2AF1_ACETONE_TOKENIZER_TOPOLOGY_RESULTS.md`.

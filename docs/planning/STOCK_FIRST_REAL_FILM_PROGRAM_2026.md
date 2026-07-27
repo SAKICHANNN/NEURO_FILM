@@ -405,3 +405,8 @@ training LUT corpus is not an evidence-backed film corpus. The exact released
 VQ-VAE may be tested only on synthetic, analytic safe LUTs to determine
 whether compression introduces colour-space folds. Even a pass would be
 representation evidence only and cannot change any SF/RF/LSM data gate.
+
+AF1 closes the tokenizer representation with all controls intact: each of
+eight safe analytic LUTs reconstructs with substantial orientation reversal
+and fidelity error. This is generic learned-representation negative evidence,
+not a stock-data result, and changes no SF/RF evidence grade or LSM gate.

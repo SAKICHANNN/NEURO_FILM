@@ -402,6 +402,16 @@ unconstrained noise/matrix augmentation provide no topology guarantee. AF1
 must test already safe analytic LUTs under frozen Jacobian gates; it cannot
 run Qwen, use photographs, train, repair the decoder or claim film validity.
 
+AF1 closes the released tokenizer. Two independent exact CPU runs and every
+source/duplicate/negative control pass, while all eight decoded analytic LUTs
+fail both topology and fidelity. Negative-Jacobian fractions are
+`7.54–10.60%`; even identity reconstructs at `10.60%`, RMSE `.0661` and
+median Delta E76 `11.14`. Range and clipping pass, which directly demonstrates
+that sigmoid-bounded LUT output is not an artifact-safety guarantee. Do not
+search decoder/loss/checkpoint settings or repair outputs. A future learned
+candidate must be orientation-preserving by construction or emit simpler
+certifiable parameters.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

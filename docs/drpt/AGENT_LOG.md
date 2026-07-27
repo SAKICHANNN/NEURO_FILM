@@ -5383,3 +5383,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Add a subprocess `--help` regression for both CLIs. Six focused tests and
   the complete suite pass (`1025 passed`). No population, gate, checkpoint,
   external model or metric changed; formal metrics remain unread.
+
+### Formal AF1 result and integration
+
+- **Lineage:** evaluator `c4c37e6...ca5c9`, external revision
+  `916393b...ccbc5`, exact checkpoint `115e4e8c...6ef92`, canonical config
+  `2388fde6...c156`, manifests `ca93ef5f...5fd0` and
+  `3d5daf68...f023`, report `83aea614...22f`; repeat report is byte-identical.
+- **Controls:** all source topology/range controls, the 100% negative axis-swap
+  control, exact two-run arrays/codes and duplicate identity pass.
+- **Failure:** all eight decoded LUTs fail orientation at `7.54–10.60%`
+  negative cells and fail RMSE/Delta-E fidelity. Identity alone has `10.60%`
+  negative cells, minimum determinant `-2.3935`, RMSE `.0661` and median/p95
+  Delta E76 `11.14/27.57`. Range, clipping and spectral-norm gates pass.
+- **Decision/handoff:** close `close_topology_failure` with fidelity failure
+  independently sufficient. No decoder/loss/checkpoint search, projection,
+  smoothing, Qwen, photos, visual stage, training, film claim or integration.
+  Continue with a distinct orientation-preserving explicit parameterization
+  or another legal algorithm leaf. Goal remains ACTIVE.

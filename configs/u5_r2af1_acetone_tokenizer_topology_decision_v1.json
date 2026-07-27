@@ -1,0 +1,41 @@
+{
+  "schema_version": "u5-r2af1-acetone-tokenizer-topology-decision-v1",
+  "decision": "close_topology_failure",
+  "evaluator_commit": "c4c37e6ab9196f85df14075a4f439c8c72aca5c9",
+  "external_revision": "916393b3f26bdf89c3d939cc5f2a9a3c115ccbc5",
+  "checkpoint_sha256": "115e4e8c147655fe0ae0c7fd494ec6cd3a8ff5a441ce536a886edb1ea556ef92",
+  "config_file_sha256": "09ad3e993d9dee0f4d4a04cf2744a3bffe99033e0ee36160f3f200bff08b75bf",
+  "canonical_config_sha256": "2388fde699e92045b621bb08f2dbc5fcb67c287ef8fb4579dd57efd11fdec156",
+  "run_a_manifest_sha256": "ca93ef5fe9ac58b69aee6376ce141fc50123cc78f3824572e51cc19e091b5fd0",
+  "run_b_manifest_sha256": "3d5daf6889da4637816476e207c03b4849f8c57c5e869671f5324022b4d9f023",
+  "formal_report_sha256": "83aea6148af7f8660062d779edb9ccc2fdad1091611bcb2149e2fd53dc46422f",
+  "controls": {
+    "source_controls_pass": true,
+    "negative_metric_control_fraction": 1.0,
+    "negative_metric_control_pass": true,
+    "exact_repeat": true,
+    "duplicate_exact": true
+  },
+  "summary": {
+    "population_count": 8,
+    "survivor_count": 0,
+    "topology_pass": false,
+    "fidelity_pass": false,
+    "range_and_clipping_pass": true,
+    "negative_jacobian_fraction_range": [0.07535832969688833, 0.1059716021617267],
+    "minimum_jacobian_determinant_range": [-2.3934768883021444, -0.925852129072186],
+    "rgb_rmse_range": [0.05123058673149265, 0.06607176638281513],
+    "median_delta_e76_range": [8.287264380415351, 11.138594502915888],
+    "p95_delta_e76_range": [21.76313031485303, 27.569978974683494],
+    "new_interior_clipping_fraction_maximum": 0.0
+  },
+  "forbidden_followup": [
+    "decoder, loss, codebook, checkpoint or gate search",
+    "projection, smoothing, clipping or decoded-LUT repair",
+    "Qwen or GRPO selector execution",
+    "photograph or benchmark evaluation",
+    "training or current-pixel fitting",
+    "film, stock, reference, calibration or product claim"
+  ],
+  "claim_ceiling": "synthetic negative evidence for an unconstrained learned LUT representation"
+}
