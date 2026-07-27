@@ -283,3 +283,12 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - The batch-conditioned contract is explicitly non-reusable and research-only.
 - Its negative result adds no cross-task dependency and changes no product or
   film-business boundary.
+
+### 2026-07-27 StatLUT-lite isolation
+
+- P22 uses only programmatically generated palettes/operators and a paper
+  specification. It imports no third-party code, weight or real pixel.
+- All mapper outputs are bounded parameters consumed by an explicit operator;
+  no final-RGB neural generation exists.
+- The linear route closes and creates no main/D-PCT dependency or product
+  promotion. The feature extractor remains isolated under research.

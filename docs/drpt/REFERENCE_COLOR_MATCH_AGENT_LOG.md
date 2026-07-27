@@ -674,3 +674,21 @@
 - Handoff: quantile extension closes. Synthetic Gaussian mechanism evidence
   cannot reverse P13's real-matrix rejection or become a reference-only
   reusable product recipe.
+
+## 2026-07-27 - Implement Lab extractor and close linear residual mapper
+
+- Node/parent goal: P22 / learned-parameter Look Approximation intake.
+- Research source: July 2026 StatLUT preprint; spatially invariant Lab
+  statistics and explicit smooth LUT architecture. No code/weight was found
+  or imported.
+- Change: implement validated soft L, sqrt-ab and conditional-L|ab features;
+  test a generated-data ridge predicting nine bounded operator parameters.
+- Confirmation: reserved stress indices 16--31. Median/p90 grid RMSE
+  `0.1267/0.1814`, captured style `-104.94%`, identity max `0.1637`,
+  same-look `0.1222`; all gates fail.
+- Repeat: report ID `f1e2bdb3...41eb`, SHA `0b4cf6c9...8716` byte-exact.
+- Verification: 8 dedicated and 183 focused tests, compileall and diff check.
+- Commits: `104d7b3` (`feat: add spatially invariant Lab statistics`) and
+  `0e8235a` (`research: test Lab statistics residual mapper`).
+- Handoff: keep the extractor, close the linear mapper. Do not add capacity on
+  the same failed identity/replicate contract without new assets and evidence.

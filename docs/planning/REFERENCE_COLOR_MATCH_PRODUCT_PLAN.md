@@ -86,6 +86,7 @@ with a selected stock, but reference matching alone is labeled
 | P19 | DONE / ROUTE CLOSED | audit and test a research-only empirical neutral-photography moment prior | 16 dedicated tests; 167 focused tests; three byte-exact artifact builds; two byte-exact confirmation runs | `9d82eda`, `e7317f1` | retain negative evidence; product stays identity |
 | P20 | DONE / ROUTE CLOSED | test a bounded affine plus monotone-quantile non-moment challenger | 14 dedicated tests; 171 focused tests; two byte-exact stress-confirmation runs | `f73e3ef` | retain negative evidence; do not tune same candidate |
 | P21 | DONE / ROUTE CLOSED | test source-batch-conditioned monotone quantiles against source-batch Gaussian | 12 dedicated tests; 175 focused tests; two byte-exact unused-row confirmations | `bdffb94` | retain Gaussian mechanism evidence; reject quantile extension |
+| P22 | DONE / LINEAR ROUTE CLOSED | reproduce spatially invariant Lab statistics and test a generated-data residual ridge mapper | 8 dedicated tests; 183 focused tests; two byte-exact reserved-row runs | `104d7b3`, `0e8235a` | keep extractor; reject linear mapper and nonlinear rescue on same contract |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -346,6 +347,22 @@ improves 40/48 with median `+9.32%`; quantile also improves 40/48 with median
 Gaussian result remains synthetic mechanism evidence only because the earlier
 real matrix failed its product gates and a batch-conditioned recipe is not a
 reference-only reusable recipe.
+
+P22 follows the July 2026 StatLUT paper's published spatially invariant feature
+idea without copying a model or claiming reproduction: soft-binned Lab
+lightness, square-root joint chroma and chroma-conditioned lightness. The
+extractor is exactly invariant to pixel permutation and passes strict
+normalization tests. A compact generated-data ridge maps source/style/residual
+features to nine bounded explicit-operator parameters.
+
+The selected ridge (`alpha=100`) looks adequate on the visible validation
+distribution (`0.0279` median grid RMSE) but collapses on the frozen unused
+stress half: `0.1267` median, `0.1814` p90, median captured style `-104.94%`,
+and only 16.67% improve identity. Same-look replicate error is `0.1222` and
+identity-reference maximum error `0.1637`. Every gate fails, with byte-exact
+report ID `f1e2bdb3...41eb`, SHA-256 `0b4cf6c9...8716`. The extractor remains
+useful infrastructure; this linear residual mapper and an unprincipled
+capacity rescue on the same generated contract close.
 
 ### Film-business composition boundary
 
