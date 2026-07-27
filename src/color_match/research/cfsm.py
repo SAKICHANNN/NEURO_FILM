@@ -30,6 +30,7 @@ from src.roll2film.constrained import (
 )
 from src.roll2film.identification import estimate_gaussian_transport_operator
 from src.roll2film.lut import DenseLUT3D
+from src.roll2film.operators import AffineColorOperator
 
 from ..canonical import canonical_sha256
 from ..contracts import ReferenceMatchContractError
@@ -40,12 +41,16 @@ CFSM_BATCH_ALGORITHM_ID = "canonical-factorized-safe-match.batch-gaussian-v1"
 CFSM_ANALYTIC_ALGORITHM_ID = (
     "canonical-factorized-safe-match.analytic-photo-prior-v1"
 )
+CFSM_EMPIRICAL_ALGORITHM_ID = (
+    "canonical-factorized-safe-match.empirical-photo-prior-v1"
+)
 CFSM_CANDIDATE_SCHEMA_ID = "neuro-film.cfsm-candidate.v0"
 _SUPPORTED_ALGORITHM_IDS = frozenset(
     {
         CFSM_ALGORITHM_ID,
         CFSM_BATCH_ALGORITHM_ID,
         CFSM_ANALYTIC_ALGORITHM_ID,
+        CFSM_EMPIRICAL_ALGORITHM_ID,
     }
 )
 _ANALYTIC_PRIOR_SEED = 2026072701
@@ -352,6 +357,25 @@ def validate_cfsm_candidate(candidate: CFSMCandidate) -> None:
         raise ReferenceMatchContractError(
             "CFSM analytic canonical-prior diagnostics mismatch"
         )
+    if candidate.algorithm_id == CFSM_EMPIRICAL_ALGORITHM_ID and (
+        not candidate.diagnostics.canonical_prior_mode.startswith(
+            "empirical-neutral-photo-v1:"
+        )
+        or len(candidate.diagnostics.canonical_prior_mode)
+        != len("empirical-neutral-photo-v1:") + 64
+        or any(
+            character not in "0123456789abcdef"
+            for character in candidate.diagnostics.canonical_prior_mode[
+                len("empirical-neutral-photo-v1:") :
+            ]
+        )
+        or candidate.diagnostics.source_image_count < 4
+        or candidate.diagnostics.canonical_prior_sample_count
+        < candidate.diagnostics.source_image_count * 64
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM empirical canonical-prior diagnostics mismatch"
+        )
     expected_fallback = float(strength) == 0.0
     if (
         candidate.diagnostics.used_identity_fallback != expected_fallback
@@ -421,46 +445,30 @@ def _project_lut(
     return best_lut, lower, best_report
 
 
-def _fit_cfsm_from_prior(
+def _fit_cfsm_from_transport(
     reference: WorkingImage,
-    prior: np.ndarray,
+    estimate: AffineColorOperator,
     *,
     policy: CFSMProjectionPolicy,
     algorithm_id: str,
     prior_mode: str,
     source_image_count: int,
+    canonical_prior_sample_count: int,
 ) -> CFSMCandidate:
-    """Fit shared CFSM machinery after the canonical prior is frozen."""
+    """Project one frozen affine estimate into a replayable safe LUT."""
 
     resolved = policy
     _validate_policy(resolved)
     _validate_image(reference, "reference")
-    canonical_prior = np.asarray(prior, dtype=np.float64)
-    if (
-        canonical_prior.ndim != 2
-        or canonical_prior.shape[1] != 3
-        or len(canonical_prior) < 64
-        or not np.isfinite(canonical_prior).all()
-        or float(np.min(canonical_prior)) < 0.0
-        or float(np.max(canonical_prior)) > 1.0
-    ):
-        raise ReferenceMatchContractError(
-            "CFSM canonical prior must be finite Nx3 within [0, 1]"
-        )
     target = _reference_samples(reference, resolved.maximum_reference_samples)
     if len(target) < 64:
         raise ReferenceMatchContractError(
             "CFSM reference must contain at least 64 pixels"
         )
-    try:
-        estimate = estimate_gaussian_transport_operator(
-            canonical_prior,
-            [target],
-        )
-    except (ValueError, np.linalg.LinAlgError) as exc:
+    if not isinstance(estimate, AffineColorOperator):
         raise ReferenceMatchContractError(
-            "CFSM could not estimate a finite orientation-preserving transport"
-        ) from exc
+            "CFSM transport estimate must be AffineColorOperator"
+        )
     lut_grid = _cube_grid(resolved.lut_size)
     raw_values = estimate.apply(lut_grid)
     lut, strength, report = _project_lut(raw_values, lut_grid, resolved)
@@ -481,7 +489,7 @@ def _fit_cfsm_from_prior(
         used_identity_fallback=fallback,
         fallback_reason="safe-projection-collapsed" if fallback else None,
         reference_sample_count=len(target),
-        canonical_prior_sample_count=len(canonical_prior),
+        canonical_prior_sample_count=canonical_prior_sample_count,
         canonical_prior_mode=prior_mode,
         source_image_count=source_image_count,
         constraint_report=report,
@@ -504,6 +512,143 @@ def _fit_cfsm_from_prior(
     )
     validate_cfsm_candidate(candidate)
     return candidate
+
+
+def _fit_cfsm_from_prior(
+    reference: WorkingImage,
+    prior: np.ndarray,
+    *,
+    policy: CFSMProjectionPolicy,
+    algorithm_id: str,
+    prior_mode: str,
+    source_image_count: int,
+) -> CFSMCandidate:
+    """Fit shared CFSM machinery after a pixel-sample prior is frozen."""
+
+    resolved = policy
+    _validate_policy(resolved)
+    _validate_image(reference, "reference")
+    canonical_prior = np.asarray(prior, dtype=np.float64)
+    if (
+        canonical_prior.ndim != 2
+        or canonical_prior.shape[1] != 3
+        or len(canonical_prior) < 64
+        or not np.isfinite(canonical_prior).all()
+        or float(np.min(canonical_prior)) < 0.0
+        or float(np.max(canonical_prior)) > 1.0
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM canonical prior must be finite Nx3 within [0, 1]"
+        )
+    target = _reference_samples(reference, resolved.maximum_reference_samples)
+    try:
+        estimate = estimate_gaussian_transport_operator(
+            canonical_prior,
+            [target],
+        )
+    except (ValueError, np.linalg.LinAlgError) as exc:
+        raise ReferenceMatchContractError(
+            "CFSM could not estimate a finite orientation-preserving transport"
+        ) from exc
+    return _fit_cfsm_from_transport(
+        reference,
+        estimate,
+        policy=resolved,
+        algorithm_id=algorithm_id,
+        prior_mode=prior_mode,
+        source_image_count=source_image_count,
+        canonical_prior_sample_count=len(canonical_prior),
+    )
+
+
+def _symmetric_matrix_power(
+    matrix: np.ndarray,
+    power: float,
+) -> np.ndarray:
+    eigenvalues, eigenvectors = np.linalg.eigh(matrix)
+    if float(eigenvalues.min()) <= 0.0:
+        raise ReferenceMatchContractError(
+            "CFSM empirical covariance must be positive definite"
+        )
+    return (eigenvectors * np.power(eigenvalues, power)) @ eigenvectors.T
+
+
+def fit_cfsm_empirical_candidate(
+    reference: WorkingImage,
+    *,
+    prior_mean: np.ndarray,
+    prior_covariance: np.ndarray,
+    prior_id: str,
+    source_image_count: int,
+    source_pixel_count: int,
+    policy: CFSMProjectionPolicy | None = None,
+) -> CFSMCandidate:
+    """Fit CFSM from a frozen research-only neutral-photo moment artifact."""
+
+    resolved = policy or CFSMProjectionPolicy()
+    _validate_policy(resolved)
+    _validate_image(reference, "reference")
+    if (
+        not isinstance(prior_id, str)
+        or len(prior_id) != 64
+        or any(character not in "0123456789abcdef" for character in prior_id)
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM empirical prior_id must be canonical SHA-256"
+        )
+    if (
+        isinstance(source_image_count, bool)
+        or not isinstance(source_image_count, int)
+        or source_image_count < 4
+        or isinstance(source_pixel_count, bool)
+        or not isinstance(source_pixel_count, int)
+        or source_pixel_count < source_image_count * 64
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM empirical prior source counts are invalid"
+        )
+    mean = np.asarray(prior_mean, dtype=np.float64)
+    covariance = np.asarray(prior_covariance, dtype=np.float64)
+    if (
+        mean.shape != (3,)
+        or covariance.shape != (3, 3)
+        or not np.isfinite(mean).all()
+        or not np.isfinite(covariance).all()
+        or np.any(mean < 0.0)
+        or np.any(mean > 1.0)
+        or not np.allclose(covariance, covariance.T, atol=1e-12, rtol=0.0)
+        or np.any(np.diag(covariance) > 0.250000000001)
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM empirical prior moments are invalid"
+        )
+    target = _reference_samples(reference, resolved.maximum_reference_samples)
+    target_mean = target.mean(axis=0)
+    regularization = 1e-6
+    source_cov = covariance + regularization * np.eye(3)
+    target_cov = np.cov(target, rowvar=False) + regularization * np.eye(3)
+    source_sqrt = _symmetric_matrix_power(source_cov, 0.5)
+    source_inv_sqrt = _symmetric_matrix_power(source_cov, -0.5)
+    middle = source_sqrt @ target_cov @ source_sqrt
+    matrix = (
+        source_inv_sqrt
+        @ _symmetric_matrix_power(middle, 0.5)
+        @ source_inv_sqrt
+    )
+    matrix = 0.5 * (matrix + matrix.T)
+    estimate = AffineColorOperator(
+        matrix=matrix,
+        bias=target_mean - matrix @ mean,
+    )
+    return _fit_cfsm_from_transport(
+        reference,
+        estimate,
+        policy=resolved,
+        algorithm_id=CFSM_EMPIRICAL_ALGORITHM_ID,
+        prior_mode=f"empirical-neutral-photo-v1:{prior_id}",
+        source_image_count=source_image_count,
+        canonical_prior_sample_count=source_pixel_count,
+    )
 
 
 def fit_cfsm_candidate(
