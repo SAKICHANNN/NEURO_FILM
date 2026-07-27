@@ -5,28 +5,30 @@
   "objective": "Advance K-MCFM Ultimate stock-first real-film learning, FilmStyleSafe evaluation, and the deterministic non-generative product path under a hard severe-artifact veto while protecting existing code, data, commits and ignored outputs.",
   "objective_hash": "e8ec07900c391c50354d05533e7ff9852e67cce5373a1b1578c4915440a2c717",
   "branch": "research/fivek-auto-optimize-cache",
-  "head": "3de4ef38bccb9df854cd120a5dd4da95070900d4",
+  "head": "be70206794ce3866d4bb3a0072b924327d004192",
   "head_semantics": "repository_head_observed_before_state_checkpoint_edit",
-  "iteration": 88,
-  "current_node": "ULT > U5 > U5.R2 > U5.R2H0",
-  "current_leaf": "Audit film-specific spectral and sensitometric prior algorithms and obtainable data",
-  "phase": "RECON",
-  "last_verified_commit": "3de4ef38bccb9df854cd120a5dd4da95070900d4",
+  "iteration": 89,
+  "current_node": "ULT > U5 > U5.R2 > U5.R2Z1",
+  "current_leaf": "Freeze asymmetric query-operator applicability audit for the ClassNeg case-bank Oracle gap",
+  "phase": "FREEZE",
+  "last_verified_commit": "be70206794ce3866d4bb3a0072b924327d004192",
   "last_full_test": {
     "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
-    "passed": 775,
+    "passed": 984,
     "failed": 0,
-    "timestamp": "2026-07-24T00:10:00Z"
+    "timestamp": "2026-07-27T12:00:51Z"
   },
   "ready_leaves": [
-    "research_u5_r2h0_primary_sources_and_obtainable_data"
+    "freeze_u5_r2z1_asymmetric_query_operator_applicability"
   ],
-  "next_action": "Search primary papers, official manufacturer data and existing local assets for film-specific spectral/sensitometric explicit algorithms; build a claim-evidence-input matrix before freezing the smallest feasible experiment.",
+  "next_action": "Refresh live state, then freeze U5.R2Z1 before fitting: use ClassNeg only, development-only leave-one-case controls, separate query-content and operator-signature features, the simplest hard asymmetric applicability reranker, shared/random/shuffled and failed Z0 photometric baselines, a sealed confirmatory policy, structural/OOD gates and explicit no-router/no-visual/no-film branches. Commit and push the contract before any confirmatory target access.",
   "running_processes": [],
   "waiting_until": null,
   "needs_human_authority": false,
   "authority_reason": null,
-  "dirty_files": [],
+  "dirty_files": [
+    ".codex/ (protected user-owned untracked directory; do not stage, edit, move or delete)"
+  ],
   "evidence_paths": [
     "docs/U1_6G4B_ROW_STAGE_INVARIANCE_RESULTS.md",
     "configs/u1_6g4b_row_stage_invariance_v1.json",
@@ -182,9 +184,19 @@
     "docs/planning/U5_R2H2_HARD_ROUTING_VISUAL_AUDIT_CONTRACT.md",
     "configs/u5_r2h2_hard_routing_visual_audit_v1.json",
     "docs/U5_R2H2_HARD_ROUTING_VISUAL_AUDIT_RESULTS.md",
-    "configs/u5_r2h2_hard_routing_visual_audit_decision_v1.json"
+    "configs/u5_r2h2_hard_routing_visual_audit_decision_v1.json",
+    "docs/planning/U5_R2Z0_FILMSET_CASE_RETRIEVAL_CONTRACT.md",
+    "configs/u5_r2z0_filmset_case_retrieval_v1.json",
+    "src/roll2film/filmset_case_retrieval.py",
+    "scripts/run_u5_r2z0_filmset_case_retrieval.py",
+    "tests/test_filmset_case_retrieval.py",
+    "docs/U5_R2Z0_FILMSET_CASE_RETRIEVAL_RESULTS.md",
+    "configs/u5_r2z0_filmset_case_retrieval_decision_v1.json",
+    "GOAL.md",
+    ".goal-engine/AGENT_PROGRESS.md",
+    "docs/CURSOR_GROK45_ULTIMATE_AUTONOMOUS_HANDOFF_20260727.md"
   ],
-  "max_session_stop_loops": 20,
-  "last_update_utc": "2026-07-24T00:10:00Z",
-  "selection_rationale": "H2 closes the exact router under its frozen visual gate while preserving both safe global looks. H0 is the nearest legal algorithm leaf and can progress through primary-source and obtainable-data research without reopening prohibited stock fitting."
+  "max_session_stop_loops": 30,
+  "last_update_utc": "2026-07-27T12:00:51Z",
+  "selection_rationale": "Z0 supplies qualifying paired evaluator Oracle value only for ClassNeg while both frozen input-only photometric selectors are worse than the shared O0; Velvia has no qualifying Oracle. Z1 is the nearest legal algorithm leaf because it tests a genuinely distinct asymmetric query-operator applicability hypothesis using development-only controls before any trained router, visual candidate, final-628 access or film claim. The Goal Engine CLI backend is unavailable on native Windows, so Cursor must use the installed goal-engine skill's agent-native loop on This Computer."
 }
