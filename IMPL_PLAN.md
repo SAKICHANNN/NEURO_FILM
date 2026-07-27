@@ -315,6 +315,15 @@ redistribution or product integration. This opens only a preregistered
 synthetic per-channel response diversity/safety pilot; it does not identify a
 digital-to-film operator, spectral/process/scan response or calibrated stock.
 
+U5.R2AB1 closes a DoRF multi-response bank under the frozen policy. All 46
+strict RGB triplets are strongly stylized and 27 pass every individual
+shared-curve, per-channel-power, joint-basic, neutral, derivative and range
+gate. The bank still fails because its closest two individual survivors are
+only `.001016` output RMSE apart versus the frozen `.02` minimum. This is the
+intended near-duplicate/strength-path protection, not evidence that the curves
+are bland. Keep at most one as a future descriptive synthetic prior; do not
+open AB2, image selection, stock-bank routing or post-result rescue.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

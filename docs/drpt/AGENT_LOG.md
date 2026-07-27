@@ -5054,3 +5054,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   already computed Lab vectors. Add a black-to-white Delta E = 100 regression.
   Candidate set, source curves, population, controls, gates and branches do
   not change. Formal reports must be rerun twice from the corrected commit.
+
+### Formal AB1 result and integration
+
+- **Exact lineage:** two reports from `a6895ca...39338` are byte-identical at
+  `ee64b659...d985`; config is `7d030b20...7c29` and report payload is
+  `f3a5e5f6...f655`.
+- **Individual evidence:** 46/46 pass style and joint-basic residual, 37/46
+  pass shared-curve residual, 42/46 pass power residual and 27/46 pass every
+  individual structural gate. Candidate median style spans 13.08–43.11.
+- **Bank failure:** closest survivors `agfacolor-futura-400CD` and
+  `agfacolor-hdc-400-plusCD` differ by only `.0010159` output RMSE, below the
+  frozen `.02` minimum. Survivor count passes but bank diversity fails.
+- **Decision/handoff:** close `insufficient_diversity`. Retain at most one
+  descriptive synthetic response prior; no AB2, photographs, post-result
+  deduplication/repair, stock bank, router, fitting, training or product
+  integration. Goal remains ACTIVE.

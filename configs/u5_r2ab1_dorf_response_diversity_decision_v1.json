@@ -1,0 +1,41 @@
+{
+  "schema_version": "u5-r2ab1-dorf-response-diversity-decision-v1",
+  "node": "U5.R2AB1",
+  "decision": "insufficient_diversity",
+  "software_commit": "a6895ca72de977d6776af3a04e3d4d60f3939338",
+  "config_sha256": "7d030b200f7bd47b6f2586301123906fbde646e5000753785197a65797797c29",
+  "archive_sha256": "d030d1ee3cd3243b412dd817b7479873f3680aaea33baaa9c127752880eacd63",
+  "report_file_sha256": "ee64b659c00bea9dc5855f121fbdff5e4f388ac4a71a5112819a00cb1f00d985",
+  "report_payload_sha256": "f3a5e5f65c46145d146ec379fa2725b6fb63594b2bc794f727fe89f24479f655",
+  "exact_repeat": true,
+  "candidate_count": 46,
+  "individual_survivor_count": 27,
+  "individual_gate_pass_counts": {
+    "style": 46,
+    "shared_curve_residual": 37,
+    "per_channel_power_residual": 42,
+    "joint_basic_residual": 46,
+    "neutral_chroma": 39,
+    "derivative_floor": 43,
+    "derivative_cap": 46,
+    "raw_range": 46
+  },
+  "bank": {
+    "minimum_candidate_survivors_pass": true,
+    "minimum_survivor_pairwise_output_rmse_pass": false,
+    "observed_minimum_pairwise_output_rmse": 0.0010158953030260727,
+    "frozen_minimum_pairwise_output_rmse": 0.02,
+    "closest_pair": [
+      "agfacolor-futura-400CD",
+      "agfacolor-hdc-400-plusCD"
+    ]
+  },
+  "allowed_use": "at most one descriptive historical response prior in future separately justified synthetic controls",
+  "ab2_allowed": false,
+  "image_rendering_allowed": false,
+  "stock_bank_allowed": false,
+  "router_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic evidence that named historical per-channel curves can be strong but do not form a sufficiently separated bank under the frozen policy"
+}
