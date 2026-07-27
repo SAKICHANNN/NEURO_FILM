@@ -68,6 +68,7 @@ with a selected stock, but reference matching alone is labeled
 | P6 | DONE | thin CLI + deterministic provenance report | 103 focused/preprocess tests pass | `33f5735` | revert commit |
 | P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | `c9fb7d9` | revert commit |
 | P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | `e1f03f6` | revert commit |
+| P9 | DONE | fail-closed photographic-tail and promotion adjudication | 125 focused tests; 30-pair full-resolution repeat; full suite 981 pass/36 known fail | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -274,6 +275,32 @@ as shadow floor below highlight ceiling; platform implementations must enforce
 both the JSON Schema and the documented canonical SHA-256 construction.
 The canonical byte grammar and frozen parity vector are specified in
 `docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md`.
+
+## Promotion adjudication boundary
+
+`src/color_match/promotion.py` and
+`scripts/evaluate_reference_match_promotion.py` make the A4 decision order
+executable:
+
+1. known-operator cross-content recovery and boundary tail;
+2. independently fitted recipe probes for neutral-axis chroma, tone reversal,
+   tone plateaus, new boundary pixels and extreme skin/sky/foliage hue motion;
+3. only after both automated gates pass, an independent blinded aesthetic
+   review with a zero-severe-artifact veto.
+
+Automated success returns `eligible-for-visual-review`, never `promoted`.
+Promotion requires at least 12 blinded rows, preference strictly above 50% and
+zero severe artifacts. The default known-operator gate requires at least 12
+cross-content rows, 75% improvement, positive 10% median gain, worst-row gain
+no lower than -10% and at most 5% new boundary pixels.
+
+The six-reference/30-cross-content Velvia known-look replay is rejected:
+5/30 rows improve, median improvement is -92.19%, worst is -344.87% and the
+maximum new-boundary fraction is 21.86%. Only two of six fitted recipes pass
+the photographic probe; the worst probe introduces 12.69% new boundary
+pixels. The portable report ID is
+`7e22df00...5c996`; paths remain provenance but are excluded from its
+content-bound identity.
 
 ## Verification and rollback
 

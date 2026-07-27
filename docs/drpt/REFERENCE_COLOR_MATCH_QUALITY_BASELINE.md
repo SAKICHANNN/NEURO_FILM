@@ -162,6 +162,40 @@ only after rendering, shape/colour state/gamut violations fail closed, and the
 reported automated metrics never promote a candidate without the independent
 visual/aesthetic gate.
 
+### Machine-executable promotion adjudication
+
+The A4 boundary is now executable rather than prose-only. The streaming runner
+fits all six reference recipes, evaluates the 30 cross-content rows one at a
+time, and then renders a frozen structural-colour probe through every recipe.
+It therefore does not hide reference-dependent tail risk behind one selected
+recipe and does not retain 30 full-resolution candidates in memory.
+
+The formal result reproduces the earlier matrix:
+
+- 5/30 improved and 25/30 regressed;
+- median improvement `-92.1932%`;
+- worst improvement `-344.8730%`;
+- maximum new-boundary fraction `21.8555%`;
+- two of six recipe probes pass and four fail;
+- worst recipe-probe new-boundary fraction `12.6946%`;
+- no tone reversal or plateau was detected;
+- worst neutral-chroma p95 is `7.6740`;
+- worst skin/sky/foliage hue-rotation p95 is `19.8072` degrees.
+
+The promotion decision is `rejected` for known-operator improvement rate,
+median, tail, new boundary and photographic-probe new boundary. No blind
+review is opened. This separates the content-identification failure from the
+absence of geometry rewriting: a pointwise renderer may be structurally clean
+yet still be the wrong photographic look.
+
+The ignored report is
+`outputs/reference_color_match_quality/promotion_v1/report.json`, with
+content-bound report ID `7e22df00...5c996` and file SHA-256
+`02483ad2...9534`. Its strict JSON Schema is
+`configs/schemas/reference_match_promotion_report_v1.schema.json`.
+Absolute paths are retained as local provenance but excluded from report
+identity; reference/source/target file hashes are included instead.
+
 The main neuro-film W1 task owns the current reference-identifiability research.
 This branch will consume a committed passing descriptor/head through an
 adapter; it will not duplicate the W1 experiment. The standalone D-PCT task

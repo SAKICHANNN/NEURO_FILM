@@ -285,3 +285,30 @@
   so finalizing v1 now does not invalidate an external consumer. Pixel output
   and guard decisions are unchanged.
 - Commit: `e1f03f6` (`fix: make reference identities language neutral`).
+
+## 2026-07-27 - Make photographic promotion fail closed
+
+- Parent: P9 / A4 photographic preference and severe-tail evidence.
+- Changed: added a frozen structural-colour probe, multi-recipe tail
+  aggregation, known-operator streaming aggregation, blind-review evidence
+  contract and a decision function that cannot promote from automated metrics
+  alone.
+- Reliability correction: both known-operator and probe validation now allow
+  only `1e-6` float32 gamut roundoff while raw values still participate in
+  boundary diagnostics. This admits the renderer's observed
+  `1.000000119...` output without clipping and rejects excursions above the
+  tolerance.
+- Runner: `scripts/evaluate_reference_match_promotion.py` fits one recipe per
+  reference, streams cross-content pairs, writes atomically, binds file hashes
+  and excludes local paths from canonical report identity.
+- Formal evidence: 30 cross-content rows reproduce 5 improved/25 regressed,
+  median `-0.921932`, worst `-3.448730`, maximum new boundary `0.218555`.
+  Two of six recipe probes pass; worst probe new boundary is `0.126946`.
+- Decision: baseline `rejected`; no blind review opens. Report ID
+  `7e22df00...5c996`, report SHA-256 `02483ad2...9534`.
+- Verification: 125 focused colour-match/preprocess/colour-engine tests pass;
+  the CLI report repeats exactly on identical inputs, remains identity-stable
+  after directory relocation, and validates against strict JSON Schema
+  2020-12. The full collection is 981 passed, one skipped and the same 36
+  known failures from absent ignored outputs and CRLF-sensitive frozen hashes;
+  no colour-match or adjacent validation test fails.

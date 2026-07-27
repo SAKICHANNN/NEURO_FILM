@@ -7,6 +7,7 @@ import pytest
 
 from src.color_match import (
     ReferenceMatchContractError,
+    aggregate_known_operator_samples,
     evaluate_known_operator_batch,
 )
 from src.preprocess import SourceProfile, WorkingImage
@@ -96,3 +97,65 @@ def test_known_operator_contract_rejects_misaligned_or_unsupported_inputs() -> N
             [image],
             sample_ids=[],
         )
+
+
+def test_known_operator_accepts_only_roundoff_scale_gamut_excursions() -> None:
+    source = _working(np.full((2, 2, 3), 0.4, dtype=np.float32))
+    roundoff = source.pixels.copy()
+    roundoff[0, 0, 0] = np.float32(1.0 + 1e-7)
+    result = evaluate_known_operator_batch(
+        [source],
+        [source],
+        [_working(roundoff)],
+        sample_ids=["roundoff"],
+    )
+    assert len(result.samples) == 1
+
+    out_of_contract = source.pixels.copy()
+    out_of_contract[0, 0, 0] = np.float32(1.0 + 2e-6)
+    with pytest.raises(ReferenceMatchContractError, match="tolerance"):
+        evaluate_known_operator_batch(
+            [source],
+            [source],
+            [_working(out_of_contract)],
+            sample_ids=["out-of-contract"],
+        )
+
+
+def test_streamed_sample_aggregation_matches_direct_batch() -> None:
+    sources = [
+        _working(np.full((2, 2, 3), value, dtype=np.float32))
+        for value in (0.2, 0.4)
+    ]
+    targets = [
+        _working(np.full((2, 2, 3), value, dtype=np.float32))
+        for value in (0.3, 0.5)
+    ]
+    candidates = [
+        _working(np.full((2, 2, 3), value, dtype=np.float32))
+        for value in (0.29, 0.7)
+    ]
+    direct = evaluate_known_operator_batch(
+        sources,
+        targets,
+        candidates,
+        sample_ids=["a", "b"],
+    )
+    rows = tuple(
+        evaluate_known_operator_batch(
+            [source],
+            [target],
+            [candidate],
+            sample_ids=[sample_id],
+        ).samples[0]
+        for sample_id, source, target, candidate in zip(
+            ("a", "b"),
+            sources,
+            targets,
+            candidates,
+        )
+    )
+
+    assert aggregate_known_operator_samples(rows) == direct
+    with pytest.raises(ReferenceMatchContractError, match="unique"):
+        aggregate_known_operator_samples((rows[0], rows[0]))

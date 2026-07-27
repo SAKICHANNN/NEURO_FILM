@@ -50,6 +50,12 @@ different binary64 bit patterns and therefore different identities.
 3. For a composition plan, remove the top-level `plan_id`.
 4. Encode the remaining object using the canonical rules above.
 5. Compute SHA-256 over the exact canonical bytes.
+
+Promotion-report identity follows the same byte grammar. Local absolute path
+maps are recorded for provenance but excluded from `report_id`; the report
+instead binds reference, source and target file SHA-256 maps. Moving identical
+evidence between Windows, macOS, Android or iOS storage therefore does not
+change the content-bound report identity.
 6. Encode the digest as 64 lowercase hexadecimal characters.
 
 The run report carries recipe identity but does not have a recursive internal

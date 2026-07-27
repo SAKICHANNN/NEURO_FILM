@@ -12,6 +12,8 @@ from src.preprocess import WorkingImage
 
 from .contracts import ReferenceMatchContractError
 
+_FLOAT32_GAMUT_TOLERANCE = 1e-6
+
 
 @dataclass(frozen=True)
 class KnownOperatorSampleMetrics:
@@ -37,6 +39,64 @@ class KnownOperatorBatchMetrics:
     median_improvement_fraction: float
     worst_improvement_fraction: float
     maximum_new_boundary_fraction: float
+
+
+def aggregate_known_operator_samples(
+    samples: Iterable[KnownOperatorSampleMetrics],
+) -> KnownOperatorBatchMetrics:
+    """Aggregate already evaluated rows without retaining image tensors."""
+
+    if isinstance(samples, (str, bytes, KnownOperatorSampleMetrics)):
+        raise ReferenceMatchContractError(
+            "samples must be an iterable of KnownOperatorSampleMetrics"
+        )
+    try:
+        rows = tuple(samples)
+    except TypeError as exc:
+        raise ReferenceMatchContractError(
+            "samples must be an iterable of KnownOperatorSampleMetrics"
+        ) from exc
+    if not rows or any(
+        not isinstance(row, KnownOperatorSampleMetrics) for row in rows
+    ):
+        raise ReferenceMatchContractError(
+            "samples must contain at least one KnownOperatorSampleMetrics"
+        )
+    ids = tuple(row.sample_id for row in rows)
+    if any(
+        not isinstance(sample_id, str) or not sample_id.strip()
+        for sample_id in ids
+    ):
+        raise ReferenceMatchContractError("sample IDs must be non-empty strings")
+    if len(set(ids)) != len(ids):
+        raise ReferenceMatchContractError("sample IDs must be unique")
+    improvements = np.asarray(
+        [row.median_improvement_fraction for row in rows],
+        dtype=np.float64,
+    )
+    boundaries = np.asarray(
+        [row.candidate_new_boundary_fraction for row in rows],
+        dtype=np.float64,
+    )
+    if (
+        not np.isfinite(improvements).all()
+        or not np.isfinite(boundaries).all()
+        or np.any((boundaries < 0.0) | (boundaries > 1.0))
+    ):
+        raise ReferenceMatchContractError(
+            "known-operator samples must contain finite valid metrics"
+        )
+    improved = int(np.count_nonzero(improvements > 0.0))
+    regressed = int(np.count_nonzero(improvements < 0.0))
+    return KnownOperatorBatchMetrics(
+        samples=rows,
+        improved_sample_count=improved,
+        regressed_sample_count=regressed,
+        improvement_rate=float(improved / len(rows)),
+        median_improvement_fraction=float(np.median(improvements)),
+        worst_improvement_fraction=float(np.min(improvements)),
+        maximum_new_boundary_fraction=float(np.max(boundaries)),
+    )
 
 
 def _images(
@@ -84,12 +144,14 @@ def _validate_triplet(
         )
     if any(
         not np.isfinite(image.pixels).all()
-        or float(np.min(image.pixels)) < 0.0
-        or float(np.max(image.pixels)) > 1.0
+        or float(np.min(image.pixels)) < -_FLOAT32_GAMUT_TOLERANCE
+        or float(np.max(image.pixels))
+        > 1.0 + _FLOAT32_GAMUT_TOLERANCE
         for image in images
     ):
         raise ReferenceMatchContractError(
-            f"known-operator sample {sample_id} must be finite and in gamut"
+            f"known-operator sample {sample_id} must be finite and within "
+            "float32 gamut tolerance"
         )
 
 
@@ -194,29 +256,12 @@ def evaluate_known_operator_batch(
                 ),
             )
         )
-    improvements = np.asarray(
-        [row.median_improvement_fraction for row in rows],
-        dtype=np.float64,
-    )
-    boundaries = np.asarray(
-        [row.candidate_new_boundary_fraction for row in rows],
-        dtype=np.float64,
-    )
-    improved = int(np.count_nonzero(improvements > 0.0))
-    regressed = int(np.count_nonzero(improvements < 0.0))
-    return KnownOperatorBatchMetrics(
-        samples=tuple(rows),
-        improved_sample_count=improved,
-        regressed_sample_count=regressed,
-        improvement_rate=float(improved / len(rows)),
-        median_improvement_fraction=float(np.median(improvements)),
-        worst_improvement_fraction=float(np.min(improvements)),
-        maximum_new_boundary_fraction=float(np.max(boundaries)),
-    )
+    return aggregate_known_operator_samples(rows)
 
 
 __all__ = [
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
+    "aggregate_known_operator_samples",
     "evaluate_known_operator_batch",
 ]

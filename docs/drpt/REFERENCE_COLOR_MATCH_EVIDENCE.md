@@ -172,6 +172,23 @@ closes stronger unpaired global moments/distribution fitting as the next
 product algorithm; it does not close canonicalized, paired-supervised or
 otherwise identified explicit-operator prediction.
 
+## Executable photographic promotion gate
+
+The promotion gate now streams known-operator rows, aggregates centre/tail
+metrics, evaluates every independently fitted recipe on a frozen neutral/tone/
+skin/sky/foliage probe, and requires a separate blinded aesthetic record before
+promotion. Automated evidence can reject or return
+`eligible-for-visual-review`; it cannot return `promoted` without at least 12
+blinded rows, preference above 50% and zero severe artifacts.
+
+The six-reference baseline formal report is `rejected`: 5/30 cross-content
+improvements, -92.19% median, -344.87% worst and 21.86% maximum new-boundary
+fraction. Four of six recipe probes also fail the 5% new-boundary tail, with a
+12.69% worst case. Two full-resolution pre-portability runs were byte-exact;
+the final content-bound report passes its strict schema with ID
+`7e22df00...5c996`. Relocating identical fixtures changes recorded paths but
+not report identity.
+
 ## Cross-platform payload boundary
 
 Recipe, composition and report now have strict JSON Schema 2020-12 definitions.
