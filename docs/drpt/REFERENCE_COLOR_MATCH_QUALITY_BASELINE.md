@@ -50,6 +50,20 @@ and reports one improved / five regressed samples, aggregate median improvement
 boundary fraction `10.9%`. Gamut-adjusted fraction and new encoding-boundary
 fraction are separate diagnostics and must not be conflated.
 
+The product guard freezes two independent v1 tail thresholds:
+
+- maximum gamut-adjusted fraction: 25%;
+- maximum newly introduced encoding-boundary fraction: 5%.
+
+On this slice it accepts the same-content positive control and rejects all five
+cross-content failures. Images `02`/`03` fail both gates, `05`/`07` fail the
+new-boundary gate, and `09` fails the gamut-adjustment gate. Rejected files are
+delivered as identity fallback with the candidate diagnostics and rejection
+reasons preserved.
+
+This is a safety result, not look-recovery success. Returning the source avoids
+the visible failure but does not satisfy the requested aesthetic match.
+
 Autonomous visual inspection agrees with the metric direction:
 
 - image `02` becomes too dark and warm;
@@ -66,7 +80,8 @@ generation.
 ## Decision
 
 The v1 algorithm is rejected as the final photographic matcher. It remains a
-safe deterministic fallback and product-contract baseline only.
+safe deterministic challenger behind an identity fallback and a
+product-contract baseline only.
 
 The evidence distinguishes two properties:
 

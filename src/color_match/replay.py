@@ -15,6 +15,10 @@ from .contracts import (
     validate_recipe,
 )
 from .render import ReferenceMatchResult, render_reference_batch
+from .safety import (
+    GuardedReferenceMatchResult,
+    render_reference_batch_guarded,
+)
 
 
 _MAX_RECIPE_BYTES = 1024 * 1024
@@ -64,8 +68,21 @@ def replay_reference_batch(
     return render_reference_batch(load_reference_look_recipe(recipe_path), sources)
 
 
+def replay_reference_batch_guarded(
+    recipe_path: Path | str,
+    sources: Iterable[WorkingImage],
+) -> tuple[GuardedReferenceMatchResult, ...]:
+    """Load a frozen recipe and reproduce the default product guard."""
+
+    return render_reference_batch_guarded(
+        load_reference_look_recipe(recipe_path),
+        sources,
+    )
+
+
 __all__ = [
     "load_reference_look_recipe",
     "replay_reference_batch",
+    "replay_reference_batch_guarded",
     "save_reference_look_recipe",
 ]

@@ -37,14 +37,26 @@ from .render import (
 from .replay import (
     load_reference_look_recipe,
     replay_reference_batch,
+    replay_reference_batch_guarded,
     save_reference_look_recipe,
+)
+from .safety import (
+    REFERENCE_RENDER_GUARD_POLICY_ID,
+    GuardedReferenceMatchResult,
+    ReferenceRenderGuardPolicy,
+    ReferenceSafetyDecision,
+    render_reference_batch_guarded,
+    render_reference_look_guarded,
+    validate_guard_policy,
 )
 
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
+    "REFERENCE_RENDER_GUARD_POLICY_ID",
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
     "FilmEffectBinding",
+    "GuardedReferenceMatchResult",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
     "FileReferenceMatchOutput",
@@ -55,6 +67,8 @@ __all__ = [
     "ReferenceMatchDiagnostics",
     "ReferenceMatchResult",
     "ReferenceMatchContractError",
+    "ReferenceRenderGuardPolicy",
+    "ReferenceSafetyDecision",
     "fit_reference_look",
     "evaluate_known_operator_batch",
     "build_reference_composition",
@@ -63,9 +77,13 @@ __all__ = [
     "recipe_from_json",
     "recipe_to_json",
     "replay_reference_batch",
+    "replay_reference_batch_guarded",
     "render_reference_batch",
+    "render_reference_batch_guarded",
     "render_reference_look",
+    "render_reference_look_guarded",
     "save_reference_look_recipe",
     "validate_recipe",
     "validate_reference_composition",
+    "validate_guard_policy",
 ]

@@ -25,8 +25,12 @@ from .contracts import (
     ReferenceMatchContractError,
 )
 from .fit import fit_reference_look
-from .render import ReferenceMatchDiagnostics, render_reference_look
+from .render import ReferenceMatchDiagnostics
 from .replay import save_reference_look_recipe
+from .safety import (
+    ReferenceSafetyDecision,
+    render_reference_look_guarded,
+)
 
 
 _SDR_OUTPUT_EXTENSIONS = frozenset({".png", ".jpg", ".jpeg", ".tif", ".tiff"})
@@ -44,6 +48,7 @@ class FileReferenceMatchOutput:
     output_bit_depth: int
     encode_clipped_fraction: float
     diagnostics: ReferenceMatchDiagnostics
+    safety: ReferenceSafetyDecision
 
 
 @dataclass(frozen=True)
@@ -232,7 +237,14 @@ def match_reference_files(
     token = uuid.uuid4().hex
     staged: list[Path] = []
     staged_outputs: list[
-        tuple[Path, Path, str, float, ReferenceMatchDiagnostics]
+        tuple[
+            Path,
+            Path,
+            str,
+            float,
+            ReferenceMatchDiagnostics,
+            ReferenceSafetyDecision,
+        ]
     ] = []
     staged_recipe: Path | None = None
     try:
@@ -251,7 +263,11 @@ def match_reference_files(
                 raise ReferenceMatchContractError(
                     "file adapter currently requires display-linear linear_srgb sources"
                 )
-            rendered = render_reference_look(recipe, source, source_index=index)
+            rendered = render_reference_look_guarded(
+                recipe,
+                source,
+                source_index=index,
+            )
             encoded = working_image_to_srgb_float(rendered.image)
             output_path.parent.mkdir(parents=True, exist_ok=True)
             stage = _stage_path(output_path, token)
@@ -267,13 +283,21 @@ def match_reference_files(
                     output_path,
                     output_format,
                     clipped_fraction,
-                    rendered.diagnostics,
+                    rendered.candidate_diagnostics,
+                    rendered.safety,
                 )
             )
 
         commit_pairs = [
             (_stage_path(output_path, token), output_path)
-            for _source_path, output_path, _format, _clipped, _diagnostics
+            for (
+                _source_path,
+                output_path,
+                _format,
+                _clipped,
+                _diagnostics,
+                _safety,
+            )
             in staged_outputs
         ]
         if recipe_destination is not None and staged_recipe is not None:
@@ -281,7 +305,14 @@ def match_reference_files(
         _commit_staged_batch(tuple(commit_pairs), token=token, cleanup=staged)
 
         committed: list[FileReferenceMatchOutput] = []
-        for source_path, output_path, output_format, clipped_fraction, diagnostics in staged_outputs:
+        for (
+            source_path,
+            output_path,
+            output_format,
+            clipped_fraction,
+            diagnostics,
+            safety,
+        ) in staged_outputs:
             committed.append(
                 FileReferenceMatchOutput(
                     source_path=source_path,
@@ -291,6 +322,7 @@ def match_reference_files(
                     output_bit_depth=output_bit_depth,
                     encode_clipped_fraction=clipped_fraction,
                     diagnostics=diagnostics,
+                    safety=safety,
                 )
             )
         recipe_file_sha256: str | None = None

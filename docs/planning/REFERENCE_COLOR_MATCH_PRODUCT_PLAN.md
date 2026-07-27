@@ -163,6 +163,13 @@ improves median Delta E76 by 59.8%, but every held-out-content image regresses
 reference moments as the final algorithm and prevents parameter-tuning from
 being mistaken for content-independent look recovery.
 
+The default file path now applies `reference-render-guard.v1` after candidate
+rendering. It returns identity when gamut repair exceeds 25% or newly introduced
+encoding-boundary pixels exceed 5%, while retaining the rejected candidate's
+diagnostics. The six-image baseline accepts only the same-content positive
+control and rejects all five observed cross-content failures. This guard is a
+tail-risk control, not evidence that v1 performs the requested match.
+
 ### Film-business composition boundary
 
 `ReferenceCompositionPlan` makes reference matching and film simulation peer

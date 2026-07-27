@@ -148,3 +148,20 @@
   substitute for severe-artifact and photographic-preference review.
 - Next: use this fixed product gate for any W1-derived challenger after its
   source task commits and passes its own hidden-operator/source-use gates.
+
+## 2026-07-27 - Add default identity fallback for tail failures
+
+- Changed: added `reference-render-guard.v1`, guarded single/batch replay and
+  default file-adapter enforcement.
+- Frozen thresholds: gamut-adjusted fraction <=25% and newly introduced
+  encoding-boundary fraction <=5%. Threshold failure returns a copied source
+  image, never the rejected candidate, and records deterministic reasons.
+- Real-slice evidence: the guard accepts reference-content positive control
+  `01` and rejects every held-out-content regression (`02`, `03`, `05`, `07`,
+  `09`).
+- Verification: 96 reference-match/preprocess/Lab/gamut tests pass, including
+  exact guarded recipe replay, ordered batch decisions, identity non-mutation
+  and file-result safety evidence.
+- Interpretation: the guard prevents delivery of known severe colour failures;
+  it does not improve v1 look identification and therefore does not close A1
+  or the photographic-preference gate.

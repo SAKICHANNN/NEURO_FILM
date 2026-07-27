@@ -1,0 +1,107 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+import numpy as np
+import pytest
+
+from src.color_match import (
+    ReferenceMatchContractError,
+    ReferenceRenderGuardPolicy,
+    fit_reference_look,
+    render_reference_batch_guarded,
+    render_reference_look,
+    render_reference_look_guarded,
+)
+from src.preprocess import SourceProfile, WorkingImage
+
+
+def _working(pixels: np.ndarray) -> WorkingImage:
+    return WorkingImage(
+        pixels=np.asarray(pixels, dtype=np.float32),
+        working_space="linear_srgb",
+        transfer_state="display_linear",
+        source_transfer_state="display_referred",
+        source_profile=SourceProfile("assumed_srgb", "test fixture"),
+        hdr_metadata={},
+        orientation_applied=True,
+        alpha_policy="absent",
+        bit_depth_in=16,
+        source_path=Path("fixture.png"),
+    )
+
+
+def _reference_and_source() -> tuple[WorkingImage, WorkingImage]:
+    rng = np.random.default_rng(27002)
+    reference = _working(
+        rng.uniform(0.02, 0.98, size=(19, 23, 3)).astype(np.float32)
+    )
+    source = _working(
+        rng.uniform(0.15, 0.72, size=(17, 21, 3)).astype(np.float32)
+    )
+    return reference, source
+
+
+def test_permissive_guard_delivers_exact_candidate() -> None:
+    reference, source = _reference_and_source()
+    recipe = fit_reference_look(reference)
+    candidate = render_reference_look(recipe, source)
+    guarded = render_reference_look_guarded(
+        recipe,
+        source,
+        policy=ReferenceRenderGuardPolicy(
+            max_gamut_adjusted_fraction=1.0,
+            max_new_boundary_fraction=1.0,
+        ),
+    )
+
+    assert guarded.safety.accepted is True
+    assert guarded.safety.action == "applied"
+    assert guarded.safety.reasons == ()
+    assert np.array_equal(guarded.image.pixels, candidate.image.pixels)
+    assert guarded.candidate_diagnostics == candidate.diagnostics
+
+
+def test_zero_tolerance_guard_falls_back_to_unmutated_source() -> None:
+    reference, source = _reference_and_source()
+    original = source.pixels.copy()
+    guarded = render_reference_look_guarded(
+        fit_reference_look(reference),
+        source,
+        policy=ReferenceRenderGuardPolicy(
+            max_gamut_adjusted_fraction=0.0,
+            max_new_boundary_fraction=0.0,
+        ),
+    )
+
+    assert guarded.safety.accepted is False
+    assert guarded.safety.action == "identity-fallback"
+    assert guarded.safety.reasons
+    assert np.array_equal(guarded.image.pixels, original)
+    assert guarded.image.pixels is not source.pixels
+    assert np.array_equal(source.pixels, original)
+
+
+def test_guarded_batch_is_ordered_and_policy_validation_fails_closed() -> None:
+    reference, source = _reference_and_source()
+    recipe = fit_reference_look(reference)
+    results = render_reference_batch_guarded(
+        recipe,
+        [source, source],
+        policy=ReferenceRenderGuardPolicy(
+            max_gamut_adjusted_fraction=1.0,
+            max_new_boundary_fraction=1.0,
+        ),
+    )
+    assert [
+        result.candidate_diagnostics.source_index for result in results
+    ] == [0, 1]
+
+    with pytest.raises(ReferenceMatchContractError, match="within"):
+        render_reference_look_guarded(
+            recipe,
+            source,
+            policy=ReferenceRenderGuardPolicy(
+                max_gamut_adjusted_fraction=1.1
+            ),
+        )

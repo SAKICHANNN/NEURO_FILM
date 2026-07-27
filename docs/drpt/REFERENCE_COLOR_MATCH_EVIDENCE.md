@@ -37,6 +37,7 @@ permits `calibrated-reference`.
 - `src/color_match/files.py`
 - `src/color_match/composition.py`
 - `src/color_match/evaluation.py`
+- `src/color_match/safety.py`
 - `src/color_match/__init__.py`
 - `tests/test_color_match_contracts.py`
 - `tests/test_color_match_render.py`
@@ -44,6 +45,7 @@ permits `calibrated-reference`.
 - `tests/test_color_match_files.py`
 - `tests/test_color_match_composition.py`
 - `tests/test_color_match_evaluation.py`
+- `tests/test_color_match_safety.py`
 - branch-specific coordination, plan, log and this evidence record
 
 No forbidden W1/W2/S4, global tracker, renderer-default or standalone D-PCT
@@ -119,6 +121,15 @@ It fails closed on alignment, display-linear state, working space, finite range
 or duplicate-ID violations and reports both centre and tail Delta E76 plus new
 boundary pixels. Its result is evidence for candidate rejection or progression
 to visual review, never a standalone photographic-aesthetic promotion.
+
+## Product tail guard
+
+The file adapter and guarded replay now use fixed
+`reference-render-guard.v1`. A candidate exceeding 25% gamut-adjusted pixels or
+5% newly introduced boundary pixels is not written as the delivered look;
+instead, an identity copy is encoded and the candidate diagnostics plus
+rejection reasons remain in the result. This policy catches all five
+cross-content failures in the frozen baseline and accepts its positive control.
 
 ## Change propagation
 

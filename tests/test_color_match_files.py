@@ -59,6 +59,14 @@ def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
     assert [row.output_path for row in result.outputs] == outputs
     assert all(row.output_bit_depth == 16 for row in result.outputs)
     assert all(row.diagnostics.recipe_id == result.recipe.recipe_id for row in result.outputs)
+    assert all(
+        row.safety.policy_id == "reference-render-guard.v1"
+        for row in result.outputs
+    )
+    assert all(
+        row.safety.action in {"applied", "identity-fallback"}
+        for row in result.outputs
+    )
     assert inspect_input(outputs[0]).bit_depth == 16
     assert inspect_input(outputs[2]).bit_depth == 16
     with tifffile.TiffFile(outputs[2]) as tif:

@@ -11,6 +11,8 @@ from src.color_match import (
     fit_reference_look,
     load_reference_look_recipe,
     replay_reference_batch,
+    replay_reference_batch_guarded,
+    render_reference_batch_guarded,
     render_reference_batch,
     save_reference_look_recipe,
 )
@@ -61,6 +63,23 @@ def test_loaded_recipe_replay_matches_in_memory_batch_bytes(tmp_path: Path) -> N
     ]
     assert [row.diagnostics for row in replayed] == [
         row.diagnostics for row in expected
+    ]
+
+
+def test_loaded_recipe_replays_default_product_guard_exactly(
+    tmp_path: Path,
+) -> None:
+    recipe = fit_reference_look(_working(27207, "reference.png"))
+    sources = [_working(27208, "a.png"), _working(27209, "b.png")]
+    path = tmp_path / "look.json"
+    save_reference_look_recipe(recipe, path)
+    expected = render_reference_batch_guarded(recipe, sources)
+    replayed = replay_reference_batch_guarded(path, sources)
+    assert [row.image.pixels.tobytes() for row in replayed] == [
+        row.image.pixels.tobytes() for row in expected
+    ]
+    assert [row.safety for row in replayed] == [
+        row.safety for row in expected
     ]
 
 
