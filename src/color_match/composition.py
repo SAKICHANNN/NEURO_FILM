@@ -27,6 +27,8 @@ _PLAN_KEYS = {
     "schema_id",
     "plan_id",
     "color_owner",
+    "reference_color_status",
+    "research_baseline_override",
     "reference_recipe_id",
     "claim_ceiling",
     "output_label",
@@ -70,6 +72,8 @@ class ReferenceCompositionPlan:
     schema_id: str
     plan_id: str
     color_owner: str
+    reference_color_status: str
+    research_baseline_override: bool
     reference_recipe_id: str
     claim_ceiling: str
     output_label: str
@@ -131,11 +135,34 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
         )
     if plan.schema_id != REFERENCE_COMPOSITION_SCHEMA_ID:
         raise ReferenceMatchContractError("unsupported reference composition schema")
-    if plan.color_owner != "reference-look":
+    if not isinstance(plan.research_baseline_override, bool):
         raise ReferenceMatchContractError(
-            "reference-match mode must own the colour transform"
+            "composition research_baseline_override must be boolean"
         )
-    if plan.claim_ceiling != "reference-look":
+    expected_status = (
+        "research-baseline"
+        if plan.research_baseline_override
+        else "identity-fallback"
+    )
+    if plan.reference_color_status != expected_status:
+        raise ReferenceMatchContractError(
+            "composition reference colour status mismatch"
+        )
+    expected_owner = (
+        "reference-look"
+        if plan.research_baseline_override
+        else "identity"
+    )
+    if plan.color_owner != expected_owner:
+        raise ReferenceMatchContractError(
+            "composition colour owner mismatch"
+        )
+    expected_claim = (
+        "reference-look"
+        if plan.research_baseline_override
+        else "identity"
+    )
+    if plan.claim_ceiling != expected_claim:
         raise ReferenceMatchContractError("composition claim ceiling mismatch")
     if plan.film_color_profile_id is not None:
         raise ReferenceMatchContractError(
@@ -152,17 +179,30 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
         raise ReferenceMatchContractError(
             "reference_recipe_id must be lowercase SHA-256"
         )
+    if plan.film_effects is not None and not plan.research_baseline_override:
+        raise ReferenceMatchContractError(
+            "film effects require available reference colour or a separate "
+            "film-simulation mode"
+        )
     expected_order = (
         ("reference_color",)
-        if plan.film_effects is None
-        else ("reference_color", "film_effects")
+        if plan.research_baseline_override and plan.film_effects is None
+        else (
+            ("reference_color", "film_effects")
+            if plan.research_baseline_override
+            else ("identity_color",)
+        )
     )
     if plan.execution_order != expected_order:
         raise ReferenceMatchContractError("composition execution order mismatch")
     expected_label = (
-        "reference-look"
-        if plan.film_effects is None
-        else "reference-look+film-effects"
+        (
+            "reference-look"
+            if plan.film_effects is None
+            else "reference-look+film-effects"
+        )
+        if plan.research_baseline_override
+        else "identity"
     )
     if plan.output_label != expected_label:
         raise ReferenceMatchContractError("composition output label mismatch")
@@ -234,12 +274,22 @@ def build_reference_composition(
     include_film_effects: bool = False,
     film_profile: Mapping[str, Any] | None = None,
     film_profile_sha256: str | None = None,
+    allow_research_baseline: bool = False,
 ) -> ReferenceCompositionPlan:
     """Build reference-colour mode with optional film-derived effects only."""
 
     validate_recipe(recipe)
     if not isinstance(include_film_effects, bool):
         raise ReferenceMatchContractError("include_film_effects must be boolean")
+    if not isinstance(allow_research_baseline, bool):
+        raise ReferenceMatchContractError(
+            "allow_research_baseline must be boolean"
+        )
+    if include_film_effects and not allow_research_baseline:
+        raise ReferenceMatchContractError(
+            "film effects cannot compose with an unavailable reference colour; "
+            "use the separate film-simulation mode"
+        )
     if include_film_effects:
         if film_profile is None or film_profile_sha256 is None:
             raise ReferenceMatchContractError(
@@ -259,18 +309,36 @@ def build_reference_composition(
     provisional = ReferenceCompositionPlan(
         schema_id=REFERENCE_COMPOSITION_SCHEMA_ID,
         plan_id="0" * 64,
-        color_owner="reference-look",
+        color_owner=(
+            "reference-look" if allow_research_baseline else "identity"
+        ),
+        reference_color_status=(
+            "research-baseline"
+            if allow_research_baseline
+            else "identity-fallback"
+        ),
+        research_baseline_override=allow_research_baseline,
         reference_recipe_id=recipe.recipe_id,
-        claim_ceiling="reference-look",
+        claim_ceiling=(
+            "reference-look" if allow_research_baseline else "identity"
+        ),
         output_label=(
-            "reference-look"
-            if effects is None
-            else "reference-look+film-effects"
+            (
+                "reference-look"
+                if effects is None
+                else "reference-look+film-effects"
+            )
+            if allow_research_baseline
+            else "identity"
         ),
         execution_order=(
-            ("reference_color",)
-            if effects is None
-            else ("reference_color", "film_effects")
+            (
+                ("reference_color",)
+                if effects is None
+                else ("reference_color", "film_effects")
+            )
+            if allow_research_baseline
+            else ("identity_color",)
         ),
         film_color_profile_id=None,
         film_stock_identity_claimed=False,
@@ -324,6 +392,10 @@ def composition_plan_from_dict(
             schema_id=payload["schema_id"],
             plan_id=payload["plan_id"],
             color_owner=payload["color_owner"],
+            reference_color_status=payload["reference_color_status"],
+            research_baseline_override=payload[
+                "research_baseline_override"
+            ],
             reference_recipe_id=payload["reference_recipe_id"],
             claim_ceiling=payload["claim_ceiling"],
             output_label=payload["output_label"],

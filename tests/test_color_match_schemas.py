@@ -90,6 +90,7 @@ def test_composition_roundtrip_matches_schema_with_and_without_effects() -> None
             include_film_effects=True,
             film_profile=profile,
             film_profile_sha256=sha256_file(PROFILE),
+            allow_research_baseline=True,
         ),
     ]
     for plan in plans:
@@ -98,7 +99,7 @@ def test_composition_roundtrip_matches_schema_with_and_without_effects() -> None
         assert composition_plan_from_json(encoded) == plan
 
     inconsistent = json.loads(composition_plan_to_json(plans[0]))
-    inconsistent["output_label"] = "reference-look+film-effects"
+    inconsistent["output_label"] = "reference-look"
     assert any(
         error.validator == "const"
         for error in validator.iter_errors(inconsistent)

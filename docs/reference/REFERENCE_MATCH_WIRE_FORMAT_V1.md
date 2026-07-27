@@ -61,6 +61,12 @@ The product run report binds `reference-render-guard.v2`. Every safety row
 records `research_baseline_override`. When it is false, the row must be
 `identity-fallback` and include `algorithm-not-promoted`; when true, that
 reason is removed but gamut and new-boundary vetoes remain authoritative.
+
+Composition identity also binds `reference_color_status` and
+`research_baseline_override`. False maps exactly to owner/claim/label
+`identity`, order `identity_color`, and null film effects. True maps to
+`research-baseline`, owner/claim `reference-look`, and only then permits the
+validated `reference_color -> film_effects` research order.
 6. Encode the digest as 64 lowercase hexadecimal characters.
 
 The run report carries recipe identity but does not have a recursive internal

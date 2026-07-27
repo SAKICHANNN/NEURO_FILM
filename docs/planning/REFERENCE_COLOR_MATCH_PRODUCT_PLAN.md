@@ -73,6 +73,7 @@ with a selected stock, but reference matching alone is labeled
 | P9 | DONE | fail-closed photographic-tail and promotion adjudication | 125 focused tests; 30-pair full-resolution repeat; full suite 981 pass/36 known fail | `8e03ed7` | revert commit |
 | P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | `4bfd5da` | revert commit |
 | P11 | DONE | unpromoted-algorithm delivery fail-close + explicit research override | 134 focused tests; default/override CLI; full suite 990 pass/36 known fail | `adae6cb` | revert commit |
+| P12 | DONE | propagate delivery certification into film-effects composition | 136 focused tests; full suite 992 pass/36 known fail | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -159,7 +160,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`990 passed, 1 skipped, 36 failed`.
+`992 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -172,7 +173,7 @@ final photographic/aesthetic algorithm.
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
 | A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
-| A2 film-business composition | CONTRACT DONE | existing v1 render-profile contract | reference colour owns the colour stage; an optional verified film profile may supply effects provenance only |
+| A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
 | A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | committed D-PCT media-frame contract at `413d713`; current NFRM relative-SDR rail is not equivalent | wait for a versioned absolute-XYZ/scene-rail to MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 | A5 album/batch consistency | BASELINE FAILED | six fitted recipes on shared-colour/different-context probes | require a fixed explicit operator or bounded adaptation that passes median/p95/max shared-colour drift |
@@ -217,18 +218,26 @@ product direction.
 ### Film-business composition boundary
 
 `ReferenceCompositionPlan` makes reference matching and film simulation peer
-colour choices. In reference mode:
+colour choices and now binds delivery certification.
 
-1. `reference_color` is the sole colour stage;
-2. an optional verified film profile may contribute only procedural
-   `film_effects`;
-3. `film_color_profile_id` must remain null;
-4. film effects never set `film_stock_identity_claimed`;
-5. the output label remains `reference-look` or
+1. With the current unpromoted algorithm, the default plan is
+   `identity_color`, output label/claim `identity`, and
+   `reference_color_status=identity-fallback`.
+2. Film effects cannot be silently attached to that unavailable reference
+   colour; users must choose the separate film-simulation mode.
+3. Explicit research override changes the status to `research-baseline`,
+   makes `reference_color` the sole colour stage, and records
+   `research_baseline_override=true`.
+4. In that research-only plan, an optional verified film profile may
+   contribute only procedural `film_effects`.
+5. `film_color_profile_id` remains null and effects never set
+   `film_stock_identity_claimed`.
+6. Research output is labeled `reference-look` or
    `reference-look+film-effects`, with claim ceiling `reference-look`.
 
 This prevents a UI choice such as "match this photo, add film grain" from
-silently applying two colour looks or escalating a user reference into a
+silently applying effects after a colour stage that actually fell back to
+identity, stacking two colour looks, or escalating a user reference into a
 stock-authenticity claim. Stock-selection mode continues to use the existing
 render-profile path and is not replaced by this module.
 

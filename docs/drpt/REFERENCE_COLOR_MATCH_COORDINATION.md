@@ -53,6 +53,9 @@
   - an algorithm that has not passed A1/A4/A5 defaults to identity delivery;
     research execution requires an explicit, report-bound override and retains
     all independent pixel-tail vetoes;
+  - composition propagates the same state: default output is labeled identity
+    and cannot attach film effects; explicit research override may attach
+    verified procedural effects but never film colour or stock claims;
   - recipe and composition identity use the frozen typed canonical byte stream,
     never implementation-specific JSON float formatting;
   - a fitted recipe is shared across the batch and the reference target/policy

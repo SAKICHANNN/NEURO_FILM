@@ -119,11 +119,13 @@ not as the final photographic matcher.
 ## Film composition finding
 
 The A2 composition contract prevents reference colour and film-profile colour
-from being silently stacked. A verified film profile can bind grain, halation
-and dust defaults as effect provenance, but the output remains
-`reference-look`, does not claim `film_stock_id`, and executes reference colour
-before effects. The current leaf validates the contract; it does not duplicate
-or bypass the existing FilmFX renderer.
+from being silently stacked and now propagates guard-v2 certification. The
+current unpromoted algorithm produces an `identity` composition by default;
+film effects are rejected rather than silently applied after unavailable
+reference colour. Explicit research override may bind grain, halation and dust
+defaults as effect provenance, records `research_baseline_override=true`,
+does not claim `film_stock_id`, and executes reference colour before effects.
+The contract does not duplicate or bypass the existing FilmFX renderer.
 
 ## Promotion metric boundary
 

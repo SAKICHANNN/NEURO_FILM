@@ -357,3 +357,21 @@
 - Verification: 134 focused tests pass; the full collection is 990 passed,
   one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.
 - Commit: `adae6cb` (`fix: fail closed on unpromoted matcher`).
+
+## 2026-07-27 - Propagate certification into film composition
+
+- Parent: P12 / A2 delivery-aware composition boundary.
+- Defect: after guard v2 defaulted the renderer to identity, the composition
+  payload could still label the same recipe `reference-look+film-effects`.
+- Changed: composition v1 now binds `reference_color_status` and
+  `research_baseline_override`. Default is owner/claim/label `identity`,
+  order `identity_color`, with no film effects.
+- Fail-close: requesting film effects without available reference colour
+  raises and routes the product to its separate film-simulation mode.
+- Research boundary: explicit override restores `reference_color` and may bind
+  verified procedural effects, while film colour and stock claims remain
+  forbidden.
+- Validation: Python roundtrip and strict JSON Schema enforce the same
+  cross-field state matrix.
+- Verification: 136 focused tests pass; the full collection is 992 passed,
+  one skipped and the unchanged 36 known ignored-output/CRLF-hash failures.

@@ -8,6 +8,8 @@
     "schema_id",
     "plan_id",
     "color_owner",
+    "reference_color_status",
+    "research_baseline_override",
     "reference_recipe_id",
     "claim_ceiling",
     "output_label",
@@ -24,22 +26,43 @@
       "$ref": "#/$defs/sha256"
     },
     "color_owner": {
-      "const": "reference-look"
+      "enum": [
+        "identity",
+        "reference-look"
+      ]
+    },
+    "reference_color_status": {
+      "enum": [
+        "identity-fallback",
+        "research-baseline"
+      ]
+    },
+    "research_baseline_override": {
+      "type": "boolean"
     },
     "reference_recipe_id": {
       "$ref": "#/$defs/sha256"
     },
     "claim_ceiling": {
-      "const": "reference-look"
+      "enum": [
+        "identity",
+        "reference-look"
+      ]
     },
     "output_label": {
       "enum": [
+        "identity",
         "reference-look",
         "reference-look+film-effects"
       ]
     },
     "execution_order": {
       "oneOf": [
+        {
+          "const": [
+            "identity_color"
+          ]
+        },
         {
           "const": [
             "reference_color"
@@ -74,6 +97,68 @@
     {
       "if": {
         "properties": {
+          "research_baseline_override": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "color_owner": {
+            "const": "identity"
+          },
+          "reference_color_status": {
+            "const": "identity-fallback"
+          },
+          "claim_ceiling": {
+            "const": "identity"
+          },
+          "output_label": {
+            "const": "identity"
+          },
+          "execution_order": {
+            "const": [
+              "identity_color"
+            ]
+          },
+          "film_effects": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "color_owner",
+          "reference_color_status",
+          "claim_ceiling",
+          "output_label",
+          "execution_order",
+          "film_effects"
+        ]
+      },
+      "else": {
+        "properties": {
+          "color_owner": {
+            "const": "reference-look"
+          },
+          "reference_color_status": {
+            "const": "research-baseline"
+          },
+          "claim_ceiling": {
+            "const": "reference-look"
+          }
+        },
+        "required": [
+          "color_owner",
+          "reference_color_status",
+          "claim_ceiling"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "research_baseline_override": {
+            "const": true
+          },
           "film_effects": {
             "type": "null"
           }
@@ -90,8 +175,20 @@
             ]
           }
         }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "research_baseline_override": {
+            "const": true
+          },
+          "film_effects": {
+            "type": "object"
+          }
+        }
       },
-      "else": {
+      "then": {
         "properties": {
           "output_label": {
             "const": "reference-look+film-effects"
