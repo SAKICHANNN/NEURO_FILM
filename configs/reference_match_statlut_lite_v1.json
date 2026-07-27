@@ -1,0 +1,42 @@
+{
+  "schema_id": "neuro-film.statlut-lite-experiment.v1",
+  "experiment_id": "reference-match-statlut-lite-v1",
+  "parent_config": "configs/u5_r2d1_synthetic_operator_recovery_v1.json",
+  "parent_manifest_sha256": "d1291de7ff6d724882f7429a04287ae015c231a1cedca2c27130ec0ee2ff09b5",
+  "feature_policy": {
+    "luminance_bins": 32,
+    "chroma_bins": 8,
+    "chroma_scale": 128.0,
+    "chroma_gamma": 0.5
+  },
+  "training": {
+    "fit_split": "fit",
+    "observations_per_operator": 2,
+    "ridge_alphas": [0.001, 0.01, 0.1, 1.0, 10.0, 100.0],
+    "selection_split": "validation",
+    "confirmation_split": "stress",
+    "confirmation_within_split_start": 16,
+    "confirmation_operators_per_family": 16,
+    "seed": 2026072705
+  },
+  "gates": {
+    "maximum_operator_grid_rmse_median": 0.07,
+    "maximum_operator_grid_rmse_p90": 0.1,
+    "minimum_captured_style_fraction_median": 0.5,
+    "minimum_improvement_over_global_mean_fraction": 0.25,
+    "maximum_same_look_replicate_grid_rmse_median": 0.04,
+    "maximum_identity_reference_grid_rmse": 0.01,
+    "all_predicted_operators_valid": true,
+    "repeat_report_sha256_equal": true
+  },
+  "execution": {
+    "cpu_only": true,
+    "generated_data_only": true,
+    "neural_network_allowed": false,
+    "linear_predictor_only": true,
+    "model_predicts_parameters_not_rgb": true,
+    "confirmation_rows_unopened_before_freeze": true,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "generated-data diagnostic for a compact Lab-statistics residual mapper predicting nine bounded explicit-operator parameters; no StatLUT reproduction, real-photo preference, film-stock, calibration, authenticity or production claim"
+}
