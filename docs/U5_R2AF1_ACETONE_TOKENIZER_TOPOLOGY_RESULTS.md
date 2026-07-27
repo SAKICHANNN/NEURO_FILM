@@ -74,4 +74,3 @@ shows that an unconstrained voxel-reconstruction LUT autoencoder can be both
 range-bounded and severely orientation-unsafe. Future learned candidates must
 make orientation preservation true by construction or emit a simpler
 explicit parameterization with an independently verified topology guarantee.
-
