@@ -1663,6 +1663,29 @@
   admission. P43 becomes the next ready consumer leaf; no package semantics
   are inferred from commit names alone.
 
+## 2026-07-28 - Freeze P43 fixed producer invocation audit
+
+- Node/parent goal: P43A-D / real package boundary after P42.
+- Producer authority: stable clean HEAD `e22725d`; source commit `01ef061`;
+  installed fixture commit `eb4b889`; package lock SHA
+  `300b95b0...0287`.
+- Exact artifact: `zhuise-research==0.2.0`, wheel size 95,994 and SHA
+  `fd995ad8...c292`; request/response schemas `bac28668...b37b8` and
+  `204da4f6...5473e`; fixture `eab24eae...b295`.
+- Audit finding: an older same-name wheel exists locally at 94,548 bytes and
+  fails the new hash. Any consumer path must select by exact size/hash and
+  reject filename/path/version-only trust.
+- Contract: invoke exact wheel bytes, never mutable producer source. Use the
+  pinned Python 3.12/NumPy 2.4.4/Pillow 12.1.1 runtime; stage canonical f32be
+  request bytes; require a new output directory; independently rehash and
+  adapt response/artifacts through the existing P27 v2 verifier.
+- Claim boundary: candidate-only local research integration. Repository lacks
+  a release grant; A1/A4/A5, product promotion, HDR, native ABI, mobile/Apple
+  runtime, applied/delivered state and redistribution remain closed.
+- Scope: additive consumer lock/schema/invocation module/tests/docs only. No
+  producer/main worktree writes, no FilmFX/media changes and no package source
+  copy.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

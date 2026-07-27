@@ -161,6 +161,10 @@ with a selected stock, but reference matching alone is labeled
 | P42B | DONE | extract and execute the canonical core on Windows | MSVC and pinned LLVM-MinGW run the unchanged vectors through the C ABI | `618f74e`; exact hashes/states | revert implementation commit |
 | P42C | DONE | cross-compile the same core for Android and Apple targets | Android arm64/x86_64 link; macOS/iOS arm64 Mach-O object only | `618f74e`; pinned reports | no runtime claim |
 | P42D | DONE | run focused/full/latest-main propagation and peer handoff | 16 focused; 433 combined; 1328 pass/1 skip/36 known; merge 16 pass | evidence commit | retain P41-P42 |
+| P43A | IN_PROGRESS | audit fixed producer invocation package without executing mutable checkout | pin producer/package/schema/fixture/wheel/runtime identities; reject stale same-name wheels | plan commit | no adapter |
+| P43B | TODO | freeze consumer invocation compatibility lock | bind existing P27 v2 adapter to exact dpct-chroma capability and package envelope | strict lock/schema | retain P27 |
+| P43C | TODO | implement exact-wheel local invocation adapter | canonical request staging, exact wheel execution, independent response/artifact verification, candidate-only | focused real-wheel tests | no product promotion |
+| P43D | TODO | run full/latest-main propagation and peer handoff | A1/A4/A5 remain closed; report rights/runtime/device limits | evidence commit | retain P42 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
