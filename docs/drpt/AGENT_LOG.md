@@ -4539,3 +4539,37 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   complete CPU suite at `961 passed`. No new FilmSet pixel was decoded during
   implementation or testing. Formal A/B execution is the next ready action
   and must bind the scoped implementation commit before any result is viewed.
+
+## 2026-07-27 - Close U5.R2W2F0 paired/global recipe explainability
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2W2F0`; DRPT L2 with
+  `dev-research-reliability` as sole writer and AI/ML, research, tracker,
+  agent-log, structure and code-review disciplines as read-only governance.
+- **Crash recovery:** after the user reported a host failure, live inspection
+  found Run B and its parent still healthy. Git remained at the frozen
+  implementation commit and only the protected user `.codex/` directory was
+  untracked. The process was not duplicated or restarted.
+- **Reproducibility:** both complete reports bind commit
+  `7f799b043ca18158a4a44035cea1f3a58b650cef` and config SHA-256
+  `41cb4554a11a6660c9d28fa1e89ce23f7429b7fd9f059139789e36f745befaa6`.
+  Reports are byte-identical at
+  `27DB75F2E74FE15A2FDFEF49ED82F92AC313E44719FBC6220FCBA195E51C5B3E`;
+  both stderr logs are empty.
+- **Boundary evidence:** exactly 40 identities / 160 input-plus-recipe
+  payloads were read and hash checked. No unselected payload was read, no
+  raster output or visual shortlist was generated, and the final 628
+  contributed zero parsed payload rows.
+- **Results:** Cinema is `basic_only`: shared O0 improves identity 63.20% but
+  basic 2.44%. ClassNeg and Velvia are `adaptive_or_spatial_recipe`.
+  Per-pair grid dispersion is `.16406/.16291/.20832` for
+  Cinema/ClassNeg/Velvia against `.08`; ClassNeg spatial residual is `.26069`
+  against `.25`, and Velvia shared regret is `.16511` against `.15`.
+- **Safety interpretation:** every shared/per-pair O0 fit passes range,
+  Jacobian, norm, inverse, coefficient and replay gates. No domain reaches
+  `global_operator_coherent`; failure is cross-content recipe coherence, not
+  optimizer or bounded-flow collapse.
+- **Propagation/handoff:** W2F1 and local/capacity rescue remain closed.
+  These are Capture One recipe controls, not stocks. Current film pixels,
+  fitting/training, LSM, calibration and production integration remain
+  forbidden. The next algorithm-priority leaf is U5.R2X0, an analytic audit
+  of the 2025 automatic palette-transfer path; Goal remains active.

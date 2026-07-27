@@ -219,6 +219,17 @@ within-recipe hard content retrieval. The final 628 and historical CT8 result
 are not reopened. This can prove at most three-domain recipe-look transfer,
 never film or stock learning.
 
+U5.R2W2F0 now closes the paired/global explainability question with two
+byte-identical CUDA reports over 40 identities and 160 aligned payloads.
+Cinema is `basic_only`: shared O0 improves the basic control by only 2.44%.
+ClassNeg and Velvia are `adaptive_or_spatial_recipe`. Their median per-pair
+grid dispersion is `.16291/.20832` against `.08`; ClassNeg also misses the
+spatial-residual gate at `.26069`, and Velvia misses shared regret at
+`.16511`. All shared/per-pair O0 structure gates pass, so the result is
+cross-content recipe incoherence rather than numerical collapse. No domain
+opens a global champion, W2F1 output-only recovery or a local/capacity rescue.
+The final 628 was hash verified but never parsed.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

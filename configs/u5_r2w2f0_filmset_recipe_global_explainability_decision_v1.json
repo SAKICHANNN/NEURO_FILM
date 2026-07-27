@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2w2f0-filmset-recipe-global-explainability-decision-v1",
+  "experiment_id": "u5.r2w2f0-filmset-recipe-global-explainability-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2W2F0",
+  "software_commit": "7f799b043ca18158a4a44035cea1f3a58b650cef",
+  "config_sha256": "41cb4554a11a6660c9d28fa1e89ce23f7429b7fd9f059139789e36f745befaa6",
+  "report_a_sha256": "27db75f2e74fe15a2fdfef49ed82f92ac313e44719fbc6220fcba195e51c5b3e",
+  "report_b_sha256": "27db75f2e74fe15a2fdfef49ed82f92ac313e44719fbc6220fcba195e51c5b3e",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "dataset_boundary": {
+    "selected_identity_count": 40,
+    "selected_payload_image_count": 160,
+    "unselected_payload_images_read": 0,
+    "final_manifest_payload_rows_parsed": 0,
+    "full_raster_outputs_generated": 0
+  },
+  "domain_decisions": {
+    "cinema": {
+      "decision_branch": "basic_only",
+      "identity_rmse_median": 0.032713082923859244,
+      "basic_rmse_median": 0.012337705570411722,
+      "shared_o0_rmse_median": 0.012037185168745607,
+      "per_pair_o0_rmse_median": 0.00755683084632741,
+      "shared_improvement_over_identity_fraction": 0.6320375796814215,
+      "shared_improvement_over_basic_fraction": 0.02435788404505479,
+      "shared_normalized_regret_median": 0.10370290690422973,
+      "per_pair_grid_rmse_to_shared_median": 0.16406168680801558,
+      "spatial_residual_between_cell_fraction_median": 0.23080765691021476,
+      "structure_all": true
+    },
+    "classneg": {
+      "decision_branch": "adaptive_or_spatial_recipe",
+      "identity_rmse_median": 0.05630433097581661,
+      "basic_rmse_median": 0.030029370797187163,
+      "shared_o0_rmse_median": 0.014987995333020126,
+      "per_pair_o0_rmse_median": 0.008064847502639033,
+      "shared_improvement_over_identity_fraction": 0.7338038642274668,
+      "shared_improvement_over_basic_fraction": 0.5008887986949082,
+      "shared_normalized_regret_median": 0.09203324517430128,
+      "per_pair_grid_rmse_to_shared_median": 0.16290880193526514,
+      "spatial_residual_between_cell_fraction_median": 0.2606852018007287,
+      "structure_all": true
+    },
+    "velvia": {
+      "decision_branch": "adaptive_or_spatial_recipe",
+      "identity_rmse_median": 0.02921191609048328,
+      "basic_rmse_median": 0.02314307433590146,
+      "shared_o0_rmse_median": 0.015515198246615621,
+      "per_pair_o0_rmse_median": 0.010017182722202329,
+      "shared_improvement_over_identity_fraction": 0.46887433886371477,
+      "shared_improvement_over_basic_fraction": 0.32959649087990195,
+      "shared_normalized_regret_median": 0.16510594233172304,
+      "per_pair_grid_rmse_to_shared_median": 0.20832440097389576,
+      "spatial_residual_between_cell_fraction_median": 0.2093701340049964,
+      "structure_all": true
+    }
+  },
+  "global_operator_coherent_domains": [],
+  "automatic_visual_shortlist_generated": false,
+  "decision_branch": "no_global_recipe_champion",
+  "interpretation": "Cinema is adequately explained by the frozen basic control, while ClassNeg and Velvia require image-adaptive or spatial explanation under the frozen gates. All fitted O0 flows pass structural safety checks, so the failure is cross-content recipe coherence rather than numerical collapse.",
+  "forbidden_rescues": [
+    "change W2F0 gates after viewing confirmatory metrics",
+    "fit a larger, semantic, neural or local model as a W2F0 rescue",
+    "open W2F1 output-only reference recovery",
+    "parse or decode the final 628 lockbox",
+    "call Cinema, ClassNeg or Velvia a physical film stock",
+    "claim real unpaired digital-to-film operator identification",
+    "generate a W2F0 product visual shortlist"
+  ],
+  "next_ready_leaf": "U5.R2X0 analytic audit of the 2025 automatic palette-transfer method as an affine-only reference-conditioned operator",
+  "claim_ceiling": "repeat-exact internal FilmSet evidence that one Capture One recipe is basic-only and two are not coherent single global operators under the frozen paired evaluator; no output-only recovery, film, stock, calibration, commercial-rights, unseen-recipe or real unpaired-operator claim"
+}
