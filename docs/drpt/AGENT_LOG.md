@@ -5422,3 +5422,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision/handoff:** open one 16-anchor AG1 on O0's exact paired synthetic
   controls and gates. Failure closes without more anchors, affine wrapper,
   temperature/strength search or threshold rescue. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AG1 compact convex-gradient contract
+
+- **Operator:** 16 sigmoid-bounded RGB anchors, 16 mean-centred bounded biases,
+  one strength, fixed temperature `.15`; 65 fitted scalars total. Strength is
+  bounded by `.65`, giving analytic Jacobian eigenvalue/determinant floors
+  `.35/.042875`.
+- **Data:** exact O0 linear-sRGB paired synthetic targets; `8^3` development,
+  untouched `11^3` confirmation and `7^3` Jacobian grids. No images, unpaired
+  distributions, external code or film pixels.
+- **Fit/evaluation:** deterministic one-thread CPU float64 Adam, seed 29042,
+  2,500 steps; fixed damped-Newton inverse audit and exact
+  serialization/partition/two-run replay.
+- **Gates/branch:** preserve O0's `.015` confirmation RMSE, 20% affine gain,
+  range, norm and inverse gates plus parameter/strength/bias bounds. Failure
+  closes without anchors, temperature, affine wrapper, optimizer or gate
+  rescue. A pass is representation evidence only. Goal remains ACTIVE.

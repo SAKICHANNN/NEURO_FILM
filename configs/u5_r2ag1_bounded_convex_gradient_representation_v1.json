@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ag1-bounded-convex-gradient-representation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AG1",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "nodes": ["U5.R2AG0", "U5.R2O0", "U5.R2AF1"],
+    "finding": "AF1 proves bounded learned LUT reconstruction can fold badly; O0 proves a 192-parameter cube-diffeomorphic flow has sufficient synthetic capacity; AG0 derives a 65-scalar analytic in-cube SPD-Jacobian challenger"
+  },
+  "candidate": {
+    "schema": "roll2film.bounded_convex_gradient_map.v1",
+    "anchor_count": 16,
+    "fitted_scalar_count": 65,
+    "temperature": 0.15,
+    "maximum_strength": 0.65,
+    "maximum_absolute_centered_bias": 1.0,
+    "anchor_parameterization": "componentwise_sigmoid",
+    "bias_parameterization": "mean_centered_tanh",
+    "strength_parameterization": "maximum_strength_times_sigmoid",
+    "identity_parameterization": "exact_alpha_zero",
+    "initial_anchors": [
+      [0.05, 0.05, 0.05],
+      [0.05, 0.05, 0.95],
+      [0.05, 0.95, 0.05],
+      [0.05, 0.95, 0.95],
+      [0.95, 0.05, 0.05],
+      [0.95, 0.05, 0.95],
+      [0.95, 0.95, 0.05],
+      [0.95, 0.95, 0.95],
+      [0.05, 0.5, 0.5],
+      [0.95, 0.5, 0.5],
+      [0.5, 0.05, 0.5],
+      [0.5, 0.95, 0.5],
+      [0.5, 0.5, 0.05],
+      [0.5, 0.5, 0.95],
+      [0.5, 0.5, 0.5],
+      [0.25, 0.25, 0.25]
+    ]
+  },
+  "fit": {
+    "grid_axis_size": 8,
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 29042,
+    "steps": 2500,
+    "learning_rate": 0.03,
+    "bias_l2": 0.00001,
+    "anchor_l2_to_initial": 0.000001,
+    "gradient_clip_norm": 10.0,
+    "thread_count": 1
+  },
+  "confirmation_grid_axis_size": 11,
+  "jacobian_grid_axis_size": 7,
+  "inverse": {
+    "method": "damped_newton_analytic_spd_jacobian",
+    "maximum_iterations": 40,
+    "residual_tolerance": 1e-12,
+    "minimum_line_search_scale": 0.0009765625
+  },
+  "targets": {
+    "identity": {
+      "family": "identity",
+      "strength": 1.0
+    },
+    "density_cyan_s50": {
+      "family": "u5_r2e0_density",
+      "witness": "cyan_shadow_warm_highlight_like",
+      "strength": 0.5
+    },
+    "positive_warm_s35": {
+      "family": "u5_r2j0_positive",
+      "witness": "warm_highlight_like",
+      "strength": 0.35
+    }
+  },
+  "gates": {
+    "fitted_scalar_count_maximum": 65,
+    "identity_confirmation_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_absolute_centered_bias": 1.0,
+    "maximum_strength": 0.65,
+    "minimum_analytic_jacobian_eigenvalue": 0.35,
+    "minimum_analytic_jacobian_determinant": 0.042875,
+    "maximum_analytic_jacobian_spectral_norm": 8.0,
+    "maximum_confirmation_rgb_rmse": 0.015,
+    "minimum_improvement_over_global_affine_fraction": 0.2,
+    "inverse_roundtrip_maximum_absolute_error": 0.00002,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "branch_rules": {
+    "structural_failure": "invalidate project implementation only if the analytic construction is not represented faithfully; otherwise close",
+    "fidelity_or_affine_gain_failure": "close without more anchors, affine wrapper, lower temperature or optimizer search",
+    "inverse_or_exactness_failure": "close without alternate inverse or tolerance rescue",
+    "all_gates_pass": "retain as compact synthetic explicit representation only; compare complexity and latency with O0 before any future evidence-eligible use"
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "unpaired_distribution_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "external_code_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room paired-synthetic representation evidence for a compact bounded convex-gradient explicit colour operator; no unpaired operator identification, film, stock, calibration, authenticity, preference or production claim"
+}
