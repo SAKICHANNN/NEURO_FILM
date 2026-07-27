@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aa1-kodak-250d-2383-nuisance-identifiability-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AA1",
+  "seed": 2026072801,
+  "source": {
+    "aa0_decision": {
+      "path": "configs/u5_r2aa0_kodak_negative_print_source_decision_v1.json",
+      "required_branch": "bounded_nuisance_pilot_feasible"
+    },
+    "curve_data": {
+      "path": "configs/data/kodak_250d_2383_curve_pixels_v1.json",
+      "sha256": "62e463c8e0f0784da1980b66b0b338a1a2a3f6ece5ffe34268d2bc1987c2187d"
+    },
+    "graphs": {
+      "250d_characteristic": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+        "sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d"
+      },
+      "250d_sensitivity": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/250d_sensitivity.png",
+        "sha256": "e51e2e29c3abf6bd7b7e16ac7fe12e5be1c135e0304c61de949f74b6d4106e77"
+      },
+      "250d_dye_density": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/250d_dye_density.png",
+        "sha256": "a2627ceec92d64e991a7b6209d86fbfe57330d115f850abc6ffb1c62c46c7291"
+      },
+      "2383_characteristic": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/2383_characteristic.png",
+        "sha256": "d0c48f6dfd0f39b21ca5c6003e91614d0e387e0ff78b0e77fb3552d245a0fa0b"
+      },
+      "2383_sensitivity": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/2383_sensitivity.png",
+        "sha256": "5c3afcaec19f550e9f35f3430e139f0fa0b422885f3233400e261c70306c829c"
+      },
+      "2383_dye_density": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/2383_dye_density.png",
+        "sha256": "e8fefcbaaded7d696118f0b36ca2e9e8cceafe986403fdffa19f25ef13aca56e"
+      }
+    },
+    "cie": {
+      "xyz": {
+        "path": "data/calibration/cie/CIE_xyz_1931_2deg.csv",
+        "sha256": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1"
+      },
+      "a": {
+        "path": "data/calibration/cie/CIE_std_illum_A_1nm.csv",
+        "sha256": "61ef23fe146b8b665c74706717ab28cec7db6c9022993490bdc71991f43cb59b"
+      },
+      "d50": {
+        "path": "data/calibration/cie/CIE_std_illum_D50.csv",
+        "sha256": "b23049c6f7b266c1c1fbe147aa271e8930ca02d6e569c5ae1804c036faea4193"
+      },
+      "d55": {
+        "path": "data/calibration/cie/CIE_illum_D55.csv",
+        "sha256": "3e5aa1a8d5514df1928effef1615ab90e16c9a368ccfe513372cd8556c37bf4b"
+      },
+      "d65": {
+        "path": "data/calibration/cie/CIE_std_illum_D65.csv",
+        "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+      }
+    }
+  },
+  "synthetic_population": {
+    "encoded_srgb_levels_per_channel": 9,
+    "neutral_ramp_samples": 33,
+    "wavelength_min_nm": 380,
+    "wavelength_max_nm": 720,
+    "wavelength_step_nm": 5,
+    "neutral_reflectance": 0.18
+  },
+  "chain": {
+    "spectra": ["smooth", "positive_metamer", "negative_metamer"],
+    "negative_neutral_placements": [2.0, 2.5, 3.0],
+    "negative_dye_mappings": ["diagonal_peak_normalized", "midscale_nnls_scaled"],
+    "printer_hypotheses": [
+      "peak_gaussian_sigma20",
+      "peak_gaussian_sigma45",
+      "tungsten_sensitivity_weighted"
+    ],
+    "viewing_illuminants": ["D50", "D55", "D65"],
+    "print_lad_status_a_density_bgr": [1.09, 1.06, 1.03],
+    "nominal": {
+      "spectrum": "smooth",
+      "negative_neutral_placement": 2.5,
+      "negative_dye_mapping": "midscale_nnls_scaled",
+      "printer_hypothesis": "peak_gaussian_sigma45",
+      "viewing_illuminant": "D55"
+    }
+  },
+  "controls": {
+    "positive_matrix": {
+      "enabled": true,
+      "matrix_coefficient": [0.0, 3.0],
+      "channel_bias": [-0.5, 0.5],
+      "ridge": 0.001
+    }
+  },
+  "gates": {
+    "axis_max_residual_px": 2.0,
+    "annotation_max_ink_distance_px": 2.0,
+    "minimum_points_per_characteristic_curve": 12,
+    "minimum_points_per_sensitivity_curve": 10,
+    "minimum_points_per_dye_curve": 12,
+    "base_reconstruction_delta_e76_median_max": 0.25,
+    "base_reconstruction_delta_e76_p95_max": 0.75,
+    "base_reconstruction_delta_e76_max": 2.0,
+    "metamer_reconstruction_delta_e76_p95_max": 0.75,
+    "metamer_reconstruction_delta_e76_max": 2.0,
+    "metamer_spectral_rms_median_min": 0.01,
+    "nominal_identity_delta_e76_median_min": 7.0,
+    "nominal_best_basic_residual_delta_e76_median_min": 4.9,
+    "nominal_per_channel_affine_residual_delta_e76_median_min": 3.0,
+    "best_basic_residual_delta_e76_ge_2_fraction_min": 0.75,
+    "nuisance_ratio": {
+      "spectrum": {"median_max": 0.25, "p95_max": 0.5},
+      "placement": {"median_max": 0.35, "p95_max": 0.75},
+      "dye_mapping": {"median_max": 0.25, "p95_max": 0.5},
+      "printer": {"median_max": 0.35, "p95_max": 0.75},
+      "viewer": {"median_max": 0.25, "p95_max": 0.5},
+      "ensemble": {"median_max": 0.5, "p95_max": 1.0}
+    },
+    "neutral_y_min_step": -1e-6,
+    "nominal_neutral_chroma_max": 4.0,
+    "ensemble_neutral_chroma_max": 8.0,
+    "nominal_jacobian_determinant_min": 0.0,
+    "nominal_jacobian_spectral_norm_max": 8.0,
+    "raw_linear_srgb_abs_max": 4.0,
+    "raw_outside_cube_component_fraction_max": 0.25
+  },
+  "claim_ceiling": "repeatable synthetic-grid evidence for or against one Kodak-datasheet-constrained negative-to-print film-inspired Look Approximation under preregistered nuisance controls; no real 250D response, real 250D-to-2383 operator, calibration, authenticity, scanner/projector profile, latent mode, product preference or production claim"
+}

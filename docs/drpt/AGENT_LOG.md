@@ -4925,3 +4925,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   commit their hash before the first numerical run. No current film pixels,
   project images, owner anchors, external profiles/LUTs, clamp/gamut-map,
   neural/local rescue or physical Kodak claim. Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AA1 source-bound evaluator
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AA1`; DRPT L2/Mode A,
+  `dev-research-reliability` primary writer with AI/ML, research, tracker,
+  agent-log and structure review.
+- **Curve evidence:** digitize all six exact Kodak graph rasters through
+  frozen axes and semantic guides, then snap every retained sample to source
+  ink after masking axes/grid lines. Full-size visual review confirms the
+  250D/2383 characteristic, sensitivity and dye families. Curve-data SHA-256
+  is `62e463c8...2187d`.
+- **Root-cause correction:** the first builder revision drew each curve into
+  the same image used to snap later curves. The automatic source-ink gate
+  exposed one such self-annotation point. The builder now snaps every family
+  against an immutable source raster and draws only into a separate overlay;
+  regenerated evidence passes the masked-source-ink gate.
+- **Implementation:** add an isolated synthetic-only evaluator for the full
+  frozen 162-member spectrum/placement/dye/printer/viewer ensemble, controls,
+  nuisance ratios, neutral behaviour, Jacobian, raw-range and exact-repeat
+  evidence. It accepts no raster input and performs no clamp, gamut map,
+  training or production integration.
+- **Verification/handoff:** five targeted tests, `py_compile`,
+  `git diff --check` and the complete CPU suite pass (`994 passed`). The
+  numerical result has not been inspected. Next commit this implementation,
+  then run two exact formal evaluations from that software commit. Goal remains
+  ACTIVE.
