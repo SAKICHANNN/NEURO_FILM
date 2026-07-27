@@ -156,7 +156,7 @@ with a selected stock, but reference matching alone is labeled
 | P40C | DONE | prove report/source/delivery tampering fails closed | report bytes/path/ID, missing or changed staging/delivered files, order/state/claim | `f9ec8c8` | no verified delivery |
 | P40D | DONE | run adjacent/full/latest-main propagation and peer handoff | 479 combined; 1319 pass/1 skip/36 known; latest-main synthetic merge 149 pass | `ff6d632` | retain P39 |
 | P41A | DONE | freeze main-integration handoff after consumer closure | current main/producer snapshots, merge tree, tests, ownership and blockers | handoff commit | retain P1-P40 |
-| P41B | IN PROGRESS | propagate final consumer readiness without merging main | update completion audit/log; send equal-peer snapshot | handoff commit | main owner decides merge |
+| P41B | DONE | propagate final consumer readiness without merging main | update completion audit/log; send equal-peer snapshot | `db52d6e` | main owner decides merge |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

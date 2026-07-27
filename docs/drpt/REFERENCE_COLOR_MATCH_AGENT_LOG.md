@@ -1558,6 +1558,9 @@
   freezes payload/base/main/producer identities, all P33-P40 schema hashes,
   the conflict-free merge tree, review/test procedure and remaining blockers.
   Main integration remains owned by the equal main task.
+- Handoff commit: `db52d6e` (`docs: freeze reference match integration
+  handoff`). The stable snapshot was sent to both equal peer tasks; no wait or
+  merge was imposed.
 
 ## 2026-07-28 - Implement and verify P39 atomic local export
 
