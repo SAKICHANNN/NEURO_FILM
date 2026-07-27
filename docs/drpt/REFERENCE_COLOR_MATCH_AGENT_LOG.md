@@ -886,3 +886,20 @@
 - Handoff: publish this stable consumer evidence to both equal peer tasks.
   Future producer integration must pin both commits and a producer-owned
   conformance bundle; it must not import a mutable checkout.
+
+## 2026-07-28 - Start exact external-output receipt
+
+- Node/parent goal: P26 / external-core product consumer integrity.
+- Trigger: post-P25 audit found that acceptance v1 binds transform and
+  diagnostics but cannot identify the exact output bytes returned by a future
+  producer.
+- Decision: add a consumer-owned receipt over a copied output buffer, then add
+  a new admission version that binds that receipt. Do not mutate or reinterpret
+  the frozen v1 acceptance record.
+- Contract ceiling: same source profile/shape, finite dense float32 RGB,
+  candidate-only. A receipt is not producer `ApplyResultV1`, final delivery,
+  media conversion or product safety approval.
+- Coordination: D-PCT received intent before writes; no reply is required and
+  both tasks continue independently.
+- Handoff: P26A freezes semantics; P26B may implement only the additive
+  receipt and exact binding tests.

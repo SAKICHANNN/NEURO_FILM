@@ -96,6 +96,10 @@ with a selected stock, but reference matching alone is labeled
 | P25D1 | DONE | bind valid core execution to A1/A4/A5 without bypassing delivered-pixel safety | 12 acceptance tests; 48 combined core tests; strict decision schema; only identity or candidate-for-product-guard | acceptance commit | revert additive acceptance commit |
 | P25D2 | DONE | add synthetic consumer conformance fixtures without inventing a D-PCT producer artifact | 9 dedicated tests; 57 combined core tests; exact IEEE-754 vectors, descriptor/hash/schema checks and repeatable result | conformance commit | revert additive conformance commit |
 | P25E | DONE | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | 282 adjacent tests; full suite 1138 pass/1 skip/36 known failures; zero path overlap; synthetic merge 282 pass | evidence commit | retain prior stable commits |
+| P26A | IN_PROGRESS | freeze a consumer-owned apply receipt that binds exact returned pixels without defining producer `ApplyResultV1` | Mode C intent, source/output/diagnostics/capability identity and candidate-only contract | coordination commit | revert documentation commit |
+| P26B | NOT_STARTED | implement prepared output, strict receipt schema/roundtrip and binding validation | finite dense float32, same-profile/shape v1, mutation and swap tests | receipt commit | revert additive receipt commit |
+| P26C | NOT_STARTED | bind the exact receipt into a v2 guard-candidate admission decision | no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | admission commit | revert additive admission commit |
+| P26D | NOT_STARTED | run propagation, adjacent/full regression and peer handoff | focused/adjacent tests, full-suite classification, overlap refresh | evidence commit | retain P25 fallback |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -137,6 +141,17 @@ branch. The D-PCT peer independently integrates its producer branch. A future
 cross-repository release requires an explicit compatibility/integration leaf
 that pins both commits and schemas; neither task may silently integrate the
 other's mutable checkout.
+
+P26 closes an additional consumer integrity gap without extending producer
+authority. The consumer copies the bytes returned by a future core, computes
+its own exact output identity and issues a `CoreApplyReceiptV1`. The receipt is
+not D-PCT's `ApplyResultV1`, does not prescribe an ABI and cannot be accepted
+as a delivered image. V1 permits only finite dense float32 RGB with the same
+shape and exact profile as the bound source. Any future output-profile
+conversion requires a separately versioned trusted bridge. A v2 candidate
+admission must bind the receipt ID as well as A1/A4/A5; the existing v1
+acceptance record remains valid historical evidence but is insufficient to
+authorize future external pixels by itself.
 
 ## First-slice algorithm
 

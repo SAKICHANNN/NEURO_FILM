@@ -147,6 +147,26 @@
   producer package or pixels, opens no RAW/HDR/video bridge, changes no
   product default and grants no algorithm promotion.
 
+### 2026-07-28 P26 exact-output receipt intent
+
+- Owner and peer boundaries remain the same as P25. D-PCT received a
+  non-blocking intent before any interface write.
+- Gap: P25 binds source/reference, transform, capabilities and diagnostics,
+  but a future returned pixel buffer needs its own consumer-computed identity
+  before it can enter the product guard.
+- Allowed result: a Neuro-Film `CoreApplyReceiptV1` around a copied,
+  read-only, finite dense float32 RGB buffer. It binds exact output
+  `MatchView`, transform/source/reference IDs, capability ID and canonical
+  diagnostics hash.
+- V1 output contract is same shape and exact profile as the source. It does
+  not permit colour conversion, alpha, layout variation or a delivered state.
+- Forbidden: defining or naming D-PCT's producer `ApplyResultV1`, prescribing
+  ABI/buffer ownership, copying producer code, applying FilmFX, bypassing
+  A1/A4/A5, or turning the receipt into final delivered pixels.
+- P26C will use a new admission version rather than mutating P25's frozen
+  acceptance v1. Historical v1 decisions remain parseable but cannot bind
+  future returned pixels.
+
 ## Claim: NFCM-P1 product reference-look engine
 
 - Mode: C (same-project multi-chat concurrency)
