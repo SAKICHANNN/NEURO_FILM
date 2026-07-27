@@ -1306,3 +1306,5 @@
 - Handoff: evidence documentation is ready to commit. Real use remains closed
   on fixed producer invocation plus A1/A4/A5 promotion; final delivery is a
   later consumer decision.
+- Evidence commit: `36a1a98` (`docs: record external staging evidence`).
+  P33 is complete as transaction mechanics, not as real product delivery.

@@ -126,7 +126,7 @@ with a selected stock, but reference matching alone is labeled
 | P33A | DONE | freeze an external-candidate staging transaction without defining producer invocation | exact P28/P30/intent/receipt binding; all-or-nothing SDR files and report; staging-only claim | `ce0ceaa` | retain P30 authorization |
 | P33B | DONE | implement strict transaction report and atomic file staging | rollback fault injection, schema/roundtrip, exact output hashes | `0cb94c3` | revert additive module/schema |
 | P33C | DONE | prove mutation and fallback branches cannot write | authorization/order/receipt/profile/intent/path/commit negatives | `0cb94c3` | no staged artifacts |
-| P33D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 1245 pass/1 skip/36 known failures; latest-main synthetic merge 107 pass | evidence commit | retain P30/P32 |
+| P33D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1245 pass/1 skip/36 known failures; latest-main synthetic merge 107 pass | `36a1a98` | retain P30/P32 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
