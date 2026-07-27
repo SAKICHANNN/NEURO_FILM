@@ -230,6 +230,21 @@ cross-content recipe incoherence rather than numerical collapse. No domain
 opens a global champion, W2F1 output-only recovery or a local/capacity rescue.
 The final 628 was hash verified but never parsed.
 
+U5.R2Z0 now tests the case-bank mechanism that W2F0 left unresolved. Two
+byte-identical commit-bound CUDA reports fit 24 development per-case bounded
+O0 operators inside each known recipe and score them on 16 confirmatory
+identities. ClassNeg has qualifying Evaluator Oracle value: mean RMSE improves
+16.72% over the shared O0, wins 75% and has a positive bootstrap lower bound.
+The frozen input-only global and spatial photometric nearest neighbours both
+fail, however; spatial retrieval is worse than shared (`.02072` versus
+`.01536`) and closes `-208.62%` of the Oracle gap. Velvia misses the frozen
+Oracle magnitude and win gates at 9.78% and 68.75%. Wrong-recipe Oracles lose
+all queries by large margins and every flow passes structure gates. Retain
+only the ClassNeg paired evaluator gap; do not promote a selector, train a
+router, generate visuals, access final 628 or claim film/stock evidence. A
+distinct development-only asymmetric query/operator applicability audit is the
+next algorithm leaf.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

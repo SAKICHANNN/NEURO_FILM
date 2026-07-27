@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2z0-filmset-case-retrieval-decision-v1",
+  "experiment_id": "u5.r2z0-filmset-case-retrieval-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Z0",
+  "software_commit": "c5b7c04f775b4be0db1a4281278e2a5b6c3c5c23",
+  "config_sha256": "fd689811440d824f92f99580461c039002942d5393478168ca8e40288679cd88",
+  "report_a_sha256": "ffec19f4bbc5068014deef448bf272c10d279b4e869818d831a34be699d7c6dc",
+  "report_b_sha256": "ffec19f4bbc5068014deef448bf272c10d279b4e869818d831a34be699d7c6dc",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "dataset_boundary": {
+    "selected_identity_count": 40,
+    "selected_payload_image_count": 120,
+    "unselected_payload_images_read": 0,
+    "final_manifest_payload_rows_parsed": 0,
+    "full_raster_outputs_generated": 0
+  },
+  "domain_decisions": {
+    "classneg": {
+      "decision_branch": "case_bank_oracle_only",
+      "eligible_case_count": 24,
+      "shared_o0_rmse_mean": 0.015362695840860852,
+      "case_bank_oracle_rmse_mean": 0.012794659020763172,
+      "spatial_photometric_nn_rmse_mean": 0.020720092481625728,
+      "random_case_expected_rmse_mean": 0.021329596115153532,
+      "shuffled_spatial_assignment_rmse_mean": 0.022960567523773893,
+      "oracle_improvement_over_shared_fraction": 0.16716055871309754,
+      "oracle_win_fraction": 0.75,
+      "oracle_bootstrap_improvement_lower": 0.0009406798720800527,
+      "spatial_photometric_oracle_gap_closure": -2.086183733362942,
+      "correct_recipe_oracle_improvement_over_wrong_fraction": 0.791936556046864,
+      "correct_recipe_oracle_win_fraction": 1.0,
+      "structure_all": true
+    },
+    "velvia": {
+      "decision_branch": "case_bank_no_oracle_value",
+      "eligible_case_count": 24,
+      "shared_o0_rmse_mean": 0.016928472519685392,
+      "case_bank_oracle_rmse_mean": 0.015272587811318716,
+      "spatial_photometric_nn_rmse_mean": 0.02286606922074193,
+      "random_case_expected_rmse_mean": 0.02548709924870208,
+      "shuffled_spatial_assignment_rmse_mean": 0.02387774884602783,
+      "oracle_improvement_over_shared_fraction": 0.09781654584848809,
+      "oracle_win_fraction": 0.6875,
+      "oracle_bootstrap_improvement_lower": 0.000320783210903348,
+      "spatial_photometric_oracle_gap_closure": -3.58575489649472,
+      "correct_recipe_oracle_improvement_over_wrong_fraction": 0.7375160579304025,
+      "correct_recipe_oracle_win_fraction": 1.0,
+      "structure_all": true
+    }
+  },
+  "decision_branch": "classneg_oracle_only_velvia_no_oracle",
+  "interpretation": "ClassNeg contains held-out value in a fixed bank of bounded per-case operators, but the preregistered input-only global and spatial photometric nearest-neighbour selectors are worse than the shared O0 and close a negative fraction of the Oracle gap. Velvia misses both frozen Oracle magnitude and win-rate gates. Recipe-specific wrong-bank controls are much worse, so the ClassNeg result is a real paired-software-recipe evaluator gap rather than generic operator interchangeability. It does not identify an inference-time selector or a real film operator.",
+  "forbidden_rescues": [
+    "change Z0 gates or descriptors after viewing confirmatory metrics",
+    "promote the failed photometric nearest-neighbour selector",
+    "train a router without a distinct preregistered hypothesis and development-only controls",
+    "fit a local, semantic, neural or direct RGB model as a Z0 rescue",
+    "reopen W2F1 output-only reference recovery",
+    "parse or decode the final 628 lockbox",
+    "call ClassNeg or Velvia a physical film stock",
+    "claim real unpaired digital-to-film operator identification",
+    "generate a Z0 product visual shortlist"
+  ],
+  "next_ready_leaf": "U5.R2Z1 freeze a development-only asymmetric query-operator applicability audit for the ClassNeg Oracle gap, comparing the simplest hard reranker against shared, random, shuffled and raw-photometric retrieval before any trained router or visual candidate",
+  "claim_ceiling": "repeat-exact internal paired-software-recipe evidence that a fixed ClassNeg bounded case bank has held-out Evaluator Oracle value while the frozen input-only photometric nearest-neighbour selector fails, and that Velvia has no qualifying case-bank Oracle under the frozen gates; no deployable selector, output-only recovery, film, stock, calibration, commercial-rights, unseen-recipe or real unpaired-operator claim"
+}

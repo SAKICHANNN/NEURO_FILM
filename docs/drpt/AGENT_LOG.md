@@ -4723,3 +4723,75 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator fitting, training, LSM and production integration stay closed.
   Reopen only on explicit permission/licensed export, verified pairing and
   independent replication. Goal returns to an algorithm-priority ready leaf.
+
+## 2026-07-27 - Freeze U5.R2Z0 within-recipe case-bank evaluator
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2Z0`; DRPT L2 with
+  `dev-research-reliability` as sole writer and AI/ML, research, tracker,
+  agent-log, structure and code-review disciplines as read-only governance.
+- **Distinct hypothesis:** W2F0 shows ClassNeg/Velvia are not coherent global
+  operators. Z0 asks whether a fixed development bank of per-pair bounded O0
+  operators has held-out Oracle value and whether input-only photometric hard
+  Top-1 retrieval recovers it. W2F1 output-only recovery remains closed.
+- **Frozen boundary:** 24 development and 16 confirmatory FilmSet identities;
+  input plus ClassNeg/Velvia only; 120 hash-checked payloads; disjoint
+  development fit/evaluation pixels; final 628 and unused identities unread.
+  Capture One recipes are software controls, not film stocks.
+- **Controls/gates:** shared O0, case-bank Oracle, global/spatial photometric
+  nearest neighbour, exact random expectation, shuffled feature/operator
+  assignment and wrong-recipe Oracle. Require 10% Oracle gain, 75% wins,
+  positive bootstrap lower bound and 25% retrieval gap closure plus structure.
+- **Engineering:** added an isolated module, runner, config, contract and six
+  focused tests. Invalid/empty wrong-recipe banks report an unavailable control
+  instead of crashing. Full pre-formal verification is `983 passed`; commit
+  `c5b7c04f775b4be0db1a4281278e2a5b6c3c5c23` is pushed before formal runs.
+
+## 2026-07-27 - Close U5.R2Z0 with one Oracle-only recipe
+
+- **Reproducibility:** formal A/B bind implementation commit
+  `c5b7c04f775b4be0db1a4281278e2a5b6c3c5c23` and config SHA-256
+  `fd689811440d824f92f99580461c039002942d5393478168ca8e40288679cd88`.
+  Reports are byte-identical at
+  `ffec19f4bbc5068014deef448bf272c10d279b4e869818d831a34be699d7c6dc`;
+  both stderr logs are empty.
+- **ClassNeg:** all 24 cases are eligible. Oracle mean RMSE `.012795` improves
+  shared `.015363` by 16.72%, wins 75% and has bootstrap lower `.000941`, so
+  the bank has held-out paired evaluator value. Spatial photometric NN is
+  `.020720`, worse than shared, with `-208.62%` Oracle-gap closure. Global NN
+  also fails. Beating random/shuffled does not help because both are worse than
+  shared.
+- **Velvia:** all 24 cases are eligible and safe, but Oracle gain 9.78% and
+  win rate 68.75% miss the frozen 10%/75% gates. Branch
+  `case_bank_no_oracle_value`.
+- **Negative/control evidence:** correct-recipe Oracle beats the best
+  wrong-recipe bank by 79.19%/73.75% and wins every query. Every retained flow
+  passes range, positive-Jacobian, norm, inverse, coefficient and replay gates.
+  The failure is selector information, not numerical collapse or generic bank
+  interchangeability.
+- **Decision/handoff:** retain ClassNeg only as an evaluator Oracle gap and
+  close Velvia routing. Do not retune Z0, promote photometric retrieval, train a
+  router, generate visuals, access final 628 or claim film/stock evidence.
+  U5.R2Z1 is ready only to freeze a distinct development-only asymmetric
+  query/operator applicability audit before any fitting.
+
+## 2026-07-27 - Prepare Cursor Grok 4.5 High Goal Engine handoff
+
+- **User scope:** finish Z0, then hand the complete active Ultimate Goal to a
+  local Cursor Agent using Grok 4.5 High, minimizing manual "continue" prompts.
+- **Goal Engine audit:** the separate uncommitted repository at
+  `C:\Users\hhvrf\Documents\goalmode` passes formatting, lint, typecheck,
+  12 unit tests, 11 integration tests, one end-to-end test, build and package
+  boundaries. It was inspected read-only and not committed or modified.
+- **Backend boundary:** native Windows and the installed Ubuntu WSL currently
+  have no `agent`/`cursor-agent` executable. Per the installed personal
+  `goal-engine` skill, CLI mode is therefore unavailable and the legal fallback
+  is its agent-native loop. Do not pause Ultimate to bootstrap the supervisor.
+- **Integration:** add protected `GOAL.md`, durable
+  `.goal-engine/AGENT_PROGRESS.md`, the single-file Grok handoff, personal
+  `goal-engine`/`autonomous-engineering` routing and a 30-round stop-hook cap.
+  Dynamic lifecycle truth remains `docs/drpt/CURSOR_GOAL_STATE.json`.
+- **Authority:** Goal Engine itself does not auto-push or merge. The project
+  owner separately authorizes scoped pushes on the active research branch;
+  merge, release and deploy remain forbidden. Cursor must use This Computer,
+  not cloud/background agents, because ignored local evidence and the RTX 5070
+  Ti Laptop GPU are required.
