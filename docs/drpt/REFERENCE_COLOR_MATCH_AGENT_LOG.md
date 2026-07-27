@@ -1838,6 +1838,23 @@
   reference-only/shared future semantics and uncertainty shrinkage, but has
   no pass/model/capability/package. It remains below P45 intake.
 
+## 2026-07-28 - Freeze P47 shared-reference operator batch semantics
+
+- Node/parent goal: P47A-D / consumer support for a genuinely reference-only
+  successor.
+- Contract: exactly one opaque operator is fitted from the reference, fixed
+  model and options. Ordered N source applications each bind their own source,
+  diagnostics/result and exact output pixels to that same operator.
+- Rejection boundary: per-source refits, mixed operator/bundle identity,
+  foreign reference/profile, duplicate or missing sources, reordered receipts,
+  mutable/non-finite pixels and partial batches fail closed.
+- Claim ceiling: candidate-only awaiting P44 and numeric/product guards. The
+  contract cannot create applied, promoted or delivered state.
+- Ownership: consumer defines recipe/batch/output binding only. Producer owns
+  fit/apply wire names, bundle payload, algorithm, model and conformance.
+- DoD: additive schema/module/tests, no change to P28 per-source semantics,
+  adjacent/full/latest-main propagation and equal-peer handoff.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
