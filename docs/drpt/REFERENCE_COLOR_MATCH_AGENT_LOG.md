@@ -1090,3 +1090,18 @@
 - Handoff: P28 is stable and ready for both equal peer tasks. Next product
   work may bind this resolution to a durable batch transaction envelope, but
   may not invent producer invocation/package compatibility.
+
+## 2026-07-28 - Start P29 exact-receipt numeric guard
+
+- Node/parent goal: P29 / post-admission delivered-pixel safety.
+- Scope: exact P27 source/output buffers, producer factual DiagnosticsV2
+  fractions, receipt/admission identity and P28 atomic resolution.
+- Consumer metric: new boundary-pixel fraction relative to the exact source,
+  with a frozen epsilon. Producer OOG/clipping/projection facts remain
+  authoritative and are thresholded, never consumer-reconstructed.
+- State ceiling: pass means only `eligible-for-transaction`; failure means
+  identity fallback. No file write, final applied state or partial batch.
+- Claim ceiling: numeric guard cannot establish absence of semantic/visual
+  severe artifacts or aesthetic quality; those evidence gates remain
+  independent.
+- Coordination: both equal peer tasks received the non-overlapping intent.

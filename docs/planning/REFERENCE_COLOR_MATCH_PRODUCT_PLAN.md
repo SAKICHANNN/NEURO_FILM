@@ -109,6 +109,10 @@ with a selected stock, but reference matching alone is labeled
 | P28B | DONE | implement success/failure batch binding | verify every producer/consumer source and shared reference identity | batch implementation commit | reject mixed/unbound outcomes |
 | P28C | DONE | bind per-source A1/A4/A5 admission into atomic batch result | any producer/admission failure makes the entire batch identity fallback | batch implementation commit | never expose partial delivery |
 | P28D | DONE | run mutation/permutation/full/latest-main propagation and handoff | 1191 pass/1 skip/36 known environment failures; latest-main synthetic merge 296 pass; zero path overlap | evidence commit | retain P27 single-source path |
+| P29A | IN_PROGRESS | freeze exact-receipt numeric delivery guard | producer factual fractions plus consumer new-boundary metric; no aesthetic claim | guard contract commit | retain pending-product-guard |
+| P29B | NOT_STARTED | implement per-source guard decision | exact source/output/admission binding and conservative frozen thresholds | guard implementation commit | identity fallback |
+| P29C | NOT_STARTED | implement atomic batch guard | all sources eligible or the full batch falls back | batch guard commit | no partial/applied state |
+| P29D | NOT_STARTED | run adversarial/full/latest-main propagation and handoff | pixel mutation, threshold edges, binding swaps, regression | evidence commit | retain P28 resolution |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -200,6 +204,15 @@ otherwise every source must have a receipt-bound A1/A4/A5 admission. Any
 fallback makes the whole batch identity fallback. Even an all-success batch
 stops at `pending-product-guard`; partial delivery and `applied` are absent
 from the contract.
+
+P29 is a numeric delivered-pixel gate after P28, not a replacement for visual
+severe-artifact review or aesthetic evidence. It consumes producer-owned
+factual OOG/clipping/projection fractions without recomputing or overriding
+their meaning, and independently measures only the consumer-owned fraction of
+new source-relative boundary pixels from exact receipt bytes. Passing yields
+`eligible-for-transaction`, never applied delivery. Every source in a pending
+batch must pass the same frozen policy or the full batch becomes identity
+fallback.
 
 ## First-slice algorithm
 
