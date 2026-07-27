@@ -2119,6 +2119,29 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   fitting/training/LSM and production integration remain forbidden. Goal
   remains ACTIVE.
 
+## 2026-07-28 - Freeze U5.R2AE1 external structural-bank contract
+
+- **Parent/DoR:** AE0 permits one isolated synthetic audit but blocks profile
+  truth, copying, teacher use, fitting and integration.
+- **Population:** freeze eight chains with historical document association:
+  Ektar/Portra through common Endura; four VISION3 materials through common
+  2383; Ektachrome/Kodachrome direct. Cross-family output-chain differences do
+  not count as stock separation.
+- **Execution:** pin external revision, source-module hashes, historical blob
+  IDs, CPython/packages, encoded-sRGB 17-cube and all public pipeline
+  parameters before formal output generation.
+- **Controls:** exact duplicate Ektar invocation and an analytic `.75`
+  identity-to-Ektar strength path must be recognized as duplicate/same
+  direction rather than distinct modes.
+- **Gates:** require exact complete-run replay, finite/range safety, bounded
+  interior clipping, neutral monotonicity, local Jacobian/folding safety,
+  identity salience, residual after bounded joint basic adjustment and
+  distinct pairs in at least two common-output families.
+- **Branch:** any runtime/replay/artifact/basic-only failure closes without
+  version, precision, clamp, smoothing, profile, threshold or capacity rescue.
+  A pass remains external synthetic structure only. Implement runner/evaluator
+  next; Goal remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2D1 with canonical-information-only result
 
 - **Formal evidence:** 384 exact operators/768 observations, zero cross-split

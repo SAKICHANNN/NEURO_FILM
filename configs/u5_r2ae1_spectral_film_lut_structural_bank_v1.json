@@ -1,0 +1,175 @@
+{
+  "schema_version": "u5-r2ae1-spectral-film-lut-structural-bank-v1",
+  "experiment_id": "u5-r2ae1-spectral-film-lut-structural-bank-v1",
+  "node": "U5.R2AE1",
+  "parent_decision": "configs/u5_r2ae0_spectral_film_lut_source_audit_decision_v1.json",
+  "external_source": {
+    "repository": "https://github.com/JanLohse/spectral_film_lut",
+    "revision": "02ecafd78c4a97bd0708d69a9f5ec39caf492d2e",
+    "license": "MIT",
+    "profile_truth": false,
+    "historical_datasheet_tree_revision": "887caa50f3e54d4ea0eed846d498967a466e2d65^"
+  },
+  "runtime": {
+    "python_version": "3.14.4",
+    "package_versions": {
+      "colour-science": "0.4.7",
+      "matplotlib": "3.11.0",
+      "networkx": "3.6.1",
+      "numba": "0.66.0",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "array_dtype": "float32",
+    "numba_cache_is_ignored": true
+  },
+  "source_profile_hashes": {
+    "KODAK_EKTAR_100": "a2e813fb3f13dd27206513d59ca73465f3262fd718a77662703b251e72eceb2e",
+    "KODAK_PORTRA_400": "921c2a39c85b08c977a01d4769840f0e4eddaaa885f63a7b3669d099ab6cca78",
+    "KODAK_5203": "40f87ecfb20e98f58752b31230935f8ffd0e3844512669f9b7c0142ac28fc74d",
+    "KODAK_5207": "10c0597e8693119802d32b348c8059b4447840648add7d25061f2be3fa78ab64",
+    "KODAK_5213": "01f23a0b1ab0d2fbed2896a1ba4ae239b8d7f2b712a773ec1c81b112e47f7349",
+    "KODAK_5219": "32f1c7618003f49a104e02637bec9c9d619b86140c854fa007491485a1a95aa4",
+    "KODAK_ENDURA_PREMIER": "812d42be78bae6e6e2fbe7be91a6477421ee6fd5b249c5a3413c16f3d62b61d5",
+    "KODAK_2383": "b95341fb73c349413b04741bad82a9e7c98b95d9bab4c401e2f1dc35864db43b",
+    "KODAK_EKTACHROME_100D": "6a0964311d8e108438e563dd5aacba7ecd68f0319586a985a4ba14e3e7baddc1",
+    "KODACHROME_64": "d039d1d575d5fecef1ca747d043c2d54f18826a25a590975fdb3ee23c07333f4"
+  },
+  "historical_datasheet_git_blobs": {
+    "Kodak_Ektar_100.pdf": "039f1a0bbb610dafcabd235913a9e109c4fe40ef",
+    "Kodak_Portra_400.pdf": "fb5c9e7440cf5cc28f7e110d58f3c6279672d2a7",
+    "Kodak_Endura_Premier.pdf": "c450397bea60c396e0515fbd686646ca448af1b4",
+    "Kodak_Vision3_50D.pdf": "5f4822196d758eb6dd55362f7537e2c1e89504e4",
+    "Kodak_Vision3_250D.pdf": "e13730fce2b7fd79d03bfa9d37100eb240d45c4d",
+    "Kodak_Vision3_200T.pdf": "28cf0c84ef3ac69d614f6597673f44359be59d00",
+    "Kodak_Vision3_500T.pdf": "0924029f91b1e3a77b015be12c9bd34028773e23",
+    "Kodak_2383.pdf": "ca88026c1492866e9ff88385c1f3fcde8833c003",
+    "Kodak_Ektachrome_100D.pdf": "01692401d3a100275b635b357214ec604cfb9687",
+    "Kodachrome.pdf": "04bd10a12380469797eef5f4b19e609882b7c74c"
+  },
+  "synthetic_population": {
+    "cube_size": 17,
+    "input_encoding": "sRGB",
+    "input_gamut": "sRGB",
+    "output_encoding": "sRGB",
+    "output_gamut": "Rec. 709",
+    "finite_difference_cells": true,
+    "neutral_samples": 257,
+    "interior_clip_margin": 0.0625
+  },
+  "pipeline": {
+    "mode": "full",
+    "exp_kelvin": 6500.0,
+    "tint": 0.0,
+    "exp_comp": 0.0,
+    "adx_coding": true,
+    "adx_scaling": 1.0,
+    "printer_lights_rgb": [0.0, 0.0, 0.0],
+    "projector_kelvin": 6500.0,
+    "white_clip": true,
+    "white_balance": true,
+    "sat_adjust": 1.0,
+    "shadow_comp": 0.0,
+    "push_pull": 0.0,
+    "inversion": false,
+    "idealized_curve": false,
+    "apd_intermediate": false
+  },
+  "chains": [
+    {
+      "id": "photo_ektar100_endura",
+      "family": "photo_negative",
+      "negative_symbol": "KODAK_EKTAR_100",
+      "print_symbol": "KODAK_ENDURA_PREMIER"
+    },
+    {
+      "id": "photo_portra400_endura",
+      "family": "photo_negative",
+      "negative_symbol": "KODAK_PORTRA_400",
+      "print_symbol": "KODAK_ENDURA_PREMIER"
+    },
+    {
+      "id": "cine_vision3_50d_2383",
+      "family": "cine_negative",
+      "negative_symbol": "KODAK_5203",
+      "print_symbol": "KODAK_2383"
+    },
+    {
+      "id": "cine_vision3_250d_2383",
+      "family": "cine_negative",
+      "negative_symbol": "KODAK_5207",
+      "print_symbol": "KODAK_2383"
+    },
+    {
+      "id": "cine_vision3_200t_2383",
+      "family": "cine_negative",
+      "negative_symbol": "KODAK_5213",
+      "print_symbol": "KODAK_2383"
+    },
+    {
+      "id": "cine_vision3_500t_2383",
+      "family": "cine_negative",
+      "negative_symbol": "KODAK_5219",
+      "print_symbol": "KODAK_2383"
+    },
+    {
+      "id": "reversal_ektachrome100d_direct",
+      "family": "reversal",
+      "negative_symbol": "KODAK_EKTACHROME_100D",
+      "print_symbol": null
+    },
+    {
+      "id": "reversal_kodachrome64_direct",
+      "family": "reversal",
+      "negative_symbol": "KODACHROME_64",
+      "print_symbol": null
+    }
+  ],
+  "controls": {
+    "exact_duplicate_chain_id": "photo_ektar100_endura",
+    "strength_path_chain_id": "photo_ektar100_endura",
+    "strength_path_value": 0.75,
+    "strength_fit_residual_rgb_rmse_max": 1e-12,
+    "strength_fit_explained_energy_min": 0.999999999999,
+    "matched_basic": "bounded joint exposure white-balance contrast saturation in linear sRGB",
+    "pairwise_comparisons_are_within_family_only": true
+  },
+  "automatic_gates": {
+    "exact_chain_count": 8,
+    "exact_complete_run_replay_required": true,
+    "all_outputs_finite": true,
+    "output_minimum": -1e-06,
+    "output_maximum": 1.000001,
+    "maximum_interior_hard_clip_fraction": 0.01,
+    "maximum_neutral_luma_monotonic_violation": 2e-05,
+    "maximum_negative_jacobian_fraction": 0.005,
+    "negative_jacobian_threshold": -1e-05,
+    "maximum_jacobian_spectral_norm": 20.0,
+    "minimum_style_delta_e76_median_vs_identity": 3.0,
+    "minimum_stylized_chains": 6,
+    "minimum_joint_basic_residual_delta_e76_median_vs_identity": 1.5,
+    "minimum_non_basic_chains": 4,
+    "minimum_within_family_pair_residual_delta_e76_median": 1.0,
+    "minimum_distinct_families": 2,
+    "duplicate_control_requires_exact_equality": true,
+    "strength_path_control_required": true
+  },
+  "branches": {
+    "runtime_or_hash_failure": "close_without_version_or_precision_rescue",
+    "replay_failure": "close_without_thread_or_dtype_rescue",
+    "range_fold_or_monotonicity_failure": "close_without_clamp_smoothing_or_gate_change",
+    "basic_only_or_insufficient_family_diversity": "close_without_candidate_search_or_capacity_increase",
+    "full_pass": "retain_external_structural_comparison_bank_only_and_freeze_any_later_real_image_leaf_separately"
+  },
+  "forbidden": [
+    "inspect_formal_metrics_before_contract_commit",
+    "change_chain_membership_after_metrics",
+    "copy_external_profiles_source_luts_or_datasheets",
+    "fit_current_pixels_or_train_models",
+    "use_outputs_as_teachers",
+    "claim_stock_response_calibration_or_authenticity",
+    "open_lsm_or_production_integration",
+    "visual_review_of_synthetic_cube"
+  ],
+  "claim_ceiling": "source-bound external spectral-simulator structural diversity on a fixed synthetic cube; not an identified film operator, stock response, calibrated profile, training target, or product implementation"
+}
