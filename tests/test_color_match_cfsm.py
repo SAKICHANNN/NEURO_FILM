@@ -17,6 +17,7 @@ from src.color_match.research import (
     cfsm_candidate_to_json,
     fit_cfsm_analytic_candidate,
     fit_cfsm_batch_candidate,
+    fit_cfsm_batch_quantile_candidate,
     fit_cfsm_candidate,
     fit_cfsm_quantile_candidate,
     render_cfsm_batch,
@@ -99,6 +100,32 @@ def test_cfsm_quantile_fit_is_deterministic_constrained_and_replayable() -> None
     replay = cfsm_candidate_from_json(cfsm_candidate_to_json(first))
     assert replay.candidate_id == first.candidate_id
     assert np.array_equal(replay.lut.values, first.lut.values)
+
+
+def test_cfsm_batch_quantile_is_order_invariant_and_replayable() -> None:
+    reference = _cube_reference()
+    rng = np.random.default_rng(2026072703)
+    sources = tuple(
+        _working(
+            rng.uniform(0.02, 0.98, size=(20, 24, 3)),
+            f"batch-quantile-{index}",
+        )
+        for index in range(3)
+    )
+    first = fit_cfsm_batch_quantile_candidate(reference, sources)
+    second = fit_cfsm_batch_quantile_candidate(
+        reference,
+        reversed(sources),
+    )
+    assert first.candidate_id == second.candidate_id
+    assert np.array_equal(first.lut.values, second.lut.values)
+    assert first.diagnostics.constraint_report.passes
+    assert first.diagnostics.source_image_count == 3
+    assert first.diagnostics.canonical_prior_mode == (
+        "uploaded-source-batch-monotone-quantile-v1"
+    )
+    replay = cfsm_candidate_from_json(cfsm_candidate_to_json(first))
+    assert replay.candidate_id == first.candidate_id
 
 
 def test_cfsm_serialization_replays_and_tampering_fails_closed() -> None:

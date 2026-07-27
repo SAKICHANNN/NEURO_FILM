@@ -51,6 +51,9 @@ CFSM_EMPIRICAL_ALGORITHM_ID = (
 CFSM_QUANTILE_ALGORITHM_ID = (
     "canonical-factorized-safe-match.monotone-quantile-v1"
 )
+CFSM_BATCH_QUANTILE_ALGORITHM_ID = (
+    "canonical-factorized-safe-match.batch-monotone-quantile-v1"
+)
 CFSM_CANDIDATE_SCHEMA_ID = "neuro-film.cfsm-candidate.v0"
 _SUPPORTED_ALGORITHM_IDS = frozenset(
     {
@@ -59,6 +62,7 @@ _SUPPORTED_ALGORITHM_IDS = frozenset(
         CFSM_ANALYTIC_ALGORITHM_ID,
         CFSM_EMPIRICAL_ALGORITHM_ID,
         CFSM_QUANTILE_ALGORITHM_ID,
+        CFSM_BATCH_QUANTILE_ALGORITHM_ID,
     }
 )
 _ANALYTIC_PRIOR_SEED = 2026072701
@@ -394,6 +398,17 @@ def validate_cfsm_candidate(candidate: CFSMCandidate) -> None:
         raise ReferenceMatchContractError(
             "CFSM quantile canonical-prior diagnostics mismatch"
         )
+    if candidate.algorithm_id == CFSM_BATCH_QUANTILE_ALGORITHM_ID and (
+        candidate.diagnostics.canonical_prior_mode
+        != "uploaded-source-batch-monotone-quantile-v1"
+        or candidate.diagnostics.source_image_count < 1
+        or candidate.diagnostics.canonical_prior_sample_count < 64
+        or candidate.diagnostics.canonical_prior_sample_count
+        > candidate.policy.maximum_reference_samples
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM batch-quantile canonical-prior diagnostics mismatch"
+        )
     expected_fallback = float(strength) == 0.0
     if (
         candidate.diagnostics.used_identity_fallback != expected_fallback
@@ -714,6 +729,95 @@ def fit_cfsm_quantile_candidate(
         prior_mode="fixed-uniform-cube-monotone-quantile-v1",
         source_image_count=0,
         canonical_prior_sample_count=len(prior),
+    )
+
+
+def fit_cfsm_batch_quantile_candidate(
+    reference: WorkingImage,
+    sources: Iterable[WorkingImage],
+    *,
+    policy: CFSMProjectionPolicy | None = None,
+) -> CFSMCandidate:
+    """Fit one fixed quantile LUT from a reference and complete source batch."""
+
+    resolved = policy or CFSMProjectionPolicy()
+    _validate_policy(resolved)
+    _validate_image(reference, "reference")
+    if isinstance(sources, (WorkingImage, np.ndarray, str, bytes)):
+        raise ReferenceMatchContractError(
+            "CFSM batch-quantile sources must be an iterable of WorkingImage"
+        )
+    sampled: list[tuple[str, np.ndarray]] = []
+    source_count = 0
+    try:
+        for source in sources:
+            if source_count >= 64:
+                raise ReferenceMatchContractError(
+                    "CFSM batch-quantile supports at most 64 source images"
+                )
+            _validate_image(source, f"source[{source_count}]")
+            source_samples = _reference_samples(
+                source,
+                resolved.maximum_reference_samples,
+            )
+            sample_bytes = np.asarray(
+                source_samples,
+                dtype="<f4",
+                order="C",
+            ).tobytes(order="C")
+            sampled.append(
+                (hashlib.sha256(sample_bytes).hexdigest(), source_samples)
+            )
+            source_count += 1
+    except TypeError as exc:
+        raise ReferenceMatchContractError(
+            "CFSM batch-quantile sources must be iterable"
+        ) from exc
+    if source_count < 1:
+        raise ReferenceMatchContractError(
+            "CFSM batch-quantile requires at least one source image"
+        )
+    sampled.sort(key=lambda item: item[0])
+    pooled = np.concatenate([item[1] for item in sampled], axis=0)
+    if len(pooled) > resolved.maximum_reference_samples:
+        indices = np.linspace(
+            0,
+            len(pooled) - 1,
+            resolved.maximum_reference_samples,
+            dtype=np.int64,
+        )
+        pooled = pooled[indices]
+    target = _reference_samples(reference, resolved.maximum_reference_samples)
+    try:
+        estimate = estimate_affine_spline_transport_operator(
+            pooled,
+            [target],
+            knot_quantiles=(
+                0.001,
+                0.03,
+                0.12,
+                0.35,
+                0.65,
+                0.88,
+                0.97,
+                0.999,
+            ),
+            iterations=8,
+            regularization=1e-6,
+            normalize_frame_photometric=False,
+        )
+    except (ValueError, np.linalg.LinAlgError) as exc:
+        raise ReferenceMatchContractError(
+            "CFSM could not estimate batch monotone-quantile transport"
+        ) from exc
+    return _fit_cfsm_from_transport(
+        reference,
+        estimate,
+        policy=resolved,
+        algorithm_id=CFSM_BATCH_QUANTILE_ALGORITHM_ID,
+        prior_mode="uploaded-source-batch-monotone-quantile-v1",
+        source_image_count=source_count,
+        canonical_prior_sample_count=len(pooled),
     )
 
 
