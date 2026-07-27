@@ -147,10 +147,10 @@ with a selected stock, but reference matching alone is labeled
 | P38B | DONE | implement canonical delivery authorization | bind authorization/plan/verification/reference/source identities; no file write | `18eb813` | revert additive module/schema |
 | P38C | DONE | prove chain drift and claim escalation fail closed | live file tamper, P30/P34/P35/P37 identity and state/scope/claim negatives | `18eb813` | no delivery authorization |
 | P38D | DONE | run adjacent/full/latest-main propagation and peer handoff | 457 combined; 1297 pass/1 skip/36 known; latest-main synthetic merge 127 pass | `fcd3ace` | retain P37 |
-| P39A | IN PROGRESS | freeze atomic local-user export transaction | rebuild exact P38 immediately before commit; byte-exact N outputs plus report | intent commit | retain P38 authorization |
-| P39B | PENDING | implement rollback-safe local delivery | protect P33/P36 staging; strict canonical delivery report; uniform format/depth | implementation commit | revert additive module/schema |
-| P39C | PENDING | prove stale auth, path and commit failures fail closed | live tamper, foreign chain, staging collision, path/count/format, injected rollback negatives | implementation commit | preserve all staging files |
-| P39D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P38 |
+| P39A | DONE | freeze atomic local-user export transaction | rebuild exact P38 immediately before commit; byte-exact N outputs plus report | `dd44151` | retain P38 authorization |
+| P39B | DONE | implement rollback-safe local delivery | protect P33/P36 staging; strict canonical delivery report; uniform format/depth | `8d60fc8` | revert additive module/schema |
+| P39C | DONE | prove stale auth, path and commit failures fail closed | live tamper, foreign chain, staging collision, path/count/format, injected rollback negatives | `8d60fc8` | preserve all staging files |
+| P39D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 468 combined; 1308 pass/1 skip/36 known; latest-main synthetic merge 138 pass | evidence commit | retain P38 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

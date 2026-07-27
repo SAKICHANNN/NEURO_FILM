@@ -1516,6 +1516,34 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Implement and verify P39 atomic local export
+
+- Node/parent goal: P39B-D / local file transaction after P38.
+- Implementation: `8d60fc8` adds a byte-exact local delivery transaction,
+  strict schema, public exports and eleven adversarial tests.
+- Authorization: the exact P38 object is structurally validated and rebuilt
+  live from P37/P35/P34/P30 immediately before any destination is staged.
+- Transaction: every P36 output is copied byte-for-byte to an fsynced
+  temporary file. N files and one canonical report then use the existing
+  rollback-safe batch commit. Existing destinations are restored on an
+  injected report-commit failure.
+- Protection: P33 inputs/report and P36 outputs/report cannot be destinations;
+  target extension must match staged file format and bit-depth policy.
+- State/ceiling: `committed-local-delivery` /
+  `local-files-delivered-reference-look`; this is a local file result, never
+  an app-level applied state, stock identity or public share.
+- Verification: 11 dedicated and 468 combined color-match/FilmFX tests pass.
+  Full suite is 1308 passed, one skipped and the unchanged 36 isolated
+  output/hash failures; no color-match or FilmFX failure.
+- Latest-main: `33493ac`, 184 consumer versus 124 main changed paths, zero
+  exact overlap, merge tree `e23ecbfd...`; fresh detached synthetic merge
+  passes 138 P30-P39/FilmFX tests and is removed.
+- Concurrent safety: main's `.codex/tmp` and D-PCT's uncommitted Volga2K
+  script were read-only. Producer interface state was not changed.
+- Handoff: P39 evidence is ready to commit. Local export mechanics are
+  complete, while real use remains closed on producer invocation,
+  A1/A4/A5 and main-project integration.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
