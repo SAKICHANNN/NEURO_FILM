@@ -51,6 +51,7 @@ wire contract and not an algorithm promotion.
 | Reference-only shared batch semantics | P47 binds one source-free operator to ordered N source-bound exact output receipts | COMPLETE AS CONSUMER CONTRACT | Map only to a producer build/apply fixture that proves source-free bundle construction / D-PCT then Neuro-Film |
 | Shared-batch numeric safety | P48 binds per-source producer facts, verifies output extrema/new boundary and falls back atomically | COMPLETE AS CONSUMER GUARD | Map exact producer diagnostics then replay before any shared-path authorization / D-PCT then Neuro-Film |
 | Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision for the same evidence/model/options | COMPLETE AS FAIL-CLOSED STAGING AUTHORIZATION | A real callable shared producer must first pass every lock; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
+| Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path

@@ -8,15 +8,15 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P49 implementation head:
-  `14fc7bfa2e15abfff7c08ab15065c0233ee2703e`;
+- complete P1-P50 implementation head:
+  `97f4131aa01c0d0708e06aa9e60b20e72cabc883`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
   `1dce72949ca98db73126991328969feebe911fa9`;
 - D-PCT read-only snapshot:
   `fd036aa`;
 - conflict-free main/payload merge tree:
-  `bf2eb95969c9ed4eb21a609dd55d87a485148e82`.
+  `a04585aecf188ad1c3dd608ba4811492a865824e`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -44,6 +44,8 @@ The consumer module implements:
 - promotion-bound shared-path staging authorization that embeds and reruns
   the exact P45 declaration and cannot be opened by declaration booleans
   alone;
+- rollback-safe shared-path output/report staging that binds P47/P48/P49 and
+  preserves the existing per-source/FilmFX/local-delivery wire identities;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -70,9 +72,9 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..14fc7bf`; do not copy files manually and do not import
+2. Review `c03c321..97f4131`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 14fc7bf`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> 97f4131`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -86,11 +88,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 588 passed;
-- latest isolated consumer full suite: 1394 passed, one skipped, 36 unchanged
+- latest consumer combined color-match/FilmFX suite: 600 passed;
+- latest isolated consumer full suite: 1406 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 49 P45/P47/P48/P49 focused tests
-  passed; the temporary worktree was removed;
+- latest detached synthetic main merge: 54 P33/P36/P39/P49/P50 transaction
+  tests passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real
@@ -109,3 +111,8 @@ failed its calibration and it emitted no model, capability, wheel or bundle
 fixture. BMKL, ROGR and other development results likewise remain non-callable
 research evidence. None may be substituted into the consumer by algorithm
 name.
+
+SPGIN-v0 is a newly preregistered producer research successor using a fixed
+ResNet18 reference descriptor, but it has no calibration result, model,
+capability, package, fixture or commercial/redistribution clearance. It is
+below P45 and cannot enter P49/P50.

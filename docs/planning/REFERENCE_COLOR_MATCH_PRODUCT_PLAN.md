@@ -189,10 +189,14 @@ with a selected stock, but reference matching alone is labeled
 | P49B | DONE | implement promotion binding and atomic authorization | canonical declaration/evidence binding plus ordered per-source staging decisions; any global or numeric failure forces whole-batch fallback | `14fc7bf`; schema + tests | staging only |
 | P49C | DONE | prove declaration-only and identity substitution cannot authorize | mismatched declaration/capability/commit/profile/model/options/evidence/operator/batch/guard/order fail closed | `14fc7bf`; adversarial tests | identity fallback |
 | P49D | DONE | propagate evidence and peer handoff | 588 combined; 1394 pass/1 skip/36 known; latest-main merge 49 pass | evidence commit | await callable shared producer |
-| P50A | IN PROGRESS | freeze shared authorized staging transaction | consume exact P47 applies plus P49 authorization; reuse rollback-safe atomic writer without weakening source/order identities | plan commit | no delivery |
-| P50B | READY | implement shared output/report staging | preflight all paths and bytes, bind report to P49/P47/P48, then commit all-or-none | code/schema/tests | committed staging only |
-| P50C | BLOCKED ON P50B | prove rollback and restart-safe identities | collision, injected failure, byte tamper, foreign authorization/apply and reorder tests | fault injection | restore prior bytes |
-| P50D | BLOCKED ON P50C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | real producer still required |
+| P50A | DONE | freeze shared authorized staging transaction | consume exact P47 applies plus P49 authorization; reuse rollback-safe atomic writer without weakening source/order identities | `79482d5` | no delivery |
+| P50B | DONE | implement shared output/report staging | preflight all paths and bytes, bind report to P49/P47/P48, then commit all-or-none | `97f4131`; schema + tests | committed staging only |
+| P50C | DONE | prove rollback and transaction identities | collision, injected failure, sparse OOB, foreign authorization/apply and reorder tests | `97f4131`; fault injection | restore prior bytes |
+| P50D | DONE | propagate evidence and peer handoff | 600 combined; 1406 pass/1 skip/36 known; latest-main merge 54 pass | evidence commit | real producer still required |
+| P51A | IN PROGRESS | freeze restart verification for shared staging | bounded reread of exact P50 report plus every output hash/path; no source checkout or producer invocation | plan commit | no delivery |
+| P51B | READY | implement canonical shared staging verification | bind expected report hash/run ID, P49 authorization, P48 guard and ordered output identities | code/schema/tests | verified staging only |
+| P51C | BLOCKED ON P51B | prove tamper/missing/relocation closure | report/output byte tamper, missing file, path relocation, identity/order mutation | adversarial tests | fail closed |
+| P51D | BLOCKED ON P51C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | future composition consumer |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

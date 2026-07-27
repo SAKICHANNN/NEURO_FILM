@@ -1968,6 +1968,29 @@
   `shared-staging-files-committed-not-delivered`; no local delivery, app
   applied state or FilmFX composition.
 
+## 2026-07-28 - Implement and verify P50 shared atomic staging
+
+- Implementation: `97f4131` adds shared output/report staging, strict schema,
+  common package-internal SDR staging I/O and transaction/fault tests.
+- Binding: every live P47 apply is cross-bound to exact P48 decisions and P49
+  authorization before path handling; the report records authorization,
+  batch, guard, operator, reference, source, producer result, diagnostics and
+  output identities.
+- Transaction: all encoded outputs and canonical report commit through the
+  established backup/rollback primitive. Injected report commit failure
+  restores every prior destination byte and leaves no staging debris.
+- Additional guard: sparse values outside the bounded sRGB encode tolerance
+  fail instead of being silently clipped even when their fraction passes P48.
+- Structure: P33, FilmFX staging and local delivery reuse `staging_io.py`;
+  their wire schemas/identities are unchanged and their adjacent tests pass.
+- State: `committed-to-shared-staging` /
+  `shared-staging-files-committed-not-delivered`.
+- Verification: 54 transaction, 600 combined and full 1406 pass/1 skip/36
+  unchanged. Latest main `1dce729`, zero overlap, merge tree
+  `a04585ae...24e`; fresh detached merge 54 pass and was removed.
+- Producer: SPGIN-v0 is preregistered only, with no calibration/model/
+  capability/package/fixture or product rights; no real P50 staging opens.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
