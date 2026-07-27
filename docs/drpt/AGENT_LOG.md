@@ -5489,3 +5489,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator error or O0 structural failure closes without capacity/loss/seed
   rescue. No photographs, current film pixels, real unpaired identification,
   stock/mode claim or integration. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AH1D group-invariant development contract
+
+- **Population:** new 64 training/16 unseen-development O0 directions,
+  palette-score and smooth-random families, three strengths plus identity,
+  eight crossed content families and four independent nuisance families.
+  Each group contains four unrelated 256-colour references. W1 seeds and
+  confirmation remain sealed.
+- **Model:** <=150K-parameter hierarchical Deep Sets with exact symmetric
+  aggregation and a radial-tanh bounded 192-scalar O0 head. Point/reference
+  embeddings receive same-look invariance, VICReg anti-collapse and
+  discriminative gradient-reversal content control. The network emits no RGB.
+- **Execution:** fixed deterministic local CUDA float32 AdamW, seed 30131,
+  5,000 steps and final checkpoint only; no hyperparameter or checkpoint
+  search. Two independent processes are required.
+- **Gates:** four-reference median/p90 operator RMSE `.05/.08`, material wins
+  over identity/global/W1, replicate `.04`, identity `.01`, held-out
+  content/nuisance probe ceilings, fixed-content look separation,
+  `53/55/56` strength continuity, plus every O0 structure/replay and exact
+  set-permutation gate.
+- **Branch:** any failure closes without architecture/loss/seed/threshold
+  rescue. A pass opens only the separately sealed different-family
+  confirmation. No photos, film pixels, real unpaired identification,
+  stock/mode claim, visual stage or integration. Implementation is ready;
+  Goal remains ACTIVE.
