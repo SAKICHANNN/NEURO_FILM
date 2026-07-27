@@ -4650,3 +4650,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   generation, current-pixel fit, training, LSM or visual candidate. Five
   focused tests and the full `972 passed` CPU suite pass. A commit-bound exact
   repeat remains ready. Goal continues.
+
+## 2026-07-27 - Close U5.R2Y0 on exact content-shortcut evidence
+
+- **Evidence identity:** implementation commit
+  `a824be87b83d2c16930d7b6a8f6a931aa1404a0a`, config SHA-256
+  `4be7cca20d58194e889a1de5bf38180324f0afba865e1648c7ff646a7c263763`
+  and source archive SHA-256
+  `4672f11cf98b9d037debd0eab60a3ee9d278a73515b8184d7223b976d6a46387`.
+  Formal A/B reports are byte-identical at
+  `187dda30d1f2af443220444878cf52e2da61fc97b8e2c8723cf69ba9762b2212`;
+  both stderr logs are empty.
+- **Counterfactual evidence:** film-free scene colour produces `.848528` L2
+  separation in alleged midtone stock bias; exposure range alone changes the
+  tone curve by `254.4/255`; flat grey yields zero grain while checker texture
+  yields `.4` intensity and `1.0` clumping. Every frozen shortcut gate passes.
+- **Decision:** `content_histogram_texture_shortcut_close`. The exact published
+  estimator reads content, scene histogram and ordinary texture directly.
+  Median aggregation reduces outliers but does not identify those nuisance
+  variables. NegClone remains a negative control, not a stock learner.
+- **Boundary:** zero network requests, external images, current stock pixels,
+  generated stock presets or visual candidates. More photos, a neural encoder,
+  approximate scanner offsets or preset tuning cannot rescue this branch.
+- **Verification/handoff:** result propagation is followed by focused and full
+  CPU tests. The next evidence-authorized leaf is the metadata-only SF2.10R
+  Color Precision rights/pairing/nuisance-topology audit; pixels, fitting,
+  training and LSM remain closed. Goal continues.

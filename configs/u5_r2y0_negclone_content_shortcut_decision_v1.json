@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2y0-negclone-content-shortcut-decision-v1",
+  "experiment_id": "u5.r2y0-negclone-content-shortcut-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2Y0",
+  "software_commit": "a824be87b83d2c16930d7b6a8f6a931aa1404a0a",
+  "config_sha256": "4be7cca20d58194e889a1de5bf38180324f0afba865e1648c7ff646a7c263763",
+  "source_archive_sha256": "4672f11cf98b9d037debd0eab60a3ee9d278a73515b8184d7223b976d6a46387",
+  "report_a_sha256": "187dda30d1f2af443220444878cf52e2da61fc97b8e2c8723cf69ba9762b2212",
+  "report_b_sha256": "187dda30d1f2af443220444878cf52e2da61fc97b8e2c8723cf69ba9762b2212",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "decision_branch": "content_histogram_texture_shortcut_close",
+  "static_contract_reproduced": true,
+  "counterfactuals": {
+    "film_free_colour_bias_l2_distance": 0.8485281374238571,
+    "film_free_tone_curve_maximum_output_difference": 254.4,
+    "flat_grey_grain_intensity": 0.0,
+    "checker_texture_grain_intensity": 0.39999999999999997,
+    "checker_texture_clumping_factor": 1.0
+  },
+  "shortcut_gate_results": {
+    "colour_content_shortcut_detected": true,
+    "exposure_histogram_shortcut_detected": true,
+    "texture_as_grain_shortcut_detected": true
+  },
+  "reproducibility_boundary": {
+    "public_fingerprint_stock_accepts_seed": false,
+    "global_random_module_used": true,
+    "formal_wrapper_seed": 27070
+  },
+  "external_image_payloads_accessed": 0,
+  "network_requests_made": 0,
+  "stock_presets_generated": 0,
+  "automatic_visual_shortlist_generated": false,
+  "interpretation": "NegClone 0.2.0 directly derives its reported stock colour, tone and grain parameters from within-image scene colour, the scene luminance histogram and unseparated ordinary texture. Exact film-free counterfactuals pass all frozen shortcut gates, so median aggregation across more images cannot by itself identify or subtract those nuisance variables.",
+  "forbidden_rescues": [
+    "download more community film photographs for this branch",
+    "generate or tune a stock preset from current project pixels",
+    "treat median aggregation as source/content/exposure control",
+    "treat approximate scanner offsets as calibrated measurements",
+    "add a neural encoder or more photos as a rescue",
+    "claim the observed parameters identify a film stock"
+  ],
+  "next_ready_leaf": "SF2.10R Color Precision metadata-only rights, pairing and nuisance-topology audit",
+  "claim_ceiling": "repeat-exact source-bound and synthetic counterfactual evidence about NegClone 0.2.0 fingerprint identifiability; no claim about every possible curated controlled use, no film or stock operator identification, and no real-image product evaluation"
+}

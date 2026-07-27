@@ -271,6 +271,15 @@ The output representation is Lightroom/Darktable tone, three-way colour and
 grain controls, not a 3D LUT. Formal repeat must reproduce all shortcuts
 before closure; no community pixels or preset generation opens.
 
+U5.R2Y0 now closes with byte-identical formal reports. Film-free red/blue
+content changes the alleged midtone stock bias by `.8485` L2; changing only a
+neutral gradient's exposure range changes the exported tone curve by
+`254.4/255`; ordinary checker texture becomes `.4` grain while flat grey is
+zero. All source and shortcut gates reproduce. Median aggregation cannot
+identify or remove these nuisance variables, so NegClone is retained only as
+a negative control. No more-photo, neural, preset-generation or stock claim
+rescue opens.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator
