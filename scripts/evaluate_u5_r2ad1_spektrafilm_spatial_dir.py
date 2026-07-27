@@ -4,17 +4,19 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.spektrafilm_spatial_dir import (
     evaluate_manifests,
     load_manifest,
     sha256_file,
 )
-
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()
