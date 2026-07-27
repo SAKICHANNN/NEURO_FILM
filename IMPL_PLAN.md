@@ -324,6 +324,16 @@ intended near-duplicate/strength-path protection, not evidence that the curves
 are bland. Keep at most one as a future descriptive synthetic prior; do not
 open AB2, image selection, stock-bank routing or post-result rescue.
 
+U5.R2AC0 retains Filmulator only as external evidence for a distinct
+shared-resource spatial-development mechanism. Its GPLv3-or-later source uses
+three colour layers coupled through one developer field with reaction,
+diffusion, reservoir exchange and agitation, matching the claimed broad-region
+compression/local-contrast behaviour. K-MCFM has no decided root licence, so
+no code, constants, port, link or compatibility claim is allowed. A new
+synthetic-only first-principles representation may be preregistered, but it
+would remain generic film-development-inspired evidence rather than a stock
+response or production component.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

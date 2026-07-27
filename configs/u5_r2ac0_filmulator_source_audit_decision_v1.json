@@ -1,0 +1,31 @@
+{
+  "schema_version": "u5-r2ac0-filmulator-source-audit-decision-v1",
+  "node": "U5.R2AC0",
+  "decision": "mechanism_prior_only_direct_reuse_blocked",
+  "official_site": "https://filmulator.org/",
+  "repository": "https://github.com/CarVac/filmulator-gui",
+  "audited_commit": "57fbaec57555432d86d3aa632990cd8fa09114ad",
+  "audited_commit_date": "2026-04-04T10:44:33-04:00",
+  "source_hashes": {
+    "LICENSE": "1919ab2413fff3dfc4c6990b9dd18051b13fd6a2939799b085ba0be067174602",
+    "README.md": "884ebf3b96ca3a160acbdcd172a25fc675818fd19194dd8ecc2f03501fa92750",
+    "filmulate.cpp": "3f43150fed6d5777447dff3a24c2a44d8d1822bdd46ec799cb9ab7732df0ee22",
+    "develop.cpp": "e5a549c760f1048ebb4da4a4b04c5066d391e9e6295a8204945eb5fb4e5e5b6d",
+    "diffuse.cpp": "a8a330ae1a5370b12ba348730c9b72303683089e880a1fdc2414888f8e9980e0"
+  },
+  "license": "GNU GPL v3 or later",
+  "project_root_license_status": "undecided_no_root_LICENSE",
+  "observed_mechanism": [
+    "bounded exposure activation",
+    "three colour layers sharing one spatial developer field",
+    "developer and per-layer silver resource consumption",
+    "developer diffusion",
+    "reservoir mixing and agitation",
+    "density readout"
+  ],
+  "direct_source_reuse_allowed": false,
+  "link_or_port_allowed": false,
+  "stock_specific_evidence": false,
+  "allowed_next": "separately preregistered synthetic-only first-principles shared-resource diffusion representation with no copied code or constants",
+  "claim_ceiling": "generic film-development-inspired mechanism prior; not Filmulator compatibility, a stock response, calibrated chemistry, or product implementation"
+}

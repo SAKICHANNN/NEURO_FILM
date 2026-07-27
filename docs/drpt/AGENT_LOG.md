@@ -5070,3 +5070,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   descriptive synthetic response prior; no AB2, photographs, post-result
   deduplication/repair, stock bank, router, fitting, training or product
   integration. Goal remains ACTIVE.
+
+## 2026-07-28 - U5.R2AC0 Filmulator source/mechanism audit
+
+- **Source:** read-only shallow audit of official
+  `CarVac/filmulator-gui` at `57fbaec...14ad` plus the official project site.
+  Exact licence/readme/core reaction/diffusion hashes are recorded in the
+  decision artifact; the ignored checkout is not committed.
+- **Mechanism:** shared spatial developer couples three colour layers through
+  resource consumption, diffusion, reservoir exchange and agitation. This is
+  a technically distinct local tone/colour mechanism, not a global LUT,
+  halation, grain or direct bilateral residual.
+- **Licence/claim:** source is GPLv3-or-later and K-MCFM has no decided root
+  licence. Direct code/constant reuse, translation, porting, linking and
+  compatibility claims are blocked. The generic mechanism provides no stock,
+  process or calibration evidence.
+- **Handoff:** only a separately preregistered synthetic, first-principles
+  shared-resource diffusion representation may proceed. It must use no
+  Filmulator code/constants and remains research-only even if it passes.
+  Goal remains ACTIVE.
