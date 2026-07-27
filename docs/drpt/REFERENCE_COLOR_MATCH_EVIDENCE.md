@@ -154,6 +154,10 @@ atomic report. A cardinality mismatch returns code 2 with no partial artifact.
 The report is byte-repeatable and covers all run inputs, outputs, candidate
 diagnostics and product safety decisions.
 
+A full-resolution smoke on the existing Velvia-look baseline also passes:
+`applied_count=1`, `identity_fallback_count=1`, `output_count=2`, with report
+SHA-256 `f59799cc...c5cd9`. The fallback row records both frozen guard reasons.
+
 ## Change propagation
 
 - Upward: neuro-film now has an implementable peer capability to stock

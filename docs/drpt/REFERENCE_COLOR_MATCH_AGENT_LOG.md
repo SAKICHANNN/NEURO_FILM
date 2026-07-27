@@ -224,3 +224,18 @@
   report bytes.
 - Structure: CLI is deliberately thin; no renderer default, codec, W1/S4 or
   D-PCT file changed.
+
+## 2026-07-27 - Run full-resolution CLI delivery smoke
+
+- Inputs: known Velvia-look reference `01`, same-content neutral source `01`
+  and held-out-content neutral source `02` from the existing ignored baseline
+  artifacts.
+- Result: two 16-bit PNGs, one recipe and one report were created through the
+  public CLI in 6.8 seconds.
+- Safety: source `01` applied; source `02` identity-fell back for both
+  `gamut-adjusted-fraction` and `new-boundary-fraction`.
+- Report: schema `neuro-film.reference-match-report.v1`, two outputs, report
+  SHA-256 `f59799cc...c5cd9`; every input/output/recipe hash and decision is
+  present.
+- Artifacts remain ignored under
+  `outputs/reference_color_match_cli_smoke`; nothing generated was committed.
