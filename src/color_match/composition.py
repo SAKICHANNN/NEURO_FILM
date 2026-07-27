@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, replace
-import hashlib
 import json
 import re
 from typing import Any, Mapping
@@ -12,6 +11,7 @@ import numpy as np
 
 from src.inference import validate_render_profile
 
+from .canonical import canonical_sha256
 from .contracts import (
     ReferenceLookRecipe,
     ReferenceMatchContractError,
@@ -89,14 +89,7 @@ def _canonical_payload(plan: ReferenceCompositionPlan) -> dict[str, Any]:
 
 
 def _plan_id(plan: ReferenceCompositionPlan) -> str:
-    encoded = json.dumps(
-        _canonical_payload(plan),
-        ensure_ascii=False,
-        allow_nan=False,
-        separators=(",", ":"),
-        sort_keys=True,
-    ).encode("utf-8")
-    return hashlib.sha256(encoded).hexdigest()
+    return canonical_sha256(_canonical_payload(plan))
 
 
 def _effect_binding(

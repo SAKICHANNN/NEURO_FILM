@@ -67,6 +67,7 @@ with a selected stock, but reference matching alone is labeled
 | P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | `8d3f60c` | release claim |
 | P6 | DONE | thin CLI + deterministic provenance report | 103 focused/preprocess tests pass | `33f5735` | revert commit |
 | P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | `c9fb7d9` | revert commit |
+| P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -137,6 +138,11 @@ are the final photographic algorithm.
   Independent validators reject unknown fields, invalid hashes/ranges, hidden
   film-colour claims, inconsistent composition order and contradictory
   safety/action/reason combinations.
+- P8: `112 passed` after replacing Python JSON-float-dependent identity hashing
+  with a typed canonical byte stream. A frozen multilingual/multitype vector
+  binds strings, integers, binary64 floats, arrays and sorted objects. The
+  full-resolution CLI smoke repeats with identical pixel decisions and the new
+  portable recipe/report identities.
 
 ### Pre-existing worktree-line-ending failure
 
@@ -266,6 +272,8 @@ Language-neutral consumers should validate:
 Python validation remains authoritative for canonical IDs and constraints such
 as shadow floor below highlight ceiling; platform implementations must enforce
 both the JSON Schema and the documented canonical SHA-256 construction.
+The canonical byte grammar and frozen parity vector are specified in
+`docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md`.
 
 ## Verification and rollback
 

@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-import hashlib
 import json
 from typing import Any, Mapping
 
 import numpy as np
+
+from .canonical import canonical_sha256
 
 
 REFERENCE_LOOK_RECIPE_SCHEMA_ID = "neuro-film.reference-look-recipe.v1"
@@ -174,18 +175,8 @@ def _canonical_payload(recipe: ReferenceLookRecipe) -> dict[str, Any]:
     return payload
 
 
-def _canonical_json(payload: Mapping[str, Any]) -> str:
-    return json.dumps(
-        payload,
-        ensure_ascii=False,
-        allow_nan=False,
-        separators=(",", ":"),
-        sort_keys=True,
-    )
-
-
 def compute_recipe_id(recipe: ReferenceLookRecipe) -> str:
-    return hashlib.sha256(_canonical_json(_canonical_payload(recipe)).encode("utf-8")).hexdigest()
+    return canonical_sha256(_canonical_payload(recipe))
 
 
 def validate_recipe(recipe: ReferenceLookRecipe) -> None:

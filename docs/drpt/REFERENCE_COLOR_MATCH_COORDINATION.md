@@ -19,6 +19,7 @@
   - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_EVIDENCE.md`
+  - `docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md`
 - Files/artifacts forbidden:
   - `src/roll2film/reference_look_identifiability.py`
   - `tests/test_reference_look_identifiability.py`
@@ -49,6 +50,8 @@
     or `calibrated-reference`;
   - recipe, report and composition payloads have strict language-neutral JSON
     Schema contracts for non-Python consumers;
+  - recipe and composition identity use the frozen typed canonical byte stream,
+    never implementation-specific JSON float formatting;
   - a fitted recipe is shared across the batch; per-source normalization may
     adapt to content, but the reference target and policy cannot change.
 - Expected evidence:

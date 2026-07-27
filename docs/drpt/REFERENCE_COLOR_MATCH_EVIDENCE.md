@@ -160,7 +160,8 @@ diagnostics and product safety decisions.
 
 A full-resolution smoke on the existing Velvia-look baseline also passes:
 `applied_count=1`, `identity_fallback_count=1`, `output_count=2`, with report
-SHA-256 `f59799cc...c5cd9`. The fallback row records both frozen guard reasons.
+SHA-256 `13560e40...014c1` after portable identity finalization. The fallback
+row records both frozen guard reasons.
 
 ## Rejected stronger statistical comparator
 
@@ -178,6 +179,11 @@ The schemas are meta-validated and checked against real generated payloads.
 They forbid additional properties and bind hashes, ranges, claims, composition
 order and safety state. Python additionally verifies canonical IDs and
 relational numeric constraints.
+
+Recipe and composition IDs now hash a documented typed canonical byte stream,
+not serialized JSON text. A frozen cross-language vector covers Unicode,
+null/bool/int/binary64/list/object behavior and rejects NaN, infinity, byte
+strings and non-string keys.
 
 ## Change propagation
 

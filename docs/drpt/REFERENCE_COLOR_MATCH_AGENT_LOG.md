@@ -235,7 +235,8 @@
 - Safety: source `01` applied; source `02` identity-fell back for both
   `gamut-adjusted-fraction` and `new-boundary-fraction`.
 - Report: schema `neuro-film.reference-match-report.v1`, two outputs, report
-  SHA-256 `f59799cc...c5cd9`; every input/output/recipe hash and decision is
+  SHA-256 `13560e40...014c1` after portable identity finalization; every
+  input/output/recipe hash and decision is
   present.
 - Artifacts remain ignored under
   `outputs/reference_color_match_cli_smoke`; nothing generated was committed.
@@ -268,3 +269,18 @@
 - Product impact: Android/iOS/macOS/Windows bindings can implement the payload
   contract without importing Python dataclasses. Pixel execution remains a
   later native/runtime concern and is not claimed by schema compatibility.
+
+## 2026-07-27 - Finalize portable canonical identity
+
+- Defect found: recipe/plan IDs previously hashed Python's JSON float text,
+  which is deterministic in Python but not a language-neutral wire contract.
+- Changed: added typed canonical bytes with explicit null/bool/int/string/list/
+  sorted-object tags and big-endian IEEE-754 binary64 hex for finite floats.
+- Frozen vector: multilingual/multitype payload SHA-256
+  `283b5aeb...188a5`; integer/float and positive/negative zero remain distinct.
+- Verification: 112 focused tests pass. Full-resolution CLI repeats at one
+  applied/one fallback, recipe ID `12c084ad...7cacd`, report SHA-256
+  `13560e40...014c1`.
+- Compatibility: no recipe artifact is committed or released from this branch,
+  so finalizing v1 now does not invalidate an external consumer. Pixel output
+  and guard decisions are unchanged.

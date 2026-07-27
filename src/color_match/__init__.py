@@ -1,5 +1,10 @@
 """Product-facing reference colour matching contracts and engine."""
 
+from .canonical import (
+    CanonicalEncodingError,
+    canonical_bytes,
+    canonical_sha256,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -65,6 +70,7 @@ __all__ = [
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
     "FilmEffectBinding",
+    "CanonicalEncodingError",
     "GuardedReferenceMatchResult",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
@@ -81,6 +87,8 @@ __all__ = [
     "fit_reference_look",
     "evaluate_known_operator_batch",
     "build_reference_composition",
+    "canonical_bytes",
+    "canonical_sha256",
     "composition_plan_from_dict",
     "composition_plan_from_json",
     "composition_plan_to_json",
