@@ -193,7 +193,16 @@ one direction with ordered continuous strength. Content/nuisance probes,
 hidden-grid operator error, A/B replication and all O0 structure/replay gates
 must pass before any parameter-only learned challenger; images, film pixels,
 current FiveK, semantic embeddings and direct RGB models remain forbidden.
-Execution is ready after the repeated U1 decision.
+Execution is complete with repeat-exact branch
+`paired_upper_bound_only_passes`. Exact paired references recover the known
+operator at `.02498/.07282` median/p90 RMSE. Every practical output-only
+regime fails: unseen four-reference ridge reaches `.06631/.08191` but remains
+42.40% worse than global mean and 33.18% worse than identity, leaks content at
+98.44% balanced accuracy versus 25% chance, and produces `.06783` median
+false-transform RMSE on identity references against a `.01` gate.
+`53/55/56` correctly stays one direction with continuous strength. No larger
+descriptor or capacity rescue opens. Only FilmSet W2F0 paired/global recipe
+explainability is ready; W2F1 output-only recovery remains closed.
 The isolated fixed descriptor, hard bank, separate bounded single/multi ridge,
 activation/partition-gated runner and same-input `53/55/56` fixture pass twelve
 focused tests; the complete CPU suite passes `946/946`. Formal W1 development

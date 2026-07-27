@@ -4,7 +4,7 @@ Date: 2026-07-27
 
 Parent: `ULT > U5.R2 > U5.R2W0/W1`
 
-Status: **source ready; execution conditionally queued behind repeated W1**
+Status: **W2F0 paired/global explainability ready; W2F1 output-only closed**
 
 ## Purpose
 
@@ -53,8 +53,9 @@ It confirms zero content-ID and duplicate-cluster intersection and freezes:
 - 81 internal stress identities.
 
 The final manifest was hash-checked but not parsed. Image payload read/decode
-counts are both zero. This closes the source/partition preflight only; W2F0
-execution remains queued behind a repeated eligible W1 decision.
+counts are both zero. The repeated W1 decision is now
+`paired_upper_bound_only_passes`. This opens W2F0 paired/global recipe
+explainability only. It does not open W2F1 output-only reference recovery.
 
 ## Why this source precedes RTD
 

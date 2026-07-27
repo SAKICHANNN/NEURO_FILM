@@ -2,7 +2,7 @@
 
 Date: 2026-07-27
 
-Status: **ready; repeated U5.R2U1 decision available**
+Status: **complete; paired upper bound only, output-only methods fail**
 
 ## Parent and purpose
 
@@ -44,6 +44,9 @@ for output-only reference matching.
 
 The complete machine-readable values are frozen in
 `configs/u5_r2w1_reference_look_identifiability_development_v1.json`.
+
+The repeat-exact formal decision is `paired_upper_bound_only_passes`; see
+`docs/U5_R2W1_REFERENCE_LOOK_IDENTIFIABILITY_DEVELOPMENT_RESULTS.md`.
 
 ### Look families
 

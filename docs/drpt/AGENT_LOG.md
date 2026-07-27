@@ -4482,3 +4482,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   only.
 - **Side effects:** no benchmark payload was downloaded and no model/weight
   was executed. W1 remains the next ready admissible leaf; Goal continues.
+
+## 2026-07-27 - Close U5.R2W1D and open W2F0 only
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2W1D`; the primary writer follows
+  `dev-research-reliability`, with AI/ML, research, DRPT-BI, tracker,
+  agent-log, structure and code-review disciplines as read-only governance.
+- **Reproducibility:** both complete formal reports bind software commit
+  `b72b594f5203952aeeabcbd877ad0cadfce6a283` and config SHA-256
+  `6599b99e82d21d7dc5e502e2880a83e238fcd15be74ae4c4f220bc7ca0fc0e26`.
+  They are byte-identical at
+  `9B42E9A8EDCA5A6034E4033D71B37BBE229A53378E4FE031DF7C45CF7E8DEC68`;
+  all complete-run logs are empty and reserved confirmation is untouched.
+- **Host interruption:** the first B attempt was terminated by a
+  user-reported host crash/forced restart before any report or log output.
+  It is excluded from scientific evidence. The restart audit preserved A,
+  HEAD and config; a BelowNormal B rerun exactly reproduced A.
+- **Information result:** the paired upper bound passes at `.02498/.07282`
+  operator RMSE. All output-only regimes fail. Unseen four-reference ridge
+  reaches `.06631/.08191` but is 42.40% worse than global and 33.18% worse
+  than identity; content-group BA is 98.44% versus 25% chance and identity
+  references produce `.06783` false-transform RMSE against `.01`.
+- **Negative control:** `53/55/56` remains one direction with continuous
+  strength (minimum cosine `.99797`, strength Spearman `1.0`), so failure is
+  not caused by incorrectly splitting the strength path.
+- **Decision/handoff:** formal branch `paired_upper_bound_only_passes`.
+  Descriptor/capacity rescue, confirmation, visuals and W2F1 output-only
+  recovery are closed. Only W2F0 FilmSet aligned-pair/global recipe
+  explainability opens. No film, stock, calibration or real unpaired-operator
+  claim opens; Goal continues.

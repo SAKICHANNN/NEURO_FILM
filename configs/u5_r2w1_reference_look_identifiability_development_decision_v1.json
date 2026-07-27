@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2w1-reference-look-identifiability-development-decision-v1",
+  "experiment_id": "u5.r2w1-reference-look-identifiability-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2W1D",
+  "software_commit": "b72b594f5203952aeeabcbd877ad0cadfce6a283",
+  "config_sha256": "6599b99e82d21d7dc5e502e2880a83e238fcd15be74ae4c4f220bc7ca0fc0e26",
+  "report_a_sha256": "9b42e9a8edca5a6034e4033d71b37bbe229a53378e4fe031df7c45cf7e8dec68",
+  "report_b_sha256": "9b42e9a8edca5a6034e4033d71b37bbe229a53378e4fe031df7c45cf7e8dec68",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seeds_accessed": false,
+  "decision_branch": "paired_upper_bound_only_passes",
+  "automatic_visual_shortlist_generated": false,
+  "interrupted_run_excluded": {
+    "cause": "user-reported host crash and forced restart",
+    "report_written": false,
+    "stdout_bytes_before_restart": 0,
+    "stderr_bytes_before_restart": 0,
+    "scientific_result": false
+  },
+  "paired_reference_upper_bound": {
+    "device": "cuda",
+    "sample_count": 32,
+    "operator_output_rmse_median": 0.024976675206836572,
+    "operator_output_rmse_p90": 0.0728176566889317,
+    "initial_pair_mse_median": 0.002609834773465991,
+    "final_pair_mse_median": 0.000014843816643406171,
+    "passes": true
+  },
+  "practical_output_only": {
+    "seen_single_direction_strength_retrieval": {
+      "operator_output_rmse_median": 0.1194629842274584,
+      "operator_output_rmse_p90": 0.14837675962989225,
+      "same_look_replicate_operator_rmse_median": 0.13687407740782526,
+      "all_gates_pass": false
+    },
+    "seen_four_direction_strength_retrieval": {
+      "operator_output_rmse_median": 0.057741847539751645,
+      "operator_output_rmse_p90": 0.08530996543943216,
+      "seen_direction_retrieval_accuracy": 0.3854166666666667,
+      "seen_strength_absolute_error_median": 0.19119934747829898,
+      "all_gates_pass": false
+    },
+    "unseen_single_descriptor_ridge": {
+      "operator_output_rmse_median": 0.06464109489803518,
+      "operator_output_rmse_p90": 0.10488162164423391,
+      "same_look_replicate_operator_rmse_median": 0.05402054795236067,
+      "all_gates_pass": false
+    },
+    "unseen_four_descriptor_ridge": {
+      "operator_output_rmse_median": 0.06630736305739984,
+      "operator_output_rmse_p90": 0.08191343907640493,
+      "all_gates_pass": false
+    },
+    "unseen_global_mean_operator": {
+      "operator_output_rmse_median": 0.04656540001011855,
+      "operator_output_rmse_p90": 0.10172439111274936
+    },
+    "unseen_identity": {
+      "operator_output_rmse_median": 0.04978824242421311,
+      "operator_output_rmse_p90": 0.12486779161535232
+    }
+  },
+  "shortcut_and_identity_controls": {
+    "factorized_descriptor_ridge_content_group_balanced_accuracy": 0.984375,
+    "factorized_descriptor_ridge_content_group_chance": 0.25,
+    "direction_strength_retrieval_content_group_balanced_accuracy": 0.8515625,
+    "direction_strength_retrieval_content_group_chance": 0.25,
+    "four_reference_ridge_identity_reference_false_positive_output_rmse_median": 0.06783380507283593,
+    "four_reference_direction_strength_identity_reference_false_positive_output_rmse_median": 0.06036744303549283,
+    "maximum_identity_reference_grid_rmse_gate": 0.01,
+    "content_probe_passes": false,
+    "identity_reference_false_positive_passes": false
+  },
+  "owner_strength_path": {
+    "factorized_descriptor_ridge_minimum_pairwise_direction_cosine": 0.9979734595476915,
+    "factorized_descriptor_ridge_strength_order_spearman": 1.0,
+    "direction_strength_retrieval_minimum_pairwise_direction_cosine": 1.0,
+    "direction_strength_retrieval_strength_order_spearman": 1.0,
+    "interpretation": "the 53/55/56 fixture remains one direction with continuous strength and is not split into categorical modes"
+  },
+  "interpretation": "exact neutral/styled pairs expose enough information for the bounded O0 flow, but output-only single and four-reference descriptors do not identify the known look: four references can meet absolute operator-error gates while still losing to identity/global controls, retaining strong content information and producing large false transforms for identity references",
+  "forbidden_rescues": [
+    "add a larger encoder, neural descriptor or semantic embedding to rescue W1",
+    "change the fixed descriptor, bank, ridge family, groups, thresholds or formal seeds",
+    "treat the paired upper bound as an available output-only input regime",
+    "open output-only FilmSet W2F1",
+    "access the reserved confirmation families or seeds",
+    "generate a visual candidate from W1",
+    "claim film, stock or real unpaired-operator identification"
+  ],
+  "next_ready_leaf": "U5.R2W2F0 FilmSet paired/global recipe explainability only",
+  "claim_ceiling": "repeat-exact generated evidence that aligned neutral/styled pairs can recover the known bounded look while the tested output-only fixed representations remain content-confounded and non-identifying; no universal, real-image, film, stock, calibrated or real unpaired-operator claim"
+}
