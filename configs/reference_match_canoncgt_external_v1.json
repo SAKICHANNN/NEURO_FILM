@@ -1,0 +1,40 @@
+{
+  "schema_id": "neuro-film.reference-match-canoncgt-external.v1",
+  "experiment_id": "reference-match-canoncgt-external-v1",
+  "baseline_report": "outputs/reference_color_match_quality/promotion_v1/report.json",
+  "external": {
+    "repository_url": "https://github.com/Jinwon-Ko/CanonCGT",
+    "repository_commit": "229a7d3ec24af19ea5d97bb136f0317762bb9261",
+    "license": "Apache-2.0",
+    "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "official_bundle_url": "https://drive.google.com/file/d/1SqzCXjdJ95TAhDYY9Z4TaQPuoqlEyfkT/view?usp=sharing",
+    "official_bundle_sha256": "ab460d12e0f826a507d54fc55ac6842ae935b1e83916d7259975e068c886cc51",
+    "weight_member": "SSL_updated_251111.pth",
+    "weight_sha256": "5630c6dd5ceefa0d36d69ad298a5b87f1260dd02620a60af84cb4e259b4ad362",
+    "configuration": "configs/Stage3_SSL_training_Flickr2K_PPR10K_LSDIR.yaml",
+    "parameter_count": 5056383,
+    "lut_size": 17
+  },
+  "modes": [
+    "published-source-conditioned",
+    "fixed-reference-pivot-lut"
+  ],
+  "gates": {
+    "minimum_improved_cross_content_fraction": 0.75,
+    "minimum_median_improvement_fraction": 0.25,
+    "minimum_worst_improvement_fraction": -0.1,
+    "maximum_new_boundary_fraction": 0.005,
+    "maximum_preclip_out_of_gamut_fraction": 0.005,
+    "maximum_source_conditioned_restyler_lut_rmse": 0.01,
+    "repeat_report_sha256_equal": true
+  },
+  "execution": {
+    "official_code_unmodified": true,
+    "official_weights_unmodified": true,
+    "evaluation_only": true,
+    "targets_used_only_after_render": true,
+    "product_integration_allowed": false,
+    "output_rgb_is_not_retained": true
+  },
+  "claim_ceiling": "independent local inference audit of an Apache-2.0 CVPR 2026 reference-grading baseline on the frozen six-image known-operator matrix; no reproduction of paper scores, product promotion, film-stock, calibration, authenticity, RAW, HDR or cross-platform claim"
+}
