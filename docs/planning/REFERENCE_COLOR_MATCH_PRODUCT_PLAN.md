@@ -138,7 +138,7 @@ with a selected stock, but reference matching alone is labeled
 | P36A | DONE | freeze atomic execution of a P35 procedural FilmFX plan | rerun P34; exact P35 binding; deterministic seed; simple-halation first profile | `40a9f3a` | retain P35 plan only |
 | P36B | DONE | implement N-source FilmFX staging transaction | existing layers/compositor/encoders/rollback reused; strict report | `aafa097` | revert additive module/schema |
 | P36C | DONE | prove physical-default ambiguity and mutations fail closed | no effects, physical controls, live tamper, path/output/commit negatives | `aafa097` | preserve P33 files |
-| P36D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 436 combined; 1276 pass/1 skip/36 known; latest-main synthetic merge 102 pass | evidence commit | retain P35 |
+| P36D | DONE | run adjacent/full/latest-main propagation and peer handoff | 436 combined; 1276 pass/1 skip/36 known; latest-main synthetic merge 102 pass | `b398e53` | retain P35 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

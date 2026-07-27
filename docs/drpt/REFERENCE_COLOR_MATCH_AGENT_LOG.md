@@ -1448,3 +1448,5 @@
 - Handoff: evidence documentation is ready to commit. P36 completes
   procedural FilmFX staging mechanics, not real producer invocation or final
   product delivery.
+- Evidence commit: `b398e53` (`docs: record external FilmFX execution
+  evidence`). P36 is complete as staging execution, not final delivery.
