@@ -1515,3 +1515,32 @@
 - Scope: additive consumer authorization/schema/tests/docs only. Producer,
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
+
+## 2026-07-28 - Implement and verify P38 local delivery authorization
+
+- Node/parent goal: P38B-D / authorization boundary after P37.
+- Implementation: `18eb813` adds one no-write chain authorizer, strict schema,
+  public exports and ten adversarial tests.
+- Binding: P37 is rerun live, then its P36 run is cross-bound to the exact P35
+  plan, P34 core verification and P30 product staging authorization. P30 must
+  remain atomically `authorized-for-staging` with every source accepted.
+- State/scope/ceiling: `authorized-for-local-delivery` /
+  `local-user-export` / `authorized-local-delivery-not-committed`.
+- Prohibitions: no destination path, copy, rename, applied state, public
+  sharing or synthetic-candidate eligibility is created.
+- Adversarial result: live output tamper, valid foreign P30/P34/P35 chain
+  members, scope, state, output-label, claim and authorization-ID mutations
+  all fail closed. A byte snapshot proves the successful authorizer writes no
+  files.
+- Verification: 10 dedicated and 457 combined color-match/FilmFX tests pass.
+  Full suite is 1297 passed, one skipped and the unchanged 36 isolated
+  output/hash failures; no color-match or FilmFX failure.
+- Latest-main: `5819b48`, 180 consumer versus 119 main changed paths, zero
+  exact overlap, merge tree `523b4e0d...`; fresh detached synthetic merge
+  passes 127 P30-P38/FilmFX tests and is removed.
+- Producer propagation: D-PCT `d3e41bc` cleanly freezes BMKL as its strongest
+  local PST50 development candidate, but explicitly does not promote it and
+  changes no producer schema, ABI, receipt or HDR rail. P38 takes no action.
+- Handoff: P38 evidence is ready to commit. A later writer may consume this
+  exact authorization, but real use remains closed on genuine producer
+  invocation and A1/A4/A5.
