@@ -197,10 +197,14 @@ with a selected stock, but reference matching alone is labeled
 | P51B | DONE | implement canonical shared staging verification | bind expected report hash/run ID, P49 authorization, P48 guard and ordered output identities | `9816c4b`; schema + tests | verified staging only |
 | P51C | DONE | prove tamper/missing/relocation closure | report/output byte tamper, missing file, path relocation, identity/order mutation fail closed | `9816c4b`; adversarial tests | no write |
 | P51D | DONE | propagate evidence and peer handoff | 612 combined; 1418 pass/1 skip/36 known; latest-main merge 33 pass | evidence commit | future composition consumer |
-| P52A | IN PROGRESS | freeze shared verified composition boundary | bind P51 verified shared base to optional procedural FilmFX without adding color or relaxing P49 | plan commit | no rendering |
-| P52B | READY | implement shared composition plan | exact P51/run/auth/operator outputs plus FilmFX recipe identity; canonical no-write plan | code/schema/tests | plan only |
-| P52C | BLOCKED ON P52B | prove foreign-chain and color-claim closure | reject foreign verification/output, order, FilmFX identity and stock/calibrated claim mutation | adversarial tests | fail closed |
-| P52D | BLOCKED ON P52C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | later renderer |
+| P52A | DONE | freeze shared verified composition boundary | bind P51 verified shared base to optional procedural FilmFX without adding color or relaxing P49 | `107c70b` | no rendering |
+| P52B | DONE | implement shared composition plan | exact P51/run/auth/guard/operator/reference plus FilmFX profile identity; canonical no-write plan | `9f75297`; schema + tests | plan only |
+| P52C | DONE | prove chain and color-claim closure | verification/order/FilmFX identity and film-colour/stock/calibrated claim mutations fail closed | `9f75297`; adversarial tests | no render |
+| P52D | DONE | propagate evidence and peer handoff | 624 combined; 1430 pass/1 skip/36 known; latest-main merge 35 pass | evidence commit | later renderer |
+| P53A | IN PROGRESS | freeze shared procedural FilmFX staging execution | consume exact P52+P51, reread verified P50 bases, render only procedural effects into a separate atomic staging transaction | plan commit | no delivery |
+| P53B | READY | implement shared FilmFX run/report | cross-bind plan/verification/files, deterministic per-source seeds, atomic outputs/report | code/schema/tests | FilmFX staging only |
+| P53C | BLOCKED ON P53B | prove base tamper/order/rollback closure | live reverify, foreign plan, injected render/commit failure and prior-byte restoration | fault tests | fail closed |
+| P53D | BLOCKED ON P53C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | restart verification next |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

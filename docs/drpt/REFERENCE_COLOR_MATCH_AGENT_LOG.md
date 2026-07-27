@@ -2044,6 +2044,21 @@
 - Scope: plan/schema/tests only; no staging files are read or written and no
   producer or FilmFX arithmetic changes.
 
+## 2026-07-28 - Implement and verify P52 shared composition
+
+- Implementation: `9f75297` adds one no-write shared reference composition,
+  strict schema, public exports and claim/order/profile mutation tests.
+- Ownership: `external-shared-reference-look` remains the only colour owner;
+  optional FilmFX executes afterward and is profile/hash bound.
+- Claim closure: film colour is null, stock identity false and calibrated
+  reference false in every valid plan. FilmFX cannot upgrade those claims.
+- States: `composition-ready-not-rendered`; `reference-look` or
+  `reference-look+film-effects`; fixed execution order.
+- Verification: 35 focused, 624 combined and full 1430 pass/1 skip/36
+  unchanged. Latest main `1dce729`, zero overlap, merge tree
+  `2c0438b6...2df`; fresh detached merge 35 pass and was removed.
+- Producer: SPGIN-v0 remains below P45; P52 has no real shared run.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

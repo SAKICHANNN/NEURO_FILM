@@ -8,15 +8,15 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P51 implementation head:
-  `9816c4bfb31d49feb2e7756e04304d68ac8d7052`;
+- complete P1-P52 implementation head:
+  `9f75297e5d162a2ed5416055bc5350a7f022009f`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
   `1dce72949ca98db73126991328969feebe911fa9`;
 - D-PCT read-only snapshot:
   `fd036aa`;
 - conflict-free main/payload merge tree:
-  `03ffb2de34ad00b0909b8507cb31abd36612c944`.
+  `2c0438b63677008797e9fe78329a2d23d10f12df`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -48,6 +48,8 @@ The consumer module implements:
   preserves the existing per-source/FilmFX/local-delivery wire identities;
 - read-only restart verification of the exact P50 report, P49/P48/P47 chain
   IDs and every committed output file;
+- a no-write P51-to-FilmFX ownership plan that forbids film colour, stock
+  identity and calibrated-reference claim escalation;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -74,9 +76,9 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..9816c4b`; do not copy files manually and do not import
+2. Review `c03c321..9f75297`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 9816c4b`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> 9f75297`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -90,11 +92,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 612 passed;
-- latest isolated consumer full suite: 1418 passed, one skipped, 36 unchanged
+- latest consumer combined color-match/FilmFX suite: 624 passed;
+- latest isolated consumer full suite: 1430 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 33 P34/P50/P51 staging-verification
-  tests passed; the temporary worktree was removed;
+- latest detached synthetic main merge: 35 P35/P51/P52 composition tests
+  passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real
