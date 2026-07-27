@@ -353,6 +353,14 @@ local-contrast control and automatic severe-artifact gates. GPL/CC-BY-SA code,
 profiles and LUTs remain outside tracked/project code; no stock-response,
 teacher, fitting, training or production claim opens.
 
+AD1 is now frozen at the exact RF2.C0 revision, CPython/package set, nine gold
+inputs and Ektar100/fixed-e0 chain. Spatial-off must reproduce nine retained
+PNG hashes. Spatial-on changes only the external source-default DIR inhibitor
+diffusion. A bounded Gaussian unsharp/blur family is fitted solely as a
+nuisance explanation; paired strength, residual, explained-energy, clipping,
+gradient, chroma, red-speckle, style and non-basic gates precede all vision.
+Failure closes without source, parameter, threshold or smoothing rescue.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

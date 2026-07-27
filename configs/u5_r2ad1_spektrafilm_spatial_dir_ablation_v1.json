@@ -1,0 +1,152 @@
+{
+  "schema_version": "u5-r2ad1-spektrafilm-spatial-dir-ablation-v1",
+  "node": "U5.R2AD1",
+  "parent_decision": {
+    "path": "configs/u5_r2ad0_spektrafilm_spatial_dir_source_audit_decision_v1.json",
+    "required_decision": "external_ablation_feasible_direct_reuse_blocked"
+  },
+  "external_source": {
+    "repository": "https://github.com/andreavolpato/spektrafilm",
+    "revision": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+    "code_license": "GPL-3.0-or-later",
+    "profile_and_lut_license": "CC-BY-SA-4.0",
+    "tracked_copy_allowed": false,
+    "output_use": "non-commercial internal research comparison only"
+  },
+  "runtime": {
+    "python_version": "3.13.14",
+    "package_versions": {
+      "spektrafilm": "0.3.4",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "scikit-image": "0.26.0",
+      "colour-science": "0.4.7",
+      "OpenImageIO": "3.1.15.0",
+      "Pillow": "12.3.0",
+      "rawpy": "0.26.1",
+      "numba": "0.66.0",
+      "pyfftw": "0.15.1"
+    },
+    "gpu_allowed": false,
+    "paid_resource_allowed": false
+  },
+  "inputs": {
+    "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "split": "gold",
+    "expected_samples": 9,
+    "maximum_long_edge": 1024,
+    "input_interpretation": "display-sRGB proxy decoded by the external runtime; Look Approximation only"
+  },
+  "fixed_pipeline": {
+    "film_profile": "kodak_ektar_100",
+    "print_profile": "kodak_portra_endura",
+    "interpretation": "negative_to_print",
+    "auto_exposure": false,
+    "exposure_compensation_ev": 0.0,
+    "direct_spectral_path": true,
+    "enlarger_lut": false,
+    "scanner_lut": false,
+    "grain": false,
+    "halation": false,
+    "film_glare": false,
+    "print_glare": false,
+    "camera_diffusion_filter": false,
+    "enlarger_diffusion_filter": false,
+    "camera_lens_blur": 0.0,
+    "enlarger_lens_blur": 0.0,
+    "scanner_lens_blur": 0.0,
+    "scanner_unsharp_mask": [
+      0.0,
+      0.0
+    ],
+    "stochastic_effects": false,
+    "seed": 20260728
+  },
+  "arms": {
+    "spatial_off": {
+      "dir_couplers_active": true,
+      "diffusion_size_um": 0.0,
+      "diffusion_tail_um": 200.0,
+      "diffusion_tail_weight": 0.06
+    },
+    "spatial_on": {
+      "dir_couplers_active": true,
+      "diffusion_size_um": 20.0,
+      "diffusion_tail_um": 200.0,
+      "diffusion_tail_weight": 0.06
+    }
+  },
+  "rf2_c0_spatial_off_png_sha256": {
+    "01": "d23ddd7510c137b3116f7f647a83a5fa25675ddb1a6f0d1af22d5c40f35d182e",
+    "05": "67ac4fcd0f580ec62b5624062f9b1dbfa2bb179ff8ceaa61d2a06ec159dc2333",
+    "08": "d99fdb7155d454fcbe9a139b42a104ab8a1c9b7820c1ac6023ac223776ebd8c9",
+    "09": "3344c037fdc06cd5d04182a3be70b15fa9db815be48b3f556fdb660f37ac3ee4",
+    "11": "06573b77e43e54a48c69d6edc9b0010dc6f79ee0f3de6ee6b920af18c006e193",
+    "18": "76a0c947f48f7c4d96ec50e6c61d63bd6db61672fc33f60c2a209e7e60a1e601",
+    "21": "4d7c0bd17a81046b3b7ae6e447449d0a33ae6ef39fbdc89d453d22d678697945",
+    "29": "474631f412bedaaccd4c3fddbe98d42d0b5fc8a24a63cc5e07af8304821da623",
+    "FS_FACE_01": "07cef99be0809939fe5847bde8bd4dead8736430127d1c5f45c067b79f130716"
+  },
+  "matched_local_contrast_control": {
+    "definition": "For each image and each frozen sigma, fit one bounded scalar alpha in off + alpha*(off-Gaussian(off,sigma)); choose the minimum RGB-MSE nuisance control.",
+    "gaussian_sigma_pixels": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "alpha_bounds": [
+      -1.0,
+      1.0
+    ],
+    "boundary": "reflect",
+    "use": "diagnostic nuisance matching only; never a candidate or fitted film operator"
+  },
+  "automatic_gates": {
+    "all_outputs_finite": true,
+    "all_outputs_bounded_0_1": true,
+    "exact_repeat_required": true,
+    "spatial_off_must_match_rf2_c0_png_hashes": true,
+    "minimum_gold_median_spatial_effect_delta_e76": 0.25,
+    "maximum_gold_median_spatial_effect_delta_e76": 4.0,
+    "minimum_gold_median_residual_after_local_contrast_match_delta_e76": 0.1,
+    "maximum_local_contrast_explained_rgb_energy_fraction": 0.9,
+    "maximum_worst_new_hard_clipping_fraction_vs_spatial_off": 0.005,
+    "maximum_worst_luma_gradient_amplification_p99_ratio": 1.5,
+    "maximum_worst_chroma_high_frequency_p99_ratio": 1.5,
+    "maximum_worst_new_isolated_red_speckle_fraction": 0.001,
+    "minimum_gold_median_style_delta_e76_vs_input": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76_vs_input": 4.9
+  },
+  "visual_gate": {
+    "automatic_pass_required": true,
+    "all_nine_gold_samples_required": true,
+    "blind_compare_spatial_on_spatial_off_and_input": true,
+    "full_resolution_risk_cases": [
+      "09",
+      "11",
+      "FS_FACE_01"
+    ],
+    "confirmed_severe_artifact_veto": true,
+    "known_regression": "ID11 red speckle/posterization",
+    "claim": "autonomous visual evidence only"
+  },
+  "branch_rules": {
+    "runtime_or_replay_failure": "close; do not change revision, packages, source or hashes",
+    "effect_too_weak": "close; no diffusion or tail parameter search",
+    "simple_local_contrast_equivalent": "close; no extra capacity",
+    "artifact_or_instability": "close; no smoothing, clamp or strength rescue",
+    "pass": "retain one external spatial-DIR comparison control only"
+  },
+  "forbidden": [
+    "inspect spatial-on outputs before automatic decision",
+    "change parameters, controls, gates or population after metrics",
+    "copy external source, profiles or LUTs into tracked project files",
+    "use outputs as teachers or training targets",
+    "fit a stock operator or claim calibrated Ektar response",
+    "production integration"
+  ],
+  "output_root": "outputs/external_controls/spektrafilm_spatial_dir_v1",
+  "claim_ceiling": "isolated external spatial-DIR ablation on display-sRGB proxy inputs"
+}

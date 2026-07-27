@@ -5157,3 +5157,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   no teacher, fitting, training, stock response, calibration or integration
   follows. AD1 must freeze defaults and automatic artifact gates before
   rendering. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AD1 spatial-DIR ablation
+
+- **Parent/DoR:** AD0 proves the spatial inhibitor diffusion was absent from
+  RF2.C0 and permits one isolated external comparison. No current-pixel
+  learning or operator fitting is opened.
+- **Frozen lineage:** exact external revision, CPython 3.13.14 package set,
+  nine gold inputs, Ektar100/fixed-e0 spectral chain and every retained RF2.C0
+  spatial-off PNG hash. Spatial-on changes only source-default DIR diffusion
+  `20um/200um/.06`; all other spatial/stochastic effects stay off.
+- **Controls/gates:** fit a bounded Gaussian local-contrast family only as a
+  nuisance explanation. Freeze paired Delta E, residual, explained energy,
+  clipping, luma-gradient, chroma high-frequency, isolated-red-speckle, style,
+  non-basic, exact-replay and visual-veto gates before execution.
+- **Branch:** runtime/replay mismatch, weak effect, simple-local equivalence or
+  artifact failure closes without parameter/source/gate/smoothing rescue.
+  A pass retains only an external comparison slot. Goal remains ACTIVE.
