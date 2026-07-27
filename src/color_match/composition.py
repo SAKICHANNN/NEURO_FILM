@@ -8,6 +8,8 @@ import json
 import re
 from typing import Any, Mapping
 
+import numpy as np
+
 from src.inference import validate_render_profile
 
 from .contracts import (
@@ -19,6 +21,31 @@ from .contracts import (
 
 REFERENCE_COMPOSITION_SCHEMA_ID = "neuro-film.reference-composition.v1"
 _HASH = re.compile(r"^[0-9a-f]{64}$")
+_IDENTIFIER = re.compile(r"^[a-z0-9][a-z0-9._-]{0,127}$")
+_VERSION = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
+_PLAN_KEYS = {
+    "schema_id",
+    "plan_id",
+    "color_owner",
+    "reference_recipe_id",
+    "claim_ceiling",
+    "output_label",
+    "execution_order",
+    "film_color_profile_id",
+    "film_stock_identity_claimed",
+    "film_effects",
+}
+_EFFECT_KEYS = {
+    "profile_id",
+    "profile_version",
+    "profile_sha256",
+    "film_stock_id",
+    "interpretation",
+    "grain",
+    "halation",
+    "dust",
+    "halation_model",
+}
 
 
 @dataclass(frozen=True)
@@ -125,7 +152,10 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
         raise ReferenceMatchContractError(
             "film effects do not establish a film-stock identity"
         )
-    if not _HASH.fullmatch(plan.reference_recipe_id):
+    if (
+        not isinstance(plan.reference_recipe_id, str)
+        or not _HASH.fullmatch(plan.reference_recipe_id)
+    ):
         raise ReferenceMatchContractError(
             "reference_recipe_id must be lowercase SHA-256"
         )
@@ -145,12 +175,47 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
         raise ReferenceMatchContractError("composition output label mismatch")
     if plan.film_effects is not None:
         binding = plan.film_effects
-        if not _HASH.fullmatch(binding.profile_sha256):
+        if (
+            not isinstance(binding.profile_id, str)
+            or not _IDENTIFIER.fullmatch(binding.profile_id)
+        ):
+            raise ReferenceMatchContractError(
+                "film effect binding profile_id is invalid"
+            )
+        if (
+            not isinstance(binding.profile_version, str)
+            or not _VERSION.fullmatch(binding.profile_version)
+        ):
+            raise ReferenceMatchContractError(
+                "film effect binding profile_version is invalid"
+            )
+        if (
+            binding.film_stock_id is not None
+            and (
+                not isinstance(binding.film_stock_id, str)
+                or not _IDENTIFIER.fullmatch(binding.film_stock_id)
+            )
+        ):
+            raise ReferenceMatchContractError(
+                "film effect binding film_stock_id is invalid"
+            )
+        if not isinstance(binding.interpretation, str) or not binding.interpretation:
+            raise ReferenceMatchContractError(
+                "film effect binding interpretation is invalid"
+            )
+        if (
+            not isinstance(binding.profile_sha256, str)
+            or not _HASH.fullmatch(binding.profile_sha256)
+        ):
             raise ReferenceMatchContractError(
                 "film effect binding profile hash is invalid"
             )
         if any(
-            value < 0.0 or value > 1.0
+            isinstance(value, bool)
+            or not isinstance(value, (int, float))
+            or not np.isfinite(float(value))
+            or float(value) < 0.0
+            or float(value) > 1.0
             for value in (binding.grain, binding.halation, binding.dust)
         ):
             raise ReferenceMatchContractError(
@@ -160,7 +225,11 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
             raise ReferenceMatchContractError(
                 "film effect halation model is invalid"
             )
-    if not _HASH.fullmatch(plan.plan_id) or plan.plan_id != _plan_id(plan):
+    if (
+        not isinstance(plan.plan_id, str)
+        or not _HASH.fullmatch(plan.plan_id)
+        or plan.plan_id != _plan_id(plan)
+    ):
         raise ReferenceMatchContractError(
             "composition plan_id does not match canonical payload"
         )
@@ -219,10 +288,88 @@ def build_reference_composition(
     return plan
 
 
+def composition_plan_to_json(plan: ReferenceCompositionPlan) -> str:
+    validate_reference_composition(plan)
+    return json.dumps(
+        plan.to_dict(),
+        ensure_ascii=False,
+        allow_nan=False,
+        indent=2,
+        sort_keys=True,
+    ) + "\n"
+
+
+def composition_plan_from_dict(
+    payload: Mapping[str, Any],
+) -> ReferenceCompositionPlan:
+    if not isinstance(payload, Mapping) or set(payload) != _PLAN_KEYS:
+        raise ReferenceMatchContractError(
+            "composition plan keys do not match the v1 contract"
+        )
+    raw_effects = payload["film_effects"]
+    effects: FilmEffectBinding | None
+    if raw_effects is None:
+        effects = None
+    elif isinstance(raw_effects, Mapping) and set(raw_effects) == _EFFECT_KEYS:
+        try:
+            effects = FilmEffectBinding(**dict(raw_effects))
+        except TypeError as exc:
+            raise ReferenceMatchContractError(
+                "composition film_effects types are invalid"
+            ) from exc
+    else:
+        raise ReferenceMatchContractError(
+            "composition film_effects keys do not match the v1 contract"
+        )
+    order = payload["execution_order"]
+    if not isinstance(order, (list, tuple)):
+        raise ReferenceMatchContractError(
+            "composition execution_order must be an array"
+        )
+    try:
+        plan = ReferenceCompositionPlan(
+            schema_id=payload["schema_id"],
+            plan_id=payload["plan_id"],
+            color_owner=payload["color_owner"],
+            reference_recipe_id=payload["reference_recipe_id"],
+            claim_ceiling=payload["claim_ceiling"],
+            output_label=payload["output_label"],
+            execution_order=tuple(order),
+            film_color_profile_id=payload["film_color_profile_id"],
+            film_stock_identity_claimed=payload[
+                "film_stock_identity_claimed"
+            ],
+            film_effects=effects,
+        )
+    except TypeError as exc:
+        raise ReferenceMatchContractError(
+            "composition plan types are invalid"
+        ) from exc
+    validate_reference_composition(plan)
+    return plan
+
+
+def composition_plan_from_json(encoded: str) -> ReferenceCompositionPlan:
+    if not isinstance(encoded, str):
+        raise ReferenceMatchContractError(
+            "encoded composition plan must be a string"
+        )
+    try:
+        payload = json.loads(encoded)
+    except (json.JSONDecodeError, ValueError) as exc:
+        raise ReferenceMatchContractError(
+            "encoded composition plan is not valid JSON"
+        ) from exc
+    return composition_plan_from_dict(payload)
+
+
 __all__ = [
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "FilmEffectBinding",
     "ReferenceCompositionPlan",
     "build_reference_composition",
+    "composition_plan_from_dict",
+    "composition_plan_from_json",
+    "composition_plan_to_json",
     "validate_reference_composition",
 ]

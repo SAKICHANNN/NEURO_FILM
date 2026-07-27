@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-composition-v1.json",
+  "title": "Neuro-Film reference composition plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "plan_id",
+    "color_owner",
+    "reference_recipe_id",
+    "claim_ceiling",
+    "output_label",
+    "execution_order",
+    "film_color_profile_id",
+    "film_stock_identity_claimed",
+    "film_effects"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-composition.v1"
+    },
+    "plan_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "color_owner": {
+      "const": "reference-look"
+    },
+    "reference_recipe_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "claim_ceiling": {
+      "const": "reference-look"
+    },
+    "output_label": {
+      "enum": [
+        "reference-look",
+        "reference-look+film-effects"
+      ]
+    },
+    "execution_order": {
+      "oneOf": [
+        {
+          "const": [
+            "reference_color"
+          ]
+        },
+        {
+          "const": [
+            "reference_color",
+            "film_effects"
+          ]
+        }
+      ]
+    },
+    "film_color_profile_id": {
+      "type": "null"
+    },
+    "film_stock_identity_claimed": {
+      "const": false
+    },
+    "film_effects": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/film_effects"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "film_effects": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "output_label": {
+            "const": "reference-look"
+          },
+          "execution_order": {
+            "const": [
+              "reference_color"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "output_label": {
+            "const": "reference-look+film-effects"
+          },
+          "execution_order": {
+            "const": [
+              "reference_color",
+              "film_effects"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+    },
+    "strength": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "film_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "profile_version",
+        "profile_sha256",
+        "film_stock_id",
+        "interpretation",
+        "grain",
+        "halation",
+        "dust",
+        "halation_model"
+      ],
+      "properties": {
+        "profile_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "profile_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "film_stock_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/identifier"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interpretation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grain": {
+          "$ref": "#/$defs/strength"
+        },
+        "halation": {
+          "$ref": "#/$defs/strength"
+        },
+        "dust": {
+          "$ref": "#/$defs/strength"
+        },
+        "halation_model": {
+          "enum": [
+            "simple",
+            "physical"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -253,3 +253,18 @@
 - Decision: do not implement Gaussian/MKL as a product recipe and do not rescue
   global distribution matching with more histogram/moment capacity. Await an
   identified content-independent grade representation from W1.
+
+## 2026-07-27 - Add language-neutral cross-platform schemas
+
+- Changed: added strict JSON Schema 2020-12 contracts for reference recipe,
+  composition plan and run report; added composition JSON encode/decode.
+- Cross-field gates: reference colour remains the sole colour owner; film
+  effects and execution order must agree; safety acceptance, action and reasons
+  must agree.
+- Validation: schemas pass Draft 2020-12 meta-validation. Real Python payloads
+  validate; unknown fields, invalid claims and inconsistent state fail.
+- Verification: 105 focused reference-match/preprocess/Lab/gamut tests pass;
+  compile and diff checks pass.
+- Product impact: Android/iOS/macOS/Windows bindings can implement the payload
+  contract without importing Python dataclasses. Pixel execution remains a
+  later native/runtime concern and is not claimed by schema compatibility.

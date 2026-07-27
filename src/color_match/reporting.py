@@ -47,6 +47,10 @@ def build_file_match_report(
     }
     outputs: list[dict[str, Any]] = report["outputs"]
     for row in result.outputs:
+        diagnostics = asdict(row.diagnostics)
+        diagnostics["source_shape"] = list(diagnostics["source_shape"])
+        safety = asdict(row.safety)
+        safety["reasons"] = list(safety["reasons"])
         outputs.append(
             {
                 "source_path": str(row.source_path.resolve()),
@@ -56,8 +60,8 @@ def build_file_match_report(
                 "output_format": row.output_format,
                 "output_bit_depth": row.output_bit_depth,
                 "encode_clipped_fraction": row.encode_clipped_fraction,
-                "candidate_diagnostics": asdict(row.diagnostics),
-                "safety": asdict(row.safety),
+                "candidate_diagnostics": diagnostics,
+                "safety": safety,
             }
         )
     return report

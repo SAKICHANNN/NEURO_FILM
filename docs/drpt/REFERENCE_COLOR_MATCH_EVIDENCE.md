@@ -43,6 +43,9 @@ permits `calibrated-reference`.
 - `src/color_match/safety.py`
 - `src/color_match/reporting.py`
 - `scripts/match_reference_color.py`
+- `configs/schemas/reference_look_recipe_v1.schema.json`
+- `configs/schemas/reference_composition_v1.schema.json`
+- `configs/schemas/reference_match_report_v1.schema.json`
 - `src/color_match/__init__.py`
 - `tests/test_color_match_contracts.py`
 - `tests/test_color_match_render.py`
@@ -52,6 +55,7 @@ permits `calibrated-reference`.
 - `tests/test_color_match_evaluation.py`
 - `tests/test_color_match_safety.py`
 - `tests/test_color_match_reporting.py`
+- `tests/test_color_match_schemas.py`
 - branch-specific coordination, plan, log and this evidence record
 
 No forbidden W1/W2/S4, global tracker, renderer-default or standalone D-PCT
@@ -166,6 +170,14 @@ cross-content median recovery to -109.5%, with 27/30 regressions. This evidence
 closes stronger unpaired global moments/distribution fitting as the next
 product algorithm; it does not close canonicalized, paired-supervised or
 otherwise identified explicit-operator prediction.
+
+## Cross-platform payload boundary
+
+Recipe, composition and report now have strict JSON Schema 2020-12 definitions.
+The schemas are meta-validated and checked against real generated payloads.
+They forbid additional properties and bind hashes, ranges, claims, composition
+order and safety state. Python additionally verifies canonical IDs and
+relational numeric constraints.
 
 ## Change propagation
 

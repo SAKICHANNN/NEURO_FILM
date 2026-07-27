@@ -66,6 +66,7 @@ with a selected stock, but reference matching alone is labeled
 | P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | `23221fa` | revert commit |
 | P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | `8d3f60c` | release claim |
 | P6 | DONE | thin CLI + deterministic provenance report | 103 focused/preprocess tests pass | `33f5735` | revert commit |
+| P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -131,6 +132,11 @@ are the final photographic algorithm.
   source/output hashes, candidate diagnostics and safety/fallback decisions.
   Batch cardinality failure exits with code 2 before any output, recipe or
   report is created.
+- P7: `105 passed` after adding strict JSON Schema 2020-12 contracts for the
+  recipe, composition plan and run report plus composition JSON parsing.
+  Independent validators reject unknown fields, invalid hashes/ranges, hidden
+  film-colour claims, inconsistent composition order and contradictory
+  safety/action/reason combinations.
 
 ### Pre-existing worktree-line-ending failure
 
@@ -250,6 +256,16 @@ The command writes one recipe, N ordered image outputs and one deterministic
 provenance report. Its stdout is a compact JSON summary with applied and
 identity-fallback counts. The script is a thin product adapter; algorithm,
 safety and transactional image behavior remain in `src/color_match`.
+
+Language-neutral consumers should validate:
+
+- `configs/schemas/reference_look_recipe_v1.schema.json`;
+- `configs/schemas/reference_composition_v1.schema.json`;
+- `configs/schemas/reference_match_report_v1.schema.json`.
+
+Python validation remains authoritative for canonical IDs and constraints such
+as shadow floor below highlight ceiling; platform implementations must enforce
+both the JSON Schema and the documented canonical SHA-256 construction.
 
 ## Verification and rollback
 

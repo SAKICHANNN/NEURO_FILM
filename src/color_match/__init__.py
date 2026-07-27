@@ -15,6 +15,9 @@ from .composition import (
     FilmEffectBinding,
     ReferenceCompositionPlan,
     build_reference_composition,
+    composition_plan_from_dict,
+    composition_plan_from_json,
+    composition_plan_to_json,
     validate_reference_composition,
 )
 from .fit import fit_reference_look
@@ -78,6 +81,9 @@ __all__ = [
     "fit_reference_look",
     "evaluate_known_operator_batch",
     "build_reference_composition",
+    "composition_plan_from_dict",
+    "composition_plan_from_json",
+    "composition_plan_to_json",
     "build_file_match_report",
     "load_reference_look_recipe",
     "match_reference_files",

@@ -14,6 +14,7 @@
   - `src/color_match/**`
   - `scripts/match_reference_color.py`
   - `tests/test_color_match_*.py`
+  - `configs/schemas/reference_*.schema.json`
   - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
@@ -46,6 +47,8 @@
     display-linear SDR only, and fails closed elsewhere;
   - output claim ceiling is `reference-look`; it is never stock identification
     or `calibrated-reference`;
+  - recipe, report and composition payloads have strict language-neutral JSON
+    Schema contracts for non-Python consumers;
   - a fitted recipe is shared across the batch; per-source normalization may
     adapt to content, but the reference target and policy cannot change.
 - Expected evidence:
