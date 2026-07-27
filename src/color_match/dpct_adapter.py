@@ -37,7 +37,7 @@ from .core_contracts import (
 
 
 DPCT_COMPATIBILITY_PROFILE_ID = "neuro-film.dpct-consumer.v2"
-DPCT_PINNED_COMMIT = "11c581ecdd0a41a840c4e0f94112cfb597e00b0a"
+DPCT_PINNED_COMMIT = "b1b68b664d99e7d16ce06af106faf206a7d6fc07"
 DPCT_PRODUCER_ID = "zhuise-dpct"
 DPCT_PRODUCER_PROFILE_ID = (
     "zhuise.display-linear-srgb-d65-relative-f32.v1"
@@ -142,6 +142,23 @@ class AdaptedDpctCandidateV2:
     capabilities: CapabilitiesV1
     diagnostics: DiagnosticsV1
     prepared_output: PreparedCoreApplyReceiptV1
+
+
+@dataclass(frozen=True)
+class DpctProducerFailureV2:
+    """Verified producer failure that can only request identity fallback."""
+
+    producer_commit: str
+    diagnostics_id: str
+    capability_id: str
+    source_view_id: str
+    reference_view_id: str
+    failure_code: str
+    backend_id: str
+    backend_version: str
+    backend_fingerprint: str
+    warnings: tuple[str, ...]
+    action: str
 
 
 def _strict(value: Any, keys: set[str], label: str) -> Mapping[str, Any]:
@@ -444,6 +461,95 @@ def _verify_diagnostics(
     return diagnostics
 
 
+def verify_dpct_failed_diagnostics_v2(
+    envelope: Mapping[str, Any],
+) -> DpctProducerFailureV2:
+    """Verify an exact producer failure without creating consumer pixels."""
+
+    diagnostics = _strict(
+        envelope, _DIAGNOSTICS_KEYS, "producer failed diagnostics"
+    )
+    if (
+        diagnostics["schema"] != DPCT_DIAGNOSTICS_SCHEMA
+        or diagnostics["canonical_json"] != DPCT_CANONICAL_JSON
+    ):
+        raise ReferenceMatchContractError(
+            "producer failed diagnostics schema/canonical mismatch"
+        )
+    if diagnostics["status"] != "failed":
+        raise ReferenceMatchContractError(
+            "producer failed diagnostics must have failed status"
+        )
+    if diagnostics["bundle_id"] is not None:
+        raise ReferenceMatchContractError(
+            "producer failed diagnostics must not bind a bundle"
+        )
+    failure_code = _identifier(
+        diagnostics["failure_code"],
+        "producer failed diagnostics.failure_code",
+    )
+    if diagnostics["measurements"] is not None:
+        raise ReferenceMatchContractError(
+            "producer failed diagnostics must not contain measurements"
+        )
+    capability_id = _identifier(
+        diagnostics["capability_id"],
+        "producer failed diagnostics.capability_id",
+    )
+    source_view_id = _producer_hash(
+        diagnostics["source_view_id"],
+        "producer failed diagnostics.source_view_id",
+    )
+    reference_view_id = _producer_hash(
+        diagnostics["reference_view_id"],
+        "producer failed diagnostics.reference_view_id",
+    )
+    backend = _strict(
+        diagnostics["backend"], _BACKEND_KEYS, "producer failed backend"
+    )
+    backend_id = _identifier(
+        backend["backend_id"], "producer failed backend.backend_id"
+    )
+    backend_version = _identifier(
+        backend["backend_version"],
+        "producer failed backend.backend_version",
+    )
+    backend_fingerprint = _producer_hash(
+        backend["build_fingerprint"],
+        "producer failed backend.build_fingerprint",
+    )
+    warnings = diagnostics["warnings"]
+    if (
+        not isinstance(warnings, list)
+        or any(not isinstance(item, str) or not item for item in warnings)
+    ):
+        raise ReferenceMatchContractError(
+            "producer failed warnings must be non-empty strings"
+        )
+    identity = dict(diagnostics)
+    diagnostics_id = identity.pop("diagnostics_id")
+    if _producer_hash(
+        diagnostics_id,
+        "producer failed diagnostics.diagnostics_id",
+    ) != _sha256(_canonical_json(identity)):
+        raise ReferenceMatchContractError(
+            "producer failed diagnostics_id mismatch"
+        )
+    return DpctProducerFailureV2(
+        producer_commit=DPCT_PINNED_COMMIT,
+        diagnostics_id=diagnostics_id,
+        capability_id=capability_id,
+        source_view_id=source_view_id,
+        reference_view_id=reference_view_id,
+        failure_code=failure_code,
+        backend_id=backend_id,
+        backend_version=backend_version,
+        backend_fingerprint=backend_fingerprint,
+        warnings=tuple(warnings),
+        action="identity-fallback",
+    )
+
+
 def _verify_result(
     envelope: Any,
     output_f32be: bytes,
@@ -679,6 +785,8 @@ __all__ = [
     "DPCT_COMPATIBILITY_PROFILE_ID",
     "DPCT_PINNED_COMMIT",
     "AdaptedDpctCandidateV2",
+    "DpctProducerFailureV2",
     "DpctProducerAliasesV2",
     "adapt_dpct_candidate_v2",
+    "verify_dpct_failed_diagnostics_v2",
 ]

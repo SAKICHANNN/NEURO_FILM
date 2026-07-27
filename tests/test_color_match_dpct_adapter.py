@@ -21,6 +21,7 @@ from src.color_match import (
     adjudicate_core_acceptance,
     make_match_view,
     validate_prepared_core_apply_receipt,
+    verify_dpct_failed_diagnostics_v2,
 )
 
 
@@ -30,6 +31,12 @@ FIXTURE = (
     / "tests"
     / "fixtures"
     / "zhuise_producer_contract_exact_bits_v2.json"
+)
+FAILED_FIXTURE = (
+    ROOT
+    / "tests"
+    / "fixtures"
+    / "zhuise_producer_contract_failed_exact_v2.json"
 )
 LOCK = ROOT / "configs" / "reference_match_dpct_compatibility_v2.json"
 LOCK_SCHEMA = (
@@ -98,6 +105,12 @@ def test_v2_lock_is_strict_and_pins_corrected_fixture() -> None:
     ).hexdigest()
     assert lock["conformance"]["fixture_sha256"] == (
         "60e7466d373a60835fecc910550bcc10723b497f362464d51d09b3f288dead48"
+    )
+    assert lock["conformance"]["failed_fixture_sha256"] == hashlib.sha256(
+        FAILED_FIXTURE.read_bytes()
+    ).hexdigest()
+    assert lock["conformance"]["failed_fixture_sha256"] == (
+        "9f7a358144fb089b0e6c9fad4da3b60e840e3c77d85f1f362f5569918af1e6db"
     )
     assert lock["profile_mapping"]["compatibility_profile_id"] == (
         DPCT_COMPATIBILITY_PROFILE_ID
@@ -184,6 +197,54 @@ def test_unpromoted_v2_candidate_remains_identity_fallback() -> None:
     )
     assert not admission.accepted_for_product_guard
     assert admission.guard_state == "identity-fallback"
+
+
+def test_exact_failed_fixture_can_only_request_identity_fallback() -> None:
+    fixture = _json(FAILED_FIXTURE)
+    assert fixture["result"] is None
+    failure = verify_dpct_failed_diagnostics_v2(
+        fixture["diagnostics"]
+    )
+    assert failure.producer_commit == DPCT_PINNED_COMMIT
+    assert failure.diagnostics_id == (
+        "sha256:d97bd90fb80b658cab52f121d131dde4556a92c93c146b1d93a573e1524bc109"
+    )
+    assert failure.failure_code == "zhuise.nonfinite-output"
+    assert failure.action == "identity-fallback"
+    assert failure.warnings == ("identity-fallback-required",)
+
+
+@pytest.mark.parametrize(
+    ("mutation", "message"),
+    [
+        (
+            lambda value: value.update(bundle_id="sha256:" + "0" * 64),
+            "must not bind a bundle",
+        ),
+        (
+            lambda value: value.update(measurements={}),
+            "must not contain measurements",
+        ),
+        (
+            lambda value: value.update(failure_code=None),
+            "namespaced identifier",
+        ),
+        (
+            lambda value: value.update(
+                diagnostics_id="sha256:" + "0" * 64
+            ),
+            "diagnostics_id mismatch",
+        ),
+    ],
+)
+def test_failed_fixture_mutations_fail_without_receipt(
+    mutation,
+    message,
+) -> None:
+    diagnostics = deepcopy(_json(FAILED_FIXTURE)["diagnostics"])
+    mutation(diagnostics)
+    with pytest.raises(ReferenceMatchContractError, match=message):
+        verify_dpct_failed_diagnostics_v2(diagnostics)
 
 
 @pytest.mark.parametrize(

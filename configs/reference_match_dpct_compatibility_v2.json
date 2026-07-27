@@ -2,9 +2,9 @@
   "schema_id": "neuro-film.dpct-compatibility-lock.v2",
   "producer": {
     "repository_id": "zhuise-dpct",
-    "commit": "11c581ecdd0a41a840c4e0f94112cfb597e00b0a",
+    "commit": "b1b68b664d99e7d16ce06af106faf206a7d6fc07",
     "producer_contracts_sha256": "73fcf290f64dc8bb58526b83b8a7c1444ae4f50273b9339c431f7f62d7493454",
-    "native_reference_sha256": "ae06f388028c466d65fff28685d248b57c5fbdac87afff59bb3ca65e26b2d951"
+    "native_reference_sha256": "01b8b28c9c189524eacc200651d18ff68a952b74727570e5bf56bd73e8e62398"
   },
   "schemas": {
     "match_view": {
@@ -27,10 +27,15 @@
   "conformance": {
     "fixture_id": "zhuise-producer-contract-exact-bits-v2",
     "fixture_sha256": "60e7466d373a60835fecc910550bcc10723b497f362464d51d09b3f288dead48",
+    "failed_fixture_id": "zhuise-producer-contract-failed-exact-v2",
+    "failed_fixture_sha256": "9f7a358144fb089b0e6c9fad4da3b60e840e3c77d85f1f362f5569918af1e6db",
     "python_identity_count": 8,
     "cpp17_identity_count": 8,
     "msvc_w4_wx_passed": true,
-    "factual_clipping_consistency": true
+    "factual_clipping_consistency": true,
+    "failed_apply_result_rejected": true,
+    "failed_diagnostics_msvc_exact": true,
+    "failed_diagnostics_llvm_mingw_exact": true
   },
   "profile_mapping": {
     "compatibility_profile_id": "neuro-film.dpct-consumer.v2",

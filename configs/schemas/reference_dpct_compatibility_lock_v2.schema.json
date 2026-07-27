@@ -54,20 +54,32 @@
       "required": [
         "fixture_id",
         "fixture_sha256",
+        "failed_fixture_id",
+        "failed_fixture_sha256",
         "python_identity_count",
         "cpp17_identity_count",
         "msvc_w4_wx_passed",
-        "factual_clipping_consistency"
+        "factual_clipping_consistency",
+        "failed_apply_result_rejected",
+        "failed_diagnostics_msvc_exact",
+        "failed_diagnostics_llvm_mingw_exact"
       ],
       "properties": {
         "fixture_id": {
           "const": "zhuise-producer-contract-exact-bits-v2"
         },
         "fixture_sha256": {"$ref": "#/$defs/sha256"},
+        "failed_fixture_id": {
+          "const": "zhuise-producer-contract-failed-exact-v2"
+        },
+        "failed_fixture_sha256": {"$ref": "#/$defs/sha256"},
         "python_identity_count": {"const": 8},
         "cpp17_identity_count": {"const": 8},
         "msvc_w4_wx_passed": {"const": true},
-        "factual_clipping_consistency": {"const": true}
+        "factual_clipping_consistency": {"const": true},
+        "failed_apply_result_rejected": {"const": true},
+        "failed_diagnostics_msvc_exact": {"const": true},
+        "failed_diagnostics_llvm_mingw_exact": {"const": true}
       }
     },
     "profile_mapping": {

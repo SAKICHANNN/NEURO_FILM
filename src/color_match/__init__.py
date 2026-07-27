@@ -86,8 +86,10 @@ from .dpct_adapter import (
     DPCT_COMPATIBILITY_PROFILE_ID,
     DPCT_PINNED_COMMIT,
     AdaptedDpctCandidateV2,
+    DpctProducerFailureV2,
     DpctProducerAliasesV2,
     adapt_dpct_candidate_v2,
+    verify_dpct_failed_diagnostics_v2,
 )
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
@@ -246,6 +248,7 @@ __all__ = [
     "ContextInvariancePolicy",
     "GuardedReferenceMatchResult",
     "DiagnosticsV1",
+    "DpctProducerFailureV2",
     "DpctProducerAliasesV2",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
@@ -360,4 +363,5 @@ __all__ = [
     "validate_promotion_policy",
     "verify_portable_conformance_bundle",
     "verify_core_consumer_conformance_bundle",
+    "verify_dpct_failed_diagnostics_v2",
 ]
