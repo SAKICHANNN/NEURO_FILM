@@ -1756,6 +1756,26 @@
 - Propagation: P43 remains useful invocation plumbing. The current capability
   is not the product algorithm; future versioned candidates rerun P44.
 
+## 2026-07-28 - Freeze P45 successor-candidate admission
+
+- Node/parent goal: P45A-D / non-overlapping consumer work after P44.
+- Trigger: the first real callable D-PCT capability is reproducibly rejected,
+  while stronger producer research families are not callable contracts.
+- Decision: define a consumer-owned intake declaration and two-stage
+  preflight. Evaluation readiness requires a genuinely new exact producer,
+  package, wheel and capability identity, explicit colour profile and
+  source/reference/batch semantics, and producer conformance. Product
+  readiness additionally requires unchanged P44 A1/A4/A5 evidence, rights and
+  target runtime evidence.
+- Boundary: this leaf does not publish an algorithm, generalize the existing
+  hard-coded invocation adapter, create an HDR bridge, or admit BMKL/ROGR by
+  name. It only makes substitution and promotion fail closed.
+- Files allowed: additive consumer config/schema/module/tests plus planning,
+  audit and handoff docs. Producer and main repositories remain read-only.
+- DoD: mutation tests reject identity reuse, semantic ambiguity, implicit
+  rail conversion and missing product evidence; focused/full/latest-main
+  propagation is recorded and both equal peers receive the stable snapshot.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
