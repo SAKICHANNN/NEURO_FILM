@@ -107,7 +107,7 @@ luminance and provenance.
 
 P13 adds only isolated deterministic research code and frozen evaluation
 evidence. It does not consume the main task's uncommitted W1/W2/S4 files or the
-standalone task's uncommitted DNG/WIC code. P14 may consume a canonicalizer only
+standalone task's uncommitted DNG/WIC code. P14B may consume a canonicalizer only
 after the owning task publishes a stable commit and this branch revalidates
 interfaces, rights, leakage and A1/A4/A5 evidence.
 
@@ -116,12 +116,12 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - Main neuro-film advanced from `c03c321` to `ed1dbb5`. Its committed S4
   result says correct generated conditions improve distribution matching but
   still miss hidden-operator oracle gates. This supports fail-close and does
-  not publish a W1 canonicalizer or open P14 integration.
+  not publish a W1 canonicalizer or open P14B integration.
 - Standalone D-PCT advanced from `413d713` to `e1f67d3`. It now executes the
   observed local lossless-DNG/profile family to scene-linear ACEScg, while its
   authoritative `real_raw_paths` gate remains failed for lack of a trusted
   renderer, representative vendor RAW coverage and professional reference
   pairs.
 - Uncommitted work remains present in both owning tasks and is not consumed.
-  A3 stays pixel-bridge closed; P14 stays dependent on a future stable,
+  A3 stays pixel-bridge closed; P14B stays dependent on a future stable,
   independently identified canonicalizer.

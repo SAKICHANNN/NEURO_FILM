@@ -57,7 +57,26 @@ images as the canonical prior absorbs their content distribution and performs
 worse. Batch images may later inform bounded nuisance confidence, but cannot
 define the target style prior directly.
 
-## P14 direction
+## P14A analytic-prior decision
+
+Three versioned, data-free RGB priors were frozen before execution:
+low-key/neutral, mid-key/neutral and wide-chroma. Operator slices are disjoint:
+24 development operators, 12 validation operators and 24 unexecuted confirmation
+operators across matrix-only, tone-only and combined families.
+
+Uniform cube remains the winner:
+
+| Split | Uniform | Best analytic | Decision |
+|---|---:|---:|---|
+| development | 43/48, median +9.70% | 25/48, median +0.47% | no selection |
+| validation | 19/24, median +6.92% | 13/24, median +1.02% | confirmation closed |
+
+The validation report repeats byte-exactly at ID `d08ff8b...53fe2`, SHA-256
+`816ba59e...f6549`. No confirmation or real-matrix run is permitted under the
+frozen contract. This closes hand-shaped first/second-moment priors, not learned
+canonicalization.
+
+## P14B direction
 
 The next eligible head is:
 

@@ -76,7 +76,8 @@ with a selected stock, but reference matching alone is labeled
 | P11 | DONE | unpromoted-algorithm delivery fail-close + explicit research override | 134 focused tests; default/override CLI; full suite 990 pass/36 known fail | `adae6cb` | revert commit |
 | P12 | DONE | propagate delivery certification into film-effects composition | 136 focused tests; full suite 992 pass/36 known fail | `ba6f2c1` | revert commit |
 | P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | `ec437e1` | revert commit |
-| P14 | READY | replace the unidentified prior with an independently learned/published canonicalizer | W1 stable evidence plus frozen A1/A4/A5 replay | none | keep v0 rejected |
+| P14A | DONE | preregister and test three analytic photographic priors | 10 dedicated tests; byte-exact validation repeat; confirmation correctly closed; full suite 1002 pass/36 known fail | `3debf13` | revert commit |
+| P14B | READY | replace the unidentified prior with an independently learned/published canonicalizer | W1 stable evidence plus frozen A1/A4/A5 replay | none | keep v0 rejected |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -163,7 +164,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`998 passed, 1 skipped, 36 failed`.
+`1002 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -237,9 +238,21 @@ The repeat report is byte-identical: report ID
 Increasing neutral-axis allowance from 0.04 to 0.08/0.12 worsens the tail and
 does not pass A1. Replacing the fixed cube with the uploaded N-source batch as
 the prior also fails: 16/30 improve, median is `+0.571%`, worst is `-11.524%`.
-This closes naive source-batch distribution fitting. P14 must replace the
+This closes naive source-batch distribution fitting. P14B must replace the
 unidentified prior with independent canonicalizer evidence rather than tune
 strength or absorb the current batch's content distribution.
+
+P14A separately preregisters three data-free photographic priors and keeps
+generated-operator development, validation and confirmation slices disjoint.
+The uniform-cube control wins both visible splits. On development it improves
+43/48 observations with median captured style `+9.70%`; the best analytic
+prior reaches only 25/48 and `+0.47%`. On validation uniform reaches 19/24 and
+`+6.92%`; the best analytic prior reaches 13/24 and `+1.02%`. Validation is
+byte-repeatable at report ID `d08ff8b...53fe2`, SHA-256
+`816ba59e...f6549`. No analytic prior is selected, so synthetic confirmation
+and the real 30-pair matrix remain unopened. P14B therefore requires learned
+or otherwise independently identified canonicalization, not another
+hand-shaped moment prior.
 
 ### Film-business composition boundary
 

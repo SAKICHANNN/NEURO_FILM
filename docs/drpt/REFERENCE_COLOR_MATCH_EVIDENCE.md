@@ -201,8 +201,16 @@ byte SHA-256 (`1ead5590...574c7f`, `ccf34c09...acf243`).
 A neutral-axis strength grid does not rescue it. The uploaded-source-batch
 prior is worse at 16/30, +0.571% median and -11.524% worst. These are
 falsifications, not candidates for visual promotion. They preserve default
-identity delivery and direct P14 toward an independently identified
+identity delivery and direct P14B toward an independently identified
 canonicalizer.
+
+P14A tests whether simple photographic moment priors can replace uniform cube
+without looking at the real matrix. They cannot. Uniform wins development at
+43/48 and +9.70% median captured style versus 25/48 and +0.47% for the best
+analytic prior. It wins independent validation at 19/24 and +6.92% versus
+13/24 and +1.02%. The validation report repeats exactly
+(`d08ff8b...53fe2`, `816ba59e...f6549`). The preregistered confirmation and
+real-matrix gates remain closed, preventing post-hoc prior search.
 
 ## Executable photographic promotion gate
 

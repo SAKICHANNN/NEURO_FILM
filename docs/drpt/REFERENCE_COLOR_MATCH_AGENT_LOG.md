@@ -413,3 +413,22 @@
 - Propagation: P14 cannot consume S4 as identified operator evidence; A3 cannot
   consume the DNG decoder as a trusted MatchView bridge.
 - Files imported or copied: none. External dirty work remains untouched.
+
+## 2026-07-27 - Close data-free analytic canonical priors
+
+- Parent: P14A / canonical-prior identification.
+- Contract: three analytic priors plus uniform control; disjoint generated
+  development/validation/confirmation operators; no real-matrix access before
+  synthetic confirmation.
+- Development: uniform 43/48 and +9.70% median; best analytic wide-chroma
+  25/48 and +0.47%.
+- Validation: uniform 19/24 and +6.92%; best analytic wide-chroma 13/24 and
+  +1.02%. Decision is `no-analytic-prior-selected`.
+- Reproducibility: validation report ID `d08ff8b...53fe2`, SHA-256
+  `816ba59e...f6549`, byte-identical twice.
+- Propagation: synthetic confirmation and real 30-pair confirmation remain
+  closed. P14B requires independent learned/published canonicalizer evidence.
+- Verification: 10 dedicated tests pass; compileall and diff check pass. The
+  complete CPU collection is 1002 passed, one skipped and the unchanged 36
+  known ignored-output/CRLF-hash failures; no color-match test failed.
+- Commit: `3debf13` (`feat: test analytic CFSM priors`).
