@@ -37,6 +37,14 @@ from .empirical_prior import (
     load_empirical_neutral_prior,
     validate_empirical_prior_payload,
 )
+from .statlut_features import (
+    STATLUT_FEATURE_SCHEMA_ID,
+    StatLUTFeaturePolicy,
+    StatLUTLabFeatures,
+    aggregate_statlut_features,
+    extract_statlut_lab_features,
+    validate_statlut_lab_features,
+)
 from .w1_evidence import (
     W1_DECISION_SCHEMA_ID,
     W1_INTAKE_SCHEMA_ID,
@@ -80,6 +88,12 @@ __all__ = [
     "compute_empirical_prior_id",
     "load_empirical_neutral_prior",
     "validate_empirical_prior_payload",
+    "STATLUT_FEATURE_SCHEMA_ID",
+    "StatLUTFeaturePolicy",
+    "StatLUTLabFeatures",
+    "aggregate_statlut_features",
+    "extract_statlut_lab_features",
+    "validate_statlut_lab_features",
     "W1_DECISION_SCHEMA_ID",
     "W1_INTAKE_SCHEMA_ID",
     "W1EvidenceDecision",
