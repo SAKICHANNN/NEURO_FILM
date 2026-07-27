@@ -656,3 +656,21 @@
 - Decision/handoff: `quantile-route-closed`; no real-photo review or product
   integration. Next work must change objective/information rather than tune
   this estimator.
+
+## 2026-07-27 - Test and close source-batch quantile extension
+
+- Node/parent goal: P21 / batch-conditioned Look Approximation.
+- New information: fit may inspect all three synthetic source palettes, but
+  one fixed candidate serves the batch and never claims future-album replay.
+- Frozen confirmation: unused stress operator indices 8--15, two observations
+  each; no development tuning.
+- Result: Gaussian and quantile each improve 40/48. Quantile median `+9.13%`
+  trails Gaussian `+9.32%` by `0.19` points; its worst row is `1.51` points
+  better. Structural gates pass but median-gain gate fails.
+- Repeat: ID `e5a2d670...c14a`, SHA `c9d261ad...05b1` byte-exact twice.
+- Verification: 12 dedicated and 175 focused tests, compileall and diff check
+  pass.
+- Commit: `bdffb94` (`research: test batch-conditioned quantile matcher`).
+- Handoff: quantile extension closes. Synthetic Gaussian mechanism evidence
+  cannot reverse P13's real-matrix rejection or become a reference-only
+  reusable product recipe.

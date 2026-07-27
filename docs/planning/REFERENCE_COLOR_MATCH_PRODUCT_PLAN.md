@@ -85,6 +85,7 @@ with a selected stock, but reference matching alone is labeled
 | P18 | DONE | bind film-effects composition to the actual delivered run safety decisions | 13 dedicated tests; 174 focused tests; full suite 1046 pass/36 known fail | `b44fc96` | revert commit |
 | P19 | DONE / ROUTE CLOSED | audit and test a research-only empirical neutral-photography moment prior | 16 dedicated tests; 167 focused tests; three byte-exact artifact builds; two byte-exact confirmation runs | `9d82eda`, `e7317f1` | retain negative evidence; product stays identity |
 | P20 | DONE / ROUTE CLOSED | test a bounded affine plus monotone-quantile non-moment challenger | 14 dedicated tests; 171 focused tests; two byte-exact stress-confirmation runs | `f73e3ef` | retain negative evidence; do not tune same candidate |
+| P21 | DONE / ROUTE CLOSED | test source-batch-conditioned monotone quantiles against source-batch Gaussian | 12 dedicated tests; 175 focused tests; two byte-exact unused-row confirmations | `bdffb94` | retain Gaussian mechanism evidence; reject quantile extension |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -333,6 +334,18 @@ misses the frozen `+3` point minimum and the worst row loses `1.15` points.
 All structural gates pass. Two reports are byte-identical at report ID
 `785d0d14...a478`, SHA-256 `cf39f27c...1c99`; the route closes without
 real-photo review or product integration.
+
+P21 allows a materially different input contract: the candidate may inspect
+the complete N-source batch, but must remain one fixed LUT inside that batch.
+It compares Gaussian source-batch CFSM with an affine plus marginal-quantile
+extension on previously unused stress operator indices 8--15. Gaussian
+improves 40/48 with median `+9.32%`; quantile also improves 40/48 with median
+`+9.13%`. Quantile's median gain is `-0.19` points, although its worst case is
+`1.51` points better. The repeated report is byte-identical at ID
+`e5a2d670...c14a`, SHA-256 `c9d261ad...05b1`. The extension closes, and the
+Gaussian result remains synthetic mechanism evidence only because the earlier
+real matrix failed its product gates and a batch-conditioned recipe is not a
+reference-only reusable recipe.
 
 ### Film-business composition boundary
 

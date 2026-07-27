@@ -275,3 +275,11 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   W1/W2 report, FilmSet/FiveK pixel or D-PCT decoder state is consumed.
 - The candidate closes below its frozen median-gain threshold and creates no
   external dependency, merge requirement or product promotion.
+
+### 2026-07-27 source-batch quantile isolation
+
+- P21 uses only generated stress palettes and previously unused committed
+  operator rows 8--15. Main, D-PCT, FiveK and FilmSet are not read or changed.
+- The batch-conditioned contract is explicitly non-reusable and research-only.
+- Its negative result adds no cross-task dependency and changes no product or
+  film-business boundary.
