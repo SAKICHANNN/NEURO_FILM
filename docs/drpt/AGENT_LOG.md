@@ -5106,3 +5106,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   smoothing rescue. A pass can only open another synthetic-to-image safety
   contract and remains generic, uncalibrated and non-stock. Goal remains
   ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AC1 independent evaluator
+
+- **Implementation:** add an isolated float64 shared-resource solver from the
+  frozen equations, reflect-boundary five-point heat step, exact zero-strength
+  bypass, fixed synthetic-pattern generator and automatic invariant/effect
+  evaluator. No Filmulator file, constant or dependency is imported.
+- **Controls/evidence:** evaluate local diffusion against the same per-pixel
+  reaction with diffusion disabled; pin constant neutral, rotation, repeat and
+  isolated-channel behaviour in four focused tests.
+- **Verification/handoff:** focused tests, `py_compile`, `git diff --check`
+  and the full CPU suite pass (`1008 passed`). Numerical AC1 decision metrics
+  have not been inspected. Commit the implementation, then run two exact
+  formal reports from that revision. Goal remains ACTIVE.
