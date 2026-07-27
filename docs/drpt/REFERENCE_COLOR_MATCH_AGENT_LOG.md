@@ -1991,6 +1991,22 @@
 - Producer: SPGIN-v0 is preregistered only, with no calibration/model/
   capability/package/fixture or product rights; no real P50 staging opens.
 
+## 2026-07-28 - Freeze P51 restart-safe shared staging verification
+
+- Node/parent goal: P51A-D / durable trust after P50.
+- Contract: caller must retain and provide exact report SHA, P50 run ID, P49
+  authorization ID, P48 guard ID and P47 operator ID. The verifier boundedly
+  rereads UTF-8 report bytes, reruns strict P50 parsing, checks report path and
+  rehashes every ordered output file.
+- Output: canonical no-write verification binding report/run/auth/guard/
+  operator/reference plus every apply receipt, producer result, path and file
+  hash.
+- Fail closure: report byte/path/ID substitution, output tamper/missing/
+  unreadable file, order/path collision and verification mutation reject.
+- State ceiling: `verified-shared-staging` /
+  `verified-shared-staging-not-delivered`; no producer invocation, staging
+  mutation, composition, applied state or delivery.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
