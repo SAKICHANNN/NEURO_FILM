@@ -635,3 +635,24 @@
   `e7317f1` (`research: close empirical CFSM prior route`).
 - Handoff: continue only with a new objective/information regime; default
   delivery remains identity and no FiveK-derived product asset opens.
+
+## 2026-07-27 - Test and close bounded quantile challenger
+
+- Node/parent goal: P20 / A1 non-moment explicit-operator challenger.
+- Hypothesis: alternating affine transport with fixed monotone marginal
+  quantiles may recover tone/colour structure missed by global moments.
+- Isolation: data-free CPU experiment; no FiveK, W1, D-PCT, training, neural
+  weight or mutable external task state consumed.
+- Development: 44/48 improve, median `+9.49%`, versus uniform 43/48 and
+  `+9.70%`; no tuning follows.
+- Stress confirmation: 38/48 improve and median `+12.96%`, versus uniform
+  37/48 and `+11.70%`. Gain `+1.26` points misses the frozen `+3` floor;
+  worst loss `1.15` points and every structural gate pass.
+- Repeat: report ID `785d0d14...a478`, SHA `cf39f27c...1c99` is byte-exact
+  across two runs.
+- Verification: 14 dedicated and 171 focused tests, compileall and diff check
+  pass.
+- Commit: `f73e3ef` (`research: test bounded quantile matcher`).
+- Decision/handoff: `quantile-route-closed`; no real-photo review or product
+  integration. Next work must change objective/information rather than tune
+  this estimator.

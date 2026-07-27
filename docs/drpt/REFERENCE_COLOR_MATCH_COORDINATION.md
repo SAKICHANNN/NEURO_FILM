@@ -266,3 +266,12 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   dependency and does not change main W2F0/FilmSet or D-PCT ownership.
 - Main and D-PCT remain read-only concurrent tasks; neither task was
   navigated, awakened, messaged or mutated by P19.
+
+### 2026-07-27 bounded quantile experiment isolation
+
+- P20 is entirely data-free and local to this worktree. It reuses only the
+  already committed synthetic manifest and explicit CFSM projection.
+- The previously unopened stress split was frozen before execution. No main
+  W1/W2 report, FilmSet/FiveK pixel or D-PCT decoder state is consumed.
+- The candidate closes below its frozen median-gain threshold and creates no
+  external dependency, merge requirement or product promotion.

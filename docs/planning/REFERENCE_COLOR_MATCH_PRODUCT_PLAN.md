@@ -84,6 +84,7 @@ with a selected stock, but reference matching alone is labeled
 | P17 | DONE | commit outputs, optional recipe and provenance report as one rollback-safe run transaction | 5 dedicated fault-injection tests; 32 adjacent tests; 161 focused tests; full suite 1033 pass/36 known fail | `2f30826` | revert commit |
 | P18 | DONE | bind film-effects composition to the actual delivered run safety decisions | 13 dedicated tests; 174 focused tests; full suite 1046 pass/36 known fail | `b44fc96` | revert commit |
 | P19 | DONE / ROUTE CLOSED | audit and test a research-only empirical neutral-photography moment prior | 16 dedicated tests; 167 focused tests; three byte-exact artifact builds; two byte-exact confirmation runs | `9d82eda`, `e7317f1` | retain negative evidence; product stays identity |
+| P20 | DONE / ROUTE CLOSED | test a bounded affine plus monotone-quantile non-moment challenger | 14 dedicated tests; 171 focused tests; two byte-exact stress-confirmation runs | `f73e3ef` | retain negative evidence; do not tune same candidate |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -195,7 +196,7 @@ final photographic/aesthetic algorithm.
 
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
-| A1 reference identifiability | OUTPUT-ONLY AND FIXED-MOMENT-PRIOR ROUTES CLOSED | local known-operator cross-content falsification, repeated main W1 single/four/paired evidence and P19 empirical neutral-photo prior confirmation | do not rescue the same descriptor or global moments with capacity/data volume; require a genuinely new information regime or non-moment perceptual objective |
+| A1 reference identifiability | OUTPUT-ONLY, FIXED-MOMENT AND MARGINAL-QUANTILE ROUTES CLOSED | local known-operator cross-content falsification, repeated main W1 evidence, P19 empirical moment confirmation and P20 stress confirmation | do not rescue the same descriptor/distribution fitter with capacity or tuning; require user information or a separately justified learned perceptual objective |
 | A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
 | A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT `bd3ff70` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; all 67 DNGs and 686,122,932 post-linearization sensor codes agree with pinned LibRaw, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for independent crop/black/demosaic/profile and trusted scene-render agreement plus a versioned scene/display-to-MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
@@ -316,6 +317,22 @@ reports are byte-identical at report ID `ca7e768d...cd0e`, SHA-256
 pass, but identification gates fail. This closes fixed global first/second
 moment priors as the arbitrary-reference solution; more neutral photos cannot
 rescue the same statistic.
+
+P20 changes the estimator, not merely its data. It alternates a symmetric
+Gaussian colour transform with eight fixed monotone per-channel quantile
+splines, samples that operator on the same 17-cube, and applies the existing
+boundary, smoothness, neutral-axis and positive-Jacobian projection. It
+therefore remains one replayable global LUT across the complete batch.
+
+On development, quantile improves 44/48 versus uniform 43/48 but has slightly
+lower median captured style (`+9.49%` versus `+9.70%`). The gate and the
+previously unopened stress operator/palette split were frozen before this was
+observed. On stress confirmation it improves 38/48 versus 37/48 and raises
+median captured style from `+11.70%` to `+12.96%`, but the `+1.26` point gain
+misses the frozen `+3` point minimum and the worst row loses `1.15` points.
+All structural gates pass. Two reports are byte-identical at report ID
+`785d0d14...a478`, SHA-256 `cf39f27c...1c99`; the route closes without
+real-photo review or product integration.
 
 ### Film-business composition boundary
 
