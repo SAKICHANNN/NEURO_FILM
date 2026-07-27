@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ah0-group-invariant-reference-operator-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AH0",
+  "decision": "open_synthetic_group_invariance_development_only",
+  "parent_evidence": [
+    "U5.R2W1D output-only fixed descriptors fail content and identity controls",
+    "U5.R2O0 is a validated bounded explicit renderer",
+    "U5.R2AG1 proves a smaller SPD family lacks density-control capacity",
+    "independent NFCM P46 diagnoses joint source/reference global-fit overcorrection but supplies no promoted producer"
+  ],
+  "source_artifacts": [
+    {
+      "id": "deep_sets_2017",
+      "bytes": 1990691,
+      "sha256": "ae1e9a4655b8ada5292b3dd3558dd7e18b05913106ebc36bf9f609c917f163c0"
+    },
+    {
+      "id": "set_transformer_2019",
+      "bytes": 4877237,
+      "sha256": "965aee34a80935c775156bf96c059e74a226282cbcaee69eb6f9cf6f2603525d"
+    },
+    {
+      "id": "dann_2016",
+      "bytes": 5670840,
+      "sha256": "801be7cae7acf3ec0df604d40e6129cb9f594e09e6891370b3f7bd2ebef40403"
+    },
+    {
+      "id": "vicreg_2021",
+      "bytes": 873759,
+      "sha256": "c227c290d5eb2ba459fd502de3b4e1da36a0ea4c88989b7d8153e211751e9e77"
+    },
+    {
+      "id": "meta_optimal_transport_2023",
+      "bytes": 10139141,
+      "sha256": "a8e01e0684bf62b9d9b7090cd5dc528711f81a9bbf03c5f1dfec8d8c7815194d"
+    }
+  ],
+  "candidate": {
+    "name": "hierarchical_group_invariant_reference_operator_predictor",
+    "input": "one_or_four_unordered_final_reference_colour_sets",
+    "output": "bounded_u5_r2o0_velocity_grid_parameters",
+    "renderer": "existing_deterministic_cube_diffeomorphic_flow",
+    "supervision": "new_generated_known_operator_groups_only",
+    "invariance": "same_operator_different_content_embedding_agreement",
+    "anti_collapse": "variance_and_covariance_regularization",
+    "content_control": "discriminative_gradient_reversal_and_heldout_probes"
+  },
+  "distinct_from_w1": [
+    "new online crossed operator-content-nuisance population and seeds",
+    "group-invariance learning objective rather than larger fixed descriptor",
+    "W1 reserved confirmation remains unread",
+    "new separately reserved operator and content families"
+  ],
+  "allowed_next": [
+    "freeze one development-only AH1 contract",
+    "small local-GPU discriminative parameter predictor",
+    "generated O0 operators and contents",
+    "identity global and frozen W1 controls",
+    "content nuisance and strength-path probes"
+  ],
+  "forbidden": [
+    "photographs or current film pixels",
+    "W1 reserved confirmation seeds",
+    "external implementation or checkpoint",
+    "generative model",
+    "direct neural final RGB",
+    "real unpaired operator identification",
+    "stock or latent-mode claim",
+    "production integration"
+  ],
+  "claim_ceiling": "source-grounded synthetic method feasibility for group-invariant prediction of bounded explicit operator parameters; no real-film operator, stock, calibration, authenticity, preference or production claim"
+}

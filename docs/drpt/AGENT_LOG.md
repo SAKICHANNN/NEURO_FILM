@@ -5464,3 +5464,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   repair partition arithmetic. O0 remains the retained synthetic-capable safe
   representation. Stock/data/LSM gates remain unchanged. Goal stays ACTIVE
   and selects a distinct algorithm-priority leaf.
+
+## 2026-07-28 - Complete U5.R2AH0 group-invariant reference-operator audit
+
+- **Trigger/evidence gap:** W1 fixed output-only statistics are content
+  dominated, while independent NFCM P46 reports structural overcorrection in
+  joint source/reference fitting. Neither tested learned invariance across
+  same-known-operator/different-content groups.
+- **Sources:** retain exact ignored Deep Sets, Set Transformer, DANN, VICReg
+  and Meta Optimal Transport PDFs with bytes and SHA-256. These justify
+  permutation invariance, anti-collapse, nuisance suppression and amortized
+  parameter prediction, not film or reference-only identifiability.
+- **Candidate:** a clean-room hierarchical set encoder over one/four final
+  synthetic references predicts only a bounded O0 velocity grid. Training
+  uses new crossed operator/content/nuisance episodes, embedding invariance,
+  variance/covariance control, a discriminative content adversary and
+  identity/strength fixtures. Final RGB remains deterministic O0.
+- **Non-reopening boundary:** W1 model, population, thresholds and reserved
+  confirmation remain untouched. AH1 requires new seeds and a new held-out
+  operator/content family, and compares against frozen W1/global/identity
+  controls.
+- **Decision/handoff:** open one local-GPU development contract only.
+  Content/nuisance leakage, identity hallucination, strength splitting,
+  operator error or O0 structural failure closes without capacity/loss/seed
+  rescue. No photographs, current film pixels, real unpaired identification,
+  stock/mode claim or integration. Goal remains ACTIVE.

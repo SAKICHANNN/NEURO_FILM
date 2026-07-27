@@ -428,6 +428,15 @@ whole/partition evaluation additionally differs by 1–2 ulps against the exact
 gate. Do not add anchors, attach affine, search temperature/optimizer or relax
 exactness. O0 remains the retained safe synthetic representation.
 
+U5.R2AH0 then identifies one genuinely different ML hypothesis. Train a small
+hierarchical Deep Sets predictor on new crossed generated groups where O0
+operator identity is known and content/basic nuisance vary independently.
+Same-operator embedding invariance, variance/covariance anti-collapse and an
+explicit content adversary address the precise W1 failure. The head may emit
+only bounded O0 velocity parameters; O0 remains the sole renderer. AH1 must
+use new development/confirmation families and cannot read W1's reserved
+seeds, photographs or film pixels.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

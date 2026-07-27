@@ -446,3 +446,13 @@ an exact gate. No anchor-count, affine-wrapper, temperature, optimizer or
 tolerance rescue opens. O0 remains the retained synthetic-capable safe
 representation. See
 `docs/U5_R2AG1_BOUNDED_CONVEX_GRADIENT_RESULTS.md`.
+
+`U5.R2AH0` opens a different development-only ML question rather than adding
+AG1 capacity or reopening W1. New generated groups hold a known O0 operator
+fixed while content and nuisance vary; a hierarchical permutation-invariant
+predictor may learn only bounded O0 parameters under explicit invariance,
+anti-collapse and content-leakage controls. Deep Sets, VICReg, DANN and
+Meta-OT justify components but do not establish reference-only or film
+identifiability. W1's reserved confirmation remains unread. No real pixel,
+unpaired operator, stock/mode or product gate changes. See
+`docs/U5_R2AH0_GROUP_INVARIANT_REFERENCE_OPERATOR_AUDIT.md`.

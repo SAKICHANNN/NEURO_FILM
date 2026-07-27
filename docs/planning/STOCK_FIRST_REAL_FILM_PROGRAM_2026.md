@@ -418,3 +418,10 @@ operator. No outcome changes current stock, pixel, connectivity or LSM gates.
 AG1 now closes on insufficient density-control capacity: all analytic safety
 properties hold, while the frozen density fidelity gate fails. This does not
 alter any stock evidence grade or authorize a larger unpaired model.
+
+AH0/AH1 are also outside the stock evidence DAG. They may test whether
+same-known-operator/different-generated-content supervision can learn a
+content-resistant reference representation that predicts only bounded O0
+parameters. Synthetic labels do not exist for current scans; any pass remains
+computational mechanism evidence and leaves stock, pixel, connectivity,
+operator-identification and LSM gates unchanged.
