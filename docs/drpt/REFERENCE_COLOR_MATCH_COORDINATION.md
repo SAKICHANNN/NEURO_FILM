@@ -224,3 +224,15 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   scene/display bridge.
 - No external task was navigated, awakened, modified or used through
   uncommitted state. P14B1 and A3 remain closed independently.
+
+### 2026-07-27 stable-main integration preflight
+
+- Read-only comparison base:
+  `c03c321b9fc642e2e092d59e20dd1b145b96192d`.
+- This branch changes 66 paths; stable main `ed1dbb5` changes 29 paths from the
+  same base; the exact path intersection is zero.
+- `git merge-tree` against `HEAD` and `ed1dbb5` produced no conflict marker or
+  both-modified/both-added conflict record.
+- This is a preflight against the current stable commit, not authorization to
+  merge and not evidence about main's uncommitted U1-B work. Integration must
+  refresh the same checks after main publishes its final stable result.

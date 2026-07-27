@@ -575,3 +575,15 @@
 - Handoff: P18 is complete. P14B1 remains gated on stable repeated W1 evidence;
   A3 remains gated on an independently trusted scene/display-to-MatchView
   bridge.
+
+## 2026-07-27 - Preflight stable-main integration without merging
+
+- Parent: integration evidence / same-project multi-chat isolation.
+- Compared both branches from base `c03c321...`: this branch changes 66 paths,
+  stable main `ed1dbb5` changes 29, and their exact path intersection is zero.
+- A read-only `git merge-tree` contains no conflict marker or Git
+  both-modified/both-added conflict record.
+- No checkout, merge, rebase, navigation or write occurred in the main task.
+  Its U1-B run remains active and unconsumed.
+- Limitation: this result applies only to committed `ed1dbb5`; integration must
+  rerun after the main task publishes its eventual stable commit.
