@@ -13,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "configs" / "reference_match_android_ndk_r27d.json"
 SOURCE = ROOT / "native" / "reference_product_chain_conformance.cpp"
+CORE = ROOT / "native" / "reference_canonical_core.c"
 TARGETS = {
     "arm64-v8a": ("aarch64-linux-android21", "AArch64"),
     "x86_64": ("x86_64-linux-android21", "Advanced Micro Devices X86-64"),
@@ -69,6 +70,26 @@ def build(ndk: Path, output: Path) -> dict[str, Any]:
     artifacts: dict[str, Any] = {}
     for abi, (target, expected_machine) in TARGETS.items():
         executable = output / f"reference_product_chain_{abi}"
+        core_object = output / f"reference_canonical_core_{abi}.o"
+        runner_object = output / f"reference_product_chain_{abi}.o"
+        subprocess.run(
+            [
+                compiler,
+                f"--target={target}",
+                "-x",
+                "c",
+                "-std=c11",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-c",
+                CORE,
+                "-o",
+                core_object,
+            ],
+            check=True,
+        )
         subprocess.run(
             [
                 compiler,
@@ -78,7 +99,19 @@ def build(ndk: Path, output: Path) -> dict[str, Any]:
                 "-Wall",
                 "-Wextra",
                 "-Werror",
+                "-c",
                 SOURCE,
+                "-o",
+                runner_object,
+            ],
+            check=True,
+        )
+        subprocess.run(
+            [
+                compiler,
+                f"--target={target}",
+                core_object,
+                runner_object,
                 "-o",
                 executable,
             ],
@@ -118,6 +151,7 @@ def build(ndk: Path, output: Path) -> dict[str, Any]:
         },
         "compiler": compiler_version,
         "source_sha256": _sha256(SOURCE),
+        "canonical_core_sha256": _sha256(CORE),
         "artifacts": artifacts,
         "limitations": [
             "no Android device or emulator execution",

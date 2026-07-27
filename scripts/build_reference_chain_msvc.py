@@ -12,6 +12,11 @@ import subprocess
 VSWHERE = Path(
     r"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
 )
+CORE = (
+    Path(__file__).resolve().parents[1]
+    / "native"
+    / "reference_canonical_core.c"
+)
 
 
 def _developer_environment() -> dict[str, str]:
@@ -74,6 +79,25 @@ def build(source: Path, output: Path) -> None:
     compiler = shutil.which("cl.exe", path=environment.get("Path"))
     if compiler is None:
         raise FileNotFoundError("cl.exe is unavailable")
+    core_object = output.with_name("reference_canonical_core.obj")
+    runner_object = output.with_name(
+        "reference_product_chain_conformance.obj"
+    )
+    subprocess.run(
+        [
+            compiler,
+            "/nologo",
+            "/TC",
+            "/O2",
+            "/W4",
+            "/WX",
+            "/c",
+            str(CORE),
+            f"/Fo:{core_object}",
+        ],
+        env=environment,
+        check=True,
+    )
     subprocess.run(
         [
             compiler,
@@ -83,9 +107,20 @@ def build(source: Path, output: Path) -> None:
             "/EHsc",
             "/W4",
             "/WX",
+            "/c",
             str(source),
+            f"/Fo:{runner_object}",
+        ],
+        env=environment,
+        check=True,
+    )
+    subprocess.run(
+        [
+            compiler,
+            "/nologo",
+            str(runner_object),
+            str(core_object),
             f"/Fe:{output}",
-            f"/Fo:{output.with_suffix('.obj')}",
         ],
         env=environment,
         check=True,

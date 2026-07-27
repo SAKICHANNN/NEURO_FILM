@@ -13,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "configs" / "reference_match_llvm_mingw_20260616.json"
 SOURCE = ROOT / "native" / "reference_product_chain_conformance.cpp"
+CORE = ROOT / "native" / "reference_canonical_core.c"
 
 
 def _sha256(path: Path) -> str:
@@ -51,15 +52,47 @@ def build(toolchain: Path, output: Path) -> dict[str, Any]:
     output = output.resolve()
     lock, compiler = _validate_toolchain(toolchain)
     output.parent.mkdir(parents=True, exist_ok=True)
+    core_object = output.with_name("reference_canonical_core.o")
+    runner_object = output.with_name(
+        "reference_product_chain_conformance.o"
+    )
+    subprocess.run(
+        [
+            compiler,
+            "-x",
+            "c",
+            "-std=c11",
+            "-O2",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-c",
+            CORE,
+            "-o",
+            core_object,
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            compiler,
+            "-std=c++17",
+            "-O2",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-c",
+            SOURCE,
+            "-o",
+            runner_object,
+        ],
+        check=True,
+    )
     command = [
         compiler,
-        "-std=c++17",
-        "-O2",
-        "-Wall",
-        "-Wextra",
-        "-Werror",
         "-static",
-        SOURCE,
+        core_object,
+        runner_object,
         "-o",
         output,
     ]
@@ -75,6 +108,7 @@ def build(toolchain: Path, output: Path) -> dict[str, Any]:
             "license_sha256": lock["license_sha256"],
         },
         "source_sha256": _sha256(SOURCE),
+        "canonical_core_sha256": _sha256(CORE),
         "executable": {
             "bytes": output.stat().st_size,
             "sha256": _sha256(output),

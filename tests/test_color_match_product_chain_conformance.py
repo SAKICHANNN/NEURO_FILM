@@ -95,6 +95,21 @@ def test_msvc_cpp17_recomputes_all_ten_identities(
             assert completed.stdout.strip() == identity["sha256"]
 
 
+@pytest.mark.parametrize("size", [0, 1, 55, 56, 63, 64, 65, 4097])
+def test_msvc_core_matches_sha256_padding_boundaries(
+    cpp_verifier: Path,
+    size: int,
+) -> None:
+    payload = bytes((index * 29 + 7) % 256 for index in range(size))
+    completed = subprocess.run(
+        [cpp_verifier, "hash", payload.hex()],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.stdout.strip() == hashlib.sha256(payload).hexdigest()
+
+
 def test_cpp17_state_rule_distinguishes_research_override(
     cpp_verifier: Path,
 ) -> None:
