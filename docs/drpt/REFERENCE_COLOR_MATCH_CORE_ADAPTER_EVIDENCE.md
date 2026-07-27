@@ -201,3 +201,9 @@ Admission revalidates the prepared pixel bytes, full receipt, execution
 binding and A1/A4/A5 decision. Pixel mutation, receipt replacement, decision
 replacement, state contradiction, gate removal and unknown fields fail
 closed. Verification: 11 dedicated and 79 combined external-core tests pass.
+
+P26 broad verification passes 304/304 adjacent tests. Full collection reports
+`1160 passed, 1 skipped, 36 failed`; all failures remain in the previously
+classified missing ignored-output/CRLF asset families. Main path overlap
+remains zero. P26 therefore closes the consumer-side output identity gap while
+leaving producer compatibility and delivered-pixel integration closed.

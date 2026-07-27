@@ -98,8 +98,8 @@ with a selected stock, but reference matching alone is labeled
 | P25E | DONE | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | 282 adjacent tests; full suite 1138 pass/1 skip/36 known failures; zero path overlap; synthetic merge 282 pass | evidence commit | retain prior stable commits |
 | P26A | DONE | freeze a consumer-owned apply receipt that binds exact returned pixels without defining producer `ApplyResultV1` | Mode C intent, source/output/diagnostics/capability identity and candidate-only contract | `96fec4a` | revert documentation commit |
 | P26B | DONE | implement prepared output, strict receipt schema/roundtrip and binding validation | 11 dedicated and 68 combined core tests; finite dense float32, same-profile/shape v1, mutation and swap tests | `f9fbd7d` | revert additive receipt commit |
-| P26C | IN_PROGRESS | bind the exact receipt into a v2 guard-candidate admission decision | 11 dedicated and 79 combined core tests; no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | admission commit | revert additive admission commit |
-| P26D | NOT_STARTED | run propagation, adjacent/full regression and peer handoff | focused/adjacent tests, full-suite classification, overlap refresh | evidence commit | retain P25 fallback |
+| P26C | DONE | bind the exact receipt into a v2 guard-candidate admission decision | 11 dedicated and 79 combined core tests; no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | `497748c` | revert additive admission commit |
+| P26D | DONE | run propagation, adjacent/full regression and peer handoff | 304 adjacent tests; full suite 1160 pass/1 skip/36 known failures; zero main-path overlap | evidence commit | retain P25 fallback |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

@@ -940,3 +940,20 @@
   not consume or constrain the D-PCT producer contract currently in progress.
 - Handoff: commit P26C, then P26D refreshes both peer heads, runs broad
   regression/propagation and publishes the fixed consumer schema hashes.
+
+## 2026-07-28 - Close exact-output consumer integrity
+
+- Node/parent goal: P26D / external-core product consumer integrity.
+- Verification: 304/304 adjacent tests; full suite 1160 passed, one skipped
+  and the same 36 known ignored-output/CRLF failures. No colour-match failure.
+- Main isolation: stable main remains `60617f9`; 119 consumer paths versus 86
+  main paths from `c03c321`, with zero intersection.
+- Producer progress: D-PCT `3c2e9fdf...` now supplies fixed schemas,
+  exact-bit fixture `c9c8c0ff...e326` and independent C++17 8/8 identity
+  conformance. It still makes no compatibility claim.
+- Propagation: exact pixels are now bound through receipt and admission;
+  A1/A4/A5 and delivered-pixel guard remain authoritative; transactions,
+  replay and FilmFX are unchanged.
+- Handoff: P26 is complete. A separately claimed P27 may audit the fixed
+  producer contract and exact-bit fixture, but compatibility remains closed
+  until every field/profile/hash mapping passes.

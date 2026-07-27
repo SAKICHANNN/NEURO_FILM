@@ -173,6 +173,29 @@
   `CoreApplyReceiptV1`, product gates or applied state. There is no ownership
   conflict; future compatibility still requires fixed schema hashes and an
   explicit adapter.
+- D-PCT then froze producer schemas at `45149289...`: MatchView
+  `ac422dd8...`, TransformBundle `e1cf6a7...`, Diagnostics `f6c1dec0...`
+  and ApplyResult `887e964d...`. The stable advertised profile is sRGB, not
+  the earlier intent-stage Rec.2020 proposal.
+- D-PCT exact-bit conformance followed at `3c2e9fdf...`; fixture SHA-256 is
+  `c9c8c0ff...e326`. Python reproduces every bound identity, and an independent
+  C++17/MSVC `/W4 /WX` implementation exact-matches all eight identities.
+  This opens explicit compatibility auditing only. It does not itself make
+  either schema or profile consumer-compatible.
+
+### 2026-07-28 P26 integration evidence
+
+- Stable consumer code: receipt `f9fbd7d` and candidate admission `497748c`.
+- 304/304 reference-match, preprocess, colour-engine and output-encoding tests
+  pass.
+- Full collection is 1160 passed, one skipped and the same 36 known
+  ignored-output/CRLF failures. No external-core or `src/color_match` test
+  fails.
+- Against unchanged main `60617f9`, consumer changes 119 paths versus main's
+  86 from base `c03c321`; exact path intersection remains zero.
+- P26 closes pixel substitution inside the consumer. It does not prove a
+  producer adapter, execute D-PCT pixels or alter the identity delivery
+  default.
 
 ## Claim: NFCM-P1 product reference-look engine
 
