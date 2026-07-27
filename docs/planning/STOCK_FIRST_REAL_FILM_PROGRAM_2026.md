@@ -384,3 +384,11 @@ as negative adaptation evidence; they do not establish stock distinction.
 This result uses no eligible real-film pixels and does not change any SF gate,
 open operator fitting, provide teachers or raise an evidence grade. See
 `docs/REAL_FILM_SPEKTRAFILM_EXTERNAL_CONTROL_RESULTS.md`.
+
+The `U5.R2AE0` spectral_film_lut source audit is an algorithm-control sibling,
+not new stock evidence. Although its current MIT source exposes named material
+objects and a headless LUT path, the embedded profile rows lack immutable
+document/page/uncertainty identities and historical datasheets cover only a
+subset. AE1 may test reproducible structural diversity on a fixed synthetic
+cube, but none of its names count toward `S0`, connectivity, identifiability,
+pixel eligibility, fitting, training or latent-mode DoR.

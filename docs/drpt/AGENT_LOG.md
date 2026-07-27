@@ -5214,3 +5214,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   threshold change, smoothing/clamp, vision exception, AD2, teacher, fitting,
   training, stock claim or integration. Continue a distinct ready leaf; Goal
   remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AE0 spectral_film_lut source audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AE0`; DRPT L2/Mode A,
+  `dev-research-reliability` primary with AI/ML, research, plan, agent-log and
+  structure disciplines as read-only secondary reviewers.
+- **Live boundary:** start from clean tracked `a6cdb26`; preserve untracked
+  `.codex/` and ignored `tmp/`. NFCM P41/P42 remains an independent,
+  zero-overlap consumer handoff and does not interrupt this leaf.
+- **Source/rights:** pin `JanLohse/spectral_film_lut` at
+  `02ecafd...d2e`, MIT. Do not copy external code, profile arrays, LUTs or
+  datasheets into the project.
+- **Inventory:** 93 exported entries reduce to 86 unique objects/names with
+  seven duplicate objects. Sixty-six base `FilmData` rows contain 42 camera
+  and 24 print materials; all have characteristic curves, but completeness
+  differs for sensitivity, dye density and MTF.
+- **Lineage limit:** complete history retains 31 PDFs / 22,442,549 bytes
+  immediately before `887caa50...d65` removed them. Current profiles carry no
+  source URL, document/page, digitization method, uncertainty or per-profile
+  rights field. Historical association is partial and does not authorize
+  redistribution or stock-response claims.
+- **Executable evidence:** an ignored CPython 3.14.4 runtime generates finite
+  float32 5-cube Ektar+Endura and direct Velvia outputs through the headless
+  API. This is executability only.
+- **Decision/handoff:** allow AE1 to freeze one de-duplicated,
+  historical-document-associated synthetic operator-bank audit with exact
+  replay, folding/range and matched-basic diversity gates. No current-pixel
+  fitting/training, teacher, LSM, stock truth or product integration. Goal
+  remains ACTIVE.

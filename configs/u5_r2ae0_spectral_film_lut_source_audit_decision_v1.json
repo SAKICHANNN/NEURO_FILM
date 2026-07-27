@@ -1,0 +1,73 @@
+{
+  "schema_version": "u5-r2ae0-spectral-film-lut-source-audit-decision-v1",
+  "node": "U5.R2AE0",
+  "decision": "isolated_synthetic_operator_bank_audit_feasible_profile_truth_blocked",
+  "repository": "https://github.com/JanLohse/spectral_film_lut",
+  "audited_commit": "02ecafd78c4a97bd0708d69a9f5ec39caf492d2e",
+  "audited_commit_date": "2026-07-22T13:04:42+02:00",
+  "source_hashes": {
+    "LICENSE": "4538cb41aec3e340a493b4349c863cf9e531d3aa2146eb2a6c02f587cf9e2d20",
+    "README.md": "0a2d77ce503b2914727513cd1e9e0627aa37a4bc330b18363c4c55725235cd0b",
+    "pyproject.toml": "1d0d64d0c562370516656c75c8a6690684338f7be90a73af619424176d97c48e",
+    "src/spectral_film_lut/__init__.py": "b3aa0c71744e47ddde36822a940b06575611b7297482eda5945df2c5bde078b4",
+    "src/spectral_film_lut/film_data.py": "624dfe2197bf70b35f8453306415a824709b1f3cbb0ec27397dee208e7a7b7a9",
+    "src/spectral_film_lut/film_spectral.py": "ac550a2c91743836f7a9e2c1de98b0657e3018130422620dafd4681a36bbd9c6",
+    "src/spectral_film_lut/utils.py": "cf2cb43efe3bb9c014a0b9efadea5a3d880aa1f42aaa2f986ee32df89ce64a41"
+  },
+  "rights": {
+    "current_repository_license": "MIT",
+    "historical_datasheet_redistribution_status": "unidentified",
+    "embedded_profile_upstream_lineage": "partial_unmapped",
+    "tracked_copy_or_integration_allowed": false,
+    "allowed_use": "isolated internal research comparison only"
+  },
+  "inventory": {
+    "exported_entries": 93,
+    "unique_exported_objects": 86,
+    "unique_exported_names": 86,
+    "duplicate_exported_objects": 7,
+    "base_filmdata_objects": 66,
+    "camera_stage_objects": 42,
+    "print_stage_objects": 24,
+    "objects_with_characteristic_curves": 66,
+    "objects_with_log_sensitivity": 61,
+    "objects_with_spectral_density": 42,
+    "objects_with_mtf": 38
+  },
+  "historical_datasheets": {
+    "removal_commit": "887caa50f3e54d4ea0eed846d498967a466e2d65",
+    "removal_commit_date": "2026-06-21T21:15:58+02:00",
+    "count_before_removal": 31,
+    "bytes_before_removal": 22442549,
+    "current_tree_count": 0,
+    "profile_to_document_page_mapping_present": false
+  },
+  "headless_smoke": {
+    "python": "CPython 3.14.4",
+    "cube_size": 5,
+    "ektar100_endura_premier": {
+      "finite": true,
+      "dtype": "float32",
+      "minimum": 0.006509593687951565,
+      "maximum": 0.9846484065055847
+    },
+    "velvia50_direct": {
+      "finite": true,
+      "dtype": "float32",
+      "minimum": 0.0019562379457056522,
+      "maximum": 0.9272571206092834
+    }
+  },
+  "allowed_next": "one preregistered source-bound synthetic-only operator-bank structural diversity audit",
+  "forbidden_next": [
+    "copy_or_redistribute_historical_datasheets",
+    "copy_or_integrate_external_profiles_or_source",
+    "stock_response_or_calibration_claim",
+    "teacher_or_training_target",
+    "current_pixel_fitting_or_training",
+    "latent_mode_discovery",
+    "product_integration",
+    "post_metric_candidate_or_threshold_search"
+  ],
+  "claim_ceiling": "external deterministic spectral-simulator structural comparison; not an identified film operator, stock response, calibrated profile, training target, or product implementation"
+}

@@ -393,3 +393,13 @@ data, configs, code or results. Later stock acquisitions use new manifests and
 policy IDs; a failed or invalid stock is downgraded/quarantined while previous
 experts and historical evidence remain reproducible. Never rewrite a frozen
 holdout or relabel old results to preserve a preferred conclusion.
+
+`U5.R2AE0` adds a newer independent external simulator only as a synthetic
+algorithm-control source. Pinned MIT `spectral_film_lut` runs headlessly and
+contains 86 unique exported material objects, but current profiles have no
+per-row document/page/uncertainty identity. The Git history retains 31 removed
+datasheet blobs for only a subset and supplies no replacement mapping or
+redistribution authority. One de-duplicated, source-bound synthetic structural
+bank audit may proceed. It cannot supply real-film pixels, stock truth,
+operator fitting, teachers, LSM eligibility or product integration. See
+`docs/U5_R2AE0_SPECTRAL_FILM_LUT_SOURCE_AUDIT.md`.

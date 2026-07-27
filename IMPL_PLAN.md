@@ -370,6 +370,16 @@ isolated red speckles versus the frozen `.1%` limit. Automatic failure forbids
 vision. Do not search FFT/thread/diffusion settings, weaken gates, smooth or
 open AD2; retain only negative external-mechanism evidence.
 
+U5.R2AE0 audits a distinct MIT `spectral_film_lut` source. Its headless
+deterministic spectral path runs, but 93 exported entries reduce to 86 unique
+objects and current `FilmData` rows have no source/page/uncertainty identity.
+Thirty-one historical datasheet PDFs were removed from the current tree
+without a replacement profile-to-document mapping. AE1 may therefore freeze
+one de-duplicated, historical-document-associated synthetic operator-bank
+audit with exact replay, range/folding and matched-basic diversity gates. It
+cannot copy profiles, fit pixels, create teachers, validate stock identity or
+integrate a product path.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.
