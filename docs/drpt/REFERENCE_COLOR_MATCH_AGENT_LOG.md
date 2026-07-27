@@ -336,3 +336,4 @@
 - Verification: 131 focused colour-match/preprocess/colour-engine tests pass.
   The full collection is 987 passed, one skipped and the unchanged 36 known
   ignored-output/CRLF-hash failures; no new failure family appears.
+- Commit: `4bfd5da` (`feat: enforce reference batch consistency`).

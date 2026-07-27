@@ -71,7 +71,7 @@ with a selected stock, but reference matching alone is labeled
 | P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | `c9fb7d9` | revert commit |
 | P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | `e1f03f6` | revert commit |
 | P9 | DONE | fail-closed photographic-tail and promotion adjudication | 125 focused tests; 30-pair full-resolution repeat; full suite 981 pass/36 known fail | `8e03ed7` | revert commit |
-| P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | pending scoped commit | revert commit |
+| P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | `4bfd5da` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
