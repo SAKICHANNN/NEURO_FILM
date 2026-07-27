@@ -284,6 +284,16 @@ AA1 must vary those assumptions prospectively and stop if their spread
 dominates the non-basic effect. No current film pixels, visual anchors,
 external profiles or neural rescue may select the missing variables.
 
+The AA1 contract is now frozen before graph annotation or numerical output.
+It evaluates a 729-colour synthetic grid under the full Cartesian product of
+three colour-matched spectral witnesses, three neutral exposure placements,
+two density-to-dye mappings, three additive-printer hypotheses and D50/D55/D65
+viewing. The nominal chain must exceed style and non-basic floors, every
+nuisance-axis spread must remain a bounded fraction of its effect, and all
+neutral, range and positive-Jacobian gates must pass twice exactly. AA1 cannot
+clamp, gamut-map or render a photograph; only a complete pass may open AA2
+bounded refitting.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

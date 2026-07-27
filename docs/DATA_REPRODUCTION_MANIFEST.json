@@ -166,11 +166,20 @@
         "CIE_std_illum_D65.csv_metadata.json",
         "CIE_std_illum_D50.csv",
         "CIE_std_illum_D50.csv_metadata.json",
+        "CIE_illum_D55.csv",
+        "CIE_illum_D55.csv_metadata.json",
         "CIE_std_illum_A_1nm.csv",
         "CIE_std_illum_A_1nm.csv_metadata.json"
       ],
       "source": "https://files.cie.co.at/",
-      "license_note": "CIE metadata records CC BY-SA 4.0 for these CSV datasets."
+      "license_note": "CIE metadata records CC BY-SA 4.0 for these CSV datasets.",
+      "newly_confirmed_d55_2026_07_28": {
+        "csv_bytes": 1177,
+        "csv_sha256": "3E5AA1A8D5514DF1928EFFEF1615AB90E16C9A368CCFE513372CD8556C37BF4B",
+        "metadata_bytes": 2751,
+        "metadata_sha256": "B251E00E84528FB947C44D951964C27FFEE9835097DBC8502652CBF7A7114385",
+        "doi": "10.25039/CIE.DS.qewfb3kp"
+      }
     },
     "physics_pdfs": {
       "status_on_windows": "complete_for_current_scripted_scope",

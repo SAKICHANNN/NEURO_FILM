@@ -4903,3 +4903,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   dominates or the result collapses to basic adjustments. No stock response,
   calibration, current-pixel fitting, visual promotion or production claim
   opens. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AA1 nuisance-identifiability contract
+
+- **Parent/DoR:** AA0 supplies exact 250D/2383/H-61 source hashes and only
+  `bounded_nuisance_pilot_feasible`; current pixels and real-image rendering
+  remain forbidden.
+- **Data addition:** acquire official CIE D55 CSV/metadata at
+  `3e5aa1a8...bf4b`/`b251e00e...4385` under their metadata-recorded CC BY-SA
+  4.0 terms and add them to the existing CIE restore scope.
+- **Frozen population:** 729 encoded-sRGB colours and 33 neutrals, with a
+  162-member Cartesian nuisance ensemble: three colour-matched spectra, three
+  exposure placements, two density mappings, three printer hypotheses and
+  three viewing illuminants.
+- **Frozen controls/gates:** identity, joint EV/WB/contrast/saturation,
+  per-channel affine and optional bounded positive 3x3; source-ink overlays,
+  colourimetric reconstruction, style/non-basic residual, axis-wise and full
+  nuisance/effect ratios, neutral monotonicity/chroma, positive Jacobian,
+  raw-range and exact-repeat gates.
+- **Boundary/handoff:** next bind human-guided curves to exact source ink and
+  commit their hash before the first numerical run. No current film pixels,
+  project images, owner anchors, external profiles/LUTs, clamp/gamut-map,
+  neural/local rescue or physical Kodak claim. Goal remains ACTIVE.

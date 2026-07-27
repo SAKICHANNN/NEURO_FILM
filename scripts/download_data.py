@@ -28,6 +28,8 @@ CIE_FILES = [
     "CIE_std_illum_D65.csv_metadata.json",
     "CIE_std_illum_D50.csv",
     "CIE_std_illum_D50.csv_metadata.json",
+    "CIE_illum_D55.csv",
+    "CIE_illum_D55.csv_metadata.json",
     "CIE_std_illum_A_1nm.csv",
     "CIE_std_illum_A_1nm.csv_metadata.json",
 ]
