@@ -151,10 +151,10 @@ with a selected stock, but reference matching alone is labeled
 | P39B | DONE | implement rollback-safe local delivery | protect P33/P36 staging; strict canonical delivery report; uniform format/depth | `8d60fc8` | revert additive module/schema |
 | P39C | DONE | prove stale auth, path and commit failures fail closed | live tamper, foreign chain, staging collision, path/count/format, injected rollback negatives | `8d60fc8` | preserve all staging files |
 | P39D | DONE | run adjacent/full/latest-main propagation and peer handoff | 468 combined; 1308 pass/1 skip/36 known; latest-main synthetic merge 138 pass | `4e5788b` | retain P38 |
-| P40A | IN PROGRESS | freeze restart-safe local delivery verification | expected report hash/delivery ID; strict bounded reread; rehash staging and delivered files | intent commit | retain P39 report |
-| P40B | PENDING | implement canonical local delivery verification | bind authorization/P37/delivery/path/file identities; no mutation | implementation commit | revert additive module/schema |
-| P40C | PENDING | prove report/source/delivery tampering fails closed | report bytes/path/ID, missing or changed staging/delivered files, order/state/claim | implementation commit | no verified delivery |
-| P40D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P39 |
+| P40A | DONE | freeze restart-safe local delivery verification | expected report hash/delivery ID; strict bounded reread; rehash staging and delivered files | `05676de` | retain P39 report |
+| P40B | DONE | implement canonical local delivery verification | bind authorization/P37/delivery/path/file identities; no mutation | `f9ec8c8` | revert additive module/schema |
+| P40C | DONE | prove report/source/delivery tampering fails closed | report bytes/path/ID, missing or changed staging/delivered files, order/state/claim | `f9ec8c8` | no verified delivery |
+| P40D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 479 combined; 1319 pass/1 skip/36 known; latest-main synthetic merge 149 pass | evidence commit | retain P39 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

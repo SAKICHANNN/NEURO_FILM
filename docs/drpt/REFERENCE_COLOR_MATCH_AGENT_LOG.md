@@ -1516,6 +1516,30 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Implement and verify P40 local delivery verification
+
+- Node/parent goal: P40B-D / durable verification after P39.
+- Implementation: `f9ec8c8` adds one read-only verifier, strict schema,
+  public exports and eleven adversarial tests.
+- Binding: caller-held P39 report SHA-256 and delivery ID are mandatory. The
+  verifier checks bounded exact report bytes, canonical delivery identity,
+  report path, every P36 staging source hash and every P39 delivered hash.
+- State/ceiling: `verified-local-delivery` /
+  `verified-local-files-reference-look`; no mutation or applied state.
+- Adversarial result: report mutation/relocation, wrong delivery ID, changed
+  or missing staging/delivered files, order, state, byte identity, claim and
+  verification-ID drift all fail closed.
+- Verification: 11 dedicated and 479 combined color-match/FilmFX tests pass.
+  Full suite is 1319 passed, one skipped and the unchanged 36 isolated
+  output/hash failures; no color-match or FilmFX failure.
+- Latest-main: `9fea35b`, 188 consumer versus 128 main changed paths, zero
+  exact overlap, merge tree `8c6134f2...`; fresh detached synthetic merge
+  passes 149 P30-P40/FilmFX tests and is removed.
+- Concurrent safety: main's `.codex/tmp` and D-PCT's uncommitted Volga2K
+  script were read-only. Producer interface state was unchanged.
+- Handoff: P40 evidence is ready to commit. Consumer local-delivery mechanics
+  and restart integrity are complete; real use remains externally gated.
+
 ## 2026-07-28 - Implement and verify P39 atomic local export
 
 - Node/parent goal: P39B-D / local file transaction after P38.
