@@ -29,7 +29,11 @@ from .w1_evidence import (
     W1EvidenceDecision,
     compute_w1_decision_id,
     inspect_w1_development_evidence,
+    load_w1_evidence_decision,
     load_w1_intake_contract,
+    validate_w1_evidence_decision,
+    w1_evidence_decision_from_dict,
+    w1_evidence_decision_from_json,
     w1_evidence_decision_to_json,
 )
 
@@ -55,6 +59,10 @@ __all__ = [
     "W1EvidenceDecision",
     "compute_w1_decision_id",
     "inspect_w1_development_evidence",
+    "load_w1_evidence_decision",
     "load_w1_intake_contract",
+    "validate_w1_evidence_decision",
+    "w1_evidence_decision_from_dict",
+    "w1_evidence_decision_from_json",
     "w1_evidence_decision_to_json",
 ]

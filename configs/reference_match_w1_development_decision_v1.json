@@ -1,0 +1,19 @@
+{
+  "claim_ceiling": "read-only adjudication of repeated generated W1 development evidence; never an algorithm promotion, real-image result, film claim or production integration",
+  "contract_id": "reference-match-w1-development-intake-v1",
+  "decision_branch": "paired_upper_bound_only_passes",
+  "decision_id": "f8661315f5ec8e2d334cad11ca52511e221b4443166429376b301c2e8c0af60e",
+  "delivery_algorithm": "identity",
+  "external_software_commit": "b72b594f5203952aeeabcbd877ad0cadfce6a283",
+  "multi_reference_development_only": false,
+  "product_integration_open": false,
+  "reasons": [
+    "paired_upper_bound_only_passes",
+    "identity-default-retained"
+  ],
+  "reference_bank_development_only": false,
+  "report_sha256": "9b42e9a8edca5a6034e4033d71b37bbe229a53378e4fe031df7c45cf7e8dec68",
+  "schema_id": "neuro-film.reference-match-w1-development-decision.v1",
+  "single_reference_confirmation_open": false,
+  "status": "development-route-closed"
+}

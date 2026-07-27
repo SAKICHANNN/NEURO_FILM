@@ -1,0 +1,108 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-match-w1-development-decision-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claim_ceiling": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "contract_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "decision_branch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decision_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "delivery_algorithm": {
+      "const": "identity"
+    },
+    "external_software_commit": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/commit"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "multi_reference_development_only": {
+      "type": "boolean"
+    },
+    "product_integration_open": {
+      "const": false
+    },
+    "reasons": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "reference_bank_development_only": {
+      "type": "boolean"
+    },
+    "report_sha256": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-w1-development-decision.v1"
+    },
+    "single_reference_confirmation_open": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "not-ready",
+        "rejected-evidence",
+        "synthetic-confirmation-required",
+        "multi-reference-development-only",
+        "reference-bank-development-only",
+        "development-route-closed"
+      ]
+    }
+  },
+  "required": [
+    "schema_id",
+    "contract_id",
+    "status",
+    "decision_branch",
+    "external_software_commit",
+    "report_sha256",
+    "single_reference_confirmation_open",
+    "multi_reference_development_only",
+    "reference_bank_development_only",
+    "product_integration_open",
+    "delivery_algorithm",
+    "reasons",
+    "claim_ceiling",
+    "decision_id"
+  ],
+  "title": "Neuro-Film repeated W1 development decision v1",
+  "type": "object",
+  "$defs": {
+    "commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  }
+}

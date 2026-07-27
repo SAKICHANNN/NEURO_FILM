@@ -64,6 +64,31 @@ _STRUCTURE_KEYS = {
 }
 _PROBE_KEYS = {"content_probe", "nuisance_probe"}
 _COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+_DECISION_KEYS = {
+    "schema_id",
+    "contract_id",
+    "status",
+    "decision_branch",
+    "external_software_commit",
+    "report_sha256",
+    "single_reference_confirmation_open",
+    "multi_reference_development_only",
+    "reference_bank_development_only",
+    "product_integration_open",
+    "delivery_algorithm",
+    "reasons",
+    "claim_ceiling",
+    "decision_id",
+}
+_DECISION_STATUSES = {
+    "not-ready",
+    "rejected-evidence",
+    "synthetic-confirmation-required",
+    "multi-reference-development-only",
+    "reference-bank-development-only",
+    "development-route-closed",
+}
 
 
 @dataclass(frozen=True)
@@ -437,11 +462,158 @@ def w1_evidence_decision_to_json(
 ) -> dict[str, Any]:
     """Serialize and revalidate one evidence decision."""
 
-    if compute_w1_decision_id(decision) != decision.decision_id:
-        raise ValueError("W1 evidence decision_id mismatch")
+    validate_w1_evidence_decision(decision)
     payload = asdict(decision)
     payload["reasons"] = list(decision.reasons)
     return payload
+
+
+def validate_w1_evidence_decision(
+    decision: W1EvidenceDecision,
+) -> None:
+    """Reject serialized evidence state that could open delivery by drift."""
+
+    if not isinstance(decision, W1EvidenceDecision):
+        raise ValueError("W1 evidence decision type is invalid")
+    if decision.schema_id != W1_DECISION_SCHEMA_ID:
+        raise ValueError("unsupported W1 evidence decision schema")
+    if not isinstance(decision.contract_id, str) or not decision.contract_id:
+        raise ValueError("W1 evidence contract_id is empty")
+    if (
+        not isinstance(decision.status, str)
+        or decision.status not in _DECISION_STATUSES
+    ):
+        raise ValueError("unsupported W1 evidence decision status")
+    if (
+        decision.decision_branch is not None
+        and not isinstance(decision.decision_branch, str)
+    ):
+        raise ValueError("invalid W1 evidence decision branch")
+    if (
+        decision.external_software_commit is not None
+        and (
+            not isinstance(decision.external_software_commit, str)
+            or not _COMMIT_RE.fullmatch(decision.external_software_commit)
+        )
+    ):
+        raise ValueError("invalid W1 evidence software commit")
+    if (
+        decision.report_sha256 is not None
+        and (
+            not isinstance(decision.report_sha256, str)
+            or not _SHA256_RE.fullmatch(decision.report_sha256)
+        )
+    ):
+        raise ValueError("invalid W1 evidence report SHA-256")
+    for field_name in (
+        "single_reference_confirmation_open",
+        "multi_reference_development_only",
+        "reference_bank_development_only",
+        "product_integration_open",
+    ):
+        if not isinstance(getattr(decision, field_name), bool):
+            raise ValueError(f"W1 evidence {field_name} must be boolean")
+    expected_flags = {
+        "single_reference_confirmation_open":
+            decision.status == "synthetic-confirmation-required",
+        "multi_reference_development_only":
+            decision.status == "multi-reference-development-only",
+        "reference_bank_development_only":
+            decision.status == "reference-bank-development-only",
+    }
+    if any(
+        getattr(decision, field_name) is not expected
+        for field_name, expected in expected_flags.items()
+    ):
+        raise ValueError("W1 evidence decision status/flags mismatch")
+    if decision.product_integration_open:
+        raise ValueError("W1 development evidence cannot open integration")
+    if decision.delivery_algorithm != "identity":
+        raise ValueError("W1 development evidence must retain identity")
+    if (
+        not isinstance(decision.reasons, tuple)
+        or not decision.reasons
+        or any(
+            not isinstance(reason, str) or not reason
+            for reason in decision.reasons
+        )
+    ):
+        raise ValueError("W1 evidence reasons must be a non-empty tuple")
+    if (
+        not isinstance(decision.claim_ceiling, str)
+        or not decision.claim_ceiling
+    ):
+        raise ValueError("W1 evidence claim ceiling is empty")
+    if decision.status == "not-ready" and any(
+        value is not None
+        for value in (
+            decision.decision_branch,
+            decision.external_software_commit,
+            decision.report_sha256,
+        )
+    ):
+        raise ValueError("not-ready W1 evidence cannot bind external results")
+    if (
+        decision.status not in {"not-ready", "rejected-evidence"}
+        and (
+            decision.decision_branch is None
+            or decision.external_software_commit is None
+            or decision.report_sha256 is None
+        )
+    ):
+        raise ValueError("completed W1 evidence must bind report provenance")
+    if (
+        not isinstance(decision.decision_id, str)
+        or not _SHA256_RE.fullmatch(decision.decision_id)
+        or compute_w1_decision_id(decision) != decision.decision_id
+    ):
+        raise ValueError("W1 evidence decision_id mismatch")
+
+
+def w1_evidence_decision_from_dict(
+    payload: dict[str, Any],
+) -> W1EvidenceDecision:
+    """Parse strict language-neutral W1 decision JSON."""
+
+    if not isinstance(payload, dict) or set(payload) != _DECISION_KEYS:
+        raise ValueError("W1 evidence decision keys mismatch")
+    reasons = payload["reasons"]
+    if not isinstance(reasons, list):
+        raise ValueError("W1 evidence reasons must be an array")
+    try:
+        decision = W1EvidenceDecision(
+            **{
+                **payload,
+                "reasons": tuple(reasons),
+            }
+        )
+    except TypeError as exc:
+        raise ValueError("W1 evidence decision types are invalid") from exc
+    validate_w1_evidence_decision(decision)
+    return decision
+
+
+def w1_evidence_decision_from_json(encoded: str) -> W1EvidenceDecision:
+    """Decode one finite JSON decision."""
+
+    if not isinstance(encoded, str):
+        raise ValueError("encoded W1 evidence decision must be a string")
+    try:
+        payload = json.loads(
+            encoded,
+            parse_constant=_reject_nonfinite_json,
+        )
+    except (json.JSONDecodeError, ValueError) as exc:
+        raise ValueError("encoded W1 evidence decision is invalid") from exc
+    return w1_evidence_decision_from_dict(payload)
+
+
+def load_w1_evidence_decision(path: Path) -> W1EvidenceDecision:
+    """Load a bounded committed W1 decision artifact."""
+
+    if not path.is_file() or path.stat().st_size > 1024 * 1024:
+        raise ValueError("W1 evidence decision file is missing or oversized")
+    return w1_evidence_decision_from_json(path.read_text(encoding="utf-8"))
 
 
 __all__ = [
@@ -450,6 +622,10 @@ __all__ = [
     "W1EvidenceDecision",
     "compute_w1_decision_id",
     "inspect_w1_development_evidence",
+    "load_w1_evidence_decision",
     "load_w1_intake_contract",
+    "validate_w1_evidence_decision",
+    "w1_evidence_decision_from_dict",
+    "w1_evidence_decision_from_json",
     "w1_evidence_decision_to_json",
 ]

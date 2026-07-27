@@ -11,7 +11,9 @@ import pytest
 from src.color_match.research.w1_evidence import (
     compute_w1_decision_id,
     inspect_w1_development_evidence,
+    load_w1_evidence_decision,
     load_w1_intake_contract,
+    w1_evidence_decision_from_json,
     w1_evidence_decision_to_json,
 )
 
@@ -19,6 +21,9 @@ from src.color_match.research.w1_evidence import (
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = (
     ROOT / "configs" / "reference_match_w1_development_intake_v1.json"
+)
+DECISION_PATH = (
+    ROOT / "configs" / "reference_match_w1_development_decision_v1.json"
 )
 
 
@@ -289,5 +294,52 @@ def test_decision_identity_detects_tampering(tmp_path: Path) -> None:
 
     tampered = replace(decision, status="eligible")
     assert compute_w1_decision_id(tampered) != decision.decision_id
-    with pytest.raises(ValueError, match="decision_id"):
+    with pytest.raises(ValueError, match="status"):
         w1_evidence_decision_to_json(tampered)
+
+
+def test_committed_repeated_w1_decision_is_closed_and_canonical() -> None:
+    decision = load_w1_evidence_decision(DECISION_PATH)
+    assert decision.status == "development-route-closed"
+    assert decision.decision_branch == "paired_upper_bound_only_passes"
+    assert decision.product_integration_open is False
+    assert decision.delivery_algorithm == "identity"
+    assert decision.single_reference_confirmation_open is False
+    assert (
+        decision.report_sha256
+        == "9b42e9a8edca5a6034e4033d71b37bbe229a53378e4fe031df7c45cf7e8dec68"
+    )
+
+
+def test_serialized_w1_decision_cannot_open_product_or_change_flags() -> None:
+    payload = json.loads(DECISION_PATH.read_text(encoding="utf-8"))
+    payload["product_integration_open"] = True
+    with pytest.raises(ValueError, match="cannot open integration"):
+        w1_evidence_decision_from_json(json.dumps(payload))
+
+    payload = json.loads(DECISION_PATH.read_text(encoding="utf-8"))
+    payload["single_reference_confirmation_open"] = True
+    with pytest.raises(ValueError, match="status/flags mismatch"):
+        w1_evidence_decision_from_json(json.dumps(payload))
+
+    payload = json.loads(DECISION_PATH.read_text(encoding="utf-8"))
+    payload["external_software_commit"] = 123
+    with pytest.raises(ValueError, match="software commit"):
+        w1_evidence_decision_from_json(json.dumps(payload))
+
+
+def test_w1_decision_schema_accepts_committed_artifact() -> None:
+    from jsonschema import Draft202012Validator
+
+    schema = json.loads(
+        (
+            ROOT
+            / "configs"
+            / "schemas"
+            / "reference_match_w1_development_decision_v1.schema.json"
+        ).read_text(encoding="utf-8")
+    )
+    Draft202012Validator.check_schema(schema)
+    Draft202012Validator(schema).validate(
+        json.loads(DECISION_PATH.read_text(encoding="utf-8"))
+    )
