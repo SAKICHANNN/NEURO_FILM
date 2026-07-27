@@ -727,7 +727,8 @@
 
 - Node/parent goal: P24 / complete reference-colour-match module delivery.
 - Concurrent snapshot: main clean except `.codex/` at `350b687`; D-PCT clean
-  at `d2c7eff`; this branch remains the only writer to its worktree.
+  at `f8ab191` after its 67/67 DNG/LibRaw agreement and 273-test boundary
+  closure; this branch remains the only writer to its worktree.
 - Full branch collection: 1081 pass, one skip and the same 36 classified
   missing-ignored-output/CRLF-hash failures; no module test fails.
 - CLI: two-source default fit and stored replay use recipe

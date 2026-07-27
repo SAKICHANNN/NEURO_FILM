@@ -129,8 +129,10 @@ after the check. No main checkout file, branch or ignored output was changed.
   `.codex/` and stable at `350b687`; its stock-first and film-algorithm work is
   not duplicated here.
 - Standalone D-PCT task
-  `019f9f3b-d0c2-7f21-b486-1dd902148739` is clean at `d2c7eff` and actively
-  owns RAW/DNG/HDR/video/cross-platform media work.
+  `019f9f3b-d0c2-7f21-b486-1dd902148739` is clean at `f8ab191` and owns
+  RAW/DNG/HDR/video/cross-platform media work. Its latest independent evidence
+  includes 67/67 DNG post-linearization agreement with pinned LibRaw and
+  273 passing tests, while its Research Freeze correctly remains not ready.
 - This branch reads only stable artifacts/commits, sends no coordinating
   mutation and writes only its separate worktree.
 

@@ -31,7 +31,7 @@ with a selected stock, but reference matching alone is labeled
 - Main-chat stock-first research and standalone D-PCT media work are
   concurrent and explicitly out of this branch's write scope. The latest
   read-only delivery-preflight boundaries are main `350b687` and D-PCT
-  `d2c7eff`; no mutable file from either checkout is consumed.
+  `f8ab191`; no mutable file from either checkout is consumed.
 
 ## Non-goals for the first product slice
 

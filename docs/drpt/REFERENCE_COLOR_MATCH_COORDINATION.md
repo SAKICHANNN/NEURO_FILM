@@ -313,7 +313,7 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 
 ### 2026-07-27 final delivery preflight
 
-- Stable read-only heads are main `350b687` and D-PCT `d2c7eff`; both
+- Stable read-only heads are main `350b687` and D-PCT `f8ab191`; both
   project worktrees are clean apart from main's own untracked `.codex/`.
 - From common base `c03c321`, this branch changes 95 paths and main changes
   81; the exact path intersection is zero.
