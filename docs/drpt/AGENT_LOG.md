@@ -5174,3 +5174,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Branch:** runtime/replay mismatch, weak effect, simple-local equivalence or
   artifact failure closes without parameter/source/gate/smoothing rescue.
   A pass retains only an external comparison slot. Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AD1 paired evaluator
+
+- **Structure:** add a project-owned metric/evidence module and thin CLI only.
+  The module never imports or copies spektrafilm. External rendering remains
+  in the ignored isolated checkout/runtime, and tracked code consumes strict
+  manifests plus float arrays and PNG hashes.
+- **Metrics:** exact two-run/hash replay, nine retained RF2.C0 PNG hashes,
+  paired Lab effect, bounded Gaussian local-contrast nuisance fit, explained
+  RGB energy, new clipping, luma-gradient p99, chroma high-frequency p99,
+  paired isolated-red-speckle, style and matched-basic residual.
+- **Tests:** synthetic tests pin exact recovery of a frozen local-contrast
+  family member, paired red-speckle detection and finite identity metrics.
+  Eleven focused tests and the complete CPU suite pass (`1011 passed`);
+  compile and diff checks pass. No external output or metric has been
+  inspected yet. Goal remains ACTIVE.
