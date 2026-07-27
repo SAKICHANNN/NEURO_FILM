@@ -5373,3 +5373,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** checkpoint outputs and metrics remain unread. Commit the
   implementation, run two independent formal processes from that revision,
   then evaluate once. Goal remains ACTIVE.
+
+### AF1 direct-CLI correction
+
+- The first formal command stopped before model import or artifact creation
+  because direct script execution did not put the project root on `sys.path`.
+- Add explicit project-root import bootstrapping and require the current
+  working directory to equal that root in both runner and evaluator.
+- Add a subprocess `--help` regression for both CLIs. Six focused tests and
+  the complete suite pass (`1025 passed`). No population, gate, checkpoint,
+  external model or metric changed; formal metrics remain unread.

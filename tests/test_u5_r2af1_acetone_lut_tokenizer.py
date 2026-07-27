@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -68,3 +70,17 @@ def test_analytic_lut_rejects_invalid_parameters() -> None:
         assert "three curve terms" in str(exc)
     else:
         raise AssertionError("invalid analytic curve must fail closed")
+
+
+def test_af1_clis_resolve_project_imports() -> None:
+    for script in (
+        "scripts/run_u5_r2af1_acetone_tokenizer.py",
+        "scripts/evaluate_u5_r2af1_acetone_tokenizer.py",
+    ):
+        completed = subprocess.run(
+            [sys.executable, script, "--help"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert completed.returncode == 0, completed.stderr

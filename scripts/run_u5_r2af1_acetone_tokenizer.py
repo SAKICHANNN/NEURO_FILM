@@ -14,6 +14,10 @@ from pathlib import Path
 import numpy as np
 import torch
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.eval.acetone_lut_tokenizer import (
     MANIFEST_SCHEMA,
     array_sha256,
@@ -87,7 +91,9 @@ def run(
     output_dir: Path,
     run_id: str,
 ) -> dict:
-    project_root = Path.cwd().resolve()
+    project_root = PROJECT_ROOT
+    if Path.cwd().resolve() != project_root:
+        raise RuntimeError("AF1 runner must execute from the project root")
     config = json.loads(config_path.read_text(encoding="utf-8"))
     runtime = config["runtime"]
     if ".".join(map(str, sys.version_info[:3])) != runtime["python"]:

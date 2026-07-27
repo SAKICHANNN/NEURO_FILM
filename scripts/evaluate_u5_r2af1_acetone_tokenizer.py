@@ -5,12 +5,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.eval.acetone_lut_tokenizer import evaluate_manifests, load_manifest
 
 
 def main() -> None:
+    if Path.cwd().resolve() != PROJECT_ROOT:
+        raise RuntimeError("AF1 evaluator must execute from the project root")
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--first-manifest", type=Path, required=True)
