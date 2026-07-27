@@ -1713,6 +1713,28 @@
   `candidate-only-not-promoted-not-applied-not-delivered`; A1/A4/A5,
   redistribution, native/mobile/Apple runtime and main merge remain open.
 
+## 2026-07-28 - Freeze P44 exact-invocation A1/A4/A5 evaluation
+
+- Node/parent goal: P44A-D / product evidence immediately after P43.
+- Frozen data: the existing six neutral RAW-derived SDR sources and six
+  same-content deterministic Velvia targets (`01/02/03/05/07/09`) in main's
+  ignored evidence tree. Targets are read only after candidate rendering.
+- Producer semantics: every source/reference pair is independently fit, as
+  declared by the producer. The report must not call this a shared
+  reference-only operator; source binding is explicit.
+- A1/A4 automated matrix: all 30 cross-content rows, unchanged
+  `evaluate_known_operator_batch` metrics and promotion thresholds.
+- A4 tail: for each of six references, fit/render the frozen photographic
+  probe and evaluate unchanged neutral/tone/boundary/semantic-hue limits.
+- A5: for each reference, independently fit the two frozen images containing
+  identical chart pixels in dark/cool versus bright/warm surroundings, then
+  apply the unchanged median/p95/max shared-colour limits.
+- Decision: existing `adjudicate_promotion` only. Automated pass can at most
+  become `eligible-for-visual-review`; any failed gate is rejection. No
+  threshold tuning, target use at inference, research override or owner vote.
+- Scope: additive evaluator/tests/docs/ignored report only. Exact P43 wheel is
+  invoked; no producer/main/FilmFX/media schema changes.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

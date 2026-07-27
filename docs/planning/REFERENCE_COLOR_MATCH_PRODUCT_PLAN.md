@@ -165,6 +165,10 @@ with a selected stock, but reference matching alone is labeled
 | P43B | DONE | freeze consumer invocation compatibility lock | bind existing P27 v2 adapter to exact dpct-chroma capability and package envelope | `3d80e0d`; strict lock/schema | retain P27 |
 | P43C | DONE | implement exact-wheel local invocation adapter | canonical request staging, exact wheel execution, independent response/artifact verification, candidate-only | `3d80e0d`; real-wheel test | no product promotion |
 | P43D | DONE | run full/latest-main propagation and peer handoff | 438 combined; 1333 pass/1 skip/36 known; merge 38 pass | evidence commit | retain P42-P43 |
+| P44A | IN_PROGRESS | freeze exact-invocation A1/A4/A5 protocol | existing six Velvia known-operator sources/targets, unchanged promotion thresholds, no result-conditioned tuning | plan commit | retain P43 |
+| P44B | TODO | execute 30 cross-content exact-wheel rows | source+reference fitted candidate per declared producer semantics; targets evaluation-only | resumable report | identity fallback |
+| P44C | TODO | execute six photographic and context-invariance probes | fit each probe source against each fixed reference; aggregate worst tails | existing frozen policies | no blind review unless automated pass |
+| P44D | TODO | adjudicate, replay, propagate and peer handoff | canonical content report, repeat, focused/full/latest-main evidence | evidence commit | no promotion without all gates |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
