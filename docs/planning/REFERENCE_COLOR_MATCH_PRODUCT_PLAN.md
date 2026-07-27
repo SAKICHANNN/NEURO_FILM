@@ -30,7 +30,7 @@ with a selected stock, but reference matching alone is labeled
   `src/color_engine/safe_lab.py`, `src/color_engine/gamut.py`
 - Main-chat W1/W2 research and standalone D-PCT media work are concurrent and
   explicitly out of this branch's write scope. The latest consumed read-only
-  boundaries are main `ed1dbb5` and D-PCT `e1f67d3`.
+  boundaries are main `ed1dbb5` and D-PCT `77e64e1`.
 
 ## Non-goals for the first product slice
 
@@ -179,7 +179,7 @@ final photographic/aesthetic algorithm.
 |---|---|---|---|
 | A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
 | A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
-| A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT `e1f67d3` executes its local lossless-DNG/profile path to ACEScg but retains `real_raw_paths=FAIL`; current NFRM relative-SDR rail is not equivalent | wait for trusted-renderer/vendor-format evidence and a versioned scene/display-to-MatchView bridge; do not copy decoders |
+| A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT through `77e64e1` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; a three-stratum 28,682,816-sample post-linearization DNG code cross-check passes, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for completed stable corpus agreement, crop/black/demosaic/profile/render evidence and a versioned scene/display-to-MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 | A5 album/batch consistency | BASELINE FAILED | six fitted recipes on shared-colour/different-context probes | require a fixed explicit operator or bounded adaptation that passes median/p95/max shared-colour drift |
 

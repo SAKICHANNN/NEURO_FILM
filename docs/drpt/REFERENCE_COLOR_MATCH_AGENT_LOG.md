@@ -454,3 +454,20 @@
 - Commit: `8e602f5` (`feat: gate external W1 matcher evidence`).
 - Propagation: P14B1 awaits stable repeated W1 reports. Standalone RAW work is
   still uncommitted and A3 remains closed.
+
+## 2026-07-27 - Refresh stable standalone RAW dependency boundary
+
+- Parent: A3 media portability / same-project multi-chat coordination.
+- Read-only source: standalone D-PCT stable commits `12d5767`, `820497e` and
+  `77e64e1`; its later 67-file LibRaw agreement expansion is active and
+  uncommitted, so it is excluded.
+- Stable evidence: 67/67 local compression-7 DNG mosaics and 52/52 observed
+  profile-look paths execute; all 17 CR2 entropy paths execute; pinned LibRaw
+  unpacks 32/39 vendor RAW files; three DNG storage/bit-depth strata agree on
+  28,682,816 post-linearization sensor codes with zero probe/decode errors.
+- Remaining boundary: seven Nikon HE/HE* inputs are unsupported and
+  `real_raw_paths=FAIL`. Sensor-code agreement does not establish crop, black
+  normalization, demosaic, camera/profile colour, a trusted scene renderer,
+  perceptual agreement or a versioned scene/display-to-MatchView bridge.
+- Propagation: A3 remains `CONTRACT MAPPED / PIXEL BRIDGE CLOSED`; no decoder,
+  probe, report or mutable file was copied from the standalone task.

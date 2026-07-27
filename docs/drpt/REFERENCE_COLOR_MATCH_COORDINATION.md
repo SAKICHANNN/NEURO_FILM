@@ -134,7 +134,15 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - This worktree pins only the stable W1 source identities and implements a
   read-only report receiver. It imports no external module and reads no
   uncommitted W1 state.
-- Standalone D-PCT remains at stable `e1f67d3` while later vendor RAW/CR2 work
-  is uncommitted. None of it changes the MatchView bridge decision.
+- Standalone D-PCT is now stable through `77e64e1`. Commits `12d5767` and
+  `820497e` add complete local compression-7 DNG/profile execution, all-local
+  CR2 entropy execution and a pinned LibRaw vendor-unpack audit; `77e64e1`
+  independently agrees with the project decoder on 28,682,816
+  post-linearization sensor codes across the three observed DNG strata.
+- The active 67-file LibRaw agreement expansion remains uncommitted and is not
+  consumed. Stable evidence still stops before crop/black normalization,
+  demosaic, camera/profile colour, trusted scene rendering or MatchView
+  compatibility; seven Nikon HE/HE* files remain unsupported and
+  `real_raw_paths=FAIL`.
 - Current propagation: P14B0 returns `not-ready` and identity. P14B1 activates
   only after stable repeated W1 evidence; A3 remains separately closed.
