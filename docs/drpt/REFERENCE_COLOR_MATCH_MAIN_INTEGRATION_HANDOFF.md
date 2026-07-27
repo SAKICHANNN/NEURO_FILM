@@ -8,14 +8,15 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P40 payload head: `6db15c4fb439ac16628eac5e128a582ed2495882`;
+- complete P1-P45 implementation head:
+  `7b0ec11dbc9433e8babe5b3727e5a41138eba43f`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
-  `9fea35b1c8e3141ee4f7c9dd628edd7ca8836203`;
+  `f309c978522874f585ab8ed0edc008505045544b`;
 - D-PCT read-only snapshot:
-  `fa592e2e3c5d4ac7ee16d9a7bb6b906a712a1d2d`;
+  `ef9a4cd4ed174ba28ff88b50d93d97af8e900603`;
 - conflict-free main/payload merge tree:
-  `831c34ac17788600f4750c02ed241b58271de71d`.
+  `d69c3b3c03cf2b262b7bd453e81f62fbeab874e7`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -32,6 +33,8 @@ The consumer module implements:
 - strict D-PCT v2 relative-SDR fixture compatibility;
 - exact producer receipt, ordered batch, numeric and product-authorization
   guards;
+- exact-wheel local invocation, frozen A1/A4/A5 execution and a strict
+  two-stage successor-candidate intake after the current capability failed;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -58,9 +61,9 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..6db15c4`; do not copy files manually and do not import
+2. Review `c03c321..7b0ec11`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 6db15c4`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> 7b0ec11`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -74,26 +77,26 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 479 passed;
-- latest isolated consumer full suite: 1319 passed, one skipped, 36 unchanged
+- latest consumer combined color-match/FilmFX suite: 541 passed;
+- latest isolated consumer full suite: 1347 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 149 focused tests passed and the
+- latest detached synthetic main merge: 15 focused tests passed and four
+  exact-wheel tests skipped because ignored package evidence is absent; the
   temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real
 
-1. D-PCT must publish a fixed invocation package/ABI that produces a genuine
-   source-bound receipt under an explicitly compatible profile.
-2. One candidate must pass A1 reference identifiability, A4 photographic
-   preference/severe-tail review and A5 batch consistency without research
-   override.
+1. D-PCT must publish a genuinely different fixed invocation package after
+   the current exact capability failed P44.
+2. The successor must pass P45 intake, A1 reference identifiability, A4
+   photographic preference/severe-tail review and A5 batch consistency
+   without research override.
 3. Android device/JNI and Apple compiler/runtime/invocation evidence remain
    open; cross-compilation is not runtime proof.
 4. The main owner must review and merge the payload.
 
-D-PCT `fa592e2` strengthens BMKL's development evidence on Volga2K but also
-shows that blend strength is task-profile-dependent. The dataset is
-same-scene/two-camera matched features, its legal review remains open, and the
-result is explicitly not a full-image or product promotion. It changes no
-producer schema, ABI or receipt, so the consumer must not admit it.
+D-PCT `ef9a4cd` closes ROGR-v0 after its preregistered development gate fails;
+it does not open the confirmatory set or publish a successor package. BMKL and
+other development results likewise remain non-callable research evidence.
+None may be substituted into the consumer by algorithm name.

@@ -1776,6 +1776,28 @@
   rail conversion and missing product evidence; focused/full/latest-main
   propagation is recorded and both equal peers receive the stable snapshot.
 
+## 2026-07-28 - Implement and verify P45 successor admission
+
+- Implementation: `7b0ec11` adds one strict canonical declaration, policy,
+  schema, public validator and eleven focused tests.
+- Evaluation readiness: new exact producer/package/wheel/capability,
+  conformance, existing mapped rail, consistent fit/batch semantics,
+  deterministic stateless execution and evaluation rights are mandatory.
+- Product readiness: unchanged P44 A1/A4/A5 plus blind review, commercial and
+  redistribution rights, and Windows/macOS/iOS/Android runtime evidence are
+  independently mandatory.
+- Negative binding: P44 capability, wheel, full producer commit and stable
+  evidence identity are frozen. Renaming research output cannot pass intake.
+- Verification: 19 focused and 541 combined tests pass; full suite is 1347
+  pass/1 skip/36 unchanged isolated-output failures.
+- Propagation: latest main `f309c97`; 207 consumer versus 153 main paths with
+  zero overlap; merge tree `d69c3b3...62f`; fresh merge 15 pass/4 expected
+  skip because its detached worktree has no ignored exact-wheel evidence.
+- Producer: latest `ef9a4cd` closes ROGR-v0 negatively and publishes no
+  successor capability. No automatic substitution or consumer action opens.
+- Handoff: P45 prevents accidental admission while leaving P43/P44 reusable
+  for a genuinely new versioned package.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

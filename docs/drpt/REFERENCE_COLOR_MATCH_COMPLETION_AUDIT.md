@@ -14,12 +14,13 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer payload: `codex/reference-color-match` through P42 at `618f74e`.
-- Main Neuro-Film read-only snapshot: `bebd34f`; its `.codex/` and `tmp/`
+- Consumer payload: `codex/reference-color-match` through P45 implementation
+  at `7b0ec11`.
+- Main Neuro-Film read-only snapshot: `f309c97`; its `.codex/` and `tmp/`
   files belong to the main task and were not touched.
-- D-PCT read-only snapshot: `eb4b889`; it now contains a producer-owned
-  invocation package candidate that still requires explicit consumer audit
-  and compatibility mapping.
+- D-PCT read-only snapshot: `ef9a4cd`; its only callable relative-SDR
+  capability is audited and rejected by P44, while ROGR-v0 also closes as
+  non-callable negative development evidence.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -45,14 +46,16 @@ wire contract and not an algorithm promotion.
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile | COMPLETE for host identity and cross-target core compilation | Android/Apple device runtime, SDK/app/JNI/Swift boundary and real invocation remain open / platform integration |
+| Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
 The shortest honest path to a non-identity D-PCT-backed product render is:
 
-1. The exact P43-invoked candidate passes A1, A4 and A5 without research
-   override; any package change first repeats P43 compatibility audit.
+1. D-PCT publishes a genuinely different versioned callable package. It must
+   pass P45 evaluation intake, a new exact P43 compatibility audit and P44
+   A1/A4/A5 without research override.
 2. Release rights and required target runtime evidence are established for
    the fixed package or its future native replacement.
 3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,

@@ -169,10 +169,10 @@ with a selected stock, but reference matching alone is labeled
 | P44B | DONE / REJECTED | execute 30 cross-content exact-wheel rows | 0/30 improve; median -201.29%; worst -569.37%; boundary 21.20% | `d71aa01`; stable evidence `90d0022c...2d2a` | identity fallback |
 | P44C | DONE / REJECTED | execute six photographic and context-invariance probes | photo 0/6; context 0/6; all automated tails fail | `d71aa01` | no blind review |
 | P44D | DONE | adjudicate, replay, propagate and peer handoff | two 48-call runs stable; 441 combined; 1336 pass/1 skip/36 known; merge 21 pass | evidence commit | retain rejection |
-| P45A | IN_PROGRESS | freeze successor-candidate admission after P44 | separate evaluation readiness from product readiness; require new producer/package/capability identity and explicit fit/batch semantics | plan commit | retain P44 rejection |
-| P45B | TODO | implement strict successor declaration and preflight | canonical declaration, schema and fail-closed collision/profile/rights/runtime checks | focused tests | no invocation |
-| P45C | TODO | bind unchanged P44 gates and current rejection | policy records frozen A1/A4/A5 thresholds and rejected capability/evidence identity | mutation tests | no threshold tuning |
-| P45D | TODO | refresh completion/main handoff and peer coordination | focused/full/latest-main evidence and stable snapshot | evidence commit | retain P43 plumbing |
+| P45A | DONE | freeze successor-candidate admission after P44 | separate evaluation readiness from product readiness; require new producer/package/capability identity and explicit fit/batch semantics | `a67d362` | retain P44 rejection |
+| P45B | DONE | implement strict successor declaration and preflight | canonical declaration, schema and fail-closed collision/profile/rights/runtime checks | `7b0ec11`; 11 dedicated tests | no invocation |
+| P45C | DONE | bind unchanged P44 gates and current rejection | policy pins A1/A4/A5/blind thresholds and rejected capability/wheel/producer/evidence identity | `7b0ec11`; mutation tests | no threshold tuning |
+| P45D | DONE | refresh completion/main handoff and peer coordination | 541 combined; 1347 pass/1 skip/36 known; latest-main merge 15 pass/4 expected skip | evidence commit | retain P43 plumbing |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
