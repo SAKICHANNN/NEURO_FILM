@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-candidate-admission-v2.json",
+  "title": "Neuro-Film external core candidate admission v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "admission_id",
+    "policy_id",
+    "apply_receipt_id",
+    "acceptance_decision_id",
+    "transform_id",
+    "output_view_id",
+    "accepted_for_product_guard",
+    "action",
+    "guard_state",
+    "required_gates"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-candidate-admission.v2"
+    },
+    "admission_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "policy_id": {
+      "const": "reference-core-candidate-admission.v2"
+    },
+    "apply_receipt_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "acceptance_decision_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "transform_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "output_view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "accepted_for_product_guard": {
+      "type": "boolean"
+    },
+    "action": {
+      "enum": [
+        "candidate-for-product-guard",
+        "identity-fallback"
+      ]
+    },
+    "guard_state": {
+      "enum": [
+        "pending-product-guard",
+        "identity-fallback"
+      ]
+    },
+    "required_gates": {
+      "const": [
+        "A1",
+        "A4",
+        "A5"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

@@ -188,3 +188,16 @@ closed.
 The receipt remains `candidate-only`. It neither defines D-PCT's planned
 producer `ApplyResult` nor enters the delivered-pixel path. Verification:
 11 dedicated and 68 combined external-core tests pass.
+
+## P26C receipt-bound candidate admission
+
+`CoreCandidateAdmissionV2` combines the exact `CoreApplyReceiptV1.receipt_id`
+with the frozen `CoreAcceptanceDecisionV1.decision_id`. It additionally binds
+the transform and output-view identities. Accepted candidates are only
+`pending-product-guard`; rejected candidates remain `identity-fallback`.
+Neither the Python contract nor its strict schema contains an `applied` state.
+
+Admission revalidates the prepared pixel bytes, full receipt, execution
+binding and A1/A4/A5 decision. Pixel mutation, receipt replacement, decision
+replacement, state contradiction, gate removal and unknown fields fail
+closed. Verification: 11 dedicated and 79 combined external-core tests pass.

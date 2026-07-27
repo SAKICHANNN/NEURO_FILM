@@ -922,3 +922,21 @@
   no ABI, decoder, producer payload, transaction, FilmFX or renderer change.
 - Handoff: commit P26B, then P26C must issue a new admission version that binds
   the exact receipt ID without changing frozen acceptance v1.
+
+## 2026-07-28 - Bind exact pixels into candidate admission
+
+- Node/parent goal: P26C / external-core product consumer integrity.
+- Change: add `CoreCandidateAdmissionV2`, strict schema/roundtrip and binding
+  to both `CoreApplyReceiptV1.receipt_id` and the frozen v1 acceptance
+  `decision_id`.
+- State ceiling: accepted output is only `pending-product-guard`; rejected
+  output is `identity-fallback`. No `applied` state exists.
+- Failure evidence: mutated pixels, swapped receipt, swapped acceptance,
+  removed A1/A4/A5 gate, contradictory accepted state, unknown field and
+  attempted applied state all fail closed.
+- Verification: 11 dedicated tests and 79 combined external-core tests pass;
+  compileall passes.
+- Compatibility: this is downstream of any future producer adapter. It does
+  not consume or constrain the D-PCT producer contract currently in progress.
+- Handoff: commit P26C, then P26D refreshes both peer heads, runs broad
+  regression/propagation and publishes the fixed consumer schema hashes.
