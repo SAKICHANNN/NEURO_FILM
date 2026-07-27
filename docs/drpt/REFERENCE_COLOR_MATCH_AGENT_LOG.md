@@ -549,3 +549,29 @@
 - External isolation: no main-task or D-PCT file was read for implementation
   and no external mutable state was consumed.
 - Commit: `2f30826` (`fix: commit matcher run artifacts atomically`).
+
+## 2026-07-27 - Bind composition to actual delivered runs
+
+- Parent: P18 / A2 actual-delivery composition closure.
+- Defect: the static plan described requested research mode, but a source
+  could still be rejected by gamut/new-boundary safety and delivered as
+  identity. The old plan alone could therefore overstate the colour stage.
+- Change: added strict run-level composition binding, JSON schema and portable
+  canonical identity. The builder verifies the transactional report, recipe,
+  output hashes and actual safety actions.
+- Batch rule: all-applied may bind reference colour plus optional procedural
+  film effects; all-fallback binds only identity/no effects; mixed delivery
+  rejects one batch-level plan.
+- Replay: both original fit reports and stored-recipe replay reports are
+  supported. Original source/reference files may be removed after their
+  committed report identities exist, but delivered output tamper fails.
+- Verification: 13 dedicated and 174 focused tests pass; compileall and diff
+  check pass. Full CPU collection is 1046 passed, one skipped and the same 36
+  ignored-output/CRLF-hash failures; no color-match test failed.
+- External coordination: main remains active at stable `ed1dbb5` with U1-B
+  running and no stable repeated W1 report. D-PCT is idle/clean at `bd3ff70`.
+  No external code, report or uncommitted file was consumed.
+- Commit: `b44fc96` (`feat: bind composition to delivered matcher runs`).
+- Handoff: P18 is complete. P14B1 remains gated on stable repeated W1 evidence;
+  A3 remains gated on an independently trusted scene/display-to-MatchView
+  bridge.

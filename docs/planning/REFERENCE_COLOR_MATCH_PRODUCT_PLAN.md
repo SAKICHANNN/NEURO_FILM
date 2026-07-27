@@ -82,6 +82,7 @@ with a selected stock, but reference matching alone is labeled
 | P15 | DONE | freeze language-neutral portable recipe/render conformance vectors | 9 dedicated tests; 147 focused tests; two exact-ID and bounded-numeric cases; full suite 1019 pass/36 known fail | `8b505ca` | revert commit |
 | P16 | DONE | replay one stored LookRecipe across a transactional N-file batch without the original reference | 9 dedicated tests; 40 adjacent tests; 156 focused tests; full suite 1028 pass/36 known fail | `378c846` | revert commit |
 | P17 | DONE | commit outputs, optional recipe and provenance report as one rollback-safe run transaction | 5 dedicated fault-injection tests; 32 adjacent tests; 161 focused tests; full suite 1033 pass/36 known fail | `2f30826` | revert commit |
+| P18 | DONE | bind film-effects composition to the actual delivered run safety decisions | 13 dedicated tests; 174 focused tests; full suite 1046 pass/36 known fail | `b44fc96` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -168,7 +169,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`1033 passed, 1 skipped, 36 failed`.
+`1046 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -302,6 +303,10 @@ colour choices and now binds delivery certification.
    `film_stock_identity_claimed`.
 6. Research output is labeled `reference-look` or
    `reference-look+film-effects`, with claim ceiling `reference-look`.
+7. Product composition is valid only after binding the transactional run
+   report and delivered output hashes. Uniform applied delivery may bind
+   reference colour and optional effects; uniform fallback may bind only
+   identity without effects; mixed delivery cannot form one batch plan.
 
 This prevents a UI choice such as "match this photo, add film grain" from
 silently applying effects after a colour stage that actually fell back to

@@ -204,3 +204,23 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   ambiguity without altering film-colour/effects composition.
 - Main U1-B remains active with no stable W1 report, so P14B1 stays
   unexecuted.
+
+### 2026-07-27 run-level composition binding leaf
+
+- P18 implementation commit `b44fc96` changes only this branch's
+  reference-match composition binding, schema, exports and tests.
+- Composition now follows actual per-output guard decisions from the
+  transaction-bound report, rather than inferring delivery from the requested
+  research override.
+- Only a uniform all-applied run can bind reference colour and optional film
+  effects. Uniform fallback binds identity without effects. A mixed run must
+  be split or represented per output; it cannot masquerade as one batch plan.
+- Report SHA-256, recipe ID, every output hash and every safety action are
+  bound. Original references and sources need not be retained after the
+  transaction.
+- Read-only refresh: main stable HEAD remains `ed1dbb5`; U1-B is active and no
+  stable repeated W1 report exists. Standalone D-PCT is idle and clean at
+  `bd3ff70`; its completed 67-file sensor-code agreement does not open the
+  scene/display bridge.
+- No external task was navigated, awakened, modified or used through
+  uncommitted state. P14B1 and A3 remain closed independently.
