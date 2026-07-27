@@ -170,11 +170,13 @@ from .composition import (
     REFERENCE_COMPOSITION_SCHEMA_ID,
     FilmEffectBinding,
     ReferenceCompositionPlan,
+    build_film_effect_binding,
     build_reference_composition,
     composition_plan_from_dict,
     composition_plan_from_json,
     composition_plan_to_json,
     validate_reference_composition,
+    validate_film_effect_binding,
 )
 from .conformance import (
     PORTABLE_CONFORMANCE_RESULT_SCHEMA_ID,
@@ -198,6 +200,15 @@ from .consistency import (
     validate_context_invariance_policy,
 )
 from .fit import fit_reference_look
+from .external_composition import (
+    EXTERNAL_REFERENCE_COMPOSITION_SCHEMA_ID,
+    EXTERNAL_REFERENCE_COMPOSITION_STATE,
+    ExternalReferenceCompositionV1,
+    build_external_reference_composition_v1,
+    external_reference_composition_from_json,
+    external_reference_composition_to_json,
+    validate_external_reference_composition_v1,
+)
 from .files import (
     FileReferenceMatchOutput,
     FileReferenceMatchResult,
@@ -293,6 +304,8 @@ __all__ = [
     "EXTERNAL_CORE_STAGING_SCHEMA_ID",
     "EXTERNAL_CORE_STAGING_VERIFICATION_CLAIM_CEILING",
     "EXTERNAL_CORE_STAGING_VERIFICATION_SCHEMA_ID",
+    "EXTERNAL_REFERENCE_COMPOSITION_SCHEMA_ID",
+    "EXTERNAL_REFERENCE_COMPOSITION_STATE",
     "MATCH_PROFILE_ABSOLUTE_XYZ",
     "MATCH_PROFILE_DISPLAY_REC2020",
     "MATCH_PROFILE_DISPLAY_SRGB",
@@ -339,6 +352,7 @@ __all__ = [
     "ExternalCoreStagedOutputV1",
     "ExternalCoreStagingRunV1",
     "ExternalCoreStagingVerificationV1",
+    "ExternalReferenceCompositionV1",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
     "PhotographicSafetyMetrics",
@@ -382,6 +396,8 @@ __all__ = [
     "evaluate_recipe_photographic_safety",
     "evaluate_recipe_context_invariance",
     "build_reference_composition",
+    "build_external_reference_composition_v1",
+    "build_film_effect_binding",
     "build_reference_run_composition",
     "canonical_bytes",
     "canonical_sha256",
@@ -413,6 +429,8 @@ __all__ = [
     "external_core_staging_run_to_json",
     "external_core_staging_verification_from_json",
     "external_core_staging_verification_to_json",
+    "external_reference_composition_from_json",
+    "external_reference_composition_to_json",
     "build_file_match_report",
     "build_file_replay_report",
     "load_reference_look_recipe",
@@ -462,6 +480,8 @@ __all__ = [
     "validate_core_product_staging_authorization_v1",
     "validate_external_core_staging_run_v1",
     "validate_external_core_staging_verification_v1",
+    "validate_external_reference_composition_v1",
+    "validate_film_effect_binding",
     "validate_core_binding",
     "validate_diagnostics",
     "validate_dpct_producer_failure_v2",

@@ -96,7 +96,7 @@ def _plan_id(plan: ReferenceCompositionPlan) -> str:
     return canonical_sha256(_canonical_payload(plan))
 
 
-def _effect_binding(
+def build_film_effect_binding(
     profile: Mapping[str, Any],
     *,
     profile_sha256: str,
@@ -124,6 +124,66 @@ def _effect_binding(
         dust=float(effects["dust"]),
         halation_model=str(effects["halation_model"]),
     )
+
+
+def validate_film_effect_binding(binding: FilmEffectBinding) -> None:
+    if not isinstance(binding, FilmEffectBinding):
+        raise ReferenceMatchContractError(
+            "film effect binding type is invalid"
+        )
+    if (
+        not isinstance(binding.profile_id, str)
+        or not _IDENTIFIER.fullmatch(binding.profile_id)
+    ):
+        raise ReferenceMatchContractError(
+            "film effect binding profile_id is invalid"
+        )
+    if (
+        not isinstance(binding.profile_version, str)
+        or not _VERSION.fullmatch(binding.profile_version)
+    ):
+        raise ReferenceMatchContractError(
+            "film effect binding profile_version is invalid"
+        )
+    if (
+        binding.film_stock_id is not None
+        and (
+            not isinstance(binding.film_stock_id, str)
+            or not _IDENTIFIER.fullmatch(binding.film_stock_id)
+        )
+    ):
+        raise ReferenceMatchContractError(
+            "film effect binding film_stock_id is invalid"
+        )
+    if (
+        not isinstance(binding.interpretation, str)
+        or not binding.interpretation
+    ):
+        raise ReferenceMatchContractError(
+            "film effect binding interpretation is invalid"
+        )
+    if (
+        not isinstance(binding.profile_sha256, str)
+        or not _HASH.fullmatch(binding.profile_sha256)
+    ):
+        raise ReferenceMatchContractError(
+            "film effect binding profile hash is invalid"
+        )
+    if any(
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not np.isfinite(float(value))
+        or float(value) < 0.0
+        or float(value) > 1.0
+        for value in (binding.grain, binding.halation, binding.dust)
+    ):
+        raise ReferenceMatchContractError(
+            "film effect strengths must be within [0, 1]"
+        )
+    if binding.halation_model not in {"simple", "physical"}:
+        raise ReferenceMatchContractError(
+            "film effect halation model is invalid"
+        )
 
 
 def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
@@ -207,57 +267,7 @@ def validate_reference_composition(plan: ReferenceCompositionPlan) -> None:
     if plan.output_label != expected_label:
         raise ReferenceMatchContractError("composition output label mismatch")
     if plan.film_effects is not None:
-        binding = plan.film_effects
-        if (
-            not isinstance(binding.profile_id, str)
-            or not _IDENTIFIER.fullmatch(binding.profile_id)
-        ):
-            raise ReferenceMatchContractError(
-                "film effect binding profile_id is invalid"
-            )
-        if (
-            not isinstance(binding.profile_version, str)
-            or not _VERSION.fullmatch(binding.profile_version)
-        ):
-            raise ReferenceMatchContractError(
-                "film effect binding profile_version is invalid"
-            )
-        if (
-            binding.film_stock_id is not None
-            and (
-                not isinstance(binding.film_stock_id, str)
-                or not _IDENTIFIER.fullmatch(binding.film_stock_id)
-            )
-        ):
-            raise ReferenceMatchContractError(
-                "film effect binding film_stock_id is invalid"
-            )
-        if not isinstance(binding.interpretation, str) or not binding.interpretation:
-            raise ReferenceMatchContractError(
-                "film effect binding interpretation is invalid"
-            )
-        if (
-            not isinstance(binding.profile_sha256, str)
-            or not _HASH.fullmatch(binding.profile_sha256)
-        ):
-            raise ReferenceMatchContractError(
-                "film effect binding profile hash is invalid"
-            )
-        if any(
-            isinstance(value, bool)
-            or not isinstance(value, (int, float))
-            or not np.isfinite(float(value))
-            or float(value) < 0.0
-            or float(value) > 1.0
-            for value in (binding.grain, binding.halation, binding.dust)
-        ):
-            raise ReferenceMatchContractError(
-                "film effect strengths must be within [0, 1]"
-            )
-        if binding.halation_model not in {"simple", "physical"}:
-            raise ReferenceMatchContractError(
-                "film effect halation model is invalid"
-            )
+        validate_film_effect_binding(plan.film_effects)
     if (
         not isinstance(plan.plan_id, str)
         or not _HASH.fullmatch(plan.plan_id)
@@ -295,7 +305,7 @@ def build_reference_composition(
             raise ReferenceMatchContractError(
                 "film profile and hash are required when film effects are enabled"
             )
-        effects = _effect_binding(
+        effects = build_film_effect_binding(
             film_profile,
             profile_sha256=film_profile_sha256,
         )
@@ -432,9 +442,11 @@ __all__ = [
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "FilmEffectBinding",
     "ReferenceCompositionPlan",
+    "build_film_effect_binding",
     "build_reference_composition",
     "composition_plan_from_dict",
     "composition_plan_from_json",
     "composition_plan_to_json",
     "validate_reference_composition",
+    "validate_film_effect_binding",
 ]
