@@ -4676,3 +4676,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   CPU tests. The next evidence-authorized leaf is the metadata-only SF2.10R
   Color Precision rights/pairing/nuisance-topology audit; pixels, fitting,
   training and LSM remain closed. Goal continues.
+
+## 2026-07-27 - Freeze SF2.10R Color Precision metadata-only preflight
+
+- **Node/parent:** `ULT > RF > SF2 > SF2.10R`, opened as a data-feasibility
+  sibling after current stock pixels remain unidentified and SF2.9R lacks a
+  common recorder input.
+- **Retained boundary:** comparison, product, scanner-article and terms HTML,
+  each with a repeat, are byte/hash-bound. The runner is offline and is
+  forbidden to request any embedded image URL.
+- **Ontology:** URL stock/exposure/push/tungsten/scanner strings are weak source
+  metadata only. Scanner suffixes are filename-implied candidates, not verified
+  same-negative pairs. Roll, process session and scanner profile stay unknown.
+- **Rights:** terms updated 2026-07-15 grant personal use of app/purchased
+  products and prohibit extracting/reverse-engineering profiles. No explicit
+  comparison-pixel research reuse grant was found; the page says all rights
+  reserved. Record `rights_unknown`, not an invented legal conclusion.
+- **DoR:** a future bounded pixel preflight requires explicit rights, independent
+  roll/process replication and verified common pairing structure. No pixel,
+  operator fit, training, LSM or production integration opens.
+- **Handoff:** focused/full verification and a commit-bound exact repeat are
+  next. Goal continues.

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.10r-color-precision-metadata-v1",
+  "node": "ULT > RF > SF2 > SF2.10R",
+  "status": "implemented_frozen_pending_formal_repeat",
+  "snapshot_root": "outputs/source_recon/color_precision_film_comparison_metadata",
+  "pages": [
+    {
+      "page_id": "comparison",
+      "source_url": "https://www.colorprecision.com/pages/film-comparison-tool",
+      "first": "comparison.html",
+      "repeat": "comparison_repeat.html",
+      "expected": {
+        "first_bytes": 874621,
+        "repeat_bytes": 874621,
+        "first_sha256": "4015d2cedb5136c0510d63d55c5d64ae0b8fc64bfe97d84f217845507b9f556b",
+        "repeat_sha256": "4015d2cedb5136c0510d63d55c5d64ae0b8fc64bfe97d84f217845507b9f556b",
+        "first_normalized_sha256": "4a7f541dff79efcde62c3213e760965901079852fe9f8ec1abbad4470c8b1a41",
+        "repeat_normalized_sha256": "4a7f541dff79efcde62c3213e760965901079852fe9f8ec1abbad4470c8b1a41"
+      }
+    },
+    {
+      "page_id": "product",
+      "source_url": "https://www.colorprecision.com/products/fujifilm-lightroom",
+      "first": "product.html",
+      "repeat": "product_repeat.html",
+      "expected": {
+        "first_bytes": 588578,
+        "repeat_bytes": 588578,
+        "first_sha256": "bb7116ad7121541ed3e5b8302a70671761eb387f059bb493538db39f72fed4a0",
+        "repeat_sha256": "9558024c2115e4591c1138da14df2bc0552b2495e7c78f0ebd4c6cf885c9a49d",
+        "first_normalized_sha256": "3feab97acb24233704e2e0746f6c9f3c8602e6c5e328cef2ed816ec211b6590e",
+        "repeat_normalized_sha256": "3feab97acb24233704e2e0746f6c9f3c8602e6c5e328cef2ed816ec211b6590e"
+      }
+    },
+    {
+      "page_id": "scanner",
+      "source_url": "https://www.colorprecision.com/blogs/articles/frontier-vs-noritsu-which-scanner-is-better",
+      "first": "scanner.html",
+      "repeat": "scanner_repeat.html",
+      "expected": {
+        "first_bytes": 411157,
+        "repeat_bytes": 411157,
+        "first_sha256": "bfcbf06aff36e1d97d1c78e04d21a884329a27a8dda1916fb4e7d7c4cf893d3d",
+        "repeat_sha256": "f1aafe248d7ad3305783166ec7eae0656f7833107e53026182295f16cff4e41b",
+        "first_normalized_sha256": "ce28b47eb4f361f2fbf758e86365cbd1d55802225417c1fb265de59b5b48bc47",
+        "repeat_normalized_sha256": "ce28b47eb4f361f2fbf758e86365cbd1d55802225417c1fb265de59b5b48bc47"
+      }
+    },
+    {
+      "page_id": "terms",
+      "source_url": "https://www.colorprecision.com/pages/terms",
+      "first": "terms.html",
+      "repeat": "terms_repeat.html",
+      "expected": {
+        "first_bytes": 350826,
+        "repeat_bytes": 350826,
+        "first_sha256": "a17da7562fa67fc1d2acd6b36773bccbb542158259fbfe58ec80190727804cb0",
+        "repeat_sha256": "a17da7562fa67fc1d2acd6b36773bccbb542158259fbfe58ec80190727804cb0",
+        "first_normalized_sha256": "2b4bdad51554ade3370ad4b1186816cab4859a037d58981a12a4b4a7b44c0df3",
+        "repeat_normalized_sha256": "2b4bdad51554ade3370ad4b1186816cab4859a037d58981a12a4b4a7b44c0df3"
+      }
+    }
+  ],
+  "expected_inventory": {
+    "embedded_image_url_count": 927,
+    "unique_url_count": 927,
+    "stock_label_count": 20,
+    "metadata_cell_count": 95,
+    "filename_implied_condition_count": 471,
+    "filename_implied_complete_scanner_pair_count": 456,
+    "filename_implied_incomplete_scanner_pair_count": 15,
+    "scanner_counts": {
+      "Frontier": 464,
+      "Noritsu": 463
+    },
+    "extension_counts": {
+      "jpg": 425,
+      "png": 502
+    },
+    "pushed_url_count": 124,
+    "cross_processed_url_count": 34,
+    "tungsten_url_count": 20
+  },
+  "expected_claim_signals": {
+    "comparison_claims_6k_35mm_scans": true,
+    "comparison_discloses_minor_exposure_adjustments": true,
+    "comparison_discloses_per_frame_scanner_auto_adjustment": true,
+    "product_claims_same_lens_and_lighting_pairing": true,
+    "scanner_article_claims_same_negative_pair": true,
+    "scanner_article_claims_6k_and_unedited_examples": true,
+    "terms_updated_2026_07_15": true,
+    "terms_personal_nontransferable_product_license": true,
+    "terms_forbid_profile_reverse_engineering_or_extraction": true,
+    "comparison_footer_all_rights_reserved": true,
+    "explicit_comparison_pixel_research_reuse_grant_found": false
+  },
+  "gates": {
+    "minimum_filename_implied_scanner_pairs": 100,
+    "minimum_stock_labels": 10,
+    "requires_all_normalized_page_repeats_exact": true,
+    "requires_explicit_comparison_pixel_research_reuse_grant": true,
+    "requires_independent_roll_process_replication": true,
+    "requires_common_digital_film_pair_manifest": true
+  },
+  "branches": [
+    "metadata_topology_promising_rights_and_replication_blocked",
+    "source_contract_or_topology_not_reproduced",
+    "future_separately_preregistered_pixel_preflight_if_all_DoR_pass"
+  ],
+  "forbidden_actions": [
+    "request any of the 927 embedded image URLs",
+    "infer physical stock, exposure, illuminant, push or process truth from filenames",
+    "call filename-matched scanner entries verified same-negative pairs",
+    "treat the product-page pairing claim as an exposed reusable paired dataset",
+    "fit scanner, stock, digital-to-film or latent-mode operators",
+    "download purchased products, profiles, LUTs or the advertised 9.4 GB PDFs",
+    "interpret no explicit pixel grant as permission"
+  ],
+  "claim_ceiling": "repeat-exact metadata topology, source-statement and rights-gap evidence only; no pixel access, verified physical pairing, stock identity, roll/process replication, reusable licence, scanner operator, film operator, training or LSM claim"
+}

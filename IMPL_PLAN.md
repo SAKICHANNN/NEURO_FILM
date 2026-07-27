@@ -530,6 +530,14 @@ result only as a physical spectral representation and target-manufacturing
 nuisance source. It does not open stock fitting, training, LSM, redistribution
 or production work.
 
+`SF2.10R` freezes an offline metadata-only audit of the Color Precision film
+comparison tool. Eight already-retained HTML responses are hash-bound; the
+runner inventories but never requests 927 embedded comparison-image URLs.
+Stock, exposure, push, illuminant and scanner strings remain weak filename
+metadata. A future pixel leaf requires an explicit reuse grant, independent
+roll/process replication and verified pairing structure; the current product
+terms and all-rights-reserved comparison page do not satisfy that DoR.
+
 `U5.R2J0` is that separately frozen witness. It independently implements the
 compact positive-film `matrix -> three log-exposure sigmoids -> matrix`
 functional form using five original synthetic parameter sets. A numerical
