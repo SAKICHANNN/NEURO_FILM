@@ -1,0 +1,32 @@
+{
+  "schema_version": "u5-r2ab0-dorf-source-audit-decision-v1",
+  "node": "U5.R2AB0",
+  "decision": "limited_internal_research_source_pass",
+  "source_zip_sha256": "d030d1ee3cd3243b412dd817b7479873f3680aaea33baaa9c127752880eacd63",
+  "source_member_sha256": "6dfe71f44c84c3fce9dafa96ce2ebd08854580aeaa3b695cf4ce3ea904ddbf3d",
+  "audit_payload_sha256": "d875f2ef511f4d7ecb9d961d1d56bc662b903e531970805877e18f8bd436b712",
+  "observed": {
+    "records": 201,
+    "actual_samples_per_curve": 1024,
+    "strict_complete_rgb_triplets": 46,
+    "duplicate_source_names": {
+      "FP2900ZB": 2,
+      "FP2900ZG": 2,
+      "FP2900ZR": 2
+    },
+    "source_spelling_boundary": "Kodachrome-25 Red/Green and Kodachrome-25CD Blue remain separate incomplete groups",
+    "official_page_sample_claim": 1000
+  },
+  "rights": {
+    "license_status": "unknown_no_explicit_license_located",
+    "allowed_use": "internal_research_audit_only",
+    "redistribution": false,
+    "commercial_or_product_integration": false
+  },
+  "allowed_next": "preregister one synthetic explicit per-channel response diversity and safety pilot",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "real_image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "historical normalized named-film channel-response prior only"
+}

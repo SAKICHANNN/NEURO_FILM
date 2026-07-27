@@ -126,6 +126,7 @@ CAMERA_SPECTRAL_JOBS = [
     ),
 ]
 TOKYO_SPECTRAL_BASE = "https://open-vision.sc.e.titech.ac.jp/~reikawa/research/cs/zhao/"
+DORF_ARCHIVE = "https://www.cs.columbia.edu/CAVE/software/dorf/response/dorfCurves.zip"
 
 
 class FiveKParser(html.parser.HTMLParser):
@@ -309,6 +310,12 @@ def download_camera_spectral() -> None:
     paths_file.write_text("\n".join(tokyo_paths) + "\n", encoding="utf-8")
 
 
+def download_dorf() -> None:
+    out = ROOT / "data/calibration/film_response/cave_dorf/dorfCurves.zip"
+    path, _changed, status = download_one(DORF_ARCHIVE, out)
+    print(f"{status} {path}", flush=True)
+
+
 def list_fivek_expert(expert: str, limit: int | None = None) -> list[str]:
     index = ROOT / "data/raw/fivek/fivek_index.html"
     if index.exists():
@@ -343,6 +350,7 @@ def main() -> None:
             "physics",
             "cie",
             "camera-spectral",
+            "dorf",
             "filmset",
             "filmset-zip",
             "fivek-dng",
@@ -363,6 +371,8 @@ def main() -> None:
         download_cie()
     elif args.dataset == "camera-spectral":
         download_camera_spectral()
+    elif args.dataset == "dorf":
+        download_dorf()
     elif args.dataset == "filmset":
         download_filmset(args.workers, args.limit)
     elif args.dataset == "filmset-zip":

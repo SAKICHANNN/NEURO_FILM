@@ -4986,3 +4986,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   production integration remain closed. Continue Ultimate through a distinct
   evidence-authorized algorithm, data-connectivity or product leaf. Goal
   remains ACTIVE.
+
+## 2026-07-28 - U5.R2AB0 CAVE DoRF source audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AB0`; DRPT L2/Mode A,
+  `dev-research-reliability` primary writer with AI/ML, research, tracker,
+  agent-log and structure review.
+- **Source/integrity:** acquire the official 1,734,345-byte DoRF zip at
+  `d030d1ee...cd63`; sole 6,595,757-byte member hash is
+  `6dfe71f4...bf3d`. A strict safe zip parser validates all records,
+  normalization, finiteness and monotonicity.
+- **Inventory:** 201 records, 1,024 actual samples each, six source scale
+  labels and 46 strict `Red/Green/Blue` triplets. Preserve three duplicate
+  `FP2900Z*` source names, exact curve duplicates, the Kodachrome-25 suffix
+  mismatch and the official-page 1,000-point contradiction.
+- **Rights/claim:** no explicit DoRF licence was located; restrict to internal
+  research audit, no redistribution or commercial/product integration.
+  Highest claim is historical normalized named-film channel-response prior,
+  not paired truth or spectral/process/scanner/calibrated response.
+- **Handoff:** AB0 limited-passes and opens only a preregistered synthetic
+  per-channel response diversity/safety pilot. Real images, current-pixel
+  fitting, training, LSM and production remain forbidden. Four targeted
+  tests, two byte-identical reports, downloader no-op restore, JSON validation,
+  `git diff --check` and the full CPU suite pass (`999 passed`). Goal remains
+  ACTIVE.

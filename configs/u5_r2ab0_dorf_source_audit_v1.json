@@ -1,0 +1,42 @@
+{
+  "schema_version": "u5-r2ab0-dorf-source-audit-v1",
+  "node": "U5.R2AB0",
+  "source": {
+    "page_url": "https://www.cs.columbia.edu/CAVE/software/softlib/dorf.php",
+    "paper_url": "https://cave.cs.columbia.edu/old/publications/pdfs/Grossberg_PAMI04.pdf",
+    "archive_url": "https://www.cs.columbia.edu/CAVE/software/dorf/response/dorfCurves.zip",
+    "path": "data/calibration/film_response/cave_dorf/dorfCurves.zip",
+    "zip_bytes": 1734345,
+    "zip_sha256": "d030d1ee3cd3243b412dd817b7479873f3680aaea33baaa9c127752880eacd63",
+    "member": "dorfCurves.txt",
+    "member_bytes": 6595757,
+    "member_crc32": 1227336748,
+    "member_sha256": "6dfe71f44c84c3fce9dafa96ce2ebd08854580aeaa3b695cf4ce3ea904ddbf3d"
+  },
+  "expected": {
+    "record_count": 201,
+    "samples_per_curve": 1024,
+    "scale_counts": {
+      "gamma-lin-lin": 13,
+      "graph-lin-lin": 5,
+      "graph-log-log-neg": 104,
+      "graph-log-log-pos": 50,
+      "mlab-lin-lin": 26,
+      "mlab-lin-lin-sparse": 3
+    }
+  },
+  "rights": {
+    "license_status": "unknown_no_explicit_license_located",
+    "allowed_use": "internal_research_audit_only",
+    "redistribution": false,
+    "commercial_or_product_integration": false
+  },
+  "claim_ceiling": "historical normalized named-film channel-response prior; not a complete film colour operator, digital-to-film transform, calibrated stock response, spectral/process/scanner model, or product profile",
+  "forbidden": [
+    "redistribute the source archive or curves",
+    "infer that source names prove current emulsion generation or process state",
+    "treat normalized per-channel curves as film/digital paired truth",
+    "claim cross-channel colour, spectral sensitivity, exposure scale, development, scanner, print, or viewing calibration",
+    "fit current real-film pixels, train a model, open LSM, or integrate production from this source audit"
+  ]
+}

@@ -305,6 +305,16 @@ physics on photographs or rescue with refitting, clamp, gamut map, LUT,
 neural capacity or visual preference. AA2 stays closed; Ultimate must choose a
 distinct evidence-authorized algorithm, data-connectivity or product leaf.
 
+U5.R2AB0 retains the official Columbia CAVE DoRF archive as a narrowly
+bounded historical response prior. Its exact 1.73MB zip contains 201 monotone
+normalized records with 1,024 samples each and 46 strict source-name RGB
+triplets. The official page says 1,000 points; duplicate names, exact curve
+duplicates and the Kodachrome-25 suffix inconsistency remain source facts. No
+explicit licence was located, so use is internal-research-only with no
+redistribution or product integration. This opens only a preregistered
+synthetic per-channel response diversity/safety pilot; it does not identify a
+digital-to-film operator, spectral/process/scan response or calibrated stock.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

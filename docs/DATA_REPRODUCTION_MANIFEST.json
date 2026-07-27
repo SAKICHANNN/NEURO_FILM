@@ -284,6 +284,23 @@
       ],
       "license_note": "RIT camera spectral page states CC BY-NC-SA 4.0; Tokyo Open Vision page should be cited before publication."
     },
+    "cave_dorf_response_curves": {
+      "status_on_windows": "complete_internal_research_only",
+      "target_path": "data/calibration/film_response/cave_dorf",
+      "restore_command": "python scripts/download_data.py dorf",
+      "source_page": "https://www.cs.columbia.edu/CAVE/software/softlib/dorf.php",
+      "source_archive": "https://www.cs.columbia.edu/CAVE/software/dorf/response/dorfCurves.zip",
+      "archive_file": "data/calibration/film_response/cave_dorf/dorfCurves.zip",
+      "archive_bytes": 1734345,
+      "archive_sha256": "D030D1EE3CD3243B412DD817B7479873F3680AAEA33BAAA9C127752880EACD63",
+      "member": "dorfCurves.txt",
+      "member_bytes": 6595757,
+      "member_sha256": "6DFE71F44C84C3FCE9DAFA96CE2EBD08854580AEAA3B695CF4CE3EA904DDBF3D",
+      "observed_records": 201,
+      "observed_samples_per_curve": 1024,
+      "license_note": "No explicit licence located on the official page or in the archive; internal research audit only, no redistribution or product/commercial integration.",
+      "claim_note": "Normalized historical response-curve prior only; not paired digital-to-film truth, spectral/process/scanner calibration or a complete film colour operator."
+    },
     "filmgrainstyle740k": {
       "status_on_windows": "blocked_requires_email_request",
       "target_path": "data/raw/filmgrainstyle740k",
