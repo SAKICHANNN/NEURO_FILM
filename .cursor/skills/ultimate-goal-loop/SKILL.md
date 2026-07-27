@@ -15,6 +15,11 @@ description: >-
 - User asks to continue Ultimate / stock-first / FilmStyleSafe work
 - A `stop` hook followup re-enters the agent
 
+Use this project loop under the personal `goal-engine` lifecycle supervisor
+and apply the personal `autonomous-engineering` skill during each worker round.
+If the Goal Engine CLI doctor fails, use its agent-native loop; do not stop the
+project to repair the supervisor.
+
 ## State machine (mandatory order)
 
 1. **S0 REFRESH** — Re-read `AGENTS.md`, Goal state, tracker, `git status`/`log`, processes, ignored outputs. Detect parallel writers.

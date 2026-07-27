@@ -86,7 +86,7 @@ def test_hooks_json_keeps_stop_entry() -> None:
     stop = data["hooks"]["stop"]
     assert isinstance(stop, list) and stop
     assert "ultimate_goal_stop.py" in stop[0]["command"]
-    assert stop[0]["loop_limit"] == 20
+    assert stop[0]["loop_limit"] == 30
 
 
 def test_objective_hash_mismatch_fails() -> None:
@@ -172,3 +172,5 @@ def test_rule_and_skill_exist() -> None:
     assert (ROOT / ".cursor" / "rules" / "ultimate-goal.mdc").is_file()
     assert (ROOT / ".cursor" / "skills" / "ultimate-goal-loop" / "SKILL.md").is_file()
     assert (ROOT / "docs" / "drpt" / "CURSOR_GOAL_PROTOCOL.md").is_file()
+    assert (ROOT / "GOAL.md").is_file()
+    assert (ROOT / ".goal-engine" / "AGENT_PROGRESS.md").is_file()

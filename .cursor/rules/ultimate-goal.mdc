@@ -8,6 +8,8 @@ alwaysApply: true
 Live authorities (read these; do not mirror their full content here):
 
 - `AGENTS.md`
+- `GOAL.md`
+- `.goal-engine/AGENT_PROGRESS.md`
 - `docs/ULTIMATE_EXECUTION_TRACKER.md`
 - `docs/drpt/CURSOR_GOAL_STATE.json`
 - `docs/drpt/CURSOR_GOAL_PROTOCOL.md`
@@ -36,6 +38,10 @@ Realtime repo facts beat chat memory. One primary writer only. Prefer **This Com
 - Anchors `53/55/56/09/01` are frozen preference anchors; `33/03/02` are smoke cues; ID11 red-speckle is required regression
 
 ## Execution loop
+
+Use the personal `goal-engine` skill as lifecycle supervisor and
+`autonomous-engineering` for each worker round. If the CLI doctor does not
+pass, use its agent-native loop with this repository's stop hook.
 
 After every verified leaf: update evidence → propagate → scoped commit → push (authorized) → refresh Goal state → select next legal ready leaf → continue.
 
