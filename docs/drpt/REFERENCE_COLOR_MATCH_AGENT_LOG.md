@@ -1395,3 +1395,22 @@
   is currently eligible.
 - Evidence commit: `fcb6278` (`docs: record external FilmFX composition
   evidence`). P35 is complete as composition planning, not effect rendering.
+
+## 2026-07-28 - Freeze P36 atomic FilmFX execution
+
+- Node/parent goal: P36A / execute the procedural branch of P35.
+- Reuse audit: `src/filmfx` already exposes deterministic grain, simple
+  halation, dust and compositing over display-sRGB arrays; preprocess and
+  output encoders provide the required SDR bridge. No duplicate effect engine
+  is needed.
+- Contract: rerun P34 from its caller-held expected identities, require exact
+  P35 binding and FilmFX presence, bind explicit base seed/source order, then
+  commit all N effect outputs and one report atomically.
+- First profile: simple halation only. Physical halation is rejected because
+  the current P35 binding lacks its resolved control set; hidden CLI defaults
+  are forbidden.
+- State ceiling: `filmfx-rendered-to-staging-not-delivered`; P33 source files
+  remain immutable and no final delivery/applied state exists.
+- Scope: additive consumer executor/schema/tests. Existing FilmFX,
+  preprocess, transaction and producer code remain unchanged.
+- Coordination: peer intent sent; no wait or peer action is required.

@@ -135,6 +135,10 @@ with a selected stock, but reference matching alone is labeled
 | P35B | DONE | implement strict external composition plan | canonical schema/roundtrip; no film colour, stock claim, render or delivery state | `249e415` | revert additive module/schema |
 | P35C | DONE | prove identity, colour stacking and claim mutations fail closed | verification/run/intent/profile/order/claim/effect negatives | `249e415` | no composition plan |
 | P35D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1265 pass/1 skip/36 known failures; latest-main synthetic merge 147 pass | `fcb6278` | retain P34 |
+| P36A | IN PROGRESS | freeze atomic execution of a P35 procedural FilmFX plan | rerun P34; exact P35 binding; deterministic seed; simple-halation first profile | intent commit | retain P35 plan only |
+| P36B | PENDING | implement N-source FilmFX staging transaction | reuse existing layers/compositor/encoders/rollback primitive; strict report | implementation commit | revert additive module/schema |
+| P36C | PENDING | prove physical-default ambiguity and mutations fail closed | no effects, physical controls, identity/order/path/output/commit negatives | implementation commit | preserve P33 files |
+| P36D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P35 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -284,6 +288,14 @@ The plan binds the exact P34 verification and assigns colour ownership to the
 verified external reference look. It may append only validated procedural
 FilmFX; it cannot add a film colour operator, claim a stock identity, render
 effects, deliver files or mark pixels applied.
+
+P36 executes only the procedural part of an exact P35 plan. Before rendering
+it reruns P34 against the P33 report and files. V1 binds an explicit seed and
+reuses the existing grain, simple-halation, dust, compositor, SDR encoders and
+rollback transaction. A `physical` halation label is insufficient because
+P35 does not bind resolved physical controls, so that branch fails closed
+rather than importing CLI defaults. Success remains rendered staging, not
+delivery or applied.
 
 ## First-slice algorithm
 
