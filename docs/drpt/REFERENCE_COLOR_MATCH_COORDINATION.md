@@ -236,3 +236,19 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - This is a preflight against the current stable commit, not authorization to
   merge and not evidence about main's uncommitted U1-B work. Integration must
   refresh the same checks after main publishes its final stable result.
+
+### 2026-07-27 completed repeated W1 dependency
+
+- Main stable commit `86b484b` publishes the W1 decision and is contained in
+  current stable main `c5b7c04`.
+- External reports A/B are byte-identical at `9b42e9a8...8dec68`; the report
+  software commit is `b72b594...`, a validated descendant of the pinned W1
+  implementation.
+- This branch's receiver recomputes `paired_upper_bound_only_passes` and freezes
+  canonical decision `f8661315...f60e`.
+- P14B1 closes: no single-reference confirmation, larger descriptor rescue,
+  visual candidate or product integration opens. Default delivery stays
+  identity.
+- Main's later FilmSet W2F0/Z0 work is paired/fixed-bank mechanism evidence and
+  does not reverse the arbitrary uploaded-reference result.
+- D-PCT is active in its own repository; no mutable D-PCT state is consumed.

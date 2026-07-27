@@ -587,3 +587,25 @@
   Its U1-B run remains active and unconsumed.
 - Limitation: this result applies only to committed `ed1dbb5`; integration must
   rerun after the main task publishes its eventual stable commit.
+
+## 2026-07-27 - Consume and close repeated W1 evidence
+
+- Node/parent goal: P14B1 / A1 reference identifiability.
+- Skills: `dev-research-reliability` primary; AI/ML, DRPT-BI, tracker,
+  agent-log and structure disciplines read-only.
+- Trigger: main stable commit `86b484b` published two byte-identical W1 reports
+  after the earlier P14B0 receiver had remained not-ready.
+- Change: freeze strict decision JSON/schema; add bounded parsing, semantic
+  validation, canonical-ID verification and hostile-type regression tests.
+- Evidence: report SHA `9b42e9a8...8dec68`, external software
+  `b72b594...`, decision `f8661315...f60e`,
+  `paired_upper_bound_only_passes`.
+- Interpretation: paired information proves operator/optimizer headroom;
+  output-only single/four references fail. No descriptor/capacity rescue,
+  confirmation, visual candidate or integration opens.
+- Verification: 11 dedicated and 177 focused tests pass; full suite is 1049
+  passed, one skipped and the same 36 known failures. Compileall and diff check
+  pass.
+- Commit: `9cf7d6c` (`feat: freeze repeated W1 matcher decision`).
+- Handoff: A1 fixed output-only operator recovery is closed. The next distinct
+  leaf must change information/objective, while identity remains the default.

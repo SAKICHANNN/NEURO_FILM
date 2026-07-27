@@ -78,7 +78,7 @@ with a selected stock, but reference matching alone is labeled
 | P13 | DONE | CFSM fixed explicit-operator challenger and source-batch prior falsification | 126 focused tests; two byte-exact 30-pair v0 runs; full suite 998 pass/36 known fail | `ec437e1` | revert commit |
 | P14A | DONE | preregister and test three analytic photographic priors | 10 dedicated tests; byte-exact validation repeat; confirmation correctly closed; full suite 1002 pass/36 known fail | `3debf13` | revert commit |
 | P14B0 | DONE | pin and fail-closed adjudicate stable main-task W1 development evidence | 8 dedicated tests; 138 focused tests; current absent-report decision is identity; full suite 1010 pass/36 known fail | `8e602f5` | revert commit |
-| P14B1 | READY | consume a repeated W1 decision without importing external code | stable repeated W1 reports; untouched confirmation for any single-reference development pass | none | keep identity default |
+| P14B1 | DONE / ROUTE CLOSED | consume a repeated W1 decision without importing external code | byte-identical reports; strict source/hash/decision validation; full suite 1049 pass/36 known fail | `9cf7d6c` | keep identity default |
 | P15 | DONE | freeze language-neutral portable recipe/render conformance vectors | 9 dedicated tests; 147 focused tests; two exact-ID and bounded-numeric cases; full suite 1019 pass/36 known fail | `8b505ca` | revert commit |
 | P16 | DONE | replay one stored LookRecipe across a transactional N-file batch without the original reference | 9 dedicated tests; 40 adjacent tests; 156 focused tests; full suite 1028 pass/36 known fail | `378c846` | revert commit |
 | P17 | DONE | commit outputs, optional recipe and provenance report as one rollback-safe run transaction | 5 dedicated fault-injection tests; 32 adjacent tests; 161 focused tests; full suite 1033 pass/36 known fail | `2f30826` | revert commit |
@@ -194,7 +194,7 @@ final photographic/aesthetic algorithm.
 
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
-| A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
+| A1 reference identifiability | OUTPUT-ONLY FIXED-OPERATOR ROUTE CLOSED | local known-operator cross-content falsification plus repeated main W1 single/four/paired evidence | do not rescue the same descriptor with capacity; test only a separately preregistered Look Approximation objective or new information regime |
 | A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
 | A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT `bd3ff70` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; all 67 DNGs and 686,122,932 post-linearization sensor codes agree with pinned LibRaw, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for independent crop/black/demosaic/profile and trusted scene-render agreement plus a versioned scene/display-to-MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
@@ -283,6 +283,17 @@ reference or seen-bank-only passes do not satisfy arbitrary one-reference
 upload, and no development branch opens product integration. With no W1
 reports currently published, the canonical decision is `not-ready` and
 delivery remains identity.
+
+P14B1 consumes the completed repeated W1 decision without importing its Python
+implementation. Both external reports are byte-identical at
+`9b42e9a8...8dec68`, bind software commit `b72b594...`, leave confirmation
+untouched and independently recompute `paired_upper_bound_only_passes`.
+The exact paired neutral/styled upper bound succeeds, but every output-only
+single/four-reference method fails content, baseline or identity controls.
+The committed decision is therefore `development-route-closed`, canonical ID
+`f8661315...f60e`; product integration remains false and delivery remains
+identity. A larger, semantic or neural descriptor is not an eligible rescue on
+the same evidence.
 
 ### Film-business composition boundary
 
