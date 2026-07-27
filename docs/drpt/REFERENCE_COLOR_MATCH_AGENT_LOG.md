@@ -312,3 +312,4 @@
   2020-12. The full collection is 981 passed, one skipped and the same 36
   known failures from absent ignored outputs and CRLF-sensitive frozen hashes;
   no colour-match or adjacent validation test fails.
+- Commit: `8e03ed7` (`feat: gate reference matcher promotion`).
