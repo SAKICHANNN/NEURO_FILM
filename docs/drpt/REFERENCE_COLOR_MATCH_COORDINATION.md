@@ -252,3 +252,17 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - Main's later FilmSet W2F0/Z0 work is paired/fixed-bank mechanism evidence and
   does not reverse the arbitrary uploaded-reference result.
 - D-PCT is active in its own repository; no mutable D-PCT state is consumed.
+
+### 2026-07-27 empirical neutral-photo prior isolation
+
+- P19 reads only the stable ignored FiveK `freeze_v1` under main
+  `c5b7c04`; it does not modify that checkout or consume its uncommitted
+  Goal-Engine/harness files.
+- Official FiveK rights are research-only. The aggregate prior is therefore
+  an isolated falsification control, never a product/commercial dependency.
+- All implementation, tests, configs and reports remain in this worktree.
+  Source pixels and ignored reports are not copied into main or D-PCT.
+- The empirical route closes on repeated confirmation. It creates no merge
+  dependency and does not change main W2F0/FilmSet or D-PCT ownership.
+- Main and D-PCT remain read-only concurrent tasks; neither task was
+  navigated, awakened, messaged or mutated by P19.

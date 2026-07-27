@@ -609,3 +609,29 @@
 - Commit: `9cf7d6c` (`feat: freeze repeated W1 matcher decision`).
 - Handoff: A1 fixed output-only operator recovery is closed. The next distinct
   leaf must change information/objective, while identity remains the default.
+
+## 2026-07-27 - Audit and close empirical neutral-photo prior
+
+- Node/parent goal: P19 / A1 independent-prior Look Approximation.
+- Skills: `dev-research-reliability` primary; AI/ML, DRPT-BI, tracker,
+  agent-log and structure disciplines read-only.
+- Rights: official FiveK Adobe and Adobe+MIT terms are research-only and
+  prohibit commercial advantage. All 128 sources map exactly once (59/69);
+  product and commercial integration remain executable false fields.
+- Data audit: only `raw_default_srgb16` is read; 128 unique orientation-1
+  uint16 RGB files and 201,547,776 pixels pass. Expert/target pixels are not
+  read. Three artifact builds repeat at SHA `d590f75a...895d`, prior
+  `bb823874...b0ae`.
+- Method: equal-image linear-RGB mean/covariance drives the same bounded,
+  positive-Jacobian, fixed-LUT CFSM projection. It remains research-isolated.
+- Confirmation: empirical reaches 15/48 and median `-6.04%` versus uniform
+  31/48 and `+4.63%`; median gain is `-10.67` points and worst loss `5.22`
+  points. Two reports repeat byte-exactly at SHA `2a995096...f387`.
+- Decision: `empirical-prior-route-closed`. Safety constraints pass, but
+  identification fails. More data cannot rescue the same moments.
+- Verification: 16 dedicated and 167 focused tests pass; compileall and diff
+  check pass.
+- Commits: `9d82eda` (`feat: freeze empirical neutral-photo prior`) and
+  `e7317f1` (`research: close empirical CFSM prior route`).
+- Handoff: continue only with a new objective/information regime; default
+  delivery remains identity and no FiveK-derived product asset opens.

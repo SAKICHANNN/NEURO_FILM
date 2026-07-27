@@ -30,7 +30,7 @@ with a selected stock, but reference matching alone is labeled
   `src/color_engine/safe_lab.py`, `src/color_engine/gamut.py`
 - Main-chat W1/W2 research and standalone D-PCT media work are concurrent and
   explicitly out of this branch's write scope. The latest consumed read-only
-  boundaries are main `ed1dbb5` and D-PCT `bd3ff70`.
+  boundaries are main `c5b7c04` and D-PCT `bd3ff70`.
 
 ## Non-goals for the first product slice
 
@@ -83,6 +83,7 @@ with a selected stock, but reference matching alone is labeled
 | P16 | DONE | replay one stored LookRecipe across a transactional N-file batch without the original reference | 9 dedicated tests; 40 adjacent tests; 156 focused tests; full suite 1028 pass/36 known fail | `378c846` | revert commit |
 | P17 | DONE | commit outputs, optional recipe and provenance report as one rollback-safe run transaction | 5 dedicated fault-injection tests; 32 adjacent tests; 161 focused tests; full suite 1033 pass/36 known fail | `2f30826` | revert commit |
 | P18 | DONE | bind film-effects composition to the actual delivered run safety decisions | 13 dedicated tests; 174 focused tests; full suite 1046 pass/36 known fail | `b44fc96` | revert commit |
+| P19 | DONE / ROUTE CLOSED | audit and test a research-only empirical neutral-photography moment prior | 16 dedicated tests; 167 focused tests; three byte-exact artifact builds; two byte-exact confirmation runs | `9d82eda`, `e7317f1` | retain negative evidence; product stays identity |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -194,7 +195,7 @@ final photographic/aesthetic algorithm.
 
 | Gate | Status | Dependency | Allowed next action |
 |---|---|---|---|
-| A1 reference identifiability | OUTPUT-ONLY FIXED-OPERATOR ROUTE CLOSED | local known-operator cross-content falsification plus repeated main W1 single/four/paired evidence | do not rescue the same descriptor with capacity; test only a separately preregistered Look Approximation objective or new information regime |
+| A1 reference identifiability | OUTPUT-ONLY AND FIXED-MOMENT-PRIOR ROUTES CLOSED | local known-operator cross-content falsification, repeated main W1 single/four/paired evidence and P19 empirical neutral-photo prior confirmation | do not rescue the same descriptor or global moments with capacity/data volume; require a genuinely new information regime or non-moment perceptual objective |
 | A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
 | A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT `bd3ff70` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; all 67 DNGs and 686,122,932 post-linearization sensor codes agree with pinned LibRaw, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for independent crop/black/demosaic/profile and trusted scene-render agreement plus a versioned scene/display-to-MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
@@ -294,6 +295,27 @@ The committed decision is therefore `development-route-closed`, canonical ID
 `f8661315...f60e`; product integration remains false and delivery remains
 identity. A larger, semantic or neural descriptor is not an eligible rescue on
 the same evidence.
+
+P19 tests a genuinely independent neutral-photography population rather than
+another hand-shaped RGB distribution. A strict builder reads only the 128
+FiveK `raw_default_srgb16` controls, validates every file and official licence
+assignment, and aggregates each image with equal weight into linear-sRGB mean
+and population covariance. Expert/target images are never read. Three builds
+are byte-identical at artifact SHA-256 `d590f75a...895d`, prior ID
+`bb823874...b0ae`, covering 201,547,776 pixels; 59 source images map to the
+Adobe list and 69 to the Adobe+MIT list.
+
+The official terms are research-only and prohibit commercial advantage, so
+the artifact cannot open product or commercial use even if it succeeds. It
+does not succeed. On the previously unopened synthetic confirmation split,
+uniform CFSM reaches 31/48 improvements and median captured style `+4.63%`;
+the empirical moment prior reaches 15/48 and `-6.04%`. Median gain over the
+control is `-10.67` points and worst-case loss is `5.22` points. Both repeated
+reports are byte-identical at report ID `ca7e768d...cd0e`, SHA-256
+`2a995096...f387`. Constraints, zero fallback and zero new boundary pixels
+pass, but identification gates fail. This closes fixed global first/second
+moment priors as the arbitrary-reference solution; more neutral photos cannot
+rescue the same statistic.
 
 ### Film-business composition boundary
 
