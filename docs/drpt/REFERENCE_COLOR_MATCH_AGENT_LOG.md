@@ -1927,6 +1927,29 @@
   `4eb40c39...5fe`; fresh merge 51 pass/4 expected wheel-evidence skip.
 - Boundary: no RGIN compatibility or product authorization opens.
 
+## 2026-07-28 - Implement and verify P49 shared product authorization
+
+- Implementation: `14fc7bf` adds a canonical promotion binding, no-write
+  atomic staging authorization, strict schema, public exports and adversarial
+  tests.
+- Three locks: P45 must be product-ready; P47/P48 must bind one exact operator
+  and complete ordered numeric-eligible batch; independent
+  `PromotionDecision` must be promoted for the same gate/evidence,
+  capability/producer/model/options scope.
+- Offline integrity: canonical declaration JSON is embedded in the
+  authorization identity and P45 admission is rerun during deserialization.
+  Declaration pass booleans alone cannot authorize.
+- Failure closure: foreign declaration, commit, capability, profile,
+  compatibility, evidence, model/options, operator, batch, guard, source,
+  receipt or numeric decision fails closed. Any numeric failure is atomic.
+- Claim ceiling: `authorized-for-staging` /
+  `staging-only-not-committed`; no write, applied, FilmFX or delivery state.
+- Verification: 49 focused, 588 combined and full 1394 pass/1 skip/36
+  unchanged. Latest main `1dce729`, zero overlap, merge tree
+  `bf2eb959...e82`; fresh detached merge 49 pass and was removed.
+- Producer: RGIN-v0 closes at `fd036aa` with 20/20 frozen projections failing
+  calibration and no model/capability/wheel/fixture. P49 has no real candidate.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

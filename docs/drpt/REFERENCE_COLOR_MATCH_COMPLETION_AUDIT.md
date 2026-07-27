@@ -14,12 +14,12 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer payload: `codex/reference-color-match` through P45 implementation
-  at `7b0ec11`.
-- Main Neuro-Film read-only snapshot: `f309c97`; its `.codex/` and `tmp/`
+- Consumer payload: `codex/reference-color-match` through P49 implementation
+  at `14fc7bf`.
+- Main Neuro-Film read-only snapshot: `1dce729`; its `.codex/` and `tmp/`
   files belong to the main task and were not touched.
-- D-PCT read-only snapshot: `ef9a4cd`; its only callable relative-SDR
-  capability is audited and rejected by P44, while ROGR-v0 also closes as
+- D-PCT audited RGIN closure: `fd036aa`; its only callable relative-SDR
+  capability is rejected by P44, while ROGR-v0 and RGIN-v0 also close as
   non-callable negative development evidence.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
@@ -50,6 +50,7 @@ wire contract and not an algorithm promotion.
 | Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
 | Reference-only shared batch semantics | P47 binds one source-free operator to ordered N source-bound exact output receipts | COMPLETE AS CONSUMER CONTRACT | Map only to a producer build/apply fixture that proves source-free bundle construction / D-PCT then Neuro-Film |
 | Shared-batch numeric safety | P48 binds per-source producer facts, verifies output extrema/new boundary and falls back atomically | COMPLETE AS CONSUMER GUARD | Map exact producer diagnostics then replay before any shared-path authorization / D-PCT then Neuro-Film |
+| Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision for the same evidence/model/options | COMPLETE AS FAIL-CLOSED STAGING AUTHORIZATION | A real callable shared producer must first pass every lock; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
@@ -61,8 +62,9 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
    A1/A4/A5 without research override.
 2. Release rights and required target runtime evidence are established for
    the fixed package or its future native replacement.
-3. Neuro-Film replays the fixed invocation conformance, P27 receipt binding,
-   P28 atomic batch resolution, P29 numeric guard and P30 product
+3. Neuro-Film selects the declared semantics. A per-source capability replays
+   P27-P30. A genuinely reference-only capability replays P47 exact
+   build/apply binding, P48 numeric guard and P49 promotion-bound staging
    authorization.
 4. P33 stages and commits all N outputs and its exact report atomically, then
    P34 restart-verifies the report and every file.

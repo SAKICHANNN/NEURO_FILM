@@ -185,10 +185,14 @@ with a selected stock, but reference matching alone is labeled
 | P48B | DONE | implement per-source facts/decision and batch aggregation | every source exact receipt; one policy; any failure forces whole-batch fallback | `5c50874`; schema + 13 tests | no authorization |
 | P48C | DONE | prove facts/output/policy/order tamper closure | nonfinite/range/fraction/diagnostics/receipt/missing/mixed-policy mutations fail closed | `5c50874`; mutation tests | identity fallback |
 | P48D | DONE | propagate and peer handoff | 577 combined; 1383 pass/1 skip/36 known; latest-main merge 51 pass/4 expected skip | evidence commit | await producer facts |
-| P49A | IN PROGRESS | freeze shared-path staging authorization | require independent P45 admission, P47/P48 exact binding and a consumer promotion binding for the same capability/model/options/evidence | plan commit | no applied/delivery claim |
-| P49B | READY | implement promotion binding and atomic authorization | canonical evidence binding plus ordered per-source staging decisions; any global or numeric failure forces whole-batch fallback | code/schema/tests | staging only |
-| P49C | BLOCKED ON P49B | prove declaration-only and identity substitution cannot authorize | reject mismatched declaration/capability/commit/profile/model/options/evidence/operator/batch/guard/order | mutation tests | fail closed |
-| P49D | BLOCKED ON P49C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | await callable shared producer |
+| P49A | DONE | freeze shared-path staging authorization | require independent P45 admission, P47/P48 exact binding and a consumer promotion binding for the same capability/model/options/evidence | `e456eee` | no applied/delivery claim |
+| P49B | DONE | implement promotion binding and atomic authorization | canonical declaration/evidence binding plus ordered per-source staging decisions; any global or numeric failure forces whole-batch fallback | `14fc7bf`; schema + tests | staging only |
+| P49C | DONE | prove declaration-only and identity substitution cannot authorize | mismatched declaration/capability/commit/profile/model/options/evidence/operator/batch/guard/order fail closed | `14fc7bf`; adversarial tests | identity fallback |
+| P49D | DONE | propagate evidence and peer handoff | 588 combined; 1394 pass/1 skip/36 known; latest-main merge 49 pass | evidence commit | await callable shared producer |
+| P50A | IN PROGRESS | freeze shared authorized staging transaction | consume exact P47 applies plus P49 authorization; reuse rollback-safe atomic writer without weakening source/order identities | plan commit | no delivery |
+| P50B | READY | implement shared output/report staging | preflight all paths and bytes, bind report to P49/P47/P48, then commit all-or-none | code/schema/tests | committed staging only |
+| P50C | BLOCKED ON P50B | prove rollback and restart-safe identities | collision, injected failure, byte tamper, foreign authorization/apply and reorder tests | fault injection | restore prior bytes |
+| P50D | BLOCKED ON P50C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | real producer still required |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
