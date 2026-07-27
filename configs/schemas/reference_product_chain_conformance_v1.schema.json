@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-product-chain-conformance-v1.json",
+  "title": "Neuro-Film P28-P30 product chain conformance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol", "producer_fixture_sha256", "cases"],
+  "properties": {
+    "protocol": {
+      "const": "neuro-film.reference-product-chain-conformance.v1"
+    },
+    "producer_fixture_sha256": {"$ref": "#/$defs/hash"},
+    "cases": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "canonical_hex", "sha256"],
+      "properties": {
+        "label": {
+          "enum": [
+            "batch",
+            "numeric-decision-0",
+            "numeric-decision-1",
+            "numeric-batch",
+            "authorization"
+          ]
+        },
+        "canonical_hex": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{2})+$"
+        },
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "expected_numeric_state",
+        "expected_authorization_state",
+        "identities"
+      ],
+      "properties": {
+        "case_id": {
+          "enum": ["promoted-product", "research-override"]
+        },
+        "expected_numeric_state": {
+          "const": "eligible-for-transaction"
+        },
+        "expected_authorization_state": {
+          "enum": ["authorized-for-staging", "identity-fallback"]
+        },
+        "identities": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {"$ref": "#/$defs/identity"}
+        }
+      }
+    }
+  }
+}
