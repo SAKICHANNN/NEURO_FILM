@@ -7,3 +7,5 @@ scripts/build_reference_chain_conformance.py text eol=lf
 scripts/build_reference_chain_msvc.py text eol=lf
 configs/reference_match_android_ndk_r27d.json text eol=lf
 scripts/build_reference_chain_android.py text eol=lf
+configs/reference_match_llvm_mingw_20260616.json text eol=lf
+scripts/build_reference_chain_llvm_mingw.py text eol=lf
