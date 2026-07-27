@@ -94,8 +94,8 @@ with a selected stock, but reference matching alone is labeled
 | P25B | DONE | implement strict `MatchViewV1`, `TransformBundleV1`, `DiagnosticsV1` and `CapabilitiesV1` consumer contracts | 20 dedicated and 54 contract/schema/canonical/replay tests; compileall; four strict schemas | contract commit | revert additive contract commit |
 | P25C | DONE | implement `WorkingImage` to compatible MatchView adapter | 16 adapter tests; 36 core tests; 123 adjacent product/preprocess tests; isolated read-only buffer and exact capability gate | adapter commit | revert additive adapter commit |
 | P25D1 | DONE | bind valid core execution to A1/A4/A5 without bypassing delivered-pixel safety | 12 acceptance tests; 48 combined core tests; strict decision schema; only identity or candidate-for-product-guard | acceptance commit | revert additive acceptance commit |
-| P25D2 | IN_PROGRESS | add synthetic consumer conformance fixtures without inventing a D-PCT producer artifact | exact IEEE-754 vectors, descriptor/hash/schema checks, repeatable result | conformance commit | revert additive conformance commit |
-| P25E | NOT_STARTED | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | focused/adjacent tests, diff check, overlap audit, peer snapshot | evidence commit | retain prior stable commits |
+| P25D2 | DONE | add synthetic consumer conformance fixtures without inventing a D-PCT producer artifact | 9 dedicated tests; 57 combined core tests; exact IEEE-754 vectors, descriptor/hash/schema checks and repeatable result | conformance commit | revert additive conformance commit |
+| P25E | IN_PROGRESS | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | focused/adjacent tests, diff check, overlap audit, peer snapshot | evidence commit | retain prior stable commits |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

@@ -5,6 +5,8 @@
 - Mode: C (equal same-project multi-chat collaboration)
 - Owner/chat: `019f9f37-91d9-7b11-b135-ad62bcb32214`
 - Peer task: D-PCT `019f9f3b-d0c2-7f21-b486-1dd902148739`
+- Upstream product task: Neuro-Film main
+  `019f4b76-e70a-75c0-b7ea-b473ab38c200`
 - Parent: Neuro-Film uploaded-reference product capability
 - Status: active
 - Scope:
@@ -18,6 +20,7 @@
   - `src/color_match/**`
   - `tests/test_color_match_*.py`
   - `configs/schemas/reference_core_*.schema.json`
+  - `configs/reference_match_core_consumer_conformance_v1.json`
   - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
@@ -86,6 +89,38 @@
   development adapter and explicitly updated its Goal to preserve active peer
   communication. It changes no shared schema. PST50 BT.709 sensitivity also
   leaves identity ahead of both D-PCT candidates, so P25 remains fail-closed.
+- D-PCT later completed SA-LUT PST50 at stable `883e145`: mean E00 `8.655`
+  versus identity `10.102`, but only 30/50 wins with one-sided sign
+  `p=0.1013`. The implementation remains non-commercial and its checkpoint
+  licence is undeclared. This is a useful candidate signal, not promotion
+  evidence; `identity-fallback` / `candidate-for-product-guard` remains the
+  complete consumer decision range.
+- Live read-only repository refresh now sees D-PCT clean `06d57d4`, adding a
+  strict AceTone development adapter after `883e145`. No shared schema,
+  package or ABI change has been published to this consumer.
+- The user identified Neuro-Film main task
+  `019f4b76-e70a-75c0-b7ea-b473ab38c200` as the product-body development
+  authority. Its live read-only repository state is `60617f9`, with only its
+  own untracked `.codex/`; the active leaf is U5.R2Z1 asymmetric
+  applicability research. P25 does not read or modify that implementation.
+  Main is notified only at a stable consumer delivery point or when an actual
+  interface impact appears, so ordinary research progress is not disturbed.
+
+### 2026-07-28 synthetic consumer conformance snapshot
+
+- P25D2 adds consumer-owned, two-profile exact-bit fixtures for relative
+  display-linear sRGB and Rec.2020. The fixture producer role is explicitly
+  synthetic and contains no D-PCT/Zhuise name or mutable producer artifact.
+- Exact pixel hashes, descriptor identities, path-independent provenance,
+  capability advertisement and schema resolution are verified. Tampered
+  fixture identity and unknown fields fail structurally; an independently
+  rehashed expected-view or capability mutation returns a deterministic failed
+  case instead of silently passing.
+- This proves the Neuro-Film side can consume and adjudicate a frozen wire
+  vector. It does not prove any D-PCT implementation conforms, any platform
+  port agrees, or either relative-display profile is producer-compatible.
+- Verification at the leaf: 9 dedicated and 57 combined core tests pass.
+  P25E owns adjacent regression, overlap and integration preflight.
 
 ## Claim: NFCM-P1 product reference-look engine
 

@@ -836,3 +836,29 @@
   rejected, override, unsupported/invalid/fallback and inconsistent states.
 - Handoff: P25D2 may freeze consumer-owned synthetic wire vectors. Fixture
   producer identity must be visibly synthetic and must not be labeled D-PCT.
+
+## 2026-07-28 - Freeze synthetic core consumer conformance
+
+- Node/parent goal: P25D2 / external-core product consumer boundary.
+- Change: add a strict consumer conformance loader/verifier, exact-bit
+  two-profile fixture, bundle/result Draft 2020-12 schemas and public exports.
+- Fixture boundary: the producer role and identity are explicitly synthetic;
+  no D-PCT/Zhuise algorithm, schema, weight, pixel result or mutable checkout
+  is represented.
+- Profiles: relative display-linear sRGB and Rec.2020 use extended float32
+  samples with negative and above-one values, network-order pixel hashes,
+  exact descriptor identities and path-independent provenance.
+- Failure evidence: fixture hash drift, unknown fields, wrong producer role,
+  insufficient cases, descriptor mismatch and missing advertised profile all
+  fail closed or produce an explicit failed-case result.
+- Verification: 9 dedicated tests and 57 combined core tests pass.
+- Concurrent state: D-PCT live repository is clean at `06d57d4`; its latest
+  communicated SA-LUT result is promising on average but only 30/50 versus
+  identity and remains rights-blocked. No shared producer schema changed.
+- Main authority: the user identified task
+  `019f4b76-e70a-75c0-b7ea-b473ab38c200`; live main is `60617f9`, active on
+  U5.R2Z1, with only its own `.codex/` untracked. No main file is consumed.
+- Propagation: upward identity fallback and A1/A4/A5 remain unchanged;
+  downward adapter/conformance binding is now executable; sideways
+  recipe/replay/report/FilmFX behavior is untouched. P25E owns broad
+  regression and latest-main integration preflight.

@@ -51,6 +51,14 @@ from .core_acceptance import (
     core_acceptance_to_json,
     validate_core_acceptance_decision,
 )
+from .core_conformance import (
+    CORE_CONSUMER_CONFORMANCE_RESULT_SCHEMA_ID,
+    CORE_CONSUMER_CONFORMANCE_SCHEMA_ID,
+    CoreConsumerConformanceCaseResultV1,
+    CoreConsumerConformanceResultV1,
+    core_consumer_conformance_result_to_json,
+    verify_core_consumer_conformance_bundle,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -166,6 +174,8 @@ __all__ = [
     "CAPABILITIES_SCHEMA_ID",
     "CORE_ACCEPTANCE_POLICY_ID",
     "CORE_ACCEPTANCE_SCHEMA_ID",
+    "CORE_CONSUMER_CONFORMANCE_RESULT_SCHEMA_ID",
+    "CORE_CONSUMER_CONFORMANCE_SCHEMA_ID",
     "DIAGNOSTICS_SCHEMA_ID",
     "MATCH_PROFILE_ABSOLUTE_XYZ",
     "MATCH_PROFILE_DISPLAY_REC2020",
@@ -189,6 +199,8 @@ __all__ = [
     "CanonicalEncodingError",
     "CapabilitiesV1",
     "CoreAcceptanceDecisionV1",
+    "CoreConsumerConformanceCaseResultV1",
+    "CoreConsumerConformanceResultV1",
     "ContextInvarianceBatchMetrics",
     "ContextInvarianceMetrics",
     "ContextInvariancePolicy",
@@ -242,6 +254,7 @@ __all__ = [
     "composition_plan_to_json",
     "core_acceptance_from_json",
     "core_acceptance_to_json",
+    "core_consumer_conformance_result_to_json",
     "diagnostics_from_json",
     "diagnostics_to_json",
     "build_file_match_report",
@@ -292,4 +305,5 @@ __all__ = [
     "validate_prepared_view_support",
     "validate_promotion_policy",
     "verify_portable_conformance_bundle",
+    "verify_core_consumer_conformance_bundle",
 ]

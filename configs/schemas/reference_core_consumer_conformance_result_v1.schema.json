@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-consumer-conformance-result-v1.json",
+  "title": "Neuro-Film external core consumer conformance result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "fixture_id",
+    "passed",
+    "case_results"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-consumer-conformance-result.v1"
+    },
+    "fixture_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "case_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/case_result"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "passed",
+        "reasons",
+        "expected_view_id",
+        "actual_view_id"
+      ],
+      "properties": {
+        "case_id": {
+          "$ref": "#/$defs/nonempty"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonempty"
+          },
+          "uniqueItems": true
+        },
+        "expected_view_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "actual_view_id": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

@@ -125,3 +125,28 @@ Evidence:
 - A1/A4/A5 are an exact required tuple;
 - promoted, rejected, research-override, unsupported, invalid, fallback,
   unknown-field and internally inconsistent decisions are covered.
+
+## P25D2 synthetic consumer conformance
+
+The frozen
+`configs/reference_match_core_consumer_conformance_v1.json` bundle exercises
+the consumer adapter without claiming a D-PCT producer implementation:
+
+- two 2x2 extended-float vectors cover relative display-linear sRGB and
+  Rec.2020, including negative and above-one samples;
+- pixels are encoded as exact IEEE-754 binary32 big-endian bits;
+- expected `MatchViewV1` payloads bind pixel, colour-profile, provenance and
+  descriptor identities;
+- one explicitly synthetic `CapabilitiesV1` advertises only the fixture
+  algorithm/schema and both exact Neuro-Film profiles;
+- repeated verification and result serialization are byte-identical;
+- path changes cannot affect the prepared view;
+- tampered identity and unknown fields fail structurally, while a validly
+  rehashed descriptor/capability mismatch produces a failed case.
+
+The fixture text contains neither `D-PCT` nor `Zhuise`. Passing it establishes
+only the Neuro-Film consumer implementation. A real producer must publish and
+pass its own fixed conformance bundle before compatibility can be claimed.
+
+Verification: `9 passed` dedicated; `57 passed` across all external-core
+contract, adapter, acceptance and conformance tests.
