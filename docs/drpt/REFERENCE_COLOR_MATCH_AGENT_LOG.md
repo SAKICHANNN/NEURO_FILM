@@ -1175,3 +1175,46 @@
   established homes; no producer, transaction writer, media or FilmFX change.
 - Handoff: P30 is stable. A later staging/commit integration must consume the
   exact authorization ID and retain rollback-safe all-or-nothing semantics.
+
+## 2026-07-28 - Implement P31 portable product-chain conformance
+
+- Node/parent goal: P31A-C / cross-platform consumer contract evidence.
+- Delivery prerequisite audit: no external candidate has real product
+  promotion plus a frozen invocation package. Direct file-delivery wiring
+  remains closed rather than using a synthetic promoted fixture.
+- Vector: freeze promoted-product and research-override cases across P28,
+  P29 and P30, with ten exact canonical payloads and identities.
+- Independent implementation: standalone C++17 performs its own lowercase
+  hex decoding, SHA-256 and final staging state rule; it contains no D-PCT
+  algorithm, media code or Python call.
+- Windows evidence: MSVC `/O2 /W4 /WX`, 10/10 identity matches, both state
+  matches and noncanonical hex rejection.
+- Android evidence: independently pinned NDK r27d/Clang 18 links the verifier
+  for arm64-v8a and x86_64 with validated ELF machines. No device/JNI/Apple
+  runtime claim.
+- Verification so far: five Windows conformance tests, one Android build test
+  and 82 combined P27-P31 tests pass; compile and diff checks pass.
+- Structure: additive fixture/schema/native verifier/build scripts/tests in
+  established homes. Exact artifacts use LF. No producer or main file changed.
+- Handoff: P31D still owns final full/latest-main propagation and peer
+  snapshot before closure.
+
+## 2026-07-28 - Close P31 portable product-chain propagation
+
+- Node/parent goal: P31D / cross-platform consumer contract evidence.
+- Full verification: 1235 passed, one skipped and the unchanged 36
+  ignored-output/advanced-main asset failures; no colour-match/P31 failure.
+- Latest-main propagation: main `079c7a1`, base `c03c321`; 88 main versus 152
+  consumer changed paths with zero intersection; merge tree `f3febcf9...`.
+- Fresh-checkout synthetic merge `66d2d6e3...` passes 82/82, including MSVC
+  exact execution and pinned Android arm64/x86_64 cross-linking. Its worktree
+  was removed.
+- Concurrent safety: main's modified/untracked source-research files and
+  D-PCT's uncommitted RPSCT files were read-only and never included, moved or
+  deleted.
+- Claim boundary: Python/MSVC identity parity plus Android build evidence does
+  not establish device/Apple execution, producer invocation, image quality or
+  applied delivery.
+- Handoff: P31 is stable for both equal peer tasks. Product commit remains
+  closed until a genuinely promoted candidate and frozen invocation package
+  exist.

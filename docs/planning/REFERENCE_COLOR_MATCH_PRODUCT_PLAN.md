@@ -117,6 +117,10 @@ with a selected stock, but reference matching alone is labeled
 | P30B | DONE | implement atomic authorization envelope | every row must be promoted, non-research and identity-bound | `88b7d53` | full identity fallback |
 | P30C | DONE | prove research override and binding mutations fail closed | promoted control plus override/status/order/hash negatives; 76 focused pass | `88b7d53` | no staging authorization |
 | P30D | DONE | run full/latest-main propagation and peer handoff | 1229 pass/1 skip/36 known environment failures; synthetic merge 76 pass | evidence commit | retain P29 |
+| P31A | DONE | freeze language-neutral P28-P30 product-chain vectors | two discriminating cases and ten canonical identities | `7e34a83` | retain Python contracts |
+| P31B | DONE | independently recompute identities and staging rule in C++17 | MSVC `/W4 /WX`, 10/10 identities, research override negative | `7e34a83` | retain Python authority |
+| P31C | DONE | cross-compile/link consumer verifier for Android | pinned NDK r27d arm64-v8a and x86_64 ELF evidence | `52d4cd8` | no device-runtime claim |
+| P31D | DONE | run full/latest-main propagation and peer handoff | 1235 pass/1 skip/36 known failures; latest-main synthetic merge 82 pass | evidence commit | retain P30 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -228,6 +232,14 @@ research baseline from crossing a product staging boundary merely because its
 pixels pass P29 numeric thresholds. Success means only
 `authorized-for-staging`; commit and applied delivery remain later states.
 See `docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_AUTHORIZATION_EVIDENCE.md`.
+
+P31 freezes the P28-P30 identity chain independently of Python object layout.
+The C++17 verifier hashes only the published language-neutral canonical bytes
+and implements only the final promoted/non-research staging state rule; it is
+not a second producer algorithm. Windows execution and Android cross-linking
+do not establish Android device, Apple, JNI, image-I/O or product-delivery
+readiness. See
+`docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_CHAIN_CONFORMANCE.md`.
 
 ## First-slice algorithm
 

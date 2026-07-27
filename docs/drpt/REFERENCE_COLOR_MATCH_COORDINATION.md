@@ -619,3 +619,17 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   batch identity fallback. Commit/delivery/applied remain absent.
 - Evidence: 76 focused pass; full 1229 pass/1 skip/36 unchanged environment
   failures; latest-main path overlap zero and synthetic merge 76 pass.
+
+### 2026-07-28 P31 portable product-chain conformance stable handoff
+
+- Consumer implementation commits: `7e34a83`, `41295a0`, `52d4cd8`.
+- Two golden chains expose ten exact P28-P30 canonical identities: promoted
+  product staging and research-override full fallback.
+- Independent MSVC C++17 execution matches 10/10 identities and both states;
+  pinned Android NDK r27d links arm64-v8a and x86_64 targets.
+- Evidence ceiling: Android is cross-compile only; no device, JNI, Apple,
+  producer invocation, quality or delivery claim.
+- Verification: 82 focused pass; full 1235 pass/1 skip/36 unchanged failures;
+  latest main `079c7a1`, zero path overlap, synthetic merge 82 pass.
+- Product commit remains closed pending real promotion and a frozen invocation
+  package. No D-PCT interface action is requested.
