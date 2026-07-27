@@ -1542,6 +1542,19 @@
 - Evidence commit: `ff6d632` (`docs: record local delivery verification`).
   P40 is complete as restart integrity, not real candidate admission.
 
+## 2026-07-28 - Freeze P41 main-integration handoff
+
+- Node/parent goal: P41A-B / integrate the completed consumer mechanics
+  without modifying the concurrent main worktree.
+- Scope: docs and coordination only. Pin the P1-P40 payload head, current main
+  and producer snapshots, merge-tree evidence, focused/full checks, ownership
+  boundaries and external blockers.
+- Prohibitions: no merge, cherry-pick, push or edit in either peer repository;
+  no relabeling BMKL or any synthetic candidate as promoted.
+- Current snapshots: consumer `6db15c4`, main `9fea35b`, D-PCT `fa592e2`.
+  BMKL Volga2K confirms a task-profile-dependent mapping family only and
+  changes no producer contract or receipt.
+
 ## 2026-07-28 - Implement and verify P39 atomic local export
 
 - Node/parent goal: P39B-D / local file transaction after P38.
