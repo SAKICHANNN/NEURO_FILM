@@ -1,5 +1,84 @@
 # Reference Color Match Coordination
 
+## Claim: NFCM-P25 D-PCT consumer contract
+
+- Mode: C (equal same-project multi-chat collaboration)
+- Owner/chat: `019f9f37-91d9-7b11-b135-ad62bcb32214`
+- Peer task: D-PCT `019f9f3b-d0c2-7f21-b486-1dd902148739`
+- Parent: Neuro-Film uploaded-reference product capability
+- Status: active
+- Scope:
+  - define a strict, versioned Neuro-Film consumer boundary for a future
+    fixed D-PCT package/ABI;
+  - adapt `WorkingImage` to an explicitly compatible `MatchView`;
+  - bind opaque D-PCT transform identity, diagnostics and capabilities into
+    Neuro-Film replay, safety and A1/A4/A5 acceptance;
+  - preserve the current identity delivery default until promotion gates pass.
+- Files/artifacts allowed:
+  - `src/color_match/**`
+  - `tests/test_color_match_*.py`
+  - `configs/schemas/reference_core_*.schema.json`
+  - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md`
+  - `docs/drpt/REFERENCE_COLOR_MATCH_CORE_ADAPTER_EVIDENCE.md`
+  - `docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md`
+- Files/artifacts forbidden:
+  - every file in `C:\Users\hhvrf\Documents\追色`;
+  - D-PCT algorithm parameters, RAW/HDR/video decoders and native kernels;
+  - Neuro-Film stock identity, calibration, FilmFX implementation and main
+    renderer defaults;
+  - main-task W1/W2/FilmCase implementation and evidence;
+  - mutable cross-repository imports or unpinned runtime paths.
+- Dependencies:
+  - hard: current `WorkingImage` and reference-match canonical identity;
+  - hard: an explicit compatibility profile; matching names never imply pixel
+    or colour-state compatibility;
+  - soft: future fixed D-PCT producer schemas, package/ABI and conformance
+    fixtures;
+  - acceptance: existing A1/A4/A5 promotion gates.
+- Interface contract:
+  - batch-shared `ReferenceIntent` is distinct from a source-bound
+    `TransformBundle`;
+  - a D-PCT algorithm may fit from source plus reference; Neuro-Film must not
+    relabel that result as one source-independent shared look operator;
+  - D-PCT owns canonical rails, luminance semantics, transform components,
+    media provenance, algorithm diagnostics and cross-language golden vectors;
+  - Neuro-Film owns product policy, transactionality, replay, delivered-output
+    safety, batch ordering, cross-context drift gates and FilmFX composition;
+  - opaque transform payloads are accepted only when schema, algorithm,
+    producer build, source/reference fingerprints, canonical hash and
+    capability requirements all validate;
+  - core status is mapped fail-closed; no consumer path may turn unsupported,
+    invalid or unpromoted output into an applied product result.
+- Expected evidence:
+  - strict Python contracts and Draft 2020-12 schemas;
+  - unknown-field, mismatched-fingerprint, rail, hash and capability negative
+    tests;
+  - unchanged existing recipe/replay/report/composition behavior;
+  - a consumer conformance bundle that contains no mutable D-PCT source.
+- Stop condition:
+  - narrow or pause only the overlapping leaf if the peer publishes a
+    conflicting shared schema;
+  - continue independent product leaves without waiting for peer progress;
+  - high-risk/external evidence leaves remain fail-closed while other safe
+    leaves continue.
+- Claim expires: 2026-08-11 or when the consumer contract is integrated or
+  explicitly superseded.
+- Integration owner: this task owns Neuro-Film consumer integration; D-PCT
+  independently owns producer integration. Neither task is subordinate.
+
+### 2026-07-28 peer execution snapshot
+
+- D-PCT stable HEAD `59b72e0` adds only its PST50 cross-scene development
+  evaluator, lock and tests; its worktree is clean.
+- The leaf is CPU-only and changes no shared producer schema, package or ABI.
+- PST50 is a 50-row CC-BY-4.0 development control with explicit sRGB versus
+  BT.709 EOTF sensitivity. It is not independent custody or blind review and
+  its PNG files lack ICC/CICP, so it cannot open product freeze.
+- There is no P25 compatibility impact. Neuro-Film continues the consumer
+  contract leaf without waiting for the 50-row run.
+
 ## Claim: NFCM-P1 product reference-look engine
 
 - Mode: C (same-project multi-chat concurrency)

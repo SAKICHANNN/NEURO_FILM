@@ -90,9 +90,52 @@ with a selected stock, but reference matching alone is labeled
 | P22 | DONE / LINEAR ROUTE CLOSED | reproduce spatially invariant Lab statistics and test a generated-data residual ridge mapper | 8 dedicated tests; 183 focused tests; two byte-exact reserved-row runs | `104d7b3`, `0e8235a` | keep extractor; reject linear mapper and nonlinear rescue on same contract |
 | P23 | DONE / EXTERNAL ROUTES CLOSED | reproduce obtainable CanonCGT/NLUT assets and audit StatLUT/SA-LUT/Neural Preset release boundaries | CanonCGT 20 focused tests and two byte-exact 6x6 reports; pinned rights/assets; no RGB retained | `208dfa8`, `f406234` | retain controls; no product promotion |
 | P24 | DONE / DELIVERY READY | refresh both concurrent tasks, exercise fit/replay/research CLI, run full and clean-merge test evidence | 1081 pass/1 skip/36 known environment failures; fit/replay output hashes exact; latest-main synthetic merge 196/196 pass | delivery evidence commit | repository owner may merge after normal review |
+| P25A | DONE | freeze equal-task Mode C ownership and D-PCT consumer semantics | current clean HEADs, durable claim, explicit allowed/forbidden files, peer intent and stable `59b72e0` snapshot | coordination commit | revert documentation commit |
+| P25B | NOT_STARTED | implement strict `MatchViewV1`, `TransformBundleV1`, `DiagnosticsV1` and `CapabilitiesV1` consumer contracts | schema/Python parity; unknown-field, identity, fingerprint and capability negative tests | contract commit | revert additive contract commit |
+| P25C | NOT_STARTED | implement `WorkingImage` to compatible MatchView adapter | display-linear SDR positive vectors; scene/absolute/unknown rail mismatch fails closed | adapter commit | revert additive adapter commit |
+| P25D | NOT_STARTED | bind fixed producer conformance and A1/A4/A5 acceptance without importing D-PCT source | pinned producer identity, golden-vector verification, existing identity default unchanged | conformance commit | revert additive conformance commit |
+| P25E | NOT_STARTED | run change propagation, adjacent regressions and latest-main integration preflight; publish peer evidence bundle | focused/adjacent tests, diff check, overlap audit, peer snapshot | evidence commit | retain prior stable commits |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
+
+## Equal-task D-PCT integration decision
+
+Parent Plan Node: Neuro-Film uploaded-reference product capability. P25 is an
+additive consumer-integration child of the delivered P1-P24 module; it does not
+reopen or replace D-PCT's independent research tree.
+
+The standalone D-PCT task and this Neuro-Film task are equal, autonomous
+collaborators. D-PCT is the sole authority for matching algorithms, canonical
+scene/display rails, RAW/HDR/video media interpretation, portable transform
+components and native execution. This module is the sole authority for the
+Neuro-Film product boundary, transaction/replay/report behavior, delivered
+safety decisions, A1/A4/A5 acceptance and FilmFX composition.
+
+The integration model is producer/consumer, not source copying. Neuro-Film
+consumes only fixed schemas, package/ABI identities and conformance fixtures.
+It does not import a mutable D-PCT checkout. D-PCT does not reproduce
+Neuro-Film transaction, film-business or FilmFX behavior.
+
+One batch-shared reference intent does not imply one batch-shared algorithm
+transform. Some D-PCT candidates fit from both source and reference. Their
+`TransformBundle` is therefore source-bound unless independent A1/A4/A5
+evidence proves a source-independent operator. Neuro-Film may persist the
+shared intent/policy and an ordered set of source-bound transform bindings
+without overstating batch consistency.
+
+Change propagation is mandatory after every P25 interface leaf. Upward impact
+checks the product claim and identity fallback; downward impact checks adapter,
+replay and conformance children; sideways impact checks recipe/report/safety,
+FilmFX composition, D-PCT producer compatibility and latest-main consumers.
+Validation and documentation evidence are then re-integrated bottom-up before
+the leaf or parent can close.
+
+Parallel integration owner: this task integrates only the Neuro-Film consumer
+branch. The D-PCT peer independently integrates its producer branch. A future
+cross-repository release requires an explicit compatibility/integration leaf
+that pins both commits and schemas; neither task may silently integrate the
+other's mutable checkout.
 
 ## First-slice algorithm
 

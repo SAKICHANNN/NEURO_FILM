@@ -744,3 +744,30 @@
   mandatory.
 - Handoff: repository owner may review and merge the branch. No push or merge
   into main was authorized or performed.
+
+## 2026-07-28 - Start equal-task D-PCT consumer integration
+
+- Node/parent goal: P25 / versioned D-PCT producer-consumer boundary for the
+  Neuro-Film uploaded-reference module.
+- Trigger: the user directed both tasks to continue autonomously as equal
+  peers with efficient cross-task communication and independent long-term
+  Goals.
+- Skills used: `dev-research-reliability` primary; `drpt-bi-governance`,
+  `plan-tracker-discipline`, `project-agent-log-discipline` and
+  `project-structure-steward` as read-only governance/review layers.
+- Live state: this branch started clean at `82baef6`; D-PCT published clean
+  stable HEAD `59b72e0` for its CPU-only PST50 cross-scene professional
+  development evaluator. That commit changes no shared producer interface.
+- Decision: D-PCT is the sole algorithm/media/native authority; Neuro-Film is
+  the sole product/transaction/replay/safety/A1-A4-A5/FilmFX authority.
+  Neither task is subordinate.
+- Interface correction: preserve one shared `ReferenceIntent`, but allow
+  source-bound `TransformBundle` objects for source-plus-reference fitting.
+  Do not claim a shared cross-content operator until A1/A4/A5 pass.
+- Files claimed: `src/color_match/**`, matching tests and
+  `reference_core_*.schema.json`, plus the named product plan, coordination,
+  evidence and agent-log documents. D-PCT source and main-task W1/W2 files are
+  forbidden.
+- Handoff state: P25A documents the Mode C claim. P25B may implement only an
+  additive consumer acceptance contract; a fixed D-PCT producer schema remains
+  a future compatibility dependency, not an inferred current API.
