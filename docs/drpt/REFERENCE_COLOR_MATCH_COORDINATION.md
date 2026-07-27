@@ -12,6 +12,7 @@
   `WorkingImage` sources.
 - Files/artifacts allowed:
   - `src/color_match/**`
+  - `scripts/match_reference_color.py`
   - `tests/test_color_match_*.py`
   - `docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md`
   - `docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md`

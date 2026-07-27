@@ -208,3 +208,19 @@
 - No `src/color_match` test and no new failure family appears.
 - Decision: preserve historical assets and hashes; do not rewrite unrelated
   evidence to make a secondary worktree's full suite artificially green.
+
+## 2026-07-27 - Add executable CLI and provenance report
+
+- Changed: added `scripts/match_reference_color.py` and versioned
+  `neuro-film.reference-match-report.v1`.
+- Contract: one reference, repeated source/output pairs, one recipe and one
+  report. The report binds reference file/pixel identity, every source/output
+  hash, candidate diagnostics, guard policy and fallback reasons.
+- Safety: source/output cardinality mismatch returns exit code 2 and leaves no
+  output, recipe or report. Reports are written atomically and cannot overwrite
+  a reference, source, output or recipe.
+- Verification: 103 focused reference-match/preprocess/Lab/gamut tests pass,
+  including subprocess CLI execution with two source images and exact repeated
+  report bytes.
+- Structure: CLI is deliberately thin; no renderer default, codec, W1/S4 or
+  D-PCT file changed.

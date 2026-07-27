@@ -40,6 +40,11 @@ from .replay import (
     replay_reference_batch_guarded,
     save_reference_look_recipe,
 )
+from .reporting import (
+    REFERENCE_MATCH_REPORT_SCHEMA_ID,
+    build_file_match_report,
+    save_file_match_report,
+)
 from .safety import (
     REFERENCE_RENDER_GUARD_POLICY_ID,
     GuardedReferenceMatchResult,
@@ -52,6 +57,7 @@ from .safety import (
 
 __all__ = [
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
+    "REFERENCE_MATCH_REPORT_SCHEMA_ID",
     "REFERENCE_RENDER_GUARD_POLICY_ID",
     "REFERENCE_COMPOSITION_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
@@ -72,6 +78,7 @@ __all__ = [
     "fit_reference_look",
     "evaluate_known_operator_batch",
     "build_reference_composition",
+    "build_file_match_report",
     "load_reference_look_recipe",
     "match_reference_files",
     "recipe_from_json",
@@ -83,6 +90,7 @@ __all__ = [
     "render_reference_look",
     "render_reference_look_guarded",
     "save_reference_look_recipe",
+    "save_file_match_report",
     "validate_recipe",
     "validate_reference_composition",
     "validate_guard_policy",

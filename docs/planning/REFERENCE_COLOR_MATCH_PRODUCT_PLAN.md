@@ -65,6 +65,7 @@ with a selected stock, but reference matching alone is labeled
 | P3 | DONE | JSON roundtrip and replay | 51 focused/existing colour tests pass | `8c7d45e` | revert commit |
 | P4 | DONE | file-level SDR image adapter | 67 focused/preprocess tests pass | `23221fa` | revert commit |
 | P5 | DONE | regression/integration evidence | 84 focused tests; full-suite result classified | `8d3f60c` | release claim |
+| P6 | DONE | thin CLI + deterministic provenance report | 103 focused/preprocess tests pass | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -125,6 +126,11 @@ are the final photographic algorithm.
   8/16-bit outputs and real preprocessing regressions. Repeated output files
   and recipes are byte-identical; a late invalid source leaves no staged or
   committed partial batch.
+- P6: `103 passed` after adding a thin one-reference/N-source CLI and atomic
+  JSON report. Reports bind reference file/pixel hashes, recipe identity,
+  source/output hashes, candidate diagnostics and safety/fallback decisions.
+  Batch cardinality failure exits with code 2 before any output, recipe or
+  report is created.
 
 ### Pre-existing worktree-line-ending failure
 
@@ -220,6 +226,23 @@ Until that bridge exists:
 
 This is an intentional fail-closed integration result, not an unfinished
 metadata rename.
+
+## Current executable entrypoint
+
+```powershell
+python scripts/match_reference_color.py `
+  --reference reference.png `
+  --source source-a.jpg --output matched-a.png `
+  --source source-b.tiff --output matched-b.png `
+  --recipe reference-look.json `
+  --report reference-match-report.json `
+  --bit-depth 16
+```
+
+The command writes one recipe, N ordered image outputs and one deterministic
+provenance report. Its stdout is a compact JSON summary with applied and
+identity-fallback counts. The script is a thin product adapter; algorithm,
+safety and transactional image behavior remain in `src/color_match`.
 
 ## Verification and rollback
 

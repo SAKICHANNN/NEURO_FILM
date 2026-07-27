@@ -22,6 +22,9 @@ match_reference_files(reference path, N source paths, N output paths)
 
 build_reference_composition(recipe, optional verified film profile)
     -> one colour owner + optional film-effects-only provenance
+
+match_reference_color.py + build_file_match_report(result)
+    -> executable batch + deterministic hash/diagnostic/safety report
 ```
 
 The recipe claim ceiling is `reference-look` and its evidence grade is
@@ -38,6 +41,8 @@ permits `calibrated-reference`.
 - `src/color_match/composition.py`
 - `src/color_match/evaluation.py`
 - `src/color_match/safety.py`
+- `src/color_match/reporting.py`
+- `scripts/match_reference_color.py`
 - `src/color_match/__init__.py`
 - `tests/test_color_match_contracts.py`
 - `tests/test_color_match_render.py`
@@ -46,6 +51,7 @@ permits `calibrated-reference`.
 - `tests/test_color_match_composition.py`
 - `tests/test_color_match_evaluation.py`
 - `tests/test_color_match_safety.py`
+- `tests/test_color_match_reporting.py`
 - branch-specific coordination, plan, log and this evidence record
 
 No forbidden W1/W2/S4, global tracker, renderer-default or standalone D-PCT
@@ -139,6 +145,14 @@ with reference-white nits) are semantically different from this module's
 relative linear-sRGB SDR rail. A3 is therefore contract-mapped but intentionally
 closed at the pixel bridge. This branch contains no D-PCT RAW, HDR, DNG, video
 or platform decoder implementation.
+
+## Executable delivery evidence
+
+The CLI exercises the real file adapter in a subprocess with one reference and
+two ordered sources. It writes two 16-bit outputs, one replayable recipe and one
+atomic report. A cardinality mismatch returns code 2 with no partial artifact.
+The report is byte-repeatable and covers all run inputs, outputs, candidate
+diagnostics and product safety decisions.
 
 ## Change propagation
 
