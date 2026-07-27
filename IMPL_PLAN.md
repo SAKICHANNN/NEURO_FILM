@@ -251,6 +251,15 @@ tetrahedron produces `5p - 2` and maps the unit cube to `[-2,3]`. The formal
 repeat must reproduce the theorem and both witnesses before the method can be
 closed as affine-only. No image, CPLEX, interactive-local or film claim opens.
 
+The U5.R2X0 formal reports now repeat byte-for-byte. Direct equation (5) and
+the collapsed affine operator differ by at most `9.99e-16` across 10,000
+queries; weight partition and source-colour reconstruction also pass below
+`3e-15`. The valid orientation witness has determinant `-1`, and the valid
+range witness is exactly `5p-2`, mapping the unit cube to `[-2,3]`. The
+automatic global path therefore closes as an affine selector with weaker
+structural guarantees than the current bounded O0 family. Interactive local
+editing remains outside the theorem; no CPLEX/image/capacity rescue opens.
+
 `RF0.4/SF0.1`, `SF0.2` and `SF0.3` are complete: 189 BlueNeg objects /
 227,287,697 bytes are hash-verified and decode-clean under
 `data/raw/blueneg_stock_pilots_v1`. Gold 100-5 is the only display-operator

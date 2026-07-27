@@ -4601,3 +4601,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   source vertices to map one-to-one to `TV`. Six focused tests and the full
   `967 passed` CPU suite now pass. Formal exact-repeat execution is the next
   ready action; Goal continues.
+
+## 2026-07-27 - Close U5.R2X0 as an affine-only global method
+
+- **Reproducibility:** both analytic reports bind commit
+  `ec16c4b2bbbccc4f2ea686877030bb5533c74bfc` and config SHA-256
+  `1634bb5042939276aed93450aaa7f2a11f279fd099c9aea9c7b0e6d11eeb5793`.
+  They are byte-identical at
+  `13203413CF6606F326544A07BBA0A6368B1FD50E8CBFB2164EA4A3CC15C7C763`;
+  stderr logs are empty.
+- **Theorem evidence:** direct equation (5) and the collapsed affine operator
+  agree to `9.99e-16` over 10,000 queries. Weight-sum and equation (3)
+  reconstruction errors are `2.89e-15` and `3.33e-16`; transport row/column
+  errors are zero.
+- **Structural witnesses:** a valid red/blue permutation has determinant
+  `-1`. A valid compact-source tetrahedron gives `p'=5p-2` and maps the RGB
+  cube to `[-2,3]`. Published transport constraints alone therefore
+  guarantee neither positive orientation nor range.
+- **Decision:** branch `analytic_affine_only_close`. Palette extraction and
+  CPLEX select affine coefficients but do not add global nonlinearity. Do not
+  reimplement CPLEX, run images, clip/project, add capacity or generalize the
+  theorem to the interactive local path.
+- **Handoff:** U5.R2Y0 is the next algorithm-priority leaf: audit whether the
+  NegClone stock-fingerprint method learns stock evidence or averages
+  content/exposure/texture shortcuts. No film pixels, fitting/training, LSM
+  or production integration opens; Goal continues.

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2x0-palette-transfer-affine-collapse-decision-v1",
+  "experiment_id": "u5.r2x0-palette-transfer-affine-collapse-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2X0",
+  "software_commit": "ec16c4b2bbbccc4f2ea686877030bb5533c74bfc",
+  "config_sha256": "1634bb5042939276aed93450aaa7f2a11f279fd099c9aea9c7b0e6d11eeb5793",
+  "report_a_sha256": "13203413cf6606f326544a07bba0a6368b1fd50e8cbfb2164ea4a3cc15c7c763",
+  "report_b_sha256": "13203413cf6606f326544a07bba0a6368b1fd50e8cbfb2164ea4a3cc15c7c763",
+  "repeat_report_sha256_equal": true,
+  "stderr_logs_empty": true,
+  "decision_branch": "analytic_affine_only_close",
+  "equivalence": {
+    "query_count": 10000,
+    "direct_vs_affine_maximum_absolute_error": 9.992007221626409e-16,
+    "weight_sum_maximum_absolute_error": 2.886579864025407e-15,
+    "source_colour_reconstruction_maximum_absolute_error": 3.3306690738754696e-16,
+    "transport_row_sum_error": 0.0,
+    "transport_column_sum_error": 0.0
+  },
+  "orientation_witness": {
+    "valid_transport": true,
+    "determinant": -1.0,
+    "positive_orientation_guaranteed": false
+  },
+  "range_witness": {
+    "valid_transport": true,
+    "matrix": "5I",
+    "bias": "-2",
+    "cube_output_minimum": -2.000000000000002,
+    "cube_output_maximum": 3.0000000000000018,
+    "rgb_cube_guaranteed": false
+  },
+  "images_accessed": 0,
+  "external_code_or_cplex_executed": false,
+  "automatic_visual_shortlist_generated": false,
+  "interpretation": "For fixed palettes and the constrained transport, the paper's automatic global path is exactly one affine RGB operator. Palette extraction and CPLEX select its coefficients but do not add nonlinear response. The published nonnegative row/column-sum transport constraints alone guarantee neither positive orientation nor RGB-cube range.",
+  "scope_exclusions": [
+    "interactive local-region palette constraints",
+    "palette extraction quality",
+    "natural-image visual quality",
+    "video interpolation beyond per-frame fixed affine form",
+    "film or stock operator identification"
+  ],
+  "forbidden_rescues": [
+    "reimplement or tune the proprietary CPLEX stage",
+    "run the automatic global method on project images",
+    "claim the interactive local path is affine-only",
+    "add clipping or projection and call it the published method",
+    "promote the method as a film or stock learner"
+  ],
+  "next_ready_leaf": "U5.R2Y0 NegClone stock-fingerprint content-shortcut audit",
+  "claim_ceiling": "repeat-exact analytic and synthetic evidence about the automatic global path for fixed palettes and transport only; no claim about interactive local editing, real-image quality, film, stock, calibration or unpaired operator identification"
+}
