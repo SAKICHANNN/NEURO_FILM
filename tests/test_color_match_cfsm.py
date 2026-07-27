@@ -15,6 +15,7 @@ from src.color_match.research import (
     CFSMProjectionPolicy,
     cfsm_candidate_from_json,
     cfsm_candidate_to_json,
+    fit_cfsm_analytic_candidate,
     fit_cfsm_batch_candidate,
     fit_cfsm_candidate,
     render_cfsm_batch,
@@ -156,6 +157,38 @@ def test_cfsm_batch_prior_emits_one_fixed_replayable_operator() -> None:
         np.array_equal(left.pixels, right.pixels)
         for left, right in zip(first, second)
     )
+
+
+def test_cfsm_analytic_priors_are_versioned_deterministic_and_distinct() -> None:
+    reference = _cube_reference()
+    kinds = (
+        "analytic-low-key-neutral-v1",
+        "analytic-mid-key-neutral-v1",
+        "analytic-wide-chroma-v1",
+    )
+    candidates = tuple(
+        fit_cfsm_analytic_candidate(reference, prior_kind=kind)
+        for kind in kinds
+    )
+    repeats = tuple(
+        fit_cfsm_analytic_candidate(reference, prior_kind=kind)
+        for kind in kinds
+    )
+
+    assert [item.candidate_id for item in candidates] == [
+        item.candidate_id for item in repeats
+    ]
+    assert len({item.candidate_id for item in candidates}) == len(kinds)
+    assert [
+        item.diagnostics.canonical_prior_mode for item in candidates
+    ] == list(kinds)
+    assert all(
+        cfsm_candidate_from_json(cfsm_candidate_to_json(item)).candidate_id
+        == item.candidate_id
+        for item in candidates
+    )
+    with pytest.raises(ReferenceMatchContractError, match="unsupported"):
+        fit_cfsm_analytic_candidate(reference, prior_kind="post-hoc")
 
 
 def test_cfsm_known_operator_challenger_improves_cross_content() -> None:

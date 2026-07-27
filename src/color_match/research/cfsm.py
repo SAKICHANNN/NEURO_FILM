@@ -37,9 +37,24 @@ from ..contracts import ReferenceMatchContractError
 
 CFSM_ALGORITHM_ID = "canonical-factorized-safe-match.gaussian-v0"
 CFSM_BATCH_ALGORITHM_ID = "canonical-factorized-safe-match.batch-gaussian-v1"
+CFSM_ANALYTIC_ALGORITHM_ID = (
+    "canonical-factorized-safe-match.analytic-photo-prior-v1"
+)
 CFSM_CANDIDATE_SCHEMA_ID = "neuro-film.cfsm-candidate.v0"
 _SUPPORTED_ALGORITHM_IDS = frozenset(
-    {CFSM_ALGORITHM_ID, CFSM_BATCH_ALGORITHM_ID}
+    {
+        CFSM_ALGORITHM_ID,
+        CFSM_BATCH_ALGORITHM_ID,
+        CFSM_ANALYTIC_ALGORITHM_ID,
+    }
+)
+_ANALYTIC_PRIOR_SEED = 2026072701
+_ANALYTIC_PRIOR_KINDS = frozenset(
+    {
+        "analytic-low-key-neutral-v1",
+        "analytic-mid-key-neutral-v1",
+        "analytic-wide-chroma-v1",
+    }
 )
 
 
@@ -164,6 +179,39 @@ def _cube_grid(axis_size: int) -> np.ndarray:
         np.meshgrid(axis, axis, axis, indexing="ij"),
         axis=-1,
     )
+
+
+def _analytic_photographic_prior(kind: str, sample_count: int) -> np.ndarray:
+    """Generate one versioned natural-image-like RGB moment prior."""
+
+    if kind not in _ANALYTIC_PRIOR_KINDS:
+        raise ReferenceMatchContractError(
+            f"unsupported CFSM analytic prior: {kind}"
+        )
+    digest = hashlib.sha256(
+        f"{_ANALYTIC_PRIOR_SEED}:{kind}".encode("ascii")
+    ).digest()
+    rng = np.random.default_rng(int.from_bytes(digest[:8], "little"))
+    if kind == "analytic-low-key-neutral-v1":
+        alpha, beta, chroma = 1.35, 3.8, 0.13
+    elif kind == "analytic-mid-key-neutral-v1":
+        alpha, beta, chroma = 2.1, 2.8, 0.15
+    else:
+        alpha, beta, chroma = 1.55, 2.25, 0.24
+    luminance = 0.01 + 0.98 * rng.beta(alpha, beta, sample_count)
+    opponent_a = rng.normal(0.0, 1.0, sample_count)
+    opponent_b = rng.normal(0.0, 1.0, sample_count)
+    scale = chroma * (
+        0.25 + 0.75 * 4.0 * luminance * (1.0 - luminance)
+    )
+    rgb = np.column_stack(
+        (
+            luminance + scale * (0.55 * opponent_a + 0.25 * opponent_b),
+            luminance + scale * (-0.35 * opponent_a + 0.15 * opponent_b),
+            luminance + scale * (-0.20 * opponent_a - 0.40 * opponent_b),
+        )
+    )
+    return np.clip(rgb, 0.0, 1.0)
 
 
 def _reference_samples(
@@ -293,6 +341,16 @@ def validate_cfsm_candidate(candidate: CFSMCandidate) -> None:
     ):
         raise ReferenceMatchContractError(
             "CFSM batch canonical-prior diagnostics mismatch"
+        )
+    if candidate.algorithm_id == CFSM_ANALYTIC_ALGORITHM_ID and (
+        candidate.diagnostics.canonical_prior_mode
+        not in _ANALYTIC_PRIOR_KINDS
+        or candidate.diagnostics.source_image_count != 0
+        or candidate.diagnostics.canonical_prior_sample_count
+        != candidate.policy.prior_axis_size**3
+    ):
+        raise ReferenceMatchContractError(
+            "CFSM analytic canonical-prior diagnostics mismatch"
         )
     expected_fallback = float(strength) == 0.0
     if (
@@ -465,6 +523,29 @@ def fit_cfsm_candidate(
         policy=resolved,
         algorithm_id=CFSM_ALGORITHM_ID,
         prior_mode="fixed-uniform-cube",
+        source_image_count=0,
+    )
+
+
+def fit_cfsm_analytic_candidate(
+    reference: WorkingImage,
+    *,
+    prior_kind: str,
+    policy: CFSMProjectionPolicy | None = None,
+) -> CFSMCandidate:
+    """Fit one pre-registered analytic photographic-prior challenger."""
+
+    resolved = policy or CFSMProjectionPolicy()
+    _validate_policy(resolved)
+    _validate_image(reference, "reference")
+    sample_count = resolved.prior_axis_size**3
+    prior = _analytic_photographic_prior(prior_kind, sample_count)
+    return _fit_cfsm_from_prior(
+        reference,
+        prior,
+        policy=resolved,
+        algorithm_id=CFSM_ANALYTIC_ALGORITHM_ID,
+        prior_mode=prior_kind,
         source_image_count=0,
     )
 
@@ -709,6 +790,7 @@ def render_cfsm_batch(
 
 __all__ = [
     "CFSM_ALGORITHM_ID",
+    "CFSM_ANALYTIC_ALGORITHM_ID",
     "CFSM_BATCH_ALGORITHM_ID",
     "CFSM_CANDIDATE_SCHEMA_ID",
     "CFSMCandidate",
@@ -717,6 +799,7 @@ __all__ = [
     "cfsm_candidate_from_json",
     "cfsm_candidate_to_json",
     "compute_cfsm_candidate_id",
+    "fit_cfsm_analytic_candidate",
     "fit_cfsm_batch_candidate",
     "fit_cfsm_candidate",
     "render_cfsm_batch",

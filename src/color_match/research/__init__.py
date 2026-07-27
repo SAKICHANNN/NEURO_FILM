@@ -7,6 +7,7 @@ the normal reference-match promotion gates before moving into
 
 from .cfsm import (
     CFSM_ALGORITHM_ID,
+    CFSM_ANALYTIC_ALGORITHM_ID,
     CFSM_BATCH_ALGORITHM_ID,
     CFSM_CANDIDATE_SCHEMA_ID,
     CFSMCandidate,
@@ -15,6 +16,7 @@ from .cfsm import (
     cfsm_candidate_from_json,
     cfsm_candidate_to_json,
     compute_cfsm_candidate_id,
+    fit_cfsm_analytic_candidate,
     fit_cfsm_batch_candidate,
     fit_cfsm_candidate,
     render_cfsm_batch,
@@ -24,6 +26,7 @@ from .cfsm import (
 
 __all__ = [
     "CFSM_ALGORITHM_ID",
+    "CFSM_ANALYTIC_ALGORITHM_ID",
     "CFSM_BATCH_ALGORITHM_ID",
     "CFSM_CANDIDATE_SCHEMA_ID",
     "CFSMCandidate",
@@ -32,6 +35,7 @@ __all__ = [
     "cfsm_candidate_from_json",
     "cfsm_candidate_to_json",
     "compute_cfsm_candidate_id",
+    "fit_cfsm_analytic_candidate",
     "fit_cfsm_batch_candidate",
     "fit_cfsm_candidate",
     "render_cfsm_batch",
