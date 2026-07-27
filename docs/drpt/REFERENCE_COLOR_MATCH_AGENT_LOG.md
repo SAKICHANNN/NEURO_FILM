@@ -1259,3 +1259,22 @@
 - Handoff: P32 is complete and both peer tasks received the audit intent. The
   next consumer leaf must not precede a real producer invocation artifact
   unless it is purely fail-closed readiness evidence.
+
+## 2026-07-28 - Freeze P33 external staging transaction intent
+
+- Node/parent goal: P33A / consumer-owned durable staging after P30.
+- DoR: P27 owns exact isolated output bytes, P28 owns ordered N-source
+  binding, P29 owns numeric eligibility and P30 owns genuine non-research
+  promotion authorization. No producer invocation is assumed.
+- Contract: require one shared reference intent plus source-bound transforms;
+  independently revalidate authorization, batch row, receipt, output view,
+  profile and destination bindings before the first write.
+- Atomicity: stage every SDR file and one strict report, then commit all or
+  restore every previous destination. Any fallback or mismatch writes
+  nothing.
+- Claim ceiling: `committed-to-staging-not-delivered`; no `applied` state,
+  UI exposure, FilmFX attribution or final delivery.
+- Scope: additive consumer module/schema/tests/docs only. Producer ABI,
+  algorithms, media, HDR/RAW/video and main files are forbidden.
+- Coordination: both equal peer tasks received intent and may continue their
+  independent leaves without waiting.
