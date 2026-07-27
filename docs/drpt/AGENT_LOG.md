@@ -5027,3 +5027,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   selection, clamp, smoothing, neutral gauge, LUT or neural rescue. A full
   pass can only open a new AB2 contract, not automatically render images.
   Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AB1 frozen evaluator
+
+- **Implementation:** extend the strict DoRF parser with exact suffix/scale
+  triplet selection and add an isolated synthetic evaluator for the frozen
+  direct response, shared mean curve, log-least-squares channel powers, joint
+  basic fit, neutral chroma, interior derivatives, range and pairwise bank
+  diversity.
+- **Representation boundary:** the exact per-channel monotone ceiling is the
+  candidate itself by construction; the evaluator records this limit and does
+  not infer cross-channel colour interaction.
+- **Verification/handoff:** eight AB0/AB1 targeted tests, `py_compile`,
+  `git diff --check` and the full CPU suite pass (`1003 passed`). Numerical
+  candidate metrics have not been inspected. Commit this implementation
+  before two formal runs from the fixed software revision. Goal remains
+  ACTIVE.

@@ -103,6 +103,33 @@ def _channel_name(name: str) -> tuple[str, str] | None:
     return None
 
 
+def strict_rgb_triplets(
+    curves: list[DorfCurve],
+    *,
+    eligible_scales: set[str] | None = None,
+) -> dict[str, dict[str, DorfCurve]]:
+    groups: dict[str, dict[str, DorfCurve]] = defaultdict(dict)
+    for curve in curves:
+        parsed = _channel_name(curve.name)
+        if parsed is None:
+            continue
+        base, channel = parsed
+        if channel in groups[base]:
+            raise DorfArchiveError(f"duplicate strict channel for {base}/{channel}")
+        groups[base][channel] = curve
+    result: dict[str, dict[str, DorfCurve]] = {}
+    for base, channels in groups.items():
+        if set(channels) != {"red", "green", "blue"}:
+            continue
+        scales = {curve.scale for curve in channels.values()}
+        if len(scales) != 1:
+            continue
+        if eligible_scales is not None and next(iter(scales)) not in eligible_scales:
+            continue
+        result[base] = channels
+    return dict(sorted(result.items()))
+
+
 def inventory(curves: list[DorfCurve]) -> dict[str, Any]:
     groups: dict[str, dict[str, DorfCurve]] = defaultdict(dict)
     unmatched: list[str] = []
