@@ -1875,6 +1875,21 @@
   calibration result, model, fixture, capability or package. No compatibility
   mapping opens.
 
+## 2026-07-28 - Freeze P48 shared-batch numeric guard
+
+- Node/parent goal: P48A-D / delivered-pixel safety after P47.
+- Reuse: exact P29 numeric thresholds and boundary definition; no relaxed
+  policy for shared operators.
+- Facts: each source receipt must bind producer diagnostics identity and
+  finite OOG/clipping/projection/output-range facts. Consumer independently
+  verifies output min/max and measures new-boundary fraction from exact pixels.
+- Atomicity: one complete ordered decision per P47 source under one policy;
+  any failed source makes the entire batch identity fallback.
+- Boundary: numeric safety is not A1/A4/A5, aesthetic approval, product
+  authorization, staging or delivery.
+- DoD: additive module/schema/tests, adversarial binding mutations,
+  adjacent/full/latest-main propagation and peer handoff.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

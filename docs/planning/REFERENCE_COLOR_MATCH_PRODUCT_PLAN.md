@@ -181,6 +181,10 @@ with a selected stock, but reference matching alone is labeled
 | P47B | DONE | implement shared operator/apply/batch contracts | opaque producer bundle; exact output bytes; no producer parameter schema | `02ba183`; schema + 14 tests | no algorithm |
 | P47C | DONE | reject per-source refit and mixed-bundle batches | duplicate/missing/reordered source, foreign reference/profile, mutable pixels and partial batch fail closed | `02ba183`; mutation tests | identity fallback |
 | P47D | DONE | propagate and hand off future producer requirements | 564 combined; 1370 pass/1 skip/36 known; latest-main merge 38 pass/4 expected skip | evidence commit | await callable successor |
+| P48A | IN_PROGRESS | freeze shared-apply numeric facts and atomic guard | reuse P29 thresholds; bind producer diagnostics plus independently measured output range/boundary | plan commit | retain P47 candidate-only |
+| P48B | TODO | implement per-source facts/decision and batch aggregation | every source exact receipt; one policy; any failure forces whole-batch fallback | focused tests/schema | no authorization |
+| P48C | TODO | prove facts/output/policy/order tamper closure | nonfinite/range/fraction/diagnostics/receipt/missing/mixed-policy mutations fail closed | mutation tests | identity fallback |
+| P48D | TODO | propagate and peer handoff | adjacent/full/latest-main evidence and stable snapshot | evidence commit | await producer facts |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
