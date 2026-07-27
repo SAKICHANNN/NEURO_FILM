@@ -244,6 +244,16 @@ from .shared_staging_transaction import (
     external_shared_staging_run_to_json,
     validate_external_shared_staging_run_v1,
 )
+from .shared_staging_verification import (
+    EXTERNAL_SHARED_STAGING_VERIFICATION_CLAIM_CEILING,
+    EXTERNAL_SHARED_STAGING_VERIFICATION_SCHEMA_ID,
+    ExternalSharedStagingVerificationV1,
+    VerifiedExternalSharedStagingOutputV1,
+    external_shared_staging_verification_from_json,
+    external_shared_staging_verification_to_json,
+    validate_external_shared_staging_verification_v1,
+    verify_external_shared_staging_v1,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -587,6 +597,10 @@ __all__ = [
     "CommittedExternalSharedStagingV1",
     "ExternalSharedStagedOutputV1",
     "ExternalSharedStagingRunV1",
+    "EXTERNAL_SHARED_STAGING_VERIFICATION_CLAIM_CEILING",
+    "EXTERNAL_SHARED_STAGING_VERIFICATION_SCHEMA_ID",
+    "ExternalSharedStagingVerificationV1",
+    "VerifiedExternalSharedStagingOutputV1",
     "evaluate_successor_declaration_v1",
     "successor_declaration_id_v1",
     "make_shared_reference_operator_v1",
@@ -615,6 +629,10 @@ __all__ = [
     "external_shared_staging_run_from_json",
     "external_shared_staging_run_to_json",
     "validate_external_shared_staging_run_v1",
+    "external_shared_staging_verification_from_json",
+    "external_shared_staging_verification_to_json",
+    "validate_external_shared_staging_verification_v1",
+    "verify_external_shared_staging_v1",
     "invoke_dpct_package_v1",
     "prepare_dpct_invocation_request_v1",
     "verify_dpct_invocation_output_v1",

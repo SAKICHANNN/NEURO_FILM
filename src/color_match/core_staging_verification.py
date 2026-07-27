@@ -3,13 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, replace
-import hashlib
 import json
 from pathlib import Path
 import re
 from typing import Any, Mapping
-
-from src.inference import sha256_file
 
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -17,6 +14,7 @@ from .core_staging_transaction import (
     ExternalCoreStagingRunV1,
     external_core_staging_run_from_json,
 )
+from .verification_io import read_hashed_utf8_report, verify_hashed_file
 
 
 EXTERNAL_CORE_STAGING_VERIFICATION_SCHEMA_ID = (
@@ -26,7 +24,6 @@ EXTERNAL_CORE_STAGING_VERIFICATION_CLAIM_CEILING = (
     "verified-staging-not-delivered"
 )
 _STATE = "verified-staging"
-_MAX_REPORT_BYTES = 16 * 1024 * 1024
 _HASH = re.compile(r"^[0-9a-f]{64}$")
 _KEYS = {
     "schema_id",
@@ -117,33 +114,11 @@ def _read_report(
     *,
     expected_sha256: str,
 ) -> tuple[ExternalCoreStagingRunV1, str]:
-    _sha256(expected_sha256, "expected_report_sha256")
-    if not path.is_file():
-        raise ReferenceMatchContractError(
-            "external staging report must be an existing file"
-        )
-    try:
-        size = path.stat().st_size
-        raw = path.read_bytes()
-    except OSError as exc:
-        raise ReferenceMatchContractError(
-            "external staging report is unreadable"
-        ) from exc
-    if size <= 0 or size > _MAX_REPORT_BYTES or len(raw) != size:
-        raise ReferenceMatchContractError(
-            "external staging report violates the bounded size contract"
-        )
-    digest = hashlib.sha256(raw).hexdigest()
-    if digest != expected_sha256:
-        raise ReferenceMatchContractError(
-            "external staging report hash mismatch"
-        )
-    try:
-        encoded = raw.decode("utf-8")
-    except UnicodeError as exc:
-        raise ReferenceMatchContractError(
-            "external staging report must be UTF-8"
-        ) from exc
+    encoded, digest, _resolved = read_hashed_utf8_report(
+        path,
+        expected_sha256=expected_sha256,
+        label="external staging report",
+    )
     return external_core_staging_run_from_json(encoded), digest
 
 
@@ -176,25 +151,16 @@ def verify_external_core_staging_v1(
     outputs: list[VerifiedExternalCoreStagingOutputV1] = []
     for row in run.outputs:
         path = Path(row.output_path)
-        if not path.is_file():
-            raise ReferenceMatchContractError(
-                f"external staged output {row.source_index} is missing"
-            )
-        try:
-            digest = sha256_file(path)
-        except OSError as exc:
-            raise ReferenceMatchContractError(
-                f"external staged output {row.source_index} is unreadable"
-            ) from exc
-        if digest != row.output_file_sha256:
-            raise ReferenceMatchContractError(
-                f"external staged output {row.source_index} hash mismatch"
-            )
+        digest, resolved_output = verify_hashed_file(
+            path,
+            expected_sha256=row.output_file_sha256,
+            label=f"external staged output {row.source_index}",
+        )
         outputs.append(
             VerifiedExternalCoreStagingOutputV1(
                 source_index=row.source_index,
                 apply_receipt_id=row.apply_receipt_id,
-                output_path=str(path.resolve(strict=True)),
+                output_path=resolved_output,
                 output_file_sha256=digest,
             )
         )
