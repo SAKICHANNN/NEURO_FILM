@@ -5135,3 +5135,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision/handoff:** close `effect_too_weak`; no timestep/diffusion/
   reservoir rescue, AC2, photographs, Filmulator port or integration.
   Continue Ultimate through a distinct ready leaf. Goal remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AD0 spektrafilm spatial-DIR source audit
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AD0`; DRPT L2/Mode A,
+  `dev-research-reliability` primary with AI/ML, research, planning, agent-log
+  and structure governance as read-only secondary disciplines.
+- **Live state:** Goal remains active at `33493ac`; only protected `.codex/`
+  and ignored `tmp/` are untracked. No Python/download process survived the
+  reboot, and no concurrent tracked change was found.
+- **Exact source:** restore an ignored shallow checkout of
+  `andreavolpato/spektrafilm` at
+  `3bb2c2d2801ff68b92019cf1dbcbb133d60832bc`. Record exact GPL code,
+  CC-BY-SA profile/LUT, README, coupler, parameter-digester and schema hashes.
+- **Non-duplication:** RF2.C0 set `deactivate_spatial_effects=true`; the pinned
+  digester forced DIR `diffusion_size_um=0` while the non-spatial same/inter-
+  layer correction remained active. Spatial inhibitor diffusion is therefore
+  not evidence already supplied by RF2.C0.
+- **Decision/rights:** one ignored-runtime Ektar100/fixed-e0 spatial-on/off
+  ablation may proceed. No external source/profile/LUT is copied or linked;
+  no teacher, fitting, training, stock response, calibration or integration
+  follows. AD1 must freeze defaults and automatic artifact gates before
+  rendering. Goal remains ACTIVE.

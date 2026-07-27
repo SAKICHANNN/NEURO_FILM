@@ -1,0 +1,45 @@
+{
+  "schema_version": "u5-r2ad0-spektrafilm-spatial-dir-source-audit-decision-v1",
+  "node": "U5.R2AD0",
+  "decision": "external_ablation_feasible_direct_reuse_blocked",
+  "repository": "https://github.com/andreavolpato/spektrafilm",
+  "audited_commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+  "audited_commit_date": "2026-06-07T01:40:37+02:00",
+  "source_hashes": {
+    "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+    "SPEKTRAFILM_LICENSE.txt": "7a492239d6c6dd419f5ab730e43501bf7c2bcf6465003ca1f89ee62854f6b7e3",
+    "README.md": "779fcb399dc353aa3989b58f72044faa422f1e5503087b6c64ac2626ab8e2a28",
+    "src/spektrafilm/model/couplers.py": "8d9f9d97545aee402ad72a5e5930025f03cd1610478b0b328b9260edd8e6c5de",
+    "src/spektrafilm/runtime/params_builder.py": "5a7f25534a6b12cd1037cf640506119d3c582a32577d3e6dd62b68e5409ba250",
+    "src/spektrafilm/runtime/params_schema.py": "01b5ca27063c97fe61fe2258cfa17f4f821c59759c303c4c87f8b7ecc14025f0"
+  },
+  "rights": {
+    "code_license": "GPL-3.0-or-later",
+    "profile_and_lut_license": "CC-BY-SA-4.0",
+    "project_root_license_status": "undecided_no_root_LICENSE",
+    "tracked_copy_or_integration_allowed": false,
+    "allowed_use": "isolated non-commercial internal research comparison only"
+  },
+  "observed_mechanism": {
+    "non_spatial_dir": "per-pixel same-layer and inter-layer inhibitor correction remains active when diffusion_size_um is zero",
+    "spatial_dir": "the inhibitor correction is filtered in image space when diffusion_size_um is positive",
+    "default_spatial_parameters": {
+      "diffusion_size_um": 20.0,
+      "diffusion_tail_um": 200.0,
+      "diffusion_tail_weight": 0.06
+    },
+    "rf2_c0_boundary": "RF2.C0 set debug.deactivate_spatial_effects=true; digest_params therefore forced diffusion_size_um=0 while leaving non-spatial DIR active"
+  },
+  "nonduplicate_question": "Does spatial DIR inhibitor diffusion add stable, artifact-safe image-local behaviour beyond the already retained Ektar100 fixed-e0 non-spatial RF2.C0 control?",
+  "allowed_next": "one preregistered isolated external spatial-on versus spatial-off ablation using the same pinned Ektar100 fixed-e0 path and frozen gold inputs",
+  "forbidden_next": [
+    "copy_or_port_external_source",
+    "profile_or_lut_copy",
+    "stock_response_or_calibration_claim",
+    "teacher_or_training_target",
+    "operator_fitting",
+    "production_integration",
+    "parameter_search_after_metrics"
+  ],
+  "claim_ceiling": "external spatial-DIR mechanism comparison on display-sRGB proxy inputs; not an identified film operator, stock response, calibrated chemistry, training target, or product implementation"
+}

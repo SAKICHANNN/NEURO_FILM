@@ -342,6 +342,17 @@ only `.0019468`, narrowly below the frozen `.002` floor. Do not move the gate
 or increase steps/diffusion after seeing the result. No AC2, photographs,
 Filmulator port or product integration opens.
 
+U5.R2AD0 identifies a narrower external comparison that RF2.C0 did not run.
+RF2.C0 enabled DIR couplers but also enabled spektrafilm's global spatial-off
+debug switch; the pinned parameter digester consequently forced inhibitor
+diffusion to zero while preserving the non-spatial coupler correction.
+Spatial DIR is therefore a non-duplicate local mechanism candidate. AD1 may
+run one isolated Ektar100/fixed-e0 spatial-on versus spatial-off ablation with
+external defaults frozen before metrics, exact replay, a matched simple
+local-contrast control and automatic severe-artifact gates. GPL/CC-BY-SA code,
+profiles and LUTs remain outside tracked/project code; no stock-response,
+teacher, fitting, training or production claim opens.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.
