@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2w2f0-filmset-recipe-global-explainability-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2W2F0",
+  "status": "implemented_frozen_pending_formal_run",
+  "parent_evidence": [
+    "U5.R2W1 repeats exactly with paired_upper_bound_only_passes",
+    "the W2F metadata-only preflight repeats exactly and freezes the internal development, confirmatory and stress partitions",
+    "FilmSet recipe domains are Capture One controls and not physical film stocks"
+  ],
+  "activation_gate": {
+    "w1_decision_path": "configs/u5_r2w1_reference_look_identifiability_development_decision_v1.json",
+    "required_w1_branch": "paired_upper_bound_only_passes",
+    "requires_w1_repeat_report_sha256_equal": true,
+    "w2f_preflight_report_a_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_a.json",
+    "w2f_preflight_report_b_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_b.json",
+    "required_w2f_preflight_report_sha256": "ab435e2433373d9fb001c13d20af7b408f0346d1d1f2cf2f989db080c86103c3",
+    "w2f1_output_only_allowed": false
+  },
+  "dataset": {
+    "dataset_id": "xuhangc/filmset",
+    "archive_version": "kaggle-v1-2023-11-29",
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "internal_dev_manifest": "internal_dev_lockbox.jsonl",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest": "final_628_lockbox.jsonl",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domains": [
+      "cinema",
+      "classneg",
+      "velvia"
+    ],
+    "allowed_use": "internal_research_only",
+    "redistribution_allowed": false
+  },
+  "partition": {
+    "algorithm": "sha256_seed_pool_content_id_ascending",
+    "seed": 2026072701,
+    "preflight_internal_development_identities": 256,
+    "preflight_internal_confirmatory_identities": 128,
+    "preflight_internal_stress_identities": 81,
+    "development_identities_used": 24,
+    "confirmatory_identities_used": 16,
+    "unused_partition_members_remain_unread": true
+  },
+  "sampling": {
+    "grid_rows": 4,
+    "grid_columns": 4,
+    "pixels_per_cell_fit": 32,
+    "pixels_per_cell_evaluation": 32,
+    "fit_seed": 28600,
+    "evaluation_seed": 28601,
+    "same_coordinates_across_aligned_domains": true,
+    "full_raster_outputs_generated": false
+  },
+  "operators": {
+    "identity": true,
+    "shared_joint_basic": true,
+    "shared_o0": true,
+    "per_pair_o0_evaluator_oracle": true,
+    "o0": {
+      "axis_size": 4,
+      "integration_steps": 16,
+      "coefficient_vector_norm_cap": 2.0,
+      "steps": 80,
+      "learning_rate": 0.03,
+      "coefficient_l2": 0.0001,
+      "velocity_smoothness_l2": 0.001,
+      "gradient_clip_norm": 5.0,
+      "device": "cuda_if_available_else_cpu",
+      "optimization_dtype": "float32",
+      "deterministic_algorithms": true,
+      "shared_fit_seed_base": 28610,
+      "per_pair_fit_seed_base": 28700
+    }
+  },
+  "gates": {
+    "minimum_shared_improvement_over_identity_fraction": 0.25,
+    "minimum_shared_improvement_over_basic_fraction": 0.05,
+    "maximum_shared_normalized_regret_to_per_pair_oracle": 0.15,
+    "maximum_median_per_pair_grid_rmse_to_shared": 0.08,
+    "maximum_spatial_residual_between_cell_fraction": 0.25,
+    "minimum_basic_improvement_over_identity_fraction": 0.25,
+    "maximum_shared_incremental_improvement_over_basic_for_basic_only": 0.05,
+    "minimum_per_pair_improvement_over_identity_fraction": 0.25,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "branches": [
+    "global_operator_coherent",
+    "basic_only",
+    "adaptive_or_spatial_recipe",
+    "operator_unidentified",
+    "alignment_or_colour_state_invalid",
+    "structure_or_repeat_fails"
+  ],
+  "forbidden_actions": [
+    "decode or parse the final 628 lockbox",
+    "run W2F1 output-only reference recovery",
+    "change gates after confirmatory metrics are viewed",
+    "fit a neural encoder, semantic descriptor or direct RGB model",
+    "call Cinema, ClassNeg or Velvia a physical film stock",
+    "generate a product visual shortlist"
+  ],
+  "claim_ceiling": "bounded internal FilmSet evidence about whether three repeated Capture One recipe domains are explainable by one shared global explicit colour operator; no output-only recovery, film, stock, calibration, commercial-rights, unseen-recipe or real unpaired-operator claim"
+}

@@ -4511,3 +4511,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   recovery are closed. Only W2F0 FilmSet aligned-pair/global recipe
   explainability opens. No film, stock, calibration or real unpaired-operator
   claim opens; Goal continues.
+
+## 2026-07-27 - Freeze U5.R2W2F0 implementation before pixel execution
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2W2F0`; DRPT L2 with
+  `dev-research-reliability` as the sole writer and AI/ML, research,
+  code-review, tracker, agent-log and structure disciplines as read-only
+  governance.
+- **Frozen design:** only the first 24 development and first 16 confirmatory
+  identities from the existing `256/128/81` SHA-ordered internal partition
+  may be decoded. Each aligned image supplies disjoint deterministic fit and
+  evaluation coordinates from a `4 x 4` grid. Identity, shared joint-basic,
+  shared bounded O0 and per-pair evaluator-only O0 are compared; no raster
+  output or visual shortlist is generated.
+- **Boundary enforcement:** W1 must repeat exactly on
+  `paired_upper_bound_only_passes`, both W2F preflight reports must equal
+  `AB435E2433373D9FB001C13D20AF7B408F0346D1D1F2CF2F989DB080C86103C3`,
+  every selected payload is hash checked through `WorkingImage`, and the
+  final 628 lockbox is hash verified but never parsed. W2F1 output-only
+  recovery remains closed.
+- **Implementation:** added a pure paired-sample evaluator, deterministic
+  spatial sampler, bounded-flow structural audit, fail-closed runner and
+  synthetic regression suite under the existing `src/roll2film`, `scripts`,
+  `configs` and `tests` structure. Separate fit/evaluation seeds are used and
+  coordinates are reused exactly across aligned domains.
+- **Verification:** 34 focused FilmSet/O0/HCC tests pass, followed by the
+  complete CPU suite at `961 passed`. No new FilmSet pixel was decoded during
+  implementation or testing. Formal A/B execution is the next ready action
+  and must bind the scoped implementation commit before any result is viewed.

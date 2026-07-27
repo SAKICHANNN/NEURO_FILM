@@ -110,6 +110,16 @@ def _partition_ids(
     return sorted(content_ids, key=key)
 
 
+def partition_filmset_content_ids(
+    content_ids: Iterable[str], *, seed: int, pool: str
+) -> list[str]:
+    """Expose the frozen W2F ordering without exposing manifest internals."""
+
+    if pool not in {"source", "target", "internal"}:
+        raise FilmSetManifestError(f"unsupported W2F partition pool: {pool}")
+    return _partition_ids(content_ids, seed=seed, pool=pool)
+
+
 def _ids_sha256(content_ids: Iterable[str]) -> str:
     payload = "".join(f"{content_id}\n" for content_id in content_ids).encode()
     return hashlib.sha256(payload).hexdigest()
