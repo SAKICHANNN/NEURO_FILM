@@ -1631,6 +1631,34 @@
   need not wait. The producer's announced invocation package remains a later
   explicit adapter leaf and is not guessed or preimplemented here.
 
+## 2026-07-28 - Implement and verify P42 portable canonical core
+
+- Node/parent goal: P42B-D / portable consumer conformance after P41.
+- Implementation: `618f74e` adds a header-free C ABI for SHA-256 and the P30
+  staging predicate, then makes the existing hosted C++ runner call it.
+- Exact execution: MSVC and pinned LLVM-MinGW reproduce all ten frozen
+  canonical identities, both state outcomes and eight SHA padding/multi-block
+  boundaries. Uppercase hex still fails closed.
+- Cross-target: pinned NDK r27d links Android arm64-v8a and x86_64
+  executables. Pinned Clang 22.1.8 emits macOS/iOS arm64 Mach-O relocatable
+  objects from the same core.
+- Apple boundary: object compile only; no SDK, platform link/load,
+  simulator/device, Swift/Objective-C, app, signing, image-I/O or performance
+  evidence. Android remains compile/link only.
+- Evidence identity: core `62c35870...a9fe4`; Android report
+  `ff43b488...2278a`; Apple report `13bd7a9e...b0090`.
+- Verification: 16 dedicated and 433 combined color-match/FilmFX tests pass.
+  Full suite is 1328 passed, one skipped and the unchanged 36 isolated
+  output/asset failures; no color-match, FilmFX or P42 failure.
+- Latest-main: `bebd34f`, common base `c03c321`, 194 consumer versus 135 main
+  paths, zero exact overlap, merge tree `f356c146...93b`; fresh detached
+  synthetic merge passes all 16 focused tests and is removed.
+- Concurrent propagation: main and D-PCT worktrees were read-only. Producer
+  `eb4b889` now contains its own invocation package; that is a separate P43
+  compatibility audit and no interface mapping is inferred here.
+- Handoff: P42 completes portable canonical-core compile evidence, not mobile
+  runtime or real product admission.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -157,10 +157,10 @@ with a selected stock, but reference matching alone is labeled
 | P40D | DONE | run adjacent/full/latest-main propagation and peer handoff | 479 combined; 1319 pass/1 skip/36 known; latest-main synthetic merge 149 pass | `ff6d632` | retain P39 |
 | P41A | DONE | freeze main-integration handoff after consumer closure | current main/producer snapshots, merge tree, tests, ownership and blockers | handoff commit | retain P1-P40 |
 | P41B | DONE | propagate final consumer readiness without merging main | update completion audit/log; send equal-peer snapshot | `db52d6e` | main owner decides merge |
-| P42A | IN_PROGRESS | freeze portable consumer canonical-core boundary | one freestanding C ABI for canonical SHA-256; reuse P28-P30 vectors; no product-state expansion | plan commit | retain C++ verifier |
-| P42B | TODO | extract and execute the canonical core on Windows | MSVC and pinned LLVM-MinGW run the unchanged vectors through the C ABI | exact hashes/states | revert additive core/refactor |
-| P42C | TODO | cross-compile the same core for Android and Apple targets | Android arm64/x86_64 link; macOS/iOS arm64 Mach-O object only | pinned reports with explicit limits | no runtime claim |
-| P42D | TODO | run focused/full/latest-main propagation and peer handoff | tests, artifact hashes, overlap/merge evidence, stable snapshot | evidence commit | retain P41 |
+| P42A | DONE | freeze portable consumer canonical-core boundary | one freestanding C ABI for canonical SHA-256; reuse P28-P30 vectors; no product-state expansion | `15e1285` | retain C++ verifier |
+| P42B | DONE | extract and execute the canonical core on Windows | MSVC and pinned LLVM-MinGW run the unchanged vectors through the C ABI | `618f74e`; exact hashes/states | revert implementation commit |
+| P42C | DONE | cross-compile the same core for Android and Apple targets | Android arm64/x86_64 link; macOS/iOS arm64 Mach-O object only | `618f74e`; pinned reports | no runtime claim |
+| P42D | DONE | run focused/full/latest-main propagation and peer handoff | 16 focused; 433 combined; 1328 pass/1 skip/36 known; merge 16 pass | evidence commit | retain P41-P42 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
