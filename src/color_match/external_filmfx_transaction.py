@@ -20,7 +20,10 @@ from src.preprocess import load_working_image, working_image_to_srgb_float
 
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
-from .core_staging_transaction import _paths, _validate_destinations
+from .staging_io import (
+    staging_output_paths,
+    validate_sdr_staging_destinations,
+)
 from .core_staging_verification import (
     ExternalCoreStagingVerificationV1,
     validate_external_core_staging_verification_v1,
@@ -220,9 +223,16 @@ def commit_external_filmfx_staging_v1(
 
     refreshed = _validate_bindings(plan, verification)
     base_seed = _seed(seed, "seed")
-    outputs = _paths(output_paths, count=refreshed.source_count)
+    outputs = staging_output_paths(
+        output_paths, count=refreshed.source_count
+    )
     report = Path(report_path)
-    _validate_destinations(outputs, report, output_bit_depth)
+    validate_sdr_staging_destinations(
+        outputs,
+        report,
+        output_bit_depth,
+        label="external staging",
+    )
     _validate_paths(outputs, report, refreshed)
     assert plan.film_effects is not None
     effects = plan.film_effects

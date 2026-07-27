@@ -12,8 +12,6 @@ import uuid
 import numpy as np
 
 from src.inference.render_contract import atomic_write_json, sha256_file
-from src.preprocess import save_srgb8, save_srgb16_png, save_srgb16_tiff
-
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_apply_receipt import validate_prepared_core_apply_receipt
@@ -33,6 +31,13 @@ from .dpct_batch import (
     validate_dpct_batch_resolution_v1,
 )
 from .files import _commit_staged_batch, _stage_path
+from .staging_io import (
+    SDR16_OUTPUT_EXTENSIONS,
+    SDR_OUTPUT_EXTENSIONS,
+    encode_sdr_staging_output,
+    staging_output_paths,
+    validate_sdr_staging_destinations,
+)
 
 
 EXTERNAL_CORE_STAGING_SCHEMA_ID = (
@@ -43,10 +48,6 @@ EXTERNAL_CORE_STAGING_CLAIM_CEILING = (
 )
 _STATE = "committed-to-staging"
 _HASH = re.compile(r"^[0-9a-f]{64}$")
-_SDR_OUTPUT_EXTENSIONS = frozenset(
-    {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
-)
-_SDR16_OUTPUT_EXTENSIONS = frozenset({".png", ".tif", ".tiff"})
 _RUN_KEYS = {
     "schema_id",
     "run_id",
@@ -145,108 +146,6 @@ def _identity_payload(value: ExternalCoreStagingRunV1) -> dict[str, Any]:
     return payload
 
 
-def _paths(
-    values: Iterable[Path | str],
-    *,
-    count: int,
-) -> tuple[Path, ...]:
-    if isinstance(values, (str, bytes, Path)):
-        raise ReferenceMatchContractError(
-            "output_paths must be an iterable of paths"
-        )
-    try:
-        paths = tuple(Path(value) for value in values)
-    except (TypeError, ValueError) as exc:
-        raise ReferenceMatchContractError(
-            "output_paths must be an iterable of paths"
-        ) from exc
-    if len(paths) != count:
-        raise ReferenceMatchContractError(
-            "output path count must match authorized sources"
-        )
-    keys = [str(path.resolve(strict=False)).casefold() for path in paths]
-    if len(set(keys)) != len(keys):
-        raise ReferenceMatchContractError("output paths must be unique")
-    return paths
-
-
-def _validate_destinations(
-    outputs: tuple[Path, ...],
-    report: Path,
-    output_bit_depth: int,
-) -> None:
-    if output_bit_depth not in {8, 16}:
-        raise ReferenceMatchContractError(
-            "output_bit_depth must be 8 or 16"
-        )
-    allowed = (
-        _SDR_OUTPUT_EXTENSIONS
-        if output_bit_depth == 8
-        else _SDR16_OUTPUT_EXTENSIONS
-    )
-    for path in outputs:
-        if path.suffix.casefold() not in allowed:
-            raise ReferenceMatchContractError(
-                "unsupported external staging output extension"
-            )
-        if path.exists() and path.is_dir():
-            raise ReferenceMatchContractError(
-                "external staging output must not be a directory"
-            )
-    if report.suffix.casefold() != ".json":
-        raise ReferenceMatchContractError(
-            "external staging report must use .json"
-        )
-    if report.exists() and report.is_dir():
-        raise ReferenceMatchContractError(
-            "external staging report must not be a directory"
-        )
-    report_key = str(report.resolve(strict=False)).casefold()
-    if report_key in {
-        str(path.resolve(strict=False)).casefold() for path in outputs
-    }:
-        raise ReferenceMatchContractError(
-            "external staging report must not overwrite an output"
-        )
-
-
-def _display_srgb(linear: np.ndarray) -> tuple[np.ndarray, float]:
-    if (
-        float(np.min(linear)) < -2e-6
-        or float(np.max(linear)) > 1.0 + 2e-6
-    ):
-        raise ReferenceMatchContractError(
-            "external output exceeds the bounded sRGB encoding tolerance"
-        )
-    clipped = np.any((linear < 0.0) | (linear > 1.0), axis=-1)
-    bounded = np.clip(linear, 0.0, 1.0)
-    encoded = np.where(
-        bounded <= 0.0031308,
-        bounded * 12.92,
-        1.055 * np.power(bounded, 1.0 / 2.4) - 0.055,
-    )
-    return (
-        np.asarray(np.clip(encoded, 0.0, 1.0), dtype=np.float32),
-        float(np.mean(clipped, dtype=np.float64)),
-    )
-
-
-def _encode(
-    pixels: np.ndarray,
-    destination: Path,
-    *,
-    output_bit_depth: int,
-) -> tuple[str, float]:
-    encoded, clipped_fraction = _display_srgb(pixels)
-    if output_bit_depth == 8:
-        output_format = save_srgb8(encoded, destination)
-    elif destination.suffix.casefold() == ".png":
-        output_format = save_srgb16_png(encoded, destination)
-    else:
-        output_format = save_srgb16_tiff(encoded, destination)
-    return output_format, clipped_fraction
-
-
 def _validate_input_bindings(
     *,
     batch: DpctBatchResolutionV1,
@@ -338,9 +237,16 @@ def commit_external_core_staging_v1(
         authorization=authorization,
         candidates=candidates,
     )
-    outputs = _paths(output_paths, count=batch.source_count)
+    outputs = staging_output_paths(
+        output_paths, count=batch.source_count
+    )
     report = Path(report_path)
-    _validate_destinations(outputs, report, output_bit_depth)
+    validate_sdr_staging_destinations(
+        outputs,
+        report,
+        output_bit_depth,
+        label="external staging",
+    )
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
@@ -352,10 +258,11 @@ def commit_external_core_staging_v1(
             output.parent.mkdir(parents=True, exist_ok=True)
             stage = _stage_path(output, token)
             staged.append(stage)
-            output_format, clipped_fraction = _encode(
+            output_format, clipped_fraction = encode_sdr_staging_output(
                 candidate.prepared_output.pixels,
                 stage,
                 output_bit_depth=output_bit_depth,
+                label="external",
             )
             receipt = candidate.prepared_output.receipt
             prepared.append(
@@ -482,9 +389,9 @@ def validate_external_core_staging_run_v1(
         output_depths.append(output.output_bit_depth)
         suffix = Path(output.output_path).suffix.casefold()
         allowed = (
-            _SDR_OUTPUT_EXTENSIONS
+            SDR_OUTPUT_EXTENSIONS
             if output.output_bit_depth == 8
-            else _SDR16_OUTPUT_EXTENSIONS
+            else SDR16_OUTPUT_EXTENSIONS
         )
         if suffix not in allowed:
             raise ReferenceMatchContractError(

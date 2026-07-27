@@ -16,7 +16,10 @@ from src.inference import atomic_write_json, sha256_file
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_product_authorization import CoreProductStagingAuthorizationV1
-from .core_staging_transaction import _paths, _validate_destinations
+from .staging_io import (
+    staging_output_paths,
+    validate_sdr_staging_destinations,
+)
 from .core_staging_verification import ExternalCoreStagingVerificationV1
 from .external_composition import ExternalReferenceCompositionV1
 from .external_delivery_authorization import (
@@ -190,7 +193,7 @@ def commit_external_local_delivery_v1(
         raise ReferenceMatchContractError(
             "local delivery authorization changed on refresh"
         )
-    outputs = _paths(
+    outputs = staging_output_paths(
         output_paths,
         count=filmfx_verification.source_count,
     )
@@ -212,7 +215,12 @@ def commit_external_local_delivery_v1(
             raise ReferenceMatchContractError(
                 "local delivery extension must match staged format"
             )
-    _validate_destinations(outputs, report, output_bit_depth)
+    validate_sdr_staging_destinations(
+        outputs,
+        report,
+        output_bit_depth,
+        label="external staging",
+    )
     _protect_staging(
         outputs,
         report,
