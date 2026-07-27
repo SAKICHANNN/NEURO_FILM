@@ -1543,6 +1543,8 @@
 - Handoff: P39 evidence is ready to commit. Local export mechanics are
   complete, while real use remains closed on producer invocation,
   A1/A4/A5 and main-project integration.
+- Evidence commit: `4e5788b` (`docs: record atomic local delivery`). P39 is
+  complete as local transaction mechanics, not real candidate admission.
 
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 

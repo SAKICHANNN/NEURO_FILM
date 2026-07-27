@@ -150,7 +150,7 @@ with a selected stock, but reference matching alone is labeled
 | P39A | DONE | freeze atomic local-user export transaction | rebuild exact P38 immediately before commit; byte-exact N outputs plus report | `dd44151` | retain P38 authorization |
 | P39B | DONE | implement rollback-safe local delivery | protect P33/P36 staging; strict canonical delivery report; uniform format/depth | `8d60fc8` | revert additive module/schema |
 | P39C | DONE | prove stale auth, path and commit failures fail closed | live tamper, foreign chain, staging collision, path/count/format, injected rollback negatives | `8d60fc8` | preserve all staging files |
-| P39D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 468 combined; 1308 pass/1 skip/36 known; latest-main synthetic merge 138 pass | evidence commit | retain P38 |
+| P39D | DONE | run adjacent/full/latest-main propagation and peer handoff | 468 combined; 1308 pass/1 skip/36 known; latest-main synthetic merge 138 pass | `4e5788b` | retain P38 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
