@@ -378,7 +378,7 @@ def evaluate_manifests(
         "gate_checks": checks,
         "records": records,
         "within_family_pairwise": pairwise,
-        "visual_review_allowed": false,
+        "visual_review_allowed": False,
         "claim_ceiling": config["claim_ceiling"],
     }
 
@@ -396,4 +396,3 @@ def _jacobian_determinants(output: np.ndarray) -> np.ndarray:
         axis=-1,
     )
     return np.linalg.det(jacobian)
-
