@@ -4951,3 +4951,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   numerical result has not been inspected. Next commit this implementation,
   then run two exact formal evaluations from that software commit. Goal remains
   ACTIVE.
+
+### Pre-result channel-binding erratum
+
+- The first exact diagnostic report was not accepted or propagated. It exposed
+  that the AA0/H-61B anchor is recorded in R/G/B order, while the evaluator's
+  characteristic rows are B/G/R; the initial config incorrectly labelled the
+  unchanged `1.09/1.06/1.03` vector as B/G/R.
+- Correct only that factual interface: retain the observed R/G/B vector and
+  explicitly reverse it at the B/G/R characteristic boundary. Also enforce
+  the physically monotone interpretation of digitized characteristic traces
+  and solve the LAD inverse on the same PCHIP curve, so neutral timing
+  round-trips to exactly `1.03/1.06/1.09` in B/G/R order.
+- No source, curve sample, synthetic colour, nuisance member, nominal choice,
+  control, threshold or branch rule changes. A dedicated regression now pins
+  the channel order and neutral-density roundtrip. The earlier output is an
+  invalid implementation diagnostic, not AA1 scientific evidence.

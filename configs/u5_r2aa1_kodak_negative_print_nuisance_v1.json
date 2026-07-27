@@ -79,7 +79,7 @@
       "tungsten_sensitivity_weighted"
     ],
     "viewing_illuminants": ["D50", "D55", "D65"],
-    "print_lad_status_a_density_bgr": [1.09, 1.06, 1.03],
+    "print_lad_status_a_density_rgb": [1.09, 1.06, 1.03],
     "nominal": {
       "spectrum": "smooth",
       "negative_neutral_placement": 2.5,

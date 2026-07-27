@@ -20,7 +20,7 @@ import numpy as np
 from PIL import Image
 from scipy.interpolate import PchipInterpolator
 from scipy.ndimage import distance_transform_edt
-from scipy.optimize import nnls
+from scipy.optimize import brentq, nnls
 
 from src.eval.velvia_datasheet_witness import (
     _RGB_TO_XYZ,
@@ -229,6 +229,10 @@ def build_curve_bank(
         for name, points in curves[family].items():
             x, y = _physical(curve_data, family, points)
             x, y = _collapse_x(x, np.clip(y, 0.0, None))
+            # Characteristic curves are physically monotone. Source-raster
+            # antialiasing can introduce sub-pixel reversals that would make
+            # neutral LAD inversion ambiguous.
+            y = np.maximum.accumulate(y)
             result[name] = (x, y)
         return result
 
@@ -293,10 +297,12 @@ def _inverse_characteristic(
     bank: Mapping[str, tuple[np.ndarray, np.ndarray]], channel: str, density: float
 ) -> float:
     x, y = bank[channel]
-    order = np.argsort(y)
-    unique_y, indices = np.unique(y[order], return_index=True)
-    unique_x = x[order][indices]
-    return float(np.interp(density, unique_y, unique_x))
+    if density <= y[0]:
+        return float(x[0])
+    if density >= y[-1]:
+        return float(x[-1])
+    interpolator = PchipInterpolator(x, y, extrapolate=False)
+    return float(brentq(lambda value: float(interpolator(value) - density), x[0], x[-1]))
 
 
 def _negative_dye_scales(curves: FilmCurves, mapping: str) -> np.ndarray:
@@ -469,6 +475,11 @@ def render_chain(
     neutral_negative = negative_transmittance(
         neutral_reflectance, context, curves, placement, mapping
     )[0]
+    lad_rgb = np.asarray(
+        config["chain"]["print_lad_status_a_density_rgb"], dtype=np.float64
+    )
+    if lad_rgb.shape != (3,):
+        raise KodakNuisanceError("print LAD RGB aim must contain three values")
     return render_print(
         negative,
         neutral_negative,
@@ -476,7 +487,9 @@ def render_chain(
         curves,
         printer,
         viewer,
-        config["chain"]["print_lad_status_a_density_bgr"],
+        # Characteristic/dye rows are B/G/R (yellow/magenta/cyan forming),
+        # while H-61B and the AA0 observed anchor record aims as R/G/B.
+        lad_rgb[::-1],
     )
 
 

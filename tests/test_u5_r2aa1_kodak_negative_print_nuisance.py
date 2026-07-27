@@ -122,3 +122,21 @@ def test_all_preregistered_chain_axes_render_without_clipping() -> None:
                     assert np.all(np.isfinite(result["linear_srgb"]))
                     assert np.min(result["transmittance"]) >= 0.0
                     assert np.max(result["transmittance"]) <= 1.0
+
+
+def test_h61b_rgb_aim_is_bound_to_bgr_characteristic_layers() -> None:
+    config, data = _inputs()
+    bank = build_curve_bank(config, data)
+    context = build_spectral_context(ROOT, config, bank)
+    neutral = np.full((1, 69), config["synthetic_population"]["neutral_reflectance"])
+    result = render_chain(
+        neutral,
+        context,
+        bank,
+        config,
+        placement=2.5,
+        mapping="midscale_nnls_scaled",
+        printer="peak_gaussian_sigma45",
+        viewer="D55",
+    )
+    np.testing.assert_allclose(result["density"][0], [1.03, 1.06, 1.09], atol=1e-12)
