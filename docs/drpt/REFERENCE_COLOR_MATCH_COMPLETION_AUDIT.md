@@ -39,8 +39,8 @@ wire contract and not an algorithm promotion.
 | Exact producer/consumer compatibility | P27 pins corrected D-PCT v2 relative-SDR schemas and exact success/failure fixtures | COMPLETE for the pinned synthetic conformance profile | A real producer package must declare and pass the same explicit compatibility profile / D-PCT then Neuro-Film |
 | Actual D-PCT algorithm invocation | No frozen library/package/ABI or product invocation exists; P27 consumes fixtures only | BLOCKED ON PRODUCER ARTIFACT | Publish fixed package/ABI, capability identity, invocation conformance and real source-bound receipt / D-PCT |
 | External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
-| Final user-visible delivery state | No P34 state above `verified-staging`; `applied` remains absent | NOT OPEN | Consume the exact P34 verification under a separately authorized delivery and composition decision / Neuro-Film product integration |
-| FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural simple-grain/halation/dust branch to new staging files | STAGING RENDER COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
+| Final user-visible delivery state | P37 can restart-verify the complete P36 input/output lineage; no state above `verified-filmfx-staging` and `applied` remains absent | NOT OPEN | Define a separately authorized final publish only after a real promoted producer invocation exists / Neuro-Film product integration |
+| FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | Portable consumer identity chain | Python, MSVC and LLVM-MinGW execute exact P28-P30 vectors; Android arm64/x86_64 link | COMPLETE for host identity logic | Android device execution, Apple compiler/runtime, JNI/Swift boundary and real invocation remain open / platform integration |
@@ -63,7 +63,8 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
    procedural plan to separate staging outputs with ceiling
    `filmfx-staging-not-delivered`.
 6. A later product-delivery decision consumes the exact P36 run; physical
-   halation requires a separate resolved-control binding.
+   halation requires a separate resolved-control binding. P37 must first
+   reverify the P36 report plus every recorded input and output file.
 7. Platform runtime evidence is collected per target; cross-compilation alone
    cannot close device support.
 

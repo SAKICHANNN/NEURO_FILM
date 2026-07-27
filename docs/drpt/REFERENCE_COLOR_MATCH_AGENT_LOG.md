@@ -1467,3 +1467,31 @@
   algorithms, ABI, HDR/media and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and can continue
   independently without waiting.
+
+## 2026-07-28 - Implement and verify P37 FilmFX staging verification
+
+- Node/parent goal: P37B-D / durable FilmFX staging integrity.
+- Implementation: `c1f4195` adds one read-only verifier, strict schema, public
+  exports and eleven adversarial tests.
+- Binding: caller-held P36 report SHA-256 and run ID are mandatory. The
+  verifier checks bounded exact report bytes, strict canonical P36 identity,
+  report path, each ordered P33 input hash and each P36 output hash. Its
+  canonical ID also binds P35 plan, P34 verification, seeds, formats and bit
+  depths.
+- State/ceiling: `verified-filmfx-staging` /
+  `verified-filmfx-staging-not-delivered`; no writer, final publish or applied
+  state exists.
+- Adversarial result: report mutation/relocation, wrong run ID, changed or
+  missing input/output, order, state, seed, claim and verification-ID drift
+  all fail closed.
+- Verification: 11 dedicated and 447 combined color-match/FilmFX tests pass.
+  Full suite is 1287 passed, one skipped and the unchanged 36 isolated
+  output/hash failures; no color-match or FilmFX failure.
+- Latest-main: `a6895ca`, 176 consumer versus 113 main changed paths, zero
+  exact overlap, merge tree `9117db57...`; fresh detached synthetic merge
+  passes 113 P33-P37/FilmFX tests and is removed.
+- Concurrent safety: main's dirty DoRF work and D-PCT's uncommitted
+  BMKL/ColorTransferLib research files were read-only. D-PCT producer schema,
+  ABI, receipt and HDR rail remain unchanged.
+- Handoff: P37 evidence is ready to commit. It closes restart integrity, not
+  real producer invocation or final user-visible delivery.
