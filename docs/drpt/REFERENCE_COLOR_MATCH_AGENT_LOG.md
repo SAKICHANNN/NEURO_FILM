@@ -903,3 +903,22 @@
   both tasks continue independently.
 - Handoff: P26A freezes semantics; P26B may implement only the additive
   receipt and exact binding tests.
+
+## 2026-07-28 - Implement exact external-output receipt
+
+- Node/parent goal: P26B / external-core product consumer integrity.
+- Change: add `CoreApplyReceiptV1`, prepared read-only output storage, strict
+  schema/JSON roundtrip, canonical diagnostics/output provenance and complete
+  execution binding validation.
+- Fail-closed behavior: reject non-ok diagnostics, non-finite pixels, wrong
+  shape/profile, output mutation, source/diagnostics swap, unknown fields,
+  non-finite nested JSON and any delivery state other than `candidate-only`.
+- Verification: 11 dedicated tests and 68 combined external-core tests pass;
+  compileall and diff check pass.
+- Peer state: D-PCT clean `1d9aa72` announced a separate producer-contract
+  leaf with its own names and initial Rec.2020 profile. It explicitly claims
+  no Neuro compatibility and does not overlap this consumer receipt.
+- Structure: one additive module/schema/test beside existing P25 contracts;
+  no ABI, decoder, producer payload, transaction, FilmFX or renderer change.
+- Handoff: commit P26B, then P26C must issue a new admission version that binds
+  the exact receipt ID without changing frozen acceptance v1.

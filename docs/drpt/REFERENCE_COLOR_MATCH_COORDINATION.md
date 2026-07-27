@@ -166,6 +166,13 @@
 - P26C will use a new admission version rather than mutating P25's frozen
   acceptance v1. Historical v1 decisions remain parseable but cannot bind
   future returned pixels.
+- D-PCT independently published producer-contract intent at clean `1d9aa72`.
+  Its planned producer-owned types use Zhuise/D-PCT names and initially expose
+  only a display-linear Rec.2020/D65/f32 dense profile. It explicitly does not
+  claim compatibility with Neuro-Film schemas and does not define
+  `CoreApplyReceiptV1`, product gates or applied state. There is no ownership
+  conflict; future compatibility still requires fixed schema hashes and an
+  explicit adapter.
 
 ## Claim: NFCM-P1 product reference-look engine
 

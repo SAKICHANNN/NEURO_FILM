@@ -167,3 +167,24 @@ fails. The temporary integration worktree was removed after verification.
 This is consumer integration evidence, not authorization or evidence to merge
 into main. It also does not establish conformance by D-PCT or any mobile/native
 port.
+
+## P26B exact external-output receipt
+
+`src/color_match/core_apply_receipt.py` copies a future returned buffer into
+consumer-owned storage and binds:
+
+- exact row-major IEEE-754 binary32 output bytes and `MatchViewV1`;
+- source, reference and source-bound transform identities;
+- exact producer capability identity;
+- the canonical hash of complete diagnostics;
+- consumer output provenance and a same-profile/same-shape contract.
+
+The copied buffer is finite, dense, C-contiguous, read-only float32 RGB.
+Negative and above-one extended values are preserved. A non-ok diagnostic,
+shape/profile mismatch, changed diagnostics, swapped execution identity,
+mutated pixels, non-finite nested JSON, unknown field or `applied` state fails
+closed.
+
+The receipt remains `candidate-only`. It neither defines D-PCT's planned
+producer `ApplyResult` nor enters the delivered-pixel path. Verification:
+11 dedicated and 68 combined external-core tests pass.

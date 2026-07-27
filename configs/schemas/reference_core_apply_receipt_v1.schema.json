@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-apply-receipt-v1.json",
+  "title": "Neuro-Film external core apply receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "receipt_id",
+    "output_contract_id",
+    "delivery_state",
+    "transform_id",
+    "source_view_id",
+    "reference_view_id",
+    "capability_id",
+    "diagnostics_sha256",
+    "output_view"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-apply-receipt.v1"
+    },
+    "receipt_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "output_contract_id": {
+      "const": "neuro-film.same-profile-same-shape-f32.v1"
+    },
+    "delivery_state": {
+      "const": "candidate-only"
+    },
+    "transform_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "source_view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "reference_view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "capability_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "diagnostics_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "output_view": {
+      "$ref": "reference_core_match_view_v1.schema.json"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
