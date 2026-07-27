@@ -1554,6 +1554,10 @@
 - Current snapshots: consumer `6db15c4`, main `9fea35b`, D-PCT `fa592e2`.
   BMKL Volga2K confirms a task-profile-dependent mapping family only and
   changes no producer contract or receipt.
+- Handoff: `docs/drpt/REFERENCE_COLOR_MATCH_MAIN_INTEGRATION_HANDOFF.md`
+  freezes payload/base/main/producer identities, all P33-P40 schema hashes,
+  the conflict-free merge tree, review/test procedure and remaining blockers.
+  Main integration remains owned by the equal main task.
 
 ## 2026-07-28 - Implement and verify P39 atomic local export
 

@@ -14,11 +14,11 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer worktree: `codex/reference-color-match` at `0d23e27`.
-- Main Neuro-Film read-only snapshot: `e7da085`; its `.codex/` and `tmp/`
+- Consumer payload: `codex/reference-color-match` through P40 at `6db15c4`.
+- Main Neuro-Film read-only snapshot: `9fea35b`; its `.codex/` and `tmp/`
   files belong to the main task and were not touched.
-- D-PCT read-only snapshot: `ed01054`; its uncommitted RPSCT files belong to
-  the producer task and were not touched.
+- D-PCT read-only snapshot: `fa592e2`; its BMKL/Volga2K result is development
+  evidence only and changes no producer contract or receipt.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -84,9 +84,8 @@ separate leaves and do not block the relative-SDR product shell from review.
 
 ## Verdict
 
-The independent Neuro-Film reference-match module is implementation-complete
-as a fail-closed local product shell. The broader long-term goal is not
-complete: no real external candidate has both product promotion and a frozen
-invocation artifact, external pixels have only a synthetic-tested staging
-transaction and no final delivery state, Apple/device runtime evidence is
-absent, and the branch has not been merged into the main project.
+The independent Neuro-Film reference-match consumer is implementation-complete
+from fail-closed intake through verified local export mechanics. The broader
+long-term goal is not complete: no real external candidate has both product
+promotion and a frozen invocation artifact, Apple/device runtime evidence is
+absent, and the reviewed payload has not been merged into the main project.
