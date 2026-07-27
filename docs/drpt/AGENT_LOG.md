@@ -5120,3 +5120,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and the full CPU suite pass (`1008 passed`). Numerical AC1 decision metrics
   have not been inspected. Commit the implementation, then run two exact
   formal reports from that revision. Goal remains ACTIVE.
+
+### Formal AC1 result and integration
+
+- **Exact lineage:** two reports from `df4b170...c0de1` are byte-identical at
+  `839aadd4...dca2`; config `5766ba68...da12`, payload
+  `83b56bc6...7d57`.
+- **Structural pass:** bounded `[0,1]`, exact identity/neutral/repeat, rotation
+  error `2.22e-16`, monotone constant response, gradient amplification
+  `.5185`, zero ringing/crosstalk and 24-pixel finite support all pass.
+- **Independent-value failure:** strongest spatial-versus-global reaction RMSE
+  is `.0019467553`, below the frozen `.002` floor. The near miss does not
+  authorize threshold or parameter changes.
+- **Decision/handoff:** close `effect_too_weak`; no timestep/diffusion/
+  reservoir rescue, AC2, photographs, Filmulator port or integration.
+  Continue Ultimate through a distinct ready leaf. Goal remains ACTIVE.

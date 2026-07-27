@@ -334,6 +334,14 @@ synthetic-only first-principles representation may be preregistered, but it
 would remain generic film-development-inspired evidence rather than a stock
 response or production component.
 
+U5.R2AC1 closes the one independently defined shared-resource diffusion
+policy. It is numerically clean: exact identity/neutral/repeat, bounded state,
+rotation error `2.22e-16`, no ringing/crosstalk and finite 24-pixel support.
+However, its maximum local effect versus the same global reaction control is
+only `.0019468`, narrowly below the frozen `.002` floor. Do not move the gate
+or increase steps/diffusion after seeing the result. No AC2, photographs,
+Filmulator port or product integration opens.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

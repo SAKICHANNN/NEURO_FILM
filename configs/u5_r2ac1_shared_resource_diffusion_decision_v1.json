@@ -1,0 +1,30 @@
+{
+  "schema_version": "u5-r2ac1-shared-resource-diffusion-decision-v1",
+  "node": "U5.R2AC1",
+  "decision": "effect_too_weak",
+  "software_commit": "df4b170d1837f120462e214855bc9ecb539c0de1",
+  "config_sha256": "5766ba680bad132ded878ec6f2109d23305d3dd1011e04eed3f51cac8991da12",
+  "report_file_sha256": "839aadd43009cc218cb6ff5e7c76c39d6500290c00590d45037fb1273c12dca2",
+  "report_payload_sha256": "83b56bc682016acef2636c7511419b2f5a65b55f9e859dfe2b4b5adeecbc7d57",
+  "exact_repeat": true,
+  "structure_checks_pass": true,
+  "observed_local_effect_rmse_vs_global": 0.001946755301184502,
+  "frozen_local_effect_rmse_min": 0.002,
+  "other_key_metrics": {
+    "state_range": [0.0, 1.0],
+    "identity_max_abs_error": 0.0,
+    "neutral_axis_max_abs_channel_spread": 0.0,
+    "rotation90_max_abs_error": 2.220446049250313e-16,
+    "repeat_max_abs_error": 0.0,
+    "constant_field_monotone_min_delta": 0.08825647086984818,
+    "edge_gradient_amplification": 0.5184979017542263,
+    "flat_region_ringing": 0.0,
+    "channel_crosstalk": 0.0,
+    "finite_support_radius": 24
+  },
+  "ac2_allowed": false,
+  "parameter_rescue_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "safe deterministic synthetic mechanism at the frozen setting, without sufficient independent local effect"
+}
