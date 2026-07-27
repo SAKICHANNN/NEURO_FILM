@@ -154,10 +154,40 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - The bundle consumes neither main-task W1 code/reports nor standalone D-PCT
   decoder/probe code. It validates the existing display-linear SDR algorithm
   boundary after ingress.
-- D-PCT stable commit `d0d4e6c` makes its pinned LibRaw probe build
-  reproducible, but the active 67-file agreement queue remains uncommitted.
-  A3 therefore stays pixel-bridge closed.
+- D-PCT stable commit `bd3ff70` completes the 67-file agreement queue:
+  67/67 files and 686,122,932 post-linearization sensor codes agree with the
+  pinned LibRaw probe. A3 nevertheless stays pixel-bridge closed because this
+  comparison stops before the independent scene-render/MatchView boundary.
 - Main remains stable at `ed1dbb5`; no repeated W1 report exists, so P14B1
   remains ready but unexecuted.
 - The conformance fixture enables future platform-port adjudication; it does
   not claim current Android/iOS/macOS/Windows parity.
+
+### 2026-07-27 stored-recipe replay leaf
+
+- P16 commit `378c846` changes only this branch's reference-match file,
+  replay, reporting, CLI and tests plus one new replay-report schema.
+- It does not consume main-task W1 state or standalone D-PCT media code.
+- The new `--recipe-input` path starts after existing display-linear SDR
+  ingress, so it neither overlaps nor weakens D-PCT's ownership of RAW/HDR
+  decoding and MatchView conversion.
+- Main still has no stable repeated W1 report. Standalone D-PCT stabilized its
+  corpus/report result as `bd3ff70`; P16 consumes none of its code because
+  recipe replay begins after the separately owned ingress boundary.
+- Integration impact: a future app can persist one LookRecipe and reuse it for
+  later albums without retaining the reference file; algorithm promotion and
+  A3 remain independent gates.
+
+### 2026-07-27 completed D-PCT corpus dependency
+
+- Read-only stable source: D-PCT `bd3ff70`; its worktree is clean and its task
+  has completed.
+- Evidence accepted: 67/67 local compression-7 DNG files, 686,122,932 sensor
+  samples, 14 explicit and 53 identity LinearizationTable paths, three storage
+  strata and zero fingerprint disagreements against pinned LibRaw.
+- Evidence ceiling: agreement is after linearization but before independent
+  crop, black normalization, demosaic, profile colour and display rendering.
+  It supplies no trusted scene-to-display/MatchView conversion.
+- Propagation: the earlier “corpus queue uncommitted” note is superseded. A3
+  remains `CONTRACT MAPPED / PIXEL BRIDGE CLOSED`; no D-PCT source file,
+  decoder, probe or report was copied.

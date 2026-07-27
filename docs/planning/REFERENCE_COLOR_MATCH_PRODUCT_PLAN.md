@@ -30,7 +30,7 @@ with a selected stock, but reference matching alone is labeled
   `src/color_engine/safe_lab.py`, `src/color_engine/gamut.py`
 - Main-chat W1/W2 research and standalone D-PCT media work are concurrent and
   explicitly out of this branch's write scope. The latest consumed read-only
-  boundaries are main `ed1dbb5` and D-PCT `d0d4e6c`.
+  boundaries are main `ed1dbb5` and D-PCT `bd3ff70`.
 
 ## Non-goals for the first product slice
 
@@ -80,6 +80,7 @@ with a selected stock, but reference matching alone is labeled
 | P14B0 | DONE | pin and fail-closed adjudicate stable main-task W1 development evidence | 8 dedicated tests; 138 focused tests; current absent-report decision is identity; full suite 1010 pass/36 known fail | `8e602f5` | revert commit |
 | P14B1 | READY | consume a repeated W1 decision without importing external code | stable repeated W1 reports; untouched confirmation for any single-reference development pass | none | keep identity default |
 | P15 | DONE | freeze language-neutral portable recipe/render conformance vectors | 9 dedicated tests; 147 focused tests; two exact-ID and bounded-numeric cases; full suite 1019 pass/36 known fail | `8b505ca` | revert commit |
+| P16 | DONE | replay one stored LookRecipe across a transactional N-file batch without the original reference | 9 dedicated tests; 40 adjacent tests; 156 focused tests; full suite 1028 pass/36 known fail | `378c846` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -166,7 +167,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`1019 passed, 1 skipped, 36 failed`.
+`1028 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -193,7 +194,7 @@ final photographic/aesthetic algorithm.
 |---|---|---|---|
 | A1 reference identifiability | BASELINE FAILED | local known-operator cross-content falsification; main-chat W1 single/multi/paired evidence remains active | replace or augment the recipe descriptor only if hidden-operator/source-use gates pass |
 | A2 film-business composition | CONTRACT DONE / DELIVERY-AWARE | existing v1 render-profile contract plus guard-v2 certification state | default identity cannot masquerade as reference colour or silently compose effects; explicit research mode may bind effects provenance only |
-| A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT through `77e64e1` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; a three-stratum 28,682,816-sample post-linearization DNG code cross-check passes, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for completed stable corpus agreement, crop/black/demosaic/profile/render evidence and a versioned scene/display-to-MatchView bridge; do not copy decoders |
+| A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | D-PCT `bd3ff70` executes 67/67 local compression-7 DNG mosaics, 52/52 observed profile-look paths, all 17 CR2 entropy paths and LibRaw unpack for 32/39 vendor RAW files; all 67 DNGs and 686,122,932 post-linearization sensor codes agree with pinned LibRaw, but `real_raw_paths=FAIL`, seven Nikon HE/HE* files remain unsupported and the current NFRM relative-SDR rail is not equivalent | wait for independent crop/black/demosaic/profile and trusted scene-render agreement plus a versioned scene/display-to-MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
 | A5 album/batch consistency | BASELINE FAILED | six fitted recipes on shared-colour/different-context probes | require a fixed explicit operator or bounded adaptation that passes median/p95/max shared-colour drift |
 
@@ -351,11 +352,32 @@ identity-fallback counts. Add `--allow-research-baseline` only for explicit
 research comparison. The script is a thin product adapter; algorithm, safety
 and transactional image behavior remain in `src/color_match`.
 
+The saved recipe can later process a new N-image batch without retaining or
+re-reading the original reference:
+
+```powershell
+python scripts/match_reference_color.py `
+  --recipe-input reference-look.json `
+  --source new-a.jpg --output matched-new-a.png `
+  --source new-b.tiff --output matched-new-b.png `
+  --report reference-match-replay-report.json `
+  --bit-depth 16
+```
+
+Fit and replay are mutually exclusive modes. Replay reads and hashes the exact
+same bounded UTF-8 recipe bytes once, verifies the embedded canonical ID, and
+transactionally commits either all N outputs or none. Its separate provenance
+schema records `operation=recipe-replay`, the loaded recipe-file hash and the
+reference-pixel identity stored in the recipe; it does not invent a current
+reference path or require that the original reference file still exists. See
+`docs/drpt/REFERENCE_COLOR_MATCH_REPLAY_EVIDENCE.md`.
+
 Language-neutral consumers should validate:
 
 - `configs/schemas/reference_look_recipe_v1.schema.json`;
 - `configs/schemas/reference_composition_v1.schema.json`;
 - `configs/schemas/reference_match_report_v1.schema.json`;
+- `configs/schemas/reference_match_replay_report_v1.schema.json`;
 - `configs/schemas/reference_match_promotion_report_v1.schema.json`.
 
 Python validation remains authoritative for canonical IDs and constraints such

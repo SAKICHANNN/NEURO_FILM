@@ -495,3 +495,38 @@
   improves probe build reproducibility. No external mutable file or code was
   consumed.
 - Commit: `8b505ca` (`feat: add portable matcher conformance vectors`).
+
+## 2026-07-27 - Add transactional stored-recipe file replay
+
+- Parent: P16 / durable LookRecipe delivery.
+- Gap: memory replay existed, but the product file API and CLI could not
+  process a later N-image batch without reloading the original reference and
+  fitting again.
+- Added: exact-byte bound recipe loading, `FileReferenceReplayResult`,
+  transactional `replay_reference_files`, strict replay-report schema and
+  mutually exclusive CLI `--reference`/`--recipe-input` modes.
+- Provenance: replay reports bind operation, recipe-file hash, stored
+  reference-pixel identity, every source/output hash, candidate diagnostics
+  and safety decision; no current reference path is fabricated.
+- Safety: recipe/source overwrite attempts reject; tampered recipe rejects
+  before staging; a late invalid second source leaves no outputs or stages;
+  default replay remains identity unless research override is explicit.
+- Verification: 9 dedicated, 40 adjacent and 156 focused tests pass. Full CPU
+  collection is 1028 passed, one skipped and the same 36 known
+  ignored-output/CRLF-hash failures.
+- External isolation: no main W1 file/report or standalone D-PCT code was
+  consumed. Their current mutable work remains untouched.
+- Commit: `378c846` (`feat: replay matcher recipes across file batches`).
+
+## 2026-07-27 - Consume completed D-PCT corpus evidence read-only
+
+- Parent: A3 / same-project multi-chat dependency closure.
+- Stable source: standalone D-PCT `bd3ff70`, clean worktree and completed task.
+- Accepted evidence: all 67 local compression-7 DNG files and 686,122,932
+  post-linearization sensor codes agree with pinned LibRaw; 14 files execute
+  explicit LinearizationTable and 53 use identity; zero failures.
+- Boundary retained: this independent comparison ends before crop, black
+  normalization, demosaic, profile colour and trusted scene/display rendering.
+  Seven Nikon HE/HE* files remain unsupported and `real_raw_paths=FAIL`.
+- Propagation: A3 does not open and the reference-match file/replay code does
+  not import D-PCT. Only current dependency documentation changes.
