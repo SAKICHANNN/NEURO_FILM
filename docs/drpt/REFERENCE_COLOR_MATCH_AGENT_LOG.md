@@ -2059,6 +2059,23 @@
   `2c0438b6...2df`; fresh detached merge 35 pass and was removed.
 - Producer: SPGIN-v0 remains below P45; P52 has no real shared run.
 
+## 2026-07-28 - Freeze P53 shared procedural FilmFX staging
+
+- Node/parent goal: P53A-D / deterministic execution after P52.
+- Contract: cross-bind exact P52 plan and P51 verification, rerun P51 live,
+  protect every P50 input/report path, render only active simple procedural
+  FilmFX with deterministic per-source seeds, then atomically commit a
+  separate output batch and canonical report.
+- Structure: extract the already proven P36 procedural render primitive so
+  per-source and shared paths use identical WorkingImage ingress, effect
+  ordering, seed derivation and encoding.
+- Failure closure: plan without effects, physical halation without controls,
+  foreign plan/verification, live P50 tamper, protected-path overwrite,
+  unsupported destination, render failure or commit failure must write nothing
+  or restore all prior bytes.
+- State ceiling: `shared-filmfx-rendered-to-staging` /
+  `shared-filmfx-staging-not-delivered`; no local export or applied state.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
