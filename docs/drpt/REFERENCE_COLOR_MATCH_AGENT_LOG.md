@@ -1393,3 +1393,5 @@
 - Handoff: evidence is ready to commit. A future effect renderer must reverify
   P34, consume exact P35 and produce its own atomic report; no real candidate
   is currently eligible.
+- Evidence commit: `fcb6278` (`docs: record external FilmFX composition
+  evidence`). P35 is complete as composition planning, not effect rendering.

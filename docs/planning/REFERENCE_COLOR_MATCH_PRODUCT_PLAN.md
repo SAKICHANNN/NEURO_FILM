@@ -134,7 +134,7 @@ with a selected stock, but reference matching alone is labeled
 | P35A | DONE | freeze genuine external-reference/FilmFX composition semantics | bind P34; reference colour owns colour; optional procedural effects only | `06b6ed4` | retain P18 local composition |
 | P35B | DONE | implement strict external composition plan | canonical schema/roundtrip; no film colour, stock claim, render or delivery state | `249e415` | revert additive module/schema |
 | P35C | DONE | prove identity, colour stacking and claim mutations fail closed | verification/run/intent/profile/order/claim/effect negatives | `249e415` | no composition plan |
-| P35D | IN PROGRESS | run adjacent/full/latest-main propagation and peer handoff | 1265 pass/1 skip/36 known failures; latest-main synthetic merge 147 pass | evidence commit | retain P34 |
+| P35D | DONE | run adjacent/full/latest-main propagation and peer handoff | 1265 pass/1 skip/36 known failures; latest-main synthetic merge 147 pass | `fcb6278` | retain P34 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
