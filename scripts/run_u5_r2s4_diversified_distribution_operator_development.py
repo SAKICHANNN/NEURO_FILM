@@ -168,6 +168,18 @@ def _decision_branch(
 ) -> str:
     if primary_gate_results["all_except_repeat"]:
         return "pending_repeat_primary_all_gates_pass"
+    if not all(
+        primary_gate_results[name]
+        for name in (
+            "range",
+            "jacobian",
+            "norm",
+            "inverse",
+            "replay",
+            "coefficient",
+        )
+    ):
+        return "structure_or_repeat_fails"
     if not shuffled_fails:
         return "shuffled_negative_passes"
     if primary_gate_results["heldout_distribution"] and not all(

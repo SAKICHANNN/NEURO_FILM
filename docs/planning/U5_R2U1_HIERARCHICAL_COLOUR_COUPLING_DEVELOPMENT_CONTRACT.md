@@ -2,7 +2,7 @@
 
 Date: 2026-07-26
 
-Status: **preregistered; pending repeated U5.R2S4 adjudication**
+Status: **ready; repeated eligible U5.R2S4 branch available**
 
 ## Parent and activation
 

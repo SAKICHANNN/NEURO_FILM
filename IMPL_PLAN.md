@@ -116,6 +116,18 @@ non-identification, not optimizer collapse. No S3 confirmation, capacity
 rescue, image or visual shortlist opens. Its repeated `distribution_fail`
 activates the already-frozen U5.R2S4D generated-condition experiment.
 
+U5.R2S4D now closes that conditional-distribution candidate. Two
+byte-identical CUDA reports show that correct generated condition
+correspondence raises held-out conditional-distribution improvement to
+`71.36%` and separates the shuffled control at `24.79%`. The bounded flow is
+stable and passes every structural and independent-fit gate, but hidden-
+operator median/p90 RMSE remains `.10751/.11900`. Oracle error improves only
+`8.45%` over pooled and `24.98%` over shuffled, below both frozen `25%`
+comparison gates. This is useful conditional information without operator
+identification; no rescue, confirmation, image or visual shortlist opens. The
+repeated `primary_matches_distribution_but_operator_fails` branch activates
+the already-frozen U5.R2U1D constructed-coupling control.
+
 U5.R2T0 audits the new StatLUT preprint as a reference-conditioned explicit
 renderer. Its image branch predicts a global `16x16x16` LUT from Lab
 statistics, but training uses known random LUTs applied to the same COCO
@@ -136,8 +148,8 @@ assets with no code, checkpoint or licence; its MLP/one-step Euler path lacks
 the project's cube/range/Jacobian guarantees. Retain HCC only for a future
 synthetic clean-room comparison fitted into U5.R2O0 after S3/S4 adjudication.
 
-U5.R2U1 now freezes that comparison without executing it. After a repeated
-eligible S4 decision, new synthetic seeds will compare random
+U5.R2U1 now has the repeated eligible S4 decision required for execution. New
+synthetic seeds compare random
 correct-condition pairs, pooled HCC, correct-condition HCC and fixed
 shuffled-condition HCC while every method fits the same bounded O0 flow.
 Constructed-pair loss is diagnostic; hidden-operator error, independent A/B

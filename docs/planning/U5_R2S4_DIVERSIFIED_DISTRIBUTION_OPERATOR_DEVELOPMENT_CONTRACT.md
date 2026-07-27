@@ -2,7 +2,7 @@
 
 Date: 2026-07-26
 
-Status: **preregistered, pending U5.R2S3 repeated closure**
+Status: **complete on `primary_matches_distribution_but_operator_fails`**
 
 ## Parent and activation
 
@@ -17,10 +17,10 @@ requiring both `decision_branch=distribution_fail` and
 `repeat_report_sha256_equal=true`. Missing or mismatched evidence fails before
 any synthetic observation is generated.
 
-S3 report A currently shows the motivating failure: both pooled objectives
-reduce their training losses while failing held-out distribution, hidden
-operator and replicate gates. That observation is provisional until the
-second report completes.
+S3 closed twice byte-identically on the required `distribution_fail` branch.
+S4 then ran twice byte-identically without changing this contract. The
+authoritative result is
+`docs/U5_R2S4_DIVERSIFIED_DISTRIBUTION_OPERATOR_DEVELOPMENT_RESULTS.md`.
 
 ## Research basis and exact epistemic boundary
 

@@ -115,12 +115,23 @@ def test_decision_branch_separates_nonidentification_from_other_failures() -> No
         "oracle_median": True,
         "oracle_p90": True,
         "replicate": True,
+        "range": True,
+        "jacobian": True,
+        "norm": True,
+        "inverse": True,
+        "replay": True,
+        "coefficient": True,
     }
     assert (
         _decision_branch(passing, shuffled_fails=True)
         == "pending_repeat_primary_all_gates_pass"
     )
     primary = dict(passing, all_except_repeat=False)
+    structural_failure = dict(primary, jacobian=False)
+    assert (
+        _decision_branch(structural_failure, shuffled_fails=False)
+        == "structure_or_repeat_fails"
+    )
     assert (
         _decision_branch(primary, shuffled_fails=False)
         == "shuffled_negative_passes"

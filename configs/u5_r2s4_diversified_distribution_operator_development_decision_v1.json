@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2s4-diversified-distribution-operator-development-decision-v1",
+  "experiment_id": "u5.r2s4-diversified-distribution-operator-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2S4D",
+  "software_commit": "c03c321b9fc642e2e092d59e20dd1b145b96192d",
+  "config_sha256": "2347a1dd10c6680f687ea2fd4db9593cfd43e54c87fea2df63a7fb5eeaa5a5b8",
+  "report_a_sha256": "25ad02460cf248416d84ab9cb8260bdd35554f27d710920c343c98a0f0955b57",
+  "report_b_sha256": "25ad02460cf248416d84ab9cb8260bdd35554f27d710920c343c98a0f0955b57",
+  "repeat_report_sha256_equal": true,
+  "reserved_confirmation_seed_accessed": false,
+  "decision_branch": "primary_matches_distribution_but_operator_fails",
+  "automatic_visual_shortlist_generated": false,
+  "primary_method": {
+    "id": "conditional_rff_mmd_192",
+    "heldout_correct_conditional_loss_improvement_fraction_median": 0.7135514197174233,
+    "oracle_operator_output_rmse_median": 0.10751315624835919,
+    "oracle_operator_output_rmse_p90": 0.11900005596656098,
+    "same_style_fit_replicate_operator_rmse_median": 0.03153144392382494,
+    "identity_rmse_retention_ratio_median": 0.6458157169212653,
+    "primary_oracle_error_improvement_over_pooled_fraction": 0.08450869332330302,
+    "primary_oracle_error_improvement_over_shuffled_fraction": 0.249799502039745,
+    "optimization_initial_loss_median": 0.0020569025073200464,
+    "optimization_final_loss_median": 0.00032940601522568613,
+    "minimum_jacobian_determinant": 0.1507599481678405,
+    "maximum_jacobian_spectral_norm": 2.511695848973984,
+    "maximum_inverse_error": 6.8302348998905416e-08,
+    "maximum_coefficient_vector_norm": 1.5730955029242708
+  },
+  "controls": {
+    "pooled_rff_mmd_192": {
+      "heldout_correct_conditional_loss_improvement_fraction_median": 0.6494186421707062,
+      "oracle_operator_output_rmse_median": 0.11743765939038801,
+      "oracle_operator_output_rmse_p90": 0.12387884099961131,
+      "same_style_fit_replicate_operator_rmse_median": 0.025675079856668725
+    },
+    "shuffled_condition_rff_mmd_192": {
+      "heldout_correct_conditional_loss_improvement_fraction_median": 0.24786925322031572,
+      "oracle_operator_output_rmse_median": 0.14331256316235497,
+      "oracle_operator_output_rmse_p90": 0.14768833068928852,
+      "same_style_fit_replicate_operator_rmse_median": 0.04288364978947042
+    }
+  },
+  "primary_gates": {
+    "heldout_distribution": true,
+    "oracle_median": false,
+    "oracle_p90": false,
+    "replicate": true,
+    "beats_pooled": false,
+    "beats_shuffled": false,
+    "shuffled_negative": true,
+    "style": true,
+    "structure": true
+  },
+  "interpretation": "known generated condition correspondence strongly improves held-out distribution matching and separates the shuffled negative while preserving a stable bounded explicit flow, but it does not recover the hidden operator and improves oracle error by only 8.45% over pooled and 24.98% over shuffled, below both frozen 25% comparison gates; diversified conditional distribution matching is informative but non-identifying under this candidate",
+  "forbidden_rescues": [
+    "increase S4 steps, grid size, features, loss bandwidths or model capacity",
+    "relax the frozen oracle or 25% comparison gates",
+    "round 24.97995% upward to pass the shuffled comparison",
+    "access the reserved confirmation seed",
+    "generate a visual candidate or use project images",
+    "claim real unpaired digital-to-film operator identification"
+  ],
+  "next_ready_leaf": "U5.R2U1D hierarchical colour coupling synthetic control",
+  "claim_ceiling": "repeat-exact synthetic development evidence that known generated condition correspondence improves conditional distribution matching and discriminates a fixed shuffled negative without identifying the known bounded colour operator; no universal, image, film, stock, calibrated or real unpaired-operator claim"
+}

@@ -223,12 +223,23 @@ def test_runner_decision_separates_pair_fit_nonidentification() -> None:
         "pair_fit": True,
         "oracle_median": True,
         "oracle_p90": True,
+        "range": True,
+        "jacobian": True,
+        "norm": True,
+        "inverse": True,
+        "replay": True,
+        "coefficient": True,
     }
     assert (
         _decision_branch(passing, shuffled_fails=True)
         == "pending_repeat_primary_all_gates_pass"
     )
     base = dict(passing, all_except_repeat=False)
+    structural_failure = dict(base, range=False)
+    assert (
+        _decision_branch(structural_failure, shuffled_fails=False)
+        == "structure_or_repeat_fails"
+    )
     assert (
         _decision_branch(base, shuffled_fails=False)
         == "shuffled_negative_passes"

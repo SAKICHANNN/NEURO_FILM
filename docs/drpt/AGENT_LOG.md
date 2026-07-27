@@ -4402,3 +4402,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and execution stays queued behind a repeated eligible W1 branch. Film,
   stock, calibration, commercial-rights and output-only recovery claims remain
   forbidden; Goal continues.
+
+## 2026-07-27 - Close U5.R2S4D and activate U5.R2U1D
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2S4D`; the primary writer follows
+  `dev-research-reliability`, with AI/ML, research, DRPT-BI, tracker,
+  agent-log, structure and code-review disciplines as read-only governance.
+- **Frozen execution:** both formal CUDA float32 runs used software commit
+  `c03c321b9fc642e2e092d59e20dd1b145b96192d` and config SHA-256
+  `2347a1dd10c6680f687ea2fd4db9593cfd43e54c87fea2df63a7fb5eeaa5a5b8`.
+  Reports A/B are byte-identical at
+  `25AD02460CF248416D84AB9CB8260BDD35554F27D710920C343C98A0F0955B57`;
+  stderr/stdout are empty and the reserved confirmation seed is untouched.
+- **Primary result:** correct-condition RFF-MMD reaches `71.355%` held-out
+  conditional improvement and `.03153` A/B flow RMSE, while all style, range,
+  Jacobian, norm, inverse, replay and coefficient gates pass. Oracle
+  median/p90 RMSE is `.10751/.11900`, failing `.07/.10`.
+- **Controls:** pooled reaches `.11744/.12388` oracle RMSE and shuffled reaches
+  `.14331/.14769`. Correct-condition oracle improvement is only `8.45%` over
+  pooled and `24.97995%` over shuffled, missing both frozen `25%` gates. The
+  shuffled negative itself fails as required.
+- **Decision:** formal branch
+  `primary_matches_distribution_but_operator_fails`. Known generated
+  conditions improve distribution matching but do not identify the hidden
+  operator. No gate is rounded, relaxed or reopened; no S4 capacity rescue,
+  confirmation, visual candidate, project image or real-pixel claim opens.
+- **Code-review correction:** S4 and U1 decision helpers now classify a failed
+  range/Jacobian/norm/inverse/replay/coefficient gate as
+  `structure_or_repeat_fails` before semantic failure branches. Frozen S4
+  reports and gates are unchanged; targeted regression tests cover the
+  boundary.
+- **Handoff:** the repeated eligible S4 branch activates only the already
+  frozen U5.R2U1D synthetic hierarchical-colour-coupling control. Constructed
+  pseudo-pairs remain hypotheses, never observed correspondences. Current
+  pixels, stock learning, LSM, calibration and production integration stay
+  closed; Goal continues.
