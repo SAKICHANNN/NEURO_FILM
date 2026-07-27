@@ -101,10 +101,10 @@ with a selected stock, but reference matching alone is labeled
 | P26C | DONE | bind the exact receipt into a v2 guard-candidate admission decision | 11 dedicated and 79 combined core tests; no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | `497748c` | revert additive admission commit |
 | P26D | DONE | run propagation, adjacent/full regression and peer handoff | 304 adjacent tests; full suite 1160 pass/1 skip/36 known failures; zero main-path overlap | evidence commit | retain P25 fallback |
 | P27A | DONE | independently pin and audit D-PCT producer v1 schemas/exact-bit conformance | 4 lock tests; producer commit plus four schema, fixture, Python and C++ hashes; explicit closed verdict | compatibility-lock commit | revert lock/docs |
-| P27B | DONE | consume corrected producer DiagnosticsV2/ApplyResultV2 from fixed commit `11c581e` | strict v2 lock; corrected factual fixture `60e7466d...`; schema/code/native hashes | compatibility-v2 commit | keep producer v1 and superseded v2 fixture closed |
+| P27B | DONE | consume corrected producer DiagnosticsV2/ApplyResultV2 from fixed producer line through `b1b68b6` | strict v2 lock; success `60e7466d...` and failure `9f7a3581...` fixtures; schema/code/native hashes | `60b3be8`, `1a8f6c4` | keep producer v1 and superseded v2 fixture closed |
 | P27C | DONE | implement explicit producer-v2 to consumer adapter | exact byte length, pixel/view/bundle/diagnostics/result recomputation; no mutable import | compatibility-v2 commit | identity fallback |
 | P27D | DONE | pass corrected producer exact fixture through consumer receipt/admission | dual producer/consumer identities, exact output receipt, candidate-only A1/A4/A5 chain | compatibility-v2 commit | identity fallback before guard |
-| P27E | IN_PROGRESS | run adjacent/full/latest-main propagation and peer handoff | regression, overlap, fixed evidence bundle | evidence commit | retain P26 boundary |
+| P27E | DONE | run adjacent/full/latest-main propagation and peer handoff | 1179 pass/1 skip/36 known environment failures; latest-main synthetic merge 284 pass; zero path overlap | evidence commit | retain P26 boundary |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -168,7 +168,8 @@ its diagnostics do not supply the facts required by the consumer and its
 ApplyResult does not bind source geometry. Only a fixed producer v2 schema,
 fixture and cross-language result may reopen P27B.
 
-P27B-D use only the corrected producer commit `11c581e`. The earlier
+P27B-D require the corrected producer line beginning at `11c581e`; the final
+lock advances to `b1b68b6` to include an exact failed-diagnostics vector. The earlier
 `281b13f` v2 fixture is permanently rejected: its hashes were internally
 self-consistent but its output reused unclipped source pixels while reporting
 hard clipping. The corrected fixture binds a real `[0,1]` output and reports
@@ -178,6 +179,14 @@ it never uses dynamic producer diagnostics/result IDs as recipe or cache
 identity. Even a valid fixture produces only a consumer `candidate-only`
 receipt. Product use remains identity fallback until A1/A4/A5 and the
 delivered-pixel guard pass.
+
+The failed vector has `bundle_id=null`, `measurements=null`, no result and an
+explicit producer failure code. Neuro-Film can verify its canonical ID but
+cannot manufacture a transform, diagnostics measurements or receipt from it;
+its only action is identity fallback. Both pinned fixtures are forced to LF so
+their producer-published artifact SHA-256 survives a fresh Windows checkout.
+The later proposed absolute BT.2020 HDR rail is a separate, currently unmapped
+profile and does not inherit this relative-sRGB compatibility verdict.
 
 ## First-slice algorithm
 

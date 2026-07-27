@@ -1002,3 +1002,30 @@
   FilmFX or main worktree file is copied or changed.
 - Handoff: commit P27B-D, then P27E runs full/latest-main propagation and sends
   a fixed compatibility snapshot to both equal peer tasks.
+
+## 2026-07-28 - Close P27 producer compatibility propagation
+
+- Node/parent goal: P27E / explicit D-PCT producer compatibility.
+- Producer pin advanced to `b1b68b6` solely to include exact failed
+  DiagnosticsV2 fixture `9f7a3581...`; success schemas/fixture/IDs remain
+  unchanged. Failure has no bundle, measurements or result and maps only to
+  identity fallback.
+- Fresh-checkout correction: first latest-main merge test exposed CRLF
+  conversion of the producer fixture. A narrow `.gitattributes` rule now
+  forces both exact producer fixtures to LF; the repeated detached merge
+  reproduces both published artifact hashes.
+- Local verification: 41 focused tests; full suite 1179 passed, one skipped
+  and the same 36 known ignored-output/CRLF asset failures. No reference-match
+  or P27 failure.
+- Main preflight: stable main `a33526e`; common base `c03c321`; 129 consumer
+  versus 86 main changed paths, zero intersection; merge tree
+  `63863b7b...`; detached synthetic merge passes 284/284 selected tests.
+- Producer evidence: current peer adds independent MSVC/LLVM-MinGW exact
+  success/failure identity and Android compile evidence. These do not claim
+  Android/Apple runtime or consumer invocation compatibility.
+- Propagation: success remains receipt-bound candidate-only; failure cannot
+  issue a receipt; A1/A4/A5, transaction and delivered-pixel guard remain
+  unchanged. RAW/HDR/video and the proposed absolute BT.2020 rail remain
+  separate producer work with no implicit consumer mapping.
+- Structure: no main or producer file changed; temporary merge worktree was
+  verified, merge-aborted and removed. Branch is ready for peer handoff.

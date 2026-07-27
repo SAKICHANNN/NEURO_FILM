@@ -560,3 +560,20 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   A1/A4/A5 or the delivered-pixel guard.
 - Evidence: corrected fixture and 36 focused plus 279 adjacent tests pass.
   P27E still owns broad/full/latest-main propagation and stable peer handoff.
+
+### 2026-07-28 P27 stable consumer handoff
+
+- Consumer HEAD before evidence-only closure: `1a8f6c4`; producer protocol
+  evidence pin: `b1b68b664d99e7d16ce06af106faf206a7d6fc07`.
+- Success fixture `60e7466d...` crosses exact output receipt/admission.
+  Failed fixture `9f7a3581...` verifies canonical failure but has no result and
+  can only request identity fallback.
+- Windows fresh-checkout conformance is explicit: both producer fixtures use
+  `text eol=lf`; the first CRLF-sensitive synthetic merge failed as intended,
+  the corrected rerun passed 284/284.
+- Full local result: 1179 passed, one skipped, 36 known unrelated
+  ignored-output/CRLF failures. Latest-main `a33526e` has zero changed-path
+  overlap and merge tree `63863b7b...` is conflict-free.
+- No producer algorithm/media code, mutable import, main worktree edit, merge,
+  push or product applied state exists. The proposed producer HDR absolute
+  rail is outside this compatibility claim until separately frozen/audited.

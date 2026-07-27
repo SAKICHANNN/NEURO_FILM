@@ -238,3 +238,18 @@ algorithm still yields identity fallback. A promoted algorithm yields only
 `pending-product-guard` under `CoreCandidateAdmissionV2`; A1/A4/A5 and the
 delivered-pixel guard remain mandatory. Verification: 36 focused tests and
 279 adjacent colour-match tests pass, with compile and diff checks clean.
+
+P27 later adds the producer's exact failed DiagnosticsV2 fixture at fixed
+commit `b1b68b6`. Its canonical ID is independently reproduced while
+`bundle_id`, `measurements` and result remain absent. The consumer returns a
+typed failure record whose sole action is `identity-fallback`; it cannot issue
+a transform, diagnostics measurements or output receipt.
+
+Both exact fixtures are pinned to LF through `.gitattributes`. This is
+required evidence, not cosmetic formatting: the first fresh Windows
+latest-main checkout converted the JSON to CRLF and correctly failed the
+producer artifact hash. After the explicit rule, a clean detached
+`a33526e + 1a8f6c4` merge passes 284 selected tests and reproduces both fixture
+hashes. Full local verification reports 1179 passed, one skipped and the same
+36 unrelated known environment failures. Changed-path overlap with stable
+main is zero and merge-tree construction is conflict-free.
