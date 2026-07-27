@@ -82,6 +82,13 @@ from .core_conformance import (
     core_consumer_conformance_result_to_json,
     verify_core_consumer_conformance_bundle,
 )
+from .dpct_adapter import (
+    DPCT_COMPATIBILITY_PROFILE_ID,
+    DPCT_PINNED_COMMIT,
+    AdaptedDpctCandidateV2,
+    DpctProducerAliasesV2,
+    adapt_dpct_candidate_v2,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -204,6 +211,8 @@ __all__ = [
     "CORE_CONSUMER_CONFORMANCE_RESULT_SCHEMA_ID",
     "CORE_CONSUMER_CONFORMANCE_SCHEMA_ID",
     "DIAGNOSTICS_SCHEMA_ID",
+    "DPCT_COMPATIBILITY_PROFILE_ID",
+    "DPCT_PINNED_COMMIT",
     "CORE_OUTPUT_BRIDGE_ID",
     "MATCH_PROFILE_ABSOLUTE_XYZ",
     "MATCH_PROFILE_DISPLAY_REC2020",
@@ -226,6 +235,7 @@ __all__ = [
     "PhotographicSafetyBatchMetrics",
     "CanonicalEncodingError",
     "CapabilitiesV1",
+    "AdaptedDpctCandidateV2",
     "CoreAcceptanceDecisionV1",
     "CoreApplyReceiptV1",
     "CoreCandidateAdmissionV2",
@@ -236,6 +246,7 @@ __all__ = [
     "ContextInvariancePolicy",
     "GuardedReferenceMatchResult",
     "DiagnosticsV1",
+    "DpctProducerAliasesV2",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
     "PhotographicSafetyMetrics",
@@ -263,6 +274,7 @@ __all__ = [
     "TransformBundleV1",
     "fit_reference_look",
     "admit_core_apply_receipt",
+    "adapt_dpct_candidate_v2",
     "aggregate_known_operator_samples",
     "adjudicate_promotion",
     "adjudicate_core_acceptance",

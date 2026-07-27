@@ -975,3 +975,30 @@
   without changing v1. Its metric definitions remain producer-owned.
 - Verification: four lock/schema tests pass; diff check passes.
 - Handoff: commit P27A. P27B may act only on a fixed v2 snapshot.
+
+## 2026-07-28 - Open corrected D-PCT v2 candidate bridge
+
+- Node/parent goal: P27B-D / explicit D-PCT producer compatibility.
+- Producer correction: independent audit rejected `281b13f` fixture
+  `eec54e...` because it paired unclipped output with a false clipping
+  fraction. D-PCT independently fixed it at `11c581e`; the retained fixture
+  `60e7466d...` has output range `[0,1]` and factual OOG/clipping `3/12`.
+- Fixed boundary: producer code `73fcf290...`, native reference
+  `ae06f388...`, DiagnosticsV2 schema `6f12c68d...`, ApplyResultV2 schema
+  `5ab3fa9c...`; v1 remains unchanged and closed.
+- Implementation: add a no-import `dpct_adapter` that verifies f32be byte
+  length, pixel hashes, MatchView IDs, bundle payload/ID, DiagnosticsV2 ID,
+  ApplyResultV2 ID, geometry/profile and all cross-envelope bindings.
+- Identity policy: retain producer source/reference/bundle/diagnostics/result
+  aliases and regenerate Neuro-Film view/transform/capability/receipt IDs.
+  Dynamic timing-bound producer IDs are not cache or recipe identities.
+- Product ceiling: exact producer pixels receive only a `candidate-only`
+  receipt. Unpromoted candidates remain identity fallback; promoted candidates
+  stop at `pending-product-guard` with A1/A4/A5 still required.
+- Verification: 36 focused adapter/core tests and 279 adjacent colour-match
+  tests pass; compile and diff checks pass.
+- Structure: additive adapter, v2 lock/schema, one fixed fixture and tests in
+  established homes; no D-PCT source, decoder, ABI, RAW/HDR/video, transaction,
+  FilmFX or main worktree file is copied or changed.
+- Handoff: commit P27B-D, then P27E runs full/latest-main propagation and sends
+  a fixed compatibility snapshot to both equal peer tasks.

@@ -540,3 +540,23 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
   guarded research application succeeds on its positive control.
 - No merge, push, main-worktree edit, D-PCT edit or external task message
   occurred. Integration remains a repository-owner action.
+
+### 2026-07-28 corrected D-PCT v2 compatibility claim
+
+- Consumer owner: this task, P27B-D. Producer owner: equal peer
+  `019f9f3b...`; integration owner remains this task for consumer files only.
+- Producer pin: `11c581ecdd0a41a840c4e0f94112cfb597e00b0a`.
+  The superseded `281b13f` v2 fixture is an explicit NO-GO despite valid
+  hashes because its clipping facts were wrong.
+- Allowed consumer artifacts: compatibility lock/schema, fixed corrected
+  exact-bit fixture, adapter, tests and governance evidence. Forbidden:
+  mutable cross-repo imports, producer source copies, producer algorithm/media
+  implementation and direct product `applied` state.
+- Interface result: producer and consumer IDs are separate; identical f32be
+  pixel hashes form the sole direct identity bridge. All producer IDs are
+  independently recomputed before a consumer receipt is issued.
+- Stop condition: any schema/hash/geometry/profile/binding mismatch fails
+  before receipt. A valid result remains candidate-only and cannot bypass
+  A1/A4/A5 or the delivered-pixel guard.
+- Evidence: corrected fixture and 36 focused plus 279 adjacent tests pass.
+  P27E still owns broad/full/latest-main propagation and stable peer handoff.

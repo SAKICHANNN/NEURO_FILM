@@ -101,10 +101,10 @@ with a selected stock, but reference matching alone is labeled
 | P26C | DONE | bind the exact receipt into a v2 guard-candidate admission decision | 11 dedicated and 79 combined core tests; no direct applied state; A1/A4/A5 and delivered-pixel guard remain mandatory | `497748c` | revert additive admission commit |
 | P26D | DONE | run propagation, adjacent/full regression and peer handoff | 304 adjacent tests; full suite 1160 pass/1 skip/36 known failures; zero main-path overlap | evidence commit | retain P25 fallback |
 | P27A | DONE | independently pin and audit D-PCT producer v1 schemas/exact-bit conformance | 4 lock tests; producer commit plus four schema, fixture, Python and C++ hashes; explicit closed verdict | compatibility-lock commit | revert lock/docs |
-| P27B | IN_PROGRESS | consume producer DiagnosticsV2/ApplyResultV2 only after fixed hashes and exact fixture | all required factual diagnostics and source geometry must be producer-bound | v2 lock commit | keep v1 closed |
-| P27C | NOT_STARTED | implement explicit producer-v2 to consumer adapter | exact profile/pixel/hash/ID mapping; no mutable import | adapter commit | identity fallback |
-| P27D | NOT_STARTED | pass producer exact fixture through consumer receipt/admission | producer IDs and regenerated consumer IDs both exact; candidate-only | conformance commit | identity fallback |
-| P27E | NOT_STARTED | run adjacent/full/latest-main propagation and peer handoff | regression, overlap, fixed evidence bundle | evidence commit | retain P26 boundary |
+| P27B | DONE | consume corrected producer DiagnosticsV2/ApplyResultV2 from fixed commit `11c581e` | strict v2 lock; corrected factual fixture `60e7466d...`; schema/code/native hashes | compatibility-v2 commit | keep producer v1 and superseded v2 fixture closed |
+| P27C | DONE | implement explicit producer-v2 to consumer adapter | exact byte length, pixel/view/bundle/diagnostics/result recomputation; no mutable import | compatibility-v2 commit | identity fallback |
+| P27D | DONE | pass corrected producer exact fixture through consumer receipt/admission | dual producer/consumer identities, exact output receipt, candidate-only A1/A4/A5 chain | compatibility-v2 commit | identity fallback before guard |
+| P27E | IN_PROGRESS | run adjacent/full/latest-main propagation and peer handoff | regression, overlap, fixed evidence bundle | evidence commit | retain P26 boundary |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -167,6 +167,17 @@ consumer IDs under consumer rules. Producer v1 is deliberately closed because
 its diagnostics do not supply the facts required by the consumer and its
 ApplyResult does not bind source geometry. Only a fixed producer v2 schema,
 fixture and cross-language result may reopen P27B.
+
+P27B-D use only the corrected producer commit `11c581e`. The earlier
+`281b13f` v2 fixture is permanently rejected: its hashes were internally
+self-consistent but its output reused unclipped source pixels while reporting
+hard clipping. The corrected fixture binds a real `[0,1]` output and reports
+three changed channel samples out of twelve. The adapter independently
+recomputes every producer identity and then regenerates consumer identities;
+it never uses dynamic producer diagnostics/result IDs as recipe or cache
+identity. Even a valid fixture produces only a consumer `candidate-only`
+receipt. Product use remains identity fallback until A1/A4/A5 and the
+delivered-pixel guard pass.
 
 ## First-slice algorithm
 

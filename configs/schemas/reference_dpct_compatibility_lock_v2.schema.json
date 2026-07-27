@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-dpct-compatibility-lock-v2.json",
+  "title": "Neuro-Film pinned D-PCT compatibility lock v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "producer",
+    "schemas",
+    "conformance",
+    "profile_mapping",
+    "verdict"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.dpct-compatibility-lock.v2"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_id",
+        "commit",
+        "producer_contracts_sha256",
+        "native_reference_sha256"
+      ],
+      "properties": {
+        "repository_id": {"const": "zhuise-dpct"},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "producer_contracts_sha256": {"$ref": "#/$defs/sha256"},
+        "native_reference_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "match_view",
+        "transform_bundle",
+        "diagnostics",
+        "apply_result"
+      ],
+      "properties": {
+        "match_view": {"$ref": "#/$defs/schema_lock"},
+        "transform_bundle": {"$ref": "#/$defs/schema_lock"},
+        "diagnostics": {"$ref": "#/$defs/schema_lock"},
+        "apply_result": {"$ref": "#/$defs/schema_lock"}
+      }
+    },
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_id",
+        "fixture_sha256",
+        "python_identity_count",
+        "cpp17_identity_count",
+        "msvc_w4_wx_passed",
+        "factual_clipping_consistency"
+      ],
+      "properties": {
+        "fixture_id": {
+          "const": "zhuise-producer-contract-exact-bits-v2"
+        },
+        "fixture_sha256": {"$ref": "#/$defs/sha256"},
+        "python_identity_count": {"const": 8},
+        "cpp17_identity_count": {"const": 8},
+        "msvc_w4_wx_passed": {"const": true},
+        "factual_clipping_consistency": {"const": true}
+      }
+    },
+    "profile_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compatibility_profile_id",
+        "producer_profile_id",
+        "consumer_profile_id",
+        "pixel_layout",
+        "pixel_hash_mapping",
+        "identity_policy"
+      ],
+      "properties": {
+        "compatibility_profile_id": {
+          "const": "neuro-film.dpct-consumer.v2"
+        },
+        "producer_profile_id": {
+          "const": "zhuise.display-linear-srgb-d65-relative-f32.v1"
+        },
+        "consumer_profile_id": {
+          "const": "neuro-film.display-relative-linear-srgb-d65.v1"
+        },
+        "pixel_layout": {
+          "const": "f32be-rgb-interleaved-row-major"
+        },
+        "pixel_hash_mapping": {"const": "strip-sha256-prefix"},
+        "identity_policy": {
+          "const": "retain-producer-aliases-regenerate-consumer-identities"
+        }
+      }
+    },
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "consumer_may_invoke",
+        "consumer_may_issue_apply_receipt",
+        "consumer_may_admit_after_a1_a4_a5",
+        "consumer_may_directly_apply",
+        "identity_fallback_before_product_guard"
+      ],
+      "properties": {
+        "status": {
+          "const": "producer-conformant-consumer-adapter-open-candidate-only"
+        },
+        "consumer_may_invoke": {"const": true},
+        "consumer_may_issue_apply_receipt": {"const": true},
+        "consumer_may_admit_after_a1_a4_a5": {"const": true},
+        "consumer_may_directly_apply": {"const": false},
+        "identity_fallback_before_product_guard": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "schema_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "sha256"],
+      "properties": {
+        "schema_id": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

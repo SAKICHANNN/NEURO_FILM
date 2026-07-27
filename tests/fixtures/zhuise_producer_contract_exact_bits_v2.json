@@ -1,0 +1,95 @@
+{
+  "apply_result": {
+    "bundle_id": "sha256:b4440fa31503c9b170b8fb05a10a2fcf0b59b365ff6bdecd290197ab1768416d",
+    "capability_id": "zhuise.dpct.cpu-reference.v1",
+    "diagnostics_id": "sha256:ab7d1ebd0b65a6400ce514f923811321cb75ad415befeb906520254dfdf4e2c9",
+    "disposition": "candidate-only",
+    "output": {
+      "channels": 3,
+      "height": 2,
+      "pixel_byte_length": 48,
+      "pixel_layout": "f32be-rgb-interleaved-row-major",
+      "pixel_sha256": "sha256:f45e5c8ed463d1f0e624884181c0ac5c4b1f9908078f8aeceab9c4f93efd7daa",
+      "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+      "schema": "zhuise.match-view.v1",
+      "view_id": "sha256:b3661ddc84cd0bddf5ca28adf871e70132ee3b66752a8b0b7c50f28043c944a4",
+      "width": 2
+    },
+    "reference_view_id": "sha256:d72abd55e8996380f31a1de69fa8a9e9974ce32840559c39f9d6e400e5a67965",
+    "result_id": "sha256:2822db009ef766e6adf42066fd997c201a8519b08f5341076d36ddef65dffe84",
+    "schema": "zhuise.apply-result.v2",
+    "source_height": 2,
+    "source_view_id": "sha256:d91d4b52bc9d7540fcce10a7ee4ba57a4e0b5539bda8c2ce45313e6b9872b1f5",
+    "source_width": 2
+  },
+  "diagnostics": {
+    "backend": {
+      "backend_id": "zhuise.fixture.cpu",
+      "backend_version": "zhuise.fixture.v2",
+      "build_fingerprint": "sha256:5656565656565656565656565656565656565656565656565656565656565656"
+    },
+    "bundle_id": "sha256:b4440fa31503c9b170b8fb05a10a2fcf0b59b365ff6bdecd290197ab1768416d",
+    "canonical_json": "zhuise-json-sort-keys-utf8-v1",
+    "capability_id": "zhuise.dpct.cpu-reference.v1",
+    "diagnostics_id": "sha256:ab7d1ebd0b65a6400ce514f923811321cb75ad415befeb906520254dfdf4e2c9",
+    "failure_code": null,
+    "measurements": {
+      "all_finite": true,
+      "clipping_fraction": 0.25,
+      "confidence": null,
+      "out_of_gamut_fraction": 0.25,
+      "output_maximum": 1.0,
+      "output_minimum": 0.0,
+      "projected_fraction": 0.0,
+      "timing_ms": 1.25
+    },
+    "reference_view_id": "sha256:d72abd55e8996380f31a1de69fa8a9e9974ce32840559c39f9d6e400e5a67965",
+    "schema": "zhuise.diagnostics.v2",
+    "source_view_id": "sha256:d91d4b52bc9d7540fcce10a7ee4ba57a4e0b5539bda8c2ce45313e6b9872b1f5",
+    "status": "candidate",
+    "warnings": [
+      "development-only",
+      "consumer-product-guard-required"
+    ]
+  },
+  "fixture": "zhuise-producer-contract-exact-bits-v2",
+  "payload_hex": "4450435400010203ff",
+  "output_pixel_f32be_hex": "00000000800000003f8000003dcccccd3e3851ec3f0000003f800000000000003f8000003b8080813f0000003f400000",
+  "reference": {
+    "channels": 3,
+    "height": 2,
+    "pixel_byte_length": 48,
+    "pixel_layout": "f32be-rgb-interleaved-row-major",
+    "pixel_sha256": "sha256:37afcab46ac9f10096e1c0b7647106619607115ae436afb77cc13f7a699422be",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "schema": "zhuise.match-view.v1",
+    "view_id": "sha256:d72abd55e8996380f31a1de69fa8a9e9974ce32840559c39f9d6e400e5a67965",
+    "width": 2
+  },
+  "reference_pixel_f32be_hex": "3ca3d70a3cf5c28f3d23d70a3e4ccccd3e99999a3ecccccd3f19999a3f3333333f4ccccd3f6666663f8000003f8ccccd",
+  "source": {
+    "channels": 3,
+    "height": 2,
+    "pixel_byte_length": 48,
+    "pixel_layout": "f32be-rgb-interleaved-row-major",
+    "pixel_sha256": "sha256:b8a7f628da76d4b8a36483acaa6cd6411643019d91d000312a724ab0d7007307",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "schema": "zhuise.match-view.v1",
+    "view_id": "sha256:d91d4b52bc9d7540fcce10a7ee4ba57a4e0b5539bda8c2ce45313e6b9872b1f5",
+    "width": 2
+  },
+  "source_pixel_f32be_hex": "00000000800000003f8000003dcccccd3e3851ec3f0000003fc00000be800000400000003b8080813f0000003f400000",
+  "transform": {
+    "algorithm_id": "zhuise.dpct",
+    "algorithm_version": "zhuise.dpct.v1",
+    "bundle_id": "sha256:b4440fa31503c9b170b8fb05a10a2fcf0b59b365ff6bdecd290197ab1768416d",
+    "capability_id": "zhuise.dpct.cpu-reference.v1",
+    "payload_byte_length": 9,
+    "payload_format": "zhuise.dpct.portable.v1",
+    "payload_sha256": "sha256:6f90097de98398edd2b8f50df4a784e65aaed3fda9aef1db131df6bf875d4e09",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "reference_view_id": "sha256:d72abd55e8996380f31a1de69fa8a9e9974ce32840559c39f9d6e400e5a67965",
+    "schema": "zhuise.transform-bundle.v1",
+    "source_view_id": "sha256:d91d4b52bc9d7540fcce10a7ee4ba57a4e0b5539bda8c2ce45313e6b9872b1f5"
+  }
+}

@@ -207,3 +207,34 @@ P26 broad verification passes 304/304 adjacent tests. Full collection reports
 classified missing ignored-output/CRLF asset families. Main path overlap
 remains zero. P26 therefore closes the consumer-side output identity gap while
 leaving producer compatibility and delivered-pixel integration closed.
+
+## P27 corrected D-PCT producer-v2 compatibility
+
+The compatibility lock pins D-PCT commit `11c581e`, not the earlier
+`281b13f` candidate. Independent audit found that the earlier fixture had
+valid canonical hashes but false pixel semantics: it returned the unclipped
+source while claiming hard clipping. The corrected exact-bit fixture has
+SHA-256 `60e7466d...`, output range `[0,1]`, and factual pre-policy OOG plus
+changed-channel clipping fractions of `0.25`.
+
+`src/color_match/dpct_adapter.py` does not import the producer checkout. It
+independently verifies:
+
+- dense f32be RGB byte length, finite samples and exact pixel SHA-256;
+- producer MatchView header hash for source, reference and output;
+- opaque payload length/hash and canonical TransformBundle ID;
+- candidate/failed state, backend build identity and all factual metrics;
+- canonical DiagnosticsV2 and ApplyResultV2 IDs;
+- source/output width, height and profile equality;
+- capability/source/reference/bundle/diagnostics cross-record bindings.
+
+The producer IDs are retained as aliases. Neuro-Film separately regenerates
+its source/reference views, transform, capabilities, diagnostics and exact
+output receipt. Producer diagnostics and result IDs include timing and are
+therefore execution evidence, never stable recipe/cache identity.
+
+The corrected fixture passes through `CoreApplyReceiptV1`. An unpromoted
+algorithm still yields identity fallback. A promoted algorithm yields only
+`pending-product-guard` under `CoreCandidateAdmissionV2`; A1/A4/A5 and the
+delivered-pixel guard remain mandatory. Verification: 36 focused tests and
+279 adjacent colour-match tests pass, with compile and diff checks clean.
