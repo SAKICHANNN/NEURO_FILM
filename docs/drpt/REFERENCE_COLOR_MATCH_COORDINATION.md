@@ -52,8 +52,11 @@
     Schema contracts for non-Python consumers;
   - recipe and composition identity use the frozen typed canonical byte stream,
     never implementation-specific JSON float formatting;
-  - a fitted recipe is shared across the batch; per-source normalization may
-    adapt to content, but the reference target and policy cannot change.
+  - a fitted recipe is shared across the batch and the reference target/policy
+    cannot change;
+  - per-source adaptation cannot support a strong batch-consistency claim
+    unless shared input colours pass the frozen cross-context median/p95/max
+    drift gate.
 - Expected evidence:
   - focused unit tests for fitting, replay identity, batch invariants,
     fail-closed boundaries and no input mutation;

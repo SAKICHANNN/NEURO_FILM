@@ -96,6 +96,7 @@ def test_promotion_cli_streams_matrix_and_repeats_exactly(
     )
     assert len(payload["known_operator"]["samples"]) == 6
     assert len(payload["photographic_safety"]["samples"]) == 3
+    assert len(payload["context_invariance"]["samples"]) == 3
     assert payload["visual_review"] is None
     assert payload["promotion_decision"]["status"] != "promoted"
 

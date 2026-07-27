@@ -313,3 +313,26 @@
   known failures from absent ignored outputs and CRLF-sensitive frozen hashes;
   no colour-match or adjacent validation test fails.
 - Commit: `8e03ed7` (`feat: gate reference matcher promotion`).
+
+## 2026-07-27 - Correct the meaning of batch consistency
+
+- Parent: P10 / A5 album and batch consistency.
+- Defect: prior tests proved deterministic replay, one immutable recipe and
+  source-order independence, but not consistent mapping of the same colour
+  across different source-image contexts.
+- Changed: added two frozen 32x48 probes with one exactly shared colour chart
+  inside unrelated dark/cool and bright/warm surroundings. Added single- and
+  multi-recipe median/p95/max Delta E76 gates at `0.5/1.0/3.0`, a
+  future-renderer output adapter, promotion-decision integration and strict
+  report-schema coverage.
+- Formal result: all six Velvia-reference baseline recipes fail. Worst
+  shared-colour median/p95/maximum drift is
+  `60.8633/77.3292/80.1493` Delta E76.
+- Decision: v1 remains deterministic and order-stable but is not strongly
+  album-consistent. Reusing a recipe ID cannot substitute for a fixed explicit
+  operator or a bounded adaptation that passes the context gate.
+- Current report: ID `2f7b8b2c...736411`, SHA-256
+  `40d52826...213a1`; promotion remains `rejected`.
+- Verification: 131 focused colour-match/preprocess/colour-engine tests pass.
+  The full collection is 987 passed, one skipped and the unchanged 36 known
+  ignored-output/CRLF-hash failures; no new failure family appears.

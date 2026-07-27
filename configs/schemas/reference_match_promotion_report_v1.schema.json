@@ -18,6 +18,7 @@
     "recipe_ids",
     "known_operator",
     "photographic_safety",
+    "context_invariance",
     "visual_review",
     "promotion_decision"
   ],
@@ -72,6 +73,9 @@
     },
     "photographic_safety": {
       "$ref": "#/$defs/photographic_safety"
+    },
+    "context_invariance": {
+      "$ref": "#/$defs/context_invariance"
     },
     "visual_review": {
       "anyOf": [
@@ -356,6 +360,111 @@
           "type": "number",
           "minimum": 0,
           "maximum": 180
+        }
+      }
+    },
+    "context_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "reasons",
+        "delta_e76_median",
+        "delta_e76_p95",
+        "delta_e76_maximum"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "shared-colour-median-drift",
+              "shared-colour-p95-drift",
+              "shared-colour-maximum-drift"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "delta_e76_maximum": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "passed": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reasons": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "context_invariance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "samples",
+        "passed_recipe_count",
+        "failed_recipe_count",
+        "maximum_delta_e76_median",
+        "maximum_delta_e76_p95",
+        "maximum_delta_e76"
+      ],
+      "properties": {
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/context_sample"
+          },
+          "minItems": 1
+        },
+        "passed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_delta_e76": {
+          "type": "number",
+          "minimum": 0
         }
       }
     },

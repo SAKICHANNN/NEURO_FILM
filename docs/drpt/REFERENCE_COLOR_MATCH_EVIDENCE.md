@@ -100,8 +100,9 @@ For example, `configs/color_rendering_profiles.yaml` has Git-blob SHA-256
 - The file adapter currently exports linear-sRGB sources only.
 - Mean/std safe-Lab is a deterministic baseline and product integration shell,
   not evidence of strongest photographic or aesthetic matching.
-- One recipe is fixed across a batch; per-source normalization is the existing
-  safe-Lab content adaptation.
+- One recipe is fixed across a batch, but the existing safe-Lab per-source
+  normalization fails shared-colour context invariance. The baseline is
+  deterministic/order-stable, not strongly album-consistent.
 - RAW/HDR/video and portable media execution remain owned by the standalone
   D-PCT project.
 - Single-reference identifiability and stronger content-invariant descriptors
@@ -184,10 +185,11 @@ blinded rows, preference above 50% and zero severe artifacts.
 The six-reference baseline formal report is `rejected`: 5/30 cross-content
 improvements, -92.19% median, -344.87% worst and 21.86% maximum new-boundary
 fraction. Four of six recipe probes also fail the 5% new-boundary tail, with a
-12.69% worst case. Two full-resolution pre-portability runs were byte-exact;
-the final content-bound report passes its strict schema with ID
-`7e22df00...5c996`. Relocating identical fixtures changes recorded paths but
-not report identity.
+12.69% worst case. All six fail shared-colour context invariance; worst
+median/p95/maximum drift is `60.86/77.33/80.15` Delta E76. Two full-resolution
+pre-portability runs were byte-exact; the current content-bound report passes
+its strict schema with ID `2f7b8b2c...736411`. Relocating identical fixtures
+changes recorded paths but not report identity.
 
 ## Cross-platform payload boundary
 

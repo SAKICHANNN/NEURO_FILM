@@ -54,6 +54,8 @@ with a selected stock, but reference matching alone is labeled
    fingerprint are replayable.
 7. Output gamut handling is explicit. No hidden clipping is allowed.
 8. The claim ceiling is `reference-look`.
+9. Shared input colours must remain stable across unrelated source-image
+   contexts; reusing one recipe ID is not by itself batch consistency.
 
 ## Implementation tree
 
@@ -69,6 +71,7 @@ with a selected stock, but reference matching alone is labeled
 | P7 | DONE | language-neutral recipe/report/composition schemas | 105 focused/preprocess tests pass | `c9fb7d9` | revert commit |
 | P8 | DONE | language-neutral canonical recipe/plan identity | 112 focused/preprocess tests pass plus full-resolution CLI replay | `e1f03f6` | revert commit |
 | P9 | DONE | fail-closed photographic-tail and promotion adjudication | 125 focused tests; 30-pair full-resolution repeat; full suite 981 pass/36 known fail | `8e03ed7` | revert commit |
+| P10 | DONE | shared-colour cross-context batch-consistency gate | 131 focused tests; six-reference replay; full suite 987 pass/36 known fail | pending scoped commit | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -155,7 +158,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`981 passed, 1 skipped, 36 failed`.
+`987 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -171,9 +174,10 @@ final photographic/aesthetic algorithm.
 | A2 film-business composition | CONTRACT DONE | existing v1 render-profile contract | reference colour owns the colour stage; an optional verified film profile may supply effects provenance only |
 | A3 media portability | CONTRACT MAPPED / PIXEL BRIDGE CLOSED | committed D-PCT media-frame contract at `413d713`; current NFRM relative-SDR rail is not equivalent | wait for a versioned absolute-XYZ/scene-rail to MatchView bridge; do not copy decoders |
 | A4 photographic preference | BASELINE REJECTED | six-image known-operator slice completed; broader frozen suite and blind review remain open | compare identified challengers under severe-artifact veto and blind aesthetic review |
+| A5 album/batch consistency | BASELINE FAILED | six fitted recipes on shared-colour/different-context probes | require a fixed explicit operator or bounded adaptation that passes median/p95/max shared-colour drift |
 
-Until A1/A4 pass, this implementation is an operational deterministic baseline,
-not the claimed final or strongest colour-matching algorithm.
+Until A1/A4/A5 pass, this implementation is an operational deterministic
+baseline, not the claimed final or strongest colour-matching algorithm.
 
 The first A4 falsification uses one known Velvia-look target as the reference
 and applies its recipe to six neutral sources. The same-content positive control
@@ -286,7 +290,9 @@ executable:
 1. known-operator cross-content recovery and boundary tail;
 2. independently fitted recipe probes for neutral-axis chroma, tone reversal,
    tone plateaus, new boundary pixels and extreme skin/sky/foliage hue motion;
-3. only after both automated gates pass, an independent blinded aesthetic
+3. shared input-colour probes embedded in dark/cool and bright/warm unrelated
+   surroundings, evaluated across every independently fitted recipe;
+4. only after all automated gates pass, an independent blinded aesthetic
    review with a zero-severe-artifact veto.
 
 Automated success returns `eligible-for-visual-review`, never `promoted`.
@@ -300,8 +306,16 @@ The six-reference/30-cross-content Velvia known-look replay is rejected:
 maximum new-boundary fraction is 21.86%. Only two of six fitted recipes pass
 the photographic probe; the worst probe introduces 12.69% new boundary
 pixels. The portable report ID is
-`7e22df00...5c996`; paths remain provenance but are excluded from its
+`2f7b8b2c...736411`; paths remain provenance but are excluded from its
 content-bound identity.
+
+All six baseline recipes fail the shared-colour context-invariance gate. The
+worst median/p95/maximum drift is `60.8633/77.3292/80.1493` Delta E76, against
+frozen limits `0.5/1.0/3.0`. This proves that per-source Lab normalization can
+change the same colour solely because the rest of the photograph changes.
+The current implementation remains deterministic and order-stable, but it is
+not strong album consistency. A replacement head must emit a fixed explicit
+operator or demonstrate bounded adaptation under this gate.
 
 ## Verification and rollback
 

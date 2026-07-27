@@ -25,6 +25,16 @@ from .composition import (
     composition_plan_to_json,
     validate_reference_composition,
 )
+from .consistency import (
+    ContextInvarianceBatchMetrics,
+    ContextInvarianceMetrics,
+    ContextInvariancePolicy,
+    evaluate_context_invariance_outputs,
+    evaluate_recipe_batch_context_invariance,
+    evaluate_recipe_context_invariance,
+    make_context_invariance_probes,
+    validate_context_invariance_policy,
+)
 from .fit import fit_reference_look
 from .files import (
     FileReferenceMatchOutput,
@@ -89,6 +99,9 @@ __all__ = [
     "BlindAestheticReview",
     "PhotographicSafetyBatchMetrics",
     "CanonicalEncodingError",
+    "ContextInvarianceBatchMetrics",
+    "ContextInvarianceMetrics",
+    "ContextInvariancePolicy",
     "GuardedReferenceMatchResult",
     "KnownOperatorBatchMetrics",
     "KnownOperatorSampleMetrics",
@@ -111,8 +124,11 @@ __all__ = [
     "adjudicate_promotion",
     "evaluate_known_operator_batch",
     "evaluate_photographic_probe",
+    "evaluate_context_invariance_outputs",
+    "evaluate_recipe_batch_context_invariance",
     "evaluate_recipe_batch_photographic_safety",
     "evaluate_recipe_photographic_safety",
+    "evaluate_recipe_context_invariance",
     "build_reference_composition",
     "canonical_bytes",
     "canonical_sha256",
@@ -123,6 +139,7 @@ __all__ = [
     "load_reference_look_recipe",
     "match_reference_files",
     "make_photographic_probe",
+    "make_context_invariance_probes",
     "recipe_from_json",
     "recipe_to_json",
     "replay_reference_batch",
@@ -136,6 +153,7 @@ __all__ = [
     "validate_recipe",
     "validate_reference_composition",
     "validate_guard_policy",
+    "validate_context_invariance_policy",
     "validate_photographic_safety_policy",
     "validate_promotion_policy",
 ]

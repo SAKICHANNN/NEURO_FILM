@@ -22,6 +22,7 @@ from src.color_match import (  # noqa: E402
     aggregate_known_operator_samples,
     canonical_sha256,
     evaluate_known_operator_batch,
+    evaluate_recipe_batch_context_invariance,
     evaluate_recipe_batch_photographic_safety,
     fit_reference_look,
     render_reference_look,
@@ -150,9 +151,13 @@ def main() -> int:
     photographic_safety = evaluate_recipe_batch_photographic_safety(
         recipes.values()
     )
+    context_invariance = evaluate_recipe_batch_context_invariance(
+        recipes.values()
+    )
     decision = adjudicate_promotion(
         known_operator,
         photographic_safety,
+        context_invariance,
     )
     payload: dict[str, Any] = {
         "schema_id": REPORT_SCHEMA_ID,
@@ -184,6 +189,7 @@ def main() -> int:
         },
         "known_operator": asdict(known_operator),
         "photographic_safety": asdict(photographic_safety),
+        "context_invariance": asdict(context_invariance),
         "visual_review": None,
         "promotion_decision": asdict(decision),
     }

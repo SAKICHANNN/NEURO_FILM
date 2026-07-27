@@ -181,20 +181,40 @@ The formal result reproduces the earlier matrix:
 - no tone reversal or plateau was detected;
 - worst neutral-chroma p95 is `7.6740`;
 - worst skin/sky/foliage hue-rotation p95 is `19.8072` degrees.
+- zero of six recipes pass shared-colour cross-context consistency;
+- worst shared-colour median/p95/maximum drift is
+  `60.8633/77.3292/80.1493` Delta E76.
 
 The promotion decision is `rejected` for known-operator improvement rate,
-median, tail, new boundary and photographic-probe new boundary. No blind
-review is opened. This separates the content-identification failure from the
-absence of geometry rewriting: a pointwise renderer may be structurally clean
-yet still be the wrong photographic look.
+median, tail, new boundary, photographic-probe new boundary and all three
+context-invariance tails. No blind review is opened. This separates the
+content-identification failure from the absence of geometry rewriting: a
+pointwise renderer may be structurally clean yet still be the wrong
+photographic look and may map the same colour differently in another photo.
 
 The ignored report is
 `outputs/reference_color_match_quality/promotion_v1/report.json`, with
-content-bound report ID `7e22df00...5c996` and file SHA-256
-`02483ad2...9534`. Its strict JSON Schema is
+content-bound report ID `2f7b8b2c...736411` and file SHA-256
+`40d52826...213a1`. Its strict JSON Schema is
 `configs/schemas/reference_match_promotion_report_v1.schema.json`.
 Absolute paths are retained as local provenance but excluded from report
 identity; reference/source/target file hashes are included instead.
+
+### Strong batch-consistency correction
+
+Earlier evidence established deterministic replay, source-order independence
+and use of one immutable recipe. Those are necessary operational invariants,
+but they do not establish album consistency. The v1 renderer recomputes Lab
+normalization statistics for every source, so identical pixels can receive a
+different mapping when their unrelated surroundings change.
+
+The frozen v1 context probe embeds one exact shared chart into two images:
+dark/cool surroundings and bright/warm surroundings. A fixed pointwise
+operator produces byte-identical shared-region output and zero Delta E76.
+The baseline fails every recipe by a large margin. Therefore documentation
+must distinguish `deterministic/order-stable batch execution` from
+`shared-colour context invariance`; only the latter can support a strong
+batch-consistency product claim.
 
 The main neuro-film W1 task owns the current reference-identifiability research.
 This branch will consume a committed passing descriptor/head through an

@@ -6,6 +6,8 @@ import numpy as np
 
 from src.color_match import (
     BlindAestheticReview,
+    ContextInvarianceBatchMetrics,
+    ContextInvarianceMetrics,
     KnownOperatorBatchMetrics,
     KnownOperatorSampleMetrics,
     PhotographicSafetyBatchMetrics,
@@ -96,6 +98,24 @@ def _safety_batch(
     )
 
 
+def _context_batch() -> ContextInvarianceBatchMetrics:
+    sample = ContextInvarianceMetrics(
+        passed=True,
+        reasons=(),
+        delta_e76_median=0.0,
+        delta_e76_p95=0.0,
+        delta_e76_maximum=0.0,
+    )
+    return ContextInvarianceBatchMetrics(
+        samples=(sample,),
+        passed_recipe_count=1,
+        failed_recipe_count=0,
+        maximum_delta_e76_median=0.0,
+        maximum_delta_e76_p95=0.0,
+        maximum_delta_e76=0.0,
+    )
+
+
 def test_identity_probe_passes_all_structural_colour_gates() -> None:
     probe = make_photographic_probe()
     result = evaluate_photographic_probe(probe, _candidate(probe, probe.pixels))
@@ -152,7 +172,11 @@ def test_probe_rejects_reversal_plateau_boundary_and_false_colour() -> None:
 
 
 def test_automated_pass_only_opens_blind_visual_review() -> None:
-    decision = adjudicate_promotion(_known_metrics(), _safety_batch())
+    decision = adjudicate_promotion(
+        _known_metrics(),
+        _safety_batch(),
+        _context_batch(),
+    )
 
     assert decision.status == "eligible-for-visual-review"
     assert decision.reasons == ("blind-aesthetic-review-required",)
@@ -162,6 +186,7 @@ def test_promotion_requires_blind_preference_and_zero_severe_artifacts() -> None
     failed = adjudicate_promotion(
         _known_metrics(),
         _safety_batch(),
+        _context_batch(),
         visual_review=BlindAestheticReview(
             reviewed_sample_count=12,
             preferred_sample_count=8,
@@ -172,6 +197,7 @@ def test_promotion_requires_blind_preference_and_zero_severe_artifacts() -> None
     passed = adjudicate_promotion(
         _known_metrics(),
         _safety_batch(),
+        _context_batch(),
         visual_review=BlindAestheticReview(
             reviewed_sample_count=12,
             preferred_sample_count=8,
@@ -190,6 +216,7 @@ def test_known_operator_or_probe_failure_rejects_before_visual_review() -> None:
     weak = adjudicate_promotion(
         _known_metrics(improvement=-0.2),
         _safety_batch(),
+        _context_batch(),
     )
     failed_sample = replace(
         _passing_safety_sample(),
@@ -199,6 +226,7 @@ def test_known_operator_or_probe_failure_rejects_before_visual_review() -> None:
     unsafe = adjudicate_promotion(
         _known_metrics(),
         _safety_batch(failed_sample),
+        _context_batch(),
     )
 
     assert weak.status == "rejected"
@@ -206,3 +234,32 @@ def test_known_operator_or_probe_failure_rejects_before_visual_review() -> None:
     assert "known-operator-tail" in weak.reasons
     assert unsafe.status == "rejected"
     assert unsafe.reasons == ("photographic-safety:tone-reversal",)
+
+
+def test_context_drift_rejects_before_visual_review() -> None:
+    failed_sample = ContextInvarianceMetrics(
+        passed=False,
+        reasons=("shared-colour-p95-drift",),
+        delta_e76_median=0.4,
+        delta_e76_p95=2.0,
+        delta_e76_maximum=2.5,
+    )
+    failed_batch = ContextInvarianceBatchMetrics(
+        samples=(failed_sample,),
+        passed_recipe_count=0,
+        failed_recipe_count=1,
+        maximum_delta_e76_median=0.4,
+        maximum_delta_e76_p95=2.0,
+        maximum_delta_e76=2.5,
+    )
+
+    decision = adjudicate_promotion(
+        _known_metrics(),
+        _safety_batch(),
+        failed_batch,
+    )
+
+    assert decision.status == "rejected"
+    assert decision.reasons == (
+        "context-invariance:shared-colour-p95-drift",
+    )

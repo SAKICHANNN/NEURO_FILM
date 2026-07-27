@@ -16,6 +16,7 @@ from src.color_engine import linear_rgb_to_lab
 from src.preprocess import SourceProfile, WorkingImage
 
 from .contracts import ReferenceLookRecipe, ReferenceMatchContractError
+from .consistency import ContextInvarianceBatchMetrics
 from .evaluation import KnownOperatorBatchMetrics
 from .render import render_reference_look
 
@@ -445,6 +446,7 @@ def _validate_safety_metrics(metrics: PhotographicSafetyMetrics) -> None:
 def adjudicate_promotion(
     known_operator: KnownOperatorBatchMetrics,
     photographic_safety: PhotographicSafetyBatchMetrics,
+    context_invariance: ContextInvarianceBatchMetrics,
     *,
     visual_review: BlindAestheticReview | None = None,
     policy: PromotionPolicy | None = None,
@@ -480,6 +482,42 @@ def adjudicate_promotion(
     ):
         raise ReferenceMatchContractError(
             "photographic safety batch counts must agree with samples"
+        )
+    if not isinstance(context_invariance, ContextInvarianceBatchMetrics):
+        raise ReferenceMatchContractError(
+            "context_invariance must be ContextInvarianceBatchMetrics"
+        )
+    if not context_invariance.samples:
+        raise ReferenceMatchContractError(
+            "context invariance batch must not be empty"
+        )
+    failed_context_count = 0
+    for sample in context_invariance.samples:
+        if sample.passed != (not sample.reasons):
+            raise ReferenceMatchContractError(
+                "context invariance passed state must agree with reasons"
+            )
+        if not np.isfinite(
+            np.asarray(
+                [
+                    sample.delta_e76_median,
+                    sample.delta_e76_p95,
+                    sample.delta_e76_maximum,
+                ],
+                dtype=np.float64,
+            )
+        ).all():
+            raise ReferenceMatchContractError(
+                "context invariance metrics must be finite"
+            )
+        failed_context_count += int(not sample.passed)
+    if (
+        context_invariance.failed_recipe_count != failed_context_count
+        or context_invariance.passed_recipe_count
+        != len(context_invariance.samples) - failed_context_count
+    ):
+        raise ReferenceMatchContractError(
+            "context invariance batch counts must agree with samples"
         )
 
     reasons: list[str] = []
@@ -544,6 +582,18 @@ def adjudicate_promotion(
         reasons.extend(
             f"photographic-safety:{reason}"
             for reason in unique_safety_reasons
+        )
+    if not context_invariance.passed:
+        unique_context_reasons = sorted(
+            {
+                reason
+                for sample in context_invariance.samples
+                for reason in sample.reasons
+            }
+        )
+        reasons.extend(
+            f"context-invariance:{reason}"
+            for reason in unique_context_reasons
         )
     if reasons:
         return PromotionDecision("rejected", tuple(reasons))
