@@ -41,9 +41,9 @@ frozen SHA-256 values are:
 W2F must not decode, select on, refit from or re-adjudicate the final 628.
 Its historical CT8 result remains frozen and is not a fresh confirmation set.
 
-The metadata-only implementation-stage preflight ran twice byte-identically at
-SHA-256
-`EF789FDB0F5496E1A500E6393CE3D4BBEC433DF621420E6D41DE2B0C16F9E4E0`.
+The metadata-only commit-bound preflight ran twice byte-identically on
+software commit `77df1b9004aa0d155ce1b662202db476ec5f677e` at SHA-256
+`AB435E2433373D9FB001C13D20AF7B408F0346D1D1F2CF2F989DB080C86103C3`.
 It confirms zero content-ID and duplicate-cluster intersection and freezes:
 
 - 512 target-only reference-bank identities plus 1,584 reserve;
@@ -53,10 +53,8 @@ It confirms zero content-ID and duplicate-cluster intersection and freezes:
 - 81 internal stress identities.
 
 The final manifest was hash-checked but not parsed. Image payload read/decode
-counts are both zero. Because the implementation is not yet committed while
-the independent S4 formal run is active, this report is not the final software-
-commit-bound evidence. It must repeat on the eventual scoped implementation
-commit before W2F preflight closes.
+counts are both zero. This closes the source/partition preflight only; W2F0
+execution remains queued behind a repeated eligible W1 decision.
 
 ## Why this source precedes RTD
 

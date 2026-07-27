@@ -4373,3 +4373,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   already proven bounded operator. Do not rerun/rescue F1/F2/G1 or alter their
   gates. No current pixels, training, production integration or authenticity
   claim opens; Goal remains active.
+
+## 2026-07-27 - Close commit-bound U5.R2W2F source preflight
+
+- **Node/parent:** `ULT > U5.R2W2F`, conditional FilmSet child of repeated W1;
+  `dev-research-reliability` is the primary writer with AI/ML, research,
+  DRPT-BI, tracker, agent-log and structure disciplines as read-only
+  governance.
+- **Implementation commit:** the W0/W1/W2 research branch was verified at
+  `77df1b9004aa0d155ce1b662202db476ec5f677e` and pushed. The targeted W1/W2
+  suite passed 21 tests, compileall passed and the complete CPU suite passed
+  953 tests.
+- **Repeated preflight evidence:** two fresh reports on that exact commit are
+  byte-identical at SHA-256
+  `AB435E2433373D9FB001C13D20AF7B408F0346D1D1F2CF2F989DB080C86103C3`.
+  The config hash is
+  `62cab2c7b83480233fb02bda4aada7b5c5de7ca4b1cc4ddc2d9e060480e35367`.
+- **Observed freeze:** 2,096 source identities, 2,096 target identities and
+  465 internal-development identities are present. The fixed hash partition
+  retains 512 target references, 256 source probes and 256/128/81 internal
+  development/confirmatory/stress identities. Every cross-pool content-ID and
+  duplicate-cluster intersection is zero.
+- **Lockbox and side-effect evidence:** the final-628 manifest was hash-checked
+  but contributed zero parsed rows; image payload read/decode counts are zero.
+  No final-628 result was re-adjudicated.
+- **Decision/handoff:** the source/partition preflight closes as repeat-pass.
+  It does not execute W2F0 or W2F1. Global recipe explainability remains first,
+  and execution stays queued behind a repeated eligible W1 branch. Film,
+  stock, calibration, commercial-rights and output-only recovery claims remain
+  forbidden; Goal continues.
