@@ -78,4 +78,3 @@ complete: no real external candidate has both product promotion and a frozen
 invocation artifact, external pixels cannot yet enter the durable
 transaction, Apple/device runtime evidence is absent, and the branch has not
 been merged into the main project.
-

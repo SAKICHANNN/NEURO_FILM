@@ -1254,7 +1254,8 @@
   synthetic promoted conformance cannot authorize product delivery.
 - Structural result: one evidence document in the established DRPT location
   plus plan/log pointers; no duplicate ABI, schema, source or media layer.
-- Handoff: after documentation verification and commit, request peer review of
-  the ownership/critical-path facts. The next consumer leaf must not precede
-  a real producer invocation artifact unless it is purely fail-closed
-  readiness evidence.
+- Evidence commit: `f1ea3fb` (`docs: audit reference match completion`);
+  corrected document SHA-256 `c91a55de...dac0`.
+- Handoff: P32 is complete and both peer tasks received the audit intent. The
+  next consumer leaf must not precede a real producer invocation artifact
+  unless it is purely fail-closed readiness evidence.
