@@ -101,6 +101,14 @@ def test_active_requires_next_action() -> None:
         validate_goal_state(state)
 
 
+def test_goal_loop_limit_accepts_30_and_rejects_31() -> None:
+    assert validate_goal_state(
+        _base_state(max_session_stop_loops=30)
+    )["passed"] is True
+    with pytest.raises(GoalStateError, match="1..30"):
+        validate_goal_state(_base_state(max_session_stop_loops=31))
+
+
 def test_complete_requires_parent_dod_proof() -> None:
     state = _base_state(status="COMPLETE", next_action="")
     with pytest.raises(GoalStateError, match="ultimate_parent_dod_proven"):

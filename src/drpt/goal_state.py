@@ -89,9 +89,9 @@ def validate_goal_state(state: Mapping[str, Any]) -> dict[str, Any]:
         if not isinstance(state[key], str) or not _GIT_COMMIT.fullmatch(state[key]):
             raise GoalStateError(f"{key} must be a full lowercase Git commit")
     if not isinstance(state["max_session_stop_loops"], int) or not (
-        1 <= state["max_session_stop_loops"] <= 20
+        1 <= state["max_session_stop_loops"] <= 30
     ):
-        raise GoalStateError("max_session_stop_loops must be in 1..20")
+        raise GoalStateError("max_session_stop_loops must be in 1..30")
     if not isinstance(state["needs_human_authority"], bool):
         raise GoalStateError("needs_human_authority must be bool")
     if state["needs_human_authority"] and not state.get("authority_reason"):
