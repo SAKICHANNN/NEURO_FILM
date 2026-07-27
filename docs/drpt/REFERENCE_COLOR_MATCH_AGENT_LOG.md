@@ -1308,3 +1308,19 @@
   later consumer decision.
 - Evidence commit: `36a1a98` (`docs: record external staging evidence`).
   P33 is complete as transaction mechanics, not as real product delivery.
+
+## 2026-07-28 - Freeze P34 restart-safe staging verification
+
+- Node/parent goal: P34A / durable verification after P33.
+- Gap: P33 returns a trustworthy in-memory result at commit time, but later
+  delivery or composition must not rely on stale object state or path
+  existence.
+- Contract: require the expected P33 run ID and report file SHA-256; reread a
+  bounded strict UTF-8 report, revalidate canonical run identity, then reread
+  and hash every ordered staged output.
+- State ceiling: `verified-staging-not-delivered`; no file write, final
+  delivery, applied state or FilmFX permission.
+- Scope: additive consumer binding/schema/tests only. Producer, main, media
+  and existing composition modules remain unchanged.
+- Coordination: equal producer and main tasks received intent without a wait
+  dependency.
