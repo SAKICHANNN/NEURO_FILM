@@ -412,6 +412,15 @@ search decoder/loss/checkpoint settings or repair outputs. A future learned
 candidate must be orientation-preserving by construction or emit simpler
 certifiable parameters.
 
+U5.R2AG0 supplies such a distinct hypothesis. A project-owned log-sum-exp
+strongly convex potential yields a 65-scalar explicit map whose output is a
+convex combination of the input and 16 in-cube anchors. Its Jacobian is
+`(1-alpha)I` plus a positive-semidefinite anchor covariance, so range and
+positive orientation hold structurally without LUT projection. AG1 may
+challenge O0 on the same paired synthetic controls and gates. This does not
+authorize unpaired histogram fitting: quadratic-cost OT is a canonical
+palette map, not the physical digital-to-film operator.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

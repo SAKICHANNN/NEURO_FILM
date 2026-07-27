@@ -5401,3 +5401,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   smoothing, Qwen, photos, visual stage, training, film claim or integration.
   Continue with a distinct orientation-preserving explicit parameterization
   or another legal algorithm leaf. Goal remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AG0 bounded convex-gradient audit
+
+- **Primary sources:** exact ignored PDFs for ICNN, ICNN optimal transport,
+  Monge Gap and the colour-transfer review; record byte sizes and SHA-256 in
+  the decision artifact. No external code or implementation is used.
+- **Construction:** synthesize a project-owned 16-anchor log-sum-exp convex
+  potential. Its gradient is `(1-alpha)x` plus a softmax-weighted convex
+  combination of in-cube anchors. Range is exact; the Jacobian is symmetric
+  positive definite with eigenvalue floor `1-alpha`.
+- **Non-duplication:** at 65 fitted scalars it is a compact analytic challenger
+  to the retained 192-parameter O0 ODE flow. Its SPD Jacobian cannot express
+  arbitrary local colour rotation, so capacity must be tested rather than
+  assumed.
+- **Epistemic boundary:** Brenier/OT chooses a canonical minimal-displacement
+  palette map under assumptions; it does not identify a physical film
+  operator from unrelated images. Current pixels and unpaired fitting remain
+  forbidden.
+- **Decision/handoff:** open one 16-anchor AG1 on O0's exact paired synthetic
+  controls and gates. Failure closes without more anchors, affine wrapper,
+  temperature/strength search or threshold rescue. Goal remains ACTIVE.

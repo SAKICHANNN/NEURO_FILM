@@ -410,3 +410,8 @@ AF1 closes the tokenizer representation with all controls intact: each of
 eight safe analytic LUTs reconstructs with substantial orientation reversal
 and fidelity error. This is generic learned-representation negative evidence,
 not a stock-data result, and changes no SF/RF evidence grade or LSM gate.
+
+AG0/AG1 are likewise representation controls outside the stock evidence DAG.
+The bounded convex-gradient map may be safe and compact, but fitting it to
+unpaired stock histograms remains forbidden and would not identify a film
+operator. No outcome changes current stock, pixel, connectivity or LSM gates.

@@ -1,0 +1,67 @@
+{
+  "schema_version": "u5-r2ag0-bounded-convex-gradient-source-method-decision-v1",
+  "decision": "open_clean_room_compact_representation_pilot",
+  "sources": [
+    {
+      "id": "amos_icnn_2017",
+      "url": "https://proceedings.mlr.press/v70/amos17b/amos17b.pdf",
+      "bytes": 412672,
+      "sha256": "aac084d9572254c784670db7dd825a14b3732d5b618d819a13d686821f9b9c2b"
+    },
+    {
+      "id": "makkuva_ot_icnn_2020",
+      "url": "https://proceedings.mlr.press/v119/makkuva20a/makkuva20a.pdf",
+      "bytes": 2590216,
+      "sha256": "d9f166b0768d11a25d4c7c5c137465bc982842619c3555fae8501d5ae9093175"
+    },
+    {
+      "id": "uscidda_monge_gap_2023",
+      "url": "https://proceedings.mlr.press/v202/uscidda23a/uscidda23a.pdf",
+      "bytes": 2838608,
+      "sha256": "5e16aa49ba51aeb66f419538811ade5db977303537f5d2624f3baf0bc841858f"
+    },
+    {
+      "id": "pitie_colour_transfer_2020",
+      "url": "https://pdfs.semanticscholar.org/6a25/f2f6fac70e6204052203c9ed0904ee182f33.pdf",
+      "bytes": 7101085,
+      "sha256": "ebcb5154df02dce1f29faa45fe6e888bb9768ac3d08b7388327265bb40bc62e0"
+    }
+  ],
+  "construction": {
+    "name": "bounded_logsumexp_convex_gradient_map",
+    "anchor_count": 16,
+    "fitted_scalar_count": 65,
+    "output_formula": "(1-alpha)*x + alpha*sum(softmax((anchor dot x + bias)/tau)*anchor)",
+    "range_by_construction": true,
+    "positive_orientation_by_construction": true,
+    "identity_by_alpha_zero": true,
+    "analytic_jacobian": true,
+    "arbitrary_local_rotation_supported": false
+  },
+  "comparison": {
+    "parent_champion": "U5.R2O0",
+    "parent_parameter_count": 192,
+    "same_synthetic_targets_required": true,
+    "same_confirmation_and_structural_gates_required": true
+  },
+  "epistemic_limits": {
+    "optimal_transport_identifies_physical_film_operator": false,
+    "unpaired_distribution_matching_allowed": false,
+    "current_film_pixels_allowed": false,
+    "stock_or_calibration_claim_allowed": false
+  },
+  "allowed_next": [
+    "one clean-room synthetic paired-control representation pilot"
+  ],
+  "forbidden": [
+    "external ICNN or OT code",
+    "images or film pixels",
+    "unpaired distribution fitting",
+    "more than 16 anchors",
+    "affine or rotational wrapper",
+    "post-result temperature, strength, capacity or gate rescue",
+    "generative model",
+    "stock, reference, calibration or product claim"
+  ],
+  "claim_ceiling": "source-grounded clean-room compact explicit-representation hypothesis"
+}

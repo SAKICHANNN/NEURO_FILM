@@ -429,3 +429,10 @@ Jacobian cells and fails RGB/Delta-E fidelity; identity itself folds at
 orientation. No decoder, checkpoint, projection, Qwen, visual, training or
 product branch opens. See
 `docs/U5_R2AF1_ACETONE_TOKENIZER_TOPOLOGY_RESULTS.md`.
+
+`U5.R2AG0` derives a smaller analytic alternative rather than repairing AF1.
+The gradient of a fixed log-sum-exp strongly convex potential is an in-cube,
+positive-orientation explicit map by construction. AG1 may test its 65 fitted
+scalars on O0's existing paired synthetic controls only. Optimal transport
+still selects a canonical distribution map rather than identifying a
+physical film transform; no real pixels, unpaired fit or stock claim opens.
