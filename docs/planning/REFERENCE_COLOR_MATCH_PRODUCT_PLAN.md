@@ -81,6 +81,7 @@ with a selected stock, but reference matching alone is labeled
 | P14B1 | READY | consume a repeated W1 decision without importing external code | stable repeated W1 reports; untouched confirmation for any single-reference development pass | none | keep identity default |
 | P15 | DONE | freeze language-neutral portable recipe/render conformance vectors | 9 dedicated tests; 147 focused tests; two exact-ID and bounded-numeric cases; full suite 1019 pass/36 known fail | `8b505ca` | revert commit |
 | P16 | DONE | replay one stored LookRecipe across a transactional N-file batch without the original reference | 9 dedicated tests; 40 adjacent tests; 156 focused tests; full suite 1028 pass/36 known fail | `378c846` | revert commit |
+| P17 | DONE | commit outputs, optional recipe and provenance report as one rollback-safe run transaction | 5 dedicated fault-injection tests; 32 adjacent tests; 161 focused tests; full suite 1033 pass/36 known fail | `2f30826` | revert commit |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -167,7 +168,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`1028 passed, 1 skipped, 36 failed`.
+`1033 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -351,6 +352,15 @@ unpromoted. Its stdout is a compact JSON summary with applied and
 identity-fallback counts. Add `--allow-research-baseline` only for explicit
 research comparison. The script is a thin product adapter; algorithm, safety
 and transactional image behavior remain in `src/color_match`.
+
+P17 makes those run artifacts one transaction rather than writing the report
+after the image batch. The reference/replay path validates report collisions
+before staging, computes output and recipe hashes from staged bytes, stages
+the report from that bound state, then commits outputs, optional recipe and
+report through one backup/rollback sequence. A report-build or report-commit
+failure leaves either no new run artifacts or restores every prior
+destination byte. See
+`docs/drpt/REFERENCE_COLOR_MATCH_RUN_TRANSACTION_EVIDENCE.md`.
 
 The saved recipe can later process a new N-image batch without retaining or
 re-reading the original reference:

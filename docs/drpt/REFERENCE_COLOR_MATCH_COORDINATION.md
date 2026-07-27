@@ -191,3 +191,16 @@ interfaces, rights, leakage and A1/A4/A5 evidence.
 - Propagation: the earlier “corpus queue uncommitted” note is superseded. A3
   remains `CONTRACT MAPPED / PIXEL BRIDGE CLOSED`; no D-PCT source file,
   decoder, probe or report was copied.
+
+### 2026-07-27 complete run transaction leaf
+
+- P17 commit `2f30826` changes only this branch's file adapter, CLI and
+  transaction fault-injection tests.
+- It promotes no algorithm and consumes no main-task W1/U1 state.
+- D-PCT ingress ownership is unchanged: transactionality starts only after
+  the existing input has become a supported display-linear SDR WorkingImage.
+- Fit and stored-recipe replay now treat N outputs, optional new recipe and
+  provenance report as one rollback unit. This removes a product integration
+  ambiguity without altering film-colour/effects composition.
+- Main U1-B remains active with no stable W1 report, so P14B1 stays
+  unexecuted.

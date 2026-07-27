@@ -530,3 +530,22 @@
   Seven Nikon HE/HE* files remain unsupported and `real_raw_paths=FAIL`.
 - Propagation: A3 does not open and the reference-match file/replay code does
   not import D-PCT. Only current dependency documentation changes.
+
+## 2026-07-27 - Make complete run artifacts transactional
+
+- Parent: P17 / end-to-end failure closure.
+- Gap: image outputs and recipe committed before the CLI attempted the
+  provenance report, so report failure could leave a partial successful run.
+- Change: optional report paths enter the same stage/hash/backup/replace/
+  rollback primitive as N outputs and the fitted recipe; replay uses the same
+  path.
+- Fault evidence: path collision rejects pre-stage; injected report-builder
+  failure commits nothing; injected final report-replace failures restore all
+  old fit/replay artifacts; committed report/output hashes match result state;
+  no transaction debris remains.
+- Verification: 5 dedicated, 32 adjacent and 161 focused tests pass. Full CPU
+  collection is 1033 passed, one skipped and the same 36 known
+  ignored-output/CRLF-hash failures.
+- External isolation: no main-task or D-PCT file was read for implementation
+  and no external mutable state was consumed.
+- Commit: `2f30826` (`fix: commit matcher run artifacts atomically`).
