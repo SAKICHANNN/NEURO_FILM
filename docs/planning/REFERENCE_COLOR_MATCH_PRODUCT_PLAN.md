@@ -155,7 +155,7 @@ reference-match commit modifies either file. This branch records the failure
 but does not rewrite protected legacy profile hashes or shared renderer assets.
 
 The latest complete CPU collection reached
-`952 passed, 1 skipped, 36 failed`.
+`981 passed, 1 skipped, 36 failed`.
 All failures were either the same checked-out-byte hash class or tests whose
 ignored `outputs/` evidence is not copied into a new Git worktree. No
 `src/color_match` test failed and no new failure family appeared.
@@ -268,7 +268,8 @@ Language-neutral consumers should validate:
 
 - `configs/schemas/reference_look_recipe_v1.schema.json`;
 - `configs/schemas/reference_composition_v1.schema.json`;
-- `configs/schemas/reference_match_report_v1.schema.json`.
+- `configs/schemas/reference_match_report_v1.schema.json`;
+- `configs/schemas/reference_match_promotion_report_v1.schema.json`.
 
 Python validation remains authoritative for canonical IDs and constraints such
 as shadow floor below highlight ceiling; platform implementations must enforce
