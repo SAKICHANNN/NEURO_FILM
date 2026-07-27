@@ -1497,3 +1497,21 @@
   real producer invocation or final user-visible delivery.
 - Evidence commit: `fd1aa1a` (`docs: record FilmFX staging verification`).
   P37 is complete as restart verification, not final delivery.
+
+## 2026-07-28 - Freeze P38 local delivery authorization
+
+- Node/parent goal: P38A / authorization boundary after P37.
+- Gap: P37 proves files and lineage are still exact, but it does not authorize
+  a product action. A future writer must not infer delivery permission from
+  verified staging alone.
+- Contract: live-rerun exact P37, then bind the exact P35 composition, P34
+  verification and P30 product authorization. Require the P30 atomic state
+  and every source action to remain product-authorized.
+- Scope/state/ceiling: `local-user-export` /
+  `authorized-for-local-delivery` /
+  `authorized-local-delivery-not-committed`.
+- Prohibitions: no file write/copy, no applied state, no public/cloud share
+  and no synthetic-candidate product eligibility claim.
+- Scope: additive consumer authorization/schema/tests/docs only. Producer,
+  media/HDR, FilmFX arithmetic and main-project files are forbidden.
+- Coordination: both equal peer tasks received intent and need not wait.

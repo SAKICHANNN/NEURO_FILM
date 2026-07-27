@@ -143,6 +143,10 @@ with a selected stock, but reference matching alone is labeled
 | P37B | DONE | implement canonical FilmFX staging verification | bind plan/P34/run/path/file identities; no mutation or delivery state | `c1f4195` | revert additive module/schema |
 | P37C | DONE | prove report/input/output tampering fails closed | report bytes/path/run, missing or changed input/output, order/state/claim mutations | `c1f4195` | no verified FilmFX binding |
 | P37D | DONE | run adjacent/full/latest-main propagation and peer handoff | 447 combined; 1287 pass/1 skip/36 known; latest-main synthetic merge 113 pass | `fd1aa1a` | retain P36 |
+| P38A | IN PROGRESS | freeze no-write local delivery authorization | live P37 plus exact P35/P34/P30 chain; local-user-export only | intent commit | retain P37 verification |
+| P38B | PENDING | implement canonical delivery authorization | bind authorization/plan/verification/reference/source identities; no file write | implementation commit | revert additive module/schema |
+| P38C | PENDING | prove chain drift and claim escalation fail closed | live file tamper, P30/P34/P35/P37 identity, source count, state/scope/claim negatives | implementation commit | no delivery authorization |
+| P38D | PENDING | run adjacent/full/latest-main propagation and peer handoff | focused, full and clean synthetic merge evidence | evidence commit | retain P37 |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
