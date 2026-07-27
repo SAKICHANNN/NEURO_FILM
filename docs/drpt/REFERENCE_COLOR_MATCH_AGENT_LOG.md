@@ -1045,3 +1045,28 @@
   and `applied` do not exist.
 - Coordination: producer peer received the non-overlapping intent. Proposed
   HDR absolute rail remains outside scope.
+
+## 2026-07-28 - Implement P28 atomic producer batch intake
+
+- Node/parent goal: P28B-C / ordered one-reference/N-source product intake.
+- Change: add `DpctBatchResolutionV1`, strict schema/JSON roundtrip and
+  source-by-source binding across consumer view, producer view, producer
+  result/failure, transform, receipt, acceptance and admission identities.
+- Producer failure: canonical failed diagnostics is reconstructed from the
+  typed record before use. It has no transform/receipt and short-circuits all
+  candidate admission in the same batch.
+- Admission rule: all-candidate batches require exactly one receipt-bound
+  acceptance/admission pair per source. Any individual fallback makes the
+  atomic state identity fallback; all accepted sources stop at
+  `pending-product-guard`.
+- Ordering: source indices are contiguous user order. Reordering the complete
+  source/outcome/adjudication tuples changes the batch identity while
+  preserving exact per-source association; swapping outcomes alone fails.
+- Failure evidence: empty/mismatched batches, source reassignment, partial
+  admission after producer failure, applied state, removed A1/A4/A5,
+  contradictory atomic state, unknown JSON and identity mutation fail closed.
+- Verification: 38 initial and 65 combined P25-P28 focused tests pass;
+  compile and diff checks pass.
+- Structure: one additive batch module/schema/test beside P27 contracts; no
+  file output, producer invocation, media/native/HDR code or FilmFX change.
+- Handoff: commit P28B-C, then P28D runs broad/latest-main propagation.

@@ -161,6 +161,78 @@ class DpctProducerFailureV2:
     action: str
 
 
+def validate_dpct_producer_failure_v2(
+    value: DpctProducerFailureV2,
+) -> None:
+    if not isinstance(value, DpctProducerFailureV2):
+        raise ReferenceMatchContractError(
+            "D-PCT failure must be DpctProducerFailureV2"
+        )
+    if value.producer_commit != DPCT_PINNED_COMMIT:
+        raise ReferenceMatchContractError(
+            "D-PCT failure producer commit mismatch"
+        )
+    capability_id = _identifier(
+        value.capability_id, "D-PCT failure capability_id"
+    )
+    source_view_id = _producer_hash(
+        value.source_view_id, "D-PCT failure source_view_id"
+    )
+    reference_view_id = _producer_hash(
+        value.reference_view_id, "D-PCT failure reference_view_id"
+    )
+    backend_id = _identifier(
+        value.backend_id, "D-PCT failure backend_id"
+    )
+    backend_version = _identifier(
+        value.backend_version, "D-PCT failure backend_version"
+    )
+    backend_fingerprint = _producer_hash(
+        value.backend_fingerprint,
+        "D-PCT failure backend_fingerprint",
+    )
+    failure_code = _identifier(
+        value.failure_code, "D-PCT failure failure_code"
+    )
+    if (
+        not isinstance(value.warnings, tuple)
+        or any(
+            not isinstance(item, str) or not item
+            for item in value.warnings
+        )
+    ):
+        raise ReferenceMatchContractError(
+            "D-PCT failure warnings must be non-empty strings"
+        )
+    if value.action != "identity-fallback":
+        raise ReferenceMatchContractError(
+            "D-PCT failure action must be identity-fallback"
+        )
+    identity = {
+        "schema": DPCT_DIAGNOSTICS_SCHEMA,
+        "canonical_json": DPCT_CANONICAL_JSON,
+        "status": "failed",
+        "capability_id": capability_id,
+        "source_view_id": source_view_id,
+        "reference_view_id": reference_view_id,
+        "bundle_id": None,
+        "failure_code": failure_code,
+        "backend": {
+            "backend_id": backend_id,
+            "backend_version": backend_version,
+            "build_fingerprint": backend_fingerprint,
+        },
+        "measurements": None,
+        "warnings": list(value.warnings),
+    }
+    if _producer_hash(
+        value.diagnostics_id, "D-PCT failure diagnostics_id"
+    ) != _sha256(_canonical_json(identity)):
+        raise ReferenceMatchContractError(
+            "D-PCT failure diagnostics_id mismatch"
+        )
+
+
 def _strict(value: Any, keys: set[str], label: str) -> Mapping[str, Any]:
     if not isinstance(value, Mapping):
         raise ReferenceMatchContractError(f"{label} must be an object")
@@ -299,6 +371,35 @@ def _verify_view(
                 f"{label} consumer pixel identity mismatch"
             )
     return view
+
+
+def dpct_producer_view_id_for_prepared_v2(
+    prepared: PreparedMatchViewV1,
+) -> str:
+    """Compute the pinned producer MatchView ID for a consumer buffer."""
+
+    validate_prepared_match_view(prepared)
+    if prepared.descriptor.profile_id != MATCH_PROFILE_DISPLAY_SRGB:
+        raise ReferenceMatchContractError(
+            "prepared view is outside the D-PCT compatibility profile"
+        )
+    height, width, channels = prepared.descriptor.shape
+    if channels != 3:
+        raise ReferenceMatchContractError(
+            "prepared D-PCT view must have three channels"
+        )
+    pixel_f32be = prepared.pixels.astype(
+        ">f4", copy=False
+    ).tobytes(order="C")
+    header = (
+        b"ZhuiseMatchViewV1\0"
+        + DPCT_PRODUCER_PROFILE_ID.encode("ascii")
+        + b"\0"
+        + DPCT_PIXEL_LAYOUT.encode("ascii")
+        + b"\0"
+        + struct.pack(">II", height, width)
+    )
+    return _sha256(header + pixel_f32be)
 
 
 def _verify_transform(
@@ -535,7 +636,7 @@ def verify_dpct_failed_diagnostics_v2(
         raise ReferenceMatchContractError(
             "producer failed diagnostics_id mismatch"
         )
-    return DpctProducerFailureV2(
+    result = DpctProducerFailureV2(
         producer_commit=DPCT_PINNED_COMMIT,
         diagnostics_id=diagnostics_id,
         capability_id=capability_id,
@@ -548,6 +649,8 @@ def verify_dpct_failed_diagnostics_v2(
         warnings=tuple(warnings),
         action="identity-fallback",
     )
+    validate_dpct_producer_failure_v2(result)
+    return result
 
 
 def _verify_result(
@@ -788,5 +891,7 @@ __all__ = [
     "DpctProducerFailureV2",
     "DpctProducerAliasesV2",
     "adapt_dpct_candidate_v2",
+    "dpct_producer_view_id_for_prepared_v2",
+    "validate_dpct_producer_failure_v2",
     "verify_dpct_failed_diagnostics_v2",
 ]
