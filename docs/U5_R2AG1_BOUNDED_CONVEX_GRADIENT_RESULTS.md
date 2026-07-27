@@ -1,6 +1,6 @@
 # U5.R2AG1 — bounded convex-gradient representation results
 
-Date: 2026-07-28  
+Date: 2026-07-28
 Decision: `close_frozen_gate_failure`
 
 ## Outcome
