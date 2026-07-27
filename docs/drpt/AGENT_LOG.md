@@ -2142,6 +2142,30 @@ No renderer code, data, model, output or user-owned untracked file was modified.
   A pass remains external synthetic structure only. Implement runner/evaluator
   next; Goal remains ACTIVE.
 
+## 2026-07-28 - Implement U5.R2AE1 external structural-bank evaluator
+
+- **Structure:** add a thin project-owned runner that verifies the exact
+  external Git revision, source-module hashes, Python/package versions and
+  frozen chain order before calling only public headless APIs. External source,
+  profile arrays, LUTs and datasheets remain ignored and unmodified.
+- **Evidence boundary:** each process writes float32 cube/neutral arrays and a
+  strict hash-bound manifest. The independent project evaluator imports no
+  external package and rejects revision/runtime/config/population/file/array
+  drift before computing metrics.
+- **Metrics:** per-chain finite/range/interior clipping, neutral monotonicity,
+  local Jacobian orientation/amplification, identity style and residual after
+  bounded joint EV/WB/contrast/saturation; pairwise comparisons are symmetric
+  and within common-output families only.
+- **Negative controls:** exact duplicate replay and analytic strength-path
+  recovery are first-class gates, preventing duplicate objects or one
+  direction at different strength from becoming false diversity.
+- **Verification:** seven focused tests cover cube endpoints, identity/folded
+  Jacobians, strength-path recovery, dtype/shape-bound hashes, simple-exposure
+  absorption and nonidentity colour distance. `py_compile`, `git diff --check`
+  and the full CPU suite pass (`1018 passed`). No formal external metric has
+  been inspected. Commit, then run two independent complete manifests. Goal
+  remains ACTIVE.
+
 ## 2026-07-23 - Close U5.R2D1 with canonical-information-only result
 
 - **Formal evidence:** 384 exact operators/768 observations, zero cross-split
