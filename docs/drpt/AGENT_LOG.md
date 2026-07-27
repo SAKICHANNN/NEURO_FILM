@@ -5089,3 +5089,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   shared-resource diffusion representation may proceed. It must use no
   Filmulator code/constants and remains research-only even if it passes.
   Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AC1 independent shared-resource contract
+
+- **Independence:** define a new dimensionless bounded state system in the
+  contract; no Filmulator source, constants, defaults, discretization or
+  compatibility target is allowed.
+- **Fixed mechanism:** 24 float64 reaction steps over three layer resources,
+  one shared resource and deposits, with a stable reflect-boundary five-point
+  diffusion step and reservoir relaxation.
+- **Population/gates:** constant fields, four square scales, step edge,
+  gradient and isolated primaries; identity/global/resource-disabled/
+  channel-independent controls; freeze range, neutral, rotation, replay,
+  monotonicity, local-effect, gradient, ringing, crosstalk and support gates.
+- **Boundary:** no photographs or post-result parameter/timestep/clamp/
+  smoothing rescue. A pass can only open another synthetic-to-image safety
+  contract and remains generic, uncalibrated and non-stock. Goal remains
+  ACTIVE.

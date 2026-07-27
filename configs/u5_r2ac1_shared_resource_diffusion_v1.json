@@ -1,0 +1,99 @@
+{
+  "schema_version": "u5-r2ac1-shared-resource-diffusion-v1",
+  "node": "U5.R2AC1",
+  "parent_decision": {
+    "path": "configs/u5_r2ac0_filmulator_source_audit_decision_v1.json",
+    "required_decision": "mechanism_prior_only_direct_reuse_blocked"
+  },
+  "independence_contract": {
+    "source_code_reuse": false,
+    "source_constants_or_defaults_reuse": false,
+    "compatibility_target": false,
+    "definition": "new dimensionless bounded shared-resource reaction plus five-point diffusion system"
+  },
+  "state": {
+    "activation": "input linear RGB in [0,1]",
+    "layer_resource_initial": 1.0,
+    "shared_resource_initial": 1.0,
+    "deposit_initial": 0.0
+  },
+  "solver": {
+    "steps": 24,
+    "time_step": 0.04,
+    "reaction_rate": 0.8,
+    "shared_resource_consumption": 0.6,
+    "diffusion_courant": 0.12,
+    "reservoir_mix": 0.02,
+    "boundary": "reflect",
+    "arithmetic": "float64",
+    "output_strength": 1.0
+  },
+  "synthetic_population": {
+    "height": 64,
+    "width": 64,
+    "constant_levels": [
+      0.05,
+      0.18,
+      0.5,
+      0.9
+    ],
+    "square_widths": [
+      1,
+      5,
+      17,
+      33
+    ],
+    "edge_levels": [
+      0.1,
+      0.8
+    ],
+    "gradient_endpoints": [
+      0.02,
+      0.98
+    ],
+    "chromatic_patch_values": [
+      [0.8, 0.2, 0.2],
+      [0.2, 0.8, 0.2],
+      [0.2, 0.2, 0.8]
+    ]
+  },
+  "controls": {
+    "identity_strength_zero": true,
+    "global_reaction_only": "same state equations with diffusion disabled on independent pixels",
+    "resource_disabled": "shared resource held at one",
+    "channel_independent": "one separate shared-resource field per channel"
+  },
+  "gates": {
+    "finite_required": true,
+    "state_and_output_range": [
+      0.0,
+      1.0
+    ],
+    "identity_max_abs_error": 0.0,
+    "constant_field_spatial_span_max": 1e-12,
+    "neutral_axis_max_abs_channel_spread": 1e-12,
+    "rotation90_max_abs_error": 1e-12,
+    "exact_repeat_required": true,
+    "constant_field_monotone_min_delta": 0.001,
+    "local_effect_rmse_vs_global_min": 0.002,
+    "local_effect_rmse_vs_global_max": 0.12,
+    "maximum_edge_gradient_amplification": 2.0,
+    "maximum_flat_region_ringing": 0.01,
+    "maximum_channel_crosstalk_on_single_channel_input": 0.0,
+    "finite_support_radius_max": 24
+  },
+  "branch_rules": {
+    "structure_fail": "close representation; no timestep, clamp, smoothing, boundary or parameter rescue",
+    "effect_too_weak": "close as no independent value over global tone",
+    "effect_too_strong_or_ringing": "close under severe-artifact prevention",
+    "pass": "open only a separately frozen synthetic-to-existing-image safety contract; no production or stock claim"
+  },
+  "forbidden": [
+    "copy or translate Filmulator code, constants, defaults, discretization or parameter names",
+    "inspect project photographs before AC1 decision",
+    "tune parameters or gates after AC1 metrics",
+    "add learned masks, local neural prediction, clamp rescue or hidden postprocessing",
+    "claim chemical calibration, Filmulator compatibility, film stock identity or production readiness"
+  ],
+  "claim_ceiling": "generic dimensionless film-development-inspired shared-resource spatial representation"
+}
