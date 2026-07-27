@@ -61,10 +61,41 @@ as a product dependency.
 
 ## Not yet delivered
 
-- no `WorkingImage` pixel adapter;
 - no external process, package, dynamic library or C ABI call;
 - no D-PCT producer schema or conformance fixture;
 - no RAW/HDR/video bridge;
 - no shared cross-content transform;
 - no algorithm promotion, FilmFX change, main-branch merge or push.
 
+## P25C WorkingImage adapter
+
+`src/color_match/core_adapter.py` now prepares supported product images without
+claiming a D-PCT canonical rail:
+
+- `linear_srgb/display_linear` maps exactly to
+  `neuro-film.display-relative-linear-srgb-d65.v1`;
+- `linear_rec2020/display_linear` maps exactly to
+  `neuro-film.display-relative-linear-rec2020-d65.v1`;
+- the adapter copies pixels into an isolated, C-contiguous, read-only float32
+  buffer;
+- pixel identity is SHA-256 over row-major IEEE-754 binary32 network-order
+  bits;
+- provenance identity binds source profile, transfer states, HDR metadata,
+  orientation, alpha policy, bit depth and warnings, but not a local path;
+- scene-linear, display-referred/unknown, unsupported working space,
+  non-absent alpha and unapplied orientation fail closed;
+- producer invocation remains forbidden unless pinned capabilities advertise
+  the exact profile, algorithm, contract schema and required feature flags.
+
+Verification:
+
+- `36 passed` across dedicated core contract and adapter suites;
+- `123 passed` across adapter, core contracts, existing recipe/schema/canonical
+  replay/file handling and preprocess/colour/output encoding;
+- input pixels are not mutated or shared with the prepared buffer;
+- non-contiguous input is normalized to exact dense strides;
+- buffer mutation, descriptor drift and capability drift are detected.
+
+This adapter does not convert relative SDR to D-PCT's scene-relative ACEScg or
+display-absolute XYZ rails. Such conversion still requires a separately
+versioned trusted render bridge.

@@ -798,3 +798,25 @@
 - Handoff: P25C may adapt current `WorkingImage` only into its exact
   Neuro-Film relative-display profiles. A producer must explicitly advertise
   those profiles before invocation.
+
+## 2026-07-28 - Adapt WorkingImage into exact consumer views
+
+- Node/parent goal: P25C / external-core product adapter.
+- Change: add `core_adapter.py` with an isolated read-only dense float32 buffer,
+  exact relative-display sRGB/Rec.2020 profiles, network-order pixel hash,
+  path-independent provenance and pinned capability checks.
+- Fail-closed scope: scene-linear, encoded/unknown transfer states, unsupported
+  working space, alpha, unapplied orientation, unadvertised profile, algorithm,
+  schema or feature all reject before an external call.
+- Verification: 16 adapter tests; 36 combined core tests; 123 adjacent
+  product/preprocess tests. Non-contiguous input becomes dense without sharing
+  or mutating source storage.
+- Peer state: D-PCT clean `59ccb2f`; its Goal now explicitly includes active
+  peer communication. Strict SA-LUT and PST50 BT.709 work changes no shared
+  schema and remains non-commercial/development-only.
+- Structural impact: one adapter beside the consumer contracts; no preprocess
+  type change, duplicate decoder, media bridge, algorithm parameters or main
+  renderer modification.
+- Handoff: P25D may add a frozen consumer conformance envelope and bind its
+  acceptance to existing A1/A4/A5 state. It must not invent a D-PCT producer
+  artifact.

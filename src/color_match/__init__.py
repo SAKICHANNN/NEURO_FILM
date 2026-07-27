@@ -35,6 +35,13 @@ from .core_contracts import (
     validate_match_view,
     validate_transform_bundle,
 )
+from .core_adapter import (
+    WORKING_IMAGE_BRIDGE_ID,
+    PreparedMatchViewV1,
+    prepare_working_image_match_view,
+    validate_prepared_match_view,
+    validate_prepared_view_support,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -155,6 +162,7 @@ __all__ = [
     "MATCH_PROFILE_SCENE_ACESCG",
     "MATCH_VIEW_SCHEMA_ID",
     "TRANSFORM_BUNDLE_SCHEMA_ID",
+    "WORKING_IMAGE_BRIDGE_ID",
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
     "REFERENCE_MATCH_REPORT_SCHEMA_ID",
     "REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID",
@@ -183,6 +191,7 @@ __all__ = [
     "PromotionPolicy",
     "PortableConformanceCaseResult",
     "PortableConformanceResult",
+    "PreparedMatchViewV1",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "FileReferenceReplayResult",
@@ -246,6 +255,7 @@ __all__ = [
     "reference_run_composition_from_json",
     "reference_run_composition_to_json",
     "portable_conformance_result_to_json",
+    "prepare_working_image_match_view",
     "save_reference_look_recipe",
     "save_file_match_report",
     "save_file_replay_report",
@@ -262,6 +272,8 @@ __all__ = [
     "validate_guard_policy",
     "validate_context_invariance_policy",
     "validate_photographic_safety_policy",
+    "validate_prepared_match_view",
+    "validate_prepared_view_support",
     "validate_promotion_policy",
     "verify_portable_conformance_bundle",
 ]

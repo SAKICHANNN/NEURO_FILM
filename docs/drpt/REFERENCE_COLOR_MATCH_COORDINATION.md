@@ -82,6 +82,10 @@
   interpretation primitive but no shared schema change. Its PST50 sRGB run
   completed: the frozen candidate wins only 23/50 against identity. This
   reinforces, but does not replace, Neuro-Film A1/A4/A5 acceptance.
+- D-PCT then published clean HEAD `59ccb2f` for a strict non-commercial SA-LUT
+  development adapter and explicitly updated its Goal to preserve active peer
+  communication. It changes no shared schema. PST50 BT.709 sensitivity also
+  leaves identity ahead of both D-PCT candidates, so P25 remains fail-closed.
 
 ## Claim: NFCM-P1 product reference-look engine
 
