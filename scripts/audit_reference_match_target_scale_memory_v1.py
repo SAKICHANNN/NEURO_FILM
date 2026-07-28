@@ -8,15 +8,26 @@ from pathlib import Path
 import subprocess
 from typing import Any
 
-from scripts.audit_reference_match_file_memory_v1 import (
-    _add_worktree,
-    _atomic_write_json,
-    _remove_worktree,
-    _sha256_file,
-    generate_inputs,
-    launch_worker,
-    preflight,
-)
+if __package__:
+    from scripts.audit_reference_match_file_memory_v1 import (
+        _add_worktree,
+        _atomic_write_json,
+        _remove_worktree,
+        _sha256_file,
+        generate_inputs,
+        launch_worker,
+        preflight,
+    )
+else:
+    from audit_reference_match_file_memory_v1 import (
+        _add_worktree,
+        _atomic_write_json,
+        _remove_worktree,
+        _sha256_file,
+        generate_inputs,
+        launch_worker,
+        preflight,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]
