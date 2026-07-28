@@ -1,0 +1,114 @@
+{
+  "$id": "neuro-film.reference-shared-runtime-qualification.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "batch_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "claim_ceiling": {
+      "const": "runtime-qualified-staging-only-not-committed"
+    },
+    "declaration_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "operator_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "qualification_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "reasons": {
+      "$ref": "#/$defs/reasons"
+    },
+    "runtime_evidence_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "runtime_evidence_json": {
+      "minLength": 2,
+      "type": "string"
+    },
+    "runtime_ready": {
+      "type": "boolean"
+    },
+    "runtime_reasons": {
+      "$ref": "#/$defs/reasons"
+    },
+    "runtime_satisfied_targets": {
+      "$ref": "#/$defs/targets"
+    },
+    "runtime_unsatisfied_targets": {
+      "$ref": "#/$defs/targets"
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-shared-runtime-qualification.v1"
+    },
+    "state": {
+      "enum": [
+        "runtime-qualified-for-staging",
+        "identity-fallback"
+      ]
+    },
+    "successor_declaration_json": {
+      "minLength": 2,
+      "type": "string"
+    },
+    "upstream_authorization_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "upstream_state": {
+      "enum": [
+        "authorized-for-staging",
+        "identity-fallback"
+      ]
+    }
+  },
+  "required": [
+    "batch_id",
+    "claim_ceiling",
+    "declaration_id",
+    "operator_id",
+    "qualification_id",
+    "reasons",
+    "runtime_evidence_id",
+    "runtime_evidence_json",
+    "runtime_ready",
+    "runtime_reasons",
+    "runtime_satisfied_targets",
+    "runtime_unsatisfied_targets",
+    "schema_id",
+    "state",
+    "successor_declaration_json",
+    "upstream_authorization_id",
+    "upstream_state"
+  ],
+  "title": "Neuro-Film Shared Runtime Qualification V1",
+  "type": "object",
+  "$defs": {
+    "hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reasons": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "targets": {
+      "items": {
+        "enum": [
+          "windows_x64",
+          "macos_arm64",
+          "ios_arm64",
+          "android_arm64"
+        ]
+      },
+      "maxItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    }
+  }
+}
