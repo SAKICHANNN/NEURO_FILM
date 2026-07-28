@@ -560,3 +560,16 @@ remain closed. See
 and `docs/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_RESULTS.md`, plus
 `docs/planning/U5_R2AJ0C1_HALD_PRIMARY_STRUCTURAL_FRONTIER_CONTRACT.md` and
 `docs/U5_R2AJ0C1_HALD_PRIMARY_STRUCTURAL_FRONTIER_RESULTS.md`.
+
+After that close, `U5.R2AK0` audits CVPR 2026 NCT as a distinct learned
+explicit-flow proposal. Its MoE encoder predicts ODE parameters rather than
+final RGB, but the endpoints remain per-image empirical-distribution maps to
+a uniform RGB latent. Bezier curvature changes the fitted transport path; it
+does not remove content, exposure, illumination or capture nuisance from the
+endpoint operator. This does not overcome W1/S3/S4 identifiability failures.
+The official supplement is PDF-only and exposes no code, checkpoint or code
+licence, while cube/Jacobian/inverse/severe gates are absent. Direct
+execution, data acquisition and training close. Only a future clean-room
+time-dependent bounded-flow representation ablation may be separately
+preregistered; no stock, film or operator claim opens. See
+`docs/U5_R2AK0_NCT_BEZIER_FLOW_SOURCE_METHOD_AUDIT.md`.

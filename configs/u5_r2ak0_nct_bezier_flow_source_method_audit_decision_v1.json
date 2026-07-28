@@ -1,0 +1,63 @@
+{
+  "schema_version": "u5-r2ak0-nct-bezier-flow-source-method-audit-decision-v1",
+  "node": "U5.R2AK0",
+  "decision": "retain_time_dependent_flow_prior_direct_execution_closed",
+  "audit_date": "2026-07-28",
+  "primary_sources": {
+    "paper_url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Lee_Nonlinear_Color_Transfer_via_Learnable_Bezier_Flows_CVPR_2026_paper.pdf",
+    "paper_sha256": "9d8935d4ee4b1aa4cfc426940747c6c816bf8befc2ae44ad90dfc439f460ed8a",
+    "paper_bytes": 16019166,
+    "supplement_url": "https://openaccess.thecvf.com/content/CVPR2026/supplemental/Lee_Nonlinear_Color_Transfer_CVPR_2026_supplemental.pdf",
+    "supplement_sha256": "4a550ac440b59ae296e93762c3f4d9fa2a98232b25a26b666d1e74a369d12580",
+    "supplement_bytes": 82609791,
+    "official_code_repository_found": false,
+    "source_code_in_official_supplement": false,
+    "checkpoint_found": false,
+    "code_license_found": false
+  },
+  "method_facts": {
+    "endpoint_factorization": "T_style_inverse composed with T_content through a per-image uniform RGB latent",
+    "phase_1": "independently fit one time-dependent flow per image using quadratic Bezier interpolation and a learned control-point MLP",
+    "phase_2": "train an EfficientNet-B6 encoder with four MoE experts to predict per-image flow parameters",
+    "phase_1_images": 5034,
+    "phase_1_iterations_per_image": 10000,
+    "phase_2_iterations": 750000,
+    "inference_ode_steps": 8,
+    "final_rgb_generated_directly_by_neural_network": false,
+    "neural_network_predicts_explicit_flow_parameters": true
+  },
+  "project_fit": {
+    "non_generative_final_renderer_boundary": "potentially compatible in principle",
+    "film_stock_evidence": false,
+    "unpaired_operator_identification_solved": false,
+    "content_nuisance_control": false,
+    "cube_range_guarantee_found": false,
+    "positive_jacobian_gate_found": false,
+    "inverse_error_project_gate_found": false,
+    "severe_artifact_veto_found": false,
+    "reproducible_external_execution_ready": false
+  },
+  "prior_project_evidence": {
+    "u5_r2w1": "output-only reference recovery is content-classifiable and fails unseen recovery",
+    "u5_r2s3": "independent distribution matching improves fit loss but fails hidden-operator recovery",
+    "u5_r2s4": "correct content conditions improve distribution match yet still fail operator identification",
+    "u5_r2o0": "the project already has a cube-preserving positive-orientation explicit flow representation"
+  },
+  "branch": {
+    "download_training_data_allowed": false,
+    "run_or_reimplement_full_nct_allowed": false,
+    "use_paper_outputs_as_teacher_allowed": false,
+    "retainable_prior": "quadratic temporal trajectory or time-dependent bounded velocity field as a future clean-room representation ablation",
+    "future_pilot_dor": "a separately frozen synthetic operator-capacity question must be non-duplicate with U5.R2O0 and must not claim that Bezier paths solve endpoint identifiability"
+  },
+  "forbidden": [
+    "claim NCT identifies a film stock or real digital-to-film operator",
+    "treat image similarity or per-image color distribution as stock supervision",
+    "infer exposure illuminant push pull process or scanner truth",
+    "download or train on an unlicensed or unreconstructable corpus",
+    "use a generative image teacher",
+    "allow a neural network to emit final Style-safe RGB",
+    "weaken current cube Jacobian inverse OOD or severe-artifact gates"
+  ],
+  "claim_ceiling": "primary-source method and reproducibility audit; time-dependent explicit-flow prior only, with no implementation data checkpoint result film stock calibration or product claim"
+}

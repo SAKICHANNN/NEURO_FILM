@@ -5919,3 +5919,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Propagation/branch:** the frozen zero-survivor branch forbids threshold,
   smoothing, projection and CLUT-imitation rescue. Ultimate remains ACTIVE;
   select a genuinely distinct explicit film-simulation family next.
+
+## 2026-07-28 - Audit NCT Bezier flows and close direct execution
+
+- **Node/research:** `ULT > U5 > U5.R2 > U5.R2AK0`; DRPT L2/Mode A.
+  Audited the exact CVPR 2026 paper (`9d8935d4...ed8a`, 16,019,166 bytes)
+  and official supplemental PDF (`4a550ac4...2580`, 82,609,791 bytes).
+- **Method fact:** NCT independently learns each image's map to a uniform RGB
+  latent through a quadratic Bezier flow, then trains EfficientNet-B6 plus
+  four MoE experts to predict those flow parameters. Final RGB is produced by
+  explicit ODE composition rather than a direct image generator.
+- **Identifiability decision:** Bezier curvature changes the interpolation
+  trajectory, not the empirical content/style endpoint definition. Per-image
+  scene palette, exposure, illuminant and capture nuisance remain inside the
+  composed map. Existing W1/S3/S4 negative evidence therefore still applies.
+- **Reproducibility/rights:** the official page says code is in the
+  supplement, but the linked supplement is only a PDF. No official repository,
+  checkpoint or code licence was found. The paper also lacks the project's
+  cube, Jacobian, inverse, boundary and severe-veto gates.
+- **Branch:** no data acquisition, full reimplementation, training, photo
+  frontier or stock claim opens. Retain only a clean-room quadratic-temporal
+  bounded-flow representation prior for a separately frozen non-duplicate
+  synthetic question. Goal remains ACTIVE.

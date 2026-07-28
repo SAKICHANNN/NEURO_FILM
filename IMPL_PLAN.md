@@ -29,6 +29,15 @@ forbids photographs, aesthetics and any smoothing, projection or threshold
 rescue. The next ready algorithm work must preregister a genuinely distinct
 explicit film-simulation family rather than imitate or repair this bank.
 
+`U5.R2AK0` next audits CVPR 2026 NCT rather than assuming a newer ML method
+solves the reference problem. Its encoder predicts explicit ODE parameters,
+which is compatible in principle, but its per-image map is still defined by
+that image's empirical colour distribution. Bezier curvature improves the
+transport trajectory, not the identifiability of a reusable look endpoint.
+The official supplement is PDF-only and supplies no source, checkpoint,
+licence or project structural gates. Direct execution/training closes; only a
+future clean-room time-dependent-flow representation ablation survives.
+
 CT1C closes the remaining analytic L0 and gauge gap but not fixed-resolution
 HDR LUT parity. Exposure/WB roundtrip, roll-gauge recomposition and log1p
 shaper inversion pass near machine precision; `[0,16]` shaped 33/65 cubes
