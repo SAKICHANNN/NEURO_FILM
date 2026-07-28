@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p7f_neutral_gauged_physical_chain_contract.v1",
+  "node": "U6.P7F",
+  "parent_decision": "configs/u6_p7e_nonspatial_interpretation_attribution_decision_v1.json",
+  "parent_decision_sha256": "f6efba445bf999b4dcadb739fea51b3f5a8205a0bbddeb881dc3ce9e47306656",
+  "gauge_config": "configs/u5_r2i1_neutral_axis_gauge_v1.json",
+  "gauge_config_sha256": "8c592cff363e799681917b3f8eaa185b96be5ac671f91ee25f4ad120fcc942de",
+  "gauge_decision": "configs/u5_r2i1_neutral_axis_gauge_decision_v1.json",
+  "gauge_decision_sha256": "3e7635dd0577209ebfd22a5a540ca3aea29f802ad119be1adbf7535cf6e0f849",
+  "runtime_parent": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "runtime_parent_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "sampling_dpi": 4000,
+  "gauge_knots": 1025,
+  "question": "Can the already-validated data-independent neutral-axis gauge preserve full paper dynamic-range compression while removing the rejected channel cast, and can the corrected 4000-dpi spatial chain then add a safe preferred physical contribution?",
+  "arms": [
+    "colour_only",
+    "gauged_full_print",
+    "gauged_spatial_4000",
+    "full_print_control",
+    "full_spatial_4000_control"
+  ],
+  "candidate_preference_order": [
+    "gauged_spatial_4000",
+    "gauged_full_print"
+  ],
+  "automatic_gates": {
+    "repeat_exact": true,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_per_image_style_delta_e76": 41.10209,
+    "minimum_median_non_basic_delta_e76": 7.0,
+    "minimum_to_colour_median_delta_e76": 0.5,
+    "minimum_images_to_colour_delta_e76_at_least_0_5": 12,
+    "maximum_neutral_axis_lab_chroma": 1.0,
+    "minimum_spatial_to_nonspatial_median_delta_e76": 0.1,
+    "minimum_spatial_median_edge_energy_ratio": 0.65,
+    "minimum_spatial_worst_edge_energy_ratio": 0.35
+  },
+  "selection": {
+    "choose_first_eligible_in_preference_order": true,
+    "spatial_candidate_requires_spatial_gates": true,
+    "nonspatial_candidate_does_not_claim_spatial_physics": true,
+    "severe_and_blind_confirmation_required_after_selection": true,
+    "production_promotion_allowed": false
+  },
+  "execution": {
+    "runs": 2,
+    "report_and_render_inventory_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "branch_rule": {
+    "no_candidate_automatic_pass": "close gauged full-chain candidates and keep colour-only AO6",
+    "automatic_pass": "freeze one gauged candidate for separate severe/blind confirmation; do not change production default"
+  },
+  "claim_ceiling": "generic data-independent neutral-gauged physical-inspired development evidence; not stock response, measured print/scanner response, calibration or product promotion"
+}
