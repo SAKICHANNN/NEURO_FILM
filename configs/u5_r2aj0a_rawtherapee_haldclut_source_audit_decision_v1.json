@@ -1,0 +1,103 @@
+{
+  "schema_version": "u5-r2aj0a-rawtherapee-haldclut-source-audit-decision-v1",
+  "node": "U5.R2AJ0A",
+  "decision": "licensed_bounded_external_operator_bank_acquisition_feasible",
+  "official_documentation": {
+    "url": "https://rawpedia.rawtherapee.com/Film_Emulation",
+    "retrieved_oldid": 6151,
+    "global_clut_only": true,
+    "local_or_spatial_effects_supported": false
+  },
+  "archive": {
+    "url": "https://rawtherapee.com/shared/HaldCLUT.zip",
+    "version": "2015-09-20",
+    "expected_bytes": 421602289,
+    "etag": "\"192123f1-52031888d4800\"",
+    "last_modified": "Sun, 20 Sep 2015 18:00:00 GMT",
+    "published_md5": "4742e362a70c1a1c0fb9042a17d285e1",
+    "sha256": null,
+    "sha256_status": "must_be_frozen_after_hash_verified_acquisition"
+  },
+  "independent_package_record": {
+    "url": "https://slackbuilds.org/repository/15.0/graphics/rawtherapee-haldclut/",
+    "package_version": "20150920",
+    "published_md5": "4742e362a70c1a1c0fb9042a17d285e1"
+  },
+  "remote_zip_preflight": {
+    "central_directory_offset": 421565794,
+    "central_directory_bytes": 36473,
+    "central_directory_sha256": "dfaa92b708442c63bebd6c21151ec052c3d1d9588610cc694120e944f50719a8",
+    "entries": 311,
+    "files": 296,
+    "directories": 15,
+    "png_files": 294,
+    "tiff_files": 1,
+    "text_files": 1,
+    "color_files": 227,
+    "black_and_white_files": 66,
+    "creative_pack_color_files": 33,
+    "primary_noncreative_color_files": 194,
+    "readme": {
+      "path": "HaldCLUT/README.txt",
+      "bytes": 2357,
+      "crc32": "410697ab",
+      "sha256": "363cffb318e25dc4f880e070915aceddfe842e1fdb0a68216bef04719185c69c"
+    }
+  },
+  "rights": {
+    "asset_license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "credited_creators": [
+      "Pat David",
+      "Pavlov Dmitry",
+      "Michael Ezra"
+    ],
+    "local_internal_research_acquisition_allowed": true,
+    "tracked_asset_copy_allowed": false,
+    "packaging_or_redistribution_allowed_now": false,
+    "reason": "asset obligations are understood, but K-MCFM has no owner-selected root licence or approved distribution manifest"
+  },
+  "rawtherapee_semantics": {
+    "repository": "https://github.com/RawTherapee/RawTherapee",
+    "commit": "123b4d7b52a7f023712281a7320b3fa643d8f03f",
+    "clutstore_blob": "74f1e5fc067a35bfc08dc74ff031210412186b3a",
+    "default_clut_profile": "sRGB",
+    "axis_order": "red_fastest_green_then_blue",
+    "interpolation": "trilinear",
+    "strength_blend_space": "encoded_clut_working_space",
+    "formal_aj0_strength": 1.0
+  },
+  "frozen_primary_universe": {
+    "include_prefix": "HaldCLUT/Color/",
+    "exclude_prefixes": [
+      "HaldCLUT/Color/CreativePack-1/"
+    ],
+    "expected_files": 194,
+    "identity_control": "HaldCLUT/Hald_CLUT_Identity_12.tif",
+    "inventory_only_not_primary": [
+      "HaldCLUT/Black-and-White/",
+      "HaldCLUT/Color/CreativePack-1/",
+      "HaldCLUT/Negative.png"
+    ],
+    "membership_may_change_after_acquisition": false
+  },
+  "allowed_next": [
+    "one exact bounded archive acquisition",
+    "two complete integrity inventory and decode audits",
+    "freeze archive SHA-256 after published-MD5 pass",
+    "separately preregister one synthetic structural frontier if integrity passes"
+  ],
+  "forbidden": [
+    "photographic rendering in AJ0A or AJ0B",
+    "aesthetic inspection before structural gates",
+    "stock response calibration or authenticity claim",
+    "interpret filename push pull exposure process or ageing text as physical truth",
+    "use CLUTs as training targets or pseudo-teachers",
+    "fit current real-film pixels or open LSM",
+    "copy assets or RawTherapee source into tracked project paths",
+    "package release deploy or make a project licence decision",
+    "change the primary universe after decoding assets"
+  ],
+  "claim_ceiling": "licensed external film-look CLUT source for internal Look Approximation controls; not real-film evidence, an identified digital-to-film operator, stock response, calibrated profile, training target, product implementation or distribution approval"
+}
+

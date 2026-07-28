@@ -511,3 +511,16 @@ review. No source removal, threshold, order, strength, margin or resize rescue
 opens. The 17 rows are now consumed development evidence and cannot be reused
 as untouched confirmation for a successor. See
 `docs/U5_R2AI1_DUAL_CHAMPION_INDEPENDENT_CONFIRMATION_RESULTS.md`.
+
+`U5.R2AJ0A` then selects a genuinely independent explicit-operator source
+rather than retuning the failed composition. Range-only inspection of the
+official RawTherapee Film Simulation Collection fixes version `20150920`,
+421,602,289 bytes, the published MD5, a CC BY-SA 4.0 archive README and a
+194-entry non-Creative colour HaldCLUT universe before any LUT image access.
+The assets are licensed external Look Approximation controls, but their names
+are only informational approximations: they do not identify a stock response,
+Push/Pull state, scan chain or unpaired digital-to-film operator. `U5.R2AJ0B`
+may acquire and decode the one bounded archive twice; photographs, aesthetic
+selection, training, teacher use, current-film fitting, LSM and integration
+remain closed. See
+`docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`.

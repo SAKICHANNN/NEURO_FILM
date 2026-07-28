@@ -1,0 +1,96 @@
+{
+  "schema_version": "u5-r2aj0b-haldclut-acquisition-v1",
+  "experiment_id": "u5-r2aj0b-haldclut-acquisition-v1",
+  "node": "U5.R2AJ0B",
+  "parent_decision": "configs/u5_r2aj0a_rawtherapee_haldclut_source_audit_decision_v1.json",
+  "archive": {
+    "url": "https://rawtherapee.com/shared/HaldCLUT.zip",
+    "version": "2015-09-20",
+    "expected_bytes": 421602289,
+    "maximum_bytes": 421602289,
+    "expected_md5": "4742e362a70c1a1c0fb9042a17d285e1",
+    "destination": "data/external/rawtherapee_haldclut/20150920/HaldCLUT.zip",
+    "partial_destination": "data/external/rawtherapee_haldclut/20150920/HaldCLUT.zip.part",
+    "mirror_fallback_allowed": false,
+    "retain_exact_archive_only": true
+  },
+  "expected_inventory": {
+    "entries": 311,
+    "files": 296,
+    "directories": 15,
+    "png_files": 294,
+    "tiff_files": 1,
+    "text_files": 1,
+    "color_files": 227,
+    "black_and_white_files": 66,
+    "creative_pack_color_files": 33,
+    "primary_noncreative_color_files": 194,
+    "central_directory_offset": 421565794,
+    "central_directory_bytes": 36473,
+    "central_directory_sha256": "dfaa92b708442c63bebd6c21151ec052c3d1d9588610cc694120e944f50719a8",
+    "readme_path": "HaldCLUT/README.txt",
+    "readme_bytes": 2357,
+    "readme_crc32": "410697ab",
+    "readme_sha256": "363cffb318e25dc4f880e070915aceddfe842e1fdb0a68216bef04719185c69c"
+  },
+  "primary_universe": {
+    "include_prefix": "HaldCLUT/Color/",
+    "exclude_prefixes": [
+      "HaldCLUT/Color/CreativePack-1/"
+    ],
+    "expected_files": 194,
+    "order": "lexical_posix_path"
+  },
+  "decode": {
+    "allowed_extensions": [
+      ".png",
+      ".tif"
+    ],
+    "expected_image_files": 295,
+    "allowed_modes": [
+      "RGB",
+      "RGBA"
+    ],
+    "require_square": true,
+    "require_integer_cube_root_side": true,
+    "minimum_hald_level_exclusive": 1,
+    "decode_from_archive_memory_only": true
+  },
+  "execution": {
+    "complete_runs": 2,
+    "new_process_per_run": true,
+    "rehash_archive_per_run": true,
+    "redecode_all_images_per_run": true,
+    "manifest_and_report_must_be_byte_identical": true,
+    "network_user_agent": "Neuro-Film-U5-R2AJ0B/1.0",
+    "request_timeout_seconds": 60,
+    "stream_chunk_bytes": 1048576
+  },
+  "automatic_gates": {
+    "archive_size_exact": true,
+    "archive_md5_exact": true,
+    "archive_sha256_repeat_exact": true,
+    "zip_test_all_crc": true,
+    "safe_paths_only": true,
+    "duplicate_normalized_paths": 0,
+    "encrypted_entries": 0,
+    "symlink_like_entries": 0,
+    "inventory_exact": true,
+    "readme_exact": true,
+    "all_images_decode": true,
+    "primary_membership_exact": true,
+    "formal_evidence_repeat_exact": true
+  },
+  "forbidden": [
+    "render any photograph through a CLUT",
+    "inspect CLUT aesthetics",
+    "change primary membership after decode",
+    "drop a failed entry and continue",
+    "use a mirror after hash or network failure",
+    "extract assets into tracked paths",
+    "fit train route or open LSM",
+    "claim film stock process scanner push pull exposure or calibration truth",
+    "production integration packaging release or deployment"
+  ],
+  "claim_ceiling": "exact licensed external archive integrity and decode evidence only"
+}

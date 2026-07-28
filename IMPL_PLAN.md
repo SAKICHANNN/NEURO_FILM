@@ -475,6 +475,16 @@ rows cannot be reused as untouched confirmation. The next algorithm leaf must
 freeze a genuinely different explicit-operator hypothesis and new evidence
 split.
 
+U5.R2AJ0A supplies that distinct source hypothesis. Bounded remote ZIP
+metadata and README reads fix the official RawTherapee Film Simulation
+Collection at version `20150920`, exactly 421,602,289 bytes, published MD5
+`4742e362a70c1a1c0fb9042a17d285e1`, CC BY-SA 4.0 and 194 non-Creative colour
+HaldCLUT entries. No LUT image was requested or decoded. AJ0B is the current
+ready leaf: download the one ignored archive, verify every path/CRC/image and
+repeat the complete audit twice. Preset names remain informational external
+Look Approximation labels; no stock response, Push/Pull truth, training
+teacher, photograph render, current-film fitting, LSM or integration opens.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

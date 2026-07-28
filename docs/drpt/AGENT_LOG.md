@@ -5710,3 +5710,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ten focused AI0/AI1 tests and `git diff --check`. The complete 1051-test CPU
   suite already passed at the exact rendering commit before both formal runs;
   this result leaf changes only decision and governance evidence.
+
+## 2026-07-28 - Freeze U5.R2AJ0A/AJ0B RawTherapee HaldCLUT source lane
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AJ0A`; DRPT L2/Mode A with
+  `dev-research-reliability` as sole writer and research, planning, agent-log
+  and structure disciplines as read-only governance.
+- **Selection:** independent review confirms R2AI1 is a structural
+  incremental-style failure, not a clipping or implementation defect. Do not
+  retune its order, strength, rows or thresholds. Select an unrelated fixed
+  external explicit-operator bank instead.
+- **Source evidence:** official RawPedia and archive HEAD fix version
+  `20150920` at 421,602,289 bytes. SlackBuilds independently publishes MD5
+  `4742e362...85e1`. Range-only ZIP inspection finds 311 entries / 296 files
+  and a 2,357-byte README SHA-256 `363cffb3...c69c` that explicitly licenses
+  the collection CC BY-SA 4.0.
+- **Frozen universe:** before any LUT body access, bind the 194 non-Creative
+  `HaldCLUT/Color/` entries, the identity control and all excluded inventory
+  classes. RawTherapee commit `123b4d7...03f` supplies the audited sRGB,
+  red-fastest and trilinear semantics. No upstream GPL code is copied.
+- **Boundary:** names, Push/Pull suffixes and ageing labels remain
+  informational approximation text, never stock/process/scan truth. The
+  archive may be acquired for ignored internal research, but no asset may be
+  tracked, packaged or distributed while the root project licence remains
+  undecided.
+- **Handoff:** AJ0A passes only the frozen AJ0B one-archive acquisition and
+  two-process integrity/decode audit. No PNG/TIFF body, photograph render,
+  aesthetic selection, fitting, training, teacher use, LSM or integration has
+  occurred. AJ0B implementation is the next ready leaf; Goal remains ACTIVE.
