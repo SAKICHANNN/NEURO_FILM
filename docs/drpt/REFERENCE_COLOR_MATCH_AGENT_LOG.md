@@ -3958,3 +3958,14 @@
 - Loader peaks around 1.88 GB and encoder around 1.52--1.60 GB. Because the
   full path passes its envelope, no speculative loader rewrite opens. Next
   scale evidence should be ordered multi-source or a real platform/media rail.
+
+## 2026-07-29 - Freeze the 24 MP ordered three-source batch
+
+- P160 keeps the exact P158 product implementation and expands P159 from one
+  source to three distinct ordered 24 MP sources in one transaction.
+- The frozen local gates are 2.25 GiB peak process-tree RSS, 150 seconds per
+  worker and 1.15 repeat-RSS ratio, plus exact ordered source/output hashes,
+  exact recipe and normalized report, all identity fallback and complete
+  staging/worktree cleanup.
+- This is a scale and lifecycle test only. It cannot establish platform,
+  media-rail, visual-quality or algorithm-promotion readiness.
