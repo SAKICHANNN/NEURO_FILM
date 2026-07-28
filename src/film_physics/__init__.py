@@ -62,6 +62,14 @@ from .compound_poisson import (
     render_compound_poisson_region,
     rescale_compound_poisson_profile,
 )
+from .spatial_response import (
+    SpatialResponseProfile,
+    apply_development_adjacency,
+    apply_dye_diffusion,
+    apply_forward_scatter,
+    apply_scanner_mtf,
+    density_to_scan_transmittance,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -86,14 +94,20 @@ __all__ = [
     "REFERENCE_SCATTER_SCHEMA",
     "ReferenceScatterProfile",
     "ScatterComponent",
+    "SpatialResponseProfile",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
+    "apply_development_adjacency",
+    "apply_dye_diffusion",
+    "apply_forward_scatter",
     "apply_pyramid_scatter",
     "build_bw_silver_context",
     "build_colour_dye_cloud_context",
     "apply_reference_scatter",
+    "apply_scanner_mtf",
     "coordinate_counter_u64",
     "density_to_transmittance",
+    "density_to_scan_transmittance",
     "compile_scatter_profile",
     "compile_pyramid_scatter_profile",
     "correlated_normal_region",
