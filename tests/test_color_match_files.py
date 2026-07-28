@@ -227,3 +227,43 @@ def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
     assert recipe.read_bytes() == b"old-recipe"
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
     assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    from src.color_match import files
+
+    destination = tmp_path / "output.bin"
+    stage = tmp_path / ".output.token.reference-match-stage.bin"
+    destination.write_bytes(b"old")
+    stage.write_bytes(b"new")
+    cleanup = [stage]
+    original_unlink = Path.unlink
+    failures = 0
+
+    def fail_first_backup_unlink(
+        path: Path,
+        *args,
+        **kwargs,
+    ) -> None:
+        nonlocal failures
+        if (
+            path.name.endswith(".reference-match-backup")
+            and failures == 0
+        ):
+            failures += 1
+            raise OSError("transient backup cleanup failure")
+        original_unlink(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "unlink", fail_first_backup_unlink)
+    files._commit_staged_batch(
+        ((stage, destination),),
+        token="token",
+        cleanup=cleanup,
+    )
+    assert failures == 1
+    assert destination.read_bytes() == b"new"
+    assert cleanup == []
+    assert not list(tmp_path.glob(".*.reference-match-backup"))

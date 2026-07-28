@@ -242,7 +242,13 @@ def _commit_staged_batch(
     token: str,
     cleanup: list[Path],
 ) -> None:
-    """Commit staged files and restore every prior destination on failure."""
+    """Commit staged files and restore prior destinations on replace failure.
+
+    Once every staged replacement succeeds, the new transaction is committed.
+    Removing old backup files is post-commit housekeeping and must not turn a
+    successful commit into a reported failure. Transient cleanup errors are
+    retried; a persistently undeletable backup is retained for recovery.
+    """
 
     committed: list[tuple[Path, Path | None]] = []
     try:
@@ -278,8 +284,18 @@ def _commit_staged_batch(
             )
         raise
     for _destination, backup in committed:
-        if backup is not None:
-            backup.unlink(missing_ok=True)
+        if backup is None:
+            continue
+        for _attempt in range(3):
+            try:
+                backup.unlink(missing_ok=True)
+                break
+            except OSError:
+                continue
+        if backup in cleanup:
+            # Do not let the caller's finally block reclassify an already
+            # committed transaction. A persistent backup is recoverable
+            # debris, never proof that the new destinations were rolled back.
             cleanup.remove(backup)
 
 
