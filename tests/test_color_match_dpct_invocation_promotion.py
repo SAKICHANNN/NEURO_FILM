@@ -21,6 +21,7 @@ from evaluate_dpct_invocation_promotion import (  # noqa: E402
     _atomic_json,
     _context_batch,
     _load_progress,
+    _load_invocation_profile,
     _photo_batch,
 )
 
@@ -99,3 +100,29 @@ def test_p44_atomic_json_is_deterministic(tmp_path: Path) -> None:
     _atomic_json(path, payload)
     assert path.read_bytes() == first
     assert first.endswith(b"\n")
+
+
+def test_p44_loads_exact_capability_neutral_profile(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    path = tmp_path / "profile.json"
+    path.write_text('{"marker":"profile-v2"}', encoding="utf-8")
+    monkeypatch.setattr(
+        "evaluate_dpct_invocation_promotion."
+        "load_dpct_invocation_profile_v2",
+        lambda value: ("validated", value),
+    )
+    assert _load_invocation_profile(path) == (
+        "validated",
+        {"marker": "profile-v2"},
+    )
+    assert _load_invocation_profile(None) is None
+    path.write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(
+        "evaluate_dpct_invocation_promotion."
+        "load_dpct_invocation_profile_v2",
+        lambda value: (_ for _ in ()).throw(ValueError("invalid")),
+    )
+    with pytest.raises(ValueError, match="invalid"):
+        _load_invocation_profile(path)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate the exact P43 D-PCT wheel on frozen A1/A4/A5 gates."""
+"""Evaluate one exact producer wheel on the frozen P44 A1/A4/A5 gates."""
 
 from __future__ import annotations
 
@@ -32,9 +32,14 @@ from src.color_match import (  # noqa: E402
     evaluate_known_operator_batch,
     evaluate_photographic_probe,
     invoke_dpct_package_v1,
+    invoke_dpct_package_v2,
+    load_dpct_invocation_profile_v2,
     make_context_invariance_probes,
     make_photographic_probe,
     prepare_working_image_match_view,
+)
+from src.color_match.dpct_invocation_profile import (  # noqa: E402
+    DpctInvocationProfileV2,
 )
 from src.color_match.evaluation import (  # noqa: E402
     KnownOperatorSampleMetrics,
@@ -50,6 +55,7 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--main-root", type=Path, required=True)
     parser.add_argument("--wheel", type=Path, required=True)
+    parser.add_argument("--invocation-profile", type=Path)
     parser.add_argument("--python", type=Path, required=True)
     parser.add_argument("--scratch", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -141,6 +147,18 @@ def _load_progress(path: Path, contract_id: str) -> dict[str, Any]:
     return value
 
 
+def _load_invocation_profile(
+    path: Path | None,
+) -> DpctInvocationProfileV2 | None:
+    if path is None:
+        return None
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError("invocation profile is unavailable or invalid") from exc
+    return load_dpct_invocation_profile_v2(value)
+
+
 def _invoke(
     source: WorkingImage,
     reference_prepared: Any,
@@ -149,16 +167,24 @@ def _invoke(
     wheel: Path,
     python: Path,
     scratch: Path,
+    invocation_profile: DpctInvocationProfileV2 | None,
 ) -> tuple[WorkingImage, dict[str, Any]]:
     source_prepared = prepare_working_image_match_view(source)
-    outcome = invoke_dpct_package_v1(
-        source=source_prepared,
-        reference=reference_prepared,
-        intent_id=hashlib.sha256(row_id.encode("utf-8")).hexdigest(),
-        wheel_path=wheel,
-        python_executable=python,
-        scratch_directory=scratch,
-    )
+    arguments = {
+        "source": source_prepared,
+        "reference": reference_prepared,
+        "intent_id": hashlib.sha256(row_id.encode("utf-8")).hexdigest(),
+        "wheel_path": wheel,
+        "python_executable": python,
+        "scratch_directory": scratch,
+    }
+    if invocation_profile is None:
+        outcome = invoke_dpct_package_v1(**arguments)
+    else:
+        outcome = invoke_dpct_package_v2(
+            profile=invocation_profile,
+            **arguments,
+        )
     if outcome.status != "candidate" or outcome.candidate is None:
         raise RuntimeError(f"P44 row {row_id} did not yield a candidate")
     candidate = outcome.candidate
@@ -231,6 +257,9 @@ def _context_batch(
 
 def main() -> int:
     args = _parser().parse_args()
+    invocation_profile = _load_invocation_profile(
+        args.invocation_profile
+    )
     main_root = args.main_root.resolve()
     source_dir = (
         main_root
@@ -252,6 +281,12 @@ def main() -> int:
         "targets_at_inference": False,
         "thresholds": "existing-promotion-defaults",
     }
+    if invocation_profile is not None:
+        contract["invocation_profile_id"] = invocation_profile.profile_id
+        contract["capability_id"] = invocation_profile.capability_id
+        contract["producer_stable_commit"] = (
+            invocation_profile.producer_stable_commit
+        )
     contract_id = canonical_sha256(contract)
     progress_path = args.output.with_suffix(".progress.json")
     progress = _load_progress(progress_path, contract_id)
@@ -274,6 +309,7 @@ def main() -> int:
                 wheel=args.wheel,
                 python=args.python,
                 scratch=args.scratch,
+                invocation_profile=invocation_profile,
             )
             metrics = evaluate_known_operator_batch(
                 [source],
@@ -296,6 +332,7 @@ def main() -> int:
                 wheel=args.wheel,
                 python=args.python,
                 scratch=args.scratch,
+                invocation_profile=invocation_profile,
             )
             progress["photographic_rows"][reference_id] = {
                 "metrics": asdict(evaluate_photographic_probe(probe, candidate)),
@@ -312,6 +349,7 @@ def main() -> int:
                 wheel=args.wheel,
                 python=args.python,
                 scratch=args.scratch,
+                invocation_profile=invocation_profile,
             )
             second_candidate, second_invocation = _invoke(
                 second,
@@ -320,6 +358,7 @@ def main() -> int:
                 wheel=args.wheel,
                 python=args.python,
                 scratch=args.scratch,
+                invocation_profile=invocation_profile,
             )
             metrics = evaluate_context_invariance_outputs(
                 first_candidate,
