@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8k_scene_context_resources_contract.v1",
+  "node": "U6.P8K",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8j_context_first_resources_decision_v1.json",
+  "parent_decision_sha256": "f0520194481b1e75c35181d322f97ac79e6edf0928a52ae4f8ee2e6fc2842b13",
+  "implementation": {
+    "context_input": "scene-linear-row-staged",
+    "context_encoded_float32_semantics": "exact-p8g",
+    "retained_full_encoded_source": false,
+    "physical_input": "one-full-frame-encoded-roundtrip-linear",
+    "gauged_output": "one-reused-full-frame-float64",
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact scene-row context and encoded-buffer elimination; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
