@@ -74,6 +74,7 @@ from .spatial_response import (
     density_to_scan_transmittance,
     required_spatial_response_halo,
 )
+from .scanner import SCANNER_STAGES, ScannerProfile, apply_scanner_profile
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -98,6 +99,8 @@ __all__ = [
     "REFERENCE_SCATTER_SCHEMA",
     "ReferenceScatterProfile",
     "ScatterComponent",
+    "SCANNER_STAGES",
+    "ScannerProfile",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
     "apply_compiled_scatter",
@@ -110,6 +113,7 @@ __all__ = [
     "build_colour_dye_cloud_context",
     "apply_reference_scatter",
     "apply_scanner_mtf",
+    "apply_scanner_profile",
     "apply_spatial_response_pipeline",
     "apply_spatial_response_pipeline_row_tiled",
     "coordinate_counter_u64",
