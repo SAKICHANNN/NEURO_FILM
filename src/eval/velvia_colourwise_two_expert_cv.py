@@ -114,7 +114,9 @@ def deterministic_domain_folds(
     return folds
 
 
-def _fit(source: np.ndarray, target: np.ndarray, config: Mapping[str, Any]):
+def fit_proxy_operator(
+    source: np.ndarray, target: np.ndarray, config: Mapping[str, Any]
+):
     fit = config["fit"]
     return fit_positive_film_response_operator(
         source,
@@ -241,13 +243,13 @@ def evaluate_colourwise_two_expert_cv(
         palette_dev = palette_folds != fold
         test = combined_folds == fold
         development = ~test
-        chart_fit = _fit(
+        chart_fit = fit_proxy_operator(
             chart_source[chart_dev], chart_target[chart_dev], config
         )
-        palette_fit = _fit(
+        palette_fit = fit_proxy_operator(
             palette_source[palette_dev], palette_target[palette_dev], config
         )
-        combined_fit = _fit(
+        combined_fit = fit_proxy_operator(
             source[development], target[development], config
         )
         query = source[test]
@@ -428,6 +430,7 @@ __all__ = [
     "VelviaTwoExpertCVError",
     "deterministic_domain_folds",
     "evaluate_colourwise_two_expert_cv",
+    "fit_proxy_operator",
     "support_router_weights",
     "validate_contract",
 ]
