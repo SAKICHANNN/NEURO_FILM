@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p8a_fixed_reference_profile_compiler_contract.v1",
+  "node": "U6.P8A",
+  "parent_decision": "configs/u6_p7g1_cross_resolution_attribution_decision_v1.json",
+  "parent_decision_sha256": "421670c8e45c047eb917a4526db321c0ffdc1929a1ab117435a504088257511e",
+  "parent_contract": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+  "parent_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+  "ao6_runtime_contract": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "ao6_runtime_contract_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "reference_sampling_dpi": 4000,
+  "profile": {
+    "claim_level": "generic-physical-inspired",
+    "stock_id": "unknown",
+    "process_id": "unknown",
+    "scanner_profile_id": "unknown"
+  },
+  "preview_policy": {
+    "mode": "reference-derived-or-separately-validated-approximation",
+    "independent_low_resolution_equivalence_claim_allowed": false
+  },
+  "replay": {
+    "synthetic_shape": [
+      65,
+      67
+    ],
+    "synthetic_seed": 2026072904,
+    "real_ids": [
+      "canon_eos_kiss_f",
+      "sony_nex_3n",
+      "nikon_d2x"
+    ],
+    "real_max_long_edge": 512
+  },
+  "execution": {
+    "runs": 2,
+    "artifact_and_replay_report_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "portable fixed-reference generic physical-inspired component bundle and canonical CPU replay identity; not stock response, measured scanner/print response, calibration, low-resolution equivalence or product promotion"
+}
