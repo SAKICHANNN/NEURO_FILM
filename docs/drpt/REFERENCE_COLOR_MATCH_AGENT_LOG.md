@@ -4031,3 +4031,19 @@
   resource gates and cleanup.
 - The matrix cannot be generalized to arbitrary raster metadata, RAW/HDR,
   HEIF/AVIF/JXL, video or target devices.
+
+## 2026-07-29 - Pass SDR JPEG/TIFF transaction matrix
+
+- P163 completes six isolated product transactions: JPEG8, TIFF8 and
+  profiled TIFF16, each repeated twice at 2048-by-1536.
+- Per-case peak RSS is 308.3--360.7 MB and every worker completes in
+  3.87--4.59 seconds. Output, recipe and normalized report identities reproduce
+  within each case; format/depth, display-linear sRGB decode semantics,
+  identity fallback and cleanup all pass.
+- Two foreign-process preflight deferrals and three interpreter/import startup
+  failures executed zero pixel workers and remain hash-bound in the decision.
+  The successful run used the existing project Python 3.12 environment without
+  dependency mutation.
+- P163 is local Windows/Python SDR transaction evidence only. It does not open
+  arbitrary codecs/profiles, RAW/HDR/video, target runtime, algorithm
+  promotion or product delivery.

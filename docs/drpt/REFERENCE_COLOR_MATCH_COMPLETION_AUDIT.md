@@ -14,9 +14,10 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P162; v39 remains the latest immutable
-  main-review manifest and binds P1-P158. P159-P162 add local 24 MP and
-  maximum-count scale evidence after that reviewed payload.
+- Consumer branch now continues through P163; v39 remains the latest immutable
+  main-review manifest and binds P1-P158. P159-P163 add local 24 MP,
+  maximum-count and bounded SDR file-format evidence after that reviewed
+  payload.
 - Main Neuro-Film latest bound committed snapshot is `7f2ae6f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
 - D-PCT latest observed core snapshot is `2105c58`; R0DO/R0DP add exact
@@ -52,6 +53,7 @@ wire contract and not an algorithm promotion.
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | File input compatibility preflight | P148 hashes and decodes a bounded ordered input batch through the main `WorkingImage` loader, reports the actual rail and accepts only display-linear sRGB/Rec.2020; its claim is explicitly non-authorizing | COMPLETE AS ADVISORY PRODUCT-SHELL CONTRACT | Render still revalidates every input; add rails only after main/producer colour-state support is versioned / Neuro-Film |
+| SDR JPEG/TIFF transaction matrix | P163 executes JPEG8, TIFF8 and profiled TIFF16 input-to-output file transactions twice at 2048x1536. Every case preserves decoded display-linear sRGB, declared format/depth, exact output/recipe/normalized-report replay and identity fallback under 361 MB peak | EXACT LOCAL WINDOWS/PYTHON MATRIX PASS | Add only separately frozen formats/metadata semantics and obtain target-platform execution; do not infer arbitrary codec, profile, RAW/HDR or product readiness / Neuro-Film |
 | High-resolution image and batch lifetime | P159 passes two exact 24 MP single-source runs. P160 passes two ordered three-source 24 MP runs; P161 releases encoded renders before the next load and lowers interleaved median peak 2.167 -> 1.886 GB with exact artifacts and no wall regression. P162 passes two exact 64-source 1 MP maximum-count transactions at about 167 MB peak | EXACT LOCAL 24 MP THREE-SOURCE PLUS 64-SOURCE 1 MP PASS | Obtain real target-platform/media execution; do not combine the separate scale/count facts into a 24MP-by-64 claim / Neuro-Film |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | HDR shot reuse invalidation | P109 pins R0cn model/assessment schemas and fixture, reconstructs both producer identities and emits a persisted consumer decision with `reuse_authorized=false`; only `invalidate-reuse` forces refit | COMPLETE AS VETO-ONLY MAPPING, NO CACHE AUTHORITY | A future shot cache may consume the veto only after exact descriptor/input invocation binding; `not-invalidated` never authorizes reuse / D-PCT then Neuro-Film |

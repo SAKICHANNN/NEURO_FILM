@@ -13,6 +13,11 @@ from scripts.audit_reference_match_sdr_file_format_matrix_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "reference_match_sdr_file_format_matrix_v1.json"
+DECISION = (
+    ROOT
+    / "configs"
+    / "reference_match_sdr_file_format_matrix_decision_v1.json"
+)
 
 
 def _run(case: dict, token: str = "same", peak: int = 700_000_000) -> dict:
@@ -82,3 +87,32 @@ def test_p163_evaluation_requires_per_case_exactness_and_semantics() -> None:
     excessive = _runs(config)
     excessive[0]["monitor"]["peak_process_tree_rss_bytes"] = 1_700_000_000
     assert not evaluate_runs(config, excessive)["automatic_pass"]
+
+
+def test_p163_decision_recomputes_frozen_case_gates() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert decision["workload"] == {
+        "width": config["image"]["width"],
+        "height": config["image"]["height"],
+        "pixel_count": config["image"]["pixel_count"],
+        "repeat_count_per_case": config["repeat_count_per_case"],
+        "case_count": len(config["cases"]),
+    }
+    assert set(decision["cases"]) == {
+        row["case_id"] for row in config["cases"]
+    }
+    for result in decision["cases"].values():
+        peaks = result["peak_process_tree_rss_bytes"]
+        assert result["peak_rss_repeat_ratio"] == max(peaks) / min(peaks)
+        assert max(peaks) <= config["gates"][
+            "maximum_peak_process_tree_rss_bytes_per_run"
+        ]
+        assert max(result["worker_wall_seconds"]) <= config["gates"][
+            "worker_wall_seconds_max"
+        ]
+        assert result["safety_action"] == "identity-fallback"
+        assert result["automatic_pass"]
+    assert decision["non_pixel_attempts"]["pixel_tasks_executed"] == 0
+    assert decision["automatic_pass"]
