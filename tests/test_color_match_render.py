@@ -6,7 +6,13 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from src.color_engine import linear_rgb_to_lab
+from src.color_engine import (
+    compress_chroma_to_working_gamut,
+    compress_source_to_working_gamut,
+    in_working_gamut,
+    lab_to_linear_rgb,
+    linear_rgb_to_lab,
+)
 from src.color_match import (
     MAX_REFERENCE_MATCH_BATCH_SOURCES,
     ReferenceLookPolicy,
@@ -17,6 +23,7 @@ from src.color_match import (
 )
 from src.preprocess import convert_linear_rgb
 from src.preprocess.types import DecodeWarning, SourceProfile, WorkingImage
+from src.color_match import render as render_module
 
 
 def _working(
@@ -221,3 +228,121 @@ def test_diagnostics_preserve_reference_look_claim_ceiling() -> None:
     assert result.diagnostics.claim_ceiling == "reference-look"
     assert result.diagnostics.source_shape == source.pixels.shape
     assert 0.0 <= result.diagnostics.gamut_adjusted_fraction <= 1.0
+
+
+@pytest.mark.parametrize("gamut_mode", ["source", "chroma"])
+def test_row_chunked_gamut_is_float32_exact_to_full_frame(
+    gamut_mode: str,
+) -> None:
+    reference = _working(
+        _pixels(27124, 0.16, 0.84),
+        path="reference.png",
+    )
+    source_pixels = np.random.default_rng(27125).uniform(
+        0.01,
+        0.99,
+        size=(257, 389, 3),
+    ).astype(np.float32)
+    source = _working(source_pixels, path="source.png")
+    recipe = fit_reference_look(
+        reference,
+        policy=replace(
+            ReferenceLookPolicy(),
+            gamut_mode=gamut_mode,
+            strength=1.0,
+            luma_strength=1.0,
+        ),
+    )
+    source_lab = linear_rgb_to_lab(
+        source.pixels,
+        working_space=source.working_space,
+    )
+    styled_lab = render_module._styled_lab(recipe, source_lab)
+    if gamut_mode == "source":
+        full = compress_source_to_working_gamut(
+            source_lab,
+            styled_lab,
+            working_space=source.working_space,
+            iterations=recipe.policy.gamut_iterations,
+        )
+    else:
+        full = compress_chroma_to_working_gamut(
+            styled_lab,
+            working_space=source.working_space,
+            iterations=recipe.policy.gamut_iterations,
+        )
+    chunked = render_module._gamut_safe_lab(
+        recipe,
+        source_lab,
+        styled_lab,
+        working_space=source.working_space,
+    )
+    np.testing.assert_array_equal(chunked, full)
+
+
+def test_row_chunked_lab_to_rgb_and_gamut_check_are_exact() -> None:
+    pixels = np.random.default_rng(27126).uniform(
+        0.01,
+        0.99,
+        size=(257, 389, 3),
+    ).astype(np.float32)
+    lab = linear_rgb_to_lab(pixels, working_space="linear_srgb")
+    full_rgb = lab_to_linear_rgb(lab, working_space="linear_srgb")
+    chunked_rgb = render_module._lab_to_linear_rgb_rows(
+        lab,
+        working_space="linear_srgb",
+    )
+    np.testing.assert_array_equal(chunked_rgb, full_rgb)
+    assert render_module._in_working_gamut_rows(
+        lab,
+        working_space="linear_srgb",
+        tolerance=2e-6,
+    ) == bool(
+        in_working_gamut(
+            lab,
+            working_space="linear_srgb",
+            tolerance=2e-6,
+        ).all()
+    )
+    invalid = lab.copy()
+    invalid[-1, -1] = np.asarray([50.0, 300.0, -300.0], dtype=np.float32)
+    assert not render_module._in_working_gamut_rows(
+        invalid,
+        working_space="linear_srgb",
+        tolerance=2e-6,
+    )
+
+
+def test_chunked_render_never_sends_more_than_128_rows_to_gamut(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed_rows: list[int] = []
+    original = render_module.compress_source_to_working_gamut
+
+    def record_rows(source_lab, target_lab, **kwargs):
+        observed_rows.append(int(source_lab.shape[0]))
+        return original(source_lab, target_lab, **kwargs)
+
+    monkeypatch.setattr(
+        render_module,
+        "compress_source_to_working_gamut",
+        record_rows,
+    )
+    reference = _working(
+        np.random.default_rng(27127).uniform(
+            0.1,
+            0.9,
+            size=(131, 17, 3),
+        ).astype(np.float32),
+        path="reference.png",
+    )
+    source = _working(
+        np.random.default_rng(27128).uniform(
+            0.1,
+            0.9,
+            size=(257, 19, 3),
+        ).astype(np.float32),
+        path="source.png",
+    )
+    render_reference_look(fit_reference_look(reference), source)
+    assert observed_rows == [128, 128, 1]

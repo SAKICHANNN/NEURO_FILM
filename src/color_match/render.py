@@ -26,6 +26,8 @@ from .contracts import (
     validate_recipe,
 )
 
+_REFERENCE_RENDER_ROW_CHUNK = 128
+
 
 def _working_image_batch(
     sources: Iterable[WorkingImage],
@@ -130,18 +132,56 @@ def _gamut_safe_lab(
     *,
     working_space: str,
 ) -> np.ndarray:
-    if recipe.policy.gamut_mode == "source":
-        return compress_source_to_working_gamut(
-            source_lab,
-            styled_lab,
+    output = np.empty_like(styled_lab, dtype=np.float32)
+    for y0 in range(0, styled_lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
+        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, styled_lab.shape[0])
+        rows = slice(y0, y1)
+        if recipe.policy.gamut_mode == "source":
+            output[rows] = compress_source_to_working_gamut(
+                source_lab[rows],
+                styled_lab[rows],
+                working_space=working_space,
+                iterations=recipe.policy.gamut_iterations,
+            )
+        else:
+            output[rows] = compress_chroma_to_working_gamut(
+                styled_lab[rows],
+                working_space=working_space,
+                iterations=recipe.policy.gamut_iterations,
+            )
+    return output
+
+
+def _lab_to_linear_rgb_rows(
+    lab: np.ndarray,
+    *,
+    working_space: str,
+) -> np.ndarray:
+    output = np.empty_like(lab, dtype=np.float32)
+    for y0 in range(0, lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
+        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, lab.shape[0])
+        output[y0:y1] = lab_to_linear_rgb(
+            lab[y0:y1],
             working_space=working_space,
-            iterations=recipe.policy.gamut_iterations,
         )
-    return compress_chroma_to_working_gamut(
-        styled_lab,
-        working_space=working_space,
-        iterations=recipe.policy.gamut_iterations,
-    )
+    return output
+
+
+def _in_working_gamut_rows(
+    lab: np.ndarray,
+    *,
+    working_space: str,
+    tolerance: float,
+) -> bool:
+    for y0 in range(0, lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
+        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, lab.shape[0])
+        if not in_working_gamut(
+            lab[y0:y1],
+            working_space=working_space,
+            tolerance=tolerance,
+        ).all():
+            return False
+    return True
 
 
 def render_reference_look(
@@ -165,17 +205,17 @@ def render_reference_look(
         styled_lab,
         working_space=source.working_space,
     )
-    output_pixels = lab_to_linear_rgb(
+    output_pixels = _lab_to_linear_rgb_rows(
         output_lab,
         working_space=source.working_space,
     )
     if not np.isfinite(output_pixels).all():
         raise ReferenceMatchContractError("reference-look output is non-finite")
-    if not in_working_gamut(
+    if not _in_working_gamut_rows(
         output_lab,
         working_space=source.working_space,
         tolerance=2e-6,
-    ).all():
+    ):
         raise ReferenceMatchContractError(
             "reference-look output violates the declared working gamut"
         )
