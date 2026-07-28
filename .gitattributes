@@ -5,6 +5,7 @@ configs/schemas/reference_product_chain_conformance_v1.schema.json text eol=lf
 configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json text eol=lf
 configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json text eol=lf
 configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json text eol=lf
+configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json text eol=lf
 configs/reference_match_main_integration_manifest_v2.json text eol=lf
 configs/schemas/reference_match_main_integration_manifest_v2.schema.json text eol=lf
 configs/schemas/reference_match_main_integration_manifest_v3.schema.json text eol=lf
