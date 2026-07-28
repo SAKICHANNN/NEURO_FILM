@@ -1,4 +1,4 @@
-"""Deterministic three-way blind visual sheets for AO5V."""
+"""Deterministic three-way blind visual sheets for frozen look comparisons."""
 
 from __future__ import annotations
 
@@ -15,12 +15,18 @@ from src.eval.global_frontier import load_frozen_samples, sha256_file
 
 
 class ThreeWayLookVisualError(ValueError):
-    """Raised when the AO5V visual contract or evidence drifts."""
+    """Raised when a three-way visual contract or its evidence drifts."""
+
+
+SUPPORTED_EXPERIMENT_IDS = {
+    "u5.r2ao5v-three-way-visual-v1",
+    "u5.r2ao6v-b0-real-film-residual-visual-v1",
+}
 
 
 def blind_orders(seed: int, roles: list[str], count: int) -> list[list[str]]:
     if len(roles) != 3 or len(set(roles)) != 3 or count < 1 or count > 6:
-        raise ValueError("AO5V requires three unique roles and 1..6 rounds")
+        raise ValueError("three-way visual requires unique roles and 1..6 rounds")
     permutations = [list(values) for values in itertools.permutations(roles)]
     random.Random(seed).shuffle(permutations)
     return permutations[:count]
@@ -33,7 +39,7 @@ def _manifest_paths(
 ) -> dict[str, Path]:
     manifest_path = root / str(descriptor["manifest"])
     if sha256_file(manifest_path) != descriptor["manifest_sha256"]:
-        raise ThreeWayLookVisualError("AO5V manifest hash mismatch")
+        raise ThreeWayLookVisualError("three-way manifest hash mismatch")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     candidate_id = str(descriptor["candidate_id"])
     paths: dict[str, Path] = {}
@@ -44,13 +50,13 @@ def _manifest_paths(
         if sample_id not in sample_ids:
             continue
         if sample_id in paths:
-            raise ThreeWayLookVisualError("AO5V manifest sample drift")
+            raise ThreeWayLookVisualError("three-way manifest sample drift")
         output = manifest_path.parent / str(row["output"])
         if sha256_file(output) != row["output_sha256"]:
-            raise ThreeWayLookVisualError("AO5V output hash mismatch")
+            raise ThreeWayLookVisualError("three-way output hash mismatch")
         paths[sample_id] = output
     if paths.keys() != sample_ids:
-        raise ThreeWayLookVisualError("AO5V manifest coverage incomplete")
+        raise ThreeWayLookVisualError("three-way manifest coverage incomplete")
     return paths
 
 
@@ -61,13 +67,13 @@ def build_three_way_blind_sheets(
     output_dir: Path,
 ) -> dict[str, Any]:
     if (
-        config["experiment_id"] != "u5.r2ao5v-three-way-visual-v1"
+        config["experiment_id"] not in SUPPORTED_EXPERIMENT_IDS
         or config["production_integration_allowed"]
         or config["stock_response_claim_allowed"]
         or int(config["blind"]["round_count"]) != 3
         or len(config["looks"]) != 3
     ):
-        raise ThreeWayLookVisualError("AO5V frozen contract drift")
+        raise ThreeWayLookVisualError("three-way frozen contract drift")
     roles = [str(value["role"]) for value in config["looks"]]
     orders = blind_orders(
         int(config["blind"]["seed"]),
@@ -75,7 +81,7 @@ def build_three_way_blind_sheets(
         int(config["blind"]["round_count"]),
     )
     if len({tuple(order) for order in orders}) != len(orders):
-        raise ThreeWayLookVisualError("AO5V permutations are not unique")
+        raise ThreeWayLookVisualError("three-way permutations are not unique")
 
     samples = load_frozen_samples(root, config)
     gold_ids = [
@@ -84,7 +90,7 @@ def build_three_way_blind_sheets(
         if value["split"] == "gold"
     ]
     if len(gold_ids) != int(config["expected_gold_samples"]):
-        raise ThreeWayLookVisualError("AO5V gold coverage drift")
+        raise ThreeWayLookVisualError("three-way gold coverage drift")
     sample_ids = set(gold_ids)
     paths_by_role = {
         descriptor["role"]: _manifest_paths(root, descriptor, sample_ids)
@@ -151,6 +157,7 @@ def build_three_way_blind_sheets(
 
 __all__ = [
     "ThreeWayLookVisualError",
+    "SUPPORTED_EXPERIMENT_IDS",
     "blind_orders",
     "build_three_way_blind_sheets",
 ]
