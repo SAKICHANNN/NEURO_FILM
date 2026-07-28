@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p8q_context_reuse_resources_contract.v1",
+  "node": "U6.P8Q",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8p_current_phase_rss_decision_v1.json",
+  "parent_decision_sha256": "3575372ea759bdf9f2796d6df194da6dac0ed815b5c8e6835185f9a7f2c8ef19",
+  "implementation": {
+    "source_context_schedule": "before-physical-execution",
+    "encoded_source_allocation": "destructively-reused-for-roundtrip-linear",
+    "roundtrip_linear_execution": "row-bounded-exact-eotf",
+    "roundtrip_linear_tile_rows": 128,
+    "display_source_context": "exact-precomputed-safe-lab-context",
+    "display_output_reuses_consumed_float64_input": true,
+    "pointwise_arithmetic_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact context-first scheduling and encoded-to-linear buffer reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
