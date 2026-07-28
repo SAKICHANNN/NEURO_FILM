@@ -16,6 +16,7 @@ from scripts.pipeline_color_baseline import (
     load_guardrail_config,
     load_profile_values,
     style_transfer_rgb,
+    style_transfer_rgb_with_source_context,
     style_transfer_rgb_tiled,
 )
 
@@ -63,6 +64,30 @@ def test_full_frame_context_refactor_preserves_frozen_pixels(dither, expected_ha
     image = np.random.default_rng(20260717).random((17, 19, 3), dtype=np.float32)
     output = style_transfer_rgb(image, dither=dither, **_frozen_kwargs())
     assert hashlib.sha256(output.tobytes()).hexdigest() == expected_hash
+
+
+@pytest.mark.parametrize("dither", [0.0, 0.35])
+def test_public_source_context_application_matches_direct_full_frame(dither):
+    image = np.random.default_rng(20260728).random((17, 19, 3), dtype=np.float32)
+    kwargs = {**_frozen_kwargs(), "dither": dither}
+    direct = style_transfer_rgb(image, **kwargs)
+    explicit = style_transfer_rgb_with_source_context(
+        image,
+        **kwargs,
+        source_context=build_safe_lab_source_context(image),
+    )
+    np.testing.assert_array_equal(explicit, direct)
+
+
+def test_public_source_context_rejects_a_different_frame_shape():
+    image = np.random.default_rng(23).random((17, 19, 3), dtype=np.float32)
+    context = build_safe_lab_source_context(image)
+    with pytest.raises(ValueError, match="same full-frame shape"):
+        style_transfer_rgb_with_source_context(
+            image[:16],
+            **_frozen_kwargs(),
+            source_context=context,
+        )
 
 
 @pytest.mark.parametrize("window", [(0, 9, 0, 13), (2, 7, 3, 11), (0, 2, 9, 13), (8, 9, 12, 13)])

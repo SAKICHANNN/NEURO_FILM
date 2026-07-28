@@ -434,6 +434,72 @@ def style_transfer_rgb(
     )
 
 
+def style_transfer_rgb_with_source_context(
+    rgb: np.ndarray,
+    stats: dict,
+    style: str,
+    strength: float,
+    luma_strength: float,
+    grain: float,
+    seed: int,
+    gamut_safe: bool,
+    gamut_mode: str | None = None,
+    tone_rolloff: float = 0.0,
+    shadow_floor_l: float = 1.0,
+    highlight_ceiling_l: float = 99.0,
+    preserve_luma_detail_strength: float = 0.0,
+    chroma_curve_strength: float = 0.0,
+    output_margin: int = 0,
+    guardrails: dict | None = None,
+    neutral_protect: float | None = None,
+    skin_protect: float | None = None,
+    max_chroma_gain: float | None = None,
+    max_chroma_boost: float | None = None,
+    max_chroma_absolute: float | None = None,
+    dither: float | None = None,
+    *,
+    source_context: SafeLabSourceContext,
+) -> np.ndarray:
+    """Apply safe-Lab with an explicit same-frame source reduction.
+
+    This is the public full-frame counterpart of the tiled two-pass path. It
+    permits a caller to compile one context from a designated source state and
+    apply that fixed context to another same-shaped state of the same frame.
+    """
+
+    value = _validate_style_rgb(rgb)
+    _validate_safe_lab_source_context(source_context)
+    if tuple(int(size) for size in value.shape) != source_context.source_shape:
+        raise ValueError("source_context must describe the same full-frame shape")
+    lab = rgb2lab(value)
+    return _style_transfer_rgb_with_context(
+        value,
+        stats,
+        style,
+        strength,
+        luma_strength,
+        grain,
+        seed,
+        gamut_safe,
+        gamut_mode=gamut_mode,
+        tone_rolloff=tone_rolloff,
+        shadow_floor_l=shadow_floor_l,
+        highlight_ceiling_l=highlight_ceiling_l,
+        preserve_luma_detail_strength=preserve_luma_detail_strength,
+        chroma_curve_strength=chroma_curve_strength,
+        output_margin=output_margin,
+        guardrails=guardrails,
+        neutral_protect=neutral_protect,
+        skin_protect=skin_protect,
+        max_chroma_gain=max_chroma_gain,
+        max_chroma_boost=max_chroma_boost,
+        max_chroma_absolute=max_chroma_absolute,
+        dither=dither,
+        source_context=source_context,
+        precomputed_lab=lab,
+    )
+
+
 def style_transfer_rgb_tiled(
     rgb: np.ndarray,
     stats: dict,
