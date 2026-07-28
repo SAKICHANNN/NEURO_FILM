@@ -1,0 +1,59 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import numpy as np
+
+from src.film_physics.profile_consumer import (
+    compile_standalone_profile_artifact,
+    render_working_image,
+    render_working_image_row_streamed,
+)
+from src.preprocess.types import SourceProfile, WorkingImage
+
+
+ROOT = Path(__file__).resolve().parents[1]
+P8B = ROOT / "configs/u6_p8b_artifact_only_cpu_consumer_v1.json"
+
+
+def _working(pixels: np.ndarray) -> WorkingImage:
+    return WorkingImage(
+        pixels=np.asarray(pixels, dtype=np.float32),
+        working_space="linear_srgb_d65",
+        transfer_state="scene_linear",
+        source_transfer_state="scene_linear",
+        source_profile=SourceProfile("raw_metadata", "synthetic"),
+        hdr_metadata={},
+        orientation_applied=True,
+        alpha_policy="absent",
+        bit_depth_in=32,
+        source_path=Path("synthetic.scene-linear"),
+    )
+
+
+def test_artifact_consumer_row_stream_is_float_exact() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    working = _working(
+        np.random.default_rng(2026072909).random(
+            (129, 131, 3), dtype=np.float32
+        )
+    )
+    reference, _ = render_working_image(artifact, working)
+    forward, forward_receipt = render_working_image_row_streamed(
+        artifact, working, tile_rows=31, order="forward"
+    )
+    reverse, reverse_receipt = render_working_image_row_streamed(
+        artifact, working, tile_rows=47, order="reverse"
+    )
+    assert np.array_equal(reference, forward)
+    assert np.array_equal(reference, reverse)
+    assert (
+        forward_receipt["output"]["array_sha256"]
+        == reverse_receipt["output"]["array_sha256"]
+    )
+    assert forward_receipt["execution"]["seam_rows"] == [31, 62, 93, 124]
+    assert reverse_receipt["execution"]["seam_rows"] == [47, 94]

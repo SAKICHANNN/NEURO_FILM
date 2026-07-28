@@ -16,6 +16,7 @@ from src.eval.density_witness_frontier import linear_srgb_to_encoded
 from src.eval.physical_neutral_gauged_invariance import (
     _bounded_real_source,
     render_challenger,
+    render_challenger_row_tiled,
 )
 from src.film_physics.contracts import (
     ComponentBinding,
@@ -388,6 +389,77 @@ def render_working_image(
     }
 
 
+def render_working_image_row_streamed(
+    artifact: dict[str, Any],
+    working: WorkingImage,
+    *,
+    tile_rows: int,
+    order: str = "forward",
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Render exact finite-support row cores before one full-frame AO6 pass."""
+
+    bundle = validate_standalone_profile_artifact(artifact)
+    scene = scene_exposure_from_working_image(working)
+    if np.any(scene.values > 1.0):
+        raise ValueError(
+            "v1 profile consumer requires scene-linear samples in [0,1]; "
+            "a calibrated scene-to-relative exposure map is not available"
+        )
+    encoded = linear_srgb_to_encoded(
+        scene.values.astype(np.float64)
+    )
+    runtime, gauge = reconstruct_standalone_runtime(artifact)
+    output, seams = render_challenger_row_tiled(
+        encoded,
+        runtime,
+        gauge,
+        sampling_dpi=int(artifact["reference_sampling_dpi"]),
+        tile_rows=tile_rows,
+        order=order,
+    )
+    input_bytes = np.ascontiguousarray(
+        scene.values.astype(np.float32, copy=False)
+    ).tobytes()
+    output_bytes = np.ascontiguousarray(output).tobytes()
+    receipt_core = {
+        "schema": (
+            "neuro_film.physical_profile_row_streamed_render_receipt.v1"
+        ),
+        "profile_id": bundle.profile_id,
+        "bundle_sha256": bundle.bundle_sha256,
+        "artifact_sha256": _payload_sha256(artifact),
+        "reference_sampling_dpi": int(
+            artifact["reference_sampling_dpi"]
+        ),
+        "execution": {
+            "mode": "exact-row-streamed-physical-one-full-frame-display-look",
+            "tile_rows": int(tile_rows),
+            "order": order,
+            "seam_rows": list(seams),
+        },
+        "input": {
+            "array_sha256": hashlib.sha256(input_bytes).hexdigest(),
+            "dtype": "float32",
+            "shape": list(scene.values.shape),
+            "working_space": working.working_space,
+            "transfer_state": working.transfer_state,
+            "source_transfer_state": working.source_transfer_state,
+        },
+        "output": {
+            "array_sha256": hashlib.sha256(output_bytes).hexdigest(),
+            "dtype": output.dtype.name,
+            "shape": list(output.shape),
+            "domain": "display-encoded-rgb",
+            "quantized": False,
+        },
+        "claim_ceiling": artifact["claim_ceiling"],
+    }
+    return output, {
+        **receipt_core,
+        "receipt_sha256": _payload_sha256(receipt_core),
+    }
+
+
 def evaluate_standalone_profile(
     *, root: Path, config: dict[str, Any]
 ) -> dict[str, Any]:
@@ -492,6 +564,7 @@ __all__ = [
     "reconstruct_standalone_runtime",
     "render_standalone_profile",
     "render_working_image",
+    "render_working_image_row_streamed",
     "serialize_standalone_profile_artifact",
     "validate_contract",
     "validate_standalone_profile_artifact",
