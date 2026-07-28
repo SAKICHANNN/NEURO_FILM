@@ -282,14 +282,20 @@ def _decode_report(raw: bytes | None) -> RuntimeQualifiedExternalSharedStagingRu
     return runtime_qualified_external_shared_staging_run_from_json(encoded)
 
 
-def verify_runtime_qualified_external_shared_staging_v1(
+def _verify_runtime_qualified_external_shared_staging_with_capture_v1(
     *,
     report_path: Path | str,
     expected_report_sha256: str,
     expected_run_id: str,
     expected_runtime_qualification_id: str,
-) -> RuntimeQualifiedExternalSharedStagingVerificationV1:
-    """Verify one P62 report and all outputs without writing or reopening data."""
+    capture_output_bytes: bool,
+    maximum_capture_output_bytes: int | None = None,
+    maximum_capture_aggregate_bytes: int | None = None,
+) -> tuple[
+    RuntimeQualifiedExternalSharedStagingVerificationV1,
+    tuple[bytes, ...],
+]:
+    """Verify one P62 run and optionally retain bytes from the same handles."""
 
     _hash(expected_report_sha256, "expected_report_sha256")
     _hash(expected_run_id, "expected_run_id")
@@ -375,16 +381,39 @@ def verify_runtime_qualified_external_shared_staging_v1(
                     "runtime-qualified shared staged outputs "
                     "exceed the aggregate byte budget"
                 )
+            if capture_output_bytes and (
+                maximum_capture_output_bytes is None
+                or maximum_capture_aggregate_bytes is None
+                or size > maximum_capture_output_bytes
+                or aggregate_bytes > maximum_capture_aggregate_bytes
+            ):
+                raise ReferenceMatchContractError(
+                    "runtime-qualified shared staged outputs "
+                    "exceed the in-memory capture budget"
+                )
             output_leases.append((row, lease))
         outputs: list[
             VerifiedRuntimeQualifiedExternalSharedStagingOutputV1
         ] = []
+        captured_outputs: list[bytes] = []
         for row, lease in output_leases:
             verified = lease.verify(
                 expected_sha256=row.output_file_sha256,
-                maximum_bytes=MAX_STAGED_OUTPUT_BYTES,
-                capture_bytes=False,
+                maximum_bytes=(
+                    maximum_capture_output_bytes
+                    if capture_output_bytes
+                    and maximum_capture_output_bytes is not None
+                    else MAX_STAGED_OUTPUT_BYTES
+                ),
+                capture_bytes=capture_output_bytes,
             )
+            if capture_output_bytes:
+                if verified.raw_bytes is None:
+                    raise ReferenceMatchContractError(
+                        "runtime-qualified shared staged output "
+                        "bytes are unavailable"
+                    )
+                captured_outputs.append(verified.raw_bytes)
             outputs.append(
                 VerifiedRuntimeQualifiedExternalSharedStagingOutputV1(
                     source_index=row.source_index,
@@ -446,7 +475,36 @@ def verify_runtime_qualified_external_shared_staging_v1(
         )
         for lease in leases:
             lease.final_check()
-        return result
+        return result, tuple(captured_outputs)
+
+
+def verify_runtime_qualified_external_shared_staging_v1(
+    *,
+    report_path: Path | str,
+    expected_report_sha256: str,
+    expected_run_id: str,
+    expected_runtime_qualification_id: str,
+) -> RuntimeQualifiedExternalSharedStagingVerificationV1:
+    """Verify one P62 report and all outputs without writing or reopening data."""
+
+    result, captured = (
+        _verify_runtime_qualified_external_shared_staging_with_capture_v1(
+            report_path=report_path,
+            expected_report_sha256=expected_report_sha256,
+            expected_run_id=expected_run_id,
+            expected_runtime_qualification_id=(
+                expected_runtime_qualification_id
+            ),
+            capture_output_bytes=False,
+            maximum_capture_output_bytes=None,
+            maximum_capture_aggregate_bytes=None,
+        )
+    )
+    if captured:
+        raise ReferenceMatchContractError(
+            "verification-only operation retained unexpected output bytes"
+        )
+    return result
 
 
 def validate_runtime_qualified_external_shared_staging_verification_v1(
