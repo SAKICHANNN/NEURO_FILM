@@ -3919,3 +3919,18 @@
 - All 392 discovered v1-v38 manifest tests pass. Producer R0DK rejects
   calibrated SAPA without a callable capability, so no producer mapping
   changes. V38 remains `review-ready-not-merged`; main owns merge.
+
+## 2026-07-29 - Measure and bound the 6 MP file path
+
+- P154 retains its failed outer-lifetime result: exact durable identities but
+  only `53,903,360 B` median RSS reduction, below frozen gates.
+- P156 bounds gamut/output conversion to 128 rows: `1339 passed, 5 skipped`;
+  median RSS falls by `222,513,152 B` to `1,104,449,536 B`.
+- P157 bounds RGB-to-Lab ingress and reuses validated Lab:
+  `1343 passed, 5 skipped`; median RSS falls by another `166,363,136 B` to
+  `929,300,480 B`.
+- P158 keeps the full-image context and applies unchanged safe-Lab over
+  128-row cores plus five-row halos: `1348 passed, 5 skipped`; median RSS falls
+  `999,702,528 -> 533,960,704 B`, ratio `0.534120`, wall ratio `0.938942`.
+  Output/recipe/report/fallback remain exact. These are local Windows/Python
+  memory claims only; load/encode scale evidence remains open.
