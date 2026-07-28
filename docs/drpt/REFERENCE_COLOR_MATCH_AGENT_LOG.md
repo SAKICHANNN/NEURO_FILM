@@ -3855,3 +3855,16 @@
   missing ignored-output or concurrent main-asset failures, with no
   color-match failure. Producer R0DF is a rejected external baseline and adds
   no consumer interface action.
+
+## 2026-07-29 - Publish reference-lifetime integration in v36
+
+- V36 binds P151 payload `aef2732` to main committed stable point `6bd20c3`:
+  484 consumer paths, 529 main paths and zero overlap. Public exports remain
+  61 and contract schemas remain 24.
+- Manifest/schema SHA-256 identities are `017f7659...d7e42` /
+  `e3bc59bd...169fa`; merge tree `5ac280ce...a860`. Detached synthetic merge
+  `7485abf` passes 1296 color-match tests with 30 explicit skips.
+- All 384 discovered v1-v36 manifest tests pass. Producer R0DG/R0DH close two
+  further reference-only/shared estimator hypotheses without a callable
+  capability, so no producer mapping changes. V36 remains
+  `review-ready-not-merged`; main owns merge.
