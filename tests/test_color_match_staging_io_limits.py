@@ -38,3 +38,16 @@ def test_staging_path_collectors_do_not_exhaust_unbounded_iterables(
         collector(unbounded_paths(), count=expected_count)
 
     assert pulls == expected_count + 1
+
+
+def test_runtime_collector_rejects_reparse_before_any_path_resolution(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    def forbidden_resolve(*_args, **_kwargs):
+        raise AssertionError("runtime-qualified path must not call Path.resolve")
+
+    monkeypatch.setattr(Path, "resolve", forbidden_resolve)
+    path = tmp_path / "output.png"
+
+    assert runtime_staging._runtime_output_paths([path], count=1) == (path,)

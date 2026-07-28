@@ -18,7 +18,7 @@ SDR_OUTPUT_EXTENSIONS = frozenset(
 SDR16_OUTPUT_EXTENSIONS = frozenset({".png", ".tif", ".tiff"})
 
 
-def staging_output_paths(
+def _bounded_output_paths(
     values: Iterable[Path | str],
     *,
     count: int,
@@ -45,10 +45,19 @@ def staging_output_paths(
         raise ReferenceMatchContractError(
             "output path count must match authorized sources"
         )
+    return tuple(paths)
+
+
+def staging_output_paths(
+    values: Iterable[Path | str],
+    *,
+    count: int,
+) -> tuple[Path, ...]:
+    paths = _bounded_output_paths(values, count=count)
     keys = [str(path.resolve(strict=False)).casefold() for path in paths]
     if len(set(keys)) != len(keys):
         raise ReferenceMatchContractError("output paths must be unique")
-    return tuple(paths)
+    return paths
 
 
 def validate_sdr_staging_destinations(

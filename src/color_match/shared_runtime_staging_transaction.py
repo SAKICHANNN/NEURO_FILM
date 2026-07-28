@@ -49,8 +49,8 @@ from .shared_staging_transaction import (
     validate_external_shared_staging_run_v1,
 )
 from .staging_io import (
+    _bounded_output_paths,
     encode_sdr_staging_output,
-    staging_output_paths,
     validate_sdr_staging_destinations,
 )
 
@@ -299,7 +299,7 @@ def _runtime_output_paths(
     *,
     count: int,
 ) -> tuple[Path, ...]:
-    paths = staging_output_paths(values, count=count)
+    paths = _bounded_output_paths(values, count=count)
     absolute = tuple(
         _reject_reparse_components(
             path,
