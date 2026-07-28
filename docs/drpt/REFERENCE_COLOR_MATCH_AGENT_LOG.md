@@ -3711,3 +3711,16 @@
   `review-ready-not-merged`; main owns merge. Producer SHEP-v1 failed its
   frozen worst-improvement gate and published no callable capability, so it is
   intentionally not mapped.
+
+## 2026-07-28 - Expose file-output capabilities through the CLI
+
+- `match_reference_color.py --capabilities` now emits the exact public v1
+  file-output matrix as strict JSON, allowing product shells to disable
+  unsupported export choices without decoding an image or importing private
+  implementation details.
+- Capability inspection is mutually exclusive with all render inputs,
+  including an explicitly supplied bit depth. Existing fit/replay invocations
+  retain a 16-bit default when `--bit-depth` is omitted.
+- Exact JSON, no-side-effect argument rejection and existing file behavior are
+  covered. The complete non-manifest color-match regression passes 932 tests
+  with five explicit skips.

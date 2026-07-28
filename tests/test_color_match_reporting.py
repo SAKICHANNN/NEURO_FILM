@@ -336,6 +336,102 @@ def test_cli_help_documents_the_rec2020_sdr_output_contract() -> None:
     assert "16-bit PNG" in completed.stdout
 
 
+def test_cli_reports_exact_file_output_capabilities() -> None:
+    completed = subprocess.run(
+        [sys.executable, str(SCRIPT), "--capabilities"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert completed.stderr == ""
+    assert json.loads(completed.stdout) == {
+        "schema_id": "neuro-film.reference-file-output-capabilities.v1",
+        "capabilities": [
+            {
+                "working_space": "linear_srgb",
+                "transfer_state": "display_linear",
+                "output_bit_depth": 8,
+                "extensions": [".jpeg", ".jpg", ".png", ".tif", ".tiff"],
+                "encoding_profile": "srgb-icc.v1",
+            },
+            {
+                "working_space": "linear_srgb",
+                "transfer_state": "display_linear",
+                "output_bit_depth": 16,
+                "extensions": [".png", ".tif", ".tiff"],
+                "encoding_profile": "srgb-icc.v1",
+            },
+            {
+                "working_space": "linear_rec2020",
+                "transfer_state": "display_linear",
+                "output_bit_depth": 16,
+                "extensions": [".png"],
+                "encoding_profile": "bt2020-sdr-cicp-1-1-0-1.v1",
+            },
+        ],
+    }
+
+
+def test_cli_capabilities_rejects_render_arguments(tmp_path: Path) -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--capabilities",
+            "--source",
+            str(tmp_path / "source.png"),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 2
+    assert completed.stdout == ""
+    assert "--capabilities cannot be combined" in completed.stderr
+
+
+def test_cli_capabilities_rejects_render_bit_depth() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--capabilities",
+            "--bit-depth",
+            "8",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 2
+    assert completed.stdout == ""
+    assert "--capabilities cannot be combined" in completed.stderr
+
+
+def test_cli_render_mode_requires_source_output_and_report(
+    tmp_path: Path,
+) -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--reference",
+            str(tmp_path / "reference.png"),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 2
+    assert completed.stdout == ""
+    assert "requires --source, --output and --report" in completed.stderr
+
+
 def test_cli_commits_rec2020_sdr_output_recipe_and_report(
     tmp_path: Path,
 ) -> None:

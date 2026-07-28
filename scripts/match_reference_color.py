@@ -13,11 +13,13 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.color_match import (  # noqa: E402
+    REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
     ReferenceMatchContractError,
     ReferenceRenderGuardPolicy,
     build_file_match_report,
     build_file_replay_report,
     match_reference_files,
+    reference_file_output_capabilities,
     replay_reference_files,
 )
 
@@ -40,18 +42,21 @@ def _parser() -> argparse.ArgumentParser:
         type=Path,
         help="Existing verified recipe replayed without the reference file.",
     )
+    mode.add_argument(
+        "--capabilities",
+        action="store_true",
+        help="Print the exact supported file-output matrix as JSON and exit.",
+    )
     parser.add_argument(
         "--source",
         type=Path,
         action="append",
-        required=True,
         help="Source image; repeat once per input.",
     )
     parser.add_argument(
         "--output",
         type=Path,
         action="append",
-        required=True,
         help=(
             "Output image; repeat in source order. Linear Rec.2020 SDR "
             "sources require 16-bit PNG and retain BT.2020 CICP."
@@ -62,12 +67,12 @@ def _parser() -> argparse.ArgumentParser:
         type=Path,
         help="Required output recipe path in --reference mode.",
     )
-    parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument("--report", type=Path)
     parser.add_argument(
         "--bit-depth",
         type=int,
         choices=(8, 16),
-        default=16,
+        default=None,
         help=(
             "Output precision. Rec.2020 SDR supports 16-bit PNG only; "
             "sRGB also supports 8-bit PNG/JPEG/TIFF and 16-bit PNG/TIFF."
@@ -86,6 +91,45 @@ def _parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.capabilities:
+        render_arguments = (
+            args.source,
+            args.output,
+            args.recipe,
+            args.report,
+            args.bit_depth,
+            args.allow_research_baseline,
+        )
+        if any(value not in (None, False) for value in render_arguments):
+            print(
+                "reference match failed: --capabilities cannot be combined "
+                "with render arguments",
+                file=sys.stderr,
+            )
+            return 2
+        payload = {
+            "schema_id": REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
+            "capabilities": [
+                {
+                    "working_space": row.working_space,
+                    "transfer_state": row.transfer_state,
+                    "output_bit_depth": row.output_bit_depth,
+                    "extensions": list(row.extensions),
+                    "encoding_profile": row.encoding_profile,
+                }
+                for row in reference_file_output_capabilities()
+            ],
+        }
+        print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.source is None or args.output is None or args.report is None:
+        print(
+            "reference match failed: render mode requires --source, --output "
+            "and --report",
+            file=sys.stderr,
+        )
+        return 2
+    output_bit_depth = 16 if args.bit_depth is None else args.bit_depth
     if args.reference is not None and args.recipe is None:
         print(
             "reference match failed: --reference mode requires --recipe",
@@ -110,7 +154,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.output,
                 recipe_path=args.recipe,
                 report_path=args.report,
-                output_bit_depth=args.bit_depth,
+                output_bit_depth=output_bit_depth,
                 guard_policy=guard_policy,
             )
             report_sha256 = result.report_file_sha256
@@ -122,7 +166,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.source,
                 args.output,
                 report_path=args.report,
-                output_bit_depth=args.bit_depth,
+                output_bit_depth=output_bit_depth,
                 guard_policy=guard_policy,
             )
             report_sha256 = replay_result.report_file_sha256
