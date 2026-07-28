@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao7s-fresh-rawpixls-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO7S",
+  "decision": "pass_16_of_18_open_frozen_u5_r2ao7_confirmation",
+  "software_commit": "54a1ce416b9fddc87d4342be8f17869c5b0138db",
+  "contract": {
+    "path": "configs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1.json",
+    "sha256": "c987825079a81bd3a5f10c1ddc383a04ae98bc633217bdc033dc6f7bac8e4e44"
+  },
+  "parent_decision": {
+    "path": "configs/u5_r2ao6_b0_real_film_residual_decision_v1.json",
+    "sha256": "3a394fb669bcb6d9e9e244cee2640c8daf8086b58bcf8065b81efdad90afa68b",
+    "required_decision": "retain_b0_plus_film_t15_c35_as_B0_development_champion_open_fresh_OOD_confirmation"
+  },
+  "run_c": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "automatic_report": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/automatic_report.json",
+    "automatic_report_sha256": "32fbfc780658749ea31442ea23a17ef62f59040b1499f75a942b7e2b3298f366"
+  },
+  "run_d": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_d/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "automatic_report": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_d/automatic_report.json",
+    "automatic_report_sha256": "32fbfc780658749ea31442ea23a17ef62f59040b1499f75a942b7e2b3298f366"
+  },
+  "repeat_byte_identical": true,
+  "contact_sheet_sha256": "ed0d13070c44339be3e7447b7386db6530c0bb5fd3d6237c52617ea6dfc9e4cb",
+  "visual_source_review": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/visual_source_review.json",
+  "visual_source_review_sha256": "a7a1cca8de170cccf9210343634500eeeb31f7d4cd35633731ffb531f2920e27",
+  "automatic_evidence": {
+    "candidate_count": 18,
+    "decoded_row_count": 17,
+    "failure_count": 1,
+    "failure_ids": [
+      "kodak_dcs_pro_slr_c"
+    ],
+    "downloaded_bytes": 229010888,
+    "camera_make_count": 9,
+    "largest_make_fraction": 0.11764705882352941,
+    "within_exact_pairs": 0,
+    "within_dhash_pairs_le_4": 0,
+    "cross_comparison_exact_pairs": 0,
+    "cross_comparison_dhash_pairs_le_4": 0,
+    "near_empty_or_monochrome_count": 0,
+    "automatic_pass": true
+  },
+  "visual_and_selection_evidence": {
+    "reviewed_decoded_rows": 17,
+    "excluded_ids": [
+      "fujifilm_x_s10",
+      "kodak_dcs_pro_slr_c"
+    ],
+    "eligible_ids": [
+      "canon_eos_kiss_f",
+      "canon_eos_1d_mark_iv",
+      "nikon_d2x",
+      "nikon_d200",
+      "sony_nex_3n",
+      "sony_dslr_a290",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "olympus_e_p7",
+      "panasonic_dmc_gf2",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "pentax_k100d_super",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "kodak_dcs_pro_14n"
+    ],
+    "eligible_row_count": 16,
+    "eligible_camera_make_count": 9,
+    "eligible_largest_make_fraction": 0.125,
+    "content_bucket_count": 8,
+    "minimum_content_buckets": 6,
+    "confirmed_severe_input_failure_count": 0,
+    "visual_gate_pass": true,
+    "known_population_gap": "no reliable close face or skin-tone stress row"
+  },
+  "operator_applied": false,
+  "replacement_rows_added": 0,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "named_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "next_leaf": "freeze U5.R2AO7 fixed B0-versus-b0_plus_film_t15_c35 confirmation contract over the exact 16 eligible rows before operator rendering",
+  "claim_ceiling": "bounded reproducible fresh CC0 digital-photo source and OOD feasibility evidence; no algorithm result, preference, film, stock, calibration, authenticity, production or universal-safety claim"
+}
