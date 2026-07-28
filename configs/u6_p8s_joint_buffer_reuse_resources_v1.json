@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p8s_joint_buffer_reuse_resources_contract.v1",
+  "node": "U6.P8S",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8r_current_phase_rss_decision_v1.json",
+  "parent_decision_sha256": "465b314cfbc17d323987ccdf33c6ccfaad74a0a569e2b202d6f797821ab09091",
+  "implementation": {
+    "source_context_float32_cast": "row-local-only",
+    "source_context_lab_storage": "one-full-frame-float32",
+    "physical_source_halo": "one-exact-directional-carry",
+    "physical_output": "destructively-reuses-consumed-linear-buffer",
+    "physical_tile_rows": 128,
+    "forward_and_reverse_exact_required": true,
+    "pointwise_arithmetic_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-local context casting and halo-safe destructive physical output reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
