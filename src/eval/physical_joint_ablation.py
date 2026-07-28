@@ -42,6 +42,8 @@ from src.film_physics import (
     apply_interpretation_bounded_development_adjacency,
     apply_scanner_mtf,
 )
+from src.film_physics.display_look import make_display_look_payload
+from src.roll2film.density_domain import operator_from_config
 
 
 SCHEMA = "neuro_film.u6_p7a1_interpretation_bounded_ablation_contract.v1"
@@ -67,6 +69,7 @@ class JointAblationRuntime:
     build_source_context_colour: Callable[
         [np.ndarray], Callable[[np.ndarray], np.ndarray]
     ]
+    display_look_payload: dict[str, Any]
 
 
 def _load_exact_json(
@@ -278,6 +281,31 @@ def load_contracts(
             print_operator.interpretation.white_reference_density
         ),
     )
+    anchor_spec = validated["base_config"]["parent_anchor"]
+    density_spec = validated["base_config"]["parent_density"]
+    density_config = validated["base_validated"][
+        "density_operator_config"
+    ]
+    density_operator = operator_from_config(
+        density_config["witnesses"][density_spec["witness_id"]],
+        exposure_floor=float(density_config["exposure_floor"]),
+        matrix_minimum_determinant=float(
+            density_config["parameter_bounds"][
+                "matrix_minimum_determinant"
+            ]
+        ),
+        minimum_endpoint_span=float(
+            density_config["parameter_bounds"]["minimum_endpoint_span"]
+        ),
+    )
+    display_look_payload = make_display_look_payload(
+        density_operator=density_operator,
+        anchor_stats=validated["base_validated"]["anchor_stats"],
+        anchor=anchor_spec,
+        base=base_spec,
+        residual_operator=validated["operator"],
+        candidate=candidate,
+    )
     runtime = JointAblationRuntime(
         profile=profile,
         print_operator=print_operator,
@@ -289,6 +317,7 @@ def load_contracts(
         artifact_residual_pair=artifact_residual_pair,
         source_edge_support_threshold=source_edge_support_threshold,
         build_source_context_colour=build_source_context_colour,
+        display_look_payload=display_look_payload,
     )
     return contract, runtime
 

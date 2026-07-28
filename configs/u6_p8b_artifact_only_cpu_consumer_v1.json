@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8b_artifact_only_cpu_consumer_contract.v1",
+  "node": "U6.P8B",
+  "parent_contract": "configs/u6_p8a_fixed_reference_profile_compiler_v1.json",
+  "parent_contract_sha256": "235a4f4781f975363fbdbd56d4afdeaa952ac1e09f2c598646b607ee97ae2570",
+  "parent_decision": "configs/u6_p8a_fixed_reference_profile_compiler_decision_v1.json",
+  "parent_decision_sha256": "038cab54c5b7aa4fdbc3c7307b2ade43f58ec272c98ad274df0880109263fc68",
+  "required_parent_artifact_sha256": "45950a66e2e9907a3896abb05960580e519c654938964e415d1c203050b63387",
+  "reference_sampling_dpi": 4000,
+  "replay": {
+    "synthetic_shape": [
+      65,
+      67
+    ],
+    "synthetic_seed": 2026072905,
+    "real_ids": [
+      "canon_eos_kiss_f",
+      "sony_nex_3n",
+      "nikon_d2x"
+    ],
+    "real_max_long_edge": 512
+  },
+  "execution": {
+    "runs": 2,
+    "artifact_only_reconstruction_required": true,
+    "experiment_config_reads_after_compile_allowed": false,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "artifact-only deterministic Python CPU reference consumer for one fixed-reference generic physical-inspired profile; not native runtime, stock response, measured scanner or print response, calibration, low-resolution equivalence or product promotion"
+}
