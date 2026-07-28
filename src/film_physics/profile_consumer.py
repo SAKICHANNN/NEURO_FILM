@@ -515,6 +515,7 @@ def render_working_image_fully_row_streamed(
         ),
     )
     halo = required_spatial_response_halo(compiled.profile)
+    linear = encoded_srgb_to_linear(encoded)
     ranges = [
         (y0, min(encoded.shape[0], y0 + tile_rows))
         for y0 in range(0, encoded.shape[0], tile_rows)
@@ -527,14 +528,14 @@ def render_working_image_fully_row_streamed(
         source_y0 = max(0, y0 - halo)
         source_y1 = min(encoded.shape[0], y1 + halo)
         physical = _render_physical(
-            encoded_srgb_to_linear(encoded[source_y0:source_y1]),
-            compiled,
+            linear[source_y0:source_y1], compiled
         )
         core = physical[y0 - source_y0 : y1 - source_y0]
         gauged = apply_gauge_to_intermediate(core, gauge)
         gauged_encoded[y0:y1] = linear_srgb_to_encoded(gauged)
         if 0 < y0 < encoded.shape[0]:
             seams.append(y0)
+    del linear
     display = build_source_context_display_look_row_streamed(
         artifact["component_payloads"][
             "ao6-source-context-display-look"
