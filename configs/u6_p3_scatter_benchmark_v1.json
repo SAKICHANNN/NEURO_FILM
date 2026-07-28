@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p3_scatter_benchmark.v1",
+  "node": "U6.P3B",
+  "candidate_commit": "dea4f83",
+  "runs_per_shape": 2,
+  "rss_sample_interval_seconds": 0.01,
+  "worker_timeout_seconds": 180.0,
+  "shapes": [
+    [
+      1024,
+      1024,
+      3
+    ],
+    [
+      3000,
+      4000,
+      3
+    ],
+    [
+      4000,
+      6000,
+      3
+    ]
+  ],
+  "measurement": {
+    "runtime": "fresh child process wall and worker apply seconds",
+    "memory": "sampled child process-tree RSS",
+    "repeat": "exact float32 output SHA-256 within each shape",
+    "targets_are_provisional": true
+  }
+}
