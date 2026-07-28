@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p8x_native_print_conformance_decision.v1",
+  "node": "U6.P8X",
+  "contract": "configs/u6_p8x_native_print_conformance_v1.json",
+  "contract_sha256": "710a2b5b5d3f535592e25799d68dc38d3ab2123e99c17374df02baf6f6dfe299",
+  "formal_report": "outputs/u6_p8x_native_print_conformance_v1/report.json",
+  "formal_report_sha256": "17cbd27bcc5090a7aff52338fef854cde36a833549efdfe93d50a3ce41c5a232",
+  "stable_evidence_id": "66c08da74caff5f84953c620956a58d4beda1c8a56b58b74a5536c58af756db3",
+  "profile_payload_sha256": "bf0fb88bd3c1e49da15c392ecc0b2c4fc8b4d70db50b4b0cc34f30aa5ae3851b",
+  "oracle_sha256": "c862f5b70176720503b9c5e6ffb59a485b1e6c6548545ceb6a292ec37a732b4b",
+  "native_source_sha256": "b40b0f043068b5fec50c8b680dcc2ae0e4181e006b3215283050d5472f00d100",
+  "native_header_sha256": "43f58fdea4220d2da8a230a938595ba8a712521662cc6ef1ef56e56a919c5f7a",
+  "dll_sha256": "5a28e604256fa262756b23682c9b29955b2031add232eca0ee6849a0c2446fcc",
+  "result": {
+    "status": "pass",
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "maximum_absolute_error": 5.551115123125783e-16,
+    "tolerance": 5e-13,
+    "invalid_input_output_unchanged": true,
+    "inplace_matches_out_of_place": true
+  },
+  "decision": "retain the bounded C11 ABI as the first native physical-runtime component. It faithfully executes the fixed pointwise sensitometry and density-to-print interpretation on local MSVC x64, but does not establish spatial, gauge, display-look, full-renderer, mobile or product evidence",
+  "production_default_changed": false,
+  "claim_ceiling": "portable local Windows x64 pointwise generic physical-inspired sensitometry and density-to-print interpretation conformance only",
+  "next_leaf": "U6.P8Y native spatial-response P0: freeze finite Gaussian kernels, nearest-edge halo semantics and small-image tolerance oracle before composing the full native physical chain"
+}

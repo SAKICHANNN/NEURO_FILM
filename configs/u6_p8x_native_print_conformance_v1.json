@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p8x_native_print_conformance_contract.v1",
+  "node": "U6.P8X",
+  "parent_decision": "configs/u6_p8w_tile_row_grid_decision_v1.json",
+  "parent_decision_sha256": "51af8b089918be7d7227402b058b26cb664a1b30dbcf040975d4d8f0f4910859",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "native_source": "native/film_physics/nf_physical_print_v1.c",
+  "native_source_sha256": "b40b0f043068b5fec50c8b680dcc2ae0e4181e006b3215283050d5472f00d100",
+  "native_header": "native/film_physics/nf_physical_print_v1.h",
+  "native_header_sha256": "43f58fdea4220d2da8a230a938595ba8a712521662cc6ef1ef56e56a919c5f7a",
+  "expected_profile_payload_sha256": "bf0fb88bd3c1e49da15c392ecc0b2c4fc8b4d70db50b4b0cc34f30aa5ae3851b",
+  "expected_oracle_sha256": "c862f5b70176720503b9c5e6ffb59a485b1e6c6548545ceb6a292ec37a732b4b",
+  "toolchain": {
+    "family": "MSVC",
+    "architecture": "x64",
+    "language": "C11",
+    "floating_point": "strict",
+    "optimization": "O2",
+    "warnings": "W4-WX",
+    "reproducible_link": true
+  },
+  "required_evidence": {
+    "profile_validation": true,
+    "python_native_max_abs_tolerance": 5e-13,
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "invalid_input_output_unchanged": true,
+    "inplace_matches_out_of_place": true
+  },
+  "allowed_actions": [
+    "compile and execute the fixed pointwise physical-print C ABI on local MSVC x64",
+    "compare against the frozen float64 Python oracle",
+    "record exact source, header, profile, oracle and DLL identities"
+  ],
+  "forbidden_claims": [
+    "complete native film renderer",
+    "native spatial response or neutral-axis gauge",
+    "AO6 display-look parity",
+    "mobile or Apple runtime",
+    "calibrated stock, process, scanner or product promotion"
+  ],
+  "claim_ceiling": "portable local Windows x64 pointwise generic physical-inspired sensitometry and density-to-print interpretation conformance only"
+}
