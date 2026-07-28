@@ -6148,3 +6148,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification:** six focused AL1 tests pass after result propagation. The
   scoped result commit restored the formal clean-tree boundary, after which
   the complete CPU suite passed `1114/1114` in 176.73 seconds.
+
+## 2026-07-28 - U5.R2AM0 IAC coordinate-curve source and method audit
+
+- **Node/scope:** `ULT > U5 > U5.R2 > U5.R2AM0`; DRPT L2/Mode A with
+  research-reliability, AIML evidence, structure and project-log disciplines.
+  Primary sources are the official BMVC record, paper, supplement and arXiv
+  record. Exact paper/supplement bytes were hashed in memory; no repository,
+  model, dataset or image was downloaded.
+- **Source evidence:** official paper `06ae7bf3...6bbe` / 4,558,846 bytes;
+  supplement `117092eb...3fdc` / 1,474,370 bytes; arXiv paper source is CC BY
+  4.0. Official records expose no code link, and exact title/arXiv GitHub
+  repository searches returned zero hits on the audit date. This is “no
+  author-linked package located,” not proof of universal absence.
+- **Method finding:** IAC predicts an input-specific invertible matrix and
+  three 200-sample curves with a 39.7K-parameter network. It reports paired
+  FiveK/exposure/WB performance, random noise for rank repair and no
+  monotonicity, condition-number, whole-operator analytic inverse,
+  cube/Jacobian or severe-artifact gates. Direct use is incompatible with the
+  project boundary and does not identify a film operator.
+- **Decision/handoff:** retain only a clean-room deterministic bounded
+  `SO(3)` frame, normalization derived from all cube corners, strictly
+  monotone curves and analytic inverse curves. `U5.R2AM1` may freeze one
+  synthetic capacity pilot against RGB-curve, bounded
+  positive-matrix-plus-curve and stationary-K3 controls. No photo, film pixel,
+  learned content adaptation, stock or product claim opens. Goal remains
+  ACTIVE.

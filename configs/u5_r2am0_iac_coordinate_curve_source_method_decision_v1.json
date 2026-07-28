@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2am0-iac-coordinate-curve-source-method-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AM0",
+  "audit_date": "2026-07-28",
+  "primary_sources": [
+    {
+      "role": "official_bmvc_paper",
+      "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_307/paper.pdf",
+      "bytes": 4558846,
+      "sha256": "06ae7bf3babb89e9ca9ed95ddc165983ed309c23831d15300dc243bfa0796bbe"
+    },
+    {
+      "role": "official_bmvc_supplement",
+      "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_307/supplementary307.pdf",
+      "bytes": 1474370,
+      "sha256": "117092eb12547508cd22bb46a86c4497ae28001fb1d6100bb381a34d11f23fdc"
+    },
+    {
+      "role": "official_bmvc_record",
+      "url": "https://bmvc2024.org/proceedings/307/"
+    },
+    {
+      "role": "arxiv_record",
+      "url": "https://arxiv.org/abs/2501.06448",
+      "paper_license": "CC-BY-4.0"
+    }
+  ],
+  "reproducibility": {
+    "author_linked_code_or_checkpoint_located": false,
+    "official_record_links": [
+      "paper",
+      "supplement"
+    ],
+    "github_exact_title_or_arxiv_repository_hits_on_audit_date": 0,
+    "claim": "No author-linked reproducible package was located in the audited official records or exact GitHub repository searches; this is an audit result, not proof that no code exists anywhere."
+  },
+  "paper_method_facts": {
+    "input_domain": "RGB photographs",
+    "predicted_explicit_parameters": [
+      "one image-adaptive invertible 3x3 coordinate matrix",
+      "three 200-sample coordinate curves"
+    ],
+    "predictor_parameters": 39700,
+    "coordinate_normalization": "per projected coordinate normalized to [0,1], then denormalized before matrix inverse",
+    "rank_repair": "small random numbers are added when matrix rank is below three",
+    "reported_curve_monotonicity_constraint": false,
+    "reported_matrix_condition_or_determinant_bound": false,
+    "reported_full_operator_analytic_inverse": false,
+    "reported_cube_or_jacobian_gate": false,
+    "reported_severe_artifact_gate": false,
+    "paired_tasks": [
+      "MIT-Adobe FiveK expert-C photo retouching",
+      "multi-exposure correction",
+      "rendered white-balance editing"
+    ]
+  },
+  "decision": "open_am1_clean_room_so3_coordinate_curve_capacity_pilot",
+  "retained_hypothesis": "A deterministic SO(3) coordinate frame, full-cube projection normalization and strictly monotone separable curves can form a compact explicit colour operator with an analytic inverse and positive Jacobian. This representation prior is distinct from AL1 input-dependent sector blending.",
+  "am1_constraints": {
+    "coordinate_matrix": "deterministic bounded SO(3), condition number exactly one, no random repair",
+    "normalization": "derived from the complete RGB cube and the coordinate matrix, never from the current image histogram or extrema",
+    "curves": "endpoint-fixed strictly positive-increment monotone curves with a defined analytic inverse",
+    "renderer": "coordinate projection, curve evaluation, inverse coordinate projection; no neural final RGB",
+    "mandatory_controls": [
+      "identity",
+      "RGB global curves",
+      "bounded positive 3x3 plus global curves",
+      "stationary K3 explicit flow"
+    ],
+    "mandatory_gates": [
+      "absolute and relative capacity",
+      "exact identity and replay",
+      "positive bounded Jacobian",
+      "cube range without clipping",
+      "analytic inverse roundtrip",
+      "neutral-axis behavior",
+      "red-ramp and hue continuity",
+      "bounded strength path",
+      "two independent process reports"
+    ],
+    "data_access": "synthetic points only"
+  },
+  "forbidden": [
+    "execute or reconstruct the paper network, weights or unlocated code",
+    "use the paper's random rank repair",
+    "use image extrema or content embeddings to define the coordinate system",
+    "treat paired digital retouching or exposure correction as film evidence",
+    "fit current real-film pixels, train a router, or claim stock, mode, calibration, preference, severe safety or production readiness"
+  ],
+  "claim_ceiling": "primary-source method audit and clean-room synthetic representation hypothesis only; no reproduced IAC result, photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}

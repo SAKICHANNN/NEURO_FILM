@@ -97,6 +97,23 @@ unbounded matrix, per-image range ambiguity or paired-retouching truth. Any
 surviving clean-room representation remains synthetic-only; content
 adaptation does not identify a reusable film operator.
 
+`U5.R2AM0` is complete. The official IAC paper/supplement define a compact
+image-predicted `3x3` coordinate matrix and three 200-sample curves, but report
+random rank repair and no curve-monotonicity, matrix-condition,
+whole-operator-inverse, cube, Jacobian or severe-artifact contract. The
+reported FiveK/exposure/WB pairs are digital enhancement evidence, not film
+or reusable-operator evidence. No author-linked reproducible package was
+located in the audited official records or exact repository searches.
+
+Only a stricter clean-room hypothesis survives: deterministic bounded
+`SO(3)`, normalization from all RGB-cube corners rather than image extrema,
+three positive-increment monotone curves and explicit inverse curves.
+`U5.R2AM1` is ready to freeze a synthetic capacity contract against RGB
+curves, bounded positive-matrix-plus-curve and stationary-K3 controls. It must
+freeze every parameter, truth, split, optimizer and cube/Jacobian/analytic
+inverse/replay/neutral/hue/ramp/strength gate before implementation. A pass
+still opens no photograph, film-pixel fitting or content-conditioned model.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources
