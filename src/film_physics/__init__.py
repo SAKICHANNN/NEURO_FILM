@@ -18,6 +18,14 @@ from .contracts import (
     scene_exposure_from_working_image,
     transmittance_to_density,
 )
+from .reference_scatter import (
+    REFERENCE_SCATTER_SCHEMA,
+    ReferenceScatterProfile,
+    ScatterComponent,
+    apply_reference_scatter,
+    gaussian_kernel_2d,
+    profile_from_contract,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -32,8 +40,14 @@ __all__ = [
     "PhysicalUnit",
     "QualityTier",
     "QualityTierSpec",
+    "REFERENCE_SCATTER_SCHEMA",
+    "ReferenceScatterProfile",
+    "ScatterComponent",
+    "apply_reference_scatter",
     "coordinate_counter_u64",
     "density_to_transmittance",
+    "gaussian_kernel_2d",
+    "profile_from_contract",
     "scene_exposure_from_working_image",
     "transmittance_to_density",
 ]
