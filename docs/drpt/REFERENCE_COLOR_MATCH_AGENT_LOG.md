@@ -1620,6 +1620,16 @@
   quantizer. It is not Pixel/arm64 physical-device, media, D-PCT algorithm,
   arbitrary-look quality or product-admission evidence.
 
+## 2026-07-28 - Publish and verify P96 integration v14
+
+- V14 binds P1-P95 payload `2c33809` to current main `8dcfdac` with 376/310
+  changed paths, zero overlap and immutable v13 ancestry. Manifest/schema
+  SHAs are `12a951f...c734` / `6d5adbaa...7cfb`.
+- Direct/schema rebuild and v11-v14 tests pass 72/72. A real detached merge
+  produces tree `8d869107...20d` and passes 1040 color-match tests with 22
+  platform/data skips and zero failures; the temporary worktree was removed.
+- Review state remains `review-ready-not-merged`; main owns any actual merge.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
