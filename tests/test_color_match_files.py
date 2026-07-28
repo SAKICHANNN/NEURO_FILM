@@ -13,9 +13,11 @@ import tifffile
 from PIL import Image
 
 from src.color_match import (
+    REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
     ReferenceMatchContractError,
     load_reference_look_recipe,
     match_reference_files,
+    reference_file_output_capabilities,
 )
 from src.preprocess import (
     SourceProfile,
@@ -58,6 +60,45 @@ def _rec2020_image(path: Path, seed: int) -> None:
         ),
         path,
     )
+
+
+def test_file_output_capabilities_are_exact_and_versioned() -> None:
+    assert REFERENCE_FILE_OUTPUT_CAPABILITIES_ID == (
+        "neuro-film.reference-file-output-capabilities.v1"
+    )
+    capabilities = reference_file_output_capabilities()
+    assert [
+        (
+            row.working_space,
+            row.transfer_state,
+            row.output_bit_depth,
+            row.extensions,
+            row.encoding_profile,
+        )
+        for row in capabilities
+    ] == [
+        (
+            "linear_srgb",
+            "display_linear",
+            8,
+            (".jpeg", ".jpg", ".png", ".tif", ".tiff"),
+            "srgb-icc.v1",
+        ),
+        (
+            "linear_srgb",
+            "display_linear",
+            16,
+            (".png", ".tif", ".tiff"),
+            "srgb-icc.v1",
+        ),
+        (
+            "linear_rec2020",
+            "display_linear",
+            16,
+            (".png",),
+            "bt2020-sdr-cicp-1-1-0-1.v1",
+        ),
+    ]
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(

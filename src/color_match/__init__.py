@@ -576,10 +576,13 @@ from .external_local_delivery_verification import (
     verify_external_local_delivery_v1,
 )
 from .files import (
+    REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
+    FileReferenceOutputCapability,
     FileReferenceMatchOutput,
     FileReferenceMatchResult,
     FileReferenceReplayResult,
     match_reference_files,
+    reference_file_output_capabilities,
     replay_reference_files,
 )
 from .evaluation import (
@@ -690,6 +693,7 @@ __all__ = [
     "MAX_REFERENCE_MATCH_BATCH_SOURCES",
     "TRANSFORM_BUNDLE_SCHEMA_ID",
     "WORKING_IMAGE_BRIDGE_ID",
+    "REFERENCE_FILE_OUTPUT_CAPABILITIES_ID",
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",
     "REFERENCE_MATCH_REPORT_SCHEMA_ID",
     "REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID",
@@ -757,6 +761,7 @@ __all__ = [
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "FileReferenceReplayResult",
+    "FileReferenceOutputCapability",
     "ReferenceLookPolicy",
     "ReferenceLookRecipe",
     "ReferenceCompositionPlan",
@@ -1099,6 +1104,7 @@ __all__ = [
     "load_reference_look_recipe_bound",
     "load_portable_conformance_bundle",
     "match_reference_files",
+    "reference_file_output_capabilities",
     "make_photographic_probe",
     "make_capabilities",
     "make_match_view",

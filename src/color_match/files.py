@@ -43,6 +43,49 @@ from .transaction_lock import target_transaction_lock
 
 _SDR_OUTPUT_EXTENSIONS = frozenset({".png", ".jpg", ".jpeg", ".tif", ".tiff"})
 _SDR16_OUTPUT_EXTENSIONS = frozenset({".png", ".tif", ".tiff"})
+REFERENCE_FILE_OUTPUT_CAPABILITIES_ID = (
+    "neuro-film.reference-file-output-capabilities.v1"
+)
+
+
+@dataclass(frozen=True)
+class FileReferenceOutputCapability:
+    """One exact output rail exposed to product clients before rendering."""
+
+    working_space: str
+    transfer_state: str
+    output_bit_depth: int
+    extensions: tuple[str, ...]
+    encoding_profile: str
+
+
+def reference_file_output_capabilities(
+) -> tuple[FileReferenceOutputCapability, ...]:
+    """Return the immutable v1 file-output support matrix."""
+
+    return (
+        FileReferenceOutputCapability(
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            output_bit_depth=8,
+            extensions=tuple(sorted(_SDR_OUTPUT_EXTENSIONS)),
+            encoding_profile="srgb-icc.v1",
+        ),
+        FileReferenceOutputCapability(
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            output_bit_depth=16,
+            extensions=tuple(sorted(_SDR16_OUTPUT_EXTENSIONS)),
+            encoding_profile="srgb-icc.v1",
+        ),
+        FileReferenceOutputCapability(
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            output_bit_depth=16,
+            extensions=(".png",),
+            encoding_profile="bt2020-sdr-cicp-1-1-0-1.v1",
+        ),
+    )
 
 
 @dataclass(frozen=True)
@@ -942,9 +985,12 @@ def replay_reference_files(
 
 
 __all__ = [
+    "REFERENCE_FILE_OUTPUT_CAPABILITIES_ID",
+    "FileReferenceOutputCapability",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "FileReferenceReplayResult",
     "match_reference_files",
+    "reference_file_output_capabilities",
     "replay_reference_files",
 ]
