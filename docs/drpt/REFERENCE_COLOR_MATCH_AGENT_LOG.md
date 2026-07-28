@@ -1533,6 +1533,17 @@
 - Producer contracts, A1/A4/A5, media rails and delivery authority are
   unchanged.
 
+## 2026-07-28 - Prove P88 24MP output-quantizer streaming
+
+- Two independent 24MP/72M-scalar audits have stable evidence identity
+  `sha256:dc40141f...318a`; MSVC/LLVM, 8/16-bit and two replays all match the
+  Python staging oracle exactly.
+- Native apply observations are 0.25-0.72 seconds for sRGB8 and 0.92-1.67
+  seconds for sRGB16. Tracked live array payload is bounded at 6,291,474 and
+  8,388,632 bytes respectively; timings are excluded from stable identity.
+- The audit uses create-only reports and unloads DLLs after success or injected
+  failure. No further quantizer optimization is justified by this result.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
