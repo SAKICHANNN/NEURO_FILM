@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao5-combined-velvia-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO5",
+  "parent_config_sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14",
+  "inputs": {
+    "chart_pairs": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+    "chart_paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+    "palette_pairs": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "velvia_palette_paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30",
+    "chart_rows": 24,
+    "palette_rows": 47,
+    "combined_rows": 71
+  },
+  "fit": {
+    "model": "one_matrix",
+    "identity_mixture": 0.25,
+    "restart_count": 3,
+    "loss": "linear",
+    "loss_scale": 0.01,
+    "maximum_function_evaluations": 4000,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11,
+    "seed": 20260728,
+    "exposure_floor": 1.52587890625e-05,
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
+  },
+  "controls": [
+    "identity",
+    "per_channel_affine",
+    "full_affine"
+  ],
+  "score_domains": [
+    "combined",
+    "velvia_chart",
+    "velvia_palette"
+  ],
+  "gates": {
+    "maximum_combined_one_matrix_rgb_rmse": 0.05,
+    "maximum_each_domain_one_matrix_rgb_rmse": 0.06,
+    "minimum_combined_gain_over_identity": 0.5,
+    "minimum_combined_gain_over_full_affine": 0.2,
+    "minimum_each_domain_gain_over_full_affine": 0.15,
+    "one_matrix_raw_out_of_cube_fraction_maximum": 0.0,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "freeze_combined_operator_and_open_factorized_photo_frontier",
+  "decision_if_fail": "retain_bidirectional_cross_domain_evidence_without_combined_operator",
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "one bounded explicit operator fitted to 71 exact author-rendered Velvia display-proxy pairs from a ColorChecker and stable-pigment palette in one paper/rendering pipeline; not raw, same-time, process/scanner-independent, stock-specific, calibrated or product evidence"
+}
