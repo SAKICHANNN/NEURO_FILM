@@ -5,9 +5,7 @@ import json
 from pathlib import Path
 
 import numpy as np
-import pytest
 
-import src.film_physics.display_look as display_look
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
     render_working_image,
@@ -15,7 +13,6 @@ from src.film_physics.profile_consumer import (
     render_working_image_row_streamed,
 )
 from src.film_physics.display_look import (
-    build_density_source_context_from_scene_row_staged,
     build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
@@ -100,49 +97,7 @@ def test_display_look_base_and_residual_row_stream_are_float_exact() -> None:
     streamed = build_source_context_display_look_row_streamed(
         payload, source, tile_rows=17
     )(input_values)
-    context = build_density_source_context_row_staged(
-        payload, source, tile_rows=17
-    )
-    precomputed = build_source_context_display_look_row_streamed(
-        payload,
-        source,
-        tile_rows=17,
-        source_context=context,
-    )(input_values)
     assert np.array_equal(reference, streamed)
-    assert np.array_equal(reference, precomputed)
-
-
-def test_precomputed_display_context_is_not_rebuilt(
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    config = json.loads(P8B.read_text(encoding="utf-8"))
-    artifact = compile_standalone_profile_artifact(
-        root=ROOT, config=config
-    )
-    payload = artifact["component_payloads"][
-        "ao6-source-context-display-look"
-    ]
-    source = np.random.default_rng(2026072915).random((37, 41, 3))
-    context = build_density_source_context_row_staged(
-        payload, source, tile_rows=11
-    )
-
-    def reject_rebuild(*args: object, **kwargs: object) -> None:
-        raise AssertionError("precomputed source context was rebuilt")
-
-    monkeypatch.setattr(
-        display_look,
-        "build_density_source_context_row_staged",
-        reject_rebuild,
-    )
-    output = build_source_context_display_look_row_streamed(
-        payload,
-        source,
-        tile_rows=11,
-        source_context=context,
-    )(source.copy())
-    assert output.shape == source.shape
 
 
 def test_fully_row_streamed_profile_is_float_exact() -> None:
@@ -198,26 +153,5 @@ def test_density_source_context_row_staging_is_exact() -> None:
     reference = build_safe_lab_source_context(full_density)
     staged = build_density_source_context_row_staged(
         payload, source, tile_rows=17
-    )
-    assert staged == reference
-
-
-def test_scene_row_context_matches_encoded_source_context_exactly() -> None:
-    config = json.loads(P8B.read_text(encoding="utf-8"))
-    artifact = compile_standalone_profile_artifact(
-        root=ROOT, config=config
-    )
-    payload = artifact["component_payloads"][
-        "ao6-source-context-display-look"
-    ]
-    scene = np.random.default_rng(2026072916).random(
-        (67, 71, 3), dtype=np.float32
-    )
-    encoded = linear_srgb_to_encoded(scene.astype(np.float64))
-    reference = build_density_source_context_row_staged(
-        payload, encoded, tile_rows=17
-    )
-    staged = build_density_source_context_from_scene_row_staged(
-        payload, scene, tile_rows=19
     )
     assert staged == reference

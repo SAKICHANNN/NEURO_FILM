@@ -35,7 +35,6 @@ from src.film_physics.contracts import (
 )
 from src.film_physics.display_look import (
     DISPLAY_LOOK_SCHEMA,
-    build_density_source_context_from_scene_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
     validate_display_look_payload,
@@ -503,15 +502,8 @@ def render_working_image_fully_row_streamed(
         raise ValueError("invalid fully row-streamed partition")
     input_array_sha256 = _array_sha256(scene.values)
     input_shape = list(scene.values.shape)
-    source_context = build_density_source_context_from_scene_row_staged(
-        artifact["component_payloads"][
-            "ao6-source-context-display-look"
-        ],
-        scene.values,
-        tile_rows=tile_rows,
-    )
-    linear = encoded_srgb_to_linear(
-        linear_srgb_to_encoded(scene.values.astype(np.float64))
+    encoded = linear_srgb_to_encoded(
+        scene.values.astype(np.float64)
     )
     del scene
     runtime, gauge = reconstruct_standalone_runtime(artifact)
@@ -523,35 +515,36 @@ def render_working_image_fully_row_streamed(
         ),
     )
     halo = required_spatial_response_halo(compiled.profile)
+    linear = encoded_srgb_to_linear(encoded)
     ranges = [
-        (y0, min(linear.shape[0], y0 + tile_rows))
-        for y0 in range(0, linear.shape[0], tile_rows)
+        (y0, min(encoded.shape[0], y0 + tile_rows))
+        for y0 in range(0, encoded.shape[0], tile_rows)
     ]
     if order == "reverse":
         ranges.reverse()
-    gauged_encoded = np.empty_like(linear, dtype=np.float64)
+    gauged_encoded = np.empty_like(encoded, dtype=np.float64)
     seams = []
     for y0, y1 in ranges:
         source_y0 = max(0, y0 - halo)
-        source_y1 = min(linear.shape[0], y1 + halo)
+        source_y1 = min(encoded.shape[0], y1 + halo)
         physical = _render_physical(
             linear[source_y0:source_y1], compiled
         )
         core = physical[y0 - source_y0 : y1 - source_y0]
         gauged = apply_gauge_to_intermediate(core, gauge)
         gauged_encoded[y0:y1] = linear_srgb_to_encoded(gauged)
-        if 0 < y0 < linear.shape[0]:
+        if 0 < y0 < encoded.shape[0]:
             seams.append(y0)
     del linear
     display = build_source_context_display_look_row_streamed(
         artifact["component_payloads"][
             "ao6-source-context-display-look"
         ],
-        gauged_encoded,
+        encoded,
         tile_rows=tile_rows,
         reuse_input_buffer=True,
-        source_context=source_context,
     )
+    del encoded
     output = display(gauged_encoded)
     receipt_core = {
         "schema": (
