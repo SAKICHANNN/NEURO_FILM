@@ -3511,3 +3511,18 @@
   `18e26502...34811` and detached merge `ee64ccd` pass 1199 color-match tests
   with 28 skips and 1268 unrelated deselections. The owned worktree was
   removed. V23 is the sole current `review-ready-not-merged` candidate.
+
+## 2026-07-28 - Complete runtime temp-root hardening in v24
+
+- The subsequent full-chain path audit found the platform-lock temporary root
+  still resolved before reparse inspection. It now checks the original
+  absolute TEMP path component-by-component without following it, rejects
+  non-directory roots before reserving in-process keys, and has direct
+  no-`Path.resolve` plus symlink/reparse regressions. V23 was conservatively
+  superseded before merge.
+- V24 binds payload `cfff1ab` to main `82e1e19`: 433 consumer paths, 445 main
+  paths and zero overlap. Manifest/schema SHA-256 identities are
+  `8973c1ea...941a0` / `8699ceab...eb60`; merge tree `687e9d6d...f9f9c0`.
+- Detached merge `06d058e` passes 1209 color-match tests with 29 explicit
+  platform/data skips and 1268 unrelated deselections. The owned worktree was
+  removed. V24 is the sole current `review-ready-not-merged` candidate.
