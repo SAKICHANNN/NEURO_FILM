@@ -3947,3 +3947,14 @@
   `1323 passed, 30 skipped`. V1-v39 manifest lineage passes 410 tests.
 - The temporary worktree was removed. V39 remains review-ready-not-merged;
   only the main task owns the real merge and main-worktree full suite.
+
+## 2026-07-29 - Pass the 24 MP target-scale file path
+
+- P159 freezes one reference/one source at 6000-by-4000, 16-bit PNG output,
+  two fresh workers, 3 GiB peak, 120-second wall and 1.15 RSS-repeat gates.
+- Both runs pass at `1,887,232,000` / `1,876,660,224 B` and
+  `33.0761` / `30.9289 s`; output, recipe, normalized report and fallback are
+  exact and cleanup is complete.
+- Loader peaks around 1.88 GB and encoder around 1.52--1.60 GB. Because the
+  full path passes its envelope, no speculative loader rewrite opens. Next
+  scale evidence should be ordered multi-source or a real platform/media rail.

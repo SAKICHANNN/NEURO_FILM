@@ -11,6 +11,7 @@ from scripts.audit_reference_match_target_scale_memory_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "reference_match_target_scale_memory_v1.json"
+DECISION = ROOT / "configs" / "reference_match_target_scale_memory_decision_v1.json"
 
 
 def _run(peak: int, token: str = "same", wall: float = 40.0) -> dict:
@@ -54,3 +55,25 @@ def test_p159_evaluation_requires_resources_replay_and_identity() -> None:
     wrong_action = [_run(2_000_000_000), _run(2_000_000_000)]
     wrong_action[1]["worker_result"]["safety_action"] = "applied"
     assert not evaluate_runs(config, wrong_action)["automatic_pass"]
+
+
+def test_p159_decision_recomputes_the_frozen_resource_gates() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    peaks = decision["peak_process_tree_rss_bytes"]
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert decision["maximum_peak_process_tree_rss_bytes"] == max(peaks)
+    assert decision["minimum_peak_process_tree_rss_bytes"] == min(peaks)
+    assert decision["peak_rss_repeat_ratio"] == max(peaks) / min(peaks)
+    assert decision["frozen_gates"] == {
+        "maximum_peak_process_tree_rss_bytes": config["gates"][
+            "maximum_peak_process_tree_rss_bytes"
+        ],
+        "maximum_peak_rss_repeat_ratio": config["gates"][
+            "maximum_peak_rss_repeat_ratio"
+        ],
+        "worker_wall_seconds_max": config["gates"]["worker_wall_seconds_max"],
+        "passed": True,
+    }
+    assert decision["automatic_pass"]
+    assert decision["artifact_identity"]["repeat_exact"]
