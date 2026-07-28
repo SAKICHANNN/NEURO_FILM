@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p7e_nonspatial_interpretation_attribution_contract.v1",
+  "node": "U6.P7E",
+  "parent_decision": "configs/u6_p7d_virtual_scan_sampling_decision_v1.json",
+  "parent_decision_sha256": "6d31fed1af22b7051c30d7da04ff6b6fca7b164c3ce7b5989f9aaa413e959a4d",
+  "runtime_parent": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "runtime_parent_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "question": "Which bounded non-spatial sensitometry/print component causes the rejected cyan-green shift, and does a neutral/direct explicit interpretation retain material film-inspired structure without violating the neutral axis?",
+  "arms": [
+    {
+      "arm_id": "normalized_density",
+      "dye_matrix": "not_used",
+      "print_matrix": "not_used",
+      "paper": "not_used",
+      "product_interpretation": "diagnostic normalized layer-density control"
+    },
+    {
+      "arm_id": "channelwise_paper",
+      "dye_matrix": "identity",
+      "print_matrix": "identity",
+      "paper": "frozen",
+      "product_interpretation": "generic channelwise paper control"
+    },
+    {
+      "arm_id": "dye_matrix_only",
+      "dye_matrix": "frozen",
+      "print_matrix": "identity",
+      "paper": "frozen",
+      "product_interpretation": "generic dye-mixing control"
+    },
+    {
+      "arm_id": "print_matrix_only",
+      "dye_matrix": "identity",
+      "print_matrix": "frozen",
+      "paper": "frozen",
+      "product_interpretation": "generic print-mixing control"
+    },
+    {
+      "arm_id": "full_print_control",
+      "dye_matrix": "frozen",
+      "print_matrix": "frozen",
+      "paper": "frozen",
+      "product_interpretation": "rejected full non-spatial print control"
+    }
+  ],
+  "candidate_arm_ids": [
+    "normalized_density",
+    "channelwise_paper",
+    "dye_matrix_only",
+    "print_matrix_only"
+  ],
+  "neutral_axis": {
+    "linear_levels": 33,
+    "maximum_encoded_lab_chroma": 8.0,
+    "minimum_lstar_step": -1e-09,
+    "precedent": "U5.R2AA1 ensemble neutral-chroma ceiling"
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_per_image_style_delta_e76": 41.10209,
+    "minimum_median_non_basic_delta_e76": 7.0,
+    "minimum_to_colour_median_delta_e76": 0.5,
+    "minimum_images_to_colour_delta_e76_at_least_0_5": 12
+  },
+  "selection": {
+    "automatic_eligible_only": true,
+    "choose_lowest_neutral_axis_maximum_chroma": true,
+    "tie_break_highest_median_to_colour_delta_e76": true,
+    "full_print_control_cannot_be_selected": true,
+    "visual_severe_and_blind_confirmation_required_after_selection": true,
+    "production_promotion_allowed": false
+  },
+  "population": {
+    "inherit_exact_16_rows": true,
+    "allowed_use": "development-evaluation-only",
+    "decoded_color_state": "display-referred-srgb"
+  },
+  "execution": {
+    "runs": 2,
+    "report_and_render_inventory_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "branch_rule": {
+    "no_candidate_automatic_pass": "close neutral/direct controls and keep colour-only AO6",
+    "automatic_pass": "freeze one neutral-safe non-spatial candidate for separate severe/blind confirmation; do not change production default"
+  },
+  "claim_ceiling": "generic explicit non-spatial mechanism attribution and development candidate selection; not film stock, measured print/scanner response, calibration or product promotion"
+}
