@@ -16,6 +16,11 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p7g1_cross_resolution_attribution_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs"
+    / "u6_p7g1_cross_resolution_attribution_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -57,3 +62,15 @@ def test_source_control_is_exact_by_construction() -> None:
         low["source_encoded_control"],
         _resize(high["source_encoded_control"], (24, 36)),
     )
+
+
+def test_p7g1_decision_opens_fixed_reference_compiler_only() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["fixed_resolution_tile_streaming_allowed"] is True
+    assert (
+        decision["independent_low_resolution_equivalence_claim_allowed"]
+        is False
+    )
+    assert decision["profile_compiler_opened"] is True
+    assert decision["production_default_changed"] is False
+    assert decision["next_leaf"].startswith("U6.P8A")

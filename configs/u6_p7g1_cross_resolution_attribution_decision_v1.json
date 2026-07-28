@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p7g1_cross_resolution_attribution_decision.v1",
+  "node": "U6.P7G1",
+  "software_commit": "6bd20c3",
+  "contract_sha256": "4f8beb6701fccc8cbcd0a07287df02144a46514533c6e3d3d46d88f643a95597",
+  "report_sha256": "9952ce54ca3c00b223667bd5bde961e59491addd6a2e6851d42a0219e2af80f7",
+  "stable_evidence_id": "bf1f56f3624b997710a5789157bd76f27a35c8ea68a895496ff220bcaa528a97",
+  "two_run_byte_exact": true,
+  "stage_result": {
+    "source_encoded_control": {
+      "failed_cases": 0,
+      "maximum_p95_delta_e76": 0.0,
+      "maximum_delta_e76": 0.0,
+      "maximum_edge_energy_ratio": 1.0
+    },
+    "physical_ungauged_encoded": {
+      "failed_cases": 1,
+      "maximum_median_delta_e76": 0.3855081341665453,
+      "maximum_p95_delta_e76": 1.9801830748318219,
+      "maximum_delta_e76": 10.282438798475612,
+      "maximum_edge_energy_ratio": 1.2650255277462368
+    },
+    "neutral_gauged_encoded": {
+      "failed_cases": 1,
+      "maximum_median_delta_e76": 0.38108938563982786,
+      "maximum_p95_delta_e76": 1.8916970852066184,
+      "maximum_delta_e76": 10.244155525330882,
+      "maximum_edge_energy_ratio": 1.2652267179961052
+    },
+    "ao6_colour_only_control": {
+      "failed_cases": 6,
+      "maximum_median_delta_e76": 1.742475628995996,
+      "maximum_p95_delta_e76": 10.976127041310034,
+      "maximum_delta_e76": 62.79008052605656,
+      "maximum_edge_energy_ratio": 1.2542546783951376
+    },
+    "full_challenger": {
+      "failed_cases": 7,
+      "maximum_median_delta_e76": 1.5798589507682534,
+      "maximum_p95_delta_e76": 9.54704955753009,
+      "maximum_delta_e76": 41.215879820381026,
+      "maximum_edge_energy_ratio": 1.2793311763122184
+    }
+  },
+  "attribution": "The earliest frozen failure is one marginal synthetic edge-energy case in the physical/resampling stage. The neutral gauge does not materially amplify it. The dominant real-image cross-resolution error appears independently in AO6/source-context processing and remains dominant in the full challenger.",
+  "decision": "bind the challenger to a 4000-dpi reference render identity; allow exact row streaming at that identity, forbid claims that an independently recomputed lower-resolution render is equivalent, and treat previews as reference-derived or separately validated approximations",
+  "reference_sampling_dpi": 4000,
+  "fixed_resolution_tile_streaming_allowed": true,
+  "independent_low_resolution_equivalence_claim_allowed": false,
+  "profile_compiler_opened": true,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "next_leaf": "U6.P8A fixed-reference FilmProfileBundle compiler and canonical CPU recipe identity with preview policy explicit",
+  "claim_ceiling": "generic fixed-reference physical-inspired compiler evidence and cross-resolution failure attribution; not stock response, measured scanner/print response, calibration or product promotion"
+}
