@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p7g1_cross_resolution_attribution_contract.v1",
+  "node": "U6.P7G1",
+  "parent_decision": "configs/u6_p7g_neutral_gauged_invariance_decision_v1.json",
+  "parent_decision_sha256": "501770e57d006e248520ec01d7a9e3dc8d8724088f3a7249beb1a43382243896",
+  "parent_contract": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+  "parent_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+  "reference_sampling_dpi": 4000,
+  "synthetic_shape": [
+    384,
+    576
+  ],
+  "real_max_long_edge": 768,
+  "scale_factors": [
+    0.5,
+    0.25
+  ],
+  "sample_ids": [
+    "canon_eos_kiss_f",
+    "sony_nex_3n",
+    "nikon_d2x"
+  ],
+  "stages": [
+    "source_encoded_control",
+    "physical_ungauged_encoded",
+    "neutral_gauged_encoded",
+    "ao6_colour_only_control",
+    "full_challenger"
+  ],
+  "comparison_gates": {
+    "maximum_median_delta_e76": 1.5,
+    "maximum_p95_delta_e76": 4.0,
+    "maximum_delta_e76": 15.0,
+    "minimum_edge_energy_ratio": 0.75,
+    "maximum_edge_energy_ratio": 1.25
+  },
+  "execution": {
+    "runs": 2,
+    "report_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "stagewise diagnostic of cross-resolution noncommutation for one generic physical-inspired challenger; not a new promotion gate, stock response, calibration or product runtime claim"
+}
