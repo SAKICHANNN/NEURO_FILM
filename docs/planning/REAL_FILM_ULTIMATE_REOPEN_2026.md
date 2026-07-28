@@ -500,3 +500,14 @@ row/make gains, byte-identical repeats, blind parent wins and zero confirmed
 severe artifacts across all 17 rows. These are B0 Look Approximation gates
 only and do not identify film or modify stock-first data stops. See
 `docs/planning/U5_R2AI1_DUAL_CHAMPION_INDEPENDENT_CONFIRMATION_CONTRACT.md`.
+
+R2AI1 now closes independent promotion under that unchanged contract. Two
+formal 53-file runs are byte-identical and create zero new hard clipping. The
+composition retains median style/non-basic Delta E76 `13.1756/12.6753`, but
+its median style gain over the better parent is `-.5261`, it wins style on
+only `7/17` images, and its `32.2442` maximum exceeds the frozen `31.4746`
+envelope. These three automatic failures prevent blind and full-resolution
+review. No source removal, threshold, order, strength, margin or resize rescue
+opens. The 17 rows are now consumed development evidence and cannot be reused
+as untouched confirmation for a successor. See
+`docs/U5_R2AI1_DUAL_CHAMPION_INDEPENDENT_CONFIRMATION_RESULTS.md`.

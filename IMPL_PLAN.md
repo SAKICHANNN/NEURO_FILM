@@ -462,24 +462,18 @@ the audit but excluded without replacement. The exact confirmation population
 is 17 rows across nine makes and eleven content/safety buckets, with zero
 confirmed severe source failures.
 
-U5.R2AI1 now has a frozen contract and no confirmation output has been
-rendered. It binds the exact R2AI1S manifest, visual review, decision and 17
-eligible IDs, then renders only the two parents and one unchanged composition.
-The automatic gate requires 80% development style/non-basic retention, a 125%
-style upper envelope, at least .25 median gain over the better parent, wins on
-10/17 rows and six/nine camera makes for both metrics, and <=.5% worst new
-clipping. Exact repeat precedes three blind rounds and all 17 full-resolution
-severe reviews. Implementation is the ready leaf; no threshold, row, order,
-strength, margin, resize or aesthetic rescue is allowed.
-
-The isolated R2AI1 implementation is complete under `src/eval/` with a thin
-runner in `scripts/`. It promotes the existing AI0 operator builder to a
-reusable research API, replays both standalone parents pixel-exactly, hashes
-live RAW/decoded/output bytes, enforces exact output paths and reconstructs all
-automatic gates before permitting source-visible blind sheets. Ten focused
-tests and the complete 1051-test CPU suite pass. No confirmation output has
-yet been rendered; the next action is two formal processes at one committed
-software identity.
+U5.R2AI1 is complete and closed. The isolated executor replays both parents
+pixel-exactly, validates every bound source/output hash and produces two
+byte-identical 53-file runs at commit `4fac70d`. The candidate has zero new
+hard clipping and retains style/non-basic `13.1756/12.6753`, but its median
+style gain over the better parent is `-.5261`, it wins style on only `7/17`
+rows and its maximum `32.2442` exceeds the frozen `31.4746` envelope. The
+automatic gate therefore fails and correctly prevents blind sheets and
+full-resolution review. No threshold, row, order, strength, margin, resize or
+aesthetic rescue is allowed. R2AI0 remains development-only; the consumed 17
+rows cannot be reused as untouched confirmation. The next algorithm leaf must
+freeze a genuinely different explicit-operator hypothesis and new evidence
+split.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

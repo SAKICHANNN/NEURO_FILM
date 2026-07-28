@@ -5683,3 +5683,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   remains under `src/eval/`, `scripts/` and `tests/`; no production renderer,
   API, schema or default changes. No confirmation output has been rendered.
   Formal two-process execution is next; Goal remains ACTIVE.
+
+## 2026-07-28 - Execute and close U5.R2AI1 independent confirmation
+
+- **Execution:** run the frozen 17-row, three-output evaluator twice in
+  independent processes at software commit `4fac70d`. Both runs contain the
+  same 53 relative files and every corresponding SHA-256 is identical.
+  Manifest/report hashes are `53933c4a...1fd3` and
+  `59103613...2e60`.
+- **Automatic evidence:** the retained composition has median style/non-basic
+  Delta E76 `13.1756/12.6753`, P95/max style `27.8119/32.2442` and zero worst
+  new hard clipping. Eight of eleven gates pass, including both retention
+  floors, P95 envelope, non-basic median/row/make gains, style make gains and
+  clipping.
+- **Frozen failures:** median style gain is `-.5261` versus `+.25`, style wins
+  are `7/17` versus `10/17`, and maximum style is `32.2442` versus
+  `31.4746`. Automatic pass is false.
+- **Branch/epistemic boundary:** no blind sheet, mapping, ranking or
+  full-resolution candidate decision is generated. Close independent
+  promotion without threshold, row, resize, order, strength or margin rescue.
+  R2AI0 remains development-only B0 evidence; the now-observed 17 rows cannot
+  be reused as untouched confirmation. No production, stock, calibration,
+  current-film-pixel fitting/training or LSM gate changes. Select a genuinely
+  independent explicit-operator hypothesis next; Goal remains ACTIVE.
+- **Verification:** decision-to-report/hash/branch assertions pass, as do the
+  ten focused AI0/AI1 tests and `git diff --check`. The complete 1051-test CPU
+  suite already passed at the exact rendering commit before both formal runs;
+  this result leaf changes only decision and governance evidence.

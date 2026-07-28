@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai1-dual-champion-independent-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI1",
+  "decision": "close_independent_confirmation_without_rescue",
+  "config_sha256": "28f7fcf0ba691a04cad1bfe530f626e9a868901fd7d5f481c7a4b9c67a2b64de",
+  "software_commit": "4fac70db92f4f7eed4c2569d9951ab4aa6d736b3",
+  "run_a": {
+    "render_manifest_sha256": "53933c4ab917a28db83184c30b7fe1ae42d4682f5b71ab1ba7c6e15f11ee3fd3",
+    "automatic_report_sha256": "5910361382178050c0d42f728d274ba20c3f233ba2f7ed410bb839df7feb2e60",
+    "file_count": 53
+  },
+  "run_b": {
+    "render_manifest_sha256": "53933c4ab917a28db83184c30b7fe1ae42d4682f5b71ab1ba7c6e15f11ee3fd3",
+    "automatic_report_sha256": "5910361382178050c0d42f728d274ba20c3f233ba2f7ed410bb839df7feb2e60",
+    "file_count": 53
+  },
+  "repeat_identity": {
+    "same_relative_paths": true,
+    "all_file_sha256_equal": true,
+    "manifest_byte_identical": true,
+    "automatic_report_byte_identical": true
+  },
+  "sample_count": 17,
+  "camera_make_count": 9,
+  "candidate": "density_then_anchor__density_s50",
+  "candidate_metrics": {
+    "median_style_delta_e76": 13.175644068790712,
+    "median_non_basic_residual_delta_e76": 12.675305028515705,
+    "p95_style_delta_e76": 27.81190492513349,
+    "maximum_style_delta_e76": 32.24419304764643,
+    "worst_new_hard_clipping_fraction": 0.0
+  },
+  "parent_metrics": {
+    "anchor56_chroma_margin4_challenger": {
+      "median_style_delta_e76": 7.920866936928813,
+      "median_non_basic_residual_delta_e76": 8.078087792414683,
+      "p95_style_delta_e76": 20.01701451593217,
+      "maximum_style_delta_e76": 27.955442197340414,
+      "worst_new_hard_clipping_fraction": 0.0
+    },
+    "cyan_shadow_warm_highlight_like__s50": {
+      "median_style_delta_e76": 13.873202558143786,
+      "median_non_basic_residual_delta_e76": 9.35566509411754,
+      "p95_style_delta_e76": 19.466562074431366,
+      "maximum_style_delta_e76": 20.040658801606135,
+      "worst_new_hard_clipping_fraction": 0.0
+    }
+  },
+  "paired_advantage": {
+    "median_style_gain_over_best_parent_delta_e76": -0.5260784165690211,
+    "median_non_basic_gain_over_best_parent_delta_e76": 0.5449554693822947,
+    "per_image_style_wins": 7,
+    "per_image_non_basic_wins": 11,
+    "camera_make_style_wins": 6,
+    "camera_make_non_basic_wins": 7
+  },
+  "automatic_gates": {
+    "style_retention": true,
+    "non_basic_retention": true,
+    "p95_style_envelope": true,
+    "maximum_style_envelope": false,
+    "median_style_gain": false,
+    "median_non_basic_gain": true,
+    "per_image_style_wins": false,
+    "per_image_non_basic_wins": true,
+    "camera_make_style_wins": true,
+    "camera_make_non_basic_wins": true,
+    "all_output_clipping": true
+  },
+  "failed_gates": {
+    "maximum_style_envelope": {
+      "observed": 32.24419304764643,
+      "required_maximum": 31.47460611439996
+    },
+    "median_style_gain": {
+      "observed": -0.5260784165690211,
+      "required_minimum": 0.25
+    },
+    "per_image_style_wins": {
+      "observed": 7,
+      "required_minimum": 10
+    }
+  },
+  "automatic_pass": false,
+  "blind_review_opened": false,
+  "full_resolution_candidate_review_opened": false,
+  "confirmed_independent_challenger": false,
+  "development_result_retained": true,
+  "production_default_changed": false,
+  "threshold_row_resize_order_strength_margin_rescue_allowed": false,
+  "confirmation_population_reuse_as_future_confirmation_allowed": false,
+  "named_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_learning_allowed": false,
+  "next_leaf": "select and freeze a genuinely independent explicit-operator hypothesis using new development evidence; U5.R2AI1 may be used only as consumed development evidence and not as a future confirmation set",
+  "claim_ceiling": "repeat-exact autonomous B0 independent digital-photo rejection evidence for one fixed deterministic film-inspired composition; no visual preference result, universal safety, measured film response, named stock, calibration, latent mode, authenticity or production promotion"
+}
