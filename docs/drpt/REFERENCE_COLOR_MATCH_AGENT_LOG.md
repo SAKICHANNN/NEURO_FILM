@@ -3424,3 +3424,21 @@
 - The sorted `path<TAB>sha256<LF>` identity over all 29 affected contract
   schemas is `67767247...1f72e17`; the two root P115 schema identities remain
   unchanged.
+
+## 2026-07-28 - Make P119 persisted JSON unambiguous
+
+- Audit found that only two late runtime color-attestation readers rejected
+  duplicate keys and Python's non-standard `NaN`/`Infinity` tokens. Forty-two
+  other consumer modules still used permissive `json.loads`, allowing one byte
+  stream to acquire different first-key/last-key interpretations across
+  languages.
+- A single `strict_json_loads` entry now rejects duplicate keys at every
+  nesting level and all non-standard numeric constants. Forty-two persisted
+  contract, invocation, conformance, transaction, verification and runtime
+  modules use it for 46 decode sites; the two private duplicate-key
+  implementations were removed.
+- Repository tests forbid direct `json.loads` in top-level color-match modules
+  and forbid per-call policy overrides. A real reference recipe with duplicate
+  `schema_id` and direct nested/constant vectors fail at the JSON boundary.
+  Existing finite checks remain defense in depth for programmatically
+  constructed objects.

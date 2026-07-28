@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -362,7 +363,7 @@ def runtime_qualified_shared_staging_consumption_record_from_json(
     encoded: str,
 ) -> RuntimeQualifiedSharedStagingConsumptionRecordV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "runtime staging consumption record is not valid JSON"

@@ -11,6 +11,7 @@ from typing import Any, Mapping
 
 from src.inference import sha256_file
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .composition import (
     ReferenceCompositionPlan,
@@ -238,12 +239,7 @@ def _read_bound_report(
             "run composition report hash mismatch"
         )
     try:
-        payload = json.loads(
-            raw.decode("utf-8"),
-            parse_constant=lambda token: (_ for _ in ()).throw(
-                ValueError(f"non-finite JSON constant: {token}")
-            ),
-        )
+        payload = strict_json_loads(raw.decode("utf-8"))
     except (UnicodeError, json.JSONDecodeError, ValueError) as exc:
         raise ReferenceMatchContractError(
             "run composition report must be finite UTF-8 JSON"
@@ -478,7 +474,7 @@ def reference_run_composition_from_json(
             "encoded run composition must be a string"
         )
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, ValueError) as exc:
         raise ReferenceMatchContractError(
             "encoded run composition is not valid JSON"

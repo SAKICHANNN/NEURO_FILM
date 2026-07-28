@@ -11,6 +11,7 @@ import uuid
 
 from src.inference import atomic_write_json, sha256_file
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -369,7 +370,7 @@ def external_filmfx_run_to_json(value: ExternalFilmFxRunV1) -> str:
 
 def external_filmfx_run_from_json(encoded: str) -> ExternalFilmFxRunV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, TypeError) as exc:
         raise ReferenceMatchContractError(
             "external FilmFX run is not valid JSON"

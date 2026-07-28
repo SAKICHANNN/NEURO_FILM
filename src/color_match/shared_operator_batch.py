@@ -10,6 +10,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -596,7 +597,7 @@ def shared_operator_batch_to_json(value: SharedOperatorBatchV1) -> str:
 
 def shared_operator_batch_from_json(encoded: str) -> SharedOperatorBatchV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared batch is not valid JSON"

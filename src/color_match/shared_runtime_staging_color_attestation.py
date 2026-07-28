@@ -25,6 +25,7 @@ from .shared_runtime_staging_decode import (
     _preflight_tiff,
     validate_runtime_qualified_shared_staging_decoded_batch_v1,
 )
+from .strict_json import strict_json_loads
 
 
 RUNTIME_STAGING_COLOR_ATTESTATION_SCHEMA_ID = (
@@ -749,11 +750,7 @@ def runtime_staging_color_attestation_record_from_json(
     encoded: str,
 ) -> RuntimeStagingColorAttestationRecordV1:
     try:
-        payload = json.loads(
-            encoded,
-            object_pairs_hook=_reject_duplicate_json_pairs,
-            parse_constant=_reject_json_constant,
-        )
+        payload = strict_json_loads(encoded)
     except (
         TypeError,
         ValueError,
@@ -789,21 +786,6 @@ def runtime_staging_color_attestation_record_from_json(
         ) from exc
     validate_runtime_staging_color_attestation_record_v1(result)
     return result
-
-
-def _reject_duplicate_json_pairs(
-    pairs: list[tuple[str, Any]],
-) -> dict[str, Any]:
-    result: dict[str, Any] = {}
-    for key, value in pairs:
-        if key in result:
-            raise ValueError(f"duplicate JSON key: {key}")
-        result[key] = value
-    return result
-
-
-def _reject_json_constant(value: str) -> None:
-    raise ValueError(f"non-standard JSON constant: {value}")
 
 
 __all__ = [

@@ -19,6 +19,7 @@ import numpy as np
 
 from src.inference.render_contract import atomic_write_json, sha256_file
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .files import _commit_staged_batch, _stage_path
@@ -744,7 +745,7 @@ def runtime_qualified_external_shared_staging_run_from_json(
     encoded: str,
 ) -> RuntimeQualifiedExternalSharedStagingRunV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "runtime-qualified shared staging run is not valid JSON"

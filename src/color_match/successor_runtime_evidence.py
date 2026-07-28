@@ -11,6 +11,7 @@ import hashlib
 import json
 from typing import Any, Mapping, Sequence
 
+from .strict_json import strict_json_loads
 from .contracts import ReferenceMatchContractError
 from .successor_admission import (
     TARGET_RUNTIMES,
@@ -421,7 +422,7 @@ def successor_runtime_evidence_from_json(
     value: str,
 ) -> SuccessorRuntimeEvidenceV1:
     try:
-        parsed = json.loads(value)
+        parsed = strict_json_loads(value)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "runtime evidence JSON is invalid"

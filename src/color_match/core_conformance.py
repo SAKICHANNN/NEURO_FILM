@@ -9,6 +9,7 @@ from typing import Any, Mapping
 
 from src.preprocess import DecodeWarning, SourceProfile, WorkingImage
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .conformance import decode_f32be_hex
 from .contracts import ReferenceMatchContractError
@@ -350,7 +351,7 @@ def verify_core_consumer_conformance_bundle(
 ) -> CoreConsumerConformanceResultV1:
     if isinstance(value, (Path, str)):
         try:
-            bundle = json.loads(
+            bundle = strict_json_loads(
                 Path(value).read_text(encoding="utf-8")
             )
         except (OSError, json.JSONDecodeError) as exc:

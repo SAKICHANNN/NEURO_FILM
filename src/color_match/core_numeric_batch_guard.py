@@ -7,6 +7,7 @@ import json
 import re
 from typing import Any, Mapping, Sequence
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -367,7 +368,7 @@ def core_numeric_batch_guard_from_json(
     encoded: str,
 ) -> CoreNumericBatchGuardV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, TypeError) as exc:
         raise ReferenceMatchContractError(
             "numeric batch guard is not valid JSON"

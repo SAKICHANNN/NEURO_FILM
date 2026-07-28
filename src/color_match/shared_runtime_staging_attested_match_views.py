@@ -29,6 +29,7 @@ from .shared_runtime_staging_match_views import (
     _decode_srgb_samples_f32,
     _float32_pixel_sha256,
 )
+from .strict_json import strict_json_loads
 from .srgb_icc_profile import (
     SRGB_ICC_PROFILE_SHA256,
     srgb_icc_profile_v1,
@@ -524,30 +525,11 @@ def runtime_staging_attested_match_view_bridge_record_to_json(
     ) + "\n"
 
 
-def _reject_duplicate_json_pairs(
-    pairs: list[tuple[str, Any]],
-) -> dict[str, Any]:
-    result: dict[str, Any] = {}
-    for key, value in pairs:
-        if key in result:
-            raise ValueError(f"duplicate JSON key: {key}")
-        result[key] = value
-    return result
-
-
-def _reject_json_constant(value: str) -> None:
-    raise ValueError(f"non-standard JSON constant: {value}")
-
-
 def runtime_staging_attested_match_view_bridge_record_from_json(
     encoded: str,
 ) -> RuntimeStagingAttestedMatchViewBridgeRecordV2:
     try:
-        payload = json.loads(
-            encoded,
-            object_pairs_hook=_reject_duplicate_json_pairs,
-            parse_constant=_reject_json_constant,
-        )
+        payload = strict_json_loads(encoded)
     except (TypeError, ValueError, RecursionError) as exc:
         raise ReferenceMatchContractError(
             "attested MatchView bridge record is not valid JSON"

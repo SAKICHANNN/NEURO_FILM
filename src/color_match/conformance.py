@@ -12,6 +12,7 @@ import numpy as np
 from src.color_engine import linear_rgb_to_lab
 from src.preprocess.types import SourceProfile, WorkingImage
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import (
     REFERENCE_LOOK_ALGORITHM_ID,
@@ -294,11 +295,8 @@ def load_portable_conformance_bundle(path: Path) -> Mapping[str, Any]:
     """Load one strict finite JSON conformance bundle."""
 
     try:
-        payload = json.loads(
-            Path(path).read_text(encoding="utf-8"),
-            parse_constant=lambda token: (_ for _ in ()).throw(
-                ValueError(f"non-finite JSON constant: {token}")
-            ),
+        payload = strict_json_loads(
+            Path(path).read_text(encoding="utf-8")
         )
     except (OSError, json.JSONDecodeError, UnicodeError, ValueError) as exc:
         raise ReferenceMatchContractError(

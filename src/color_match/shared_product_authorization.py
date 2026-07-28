@@ -7,6 +7,7 @@ import json
 import re
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -535,7 +536,7 @@ def validate_shared_product_staging_authorization_v1(
             "successor_declaration_json must be a string"
         )
     try:
-        declaration = json.loads(value.successor_declaration_json)
+        declaration = strict_json_loads(value.successor_declaration_json)
     except json.JSONDecodeError as exc:
         raise ReferenceMatchContractError(
             "successor declaration JSON is invalid"
@@ -717,7 +718,7 @@ def shared_product_authorization_from_json(
     encoded: str,
 ) -> SharedProductStagingAuthorizationV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared product authorization is not valid JSON"

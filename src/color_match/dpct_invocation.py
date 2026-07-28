@@ -12,6 +12,7 @@ import tempfile
 from typing import Any, Mapping
 import zipfile
 
+from .strict_json import strict_json_loads
 from .contracts import ReferenceMatchContractError
 from .core_adapter import PreparedMatchViewV1, validate_prepared_match_view
 from .dpct_adapter import (
@@ -314,7 +315,7 @@ def _load_response(path: Path) -> tuple[Mapping[str, Any], bytes]:
             "D-PCT invocation response size/terminator is invalid"
         )
     try:
-        response = json.loads(raw.decode("utf-8"))
+        response = strict_json_loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "D-PCT invocation response is not strict UTF-8 JSON"
@@ -660,7 +661,7 @@ def _verify_runtime(
             "D-PCT invocation runtime preflight failed closed"
         ) from exc
     try:
-        identity = json.loads(completed.stdout)
+        identity = strict_json_loads(completed.stdout)
     except json.JSONDecodeError as exc:
         raise ReferenceMatchContractError(
             "D-PCT invocation runtime identity is invalid"

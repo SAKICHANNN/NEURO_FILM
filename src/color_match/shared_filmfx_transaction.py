@@ -11,6 +11,7 @@ import uuid
 
 from src.inference import atomic_write_json, sha256_file
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -434,7 +435,7 @@ def shared_filmfx_run_to_json(value: SharedFilmFxRunV1) -> str:
 
 def shared_filmfx_run_from_json(encoded: str) -> SharedFilmFxRunV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared FilmFX run is not valid JSON"

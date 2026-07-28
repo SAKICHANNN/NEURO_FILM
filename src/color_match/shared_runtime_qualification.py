@@ -6,6 +6,7 @@ from dataclasses import asdict, dataclass, replace
 import json
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .shared_product_authorization import (
@@ -115,7 +116,7 @@ def _parse_declaration(value: str) -> Mapping[str, Any]:
             "successor declaration JSON must be a string"
         )
     try:
-        parsed = json.loads(value)
+        parsed = strict_json_loads(value)
     except json.JSONDecodeError as exc:
         raise ReferenceMatchContractError(
             "successor declaration JSON is invalid"
@@ -415,7 +416,7 @@ def runtime_qualified_shared_authorization_from_json(
     value: str,
 ) -> RuntimeQualifiedSharedAuthorizationV1:
     try:
-        parsed = json.loads(value)
+        parsed = strict_json_loads(value)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "runtime qualification JSON is invalid"

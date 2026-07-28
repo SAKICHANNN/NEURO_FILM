@@ -6,6 +6,7 @@ from dataclasses import asdict, dataclass, replace
 import json
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_acceptance import (
@@ -273,7 +274,7 @@ def core_candidate_admission_from_json(
     encoded: str,
 ) -> CoreCandidateAdmissionV2:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, TypeError) as exc:
         raise ReferenceMatchContractError(
             "core candidate admission is not valid JSON"

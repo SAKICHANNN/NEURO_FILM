@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -365,7 +366,7 @@ def shared_filmfx_verification_from_json(
     encoded: str,
 ) -> SharedFilmFxStagingVerificationV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared FilmFX verification is not valid JSON"

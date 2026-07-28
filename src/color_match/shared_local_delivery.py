@@ -13,6 +13,7 @@ import uuid
 
 from src.inference import atomic_write_json, sha256_file
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -388,7 +389,7 @@ def shared_local_delivery_to_json(value: SharedLocalDeliveryV1) -> str:
 
 def shared_local_delivery_from_json(encoded: str) -> SharedLocalDeliveryV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared local delivery is not valid JSON"

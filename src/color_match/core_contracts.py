@@ -13,6 +13,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 
@@ -813,7 +814,7 @@ def _from_json(
     label: str,
 ) -> Any:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, TypeError) as exc:
         raise ReferenceMatchContractError(
             f"{label} is not valid JSON"

@@ -11,6 +11,7 @@ import numpy as np
 
 from src.inference import validate_render_profile
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import (
     ReferenceLookRecipe,
@@ -430,7 +431,7 @@ def composition_plan_from_json(encoded: str) -> ReferenceCompositionPlan:
             "encoded composition plan must be a string"
         )
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, ValueError) as exc:
         raise ReferenceMatchContractError(
             "encoded composition plan is not valid JSON"

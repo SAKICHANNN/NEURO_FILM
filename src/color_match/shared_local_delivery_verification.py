@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 from typing import Any, Mapping
 
+from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -331,7 +332,7 @@ def shared_local_delivery_verification_from_json(
     encoded: str,
 ) -> SharedLocalDeliveryVerificationV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (TypeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "shared local delivery verification is not valid JSON"

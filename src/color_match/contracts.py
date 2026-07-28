@@ -8,6 +8,7 @@ from typing import Any, Mapping
 
 import numpy as np
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 
 
@@ -271,7 +272,7 @@ def recipe_from_json(encoded: str) -> ReferenceLookRecipe:
     if not isinstance(encoded, str):
         raise ReferenceMatchContractError("encoded recipe must be a string")
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, ValueError) as exc:
         raise ReferenceMatchContractError("encoded recipe is not valid JSON") from exc
     return recipe_from_dict(payload)

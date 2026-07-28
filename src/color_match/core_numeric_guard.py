@@ -8,6 +8,7 @@ from typing import Any, Mapping
 
 import numpy as np
 
+from .strict_json import strict_json_loads
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_acceptance import (
@@ -431,7 +432,7 @@ def core_numeric_guard_decision_from_json(
     encoded: str,
 ) -> CoreNumericGuardDecisionV1:
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, TypeError) as exc:
         raise ReferenceMatchContractError(
             "numeric guard decision is not valid JSON"

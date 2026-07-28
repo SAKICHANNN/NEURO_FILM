@@ -96,6 +96,20 @@ def test_recipe_json_rejects_unknown_fields() -> None:
         recipe_from_json(payload + ', "unexpected": 1}')
 
 
+def test_recipe_json_rejects_duplicate_keys() -> None:
+    encoded = recipe_to_json(fit_reference_look(_reference()))
+    ambiguous = encoded.replace(
+        '"schema_id":',
+        '"schema_id": "shadow",\n  "schema_id":',
+        1,
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="not valid JSON",
+    ):
+        recipe_from_json(ambiguous)
+
+
 @pytest.mark.parametrize("transfer_state", ["scene_linear", "display_referred", "unknown"])
 def test_fit_fails_closed_outside_display_linear_sdr(transfer_state: str) -> None:
     with pytest.raises(ReferenceMatchContractError, match="display-linear SDR"):

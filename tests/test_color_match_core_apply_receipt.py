@@ -329,6 +329,6 @@ def test_parser_wraps_nonfinite_nested_view() -> None:
     payload["output_view"]["reference_white_nits"] = float("nan")
     with pytest.raises(
         ReferenceMatchContractError,
-        match="not finite JSON",
+        match="not valid JSON",
     ):
         core_apply_receipt_from_json(json.dumps(payload))
