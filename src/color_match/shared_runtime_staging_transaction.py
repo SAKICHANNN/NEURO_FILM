@@ -75,8 +75,6 @@ _RUN_KEYS = {
     "source_count",
     "state",
     "outputs",
-    "prior_output_file_sha256s",
-    "prior_report_file_sha256",
     "report_path",
     "claim_ceiling",
 }
@@ -112,17 +110,12 @@ class RuntimeQualifiedExternalSharedStagingRunV1:
     source_count: int
     state: str
     outputs: tuple[ExternalSharedStagedOutputV1, ...]
-    prior_output_file_sha256s: tuple[str | None, ...]
-    prior_report_file_sha256: str | None
     report_path: str
     claim_ceiling: str
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         payload["outputs"] = [asdict(output) for output in self.outputs]
-        payload["prior_output_file_sha256s"] = list(
-            self.prior_output_file_sha256s
-        )
         return payload
 
 
@@ -150,12 +143,6 @@ def _hash(value: Any, label: str) -> str:
             f"{label} must be a lowercase SHA-256"
         )
     return value
-
-
-def _optional_hash(value: Any, label: str) -> str | None:
-    if value is None:
-        return None
-    return _hash(value, label)
 
 
 def _identity_payload(
@@ -389,6 +376,11 @@ def _target_transaction_lock(
     paths: Sequence[Path],
 ) -> Iterator[None]:
     keys = tuple(sorted(_lock_key(path) for path in paths))
+    # Resolve every potentially failing prerequisite before reserving the
+    # in-process keys. Otherwise a broken temporary-directory configuration
+    # could poison the key set and reject every later valid retry.
+    temp_root = Path(tempfile.gettempdir()).resolve(strict=True)
+    lock_root = temp_root / "neuro-film-reference-match-target-locks-v1"
     with _LOCK_GUARD:
         if any(key in _HELD_LOCK_KEYS for key in keys):
             raise ReferenceMatchContractError(
@@ -396,8 +388,6 @@ def _target_transaction_lock(
             )
         _HELD_LOCK_KEYS.update(keys)
     handles: list[Any] = []
-    temp_root = Path(tempfile.gettempdir()).resolve(strict=True)
-    lock_root = temp_root / "neuro-film-reference-match-target-locks-v1"
     try:
         _reject_reparse_components(
             lock_root,
@@ -443,46 +433,14 @@ def _target_transaction_lock(
                 _HELD_LOCK_KEYS.difference_update(keys)
 
 
-def _normalize_prior_hashes(
-    values: Sequence[str | None] | None,
-    *,
-    count: int,
-) -> tuple[str | None, ...]:
-    if values is None:
-        return (None,) * count
-    if (
-        not isinstance(values, Sequence)
-        or isinstance(values, (str, bytes))
-        or len(values) != count
-    ):
-        raise ReferenceMatchContractError(
-            "expected prior output hashes must match source count"
-        )
-    return tuple(
-        _optional_hash(value, f"expected_prior_output_sha256[{index}]")
-        for index, value in enumerate(values)
-    )
-
-
-def _verify_expected_prior_file(
+def _require_absent_destination(
     path: Path,
-    expected_sha256: str | None,
     *,
     label: str,
 ) -> None:
-    if expected_sha256 is None:
-        if path.exists():
-            raise ReferenceMatchContractError(
-                f"{label} already exists without an expected prior hash"
-            )
-        return
-    if not path.is_file():
+    if os.path.lexists(path):
         raise ReferenceMatchContractError(
-            f"{label} expected prior file is missing"
-        )
-    if sha256_file(path) != expected_sha256:
-        raise ReferenceMatchContractError(
-            f"{label} prior file hash mismatch"
+            f"{label} already exists; runtime staging is create-only"
         )
 
 
@@ -496,11 +454,16 @@ def commit_runtime_qualified_external_shared_staging_v1(
     output_paths: Iterable[Path | str],
     report_path: Path | str,
     expected_runtime_qualification_id: str,
-    expected_prior_output_sha256: Sequence[str | None] | None = None,
-    expected_prior_report_sha256: str | None = None,
     output_bit_depth: int = 16,
 ) -> CommittedRuntimeQualifiedExternalSharedStagingV1:
-    """Atomically commit outputs only after exact P61 qualification."""
+    """Create new outputs only after exact P61 qualification.
+
+    Existing destination names are never replaced. The final publication uses
+    an operating-system no-replace primitive, so a non-cooperating writer that
+    wins after preflight is preserved. The report is published last and is the
+    sole commit marker; an earlier failure may leave output orphans, but they
+    are not a committed run and must not be consumed without P63 verification.
+    """
 
     # This validation intentionally precedes path resolution, directory
     # creation, staging files and encoding.
@@ -529,27 +492,14 @@ def commit_runtime_qualified_external_shared_staging_v1(
         output_bit_depth,
         label="runtime-qualified external shared staging",
     )
-    prior_outputs = _normalize_prior_hashes(
-        expected_prior_output_sha256,
-        count=batch.source_count,
-    )
-    prior_report = _optional_hash(
-        expected_prior_report_sha256,
-        "expected_prior_report_sha256",
-    )
-
     with _target_transaction_lock((*outputs, report)):
-        for index, (output, expected) in enumerate(
-            zip(outputs, prior_outputs, strict=True)
-        ):
-            _verify_expected_prior_file(
+        for index, output in enumerate(outputs):
+            _require_absent_destination(
                 output,
-                expected,
                 label=f"runtime-qualified output {index}",
             )
-        _verify_expected_prior_file(
+        _require_absent_destination(
             report,
-            prior_report,
             label="runtime-qualified report",
         )
 
@@ -607,8 +557,6 @@ def commit_runtime_qualified_external_shared_staging_v1(
                 source_count=batch.source_count,
                 state=_STATE,
                 outputs=tuple(prepared_rows),
-                prior_output_file_sha256s=prior_outputs,
-                prior_report_file_sha256=prior_report,
                 report_path=str(report),
                 claim_ceiling=(
                     RUNTIME_QUALIFIED_SHARED_STAGING_CLAIM_CEILING
@@ -643,25 +591,21 @@ def commit_runtime_qualified_external_shared_staging_v1(
                 (_stage_path(output, token), output)
                 for output in outputs
             ) + ((staged_report, report),)
-            for index, (output, expected) in enumerate(
-                zip(outputs, prior_outputs, strict=True)
-            ):
+            for index, output in enumerate(outputs):
                 _reject_reparse_components(
                     output,
                     label=f"runtime-qualified output path {index}",
                 )
-                _verify_expected_prior_file(
+                _require_absent_destination(
                     output,
-                    expected,
                     label=f"runtime-qualified output {index}",
                 )
             _reject_reparse_components(
                 report,
                 label="runtime-qualified report path",
             )
-            _verify_expected_prior_file(
+            _require_absent_destination(
                 report,
-                prior_report,
                 label="runtime-qualified report",
             )
             expected_stage_hashes = {
@@ -674,14 +618,9 @@ def commit_runtime_qualified_external_shared_staging_v1(
             }
             expected_stage_hashes[staged_report] = report_file_sha256
             expected_destination_hashes = {
-                output: expected
-                for output, expected in zip(
-                    outputs,
-                    prior_outputs,
-                    strict=True,
-                )
+                output: None for output in outputs
             }
-            expected_destination_hashes[report] = prior_report
+            expected_destination_hashes[report] = None
             _commit_staged_batch(
                 pairs,
                 token=token,
@@ -690,6 +629,7 @@ def commit_runtime_qualified_external_shared_staging_v1(
                 expected_destination_sha256=(
                     expected_destination_hashes
                 ),
+                replace_existing=False,
             )
             return CommittedRuntimeQualifiedExternalSharedStagingV1(
                 run=run,
@@ -759,20 +699,6 @@ def validate_runtime_qualified_external_shared_staging_run_v1(
         raise ReferenceMatchContractError(
             "runtime-qualified shared staging claim ceiling mismatch"
         )
-    if (
-        not isinstance(value.prior_output_file_sha256s, tuple)
-        or len(value.prior_output_file_sha256s) != value.source_count
-    ):
-        raise ReferenceMatchContractError(
-            "runtime-qualified shared staging prior output inventory "
-            "is invalid"
-        )
-    for index, prior in enumerate(value.prior_output_file_sha256s):
-        _optional_hash(prior, f"prior_output_file_sha256s[{index}]")
-    _optional_hash(
-        value.prior_report_file_sha256,
-        "prior_report_file_sha256",
-    )
     path_texts = tuple(
         output.output_path for output in value.outputs
     ) + (value.report_path,)
@@ -848,15 +774,6 @@ def runtime_qualified_external_shared_staging_run_from_json(
             ) from exc
     converted = dict(payload)
     converted["outputs"] = tuple(outputs)
-    raw_prior_outputs = payload["prior_output_file_sha256s"]
-    if not isinstance(raw_prior_outputs, list):
-        raise ReferenceMatchContractError(
-            "runtime-qualified shared staging prior hashes "
-            "must be an array"
-        )
-    converted["prior_output_file_sha256s"] = tuple(
-        raw_prior_outputs
-    )
     try:
         result = RuntimeQualifiedExternalSharedStagingRunV1(**converted)
     except (TypeError, ValueError) as exc:

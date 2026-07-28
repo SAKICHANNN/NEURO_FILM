@@ -17,8 +17,6 @@
     "source_count",
     "state",
     "outputs",
-    "prior_output_file_sha256s",
-    "prior_report_file_sha256",
     "report_path",
     "claim_ceiling"
   ],
@@ -43,22 +41,6 @@
       "type": "array",
       "minItems": 1,
       "items": {"$ref": "#/$defs/output"}
-    },
-    "prior_output_file_sha256s": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "oneOf": [
-          {"$ref": "#/$defs/hash"},
-          {"type": "null"}
-        ]
-      }
-    },
-    "prior_report_file_sha256": {
-      "oneOf": [
-        {"$ref": "#/$defs/hash"},
-        {"type": "null"}
-      ]
     },
     "report_path": {
       "type": "string",

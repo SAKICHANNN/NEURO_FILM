@@ -532,20 +532,13 @@ def test_sparse_out_of_bounds_pixel_fails_without_commit(
     _assert_no_debris(tmp_path)
 
 
-def test_commit_failure_restores_all_previous_destinations(
+def test_commit_marker_failure_leaves_only_uncommitted_output_orphans(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     applies, batch, numeric, authorization, qualification = _pipeline()
     outputs, report = _destinations(tmp_path)
-    previous = {
-        outputs[0]: b"old-one",
-        outputs[1]: b"old-two",
-        report: b"old-report",
-    }
-    for path, payload in previous.items():
-        path.write_bytes(payload)
-    original_replace = file_module._replace
+    original_move = file_module._move_noreplace
 
     def fail_report(source: Path, destination: Path) -> None:
         if (
@@ -553,9 +546,9 @@ def test_commit_failure_restores_all_previous_destinations(
             and "reference-match-stage" in source.name
         ):
             raise OSError("injected runtime staging failure")
-        original_replace(source, destination)
+        original_move(source, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report)
+    monkeypatch.setattr(file_module, "_move_noreplace", fail_report)
     with pytest.raises(OSError, match="injected runtime staging failure"):
         commit_runtime_qualified_external_shared_staging_v1(
             batch=batch,
@@ -565,19 +558,12 @@ def test_commit_failure_restores_all_previous_destinations(
             expected_runtime_qualification_id=(
                 qualification.qualification_id
             ),
-            expected_prior_output_sha256=tuple(
-                hashlib.sha256(payload).hexdigest()
-                for payload in (b"old-one", b"old-two")
-            ),
-            expected_prior_report_sha256=hashlib.sha256(
-                b"old-report"
-            ).hexdigest(),
             applies=applies,
             output_paths=outputs,
             report_path=report,
         )
-    for path, payload in previous.items():
-        assert path.read_bytes() == payload
+    assert all(path.is_file() for path in outputs)
+    assert not report.exists()
     _assert_no_debris(tmp_path)
 
 
@@ -606,19 +592,15 @@ def test_consumer_pin_is_required_before_any_path_write(
     assert not root.exists()
 
 
-def test_existing_files_require_and_bind_exact_prior_hashes(
+def test_existing_destination_is_never_overwritten(
     tmp_path: Path,
 ) -> None:
     applies, batch, numeric, authorization, qualification = _pipeline()
     outputs, report = _destinations(tmp_path)
-    old_outputs = (b"old-one", b"old-two")
-    old_report = b"old-report"
-    for path, payload in zip(outputs, old_outputs, strict=True):
-        path.write_bytes(payload)
-    report.write_bytes(old_report)
+    outputs[0].write_bytes(b"other-owner")
     with pytest.raises(
         ReferenceMatchContractError,
-        match="already exists without an expected prior hash",
+        match="already exists; runtime staging is create-only",
     ):
         commit_runtime_qualified_external_shared_staging_v1(
             batch=batch,
@@ -632,57 +614,7 @@ def test_existing_files_require_and_bind_exact_prior_hashes(
             output_paths=outputs,
             report_path=report,
         )
-    prior_outputs = tuple(
-        hashlib.sha256(payload).hexdigest() for payload in old_outputs
-    )
-    prior_report = hashlib.sha256(old_report).hexdigest()
-    committed = commit_runtime_qualified_external_shared_staging_v1(
-        batch=batch,
-        numeric_guard=numeric,
-        authorization=authorization,
-        runtime_qualification=qualification,
-        expected_runtime_qualification_id=qualification.qualification_id,
-        expected_prior_output_sha256=prior_outputs,
-        expected_prior_report_sha256=prior_report,
-        applies=applies,
-        output_paths=outputs,
-        report_path=report,
-    )
-    assert committed.run.prior_output_file_sha256s == prior_outputs
-    assert committed.run.prior_report_file_sha256 == prior_report
-    assert all(
-        path.read_bytes() != prior
-        for path, prior in zip(outputs, old_outputs, strict=True)
-    )
-
-
-def test_prior_hash_mismatch_rejects_without_replacement(
-    tmp_path: Path,
-) -> None:
-    applies, batch, numeric, authorization, qualification = _pipeline()
-    outputs, report = _destinations(tmp_path)
-    outputs[0].write_bytes(b"current")
-    with pytest.raises(
-        ReferenceMatchContractError,
-        match="prior file hash mismatch",
-    ):
-        commit_runtime_qualified_external_shared_staging_v1(
-            batch=batch,
-            numeric_guard=numeric,
-            authorization=authorization,
-            runtime_qualification=qualification,
-            expected_runtime_qualification_id=(
-                qualification.qualification_id
-            ),
-            expected_prior_output_sha256=(
-                "0" * 64,
-                None,
-            ),
-            applies=applies,
-            output_paths=outputs,
-            report_path=report,
-        )
-    assert outputs[0].read_bytes() == b"current"
+    assert outputs[0].read_bytes() == b"other-owner"
     assert not outputs[1].exists()
     assert not report.exists()
 
@@ -711,7 +643,7 @@ def test_intervening_destination_creation_during_encoding_is_preserved(
     )
     with pytest.raises(
         ReferenceMatchContractError,
-        match="already exists without an expected prior hash",
+        match="already exists; runtime staging is create-only",
     ):
         commit_runtime_qualified_external_shared_staging_v1(
             batch=batch,
@@ -914,6 +846,33 @@ def test_lock_close_failure_cannot_poison_in_process_lock_set(
         pass
 
 
+def test_invalid_temp_root_cannot_poison_in_process_lock_set(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    paths = (tmp_path / "one.png", tmp_path / "run.json")
+    original_gettempdir = runtime_staging_module.tempfile.gettempdir
+    missing = tmp_path / "missing-temp-root"
+    monkeypatch.setattr(
+        runtime_staging_module.tempfile,
+        "gettempdir",
+        lambda: str(missing),
+    )
+    with pytest.raises(FileNotFoundError):
+        with runtime_staging_module._target_transaction_lock(paths):
+            raise AssertionError("invalid temporary root must not be entered")
+    assert runtime_staging_module._HELD_LOCK_KEYS.isdisjoint(
+        runtime_staging_module._lock_key(path) for path in paths
+    )
+    monkeypatch.setattr(
+        runtime_staging_module.tempfile,
+        "gettempdir",
+        original_gettempdir,
+    )
+    with runtime_staging_module._target_transaction_lock(paths):
+        pass
+
+
 def test_caller_pixel_mutation_after_snapshot_cannot_change_output(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -1087,6 +1046,147 @@ def test_destination_creation_at_commit_boundary_rejects_and_preserves(
     assert not outputs[1].exists()
     assert not report.exists()
     _assert_no_debris(tmp_path)
+
+
+def test_noncooperative_writes_at_atomic_publish_are_preserved(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_move = file_module._move_noreplace
+    move_count = 0
+
+    def race_second_publication(
+        source: Path,
+        destination: Path,
+    ) -> None:
+        nonlocal move_count
+        move_count += 1
+        if move_count == 2:
+            outputs[0].unlink()
+            outputs[0].write_bytes(b"noncooperative-replacement")
+            destination.write_bytes(b"noncooperative-owner")
+        original_move(source, destination)
+
+    monkeypatch.setattr(
+        file_module,
+        "_move_noreplace",
+        race_second_publication,
+    )
+    with pytest.raises((FileExistsError, OSError)):
+        commit_runtime_qualified_external_shared_staging_v1(
+            batch=batch,
+            numeric_guard=numeric,
+            authorization=authorization,
+            runtime_qualification=qualification,
+            expected_runtime_qualification_id=(
+                qualification.qualification_id
+            ),
+            applies=applies,
+            output_paths=outputs,
+            report_path=report,
+        )
+    assert outputs[0].read_bytes() == b"noncooperative-replacement"
+    assert outputs[1].read_bytes() == b"noncooperative-owner"
+    assert not report.exists()
+    _assert_no_debris(tmp_path)
+
+
+def test_post_commit_external_replacement_requires_restart_verification(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_move = file_module._move_noreplace
+
+    def replace_after_final_publication(
+        source: Path,
+        destination: Path,
+    ) -> None:
+        original_move(source, destination)
+        if destination == report:
+            outputs[0].unlink()
+            outputs[0].write_bytes(b"post-publication-owner")
+
+    monkeypatch.setattr(
+        file_module,
+        "_move_noreplace",
+        replace_after_final_publication,
+    )
+    committed = commit_runtime_qualified_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        runtime_qualification=qualification,
+        expected_runtime_qualification_id=(
+            qualification.qualification_id
+        ),
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    )
+    assert outputs[0].read_bytes() == b"post-publication-owner"
+    assert outputs[1].is_file()
+    assert report.is_file()
+    assert committed.run.outputs[0].output_file_sha256 != sha256_file(
+        outputs[0]
+    )
+    _assert_no_debris(tmp_path)
+
+
+def test_report_stage_cleanup_failure_cannot_reclassify_commit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_unlink = Path.unlink
+
+    def fail_report_stage_cleanup(
+        path: Path,
+        *args,
+        **kwargs,
+    ) -> None:
+        if (
+            "reference-match-stage" in path.name
+            and path.suffix.casefold() == ".json"
+        ):
+            raise OSError("persistent report-stage cleanup failure")
+        original_unlink(path, *args, **kwargs)
+
+    monkeypatch.setattr(
+        file_module,
+        "_move_noreplace",
+        file_module._link_noreplace,
+    )
+    monkeypatch.setattr(Path, "unlink", fail_report_stage_cleanup)
+    committed = commit_runtime_qualified_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        runtime_qualification=qualification,
+        expected_runtime_qualification_id=(
+            qualification.qualification_id
+        ),
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    )
+    assert all(path.is_file() for path in outputs)
+    assert report.is_file()
+    assert (
+        runtime_qualified_external_shared_staging_run_from_json(
+            report.read_text(encoding="utf-8")
+        )
+        == committed.run
+    )
+    report_stages = list(
+        tmp_path.glob(".*.reference-match-stage.json")
+    )
+    assert len(report_stages) == 1
+    original_unlink(report_stages[0])
 
 
 def test_p50_and_p62_reports_cannot_be_cross_parsed(

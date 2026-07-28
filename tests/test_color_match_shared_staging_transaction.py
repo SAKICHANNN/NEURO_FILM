@@ -274,6 +274,37 @@ def test_authorized_shared_batch_commits_exact_outputs_and_report(
     _assert_no_debris(tmp_path)
 
 
+def test_legacy_shared_staging_still_replaces_existing_destinations(
+    tmp_path: Path,
+) -> None:
+    applies, batch, numeric, authorization = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    first = commit_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    )
+    expected_outputs = tuple(path.read_bytes() for path in outputs)
+    expected_report = report.read_bytes()
+    for path in (*outputs, report):
+        path.write_bytes(b"intervening-existing-destination")
+    second = commit_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    )
+    assert second == first
+    assert tuple(path.read_bytes() for path in outputs) == expected_outputs
+    assert report.read_bytes() == expected_report
+    _assert_no_debris(tmp_path)
+
+
 @pytest.mark.parametrize(
     "fallback",
     ["product", "promotion", "numeric"],

@@ -236,6 +236,41 @@ def _replace(source: Path, destination: Path) -> None:
     os.replace(source, destination)
 
 
+def _move_noreplace(source: Path, destination: Path) -> None:
+    """Atomically publish one file only when destination is absent."""
+
+    if os.name == "nt":
+        # MoveFile without MOVEFILE_REPLACE_EXISTING is atomic on one volume
+        # and fails if another writer won the destination name.
+        os.rename(source, destination)
+        return
+    _link_noreplace(source, destination)
+
+
+def _link_noreplace(source: Path, destination: Path) -> None:
+    """Publish with a POSIX hard link; stage cleanup is housekeeping."""
+
+    # POSIX rename replaces an existing destination, so publish by hard-link
+    # instead. Stages and destinations share a parent/filesystem.
+    os.link(source, destination)
+    for _attempt in range(3):
+        try:
+            source.unlink()
+            return
+        except OSError:
+            continue
+    # The destination was already published. Stage cleanup is post-publication
+    # housekeeping and must never reclassify a valid final manifest as failed.
+    # Do not check-then-unlink destination: that could erase an external winner.
+
+
+def _file_identity(path: Path) -> tuple[int, int]:
+    """Return the stable same-volume identity used for safe rollback."""
+
+    value = path.stat()
+    return int(value.st_dev), int(value.st_ino)
+
+
 def _commit_staged_batch(
     pairs: tuple[tuple[Path, Path], ...],
     *,
@@ -243,13 +278,20 @@ def _commit_staged_batch(
     cleanup: list[Path],
     expected_stage_sha256: Mapping[Path, str] | None = None,
     expected_destination_sha256: Mapping[Path, str | None] | None = None,
+    replace_existing: bool = True,
 ) -> None:
-    """Commit staged files and restore prior destinations on replace failure.
+    """Publish staged files under replacement or manifest-last semantics.
 
-    Once every staged replacement succeeds, the new transaction is committed.
-    Removing old backup files is post-commit housekeeping and must not turn a
-    successful commit into a reported failure. Transient cleanup errors are
-    retried; a persistently undeletable backup is retained for recovery.
+    The default preserves the historical replacement behavior. Callers may
+    instead select create-only publication, which rejects all prior hashes and
+    uses an atomic no-replace operation for each destination. Create-only
+    callers must place their commit manifest last; failures can leave earlier
+    files as uncommitted orphans because deleting them would risk erasing an
+    external replacement. Once every publication succeeds, the new transaction
+    is committed. Removing old backup files is post-commit housekeeping and
+    must not turn a successful commit into a reported failure. Transient
+    cleanup errors are retried; a persistently undeletable backup is retained
+    for recovery.
     """
 
     stages = {stage for stage, _destination in pairs}
@@ -268,6 +310,17 @@ def _commit_staged_batch(
         raise ReferenceMatchContractError(
             "batch destination hash inventory does not match commit pairs"
         )
+    if (
+        not replace_existing
+        and expected_destination_sha256 is not None
+        and any(
+            value is not None
+            for value in expected_destination_sha256.values()
+        )
+    ):
+        raise ReferenceMatchContractError(
+            "create-only batch commit cannot replace prior destinations"
+        )
 
     def checked_hash(value: str, label: str) -> str:
         if (
@@ -280,9 +333,13 @@ def _commit_staged_batch(
             )
         return value
 
-    committed: list[tuple[Path, Path | None]] = []
+    committed: list[
+        tuple[Path, Path | None, tuple[int, int] | None, str | None]
+    ] = []
     try:
         for stage, destination in pairs:
+            published_identity: tuple[int, int] | None = None
+            published_sha256: str | None = None
             if expected_stage_sha256 is not None:
                 expected_stage = checked_hash(
                     expected_stage_sha256[stage],
@@ -295,6 +352,7 @@ def _commit_staged_batch(
                     raise ReferenceMatchContractError(
                         "staged file changed before batch replacement"
                     )
+                published_sha256 = expected_stage
             if expected_destination_sha256 is not None:
                 expected_destination = expected_destination_sha256[
                     destination
@@ -318,21 +376,61 @@ def _commit_staged_batch(
                             "destination changed before batch replacement"
                         )
             backup: Path | None = None
-            if destination.exists():
+            if replace_existing and destination.exists():
                 backup = _backup_path(destination, token)
                 _replace(destination, backup)
                 cleanup.append(backup)
             try:
-                _replace(stage, destination)
+                if replace_existing:
+                    _replace(stage, destination)
+                else:
+                    published_identity = _file_identity(stage)
+                    _move_noreplace(stage, destination)
             except Exception:
                 if backup is not None and backup.exists():
                     _replace(backup, destination)
                     cleanup.remove(backup)
                 raise
+            if (
+                not replace_existing
+                and (
+                    not destination.is_file()
+                    or destination.is_symlink()
+                    or _file_identity(destination)
+                    != published_identity
+                    or (
+                        published_sha256 is not None
+                        and sha256_file(destination)
+                        != published_sha256
+                    )
+                )
+            ):
+                raise ReferenceMatchContractError(
+                    "create-only destination changed during publication"
+                )
+            committed.append(
+                (
+                    destination,
+                    backup,
+                    published_identity,
+                    published_sha256,
+                )
+            )
             cleanup.remove(stage)
-            committed.append((destination, backup))
-        if expected_stage_sha256 is not None:
-            for stage, destination in pairs:
+        if expected_stage_sha256 is not None and replace_existing:
+            for (
+                (stage, destination),
+                (
+                    committed_destination,
+                    _backup,
+                    published_identity,
+                    _published_sha256,
+                ),
+            ) in zip(pairs, committed, strict=True):
+                if committed_destination != destination:
+                    raise ReferenceMatchContractError(
+                        "batch commit inventory order changed"
+                    )
                 expected = expected_stage_sha256[stage]
                 if (
                     not destination.is_file()
@@ -341,12 +439,38 @@ def _commit_staged_batch(
                     raise ReferenceMatchContractError(
                         "committed destination bytes differ from staged hash"
                     )
+                if (
+                    published_identity is not None
+                    and (
+                        destination.is_symlink()
+                        or _file_identity(destination)
+                        != published_identity
+                    )
+                ):
+                    raise ReferenceMatchContractError(
+                        "committed create-only destination identity changed"
+                    )
     except Exception:
+        if not replace_existing:
+            # Create-only callers publish their commit manifest last. Earlier
+            # files are immutable, uncommitted orphans when a later publish
+            # fails. Deleting them here would introduce an unavoidable
+            # check-then-unlink race that could erase a non-cooperating
+            # writer's replacement. A verifier/GC may handle proven orphans.
+            raise
         rollback_errors: list[str] = []
-        for destination, backup in reversed(committed):
+        for (
+            destination,
+            backup,
+            _published_identity,
+            _published_sha256,
+        ) in reversed(committed):
             try:
                 destination.unlink(missing_ok=True)
-                if backup is not None and backup.exists():
+                if (
+                    backup is not None
+                    and backup.exists()
+                ):
                     _replace(backup, destination)
                     cleanup.remove(backup)
             except Exception as exc:  # pragma: no cover - catastrophic filesystem failure.
@@ -357,7 +481,7 @@ def _commit_staged_batch(
                 + "; ".join(rollback_errors)
             )
         raise
-    for _destination, backup in committed:
+    for _destination, backup, _identity, _sha256 in committed:
         if backup is None:
             continue
         for _attempt in range(3):
