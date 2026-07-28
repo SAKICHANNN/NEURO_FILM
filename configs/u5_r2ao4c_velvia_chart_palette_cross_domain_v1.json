@@ -3,7 +3,7 @@
   "experiment_id": "u5.r2ao4c-velvia-chart-palette-cross-domain-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2AO4C",
   "inputs": {
-    "chart_pairs": "outputs/u5_r2ao0_balica_velvia_chart_proxy_source_v1/paired_patches.json",
+    "chart_pairs": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
     "chart_paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
     "palette_pairs": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
     "palette_asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",

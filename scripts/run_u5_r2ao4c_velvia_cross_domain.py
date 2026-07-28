@@ -21,7 +21,7 @@ from src.real_film.velvia_cross_domain import (  # noqa: E402
 )
 
 
-CONFIG_SHA256 = "13ee825e4b3526f784535fd42cb13d2722d8ffba32e708e0e5a842aff51766c6"
+CONFIG_SHA256 = "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14"
 REPORT_SCHEMA = "neuro-film.u5.r2ao4c.velvia-cross-domain-report.v1"
 
 
