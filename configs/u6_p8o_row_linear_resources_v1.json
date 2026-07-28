@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8o_row_linear_resources_contract.v1",
+  "node": "U6.P8O",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8n_current_phase_rss_decision_v1.json",
+  "parent_decision_sha256": "18df787fcd66bb7f8d173ddf3a10ef0379a6db4a28dca4e72074910c259241bf",
+  "implementation": {
+    "roundtrip_linear_output": "one-preallocated-full-frame-float64",
+    "roundtrip_linear_execution": "row-bounded-eotf",
+    "roundtrip_linear_tile_rows": 128,
+    "upstream_source_encoding": "exact-p8m",
+    "downstream_execution": "exact-p8m",
+    "pointwise_eotf_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-staged roundtrip-linear construction; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
