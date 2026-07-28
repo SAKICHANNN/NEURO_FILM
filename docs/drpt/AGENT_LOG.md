@@ -6273,3 +6273,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** validate the two immutable reports with their recorded software
   commit, reconstruct the parent repeat decision, then propagate the frozen
   AM1 result.
+
+## 2026-07-28 - Close U5.R2AM1 after exact formal evaluation
+
+- **Node/result:** `ULT > U5 > U5.R2 > U5.R2AM1`; two fresh 33,345-byte
+  reports are byte-identical at `ed093002...af1a`, and independent validation
+  reconstructs repeat decision `f012f257...af7b`.
+- **Capacity:** density/positive confirmation RMSE is `.067568/.021244`.
+  Density gains only 4.49% over global curves, is 41.93% worse than the
+  positive-matrix control and 2.014x K3. Positive improves 46.27%/14.18% over
+  the compact controls and is .653x K3, but still misses the `.015` absolute
+  ceiling.
+- **Structure:** analytic inverse, positive/bounded Jacobian, SO(3), curve,
+  replay, hue-neighbour, red-ramp and strength gates pass. Both nonidentity
+  fits nevertheless leave the cube and fail the `.03` neutral-axis gate.
+- **Decision/propagation:** close the fixed family without capacity, clamp,
+  gamut, target, gate or photograph rescue. Added the decision registry and
+  result report; updated AGENTS, tracker, board and implementation pointer.
+  O0 remains the structurally safe high-capacity representation control.
+- **Handoff:** run focused validation and the full CPU suite, then prioritize
+  reusable-operator identification or new rights/connectivity evidence over
+  another compact representation. Goal remains ACTIVE.

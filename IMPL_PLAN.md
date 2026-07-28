@@ -132,6 +132,21 @@ confirmation deduplication and aggregate reconstruction without changing any
 scientific field or threshold. V3 runner implementation is next; no formal fit
 exists yet.
 
+`U5.R2AM1` is now complete and closes the fixed SO(3)-coordinate curve
+representation. Two 33,345-byte reports are exact at `ed093002...af1a`.
+Analytic inversion, positive Jacobian, rotation, curve, replay, hue, ramp and
+strength gates pass, but both nonidentity fits miss the `.015` absolute RMSE
+ceiling, leave the RGB cube and violate the `.03` neutral-axis gate. Density
+is only 4.49% better than global curves, 41.93% worse than positive-matrix
+curves and 2.014x K3. Positive warm is relatively competitive but still
+reaches only `.02124` RMSE. Canonical JSON exposed and a focused regression
+closed an order-only persisted-report validator defect without changing
+reports, metrics or scientific decisions. No rotation/curve/capacity,
+clamp/gamut, target, threshold or photograph rescue is allowed. O0 remains
+the structurally safe high-capacity representation control; the next
+algorithm/data work should target reusable-operator identification or new
+connectivity evidence rather than another compact representation.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources
