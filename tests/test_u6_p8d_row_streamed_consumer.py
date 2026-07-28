@@ -149,6 +149,25 @@ def test_display_look_base_and_residual_row_stream_are_float_exact() -> None:
     assert np.array_equal(reference, precomputed)
 
 
+def test_density_source_context_row_cast_is_float_exact() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    source = np.random.default_rng(2026072920).random((131, 67, 3))
+    reference = build_density_source_context_row_staged(
+        payload, source, tile_rows=509
+    )
+    for tile_rows in (1, 5, 31, 128):
+        candidate = build_density_source_context_row_staged(
+            payload, source, tile_rows=tile_rows
+        )
+        assert candidate == reference
+
+
 def test_fully_row_streamed_profile_is_float_exact() -> None:
     config = json.loads(P8B.read_text(encoding="utf-8"))
     artifact = compile_standalone_profile_artifact(
@@ -204,3 +223,33 @@ def test_density_source_context_row_staging_is_exact() -> None:
         payload, source, tile_rows=17
     )
     assert staged == reference
+
+
+def test_inplace_physical_halo_carry_is_exact_for_tiny_tiles() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    working = _working(
+        np.random.default_rng(2026072921).random(
+            (23, 19, 3), dtype=np.float32
+        )
+    )
+    reference, _ = render_working_image(artifact, working)
+    for tile_rows in (1, 3, 5, 7, 31):
+        for order in ("forward", "reverse"):
+            candidate, receipt = (
+                render_working_image_fully_row_streamed(
+                    artifact,
+                    working,
+                    tile_rows=tile_rows,
+                    order=order,
+                )
+            )
+            assert np.array_equal(reference, candidate)
+            assert (
+                receipt["output"]["array_sha256"]
+                == hashlib.sha256(
+                    memoryview(np.ascontiguousarray(reference)).cast("B")
+                ).hexdigest()
+            )

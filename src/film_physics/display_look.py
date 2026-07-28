@@ -416,7 +416,7 @@ def build_density_source_context_row_staged(
         or tile_rows <= 0
     ):
         raise ValueError("tile_rows must be a positive integer")
-    source_value = np.asarray(source, dtype=np.float32)
+    source_value = np.asarray(source)
     if (
         source_value.ndim != 3
         or source_value.shape[-1] != 3
@@ -434,9 +434,10 @@ def build_density_source_context_row_staged(
     lab = np.empty(source_value.shape, dtype=np.float32)
     for y0 in range(0, source_value.shape[0], tile_rows):
         y1 = min(source_value.shape[0], y0 + tile_rows)
-        linear = encoded_srgb_to_linear(
-            source_value[y0:y1].astype(np.float64)
+        source_rows = np.asarray(
+            source_value[y0:y1], dtype=np.float32
         )
+        linear = encoded_srgb_to_linear(source_rows.astype(np.float64))
         density = density_operator.apply(
             linear, strength=float(base["density_strength"])
         )

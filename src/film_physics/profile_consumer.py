@@ -146,6 +146,79 @@ def _encoded_srgb_to_linear_inplace_row_staged(
     return value
 
 
+def _render_physical_gauged_encoded_inplace(
+    linear: np.ndarray,
+    *,
+    ranges: list[tuple[int, int]],
+    order: str,
+    halo: int,
+    runtime: Any,
+    gauge: NeutralAxisGaugeOperator,
+) -> np.ndarray:
+    """Consume linear rows into exact encoded output with one halo carry."""
+
+    value = np.asarray(linear)
+    if (
+        value.dtype != np.float64
+        or value.ndim != 3
+        or value.shape[-1] != 3
+        or not value.flags.c_contiguous
+        or not value.flags.writeable
+        or order not in {"forward", "reverse"}
+        or isinstance(halo, bool)
+        or not isinstance(halo, int)
+        or halo < 0
+    ):
+        raise ValueError("invalid in-place physical output buffer")
+    height = value.shape[0]
+    saved_overlap: np.ndarray | None = None
+    for y0, y1 in ranges:
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(height, y1 + halo)
+        source_tile = np.empty_like(value[source_y0:source_y1])
+        if order == "forward":
+            prefix_rows = y0 - source_y0
+            if prefix_rows:
+                if (
+                    saved_overlap is None
+                    or saved_overlap.shape[0] != prefix_rows
+                ):
+                    raise RuntimeError("forward halo carry mismatch")
+                source_tile[:prefix_rows] = saved_overlap
+            source_tile[prefix_rows:] = value[y0:source_y1]
+            if y1 < height:
+                next_source_y0 = max(0, y1 - halo)
+                saved_overlap = source_tile[
+                    next_source_y0 - source_y0 : y1 - source_y0
+                ].copy()
+            else:
+                saved_overlap = None
+        else:
+            suffix_rows = source_y1 - y1
+            source_tile[: y1 - source_y0] = value[source_y0:y1]
+            if suffix_rows:
+                if (
+                    saved_overlap is None
+                    or saved_overlap.shape[0] != suffix_rows
+                ):
+                    raise RuntimeError("reverse halo carry mismatch")
+                source_tile[-suffix_rows:] = saved_overlap
+            if y0 > 0:
+                next_source_y1 = min(height, y0 + halo)
+                saved_overlap = source_tile[
+                    y0 - source_y0 : next_source_y1 - source_y0
+                ].copy()
+            else:
+                saved_overlap = None
+        physical = _render_physical(source_tile, runtime)
+        core = physical[y0 - source_y0 : y1 - source_y0]
+        gauged = apply_gauge_to_intermediate(core, gauge)
+        value[y0:y1] = linear_srgb_to_encoded(gauged)
+    if saved_overlap is not None:
+        raise RuntimeError("unconsumed physical halo carry")
+    return value
+
+
 @dataclass(frozen=True)
 class CompiledProfileRuntime:
     """Minimum runtime surface consumed by the frozen challenger renderer."""
@@ -612,29 +685,24 @@ def render_working_image_fully_row_streamed(
     ]
     if order == "reverse":
         ranges.reverse()
-    gauged_encoded = np.empty_like(linear, dtype=np.float64)
-    seams = []
-    for y0, y1 in ranges:
-        source_y0 = max(0, y0 - halo)
-        source_y1 = min(linear.shape[0], y1 + halo)
-        physical = _render_physical(
-            linear[source_y0:source_y1], compiled
-        )
-        core = physical[y0 - source_y0 : y1 - source_y0]
-        gauged = apply_gauge_to_intermediate(core, gauge)
-        gauged_encoded[y0:y1] = linear_srgb_to_encoded(gauged)
-        if 0 < y0 < linear.shape[0]:
-            seams.append(y0)
+    seams = sorted(y0 for y0, _ in ranges if 0 < y0 < linear.shape[0])
+    gauged_encoded = _render_physical_gauged_encoded_inplace(
+        linear,
+        ranges=ranges,
+        order=order,
+        halo=halo,
+        runtime=compiled,
+        gauge=gauge,
+    )
     display = build_source_context_display_look_row_streamed(
         artifact["component_payloads"][
             "ao6-source-context-display-look"
         ],
-        linear,
+        gauged_encoded,
         tile_rows=tile_rows,
         reuse_input_buffer=True,
         source_context=source_context,
     )
-    del linear
     output = display(gauged_encoded)
     receipt_core = {
         "schema": (
