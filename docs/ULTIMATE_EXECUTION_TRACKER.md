@@ -660,7 +660,8 @@ FLUX.2 gate:
 | U6.P3C | complete: closed | Challenge direct scatter with fixed near-direct/far-pyramid compilation | P3A/P3B | repeat, impulse, random, energy and far-halo gates pass, but edge max error `0.001668` exceeds frozen `0.001`; no threshold/profile retune. Preserve P1A/P3A and move to P1B developed structure |
 | U6.P4A | complete: closed | Compile P1B dye-cloud/silver references with a counter-Gaussian-copula marginal model | P1B pass + U6.2B negative | mean/variance/NPS/domain/repeat/partition pass, but colour-layer ACF max error `0.20262` exceeds frozen `0.20`; no retune |
 | U6.P4B | complete: development pass | Test a separately preregistered compound-Poisson structure approximation | P4A closure + P1B reference | two exact reports; confirmatory mean max `.01040`, variance ratio `1.0605-1.0800`, ACF max `.05785`, NPS relative max `.19378`; exact repeat/partition and physical domains |
-| U6.P4C | ready | Validate physical-scale resolution/LOD behavior and full-image severe-artifact boundary | P4B pass | Freeze downsample/NPS/ACF/parity/performance and no-display-speckle gates before execution; generic only |
+| U6.P4C1 | complete: closed | Validate naive physical-scale direct LOD against area-resolved P4B fields | P4B pass | ACF/NPS/repeat/partition/domain/brightening pass, but variance spans `.0875-1.8860` and B&W mean error reaches `.1743`; density-before-exponential is not area-mean transmittance |
+| U6.P4C2 | ready | Test a preregistered development-only moment-corrected physical LOD | P4C1 closure + P4B | No confirmatory fitting, clipping or display-RGB rescue; retain area-resolved fallback |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

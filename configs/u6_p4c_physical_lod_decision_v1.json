@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4c_physical_lod_decision.v1",
+  "node": "U6.P4C1",
+  "status": "closed-naive-direct-lod",
+  "contract_sha256": "e371ee105a816bab3d63b918bb18fefe099e3c5197d4f0a9d883078e77edfa6e",
+  "software_commit": "2b3a52fef8ddee1f0b18604d7ab3b3012d6b754e",
+  "report_sha256": "095a2fc7c2551bcd811fc87d802909196bc7acb414291ad6f07c8578ab455932",
+  "stable_evidence_id": "4425133616330e7cc186f6fe8d2cc8b4409a8f373c7bc6ba1bc01f2dae379c96",
+  "metrics": {
+    "mean_abs_error_max": 0.1743077114224434,
+    "variance_ratio_min": 0.08748076553663736,
+    "variance_ratio_max": 1.885955457162801,
+    "acf_abs_error_max": 0.1928538756979119,
+    "nps_band_relative_error_max": 0.476492370432963,
+    "repeat_and_partition_exact": true,
+    "domain_valid": true,
+    "brightening_violation_count": 0
+  },
+  "failed_gates": [
+    "mean_abs_error_max",
+    "variance_ratio_min",
+    "variance_ratio_max"
+  ],
+  "claim_ceiling": "rejected-development-challenger",
+  "branch_decision": "Close the naive rate-times-area and scale-divided-by-area LOD. In particular, density averaging before the B&W exponential cannot represent area-averaged transmittance. Preserve P4B at base pitch and preregister a development-only moment-corrected LOD."
+}

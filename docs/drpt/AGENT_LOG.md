@@ -6530,3 +6530,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   domains. Two reports are byte-identical at `611fb096...3b7b4`. This remains a
   synthetic development compiler; P4C must test physical-scale LOD and
   full-image severe artifacts before any runtime or appearance claim.
+- P4C1 closes the naive physical LOD rule. It remains deterministic, bounded
+  and free of brightening violations, while ACF/NPS pass; however, variance
+  spans `.0875-1.8860` and B&W mean error reaches `.1743`. The failure exposes
+  the noncommutation of area averaging and exponential density-to-
+  transmittance conversion. Preserve base-pitch P4B and test only a separately
+  frozen development-only moment correction; area-resolved output is fallback.
