@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p7e_nonspatial_interpretation_attribution_decision.v1",
+  "node": "U6.P7E",
+  "software_commit": "d75b147",
+  "contract_sha256": "a5d3f028466b8c9f10784accceb6535bd3e2ae2b3007372865ae21755ccdda2c",
+  "report_sha256": "fc88dde1cba6f3e960496eaeb4ae4dbe4494aaa2c457cddecb309fe55451473e",
+  "stable_evidence_id": "a0240f2f47f3705895749a5371cc7abfd292d914d6178db259b270a7d0d90f12",
+  "two_run_inventory": {
+    "files_per_run": 81,
+    "bytes_per_run": 233773247,
+    "path_hash_size_differences": 0
+  },
+  "automatic_eligible_arm_ids": [],
+  "arm_results": {
+    "normalized_density": {
+      "maximum_neutral_lab_chroma": 4.7027367904725805,
+      "maximum_style_delta_e76": 64.49262581959042,
+      "median_to_colour_delta_e76": 60.13496450509386,
+      "failed_gates": [
+        "style_envelope"
+      ]
+    },
+    "channelwise_paper": {
+      "maximum_neutral_lab_chroma": 21.814024403880126,
+      "maximum_style_delta_e76": 33.121293780562524,
+      "median_to_colour_delta_e76": 18.455602731526646,
+      "median_to_full_print_delta_e76": 3.9945485559473886,
+      "failed_gates": [
+        "neutral_chroma"
+      ]
+    },
+    "dye_matrix_only": {
+      "maximum_neutral_lab_chroma": 22.448465845919635,
+      "median_to_full_print_delta_e76": 1.5927113818761618,
+      "failed_gates": [
+        "neutral_chroma"
+      ]
+    },
+    "print_matrix_only": {
+      "maximum_neutral_lab_chroma": 22.471724794505178,
+      "median_to_full_print_delta_e76": 1.8748100005497945,
+      "failed_gates": [
+        "neutral_chroma"
+      ]
+    },
+    "full_print_control": {
+      "maximum_neutral_lab_chroma": 22.942193904190066,
+      "median_to_colour_delta_e76": 19.823105993380857,
+      "failed_gates": [
+        "neutral_chroma"
+      ]
+    }
+  },
+  "decision": "close all five P7E arms as direct challengers; preserve full paper compression but neutralize its data-independent per-channel response before AO6",
+  "interpretation": "Removing paper exposes an unusable 64.49-DeltaE style/exposure expansion. Identity dye and print matrices still leave 21.81 neutral chroma, while the original matrices add only modest distance to the full control. The frozen paper/sensitometry channel response is therefore the dominant correctable mechanism.",
+  "reused_precedent": {
+    "config": "configs/u5_r2i1_neutral_axis_gauge_v1.json",
+    "config_sha256": "8c592cff363e799681917b3f8eaa185b96be5ac671f91ee25f4ad120fcc942de",
+    "decision": "configs/u5_r2i1_neutral_axis_gauge_decision_v1.json",
+    "decision_sha256": "3e7635dd0577209ebfd22a5a540ca3aea29f802ad119be1adbf7535cf6e0f849",
+    "status": "numerical pass only; real-image P7F still required"
+  },
+  "production_default_changed": false,
+  "next_leaf": "U6.P7F reuse the frozen data-independent neutral-axis gauge on full-print and 4000-dpi spatial chains",
+  "claim_ceiling": "generic mechanism attribution and development evidence; not film stock, print/scanner calibration or product promotion"
+}

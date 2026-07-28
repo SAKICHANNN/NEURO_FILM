@@ -17,6 +17,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p7e_nonspatial_interpretation_attribution_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u6_p7e_nonspatial_interpretation_attribution_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -64,3 +68,15 @@ def test_p7e_metric_sample_is_flat_n_by_three() -> None:
     values = np.zeros((17, 19, 3), dtype=np.float64)
     sample = _metric_sample(values)
     assert sample.shape == (9, 3)
+
+
+def test_p7e_decision_reuses_existing_neutral_gauge() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["automatic_eligible_arm_ids"] == []
+    assert decision["production_default_changed"] is False
+    assert decision["reused_precedent"]["status"].startswith(
+        "numerical pass only"
+    )
+    assert decision["next_leaf"].startswith(
+        "U6.P7F reuse the frozen data-independent neutral-axis gauge"
+    )
