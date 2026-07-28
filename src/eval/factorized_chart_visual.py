@@ -38,7 +38,9 @@ def _manifest_paths(
         if row["candidate_id"] != candidate_id:
             continue
         sample_id = str(row["sample_id"])
-        if sample_id not in sample_ids or sample_id in paths:
+        if sample_id not in sample_ids:
+            continue
+        if sample_id in paths:
             raise FactorizedChartVisualError("AO3V manifest sample drift")
         output = manifest_path.parent / str(row["output"])
         if sha256_file(output) != row["output_sha256"]:
