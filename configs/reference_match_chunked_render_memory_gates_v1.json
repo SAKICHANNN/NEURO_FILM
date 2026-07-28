@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "node": "P156",
+  "functional_parent_commit": "de57918e23568ad6321262903addfac7f2349d3c",
+  "implementation_scope": {
+    "allowed_files": [
+      "src/color_match/render.py",
+      "tests/test_color_match_render.py"
+    ],
+    "fixed_row_chunk": 128,
+    "chunked_stages": [
+      "gamut-compression",
+      "lab-to-linear-rgb",
+      "final-gamut-verification"
+    ],
+    "forbidden_changes": [
+      "recipe-schema",
+      "algorithm-id",
+      "policy-defaults",
+      "safe-lab-style-math",
+      "producer-contract",
+      "main-renderer"
+    ]
+  },
+  "workload": {
+    "width": 3000,
+    "height": 2000,
+    "reference_seed": 15401,
+    "source_seed": 15402,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "guard_policy": "default-identity-fallback",
+    "execution_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "rss_sample_interval_seconds": 0.02
+  },
+  "gates": {
+    "minimum_median_rss_reduction_bytes": 134217728,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.88,
+    "maximum_candidate_to_baseline_median_worker_wall_ratio": 1.1,
+    "require_output_bytes_exact": true,
+    "require_recipe_bytes_exact": true,
+    "require_normalized_report_exact": true,
+    "require_full_vs_chunked_float32_exact": true,
+    "require_identity_fallback": true,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0
+  },
+  "claim_ceiling": "local-windows-python-row-chunked-reference-render-memory-only-not-algorithm-or-platform-promotion"
+}
