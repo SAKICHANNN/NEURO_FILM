@@ -25,6 +25,11 @@ from .dpct_adapter import (
     dpct_producer_view_id_for_prepared_v2,
     verify_dpct_failed_diagnostics_v2,
 )
+from .dpct_invocation_profile import (
+    DpctInvocationProfileV2,
+    dpct_invocation_profile_payload_v2,
+    load_dpct_invocation_profile_v2,
+)
 
 
 DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID = (
@@ -64,6 +69,92 @@ class DpctInvocationOutcomeV1:
     claim_ceiling: str
     candidate: AdaptedDpctCandidateV2 | None
     failure: DpctProducerFailureV2 | None
+
+
+@dataclass(frozen=True)
+class DpctInvocationOutcomeV2:
+    invocation_profile_id: str
+    lower_compatibility_profile_id: str
+    producer_stable_commit: str
+    producer_source_commit: str
+    wheel_sha256: str
+    capability_id: str
+    request_id: str
+    response_id: str
+    status: str
+    claim_ceiling: str
+    candidate: AdaptedDpctCandidateV2 | None
+    failure: DpctProducerFailureV2 | None
+
+
+@dataclass(frozen=True)
+class _InvocationParameters:
+    compatibility_profile_id: str
+    producer_stable_commit: str
+    producer_source_commit: str
+    wheel_filename: str
+    wheel_size_bytes: int
+    wheel_sha256: str
+    package_distribution: str
+    package_version: str
+    package_entrypoint: str
+    python_major_minor: str
+    numpy_version: str
+    pillow_version: str
+    request_schema: str
+    response_schema: str
+    capability_id: str
+    claim_ceiling: str
+
+
+_V1_PARAMETERS = _InvocationParameters(
+    compatibility_profile_id=DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID,
+    producer_stable_commit=DPCT_INVOCATION_STABLE_COMMIT,
+    producer_source_commit=DPCT_INVOCATION_SOURCE_COMMIT,
+    wheel_filename="zhuise_research-0.2.0-py3-none-any.whl",
+    wheel_size_bytes=DPCT_INVOCATION_WHEEL_SIZE,
+    wheel_sha256=DPCT_INVOCATION_WHEEL_SHA256,
+    package_distribution="zhuise-research",
+    package_version="0.2.0",
+    package_entrypoint="zhuise-producer-invoke",
+    python_major_minor="3.12",
+    numpy_version="2.4.4",
+    pillow_version="12.1.1",
+    request_schema=DPCT_INVOCATION_REQUEST_SCHEMA,
+    response_schema=DPCT_INVOCATION_RESPONSE_SCHEMA,
+    capability_id=DPCT_INVOCATION_CAPABILITY_ID,
+    claim_ceiling=DPCT_INVOCATION_CLAIM_CEILING,
+)
+
+
+def _parameters_v2(
+    profile: DpctInvocationProfileV2,
+) -> tuple[DpctInvocationProfileV2, _InvocationParameters]:
+    validated = load_dpct_invocation_profile_v2(
+        dpct_invocation_profile_payload_v2(profile)
+    )
+    return validated, _InvocationParameters(
+        compatibility_profile_id=(
+            validated.lower_compatibility_profile_id
+        ),
+        producer_stable_commit=validated.producer_stable_commit,
+        producer_source_commit=(
+            validated.producer_package_source_commit
+        ),
+        wheel_filename=validated.wheel_filename,
+        wheel_size_bytes=validated.wheel_size_bytes,
+        wheel_sha256=validated.wheel_sha256,
+        package_distribution=validated.package_distribution,
+        package_version=validated.package_version,
+        package_entrypoint=validated.package_entrypoint,
+        python_major_minor=validated.python_major_minor,
+        numpy_version=validated.numpy_version,
+        pillow_version=validated.pillow_version,
+        request_schema=validated.request_schema,
+        response_schema=validated.response_schema,
+        capability_id=validated.capability_id,
+        claim_ceiling=validated.claim_ceiling,
+    )
 
 
 def _sha256(payload: bytes) -> str:
@@ -113,18 +204,19 @@ def _prepared_wire(
     return view, pixels
 
 
-def prepare_dpct_invocation_request_v1(
+def _prepare_dpct_invocation_request(
     *,
     source: PreparedMatchViewV1,
     reference: PreparedMatchViewV1,
+    parameters: _InvocationParameters,
 ) -> tuple[dict[str, Any], bytes, bytes]:
     source_view, source_pixels = _prepared_wire(source)
     reference_view, reference_pixels = _prepared_wire(reference)
     request: dict[str, Any] = {
-        "schema": DPCT_INVOCATION_REQUEST_SCHEMA,
+        "schema": parameters.request_schema,
         "canonical_json": DPCT_CANONICAL_JSON,
         "operation": "fit-apply",
-        "capability_id": DPCT_INVOCATION_CAPABILITY_ID,
+        "capability_id": parameters.capability_id,
         "source": {
             "view": source_view,
             "pixels_file": "source.f32be",
@@ -138,6 +230,32 @@ def prepare_dpct_invocation_request_v1(
         b"ZhuiseInvocationRequestV1\0", request
     )
     return request, source_pixels, reference_pixels
+
+
+def prepare_dpct_invocation_request_v1(
+    *,
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+) -> tuple[dict[str, Any], bytes, bytes]:
+    return _prepare_dpct_invocation_request(
+        source=source,
+        reference=reference,
+        parameters=_V1_PARAMETERS,
+    )
+
+
+def prepare_dpct_invocation_request_v2(
+    *,
+    profile: DpctInvocationProfileV2,
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+) -> tuple[dict[str, Any], bytes, bytes]:
+    _, parameters = _parameters_v2(profile)
+    return _prepare_dpct_invocation_request(
+        source=source,
+        reference=reference,
+        parameters=parameters,
+    )
 
 
 def _strict_object(
@@ -176,14 +294,78 @@ def _load_response(path: Path) -> tuple[Mapping[str, Any], bytes]:
     return response, raw
 
 
-def verify_dpct_invocation_output_v1(
+def _validate_request(
+    request: Mapping[str, Any],
+    *,
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+    parameters: _InvocationParameters,
+) -> None:
+    request = _strict_object(
+        request,
+        {
+            "schema",
+            "canonical_json",
+            "operation",
+            "capability_id",
+            "source",
+            "reference",
+            "request_id",
+        },
+        "D-PCT invocation request",
+    )
+    if (
+        request["schema"] != parameters.request_schema
+        or request["canonical_json"] != DPCT_CANONICAL_JSON
+        or request["operation"] != "fit-apply"
+        or request["capability_id"] != parameters.capability_id
+    ):
+        raise ReferenceMatchContractError(
+            "D-PCT invocation request identity mismatch"
+        )
+    expected_source, _ = _prepared_wire(source)
+    expected_reference, _ = _prepared_wire(reference)
+    for label, expected in (
+        ("source", expected_source),
+        ("reference", expected_reference),
+    ):
+        envelope = _strict_object(
+            request[label],
+            {"view", "pixels_file"},
+            f"D-PCT invocation request {label}",
+        )
+        if (
+            envelope["view"] != expected
+            or envelope["pixels_file"] != f"{label}.f32be"
+        ):
+            raise ReferenceMatchContractError(
+                f"D-PCT invocation request {label} binding mismatch"
+            )
+    identity = dict(request)
+    request_id = identity.pop("request_id")
+    if request_id != _domain_id(
+        b"ZhuiseInvocationRequestV1\0", identity
+    ):
+        raise ReferenceMatchContractError(
+            "D-PCT invocation request ID mismatch"
+        )
+
+
+def _verify_dpct_invocation_output(
     *,
     output_directory: Path,
     request: Mapping[str, Any],
     source: PreparedMatchViewV1,
     reference: PreparedMatchViewV1,
     intent_id: str,
-) -> DpctInvocationOutcomeV1:
+    parameters: _InvocationParameters,
+) -> tuple[str, str, AdaptedDpctCandidateV2 | None, DpctProducerFailureV2 | None]:
+    _validate_request(
+        request,
+        source=source,
+        reference=reference,
+        parameters=parameters,
+    )
     output_directory = output_directory.resolve()
     response, _ = _load_response(output_directory / "response.json")
     response = _strict_object(
@@ -206,7 +388,7 @@ def verify_dpct_invocation_output_v1(
         "D-PCT invocation response",
     )
     if (
-        response["schema"] != DPCT_INVOCATION_RESPONSE_SCHEMA
+        response["schema"] != parameters.response_schema
         or response["canonical_json"] != DPCT_CANONICAL_JSON
         or response["request_id"] != request["request_id"]
     ):
@@ -219,9 +401,9 @@ def verify_dpct_invocation_output_v1(
         "D-PCT producer package",
     )
     if dict(package) != {
-        "distribution": "zhuise-research",
-        "version": "0.2.0",
-        "entrypoint": "zhuise-producer-invoke",
+        "distribution": parameters.package_distribution,
+        "version": parameters.package_version,
+        "entrypoint": parameters.package_entrypoint,
     }:
         raise ReferenceMatchContractError(
             "D-PCT invocation package identity mismatch"
@@ -309,7 +491,7 @@ def verify_dpct_invocation_output_v1(
         )
         if (
             candidate.aliases.capability_id
-            != DPCT_INVOCATION_CAPABILITY_ID
+            != parameters.capability_id
         ):
             raise ReferenceMatchContractError(
                 "D-PCT invocation capability is not pinned"
@@ -342,6 +524,27 @@ def verify_dpct_invocation_output_v1(
         raise ReferenceMatchContractError(
             "D-PCT invocation status is unsupported"
         )
+    return str(response_id), str(status), candidate, failure
+
+
+def verify_dpct_invocation_output_v1(
+    *,
+    output_directory: Path,
+    request: Mapping[str, Any],
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+    intent_id: str,
+) -> DpctInvocationOutcomeV1:
+    response_id, status, candidate, failure = (
+        _verify_dpct_invocation_output(
+            output_directory=output_directory,
+            request=request,
+            source=source,
+            reference=reference,
+            intent_id=intent_id,
+            parameters=_V1_PARAMETERS,
+        )
+    )
     return DpctInvocationOutcomeV1(
         compatibility_profile_id=(
             DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID
@@ -350,15 +553,58 @@ def verify_dpct_invocation_output_v1(
         producer_source_commit=DPCT_INVOCATION_SOURCE_COMMIT,
         wheel_sha256=DPCT_INVOCATION_WHEEL_SHA256,
         request_id=str(request["request_id"]),
-        response_id=str(response_id),
-        status=str(status),
+        response_id=response_id,
+        status=status,
         claim_ceiling=DPCT_INVOCATION_CLAIM_CEILING,
         candidate=candidate,
         failure=failure,
     )
 
 
-def _verify_runtime(python_executable: Path) -> None:
+def verify_dpct_invocation_output_v2(
+    *,
+    profile: DpctInvocationProfileV2,
+    output_directory: Path,
+    request: Mapping[str, Any],
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+    intent_id: str,
+) -> DpctInvocationOutcomeV2:
+    validated, parameters = _parameters_v2(profile)
+    response_id, status, candidate, failure = (
+        _verify_dpct_invocation_output(
+            output_directory=output_directory,
+            request=request,
+            source=source,
+            reference=reference,
+            intent_id=intent_id,
+            parameters=parameters,
+        )
+    )
+    return DpctInvocationOutcomeV2(
+        invocation_profile_id=validated.profile_id,
+        lower_compatibility_profile_id=(
+            validated.lower_compatibility_profile_id
+        ),
+        producer_stable_commit=validated.producer_stable_commit,
+        producer_source_commit=(
+            validated.producer_package_source_commit
+        ),
+        wheel_sha256=validated.wheel_sha256,
+        capability_id=validated.capability_id,
+        request_id=str(request["request_id"]),
+        response_id=response_id,
+        status=status,
+        claim_ceiling=validated.claim_ceiling,
+        candidate=candidate,
+        failure=failure,
+    )
+
+
+def _verify_runtime(
+    python_executable: Path,
+    parameters: _InvocationParameters,
+) -> None:
     code = (
         "import json,sys,numpy,PIL;"
         "print(json.dumps({'python':f'{sys.version_info.major}."
@@ -384,16 +630,16 @@ def _verify_runtime(python_executable: Path) -> None:
             "D-PCT invocation runtime identity is invalid"
         ) from exc
     if identity != {
-        "python": "3.12",
-        "numpy": "2.4.4",
-        "pillow": "12.1.1",
+        "python": parameters.python_major_minor,
+        "numpy": parameters.numpy_version,
+        "pillow": parameters.pillow_version,
     }:
         raise ReferenceMatchContractError(
             "D-PCT invocation runtime identity mismatch"
         )
 
 
-def invoke_dpct_package_v1(
+def _invoke_dpct_package(
     *,
     source: PreparedMatchViewV1,
     reference: PreparedMatchViewV1,
@@ -401,18 +647,20 @@ def invoke_dpct_package_v1(
     wheel_path: Path,
     python_executable: Path,
     scratch_directory: Path,
-    timeout_seconds: float = 300.0,
-) -> DpctInvocationOutcomeV1:
+    timeout_seconds: float,
+    parameters: _InvocationParameters,
+    profile: DpctInvocationProfileV2 | None,
+) -> DpctInvocationOutcomeV1 | DpctInvocationOutcomeV2:
     wheel_path = wheel_path.resolve()
     python_executable = python_executable.resolve()
     scratch_directory = scratch_directory.resolve()
     if (
         not wheel_path.is_file()
         or wheel_path.name
-        != "zhuise_research-0.2.0-py3-none-any.whl"
-        or wheel_path.stat().st_size != DPCT_INVOCATION_WHEEL_SIZE
+        != parameters.wheel_filename
+        or wheel_path.stat().st_size != parameters.wheel_size_bytes
         or _sha256(wheel_path.read_bytes())
-        != DPCT_INVOCATION_WHEEL_SHA256
+        != parameters.wheel_sha256
     ):
         raise ReferenceMatchContractError(
             "D-PCT invocation wheel identity mismatch"
@@ -425,11 +673,12 @@ def invoke_dpct_package_v1(
         raise ReferenceMatchContractError(
             "D-PCT invocation scratch directory is unavailable"
         )
-    _verify_runtime(python_executable)
+    _verify_runtime(python_executable, parameters)
     request, source_pixels, reference_pixels = (
-        prepare_dpct_invocation_request_v1(
+        _prepare_dpct_invocation_request(
             source=source,
             reference=reference,
+            parameters=parameters,
         )
     )
     with tempfile.TemporaryDirectory(
@@ -501,13 +750,76 @@ def invoke_dpct_package_v1(
                 "D-PCT exact-wheel invocation failed closed: "
                 + completed.stderr.strip()[:512]
             )
-        return verify_dpct_invocation_output_v1(
+        if profile is None:
+            return verify_dpct_invocation_output_v1(
+                output_directory=output_directory,
+                request=request,
+                source=source,
+                reference=reference,
+                intent_id=intent_id,
+            )
+        return verify_dpct_invocation_output_v2(
+            profile=profile,
             output_directory=output_directory,
             request=request,
             source=source,
             reference=reference,
             intent_id=intent_id,
         )
+
+
+def invoke_dpct_package_v1(
+    *,
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+    intent_id: str,
+    wheel_path: Path,
+    python_executable: Path,
+    scratch_directory: Path,
+    timeout_seconds: float = 300.0,
+) -> DpctInvocationOutcomeV1:
+    outcome = _invoke_dpct_package(
+        source=source,
+        reference=reference,
+        intent_id=intent_id,
+        wheel_path=wheel_path,
+        python_executable=python_executable,
+        scratch_directory=scratch_directory,
+        timeout_seconds=timeout_seconds,
+        parameters=_V1_PARAMETERS,
+        profile=None,
+    )
+    if not isinstance(outcome, DpctInvocationOutcomeV1):
+        raise AssertionError("v1 invocation returned a v2 outcome")
+    return outcome
+
+
+def invoke_dpct_package_v2(
+    *,
+    profile: DpctInvocationProfileV2,
+    source: PreparedMatchViewV1,
+    reference: PreparedMatchViewV1,
+    intent_id: str,
+    wheel_path: Path,
+    python_executable: Path,
+    scratch_directory: Path,
+    timeout_seconds: float = 300.0,
+) -> DpctInvocationOutcomeV2:
+    validated, parameters = _parameters_v2(profile)
+    outcome = _invoke_dpct_package(
+        source=source,
+        reference=reference,
+        intent_id=intent_id,
+        wheel_path=wheel_path,
+        python_executable=python_executable,
+        scratch_directory=scratch_directory,
+        timeout_seconds=timeout_seconds,
+        parameters=parameters,
+        profile=validated,
+    )
+    if not isinstance(outcome, DpctInvocationOutcomeV2):
+        raise AssertionError("v2 invocation returned a v1 outcome")
+    return outcome
 
 
 __all__ = [
@@ -517,7 +829,11 @@ __all__ = [
     "DPCT_INVOCATION_STABLE_COMMIT",
     "DPCT_INVOCATION_WHEEL_SHA256",
     "DpctInvocationOutcomeV1",
+    "DpctInvocationOutcomeV2",
     "invoke_dpct_package_v1",
+    "invoke_dpct_package_v2",
     "prepare_dpct_invocation_request_v1",
+    "prepare_dpct_invocation_request_v2",
     "verify_dpct_invocation_output_v1",
+    "verify_dpct_invocation_output_v2",
 ]

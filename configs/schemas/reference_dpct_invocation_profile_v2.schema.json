@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-dpct-invocation-profile-v2.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "profile_id", "producer", "package", "runtime", "wire", "rights", "claim_ceiling"],
+  "properties": {
+    "schema_id": {"const": "neuro-film.dpct-invocation-profile.v2"},
+    "profile_id": {"$ref": "#/$defs/hash"},
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository_id", "stable_commit", "package_source_commit", "fixture_commit", "package_lock_sha256"],
+      "properties": {
+        "repository_id": {"$ref": "#/$defs/identifier"},
+        "stable_commit": {"$ref": "#/$defs/commit"},
+        "package_source_commit": {"$ref": "#/$defs/commit"},
+        "fixture_commit": {"$ref": "#/$defs/commit"},
+        "package_lock_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["distribution", "version", "entrypoint", "wheel_filename", "wheel_size_bytes", "wheel_sha256"],
+      "properties": {
+        "distribution": {"$ref": "#/$defs/identifier"},
+        "version": {"$ref": "#/$defs/identifier"},
+        "entrypoint": {"$ref": "#/$defs/identifier"},
+        "wheel_filename": {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[^/\\\\]+$"},
+        "wheel_size_bytes": {"type": "integer", "minimum": 1, "maximum": 1073741824},
+        "wheel_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["python_major_minor", "numpy", "pillow"],
+      "properties": {
+        "python_major_minor": {"type": "string", "minLength": 1, "maxLength": 256},
+        "numpy": {"type": "string", "minLength": 1, "maxLength": 256},
+        "pillow": {"type": "string", "minLength": 1, "maxLength": 256}
+      }
+    },
+    "wire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["request_schema", "request_schema_sha256", "response_schema", "response_schema_sha256", "fixture_sha256", "capability_id", "profile_id", "lower_compatibility_profile_id"],
+      "properties": {
+        "request_schema": {"$ref": "#/$defs/identifier"},
+        "request_schema_sha256": {"$ref": "#/$defs/hash"},
+        "response_schema": {"$ref": "#/$defs/identifier"},
+        "response_schema_sha256": {"$ref": "#/$defs/hash"},
+        "fixture_sha256": {"$ref": "#/$defs/hash"},
+        "capability_id": {"$ref": "#/$defs/identifier"},
+        "profile_id": {"const": "zhuise.display-linear-srgb-d65-relative-f32.v1"},
+        "lower_compatibility_profile_id": {"const": "neuro-film.dpct-consumer.v2"}
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluation_allowed", "redistribution_allowed", "reason"],
+      "properties": {
+        "evaluation_allowed": {"const": true},
+        "redistribution_allowed": {"type": "boolean"},
+        "reason": {"type": "string", "minLength": 1, "maxLength": 256}
+      }
+    },
+    "claim_ceiling": {"const": "candidate-only-not-promoted-not-applied-not-delivered"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "identifier": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"}
+  }
+}
