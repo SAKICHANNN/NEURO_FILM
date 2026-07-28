@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao5-combined-velvia-decision-v1",
+  "operator_fit": {
+    "config_sha256": "c3f94c07e5351a4cea10e96b6d3b1dd13ee43842441e650dac5bd3b19ddb93bf",
+    "software_commit": "a8bfdfc",
+    "report_sha256_a": "fa20ed443100dba2528d1b69622287c1837e4e46bae591df9b644071e2427bd2",
+    "report_sha256_b": "fa20ed443100dba2528d1b69622287c1837e4e46bae591df9b644071e2427bd2",
+    "operator_sha256": "976b3d637117a8d7754fd70610141fdcab6b8773f22f3a2a14314d17c53b4acd",
+    "combined_rgb_rmse": 0.029410168766182444,
+    "chart_rgb_rmse": 0.04121239489443251,
+    "palette_rgb_rmse": 0.020960420693914926,
+    "combined_gain_over_identity": 0.7646617210155124,
+    "combined_gain_over_full_affine": 0.40507435670165715,
+    "red_response_midpoint_at_upper_bound": true,
+    "automatic_pass": true
+  },
+  "photo_frontier": {
+    "config_sha256": "bcfdcb5011cf4190353411593babb5bb6bf7b6d2f802de71c72a2b39da975a3f",
+    "software_commit": "5d355bd",
+    "manifest_sha256_a": "8084d22ce182971d102271044c71268137a869dbd4b23fb205f8eaec9c7545a6",
+    "manifest_sha256_b": "8084d22ce182971d102271044c71268137a869dbd4b23fb205f8eaec9c7545a6",
+    "report_sha256_a": "3c7455712560529b0d72a1a41e0749b9792d126207e5b449d6bf197bff8327bf",
+    "report_sha256_b": "3c7455712560529b0d72a1a41e0749b9792d126207e5b449d6bf197bff8327bf",
+    "survivor_id": "tone_s50__chroma_s100",
+    "gold_style_delta_e76": 8.467193567299205,
+    "gold_non_basic_residual_delta_e76": 5.024279302032839,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0,
+    "automatic_pass": true
+  },
+  "visual": {
+    "config_sha256": "d5d556776655e405315dce2e9d0f1e056dda566d090f8720fb7d8dfbe1fd671b",
+    "sheet_sha256": [
+      "861f0b9d9443f47f2c2d1c393cb87dbba17fd6576fb5468ac357a69f47bd6547",
+      "0128eed5357765a18d160f1aa3b7274c0667a6e60d2f5a3529a63ee535f69f42",
+      "18681db3231a772dff5afd439e77c6368d6a3b26c7648d2b281e646df70da65c"
+    ],
+    "mapping_sha256": "fbd92d501d276d8d4845ef6720960adfad689acd0d76a74ae35822ff969e1423",
+    "pre_reveal_review_sha256": "e05bc54a0126b261d0f05609bb9ed3e7660269466235b3ad9fe0f86ae104b192",
+    "combined_above_chart_proxy_rounds": 3,
+    "combined_above_b0_comparator_rounds": 0,
+    "rounds": 3,
+    "distinct_layouts": 3,
+    "full_resolution_gold_images_reviewed": 9,
+    "confirmed_severe_artifacts": 0
+  },
+  "decision": "retain_combined_real_film_operator_and_direction_improvement_not_aesthetic_champion",
+  "next_leaf": "test a separately frozen low-strength composition of the combined real-film operator with the retained vivid B0 density path",
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "development display-proxy evidence that adding 47 real-pigment pairs improves a fixed Velvia operator over the chart-only direction while remaining severe-clean; it still loses to the retained B0 comparator and is not stock response, calibration or product evidence"
+}

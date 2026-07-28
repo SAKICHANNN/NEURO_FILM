@@ -6430,3 +6430,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Wrong-stock behavior is supportive but content-confounded; it does not open
   a stock-response claim. Full CPU regression passes 1149/1149. Continue with
   the same-capacity 71-pair combined operator and photo frontier.
+
+## 2026-07-28 - U5.R2AO5 improves the real-film direction, not the champion
+
+- The exact 71-pair one-matrix fit reaches `.02941` combined RMSE and beats
+  identity/full-affine by 76.47%/40.51%. The unchanged AO3 factor bank leaves
+  one exact zero-clipping photo survivor at style/non-basic `8.47/5.02`.
+- Three distinct blind layouts rank the combined operator over the chart-only
+  operator 3/3, but the vivid B0 comparator over the combined operator 3/3.
+  Full-resolution review confirms zero severe failures on all nine gold images.
+- Retain the combined operator as stronger real-film display-proxy evidence.
+  Next test only a small bounded composition with the vivid density path; do
+  not add capacity or upgrade stock/calibration claims.
