@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8p_current_phase_rss_decision.v1",
+  "node": "U6.P8P",
+  "software_commit": "61ec794",
+  "contract_sha256": "75a91c887d47b28ea99ea7cc03c1c2586f04f5bbfbff56ca9217ed1bede67a19",
+  "report_sha256": "10e1a10a7193e25f887535b932c68a26a83f4aac199042e5e917a82122289120",
+  "stable_evidence_id": "2d5db98414d38a77b9007ba1e12c7693248a2f34a33a78b7c59820103ec4a16d",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "dominant_phase_stable": true,
+  "dominant_phase": "physical-spatial",
+  "phase_peak_rss_bytes_ranges": {
+    "physical-spatial": [
+      1328185344,
+      1337466880
+    ],
+    "source-context-build": [
+      1306968064,
+      1307516928
+    ],
+    "gauge-and-encode": [
+      1214050304,
+      1220599808
+    ],
+    "roundtrip-linear": [
+      858583040,
+      860291072
+    ],
+    "display-base-residual": [
+      742137856,
+      747261952
+    ],
+    "encoded-source": [
+      733319168,
+      734433280
+    ]
+  },
+  "decision": "two exact 12MP repeats through the actual P8O entry identify physical-spatial as the stable dominant worker RSS phase at 1.328-1.337GB, with source-context nearly tied at 1.307-1.308GB. Optimizing either alone only exposes the other. Open one combined exact buffer-lifetime candidate: compute the frozen source context before physical execution, then reuse the consumed encoded-source allocation for roundtrip-linear so physical does not retain encoded, linear and gauged full frames simultaneously",
+  "attribution_complete": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8Q exact context-first plus destructive encoded-to-linear buffer reuse, preserving P8O pointwise arithmetic, SafeLab context and final pixel identity",
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution through the exact current P8O production entry; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
