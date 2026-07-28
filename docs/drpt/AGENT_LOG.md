@@ -6454,3 +6454,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Full CPU regression passes 1161/1161. Retain `t15/c35` only as the new B0
   development champion and open a fixed independent raw.pixls.us confirmation;
   stock-response, calibration and product claims remain closed.
+
+## 2026-07-28 - U5.R2AO7 closes independent residual promotion
+
+- AO7S freezes 18 new CC0 RAW rows; one exact URL is 404 and one visible chart
+  is excluded without replacement. Single-thread LibRaw repair makes the
+  remaining 17-row preflight exact; 16 eligible rows span nine makes with zero
+  overlap against U41 or the prior AI1 source set.
+- Two AO7 32-output runs are exact. The fixed candidate passes every automatic
+  gate at style/non-basic/residual `11.5191/10.8875/3.0668`, 16/16 image and
+  9/9 make support, and zero new clipping.
+- Blind preference fails at 1/3 wins. Two byte-identical layouts receive
+  opposite rankings, so the difference is not robustly preference-salient.
+  Full regression passes 1167/1167. AO6 remains development evidence only;
+  next test operator diversity before replacing the averaged proxy.
