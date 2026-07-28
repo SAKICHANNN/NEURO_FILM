@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p8aa_native_ordered_chain_decision.v1",
+  "node": "U6.P8AA",
+  "contract": "configs/u6_p8aa_native_ordered_chain_v1.json",
+  "contract_sha256": "2f2238d7a5a0dfaa7826e3c95e5b5f2b0189b409104a9001bf6ada6a5f3a1bf6",
+  "formal_report": "outputs/u6_p8aa_native_ordered_chain_v1/report.json",
+  "formal_report_sha256": "21e3c5a366e48b305242fd140d0b50f2f66edf1b407f1d40b481204d7df419b3",
+  "stable_evidence_id": "cd9cff695780f4fea872b6c09ba1aa4c1c40f9e3538c4bba9de9c0ad5e117386",
+  "adjacency_payload_sha256": "3655100bf2d2bec3c53449d8d87cc1cdcbdef18de187bd40a4969f59c043836c",
+  "oracle_sha256": "b0868256b02bfa6ec84a7c3e1129befa3779123cb31359e855964cd334a8f112",
+  "component_dll_sha256": {
+    "domains": "7d8de1e44ee2225ea4a7e2dd1293dd699f0d0722addeb86aca6247bad824de5d",
+    "gaussian": "49ccdb3cf0377b5a2cfbfc5c557ee704c6b836af4b263be7d63358995a54a504",
+    "adjacency": "2daec5f7aa4aaed6924400f621af9debc1e27f140137ee7bc0d42da68bf70c81"
+  },
+  "result": {
+    "status": "pass",
+    "independent_component_build_dll_sha_exact": true,
+    "independent_full_chain_replay_exact": true,
+    "maximum_stage_absolute_error": 1.5543122344752192e-15,
+    "tolerance": 2e-12,
+    "final_array_sha256": "74081370348cb232da9baceefe67040a8775b163b97da49f1533356a0741ede0"
+  },
+  "decision": "retain the composed native scanner-linear physical chain in the canonical domain order. Every intermediate stage matches the Python float64 oracle, but neutral gauge, AO6 display look, halo-tiled full-image execution, full-resolution resources and product integration remain open",
+  "production_default_changed": false,
+  "claim_ceiling": "small-image local Windows x64 ordered generic physical-inspired native-chain conformance through scanner-linear only",
+  "next_leaf": "U6.P8AB native halo-tiled chain parity: prove multiple row partitions and reverse execution order reproduce full-frame native scanner-linear output before 12MP resource characterization"
+}
