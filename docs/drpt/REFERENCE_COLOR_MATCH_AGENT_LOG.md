@@ -2307,6 +2307,19 @@
   worktree was not touched.
 - Ceiling: `review-ready-not-merged`; only the main owner decides integration.
 
+## 2026-07-28 - Freeze P59 strict integration-manifest wire contract
+
+- Node/parent goal: P59A-D / schema-first main-owner review after P58.
+- Finding: P58 exact Git regeneration is authoritative but the committed
+  manifest has no independent strict JSON Schema. A reviewer cannot reject
+  malformed structure before invoking Git-backed reconstruction.
+- Contract: add one Draft 2020-12 schema with exact fields/types, SHA-1 Git
+  object identities, modes, shared-schema SHA-256 identities, zero overlap,
+  fixed verification commands and the immutable
+  `review-ready-not-merged` ceiling. Validation runs before commit access.
+- Scope: consumer schema/builder/tests/docs only. No main or producer write,
+  merge, package release, candidate admission or product-state change.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
