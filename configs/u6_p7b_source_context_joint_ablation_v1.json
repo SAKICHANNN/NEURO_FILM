@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p7b_source_context_joint_ablation_contract.v1",
+  "node": "U6.P7B",
+  "parent_audit": "configs/u6_p7a4_mechanism_controlled_severe_audit_v1.json",
+  "parent_audit_sha256": "f5dbdd8aaca27f02bed0c6c784b1f6d4d42875169f9c165a4fc15fc298cd68c5",
+  "parent_decision": "configs/u6_p7a4_mechanism_controlled_severe_audit_decision_v1.json",
+  "parent_decision_sha256": "edd881734422b7564f5a3ef902036c54026b9a0ec85b9970c5723d77501f8ed8",
+  "runtime_parent": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "runtime_parent_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "single_change": {
+    "old": "AO6 safe-Lab source context is recomputed independently from colour-only, cheap-physics and full-physics arm inputs",
+    "new": "compile one safe-Lab source context from the original source after the frozen pointwise density stage, then reuse that exact context for colour-only, cheap-physics and full-physics anchor application",
+    "colour_only_equivalence_required": "byte_exact",
+    "factorized_tone_chroma_residual_unchanged": true,
+    "physical_pipeline_unchanged": true,
+    "ao6_strengths_unchanged": true
+  },
+  "mechanism_smoke": {
+    "shape": [257, 259],
+    "constant_rgb": [
+      [0.02, 0.02, 0.02],
+      [0.18, 0.18, 0.18],
+      [0.50, 0.50, 0.50],
+      [0.82, 0.82, 0.82],
+      [0.98, 0.98, 0.98],
+      [0.60, 0.20, 0.20],
+      [0.20, 0.60, 0.20],
+      [0.20, 0.20, 0.60]
+    ],
+    "impulse_background_rgb": [0.18, 0.18, 0.18],
+    "impulse_rgb": [0.82, 0.82, 0.82],
+    "maximum_flat_combined_minus_cheap_abs": 1e-10,
+    "maximum_outside_halo_combined_minus_cheap_abs": 1e-12,
+    "repeat_exact": true
+  },
+  "photographic_gates": {
+    "inherit_exactly_from_runtime_parent": [
+      "population",
+      "finite_bounded",
+      "new_boundaries",
+      "style_envelope",
+      "non_basic",
+      "physics_population",
+      "physics_material",
+      "full_not_cheap",
+      "order_identifiable"
+    ],
+    "replace_isolated_excursions_with_mechanism_smoke": true,
+    "minimum_combined_preference_round_wins": 2,
+    "maximum_confirmed_severe_combined_artifacts": 0,
+    "preference_review_only_after_automatic_pass": true
+  },
+  "execution_order": [
+    "run public safe-Lab context equivalence tests",
+    "run constant-field and impulse mechanism smoke",
+    "only if smoke passes, run the frozen 16-photo ablation twice",
+    "only if automatic gates pass, refresh three independently randomized blind rounds"
+  ],
+  "post_result_retuning_allowed": false,
+  "branch_rule": {
+    "context_equivalence_fail": "close implementation and preserve existing AO6 colour-only output",
+    "mechanism_smoke_fail": "close source-context candidate without full photographic rerender",
+    "automatic_fail": "retain colour-only AO6 and preserve physical primitives separately",
+    "severe_or_preference_fail": "retain colour-only AO6 and preserve physical primitives separately",
+    "complete_pass": "retain combined as a development challenger and open separately frozen complete-profile ablation; do not change production default"
+  },
+  "claim_ceiling": "generic physical-inspired developed-spatial plus source-context-fixed AO6-like display-look ablation; not complete film image formation, stock response, calibration, scanner profile or product promotion"
+}
