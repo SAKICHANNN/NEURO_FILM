@@ -12,7 +12,14 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 
-from scripts.pipeline_color_baseline import apply_output_margin, style_transfer_rgb
+from scripts.pipeline_color_baseline import (
+    apply_output_margin,
+    style_transfer_rgb,
+)
+from src.color_engine.safe_lab import SafeLabSourceContext
+from src.color_engine.safe_lab_rgb_context import (
+    style_transfer_rgb_with_source_context,
+)
 from src.eval.density_witness_frontier import (
     encoded_srgb_to_linear,
     linear_srgb_to_encoded,
@@ -174,6 +181,33 @@ def build_operators(
         )
 
     return apply_anchor, apply_density
+
+
+def build_anchor_operator_with_source_context(
+    config: Mapping[str, Any],
+    validated: Mapping[str, Any],
+    source_context: SafeLabSourceContext,
+) -> Any:
+    """Build the frozen anchor while reusing one explicit source context."""
+
+    anchor = config["parent_anchor"]
+
+    def apply_anchor(encoded: np.ndarray) -> np.ndarray:
+        return style_transfer_rgb_with_source_context(
+            np.asarray(encoded, dtype=np.float32),
+            validated["anchor_stats"],
+            str(anchor["style"]),
+            float(anchor["strength"]),
+            float(anchor["luma_strength"]),
+            float(anchor["grain"]),
+            int(anchor["seed"]),
+            True,
+            gamut_mode=str(anchor["gamut_mode"]),
+            output_margin=0,
+            source_context=source_context,
+        )
+
+    return apply_anchor
 
 
 def compose_rgb(

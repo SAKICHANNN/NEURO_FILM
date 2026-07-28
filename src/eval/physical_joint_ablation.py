@@ -15,6 +15,7 @@ from PIL import Image, ImageDraw, ImageOps
 from scipy.ndimage import maximum_filter, uniform_filter
 from skimage.color import rgb2lab
 
+from scripts.pipeline_color_baseline import build_safe_lab_source_context
 from src.eval.b0_real_film_residual_fresh_confirmation import (
     validate_contract as validate_ao7_contract,
 )
@@ -22,7 +23,11 @@ from src.eval.density_witness_frontier import (
     encoded_srgb_to_linear,
     linear_srgb_to_encoded,
 )
-from src.eval.dual_champion_composition import build_operators, compose_rgb
+from src.eval.dual_champion_composition import (
+    build_anchor_operator_with_source_context,
+    build_operators,
+    compose_rgb,
+)
 from src.eval.global_frontier import new_hard_clipping_fraction, sha256_file
 from src.eval.physical_spatial_response import _profile
 from src.eval.sensitometry_print_composition import build_composition
@@ -59,6 +64,9 @@ class JointAblationRuntime:
     sample_budget: int
     artifact_residual_pair: tuple[str, str]
     source_edge_support_threshold: float | None
+    build_source_context_colour: Callable[
+        [np.ndarray], Callable[[np.ndarray], np.ndarray]
+    ]
 
 
 def _load_exact_json(
@@ -195,15 +203,7 @@ def load_contracts(
     base_spec = ao7["fixed_base"]
     candidate = ao7["fixed_candidate"]
 
-    def apply_colour(encoded: np.ndarray) -> np.ndarray:
-        base = compose_rgb(
-            np.asarray(encoded, dtype=np.float32),
-            order=base_spec["order"],
-            density_strength=float(base_spec["density_strength"]),
-            apply_anchor=apply_anchor,
-            apply_density=apply_density,
-            output_margin=int(base_spec["final_output_margin"]),
-        )
+    def apply_candidate(base: np.ndarray) -> np.ndarray:
         guard = candidate["factorization"]
         result = apply_factorized_boundary_guard(
             validated["operator"],
@@ -219,6 +219,46 @@ def load_contracts(
             ),
         )
         return linear_srgb_to_encoded(result.output)
+
+    def apply_colour(encoded: np.ndarray) -> np.ndarray:
+        base = compose_rgb(
+            np.asarray(encoded, dtype=np.float32),
+            order=base_spec["order"],
+            density_strength=float(base_spec["density_strength"]),
+            apply_anchor=apply_anchor,
+            apply_density=apply_density,
+            output_margin=int(base_spec["final_output_margin"]),
+        )
+        return apply_candidate(base)
+
+    def build_source_context_colour(
+        source: np.ndarray,
+    ) -> Callable[[np.ndarray], np.ndarray]:
+        if base_spec["order"] != "density_then_anchor":
+            raise ValueError("source-context composition requires density_then_anchor")
+        source_value = np.asarray(source, dtype=np.float32)
+        anchor_source = apply_density(
+            source_value, float(base_spec["density_strength"])
+        )
+        source_context = build_safe_lab_source_context(anchor_source)
+        fixed_anchor = build_anchor_operator_with_source_context(
+            validated["base_config"],
+            validated["base_validated"],
+            source_context,
+        )
+
+        def apply_with_context(encoded: np.ndarray) -> np.ndarray:
+            base = compose_rgb(
+                np.asarray(encoded, dtype=np.float32),
+                order=base_spec["order"],
+                density_strength=float(base_spec["density_strength"]),
+                apply_anchor=fixed_anchor,
+                apply_density=apply_density,
+                output_margin=int(base_spec["final_output_margin"]),
+            )
+            return apply_candidate(base)
+
+        return apply_with_context
 
     profile = _profile(p5a)
     print_operator = build_composition(composition, sensitometry, print_source)
@@ -248,6 +288,7 @@ def load_contracts(
         sample_budget=int(ao7["metrics"]["maximum_pixels_per_image"]),
         artifact_residual_pair=artifact_residual_pair,
         source_edge_support_threshold=source_edge_support_threshold,
+        build_source_context_colour=build_source_context_colour,
     )
     return contract, runtime
 
@@ -303,6 +344,45 @@ def render_arms(
     cheap_linear = apply_physical_display(linear, runtime, spatial=False)
     cheap = runtime.apply_colour(linear_srgb_to_encoded(cheap_linear))
     combined = runtime.apply_colour(physics)
+    wrong_linear = apply_physical_display(
+        encoded_srgb_to_linear(colour), runtime, spatial=True
+    )
+    wrong = linear_srgb_to_encoded(wrong_linear)
+    outputs = {
+        "colour_only": colour,
+        "physics_only": physics,
+        "combined": combined,
+        "cheap": cheap,
+        "wrong_order": wrong,
+    }
+    for name, output in outputs.items():
+        if (
+            output.shape != source.shape
+            or not np.all(np.isfinite(output))
+            or np.any(output < 0.0)
+            or np.any(output > 1.0)
+        ):
+            raise RuntimeError(f"{name} left encoded RGB domain")
+    return outputs
+
+
+def render_arms_with_source_context(
+    encoded: np.ndarray, runtime: JointAblationRuntime
+) -> dict[str, np.ndarray]:
+    """Render P7 arms with one source-derived AO6 context per frame."""
+
+    source = np.asarray(encoded, dtype=np.float64)
+    linear = encoded_srgb_to_linear(source)
+    apply_colour = runtime.build_source_context_colour(source)
+    colour = apply_colour(source)
+    legacy_colour = runtime.apply_colour(source)
+    if not np.array_equal(colour, legacy_colour):
+        raise RuntimeError("source-context colour-only arm changed frozen AO6 pixels")
+    physics_linear = apply_physical_display(linear, runtime, spatial=True)
+    physics = linear_srgb_to_encoded(physics_linear)
+    cheap_linear = apply_physical_display(linear, runtime, spatial=False)
+    cheap = apply_colour(linear_srgb_to_encoded(cheap_linear))
+    combined = apply_colour(physics)
     wrong_linear = apply_physical_display(
         encoded_srgb_to_linear(colour), runtime, spatial=True
     )
@@ -491,6 +571,11 @@ def evaluate_ablation(
     root: Path,
     correction: dict[str, Any],
     output_dir: Path,
+    render_fn: Callable[
+        [np.ndarray, JointAblationRuntime], dict[str, np.ndarray]
+    ] = render_arms,
+    evaluate_artifact_gate: bool = True,
+    save_visual_on_automatic_pass_only: bool = False,
 ) -> dict[str, Any]:
     contract, runtime = load_contracts(root, correction)
     gates = contract["automatic_gates"]
@@ -509,7 +594,7 @@ def evaluate_ablation(
                 )
                 / 255.0
             )
-        arms = render_arms(source, runtime)
+        arms = render_fn(source, runtime)
         output_hashes = {
             name: _save_rgb(
                 output_dir / "renders" / name / f"{sample_id}.png", values
@@ -588,7 +673,6 @@ def evaluate_ablation(
             visual_rows[sample_id] = {"source": source, **arms}
     if set(visual_rows) != set(contract["visual_protocol"]["fixed_ids"]):
         raise ValueError("visual population drift")
-    sheets = _save_sheets(visual_rows, contract, output_dir)
 
     combined_styles = [
         row["metrics"]["combined"]["style_delta_e76"] for row in rows
@@ -628,7 +712,9 @@ def evaluate_ablation(
         >= float(gates["minimum_full_to_cheap_median_delta_e76"]),
         "order_identifiable": float(np.median(wrong_order))
         >= float(gates["minimum_combined_to_wrong_order_median_delta_e76"]),
-        "isolated_excursions": sum(
+    }
+    if evaluate_artifact_gate:
+        decisions["isolated_excursions"] = sum(
             row["metrics"][
                 (
                     "combined_isolated_excursions_from_colour"
@@ -642,9 +728,12 @@ def evaluate_ablation(
                 )
             ]
             for row in rows
-        )
-        <= int(gates["maximum_isolated_excursion_count"]),
-    }
+        ) <= int(gates["maximum_isolated_excursion_count"])
+    sheets: dict[str, Any] | str
+    if save_visual_on_automatic_pass_only and not all(decisions.values()):
+        sheets = "forbidden_by_automatic_gate"
+    else:
+        sheets = _save_sheets(visual_rows, contract, output_dir)
     core = {
         "schema": "neuro_film.u6_p7a1_colour_physics_ablation_report.v1",
         "node": correction["node"],
