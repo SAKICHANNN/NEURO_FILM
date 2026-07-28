@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p8u_packed_lab_resources_contract.v1",
+  "node": "U6.P8U",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8t_current_phase_rss_decision_v1.json",
+  "parent_decision_sha256": "17a9e066637824b90651e2548520f4ed4938b469ca15e113eff8f562e4526ed8",
+  "implementation": {
+    "source_context_lab_storage": "first-half-of-consumed-float64-encoded-allocation",
+    "source_context_lab_dtype": "float32",
+    "source_context_reduction": "exact-legacy-numpy-mean-std",
+    "roundtrip_linear_refill_source": "retained-working-image-float32",
+    "roundtrip_linear_refill": "row-local-exact-oetf-then-eotf",
+    "roundtrip_linear_tile_rows": 128,
+    "pointwise_arithmetic_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact packed-Lab context and roundtrip-linear refill; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
