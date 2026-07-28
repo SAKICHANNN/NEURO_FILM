@@ -20,6 +20,12 @@ from src.color_match import (
     save_file_match_report,
 )
 from src.inference import sha256_file
+from src.preprocess import (
+    SourceProfile,
+    WorkingImage,
+    inspect_input,
+    save_rec2020_16_png,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +40,30 @@ def _image(path: Path, seed: int) -> None:
         dtype=np.uint8,
     )
     Image.fromarray(pixels, mode="RGB").save(path)
+
+
+def _rec2020_image(path: Path, seed: int) -> None:
+    pixels = np.random.default_rng(seed).uniform(
+        0.02,
+        0.98,
+        size=(29, 37, 3),
+    ).astype(np.float32)
+    save_rec2020_16_png(
+        WorkingImage(
+            pixels=pixels,
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("cicp", "BT.2020 SDR CLI test"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=16,
+            source_path=path,
+            warnings=[],
+        ),
+        path,
+    )
 
 
 def test_report_covers_run_hashes_diagnostics_and_safety(tmp_path: Path) -> None:
@@ -304,6 +334,52 @@ def test_cli_help_documents_the_rec2020_sdr_output_contract() -> None:
     assert completed.returncode == 0
     assert "Rec.2020 SDR" in completed.stdout
     assert "16-bit PNG" in completed.stdout
+
+
+def test_cli_commits_rec2020_sdr_output_recipe_and_report(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    recipe = tmp_path / "recipe.json"
+    report = tmp_path / "report.json"
+    _rec2020_image(reference, 27439)
+    _rec2020_image(source, 27440)
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--reference",
+            str(reference),
+            "--source",
+            str(source),
+            "--output",
+            str(output),
+            "--recipe",
+            str(recipe),
+            "--report",
+            str(report),
+            "--bit-depth",
+            "16",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    summary = json.loads(completed.stdout)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    assert summary["output_count"] == 1
+    assert summary["identity_fallback_count"] == 1
+    assert payload["outputs"][0]["candidate_diagnostics"][
+        "source_working_space"
+    ] == "linear_rec2020"
+    assert inspect_input(output).source_profile.kind == "cicp"
+    assert recipe.is_file()
 
 
 def test_cli_fails_without_partial_outputs_on_batch_mismatch(
