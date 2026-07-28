@@ -1,0 +1,61 @@
+{
+  "schema_id": "neuro-film.reference-match-file-memory-decision.v1",
+  "node": "P154",
+  "decision": "measured-improvement-below-frozen-gate",
+  "contract_commit": "b4975cc4d062cb7c9f224496ef700fbd2ee11b27",
+  "implementation_commit": "7c059e7667ae5c70e1c1239eb8a49f0f4dd6a20f",
+  "baseline_commit": "34259086fbbd6e479753a9f72bf77f2e0d463e93",
+  "candidate_commit": "de57918e23568ad6321262903addfac7f2349d3c",
+  "contract_sha256": "7c8fab9bfeaa648b3b7114829eb0d39ae0e2a49cc268c01e1d0a7fc082d8f2f4",
+  "runner_sha256": "148ef833c0ca15e8481d7aadeedacd2f5e27ea80c02540873cc233e2a03ca2eb",
+  "raw_report_sha256": "41e28f788cfb9905d568835934c1da4afc7fef92770b5952b1a58eb598134dca",
+  "environment": {
+    "platform": "windows-x86_64-local",
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "psutil": "7.2.2"
+  },
+  "workload": {
+    "width": 3000,
+    "height": 2000,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "execution_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "rss_sample_interval_seconds": 0.02,
+    "reference_sha256": "345174185e5618a0d37bacb1d8c3eda6bc9a99850966b580e210b32659a16244",
+    "source_sha256": "1e4de9f8ae4f9d77025199947304a84a98263d3569ee7d9f99ce06dca67092ee"
+  },
+  "run_peak_process_tree_rss_bytes": [
+    1383059456,
+    1353474048,
+    1316970496,
+    1395191808
+  ],
+  "baseline_median_peak_process_tree_rss_bytes": 1389125632,
+  "candidate_median_peak_process_tree_rss_bytes": 1335222272,
+  "median_rss_reduction_bytes": 53903360,
+  "candidate_to_baseline_median_rss_ratio": 0.9611961951041157,
+  "frozen_memory_gates": {
+    "minimum_median_rss_reduction_bytes": 67108864,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.92,
+    "passed": false
+  },
+  "artifact_identity": {
+    "output_sha256": "2fdb6f01c158c096f49d7e2108f61b6b706f0df873160ba17616068bf320c26d",
+    "recipe_sha256": "70a357489958a32bf28f9e7c59a28dfe0bd6350b3cdca499cd75cfce00877bce",
+    "normalized_report_sha256": "ef0fa5a01c50808b837c7f2f1b7429526e06c1421884ea94018af76a3c6fabec",
+    "cross_revision_exact": true
+  },
+  "safety_action": "identity-fallback",
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": false,
+  "interpretation": "The three outer object-lifetime changes preserve durable behavior and measurably reduce this workload, but they do not meet the preregistered whole-path peak-RSS target. Code-path inspection indicates larger full-frame safe-Lab and gamut intermediates remain; this decision does not attribute a measured phase peak.",
+  "claim_ceiling": "local-windows-python-file-path-rss-comparison-only-not-platform-or-algorithm-promotion"
+}

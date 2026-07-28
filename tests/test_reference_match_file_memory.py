@@ -13,6 +13,7 @@ from scripts.audit_reference_match_file_memory_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "reference_match_file_memory_v1.json"
+DECISION = ROOT / "configs" / "reference_match_file_memory_decision_v1.json"
 
 
 def _run(variant: str, rss: int, token: str = "same") -> dict:
@@ -117,3 +118,27 @@ def test_evaluate_runs_rejects_artifact_or_action_drift() -> None:
     runs[2] = _run("candidate", 700_000_000)
     runs[2]["worker_result"]["safety_action"] = "applied"
     assert not evaluate_runs(config, runs)["automatic_pass"]
+
+
+def test_p154_decision_preserves_the_failed_frozen_gate() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    baseline = decision["baseline_median_peak_process_tree_rss_bytes"]
+    candidate = decision["candidate_median_peak_process_tree_rss_bytes"]
+    assert decision["baseline_commit"] == config["baseline_commit"]
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert decision["median_rss_reduction_bytes"] == baseline - candidate
+    assert decision["candidate_to_baseline_median_rss_ratio"] == (
+        candidate / baseline
+    )
+    assert decision["frozen_memory_gates"] == {
+        "minimum_median_rss_reduction_bytes": config["gates"][
+            "minimum_median_rss_reduction_bytes"
+        ],
+        "maximum_candidate_to_baseline_median_rss_ratio": config["gates"][
+            "maximum_candidate_to_baseline_median_rss_ratio"
+        ],
+        "passed": False,
+    }
+    assert not decision["automatic_pass"]
+    assert decision["artifact_identity"]["cross_revision_exact"]

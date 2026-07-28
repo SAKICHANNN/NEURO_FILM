@@ -4132,3 +4132,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   activate only the already-frozen U5.R2S4D generated correct-condition
   experiment, and preserve all real-image, film, stock, fitting/training and
   LSM prohibitions. Goal remains active.
+## 2026-07-29 - Measure reference-match file-path lifetime changes
+
+- Node/parent goal: P154 under the independent Neuro-Film reference-match
+  consumer and main-integration preparation.
+- Skills used: `dev-research-reliability` primary;
+  `project-structure-steward` and `project-agent-log-discipline` secondary.
+- Decisions: froze P150 versus P151-P153 before measurement; retained the
+  preregistered 64 MiB / 0.92 RSS gates after they failed.
+- Files changed: one frozen config, one isolated audit script, focused tests,
+  one durable decision, contract/evidence docs and the completion-audit row.
+- Verification evidence: four fresh 6 MP file runs reproduce exact
+  output/recipe/normalized-report identity and identity fallback with zero
+  orphan/staging residue. Median process-tree RSS falls from 1,389,125,632 to
+  1,335,222,272 bytes, only 53,903,360 bytes / ratio 0.961196; formal report
+  SHA-256 is `41e28f78...34dca`, so the frozen memory gate fails.
+- Risks or unknowns: the remaining peak is not phase-attributed; code
+  inspection shows multiple full-frame safe-Lab/gamut intermediates, but P154
+  is not proof of the peak phase or bounded high-resolution readiness.
+- Handoff state: producer/main tasks received the negative result and exact
+  boundary. Consumer work may add phase attribution or await main-owned bounded
+  colour-engine evidence; A1/A4/A5 and product admission remain unchanged.
