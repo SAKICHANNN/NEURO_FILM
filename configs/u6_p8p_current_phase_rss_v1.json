@@ -2,7 +2,7 @@
   "schema": "neuro_film.u6_p8p_current_phase_rss_contract.v1",
   "node": "U6.P8P",
   "parent_decision": "configs/u6_p8o_row_linear_resources_decision_v1.json",
-  "parent_decision_sha256": "70837ff9e125163afdafef58b8a862ba543e2bb6250b33caac86cb92af619c019",
+  "parent_decision_sha256": "70837ff9e125163afdafe58b8a862ba543e2bb6250b33caac86cb92af619c019",
   "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
   "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
   "scenario": {
