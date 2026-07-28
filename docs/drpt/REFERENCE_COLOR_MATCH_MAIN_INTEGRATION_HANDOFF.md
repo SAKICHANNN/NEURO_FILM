@@ -2,26 +2,26 @@
 
 Date: 2026-07-28
 
-Status: **P1-P99 consumer payload is pinned by the immutable P100 v15 review
+Status: **P1-P104 consumer payload is pinned by the immutable P105 v16 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P99 payload head:
-  `10b1e4cc2b916f1a3d517efd15104ddfa069bc8b`;
+- complete reviewed P1-P104 payload head:
+  `e73a42ce8c2d0c45c0b2b7e2d89224d82efa05de`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `5d355bdb293f23addbf99ff66552838bbf684ace`;
+  `4eb571c785f9a5d5109767c11a3b1bf16eac8430`;
 - D-PCT read-only snapshot:
   `46b77bb`;
 - conflict-free main/evidence-head merge tree:
-  `78d4b707b6bb4ce78f642c5ade15654fbcf14548`.
+  `7b0da2298fd26424cc139cecc74dbf64cb5a9b6a`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -131,6 +131,15 @@ against main `5d355bd`: 380 payload paths, 320 main paths and zero overlap.
 V15 SHA-256 is
 `949ed4c63ce9afae0a395084b053ee25c0a6312aba99ffe4f781310fd5a4c440`;
 it binds v14 and never hashes itself.
+
+P101-P104 execute the unchanged P42 canonical core inside the dual-ABI Android
+instrumentation package. Two cold Android 14 x86_64 emulator boots reproduce
+all ten P28-P30 canonical identities, SHA failure atomicity and the complete
+staging truth table under stable identity `sha256:a3fa50e0...e03f20`.
+P105 v16 binds payload `e73a42c` against main `4eb571c`: 384 payload paths,
+333 main paths and zero overlap. V16 SHA-256 is
+`0174ab22fd913d340b1c86c6ac7133fe4204a1ccd1c0285f288ee27036bb67ae`;
+it binds v15 and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -257,11 +266,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P100 v15 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v14/v13/v12/v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..10b1e4c`; do not copy files manually and do not import
+2. Verify the committed P105 v16 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v15/v14/v13/v12/v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..e73a42c`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 10b1e4c <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree e73a42c <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -276,11 +285,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest detached main/P1-P99 merge: 1058 color-match tests passed, 22
+- latest detached main/P1-P104 merge: 1076 color-match tests passed, 22
   platform/data skips and zero failures;
 - latest isolated consumer full suite: 1898 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- detached merge tree is `78d4b707...4548`; the temporary worktree was removed;
+- detached merge tree is `7b0da229...9b6a`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real

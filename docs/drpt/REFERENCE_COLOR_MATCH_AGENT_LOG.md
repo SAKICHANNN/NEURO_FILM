@@ -3220,3 +3220,13 @@
   is Android x86_64 virtual runtime for consumer identity/staging arithmetic;
   physical arm64, Apple runtime, producer matching quality and product
   admission remain open.
+
+## 2026-07-28 - Publish and verify P105 integration v16
+
+- V16 binds P1-P104 payload `e73a42c` to read-only main `4eb571c` with
+  384/333 changed paths, zero overlap and exact v15 ancestry. Manifest/schema
+  SHAs are `0174ab22...b67ae` / `86459d13...ea8ad`.
+- Direct/schema rebuild plus v15/v16 tests pass 26/26. A fresh detached merge
+  produces tree `7b0da229...9b6a` and passes 1076 color-match tests with 22
+  platform/data skips and zero failures; the temporary worktree was removed.
+- State remains `review-ready-not-merged`; the main task owns review and merge.
