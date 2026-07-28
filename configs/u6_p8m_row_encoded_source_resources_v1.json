@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8m_row_encoded_source_resources_contract.v1",
+  "node": "U6.P8M",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8l_phase_rss_attribution_decision_v1.json",
+  "parent_decision_sha256": "929fc3d8ed3f1668413650e6ee8318787ea9de483eb4d55ab5553a2cf86928ac",
+  "implementation": {
+    "encoded_source_output": "one-preallocated-full-frame-float64",
+    "encoded_source_input_cast": "row-bounded-float64",
+    "encoded_source_tile_rows": 128,
+    "downstream_execution": "exact-p8h",
+    "pointwise_oetf_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-staged encoded-source construction; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
