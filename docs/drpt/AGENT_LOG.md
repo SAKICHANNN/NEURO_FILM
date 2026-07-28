@@ -6536,3 +6536,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the noncommutation of area averaging and exponential density-to-
   transmittance conversion. Preserve base-pitch P4B and test only a separately
   frozen development-only moment correction; area-resolved output is fallback.
+- P4C2 fits only baseline/shot scale on disjoint development fields while
+  preserving rate and physical kernel scaling. Fresh confirmatory fields pass:
+  mean error `.00512`, variance `.9669-1.0111`, ACF `.19277`, NPS `.47636`,
+  exact repeat/partition and zero brightening. Two reports are byte-identical
+  at `eb3dba31...975ea`. Retain the versioned LOD bank as generic development
+  evidence; next measure streamed 24MP material maps and inspect diagnostics.

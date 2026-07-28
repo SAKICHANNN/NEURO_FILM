@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4c2_moment_corrected_lod_decision.v1",
+  "node": "U6.P4C2",
+  "status": "automatic-pass-development-only",
+  "contract_sha256": "4e3b2bbd20e8867d18941b54ec066eeb167d52ef2ea582a668a36f8ff6434ca8",
+  "software_commit": "3480928ffa5e31ad6d703e303856505f61bcb6c1",
+  "report_sha256": "eb3dba31f32286806169aee833b5aa0756e0fd12a4a35c788e13061c021975ea",
+  "stable_evidence_id": "d823530e3ad08c4120d5bf551ddfceb5b452413c7fa9c89d5d146942cc2b1da1",
+  "metrics": {
+    "confirmatory_mean_abs_error_max": 0.005120068788528442,
+    "confirmatory_variance_ratio_min": 0.9668938682583033,
+    "confirmatory_variance_ratio_max": 1.0111462521447412,
+    "confirmatory_acf_abs_error_max": 0.192772893500222,
+    "confirmatory_nps_band_relative_error_max": 0.4763646331122143,
+    "repeat_and_partition_exact": true,
+    "domain_valid": true,
+    "brightening_violation_count": 0
+  },
+  "claim_ceiling": "generic-physical-inspired-lod-development-challenger",
+  "interpretation": [
+    "The versioned per-layer/per-LOD profile bank preserves the P4B shot family and fixed physical kernel scaling while correcting only development moments.",
+    "It is not a measured-film profile, a display-RGB effect, a stock/process/scanner calibration or a product runtime."
+  ],
+  "branch_decision": "Retain the moment-corrected LOD bank and open streamed 24MP material-map performance plus severe-artifact diagnostic views before any renderer integration."
+}
