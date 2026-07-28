@@ -6390,3 +6390,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - One-matrix response reaches `.04404` mean RGB RMSE versus identity `.16022`,
   full affine `.08249` and two-matrix `.04497`; retain it for an AO2
   real-photo Look Approximation frontier without stronger film claims.
+
+## 2026-07-28 - U5.R2AO2 closes single-strength photo transfer
+
+- Two 164-output manifests are exact at `d5477f56...2b37`; no survivor.
+- s0.50 is clipping-clean but only `3.09` non-basic; s0.75 reaches
+  `13.24/5.35` style/non-basic but clips 1.336% of the worst gold sample.
+  Preserve gates and test a fixed tone/chroma factorization next.
