@@ -3558,4 +3558,5 @@
   paths with zero overlap. Manifest/schema hashes are `69459544...75e43` /
   `af684c81...c3770`; merge tree `f2aaa316...aea94`. Detached merge
   `c21bc04` passes 1226 color-match tests with 29 skips and 1286 unrelated
-  deselections; the owned worktree was removed. V26 supersedes v25.
+  deselections; the owned worktree was removed. All 358 v1-v26 manifest
+  lineage tests pass. V26 supersedes v25.
