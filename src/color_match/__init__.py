@@ -196,6 +196,7 @@ from .dpct_batch import (
     resolve_dpct_batch_v1,
     validate_dpct_batch_resolution_v1,
 )
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .successor_admission import (
     FROZEN_GATE_POLICY_ID,
     REJECTED_CAPABILITY_ID,
@@ -686,6 +687,7 @@ __all__ = [
     "MATCH_PROFILE_DISPLAY_SRGB",
     "MATCH_PROFILE_SCENE_ACESCG",
     "MATCH_VIEW_SCHEMA_ID",
+    "MAX_REFERENCE_MATCH_BATCH_SOURCES",
     "TRANSFORM_BUNDLE_SCHEMA_ID",
     "WORKING_IMAGE_BRIDGE_ID",
     "REFERENCE_LOOK_RECIPE_SCHEMA_ID",

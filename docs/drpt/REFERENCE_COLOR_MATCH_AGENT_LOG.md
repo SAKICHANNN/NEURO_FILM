@@ -3358,3 +3358,19 @@
   272.24 seconds.
 - The temporary verification worktree is removed after validation. State
   remains `review-ready-not-merged`; main owns any merge.
+
+## 2026-07-28 - Align P115 one-reference/N-source resource limits
+
+- Audit found that both initial per-source and future shared-operator batch
+  contracts accepted unbounded source counts, while the runtime decode,
+  MatchView, metadata-attestation and stable-handle stages reject counts above
+  64. An oversized request could therefore become valid upstream and fail only
+  after expensive output materialization.
+- `MAX_REFERENCE_MATCH_BATCH_SOURCES=64` is now the single earliest consumer
+  limit. D-PCT and shared-reference batch construction and persisted validation
+  reject 65 before per-source work; all later runtime stages import the same
+  constant instead of repeating a literal.
+- Both consumer JSON schemas now state `maximum/maxItems=64`; their SHA-256
+  identities are `e57ee8b8...918f56` and `c2bb1719...e2d33c`.
+  The exact 64-source shared boundary passes, 65 fails in code and schema, and
+  147 related product-chain tests pass.

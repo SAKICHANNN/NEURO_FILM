@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 from typing import Any, Mapping
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .handle_verification_io import (
@@ -39,7 +40,7 @@ RUNTIME_QUALIFIED_SHARED_STAGING_VERIFICATION_CLAIM_CEILING = (
     "runtime-qualified-shared-staging-handle-observation-only-"
     "no-path-consumption-or-delivery"
 )
-MAX_VERIFIED_STAGING_OUTPUTS = 64
+MAX_VERIFIED_STAGING_OUTPUTS = MAX_REFERENCE_MATCH_BATCH_SOURCES
 _STATE = "verified-runtime-qualified-shared-staging"
 _P62_STATE = "committed-to-runtime-qualified-shared-staging"
 WINDOWS_HANDLE_OBSERVATION_SCOPE = (

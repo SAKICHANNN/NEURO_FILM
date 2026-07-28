@@ -16,6 +16,7 @@ from src.color_match import (
     make_match_view,
 )
 from src.color_match.shared_operator_batch import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     SHARED_CLAIM_CEILING,
     make_shared_reference_operator_v1,
     prepare_shared_operator_apply_v1,
@@ -274,3 +275,43 @@ def test_batch_identity_mutation_and_unknown_json_fail_closed() -> None:
     payload["unknown"] = True
     with pytest.raises(ReferenceMatchContractError, match="fields differ"):
         shared_operator_batch_from_json(json.dumps(payload))
+
+
+def test_batch_source_limit_matches_runtime_boundary() -> None:
+    reference, sources, operator, applies, _ = _batch()
+    oversized_sources = (sources[0],) * (
+        MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    )
+    oversized_applies = (applies[0],) * (
+        MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    )
+    with pytest.raises(ReferenceMatchContractError, match="inventory"):
+        resolve_shared_operator_batch_v1(
+            operator=operator,
+            reference=reference,
+            sources=oversized_sources,
+            applies=oversized_applies,
+        )
+
+    boundary_sources = tuple(
+        _prepared(0.3 + index / 1000.0)
+        for index in range(MAX_REFERENCE_MATCH_BATCH_SOURCES)
+    )
+    boundary_applies = tuple(
+        _apply(operator, source, index, f"limit-{index}")
+        for index, source in enumerate(boundary_sources)
+    )
+    boundary = resolve_shared_operator_batch_v1(
+        operator=operator,
+        reference=reference,
+        sources=boundary_sources,
+        applies=boundary_applies,
+    )
+    assert boundary.source_count == MAX_REFERENCE_MATCH_BATCH_SOURCES
+    oversized_payload = boundary.to_dict()
+    oversized_payload["source_count"] += 1
+    oversized_payload["sources"].append(oversized_payload["sources"][0])
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    assert list(
+        Draft202012Validator(schema).iter_errors(oversized_payload)
+    )

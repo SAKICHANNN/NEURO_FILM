@@ -14,6 +14,7 @@ import zlib
 from PIL import Image
 import tifffile
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .srgb_icc_profile import srgb_icc_profile_v1
@@ -604,7 +605,7 @@ def validate_runtime_staging_color_attestation_record_v1(
         or isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
-        or value.source_count > 64
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or not isinstance(value.outputs, tuple)
         or value.source_count != len(value.outputs)
     ):

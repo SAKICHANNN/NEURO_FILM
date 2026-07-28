@@ -13,6 +13,7 @@ import pytest
 from src.color_match import (
     DPCT_BATCH_RESOLUTION_SCHEMA_ID,
     MATCH_PROFILE_DISPLAY_SRGB,
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     PreparedMatchViewV1,
     PromotionDecision,
     ReferenceMatchContractError,
@@ -362,3 +363,36 @@ def test_unknown_json_field_and_empty_batch_fail_closed() -> None:
     payload["surprise"] = True
     with pytest.raises(ReferenceMatchContractError, match="keys mismatch"):
         dpct_batch_resolution_from_json(json.dumps(payload))
+
+
+def test_dpct_batch_rejects_more_sources_than_runtime_can_verify() -> None:
+    reference = _reference()
+    candidate = _candidate(
+        reference, provenance="b", intent="1", promoted=True
+    )
+    sources = (candidate[0],) * (MAX_REFERENCE_MATCH_BATCH_SOURCES + 1)
+    outcomes = (candidate[1],) * (MAX_REFERENCE_MATCH_BATCH_SOURCES + 1)
+    with pytest.raises(ReferenceMatchContractError, match="source limit"):
+        resolve_dpct_batch_v1(
+            reference=reference,
+            sources=sources,
+            outcomes=outcomes,
+        )
+
+    one = resolve_dpct_batch_v1(
+        reference=reference,
+        sources=(candidate[0],),
+        outcomes=(candidate[1],),
+        adjudications=(candidate[2],),
+    )
+    oversized_payload = one.to_dict()
+    oversized_payload["source_count"] = (
+        MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    )
+    oversized_payload["sources"] = oversized_payload["sources"] * (
+        MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    )
+    schema = _json(SCHEMA)
+    assert list(
+        Draft202012Validator(schema).iter_errors(oversized_payload)
+    )

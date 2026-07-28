@@ -31,7 +31,7 @@
     },
     "reference_view_id": {"$ref": "#/$defs/hash"},
     "producer_reference_view_id": {"$ref": "#/$defs/producer_hash"},
-    "source_count": {"type": "integer", "minimum": 1},
+    "source_count": {"type": "integer", "minimum": 1, "maximum": 64},
     "atomic_state": {
       "enum": ["pending-product-guard", "identity-fallback"]
     },
@@ -41,6 +41,7 @@
     "sources": {
       "type": "array",
       "minItems": 1,
+      "maxItems": 64,
       "items": {"$ref": "#/$defs/source"}
     }
   },

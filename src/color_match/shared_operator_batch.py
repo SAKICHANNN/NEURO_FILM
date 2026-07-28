@@ -10,6 +10,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_adapter import PreparedMatchViewV1, validate_prepared_match_view
@@ -462,6 +463,7 @@ def resolve_shared_operator_batch_v1(
         not isinstance(sources, Sequence)
         or isinstance(sources, (str, bytes))
         or not sources
+        or len(sources) > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or not isinstance(applies, Sequence)
         or isinstance(applies, (str, bytes))
         or len(sources) != len(applies)
@@ -544,6 +546,7 @@ def validate_shared_operator_batch_v1(
         isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.sources)
     ):
         raise ReferenceMatchContractError(
@@ -626,6 +629,7 @@ def shared_operator_batch_from_json(encoded: str) -> SharedOperatorBatchV1:
 
 
 __all__ = [
+    "MAX_REFERENCE_MATCH_BATCH_SOURCES",
     "SHARED_APPLY_RECEIPT_SCHEMA_ID",
     "SHARED_BATCH_POLICY_ID",
     "SHARED_BATCH_SCHEMA_ID",

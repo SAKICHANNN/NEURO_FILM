@@ -7,6 +7,7 @@ import json
 import re
 from typing import Any, Mapping, Sequence
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_acceptance import (
@@ -239,6 +240,10 @@ def resolve_dpct_batch_v1(
         raise ReferenceMatchContractError("batch sources must be a sequence")
     if not sources:
         raise ReferenceMatchContractError("batch sources must not be empty")
+    if len(sources) > MAX_REFERENCE_MATCH_BATCH_SOURCES:
+        raise ReferenceMatchContractError(
+            "batch sources exceed the product source limit"
+        )
     if not isinstance(outcomes, Sequence) or isinstance(
         outcomes, (str, bytes)
     ):
@@ -413,6 +418,7 @@ def validate_dpct_batch_resolution_v1(
         isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.sources)
     ):
         raise ReferenceMatchContractError(
