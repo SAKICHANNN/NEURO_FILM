@@ -654,7 +654,7 @@ FLUX.2 gate:
 | U6.4 | pending | Bloom separated from halation | U6.1 | Separate parameter/evaluator/UI layer |
 | U6.5 | pending | Creative dust/scratch/light leak labels | U2.1 | Never included in calibrated score silently |
 | U6.6 | pending | 100MP/video determinism | U1.6, U6.1–U6.4 | Seam-free stills; temporal report |
-| U6.P0-P1 | ready | Freeze typed physical-domain/profile/performance contracts, then build the offline float64 reference simulator | AO9 closure + U2.2/U6 history | Domain mismatch fails closed; density/transmittance roundtrip and deterministic synthetic witnesses pass; no stock-calibration claim |
+| U6.P0-P1 | in progress: P0/P1A pass | Freeze typed physical-domain/profile/performance contracts, then build offline float64 reference simulators | AO9 closure + U2.2/U6 history | P0 typed domains/profile/counter and 1207-test regression pass. P1A full-frame positive scatter has exact repeat, `5.44e-14` impulse-energy error and zero linearity error; generic reference only. P1B structure reference and P3 compiled challenger next |
 | U6.P2-P9 | gated | Physical exposure/development, halation, image structure, spatial/scanner response, combined evaluation, profile compilation and still/video runtime | U6.P0/P1 evidence plus node-specific data gates | Preserve U6.1-U6.6 history; use `docs/planning/PHYSICAL_FILM_IMAGING_PROGRAM_2026.md` |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.

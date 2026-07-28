@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p1_reference_scatter_decision.v1",
+  "node": "U6.P1A",
+  "status": "automatic-pass-reference-only",
+  "contract_sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b",
+  "software_commit": "0343231afa2c5545d3bea512c8e189a09c563a03",
+  "report_sha256": "aab9a02d63a6832f4e65c250125a2777c63a6c50436ec242b34790ddae608b1c",
+  "stable_evidence_id": "73d789e6b9290c779a5b4faa5742335f19a4fb09e5a697f3df1723d144070b42",
+  "metrics": {
+    "kernel_sum_abs_error_max": 0.0,
+    "impulse_energy_abs_error_max": 5.440092820663267e-14,
+    "linearity_max_abs_error": 0.0,
+    "minimum_output": 0.0,
+    "far_halo_red_over_blue": 5.99999999999995
+  },
+  "claim_ceiling": "generic-physical-inspired-reference-only",
+  "interpretation": [
+    "The positive full-frame float64 PSF mixture is a deterministic numerical reference for exposure-domain scatter.",
+    "The witness does not identify a stock, process, scanner or measured halation profile.",
+    "No photograph, display-RGB composite or product runtime is authorized."
+  ],
+  "branch_decision": "Open a compiled separable scatter challenger against the fixed reference and continue the independent high-fidelity developed-structure reference."
+}

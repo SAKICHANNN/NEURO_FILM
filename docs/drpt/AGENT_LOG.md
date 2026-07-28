@@ -6495,3 +6495,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - U6.P0 is the next executable leaf: typed domain/unit/profile identities and
   fail-closed roundtrip tests, followed by an offline float64 reference
   simulator. Controlled physical data remains a later calibration gate.
+- P0 now passes 12 focused tests and the full repository passes 1207/1207.
+  P1A's positive full-frame float64 PSF reference produces two byte-identical
+  reports (`aab9a02d...08b1c`), `5.44e-14` impulse-energy error, zero measured
+  linearity error and no negative exposure. It is generic synthetic reference
+  evidence only; compiled scatter and developed-structure references remain.
