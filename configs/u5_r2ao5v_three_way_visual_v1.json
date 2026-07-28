@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao5v-three-way-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO5V",
+  "parent_config_sha256": "bcfdcb5011cf4190353411593babb5bb6bf7b6d2f802de71c72a2b39da975a3f",
+  "parent_automatic_report_sha256": "3c7455712560529b0d72a1a41e0749b9792d126207e5b449d6bf197bff8327bf",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "looks": [
+    {
+      "role": "combined_proxy",
+      "candidate_id": "tone_s50__chroma_s100",
+      "manifest": "outputs/u5_r2ao5f_combined_velvia_factorized_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "8084d22ce182971d102271044c71268137a869dbd4b23fb205f8eaec9c7545a6",
+      "automatic_style": 8.467193567299205,
+      "automatic_non_basic": 5.024279302032839,
+      "worst_gold_new_hard_clipping_fraction": 0.0
+    },
+    {
+      "role": "chart_proxy",
+      "candidate_id": "tone_s50__chroma_s100",
+      "manifest": "outputs/u5_r2ao3_factorized_chart_boundary_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "f368b05a45d36b57f423f57fb46e02d568199a1f502df3827dbb730b1c09b278",
+      "automatic_style": 10.527725348540917,
+      "automatic_non_basic": 5.534453367413281,
+      "worst_gold_new_hard_clipping_fraction": 0.0
+    },
+    {
+      "role": "b0_comparator",
+      "candidate_id": "density_then_anchor__density_s50",
+      "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+      "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+      "status": "strongest_retained_B0_development_comparator_not_independently_promoted"
+    }
+  ],
+  "blind": {
+    "round_count": 3,
+    "seed": 20260729,
+    "source_visible": true,
+    "look_labels_hidden": true,
+    "same_nine_gold_rows_each_round": true,
+    "three_distinct_permutations_required": true,
+    "review_format": "rank_A_B_C_by_visible_film_style_and_appeal_subject_to_severe_veto",
+    "minimum_pairwise_round_wins": 2
+  },
+  "decisions": {
+    "combined_direction_improves_chart_proxy": "combined_proxy ranks above chart_proxy in at least two rounds",
+    "combined_becomes_B0_champion": "combined_proxy ranks above b0_comparator in at least two rounds"
+  },
+  "full_resolution": {
+    "combined_proxy_all_nine_gold_required": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "inspect": [
+      "face_skin",
+      "text_logo",
+      "fine_texture",
+      "smooth_gradients",
+      "deep_shadows",
+      "highlights",
+      "boundary_pileup",
+      "posterization",
+      "id11_red_speckle"
+    ]
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "three-layout autonomous B0 visual ranking of one combined 71-pair Velvia display-proxy look, one 24-chart proxy and one retained project comparator; not independent votes, owner/population preference, stock response, calibration or product promotion"
+}
