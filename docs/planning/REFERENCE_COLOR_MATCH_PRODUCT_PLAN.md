@@ -205,10 +205,10 @@ with a selected stock, but reference matching alone is labeled
 | P53B | DONE | implement shared FilmFX run/report | cross-bind plan/verification/files, deterministic per-source seeds, atomic outputs/report | `a2089cf`; schema/code/tests | FilmFX staging only |
 | P53C | DONE | prove base tamper/order/rollback closure | live reverify, foreign plan, protected overwrite, identity/order/seed mutation and injected commit rollback all fail closed | 24 focused tests | fail closed |
 | P53D | DONE | propagate evidence and peer handoff | 548 color-match; 1443 pass/1 skip/36 known; latest-main merge 24 pass | evidence commit | restart verification next |
-| P54A | IN PROGRESS | freeze shared FilmFX restart verification | caller binds exact P53 report SHA/run ID; verifier rereads bounded report, every P50 base and every P53 output without writes | plan commit | no delivery |
-| P54B | READY | implement shared FilmFX verifier | canonical verification identity preserves P49/P48/P47 lineage plus ordered receipt/result identities | code/schema/tests | verified staging only |
-| P54C | BLOCKED ON P54B | prove restart tamper/relocation/claim closure | report/input/output tamper or absence, relocation, identity/order/seed/claim mutation and unknown fields fail closed | adversarial tests | fail closed |
-| P54D | BLOCKED ON P54C | propagate evidence and peer handoff | focused/full/latest-main merge evidence | evidence commit | later authorization only |
+| P54A | DONE | freeze shared FilmFX restart verification | caller binds exact P53 report SHA/run ID; verifier rereads bounded report, every P50 base and every P53 output without writes | `10a231d` | no delivery |
+| P54B | DONE | implement shared FilmFX verifier | canonical verification identity preserves P49/P48/P47 lineage plus ordered receipt/result identities | `e987c11`; code/schema/tests | verified staging only |
+| P54C | DONE | prove restart tamper/relocation/claim closure | report/input/output tamper or absence, relocation, identity/order/seed/claim mutation and unknown fields fail closed | 36 focused tests | fail closed |
+| P54D | DONE | propagate evidence and peer handoff | 560 color-match; 1455 pass/1 skip/36 known; latest-main merge 36 pass | evidence commit | later authorization only |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

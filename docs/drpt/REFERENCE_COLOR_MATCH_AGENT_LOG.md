@@ -2124,6 +2124,32 @@
   `verified-shared-filmfx-staging-not-delivered`; no authorization, export,
   app-level applied state or product promotion.
 
+## 2026-07-28 - Implement and verify P54 shared FilmFX restart verification
+
+- Implementation: `e987c11` adds a canonical no-write shared FilmFX verifier,
+  strict schema, public exports and adversarial restart tests.
+- Caller authority: exact report SHA-256 and P53 run ID are mandatory. The
+  verifier then independently parses the bounded canonical report, checks its
+  original location, and rehashes every recorded P50 input and P53 output.
+- Preserved lineage: P52 composition, P51 verification, P50 run, P49
+  authorization, P48 numeric guard, P47 operator and each ordered
+  apply-receipt/producer-result remain inside the verification identity.
+- Read-only proof: two identical verifications reproduce the same identity
+  while bytes and mtimes for every output/report remain unchanged.
+- Failure closure: report tamper/relocation, input/output tamper or absence,
+  foreign expected run, state/claim/order/seed/chain mutation and unknown
+  fields reject.
+- Identities: implementation SHA-256
+  `c3e036040235a0f56fdb4ae44ca34faee0b90a504e16f58346edf8de2edd7c39`;
+  schema `70aafd69a66eda74dab76361cd1a3f95022c7a835ef743ad4463e53ea79fad0f`.
+- Verification: 36 focused, 560 complete `test_color_match*`, and full 1455
+  pass/1 skip/36 unchanged failures. Latest main `1dce729`, merge tree
+  `d657e1bc30b8c1a88e70eec1a9e6e3a468b5b470`; a fresh detached merge
+  passes all 36 P53/P54/P37 verifier tests and was removed.
+- Producer propagation: SPGIN-v0 closed negative at `a2e5ed9`; 0/12 frozen
+  safety configurations pass, and no model/capability/package/shared fixture
+  exists. P45/P49 remain closed and P54 consumes nothing from SPGIN.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
