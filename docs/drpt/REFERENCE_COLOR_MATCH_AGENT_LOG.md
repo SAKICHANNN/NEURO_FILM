@@ -2230,6 +2230,18 @@
 - Reality gate remains closed: the transaction is proven only with synthetic
   promoted fixtures because no current producer satisfies P45/P49.
 
+## 2026-07-28 - Freeze P57 shared local-delivery restart verification
+
+- Node/parent goal: P57A-D / restart integrity after P56.
+- Contract: caller supplies exact P56 report SHA-256 and delivery ID. A
+  bounded read-only verifier parses the canonical report, checks its recorded
+  location, and rehashes every P53 staging source and every delivered file.
+- Lineage: preserve P55 authorization, P54 FilmFX verification and every
+  ordered P47 apply-receipt/producer-result identity in the verification.
+- State/ceiling: `verified-shared-local-delivery` /
+  `verified-local-files-shared-reference-look`; this remains file integrity,
+  not app-level applied state or real producer admission.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -217,6 +217,10 @@ with a selected stock, but reference matching alone is labeled
 | P56B | DONE | implement shared delivery transaction/report | atomic ordered outputs+canonical report with rollback-safe replacement | `d4a5d82`; code/schema/tests | files delivered, not applied |
 | P56C | DONE | prove tamper/foreign auth/path/rollback closure | pre-write live tamper, foreign P55, protected overwrite, bad extension/count, injected commit failure | 8 dedicated tests | fail closed |
 | P56D | DONE | propagate evidence and peer handoff | 579 color-match; 1474 pass/1 skip/36 known; latest-main merge 19 pass | evidence commit | restart verification next |
+| P57A | IN PROGRESS | freeze shared local-delivery restart verification | caller binds exact P56 report SHA/delivery ID; bounded reread and rehash every P53 staging source plus delivered file | plan commit | read-only |
+| P57B | READY | implement canonical shared delivery verifier | retain P55/P54 and ordered receipt/result identity through restart | code/schema/tests | verified files only |
+| P57C | BLOCKED ON P57B | prove report/source/delivery tamper and claim closure | tamper/missing/relocation/order/identity/state/claim mutations reject | adversarial tests | fail closed |
+| P57D | BLOCKED ON P57C | propagate evidence and peer handoff | focused/full/latest-main merge evidence | evidence commit | real path remains gated |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
