@@ -237,6 +237,10 @@ with a selected stock, but reference matching alone is labeled
 | P61B | DONE | implement canonical qualification decision | require P49 authorized plus all four P60 targets factual-ready | `77a8d84`; code/schema/tests | no staging write |
 | P61C | DONE | prove foreign/tampered/weak-runtime closure | P49/declaration/evidence substitution, fallback, missing target and identity mutation reject | 15 dedicated tests | fail closed |
 | P61D | DONE | propagate guard and identify durable consumer | 636 all-color; 1531 pass/1 skip/36 known; latest-main merge 57 pass | evidence commit | P62 must version durable staging |
+| P62A | IN PROGRESS | freeze runtime-qualified durable shared staging | add a new atomic report binding exact P61/P60/P49/P48/P47 identities without mutating P50 | plan commit | staging only |
+| P62B | READY | implement atomic runtime-qualified commit | validate exact P61 before any directory or temporary-file write; bind encoded output bytes and report | code/schema/tests | no delivery |
+| P62C | BLOCKED ON P62B | prove substitution/rollback/path/state closure | foreign or fallback P61, evidence/declaration/authorization drift, output/path/report collision and injected commit failure reject | adversarial tests | fail closed |
+| P62D | BLOCKED ON P62C | propagate evidence and reserve restart verifier | all-color/full/latest-main evidence; identify P63 read-only restart consumer | evidence commit | no retroactive P50/P51 relabel |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

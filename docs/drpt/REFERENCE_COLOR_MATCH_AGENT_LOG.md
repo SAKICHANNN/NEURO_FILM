@@ -2459,6 +2459,30 @@
   Vulkan, D3D11, CUDA, platform or algorithm source was copied into the
   consumer.
 
+## 2026-07-28 - Freeze P62 runtime-qualified durable staging
+
+- Node/parent goal: P62A-D / first durable consumer of exact P61.
+- Gap: P50 correctly commits P49-authorized shared outputs, but predates P60
+  factual runtime evidence and P61 qualification. Its report cannot be
+  retroactively relabeled or treated as runtime-qualified.
+- Contract: add a separately versioned atomic staging report that binds the
+  exact P61 qualification, P60 runtime evidence, P45 declaration, P49
+  authorization, P48 numeric guard, P47 batch/operator and each encoded output
+  byte. Exact P61 state `runtime-qualified-for-staging` and factual
+  `runtime_ready=true` are required before any directory, temporary file or
+  destination is written.
+- Atomicity: reuse the established staging encoder and rollback-safe batch
+  replacement primitive. Output files and the new report commit together;
+  collision, encode failure or injected replacement failure restores every
+  previous destination.
+- Identity/versioning: preserve all P47-P51 and P60-P61 v1 identities. P62
+  gets a new schema/state/claim ceiling and carries qualification,
+  runtime-evidence and declaration IDs explicitly. A later P63 read-only
+  verifier, rather than historical P51, must restart-verify this report.
+- Scope: consumer transaction/schema/tests/docs only. No producer call,
+  algorithm promotion, FilmFX, delivery, main merge, platform implementation
+  or use of the Windows-only R0bw evidence as a four-target substitute.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
