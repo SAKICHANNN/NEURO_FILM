@@ -1,4 +1,4 @@
-﻿{
+{
   "schema": "neuro_film.u6_p7a3_source_supported_artifact_audit_contract.v1",
   "node": "U6.P7A3",
   "parent_audit": "configs/u6_p7a2_spatial_residual_artifact_audit_v1.json",
