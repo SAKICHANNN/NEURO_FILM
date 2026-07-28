@@ -1,0 +1,197 @@
+{
+  "schema": "neuro_film.u6_p6a_scanner_profile_contract.v1",
+  "node": "U6.P6A",
+  "parents": {
+    "p5d_decision_sha256": "9c569258310999b95f270321beabaeca15367a928cf6f3a16ebe5ceb1ab6603d"
+  },
+  "claim_ceiling": "generic-scanner-nuisance-output-profile-development",
+  "domain_contract": {
+    "input": "film-transmittance",
+    "output": "scanner-linear-signal",
+    "film_spatial_scanner_mtf_must_be_zero": true,
+    "scanner_profile_stock_id_forbidden": true,
+    "hard_clip_forbidden": true,
+    "single_quantization_deferred": true
+  },
+  "profiles": {
+    "identity": {
+      "profile_id": "scanner-identity-v1",
+      "illuminant_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "spectral_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "local_flare_fraction": 0.0,
+      "global_flare_fraction": 0.0,
+      "flare_sigma_um": 0.0,
+      "dmax_density_rgb": null,
+      "mtf_sigma_um_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shot_noise_variance_scale": 0.0,
+      "read_noise_variance": 0.0,
+      "seed": 0
+    },
+    "scanner_a": {
+      "profile_id": "generic-scanner-a-v1",
+      "illuminant_rgb": [
+        0.96,
+        1.0,
+        0.92
+      ],
+      "spectral_matrix": [
+        [
+          0.88,
+          0.08,
+          0.02
+        ],
+        [
+          0.04,
+          0.92,
+          0.03
+        ],
+        [
+          0.02,
+          0.1,
+          0.84
+        ]
+      ],
+      "local_flare_fraction": 0.03,
+      "global_flare_fraction": 0.005,
+      "flare_sigma_um": 8.0,
+      "dmax_density_rgb": [
+        3.6,
+        3.8,
+        3.5
+      ],
+      "mtf_sigma_um_rgb": [
+        1.1,
+        1.0,
+        1.2
+      ],
+      "shot_noise_variance_scale": 0.000002,
+      "read_noise_variance": 0.0000002,
+      "seed": 2026072801
+    },
+    "scanner_b": {
+      "profile_id": "generic-scanner-b-v1",
+      "illuminant_rgb": [
+        1.0,
+        0.94,
+        0.98
+      ],
+      "spectral_matrix": [
+        [
+          0.9,
+          0.03,
+          0.03
+        ],
+        [
+          0.08,
+          0.84,
+          0.04
+        ],
+        [
+          0.03,
+          0.06,
+          0.88
+        ]
+      ],
+      "local_flare_fraction": 0.015,
+      "global_flare_fraction": 0.012,
+      "flare_sigma_um": 14.0,
+      "dmax_density_rgb": [
+        4.0,
+        3.7,
+        3.9
+      ],
+      "mtf_sigma_um_rgb": [
+        0.8,
+        1.3,
+        1.0
+      ],
+      "shot_noise_variance_scale": 0.0000012,
+      "read_noise_variance": 0.00000035,
+      "seed": 2026072802
+    }
+  },
+  "synthetic_charts": {
+    "shape": [
+      384,
+      1024
+    ],
+    "pixel_pitch_um": 1.0,
+    "density_wedge": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "slanted_edge_low_high_transmittance": [
+      0.02,
+      0.8
+    ],
+    "slant_degrees": 5.0
+  },
+  "automatic_gates": {
+    "identity_exact": true,
+    "repeat_exact": true,
+    "finite_nonnegative_output": true,
+    "minimum_each_stage_ablation_max_abs": 0.000001,
+    "minimum_scanner_a_vs_b_max_abs": 0.005,
+    "minimum_seed_change_max_abs": 0.000001,
+    "maximum_noise_new_boundary_fraction": 0.0,
+    "scanner_mtf50_must_be_nyquist_bounded": true,
+    "dmax_floor_order_must_match_profile": true
+  },
+  "research_basis": [
+    {
+      "source": "FIAF Digital Statement Part I",
+      "url": "https://www.fiafnet.org/pages/E-Resources/Digital-Statement.html",
+      "use": "scanner illumination, optics, sensor, reconstruction and processing are separate acquisition variables"
+    },
+    {
+      "source": "FIAF Digital Statement Part II",
+      "url": "https://www.fiafnet.org/images/tinyUpload/2022/05/Digital_Statement_Part_II_2021_V13-validated.pdf",
+      "use": "lens glare, illumination, sensor noise and resolution affect scan output independently of film"
+    },
+    {
+      "source": "ISO 21550 overview, Measuring Scanner Dynamic Range",
+      "url": "https://www.imaging.org/common/uploaded%20files/pdfs/Papers/2002/PICS-0-267/7110.pdf",
+      "use": "dynamic range must be characterized with noise and flare, not bit depth alone"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "encode scanner profile as film_stock_id or latent stock mode",
+    "reuse the P5 scanner MTF and silently double-blur",
+    "hard clip scanner signal or quantize inside the scanner stage",
+    "claim a generic scanner profile is measured or calibrated",
+    "use source/uploader clusters as scanner ground truth"
+  ],
+  "branch_rule": {
+    "pass": "retain the scanner boundary and proceed to repeat-scan identifiability/data-gap plus runtime compilation",
+    "fail": "close only the failed scanner component and preserve identity scanner plus explicit nuisance boundary"
+  }
+}
