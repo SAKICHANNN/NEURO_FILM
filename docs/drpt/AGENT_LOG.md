@@ -6316,3 +6316,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Endpoint normalization makes sigmoid amplitude and scan weights
   gauge-equivalent, so amplitude is fixed rather than falsely scored as an
   identifiable recovered parameter.
+
+## 2026-07-28 - Implement U5.R2AN0 paired fitter and exact runner
+
+- Added a deterministic float64 least-squares fitter for the existing J0
+  operator, with structural row-stochastic/determinant-safe matrices and an
+  explicit one-matrix ablation. The fitter scores observable output recovery;
+  it does not claim gauge-dependent parameter identity.
+- Added the frozen 3,168-row generator, complement-held group split,
+  structural checks and two-child exact-repeat runner. A full pre-commit smoke
+  run passes all frozen gates for all three witnesses; formal clean-commit
+  execution remains next.
+- Nine focused AN0/J0 tests pass, including non-unit-amplitude truth recovery,
+  exact design counts, fail-closed inputs and matrix determinant coverage.
