@@ -5,8 +5,11 @@ import json
 import pytest
 
 from scripts.run_android_srgb_quantizer_emulator_v1 import (
+    EMULATOR_TARGETS,
     EmulatorRuntimeError,
+    execute,
     _instrumentation_result,
+    _validate_host_architecture,
     _validate_instrumentation,
 )
 
@@ -92,3 +95,24 @@ def test_instrumentation_parser_fails_closed(mutation) -> None:
     )
     with pytest.raises(EmulatorRuntimeError):
         _validate_instrumentation(mutation(complete))
+
+
+def test_emulator_targets_separate_abi_resources() -> None:
+    assert set(EMULATOR_TARGETS) == {"x86_64", "arm64-v8a"}
+    x86 = EMULATOR_TARGETS["x86_64"]
+    arm = EMULATOR_TARGETS["arm64-v8a"]
+    assert x86["port"] != arm["port"]
+    assert x86["avd_name"] != arm["avd_name"]
+    assert x86["report"] != arm["report"]
+    assert x86["accel"] == "on"
+    assert arm["accel"] == "off"
+    assert str(arm["system_image"]).endswith("default;arm64-v8a")
+    _validate_host_architecture("x86_64", machine="AMD64")
+    _validate_host_architecture("arm64-v8a", machine="aarch64")
+    with pytest.raises(
+        EmulatorRuntimeError,
+        match="requires a matching host architecture",
+    ):
+        _validate_host_architecture("arm64-v8a", machine="AMD64")
+    with pytest.raises(EmulatorRuntimeError, match="unsupported emulator ABI"):
+        execute("armeabi-v7a")

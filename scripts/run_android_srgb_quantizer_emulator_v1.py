@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import argparse
 from datetime import UTC, datetime
 import hashlib
 import json
 import os
 from pathlib import Path
+import platform
 import subprocess
 import time
 from typing import Any
@@ -19,14 +21,42 @@ OWNED_LOGS = ROOT / "outputs/tmp/android-emulator-runtime"
 PACKAGE_REPORT = (
     ROOT / "outputs/eval/android_srgb_quantizer_testlab_package_v1.json"
 )
-RUNTIME_REPORT = (
+X86_RUNTIME_REPORT = (
     ROOT / "outputs/eval/android_srgb_quantizer_emulator_runtime_v1.json"
 )
 AVDMANAGER = OWNED_SDK / "cmdline-tools/latest/bin/avdmanager.bat"
-AVD_NAME = "nf_019f9f37_p90_api34"
-SYSTEM_IMAGE = "system-images;android-34;google_apis;x86_64"
-EMULATOR_PORT = 5580
-SERIAL = f"emulator-{EMULATOR_PORT}"
+EMULATOR_TARGETS = {
+    "x86_64": {
+        "avd_name": "nf_019f9f37_p90_api34",
+        "system_image": "system-images;android-34;google_apis;x86_64",
+        "system_package": "system-images/android-34/google_apis/x86_64/package.xml",
+        "port": 5580,
+        "accel": "on",
+        "host_arches": ("amd64", "x86_64"),
+        "boot_timeout": 240.0,
+        "claim_ceiling": (
+            "Android-14-x86_64-emulator-consumer-quantizer-runtime-only"
+        ),
+        "report": X86_RUNTIME_REPORT,
+    },
+    "arm64-v8a": {
+        "avd_name": "nf_019f9f37_p106_api34_arm64",
+        "system_image": "system-images;android-34;default;arm64-v8a",
+        "system_package": "system-images/android-34/default/arm64-v8a/package.xml",
+        "port": 5582,
+        "accel": "off",
+        "host_arches": ("aarch64", "arm64"),
+        "boot_timeout": 900.0,
+        "claim_ceiling": (
+            "Android-14-arm64-v8a-emulator-consumer-runtime-only"
+        ),
+        "report": (
+            ROOT
+            / "outputs/eval/"
+            "android_srgb_quantizer_arm64_emulator_runtime_v1.json"
+        ),
+    },
+}
 REQUIRED_RESULT = {
     "schema": "neuro-film.android-srgb-quantizer-runtime.v1",
     "status": "PASS",
@@ -57,6 +87,23 @@ REQUIRED_RESULT = {
 
 class EmulatorRuntimeError(RuntimeError):
     """Raised when the owned emulator run cannot satisfy its contract."""
+
+
+def _validate_host_architecture(
+    abi: str,
+    *,
+    machine: str | None = None,
+) -> None:
+    try:
+        target = EMULATOR_TARGETS[abi]
+    except KeyError as exc:
+        raise EmulatorRuntimeError("unsupported emulator ABI") from exc
+    observed = (machine or platform.machine()).casefold()
+    if observed not in target["host_arches"]:
+        raise EmulatorRuntimeError(
+            f"{abi} emulator requires a matching host architecture; "
+            f"observed {observed or 'unknown'}"
+        )
 
 
 def _now() -> str:
@@ -174,9 +221,14 @@ def _validate_instrumentation(output: str) -> dict[str, Any]:
     return result
 
 
-def _adb(adb: Path, *arguments: str, timeout: float = 120.0) -> str:
+def _adb(
+    adb: Path,
+    serial: str,
+    *arguments: str,
+    timeout: float = 120.0,
+) -> str:
     return _run(
-        [adb, "-s", SERIAL, *arguments],
+        [adb, "-s", serial, *arguments],
         timeout=timeout,
     ).stdout
 
@@ -185,6 +237,7 @@ def _wait_for_boot(
     adb: Path,
     emulator: subprocess.Popen[str],
     *,
+    serial: str,
     timeout: float = 240.0,
 ) -> None:
     started = time.monotonic()
@@ -192,7 +245,7 @@ def _wait_for_boot(
         if emulator.poll() is not None:
             raise EmulatorRuntimeError("emulator exited before boot")
         completed = _run(
-            [adb, "-s", SERIAL, "shell", "getprop", "sys.boot_completed"],
+            [adb, "-s", serial, "shell", "getprop", "sys.boot_completed"],
             timeout=15.0,
             check=False,
         )
@@ -202,13 +255,23 @@ def _wait_for_boot(
     raise EmulatorRuntimeError("emulator boot timeout")
 
 
-def execute() -> dict[str, Any]:
+def execute(abi: str = "x86_64") -> dict[str, Any]:
+    try:
+        target = EMULATOR_TARGETS[abi]
+    except KeyError as exc:
+        raise EmulatorRuntimeError("unsupported emulator ABI") from exc
+    _validate_host_architecture(abi)
+    avd_name = str(target["avd_name"])
+    system_image = str(target["system_image"])
+    emulator_port = int(target["port"])
+    serial = f"emulator-{emulator_port}"
+    runtime_report = Path(target["report"])
     package = _package()
     emulator_exe = OWNED_SDK / "emulator/emulator.exe"
     adb = OWNED_SDK / "platform-tools/adb.exe"
     system_package = (
         OWNED_SDK
-        / "system-images/android-34/google_apis/x86_64/package.xml"
+        / str(target["system_package"])
     )
     for required in (
         emulator_exe,
@@ -222,7 +285,7 @@ def execute() -> dict[str, Any]:
             )
     OWNED_AVD_HOME.mkdir(parents=True, exist_ok=True)
     OWNED_LOGS.mkdir(parents=True, exist_ok=True)
-    avd_config = OWNED_AVD_HOME / f"{AVD_NAME}.avd/config.ini"
+    avd_config = OWNED_AVD_HOME / f"{avd_name}.avd/config.ini"
     if not avd_config.is_file():
         _run(
             [
@@ -230,17 +293,17 @@ def execute() -> dict[str, Any]:
                 "create",
                 "avd",
                 "--name",
-                AVD_NAME,
+                avd_name,
                 "--package",
-                SYSTEM_IMAGE,
+                system_image,
                 "--device",
                 "pixel_8",
                 "--force",
             ],
             input_text="no\n",
         )
-    stdout_path = OWNED_LOGS / "emulator.stdout.log"
-    stderr_path = OWNED_LOGS / "emulator.stderr.log"
+    stdout_path = OWNED_LOGS / f"emulator-{abi}.stdout.log"
+    stderr_path = OWNED_LOGS / f"emulator-{abi}.stderr.log"
     stdout_handle = stdout_path.open("w", encoding="utf-8", newline="\n")
     stderr_handle = stderr_path.open("w", encoding="utf-8", newline="\n")
     emulator: subprocess.Popen[str] | None = None
@@ -251,9 +314,9 @@ def execute() -> dict[str, Any]:
             [
                 str(emulator_exe),
                 "-avd",
-                AVD_NAME,
+                avd_name,
                 "-port",
-                str(EMULATOR_PORT),
+                str(emulator_port),
                 "-no-window",
                 "-no-audio",
                 "-no-boot-anim",
@@ -262,7 +325,7 @@ def execute() -> dict[str, Any]:
                 "-gpu",
                 "swiftshader_indirect",
                 "-accel",
-                "on",
+                str(target["accel"]),
             ],
             stdout=stdout_handle,
             stderr=stderr_handle,
@@ -272,12 +335,17 @@ def execute() -> dict[str, Any]:
             env=_environment(),
             creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
         )
-        _wait_for_boot(adb, emulator)
+        _wait_for_boot(
+            adb,
+            emulator,
+            serial=serial,
+            timeout=float(target["boot_timeout"]),
+        )
         app = Path(package["artifacts"]["app"]["path"])
         test = Path(package["artifacts"]["test"]["path"])
-        if "Success" not in _adb(adb, "install", "-r", str(app)):
+        if "Success" not in _adb(adb, serial, "install", "-r", str(app)):
             raise EmulatorRuntimeError("target APK install failed")
-        if "Success" not in _adb(adb, "install", "-r", str(test)):
+        if "Success" not in _adb(adb, serial, "install", "-r", str(test)):
             raise EmulatorRuntimeError("test APK install failed")
         component = (
             "com.neurofilm.srgbquantizer.test/"
@@ -286,6 +354,7 @@ def execute() -> dict[str, Any]:
         outputs = [
             _adb(
                 adb,
+                serial,
                 "shell",
                 "am",
                 "instrument",
@@ -302,17 +371,24 @@ def execute() -> dict[str, Any]:
                 "two host instrumentation invocations differ"
             )
         device = {
-            "abi": _adb(adb, "shell", "getprop", "ro.product.cpu.abi").strip(),
-            "api": _adb(adb, "shell", "getprop", "ro.build.version.sdk").strip(),
-            "model": _adb(adb, "shell", "getprop", "ro.product.model").strip(),
+            "abi": _adb(
+                adb, serial, "shell", "getprop", "ro.product.cpu.abi"
+            ).strip(),
+            "api": _adb(
+                adb, serial, "shell", "getprop", "ro.build.version.sdk"
+            ).strip(),
+            "model": _adb(
+                adb, serial, "shell", "getprop", "ro.product.model"
+            ).strip(),
             "build_fingerprint": _adb(
                 adb,
+                serial,
                 "shell",
                 "getprop",
                 "ro.build.fingerprint",
             ).strip(),
         }
-        if device["abi"] != "x86_64" or device["api"] != "34":
+        if device["abi"] != abi or device["api"] != "34":
             raise EmulatorRuntimeError("emulator target identity mismatch")
         stable = {
             "schema": (
@@ -320,7 +396,7 @@ def execute() -> dict[str, Any]:
             ),
             "status": "PASS",
             "claim_ceiling": (
-                "Android-14-x86_64-emulator-consumer-quantizer-runtime-only"
+                str(target["claim_ceiling"])
             ),
             "package": {
                 "package_identity": package["package_identity"],
@@ -330,16 +406,16 @@ def execute() -> dict[str, Any]:
                     "certificate_sha256"
                 ],
                 "core_sha256": package["native"]["core_libraries"][
-                    "x86_64"
+                    abi
                 ],
-                "jni_sha256": package["native"]["jni_libraries"]["x86_64"],
-                "eotf_sha256": package["native"]["eotf_libraries"]["x86_64"],
-                "icc_sha256": package["native"]["icc_libraries"]["x86_64"],
+                "jni_sha256": package["native"]["jni_libraries"][abi],
+                "eotf_sha256": package["native"]["eotf_libraries"][abi],
+                "icc_sha256": package["native"]["icc_libraries"][abi],
             },
             "runtime": {
                 "emulator_sha256": _sha256(emulator_exe),
                 "system_package_sha256": _sha256(system_package),
-                "avd_name": AVD_NAME,
+                "avd_name": avd_name,
                 "device": device,
                 "instrumentation_invocations": 2,
                 "java_outer_replays_per_invocation": 2,
@@ -363,12 +439,12 @@ def execute() -> dict[str, Any]:
                 "elapsed_seconds": time.monotonic() - started,
             },
         }
-        _atomic_json(RUNTIME_REPORT, report)
+        _atomic_json(runtime_report, report)
         return report
     finally:
         if emulator is not None and emulator.poll() is None:
             _run(
-                [adb, "-s", SERIAL, "emu", "kill"],
+                [adb, "-s", serial, "emu", "kill"],
                 timeout=30.0,
                 check=False,
             )
@@ -382,13 +458,21 @@ def execute() -> dict[str, Any]:
 
 
 def main() -> int:
-    report = execute()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--abi",
+        choices=tuple(EMULATOR_TARGETS),
+        default="x86_64",
+    )
+    args = parser.parse_args()
+    report = execute(args.abi)
+    runtime_report = Path(EMULATOR_TARGETS[args.abi]["report"])
     print(
         json.dumps(
             {
                 "status": report["status"],
                 "stable_identity": report["stable_identity"],
-                "runtime_report_sha256": _sha256(RUNTIME_REPORT),
+                "runtime_report_sha256": _sha256(runtime_report),
             },
             sort_keys=True,
         )

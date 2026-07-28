@@ -3230,3 +3230,17 @@
   produces tree `7b0da229...9b6a` and passes 1076 color-match tests with 22
   platform/data skips and zero failures; the temporary worktree was removed.
 - State remains `review-ready-not-merged`; the main task owns review and merge.
+
+## 2026-07-28 - Close P106 local arm64-emulator shortcut
+
+- The official SDK repository exposes an Android 14 AOSP arm64 image, but
+  Emulator 36.6.11 on this Windows x86_64 host exits before boot because QEMU2
+  requires the image architecture to match the host. No APK code executes and
+  no arm64 runtime claim opens.
+- The runner now has explicit ABI-scoped AVD/port/report identities and rejects
+  a host/image architecture mismatch before launch. Its x86_64 default remains
+  backward-compatible and replays stable identity
+  `sha256:a3fa50e0...e03f20`.
+- The exact unused arm64 AVD and system image were removed after the failed
+  preflight; the working x86_64 AVD was preserved. Five parser/target tests
+  pass. Physical arm64 or a matching-host arm64 emulator remains external.

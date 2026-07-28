@@ -23,7 +23,8 @@ wire contract and not an algorithm promotion.
 - D-PCT latest observed core snapshot is `46b77bb`; its polynomial RGB ABI is
   controlled-colorimetric only and is not a P45 arbitrary-look successor.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
-  no arm64 physical-device run.
+  no arm64 physical-device run. P106 confirms the current official QEMU2
+  emulator also rejects arm64 images on this x86_64 host before boot.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
