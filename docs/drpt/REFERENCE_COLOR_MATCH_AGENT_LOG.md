@@ -3443,3 +3443,6 @@
   `schema_id` and direct nested/constant vectors fail at the JSON boundary.
   Existing finite checks remain defense in depth for programmatically
   constructed objects.
+- A strict read-only sweep of all 369 JSON files under `configs` and
+  `tests/fixtures` reports zero duplicate-key, non-finite, Unicode or decode
+  failures.
