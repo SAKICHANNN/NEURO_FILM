@@ -3476,3 +3476,19 @@
 - Match/replay report schemas bind `maxItems=64`; their SHA-256 identities are
   `6fa335df...28016f` / `84b54e86...30affe`. Fit, replay, reporting, schema and
   consistency tests pass 27/27.
+
+## 2026-07-28 - Close P121A-P124 resource bounds and integration v22
+
+- File, staging and in-memory product batch collectors now reject after at
+  most the 65th source/path rather than exhausting an arbitrary iterable.
+  Ordinary, guarded/replay, FilmFX, local-delivery, shared and
+  runtime-qualified paths all retain the 64-source authority and fail before
+  rendering or output creation. Non-manifest color-match regression passes
+  889 tests with three explicit skips.
+- V22 binds payload `8cb19c4` to main stable point `82e1e19`: 425 consumer
+  paths, 445 main paths, zero overlap. Manifest/schema SHA-256 identities are
+  `34e6ac7f...29b9e` / `436c69a1...3197b`; conflict-free merge tree is
+  `b9d95875...51ef8`.
+- Detached synthetic merge `56fb13b` passes 1187 color-match tests with 28
+  explicit skips and 1268 unrelated deselections. Its owned temporary
+  worktree was removed. State remains `review-ready-not-merged`.
