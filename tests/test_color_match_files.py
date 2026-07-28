@@ -440,3 +440,27 @@ def test_transaction_lock_rejects_empty_and_canonical_duplicate_targets(
     ):
         with target_transaction_lock((target, alias)):
             raise AssertionError("duplicate lock inventory must not be entered")
+
+
+def test_transaction_lock_collides_real_and_symlink_aliases(
+    tmp_path: Path,
+) -> None:
+    from src.color_match.transaction_lock import target_transaction_lock
+
+    real_parent = tmp_path / "real"
+    alias_parent = tmp_path / "alias"
+    real_parent.mkdir()
+    try:
+        alias_parent.symlink_to(real_parent, target_is_directory=True)
+    except OSError as exc:
+        pytest.skip(f"directory symlink unavailable: {exc}")
+
+    real_target = real_parent / "output.bin"
+    alias_target = alias_parent / "output.bin"
+    with target_transaction_lock((real_target,)):
+        with pytest.raises(
+            ReferenceMatchContractError,
+            match="already locked",
+        ):
+            with target_transaction_lock((alias_target,)):
+                raise AssertionError("path alias must not bypass target lock")

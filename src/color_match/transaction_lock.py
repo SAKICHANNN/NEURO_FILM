@@ -45,9 +45,14 @@ def _reject_reparse_components(path: Path, *, label: str) -> Path:
 
 
 def _lock_key(path: Path) -> str:
-    canonical = os.path.normcase(os.path.abspath(os.fspath(path)))
+    # The lock identity, unlike the caller's destination path, intentionally
+    # resolves aliases so cooperating writers using a symlink/junction parent
+    # still contend for the same final target.
+    canonical = os.path.normcase(
+        os.path.realpath(os.path.abspath(os.fspath(path)))
+    )
     return hashlib.sha256(
-        b"NeuroFilmReferenceMatchTransactionPathV1\0"
+        b"NeuroFilmReferenceMatchTransactionPathV2\0"
         + canonical.encode("utf-8")
     ).hexdigest()
 
