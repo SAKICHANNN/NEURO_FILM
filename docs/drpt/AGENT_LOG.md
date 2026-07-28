@@ -6383,3 +6383,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two 291,706-byte downloads and both 24-pair extractions are exact; canonical
   report SHA is `2a36949c...7d40`. AO1 leave-one-row-out explainability is now
   ready; all stronger stock/calibration/product claims remain closed.
+
+## 2026-07-28 - U5.R2AO1 selects the simpler real-chart proxy model
+
+- Two reports are exact at `38b355f9...930b`. All six held-row folds pass.
+- One-matrix response reaches `.04404` mean RGB RMSE versus identity `.16022`,
+  full affine `.08249` and two-matrix `.04497`; retain it for an AO2
+  real-photo Look Approximation frontier without stronger film claims.
