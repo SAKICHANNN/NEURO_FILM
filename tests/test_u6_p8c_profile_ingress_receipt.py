@@ -20,6 +20,9 @@ from src.eval.physical_profile_ingress import validate_contract
 ROOT = Path(__file__).resolve().parents[1]
 P8B = ROOT / "configs/u6_p8b_artifact_only_cpu_consumer_v1.json"
 P8C = ROOT / "configs/u6_p8c_profile_ingress_receipt_v1.json"
+P8C_DECISION = (
+    ROOT / "configs/u6_p8c_profile_ingress_receipt_decision_v1.json"
+)
 
 
 def _artifact() -> dict:
@@ -126,3 +129,14 @@ def test_p8c_contract_binds_strict_scene_linear_ingress() -> None:
     assert parent["node"] == "U6.P8B"
     assert not config["ingress"]["unmapped_headroom_allowed"]
     assert not config["execution"]["final_quantization_allowed"]
+
+
+def test_p8c_decision_freezes_canonical_receipt_result() -> None:
+    decision = json.loads(P8C_DECISION.read_text(encoding="utf-8"))
+    assert decision["software_commit"] == "121f924"
+    assert decision["two_run_byte_exact"]
+    assert decision["artifact_canonical_roundtrip_exact"]
+    assert decision["repeat_output_and_receipt_exact"]
+    assert not decision["final_quantization_performed"]
+    assert not decision["unmapped_scene_headroom_allowed"]
+    assert decision["next_leaf"].startswith("U6.P8D")
