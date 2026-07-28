@@ -4173,3 +4173,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   not total-path, main-renderer, native/device, RAW/HDR/video, A1/A4/A5 or
   product admission evidence. The next measured leaf targets the remaining
   fit/persistent-array peak.
+
+## 2026-07-29 - Close exact row-chunked Lab ingress
+
+- Node/parent goal: P157 under the independent Neuro-Film reference-match
+  consumer and high-resolution execution line.
+- Implementation: use the authoritative RGB-to-Lab and gamut predicates over
+  exact 128-row slices, then reuse the validated Lab once in fit and render.
+  Full-image safe-Lab style semantics remain untouched.
+- Evidence: `1343 passed, 5 skipped`. Four fresh 6 MP file runs preserve all
+  durable identities and identity fallback. Median process-tree RSS falls
+  `1,095,663,616 -> 929,300,480 B` (reduction `166,363,136 B`, ratio
+  `0.848162`); worker wall ratio `0.860497`. Raw report SHA-256 is
+  `3838e43d...21160`; all frozen gates pass.
+- Attribution/boundary: 5 ms phase samples reduce fit from about 1.09 GB to
+  0.37 GB and expose the unchanged style stage around 0.99--1.01 GB as the
+  next peak. This is local Windows/Python memory evidence only; no schema,
+  algorithm, producer, main, platform, media or product gate changes.

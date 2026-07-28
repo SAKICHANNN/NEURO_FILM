@@ -28,6 +28,9 @@ P156_DECISION = (
 )
 P157_GATES = ROOT / "configs" / "reference_match_chunked_lab_memory_gates_v1.json"
 P157_RUN = ROOT / "configs" / "reference_match_chunked_lab_memory_run_v1.json"
+P157_DECISION = (
+    ROOT / "configs" / "reference_match_chunked_lab_memory_decision_v1.json"
+)
 
 
 def _run(variant: str, rss: int, token: str = "same") -> dict:
@@ -171,6 +174,40 @@ def test_p157_run_binds_the_frozen_gates_and_candidate() -> None:
     ):
         assert run["gates"][field] == gates["gates"][field]
     assert run["claim_ceiling"] == gates["claim_ceiling"]
+
+
+def test_p157_decision_recomputes_every_frozen_gate() -> None:
+    gates = json.loads(P157_GATES.read_text(encoding="utf-8"))
+    run = json.loads(P157_RUN.read_text(encoding="utf-8"))
+    decision = json.loads(P157_DECISION.read_text(encoding="utf-8"))
+    baseline = decision["baseline_median_peak_process_tree_rss_bytes"]
+    candidate = decision["candidate_median_peak_process_tree_rss_bytes"]
+    baseline_wall = decision["baseline_median_worker_wall_seconds"]
+    candidate_wall = decision["candidate_median_worker_wall_seconds"]
+
+    assert decision["baseline_commit"] == run["baseline_commit"]
+    assert decision["candidate_commit"] == run["candidate_commit"]
+    assert decision["median_rss_reduction_bytes"] == baseline - candidate
+    assert decision["candidate_to_baseline_median_rss_ratio"] == (
+        candidate / baseline
+    )
+    assert decision["candidate_to_baseline_median_worker_wall_ratio"] == (
+        candidate_wall / baseline_wall
+    )
+    assert decision["frozen_gates"] == {
+        "minimum_median_rss_reduction_bytes": gates["gates"][
+            "minimum_median_rss_reduction_bytes"
+        ],
+        "maximum_candidate_to_baseline_median_rss_ratio": gates["gates"][
+            "maximum_candidate_to_baseline_median_rss_ratio"
+        ],
+        "maximum_candidate_to_baseline_median_worker_wall_ratio": gates[
+            "gates"
+        ]["maximum_candidate_to_baseline_median_worker_wall_ratio"],
+        "passed": True,
+    }
+    assert decision["automatic_pass"]
+    assert decision["artifact_identity"]["cross_revision_exact"]
 
 
 def test_p156_wall_gate_is_fail_closed() -> None:
