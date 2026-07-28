@@ -3724,3 +3724,14 @@
 - Exact JSON, no-side-effect argument rejection and existing file behavior are
   covered. The complete non-manifest color-match regression passes 932 tests
   with five explicit skips.
+
+## 2026-07-28 - Bind standalone recipe-save hashes to encoded bytes
+
+- `save_reference_look_recipe` now returns the SHA-256 produced by the atomic
+  JSON writer for the exact bytes it encoded, instead of reopening a mutable
+  destination after publication.
+- A deterministic competing-write injection proves the returned identity
+  remains bound to this save operation rather than a later path occupant.
+  Main file transactions already verify staged and published bytes separately
+  and are unchanged. Fifty-five adjacent replay/file/report tests pass with
+  one explicit skip.

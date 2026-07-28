@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -50,6 +51,34 @@ def test_recipe_file_save_is_repeat_exact_and_loads(tmp_path: Path) -> None:
     assert second_hash == first_hash
     assert load_reference_look_recipe(path) == recipe
     assert not list(tmp_path.glob(".look.json.*.tmp"))
+
+
+def test_recipe_save_hash_binds_encoded_bytes_not_later_path_state(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    recipe = fit_reference_look(_working(27211, "reference.png"))
+    path = tmp_path / "look.json"
+    from src.color_match import replay as replay_module
+
+    real_atomic_write_json = replay_module.atomic_write_json
+    encoded_sha256: str | None = None
+
+    def mutate_after_atomic_write(destination, payload):
+        nonlocal encoded_sha256
+        encoded_sha256 = real_atomic_write_json(destination, payload)
+        destination.write_bytes(b'{"competing":"writer"}\n')
+        return encoded_sha256
+
+    monkeypatch.setattr(
+        replay_module,
+        "atomic_write_json",
+        mutate_after_atomic_write,
+    )
+    returned = save_reference_look_recipe(recipe, path)
+
+    assert returned == encoded_sha256
+    assert returned != hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def test_loaded_recipe_replay_matches_in_memory_batch_bytes(tmp_path: Path) -> None:

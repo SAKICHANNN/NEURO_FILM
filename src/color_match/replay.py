@@ -6,7 +6,7 @@ import hashlib
 from pathlib import Path
 from typing import Iterable
 
-from src.inference.render_contract import atomic_write_json, sha256_file
+from src.inference.render_contract import atomic_write_json
 from src.preprocess.types import WorkingImage
 
 from .contracts import (
@@ -40,8 +40,7 @@ def save_reference_look_recipe(
     destination = Path(path)
     if destination.exists() and destination.is_dir():
         raise ReferenceMatchContractError("recipe path must not be a directory")
-    atomic_write_json(destination, recipe.to_dict())
-    return sha256_file(destination)
+    return atomic_write_json(destination, recipe.to_dict())
 
 
 def load_reference_look_recipe_bound(
