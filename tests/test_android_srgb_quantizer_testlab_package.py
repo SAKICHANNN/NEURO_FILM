@@ -15,6 +15,7 @@ from scripts.build_android_srgb_quantizer_testlab_v1 import (
     VECTOR_PREFIX,
     _vectors,
     build,
+    encode_product_chain_header,
     encode_vector_header,
 )
 
@@ -62,6 +63,17 @@ def test_frozen_android_vector_matches_independent_oracle() -> None:
     assert (
         '"libneuro_film_srgb_oetf_quantize_arm64-v8a.so"' not in jni
     )
+    product_header, product_identity = encode_product_chain_header()
+    assert product_identity["vector_count"] == 10
+    assert product_identity["canonical_bytes"] == 14254
+    assert (
+        "#define NF_PRODUCT_CHAIN_VECTOR_COUNT 10u"
+        in product_header
+    )
+    assert (
+        "nf_reference_staging_authorized" in jni
+        and "nf_reference_sha256" in jni
+    )
 
 
 def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
@@ -80,6 +92,9 @@ def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
     ) in first["sources"]
     assert first["native"] == second["native"]
     assert first["vector"] == second["vector"]
+    assert first["product_chain"] == second["product_chain"]
+    assert first["product_chain"]["vector_count"] == 10
+    assert first["product_chain"]["canonical_bytes"] == 14254
     assert first["target"]["device_form"] == "PHYSICAL"
     assert first["target"]["test_model"] == "shiba"
     assert first["target"]["test_version"] == "34"

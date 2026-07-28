@@ -42,6 +42,11 @@ def test_instrumentation_parser_accepts_complete_runtime() -> None:
         "eotf_q8_roundtrip_exact": True,
         "eotf_q16_roundtrip_exact": True,
         "eotf_failure_atomic": True,
+        "product_chain_vector_count": 10,
+        "product_chain_canonical_bytes": 14254,
+        "product_chain_hashes_exact": True,
+        "product_chain_sha_failure_atomic": True,
+        "staging_truth_table_exact": True,
     }
     output = _output(payload)
     assert _instrumentation_result(output) == payload
@@ -78,6 +83,11 @@ def test_instrumentation_parser_fails_closed(mutation) -> None:
             "eotf_q8_roundtrip_exact": True,
             "eotf_q16_roundtrip_exact": True,
             "eotf_failure_atomic": True,
+            "product_chain_vector_count": 10,
+            "product_chain_canonical_bytes": 14254,
+            "product_chain_hashes_exact": True,
+            "product_chain_sha_failure_atomic": True,
+            "staging_truth_table_exact": True,
         }
     )
     with pytest.raises(EmulatorRuntimeError):

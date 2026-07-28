@@ -47,6 +47,11 @@ REQUIRED_RESULT = {
     "eotf_q8_roundtrip_exact": True,
     "eotf_q16_roundtrip_exact": True,
     "eotf_failure_atomic": True,
+    "product_chain_vector_count": 10,
+    "product_chain_canonical_bytes": 14254,
+    "product_chain_hashes_exact": True,
+    "product_chain_sha_failure_atomic": True,
+    "staging_truth_table_exact": True,
 }
 
 

@@ -14,9 +14,9 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P99 plus
-  LF identity correction at `10b1e4c`; P100 v15 review evidence binds it
-  without self-inclusion.
+- Consumer reviewed payload: `codex/reference-color-match` through P100 at
+  `a8a2453`; P101-P104 extend the Android virtual runtime locally and will be
+  bound by the next immutable integration manifest.
 - Main Neuro-Film latest read-only snapshot observed during P100 is `5d355bd`;
   its concurrent AN0 work and untracked `.codex/`/`tmp/` belong to the main
   task and were not touched.
@@ -49,7 +49,7 @@ wire contract and not an algorithm promotion.
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
-| Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile | COMPLETE for host identity and cross-target core compilation | Android/Apple device runtime, SDK/app/JNI/Swift boundary and real invocation remain open / platform integration |
+| Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile. P101-P104 additionally execute all ten frozen canonical payloads, SHA failure atomicity and all eight staging predicate inputs through JNI on two cold Android 14 x86_64 emulator boots with stable identity `a3fa50e0...e03f20` | COMPLETE for host identity, cross-target compilation and Android x86_64 virtual runtime | Physical arm64 and Apple runtime remain open; emulator evidence is not a physical-device or producer-algorithm claim / platform integration |
 | Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
 | Successor target-runtime evidence | P60 binds exact declaration/producer/capability/profile and per-target environment matrix, binary/report hashes, proof class and repeated factual gates; corrected D-PCT R0bw `3a4948a` supplies actual dual-vendor Windows Vulkan host runtime, R0bx is Android compile/link-only, and R0by is an existing source-bound Windows CPU ABI | COMPLETE AS CONSUMER EVIDENCE CONTRACT, REAL MATRIX WINDOWS-ONLY/UNMAPPED | Publish a fixed successor declaration, bind applicable runtime reports, and supply macOS/iOS/Android runtime reports; compile/link/object evidence never substitutes / D-PCT then Neuro-Film |
 | Reference-only shared batch semantics | P47 binds one source-free operator to ordered N source-bound exact output receipts | COMPLETE AS CONSUMER CONTRACT | Map only to a producer build/apply fixture that proves source-free bundle construction / D-PCT then Neuro-Film |

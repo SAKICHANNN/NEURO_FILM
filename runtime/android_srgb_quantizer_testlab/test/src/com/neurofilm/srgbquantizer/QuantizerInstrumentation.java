@@ -49,6 +49,11 @@ public final class QuantizerInstrumentation extends Instrumentation {
             require(first, "\"eotf_q8_roundtrip_exact\":true");
             require(first, "\"eotf_q16_roundtrip_exact\":true");
             require(first, "\"eotf_failure_atomic\":true");
+            require(first, "\"product_chain_vector_count\":10");
+            require(first, "\"product_chain_canonical_bytes\":14254");
+            require(first, "\"product_chain_hashes_exact\":true");
+            require(first, "\"product_chain_sha_failure_atomic\":true");
+            require(first, "\"staging_truth_table_exact\":true");
             if (!first.equals(second)) {
                 throw new IllegalStateException("outer replay differs");
             }

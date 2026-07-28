@@ -6,6 +6,8 @@
 
 #include "nf_srgb_quantizer_vectors_v1.h"
 #include "nf_srgb_icc_expected_v1.h"
+#include "nf_product_chain_vectors_v1.h"
+#include "reference_canonical_core.h"
 
 #ifndef NF_SRGB_QUANTIZER_CORE_LIBRARY
 #error "NF_SRGB_QUANTIZER_CORE_LIBRARY must name the packaged ABI core"
@@ -107,6 +109,10 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     uint8_t icc_before[NF_SRGB_ICC_EXPECTED_SIZE];
     float eotf_sentinel[4u];
     float eotf_before[4u];
+    uint8_t product_digest[32u];
+    uint8_t product_sentinel[32u];
+    uint8_t product_before[32u];
+    uint32_t truth_index;
     size_t index;
     char result[1024];
     int written;
@@ -280,6 +286,58 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
         return nf_throw_all(
             environment, core, eotf, icc, "ICC exact copy failed");
     }
+    for (index = 0u; index < NF_PRODUCT_CHAIN_VECTOR_COUNT; ++index) {
+        if (
+            nf_reference_sha256(
+                NF_PRODUCT_CHAIN_CANONICALS[index],
+                NF_PRODUCT_CHAIN_CANONICAL_LENGTHS[index],
+                product_digest) != 1
+            || memcmp(
+                product_digest,
+                NF_PRODUCT_CHAIN_EXPECTED_SHA256[index],
+                sizeof(product_digest)) != 0
+        ) {
+            return nf_throw_all(
+                environment,
+                core,
+                eotf,
+                icc,
+                "product-chain canonical hash mismatch");
+        }
+    }
+    memset(product_sentinel, 0xa5, sizeof(product_sentinel));
+    memcpy(product_before, product_sentinel, sizeof(product_sentinel));
+    if (
+        nf_reference_sha256(NULL, 1u, product_sentinel) != 0
+        || memcmp(
+            product_sentinel,
+            product_before,
+            sizeof(product_sentinel)) != 0
+    ) {
+        return nf_throw_all(
+            environment,
+            core,
+            eotf,
+            icc,
+            "product-chain SHA failure atomicity failed");
+    }
+    for (truth_index = 0u; truth_index < 8u; ++truth_index) {
+        const uint32_t numeric = truth_index & 1u;
+        const uint32_t promoted = (truth_index >> 1u) & 1u;
+        const uint32_t override = (truth_index >> 2u) & 1u;
+        const uint32_t expected = truth_index == 3u ? 1u : 0u;
+        if (
+            nf_reference_staging_authorized(
+                numeric, promoted, override) != expected
+        ) {
+            return nf_throw_all(
+                environment,
+                core,
+                eotf,
+                icc,
+                "product-chain staging truth table mismatch");
+        }
+    }
     if (
         dlclose(icc) != 0
         || dlclose(eotf) != 0
@@ -305,13 +363,20 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
         "\"icc_exact\":true,"
         "\"eotf_q8_roundtrip_exact\":true,"
         "\"eotf_q16_roundtrip_exact\":true,"
-        "\"eotf_failure_atomic\":true}",
+        "\"eotf_failure_atomic\":true,"
+        "\"product_chain_vector_count\":%u,"
+        "\"product_chain_canonical_bytes\":%u,"
+        "\"product_chain_hashes_exact\":true,"
+        "\"product_chain_sha_failure_atomic\":true,"
+        "\"staging_truth_table_exact\":true}",
         (unsigned int)NF_SRGB_QUANTIZER_VECTOR_COUNT,
         NF_SRGB_QUANTIZER_THRESHOLD_ID,
         NF_SRGB_QUANTIZER_VECTOR_SHA256,
         NF_SRGB_QUANTIZER_INPUT_SHA256,
         NF_SRGB_QUANTIZER_Q8_SHA256,
-        NF_SRGB_QUANTIZER_Q16_SHA256);
+        NF_SRGB_QUANTIZER_Q16_SHA256,
+        (unsigned int)NF_PRODUCT_CHAIN_VECTOR_COUNT,
+        (unsigned int)NF_PRODUCT_CHAIN_CANONICAL_BYTES);
     if (written < 0 || (size_t)written >= sizeof(result)) {
         return nf_throw(environment, NULL, "runtime result overflow");
     }

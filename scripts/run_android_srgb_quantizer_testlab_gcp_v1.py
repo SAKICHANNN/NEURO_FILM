@@ -402,6 +402,11 @@ def _runtime_tokens(files: list[Path]) -> dict[str, Any]:
         '"eotf_q8_roundtrip_exact":true',
         '"eotf_q16_roundtrip_exact":true',
         '"eotf_failure_atomic":true',
+        '"product_chain_vector_count":10',
+        '"product_chain_canonical_bytes":14254',
+        '"product_chain_hashes_exact":true',
+        '"product_chain_sha_failure_atomic":true',
+        '"staging_truth_table_exact":true',
     )
     matched: dict[str, str] = {}
     for path in files:

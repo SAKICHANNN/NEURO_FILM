@@ -3200,3 +3200,23 @@
 - Scope: additive consumer transaction/schema/tests/docs only. Producer,
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
+
+## 2026-07-28 - Prove P101-P104 canonical product chain on Android 14
+
+- Reused the existing dual-ABI instrumentation package and compiled the exact
+  P42 freestanding canonical core into its JNI library. A generated header
+  carries all ten frozen P28-P30 payloads (14,254 canonical bytes) and their
+  independently checked SHA-256 values; Android performs no JSON
+  reinterpretation.
+- JNI executes all ten hashes, proves invalid-input SHA rejection preserves
+  the caller digest, and exhausts the eight-input staging-authorization truth
+  table. Existing 4,096 quantizer vectors, exhaustive 8/16-bit EOTF roundtrip,
+  ICC bytes and failure-atomicity checks remain in the same invocation.
+- Two cold `-wipe-data -no-snapshot` Android 14 x86_64 emulator runs take
+  78.97 and 73.75 seconds. Runtime report SHAs are
+  `d11cf10c...3883` and `7f554b62...5628`; package/runtime facts and the
+  stable identity `sha256:a3fa50e0...e03f20` are exact across both.
+- Sixteen package/parser tests and 71 related regressions pass. Claim ceiling
+  is Android x86_64 virtual runtime for consumer identity/staging arithmetic;
+  physical arm64, Apple runtime, producer matching quality and product
+  admission remain open.

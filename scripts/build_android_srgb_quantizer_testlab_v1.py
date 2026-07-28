@@ -48,6 +48,11 @@ APP_JAVA_SOURCE = (
 JNI_SOURCE = HARNESS / "test/jni/nf_srgb_quantizer_testlab.c"
 APP_MANIFEST = HARNESS / "app/AndroidManifest.xml"
 TEST_MANIFEST = HARNESS / "test/AndroidManifest.xml"
+CANONICAL_CORE = ROOT / "native/reference_canonical_core.c"
+CANONICAL_HEADER = ROOT / "native/reference_canonical_core.h"
+PRODUCT_CHAIN_FIXTURE = (
+    ROOT / "tests/fixtures/reference_product_chain_conformance_v1.json"
+)
 PACKAGE_PREFIX = "nf-019f9f37-p90"
 DEFAULT_TOOL_ROOT = (
     ROOT.parent / "\u8ffd\u8272" / "outputs" / "tmp" / "tools"
@@ -226,6 +231,70 @@ def encode_profile_header() -> str:
     )
 
 
+def encode_product_chain_header() -> tuple[str, dict[str, object]]:
+    fixture_bytes = PRODUCT_CHAIN_FIXTURE.read_bytes()
+    fixture = json.loads(fixture_bytes)
+    identities = [
+        identity
+        for case in fixture["cases"]
+        for identity in case["identities"]
+    ]
+    declarations: list[str] = []
+    pointers: list[str] = []
+    lengths: list[str] = []
+    digests: list[str] = []
+    total_bytes = 0
+    for index, identity in enumerate(identities):
+        canonical = bytes.fromhex(identity["canonical_hex"])
+        expected = bytes.fromhex(identity["sha256"])
+        if hashlib.sha256(canonical).digest() != expected:
+            raise ValueError(
+                f"product-chain fixture digest mismatch at vector {index}"
+            )
+        total_bytes += len(canonical)
+        declarations.append(
+            _encode_values(
+                f"NF_PRODUCT_CHAIN_CANONICAL_{index}",
+                "uint8_t",
+                np.frombuffer(canonical, dtype=np.uint8),
+                lambda value: f"0x{int(value):02x}u",
+            )
+        )
+        pointers.append(f"    NF_PRODUCT_CHAIN_CANONICAL_{index},")
+        lengths.append(f"    {len(canonical)}u,")
+        digest_values = ", ".join(
+            f"0x{value:02x}u" for value in expected
+        )
+        digests.append(f"    {{{digest_values}}},")
+    header = (
+        "#ifndef NF_PRODUCT_CHAIN_VECTORS_V1_H\n"
+        "#define NF_PRODUCT_CHAIN_VECTORS_V1_H\n\n"
+        "#include <stdint.h>\n\n"
+        f"#define NF_PRODUCT_CHAIN_VECTOR_COUNT {len(identities)}u\n"
+        f"#define NF_PRODUCT_CHAIN_CANONICAL_BYTES {total_bytes}u\n"
+        f'#define NF_PRODUCT_CHAIN_FIXTURE_SHA256 "{hashlib.sha256(fixture_bytes).hexdigest()}"\n\n'
+        + "\n".join(declarations)
+        + "\nstatic const uint8_t *const NF_PRODUCT_CHAIN_CANONICALS"
+        f"[{len(identities)}u] = {{\n"
+        + "\n".join(pointers)
+        + "\n};\n"
+        + "static const uint64_t NF_PRODUCT_CHAIN_CANONICAL_LENGTHS"
+        f"[{len(identities)}u] = {{\n"
+        + "\n".join(lengths)
+        + "\n};\n"
+        + "static const uint8_t NF_PRODUCT_CHAIN_EXPECTED_SHA256"
+        f"[{len(identities)}u][32u] = {{\n"
+        + "\n".join(digests)
+        + "\n};\n"
+        "#endif\n"
+    )
+    return header, {
+        "fixture_sha256": hashlib.sha256(fixture_bytes).hexdigest(),
+        "vector_count": len(identities),
+        "canonical_bytes": total_bytes,
+    }
+
+
 def build(
     sdk: Path,
     ndk: Path,
@@ -264,6 +333,9 @@ def build(
         APP_JAVA_SOURCE,
         JAVA_SOURCE,
         JNI_SOURCE,
+        CANONICAL_CORE,
+        CANONICAL_HEADER,
+        PRODUCT_CHAIN_FIXTURE,
         APP_MANIFEST,
         TEST_MANIFEST,
     ):
@@ -310,6 +382,17 @@ def build(
         encoding="ascii",
         newline="\n",
     )
+    product_chain_source, product_chain_identities = (
+        encode_product_chain_header()
+    )
+    product_chain_header = (
+        generated / "nf_product_chain_vectors_v1.h"
+    )
+    product_chain_header.write_text(
+        product_chain_source,
+        encoding="ascii",
+        newline="\n",
+    )
     compiler = (
         ndk
         / "toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
@@ -348,8 +431,11 @@ def build(
                 f'-DNF_SRGB_ICC_LIBRARY="{icc_soname}"',
                 "-shared",
                 JNI_SOURCE,
+                CANONICAL_CORE,
                 "-I",
                 generated,
+                "-I",
+                ROOT / "native",
                 "-I",
                 ndk
                 / (
@@ -570,6 +656,9 @@ def build(
             APP_JAVA_SOURCE,
             JAVA_SOURCE,
             JNI_SOURCE,
+            CANONICAL_CORE,
+            CANONICAL_HEADER,
+            PRODUCT_CHAIN_FIXTURE,
             APP_MANIFEST,
             TEST_MANIFEST,
         )
@@ -600,6 +689,9 @@ def build(
             "sources": source_hashes,
             "vector_header_sha256": _sha256(vector_header),
             "profile_header_sha256": _sha256(profile_header),
+            "product_chain_header_sha256": _sha256(
+                product_chain_header
+            ),
         },
         sort_keys=True,
         separators=(",", ":"),
@@ -633,6 +725,12 @@ def build(
             **vector_identities,
             "count": VECTOR_COUNT,
             "generated_header_sha256": _sha256(vector_header),
+        },
+        "product_chain": {
+            **product_chain_identities,
+            "generated_header_sha256": _sha256(
+                product_chain_header
+            ),
         },
         "core_cross_compile_report": core_report,
         "eotf_cross_compile_report": eotf_report,
@@ -692,11 +790,16 @@ def build(
             ),
             "failure_injection": (
                 "nonfinite input and insufficient capacity both reject "
-                "before output mutation"
+                "before output mutation; canonical SHA rejects invalid "
+                "input before digest mutation"
+            ),
+            "product_chain_check": (
+                "ten frozen P28-P30 canonical identities and the complete "
+                "staging authorization truth table execute in-process"
             ),
             "claim_ceiling": (
-                "one Android physical-device consumer quantizer runtime; "
-                "no media, producer algorithm or product admission"
+                "dual-ABI Android instrumentation package only; runtime "
+                "claims require a separate executed device/emulator report"
             ),
         },
     }

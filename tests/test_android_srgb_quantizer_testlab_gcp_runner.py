@@ -78,12 +78,17 @@ def test_runtime_tokens_require_complete_device_result(
         "q8_exact":true,"q16_exact":true,
         "inner_replay_exact":true,"failure_atomic":true,
         "icc_exact":true,"eotf_q8_roundtrip_exact":true,
-        "eotf_q16_roundtrip_exact":true,"eotf_failure_atomic":true}
+        "eotf_q16_roundtrip_exact":true,"eotf_failure_atomic":true,
+        "product_chain_vector_count":10,
+        "product_chain_canonical_bytes":14254,
+        "product_chain_hashes_exact":true,
+        "product_chain_sha_failure_atomic":true,
+        "staging_truth_table_exact":true}
         """,
         encoding="utf-8",
     )
     evidence = _runtime_tokens([complete])
-    assert evidence["required_token_count"] == 13
+    assert evidence["required_token_count"] == 18
     assert evidence["matched_file_names"] == ["instrumentation.results"]
     incomplete = tmp_path / "incomplete.txt"
     incomplete.write_text('"status":"PASS"', encoding="utf-8")
@@ -106,10 +111,15 @@ def test_runtime_tokens_accept_test_lab_escaped_json(
         \"inner_replay_exact\":true,\"failure_atomic\":true,
         \"icc_exact\":true,\"eotf_q8_roundtrip_exact\":true,
         \"eotf_q16_roundtrip_exact\":true,
-        \"eotf_failure_atomic\":true}
+        \"eotf_failure_atomic\":true,
+        \"product_chain_vector_count\":10,
+        \"product_chain_canonical_bytes\":14254,
+        \"product_chain_hashes_exact\":true,
+        \"product_chain_sha_failure_atomic\":true,
+        \"staging_truth_table_exact\":true}
         """,
         encoding="utf-8",
     )
     evidence = _runtime_tokens([escaped])
-    assert evidence["required_token_count"] == 13
+    assert evidence["required_token_count"] == 18
     assert evidence["matched_file_names"] == ["instrumentation.results"]
