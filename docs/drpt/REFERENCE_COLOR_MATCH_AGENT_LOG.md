@@ -3661,3 +3661,15 @@
   The complete non-manifest color-match regression passes 910 tests with five
   explicit skips. Payload is `0507150`; HDR, scene-linear RAW tone mapping and
   absolute producer HDR rails remain explicitly unsupported/unmapped.
+
+## 2026-07-28 - Publish Rec.2020 SDR support in v30
+
+- V30 binds payload `0507150` to main `fe364b9`: 458 consumer paths, 492 main
+  paths and zero overlap. Manifest/schema SHA-256 identities are
+  `9508c007...059629d` / `c7a8a573...15f4a7c`; merge tree
+  `13af5051...b83dd2`.
+- Detached synthetic merge `a9c09b2` passes 1255 color-match tests with 30
+  explicit skips and 1297 unrelated deselections. Its owned worktree was
+  removed. All 374 v1-v30 manifest lineage tests pass.
+- V30 supersedes v29 and remains `review-ready-not-merged`; main owns merge.
+  Producer NCAN training is independent and no unversioned result is consumed.
