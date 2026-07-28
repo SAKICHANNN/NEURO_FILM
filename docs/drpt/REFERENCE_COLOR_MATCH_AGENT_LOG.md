@@ -3647,3 +3647,17 @@
   1294 unrelated deselections; its owned worktree was removed.
 - All 370 v1-v29 manifest lineage tests pass. V29 supersedes v28 and remains
   `review-ready-not-merged`; producer R0co data work is not consumed.
+
+## 2026-07-28 - Preserve the Rec.2020 SDR file rail
+
+- The reference-match file adapter now reuses the main project's validated
+  deterministic BT.2020 SDR RGB16 PNG CICP encoder for
+  `linear_rec2020`/`display_linear` outputs. It does not convert those pixels
+  through sRGB or alter the reference-look algorithm.
+- Ordered batches may mix linear-sRGB and linear-Rec.2020 SDR sources; each
+  output preserves its source rail. Rec.2020 output is deliberately limited to
+  16-bit PNG; 8-bit and TIFF requests fail before any output or recipe commit.
+- Pure Rec.2020, mixed-rail, rejection and existing CICP roundtrip tests pass.
+  The complete non-manifest color-match regression passes 910 tests with five
+  explicit skips. Payload is `0507150`; HDR, scene-linear RAW tone mapping and
+  absolute producer HDR rails remain explicitly unsupported/unmapped.
