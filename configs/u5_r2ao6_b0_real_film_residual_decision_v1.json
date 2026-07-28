@@ -3,7 +3,7 @@
   "experiment_id": "u5.r2ao6-b0-real-film-residual-frontier-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2AO6",
   "decision": "retain_b0_plus_film_t15_c35_as_B0_development_champion_open_fresh_OOD_confirmation",
-  "software_commit": "131a5691b989085c5e76575240a62b1961b80d6f",
+  "software_commit": "131a569e5b1ac8af157cbacf088a557db542008d",
   "contract": {
     "path": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
     "sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b"
