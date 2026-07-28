@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p5c_bounded_adjacency_contract.v1",
+  "node": "U6.P5C",
+  "parents": {
+    "p5b_contract_sha256": "ea45da6a5bfcf8556cde7c0a68494c07f1c658069182df3225150b63cbed00f4",
+    "p5b_decision_sha256": "7f465b322e916df152a8a4b71acaacbf6012f5e9e170fc004131b49dfb6d5796"
+  },
+  "claim_ceiling": "generic-physical-inspired-bounded-adjacency-development",
+  "hypothesis": "A density-dependent chemical-spread direction can retain a nonzero adjacency signature while a smooth analytical density correction limits its scan-transmittance excursion.",
+  "candidate": {
+    "name": "smooth-transmittance-bounded-density-adjacency-v1",
+    "chemical_spread_sigma_um_rgb": [
+      1.0,
+      1.2,
+      1.4
+    ],
+    "unbounded_gain_rgb": [
+      0.18,
+      0.22,
+      0.26
+    ],
+    "maximum_absolute_transmittance_delta": 0.008,
+    "maximum_absolute_density_delta": 0.08,
+    "smooth_projection": "signed_limit_times_tanh_raw_over_signed_limit",
+    "hard_clip_forbidden": true
+  },
+  "evaluation": {
+    "reuse_exact_p5b_charts_and_gates": true,
+    "minimum_peak_normalized_adjacency_effect": 0.01,
+    "minimum_peak_absolute_density_correction": 0.002,
+    "correction_sign_must_match_unbounded_chemical_spread": true,
+    "zero_gain_must_be_exact_identity": true,
+    "repeat_must_be_exact": true,
+    "diagnostic_must_be_generated_and_reviewed": true
+  },
+  "research_basis": [
+    {
+      "source": "Ehn and Silevitch, Diffusion model for the adjacency effect in viscous development, JOSA 64(5), 1974",
+      "url": "https://doi.org/10.1364/JOSA.64.000667",
+      "use": "mechanism precedent for density-dependent chemical spread; not parameter calibration"
+    },
+    {
+      "source": "Rajkowski and Nowak, Numerical investigation of sharpness in photographic layers containing DIR compounds, 1999",
+      "url": "https://dbc.wroc.pl/Content/40473/PDF/optappl_2903p275.pdf",
+      "use": "mechanism precedent for exposure scatter plus chemical spread; not parameter calibration"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "change any P5B chart, threshold or visual veto",
+    "fit the candidate bound after viewing confirmatory results",
+    "hard clip density, transmittance or scan-linear values",
+    "move the correction out of developed-density domain",
+    "call generic bounds measured film, process or stock parameters"
+  ],
+  "branch_rule": {
+    "pass": "retain the bounded adjacency candidate for combined synthetic OOD and full-image evaluation",
+    "fail": "close bounded adjacency and use zero-adjacency while retaining forward scatter, dye diffusion and scanner MTF"
+  }
+}
