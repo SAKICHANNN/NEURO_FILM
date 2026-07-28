@@ -18,6 +18,7 @@ from src.color_match import (
     load_reference_look_recipe,
     match_reference_files,
     reference_file_output_capabilities,
+    resolve_reference_file_output_capability,
 )
 from src.preprocess import (
     SourceProfile,
@@ -99,6 +100,37 @@ def test_file_output_capabilities_are_exact_and_versioned() -> None:
             "bt2020-sdr-cicp-1-1-0-1.v1",
         ),
     ]
+
+
+def test_file_output_capability_resolver_uses_the_exact_public_matrix() -> None:
+    row = resolve_reference_file_output_capability(
+        working_space="linear_rec2020",
+        transfer_state="display_linear",
+        output_bit_depth=16,
+        output_extension=".PNG",
+    )
+    assert row == reference_file_output_capabilities()[2]
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="requires 16-bit PNG",
+    ):
+        resolve_reference_file_output_capability(
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            output_bit_depth=8,
+            output_extension=".png",
+        )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="dot-prefixed",
+    ):
+        resolve_reference_file_output_capability(
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            output_bit_depth=16,
+            output_extension="png",
+        )
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(

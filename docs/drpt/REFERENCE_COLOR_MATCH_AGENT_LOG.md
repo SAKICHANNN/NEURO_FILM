@@ -3735,3 +3735,15 @@
   Main file transactions already verify staged and published bytes separately
   and are unchanged. Fifty-five adjacent replay/file/report tests pass with
   one explicit skip.
+
+## 2026-07-28 - Make output capability resolution executable
+
+- Added public `resolve_reference_file_output_capability`, which resolves a
+  working space, transfer state, bit depth and extension against the same
+  immutable matrix exposed to product clients.
+- The actual file encoder now calls this resolver before encoding, removing
+  the separate Rec.2020 format predicate from the encoding branch. Mixed-case
+  extensions normalize deterministically; malformed or unsupported requests
+  fail closed.
+- Fifty-six adjacent file/report/replay tests pass with one explicit skip.
+  No HDR, RAW tone-map, FilmFX-wide-gamut or producer capability was added.

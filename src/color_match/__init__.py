@@ -583,6 +583,7 @@ from .files import (
     FileReferenceReplayResult,
     match_reference_files,
     reference_file_output_capabilities,
+    resolve_reference_file_output_capability,
     replay_reference_files,
 )
 from .evaluation import (
@@ -1105,6 +1106,7 @@ __all__ = [
     "load_portable_conformance_bundle",
     "match_reference_files",
     "reference_file_output_capabilities",
+    "resolve_reference_file_output_capability",
     "make_photographic_probe",
     "make_capabilities",
     "make_match_view",

@@ -88,6 +88,50 @@ def reference_file_output_capabilities(
     )
 
 
+def resolve_reference_file_output_capability(
+    *,
+    working_space: str,
+    transfer_state: str,
+    output_bit_depth: int,
+    output_extension: str,
+) -> FileReferenceOutputCapability:
+    """Resolve one exact output choice against the public v1 matrix."""
+
+    if not isinstance(working_space, str) or not working_space:
+        raise ReferenceMatchContractError("working_space must be non-empty")
+    if not isinstance(transfer_state, str) or not transfer_state:
+        raise ReferenceMatchContractError("transfer_state must be non-empty")
+    if (
+        isinstance(output_bit_depth, bool)
+        or not isinstance(output_bit_depth, int)
+    ):
+        raise ReferenceMatchContractError("output_bit_depth must be 8 or 16")
+    if (
+        not isinstance(output_extension, str)
+        or not output_extension.startswith(".")
+        or output_extension != output_extension.strip()
+    ):
+        raise ReferenceMatchContractError(
+            "output_extension must be a dot-prefixed extension"
+        )
+    normalized_extension = output_extension.casefold()
+    for capability in reference_file_output_capabilities():
+        if (
+            capability.working_space == working_space
+            and capability.transfer_state == transfer_state
+            and capability.output_bit_depth == output_bit_depth
+            and normalized_extension in capability.extensions
+        ):
+            return capability
+    if working_space == "linear_rec2020":
+        raise ReferenceMatchContractError(
+            "linear_rec2020 file output requires 16-bit PNG"
+        )
+    raise ReferenceMatchContractError(
+        "requested file-output rail is unsupported"
+    )
+
+
 @dataclass(frozen=True)
 class FileReferenceMatchOutput:
     """Durable output identity and render diagnostics for one source file."""
@@ -622,6 +666,12 @@ def _encode_working_image(
     *,
     output_bit_depth: int,
 ) -> tuple[str, float]:
+    resolve_reference_file_output_capability(
+        working_space=image.working_space,
+        transfer_state=image.transfer_state,
+        output_bit_depth=output_bit_depth,
+        output_extension=destination.suffix,
+    )
     if image.working_space == "linear_srgb":
         encoded = working_image_to_srgb_float(image)
         return _encode_srgb(
@@ -632,10 +682,6 @@ def _encode_working_image(
     if image.working_space != "linear_rec2020":
         raise ReferenceMatchContractError(
             "file adapter output working space is unsupported"
-        )
-    if output_bit_depth != 16 or destination.suffix.casefold() != ".png":
-        raise ReferenceMatchContractError(
-            "linear_rec2020 file output requires 16-bit PNG"
         )
     pixels = image.pixels
     clipped = np.any((pixels < 0.0) | (pixels > 1.0), axis=-1)
@@ -992,5 +1038,6 @@ __all__ = [
     "FileReferenceReplayResult",
     "match_reference_files",
     "reference_file_output_capabilities",
+    "resolve_reference_file_output_capability",
     "replay_reference_files",
 ]
