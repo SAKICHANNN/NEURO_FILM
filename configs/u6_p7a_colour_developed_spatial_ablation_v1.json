@@ -1,0 +1,110 @@
+{
+  "schema": "neuro_film.u6_p7a_colour_developed_spatial_ablation_contract.v1",
+  "node": "U6.P7A",
+  "claim_ceiling": "generic-physical-inspired-developed-spatial plus AO6-like display-look ablation; not complete film image formation, stock response, calibration, scanner profile or product promotion",
+  "parents": {
+    "ao7_config": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1.json",
+    "ao7_config_sha256": "72bae1105a002deb299767e06c8d99be039b95292ae5cff810bbda3201ac7591",
+    "p5a_config": "configs/u6_p5a_spatial_response_primitives_v1.json",
+    "p5a_config_sha256": "38d5b93bbfe0f64cee74f3f42271bd548d3ea01cadd32299c844eea2e820791e",
+    "p5c_config": "configs/u6_p5c_bounded_adjacency_v1.json",
+    "p5c_config_sha256": "0f945f531dc5f0d1c78f30dd0ad5bf71ad6630a2e42ecde593bc907f05b61f99",
+    "sensitometry_config": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "print_composition_config": "configs/u2_2b_sensitometry_print_composition_v1.json",
+    "print_composition_config_sha256": "48093062cb8601c365717ba399a64559382233bdb9d3b05b1980dc81c243e137",
+    "print_source_config": "configs/u5_r2e0_density_domain_operator_v1.json",
+    "print_source_config_sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337"
+  },
+  "population": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "eligible_ids_from_ao7": true,
+    "expected_rows": 16,
+    "expected_camera_makes": 9,
+    "decoded_color_state": "relative_display_srgb_approximation",
+    "allowed_use": "internal_independent_digital_ood_confirmation"
+  },
+  "pipeline": {
+    "source_decode": "exact manifest-bound RGB8 PNG to float64 encoded sRGB",
+    "pseudo_exposure": "IEC-61966-2-1 sRGB EOTF; uncalibrated display-derived proxy",
+    "physical_order": [
+      "forward-scatter",
+      "sensitometry",
+      "bounded-development-adjacency",
+      "dye-diffusion",
+      "density-to-print-interpretation",
+      "scanner-mtf"
+    ],
+    "colour_order": [
+      "fixed B0 density-then-anchor s50",
+      "fixed AO6 factorized t15/c35 residual"
+    ],
+    "single_final_quantization": "sRGB8 PNG diagnostics only",
+    "per_image_fit_allowed": false,
+    "hard_clip_allowed": false
+  },
+  "arms": {
+    "colour_only": "fixed AO6 recipe on source",
+    "physics_only": "full developed-spatial print path on source",
+    "combined": "full developed-spatial print path then fixed AO6 recipe",
+    "cheap": "sensitometry plus print interpretation then fixed AO6 recipe",
+    "wrong_order": "fixed AO6 recipe then full developed-spatial print path"
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "all_outputs_finite_and_bounded": true,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_combined_per_image_style_delta_e76": 41.102090,
+    "minimum_combined_median_non_basic_delta_e76": 7.0,
+    "minimum_combined_to_colour_median_delta_e76": 0.5,
+    "minimum_images_with_combined_to_colour_delta_e76_at_least_0_5": 12,
+    "minimum_full_to_cheap_median_delta_e76": 0.1,
+    "minimum_combined_to_wrong_order_median_delta_e76": 0.25,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_threshold": 0.03,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos_kiss_f",
+      "nikon_d2x",
+      "sony_nex_3n",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "panasonic_dmc_gf2",
+      "pentax_k_r",
+      "leica_d_lux_6",
+      "kodak_dcs_pro_14n"
+    ],
+    "blind_rounds": 3,
+    "primary_comparison": [
+      "colour_only",
+      "combined"
+    ],
+    "diagnostic_columns": [
+      "source",
+      "colour_only",
+      "physics_only",
+      "combined",
+      "cheap",
+      "wrong_order"
+    ],
+    "maximum_confirmed_severe_combined_artifacts": 0,
+    "minimum_combined_blind_round_wins": 2,
+    "automatic_gate_must_pass_before_preference_review": true
+  },
+  "deferred_from_p7a": [
+    "P4 dye-cloud stochastic structure and grain",
+    "P6 full scanner illuminant/spectral/flare/Dmax/noise profile",
+    "halation beyond the fixed P5 forward-scatter term",
+    "creative bloom, dust, scratches and light leak",
+    "calibrated scene exposure, film, process, print or scanner targets"
+  ],
+  "branch_rule": {
+    "automatic_fail": "retain colour-only AO6 development champion; close this exact generic physical composition without retuning",
+    "severe_or_preference_fail": "retain colour-only AO6 development champion; preserve physical primitives as separate research evidence",
+    "complete_pass": "retain combined as a development challenger and open separately frozen P7B complete-profile ablation; do not change production default"
+  }
+}
