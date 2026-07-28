@@ -412,6 +412,56 @@ def test_cli_capabilities_rejects_render_bit_depth() -> None:
     assert "--capabilities cannot be combined" in completed.stderr
 
 
+def test_cli_inspects_ordered_inputs_without_rendering(tmp_path: Path) -> None:
+    source = tmp_path / "source.png"
+    missing = tmp_path / "missing.png"
+    _image(source, 28704)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--inspect-input",
+            str(source),
+            "--inspect-input",
+            str(missing),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    payload = json.loads(completed.stdout)
+    assert payload["schema_id"] == (
+        "neuro-film.reference-file-input-inspection-batch.v1"
+    )
+    assert [row["accepted"] for row in payload["inspections"]] == [
+        True,
+        False,
+    ]
+    assert not list(tmp_path.glob("*report*"))
+    assert not list(tmp_path.glob("*recipe*"))
+
+
+def test_cli_input_inspection_rejects_render_arguments(tmp_path: Path) -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--inspect-input",
+            str(tmp_path / "source.png"),
+            "--output",
+            str(tmp_path / "output.png"),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 2
+    assert "--inspect-input cannot be combined" in completed.stderr
+
+
 def test_cli_render_mode_requires_source_output_and_report(
     tmp_path: Path,
 ) -> None:

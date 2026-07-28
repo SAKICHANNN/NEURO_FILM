@@ -16,6 +16,8 @@ from PIL import Image
 from src.color_match import (
     REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
     ReferenceMatchContractError,
+    inspect_reference_file_input,
+    inspect_reference_file_inputs,
     load_reference_look_recipe,
     match_reference_files,
     reference_file_output_capabilities,
@@ -151,6 +153,61 @@ def test_file_output_capability_payload_validates_against_public_schema() -> Non
     mutated["capabilities"][2]["encoding_profile"] = "srgb-icc.v1"
     with pytest.raises(ValidationError):
         validator.validate(mutated)
+
+
+def test_file_input_preflight_is_ordered_hash_bound_and_schema_valid(
+    tmp_path: Path,
+) -> None:
+    srgb = tmp_path / "srgb.png"
+    rec2020 = tmp_path / "rec2020.png"
+    missing = tmp_path / "missing.png"
+    _image(srgb, 28701)
+    _rec2020_image(rec2020, 28702)
+
+    payload = inspect_reference_file_inputs([srgb, rec2020, missing])
+    schema_path = (
+        Path(__file__).resolve().parents[1]
+        / "configs"
+        / "schemas"
+        / "reference_file_input_inspection_batch_v1.schema.json"
+    )
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    Draft202012Validator.check_schema(schema)
+    Draft202012Validator(schema).validate(payload)
+
+    assert [row["path"] for row in payload["inspections"]] == [
+        str(path.resolve()) for path in (srgb, rec2020, missing)
+    ]
+    assert [row["accepted"] for row in payload["inspections"]] == [
+        True,
+        True,
+        False,
+    ]
+    assert payload["inspections"][0]["working_space"] == "linear_srgb"
+    assert payload["inspections"][1]["working_space"] == "linear_rec2020"
+    assert payload["inspections"][2]["failure_code"] == "not-a-file"
+
+
+def test_file_input_preflight_detects_mutation_during_decode(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "source.png"
+    _image(source, 28703)
+    from src.color_match import files as files_module
+
+    real_load = files_module.load_working_image
+
+    def mutate_after_decode(path):
+        image = real_load(path)
+        Path(path).write_bytes(Path(path).read_bytes() + b"\x00")
+        return image
+
+    monkeypatch.setattr(files_module, "load_working_image", mutate_after_decode)
+    result = inspect_reference_file_input(source)
+    assert result.accepted is False
+    assert result.file_sha256 is None
+    assert result.failure_code == "file-changed-during-inspection"
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(

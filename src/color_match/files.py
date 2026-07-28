@@ -46,6 +46,21 @@ _SDR16_OUTPUT_EXTENSIONS = frozenset({".png", ".tif", ".tiff"})
 REFERENCE_FILE_OUTPUT_CAPABILITIES_ID = (
     "neuro-film.reference-file-output-capabilities.v1"
 )
+REFERENCE_FILE_INPUT_INSPECTION_SCHEMA_ID = (
+    "neuro-film.reference-file-input-inspection.v1"
+)
+REFERENCE_FILE_INPUT_INSPECTION_BATCH_SCHEMA_ID = (
+    "neuro-film.reference-file-input-inspection-batch.v1"
+)
+REFERENCE_FILE_INPUT_INSPECTION_CLAIM_CEILING = (
+    "preflight-only-not-render-authorization"
+)
+_SUPPORTED_FILE_INPUT_RAILS = frozenset(
+    {
+        ("linear_srgb", "display_linear"),
+        ("linear_rec2020", "display_linear"),
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -57,6 +72,117 @@ class FileReferenceOutputCapability:
     output_bit_depth: int
     extensions: tuple[str, ...]
     encoding_profile: str
+
+
+@dataclass(frozen=True)
+class FileReferenceInputInspection:
+    """Bounded decoded-rail preflight; never render authorization."""
+
+    schema_id: str
+    claim_ceiling: str
+    path: Path
+    file_sha256: str | None
+    accepted: bool
+    working_space: str | None
+    transfer_state: str | None
+    failure_code: str | None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema_id": self.schema_id,
+            "claim_ceiling": self.claim_ceiling,
+            "path": str(self.path.resolve(strict=False)),
+            "file_sha256": self.file_sha256,
+            "accepted": self.accepted,
+            "working_space": self.working_space,
+            "transfer_state": self.transfer_state,
+            "failure_code": self.failure_code,
+        }
+
+
+def inspect_reference_file_input(
+    path: Path | str,
+) -> FileReferenceInputInspection:
+    """Decode and hash one file for advisory product compatibility preflight."""
+
+    source = Path(path)
+    common = {
+        "schema_id": REFERENCE_FILE_INPUT_INSPECTION_SCHEMA_ID,
+        "claim_ceiling": REFERENCE_FILE_INPUT_INSPECTION_CLAIM_CEILING,
+        "path": source,
+    }
+    if not source.is_file():
+        return FileReferenceInputInspection(
+            **common,
+            file_sha256=None,
+            accepted=False,
+            working_space=None,
+            transfer_state=None,
+            failure_code="not-a-file",
+        )
+    try:
+        before = sha256_file(source)
+    except OSError:
+        return FileReferenceInputInspection(
+            **common,
+            file_sha256=None,
+            accepted=False,
+            working_space=None,
+            transfer_state=None,
+            failure_code="file-changed-during-inspection",
+        )
+    try:
+        image = load_working_image(source)
+    except (OSError, ValueError):
+        return FileReferenceInputInspection(
+            **common,
+            file_sha256=before,
+            accepted=False,
+            working_space=None,
+            transfer_state=None,
+            failure_code="decode-or-color-state-rejected",
+        )
+    try:
+        after = sha256_file(source)
+    except OSError:
+        after = None
+    if after != before:
+        return FileReferenceInputInspection(
+            **common,
+            file_sha256=None,
+            accepted=False,
+            working_space=None,
+            transfer_state=None,
+            failure_code="file-changed-during-inspection",
+        )
+    accepted = (
+        image.working_space,
+        image.transfer_state,
+    ) in _SUPPORTED_FILE_INPUT_RAILS
+    return FileReferenceInputInspection(
+        **common,
+        file_sha256=before,
+        accepted=accepted,
+        working_space=image.working_space,
+        transfer_state=image.transfer_state,
+        failure_code=None if accepted else "unsupported-decoded-rail",
+    )
+
+
+def inspect_reference_file_inputs(
+    paths: Iterable[Path | str],
+) -> dict[str, Any]:
+    """Inspect a bounded ordered batch without granting render authority."""
+
+    sources = _paths(paths, "input_paths")
+    return {
+        "schema_id": REFERENCE_FILE_INPUT_INSPECTION_BATCH_SCHEMA_ID,
+        "claim_ceiling": REFERENCE_FILE_INPUT_INSPECTION_CLAIM_CEILING,
+        "inspections": [
+            inspect_reference_file_input(path).to_dict()
+            for path in sources
+        ],
+    }
 
 
 def reference_file_output_capabilities(
@@ -780,10 +906,9 @@ def _execute_file_render(
                 label="source",
             )
             if (
-                source.working_space
-                not in {"linear_srgb", "linear_rec2020"}
-                or source.transfer_state != "display_linear"
-            ):
+                source.working_space,
+                source.transfer_state,
+            ) not in _SUPPORTED_FILE_INPUT_RAILS:
                 raise ReferenceMatchContractError(
                     "file adapter currently requires display-linear "
                     "linear_srgb or linear_rec2020 sources"
@@ -1049,11 +1174,17 @@ def replay_reference_files(
 
 
 __all__ = [
+    "REFERENCE_FILE_INPUT_INSPECTION_CLAIM_CEILING",
+    "REFERENCE_FILE_INPUT_INSPECTION_BATCH_SCHEMA_ID",
+    "REFERENCE_FILE_INPUT_INSPECTION_SCHEMA_ID",
     "REFERENCE_FILE_OUTPUT_CAPABILITIES_ID",
+    "FileReferenceInputInspection",
     "FileReferenceOutputCapability",
     "FileReferenceMatchOutput",
     "FileReferenceMatchResult",
     "FileReferenceReplayResult",
+    "inspect_reference_file_input",
+    "inspect_reference_file_inputs",
     "match_reference_files",
     "reference_file_output_capabilities",
     "reference_file_output_capabilities_payload",

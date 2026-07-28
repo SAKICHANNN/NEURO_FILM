@@ -17,6 +17,7 @@ from src.color_match import (  # noqa: E402
     ReferenceRenderGuardPolicy,
     build_file_match_report,
     build_file_replay_report,
+    inspect_reference_file_inputs,
     match_reference_files,
     reference_file_output_capabilities_payload,
     replay_reference_files,
@@ -45,6 +46,15 @@ def _parser() -> argparse.ArgumentParser:
         "--capabilities",
         action="store_true",
         help="Print the exact supported file-output matrix as JSON and exit.",
+    )
+    mode.add_argument(
+        "--inspect-input",
+        type=Path,
+        action="append",
+        help=(
+            "Advisory input compatibility preflight; repeat per file. "
+            "This never authorizes a later render."
+        ),
     )
     parser.add_argument(
         "--source",
@@ -108,6 +118,30 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         payload = reference_file_output_capabilities_payload()
         print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.inspect_input is not None:
+        render_arguments = (
+            args.source,
+            args.output,
+            args.recipe,
+            args.report,
+            args.bit_depth,
+            args.allow_research_baseline,
+        )
+        if any(value not in (None, False) for value in render_arguments):
+            print(
+                "reference match failed: --inspect-input cannot be combined "
+                "with render arguments",
+                file=sys.stderr,
+            )
+            return 2
+        print(
+            json.dumps(
+                inspect_reference_file_inputs(args.inspect_input),
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+        )
         return 0
     if args.source is None or args.output is None or args.report is None:
         print(

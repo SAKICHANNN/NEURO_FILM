@@ -3788,3 +3788,18 @@
   `review-ready-not-merged`; main owns merge. Producer SHEP-v2 failed its
   frozen median and worst-improvement gates and produced no model or callable
   contract, so no producer mapping was added.
+
+## 2026-07-29 - Add advisory hash-bound input preflight
+
+- Added bounded ordered `inspect_reference_file_input(s)` APIs and CLI
+  `--inspect-input`. They reuse the main `WorkingImage` decoder, record the
+  stable file SHA-256 and actual decoded rail, and accept only the same
+  display-linear sRGB/Rec.2020 rails used by the renderer.
+- The claim ceiling is explicitly
+  `preflight-only-not-render-authorization`: rendering revalidates inputs, and
+  preflight neither grants transaction authority nor claims RAW/HDR support.
+  Missing, decode-rejected, unsupported-rail and decode-window mutation states
+  return stable failure codes without creating output, recipe or report files.
+- Added a strict batch Draft 2020-12 schema with the existing 64-input bound.
+  The complete non-manifest color-match regression passes 939 tests with five
+  explicit skips.
