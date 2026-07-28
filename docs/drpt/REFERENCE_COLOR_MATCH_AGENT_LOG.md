@@ -3525,4 +3525,5 @@
   `8973c1ea...941a0` / `8699ceab...eb60`; merge tree `687e9d6d...f9f9c0`.
 - Detached merge `06d058e` passes 1209 color-match tests with 29 explicit
   platform/data skips and 1268 unrelated deselections. The owned worktree was
-  removed. V24 is the sole current `review-ready-not-merged` candidate.
+  removed. All 350 v1-v24 manifest lineage tests also pass. V24 is the sole
+  current `review-ready-not-merged` candidate.
