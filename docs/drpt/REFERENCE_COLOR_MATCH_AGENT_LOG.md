@@ -3868,3 +3868,16 @@
   further reference-only/shared estimator hypotheses without a callable
   capability, so no producer mapping changes. V36 remains
   `review-ready-not-merged`; main owns merge.
+
+## 2026-07-29 - Release rendered source pixels before output encoding
+
+- P152 releases each decoded source `WorkingImage` after guarded rendering has
+  produced its distinct output and diagnostics, before encoding that output.
+  This avoids retaining two full-resolution float32 images during each encode.
+- A lifecycle regression proves the source remains live during guarded render
+  and is collectible at encoder entry. Output bytes, diagnostics, ordering,
+  recipe identity, schemas, supported rails and transaction semantics remain
+  unchanged.
+- All 942 non-manifest color-match tests pass with five explicit environment
+  skips. P152 is a local product memory improvement and has no producer
+  interface or algorithm-promotion effect.

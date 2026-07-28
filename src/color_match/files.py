@@ -919,6 +919,10 @@ def _execute_file_render(
                 source_index=index,
                 policy=guard_policy,
             )
+            # Guarded rendering returns a distinct output WorkingImage and
+            # diagnostics. The decoded source is no longer needed while that
+            # output is encoded, so do not retain both full-resolution arrays.
+            del source
             output_path.parent.mkdir(parents=True, exist_ok=True)
             stage = _stage_path(output_path, token)
             staged.append(stage)

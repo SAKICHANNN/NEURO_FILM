@@ -6,6 +6,7 @@ import subprocess
 import sys
 import threading
 import time
+from types import SimpleNamespace
 import weakref
 
 import numpy as np
@@ -672,6 +673,87 @@ def test_match_releases_reference_pixels_before_source_render(
 
     result = match_reference_files(reference, [source], [output])
     assert result.outputs == ()
+
+
+def test_render_releases_source_pixels_before_output_encode(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    source_path = tmp_path / "source.png"
+    output_path = tmp_path / "output.png"
+    source_path.write_bytes(b"source")
+    source_ref: weakref.ReferenceType[WorkingImage] | None = None
+    output_image = WorkingImage(
+        pixels=np.zeros((2, 3, 3), dtype=np.float32),
+        working_space="linear_srgb",
+        transfer_state="display_linear",
+        source_transfer_state="display_referred",
+        source_profile=SourceProfile("assumed_srgb", "output lifetime test"),
+        hdr_metadata={},
+        orientation_applied=True,
+        alpha_policy="absent",
+        bit_depth_in=32,
+        source_path=output_path,
+        warnings=[],
+    )
+
+    def load_source(
+        path: Path,
+        *,
+        label: str,
+    ) -> tuple[WorkingImage, str]:
+        nonlocal source_ref
+        assert path == source_path
+        assert label == "source"
+        image = WorkingImage(
+            pixels=np.zeros((2, 3, 3), dtype=np.float32),
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("assumed_srgb", "source lifetime test"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=8,
+            source_path=path,
+            warnings=[],
+        )
+        source_ref = weakref.ref(image)
+        return image, "2" * 64
+
+    def render_guarded(recipe, source, **kwargs):
+        assert source_ref is not None
+        assert source_ref() is source
+        return SimpleNamespace(
+            image=output_image,
+            candidate_diagnostics=object(),
+            safety=object(),
+        )
+
+    def encode(image, destination, **kwargs):
+        assert source_ref is not None
+        assert source_ref() is None
+        assert image is output_image
+        destination.write_bytes(b"encoded")
+        return "PNG", 0.0
+
+    monkeypatch.setattr(files, "_load_stable_working_image", load_source)
+    monkeypatch.setattr(files, "render_reference_look_guarded", render_guarded)
+    monkeypatch.setattr(files, "_encode_working_image", encode)
+    monkeypatch.setattr(files, "_commit_staged_batch", lambda *args, **kwargs: None)
+
+    prepared, recipe_hash, report_hash = files._execute_file_render(
+        object(),
+        (source_path,),
+        (output_path,),
+        guard_policy=None,
+        output_bit_depth=16,
+    )
+    assert len(prepared) == 1
+    assert recipe_hash is None
+    assert report_hash is None
 
 
 def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
