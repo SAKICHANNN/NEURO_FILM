@@ -1,6 +1,6 @@
 {
   "candidate_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
-  "declaration_id": "890d574a22f1cef12275b2a0ca6262d0cd5e8be67d6dfded1b8f8be7b992077f",
+  "declaration_id": "3859894600505aae2e8dbdf8d48a8c6652592e1e7f80500578c92628cf02d7b3",
   "package": {
     "distribution": "zhuise-research",
     "entrypoint": "zhuise-producer-invoke",
@@ -17,7 +17,14 @@
     "package_source_commit": "bf4fd4f71ae480f8b341f7d5739fb5b68fd4ce77",
     "stable_commit": "98073d4a61f904061341ae7a01451c2ce8b28177"
   },
-  "product_evidence": null,
+  "product_evidence": {
+    "a1_passed": false,
+    "a4_passed": true,
+    "a5_passed": false,
+    "blind_aesthetic_passed": false,
+    "gate_policy_id": "neuro-film.reference-match-p44-gates.v1",
+    "stable_evidence_id": "25789c1dd698c40621040ea9fc75d22bc6b60cfe6d1e113d32e55dfc658320b9"
+  },
   "rights": {
     "commercial_use_allowed": false,
     "evaluation_allowed": true,

@@ -3288,3 +3288,24 @@
 - D-PCT BMKL `7fa0eec` is currently a deterministic source-bound core only,
   not evaluation-ready: the exact package/wheel/request/response/fixture lock
   is still required before any P45 intake or P44 execution.
+
+## 2026-07-28 - Invoke and reject P111 fixed BMKL successor
+
+- P45 intake pins producer package `98073d4a`, wheel
+  `cd95c266...34bee`, invocation-profile ID `de6a590e...a53adc`, v2 wire
+  schemas, conformance fixture, per-source semantics and evaluation-only
+  rights. Exact-wheel consumer smoke passes; evaluation readiness is true,
+  product readiness false.
+- Two independent full P44 runs take about 127 seconds each. Timing-bound
+  report IDs differ, while stable evidence is exact at
+  `25789c1d...320b9`.
+- A1 fails: 13/30 rows improve, rate 43.33%, median improvement -12.06% and
+  worst -122.56%, with zero new boundary. A4 automated photographic safety
+  passes 6/6, so BMKL is materially safer than the rejected D-PCT candidate,
+  but blind review does not open after upstream failure. A5 fails 0/6; worst
+  median/p95/maximum shared-colour drift is 21.99/35.62/44.74 Delta E76.
+- Final decision is `rejected`. The declaration now binds A1=false, A4=true,
+  A5=false and blind=false. No product, runtime or rights claim opens.
+- Producer `76fbed6` later adds Windows-executed and cross-target-compiled
+  encoded-domain BMKL apply ABI evidence. It does not alter this wheel or
+  quality result and does not prove native OETF/EOTF or target runtime.

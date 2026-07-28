@@ -56,6 +56,11 @@ PRODUCER_FIXTURE = (
     PRODUCER
     / "tests/fixtures/zhuise_bmkl_invocation_installed_wheel_v2.json"
 )
+EVIDENCE = ROOT / "docs/evidence/P111_BMKL_FROZEN_ACCEPTANCE.json"
+REPORTS = (
+    ROOT / "outputs/evidence/bmkl_p44_acceptance_v1.json",
+    ROOT / "outputs/evidence/bmkl_p44_acceptance_replay_v1.json",
+)
 
 
 def _sha256(path: Path) -> str:
@@ -104,7 +109,9 @@ def test_bmkl_profile_and_declaration_are_strict_and_evaluation_ready() -> None:
     assert decision.evaluation_ready is True
     assert decision.evaluation_reasons == ()
     assert decision.product_ready is False
-    assert "product-evidence-absent" in decision.product_reasons
+    assert "a1-not-passed" in decision.product_reasons
+    assert "a5-not-passed" in decision.product_reasons
+    assert "blind-aesthetic-review-not-passed" in decision.product_reasons
     assert "commercial-rights-absent" in decision.product_reasons
 
 
@@ -159,3 +166,38 @@ def test_bmkl_exact_wheel_invokes_through_consumer_profile(
     )
     assert outcome.candidate.aliases.capability_id == profile.capability_id
     assert list(tmp_path.iterdir()) == []
+
+
+def test_bmkl_rejected_evidence_binds_declaration_and_exact_replays() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    declaration = json.loads(
+        DECLARATION_PATH.read_text(encoding="utf-8")
+    )
+    assert evidence["stable_evidence_id"] == (
+        declaration["product_evidence"]["stable_evidence_id"]
+    )
+    assert evidence["a1_known_operator"]["passed"] is False
+    assert evidence["a4_photographic_safety"]["automated_passed"] is True
+    assert evidence["a4_photographic_safety"]["blind_review_opened"] is False
+    assert evidence["a5_context_invariance"]["passed"] is False
+    assert evidence["promotion_status"] == "rejected"
+    if not all(path.is_file() for path in REPORTS):
+        pytest.skip("local full BMKL acceptance reports are unavailable")
+    reports = [
+        json.loads(path.read_text(encoding="utf-8")) for path in REPORTS
+    ]
+    assert {
+        report["stable_evidence_id"] for report in reports
+    } == {evidence["stable_evidence_id"]}
+    assert [
+        report["report_id"] for report in reports
+    ] == [
+        evidence["replay"]["first_report_id"],
+        evidence["replay"]["second_report_id"],
+    ]
+    assert [
+        _sha256(path) for path in REPORTS
+    ] == [
+        evidence["replay"]["first_file_sha256"],
+        evidence["replay"]["second_file_sha256"],
+    ]
