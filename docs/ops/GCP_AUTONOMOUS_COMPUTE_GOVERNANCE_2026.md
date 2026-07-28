@@ -1,7 +1,9 @@
 # GCP Autonomous Compute Governance
 
-Status: **authorized but not yet used**  
-Owner scope: Goal thread `019f4b76-e70a-75c0-b7ea-b473ab38c200`  
+Status: **authorized but not yet used**
+
+Owner scope: Goal thread `019f4b76-e70a-75c0-b7ea-b473ab38c200`
+
 Hard budget: **USD 2,000**
 
 ## Authority

@@ -1,9 +1,13 @@
 # GCP Thread Resource Ownership Ledger
 
-Thread: `019f4b76-e70a-75c0-b7ea-b473ab38c200`  
-Frozen prefix: `nfg019f4b76`  
-Hard budget: USD 2,000  
-Accounted thread spend: USD 0.00  
+Thread: `019f4b76-e70a-75c0-b7ea-b473ab38c200`
+
+Frozen prefix: `nfg019f4b76`
+
+Hard budget: USD 2,000
+
+Accounted thread spend: USD 0.00
+
 Last reconciled: 2026-07-28
 
 Only resources created by this thread may be entered as owned. Existing,
