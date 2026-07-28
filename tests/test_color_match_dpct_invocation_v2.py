@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import sys
 from copy import deepcopy
@@ -126,6 +127,48 @@ def test_profile_v2_preserves_existing_wire_request_exactly() -> None:
         source=source,
         reference=reference,
     )
+
+
+def test_profile_v2_uses_the_versioned_wire_identity_domain() -> None:
+    profile = _profile(
+        request_schema="zhuise.invocation-request.v2",
+        response_schema="zhuise.invocation-response.v2",
+        capability_id="zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+    )
+    request = prepare_dpct_invocation_request_v2(
+        profile=profile,
+        source=_prepared(0.0),
+        reference=_prepared(0.01),
+    )[0]
+    identity = dict(request)
+    request_id = identity.pop("request_id")
+    encoded = json.dumps(
+        identity,
+        ensure_ascii=False,
+        allow_nan=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode()
+    assert request_id == "sha256:" + hashlib.sha256(
+        b"ZhuiseInvocationRequestV2\0" + encoded
+    ).hexdigest()
+
+
+def test_profile_v2_rejects_mixed_wire_schema_versions() -> None:
+    profile = _profile(
+        request_schema="zhuise.invocation-request.v2",
+        response_schema="zhuise.invocation-response.v1",
+        capability_id="zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="wire schema pair is unsupported",
+    ):
+        prepare_dpct_invocation_request_v2(
+            profile=profile,
+            source=_prepared(0.0),
+            reference=_prepared(0.01),
+        )
 
 
 def test_profile_v2_invokes_exact_wheel_and_binds_profile(

@@ -103,6 +103,8 @@ class _InvocationParameters:
     pillow_version: str
     request_schema: str
     response_schema: str
+    request_domain: bytes
+    response_domain: bytes
     capability_id: str
     claim_ceiling: str
 
@@ -122,6 +124,8 @@ _V1_PARAMETERS = _InvocationParameters(
     pillow_version="12.1.1",
     request_schema=DPCT_INVOCATION_REQUEST_SCHEMA,
     response_schema=DPCT_INVOCATION_RESPONSE_SCHEMA,
+    request_domain=b"ZhuiseInvocationRequestV1\0",
+    response_domain=b"ZhuiseInvocationResponseV1\0",
     capability_id=DPCT_INVOCATION_CAPABILITY_ID,
     claim_ceiling=DPCT_INVOCATION_CLAIM_CEILING,
 )
@@ -133,6 +137,30 @@ def _parameters_v2(
     validated = load_dpct_invocation_profile_v2(
         dpct_invocation_profile_payload_v2(profile)
     )
+    domains = {
+        (
+            "zhuise.invocation-request.v1",
+            "zhuise.invocation-response.v1",
+        ): (
+            b"ZhuiseInvocationRequestV1\0",
+            b"ZhuiseInvocationResponseV1\0",
+        ),
+        (
+            "zhuise.invocation-request.v2",
+            "zhuise.invocation-response.v2",
+        ): (
+            b"ZhuiseInvocationRequestV2\0",
+            b"ZhuiseInvocationResponseV2\0",
+        ),
+    }
+    try:
+        request_domain, response_domain = domains[
+            (validated.request_schema, validated.response_schema)
+        ]
+    except KeyError as exc:
+        raise ReferenceMatchContractError(
+            "invocation profile wire schema pair is unsupported"
+        ) from exc
     return validated, _InvocationParameters(
         compatibility_profile_id=(
             validated.lower_compatibility_profile_id
@@ -152,6 +180,8 @@ def _parameters_v2(
         pillow_version=validated.pillow_version,
         request_schema=validated.request_schema,
         response_schema=validated.response_schema,
+        request_domain=request_domain,
+        response_domain=response_domain,
         capability_id=validated.capability_id,
         claim_ceiling=validated.claim_ceiling,
     )
@@ -227,7 +257,7 @@ def _prepare_dpct_invocation_request(
         },
     }
     request["request_id"] = _domain_id(
-        b"ZhuiseInvocationRequestV1\0", request
+        parameters.request_domain, request
     )
     return request, source_pixels, reference_pixels
 
@@ -344,7 +374,7 @@ def _validate_request(
     identity = dict(request)
     request_id = identity.pop("request_id")
     if request_id != _domain_id(
-        b"ZhuiseInvocationRequestV1\0", identity
+        parameters.request_domain, identity
     ):
         raise ReferenceMatchContractError(
             "D-PCT invocation request ID mismatch"
@@ -411,7 +441,7 @@ def _verify_dpct_invocation_output(
     identity = dict(response)
     response_id = identity.pop("response_id")
     if response_id != _domain_id(
-        b"ZhuiseInvocationResponseV1\0", identity
+        parameters.response_domain, identity
     ):
         raise ReferenceMatchContractError(
             "D-PCT invocation response ID mismatch"
