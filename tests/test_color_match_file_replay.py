@@ -23,6 +23,12 @@ from src.color_match import (
     save_file_replay_report,
 )
 from src.inference import sha256_file
+from src.preprocess import (
+    SourceProfile,
+    WorkingImage,
+    inspect_input,
+    save_rec2020_16_png,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +44,30 @@ def _image(path: Path, seed: int) -> None:
         dtype=np.uint8,
     )
     Image.fromarray(pixels, mode="RGB").save(path)
+
+
+def _rec2020_image(path: Path, seed: int) -> None:
+    pixels = np.random.default_rng(seed).uniform(
+        0.02,
+        0.98,
+        size=(31, 37, 3),
+    ).astype(np.float32)
+    save_rec2020_16_png(
+        WorkingImage(
+            pixels=pixels,
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("cicp", "BT.2020 SDR replay test"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=16,
+            source_path=path,
+            warnings=[],
+        ),
+        path,
+    )
 
 
 def _fit_recipe(
@@ -88,6 +118,44 @@ def test_file_replay_needs_no_reference_and_reproduces_output_bytes(
     assert first.recipe == second.recipe
     assert first.recipe_file_sha256 == second.recipe_file_sha256
     assert first.outputs[0].safety.accepted is True
+
+
+def test_file_replay_preserves_rec2020_sdr_output_and_report(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    fit_source = tmp_path / "fit-source.png"
+    recipe = tmp_path / "look.json"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    report = tmp_path / "report.json"
+    _rec2020_image(reference, 27811)
+    _rec2020_image(fit_source, 27812)
+    _rec2020_image(source, 27813)
+    match_reference_files(
+        reference,
+        [fit_source],
+        [tmp_path / "fit-output.png"],
+        recipe_path=recipe,
+    )
+
+    result = replay_reference_files(
+        recipe,
+        [source],
+        [output],
+        report_path=report,
+        output_bit_depth=16,
+    )
+    payload = json.loads(report.read_text(encoding="utf-8"))
+
+    assert result.outputs[0].diagnostics.source_working_space == (
+        "linear_rec2020"
+    )
+    assert payload["outputs"][0]["candidate_diagnostics"][
+        "source_working_space"
+    ] == "linear_rec2020"
+    assert payload["outputs"][0]["output_sha256"] == sha256_file(output)
+    assert inspect_input(output).source_profile.kind == "cicp"
 
 
 def test_bound_loader_hashes_the_exact_loaded_recipe_bytes(
