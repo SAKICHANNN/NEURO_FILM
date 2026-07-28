@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao7s-fresh-rawpixls-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO7S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2ao6_b0_real_film_residual_decision_v1.json",
+    "sha256": "3a394fb669bcb6d9e9e244cee2640c8daf8086b58bcf8065b81efdad90afa68b",
+    "required_decision": "retain_b0_plus_film_t15_c35_as_B0_development_champion_open_fresh_OOD_confirmation"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-28",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per exact repository rows",
+    "purpose": "fresh digital-photo source and OOD confirmation only",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "two exact, previously unused, development-and-AI1-disjoint CC0 rows per camera make; distinct models; 5-18 MB; no target/chart/cinema/series rows",
+    "candidate_count": 18,
+    "expected_makes": 9,
+    "maximum_rows_per_make": 2,
+    "expected_download_bytes_upper_bound": 283115520,
+    "download_root": "data/external/rawpixls_ao7_v1/raw",
+    "decoded_root": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {
+      "id": "canon_eos_kiss_f",
+      "make": "Canon",
+      "model": "EOS Kiss F",
+      "mode": "RAW (3:2)",
+      "date": "2023-03-19",
+      "bytes_reported_mb": 9.0,
+      "sha256": "12402b46f3cfaa66a671c7b6524c741dd17d6a2add3bc6cc41dcaf1570b0e722",
+      "filename": "Canon - EOS Kiss F - RAW (3:2).CR2",
+      "url": "https://raw.pixls.us/getfile.php/6457/nice/Canon%20-%20EOS%20Kiss%20F%20-%20RAW%20(3%3A2).CR2"
+    },
+    {
+      "id": "canon_eos_1d_mark_iv",
+      "make": "Canon",
+      "model": "EOS-1D Mark IV",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "date": "2020-12-30",
+      "bytes_reported_mb": 16.58,
+      "sha256": "41b78f2fa379c741d2a16aa344526d88814a8699ac03855bdd501199d9371fc6",
+      "filename": "Canon - EOS-1D Mark IV - sRAW1 (mRAW) (3:2).CR2",
+      "url": "https://raw.pixls.us/getfile.php/4259/nice/Canon%20-%20EOS-1D%20Mark%20IV%20-%20sRAW1%20(mRAW)%20(3%3A2).CR2"
+    },
+    {
+      "id": "nikon_d2x",
+      "make": "Nikon",
+      "model": "D2X",
+      "mode": "12bit compressed (Lossy (type 1)) (3:2)",
+      "date": "2026-02-25",
+      "bytes_reported_mb": 12.02,
+      "sha256": "b0b96cc953b8c2f86a216e64e575cbdaee935ddfe75e5a4adc861e41f668b83b",
+      "filename": "Nikon - D2X - 12bit compressed (Lossy (type 1)) (3:2).NEF",
+      "url": "https://raw.pixls.us/getfile.php/9065/nice/Nikon%20-%20D2X%20-%2012bit%20compressed%20(Lossy%20(type%201))%20(3%3A2).NEF"
+    },
+    {
+      "id": "nikon_d200",
+      "make": "Nikon",
+      "model": "D200",
+      "mode": "12bit compressed (Lossy (type 1)) (3:2)",
+      "date": "2025-06-08",
+      "bytes_reported_mb": 8.54,
+      "sha256": "b0800a1166b952430b255600373573e1d528adf8de98857781e06a98472b3c35",
+      "filename": "Nikon - D200 - 12bit compressed (Lossy (type 1)) (3:2).nef",
+      "url": "https://raw.pixls.us/getfile.php/8079/nice/Nikon%20-%20D200%20-%2012bit%20compressed%20(Lossy%20(type%201))%20(3%3A2).nef"
+    },
+    {
+      "id": "sony_nex_3n",
+      "make": "Sony",
+      "model": "NEX-3N",
+      "mode": "12bit 12bit compressed (3:2)",
+      "date": "2020-03-25",
+      "bytes_reported_mb": 16.16,
+      "sha256": "00d55767bffbcd33cd807fe24f88a6faefa33a34392dd095f18936532b05b0d1",
+      "filename": "Sony - NEX-3N - 12bit 12bit compressed (3:2).ARW",
+      "url": "https://raw.pixls.us/getfile.php/3821/nice/Sony%20-%20NEX-3N%20-%2012bit%2012bit%20compressed%20(3%3A2).ARW"
+    },
+    {
+      "id": "sony_dslr_a290",
+      "make": "Sony",
+      "model": "DSLR-A290",
+      "mode": "12bit 12bit compressed (3:2)",
+      "date": "2018-08-21",
+      "bytes_reported_mb": 13.62,
+      "sha256": "f56febc3621e0c4039a993ab289f9024c873e54f5749324e44cbaed59c4c2b8a",
+      "filename": "Sony - DSLR-A290 - 12bit 12bit compressed (3:2).ARW",
+      "url": "https://raw.pixls.us/getfile.php/2730/nice/Sony%20-%20DSLR-A290%20-%2012bit%2012bit%20compressed%20(3%3A2).ARW"
+    },
+    {
+      "id": "fujifilm_x_s10",
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "mode": "14bit 14bit compressed (3:2)",
+      "date": "2020-11-28",
+      "bytes_reported_mb": 17.81,
+      "sha256": "9419d1408ebf850395e5dd563beb96309466546252caf541466034c9cb7e9724",
+      "filename": "Fujifilm - X-S10 - 14bit 14bit compressed (3:2).RAF",
+      "url": "https://raw.pixls.us/getfile.php/4190/nice/Fujifilm%20-%20X-S10%20-%2014bit%2014bit%20compressed%20(3%3A2).RAF"
+    },
+    {
+      "id": "fujifilm_finepix_s5000",
+      "make": "Fujifilm",
+      "model": "FinePix S5000",
+      "mode": "4:3",
+      "date": "2018-08-20",
+      "bytes_reported_mb": 6.53,
+      "sha256": "dabd5e74521a6980156be9fd4b88d0c37b0fe4d0e0e6f5c12db8cffff1b76297",
+      "filename": "Fujifilm - FinePix S5000 - 4:3.RAF",
+      "url": "https://raw.pixls.us/getfile.php/2726/nice/Fujifilm%20-%20FinePix%20S5000%20-%204%3A3.RAF"
+    },
+    {
+      "id": "olympus_sp550uz",
+      "make": "Olympus",
+      "model": "SP550UZ",
+      "mode": "12bit (4:3)",
+      "date": "2025-10-03",
+      "bytes_reported_mb": 10.29,
+      "sha256": "05f49918e1b1894c3abd2b5451b356f7a00adb1c8568abc5babff33fcade1bb2",
+      "filename": "Olympus - SP550UZ - 12bit (4:3).ORF",
+      "url": "https://raw.pixls.us/getfile.php/8609/nice/Olympus%20-%20SP550UZ%20-%2012bit%20(4%3A3).ORF"
+    },
+    {
+      "id": "olympus_e_p7",
+      "make": "Olympus",
+      "model": "E-P7",
+      "mode": "16bit (4:3)",
+      "date": "2022-09-24",
+      "bytes_reported_mb": 17.06,
+      "sha256": "391b7a28d088f093a93d05c43b82bc8e9403579dea8cdc066d28af53a773d9c5",
+      "filename": "Olympus - E-P7 - 16bit (4:3).ORF",
+      "url": "https://raw.pixls.us/getfile.php/5980/nice/Olympus%20-%20E-P7%20-%2016bit%20(4%3A3).ORF"
+    },
+    {
+      "id": "panasonic_dmc_gf2",
+      "make": "Panasonic",
+      "model": "DMC-GF2",
+      "mode": "3:2",
+      "date": "2022-12-29",
+      "bytes_reported_mb": 12.53,
+      "sha256": "ddd8b32b1270c944939c9a929cdf168815fa578c256abf2406d68a9f823b3c62",
+      "filename": "Panasonic - DMC-GF2 - 3:2.rw2",
+      "url": "https://raw.pixls.us/getfile.php/6263/nice/Panasonic%20-%20DMC-GF2%20-%203%3A2.rw2"
+    },
+    {
+      "id": "panasonic_dmc_fz100",
+      "make": "Panasonic",
+      "model": "DMC-FZ100",
+      "mode": "3:2",
+      "date": "2022-05-02",
+      "bytes_reported_mb": 14.85,
+      "sha256": "3e148652ed0a68c245bdd1e52f531c355126c896a10da6c6c137f13dcd9af8cb",
+      "filename": "Panasonic - DMC-FZ100 - 3:2.RW2",
+      "url": "https://raw.pixls.us/getfile.php/5466/nice/Panasonic%20-%20DMC-FZ100%20-%203%3A2.RW2"
+    },
+    {
+      "id": "pentax_k_r",
+      "make": "Pentax",
+      "model": "K-r",
+      "mode": "12bit (3:2)",
+      "date": "2025-06-28",
+      "bytes_reported_mb": 12.78,
+      "sha256": "adc5c155341543e2e5c6de9c0ce87c86cc4629fe90a0f6e68fdf685dcd531b64",
+      "filename": "Pentax - K-r - 12bit (3:2).DNG",
+      "url": "https://raw.pixls.us/getfile.php/8172/nice/Pentax%20-%20K-r%20-%2012bit%20(3%3A2).DNG"
+    },
+    {
+      "id": "pentax_k100d_super",
+      "make": "Pentax",
+      "model": "K100D Super",
+      "mode": "12bit 12bit uncompressed (3:2)",
+      "date": "2022-07-20",
+      "bytes_reported_mb": 10.45,
+      "sha256": "b391c84ff1cc8769ec5214f837d1e4b3ae80374673608601b12ee4484e003ddb",
+      "filename": "Pentax - K100D Super - 12bit 12bit uncompressed (3:2).PEF",
+      "url": "https://raw.pixls.us/getfile.php/5804/nice/Pentax%20-%20K100D%20Super%20-%2012bit%2012bit%20uncompressed%20(3%3A2).PEF"
+    },
+    {
+      "id": "leica_d_lux_6",
+      "make": "Leica",
+      "model": "D-LUX 6",
+      "mode": "16:9",
+      "date": "2022-10-06",
+      "bytes_reported_mb": 10.66,
+      "sha256": "785127e959ba004b36e61d4153b11debe161dd98c45618aa561899795eea3888",
+      "filename": "Leica - D-LUX 6 - 16:9.RWL",
+      "url": "https://raw.pixls.us/getfile.php/6011/nice/Leica%20-%20D-LUX%206%20-%2016%3A9.RWL"
+    },
+    {
+      "id": "leica_digilux_3",
+      "make": "Leica",
+      "model": "Digilux 3",
+      "mode": "4:3",
+      "date": "2021-09-26",
+      "bytes_reported_mb": 14.34,
+      "sha256": "d2a4c556fe3660b70df34846dbb19c900a4e1fda0416e5651b1f8b6be7bfdd38",
+      "filename": "Leica - Digilux 3 - 4:3.RAW",
+      "url": "https://raw.pixls.us/getfile.php/4884/nice/Leica%20-%20Digilux%203%20-%204%3A3.RAW"
+    },
+    {
+      "id": "kodak_dcs_pro_slr_c",
+      "make": "Kodak",
+      "model": "DCS Pro SLR/c",
+      "mode": "12bit (3:2)",
+      "date": "2022-01-30",
+      "bytes_reported_mb": 14.23,
+      "sha256": "dca493a81bd4f87428d1584fa4ee6a4e98c97d6540b16a7a42d25916b0fd6107",
+      "filename": "Kodak - DCS Pro SLR/c - 12bit (3:2).DCR",
+      "url": "https://raw.pixls.us/getfile.php/5138/nice/Kodak%20-%20DCS%20Pro%20SLR%2Fc%20-%2012bit%20(3%3A2).DCR"
+    },
+    {
+      "id": "kodak_dcs_pro_14n",
+      "make": "Kodak",
+      "model": "DCS Pro 14n",
+      "mode": "12bit (3:2)",
+      "date": "2019-01-13",
+      "bytes_reported_mb": 15.18,
+      "sha256": "a2fa7abe9dc1a4978ec7bda31dd6b5e4b37ce1ddf9067e0eeb9123d38ea13f69",
+      "filename": "Kodak - DCS Pro 14n - 12bit (3:2).DCR",
+      "url": "https://raw.pixls.us/getfile.php/2970/nice/Kodak%20-%20DCS%20Pro%2014n%20-%2012bit%20(3%3A2).DCR"
+    }
+  ],
+  "preflight": {
+    "development_manifest": "outputs/filmcase/u41_provisional_eval_set.json",
+    "development_manifest_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "comparison_manifests": [
+      {
+        "path": "outputs/filmcase/u41_provisional_eval_set.json",
+        "sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+        "format": "frozen_set"
+      },
+      {
+        "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+        "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+        "format": "rawpixls_manifest"
+      }
+    ],
+    "minimum_hash_clean_decoded_rows": 16,
+    "minimum_camera_makes": 8,
+    "maximum_largest_make_fraction": 0.25,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 0,
+    "require_autonomous_visual_content_and_severe_audit": true,
+    "minimum_content_buckets": 6
+  },
+  "allowed_actions": [
+    "download only the 18 exact candidates",
+    "verify exact hashes and declared CC0 rows",
+    "neutral RAW decode and bounded preview generation",
+    "integrity, duplicate, prior-pool overlap and visual source audit"
+  ],
+  "forbidden_actions": [
+    "apply the AO6 champion before the source-preflight decision is frozen",
+    "replace failed or excluded rows after seeing images",
+    "select images for aesthetic compatibility",
+    "fit, train, route or tune any colour operator",
+    "treat digital RAW samples as film or stock evidence",
+    "change the fixed AO6 residual strengths or thresholds"
+  ],
+  "branch_rules": {
+    "preflight_pass": "freeze one AO7 confirmation contract over every eligible row",
+    "decode_or_hash_failure": "retain failure and evaluate the preregistered minimum without replacement",
+    "coverage_or_overlap_failure": "close this source pool and seek a distinct bounded rights-cleared source",
+    "visual_severe_input_failure": "exclude only under the preregistered severe-source rule and report it; never replace"
+  },
+  "image_payload_download_allowed": true,
+  "maximum_download_bytes": 283115520,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded fresh CC0 digital-photo confirmation-source feasibility; no algorithm, preference, film, stock, calibration, authenticity, production or universal-safety claim"
+}
