@@ -34,6 +34,12 @@ from .compiled_scatter import (
     apply_compiled_scatter_row_tiled,
     compile_scatter_profile,
 )
+from .pyramid_scatter import (
+    PyramidScatterComponent,
+    PyramidScatterProfile,
+    apply_pyramid_scatter,
+    compile_pyramid_scatter_profile,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -48,6 +54,8 @@ __all__ = [
     "PhysicalDomainArray",
     "PhysicalScale",
     "PhysicalUnit",
+    "PyramidScatterComponent",
+    "PyramidScatterProfile",
     "QualityTier",
     "QualityTierSpec",
     "REFERENCE_SCATTER_SCHEMA",
@@ -55,10 +63,12 @@ __all__ = [
     "ScatterComponent",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
+    "apply_pyramid_scatter",
     "apply_reference_scatter",
     "coordinate_counter_u64",
     "density_to_transmittance",
     "compile_scatter_profile",
+    "compile_pyramid_scatter_profile",
     "gaussian_kernel_1d",
     "gaussian_kernel_2d",
     "profile_from_contract",
