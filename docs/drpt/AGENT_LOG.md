@@ -6365,3 +6365,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   error stays below `.00265`, and all robust one-matrix gains exceed 96%.
   Close the fixed loss/scale without threshold repair; test a separately
   frozen two-stage sparse-outlier rejection method next.
+
+## 2026-07-28 - Freeze U5.R2AO0 real Velvia chart-proxy source gate
+
+- The 2026 CC-BY-4.0 article publishes Figure 8 as an exact 291,706-byte
+  official CDN JPEG containing flat 4x6 author-rendered Film Photo RGB and
+  spectral-reference RGB grids for a Velvia 50 ColorChecker capture.
+- AO0 permits exactly two downloads below 600KB and exact 24-pair extraction.
+  Pass opens only grouped display-proxy explainability; RAW, process/scanner
+  independence, transferable stock response, calibration and product claims
+  remain closed.

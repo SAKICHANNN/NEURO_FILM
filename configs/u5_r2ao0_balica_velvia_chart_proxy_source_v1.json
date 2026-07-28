@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao0-balica-velvia-chart-proxy-source-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO0",
+  "article": {
+    "title": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "doi": "10.1016/j.daach.2026.e00550",
+    "pii": "S2212054826000573",
+    "official_url": "https://www.sciencedirect.com/science/article/pii/S2212054826000573",
+    "open_access": true,
+    "license": "CC BY 4.0",
+    "license_url": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "asset": {
+    "figure": 8,
+    "official_cdn_url": "https://ars.els-cdn.com/content/image/1-s2.0-S2212054826000573-gr8_lrg.jpg",
+    "expected_bytes": 291706,
+    "expected_sha256": "cca9de4255dfd15afb325e6d845ab782e6550429a1d1ab18a39d150b358aca35",
+    "expected_format": "JPEG",
+    "expected_mode": "RGB",
+    "expected_width": 1743,
+    "expected_height": 905
+  },
+  "observed_evidence": {
+    "film_stock_id": "Fujifilm Fujichrome Velvia 50",
+    "film_stock_evidence": "article dataset description and Figure 8 context",
+    "film_type": "colour reversal",
+    "illuminant": "halogen",
+    "physical_roll_id": "unknown",
+    "process_type": "unknown",
+    "exposure_state": "unknown",
+    "scanner": "multispectral system",
+    "output_interpretation": "author-rendered sRGB display proxy",
+    "reference": "author-rendered sRGB from reference spectral data",
+    "patch_chart": "Calibrite ColorChecker Passport",
+    "patch_count": 24
+  },
+  "extraction": {
+    "rows": 6,
+    "columns": 4,
+    "vertical_start": 39,
+    "vertical_end_inclusive": 657,
+    "film_horizontal_start": 729,
+    "film_horizontal_end_inclusive": 1142,
+    "reference_horizontal_start": 1271,
+    "reference_horizontal_end_inclusive": 1684,
+    "centre_half_width": 10,
+    "centre_half_height": 10,
+    "aggregation": "per_channel_median_uint8",
+    "maximum_centre_channel_range": 0,
+    "expected_film_patch_u8_sha256": "410590f7811654b9bc4b83c5759d30afe8940277540b0b2f23df2d3a4c2d0eb2",
+    "expected_reference_patch_u8_sha256": "2ef8b711de558eddf47c8f60ef14794169a575d44211bdf8b896efd90187280d",
+    "expected_paired_patch_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e"
+  },
+  "gates": {
+    "two_fresh_downloads_byte_identical": true,
+    "all_asset_fields_exact": true,
+    "all_patch_centres_uniform": true,
+    "all_24_film_patches_unique": true,
+    "all_24_reference_patches_unique": true,
+    "paired_patch_hash_exact": true
+  },
+  "next_leaf_if_pass": "U5.R2AO1 leave-one-chart-row-out display-proxy operator explainability",
+  "operator_fitting_if_passes": true,
+  "image_download_allowed": true,
+  "download_count_maximum": 2,
+  "download_bytes_maximum": 600000,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "one CC-BY-4.0 real Velvia 50 single-illuminant single-exposure author-rendered sRGB chart display-proxy; not RAW, not scanner-independent, not a transferable stock response and not calibrated product evidence"
+}
