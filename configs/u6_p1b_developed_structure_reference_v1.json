@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p1b_developed_structure_reference_contract.v1",
+  "node": "U6.P1B",
+  "claim_ceiling": "generic-physical-inspired-reference-only",
+  "arithmetic": "float64-context-float32-raster",
+  "input_shape": [
+    12,
+    12
+  ],
+  "output_zoom": 8,
+  "output_pixel_pitch_um": 8.0,
+  "monte_carlo_samples": 16,
+  "seed": 260731,
+  "colour_dye_cloud": {
+    "material": "colour-dye-cloud",
+    "target_density_cmy": [
+      0.2,
+      0.6,
+      1.2
+    ],
+    "radius_um_cmy": [
+      5.0,
+      6.0,
+      7.0
+    ],
+    "mark_optical_density_cmy": [
+      0.3,
+      0.35,
+      0.4
+    ],
+    "output_domain": "developed-optical-density"
+  },
+  "bw_metallic_silver": {
+    "material": "bw-metallic-silver",
+    "target_density": 0.7,
+    "radius_um": 5.0,
+    "covered_transmittance": 0.0,
+    "output_domain": "film-transmittance"
+  },
+  "automatic_gates": {
+    "colour_interior_mean_density_abs_error_max": 0.12,
+    "bw_interior_mean_transmittance_abs_error_max": 0.08,
+    "minimum_structure_variance": 0.0001,
+    "repeat_exact": true,
+    "partition_exact": true,
+    "finite_domain_valid": true
+  },
+  "frozen_negative_control": {
+    "id": "U6.2B-salt-like-bright-speckles",
+    "rule": "No output from this node may be composed additively into display RGB or promoted through the rejected U6.2B policies."
+  },
+  "forbidden_fallbacks": [
+    "display RGB noise",
+    "signed headroom composite",
+    "shared colour and B&W material semantics",
+    "infer stock, process or scanner calibration",
+    "retune after confirmatory report"
+  ],
+  "branch_rule": {
+    "pass": "open U6.P4 compiler/NPS challenger while keeping this expensive material reference offline",
+    "fail": "repair only a representation or numerical defect; do not tune visual appearance"
+  }
+}
