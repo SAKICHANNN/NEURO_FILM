@@ -4069,3 +4069,13 @@
 - P164 proves the existing consumer transaction is atomic for these three
   exact later-source failures only. It changes no media code and adds no
   complete detection, HDR/gain-map, platform or product claim.
+
+## 2026-07-29 - Freeze BT.2020 SDR PNG/CICP file matrix
+
+- P165 fixes one BT.2020-only and one ordered sRGB/BT.2020 mixed transaction at
+  2048-by-1536, 16-bit PNG, each repeated twice against exact P163 product
+  source.
+- Exact rail/profile order, output/recipe/report identity, fallback, 1.5 GiB
+  peak, 1.15 repeat ratio, 60-second wall and cleanup gates are mandatory.
+- This is relative display-linear SDR evidence only, never absolute HDR,
+  arbitrary profile conversion, RAW/OCIO/ACES, platform or product readiness.
