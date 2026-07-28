@@ -87,6 +87,11 @@ flow, while `time_dependent_cube_flow.py` owns the separately versioned
 quadratic-time extension. Both are reusable explicit representation math;
 experiment orchestration, frozen targets, reports and branch decisions remain
 in scripts/configs/evaluation documents rather than entering these modules.
+`analytic_chroma_sector_curves.py` owns the clean-room continuous analytic
+partition, endpoint-fixed monotone Bernstein curve banks and deterministic
+parameter fitters. It contains no external colour-naming asset, image/data
+access, semantic routing or product integration; AL1 truth construction,
+controls, audit geometry and decisions remain in its frozen runner/configs.
 `photometric.py` owns canonical L0 exposure/WB and roll-gauge primitives;
 `sensitometry.py` owns the unintegrated linear-exposure-to-layer-density
 characteristic-curve representation; `sensitometry_print.py` owns the isolated

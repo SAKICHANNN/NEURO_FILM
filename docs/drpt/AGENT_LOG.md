@@ -6098,3 +6098,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Verification/handoff:** five module tests pass. No candidate/control formal
   fit or metric exists. V3 is now the only executable entry; runner
   implementation continues and Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AL1 explicit operator and audit runner
+
+- **Implementation:** added isolated
+  `src/roll2film/analytic_chroma_sector_curves.py` with the five-sector
+  continuous partition, exact neutral gate, 16 monotone degree-six Bernstein
+  curves, deterministic strength/replay/inverse surface and float64 CPU
+  candidate/global fitters. Neural code predicts no pixels and no external
+  naming asset or semantic map exists.
+- **Audit runner:** added the v3-only two-process runner with hash-chain and
+  clean-worktree enforcement, independently generated ordered truth stages,
+  global-curve/K3 controls, exact audit geometry and reconstructed gates.
+  Non-convergent inverse is recorded as a failed gate rather than crashing or
+  silently weakening the contract.
+- **Verification:** six focused tests pass, including NumPy/Torch equivalence,
+  identity/neutral/partition, replay/chunk/strength/inverse/Jacobian,
+  deterministic reduced fits, exact config chain, truth prerequisites and
+  confirmation deduplication. A reduced 20-step end-to-end report reconstructs
+  successfully and correctly returns an automatic failure rather than a false
+  pass. Formal v3 execution waits for this implementation commit and a clean
+  tracked worktree; Goal remains ACTIVE.
