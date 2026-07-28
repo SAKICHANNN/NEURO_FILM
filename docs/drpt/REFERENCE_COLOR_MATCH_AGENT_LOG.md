@@ -2268,6 +2268,19 @@
   materially new rights-cleared paired evidence, neutral companion/baseline,
   human semantic constraints or separately governed foundation prior.
 
+## 2026-07-28 - Freeze P58 main-integration evidence bundle
+
+- Node/parent goal: P58A-D / consumer-to-main reviewability after P57.
+- Contract: a deterministic, non-self-referential manifest pins the reviewed
+  consumer payload commit, common base and read-only main commit; enumerates
+  every changed path with Git mode/blob; records exact main-overlap paths; and
+  inventories P47-P57 public exports and JSON schemas.
+- Verification: regeneration from the same commits must be byte-identical.
+  Wrong commit/blob/export/schema, unexpected overlap or a dirty payload commit
+  fails closed. The manifest records commands but does not execute a main merge.
+- Scope: consumer script/fixture/test/docs only. No main or producer write,
+  package release, branch push, applied state or real-candidate admission.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

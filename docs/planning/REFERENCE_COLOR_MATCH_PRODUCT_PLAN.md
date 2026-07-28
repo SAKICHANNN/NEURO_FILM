@@ -221,6 +221,10 @@ with a selected stock, but reference matching alone is labeled
 | P57B | DONE | implement canonical shared delivery verifier | retain P55/P54 and ordered receipt/result identity through restart | `62e2579`; code/schema/tests | verified files only |
 | P57C | DONE | prove report/source/delivery tamper and claim closure | tamper/missing/relocation/order/identity/state/claim mutations reject | 19 focused tests | fail closed |
 | P57D | DONE | propagate evidence and peer handoff | 590 color-match; 1485 pass/1 skip/36 known; latest-main merge 19 pass | evidence commit | real path remains gated |
+| P58A | IN PROGRESS | freeze main-integration evidence bundle | pin consumer payload/base/main commits, changed-path Git blobs, zero-overlap set and exact verification commands | plan commit | no main write |
+| P58B | READY | generate and validate deterministic manifest | enumerate P1-P57 payload, public API exports and schema inventory without self-reference | script/manifest/tests | review evidence only |
+| P58C | BLOCKED ON P58B | prove drift/tamper/coverage closure | wrong commit/blob/export/schema/overlap or non-clean payload rejects | adversarial tests | fail closed |
+| P58D | BLOCKED ON P58C | propagate manifest and peer handoff | deterministic replay/latest-main merge evidence | evidence commit | main owner decides merge |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
