@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 from typing import Any, Mapping
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .shared_runtime_staging_verification import (
@@ -169,6 +170,7 @@ def validate_runtime_qualified_shared_staging_consumption_record_v1(
         or isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.outputs)
     ):
         raise ReferenceMatchContractError(

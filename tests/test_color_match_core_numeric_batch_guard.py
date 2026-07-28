@@ -12,6 +12,7 @@ import pytest
 
 from src.color_match import (
     CORE_NUMERIC_BATCH_GUARD_SCHEMA_ID,
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     MATCH_PROFILE_DISPLAY_SRGB,
     CoreNumericGuardPolicyV1,
     PreparedMatchViewV1,
@@ -189,6 +190,34 @@ def test_all_numeric_passes_only_make_batch_transaction_eligible() -> None:
     encoded = core_numeric_batch_guard_to_json(result)
     assert "applied" not in encoded
     assert "pixels" not in encoded
+
+
+def test_persisted_numeric_batch_rejects_more_than_the_global_limit() -> None:
+    reference, items, batch = _pending_batch()
+    decisions = tuple(
+        _decision(reference, item, _relaxed()) for item in items
+    )
+    result = guard_core_numeric_batch_v1(
+        batch=batch,
+        decisions=decisions,
+    )
+    oversized_sources = tuple(
+        replace(
+            result.sources[index % len(result.sources)],
+            source_index=index,
+        )
+        for index in range(MAX_REFERENCE_MATCH_BATCH_SOURCES + 1)
+    )
+    oversized = replace(
+        result,
+        source_count=MAX_REFERENCE_MATCH_BATCH_SOURCES + 1,
+        sources=oversized_sources,
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="source_count mismatch",
+    ):
+        validate_core_numeric_batch_guard_v1(oversized)
 
 
 def test_one_numeric_failure_forces_whole_batch_fallback() -> None:

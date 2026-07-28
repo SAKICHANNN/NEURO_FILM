@@ -152,7 +152,7 @@
         "encode_clipped_fraction"
       ],
       "properties": {
-        "source_index": {"type": "integer", "minimum": 0},
+        "source_index": {"type": "integer", "minimum": 0, "maximum": 63},
         "source_view_id": {"$ref": "#/$defs/hash"},
         "apply_receipt_id": {"$ref": "#/$defs/hash"},
         "producer_apply_result_id": {"$ref": "#/$defs/producer_hash"},

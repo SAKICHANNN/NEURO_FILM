@@ -35,7 +35,7 @@
     "numeric_guard_batch_id": {"$ref": "#/$defs/hash"},
     "operator_id": {"$ref": "#/$defs/hash"},
     "reference_view_id": {"$ref": "#/$defs/hash"},
-    "source_count": {"type": "integer", "minimum": 1},
+    "source_count": {"type": "integer", "minimum": 1, "maximum": 64},
     "state": {"const": "composition-ready-not-rendered"},
     "color_owner": {"const": "external-shared-reference-look"},
     "reference_color_status": {"const": "verified-shared-staging"},

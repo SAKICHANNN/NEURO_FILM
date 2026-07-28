@@ -22,7 +22,7 @@
     "operator_id": {"$ref": "#/$defs/hash"},
     "policy": {"$ref": "#/$defs/policy"},
     "policy_id": {"$ref": "#/$defs/hash"},
-    "source_count": {"type": "integer", "minimum": 1},
+    "source_count": {"type": "integer", "minimum": 1, "maximum": 64},
     "atomic_state": {
       "enum": ["eligible-for-transaction", "identity-fallback"]
     },
@@ -126,7 +126,7 @@
         "upstream_batch_id": {"$ref": "#/$defs/hash"},
         "operator_id": {"$ref": "#/$defs/hash"},
         "policy_id": {"$ref": "#/$defs/hash"},
-        "source_index": {"type": "integer", "minimum": 0},
+        "source_index": {"type": "integer", "minimum": 0, "maximum": 63},
         "source_view_id": {"$ref": "#/$defs/hash"},
         "receipt_id": {"$ref": "#/$defs/hash"},
         "output_view_id": {"$ref": "#/$defs/hash"},

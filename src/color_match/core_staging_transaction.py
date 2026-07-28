@@ -12,6 +12,7 @@ import uuid
 import numpy as np
 
 from src.inference.render_contract import atomic_write_json, sha256_file
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_apply_receipt import validate_prepared_core_apply_receipt
@@ -333,6 +334,7 @@ def validate_external_core_staging_run_v1(
         isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.outputs)
     ):
         raise ReferenceMatchContractError(

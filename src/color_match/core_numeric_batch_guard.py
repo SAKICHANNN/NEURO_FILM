@@ -7,6 +7,7 @@ import json
 import re
 from typing import Any, Mapping, Sequence
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .core_numeric_guard import (
@@ -246,6 +247,7 @@ def validate_core_numeric_batch_guard_v1(
         isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.sources)
     ):
         raise ReferenceMatchContractError(

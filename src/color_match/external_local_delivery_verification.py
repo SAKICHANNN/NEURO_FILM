@@ -11,6 +11,7 @@ from typing import Any, Mapping
 
 from src.inference import sha256_file
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
 from .external_local_delivery import (
@@ -263,6 +264,7 @@ def validate_external_local_delivery_verification_v1(
         isinstance(value.source_count, bool)
         or not isinstance(value.source_count, int)
         or value.source_count <= 0
+        or value.source_count > MAX_REFERENCE_MATCH_BATCH_SOURCES
         or value.source_count != len(value.outputs)
     ):
         raise ReferenceMatchContractError(

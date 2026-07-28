@@ -3404,3 +3404,23 @@
   full producer identity repair.
 - The temporary verification worktree is removed after validation. State
   remains `review-ready-not-merged`; main owns any merge.
+
+## 2026-07-28 - Propagate P118 batch limits through persisted contracts
+
+- Follow-up audit found P115 bounded the two root batch contracts and late
+  runtime stages, but 21 intermediate persisted validators and 22 downstream
+  schemas still accepted a forged `source_count > 64`. Normal builders could
+  not produce it, yet standalone JSON/cross-language validation disagreed with
+  the product resource contract.
+- Every direct validator now imports the single
+  `MAX_REFERENCE_MATCH_BATCH_SOURCES` authority. All 29 reference-match schemas
+  carrying `source_count` bind `maximum=64`; their `sources`/`outputs` arrays
+  bind `maxItems=64`, and every exposed `source_index` binds `maximum=63`.
+- A repository-wide consistency test enumerates the 29 schemas and parses all
+  27 direct Python validators, while a forged downstream numeric batch proves
+  runtime rejection. The older P63 synthetic 65-output verifier test now
+  expects rejection at P50/P62 serialization, before an impossible object can
+  enter handle verification.
+- The sorted `path<TAB>sha256<LF>` identity over all 29 affected contract
+  schemas is `67767247...1f72e17`; the two root P115 schema identities remain
+  unchanged.

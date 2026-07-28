@@ -469,7 +469,6 @@ def test_mutated_records_fail_closed(
 
 def test_unknown_fields_and_more_than_sixty_four_outputs_fail_closed(
     tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     run, report_sha256, report_path = _committed_p62(tmp_path)
     result = _verify(run, report_sha256, report_path)
@@ -480,29 +479,14 @@ def test_unknown_fields_and_more_than_sixty_four_outputs_fail_closed(
             json.dumps(payload)
         )
 
-    large_run, large_sha, large_report = _committed_p62(
-        tmp_path / "large",
-        count=65,
-    )
-    calls: list[str] = []
-    original = verification.open_stable_file_handle
-
-    @contextmanager
-    def tracking_open(
-        path: Path | str,
-        *,
-        label: str,
-    ) -> Iterator[StableFileHandleLease]:
-        calls.append(str(path))
-        with original(path, label=label) as lease:
-            yield lease
-
-    monkeypatch.setattr(
-        verification, "open_stable_file_handle", tracking_open
-    )
-    with pytest.raises(ReferenceMatchContractError, match="outside its bound"):
-        _verify(large_run, large_sha, large_report)
-    assert calls == [str(large_report)]
+    # P118 moves the shared 64-source ceiling to the persisted P50/P62
+    # validator, so an impossible 65-output run can no longer be serialized
+    # merely to exercise the later handle verifier.
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="source_count is invalid",
+    ):
+        _committed_p62(tmp_path / "large", count=65)
 
 
 @pytest.mark.parametrize(
