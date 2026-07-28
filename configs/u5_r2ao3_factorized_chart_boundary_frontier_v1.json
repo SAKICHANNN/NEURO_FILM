@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao3-factorized-chart-boundary-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO3",
+  "split": "B0_development",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "operator_config": "configs/u5_r2ao2_velvia_chart_one_matrix_operator_v1.json",
+  "operator_config_sha256": "b470af0e65de3e98d0621b5ee77cacde06305ef21076befc308f5dffb2e65b55",
+  "operator_witness_id": "velvia_chart_one_matrix",
+  "inherited_frontier_config": "configs/u5_r2b_global_operator_frontier_v1.json",
+  "inherited_frontier_config_sha256": "209d9a0676f4ce887bee463f1de26eff52eaba727df8015764d0755429231ad6",
+  "factorization": {
+    "luma_weights": [0.2126, 0.7152, 0.0722],
+    "tone_residual": "equal_linear_rgb_delta_matching_base_operator_luma_delta",
+    "chroma_residual": "base_operator_residual_minus_equal_rgb_luma_delta",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "rail_rule": "source-inclusive encoded-srgb rails converted exactly to linear; sequential maximum safe scale for tone then chroma",
+    "hard_clip_allowed": false,
+    "per_image_fit_or_adjustment_allowed": false
+  },
+  "factor_bank": [
+    {
+      "candidate_id": "tone_s35__chroma_s75",
+      "tone_strength": 0.35,
+      "chroma_strength": 0.75
+    },
+    {
+      "candidate_id": "tone_s35__chroma_s100",
+      "tone_strength": 0.35,
+      "chroma_strength": 1.0
+    },
+    {
+      "candidate_id": "tone_s50__chroma_s75",
+      "tone_strength": 0.5,
+      "chroma_strength": 0.75
+    },
+    {
+      "candidate_id": "tone_s50__chroma_s100",
+      "tone_strength": 0.5,
+      "chroma_strength": 1.0
+    }
+  ],
+  "candidate_count": 4,
+  "render_seed": 20260728,
+  "output_root": "outputs/u5_r2ao3_factorized_chart_boundary_frontier_v1",
+  "working_space": "linear_srgb_d65",
+  "input_transfer": "srgb",
+  "output_transfer": "srgb",
+  "output_format": "rgb8_png",
+  "rendering": {
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "hard_clipping_allowed": false,
+    "post_result_parameter_change_allowed": false,
+    "require_repeat_manifest_byte_identity": true,
+    "verify_source_hash_before_render": true,
+    "require_matching_dimensions": true,
+    "require_rgb_decode": true
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "minimum_gold_median_style_delta_e76": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 4.9
+  },
+  "shortlist": {
+    "cross_candidate_order": [
+      "descending_gold_median_non_basic_residual_delta_e76",
+      "descending_gold_median_style_delta_e76",
+      "ascending_tone_strength",
+      "ascending_chroma_strength",
+      "ascending_candidate_id"
+    ],
+    "maximum_candidates": 2
+  },
+  "visual": {
+    "automatic_shortlist_only": true,
+    "blind_rounds": 3,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "boundary_pileup_and_posterization_review_required": true,
+    "claim": "autonomous B0 development evidence for a factorized real-chart display-proxy Look Approximation only"
+  },
+  "training_allowed": false,
+  "operator_refit_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "B0 autonomous real-photo test of a deterministic tone/chroma-factorized boundary guard around one 24-patch single-figure Velvia 50 sRGB display-proxy operator; not RAW, independent confirmation, transferable stock response, calibrated, owner preference or product promotion"
+}
