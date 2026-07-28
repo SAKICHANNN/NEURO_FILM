@@ -447,12 +447,65 @@ def build_density_source_context_row_staged(
     return safe_lab_context_from_lab(lab, source_value.shape)
 
 
+def build_density_source_context_from_scene_row_staged(
+    payload: dict[str, Any],
+    scene_linear: np.ndarray,
+    *,
+    tile_rows: int,
+) -> SafeLabSourceContext:
+    """Build the exact encoded-source context without retaining encoded RGB."""
+
+    validate_display_look_payload(payload)
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+    ):
+        raise ValueError("tile_rows must be a positive integer")
+    scene_value = np.asarray(scene_linear, dtype=np.float32)
+    if (
+        scene_value.ndim != 3
+        or scene_value.shape[-1] != 3
+        or scene_value.shape[0] == 0
+        or scene_value.shape[1] == 0
+        or not np.all(np.isfinite(scene_value))
+        or np.any(scene_value < 0.0)
+        or np.any(scene_value > 1.0)
+    ):
+        raise ValueError("scene context input must be finite linear HxWx3")
+    base = payload["base"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    lab = np.empty(scene_value.shape, dtype=np.float32)
+    for y0 in range(0, scene_value.shape[0], tile_rows):
+        y1 = min(scene_value.shape[0], y0 + tile_rows)
+        source_encoded = np.asarray(
+            linear_srgb_to_encoded(
+                scene_value[y0:y1].astype(np.float64)
+            ),
+            dtype=np.float32,
+        )
+        linear = encoded_srgb_to_linear(
+            source_encoded.astype(np.float64)
+        )
+        density = density_operator.apply(
+            linear, strength=float(base["density_strength"])
+        )
+        encoded = linear_srgb_to_encoded(density)
+        lab[y0:y1] = rgb2lab(
+            np.asarray(encoded, dtype=np.float32)
+        )
+    return safe_lab_context_from_lab(lab, scene_value.shape)
+
+
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
     "build_source_context_display_look_stages",
     "build_source_context_display_look_row_streamed",
     "build_density_source_context_row_staged",
+    "build_density_source_context_from_scene_row_staged",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]

@@ -15,6 +15,7 @@ from src.film_physics.profile_consumer import (
     render_working_image_row_streamed,
 )
 from src.film_physics.display_look import (
+    build_density_source_context_from_scene_row_staged,
     build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
@@ -197,5 +198,26 @@ def test_density_source_context_row_staging_is_exact() -> None:
     reference = build_safe_lab_source_context(full_density)
     staged = build_density_source_context_row_staged(
         payload, source, tile_rows=17
+    )
+    assert staged == reference
+
+
+def test_scene_row_context_matches_encoded_source_context_exactly() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    scene = np.random.default_rng(2026072916).random(
+        (67, 71, 3), dtype=np.float32
+    )
+    encoded = linear_srgb_to_encoded(scene.astype(np.float64))
+    reference = build_density_source_context_row_staged(
+        payload, encoded, tile_rows=17
+    )
+    staged = build_density_source_context_from_scene_row_staged(
+        payload, scene, tile_rows=19
     )
     assert staged == reference
