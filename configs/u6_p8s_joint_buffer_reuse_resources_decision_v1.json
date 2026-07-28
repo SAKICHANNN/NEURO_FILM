@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p8s_joint_buffer_reuse_resources_decision.v1",
+  "node": "U6.P8S",
+  "software_commit": "604bbbf",
+  "contract_sha256": "d7ee86a4f84ea3a89f80490737fa1d82dfe649f4358012d465e4405e847ed790",
+  "report_sha256": "a5b4cd3c864815482047a7cc31065fb9400fa592fe29ae4f8f8dfb954989d5b9",
+  "stable_evidence_id": "64782263754cca88771df994381bbcca9eca9b6d3034cb712cd9ae7d9368836c",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8r": true,
+  "timing_comparison_valid": false,
+  "timing_note": "a foreign Python process used roughly 5.35GiB and sustained CPU during the formal run; latency is recorded but excluded from selection",
+  "preview_1mp": {
+    "wall_seconds_range": [
+      5.64860299997963,
+      5.803277200000593
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      225107968,
+      230690816
+    ]
+  },
+  "mobile_standard_12mp": {
+    "wall_seconds_range": [
+      52.25952220000909,
+      54.5457510999986
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      871301120,
+      871632896
+    ]
+  },
+  "memory_comparison": {
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8q_at_mean": 0.164675,
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8h_at_mean": 0.525006
+  },
+  "decision": "row-local source-context casting plus halo-safe destructive physical output reuse preserves exact final pixels and cuts mean 12MP peak process-tree RSS by 16.47% versus P8Q and 52.50% versus P8H. Retain the implementation. The remaining 0.812GiB mean peak still fails the provisional mobile target, so re-attribute the exact current entry before changing the full-frame Lab storage",
+  "candidate_retained": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8T phase-local RSS re-attribution through the exact P8S production entry, with two exact 12MP repeats and no parameter or pixel changes",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-local context casting and halo-safe destructive physical output reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
