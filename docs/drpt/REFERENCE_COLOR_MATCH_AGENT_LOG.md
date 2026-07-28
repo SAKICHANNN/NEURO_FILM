@@ -3761,3 +3761,15 @@
   `review-ready-not-merged`; main owns merge. Producer training results remain
   unmapped unless a distinct versioned callable capability clears the existing
   admission and product gates.
+
+## 2026-07-28 - Freeze the cross-language output-capability envelope
+
+- Added `reference_file_output_capabilities_payload` as the single JSON
+  envelope builder used by the CLI and exported API.
+- Added strict Draft 2020-12 schema
+  `reference_file_output_capabilities_v1.schema.json`. Its capability array is
+  an exact v1 constant, so reordered, combined or inflated rails fail instead
+  of accidentally validating through independent field enums.
+- The complete non-manifest color-match regression passes 935 tests with five
+  explicit skips. This is contract portability only and does not add a new
+  output rail.

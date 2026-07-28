@@ -13,13 +13,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.color_match import (  # noqa: E402
-    REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
     ReferenceMatchContractError,
     ReferenceRenderGuardPolicy,
     build_file_match_report,
     build_file_replay_report,
     match_reference_files,
-    reference_file_output_capabilities,
+    reference_file_output_capabilities_payload,
     replay_reference_files,
 )
 
@@ -107,19 +106,7 @@ def main(argv: list[str] | None = None) -> int:
                 file=sys.stderr,
             )
             return 2
-        payload = {
-            "schema_id": REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
-            "capabilities": [
-                {
-                    "working_space": row.working_space,
-                    "transfer_state": row.transfer_state,
-                    "output_bit_depth": row.output_bit_depth,
-                    "extensions": list(row.extensions),
-                    "encoding_profile": row.encoding_profile,
-                }
-                for row in reference_file_output_capabilities()
-            ],
-        }
+        payload = reference_file_output_capabilities_payload()
         print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
         return 0
     if args.source is None or args.output is None or args.report is None:

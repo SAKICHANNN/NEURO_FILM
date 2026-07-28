@@ -88,6 +88,24 @@ def reference_file_output_capabilities(
     )
 
 
+def reference_file_output_capabilities_payload() -> dict[str, Any]:
+    """Return the strict JSON-compatible v1 capability envelope."""
+
+    return {
+        "schema_id": REFERENCE_FILE_OUTPUT_CAPABILITIES_ID,
+        "capabilities": [
+            {
+                "working_space": row.working_space,
+                "transfer_state": row.transfer_state,
+                "output_bit_depth": row.output_bit_depth,
+                "extensions": list(row.extensions),
+                "encoding_profile": row.encoding_profile,
+            }
+            for row in reference_file_output_capabilities()
+        ],
+    }
+
+
 def resolve_reference_file_output_capability(
     *,
     working_space: str,
@@ -1038,6 +1056,7 @@ __all__ = [
     "FileReferenceReplayResult",
     "match_reference_files",
     "reference_file_output_capabilities",
+    "reference_file_output_capabilities_payload",
     "resolve_reference_file_output_capability",
     "replay_reference_files",
 ]

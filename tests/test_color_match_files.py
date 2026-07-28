@@ -10,6 +10,7 @@ import time
 import numpy as np
 import pytest
 import tifffile
+from jsonschema import Draft202012Validator, ValidationError
 from PIL import Image
 
 from src.color_match import (
@@ -18,6 +19,7 @@ from src.color_match import (
     load_reference_look_recipe,
     match_reference_files,
     reference_file_output_capabilities,
+    reference_file_output_capabilities_payload,
     resolve_reference_file_output_capability,
 )
 from src.preprocess import (
@@ -131,6 +133,24 @@ def test_file_output_capability_resolver_uses_the_exact_public_matrix() -> None:
             output_bit_depth=16,
             output_extension="png",
         )
+
+
+def test_file_output_capability_payload_validates_against_public_schema() -> None:
+    schema_path = (
+        Path(__file__).resolve().parents[1]
+        / "configs"
+        / "schemas"
+        / "reference_file_output_capabilities_v1.schema.json"
+    )
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    Draft202012Validator.check_schema(schema)
+    validator = Draft202012Validator(schema)
+    payload = reference_file_output_capabilities_payload()
+    validator.validate(payload)
+    mutated = json.loads(json.dumps(payload))
+    mutated["capabilities"][2]["encoding_profile"] = "srgb-icc.v1"
+    with pytest.raises(ValidationError):
+        validator.validate(mutated)
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
