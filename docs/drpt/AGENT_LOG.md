@@ -5738,3 +5738,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   two-process integrity/decode audit. No PNG/TIFF body, photograph render,
   aesthetic selection, fitting, training, teacher use, LSM or integration has
   occurred. AJ0B implementation is the next ready leaf; Goal remains ACTIVE.
+
+## 2026-07-28 - Close U5.R2AJ0B v1 and freeze lane-aware U5.R2AJ0B2
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AJ0B`; DRPT L2/Mode A,
+  `dev-research-reliability` as sole writer, with read-only code-review,
+  research, log and structure checks.
+- **Implementation evidence:** commit `2d154f7` adds a bounded resumable
+  downloader, safe ZIP/decode audit and strict two-process evidence gate.
+  Seventeen dedicated, 29 acquisition-adjacent and all 1,068 CPU tests pass.
+  An independent review finds no remaining implementation blocker.
+- **Exact acquisition:** the retained ignored archive has 421,602,289 bytes,
+  MD5 `4742e362...85e1` and SHA-256 `0ffca81f...9dc2`.
+- **Frozen v1 failure:** the first child audit stops on
+  `Black-and-White/Agfa/Agfa APX 25.png`, which is mode `L` under the v1
+  RGB/RGBA-only assumption. No manifest, repeat decision, photograph render,
+  operator application or structural-ready state is written. Config v1 is
+  not edited after the result.
+- **Diagnostic boundary:** a read-only in-memory config copy adding `L` only
+  for metadata enumeration decodes all 295 entries. It finds 227 Color RGB
+  files, 66 B&W 8-bit `L` files, two 16-bit RGB root controls and zero ICC.
+  This is diagnostic, not a formal pass.
+- **Propagation/branch:** AJ0B v1 closes. AJ0B2 freezes the exact path-family
+  format/mode/bit-depth/Hald profiles, archive SHA, primary-path hash and
+  image-record hash before its two new runs. AJ0C, photography, aesthetics,
+  fitting, training, LSM, integration and distribution remain closed. Future
+  AJ0C must generate identity analytically and must not use Pillow samples
+  from the 16-bit root controls. Goal remains ACTIVE.

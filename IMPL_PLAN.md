@@ -479,11 +479,16 @@ U5.R2AJ0A supplies that distinct source hypothesis. Bounded remote ZIP
 metadata and README reads fix the official RawTherapee Film Simulation
 Collection at version `20150920`, exactly 421,602,289 bytes, published MD5
 `4742e362a70c1a1c0fb9042a17d285e1`, CC BY-SA 4.0 and 194 non-Creative colour
-HaldCLUT entries. No LUT image was requested or decoded. AJ0B is the current
-ready leaf: download the one ignored archive, verify every path/CRC/image and
-repeat the complete audit twice. Preset names remain informational external
-Look Approximation labels; no stock response, Push/Pull truth, training
-teacher, photograph render, current-film fitting, LSM or integration opens.
+HaldCLUT entries. AJ0B then acquired the exact ignored archive at published
+MD5 and observed SHA-256 `0ffca81f...9dc2`, but its frozen RGB/RGBA-only
+decode assumption fails on a B&W auxiliary mode-`L` PNG before any promoted
+evidence is written. The v1 config remains unchanged. A diagnostic-only
+inventory establishes an exact lane split: 227 Color RGB, 66 B&W 8-bit `L`
+and two 16-bit RGB root controls. AJ0B2 is the current ready leaf: reproduce
+those exact profiles, all paths/CRCs and the unchanged 194 primary members in
+two new processes. Preset names remain informational external Look
+Approximation labels; no stock response, Push/Pull truth, training teacher,
+photograph render, current-film fitting, LSM or integration opens.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

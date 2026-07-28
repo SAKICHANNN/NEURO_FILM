@@ -519,8 +519,16 @@ official RawTherapee Film Simulation Collection fixes version `20150920`,
 194-entry non-Creative colour HaldCLUT universe before any LUT image access.
 The assets are licensed external Look Approximation controls, but their names
 are only informational approximations: they do not identify a stock response,
-Push/Pull state, scan chain or unpaired digital-to-film operator. `U5.R2AJ0B`
-may acquire and decode the one bounded archive twice; photographs, aesthetic
+Push/Pull state, scan chain or unpaired digital-to-film operator.
+
+`U5.R2AJ0B` acquires the exact archive and confirms its published MD5, but its
+unchanged v1 all-RGB decode assumption fails on the first B&W auxiliary
+mode-`L` PNG. It writes no promoted evidence. A post-failure read-only
+diagnostic finds that all 227 Color entries are RGB, while all 66 B&W entries
+are 8-bit `L`; this does not retroactively pass v1. `U5.R2AJ0B2` is a
+separately versioned confirmation of the exact path-family profiles and must
+repeat all integrity work in two new processes before AJ0C can open. The
+primary 194-member Color universe is unchanged. Photographs, aesthetic
 selection, training, teacher use, current-film fitting, LSM and integration
-remain closed. See
-`docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`.
+remain closed. See `docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md` and
+`docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md`.
