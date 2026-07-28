@@ -3828,3 +3828,15 @@
   injection proves the file identity is retained while no decoded rail or
   acceptance is fabricated. Fifty-one adjacent file/report tests pass with
   one explicit skip.
+
+## 2026-07-29 - Publish decoder-safe preflight in v35
+
+- V35 binds corrected payload `3425908` to main committed stable point
+  `933e7c6`: 480 consumer paths, 513 main paths and zero overlap. The 61
+  exports and 24 contract schemas remain unchanged from v34.
+- Manifest/schema SHA-256 identities are `30285578...dc596` /
+  `c7d5d9fd...d6200`; merge tree `3083cc7d...6774b`. Detached synthetic merge
+  `e8b0ca9` passes 1291 color-match tests with 30 explicit skips and 1317
+  unrelated deselections; its owned worktree was removed.
+- All 380 discovered v1-v35 manifest tests pass. V35 supersedes v34 and is the
+  current `review-ready-not-merged` payload; main owns merge.
