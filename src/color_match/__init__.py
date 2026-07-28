@@ -304,6 +304,16 @@ from .shared_local_delivery import (
     shared_local_delivery_to_json,
     validate_shared_local_delivery_v1,
 )
+from .shared_local_delivery_verification import (
+    SHARED_LOCAL_DELIVERY_VERIFICATION_CLAIM_CEILING,
+    SHARED_LOCAL_DELIVERY_VERIFICATION_SCHEMA_ID,
+    SharedLocalDeliveryVerificationV1,
+    VerifiedSharedLocalDeliveryOutputV1,
+    shared_local_delivery_verification_from_json,
+    shared_local_delivery_verification_to_json,
+    validate_shared_local_delivery_verification_v1,
+    verify_shared_local_delivery_v1,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -671,6 +681,10 @@ __all__ = [
     "CommittedSharedLocalDeliveryV1",
     "SharedLocalDeliveryOutputV1",
     "SharedLocalDeliveryV1",
+    "SHARED_LOCAL_DELIVERY_VERIFICATION_CLAIM_CEILING",
+    "SHARED_LOCAL_DELIVERY_VERIFICATION_SCHEMA_ID",
+    "SharedLocalDeliveryVerificationV1",
+    "VerifiedSharedLocalDeliveryOutputV1",
     "evaluate_successor_declaration_v1",
     "successor_declaration_id_v1",
     "make_shared_reference_operator_v1",
@@ -723,6 +737,10 @@ __all__ = [
     "shared_local_delivery_from_json",
     "shared_local_delivery_to_json",
     "validate_shared_local_delivery_v1",
+    "shared_local_delivery_verification_from_json",
+    "shared_local_delivery_verification_to_json",
+    "validate_shared_local_delivery_verification_v1",
+    "verify_shared_local_delivery_v1",
     "invoke_dpct_package_v1",
     "prepare_dpct_invocation_request_v1",
     "verify_dpct_invocation_output_v1",
