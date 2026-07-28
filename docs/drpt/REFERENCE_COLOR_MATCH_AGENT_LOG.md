@@ -3980,3 +3980,13 @@
 - The batch is within its frozen envelope. Phase evidence also shows the prior
   rendered image remains live into the next source load, opening a narrow P161
   lifetime leaf without changing transaction or colour semantics.
+
+## 2026-07-29 - Freeze encoded-render lifetime release
+
+- P161 is limited to releasing each encoded render result after extracting its
+  durable scalar/diagnostic fields and before loading the next ordered source.
+- Weak-reference collection, full behavior parity and an interleaved exact
+  P160 replay are mandatory. The frozen performance gates are at least 200 MiB
+  median RSS reduction, candidate/baseline RSS ratio at most 0.92 and wall
+  ratio at most 1.05.
+- No colour, guard, schema, transaction, producer or platform claim may change.
