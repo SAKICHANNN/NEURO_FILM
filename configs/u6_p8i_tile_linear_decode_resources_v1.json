@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p8i_tile_linear_decode_resources_contract.v1",
+  "node": "U6.P8I",
+  "parent_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8h_lifetime_buffer_resources_decision_v1.json",
+  "parent_decision_sha256": "21cbfb5d9fb713e8f753d6c5594cc2276358ab3ed47a0525041cc9a7d9cae6ba",
+  "implementation": {
+    "full_frame_linear_decode_allowed": false,
+    "linear_decode_scope": "physical-halo-tile",
+    "encoded_source_retained_for_exact_source_context": true,
+    "per_element_decode_arithmetic_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_parent_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact per-halo-tile physical linear decoding; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
