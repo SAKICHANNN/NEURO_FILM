@@ -540,11 +540,16 @@ negative/strength/novelty control passes and every archive, primary and
 photograph access count is zero. This opens only a separately committed
 `U5.R2AJ0C1` contract for the unchanged 194-member Color universe; primary
 member bodies and metrics remain forbidden until that contract is frozen.
-Neither leaf may render photographs. Aesthetic selection, training, teacher
-use, current-film fitting, LSM and integration remain closed. See
+C1 config `7a6d4924...44ef6` now freezes the exact universe, native-grid
+streaming, unchanged individual vetoes, positive-scale component collapse,
+strongest-safe representative rule and residual max-min cap-12 selection.
+Implementation is ready, but neither leaf may render photographs. Aesthetic
+selection, training, teacher use, current-film fitting, LSM and integration
+remain closed. See
 `docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`,
 `docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md` and
 `docs/U5_R2AJ0B2_HALDCLUT_LANE_AWARE_ACQUISITION_RESULTS.md`, plus
 `docs/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_V1_CONTRACT_FAILURE.md`,
 `docs/planning/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md`
-and `docs/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_RESULTS.md`.
+and `docs/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_RESULTS.md`, plus
+`docs/planning/U5_R2AJ0C1_HALD_PRIMARY_STRUCTURAL_FRONTIER_CONTRACT.md`.

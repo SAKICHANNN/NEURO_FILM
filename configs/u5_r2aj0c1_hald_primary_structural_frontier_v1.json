@@ -1,0 +1,283 @@
+{
+  "schema_version": "u5-r2aj0c1-hald-primary-structural-frontier-v1",
+  "experiment_id": "u5-r2aj0c1-hald-primary-structural-frontier-v1",
+  "node": "U5.R2AJ0C1",
+  "parents": {
+    "aj0b2_decision_path": "configs/u5_r2aj0b2_haldclut_lane_aware_acquisition_decision_v2.json",
+    "aj0b2_decision_sha256": "c8007c6abd9495d9b48b33c4ad5718a6ebe83cf2c184d21ea2db5353f65377a3",
+    "aj0b2_required_decision": "lane_aware_integrity_repeat_pass",
+    "aj0b2_manifest_path": "outputs/u5_r2aj0b2_haldclut_lane_aware_acquisition_v2/run_a/manifest.json",
+    "aj0b2_manifest_sha256": "b6cbd44521073fed322b55f0d26e549b8045773c6a4e81fa92cc9116d4aa1bda",
+    "aj0b2_report_path": "outputs/u5_r2aj0b2_haldclut_lane_aware_acquisition_v2/run_a/automatic_report.json",
+    "aj0b2_report_sha256": "9828799416b7b0a40b4b625e59cd14daf52ed569c30407a2efed065552c3d7f6",
+    "c0b_decision_path": "configs/u5_r2aj0c0b_hald_structural_controls_decision_v2.json",
+    "c0b_decision_sha256": "8816df32b45f5c66ba22ad12958a2d01c8d1862e3795e9d5aaa81d1acb2efc1e",
+    "c0b_required_decision": "controls_only_conformance_pass",
+    "c0b_implementation_commit": "d8fdcb1ccccf58dba2cf4570f542a31af91a0ac2",
+    "c0b_manifest_sha256": "745a05969573b6df0f683b78dc0221ef04a4141d8971d9b5ea9e494147aee9f7",
+    "c0b_report_sha256": "0d3a466a1d136df4c7fca1e8f669545a29a5b03b4a81842fb018adb4d6417d8a",
+    "c0b_repeat_decision_sha256": "7b3d94f04708a4add04cda58a8933a513c14f9047c7e303414840060e9e04e05"
+  },
+  "archive": {
+    "path": "data/external/rawtherapee_haldclut/20150920/HaldCLUT.zip",
+    "bytes": 421602289,
+    "md5": "4742e362a70c1a1c0fb9042a17d285e1",
+    "sha256": "0ffca81f30c72d7bbb85adab0ed98bbdeb0e1034cd6f5986f9f993bb66999dc2",
+    "retained_ignored_external_asset": true,
+    "read_central_directory_allowed": true,
+    "extract_to_disk_allowed": false
+  },
+  "primary_universe": {
+    "source": "exact AJ0B2 primary_paths order and matching image_records",
+    "count": 194,
+    "primary_paths_sha256": "83b22255e6eea6a99e779c72acf75917481f14d144d9e442b44b6d716256115f",
+    "image_records_sha256": "5e59e95eb17661d3e08d731aba567382b958354fb81529246efc85de966d03e2",
+    "profile_assignments_sha256": "d2d40521c0af11c815eee94e74d43aa8b6edd29d2c1c42dd0e0a353da7b07881",
+    "uncompressed_bytes": 345233651,
+    "compressed_bytes": 345161729,
+    "level12_cube_side144_count": 193,
+    "level16_cube_side256_count": 1,
+    "required_format": "PNG",
+    "required_mode": "RGB",
+    "required_bits_per_sample": [
+      8,
+      8,
+      8
+    ],
+    "required_icc_profile_present": false,
+    "creative_pack_allowed": false,
+    "black_and_white_allowed": false,
+    "negative_or_root_control_allowed": false,
+    "filename_semantics_allowed": false,
+    "all_candidates_must_be_attempted": true,
+    "source_identity_or_decode_failure_is_fatal": true,
+    "metric_gate_failure_is_individual_veto": true
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "packages": {
+      "numpy": "2.4.4",
+      "Pillow": "12.1.1",
+      "scipy": "1.17.1",
+      "scikit-image": "0.26.0",
+      "tifffile": "2026.4.11"
+    }
+  },
+  "source_contracts": {
+    "hald_evaluator": {
+      "path": "src/eval/haldclut_structural.py",
+      "sha256": "966d1a5c47b95d1200b2296f3a10047fcb27183b040b249e00e9ce0aaed26443",
+      "git_blob": "9a88be9eca92f87799c28d568f9ee387312e5093"
+    },
+    "joint_basic_fit": {
+      "path": "src/roll2film/baselines.py",
+      "sha256": "8c1608f5568a42a3fccd92c81c86367630f66aacf1c4d6f71aaa432de07b7732",
+      "git_blob": "f672f4a2b27a2618acb43c42ac88762f9f263b87"
+    },
+    "matched_basic": {
+      "path": "src/eval/spectral_film_lut_bank.py",
+      "sha256": "4386408a0acec1b64f07e131a30bc14dbaea09dc76344434c32c0850258610f6",
+      "git_blob": "6ef240e3f57cff5566e56d2bc1c74828718f50d3"
+    },
+    "d65_lab": {
+      "path": "src/eval/velvia_datasheet_witness.py",
+      "sha256": "27321aad7fc354fa9a674f6cc6b174eedd3efb1890c834c0c40e745a8e31df00",
+      "git_blob": "c59159e1334a226a8fadc53c45ace9e0d7c5d616"
+    }
+  },
+  "colour_math": {
+    "domain": "encoded-sRGB-relative-display",
+    "interpolation": "native-trilinear-red-fastest",
+    "strength": 1.0,
+    "post_interpolation_clamp": false,
+    "lab": "pinned-D65-CIELAB",
+    "basic_fit": "pinned-five-parameter-joint-basic",
+    "probe_populations_and_hashes": {
+      "style_basic_probe_sha256": "4afe10525e88e88ffb6def78c3d6f584274085037d9763ee6714895de26907b0",
+      "residual_novelty_probe_sha256": "8d16205788837b547ad67e0cffbaa6abb636e9279a26e4018947cf068d1703e1",
+      "sobol_probe_sha256": "22be51d114c300e1a29e1ef690cc03dbac82b4f09420fcdcd6181ab0acbd7402",
+      "gradient_population_sha256": "14e1add7dd098b4ba785e455314d9722dbcfa99762a41be0cb88967f4478f5cd"
+    }
+  },
+  "memory_contract": {
+    "one_primary_table_at_a_time": true,
+    "native_table_dtype": "uint8",
+    "complete_float_copy_allowed": false,
+    "maximum_interpolation_batch_samples": 65536,
+    "native_difference_computation": "slabwise-with-bounded-integer-differences",
+    "retain_after_candidate": [
+      "strict scalar metrics",
+      "fixed-probe hashes",
+      "residual signature on 17-cube",
+      "candidate source identity"
+    ]
+  },
+  "automatic_gates": {
+    "all_outputs_finite": true,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "interior_input_margin": 0.0625,
+    "endpoint_epsilon": 0.00196078431372549,
+    "maximum_new_interior_endpoint_fraction": 0.01,
+    "negative_jacobian_threshold": -0.00001,
+    "maximum_negative_jacobian_fraction": 0.005,
+    "minimum_jacobian_determinant": -0.05,
+    "maximum_jacobian_spectral_norm": 20.0,
+    "maximum_neutral_luma_reversal": 0.00002,
+    "maximum_gradient_rgb_gain_p99": 10.0,
+    "maximum_gradient_rgb_gain": 20.0,
+    "maximum_gradient_channel_second_difference": 0.00196078431372549,
+    "native_maximum_adjacent_code_step": 64,
+    "native_maximum_second_code_difference": 32,
+    "minimum_style_delta_e76_median": 3.0,
+    "minimum_joint_basic_residual_delta_e76_median": 1.5
+  },
+  "eligibility": {
+    "finite_range_and_every_structural_gate_required": true,
+    "style_gate_required": true,
+    "non_basic_gate_required": true,
+    "failed_candidate_rescue_allowed": false,
+    "candidate_result_states": [
+      "eligible",
+      "structural_veto",
+      "style_ineligible",
+      "basic_explainable"
+    ],
+    "source_identity_or_decode_failure": "fatal_run_failure_not_candidate_state"
+  },
+  "safety_margin": {
+    "purpose": "tie-break-only after style and non-basic strength",
+    "upper_bound_formula": "clip((limit-value)/limit,0,1)",
+    "minimum_determinant_formula": "clip((value-(-0.05))/0.05,0,1)",
+    "component_terms": [
+      "new_interior_endpoint_fraction",
+      "negative_jacobian_fraction",
+      "minimum_jacobian_determinant",
+      "maximum_jacobian_spectral_norm",
+      "neutral_luma_reversal",
+      "gradient_rgb_gain_p99",
+      "maximum_gradient_rgb_gain",
+      "gradient_maximum_channel_second_difference",
+      "native_maximum_adjacent_code_step",
+      "native_maximum_second_code_difference"
+    ],
+    "aggregate": "minimum_of_component_terms",
+    "finite_and_range": "hard_veto_not_margin"
+  },
+  "equivalence": {
+    "input_population": "residual_novelty_probe_cube",
+    "eligible_candidates_only": true,
+    "exact_native_table_sha256_first": true,
+    "effect_signature": "candidate_output_minus_analytic_input_on_residual_probe",
+    "strength": {
+      "minimum_positive_effect_cosine": 0.995,
+      "minimum_explained_energy_fraction": 0.99,
+      "maximum_bilateral_normalized_residual": 0.1
+    },
+    "component_method": "exact_groups_then_complete_link_strength_components",
+    "nontransitive_strength_graph_rule": "if_a_strength_connected_component_is_not_a_clique_retain_its_exact_groups_and_record_ambiguity",
+    "required_permutation_orders": [
+      "parent_primary_order",
+      "reverse_parent_primary_order",
+      "sha256_candidate_identity_order"
+    ],
+    "component_result_must_be_permutation_invariant": true
+  },
+  "component_representative": {
+    "ranking": [
+      "maximum_style_delta_e76_median",
+      "maximum_joint_basic_residual_delta_e76_median",
+      "maximum_normalized_safety_margin",
+      "minimum_native_table_sha256",
+      "minimum_path_identity_sha256"
+    ],
+    "semantic_filename_tie_break_allowed": false,
+    "representative_must_be_component_member": true
+  },
+  "diversity_selection": {
+    "input": "one_representative_per_equivalence_component",
+    "signature": "Lab(candidate_output)-Lab(candidate_joint_basic_output) on residual probe",
+    "distance": "median_per_sample_delta_e76",
+    "minimum_distinct_distance": 1.0,
+    "maximum_selected": 12,
+    "seed_ranking": [
+      "maximum_style_delta_e76_median",
+      "maximum_joint_basic_residual_delta_e76_median",
+      "maximum_normalized_safety_margin",
+      "minimum_native_table_sha256",
+      "minimum_path_identity_sha256"
+    ],
+    "next_ranking": [
+      "maximum_minimum_distance_to_selected",
+      "maximum_style_delta_e76_median",
+      "maximum_joint_basic_residual_delta_e76_median",
+      "maximum_normalized_safety_margin",
+      "minimum_native_table_sha256",
+      "minimum_path_identity_sha256"
+    ],
+    "stop_when_best_minimum_distance_below": 1.0,
+    "output_order": "greedy_selection_order",
+    "all_pairwise_distances_and_tie_fields_recorded": true
+  },
+  "frontier_gate": {
+    "minimum_selected_representatives": 1,
+    "maximum_selected_distinct_representatives": 12,
+    "single_representative_claim": "singleton_structural_challenger_not_bank_diversity",
+    "two_or_more_representatives_claim": "structurally_distinct_frontier",
+    "photographic_contract_design_allowed_only_if_pass": true,
+    "photograph_render_allowed_by_c1": false
+  },
+  "evidence": {
+    "strict_recursive_exact_keys": true,
+    "boolean_is_not_integer": true,
+    "non_finite_json_numbers_allowed": false,
+    "canonical_json": "utf8-sort-keys-compact-no-nan",
+    "complete_process_runs": 2,
+    "new_process_per_run": true,
+    "child_manifest_bytes_must_match": true,
+    "child_report_bytes_must_match": true,
+    "parent_must_independently_reconstruct_both_child_byte_streams": true,
+    "repeat_decision_is_written_once_by_parent": true,
+    "config_raw_sha256_before_and_after_must_match": true,
+    "software_commit_must_equal_head": true,
+    "tracked_worktree_must_be_clean": true,
+    "timing_pid_and_absolute_paths_forbidden_in_canonical_evidence": true,
+    "required_candidate_hashes": [
+      "member_bytes_sha256",
+      "native_table_array_sha256",
+      "style_output_array_sha256",
+      "residual_signature_array_sha256",
+      "jacobian_signature_array_sha256",
+      "gradient_signature_array_sha256",
+      "native_difference_signature_array_sha256"
+    ],
+    "required_access_ledger": {
+      "archive_open_calls": 1,
+      "archive_raw_bytes_hashed": 421602289,
+      "primary_members_read": 194,
+      "primary_uncompressed_bytes": 345233651,
+      "non_primary_member_bodies_read": 0,
+      "photograph_renders": 0
+    },
+    "output": "outputs/u5_r2aj0c1_hald_primary_structural_frontier_v1"
+  },
+  "branches": {
+    "frontier_pass": "freeze a separate photographic source and visual-evaluation contract for only the selected representatives",
+    "zero_selected_representatives": "close the Hald-bank challenger without photography or threshold rescue",
+    "one_selected_representative": "allow only a singleton photographic challenger contract without a bank-diversity claim",
+    "candidate_metric_gate_failure": "retain exact per-candidate veto and continue the unchanged universe",
+    "source_identity_or_decode_failure": "close the run as invalid evidence; do not convert it into a candidate veto",
+    "repeat_or_evidence_failure": "close C1 without promotion and without result-informed repair"
+  },
+  "forbidden": [
+    "modify C0 v1 C0B or AJ0B2 history",
+    "read a primary member body before this config and contract are committed",
+    "skip reorder replace smooth clamp project or weaken a failed candidate",
+    "use filename directory brand stock push pull exposure ageing or scan text as a feature or truth",
+    "render or visually inspect a photograph",
+    "use any candidate as a pseudo-teacher training target or stock response",
+    "fit current real-film pixels train route or open latent stock modes",
+    "integrate package distribute release deploy or make a licence decision"
+  ],
+  "claim_ceiling": "synthetic structural and diversity screen of a licensed external Look Approximation Hald bank; no photograph aesthetic preference severe-artifact stock calibration authenticity teacher or product claim"
+}

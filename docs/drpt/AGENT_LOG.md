@@ -5873,3 +5873,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   design. C1 must freeze the 194-member universe, native-grid streaming,
   individual vetoes, component representative rule and deterministic cap-12
   selection before any primary body or metric access. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AJ0C1 before primary Hald access
+
+- **Node/contract:** `ULT > U5 > U5.R2 > U5.R2AJ0C1`; config raw SHA-256
+  `7a6d4924...44ef6` binds the exact AJ0B2/C0B evidence, 194 ordered RGB8
+  primaries, 193 N=144 plus one N=256 table and 345,233,651 uncompressed
+  primary bytes. No primary member body was opened during design.
+- **Execution boundary:** one archive handle per child performs the exact raw
+  hash scan, then decodes every primary in memory without extraction. Source
+  identity/decode failure invalidates the run; metric failure remains an
+  individual veto. Native tables remain uint8 and one-at-a-time.
+- **Selection:** unchanged C0B safety/style/non-basic gates feed exact-table
+  groups and only complete-link positive-scale components; non-transitive
+  chains retain exact groups rather than over-collapsing. The representative
+  is strongest style, then non-basic residual, normalized safety and hash
+  ties. A frozen residual max-min algorithm stops at 12 or distance below 1.0.
+- **Evidence/claim:** two child manifest/report byte streams plus independent
+  parent reconstruction are required. One survivor may open only a singleton
+  photographic challenger contract; two or more may claim a structurally
+  distinct frontier; zero closes without rescue. No filename semantics,
+  photos, aesthetics, teacher use, training, stock claim or integration.
+  C1 implementation is the next ready leaf; Goal remains ACTIVE.
