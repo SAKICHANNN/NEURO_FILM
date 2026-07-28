@@ -3686,3 +3686,14 @@
   tests with five explicit skips.
 - These are additional tests/documentation on top of v30's code payload; HDR,
   scene-linear RAW tone mapping and Rec.2020 FilmFX composition remain closed.
+
+## 2026-07-28 - Expose the exact file-output capability matrix
+
+- Added public immutable capability ID
+  `neuro-film.reference-file-output-capabilities.v1` and a typed query API for
+  product clients. It reports only three factual rails: sRGB ICC at 8-bit,
+  sRGB ICC at 16-bit and BT.2020 SDR CICP at 16-bit PNG, with exact extensions.
+- The API advertises no HDR, RAW tone-map, TIFF Rec.2020 or FilmFX-wide-gamut
+  support. Exact-value tests prevent accidental capability inflation. The
+  complete non-manifest color-match regression passes 914 tests with five
+  explicit skips. Payload is `eedc2a1`.
