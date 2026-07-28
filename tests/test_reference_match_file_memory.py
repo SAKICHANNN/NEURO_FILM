@@ -23,6 +23,9 @@ P156_GATES = (
 P156_RUN = (
     ROOT / "configs" / "reference_match_chunked_render_memory_run_v1.json"
 )
+P156_DECISION = (
+    ROOT / "configs" / "reference_match_chunked_render_memory_decision_v1.json"
+)
 
 
 def _run(variant: str, rss: int, token: str = "same") -> dict:
@@ -165,6 +168,40 @@ def test_p156_wall_gate_is_fail_closed() -> None:
     assert result["memory_gate_pass"]
     assert not result["worker_wall_gate_pass"]
     assert not result["automatic_pass"]
+
+
+def test_p156_decision_recomputes_every_frozen_gate() -> None:
+    gates = json.loads(P156_GATES.read_text(encoding="utf-8"))
+    run = json.loads(P156_RUN.read_text(encoding="utf-8"))
+    decision = json.loads(P156_DECISION.read_text(encoding="utf-8"))
+    baseline = decision["baseline_median_peak_process_tree_rss_bytes"]
+    candidate = decision["candidate_median_peak_process_tree_rss_bytes"]
+    baseline_wall = decision["baseline_median_worker_wall_seconds"]
+    candidate_wall = decision["candidate_median_worker_wall_seconds"]
+
+    assert decision["baseline_commit"] == run["baseline_commit"]
+    assert decision["candidate_commit"] == run["candidate_commit"]
+    assert decision["median_rss_reduction_bytes"] == baseline - candidate
+    assert decision["candidate_to_baseline_median_rss_ratio"] == (
+        candidate / baseline
+    )
+    assert decision["candidate_to_baseline_median_worker_wall_ratio"] == (
+        candidate_wall / baseline_wall
+    )
+    assert decision["frozen_gates"] == {
+        "minimum_median_rss_reduction_bytes": gates["gates"][
+            "minimum_median_rss_reduction_bytes"
+        ],
+        "maximum_candidate_to_baseline_median_rss_ratio": gates["gates"][
+            "maximum_candidate_to_baseline_median_rss_ratio"
+        ],
+        "maximum_candidate_to_baseline_median_worker_wall_ratio": gates[
+            "gates"
+        ]["maximum_candidate_to_baseline_median_worker_wall_ratio"],
+        "passed": True,
+    }
+    assert decision["automatic_pass"]
+    assert decision["artifact_identity"]["cross_revision_exact"]
 
 
 def test_p154_decision_preserves_the_failed_frozen_gate() -> None:

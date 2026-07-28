@@ -4153,3 +4153,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Handoff state: producer/main tasks received the negative result and exact
   boundary. Consumer work may add phase attribution or await main-owned bounded
   colour-engine evidence; A1/A4/A5 and product admission remain unchanged.
+
+## 2026-07-29 - Close exact row-chunked reference rendering
+
+- Node/parent goal: P156 under the independent Neuro-Film reference-match
+  consumer and high-resolution execution line.
+- Skills used: `dev-research-reliability` primary;
+  `project-structure-steward` and `project-agent-log-discipline` secondary.
+- Implementation: preserve the authoritative safe-Lab/gamut math while
+  bounding gamut compression, Lab-to-linear-RGB conversion and final gamut
+  verification to exact 128-row slices.
+- Evidence: all `1339` reference-match tests pass with `5` skips. Four fresh
+  6 MP file runs retain identical output/recipe/normalized-report identities
+  and identity fallback. Median peak process-tree RSS falls by `222,513,152 B`
+  to `1,104,449,536 B`; RSS ratio `0.832314` and wall ratio `0.994835` pass
+  the frozen 128 MiB / 0.88 / 1.10 gates. Raw report SHA-256 is
+  `be2ca36f...e151`.
+- Boundary/handoff: this is a local Windows/Python bounded render-kernel pass,
+  not total-path, main-renderer, native/device, RAW/HDR/video, A1/A4/A5 or
+  product admission evidence. The next measured leaf targets the remaining
+  fit/persistent-array peak.

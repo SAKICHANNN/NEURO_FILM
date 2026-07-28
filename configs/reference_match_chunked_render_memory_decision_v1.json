@@ -1,0 +1,68 @@
+{
+  "schema_id": "neuro-film.reference-match-chunked-render-memory-decision.v1",
+  "node": "P156",
+  "decision": "frozen-memory-and-wall-gates-pass",
+  "contract_commit": "dbb23519397bffcf8617758e6a0005c99b0b2b4b",
+  "implementation_commit": "240e6e6a81129c5bca298915d7caf9f013b74d15",
+  "run_binding_commit": "994c7dbf7744ca00a69d31005e766ed8d533e376",
+  "baseline_commit": "de57918e23568ad6321262903addfac7f2349d3c",
+  "candidate_commit": "240e6e6a81129c5bca298915d7caf9f013b74d15",
+  "gate_config_sha256": "88c39d382188807269faeb5b31bb3c052b71f62cb643c79b81512208bfb56ac2",
+  "run_config_sha256": "2887ce680313a01ac041648fb55b87a2ca2282131ed2ba6ada9b983b5e8afba5",
+  "runner_sha256": "54905d5be7602be23c7b1c3bf83b1186f5c944b9bcbbe9a86b01b6d3162988ef",
+  "raw_report_sha256": "be2ca36f0374fd09ed43b6bc02f420d2fb08ab74cf7771fd49c24d79bbeee151",
+  "environment": {
+    "platform": "windows-x86_64-local",
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "psutil": "7.2.2"
+  },
+  "workload": {
+    "width": 3000,
+    "height": 2000,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "fixed_row_chunk": 128,
+    "execution_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "rss_sample_interval_seconds": 0.02,
+    "reference_sha256": "345174185e5618a0d37bacb1d8c3eda6bc9a99850966b580e210b32659a16244",
+    "source_sha256": "1e4de9f8ae4f9d77025199947304a84a98263d3569ee7d9f99ce06dca67092ee"
+  },
+  "run_peak_process_tree_rss_bytes": [
+    1329860608,
+    1106051072,
+    1102848000,
+    1324064768
+  ],
+  "baseline_median_peak_process_tree_rss_bytes": 1326962688,
+  "candidate_median_peak_process_tree_rss_bytes": 1104449536,
+  "median_rss_reduction_bytes": 222513152,
+  "candidate_to_baseline_median_rss_ratio": 0.8323139346627959,
+  "baseline_median_worker_wall_seconds": 9.71432635000383,
+  "candidate_median_worker_wall_seconds": 9.664150399985374,
+  "candidate_to_baseline_median_worker_wall_ratio": 0.9948348502808497,
+  "frozen_gates": {
+    "minimum_median_rss_reduction_bytes": 134217728,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.88,
+    "maximum_candidate_to_baseline_median_worker_wall_ratio": 1.1,
+    "passed": true
+  },
+  "artifact_identity": {
+    "output_sha256": "2fdb6f01c158c096f49d7e2108f61b6b706f0df873160ba17616068bf320c26d",
+    "recipe_sha256": "70a357489958a32bf28f9e7c59a28dfe0bd6350b3cdca499cd75cfce00877bce",
+    "normalized_report_sha256": "ef0fa5a01c50808b837c7f2f1b7429526e06c1421884ea94018af76a3c6fabec",
+    "cross_revision_exact": true
+  },
+  "safety_action": "identity-fallback",
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": true,
+  "interpretation": "Exact 128-row chunking of gamut compression, Lab-to-linear-RGB conversion and final gamut verification closes the frozen local 6 MP render-memory leaf without changing durable output, recipe, report, safety disposition or algorithm semantics.",
+  "claim_ceiling": "local-windows-python-row-chunked-reference-render-memory-only-not-algorithm-or-platform-promotion"
+}
