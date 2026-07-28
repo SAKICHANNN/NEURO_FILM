@@ -8,8 +8,8 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P55 implementation head:
-  `8fcc59e3ef34b2f2359803eb8fa838c58aa57857`;
+- complete P1-P56 implementation head:
+  `d4a5d82b0e8b3597444f3abeb2bf35deaad15794`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
   `1dce72949ca98db73126991328969feebe911fa9`;
@@ -56,6 +56,8 @@ The consumer module implements:
   rehashes every P50 input plus every P53 output;
 - no-write shared local-delivery authorization that live-reruns P54 and
   requires exact product-ready P49 plus all ordered source approvals;
+- rollback-safe shared local export that reconstructs P55, preserves exact
+  P47 receipt/result lineage and atomically commits files plus report;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -90,13 +92,15 @@ reference, public sharing or algorithm promotion.
 | shared FilmFX verification schema | `70aafd69a66eda74dab76361cd1a3f95022c7a835ef743ad4463e53ea79fad0f` |
 | shared delivery authorization implementation | `fed1d5fb4af0839602b39c3c924a0e872ae21f9baa34c4da442dcea40006a66d` |
 | shared delivery authorization schema | `bfbf365666d98bf642a5af6b4c1c517bfc5885f648e72f483063be75eb0c3a73` |
+| shared local delivery implementation | `1a4b4337ecd01c74a83e3e1d3e13d5963a4911febf01c24aeb923d4895979c0e` |
+| shared local delivery schema | `adccb9b822b51e8048f3e89e069ef84b1fbd2d89837abc1c8893112fd6541efc` |
 
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..8fcc59e`; do not copy files manually and do not import
+2. Review `c03c321..d4a5d82`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 8fcc59e`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> d4a5d82`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -110,10 +114,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 571 passed;
-- latest isolated consumer full suite: 1466 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 579 passed;
+- latest isolated consumer full suite: 1474 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 36 P53-P55 shared-path tests
+- latest detached synthetic main merge: 19 P55/P56 shared-delivery tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 

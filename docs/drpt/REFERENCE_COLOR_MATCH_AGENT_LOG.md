@@ -2206,6 +2206,30 @@
   `local-files-delivered-shared-reference-look`; neither means app-level
   applied, public share, film-stock identity or producer promotion.
 
+## 2026-07-28 - Implement and verify P56 shared atomic local export
+
+- Implementation: `d4a5d82` adds shared-path local delivery types, strict
+  schema, public exports and a rollback-safe exact-copy transaction.
+- Live authority: exact P55 is reconstructed before any destination staging.
+  Every delivered row preserves its P47 apply receipt and producer result,
+  and its bytes must equal the P54-verified P53 output.
+- Protection/rollback: P50 bases/report and P53 outputs/report cannot be
+  overwritten. Invalid count/extension fails before writes; injected report
+  commit failure restores every previous destination byte and leaves no
+  staging debris.
+- State/ceiling: `committed-shared-local-delivery` /
+  `local-files-delivered-shared-reference-look`; local files only, not app
+  applied, public, stock-calibrated or algorithm-promoted.
+- Identities: implementation SHA-256
+  `1a4b4337ecd01c74a83e3e1d3e13d5963a4911febf01c24aeb923d4895979c0e`;
+  schema `adccb9b822b51e8048f3e89e069ef84b1fbd2d89837abc1c8893112fd6541efc`.
+- Verification: 8 dedicated, 579 complete `test_color_match*`, full 1474
+  pass/1 skip/36 unchanged failures. Latest main `1f61119`, merge tree
+  `c65ec723e69aecf40a4be6ec9e537d8775d9a553`; fresh detached merge
+  passes all 19 P55/P56 tests and was removed.
+- Reality gate remains closed: the transaction is proven only with synthetic
+  promoted fixtures because no current producer satisfies P45/P49.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
