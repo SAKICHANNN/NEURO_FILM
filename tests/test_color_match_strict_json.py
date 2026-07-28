@@ -46,6 +46,9 @@ def test_strict_json_wraps_invalid_utf8_and_excessive_nesting() -> None:
         strict_json_loads(b'{"value":"\xff"}')
     with pytest.raises(json.JSONDecodeError):
         strict_json_loads("[" * 2000 + "]" * 2000)
+    with pytest.raises(json.JSONDecodeError, match="nesting depth"):
+        strict_json_loads("[" * 65 + "0" + "]" * 65)
+    assert strict_json_loads("[" * 64 + "0" + "]" * 64)
 
 
 def test_persisted_color_match_modules_do_not_bypass_strict_json() -> None:

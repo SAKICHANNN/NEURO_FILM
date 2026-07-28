@@ -11,6 +11,9 @@ class _StrictJsonValueError(ValueError):
     pass
 
 
+_MAX_JSON_NESTING_DEPTH = 64
+
+
 def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key, value in pairs:
@@ -24,7 +27,11 @@ def _reject_constant(value: str) -> None:
     raise _StrictJsonValueError(f"non-standard JSON constant: {value}")
 
 
-def _validate_decoded_value(value: Any) -> None:
+def _validate_decoded_value(value: Any, *, depth: int = 0) -> None:
+    if depth > _MAX_JSON_NESTING_DEPTH:
+        raise _StrictJsonValueError(
+            "decoded JSON exceeds the nesting depth limit"
+        )
     if isinstance(value, float):
         if not math.isfinite(value):
             raise _StrictJsonValueError(
@@ -41,12 +48,12 @@ def _validate_decoded_value(value: Any) -> None:
         return
     if isinstance(value, list):
         for child in value:
-            _validate_decoded_value(child)
+            _validate_decoded_value(child, depth=depth + 1)
         return
     if isinstance(value, dict):
         for key, child in value.items():
-            _validate_decoded_value(key)
-            _validate_decoded_value(child)
+            _validate_decoded_value(key, depth=depth + 1)
+            _validate_decoded_value(child, depth=depth + 1)
 
 
 def _decoded_document(document: object) -> str:

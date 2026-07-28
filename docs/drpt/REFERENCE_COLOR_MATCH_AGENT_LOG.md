@@ -3438,6 +3438,8 @@
   nesting. Forty-six persisted contract, invocation, conformance, transaction,
   verification, runtime and research-evidence modules use it for 52 decode
   sites; the two private duplicate-key implementations were removed.
+- The decoder freezes a 64-level nesting ceiling rather than inheriting a
+  Python-build-specific recursion limit; depth 64 passes and 65 fails.
 - Repository tests forbid direct `json.loads` in top-level color-match modules
   and forbid per-call policy overrides. A real reference recipe with duplicate
   `schema_id` and direct nested/constant vectors fail at the JSON boundary.
