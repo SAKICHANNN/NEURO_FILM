@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8r_current_phase_rss_decision.v1",
+  "node": "U6.P8R",
+  "software_commit": "e0517b2",
+  "contract_sha256": "87686bb847a1e1480eccc2424128989ea73278875b3d2c418348bd9bd131f52c",
+  "report_sha256": "0d7c68e26dc423b6402ae991439d2f85d7c5de36d89e69aabe8d09d5a74bd837",
+  "stable_evidence_id": "8324f36f86a7c77891b9cfbb130c13d0664ef3a5367c17ab2e229aa45efa99f7",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "dominant_phase_stable": true,
+  "dominant_phase": "physical-spatial",
+  "phase_peak_rss_bytes_ranges": {
+    "physical-spatial": [
+      1036804096,
+      1041240064
+    ],
+    "source-context-build": [
+      1008164864,
+      1008316416
+    ],
+    "gauge-and-encode": [
+      934510592,
+      935243776
+    ],
+    "display-base-residual": [
+      745889792,
+      747036672
+    ],
+    "encoded-source": [
+      736591872,
+      737964032
+    ],
+    "roundtrip-linear": [
+      597966848,
+      598253568
+    ]
+  },
+  "decision": "two exact 12MP repeats through the actual P8Q entry identify physical-spatial as the stable dominant worker RSS phase at 1.037-1.041GB, with source-context nearly tied at 1.008GB and gauge-and-encode at 0.935GB. Open one exact joint tied-phase candidate: remove the source-context full-frame float32 copy and consume the full-frame linear buffer as halo-safe gauged encoded output",
+  "attribution_complete": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8S exact row-local source-context cast plus halo-safe destructive linear-to-gauged output reuse, preserving context statistics, pointwise arithmetic and final pixels",
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution through the exact current P8Q production entry; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
