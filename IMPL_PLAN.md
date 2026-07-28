@@ -38,6 +38,14 @@ The official supplement is PDF-only and supplies no source, checkpoint,
 licence or project structural gates. Direct execution/training closes; only a
 future clean-room time-dependent-flow representation ablation survives.
 
+That ablation is now frozen as `U5.R2AK1`. A 243-parameter quadratic-time,
+boundary-preserving velocity field must represent both orders of two analytic
+noncommuting colour-reaction stages, compared at the same split/optimizer
+against stationary 192- and 375-parameter O0 controls. Absolute and relative
+fidelity, cube, Jacobian, inverse, serialization, partition and two-process
+evidence gates are fixed before implementation. It is synthetic-only and
+cannot render photographs or claim a film operator.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources

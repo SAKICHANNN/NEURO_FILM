@@ -5965,3 +5965,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **State:** governance config, runbook, ledger and structure pointer are
   created. No GCP mutation occurred; owned resources and accounted cost remain
   zero. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AK1 time-dependent flow capacity contract
+
+- **Node/contract:** `ULT > U5 > U5.R2 > U5.R2AK1`; DRPT L2/Mode A.
+  Preserve AK0's direct-NCT close and extract only its time-dependent explicit
+  trajectory prior.
+- **Candidate/control:** freeze three quadratic-Bernstein `3³×3` velocity
+  grids (243 parameters) against stationary O0 K4/K5 controls (192/375).
+  Every field keeps the `x_i(1-x_i)` cube boundary factor and fixed float64
+  RK4 integration.
+- **Truth:** two fixed analytic source fields at scale 2.0 generate A→B and
+  B→A target maps. They must differ by at least `.01` RMSE before fitting or
+  the mechanism test is invalid. No external asset or image is used.
+- **Gates:** candidate RMSE <=`.008`, >=25% improvement over K4 and <=1.10×
+  K5, plus exact range/endpoints/partition/serialization, minimum determinant
+  `.02`, norm `8`, inverse `2e-5`, coefficient `6` and exact two-process
+  evidence.
+- **Boundary/handoff:** no NCT code, encoder, data, photographs, film pixels
+  or stock claim. Contract/config commit must precede implementation. AK1
+  implementation is next; Goal remains ACTIVE.

@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ak1-time-dependent-cube-flow-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AK1",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "u5_r2ak0": {
+      "decision": "retain_time_dependent_flow_prior_direct_execution_closed",
+      "decision_path": "configs/u5_r2ak0_nct_bezier_flow_source_method_audit_decision_v1.json",
+      "paper_sha256": "9d8935d4ee4b1aa4cfc426940747c6c816bf8befc2ae44ad90dfc439f460ed8a",
+      "supplement_sha256": "4a550ac440b59ae296e93762c3f4d9fa2a98232b25a26b666d1e74a369d12580"
+    },
+    "u5_r2o0": {
+      "decision": "retain_as_synthetic_explicit_operator_representation",
+      "stationary_grid_axis_size": 4,
+      "parameter_count": 192,
+      "finding": "stationary cube-preserving flow passes prior nonlinear targets but has not been tested on explicitly noncommuting staged colour reactions"
+    },
+    "u5_r2aj0c1": {
+      "decision": "close_no_structural_survivor",
+      "finding": "strong external CLUT style is insufficient when colour-space orientation fails"
+    }
+  },
+  "hypothesis": "A compact time-dependent boundary-preserving colour flow can represent explicitly noncommuting staged colour reactions more efficiently than a stationary flow while retaining cube, orientation, inverse and replay guarantees.",
+  "candidate": {
+    "schema": "roll2film.time_dependent_cube_colour_flow.v1",
+    "temporal_basis": "quadratic_bernstein",
+    "temporal_control_grid_count": 3,
+    "velocity_grid_axis_size": 3,
+    "parameter_count": 243,
+    "velocity_interpolation": "trilinear_space_quadratic_bernstein_time",
+    "boundary_factor": "x_i*(1-x_i)",
+    "integration": "fixed_float64_rk4",
+    "integration_steps": 32,
+    "maximum_absolute_coefficient": 6.0
+  },
+  "stationary_controls": {
+    "lower_parameter_control": {
+      "schema": "roll2film.cube_diffeomorphic_colour_flow.v1",
+      "velocity_grid_axis_size": 4,
+      "parameter_count": 192,
+      "integration_steps": 32
+    },
+    "upper_parameter_control": {
+      "schema": "roll2film.cube_diffeomorphic_colour_flow.v1",
+      "velocity_grid_axis_size": 5,
+      "parameter_count": 375,
+      "integration_steps": 32
+    }
+  },
+  "synthetic_truth": {
+    "source_grid_axis_size": 4,
+    "source_integration_steps": 64,
+    "source_field_scale": 2.0,
+    "field_a": {
+      "red": "1.20*(0.52-y)+0.25*(g-b)",
+      "green": "0.55*(0.50-y)-0.18*(r-b)",
+      "blue": "0.18*(0.48-y)-0.12*(r-g)"
+    },
+    "field_b": {
+      "red": "0.70*(g-b)+0.15*(0.50-y)",
+      "green": "0.55*(b-r)",
+      "blue": "0.80*(r-g)-0.20*(0.50-y)"
+    },
+    "luma": "0.2126*r+0.7152*g+0.0722*b",
+    "targets": [
+      "field_a_then_field_b",
+      "field_b_then_field_a"
+    ],
+    "minimum_required_target_pair_rmse": 0.01
+  },
+  "fit": {
+    "grid_axis_size": 8,
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 280728,
+    "steps": 1800,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.00001,
+    "spatial_smoothness_l2": 0.0001,
+    "temporal_smoothness_l2": 0.00005,
+    "gradient_clip_norm": 10.0,
+    "project_coefficients_each_step": true,
+    "thread_count": 1
+  },
+  "confirmation_grid_axis_size": 11,
+  "jacobian_grid_axis_size": 7,
+  "finite_difference_step": 0.000001,
+  "gates": {
+    "identity_confirmation_maximum_absolute_error": 1e-12,
+    "endpoint_maximum_absolute_error": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_absolute_coefficient": 6.0,
+    "maximum_candidate_confirmation_rgb_rmse": 0.008,
+    "minimum_candidate_improvement_over_stationary_k4_fraction": 0.25,
+    "maximum_candidate_to_stationary_k5_rmse_ratio": 1.1,
+    "minimum_finite_difference_jacobian_determinant": 0.02,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "inverse_roundtrip_maximum_absolute_error": 0.00002,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_maximum_absolute_error": 0.0,
+    "two_run_report_byte_identity": true
+  },
+  "evidence": {
+    "two_independent_processes_required": true,
+    "strict_report_reconstruction_required": true,
+    "config_raw_hash_before_after_required": true,
+    "tracked_worktree_clean_required": true,
+    "timing_host_path_and_process_id_forbidden_from_canonical_report": true
+  },
+  "branches": {
+    "all_gates_pass": "retain the time-dependent representation for later evidence-eligible film-inspired operator work; do not render photographs from fitted synthetic controls",
+    "fidelity_or_efficiency_failure": "close this fixed temporal basis without adding grids stages steps or optimizer rescue",
+    "regularity_bounds_inverse_or_repeat_failure": "close without clamp determinant repair integrator retuning or tolerance rescue",
+    "target_noncommutation_failure": "invalidate the experiment before fitting because the frozen truth does not test the stated mechanism",
+    "one_target_only_pass": "report direction-specific evidence but do not claim general staged-reaction capacity"
+  },
+  "forbidden": [
+    "use NCT code checkpoint training data or outputs",
+    "train an image encoder or per-image reference canonicalizer",
+    "use any photograph film scan Hald CLUT owner anchor or retained style output",
+    "claim Bezier trajectories solve unpaired endpoint identification",
+    "render a photograph from a fitted synthetic control",
+    "tune gates architecture optimizer integration or target fields after formal results",
+    "claim film stock process exposure push pull scanner calibration preference or production readiness"
+  ],
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "real_image_frontier_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "clean-room synthetic representation evidence for a compact time-dependent cube-preserving explicit colour flow on frozen noncommuting staged reactions; no external implementation image encoder generative model photograph film-pixel fitting unpaired identification stock calibration preference or production claim"
+}

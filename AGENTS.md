@@ -336,6 +336,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/controls-only pass | U5.R2AJ0C0B | Two processes plus independent reconstruction pass every frozen parser/Jacobian/RGB16/basic/negative/strength/novelty gate with exact zero archive, primary and photograph access |
 | Done/closed | U5.R2AJ0C1 | Repeat-exact execution finds 194/194 stylish/non-basic candidates structurally vetoed, universally by negative minimum determinant; zero photographs and no rescue |
 | Done/method prior only | U5.R2AK0 | NCT Bezier trajectories do not repair per-image distribution endpoint identifiability; no reproducible code package or direct execution opens |
+| Ready/implementation | U5.R2AK1 | Test a compact quadratic-time cube-preserving flow against stationary O0 controls on frozen noncommuting staged colour reactions; synthetic-only and no photographs |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
 | Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |
 | P0 named-stock sources | SF0.6 | Obtain at least two further exact stocks that independently pass derivative-rights, author-group and content gates |

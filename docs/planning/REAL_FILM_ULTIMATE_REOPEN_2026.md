@@ -573,3 +573,11 @@ execution, data acquisition and training close. Only a future clean-room
 time-dependent bounded-flow representation ablation may be separately
 preregistered; no stock, film or operator claim opens. See
 `docs/U5_R2AK0_NCT_BEZIER_FLOW_SOURCE_METHOD_AUDIT.md`.
+
+`U5.R2AK1` now preregisters that narrow ablation before implementation. It
+compares a 243-parameter quadratic-time cube-preserving flow to stationary
+192/375-parameter O0 controls on both orders of two analytic noncommuting
+synthetic reaction fields. Absolute/relative fidelity, cube, Jacobian, inverse,
+serialization, partition and two-process evidence gates are frozen. No NCT
+code/data, photograph, film pixel or reference canonicalizer is allowed; even
+a pass is representation evidence only.
