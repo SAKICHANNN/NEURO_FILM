@@ -2841,6 +2841,32 @@
 - Main and producer repos stayed read-only. D-PCT remains at `34af2fa` and
   `NOT_FREEZE_READY`; no producer schema, admission or HDR mapping changed.
 
+## 2026-07-28 - Pin P76 ICC bytes and publish P77 integration v8
+
+- Node/parent goal: P76-P77 / remove runtime ICC-generator drift from the
+  encoded-metadata-to-MatchView evidence chain and refresh main review facts.
+- P76 commit `31f03fd88376f1e89301fb2677d6d23fa1e507d0` adds one
+  canonical 588-byte sRGB ICC asset, strict schema, canonical Base64 fixture
+  and public accessor. Profile SHA-256 remains
+  `217fe48e...4356`; fixture SHA-256 is `82944c5d...aa9dd`.
+- P71/P72 now validate the pinned asset directly. Tests prove profile/Base64
+  drift fails closed and that, after real encoded bytes are created, the
+  attestation/MatchView chain does not call the encoder's generator. Current
+  host encoder equality is recorded only as local conformance, never proof of
+  ICC application.
+- P77 commit `eba586e` publishes v8 for payload `31f03fd`, main `93a7b66`
+  and base `c03c321`: 318 payload paths, 238 main paths, zero overlap, 47
+  public exports and 20 schemas. Manifest SHA-256 is
+  `f40e32b9...4ee9`; v7 remains immutable.
+- Verification: 69 focused and 919 pre-v8 all-color tests pass; final
+  detached main/evidence merge passes 937 all-color tests with three skips,
+  zero failures, merge tree `509df481...f3`. Local full suite is 1832 pass,
+  four skips and the same 36 historical missing-output/tracked-hash failures;
+  no color-match failure. Temporary merge worktree was removed.
+- Claim boundary: exact profile bytes and consumer dependency are closed.
+  Arbitrary ICC conversion/application, target-runtime parity, non-identity
+  algorithm promotion, main merge, RAW/HDR/video and delivery remain open.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

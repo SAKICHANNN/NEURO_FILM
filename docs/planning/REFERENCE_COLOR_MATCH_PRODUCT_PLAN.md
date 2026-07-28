@@ -272,6 +272,10 @@ with a selected stock, but reference matching alone is labeled
 | P74A | DONE | close manifest checkout byte drift | force the complete v1-v7 manifest/schema chain to LF so `core.autocrlf=true` cannot invalidate frozen prior hashes | `a305497`; first merge failure reproduced and closed | no contract claim expansion |
 | P75A | DONE | publish checkout-safe integration manifest v7 | bind P1-P74 `a305497`, main `2f9a7c0`, 309 payload paths, 45 exports, 19 schemas, zero overlap and exact v6 hash | `d3b8f42`; manifest SHA `18a7a31d...afc7` | review only, not merged |
 | P75B | DONE | verify latest main integration | clean synthetic merge tree `226a2ce`; merged all-color 908 pass/8 skips; local all-color 913 pass/3 skips; full 1808 pass/4 skips plus unchanged 36 historical failures | test evidence | owner merge remains required |
+| P76A | DONE | freeze exact sRGB ICC conformance asset | pin the 588 profile bytes, header fields, SHA-256, strict schema and canonical Base64 fixture independently of the runtime encoder | `31f03fd`; fixture `82944c5d...aa9dd` | proves exact bytes, not ICC application |
+| P76B | DONE | make P71/P72 consume the pinned asset | colour attestation and MatchView v2 validate the pinned bytes directly; runtime encoder mutation/call prohibition and profile drift fail closed | 69 focused; 919 all-color/3 skips | host encoder equality is conformance evidence only |
+| P77A | DONE | publish integration manifest v8 | bind P1-P76 `31f03fd`, main `93a7b66`, 318 payload paths, 47 exports, 20 schemas, zero overlap and exact v7 hash | `eba586e`; manifest SHA `f40e32b9...4ee9` | review only, not merged |
+| P77B | DONE | verify refreshed main integration | clean evidence-head merge tree `509df481`; merged all-color 937 pass/3 skips; local full 1832 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

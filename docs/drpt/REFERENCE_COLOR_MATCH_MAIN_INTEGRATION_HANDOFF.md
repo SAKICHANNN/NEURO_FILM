@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P74 consumer payload is pinned by the immutable P75 v7 review
+Status: **P1-P76 consumer payload is pinned by the immutable P77 v8 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P74 payload head:
-  `a30549749b3cf90bf9d9525273d39f9467296edb`;
-- P75 review-evidence head:
-  `d3b8f4233b131905499acd241af1dbe16ee5a5d7`;
+- complete reviewed P1-P76 payload head:
+  `31f03fd88376f1e89301fb2677d6d23fa1e507d0`;
+- P77 review-evidence head:
+  `eba586e`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `2f9a7c02fc58d2f357a5df3626f1a04743917047`;
+  `93a7b665425c241665c5b58b307b5f734bea51dd`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/evidence-head merge tree:
-  `226a2ce888c3757fd8af45f8fc447aba81663518`.
+  `509df481fba1de70660d143725113c0ad9747df3`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -65,6 +65,14 @@ entire historical manifest chain. P75 v7 binds that checkout-safe payload
 schemas. V7 SHA-256 is
 `18a7a31dde03d448357d31bd94d6d204f5cc42c7f61e23690227dbdc5c72afc7`;
 it binds v6 SHA-256 `01aa9137...412d024` and never hashes itself.
+
+P76 `31f03fd` supersedes only the P71/P72 implementation-byte identities by
+making both consumers use one pinned 588-byte ICC asset rather than calling
+the encoder's runtime generator. P77 v8 binds that payload against main
+`93a7b66`: 318 payload blobs, 238 main paths, zero overlap, 47 exports and 20
+schemas. V8 SHA-256 is
+`f40e32b922defecd6294dbb9de5bb790d336b44e6b1532f3cbbbdc1ee6a54ee9`;
+it binds v7 SHA-256 `18a7a31d...afc7` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -150,10 +158,13 @@ reference, public sharing or algorithm promotion.
 
 | Artifact | SHA-256 |
 |---|---|
-| colour-attestation implementation | `11701d3a3a517b5003da3f4afece0237e3f749e8bb3924770d38889d2d151377` |
+| colour-attestation implementation after P76 | `df880fd5fecb34275789df50d24b0d6db6669f21dc9c0fb5c649472f1fc7b6f3` |
 | colour-attestation schema | `4db512eb2ced28d9cdf0b176393d917cff35c65396f07b45a7e06632b793a93a` |
-| attested MatchView v2 implementation | `9c7ce3dcfb9a327e46152c0fb81c9bd014213f708ca2bdb3cb21ba961f203033` |
+| attested MatchView v2 implementation after P76 | `99fa3bdc84e9470c2fc665a6e3c9e168bcd787ca50139bdfb14338aa07ec6e10` |
 | attested MatchView v2 schema | `ce4d6919e6b9e729a24fe2b1f37f7b1096391846d7879a80098d5aca4c9269f5` |
+| pinned ICC module | `0fa5176a6b04f6fa036fc23fff190f4e212cd3790c9c0315b3fd292c82e0b414` |
+| pinned ICC conformance schema | `d3f70d75b6ca5e2a923cdb49260c30bc57652588d102f2609364a2c80597232e` |
+| pinned ICC conformance fixture | `82944c5d21829c62790e023c46a947f016e890db495e71f0a9d2f28a579aa9dd` |
 | exact sRGB ICC | `217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356` |
 
 ## Frozen P33-P40 wire hashes
@@ -188,11 +199,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P75 v7 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..a305497`; do not copy files manually and do not import
+2. Verify the committed P77 v8 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..31f03fd`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree a305497 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 31f03fd <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -207,11 +218,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 913 passed, three skipped;
-- latest isolated consumer full suite: 1808 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 937 passed, three skipped;
+- latest isolated consumer full suite: 1832 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main/evidence-head merge: 908 color-match tests
-  passed with eight platform skips and zero failures; the temporary worktree
+- latest detached synthetic main/evidence-head merge: 937 color-match tests
+  passed with three platform skips and zero failures; the temporary worktree
   was removed;
 - consumer worktree is clean after every stable leaf.
 
