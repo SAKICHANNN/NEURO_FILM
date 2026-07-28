@@ -6,7 +6,7 @@ import ctypes
 import hashlib
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 
@@ -312,6 +312,69 @@ def render_tiled_f32_chain(
             y0 - source_y0 : y1 - source_y0
         ]
     return output
+
+
+def stream_tiled_f32_chain(
+    *,
+    domains_dll: Path,
+    gaussian_dll: Path,
+    adjacency_dll: Path,
+    domains_payload: dict[str, Any],
+    spatial_payload: dict[str, Any],
+    adjacency_payload: dict[str, Any],
+    height: int,
+    width: int,
+    tile_rows: int,
+    source_provider: Callable[[int, int], np.ndarray],
+    output_sink: Callable[[int, int, np.ndarray], None],
+) -> None:
+    """Render ordered core rows without retaining full input or output."""
+    if (
+        isinstance(height, bool)
+        or isinstance(width, bool)
+        or isinstance(tile_rows, bool)
+        or not isinstance(height, int)
+        or not isinstance(width, int)
+        or not isinstance(tile_rows, int)
+        or height <= 0
+        or width <= 0
+        or tile_rows <= 0
+    ):
+        raise ValueError("stream dimensions and tile_rows must be positive")
+    halo = sum(
+        int(row["maximum_radius"]) for row in spatial_payload["stages"]
+    )
+    for y0 in range(0, height, tile_rows):
+        y1 = min(height, y0 + tile_rows)
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(height, y1 + halo)
+        source = np.ascontiguousarray(
+            source_provider(source_y0, source_y1),
+            dtype=np.float32,
+        )
+        if (
+            source.shape != (source_y1 - source_y0, width, 3)
+            or not np.all(np.isfinite(source))
+            or np.any(source < 0.0)
+            or np.any(source > 1.0)
+        ):
+            raise ValueError("stream source provider returned invalid rows")
+        stages, _ = _render_f32_chain(
+            domains_dll=domains_dll,
+            gaussian_dll=gaussian_dll,
+            adjacency_dll=adjacency_dll,
+            domains_payload=domains_payload,
+            spatial_payload=spatial_payload,
+            adjacency_payload=adjacency_payload,
+            source=source,
+            audit_failure_atomic=False,
+        )
+        core = np.ascontiguousarray(
+            stages["scanner_mtf"][
+                y0 - source_y0 : y1 - source_y0
+            ]
+        )
+        output_sink(y0, y1, core)
 
 
 def run_native_f32_conformance(

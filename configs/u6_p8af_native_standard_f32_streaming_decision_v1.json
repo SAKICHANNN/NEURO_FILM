@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p8af_native_standard_f32_streaming_decision.v1",
+  "node": "U6.P8AF",
+  "contract": "configs/u6_p8af_native_standard_f32_streaming_v1.json",
+  "contract_sha256": "18562071f537dec20945e4047336525b561dce8fc6a9b4c73995a625106caf7f",
+  "formal_report": "outputs/u6_p8af_native_standard_f32_streaming_v1/report.json",
+  "formal_report_sha256": "32ce57df29b812a74f6f06d5ee9584d57305680e9e38137150e60f6218481ad9",
+  "stable_evidence_id": "8ecf3c47685686506f26179b82f326619f832cc84116e89485d606dc56a5ca01",
+  "result": {
+    "status": "pass",
+    "output_identity_vs_full_frame_exact": true,
+    "output_sha256": "64a4f7b7b2972e5dca6bfbdeacc46e511c83438720b93f93f51e00f45eb4876b",
+    "peak_process_tree_rss_bytes": [
+      160522240,
+      163102720
+    ],
+    "median_peak_process_tree_rss_bytes": 161812480,
+    "full_frame_f32_median_peak_rss_bytes": 564959232,
+    "median_rss_ratio_vs_full_frame_f32": 0.2864144363606045,
+    "worker_elapsed_seconds": [
+      7.010223300021607,
+      6.778798299987102
+    ],
+    "memory_pass": true,
+    "ratio_pass": true,
+    "elapsed_pass": true
+  },
+  "decision": "retain halo-aware row streaming as the native Standard execution architecture: analytic source rows and a sequential hash sink reproduce the exact 12MP full-frame output at about 162MB peak, 28.64% of the full-frame float32 median. This isolates the physical core but does not yet prove a real decoder/encoder or downstream display-look stream",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP analytic-row and hash-sink native Standard float32 scanner-linear streaming evidence only",
+  "next_leaf": "U6.P8AG downstream display/look boundary: freeze neutral-gauge and AO6-like post-scan composition without double counting physical colour or reintroducing full-frame buffers"
+}
