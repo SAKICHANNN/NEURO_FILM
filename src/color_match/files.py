@@ -942,6 +942,9 @@ def _execute_file_render(
                     rendered.safety,
                 )
             )
+            # Only scalar metadata and immutable diagnostics are retained.
+            # Release the encoded WorkingImage before the next source load.
+            del rendered
 
         prepared = tuple(
             FileReferenceMatchOutput(

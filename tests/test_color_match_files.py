@@ -756,6 +756,88 @@ def test_render_releases_source_pixels_before_output_encode(
     assert report_hash is None
 
 
+def test_render_releases_encoded_pixels_before_next_source_load(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    source_paths = (tmp_path / "source-0.png", tmp_path / "source-1.png")
+    output_paths = (tmp_path / "output-0.png", tmp_path / "output-1.png")
+    for path in source_paths:
+        path.write_bytes(b"source")
+    rendered_refs: list[weakref.ReferenceType[WorkingImage]] = []
+
+    def load_source(
+        path: Path,
+        *,
+        label: str,
+    ) -> tuple[WorkingImage, str]:
+        index = source_paths.index(path)
+        assert label == "source"
+        if index:
+            assert rendered_refs[0]() is None
+        return (
+            WorkingImage(
+                pixels=np.zeros((2, 3, 3), dtype=np.float32),
+                working_space="linear_srgb",
+                transfer_state="display_linear",
+                source_transfer_state="display_referred",
+                source_profile=SourceProfile("assumed_srgb", "batch lifetime"),
+                hdr_metadata={},
+                orientation_applied=True,
+                alpha_policy="absent",
+                bit_depth_in=8,
+                source_path=path,
+                warnings=[],
+            ),
+            str(index + 1) * 64,
+        )
+
+    def render_guarded(recipe, source, **kwargs):
+        image = WorkingImage(
+            pixels=np.zeros((2, 3, 3), dtype=np.float32),
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("assumed_srgb", "encoded lifetime"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=32,
+            source_path=source.source_path,
+            warnings=[],
+        )
+        rendered_refs.append(weakref.ref(image))
+        return SimpleNamespace(
+            image=image,
+            candidate_diagnostics=object(),
+            safety=object(),
+        )
+
+    def encode(image, destination, **kwargs):
+        assert rendered_refs[-1]() is image
+        destination.write_bytes(b"encoded")
+        return "PNG", 0.0
+
+    monkeypatch.setattr(files, "_load_stable_working_image", load_source)
+    monkeypatch.setattr(files, "render_reference_look_guarded", render_guarded)
+    monkeypatch.setattr(files, "_encode_working_image", encode)
+    monkeypatch.setattr(files, "_commit_staged_batch", lambda *args, **kwargs: None)
+
+    prepared, recipe_hash, report_hash = files._execute_file_render(
+        object(),
+        source_paths,
+        output_paths,
+        guard_policy=None,
+        output_bit_depth=16,
+    )
+    assert len(prepared) == 2
+    assert all(reference() is None for reference in rendered_refs)
+    assert recipe_hash is None
+    assert report_hash is None
+
+
 def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
     tmp_path: Path,
     monkeypatch,
