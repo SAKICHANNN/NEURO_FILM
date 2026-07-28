@@ -462,13 +462,15 @@ the audit but excluded without replacement. The exact confirmation population
 is 17 rows across nine makes and eleven content/safety buckets, with zero
 confirmed severe source failures.
 
-U5.R2AI1 is now ready only to freeze its confirmation contract before any
-operator render. It must bind the exact R2AI1S manifest, visual review,
-decision and 17 eligible IDs. The one R2AI0 operator, order, s0.50 strength,
-final margin and comparators remain unchanged. Repeat, independent style and
-non-basic retention, clipping/OOD, blind parent comparison and full-resolution
-severe evidence must be preregistered and pass without tuning before any
-product consideration; no stock or calibration claim opens.
+U5.R2AI1 now has a frozen contract and no confirmation output has been
+rendered. It binds the exact R2AI1S manifest, visual review, decision and 17
+eligible IDs, then renders only the two parents and one unchanged composition.
+The automatic gate requires 80% development style/non-basic retention, a 125%
+style upper envelope, at least .25 median gain over the better parent, wins on
+10/17 rows and six/nine camera makes for both metrics, and <=.5% worst new
+clipping. Exact repeat precedes three blind rounds and all 17 full-resolution
+severe reviews. Implementation is the ready leaf; no threshold, row, order,
+strength, margin, resize or aesthetic rescue is allowed.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

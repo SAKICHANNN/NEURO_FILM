@@ -492,3 +492,11 @@ opens only a preregistered R2AI1 evaluation of the unchanged composition; it
 does not alter any real-film pixel, stock, fitting, training, LSM or
 production gate. See
 `docs/U5_R2AI1S_RAWPIXLS_CONFIRMATION_SOURCE_RESULTS.md`.
+
+The R2AI1 contract is frozen before any confirmation render. It binds the
+exact 17 rows and unchanged density-then-anchor s0.50 operator, compares both
+parents, requires development-retention and upper-envelope controls, paired
+row/make gains, byte-identical repeats, blind parent wins and zero confirmed
+severe artifacts across all 17 rows. These are B0 Look Approximation gates
+only and do not identify film or modify stock-first data stops. See
+`docs/planning/U5_R2AI1_DUAL_CHAMPION_INDEPENDENT_CONFIRMATION_CONTRACT.md`.

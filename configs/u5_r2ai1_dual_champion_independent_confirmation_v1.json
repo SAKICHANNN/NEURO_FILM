@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai1-dual-champion-independent-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI1",
+  "split": "B0_independent_confirmation",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "the one retained deterministic density-then-anchor composition preserves material non-basic style and severe-artifact safety on a camera-diverse digital-photo population that was frozen before operator rendering",
+  "parent_algorithm": {
+    "config": "configs/u5_r2ai0_dual_champion_global_composition_v1.json",
+    "config_sha256": "136593e7765e0fee06cce8263c52b5326899577f149eebcde60c6b5f1136247f",
+    "decision": "configs/u5_r2ai0_dual_champion_global_composition_decision_v1.json",
+    "decision_sha256": "61e4fad1ca6ba66c81c31344c22d616a8f3dd297122eea2df75ee54b665227a0",
+    "required_decision": "retain_B0_dual_champion_composition_no_production_promotion",
+    "retained_candidate": "density_then_anchor__density_s50"
+  },
+  "source_preflight": {
+    "contract": "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1.json",
+    "contract_sha256": "02c7fca3fb5bec651157a1e3d0d1f3ead7d616079e9f2fa89661b567c824ac33",
+    "decision": "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_decision_v1.json",
+    "decision_sha256": "7100c96c28c6b33d2c6b7f964625e25f4a6cbe13c68808d586f58da1a72b9bcd",
+    "required_decision": "pass_17_of_18_open_frozen_u5_r2ai1_confirmation",
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "automatic_report": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+    "automatic_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de",
+    "visual_review": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "ee493ada0dff0e92ab32fba371b738600a26ad3a215285653fd26f93a4e2f73e",
+    "excluded_ids": [
+      "fujifilm_s2pro"
+    ],
+    "replacement_rows_allowed": false
+  },
+  "confirmation_population": {
+    "eligible_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l",
+      "canon_eos7d_mraw",
+      "nikon_d3s_14bit",
+      "sony_dslra560",
+      "fujifilm_s7000",
+      "olympus_sp565uz",
+      "panasonic_dmcg2",
+      "pentax_k30",
+      "ricoh_gx200",
+      "samsung_smg930a"
+    ],
+    "expected_rows": 17,
+    "expected_camera_makes": 9,
+    "expected_make_counts": {
+      "Canon": 2,
+      "Fujifilm": 1,
+      "Nikon": 2,
+      "Olympus": 2,
+      "Panasonic": 2,
+      "Pentax": 2,
+      "Ricoh": 2,
+      "Samsung": 2,
+      "Sony": 2
+    },
+    "per_image_exclusion_after_render_allowed": false,
+    "resizing_or_crop_change_allowed": false
+  },
+  "fixed_operators": {
+    "candidate": {
+      "candidate_id": "density_then_anchor__density_s50",
+      "order": "density_then_anchor",
+      "density_strength": 0.5,
+      "final_output_margin": 4
+    },
+    "comparators": [
+      {
+        "candidate_id": "anchor56_chroma_margin4_challenger",
+        "semantics": "exact standalone anchor parent with its frozen four-code output margin"
+      },
+      {
+        "candidate_id": "cyan_shadow_warm_highlight_like__s50",
+        "semantics": "exact standalone density parent at frozen strength 0.50"
+      }
+    ],
+    "identity_metric_control": true,
+    "effects_allowed": false,
+    "spatial_adaptation_allowed": false,
+    "per_image_selection_allowed": false,
+    "operator_fitting_allowed": false,
+    "post_result_parameter_change_allowed": false
+  },
+  "development_reference": {
+    "sample_count": 41,
+    "candidate_all_median_style_delta_e76": 13.66671329530096,
+    "candidate_all_median_non_basic_residual_delta_e76": 12.401224520563796,
+    "candidate_all_p95_style_delta_e76": 24.167437848397345,
+    "candidate_all_maximum_style_delta_e76": 25.17968489151997,
+    "source": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/automatic_report.json",
+    "source_sha256": "222b29eef53c5ea54b4a526cbcf36eade4a1c10ebbd754468107acc5f338d9dd"
+  },
+  "rendering": {
+    "working_space_boundary": "encoded_srgb_anchor_and_linear_srgb_density_with_float_intermediate",
+    "intermediate_quantization_allowed": false,
+    "final_format": "rgb8_png",
+    "verify_source_and_decoded_hashes_before_render": true,
+    "require_matching_dimensions": true,
+    "require_rgb_decode": true,
+    "require_repeat_manifest_and_report_byte_identity": true,
+    "output_root": "outputs/u5_r2ai1_dual_champion_independent_confirmation_v1"
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_new_hard_clipping_fraction": 0.005,
+    "minimum_confirmation_median_style_delta_e76": 10.933370636240769,
+    "minimum_confirmation_median_non_basic_residual_delta_e76": 9.920979616451037,
+    "maximum_confirmation_p95_style_delta_e76": 30.20929731049668,
+    "maximum_confirmation_per_image_style_delta_e76": 31.47460611439996,
+    "minimum_candidate_median_gain_over_best_parent_delta_e76": 0.25,
+    "minimum_per_image_wins_over_both_parents": 10,
+    "minimum_camera_make_wins_over_both_parents": 6,
+    "paired_win_epsilon": 1e-06,
+    "development_retention_fraction": 0.8,
+    "development_upper_envelope_multiplier": 1.25
+  },
+  "visual": {
+    "automatic_gate_must_pass_before_blind_review": true,
+    "blind_rounds": 3,
+    "all_17_confirmation_rows_required": true,
+    "fixed_source_reference_shown": true,
+    "randomize_outputs_only": true,
+    "minimum_round_wins_over_both_parents": 2,
+    "rankings_must_be_recorded_before_mapping_reveal": true,
+    "full_resolution_candidate_review_required": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "inspect_people_skin_text_geometry_foliage_water_gradient_highlight_shadow_and_tungsten": true,
+    "claim": "autonomous independent-population B0 confirmation evidence only; not owner, human-panel or population preference"
+  },
+  "branch_rules": {
+    "repeat_failure": "close confirmation and diagnose implementation drift without changing the operator or evidence",
+    "automatic_failure": "retain the R2AI0 development result only and close independent promotion without threshold, row, resize, order, strength or margin rescue",
+    "blind_or_severe_failure": "veto independent confirmation without aesthetic retuning or selective row removal",
+    "complete_pass": "retain one independently confirmed B0 Look Approximation challenger and open only a separate product-readiness contract; do not change the production default"
+  },
+  "image_download_allowed": false,
+  "training_allowed": false,
+  "gpu_allowed": false,
+  "current_film_pixel_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "autonomous B0 independent digital-photo confirmation of one fixed deterministic film-inspired global composition challenger; no owner or population preference, universal safety, measured film response, named stock, calibration, latent mode, authenticity or production promotion"
+}

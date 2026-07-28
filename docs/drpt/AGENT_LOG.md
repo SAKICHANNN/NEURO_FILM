@@ -5641,3 +5641,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   replacement, fitting, training, stock/calibration claim or product
   integration opens. `docs/U5_R2AI1S_RAWPIXLS_CONFIRMATION_SOURCE_RESULTS.md`
   is authoritative. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AI1 independent composition confirmation
+
+- **Population:** bind the exact R2AI1S contract, decision, manifest, report,
+  autonomous review and 17 eligible IDs by hash. The excluded Kodak target
+  cannot return and no post-render row removal, replacement, resize or crop
+  is allowed.
+- **Fixed outputs:** render only the exact standalone anchor parent, exact
+  standalone density s0.50 parent and retained density-then-anchor s0.50 with
+  its one final four-code margin. No effects, fitting, routing or tuning.
+- **Automatic gates:** retain >=80% of development median style/non-basic,
+  stay <=125% of the development p95/max style envelope, gain >=.25 over the
+  better parent on both metrics, win both paired metrics on >=10/17 rows and
+  >=6/9 camera makes, and keep worst new clipping <=.5%.
+- **Visual/branch:** byte-identical repeat is required before three blind
+  rounds; the candidate must beat both parents in >=2 rounds and have zero
+  severe failures across all 17 full-resolution outputs. Any failure closes
+  independent confirmation without parameter, threshold or source rescue.
+  A pass would still be B0 Look Approximation evidence only. Implementation
+  is next; Goal remains ACTIVE.
