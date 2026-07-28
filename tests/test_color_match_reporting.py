@@ -293,6 +293,19 @@ def test_cli_runs_one_reference_n_sources_and_writes_report(
     assert recipe.is_file()
 
 
+def test_cli_help_documents_the_rec2020_sdr_output_contract() -> None:
+    completed = subprocess.run(
+        [sys.executable, str(SCRIPT), "--help"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0
+    assert "Rec.2020 SDR" in completed.stdout
+    assert "16-bit PNG" in completed.stdout
+
+
 def test_cli_fails_without_partial_outputs_on_batch_mismatch(
     tmp_path: Path,
 ) -> None:

@@ -52,7 +52,10 @@ def _parser() -> argparse.ArgumentParser:
         type=Path,
         action="append",
         required=True,
-        help="Output image; repeat in source order.",
+        help=(
+            "Output image; repeat in source order. Linear Rec.2020 SDR "
+            "sources require 16-bit PNG and retain BT.2020 CICP."
+        ),
     )
     parser.add_argument(
         "--recipe",
@@ -65,6 +68,10 @@ def _parser() -> argparse.ArgumentParser:
         type=int,
         choices=(8, 16),
         default=16,
+        help=(
+            "Output precision. Rec.2020 SDR supports 16-bit PNG only; "
+            "sRGB also supports 8-bit PNG/JPEG/TIFF and 16-bit PNG/TIFF."
+        ),
     )
     parser.add_argument(
         "--allow-research-baseline",
