@@ -10,9 +10,17 @@ from pathlib import Path
 import subprocess
 from typing import Any
 
+from jsonschema import Draft202012Validator
+
 
 SCHEMA_ID = "neuro-film.reference-match-main-integration-manifest.v1"
 CLAIM_CEILING = "review-ready-not-merged"
+DEFAULT_SCHEMA_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "configs"
+    / "schemas"
+    / "reference_match_main_integration_manifest_v1.schema.json"
+)
 REQUIRED_PUBLIC_EXPORTS = (
     "make_shared_reference_operator_v1",
     "guard_shared_numeric_batch_v1",
@@ -192,7 +200,38 @@ def encode_manifest(value: dict[str, Any]) -> str:
     ) + "\n"
 
 
-def validate_manifest(*, repo: Path, manifest: dict[str, Any]) -> None:
+def validate_manifest_schema(
+    manifest: Any,
+    *,
+    schema_path: Path = DEFAULT_SCHEMA_PATH,
+) -> None:
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        Draft202012Validator.check_schema(schema)
+        errors = sorted(
+            Draft202012Validator(schema).iter_errors(manifest),
+            key=lambda item: tuple(str(part) for part in item.absolute_path),
+        )
+    except (OSError, json.JSONDecodeError) as exc:
+        raise IntegrationManifestError(
+            f"integration manifest schema unavailable: {schema_path}"
+        ) from exc
+    if errors:
+        first = errors[0]
+        location = "/".join(str(part) for part in first.absolute_path)
+        prefix = f"{location}: " if location else ""
+        raise IntegrationManifestError(
+            f"integration manifest schema violation: {prefix}{first.message}"
+        )
+
+
+def validate_manifest(
+    *,
+    repo: Path,
+    manifest: dict[str, Any],
+    schema_path: Path = DEFAULT_SCHEMA_PATH,
+) -> None:
+    validate_manifest_schema(manifest, schema_path=schema_path)
     required = {
         "payload_commit",
         "base_commit",
