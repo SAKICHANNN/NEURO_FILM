@@ -1,0 +1,127 @@
+{
+  "schema": "neuro_film.u6_p5a_spatial_response_contract.v1",
+  "node": "U6.P5A",
+  "parents": {
+    "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "compiled_scatter_decision_sha256": "9507f92ba0aa94d05c8ff855848d83f2a5654f72b48da60835fd71963de8c83a",
+    "material_decision_sha256": "3377b218ac17fa1ad3c9942fd50a7293943765e297f2c24d29315ae358869bff"
+  },
+  "claim_ceiling": "generic-physical-inspired-spatial-response-development",
+  "physical_scale": {
+    "pixel_pitch_um": 1.0,
+    "frequency_unit": "cycles-per-mm"
+  },
+  "pipeline_order": [
+    "layer-exposure",
+    "forward-scatter",
+    "sensitometry",
+    "development-adjacency",
+    "dye-diffusion",
+    "density-to-transmittance",
+    "scanner-mtf",
+    "scan-linear"
+  ],
+  "profile": {
+    "forward_scatter_sigma_um_rgb": [
+      3.5,
+      3.0,
+      2.5
+    ],
+    "development_adjacency_sigma_um_rgb": [
+      1.0,
+      1.2,
+      1.4
+    ],
+    "development_adjacency_gain_rgb": [
+      0.18,
+      0.22,
+      0.26
+    ],
+    "dye_diffusion_sigma_um_rgb": [
+      0.8,
+      1.2,
+      1.6
+    ],
+    "scanner_mtf_sigma_um_rgb": [
+      1.5,
+      1.5,
+      1.5
+    ],
+    "gaussian_truncate": 4.0
+  },
+  "charts": {
+    "slanted_edge_shape": [
+      384,
+      1024
+    ],
+    "slant_degrees": 5.0,
+    "exposure_pairs": [
+      [
+        0.01,
+        0.03
+      ],
+      [
+        0.03,
+        0.18
+      ],
+      [
+        0.18,
+        1.0
+      ],
+      [
+        1.0,
+        4.0
+      ]
+    ],
+    "line_pair_cycles_per_mm": [
+      20.0,
+      50.0,
+      100.0,
+      200.0
+    ]
+  },
+  "measurements": {
+    "mtf": [
+      "MTF50",
+      "MTF10"
+    ],
+    "edge": [
+      "overshoot",
+      "undershoot"
+    ],
+    "line_pair": [
+      "modulation"
+    ],
+    "frequency_conversion": "cycles-per-pixel * 1000 / pixel_pitch_um"
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "finite_domain_valid": true,
+    "minimum_stage_ablation_max_abs": 0.0001,
+    "minimum_correct_vs_wrong_order_max_abs": 0.0001,
+    "minimum_forward_mtf50_exposure_spread_cycles_per_mm": 2.0,
+    "adjacency_overshoot_min": 0.002,
+    "adjacency_overshoot_max": 0.2,
+    "dye_mtf50_channel_margin_cycles_per_mm": 2.0,
+    "scanner_neutral_mtf50_channel_spread_max_cycles_per_mm": 1.0,
+    "mtf10_must_exceed_mtf50": true,
+    "line_pair_modulation_min": 0.001
+  },
+  "negative_controls": [
+    "all-zero spatial profile must be exact identity around sensitometry and density-to-transmittance",
+    "a single shared sharpening slider cannot reproduce the isolated signatures",
+    "scanner MTF cannot be relabeled as stock or emulsion response"
+  ],
+  "forbidden_fallbacks": [
+    "fit parameters to chart gates",
+    "merge the four stages into one convolution or sharpening control",
+    "move scanner MTF before density-to-transmittance",
+    "hard clip density or scan-linear output",
+    "change U2.2 sensitometry",
+    "claim measured film MTF, stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain explicit spatial primitives and proceed to density-conditioned P5B plus held-out synthetic charts",
+    "fail": "close only the failed primitive/signature and preserve the other independently passing stages; do not collapse the model"
+  }
+}
