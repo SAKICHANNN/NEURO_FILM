@@ -155,3 +155,25 @@ def test_v6_schema_unavailable_and_wrong_base_fail_closed(
             base_commit=manifest["main_commit"],
             main_commit=manifest["main_commit"],
         )
+
+
+def test_complete_manifest_chain_has_lf_checkout_policy() -> None:
+    rules = {
+        line.strip()
+        for line in (ROOT / ".gitattributes").read_text("utf-8").splitlines()
+        if line.strip()
+    }
+    expected = {
+        f"configs/reference_match_main_integration_manifest_v{version}.json "
+        "text eol=lf"
+        for version in range(1, 7)
+    }
+    expected.update(
+        {
+            "configs/schemas/"
+            f"reference_match_main_integration_manifest_v{version}."
+            "schema.json text eol=lf"
+            for version in range(1, 7)
+        }
+    )
+    assert expected <= rules
