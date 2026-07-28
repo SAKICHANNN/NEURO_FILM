@@ -3320,3 +3320,23 @@
 - A fresh detached merge produces tree `189c8bdc...4c99` and passes 1124
   color-match tests with 28 platform/data skips; the temporary worktree is
   removed. State remains `review-ready-not-merged`.
+
+## 2026-07-28 - Diagnose P113 BMKL failure signatures
+
+- The legacy P46 analyzer now accepts and validates the exact output-pixel
+  identity added by the capability-neutral P44 invocation path while retaining
+  byte-identical legacy analysis semantics.
+- Two independent BMKL P44 progress files reproduce one timing-independent
+  diagnostic ID, `b0894a94696ab6beb07875dc63a153011dfe20a86f7bd7d9f8cc6d633bb81305`,
+  and byte-identical report SHA-256
+  `9e1400ef00d3d65cebe725fce48e3048b3847fc064f22c4b91414178a75f5f3f`.
+- The failure is structured rather than a photographic-safety collapse:
+  A4 has 0/6 failures, but 17/30 A1 rows regress and every A5 context pair
+  changes bundle and fails. Source medians range from +43.94% to -45.19%;
+  reference medians range from +49.34% to -66.41%.
+- Clipping alone is insufficient: only 3/17 regressions are at or below 5%
+  clipping, correlation between clipping and candidate/source error ratio is
+  0.4316, and the reference/source stratification remains large. The next
+  producer route therefore needs reference-only shared-bundle semantics plus
+  bounded uncertainty/identity shrinkage; this evidence does not promote any
+  candidate.

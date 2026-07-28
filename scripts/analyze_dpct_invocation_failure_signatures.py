@@ -35,6 +35,12 @@ _INVOCATION_KEYS = {
     "request_id",
     "response_id",
 }
+_INVOCATION_OPTIONAL_KEYS = {
+    # P44 added the exact output-pixel identity when the generic invocation
+    # adapter replaced the original D-PCT-only adapter.  It is validated here
+    # but deliberately excluded from the timing-independent failure signature.
+    "output_pixel_sha256",
+}
 _KNOWN_METRIC_KEYS = {
     "candidate_new_boundary_fraction",
     "candidate_target_delta_e76_median",
@@ -117,7 +123,15 @@ def _identifier(value: Any, label: str) -> str:
 
 
 def _invocation(value: Any, label: str) -> dict[str, Any]:
-    item = dict(_strict(value, _INVOCATION_KEYS, label))
+    if not isinstance(value, Mapping):
+        raise FailureSignatureError(f"{label} fields are invalid")
+    keys = set(value)
+    if keys not in (
+        _INVOCATION_KEYS,
+        _INVOCATION_KEYS | _INVOCATION_OPTIONAL_KEYS,
+    ):
+        raise FailureSignatureError(f"{label} fields are invalid")
+    item = dict(value)
     for key in (
         "consumer_receipt_id",
         "consumer_transform_id",
@@ -128,6 +142,19 @@ def _invocation(value: Any, label: str) -> dict[str, Any]:
         "response_id",
     ):
         _identifier(item[key], f"{label}.{key}")
+    if "output_pixel_sha256" in item:
+        output_sha = item["output_pixel_sha256"]
+        if (
+            not isinstance(output_sha, str)
+            or len(output_sha) != 64
+            or any(
+                character not in "0123456789abcdef"
+                for character in output_sha
+            )
+        ):
+            raise FailureSignatureError(
+                f"{label}.output_pixel_sha256 is invalid"
+            )
     for key in (
         "clipping_fraction",
         "out_of_gamut_fraction",

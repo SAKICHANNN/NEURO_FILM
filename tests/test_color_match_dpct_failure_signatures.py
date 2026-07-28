@@ -28,6 +28,19 @@ def _invocation(seed: str, clipping: float) -> dict[str, object]:
     }
 
 
+def _add_output_id(value: dict[str, object]) -> None:
+    for group in ("known_rows", "photographic_rows"):
+        rows = value[group]
+        assert isinstance(rows, dict)
+        for row in rows.values():
+            row["invocation"]["output_pixel_sha256"] = "a" * 64
+    rows = value["context_rows"]
+    assert isinstance(rows, dict)
+    for row in rows.values():
+        for invocation in row["invocations"]:
+            invocation["output_pixel_sha256"] = "b" * 64
+
+
 def _progress() -> dict[str, object]:
     known: dict[str, object] = {}
     for index, row_id in enumerate(EXPECTED_KNOWN_IDS):
@@ -149,6 +162,20 @@ def test_analysis_identifies_discriminating_failure_signatures() -> None:
         "boundary_corruption_present": True,
         "all_context_probes_fail": True,
     }
+
+
+def test_current_output_pixel_identity_is_validated_but_not_hashed() -> None:
+    legacy = _progress()
+    current = copy.deepcopy(legacy)
+    _add_output_id(current)
+
+    assert analyze_progress(current) == analyze_progress(legacy)
+
+    current["known_rows"][EXPECTED_KNOWN_IDS[0]]["invocation"][
+        "output_pixel_sha256"
+    ] = "not-a-sha"
+    with pytest.raises(FailureSignatureError):
+        analyze_progress(current)
 
 
 @pytest.mark.parametrize(
