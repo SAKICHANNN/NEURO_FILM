@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8b-velvia-colourwise-two-expert-cv-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8B",
+  "software_commit": "41ed97bc3805bb2e627c6be7cc82a140d7c672eb",
+  "contract": {
+    "path": "configs/u5_r2ao8b_velvia_colourwise_two_expert_cv_v1.json",
+    "sha256": "52b5836403d93be9063fd131758faf961bbf0558e0541bbd9e552d021e14bea0"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ao8b_velvia_colourwise_two_expert_cv_v1/report_a.json",
+    "sha256": "5d0e3c033769b6f748af4672562c0a3e6e95d738800abc1861af04ed51c7c823"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ao8b_velvia_colourwise_two_expert_cv_v1/report_b.json",
+    "sha256": "5d0e3c033769b6f748af4672562c0a3e6e95d738800abc1861af04ed51c7c823"
+  },
+  "repeat_byte_identical": true,
+  "selected_candidate": {
+    "candidate_id": "nearest_support_soft_t100",
+    "rgb_rmse": 0.0323616316749696,
+    "mean_delta_e76": 7.193049436782714,
+    "maximum_delta_e76": 18.729220106277552,
+    "maximum_absolute_rgb_error": 0.12657762125490402,
+    "mean_chart_weight": 0.7106387157118601,
+    "mean_palette_weight": 0.28936128428814,
+    "raw_out_of_cube_fraction": 0.0
+  },
+  "global_control": {
+    "candidate_id": "combined_global_operator",
+    "rgb_rmse": 0.031002043420105693,
+    "mean_delta_e76": 6.439716224306294,
+    "maximum_delta_e76": 21.2077723271283,
+    "maximum_absolute_rgb_error": 0.1611959820931575,
+    "raw_out_of_cube_fraction": 0.0
+  },
+  "oracle_diagnostic": {
+    "rgb_rmse": 0.024296019915507405,
+    "mean_delta_e76": 5.573610421307233,
+    "maximum_delta_e76": 18.05603253138005,
+    "maximum_absolute_rgb_error": 0.12657762123766725,
+    "rgb_rmse_gain_over_global": 0.21630908046045905,
+    "oracle_product_value_gate_pass": true
+  },
+  "failed_router_gates": {
+    "selected_rgb_rmse_gain_over_global": -0.04385479487401067,
+    "selected_mean_delta_e76_gain_over_global": -0.11698236168125109
+  },
+  "decision": "close_nearest_support_router_retain_operator_diversity_as_descriptive",
+  "interpretation": "held-out Oracle selection shows material potential value from two explicit proxy experts, but source-support proximity does not identify the better expert and is worse than the refitted combined global operator in both RGB RMSE and mean Delta E76",
+  "next_leaf": "preregister a nested cross-fitted case-based nearest-neighbour selector whose development labels are generated without outer-fold target leakage; retain the combined global operator as the mandatory baseline and fallback",
+  "mature_baseline_positioning": [
+    "case-based nearest-neighbour colour adjustment is prior art and is evaluated as a baseline, not claimed as novel",
+    "the contribution under test is the evidence-gated combination of Oracle value, hard sparse explicit experts, bounded output and global fallback",
+    "no result changes the frozen AO6 t15/c35 development champion"
+  ],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "negative nested development evidence for source-support routing and positive diagnostic Oracle evidence over two proxy operators; not independent photo evidence, stock modes, film response, calibration, preference, novelty or product value"
+}
