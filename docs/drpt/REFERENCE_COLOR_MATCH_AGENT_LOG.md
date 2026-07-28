@@ -3595,3 +3595,17 @@
   color-match regression passes 902 tests with five explicit skips. This
   payload is `46af790`; v27 remains valid only for its earlier payload and
   main snapshot pending a successor integration manifest.
+
+## 2026-07-28 - Verify every file transaction publication
+
+- The file adapter computed hashes for staged outputs, recipe and report but
+  did not pass them into the central commit verifier. A target changed during
+  the publication window could therefore make a successful result disagree
+  with durable bytes.
+- Every staged artifact is now covered by the existing pre-publish and
+  post-publish SHA checks. A deterministic injected post-publish corruption is
+  detected, the prior output and recipe are restored, and no staging/backup
+  artifact remains.
+- The complete non-manifest color-match regression passes 903 tests with five
+  explicit skips. Payload `0ae3651` stacks on decoded-input identity payload
+  `46af790`; no producer contract, algorithm or FilmFX policy changes.
