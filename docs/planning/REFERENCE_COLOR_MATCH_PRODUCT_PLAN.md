@@ -249,10 +249,16 @@ with a selected stock, but reference matching alone is labeled
 | P64B | DONE | implement deterministic v2 builder/schema/validator | bind payload/base/main commits, 273 payload blobs, 20 exports, 14 schemas, prior P58 identity and zero overlap | `d6e562a`; code/schema/tests | no merge |
 | P64C | DONE | prove tamper/replay/prior-manifest closure | independent direct and module rebuilds exact; malformed identity/count/order/hash or P58 mutation rejects | 33 v1/v2 manifest tests | no product-state promotion |
 | P64D | DONE | publish latest-main review evidence | main `841efaf`; merge tree `0e03890`; 726 all-color and 180 detached-merge pass/3 skips | handoff/docs | owner review remains required |
-| P65A | IN PROGRESS | freeze same-handle read-and-consume transaction | integrate verification and byte consumption so no later path reopen can be trusted solely from a P63 record | contract/tests/docs | no delivery until exact handle-bound consumer exists |
-| P65B | READY | implement bounded handle-consumption primitive | consume report/output bytes from already verified live handles with exact identities, sizes and hashes | code/schema/tests | no implicit persistent authorization |
-| P65C | BLOCKED ON P65B | prove consume-time mutation and multi-file failure closure | fault-inject mutation, truncation, replacement, aliasing, partial decode and consumer exceptions | adversarial tests | fail closed without delivery |
-| P65D | BLOCKED ON P65C | propagate evidence and reassess integration manifest | full/latest-main evidence; publish a new manifest version only if reviewed payload changes | evidence/docs | P64 remains immutable |
+| P65A | DONE | freeze same-handle read-and-consume transaction | capture process-local immutable bytes during the exact P63 live-handle session; persisted record contains no artifact paths and grants no authority | `e83c18a` | no delivery |
+| P65B | DONE | implement bounded handle-consumption primitive | return bytes only after double-read/final-rehash of every still-open source; cap 256 MiB/output and 512 MiB total | `e83c18a`; code/schema/tests | no implicit persistent authorization |
+| P65C | DONE | prove capture-time mutation/resource/authority closure | mutation, later replacement, byte/receipt escalation, pre-read budget rejection and final-rehash failure all fail closed or preserve only immutable returned bytes | 34 P63/P65 pass; 99 adjacent pass/1 skip | no partial snapshot return |
+| P65D | DONE | propagate full/latest-main evidence | 735 all-color/3 skips; 1630 pass/4 skips/36 known; main `eef149c`, merge `7739d12`, 183 pass/1 skip | evidence/docs | P64 remains immutable |
+| P66A | DONE | publish additive immutable integration manifest v3 | bind exact P1-P65 payload `e83c18a`, main `eef149c`, 280 blobs, 25 exports, 15 schemas and zero overlap | `00593c7` | P64 v2 byte-bound, not mutated |
+| P66B | DONE | prove v3 schema/rebuild/tamper closure | direct/module verification and v1/v2/v3 regression; wrong order/count/hash/base/prior manifest reject | 61 focused pass | review only |
+| P67A | IN PROGRESS | freeze path-free encoded-image decode gate | decode only P65 immutable bytes and prove declared PNG/JPEG/TIFF format, bit depth, single-frame and bounded geometry | contract/tests/docs | no filesystem reopen |
+| P67B | READY | implement strict in-memory decoder | reject malformed, polyglot/multi-frame, decompression-bomb, alpha/palette and format/depth mismatch | code/schema/tests | decoded evidence only |
+| P67C | BLOCKED ON P67B | prove parser and resource failure closure | truncated bytes, trailing ambiguity, oversized dimensions, unsupported samples and decoder exceptions | adversarial tests | no decoded batch on any failure |
+| P67D | BLOCKED ON P67C | propagate evidence and refresh integration review | all-color/full/latest-main; new manifest only after stable payload | evidence/docs | no product applied state |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

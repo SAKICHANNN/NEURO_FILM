@@ -1516,6 +1516,63 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Implement P65 same-handle process-local byte capture
+
+- Implementation commit:
+  `e83c18aa5b9e86282d6c57a49c90a8a25d0bb639`.
+  P63's internal session can now retain exact bytes from each already-open
+  output handle; it performs the existing second read and final same-handle
+  rehash before returning the all-or-nothing immutable tuple.
+- Memory boundary: <=256 MiB per output and <=512 MiB aggregate, checked
+  before any output read. No spill path, output path or caller callback is
+  exposed. The persisted record fixes path, persistent-snapshot and delivery
+  authority to false.
+- Artifact SHA-256: implementation
+  `5b4916de8585556e97c9dbdc0e12749747bf9ea76c87a34c71ba7c5a0ccf4186`;
+  P63 refactor
+  `d9ec6818daf9cbad506b6c828382785b23e9191269e5bf8f48d36b5bea9deb22`;
+  schema
+  `9298948724462d0903752eb3a76f888ddf686429e07b1de63aed92bc40c81bc6`;
+  tests
+  `07da585ac163e32bd822e78465cb3a5daaa14c810afffce4bd3cf5387a68951b`.
+- Verification: 34 P63/P65 pass; 99 adjacent pass/one skip; 735 all-color
+  pass/three skips; full suite 1630 pass/four skips plus exactly the same 36
+  historical missing-output/hash failures.
+- Latest-main `eef149c82b73ed57955d35315a7bfefcd43acf25` remains read-only.
+  Consumer/main changed paths are 280/218 with zero overlap; merge tree
+  `7739d1223bff0e2e03cefac9e632c0a90146c69e`; detached merge passes 183
+  related tests with one skip and is removed.
+- Limit: these are authenticated encoded bytes, not yet proven decodable
+  pixels. P67 must validate format/depth/frame/geometry from `BytesIO` only.
+
+## 2026-07-28 - Publish immutable P66 integration manifest v3
+
+- Evidence commit: `00593c7`. V3 binds exact P1-P65 payload `e83c18a`,
+  base `c03c321`, main `eef149c`, 280 payload blobs, 218 main paths, zero
+  overlap, 25 exports and 15 contract schemas.
+- P64 v2 remains byte-identical and is bound as the exact prior manifest with
+  SHA-256 `ae67b3ef...d784dd`; P58 remains transitively preserved.
+- Artifact SHA-256: builder
+  `ebe8a1b9da3a91028ceaa7460d996cae7d451ce6791ff8bf0b76fc5f888a8d6a`;
+  manifest
+  `fc9373a0452df7f1bff309b1bf9a2be83fc50a1cfa025e20236942b1bd2cf07c`;
+  schema
+  `3352634fc6fd349a4e4b300f14a36595aa326ef623398a3d6bbdede125fb860f`.
+- Direct/module rebuild and 61 v1/v2/v3/P65 focused tests pass. V3 is review
+  evidence only; it does not merge, promote, decode or deliver anything.
+
+## 2026-07-28 - Freeze P67 path-free encoded-image decode gate
+
+- Input is only the P65 immutable `bytes` tuple plus its live-validated
+  metadata. Filesystem paths and persisted P63/P65 records are forbidden
+  inputs.
+- The gate must prove actual PNG/JPEG/TIFF format, exact declared bit depth,
+  one frame/page, bounded dimensions/pixels and an allowed RGB sample model.
+  Alpha, palette, malformed/truncated/polyglot ambiguity, decompression bombs
+  and unsupported samples fail the entire batch.
+- Output remains process-local decoded evidence with no applied, persistent
+  or delivery authority.
+
 ## 2026-07-28 - Implement and verify P63 handle-bound staging observation
 
 - Node/parent goal: P63A-D / restart verification of exact P62 staging.
