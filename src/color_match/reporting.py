@@ -23,6 +23,18 @@ REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID = (
 )
 
 
+def _sha256(value: str, label: str) -> str:
+    if (
+        not isinstance(value, str)
+        or len(value) != 64
+        or any(char not in "0123456789abcdef" for char in value)
+    ):
+        raise ReferenceMatchContractError(
+            f"{label} must be a lowercase SHA-256"
+        )
+    return value
+
+
 def _output_rows(
     rows: tuple[FileReferenceMatchOutput, ...],
 ) -> list[dict[str, Any]]:
@@ -48,7 +60,10 @@ def _output_rows(
         outputs.append(
             {
                 "source_path": str(row.source_path.resolve()),
-                "source_sha256": sha256_file(row.source_path),
+                "source_sha256": _sha256(
+                    row.source_file_sha256,
+                    "source_file_sha256",
+                ),
                 "output_path": str(row.output_path.resolve()),
                 "output_sha256": row.output_sha256,
                 "output_format": row.output_format,
@@ -78,7 +93,10 @@ def build_file_match_report(
         "evidence_grade": result.recipe.evidence_grade,
         "reference": {
             "path": str(result.reference_path.resolve()),
-            "file_sha256": sha256_file(result.reference_path),
+            "file_sha256": _sha256(
+                result.reference_file_sha256,
+                "reference_file_sha256",
+            ),
             "pixel_sha256": result.recipe.reference_pixel_sha256,
         },
         "recipe_file": (

@@ -66,6 +66,28 @@ def test_report_covers_run_hashes_diagnostics_and_safety(tmp_path: Path) -> None
     assert first_hash == second_hash
 
 
+def test_report_retains_the_exact_decoded_input_file_identities(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(reference, 27431)
+    _image(source, 27432)
+    reference_sha256 = sha256_file(reference)
+    source_sha256 = sha256_file(source)
+
+    result = match_reference_files(reference, [source], [output])
+    _image(reference, 27433)
+    _image(source, 27434)
+    report = build_file_match_report(result)
+
+    assert result.reference_file_sha256 == reference_sha256
+    assert result.outputs[0].source_file_sha256 == source_sha256
+    assert report["reference"]["file_sha256"] == reference_sha256
+    assert report["outputs"][0]["source_sha256"] == source_sha256
+
+
 def test_report_rejects_forged_oversized_result(tmp_path: Path) -> None:
     reference = tmp_path / "reference.png"
     source = tmp_path / "source.png"
@@ -82,6 +104,36 @@ def test_report_rejects_forged_oversized_result(tmp_path: Path) -> None:
     with pytest.raises(
         ReferenceMatchContractError,
         match="between 1 and 64 rows",
+    ):
+        build_file_match_report(forged)
+
+
+@pytest.mark.parametrize("field", ["reference", "source"])
+def test_report_rejects_forged_captured_input_identity(
+    tmp_path: Path,
+    field: str,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(reference, 27435)
+    _image(source, 27436)
+    result = match_reference_files(reference, [source], [output])
+    if field == "reference":
+        forged = replace(result, reference_file_sha256="not-a-hash")
+    else:
+        forged = replace(
+            result,
+            outputs=(
+                replace(
+                    result.outputs[0],
+                    source_file_sha256="not-a-hash",
+                ),
+            ),
+        )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match=f"{field}_file_sha256 must be a lowercase SHA-256",
     ):
         build_file_match_report(forged)
 

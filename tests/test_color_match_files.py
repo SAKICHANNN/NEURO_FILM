@@ -106,6 +106,44 @@ def test_file_adapter_repeat_is_byte_deterministic(tmp_path: Path) -> None:
     assert first.recipe.recipe_id == second.recipe.recipe_id
 
 
+@pytest.mark.parametrize("changed_input", ["reference", "source"])
+def test_file_adapter_rejects_input_changed_during_decode(
+    tmp_path: Path,
+    monkeypatch,
+    changed_input: str,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    recipe = tmp_path / "recipe.json"
+    _image(reference, 27341)
+    _image(source, 27342)
+    changed_path = reference if changed_input == "reference" else source
+    original_load = files.load_working_image
+
+    def mutate_after_decode(path: Path):
+        image = original_load(path)
+        if Path(path) == changed_path:
+            _image(changed_path, 27343)
+        return image
+
+    monkeypatch.setattr(files, "load_working_image", mutate_after_decode)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match=f"{changed_input} file changed while it was being decoded",
+    ):
+        match_reference_files(
+            reference,
+            [source],
+            [output],
+            recipe_path=recipe,
+        )
+    assert not output.exists()
+    assert not recipe.exists()
+
+
 @pytest.mark.parametrize("suffix", [".png", ".jpg", ".tiff"])
 def test_file_adapter_supports_srgb8_outputs(tmp_path: Path, suffix: str) -> None:
     reference = tmp_path / "reference.png"

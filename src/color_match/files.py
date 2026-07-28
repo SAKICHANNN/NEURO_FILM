@@ -16,6 +16,7 @@ from src.preprocess import (
     save_srgb8,
     save_srgb16_png,
     save_srgb16_tiff,
+    WorkingImage,
     working_image_to_srgb_float,
 )
 
@@ -48,6 +49,7 @@ class FileReferenceMatchOutput:
     """Durable output identity and render diagnostics for one source file."""
 
     source_path: Path
+    source_file_sha256: str
     output_path: Path
     output_sha256: str
     output_format: str
@@ -62,6 +64,7 @@ class FileReferenceMatchResult:
     """One fitted recipe plus all committed output identities."""
 
     reference_path: Path
+    reference_file_sha256: str
     recipe: ReferenceLookRecipe
     recipe_path: Path | None
     recipe_file_sha256: str | None
@@ -569,6 +572,23 @@ def _encode_srgb(
     return output_format, float(np.mean(clipped, dtype=np.float64))
 
 
+def _load_stable_working_image(
+    path: Path,
+    *,
+    label: str,
+) -> tuple[WorkingImage, str]:
+    """Decode one input and bind it to stable bytes at the path boundary."""
+
+    before = sha256_file(path)
+    image = load_working_image(path)
+    after = sha256_file(path)
+    if after != before:
+        raise ReferenceMatchContractError(
+            f"{label} file changed while it was being decoded"
+        )
+    return image, before
+
+
 def _execute_file_render(
     recipe: ReferenceLookRecipe,
     sources: tuple[Path, ...],
@@ -596,6 +616,7 @@ def _execute_file_render(
     staged_outputs: list[
         tuple[
             Path,
+            str,
             Path,
             str,
             float,
@@ -615,7 +636,10 @@ def _execute_file_render(
         for index, (source_path, output_path) in enumerate(
             zip(sources, outputs, strict=True)
         ):
-            source = load_working_image(source_path)
+            source, source_file_sha256 = _load_stable_working_image(
+                source_path,
+                label="source",
+            )
             if (
                 source.working_space != "linear_srgb"
                 or source.transfer_state != "display_linear"
@@ -642,6 +666,7 @@ def _execute_file_render(
             staged_outputs.append(
                 (
                     source_path,
+                    source_file_sha256,
                     output_path,
                     output_format,
                     clipped_fraction,
@@ -653,6 +678,7 @@ def _execute_file_render(
         prepared = tuple(
             FileReferenceMatchOutput(
                 source_path=source_path,
+                source_file_sha256=source_file_sha256,
                 output_path=output_path,
                 output_sha256=sha256_file(
                     _stage_path(output_path, token)
@@ -665,6 +691,7 @@ def _execute_file_render(
             )
             for (
                 source_path,
+                source_file_sha256,
                 output_path,
                 output_format,
                 clipped_fraction,
@@ -681,6 +708,7 @@ def _execute_file_render(
             (_stage_path(output_path, token), output_path)
             for (
                 _source_path,
+                _source_file_sha256,
                 output_path,
                 _format,
                 _clipped,
@@ -756,7 +784,10 @@ def match_reference_files(
         ),
     )
 
-    reference_working = load_working_image(reference)
+    reference_working, reference_file_sha256 = _load_stable_working_image(
+        reference,
+        label="reference",
+    )
     recipe = fit_reference_look(reference_working, policy=policy)
 
     def report_factory(
@@ -768,6 +799,7 @@ def match_reference_files(
         return build_file_match_report(
             FileReferenceMatchResult(
                 reference_path=reference,
+                reference_file_sha256=reference_file_sha256,
                 recipe=recipe,
                 recipe_path=recipe_destination,
                 recipe_file_sha256=recipe_file_sha256,
@@ -790,6 +822,7 @@ def match_reference_files(
     )
     return FileReferenceMatchResult(
         reference_path=reference,
+        reference_file_sha256=reference_file_sha256,
         recipe=recipe,
         recipe_path=recipe_destination,
         recipe_file_sha256=recipe_file_sha256,
