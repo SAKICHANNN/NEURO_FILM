@@ -2281,6 +2281,32 @@
 - Scope: consumer script/fixture/test/docs only. No main or producer write,
   package release, branch push, applied state or real-candidate admission.
 
+## 2026-07-28 - Implement and verify P58 deterministic integration manifest
+
+- Node/parent goal: P58B-D / deterministic consumer-to-main review evidence.
+- Implementation: `7e490bd` adds
+  `scripts/build_reference_match_integration_manifest.py`, a committed
+  canonical manifest and eight adversarial/replay tests.
+- Frozen inputs: payload `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`,
+  common base `c03c321b9fc642e2e092d59e20dd1b145b96192d` and
+  main `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`.
+- Inventory: 253 payload paths with exact Git modes/blobs, 178 main paths,
+  zero overlap, 11 P47-P57 public exports and nine shared-path schemas.
+  The manifest excludes its own builder/fixture commit by design, avoiding a
+  self-referential identity.
+- Exact artifacts: builder SHA-256
+  `17b85d99bde95befde4ac2ba7664774340d7c8bcfa6f768d38ef40f52272b742`;
+  manifest SHA-256
+  `db06eb9b47becb0a2a0f00e3a8a9f8d045e5e88e59cc285cc6f8b638a49a6a5b`.
+- Verification: manifest CLI exact replay, eight dedicated tests, 598
+  complete `test_color_match*` tests and full suite 1493 pass/one skip/36
+  unchanged ignored-output or historical-hash failures.
+- Main preflight: read-only merge tree
+  `ac6751f8992d329e257911b8cc5f86bc0b51c6fc`; a fresh detached merge
+  passes all 19 manifest/P57 tests and was removed. The owner's dirty main
+  worktree was not touched.
+- Ceiling: `review-ready-not-merged`; only the main owner decides integration.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

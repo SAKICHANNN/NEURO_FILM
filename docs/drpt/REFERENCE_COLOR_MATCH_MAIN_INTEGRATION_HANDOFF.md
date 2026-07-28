@@ -8,19 +8,28 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P57 implementation head:
-  `62e2579f8ea16b4f28cae383bdfbf77d63a545a5`;
+- complete P1-P58 implementation head:
+  `7e490bd0b624d856fe2fe36333e5a48589e31266`;
+- P58 non-self-referential reviewed payload:
+  `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
-  `1dce72949ca98db73126991328969feebe911fa9`;
+  `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - D-PCT read-only snapshot:
-  `fd036aa`;
+  `ffdfd98`;
 - conflict-free main/payload merge tree:
-  `2c0438b63677008797e9fe78329a2d23d10f12df`.
+  `ac6751f8992d329e257911b8cc5f86bc0b51c6fc`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
 and were never modified by this branch.
+
+The deterministic P58 review manifest is
+`configs/reference_match_main_integration_manifest_v1.json`, SHA-256
+`db06eb9b47becb0a2a0f00e3a8a9f8d045e5e88e59cc285cc6f8b638a49a6a5b`.
+It binds 253 payload Git blobs, 178 main changed paths, zero overlap, 11
+required public exports and nine shared schemas. It deliberately binds the
+preceding payload commit so it never hashes itself.
 
 ## What the payload provides
 
@@ -102,9 +111,10 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..62e2579`; do not copy files manually and do not import
+2. Verify the committed P58 manifest, then review `c03c321..7e490bd`; do not
+   copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 62e2579`.
+3. Recompute `git merge-tree --write-tree 7e490bd <reviewed-main>`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -118,10 +128,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 590 passed;
-- latest isolated consumer full suite: 1485 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 598 passed;
+- latest isolated consumer full suite: 1493 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 19 P56/P57 delivery-integrity tests
+- latest detached synthetic main merge: 19 P58/P57 integration-integrity tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 

@@ -58,7 +58,8 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-integration evidence | P58 deterministically binds payload/base/main commits, all 253 payload Git blobs, 11 public exports, nine shared schemas and zero overlap | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies the pinned manifest, reviews and merges / main task or owner |
+| Main-project availability | P58 latest-main merge tree is conflict-free and a fresh detached merge passes 19 manifest/P57 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -95,6 +96,9 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
     P50 bases and FilmFX outputs. P55 binds exact P54 to product-ready P49 but
     creates no destination; P56 binds exact P55 and atomically commits local
     files; P57 restart-verifies exact P56 before any replay/trust path.
+12. The main owner verifies the P58 deterministic integration manifest before
+    merging; the manifest is review evidence and never upgrades candidate,
+    transaction or product state.
 
 ## Non-blocking work policy
 
