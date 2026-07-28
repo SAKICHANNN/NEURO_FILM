@@ -268,6 +268,7 @@ def build_source_context_display_look_row_streamed(
     source: np.ndarray,
     *,
     tile_rows: int,
+    reuse_input_buffer: bool = False,
 ) -> Callable[[np.ndarray], np.ndarray]:
     """Build the same display look with row-bounded base and residual arrays."""
 
@@ -306,17 +307,38 @@ def build_source_context_display_look_row_streamed(
     )
 
     def apply(encoded: np.ndarray) -> np.ndarray:
-        encoded_value = np.asarray(encoded, dtype=np.float32)
-        if encoded_value.shape != source_shape:
+        encoded_value = np.asarray(encoded)
+        if (
+            encoded_value.shape != source_shape
+            or not np.all(np.isfinite(encoded_value))
+            or np.any(encoded_value < 0.0)
+            or np.any(encoded_value > 1.0)
+        ):
             raise ValueError(
-                "row-streamed display input must match source context shape"
+                "row-streamed display input must be finite encoded RGB "
+                "matching the source context shape"
             )
-        output = np.empty(source_shape, dtype=np.float64)
+        if reuse_input_buffer:
+            if (
+                encoded_value.dtype != np.float64
+                or not encoded_value.flags.c_contiguous
+                or not encoded_value.flags.writeable
+            ):
+                raise ValueError(
+                    "reused display input must be writable C-contiguous float64"
+                )
+            output = encoded_value
+        else:
+            output = np.empty(source_shape, dtype=np.float64)
         for y0 in range(0, source_shape[0], tile_rows):
             y1 = min(source_shape[0], y0 + tile_rows)
             base_output = _style_transfer_rgb_with_context(
                 np.asarray(
-                    apply_density(encoded_value[y0:y1]),
+                    apply_density(
+                        np.asarray(
+                            encoded_value[y0:y1], dtype=np.float32
+                        )
+                    ),
                     dtype=np.float32,
                 ),
                 anchor["stats"],

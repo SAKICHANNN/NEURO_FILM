@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -68,6 +69,11 @@ def test_artifact_consumer_row_stream_is_float_exact() -> None:
     assert (
         forward_receipt["output"]["array_sha256"]
         == reverse_receipt["output"]["array_sha256"]
+    )
+    assert forward_receipt["output"]["array_sha256"] == (
+        hashlib.sha256(
+            memoryview(np.ascontiguousarray(forward)).cast("B")
+        ).hexdigest()
     )
     assert forward_receipt["execution"]["seam_rows"] == [31, 62, 93, 124]
     assert reverse_receipt["execution"]["seam_rows"] == [47, 94]

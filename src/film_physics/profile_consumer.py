@@ -62,6 +62,11 @@ ARTIFACT_SCHEMA = (
 MAX_ARTIFACT_BYTES = 1_048_576
 
 
+def _array_sha256(value: np.ndarray) -> str:
+    contiguous = np.ascontiguousarray(value)
+    return hashlib.sha256(memoryview(contiguous).cast("B")).hexdigest()
+
+
 @dataclass(frozen=True)
 class CompiledProfileRuntime:
     """Minimum runtime surface consumed by the frozen challenger renderer."""
@@ -495,9 +500,12 @@ def render_working_image_fully_row_streamed(
         or order not in {"forward", "reverse"}
     ):
         raise ValueError("invalid fully row-streamed partition")
+    input_array_sha256 = _array_sha256(scene.values)
+    input_shape = list(scene.values.shape)
     encoded = linear_srgb_to_encoded(
         scene.values.astype(np.float64)
     )
+    del scene
     runtime, gauge = reconstruct_standalone_runtime(artifact)
     compiled = replace(
         runtime,
@@ -534,12 +542,10 @@ def render_working_image_fully_row_streamed(
         ],
         encoded,
         tile_rows=tile_rows,
+        reuse_input_buffer=True,
     )
+    del encoded
     output = display(gauged_encoded)
-    input_bytes = np.ascontiguousarray(
-        scene.values.astype(np.float32, copy=False)
-    ).tobytes()
-    output_bytes = np.ascontiguousarray(output).tobytes()
     receipt_core = {
         "schema": (
             "neuro_film.physical_profile_fully_row_streamed_render_receipt.v1"
@@ -557,15 +563,15 @@ def render_working_image_fully_row_streamed(
             "seam_rows": sorted(seams),
         },
         "input": {
-            "array_sha256": hashlib.sha256(input_bytes).hexdigest(),
+            "array_sha256": input_array_sha256,
             "dtype": "float32",
-            "shape": list(scene.values.shape),
+            "shape": input_shape,
             "working_space": working.working_space,
             "transfer_state": working.transfer_state,
             "source_transfer_state": working.source_transfer_state,
         },
         "output": {
-            "array_sha256": hashlib.sha256(output_bytes).hexdigest(),
+            "array_sha256": _array_sha256(output),
             "dtype": output.dtype.name,
             "shape": list(output.shape),
             "domain": "display-encoded-rgb",
