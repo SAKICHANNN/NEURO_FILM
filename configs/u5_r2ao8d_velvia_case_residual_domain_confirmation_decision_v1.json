@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8d-velvia-case-residual-domain-confirmation-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8D",
+  "software_commit": "63ddb425cd18ccf8744a20af7a58b6a1b832bfbd",
+  "contract": {
+    "path": "configs/u5_r2ao8d_velvia_case_residual_domain_confirmation_v1.json",
+    "sha256": "ded2a198c15c07e6ddcff959c64c3b2787856d8e9760a781e44e7a09b06f4e19"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ao8d_velvia_case_residual_domain_confirmation_v1/report_a.json",
+    "sha256": "5730452d8df9d38bbf49122da2f476eee3b395df6377f25779adccec6d57f3af"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ao8d_velvia_case_residual_domain_confirmation_v1/report_b.json",
+    "sha256": "5730452d8df9d38bbf49122da2f476eee3b395df6377f25779adccec6d57f3af"
+  },
+  "repeat_byte_identical": true,
+  "split_results": [
+    {
+      "split_id": "split_a",
+      "candidate_rgb_rmse_gain_over_global": -0.0377610021029855,
+      "candidate_mean_delta_e76_gain_over_global": -0.15056245257273826,
+      "candidate_rgb_rmse_gain_over_domain_control": 0.0009354887444147364,
+      "within_domain_shuffle_empirical_p_value": 0.29457364341085274
+    },
+    {
+      "split_id": "split_b",
+      "candidate_rgb_rmse_gain_over_global": 0.05262204091455369,
+      "candidate_mean_delta_e76_gain_over_global": -0.014105421031717302,
+      "candidate_rgb_rmse_gain_over_domain_control": 0.04115667790605626,
+      "within_domain_shuffle_empirical_p_value": 0.023255813953488372
+    },
+    {
+      "split_id": "split_c",
+      "failure": "structural_fit_failure",
+      "message": "split_c outer fold 2 inner structural fit failure: paired fit produced no operator satisfying the structural contract"
+    }
+  ],
+  "aggregate_available_splits_only": {
+    "candidate_rgb_rmse_gain_median": 0.007430519405784097,
+    "candidate_mean_delta_e76_gain_median": -0.08233393680222778,
+    "candidate_rgb_rmse_gain_over_domain_median": 0.0210460833252355,
+    "within_domain_shuffle_p_maximum": 0.29457364341085274,
+    "oracle_rgb_rmse_gain_median": 0.17804309172922844
+  },
+  "decision": "close_case_selector_as_split_unstable",
+  "interpretation": "the original nested-CV kNN gain does not survive frozen new splits and within-domain permutation controls; one split regresses both RGB and perceptual error, one passes only RGB, and one exposes structurally invalid small-sample operator fits",
+  "forbidden_rescue": [
+    "increase restart count after seeing the failure",
+    "replace failed split seeds",
+    "relax endpoint span",
+    "select another kNN candidate on AO8D",
+    "add a larger router to the same 71-row pool"
+  ],
+  "next_leaf": "retain the AO6 global Look Approximation champion and audit accessible true paired digital-film datasets or callable physical-model baselines before adding selector capacity",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "negative same-pool split-sensitivity evidence for one mature kNN case selector plus a positive diagnostic Oracle; no independent photo, novelty, stock-mode, film-response, calibration, preference or product claim"
+}
