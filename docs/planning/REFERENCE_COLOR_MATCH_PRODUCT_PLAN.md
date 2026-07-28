@@ -278,6 +278,8 @@ with a selected stock, but reference matching alone is labeled
 | P77B | DONE | verify refreshed main integration | clean evidence-head merge tree `509df481`; merged all-color 937 pass/3 skips; local full 1832 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 | P78A | DONE | expose exact ICC bytes through freestanding C11 ABI | deterministic generated C/header, exact three-symbol accessor and pre-write null/short-capacity rejection | `983810a`; 5 focused/27 adjacent pass | bytes only, no ICC application |
 | P78B | DONE | establish factual portability ceilings | MSVC + LLVM-MinGW Windows runtime exact; Android arm64/x86_64 link-only exact exports; macOS/iOS arm64 object-only exact definitions; every build repeats byte-identically | `REFERENCE_COLOR_MATCH_SRGB_ICC_PORTABILITY.md` | Android/Apple runtime remains open |
+| P79A | DONE | publish native-ICC integration manifest v9 | bind P1-P78 `d661fa9`, main `60b9bfa`, 329 payload paths, 47 exports, 20 schemas, zero overlap and exact v8 hash | `3595821`; manifest SHA `041e28a2...04f8f` | review only, not merged |
+| P79B | DONE | verify moving-main integration | refreshed main `1ffbb5e`: 333 consumer vs 244 main paths, zero overlap; merge tree `b0d2c19`; merged/local all-color 960 pass/3 skips; full 1855 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

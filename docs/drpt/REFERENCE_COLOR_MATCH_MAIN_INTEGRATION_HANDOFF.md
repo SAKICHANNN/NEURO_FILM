@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P76 consumer payload is pinned by the immutable P77 v8 review
+Status: **P1-P78 consumer payload is pinned by the immutable P79 v9 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P76 payload head:
-  `31f03fd88376f1e89301fb2677d6d23fa1e507d0`;
-- P77 review-evidence head:
-  `eba586e`;
+- complete reviewed P1-P78 payload head:
+  `d661fa9acd900fd755c7290f226d63da385a5a18`;
+- P79 review-evidence head:
+  `3595821`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `93a7b665425c241665c5b58b307b5f734bea51dd`;
+  `1ffbb5e2fd778ef26cbd3872d04ccd02c8ab3c41`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/evidence-head merge tree:
-  `509df481fba1de70660d143725113c0ad9747df3`.
+  `b0d2c19d1c5d6d7a7f705cb742faf75bacfcfeb1`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -73,6 +73,15 @@ the encoder's runtime generator. P77 v8 binds that payload against main
 schemas. V8 SHA-256 is
 `f40e32b922defecd6294dbb9de5bb790d336b44e6b1532f3cbbbdc1ee6a54ee9`;
 it binds v7 SHA-256 `18a7a31d...afc7` and never hashes itself.
+
+P78 `983810a` plus evidence `d661fa9` add the freestanding native ICC
+accessor and factual Windows/Android/Apple portability ceilings. P79 v9 binds
+that complete P1-P78 payload against main `60b9bfa`: 329 payload blobs, 243
+main paths, zero overlap, 47 exports and 20 schemas. V9 SHA-256 is
+`041e28a2d7cb71b4655eac240abdbc4fac1a8df371a708b3af21cc3b21d04f8f`;
+it binds v8 SHA-256 `f40e32b9...4ee9` and never hashes itself. A later
+read-only preflight against main `1ffbb5e` remains zero-overlap and passes the
+detached merge suite.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -199,11 +208,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P77 v8 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..31f03fd`; do not copy files manually and do not import
+2. Verify the committed P79 v9 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..d661fa9`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 31f03fd <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree d661fa9 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -218,10 +227,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 937 passed, three skipped;
-- latest isolated consumer full suite: 1832 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 960 passed, three skipped;
+- latest isolated consumer full suite: 1855 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main/evidence-head merge: 937 color-match tests
+- latest detached synthetic main/evidence-head merge: 960 color-match tests
   passed with three platform skips and zero failures; the temporary worktree
   was removed;
 - consumer worktree is clean after every stable leaf.

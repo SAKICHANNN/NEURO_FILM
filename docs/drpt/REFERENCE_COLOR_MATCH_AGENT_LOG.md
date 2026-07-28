@@ -2891,6 +2891,23 @@
   runtime, ICC application, algorithm promotion, media rail or delivery claim
   opens.
 
+## 2026-07-28 - Publish and verify P79 integration v9
+
+- P79 commit `3595821` publishes manifest v9 for complete P1-P78 payload
+  `d661fa9`, main `60b9bfa` and base `c03c321`: 329 payload paths, 243 main
+  paths, zero overlap, 47 Python exports and 20 contract schemas. Manifest
+  SHA-256 is `041e28a2...04f8f` and exact v8 identity is preserved.
+- Main advanced during verification to `1ffbb5e`. A fresh comparison is 333
+  consumer versus 244 main changed paths with zero overlap; evidence-head
+  merge tree is `b0d2c19d...feb1`.
+- Verification: local and detached-merge color suites both pass 960 with
+  three platform skips. Full local suite is 1855 pass/four skips plus the
+  exact same 36 historical missing-output/tracked-hash failures, with no
+  color-match failure. The detached worktree was removed.
+- P79 remains review-ready-not-merged. It does not convert Android link or
+  Apple object evidence into runtime, does not promote an algorithm and does
+  not change the producer interface boundary.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.
