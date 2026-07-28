@@ -6,7 +6,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 
@@ -156,13 +156,16 @@ def _pipeline(
     adjacency: bool = True,
     diffusion: bool = True,
     scanner: bool = True,
+    adjacency_apply: Callable[
+        [np.ndarray, SpatialResponseProfile], np.ndarray
+    ] = apply_development_adjacency,
 ) -> np.ndarray:
     layer_exposure = (
         apply_forward_scatter(exposure, profile) if forward else exposure
     )
     density = operator.apply(layer_exposure)
     if adjacency:
-        density = apply_development_adjacency(density, profile)
+        density = adjacency_apply(density, profile)
     if diffusion:
         density = apply_dye_diffusion(density, profile)
     scan = density_to_scan_transmittance(density)

@@ -6,7 +6,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -192,6 +192,9 @@ def evaluate_spatial_halo(
     sensitometry_config: dict[str, Any],
     *,
     diagnostic_path: Path,
+    adjacency_apply: Callable[
+        [np.ndarray, SpatialResponseProfile], np.ndarray
+    ] = apply_development_adjacency,
 ) -> dict[str, Any]:
     profile = _profile(p5a_contract)
     zero_profile = _zero_adjacency(profile)
@@ -211,10 +214,10 @@ def evaluate_spatial_halo(
         )
         baseline = density_to_scan_transmittance(density)
         output = density_to_scan_transmittance(
-            apply_development_adjacency(density, profile)
+            adjacency_apply(density, profile)
         )
         repeat = density_to_scan_transmittance(
-            apply_development_adjacency(density, profile)
+            adjacency_apply(density, profile)
         )
         repeat_exact = repeat_exact and np.array_equal(output, repeat)
         adjacency_outputs.append(output)
@@ -241,8 +244,12 @@ def evaluate_spatial_halo(
         exposure, distance = _slanted_edge(
             shape, slant, float(pair[0]), float(pair[1])
         )
-        output = _pipeline(exposure, operator, profile)
-        repeat = _pipeline(exposure, operator, profile)
+        output = _pipeline(
+            exposure, operator, profile, adjacency_apply=adjacency_apply
+        )
+        repeat = _pipeline(
+            exposure, operator, profile, adjacency_apply=adjacency_apply
+        )
         repeat_exact = repeat_exact and np.array_equal(output, repeat)
         full_outputs.append(output)
         exposure_rows.append(
@@ -266,7 +273,7 @@ def evaluate_spatial_halo(
         density, _ = _slanted_edge(shape, slant, float(pair[0]), float(pair[1]))
         zero_control_exact = zero_control_exact and np.array_equal(
             density_to_scan_transmittance(
-                apply_development_adjacency(density, zero_profile)
+                adjacency_apply(density, zero_profile)
             ),
             density_to_scan_transmittance(density),
         )
@@ -274,11 +281,11 @@ def evaluate_spatial_halo(
     probe_density, _ = _slanted_edge(shape, slant, 0.25, 1.5)
     correct = apply_scanner_mtf(
         density_to_scan_transmittance(
-            apply_development_adjacency(probe_density, profile)
+            adjacency_apply(probe_density, profile)
         ),
         profile,
     )
-    adjacency_density = apply_development_adjacency(probe_density, profile)
+    adjacency_density = adjacency_apply(probe_density, profile)
     scale = max(float(np.max(adjacency_density)), 1.0)
     wrong = density_to_scan_transmittance(
         apply_scanner_mtf(

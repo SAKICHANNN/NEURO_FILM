@@ -94,6 +94,67 @@ def apply_development_adjacency(
     return output
 
 
+def apply_bounded_development_adjacency(
+    developed_density: np.ndarray,
+    profile: SpatialResponseProfile,
+    *,
+    maximum_absolute_transmittance_delta: float,
+    maximum_absolute_density_delta: float,
+) -> np.ndarray:
+    """Apply a smooth density-domain adjacency correction with analytic bounds."""
+    density = _validate(developed_density)
+    if (
+        not math.isfinite(maximum_absolute_transmittance_delta)
+        or maximum_absolute_transmittance_delta <= 0.0
+        or maximum_absolute_transmittance_delta >= 1.0
+    ):
+        raise ValueError("transmittance bound must be finite and inside (0, 1)")
+    if (
+        not math.isfinite(maximum_absolute_density_delta)
+        or maximum_absolute_density_delta <= 0.0
+    ):
+        raise ValueError("density bound must be finite and positive")
+    blurred = _blur(
+        density, profile.development_adjacency_sigma_um_rgb, profile
+    )
+    gains = np.asarray(profile.development_adjacency_gain_rgb, dtype=np.float64)
+    raw = gains * (density - blurred)
+    transmittance = np.power(10.0, -density)
+    lower_transmittance = np.maximum(
+        transmittance - maximum_absolute_transmittance_delta,
+        np.finfo(np.float64).tiny,
+    )
+    upper_transmittance = np.minimum(
+        transmittance + maximum_absolute_transmittance_delta, 1.0
+    )
+    positive_limit = np.minimum(
+        -np.log10(lower_transmittance) - density,
+        maximum_absolute_density_delta,
+    )
+    negative_limit = np.minimum(
+        density + np.log10(upper_transmittance),
+        maximum_absolute_density_delta,
+    )
+    limit = np.where(raw >= 0.0, positive_limit, negative_limit)
+    correction = np.zeros_like(raw)
+    active = limit > 0.0
+    correction[active] = (
+        np.sign(raw[active])
+        * limit[active]
+        * np.tanh(np.abs(raw[active]) / limit[active])
+    )
+    output = density + correction
+    if np.any(output < 0.0) or not np.all(np.isfinite(output)):
+        raise RuntimeError("bounded development adjacency left density domain")
+    output_transmittance = np.power(10.0, -output)
+    if (
+        np.max(np.abs(output_transmittance - transmittance))
+        > maximum_absolute_transmittance_delta + 1e-12
+    ):
+        raise RuntimeError("bounded development adjacency violated transmittance bound")
+    return output
+
+
 def apply_dye_diffusion(
     developed_density: np.ndarray, profile: SpatialResponseProfile
 ) -> np.ndarray:
