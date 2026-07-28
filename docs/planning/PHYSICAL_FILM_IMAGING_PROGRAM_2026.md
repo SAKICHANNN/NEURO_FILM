@@ -75,6 +75,15 @@ P0 and P1 are immediately executable. P2 reuses existing U2.2 code. P3-P5
 open only after P0/P1 provide typed reference inputs and measurable synthetic
 witnesses; they do not wait for every stock/mode/retrieval branch to finish.
 
+Current P7 boundary: a neutral-gauged 4000-dpi generic challenger is
+repeat-exact, severe-clean on the frozen full-resolution set and narrowly wins
+two of three autonomous blind rounds. Row partitions and execution order are
+exact at that reference identity. Independently recomputing a lower-resolution
+render is not equivalent to rendering at 4000 dpi and then resampling; AO6
+source-context/resampling order is the dominant real-image contributor. P8 may
+therefore compile only a fixed-reference bundle. Preview remains
+reference-derived or a separately validated approximation.
+
 ## Quality tiers and measurement contract
 
 - **Preview:** deterministic 1-2 MP interaction path; approximations are

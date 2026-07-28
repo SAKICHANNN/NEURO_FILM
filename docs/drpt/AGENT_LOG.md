@@ -6609,3 +6609,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Forty-eight adjacent physical tests pass. Retain 257 rows as the safer
   default and proceed to P7 colour/physics ablation; no scanner calibration or
   product claim opens.
+
+## 2026-07-29 - U6.P7D-P7G1 physical challenger and invariance
+
+- P7D compiles the physical profile to a real 4000-dpi virtual scan and removes
+  the P7B blur, but the ungauged combined route loses all three blind rounds.
+  P7E attributes the remaining cast primarily to channelwise paper/sensitometry
+  response, not spatial stages.
+- P7F reuses the previously validated data-independent neutral-axis gauge.
+  Two 65-file runs are path/hash/size exact (`84fb63e...cee3f`); the selected
+  spatial arm has neutral Lab chroma `.00771`, median non-basic/to-colour
+  `11.54/4.83`, zero new boundaries and zero confirmed severe failures. Frozen
+  blind scoring yields 14/27 choices and 2/3 round wins, so it is retained only
+  as a generic development challenger.
+- P7G proves 28 row-size/order cases exact at float, seam and sRGB8 levels.
+  Broad cross-resolution recomputation fails. P7G1 shows one marginal
+  physical/gauge synthetic edge-energy failure, but AO6-only fails 6/8 cases
+  and dominates real-image resize-order error. Freeze the challenger at its
+  4000-dpi identity; lower-resolution previews are not equivalent.
+- Verification: focused P7F/P7G/P7G1 suites pass; scoped commits through
+  `960daba` are pushed. Production default, stock/process/scanner calibration
+  and lower-resolution equivalence claims remain closed. Next leaf: U6.P8A
+  fixed-reference profile bundle compiler.

@@ -29,11 +29,15 @@ scanner response, combined ablation, profile compilation and still/video
 runtime. Existing AO6/AO9 display-proxy evidence and procedural FilmFX are
 controls only, not calibrated emulsion or scanner truth.
 
-U6.P6C now retains the five-stage float32 Standard scanner compiler: two
-isolated 24MP runs are partition-exact, stay within frozen runtime/memory
-budgets and differ from the float64 reference by at most `1.34e-7`. This is
-generic development evidence only. U6.P7A is the next ready leaf and must
-compare colour-only, physics-only and combined output before integration.
+U6.P7F now retains one generic neutral-gauged 4000-dpi physical challenger:
+two exact runs pass automatic gates, nine full-resolution images have zero
+confirmed new severe failures, and the candidate narrowly wins 14/27 choices
+and two of three autonomous blind rounds. P7G proves exact row/order streaming
+but closes broad cross-resolution equivalence; stage attribution shows only
+one marginal physical/gauge edge-energy failure while AO6/source-context
+dominates real-image resize-order error. The next leaf is U6.P8A, a hashed
+fixed-reference `FilmProfileBundle` compiler with preview approximation
+explicitly separate. Production and calibration claims remain closed.
 
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary
