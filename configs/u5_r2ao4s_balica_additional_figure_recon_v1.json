@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4s-balica-additional-figure-recon-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4S",
+  "article": {
+    "title": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "doi": "10.1016/j.daach.2026.e00550",
+    "pii": "S2212054826000573",
+    "official_url": "https://www.sciencedirect.com/science/article/pii/S2212054826000573",
+    "open_access": true,
+    "license": "CC BY 4.0",
+    "license_url": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "assets": [
+    {
+      "figure": 6,
+      "official_cdn_url": "https://ars.els-cdn.com/content/image/1-s2.0-S2212054826000573-gr6_lrg.jpg",
+      "caption_fact": "effect of emulsion type and exposure settings on the rendering of the same scene",
+      "research_question": "does the published panel contain extractable same-scene Ektachrome-versus-Velvia display proxies with explicit condition labels?"
+    },
+    {
+      "figure": 11,
+      "official_cdn_url": "https://ars.els-cdn.com/content/image/1-s2.0-S2212054826000573-gr11_lrg.jpg",
+      "caption_fact": "corresponding clusters of film colour rendering and colourimetric rendering based on spectral data",
+      "research_question": "does the published panel contain uniform paired palette swatches that can extend the Figure 8 chart proxy?"
+    }
+  ],
+  "acquisition": {
+    "maximum_assets": 2,
+    "maximum_total_bytes": 1600000,
+    "maximum_bytes_per_asset": 1000000,
+    "downloads_per_asset": 1,
+    "allowed_media_types": [
+      "image/jpeg"
+    ],
+    "official_cdn_only": true
+  },
+  "recon_checks": {
+    "decode_rgb": true,
+    "record_exact_bytes_sha256_dimensions": true,
+    "build_contact_sheet": true,
+    "manual_semantic_audit_required_before_extraction_contract": true
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "bounded official-figure source reconnaissance for additional author-rendered display proxies; not retained pairs, operator evidence, stock response, calibration, training or product evidence"
+}
