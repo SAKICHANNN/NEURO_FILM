@@ -47,6 +47,13 @@ from .developed_structure import (
     render_developed_structure,
     render_developed_structure_region,
 )
+from .structure_compiler import (
+    MarginalProfile,
+    correlated_normal_region,
+    counter_normal_region,
+    render_marginal,
+    render_marginal_region,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -57,6 +64,7 @@ __all__ = [
     "CompiledScatterKernel",
     "CompiledScatterProfile",
     "FilmProfileBundle",
+    "MarginalProfile",
     "DevelopedStructureContext",
     "PhysicalDomain",
     "PhysicalDomainArray",
@@ -79,11 +87,15 @@ __all__ = [
     "density_to_transmittance",
     "compile_scatter_profile",
     "compile_pyramid_scatter_profile",
+    "correlated_normal_region",
+    "counter_normal_region",
     "gaussian_kernel_1d",
     "gaussian_kernel_2d",
     "profile_from_contract",
     "render_developed_structure",
     "render_developed_structure_region",
+    "render_marginal",
+    "render_marginal_region",
     "scene_exposure_from_working_image",
     "transmittance_to_density",
 ]
