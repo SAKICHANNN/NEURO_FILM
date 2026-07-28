@@ -3907,3 +3907,15 @@
 - All 943 non-manifest color-match tests pass with five explicit environment
   skips. Producer R0DJ rejects SAPA-v0 without a callable capability, so no
   consumer mapping changes.
+
+## 2026-07-29 - Publish fallback-lifetime integration in v38
+
+- V38 binds P153 payload `de57918` to main committed stable point `a96e8af`:
+  492 consumer paths, 567 main paths and zero overlap. Public exports remain
+  61 and contract schemas remain 24.
+- Manifest/schema SHA-256 identities are `6ed93b2b...bdf5c` /
+  `614bca62...00b8`; merge tree `1d4104d2...e3e7`. Detached synthetic merge
+  `cf0e1b7` passes 1306 color-match tests with 30 explicit skips.
+- All 392 discovered v1-v38 manifest tests pass. Producer R0DK rejects
+  calibrated SAPA without a callable capability, so no producer mapping
+  changes. V38 remains `review-ready-not-merged`; main owns merge.

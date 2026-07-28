@@ -14,16 +14,15 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P152 at
-  `508e80c`; P152 v37 binds the complete payload, output capability contract,
-  advisory input-preflight contract and fitted-reference/source lifetime
-  releases.
-- Main Neuro-Film latest bound committed snapshot is `1533d9d`; its untracked
+- Consumer reviewed payload: `codex/reference-color-match` through P153 at
+  `de57918`; P153 v38 binds the complete payload, output capability contract,
+  advisory input-preflight contract and fitted-reference/source/fallback
+  lifetime releases.
+- Main Neuro-Film latest bound committed snapshot is `a96e8af`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest observed core snapshot is `6276c9b`; R0DF rejects the official
-  CanonCGT SSL baseline, R0DG/R0DH reject two reference-only/shared estimator
-  hypotheses and R0DI closes amplitude-only NCAN scaling without a selected
-  model, capability, schema or receipt.
+- D-PCT latest observed core snapshot is `8cbeefe`; R0DF-R0DK close CanonCGT
+  SSL, NCAN amplitude and multiple reference-only/shared atlas hypotheses
+  without a selected model, capability, schema or receipt.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
@@ -53,7 +52,7 @@ wire contract and not an algorithm promotion.
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | File input compatibility preflight | P148 hashes and decodes a bounded ordered input batch through the main `WorkingImage` loader, reports the actual rail and accepts only display-linear sRGB/Rec.2020; its claim is explicitly non-authorizing | COMPLETE AS ADVISORY PRODUCT-SHELL CONTRACT | Render still revalidates every input; add rails only after main/producer colour-state support is versioned / Neuro-Film |
-| High-resolution image lifetime | P151 releases the decoded float32 reference immediately after fitting immutable recipe statistics and identities; P152 releases each decoded source after guarded rendering and before encoding its distinct output. Lifecycle regressions prove both objects are collectible at the next high-memory stage | COMPLETE FOR CURRENT FILE PATH | Future external adapters must retain only source-free bundle state after fit and release source buffers once factual output/diagnostics are detached / Neuro-Film |
+| High-resolution image lifetime | P151 releases the decoded float32 reference after fitting immutable recipe statistics and identities; P152 releases each decoded source after guarded rendering and before encoding its distinct output; P153 releases rejected candidate pixels before cloning identity fallback. Lifecycle regressions prove each obsolete image is collectible at the next high-memory stage | COMPLETE FOR CURRENT FILE PATH | Future external adapters must retain only source-free bundle state after fit and release source/candidate buffers once factual output/diagnostics are detached / Neuro-Film |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | HDR shot reuse invalidation | P109 pins R0cn model/assessment schemas and fixture, reconstructs both producer identities and emits a persisted consumer decision with `reuse_authorized=false`; only `invalidate-reuse` forces refit | COMPLETE AS VETO-ONLY MAPPING, NO CACHE AUTHORITY | A future shot cache may consume the veto only after exact descriptor/input invocation binding; `not-invalidated` never authorizes reuse / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile. P101-P104 additionally execute all ten frozen canonical payloads, SHA failure atomicity and all eight staging predicate inputs through JNI on two cold Android 14 x86_64 emulator boots with stable identity `a3fa50e0...e03f20` | COMPLETE for host identity, cross-target compilation and Android x86_64 virtual runtime | Physical arm64 and Apple runtime remain open; emulator evidence is not a physical-device or producer-algorithm claim / platform integration |
@@ -76,9 +75,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; P152 v37 binds P1-P152 payload `508e80c`, 488 payload paths, 61 exports, 24 schemas, exact v36 identity and zero overlap against main `1533d9d`; manifest/schema SHA-256 are `8791441e...59ee6` / `56968dd5...4f32` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v37, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; P153 v38 binds P1-P153 payload `de57918`, 492 payload paths, 61 exports, 24 schemas, exact v37 identity and zero overlap against main `a96e8af`; manifest/schema SHA-256 are `6ed93b2b...bdf5c` / `614bca62...00b8` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v38, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P152 payload remains zero-overlap against main `1533d9d` and merges conflict-free as tree `b039b306...9ad2`; fresh detached merge `7287d90` passes 1301 color-match tests with 30 platform/data skips and zero failures; v1-v37 lineage passes 388 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P153 payload remains zero-overlap against main `a96e8af` and merges conflict-free as tree `1d4104d2...e3e7`; fresh detached merge `cf0e1b7` passes 1306 color-match tests with 30 platform/data skips and zero failures; v1-v38 lineage passes 392 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -160,4 +159,4 @@ verified local export mechanics. The broader long-term goal is not complete:
 local exact-wheel invocation and Android x86_64 virtual SDR-boundary runtime
 are verified, but no real external candidate is product-promoted, producer
 redistribution rights and Apple/physical-Android runtime evidence are absent,
-and reviewed v37 has not been merged into the main project.
+and reviewed v38 has not been merged into the main project.
