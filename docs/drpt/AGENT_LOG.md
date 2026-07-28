@@ -4190,3 +4190,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   0.37 GB and expose the unchanged style stage around 0.99--1.01 GB as the
   next peak. This is local Windows/Python memory evidence only; no schema,
   algorithm, producer, main, platform, media or product gate changes.
+
+## 2026-07-29 - Close exact halo-aware safe-Lab style execution
+
+- Node/parent goal: P158 under the independent Neuro-Film reference-match
+  high-resolution execution line.
+- Implementation: keep one full-image source context and run the unchanged
+  safe-Lab operator over 128-row cores expanded by five vertical rows. Crop
+  only the core, then release obsolete Lab arrays before output conversion.
+- Evidence: `1348 passed, 5 skipped`; both working spaces and luma-detail
+  branches are bit-exact. Four 6 MP file runs preserve every durable identity
+  and fallback. Median RSS falls `999,702,528 -> 533,960,704 B` (reduction
+  `465,741,824 B`, ratio `0.534120`); wall ratio `0.938942`; formal report
+  SHA-256 `0eb6d27e...731b05`. All frozen gates pass.
+- Boundary/handoff: style phase falls to about 0.346 GB; remaining whole-path
+  peak is about 0.534 GB and must be attributed at load/encode or measured at
+  larger target scale. No schema, algorithm, producer, main, platform, media
+  or product conclusion changes.

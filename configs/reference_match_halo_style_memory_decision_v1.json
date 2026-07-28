@@ -1,0 +1,85 @@
+{
+  "schema_id": "neuro-film.reference-match-halo-style-memory-decision.v1",
+  "node": "P158",
+  "decision": "frozen-memory-and-wall-gates-pass",
+  "contract_commit": "4dfe4680e41bb9607a357591bdc7b0244e8929c9",
+  "implementation_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "run_binding_commit": "4948c7e5eb464dffe5b375463e97403acbdfefcc",
+  "baseline_commit": "c715b5ad2a7834f8af95532c2c82e225d8c6fd29",
+  "candidate_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "gate_config_sha256": "1530663769c6fe1075225973cee80383aec1563e29f42b9b7cc59c5cbbc22526",
+  "run_config_sha256": "17d6ecf2d7c3c8598e7a4039cf9dfc433efb6780d32073226e0929917c6e1b0c",
+  "runner_sha256": "b016edbd81e6952f176ba7fe79ba5c19cdf59837596c73c872bb55d2b45cd76a",
+  "raw_report_sha256": "0eb6d27e2f15a40ed2e47a7f1282ea927319dcc94a0576f74e92ae8bbd731b05",
+  "environment": {
+    "platform": "windows-x86_64-local",
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "psutil": "7.2.2"
+  },
+  "workload": {
+    "width": 3000,
+    "height": 2000,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "core_row_chunk": 128,
+    "vertical_halo_rows": 5,
+    "execution_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "rss_sample_interval_seconds": 0.02,
+    "reference_sha256": "345174185e5618a0d37bacb1d8c3eda6bc9a99850966b580e210b32659a16244",
+    "source_sha256": "1e4de9f8ae4f9d77025199947304a84a98263d3569ee7d9f99ce06dca67092ee"
+  },
+  "run_peak_process_tree_rss_bytes": [
+    1017327616,
+    531513344,
+    536408064,
+    982077440
+  ],
+  "baseline_median_peak_process_tree_rss_bytes": 999702528,
+  "candidate_median_peak_process_tree_rss_bytes": 533960704,
+  "median_rss_reduction_bytes": 465741824,
+  "candidate_to_baseline_median_rss_ratio": 0.5341195896225642,
+  "baseline_median_worker_wall_seconds": 9.07557575001556,
+  "candidate_median_worker_wall_seconds": 8.521443650010042,
+  "candidate_to_baseline_median_worker_wall_ratio": 0.9389424852737781,
+  "frozen_gates": {
+    "minimum_median_rss_reduction_bytes": 268435456,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.7,
+    "maximum_candidate_to_baseline_median_worker_wall_ratio": 1.1,
+    "passed": true
+  },
+  "artifact_identity": {
+    "output_sha256": "2fdb6f01c158c096f49d7e2108f61b6b706f0df873160ba17616068bf320c26d",
+    "recipe_sha256": "70a357489958a32bf28f9e7c59a28dfe0bd6350b3cdca499cd75cfce00877bce",
+    "normalized_report_sha256": "ef0fa5a01c50808b837c7f2f1b7429526e06c1421884ea94018af76a3c6fabec",
+    "cross_revision_exact": true
+  },
+  "phase_attribution": {
+    "sample_interval_seconds": 0.005,
+    "baseline_render_style_lab_peak_worker_rss_bytes": [
+      985464832,
+      1017450496
+    ],
+    "candidate_render_style_lab_peak_worker_rss_bytes": [
+      345493504,
+      347377664
+    ],
+    "candidate_render_gamut_safe_lab_peak_worker_rss_bytes": [
+      419700736,
+      422760448
+    ],
+    "interpretation": "The halo-row implementation removes style application as the dominant phase. The next measured consumer phase is gamut compression around 420 MB, while the frozen whole-process monitor peaks around 534 MB."
+  },
+  "safety_action": "identity-fallback",
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": true,
+  "interpretation": "Exact 128-core-row style application with a five-row vertical halo closes the frozen local 6 MP style-memory leaf without changing durable output, recipe, report, safety disposition or algorithm semantics.",
+  "claim_ceiling": "local-windows-python-halo-row-safe-lab-memory-only-not-algorithm-or-platform-promotion"
+}
