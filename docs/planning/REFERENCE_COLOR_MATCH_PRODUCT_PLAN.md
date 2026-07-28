@@ -280,6 +280,7 @@ with a selected stock, but reference matching alone is labeled
 | P78B | DONE | establish factual portability ceilings | MSVC + LLVM-MinGW Windows runtime exact; Android arm64/x86_64 link-only exact exports; macOS/iOS arm64 object-only exact definitions; every build repeats byte-identically | `REFERENCE_COLOR_MATCH_SRGB_ICC_PORTABILITY.md` | Android/Apple runtime remains open |
 | P79A | DONE | publish native-ICC integration manifest v9 | bind P1-P78 `d661fa9`, main `60b9bfa`, 329 payload paths, 47 exports, 20 schemas, zero overlap and exact v8 hash | `3595821`; manifest SHA `041e28a2...04f8f` | review only, not merged |
 | P79B | DONE | verify moving-main integration | refreshed main `1ffbb5e`: 333 consumer vs 244 main paths, zero overlap; merge tree `b0d2c19`; merged/local all-color 960 pass/3 skips; full 1855 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
+| P80A | DONE | prove Windows dynamic C ABI invocation | MSVC and LLVM-MinGW emit reproducible exact-three-export DLLs; independent FFI loads both, calls every function, rehashes 588 bytes and proves null/short-buffer unchanged | `b550d8e`; 13 focused pass | exact ICC bytes only |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

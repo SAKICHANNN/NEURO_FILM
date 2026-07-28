@@ -2908,6 +2908,25 @@
   Apple object evidence into runtime, does not promote an algorithm and does
   not change the producer interface boundary.
 
+## 2026-07-28 - Execute P80 Windows dynamic ICC ABI
+
+- Node/parent goal: P80 / close dynamic invocation after P78 static host
+  execution without changing the three-symbol ABI or profile bytes.
+- Initial dynamic link correctly failed: the optimizer folded the byte loop
+  into an unresolved `memcpy`, and the LLVM driver first parsed the export
+  definition as C input. The final source uses a volatile destination loop;
+  LLVM compiles objects separately and links a deterministic minimal entry
+  object plus explicit export definition.
+- Commit `b550d8e` produces reproducible MSVC DLL
+  `5213657c...c06b8` and LLVM-MinGW DLL `3a6d9267...03e2f`, each exporting
+  exactly the three declared functions.
+- Independent `ctypes` calls verify size/hash, null rejection,
+  short-capacity unchanged memory and exact 588-byte copy/hash for both DLLs.
+  Thirteen focused ICC tests pass.
+- Claim ceiling: Windows x86_64 dynamic C ABI for the pinned profile only.
+  No image I/O, ICC application, main integration, Android/Apple runtime,
+  algorithm promotion or delivery opens.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

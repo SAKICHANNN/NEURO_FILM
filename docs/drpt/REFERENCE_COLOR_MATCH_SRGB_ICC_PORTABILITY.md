@@ -23,7 +23,7 @@ copies exactly 588 bytes and returns one. The ABI does not parse an image,
 apply an ICC transform, authorize delivery or execute a colour-match
 algorithm.
 
-## Frozen identities
+## P78 frozen identities
 
 | Artifact | SHA-256 |
 |---|---|
@@ -37,6 +37,12 @@ The generator reconstructs the committed C/header bytes from the validated
 P76 Python asset, and a test requires byte equality. The native verifier
 copies through the ABI, independently hashes the returned bytes, verifies
 ICC header fields and exercises null/short-buffer rejection.
+
+These source/build identities describe P78 commit `983810a`. P80 commit
+`b550d8e` supersedes the generated C source with a volatile destination loop
+to prevent an optimizing compiler from introducing an unbound `memcpy` at a
+no-runtime-library DLL boundary. The profile bytes, public header and ABI
+symbols do not change.
 
 ## Platform evidence
 
@@ -63,3 +69,26 @@ header-only/freestanding at the object boundary.
 - Exact ICC bytes do not prove a renderer applied that profile.
 - P78 creates no D-PCT successor, A1/A4/A5 promotion, RAW/HDR/video mapping,
   product application or delivery authority.
+
+## P80 Windows dynamic ABI evidence
+
+P80 builds the exact same three-symbol ABI as a DLL with both compilers,
+checks the complete export table, loads each DLL through an independent
+foreign-function caller and invokes every function. The caller verifies:
+
+- `size_v1()` returns exactly 588;
+- `sha256_v1()` returns the exact P76 profile identity;
+- null and 587-byte-capacity calls reject before changing a sentinel buffer;
+- a successful copy independently hashes to the P76 profile identity.
+
+| Toolchain | Reproducible DLL SHA-256 | Runtime fact |
+|---|---|---|
+| MSVC 19.50 x86_64 | `5213657c499a099d2ff3e7570f75d38769e68fcf5c8ffbfb8b7524066d6c06b8` | loaded and invoked through `ctypes` |
+| LLVM-MinGW 22.1.8 x86_64 | `3a6d92670f990a90fdf9c551884ad96e6c0d0096a0c53ba9dda436f2af803e2f` | independently loaded and invoked through `ctypes` |
+
+The P80 generated C source SHA-256 is
+`5c8c1c7ab06e59c613a96f7982130f6928af6402a41f29fe6d9d76814c221d1d`.
+Both compilers produce byte-identical DLLs across two separate build
+directories. This closes Windows dynamic invocation for these profile bytes
+only; it does not add application integration, image decoding or a target
+device claim.
