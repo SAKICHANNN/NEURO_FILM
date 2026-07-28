@@ -5,6 +5,8 @@ from pathlib import Path
 
 from scripts.audit_reference_match_sdr_file_format_matrix_v1 import (
     ROOT as RUNNER_ROOT,
+)
+from scripts.audit_reference_match_sdr_file_format_matrix_v1 import (
     evaluate_runs,
     load_config,
 )
