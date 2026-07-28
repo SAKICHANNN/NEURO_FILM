@@ -5,7 +5,6 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
-import json
 from pathlib import Path
 from typing import Callable, Mapping
 from urllib.request import urlopen
@@ -15,6 +14,7 @@ import tifffile
 
 from ..canonical import canonical_sha256
 from ..contracts import ReferenceMatchContractError
+from ..strict_json import strict_json_loads
 from .empirical_prior import (
     EMPIRICAL_PRIOR_SCHEMA_ID,
     compute_empirical_prior_id,
@@ -161,7 +161,7 @@ def build_fivek_empirical_prior_payload(
         raise ReferenceMatchContractError(
             "FiveK neutral-prior summary hash mismatch"
         )
-    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary = strict_json_loads(summary_path.read_text(encoding="utf-8"))
     if (
         summary.get("hp_count") != 128
         or summary.get("missing") != []

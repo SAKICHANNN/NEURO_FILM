@@ -16,6 +16,7 @@ import numpy as np
 
 from ..canonical import canonical_sha256
 from ..contracts import ReferenceMatchContractError
+from ..strict_json import strict_json_loads
 
 
 EMPIRICAL_PRIOR_SCHEMA_ID = "neuro-film.empirical-neutral-prior.v1"
@@ -301,7 +302,7 @@ def load_empirical_neutral_prior(path: Path) -> EmpiricalNeutralPrior:
     """Load a UTF-8 JSON artifact and validate it before returning moments."""
 
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload = strict_json_loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ReferenceMatchContractError(
             "could not load empirical neutral-prior artifact"

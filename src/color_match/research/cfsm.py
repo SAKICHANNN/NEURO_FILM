@@ -38,6 +38,7 @@ from src.roll2film.splines import AffineMonotoneSplineOperator
 
 from ..canonical import canonical_sha256
 from ..contracts import ReferenceMatchContractError
+from ..strict_json import strict_json_loads
 
 
 CFSM_ALGORITHM_ID = "canonical-factorized-safe-match.gaussian-v0"
@@ -955,7 +956,7 @@ def cfsm_candidate_from_json(encoded: str) -> CFSMCandidate:
             "encoded CFSM candidate must be a string"
         )
     try:
-        payload = json.loads(encoded)
+        payload = strict_json_loads(encoded)
         if not isinstance(payload, dict) or set(payload) != {
             "schema_id",
             "algorithm_id",

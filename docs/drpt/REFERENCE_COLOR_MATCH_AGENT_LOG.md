@@ -3435,9 +3435,9 @@
 - A single `strict_json_loads` entry now rejects duplicate keys at every
   nesting level, non-standard numeric constants, standard-form exponent
   overflow such as `1e400`, non-scalar Unicode, invalid UTF-8 and excessive
-  nesting. Forty-two persisted contract, invocation, conformance, transaction,
-  verification and runtime modules use it for 46 decode sites; the two private
-  duplicate-key implementations were removed.
+  nesting. Forty-six persisted contract, invocation, conformance, transaction,
+  verification, runtime and research-evidence modules use it for 52 decode
+  sites; the two private duplicate-key implementations were removed.
 - Repository tests forbid direct `json.loads` in top-level color-match modules
   and forbid per-call policy overrides. A real reference recipe with duplicate
   `schema_id` and direct nested/constant vectors fail at the JSON boundary.

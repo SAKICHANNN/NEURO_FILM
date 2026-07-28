@@ -50,7 +50,7 @@ def test_strict_json_wraps_invalid_utf8_and_excessive_nesting() -> None:
 
 def test_persisted_color_match_modules_do_not_bypass_strict_json() -> None:
     bypasses = []
-    for path in sorted((ROOT / "src" / "color_match").glob("*.py")):
+    for path in sorted((ROOT / "src" / "color_match").rglob("*.py")):
         if path.name == "strict_json.py":
             continue
         if "json.loads(" in path.read_text(encoding="utf-8"):
@@ -60,7 +60,7 @@ def test_persisted_color_match_modules_do_not_bypass_strict_json() -> None:
 
 def test_strict_json_calls_do_not_override_the_shared_policy() -> None:
     invalid_calls: list[tuple[str, int]] = []
-    for path in sorted((ROOT / "src" / "color_match").glob("*.py")):
+    for path in sorted((ROOT / "src" / "color_match").rglob("*.py")):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             if (

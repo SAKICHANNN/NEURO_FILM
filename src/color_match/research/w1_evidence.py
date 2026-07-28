@@ -11,6 +11,7 @@ import subprocess
 from typing import Any
 
 from ..canonical import canonical_sha256
+from ..strict_json import strict_json_loads
 
 
 W1_INTAKE_SCHEMA_ID = (
@@ -163,7 +164,7 @@ def _make_decision(
 def load_w1_intake_contract(path: Path) -> dict[str, Any]:
     """Load and validate the pinned external-evidence boundary."""
 
-    contract = json.loads(path.read_text(encoding="utf-8"))
+    contract = strict_json_loads(path.read_text(encoding="utf-8"))
     if set(contract) != _CONTRACT_KEYS:
         raise ValueError("W1 intake contract keys mismatch")
     if contract["schema_id"] != W1_INTAKE_SCHEMA_ID:
@@ -201,10 +202,6 @@ def _git_bytes(repo: Path, commit: str, relative_path: str) -> bytes:
         ["git", "-C", str(repo), "show", f"{commit}:{relative_path}"],
         stderr=subprocess.STDOUT,
     )
-
-
-def _reject_nonfinite_json(value: str) -> None:
-    raise ValueError(f"non-finite JSON constant: {value}")
 
 
 def _source_is_pinned(
@@ -367,10 +364,7 @@ def inspect_w1_development_evidence(
         )
     report_sha256 = hashlib.sha256(bytes_a).hexdigest()
     try:
-        report = json.loads(
-            bytes_a,
-            parse_constant=_reject_nonfinite_json,
-        )
+        report = strict_json_loads(bytes_a)
     except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
         return _make_decision(
             contract,
@@ -599,10 +593,7 @@ def w1_evidence_decision_from_json(encoded: str) -> W1EvidenceDecision:
     if not isinstance(encoded, str):
         raise ValueError("encoded W1 evidence decision must be a string")
     try:
-        payload = json.loads(
-            encoded,
-            parse_constant=_reject_nonfinite_json,
-        )
+        payload = strict_json_loads(encoded)
     except (json.JSONDecodeError, ValueError) as exc:
         raise ValueError("encoded W1 evidence decision is invalid") from exc
     return w1_evidence_decision_from_dict(payload)
