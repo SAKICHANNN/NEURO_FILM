@@ -26,7 +26,7 @@ def main() -> None:
         default=(
             ROOT
             / "configs"
-            / "u6_p7a1_interpretation_bounded_ablation_v1.json"
+            / "u6_p7a2_spatial_residual_artifact_audit_v1.json"
         ),
     )
     parser.add_argument("--output-dir", type=Path, required=True)

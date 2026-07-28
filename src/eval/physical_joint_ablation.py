@@ -40,6 +40,9 @@ from src.film_physics import (
 
 
 SCHEMA = "neuro_film.u6_p7a1_interpretation_bounded_ablation_contract.v1"
+SPATIAL_AUDIT_SCHEMA = (
+    "neuro_film.u6_p7a2_spatial_residual_artifact_audit_contract.v1"
+)
 
 
 @dataclass(frozen=True)
@@ -51,6 +54,7 @@ class JointAblationRuntime:
     eligible_ids: tuple[str, ...]
     source_rows: dict[str, dict[str, Any]]
     sample_budget: int
+    artifact_residual_pair: tuple[str, str]
 
 
 def _load_exact_json(
@@ -65,16 +69,42 @@ def _load_exact_json(
 def load_contracts(
     root: Path, correction: dict[str, Any]
 ) -> tuple[dict[str, Any], JointAblationRuntime]:
+    artifact_residual_pair = ("combined", "colour_only")
+    if correction.get("schema") == SPATIAL_AUDIT_SCHEMA:
+        parent = _load_exact_json(
+            root,
+            correction["parent_correction"],
+            correction["parent_correction_sha256"],
+        )
+        _load_exact_json(
+            root,
+            correction["parent_decision"],
+            correction["parent_decision_sha256"],
+        )
+        metric = correction["only_metric_correction"]
+        if (
+            metric.get("gate") != "isolated_excursions"
+            or metric.get("old_residual") != "combined-minus-colour_only"
+            or metric.get("new_residual") != "combined-minus-cheap"
+            or correction.get("post_result_retuning_allowed")
+        ):
+            raise ValueError("unsupported U6.P7A2 metric correction")
+        correction_contract = parent
+        artifact_residual_pair = ("combined", "cheap")
+    else:
+        correction_contract = correction
     if (
-        correction.get("schema") != SCHEMA
-        or correction["correction"].get("hard_clip_allowed")
-        or correction["correction"].get("endpoint_or_gate_retuning_allowed")
+        correction_contract.get("schema") != SCHEMA
+        or correction_contract["correction"].get("hard_clip_allowed")
+        or correction_contract["correction"].get(
+            "endpoint_or_gate_retuning_allowed"
+        )
     ):
         raise ValueError("unsupported U6.P7A1 correction contract")
     contract = _load_exact_json(
         root,
-        correction["parent_contract"],
-        correction["parent_contract_sha256"],
+        correction_contract["parent_contract"],
+        correction_contract["parent_contract_sha256"],
     )
     if contract.get("schema") != (
         "neuro_film.u6_p7a_colour_developed_spatial_ablation_contract.v1"
@@ -183,6 +213,7 @@ def load_contracts(
         eligible_ids=tuple(validated["eligible_ids"]),
         source_rows=validated["source_rows"],
         sample_budget=int(ao7["metrics"]["maximum_pixels_per_image"]),
+        artifact_residual_pair=artifact_residual_pair,
     )
     return contract, runtime
 
@@ -441,13 +472,17 @@ def evaluate_ablation(
         metrics["combined_to_wrong_order_delta_e76"] = _median_delta_e76(
             arms["combined"], arms["wrong_order"]
         )
-        metrics["combined_isolated_excursions_from_colour"] = (
-            _isolated_excursions(
-                arms["combined"] - arms["colour_only"],
-                threshold=float(gates["isolated_excursion_threshold"]),
-                radius=int(gates["isolated_support_radius_pixels"]),
-                minimum_support=int(gates["minimum_isolated_support_count"]),
-            )
+        residual_left, residual_right = runtime.artifact_residual_pair
+        artifact_metric_key = (
+            "combined_isolated_excursions_from_colour"
+            if runtime.artifact_residual_pair == ("combined", "colour_only")
+            else "isolated_spatial_residual_excursions"
+        )
+        metrics[artifact_metric_key] = _isolated_excursions(
+            arms[residual_left] - arms[residual_right],
+            threshold=float(gates["isolated_excursion_threshold"]),
+            radius=int(gates["isolated_support_radius_pixels"]),
+            minimum_support=int(gates["minimum_isolated_support_count"]),
         )
         rows.append(
             {
@@ -503,7 +538,14 @@ def evaluate_ablation(
         "order_identifiable": float(np.median(wrong_order))
         >= float(gates["minimum_combined_to_wrong_order_median_delta_e76"]),
         "isolated_excursions": sum(
-            row["metrics"]["combined_isolated_excursions_from_colour"]
+            row["metrics"][
+                (
+                    "combined_isolated_excursions_from_colour"
+                    if runtime.artifact_residual_pair
+                    == ("combined", "colour_only")
+                    else "isolated_spatial_residual_excursions"
+                )
+            ]
             for row in rows
         )
         <= int(gates["maximum_isolated_excursion_count"]),
@@ -541,10 +583,24 @@ def evaluate_ablation(
             "combined_isolated_excursion_count": int(
                 sum(
                     row["metrics"][
-                        "combined_isolated_excursions_from_colour"
+                        (
+                            "combined_isolated_excursions_from_colour"
+                            if runtime.artifact_residual_pair
+                            == ("combined", "colour_only")
+                            else "isolated_spatial_residual_excursions"
+                        )
                     ]
                     for row in rows
                 )
+            ),
+            **(
+                {
+                    "artifact_residual_pair": list(
+                        runtime.artifact_residual_pair
+                    )
+                }
+                if runtime.artifact_residual_pair == ("combined", "cheap")
+                else {}
             ),
         },
         "visual_evidence": sheets,

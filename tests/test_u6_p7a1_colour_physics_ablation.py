@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p7a1_interpretation_bounded_ablation_v1.json"
 )
+P7A2 = ROOT / "configs/u6_p7a2_spatial_residual_artifact_audit_v1.json"
 
 
 def test_interpretation_bound_is_smooth_and_inside_references() -> None:
@@ -78,6 +79,16 @@ def test_endpoint_roundoff_does_not_block_full_white() -> None:
     )
     assert np.all(output >= 0.0)
     assert np.all(output <= 1.0)
+
+
+def test_p7a2_changes_only_artifact_residual_pair() -> None:
+    p7a1 = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    p7a2 = json.loads(P7A2.read_text(encoding="utf-8"))
+    first_contract, first = load_contracts(ROOT, p7a1)
+    second_contract, second = load_contracts(ROOT, p7a2)
+    assert first_contract == second_contract
+    assert first.artifact_residual_pair == ("combined", "colour_only")
+    assert second.artifact_residual_pair == ("combined", "cheap")
 
 
 def test_physical_display_rejects_out_of_domain() -> None:
