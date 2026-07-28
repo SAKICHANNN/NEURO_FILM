@@ -2,9 +2,11 @@
 
 Thread: `019f4b76-e70a-75c0-b7ea-b473ab38c200`
 
-Frozen prefix: `nfg019f4b76`
+Frozen prefix: `nf-019f4b76-`
 
-Hard budget: USD 2,000
+Gcloud configuration: `nf-019f4b76-agent`
+
+Hard budget: USD 2,500; warning: USD 2,000; no-new-start: USD 2,250
 
 Accounted thread spend: USD 0.00
 

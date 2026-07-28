@@ -148,7 +148,8 @@ algorithm/data work should target reusable-operator identification or new
 connectivity evidence rather than another compact representation.
 
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
-USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
+USD 2,500 hard ceiling, USD 2,250 new-start stop, resource prefix
+`nf-019f4b76-`, configuration `nf-019f4b76-agent`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources
 created by this thread and present in that ledger may be changed or deleted;
 all pre-existing or unknown resources are read-only. No cloud mutation has yet

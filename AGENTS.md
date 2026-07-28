@@ -24,11 +24,12 @@ Do not describe the project as “Film Translation via InstructPix2Pix” or cla
 
 ### GCP autonomous-compute authorization
 
-This Goal thread has a user-authorized USD 2,000 GCP hard budget. Before any
+This Goal thread has a user-authorized USD 2,500 GCP hard budget, with a
+USD 2,000 warning and no new starts at USD 2,250. Before any
 cloud mutation, follow
 `docs/ops/GCP_AUTONOMOUS_COMPUTE_GOVERNANCE_2026.md` and the frozen
-`configs/gcp_thread_cloud_governance_v1.json`. Only exact resources created by
-this thread under prefix `nfg019f4b76` and recorded in
+`configs/gcp_thread_cloud_governance_v2.json`. Only exact resources created by
+this thread under prefix `nf-019f4b76-` and recorded in
 `docs/ops/GCP_THREAD_RESOURCE_OWNERSHIP_LEDGER.md` may be modified, stopped or
 deleted. All existing, unknown, shared or differently prefixed resources are
 read-only forbidden territory. Paid accelerators may never idle; every job

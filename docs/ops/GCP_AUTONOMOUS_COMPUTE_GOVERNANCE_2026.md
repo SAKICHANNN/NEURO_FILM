@@ -4,13 +4,14 @@ Status: **authorized but not yet used**
 
 Owner scope: Goal thread `019f4b76-e70a-75c0-b7ea-b473ab38c200`
 
-Hard budget: **USD 2,000**
+Hard budget: **USD 2,500**; warning at **USD 2,000**; no new starts at
+**USD 2,250**
 
 ## Authority
 
 The user authorizes this Goal thread to autonomously create, run, stop and
 clean up its own GCP compute, training, storage and job resources within the
-USD 2,000 hard budget.
+USD 2,500 hard budget.
 
 This authorization overrides the earlier default prohibition on paid
 cloud/GPU use for this Goal. It does not relax any evidence, security,
@@ -23,8 +24,9 @@ autonomous unless a platform-enforced action cannot be preauthorized.
 
 Every resource created by this thread must use:
 
-- prefix: `nfg019f4b76`;
-- name pattern: `nfg019f4b76-<purpose>-<unique-suffix>`;
+- gcloud configuration: `nf-019f4b76-agent`;
+- prefix: `nf-019f4b76-`;
+- name pattern: `nf-019f4b76-<purpose>-<unique-suffix>`;
 - labels, when the resource supports them:
   - `owner=codex-thread`
   - `thread=019f4b76e70a75c0b7eab473ab38c200`
@@ -50,7 +52,8 @@ deleted only when its exact full name is recorded with
 4. Record the intended resource full name, region/zone, purpose, shape,
    maximum runtime, idle timeout, worst-case cost and cleanup command in the
    ledger as `planned`.
-5. Confirm the worst-case cumulative cost remains at or below USD 2,000.
+5. Confirm the worst-case cumulative cost remains below the USD 2,250
+   new-start threshold and the USD 2,500 hard ceiling.
 6. Confirm labels/prefix, private access, least privilege, input/output paths,
    checkpoint/resume and failure cleanup.
 
@@ -82,7 +85,8 @@ the previous submission cannot start and bill concurrently.
 
 ## Cost and cleanup
 
-- Hard cumulative ceiling: USD 2,000.
+- Hard cumulative ceiling: USD 2,500.
+- Warning threshold: USD 2,000; no new paid start at or above USD 2,250.
 - A preflight estimate is mandatory.
 - A job must not be submitted if its worst-case cost would cross the ceiling.
 - Stop paid machines immediately when they are not needed.
