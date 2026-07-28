@@ -8,6 +8,7 @@ import pytest
 
 from src.color_engine import linear_rgb_to_lab
 from src.color_match import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     ReferenceLookPolicy,
     ReferenceMatchContractError,
     fit_reference_look,
@@ -186,6 +187,31 @@ def test_batch_rejects_empty_or_invalid_input(sources: object) -> None:
     reference = _working(_pixels(27119, 0.10, 0.80), path="reference.png")
     with pytest.raises(ReferenceMatchContractError):
         render_reference_batch(fit_reference_look(reference), sources)
+
+
+def test_batch_rejects_unbounded_iterable_after_65_pulls() -> None:
+    reference = _working(_pixels(27122, 0.10, 0.80), path="reference.png")
+    source = _working(_pixels(27123, 0.10, 0.80), path="source.png")
+    pulls = 0
+
+    def unbounded_sources():
+        nonlocal pulls
+        while True:
+            pulls += 1
+            if pulls > MAX_REFERENCE_MATCH_BATCH_SOURCES + 1:
+                raise AssertionError("renderer over-consumed the source iterable")
+            yield source
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        render_reference_batch(
+            fit_reference_look(reference),
+            unbounded_sources(),
+        )
+
+    assert pulls == MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
 
 
 def test_diagnostics_preserve_reference_look_claim_ceiling() -> None:

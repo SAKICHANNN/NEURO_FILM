@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 
 from src.color_match import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     ReferenceMatchContractError,
     ReferenceRenderGuardPolicy,
     fit_reference_look,
@@ -106,6 +107,18 @@ def test_guarded_batch_is_ordered_and_policy_validation_fails_closed() -> None:
             policy=ReferenceRenderGuardPolicy(
                 max_gamut_adjusted_fraction=1.1
             ),
+        )
+
+
+def test_guarded_batch_rejects_more_than_64_sources_before_render() -> None:
+    reference, source = _reference_and_source()
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        render_reference_batch_guarded(
+            fit_reference_look(reference),
+            [source] * (MAX_REFERENCE_MATCH_BATCH_SOURCES + 1),
         )
 
 

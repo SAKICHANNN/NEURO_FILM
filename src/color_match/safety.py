@@ -15,6 +15,7 @@ from .contracts import (
 )
 from .render import (
     ReferenceMatchDiagnostics,
+    _working_image_batch,
     render_reference_look,
 )
 
@@ -184,18 +185,7 @@ def render_reference_batch_guarded(
     *,
     policy: ReferenceRenderGuardPolicy | None = None,
 ) -> tuple[GuardedReferenceMatchResult, ...]:
-    if isinstance(sources, (WorkingImage, np.ndarray, str, bytes)):
-        raise ReferenceMatchContractError(
-            "sources must be an iterable of WorkingImage"
-        )
-    try:
-        batch = tuple(sources)
-    except TypeError as exc:
-        raise ReferenceMatchContractError(
-            "sources must be an iterable of WorkingImage"
-        ) from exc
-    if not batch:
-        raise ReferenceMatchContractError("sources batch must not be empty")
+    batch = _working_image_batch(sources)
     return tuple(
         render_reference_look_guarded(
             recipe,

@@ -18,12 +18,40 @@ from src.color_engine import (
 )
 from src.preprocess.types import WorkingImage
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .contracts import (
     SUPPORTED_WORKING_SPACES,
     ReferenceLookRecipe,
     ReferenceMatchContractError,
     validate_recipe,
 )
+
+
+def _working_image_batch(
+    sources: Iterable[WorkingImage],
+) -> tuple[WorkingImage, ...]:
+    if isinstance(sources, (WorkingImage, np.ndarray, str, bytes)):
+        raise ReferenceMatchContractError(
+            "sources must be an iterable of WorkingImage"
+        )
+    batch: list[WorkingImage] = []
+    try:
+        for source in sources:
+            if len(batch) >= MAX_REFERENCE_MATCH_BATCH_SOURCES:
+                raise ReferenceMatchContractError(
+                    "reference match supports at most "
+                    f"{MAX_REFERENCE_MATCH_BATCH_SOURCES} sources"
+                )
+            batch.append(source)
+    except ReferenceMatchContractError:
+        raise
+    except TypeError as exc:
+        raise ReferenceMatchContractError(
+            "sources must be an iterable of WorkingImage"
+        ) from exc
+    if not batch:
+        raise ReferenceMatchContractError("sources batch must not be empty")
+    return tuple(batch)
 
 
 @dataclass(frozen=True)
@@ -186,16 +214,7 @@ def render_reference_batch(
     """Apply exactly one frozen recipe to a non-empty ordered source batch."""
 
     validate_recipe(recipe)
-    if isinstance(sources, (WorkingImage, np.ndarray, str, bytes)):
-        raise ReferenceMatchContractError("sources must be an iterable of WorkingImage")
-    try:
-        batch = tuple(sources)
-    except TypeError as exc:
-        raise ReferenceMatchContractError(
-            "sources must be an iterable of WorkingImage"
-        ) from exc
-    if not batch:
-        raise ReferenceMatchContractError("sources batch must not be empty")
+    batch = _working_image_batch(sources)
     return tuple(
         render_reference_look(recipe, source, source_index=index)
         for index, source in enumerate(batch)
