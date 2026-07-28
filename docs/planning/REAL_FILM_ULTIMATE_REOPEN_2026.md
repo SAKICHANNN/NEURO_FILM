@@ -469,11 +469,13 @@ loss/adversary search, post-hoc strength correction or AH1C confirmation
 opens. See
 `docs/U5_R2AH1_GROUP_INVARIANT_REFERENCE_OPERATOR_RESULTS.md`.
 
-`U5.R2AI0` therefore returns to a bounded deterministic product question
-without claiming to solve unpaired identification. It composes only the two
-independently severe-clean B0 global champions, anchor56 margin-4 and
-density-cyan, in two orders at three inherited strengths. A composition must
-materially beat the stronger parent on style and non-basic views, repeat over
-all 41 inputs, and survive complete ID11/full-resolution visual veto. This is
-a Look Approximation frontier only and changes no real-film, stock,
-identifiability, training or LSM gate.
+`U5.R2AI0` then returns to a bounded deterministic product question without
+claiming to solve unpaired identification. Exact repeated 41-image runs retain
+`density_then_anchor__density_s50`: gold style/non-basic Delta E76 is
+`15.0576/11.3299`, new hard clipping is zero, it beats both parents in all
+three blind rounds and has zero confirmed severe failures across all nine
+full-resolution gold images. This is a stronger B0 Look Approximation
+development frontier only. An independent-population R2AI1 confirmation must
+be frozen before any new render; the result changes no real-film, stock,
+identifiability, training or LSM gate. See
+`docs/U5_R2AI0_DUAL_CHAMPION_GLOBAL_COMPOSITION_RESULTS.md`.

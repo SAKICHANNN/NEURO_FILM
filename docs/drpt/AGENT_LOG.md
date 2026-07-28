@@ -5555,3 +5555,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue. A pass retains one B0 Look Approximation challenger only; no stock,
   authenticity, preference-population or production promotion claim.
   Implementation is the next ready leaf; Goal remains ACTIVE.
+
+## 2026-07-28 - Execute and retain U5.R2AI0 dual-champion composition
+
+- **Execution:** both independent 41-image processes render byte-identical
+  manifests at `80938234...9242` and reports at `222b29ee...9dd`. Two of six
+  fixed candidates pass automatic gates; no order, strength, margin or
+  threshold was changed after results.
+- **Automatic result:** retained `density_then_anchor__density_s50` reaches
+  gold style/non-basic Delta E76 `15.0576/11.3299`, versus frozen floors
+  `13.9944/7.8946`, with zero new hard clipping on gold and stress.
+- **Visual evidence:** all three rankings were written before reveal. The
+  retained candidate ranks `1,2,1`, ahead of both parents in every round.
+  Full-resolution review of all nine gold samples finds zero confirmed severe
+  failures; ID11 red speckle/posterization does not reproduce. Amplified source
+  chromatic fringes, warm skin and aggressive highlights remain recorded as
+  aesthetic risks rather than hidden or mislabelled failures.
+- **Decision:** retain one autonomous B0 deterministic Look Approximation
+  challenger without changing the production default. This is not owner or
+  population preference, stock response, calibrated reference or identified
+  unpaired operator evidence. Current-pixel fitting/training and LSM remain
+  forbidden.
+- **Verification/structure:** five focused tests and the complete CPU suite
+  pass (`1041 passed`). The implementation stays isolated under `src/eval/`
+  and `scripts/`; no production renderer/API/schema changes. The next ready
+  leaf is U5.R2AI1, which must freeze a zero-overlap independent
+  digital-photo/OOD confirmation population before rendering. Goal stays
+  ACTIVE.

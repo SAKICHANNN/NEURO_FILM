@@ -447,13 +447,19 @@ fact or access AH1C/W1 confirmation. The next algorithm leaf must use a
 genuinely different information structure rather than another final-reference
 encoder.
 
-U5.R2AI0 is the next bounded deterministic product-style challenge. It
-combines only the already retained anchor56 margin-4 and density-cyan
-operators in two orders at three inherited strengths. The fixed bank must
-beat the stronger E1 parent by `.5 Delta E76` on both style and matched-basic
-residual, repeat over all 41 images, then beat both parents in blind review
-without any ID11/full-resolution severe failure. No fitting, routing, wider
-grid or post-result rescue is allowed.
+U5.R2AI0 is complete. The fixed density-then-anchor s0.50 composition reaches
+gold style/non-basic `15.0576/11.3299`, zero new hard clipping, exact repeated
+manifests/reports, three blind-round wins over both parents and zero confirmed
+severe failures on nine full-resolution gold images. It is retained as a B0
+Look Approximation challenger only; the default renderer and stock/data gates
+do not change.
+
+U5.R2AI1 is the next bounded product-style leaf. Before any render it must
+freeze a rights/lineage-audited independent digital-photo/OOD population with
+zero exact/perceptual overlap against the 41 development inputs. The one
+R2AI0 operator, order, strength, margin and gates remain unchanged. Repeat,
+clipping/OOD and full-resolution severe evidence must pass without tuning
+before product consideration; no stock or calibration claim opens.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

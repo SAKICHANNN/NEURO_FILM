@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai0-dual-champion-global-composition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI0",
+  "decision": "retain_B0_dual_champion_composition_no_production_promotion",
+  "retained_candidate": "density_then_anchor__density_s50",
+  "config_sha256": "136593e7765e0fee06cce8263c52b5326899577f149eebcde60c6b5f1136247f",
+  "software_commit": "1f61119087cdb72d939b8db0c7b915e4adb7c5ce",
+  "run_a": {
+    "render_manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+    "automatic_report_sha256": "222b29eef53c5ea54b4a526cbcf36eade4a1c10ebbd754468107acc5f338d9dd"
+  },
+  "run_b": {
+    "render_manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+    "automatic_report_sha256": "222b29eef53c5ea54b4a526cbcf36eade4a1c10ebbd754468107acc5f338d9dd"
+  },
+  "pre_unblind_review_sha256": "321a43874f4693c951742edd6087510ae33b89cb84eea1afc479e4edf79ccbc0",
+  "post_reveal_full_resolution_review_sha256": "4e377fe88f9eff13aa33f974aef5c640ad8876d49f17ad8f4318e69ae952a193",
+  "candidate_count": 6,
+  "sample_count": 41,
+  "automatic_survivors": [
+    "anchor_then_density__density_s50",
+    "density_then_anchor__density_s50"
+  ],
+  "retained_metrics": {
+    "gold_median_style_delta_e76": 15.057601316329471,
+    "gold_median_non_basic_residual_delta_e76": 11.329870697034735,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0
+  },
+  "blind_review": {
+    "rounds_ahead_of_both_parents": 3,
+    "first_place_rounds": 2,
+    "required_rounds_ahead_of_both_parents": 2,
+    "gate_pass": true
+  },
+  "full_resolution_review": {
+    "reviewed_gold_samples": 9,
+    "confirmed_severe_failures": 0,
+    "id11_red_speckle_or_posterization_reproduced": false,
+    "gate_pass": true
+  },
+  "production_default_changed": false,
+  "named_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_learning_allowed": false,
+  "next_leaf": "freeze U5.R2AI1 independent-population confirmation and OOD severe-artifact contract for the retained fixed composition",
+  "claim_ceiling": "autonomous B0 development evidence for one original deterministic film-inspired global composition challenger on the frozen gold/stress set; no universal safety, owner or independent-human preference, population claim, measured film response, named stock, calibration, latent mode or production promotion"
+}
