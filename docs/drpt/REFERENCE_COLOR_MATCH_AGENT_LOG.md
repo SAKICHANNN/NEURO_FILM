@@ -3309,3 +3309,14 @@
 - Producer `76fbed6` later adds Windows-executed and cross-target-compiled
   encoded-domain BMKL apply ABI evidence. It does not alter this wheel or
   quality result and does not prove native OETF/EOTF or target runtime.
+
+## 2026-07-28 - Publish and verify P112 integration v18
+
+- V18 binds P1-P111 payload `24822c7` to read-only main `629876e` with
+  403/351 changed paths, zero overlap, 50 exports and 22 schemas. It preserves
+  exact v17 ancestry.
+- Manifest/schema SHAs are `ff31c038...d16ee4` /
+  `8f563b47...a4cc56`. Direct rebuild and v17/v18 tests pass 18/18.
+- A fresh detached merge produces tree `189c8bdc...4c99` and passes 1124
+  color-match tests with 28 platform/data skips; the temporary worktree is
+  removed. State remains `review-ready-not-merged`.

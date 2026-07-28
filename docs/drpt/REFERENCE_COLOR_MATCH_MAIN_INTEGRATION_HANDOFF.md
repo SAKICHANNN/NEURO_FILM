@@ -2,26 +2,26 @@
 
 Date: 2026-07-28
 
-Status: **P1-P107 consumer payload is pinned by the immutable P108 v17 review
+Status: **P1-P111 consumer payload is pinned by the immutable P112 v18 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P107 payload head:
-  `ee6595f2bbb2e87f7d753d700bcc8453593fe8ad`;
+- complete reviewed P1-P111 payload head:
+  `24822c788941b86d6def8b79afb383ff638f64f8`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `ebda2e1f642f892b4786dd0dd6444490bcb89145`;
+  `629876ea9041fef53f4b70da2667369dc6d503ac`;
 - D-PCT read-only snapshot:
   `46b77bb`;
 - conflict-free main/evidence-head merge tree:
-  `5d55747e86abcc824e8fe9da1b7789adb59b22c8`.
+  `189c8bdc3044ed6a62be2e4273800bc91fc34c99`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -151,6 +151,18 @@ zero overlap, 47 exports and 21 schemas. V17 SHA-256 is
 it binds v16 and never hashes itself. Detached merge tree
 `5d55747e86abcc824e8fe9da1b7789adb59b22c8` passes 1098 color-match tests
 with 24 platform/data skips.
+
+P109 maps the fixed producer HDR shot sentinel to a one-way consumer veto
+whose safe outcome never authorizes reuse. P110 parameterizes the frozen P44
+runner for exact invocation profiles. P111 invokes BMKL twice and rejects it:
+A1 13/30 with negative median improvement, A4 automated 6/6, A5 0/6, stable
+evidence `25789c1d...320b9`. P112 v18 binds P1-P111 `24822c7` against main
+`629876e`: 403 payload paths, 351 main paths, zero overlap, 50 exports and 22
+schemas. V18 SHA-256 is
+`ff31c03856cf83a7204a42967a3903b5b4b170f979d31ba0db99f96601d16ee4`;
+it binds v17 and never hashes itself. Detached merge tree
+`189c8bdc3044ed6a62be2e4273800bc91fc34c99` passes 1124 color-match tests
+with 28 platform/data skips.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
