@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import hashlib
+import importlib
 import json
 import os
 from pathlib import Path
@@ -11,6 +13,7 @@ import shutil
 import statistics
 import subprocess
 import sys
+import threading
 from time import perf_counter, sleep
 from typing import Any
 
@@ -143,6 +146,104 @@ def normalize_report(payload: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+class PhaseSampler:
+    """Attribute worker RSS to coarse file-adapter phases without code changes."""
+
+    def __init__(self, interval_seconds: float = 0.005) -> None:
+        self.interval_seconds = interval_seconds
+        self.current_phase = "orchestration"
+        self.peaks: dict[str, int] = {}
+        self.sample_count = 0
+        self._process = psutil.Process()
+        self._stop = threading.Event()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+
+    def _sample(self) -> None:
+        try:
+            rss = int(self._process.memory_info().rss)
+        except psutil.NoSuchProcess:
+            return
+        self.peaks[self.current_phase] = max(
+            rss,
+            self.peaks.get(self.current_phase, 0),
+        )
+        self.sample_count += 1
+
+    def _run(self) -> None:
+        while not self._stop.wait(self.interval_seconds):
+            self._sample()
+
+    def start(self) -> None:
+        self._sample()
+        self._thread.start()
+
+    def stop(self) -> None:
+        self._sample()
+        self._stop.set()
+        self._thread.join(timeout=2.0)
+
+    @contextmanager
+    def phase(self, name: str):
+        previous = self.current_phase
+        self.current_phase = name
+        self._sample()
+        try:
+            yield
+        finally:
+            self._sample()
+            self.current_phase = previous
+
+
+def _install_phase_tracing(
+    files_module: Any,
+    safety_module: Any,
+    sampler: PhaseSampler,
+):
+    originals = {
+        "load": files_module._load_stable_working_image,
+        "fit": files_module.fit_reference_look,
+        "render": files_module.render_reference_look_guarded,
+        "encode": files_module._encode_working_image,
+        "clone": safety_module._clone_source,
+    }
+
+    def load(*args: Any, **kwargs: Any):
+        label = kwargs.get("label")
+        with sampler.phase(f"load-{label}"):
+            return originals["load"](*args, **kwargs)
+
+    def fit(*args: Any, **kwargs: Any):
+        with sampler.phase("fit-reference"):
+            return originals["fit"](*args, **kwargs)
+
+    def render(*args: Any, **kwargs: Any):
+        with sampler.phase("guarded-render"):
+            return originals["render"](*args, **kwargs)
+
+    def encode(*args: Any, **kwargs: Any):
+        with sampler.phase("encode-output"):
+            return originals["encode"](*args, **kwargs)
+
+    def clone(*args: Any, **kwargs: Any):
+        with sampler.phase("identity-clone"):
+            return originals["clone"](*args, **kwargs)
+
+    files_module._load_stable_working_image = load
+    files_module.fit_reference_look = fit
+    files_module.render_reference_look_guarded = render
+    files_module._encode_working_image = encode
+    safety_module._clone_source = clone
+
+    def restore() -> None:
+        files_module._load_stable_working_image = originals["load"]
+        files_module.fit_reference_look = originals["fit"]
+        files_module.render_reference_look_guarded = originals["render"]
+        files_module._encode_working_image = originals["encode"]
+        safety_module._clone_source = originals["clone"]
+
+    return restore
+
+
 def worker(
     *,
     repo_root: Path,
@@ -155,19 +256,28 @@ def worker(
     sys.path.insert(0, str(repo_root))
     from src.color_match import match_reference_files  # noqa: PLC0415
 
+    files_module = importlib.import_module("src.color_match.files")
+    safety_module = importlib.import_module("src.color_match.safety")
+    sampler = PhaseSampler()
+    restore = _install_phase_tracing(files_module, safety_module, sampler)
     run_dir.mkdir(parents=True, exist_ok=False)
     output_path = run_dir / "output.png"
     recipe_path = run_dir / "recipe.json"
     report_path = run_dir / "report.json"
     started = perf_counter()
-    result = match_reference_files(
-        input_dir / "reference.png",
-        [input_dir / "source.png"],
-        [output_path],
-        recipe_path=recipe_path,
-        report_path=report_path,
-        output_bit_depth=output_bit_depth,
-    )
+    sampler.start()
+    try:
+        result = match_reference_files(
+            input_dir / "reference.png",
+            [input_dir / "source.png"],
+            [output_path],
+            recipe_path=recipe_path,
+            report_path=report_path,
+            output_bit_depth=output_bit_depth,
+        )
+    finally:
+        restore()
+        sampler.stop()
     report_payload = json.loads(report_path.read_text(encoding="utf-8"))
     normalized = normalize_report(report_payload)
     stage_temporaries = sorted(
@@ -195,6 +305,9 @@ def worker(
         "normalized_report": normalized,
         "safety_action": result.outputs[0].safety.action,
         "staging_temporaries": stage_temporaries,
+        "phase_peak_worker_rss_bytes": dict(sorted(sampler.peaks.items())),
+        "phase_rss_sample_count": sampler.sample_count,
+        "phase_rss_sample_interval_seconds": sampler.interval_seconds,
     }
     _atomic_write_json(result_path, payload)
 

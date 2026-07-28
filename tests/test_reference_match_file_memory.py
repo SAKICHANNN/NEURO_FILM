@@ -3,11 +3,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from PIL import Image
+
 from scripts.audit_reference_match_file_memory_v1 import (
     _generated_rgb,
     evaluate_runs,
     load_config,
     normalize_report,
+    worker,
 )
 
 
@@ -142,3 +145,35 @@ def test_p154_decision_preserves_the_failed_frozen_gate() -> None:
     }
     assert not decision["automatic_pass"]
     assert decision["artifact_identity"]["cross_revision_exact"]
+
+
+def test_worker_phase_trace_covers_the_real_identity_fallback(
+    tmp_path: Path,
+) -> None:
+    input_dir = tmp_path / "inputs"
+    input_dir.mkdir()
+    Image.fromarray(_generated_rgb(37, 31, 15401), mode="RGB").save(
+        input_dir / "reference.png"
+    )
+    Image.fromarray(_generated_rgb(37, 31, 15402), mode="RGB").save(
+        input_dir / "source.png"
+    )
+    result_path = tmp_path / "worker.json"
+    worker(
+        repo_root=ROOT,
+        input_dir=input_dir,
+        run_dir=tmp_path / "run",
+        result_path=result_path,
+        output_bit_depth=16,
+    )
+    payload = json.loads(result_path.read_text(encoding="utf-8"))
+    assert payload["safety_action"] == "identity-fallback"
+    assert payload["phase_rss_sample_count"] > 0
+    assert {
+        "load-reference",
+        "fit-reference",
+        "load-source",
+        "guarded-render",
+        "identity-clone",
+        "encode-output",
+    } <= set(payload["phase_peak_worker_rss_bytes"])
