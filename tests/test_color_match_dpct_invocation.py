@@ -12,6 +12,7 @@ import pytest
 from src.color_match import (
     DPCT_INVOCATION_CLAIM_CEILING,
     DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID,
+    DPCT_INVOCATION_STABLE_COMMIT,
     DPCT_INVOCATION_WHEEL_SHA256,
     MATCH_PROFILE_DISPLAY_SRGB,
     PreparedMatchViewV1,
@@ -79,6 +80,9 @@ def test_invocation_lock_is_strict_and_matches_producer_authority() -> None:
     Draft202012Validator.check_schema(schema)
     Draft202012Validator(schema).validate(lock)
     assert lock["package"]["wheel_sha256"] == DPCT_INVOCATION_WHEEL_SHA256
+    assert lock["producer"]["stable_commit"] == (
+        DPCT_INVOCATION_STABLE_COMMIT
+    )
     producer_files = {
         "package_lock_sha256": (
             PRODUCER / "docs/freeze/PRODUCER_INVOCATION_PACKAGE_V1.json"
@@ -171,6 +175,9 @@ def test_exact_wheel_invokes_and_adapts_candidate(
     assert outcome.failure is None
     assert outcome.compatibility_profile_id == (
         DPCT_INVOCATION_COMPATIBILITY_PROFILE_ID
+    )
+    assert outcome.producer_stable_commit == (
+        "e22725d8524ed6ba56f37180abc400213908c6f4"
     )
     assert outcome.claim_ceiling == DPCT_INVOCATION_CLAIM_CEILING
     assert outcome.candidate.aliases.capability_id == (

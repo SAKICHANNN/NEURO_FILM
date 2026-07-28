@@ -3375,3 +3375,17 @@
   `2c2e0e9a...18bc21`. The exact 64-source shared boundary passes, index 64
   and source count 65 fail in code/schema, and 147 related product-chain tests
   pass.
+
+## 2026-07-28 - Repair P116 exact-wheel producer identity
+
+- The full color-match suite exposed one real v1 exact-wheel failure after
+  1169 passes: the invocation lock and runtime constant retained abbreviated
+  producer commit `e22725d`, while the strict adapter correctly requires a
+  complete lowercase 40-hex Git identity.
+- The producer repository independently resolves that snapshot to
+  `e22725d8524ed6ba56f37180abc400213908c6f4`. Runtime parameters, the persisted
+  compatibility lock, its strict schema and evidence now bind that exact
+  commit; no wheel, fixture, capability or algorithm bytes changed.
+- Lock/schema SHA-256 identities are `3017667a...f61d25` and
+  `0a10a882...896ac`. The real installed-wheel candidate path and all v1/v2
+  profile/BMKL adjacent checks pass 27/27.

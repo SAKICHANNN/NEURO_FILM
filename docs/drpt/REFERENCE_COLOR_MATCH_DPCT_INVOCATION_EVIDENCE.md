@@ -21,7 +21,7 @@ deliver a product file.
 
 | Item | Identity |
 |---|---|
-| producer stable snapshot | `e22725d` |
+| producer stable snapshot | `e22725d8524ed6ba56f37180abc400213908c6f4` |
 | package source commit | `01ef0616610b16246623236301234ff3b4c4a7f2` |
 | installed fixture commit | `eb4b889bc18f1aba078e19e7e62fbf8c4add6e54` |
 | producer package lock | `300b95b05954b8f1de7aaec6f86429bf584a40088e15d07dd439384c73090287` |
