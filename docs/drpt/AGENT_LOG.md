@@ -5514,3 +5514,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   confirmation. No photos, film pixels, real unpaired identification,
   stock/mode claim, visual stage or integration. Implementation is ready;
   Goal remains ACTIVE.
+
+## 2026-07-28 - Execute and close U5.R2AH1D group-invariant development
+
+- **Execution:** two independent deterministic local-CUDA processes ran the
+  exact frozen 5,000-step contract from software commit `1dce729`. Reports are
+  byte-identical at `c49817df...d1`; populations, parameter state and reserved
+  confirmation non-access are recorded in the reports.
+- **Result:** median operator RMSE `.04001` passes but p90 `.09723` fails.
+  Improvement over identity/global is only `7.25%/4.89%`; content probe BA
+  reaches `27.10%`, fixed-content look separation is `12.5%`, and the
+  `53/55/56` strength Spearman is `-1`. W1 improvement, nuisance suppression,
+  identity, replication and all O0 structural/replay gates pass.
+- **Decision:** repeat-exact
+  `close_frozen_development_gate_failure`. No width/depth/step/loss/adversary,
+  seed/threshold, calibration, post-hoc strength or AH1C confirmation rescue.
+  This is stronger negative evidence that final-reference sets do not identify
+  an operator even under crossed known synthetic supervision.
+- **Verification/evidence:** six focused tests pass; the adjudicator produces
+  byte-identical decisions at `3d0cd45c...608d`.
+  `docs/U5_R2AH1_GROUP_INVARIANT_REFERENCE_OPERATOR_RESULTS.md` is the
+  authority. O0 remains independent; all photo/film/stock/LSM/product gates
+  stay closed. Goal remains ACTIVE and selects a distinct information-source
+  algorithm leaf.

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -15,6 +18,67 @@ from src.roll2film.group_invariant_reference_operator import (
     radial_tanh_bound,
     vicreg_terms,
 )
+
+
+def test_adjudicator_rejects_mismatched_reports(tmp_path: Path) -> None:
+    script = ROOT / "scripts" / (
+        "evaluate_u5_r2ah1_group_invariant_reference_operator.py"
+    )
+    source_config = (
+        ROOT
+        / "configs/u5_r2ah1_group_invariant_reference_operator_development_v1.json"
+    )
+    config = json.loads(source_config.read_text(encoding="utf-8"))
+    config_path = tmp_path / "config.json"
+    config_path.write_text(
+        json.dumps(config, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    config_sha = hashlib.sha256(config_path.read_bytes()).hexdigest()
+    base = {
+        "experiment_id": config["experiment_id"],
+        "config_sha256": config_sha,
+        "all_development_checks_passed": False,
+        "checks": {"operator_rmse": False},
+        "metrics": {"four_reference_operator_rmse_median": 1.0},
+        "parameter_count": 1,
+        "parameter_state_sha256": "a" * 64,
+        "training_population_sha256": "b" * 64,
+        "development_population_sha256": "c" * 64,
+        "reserved_confirmation_accessed": False,
+        "w1_reserved_confirmation_accessed": False,
+        "software_commit": "test",
+        "claim_ceiling": "synthetic test",
+    }
+    first = tmp_path / "a.json"
+    second = tmp_path / "b.json"
+    first.write_text(
+        json.dumps(base, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    changed = dict(base)
+    changed["parameter_state_sha256"] = "d" * 64
+    second.write_text(
+        json.dumps(changed, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    output = tmp_path / "decision.json"
+    subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--config",
+            str(config_path),
+            "--first-report",
+            str(first),
+            "--second-report",
+            str(second),
+            "--output",
+            str(output),
+        ],
+        check=True,
+    )
+    decision = json.loads(output.read_text(encoding="utf-8"))
+    assert decision["decision"] == "close_two_run_nondeterminism"
+    assert decision["reports_byte_identical"] is False
 
 
 ROOT = Path(__file__).resolve().parents[1]

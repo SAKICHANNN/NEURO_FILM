@@ -456,3 +456,15 @@ Meta-OT justify components but do not establish reference-only or film
 identifiability. W1's reserved confirmation remains unread. No real pixel,
 unpaired operator, stock/mode or product gate changes. See
 `docs/U5_R2AH0_GROUP_INVARIANT_REFERENCE_OPERATOR_AUDIT.md`.
+
+AH1D then closes that learned reference-only route under its frozen
+development contract. Two local-CUDA reports are byte-identical. Median
+operator error is `.04001`, but p90 is `.09723`; improvement over
+identity/global is only `7.25%/4.89%`. Content remains decodable at `27.10%`
+balanced accuracy, fixed-content look separation is only `12.5%`, and the
+`53/55/56` strength ordering reverses at Spearman `-1`. O0 range, Jacobian,
+inverse, replay and set invariance pass, so this is operator
+recovery/shortcut failure rather than renderer corruption. No larger encoder,
+loss/adversary search, post-hoc strength correction or AH1C confirmation
+opens. See
+`docs/U5_R2AH1_GROUP_INVARIANT_REFERENCE_OPERATOR_RESULTS.md`.

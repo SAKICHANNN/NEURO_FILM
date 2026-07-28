@@ -437,6 +437,16 @@ only bounded O0 velocity parameters; O0 remains the sole renderer. AH1 must
 use new development/confirmation families and cannot read W1's reserved
 seeds, photographs or film pixels.
 
+U5.R2AH1D is complete and closed. Two independent 5,000-step CUDA processes
+produce byte-identical reports. Although bounded O0 structure and same-look
+replication pass, p90 operator RMSE is `.09723`, gains over identity/global
+are only `7.25%/4.89%`, content BA is `27.10%`, fixed-content look accuracy
+is `12.5%`, and the `53/55/56` strength ranking is reversed. Do not increase
+model capacity, tune losses/adversaries/seeds, calibrate strength after the
+fact or access AH1C/W1 confirmation. The next algorithm leaf must use a
+genuinely different information structure rather than another final-reference
+encoder.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.
