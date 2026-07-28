@@ -14,14 +14,15 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P158 at
-  `6b5b815`; v39 binds the complete payload including exact row/halo memory
-  kernels and their frozen decisions.
+- Consumer branch now continues through P162; v39 remains the latest immutable
+  main-review manifest and binds P1-P158. P159-P162 add local 24 MP and
+  maximum-count scale evidence after that reviewed payload.
 - Main Neuro-Film latest bound committed snapshot is `7f2ae6f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest observed core snapshot is `ade79d7`; R0DL/R0DM reject both
-  released-default and `ncc=true` VCG-LUT branches without a selected callable
-  capability, package, schema or receipt.
+- D-PCT latest observed core snapshot is `2105c58`; R0DO/R0DP add exact
+  real-HLG-derived absolute-HDR diagnostic arithmetic on same-host Windows
+  D3D11/Vulkan, but publish no compatible consumer rail, quality promotion or
+  schema/capability change.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
@@ -51,7 +52,7 @@ wire contract and not an algorithm promotion.
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | File input compatibility preflight | P148 hashes and decodes a bounded ordered input batch through the main `WorkingImage` loader, reports the actual rail and accepts only display-linear sRGB/Rec.2020; its claim is explicitly non-authorizing | COMPLETE AS ADVISORY PRODUCT-SHELL CONTRACT | Render still revalidates every input; add rails only after main/producer colour-state support is versioned / Neuro-Film |
-| High-resolution image lifetime | P151-P153 release obsolete image lifetimes; P156-P158 provide exact row/halo colour kernels. P159 then runs the fixed path twice at 24 MP: peaks 1,887,232,000 / 1,876,660,224 bytes, repeat ratio 1.0056, wall 33.08 / 30.93 seconds, exact output/recipe/report and fallback. The frozen 3 GiB / 120 s / 1.15 gates pass; loader around 1.88 GB is the measured dominant phase | EXACT LOCAL 24 MP SINGLE-SOURCE FILE-PATH PASS | Prove ordered multi-source scale or real target-platform/media execution; do not generalize local Windows/Python PNG evidence to main/native/device/RAW/HDR / Neuro-Film |
+| High-resolution image and batch lifetime | P159 passes two exact 24 MP single-source runs. P160 passes two ordered three-source 24 MP runs; P161 releases encoded renders before the next load and lowers interleaved median peak 2.167 -> 1.886 GB with exact artifacts and no wall regression. P162 passes two exact 64-source 1 MP maximum-count transactions at about 167 MB peak | EXACT LOCAL 24 MP THREE-SOURCE PLUS 64-SOURCE 1 MP PASS | Obtain real target-platform/media execution; do not combine the separate scale/count facts into a 24MP-by-64 claim / Neuro-Film |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | HDR shot reuse invalidation | P109 pins R0cn model/assessment schemas and fixture, reconstructs both producer identities and emits a persisted consumer decision with `reuse_authorized=false`; only `invalidate-reuse` forces refit | COMPLETE AS VETO-ONLY MAPPING, NO CACHE AUTHORITY | A future shot cache may consume the veto only after exact descriptor/input invocation binding; `not-invalidated` never authorizes reuse / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile. P101-P104 additionally execute all ten frozen canonical payloads, SHA failure atomicity and all eight staging predicate inputs through JNI on two cold Android 14 x86_64 emulator boots with stable identity `a3fa50e0...e03f20` | COMPLETE for host identity, cross-target compilation and Android x86_64 virtual runtime | Physical arm64 and Apple runtime remain open; emulator evidence is not a physical-device or producer-algorithm claim / platform integration |

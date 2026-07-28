@@ -4012,3 +4012,12 @@
   240-second wall and complete cleanup.
 - The claim is maximum-count 1 MP transaction evidence only, never
   24MP-by-64 or platform/media/product readiness.
+
+## 2026-07-29 - Pass maximum-count ordered batch
+
+- Two real 64-source runs peak at `166,305,792` / `166,797,312 B`, repeat
+  ratio `1.002956`, and finish in `69.4451` / `70.8665 s`.
+- All 64 ordered source/output hashes, recipe and normalized report reproduce;
+  all 128 safety decisions are identity fallback and cleanup is complete.
+- P162 closes the 1 MP maximum-count transaction question only. P160/P161
+  remain the separate 24 MP scale evidence.
