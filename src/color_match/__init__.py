@@ -300,6 +300,14 @@ from .shared_runtime_staging_decode import (
     validate_runtime_qualified_shared_staging_decode_record_v1,
     validate_runtime_qualified_shared_staging_decoded_batch_v1,
 )
+from .srgb_icc_profile import (
+    SRGB_ICC_PROFILE_CLAIM_CEILING,
+    SRGB_ICC_PROFILE_ID,
+    SRGB_ICC_PROFILE_SHA256,
+    SRGB_ICC_PROFILE_SIZE_BYTES,
+    srgb_icc_profile_conformance_v1,
+    srgb_icc_profile_v1,
+)
 from .shared_runtime_staging_color_attestation import (
     MAX_COMPRESSED_PROFILE_BYTES,
     MAX_EMBEDDED_PROFILE_BYTES,
@@ -660,6 +668,10 @@ __all__ = [
     "PORTABLE_CONFORMANCE_RESULT_SCHEMA_ID",
     "PORTABLE_CONFORMANCE_SCHEMA_ID",
     "SUPPORTED_WORKING_SPACES",
+    "SRGB_ICC_PROFILE_CLAIM_CEILING",
+    "SRGB_ICC_PROFILE_ID",
+    "SRGB_ICC_PROFILE_SHA256",
+    "SRGB_ICC_PROFILE_SIZE_BYTES",
     "FilmEffectBinding",
     "BlindAestheticReview",
     "PhotographicSafetyBatchMetrics",
@@ -1092,6 +1104,8 @@ __all__ = [
     "validate_reference_composition",
     "validate_reference_run_composition",
     "validate_guard_policy",
+    "srgb_icc_profile_conformance_v1",
+    "srgb_icc_profile_v1",
     "validate_context_invariance_policy",
     "validate_photographic_safety_policy",
     "validate_prepared_match_view",

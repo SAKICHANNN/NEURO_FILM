@@ -1,6 +1,9 @@
 tests/fixtures/zhuise_producer_contract_exact_bits_v2.json text eol=lf
 tests/fixtures/zhuise_producer_contract_failed_exact_v2.json text eol=lf
 tests/fixtures/reference_product_chain_conformance_v1.json text eol=lf
+tests/fixtures/reference_srgb_icc_profile_conformance_v1.json text eol=lf
+configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json text eol=lf
+scripts/build_srgb_icc_profile_conformance_v1.py text eol=lf
 configs/schemas/reference_product_chain_conformance_v1.schema.json text eol=lf
 configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json text eol=lf
 configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json text eol=lf

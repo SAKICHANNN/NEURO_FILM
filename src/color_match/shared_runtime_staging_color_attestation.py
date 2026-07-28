@@ -14,10 +14,9 @@ import zlib
 from PIL import Image
 import tifffile
 
-from src.preprocess.output_encode import srgb_icc_profile
-
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
+from .srgb_icc_profile import srgb_icc_profile_v1
 from .shared_runtime_staging_decode import (
     RuntimeQualifiedSharedStagingDecodedBatchV1,
     _parse_strict_png,
@@ -503,7 +502,7 @@ def attest_runtime_staging_srgb_metadata_v1(
     decoded: RuntimeQualifiedSharedStagingDecodedBatchV1,
 ) -> RuntimeStagingColorAttestedDecodedBatchV1:
     validate_runtime_qualified_shared_staging_decoded_batch_v1(decoded)
-    expected = srgb_icc_profile()
+    expected = srgb_icc_profile_v1()
     expected_sha = hashlib.sha256(expected).hexdigest()
     outputs: list[AttestedRuntimeStagingColorOutputV1] = []
     for row, raw in zip(
@@ -580,7 +579,7 @@ def validate_runtime_staging_color_attestation_record_v1(
         raise ReferenceMatchContractError(
             "runtime staging colour attestation record type is invalid"
         )
-    expected = srgb_icc_profile()
+    expected = srgb_icc_profile_v1()
     expected_sha = hashlib.sha256(expected).hexdigest()
     for field in (
         "attestation_id",
@@ -701,7 +700,7 @@ def validate_runtime_staging_color_attested_decoded_batch_v1(
         raise ReferenceMatchContractError(
             "runtime staging colour attestation binding mismatch"
         )
-    expected = srgb_icc_profile()
+    expected = srgb_icc_profile_v1()
     for attested, decoded_row, raw in zip(
         value.record.outputs,
         value.decoded.record.outputs,

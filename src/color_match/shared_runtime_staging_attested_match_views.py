@@ -3,14 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, replace
-import hashlib
 import json
 import re
 from typing import Any, Mapping
 
 import numpy as np
-
-from src.preprocess.output_encode import srgb_icc_profile
 
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
@@ -31,6 +28,10 @@ from .shared_runtime_staging_match_views import (
     _decode_srgb_samples_f32,
     _float32_pixel_sha256,
 )
+from .srgb_icc_profile import (
+    SRGB_ICC_PROFILE_SHA256,
+    srgb_icc_profile_v1,
+)
 
 
 RUNTIME_STAGING_ATTESTED_MATCH_VIEW_BRIDGE_SCHEMA_ID = (
@@ -43,9 +44,7 @@ RUNTIME_STAGING_ATTESTED_MATCH_VIEW_BRIDGE_CLAIM_CEILING = (
     "process-local-metadata-attested-display-linear-match-views-only-"
     "no-persistence-application-or-delivery"
 )
-EXPECTED_SRGB_ICC_SHA256 = (
-    "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
-)
+EXPECTED_SRGB_ICC_SHA256 = SRGB_ICC_PROFILE_SHA256
 _STATE = "prepared-attested-runtime-staging-display-linear-match-views"
 _HASH = re.compile(r"^[0-9a-f]{64}$")
 _KEYS = {
@@ -320,9 +319,7 @@ def validate_runtime_staging_attested_match_view_bridge_record_v2(
         "expected_profile_sha256",
     ):
         _hash(getattr(value, field), field)
-    runtime_profile_sha256 = hashlib.sha256(
-        srgb_icc_profile()
-    ).hexdigest()
+    srgb_icc_profile_v1()
     if (
         value.schema_id
         != RUNTIME_STAGING_ATTESTED_MATCH_VIEW_BRIDGE_SCHEMA_ID
@@ -331,7 +328,6 @@ def validate_runtime_staging_attested_match_view_bridge_record_v2(
         or value.bridge_id
         != RUNTIME_STAGING_ATTESTED_MATCH_VIEW_BRIDGE_ID
         or value.profile_id != MATCH_PROFILE_DISPLAY_SRGB
-        or runtime_profile_sha256 != EXPECTED_SRGB_ICC_SHA256
         or value.expected_profile_sha256 != EXPECTED_SRGB_ICC_SHA256
         or value.state != _STATE
         or value.path_consumption_authorized is not False
