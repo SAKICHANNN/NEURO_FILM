@@ -6485,3 +6485,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   directions. Positive Jacobians localise the failure to fit/range, not
   folding. Retain AO6 as development Look Approximation and do not increase
   capacity again without genuinely new paired or independent-domain evidence.
+
+## 2026-07-28 - U6.P0-P9 physical image formation opens
+
+- Added the minimal cross-tree programme without changing frozen U2/U5/U6
+  evidence. It fixes the physical-domain order, separates colour dye-cloud
+  structure from B&W metallic silver and scanner/creative effects, and keeps
+  AO6/AO9 at their display-proxy Look Approximation ceiling.
+- U6.P0 is the next executable leaf: typed domain/unit/profile identities and
+  fail-closed roundtrip tests, followed by an offline float64 reference
+  simulator. Controlled physical data remains a later calibration gate.

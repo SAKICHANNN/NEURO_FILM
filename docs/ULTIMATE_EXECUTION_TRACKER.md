@@ -178,7 +178,7 @@ ULT  Ultimate strongly stylized, artifact-safe film-imaging product
 │   ├── U5.4 FC7 subleaf: optional masks
 │   ├── U5.5 Isolated generative R&D outside FilmCase
 │   └── U5.6 Winner runtime conversion
-├── U6  Physical effects
+├── U6  Physical effects and image formation
 │   ├── U6.1 Exposure-domain halation
 │   ├── U6.2 Density-aware grain and MTF
 │   ├── U6.3 Bloom and creative defects separation
@@ -654,6 +654,8 @@ FLUX.2 gate:
 | U6.4 | pending | Bloom separated from halation | U6.1 | Separate parameter/evaluator/UI layer |
 | U6.5 | pending | Creative dust/scratch/light leak labels | U2.1 | Never included in calibrated score silently |
 | U6.6 | pending | 100MP/video determinism | U1.6, U6.1–U6.4 | Seam-free stills; temporal report |
+| U6.P0-P1 | ready | Freeze typed physical-domain/profile/performance contracts, then build the offline float64 reference simulator | AO9 closure + U2.2/U6 history | Domain mismatch fails closed; density/transmittance roundtrip and deterministic synthetic witnesses pass; no stock-calibration claim |
+| U6.P2-P9 | gated | Physical exposure/development, halation, image structure, spatial/scanner response, combined evaluation, profile compilation and still/video runtime | U6.P0/P1 evidence plus node-specific data gates | Preserve U6.1-U6.6 history; use `docs/planning/PHYSICAL_FILM_IMAGING_PROGRAM_2026.md` |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

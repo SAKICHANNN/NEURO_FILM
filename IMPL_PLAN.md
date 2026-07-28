@@ -20,6 +20,15 @@ champion plus bounded strength. Mode discovery is forbidden until stock,
 connectivity, identifiability, pixel/rights and leakage gates all pass, and
 mode/content representations remain separate.
 
+The physical-image-formation cross-tree programme is governed by
+`docs/planning/PHYSICAL_FILM_IMAGING_PROGRAM_2026.md`. It preserves existing
+U6.1-U6.6 history and adds U6.P0-P9: typed physical domains and an offline
+reference simulator first, followed by exposure/development, physical
+halation, dye-cloud or metallic-silver image structure, separated spatial and
+scanner response, combined ablation, profile compilation and still/video
+runtime. Existing AO6/AO9 display-proxy evidence and procedural FilmFX are
+controls only, not calibrated emulsion or scanner truth.
+
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary
 Color Halds pass the frozen style and non-basic gates, but all 194 fail the
