@@ -3773,3 +3773,18 @@
 - The complete non-manifest color-match regression passes 935 tests with five
   explicit skips. This is contract portability only and does not add a new
   output rail.
+
+## 2026-07-29 - Bind the cross-language capability schema in v33
+
+- V33 binds payload `886524d` to main committed stable point `9b1c9ca`: 471
+  consumer paths, 503 main paths and zero overlap. It requires 55 public
+  exports and all 23 exact contract schemas, including
+  `reference_file_output_capabilities_v1.schema.json`.
+- Manifest/schema SHA-256 identities are `b93e6d68...eb947` /
+  `ca2e49ef...82655`; merge tree `c56dbb32...4b641`. Detached synthetic merge
+  `174e31d` passes 1278 color-match tests with 30 explicit skips and 1309
+  unrelated deselections; its owned worktree was removed.
+- All 372 discovered v1-v33 manifest tests pass. V33 supersedes v32 and remains
+  `review-ready-not-merged`; main owns merge. Producer SHEP-v2 failed its
+  frozen median and worst-improvement gates and produced no model or callable
+  contract, so no producer mapping was added.
