@@ -6397,3 +6397,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - s0.50 is clipping-clean but only `3.09` non-basic; s0.75 reaches
   `13.24/5.35` style/non-basic but clips 1.336% of the worst gold sample.
   Preserve gates and test a fixed tone/chroma factorization next.
+
+## 2026-07-28 - U5.R2AO3 retains a severe-clean guard, not a champion
+
+- Two exact 164-output runs leave one fixed factorization survivor:
+  tone `.50`, chroma `1.00`, style/non-basic `10.53/5.53`, and zero new
+  gold/stress clipping.
+- Frozen pre-reveal autonomous review prefers the retained B0 comparator in
+  all three rounds. Full-resolution review confirms zero severe failures on
+  nine gold images, including ID11. Round 2/3 share a layout, so the evidence
+  is not described as three independent votes.
+- Retain the explicit boundary guard as real-chart-driven algorithm evidence;
+  close aesthetic promotion and seek independent paired chart evidence before
+  adding capacity or making stronger film claims.

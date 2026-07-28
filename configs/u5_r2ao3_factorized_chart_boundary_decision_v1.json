@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao3-factorized-chart-boundary-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO3",
+  "automatic": {
+    "config_sha256": "f71240a536e9eeb7a836a2a8024ec9eb1276cd35bfc954181dba4461a36733a6",
+    "software_commit": "9a0f74b",
+    "manifest_sha256_pass1": "f368b05a45d36b57f423f57fb46e02d568199a1f502df3827dbb730b1c09b278",
+    "manifest_sha256_pass2": "f368b05a45d36b57f423f57fb46e02d568199a1f502df3827dbb730b1c09b278",
+    "report_sha256_pass1": "39a87159814aa14712e959a62753586a27df4df320971185af86c9041a937f42",
+    "report_sha256_pass2": "39a87159814aa14712e959a62753586a27df4df320971185af86c9041a937f42",
+    "survivor_id": "tone_s50__chroma_s100",
+    "gold_style_delta_e76": 10.527725348540917,
+    "gold_non_basic_residual_delta_e76": 5.534453367413281,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0,
+    "worst_gold_chroma_limited_fraction": 0.02635955810546875
+  },
+  "visual": {
+    "child_config_sha256": "dd2c48998ac9ab1a67b4fbb47902fdd2804f057978198b29f571872aa80bbab7",
+    "comparator_id": "density_then_anchor__density_s50",
+    "blind_sheet_sha256": [
+      "9819a21f4c4c9b5eeb8d08fcaa5934c9c51e16f913458481c0a889a083b8ac29",
+      "6095222e015601aab9df4a77733b63b283f8ff806383216ee4969810b3432dff",
+      "6095222e015601aab9df4a77733b63b283f8ff806383216ee4969810b3432dff"
+    ],
+    "mapping_sha256": "416cbe19d96d25c21634255ac984ea70745005830f9a881684ae0aeef5ecbcf6",
+    "pre_reveal_review_sha256": "e59efb3558c031cfd983c100b27324b91242881604c570d60f948547626b5c21",
+    "candidate_preferred_rounds": 0,
+    "rounds": 3,
+    "independent_sheet_layouts": 2,
+    "full_resolution_gold_images_reviewed": 9,
+    "confirmed_severe_artifacts": 0,
+    "description": "clean, strongly cool and selectively muted; occasionally filmic, but consistently less appealing than the vivid retained B0 comparator"
+  },
+  "decision": "retain_as_real_chart_driven_severe_clean_algorithm_evidence_close_aesthetic_champion",
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "development Look Approximation from one 24-patch author-rendered Velvia display proxy; severe-clean on nine gold images but zero of three autonomous blind preferences against the retained B0 comparator; not independent confirmation, transferable stock response, calibration or product evidence"
+}
