@@ -176,4 +176,11 @@ def test_worker_phase_trace_covers_the_real_identity_fallback(
         "guarded-render",
         "identity-clone",
         "encode-output",
+        "candidate-boundary",
+        "render-validate-source",
+        "render-style-lab",
+        "render-gamut-safe-lab",
+        "render-rgb-to-lab",
+        "render-lab-to-rgb",
+        "render-in-gamut",
     } <= set(payload["phase_peak_worker_rss_bytes"])

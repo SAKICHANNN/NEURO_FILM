@@ -196,6 +196,7 @@ class PhaseSampler:
 
 def _install_phase_tracing(
     files_module: Any,
+    render_module: Any,
     safety_module: Any,
     sampler: PhaseSampler,
 ):
@@ -205,6 +206,13 @@ def _install_phase_tracing(
         "render": files_module.render_reference_look_guarded,
         "encode": files_module._encode_working_image,
         "clone": safety_module._clone_source,
+        "boundary": safety_module._new_boundary_fraction,
+        "validate_source": render_module._validate_source,
+        "styled_lab": render_module._styled_lab,
+        "gamut_safe_lab": render_module._gamut_safe_lab,
+        "rgb_to_lab": render_module.linear_rgb_to_lab,
+        "lab_to_rgb": render_module.lab_to_linear_rgb,
+        "in_gamut": render_module.in_working_gamut,
     }
 
     def load(*args: Any, **kwargs: Any):
@@ -228,11 +236,46 @@ def _install_phase_tracing(
         with sampler.phase("identity-clone"):
             return originals["clone"](*args, **kwargs)
 
+    def boundary(*args: Any, **kwargs: Any):
+        with sampler.phase("candidate-boundary"):
+            return originals["boundary"](*args, **kwargs)
+
+    def validate_source(*args: Any, **kwargs: Any):
+        with sampler.phase("render-validate-source"):
+            return originals["validate_source"](*args, **kwargs)
+
+    def styled_lab(*args: Any, **kwargs: Any):
+        with sampler.phase("render-style-lab"):
+            return originals["styled_lab"](*args, **kwargs)
+
+    def gamut_safe_lab(*args: Any, **kwargs: Any):
+        with sampler.phase("render-gamut-safe-lab"):
+            return originals["gamut_safe_lab"](*args, **kwargs)
+
+    def rgb_to_lab(*args: Any, **kwargs: Any):
+        with sampler.phase("render-rgb-to-lab"):
+            return originals["rgb_to_lab"](*args, **kwargs)
+
+    def lab_to_rgb(*args: Any, **kwargs: Any):
+        with sampler.phase("render-lab-to-rgb"):
+            return originals["lab_to_rgb"](*args, **kwargs)
+
+    def in_gamut(*args: Any, **kwargs: Any):
+        with sampler.phase("render-in-gamut"):
+            return originals["in_gamut"](*args, **kwargs)
+
     files_module._load_stable_working_image = load
     files_module.fit_reference_look = fit
     files_module.render_reference_look_guarded = render
     files_module._encode_working_image = encode
     safety_module._clone_source = clone
+    safety_module._new_boundary_fraction = boundary
+    render_module._validate_source = validate_source
+    render_module._styled_lab = styled_lab
+    render_module._gamut_safe_lab = gamut_safe_lab
+    render_module.linear_rgb_to_lab = rgb_to_lab
+    render_module.lab_to_linear_rgb = lab_to_rgb
+    render_module.in_working_gamut = in_gamut
 
     def restore() -> None:
         files_module._load_stable_working_image = originals["load"]
@@ -240,6 +283,13 @@ def _install_phase_tracing(
         files_module.render_reference_look_guarded = originals["render"]
         files_module._encode_working_image = originals["encode"]
         safety_module._clone_source = originals["clone"]
+        safety_module._new_boundary_fraction = originals["boundary"]
+        render_module._validate_source = originals["validate_source"]
+        render_module._styled_lab = originals["styled_lab"]
+        render_module._gamut_safe_lab = originals["gamut_safe_lab"]
+        render_module.linear_rgb_to_lab = originals["rgb_to_lab"]
+        render_module.lab_to_linear_rgb = originals["lab_to_rgb"]
+        render_module.in_working_gamut = originals["in_gamut"]
 
     return restore
 
@@ -257,9 +307,15 @@ def worker(
     from src.color_match import match_reference_files  # noqa: PLC0415
 
     files_module = importlib.import_module("src.color_match.files")
+    render_module = importlib.import_module("src.color_match.render")
     safety_module = importlib.import_module("src.color_match.safety")
     sampler = PhaseSampler()
-    restore = _install_phase_tracing(files_module, safety_module, sampler)
+    restore = _install_phase_tracing(
+        files_module,
+        render_module,
+        safety_module,
+        sampler,
+    )
     run_dir.mkdir(parents=True, exist_ok=False)
     output_path = run_dir / "output.png"
     recipe_path = run_dir / "recipe.json"
