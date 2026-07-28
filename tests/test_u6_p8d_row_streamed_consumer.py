@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 
+import src.film_physics.profile_consumer as profile_consumer
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
     render_working_image,
@@ -127,6 +129,36 @@ def test_fully_row_streamed_profile_is_float_exact() -> None:
         forward_receipt["output"]["array_sha256"]
         == reverse_receipt["output"]["array_sha256"]
     )
+
+
+def test_fully_row_streamed_profile_decodes_only_halo_tiles(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    working = _working(
+        np.random.default_rng(2026072914).random(
+            (257, 131, 3), dtype=np.float32
+        )
+    )
+    original = profile_consumer.encoded_srgb_to_linear
+    decoded_row_counts: list[int] = []
+
+    def record_tile(values: np.ndarray) -> np.ndarray:
+        decoded_row_counts.append(int(values.shape[0]))
+        return original(values)
+
+    monkeypatch.setattr(
+        profile_consumer, "encoded_srgb_to_linear", record_tile
+    )
+    render_working_image_fully_row_streamed(
+        artifact, working, tile_rows=31, order="forward"
+    )
+
+    assert len(decoded_row_counts) > 1
+    assert max(decoded_row_counts) < working.pixels.shape[0]
 
 
 def test_density_source_context_row_staging_is_exact() -> None:
