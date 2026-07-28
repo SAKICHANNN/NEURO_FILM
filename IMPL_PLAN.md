@@ -29,15 +29,14 @@ scanner response, combined ablation, profile compilation and still/video
 runtime. Existing AO6/AO9 display-proxy evidence and procedural FilmFX are
 controls only, not calibrated emulsion or scanner truth.
 
-U6.P7F now retains one generic neutral-gauged 4000-dpi physical challenger:
-two exact runs pass automatic gates, nine full-resolution images have zero
-confirmed new severe failures, and the candidate narrowly wins 14/27 choices
-and two of three autonomous blind rounds. P7G proves exact row/order streaming
-but closes broad cross-resolution equivalence; stage attribution shows only
-one marginal physical/gauge edge-energy failure while AO6/source-context
-dominates real-image resize-order error. The next leaf is U6.P8A, a hashed
-fixed-reference `FilmProfileBundle` compiler with preview approximation
-explicitly separate. Production and calibration claims remain closed.
+U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
+P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
+fixed-reference bundle and close the Python canonical buffer topology:
+forward/reverse and all formal outputs remain exact, 32 rows wins the frozen
+tile grid, and 12MP process-tree peak falls from 1.79-1.88GiB to
+717.14-717.15MB. This passes only the desktop Python reference memory target.
+U6.P8X next freezes a portable native CPU ABI and small-vector oracle; native
+mobile performance, production and calibration claims remain closed.
 
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary

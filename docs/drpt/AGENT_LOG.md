@@ -6631,3 +6631,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `960daba` are pushed. Production default, stock/process/scanner calibration
   and lower-resolution equivalence claims remain closed. Next leaf: U6.P8A
   fixed-reference profile bundle compiler.
+
+## 2026-07-29 - U6.P8A-P8W canonical profile and memory closure
+
+- P8 compiles a hash-bound artifact-only Python profile consumer and preserves
+  the fixed P7 output exactly across all formal partitions and repeats.
+- Phase attribution drives exact row-local encoding/decoding, context-first
+  scheduling, directional halo carry, destructive full-frame buffer reuse and
+  packed Lab storage. P8W's frozen grid selects 32 rows.
+- Formal 12MP peak falls from 1.79-1.88GiB at P8H to
+  717.14-717.15MB at P8W. The desktop Python reference memory target passes;
+  timing was contaminated by foreign CPU work and is not promoted.
+- Scoped tests through P8W pass and commits are pushed. Python buffer
+  micro-optimization closes; P8X native CPU ABI/conformance is next. Production,
+  mobile runtime and calibration remain closed.

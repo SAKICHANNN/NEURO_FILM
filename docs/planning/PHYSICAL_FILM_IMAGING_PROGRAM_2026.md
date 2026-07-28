@@ -84,6 +84,16 @@ source-context/resampling order is the dominant real-image contributor. P8 may
 therefore compile only a fixed-reference bundle. Preview remains
 reference-derived or a separately validated approximation.
 
+Current P8 boundary: P8A-P8W compile and validate a hash-bound, artifact-only
+Python canonical profile consumer. The fixed P7 identity remains float-exact
+through forward/reverse partitions and the frozen 32-row oracle. Successive
+attributed buffer changes reduce the 12 MP local process-tree peak from
+1.79-1.88 GiB at P8H to 717.14-717.15 MB at P8W; the desktop Python
+reference memory target passes, while native/mobile latency and memory remain
+unproved. Python buffer micro-optimization is closed. P8X next freezes a
+portable native CPU ABI and small-vector conformance oracle; this does not
+change the production default or any calibration claim.
+
 ## Quality tiers and measurement contract
 
 - **Preview:** deterministic 1-2 MP interaction path; approximations are
