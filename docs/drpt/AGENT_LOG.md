@@ -5619,3 +5619,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Structure/risk:** new code remains in `src/eval/`, launcher in `scripts/`
   and tests in `tests/`; no renderer/API/schema/default path changes. The
   exact bounded download and source audit are next. Goal remains ACTIVE.
+
+## 2026-07-28 - Complete U5.R2AI1S independent source preflight
+
+- **Execution:** all 18 frozen raw.pixls.us CC0 RAWs download and verify at
+  271,651,338 bytes. Two independent cached-source executions produce the
+  same manifest `8ac0fa47...ecf1` and automatic report
+  `4cd54cc3...c6de`; all hash/decode, within/cross duplicate, 41-image
+  development-overlap, make-support and invalid-colour gates pass.
+- **Visual selection audit:** the contact sheet reveals that
+  `fujifilm_s2pro` is a Kodak grey-scale/colour-control target and violates
+  the already-frozen exclude-target/chart rule. It remains in acquisition
+  evidence but is excluded without replacement and is not mislabelled as a
+  severe artifact. The exact eligible pool is 17 rows across nine makes.
+- **Coverage/safety:** eleven content/safety buckets are represented and all
+  decoded previews plus five full-resolution spot checks have zero confirmed
+  severe source failures. Warm tungsten light, shallow depth, window
+  reflection and snow highlights remain legitimate recorded source states.
+- **Decision/boundary:** pass R2AI1S and open only a separately frozen R2AI1
+  confirmation over the 17 exact IDs. No operator ran in this leaf; no
+  replacement, fitting, training, stock/calibration claim or product
+  integration opens. `docs/U5_R2AI1S_RAWPIXLS_CONFIRMATION_SOURCE_RESULTS.md`
+  is authoritative. Goal remains ACTIVE.

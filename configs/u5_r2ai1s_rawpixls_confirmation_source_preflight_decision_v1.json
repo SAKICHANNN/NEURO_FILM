@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai1s-rawpixls-confirmation-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI1S",
+  "decision": "pass_17_of_18_open_frozen_u5_r2ai1_confirmation",
+  "software_commit": "6576e5033612f0854bdc3f4bca504a7be1ea6d79",
+  "contract": {
+    "path": "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1.json",
+    "sha256": "02c7fca3fb5bec651157a1e3d0d1f3ead7d616079e9f2fa89661b567c824ac33"
+  },
+  "parent_decision": {
+    "path": "configs/u5_r2ai0_dual_champion_global_composition_decision_v1.json",
+    "sha256": "61e4fad1ca6ba66c81c31344c22d616a8f3dd297122eea2df75ee54b665227a0",
+    "required_decision": "retain_B0_dual_champion_composition_no_production_promotion"
+  },
+  "run_a": {
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "automatic_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de"
+  },
+  "run_b": {
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "automatic_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de"
+  },
+  "repeat_byte_identical": true,
+  "contact_sheet_sha256": "1592ab58d18463ec26775c262a486220fbe344c859ccf9cad4df903580ec9545",
+  "visual_source_review_sha256": "ee493ada0dff0e92ab32fba371b738600a26ad3a215285653fd26f93a4e2f73e",
+  "automatic_evidence": {
+    "candidate_count": 18,
+    "decoded_row_count": 18,
+    "failure_count": 0,
+    "downloaded_bytes": 271651338,
+    "camera_make_count": 9,
+    "largest_make_fraction": 0.1111111111111111,
+    "within_exact_pairs": 0,
+    "within_dhash_pairs_le_4": 0,
+    "cross_development_exact_pairs": 0,
+    "cross_development_dhash_pairs_le_4": 0,
+    "near_empty_or_monochrome_count": 0,
+    "automatic_pass": true
+  },
+  "visual_and_selection_evidence": {
+    "reviewed_decoded_rows": 18,
+    "excluded_ids": [
+      "fujifilm_s2pro"
+    ],
+    "exclusion_reason": "visible Kodak grey-scale and colour-control target violates the preregistered exclude-target-chart selection rule",
+    "replacement_rows_added": 0,
+    "eligible_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l",
+      "canon_eos7d_mraw",
+      "nikon_d3s_14bit",
+      "sony_dslra560",
+      "fujifilm_s7000",
+      "olympus_sp565uz",
+      "panasonic_dmcg2",
+      "pentax_k30",
+      "ricoh_gx200",
+      "samsung_smg930a"
+    ],
+    "eligible_row_count": 17,
+    "eligible_camera_make_count": 9,
+    "eligible_largest_make_fraction": 0.11764705882352941,
+    "content_bucket_count": 11,
+    "minimum_content_buckets": 6,
+    "confirmed_severe_input_failure_count": 0,
+    "visual_gate_pass": true
+  },
+  "operator_applied": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "named_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "next_leaf": "freeze U5.R2AI1 independent-population confirmation contract over the exact 17 eligible decoded rows before any operator render",
+  "claim_ceiling": "bounded reproducible CC0 digital-photo source and OOD feasibility evidence; no algorithm result, preference, film, stock, calibration, authenticity, production or universal-safety claim"
+}

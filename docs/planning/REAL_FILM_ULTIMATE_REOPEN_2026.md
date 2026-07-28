@@ -479,3 +479,16 @@ development frontier only. An independent-population R2AI1 confirmation must
 be frozen before any new render; the result changes no real-film, stock,
 identifiability, training or LSM gate. See
 `docs/U5_R2AI0_DUAL_CHAMPION_GLOBAL_COMPOSITION_RESULTS.md`.
+
+`U5.R2AI1S` now supplies that independent source boundary. All 18 exact
+raw.pixls.us CC0 RAWs download, hash and decode; two executions produce
+byte-identical manifest/report evidence with zero exact or dHash<=4 overlap
+within the pool or against all 41 development inputs. Visual review discovers
+one Kodak target (`fujifilm_s2pro`) that violates the frozen target/chart
+exclusion, so it is retained in the audit but excluded without replacement.
+The confirmation population is exactly 17 rows across nine makes and eleven
+content/safety buckets, with zero confirmed severe source failures. This
+opens only a preregistered R2AI1 evaluation of the unchanged composition; it
+does not alter any real-film pixel, stock, fitting, training, LSM or
+production gate. See
+`docs/U5_R2AI1S_RAWPIXLS_CONFIRMATION_SOURCE_RESULTS.md`.

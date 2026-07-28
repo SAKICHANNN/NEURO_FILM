@@ -454,16 +454,21 @@ severe failures on nine full-resolution gold images. It is retained as a B0
 Look Approximation challenger only; the default renderer and stock/data gates
 do not change.
 
-U5.R2AI1S is the next ready leaf. It freezes 18 exact CC0 raw.pixls.us rows
-across nine camera makes (about 259 MB) before seeing their decoded images.
-Hash/decode, minimum 16 rows/eight makes, zero exact/dHash<=4 overlap and
-autonomous content/severe source gates must pass without replacement. The
-R2AI0 operator is forbidden during this preflight.
+U5.R2AI1S is complete. All 18 exact CC0 raw.pixls.us rows download, hash and
+decode, and two executions produce byte-identical manifests/reports. Automatic
+overlap and integrity gates pass. Visual review discovers one Kodak target
+that violates the frozen target/chart rule, so `fujifilm_s2pro` is retained in
+the audit but excluded without replacement. The exact confirmation population
+is 17 rows across nine makes and eleven content/safety buckets, with zero
+confirmed severe source failures.
 
-Only an R2AI1S pass opens R2AI1. The one R2AI0 operator, order, strength,
-margin and gates remain unchanged. Repeat, clipping/OOD and full-resolution
-severe evidence must pass without tuning before product consideration; no
-stock or calibration claim opens.
+U5.R2AI1 is now ready only to freeze its confirmation contract before any
+operator render. It must bind the exact R2AI1S manifest, visual review,
+decision and 17 eligible IDs. The one R2AI0 operator, order, s0.50 strength,
+final margin and comparators remain unchanged. Repeat, independent style and
+non-basic retention, clipping/OOD, blind parent comparison and full-resolution
+severe evidence must be preregistered and pass without tuning before any
+product consideration; no stock or calibration claim opens.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
