@@ -7,6 +7,7 @@
   "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
   "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
   "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
   "candidate": {
     "candidate_id": "tone_s50__chroma_s100",
     "manifest": "outputs/u5_r2ao3_factorized_chart_boundary_frontier_v1/render_pass1/manifest.json",

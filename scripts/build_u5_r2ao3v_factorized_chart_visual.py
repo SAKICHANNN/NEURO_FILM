@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from src.eval.factorized_chart_visual import build_blind_sheets  # noqa: E402
 
 
-CONFIG_SHA256 = "5b5d536b2e103c83c5cc7ddf8cd6d022c8ec562dec48fed445c86e46e3622174"
+CONFIG_SHA256 = "dd2c48998ac9ab1a67b4fbb47902fdd2804f057978198b29f571872aa80bbab7"
 
 
 def main() -> int:
