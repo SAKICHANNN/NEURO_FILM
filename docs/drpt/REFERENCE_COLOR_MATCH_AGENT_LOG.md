@@ -3881,3 +3881,16 @@
 - All 942 non-manifest color-match tests pass with five explicit environment
   skips. P152 is a local product memory improvement and has no producer
   interface or algorithm-promotion effect.
+
+## 2026-07-29 - Publish source-lifetime integration in v37
+
+- V37 binds P152 payload `508e80c` to main committed stable point `1533d9d`:
+  488 consumer paths, 555 main paths and zero overlap. Public exports remain
+  61 and contract schemas remain 24.
+- Manifest/schema SHA-256 identities are `8791441e...59ee6` /
+  `56968dd5...4f32`; merge tree `b039b306...9ad2`. Detached synthetic merge
+  `7287d90` passes 1301 color-match tests with 30 explicit skips.
+- All 388 discovered v1-v37 manifest tests pass. Producer R0DI closes
+  amplitude-only NCAN gain scaling without a callable capability, so no
+  producer mapping changes. V37 remains `review-ready-not-merged`; main owns
+  merge.
