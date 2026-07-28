@@ -60,6 +60,7 @@ from .compound_poisson import (
     counter_poisson_region,
     render_compound_poisson,
     render_compound_poisson_region,
+    rescale_compound_poisson_profile,
 )
 
 __all__ = [
@@ -106,6 +107,7 @@ __all__ = [
     "render_developed_structure_region",
     "render_compound_poisson",
     "render_compound_poisson_region",
+    "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
     "scene_exposure_from_working_image",

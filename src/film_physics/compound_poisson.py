@@ -154,3 +154,26 @@ def render_compound_poisson(
     return render_compound_poisson_region(
         profile, shape, origin_yx=(0, 0), shape=shape
     )
+
+
+def rescale_compound_poisson_profile(
+    profile: CompoundPoissonProfile,
+    *,
+    pixel_size_factor: int,
+    seed: int,
+) -> CompoundPoissonProfile:
+    """Compile a base-pitch shot process to a coarser physical pixel grid."""
+    if not isinstance(pixel_size_factor, int) or pixel_size_factor < 1:
+        raise ValueError("pixel_size_factor must be a positive integer")
+    area = float(pixel_size_factor * pixel_size_factor)
+    return CompoundPoissonProfile(
+        family=profile.family,
+        poisson_rate=profile.poisson_rate * area,
+        correlation_sigma_pixels=(
+            profile.correlation_sigma_pixels / pixel_size_factor
+        ),
+        baseline=profile.baseline,
+        scale=profile.scale / area,
+        seed=seed,
+        truncate=profile.truncate,
+    )
