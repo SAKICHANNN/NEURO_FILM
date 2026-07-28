@@ -17,7 +17,7 @@ from .positive_film import PositiveFilmResponseOperator
 
 
 PositiveFilmFitModel = Literal["two_matrix", "one_matrix"]
-PositiveFilmFitLoss = Literal["linear", "soft_l1"]
+PositiveFilmFitLoss = Literal["linear", "soft_l1", "huber", "cauchy", "arctan"]
 
 
 @dataclass(frozen=True)
@@ -215,7 +215,7 @@ def fit_positive_film_response_operator(
         or restart_count < 1
         or not isinstance(maximum_function_evaluations, int)
         or maximum_function_evaluations < 1
-        or loss not in ("linear", "soft_l1")
+        or loss not in ("linear", "soft_l1", "huber", "cauchy", "arctan")
         or not np.isfinite(loss_scale)
         or loss_scale <= 0.0
         or any(

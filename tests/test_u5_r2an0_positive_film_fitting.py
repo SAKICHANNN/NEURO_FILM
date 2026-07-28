@@ -80,7 +80,7 @@ def test_invalid_pairs_and_controls_fail_closed() -> None:
         )
     with pytest.raises(ValueError, match="controls"):
         fit_positive_film_response_operator(
-            source, source, model="two_matrix", loss="cauchy"  # type: ignore[arg-type]
+            source, source, model="two_matrix", loss="invalid"  # type: ignore[arg-type]
         )
     with pytest.raises(ValueError, match="identity_mixture"):
         row_stochastic_identity_mixture(np.zeros(6), identity_mixture=0.4)
