@@ -6356,3 +6356,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The pre-commit smoke passes every absolute/structure/control gate except one
   frozen 65% outlier gain. Thresholds and loss controls remain unchanged;
   commit and formal exact repeat are next.
+
+## 2026-07-28 - U5.R2AN1 exact repeat closes fixed soft-L1 promotion
+
+- Two 59,555-byte reports are exact at `ec5309e...bb08`. One and only one
+  frozen check fails: `cyan_shadow...` outlier gain is `61.44% < 65%`.
+- Absolute robust confirmation RMSE remains `.000328`--`.000437`, maximum
+  error stays below `.00265`, and all robust one-matrix gains exceed 96%.
+  Close the fixed loss/scale without threshold repair; test a separately
+  frozen two-stage sparse-outlier rejection method next.
