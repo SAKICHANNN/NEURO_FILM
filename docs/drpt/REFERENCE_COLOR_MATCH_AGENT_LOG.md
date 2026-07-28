@@ -1516,6 +1516,23 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Complete P87 deterministic sRGB output quantization ABI
+
+- Added a freestanding C11 float32-linear to sRGB8/sRGB16 quantizer using
+  255 + 65,535 frozen first-input thresholds instead of platform `powf`.
+- Threshold identity is `fae645ef...674c`; the exact float32 tolerance
+  endpoints match the existing Python staging contract.
+- MSVC and LLVM-MinGW execute all boundaries, both adjacent float32 values and
+  one million random inputs per depth with zero mismatch; invalid input is
+  preflighted before output mutation.
+- Android arm64/x86_64 libraries link and macOS/iOS ARM64 objects compile.
+  These remain link/object evidence, not device runtime.
+- Verification: 6 focused and 41 adjacent colour-output tests pass. The wider
+  colour selection has 1102 passes/3 skips; its only failure is the pre-existing
+  absent ignored FILM-R manifest in `test_rec2020_visual_ood`.
+- Producer contracts, A1/A4/A5, media rails and delivery authority are
+  unchanged.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.

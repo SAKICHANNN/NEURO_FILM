@@ -14,14 +14,16 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P84 at
-  `091e688`; P85 v12 review evidence is committed at `49cc6ae`.
-- Main Neuro-Film latest read-only verification snapshot: `bc04943`; its untracked
-  `.codex/` and `tmp/` belong to the main task and were not touched.
-- D-PCT latest fixed producer snapshot observed is `34af2fa`; its final local
-  boundary remains `NOT_FREEZE_READY` with eight required gates still failed.
-  Its only callable relative-SDR capability remains rejected by P44, and later
-  research/native evidence does not create a new P45 successor.
+- Consumer reviewed payload: `codex/reference-color-match` through P86 at
+  `510b7c4`; P85 v12 review evidence remains committed at `49cc6ae`.
+- Main Neuro-Film latest read-only snapshot observed during P87 is `9301cba`;
+  its concurrent AN0 work and untracked `.codex/`/`tmp/` belong to the main
+  task and were not touched.
+- D-PCT latest fixed producer snapshot observed is `442aabc`; its Android
+  Vulkan instrumentation package is locally ready but no physical-device run
+  occurred because the isolated cloud project had no billing. Its callable
+  relative-SDR capability remains rejected by P44, and the harness does not
+  create a new P45 successor.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -59,6 +61,7 @@ wire contract and not an algorithm promotion.
 | Same-handle byte consumption | P65 captures bounded immutable output bytes during the same P63 handle session and returns them only after every final rehash; its record carries no artifact path and fixes path/persistence/delivery authority false | COMPLETE AS PROCESS-LOCAL BYTE SNAPSHOT, DECODE/DELIVERY CLOSED | P67 must decode only returned bytes and prove declared encoded format/depth/frame/geometry before any pixel consumer / Neuro-Film |
 | Path-free encoded decode | P67 preflights the entire batch then strictly decodes one-page/frame RGB PNG/JPEG/TIFF to readonly uint8/uint16 arrays with exact decoded hashes; P71 independently re-inspects the exact bytes and requires the frozen sRGB ICC plus a narrow no-conflict metadata policy; P76 pins those 588 ICC bytes as an independent canonical fixture | COMPLETE AS STRUCTURAL/SAMPLE AND EMBEDDED-METADATA EVIDENCE | This proves the encoded metadata carried by P62, not arbitrary-profile conversion or that a third-party renderer honored ICC / Neuro-Film |
 | Decoded samples to MatchView | P69 remains the immutable assumption-bound v1; P72 v2 accepts only P71-attested batches, reruns P71 and the exact float32 IEC sRGB EOTF, and binds profile/metadata attestation identities into every MatchView provenance chain; P76 removes its runtime-generator dependency | COMPLETE AS METADATA-ATTESTED PROCESS-LOCAL BRIDGE | Still no persistence/application/delivery authority; target-platform profile-byte and runtime evidence remain separate / Neuro-Film |
+| Deterministic SDR output quantization | P87 freezes the current float32 staging OETF plus 8/16-bit round-to-nearest behavior as first-float32 threshold tables; MSVC and LLVM-MinGW execute every boundary and random probes exactly, while Android remains link-only and Apple object-only | COMPLETE AS PORTABLE CONSUMER ABI, DEVICE RUNTIME OPEN | Bind this ABI into a future platform shell only after actual target runtime evidence; no producer or algorithm admission follows / Neuro-Film |
 | Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
 | Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
