@@ -6523,3 +6523,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen `.20` gate; two reports are byte-identical at
   `a6a4de37...34905`. Close this candidate without threshold or confirmatory
   retuning and open a separately contracted compound-Poisson approximation.
+- P4B replaces the closed copula with positive counter-based Poisson shot
+  fields. It passes a fresh candidate seed with confirmatory mean error
+  `.01040`, variance ratios `1.0605-1.0800`, ACF max error `.05785`, NPS
+  relative max `.19378`, exact repeat/partition and valid density/transmittance
+  domains. Two reports are byte-identical at `611fb096...3b7b4`. This remains a
+  synthetic development compiler; P4C must test physical-scale LOD and
+  full-image severe artifacts before any runtime or appearance claim.

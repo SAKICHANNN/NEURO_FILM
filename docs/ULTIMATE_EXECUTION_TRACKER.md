@@ -659,7 +659,8 @@ FLUX.2 gate:
 | U6.P3A-P3B | complete: numerical pass / direct Standard performance close | Compile the fixed P1A scatter to positive separable float32 and measure 1/12/24MP | P1A pass | worst reference error `1.25e-7`, exact repeat/row partitions and no clipping; 24MP takes `18.39-18.54s` at `1.29-1.36GiB`, missing provisional 15s/1GiB goals. Keep as exact baseline; near-direct/far-pyramid challenger next |
 | U6.P3C | complete: closed | Challenge direct scatter with fixed near-direct/far-pyramid compilation | P3A/P3B | repeat, impulse, random, energy and far-halo gates pass, but edge max error `0.001668` exceeds frozen `0.001`; no threshold/profile retune. Preserve P1A/P3A and move to P1B developed structure |
 | U6.P4A | complete: closed | Compile P1B dye-cloud/silver references with a counter-Gaussian-copula marginal model | P1B pass + U6.2B negative | mean/variance/NPS/domain/repeat/partition pass, but colour-layer ACF max error `0.20262` exceeds frozen `0.20`; no retune |
-| U6.P4B | ready | Test a separately preregistered compound-Poisson structure approximation | P4A closure + P1B reference | Preserve physical density/transmittance domains, U6.2B negative and development/confirmatory separation |
+| U6.P4B | complete: development pass | Test a separately preregistered compound-Poisson structure approximation | P4A closure + P1B reference | two exact reports; confirmatory mean max `.01040`, variance ratio `1.0605-1.0800`, ACF max `.05785`, NPS relative max `.19378`; exact repeat/partition and physical domains |
+| U6.P4C | ready | Validate physical-scale resolution/LOD behavior and full-image severe-artifact boundary | P4B pass | Freeze downsample/NPS/ACF/parity/performance and no-display-speckle gates before execution; generic only |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

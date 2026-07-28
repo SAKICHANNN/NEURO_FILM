@@ -25,7 +25,7 @@
 | Latent stock modes | hypothesis only; data-gated | no stock has proved `K>1`; LSM0 freezes semantics, LSM1 requires stock/connectivity/identifiability/rights gates, and `K=1` remains a formal branch |
 | Input pipeline | float32 + strengthened fail-closed HDR pass | one float32 main path; HEIF/AVIF and recognized HDR/gain-map signals reject before silent SDR fallback; bounded JPEG APP/PNG text traversal closes the prior edge-sampling blind spot |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
-| Physical image formation | P0/P1 references pass; P3C/P4A challengers closed; P4B ready | P4A passes mean/variance/NPS/domain/repeat/partition but misses frozen ACF by `.00262`; next separately preregister compound-Poisson compiler. Generic only; no display-RGB grain or calibration |
+| Physical image formation | P0/P1 references and P4B compiler pass; P3C/P4A closed; P4C ready | P4B confirmatory ACF/NPS max `.05785/.19378`, exact repeat/partition in density/transmittance; next physical-scale LOD and severe-artifact evaluation. Generic only; no display-RGB grain or calibration |
 | Current local data | FilmSet, BlueNeg bounded pilot, stock-pilot v1, FILM-R and FSA/OWI pilot | stock-pilot v1: 189 hash+decode verified files; Gold display-candidate; NPH/Konica/GA post-negation-preview diagnostics only; FSA/OWI remains historical/unknown-stock |
 | Named-stock coverage | **not established** | BlueNeg Kodak Gold is provisional single-stock evidence below transferable `S2`; no second stock is promoted |
 | Historical/unknown coverage | one qualified auxiliary archive lane | LOC FSA/OWI is real historical film but never fills a named-stock slot |

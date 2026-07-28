@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4b_compound_poisson_decision.v1",
+  "node": "U6.P4B",
+  "status": "automatic-pass-development-only",
+  "contract_sha256": "58a2a4208835682c7b0177745f5d966a36b7aa38584ef083bf5283988f20e629",
+  "software_commit": "3c155895919940550ef551f5133fcab21ad7a8a9",
+  "report_sha256": "611fb09633d7d4c8e76ed0cef552d9df60ffdbf9add4a77f05dc428059d3b7b4",
+  "stable_evidence_id": "67973ca0cb07902f379a0c29e115f28d7e8b53ce260bbadee2b3278563067edc",
+  "metrics": {
+    "confirmatory_mean_abs_error_max": 0.010396361351013184,
+    "confirmatory_variance_ratio_min": 1.0605494478762174,
+    "confirmatory_variance_ratio_max": 1.0799983021265251,
+    "confirmatory_acf_abs_error_max": 0.05784705079264952,
+    "confirmatory_nps_band_relative_error_max": 0.19377677057893106,
+    "repeat_and_partition_exact": true,
+    "domain_valid": true
+  },
+  "claim_ceiling": "generic-physical-inspired-development-challenger",
+  "interpretation": [
+    "The compiler approximates the synthetic P1B material reference in developed optical-density and film-transmittance domains.",
+    "It is not measured film NPS, a stock/process/scanner profile, a display-RGB grain policy or product promotion."
+  ],
+  "branch_decision": "Retain the compound-Poisson compiler and open a separately frozen physical-scale resolution/LOD and full-image severe-artifact evaluation. P1B remains the offline reference."
+}
