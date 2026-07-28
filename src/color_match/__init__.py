@@ -274,6 +274,16 @@ from .shared_filmfx_transaction import (
     shared_filmfx_run_to_json,
     validate_shared_filmfx_run_v1,
 )
+from .shared_filmfx_verification import (
+    SHARED_FILMFX_VERIFICATION_CLAIM_CEILING,
+    SHARED_FILMFX_VERIFICATION_SCHEMA_ID,
+    SharedFilmFxStagingVerificationV1,
+    VerifiedSharedFilmFxOutputV1,
+    shared_filmfx_verification_from_json,
+    shared_filmfx_verification_to_json,
+    validate_shared_filmfx_staging_verification_v1,
+    verify_shared_filmfx_staging_v1,
+)
 from .contracts import (
     REFERENCE_LOOK_RECIPE_SCHEMA_ID,
     SUPPORTED_WORKING_SPACES,
@@ -629,6 +639,10 @@ __all__ = [
     "CommittedSharedFilmFxRunV1",
     "SharedFilmFxOutputV1",
     "SharedFilmFxRunV1",
+    "SHARED_FILMFX_VERIFICATION_CLAIM_CEILING",
+    "SHARED_FILMFX_VERIFICATION_SCHEMA_ID",
+    "SharedFilmFxStagingVerificationV1",
+    "VerifiedSharedFilmFxOutputV1",
     "evaluate_successor_declaration_v1",
     "successor_declaration_id_v1",
     "make_shared_reference_operator_v1",
@@ -669,6 +683,10 @@ __all__ = [
     "shared_filmfx_run_from_json",
     "shared_filmfx_run_to_json",
     "validate_shared_filmfx_run_v1",
+    "shared_filmfx_verification_from_json",
+    "shared_filmfx_verification_to_json",
+    "validate_shared_filmfx_staging_verification_v1",
+    "verify_shared_filmfx_staging_v1",
     "invoke_dpct_package_v1",
     "prepare_dpct_invocation_request_v1",
     "verify_dpct_invocation_output_v1",
