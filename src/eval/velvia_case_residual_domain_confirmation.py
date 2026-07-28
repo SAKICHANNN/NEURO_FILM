@@ -191,19 +191,25 @@ def _evaluate_split(
         inner_config["inner_label_crossfit"]["palette_seed_base"] = int(
             split["inner_palette_seed_base"]
         )
-        case_source, case_labels, inner_records, inner_converged = (
-            inner_crossfit_labels(
-                outer_fold=outer_fold,
-                chart_source=chart_source,
-                chart_target=chart_target,
-                palette_source=palette_source,
-                palette_target=palette_target,
-                chart_outer_indices=chart_indices,
-                palette_outer_indices=palette_indices,
-                config=inner_config,
-                fit_config=ao8b,
+        try:
+            case_source, case_labels, inner_records, inner_converged = (
+                inner_crossfit_labels(
+                    outer_fold=outer_fold,
+                    chart_source=chart_source,
+                    chart_target=chart_target,
+                    palette_source=palette_source,
+                    palette_target=palette_target,
+                    chart_outer_indices=chart_indices,
+                    palette_outer_indices=palette_indices,
+                    config=inner_config,
+                    fit_config=ao8b,
+                )
             )
-        )
+        except ValueError as error:
+            raise VelviaCaseResidualConfirmationError(
+                f"{split['split_id']} outer fold {outer_fold} "
+                f"inner structural fit failure: {error}"
+            ) from error
         query = source[test]
         chart_output = chart_fit.operator.apply(query)
         palette_output = palette_fit.operator.apply(query)
@@ -384,21 +390,32 @@ def evaluate_case_residual_domain_confirmation(
     chart_source, chart_target = pairs["velvia_chart"]
     palette_source, palette_target = pairs["velvia_palette"]
     source, target = pairs["combined"]
-    splits = [
-        _evaluate_split(
-            chart_source=chart_source,
-            chart_target=chart_target,
-            palette_source=palette_source,
-            palette_target=palette_target,
-            source=source,
-            target=target,
-            split=split,
-            config=config,
-            ao8c=ao8c,
-            ao8b=ao8b,
-        )
-        for split in config["split_repetitions"]
-    ]
+    splits = []
+    execution_failures = []
+    for split in config["split_repetitions"]:
+        try:
+            splits.append(
+                _evaluate_split(
+                    chart_source=chart_source,
+                    chart_target=chart_target,
+                    palette_source=palette_source,
+                    palette_target=palette_target,
+                    source=source,
+                    target=target,
+                    split=split,
+                    config=config,
+                    ao8c=ao8c,
+                    ao8b=ao8b,
+                )
+            )
+        except VelviaCaseResidualConfirmationError as error:
+            execution_failures.append(
+                {
+                    "split_id": split["split_id"],
+                    "failure": "structural_fit_failure",
+                    "message": str(error),
+                }
+            )
     gates = config["gates"]
     oracle_gains = [
         row["gains"]["oracle_rgb_rmse_over_combined"] for row in splits
@@ -425,8 +442,10 @@ def evaluate_case_residual_domain_confirmation(
     minimum_split_count = int(
         gates["minimum_passing_splits_for_rgb_and_domain_gains"]
     )
+    complete = len(splits) == len(config["split_repetitions"])
     checks = {
-        "oracle_value_each_split": all(
+        "all_split_results_present": complete,
+        "oracle_value_each_split": complete and all(
             value
             >= float(
                 gates[
@@ -435,11 +454,13 @@ def evaluate_case_residual_domain_confirmation(
             )
             for value in oracle_gains
         ),
-        "candidate_rgb_gain_median": float(np.median(rgb_gains))
+        "candidate_rgb_gain_median": complete
+        and float(np.median(rgb_gains))
         >= float(
             gates["minimum_candidate_rgb_rmse_gain_over_combined_median"]
         ),
-        "candidate_rgb_gain_split_count": sum(
+        "candidate_rgb_gain_split_count": complete
+        and sum(
             value
             >= float(
                 gates[
@@ -449,7 +470,8 @@ def evaluate_case_residual_domain_confirmation(
             for value in rgb_gains
         )
         >= minimum_split_count,
-        "candidate_perceptual_gain_median": float(
+        "candidate_perceptual_gain_median": complete
+        and float(
             np.median(perceptual_gains)
         )
         >= float(
@@ -457,13 +479,15 @@ def evaluate_case_residual_domain_confirmation(
                 "minimum_candidate_mean_delta_e76_gain_over_combined_median"
             ]
         ),
-        "candidate_domain_gain_median": float(np.median(domain_gains))
+        "candidate_domain_gain_median": complete
+        and float(np.median(domain_gains))
         >= float(
             gates[
                 "minimum_candidate_rgb_rmse_gain_over_domain_control_median"
             ]
         ),
-        "candidate_domain_gain_split_count": sum(
+        "candidate_domain_gain_split_count": complete
+        and sum(
             value
             >= float(
                 gates[
@@ -473,7 +497,7 @@ def evaluate_case_residual_domain_confirmation(
             for value in domain_gains
         )
         >= minimum_split_count,
-        "within_domain_shuffle_each_split": all(
+        "within_domain_shuffle_each_split": complete and all(
             value
             <= float(
                 gates[
@@ -482,7 +506,7 @@ def evaluate_case_residual_domain_confirmation(
             )
             for value in shuffle_p
         ),
-        "maximum_error_each_split": all(
+        "maximum_error_each_split": complete and all(
             value
             <= float(
                 gates[
@@ -491,7 +515,7 @@ def evaluate_case_residual_domain_confirmation(
             )
             for value in maximum_error_ratios
         ),
-        "both_experts_each_split": all(
+        "both_experts_each_split": complete and all(
             min(
                 row["candidate_chart_selection_fraction"],
                 row["candidate_palette_selection_fraction"],
@@ -499,19 +523,19 @@ def evaluate_case_residual_domain_confirmation(
             >= float(gates["minimum_candidate_fraction_per_expert_each_split"])
             for row in splits
         ),
-        "candidate_in_cube_each_split": all(
+        "candidate_in_cube_each_split": complete and all(
             row["scores"]["candidate"]["raw_out_of_cube_fraction"]
             <= float(gates["maximum_raw_out_of_cube_fraction"])
             for row in splits
         ),
-        "all_fits_converged": all(
+        "all_fits_converged": complete and all(
             row["all_fits_converged"] for row in splits
         ),
     }
     automatic_pass = all(checks.values())
     if automatic_pass:
         decision = config["decision_if_pass"]
-    elif not checks["within_domain_shuffle_each_split"]:
+    elif complete and not checks["within_domain_shuffle_each_split"]:
         decision = config["decision_if_within_domain_shuffle_fails"]
     else:
         decision = config["decision_if_split_stability_fails"]
@@ -520,18 +544,29 @@ def evaluate_case_residual_domain_confirmation(
         "experiment_id": config["experiment_id"],
         "fixed_candidate_id": config["fixed_candidate"]["candidate_id"],
         "splits": splits,
+        "execution_failures": execution_failures,
         "aggregate": {
-            "oracle_rgb_rmse_gain_median": float(np.median(oracle_gains)),
-            "candidate_rgb_rmse_gain_median": float(np.median(rgb_gains)),
-            "candidate_mean_delta_e76_gain_median": float(
-                np.median(perceptual_gains)
+            "oracle_rgb_rmse_gain_median": (
+                float(np.median(oracle_gains)) if oracle_gains else None
             ),
-            "candidate_rgb_rmse_gain_over_domain_median": float(
-                np.median(domain_gains)
+            "candidate_rgb_rmse_gain_median": (
+                float(np.median(rgb_gains)) if rgb_gains else None
             ),
-            "within_domain_shuffle_p_maximum": float(np.max(shuffle_p)),
-            "maximum_error_ratio_maximum": float(
-                np.max(maximum_error_ratios)
+            "candidate_mean_delta_e76_gain_median": (
+                float(np.median(perceptual_gains))
+                if perceptual_gains
+                else None
+            ),
+            "candidate_rgb_rmse_gain_over_domain_median": (
+                float(np.median(domain_gains)) if domain_gains else None
+            ),
+            "within_domain_shuffle_p_maximum": (
+                float(np.max(shuffle_p)) if shuffle_p else None
+            ),
+            "maximum_error_ratio_maximum": (
+                float(np.max(maximum_error_ratios))
+                if maximum_error_ratios
+                else None
             ),
         },
         "checks": checks,

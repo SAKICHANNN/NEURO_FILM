@@ -5,12 +5,14 @@ from pathlib import Path
 
 import pytest
 
+import src.eval.velvia_case_residual_domain_confirmation as confirmation_module
 from scripts.run_u5_r2ao8d_velvia_case_residual_domain_confirmation import (
     CONFIG_SHA256,
     load_config,
 )
 from src.eval.velvia_case_residual_domain_confirmation import (
     VelviaCaseResidualConfirmationError,
+    evaluate_case_residual_domain_confirmation,
     validate_contract,
 )
 
@@ -61,3 +63,20 @@ def test_contract_rejects_candidate_reselection() -> None:
 def test_config_hash_fails_closed() -> None:
     with pytest.raises(ValueError, match="hash mismatch"):
         load_config(CONFIG_PATH, expected_sha256="0" * 64)
+
+
+def test_structural_fit_failure_becomes_a_frozen_negative_report(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def fail_split(**kwargs):
+        split = kwargs["split"]
+        raise VelviaCaseResidualConfirmationError(
+            f"{split['split_id']} synthetic structural fit failure"
+        )
+
+    monkeypatch.setattr(confirmation_module, "_evaluate_split", fail_split)
+    report = evaluate_case_residual_domain_confirmation(ROOT, _config())
+    assert report["automatic_pass"] is False
+    assert report["decision"] == "close_case_selector_as_split_unstable"
+    assert len(report["execution_failures"]) == 3
+    assert report["checks"]["all_split_results_present"] is False
