@@ -6347,3 +6347,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Robust two-matrix fitting must stay below `.001` RMSE, beat robust
   one-matrix by 90%, beat linear two-matrix by 65% under outliers, and avoid
   more than 20% loss to linear under noise alone. No formal AN1 fit exists yet.
+
+## 2026-07-28 - Implement U5.R2AN1 robustness runner
+
+- Added exact source/target noise and sparse-outlier generation plus robust
+  two-matrix, linear two-matrix and robust one-matrix controls. Twelve
+  AN1/AN0/J0 focused tests pass.
+- The pre-commit smoke passes every absolute/structure/control gate except one
+  frozen 65% outlier gain. Thresholds and loss controls remain unchanged;
+  commit and formal exact repeat are next.
