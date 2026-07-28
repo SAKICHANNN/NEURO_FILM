@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p3_compiled_scatter_challenger_contract.v1",
+  "node": "U6.P3A",
+  "parent_contract_sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b",
+  "parent_report_sha256": "aab9a02d63a6832f4e65c250125a2777c63a6c50436ec242b34790ddae608b1c",
+  "claim_ceiling": "generic-physical-inspired-development-challenger",
+  "candidate": {
+    "arithmetic": "explicit-float32",
+    "operator": "two-pass-separable-positive-gaussian",
+    "boundary_mode": "zero-outside-full-frame",
+    "kernel_source": "compile-exact-parent-profile",
+    "hard_clipping": false,
+    "resampling": false,
+    "product_dependency_allowed": false
+  },
+  "witnesses": {
+    "impulse_shape": [
+      513,
+      513,
+      3
+    ],
+    "edge_shape": [
+      512,
+      512,
+      3
+    ],
+    "random_shape": [
+      257,
+      263,
+      3
+    ],
+    "random_seed": 602031,
+    "partition_rows": [
+      7,
+      64,
+      257
+    ]
+  },
+  "automatic_gates": {
+    "reference_max_abs_error": 2e-6,
+    "reference_mean_abs_error": 2e-7,
+    "impulse_energy_abs_error": 2e-6,
+    "minimum_output": -2e-7,
+    "repeat_float32_exact": true,
+    "partition_reconstruction_exact": true,
+    "compiled_kernel_sum_abs_error": 2e-7
+  },
+  "forbidden_fallbacks": [
+    "change parent profile",
+    "change physical sigma or energy",
+    "reflect or wrap boundary",
+    "hard clip",
+    "screen blend",
+    "tune against photographs",
+    "claim calibrated halation"
+  ],
+  "branch_rule": {
+    "pass": "retain as the direct separable Standard baseline and benchmark before opening a pyramid approximation",
+    "fail": "close the compiled implementation; preserve the float64 reference"
+  }
+}
