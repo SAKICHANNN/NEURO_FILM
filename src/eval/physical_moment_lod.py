@@ -108,11 +108,15 @@ def _is_domain_valid(
     profile: CompoundPoissonProfile, values: np.ndarray
 ) -> tuple[bool, int]:
     if profile.family == "density-shot":
-        violations = int(np.count_nonzero(values < profile.baseline))
+        violations = int(
+            np.count_nonzero(values < np.float32(profile.baseline))
+        )
         valid = bool(np.all(np.isfinite(values)) and np.all(values > 0.0))
     else:
         violations = int(
-            np.count_nonzero(values > math.exp(-profile.baseline))
+            np.count_nonzero(
+                values > np.float32(math.exp(-profile.baseline))
+            )
         )
         valid = bool(
             np.all(np.isfinite(values))

@@ -134,12 +134,16 @@ def evaluate_physical_lod(contract: dict[str, Any]) -> dict[str, Any]:
                 )
             )
             if direct_profile.family == "density-shot":
-                violations = int(np.count_nonzero(candidate < direct_profile.baseline))
+                violations = int(
+                    np.count_nonzero(
+                        candidate < np.float32(direct_profile.baseline)
+                    )
+                )
                 valid = bool(
                     np.all(np.isfinite(candidate)) and np.all(candidate > 0.0)
                 )
             else:
-                clear_base = math.exp(-direct_profile.baseline)
+                clear_base = np.float32(math.exp(-direct_profile.baseline))
                 violations = int(np.count_nonzero(candidate > clear_base))
                 valid = bool(
                     np.all(np.isfinite(candidate))
