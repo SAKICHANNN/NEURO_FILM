@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8e_cpu_stage_attribution_contract.v1",
+  "node": "U6.P8E",
+  "parent_decision": "configs/u6_p8d_cpu_resource_characterization_decision_v1.json",
+  "parent_decision_sha256": "60de2a4516ab0a86a484b019a0e25d971c63f528ca634cde37c2edd7a03d2b54",
+  "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "height": 1024,
+  "width": 1024,
+  "tile_rows": 128,
+  "repeats": 2,
+  "stages": [
+    "artifact-reconstruct",
+    "scene-linear-to-encoded",
+    "encoded-to-linear",
+    "physical-spatial",
+    "neutral-gauge",
+    "physical-intermediate-oetf",
+    "source-context-build",
+    "safe-lab-base",
+    "t15-c35-residual"
+  ],
+  "execution": {
+    "exact_reference_output_required": true,
+    "rss_is_stage_end_snapshot_not_peak": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local 1MP Python CPU stage-level latency and stage-end RSS attribution for the exact generic physical-inspired reference consumer; not native performance, peak stage memory, mobile-device evidence, stock response, calibration or product promotion"
+}

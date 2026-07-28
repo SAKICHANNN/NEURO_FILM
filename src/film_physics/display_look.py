@@ -160,6 +160,24 @@ def build_source_context_display_look(
 ) -> Callable[[np.ndarray], np.ndarray]:
     """Build one full-frame AO6 display-look callable from artifact bytes."""
 
+    apply_base, apply_residual = build_source_context_display_look_stages(
+        payload, source
+    )
+
+    def apply(encoded: np.ndarray) -> np.ndarray:
+        return apply_residual(apply_base(encoded))
+
+    return apply
+
+
+def build_source_context_display_look_stages(
+    payload: dict[str, Any], source: np.ndarray
+) -> tuple[
+    Callable[[np.ndarray], np.ndarray],
+    Callable[[np.ndarray], np.ndarray],
+]:
+    """Expose the exact base/residual split for profiling and native ports."""
+
     validate_display_look_payload(payload)
     base = payload["base"]
     anchor = payload["anchor"]
@@ -186,7 +204,7 @@ def build_source_context_display_look(
         apply_density(source_value)
     )
 
-    def apply(encoded: np.ndarray) -> np.ndarray:
+    def apply_base(encoded: np.ndarray) -> np.ndarray:
         encoded_value = np.asarray(encoded, dtype=np.float32)
         base_output = style_transfer_rgb_with_source_context(
             np.asarray(apply_density(encoded_value), dtype=np.float32),
@@ -206,6 +224,9 @@ def build_source_context_display_look(
             int(base["final_output_margin"]),
         )
         base_output = np.asarray(base_output, dtype=np.float32)
+        return base_output
+
+    def apply_residual(base_output: np.ndarray) -> np.ndarray:
         result = apply_factorized_boundary_guard(
             residual_operator,
             encoded_srgb_to_linear(base_output),
@@ -231,12 +252,13 @@ def build_source_context_display_look(
             raise RuntimeError("display-look component left encoded RGB")
         return output
 
-    return apply
+    return apply_base, apply_residual
 
 
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
+    "build_source_context_display_look_stages",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]
