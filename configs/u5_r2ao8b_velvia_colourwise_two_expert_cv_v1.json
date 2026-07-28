@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8b-velvia-colourwise-two-expert-cv-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8B",
+  "parent_decision": {
+    "path": "configs/u5_r2ao8_velvia_proxy_operator_diversity_decision_v1.json",
+    "sha256": "2cf44806c0aa73e8fe7feb01b2a99b411196a2a17c8b13a29f00a3c9a9663704",
+    "required_decision": "open_ao8b_explicit_colourwise_two_expert_candidate"
+  },
+  "inputs": {
+    "ao5_config": {
+      "path": "configs/u5_r2ao5_combined_velvia_operator_v1.json",
+      "sha256": "c3f94c07e5351a4cea10e96b6d3b1dd13ee43842441e650dac5bd3b19ddb93bf"
+    },
+    "chart_pairs": {
+      "path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+      "paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+      "rows": 24
+    },
+    "palette_pairs": {
+      "path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+      "asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+      "paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30",
+      "rows": 47
+    }
+  },
+  "nested_evaluation": {
+    "fold_count": 5,
+    "chart_split_seed": 2026072801,
+    "palette_split_seed": 2026072802,
+    "split_uses_source_row_identity_only": true,
+    "fit_on_development_folds_only": true,
+    "score_on_held_out_fold_only": true,
+    "operator_families": [
+      "chart_only_one_matrix",
+      "palette_only_one_matrix",
+      "combined_one_matrix"
+    ]
+  },
+  "fit": {
+    "model": "one_matrix",
+    "identity_mixture": 0.25,
+    "restart_count": 3,
+    "loss": "linear",
+    "loss_scale": 0.01,
+    "maximum_function_evaluations": 4000,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11,
+    "seed": 20260728
+  },
+  "router": {
+    "feature_space": "linear_srgb_d65_per_colour_only",
+    "support_distance": "nearest_development_source_euclidean_normalized_by_domain_median_leave_one_out_nn",
+    "support_scale_floor": 1e-06,
+    "candidate_bank": [
+      {
+        "candidate_id": "nearest_support_hard",
+        "kind": "hard"
+      },
+      {
+        "candidate_id": "nearest_support_soft_t025",
+        "kind": "softmax",
+        "temperature": 0.25
+      },
+      {
+        "candidate_id": "nearest_support_soft_t050",
+        "kind": "softmax",
+        "temperature": 0.5
+      },
+      {
+        "candidate_id": "nearest_support_soft_t100",
+        "kind": "softmax",
+        "temperature": 1.0
+      }
+    ],
+    "selection": "lowest_cross_validated_rgb_rmse_then_candidate_id",
+    "image_content_features_allowed": false,
+    "target_values_available_to_router": false,
+    "per_image_refit_allowed": false
+  },
+  "controls": {
+    "identity": true,
+    "fixed_chart_expert": true,
+    "fixed_palette_expert": true,
+    "combined_global_operator": true,
+    "per_row_two_expert_oracle_diagnostic_only": true
+  },
+  "gates": {
+    "minimum_oracle_rgb_rmse_gain_over_combined": 0.1,
+    "minimum_selected_rgb_rmse_gain_over_combined": 0.05,
+    "minimum_selected_rgb_rmse_gain_over_best_fixed_expert": 0.03,
+    "minimum_selected_mean_delta_e76_gain_over_combined": 0.03,
+    "maximum_selected_to_combined_maximum_absolute_error_ratio": 1.25,
+    "minimum_mean_weight_per_expert": 0.1,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "all_fold_fits_must_converge": true,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "open_ao8c_fixed_colourwise_two_expert_photo_challenger",
+  "decision_if_oracle_fails": "close_two_expert_product_value_retain_global_operator",
+  "decision_if_router_fails": "close_nearest_support_router_retain_operator_diversity_as_descriptive",
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "nested five-fold development evidence for a fixed small bank of per-colour support routers over separately refitted chart and palette display-proxy operators; rows are not independent photographic groups and results cannot establish stock modes, transferable film response, calibration, preference or product value"
+}
