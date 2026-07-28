@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p8o_row_linear_resources_decision.v1",
+  "node": "U6.P8O",
+  "software_commit": "072187a",
+  "contract_sha256": "69fdd0008908c809d79e87772cb53e6d63322d34c969f397dd167dea77e5c363",
+  "report_sha256": "d1731a1702e0f80b3a09c0ddfadf6d14241f2a392e766e0a8a3759f58e8a90ca",
+  "stable_evidence_id": "be966a7c82651c9b36ced2dd6cb5b0da7058c5367ecf391dd1059f3d60d61184",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8n": true,
+  "timing_comparison_valid": false,
+  "timing_contamination": "foreign concurrent Python workload consumed roughly 5GB RSS and sustained CPU throughout the formal run; timing is recorded but not used for selection",
+  "preview_1mp": {
+    "worker_seconds_range": [
+      9.940340000001015,
+      10.010828400001628
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      263180288,
+      265351168
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      62.845641899999464,
+      111.70108440000331
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1327693824,
+      1333878784
+    ]
+  },
+  "memory_comparison": {
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8m_at_mean": 0.06814,
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8h_at_mean": 0.274654
+  },
+  "decision": "row-staged roundtrip-linear construction preserves exact final pixels and cuts mean 12MP peak process-tree RSS by 6.81% versus P8M and 27.47% versus P8H. Retain the implementation. Concurrent foreign CPU and memory load invalidates latency comparison, but process-tree RSS remains scoped. The remaining roughly 1.24GiB peak still fails provisional mobile targets; re-attribute the current production entry",
+  "candidate_retained": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8P phase-local RSS re-attribution through the actual P8O production entry, with two exact 12MP repeats and timing treated as contaminated while the foreign workload persists",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-staged roundtrip-linear construction; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
