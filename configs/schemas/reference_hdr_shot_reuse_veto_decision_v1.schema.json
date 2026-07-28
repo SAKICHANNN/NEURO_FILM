@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-hdr-shot-reuse-veto-decision-v1",
+  "title": "Neuro-Film HDR Shot Reuse Veto Decision V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "compatibility_profile_id",
+    "producer_commit",
+    "producer_capability_id",
+    "producer_profile_id",
+    "model_id",
+    "assessment_id",
+    "disposition",
+    "refit_required",
+    "reuse_authorized",
+    "claim_ceiling",
+    "decision_id"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.hdr-shot-reuse-veto-decision.v1"
+    },
+    "compatibility_profile_id": {
+      "const": "neuro-film.zhuise-hdr-shot-veto.v1"
+    },
+    "producer_commit": {
+      "const": "ec717bf538f7f2b1b128e105d4007eaf3acf1d34"
+    },
+    "producer_capability_id": {
+      "const": "zhuise.hdr-shot-envelope.cpu-reference.v1"
+    },
+    "producer_profile_id": {
+      "const": "zhuise.p3d65-pq-normalized-rgb.v1"
+    },
+    "model_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "disposition": {
+      "enum": [
+        "invalidate-reuse",
+        "not-invalidated-veto-only"
+      ]
+    },
+    "refit_required": {
+      "type": "boolean"
+    },
+    "reuse_authorized": {
+      "const": false
+    },
+    "claim_ceiling": {
+      "const": "veto-only-never-authorizes-reuse"
+    },
+    "decision_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}
