@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P69 consumer payload is pinned by the immutable P70 v5 review
-manifest; real external-algorithm admission, colour-metadata attestation and
-delivery remain closed**.
+Status: **P1-P74 consumer payload is pinned by the immutable P75 v7 review
+manifest; metadata-attested local sRGB MatchViews are complete, while real
+external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P69 payload head:
-  `272db64b0cd4ff4e7221eb181e02a80c19e64c3f`;
-- P70 review-evidence head:
-  `c5487a6cd6782396b968edba1b11286a0f54d344`;
+- complete reviewed P1-P74 payload head:
+  `a30549749b3cf90bf9d9525273d39f9467296edb`;
+- P75 review-evidence head:
+  `d3b8f4233b131905499acd241af1dbe16ee5a5d7`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `50b38dd92c19812059b5420e3737683841b2964f`;
+  `2f9a7c02fc58d2f357a5df3626f1a04743917047`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
-- conflict-free main/payload merge tree:
-  `cf93886ece87dbe3c51efcab78524c96d07fbdeb`.
+- conflict-free main/evidence-head merge tree:
+  `226a2ce888c3757fd8af45f8fc447aba81663518`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -56,6 +56,15 @@ P69 payload `272db64` against main `50b38dd`: 294 payload blobs, 223 main
 paths, zero overlap, 35 exports and 17 schemas. V5 SHA-256 is
 `782043cc29db7a2489188c980e658fb5cc9f214808ba85b87d146bc07f0c97eb`;
 it binds P68 v4 SHA-256 `612c0977...daae14` and never hashes itself.
+
+P73 v6 binds the P71/P72 implementation at `3126657` against main
+`2f9a7c0`, adding exact colour-attestation and attested-MatchView schemas.
+P74 then closes the discovered `core.autocrlf=true` checkout drift for the
+entire historical manifest chain. P75 v7 binds that checkout-safe payload
+`a305497`: 309 payload blobs, 236 main paths, zero overlap, 45 exports and 19
+schemas. V7 SHA-256 is
+`18a7a31dde03d448357d31bd94d6d204f5cc42c7f61e23690227dbdc5c72afc7`;
+it binds v6 SHA-256 `01aa9137...412d024` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -121,7 +130,12 @@ The consumer module implements:
 - strict P67 in-memory PNG/JPEG/TIFF sample decoding with whole-batch geometry
   preflight and no partial decoded return;
 - P69 deterministic decoded-sample to display-relative linear-sRGB MatchView
-  bridge whose validator re-executes EOTF and provenance reconstruction;
+  bridge whose validator re-executes EOTF and provenance reconstruction,
+  retained as assumption-bound v1;
+- strict P71 encoded-byte metadata attestation for the exact sRGB ICC with
+  bounded/no-conflict PNG, JPEG and TIFF parsing;
+- P72 metadata-attested MatchView v2 that reruns P71 plus the frozen EOTF and
+  binds every metadata identity into provenance;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -131,6 +145,16 @@ The consumer module implements:
 P39/P40 local delivery states describe only a verified local file transaction.
 They do not mean app-level `applied`, film-stock identity, calibrated
 reference, public sharing or algorithm promotion.
+
+## Frozen P71-P72 identities
+
+| Artifact | SHA-256 |
+|---|---|
+| colour-attestation implementation | `11701d3a3a517b5003da3f4afece0237e3f749e8bb3924770d38889d2d151377` |
+| colour-attestation schema | `4db512eb2ced28d9cdf0b176393d917cff35c65396f07b45a7e06632b793a93a` |
+| attested MatchView v2 implementation | `9c7ce3dcfb9a327e46152c0fb81c9bd014213f708ca2bdb3cb21ba961f203033` |
+| attested MatchView v2 schema | `ce4d6919e6b9e729a24fe2b1f37f7b1096391846d7879a80098d5aca4c9269f5` |
+| exact sRGB ICC | `217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356` |
 
 ## Frozen P33-P40 wire hashes
 
@@ -164,11 +188,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P70 v5 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves P68/P66/P64/P58.
-3. Review `c03c321..272db64`; do not copy files manually and do not import
+2. Verify the committed P75 v7 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..a305497`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 272db64 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree a305497 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -183,11 +207,12 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 812 passed, three skipped;
-- latest isolated consumer full suite: 1707 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 913 passed, three skipped;
+- latest isolated consumer full suite: 1808 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 260 P45-P70/manifest related tests
-  passed with one privilege skip; the temporary worktree was removed;
+- latest detached synthetic main/evidence-head merge: 908 color-match tests
+  passed with eight platform skips and zero failures; the temporary worktree
+  was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real
@@ -202,10 +227,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
    real RAW, real HDR, real video and license/provenance gates still failed.
    Windows runtime facts, Android compile/link-only facts and Apple
    object-only facts remain correctly separated.
-4. P67 now proves structure and exact integer samples, while P69 executes an
-   explicit sRGB EOTF. Exact embedded ICC/CICP/tag semantics remain open;
-   P71/P72 must close that gap without upgrading P69 v1 retroactively.
-5. P63/P65/P67/P69 persisted records never authorize path reopen,
+4. P71 now proves the exact embedded sRGB ICC and rejects alternate metadata;
+   P72 consumes that exact proof and reruns the frozen EOTF. This does not
+   prove arbitrary-profile conversion, third-party ICC application or target
+   runtime parity, and P69 v1 remains assumption-bound.
+5. P63/P65/P67/P69/P71/P72 persisted records never authorize path reopen,
    persistence, application or delivery.
 6. The main owner must review and merge the payload.
 

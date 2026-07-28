@@ -2766,6 +2766,81 @@
 - Evidence commit: `fcd3ace` (`docs: record local delivery authorization`).
   P38 is complete as authorization, not file delivery.
 
+## 2026-07-28 - Complete P71 exact encoded colour-metadata attestation
+
+- Node/parent goal: P71 / close the semantic gap between P67 integer samples
+  and any metadata-proven display-linear bridge.
+- Implementation commit: `01496ea7e6d0fae14843cf5f083e67b050bc2cdf`.
+  The process-local contract re-inspects only P65-bound bytes and requires the
+  exact frozen sRGB ICC: PNG iCCP, JPEG APP2 and TIFF tag 34675.
+- Fail-closed scope: PNG CRC/order/keyword/decompression budget and conflicting
+  chunks; every JPEG scan plus an APP allowlist; unique TIFF ICC/orientation
+  and rejection of XMP/Photoshop/EXIF/transfer/primary/range alternatives.
+  Duplicate JSON keys, non-standard constants and mutable receipt outputs also
+  reject.
+- Identities: implementation
+  `11701d3a3a517b5003da3f4afece0237e3f749e8bb3924770d38889d2d151377`;
+  schema
+  `4db512eb2ced28d9cdf0b176393d917cff35c65396f07b45a7e06632b793a93a`;
+  tests
+  `c3e05d441f50729c5c55ef0afe0bbc315ee9ec35d7db0cb9da7d1a72bdb55060`.
+- Evidence: 48 focused pass; 150 qualification-to-MatchView pass with one
+  platform skip after hardening. Two independent read-only adversarial reviews
+  ended with no blocker or major.
+- Claim ceiling: embedded metadata is proven for this exact process-local
+  bridge input. ICC conversion/application, persistence, application and
+  delivery remain false.
+
+## 2026-07-28 - Complete P72 attestation-consuming MatchView v2
+
+- Node/parent goal: P72 / make metadata evidence a mandatory dependency
+  without relabeling P69 v1.
+- Implementation commit: `31266572fc27cf90480bdcf4e45f948f00558d6e`.
+  The v2 bridge accepts only `RuntimeStagingColorAttestedDecodedBatchV1`,
+  reruns P71 from original encoded bytes, reruns the frozen float32 IEC sRGB
+  EOTF and binds the top-level/per-output attestation identities, exact ICC
+  hash and profile binding into MatchView provenance.
+- Hardening: nested decoded/sample/snapshot collections and P72 views must
+  remain tuples; the runtime ICC hash, Python record and JSON Schema all pin
+  `217fe48e...4356`; cross-batch, permutation, single-row substitution and
+  self-consistent pixel/descriptor rewrites reject.
+- Identities: implementation
+  `9c7ce3dcfb9a327e46152c0fb81c9bd014213f708ca2bdb3cb21ba961f203033`;
+  schema
+  `ce4d6919e6b9e729a24fe2b1f37f7b1096391846d7879a80098d5aca4c9269f5`;
+  tests
+  `0b553d5e322a561bd4e2b2a6b67f45762d1954e074d3f00c712540c7610fa40d`.
+- Evidence: 72 focused pass and 150 full staging-chain pass/one skip; final
+  read-only contract audit found no blocker or major.
+- Claim ceiling remains process-local MatchViews only. P69 v1 remains
+  immutable assumption-bound evidence.
+
+## 2026-07-28 - Publish P73-P75 checkout-safe integration evidence
+
+- P73 commit `7eb4749` publishes v6 for P1-P72. It binds payload `3126657`,
+  main `2f9a7c0`, 305 payload paths, 236 main paths, zero overlap, 45 exports
+  and 19 schemas. V6 SHA is `01aa9137...412d024`.
+- First detached merge correctly exposed one historical evidence failure:
+  `reference_match_main_integration_manifest_v1.json` checked out as CRLF
+  under the fresh worktree, changing SHA `db06eb9b...` to `0bb35a0a...`.
+  The other 888 color-match tests passed with eight skips.
+- P74 commit `a305497` adds complete v1-v7 LF checkout rules and an automated
+  chain policy test. A fresh detached merge then passed 890 color-match tests
+  with eight skips and zero failures.
+- P75 evidence commit `d3b8f42` publishes v7, binding P1-P74 payload
+  `a305497`, main `2f9a7c0`, 309 payload paths, 236 main paths, zero overlap,
+  45 exports and 19 schemas. V7 SHA is
+  `18a7a31dde03d448357d31bd94d6d204f5cc42c7f61e23690227dbdc5c72afc7`;
+  it preserves exact v6 SHA `01aa9137...412d024`.
+- Final detached merge tree is `226a2ce888c3757fd8af45f8fc447aba81663518`;
+  all-color evidence is 908 pass/eight platform skips/zero failures. The
+  temporary worktree was removed.
+- Final local evidence is 913 all-color pass/three skips. Full suite is 1808
+  pass/four skips plus the exact same 36 historical ignored-output/hash
+  failures; no color-match failure.
+- Main and producer repos stayed read-only. D-PCT remains at `34af2fa` and
+  `NOT_FREEZE_READY`; no producer schema, admission or HDR mapping changed.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.
