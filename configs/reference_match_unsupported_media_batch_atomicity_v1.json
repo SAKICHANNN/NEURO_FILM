@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "node": "P164",
+  "candidate_commit": "f2ea6f77841e04a64ba40e973ab03f0542202bb4",
+  "image": {
+    "width": 64,
+    "height": 48,
+    "reference_seed": 16401,
+    "valid_source_seed": 16402,
+    "invalid_source_seed": 16403
+  },
+  "cases": [
+    {
+      "case_id": "transparent-alpha-second-source",
+      "fixture_kind": "generated-rgba-png",
+      "expected_rejection_substring": "refusing transparent hidden-RGB fallback"
+    },
+    {
+      "case_id": "multipage-tiff-second-source",
+      "fixture_kind": "generated-two-page-rgb-tiff",
+      "expected_rejection_substring": "refusing silent frame-zero fallback"
+    },
+    {
+      "case_id": "libultrahdr-mpo-second-source",
+      "fixture_kind": "pinned-libultrahdr-reference",
+      "fixture_path": "tests/fixtures/u1_5c_libultrahdr/apple_gainmap_new.jpg",
+      "fixture_sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "expected_rejection_substring": "multi-frame raster rendering is not implemented"
+    }
+  ],
+  "repeat_count_per_case": 2,
+  "gates": {
+    "expected_exception_type": "ValueError",
+    "require_rejection_substring": true,
+    "require_existing_output_recipe_report_hashes_unchanged": true,
+    "require_zero_new_durable_artifacts": true,
+    "require_zero_stage_backup_or_temporary_artifacts": true,
+    "require_first_valid_source_reaches_render_stage": true,
+    "require_case_result_exact_replay": true
+  },
+  "claim_ceiling": "local-consumer-transaction-fail-closed-evidence-for-three-exact-unsupported-second-source-cases-only-not-complete-media-detection-or-format-support"
+}

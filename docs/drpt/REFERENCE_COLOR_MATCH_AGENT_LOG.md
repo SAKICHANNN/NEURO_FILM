@@ -4047,3 +4047,14 @@
 - P163 is local Windows/Python SDR transaction evidence only. It does not open
   arbitrary codecs/profiles, RAW/HDR/video, target runtime, algorithm
   promotion or product delivery.
+
+## 2026-07-29 - Freeze unsupported-media batch atomicity
+
+- P164 fixes three two-source transactions whose second source is transparent
+  RGBA PNG, two-page TIFF or the pinned real libultrahdr MPO fixture.
+- The first valid source must reach render staging before source two rejects.
+  Both pre-existing outputs, recipe and report must remain byte-exact and no
+  stage/backup/temporary artifact may survive.
+- This reuses existing main-ingress rejection semantics without changing a
+  decoder or claiming complete media detection, HDR/gain-map support or
+  product readiness.
