@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p3_pyramid_scatter_decision.v1",
+  "node": "U6.P3C",
+  "status": "closed-frozen-edge-reference-gate",
+  "contract_sha256": "0e50cd8dd47161f793ef9512fe20e7a202a4a10d36b31d0d834eb9846a9e53bf",
+  "software_commit": "f02bfd502b2fab053fb1ecad062c1f92ff7f81c9",
+  "report_sha256": "8ac49dfee0a299b181a9c1154d47eae08dd891a18ca12f1f891497dc9813f494",
+  "stable_evidence_id": "eab9f0a846713023e459f4abdd6cada6acab2a3c9408a1fc48ee4956dec5a06d",
+  "metrics": {
+    "edge_reference_max_abs_error": 0.001667757660396063,
+    "impulse_reference_max_abs_error": 1.4349708989874548e-07,
+    "random_reference_max_abs_error": 0.0008515367833412668,
+    "random_reference_mean_abs_error": 1.2798474700850692e-05,
+    "impulse_energy_abs_error": 3.743296001945673e-06,
+    "far_halo_red_over_blue": 5.999999837669756,
+    "repeat_float32_exact": true
+  },
+  "failed_gate": {
+    "name": "edge_reference_max_abs_error",
+    "threshold": 0.001,
+    "observed": 0.001667757660396063
+  },
+  "claim_ceiling": "rejected-development-challenger",
+  "branch_decision": "Close factor-5 box/Gaussian/bilinear pyramid without threshold or physical-profile retuning. Preserve P1A reference and P3A direct baseline; continue P1B developed-structure reference before any separately preregistered edge-preserving compiler."
+}

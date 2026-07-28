@@ -6506,3 +6506,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   but 24MP takes `18.39-18.54s` and `1.29-1.36GiB`, missing the provisional
   15s/1GiB targets. Direct remains the numerical baseline; open a fixed
   near-direct/far-pyramid challenger instead of weakening the physics order.
+- The fixed factor-5 P3C pyramid passes repeat, impulse, random, energy and
+  far-halo checks but misses the preregistered high-contrast edge gate
+  (`0.001668 > 0.001`). It closes without threshold or physical-profile
+  retuning. P1A and direct P3A remain references; work moves to the independent
+  developed dye-cloud/metallic-silver structure reference.
