@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p7f1_neutral_gauged_visual_confirmation_contract.v1",
+  "node": "U6.P7F1",
+  "parent_contract": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+  "parent_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+  "parent_report_run_a": "outputs/u6_p7f_neutral_gauged_physical_chain_v1/run_a/report.json",
+  "parent_report_run_b": "outputs/u6_p7f_neutral_gauged_physical_chain_v1/run_b/report.json",
+  "parent_report_sha256": "84fb63e25571cbe75efeea95c86100b68ce1d12b2ca8b8ccc1880700f67cee3f",
+  "colour_baseline_report": "outputs/u6_p7b_source_context_joint_ablation_v1/run_a/report.json",
+  "colour_baseline_report_sha256": "0738b05477e0f81be2651eb9eb5aef015e3f34134bd08537637d87fc403825e8",
+  "selected_candidate_id": "gauged_spatial_4000",
+  "visual_ids": [
+    "canon_eos_kiss_f",
+    "nikon_d2x",
+    "sony_nex_3n",
+    "fujifilm_finepix_s5000",
+    "olympus_sp550uz",
+    "panasonic_dmc_gf2",
+    "pentax_k_r",
+    "leica_d_lux_6",
+    "kodak_dcs_pro_14n"
+  ],
+  "blind": {
+    "rounds": 3,
+    "seed": 2026072902,
+    "arms": [
+      "colour_only",
+      "gauged_spatial_4000"
+    ],
+    "mapping_must_differ_by_round": true,
+    "score_before_mapping_reveal": true,
+    "minimum_candidate_round_wins": 2
+  },
+  "severe_review": {
+    "maximum_confirmed_severe_candidate_artifacts": 0,
+    "full_resolution_before_blind_preference": true,
+    "confirmed_severe_blocks_mapping_reveal": true
+  },
+  "claim_ceiling": "autonomous severe-artifact and blind development preference evidence for one generic neutral-gauged 4000-dpi physical-inspired challenger; not stock response, print/scanner calibration or product promotion",
+  "post_result_retuning_allowed": false
+}
