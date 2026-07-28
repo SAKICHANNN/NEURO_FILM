@@ -3266,3 +3266,25 @@
   `invalidate-reuse` may force refit; `not-invalidated-veto-only` can never
   authorize reuse. No consumer mapping exists before exact producer schema
   and fixtures are published.
+
+## 2026-07-28 - Map P109 producer HDR shot veto without reuse authority
+
+- The consumer pins R0cn producer commit `ec717bf`, both producer schema
+  hashes and exact fixture hash, then independently reconstructs model and
+  assessment canonical IDs before issuing its own domain-separated decision.
+- Exact safe and harmful producer fixtures map to `refit_required=false/true`
+  respectively, but both fix `reuse_authorized=false`. Persisted-decision
+  reload rejects any attempt to add reuse authority or alter refit,
+  disposition, ceiling or identity.
+- This is an absolute-HDR, veto-only policy fact. It provides no pixel
+  transform, relative-SDR bridge, cache authorization, algorithm promotion or
+  product-delivery state. Forty-nine related tests pass.
+
+## 2026-07-28 - Parameterize P110 frozen acceptance for exact successors
+
+- The P44 evaluator retains its v1 default and accepts an optional strict P107
+  invocation profile. For a successor it binds profile, capability, producer
+  commit and wheel into a new contract ID, so old progress cannot be reused.
+- D-PCT BMKL `7fa0eec` is currently a deterministic source-bound core only,
+  not evaluation-ready: the exact package/wheel/request/response/fixture lock
+  is still required before any P45 intake or P44 execution.
