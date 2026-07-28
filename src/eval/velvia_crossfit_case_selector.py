@@ -139,7 +139,7 @@ def case_knn_labels(
     return (scores >= 0.5).astype(np.int8)
 
 
-def _inner_crossfit_labels(
+def inner_crossfit_labels(
     *,
     outer_fold: int,
     chart_source: np.ndarray,
@@ -305,7 +305,7 @@ def evaluate_crossfit_case_selector(
             source[development], target[development], ao8b
         )
         case_source, case_labels, inner_records, inner_converged = (
-            _inner_crossfit_labels(
+            inner_crossfit_labels(
                 outer_fold=outer_fold,
                 chart_source=chart_source,
                 chart_target=chart_target,
@@ -567,5 +567,6 @@ __all__ = [
     "VelviaCrossfitCaseError",
     "case_knn_labels",
     "evaluate_crossfit_case_selector",
+    "inner_crossfit_labels",
     "validate_contract",
 ]
