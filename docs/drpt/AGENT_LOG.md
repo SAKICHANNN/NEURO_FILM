@@ -6410,3 +6410,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the explicit boundary guard as real-chart-driven algorithm evidence;
   close aesthetic promotion and seek independent paired chart evidence before
   adding capacity or making stronger film claims.
+
+## 2026-07-28 - U5.R2AO4S finds an independent palette proxy
+
+- A 751,834-byte bounded official-CDN reconnaissance retains Figure 6 only as
+  illuminant/exposure nuisance evidence: its apparent Ektachrome/Velvia
+  comparison changes halogen to LED.
+- Figure 11 exposes 47 Velvia/HSI and 56 Ektachrome/HSI uniform paired palette
+  swatches. Open a second-download exact extraction, then test AO0
+  chart-to-pigment transfer without increasing model capacity.

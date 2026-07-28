@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4s-balica-additional-figure-recon-decision-v1",
+  "config_sha256": "e77c1b440570159c94cfb3015bca03f3bfbd67c9c75024d147e2e228a46d9e34",
+  "software_commit": "5a93bb61358e4fe603919b6c4f2e17923db89b80",
+  "report_sha256": "d2fe1e6d70edc65d2e3ec57a13e83ea8182429d57f13a46daba1982844a493ab",
+  "total_download_bytes": 751834,
+  "figure_6": {
+    "sha256": "edea8716ee7d594f13674eeb033b476128a90f28fd13862793da78f723b380a4",
+    "dimensions": [
+      1667,
+      1074
+    ],
+    "decision": "retain_as_nuisance_visual_only",
+    "reason": "the same-scene stock comparison is confounded: Ektachrome is halogen while Velvia is LED; the third panel changes Velvia exposure"
+  },
+  "figure_11": {
+    "sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+    "dimensions": [
+      1569,
+      696
+    ],
+    "velvia_candidate_pairs": 47,
+    "ektachrome_candidate_pairs": 56,
+    "sample_block_maximum_channel_range": 0,
+    "decision": "open_exact_paired_palette_extraction"
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "visual source reconnaissance only; Figure 6 is illuminant/exposure-confounded, while Figure 11 may proceed to a separately frozen stable-palette display-proxy extraction"
+}
