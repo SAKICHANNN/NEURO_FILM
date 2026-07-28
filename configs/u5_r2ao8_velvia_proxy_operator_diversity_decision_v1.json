@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "u5.r2ao8-velvia-proxy-operator-diversity-decision-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2AO8",
-  "software_commit": "ac38192c49fccbf4f9ad103ae5a6a8f1898537e0",
+  "software_commit": "ac3819201ae67f85209672fbf69a46d1632de9b7",
   "contract": {
     "path": "configs/u5_r2ao8_velvia_proxy_operator_diversity_v1.json",
     "sha256": "7aae0d70c2fb5ca30a6a115bc89caf00dba299649b2f73efb4fea104b5df12b8"
