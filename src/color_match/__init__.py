@@ -265,6 +265,16 @@ from .shared_runtime_qualification import (
     validate_runtime_qualified_shared_authorization_binding_v1,
     validate_runtime_qualified_shared_authorization_v1,
 )
+from .shared_runtime_staging_transaction import (
+    RUNTIME_QUALIFIED_SHARED_STAGING_CLAIM_CEILING,
+    RUNTIME_QUALIFIED_SHARED_STAGING_SCHEMA_ID,
+    CommittedRuntimeQualifiedExternalSharedStagingV1,
+    RuntimeQualifiedExternalSharedStagingRunV1,
+    commit_runtime_qualified_external_shared_staging_v1,
+    runtime_qualified_external_shared_staging_run_from_json,
+    runtime_qualified_external_shared_staging_run_to_json,
+    validate_runtime_qualified_external_shared_staging_run_v1,
+)
 from .shared_staging_transaction import (
     EXTERNAL_SHARED_STAGING_CLAIM_CEILING,
     EXTERNAL_SHARED_STAGING_SCHEMA_ID,
@@ -695,6 +705,10 @@ __all__ = [
     "SHARED_RUNTIME_QUALIFICATION_CLAIM_CEILING",
     "SHARED_RUNTIME_QUALIFICATION_SCHEMA_ID",
     "RuntimeQualifiedSharedAuthorizationV1",
+    "RUNTIME_QUALIFIED_SHARED_STAGING_CLAIM_CEILING",
+    "RUNTIME_QUALIFIED_SHARED_STAGING_SCHEMA_ID",
+    "CommittedRuntimeQualifiedExternalSharedStagingV1",
+    "RuntimeQualifiedExternalSharedStagingRunV1",
     "EXTERNAL_SHARED_STAGING_CLAIM_CEILING",
     "EXTERNAL_SHARED_STAGING_SCHEMA_ID",
     "CommittedExternalSharedStagingV1",
@@ -769,6 +783,10 @@ __all__ = [
     "runtime_qualified_shared_authorization_to_json",
     "validate_runtime_qualified_shared_authorization_binding_v1",
     "validate_runtime_qualified_shared_authorization_v1",
+    "commit_runtime_qualified_external_shared_staging_v1",
+    "runtime_qualified_external_shared_staging_run_from_json",
+    "runtime_qualified_external_shared_staging_run_to_json",
+    "validate_runtime_qualified_external_shared_staging_run_v1",
     "commit_external_shared_staging_v1",
     "external_shared_staging_run_from_json",
     "external_shared_staging_run_to_json",
