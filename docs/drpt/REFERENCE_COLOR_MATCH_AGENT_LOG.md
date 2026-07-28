@@ -3578,3 +3578,20 @@
 - Detached synthetic merge `c210650` passes 1230 color-match tests with 30
   explicit skips and 1289 unrelated deselections. Its owned worktree was
   removed. V27 supersedes v26 and is `review-ready-not-merged`.
+
+## 2026-07-28 - Bind file reports to the bytes actually decoded
+
+- A file-level dataflow review reproduced a provenance TOCTOU: reference and
+  source pixels were decoded first, while report hashes were later recomputed
+  from mutable paths. A replacement between those operations could bind the
+  report to bytes that were not rendered.
+- The adapter now hashes each input before and after decode, fails the whole
+  transaction if the identity changes, and carries the captured reference and
+  source file hashes into the immutable result. Report construction validates
+  and uses those captured hashes rather than reopening input paths.
+- Replacement-during-decode tests fail before recipe/output publication;
+  reports remain bound to the original decoded identities after later path
+  mutation; forged captured hashes fail closed. The complete non-manifest
+  color-match regression passes 902 tests with five explicit skips. This
+  payload is `46af790`; v27 remains valid only for its earlier payload and
+  main snapshot pending a successor integration manifest.
