@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p8q_context_reuse_resources_decision.v1",
+  "node": "U6.P8Q",
+  "software_commit": "5d2cf9b",
+  "contract_sha256": "7dbaca171e194d7a3f3a5940fc8a750d270586fb31b2415582ce578e988c7c3d",
+  "report_sha256": "f6945dd8f3df47695fb10ebd2a3529bba6c48548dd0176d257692ac27bc4385d",
+  "stable_evidence_id": "00c5316a467fdfc3a1bf97dde638e4b58ee355604b62b2c5f029266436b4b5eb",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8p": true,
+  "timing_comparison_valid": false,
+  "timing_note": "foreign project Python activity overlapped the formal run; latency is recorded but excluded from selection",
+  "preview_1mp": {
+    "wall_seconds_range": [
+      5.525629799987655,
+      5.672822099993937
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      238690304,
+      239611904
+    ]
+  },
+  "mobile_standard_12mp": {
+    "wall_seconds_range": [
+      45.94028000000981,
+      46.39721070000087
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1040605184,
+      1045929984
+    ]
+  },
+  "memory_comparison": {
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8o_at_mean": 0.216052,
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8h_at_mean": 0.431366
+  },
+  "decision": "context-first scheduling plus destructive encoded-to-linear reuse preserves exact final pixels and cuts mean 12MP peak process-tree RSS by 21.61% versus P8O and 43.14% versus P8H. Retain the implementation. The remaining 0.972GiB mean peak still fails the provisional mobile memory target, so re-attribute the exact current entry before changing another allocation",
+  "candidate_retained": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8R phase-local RSS re-attribution through the exact P8Q production entry, with two exact 12MP repeats and no parameter or pixel changes",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact context-first scheduling and encoded-to-linear buffer reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
