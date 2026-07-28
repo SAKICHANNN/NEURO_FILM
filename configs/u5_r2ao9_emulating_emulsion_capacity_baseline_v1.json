@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao9-emulating-emulsion-capacity-baseline-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO9",
+  "question": "Does a clean-room implementation of the published two-matrix, three four-parameter-sigmoid equation family provide stable held-out accuracy beyond the current bounded one-matrix operator on the exact 71-pair Velvia display-proxy pool without introducing out-of-cube output or local folding?",
+  "parent": {
+    "decision_path": "configs/u5_r2ao8d_velvia_case_residual_domain_confirmation_decision_v1.json",
+    "decision_sha256": "08978a2d6315e66d2f0c927e00c0a99de3e8a85c58feecbd3c8e6b5750624efc",
+    "required_decision": "close_case_selector_as_split_unstable"
+  },
+  "external_method": {
+    "title": "Emulating Emulsion: A Compact Physically-Based Model for Film Colour",
+    "doi": "10.1145/3721250.3743014",
+    "official_project_url": "https://musicofmusix.github.io/siggraphposters25",
+    "official_abstract_url": "https://musicofmusix.github.io/assets/misc/siggraph_abstract.pdf",
+    "official_full_paper_url": "https://drive.google.com/file/d/15CgmzPsECNaqditBze36BHaQvblSkbXd/view",
+    "full_paper_sha256_observed_2026_07_28": "02ce6345ed08cb61b70a7089cc488b5f7d7b6809db2e51ce0c4410f0606a5d47",
+    "published_equation": "M_film_to_scan @ (A / (1 + exp(-k * (M_digital_to_film @ rgb - x0))) + y0)",
+    "published_parameter_count": 30,
+    "published_fit": "SciPy least-squares with an MSE residual",
+    "published_real_data": "3168 unique Velvia 100 chart correspondences from one 36-exposure roll",
+    "source_code_obtained": false,
+    "dataset_obtained": false,
+    "fitted_parameters_obtained": false,
+    "implementation_status": "clean_room_equation_family_baseline_not_exact_source_reproduction"
+  },
+  "paired_source": {
+    "loader_config_path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_v1.json",
+    "loader_config_sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14",
+    "chart_pairs_path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+    "palette_pairs_path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "domains": {
+      "velvia_chart": 24,
+      "velvia_palette": 47
+    },
+    "working_space": "linear_srgb_d65",
+    "evidence_class": "author_rendered_display_proxy_not_digital_film_pair"
+  },
+  "models": {
+    "controls": [
+      "identity",
+      "full_affine",
+      "bounded_one_matrix",
+      "bounded_two_matrix"
+    ],
+    "candidate": "clean_room_published_equation_30_parameter",
+    "candidate_parameterization": {
+      "capture_matrix_entry_bounds": [
+        -2.0,
+        2.0
+      ],
+      "scan_matrix_entry_bounds": [
+        -2.0,
+        2.0
+      ],
+      "response_amplitude_bounds": [
+        0.01,
+        2.0
+      ],
+      "response_slope_bounds": [
+        0.05,
+        10.0
+      ],
+      "response_midpoint_bounds": [
+        -2.0,
+        2.0
+      ],
+      "response_offset_bounds": [
+        -1.0,
+        1.0
+      ],
+      "hard_output_clipping": false
+    },
+    "fit": {
+      "method": "scipy.optimize.least_squares",
+      "loss": "linear",
+      "restart_count": 5,
+      "maximum_function_evaluations": 5000,
+      "function_tolerance": 1e-11,
+      "parameter_tolerance": 1e-11,
+      "gradient_tolerance": 1e-11,
+      "seed": 20250728
+    },
+    "bounded_control_fit": {
+      "identity_mixture": 0.25,
+      "restart_count": 3,
+      "maximum_function_evaluations": 2500,
+      "function_tolerance": 1e-11,
+      "parameter_tolerance": 1e-11,
+      "gradient_tolerance": 1e-11,
+      "loss": "linear",
+      "loss_scale": 0.01,
+      "seed": 20250728
+    }
+  },
+  "evaluation": {
+    "cross_validation": {
+      "fold_count": 5,
+      "assignment": "within_each_domain_index_modulo_fold_count",
+      "fit_normalization_on_development_only": true
+    },
+    "leave_domain_out_directions": [
+      {
+        "fit": "velvia_chart",
+        "confirm": "velvia_palette"
+      },
+      {
+        "fit": "velvia_palette",
+        "confirm": "velvia_chart"
+      }
+    ],
+    "jacobian_grid_size": 9,
+    "jacobian_step": 0.0001,
+    "metrics": [
+      "linear_rgb_rmse",
+      "mean_delta_e76",
+      "maximum_absolute_error",
+      "raw_out_of_cube_fraction",
+      "minimum_and_maximum_raw_output",
+      "finite_difference_jacobian_determinant"
+    ]
+  },
+  "gates": {
+    "all_fits_complete": true,
+    "minimum_candidate_rgb_rmse_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_mean_delta_e76_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_rgb_rmse_gain_each_domain": 0.0,
+    "minimum_candidate_leave_domain_out_rgb_rmse_gain_each_direction": 0.0,
+    "maximum_mean_train_test_rgb_rmse_gap": 0.02,
+    "maximum_mean_raw_out_of_cube_fraction": 0.005,
+    "maximum_fold_raw_out_of_cube_fraction": 0.01,
+    "minimum_jacobian_determinant": 0.0,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "decision_if_pass": "open_separately_frozen_boundary_guarded_photo_frontier_for_the_clean_room_two_matrix_baseline",
+  "decision_if_fail": "retain_bounded_one_matrix_global_proxy_operator_and_close_extra_two_matrix_capacity_on_this_pool",
+  "forbidden_rescue": [
+    "clip candidate outputs before scoring",
+    "change parameter bounds or restarts after seeing confirmation results",
+    "drop a failed fold or leave-domain-out direction",
+    "reinterpret chart-versus-palette structure as latent stock modes",
+    "claim exact reproduction without the authors' source",
+    "claim Velvia stock response or calibration from display proxies"
+  ],
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room capacity-baseline evidence on 71 author-rendered Velvia display-proxy pairs; not the authors' implementation or fitted profile, not real digital-film pair evidence, not stock response, calibration, latent modes, preference or product promotion"
+}
