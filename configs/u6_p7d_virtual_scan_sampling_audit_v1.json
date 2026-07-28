@@ -1,0 +1,91 @@
+{
+  "schema": "neuro_film.u6_p7d_virtual_scan_sampling_audit_contract.v1",
+  "node": "U6.P7D",
+  "parent_attribution": "configs/u6_p7c_spatial_stage_attribution_v1.json",
+  "parent_attribution_sha256": "6ecc9427ef428025c45560a1d92732711567afc067d5188f6a42ccdf0e754e21",
+  "parent_decision": "configs/u6_p7c_spatial_stage_attribution_decision_v1.json",
+  "parent_decision_sha256": "f04ac69e4d9a1b9aba2e4418f0faa601f9c298f662cd27ef33f57138c2e4be0b",
+  "runtime_parent": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "runtime_parent_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "question": "Can an explicit profile-selected virtual scan sampling rate compile the unchanged micrometre spatial profile into a visibly safe photo-space kernel without making the physical contribution immaterial?",
+  "sampling_candidates": [
+    {
+      "candidate_id": "scan_2400_dpi",
+      "sampling_dpi": 2400,
+      "pixel_pitch_um": 10.583333333333334
+    },
+    {
+      "candidate_id": "scan_4000_dpi",
+      "sampling_dpi": 4000,
+      "pixel_pitch_um": 6.35
+    },
+    {
+      "candidate_id": "scan_6400_dpi",
+      "sampling_dpi": 6400,
+      "pixel_pitch_um": 3.96875
+    }
+  ],
+  "negative_control": {
+    "candidate_id": "uncompiled_1um",
+    "sampling_dpi": 25400,
+    "pixel_pitch_um": 1.0,
+    "must_reproduce_p7c_full_chain_outputs": true
+  },
+  "compiler": {
+    "formula": "pixel_pitch_um = 25400 / sampling_dpi",
+    "sampling_rate_is_explicit_profile_metadata": true,
+    "sampling_rate_must_not_be_inferred_from_image_content_or_dimensions": true,
+    "all_sigma_um_gain_order_sensitometry_interpretation_and_ao6_parameters_unchanged": true,
+    "output_label": "generic virtual-scan physical-inspired"
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_combined_per_image_style_delta_e76": 41.10209,
+    "minimum_combined_median_non_basic_delta_e76": 7.0,
+    "minimum_combined_to_colour_median_delta_e76": 0.5,
+    "minimum_images_with_combined_to_colour_delta_e76_at_least_0_5": 12,
+    "minimum_full_to_cheap_median_delta_e76": 0.1,
+    "minimum_combined_to_wrong_order_median_delta_e76": 0.25,
+    "minimum_median_post_ao6_edge_energy_ratio_to_cheap": 0.65,
+    "minimum_worst_image_post_ao6_edge_energy_ratio_to_cheap": 0.35,
+    "maximum_confirmed_severe_combined_artifacts": 0
+  },
+  "selection": {
+    "automatic_eligible_first": true,
+    "visual_severe_veto_before_preference": true,
+    "choose_highest_sampling_dpi_that_passes_all_gates": true,
+    "blind_preference_against_colour_only_only_after_candidate_selection": true,
+    "minimum_candidate_preference_round_wins": 2,
+    "production_promotion_allowed": false
+  },
+  "population": {
+    "inherit_exact_16_rows_and_9_visual_ids": true,
+    "allowed_use": "development-evaluation-only",
+    "decoded_color_state": "display-referred-srgb"
+  },
+  "official_sampling_context": [
+    {
+      "source": "Epson Perfection V800/V850 official user guide",
+      "url": "https://files.support.epson.com/docid/cpd4/cpd41530.pdf",
+      "fact": "film-holder optical sampling is specified at 6400 dpi"
+    },
+    {
+      "source": "Kodak motion-picture glossary",
+      "url": "https://www.kodak.com/en/motion/page/glossary-of-motion-picture-terms/",
+      "fact": "film scan resolution is a separate acquisition property commonly described as 1K/2K/4K"
+    }
+  ],
+  "execution": {
+    "runs": 2,
+    "report_and_render_inventory_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "branch_rule": {
+    "no_candidate_automatic_pass": "close this grid and preserve cheap_no_spatial plus individual physical primitives",
+    "automatic_pass_visual_fail": "close the selected scale before preference and preserve colour-only AO6",
+    "preference_fail": "retain the scale compiler as mechanism evidence but keep colour-only AO6",
+    "complete_pass": "retain one fixed-DPI generic development challenger and open a separate resolution/tiling invariance audit; do not change production default"
+  },
+  "claim_ceiling": "generic explicit virtual-scan sampling sensitivity and autonomous development evidence; not a measured scanner, film stock, process, calibration or product promotion"
+}

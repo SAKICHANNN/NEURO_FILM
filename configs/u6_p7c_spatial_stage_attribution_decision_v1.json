@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p7c_spatial_stage_attribution_decision.v1",
+  "node": "U6.P7C",
+  "decision": "forward_scatter_dominates_loss_because_synthetic_pixel_pitch_was_applied_uncompiled",
+  "contract_sha256": "6ecc9427ef428025c45560a1d92732711567afc067d5188f6a42ccdf0e754e21",
+  "software_commit": "fe364b9a499da8b860c199995f70da1c5fd2fa18",
+  "report_sha256_run_a": "298a88779522ae4de94a3dfb2be69450e10e7e83db391873409d3a4a5c7f2e17",
+  "report_sha256_run_b": "298a88779522ae4de94a3dfb2be69450e10e7e83db391873409d3a4a5c7f2e17",
+  "stable_evidence_id": "2c62d6cf0844389a0259d9d043dba1151c26773d0ffe848b16f4f78b82bcd2fd",
+  "exact_file_count_per_run": 82,
+  "all_repeat_identity": true,
+  "maximum_new_hard_boundary_fraction": 0.0,
+  "median_post_ao6_edge_energy_ratio_to_cheap": {
+    "cheap_no_spatial": 1.0,
+    "forward_scatter": 0.05238489051469805,
+    "development_adjacency": 0.05405357653103482,
+    "dye_diffusion": 0.0466176070247597,
+    "scanner_mtf": 0.03768895628380027
+  },
+  "cumulative_stage_edge_energy_drop": {
+    "forward_scatter": 0.9476151094853019,
+    "development_adjacency": -0.0016686860163367678,
+    "dye_diffusion": 0.00743596950627512,
+    "scanner_mtf": 0.008928650740959429
+  },
+  "median_delta_e76_to_previous": {
+    "forward_scatter": 2.725976054852347,
+    "development_adjacency": 0.026420225820207525,
+    "dye_diffusion": 0.1288920659627227,
+    "scanner_mtf": 0.14740824799158169
+  },
+  "diagnostic_sha256": "ae9022ada6304d8a5bc32bbd46639c16b0b70feefe1677311b04d7f6ecc8ebbc",
+  "visual_diagnosis": "the first cumulative transition already introduces the dominant visible blur; later stages add smaller losses",
+  "root_cause": {
+    "synthetic_profile_pixel_pitch_um": 1.0,
+    "forward_scatter_sigma_um_rgb": [3.5, 3.0, 2.5],
+    "uncompiled_sigma_pixels_rgb": [3.5, 3.0, 2.5],
+    "diagnosis": "P5A froze a 1 um sampling pitch for synthetic physical-coordinate charts. P7B reused that synthetic sampling pitch on arbitrary photo pixels without an explicit virtual scan sampling profile. The physical micrometre parameters are not themselves rejected; their direct uncompiled application is rejected."
+  },
+  "preference_review_performed": false,
+  "production_default_changed": false,
+  "next_leaf": "U6.P7D explicit virtual-scan sampling compiler and fixed-DPI sensitivity audit",
+  "claim_ceiling": "generic physical-inspired stage attribution and sampling-domain mismatch evidence; no accepted scale, product, stock, process, scanner or calibration claim"
+}
