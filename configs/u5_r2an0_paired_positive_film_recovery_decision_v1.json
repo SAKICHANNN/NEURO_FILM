@@ -1,0 +1,14 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "clean-room synthetic known-operator recovery evidence for an explicit positive-film Look Approximation fitter; not a fit to Velvia 100 or any real film, not unpaired operator identification, not calibrated and not production promotion",
+  "config_sha256": "dd711c5e07344b60d5a954f0297bf513dc18f11a1c78e158eb7c65a7af4b89af",
+  "decision": "advance_paired_positive_film_recovery",
+  "experiment_id": "u5.r2an0-paired-positive-film-recovery-v1",
+  "report_sha256": [
+    "22fc3542ed2b7a5304ac558c761683617414c4fed0af103b90789d35aedea36d",
+    "22fc3542ed2b7a5304ac558c761683617414c4fed0af103b90789d35aedea36d"
+  ],
+  "reports_byte_identical": true,
+  "schema": "neuro-film.u5.r2an0.repeat-decision.v1",
+  "software_commit": "02549c355c6cb4f9ab9dad94aa32058c70378b70"
+}

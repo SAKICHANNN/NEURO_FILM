@@ -6329,3 +6329,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   execution remains next.
 - Nine focused AN0/J0 tests pass, including non-unit-amplitude truth recovery,
   exact design counts, fail-closed inputs and matrix determinant coverage.
+
+## 2026-07-28 - U5.R2AN0 formal paired recovery passes
+
+- Two fresh 21,362-byte reports are exact at `22fc3542...a36d`.
+  All three two-matrix witnesses recover at approximately machine precision
+  on 2,256 complement-held rows; one-matrix controls remain near 1% RMSE.
+- All frozen automatic and structural gates pass. Advance only to controlled
+  noise/outlier robustness; real film, Velvia, calibration and product claims
+  remain closed.
