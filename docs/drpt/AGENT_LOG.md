@@ -5600,3 +5600,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   safety evidence only, never film, stock, calibration or preference truth.
   No fitting/training/routing or product integration opens. Acquisition and
   preflight implementation are the next ready leaf; Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AI1S acquisition and integrity preflight
+
+- **Implementation:** add a resumable per-file capped HTTPS downloader that
+  verifies every frozen SHA before atomic replacement, the established
+  camera-WB neutral RAW decode, lossless bounded PNG previews, exact/dHash
+  within- and cross-development checks, simple invalid-colour diagnostics and
+  a source-only contact sheet.
+- **Epistemic guard:** each manifest row carries URL/source ID, CC0 snapshot,
+  rights scope, hashes, derivation parameters and allowed use. Unavailable
+  author/uploader/scene/roll/lab/scanner/process fields are explicit
+  `unknown`; validation rejects invented roll/scanner labels.
+- **Verification:** five focused tests cover the frozen contract, deterministic
+  hashes/diagnostics, within/cross duplicate reporting, lineage fail-closed
+  behavior and repo-root CLI loading. `compileall`, `git diff --check` and the
+  complete CPU suite pass (`1046 passed`).
+- **Structure/risk:** new code remains in `src/eval/`, launcher in `scripts/`
+  and tests in `tests/`; no renderer/API/schema/default path changes. The
+  exact bounded download and source audit are next. Goal remains ACTIVE.
