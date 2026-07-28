@@ -17,6 +17,12 @@ from scripts.audit_reference_match_file_memory_v1 import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "reference_match_file_memory_v1.json"
 DECISION = ROOT / "configs" / "reference_match_file_memory_decision_v1.json"
+P156_GATES = (
+    ROOT / "configs" / "reference_match_chunked_render_memory_gates_v1.json"
+)
+P156_RUN = (
+    ROOT / "configs" / "reference_match_chunked_render_memory_run_v1.json"
+)
 
 
 def _run(variant: str, rss: int, token: str = "same") -> dict:
@@ -29,6 +35,7 @@ def _run(variant: str, rss: int, token: str = "same") -> dict:
             "recipe_sha256": token,
             "normalized_report_sha256": token,
             "safety_action": "identity-fallback",
+            "worker_wall_seconds": 10.0,
         },
     }
 
@@ -121,6 +128,43 @@ def test_evaluate_runs_rejects_artifact_or_action_drift() -> None:
     runs[2] = _run("candidate", 700_000_000)
     runs[2]["worker_result"]["safety_action"] = "applied"
     assert not evaluate_runs(config, runs)["automatic_pass"]
+
+
+def test_p156_run_binds_the_frozen_gates_and_candidate() -> None:
+    gates = json.loads(P156_GATES.read_text(encoding="utf-8"))
+    run = load_config(P156_RUN)
+    assert run["node"] == "P156"
+    assert run["baseline_commit"] == gates["functional_parent_commit"]
+    assert run["candidate_commit"] == (
+        "240e6e6a81129c5bca298915d7caf9f013b74d15"
+    )
+    for field in (
+        "minimum_median_rss_reduction_bytes",
+        "maximum_candidate_to_baseline_median_rss_ratio",
+        "maximum_candidate_to_baseline_median_worker_wall_ratio",
+        "orphan_worker_count",
+        "staging_temporary_count",
+    ):
+        assert run["gates"][field] == gates["gates"][field]
+    assert run["claim_ceiling"] == gates["claim_ceiling"]
+
+
+def test_p156_wall_gate_is_fail_closed() -> None:
+    config = json.loads(P156_RUN.read_text(encoding="utf-8"))
+    runs = [
+        _run("baseline", 1_400_000_000),
+        _run("candidate", 1_000_000_000),
+        _run("candidate", 1_000_000_000),
+        _run("baseline", 1_400_000_000),
+    ]
+    for run in runs:
+        run["worker_result"]["worker_wall_seconds"] = (
+            12.0 if run["variant"] == "candidate" else 10.0
+        )
+    result = evaluate_runs(config, runs)
+    assert result["memory_gate_pass"]
+    assert not result["worker_wall_gate_pass"]
+    assert not result["automatic_pass"]
 
 
 def test_p154_decision_preserves_the_failed_frozen_gate() -> None:

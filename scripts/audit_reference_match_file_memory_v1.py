@@ -63,8 +63,11 @@ def _atomic_write_json(path: Path, payload: Any) -> None:
 
 def load_config(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema_version") != 1 or payload.get("node") != "P154":
-        raise ValueError("config must be the P154 schema_version 1 contract")
+    if (
+        payload.get("schema_version") != 1
+        or payload.get("node") not in {"P154", "P156"}
+    ):
+        raise ValueError("config must be a supported file-memory contract")
     if payload.get("execution_order") != [
         "baseline",
         "candidate",
@@ -562,6 +565,22 @@ def evaluate_runs(
         if complete
         else None
     )
+    baseline_wall_median = (
+        statistics.median(
+            run["worker_result"]["worker_wall_seconds"]
+            for run in variants["baseline"]
+        )
+        if complete
+        else None
+    )
+    candidate_wall_median = (
+        statistics.median(
+            run["worker_result"]["worker_wall_seconds"]
+            for run in variants["candidate"]
+        )
+        if complete
+        else None
+    )
     reduction = (
         baseline_median - candidate_median
         if baseline_median is not None and candidate_median is not None
@@ -579,6 +598,22 @@ def evaluate_runs(
         and ratio
         <= float(gates["maximum_candidate_to_baseline_median_rss_ratio"])
     )
+    wall_ratio = (
+        candidate_wall_median / baseline_wall_median
+        if baseline_wall_median not in (None, 0)
+        and candidate_wall_median is not None
+        else None
+    )
+    maximum_wall_ratio = gates.get(
+        "maximum_candidate_to_baseline_median_worker_wall_ratio"
+    )
+    wall_pass = bool(
+        wall_ratio is not None
+        and (
+            maximum_wall_ratio is None
+            or wall_ratio <= float(maximum_wall_ratio)
+        )
+    )
     artifact_pass = bool(
         parity["output_sha256"]
         and parity["recipe_sha256"]
@@ -586,7 +621,11 @@ def evaluate_runs(
     )
     identity_pass = actions == {"identity-fallback"}
     automatic_pass = bool(
-        complete and artifact_pass and identity_pass and memory_pass
+        complete
+        and artifact_pass
+        and identity_pass
+        and memory_pass
+        and wall_pass
     )
     return {
         "complete_run_matrix": complete,
@@ -596,9 +635,13 @@ def evaluate_runs(
         "candidate_median_peak_process_tree_rss_bytes": candidate_median,
         "median_rss_reduction_bytes": reduction,
         "candidate_to_baseline_median_rss_ratio": ratio,
+        "baseline_median_worker_wall_seconds": baseline_wall_median,
+        "candidate_median_worker_wall_seconds": candidate_wall_median,
+        "candidate_to_baseline_median_worker_wall_ratio": wall_ratio,
         "artifact_parity_pass": artifact_pass,
         "identity_fallback_pass": identity_pass,
         "memory_gate_pass": memory_pass,
+        "worker_wall_gate_pass": wall_pass,
         "automatic_pass": automatic_pass,
         "claim_ceiling": config["claim_ceiling"],
     }
