@@ -656,6 +656,7 @@ FLUX.2 gate:
 | U6.6 | pending | 100MP/video determinism | U1.6, U6.1–U6.4 | Seam-free stills; temporal report |
 | U6.P0-P1 | in progress: P0/P1A pass | Freeze typed physical-domain/profile/performance contracts, then build offline float64 reference simulators | AO9 closure + U2.2/U6 history | P0 typed domains/profile/counter and 1207-test regression pass. P1A full-frame positive scatter has exact repeat, `5.44e-14` impulse-energy error and zero linearity error; generic reference only. P1B structure reference and P3 compiled challenger next |
 | U6.P2-P9 | gated | Physical exposure/development, halation, image structure, spatial/scanner response, combined evaluation, profile compilation and still/video runtime | U6.P0/P1 evidence plus node-specific data gates | Preserve U6.1-U6.6 history; use `docs/planning/PHYSICAL_FILM_IMAGING_PROGRAM_2026.md` |
+| U6.P3A-P3B | complete: numerical pass / direct Standard performance close | Compile the fixed P1A scatter to positive separable float32 and measure 1/12/24MP | P1A pass | worst reference error `1.25e-7`, exact repeat/row partitions and no clipping; 24MP takes `18.39-18.54s` at `1.29-1.36GiB`, missing provisional 15s/1GiB goals. Keep as exact baseline; near-direct/far-pyramid challenger next |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

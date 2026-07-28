@@ -6500,3 +6500,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reports (`aab9a02d...08b1c`), `5.44e-14` impulse-energy error, zero measured
   linearity error and no negative exposure. It is generic synthetic reference
   evidence only; compiled scatter and developed-structure references remain.
+- P3A compiles the same positive kernels to float32 separable execution:
+  worst reference error is `1.25e-7`, impulse energy error `4.55e-8`, and
+  7/64/257-row reconstruction is exact. Isolated P3B runs are hash-repeatable,
+  but 24MP takes `18.39-18.54s` and `1.29-1.36GiB`, missing the provisional
+  15s/1GiB targets. Direct remains the numerical baseline; open a fixed
+  near-direct/far-pyramid challenger instead of weakening the physics order.

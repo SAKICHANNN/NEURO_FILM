@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p3_compiled_scatter_decision.v1",
+  "node": "U6.P3A-P3B",
+  "status": "numerical-pass-direct-standard-performance-close",
+  "contract_sha256": "ef0f672bb13438d2a05fcd6d73a61cad6265a03c37866e7d7d5388828a53e223",
+  "software_commit": "dea4f83090fffc5e1cd304c294afcd4270cbaa34",
+  "formal_report_sha256": "f98f313229b67d5a14c5b9e8ec0741c985914f562309baf2043b7b401c1b7dda",
+  "stable_evidence_id": "13b3e37170beaf254b21eb6172d6cfeb941525409dd1be04f0c57bc7549ed514",
+  "numerical_metrics": {
+    "reference_max_abs_error": 1.2536375382232734e-07,
+    "reference_mean_abs_error": 1.90616903479063e-08,
+    "impulse_energy_abs_error": 4.5510357704614535e-08,
+    "required_halo_pixels": 180,
+    "repeat_and_partition_exact": true
+  },
+  "benchmark": {
+    "benchmark_commit": "b49cb09853ca8da32282349a80029c12cf8582e6",
+    "report_sha256": "31a0f56831f9eebc62e579d19f694600315b1e556516e2c3c996a9fb8b54ac47",
+    "output_repeat_exact_all_shapes": true,
+    "one_mp_apply_seconds": [
+      0.7961921000096481,
+      0.8863603999925544
+    ],
+    "twelve_mp_apply_seconds": [
+      8.471790699986741,
+      8.763300999999046
+    ],
+    "twenty_four_mp_apply_seconds": [
+      18.39110890000302,
+      18.54139280000527
+    ],
+    "twenty_four_mp_peak_process_tree_gib": [
+      1.3604927062988281,
+      1.2899551391601562
+    ],
+    "targets_are_provisional": true
+  },
+  "claim_ceiling": "generic-physical-inspired-development-baseline",
+  "branch_decision": "Retain direct separable as the numerical baseline. It misses provisional 24MP ordinary-CPU time and desktop-memory targets, so open a fixed near-direct plus far-pyramid challenger against the unchanged P1 reference."
+}
