@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p8ai_native_composed_display_contract.v1",
+  "node": "U6.P8AI",
+  "parent_decision": "configs/u6_p8ah_native_ao6_residual_decision_v1.json",
+  "parent_decision_sha256": "d0a24ab6c6bb590b42f62306779933cb2c959e6843c7da6b516ac587d906e0d6",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "fixture": {
+    "height": 23,
+    "width": 29,
+    "seed": 20260729
+  },
+  "tile_rows": [
+    1,
+    3,
+    7,
+    16,
+    32
+  ],
+  "expected_fixture": {
+    "source_encoded_sha256": "f00bd71f41ee594de81edbff82a69d5885b6c7a5a21491f4ca94c7a3c98cbb51",
+    "physical_scanner_linear_sha256": "88d46eaad7769249ca391b6f3a2ada16a0bc5de3afb65f449d5d2a1bb6e8a2da",
+    "neutral_gauged_linear_sha256": "b861556387885c2505eca3d5ca191d00b2a54733813ae7ea12744e215b85caf0",
+    "external_base_encoded_sha256": "36ea4fc343f9b5abf9d4b21518ee0059a201084493d938aaea0c33ba6799be83",
+    "native_residual_linear_sha256": "6a282af99562110292e3a664e47810cdf154238e4b2439a5778c97b8cabfe02d",
+    "native_output_encoded_sha256": "be4bf6f40b2e60c008f587ad418f7c281a44acf7d51d90bfa7baf4b02f0ca5bc"
+  },
+  "gates": {
+    "maximum_encoded_error": 0.000001,
+    "physical_partition_parity": "byte-exact",
+    "gauge_partition_parity": "byte-exact",
+    "external_base_partition_parity": "byte-exact",
+    "residual_partition_parity": "byte-exact"
+  },
+  "stage_ownership": {
+    "physical_chain": "native explicit float32 sample ABIs",
+    "neutral_gauge": "native explicit 3x1025-knot RQS ABI",
+    "source_context_base": "external frozen Python artifact reference",
+    "t15_c35_residual": "native explicit operator and analytical gamut guard",
+    "quantization": "outside this fixture"
+  },
+  "claim_ledger": {
+    "physical_chain_is_stock_calibrated": false,
+    "ao6_is_physical_truth": false,
+    "source_context_is_refit_per_partition": false,
+    "look_parameters_are_reused_as_physical_parameters": false,
+    "production_path_opened": false
+  },
+  "forbidden_claims": [
+    "native AO6 source-context base",
+    "full-resolution resources",
+    "complete decoder, encoder or display renderer",
+    "calibrated stock or physical truth",
+    "production promotion"
+  ],
+  "claim_ceiling": "small-fixture ordered native physical plus gauge plus fixed AO6 residual composition around one external source-context base; not a complete native renderer"
+}

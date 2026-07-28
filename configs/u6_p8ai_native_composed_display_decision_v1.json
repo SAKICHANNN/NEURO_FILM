@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p8ai_native_composed_display_decision.v1",
+  "node": "U6.P8AI",
+  "contract": "configs/u6_p8ai_native_composed_display_v1.json",
+  "contract_sha256": "983140175e29d540b56f407de24842e2918e710e97756252e9fed28bb55d0076",
+  "formal_report": "outputs/u6_p8ai_native_composed_display_v1/report.json",
+  "formal_report_sha256": "840440ce6d093194c13c6f3bf83a685c93c0dd4e38580920982c5f2da01a0ac5",
+  "stable_evidence_id": "38690e9a419e6c49e026ebd04d24263ef82dec6f387565a2ae4aca87a1c1ad75",
+  "result": {
+    "status": "pass",
+    "shape": [
+      23,
+      29,
+      3
+    ],
+    "partition_rows": 10,
+    "all_stage_partition_rows_byte_exact": true,
+    "maximum_encoded_error_vs_python_residual": 3.517076641035288e-8,
+    "native_output_encoded_sha256": "be4bf6f40b2e60c008f587ad418f7c281a44acf7d51d90bfa7baf4b02f0ca5bc"
+  },
+  "decision": "retain the ordered native Standard composition boundary. Physical, neutral-gauge and fixed AO6 residual stages are byte-exact across five row sizes and both orders around one frozen external source-context base; the final encoded result stays within 3.52e-8 of the Python residual reference. The source-context base remains the only non-native colour stage and is not refit per partition",
+  "production_default_changed": false,
+  "claim_ceiling": "small-fixture ordered native physical plus gauge plus fixed AO6 residual composition around one external source-context base; not a complete native renderer",
+  "next_leaf": "U6.P8AJ freeze a native source-context base representation candidate or formally retain the Python reference boundary after a complexity and product-value audit"
+}
