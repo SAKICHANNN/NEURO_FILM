@@ -2393,6 +2393,20 @@
   declaration for its ongoing native work. Runtime readiness is also not
   algorithm promotion or transaction authorization.
 
+## 2026-07-28 - Freeze P61 runtime-qualified shared authorization
+
+- Node/parent goal: P61A-D / close P49's unbound runtime-boolean gap.
+- Finding: historical P49 correctly replays P45, P47 and P48, but P45 v1
+  classifies runtime from four declaration booleans. Therefore a P49
+  `authorized-for-staging` state is not factual four-target runtime evidence.
+- Contract: preserve every P49/P60 v1 identity and add one qualification
+  decision binding the exact P49 authorization, embedded declaration and
+  exact P60 evidence. Only upstream authorization plus all four factual
+  runtime targets yields `runtime-qualified-for-staging`; otherwise the
+  decision is atomic identity fallback with canonical reasons.
+- Scope: consumer contract/schema/tests/docs only. No staging write, producer
+  call, native implementation, product application or retroactive P49 relabel.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -233,6 +233,10 @@ with a selected stock, but reference matching alone is labeled
 | P60B | DONE | implement runtime bundle and decision | distinguish host/device execution from cross-compile/link/object evidence | `eee47a2`; code/schema/tests | no native implementation |
 | P60C | DONE | prove identity/proof-class/four-target closure | foreign declaration/capability, duplicate/missing target, weak proof, replay/hash/fact tamper reject | 17 dedicated tests | fail closed |
 | P60D | DONE | propagate evidence and reserve exact producer mapping | 621 all-color; 1516 pass/1 skip/36 known; latest-main merge 42 pass | evidence commit | real mapping waits for a fixed successor declaration |
+| P61A | IN PROGRESS | freeze runtime-qualified shared authorization | bind exact P49 authorization to exact P60 evidence without mutating either v1 identity | plan commit | qualification only |
+| P61B | READY | implement canonical qualification decision | require P49 authorized plus all four P60 targets factual-ready | code/schema/tests | no staging write |
+| P61C | BLOCKED ON P61B | prove foreign/tampered/weak-runtime closure | P49/declaration/evidence substitution, fallback, missing target and identity mutation reject | adversarial tests | fail closed |
+| P61D | BLOCKED ON P61C | propagate guard and identify durable consumer | all-color/latest-main; P50 remains historical until a versioned consumer exists | evidence commit | no retroactive v1 relabel |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
