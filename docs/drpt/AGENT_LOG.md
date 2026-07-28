@@ -6585,3 +6585,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   speckle, banding, clipping, seam or geometry failure. Inputs are
   display-sRGB-derived pseudo-exposures, so this is artifact/OOD evidence only,
   not scene-linear, film, process, scanner or product-look validation.
+- P6A removes scanner ownership from the film/development spatial model and
+  defines an independent scanner nuisance/output profile. Two reports are
+  byte-identical at `fe7695c6...f34817`. Identity is exact; illuminant/spectral,
+  flare, Dmax, MTF and coordinate-stable bounded noise each have a nonzero
+  ablation, while two generic profiles differ by `.10515`, changed noise seed
+  differs by `.00875`, and noise creates zero new boundary pixels. Scanner MTF
+  stays below Nyquist. This proves a software representation only: no real
+  scanner, stock, process or repeat-scan calibration exists.

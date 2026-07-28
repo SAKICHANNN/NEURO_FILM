@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p6a_scanner_profile_decision.v1",
+  "node": "U6.P6A",
+  "status": "automatic-pass-representation-only",
+  "contract_sha256": "bdf9595635002cee726e2dc63ab4a0a2def7d350a3e3033bab2e43c502cc34e7",
+  "software_commit": "d2b55e7f0253e8de4aed3dfbe09bbe368ce7e2c5",
+  "report_sha256": "fe7695c6d526fcac9d16ac66f62ef790c4ad543924dc71b0e5ecd0d984f34817",
+  "stable_evidence_id": "17fafa26d4c165c4f3a434d089ab1dae25b49d47fbbc98d3f94a90b2a7605b15",
+  "repeat_report_count": 2,
+  "metrics": {
+    "minimum_stage_ablation_max_abs": 0.0003187108210190074,
+    "scanner_a_vs_b_max_abs": 0.10514639620510269,
+    "seed_change_max_abs": 0.008754510644594427,
+    "noise_new_boundary_fraction": 0.0,
+    "scanner_a_mtf50_cycles_per_mm": [
+      164.29300108406485,
+      180.38440383257353,
+      150.82348807024317
+    ],
+    "scanner_b_mtf50_cycles_per_mm": [
+      226.97682625999556,
+      140.9893092621675,
+      182.4586547476237
+    ]
+  },
+  "claim_ceiling": "generic-scanner-nuisance-output-profile-representation-development",
+  "branch_decision": "Retain the explicit scanner boundary with identity, illuminant/spectral, flare, Dmax, MTF and deterministic bounded noise components. Scanner profile identity remains independent from stock/mode identity. No real scanner is calibrated. Proceed to an exact context-bound row-streaming compiler and separately record the repeat-scan calibration data gap."
+}
