@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao6-b0-real-film-residual-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO6",
+  "decision": "retain_b0_plus_film_t15_c35_as_B0_development_champion_open_fresh_OOD_confirmation",
+  "software_commit": "131a5691b989085c5e76575240a62b1961b80d6f",
+  "contract": {
+    "path": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+    "sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b"
+  },
+  "visual_contract": {
+    "path": "configs/u5_r2ao6v_b0_real_film_residual_visual_v1.json",
+    "sha256": "762b4604e4ea6bb1507913a6aa1992268e0ab7f148467bfa38739b9f30e70119"
+  },
+  "run_a": {
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
+    "automatic_report_sha256": "582f3cd74c65b8bd0e7dff9a956336a422374b5c86158f1d1a894a671ff8c9ab"
+  },
+  "run_b": {
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
+    "automatic_report_sha256": "582f3cd74c65b8bd0e7dff9a956336a422374b5c86158f1d1a894a671ff8c9ab"
+  },
+  "repeat_byte_identical": true,
+  "automatic_evidence": {
+    "retained_candidate": "b0_plus_film_t15_c35",
+    "gold_median_style_delta_e76": 13.235349374774573,
+    "gold_median_non_basic_residual_delta_e76": 9.87424571023939,
+    "gold_median_real_film_delta_e76_from_base": 2.0468417290317964,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0,
+    "automatic_survivor": true
+  },
+  "visual_evidence": {
+    "pre_reveal_review_sha256": "95434e9866eea17572f400413fe7df6abcfacbad8e52af250eb85cfb66517fb0",
+    "private_mapping_sha256": "d0e44e2eb579e5a171d691d16234bc6b9587cd9648f90a30b2666d7e4bc274d0",
+    "wins_over_fixed_B0": 2,
+    "rounds": 3,
+    "wins_over_b0_plus_film_t20_c50": 3,
+    "full_resolution_candidates": 2,
+    "full_resolution_gold_images_per_candidate": 9,
+    "confirmed_severe_artifact_count": 0,
+    "id11_red_speckle_or_posterization": false
+  },
+  "fresh_confirmation_requirement": {
+    "reuse_old_ai1_rows_as_untouched_confirmation_allowed": false,
+    "new_pixel_population_required": true,
+    "candidate_or_threshold_change_after_source_pixels_seen_allowed": false
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "autonomous B0 development evidence for one fixed vivid look followed by a small bounded residual from one 71-pair Velvia display proxy; not independent preference, stock response, calibration or product promotion"
+}
