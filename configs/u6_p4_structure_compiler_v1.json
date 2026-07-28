@@ -1,0 +1,95 @@
+{
+  "schema": "neuro_film.u6_p4_structure_compiler_contract.v1",
+  "node": "U6.P4A",
+  "parent_contract_sha256": "86df2b1eaf737a5178036668afafaaf347384d073070e89b2c19d809f8bf6ff6",
+  "parent_report_sha256": "3a54e40b663acedab4404c760869dfb08f2c3655ac1697201ade32cf5b855310",
+  "claim_ceiling": "generic-physical-inspired-development-challenger",
+  "split": {
+    "development_reference_seed": 260731,
+    "confirmatory_reference_seed": 260733,
+    "candidate_seed": 260737,
+    "normalization_and_parameter_fit": "development-only"
+  },
+  "candidate": {
+    "family": "counter-gaussian-copula-marginal-compiler",
+    "colour_marginal": "gamma-optical-density",
+    "bw_marginal": "beta-transmittance",
+    "correlation_kernel": "positive-separable-gaussian",
+    "correlation_sigma_grid_pixels": [
+      0.0,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "final_domains": [
+      "developed-optical-density",
+      "film-transmittance"
+    ],
+    "display_rgb_composition": false,
+    "hard_clipping": false
+  },
+  "metrics": {
+    "interior_margin_pixels": 8,
+    "acf_lags": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "radial_nps_bands_cycles_per_pixel": [
+      [
+        0.0,
+        0.08
+      ],
+      [
+        0.08,
+        0.22
+      ],
+      [
+        0.22,
+        0.5
+      ]
+    ]
+  },
+  "automatic_gates": {
+    "mean_abs_error_max": 0.04,
+    "variance_ratio_min": 0.65,
+    "variance_ratio_max": 1.45,
+    "acf_abs_error_max": 0.2,
+    "nps_band_relative_error_max": 0.5,
+    "repeat_exact": true,
+    "partition_exact": true,
+    "domain_valid": true
+  },
+  "frozen_negative_control": {
+    "id": "U6.2B-salt-like-bright-speckles",
+    "required": "No additive display-RGB path or isolated positive RGB impulse is present."
+  },
+  "forbidden_fallbacks": [
+    "fit on confirmatory reference",
+    "per-image normalization",
+    "display RGB noise",
+    "hard clipping",
+    "change P1B material reference",
+    "relax gates after confirmatory result",
+    "claim stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain as a P4 development compiler and proceed to resolution/LOD and full-image severe-artifact evaluation",
+    "fail": "close this copula compiler; retain P1B reference and test a separately preregistered compound-Poisson approximation"
+  }
+}
