@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p3_pyramid_scatter_challenger_contract.v1",
+  "node": "U6.P3C",
+  "parent_reference_report_sha256": "aab9a02d63a6832f4e65c250125a2777c63a6c50436ec242b34790ddae608b1c",
+  "direct_baseline_report_sha256": "f98f313229b67d5a14c5b9e8ec0741c985914f562309baf2043b7b401c1b7dda",
+  "claim_ceiling": "generic-physical-inspired-development-challenger",
+  "candidate": {
+    "near_kernel": "direct-separable-float32",
+    "far_kernel": "shape-stable-box-downsample-gaussian-bilinear-upsample",
+    "target_coarse_sigma_pixels": 6.0,
+    "minimum_pyramid_factor": 2,
+    "boundary_mode": "zero-outside-full-frame",
+    "hard_clipping": false,
+    "component_energy_and_sigma_locked": true
+  },
+  "automatic_gates": {
+    "impulse_reference_max_abs_error": 0.0005,
+    "edge_reference_max_abs_error": 0.001,
+    "random_reference_max_abs_error": 0.001,
+    "random_reference_mean_abs_error": 0.0001,
+    "impulse_energy_abs_error": 0.002,
+    "minimum_output": -2e-7,
+    "far_halo_red_over_blue_min": 1.05,
+    "repeat_float32_exact": true
+  },
+  "performance_confirmation": {
+    "shapes": [
+      [
+        3000,
+        4000,
+        3
+      ],
+      [
+        4000,
+        6000,
+        3
+      ]
+    ],
+    "runs_per_shape": 2,
+    "twenty_four_mp_apply_seconds_provisional_max": 15.0,
+    "twenty_four_mp_peak_process_tree_gib_provisional_max": 1.0,
+    "targets_are_not_product_claims": true
+  },
+  "forbidden_fallbacks": [
+    "retune physical sigma or energy",
+    "hard clip",
+    "screen blend",
+    "reflect or wrap boundaries",
+    "accept visible seams",
+    "claim calibrated stock halation"
+  ],
+  "branch_rule": {
+    "pass": "retain pyramid as the Standard implementation candidate and proceed to point/edge visual-scale diagnostics",
+    "numerical_fail": "close pyramid and retain direct baseline",
+    "performance_fail": "retain only as Preview or continue compiler optimization without changing the physical profile"
+  }
+}
