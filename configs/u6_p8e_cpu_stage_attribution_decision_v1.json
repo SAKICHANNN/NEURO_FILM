@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p8e_cpu_stage_attribution_decision.v1",
+  "node": "U6.P8E",
+  "software_commit": "1533d9d",
+  "contract_sha256": "bd098a7d3ce3f3ccf8c729ddb482f9d231007f0e4ee133fb58d0483bff2fb4d9",
+  "report_sha256": "a915ef25f587f44885f3b0c3903262e31d6fcb2cd304c55a2099ad16fbf7eff7",
+  "stable_evidence_id": "03cbeac3aa156622a0f97c877a93e001bf5253b532303ead5ee77e5854b9dc57",
+  "reference_output_exact": true,
+  "repeat_output_exact": true,
+  "attributed_seconds_range": [
+    4.743,
+    4.78
+  ],
+  "mean_time_share_percent": {
+    "safe-lab-base": 38.7856,
+    "physical-spatial": 25.8941,
+    "t15-c35-residual": 12.2287,
+    "source-context-build": 12.1935,
+    "neutral-gauge": 6.1535,
+    "scene-linear-to-encoded": 1.6336,
+    "encoded-to-linear": 1.6239,
+    "physical-intermediate-oetf": 1.3826,
+    "artifact-reconstruct": 0.1045
+  },
+  "decision": "the largest canonical Python CPU cost is the full-frame safe-Lab base, followed by physical spatial response; source-context construction and the analytical t15/c35 residual are also material. Optimize memory topology and row execution before changing any frozen look parameter or mathematical operator",
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8F full display-look row streaming with one frozen full-frame source context, exact safe-Lab tile cores and per-row t15/c35 residual; prove float-exact parity before repeating 12MP resources",
+  "claim_ceiling": "local 1MP Python CPU stage-level latency and stage-end RSS attribution for the exact generic physical-inspired reference consumer; not native performance, peak stage memory, mobile-device evidence, stock response, calibration or product promotion"
+}
