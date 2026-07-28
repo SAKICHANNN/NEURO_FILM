@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
+import json
 import math
 from typing import Iterable
 
@@ -73,6 +75,48 @@ class ScannerProfile:
             raise ValueError("scanner noise variances must be finite and nonnegative")
         if not isinstance(self.seed, int) or not 0 <= self.seed < 2**64 - 3:
             raise ValueError("scanner seed must leave room for three channels")
+
+
+@dataclass(frozen=True)
+class ScannerContext:
+    profile_id: str
+    full_shape: tuple[int, int]
+    stages: tuple[str, ...]
+    global_spectral_mean_rgb: tuple[float, float, float]
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.profile_id, str) or not self.profile_id:
+            raise ValueError("scanner context profile_id must be non-empty")
+        if (
+            len(self.full_shape) != 2
+            or any(
+                isinstance(value, bool)
+                or not isinstance(value, int)
+                or value <= 0
+                for value in self.full_shape
+            )
+        ):
+            raise ValueError("scanner context full_shape must be positive HxW")
+        object.__setattr__(self, "stages", _validate_stages(self.stages))
+        if len(self.global_spectral_mean_rgb) != 3 or any(
+            not math.isfinite(value) or value < 0.0 or value > 1.0
+            for value in self.global_spectral_mean_rgb
+        ):
+            raise ValueError("scanner context mean must contain three bounded values")
+
+    @property
+    def context_id(self) -> str:
+        payload = {
+            "profile_id": self.profile_id,
+            "full_shape": list(self.full_shape),
+            "stages": list(self.stages),
+            "global_spectral_mean_rgb": list(self.global_spectral_mean_rgb),
+        }
+        return hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode(
+                "ascii"
+            )
+        ).hexdigest()
 
 
 def _validate_transmittance(values: np.ndarray) -> np.ndarray:
@@ -150,6 +194,49 @@ def _smooth_bounded_noise(
     return signal + correction
 
 
+def compile_scanner_context(
+    transmittance: np.ndarray,
+    profile: ScannerProfile,
+    *,
+    stages: Iterable[str] = SCANNER_STAGES,
+) -> ScannerContext:
+    values = _validate_transmittance(transmittance)
+    selected = _validate_stages(stages)
+    mean = np.mean(values, axis=(0, 1))
+    if "spectral" in selected:
+        mean = (
+            mean * np.asarray(profile.illuminant_rgb)
+        ) @ np.asarray(profile.spectral_matrix).T
+    return ScannerContext(
+        profile_id=profile.profile_id,
+        full_shape=values.shape[:2],
+        stages=selected,
+        global_spectral_mean_rgb=tuple(float(value) for value in mean),
+    )
+
+
+def required_scanner_halo(
+    profile: ScannerProfile,
+    *,
+    pixel_pitch_um: float,
+    stages: Iterable[str] = SCANNER_STAGES,
+) -> int:
+    if not math.isfinite(pixel_pitch_um) or pixel_pitch_um <= 0.0:
+        raise ValueError("scanner pixel pitch must be finite and positive")
+    selected = _validate_stages(stages)
+    flare_radius = (
+        int(4.0 * profile.flare_sigma_um / pixel_pitch_um + 0.5)
+        if "flare" in selected and profile.local_flare_fraction > 0.0
+        else 0
+    )
+    mtf_radius = (
+        int(4.0 * max(profile.mtf_sigma_um_rgb) / pixel_pitch_um + 0.5)
+        if "mtf" in selected
+        else 0
+    )
+    return flare_radius + mtf_radius
+
+
 def apply_scanner_profile(
     transmittance: np.ndarray,
     profile: ScannerProfile,
@@ -158,12 +245,21 @@ def apply_scanner_profile(
     stages: Iterable[str] = SCANNER_STAGES,
     full_shape: tuple[int, int] | None = None,
     origin_yx: tuple[int, int] = (0, 0),
+    context: ScannerContext | None = None,
 ) -> np.ndarray:
     """Map film transmittance to a bounded relative scanner-linear signal."""
     values = _validate_transmittance(transmittance)
     if not math.isfinite(pixel_pitch_um) or pixel_pitch_um <= 0.0:
         raise ValueError("scanner pixel pitch must be finite and positive")
     selected = _validate_stages(stages)
+    if context is not None:
+        if context.profile_id != profile.profile_id:
+            raise ValueError("scanner context profile mismatch")
+        if context.stages != selected:
+            raise ValueError("scanner context stage mismatch")
+        if full_shape is not None and tuple(full_shape) != context.full_shape:
+            raise ValueError("scanner context full_shape mismatch")
+        full_shape = context.full_shape
     if full_shape is None:
         full_shape = values.shape[:2]
     if not (
@@ -186,7 +282,11 @@ def apply_scanner_profile(
             )
         else:
             blurred = signal
-        mean = np.mean(signal, axis=(0, 1), keepdims=True)
+        mean = (
+            np.asarray(context.global_spectral_mean_rgb).reshape(1, 1, 3)
+            if context is not None
+            else np.mean(signal, axis=(0, 1), keepdims=True)
+        )
         signal = (
             (1.0 - local - global_fraction) * signal
             + local * blurred
@@ -214,3 +314,41 @@ def apply_scanner_profile(
     ):
         raise RuntimeError("scanner profile left bounded scan-linear domain")
     return signal
+
+
+def apply_scanner_profile_row_tiled(
+    transmittance: np.ndarray,
+    profile: ScannerProfile,
+    *,
+    pixel_pitch_um: float,
+    context: ScannerContext,
+    tile_rows: int,
+    stages: Iterable[str] = SCANNER_STAGES,
+) -> np.ndarray:
+    values = _validate_transmittance(transmittance)
+    selected = _validate_stages(stages)
+    if context.full_shape != values.shape[:2]:
+        raise ValueError("scanner context does not bind this full input shape")
+    if context.profile_id != profile.profile_id or context.stages != selected:
+        raise ValueError("scanner context does not bind profile/stages")
+    if isinstance(tile_rows, bool) or not isinstance(tile_rows, int) or tile_rows <= 0:
+        raise ValueError("tile_rows must be a positive integer")
+    halo = required_scanner_halo(
+        profile, pixel_pitch_um=pixel_pitch_um, stages=selected
+    )
+    output = np.empty_like(values)
+    for y0 in range(0, values.shape[0], tile_rows):
+        y1 = min(values.shape[0], y0 + tile_rows)
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(values.shape[0], y1 + halo)
+        rendered = apply_scanner_profile(
+            values[source_y0:source_y1],
+            profile,
+            pixel_pitch_um=pixel_pitch_um,
+            stages=selected,
+            full_shape=values.shape[:2],
+            origin_yx=(source_y0, 0),
+            context=context,
+        )
+        output[y0:y1] = rendered[y0 - source_y0 : y1 - source_y0]
+    return output

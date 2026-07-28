@@ -74,7 +74,15 @@ from .spatial_response import (
     density_to_scan_transmittance,
     required_spatial_response_halo,
 )
-from .scanner import SCANNER_STAGES, ScannerProfile, apply_scanner_profile
+from .scanner import (
+    SCANNER_STAGES,
+    ScannerContext,
+    ScannerProfile,
+    apply_scanner_profile,
+    apply_scanner_profile_row_tiled,
+    compile_scanner_context,
+    required_scanner_halo,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -100,6 +108,7 @@ __all__ = [
     "ReferenceScatterProfile",
     "ScatterComponent",
     "SCANNER_STAGES",
+    "ScannerContext",
     "ScannerProfile",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
@@ -114,6 +123,7 @@ __all__ = [
     "apply_reference_scatter",
     "apply_scanner_mtf",
     "apply_scanner_profile",
+    "apply_scanner_profile_row_tiled",
     "apply_spatial_response_pipeline",
     "apply_spatial_response_pipeline_row_tiled",
     "coordinate_counter_u64",
@@ -122,6 +132,7 @@ __all__ = [
     "required_spatial_response_halo",
     "compile_scatter_profile",
     "compile_pyramid_scatter_profile",
+    "compile_scanner_context",
     "correlated_normal_region",
     "counter_normal_region",
     "counter_poisson_region",
@@ -136,6 +147,7 @@ __all__ = [
     "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
+    "required_scanner_halo",
     "scene_exposure_from_working_image",
     "transmittance_to_density",
 ]
