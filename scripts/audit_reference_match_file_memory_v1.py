@@ -1,4 +1,4 @@
-"""Measure P151-P153 file-path lifetime changes against the frozen P150 baseline."""
+"""Measure frozen reference-match file-path memory candidates."""
 
 from __future__ import annotations
 
@@ -65,7 +65,7 @@ def load_config(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if (
         payload.get("schema_version") != 1
-        or payload.get("node") not in {"P154", "P156"}
+        or payload.get("node") not in {"P154", "P156", "P157"}
     ):
         raise ValueError("config must be a supported file-memory contract")
     if payload.get("execution_order") != [
@@ -203,6 +203,11 @@ def _install_phase_tracing(
     safety_module: Any,
     sampler: PhaseSampler,
 ):
+    rgb_to_lab_name = (
+        "linear_rgb_to_lab_rows"
+        if hasattr(render_module, "linear_rgb_to_lab_rows")
+        else "linear_rgb_to_lab"
+    )
     originals = {
         "load": files_module._load_stable_working_image,
         "fit": files_module.fit_reference_look,
@@ -213,9 +218,9 @@ def _install_phase_tracing(
         "validate_source": render_module._validate_source,
         "styled_lab": render_module._styled_lab,
         "gamut_safe_lab": render_module._gamut_safe_lab,
-        "rgb_to_lab": render_module.linear_rgb_to_lab,
-        "lab_to_rgb": render_module.lab_to_linear_rgb,
-        "in_gamut": render_module.in_working_gamut,
+        "rgb_to_lab": getattr(render_module, rgb_to_lab_name),
+        "lab_to_rgb": render_module._lab_to_linear_rgb_rows,
+        "in_gamut": render_module._in_working_gamut_rows,
     }
 
     def load(*args: Any, **kwargs: Any):
@@ -276,9 +281,9 @@ def _install_phase_tracing(
     render_module._validate_source = validate_source
     render_module._styled_lab = styled_lab
     render_module._gamut_safe_lab = gamut_safe_lab
-    render_module.linear_rgb_to_lab = rgb_to_lab
-    render_module.lab_to_linear_rgb = lab_to_rgb
-    render_module.in_working_gamut = in_gamut
+    setattr(render_module, rgb_to_lab_name, rgb_to_lab)
+    render_module._lab_to_linear_rgb_rows = lab_to_rgb
+    render_module._in_working_gamut_rows = in_gamut
 
     def restore() -> None:
         files_module._load_stable_working_image = originals["load"]
@@ -290,9 +295,9 @@ def _install_phase_tracing(
         render_module._validate_source = originals["validate_source"]
         render_module._styled_lab = originals["styled_lab"]
         render_module._gamut_safe_lab = originals["gamut_safe_lab"]
-        render_module.linear_rgb_to_lab = originals["rgb_to_lab"]
-        render_module.lab_to_linear_rgb = originals["lab_to_rgb"]
-        render_module.in_working_gamut = originals["in_gamut"]
+        setattr(render_module, rgb_to_lab_name, originals["rgb_to_lab"])
+        render_module._lab_to_linear_rgb_rows = originals["lab_to_rgb"]
+        render_module._in_working_gamut_rows = originals["in_gamut"]
 
     return restore
 
