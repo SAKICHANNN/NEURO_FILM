@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -97,3 +99,21 @@ def test_contract_rejects_candidate_count_drift() -> None:
     config["candidate_bank"]["candidate_count"] = 7
     with pytest.raises(CompositionFrontierError, match="count"):
         candidate_bank(config)
+
+
+def test_runner_help_loads_from_repo_root() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(
+                ROOT
+                / "scripts/run_u5_r2ai0_dual_champion_composition.py"
+            ),
+            "--help",
+        ],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert "--build-blind-sheets" in completed.stdout
