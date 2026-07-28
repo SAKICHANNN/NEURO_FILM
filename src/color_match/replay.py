@@ -15,7 +15,11 @@ from .contracts import (
     recipe_from_json,
     validate_recipe,
 )
-from .render import ReferenceMatchResult, render_reference_batch
+from .render import (
+    ReferenceMatchResult,
+    _working_image_batch,
+    render_reference_batch,
+)
 from .safety import (
     GuardedReferenceMatchResult,
     ReferenceRenderGuardPolicy,
@@ -86,7 +90,11 @@ def replay_reference_batch(
 ) -> tuple[ReferenceMatchResult, ...]:
     """Load a frozen recipe and apply it to a non-empty ordered source batch."""
 
-    return render_reference_batch(load_reference_look_recipe(recipe_path), sources)
+    batch = _working_image_batch(sources)
+    return render_reference_batch(
+        load_reference_look_recipe(recipe_path),
+        batch,
+    )
 
 
 def replay_reference_batch_guarded(
@@ -97,9 +105,10 @@ def replay_reference_batch_guarded(
 ) -> tuple[GuardedReferenceMatchResult, ...]:
     """Load a frozen recipe and reproduce the default product guard."""
 
+    batch = _working_image_batch(sources)
     return render_reference_batch_guarded(
         load_reference_look_recipe(recipe_path),
-        sources,
+        batch,
         policy=policy,
     )
 

@@ -7,6 +7,7 @@ import numpy as np
 import pytest
 
 from src.color_match import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     ReferenceMatchContractError,
     fit_reference_look,
     load_reference_look_recipe,
@@ -81,6 +82,34 @@ def test_loaded_recipe_replays_default_product_guard_exactly(
     assert [row.safety for row in replayed] == [
         row.safety for row in expected
     ]
+
+
+@pytest.mark.parametrize(
+    "replay",
+    [replay_reference_batch, replay_reference_batch_guarded],
+)
+def test_replay_rejects_oversized_iterable_before_recipe_io(
+    replay,
+    tmp_path: Path,
+) -> None:
+    source = _working(27210, "source.png")
+    pulls = 0
+
+    def unbounded_sources():
+        nonlocal pulls
+        while True:
+            pulls += 1
+            if pulls > MAX_REFERENCE_MATCH_BATCH_SOURCES + 1:
+                raise AssertionError("replay over-consumed the source iterable")
+            yield source
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        replay(tmp_path / "missing-recipe.json", unbounded_sources())
+
+    assert pulls == MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
 
 
 def test_load_rejects_tampered_recipe_id(tmp_path: Path) -> None:
