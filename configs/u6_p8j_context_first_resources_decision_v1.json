@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p8j_context_first_resources_decision.v1",
+  "node": "U6.P8J",
+  "software_commit": "a827740",
+  "contract_sha256": "7e5ba8e0320973eb559e84c145b63f15eca63bdb88871cb10531594c86caab24",
+  "report_sha256": "0826bbe21465b7b6034809a2a89a2b79639408238b6887e6111ccc21aa414f1f",
+  "stable_evidence_id": "481f42fdf665b6dafa9906d1887c9f6ab762bd895a6ae96bc8ed469916eeb3dd",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8i": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      4.188243100012187,
+      4.45336009998573
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      259727360,
+      268820480
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      43.29949870001292,
+      46.75058839999838
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1883983872,
+      1894961152
+    ]
+  },
+  "comparison_to_p8h": {
+    "twelve_mp_worker_time_increase_fraction_at_mean": 0.024519,
+    "twelve_mp_peak_rss_increase_fraction_at_mean": 0.029859
+  },
+  "decision": "source-context-first scheduling preserves exact pixels but does not reduce peak RSS while the full encoded source still overlaps the context build; mean 12MP time and RSS are slightly higher in the two-run local characterization. It is not a standalone resource improvement. Retain it only as the necessary scheduling prerequisite for a separately frozen scene-row context plus one full roundtrip-linear buffer candidate",
+  "standalone_resource_improvement": false,
+  "retained_only_for_next_combination": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8K exact scene-row context and encoded-buffer elimination: build the frozen context from scene-linear rows, then materialize only one full roundtrip-linear physical input and one gauged-output buffer",
+  "claim_ceiling": "local Windows Python CPU negative standalone resource evidence for source-context-first scheduling; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
