@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p8j_context_first_resources_contract.v1",
+  "node": "U6.P8J",
+  "parent_measurement_contract": "configs/u6_p8h_lifetime_buffer_resources_v1.json",
+  "parent_measurement_contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "parent_decision": "configs/u6_p8i_tile_linear_decode_resources_decision_v1.json",
+  "parent_decision_sha256": "23d55cf921ae03fce85d4fe5dfb0d5aeb8ab7e52c60c55f7867a0a64698b19b6",
+  "implementation": {
+    "source_context_schedule": "before-linear-and-gauged-full-frame-allocation",
+    "source_context_rebuilt_during_display": false,
+    "physical_linear_decode_mode": "restored-full-frame-p8h",
+    "source_context_semantics_change_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_p8h_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact source-context-first profile scheduling; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
