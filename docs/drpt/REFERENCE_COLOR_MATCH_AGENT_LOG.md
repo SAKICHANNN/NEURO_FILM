@@ -2927,6 +2927,20 @@
   No image I/O, ICC application, main integration, Android/Apple runtime,
   algorithm promotion or delivery opens.
 
+## 2026-07-28 - Publish and verify P81 integration v10
+
+- P81 commit `40b4768` publishes v10 for P1-P80 payload `c87d366`, main
+  `21a877f` and base `c03c321`: 333 payload paths, 247 main paths, zero
+  overlap, 47 Python exports and 20 schemas. Manifest SHA-256 is
+  `6663dbca...7ea1`; exact v9 identity is preserved.
+- Detached evidence-head/main merge tree is `6f8512fb...52fc`. Local and
+  detached color suites both pass 980 with three platform skips and zero
+  failures. Full suite is 1875 pass/four skips plus the unchanged 36
+  historical missing-output/tracked-hash failures.
+- The detached worktree was removed. P81 remains review-ready-not-merged and
+  changes no D-PCT producer interface, algorithm admission, media rail or
+  Android/Apple runtime claim.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

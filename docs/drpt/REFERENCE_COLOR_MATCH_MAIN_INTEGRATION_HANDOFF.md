@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P78 consumer payload is pinned by the immutable P79 v9 review
+Status: **P1-P80 consumer payload is pinned by the immutable P81 v10 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P78 payload head:
-  `d661fa9acd900fd755c7290f226d63da385a5a18`;
-- P79 review-evidence head:
-  `3595821`;
+- complete reviewed P1-P80 payload head:
+  `c87d36691380c2fbaf1dd7c72c3ae75ea6ae9f34`;
+- P81 review-evidence head:
+  `40b4768`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `1ffbb5e2fd778ef26cbd3872d04ccd02c8ab3c41`;
+  `21a877fb3c29b80bc38b70c1c6123fb4f1b5dcb8`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/evidence-head merge tree:
-  `b0d2c19d1c5d6d7a7f705cb742faf75bacfcfeb1`.
+  `6f8512fbe83cff55567ff68803f5c785218d52fc`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -82,6 +82,13 @@ main paths, zero overlap, 47 exports and 20 schemas. V9 SHA-256 is
 it binds v8 SHA-256 `f40e32b9...4ee9` and never hashes itself. A later
 read-only preflight against main `1ffbb5e` remains zero-overlap and passes the
 detached merge suite.
+
+P80 `b550d8e` adds reproducible MSVC/LLVM-MinGW DLLs and independent dynamic
+ABI invocation; evidence `c87d366` records exact DLL identities. P81 v10
+binds that P1-P80 payload against main `21a877f`: 333 payload blobs, 247 main
+paths, zero overlap, 47 exports and 20 schemas. V10 SHA-256 is
+`6663dbcabceaeed6d88ec54912377bee8d2d61f1962eba1be92c51edcada7ea1`;
+it binds v9 SHA-256 `041e28a2...04f8f` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -208,11 +215,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P79 v9 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..d661fa9`; do not copy files manually and do not import
+2. Verify the committed P81 v10 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v9/v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..c87d366`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree d661fa9 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree c87d366 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -227,10 +234,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 960 passed, three skipped;
-- latest isolated consumer full suite: 1855 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 980 passed, three skipped;
+- latest isolated consumer full suite: 1875 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main/evidence-head merge: 960 color-match tests
+- latest detached synthetic main/evidence-head merge: 980 color-match tests
   passed with three platform skips and zero failures; the temporary worktree
   was removed;
 - consumer worktree is clean after every stable leaf.
