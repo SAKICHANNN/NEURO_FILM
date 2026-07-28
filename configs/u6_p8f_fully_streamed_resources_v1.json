@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p8f_fully_streamed_resources_contract.v1",
+  "node": "U6.P8F",
+  "parent_decision": "configs/u6_p8e_cpu_stage_attribution_decision_v1.json",
+  "parent_decision_sha256": "a5ff783214df0dc274bb2a20b517c8655ba689e7d2efff4df48d60f542490ca0",
+  "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "tile_rows": 128,
+  "scenarios": [
+    {
+      "scenario_id": "preview-1mp",
+      "height": 1024,
+      "width": 1024,
+      "repeats": 2,
+      "timeout_seconds": 300
+    },
+    {
+      "scenario_id": "mobile-standard-12mp",
+      "height": 3000,
+      "width": 4000,
+      "repeats": 2,
+      "timeout_seconds": 900
+    }
+  ],
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 10737418240,
+    "maximum_process_tree_rss_bytes": 8589934592,
+    "monitor_interval_seconds": 0.05
+  },
+  "execution": {
+    "local_cpu_only": true,
+    "physical_and_display_look_row_streaming_required": true,
+    "exact_output_identity_across_repeats_required": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for float-exact physical plus display-look row streaming; not native runtime, mobile-device evidence, frozen cross-platform target, stock response, calibration or product promotion"
+}
