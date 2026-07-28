@@ -76,7 +76,11 @@
         "individual_action"
       ],
       "properties": {
-        "source_index": {"type": "integer", "minimum": 0},
+        "source_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        },
         "source_view_id": {"$ref": "#/$defs/hash"},
         "producer_source_view_id": {"$ref": "#/$defs/producer_hash"},
         "producer_status": {"enum": ["candidate", "failed"]},

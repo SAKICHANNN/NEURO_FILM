@@ -303,6 +303,7 @@ def prepare_shared_operator_apply_v1(
         isinstance(source_index, bool)
         or not isinstance(source_index, int)
         or source_index < 0
+        or source_index >= MAX_REFERENCE_MATCH_BATCH_SOURCES
     ):
         raise ReferenceMatchContractError(
             "shared apply source_index is invalid"
@@ -395,6 +396,7 @@ def validate_shared_operator_apply_receipt_v1(
         isinstance(value.source_index, bool)
         or not isinstance(value.source_index, int)
         or value.source_index < 0
+        or value.source_index >= MAX_REFERENCE_MATCH_BATCH_SOURCES
     ):
         raise ReferenceMatchContractError(
             "shared apply source_index is invalid"

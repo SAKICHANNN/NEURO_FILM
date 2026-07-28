@@ -3370,7 +3370,8 @@
   limit. D-PCT and shared-reference batch construction and persisted validation
   reject 65 before per-source work; all later runtime stages import the same
   constant instead of repeating a literal.
-- Both consumer JSON schemas now state `maximum/maxItems=64`; their SHA-256
-  identities are `e57ee8b8...918f56` and `c2bb1719...e2d33c`.
-  The exact 64-source shared boundary passes, 65 fails in code and schema, and
-  147 related product-chain tests pass.
+- Both consumer JSON schemas now state `maximum/maxItems=64` and cap indices
+  at 63; their SHA-256 identities are `ddf448c2...98f655` and
+  `2c2e0e9a...18bc21`. The exact 64-source shared boundary passes, index 64
+  and source count 65 fail in code/schema, and 147 related product-chain tests
+  pass.

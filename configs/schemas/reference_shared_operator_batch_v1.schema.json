@@ -109,7 +109,11 @@
           "const": "candidate-only-awaiting-a1-a4-a5-and-numeric-product-guards"
         },
         "operator_id": {"$ref": "#/$defs/hash"},
-        "source_index": {"type": "integer", "minimum": 0},
+        "source_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        },
         "source_view_id": {"$ref": "#/$defs/hash"},
         "producer_source_view_id": {"$ref": "#/$defs/producer_hash"},
         "producer_apply_result_id": {"$ref": "#/$defs/producer_hash"},

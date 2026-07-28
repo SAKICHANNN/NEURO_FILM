@@ -315,3 +315,14 @@ def test_batch_source_limit_matches_runtime_boundary() -> None:
     assert list(
         Draft202012Validator(schema).iter_errors(oversized_payload)
     )
+
+    with pytest.raises(ReferenceMatchContractError, match="source_index"):
+        prepare_shared_operator_apply_v1(
+            operator=operator,
+            source_index=MAX_REFERENCE_MATCH_BATCH_SOURCES,
+            source=sources[0],
+            producer_source_view_id="sha256:" + "e" * 64,
+            producer_apply_result_id="sha256:" + "f" * 64,
+            diagnostics_id="sha256:" + "1" * 64,
+            output_pixels=sources[0].pixels,
+        )
