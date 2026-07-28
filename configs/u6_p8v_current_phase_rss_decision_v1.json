@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p8v_current_phase_rss_decision.v1",
+  "node": "U6.P8V",
+  "software_commit": "cae7390",
+  "contract_sha256": "d1c3056ad0788c40342a3f9ae735499d493a723876fc4b1082cc7003a58eec96",
+  "report_sha256": "2d90b4f06dcd4d678a8340f316308f368841740eec45d7d85f110af0f21f4cb8",
+  "stable_evidence_id": "a98055087899836696bf01651425c174692772eda0bae890309fe535fa5c68c2",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "dominant_phase_stable": true,
+  "dominant_phase": "physical-spatial",
+  "phase_peak_rss_bytes_ranges": {
+    "physical-spatial": [
+      796692480,
+      799051776
+    ],
+    "display-base-residual": [
+      730972160,
+      735277056
+    ],
+    "encoded-source": [
+      730927104,
+      735264768
+    ],
+    "source-context-build": [
+      724303872,
+      724967424
+    ],
+    "gauge-and-encode": [
+      679727104,
+      681586688
+    ],
+    "roundtrip-linear": [
+      633307136,
+      634056704
+    ]
+  },
+  "decision": "two exact 12MP repeats through the actual P8U entry identify physical-spatial as the stable dominant worker RSS phase at 796.7-799.1MB. Context falls to 724.3-725.0MB, confirming packed-Lab removed the prior context peak. Open one bounded exact tile-row grid at 64 and 32 rows before declaring the Python reference topology complete",
+  "attribution_complete": true,
+  "performance_target_pass": false,
+  "desktop_python_reference_memory_target_pass": true,
+  "mobile_native_memory_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8W frozen exact physical tile-row grid at 64 and 32 rows, selecting the largest row count within 8MiB of the minimum median RSS only if it improves at least 2% over P8V",
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution through the exact current P8U production entry; desktop Python reference memory target only, not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
