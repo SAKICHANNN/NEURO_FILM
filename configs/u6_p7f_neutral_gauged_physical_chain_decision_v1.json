@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p7f_neutral_gauged_physical_chain_decision.v1",
+  "node": "U6.P7F/P7F1",
+  "sampling_software_commit": "933e7c6",
+  "visual_software_commit": "a1bbc61",
+  "sampling_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+  "sampling_report_sha256": "84fb63e25571cbe75efeea95c86100b68ce1d12b2ca8b8ccc1880700f67cee3f",
+  "sampling_stable_evidence_id": "5aaec198789de25e283000e9781c3613ba0100339bf6ce0173ffaca937064124",
+  "two_run_inventory": {
+    "files_per_run": 65,
+    "bytes_per_run": 183431364,
+    "path_hash_size_differences": 0
+  },
+  "automatic_result": {
+    "selected_candidate_id": "gauged_spatial_4000",
+    "automatic_eligible_candidate_ids": [
+      "gauged_spatial_4000",
+      "gauged_full_print"
+    ],
+    "maximum_neutral_axis_lab_chroma": 0.007710982560958185,
+    "maximum_style_delta_e76": 25.748753163652957,
+    "median_non_basic_delta_e76": 11.538324223311061,
+    "median_to_colour_delta_e76": 4.832207332933569,
+    "median_to_gauged_nonspatial_delta_e76": 0.5318130619886106,
+    "median_edge_energy_ratio_to_gauged_nonspatial": 0.7825852006547693,
+    "worst_edge_energy_ratio_to_gauged_nonspatial": 0.7036582378492809,
+    "maximum_new_hard_boundary_fraction": 0.0
+  },
+  "visual_adjudication_contract_sha256": "961f6beb0e012fb469cb78896360e38b6bde96d03ff989ece3a7b7fa084c4135",
+  "visual_adjudication_sha256": "ac45e83300c0695789d2bb68e273577c2a6763ceb0a7bddb60c09e7b407376bc",
+  "visual_stable_evidence_id": "107883ac5148cca354f3d77fe40569b7f9f2c5225803e20edf84876af32b8bf6",
+  "visual_result": {
+    "confirmed_severe_candidate_artifacts": 0,
+    "colour_only_choices": 13,
+    "gauged_spatial_4000_choices": 14,
+    "gauged_spatial_4000_round_wins": 2,
+    "required_candidate_round_wins": 2,
+    "decision": "complete_pass"
+  },
+  "decision": "retain gauged_spatial_4000 as one generic physical-inspired development challenger and open resolution/tiling invariance; keep the production default unchanged",
+  "interpretation": "The reused data-independent neutral-axis gauge removes the rejected channel cast while retaining paper-like dynamic-range compression. The corrected 4000-dpi spatial chain is repeat-exact, severe-clean on nine full-resolution images and narrowly preferred in two of three autonomous blind rounds. The margin is small, so it is challenger evidence rather than a product or authenticity promotion.",
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "next_leaf": "U6.P7G resolution, tile and partition invariance for the frozen gauged_spatial_4000 challenger",
+  "claim_ceiling": "generic physical-inspired mechanism and autonomous development preference evidence; not population preference, stock response, measured print/scanner response, calibration or product promotion"
+}

@@ -18,6 +18,9 @@ from src.eval.physical_virtual_scan_visual import _load_exact_json, _tile
 SCHEMA = (
     "neuro_film.u6_p7f1_neutral_gauged_visual_confirmation_contract.v1"
 )
+ADJUDICATION_SCHEMA = (
+    "neuro_film.u6_p7f1_neutral_gauged_visual_adjudication_contract.v1"
+)
 
 
 def validate_visual_contract(
@@ -227,7 +230,96 @@ def write_report(report: dict[str, Any], path: Path) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def adjudicate_visual_evidence(
+    *, root: Path, config: dict[str, Any]
+) -> dict[str, Any]:
+    if config.get("schema") != ADJUDICATION_SCHEMA:
+        raise ValueError("unsupported U6.P7F1 adjudication contract")
+    visual_contract = _load_exact_json(
+        root,
+        config["visual_contract"],
+        config["visual_contract_sha256"],
+    )
+    report = _load_exact_json(
+        root,
+        config["visual_report"],
+        config["visual_report_sha256"],
+    )
+    scoring = _load_exact_json(
+        root,
+        config["blind_scoring"],
+        config["blind_scoring_sha256"],
+    )
+    mapping = _load_exact_json(
+        root,
+        config["private_mapping"],
+        config["private_mapping_sha256"],
+    )
+    if (
+        scoring.get("status") != "frozen_before_mapping_reveal"
+        or report["private_mapping_sha256"]
+        != config["private_mapping_sha256"]
+        or report["selected_candidate_id"]
+        != visual_contract["selected_candidate_id"]
+        or set(scoring["blind_choices"]) != set(mapping)
+    ):
+        raise ValueError("U6.P7F1 scoring or mapping drift")
+    arms = set(visual_contract["blind"]["arms"])
+    candidate = visual_contract["selected_candidate_id"]
+    per_round: dict[str, Any] = {}
+    total = {arm: 0 for arm in arms}
+    for round_id, choices in scoring["blind_choices"].items():
+        if set(choices) != set(visual_contract["visual_ids"]):
+            raise ValueError("blind scoring population drift")
+        counts = {arm: 0 for arm in arms}
+        for sample_id, label in choices.items():
+            if label not in {"A", "B"}:
+                raise ValueError("invalid blind label")
+            arm = mapping[round_id][sample_id][label]
+            if arm not in arms:
+                raise ValueError("invalid mapped arm")
+            counts[arm] += 1
+            total[arm] += 1
+        winner = max(counts, key=counts.get)
+        if list(counts.values()).count(counts[winner]) != 1:
+            winner = "tie"
+        per_round[round_id] = {"counts": counts, "winner": winner}
+    candidate_round_wins = sum(
+        row["winner"] == candidate for row in per_round.values()
+    )
+    severe_count = int(
+        scoring["severe_review"]["confirmed_severe_candidate_artifacts"]
+    )
+    if severe_count > 0:
+        decision = "severe_fail"
+    elif candidate_round_wins < int(config["minimum_candidate_round_wins"]):
+        decision = "preference_fail"
+    else:
+        decision = "complete_pass"
+    core = {
+        "schema": (
+            "neuro_film.u6_p7f1_neutral_gauged_visual_adjudication.v1"
+        ),
+        "node": config["node"],
+        "claim_ceiling": config["claim_ceiling"],
+        "parent_stable_evidence_id": report["stable_evidence_id"],
+        "severe_confirmed_count": severe_count,
+        "per_round": per_round,
+        "total_choices": total,
+        "candidate_round_wins": candidate_round_wins,
+        "decision": decision,
+        "branch": config["branch_rule"][decision],
+    }
+    stable_id = hashlib.sha256(
+        json.dumps(
+            core, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+        ).encode("ascii")
+    ).hexdigest()
+    return {**core, "stable_evidence_id": stable_id}
+
+
 __all__ = [
+    "adjudicate_visual_evidence",
     "build_visual_evidence",
     "validate_visual_contract",
     "write_report",

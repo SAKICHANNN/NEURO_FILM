@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p7f1_neutral_gauged_visual_adjudication_contract.v1",
+  "node": "U6.P7F1",
+  "visual_contract": "configs/u6_p7f1_neutral_gauged_visual_confirmation_v1.json",
+  "visual_contract_sha256": "abebfb285d6ce14671059ed283580579aab7b3fdac9720ef5a56b52e30f4e917",
+  "visual_report": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/report.json",
+  "visual_report_sha256": "90a5dabf06f049060f282a0515a7e362605d904d7e2fde1a214a6c4164ae239f",
+  "blind_scoring": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/blind_scoring_frozen.json",
+  "blind_scoring_sha256": "1314922778e4c15f8909003d29931c3650d80d082bd9d0337f6ea8079bf328f5",
+  "private_mapping": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/private_mapping.json",
+  "private_mapping_sha256": "8d41fc0f1675d73b9a66aad892d5ef6836984c04e390ac358a131bb40ddc492e",
+  "minimum_candidate_round_wins": 2,
+  "branch_rule": {
+    "severe_fail": "close neutral-gauged candidate and preserve colour-only AO6",
+    "preference_fail": "retain neutral gauge and physical mechanisms as evidence, keep colour-only AO6",
+    "complete_pass": "retain one generic neutral-gauged physical development challenger and open resolution/tiling invariance before any runtime integration"
+  },
+  "claim_ceiling": "autonomous development adjudication, not population preference, print/scanner calibration, stock response or product promotion"
+}

@@ -5,6 +5,7 @@ from pathlib import Path
 
 from src.eval.global_frontier import sha256_file
 from src.eval.physical_neutral_gauged_visual import (
+    adjudicate_visual_evidence,
     build_visual_evidence,
     validate_visual_contract,
 )
@@ -15,6 +16,16 @@ CONTRACT = (
     ROOT
     / "configs"
     / "u6_p7f1_neutral_gauged_visual_confirmation_v1.json"
+)
+ADJUDICATION = (
+    ROOT
+    / "configs"
+    / "u6_p7f1_neutral_gauged_visual_adjudication_v1.json"
+)
+DECISION = (
+    ROOT
+    / "configs"
+    / "u6_p7f_neutral_gauged_physical_chain_decision_v1.json"
 )
 
 
@@ -56,3 +67,24 @@ def test_p7f1_builds_three_distinct_hash_bound_blind_sheets(
             for value in mapping.values()
         }
     ) == 3
+
+
+def test_p7f1_frozen_scoring_selects_candidate_narrowly() -> None:
+    config = json.loads(ADJUDICATION.read_text(encoding="utf-8"))
+    result = adjudicate_visual_evidence(root=ROOT, config=config)
+    assert result["severe_confirmed_count"] == 0
+    assert result["candidate_round_wins"] == 2
+    assert result["total_choices"] == {
+        "colour_only": 13,
+        "gauged_spatial_4000": 14,
+    }
+    assert result["decision"] == "complete_pass"
+
+
+def test_p7f_decision_opens_invariance_without_promotion() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["visual_result"]["gauged_spatial_4000_round_wins"] == 2
+    assert decision["visual_result"]["confirmed_severe_candidate_artifacts"] == 0
+    assert decision["production_default_changed"] is False
+    assert decision["calibration_claim_opened"] is False
+    assert decision["next_leaf"].startswith("U6.P7G resolution")
