@@ -3560,3 +3560,15 @@
   `c21bc04` passes 1226 color-match tests with 29 skips and 1286 unrelated
   deselections; the owned worktree was removed. All 358 v1-v26 manifest
   lineage tests pass. V26 supersedes v25.
+
+## 2026-07-28 - Make transaction locks alias-coherent
+
+- A post-v26 review found that a generic transaction could address one
+  destination through real and symlink/junction parent spellings while
+  receiving distinct lock identities. Lock identity now resolves aliases
+  before hashing; the caller's destination path and runtime reparse policy are
+  unchanged.
+- A direct real-path versus symlink-alias contention regression passes where
+  the platform permits directory symlinks. The complete non-manifest
+  color-match regression passes 897 tests with five explicit skips. V26 is
+  superseded pending a manifest that binds payload `21469a1`.
