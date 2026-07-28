@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8c-velvia-crossfit-case-selector-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8C",
+  "parent_decision": {
+    "path": "configs/u5_r2ao8b_velvia_colourwise_two_expert_cv_decision_v1.json",
+    "sha256": "6847f789c98dd75a4b14ba2b50f21d38a51cc7b7d978dfa5cc1b2257c0fcd66c",
+    "required_decision": "close_nearest_support_router_retain_operator_diversity_as_descriptive",
+    "required_oracle_gain": 0.21630908046045905
+  },
+  "inputs": {
+    "ao8b_contract": {
+      "path": "configs/u5_r2ao8b_velvia_colourwise_two_expert_cv_v1.json",
+      "sha256": "52b5836403d93be9063fd131758faf961bbf0558e0541bbd9e552d021e14bea0"
+    }
+  },
+  "outer_evaluation": {
+    "fold_count": 5,
+    "chart_split_seed": 2026072801,
+    "palette_split_seed": 2026072802,
+    "score_on_outer_held_out_rows_only": true
+  },
+  "inner_label_crossfit": {
+    "fold_count": 4,
+    "chart_seed_base": 2026072811,
+    "palette_seed_base": 2026072821,
+    "outer_fold_added_to_seed": true,
+    "label": "lower_held_out_rgb_squared_error_between_chart_and_palette_expert",
+    "target_values_used_only_for_inner_held_out_label": true,
+    "outer_held_out_target_values_available_to_router": false
+  },
+  "case_representation": {
+    "feature_space": "linear_srgb_d65_per_colour_only",
+    "distance": "euclidean",
+    "normalization": "none",
+    "image_content_features_allowed": false,
+    "same_domain_identity_available_to_router": false
+  },
+  "candidate_bank": [
+    {
+      "candidate_id": "case_knn_k1_hard",
+      "neighbors": 1,
+      "vote": "uniform"
+    },
+    {
+      "candidate_id": "case_knn_k3_hard",
+      "neighbors": 3,
+      "vote": "uniform"
+    },
+    {
+      "candidate_id": "case_knn_k5_hard",
+      "neighbors": 5,
+      "vote": "uniform"
+    },
+    {
+      "candidate_id": "case_knn_k3_distance",
+      "neighbors": 3,
+      "vote": "inverse_distance"
+    },
+    {
+      "candidate_id": "case_knn_k5_distance",
+      "neighbors": 5,
+      "vote": "inverse_distance"
+    }
+  ],
+  "selection": "lowest_outer_cross_validated_rgb_rmse_then_candidate_id",
+  "negative_controls": {
+    "domain_only_labels": true,
+    "domain_only_claim": "content/source shortcut control, never a valid mode router",
+    "shuffled_label_replicates": 32,
+    "shuffled_label_seed": 2026072899,
+    "shuffle_within_outer_development_rows": true,
+    "empirical_pseudocount": 1
+  },
+  "controls": {
+    "identity": true,
+    "fixed_chart_expert": true,
+    "fixed_palette_expert": true,
+    "combined_global_operator": true,
+    "per_row_two_expert_oracle_diagnostic_only": true
+  },
+  "gates": {
+    "minimum_oracle_rgb_rmse_gain_over_combined": 0.1,
+    "minimum_selected_rgb_rmse_gain_over_combined": 0.05,
+    "minimum_selected_mean_delta_e76_gain_over_combined": 0.03,
+    "minimum_selected_rgb_rmse_gain_over_best_domain_only_control": 0.03,
+    "maximum_selected_to_combined_maximum_absolute_error_ratio": 1.25,
+    "minimum_selected_fraction_per_expert": 0.1,
+    "maximum_shuffle_empirical_p_value": 0.05,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "all_outer_and_inner_fits_must_converge": true,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "open_ao8d_fixed_crossfit_case_photo_challenger",
+  "decision_if_domain_control_fails": "close_case_selector_as_content_domain_shortcut",
+  "decision_if_shuffle_fails": "close_case_selector_as_unidentified",
+  "decision_if_other_gate_fails": "close_crossfit_case_selector_retain_global_operator",
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "novel_case_retrieval_claim_allowed": false,
+  "claim_ceiling": "nested cross-fitted development evidence for mature case-based nearest-neighbour selection between two bounded display-proxy experts, with domain-only and shuffled-label controls; not independent photographic evidence, novelty, stock modes, film response, calibration, preference or product value"
+}
