@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import math
+from typing import Callable
 
 import numpy as np
 from scipy.ndimage import gaussian_filter
@@ -179,4 +180,71 @@ def apply_scanner_mtf(
     output = _blur(values, profile.scanner_mtf_sigma_um_rgb, profile)
     if np.any(output > 1.0):
         raise RuntimeError("scanner MTF left scan-linear domain")
+    return output
+
+
+def required_spatial_response_halo(profile: SpatialResponseProfile) -> int:
+    """Return the exact summed finite support for the ordered Gaussian stages."""
+
+    def radius(sigmas_um: tuple[float, float, float]) -> int:
+        sigma_pixels = max(sigmas_um) / profile.pixel_pitch_um
+        return int(profile.gaussian_truncate * sigma_pixels + 0.5)
+
+    return (
+        radius(profile.forward_scatter_sigma_um_rgb)
+        + radius(profile.development_adjacency_sigma_um_rgb)
+        + radius(profile.dye_diffusion_sigma_um_rgb)
+        + radius(profile.scanner_mtf_sigma_um_rgb)
+    )
+
+
+def apply_spatial_response_pipeline(
+    layer_exposure: np.ndarray,
+    profile: SpatialResponseProfile,
+    *,
+    sensitometry_apply: Callable[[np.ndarray], np.ndarray],
+    adjacency_apply: Callable[
+        [np.ndarray, SpatialResponseProfile], np.ndarray
+    ] = apply_development_adjacency,
+) -> np.ndarray:
+    """Execute the canonical exposure-to-scan spatial chain."""
+    exposure = _validate(layer_exposure)
+    scattered = apply_forward_scatter(exposure, profile)
+    density = _validate(sensitometry_apply(scattered))
+    adjacent = adjacency_apply(density, profile)
+    diffused = apply_dye_diffusion(adjacent, profile)
+    scan_linear = density_to_scan_transmittance(diffused)
+    return apply_scanner_mtf(scan_linear, profile)
+
+
+def apply_spatial_response_pipeline_row_tiled(
+    layer_exposure: np.ndarray,
+    profile: SpatialResponseProfile,
+    *,
+    sensitometry_apply: Callable[[np.ndarray], np.ndarray],
+    adjacency_apply: Callable[
+        [np.ndarray, SpatialResponseProfile], np.ndarray
+    ] = apply_development_adjacency,
+    tile_rows: int,
+) -> np.ndarray:
+    """Execute exact row partitions with the summed finite spatial halo."""
+    exposure = _validate(layer_exposure)
+    if isinstance(tile_rows, bool) or not isinstance(tile_rows, int) or tile_rows <= 0:
+        raise ValueError("tile_rows must be a positive integer")
+    height = exposure.shape[0]
+    halo = required_spatial_response_halo(profile)
+    output = np.empty_like(exposure, dtype=np.float64)
+    for y0 in range(0, height, tile_rows):
+        y1 = min(height, y0 + tile_rows)
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(height, y1 + halo)
+        rendered = apply_spatial_response_pipeline(
+            exposure[source_y0:source_y1],
+            profile,
+            sensitometry_apply=sensitometry_apply,
+            adjacency_apply=adjacency_apply,
+        )
+        output[y0:y1] = rendered[
+            y0 - source_y0 : y1 - source_y0
+        ]
     return output

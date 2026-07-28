@@ -69,7 +69,10 @@ from .spatial_response import (
     apply_dye_diffusion,
     apply_forward_scatter,
     apply_scanner_mtf,
+    apply_spatial_response_pipeline,
+    apply_spatial_response_pipeline_row_tiled,
     density_to_scan_transmittance,
+    required_spatial_response_halo,
 )
 
 __all__ = [
@@ -107,9 +110,12 @@ __all__ = [
     "build_colour_dye_cloud_context",
     "apply_reference_scatter",
     "apply_scanner_mtf",
+    "apply_spatial_response_pipeline",
+    "apply_spatial_response_pipeline_row_tiled",
     "coordinate_counter_u64",
     "density_to_transmittance",
     "density_to_scan_transmittance",
+    "required_spatial_response_halo",
     "compile_scatter_profile",
     "compile_pyramid_scatter_profile",
     "correlated_normal_region",
