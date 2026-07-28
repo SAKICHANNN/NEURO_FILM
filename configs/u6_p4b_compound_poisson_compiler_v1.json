@@ -1,0 +1,143 @@
+{
+  "schema": "neuro_film.u6_p4b_compound_poisson_compiler_contract.v1",
+  "node": "U6.P4B",
+  "parent_contract_sha256": "86df2b1eaf737a5178036668afafa347384d073070e89b2c19d809f8bf6ff6",
+  "parent_report_sha256": "3a54e40b663acedab4404c760869dfb08f2c3655ac1697201ade32cf5b855310",
+  "predecessor_decision_sha256": "b80abe61ef76e966eed0f68b433a2ec1ba23d369a4d6daeda5c767a61dc8a5e3",
+  "claim_ceiling": "generic-physical-inspired-development-challenger",
+  "split": {
+    "development_reference_seed": 260731,
+    "confirmatory_reference_seed": 260733,
+    "development_candidate_seed": 260739,
+    "confirmatory_candidate_seed": 260741,
+    "normalization_and_parameter_fit": "development-only"
+  },
+  "candidate": {
+    "family": "counter-compound-poisson-positive-shot-field",
+    "colour_mapping": "nonnegative-baseline-plus-positive-shot-optical-density",
+    "bw_mapping": "exponential-optical-density-to-transmittance",
+    "poisson_rate_grid": [
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.0,
+      4.0
+    ],
+    "correlation_sigma_grid_pixels": [
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.85,
+      1.0
+    ],
+    "gaussian_truncate": 4.0,
+    "minimum_density_baseline": 1e-06,
+    "bw_solver": {
+      "method": "scipy-least_squares",
+      "initial_base_scale": [
+        0.1,
+        2.0
+      ],
+      "bounds_base_scale": [
+        [
+          0.0,
+          1e-08
+        ],
+        [
+          10.0,
+          100.0
+        ]
+      ],
+      "xtol": 1e-12,
+      "ftol": 1e-12,
+      "gtol": 1e-12,
+      "max_nfev": 300
+    },
+    "development_candidate_eligibility": {
+      "mean_abs_error_max": 0.01,
+      "variance_ratio_min": 0.9,
+      "variance_ratio_max": 1.1,
+      "domain_valid": true
+    },
+    "selection": "eligible-minimize-max-acf-error-then-mean-acf-error-then-rate-then-sigma",
+    "output_physical_pitch_um": 1.0,
+    "final_domains": [
+      "developed-optical-density",
+      "film-transmittance"
+    ],
+    "display_rgb_composition": false,
+    "hard_clipping": false
+  },
+  "metrics": {
+    "interior_margin_pixels": 8,
+    "acf_lags": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "radial_nps_bands_cycles_per_pixel": [
+      [
+        0.0,
+        0.08
+      ],
+      [
+        0.08,
+        0.22
+      ],
+      [
+        0.22,
+        0.5
+      ]
+    ]
+  },
+  "automatic_gates": {
+    "mean_abs_error_max": 0.04,
+    "variance_ratio_min": 0.65,
+    "variance_ratio_max": 1.45,
+    "acf_abs_error_max": 0.2,
+    "nps_band_relative_error_max": 0.5,
+    "repeat_exact": true,
+    "partition_exact": true,
+    "domain_valid": true
+  },
+  "frozen_negative_control": {
+    "id": "U6.2B-salt-like-bright-speckles",
+    "required": "No additive display-RGB path or isolated positive RGB impulse is present."
+  },
+  "forbidden_fallbacks": [
+    "fit on confirmatory reference or candidate field",
+    "change development-selected parameters after confirmatory result",
+    "per-image normalization",
+    "signed or clipped optical density",
+    "display RGB noise",
+    "hard clipping",
+    "change P1B material reference",
+    "relax gates after confirmatory result",
+    "claim stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain as a P4 development compiler and proceed to resolution/LOD and full-image severe-artifact evaluation",
+    "fail": "close this compound-Poisson compiler; retain P1B and move to P5 spatial-response separation without adding P4 capacity"
+  }
+}
