@@ -14,13 +14,15 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer payload: `codex/reference-color-match` through P62 implementation
-  at `e3372a9`.
-- Main Neuro-Film read-only commit snapshot: `473b577`; its tracked dirty work,
+- Consumer reviewed payload: `codex/reference-color-match` through P63
+  implementation at `46b6ea8`; P64 review evidence is committed at
+  `d6e562a`.
+- Main Neuro-Film read-only commit snapshot: `841efaf`; its tracked dirty work,
   `.codex/` and `tmp/` belong to the main task and were not touched.
-- D-PCT latest fixed producer snapshot observed is `f1d3709`; its only
-  callable relative-SDR capability remains rejected by P44. Later research
-  and native evidence do not create a new P45 successor.
+- D-PCT latest fixed producer snapshot observed is `34af2fa`; its final local
+  boundary remains `NOT_FREEZE_READY` with eight required gates still failed.
+  Its only callable relative-SDR capability remains rejected by P44, and later
+  research/native evidence does not create a new P45 successor.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -53,7 +55,8 @@ wire contract and not an algorithm promotion.
 | Shared-batch numeric safety | P48 binds per-source producer facts, verifies output extrema/new boundary and falls back atomically | COMPLETE AS CONSUMER GUARD | Map exact producer diagnostics then replay before any shared-path authorization / D-PCT then Neuro-Film |
 | Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision; P61 additionally binds factual P60 runtime evidence | COMPLETE THROUGH RUNTIME QUALIFICATION, REAL USE CLOSED | A real callable shared producer must pass every lock and a durable consumer must require exact P61; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
 | Shared-path runtime qualification | P61 embeds and replays exact P60 against exact P49; only four factual target proofs plus upstream authorization yield runtime-qualified staging | COMPLETE AS NO-WRITE GUARD | P62 consumes only an exact caller-pinned P61; never relabel historical P50 / Neuro-Film |
-| Runtime-qualified shared staging | P62 snapshots pixels, binds P61/P60/P49/P48/P47 and create-only publishes outputs followed by one canonical report commit marker | COMPLETE AS MANIFEST-LAST STAGING MECHANICS, REAL USE CLOSED | P63 must restart-open and verify report/output handles; report-less orphans are never consumed or auto-deleted / Neuro-Film |
+| Runtime-qualified shared staging | P62 snapshots pixels, binds P61/P60/P49/P48/P47 and create-only publishes outputs followed by one canonical report commit marker | COMPLETE AS MANIFEST-LAST STAGING MECHANICS, REAL USE CLOSED | Report-less orphans are never consumed or auto-deleted; P63 verifies the committed run / Neuro-Film |
+| Runtime-qualified handle observation | P63 caller-pins P62 report/run/qualification, opens each object once, binds handle identity, double-reads and final-rehashes the same handle under bounded counts/sizes | COMPLETE AS OBSERVATION, PATH CONSUMPTION CLOSED | Windows denies write/delete sharing during verification; POSIX is sequential observation with an irreducible post-read window. P65 must consume bytes while the same verified handles remain live / Neuro-Film |
 | Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
 | Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
@@ -61,9 +64,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | P58 deterministically binds payload/base/main commits, all 253 payload Git blobs, 11 public exports, nine shared schemas and zero overlap | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies the pinned manifest, reviews and merges / main task or owner |
+| Main-integration evidence | P58 v1 remains immutable; P64 v2 deterministically binds the P1-P63 payload, all 273 payload Git blobs, 20 public exports, 14 schemas, exact prior-P58 identity and zero overlap against main `841efaf` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies the pinned v2 manifest, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P59 latest-main merge tree is conflict-free and a fresh detached merge passes 25 manifest/P57 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P64 latest-main merge tree `0e03890` is conflict-free and a fresh detached merge passes 180 related tests with three privilege skips | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -115,6 +118,10 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
 17. P63 must bind the caller-held P62 report hash/run/qualification and hash
     the same open file handles whose identities it validates. Path lookup
     followed by a second path open is not sufficient.
+18. A persisted P63 record is evidence of a completed bounded observation,
+    not authority to reopen or consume any path later. P65 must integrate
+    verification and consumption on the same live handles; Windows share
+    denial and POSIX sequential observation must retain distinct claims.
 
 ## Non-blocking work policy
 

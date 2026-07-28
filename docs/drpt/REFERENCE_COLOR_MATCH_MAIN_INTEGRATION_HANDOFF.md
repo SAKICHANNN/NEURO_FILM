@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P61 consumer payload remains ready for its frozen review; P62 is
-implemented but awaits P63 and a new non-mutating integration manifest; real
-external-algorithm admission remains closed**.
+Status: **P1-P63 consumer payload is pinned by the immutable P64 v2 review
+manifest; real external-algorithm admission and path-based consumption remain
+closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P61 implementation head:
-  `77a8d848b6fff072dfa6ffff1b17018daf89ef24`;
-- P62 manifest-last staging implementation head:
-  `e3372a9d00a87bd11a5669720c2d966a57a338eb`;
+- complete reviewed P1-P63 payload head:
+  `46b6ea8a4dda8c9de8221e4c29f24b51495ca924`;
+- P64 review-evidence head:
+  `d6e562a9b2399afc15299a26868f69fd83064c33`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `473b5773121bd4e059625a551432838b3fdbebb9`;
+  `841efafa7113ddef0e6a7c47956167916793a1d9`;
 - D-PCT read-only snapshot:
-  `f1d3709bef1ae8e9b484080ba2c7c67483d4f0a2`;
+  `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/payload merge tree:
-  `d11d4fa736589e64e78dcb7bd587c67dd995e11a`.
+  `0e0389059b9930d857c4e6769572d0c3e609b0e3`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -36,10 +36,13 @@ It binds 253 payload Git blobs, 178 main changed paths, zero overlap, 11
 required public exports and nine shared schemas. It deliberately binds the
 preceding payload commit so it never hashes itself.
 
-P58 remains immutable and intentionally does not cover P60-P62. The current
-P62 head has 268 consumer changed paths versus 205 at the latest main commit,
-still with zero overlap. P64 will publish a new versioned manifest only after
-P63 closes restart verification; it will not rewrite P58.
+P58 remains immutable and intentionally does not cover P60-P63. P64 adds
+`configs/reference_match_main_integration_manifest_v2.json`, SHA-256
+`ae67b3ef7ec6fcf169aa2a4a97485693c341caf5624a2a8de6c5e866a7d784dd`.
+It binds 273 payload Git blobs, 213 latest-main changed paths, zero overlap,
+20 required public exports, 14 exact schemas and the immutable P58 blob/hash.
+The v2 manifest deliberately binds the preceding P63 payload commit and never
+hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -95,6 +98,10 @@ The consumer module implements:
   requires an exact consumer-pinned P61, publishes each output with
   no-replace semantics and publishes its canonical report last as the sole
   commit marker;
+- read-only P63 restart observation that caller-pins P62, opens report and
+  outputs once, binds handle identities and hashes the same handles under
+  strict count/size budgets; it explicitly does not authorize a later path
+  reopen or delivery;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -137,14 +144,13 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. For the frozen P1-P61 payload, verify the committed P59 schema and P58
-   manifest, then review
-   `c03c321..77a8d84`; do not copy files manually and do not import mutable
-   paths from the D-PCT repository.
-3. Do not merge P62 from this handoff yet. Wait for P63 and the new P64
-   manifest, then review the additional commit range independently.
-4. Recompute `git merge-tree --write-tree 77a8d84 <reviewed-main>` for the
-   frozen payload, or use the future P64-pinned head for the extended payload.
+2. Verify the committed P64 v2 schema and rebuild its manifest by both direct
+   and module entry points. It preserves and binds P58 rather than replacing
+   it.
+3. Review `c03c321..46b6ea8`; do not copy files manually and do not import
+   mutable paths from the D-PCT repository.
+4. Recompute `git merge-tree --write-tree 46b6ea8 <reviewed-main>` against the
+   refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -158,11 +164,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 674 passed, one skipped;
-- latest isolated consumer full suite: 1569 passed, two skipped, 36 unchanged
+- latest complete color-match suite: 726 passed, three skipped;
+- latest isolated consumer full suite: 1602 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 92 P62/P61/P60/P59/P57 integrity
-  tests passed with one privilege skip; the temporary worktree was removed;
+- latest detached synthetic main merge: 180 P45/P47-P64 related tests passed
+  with three privilege skips; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real
@@ -172,13 +178,15 @@ dirty worktree, Ultimate tracker and product integration decisions.
 2. The successor must pass P45 intake, A1 reference identifiability, A4
    photographic preference/severe-tail review and A5 batch consistency
    without research override.
-3. P60 now makes the distinction explicit. Corrected D-PCT R0bw `3a4948a`
-   supplies factual dual-vendor Windows Vulkan host-runtime evidence, but it
-   is not bound to a new exact successor declaration. R0bx Android is
-   compile/link-only and R0by `f1d3709` is Windows CPU runtime for the
-   existing source-bound transform. Android device/JNI and Apple host/device
-   runtime/invocation evidence remain open.
-4. The main owner must review and merge the payload.
+3. D-PCT R0CB `34af2fa` records the integrated local boundary:
+   `NOT_FREEZE_READY`, with external quality, D1, D3, expert blind review,
+   real RAW, real HDR, real video and license/provenance gates still failed.
+   Windows runtime facts, Android compile/link-only facts and Apple
+   object-only facts remain correctly separated.
+4. P63 is handle-bound observation only. A future P65 must consume bytes while
+   those verified handles remain live; its persisted record cannot authorize
+   a later path reopen.
+5. The main owner must review and merge the payload.
 
 D-PCT RGIN-v0 closed at `fd036aa`: all 20 frozen uncertainty projections
 failed its calibration and it emitted no model, capability, wheel or bundle

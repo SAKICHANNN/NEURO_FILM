@@ -1516,6 +1516,84 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Implement and verify P63 handle-bound staging observation
+
+- Node/parent goal: P63A-D / restart verification of exact P62 staging.
+- Implementation commit:
+  `46b6ea8a4dda8c9de8221e4c29f24b51495ca924`. The verifier caller-pins the
+  P62 report SHA, run ID and runtime qualification ID, opens the report and
+  every output once, binds each handle identity, double-reads the bounded
+  bytes and performs a final same-handle full rehash.
+- Resource boundary: report <=16 MiB, at most 64 outputs, each output <=1 GiB
+  and aggregate initial size <=8 GiB. Duplicate handle identities, reparse or
+  non-disk inputs, ADS/verbatim paths and format/suffix mismatches reject.
+- Platform boundary: Windows opens with read access while denying write/delete
+  sharing and binds `FileIdInfo`. POSIX uses `openat`, `O_NOFOLLOW`,
+  `O_NONBLOCK` and device/inode identity, but remains sequential observation:
+  a finite last read has an irreducible post-read mutation window.
+- Claim ceiling:
+  `runtime-qualified-shared-staging-handle-observation-only-no-path-consumption-or-delivery`.
+  The persisted verification record never authorizes a later path reopen.
+- Artifact SHA-256: helper
+  `35e27444c2b47a47ef0ef90e3cc813b529634e2d02108eba792f839f62890884`;
+  verifier
+  `f482f33c3694831920dd6cce230d1989dade78c6dcae9eea09d58a9156341e67`;
+  schema
+  `e76f4b7a57a5098d5e151fc92fe6effe906ddbba0866e2ba0e4d3be65def305c`.
+- Verification: 87 adjacent tests pass with three privilege/platform skips;
+  707 all-color tests pass with three skips. Full suite is 1602 pass/four
+  skips with the same 36 historical ignored-output/hash failures. Fresh
+  latest-main detached merge passes 180 related tests with three skips,
+  merge tree `0e0389059b9930d857c4e6769572d0c3e609b0e3`.
+
+## 2026-07-28 - Publish immutable P64 integration manifest v2
+
+- Node/parent goal: P64A-D / review evidence for P1-P63.
+- Evidence commit:
+  `d6e562a9b2399afc15299a26868f69fd83064c33`. The v2 manifest binds payload
+  `46b6ea8`, common base `c03c321`, read-only main `841efaf`, 273 payload Git
+  blobs, 213 main changed paths, zero overlap, 20 public exports and 14 exact
+  contract schemas.
+- P58 v1 remains immutable. V2 binds its exact blob
+  `2622c67249977541daac4997c5044fc301461b67` and SHA-256
+  `db06eb9b47becb0a2a0f00e3a8a9f8d045e5e88e59cc285cc6f8b638a49a6a5b`.
+- Artifact SHA-256: builder
+  `dcc68f559c62de24f378e612050505c420c4bfbeb7bbcfd2007739b5c9250c80`;
+  manifest
+  `ae67b3ef7ec6fcf169aa2a4a97485693c341caf5624a2a8de6c5e866a7d784dd`;
+  schema
+  `3642f900a8a83039ba4a3fb5512f4f4f929f17879095ed34de3de5beec3f1867`.
+- Both direct and module builders reproduce the manifest. Thirty-three v1/v2
+  tests pass; all-color is 726 pass/three skips. The manifest is review
+  evidence only and performs no merge or product-state promotion.
+
+## 2026-07-28 - Record D-PCT R0bz/R0ca/R0CB final local boundary
+
+- Equal producer task remains read-only. R0bz `c9af66e` reproducibly emits
+  macOS/iOS arm64 Mach-O objects only; no Apple SDK link, load, host or device
+  execution exists. R0ca `5ae82b8` hardens float32 representability and
+  fail-closed portable validation without changing producer wire/capability.
+- Integrated producer head `34af2fa5a2d095dab87affa73f169fd5a051bcfa`
+  freezes the final local execution boundary. Full producer suite is 519/519
+  pass; boundary report SHA is `f5bb0598...56ddd`.
+- Freeze remains intentionally `NOT_FREEZE_READY`. Exact failed gates are
+  external quality, D1, D3, expert blind review, real RAW, real HDR, real
+  video and license/provenance. Windows runtime, Android compile/link-only
+  and Apple object-only facts stay separate; no P45 successor or P60-P62
+  closure is inferred.
+
+## 2026-07-28 - Freeze P65 same-handle read-and-consume transaction
+
+- Node/parent goal: P65A-D / eliminate the later path-reopen gap after P63.
+- Contract direction: verification and byte consumption must occur while the
+  exact P63-opened report/output handles remain live. A stored P63 record,
+  pathname, inode-like value or matching later hash is not durable authority.
+- Required faults: mutation/truncation/replacement, hard-link aliasing,
+  partial decode, consumer exception and multi-file partial progress. Any
+  failure must close without delivery or persistent consumption authority.
+- Scope: additive consumer code/schema/tests/docs only. No producer ABI,
+  FilmFX arithmetic, main-project write or D-PCT write is allowed.
+
 ## 2026-07-28 - Freeze P49 shared-path staging authorization
 
 - Node/parent goal: P49A-D / product boundary after P45/P47/P48.
