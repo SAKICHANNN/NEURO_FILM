@@ -78,6 +78,10 @@ def test_invalid_pairs_and_controls_fail_closed() -> None:
         fit_positive_film_response_operator(
             source, source, model="two_matrix", restart_count=0
         )
+    with pytest.raises(ValueError, match="controls"):
+        fit_positive_film_response_operator(
+            source, source, model="two_matrix", loss="cauchy"  # type: ignore[arg-type]
+        )
     with pytest.raises(ValueError, match="identity_mixture"):
         row_stochastic_identity_mixture(np.zeros(6), identity_mixture=0.4)
 
@@ -97,3 +101,39 @@ def test_frozen_design_has_exact_paper_inspired_shape_and_complement_split() -> 
     assert np.count_nonzero(masks["held_exposure"]) == 760
     assert not np.any(masks["development"] & masks["confirmation"])
     assert np.all(masks["development"] | masks["confirmation"])
+
+
+def test_soft_l1_is_robust_to_sparse_correspondence_outliers() -> None:
+    rng = np.random.default_rng(184)
+    source = rng.random((360, 3))
+    truth = _truth("cyan_shadow_warm_highlight_like")
+    clean_target = truth.apply(source)
+    contaminated = clean_target + rng.normal(0.0, 0.001, clean_target.shape)
+    outlier_rows = rng.choice(source.shape[0], size=24, replace=False)
+    contaminated[outlier_rows] += rng.uniform(-0.2, 0.2, (outlier_rows.size, 3))
+    contaminated = np.clip(contaminated, 0.0, 1.0)
+    linear = fit_positive_film_response_operator(
+        source,
+        contaminated,
+        model="two_matrix",
+        restart_count=1,
+        maximum_function_evaluations=1200,
+        loss="linear",
+        seed=185,
+    )
+    robust = fit_positive_film_response_operator(
+        source,
+        contaminated,
+        model="two_matrix",
+        restart_count=1,
+        maximum_function_evaluations=1200,
+        loss="soft_l1",
+        loss_scale=0.005,
+        seed=185,
+    )
+    evaluation = np.random.default_rng(186).random((240, 3))
+    clean = truth.apply(evaluation)
+    linear_rmse = np.sqrt(np.mean(np.square(linear.operator.apply(evaluation) - clean)))
+    robust_rmse = np.sqrt(np.mean(np.square(robust.operator.apply(evaluation) - clean)))
+    assert robust.loss == "soft_l1"
+    assert robust_rmse < 0.5 * linear_rmse

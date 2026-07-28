@@ -1,6 +1,6 @@
 # U5.R2AN0 Paired Positive-Film Recovery Results
 
-Date: 2026-07-28  
+Date: 2026-07-28
 Node: `ULT > U5 > U5.R2 > U5.R2AN0`
 
 ## Result

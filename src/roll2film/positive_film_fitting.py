@@ -17,6 +17,7 @@ from .positive_film import PositiveFilmResponseOperator
 
 
 PositiveFilmFitModel = Literal["two_matrix", "one_matrix"]
+PositiveFilmFitLoss = Literal["linear", "soft_l1"]
 
 
 @dataclass(frozen=True)
@@ -32,6 +33,8 @@ class PositiveFilmFitResult:
     function_evaluations: int
     restart_index: int
     converged: bool
+    loss: PositiveFilmFitLoss
+    loss_scale: float
 
 
 def _softmax(values: np.ndarray) -> np.ndarray:
@@ -199,6 +202,8 @@ def fit_positive_film_response_operator(
     function_tolerance: float = 1e-11,
     parameter_tolerance: float = 1e-11,
     gradient_tolerance: float = 1e-11,
+    loss: PositiveFilmFitLoss = "linear",
+    loss_scale: float = 0.01,
     seed: int = 20250728,
 ) -> PositiveFilmFitResult:
     """Fit the J0 operator family to controlled paired RGB observations."""
@@ -210,6 +215,9 @@ def fit_positive_film_response_operator(
         or restart_count < 1
         or not isinstance(maximum_function_evaluations, int)
         or maximum_function_evaluations < 1
+        or loss not in ("linear", "soft_l1")
+        or not np.isfinite(loss_scale)
+        or loss_scale <= 0.0
         or any(
             not np.isfinite(value) or value <= 0.0
             for value in (function_tolerance, parameter_tolerance, gradient_tolerance)
@@ -271,6 +279,8 @@ def fit_positive_film_response_operator(
             xtol=parameter_tolerance,
             gtol=gradient_tolerance,
             x_scale="jac",
+            loss=loss,
+            f_scale=loss_scale,
         )
         if best_result is None or result.cost < best_result.cost:
             best_result = result
@@ -298,11 +308,14 @@ def fit_positive_film_response_operator(
         function_evaluations=int(best_result.nfev),
         restart_index=best_restart,
         converged=bool(best_result.success),
+        loss=loss,
+        loss_scale=float(loss_scale),
     )
 
 
 __all__ = [
     "PositiveFilmFitModel",
+    "PositiveFilmFitLoss",
     "PositiveFilmFitResult",
     "fit_positive_film_response_operator",
     "row_stochastic_identity_mixture",

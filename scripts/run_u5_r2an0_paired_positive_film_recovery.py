@@ -193,6 +193,8 @@ def _fit_record(result: PositiveFilmFitResult) -> dict[str, Any]:
         "function_evaluations": result.function_evaluations,
         "restart_index": result.restart_index,
         "converged": result.converged,
+        "loss": result.loss,
+        "loss_scale": result.loss_scale,
         "operator": result.operator.to_dict(),
         "operator_sha256": _sha256(_canonical_json(result.operator.to_dict())),
     }
