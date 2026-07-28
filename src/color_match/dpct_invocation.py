@@ -518,6 +518,10 @@ def _verify_dpct_invocation_output(
             producer_apply_result=response["apply_result"],
             output_pixel_f32be=output,
             intent_id=intent_id,
+            producer_commit=parameters.producer_stable_commit,
+            compatibility_profile_id=(
+                parameters.compatibility_profile_id
+            ),
         )
         if (
             candidate.aliases.capability_id

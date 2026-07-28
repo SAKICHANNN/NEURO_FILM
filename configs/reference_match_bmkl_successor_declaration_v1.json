@@ -1,0 +1,49 @@
+{
+  "candidate_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+  "declaration_id": "890d574a22f1cef12275b2a0ca6262d0cd5e8be67d6dfded1b8f8be7b992077f",
+  "package": {
+    "distribution": "zhuise-research",
+    "entrypoint": "zhuise-producer-invoke",
+    "version": "0.3.0",
+    "wheel_filename": "zhuise_research-0.3.0-py3-none-any.whl",
+    "wheel_sha256": "cd95c2665a99e604da3b30e524885762d0d8327389f583606c36675499934bee",
+    "wheel_size_bytes": 119496
+  },
+  "policy_id": "neuro-film.reference-match-successor-admission.v1",
+  "producer": {
+    "conformance_fixture_sha256": "ed7b297752ee8468c4e3c8b9e0168a0ba0a252bc8af1faf71db718ee5284344c",
+    "fixture_commit": "55fea51a7bcb0184e0e5363ce125eff689e89fe7",
+    "package_lock_sha256": "8fefd48f097093eca508ad2f5706aca17907e760c5c4ca77821d365f4e08f3a3",
+    "package_source_commit": "bf4fd4f71ae480f8b341f7d5739fb5b68fd4ce77",
+    "stable_commit": "98073d4a61f904061341ae7a01451c2ce8b28177"
+  },
+  "product_evidence": null,
+  "rights": {
+    "commercial_use_allowed": false,
+    "evaluation_allowed": true,
+    "evidence_id": "zhuise-bmkl-package-lock-v2-evaluation-only",
+    "redistribution_allowed": false
+  },
+  "runtime_evidence": {
+    "android_arm64": false,
+    "ios_arm64": false,
+    "macos_arm64": false,
+    "windows_x64": false
+  },
+  "schema_id": "neuro-film.reference-match-successor-declaration.v1",
+  "semantics": {
+    "batch_transform_policy": "per-source-bundle",
+    "deterministic": true,
+    "fit_semantics": "source-reference-per-source",
+    "hidden_state": "none"
+  },
+  "wire": {
+    "capability_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+    "lower_compatibility_profile_id": "neuro-film.dpct-consumer.v2",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "request_schema": "zhuise.invocation-request.v2",
+    "request_schema_sha256": "5350830c77cb500d4453893d2b3d69f21a0ded436b95b4c86560bfee00258012",
+    "response_schema": "zhuise.invocation-response.v2",
+    "response_schema_sha256": "3252d3a3a46695209bd9002873207ec41c0b2767c9cda2a5147c3e9412b4c33a"
+  }
+}

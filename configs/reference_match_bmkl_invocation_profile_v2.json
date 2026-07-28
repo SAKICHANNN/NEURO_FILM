@@ -1,0 +1,40 @@
+{
+  "claim_ceiling": "candidate-only-not-promoted-not-applied-not-delivered",
+  "package": {
+    "distribution": "zhuise-research",
+    "entrypoint": "zhuise-producer-invoke",
+    "version": "0.3.0",
+    "wheel_filename": "zhuise_research-0.3.0-py3-none-any.whl",
+    "wheel_sha256": "cd95c2665a99e604da3b30e524885762d0d8327389f583606c36675499934bee",
+    "wheel_size_bytes": 119496
+  },
+  "producer": {
+    "fixture_commit": "55fea51a7bcb0184e0e5363ce125eff689e89fe7",
+    "package_lock_sha256": "8fefd48f097093eca508ad2f5706aca17907e760c5c4ca77821d365f4e08f3a3",
+    "package_source_commit": "bf4fd4f71ae480f8b341f7d5739fb5b68fd4ce77",
+    "repository_id": "zhuise-dpct",
+    "stable_commit": "98073d4a61f904061341ae7a01451c2ce8b28177"
+  },
+  "profile_id": "de6a590e5e4448d1a097ecf12e2d1f4df4669d8b27a4a6f0af75046132a53adc",
+  "rights": {
+    "evaluation_allowed": true,
+    "reason": "evaluation only; commercial and redistribution rights are not established",
+    "redistribution_allowed": false
+  },
+  "runtime": {
+    "numpy": "2.5.1",
+    "pillow": "12.3.0",
+    "python_major_minor": "3.12"
+  },
+  "schema_id": "neuro-film.dpct-invocation-profile.v2",
+  "wire": {
+    "capability_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+    "fixture_sha256": "ed7b297752ee8468c4e3c8b9e0168a0ba0a252bc8af1faf71db718ee5284344c",
+    "lower_compatibility_profile_id": "neuro-film.dpct-consumer.v2",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "request_schema": "zhuise.invocation-request.v2",
+    "request_schema_sha256": "5350830c77cb500d4453893d2b3d69f21a0ded436b95b4c86560bfee00258012",
+    "response_schema": "zhuise.invocation-response.v2",
+    "response_schema_sha256": "3252d3a3a46695209bd9002873207ec41c0b2767c9cda2a5147c3e9412b4c33a"
+  }
+}

@@ -51,6 +51,7 @@ DPCT_CANONICAL_JSON = "zhuise-json-sort-keys-utf8-v1"
 
 _HASH = re.compile(r"^sha256:[0-9a-f]{64}$")
 _IDENTIFIER = re.compile(r"^[a-z0-9][a-z0-9._-]{2,127}$")
+_COMMIT = re.compile(r"^[0-9a-f]{40}$")
 _VIEW_KEYS = {
     "schema",
     "profile_id",
@@ -754,9 +755,21 @@ def adapt_dpct_candidate_v2(
     producer_apply_result: Mapping[str, Any],
     output_pixel_f32be: bytes,
     intent_id: str,
+    producer_commit: str = DPCT_PINNED_COMMIT,
+    compatibility_profile_id: str = DPCT_COMPATIBILITY_PROFILE_ID,
 ) -> AdaptedDpctCandidateV2:
     """Verify one pinned D-PCT v2 delivery and issue a candidate receipt."""
 
+    if not isinstance(producer_commit, str) or _COMMIT.fullmatch(
+        producer_commit
+    ) is None:
+        raise ReferenceMatchContractError(
+            "producer commit must be a full lowercase Git identity"
+        )
+    compatibility_profile_id = _identifier(
+        compatibility_profile_id,
+        "compatibility profile_id",
+    )
     validate_prepared_match_view(source)
     validate_prepared_match_view(reference)
     source_bytes = source.pixels.astype(">f4", copy=False).tobytes(order="C")
@@ -866,8 +879,8 @@ def adapt_dpct_candidate_v2(
         output_pixels=output_pixels,
     )
     aliases = DpctProducerAliasesV2(
-        compatibility_profile_id=DPCT_COMPATIBILITY_PROFILE_ID,
-        producer_commit=DPCT_PINNED_COMMIT,
+        compatibility_profile_id=compatibility_profile_id,
+        producer_commit=producer_commit,
         source_view_id=producer_source["view_id"],
         reference_view_id=producer_reference["view_id"],
         bundle_id=producer_transform["bundle_id"],
