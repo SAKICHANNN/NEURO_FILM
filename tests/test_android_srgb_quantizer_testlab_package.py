@@ -53,6 +53,15 @@ def test_frozen_android_vector_matches_independent_oracle() -> None:
     ).read_text(encoding="utf-8")
     assert identities["threshold_identity"][:32] in java
     assert identities["vector_sha256"][:32] in java
+    assert "public void onCreate(Bundle arguments)" in java
+    assert "start();" in java
+    jni = (
+        HARNESS / "test/jni/nf_srgb_quantizer_testlab.c"
+    ).read_text(encoding="utf-8")
+    assert "NF_SRGB_QUANTIZER_CORE_LIBRARY" in jni
+    assert (
+        '"libneuro_film_srgb_oetf_quantize_arm64-v8a.so"' not in jni
+    )
 
 
 def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
@@ -104,4 +113,9 @@ def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
     assert (
         "lib/arm64-v8a/"
         "libneuro_film_srgb_oetf_quantize_arm64-v8a.so"
+    ) in names
+    assert "lib/x86_64/libnf_srgb_quantizer_testlab.so" in names
+    assert (
+        "lib/x86_64/"
+        "libneuro_film_srgb_oetf_quantize_x86_64.so"
     ) in names

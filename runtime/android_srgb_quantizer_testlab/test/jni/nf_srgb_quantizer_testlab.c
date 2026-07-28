@@ -6,6 +6,10 @@
 
 #include "nf_srgb_quantizer_vectors_v1.h"
 
+#ifndef NF_SRGB_QUANTIZER_CORE_LIBRARY
+#error "NF_SRGB_QUANTIZER_CORE_LIBRARY must name the packaged ABI core"
+#endif
+
 typedef int (*nf_apply_fn)(
     const float *, size_t, uint32_t, void *, size_t);
 typedef const char *(*nf_identity_fn)(void);
@@ -64,7 +68,7 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     (void)owner;
 
     core = dlopen(
-        "libneuro_film_srgb_oetf_quantize_arm64-v8a.so",
+        NF_SRGB_QUANTIZER_CORE_LIBRARY,
         RTLD_NOW | RTLD_LOCAL);
     if (core == NULL) {
         return nf_throw(environment, NULL, "quantizer core dlopen failed");

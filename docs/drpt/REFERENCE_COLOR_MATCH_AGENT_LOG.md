@@ -1562,9 +1562,10 @@
   rejection paths.
 - The initial manifest-only target package was rejected by Test Lab before
   device execution as `NO_CODE_APK`. The corrected package includes a minimal
-  target DEX anchor; identity is `91a4c307...d522` and app/test APK hashes are
-  `960c31ab...7df3` / `e46ff53c...0539`. The anchor source is included in the
-  package identity.
+  target DEX anchor. The final dual-ABI package identity is
+  `f5d76926...cadd`, with app/test APK hashes `82b42b99...875e` /
+  `a3ce1c7a...2851`; the anchor, lifecycle and ABI-specific JNI/core sonames
+  are included in the package identity.
 - Eleven package/runner tests pass. This is locally build-verified only until a
   physical Test Lab result is parsed; no device-runtime claim opens yet.
 
@@ -1597,6 +1598,27 @@
   dry-run fails closed without changing the two-resource ledger. Enabling a
   shared-project API is outside this thread's ownership boundary, so no third
   submission is made.
+
+## 2026-07-28 - Prove P93-P95 Android 14 emulator runtime
+
+- Installed a consumer-owned Android emulator/tool/system-image closure under
+  ignored outputs after confirming local hypervisor support. It does not
+  modify or depend at runtime on the D-PCT SDK tree.
+- Emulator bring-up exposed two real invocation defects before evidence:
+  the package lacked x86_64 native payloads/ABI-specific core sonames, and the
+  custom instrumentation omitted `onCreate -> start`. Both were fixed and
+  covered by the dual-build/package/parser suite.
+- Two full cold `-wipe-data -no-snapshot` Android 14 x86_64 runs take 76.16 and
+  73.39 seconds and reproduce stable identity
+  `sha256:079d19c2...ff225` exactly; report SHAs differ only in observation
+  time (`0e533253...c9e4f` / `3dee6441...45127`).
+- Each run performs two host instrumentation invocations, two Java outer
+  replays per invocation and two native replays per output depth over all 4096
+  frozen inputs. sRGB8, sRGB16, threshold/vector identity and both atomic
+  failures pass. Twenty-nine related tests pass.
+- Claim ceiling is strictly Android-14-x86_64 emulator runtime for the consumer
+  quantizer. It is not Pixel/arm64 physical-device, media, D-PCT algorithm,
+  arbitrary-look quality or product-admission evidence.
 
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 

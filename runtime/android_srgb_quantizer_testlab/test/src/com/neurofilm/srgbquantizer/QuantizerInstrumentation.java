@@ -25,6 +25,12 @@ public final class QuantizerInstrumentation extends Instrumentation {
     }
 
     @Override
+    public void onCreate(Bundle arguments) {
+        super.onCreate(arguments);
+        start();
+    }
+
+    @Override
     public void onStart() {
         Bundle result = new Bundle();
         try {

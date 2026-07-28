@@ -262,10 +262,13 @@ def build(
         directory.mkdir(exist_ok=True)
 
     core_report = build_android(ndk, native_output)
-    core_library = (
-        native_output
-        / "libneuro_film_srgb_oetf_quantize_arm64-v8a.so"
-    )
+    core_libraries = {
+        abi: (
+            native_output
+            / f"libneuro_film_srgb_oetf_quantize_{abi}.so"
+        )
+        for abi in ("arm64-v8a", "x86_64")
+    }
     vector_source, vector_identities = encode_vector_header()
     vector_header = generated / "nf_srgb_quantizer_vectors_v1.h"
     vector_header.write_text(
@@ -278,35 +281,56 @@ def build(
         / "toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
     )
     readelf = compiler.with_name("llvm-readelf.exe")
-    jni_library = native_output / "libnf_srgb_quantizer_testlab.so"
-    _run(
-        [
-            compiler,
-            "--target=aarch64-linux-android24",
-            "-std=c11",
-            "-O2",
-            "-fPIC",
-            "-fvisibility=hidden",
-            "-Wall",
-            "-Wextra",
-            "-Werror",
-            "-shared",
-            JNI_SOURCE,
-            "-I",
-            generated,
-            "-I",
-            ndk
-            / "toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include",
-            "-ldl",
-            "-Wl,--no-undefined",
-            "-Wl,--build-id=sha1",
-            "-o",
-            jni_library,
-        ]
-    )
-    dynamic = _run([readelf, "--dynamic", jni_library])
-    if "libdl.so" not in dynamic or "libc.so" not in dynamic:
-        raise ValueError("JNI library dependency closure mismatch")
+    jni_targets = {
+        "arm64-v8a": "aarch64-linux-android24",
+        "x86_64": "x86_64-linux-android24",
+    }
+    jni_libraries: dict[str, Path] = {}
+    for abi, target in jni_targets.items():
+        core_soname = (
+            "libneuro_film_srgb_oetf_quantize_" f"{abi}.so"
+        )
+        jni_library = (
+            native_output / f"libnf_srgb_quantizer_testlab_{abi}.so"
+        )
+        _run(
+            [
+                compiler,
+                f"--target={target}",
+                "-std=c11",
+                "-O2",
+                "-fPIC",
+                "-fvisibility=hidden",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                (
+                    "-DNF_SRGB_QUANTIZER_CORE_LIBRARY="
+                    f'"{core_soname}"'
+                ),
+                "-shared",
+                JNI_SOURCE,
+                "-I",
+                generated,
+                "-I",
+                ndk
+                / (
+                    "toolchains/llvm/prebuilt/windows-x86_64/"
+                    "sysroot/usr/include"
+                ),
+                "-ldl",
+                "-Wl,--no-undefined",
+                "-Wl,--build-id=sha1",
+                "-o",
+                jni_library,
+            ]
+        )
+        dynamic = _run([readelf, "--dynamic", jni_library])
+        if "libdl.so" not in dynamic or "libc.so" not in dynamic:
+            raise ValueError(
+                f"{abi} JNI library dependency closure mismatch"
+            )
+        jni_libraries[abi] = jni_library
 
     _run(
         [
@@ -399,11 +423,18 @@ def build(
         test_unsigned,
         {
             "classes.dex": test_dex / "classes.dex",
-            "lib/arm64-v8a/libnf_srgb_quantizer_testlab.so": jni_library,
-            (
-                "lib/arm64-v8a/"
-                "libneuro_film_srgb_oetf_quantize_arm64-v8a.so"
-            ): core_library,
+            **{
+                f"lib/{abi}/libnf_srgb_quantizer_testlab.so": library
+                for abi, library in jni_libraries.items()
+            },
+            **{
+                (
+                    f"lib/{abi}/"
+                    "libneuro_film_srgb_oetf_quantize_"
+                    f"{abi}.so"
+                ): library
+                for abi, library in core_libraries.items()
+            },
         },
     )
     app_badging = _run([aapt2, "dump", "badging", app_unsigned])
@@ -495,8 +526,14 @@ def build(
     }
     canonical_inputs = json.dumps(
         {
-            "core_library_sha256": _sha256(core_library),
-            "jni_library_sha256": _sha256(jni_library),
+            "core_library_sha256": {
+                abi: _sha256(path)
+                for abi, path in core_libraries.items()
+            },
+            "jni_library_sha256": {
+                abi: _sha256(path)
+                for abi, path in jni_libraries.items()
+            },
             "package_prefix": PACKAGE_PREFIX,
             "sources": source_hashes,
             "vector_header_sha256": _sha256(vector_header),
@@ -536,8 +573,22 @@ def build(
         },
         "core_cross_compile_report": core_report,
         "native": {
-            "core_library_sha256": _sha256(core_library),
-            "jni_library_sha256": _sha256(jni_library),
+            # Preserve the original arm64 aliases for existing consumers while
+            # binding the complete dual-ABI package explicitly.
+            "core_library_sha256": _sha256(
+                core_libraries["arm64-v8a"]
+            ),
+            "jni_library_sha256": _sha256(
+                jni_libraries["arm64-v8a"]
+            ),
+            "core_libraries": {
+                abi: _sha256(path)
+                for abi, path in core_libraries.items()
+            },
+            "jni_libraries": {
+                abi: _sha256(path)
+                for abi, path in jni_libraries.items()
+            },
         },
         "manifest_validation": {
             "app_package": "com.neurofilm.srgbquantizer.target",
