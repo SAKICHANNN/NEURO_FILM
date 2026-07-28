@@ -265,9 +265,10 @@ def apply_scanner_mtf(
 ) -> np.ndarray:
     values = _validate(scan_linear, maximum=1.0)
     output = _blur(values, profile.scanner_mtf_sigma_um_rgb, profile)
-    if np.any(output > 1.0):
+    tolerance = 1e-12
+    if np.any(output > 1.0 + tolerance):
         raise RuntimeError("scanner MTF left scan-linear domain")
-    return output
+    return np.where(output > 1.0, 1.0, output)
 
 
 def required_spatial_response_halo(profile: SpatialResponseProfile) -> int:

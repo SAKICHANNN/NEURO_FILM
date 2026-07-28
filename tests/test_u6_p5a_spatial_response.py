@@ -57,6 +57,36 @@ def test_spatial_primitives_preserve_domains() -> None:
     assert np.all((scanned > 0.0) & (scanned <= 1.0))
 
 
+def test_scanner_mtf_canonicalizes_only_numeric_endpoint_roundoff(
+    monkeypatch,
+) -> None:
+    values = np.ones((3, 5, 3), dtype=np.float64)
+    profile = _profile()
+
+    def numeric_roundoff(*args, **kwargs):
+        return np.full_like(values, 1.0 + 5e-13)
+
+    monkeypatch.setattr(
+        "src.film_physics.spatial_response._blur", numeric_roundoff
+    )
+    output = apply_scanner_mtf(values, profile)
+    np.testing.assert_array_equal(output, values)
+
+
+def test_scanner_mtf_rejects_material_endpoint_escape(monkeypatch) -> None:
+    values = np.ones((3, 5, 3), dtype=np.float64)
+    profile = _profile()
+
+    def material_escape(*args, **kwargs):
+        return np.full_like(values, 1.0 + 2e-12)
+
+    monkeypatch.setattr(
+        "src.film_physics.spatial_response._blur", material_escape
+    )
+    with np.testing.assert_raises_regex(RuntimeError, "scan-linear"):
+        apply_scanner_mtf(values, profile)
+
+
 def test_frozen_spatial_response_report_passes_representation_gates() -> None:
     sensitometry = json.loads(
         (ROOT / "configs" / "u2_2a_sensitometry_primitive_v1.json").read_text(
