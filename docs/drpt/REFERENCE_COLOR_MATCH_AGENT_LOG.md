@@ -2107,6 +2107,23 @@
 - Claim ceiling remains `shared-filmfx-staging-not-delivered`; no delivery,
   app-level applied state, stock identity or calibrated-reference claim.
 
+## 2026-07-28 - Freeze P54 shared FilmFX restart verification
+
+- Node/parent goal: P54A-D / restart-safe trust boundary after P53.
+- Contract: the caller supplies the exact P53 report SHA-256 and run ID. The
+  verifier performs a bounded UTF-8 read, validates the canonical P53 run,
+  verifies its recorded report path, and rehashes every P50 input and every
+  P53 output without writing.
+- Identity: the resulting verification preserves P52/P51/P50/P49/P48/P47
+  chain IDs and each ordered apply-receipt/producer-result identity, alongside
+  file paths, hashes, encoding depth and deterministic FilmFX seeds.
+- Failure closure: report-byte tamper, relocation, missing/tampered input or
+  output, foreign expected run, order/seed/state/claim mutation and unknown
+  JSON fields reject.
+- State ceiling: `verified-shared-filmfx-staging` /
+  `verified-shared-filmfx-staging-not-delivered`; no authorization, export,
+  app-level applied state or product promotion.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
