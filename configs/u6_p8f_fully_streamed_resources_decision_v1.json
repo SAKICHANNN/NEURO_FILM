@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8f_fully_streamed_resources_decision.v1",
+  "node": "U6.P8F",
+  "software_commit": "5d88eb2",
+  "contract_sha256": "f7897a7139abd07a1cd86e30504ff408be1161f795bca14ce2efc7d369221cb1",
+  "report_sha256": "512f6ae7f2158b7e985fa01d0793c730efa3927c7a1fb6d6bed165279d00a63e",
+  "stable_evidence_id": "70ec7678f79945e71535c2bde6f42030b81557b021edb022f4b79cccc8e589eb",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      3.839593899989268,
+      4.077628200000618
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      489443328,
+      494252032
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      43.02806179999607,
+      43.104948099993635
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      4284592128,
+      4307681280
+    ]
+  },
+  "comparison_to_p8d": {
+    "twelve_mp_worker_time_reduction_fraction_at_median": 0.43451,
+    "twelve_mp_peak_rss_reduction_fraction_at_median": 0.16141
+  },
+  "decision": "full display-look row streaming preserves the exact P8D output and materially reduces time and memory, but 12MP remains far outside provisional mobile targets. Retain the topology and next remove the full-frame density/Lab source-context construction and unnecessary array lifetimes",
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8G exact row-staged source-context construction and lifetime reduction, first proving identical Lab mean/std and final pixels before repeating resource measurements",
+  "claim_ceiling": "local Windows Python CPU resource evidence for float-exact physical plus display-look row streaming; not native runtime, mobile-device evidence, frozen cross-platform target, stock response, calibration or product promotion"
+}
