@@ -8,7 +8,12 @@ import numpy as np
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
     render_working_image,
+    render_working_image_fully_row_streamed,
     render_working_image_row_streamed,
+)
+from src.film_physics.display_look import (
+    build_source_context_display_look,
+    build_source_context_display_look_row_streamed,
 )
 from src.preprocess.types import SourceProfile, WorkingImage
 
@@ -57,3 +62,53 @@ def test_artifact_consumer_row_stream_is_float_exact() -> None:
     )
     assert forward_receipt["execution"]["seam_rows"] == [31, 62, 93, 124]
     assert reverse_receipt["execution"]["seam_rows"] == [47, 94]
+
+
+def test_display_look_base_and_residual_row_stream_are_float_exact() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    source = np.random.default_rng(2026072910).random((67, 71, 3))
+    input_values = np.random.default_rng(2026072911).random(
+        (67, 71, 3)
+    )
+    reference = build_source_context_display_look(
+        payload, source
+    )(input_values)
+    streamed = build_source_context_display_look_row_streamed(
+        payload, source, tile_rows=17
+    )(input_values)
+    assert np.array_equal(reference, streamed)
+
+
+def test_fully_row_streamed_profile_is_float_exact() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    working = _working(
+        np.random.default_rng(2026072912).random(
+            (129, 131, 3), dtype=np.float32
+        )
+    )
+    reference, _ = render_working_image(artifact, working)
+    forward, forward_receipt = (
+        render_working_image_fully_row_streamed(
+            artifact, working, tile_rows=31, order="forward"
+        )
+    )
+    reverse, reverse_receipt = (
+        render_working_image_fully_row_streamed(
+            artifact, working, tile_rows=47, order="reverse"
+        )
+    )
+    assert np.array_equal(reference, forward)
+    assert np.array_equal(reference, reverse)
+    assert (
+        forward_receipt["output"]["array_sha256"]
+        == reverse_receipt["output"]["array_sha256"]
+    )

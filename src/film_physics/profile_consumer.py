@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import partial
 import hashlib
 import json
@@ -12,7 +12,17 @@ from typing import Any, Callable
 import numpy as np
 
 from src.eval.global_frontier import sha256_file
-from src.eval.density_witness_frontier import linear_srgb_to_encoded
+from src.eval.density_witness_frontier import (
+    encoded_srgb_to_linear,
+    linear_srgb_to_encoded,
+)
+from src.eval.physical_neutral_gauged_chain import (
+    apply_gauge_to_intermediate,
+)
+from src.eval.physical_virtual_scan_sampling import (
+    _render_physical,
+    compile_virtual_scan_profile,
+)
 from src.eval.physical_neutral_gauged_invariance import (
     _bounded_real_source,
     render_challenger,
@@ -26,8 +36,10 @@ from src.film_physics.contracts import (
 from src.film_physics.display_look import (
     DISPLAY_LOOK_SCHEMA,
     build_source_context_display_look,
+    build_source_context_display_look_row_streamed,
     validate_display_look_payload,
 )
+from src.film_physics.spatial_response import required_spatial_response_halo
 from src.film_physics.profile_compiler import (
     _adjacency_from_payload,
     _canonical_bytes,
@@ -460,6 +472,113 @@ def render_working_image_row_streamed(
     }
 
 
+def render_working_image_fully_row_streamed(
+    artifact: dict[str, Any],
+    working: WorkingImage,
+    *,
+    tile_rows: int,
+    order: str = "forward",
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Row-bound both the physical chain and AO6 base/residual execution."""
+
+    bundle = validate_standalone_profile_artifact(artifact)
+    scene = scene_exposure_from_working_image(working)
+    if np.any(scene.values > 1.0):
+        raise ValueError(
+            "v1 profile consumer requires scene-linear samples in [0,1]; "
+            "a calibrated scene-to-relative exposure map is not available"
+        )
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or order not in {"forward", "reverse"}
+    ):
+        raise ValueError("invalid fully row-streamed partition")
+    encoded = linear_srgb_to_encoded(
+        scene.values.astype(np.float64)
+    )
+    runtime, gauge = reconstruct_standalone_runtime(artifact)
+    compiled = replace(
+        runtime,
+        profile=compile_virtual_scan_profile(
+            runtime.profile,
+            sampling_dpi=int(artifact["reference_sampling_dpi"]),
+        ),
+    )
+    halo = required_spatial_response_halo(compiled.profile)
+    linear = encoded_srgb_to_linear(encoded)
+    ranges = [
+        (y0, min(encoded.shape[0], y0 + tile_rows))
+        for y0 in range(0, encoded.shape[0], tile_rows)
+    ]
+    if order == "reverse":
+        ranges.reverse()
+    gauged_encoded = np.empty_like(encoded, dtype=np.float64)
+    seams = []
+    for y0, y1 in ranges:
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(encoded.shape[0], y1 + halo)
+        physical = _render_physical(
+            linear[source_y0:source_y1], compiled
+        )
+        core = physical[y0 - source_y0 : y1 - source_y0]
+        gauged = apply_gauge_to_intermediate(core, gauge)
+        gauged_encoded[y0:y1] = linear_srgb_to_encoded(gauged)
+        if 0 < y0 < encoded.shape[0]:
+            seams.append(y0)
+    del linear
+    display = build_source_context_display_look_row_streamed(
+        artifact["component_payloads"][
+            "ao6-source-context-display-look"
+        ],
+        encoded,
+        tile_rows=tile_rows,
+    )
+    output = display(gauged_encoded)
+    input_bytes = np.ascontiguousarray(
+        scene.values.astype(np.float32, copy=False)
+    ).tobytes()
+    output_bytes = np.ascontiguousarray(output).tobytes()
+    receipt_core = {
+        "schema": (
+            "neuro_film.physical_profile_fully_row_streamed_render_receipt.v1"
+        ),
+        "profile_id": bundle.profile_id,
+        "bundle_sha256": bundle.bundle_sha256,
+        "artifact_sha256": _payload_sha256(artifact),
+        "reference_sampling_dpi": int(
+            artifact["reference_sampling_dpi"]
+        ),
+        "execution": {
+            "mode": "exact-row-streamed-physical-and-display-look",
+            "tile_rows": int(tile_rows),
+            "order": order,
+            "seam_rows": sorted(seams),
+        },
+        "input": {
+            "array_sha256": hashlib.sha256(input_bytes).hexdigest(),
+            "dtype": "float32",
+            "shape": list(scene.values.shape),
+            "working_space": working.working_space,
+            "transfer_state": working.transfer_state,
+            "source_transfer_state": working.source_transfer_state,
+        },
+        "output": {
+            "array_sha256": hashlib.sha256(output_bytes).hexdigest(),
+            "dtype": output.dtype.name,
+            "shape": list(output.shape),
+            "domain": "display-encoded-rgb",
+            "quantized": False,
+        },
+        "claim_ceiling": artifact["claim_ceiling"],
+    }
+    return output, {
+        **receipt_core,
+        "receipt_sha256": _payload_sha256(receipt_core),
+    }
+
+
 def evaluate_standalone_profile(
     *, root: Path, config: dict[str, Any]
 ) -> dict[str, Any]:
@@ -565,6 +684,7 @@ __all__ = [
     "render_standalone_profile",
     "render_working_image",
     "render_working_image_row_streamed",
+    "render_working_image_fully_row_streamed",
     "serialize_standalone_profile_artifact",
     "validate_contract",
     "validate_standalone_profile_artifact",

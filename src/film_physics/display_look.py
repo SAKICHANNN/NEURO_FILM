@@ -12,6 +12,7 @@ from typing import Any, Callable
 import numpy as np
 
 from scripts.pipeline_color_baseline import (
+    _style_transfer_rgb_with_context,
     apply_output_margin,
     build_safe_lab_source_context,
 )
@@ -200,9 +201,11 @@ def build_source_context_display_look_stages(
         )
 
     source_value = np.asarray(source, dtype=np.float32)
+    source_shape = source_value.shape
     source_context = build_safe_lab_source_context(
         apply_density(source_value)
     )
+    del source_value
 
     def apply_base(encoded: np.ndarray) -> np.ndarray:
         encoded_value = np.asarray(encoded, dtype=np.float32)
@@ -244,7 +247,7 @@ def build_source_context_display_look_stages(
         )
         output = linear_srgb_to_encoded(result.output)
         if (
-            output.shape != source_value.shape
+            output.shape != source_shape
             or not np.all(np.isfinite(output))
             or np.any(output < 0.0)
             or np.any(output > 1.0)
@@ -255,10 +258,118 @@ def build_source_context_display_look_stages(
     return apply_base, apply_residual
 
 
+def build_source_context_display_look_row_streamed(
+    payload: dict[str, Any],
+    source: np.ndarray,
+    *,
+    tile_rows: int,
+) -> Callable[[np.ndarray], np.ndarray]:
+    """Build the same display look with row-bounded base and residual arrays."""
+
+    validate_display_look_payload(payload)
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+    ):
+        raise ValueError("tile_rows must be a positive integer")
+    base = payload["base"]
+    anchor = payload["anchor"]
+    residual = payload["residual"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    residual_operator = PositiveFilmResponseOperator.from_dict(
+        residual["operator"]
+    )
+
+    def apply_density(encoded: np.ndarray) -> np.ndarray:
+        linear = encoded_srgb_to_linear(
+            np.asarray(encoded, dtype=np.float64)
+        )
+        return linear_srgb_to_encoded(
+            density_operator.apply(
+                linear, strength=float(base["density_strength"])
+            )
+        )
+
+    source_value = np.asarray(source, dtype=np.float32)
+    source_shape = source_value.shape
+    source_context = build_safe_lab_source_context(
+        apply_density(source_value)
+    )
+    del source_value
+
+    def apply(encoded: np.ndarray) -> np.ndarray:
+        encoded_value = np.asarray(encoded, dtype=np.float32)
+        if encoded_value.shape != source_shape:
+            raise ValueError(
+                "row-streamed display input must match source context shape"
+            )
+        output = np.empty(source_shape, dtype=np.float64)
+        for y0 in range(0, source_shape[0], tile_rows):
+            y1 = min(source_shape[0], y0 + tile_rows)
+            base_output = _style_transfer_rgb_with_context(
+                np.asarray(
+                    apply_density(encoded_value[y0:y1]),
+                    dtype=np.float32,
+                ),
+                anchor["stats"],
+                str(anchor["style"]),
+                float(anchor["strength"]),
+                float(anchor["luma_strength"]),
+                float(anchor["grain"]),
+                int(anchor["seed"]),
+                True,
+                gamut_mode=str(anchor["gamut_mode"]),
+                output_margin=0,
+                source_context=source_context,
+            )
+            base_output = np.asarray(
+                apply_output_margin(
+                    np.asarray(base_output, dtype=np.float64),
+                    int(base["final_output_margin"]),
+                ),
+                dtype=np.float32,
+            )
+            result = apply_factorized_boundary_guard(
+                residual_operator,
+                encoded_srgb_to_linear(base_output),
+                tone_strength=float(residual["tone_strength"]),
+                chroma_strength=float(residual["chroma_strength"]),
+                luma_weights=np.asarray(
+                    residual["luma_weights"], dtype=np.float64
+                ),
+                hard_boundary_epsilon_encoded_srgb=float(
+                    residual[
+                        "hard_boundary_epsilon_encoded_srgb"
+                    ]
+                ),
+                guard_boundary_epsilon_encoded_srgb=float(
+                    residual[
+                        "guard_boundary_epsilon_encoded_srgb"
+                    ]
+                ),
+            )
+            output[y0:y1] = linear_srgb_to_encoded(result.output)
+        if (
+            not np.all(np.isfinite(output))
+            or np.any(output < 0.0)
+            or np.any(output > 1.0)
+        ):
+            raise RuntimeError(
+                "row-streamed display-look component left encoded RGB"
+            )
+        return output
+
+    return apply
+
+
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
     "build_source_context_display_look_stages",
+    "build_source_context_display_look_row_streamed",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]
