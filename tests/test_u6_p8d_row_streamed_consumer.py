@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from src.film_physics.profile_consumer import (
+    _encoded_srgb_to_linear_inplace_row_staged,
     _encoded_srgb_to_linear_row_staged,
     _linear_srgb_to_encoded_row_staged,
     compile_standalone_profile_artifact,
@@ -71,6 +72,20 @@ def test_row_staged_roundtrip_eotf_is_float_exact() -> None:
         assert np.array_equal(reference, staged)
 
 
+def test_inplace_roundtrip_eotf_is_float_exact_and_reuses_buffer() -> None:
+    encoded = np.random.default_rng(2026072919).random((257, 131, 3))
+    reference = encoded_srgb_to_linear(encoded)
+    for tile_rows in (1, 31, 128, 509):
+        candidate = encoded.copy()
+        pointer = candidate.__array_interface__["data"][0]
+        staged = _encoded_srgb_to_linear_inplace_row_staged(
+            candidate, tile_rows=tile_rows
+        )
+        assert staged is candidate
+        assert staged.__array_interface__["data"][0] == pointer
+        assert np.array_equal(reference, staged)
+
+
 def test_artifact_consumer_row_stream_is_float_exact() -> None:
     config = json.loads(P8B.read_text(encoding="utf-8"))
     artifact = compile_standalone_profile_artifact(
@@ -121,7 +136,17 @@ def test_display_look_base_and_residual_row_stream_are_float_exact() -> None:
     streamed = build_source_context_display_look_row_streamed(
         payload, source, tile_rows=17
     )(input_values)
+    context = build_density_source_context_row_staged(
+        payload, source, tile_rows=17
+    )
+    precomputed = build_source_context_display_look_row_streamed(
+        payload,
+        source,
+        tile_rows=17,
+        source_context=context,
+    )(input_values)
     assert np.array_equal(reference, streamed)
+    assert np.array_equal(reference, precomputed)
 
 
 def test_fully_row_streamed_profile_is_float_exact() -> None:

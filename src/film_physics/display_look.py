@@ -23,6 +23,7 @@ from src.color_engine.safe_lab_rgb_context import (
 from src.color_engine.safe_lab import (
     SafeLabSourceContext,
     safe_lab_context_from_lab,
+    validate_safe_lab_source_context,
 )
 from src.eval.density_witness_frontier import (
     encoded_srgb_to_linear,
@@ -269,6 +270,7 @@ def build_source_context_display_look_row_streamed(
     *,
     tile_rows: int,
     reuse_input_buffer: bool = False,
+    source_context: SafeLabSourceContext | None = None,
 ) -> Callable[[np.ndarray], np.ndarray]:
     """Build the same display look with row-bounded base and residual arrays."""
 
@@ -300,11 +302,18 @@ def build_source_context_display_look_row_streamed(
         )
 
     source_shape = np.asarray(source).shape
-    source_context = build_density_source_context_row_staged(
-        payload,
-        source,
-        tile_rows=tile_rows,
-    )
+    if source_context is None:
+        source_context = build_density_source_context_row_staged(
+            payload,
+            source,
+            tile_rows=tile_rows,
+        )
+    else:
+        validate_safe_lab_source_context(source_context)
+        if source_context.source_shape != source_shape:
+            raise ValueError(
+                "precomputed source context must match source shape"
+            )
 
     def apply(encoded: np.ndarray) -> np.ndarray:
         encoded_value = np.asarray(encoded)

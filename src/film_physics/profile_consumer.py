@@ -35,6 +35,7 @@ from src.film_physics.contracts import (
 )
 from src.film_physics.display_look import (
     DISPLAY_LOOK_SCHEMA,
+    build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
     validate_display_look_payload,
@@ -115,6 +116,34 @@ def _encoded_srgb_to_linear_row_staged(
         y1 = min(value.shape[0], y0 + tile_rows)
         linear[y0:y1] = encoded_srgb_to_linear(value[y0:y1])
     return linear
+
+
+def _encoded_srgb_to_linear_inplace_row_staged(
+    encoded: np.ndarray, *, tile_rows: int
+) -> np.ndarray:
+    """Replace one writable float64 encoded buffer with its exact EOTF."""
+
+    value = np.asarray(encoded)
+    if (
+        value.dtype != np.float64
+        or value.ndim != 3
+        or value.shape[-1] != 3
+        or value.shape[0] == 0
+        or value.shape[1] == 0
+        or not value.flags.c_contiguous
+        or not value.flags.writeable
+        or isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or not np.all(np.isfinite(value))
+    ):
+        raise ValueError(
+            "in-place row EOTF requires writable C-contiguous float64 HxWx3"
+        )
+    for y0 in range(0, value.shape[0], tile_rows):
+        y1 = min(value.shape[0], y0 + tile_rows)
+        value[y0:y1] = encoded_srgb_to_linear(value[y0:y1])
+    return value
 
 
 @dataclass(frozen=True)
@@ -557,6 +586,13 @@ def render_working_image_fully_row_streamed(
         tile_rows=tile_rows,
     )
     del scene
+    source_context = build_density_source_context_row_staged(
+        artifact["component_payloads"][
+            "ao6-source-context-display-look"
+        ],
+        encoded,
+        tile_rows=tile_rows,
+    )
     runtime, gauge = reconstruct_standalone_runtime(artifact)
     compiled = replace(
         runtime,
@@ -566,38 +602,39 @@ def render_working_image_fully_row_streamed(
         ),
     )
     halo = required_spatial_response_halo(compiled.profile)
-    linear = _encoded_srgb_to_linear_row_staged(
+    linear = _encoded_srgb_to_linear_inplace_row_staged(
         encoded, tile_rows=tile_rows
     )
+    del encoded
     ranges = [
-        (y0, min(encoded.shape[0], y0 + tile_rows))
-        for y0 in range(0, encoded.shape[0], tile_rows)
+        (y0, min(linear.shape[0], y0 + tile_rows))
+        for y0 in range(0, linear.shape[0], tile_rows)
     ]
     if order == "reverse":
         ranges.reverse()
-    gauged_encoded = np.empty_like(encoded, dtype=np.float64)
+    gauged_encoded = np.empty_like(linear, dtype=np.float64)
     seams = []
     for y0, y1 in ranges:
         source_y0 = max(0, y0 - halo)
-        source_y1 = min(encoded.shape[0], y1 + halo)
+        source_y1 = min(linear.shape[0], y1 + halo)
         physical = _render_physical(
             linear[source_y0:source_y1], compiled
         )
         core = physical[y0 - source_y0 : y1 - source_y0]
         gauged = apply_gauge_to_intermediate(core, gauge)
         gauged_encoded[y0:y1] = linear_srgb_to_encoded(gauged)
-        if 0 < y0 < encoded.shape[0]:
+        if 0 < y0 < linear.shape[0]:
             seams.append(y0)
-    del linear
     display = build_source_context_display_look_row_streamed(
         artifact["component_payloads"][
             "ao6-source-context-display-look"
         ],
-        encoded,
+        linear,
         tile_rows=tile_rows,
         reuse_input_buffer=True,
+        source_context=source_context,
     )
-    del encoded
+    del linear
     output = display(gauged_encoded)
     receipt_core = {
         "schema": (
