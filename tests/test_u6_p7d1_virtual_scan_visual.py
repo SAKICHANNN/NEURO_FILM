@@ -18,6 +18,7 @@ CONTRACT = (
 ADJUDICATION = (
     ROOT / "configs/u6_p7d1_virtual_scan_visual_adjudication_v1.json"
 )
+DECISION = ROOT / "configs/u6_p7d_virtual_scan_sampling_decision_v1.json"
 
 
 def _config() -> dict:
@@ -70,3 +71,13 @@ def test_p7d1_frozen_scoring_rejects_combined_on_preference() -> None:
         "combined_scan_4000_dpi": 0,
     }
     assert result["decision"] == "preference_fail"
+
+
+def test_p7d_decision_keeps_colour_only_and_opens_attribution() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["visual_result"]["combined_round_wins"] == 0
+    assert decision["visual_result"]["colour_only_choices"] == 27
+    assert decision["production_default_changed"] is False
+    assert decision["next_leaf"].startswith(
+        "U6.P7E non-spatial sensitometry/print interpretation attribution"
+    )

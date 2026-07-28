@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p7d_virtual_scan_sampling_decision.v1",
+  "node": "U6.P7D/P7D1",
+  "sampling_software_commit": "418a7c2",
+  "visual_software_commit": "9b1c9ca",
+  "sampling_contract_sha256": "2d55a7b407776c8a768fc8461bf0b33a52337ff8824a920beae537578d622616",
+  "sampling_report_sha256": "6ff15cc48a1580411dbaec3e43791a539ed013b9abbc9c3bad1349738191ae36",
+  "sampling_stable_evidence_id": "90e07ac34ac752db9e4bb0876c290f39082b7e5a67e00e2e9f61863fb4c0b12e",
+  "two_run_inventory": {
+    "files_per_run": 66,
+    "bytes_per_run": 150800832,
+    "path_hash_size_differences": 0
+  },
+  "automatic_result": {
+    "selected_candidate_id": "scan_4000_dpi",
+    "automatic_eligible_candidate_ids": [
+      "scan_4000_dpi"
+    ],
+    "median_edge_energy_ratio_to_cheap": 0.7708153423136992,
+    "worst_edge_energy_ratio_to_cheap": 0.7064689324486539,
+    "median_full_to_cheap_delta_e76": 0.47787170677291413,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "negative_control_reproduced_p7c": true
+  },
+  "visual_adjudication_contract_sha256": "f52e9c9e569490785a4a91aa6f85fc471df789a9507730724510554fbd636ee6",
+  "visual_adjudication_sha256": "d477c28e68e263bc88584f9b80c26e91cd73e160b93ab074315d5a31f9ae8847",
+  "visual_stable_evidence_id": "dc1bbccb9c6de99b2752246e357f8646c5fc94c2e38fef04c1e9a09fd5c93d0f",
+  "visual_result": {
+    "confirmed_severe_combined_artifacts": 0,
+    "colour_only_choices": 27,
+    "combined_scan_4000_dpi_choices": 0,
+    "combined_round_wins": 0,
+    "required_combined_round_wins": 2,
+    "decision": "preference_fail"
+  },
+  "decision": "close the combined 4000-dpi full physical chain as a champion; retain the explicit micrometre-to-pixel compiler as mechanism evidence and keep colour-only AO6 as the development champion",
+  "interpretation": "P7D repairs the P7B scale error and removes the severe global blur, but the corrected full physical chain is unanimously less appealing than colour-only. The remaining failure is dominated by the non-spatial capture/develop/print colour equation rather than spatial sampling.",
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "next_leaf": "U6.P7E non-spatial sensitometry/print interpretation attribution with neutral/direct controls",
+  "claim_ceiling": "generic physical-inspired mechanism and autonomous development preference evidence; not population preference, stock response, measured scanner, calibration or product promotion"
+}
