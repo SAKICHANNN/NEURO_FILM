@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p6b_scanner_streaming_contract.v1",
+  "node": "U6.P6B",
+  "parents": {
+    "p6a_decision_sha256": "999686b5d523d73982a706b1157a278929a72ef4bcffa37aa36cea15fe5f5b6d"
+  },
+  "claim_ceiling": "generic-scanner-context-and-streaming-development",
+  "context_contract": {
+    "bind": [
+      "profile_id",
+      "full_shape",
+      "canonical_stage_order",
+      "global_spectral_mean_rgb"
+    ],
+    "global_flare_mean": "compiled once from the full transmittance population before row execution",
+    "local_halo": "sum of finite local-flare and scanner-MTF Gaussian radii",
+    "noise": "counter-based full-coordinate field applied after local spatial stages",
+    "wrong_profile_shape_or_stage_context": "fail-closed"
+  },
+  "synthetic_inputs": {
+    "seed": 2026072803,
+    "shapes": [
+      [
+        777,
+        513
+      ],
+      [
+        1025,
+        259
+      ]
+    ],
+    "minimum_transmittance": 0.0001,
+    "maximum_transmittance": 1.0,
+    "profiles": [
+      "scanner_a",
+      "scanner_b"
+    ],
+    "row_partitions": [
+      31,
+      127,
+      257
+    ]
+  },
+  "automatic_gates": {
+    "full_vs_tiled_exact": true,
+    "repeat_exact": true,
+    "context_identity_exact": true,
+    "finite_bounded_domain": true,
+    "wrong_context_rejected": true,
+    "maximum_required_halo_rows": 80
+  },
+  "forbidden_fallbacks": [
+    "recompute global flare mean per tile",
+    "use tile-local random seeds or coordinates",
+    "omit local flare or MTF halo",
+    "relax exact parity to hide an implementation seam",
+    "double-apply film-spatial scanner MTF",
+    "claim product performance or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain exact scanner context/streaming and proceed to 24MP performance plus repeat-scan data-gap decision",
+    "fail": "retain full-frame scanner reference only and close streamed scanner execution"
+  }
+}
