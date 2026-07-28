@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from typing import Any
 
 
@@ -23,24 +24,63 @@ def _reject_constant(value: str) -> None:
     raise _StrictJsonValueError(f"non-standard JSON constant: {value}")
 
 
+def _validate_decoded_value(value: Any) -> None:
+    if isinstance(value, float):
+        if not math.isfinite(value):
+            raise _StrictJsonValueError(
+                "decoded JSON number is not finite"
+            )
+        return
+    if isinstance(value, str):
+        try:
+            value.encode("utf-8", errors="strict")
+        except UnicodeEncodeError as exc:
+            raise _StrictJsonValueError(
+                "decoded JSON string is not Unicode scalar text"
+            ) from exc
+        return
+    if isinstance(value, list):
+        for child in value:
+            _validate_decoded_value(child)
+        return
+    if isinstance(value, dict):
+        for key, child in value.items():
+            _validate_decoded_value(key)
+            _validate_decoded_value(child)
+
+
+def _decoded_document(document: object) -> str:
+    if isinstance(document, str):
+        return document
+    if isinstance(document, (bytes, bytearray)):
+        try:
+            return bytes(document).decode("utf-8")
+        except UnicodeDecodeError:
+            return ""
+    return ""
+
+
 def strict_json_loads(document: str | bytes | bytearray) -> Any:
     """Decode RFC-compatible JSON while rejecting ambiguous object keys."""
 
     try:
-        return json.loads(
+        value = json.loads(
             document,
             object_pairs_hook=_unique_object,
             parse_constant=_reject_constant,
         )
-    except _StrictJsonValueError as exc:
-        if isinstance(document, str):
-            decoded = document
-        else:
-            try:
-                decoded = bytes(document).decode("utf-8")
-            except UnicodeDecodeError:
-                decoded = ""
-        raise json.JSONDecodeError(str(exc), decoded, 0) from exc
+        _validate_decoded_value(value)
+        return value
+    except (
+        _StrictJsonValueError,
+        RecursionError,
+        UnicodeDecodeError,
+    ) as exc:
+        raise json.JSONDecodeError(
+            str(exc),
+            _decoded_document(document),
+            0,
+        ) from exc
 
 
 __all__ = ["strict_json_loads"]

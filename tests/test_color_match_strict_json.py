@@ -20,6 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
         '{"value":NaN}',
         '{"value":Infinity}',
         '{"value":-Infinity}',
+        '{"value":1e400}',
+        '{"value":"\\ud800"}',
+        '{"\\udfff":"value"}',
     ),
 )
 def test_strict_json_rejects_ambiguous_or_nonstandard_input(
@@ -36,6 +39,13 @@ def test_strict_json_retains_order_independent_standard_values() -> None:
         "nested": {"ok": True},
         "items": [1, 2, None],
     }
+
+
+def test_strict_json_wraps_invalid_utf8_and_excessive_nesting() -> None:
+    with pytest.raises(json.JSONDecodeError):
+        strict_json_loads(b'{"value":"\xff"}')
+    with pytest.raises(json.JSONDecodeError):
+        strict_json_loads("[" * 2000 + "]" * 2000)
 
 
 def test_persisted_color_match_modules_do_not_bypass_strict_json() -> None:
