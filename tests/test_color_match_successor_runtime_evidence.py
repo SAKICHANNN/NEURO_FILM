@@ -325,6 +325,37 @@ def test_duplicate_and_noncanonical_target_order_reject() -> None:
         )
 
 
+@pytest.mark.parametrize(
+    ("target", "field", "foreign_value"),
+    [
+        ("windows_x64", "os_name", "iOS"),
+        ("macos_arm64", "architecture", "x86_64"),
+        ("ios_arm64", "os_name", "Windows"),
+        ("android_arm64", "architecture", "arm64"),
+    ],
+)
+def test_target_os_architecture_contradiction_rejects_even_when_rehashed(
+    target: str,
+    field: str,
+    foreign_value: str,
+) -> None:
+    declaration = _declaration()
+    payload = successor_runtime_evidence_to_dict(
+        _bundle(declaration, (_record(target),))
+    )
+    record = payload["records"][0]
+    record[field] = foreign_value
+    record.pop("record_id")
+    record["record_id"] = runtime_record_id_v1(record)
+    payload.pop("evidence_id")
+    payload["evidence_id"] = runtime_evidence_id_v1(payload)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="target/os/architecture mapping",
+    ):
+        successor_runtime_evidence_from_dict(payload)
+
+
 def test_record_and_bundle_identity_tamper_reject() -> None:
     declaration = _declaration()
     original = _bundle(declaration, (_record("windows_x64"),))

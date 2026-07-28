@@ -226,12 +226,18 @@ def _runtime_record(
         "ios_arm64": "device-runtime",
         "android_arm64": "device-runtime",
     }[target]
+    os_name, architecture = {
+        "windows_x64": ("Windows", "x86_64"),
+        "macos_arm64": ("macOS", "arm64"),
+        "ios_arm64": ("iOS", "arm64"),
+        "android_arm64": ("Android", "arm64-v8a"),
+    }[target]
     return make_successor_runtime_record_v1(
         target_runtime=target,
         proof_class=proof_class or required,
-        os_name=target.split("_", 1)[0],
+        os_name=os_name,
         os_version="test-os-1",
-        architecture=target.rsplit("_", 1)[1],
+        architecture=architecture,
         environment_count=1,
         environment_matrix_sha256="4" * 64,
         environment_summary=f"one-{target}-environment",

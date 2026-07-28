@@ -40,6 +40,12 @@ REQUIRED_RUNTIME_PROOF_CLASS = {
     "ios_arm64": "device-runtime",
     "android_arm64": "device-runtime",
 }
+REQUIRED_RUNTIME_PLATFORM = {
+    "windows_x64": ("Windows", "x86_64"),
+    "macos_arm64": ("macOS", "arm64"),
+    "ios_arm64": ("iOS", "arm64"),
+    "android_arm64": ("Android", "arm64-v8a"),
+}
 
 _BUNDLE_KEYS = {
     "schema_id",
@@ -289,6 +295,14 @@ def _record_from_mapping(
         "backend_version",
     ):
         _string(record[key], f"record.{key}")
+    expected_os, expected_architecture = REQUIRED_RUNTIME_PLATFORM[target]
+    if (
+        record["os_name"] != expected_os
+        or record["architecture"] != expected_architecture
+    ):
+        raise ReferenceMatchContractError(
+            "runtime record target/os/architecture mapping is invalid"
+        )
     environment_count = record["environment_count"]
     if (
         isinstance(environment_count, bool)
@@ -520,6 +534,7 @@ def bind_successor_runtime_evidence_v1(
 
 __all__ = [
     "REQUIRED_RUNTIME_PROOF_CLASS",
+    "REQUIRED_RUNTIME_PLATFORM",
     "RUNTIME_EVIDENCE_CLAIM_CEILING",
     "RUNTIME_EVIDENCE_POLICY_ID",
     "RUNTIME_EVIDENCE_SCHEMA_ID",
