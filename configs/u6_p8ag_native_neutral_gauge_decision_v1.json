@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p8ag_native_neutral_gauge_decision.v1",
+  "node": "U6.P8AG",
+  "contract": "configs/u6_p8ag_native_neutral_gauge_v1.json",
+  "contract_sha256": "2368344aaa734095be757269dedc7d32fb0b857ce6f03786e92e3f261c519f5e",
+  "formal_report": "outputs/u6_p8ag_native_neutral_gauge_v1/report.json",
+  "formal_report_sha256": "9f2777e31ee1d7beb94443dfa86d1d89e26f869ab6ab37a2ce401835da08d1bb",
+  "stable_evidence_id": "ac673c3bd80ef532bb4fe9da2494ece970a6d7e43dfa3e8c59010158c3fb35a6",
+  "result": {
+    "status": "pass",
+    "knot_counts": [
+      1025,
+      1025,
+      1025
+    ],
+    "independent_build_dll_sha_exact": true,
+    "maximum_absolute_error_vs_python_float32": 0.0,
+    "in_place_byte_exact": true,
+    "invalid_input_output_unchanged": true,
+    "output_sha256": "5041e39ebdd436127baff60023dc3231800af65f0ed756329978783209eb8e0b"
+  },
+  "decision": "retain the native Standard post-scan neutral-axis gauge. The exact 1025-knot artifact splines reproduce the Python float32 oracle byte-for-byte across 4099 RGB samples, including exact in-place execution and fail-closed invalid input. AO6 remains a separate downstream display-look approximation and is not allowed to relabel the physical chain",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 post-scan native Standard float32 neutral-gauge conformance only",
+  "next_leaf": "U6.P8AH native AO6 residual-only ABI after an externally provided source-context base, preserving the fixed t15/c35 analytical gamut guard"
+}
