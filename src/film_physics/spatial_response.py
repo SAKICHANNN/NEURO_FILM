@@ -156,6 +156,93 @@ def apply_bounded_development_adjacency(
     return output
 
 
+def apply_interpretation_bounded_development_adjacency(
+    developed_density: np.ndarray,
+    profile: SpatialResponseProfile,
+    *,
+    maximum_absolute_transmittance_delta: float,
+    maximum_absolute_density_delta: float,
+    black_reference_density: np.ndarray,
+    white_reference_density: np.ndarray,
+) -> np.ndarray:
+    """Apply P5C adjacency while preserving an interpretation density domain."""
+    density = _validate(developed_density)
+    black = np.asarray(black_reference_density, dtype=np.float64)
+    white = np.asarray(white_reference_density, dtype=np.float64)
+    if (
+        black.shape != (3,)
+        or white.shape != (3,)
+        or not np.all(np.isfinite(black))
+        or not np.all(np.isfinite(white))
+        or np.any(black < 0.0)
+        or np.any(white <= black)
+    ):
+        raise ValueError("interpretation references must be finite ordered RGB")
+    if np.any(density < black - 1e-12) or np.any(density > white + 1e-12):
+        raise ValueError("input density falls outside interpretation references")
+    if (
+        not math.isfinite(maximum_absolute_transmittance_delta)
+        or maximum_absolute_transmittance_delta <= 0.0
+        or maximum_absolute_transmittance_delta >= 1.0
+    ):
+        raise ValueError("transmittance bound must be finite and inside (0, 1)")
+    if (
+        not math.isfinite(maximum_absolute_density_delta)
+        or maximum_absolute_density_delta <= 0.0
+    ):
+        raise ValueError("density bound must be finite and positive")
+
+    blurred = _blur(
+        density, profile.development_adjacency_sigma_um_rgb, profile
+    )
+    gains = np.asarray(profile.development_adjacency_gain_rgb, dtype=np.float64)
+    raw = gains * (density - blurred)
+    transmittance = np.power(10.0, -density)
+    lower_transmittance = np.maximum(
+        transmittance - maximum_absolute_transmittance_delta,
+        np.finfo(np.float64).tiny,
+    )
+    upper_transmittance = np.minimum(
+        transmittance + maximum_absolute_transmittance_delta, 1.0
+    )
+    positive_limit = np.minimum.reduce(
+        (
+            -np.log10(lower_transmittance) - density,
+            np.full_like(density, maximum_absolute_density_delta),
+            white.reshape(1, 1, 3) - density,
+        )
+    )
+    negative_limit = np.minimum.reduce(
+        (
+            density + np.log10(upper_transmittance),
+            np.full_like(density, maximum_absolute_density_delta),
+            density - black.reshape(1, 1, 3),
+        )
+    )
+    limit = np.where(raw >= 0.0, positive_limit, negative_limit)
+    correction = np.zeros_like(raw)
+    active = limit > 0.0
+    correction[active] = (
+        np.sign(raw[active])
+        * limit[active]
+        * np.tanh(np.abs(raw[active]) / limit[active])
+    )
+    output = density + correction
+    if (
+        not np.all(np.isfinite(output))
+        or np.any(output < black - 1e-12)
+        or np.any(output > white + 1e-12)
+    ):
+        raise RuntimeError("adjacency escaped interpretation density domain")
+    output_transmittance = np.power(10.0, -output)
+    if (
+        np.max(np.abs(output_transmittance - transmittance))
+        > maximum_absolute_transmittance_delta + 1e-12
+    ):
+        raise RuntimeError("adjacency violated transmittance bound")
+    return output
+
+
 def apply_dye_diffusion(
     developed_density: np.ndarray, profile: SpatialResponseProfile
 ) -> np.ndarray:

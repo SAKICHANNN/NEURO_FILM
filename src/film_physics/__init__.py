@@ -65,6 +65,7 @@ from .compound_poisson import (
 from .spatial_response import (
     SpatialResponseProfile,
     apply_bounded_development_adjacency,
+    apply_interpretation_bounded_development_adjacency,
     apply_development_adjacency,
     apply_dye_diffusion,
     apply_forward_scatter,
@@ -116,6 +117,7 @@ __all__ = [
     "ScannerStandardContext",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
+    "apply_interpretation_bounded_development_adjacency",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
     "apply_development_adjacency",
