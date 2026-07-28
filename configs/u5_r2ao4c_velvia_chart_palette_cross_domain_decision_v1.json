@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4c-velvia-chart-palette-cross-domain-decision-v1",
+  "config_sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14",
+  "software_commit": "de26d89",
+  "report_sha256_a": "f909fb9e365127b6ccedcdbc5f86f1a0a8ba0250da8d6edfcf95be44d0280913",
+  "report_sha256_b": "f909fb9e365127b6ccedcdbc5f86f1a0a8ba0250da8d6edfcf95be44d0280913",
+  "palette_source_report_sha256": "35acd60f8a92c8440e6295e7f9e3bbb00c563fb93331d760871760dd0956c549",
+  "directions": [
+    {
+      "fit": "velvia_chart",
+      "confirm": "velvia_palette",
+      "identity_rgb_rmse": 0.10075192668556633,
+      "full_affine_rgb_rmse": 0.06411269940212412,
+      "one_matrix_rgb_rmse": 0.03812474808493509,
+      "one_matrix_mean_delta_e76": 9.957635543694234,
+      "gain_over_identity": 0.6215978260751531,
+      "gain_over_full_affine": 0.40534795071080765,
+      "one_matrix_raw_out_of_cube_fraction": 0.0,
+      "operator_sha256": "c154aabc4c0ff5aa20cefd07e878abd81d5de313354e1132af5cf5b58d88060f",
+      "passed": true
+    },
+    {
+      "fit": "velvia_palette",
+      "confirm": "velvia_chart",
+      "identity_rgb_rmse": 0.16224257301811873,
+      "full_affine_rgb_rmse": 0.11125753248239599,
+      "one_matrix_rgb_rmse": 0.05874483911015416,
+      "one_matrix_mean_delta_e76": 15.602283175611584,
+      "gain_over_identity": 0.6379197024717198,
+      "gain_over_full_affine": 0.47199225257445643,
+      "one_matrix_raw_out_of_cube_fraction": 0.0,
+      "operator_sha256": "595740383a76907c079ce27e6bacea0cde1e8a184c82349080474061049a6830",
+      "passed": true
+    }
+  ],
+  "wrong_stock_diagnostic": {
+    "velvia_chart_operator_on_ektachrome_palette_rgb_rmse": 0.07351521887172995,
+    "velvia_chart_full_affine_on_ektachrome_palette_rgb_rmse": 0.07126130334234468,
+    "ektachrome_operator_on_velvia_palette_rgb_rmse": 0.049549902621513535,
+    "correct_velvia_operator_on_velvia_palette_rgb_rmse": 0.03812474808493509,
+    "correct_velvia_gain_over_ektachrome_operator": 0.2305787674724158,
+    "interpretation": "supportive but content-confounded; different paintings prevent a stock-specificity claim"
+  },
+  "full_cpu_suite": {
+    "passed": 1149,
+    "failed": 0
+  },
+  "decision": "retain_cross_domain_velvia_display_proxy_operator_evidence",
+  "next_leaf": "fit one bounded one-matrix operator on the exact 71-row combined Velvia chart and stable-pigment palette, then challenge the photo frontier",
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "bidirectional cross-domain validation between one Velvia ColorChecker display proxy and one stable-pigment palette display proxy, plus content-confounded Ektachrome controls; not raw, same-time pairs, independent process/scanner replication, stock specificity, transferable stock response, calibration or product evidence"
+}

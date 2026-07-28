@@ -6419,3 +6419,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Figure 11 exposes 47 Velvia/HSI and 56 Ektachrome/HSI uniform paired palette
   swatches. Open a second-download exact extraction, then test AO0
   chart-to-pigment transfer without increasing model capacity.
+
+## 2026-07-28 - U5.R2AO4C passes cross-domain Velvia validation
+
+- Figure 11 second-download extraction passes at 47 Velvia/HSI and 56
+  Ektachrome/HSI pairs. Two AO4C reports are exact at `f909fb9e...0913`.
+- Chart-fit Velvia one-matrix reaches `.03812` RMSE on the pigment palette,
+  62.16% below identity and 40.53% below full-affine. Pigment-fit reaches
+  `.05874` on the chart, with 63.79%/47.20% gains. Both remain in-cube.
+- Wrong-stock behavior is supportive but content-confounded; it does not open
+  a stock-response claim. Full CPU regression passes 1149/1149. Continue with
+  the same-capacity 71-pair combined operator and photo frontier.
