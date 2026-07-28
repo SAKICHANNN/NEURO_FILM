@@ -24,6 +24,7 @@ from src.color_match import (
 from src.preprocess import convert_linear_rgb
 from src.preprocess.types import DecodeWarning, SourceProfile, WorkingImage
 from src.color_match import render as render_module
+from src.color_match import row_kernels
 
 
 def _working(
@@ -311,6 +312,54 @@ def test_row_chunked_lab_to_rgb_and_gamut_check_are_exact() -> None:
         working_space="linear_srgb",
         tolerance=2e-6,
     )
+
+
+@pytest.mark.parametrize("working_space", ["linear_srgb", "linear_rec2020"])
+def test_row_chunked_rgb_to_lab_is_float32_exact(
+    working_space: str,
+) -> None:
+    pixels = np.random.default_rng(27129).uniform(
+        0.01,
+        0.99,
+        size=(257, 389, 3),
+    ).astype(np.float32)
+    full = linear_rgb_to_lab(pixels, working_space=working_space)
+    chunked = row_kernels.linear_rgb_to_lab_rows(
+        pixels,
+        working_space=working_space,
+    )
+    np.testing.assert_array_equal(chunked, full)
+
+
+def test_fit_and_render_lab_ingress_never_exceeds_128_rows(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed_rows: list[int] = []
+    original = row_kernels.linear_rgb_to_lab
+
+    def record_rows(pixels, **kwargs):
+        observed_rows.append(int(pixels.shape[0]))
+        return original(pixels, **kwargs)
+
+    monkeypatch.setattr(row_kernels, "linear_rgb_to_lab", record_rows)
+    reference = _working(
+        np.random.default_rng(27130).uniform(
+            0.1,
+            0.9,
+            size=(131, 17, 3),
+        ).astype(np.float32),
+        path="reference.png",
+    )
+    source = _working(
+        np.random.default_rng(27131).uniform(
+            0.1,
+            0.9,
+            size=(257, 19, 3),
+        ).astype(np.float32),
+        path="source.png",
+    )
+    render_reference_look(fit_reference_look(reference), source)
+    assert observed_rows == [128, 3, 128, 128, 1]
 
 
 def test_chunked_render_never_sends_more_than_128_rows_to_gamut(

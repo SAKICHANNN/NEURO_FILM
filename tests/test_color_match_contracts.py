@@ -15,6 +15,7 @@ from src.color_match import (
     recipe_to_json,
     validate_recipe,
 )
+from src.color_match import fit as fit_module
 from src.preprocess.types import SourceProfile, WorkingImage
 
 
@@ -55,6 +56,22 @@ def test_fit_reference_recipe_is_deterministic_and_replayable() -> None:
     encoded = recipe_to_json(first)
     assert recipe_to_json(second) == encoded
     assert recipe_from_json(encoded) == first
+
+
+def test_fit_reuses_the_single_validated_lab_conversion(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls = 0
+    original = fit_module.linear_rgb_to_lab_rows
+
+    def count_rows(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(fit_module, "linear_rgb_to_lab_rows", count_rows)
+    fit_reference_look(_reference())
+    assert calls == 1
 
 
 def test_recipe_id_covers_policy_and_reference_descriptor() -> None:

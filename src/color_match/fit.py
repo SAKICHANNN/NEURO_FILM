@@ -7,7 +7,6 @@ import json
 
 import numpy as np
 
-from src.color_engine import in_working_gamut, linear_rgb_to_lab
 from src.preprocess.types import WorkingImage
 
 from .contracts import (
@@ -21,9 +20,10 @@ from .contracts import (
     validate_policy,
     validate_recipe,
 )
+from .row_kernels import in_working_gamut_rows, linear_rgb_to_lab_rows
 
 
-def _validate_reference(reference: WorkingImage) -> None:
+def _validate_reference(reference: WorkingImage) -> np.ndarray:
     if not isinstance(reference, WorkingImage):
         raise ReferenceMatchContractError("reference must be WorkingImage")
     if reference.transfer_state != "display_linear":
@@ -32,18 +32,19 @@ def _validate_reference(reference: WorkingImage) -> None:
         )
     if reference.working_space not in SUPPORTED_WORKING_SPACES:
         raise ReferenceMatchContractError("reference working space is unsupported")
-    reference_lab = linear_rgb_to_lab(
+    reference_lab = linear_rgb_to_lab_rows(
         reference.pixels,
         working_space=reference.working_space,
     )
-    if not in_working_gamut(
+    if not in_working_gamut_rows(
         reference_lab,
         working_space=reference.working_space,
         tolerance=2e-6,
-    ).all():
+    ):
         raise ReferenceMatchContractError(
             "reference pixels are outside the declared working gamut"
         )
+    return reference_lab
 
 
 def _reference_pixel_sha256(reference: WorkingImage) -> str:
@@ -67,10 +68,9 @@ def fit_reference_look(
 ) -> ReferenceLookRecipe:
     """Fit one replayable safe-Lab target from one uploaded reference image."""
 
-    _validate_reference(reference)
+    lab = _validate_reference(reference)
     selected_policy = policy or ReferenceLookPolicy()
     validate_policy(selected_policy)
-    lab = linear_rgb_to_lab(reference.pixels, working_space=reference.working_space)
     flattened = lab.reshape(-1, 3)
     destination_mean = flattened.mean(axis=0, dtype=np.float64)
     destination_std = np.maximum(flattened.std(axis=0, dtype=np.float64), 1e-3)

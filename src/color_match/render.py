@@ -11,9 +11,6 @@ from src.color_engine import (
     apply_safe_lab_transform,
     compress_chroma_to_working_gamut,
     compress_source_to_working_gamut,
-    in_working_gamut,
-    lab_to_linear_rgb,
-    linear_rgb_to_lab,
     safe_lab_context_from_lab,
 )
 from src.preprocess.types import WorkingImage
@@ -25,8 +22,14 @@ from .contracts import (
     ReferenceMatchContractError,
     validate_recipe,
 )
+from .row_kernels import (
+    REFERENCE_MATCH_ROW_CHUNK,
+    in_working_gamut_rows as _in_working_gamut_rows,
+    lab_to_linear_rgb_rows as _lab_to_linear_rgb_rows,
+    linear_rgb_to_lab_rows,
+)
 
-_REFERENCE_RENDER_ROW_CHUNK = 128
+_REFERENCE_RENDER_ROW_CHUNK = REFERENCE_MATCH_ROW_CHUNK
 
 
 def _working_image_batch(
@@ -78,7 +81,7 @@ class ReferenceMatchResult:
     diagnostics: ReferenceMatchDiagnostics
 
 
-def _validate_source(source: WorkingImage) -> None:
+def _validate_source(source: WorkingImage) -> np.ndarray:
     if not isinstance(source, WorkingImage):
         raise ReferenceMatchContractError("source must be WorkingImage")
     if source.transfer_state != "display_linear":
@@ -87,15 +90,19 @@ def _validate_source(source: WorkingImage) -> None:
         )
     if source.working_space not in SUPPORTED_WORKING_SPACES:
         raise ReferenceMatchContractError("source working space is unsupported")
-    source_lab = linear_rgb_to_lab(source.pixels, working_space=source.working_space)
-    if not in_working_gamut(
+    source_lab = linear_rgb_to_lab_rows(
+        source.pixels,
+        working_space=source.working_space,
+    )
+    if not _in_working_gamut_rows(
         source_lab,
         working_space=source.working_space,
         tolerance=2e-6,
-    ).all():
+    ):
         raise ReferenceMatchContractError(
             "source pixels are outside the declared working gamut"
         )
+    return source_lab
 
 
 def _styled_lab(
@@ -152,38 +159,6 @@ def _gamut_safe_lab(
     return output
 
 
-def _lab_to_linear_rgb_rows(
-    lab: np.ndarray,
-    *,
-    working_space: str,
-) -> np.ndarray:
-    output = np.empty_like(lab, dtype=np.float32)
-    for y0 in range(0, lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
-        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, lab.shape[0])
-        output[y0:y1] = lab_to_linear_rgb(
-            lab[y0:y1],
-            working_space=working_space,
-        )
-    return output
-
-
-def _in_working_gamut_rows(
-    lab: np.ndarray,
-    *,
-    working_space: str,
-    tolerance: float,
-) -> bool:
-    for y0 in range(0, lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
-        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, lab.shape[0])
-        if not in_working_gamut(
-            lab[y0:y1],
-            working_space=working_space,
-            tolerance=tolerance,
-        ).all():
-            return False
-    return True
-
-
 def render_reference_look(
     recipe: ReferenceLookRecipe,
     source: WorkingImage,
@@ -193,11 +168,10 @@ def render_reference_look(
     """Apply a frozen reference recipe without mutating source or recipe."""
 
     validate_recipe(recipe)
-    _validate_source(source)
+    source_lab = _validate_source(source)
     if isinstance(source_index, bool) or not isinstance(source_index, int) or source_index < 0:
         raise ReferenceMatchContractError("source_index must be a non-negative integer")
 
-    source_lab = linear_rgb_to_lab(source.pixels, working_space=source.working_space)
     styled_lab = _styled_lab(recipe, source_lab)
     output_lab = _gamut_safe_lab(
         recipe,

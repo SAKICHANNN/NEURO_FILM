@@ -87,6 +87,7 @@ configs/reference_match_chunked_render_memory_run_v1.json text eol=lf
 configs/reference_match_chunked_render_memory_decision_v1.json text eol=lf
 configs/reference_match_chunked_lab_memory_gates_v1.json text eol=lf
 scripts/audit_reference_match_file_memory_v1.py text eol=lf
+src/color_match/row_kernels.py text eol=lf
 tests/test_reference_match_file_memory.py text eol=lf
 docs/drpt/REFERENCE_COLOR_MATCH_FILE_MEMORY_CONTRACT.md text eol=lf
 docs/drpt/REFERENCE_COLOR_MATCH_FILE_MEMORY_EVIDENCE.md text eol=lf
