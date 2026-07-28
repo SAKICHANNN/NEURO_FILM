@@ -6442,3 +6442,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the combined operator as stronger real-film display-proxy evidence.
   Next test only a small bounded composition with the vivid density path; do
   not add capacity or upgrade stock/calibration claims.
+
+## 2026-07-28 - U5.R2AO6 retains a real-film residual as B0 champion
+
+- Two exact 164-output runs and reports retain three zero-clipping residuals.
+  `t15/c35` reaches gold style/non-basic/relative-film
+  `13.2353/9.8742/2.0468`.
+- Pre-reveal blind rankings decode to `t15/c35` over fixed B0 in 2/3 rounds
+  and over `t20/c50` in 3/3. Both shortlisted candidates have zero confirmed
+  severe failures across all nine full-resolution gold images.
+- Full CPU regression passes 1161/1161. Retain `t15/c35` only as the new B0
+  development champion and open a fixed independent raw.pixls.us confirmation;
+  stock-response, calibration and product claims remain closed.
