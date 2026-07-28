@@ -484,11 +484,16 @@ MD5 and observed SHA-256 `0ffca81f...9dc2`, but its frozen RGB/RGBA-only
 decode assumption fails on a B&W auxiliary mode-`L` PNG before any promoted
 evidence is written. The v1 config remains unchanged. A diagnostic-only
 inventory establishes an exact lane split: 227 Color RGB, 66 B&W 8-bit `L`
-and two 16-bit RGB root controls. AJ0B2 is the current ready leaf: reproduce
-those exact profiles, all paths/CRCs and the unchanged 194 primary members in
-two new processes. Preset names remain informational external Look
-Approximation labels; no stock response, Push/Pull truth, training teacher,
-photograph render, current-film fitting, LSM or integration opens.
+and two 16-bit RGB root controls. AJ0B2 now passes at commit `9bd4e68`: two
+new processes reproduce archive/config SHA, all profiles/paths/CRCs, the 194
+primary members and canonical manifest/report bytes. AJ0C contract design is
+the current ready leaf. Before any primary metric it must freeze analytic
+identity, encoded-sRGB red-fastest trilinear semantics, native N=144/256
+streaming, controls-only threshold calibration, per-candidate safety,
+matched-basic/strength duplicate collapse and a deterministic cap-12 survivor
+policy. Preset names remain informational external Look Approximation labels;
+no stock response, Push/Pull truth, training teacher, photograph render,
+current-film fitting, LSM or integration opens.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

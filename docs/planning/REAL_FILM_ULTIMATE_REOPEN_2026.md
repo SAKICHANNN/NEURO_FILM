@@ -525,10 +525,14 @@ Push/Pull state, scan chain or unpaired digital-to-film operator.
 unchanged v1 all-RGB decode assumption fails on the first B&W auxiliary
 mode-`L` PNG. It writes no promoted evidence. A post-failure read-only
 diagnostic finds that all 227 Color entries are RGB, while all 66 B&W entries
-are 8-bit `L`; this does not retroactively pass v1. `U5.R2AJ0B2` is a
-separately versioned confirmation of the exact path-family profiles and must
-repeat all integrity work in two new processes before AJ0C can open. The
-primary 194-member Color universe is unchanged. Photographs, aesthetic
-selection, training, teacher use, current-film fitting, LSM and integration
-remain closed. See `docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md` and
-`docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md`.
+are 8-bit `L`; this does not retroactively pass v1. The separately versioned
+`U5.R2AJ0B2` now passes two new exact processes at commit `9bd4e68`, including
+archive/config SHA, 295 lane profiles, 194 primary paths and strict canonical
+evidence binding. This opens only AJ0C contract design for a synthetic,
+per-candidate external-operator frontier. AJ0C must be committed before
+primary metrics and cannot render photographs. The primary 194-member Color
+universe is unchanged. Aesthetic selection, training, teacher use,
+current-film fitting, LSM and integration remain closed. See
+`docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`,
+`docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md` and
+`docs/U5_R2AJ0B2_HALDCLUT_LANE_AWARE_ACQUISITION_RESULTS.md`.

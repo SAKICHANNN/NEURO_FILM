@@ -5765,3 +5765,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fitting, training, LSM, integration and distribution remain closed. Future
   AJ0C must generate identity analytically and must not use Pillow samples
   from the 16-bit root controls. Goal remains ACTIVE.
+
+## 2026-07-28 - Pass U5.R2AJ0B2 lane-aware integrity confirmation
+
+- **Node/implementation:** `ULT > U5 > U5.R2 > U5.R2AJ0B2`; commit
+  `9bd4e68` extends the audit with exact v1/v2 evidence schemas, path-family
+  profiles, archive/primary/image hashes and strict nested JSON key/type
+  validation while preserving legal v1 evidence bytes and decision shape.
+- **Adversarial verification:** 20 dedicated and 32 adjacent tests reject
+  Boolean-zero substitution, unknown root/nested claims, archive/inventory/
+  gate/image/profile/assignment field injection, profile-count type changes,
+  wrong lane modes and overlapping selectors. Independent review reports no
+  remaining blocker. All 1,071 CPU tests pass.
+- **Formal execution:** two child processes at exact commit `9bd4e68` each
+  rehash, CRC-read and decode the 421,602,289-byte archive. Their 211,635-byte
+  manifests and 41,840-byte reports are byte-identical at SHA-256
+  `b6cbd445...a1bda` and `98287994...3d7f6`; repeat decision SHA-256 is
+  `ce9249ec...cadd` and every check is true.
+- **Inventory:** 194 primary Color paths and 295 image records repeat exactly.
+  Profiles are 226 Color RGB8 level-12, one exact Ektar RGB8 level-16,
+  66 B&W L8 and two RGB16 root controls; no ICC. B&W is not converted.
+- **Branch:** B2 opens AJ0C contract design only. AJ0C must use the 194 RGB8
+  Color primaries, analytic encoded-sRGB identity and each native N=144/256
+  grid; it must not use Pillow samples from RGB16 controls. Controls-only
+  calibration, analytic trilinear Jacobian, per-candidate gates,
+  basic/strength duplicate collapse and deterministic cap-12 selection must
+  be committed before primary metrics. Photography and aesthetics remain
+  forbidden. Goal remains ACTIVE.
