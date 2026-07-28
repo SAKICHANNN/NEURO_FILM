@@ -10,12 +10,14 @@ from src.film_physics.profile_consumer import (
     _encoded_srgb_to_linear_inplace_row_staged,
     _encoded_srgb_to_linear_row_staged,
     _linear_srgb_to_encoded_row_staged,
+    _refill_roundtrip_linear_inplace_row_staged,
     compile_standalone_profile_artifact,
     render_working_image,
     render_working_image_fully_row_streamed,
     render_working_image_row_streamed,
 )
 from src.film_physics.display_look import (
+    build_density_source_context_inplace_packed_lab,
     build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
@@ -84,6 +86,24 @@ def test_inplace_roundtrip_eotf_is_float_exact_and_reuses_buffer() -> None:
         assert staged is candidate
         assert staged.__array_interface__["data"][0] == pointer
         assert np.array_equal(reference, staged)
+
+
+def test_roundtrip_refill_is_float_exact_and_reuses_consumed_buffer() -> None:
+    linear = np.random.default_rng(2026072922).random(
+        (257, 131, 3), dtype=np.float32
+    )
+    reference = encoded_srgb_to_linear(
+        linear_srgb_to_encoded(linear.astype(np.float64))
+    )
+    for tile_rows in (1, 31, 128, 509):
+        consumed = np.empty(linear.shape, dtype=np.float64)
+        pointer = consumed.__array_interface__["data"][0]
+        candidate = _refill_roundtrip_linear_inplace_row_staged(
+            consumed, linear, tile_rows=tile_rows
+        )
+        assert candidate is consumed
+        assert candidate.__array_interface__["data"][0] == pointer
+        assert np.array_equal(reference, candidate)
 
 
 def test_artifact_consumer_row_stream_is_float_exact() -> None:
@@ -166,6 +186,28 @@ def test_density_source_context_row_cast_is_float_exact() -> None:
             payload, source, tile_rows=tile_rows
         )
         assert candidate == reference
+
+
+def test_packed_lab_context_is_exact_and_consumes_encoded_buffer() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    source = np.random.default_rng(2026072923).random((131, 67, 3))
+    reference = build_density_source_context_row_staged(
+        payload, source, tile_rows=17
+    )
+    for tile_rows in (1, 5, 31, 128, 509):
+        consumed = source.copy()
+        before = consumed.copy()
+        candidate = build_density_source_context_inplace_packed_lab(
+            payload, consumed, tile_rows=tile_rows
+        )
+        assert candidate == reference
+        assert not np.array_equal(consumed, before)
 
 
 def test_fully_row_streamed_profile_is_float_exact() -> None:

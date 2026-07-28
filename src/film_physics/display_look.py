@@ -448,12 +448,66 @@ def build_density_source_context_row_staged(
     return safe_lab_context_from_lab(lab, source_value.shape)
 
 
+def build_density_source_context_inplace_packed_lab(
+    payload: dict[str, Any],
+    source: np.ndarray,
+    *,
+    tile_rows: int,
+) -> SafeLabSourceContext:
+    """Replace consumed float64 encoded storage with exact packed float32 Lab."""
+
+    validate_display_look_payload(payload)
+    source_value = np.asarray(source)
+    if (
+        source_value.dtype != np.float64
+        or source_value.ndim != 3
+        or source_value.shape[-1] != 3
+        or source_value.shape[0] == 0
+        or source_value.shape[1] == 0
+        or not source_value.flags.c_contiguous
+        or not source_value.flags.writeable
+        or isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or not np.all(np.isfinite(source_value))
+        or np.any(source_value < 0.0)
+        or np.any(source_value > 1.0)
+    ):
+        raise ValueError(
+            "packed Lab context requires writable C-contiguous float64 HxWx3"
+        )
+    base = payload["base"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    packed_lab = source_value.view(np.float32).reshape(-1)[
+        : source_value.size
+    ].reshape(source_value.shape)
+    for y0 in range(0, source_value.shape[0], tile_rows):
+        y1 = min(source_value.shape[0], y0 + tile_rows)
+        source_rows = np.asarray(
+            source_value[y0:y1], dtype=np.float32
+        )
+        linear = encoded_srgb_to_linear(source_rows.astype(np.float64))
+        density = density_operator.apply(
+            linear, strength=float(base["density_strength"])
+        )
+        encoded = linear_srgb_to_encoded(density)
+        packed_lab[y0:y1] = rgb2lab(
+            np.asarray(encoded, dtype=np.float32)
+        )
+    return safe_lab_context_from_lab(
+        packed_lab, tuple(int(size) for size in source_value.shape)
+    )
+
+
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
     "build_source_context_display_look_stages",
     "build_source_context_display_look_row_streamed",
     "build_density_source_context_row_staged",
+    "build_density_source_context_inplace_packed_lab",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]

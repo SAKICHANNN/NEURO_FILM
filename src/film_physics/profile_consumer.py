@@ -35,6 +35,7 @@ from src.film_physics.contracts import (
 )
 from src.film_physics.display_look import (
     DISPLAY_LOOK_SCHEMA,
+    build_density_source_context_inplace_packed_lab,
     build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
@@ -144,6 +145,40 @@ def _encoded_srgb_to_linear_inplace_row_staged(
         y1 = min(value.shape[0], y0 + tile_rows)
         value[y0:y1] = encoded_srgb_to_linear(value[y0:y1])
     return value
+
+
+def _refill_roundtrip_linear_inplace_row_staged(
+    consumed: np.ndarray,
+    original_linear: np.ndarray,
+    *,
+    tile_rows: int,
+) -> np.ndarray:
+    """Refill consumed float64 storage with the exact OETF-to-EOTF roundtrip."""
+
+    output = np.asarray(consumed)
+    source = np.asarray(original_linear)
+    if (
+        output.dtype != np.float64
+        or output.ndim != 3
+        or output.shape[-1] != 3
+        or output.shape != source.shape
+        or not output.flags.c_contiguous
+        or not output.flags.writeable
+        or isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or not np.all(np.isfinite(source))
+    ):
+        raise ValueError(
+            "roundtrip refill requires writable float64 output and matching input"
+        )
+    for y0 in range(0, output.shape[0], tile_rows):
+        y1 = min(output.shape[0], y0 + tile_rows)
+        encoded = linear_srgb_to_encoded(
+            source[y0:y1].astype(np.float64)
+        )
+        output[y0:y1] = encoded_srgb_to_linear(encoded)
+    return output
 
 
 def _render_physical_gauged_encoded_inplace(
@@ -659,7 +694,7 @@ def render_working_image_fully_row_streamed(
         tile_rows=tile_rows,
     )
     del scene
-    source_context = build_density_source_context_row_staged(
+    source_context = build_density_source_context_inplace_packed_lab(
         artifact["component_payloads"][
             "ao6-source-context-display-look"
         ],
@@ -675,8 +710,10 @@ def render_working_image_fully_row_streamed(
         ),
     )
     halo = required_spatial_response_halo(compiled.profile)
-    linear = _encoded_srgb_to_linear_inplace_row_staged(
-        encoded, tile_rows=tile_rows
+    linear = _refill_roundtrip_linear_inplace_row_staged(
+        encoded,
+        working.pixels,
+        tile_rows=tile_rows,
     )
     del encoded
     ranges = [
