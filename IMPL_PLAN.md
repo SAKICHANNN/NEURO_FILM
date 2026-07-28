@@ -46,6 +46,16 @@ fidelity, cube, Jacobian, inverse, serialization, partition and two-process
 evidence gates are fixed before implementation. It is synthetic-only and
 cannot render photographs or claim a film operator.
 
+`U5.R2AK1` is now complete and closes this fixed temporal family. Two
+independent reports are byte-identical. The candidate reaches
+`.00235/.00259` confirmation RMSE and passes every cube, Jacobian, inverse,
+range and replay gate, but is 73.94%/87.72% worse than stationary K4 and
+2.56x/2.86x stationary K5. No grid, stage, temporal-control, optimizer or
+target rescue is allowed. The next ready algorithm leaf is `U5.R2AL0`, a
+source/method audit for a clean-room fixed analytic named-colour monotone-curve
+representation. Original NamedCurves canonicalization, attention, code,
+weights and color-naming assets remain outside the allowed path.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources

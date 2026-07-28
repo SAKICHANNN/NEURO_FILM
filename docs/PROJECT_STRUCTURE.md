@@ -82,6 +82,11 @@ monotone-spline and dense-LUT stages; `lut.py` owns versioned trilinear and
 tetrahedral interpolation plus serialization/Jacobian primitives. These
 modules are not production renderer entry points and must not absorb data
 acquisition, fitting, evaluation or profile concerns.
+`cube_diffeomorphic_flow.py` owns the stationary boundary-preserving velocity
+flow, while `time_dependent_cube_flow.py` owns the separately versioned
+quadratic-time extension. Both are reusable explicit representation math;
+experiment orchestration, frozen targets, reports and branch decisions remain
+in scripts/configs/evaluation documents rather than entering these modules.
 `photometric.py` owns canonical L0 exposure/WB and roll-gauge primitives;
 `sensitometry.py` owns the unintegrated linear-exposure-to-layer-density
 characteristic-curve representation; `sensitometry_print.py` owns the isolated

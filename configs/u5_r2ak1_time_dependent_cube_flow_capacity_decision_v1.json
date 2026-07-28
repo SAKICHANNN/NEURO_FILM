@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ak1-time-dependent-cube-flow-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AK1",
+  "software_commit": "ca155ec438d2cf93da0d2c1b9cf6bc5e4ceb6e47",
+  "config_sha256": "cab133017f7e84586dbab209403d9743a9a41242a699045f8b2dbac66c3fa560",
+  "report_sha256": "d410076b01691dc58e4adabfa92059291cddcd3d73e439062dfa50a8165649f0",
+  "repeat_decision_sha256": "fa35d413a4a034040fd1fe12d88502ea6f0da4229b081a964712981d0a3dedda",
+  "reports_byte_identical": true,
+  "target_pair_rgb_rmse": 0.01761580313630715,
+  "automatic_checks": {
+    "bounded": true,
+    "bounded_jacobian_norm": true,
+    "candidate_fidelity": true,
+    "coefficient_bound": true,
+    "endpoints_fixed": true,
+    "identity_exact": true,
+    "inverse_roundtrip": true,
+    "partition_parity": true,
+    "positive_jacobian": true,
+    "serialization_replay": true,
+    "stationary_k4_improvement": false,
+    "stationary_k5_efficiency": false,
+    "target_noncommutation": true
+  },
+  "target_results": {
+    "field_a_then_field_b": {
+      "candidate_confirmation_rgb_rmse": 0.0023465972798321372,
+      "stationary_k4_confirmation_rgb_rmse": 0.001349059693922272,
+      "stationary_k5_confirmation_rgb_rmse": 0.0009168663219154762,
+      "candidate_improvement_over_stationary_k4_fraction": -0.7394317615476398,
+      "candidate_to_stationary_k5_rmse_ratio": 2.5593668605143343,
+      "candidate_minimum_jacobian_determinant": 0.583490451541469,
+      "candidate_maximum_jacobian_spectral_norm": 3.430991982208557,
+      "candidate_inverse_roundtrip_maximum_absolute_error": 3.41520112190352e-09
+    },
+    "field_b_then_field_a": {
+      "candidate_confirmation_rgb_rmse": 0.0025861552927908746,
+      "stationary_k4_confirmation_rgb_rmse": 0.0013776803774671518,
+      "stationary_k5_confirmation_rgb_rmse": 0.0009042743991443753,
+      "candidate_improvement_over_stationary_k4_fraction": -0.8771809013825753,
+      "candidate_to_stationary_k5_rmse_ratio": 2.859923155225776,
+      "candidate_minimum_jacobian_determinant": 0.5369241641829262,
+      "candidate_maximum_jacobian_spectral_norm": 3.233158455482599,
+      "candidate_inverse_roundtrip_maximum_absolute_error": 1.60518132119591e-09
+    }
+  },
+  "automatic_pass": false,
+  "decision": "close_fixed_time_dependent_representation",
+  "diagnosis": "The fixed K3 quadratic-time flow is accurate and structurally safe, but both stationary controls fit the two frozen staged maps substantially better. Time dependence does not compensate for the candidate's lower spatial grid resolution under this fixed budget.",
+  "forbidden_followup": [
+    "increase the candidate spatial grid",
+    "add temporal controls or stages",
+    "increase optimizer or integration steps",
+    "retune the target fields or gates",
+    "render photographs from this fitted synthetic candidate",
+    "claim reusable film operator stock calibration preference or production readiness"
+  ],
+  "next_action": "Preserve the explicit non-autonomous renderer and negative capacity evidence, then move to a genuinely distinct fixed analytic named-colour curve representation audit without reopening AK1.",
+  "claim_ceiling": "repeat-exact clean-room synthetic negative capacity evidence for one fixed quadratic-time cube-preserving explicit colour flow; no photograph film-pixel fitting unpaired identification stock calibration preference or production claim"
+}

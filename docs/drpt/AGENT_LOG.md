@@ -5985,3 +5985,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary/handoff:** no NCT code, encoder, data, photographs, film pixels
   or stock claim. Contract/config commit must precede implementation. AK1
   implementation is next; Goal remains ACTIVE.
+
+## 2026-07-28 - Close U5.R2AK1 on relative capacity
+
+- **Node/result:** `ULT > U5 > U5.R2 > U5.R2AK1`; DRPT L2/Mode A with
+  `codex-super-aiml-harness`, research reliability, structure and project-log
+  disciplines. Implementation commits `2f9a7c0` and `ca155ec` add the isolated
+  quadratic-time explicit renderer, deterministic fitter, frozen audit runner
+  and equivalence/regression tests.
+- **Performance correction before evidence:** the first detached background
+  attempt produced no report and was reclaimed by the host. A diagnostic
+  showed the scalar autograd sampler was correct but unnecessarily slow.
+  Before any formal metric existed, sampling was vectorized by composing the
+  Bernstein-weighted grid first and using deterministic CPU trilinear
+  sampling. Values, gradients and stationary fit parameters match the
+  reference implementations within `1e-14`; no contract field changed.
+- **Repeat evidence:** formal software commit `ca155ec438d...`; config
+  `cab13301...a560`; two fresh child reports are byte-identical at
+  `d410076b...49f0`; parent repeat decision is `fa35d413...edda`. The frozen
+  A/B target maps differ by RGB RMSE `.0176158`, so the mechanism precondition
+  passes.
+- **Result:** candidate RMSE `.0023466/.0025862` passes the absolute `.008`
+  gate and every range, endpoint, coefficient, Jacobian, inverse,
+  serialization and partition gate. It is nevertheless 73.94%/87.72% worse
+  than stationary K4 and 2.559x/2.860x stationary K5, failing both relative
+  capacity gates.
+- **Decision/propagation:** close this fixed K3/three-control quadratic-time
+  family. Do not add spatial grids, temporal controls, stages, steps, target
+  changes or photograph rescue. Preserve the renderer and negative mechanism
+  evidence. `U5.R2AL0` becomes the next algorithm leaf: audit a clean-room
+  fixed analytic named-colour monotone-curve representation. Original
+  NamedCurves code, weights, canonicalizer, attention and color-naming assets
+  remain forbidden. Goal stays ACTIVE.
