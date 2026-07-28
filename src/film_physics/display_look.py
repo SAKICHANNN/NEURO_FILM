@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Any, Callable
 
 import numpy as np
+from skimage.color import rgb2lab
 
 from scripts.pipeline_color_baseline import (
     _style_transfer_rgb_with_context,
@@ -18,6 +19,10 @@ from scripts.pipeline_color_baseline import (
 )
 from src.color_engine.safe_lab_rgb_context import (
     style_transfer_rgb_with_source_context,
+)
+from src.color_engine.safe_lab import (
+    SafeLabSourceContext,
+    safe_lab_context_from_lab,
 )
 from src.eval.density_witness_frontier import (
     encoded_srgb_to_linear,
@@ -293,12 +298,12 @@ def build_source_context_display_look_row_streamed(
             )
         )
 
-    source_value = np.asarray(source, dtype=np.float32)
-    source_shape = source_value.shape
-    source_context = build_safe_lab_source_context(
-        apply_density(source_value)
+    source_shape = np.asarray(source).shape
+    source_context = build_density_source_context_row_staged(
+        payload,
+        source,
+        tile_rows=tile_rows,
     )
-    del source_value
 
     def apply(encoded: np.ndarray) -> np.ndarray:
         encoded_value = np.asarray(encoded, dtype=np.float32)
@@ -365,11 +370,58 @@ def build_source_context_display_look_row_streamed(
     return apply
 
 
+def build_density_source_context_row_staged(
+    payload: dict[str, Any],
+    source: np.ndarray,
+    *,
+    tile_rows: int,
+) -> SafeLabSourceContext:
+    """Build the exact legacy context without full-frame density temporaries."""
+
+    validate_display_look_payload(payload)
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+    ):
+        raise ValueError("tile_rows must be a positive integer")
+    source_value = np.asarray(source, dtype=np.float32)
+    if (
+        source_value.ndim != 3
+        or source_value.shape[-1] != 3
+        or source_value.shape[0] == 0
+        or source_value.shape[1] == 0
+        or not np.all(np.isfinite(source_value))
+        or np.any(source_value < 0.0)
+        or np.any(source_value > 1.0)
+    ):
+        raise ValueError("source context input must be finite encoded HxWx3")
+    base = payload["base"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    lab = np.empty(source_value.shape, dtype=np.float32)
+    for y0 in range(0, source_value.shape[0], tile_rows):
+        y1 = min(source_value.shape[0], y0 + tile_rows)
+        linear = encoded_srgb_to_linear(
+            source_value[y0:y1].astype(np.float64)
+        )
+        density = density_operator.apply(
+            linear, strength=float(base["density_strength"])
+        )
+        encoded = linear_srgb_to_encoded(density)
+        lab[y0:y1] = rgb2lab(
+            np.asarray(encoded, dtype=np.float32)
+        )
+    return safe_lab_context_from_lab(lab, source_value.shape)
+
+
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
     "build_source_context_display_look_stages",
     "build_source_context_display_look_row_streamed",
+    "build_density_source_context_row_staged",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]
