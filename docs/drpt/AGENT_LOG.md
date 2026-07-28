@@ -6209,3 +6209,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   geometry, gates, access boundary and claim ceiling are unchanged.
 - **Handoff:** v2 is the sole executable entry. Implementation may now start
   without hidden defaults; Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AM1 v3 audit execution before formal fit
+
+- **Review finding:** seven focused operator tests pass, including SO(3)
+  geometry, NumPy/Torch parity, scalar inverse, replay, strength and reduced
+  deterministic fit. Before any exact AM1 target/control fit, runner design
+  found hue plus/minus semantics, partition slices, confirmation
+  deduplication and aggregate reconstruction were still implicit.
+- **Resolution:** preserve v1/v2 and add v3 `2ea192df...746c`, which fixes
+  only those audit-execution details. Representation, targets, controls,
+  budgets, optimizer, point sets, thresholds, branches and access boundary do
+  not change.
+- **Handoff:** v3 is the sole formal runner entry. Exact AM1 target/control
+  fitting has not begun; runner implementation continues and Goal remains
+  ACTIVE.

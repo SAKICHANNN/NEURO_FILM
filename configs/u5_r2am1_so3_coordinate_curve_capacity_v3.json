@@ -1,0 +1,71 @@
+{
+  "schema_version": "u5-r2am1-so3-coordinate-curve-capacity-v3",
+  "experiment_id": "u5.r2am1-so3-coordinate-curve-capacity-v3",
+  "node": "ULT > U5 > U5.R2 > U5.R2AM1",
+  "base_v1_path": "configs/u5_r2am1_so3_coordinate_curve_capacity_v1.json",
+  "base_v1_raw_sha256": "2f081922c090ce7dd6c24b2cbe570fed13a6085318fc527ba8d10ed9cb4b7e59",
+  "base_v2_path": "configs/u5_r2am1_so3_coordinate_curve_capacity_v2.json",
+  "base_v2_raw_sha256": "5c7a77eb6928a1761f51b0bf22b036cc861cf5911881c819c5ced44c19dac9be",
+  "supersedes_before_formal_fit": {
+    "schema_version": "u5-r2am1-so3-coordinate-curve-capacity-v2",
+    "reason": "V2 completed operator, restart, inverse and report semantics but did not machine-pin whether hue offsets were plus/minus delta or half-delta, exact partition slices, confirmation deduplication implementation or aggregate-check reconstruction. Operator unit code and reduced synthetic unit fits existed; no exact AM1 target/control fit, formal report, metric or result existed."
+  },
+  "audit_execution": {
+    "confirmation_deduplication": "append each interior row then each ordered boundary row only when row.tobytes(order='C') has not appeared; preserve first occurrence",
+    "partition_slices": "split=floor(N/3); [0:split], [split:2*split], [2*split:N], concatenate in that order",
+    "hue_offsets": "for every base angle construct minus=base-delta_degrees and plus=base+delta_degrees; reported jump is Euclidean distance output(plus)-output(minus)",
+    "hue_order": "luma_values outer order, base angles ascending inner order; omit pair unless both rows are finite and componentwise inside [0,1]",
+    "inverse_rng": "numpy.random.default_rng(seed).uniform(minimum,maximum,size=(count,3))",
+    "strength_ratio": "for each nonzero full-output distance row compare distance(strength)/distance(full) to exact strength; zero-distance rows contribute only absolute collinearity",
+    "strength_order": "maximum positive violation of distance(previous)-distance(next), zero when ordered",
+    "red_ramp_second_difference": "maximum absolute numpy.diff(output_luma,n=2)",
+    "finite_difference_jacobian": "for each channel evaluate plus then minus, divide by 2*step and stack channel columns on final axis",
+    "spectral_norm": "numpy.linalg.svd(...,compute_uv=false)[...,0]",
+    "target_prerequisites": {
+      "output_minimum": -1e-12,
+      "output_maximum": 1.000000000001,
+      "minimum_finite_difference_jacobian_determinant_exclusive": 0.0,
+      "maximum_finite_difference_jacobian_spectral_norm": 8.0
+    }
+  },
+  "aggregate_checks": {
+    "parameter_budget": "candidate raw and effective counts are within v1 gates for every target",
+    "identity": "identity candidate maximum absolute error is within v1 gate",
+    "absolute_fidelity": "candidate confirmation RMSE is within v1 gate for both non-identity targets",
+    "global_curve_advantage": "candidate improvement over global curves meets v1 gate for both non-identity targets",
+    "positive_matrix_curve_advantage": "candidate improvement over positive-matrix curves meets v1 gate for both non-identity targets",
+    "stationary_k3_efficiency": "candidate/K3 RMSE ratio meets v1 gate for both non-identity targets",
+    "cube": "candidate dense-cube extrema meet v1 rails for every target",
+    "positive_jacobian": "candidate minimum determinant meets v1 gate for every target",
+    "bounded_jacobian": "candidate maximum spectral norm meets v1 gate for every target",
+    "inverse": "candidate inverse error meets v1 gate for every target",
+    "rotation": "orthogonality, determinant and angle meet all v1 gates for every target",
+    "curves": "minimum stored increment meets v1 gate for every target",
+    "neutral_axis": "candidate neutral spread meets v1 gate for every target",
+    "hue_neighbour": "retained pair count and maximum jump meet v1 gates for every target",
+    "red_ramp": "minimum luma step and maximum second difference meet v1 gates for every target",
+    "strength_path": "collinearity and ordering meet v1 gates for every target",
+    "replay": "serialization and partition replay meet v1 gates for every target",
+    "target_prerequisites": "all exact target source hashes, cube and Jacobian prerequisite checks pass before any fit"
+  },
+  "repeat_decision": {
+    "schema": "neuro-film.u5.r2am1.repeat-decision.v1",
+    "pass": "retain_so3_coordinate_curve_synthetic_representation",
+    "fail": "close_fixed_so3_coordinate_curve_representation",
+    "valid_failure_exit_code": 1
+  },
+  "unchanged": [
+    "v1 scientific representation, target/control families and parameter budgets",
+    "v1 fit budget, audit point sets, gates, branches and access boundary",
+    "v2 exact implementation, initialization, optimizer, inverse and report semantics",
+    "claim ceiling"
+  ],
+  "fit_observation": {
+    "operator_unit_code_exists": true,
+    "focused_operator_tests_passed": 7,
+    "exact_am1_target_or_control_fit_completed": false,
+    "formal_report_exists": false,
+    "metric_or_gate_result_exists": false
+  },
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one bounded SO(3)-coordinate monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}

@@ -8,6 +8,9 @@ Base v1 SHA-256:
 Executable v2 SHA-256:
 `5c7a77eb6928a1761f51b0bf22b036cc861cf5911881c819c5ced44c19dac9be`
 
+Executable v3 SHA-256:
+`2ea192df0bf706edc62f9e5438d41340a61db93ed0d1fab168a78690e349746c`
+
 ## Pre-implementation correction
 
 V1 froze the scientific representation, target/control families, budgets,
@@ -19,7 +22,13 @@ machine-pinned. No operator code, fit, report or metric existed.
 V1 remains immutable. V2 hash-binds it and supplies only those execution
 semantics. Candidate, targets, controls, budgets, optimizer, audit geometry,
 gates, access boundary and claim ceiling are unchanged. V2 is the sole
-executable entry.
+entry for operator semantics.
+
+After seven focused operator tests passed but before any exact AM1 target or
+control fit, runner review found that hue offsets, partition slices,
+confirmation deduplication and aggregate-check reconstruction were still
+implicit. V3 preserves v1/v2 and freezes only those audit-execution details.
+V3 is the sole formal runner entry.
 
 ## Purpose
 

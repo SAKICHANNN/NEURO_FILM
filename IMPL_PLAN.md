@@ -126,7 +126,11 @@ density-cyan s0.50 and positive-warm s0.35 operators, not a same-family
 teacher. Global RGB curves, positive row-stochastic matrix plus curves and
 stationary K3 are frozen controls. Exact cube, Jacobian, scalar-inverse,
 neutral, hue-neighbour, red-ramp, strength, replay and two-process gates join
-absolute/relative capacity gates. V2 implementation is next; no fit exists yet.
+absolute/relative capacity gates. Seven focused operator tests pass. Before any
+exact AM1 fit, v3 `2ea192df...746c` further pins hue offsets, partition slices,
+confirmation deduplication and aggregate reconstruction without changing any
+scientific field or threshold. V3 runner implementation is next; no formal fit
+exists yet.
 
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
