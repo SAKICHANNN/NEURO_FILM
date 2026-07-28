@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8w_tile_row_grid_decision.v1",
+  "node": "U6.P8W",
+  "software_commit": "1bd7415",
+  "contract_sha256": "0a301884153e348a45bac6e8a2f367045a1b953b877271ea67e479717afaa59b",
+  "report_sha256": "0f9f689803a2f0ec4c8ce593fbbb0f33652ceb67418944e5a0017d9f124c7939",
+  "stable_evidence_id": "cacbd029eaa48e691556830632a2ff1c2cb0e6436f12f55c47c5387146f8ec87",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "selected_tile_rows": 32,
+  "selection_rule_passed": true,
+  "timing_comparison_valid": false,
+  "timing_note": "multiple foreign Python CPU workloads overlapped the grid; latency is diagnostic only",
+  "candidates": {
+    "64": {
+      "mean_peak_process_tree_rss_bytes": 727701504,
+      "peak_process_tree_rss_bytes_range": [
+        727625728,
+        727777280
+      ],
+      "mean_peak_rss_reduction_fraction_vs_p8v": 0.092923
+    },
+    "32": {
+      "mean_peak_process_tree_rss_bytes": 717146112,
+      "peak_process_tree_rss_bytes_range": [
+        717144064,
+        717148160
+      ],
+      "mean_peak_rss_reduction_fraction_vs_p8v": 0.106080
+    }
+  },
+  "decision": "both frozen tile-row candidates preserve exact output and clear the 2% memory gate. Tile_rows=32 is selected because tile_rows=64 is 10.56MB above the minimum mean peak, outside the frozen 8MiB larger-tile tolerance. Freeze 32 rows for the Python canonical oracle and stop Python buffer micro-optimization; the next value-bearing leaf is a native CPU conformance boundary",
+  "candidate_retained": true,
+  "python_reference_topology_complete": true,
+  "desktop_python_reference_memory_target_pass": true,
+  "mobile_native_memory_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8X native CPU conformance P0: freeze the portable C ABI, exact profile payload subset and small-vector oracle before implementing any optimized full-frame kernel",
+  "claim_ceiling": "local Windows Python CPU exact tile-row resource selection for the P8U reference topology; desktop Python reference oracle only, not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
