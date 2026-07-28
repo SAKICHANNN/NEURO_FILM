@@ -3673,3 +3673,16 @@
   removed. All 374 v1-v30 manifest lineage tests pass.
 - V30 supersedes v29 and remains `review-ready-not-merged`; main owns merge.
   Producer NCAN training is independent and no unversioned result is consumed.
+
+## 2026-07-28 - Close Rec.2020 SDR CLI and replay evidence
+
+- The CLI now documents the exact Rec.2020 SDR restriction and an end-to-end
+  subprocess test commits CICP output, recipe and report in one fit
+  transaction. A separate recipe-only replay test reproduces the Rec.2020
+  output rail and durable output identity without the reference file.
+- The persisted v1 report records `linear_rec2020` through its existing
+  candidate diagnostics and binds the exact output SHA-256; no schema mutation
+  was needed. The full current non-manifest color-match regression passes 913
+  tests with five explicit skips.
+- These are additional tests/documentation on top of v30's code payload; HDR,
+  scene-linear RAW tone mapping and Rec.2020 FilmFX composition remain closed.
