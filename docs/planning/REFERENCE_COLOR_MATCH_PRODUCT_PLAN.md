@@ -283,6 +283,8 @@ with a selected stock, but reference matching alone is labeled
 | P80A | DONE | prove Windows dynamic C ABI invocation | MSVC and LLVM-MinGW emit reproducible exact-three-export DLLs; independent FFI loads both, calls every function, rehashes 588 bytes and proves null/short-buffer unchanged | `b550d8e`; 13 focused pass | exact ICC bytes only |
 | P81A | DONE | publish dynamic-ABI integration manifest v10 | bind P1-P80 `c87d366`, main `21a877f`, 333 payload paths, 47 exports, 20 schemas, zero overlap and exact v9 hash | `40b4768`; manifest SHA `6663dbca...7ea1` | review only, not merged |
 | P81B | DONE | verify v10 integration and full regression | local/detached all-color 980 pass/3 skips; merge tree `6f8512f`; full 1875 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
+| P82A | DONE | implement exact portable P72 sRGB EOTF ABI | generated 256+65,536 binary32 LUT exactly matches Python for every uint8/uint16 code; invalid/null/short/overflow/overlap cases leave output unchanged | `8bb9e0b`; 5 focused pass | decoded samples only |
+| P82B | DONE | establish EOTF platform ceilings | reproducible MSVC/LLVM DLL runtime; Android arm64/x86_64 link-only; macOS/iOS arm64 object-only; exact export/definition sets | `REFERENCE_COLOR_MATCH_SRGB_EOTF_PORTABILITY.md` | Android/Apple app runtime open |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

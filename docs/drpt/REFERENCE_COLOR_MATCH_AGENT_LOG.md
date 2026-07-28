@@ -2941,6 +2941,26 @@
   changes no D-PCT producer interface, algorithm admission, media rail or
   Android/Apple runtime claim.
 
+## 2026-07-28 - Complete P82 exact portable sRGB EOTF ABI
+
+- Node/parent goal: P82 / make the consumer-owned P72 decoded-sample EOTF
+  portable without importing D-PCT media or algorithm code.
+- Commit `8bb9e0b` generates an exact float32 lookup for every uint8 and
+  uint16 code from the existing Python reference. Combined table identity is
+  `1b8f915b...0a1ca`; source/header identities are
+  `0835a1a6...3ba35` / `74884f0c...0dd5a`.
+- MSVC DLL `f01d82bb...b086a` and LLVM-MinGW DLL
+  `67d740d7...96d0e` are reproducible, export exactly two functions, load via
+  FFI and match all 65,792 reference values bit-for-bit.
+- Null input/output, invalid depth, zero count, short capacity, `size_t`
+  overflow and overlapping ranges reject before output mutation.
+- Android arm64/x86_64 libraries link reproducibly with exact exports; macOS
+  and iOS arm64 objects compile reproducibly with exact definitions. These
+  remain link-only/object-only, not runtime.
+- Claim ceiling: decoded SDR sample-to-linear adapter only. No encoded media,
+  ICC application, RAW/HDR/video, colour-match algorithm, product
+  authorization or delivery claim opens.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.
