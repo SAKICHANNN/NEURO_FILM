@@ -6017,3 +6017,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fixed analytic named-colour monotone-curve representation. Original
   NamedCurves code, weights, canonicalizer, attention and color-naming assets
   remain forbidden. Goal stays ACTIVE.
+- **Verification:** 14 focused AK1 tests passed before result propagation. A
+  first full-suite run reached 1106 passes and only the two expected AJ0C0B
+  formal-run clean-worktree guards failed because these result files were
+  uncommitted. After the scoped result commit, those tests passed 2/2 and the
+  clean full CPU suite passed 1108/1108 in 164.04 seconds.
