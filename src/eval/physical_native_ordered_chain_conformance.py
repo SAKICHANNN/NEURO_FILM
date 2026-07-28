@@ -168,6 +168,67 @@ def run_loaded_ordered_chain(
     adjacency_payload: dict[str, Any],
     oracle: dict[str, Any],
 ) -> dict[str, Any]:
+    source = np.ascontiguousarray(
+        oracle["input_scene_linear_f64"], dtype=np.float64
+    )
+    observed = render_loaded_ordered_chain(
+        domains_dll=domains_dll,
+        gaussian_dll=gaussian_dll,
+        adjacency_dll=adjacency_dll,
+        domains_payload=domains_payload,
+        spatial_payload=spatial_payload,
+        adjacency_payload=adjacency_payload,
+        source=source,
+    )
+    tolerance = float(
+        oracle["comparison"]["stage_max_abs_tolerance"]
+    )
+    rows = []
+    for name in (
+        "forward_scatter",
+        "developed_density",
+        "bounded_adjacency",
+        "dye_diffusion",
+        "interpretation",
+        "scanner_mtf",
+    ):
+        expected = np.asarray(
+            oracle["expected_by_stage_f64"][name], dtype=np.float64
+        )
+        error = float(np.max(np.abs(observed[name] - expected)))
+        if error > tolerance:
+            raise RuntimeError(
+                f"ordered native stage {name} error {error} exceeds "
+                f"{tolerance}"
+            )
+        rows.append(
+            {
+                "stage": name,
+                "maximum_absolute_error": error,
+                "tolerance": tolerance,
+                "array_sha256": hashlib.sha256(
+                    observed[name].tobytes()
+                ).hexdigest(),
+            }
+        )
+    return {
+        "status": "pass",
+        "shape": list(source.shape),
+        "stages": rows,
+        "final_array_sha256": rows[-1]["array_sha256"],
+    }
+
+
+def render_loaded_ordered_chain(
+    *,
+    domains_dll: Path,
+    gaussian_dll: Path,
+    adjacency_dll: Path,
+    domains_payload: dict[str, Any],
+    spatial_payload: dict[str, Any],
+    adjacency_payload: dict[str, Any],
+    source: np.ndarray,
+) -> dict[str, np.ndarray]:
     domains = _load_domains(domains_dll)
     gaussian = _load_gaussian(gaussian_dll)
     adjacency = _load_adjacency(adjacency_dll)
@@ -176,16 +237,20 @@ def run_loaded_ordered_chain(
     stages = {
         row["stage"]: row for row in spatial_payload["stages"]
     }
-    source = np.ascontiguousarray(
-        oracle["input_scene_linear_f64"], dtype=np.float64
-    )
+    source = np.ascontiguousarray(source, dtype=np.float64)
+    if (
+        source.ndim != 3
+        or source.shape[-1] != 3
+        or source.size == 0
+        or not np.all(np.isfinite(source))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+    ):
+        raise ValueError("native ordered-chain source must be finite [0,1] HxWx3")
     height, width, channels = source.shape
     count = height * width
     if channels != 3:
         raise RuntimeError("ordered-chain oracle shape drift")
-    tolerance = float(
-        oracle["comparison"]["stage_max_abs_tolerance"]
-    )
     observed: dict[str, np.ndarray] = {}
 
     def blur(values: np.ndarray, stage_name: str) -> np.ndarray:
@@ -245,40 +310,7 @@ def run_loaded_ordered_chain(
     scanned = blur(interpreted, "scanner_mtf")
     observed["scanner_mtf"] = scanned
 
-    rows = []
-    for name in (
-        "forward_scatter",
-        "developed_density",
-        "bounded_adjacency",
-        "dye_diffusion",
-        "interpretation",
-        "scanner_mtf",
-    ):
-        expected = np.asarray(
-            oracle["expected_by_stage_f64"][name], dtype=np.float64
-        )
-        error = float(np.max(np.abs(observed[name] - expected)))
-        if error > tolerance:
-            raise RuntimeError(
-                f"ordered native stage {name} error {error} exceeds "
-                f"{tolerance}"
-            )
-        rows.append(
-            {
-                "stage": name,
-                "maximum_absolute_error": error,
-                "tolerance": tolerance,
-                "array_sha256": hashlib.sha256(
-                    observed[name].tobytes()
-                ).hexdigest(),
-            }
-        )
-    return {
-        "status": "pass",
-        "shape": list(source.shape),
-        "stages": rows,
-        "final_array_sha256": rows[-1]["array_sha256"],
-    }
+    return observed
 
 
 def run_native_ordered_chain_conformance(

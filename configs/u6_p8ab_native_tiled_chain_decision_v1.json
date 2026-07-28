@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8ab_native_tiled_chain_decision.v1",
+  "node": "U6.P8AB",
+  "contract": "configs/u6_p8ab_native_tiled_chain_v1.json",
+  "contract_sha256": "8337b2fcd31aaf9dd06b3fb509a9f28c18ca005293b625bc78a9d91dd1c95dcb",
+  "formal_report": "outputs/u6_p8ab_native_tiled_chain_v1/report.json",
+  "formal_report_sha256": "fdb0c7c3a9570cdea0141dd9bb4cd95c1ac07b2634b09abc09760a545c94a015",
+  "stable_evidence_id": "5c1258af7495da9de28dda68baf9d59b455a2a1cecf64f96eef75d7e598766a6",
+  "full_output_sha256": "27fbfa397db8170e996207067f2092480a15e2fa4303475f87cf005911537f9f",
+  "result": {
+    "status": "pass",
+    "shape": [
+      67,
+      89,
+      3
+    ],
+    "total_halo": 5,
+    "tile_rows": [
+      1,
+      3,
+      5,
+      7,
+      32,
+      64
+    ],
+    "execution_orders": [
+      "forward",
+      "reverse"
+    ],
+    "all_rows_byte_exact": true,
+    "maximum_absolute_error": 0.0
+  },
+  "decision": "retain summed-halo row tiling for the native scanner-linear chain. Tile sizes below, equal to and above the five-row halo and both execution orders reproduce the full-frame native result byte exactly; resource and post-scan display stages remain open",
+  "production_default_changed": false,
+  "claim_ceiling": "finite small-image halo-tiled native scanner-linear parity only",
+  "next_leaf": "U6.P8AC native 12MP resource characterization: freeze a 32-row scanner-linear tiled worker, measure process-tree RSS and wall time in fresh runs, and retain only if output identity is exact and desktop resource targets are met"
+}
