@@ -6601,3 +6601,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rows and wrong profile/shape contexts reject. Repeat scans, scanner
   dark/flat/MTF targets and measured spectral response remain absent, so no
   calibrated scanner claim opens.
+- P6C replaces per-tile float64 scanner arithmetic with a separately versioned
+  float32 Standard compiler while retaining spectral, flare, Dmax, MTF and
+  coordinate noise stages. Two independent 24MP runs share stable evidence ID
+  `250aeec5...3414c`; 257/1024-row hashes are exact, maximum float64 error is
+  `1.34e-7`, and measured ranges are `14.71-20.15s` and `.92-1.44GiB`.
+  Forty-eight adjacent physical tests pass. Retain 257 rows as the safer
+  default and proceed to P7 colour/physics ablation; no scanner calibration or
+  product claim opens.

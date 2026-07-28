@@ -669,7 +669,7 @@ FLUX.2 gate:
 | U6.P5D | complete: development pass | Stress the combined P5C spatial chain on held-out synthetic structures, partitions and rights-cleared photographic inputs | P5C pass | 18 CC0 images/nine makes; exact 257/509-row parity, max delta `.00528`, flat p99 `.00236`, zero isolated/new-boundary/visual severe failures |
 | U6.P6A | complete: representation pass | Freeze an explicit scanner nuisance/output-profile boundary separate from film stock and development | P5D pass + P2 interpretation contract | two exact reports; identity exact, all five stages separable, A/B max `.10515`, seed max `.00875`, zero noise boundary; no real scanner calibration |
 | U6.P6B | complete: reference pass | Compile scanner context for exact row streaming with global flare mean, finite local halo and coordinate noise | P6A pass | two exact reports; A/B × two shapes × 31/127/257 rows all byte-exact, halos 37/61, wrong context rejected |
-| U6.P6C | ready | Challenge float64 reference streaming with a 24MP Standard-tier float32 scanner compiler and memory/runtime audit | P6B pass | preregister parity tolerance and budgets; no quality-stage removal or hidden clipping |
+| U6.P6C | complete: development pass | Challenge float64 reference streaming with a 24MP Standard-tier float32 scanner compiler and memory/runtime audit | P6B pass | two full runs share stable ID `250aeec...414c`; partitions byte-exact, float64 max error `1.34e-7`; 257 rows `19.65-20.15s`/`.92-.93GiB`, 1024 rows `14.71-14.95s`/`1.44GiB`; all stages retained, no clipping |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

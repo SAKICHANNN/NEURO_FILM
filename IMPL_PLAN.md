@@ -29,6 +29,12 @@ scanner response, combined ablation, profile compilation and still/video
 runtime. Existing AO6/AO9 display-proxy evidence and procedural FilmFX are
 controls only, not calibrated emulsion or scanner truth.
 
+U6.P6C now retains the five-stage float32 Standard scanner compiler: two
+isolated 24MP runs are partition-exact, stay within frozen runtime/memory
+budgets and differ from the float64 reference by at most `1.34e-7`. This is
+generic development evidence only. U6.P7A is the next ready leaf and must
+compare colour-only, physics-only and combined output before integration.
+
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary
 Color Halds pass the frozen style and non-basic gates, but all 194 fail the
