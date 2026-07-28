@@ -2867,6 +2867,30 @@
   Arbitrary ICC conversion/application, target-runtime parity, non-identity
   algorithm promotion, main merge, RAW/HDR/video and delivery remain open.
 
+## 2026-07-28 - Complete P78 freestanding ICC profile ABI
+
+- Node/parent goal: P78 / make the P76 profile identity consumable by native
+  platform shells without adding media decoding or colour arithmetic.
+- Implementation commit `983810a` adds one generated C11 accessor with exact
+  three-symbol ABI, a C++ independent-hash verifier and pinned-toolchain build
+  helpers. Null/short-capacity failure occurs before any caller-buffer write.
+- Portability correction: the first Apple compile exposed a `string.h`
+  dependency. The final generated C uses an explicit byte loop, then compiles
+  freestanding for both Apple targets.
+- Runtime evidence: reproducible MSVC executable
+  `e7a33530...d8e4e` and LLVM-MinGW executable
+  `5abb5e9d...9bd7a` both execute on Windows x86_64 and return the exact P76
+  profile hash/header plus passing failure-boundary result.
+- Non-runtime evidence: NDK r27d arm64/x86_64 shared libraries
+  `a2239827...37169` / `8e4d4b3a...ac85c` link and export exactly the three
+  ABI symbols; macOS/iOS Mach-O objects `3846352e...af6e4` /
+  `f9e6b6d3...fc5c` define exactly those symbols. All builds repeat
+  byte-identically.
+- Verification: five focused and 27 adjacent ICC/product-chain portability
+  tests pass. Android remains link-only; Apple remains object-only. No device
+  runtime, ICC application, algorithm promotion, media rail or delivery claim
+  opens.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

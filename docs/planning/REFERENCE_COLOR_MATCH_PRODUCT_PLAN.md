@@ -276,6 +276,8 @@ with a selected stock, but reference matching alone is labeled
 | P76B | DONE | make P71/P72 consume the pinned asset | colour attestation and MatchView v2 validate the pinned bytes directly; runtime encoder mutation/call prohibition and profile drift fail closed | 69 focused; 919 all-color/3 skips | host encoder equality is conformance evidence only |
 | P77A | DONE | publish integration manifest v8 | bind P1-P76 `31f03fd`, main `93a7b66`, 318 payload paths, 47 exports, 20 schemas, zero overlap and exact v7 hash | `eba586e`; manifest SHA `f40e32b9...4ee9` | review only, not merged |
 | P77B | DONE | verify refreshed main integration | clean evidence-head merge tree `509df481`; merged all-color 937 pass/3 skips; local full 1832 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
+| P78A | DONE | expose exact ICC bytes through freestanding C11 ABI | deterministic generated C/header, exact three-symbol accessor and pre-write null/short-capacity rejection | `983810a`; 5 focused/27 adjacent pass | bytes only, no ICC application |
+| P78B | DONE | establish factual portability ceilings | MSVC + LLVM-MinGW Windows runtime exact; Android arm64/x86_64 link-only exact exports; macOS/iOS arm64 object-only exact definitions; every build repeats byte-identically | `REFERENCE_COLOR_MATCH_SRGB_ICC_PORTABILITY.md` | Android/Apple runtime remains open |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
