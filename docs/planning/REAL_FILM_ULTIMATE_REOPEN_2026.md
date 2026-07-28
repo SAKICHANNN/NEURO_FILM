@@ -533,13 +533,18 @@ results. C0 v1 is preserved as a pre-execution contract failure with zero
 archive/primary access: it conflated probe and native Hald geometry and
 under-specified strict evidence, negative formulas, novelty and future
 selection. Separately versioned `U5.R2AJ0C0B` corrects these items with legal
-N=4/36/144/256 geometries and leaves incomplete cap-12 details for C1.
-Only a two-process exact C0B pass may open a separately committed
-`U5.R2AJ0C1` screen of the unchanged 194-member Color universe. Neither leaf
-may render photographs. Aesthetic selection, training, teacher use,
-current-film fitting, LSM and integration remain closed. See
+N=4/36/144/256 geometries and leaves incomplete cap-12 details for C1. C0B
+now passes two byte-identical child runs plus independent parent
+reconstruction at commit `d8fdcb1`; every parser/Jacobian/RGB16/basic/
+negative/strength/novelty control passes and every archive, primary and
+photograph access count is zero. This opens only a separately committed
+`U5.R2AJ0C1` contract for the unchanged 194-member Color universe; primary
+member bodies and metrics remain forbidden until that contract is frozen.
+Neither leaf may render photographs. Aesthetic selection, training, teacher
+use, current-film fitting, LSM and integration remain closed. See
 `docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`,
 `docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md` and
 `docs/U5_R2AJ0B2_HALDCLUT_LANE_AWARE_ACQUISITION_RESULTS.md`, plus
-`docs/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_V1_CONTRACT_FAILURE.md` and
-`docs/planning/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md`.
+`docs/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_V1_CONTRACT_FAILURE.md`,
+`docs/planning/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md`
+and `docs/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_RESULTS.md`.

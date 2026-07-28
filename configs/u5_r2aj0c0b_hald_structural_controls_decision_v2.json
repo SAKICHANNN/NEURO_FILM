@@ -1,0 +1,76 @@
+{
+  "schema_version": "u5-r2aj0c0b-hald-structural-controls-decision-v2",
+  "node": "U5.R2AJ0C0B",
+  "decision": "controls_only_conformance_pass",
+  "software_commit": "d8fdcb1ccccf58dba2cf4570f542a31af91a0ac2",
+  "config": {
+    "path": "configs/u5_r2aj0c0b_hald_structural_controls_v2.json",
+    "raw_sha256": "46870c84ee41e66c6d6c9f3c06e1b7bb10ab09f583dbbb66a4310289a70f35cf",
+    "canonical_sha256": "cbb25c54e4de593f5f5ba3cee01007289855dbb2caf47ecb8528de6f1f9aa19e"
+  },
+  "formal_evidence": {
+    "output": "outputs/u5_r2aj0c0b_hald_structural_controls_v2",
+    "repeat_decision_sha256": "7b3d94f04708a4add04cda58a8933a513c14f9047c7e303414840060e9e04e05",
+    "manifest_sha256": "745a05969573b6df0f683b78dc0221ef04a4141d8971d9b5ea9e494147aee9f7",
+    "report_sha256": "0d3a466a1d136df4c7fca1e8f669545a29a5b03b4a81842fb018adb4d6417d8a",
+    "run_a_run_b_manifest_bytes_exact": true,
+    "run_a_run_b_report_bytes_exact": true,
+    "strict_reconstruction_exact": true,
+    "all_control_expectations_pass": true,
+    "automatic_pass": true
+  },
+  "conformance": {
+    "legal_hald_levels": [
+      2,
+      6,
+      12,
+      16
+    ],
+    "legal_hald_cube_sides": [
+      4,
+      36,
+      144,
+      256
+    ],
+    "analytic_jacobian_checks_pass": true,
+    "rgb16_tiff_checks_pass": true,
+    "independent_source_hashes_pass": true,
+    "matched_basic_api_pass": true,
+    "negative_controls_rejected": 4,
+    "negative_controls_total": 4,
+    "eligible_control_ids": [
+      "warm_strength_050",
+      "warm_strength_075",
+      "warm_strength_100",
+      "warm_strength_100_duplicate",
+      "cool_strength_100"
+    ],
+    "strength_duplicate_component_count": 4,
+    "warm_cool_residual_delta_e76_median": 8.728775000723541
+  },
+  "access_ledger": {
+    "archive_open_calls": 0,
+    "archive_bytes_read": 0,
+    "primary_open_calls": 0,
+    "primary_cluts_decoded": 0,
+    "primary_candidate_metrics": 0,
+    "external_root_control_pixels": 0,
+    "photograph_renders": 0
+  },
+  "branch": {
+    "c1_contract_design_allowed": true,
+    "c1_execution_allowed": false,
+    "primary_evaluation_allowed": false,
+    "visual_review_allowed": false,
+    "allowed_next": "freeze a separately versioned U5.R2AJ0C1 primary-bank structural frontier before any archive member body or candidate metric is read"
+  },
+  "forbidden": [
+    "read or measure a primary Hald before the C1 contract commit",
+    "render or inspect a photograph before a later structural pass",
+    "treat filename stock process push pull exposure ageing or scan text as truth",
+    "use the CLUT bank as a pseudo-teacher or training target",
+    "fit current real-film pixels or open latent stock modes",
+    "claim aesthetic preference severe-artifact safety stock response calibration authenticity or product integration"
+  ],
+  "claim_ceiling": "strict controls-only conformance for a sampled encoded-sRGB trilinear Hald structural evaluator; no external CLUT measured rendered visually reviewed validated preferred calibrated or integrated"
+}

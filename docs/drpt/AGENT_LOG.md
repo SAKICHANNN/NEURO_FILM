@@ -5849,3 +5849,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** C0B implementation is ready. C1 and all external CLUT metrics,
   photography, aesthetics, teacher use, fitting, training, routing, LSM and
   integration remain forbidden. Goal remains ACTIVE.
+
+## 2026-07-28 - Pass U5.R2AJ0C0B controls-only Hald conformance
+
+- **Node/implementation:** `ULT > U5 > U5.R2 > U5.R2AJ0C0B`; DRPT L2/Mode A.
+  Commit `d8fdcb1` adds the isolated encoded-sRGB Hald parser/interpolator,
+  analytic Jacobian, generated RGB16 TIFF conformance, structural metrics,
+  strict evidence validators, official two-process runner and 15 dedicated
+  tests. The module accepts no archive path.
+- **Verification:** legal levels 2/6/12/16, analytic/quantized identity,
+  independent Decimal finite differences, pinned source hashes, matched-basic
+  API, four structural negatives, warm strength/duplicate collapse and
+  warm-versus-cool novelty all pass. The final CPU suite is 1,086/1,086.
+- **Formal evidence:** two clean-HEAD child runs have byte-identical manifests
+  at `745a0596...e9f7` and reports at `0d3a466a...7d8a`; the parent independently
+  reconstructs both exact byte streams. Repeat decision SHA-256 is
+  `7b3d94f0...e04e05` with every check true.
+- **Access/claim boundary:** archive opens/bytes, primary opens/decodes/metrics,
+  external-root pixels and photograph renders are all exact integer zero.
+  Nothing external was measured or reviewed; no preference, photographic
+  safety, stock, calibration, teacher, training or integration claim opens.
+- **Propagation/branch:** C0B is complete and opens only separate C1 contract
+  design. C1 must freeze the 194-member universe, native-grid streaming,
+  individual vetoes, component representative rule and deterministic cap-12
+  selection before any primary body or metric access. Goal remains ACTIVE.
