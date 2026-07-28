@@ -3817,3 +3817,14 @@
 - All 376 discovered v1-v34 manifest tests pass. V34 supersedes v33 and remains
   `review-ready-not-merged`; main owns merge. Producer R0DE closed the SHEP
   family without a selected model or callable contract, so no mapping changed.
+
+## 2026-07-29 - Structure all decoder failures in advisory preflight
+
+- The main RAW decoder raises `RuntimeError` when rawpy is unavailable and
+  third-party decoders may use their own ordinary exception subclasses.
+  Advisory preflight now maps any ordinary decoder exception to stable
+  `decode-or-color-state-rejected` rather than leaking it through the CLI.
+- System-level interrupts remain uncaught. A deterministic runtime-failure
+  injection proves the file identity is retained while no decoded rail or
+  acceptance is fabricated. Fifty-one adjacent file/report tests pass with
+  one explicit skip.

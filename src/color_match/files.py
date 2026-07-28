@@ -133,7 +133,7 @@ def inspect_reference_file_input(
         )
     try:
         image = load_working_image(source)
-    except (OSError, ValueError):
+    except Exception:  # noqa: BLE001 - advisory preflight must be structured.
         return FileReferenceInputInspection(
             **common,
             file_sha256=before,

@@ -210,6 +210,29 @@ def test_file_input_preflight_detects_mutation_during_decode(
     assert result.failure_code == "file-changed-during-inspection"
 
 
+def test_file_input_preflight_structures_decoder_runtime_failure(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "source.dng"
+    source.write_bytes(b"bounded-invalid-raw")
+    from src.color_match import files as files_module
+
+    def unavailable_decoder(_path):
+        raise RuntimeError("raw decoder unavailable")
+
+    monkeypatch.setattr(
+        files_module,
+        "load_working_image",
+        unavailable_decoder,
+    )
+    result = inspect_reference_file_input(source)
+    assert result.accepted is False
+    assert result.file_sha256 is not None
+    assert result.working_space is None
+    assert result.failure_code == "decode-or-color-state-rejected"
+
+
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
     tmp_path: Path,
 ) -> None:
