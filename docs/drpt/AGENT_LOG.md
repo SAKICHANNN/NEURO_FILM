@@ -6081,6 +6081,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and add v2 `6adaba33...f00f`, which hash-binds v1 and freezes all missing
   constants, exact confirmation ordering and report schema. Representation,
   truths, gates, branch thresholds and access boundary are unchanged.
-- **Handoff:** v2 is the sole executable AL1 contract. This is a contract-root
-  fix rather than result-driven tuning. Implementation may now begin; Goal
-  remains ACTIVE.
+- **Handoff at this point:** v2 became the executable AL1 contract. This was a
+  contract-root fix rather than result-driven tuning; the subsequent
+  pre-fitting geometry review below further supersedes execution with v3.
+
+## 2026-07-28 - Freeze U5.R2AL1 v3 audit geometry before fitting
+
+- **Review finding:** after the explicit operator and five module tests existed
+  but before any target/control fit, report or metric, runner design found v2
+  did not machine-pin audit point/ramp construction. Implicit Jacobian bounds,
+  hue-to-RGB reconstruction or red-ramp choice could change gate outcomes.
+- **Resolution:** v3 `e4e8e812...6384` hash-binds v1/v2 and freezes exact
+  development/confirmation/identity/cube/Jacobian/inverse/hue-bisector,
+  strength and red-ramp geometry plus invalid-pair handling. Operator, truth,
+  optimizer, gates, thresholds and access boundary are unchanged.
+- **Verification/handoff:** five module tests pass. No candidate/control formal
+  fit or metric exists. V3 is now the only executable entry; runner
+  implementation continues and Goal remains ACTIVE.

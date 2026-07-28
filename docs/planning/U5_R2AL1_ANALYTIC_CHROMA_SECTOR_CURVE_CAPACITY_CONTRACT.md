@@ -7,8 +7,14 @@ Date frozen: 2026-07-28
 > stationary-control fit bounds/regularization, gradient clipping and inverse
 > solver semantics. This was found before operator implementation, fitting or
 > metrics. V1 remains immutable negative contract evidence. The authoritative
-> executable contract is the v2 supplement, which hash-binds v1 and changes no
-> representation, truth, gate or branch threshold.
+> v2 supplement hash-binds v1 and changes no representation, truth, gate or
+> branch threshold.
+
+> **Audit-geometry supplement:** module implementation review, before any
+> candidate/control fit or metric, found that v2 still left audit-point
+> construction implicit. V3 hash-binds v1/v2 and freezes development,
+> confirmation, identity, cube, Jacobian, inverse, hue-bisector, strength and
+> red-ramp geometry. It changes no operator, truth, optimizer or threshold.
 
 ## Question
 
@@ -23,13 +29,16 @@ or a product candidate.
 
 ## Frozen inputs and access boundary
 
-The experiment inputs are immutable v1 plus
-`configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v2.json`. V2 records
+The experiment inputs are immutable v1, v2 and
+`configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v3.json`. V2 records
 v1 raw SHA-256
 `53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559`
 and explicitly supplies every formerly missing execution constant. Its raw
 SHA-256 is
 `6adaba33dbcbd9ec84de81cb35b75534da8a40127244e9c0d1981d77d3aef00f`.
+V3 records both hashes and is the sole authoritative formal-execution entry.
+Its raw SHA-256 is
+`e4e8e812f1bbffe8a4124066e34cb6e3dcd0d549d807eaa9297d9cdaa6f26384`.
 Two independent processes must reconstruct all samples, targets, fits and
 diagnostics from that config and produce byte-identical canonical reports.
 

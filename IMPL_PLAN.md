@@ -75,6 +75,10 @@ colour reactions. Both orders must pass exact neutral/range/continuity,
 Jacobian/inverse/replay, red-ramp and strength-path gates, beat global curves
 by 25%, and stay within 1.20x of K3. Failure closes the fixed representation;
 no sector, curve, target, fit, threshold, photograph or data rescue is allowed.
+Module review then found audit geometry was still implicit before any fit or
+metric. V3 `e4e8e812...6384` hash-binds v1/v2 and freezes all point/ramp
+construction without changing operator, truth, fit or thresholds; v3 is the
+only formal entry.
 
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an

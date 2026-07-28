@@ -1,0 +1,101 @@
+{
+  "schema_version": "u5-r2al1-analytic-chroma-sector-curve-capacity-v3",
+  "experiment_id": "u5.r2al1-analytic-chroma-sector-curve-capacity-v3",
+  "node": "ULT > U5 > U5.R2 > U5.R2AL1",
+  "base_v1_path": "configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v1.json",
+  "base_v1_raw_sha256": "53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559",
+  "base_v2_path": "configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v2.json",
+  "base_v2_raw_sha256": "6adaba33dbcbd9ec84de81cb35b75534da8a40127244e9c0d1981d77d3aef00f",
+  "supersedes_before_formal_execution": {
+    "schema_version": "u5-r2al1-analytic-chroma-sector-curve-capacity-v2",
+    "reason": "V2 completed algorithm and optimizer semantics but did not machine-pin audit-point geometry, hue-bisector RGB construction, invalid boundary handling, or the red-dominant ramp. Operator unit code existed, but no frozen target fit, report, metric or formal result existed."
+  },
+  "audit_geometry": {
+    "development_grid": {
+      "axis_size": 11,
+      "axis": "endpoint_inclusive_linspace_0_1",
+      "ordering": "numpy_meshgrid_ij_lexicographic"
+    },
+    "confirmation_grid": {
+      "interior_axis_size": 13,
+      "interior_axis": "cell_centres_(i+0.5)/13",
+      "boundary_axis_size": 13,
+      "boundary_axis": "endpoint_inclusive_linspace_0_1",
+      "boundary_faces": "channel_0_to_2_then_value_0_then_1",
+      "deduplication": "first_occurrence_exact_float64_row_bytes",
+      "ordering": "interior_first_then_new_boundary_rows"
+    },
+    "identity_grid": {
+      "axis_size": 17,
+      "axis": "endpoint_inclusive_linspace_0_1"
+    },
+    "cube_grid": {
+      "axis_size": 25,
+      "axis": "endpoint_inclusive_linspace_0_1"
+    },
+    "jacobian_grid": {
+      "axis_size": 21,
+      "axis": "linspace_0.02_0.98",
+      "finite_difference_step": 1e-05
+    },
+    "inverse_samples": {
+      "seed": 71282,
+      "count": 1024,
+      "distribution": "independent_uniform",
+      "minimum": 0.02,
+      "maximum": 0.98
+    },
+    "hue_boundary": {
+      "bisector_degrees": [
+        36.0,
+        108.0,
+        180.0,
+        252.0,
+        324.0
+      ],
+      "radius_in_opponent_plane": 0.35,
+      "delta_degrees": 0.0001,
+      "luma_values": [
+        0.2,
+        0.5,
+        0.8
+      ],
+      "rgb_reconstruction": "solve rows [luma_coefficients; opponent_u_coefficients; opponent_v_coefficients] times rgb equals [luma; radius*cos(angle); radius*sin(angle)]",
+      "invalid_pair_rule": "omit a plus/minus pair unless both exact reconstructed RGB rows lie in [0,1]",
+      "minimum_retained_pair_count": 10
+    },
+    "strength_path": {
+      "points": "full_confirmation_grid",
+      "distance": "per-row Euclidean distance from identity",
+      "zero_distance_rows": "excluded from ratio only and retained for absolute collinearity"
+    },
+    "red_ramp": {
+      "sample_count": 4097,
+      "t_axis": "endpoint_inclusive_linspace_0_1",
+      "rgb": [
+        "t",
+        "0.18*t",
+        "0.12*t"
+      ],
+      "luma_coefficients_source": "base_v2_exact_colour_math",
+      "second_difference": "absolute discrete second difference of output luma"
+    }
+  },
+  "fit_observation": {
+    "operator_unit_tests_completed": true,
+    "operator_unit_test_count": 5,
+    "candidate_or_control_formal_fit_completed": false,
+    "formal_report_exists": false,
+    "metric_or_gate_result_exists": false
+  },
+  "unchanged": [
+    "v1 representation",
+    "v1 synthetic truth",
+    "v1 automatic gates and branch thresholds",
+    "v1 access boundary and claim ceiling",
+    "v2 exact colour math",
+    "v2 fit and inverse semantics",
+    "v2 report contract"
+  ],
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one fixed analytic colour-selective monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}
