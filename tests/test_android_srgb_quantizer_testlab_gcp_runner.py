@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
 
 import pytest
 
@@ -9,6 +10,7 @@ from scripts.run_android_srgb_quantizer_testlab_gcp_v1 import (
     _find_matrix_id,
     _package,
     _runtime_tokens,
+    _submission_matrix_id,
 )
 
 
@@ -27,6 +29,18 @@ from scripts.run_android_srgb_quantizer_testlab_gcp_v1 import (
 )
 def test_find_matrix_id_is_strict(value, expected) -> None:
     assert _find_matrix_id(value) == expected
+
+
+def test_submission_matrix_id_survives_validation_nonzero() -> None:
+    completed = subprocess.CompletedProcess(
+        args=[],
+        returncode=1,
+        stdout="",
+        stderr=(
+            "Matrix [matrix-validation123] failed during validation."
+        ),
+    )
+    assert _submission_matrix_id(completed) == "matrix-validation123"
 
 
 def test_local_package_report_rehashes_exact_apks() -> None:

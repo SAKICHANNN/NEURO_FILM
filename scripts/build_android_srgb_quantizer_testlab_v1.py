@@ -34,6 +34,10 @@ JAVA_SOURCE = (
     HARNESS
     / "test/src/com/neurofilm/srgbquantizer/QuantizerInstrumentation.java"
 )
+APP_JAVA_SOURCE = (
+    HARNESS
+    / "app/src/com/neurofilm/srgbquantizer/TargetAnchor.java"
+)
 JNI_SOURCE = HARNESS / "test/jni/nf_srgb_quantizer_testlab.c"
 APP_MANIFEST = HARNESS / "app/AndroidManifest.xml"
 TEST_MANIFEST = HARNESS / "test/AndroidManifest.xml"
@@ -231,6 +235,7 @@ def build(
         javac,
         keytool,
         jar,
+        APP_JAVA_SOURCE,
         JAVA_SOURCE,
         JNI_SOURCE,
         APP_MANIFEST,
@@ -240,11 +245,20 @@ def build(
             raise FileNotFoundError(required)
     ndk_lock = _validate_ndk(ndk)
     output.mkdir(parents=True, exist_ok=True)
-    classes = output / "classes"
-    dex = output / "dex"
+    app_classes = output / "app-classes"
+    app_dex = output / "app-dex"
+    test_classes = output / "test-classes"
+    test_dex = output / "test-dex"
     native_output = output / "native"
     generated = output / "generated"
-    for directory in (classes, dex, native_output, generated):
+    for directory in (
+        app_classes,
+        app_dex,
+        test_classes,
+        test_dex,
+        native_output,
+        generated,
+    ):
         directory.mkdir(exist_ok=True)
 
     core_report = build_android(ndk, native_output)
@@ -306,11 +320,11 @@ def build(
             "-classpath",
             android_jar,
             "-d",
-            classes,
-            JAVA_SOURCE,
+            app_classes,
+            APP_JAVA_SOURCE,
         ]
     )
-    _run([jar, "cf", output / "classes.jar", "-C", classes, "."])
+    _run([jar, "cf", output / "app-classes.jar", "-C", app_classes, "."])
     _run(
         [
             d8,
@@ -319,8 +333,39 @@ def build(
             "--lib",
             android_jar,
             "--output",
-            dex,
-            output / "classes.jar",
+            app_dex,
+            output / "app-classes.jar",
+        ]
+    )
+    _run(
+        [
+            javac,
+            "-source",
+            "8",
+            "-target",
+            "8",
+            "-encoding",
+            "UTF-8",
+            "-classpath",
+            android_jar,
+            "-d",
+            test_classes,
+            JAVA_SOURCE,
+        ]
+    )
+    _run(
+        [jar, "cf", output / "test-classes.jar", "-C", test_classes, "."]
+    )
+    _run(
+        [
+            d8,
+            "--min-api",
+            "24",
+            "--lib",
+            android_jar,
+            "--output",
+            test_dex,
+            output / "test-classes.jar",
         ]
     )
 
@@ -347,9 +392,13 @@ def build(
             ]
         )
     _add_zip_entries(
+        app_unsigned,
+        {"classes.dex": app_dex / "classes.dex"},
+    )
+    _add_zip_entries(
         test_unsigned,
         {
-            "classes.dex": dex / "classes.dex",
+            "classes.dex": test_dex / "classes.dex",
             "lib/arm64-v8a/libnf_srgb_quantizer_testlab.so": jni_library,
             (
                 "lib/arm64-v8a/"
@@ -437,6 +486,7 @@ def build(
     source_hashes = {
         path.relative_to(ROOT).as_posix(): _sha256(path)
         for path in (
+            APP_JAVA_SOURCE,
             JAVA_SOURCE,
             JNI_SOURCE,
             APP_MANIFEST,

@@ -1560,10 +1560,12 @@
   Its 4096-sample vector covers endpoint/sRGB-knee/random inputs and exact
   sRGB8/sRGB16 arrays, two inner and two outer replays, plus two atomic
   rejection paths.
-- Local package identity is `9fec7358...91b9`; app/test APK hashes are
-  `211c33c4...1d70` / `72ba3d98...effd`. Both share the bound test
-  certificate `32d07e30...66cb`.
-- Eight package/native tests pass. This is locally build-verified only until a
+- The initial manifest-only target package was rejected by Test Lab before
+  device execution as `NO_CODE_APK`. The corrected package includes a minimal
+  target DEX anchor; identity is `91a4c307...d522` and app/test APK hashes are
+  `960c31ab...7df3` / `e46ff53c...0539`. The anchor source is included in the
+  package identity.
+- Eleven package/runner tests pass. This is locally build-verified only until a
   physical Test Lab result is parsed; no device-runtime claim opens yet.
 
 ## 2026-07-28 - Freeze P91 owned Test Lab runner
@@ -1574,7 +1576,11 @@
 - Execution is capped at one Pixel 8/API34 matrix, two minutes and USD 1 worst
   case; PENDING over 120 seconds is cancelled. Bucket/matrix identities enter
   the local ledger before creation and only the exact ledger bucket is cleaned.
-- Dry-run and ten runner/package tests pass. No cloud resource exists yet.
+- The first submission created a matrix that failed validation before device
+  execution. The exact matrix and Tool Results history were recovered into the
+  ownership ledger; the result bucket was deleted and prefix bucket count is
+  zero. The runner now records identities even when gcloud exits nonzero after
+  matrix validation, and the corrected package passes dry-run preflight.
 
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 

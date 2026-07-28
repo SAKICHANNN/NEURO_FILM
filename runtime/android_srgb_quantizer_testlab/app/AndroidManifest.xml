@@ -8,7 +8,7 @@
     <application
         android:allowBackup="false"
         android:debuggable="true"
-        android:hasCode="false"
+        android:hasCode="true"
         android:label="Neuro-Film sRGB Quantizer Target"
         android:usesCleartextTraffic="false" />
 </manifest>

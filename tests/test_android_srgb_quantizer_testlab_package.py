@@ -65,6 +65,10 @@ def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
         "neuro-film.android-srgb-quantizer-testlab-package.v1"
     )
     assert first["package_identity"] == second["package_identity"]
+    assert (
+        "runtime/android_srgb_quantizer_testlab/app/src/com/neurofilm/"
+        "srgbquantizer/TargetAnchor.java"
+    ) in first["sources"]
     assert first["native"] == second["native"]
     assert first["vector"] == second["vector"]
     assert first["target"]["device_form"] == "PHYSICAL"
@@ -81,6 +85,13 @@ def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
     }
     assert first["runtime_protocol"]["outer_replays"] == 2
     test_apk = Path(first["artifacts"]["test"]["path"])
+    app_apk = Path(first["artifacts"]["app"]["path"])
+    assert hashlib.sha256(app_apk.read_bytes()).hexdigest() == (
+        first["artifacts"]["app"]["sha256"]
+    )
+    with zipfile.ZipFile(app_apk) as archive:
+        app_names = set(archive.namelist())
+    assert "classes.dex" in app_names
     assert hashlib.sha256(test_apk.read_bytes()).hexdigest() == (
         first["artifacts"]["test"]["sha256"]
     )

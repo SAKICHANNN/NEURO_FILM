@@ -172,6 +172,23 @@ def _find_matrix_id(value: Any) -> str | None:
     return None
 
 
+def _submission_matrix_id(
+    completed: subprocess.CompletedProcess[str],
+) -> str | None:
+    try:
+        payload = json.loads(completed.stdout)
+    except json.JSONDecodeError:
+        payload = None
+    matrix_id = _find_matrix_id(payload)
+    if matrix_id is not None:
+        return matrix_id
+    match = re.search(
+        r"\bmatrix-[A-Za-z0-9_-]+\b",
+        completed.stdout + completed.stderr,
+    )
+    return match.group(0) if match is not None else None
+
+
 def _new_ledger(project: str) -> dict[str, Any]:
     return {
         "schema": "neuro-film.gcp-ownership-ledger.v1",
@@ -458,24 +475,13 @@ def execute() -> dict[str, Any]:
                 "--quiet",
             ],
             timeout=180.0,
+            check=False,
         )
-        try:
-            submission_json = json.loads(submission.stdout)
-        except json.JSONDecodeError:
-            submission_json = None
-        matrix_id = _find_matrix_id(submission_json)
+        matrix_id = _submission_matrix_id(submission)
         if matrix_id is None:
-            matrix_id_match = re.search(
-                r"\bmatrix-[A-Za-z0-9_-]+\b",
-                submission.stdout + submission.stderr,
+            raise CloudRuntimeError(
+                "matrix submission failed before a matrix identity was issued"
             )
-            matrix_id = (
-                matrix_id_match.group(0)
-                if matrix_id_match is not None
-                else None
-            )
-        if matrix_id is None:
-            raise CloudRuntimeError("submitted matrix identity is unavailable")
         matrix_resource = {
             "kind": "firebase-test-matrix",
             "full_name": (
@@ -484,7 +490,12 @@ def execute() -> dict[str, Any]:
             "created_at": _now(),
             "purpose": "P90 Pixel 8 API34 physical device runtime",
             "client_label": f"{RESOURCE_PREFIX}p90-{stamp}",
-            "status": "submitted",
+            "status": (
+                "submitted"
+                if submission.returncode == 0
+                else "submitted-validation-nonzero"
+            ),
+            "submission_exit": submission.returncode,
             "cleanup": {
                 "status": "server-terminates-after-test",
                 "at": None,
