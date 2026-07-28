@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p8z_native_domains_conformance_contract.v1",
+  "node": "U6.P8Z",
+  "parent_decision": "configs/u6_p8y_native_spatial_conformance_decision_v1.json",
+  "parent_decision_sha256": "99aed901a33afa36ebbbdfafffad948d52c233b3935a64ab8d29f09ba2ac19c9",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "native_source": "native/film_physics/nf_physical_domains_v1.c",
+  "native_source_sha256": "9fb5ed34aada6f046be7403dc128e02c17b7c3557ec5ee787f416a9a463c8617",
+  "native_header": "native/film_physics/nf_physical_domains_v1.h",
+  "native_header_sha256": "20a9a2e26b70a4874dd35bfc6ec79686a48b8d4209d0fb2147027f400e19e2d6",
+  "expected_profile_payload_sha256": "25c5f19896ee6a71aca73c03b4061b0e170f799ad403750b2c56b31fca568f58",
+  "expected_oracle_sha256": "e483ba747c99b5248205582ecf0413a5cb9273f44b4e77344af95df455ab029f",
+  "toolchain": {
+    "family": "MSVC",
+    "architecture": "x64",
+    "language": "C11",
+    "floating_point": "strict",
+    "optimization": "O2",
+    "warnings": "W4-WX",
+    "reproducible_link": true
+  },
+  "required_evidence": {
+    "separate_scene_linear_to_developed_density": true,
+    "separate_developed_density_to_scan_linear": true,
+    "python_native_max_abs_tolerance": 5e-13,
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "inplace_exact": true,
+    "invalid_input_output_unchanged": true
+  },
+  "allowed_actions": [
+    "compile and execute split pointwise physical-domain functions on local MSVC x64",
+    "compare sensitometry and interpretation independently against the float64 Python oracle",
+    "record exact source, header, profile, oracle and DLL identities"
+  ],
+  "forbidden_claims": [
+    "composed native physical chain",
+    "native adjacency, dye diffusion, scanner MTF or display look",
+    "full-frame performance, mobile runtime, stock calibration or product promotion"
+  ],
+  "claim_ceiling": "portable local Windows x64 split pointwise generic physical-inspired sensitometry and interpretation conformance only"
+}

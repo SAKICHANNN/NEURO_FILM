@@ -24,6 +24,10 @@ NATIVE_PRINT_PROFILE_SCHEMA = (
 NATIVE_PRINT_ABI = "nf_physical_print_v1"
 NATIVE_PRINT_ABI_VERSION = 1
 NATIVE_PRINT_MAX_KNOTS = 16
+NATIVE_DOMAINS_PROFILE_SCHEMA = (
+    "neuro_film.native_physical_domains_profile.v1"
+)
+NATIVE_DOMAINS_ABI = "nf_physical_domains_v1"
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -182,6 +186,80 @@ def build_native_print_oracle(
         "expected_scan_linear_f64": output.tolist(),
         "input_array_sha256": hashlib.sha256(input_bytes).hexdigest(),
         "expected_array_sha256": hashlib.sha256(output_bytes).hexdigest(),
+        "comparison": {
+            "same_binary_repeat": "byte-exact",
+            "python_native_max_abs_tolerance": 5.0e-13,
+        },
+        "claim_ceiling": payload["claim_ceiling"],
+    }
+    return {
+        **core,
+        "oracle_sha256": hashlib.sha256(_canonical_bytes(core)).hexdigest(),
+    }
+
+
+def compile_native_domains_profile_payload(
+    artifact: dict[str, Any],
+) -> dict[str, Any]:
+    """Compile the same fixed parameters under a split-domain ABI identity."""
+
+    print_payload = compile_native_print_profile_payload(artifact)
+    payload = {
+        **print_payload,
+        "schema": NATIVE_DOMAINS_PROFILE_SCHEMA,
+        "abi": NATIVE_DOMAINS_ABI,
+        "claim_ceiling": (
+            "portable split pointwise generic physical-inspired "
+            "scene-linear-to-density and density-to-scan interpretation "
+            "only; excludes spatial composition, neutral gauge, display "
+            "look, calibration and product runtime"
+        ),
+    }
+    validate_native_domains_profile_payload(payload, artifact=artifact)
+    return payload
+
+
+def validate_native_domains_profile_payload(
+    payload: dict[str, Any],
+    *,
+    artifact: dict[str, Any] | None = None,
+) -> SensitometryPrintOperator:
+    adapted = {
+        **payload,
+        "schema": NATIVE_PRINT_PROFILE_SCHEMA,
+        "abi": NATIVE_PRINT_ABI,
+    }
+    if (
+        payload.get("schema") != NATIVE_DOMAINS_PROFILE_SCHEMA
+        or payload.get("abi") != NATIVE_DOMAINS_ABI
+    ):
+        raise ValueError("native physical-domains identity drift")
+    return validate_native_print_profile_payload(
+        adapted, artifact=artifact
+    )
+
+
+def build_native_domains_oracle(
+    payload: dict[str, Any],
+) -> dict[str, Any]:
+    operator = validate_native_domains_profile_payload(payload)
+    print_oracle = build_native_print_oracle(
+        {
+            **payload,
+            "schema": NATIVE_PRINT_PROFILE_SCHEMA,
+            "abi": NATIVE_PRINT_ABI,
+        }
+    )
+    inputs = np.asarray(print_oracle["input_rgb_f64"], dtype=np.float64)
+    density = operator.sensitometry.apply(inputs)
+    interpreted = operator.interpretation.apply(density)
+    core = {
+        "schema": "neuro_film.native_physical_domains_oracle.v1",
+        "abi": NATIVE_DOMAINS_ABI,
+        "profile_payload_sha256": native_print_payload_sha256(payload),
+        "input_scene_linear_f64": inputs.tolist(),
+        "expected_developed_density_f64": density.tolist(),
+        "expected_scan_linear_f64": interpreted.tolist(),
         "comparison": {
             "same_binary_repeat": "byte-exact",
             "python_native_max_abs_tolerance": 5.0e-13,

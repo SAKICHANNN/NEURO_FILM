@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p8z_native_domains_conformance_decision.v1",
+  "node": "U6.P8Z",
+  "contract": "configs/u6_p8z_native_domains_conformance_v1.json",
+  "contract_sha256": "6a303dceedca435da3fd9e536b9b48a1e05fc10596e9946d737a06401c664d07",
+  "formal_report": "outputs/u6_p8z_native_domains_conformance_v1/report.json",
+  "formal_report_sha256": "e9c8024fc96a27bb1f99db3c64e503e34c864188eefb48fdbf0e228b74fa43c4",
+  "stable_evidence_id": "16b7117f31691cbd2e1e0f6c9a7b6d7d26bc5986fc05bc738a160089e0e6b132",
+  "profile_payload_sha256": "25c5f19896ee6a71aca73c03b4061b0e170f799ad403750b2c56b31fca568f58",
+  "oracle_sha256": "e483ba747c99b5248205582ecf0413a5cb9273f44b4e77344af95df455ab029f",
+  "native_source_sha256": "9fb5ed34aada6f046be7403dc128e02c17b7c3557ec5ee787f416a9a463c8617",
+  "native_header_sha256": "20a9a2e26b70a4874dd35bfc6ec79686a48b8d4209d0fb2147027f400e19e2d6",
+  "dll_sha256": "7d8de1e44ee2225ea4a7e2dd1293dd699f0d0722addeb86aca6247bad824de5d",
+  "result": {
+    "status": "pass",
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "sensitometry_maximum_absolute_error": 0.0,
+    "interpretation_maximum_absolute_error": 5.551115123125783e-16,
+    "tolerance": 5e-13,
+    "sensitometry_inplace_exact": true,
+    "interpretation_inplace_exact": true,
+    "invalid_input_output_unchanged": true
+  },
+  "decision": "retain the split native physical-domain ABI. Sensitometry now ends in developed density and interpretation starts from developed density, so spatial development adjacency and dye diffusion can be inserted in the correct domain order; the full chain itself is not yet claimed",
+  "production_default_changed": false,
+  "claim_ceiling": "portable local Windows x64 split pointwise generic physical-inspired sensitometry and interpretation conformance only",
+  "next_leaf": "U6.P8AA native ordered physical chain P0: implement bounded developed-density adjacency, compose P8Y and P8Z in canonical order, and compare a fixed small-image full-chain oracle before any full-resolution benchmark"
+}
