@@ -6310,3 +6310,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fitting of the same broad two-matrix/three-response family on 3,168 real
   Velvia 100 chart correspondences. Its data, code and fitted parameters were
   not obtained. Implementation is the next ready leaf.
+- **Pre-fit correction:** the matrix identity-mixture is `.25`, not `.4`;
+  this preserves coverage of all selected J0 truths while conservatively
+  keeping every represented matrix above the existing determinant floor.
+  Endpoint normalization makes sigmoid amplitude and scan weights
+  gauge-equivalent, so amplitude is fixed rather than falsely scored as an
+  identifiable recovered parameter.

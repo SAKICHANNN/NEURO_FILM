@@ -65,7 +65,7 @@
   "models": {
     "candidate": "two_nonnegative_row_stochastic_matrices_plus_three_endpoint_normalized_sigmoids",
     "ablation": "one_nonnegative_row_stochastic_matrix_plus_three_endpoint_normalized_sigmoids",
-    "matrix_identity_mixture": 0.4,
+    "matrix_identity_mixture": 0.25,
     "matrix_minimum_determinant": 0.2,
     "fit_dtype": "float64",
     "fit_method": "scipy.optimize.least_squares",
