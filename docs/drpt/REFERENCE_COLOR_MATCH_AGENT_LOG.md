@@ -3697,3 +3697,17 @@
   support. Exact-value tests prevent accidental capability inflation. The
   complete non-manifest color-match regression passes 914 tests with five
   explicit skips. Payload is `eedc2a1`.
+
+## 2026-07-28 - Publish output-capability integration in v31
+
+- V31 binds payload `eedc2a1` to main committed stable point `418a7c2`: 462
+  consumer paths, 497 main paths and zero overlap. It requires all three new
+  public capability exports, rather than relying only on source-tree presence.
+- Manifest/schema SHA-256 identities are `89af4176...fdcc9` /
+  `349e24be...2f69`; merge tree `85b8b999...450a2`. Detached synthetic merge
+  `b130eca` passes 1263 color-match tests with 30 explicit skips and 1306
+  unrelated deselections; its owned worktree was removed.
+- All 364 discovered v1-v31 manifest tests pass. V31 supersedes v30 and remains
+  `review-ready-not-merged`; main owns merge. Producer SHEP-v1 failed its
+  frozen worst-improvement gate and published no callable capability, so it is
+  intentionally not mapped.
