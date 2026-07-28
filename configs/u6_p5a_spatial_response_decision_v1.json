@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p5a_spatial_response_decision.v1",
+  "node": "U6.P5A",
+  "status": "automatic-pass-representation-only",
+  "contract_sha256": "38d5b93bbfe0f64cee74f3f42271bd548d3ea01cadd32299c844eea2e820791e",
+  "software_commit": "2f8ac517b273845f0b19ad562880ea5d5a1ed614",
+  "report_sha256": "fe53cd1e43d428aaf389357ac307df1c1800773d29280a3c0c9bdd5fce225df5",
+  "stable_evidence_id": "08689b8b7a7c06ea55fbc3cb7f68b213a820a93bea5f46dddbf7b4e4783eb596",
+  "repeat_report_count": 2,
+  "metrics": {
+    "minimum_stage_ablation_max_abs": 0.0017885765991144664,
+    "correct_vs_wrong_order_max_abs": 0.0059897077726933645,
+    "dye_mtf50_cycles_per_mm": [
+      247.92365470657543,
+      169.8902074199942,
+      128.3097485909645
+    ],
+    "scanner_neutral_mtf50_cycles_per_mm": [
+      123.7755509909362,
+      123.7755509909362,
+      123.7755509909362
+    ],
+    "adjacency_overshoot_max": 0.024149521410961272,
+    "adjacency_undershoot_max": 0.3089372213475429
+  },
+  "measurement_limitations": [
+    "The isolated adjacency presampled-edge estimator reports frequencies above the digital Nyquist limit; those values are not resolved device MTF.",
+    "The frozen automatic gates bounded overshoot but omitted an undershoot veto.",
+    "The current adjacency profile therefore has no visual, severe-artifact or product promotion despite the representation pass."
+  ],
+  "claim_ceiling": "generic-physical-inspired-spatial-response-representation-development",
+  "branch_decision": "Retain the four separately parameterized primitives and their physical-domain order. Freeze P5B before any further run with Nyquist-bounded reporting, density/exposure sweeps, an explicit undershoot and severe-halo veto, and autonomous fixed-chart visual inspection. Do not tune P5A after seeing this result or integrate its adjacency profile into the renderer."
+}

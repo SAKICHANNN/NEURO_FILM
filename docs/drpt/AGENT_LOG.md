@@ -6548,3 +6548,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Replay-exact colour-density and B&W transmittance diagnostics show no
   confirmed speckles, banding, clusters, seams or grid. This is autonomous
   material-map evidence only; no product image, measured NPS or stock claim.
+- P5A implements explicit exposure scatter, development adjacency, dye
+  diffusion and scanner MTF primitives around the existing U2.2 sensitometry
+  boundary. Two formal reports are byte-identical at `fe53cd1e...25df5`; all
+  frozen representation, order, domain and separability gates pass. The audit
+  also exposes a gate omission: the isolated adjacency profile has only
+  `.02415` overshoot but `.30894` dark-side undershoot, and its presampled MTF
+  estimate can exceed digital Nyquist. The implementation is retained only as
+  a generic research primitive. P5B must preregister Nyquist-bounded metrics,
+  exposure/density sweeps and a severe-halo visual veto before any promotion.
+- The post-P4C3 complete CPU regression passes `1241/1241` in `387.44s`.
