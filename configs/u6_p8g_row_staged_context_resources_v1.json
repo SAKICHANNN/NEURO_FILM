@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p8g_row_staged_context_resources_contract.v1",
+  "node": "U6.P8G",
+  "parent_contract": "configs/u6_p8f_fully_streamed_resources_v1.json",
+  "parent_contract_sha256": "f7897a7139abd07a1cd86e30504ff408be1161f795bca14ce2efc7d369221cb1",
+  "parent_decision": "configs/u6_p8f_fully_streamed_resources_decision_v1.json",
+  "parent_decision_sha256": "bb7e9d8db21c28ab35e738d7836926759d19f81a11e469d587afb2e524d8eca4",
+  "implementation": {
+    "source_context_density_execution": "row-staged",
+    "source_context_lab_storage": "one-full-frame-float32",
+    "source_context_reduction": "exact-legacy-numpy-mean-std",
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_parent_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-staged source-context construction within the fully streamed generic physical-inspired profile; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
