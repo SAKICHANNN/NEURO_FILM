@@ -271,6 +271,47 @@ def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
     assert not list(tmp_path.glob(".*.reference-match-backup"))
 
 
+def test_file_adapter_rejects_committed_bytes_that_differ_from_stage(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    recipe = tmp_path / "recipe.json"
+    _image(reference, 27344)
+    _image(source, 27345)
+    output.write_bytes(b"old-output")
+    recipe.write_bytes(b"old-recipe")
+    original_replace = files._replace
+
+    def corrupt_after_publish(source_path: Path, destination: Path) -> None:
+        original_replace(source_path, destination)
+        if (
+            destination == output
+            and "reference-match-stage" in source_path.name
+        ):
+            destination.write_bytes(b"corrupted-after-publish")
+
+    monkeypatch.setattr(files, "_replace", corrupt_after_publish)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="committed destination bytes differ from staged hash",
+    ):
+        match_reference_files(
+            reference,
+            [source],
+            [output],
+            recipe_path=recipe,
+        )
+    assert output.read_bytes() == b"old-output"
+    assert recipe.read_bytes() == b"old-recipe"
+    assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+    assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
 def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
     tmp_path: Path,
     monkeypatch,

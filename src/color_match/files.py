@@ -738,10 +738,15 @@ def _execute_file_render(
             atomic_write_json(staged_report, payload)
             report_file_sha256 = sha256_file(staged_report)
             commit_pairs.append((staged_report, report_destination))
+        expected_stage_sha256 = {
+            stage: sha256_file(stage)
+            for stage, _destination in commit_pairs
+        }
         _commit_staged_batch(
             tuple(commit_pairs),
             token=token,
             cleanup=staged,
+            expected_stage_sha256=expected_stage_sha256,
         )
         return prepared, recipe_file_sha256, report_file_sha256
     finally:
