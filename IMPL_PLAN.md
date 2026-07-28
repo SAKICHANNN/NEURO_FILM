@@ -20,16 +20,14 @@ champion plus bounded strength. Mode discovery is forbidden until stock,
 connectivity, identifiability, pixel/rights and leakage gates all pass, and
 mode/content representations remain separate.
 
-The latest ready algorithm leaf is `U5.R2AJ0C1` implementation. Corrected
-controls-only `U5.R2AJ0C0B` passes at commit `d8fdcb1` with byte-identical
-two-process evidence, independent reconstruction, all frozen Hald/Jacobian/
-RGB16/basic/negative/strength/novelty controls and exact zero archive,
-primary-CLUT and photograph access. C1 config `7a6d4924...44ef6` now freezes
-the complete 194-member primary universe, native-grid streaming, individual
-vetoes, strongest-safe strength/duplicate representatives and deterministic
-residual max-min cap-12 selection before any member body or candidate metric
-is read. Photographs, aesthetics, training, stock claims and integration
-remain closed.
+`U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
+processes and independent parent reconstruction are exact. All 194 primary
+Color Halds pass the frozen style and non-basic gates, but all 194 fail the
+minimum-Jacobian-determinant veto; 175 also exceed the negative-Jacobian
+fraction gate. Zero candidates are structurally safe, so the frozen branch
+forbids photographs, aesthetics and any smoothing, projection or threshold
+rescue. The next ready algorithm work must preregister a genuinely distinct
+explicit film-simulation family rather than imitate or repair this bank.
 
 CT1C closes the remaining analytic L0 and gauge gap but not fixed-resolution
 HDR LUT parity. Exposure/WB roundtrip, roll-gauge recomposition and log1p

@@ -1,0 +1,83 @@
+{
+  "schema_version": "u5-r2aj0c1-hald-primary-structural-frontier-decision-v1",
+  "node": "U5.R2AJ0C1",
+  "decision": "close_no_structural_survivor",
+  "software_commit": "50b38dd92c19812059b5420e3737683841b2964f",
+  "config": {
+    "path": "configs/u5_r2aj0c1_hald_primary_structural_frontier_v1.json",
+    "raw_sha256": "7a6d492476ae97458d1a8948d6fe37a9c309c79efb6aa84813fc8f65a6044ef6",
+    "canonical_sha256": "60369e8e31e1f4227dad6b28cc582b54571092f4a3aa3fe39a82afdb441d27fe"
+  },
+  "formal_evidence": {
+    "output": "outputs/u5_r2aj0c1_hald_primary_structural_frontier_v1",
+    "repeat_decision_sha256": "65bac815f5930a3cb11c01629f94822b97e49a2edcec8533bfbddf30400b8ec4",
+    "manifest_sha256": "da0245d59894178cfed551e094a8c1e82696ed40c17e73a1813e85dfd6ef3bd9",
+    "report_sha256": "a28c00862a73c89b5ba17c16b73c8ab8a183fef1ec8957e59dca4320ef22765f",
+    "run_a_run_b_manifest_bytes_exact": true,
+    "run_a_run_b_report_bytes_exact": true,
+    "strict_reconstruction_exact": true,
+    "evidence_conformance_pass": true,
+    "automatic_pass": false
+  },
+  "population": {
+    "primary_candidates": 194,
+    "structural_veto": 194,
+    "structurally_safe": 0,
+    "style_pass": 194,
+    "non_basic_pass": 194,
+    "selected": 0
+  },
+  "frozen_gate_failure_counts": {
+    "minimum_jacobian_determinant": 194,
+    "negative_jacobian_fraction": 175,
+    "neutral_luma_reversal": 172,
+    "new_interior_endpoint_fraction": 147,
+    "maximum_gradient_channel_second_difference": 98,
+    "native_maximum_second_code_difference": 81,
+    "maximum_jacobian_spectral_norm": 19,
+    "maximum_gradient_rgb_gain": 9,
+    "finite": 0,
+    "range": 0,
+    "native_maximum_adjacent_code_step": 0
+  },
+  "metric_summary": {
+    "style_delta_e76_median": {
+      "min": 3.3097635605349147,
+      "median": 16.364865,
+      "max": 59.87815
+    },
+    "joint_basic_residual_delta_e76_median": {
+      "min": 2.982638349034049,
+      "median": 14.17911,
+      "max": 43.348141
+    },
+    "minimum_jacobian_determinant": {
+      "min": -13.740128,
+      "median": -2.4389877,
+      "max": -0.21771176
+    },
+    "negative_jacobian_fraction": {
+      "min": 0.00010681152,
+      "median": 0.078186035,
+      "max": 0.28186035
+    }
+  },
+  "access_ledger": {
+    "archive_open_calls": 1,
+    "archive_raw_bytes_hashed": 421602289,
+    "primary_members_read": 194,
+    "primary_uncompressed_bytes": 345233651,
+    "non_primary_member_bodies_read": 0,
+    "photograph_renders": 0
+  },
+  "branch": {
+    "photographic_contract_design_allowed": false,
+    "visual_review_allowed": false,
+    "smoothing_projection_or_threshold_rescue_allowed": false,
+    "teacher_or_training_use_allowed": false,
+    "stock_or_calibration_claim_allowed": false,
+    "allowed_next": "select and preregister a genuinely distinct evidence-authorized explicit film-simulation algorithm family"
+  },
+  "interpretation": "The licensed external Hald bank is strongly stylized and non-basic under the frozen synthetic measures, but every primary candidate violates the frozen orientation-preserving minimum-determinant gate. This is structural negative evidence, not evidence that film style is impossible and not permission to repair or imitate the failed CLUTs.",
+  "claim_ceiling": "repeat-exact synthetic structural rejection of a licensed external Look Approximation Hald bank; no photograph aesthetic preference severe-artifact stock calibration authenticity teacher training or product claim"
+}

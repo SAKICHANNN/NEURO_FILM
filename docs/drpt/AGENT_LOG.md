@@ -5895,3 +5895,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   distinct frontier; zero closes without rescue. No filename semantics,
   photos, aesthetics, teacher use, training, stock claim or integration.
   C1 implementation is the next ready leaf; Goal remains ACTIVE.
+
+## 2026-07-28 - Close U5.R2AJ0C1 with zero structural survivors
+
+- **Node/result:** `ULT > U5 > U5.R2 > U5.R2AJ0C1`; DRPT L2/Mode A.
+  Commit `50b38dd` implements the frozen native-grid evaluator and passes
+  1,099/1,099 local tests before formal execution.
+- **Repeat evidence:** two new clean-HEAD child processes produce identical
+  `da0245d5...ef3bd9` manifests and `a28c0086...2765f` reports. Independent
+  parent reconstruction passes at repeat decision `65bac815...b8ec4`.
+- **Formal decision:** all 194 primary candidates pass style and non-basic
+  gates, with median Delta E76 `16.3649/14.1791`, but all 194 fail minimum
+  Jacobian determinant and 175 exceed negative-Jacobian fraction. No candidate
+  is structurally safe and the selected frontier is empty.
+- **Diagnosis:** minimum determinant min/median/max is
+  `-13.7401/-2.4390/-.2177`; one candidate fails only that gate but is also
+  the weakest-style member. The bank is not rejected for blandness or a
+  finite/range/adjacent-step infrastructure failure.
+- **Access/claims:** each child hashes one exact 421,602,289-byte archive and
+  streams 194 primary members / 345,233,651 uncompressed bytes. Non-primary
+  body reads and photograph renders remain zero. No aesthetic, severe,
+  stock, calibration, teacher, training or product claim opens.
+- **Propagation/branch:** the frozen zero-survivor branch forbids threshold,
+  smoothing, projection and CLUT-imitation rescue. Ultimate remains ACTIVE;
+  select a genuinely distinct explicit film-simulation family next.
