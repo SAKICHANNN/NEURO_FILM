@@ -12,7 +12,7 @@ from typing import Any, Callable
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps
-from scipy.ndimage import uniform_filter
+from scipy.ndimage import maximum_filter, uniform_filter
 from skimage.color import rgb2lab
 
 from src.eval.b0_real_film_residual_fresh_confirmation import (
@@ -43,6 +43,9 @@ SCHEMA = "neuro_film.u6_p7a1_interpretation_bounded_ablation_contract.v1"
 SPATIAL_AUDIT_SCHEMA = (
     "neuro_film.u6_p7a2_spatial_residual_artifact_audit_contract.v1"
 )
+SOURCE_SUPPORTED_AUDIT_SCHEMA = (
+    "neuro_film.u6_p7a3_source_supported_artifact_audit_contract.v1"
+)
 
 
 @dataclass(frozen=True)
@@ -55,6 +58,7 @@ class JointAblationRuntime:
     source_rows: dict[str, dict[str, Any]]
     sample_budget: int
     artifact_residual_pair: tuple[str, str]
+    source_edge_support_threshold: float | None
 
 
 def _load_exact_json(
@@ -70,11 +74,12 @@ def load_contracts(
     root: Path, correction: dict[str, Any]
 ) -> tuple[dict[str, Any], JointAblationRuntime]:
     artifact_residual_pair = ("combined", "colour_only")
-    if correction.get("schema") == SPATIAL_AUDIT_SCHEMA:
-        parent = _load_exact_json(
+    source_edge_support_threshold = None
+    if correction.get("schema") == SOURCE_SUPPORTED_AUDIT_SCHEMA:
+        parent_audit = _load_exact_json(
             root,
-            correction["parent_correction"],
-            correction["parent_correction_sha256"],
+            correction["parent_audit"],
+            correction["parent_audit_sha256"],
         )
         _load_exact_json(
             root,
@@ -84,15 +89,43 @@ def load_contracts(
         metric = correction["only_metric_correction"]
         if (
             metric.get("gate") != "isolated_excursions"
+            or metric.get("residual") != "combined-minus-cheap"
+            or float(metric["residual_excursion_threshold"]) != 0.03
+            or int(metric["residual_support_radius_pixels"]) != 2
+            or int(metric["minimum_residual_support_count"]) != 3
+            or float(metric["minimum_source_luma_edge_support"]) != 0.02
+            or int(metric["maximum_artifact_count"]) != 0
+            or metric.get("hard_clip_allowed")
+            or correction.get("post_result_retuning_allowed")
+        ):
+            raise ValueError("unsupported U6.P7A3 metric correction")
+        correction_contract = parent_audit
+        source_edge_support_threshold = float(
+            metric["minimum_source_luma_edge_support"]
+        )
+    else:
+        correction_contract = correction
+    if correction_contract.get("schema") == SPATIAL_AUDIT_SCHEMA:
+        parent = _load_exact_json(
+            root,
+            correction_contract["parent_correction"],
+            correction_contract["parent_correction_sha256"],
+        )
+        _load_exact_json(
+            root,
+            correction_contract["parent_decision"],
+            correction_contract["parent_decision_sha256"],
+        )
+        metric = correction_contract["only_metric_correction"]
+        if (
+            metric.get("gate") != "isolated_excursions"
             or metric.get("old_residual") != "combined-minus-colour_only"
             or metric.get("new_residual") != "combined-minus-cheap"
-            or correction.get("post_result_retuning_allowed")
+            or correction_contract.get("post_result_retuning_allowed")
         ):
             raise ValueError("unsupported U6.P7A2 metric correction")
         correction_contract = parent
         artifact_residual_pair = ("combined", "cheap")
-    else:
-        correction_contract = correction
     if (
         correction_contract.get("schema") != SCHEMA
         or correction_contract["correction"].get("hard_clip_allowed")
@@ -214,6 +247,7 @@ def load_contracts(
         source_rows=validated["source_rows"],
         sample_budget=int(ao7["metrics"]["maximum_pixels_per_image"]),
         artifact_residual_pair=artifact_residual_pair,
+        source_edge_support_threshold=source_edge_support_threshold,
     )
     return contract, runtime
 
@@ -321,6 +355,44 @@ def _isolated_excursions(
         cval=0.0,
     ) * float(width * width)
     return int(np.count_nonzero(excursion & (support < minimum_support)))
+
+
+def _unsupported_spatial_excursions(
+    difference: np.ndarray,
+    source: np.ndarray,
+    *,
+    residual_threshold: float,
+    radius: int,
+    minimum_residual_support: int,
+    minimum_source_edge_support: float,
+) -> int:
+    excursion = np.max(np.abs(difference), axis=-1) > residual_threshold
+    width = 2 * radius + 1
+    residual_support = uniform_filter(
+        excursion.astype(np.float64),
+        size=width,
+        mode="constant",
+        cval=0.0,
+    ) * float(width * width)
+    luma = np.asarray(source, dtype=np.float64) @ np.asarray(
+        [0.2126, 0.7152, 0.0722], dtype=np.float64
+    )
+    gradient = np.zeros_like(luma)
+    horizontal = np.abs(np.diff(luma, axis=1))
+    vertical = np.abs(np.diff(luma, axis=0))
+    gradient[:, 1:] = np.maximum(gradient[:, 1:], horizontal)
+    gradient[:, :-1] = np.maximum(gradient[:, :-1], horizontal)
+    gradient[1:, :] = np.maximum(gradient[1:, :], vertical)
+    gradient[:-1, :] = np.maximum(gradient[:-1, :], vertical)
+    source_support = maximum_filter(
+        gradient, size=width, mode="constant", cval=0.0
+    )
+    artifact = (
+        excursion
+        & (residual_support < minimum_residual_support)
+        & (source_support < minimum_source_edge_support)
+    )
+    return int(np.count_nonzero(artifact))
 
 
 def _save_rgb(path: Path, values: np.ndarray) -> str:
@@ -476,14 +548,33 @@ def evaluate_ablation(
         artifact_metric_key = (
             "combined_isolated_excursions_from_colour"
             if runtime.artifact_residual_pair == ("combined", "colour_only")
-            else "isolated_spatial_residual_excursions"
+            else (
+                "isolated_spatial_residual_excursions"
+                if runtime.source_edge_support_threshold is None
+                else "unsupported_spatial_residual_artifacts"
+            )
         )
-        metrics[artifact_metric_key] = _isolated_excursions(
-            arms[residual_left] - arms[residual_right],
-            threshold=float(gates["isolated_excursion_threshold"]),
-            radius=int(gates["isolated_support_radius_pixels"]),
-            minimum_support=int(gates["minimum_isolated_support_count"]),
-        )
+        difference = arms[residual_left] - arms[residual_right]
+        if runtime.source_edge_support_threshold is None:
+            metrics[artifact_metric_key] = _isolated_excursions(
+                difference,
+                threshold=float(gates["isolated_excursion_threshold"]),
+                radius=int(gates["isolated_support_radius_pixels"]),
+                minimum_support=int(gates["minimum_isolated_support_count"]),
+            )
+        else:
+            metrics[artifact_metric_key] = _unsupported_spatial_excursions(
+                difference,
+                source,
+                residual_threshold=float(gates["isolated_excursion_threshold"]),
+                radius=int(gates["isolated_support_radius_pixels"]),
+                minimum_residual_support=int(
+                    gates["minimum_isolated_support_count"]
+                ),
+                minimum_source_edge_support=(
+                    runtime.source_edge_support_threshold
+                ),
+            )
         rows.append(
             {
                 "sample_id": sample_id,
@@ -543,7 +634,11 @@ def evaluate_ablation(
                     "combined_isolated_excursions_from_colour"
                     if runtime.artifact_residual_pair
                     == ("combined", "colour_only")
-                    else "isolated_spatial_residual_excursions"
+                    else (
+                        "isolated_spatial_residual_excursions"
+                        if runtime.source_edge_support_threshold is None
+                        else "unsupported_spatial_residual_artifacts"
+                    )
                 )
             ]
             for row in rows
@@ -587,7 +682,11 @@ def evaluate_ablation(
                             "combined_isolated_excursions_from_colour"
                             if runtime.artifact_residual_pair
                             == ("combined", "colour_only")
-                            else "isolated_spatial_residual_excursions"
+                            else (
+                                "isolated_spatial_residual_excursions"
+                                if runtime.source_edge_support_threshold is None
+                                else "unsupported_spatial_residual_artifacts"
+                            )
                         )
                     ]
                     for row in rows
@@ -600,6 +699,15 @@ def evaluate_ablation(
                     )
                 }
                 if runtime.artifact_residual_pair == ("combined", "cheap")
+                else {}
+            ),
+            **(
+                {
+                    "minimum_source_edge_support": (
+                        runtime.source_edge_support_threshold
+                    )
+                }
+                if runtime.source_edge_support_threshold is not None
                 else {}
             ),
         },

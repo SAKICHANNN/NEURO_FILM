@@ -20,6 +20,7 @@ CONTRACT = (
     ROOT / "configs/u6_p7a1_interpretation_bounded_ablation_v1.json"
 )
 P7A2 = ROOT / "configs/u6_p7a2_spatial_residual_artifact_audit_v1.json"
+P7A3 = ROOT / "configs/u6_p7a3_source_supported_artifact_audit_v1.json"
 
 
 def test_interpretation_bound_is_smooth_and_inside_references() -> None:
@@ -89,6 +90,17 @@ def test_p7a2_changes_only_artifact_residual_pair() -> None:
     assert first_contract == second_contract
     assert first.artifact_residual_pair == ("combined", "colour_only")
     assert second.artifact_residual_pair == ("combined", "cheap")
+
+
+def test_p7a3_adds_source_support_without_changing_arms() -> None:
+    p7a2 = json.loads(P7A2.read_text(encoding="utf-8"))
+    p7a3 = json.loads(P7A3.read_text(encoding="utf-8"))
+    first_contract, first = load_contracts(ROOT, p7a2)
+    second_contract, second = load_contracts(ROOT, p7a3)
+    assert first_contract == second_contract
+    assert first.artifact_residual_pair == second.artifact_residual_pair
+    assert first.source_edge_support_threshold is None
+    assert second.source_edge_support_threshold == 0.02
 
 
 def test_physical_display_rejects_out_of_domain() -> None:
