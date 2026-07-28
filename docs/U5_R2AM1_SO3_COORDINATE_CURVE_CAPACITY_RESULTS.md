@@ -1,7 +1,9 @@
 # U5.R2AM1 SO(3) Coordinate-Curve Capacity Results
 
-Date: 2026-07-28  
-Node: `ULT > U5 > U5.R2 > U5.R2AM1`  
+Date: 2026-07-28
+
+Node: `ULT > U5 > U5.R2 > U5.R2AM1`
+
 Decision: **closed — analytic inversion passes, but capacity, cube and neutral
 control do not**
 
