@@ -1,0 +1,25 @@
+﻿{
+  "schema": "neuro_film.u6_p7a3_source_supported_artifact_audit_contract.v1",
+  "node": "U6.P7A3",
+  "parent_audit": "configs/u6_p7a2_spatial_residual_artifact_audit_v1.json",
+  "parent_audit_sha256": "a29de7ee9035e1f9fb45aaffb30bac9669a5944e505e257ac1751eda4e4b7d8c",
+  "parent_decision": "configs/u6_p7a2_spatial_residual_artifact_audit_decision_v1.json",
+  "parent_decision_sha256": "b812223b06938256c61efc7ad19ac7987323e7472f6aa127e9edfbbe8feb4a63",
+  "only_metric_correction": {
+    "gate": "isolated_excursions",
+    "residual": "combined-minus-cheap",
+    "residual_excursion_threshold": 0.03,
+    "residual_support_radius_pixels": 2,
+    "minimum_residual_support_count": 3,
+    "source_structure": "encoded-sRGB Rec.709 luma maximum absolute horizontal-or-vertical first difference",
+    "source_support_radius_pixels": 2,
+    "minimum_source_luma_edge_support": 0.02,
+    "artifact_definition": "residual excursion with sparse residual support and no source-luma edge support",
+    "maximum_artifact_count": 0,
+    "hard_clip_allowed": false
+  },
+  "all_other_population_arms_gates_visual_and_branch_rules": "byte-for-byte inherited from U6.P7A/P7A1/P7A2",
+  "post_result_retuning_allowed": false,
+  "preference_review_allowed_only_after_all_automatic_gates_pass": true,
+  "claim_ceiling": "generic physical-inspired developed-spatial plus AO6-like display-look ablation with source-supported spatial-artifact audit; not complete film image formation, stock response, calibration, scanner profile or product promotion"
+}

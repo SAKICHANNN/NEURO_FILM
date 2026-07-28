@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p7a2_spatial_residual_artifact_audit_decision.v1",
+  "node": "U6.P7A2",
+  "decision": "close_sparse_residual_metric_before_preference_review",
+  "contract_sha256": "a29de7ee9035e1f9fb45aaffb30bac9669a5944e505e257ac1751eda4e4b7d8c",
+  "report_sha256_run_a": "102a3fcd93af0e8cbfe6c15af764f4a20a2e9fd8e2da3cb61133356d34d8c014",
+  "report_sha256_run_b": "102a3fcd93af0e8cbfe6c15af764f4a20a2e9fd8e2da3cb61133356d34d8c014",
+  "stable_evidence_id": "6552257e0b89c52bb977a2fb95fd3fca617b443914d8120422bcdc74651d7ee8",
+  "passed_gate_count": 9,
+  "failed_gate": {
+    "name": "isolated_excursions",
+    "observed": 89086,
+    "maximum": 0,
+    "diagnosis": "combined-minus-cheap isolates the spatial stages, but a thin legitimate edge response can have fewer than three residual pixels inside the fixed 5x5 support window"
+  },
+  "preference_review_performed": false,
+  "next_leaf": "U6.P7A3 retains the exact residual threshold and zero count but exempts sparse residuals that have matching source-luma edge support in the same fixed neighborhood",
+  "claim_ceiling": "closed deterministic spatial-artifact metric; no preference, product, stock, process, scanner or calibration claim"
+}
