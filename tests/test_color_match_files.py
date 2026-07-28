@@ -16,7 +16,13 @@ from src.color_match import (
     load_reference_look_recipe,
     match_reference_files,
 )
-from src.preprocess import inspect_input
+from src.preprocess import (
+    SourceProfile,
+    WorkingImage,
+    inspect_input,
+    load_working_image,
+    save_rec2020_16_png,
+)
 
 
 def _image(path: Path, seed: int, *, format_name: str | None = None) -> None:
@@ -27,6 +33,30 @@ def _image(path: Path, seed: int, *, format_name: str | None = None) -> None:
         dtype=np.uint8,
     )
     Image.fromarray(array, mode="RGB").save(path, format=format_name)
+
+
+def _rec2020_image(path: Path, seed: int) -> None:
+    pixels = np.random.default_rng(seed).uniform(
+        0.02,
+        0.98,
+        size=(31, 37, 3),
+    ).astype(np.float32)
+    save_rec2020_16_png(
+        WorkingImage(
+            pixels=pixels,
+            working_space="linear_rec2020",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("cicp", "BT.2020 SDR test"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=16,
+            source_path=path,
+            warnings=[],
+        ),
+        path,
+    )
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
@@ -159,6 +189,93 @@ def test_file_adapter_supports_srgb8_outputs(tmp_path: Path, suffix: str) -> Non
     )
     assert result.outputs[0].output_bit_depth == 8
     assert inspect_input(output).bit_depth == 8
+
+
+def test_file_adapter_preserves_rec2020_sdr_boundary(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _rec2020_image(reference, 27346)
+    _rec2020_image(source, 27347)
+
+    result = match_reference_files(
+        reference,
+        [source],
+        [output],
+        output_bit_depth=16,
+    )
+    restored = load_working_image(output)
+
+    assert result.recipe.reference_working_space == "linear_rec2020"
+    assert result.outputs[0].diagnostics.source_working_space == (
+        "linear_rec2020"
+    )
+    assert result.outputs[0].output_format == "PNG"
+    assert restored.working_space == "linear_rec2020"
+    assert restored.transfer_state == "display_linear"
+    assert inspect_input(output).source_profile.kind == "cicp"
+
+
+@pytest.mark.parametrize(
+    ("bit_depth", "suffix"),
+    [(8, ".png"), (16, ".tiff")],
+)
+def test_rec2020_file_output_rejects_unsupported_encoding(
+    tmp_path: Path,
+    bit_depth: int,
+    suffix: str,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / f"output{suffix}"
+    recipe = tmp_path / "recipe.json"
+    _rec2020_image(reference, 27348)
+    _rec2020_image(source, 27349)
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="linear_rec2020 file output requires 16-bit PNG",
+    ):
+        match_reference_files(
+            reference,
+            [source],
+            [output],
+            recipe_path=recipe,
+            output_bit_depth=bit_depth,
+        )
+    assert not output.exists()
+    assert not recipe.exists()
+
+
+def test_file_adapter_preserves_each_source_rail_in_mixed_sdr_batch(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    srgb_source = tmp_path / "srgb-source.png"
+    rec2020_source = tmp_path / "rec2020-source.png"
+    srgb_output = tmp_path / "srgb-output.png"
+    rec2020_output = tmp_path / "rec2020-output.png"
+    _image(reference, 27350)
+    _image(srgb_source, 27351)
+    _rec2020_image(rec2020_source, 27352)
+
+    result = match_reference_files(
+        reference,
+        [srgb_source, rec2020_source],
+        [srgb_output, rec2020_output],
+        output_bit_depth=16,
+    )
+
+    assert [row.diagnostics.source_working_space for row in result.outputs] == [
+        "linear_srgb",
+        "linear_rec2020",
+    ]
+    assert load_working_image(srgb_output).working_space == "linear_srgb"
+    assert load_working_image(rec2020_output).working_space == (
+        "linear_rec2020"
+    )
 
 
 def test_file_adapter_rejects_output_input_collision_before_writing(

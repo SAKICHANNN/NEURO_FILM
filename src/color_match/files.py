@@ -13,6 +13,7 @@ import numpy as np
 from src.inference.render_contract import atomic_write_json, sha256_file
 from src.preprocess import (
     load_working_image,
+    save_rec2020_16_png,
     save_srgb8,
     save_srgb16_png,
     save_srgb16_tiff,
@@ -572,6 +573,37 @@ def _encode_srgb(
     return output_format, float(np.mean(clipped, dtype=np.float64))
 
 
+def _encode_working_image(
+    image: WorkingImage,
+    destination: Path,
+    *,
+    output_bit_depth: int,
+) -> tuple[str, float]:
+    if image.working_space == "linear_srgb":
+        encoded = working_image_to_srgb_float(image)
+        return _encode_srgb(
+            encoded,
+            destination,
+            output_bit_depth=output_bit_depth,
+        )
+    if image.working_space != "linear_rec2020":
+        raise ReferenceMatchContractError(
+            "file adapter output working space is unsupported"
+        )
+    if output_bit_depth != 16 or destination.suffix.casefold() != ".png":
+        raise ReferenceMatchContractError(
+            "linear_rec2020 file output requires 16-bit PNG"
+        )
+    pixels = image.pixels
+    clipped = np.any((pixels < 0.0) | (pixels > 1.0), axis=-1)
+    if float(np.min(pixels)) < -2e-6 or float(np.max(pixels)) > 1.0 + 2e-6:
+        raise ReferenceMatchContractError(
+            "render output exceeds the bounded Rec.2020 encoding tolerance"
+        )
+    save_rec2020_16_png(image, destination)
+    return "PNG", float(np.mean(clipped, dtype=np.float64))
+
+
 def _load_stable_working_image(
     path: Path,
     *,
@@ -641,12 +673,13 @@ def _execute_file_render(
                 label="source",
             )
             if (
-                source.working_space != "linear_srgb"
+                source.working_space
+                not in {"linear_srgb", "linear_rec2020"}
                 or source.transfer_state != "display_linear"
             ):
                 raise ReferenceMatchContractError(
                     "file adapter currently requires display-linear "
-                    "linear_srgb sources"
+                    "linear_srgb or linear_rec2020 sources"
                 )
             rendered = render_reference_look_guarded(
                 recipe,
@@ -654,12 +687,11 @@ def _execute_file_render(
                 source_index=index,
                 policy=guard_policy,
             )
-            encoded = working_image_to_srgb_float(rendered.image)
             output_path.parent.mkdir(parents=True, exist_ok=True)
             stage = _stage_path(output_path, token)
             staged.append(stage)
-            output_format, clipped_fraction = _encode_srgb(
-                encoded,
+            output_format, clipped_fraction = _encode_working_image(
+                rendered.image,
                 stage,
                 output_bit_depth=output_bit_depth,
             )
