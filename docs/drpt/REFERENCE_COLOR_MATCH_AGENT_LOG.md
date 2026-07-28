@@ -3340,3 +3340,21 @@
   producer route therefore needs reference-only shared-bundle semantics plus
   bounded uncertainty/identity shrinkage; this evidence does not promote any
   candidate.
+
+## 2026-07-28 - Publish and verify P114 integration v19
+
+- V19 binds P1-P113 plus the checkout-integrity repair at payload `b382e09`
+  to read-only main `5aba3d8`: 408 payload paths, zero main paths in scope,
+  zero overlap, 50 public exports and 22 contract schemas.
+- An initial detached full run exposed one pre-existing portability defect:
+  v17/v18 manifest ancestry hashes depended on working-tree line endings.
+  Commit `b382e09` pins every integration manifest and schema to LF through
+  `.gitattributes`; a fresh checkout restores the exact v17 SHA-256
+  `115e6bcb...652c4`.
+- V19 manifest/schema SHA-256 identities are
+  `219056da...393a5b` / `79a530f8...205a9`. The corrected detached merge tree
+  is `26613993...12aef`; merge commit `4c115cb` passes 1134 color-match tests
+  with 28 explicit platform/data skips and 1206 unrelated deselections in
+  272.24 seconds.
+- The temporary verification worktree is removed after validation. State
+  remains `review-ready-not-merged`; main owns any merge.
