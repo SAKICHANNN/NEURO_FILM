@@ -2978,6 +2978,26 @@
   interface nor converts Android link-only or Apple object-only evidence into
   runtime, and it opens no algorithm, media or delivery claim.
 
+## 2026-07-28 - Harden P84 exact EOTF ABI preconditions
+
+- Node/parent goal: P84 / close representation and typed-pointer assumptions
+  in the P82 freestanding consumer EOTF ABI without changing its two symbols,
+  table identity or decoded-sample scope.
+- The generated C now requires IEEE binary32 compile-time parameters, verifies
+  the little-endian bytes of `1.0f` before writing, stores exact result bits
+  through character lvalues and rejects unaligned float output or uint16 input
+  pointers before mutation.
+- Both Windows DLLs still match all 65,792 Python reference values exactly.
+  New unaligned input/output sentinel cases reject byte-unchanged; the prior
+  null/short/overflow/overlap cases remain closed.
+- Android arm64/x86_64 link-only and macOS/iOS arm64 object-only builds remain
+  reproducible with exact two-symbol boundaries. The refreshed source SHA is
+  `33a31fae...b579f`; platform identities are recorded in
+  `REFERENCE_COLOR_MATCH_SRGB_EOTF_PORTABILITY.md`.
+- Propagation: no wire schema, profile, D-PCT producer capability, algorithm,
+  media, authorization or delivery state changes. Android/Apple runtime
+  remains explicitly open.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

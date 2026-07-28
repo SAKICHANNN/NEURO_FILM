@@ -287,6 +287,8 @@ with a selected stock, but reference matching alone is labeled
 | P82B | DONE | establish EOTF platform ceilings | reproducible MSVC/LLVM DLL runtime; Android arm64/x86_64 link-only; macOS/iOS arm64 object-only; exact export/definition sets | `REFERENCE_COLOR_MATCH_SRGB_EOTF_PORTABILITY.md` | Android/Apple app runtime open |
 | P83A | DONE | publish exact-EOTF integration manifest v11 | bind P1-P82 `20fb34a`, main `a264a82`, 343 payload paths, 47 exports, 20 schemas, zero overlap and exact v10 identity | `431729d`; manifest SHA `b3bb7dee...ccfe` | review only, not merged |
 | P83B | DONE | verify moving-main integration and full regression | refreshed main `4bbf362`: 347 consumer vs 254 main paths, zero overlap; merge tree `f1df3ff9`; detached all-color 1003 pass/3 skips; local full 1898 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
+| P84A | DONE | harden EOTF ABI representation and alignment preconditions | require compile-time IEEE binary32 parameters, runtime little-endian proof and aligned float/uint16 buffers; remove union type-punning | code/tests/docs | same ABI and LUT identity |
+| P84B | DONE | replay exhaustive and cross-target evidence | all 65,792 values remain exact on MSVC/LLVM; unaligned negatives remain unchanged; Android link-only and Apple object-only rebuild | 5 focused pass; refreshed artifact hashes | no target-runtime claim expansion |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

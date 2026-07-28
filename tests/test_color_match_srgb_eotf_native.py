@@ -102,6 +102,28 @@ def _assert_exact_dll(path: Path) -> None:
         16,
     ) == 0
     assert bytes(overlap) == bytes(range(64))
+    unaligned_output = (ctypes.c_uint8 * 65)(*range(65))
+    unaligned_output_before = bytes(unaligned_output)
+    assert apply(
+        source.ctypes.data,
+        16,
+        8,
+        ctypes.cast(
+            ctypes.addressof(unaligned_output) + 1,
+            ctypes.POINTER(ctypes.c_float),
+        ),
+        16,
+    ) == 0
+    assert bytes(unaligned_output) == unaligned_output_before
+    unaligned_u16 = (ctypes.c_uint8 * 33)(*range(33))
+    assert apply(
+        ctypes.addressof(unaligned_u16) + 1,
+        16,
+        16,
+        sentinel.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+        16,
+    ) == 0
+    assert sentinel.tobytes() == before
 
 
 def test_generated_lut_source_and_identity_are_exact() -> None:

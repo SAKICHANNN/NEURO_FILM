@@ -1,6 +1,11 @@
 #include "reference_srgb_eotf_f32_v1.h"
 
+#include <float.h>
 #include <stdint.h>
+
+#if FLT_RADIX != 2 || FLT_MANT_DIG != 24 || FLT_MAX_EXP != 128
+#error "nf_srgb_eotf_f32_v1 requires IEEE-754 binary32 float"
+#endif
 
 static const uint32_t NF_EOTF_8[256u] = {
     0x00000000u, 0x399f22b4u, 0x3a1f22b4u, 0x3a6eb40eu, 0x3a9f22b4u, 0x3ac6eb61u, 0x3aeeb40eu, 0x3b0b3e5du,
@@ -8232,13 +8237,24 @@ static const uint32_t NF_EOTF_16[65536u] = {
     0x3f7ff013u, 0x3f7ff25au, 0x3f7ff4a1u, 0x3f7ff6e6u, 0x3f7ff92du, 0x3f7ffb74u, 0x3f7ffdb9u, 0x3f800000u,
 };
 
-static float nf_bits_to_float(uint32_t bits) {
-    union {
-        uint32_t bits;
-        float value;
-    } converter;
-    converter.bits = bits;
-    return converter.value;
+static int nf_binary32_is_little_endian(void) {
+    const float one = 1.0f;
+    const unsigned char *bytes = (const unsigned char *)&one;
+    return (
+        sizeof(float) == 4u
+        && bytes[0] == 0x00u
+        && bytes[1] == 0x00u
+        && bytes[2] == 0x80u
+        && bytes[3] == 0x3fu
+    );
+}
+
+static void nf_store_binary32_le(float *destination, uint32_t bits) {
+    unsigned char *bytes = (unsigned char *)destination;
+    bytes[0] = (unsigned char)(bits & 0xffu);
+    bytes[1] = (unsigned char)((bits >> 8u) & 0xffu);
+    bytes[2] = (unsigned char)((bits >> 16u) & 0xffu);
+    bytes[3] = (unsigned char)((bits >> 24u) & 0xffu);
 }
 
 const char *nf_srgb_eotf_f32_lut_sha256_v1(void) {
@@ -8265,6 +8281,7 @@ int nf_srgb_eotf_f32_apply_v1(
         || sample_count == 0u
         || output_capacity < sample_count
         || (bit_depth != 8u && bit_depth != 16u)
+        || !nf_binary32_is_little_endian()
     ) {
         return 0;
     }
@@ -8280,7 +8297,12 @@ int nf_srgb_eotf_f32_apply_v1(
     input_start = (uintptr_t)samples;
     output_start = (uintptr_t)output;
     if (
-        input_start > UINTPTR_MAX - input_bytes
+        output_start % _Alignof(float) != 0u
+        || (
+            bit_depth == 16u
+            && input_start % _Alignof(uint16_t) != 0u
+        )
+        || input_start > UINTPTR_MAX - input_bytes
         || output_start > UINTPTR_MAX - output_bytes
     ) {
         return 0;
@@ -8293,12 +8315,12 @@ int nf_srgb_eotf_f32_apply_v1(
     if (bit_depth == 8u) {
         const uint8_t *input = (const uint8_t *)samples;
         for (index = 0; index < sample_count; ++index) {
-            output[index] = nf_bits_to_float(NF_EOTF_8[input[index]]);
+            nf_store_binary32_le(&output[index], NF_EOTF_8[input[index]]);
         }
     } else {
         const uint16_t *input = (const uint16_t *)samples;
         for (index = 0; index < sample_count; ++index) {
-            output[index] = nf_bits_to_float(NF_EOTF_16[input[index]]);
+            nf_store_binary32_le(&output[index], NF_EOTF_16[input[index]]);
         }
     }
     return 1;
