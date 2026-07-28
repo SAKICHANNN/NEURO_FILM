@@ -31,6 +31,8 @@ P157_RUN = ROOT / "configs" / "reference_match_chunked_lab_memory_run_v1.json"
 P157_DECISION = (
     ROOT / "configs" / "reference_match_chunked_lab_memory_decision_v1.json"
 )
+P158_GATES = ROOT / "configs" / "reference_match_halo_style_memory_gates_v1.json"
+P158_RUN = ROOT / "configs" / "reference_match_halo_style_memory_run_v1.json"
 
 
 def _run(variant: str, rss: int, token: str = "same") -> dict:
@@ -164,6 +166,25 @@ def test_p157_run_binds_the_frozen_gates_and_candidate() -> None:
     assert run["baseline_commit"] == gates["measurement_baseline_commit"]
     assert run["candidate_commit"] == (
         "6e1387b0f98a18ba7e89f9c68e47bc143205ac5b"
+    )
+    for field in (
+        "minimum_median_rss_reduction_bytes",
+        "maximum_candidate_to_baseline_median_rss_ratio",
+        "maximum_candidate_to_baseline_median_worker_wall_ratio",
+        "orphan_worker_count",
+        "staging_temporary_count",
+    ):
+        assert run["gates"][field] == gates["gates"][field]
+    assert run["claim_ceiling"] == gates["claim_ceiling"]
+
+
+def test_p158_run_binds_the_frozen_gates_and_candidate() -> None:
+    gates = json.loads(P158_GATES.read_text(encoding="utf-8"))
+    run = load_config(P158_RUN)
+    assert run["node"] == "P158"
+    assert run["baseline_commit"] == gates["measurement_baseline_commit"]
+    assert run["candidate_commit"] == (
+        "4741507edcc03520147cdef11a13b1a78e4f8409"
     )
     for field in (
         "minimum_median_rss_reduction_bytes",

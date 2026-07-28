@@ -65,7 +65,7 @@ def load_config(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if (
         payload.get("schema_version") != 1
-        or payload.get("node") not in {"P154", "P156", "P157"}
+        or payload.get("node") not in {"P154", "P156", "P157", "P158"}
     ):
         raise ValueError("config must be a supported file-memory contract")
     if payload.get("execution_order") != [
