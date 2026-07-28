@@ -2,28 +2,26 @@
 
 Date: 2026-07-28
 
-Status: **P1-P84 consumer payload is pinned by the immutable P85 v12 review
+Status: **P1-P88 consumer payload is pinned by the immutable P89 v13 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P84 payload head:
-  `091e6886b4be2ba85133ab1eea1e8565131efa34`;
-- P85 review-evidence head:
-  `49cc6ae`;
+- complete reviewed P1-P88 payload head:
+  `61842db41e13ea859a0459637e7febbd83335249`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `bc049439599706c40c1930f61d71045420df1be3`;
+  `9301cba3745af9ad9d8d65eac01af39471730074`;
 - D-PCT read-only snapshot:
-  `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
+  `442aabcd63f0597fd426ccad9f565006886742c3`;
 - conflict-free main/evidence-head merge tree:
-  `e778299c050b9ca8720bd73847f9e25079cb1ecc`.
+  `82874da9995a660452464cc518ab75b7f5154f66`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -107,6 +105,14 @@ against main `bc04943`: 347 payload blobs, 258 main paths, zero overlap, 47
 exports and 20 schemas. V12 SHA-256 is
 `2e082062d65c909cc6a6ff3e2ecb903912b03834328c760a29c799bf88bd1a66`;
 it binds v11 SHA-256 `b3bb7dee...ccfe` and never hashes itself.
+
+P87 `2d237e7` freezes the current staging OETF and 8/16-bit quantization as
+exact first-float32 threshold tables; P88 `61842db` proves 24MP bounded
+streaming. P89 v13 binds that P1-P88 payload against main `9301cba`: 361
+payload blobs, 261 main paths, zero overlap, 47 exports and 20 schemas. V13
+SHA-256 is
+`64ef7be01b7a281e785294cda1820c8cca09ff6388fa3cc6ae451d1c26fb147e`;
+it binds v12 SHA-256 `2e082062...1a66` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -233,11 +239,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P85 v12 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..091e688`; do not copy files manually and do not import
+2. Verify the committed P89 v13 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v12/v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..61842db`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 091e688 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 61842db <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -252,12 +258,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 1003 passed, three skipped;
+- latest detached main/P1-P88 merge: 1022 color-match tests passed, 22
+  platform/data skips and zero failures;
 - latest isolated consumer full suite: 1898 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main/evidence-head merge: 1003 color-match tests
-  passed with three platform skips and zero failures; the temporary worktree
-  was removed;
+- detached merge tree is `82874da...f66`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real

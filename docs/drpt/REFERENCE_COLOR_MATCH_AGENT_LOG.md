@@ -1544,6 +1544,16 @@
 - The audit uses create-only reports and unloads DLLs after success or injected
   failure. No further quantizer optimization is justified by this result.
 
+## 2026-07-28 - Publish and verify P89 integration v13
+
+- V13 binds P1-P88 payload `61842db` to main `9301cba` with 361/261 changed
+  paths, zero overlap and immutable v12 ancestry. Manifest SHA is
+  `64ef7be0...147e`.
+- Direct/schema rebuild and v11-v13 tests pass 54/54. A real detached merge
+  produces tree `82874da...f66` and passes 1022 color-match tests with 22
+  platform/data skips and zero failures; the temporary worktree was removed.
+- Review state remains `review-ready-not-merged`; main owns any actual merge.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
