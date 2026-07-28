@@ -50,6 +50,7 @@ from .shared_staging_transaction import (
 )
 from .staging_io import (
     encode_sdr_staging_output,
+    staging_output_paths,
     validate_sdr_staging_destinations,
 )
 
@@ -298,20 +299,7 @@ def _runtime_output_paths(
     *,
     count: int,
 ) -> tuple[Path, ...]:
-    if isinstance(values, (str, bytes, Path)):
-        raise ReferenceMatchContractError(
-            "output_paths must be an iterable of paths"
-        )
-    try:
-        paths = tuple(Path(value) for value in values)
-    except (TypeError, ValueError) as exc:
-        raise ReferenceMatchContractError(
-            "output_paths must be an iterable of paths"
-        ) from exc
-    if len(paths) != count:
-        raise ReferenceMatchContractError(
-            "output path count must match authorized sources"
-        )
+    paths = staging_output_paths(values, count=count)
     absolute = tuple(
         _reject_reparse_components(
             path,

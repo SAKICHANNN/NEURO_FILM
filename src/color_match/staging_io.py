@@ -27,8 +27,16 @@ def staging_output_paths(
         raise ReferenceMatchContractError(
             "output_paths must be an iterable of paths"
         )
+    paths: list[Path] = []
     try:
-        paths = tuple(Path(value) for value in values)
+        for value in values:
+            if len(paths) >= count:
+                raise ReferenceMatchContractError(
+                    "output path count must match authorized sources"
+                )
+            paths.append(Path(value))
+    except ReferenceMatchContractError:
+        raise
     except (TypeError, ValueError) as exc:
         raise ReferenceMatchContractError(
             "output_paths must be an iterable of paths"
@@ -40,7 +48,7 @@ def staging_output_paths(
     keys = [str(path.resolve(strict=False)).casefold() for path in paths]
     if len(set(keys)) != len(keys):
         raise ReferenceMatchContractError("output paths must be unique")
-    return paths
+    return tuple(paths)
 
 
 def validate_sdr_staging_destinations(
