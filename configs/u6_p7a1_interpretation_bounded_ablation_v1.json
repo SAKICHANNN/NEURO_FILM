@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p7a1_interpretation_bounded_ablation_contract.v1",
+  "node": "U6.P7A1",
+  "parent_contract": "configs/u6_p7a_colour_developed_spatial_ablation_v1.json",
+  "parent_contract_sha256": "074e317660b254a6270377218afec12d52f91a7cefb2f6e1ba306f45c2319bba",
+  "supersedes_for_execution": "U6.P7A v1 exact composition, which is not interpretation-domain ready",
+  "dor_failure": {
+    "sample_id": "canon_eos_kiss_f",
+    "observed_min_density_rgb": [
+      0.14719707,
+      0.18120195,
+      0.19996240
+    ],
+    "observed_max_density_rgb": [
+      1.55925206,
+      1.49096633,
+      1.43053184
+    ],
+    "black_reference_density_rgb": [
+      0.14719754,
+      0.14117074,
+      0.18759685
+    ],
+    "white_reference_density_rgb": [
+      1.55925875,
+      1.49096630,
+      1.43053098
+    ],
+    "result": "fail_closed_before_print_interpretation",
+    "not_an_experiment_result": true
+  },
+  "correction": {
+    "stage": "bounded-development-adjacency",
+    "positive_density_limit": "min(P5C transmittance limit, P5C density limit, white_reference_density - current_density)",
+    "negative_density_limit": "min(P5C transmittance limit, P5C density limit, current_density - black_reference_density)",
+    "projection": "signed_limit_times_tanh_raw_over_signed_limit",
+    "apply_before_dye_diffusion": true,
+    "convex_dye_diffusion_must_preserve_reference_bounds": true,
+    "hard_clip_allowed": false,
+    "endpoint_or_gate_retuning_allowed": false
+  },
+  "inherited_arms_gates_visual_and_branches": "exactly parent contract",
+  "claim_ceiling": "generic interpretation-domain-safe developed-spatial plus AO6-like display-look ablation; not complete film image formation, stock response, calibration, scanner profile or product promotion"
+}
