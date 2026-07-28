@@ -2193,6 +2193,19 @@
   rejected/non-callable, so this authorizer has only synthetic mechanics
   evidence and cannot authorize a real user render.
 
+## 2026-07-28 - Freeze P56 shared atomic local export
+
+- Node/parent goal: P56A-D / rollback-safe local file transaction after P55.
+- Contract: reconstruct exact P55 immediately before mutation, then copy every
+  ordered P54-verified P53 output byte-for-byte to caller-selected local
+  destinations and atomically commit all files plus one canonical report.
+- Protection: P50 bases/report and P53 outputs/report are immutable sources
+  and cannot be destinations. Existing destination bytes may change only
+  through the shared rollback-safe batch primitive.
+- State/ceiling: `committed-shared-local-delivery` /
+  `local-files-delivered-shared-reference-look`; neither means app-level
+  applied, public share, film-stock identity or producer promotion.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
