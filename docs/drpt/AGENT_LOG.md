@@ -6517,3 +6517,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Both have nonzero structure variance and exact repeat/partition. No display
   RGB composition, stock/process claim or U6.2B rescue opens; U6.P4 may now
   challenge their density-conditioned NPS/ACF with a bounded compiler.
+- P4A's preregistered counter-Gaussian-copula compiler is deterministic and
+  passes mean, variance, NPS, physical-domain and partition gates. The third
+  colour dye-density layer reaches ACF max error `.20262`, just above the
+  frozen `.20` gate; two reports are byte-identical at
+  `a6a4de37...34905`. Close this candidate without threshold or confirmatory
+  retuning and open a separately contracted compound-Poisson approximation.

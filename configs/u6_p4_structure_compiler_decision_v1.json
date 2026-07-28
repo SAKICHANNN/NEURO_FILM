@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4_structure_compiler_decision.v1",
+  "node": "U6.P4A",
+  "status": "closed-frozen-acf-gate",
+  "contract_sha256": "9531ea89b6706ffab3bc944d102dd6929b1a2ea3091e80a501087111b98dd2af",
+  "software_commit": "a903912cd525feeb416675c77367e87ad1ab4a46",
+  "report_sha256": "a6a4de37d901ec1e07276e23d93629209690cfa79118626bf259eefc0cf34905",
+  "stable_evidence_id": "1527acecc3567b4e058d9c9f516526b70ce5a0625f30842882bb874081126905",
+  "metrics": {
+    "mean_abs_error_max": 0.007324427366256714,
+    "variance_ratio_min": 1.0727584224522995,
+    "variance_ratio_max": 1.1594326501805279,
+    "acf_abs_error_max": 0.20262255914692046,
+    "nps_band_relative_error_max": 0.35944025106617494,
+    "repeat_and_partition_exact": true,
+    "domain_valid": true
+  },
+  "failed_gate": {
+    "name": "acf_abs_error_max",
+    "threshold": 0.2,
+    "observed": 0.20262255914692046,
+    "layer": "colour-dye-density-2"
+  },
+  "claim_ceiling": "rejected-development-challenger",
+  "branch_decision": "Close the counter-Gaussian-copula marginal compiler without threshold, sigma-grid or confirmatory retuning. Preserve P1B as the offline structure reference and preregister a separate compound-Poisson approximation."
+}
