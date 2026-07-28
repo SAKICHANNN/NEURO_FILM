@@ -662,7 +662,8 @@ FLUX.2 gate:
 | U6.P4B | complete: development pass | Test a separately preregistered compound-Poisson structure approximation | P4A closure + P1B reference | two exact reports; confirmatory mean max `.01040`, variance ratio `1.0605-1.0800`, ACF max `.05785`, NPS relative max `.19378`; exact repeat/partition and physical domains |
 | U6.P4C1 | complete: closed | Validate naive physical-scale direct LOD against area-resolved P4B fields | P4B pass | ACF/NPS/repeat/partition/domain/brightening pass, but variance spans `.0875-1.8860` and B&W mean error reaches `.1743`; density-before-exponential is not area-mean transmittance |
 | U6.P4C2 | complete: development pass | Test a preregistered development-only moment-corrected physical LOD | P4C1 closure + P4B | two exact reports; confirmatory mean max `.00512`, variance `.9669-1.0111`, ACF `.19277`, NPS `.47636`, exact repeat/partition and zero brightening |
-| U6.P4C3 | ready | Measure streamed 24MP material-map runtime/memory and inspect fixed diagnostic views | P4C2 pass | no renderer integration; severe-artifact-first, preserve density/transmittance domains and area-resolved fallback |
+| U6.P4C3 | complete: development pass | Measure streamed 24MP material-map runtime/memory and inspect fixed diagnostic views | P4C2 pass | four layers `23.05/26.99s`, peak `.173/.360GiB`, exact 257/1024-row hashes, zero brightening; replay-exact diagnostic has zero confirmed severe failure |
+| U6.P5A | ready | Freeze and test independently parameterized film scatter, development adjacency/acutance, dye diffusion and scanner MTF primitives | P3/P4 evidence | synthetic charts only; report MTF50/10, overshoot and separability, never collapse to one sharpening control |
 
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 

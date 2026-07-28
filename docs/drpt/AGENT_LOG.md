@@ -6542,3 +6542,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact repeat/partition and zero brightening. Two reports are byte-identical
   at `eb3dba31...975ea`. Retain the versioned LOD bank as generic development
   evidence; next measure streamed 24MP material maps and inspect diagnostics.
+- P4C3 streams all four 24MP material layers in `23.05/26.99s` with
+  `.173/.360GiB` process-tree RSS. 257- and 1024-row policies produce identical
+  float32 hashes, valid domains and zero representable-baseline brightening.
+  Replay-exact colour-density and B&W transmittance diagnostics show no
+  confirmed speckles, banding, clusters, seams or grid. This is autonomous
+  material-map evidence only; no product image, measured NPS or stock claim.

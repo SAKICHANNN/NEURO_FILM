@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4c3_streamed_material_decision.v1",
+  "node": "U6.P4C3",
+  "status": "automatic-and-autonomous-visual-pass-development-only",
+  "contract_sha256": "3571196b3bb082d5f29d05ec7f79f1c17f21097b26c3ae4a7fe8892ede435842",
+  "software_commit": "9004bebfeb35654d3df49a51ded62931d6c83308",
+  "benchmark_report_sha256": "c19ea9f283718d57dd99a800bae0eeba29a927be4ab382612b7ea104ffd87a5e",
+  "stable_evidence_id": "e35b533313296296ab9b5d70ede7899f93b8a371691cb3c717b42269cebe90c2",
+  "diagnostic_report_sha256": "673d0b97e6ea6c70506b1d2ba9909ed9fc3dc54a9068c7fad3f26d1e2b4bdcac",
+  "metrics": {
+    "shape": [
+      4000,
+      6000
+    ],
+    "chunk_apply_seconds": [
+      23.046891600009985,
+      26.98686629999429
+    ],
+    "peak_process_tree_rss_bytes": [
+      185864192,
+      386019328
+    ],
+    "output_hashes_exact_across_257_and_1024_rows": true,
+    "finite_domain_valid": true,
+    "brightening_violation_count": 0,
+    "diagnostic_replay_exact": true
+  },
+  "autonomous_visual_evidence": {
+    "contact_sheet_sha256": "f8902a02f7f65468930cfc0bdcba87eeaa8b8ceba0cd364cb1782e920abb5488",
+    "confirmed_severe_failures": 0,
+    "observations": [
+      "No isolated bright or red salt-like speckles.",
+      "No banding, block clusters, row seams or periodic grid.",
+      "Both colour-density and B&W transmittance views are fine, uniform and isotropic."
+    ],
+    "scope": "material-map diagnostic only, not population preference or product-image review"
+  },
+  "claim_ceiling": "generic-physical-inspired-material-runtime-development",
+  "branch_decision": "Retain the P4 compiler and moment-corrected LOD bank as a deterministic generic material subsystem. Proceed to P5 spatial-response separation; do not integrate into the product renderer or claim measured film grain."
+}
