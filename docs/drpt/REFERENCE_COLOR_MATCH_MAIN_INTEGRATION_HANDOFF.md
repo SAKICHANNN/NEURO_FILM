@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P82 consumer payload is pinned by the immutable P83 v11 review
+Status: **P1-P84 consumer payload is pinned by the immutable P85 v12 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P82 payload head:
-  `20fb34a04e66f93475b978da595cdb6296b1a9a0`;
-- P83 review-evidence head:
-  `431729d`;
+- complete reviewed P1-P84 payload head:
+  `091e6886b4be2ba85133ab1eea1e8565131efa34`;
+- P85 review-evidence head:
+  `49cc6ae`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `4bbf362598779a04318ab440b063680eaa1178b0`;
+  `bc049439599706c40c1930f61d71045420df1be3`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/evidence-head merge tree:
-  `f1df3ff9eeb02fab8ca12393ca0495382098b065`.
+  `e778299c050b9ca8720bd73847f9e25079cb1ecc`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -99,6 +99,14 @@ zero overlap, 47 exports and 20 schemas. V11 SHA-256 is
 it binds v10 SHA-256 `6663dbca...7ea1` and never hashes itself. Main later
 advanced to `4bbf362`; the refreshed 347-versus-254 path comparison remains
 zero-overlap and the detached merge tree is `f1df3ff9...b065`.
+
+P84 `091e688` hardens the same two-symbol EOTF ABI with explicit binary32,
+little-endian and typed-pointer alignment preconditions while preserving the
+table identity and exhaustive values. P85 v12 binds that P1-P84 payload
+against main `bc04943`: 347 payload blobs, 258 main paths, zero overlap, 47
+exports and 20 schemas. V12 SHA-256 is
+`2e082062d65c909cc6a6ff3e2ecb903912b03834328c760a29c799bf88bd1a66`;
+it binds v11 SHA-256 `b3bb7dee...ccfe` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -225,11 +233,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P83 v11 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..20fb34a`; do not copy files manually and do not import
+2. Verify the committed P85 v12 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..091e688`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 20fb34a <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 091e688 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled

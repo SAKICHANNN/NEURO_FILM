@@ -2998,6 +2998,23 @@
   media, authorization or delivery state changes. Android/Apple runtime
   remains explicitly open.
 
+## 2026-07-28 - Publish and verify P85 integration v12
+
+- P85 commit `49cc6ae` publishes v12 for P1-P84 payload `091e688`, main
+  `bc04943` and base `c03c321`: 347 payload paths, 258 main paths, zero
+  overlap, 47 Python exports and 20 schemas.
+- Manifest SHA-256 is `2e082062...1a66`; exact v11 SHA
+  `b3bb7dee...ccfe` is embedded and prior manifests remain immutable.
+- Direct/module reconstruction and v11/v12 focused tests pass 36/36.
+  Conflict-free merge tree `e778299c...1ecc` was mounted in a detached
+  worktree; all-color passes 1003 with three platform skips and zero failures,
+  matching local P84 regression. The temporary worktree was removed.
+- Last local full-suite evidence remains 1898 pass/four skips plus the same 36
+  historical output/hash failures and no color-match failure.
+- Claim propagation is unchanged: review-ready-not-merged, identity fallback,
+  Android link-only, Apple object-only, no D-PCT schema/capability mutation and
+  no media, algorithm-admission or delivery expansion.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.

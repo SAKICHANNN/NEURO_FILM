@@ -289,6 +289,8 @@ with a selected stock, but reference matching alone is labeled
 | P83B | DONE | verify moving-main integration and full regression | refreshed main `4bbf362`: 347 consumer vs 254 main paths, zero overlap; merge tree `f1df3ff9`; detached all-color 1003 pass/3 skips; local full 1898 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 | P84A | DONE | harden EOTF ABI representation and alignment preconditions | require compile-time IEEE binary32 parameters, runtime little-endian proof and aligned float/uint16 buffers; remove union type-punning | code/tests/docs | same ABI and LUT identity |
 | P84B | DONE | replay exhaustive and cross-target evidence | all 65,792 values remain exact on MSVC/LLVM; unaligned negatives remain unchanged; Android link-only and Apple object-only rebuild | 5 focused pass; refreshed artifact hashes | no target-runtime claim expansion |
+| P85A | DONE | publish EOTF-hardening integration manifest v12 | bind P1-P84 `091e688`, main `bc04943`, 347 payload paths, 47 exports, 20 schemas, zero overlap and exact v11 identity | `49cc6ae`; manifest SHA `2e082062...1a66` | review only, not merged |
+| P85B | DONE | verify v12 latest-main integration | conflict-free merge tree `e778299c`; local and detached all-color 1003 pass/3 skips; last full remains 1898 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
