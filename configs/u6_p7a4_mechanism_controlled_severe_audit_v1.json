@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p7a4_mechanism_controlled_severe_audit_contract.v1",
+  "node": "U6.P7A4",
+  "parent_audit": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "parent_audit_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "parent_decision": "configs/u6_p7a3_source_supported_artifact_audit_decision_v1.json",
+  "parent_decision_sha256": "46d83712b357b7aed68c4096e05476f7d4bbc93f56ed17737d882207d40b52c1",
+  "inherited_report_run_a": "outputs/u6_p7a3_source_supported_artifact_audit_v1/run_a/report.json",
+  "inherited_report_run_a_sha256": "e194e2e5c2f789ecd551bc1743c4a0b7e5799bc02b7f128c70a9fa574818abfd",
+  "inherited_report_run_b": "outputs/u6_p7a3_source_supported_artifact_audit_v1/run_b/report.json",
+  "inherited_report_run_b_sha256": "e194e2e5c2f789ecd551bc1743c4a0b7e5799bc02b7f128c70a9fa574818abfd",
+  "replace_only_failed_gate": {
+    "old_gate": "photographic isolated-excursion detector",
+    "new_gates": [
+      "constant fields remain spatially constant and combined-minus-cheap is below tolerance",
+      "an impulse field produces no combined-minus-cheap response beyond the analytic spatial halo"
+    ],
+    "all_nine_passing_photographic_gates_inherited_exactly": true
+  },
+  "synthetic_controls": {
+    "shape": [
+      257,
+      259
+    ],
+    "constant_rgb": [
+      [0.02, 0.02, 0.02],
+      [0.18, 0.18, 0.18],
+      [0.50, 0.50, 0.50],
+      [0.82, 0.82, 0.82],
+      [0.98, 0.98, 0.98],
+      [0.60, 0.20, 0.20],
+      [0.20, 0.60, 0.20],
+      [0.20, 0.20, 0.60]
+    ],
+    "impulse_background_rgb": [0.18, 0.18, 0.18],
+    "impulse_rgb": [0.82, 0.82, 0.82],
+    "maximum_flat_combined_minus_cheap_abs": 1e-10,
+    "maximum_outside_halo_combined_minus_cheap_abs": 1e-12,
+    "repeat_exact": true
+  },
+  "visual_refresh": {
+    "primary_arms": ["colour_only", "combined"],
+    "fixed_ids_inherited": true,
+    "rounds": 3,
+    "randomize_each_image_independently": true,
+    "round_mappings_must_differ": true,
+    "source_always_visible": true,
+    "maximum_confirmed_severe_combined_artifacts": 0,
+    "minimum_combined_preference_round_wins": 2
+  },
+  "post_result_retuning_allowed": false,
+  "branch_rule": {
+    "automatic_fail": "retain colour-only AO6 and close this exact physical composition",
+    "severe_or_preference_fail": "retain colour-only AO6 and preserve physical primitives separately",
+    "complete_pass": "retain combined as a development challenger and open separately frozen complete-profile ablation; do not change production default"
+  },
+  "claim_ceiling": "generic physical-inspired developed-spatial plus AO6-like display-look mechanism and autonomous visual ablation; not complete film image formation, stock response, calibration, scanner profile or product promotion"
+}

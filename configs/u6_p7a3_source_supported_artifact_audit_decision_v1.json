@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p7a3_source_supported_artifact_audit_decision.v1",
+  "node": "U6.P7A3",
+  "decision": "close_photographic_pixel_detector_family_before_preference_review",
+  "contract_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "report_sha256_run_a": "e194e2e5c2f789ecd551bc1743c4a0b7e5799bc02b7f128c70a9fa574818abfd",
+  "report_sha256_run_b": "e194e2e5c2f789ecd551bc1743c4a0b7e5799bc02b7f128c70a9fa574818abfd",
+  "stable_evidence_id": "cbb33f24e9fd9ee60675eb9c363fbdf05ec87c2c5c3e09688ff203476c3ca896",
+  "passed_gate_count": 9,
+  "failed_gate": {
+    "name": "isolated_excursions",
+    "observed": 28695,
+    "maximum": 0,
+    "diagnosis": "source-edge support reduces but does not identify legitimate low-gradient response created when finite-support spatial stages precede nonlinear sensitometry, print and AO6 mappings"
+  },
+  "frozen_family_conclusion": "do not tune another photographic pixel threshold; use mechanism controls with exact flat-field invariance and analytic finite-support halo, then retain real-photo hard-boundary and visual severe vetoes",
+  "preference_review_performed": false,
+  "next_leaf": "U6.P7A4 mechanism-controlled severe audit",
+  "claim_ceiling": "closed photographic pixel-detector family; no preference, product, stock, process, scanner or calibration claim"
+}
