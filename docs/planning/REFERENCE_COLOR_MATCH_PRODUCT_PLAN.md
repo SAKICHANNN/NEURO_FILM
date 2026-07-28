@@ -201,10 +201,10 @@ with a selected stock, but reference matching alone is labeled
 | P52B | DONE | implement shared composition plan | exact P51/run/auth/guard/operator/reference plus FilmFX profile identity; canonical no-write plan | `9f75297`; schema + tests | plan only |
 | P52C | DONE | prove chain and color-claim closure | verification/order/FilmFX identity and film-colour/stock/calibrated claim mutations fail closed | `9f75297`; adversarial tests | no render |
 | P52D | DONE | propagate evidence and peer handoff | 624 combined; 1430 pass/1 skip/36 known; latest-main merge 35 pass | evidence commit | later renderer |
-| P53A | IN PROGRESS | freeze shared procedural FilmFX staging execution | consume exact P52+P51, reread verified P50 bases, render only procedural effects into a separate atomic staging transaction | plan commit | no delivery |
-| P53B | READY | implement shared FilmFX run/report | cross-bind plan/verification/files, deterministic per-source seeds, atomic outputs/report | code/schema/tests | FilmFX staging only |
-| P53C | BLOCKED ON P53B | prove base tamper/order/rollback closure | live reverify, foreign plan, injected render/commit failure and prior-byte restoration | fault tests | fail closed |
-| P53D | BLOCKED ON P53C | propagate evidence and peer handoff | combined/full/latest-main merge evidence | evidence commit | restart verification next |
+| P53A | DONE | freeze shared procedural FilmFX staging execution | consume exact P52+P51, reread verified P50 bases, render only procedural effects into a separate atomic staging transaction | `2918758` | no delivery |
+| P53B | DONE | implement shared FilmFX run/report | cross-bind plan/verification/files, deterministic per-source seeds, atomic outputs/report | `a2089cf`; schema/code/tests | FilmFX staging only |
+| P53C | DONE | prove base tamper/order/rollback closure | live reverify, foreign plan, protected overwrite, identity/order/seed mutation and injected commit rollback all fail closed | 24 focused tests | fail closed |
+| P53D | DONE | propagate evidence and peer handoff | 548 color-match; 1443 pass/1 skip/36 known; latest-main merge 24 pass | evidence commit | restart verification next |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

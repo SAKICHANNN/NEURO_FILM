@@ -53,7 +53,7 @@ wire contract and not an algorithm promotion.
 | Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision for the same evidence/model/options | COMPLETE AS FAIL-CLOSED STAGING AUTHORIZATION | A real callable shared producer must first pass every lock; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
 | Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
-| Shared-path FilmFX ownership | P52 preserves the verified shared look as sole colour owner and permits only profile-bound procedural effects afterward | COMPLETE AS NO-WRITE PLAN | Render only after exact P51 revalidation; never infer stock/calibrated identity / Neuro-Film |
+| Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
@@ -86,6 +86,9 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
    staging and delivered file before a later replay can trust the export.
 10. Platform runtime evidence is collected per target; cross-compilation alone
    cannot close device support.
+11. On the shared path, P52 binds ownership and P53 reruns P51 before
+    atomically staging procedural FilmFX. A later leaf must restart-verify the
+    exact P53 report, P50 bases and FilmFX outputs before delivery authority.
 
 ## Non-blocking work policy
 

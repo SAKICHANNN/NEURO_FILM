@@ -2076,6 +2076,37 @@
 - State ceiling: `shared-filmfx-rendered-to-staging` /
   `shared-filmfx-staging-not-delivered`; no local export or applied state.
 
+## 2026-07-28 - Implement and verify P53 shared procedural FilmFX staging
+
+- Implementation: `a2089cf` adds the P53 atomic shared FilmFX run, strict
+  schema, public exports and a common procedural staging primitive reused by
+  the already-proven P36 per-source path.
+- Binding: exact P52 plan and P51 verification must agree on P50 run, P49
+  authorization, P48 numeric guard, P47 operator and every ordered
+  source-bound receipt/result. P51 is rerun immediately before rendering.
+- Transaction: every P50 input and report is protected; all new outputs and
+  the canonical report commit together. Injected report-commit failure
+  restores every prior destination byte and leaves no staging debris.
+- Determinism: the shared and per-source branches use the same WorkingImage
+  ingress, effect order, signed seed derivation and SDR encoder. Equal inputs,
+  effects and seed reproduce exact output hashes.
+- Failure closure: inactive effects, unresolved physical halation, foreign
+  plan/verification, live P50 tamper, protected overwrite, state/claim/order/
+  seed mutation and unknown JSON fields reject.
+- Identities: implementation SHA-256
+  `7f02d5dab1fd485dcc6fe7e1969babd3112ea6cf820bf02dd61001f0030ee969`;
+  common FilmFX staging helper
+  `2f0e5b8e134a456deaa89aec005df28efcf5fa94cb2a01c5f28d0d75aff045f4`;
+  schema `0d48d27b8cc120ea6703a5502a3e8ebf9f05bcddcc272d8dec1274c25a36720f`.
+- Verification: 24 focused and 548 complete `test_color_match*` tests pass.
+  Full suite is 1443 pass/1 skip/36 unchanged missing-output or tracked-asset
+  hash failures, with no color-match/FilmFX failure.
+- Latest main: `1dce729`, merge tree
+  `43f36c7993e729b83e4647dc2dbfa6f069d228cc`; a fresh detached merge
+  passes all 24 P36/P53 tests and was removed.
+- Claim ceiling remains `shared-filmfx-staging-not-delivered`; no delivery,
+  app-level applied state, stock identity or calibrated-reference claim.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

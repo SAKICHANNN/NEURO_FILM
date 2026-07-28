@@ -8,8 +8,8 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P52 implementation head:
-  `9f75297e5d162a2ed5416055bc5350a7f022009f`;
+- complete P1-P53 implementation head:
+  `a2089cfc822db2c6a45d28c7cc6985e3489f24f7`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
   `1dce72949ca98db73126991328969feebe911fa9`;
@@ -50,6 +50,8 @@ The consumer module implements:
   IDs and every committed output file;
 - a no-write P51-to-FilmFX ownership plan that forbids film colour, stock
   identity and calibrated-reference claim escalation;
+- rollback-safe shared-path procedural FilmFX staging that reruns P51,
+  protects every P50 artifact and atomically commits ordered outputs/report;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -73,12 +75,20 @@ reference, public sharing or algorithm promotion.
 | local delivery | `b8b41a3023e63f1c1c59d7962567fae881cde801c9bb69e2d8f9609944143f0c` |
 | local delivery verification | `abe4270def5a0c60a1ff70674d188fbfa411871b116b59120eac2adbab23bf43` |
 
+## Frozen P53 shared FilmFX identities
+
+| Artifact | SHA-256 |
+|---|---|
+| shared FilmFX transaction implementation | `7f02d5dab1fd485dcc6fe7e1969babd3112ea6cf820bf02dd61001f0030ee969` |
+| common FilmFX staging helper | `2f0e5b8e134a456deaa89aec005df28efcf5fa94cb2a01c5f28d0d75aff045f4` |
+| shared FilmFX run schema | `0d48d27b8cc120ea6703a5502a3e8ebf9f05bcddcc272d8dec1274c25a36720f` |
+
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..9f75297`; do not copy files manually and do not import
+2. Review `c03c321..a2089cf`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> 9f75297`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> a2089cf`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -92,10 +102,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest consumer combined color-match/FilmFX suite: 624 passed;
-- latest isolated consumer full suite: 1430 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 548 passed;
+- latest isolated consumer full suite: 1443 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 35 P35/P51/P52 composition tests
+- latest detached synthetic main merge: 24 P36/P53 FilmFX transaction tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
