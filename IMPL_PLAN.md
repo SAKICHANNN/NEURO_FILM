@@ -472,6 +472,15 @@ clipping. Exact repeat precedes three blind rounds and all 17 full-resolution
 severe reviews. Implementation is the ready leaf; no threshold, row, order,
 strength, margin, resize or aesthetic rescue is allowed.
 
+The isolated R2AI1 implementation is complete under `src/eval/` with a thin
+runner in `scripts/`. It promotes the existing AI0 operator builder to a
+reusable research API, replays both standalone parents pixel-exactly, hashes
+live RAW/decoded/output bytes, enforces exact output paths and reconstructs all
+automatic gates before permitting source-visible blind sheets. Ten focused
+tests and the complete 1051-test CPU suite pass. No confirmation output has
+yet been rendered; the next action is two formal processes at one committed
+software identity.
+
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents
 with paired natural outputs and held-out contents/presets. It is not ready.

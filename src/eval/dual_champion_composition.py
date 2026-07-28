@@ -135,7 +135,7 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _operators(
+def build_operators(
     config: Mapping[str, Any],
     validated: Mapping[str, Any],
 ) -> tuple[Any, Any]:
@@ -216,7 +216,7 @@ def render_bank(
     output_dir: Path,
 ) -> dict[str, Any]:
     validated = validate_contract(root, config)
-    apply_anchor, apply_density = _operators(config, validated)
+    apply_anchor, apply_density = build_operators(config, validated)
     records = []
     for candidate in validated["candidates"]:
         destination_dir = output_dir / candidate["candidate_id"]
@@ -488,6 +488,7 @@ def build_blind_sheets(
 __all__ = [
     "CompositionFrontierError",
     "build_blind_sheets",
+    "build_operators",
     "candidate_bank",
     "compose_rgb",
     "evaluate_bank",

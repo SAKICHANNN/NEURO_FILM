@@ -5661,3 +5661,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent confirmation without parameter, threshold or source rescue.
   A pass would still be B0 Look Approximation evidence only. Implementation
   is next; Goal remains ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AI1 independent confirmation executor
+
+- **Implementation:** add a hash-bound 17-row validator, exact three-output
+  renderer, style/non-basic/clipping evaluator, paired row/make comparison
+  and source-visible three-round blind-sheet builder. The existing AI0
+  operator constructor becomes a public research helper; no colour math is
+  duplicated or changed.
+- **Fail-closed boundaries:** every call revalidates parent/source decisions
+  and frozen hashes. Rendering checks RAW and decoded bytes; evaluation checks
+  live sources, exact `<candidate>/<sample>.png` paths and output bytes.
+  Blind sheets independently reconstruct the automatic gate and cannot be
+  built from a failed report.
+- **Comparator fidelity:** the standalone anchor and density constructions
+  replay their frozen historical sample-01 RGB8 pixels exactly, including the
+  anchor margin and density float64 ingress semantics. The retained
+  composition continues to use the AI0 float32 ingress and one final margin.
+- **Verification/structure:** ten AI0+AI1 focused tests, `compileall`,
+  `git diff --check` and the complete CPU suite pass (`1051 passed`). New code
+  remains under `src/eval/`, `scripts/` and `tests/`; no production renderer,
+  API, schema or default changes. No confirmation output has been rendered.
+  Formal two-process execution is next; Goal remains ACTIVE.
