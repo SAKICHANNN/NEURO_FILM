@@ -5582,3 +5582,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   leaf is U5.R2AI1, which must freeze a zero-overlap independent
   digital-photo/OOD confirmation population before rendering. Goal stays
   ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AI1S independent RAW source preflight
+
+- **Data gap:** the 18 unique unused local RAW files are all Canon and cannot
+  support an independent multi-camera confirmation population.
+- **Frozen source:** 18 exact raw.pixls.us CC0 rows across nine makes, two per
+  make, about 259.07 MB and hard-capped at 270 MiB. All candidate hashes,
+  URLs, models and modes are fixed before image decoding; existing local RAW
+  hashes and development camera models are excluded.
+- **Gates:** at least 16 decoded rows/eight makes, largest make share <=25%,
+  zero exact or dHash<=4 pairs within or against all 41 development inputs,
+  zero near-empty/monochrome rows and autonomous visual coverage of at least
+  six source/safety buckets.
+- **Boundaries:** no failed row replacement after seeing pixels and no R2AI0
+  operator render before the source decision. The pool is digital-photo/OOD
+  safety evidence only, never film, stock, calibration or preference truth.
+  No fitting/training/routing or product integration opens. Acquisition and
+  preflight implementation are the next ready leaf; Goal remains ACTIVE.

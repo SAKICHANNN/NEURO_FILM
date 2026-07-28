@@ -454,12 +454,16 @@ severe failures on nine full-resolution gold images. It is retained as a B0
 Look Approximation challenger only; the default renderer and stock/data gates
 do not change.
 
-U5.R2AI1 is the next bounded product-style leaf. Before any render it must
-freeze a rights/lineage-audited independent digital-photo/OOD population with
-zero exact/perceptual overlap against the 41 development inputs. The one
-R2AI0 operator, order, strength, margin and gates remain unchanged. Repeat,
-clipping/OOD and full-resolution severe evidence must pass without tuning
-before product consideration; no stock or calibration claim opens.
+U5.R2AI1S is the next ready leaf. It freezes 18 exact CC0 raw.pixls.us rows
+across nine camera makes (about 259 MB) before seeing their decoded images.
+Hash/decode, minimum 16 rows/eight makes, zero exact/dHash<=4 overlap and
+autonomous content/severe source gates must pass without replacement. The
+R2AI0 operator is forbidden during this preflight.
+
+Only an R2AI1S pass opens R2AI1. The one R2AI0 operator, order, strength,
+margin and gates remain unchanged. Repeat, clipping/OOD and full-resolution
+severe evidence must pass without tuning before product consideration; no
+stock or calibration claim opens.
 
 U5.R2W2R conditionally registers INRetouch RTD as the strongest discovered
 real-raster bridge: 167 Lightroom presets repeated over 569 FiveK contents

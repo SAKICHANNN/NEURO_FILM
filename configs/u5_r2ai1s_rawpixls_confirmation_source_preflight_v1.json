@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai1s-rawpixls-confirmation-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI1S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2ai0_dual_champion_global_composition_decision_v1.json",
+    "sha256": "61e4fad1ca6ba66c81c31344c22d616a8f3dd297122eea2df75ee54b665227a0",
+    "required_decision": "retain_B0_dual_champion_composition_no_production_promotion"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-28",
+    "declared_license": "CC0/Public Domain per exact repository rows",
+    "purpose": "independent digital-photo source and OOD safety confirmation only",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "two previously uncached and development-model-disjoint exact CC0 rows per available camera make, 5-18 MB, excluding target/chart/cinema/series rows",
+    "candidate_count": 18,
+    "expected_makes": 9,
+    "maximum_rows_per_make": 2,
+    "expected_download_bytes_upper_bound": 283115520,
+    "download_root": "data/external/rawpixls_ai1_v1/raw",
+    "decoded_root": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {
+      "id": "canon_eos250d_16x9",
+      "make": "Canon",
+      "model": "EOS 250D",
+      "mode": "C-RAW (16:9)",
+      "date": "2019-09-13",
+      "bytes_reported_mb": 13.78,
+      "sha256": "e81963db1ee6df76bb10fd536b3646cede277f2ca8b26895b1b34debafa03fc4",
+      "filename": "Canon - EOS 250D - C-RAW (16:9).CR3",
+      "url": "https://raw.pixls.us/getfile.php/3385/nice/Canon%20-%20EOS%20250D%20-%20C-RAW%20%2816%3A9%29.CR3"
+    },
+    {
+      "id": "nikon_d6_12bit",
+      "make": "Nikon",
+      "model": "D6",
+      "mode": "12bit compressed lossy type 2 (3:2)",
+      "date": "2021-06-06",
+      "bytes_reported_mb": 13.89,
+      "sha256": "3a098e704d0e1af97efc37541b43a37e5b3457d2f4e7828c0d8d9af37332f233",
+      "filename": "Nikon - D6 - 12bit compressed lossy type 2 (3:2).NEF",
+      "url": "https://raw.pixls.us/getfile.php/4726/nice/Nikon%20-%20D6%20-%2012bit%2012bit%20compressed%20%28Lossy%20%28type%202%29%29%20%283%3A2%29.NEF"
+    },
+    {
+      "id": "sony_nex5_12bit",
+      "make": "Sony",
+      "model": "NEX-5",
+      "mode": "12bit compressed (3:2)",
+      "date": "2017-06-01",
+      "bytes_reported_mb": 14.12,
+      "sha256": "3b085569ac1fec37a1289ed5ea517497692a3ea14cea41953dd6e878abf230a3",
+      "filename": "Sony - NEX-5 - 12bit compressed (3:2).ARW",
+      "url": "https://raw.pixls.us/getfile.php/1457/nice/Sony%20-%20NEX-5%20-%2012bit%2012bit%20compressed%20%283%3A2%29.ARW"
+    },
+    {
+      "id": "fujifilm_s2pro",
+      "make": "Fujifilm",
+      "model": "FinePix S2Pro",
+      "mode": "3:2",
+      "date": "2019-11-18",
+      "bytes_reported_mb": 12.60,
+      "sha256": "9fe1bf1361f015d9db862228e4a26b23d69e81015ed4a032eaefb8242ae9ad42",
+      "filename": "Fujifilm - FinePix S2Pro - 3:2.RAF",
+      "url": "https://raw.pixls.us/getfile.php/3562/nice/Fujifilm%20-%20FinePix%20S2Pro%20-%203%3A2.RAF"
+    },
+    {
+      "id": "olympus_epl8",
+      "make": "Olympus",
+      "model": "E-PL8",
+      "mode": "16bit (4:3)",
+      "date": "2017-10-01",
+      "bytes_reported_mb": 13.58,
+      "sha256": "68400f859dea4be9a398fdc1f97613962b92d14b53d96531e2310b7dde2e674e",
+      "filename": "Olympus - E-PL8 - 16bit (4:3).ORF",
+      "url": "https://raw.pixls.us/getfile.php/1752/nice/Olympus%20-%20E-PL8%20-%2016bit%20%284%3A3%29.ORF"
+    },
+    {
+      "id": "panasonic_dmcg10",
+      "make": "Panasonic",
+      "model": "DMC-G10",
+      "mode": "4:3",
+      "date": "2020-07-20",
+      "bytes_reported_mb": 13.97,
+      "sha256": "b3dac238f1c40c6c687d7bdd24c428ea81dd498daeb7fca9f26ce00de4ef2113",
+      "filename": "Panasonic - DMC-G10 - 4:3.RW2",
+      "url": "https://raw.pixls.us/getfile.php/4011/nice/Panasonic%20-%20DMC-G10%20-%204%3A3.RW2"
+    },
+    {
+      "id": "pentax_k20d",
+      "make": "Pentax",
+      "model": "K20D",
+      "mode": "12bit compressed (3:2)",
+      "date": "2018-12-02",
+      "bytes_reported_mb": 14.39,
+      "sha256": "379f9bbe02ea69da8d89b68816b10b6326273de1e44939f7e5623737925fba4b",
+      "filename": "Pentax - K20D - 12bit compressed (3:2).PEF",
+      "url": "https://raw.pixls.us/getfile.php/2879/nice/Pentax%20-%20K20D%20-%2012bit%2012bit%20compressed%20%283%3A2%29.PEF"
+    },
+    {
+      "id": "ricoh_grii",
+      "make": "Ricoh",
+      "model": "GR II",
+      "mode": "12bit (3:2)",
+      "date": "2017-11-21",
+      "bytes_reported_mb": 17.68,
+      "sha256": "bc8e00ccfd8e4753e8ee0735255bff4dcca5fb8d1a1352adfa59b86806d03f44",
+      "filename": "Ricoh - GR II - 12bit (3:2).DNG",
+      "url": "https://raw.pixls.us/getfile.php/1955/nice/Ricoh%20-%20GR%20II%20-%2012bit%20%283%3A2%29.DNG"
+    },
+    {
+      "id": "samsung_gx1l",
+      "make": "Samsung",
+      "model": "GX-1L",
+      "mode": "12bit (3:2)",
+      "date": "2025-06-15",
+      "bytes_reported_mb": 11.27,
+      "sha256": "57546693faa1cd18a5f6f2688fe2a411d3f336a5460c0cf07e4c09407dc11bc9",
+      "filename": "Samsung - GX-1L - 12bit (3:2).PEF",
+      "url": "https://raw.pixls.us/getfile.php/8115/nice/Samsung%20-%20GX-1L%20-%2012bit%20%283%3A2%29.PEF"
+    },
+    {
+      "id": "canon_eos7d_mraw",
+      "make": "Canon",
+      "model": "EOS 7D",
+      "mode": "sRAW1 mRAW (3:2)",
+      "date": "2016-12-29",
+      "bytes_reported_mb": 15.50,
+      "sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "filename": "Canon - EOS 7D - sRAW1 mRAW (3:2).CR2",
+      "url": "https://raw.pixls.us/getfile.php/130/nice/Canon%20-%20EOS%207D%20-%20sRAW1%20%28mRAW%29%20%283%3A2%29.CR2"
+    },
+    {
+      "id": "nikon_d3s_14bit",
+      "make": "Nikon",
+      "model": "D3S",
+      "mode": "14bit compressed lossy type 2 (3:2)",
+      "date": "2022-02-13",
+      "bytes_reported_mb": 13.86,
+      "sha256": "9b7c39fb4c37a117aecdefdbdb52b35482a092681dfe66068d652b19c47c4eca",
+      "filename": "Nikon - D3S - 14bit compressed lossy type 2 (3:2).NEF",
+      "url": "https://raw.pixls.us/getfile.php/5204/nice/Nikon%20-%20D3S%20-%2014bit%2014bit%20compressed%20%28Lossy%20%28type%202%29%29%20%283%3A2%29.NEF"
+    },
+    {
+      "id": "sony_dslra560",
+      "make": "Sony",
+      "model": "DSLR-A560",
+      "mode": "12bit compressed (3:2)",
+      "date": "2022-04-08",
+      "bytes_reported_mb": 14.28,
+      "sha256": "78a48d7d0cd5738319dd97814890a83026d4f7e9c1ea2e0582556743c210e630",
+      "filename": "Sony - DSLR-A560 - 12bit compressed (3:2).ARW",
+      "url": "https://raw.pixls.us/getfile.php/5401/nice/Sony%20-%20DSLR-A560%20-%2012bit%2012bit%20compressed%20%283%3A2%29.ARW"
+    },
+    {
+      "id": "fujifilm_s7000",
+      "make": "Fujifilm",
+      "model": "FinePix S7000",
+      "mode": "4:3",
+      "date": "2019-10-20",
+      "bytes_reported_mb": 12.49,
+      "sha256": "098aa2c64dc6a026f3f48f1494476a55751e08af2d37789b7f557fd11a14cf49",
+      "filename": "Fujifilm - FinePix S7000 - 4:3.RAF",
+      "url": "https://raw.pixls.us/getfile.php/3495/nice/Fujifilm%20-%20FinePix%20S7000%20-%204%3A3.raf"
+    },
+    {
+      "id": "olympus_sp565uz",
+      "make": "Olympus",
+      "model": "SP565UZ",
+      "mode": "12bit (4:3)",
+      "date": "2019-09-27",
+      "bytes_reported_mb": 14.44,
+      "sha256": "5088771f83ce08a001b44672e1dd9f013e603933c37ce1bfb7030a02abbe801c",
+      "filename": "Olympus - SP565UZ - 12bit (4:3).ORF",
+      "url": "https://raw.pixls.us/getfile.php/3438/nice/Olympus%20-%20SP565UZ%20-%2012bit%20%284%3A3%29.ORF"
+    },
+    {
+      "id": "panasonic_dmcg2",
+      "make": "Panasonic",
+      "model": "DMC-G2",
+      "mode": "4:3",
+      "date": "2022-12-19",
+      "bytes_reported_mb": 14.03,
+      "sha256": "bbc06a18d7e61da6920051edb8c4337a01f126338f0c8bf0b6710c73b96fa4ff",
+      "filename": "Panasonic - DMC-G2 - 4:3.RW2",
+      "url": "https://raw.pixls.us/getfile.php/6241/nice/Panasonic%20-%20DMC-G2%20-%204%3A3.RW2"
+    },
+    {
+      "id": "pentax_k30",
+      "make": "Pentax",
+      "model": "K-30",
+      "mode": "12bit (3:2)",
+      "date": "2019-04-21",
+      "bytes_reported_mb": 13.58,
+      "sha256": "63eaa1ff93ad7c89947017332b10f78f17cd3853a5b495adf25410edaefbe618",
+      "filename": "Pentax - K-30 - 12bit (3:2).DNG",
+      "url": "https://raw.pixls.us/getfile.php/3094/nice/Pentax%20-%20K-30%20-%2012bit%20%283%3A2%29.DNG"
+    },
+    {
+      "id": "ricoh_gx200",
+      "make": "Ricoh",
+      "model": "GX200",
+      "mode": "12bit (4:3)",
+      "date": "2018-05-18",
+      "bytes_reported_mb": 17.75,
+      "sha256": "0f328905ee6f5b4823040a666103ced651178a13b8ccd0c4c60662f7265dd87f",
+      "filename": "Ricoh - GX200 - 12bit (4:3).DNG",
+      "url": "https://raw.pixls.us/getfile.php/2589/nice/Ricoh%20-%20GX200%20-%2012bit%20%284%3A3%29.DNG"
+    },
+    {
+      "id": "samsung_smg930a",
+      "make": "Samsung",
+      "model": "SAMSUNG-SM-G930A",
+      "mode": "16bit (16:9)",
+      "date": "2018-01-05",
+      "bytes_reported_mb": 17.86,
+      "sha256": "d3eee0353f3621338f349ddc9773796062bb157bfaf468699da726c0073953ff",
+      "filename": "Samsung - SAMSUNG-SM-G930A - 16bit (16:9).DNG",
+      "url": "https://raw.pixls.us/getfile.php/2190/nice/Samsung%20-%20SAMSUNG-SM-G930A%20-%2016bit%20%2816%3A9%29.dng"
+    }
+  ],
+  "preflight": {
+    "development_manifest": "outputs/filmcase/u41_provisional_eval_set.json",
+    "development_manifest_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "minimum_hash_clean_decoded_rows": 16,
+    "minimum_camera_makes": 8,
+    "maximum_largest_make_fraction": 0.25,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 0,
+    "require_autonomous_visual_content_and_severe_audit": true,
+    "minimum_content_buckets": 6
+  },
+  "allowed_actions": [
+    "download only the 18 exact candidates",
+    "verify exact hashes and declared CC0 rows",
+    "neutral RAW decode and bounded preview generation",
+    "integrity, duplicate, overlap and visual source audit"
+  ],
+  "forbidden_actions": [
+    "apply the R2AI0 operator before the source preflight decision is frozen",
+    "replace failed rows after seeing images",
+    "select images for aesthetic compatibility",
+    "fit, train, route or tune any colour operator",
+    "treat digital RAW samples as film or stock evidence",
+    "change the R2AI0 order, strength, margin or development result"
+  ],
+  "branch_rules": {
+    "preflight_pass": "freeze one R2AI1 confirmation contract over every eligible row",
+    "decode_or_hash_failure": "retain failure and evaluate the preregistered minimum without replacement",
+    "coverage_or_overlap_failure": "close this source pool and seek a distinct bounded rights-cleared source",
+    "visual_severe_input_failure": "exclude only under the preregistered severe-source rule and report it; never replace"
+  },
+  "image_payload_download_allowed": true,
+  "maximum_download_bytes": 283115520,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded CC0 digital-photo confirmation-source feasibility; no algorithm, preference, film, stock, calibration, authenticity, production or universal-safety claim"
+}
