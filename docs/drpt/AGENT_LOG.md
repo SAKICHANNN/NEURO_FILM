@@ -6296,3 +6296,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   another compact representation. Goal remains ACTIVE.
 - **Post-leaf verification:** the complete local CPU suite passes
   `1123/1123` in `184.02s`; stderr is empty.
+
+## 2026-07-28 - Freeze U5.R2AN0 paired positive-film recovery contract
+
+- **Question:** test whether the existing J0 two-matrix plus three-sigmoid
+  operator can be recovered from controlled pairs and beat a one-matrix
+  ablation on complement-held patch, illuminant and exposure groups.
+- **Contract:** clean-room synthetic known truth only; 96 patch groups, three
+  illuminants and 11 one-EV levels. Confirmation RMSE must be at most `.005`
+  with at least 20% gain over the ablation. Real-film pixels, copied code or
+  parameters, stock identity, calibration and production remain out of scope.
+- **Method evidence:** the 2025 SIGGRAPH poster reports nonlinear least-squares
+  fitting of the same broad two-matrix/three-response family on 3,168 real
+  Velvia 100 chart correspondences. Its data, code and fitted parameters were
+  not obtained. Implementation is the next ready leaf.

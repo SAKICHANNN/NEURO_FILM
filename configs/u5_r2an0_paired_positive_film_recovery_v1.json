@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an0-paired-positive-film-recovery-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AN0",
+  "question": "Can the existing explicit two-matrix positive-film operator be recovered from controlled paired observations and materially outperform a one-matrix-plus-curves ablation on held-out patch, illuminant and exposure groups?",
+  "external_method_evidence": {
+    "title": "Emulating Emulsion: A Compact Physically-Based Model for Film Colour",
+    "doi": "10.1145/3721250.3743014",
+    "official_project_url": "https://musicofmusix.github.io/siggraphposters25",
+    "official_abstract_url": "https://musicofmusix.github.io/assets/misc/siggraph_abstract.pdf",
+    "observed_design": {
+      "film_stock": "Fujifilm Velvia 100 colour-positive film",
+      "roll_count": 1,
+      "digital_scene_camera": "Fujifilm X-Pro3",
+      "scanner_camera": "Fujifilm X-Pro3",
+      "film_camera": "Nikon F2AS",
+      "chart_patch_count": 140,
+      "unique_patch_correspondence_count": 3168,
+      "illuminant_cct_kelvin": [3300, 5500, 7700],
+      "exposure_level_count": 11,
+      "exposure_step_ev": 1,
+      "scanner_backlight": "D50 at 1000 cd/m^2",
+      "fit_method": "nonlinear least squares",
+      "reported_five_fold_rmse": {
+        "lut": 0.0111,
+        "one_matrix_plus_curves": 0.0149,
+        "two_matrices_plus_curves": 0.0116,
+        "first_matrix_inverse_plus_curves": 0.012
+      }
+    },
+    "source_code_obtained": false,
+    "dataset_obtained": false,
+    "fitted_parameters_obtained": false,
+    "external_bytes_or_parameters_allowed": false
+  },
+  "truth_operator_config": "configs/u5_r2j0_positive_film_response_v1.json",
+  "truth_operator_config_sha256": "3fa39f74faede3fac5767fca9f29a9ec61859d8b879a2ff95293163811a9fcf2",
+  "truth_witnesses": [
+    "warm_highlight_like",
+    "cyan_shadow_warm_highlight_like",
+    "cross_bias_like"
+  ],
+  "synthetic_design": {
+    "base_patch_count": 96,
+    "base_patch_seed": 20250728,
+    "base_patch_log2_minimum": -6.0,
+    "base_patch_log2_maximum": -0.5,
+    "illuminant_gains": [
+      [1.16, 1.0, 0.72],
+      [1.0, 1.0, 1.0],
+      [0.82, 1.0, 1.14]
+    ],
+    "exposure_ev": [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+    "input_clip_minimum": 0.0,
+    "input_clip_maximum": 1.0,
+    "observation_noise_standard_deviation": 0.0
+  },
+  "group_split": {
+    "patch_modulus": 5,
+    "development_patch_residues": [1, 2, 3, 4],
+    "development_illuminant_indices": [0, 1],
+    "development_exposure_indices": [0, 2, 4, 6, 8, 10],
+    "confirmation_is_exact_complement": true
+  },
+  "models": {
+    "candidate": "two_nonnegative_row_stochastic_matrices_plus_three_endpoint_normalized_sigmoids",
+    "ablation": "one_nonnegative_row_stochastic_matrix_plus_three_endpoint_normalized_sigmoids",
+    "matrix_identity_mixture": 0.4,
+    "matrix_minimum_determinant": 0.2,
+    "fit_dtype": "float64",
+    "fit_method": "scipy.optimize.least_squares",
+    "restart_count": 3,
+    "maximum_function_evaluations": 2500,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11
+  },
+  "gates": {
+    "confirmation_rgb_rmse_maximum": 0.005,
+    "minimum_relative_gain_over_one_matrix_ablation": 0.2,
+    "confirmation_maximum_absolute_error": 0.05,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "external_profile_parameter_or_code_copy_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room synthetic known-operator recovery evidence for an explicit positive-film Look Approximation fitter; not a fit to Velvia 100 or any real film, not unpaired operator identification, not calibrated and not production promotion"
+}
