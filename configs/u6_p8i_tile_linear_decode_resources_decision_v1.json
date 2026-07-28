@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p8i_tile_linear_decode_resources_decision.v1",
+  "node": "U6.P8I",
+  "software_commit": "0e350df",
+  "contract_sha256": "d72ab217582d625fedff05df1d32dac4b5c3d356a5cea5435141631254216b84",
+  "report_sha256": "580dc30d248de45a7e9fd60a44b1f8ba04aa3105bbb3961e9ef3194a7c6e6a2a",
+  "stable_evidence_id": "44fa5933b42d49a01d157705b138fb9cb92974c958aae5e9c0ca341c04266ada",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8h": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      4.504235200001858,
+      4.649250200018287
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      255164416,
+      260067328
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      50.07989510000334,
+      54.85997310001403
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1885876224,
+      1886973952
+    ]
+  },
+  "comparison_to_p8h": {
+    "twelve_mp_worker_time_increase_fraction_at_mean": 0.193923,
+    "twelve_mp_peak_rss_increase_fraction_at_mean": 0.028198
+  },
+  "decision": "per-halo-tile linear decoding preserves exact pixels but increases mean 12MP worker time by 19.39% and does not reduce observed peak RSS. The removed full-frame linear array is not the peak stage under this Python execution topology. Close the candidate, restore P8H full-frame decoding, and move exact source-context construction before the full gauged-output allocation to attack the actual overlapping peak",
+  "candidate_retained": false,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8J exact source-context-first scheduling: construct and retain only SafeLabSourceContext before allocating the full gauged-output buffer, then restore the faster P8H physical decode path",
+  "claim_ceiling": "local Windows Python CPU negative resource evidence for per-halo-tile physical linear decoding; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
