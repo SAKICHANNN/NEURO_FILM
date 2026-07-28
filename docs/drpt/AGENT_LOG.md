@@ -6576,3 +6576,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   confirmed secondary contour, colour fringe, clipping or seam. This is generic
   synthetic development evidence; next require held-out structure, partition
   and photographic severe-artifact stress before any renderer integration.
+- P5D evaluates the combined P5C chain on 18 exact CC0 decoded photographs from
+  nine camera makes. Two formal runs are byte-identical at
+  `f625db0b...b2d80`; 257/509-row execution is byte-exact against full-frame for
+  every image. Maximum bounded-versus-zero adjacency delta is `.00528`, flat
+  p99 is `.00236`, and there are zero isolated excursions or new hard-boundary
+  pixels. The fixed nine-image contact sheet has no confirmed contour, fringe,
+  speckle, banding, clipping, seam or geometry failure. Inputs are
+  display-sRGB-derived pseudo-exposures, so this is artifact/OOD evidence only,
+  not scene-linear, film, process, scanner or product-look validation.

@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p5d_spatial_photographic_stress_decision.v1",
+  "node": "U6.P5D",
+  "status": "automatic-and-autonomous-visual-pass-development-only",
+  "contract_sha256": "50a9d985b94dc1bd9f013b16d4d93f97d43bd4a8c867cde87d20a1370952955e",
+  "software_commit": "036cf4235b9c53cc2f0a409e4c75b78466f2c789",
+  "report_sha256": "f625db0b1799697a46b292eb00be5e1a2cc7c1e3fdcf882e82d4a750c2bb2d80",
+  "stable_evidence_id": "6a6f74ef68ca38e4d642815c15e49c6497be4859f5f45d5f9470814afbbbae77",
+  "contact_sheet_sha256": "ff562bc7db69dbe6afc00d62e7e43cbec9356d11638a8629d9c1eb36e12eef63",
+  "repeat_report_count": 2,
+  "metrics": {
+    "input_rows": 18,
+    "camera_makes": 9,
+    "population_p95_bounded_vs_zero_adjacency_abs": 0.0005546911282830136,
+    "maximum_bounded_vs_zero_adjacency_abs": 0.00528139811509398,
+    "maximum_flat_region_p99_adjacency_abs": 0.00235543008032575,
+    "isolated_adjacency_excursion_count": 0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "row_partitions_exact": [
+      257,
+      509
+    ],
+    "minimum_correct_vs_wrong_order_max_abs": 0.00239771105657909
+  },
+  "autonomous_visual_evidence": {
+    "confirmed_severe_failures": 0,
+    "observations": [
+      "Bounded and zero-adjacency columns remain visually aligned across all nine fixed camera-make diagnostics.",
+      "No secondary contour, colour fringe, isolated speckle, banding, clipping, partition seam or geometry change is visible.",
+      "The difference-x16 column is low-amplitude and follows existing structure rather than creating isolated features."
+    ],
+    "scope": "relative-display-sRGB-derived structural stress; negative-like scan interpretation is not a product look or scene-linear authenticity claim"
+  },
+  "claim_ceiling": "generic-photographic-structure-and-artifact-stress-development",
+  "branch_decision": "Retain the P5C bounded adjacency inside the generic combined spatial candidate. The candidate is still not integrated into production and has no measured film/process/scanner identity. Proceed to an explicitly separated scanner/print-chain contract and to performance profiling."
+}
