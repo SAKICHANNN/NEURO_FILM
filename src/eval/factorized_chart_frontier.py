@@ -46,7 +46,10 @@ def _load_hashed_json(
 def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     if (
         config.get("experiment_id")
-        != "u5.r2ao3-factorized-chart-boundary-frontier-v1"
+        not in {
+            "u5.r2ao3-factorized-chart-boundary-frontier-v1",
+            "u5.r2ao5f-combined-velvia-factorized-frontier-v1",
+        }
         or config.get("production_integration_allowed")
         or config.get("stock_response_claim_allowed")
         or config.get("calibrated_reference_claim_allowed")
