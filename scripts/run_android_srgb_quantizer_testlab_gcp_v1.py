@@ -43,6 +43,13 @@ OFFICIAL_DOCS = (
     "https://docs.cloud.google.com/storage/docs/creating-buckets",
     "https://docs.cloud.google.com/storage/docs/uniform-bucket-level-access",
 )
+REQUIRED_SERVICES = frozenset(
+    {
+        "storage.googleapis.com",
+        "testing.googleapis.com",
+        "toolresults.googleapis.com",
+    }
+)
 
 
 class CloudRuntimeError(RuntimeError):
@@ -189,6 +196,42 @@ def _submission_matrix_id(
     return match.group(0) if match is not None else None
 
 
+def _matrix_failure_codes(matrix: dict[str, Any]) -> list[str]:
+    codes: set[str] = set()
+    detail = matrix.get("invalidMatrixDetails")
+    if isinstance(detail, str) and re.fullmatch(r"[A-Z0-9_]+", detail):
+        codes.add(detail)
+    extended = matrix.get("extendedInvalidMatrixDetails")
+    if isinstance(extended, list):
+        for item in extended:
+            if not isinstance(item, dict):
+                continue
+            reason = item.get("reason")
+            if isinstance(reason, str) and re.fullmatch(
+                r"[A-Z0-9_]+", reason
+            ):
+                codes.add(reason)
+    return sorted(codes)
+
+
+def _enabled_services(project: str) -> set[str]:
+    completed = _gcloud(
+        [
+            "services",
+            "list",
+            "--enabled",
+            f"--project={project}",
+            "--format=value(config.name)",
+        ],
+        timeout=60.0,
+    )
+    return {
+        line.strip()
+        for line in completed.stdout.splitlines()
+        if line.strip()
+    }
+
+
 def _new_ledger(project: str) -> dict[str, Any]:
     return {
         "schema": "neuro-film.gcp-ownership-ledger.v1",
@@ -268,6 +311,12 @@ def preflight() -> dict[str, Any]:
     )
     if billing.get("billingEnabled") is not True:
         raise CloudRuntimeError("configured project is not billing enabled")
+    missing_services = REQUIRED_SERVICES - _enabled_services(project)
+    if missing_services:
+        raise CloudRuntimeError(
+            "required project APIs are not enabled; shared project "
+            "configuration remains unchanged"
+        )
     package = _package()
     ledger = _load_ledger(project)
     cumulative = float(
@@ -538,6 +587,38 @@ def execute() -> dict[str, Any]:
             matrix.get("state") != "FINISHED"
             or matrix.get("outcomeSummary") != "SUCCESS"
         ):
+            failure_codes = _matrix_failure_codes(matrix)
+            blocked = {
+                "schema": (
+                    "neuro-film.android-srgb-quantizer-device-runtime.v1"
+                ),
+                "status": "BLOCKED_PRE_DEVICE",
+                "claim_ceiling": "no-device-runtime-evidence",
+                "package": {
+                    "package_identity": package["package_identity"],
+                    "app_sha256": package["artifacts"]["app"]["sha256"],
+                    "test_sha256": package["artifacts"]["test"]["sha256"],
+                },
+                "matrix": {
+                    "id_sha256": hashlib.sha256(
+                        matrix_id.encode("utf-8")
+                    ).hexdigest(),
+                    "state": matrix.get("state"),
+                    "outcome_summary": matrix.get("outcomeSummary"),
+                    "failure_codes": failure_codes,
+                    "timeline": timeline,
+                },
+                "device_execution_count": len(
+                    matrix.get("testExecutions", [])
+                ),
+                "cost": {
+                    "device_charge_usd": 0.0,
+                    "actual_total_cost_usd": None,
+                    "worst_case_reserved_usd": WORST_CASE_USD,
+                },
+            }
+            _atomic_json(RUNTIME_REPORT, blocked)
+            matrix_resource["failure_codes"] = failure_codes
             raise CloudRuntimeError("physical-device matrix did not succeed")
         local_files = _collect_results(bucket, results_dir)
         token_evidence = _runtime_tokens(local_files)

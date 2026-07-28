@@ -1582,6 +1582,22 @@
   zero. The runner now records identities even when gcloud exits nonzero after
   matrix validation, and the corrected package passes dry-run preflight.
 
+## 2026-07-28 - Close P92 cloud execution before device runtime
+
+- The corrected DEX-bearing package passed APK validation, but the matrix then
+  stopped as `SERVICE_NOT_ACTIVATED` with zero test executions. No physical
+  device runtime or pixel evidence exists; the sanitized blocked report SHA is
+  `80859f86...6d70`.
+- Both exact owned result buckets were deleted and the live owned-prefix bucket
+  count is zero. The ledger retains both matrices and the reused Tool Results
+  history; device charge is zero while transient storage remains subject to
+  billing settlement.
+- The runner now requires Storage, Cloud Testing and Tool Results to appear in
+  the project's enabled-service list before any resource creation. Current
+  dry-run fails closed without changing the two-resource ledger. Enabling a
+  shared-project API is outside this thread's ownership boundary, so no third
+  submission is made.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.

@@ -8,6 +8,7 @@ import pytest
 from scripts.run_android_srgb_quantizer_testlab_gcp_v1 import (
     CloudRuntimeError,
     _find_matrix_id,
+    _matrix_failure_codes,
     _package,
     _runtime_tokens,
     _submission_matrix_id,
@@ -41,6 +42,21 @@ def test_submission_matrix_id_survives_validation_nonzero() -> None:
         ),
     )
     assert _submission_matrix_id(completed) == "matrix-validation123"
+
+
+def test_matrix_failure_codes_are_enum_only() -> None:
+    assert _matrix_failure_codes(
+        {
+            "invalidMatrixDetails": "SERVICE_NOT_ACTIVATED",
+            "extendedInvalidMatrixDetails": [
+                {
+                    "reason": "SERVICE_NOT_ACTIVATED",
+                    "message": "contains project and console URL",
+                },
+                {"reason": "../../unsafe"},
+            ],
+        }
+    ) == ["SERVICE_NOT_ACTIVATED"]
 
 
 def test_local_package_report_rehashes_exact_apks() -> None:
