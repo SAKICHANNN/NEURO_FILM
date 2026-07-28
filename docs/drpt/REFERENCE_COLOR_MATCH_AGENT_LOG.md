@@ -3934,3 +3934,16 @@
   `999,702,528 -> 533,960,704 B`, ratio `0.534120`, wall ratio `0.938942`.
   Output/recipe/report/fallback remain exact. These are local Windows/Python
   memory claims only; load/encode scale evidence remains open.
+
+## 2026-07-29 - Publish P158 integration in v39
+
+- Moved P154-P158 entries into this existing consumer-owned log and restored
+  the shared top-level log to the common-base blob, eliminating the sole
+  main/payload overlap without losing consumer history.
+- V39 binds payload `6b5b815` to main `7f2ae6f`: 518 consumer paths, 639 main
+  paths, zero overlap, 61 exports and 24 contract schemas.
+- Manifest/schema SHA-256 are `32bf47d2...df7bb` / `22662eea...36c9e`.
+  Merge tree `9d468d91...36b3`; detached commit `3907ba7` passes
+  `1323 passed, 30 skipped`. V1-v39 manifest lineage passes 410 tests.
+- The temporary worktree was removed. V39 remains review-ready-not-merged;
+  only the main task owns the real merge and main-worktree full suite.

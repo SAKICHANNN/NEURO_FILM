@@ -2,9 +2,26 @@
 
 Date: 2026-07-28
 
-Status: **P1-P111 consumer payload is pinned by the immutable P112 v18 review
-manifest; metadata-attested local sRGB MatchViews are complete, while real
-external-algorithm admission and delivery remain closed**.
+Status: **P1-P158 consumer payload is pinned by the immutable v39 review
+manifest; exact 6 MP colour-kernel memory evidence is complete, while real
+external-algorithm admission, main merge and product delivery remain closed**.
+
+## Current v39 review snapshot
+
+- payload: `6b5b815e493b42601ebf4ce722f043188afbfd94`;
+- main: `7f2ae6f55f3d8adc9d2c8c13c3c16ee0caf65767`;
+- common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
+- 518 consumer paths, 639 main paths, zero overlap;
+- merge tree: `9d468d91d0b9de592279dd3f85fcd5dcf90a36b3`;
+- detached synthetic merge: `3907ba7023b963c299f1a22647ea3a26ea1ea8ab`;
+- synthetic result: `1323 passed, 30 skipped`;
+- v1-v39 manifest lineage: `410 passed`;
+- manifest/schema SHA-256:
+  `32bf47d232a99105a3a940f1d70ed47260fafa8533b11e4466b9925f114df7bb` /
+  `22662eea22cd8ed6d2473d4d9e9cf1272963f1bbe7889670b4096959cdd36c9e`.
+
+The synthetic worktree was removed after verification. The main worktree's
+untracked `.codex/` and `tmp/` remain main-task-owned and untouched.
 
 ## Frozen snapshots
 
@@ -290,11 +307,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P105 v16 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v15/v14/v13/v12/v11/v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..e73a42c`; do not copy files manually and do not import
+2. Verify the committed v39 schema and rebuild its manifest; it transitively
+   preserves the immutable v1-v38 chain.
+3. Review `c03c321..6b5b815`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree e73a42c <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 6b5b815 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled

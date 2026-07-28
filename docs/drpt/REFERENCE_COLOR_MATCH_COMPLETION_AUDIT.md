@@ -14,15 +14,14 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P153 at
-  `de57918`; P153 v38 binds the complete payload, output capability contract,
-  advisory input-preflight contract and fitted-reference/source/fallback
-  lifetime releases.
-- Main Neuro-Film latest bound committed snapshot is `a96e8af`; its untracked
+- Consumer reviewed payload: `codex/reference-color-match` through P158 at
+  `6b5b815`; v39 binds the complete payload including exact row/halo memory
+  kernels and their frozen decisions.
+- Main Neuro-Film latest bound committed snapshot is `7f2ae6f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest observed core snapshot is `8cbeefe`; R0DF-R0DK close CanonCGT
-  SSL, NCAN amplitude and multiple reference-only/shared atlas hypotheses
-  without a selected model, capability, schema or receipt.
+- D-PCT latest observed core snapshot is `ade79d7`; R0DL/R0DM reject both
+  released-default and `ncc=true` VCG-LUT branches without a selected callable
+  capability, package, schema or receipt.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
@@ -75,9 +74,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; P153 v38 binds P1-P153 payload `de57918`, 492 payload paths, 61 exports, 24 schemas, exact v37 identity and zero overlap against main `a96e8af`; manifest/schema SHA-256 are `6ed93b2b...bdf5c` / `614bca62...00b8` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v38, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; v39 binds P1-P158 payload `6b5b815`, 518 payload paths, 61 exports, 24 schemas, exact v38 identity and zero overlap against main `7f2ae6f`; manifest/schema SHA-256 are `32bf47d2...df7bb` / `22662eea...36c9e` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v39, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P153 payload remains zero-overlap against main `a96e8af` and merges conflict-free as tree `1d4104d2...e3e7`; fresh detached merge `cf0e1b7` passes 1306 color-match tests with 30 platform/data skips and zero failures; v1-v38 lineage passes 392 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P158 payload remains zero-overlap against main `7f2ae6f` and merges conflict-free as tree `9d468d91...36b3`; detached merge `3907ba7` passes 1323 color-match tests with 30 platform/data skips and zero failures; v1-v39 lineage passes 410 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
