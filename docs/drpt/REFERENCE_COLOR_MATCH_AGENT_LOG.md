@@ -4002,3 +4002,13 @@
   four runs; cleanup passes. Focused tests pass. A broad repository attempt
   records 36 unrelated historical main-fixture/output failures alongside
   1876 passes and is not claimed green.
+
+## 2026-07-29 - Freeze maximum-count ordered batch
+
+- P162 fixes the exact product ceiling of 64 ordered sources at 1000-by-1000,
+  16-bit PNG output and two fresh workers on the P161 implementation.
+- Frozen gates require exact 64-item source/output order, exact recipe/report,
+  all identity fallback, peak at most 1.5 GiB, repeat ratio at most 1.15,
+  240-second wall and complete cleanup.
+- The claim is maximum-count 1 MP transaction evidence only, never
+  24MP-by-64 or platform/media/product readiness.
