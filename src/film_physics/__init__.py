@@ -51,8 +51,15 @@ from .structure_compiler import (
     MarginalProfile,
     correlated_normal_region,
     counter_normal_region,
+    counter_uniform_region,
     render_marginal,
     render_marginal_region,
+)
+from .compound_poisson import (
+    CompoundPoissonProfile,
+    counter_poisson_region,
+    render_compound_poisson,
+    render_compound_poisson_region,
 )
 
 __all__ = [
@@ -63,6 +70,7 @@ __all__ = [
     "ComponentBinding",
     "CompiledScatterKernel",
     "CompiledScatterProfile",
+    "CompoundPoissonProfile",
     "FilmProfileBundle",
     "MarginalProfile",
     "DevelopedStructureContext",
@@ -89,11 +97,15 @@ __all__ = [
     "compile_pyramid_scatter_profile",
     "correlated_normal_region",
     "counter_normal_region",
+    "counter_poisson_region",
+    "counter_uniform_region",
     "gaussian_kernel_1d",
     "gaussian_kernel_2d",
     "profile_from_contract",
     "render_developed_structure",
     "render_developed_structure_region",
+    "render_compound_poisson",
+    "render_compound_poisson_region",
     "render_marginal",
     "render_marginal_region",
     "scene_exposure_from_working_image",

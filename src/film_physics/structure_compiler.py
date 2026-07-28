@@ -70,6 +70,29 @@ def counter_normal_region(
     return np.sqrt(-2.0 * np.log(u1)) * np.cos(2.0 * np.pi * u2)
 
 
+def counter_uniform_region(
+    full_shape: tuple[int, int],
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    seed: int,
+) -> np.ndarray:
+    """Return an open-interval coordinate-stable uniform field."""
+    full_height, full_width = full_shape
+    origin_y, origin_x = origin_yx
+    height, width = shape
+    if not (
+        0 <= origin_y < origin_y + height <= full_height
+        and 0 <= origin_x < origin_x + width <= full_width
+    ):
+        raise ValueError("counter region is outside the full field")
+    ys = np.arange(origin_y, origin_y + height, dtype=np.uint64)[:, None]
+    xs = np.arange(origin_x, origin_x + width, dtype=np.uint64)[None, :]
+    counters = ys * np.uint64(full_width) + xs + np.uint64(seed)
+    values = _splitmix64(counters)
+    return ((values >> np.uint64(11)).astype(np.float64) + 0.5) / float(2**53)
+
+
 def _gaussian_variance_scale(sigma: float, truncate: float = 4.0) -> float:
     if sigma <= 0.0:
         return 1.0
