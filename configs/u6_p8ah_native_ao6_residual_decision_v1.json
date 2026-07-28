@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p8ah_native_ao6_residual_decision.v1",
+  "node": "U6.P8AH",
+  "contract": "configs/u6_p8ah_native_ao6_residual_v1.json",
+  "contract_sha256": "7683df9ec227aff8867666bf19f14639f34eaf240eb5c7562b11c49e6b2832ec",
+  "formal_report": "outputs/u6_p8ah_native_ao6_residual_v1/report.json",
+  "formal_report_sha256": "3d6e5828839f76d6d8f2fdd9b7f5b2f4a63f7cc87bb702ff47e9031b50dcc198",
+  "stable_evidence_id": "410a57bae2da8894828420f709375d4d10afbb881881b1b165225b987e9385ab",
+  "result": {
+    "status": "pass",
+    "tone_strength": 0.15,
+    "chroma_strength": 0.35,
+    "independent_build_dll_sha_exact": true,
+    "maximum_output_absolute_error": 0.0,
+    "maximum_tone_scale_absolute_error": 0.0,
+    "maximum_chroma_scale_absolute_error": 0.0,
+    "in_place_byte_exact": true,
+    "invalid_input_output_unchanged": true,
+    "output_sha256": "3ffd9768ad3004455e7cde9b64daa05960b6a460cfb20b9693579536661a7724"
+  },
+  "decision": "retain the native fixed AO6 t15/c35 residual-only ABI. Across 16387 source-context-base samples, output and both analytical safe-scale diagnostics are byte-exact to the Python float32 oracle, with exact in-place execution and fail-closed invalid input. The ABI does not compute source context or refit any physical or look parameter",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 native Standard float32 fixed AO6 t15/c35 residual and analytical gamut-guard conformance only",
+  "next_leaf": "U6.P8AI compose the native float32 physical chain, neutral gauge and AO6 residual around a frozen external base fixture; prove ordered row-stream parity and no-double-count receipts"
+}

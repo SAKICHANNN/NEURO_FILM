@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p8ah_native_ao6_residual_contract.v1",
+  "node": "U6.P8AH",
+  "parent_decision": "configs/u6_p8ag_native_neutral_gauge_decision_v1.json",
+  "parent_decision_sha256": "b9bac43b368e4d2de2f16d8cc49fa3910c6bacab3d915dd7ecdaf6508dc4e2a2",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "native_source": {
+    "source": "native/film_physics/nf_ao6_residual_f32_v1.c",
+    "source_sha256": "3d3be4e6afb40227e903aac4b01d80563fbe06f1d79622db6210c3476d41cd31",
+    "header": "native/film_physics/nf_ao6_residual_f32_v1.h",
+    "header_sha256": "9301af8dce8fdc4f84791abb0ce05aab727101d8a84d6d39239321e6f26f9ae2"
+  },
+  "oracle": {
+    "seed": 20260729,
+    "rgb_count": 16387
+  },
+  "gates": {
+    "maximum_absolute_error": 0.000001,
+    "independent_build_dll_sha": "exact",
+    "in_place_output": "byte-exact",
+    "invalid_input_output_mutation": "none",
+    "output_linear_bounds": [
+      0.0,
+      1.0
+    ]
+  },
+  "stage_boundary": {
+    "input": "externally prepared AO6 source-context base in relative linear-sRGB",
+    "output": "guarded AO6 t15/c35 residual in relative linear-sRGB",
+    "computes_source_context": false,
+    "refits_operator_per_image": false,
+    "hard_clipping_allowed": false
+  },
+  "forbidden_claims": [
+    "native AO6 safe-Lab source-context base",
+    "complete display renderer",
+    "calibrated stock or physical truth",
+    "mobile or physical-device runtime",
+    "production promotion"
+  ],
+  "claim_ceiling": "local Windows x64 native Standard float32 fixed AO6 t15/c35 residual and analytical gamut-guard conformance only"
+}
