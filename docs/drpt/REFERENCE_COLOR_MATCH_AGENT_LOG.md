@@ -3635,3 +3635,15 @@
   explicit skips. Payloads `61e6dc4` and `efab99c` are consumer-only; v28
   remains the last complete integration snapshot pending the next batched
   payload manifest.
+
+## 2026-07-28 - Publish complete report integrity in v29
+
+- V29 binds payload `efab99c` to main committed stable point `e167754`: 454
+  consumer paths, 489 main paths and zero overlap. Untracked main P7C files
+  were not consumed.
+- Manifest/schema SHA-256 identities are `3c85fdeb...c268ea` /
+  `78f7aeb1...357285`; merge tree `f62e65c3...63ec82`. Detached synthetic
+  merge `15573db` passes 1247 color-match tests with 30 explicit skips and
+  1294 unrelated deselections; its owned worktree was removed.
+- All 370 v1-v29 manifest lineage tests pass. V29 supersedes v28 and remains
+  `review-ready-not-merged`; producer R0co data work is not consumed.
