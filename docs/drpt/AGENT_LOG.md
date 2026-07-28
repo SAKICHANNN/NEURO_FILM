@@ -6145,3 +6145,6 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   analytic inverse. Paired retouching performance is not film evidence, and
   per-image content adaptation does not identify a reusable operator. Goal
   remains ACTIVE.
+- **Verification:** six focused AL1 tests pass after result propagation. The
+  scoped result commit restored the formal clean-tree boundary, after which
+  the complete CPU suite passed `1114/1114` in 176.73 seconds.
