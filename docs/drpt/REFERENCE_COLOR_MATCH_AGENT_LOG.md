@@ -3389,3 +3389,18 @@
 - Lock/schema SHA-256 identities are `3017667a...f61d25` and
   `0a10a882...896ac`. The real installed-wheel candidate path and all v1/v2
   profile/BMKL adjacent checks pass 27/27.
+
+## 2026-07-28 - Publish and verify P117 integration v20
+
+- V20 binds P1-P116 payload `77c3498` to clean read-only main `c096bad`:
+  413 payload paths, zero main paths in scope, zero overlap, 50 public exports
+  and 22 contract schemas.
+- Manifest/schema SHA-256 identities are `7e6ba313...2cee16` and
+  `29692e74...149d92`; merge tree `b5f74332...a33840` and detached merge
+  commit `577d5cb` bind the exact source state.
+- The detached merged tree passes 1145 color-match tests with 28 explicit
+  platform/data skips and 1229 unrelated deselections in 329.88 seconds.
+  This includes the real exact-wheel path that exposed and now verifies the
+  full producer identity repair.
+- The temporary verification worktree is removed after validation. State
+  remains `review-ready-not-merged`; main owns any merge.
