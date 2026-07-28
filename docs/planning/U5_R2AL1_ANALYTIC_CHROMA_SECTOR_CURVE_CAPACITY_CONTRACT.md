@@ -2,6 +2,14 @@
 
 Date frozen: 2026-07-28
 
+> **Pre-execution supersession:** the original v1 config at
+> `53fe4134...0559` omitted exact colour constants, restart initialization,
+> stationary-control fit bounds/regularization, gradient clipping and inverse
+> solver semantics. This was found before operator implementation, fitting or
+> metrics. V1 remains immutable negative contract evidence. The authoritative
+> executable contract is the v2 supplement, which hash-binds v1 and changes no
+> representation, truth, gate or branch threshold.
+
 ## Question
 
 Can one fixed, continuous analytic colour partition plus a compact bank of
@@ -15,10 +23,13 @@ or a product candidate.
 
 ## Frozen inputs and access boundary
 
-The only experiment input is
-`configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v1.json`.
-Its frozen raw SHA-256 is
-`53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559`.
+The experiment inputs are immutable v1 plus
+`configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v2.json`. V2 records
+v1 raw SHA-256
+`53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559`
+and explicitly supplies every formerly missing execution constant. Its raw
+SHA-256 is
+`6adaba33dbcbd9ec84de81cb35b75534da8a40127244e9c0d1981d77d3aef00f`.
 Two independent processes must reconstruct all samples, targets, fits and
 diagnostics from that config and produce byte-identical canonical reports.
 

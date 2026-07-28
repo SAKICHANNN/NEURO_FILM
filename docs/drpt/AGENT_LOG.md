@@ -6069,3 +6069,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   GPU, photographs, film pixels and external code/checkpoint/assets are
   forbidden. A pass remains synthetic representation evidence only. AL1
   implementation is next and Goal remains ACTIVE.
+
+## 2026-07-28 - Correct U5.R2AL1 contract before implementation
+
+- **Pre-execution defect:** implementation review found v1 did not machine-pin
+  the D65 constants, restart initialization, K3 coefficient/regularization
+  settings, gradient clip or inverse solver. No operator code, fit, report,
+  metric or result existed. Supplying hidden defaults would have made the
+  two-process evidence non-reconstructable.
+- **Resolution:** preserve immutable v1 `53fe4134...0559` as a closed contract
+  and add v2 `6adaba33...f00f`, which hash-binds v1 and freezes all missing
+  constants, exact confirmation ordering and report schema. Representation,
+  truths, gates, branch thresholds and access boundary are unchanged.
+- **Handoff:** v2 is the sole executable AL1 contract. This is a contract-root
+  fix rather than result-driven tuning. Implementation may now begin; Goal
+  remains ACTIVE.

@@ -65,7 +65,10 @@ colour-naming asset, so code, checkpoints and assets are forbidden. `U5.R2AL1`
 must first freeze a synthetic-only clean-room analytic chroma-sector curve
 capacity contract. No new data or photograph access is needed or allowed.
 
-`U5.R2AL1` is frozen at config `53fe4134...0559` before operator code. It
+`U5.R2AL1` v1 `53fe4134...0559` closed before operator code because exact
+colour constants, restart/control fit and inverse semantics were incomplete.
+Corrected v2 `6adaba33...f00f` hash-binds v1 and freezes those omissions
+without changing the representation, truths, gates or branch rules. It
 compares one 96-raw/80-effective-parameter five-sector curve bank with global
 curves and stationary K3 on two independently defined smooth noncommuting
 colour reactions. Both orders must pass exact neutral/range/continuity,

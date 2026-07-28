@@ -1,0 +1,103 @@
+{
+  "schema_version": "u5-r2al1-analytic-chroma-sector-curve-capacity-v2",
+  "experiment_id": "u5.r2al1-analytic-chroma-sector-curve-capacity-v2",
+  "node": "ULT > U5 > U5.R2 > U5.R2AL1",
+  "base_config_path": "configs/u5_r2al1_analytic_chroma_sector_curve_capacity_v1.json",
+  "base_config_raw_sha256": "53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559",
+  "supersedes_before_execution": {
+    "schema_version": "u5-r2al1-analytic-chroma-sector-curve-capacity-v1",
+    "reason": "V1 omitted exact D65 constants, restart initialization, stationary-control regularization and coefficient bounds, gradient clipping, and inverse solver semantics. No operator implementation, fit, report, metric or result existed when the omission was found."
+  },
+  "exact_colour_math": {
+    "linear_srgb_to_xyz_d65": [
+      [
+        0.412453,
+        0.35758,
+        0.180423
+      ],
+      [
+        0.212671,
+        0.71516,
+        0.072169
+      ],
+      [
+        0.019334,
+        0.119193,
+        0.950227
+      ]
+    ],
+    "d65_white": [
+      0.95047,
+      1.0,
+      1.08883
+    ],
+    "lab_epsilon": 0.008856,
+    "lab_linear_scale": 7.787,
+    "lab_offset": 0.13793103448275862,
+    "opponent_u_coefficients": [
+      0.8164965809277261,
+      -0.4082482904638631,
+      -0.4082482904638631
+    ],
+    "opponent_v_coefficients": [
+      0.0,
+      0.7071067811865476,
+      -0.7071067811865476
+    ],
+    "luma_coefficients": [
+      0.2126,
+      0.7152,
+      0.0722
+    ]
+  },
+  "fit_corrections": {
+    "restart_zero_is_identity": true,
+    "nonzero_restart_initialization": "normal",
+    "nonzero_restart_standard_deviation": 0.03,
+    "restart_seed_stride": 1,
+    "gradient_clip_norm": 10.0,
+    "candidate_identity_regularization": 0.0001,
+    "global_curve_identity_regularization": 0.0001,
+    "stationary_k3_maximum_absolute_coefficient": 4.0,
+    "stationary_k3_coefficient_l2": 1e-05,
+    "stationary_k3_spatial_smoothness_l2": 0.0001
+  },
+  "inverse_corrections": {
+    "method": "fixed_point_residual",
+    "initial_guess": "target",
+    "relaxation": 1.0,
+    "maximum_iterations": 30,
+    "convergence_tolerance": 1e-10,
+    "iterate_clamp": [
+      0.0,
+      1.0
+    ],
+    "convergence_required": true
+  },
+  "confirmation_grid_corrections": {
+    "interior": "axis values (i+0.5)/13 for i=0..12",
+    "boundary": "all six faces on a 13x13 endpoint-inclusive axis, deduplicated by exact float64 row bytes",
+    "ordering": "interior lexicographic first, then deduplicated boundary rows in face-channel then boundary-value then mesh lexicographic order"
+  },
+  "report_contract": {
+    "child_schema": "neuro-film.u5.r2al1.capacity-report.v2",
+    "repeat_schema": "neuro-film.u5.r2al1.repeat-decision.v2",
+    "canonical_json": "utf8_indent2_sort_keys_ensure_ascii_false_lf",
+    "atomic_write": true,
+    "two_child_reports_byte_identical": true,
+    "validator_reconstructs_every_boolean_gate": true,
+    "config_bytes_rechecked_after_execution": true,
+    "base_config_bytes_rechecked_after_execution": true
+  },
+  "unchanged_v1_fields": [
+    "representation",
+    "synthetic_truth",
+    "fit except fields explicitly replaced by fit_corrections",
+    "structural_audit except inverse semantics explicitly replaced by inverse_corrections",
+    "gates",
+    "execution",
+    "branch_rules",
+    "claim_ceiling"
+  ],
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one fixed analytic colour-selective monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}
