@@ -6224,3 +6224,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** v3 is the sole formal runner entry. Exact AM1 target/control
   fitting has not begun; runner implementation continues and Goal remains
   ACTIVE.
+
+## 2026-07-28 - Implement U5.R2AM1 operator and formal runner
+
+- **Node/scope:** `ULT > U5 > U5.R2 > U5.R2AM1`; DRPT L2/Mode A with
+  AIML/research-reliability, structure and project-log disciplines. This leaf
+  implements only the frozen clean-room synthetic representation and its
+  audit; production, photographs, film pixels, downloads, GPU and stock
+  claims remain forbidden.
+- **Implementation:** added isolated
+  `src/roll2film/so3_coordinate_curves.py` with bounded Rodrigues SO(3),
+  all-eight-corner coordinate normalization, three endpoint-fixed monotone
+  degree-six curves, exact identity/strength/replay, the 64-step scalar
+  inverse and deterministic float64 CPU fitters. The same module contains the
+  separately versioned nonnegative row-stochastic matrix-plus-curves control.
+- **Formal runner:** added the v3-only two-child runner with exact config and
+  target-source hashes, clean software-commit enforcement, ordered target
+  prerequisites, frozen 3,063-point confirmation geometry, all automatic
+  structure/capacity gates, report reconstruction and byte-identical repeat
+  decision. Parent validation independently rechecks source identities and
+  fit/confirmation counts before accepting child reports.
+- **Verification:** 23 adjacent AM1/AL1/AK1 tests pass. AM1 alone covers exact
+  SO(3) geometry, NumPy/Torch parity, scalar inverse, strength, serialization,
+  deterministic reduced fits, invalid inputs, the frozen three-config chain,
+  all target prerequisites, confirmation deduplication and 86 retained hue
+  pairs. Exact AM1 target/control fitting has still not begun; it is permitted
+  only after this implementation is committed with a clean tracked tree.
+- **Structure/claim boundary:** reusable representation math stays under
+  `src/roll2film`; experiment targets, fitting protocol, reports and branch
+  decisions stay in the runner/config/docs. No existing renderer, profile,
+  stock programme, default or learned RGB path changes. Goal remains ACTIVE.

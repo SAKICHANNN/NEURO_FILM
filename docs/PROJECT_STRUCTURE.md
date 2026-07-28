@@ -92,6 +92,12 @@ partition, endpoint-fixed monotone Bernstein curve banks and deterministic
 parameter fitters. It contains no external colour-naming asset, image/data
 access, semantic routing or product integration; AL1 truth construction,
 controls, audit geometry and decisions remain in its frozen runner/configs.
+`so3_coordinate_curves.py` owns the separately versioned bounded SO(3)
+coordinate projection, three strictly monotone scalar Bernstein curves, their
+explicit scalar inverse and the compact positive-matrix control. It has no
+image-derived normalization, clamp, data access or product entry point; AM1
+targets, frozen fit/audit orchestration and evidence stay in the AM1
+configs/runner/docs.
 `photometric.py` owns canonical L0 exposure/WB and roll-gauge primitives;
 `sensitometry.py` owns the unintegrated linear-exposure-to-layer-density
 characteristic-curve representation; `sensitometry_print.py` owns the isolated
