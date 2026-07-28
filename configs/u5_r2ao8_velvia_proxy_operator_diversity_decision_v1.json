@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8-velvia-proxy-operator-diversity-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8",
+  "software_commit": "ac38192c49fccbf4f9ad103ae5a6a8f1898537e0",
+  "contract": {
+    "path": "configs/u5_r2ao8_velvia_proxy_operator_diversity_v1.json",
+    "sha256": "7aae0d70c2fb5ca30a6a115bc89caf00dba299649b2f73efb4fea104b5df12b8"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ao8_velvia_proxy_operator_diversity_v1/report_a.json",
+    "sha256": "f3ae7c6d56226c659fdf26b16b36ada398f50904564d26127aa7cff5f1b46c2b"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ao8_velvia_proxy_operator_diversity_v1/report_b.json",
+    "sha256": "f3ae7c6d56226c659fdf26b16b36ada398f50904564d26127aa7cff5f1b46c2b"
+  },
+  "repeat_byte_identical": true,
+  "automatic_evidence": {
+    "all_gates_pass": true,
+    "grid_rows": 4913,
+    "chart_palette_residual_cosine_similarity": 0.7969529978519189,
+    "chart_palette_minimum_symmetric_strength_aligned_residual_fraction": 0.6040413224398143,
+    "chart_palette_median_delta_e76": 14.793380820990837,
+    "chart_palette_p95_delta_e76": 49.083559014307816,
+    "chart_palette_maximum_delta_e76": 66.83698810422605,
+    "chart_palette_nonbasic_delta_e76": 20.82850108197465,
+    "chart_combined_strength_aligned_residual_fraction": 0.2920897494977709,
+    "palette_combined_strength_aligned_residual_fraction": 0.4385609097008492,
+    "strength_only_negative_controls_pass": true,
+    "finite_and_in_cube": true
+  },
+  "decision": "open_ao8b_explicit_colourwise_two_expert_candidate",
+  "interpretation": "the two retained author-rendered Velvia display-proxy fits are not one operator direction at different strength; a bounded explicit diversity-preserving challenger is identifiable enough to test, but this does not establish latent stock modes or a true digital-to-film operator",
+  "forbidden_interpretations": [
+    "Velvia has two latent emulsion modes",
+    "chart and palette correspond to exposure, illuminant, process or scanner states",
+    "the two operators are calibrated stock responses",
+    "content-dependent image routing is authorized",
+    "operator diversity alone predicts preference or product value"
+  ],
+  "next_leaf": "AO8B preregister and compare the simplest bounded colour-wise two-expert operator against identity, each fixed expert and the AO5 combined operator on held-out cross-domain proxy rows before any photographic render",
+  "operator_refitting_allowed": false,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "latent_stock_mode_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "repeat-exact diversity evidence for two already-frozen author-rendered Velvia display-proxy operator directions after strength and basic-adjustment controls; not a latent stock mode, physical condition, stock response, calibration, image preference or product claim"
+}
