@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8l_phase_rss_attribution_contract.v1",
+  "node": "U6.P8L",
+  "parent_decision": "configs/u6_p8k_scene_context_resources_decision_v1.json",
+  "parent_decision_sha256": "6f846a802b31d44198e208cac9e6f295f9e4fc938a3a671e7f3e6df9263983b2",
+  "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "scenario": {
+    "scenario_id": "mobile-standard-12mp",
+    "height": 3000,
+    "width": 4000,
+    "repeats": 2,
+    "tile_rows": 128,
+    "timeout_seconds": 180
+  },
+  "measurement": {
+    "sample_interval_seconds": 0.005,
+    "expected_output_sha256": "d72f1569719cdb3c98a9ab15aa060960acc7a116a79a7a0f29d05780744fa4a2",
+    "phase_order": [
+      "setup",
+      "ingress-owned-scene",
+      "encoded-source",
+      "runtime-reconstruct",
+      "roundtrip-linear",
+      "physical-spatial",
+      "gauge-and-encode",
+      "source-context-build",
+      "display-base-residual",
+      "receipt-hash"
+    ],
+    "timing_and_rss_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 8589934592,
+    "maximum_process_tree_rss_bytes": 6442450944
+  },
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution for the restored exact P8H reference path; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
