@@ -528,15 +528,18 @@ diagnostic finds that all 227 Color entries are RGB, while all 66 B&W entries
 are 8-bit `L`; this does not retroactively pass v1. The separately versioned
 `U5.R2AJ0B2` now passes two new exact processes at commit `9bd4e68`, including
 archive/config SHA, 295 lane profiles, 194 primary paths and strict canonical
-evidence binding. AJ0C is now split so development thresholds cannot see
-primary results. `U5.R2AJ0C0` freezes a controls-only encoded-sRGB/trilinear
-parser, analytic Jacobian, gradient, basic/strength/novelty and negative
-control calibration with exactly zero archive or primary-candidate reads.
-Only a two-process exact C0 pass may open a separately committed
+evidence binding. AJ0C is split so development thresholds cannot see primary
+results. C0 v1 is preserved as a pre-execution contract failure with zero
+archive/primary access: it conflated probe and native Hald geometry and
+under-specified strict evidence, negative formulas, novelty and future
+selection. Separately versioned `U5.R2AJ0C0B` corrects these items with legal
+N=4/36/144/256 geometries and leaves incomplete cap-12 details for C1.
+Only a two-process exact C0B pass may open a separately committed
 `U5.R2AJ0C1` screen of the unchanged 194-member Color universe. Neither leaf
 may render photographs. Aesthetic selection, training, teacher use,
 current-film fitting, LSM and integration remain closed. See
 `docs/U5_R2AJ0A_RAWTHERAPEE_HALDCLUT_SOURCE_AUDIT.md`,
 `docs/U5_R2AJ0B_HALDCLUT_ACQUISITION_V1_FAILURE.md` and
 `docs/U5_R2AJ0B2_HALDCLUT_LANE_AWARE_ACQUISITION_RESULTS.md`, plus
-`docs/planning/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md`.
+`docs/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_V1_CONTRACT_FAILURE.md` and
+`docs/planning/U5_R2AJ0C0B_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md`.

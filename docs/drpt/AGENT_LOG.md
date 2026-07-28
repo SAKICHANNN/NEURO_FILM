@@ -5818,3 +5818,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   C1 as blocked. Photography, aesthetic ranking, pseudo-teacher use,
   fitting, training, routing, LSM and integration remain forbidden. Goal
   remains ACTIVE.
+
+## 2026-07-28 - Close AJ0C0 v1 pre-execution and freeze corrected AJ0C0B
+
+- **Review result:** read-only contract review finds five blockers after
+  commit `cdd20cd` but before implementation: illegal 17/33 native-Hald
+  terminology, under-specified clip/staircase formulas, insufficient strict
+  repeat bindings, no mandatory warm/cool residual novelty and incomplete
+  cap-12 representative/safety rules.
+- **History protection:** v1 config/contract remain unchanged and receive an
+  explicit `close_pre_execution_contract_inconsistency` decision. There were
+  zero formal runs, archive opens/bytes, primary decodes/metrics, photograph
+  renders or promoted evidence. No threshold was informed by a primary CLUT.
+- **C0B correction:** a separate v2 freezes legal `(L,N,S)` geometries
+  `(2,4,8)`, `(6,36,216)`, `(12,144,1728)`, `(16,256,4096)`, exact endpoint
+  snap and seven-level staircase formulas, strict manifest/report/repeat
+  schemas, config TOCTOU/commit/runtime/control/signature/access bindings and
+  post-strength warm-versus-cool novelty.
+- **Independent oracles:** v2 additionally freezes identity interpolation
+  error, exact N=4 Jacobian/finite-difference probes and tolerances, pinned
+  existing basic-fit/matched-basic/D65-Lab APIs and source hashes, canonical
+  JSON/array hash preimages, plus independently generated expected hashes for
+  all probes, legal identity rasters, the RGB16 fixture and 16 control
+  tables. Two processes repeating the same deterministic bug cannot pass
+  without those anchors.
+- **Deferred rule:** the general intra-strength representative, normalized
+  safety margin and max-min cap-12 policy are deliberately left for the C1
+  contract; C0B uses only the exact warm-1 control representative for its
+  known positive control.
+- **Handoff:** C0B implementation is ready. C1 and all external CLUT metrics,
+  photography, aesthetics, teacher use, fitting, training, routing, LSM and
+  integration remain forbidden. Goal remains ACTIVE.

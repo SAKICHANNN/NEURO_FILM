@@ -486,14 +486,16 @@ evidence is written. The v1 config remains unchanged. A diagnostic-only
 inventory establishes an exact lane split: 227 Color RGB, 66 B&W 8-bit `L`
 and two 16-bit RGB root controls. AJ0B2 now passes at commit `9bd4e68`: two
 new processes reproduce archive/config SHA, all profiles/paths/CRCs, the 194
-primary members and canonical manifest/report bytes. AJ0C is now explicitly
-split. C0 has frozen analytic identity, encoded-sRGB red-fastest trilinear
-semantics, N=17/33/144/256 conformance, RGB16 precision, analytic Jacobian,
-25 gradients, controls-only thresholds, matched-basic/strength/novelty
-expectations and a future deterministic cap-12 policy. C0 implementation and
-two-process execution are the current ready leaf and must record zero archive
-or primary reads. Only its committed exact pass permits a separately frozen
-C1 native-N=144/256 primary screen. Preset names remain informational
+primary members and canonical manifest/report bytes. AJ0C is explicitly
+split. C0 v1 closes before execution because it mislabeled 17/33 probe cubes
+as legal Hald geometries and incompletely fixed evidence, negative, novelty
+and future selection semantics; all access counters remain zero. C0B v2 now
+freezes legal N=4/36/144/256 Hald controls, exact RGB8/negative formulas,
+RGB16 precision, analytic Jacobian, 25 gradients, strict manifest/report/
+repeat evidence and post-strength warm/cool novelty. C0B implementation and
+two-process execution are the current ready leaf. Only its committed exact
+pass permits a separately frozen C1 native-N=144/256 primary screen with the
+full cap-12 policy. Preset names remain informational
 external Look Approximation labels;
 no stock response, Push/Pull truth, training teacher, photograph render,
 current-film fitting, LSM or integration opens.

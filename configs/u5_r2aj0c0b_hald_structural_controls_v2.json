@@ -1,0 +1,692 @@
+{
+  "schema_version": "u5-r2aj0c0b-hald-structural-controls-v2",
+  "experiment_id": "u5-r2aj0c0b-hald-structural-controls-v2",
+  "node": "U5.R2AJ0C0B",
+  "supersedes": {
+    "closed_config_path": "configs/u5_r2aj0c0_hald_structural_controls_v1.json",
+    "closed_config_sha256": "a75d0d2282a0a88b2427d14562bc88151c5dbbd0d2ee8ef8023620fe73d48824",
+    "close_decision_path": "configs/u5_r2aj0c0_hald_structural_controls_decision_v1.json",
+    "required_close_decision": "close_pre_execution_contract_inconsistency",
+    "primary_access_before_close": false
+  },
+  "parent_evidence": {
+    "decision_path": "configs/u5_r2aj0b2_haldclut_lane_aware_acquisition_decision_v2.json",
+    "decision_sha256": "c8007c6abd9495d9b48b33c4ad5718a6ebe83cf2c184d21ea2db5353f65377a3",
+    "result_commit": "e0f03f1fbc5e6fcc5695d29b532f8479628c5e3c",
+    "required_decision": "lane_aware_integrity_repeat_pass",
+    "archive_sha256": "0ffca81f30c72d7bbb85adab0ed98bbdeb0e1034cd6f5986f9f993bb66999dc2",
+    "primary_paths_sha256": "83b22255e6eea6a99e779c72acf75917481f14d144d9e442b44b6d716256115f",
+    "primary_count": 194
+  },
+  "evidence_schemas": {
+    "manifest": "u5-r2aj0c0b-hald-structural-control-manifest-v2",
+    "report": "u5-r2aj0c0b-hald-structural-control-report-v2",
+    "repeat_decision": "u5-r2aj0c0b-hald-structural-control-repeat-decision-v2",
+    "strict_exact_keys_recursive": true,
+    "boolean_is_not_integer": true,
+    "non_finite_json_numbers_allowed": false,
+    "single_run_state": "control-run-only-non-promoting",
+    "single_run_automatic_pass_field_allowed": false,
+    "repeat_decision_is_only_promotion_authority": true,
+    "canonical_evidence_forbidden_fields": [
+      "absolute_path",
+      "pid",
+      "wall_clock",
+      "timing"
+    ],
+    "required_per_control_hashes": [
+      "source_table_array_sha256",
+      "style_output_array_sha256",
+      "residual_signature_array_sha256",
+      "jacobian_signature_array_sha256",
+      "gradient_signature_array_sha256",
+      "native_difference_signature_array_sha256"
+    ],
+    "required_population_hashes": [
+      "style_basic_probe_sha256",
+      "residual_novelty_probe_sha256",
+      "sobol_probe_sha256",
+      "gradient_population_sha256",
+      "native_geometry_sha256"
+    ]
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "packages": {
+      "numpy": "2.4.4",
+      "Pillow": "12.1.1",
+      "scipy": "1.17.1",
+      "scikit-image": "0.26.0",
+      "tifffile": "2026.4.11"
+    }
+  },
+  "hash_contract": {
+    "algorithm": "sha256",
+    "canonical_json": "utf8_json_dumps_sort_keys_true_separators_comma_colon_ensure_ascii_false_allow_nan_false",
+    "array_header": {
+      "fields": [
+        "dtype",
+        "shape"
+      ],
+      "dtype_value": "numpy_dtype_str",
+      "shape_value": "integer_list",
+      "encoding": "canonical_json"
+    },
+    "array_preimage": "header_then_nul_then_c_contiguous_c_order_bytes",
+    "ordered_ids_preimage": "canonical_json_of_exact_ordered_string_list"
+  },
+  "colour_math_contract": {
+    "basic_fit": {
+      "api": "src.roll2film.baselines.fit_joint_basic_adjustment",
+      "source_path": "src/roll2film/baselines.py",
+      "source_sha256": "8c1608f5568a42a3fccd92c81c86367630f66aacf1c4d6f71aaa432de07b7732",
+      "git_blob": "f672f4a2b27a2618acb43c42ac88762f9f263b87",
+      "source_commit": "ba62ca2cacf6a35614fb2574fcc2c6548f53d28d",
+      "parameter_count": 5,
+      "lower_bounds": [
+        -0.7,
+        -0.3,
+        -0.3,
+        -0.7,
+        -0.7
+      ],
+      "upper_bounds": [
+        0.7,
+        0.3,
+        0.3,
+        0.7,
+        0.7
+      ],
+      "initial_parameters": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_function_evaluations": 100,
+      "xtol": 1e-10,
+      "ftol": 1e-10,
+      "gtol": 1e-10,
+      "pivot": "median_source_linear_luma",
+      "summary": "rgb_mean_then_covariance_upper_triangle_then_luma_quantiles_0p05_0p25_0p5_0p75_0p95_then_chroma_rms_and_std",
+      "residual_scale": "maximum_abs_source_summary_plus_abs_target_summary_or_0p05"
+    },
+    "matched_basic": {
+      "api": "src.eval.spectral_film_lut_bank.matched_basic_output",
+      "source_path": "src/eval/spectral_film_lut_bank.py",
+      "source_sha256": "4386408a0acec1b64f07e131a30bc14dbaea09dc76344434c32c0850258610f6",
+      "git_blob": "6ef240e3f57cff5566e56d2bc1c74828718f50d3",
+      "source_commit": "2afa6c07c76bd5faea7bca9baac13a785e51a60c"
+    },
+    "lab": {
+      "decode_api": "src.eval.velvia_datasheet_witness.encoded_srgb_to_linear",
+      "lab_api": "src.eval.velvia_datasheet_witness.xyz_to_lab",
+      "source_path": "src/eval/velvia_datasheet_witness.py",
+      "source_sha256": "27321aad7fc354fa9a674f6cc6b174eedd3efb1890c834c0c40e745a8e31df00",
+      "git_blob": "c59159e1334a226a8fadc53c45ace9e0d7c5d616",
+      "source_commit": "6b62199469dbf443bf8301e063a4b0792634ea27",
+      "rgb_to_xyz_d65": [
+        [
+          0.4124564,
+          0.3575761,
+          0.1804375
+        ],
+        [
+          0.2126729,
+          0.7151522,
+          0.072175
+        ],
+        [
+          0.0193339,
+          0.119192,
+          0.9503041
+        ]
+      ],
+      "d65_white": [
+        0.95047,
+        1.0,
+        1.08883
+      ],
+      "encoded_srgb_threshold": 0.04045,
+      "encoded_srgb_linear_divisor": 12.92,
+      "encoded_srgb_offset": 0.055,
+      "encoded_srgb_scale": 1.055,
+      "encoded_srgb_exponent": 2.4,
+      "lab_delta": 0.20689655172413793
+    }
+  },
+  "access_boundary": {
+    "archive_path_argument_allowed": false,
+    "archive_open_allowed": false,
+    "archive_bytes_read_exact": 0,
+    "primary_cluts_decoded_exact": 0,
+    "primary_candidate_metrics_exact": 0,
+    "photograph_renders_exact": 0,
+    "external_root_control_pixels_allowed": false
+  },
+  "hald_semantics": {
+    "image_side_formula": "level_cubed",
+    "cube_side_formula": "level_squared",
+    "flat_index_formula": "r_plus_N_times_g_plus_N_squared_times_b",
+    "axis_order": "red_fastest_green_then_blue",
+    "working_encoding": "encoded_srgb",
+    "interpolation": "trilinear",
+    "formal_strength": 1.0,
+    "identity_source": "analytic_float64",
+    "sample_normalization_denominator": 255,
+    "uint8_quantization": "clip_0_1_then_multiply_255_then_numpy_rint_then_uint8",
+    "hidden_linearization_for_lut_application": false,
+    "hidden_icc_or_gamma_transform": false,
+    "output_clamp_after_interpolation": false,
+    "maximum_probe_batch_rows": 65536
+  },
+  "synthetic_population": {
+    "style_basic_probe_cube_side": 33,
+    "residual_novelty_probe_cube_side": 17,
+    "probe_cubes_are_hald_rasters": false,
+    "jacobian": {
+      "kind": "sobol",
+      "dimensions": 3,
+      "scramble": false,
+      "base2_exponent": 16,
+      "points": 65536,
+      "derivative": "analytic_native_trilinear"
+    },
+    "gradients": {
+      "samples_per_line": 4097,
+      "neutral_lines": 1,
+      "cube_edges": 12,
+      "cube_face_diagonals": 12,
+      "total_lines": 25
+    }
+  },
+  "generated_hald_conformance": {
+    "legal_geometries": [
+      {
+        "level": 2,
+        "cube_side": 4,
+        "image_side": 8
+      },
+      {
+        "level": 6,
+        "cube_side": 36,
+        "image_side": 216
+      },
+      {
+        "level": 12,
+        "cube_side": 144,
+        "image_side": 1728
+      },
+      {
+        "level": 16,
+        "cube_side": 256,
+        "image_side": 4096
+      }
+    ],
+    "control_level": 6,
+    "control_cube_side": 36,
+    "control_image_side": 216,
+    "identity_roundtrip_required": true,
+    "large_identity_float64_full_copy_allowed": false,
+    "identity_node_formula": "r_over_N_minus_one_g_over_N_minus_one_b_over_N_minus_one",
+    "parser_derives_level_and_cube_side_from_raster_side": true,
+    "illegal_raster_side_must_be_rejected": true
+  },
+  "oracle_tolerances": {
+    "identity_maximum_absolute_channel_error": 0.00196078431373,
+    "parser_table_roundtrip_byte_exact": true,
+    "jacobian_identity_maximum_absolute_error": 1e-12,
+    "jacobian_axis_swap_maximum_absolute_error": 1e-12,
+    "finite_difference": {
+      "cube_side": 4,
+      "all_cell_indices": true,
+      "local_fractions": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "points": 729,
+      "central_step": 3.3333333333333334e-8,
+      "same_native_cell_required": true,
+      "maximum_absolute_error": 1e-7,
+      "maximum_relative_error": 1e-6,
+      "relative_denominator_floor": 1e-8,
+      "table": "float64_warm_strength_100_without_uint8_quantization"
+    }
+  },
+  "rgb16_tiff_conformance": {
+    "source": "generated_in_memory_only",
+    "decoder": "tifffile",
+    "pillow_fallback_allowed": false,
+    "dtype": "uint16",
+    "shape": [
+      3,
+      3,
+      3
+    ],
+    "flat_samples": [
+      0,
+      1,
+      255,
+      256,
+      1024,
+      32767,
+      32768,
+      65534,
+      65535,
+      17,
+      257,
+      4095,
+      4096,
+      12345,
+      54321,
+      2,
+      254,
+      258,
+      511,
+      512,
+      1023,
+      16384,
+      49152,
+      65533,
+      3,
+      333,
+      33333
+    ],
+    "bits_per_sample": [
+      16,
+      16,
+      16
+    ],
+    "photometric": "RGB",
+    "planar_configuration": "CONTIG",
+    "orientation": 1,
+    "pages": 1,
+    "series": 1
+  },
+  "control_generation": {
+    "linear_basic_family": {
+      "luma": [
+        0.2126,
+        0.7152,
+        0.0722
+      ],
+      "pivot": "median_linear_luma_of_native_encoded_srgb_grid",
+      "parameter_order": [
+        "log_exposure",
+        "log_wb_r",
+        "log_wb_g",
+        "log_contrast",
+        "log_saturation"
+      ],
+      "exposure": "exp_p0",
+      "white_balance_logs": "p1_p2_negative_p1_minus_p2",
+      "diagonal": "diag_exposure_times_exp_white_balance_logs",
+      "contrast": "exp_p3",
+      "contrast_matrix": "contrast_times_diagonal",
+      "contrast_bias": "three_vector_pivot_times_one_minus_contrast",
+      "saturation": "exp_p4",
+      "saturation_matrix": "s_times_identity_plus_one_minus_s_times_ones_column_times_luma_row",
+      "final_matrix": "saturation_matrix_times_contrast_matrix",
+      "final_bias": "saturation_matrix_times_contrast_bias",
+      "linear_apply": "source_linear_times_final_matrix_transpose_plus_final_bias",
+      "clip_before_encoded_srgb": true,
+      "encoded_srgb": "where_linear_le_0p0031308_12p92_times_linear_else_1p055_times_linear_pow_one_over_2p4_minus_0p055"
+    },
+    "hue_operator": {
+      "formula": "x_plus_0p75_times_strength_times_x_times_one_minus_x_times_matrix_x",
+      "warm_matrix": [
+        [
+          0.0,
+          0.42,
+          0.24
+        ],
+        [
+          0.12,
+          0.0,
+          -0.06
+        ],
+        [
+          -0.48,
+          -0.22,
+          0.0
+        ]
+      ],
+      "cool_matrix": [
+        [
+          0.0,
+          -0.22,
+          -0.16
+        ],
+        [
+          -0.06,
+          0.0,
+          0.3
+        ],
+        [
+          0.38,
+          0.2,
+          0.0
+        ]
+      ]
+    },
+    "negative_formulas": {
+      "hard_clip": "where_x_le_low_zero_where_x_ge_high_one_else_x_before_uint8_quantization",
+      "staircase": "numpy_rint_x_times_levels_minus_one_divided_by_levels_minus_one_before_uint8_quantization"
+    },
+    "ordered_control_ids_sha256": "db121a94316909453cc5215db1958cb9539fca99311dc8bb35836f3d064216de",
+    "controls": [
+      {
+        "id": "analytic_identity",
+        "kind": "analytic_identity",
+        "expected_role": "exact_reference"
+      },
+      {
+        "id": "quantized_identity",
+        "kind": "quantized_identity",
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "basic_exposure",
+        "kind": "joint_basic",
+        "parameters": [
+          -0.22,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "basic_exposure_wb",
+        "kind": "joint_basic",
+        "parameters": [
+          -0.22,
+          0.08,
+          -0.02,
+          0.0,
+          0.0
+        ],
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "basic_contrast",
+        "kind": "joint_basic",
+        "parameters": [
+          0.0,
+          0.0,
+          0.0,
+          -0.22,
+          0.0
+        ],
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "basic_saturation",
+        "kind": "joint_basic",
+        "parameters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.22
+        ],
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "basic_joint",
+        "kind": "joint_basic",
+        "parameters": [
+          -0.12,
+          0.05,
+          -0.02,
+          -0.16,
+          -0.18
+        ],
+        "expected_role": "structurally_safe_basic_ineligible"
+      },
+      {
+        "id": "warm_strength_050",
+        "kind": "hue_operator",
+        "matrix": "warm",
+        "strength": 0.5,
+        "expected_role": "structurally_safe_non_basic_eligible"
+      },
+      {
+        "id": "warm_strength_075",
+        "kind": "hue_operator",
+        "matrix": "warm",
+        "strength": 0.75,
+        "expected_role": "structurally_safe_non_basic_eligible"
+      },
+      {
+        "id": "warm_strength_100",
+        "kind": "hue_operator",
+        "matrix": "warm",
+        "strength": 1.0,
+        "expected_role": "structurally_safe_non_basic_eligible"
+      },
+      {
+        "id": "warm_strength_100_duplicate",
+        "kind": "exact_duplicate",
+        "source_id": "warm_strength_100",
+        "expected_role": "structurally_safe_non_basic_eligible_duplicate"
+      },
+      {
+        "id": "cool_strength_100",
+        "kind": "hue_operator",
+        "matrix": "cool",
+        "strength": 1.0,
+        "expected_role": "structurally_safe_non_basic_eligible"
+      },
+      {
+        "id": "negative_axis_swap_rg",
+        "kind": "axis_swap",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "expected_role": "reject",
+        "intended_rejection_checks": [
+          "negative_jacobian_fraction",
+          "minimum_jacobian_determinant"
+        ]
+      },
+      {
+        "id": "negative_hard_clip",
+        "kind": "hard_clip",
+        "low": 0.1,
+        "high": 0.9,
+        "low_inclusive": true,
+        "high_inclusive": true,
+        "expected_role": "reject",
+        "intended_rejection_checks": [
+          "new_interior_endpoint_fraction"
+        ]
+      },
+      {
+        "id": "negative_staircase_7",
+        "kind": "staircase",
+        "levels": 7,
+        "expected_role": "reject",
+        "intended_rejection_checks": [
+          "native_maximum_second_code_difference"
+        ]
+      },
+      {
+        "id": "negative_single_cell_spike",
+        "kind": "single_cell_spike",
+        "index": [
+          18,
+          18,
+          18
+        ],
+        "replacement_rgb8": [
+          255,
+          0,
+          255
+        ],
+        "expected_role": "reject",
+        "intended_rejection_checks": [
+          "minimum_jacobian_determinant",
+          "maximum_jacobian_spectral_norm",
+          "maximum_gradient_rgb_gain",
+          "neutral_luma_reversal",
+          "native_maximum_adjacent_code_step",
+          "native_maximum_second_code_difference"
+        ]
+      }
+    ]
+  },
+  "independent_expected_hashes": {
+    "control_definitions_canonical_sha256": "8597efcfe7457f5758ac1e00d655b2e5183c42bfc998ebfe23547ef3b5192f66",
+    "populations": {
+      "style_basic_probe_sha256": "4afe10525e88e88ffb6def78c3d6f584274085037d9763ee6714895de26907b0",
+      "residual_novelty_probe_sha256": "8d16205788837b547ad67e0cffbaa6abb636e9279a26e4018947cf068d1703e1",
+      "sobol_probe_sha256": "22be51d114c300e1a29e1ef690cc03dbac82b4f09420fcdcd6181ab0acbd7402",
+      "gradient_population_sha256": "14e1add7dd098b4ba785e455314d9722dbcfa99762a41be0cb88967f4478f5cd",
+      "finite_difference_probe_sha256": "557af06d8a17ea73039417a5e17eb42516ef74b230509e82644fb99d2c6ea82c",
+      "native_geometry_canonical_sha256": "6936ceb50e1084408fa00b0f905bae82ab1f93e9017996c2ea13bee816226e0f"
+    },
+    "finite_difference_warm_float64_table_sha256": "c968e6755a4aa1839aeb78f3d39f45deeb33618caef1cc82dba8ed85ec03871a",
+    "identity_hald_rasters": {
+      "L2_N4_S8": "c2180f79196a4a3e7bf8026dbbb8f8bcbe41a8e93651cfd4c54441816c0104eb",
+      "L6_N36_S216": "32c9fefbe2d53d941c19c1c4c49c9f05d559bd3ad66dfbe898234422367f6765",
+      "L12_N144_S1728": "619ac5a5003a61286412b9d50b77d8eaefea227ae5c128f498899d16d8a95f7f",
+      "L16_N256_S4096": "844c5e2326f05190f6e73252270518058ea6a52db9647f19d07ddd5f6bb1d54c"
+    },
+    "control_source_tables": {
+      "analytic_identity": "09397f2a76506f247ac3f139212ed7db03850c9c1b8beb805512205762be6c37",
+      "quantized_identity": "2ccdfa1b736fddefd48035d70bcbe839ba2bd32cc1ab41fb3f0b00b50f50d6d2",
+      "basic_exposure": "be5216f2e51c3fc25c6fd0b34b9b4f48ded1ed84332b82355adbc818891e2481",
+      "basic_exposure_wb": "a904e10218158e0d97e2a67ca74a34660690c03b6a5d28393a96a80fdf35f670",
+      "basic_contrast": "b6e3b1365c89cbb5d44805e94bda9a8f202c778530b2864f060f904fb9c40041",
+      "basic_saturation": "0f8dbe7bd4502d5d5f2fe492809b63ae2cefb968d684c8262fd6bfd43f5c2e9d",
+      "basic_joint": "9be5f7e939083c42bfffcd9e834a2e437262707836120e524c550c4d05f158e8",
+      "warm_strength_050": "630101e5bbca8aad5a4cb2180c1972433cf3384fcc9cd7e4ff9163a68552ff94",
+      "warm_strength_075": "582c6a387e40102de8da4dceb70768e63606411575a3192ea328f567378e00f5",
+      "warm_strength_100": "5ba9f1958cb85d8043cdcb4dad066456fd10135f16067e5726d843f889a8a73a",
+      "warm_strength_100_duplicate": "5ba9f1958cb85d8043cdcb4dad066456fd10135f16067e5726d843f889a8a73a",
+      "cool_strength_100": "15ab889ebcd4e18e634e7d4fd3e701162a31f8c62ad83f91d9c9b641b2e856ff",
+      "negative_axis_swap_rg": "5766bd12679a3c057a1c4b1228729ac6219c5c78db053b7354e06e11e467773d",
+      "negative_hard_clip": "a506e246b58a7b18ee99d11559f67c52df62a3d2f8b9e64d02492523192abcde",
+      "negative_staircase_7": "65e3646cc08b02a59bffe80c2bdddf412ef2e19fb5c3550076c2acdd89ea53bc",
+      "negative_single_cell_spike": "9df51c967bd9891f22d398bf48147a4dcd97ce9277d70c37298506602fd23317"
+    },
+    "rgb16_tiff_source_array_sha256": "db23a5d34806421955f8d6f8558abb88c5ea99ed172c2bf1df8af537275a2acd"
+  },
+  "automatic_gates": {
+    "all_outputs_finite": true,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "interior_input_margin": 0.0625,
+    "endpoint_epsilon": 0.00196078431372549,
+    "maximum_new_interior_endpoint_fraction": 0.01,
+    "negative_jacobian_threshold": -0.00001,
+    "maximum_negative_jacobian_fraction": 0.005,
+    "minimum_jacobian_determinant": -0.05,
+    "maximum_jacobian_spectral_norm": 20.0,
+    "maximum_neutral_luma_reversal": 0.00002,
+    "maximum_gradient_rgb_gain_p99": 10.0,
+    "maximum_gradient_rgb_gain": 20.0,
+    "maximum_gradient_channel_second_difference": 0.00196078431372549,
+    "native_maximum_adjacent_code_step": 64,
+    "native_maximum_second_code_difference": 32,
+    "minimum_style_delta_e76_median": 3.0,
+    "minimum_joint_basic_residual_delta_e76_median": 1.5
+  },
+  "equivalence": {
+    "input_population": "residual_novelty_probe_cube",
+    "eligible_controls_only": true,
+    "basic_and_negative_controls_excluded": true,
+    "exact_signature_hash_first": true,
+    "strength": {
+      "minimum_positive_effect_cosine": 0.995,
+      "minimum_explained_energy_fraction": 0.99,
+      "maximum_bilateral_normalized_residual": 0.1
+    },
+    "novelty": {
+      "signature": "lab_output_minus_lab_joint_basic_output",
+      "distance": "median_per_sample_delta_e76",
+      "minimum_distinct_distance": 1.0,
+      "required_distinct_pairs": [
+        [
+          "warm_strength_100",
+          "cool_strength_100"
+        ]
+      ]
+    },
+    "component_method": "connected_components_exact_duplicate_or_strength_equivalent",
+    "novelty_evaluated_after_component_collapse": true,
+    "known_control_component_representatives": {
+      "warm": "warm_strength_100",
+      "cool": "cool_strength_100"
+    },
+    "filename_features_allowed": false
+  },
+  "control_expectations": {
+    "warm_strength_component_exact": [
+      "warm_strength_050",
+      "warm_strength_075",
+      "warm_strength_100",
+      "warm_strength_100_duplicate"
+    ],
+    "cool_component_exact": [
+      "cool_strength_100"
+    ],
+    "basic_controls_must_be_non_basic_ineligible": true,
+    "negative_controls_must_fail_an_intended_check": true,
+    "permutations": [
+      "config_order",
+      "reverse_order",
+      "sha256_id_order"
+    ],
+    "component_result_permutation_invariant": true
+  },
+  "future_primary_selection": {
+    "included_in_c0b": false,
+    "must_be_frozen_in_c1_before_primary_access": true,
+    "required_undefined_items_to_close": [
+      "intra_strength_component_representative",
+      "normalized_safety_margin",
+      "max_min_selection",
+      "all_tie_breaks"
+    ]
+  },
+  "execution": {
+    "complete_process_runs": 2,
+    "new_process_per_run": true,
+    "manifest_and_report_must_be_byte_identical": true,
+    "timing_excluded_from_canonical_evidence": true,
+    "tracked_worktree_must_be_clean": true,
+    "config_raw_sha256_before_and_after_must_match": true,
+    "single_run_may_promote": false,
+    "single_run_may_contain_automatic_pass": false,
+    "repeat_decision_may_set_c1_contract_design_allowed": true,
+    "evaluator_accepts_archive_path": false,
+    "tests_must_fail_archive_zip_or_external_data_root_open": true,
+    "output": "outputs/u5_r2aj0c0b_hald_structural_controls_v2"
+  },
+  "branches": {
+    "pass": "commit evidence then freeze U5.R2AJ0C1 before reading any primary CLUT metric",
+    "control_or_oracle_failure": "close C0B v2 and keep primary evaluation forbidden",
+    "ambiguous_separation": "close metric design without primary-informed retuning"
+  },
+  "forbidden": [
+    "modify or reinterpret the frozen C0 v1 close",
+    "open or decode any external archive or primary CLUT body",
+    "render or visually inspect a photograph",
+    "visually rank synthetic controls",
+    "inspect primary metrics before a separately committed C1 contract",
+    "lower thresholds after primary inspection",
+    "smooth clamp weaken or delete a failed primary candidate",
+    "use filename stock brand push pull exposure ageing or scan text as features or truth",
+    "use external CLUTs as pseudo-teachers or training targets",
+    "fit current real-film pixels train route or open LSM",
+    "production integration packaging distribution release or deployment"
+  ],
+  "claim_ceiling": "strict controls-only conformance for a sampled encoded-sRGB trilinear Hald structural evaluator; no external CLUT measured rendered visually reviewed validated preferred calibrated or integrated"
+}

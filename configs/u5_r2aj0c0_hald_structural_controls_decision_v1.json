@@ -1,0 +1,37 @@
+{
+  "schema_version": "u5-r2aj0c0-hald-structural-controls-decision-v1",
+  "node": "U5.R2AJ0C0",
+  "decision": "close_pre_execution_contract_inconsistency",
+  "contract_commit": "cdd20cd57b8d341fb263d27fd4e5f260808f58d0",
+  "config": {
+    "path": "configs/u5_r2aj0c0_hald_structural_controls_v1.json",
+    "sha256": "a75d0d2282a0a88b2427d14562bc88151c5dbbd0d2ee8ef8023620fe73d48824"
+  },
+  "contract": {
+    "path": "docs/planning/U5_R2AJ0C0_HALD_STRUCTURAL_CONTROL_CALIBRATION_CONTRACT.md",
+    "sha256": "c14c920efe1dc1f58cc213721f6210a99bbe15470ce0e682020bc856aad4c6be"
+  },
+  "execution": {
+    "implementation_started": false,
+    "formal_process_runs": 0,
+    "archive_opened": false,
+    "archive_bytes_read": 0,
+    "primary_cluts_decoded": 0,
+    "primary_candidate_metrics": 0,
+    "photograph_renders": 0,
+    "evidence_promoted": false
+  },
+  "blocking_findings": [
+    "probe cube sides 17 and 33 were mislabeled as legal native Hald cube sides even though a Hald cube side must equal level squared",
+    "hard-clip and staircase negative-control formulas were under-specified",
+    "two-process evidence lacked strict schemas and immutable config commit control hash runtime parent and access bindings",
+    "warm versus cool residual novelty was not a mandatory positive control",
+    "future cap-12 component representative and normalized safety-margin rules were under-specified"
+  ],
+  "branch": {
+    "v1_may_execute": false,
+    "primary_evaluation_allowed": false,
+    "allowed_next": "freeze a separately versioned controls-only correction before implementation or primary access"
+  },
+  "claim_ceiling": "pre-execution contract review failure only; no Hald control or external CLUT result"
+}
