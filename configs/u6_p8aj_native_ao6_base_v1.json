@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p8aj_native_ao6_base_contract.v1",
+  "node": "U6.P8AJ",
+  "parent_decision": "configs/u6_p8ai_native_composed_display_decision_v1.json",
+  "parent_decision_sha256": "ba240ed62ef2561ffd81957cfcea2791e71bc839b15866eecc2e78a8a7ee8588",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "native_source": {
+    "source": "native/film_physics/nf_ao6_base_f32_v1.c",
+    "source_sha256": "a73566395038896ad4b5e65d67e7729eb3eb28adf04af5746f441e995c37a573",
+    "header": "native/film_physics/nf_ao6_base_f32_v1.h",
+    "header_sha256": "eb56715b36dd91194248138696e7a0629cc8727d4f98859bcc1c483e2d1ee4e5"
+  },
+  "oracle": {
+    "height": 71,
+    "width": 97,
+    "seed": 20260729
+  },
+  "gates": {
+    "maximum_absolute_error": 0.00005,
+    "independent_build": "byte-exact",
+    "in_place": "byte-exact",
+    "invalid_input_output": "unchanged"
+  },
+  "stage_boundary": {
+    "input": "encoded relative-display sRGB float32",
+    "output": "encoded relative-display sRGB float32",
+    "source_context": "six externally supplied float32 Lab statistics",
+    "active_features_only": true,
+    "refits_operator_per_image": false,
+    "output_clamp": "legacy Lab-to-sRGB finite clamp followed by margin 4"
+  },
+  "claim_ceiling": "native active AO6 source-context base conformance; not a complete native renderer, stock response, calibration or product promotion"
+}

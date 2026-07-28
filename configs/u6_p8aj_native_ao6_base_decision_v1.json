@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p8aj_native_ao6_base_decision.v1",
+  "node": "U6.P8AJ",
+  "contract": "configs/u6_p8aj_native_ao6_base_v1.json",
+  "contract_sha256": "45388bd34dde875ef5425862fdf73a077c88f7209a93d94296e342b523eeb383",
+  "formal_report": "outputs/u6_p8aj_native_ao6_base_v1/report.json",
+  "formal_report_sha256": "8dee4fcc2f2de4fb0a9671e7da815eaacba9016fc96e80196ddeea74d9a99d28",
+  "stable_evidence_id": "97829c708a70e7f28f4cd37d67efcde652eaeda712dbcc38fb2451af1d2cdf49",
+  "result": {
+    "status": "pass",
+    "shape": [
+      71,
+      97,
+      3
+    ],
+    "maximum_absolute_error": 1.7374753952026367e-05,
+    "p999_absolute_error": 7.152557373046875e-07,
+    "tolerance": 5e-05,
+    "independent_build_dll_sha_exact": true,
+    "in_place_byte_exact": true,
+    "invalid_input_output_unchanged": true,
+    "partition_rows_byte_exact": true
+  },
+  "decision": "retain the minimal active native AO6 source-context base. It ports only density strength 0.5, Lab affine statistics transfer, fixed 14-iteration chroma gamut compression and margin 4; eight inactive legacy safe-Lab features remain excluded. The remaining Python image boundary is six float32 Lab source statistics, not a full-frame colour stage",
+  "production_default_changed": false,
+  "claim_ceiling": "native active AO6 source-context base conformance; not a complete native renderer, stock response, calibration or product promotion",
+  "next_leaf": "U6.P8AK replace the external six-float source-context reduction with a deterministic native streaming reducer and compose the complete native display-look chain"
+}
