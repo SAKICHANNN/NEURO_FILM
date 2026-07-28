@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8h_lifetime_buffer_resources_contract.v1",
+  "node": "U6.P8H",
+  "parent_contract": "configs/u6_p8g_row_staged_context_resources_v1.json",
+  "parent_contract_sha256": "7351c96ef695b8a16816c3fe37f0a4601c23af878ff4488c6ecb4918c23d9bf2",
+  "parent_decision": "configs/u6_p8g_row_staged_context_resources_decision_v1.json",
+  "parent_decision_sha256": "0248d3644ef076901d9b98307166026b24c9ca65d480edeb3b5e43dcaf0f9798",
+  "implementation": {
+    "scene_domain_copy_release": "after-input-hash-and-encode",
+    "encoded_source_release": "after-source-context-build",
+    "display_input_full_float32_copy": false,
+    "display_output_reuses_consumed_float64_input": true,
+    "array_hash_copy_allowed": false,
+    "final_pixel_identity_change_allowed": false
+  },
+  "execution": {
+    "reuse_parent_scenarios_gates_and_safety_exactly": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact profile lifetime shortening and display-buffer reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
