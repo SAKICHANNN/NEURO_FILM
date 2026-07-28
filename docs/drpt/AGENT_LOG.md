@@ -6511,3 +6511,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   (`0.001668 > 0.001`). It closes without threshold or physical-profile
   retuning. P1A and direct P3A remain references; work moves to the independent
   developed dye-cloud/metallic-silver structure reference.
+- P1B now passes as an offline marked-Poisson reference. Colour stops in
+  cumulative dye-cloud optical density (maximum mean-density error `.00573`);
+  B&W stops in Boolean metallic-silver transmittance (mean error `.00622`).
+  Both have nonzero structure variance and exact repeat/partition. No display
+  RGB composition, stock/process claim or U6.2B rescue opens; U6.P4 may now
+  challenge their density-conditioned NPS/ACF with a bounded compiler.

@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p1b_developed_structure_decision.v1",
+  "node": "U6.P1B",
+  "status": "automatic-pass-reference-only",
+  "contract_sha256": "86df2b1eaf737a5178036668afafaaf347384d073070e89b2c19d809f8bf6ff6",
+  "software_commit": "3ca23a68e29197d9cbe2df476d4af9f59b91bb7f",
+  "report_sha256": "3a54e40b663acedab4404c760869dfb08f2c3655ac1697201ade32cf5b855310",
+  "stable_evidence_id": "099aeea91cec96b91a31b2c01423a673c66c608617880666b2558c8370894cf8",
+  "metrics": {
+    "colour_interior_mean_density_abs_error_max": 0.005730527297710175,
+    "colour_interior_variance_cmy": [
+      0.03275177819373494,
+      0.12851859738312948,
+      0.32956338882418734
+    ],
+    "bw_interior_mean_transmittance_abs_error": 0.006215956003112033,
+    "bw_interior_variance": 0.06790086517333985,
+    "repeat_and_partition_exact": true
+  },
+  "claim_ceiling": "generic-physical-inspired-reference-only",
+  "interpretation": [
+    "Colour material is an additive dye-cloud optical-density field.",
+    "B&W material is a distinct Boolean metallic-silver transmittance field.",
+    "Neither result is display-RGB noise, a stock profile or calibrated process evidence."
+  ],
+  "branch_decision": "Open a density-conditioned NPS/ACF-preserving U6.P4 compiler challenger. The explicit marked-Poisson reference remains offline and the U6.2B salt-speckle display compositions remain rejected."
+}
