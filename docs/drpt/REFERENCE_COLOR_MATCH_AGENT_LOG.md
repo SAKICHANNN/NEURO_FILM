@@ -1566,6 +1566,16 @@
 - Eight package/native tests pass. This is locally build-verified only until a
   physical Test Lab result is parsed; no device-runtime claim opens yet.
 
+## 2026-07-28 - Freeze P91 owned Test Lab runner
+
+- The runner is default dry-run, verifies exact APK bytes, billing and Cloud
+  Testing reachability, and uses only configuration/prefix
+  `nf-019f9f37-agent` / `nf-019f9f37-`.
+- Execution is capped at one Pixel 8/API34 matrix, two minutes and USD 1 worst
+  case; PENDING over 120 seconds is cancelled. Bucket/matrix identities enter
+  the local ledger before creation and only the exact ledger bucket is cleaned.
+- Dry-run and ten runner/package tests pass. No cloud resource exists yet.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
