@@ -2,8 +2,24 @@
 
 Date frozen: 2026-07-28  
 Node: `ULT > U5 > U5.R2 > U5.R2AM1`  
-Config SHA-256:
+Base v1 SHA-256:
 `2f081922c090ce7dd6c24b2cbe570fed13a6085318fc527ba8d10ed9cb4b7e59`
+
+Executable v2 SHA-256:
+`5c7a77eb6928a1761f51b0bf22b036cc861cf5911881c819c5ced44c19dac9be`
+
+## Pre-implementation correction
+
+V1 froze the scientific representation, target/control families, budgets,
+geometry, thresholds and branch rules. Implementation review then found that
+restart initialization, the stationary-control restart count, exact Rodrigues
+zero handling, scalar inverse update rules and formal report identity were not
+machine-pinned. No operator code, fit, report or metric existed.
+
+V1 remains immutable. V2 hash-binds it and supplies only those execution
+semantics. Candidate, targets, controls, budgets, optimizer, audit geometry,
+gates, access boundary and claim ceiling are unchanged. V2 is the sole
+executable entry.
 
 ## Purpose
 
@@ -88,9 +104,10 @@ buys useful capacity rather than merely replacing a positive matrix.
 
 - development grid: endpoint-inclusive `9^3`, lexicographic `ij`;
 - float64 CPU Adam, one thread;
-- seed `72831`, four restarts, 2,500 steps, learning rate `0.03`;
+- seed `72831`, four restarts for compact curve candidates, one exact-zero
+  start for stationary K3, 2,500 steps, learning rate `0.03`;
 - gradient clip `10`;
-- exact regularizers and restart tie-break are in the config;
+- exact restart tensors/seeds, regularizers and tie-break are in v2;
 - implementation must reconstruct the two target config hashes before any
   fit.
 

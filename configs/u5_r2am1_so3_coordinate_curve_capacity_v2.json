@@ -1,0 +1,129 @@
+{
+  "schema_version": "u5-r2am1-so3-coordinate-curve-capacity-v2",
+  "experiment_id": "u5.r2am1-so3-coordinate-curve-capacity-v2",
+  "node": "ULT > U5 > U5.R2 > U5.R2AM1",
+  "base_v1_path": "configs/u5_r2am1_so3_coordinate_curve_capacity_v1.json",
+  "base_v1_raw_sha256": "2f081922c090ce7dd6c24b2cbe570fed13a6085318fc527ba8d10ed9cb4b7e59",
+  "supersedes_before_implementation": {
+    "schema_version": "u5-r2am1-so3-coordinate-curve-capacity-v1",
+    "reason": "V1 froze the scientific representation, targets, controls, fit budgets, audit geometry, gates and branches but left restart initialization, the stationary-control restart count, exact Rodrigues zero handling, scalar inverse update semantics and report identity implicit. No operator code, fit, report, metric or result existed."
+  },
+  "implementation_constants": {
+    "float_dtype": "float64",
+    "device": "cpu",
+    "pi": 3.141592653589793,
+    "rodrigues_numpy": "if angle equals exact zero return identity; otherwise K=skew(w/angle), Q=I+sin(angle)K+(1-cos(angle))K^2",
+    "rodrigues_torch": "K=skew(w), Q=I+sinc(angle/pi)K+0.5*sinc(angle/(2*pi))^2*K^2",
+    "bounded_rotation_torch": "norm=l2(raw); ratio=tanh(norm)/norm with exact polynomial limit 1-norm^2/3 selected below 1e-8; w=maximum_angle*ratio*raw",
+    "cube_corner_order": "numpy_meshgrid_ij over axis [0.0,1.0], lexicographic reshape",
+    "projection_bounds": "componentwise minimum and maximum of corners multiplied by Q",
+    "bernstein_binomial_coefficients": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+    ],
+    "curve_endpoint_canonicalization": "stored controls set first=0 and last=1 after fit; exact identity operator returns a copy before Bernstein evaluation",
+    "nonfinite_policy": "raise before serialization and record no formal report"
+  },
+  "restart_initialization": {
+    "restart_standard_deviation": 0.05,
+    "candidate": {
+      "restart_count": 4,
+      "restart_0": "rotation raw and all curve logits exact zero",
+      "restart_n_rotation": "normal seed + restart",
+      "restart_n_curve": "normal seed + 1000 + restart"
+    },
+    "global_curves": {
+      "restart_count": 4,
+      "restart_0": "all curve logits exact zero",
+      "restart_n_curve": "normal seed + 2000 + restart"
+    },
+    "positive_matrix_curves": {
+      "restart_count": 4,
+      "restart_0": "curve and matrix logits exact zero; alpha_logit=-4.0",
+      "restart_n_curve": "normal seed + 3000 + restart",
+      "restart_n_matrix": "normal seed + 4000 + restart",
+      "restart_n_alpha_logit": "-4.0 + 0.25*restart"
+    },
+    "stationary_k3": {
+      "restart_count": 1,
+      "initial_velocity_grid": "exact zeros",
+      "seed": "base fit seed + 5000"
+    }
+  },
+  "fit_semantics": {
+    "target_tensor_order": "exact v1 development-grid order",
+    "candidate_objective": "mean squared RGB error + candidate_rotation_l2*mean(actual_rotation_vector^2) + candidate_curve_l2_to_identity*mean((controls-identity)^2)",
+    "global_curve_objective": "mean squared RGB error + candidate_curve_l2_to_identity*mean((controls-identity)^2)",
+    "positive_matrix_curve_objective": "mean squared RGB error + candidate_curve_l2_to_identity*mean((controls-identity)^2) + positive_matrix_l2_to_identity*mean((matrix-I)^2)",
+    "stationary_objective": "existing cube_diffeomorphic_colour_flow v1 objective with frozen coefficient and smoothness regularizers",
+    "gradient_clip": "apply after backward and before optimizer step",
+    "stationary_projection": "clamp coefficients only to the frozen plus/minus coefficient bound after every optimizer step",
+    "best_restart_rule": "minimum final regularized objective then lowest restart index",
+    "identity_target": "construct exact candidate/global/positive identities and exact zero-velocity K3; never optimize identity"
+  },
+  "inverse_semantics": {
+    "allowed_strengths": [
+      0.0,
+      1.0
+    ],
+    "strength_0": "return exact copy",
+    "strength_1": "multiply output by Q, normalize with frozen cube projection bounds, invert each scalar curve, denormalize, multiply by Q transpose",
+    "scalar_curve_inverse": {
+      "iterations": 64,
+      "initial_lower": 0.0,
+      "initial_upper": 1.0,
+      "midpoint": "(lower+upper)/2",
+      "update": "if curve(midpoint) < target_value set lower=midpoint else set upper=midpoint",
+      "return": "(lower+upper)/2 after exactly 64 iterations",
+      "out_of_curve_range_tolerance": 1e-12,
+      "out_of_curve_range_policy": "raise"
+    },
+    "partial_strength_policy": "raise; partial strength is audited only as a forward path"
+  },
+  "target_and_audit_semantics": {
+    "target_hash_validation": "validate both v1 source config hashes before constructing any target",
+    "target_generation": "use existing operator_from_config and positive_film_operator_from_config with the exact v1 witness and strength fields",
+    "target_prerequisites": "all target outputs on the v1 cube and Jacobian geometry must be finite, inside the v1 numerical cube rails and have positive finite-difference determinants before fitting",
+    "finite_difference_columns": "channel order 0,1,2; central difference; stack as Jacobian output-row by input-column",
+    "spectral_norm": "largest singular value",
+    "hue_pair_distance": "Euclidean RGB output distance",
+    "neutral_metric": "maximum rowwise max(channel)-min(channel)",
+    "red_ramp_luma": "dot output RGB with exact v1 luma coefficients",
+    "strength_order": "distance from identity must be nondecreasing in exact listed strength order for every nonzero-distance row"
+  },
+  "formal_report": {
+    "schema": "neuro-film.u5.r2am1.so3-coordinate-curve-capacity-report.v1",
+    "schema_version": 1,
+    "canonical_json": "json.dumps sort_keys=true ensure_ascii=false indent=2 plus newline UTF-8",
+    "software_identity": "exact git HEAD with clean tracked worktree",
+    "required_hashes": [
+      "v1 config raw SHA-256",
+      "v2 config raw SHA-256",
+      "both target source config raw SHA-256",
+      "software commit"
+    ],
+    "parent_execution": "two fresh sequential child Python processes, byte comparison, independent report validation and repeat decision",
+    "failure_exit": "parent returns 1 for a valid automatic gate failure and returns no scientific decision for execution or validation error"
+  },
+  "unchanged_from_v1": [
+    "scientific candidate representation and parameter budget",
+    "target identities and source hashes",
+    "control families and parameter budgets",
+    "development and confirmation geometry",
+    "optimizer type, seed, steps, learning rate and regularizers",
+    "automatic gates and branch thresholds",
+    "access boundary and claim ceiling"
+  ],
+  "implementation_observation": {
+    "operator_code_exists": false,
+    "candidate_or_control_fit_completed": false,
+    "formal_report_exists": false,
+    "metric_or_gate_result_exists": false
+  },
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one bounded SO(3)-coordinate monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}

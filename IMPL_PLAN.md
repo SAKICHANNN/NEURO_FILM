@@ -114,15 +114,19 @@ freeze every parameter, truth, split, optimizer and cube/Jacobian/analytic
 inverse/replay/neutral/hue/ramp/strength gate before implementation. A pass
 still opens no photograph, film-pixel fitting or content-conditioned model.
 
-That contract is now frozen at `2f081922...7e59` before implementation or
-fit. The candidate has 21 raw/18 effective parameters: bounded right-handed
+Base v1 was frozen at `2f081922...7e59` before implementation or fit.
+Pre-implementation review found hidden restart, Rodrigues-zero, scalar-inverse
+and report defaults, so v1 remains immutable and executable v2
+`5c7a77eb...c9be` hash-binds it with those semantics. No representation,
+target, control, budget, optimizer, geometry, gate or boundary changed.
+The candidate has 21 raw/18 effective parameters: bounded right-handed
 `SO(3)`, full-cube projection ranges and three degree-six
 positive-increment Bernstein curves. It is tested on the pre-existing
 density-cyan s0.50 and positive-warm s0.35 operators, not a same-family
 teacher. Global RGB curves, positive row-stochastic matrix plus curves and
 stationary K3 are frozen controls. Exact cube, Jacobian, scalar-inverse,
 neutral, hue-neighbour, red-ramp, strength, replay and two-process gates join
-absolute/relative capacity gates. Implementation is next; no fit exists yet.
+absolute/relative capacity gates. V2 implementation is next; no fit exists yet.
 
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an

@@ -340,7 +340,7 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/source audit | U5.R2AL0 | External learned pipeline/code/assets close; retain only the clean-room analytic colour-selective curve hypothesis |
 | Done/closed | U5.R2AL1 | The fixed analytic sector bank beats global curves and narrowly beats K3 but fails the frozen absolute-fidelity and inverse gates in both target orders; no rescue or photograph access |
 | Done/source audit | U5.R2AM0 | IAC direct use closes; retain only deterministic bounded SO(3), full-cube normalization and analytic monotone inverse curves as a clean-room representation prior |
-| Ready/implementation | U5.R2AM1 | Execute frozen `2f081922...7e59`: 21-raw/18-effective SO(3)-coordinate curves vs RGB curves, positive matrix+curves and K3 on two external-family synthetic targets; zero photographs/data |
+| Ready/implementation | U5.R2AM1 | Execute corrected v2 `5c7a77eb...c9be` (v1 immutable): 21-raw/18-effective SO(3)-coordinate curves vs RGB curves, positive matrix+curves and K3 on two external-family synthetic targets; zero photographs/data |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
 | Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |
 | P0 named-stock sources | SF0.6 | Obtain at least two further exact stocks that independently pass derivative-rights, author-group and content gates |

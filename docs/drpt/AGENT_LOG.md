@@ -6196,3 +6196,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Zero photographs, film pixels, downloads, external assets, neural code or
   GPU. Any failure closes without capacity, fit, target, threshold, clamp,
   inverse or photograph rescue. Implementation is next; Goal remains ACTIVE.
+
+## 2026-07-28 - Correct U5.R2AM1 execution semantics before implementation
+
+- **Pre-code finding:** v1 `2f081922...7e59` left restart tensors/seeds, the
+  stationary-K3 restart count, Rodrigues zero handling, scalar bisection
+  updates and report identity implicit. No operator code, target/control fit,
+  report, metric or result existed.
+- **Resolution:** preserve v1 unchanged and add executable v2
+  `5c7a77eb...c9be`, which hash-binds v1 and freezes those semantics.
+  Candidate representation, target/control families, budgets, optimizer,
+  geometry, gates, access boundary and claim ceiling are unchanged.
+- **Handoff:** v2 is the sole executable entry. Implementation may now start
+  without hidden defaults; Goal remains ACTIVE.
