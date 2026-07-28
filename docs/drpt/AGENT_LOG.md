@@ -6468,3 +6468,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   opposite rankings, so the difference is not robustly preference-salient.
   Full regression passes 1167/1167. AO6 remains development evidence only;
   next test operator diversity before replacing the averaged proxy.
+
+## 2026-07-28 - U5.R2AO8-AO9 close same-pool routing and extra capacity
+
+- Two proxy-fit operator directions pass strength-path negative controls, but
+  nearest-support routing loses and the initially positive cross-fitted kNN
+  result does not survive three frozen new split systems. One split regresses,
+  one improves RGB but not DeltaE, and one exposes an invalid small-sample fit.
+- A current public-source refresh confirms that Emulating Emulsion provides
+  its method/capture design but no public code, pairs or parameters. SillyStill
+  still keeps its 41 raw/38 processed pairs on request with empty public
+  download placeholders and no root licence.
+- The clean-room published-equation 30-parameter baseline is deterministic but
+  loses `5.74%` RGB and `20.27%` mean DeltaE to the bounded one-matrix control,
+  has `7.04%` raw out-of-cube channels and fails both leave-domain-out
+  directions. Positive Jacobians localise the failure to fit/range, not
+  folding. Retain AO6 as development Look Approximation and do not increase
+  capacity again without genuinely new paired or independent-domain evidence.

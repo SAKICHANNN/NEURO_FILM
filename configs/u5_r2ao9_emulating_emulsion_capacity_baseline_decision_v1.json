@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao9-emulating-emulsion-capacity-baseline-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO9",
+  "software_commit": "6902749495831034626c47730428f100f16c77cf",
+  "contract": {
+    "path": "configs/u5_r2ao9_emulating_emulsion_capacity_baseline_v1.json",
+    "sha256": "4f36f8fcda93c92bff661843c5c32f981507d7d83120ce906c5a303f9b3e0415"
+  },
+  "source_availability_refresh": {
+    "emulating_emulsion": {
+      "official_full_paper_sha256": "02ce6345ed08cb61b70a7089cc488b5f7d7b6809db2e51ce0c4410f0606a5d47",
+      "public_code_found": false,
+      "public_dataset_found": false,
+      "public_fitted_parameters_found": false,
+      "reusable_data_or_code_license_found": false,
+      "status": "method_and_capture_design_precedent_only"
+    },
+    "sillystill": {
+      "repository": "https://github.com/mikasenghaas/sillystill",
+      "repository_commit": "b1ebdb971207b403b7126b759c1d30d30954a722",
+      "reported_raw_pairs": 41,
+      "reported_processed_pairs": 38,
+      "public_dataset_found": false,
+      "repository_data_state": "data directory ignored and marked on request; Zenodo and Hugging Face download targets remain empty placeholders",
+      "open_release_request": "https://github.com/mikasenghaas/sillystill/issues/1",
+      "root_license_found": false,
+      "status": "code_and_one_illustrative_pair_only_not_an_available_training_corpus"
+    }
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ao9_emulating_emulsion_capacity_baseline_v1/report_a.json",
+    "sha256": "25cdfa7a316bcc068b52d22789099292f69529b1ce06689f10b15b7cd9feef61"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ao9_emulating_emulsion_capacity_baseline_v1/report_b.json",
+    "sha256": "25cdfa7a316bcc068b52d22789099292f69529b1ce06689f10b15b7cd9feef61"
+  },
+  "repeat_byte_identical": true,
+  "result": {
+    "automatic_pass": false,
+    "candidate_rgb_rmse": 0.03544021339396143,
+    "bounded_one_matrix_rgb_rmse": 0.03351518810569857,
+    "candidate_rgb_rmse_gain_over_bounded_one_matrix": -0.05743740068508085,
+    "candidate_mean_delta_e76": 7.9392797197016165,
+    "bounded_one_matrix_mean_delta_e76": 6.601280966487181,
+    "candidate_mean_delta_e76_gain_over_bounded_one_matrix": -0.20268774500086773,
+    "candidate_rgb_rmse_gain_by_domain": {
+      "velvia_chart": -0.0801678940911108,
+      "velvia_palette": 0.008155458676154637
+    },
+    "leave_domain_out_rgb_rmse_gain": {
+      "chart_to_palette": -0.058110451857196876,
+      "palette_to_chart": -1.463070843354433
+    },
+    "candidate_raw_out_of_cube_fraction": 0.07042253521126761,
+    "candidate_maximum_fold_raw_out_of_cube_fraction": 0.2,
+    "candidate_minimum_cube_jacobian_determinant": 0.0015446713828530798,
+    "candidate_mean_train_test_rgb_rmse_gap": 0.015020220612621142
+  },
+  "failed_checks": [
+    "candidate_rgb_rmse_gain",
+    "candidate_mean_delta_e76_gain",
+    "candidate_rgb_rmse_gain_each_domain",
+    "candidate_leave_domain_out_rgb_rmse_gain_each_direction",
+    "candidate_mean_raw_out_of_cube_fraction",
+    "candidate_maximum_fold_raw_out_of_cube_fraction"
+  ],
+  "decision": "retain_bounded_one_matrix_global_proxy_operator_and_close_extra_two_matrix_capacity_on_this_pool",
+  "interpretation": "The clean-room 30-parameter equation family is locally non-folding on the frozen cube audit, but its additional capacity worsens held-out RGB and perceptual error, fails chart-to-palette and especially palette-to-chart transfer, and produces material unclipped out-of-cube output. This is a negative capacity result on author-rendered display proxies, not a refutation of the published method on its unavailable controlled RAW pairs.",
+  "forbidden_rescue": [
+    "clip candidate outputs and rescore",
+    "change bounds, restarts or folds after seeing the result",
+    "fit another higher-capacity model to the same 71 rows",
+    "claim that Emulating Emulsion itself failed on its real paired RAW data",
+    "claim stock response, calibration or latent modes"
+  ],
+  "next_leaf": "retain the AO6 bounded global Look Approximation champion; seek genuinely accessible controlled pairs or a new independent proxy domain before any further operator-capacity increase, while prioritizing analytical safety and fixed global baselines",
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "negative clean-room capacity evidence on 71 author-rendered Velvia display-proxy pairs plus current public-source availability facts; no exact external reproduction, real-pair, stock-response, calibration, preference or product claim"
+}
