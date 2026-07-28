@@ -3969,3 +3969,14 @@
   staging/worktree cleanup.
 - This is a scale and lifecycle test only. It cannot establish platform,
   media-rail, visual-quality or algorithm-promotion readiness.
+
+## 2026-07-29 - Pass the 24 MP ordered three-source batch
+
+- Two complete runs peak at `2,173,702,144` / `2,172,657,664 B` with
+  `1.000481` repeat ratio and finish in `90.8728` / `89.5944 s`.
+- Ordered source/output hashes, recipe and normalized report are exact; all
+  three sources use identity fallback and all temporary/worktree cleanup
+  passes.
+- The batch is within its frozen envelope. Phase evidence also shows the prior
+  rendered image remains live into the next source load, opening a narrow P161
+  lifetime leaf without changing transaction or colour semantics.

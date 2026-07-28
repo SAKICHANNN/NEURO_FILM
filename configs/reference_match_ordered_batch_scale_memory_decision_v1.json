@@ -1,0 +1,75 @@
+{
+  "schema_id": "neuro-film.reference-match-ordered-batch-scale-memory-decision.v1",
+  "node": "P160",
+  "decision": "frozen-24mp-three-source-ordered-batch-gates-pass",
+  "contract_commit": "7b4eecbcc4203549361ceac90d939c32b6b6d6cd",
+  "candidate_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "harness_commit": "f98e74be6a7096c7fc09238eda617256459162ea",
+  "config_sha256": "64ecb978812a43f8ada3fbd4bf7abb2f95cf44e53c29d3ba2ccd7aee9a230aee",
+  "raw_report_sha256": "06a91a0e04e1e66cf2833b5aa5284203a32adff9c5537dfbe9d921a3e06d274c",
+  "workload": {
+    "width": 6000,
+    "height": 4000,
+    "pixel_count_per_image": 24000000,
+    "source_count": 3,
+    "output_bit_depth": 16,
+    "repeat_count": 2,
+    "reference_sha256": "4033fe95b6e68dccd409c3cfe0dfe60684ac26d0e022e9cd0edef5c7fc91d39f",
+    "ordered_source_sha256": [
+      "8bbd953b75b01e0f2369bd3e78e78485b75b3f83f7e40f04584c405e5f31ea97",
+      "a98d551033c30c0ab36f735c5b7cb1cebeb4a7a8eff944ce11d369c224376f6e",
+      "5f2a6ad415e762e7ec08eac524f362c6d9bfec9ff5a85e392ced5799317f5eb5"
+    ]
+  },
+  "peak_process_tree_rss_bytes": [
+    2173702144,
+    2172657664
+  ],
+  "worker_wall_seconds": [
+    90.87283769997885,
+    89.59435100000701
+  ],
+  "maximum_peak_process_tree_rss_bytes": 2173702144,
+  "minimum_peak_process_tree_rss_bytes": 2172657664,
+  "peak_rss_repeat_ratio": 1.0004807384142043,
+  "frozen_gates": {
+    "maximum_peak_process_tree_rss_bytes": 2415919104,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "worker_wall_seconds_max": 150.0,
+    "passed": true
+  },
+  "artifact_identity": {
+    "ordered_output_sha256": [
+      "eb5b631774e4d5f6e5c6ffe442e311e4fcebd7cca30aa3e2b2ff3143f07f3e49",
+      "59d2e7b9adaeafe2ab468bc59fb2439398e6425095838e1dccf90d9e218c441e",
+      "902d86e649533f3759df035fc25f712dc3e415b8a05b82830353fb4d91b6a01e"
+    ],
+    "recipe_sha256": "67a11df7aa35af2d979c94957f122a52452723547969d7eb86b695d7088562c9",
+    "normalized_report_sha256": "a0a8df416845839f5ec735fb8acb734f826b1c76580c81af3b566bef0ace9d9f",
+    "ordered_repeat_exact": true
+  },
+  "phase_attribution": {
+    "load_source_peak_worker_rss_bytes": [
+      2172272640,
+      2165026816
+    ],
+    "guarded_render_peak_worker_rss_bytes": [
+      2097721344,
+      2064646144
+    ],
+    "encode_output_peak_worker_rss_bytes": [
+      1596948480,
+      1579360256
+    ],
+    "interpretation": "The batch passes, but later source load and render retain the preceding rendered WorkingImage until the next assignment. P161 may remove that proven lifetime overlap without changing durable semantics."
+  },
+  "safety_actions": [
+    "identity-fallback",
+    "identity-fallback",
+    "identity-fallback"
+  ],
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-24mp-three-source-ordered-sequential-batch-evidence-only-not-platform-or-product-readiness"
+}
