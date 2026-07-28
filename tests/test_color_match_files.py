@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -197,6 +198,7 @@ def test_file_adapter_preserves_rec2020_sdr_boundary(
     reference = tmp_path / "reference.png"
     source = tmp_path / "source.png"
     output = tmp_path / "output.png"
+    report = tmp_path / "report.json"
     _rec2020_image(reference, 27346)
     _rec2020_image(source, 27347)
 
@@ -204,9 +206,11 @@ def test_file_adapter_preserves_rec2020_sdr_boundary(
         reference,
         [source],
         [output],
+        report_path=report,
         output_bit_depth=16,
     )
     restored = load_working_image(output)
+    report_payload = json.loads(report.read_text(encoding="utf-8"))
 
     assert result.recipe.reference_working_space == "linear_rec2020"
     assert result.outputs[0].diagnostics.source_working_space == (
@@ -216,6 +220,12 @@ def test_file_adapter_preserves_rec2020_sdr_boundary(
     assert restored.working_space == "linear_rec2020"
     assert restored.transfer_state == "display_linear"
     assert inspect_input(output).source_profile.kind == "cicp"
+    assert report_payload["outputs"][0]["candidate_diagnostics"][
+        "source_working_space"
+    ] == "linear_rec2020"
+    assert report_payload["outputs"][0]["output_sha256"] == (
+        result.outputs[0].output_sha256
+    )
 
 
 @pytest.mark.parametrize(
