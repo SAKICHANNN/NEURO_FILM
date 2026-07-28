@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4p-balica-paired-palette-proxy-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4P",
+  "parent_recon_config_sha256": "e77c1b440570159c94cfb3015bca03f3bfbd67c9c75024d147e2e228a46d9e34",
+  "article": {
+    "title": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "doi": "10.1016/j.daach.2026.e00550",
+    "pii": "S2212054826000573",
+    "license": "CC BY 4.0"
+  },
+  "asset": {
+    "figure": 11,
+    "official_cdn_url": "https://ars.els-cdn.com/content/image/1-s2.0-S2212054826000573-gr11_lrg.jpg",
+    "expected_bytes": 179720,
+    "expected_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+    "expected_width": 1569,
+    "expected_height": 696,
+    "expected_format": "JPEG",
+    "expected_mode": "RGB"
+  },
+  "sample": {
+    "reference_triangle": {
+      "description": "top-right HSI after-ageing rendering",
+      "fraction_x": 0.72,
+      "fraction_y": 0.28
+    },
+    "film_triangle": {
+      "description": "bottom-left film rendering",
+      "fraction_x": 0.28,
+      "fraction_y": 0.72
+    },
+    "centre_half_width": 4,
+    "centre_half_height": 4,
+    "aggregation": "per_channel_median_uint8",
+    "maximum_centre_channel_range": 0,
+    "paired_channel_order": [
+      "film_rgb",
+      "reference_rgb"
+    ]
+  },
+  "groups": [
+    {
+      "group_id": "yoda_velvia_halogen_well_exposed",
+      "film_stock_id": "Fujifilm Fujichrome Velvia 50",
+      "illuminant": "halogen",
+      "exposure_state": "well-exposed",
+      "painting": "Yoda",
+      "column_boundaries": [
+        1,
+        74,
+        147,
+        219,
+        291,
+        364,
+        436,
+        508,
+        581,
+        653,
+        726
+      ],
+      "row_boundaries": [
+        77,
+        150,
+        222,
+        294,
+        367,
+        440
+      ],
+      "row_cell_counts": [
+        10,
+        10,
+        10,
+        10,
+        7
+      ],
+      "expected_pair_count": 47,
+      "expected_unique_film_rgb_count": 46,
+      "expected_unique_reference_rgb_count": 47,
+      "expected_film_u8_sha256": "423ae79b7c758953d5785729dfeacfbc12734931b9ec6462487425437fcaf9b5",
+      "expected_reference_u8_sha256": "5ad750a1a5205b4de372552f06c5f459200f8da67b0bed18544dbd5f9acde27d",
+      "expected_paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30"
+    },
+    {
+      "group_id": "cactus_ektachrome_halogen_well_exposed",
+      "film_stock_id": "Kodak Ektachrome",
+      "illuminant": "halogen",
+      "exposure_state": "well-exposed",
+      "painting": "Cactus",
+      "column_boundaries": [
+        837,
+        910,
+        983,
+        1056,
+        1129,
+        1202,
+        1275,
+        1348,
+        1421,
+        1494,
+        1568
+      ],
+      "row_boundaries": [
+        0,
+        73,
+        146,
+        219,
+        292,
+        365,
+        439
+      ],
+      "row_cell_counts": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        6
+      ],
+      "expected_pair_count": 56,
+      "expected_unique_film_rgb_count": 56,
+      "expected_unique_reference_rgb_count": 56,
+      "expected_film_u8_sha256": "0434cc425eb6a9db834c340237b6d66952c46b0f7a42bf665f01441e59cfc65a",
+      "expected_reference_u8_sha256": "c2834c427658a536769f8da22a1c4a6f99f245550481c39fe2dccfdc743f36f1",
+      "expected_paired_u8_sha256": "0104f997be4b1b32042193eecef644b22aab4bc6a66db3269ba5ee4071c294e0"
+    }
+  ],
+  "observed_process": {
+    "process_type": "E-6",
+    "processor": "Jobo ATL-2500",
+    "chemistry": "Fujifilm Pro6 six-bath",
+    "temperature_c": 38,
+    "rotation_rpm": 75,
+    "all_rolls_processed_identically": true,
+    "physical_roll_id": "unknown",
+    "scanner": "article multispectral film scanning system",
+    "output_interpretation": "author-rendered sRGB display proxy"
+  },
+  "gates": {
+    "second_fresh_download_exact": true,
+    "asset_identity_exact": true,
+    "all_sample_blocks_uniform": true,
+    "all_pair_counts_exact": true,
+    "all_derived_hashes_exact": true
+  },
+  "download_count_maximum": 1,
+  "download_bytes_maximum": 200000,
+  "next_leaf_if_pass": "U5.R2AO4C cross-domain Velvia chart-to-pigment operator validation",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "two single-painting stable-palette author-rendered display proxies with explicit film/HSI triangle semantics; the HSI is post-ageing and film capture earlier, so not same-time digital/film pairs, transferable stock response or calibration evidence"
+}
