@@ -468,3 +468,12 @@ recovery/shortcut failure rather than renderer corruption. No larger encoder,
 loss/adversary search, post-hoc strength correction or AH1C confirmation
 opens. See
 `docs/U5_R2AH1_GROUP_INVARIANT_REFERENCE_OPERATOR_RESULTS.md`.
+
+`U5.R2AI0` therefore returns to a bounded deterministic product question
+without claiming to solve unpaired identification. It composes only the two
+independently severe-clean B0 global champions, anchor56 margin-4 and
+density-cyan, in two orders at three inherited strengths. A composition must
+materially beat the stronger parent on style and non-basic views, repeat over
+all 41 inputs, and survive complete ID11/full-resolution visual veto. This is
+a Look Approximation frontier only and changes no real-film, stock,
+identifiability, training or LSM gate.

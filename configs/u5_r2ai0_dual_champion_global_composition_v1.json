@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ai0-dual-champion-global-composition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AI0",
+  "split": "B0_development",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "a fixed sequential composition of the two independently severe-clean global champions can add complementary style structure without reintroducing clipping or the ID11 red-speckle failure",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "parent_anchor": {
+    "candidate_id": "anchor56_chroma_margin4_challenger",
+    "config": "configs/u5_r2b_global_operator_frontier_v1.json",
+    "config_sha256": "209d9a0676f4ce887bee463f1de26eff52eaba727df8015764d0755429231ad6",
+    "decision": "configs/u5_r2b_global_operator_frontier_decision_v1.json",
+    "manifest": "outputs/u5_r2b_global_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "e0410f9ab8e5efe76a866fe8478148b0bb270651d560225d63eeb7faabe4f769",
+    "style": "velvia_50",
+    "strength": 0.58,
+    "luma_strength": 0.35,
+    "gamut_mode": "chroma",
+    "output_margin": 4,
+    "grain": 0.0,
+    "seed": 20260711
+  },
+  "parent_density": {
+    "candidate_id": "cyan_shadow_warm_highlight_like__s50",
+    "config": "configs/u5_r2e1_density_witness_frontier_v1.json",
+    "config_sha256": "02f6bdd4d3a016c9617076187de6dfe7c1d0013659d18d413bf6d8d99f70b6e2",
+    "decision": "configs/u5_r2e1_density_witness_frontier_decision_v1.json",
+    "manifest": "outputs/u5_r2e1_density_witness_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "8173ce87bc038d58cb7ed6019167192dc01fd32db8aed738d70070b42c0c7390",
+    "operator_config": "configs/u5_r2e0_density_domain_operator_v1.json",
+    "operator_config_sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337",
+    "witness_id": "cyan_shadow_warm_highlight_like",
+    "control_strength": 0.5
+  },
+  "implementation_inputs": {
+    "film_color_stats": "configs/film_color_stats.json",
+    "film_color_stats_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+    "anchor_renderer": "scripts/pipeline_color_baseline.py",
+    "anchor_renderer_sha256": "305b8baf95192a41ad0407060ff0e4f6ac7221a97a825adff14c05f0241e19df",
+    "density_renderer": "src/eval/density_witness_frontier.py",
+    "density_renderer_sha256": "7539267241ea9fa45e357b0a5d9bcb90c6d5c4c885df0811417cd2df03bef72e",
+    "density_operator": "src/roll2film/density_domain.py",
+    "density_operator_sha256": "a1d3e9f43816d70642154e8369c4f28a2b7b44410a80cf36df6c6f99bc661ba2"
+  },
+  "candidate_bank": {
+    "orders": [
+      "anchor_then_density",
+      "density_then_anchor"
+    ],
+    "density_strengths": [
+      0.2,
+      0.35,
+      0.5
+    ],
+    "candidate_id_format": "{order}__density_s{strength_percent:02d}",
+    "candidate_count": 6,
+    "final_output_margin": 4,
+    "effects_allowed": false,
+    "spatial_adaptation_allowed": false,
+    "per_image_selection_allowed": false,
+    "operator_fitting_allowed": false,
+    "post_result_parameter_change_allowed": false
+  },
+  "rendering": {
+    "working_space_boundary": "encoded_srgb_anchor_and_linear_srgb_density_with_float32_or_float64_intermediate",
+    "intermediate_quantization_allowed": false,
+    "final_format": "rgb8_png",
+    "verify_source_hash_before_render": true,
+    "require_matching_dimensions": true,
+    "require_rgb_decode": true,
+    "require_repeat_manifest_byte_identity": true,
+    "output_root": "outputs/u5_r2ai0_dual_champion_global_composition_v1"
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "minimum_gold_median_style_delta_e76": 13.9944,
+    "minimum_gold_median_non_basic_residual_delta_e76": 7.8946,
+    "parent_density_style_delta_e76": 13.4944,
+    "parent_density_non_basic_residual_delta_e76": 7.3946,
+    "minimum_material_gain_delta_e76": 0.5,
+    "report_worst_stress_new_hard_clipping": true
+  },
+  "visual": {
+    "automatic_survivors_only": true,
+    "blind_rounds": 3,
+    "comparators": [
+      "anchor56_chroma_margin4_challenger",
+      "cyan_shadow_warm_highlight_like__s50"
+    ],
+    "minimum_round_wins_over_both_parents": 2,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "inspect_face_text_texture_gradient_highlight_shadow": true,
+    "claim": "autonomous B0 development evidence only; not owner, human-panel or population preference"
+  },
+  "branch_rules": {
+    "no_automatic_survivor": "close composition without order, strength, margin or threshold rescue",
+    "automatic_survivor_visual_failure": "veto candidate and close if no remaining survivor",
+    "automatic_and_visual_pass": "retain at most one B0 composition challenger without changing production default",
+    "tie": "prefer lower density strength, then anchor_then_density"
+  },
+  "image_download_allowed": false,
+  "training_allowed": false,
+  "gpu_allowed": false,
+  "current_film_pixel_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "B0 autonomous development evidence for a fixed composition of two already-retained deterministic film-inspired global Look Approximation operators; no hidden confirmation, owner or population preference, real-film identification, stock response, calibration, authenticity or production promotion"
+}

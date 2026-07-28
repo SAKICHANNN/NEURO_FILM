@@ -5537,3 +5537,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   authority. O0 remains independent; all photo/film/stock/LSM/product gates
   stay closed. Goal remains ACTIVE and selects a distinct information-source
   algorithm leaf.
+
+## 2026-07-28 - Freeze U5.R2AI0 dual-champion global composition
+
+- **Selection:** after AH1D repeatably averages and retains content, return to
+  the product objective with a deterministic no-training leaf. R2B's
+  anchor56 margin-4 and R2E1's density-cyan s0.50 are independently
+  severe-clean and visually complementary; their composition is untested.
+- **Bank:** exactly two sequential orders at the three inherited density
+  strengths `.20/.35/.50`; fixed anchor recipe, final margin-4, no
+  intermediate quantization, spatial logic, fitting or per-image choice.
+- **Gates:** all 41 inputs render twice; style/non-basic must reach
+  `13.9944/7.8946`, a fixed `.5` gain over E1 on both views, with worst-gold
+  new clipping <=`.5%`. Survivors require two-of-three blind wins over both
+  parents and complete full-resolution ID11/face/text/texture/gradient veto.
+- **Branch/claim:** any failure closes without order/strength/margin/gate
+  rescue. A pass retains one B0 Look Approximation challenger only; no stock,
+  authenticity, preference-population or production promotion claim.
+  Implementation is the next ready leaf; Goal remains ACTIVE.
