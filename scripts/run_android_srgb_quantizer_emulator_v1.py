@@ -43,6 +43,10 @@ REQUIRED_RESULT = {
     "q16_exact": True,
     "inner_replay_exact": True,
     "failure_atomic": True,
+    "icc_exact": True,
+    "eotf_q8_roundtrip_exact": True,
+    "eotf_q16_roundtrip_exact": True,
+    "eotf_failure_atomic": True,
 }
 
 
@@ -324,6 +328,8 @@ def execute() -> dict[str, Any]:
                     "x86_64"
                 ],
                 "jni_sha256": package["native"]["jni_libraries"]["x86_64"],
+                "eotf_sha256": package["native"]["eotf_libraries"]["x86_64"],
+                "icc_sha256": package["native"]["icc_libraries"]["x86_64"],
             },
             "runtime": {
                 "emulator_sha256": _sha256(emulator_exe),

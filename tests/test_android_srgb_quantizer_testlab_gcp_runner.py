@@ -76,12 +76,14 @@ def test_runtime_tokens_require_complete_device_result(
         "threshold_identity":"fae645ef1aad04fcd1233631a32f820cf7696e3ca65d31939acf60d7f123674c",
         "vector_sha256":"3d4205e51de80392ea7a4e5eccaf05ab6d322a48475603764c28e47d61aa7628",
         "q8_exact":true,"q16_exact":true,
-        "inner_replay_exact":true,"failure_atomic":true}
+        "inner_replay_exact":true,"failure_atomic":true,
+        "icc_exact":true,"eotf_q8_roundtrip_exact":true,
+        "eotf_q16_roundtrip_exact":true,"eotf_failure_atomic":true}
         """,
         encoding="utf-8",
     )
     evidence = _runtime_tokens([complete])
-    assert evidence["required_token_count"] == 9
+    assert evidence["required_token_count"] == 13
     assert evidence["matched_file_names"] == ["instrumentation.results"]
     incomplete = tmp_path / "incomplete.txt"
     incomplete.write_text('"status":"PASS"', encoding="utf-8")
@@ -101,10 +103,13 @@ def test_runtime_tokens_accept_test_lab_escaped_json(
         \"threshold_identity\":\"fae645ef1aad04fcd1233631a32f820cf7696e3ca65d31939acf60d7f123674c\",
         \"vector_sha256\":\"3d4205e51de80392ea7a4e5eccaf05ab6d322a48475603764c28e47d61aa7628\",
         \"q8_exact\":true,\"q16_exact\":true,
-        \"inner_replay_exact\":true,\"failure_atomic\":true}
+        \"inner_replay_exact\":true,\"failure_atomic\":true,
+        \"icc_exact\":true,\"eotf_q8_roundtrip_exact\":true,
+        \"eotf_q16_roundtrip_exact\":true,
+        \"eotf_failure_atomic\":true}
         """,
         encoding="utf-8",
     )
     evidence = _runtime_tokens([escaped])
-    assert evidence["required_token_count"] == 9
+    assert evidence["required_token_count"] == 13
     assert evidence["matched_file_names"] == ["instrumentation.results"]

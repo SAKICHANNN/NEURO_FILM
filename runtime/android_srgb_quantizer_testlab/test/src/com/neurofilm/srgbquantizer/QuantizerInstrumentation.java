@@ -45,6 +45,10 @@ public final class QuantizerInstrumentation extends Instrumentation {
             require(first, "\"q16_exact\":true");
             require(first, "\"inner_replay_exact\":true");
             require(first, "\"failure_atomic\":true");
+            require(first, "\"icc_exact\":true");
+            require(first, "\"eotf_q8_roundtrip_exact\":true");
+            require(first, "\"eotf_q16_roundtrip_exact\":true");
+            require(first, "\"eotf_failure_atomic\":true");
             if (!first.equals(second)) {
                 throw new IllegalStateException("outer replay differs");
             }

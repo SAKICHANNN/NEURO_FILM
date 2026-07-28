@@ -38,6 +38,10 @@ def test_instrumentation_parser_accepts_complete_runtime() -> None:
         "q16_exact": True,
         "inner_replay_exact": True,
         "failure_atomic": True,
+        "icc_exact": True,
+        "eotf_q8_roundtrip_exact": True,
+        "eotf_q16_roundtrip_exact": True,
+        "eotf_failure_atomic": True,
     }
     output = _output(payload)
     assert _instrumentation_result(output) == payload
@@ -70,6 +74,10 @@ def test_instrumentation_parser_fails_closed(mutation) -> None:
             "q16_exact": True,
             "inner_replay_exact": True,
             "failure_atomic": True,
+            "icc_exact": True,
+            "eotf_q8_roundtrip_exact": True,
+            "eotf_q16_roundtrip_exact": True,
+            "eotf_failure_atomic": True,
         }
     )
     with pytest.raises(EmulatorRuntimeError):

@@ -26,7 +26,14 @@ from scripts.build_srgb_oetf_quantize_c_v1 import (
     thresholds,
 )
 from scripts.build_srgb_oetf_quantize_native_v1 import build_android
+from scripts.build_srgb_eotf_native_v1 import (
+    build_android as build_eotf_android,
+)
+from scripts.build_srgb_icc_profile_native_v1 import (
+    build_android as build_icc_android,
+)
 from scripts.build_reference_chain_android import _validate_ndk
+from src.color_match.srgb_icc_profile import srgb_icc_profile_v1
 
 
 HARNESS = ROOT / "runtime" / "android_srgb_quantizer_testlab"
@@ -200,6 +207,25 @@ def encode_vector_header() -> tuple[str, dict[str, str]]:
     )
 
 
+def encode_profile_header() -> str:
+    profile = srgb_icc_profile_v1()
+    rows = [
+        ", ".join(f"0x{value:02x}u" for value in profile[index:index + 12])
+        for index in range(0, len(profile), 12)
+    ]
+    encoded = ",\n    ".join(rows)
+    return (
+        "#ifndef NF_SRGB_ICC_EXPECTED_V1_H\n"
+        "#define NF_SRGB_ICC_EXPECTED_V1_H\n"
+        "#include <stdint.h>\n"
+        "#define NF_SRGB_ICC_EXPECTED_SIZE 588u\n"
+        "static const uint8_t NF_SRGB_ICC_EXPECTED[588u] = {\n"
+        f"    {encoded}\n"
+        "};\n"
+        "#endif\n"
+    )
+
+
 def build(
     sdk: Path,
     ndk: Path,
@@ -262,6 +288,8 @@ def build(
         directory.mkdir(exist_ok=True)
 
     core_report = build_android(ndk, native_output)
+    eotf_report = build_eotf_android(ndk, native_output)
+    icc_report = build_icc_android(ndk, native_output)
     core_libraries = {
         abi: (
             native_output
@@ -273,6 +301,12 @@ def build(
     vector_header = generated / "nf_srgb_quantizer_vectors_v1.h"
     vector_header.write_text(
         vector_source,
+        encoding="ascii",
+        newline="\n",
+    )
+    profile_header = generated / "nf_srgb_icc_expected_v1.h"
+    profile_header.write_text(
+        encode_profile_header(),
         encoding="ascii",
         newline="\n",
     )
@@ -290,6 +324,8 @@ def build(
         core_soname = (
             "libneuro_film_srgb_oetf_quantize_" f"{abi}.so"
         )
+        eotf_soname = f"libneuro_film_srgb_eotf_{abi}.so"
+        icc_soname = f"libneuro_film_srgb_icc_{abi}.so"
         jni_library = (
             native_output / f"libnf_srgb_quantizer_testlab_{abi}.so"
         )
@@ -308,6 +344,8 @@ def build(
                     "-DNF_SRGB_QUANTIZER_CORE_LIBRARY="
                     f'"{core_soname}"'
                 ),
+                f'-DNF_SRGB_EOTF_LIBRARY="{eotf_soname}"',
+                f'-DNF_SRGB_ICC_LIBRARY="{icc_soname}"',
                 "-shared",
                 JNI_SOURCE,
                 "-I",
@@ -435,6 +473,18 @@ def build(
                 ): library
                 for abi, library in core_libraries.items()
             },
+            **{
+                f"lib/{abi}/libneuro_film_srgb_eotf_{abi}.so": (
+                    native_output / f"libneuro_film_srgb_eotf_{abi}.so"
+                )
+                for abi in jni_targets
+            },
+            **{
+                f"lib/{abi}/libneuro_film_srgb_icc_{abi}.so": (
+                    native_output / f"libneuro_film_srgb_icc_{abi}.so"
+                )
+                for abi in jni_targets
+            },
         },
     )
     app_badging = _run([aapt2, "dump", "badging", app_unsigned])
@@ -534,9 +584,22 @@ def build(
                 abi: _sha256(path)
                 for abi, path in jni_libraries.items()
             },
+            "eotf_library_sha256": {
+                abi: _sha256(
+                    native_output / f"libneuro_film_srgb_eotf_{abi}.so"
+                )
+                for abi in jni_targets
+            },
+            "icc_library_sha256": {
+                abi: _sha256(
+                    native_output / f"libneuro_film_srgb_icc_{abi}.so"
+                )
+                for abi in jni_targets
+            },
             "package_prefix": PACKAGE_PREFIX,
             "sources": source_hashes,
             "vector_header_sha256": _sha256(vector_header),
+            "profile_header_sha256": _sha256(profile_header),
         },
         sort_keys=True,
         separators=(",", ":"),
@@ -572,6 +635,8 @@ def build(
             "generated_header_sha256": _sha256(vector_header),
         },
         "core_cross_compile_report": core_report,
+        "eotf_cross_compile_report": eotf_report,
+        "icc_cross_compile_report": icc_report,
         "native": {
             # Preserve the original arm64 aliases for existing consumers while
             # binding the complete dual-ABI package explicitly.
@@ -588,6 +653,18 @@ def build(
             "jni_libraries": {
                 abi: _sha256(path)
                 for abi, path in jni_libraries.items()
+            },
+            "eotf_libraries": {
+                abi: _sha256(
+                    native_output / f"libneuro_film_srgb_eotf_{abi}.so"
+                )
+                for abi in jni_targets
+            },
+            "icc_libraries": {
+                abi: _sha256(
+                    native_output / f"libneuro_film_srgb_icc_{abi}.so"
+                )
+                for abi in jni_targets
             },
         },
         "manifest_validation": {

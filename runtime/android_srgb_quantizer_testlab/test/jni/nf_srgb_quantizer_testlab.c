@@ -5,14 +5,32 @@
 #include <string.h>
 
 #include "nf_srgb_quantizer_vectors_v1.h"
+#include "nf_srgb_icc_expected_v1.h"
 
 #ifndef NF_SRGB_QUANTIZER_CORE_LIBRARY
 #error "NF_SRGB_QUANTIZER_CORE_LIBRARY must name the packaged ABI core"
+#endif
+#ifndef NF_SRGB_EOTF_LIBRARY
+#error "NF_SRGB_EOTF_LIBRARY must name the packaged ABI EOTF"
+#endif
+#ifndef NF_SRGB_ICC_LIBRARY
+#error "NF_SRGB_ICC_LIBRARY must name the packaged ABI ICC accessor"
 #endif
 
 typedef int (*nf_apply_fn)(
     const float *, size_t, uint32_t, void *, size_t);
 typedef const char *(*nf_identity_fn)(void);
+typedef int (*nf_eotf_apply_fn)(
+    const void *, size_t, uint32_t, float *, size_t);
+typedef size_t (*nf_icc_size_fn)(void);
+typedef int (*nf_icc_copy_fn)(uint8_t *, size_t);
+
+static uint16_t NF_CODES16[65536u];
+static uint16_t NF_ROUNDTRIP16[65536u];
+static float NF_LINEAR16[65536u];
+static uint8_t NF_CODES8[256u];
+static uint8_t NF_ROUNDTRIP8[256u];
+static float NF_LINEAR8[256u];
 
 _Static_assert(
     sizeof(nf_apply_fn) == sizeof(void *),
@@ -46,6 +64,21 @@ static jstring nf_throw(
     return NULL;
 }
 
+static jstring nf_throw_all(
+    JNIEnv *environment,
+    void *core,
+    void *eotf,
+    void *icc,
+    const char *message) {
+    if (icc != NULL) {
+        (void)dlclose(icc);
+    }
+    if (eotf != NULL) {
+        (void)dlclose(eotf);
+    }
+    return nf_throw(environment, core, message);
+}
+
 JNIEXPORT jstring JNICALL
 Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     JNIEnv *environment,
@@ -54,6 +87,13 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     void *symbol;
     nf_apply_fn apply = NULL;
     nf_identity_fn identity = NULL;
+    void *eotf = NULL;
+    void *icc = NULL;
+    nf_eotf_apply_fn eotf_apply = NULL;
+    nf_identity_fn eotf_identity = NULL;
+    nf_icc_size_fn icc_size = NULL;
+    nf_identity_fn icc_identity = NULL;
+    nf_icc_copy_fn icc_copy = NULL;
     float inputs[NF_SRGB_QUANTIZER_VECTOR_COUNT];
     float invalid[NF_SRGB_QUANTIZER_VECTOR_COUNT];
     uint8_t q8[NF_SRGB_QUANTIZER_VECTOR_COUNT];
@@ -62,6 +102,11 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     uint8_t q8_before[NF_SRGB_QUANTIZER_VECTOR_COUNT];
     uint16_t q16[NF_SRGB_QUANTIZER_VECTOR_COUNT];
     uint16_t q16_replay[NF_SRGB_QUANTIZER_VECTOR_COUNT];
+    uint8_t icc_output[NF_SRGB_ICC_EXPECTED_SIZE];
+    uint8_t icc_sentinel[NF_SRGB_ICC_EXPECTED_SIZE];
+    uint8_t icc_before[NF_SRGB_ICC_EXPECTED_SIZE];
+    float eotf_sentinel[4u];
+    float eotf_before[4u];
     size_t index;
     char result[1024];
     int written;
@@ -147,8 +192,100 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
     ) {
         return nf_throw(environment, core, "failure atomicity failed");
     }
-    if (dlclose(core) != 0) {
-        return nf_throw(environment, NULL, "quantizer core dlclose failed");
+    eotf = dlopen(NF_SRGB_EOTF_LIBRARY, RTLD_NOW | RTLD_LOCAL);
+    icc = dlopen(NF_SRGB_ICC_LIBRARY, RTLD_NOW | RTLD_LOCAL);
+    if (eotf == NULL || icc == NULL) {
+        return nf_throw_all(
+            environment, core, eotf, icc, "SDR rail dlopen failed");
+    }
+    symbol = dlsym(eotf, "nf_srgb_eotf_f32_apply_v1");
+    memcpy(&eotf_apply, &symbol, sizeof(eotf_apply));
+    symbol = dlsym(eotf, "nf_srgb_eotf_f32_lut_sha256_v1");
+    memcpy(&eotf_identity, &symbol, sizeof(eotf_identity));
+    symbol = dlsym(icc, "nf_srgb_icc_profile_size_v1");
+    memcpy(&icc_size, &symbol, sizeof(icc_size));
+    symbol = dlsym(icc, "nf_srgb_icc_profile_sha256_v1");
+    memcpy(&icc_identity, &symbol, sizeof(icc_identity));
+    symbol = dlsym(icc, "nf_srgb_icc_profile_copy_v1");
+    memcpy(&icc_copy, &symbol, sizeof(icc_copy));
+    if (
+        eotf_apply == NULL
+        || eotf_identity == NULL
+        || icc_size == NULL
+        || icc_identity == NULL
+        || icc_copy == NULL
+        || strcmp(
+            eotf_identity(),
+            "1b8f915b4ddf4dc2b4aa961934b05549d23f4593a7b65c2aacfdb7eaea80a1ca"
+        ) != 0
+        || icc_size() != NF_SRGB_ICC_EXPECTED_SIZE
+        || strcmp(
+            icc_identity(),
+            "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+        ) != 0
+    ) {
+        return nf_throw_all(
+            environment, core, eotf, icc, "SDR rail identity mismatch");
+    }
+    for (index = 0u; index < 256u; ++index) {
+        NF_CODES8[index] = (uint8_t)index;
+    }
+    for (index = 0u; index < 65536u; ++index) {
+        NF_CODES16[index] = (uint16_t)index;
+    }
+    if (
+        eotf_apply(NF_CODES8, 256u, 8u, NF_LINEAR8, 256u) != 1
+        || apply(NF_LINEAR8, 256u, 8u, NF_ROUNDTRIP8, 256u) != 1
+        || memcmp(NF_CODES8, NF_ROUNDTRIP8, 256u) != 0
+        || eotf_apply(
+            NF_CODES16, 65536u, 16u, NF_LINEAR16, 65536u) != 1
+        || apply(
+            NF_LINEAR16,
+            65536u,
+            16u,
+            NF_ROUNDTRIP16,
+            65536u) != 1
+        || memcmp(
+            NF_CODES16,
+            NF_ROUNDTRIP16,
+            sizeof(NF_CODES16)) != 0
+    ) {
+        return nf_throw_all(
+            environment, core, eotf, icc, "EOTF roundtrip failed");
+    }
+    memset(eotf_sentinel, 0xa5, sizeof(eotf_sentinel));
+    memcpy(eotf_before, eotf_sentinel, sizeof(eotf_sentinel));
+    if (
+        eotf_apply(NF_CODES8, 4u, 7u, eotf_sentinel, 4u) != 0
+        || memcmp(
+            eotf_sentinel, eotf_before, sizeof(eotf_sentinel)) != 0
+        || eotf_apply(NF_CODES8, 4u, 8u, eotf_sentinel, 3u) != 0
+        || memcmp(
+            eotf_sentinel, eotf_before, sizeof(eotf_sentinel)) != 0
+    ) {
+        return nf_throw_all(
+            environment, core, eotf, icc, "EOTF failure atomicity failed");
+    }
+    memset(icc_sentinel, 0xa5, sizeof(icc_sentinel));
+    memcpy(icc_before, icc_sentinel, sizeof(icc_sentinel));
+    if (
+        icc_copy(icc_sentinel, NF_SRGB_ICC_EXPECTED_SIZE - 1u) != 0
+        || memcmp(icc_sentinel, icc_before, sizeof(icc_sentinel)) != 0
+        || icc_copy(icc_output, NF_SRGB_ICC_EXPECTED_SIZE) != 1
+        || memcmp(
+            icc_output,
+            NF_SRGB_ICC_EXPECTED,
+            NF_SRGB_ICC_EXPECTED_SIZE) != 0
+    ) {
+        return nf_throw_all(
+            environment, core, eotf, icc, "ICC exact copy failed");
+    }
+    if (
+        dlclose(icc) != 0
+        || dlclose(eotf) != 0
+        || dlclose(core) != 0
+    ) {
+        return nf_throw(environment, NULL, "SDR rail dlclose failed");
     }
     written = snprintf(
         result,
@@ -164,7 +301,11 @@ Java_com_neurofilm_srgbquantizer_QuantizerInstrumentation_nativeRun(
         "\"q8_exact\":true,"
         "\"q16_exact\":true,"
         "\"inner_replay_exact\":true,"
-        "\"failure_atomic\":true}",
+        "\"failure_atomic\":true,"
+        "\"icc_exact\":true,"
+        "\"eotf_q8_roundtrip_exact\":true,"
+        "\"eotf_q16_roundtrip_exact\":true,"
+        "\"eotf_failure_atomic\":true}",
         (unsigned int)NF_SRGB_QUANTIZER_VECTOR_COUNT,
         NF_SRGB_QUANTIZER_THRESHOLD_ID,
         NF_SRGB_QUANTIZER_VECTOR_SHA256,

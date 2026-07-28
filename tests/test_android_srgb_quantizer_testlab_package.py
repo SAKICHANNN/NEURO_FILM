@@ -119,3 +119,13 @@ def test_android_package_builds_and_binds_exact_apks(tmp_path: Path) -> None:
         "lib/x86_64/"
         "libneuro_film_srgb_oetf_quantize_x86_64.so"
     ) in names
+    assert "lib/x86_64/libneuro_film_srgb_eotf_x86_64.so" in names
+    assert "lib/x86_64/libneuro_film_srgb_icc_x86_64.so" in names
+    assert set(first["native"]["eotf_libraries"]) == {
+        "arm64-v8a",
+        "x86_64",
+    }
+    assert set(first["native"]["icc_libraries"]) == {
+        "arm64-v8a",
+        "x86_64",
+    }

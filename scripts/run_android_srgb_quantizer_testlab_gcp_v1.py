@@ -398,6 +398,10 @@ def _runtime_tokens(files: list[Path]) -> dict[str, Any]:
         '"q16_exact":true',
         '"inner_replay_exact":true',
         '"failure_atomic":true',
+        '"icc_exact":true',
+        '"eotf_q8_roundtrip_exact":true',
+        '"eotf_q16_roundtrip_exact":true',
+        '"eotf_failure_atomic":true',
     )
     matched: dict[str, str] = {}
     for path in files:

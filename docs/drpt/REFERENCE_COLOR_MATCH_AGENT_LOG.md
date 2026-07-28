@@ -1630,6 +1630,23 @@
   platform/data skips and zero failures; the temporary worktree was removed.
 - Review state remains `review-ready-not-merged`; main owns any actual merge.
 
+## 2026-07-28 - Prove P97-P99 Android SDR boundary runtime
+
+- Extended the same dual-ABI package with the existing P78 ICC accessor and
+  P82 EOTF libraries. JNI binds ABI-specific sonames and compares the copied
+  588-byte profile against a package-generated exact header.
+- Two cold/wipe Android 14 x86_64 runs reproduce stable identity
+  `sha256:d47fb4e2...2da2` exactly; report SHAs are
+  `d7805334...af92` / `e5115cfb...2344`, with 79.45/73.13 second observations.
+- Every uint8 and uint16 code passes exact EOTF-to-OETF roundtrip, all 4096
+  quantizer vectors and both output depths remain exact, ICC bytes/identity
+  match, and EOTF/quantizer failure paths preserve caller output. Fifty-five
+  related tests pass.
+- Claim ceiling remains Android 14 x86_64 emulator runtime for the consumer
+  SDR boundary only. Encoded media parsing, ICC application/conversion,
+  physical arm64, Apple runtime, D-PCT matching and product admission remain
+  open.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
