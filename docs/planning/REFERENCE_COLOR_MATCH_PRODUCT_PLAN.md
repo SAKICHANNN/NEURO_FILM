@@ -291,6 +291,8 @@ with a selected stock, but reference matching alone is labeled
 | P84B | DONE | replay exhaustive and cross-target evidence | all 65,792 values remain exact on MSVC/LLVM; unaligned negatives remain unchanged; Android link-only and Apple object-only rebuild | 5 focused pass; refreshed artifact hashes | no target-runtime claim expansion |
 | P85A | DONE | publish EOTF-hardening integration manifest v12 | bind P1-P84 `091e688`, main `bc04943`, 347 payload paths, 47 exports, 20 schemas, zero overlap and exact v11 identity | `49cc6ae`; manifest SHA `2e082062...1a66` | review only, not merged |
 | P85B | DONE | verify v12 latest-main integration | conflict-free merge tree `e778299c`; local and detached all-color 1003 pass/3 skips; last full remains 1898 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
+| P86A | DONE | freeze large-image EOTF streaming audit | fixed 24 MP/72M-sample workload, odd chunk size, two depths, two compilers, two replays and independent per-scalar oracle | script/tests/evidence doc | Windows host only |
+| P86B | DONE | prove exact chunking and bounded caller buffers | stable evidence `5f7a5150...a579a`; compiler/replay outputs exact; tracked live arrays <=10,485,790 bytes; loaded DLLs close on success/failure | two formal reports; 7 focused and 1028 all-color pass/3 skips | tracked payload is not process RSS |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

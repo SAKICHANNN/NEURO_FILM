@@ -3015,6 +3015,30 @@
   Android link-only, Apple object-only, no D-PCT schema/capability mutation and
   no media, algorithm-admission or delivery expansion.
 
+## 2026-07-28 - Prove P86 large-image EOTF streaming
+
+- Node/parent goal: P86 / add factual large-image consumer runtime evidence
+  while main continues AM1 and D-PCT independently audits its next producer
+  leaf.
+- The fixed audit processes 24 MP / 72 million scalar samples at uint8 and
+  uint16 through both MSVC and LLVM-MinGW DLLs, using 1,048,579-sample chunks,
+  two replays and an independent P72 NumPy oracle for every scalar.
+- Two complete audits have exact non-timing evidence identity
+  `sha256:5f7a5150...a579a`. Output hashes are `994c30d3...aa12c`
+  (uint8) and `ad7007c3...3f148` (uint16); both compilers and all four replays
+  agree.
+- Maximum simultaneously live tracked array payload is 9,437,211 bytes for
+  uint8 and 10,485,790 bytes for uint16. This is explicitly not process RSS
+  or target-device memory evidence.
+- The first focused run exposed a Windows DLL lifetime leak in the auditor:
+  successful arithmetic left the loaded library undeletable. The final
+  implementation closes every handle in `finally`; success and injected
+  runtime-failure cleanup are tested.
+- Seven focused and 1028 all-color tests pass with three platform skips.
+  Claim ceiling remains Windows x86_64 host
+  streaming only: no media, producer algorithm, Android/Apple runtime,
+  authorization or delivery state changes.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.
