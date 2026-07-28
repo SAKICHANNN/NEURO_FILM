@@ -36,6 +36,7 @@ from .safety import (
     ReferenceSafetyDecision,
     render_reference_look_guarded,
 )
+from .transaction_lock import target_transaction_lock
 
 
 _SDR_OUTPUT_EXTENSIONS = frozenset({".png", ".jpg", ".jpeg", ".tif", ".tiff"})
@@ -289,7 +290,7 @@ def _file_identity(path: Path) -> tuple[int, int]:
     return int(value.st_dev), int(value.st_ino)
 
 
-def _commit_staged_batch(
+def _commit_staged_batch_unlocked(
     pairs: tuple[tuple[Path, Path], ...],
     *,
     token: str,
@@ -513,6 +514,39 @@ def _commit_staged_batch(
             # committed transaction. A persistent backup is recoverable
             # debris, never proof that the new destinations were rolled back.
             cleanup.remove(backup)
+
+
+def _commit_staged_batch(
+    pairs: tuple[tuple[Path, Path], ...],
+    *,
+    token: str,
+    cleanup: list[Path],
+    expected_stage_sha256: Mapping[Path, str] | None = None,
+    expected_destination_sha256: Mapping[Path, str | None] | None = None,
+    replace_existing: bool = True,
+    targets_already_locked: bool = False,
+) -> None:
+    if targets_already_locked:
+        _commit_staged_batch_unlocked(
+            pairs,
+            token=token,
+            cleanup=cleanup,
+            expected_stage_sha256=expected_stage_sha256,
+            expected_destination_sha256=expected_destination_sha256,
+            replace_existing=replace_existing,
+        )
+        return
+    with target_transaction_lock(
+        tuple(destination for _stage, destination in pairs)
+    ):
+        _commit_staged_batch_unlocked(
+            pairs,
+            token=token,
+            cleanup=cleanup,
+            expected_stage_sha256=expected_stage_sha256,
+            expected_destination_sha256=expected_destination_sha256,
+            replace_existing=replace_existing,
+        )
 
 
 def _encode_srgb(

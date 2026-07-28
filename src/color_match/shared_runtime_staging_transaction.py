@@ -626,6 +626,7 @@ def commit_runtime_qualified_external_shared_staging_v1(
                     expected_destination_hashes
                 ),
                 replace_existing=False,
+                targets_already_locked=True,
             )
             return CommittedRuntimeQualifiedExternalSharedStagingV1(
                 run=run,

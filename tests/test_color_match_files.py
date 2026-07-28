@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
+import sys
+import threading
+import time
 
 import numpy as np
 import pytest
@@ -267,3 +271,124 @@ def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
     assert destination.read_bytes() == b"new"
     assert cleanup == []
     assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_concurrent_batch_commit_cannot_publish_mixed_destinations(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    destinations = (tmp_path / "one.bin", tmp_path / "two.bin")
+    for index, destination in enumerate(destinations):
+        destination.write_bytes(f"old-{index}".encode("ascii"))
+    a_stages = (tmp_path / "a-one.stage", tmp_path / "a-two.stage")
+    b_stages = (tmp_path / "b-one.stage", tmp_path / "b-two.stage")
+    for stage, value in zip(a_stages, (b"A1", b"A2"), strict=True):
+        stage.write_bytes(value)
+    for stage, value in zip(b_stages, (b"B1", b"B2"), strict=True):
+        stage.write_bytes(value)
+
+    first_published = threading.Event()
+    release_first = threading.Event()
+    original_replace = files._replace
+    failures: list[BaseException] = []
+
+    def pause_after_first_publish(source: Path, destination: Path) -> None:
+        original_replace(source, destination)
+        if source == a_stages[0]:
+            first_published.set()
+            if not release_first.wait(5):
+                raise TimeoutError("concurrency test release timed out")
+
+    monkeypatch.setattr(files, "_replace", pause_after_first_publish)
+
+    def commit_a() -> None:
+        try:
+            files._commit_staged_batch(
+                tuple(zip(a_stages, destinations, strict=True)),
+                token="a" * 32,
+                cleanup=list(a_stages),
+            )
+        except BaseException as exc:
+            failures.append(exc)
+
+    thread = threading.Thread(target=commit_a)
+    thread.start()
+    assert first_published.wait(5)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="already locked",
+    ):
+        files._commit_staged_batch(
+            tuple(zip(b_stages, destinations, strict=True)),
+            token="b" * 32,
+            cleanup=list(b_stages),
+        )
+    release_first.set()
+    thread.join(5)
+
+    assert not thread.is_alive()
+    assert failures == []
+    assert tuple(path.read_bytes() for path in destinations) == (b"A1", b"A2")
+
+
+def test_batch_commit_target_lock_is_cross_process(tmp_path: Path) -> None:
+    ready = tmp_path / "ready"
+    release = tmp_path / "release"
+    destination = tmp_path / "output.bin"
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"new")
+    script = "\n".join(
+        (
+            "import sys, time",
+            "from pathlib import Path",
+            "from src.color_match.transaction_lock "
+            "import target_transaction_lock",
+            "ready, release, target = map(Path, sys.argv[1:])",
+            "with target_transaction_lock((target,)):",
+            "    ready.write_text('ready', encoding='ascii')",
+            "    deadline = time.monotonic() + 10",
+            "    while not release.exists():",
+            "        if time.monotonic() >= deadline:",
+            "            raise TimeoutError('release timeout')",
+            "        time.sleep(0.02)",
+        )
+    )
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            "-c",
+            script,
+            str(ready),
+            str(release),
+            str(destination),
+        ],
+        cwd=Path(__file__).resolve().parents[1],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        deadline = time.monotonic() + 10
+        while not ready.exists() and process.poll() is None:
+            if time.monotonic() >= deadline:
+                raise TimeoutError("child lock acquisition timeout")
+            time.sleep(0.02)
+        assert ready.is_file()
+        from src.color_match import files
+
+        with pytest.raises(
+            ReferenceMatchContractError,
+            match="already locked",
+        ):
+            files._commit_staged_batch(
+                ((stage, destination),),
+                token="cross-process",
+                cleanup=[stage],
+            )
+    finally:
+        release.write_text("release", encoding="ascii")
+        stdout, stderr = process.communicate(timeout=10)
+    assert process.returncode == 0, (stdout, stderr)
+    assert not destination.exists()
