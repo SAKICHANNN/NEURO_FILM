@@ -396,10 +396,8 @@ def _target_transaction_lock(
             )
         _HELD_LOCK_KEYS.update(keys)
     handles: list[Any] = []
-    lock_root = (
-        Path(tempfile.gettempdir())
-        / "neuro-film-reference-match-target-locks-v1"
-    )
+    temp_root = Path(tempfile.gettempdir()).resolve(strict=True)
+    lock_root = temp_root / "neuro-film-reference-match-target-locks-v1"
     try:
         _reject_reparse_components(
             lock_root,
@@ -425,20 +423,24 @@ def _target_transaction_lock(
             handles.append(handle)
         yield
     finally:
-        for handle in reversed(handles):
-            try:
+        try:
+            for handle in reversed(handles):
                 try:
-                    _release_platform_lock(handle)
-                except OSError:
-                    # Releasing/closing a lock is post-transaction
-                    # housekeeping. Never retain the in-process lock or
-                    # reclassify a completed commit because the OS reports a
-                    # cleanup error.
-                    pass
-            finally:
-                handle.close()
-        with _LOCK_GUARD:
-            _HELD_LOCK_KEYS.difference_update(keys)
+                    try:
+                        _release_platform_lock(handle)
+                    except OSError:
+                        # Releasing a lock is post-transaction housekeeping.
+                        pass
+                finally:
+                    try:
+                        handle.close()
+                    except OSError:
+                        # A close failure likewise cannot reclassify a
+                        # completed commit or poison the in-process lock set.
+                        pass
+        finally:
+            with _LOCK_GUARD:
+                _HELD_LOCK_KEYS.difference_update(keys)
 
 
 def _normalize_prior_hashes(
@@ -641,10 +643,53 @@ def commit_runtime_qualified_external_shared_staging_v1(
                 (_stage_path(output, token), output)
                 for output in outputs
             ) + ((staged_report, report),)
+            for index, (output, expected) in enumerate(
+                zip(outputs, prior_outputs, strict=True)
+            ):
+                _reject_reparse_components(
+                    output,
+                    label=f"runtime-qualified output path {index}",
+                )
+                _verify_expected_prior_file(
+                    output,
+                    expected,
+                    label=f"runtime-qualified output {index}",
+                )
+            _reject_reparse_components(
+                report,
+                label="runtime-qualified report path",
+            )
+            _verify_expected_prior_file(
+                report,
+                prior_report,
+                label="runtime-qualified report",
+            )
+            expected_stage_hashes = {
+                _stage_path(output, token): row.output_file_sha256
+                for output, row in zip(
+                    outputs,
+                    prepared_rows,
+                    strict=True,
+                )
+            }
+            expected_stage_hashes[staged_report] = report_file_sha256
+            expected_destination_hashes = {
+                output: expected
+                for output, expected in zip(
+                    outputs,
+                    prior_outputs,
+                    strict=True,
+                )
+            }
+            expected_destination_hashes[report] = prior_report
             _commit_staged_batch(
                 pairs,
                 token=token,
                 cleanup=staged,
+                expected_stage_sha256=expected_stage_hashes,
+                expected_destination_sha256=(
+                    expected_destination_hashes
+                ),
             )
             return CommittedRuntimeQualifiedExternalSharedStagingV1(
                 run=run,
@@ -728,6 +773,23 @@ def validate_runtime_qualified_external_shared_staging_run_v1(
         value.prior_report_file_sha256,
         "prior_report_file_sha256",
     )
+    path_texts = tuple(
+        output.output_path for output in value.outputs
+    ) + (value.report_path,)
+    for path_text in path_texts:
+        if not isinstance(path_text, str) or not path_text:
+            raise ReferenceMatchContractError(
+                "runtime-qualified shared staging path is invalid"
+            )
+        path = Path(path_text)
+        if (
+            not path.is_absolute()
+            or str(Path(os.path.abspath(path_text))) != path_text
+        ):
+            raise ReferenceMatchContractError(
+                "runtime-qualified shared staging paths "
+                "must be canonical absolute paths"
+            )
     # Delegate every P50 output/path/depth/cardinality invariant to the frozen
     # validator without assigning a P50 identity to this P62 report.
     validate_external_shared_staging_run_v1(

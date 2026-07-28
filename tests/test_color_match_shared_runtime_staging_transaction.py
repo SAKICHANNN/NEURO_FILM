@@ -687,6 +687,50 @@ def test_prior_hash_mismatch_rejects_without_replacement(
     assert not report.exists()
 
 
+def test_intervening_destination_creation_during_encoding_is_preserved(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_encode = runtime_staging_module.encode_sdr_staging_output
+    injected = False
+
+    def create_intervening_destination(*args, **kwargs):
+        nonlocal injected
+        result = original_encode(*args, **kwargs)
+        if not injected:
+            outputs[0].write_bytes(b"intervening-owner-bytes")
+            injected = True
+        return result
+
+    monkeypatch.setattr(
+        runtime_staging_module,
+        "encode_sdr_staging_output",
+        create_intervening_destination,
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="already exists without an expected prior hash",
+    ):
+        commit_runtime_qualified_external_shared_staging_v1(
+            batch=batch,
+            numeric_guard=numeric,
+            authorization=authorization,
+            runtime_qualification=qualification,
+            expected_runtime_qualification_id=(
+                qualification.qualification_id
+            ),
+            applies=applies,
+            output_paths=outputs,
+            report_path=report,
+        )
+    assert outputs[0].read_bytes() == b"intervening-owner-bytes"
+    assert not outputs[1].exists()
+    assert not report.exists()
+    _assert_no_debris(tmp_path)
+
+
 def test_symlink_destination_or_ancestor_rejects(
     tmp_path: Path,
 ) -> None:
@@ -831,6 +875,45 @@ def test_overlapping_target_lock_is_cross_process(
     assert process.returncode == 0, (stdout, stderr)
 
 
+def test_lock_close_failure_cannot_poison_in_process_lock_set(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    paths = (tmp_path / "one.png", tmp_path / "run.json")
+    original_open = Path.open
+    injected = False
+
+    class CloseFailingHandle:
+        def __init__(self, handle) -> None:
+            self._handle = handle
+
+        def __getattr__(self, name):
+            return getattr(self._handle, name)
+
+        def close(self) -> None:
+            nonlocal injected
+            self._handle.close()
+            if not injected:
+                injected = True
+                raise OSError("injected lock close failure")
+
+    def open_with_close_failure(path: Path, *args, **kwargs):
+        handle = original_open(path, *args, **kwargs)
+        if path.name.endswith(".lock"):
+            return CloseFailingHandle(handle)
+        return handle
+
+    monkeypatch.setattr(Path, "open", open_with_close_failure)
+    with runtime_staging_module._target_transaction_lock(paths):
+        pass
+    assert injected
+    assert runtime_staging_module._HELD_LOCK_KEYS.isdisjoint(
+        runtime_staging_module._lock_key(path) for path in paths
+    )
+    with runtime_staging_module._target_transaction_lock(paths):
+        pass
+
+
 def test_caller_pixel_mutation_after_snapshot_cannot_change_output(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -924,6 +1007,84 @@ def test_staged_output_mutation_after_first_hash_rejects_without_commit(
             report_path=report,
         )
     assert not any(path.exists() for path in outputs)
+    assert not report.exists()
+    _assert_no_debris(tmp_path)
+
+
+def test_staged_output_mutation_at_commit_boundary_rejects(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_commit = runtime_staging_module._commit_staged_batch
+
+    def tamper_then_commit(pairs, **kwargs) -> None:
+        first_stage = pairs[0][0]
+        first_stage.write_bytes(first_stage.read_bytes() + b"tamper")
+        original_commit(pairs, **kwargs)
+
+    monkeypatch.setattr(
+        runtime_staging_module,
+        "_commit_staged_batch",
+        tamper_then_commit,
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="staged file changed before batch replacement",
+    ):
+        commit_runtime_qualified_external_shared_staging_v1(
+            batch=batch,
+            numeric_guard=numeric,
+            authorization=authorization,
+            runtime_qualification=qualification,
+            expected_runtime_qualification_id=(
+                qualification.qualification_id
+            ),
+            applies=applies,
+            output_paths=outputs,
+            report_path=report,
+        )
+    assert not any(path.exists() for path in outputs)
+    assert not report.exists()
+    _assert_no_debris(tmp_path)
+
+
+def test_destination_creation_at_commit_boundary_rejects_and_preserves(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_commit = runtime_staging_module._commit_staged_batch
+
+    def create_then_commit(pairs, **kwargs) -> None:
+        pairs[0][1].write_bytes(b"intervening-at-commit")
+        original_commit(pairs, **kwargs)
+
+    monkeypatch.setattr(
+        runtime_staging_module,
+        "_commit_staged_batch",
+        create_then_commit,
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="destination appeared before batch replacement",
+    ):
+        commit_runtime_qualified_external_shared_staging_v1(
+            batch=batch,
+            numeric_guard=numeric,
+            authorization=authorization,
+            runtime_qualification=qualification,
+            expected_runtime_qualification_id=(
+                qualification.qualification_id
+            ),
+            applies=applies,
+            output_paths=outputs,
+            report_path=report,
+        )
+    assert outputs[0].read_bytes() == b"intervening-at-commit"
+    assert not outputs[1].exists()
     assert not report.exists()
     _assert_no_debris(tmp_path)
 
@@ -1058,3 +1219,35 @@ def test_unknown_report_field_and_schema_constants_fail_closed(
     assert schema["properties"]["claim_ceiling"]["const"] == (
         RUNTIME_QUALIFIED_SHARED_STAGING_CLAIM_CEILING
     )
+    assert "(?i)" not in schema["properties"]["report_path"]["pattern"]
+
+
+def test_relative_report_paths_reject_even_before_identity_check(
+    tmp_path: Path,
+) -> None:
+    applies, batch, numeric, authorization, qualification = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    run = commit_runtime_qualified_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        runtime_qualification=qualification,
+        expected_runtime_qualification_id=qualification.qualification_id,
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    ).run
+    relative = replace(
+        run,
+        outputs=(
+            replace(run.outputs[0], output_path="relative.png"),
+            run.outputs[1],
+        ),
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="canonical absolute paths",
+    ):
+        validate_runtime_qualified_external_shared_staging_run_v1(
+            relative
+        )

@@ -63,7 +63,7 @@
     "report_path": {
       "type": "string",
       "minLength": 1,
-      "pattern": "(?i)\\.json$"
+      "pattern": "\\.[jJ][sS][oO][nN]$"
     },
     "claim_ceiling": {
       "const": "runtime-qualified-shared-staging-files-committed-not-delivered"

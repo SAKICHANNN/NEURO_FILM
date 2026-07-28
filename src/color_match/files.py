@@ -241,6 +241,8 @@ def _commit_staged_batch(
     *,
     token: str,
     cleanup: list[Path],
+    expected_stage_sha256: Mapping[Path, str] | None = None,
+    expected_destination_sha256: Mapping[Path, str | None] | None = None,
 ) -> None:
     """Commit staged files and restore prior destinations on replace failure.
 
@@ -250,9 +252,71 @@ def _commit_staged_batch(
     retried; a persistently undeletable backup is retained for recovery.
     """
 
+    stages = {stage for stage, _destination in pairs}
+    destinations = {destination for _stage, destination in pairs}
+    if (
+        expected_stage_sha256 is not None
+        and set(expected_stage_sha256) != stages
+    ):
+        raise ReferenceMatchContractError(
+            "batch stage hash inventory does not match commit pairs"
+        )
+    if (
+        expected_destination_sha256 is not None
+        and set(expected_destination_sha256) != destinations
+    ):
+        raise ReferenceMatchContractError(
+            "batch destination hash inventory does not match commit pairs"
+        )
+
+    def checked_hash(value: str, label: str) -> str:
+        if (
+            not isinstance(value, str)
+            or len(value) != 64
+            or any(char not in "0123456789abcdef" for char in value)
+        ):
+            raise ReferenceMatchContractError(
+                f"{label} must be a lowercase SHA-256"
+            )
+        return value
+
     committed: list[tuple[Path, Path | None]] = []
     try:
         for stage, destination in pairs:
+            if expected_stage_sha256 is not None:
+                expected_stage = checked_hash(
+                    expected_stage_sha256[stage],
+                    "expected stage hash",
+                )
+                if (
+                    not stage.is_file()
+                    or sha256_file(stage) != expected_stage
+                ):
+                    raise ReferenceMatchContractError(
+                        "staged file changed before batch replacement"
+                    )
+            if expected_destination_sha256 is not None:
+                expected_destination = expected_destination_sha256[
+                    destination
+                ]
+                if expected_destination is None:
+                    if os.path.lexists(destination):
+                        raise ReferenceMatchContractError(
+                            "destination appeared before batch replacement"
+                        )
+                else:
+                    checked_hash(
+                        expected_destination,
+                        "expected destination hash",
+                    )
+                    if (
+                        not destination.is_file()
+                        or sha256_file(destination)
+                        != expected_destination
+                    ):
+                        raise ReferenceMatchContractError(
+                            "destination changed before batch replacement"
+                        )
             backup: Path | None = None
             if destination.exists():
                 backup = _backup_path(destination, token)
@@ -267,6 +331,16 @@ def _commit_staged_batch(
                 raise
             cleanup.remove(stage)
             committed.append((destination, backup))
+        if expected_stage_sha256 is not None:
+            for stage, destination in pairs:
+                expected = expected_stage_sha256[stage]
+                if (
+                    not destination.is_file()
+                    or sha256_file(destination) != expected
+                ):
+                    raise ReferenceMatchContractError(
+                        "committed destination bytes differ from staged hash"
+                    )
     except Exception:
         rollback_errors: list[str] = []
         for destination, backup in reversed(committed):
