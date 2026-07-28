@@ -190,6 +190,33 @@ def test_file_fit_and_replay_reject_oversized_batches_before_output(
     assert not any(path.exists() for path in (*fit_outputs, *replay_outputs))
 
 
+def test_file_fit_bounds_iterable_consumption_before_path_conversion(
+    tmp_path: Path,
+) -> None:
+    reference, _recipe_path = _fit_recipe(tmp_path)
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(source, 27810)
+    pulls = 0
+
+    def unbounded_sources():
+        nonlocal pulls
+        while True:
+            pulls += 1
+            if pulls > MAX_REFERENCE_MATCH_BATCH_SOURCES + 1:
+                raise AssertionError("file adapter over-consumed the source iterable")
+            yield source
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        match_reference_files(reference, unbounded_sources(), [output])
+
+    assert pulls == MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    assert not output.exists()
+
+
 @pytest.mark.parametrize("protected", ["recipe", "source"])
 def test_replay_never_overwrites_recipe_or_source(
     tmp_path: Path,
