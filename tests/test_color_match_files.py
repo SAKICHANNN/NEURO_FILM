@@ -392,3 +392,29 @@ def test_batch_commit_target_lock_is_cross_process(tmp_path: Path) -> None:
         stdout, stderr = process.communicate(timeout=10)
     assert process.returncode == 0, (stdout, stderr)
     assert not destination.exists()
+
+
+def test_runtime_and_generic_transactions_share_one_lock_namespace(
+    tmp_path: Path,
+) -> None:
+    from src.color_match import files
+    from src.color_match.shared_runtime_staging_transaction import (
+        _target_transaction_lock,
+    )
+
+    destination = tmp_path / "output.bin"
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"new")
+
+    with _target_transaction_lock((destination,)):
+        with pytest.raises(
+            ReferenceMatchContractError,
+            match="already locked",
+        ):
+            files._commit_staged_batch(
+                ((stage, destination),),
+                token="cross-class",
+                cleanup=[stage],
+            )
+
+    assert not destination.exists()

@@ -2,17 +2,14 @@
 
 from __future__ import annotations
 
-from contextlib import contextmanager
 from dataclasses import asdict, dataclass, replace
-import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import stat
 import tempfile
-import threading
-from typing import Any, Iterable, Iterator, Mapping, Sequence
+from typing import Any, Iterable, Mapping, Sequence
 import uuid
 
 import numpy as np
@@ -52,6 +49,11 @@ from .staging_io import (
     _bounded_output_paths,
     encode_sdr_staging_output,
     validate_sdr_staging_destinations,
+)
+from .transaction_lock import (
+    _HELD_LOCK_KEYS,
+    _lock_key,
+    target_transaction_lock as _target_transaction_lock,
 )
 
 
@@ -311,122 +313,6 @@ def _runtime_output_paths(
     if len(set(keys)) != len(keys):
         raise ReferenceMatchContractError("output paths must be unique")
     return absolute
-
-
-_LOCK_GUARD = threading.Lock()
-_HELD_LOCK_KEYS: set[str] = set()
-
-
-def _lock_key(path: Path) -> str:
-    return hashlib.sha256(
-        b"NeuroFilmRuntimeQualifiedSharedStagingPathV1\0"
-        + str(path).casefold().encode("utf-8")
-    ).hexdigest()
-
-
-def _acquire_platform_lock(handle: Any) -> None:
-    handle.seek(0, os.SEEK_END)
-    if handle.tell() == 0:
-        handle.write(b"\0")
-        handle.flush()
-    handle.seek(0)
-    try:
-        if os.name == "nt":
-            import msvcrt
-
-            msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
-        else:
-            import fcntl
-
-            fcntl.flock(
-                handle.fileno(),
-                fcntl.LOCK_EX | fcntl.LOCK_NB,
-            )
-    except OSError as exc:
-        raise ReferenceMatchContractError(
-            "runtime-qualified staging destination is already locked"
-        ) from exc
-
-
-def _release_platform_lock(handle: Any) -> None:
-    handle.seek(0)
-    if os.name == "nt":
-        import msvcrt
-
-        msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
-    else:
-        import fcntl
-
-        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
-
-
-@contextmanager
-def _target_transaction_lock(
-    paths: Sequence[Path],
-) -> Iterator[None]:
-    keys = tuple(sorted(_lock_key(path) for path in paths))
-    # Resolve every potentially failing prerequisite before reserving the
-    # in-process keys. Otherwise a broken temporary-directory configuration
-    # could poison the key set and reject every later valid retry.
-    temp_root = _reject_reparse_components(
-        Path(tempfile.gettempdir()),
-        label="runtime-qualified staging temporary root",
-    )
-    if not temp_root.is_dir():
-        raise ReferenceMatchContractError(
-            "runtime-qualified staging temporary root must be a directory"
-        )
-    lock_root = temp_root / "neuro-film-reference-match-target-locks-v1"
-    with _LOCK_GUARD:
-        if any(key in _HELD_LOCK_KEYS for key in keys):
-            raise ReferenceMatchContractError(
-                "runtime-qualified staging destination is already locked"
-            )
-        _HELD_LOCK_KEYS.update(keys)
-    handles: list[Any] = []
-    try:
-        _reject_reparse_components(
-            lock_root,
-            label="runtime-qualified staging lock root",
-        )
-        lock_root.mkdir(parents=True, exist_ok=True)
-        _reject_reparse_components(
-            lock_root,
-            label="runtime-qualified staging lock root",
-        )
-        for key in keys:
-            lock_path = lock_root / f"{key}.lock"
-            if _is_reparse_point(lock_path):
-                raise ReferenceMatchContractError(
-                    "runtime-qualified staging lock is a reparse point"
-                )
-            handle = lock_path.open("a+b")
-            try:
-                _acquire_platform_lock(handle)
-            except Exception:
-                handle.close()
-                raise
-            handles.append(handle)
-        yield
-    finally:
-        try:
-            for handle in reversed(handles):
-                try:
-                    try:
-                        _release_platform_lock(handle)
-                    except OSError:
-                        # Releasing a lock is post-transaction housekeeping.
-                        pass
-                finally:
-                    try:
-                        handle.close()
-                    except OSError:
-                        # A close failure likewise cannot reclassify a
-                        # completed commit or poison the in-process lock set.
-                        pass
-        finally:
-            with _LOCK_GUARD:
-                _HELD_LOCK_KEYS.difference_update(keys)
 
 
 def _require_absent_destination(
