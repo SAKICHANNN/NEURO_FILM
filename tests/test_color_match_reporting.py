@@ -108,8 +108,11 @@ def test_report_rejects_forged_oversized_result(tmp_path: Path) -> None:
         build_file_match_report(forged)
 
 
-@pytest.mark.parametrize("field", ["reference", "source"])
-def test_report_rejects_forged_captured_input_identity(
+@pytest.mark.parametrize(
+    "field",
+    ["reference", "source", "output", "recipe"],
+)
+def test_report_rejects_forged_artifact_identity(
     tmp_path: Path,
     field: str,
 ) -> None:
@@ -121,7 +124,7 @@ def test_report_rejects_forged_captured_input_identity(
     result = match_reference_files(reference, [source], [output])
     if field == "reference":
         forged = replace(result, reference_file_sha256="not-a-hash")
-    else:
+    elif field == "source":
         forged = replace(
             result,
             outputs=(
@@ -131,9 +134,31 @@ def test_report_rejects_forged_captured_input_identity(
                 ),
             ),
         )
+    elif field == "output":
+        forged = replace(
+            result,
+            outputs=(
+                replace(
+                    result.outputs[0],
+                    output_sha256="not-a-hash",
+                ),
+            ),
+        )
+    else:
+        forged = replace(
+            result,
+            recipe_path=tmp_path / "recipe.json",
+            recipe_file_sha256="not-a-hash",
+        )
     with pytest.raises(
         ReferenceMatchContractError,
-        match=f"{field}_file_sha256 must be a lowercase SHA-256",
+        match={
+            "reference": "reference_file_sha256",
+            "source": "source_file_sha256",
+            "output": "output_sha256",
+            "recipe": "recipe_file_sha256",
+        }[field]
+        + " must be a lowercase SHA-256",
     ):
         build_file_match_report(forged)
 

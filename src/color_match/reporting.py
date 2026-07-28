@@ -65,7 +65,10 @@ def _output_rows(
                     "source_file_sha256",
                 ),
                 "output_path": str(row.output_path.resolve()),
-                "output_sha256": row.output_sha256,
+                "output_sha256": _sha256(
+                    row.output_sha256,
+                    "output_sha256",
+                ),
                 "output_format": row.output_format,
                 "output_bit_depth": row.output_bit_depth,
                 "encode_clipped_fraction": row.encode_clipped_fraction,
@@ -104,7 +107,10 @@ def build_file_match_report(
             if result.recipe_path is None
             else {
                 "path": str(result.recipe_path.resolve()),
-                "sha256": result.recipe_file_sha256,
+                "sha256": _sha256(
+                    result.recipe_file_sha256,
+                    "recipe_file_sha256",
+                ),
             }
         ),
         "outputs": _output_rows(result.outputs),
@@ -131,7 +137,10 @@ def build_file_replay_report(
         "reference_pixel_sha256": result.recipe.reference_pixel_sha256,
         "recipe_file": {
             "path": str(result.recipe_path.resolve()),
-            "sha256": result.recipe_file_sha256,
+            "sha256": _sha256(
+                result.recipe_file_sha256,
+                "recipe_file_sha256",
+            ),
         },
         "outputs": _output_rows(result.outputs),
     }
