@@ -11,6 +11,12 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+# LibRaw's auto-bright histogram can differ by a few least-significant output
+# codes when its OpenMP reduction order changes. Source evidence requires
+# byte-exact repeat decoding, so freeze the decoder before importing rawpy.
+os.environ["OMP_NUM_THREADS"] = "1"
+
 import rawpy
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -444,6 +450,7 @@ def run_preflight(
                     "source_raw_sha256": raw_hash,
                     "decoder": "rawpy_libraw",
                     "decoder_version": rawpy.__version__,
+                    "decoder_threading": "OMP_NUM_THREADS=1",
                     "camera_white_balance": True,
                     "auto_bright_disabled": False,
                     "gamma": [2.222, 4.5],
