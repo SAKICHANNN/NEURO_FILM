@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8ad_native_standard_f32_decision.v1",
+  "node": "U6.P8AD",
+  "contract": "configs/u6_p8ad_native_standard_f32_v1.json",
+  "contract_sha256": "f6640abee54ef66c39103b35b60a0c74aa1d3f7239be1b8fe1a14c68034c84b8",
+  "formal_report": "outputs/u6_p8ad_native_standard_f32_v1/report.json",
+  "formal_report_sha256": "2b91632d23acebbb4d3f757419d72c86bada7a0e8630122570e64746d1721155",
+  "stable_evidence_id": "04e0219489183b46a8eef1c4452ac1ac675eac850e9f5448b9058eff8fec48e4",
+  "result": {
+    "status": "pass",
+    "sample_storage": "float32",
+    "profile_parameters": "float64",
+    "maximum_absolute_error_vs_float64": 2.8571686638834137e-7,
+    "tolerance": 0.000005,
+    "independent_build_dll_sha_exact": true,
+    "invalid_input_output_mutation": false,
+    "final_array_sha256": "18cc75006b9e9c7915660274aa7e4b42eb1201c7c57cf2efeee13fe8edbfa771"
+  },
+  "decision": "retain the separate float32 sample-storage ABIs as the native Standard candidate. All six ordered stages remain within 2.86e-7 absolute error of the float64 oracle and invalid inputs leave destinations unchanged, but no resource, device or display-complete claim opens before full-resolution measurement",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 small-image native float32 physical-chain conformance only",
+  "next_leaf": "U6.P8AE native Standard float32 12MP tiled resource comparison"
+}

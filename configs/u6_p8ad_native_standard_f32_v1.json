@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p8ad_native_standard_f32_contract.v1",
+  "node": "U6.P8AD",
+  "parent_decision": "configs/u6_p8ac_native_resources_decision_v1.json",
+  "parent_decision_sha256": "f35598ee8704b0899327320bd467b749677ddaeb9ccf334dc681c467bfd73c23",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "component_sources": {
+    "domains": {
+      "source": "native/film_physics/nf_physical_domains_f32_v1.c",
+      "source_sha256": "a47d4cd92e1b3f41ca88f9519b2a99444cc9c9c07084529495c5b65babaac502",
+      "header": "native/film_physics/nf_physical_domains_f32_v1.h",
+      "header_sha256": "eb440cfd1b4e30ce8593a7bc43e506daa5f6bbb6c8ac4c8eba408cd709f981e3"
+    },
+    "gaussian": {
+      "source": "native/film_physics/nf_gaussian_rgb_f32_v1.c",
+      "source_sha256": "dcb26b664e1fd8cbd514246846070c257b5250994f996d0c4b8e4f30040116c9",
+      "header": "native/film_physics/nf_gaussian_rgb_f32_v1.h",
+      "header_sha256": "1f75a36fbbcc6944ad2dbe4daea634a8d3d4b2e1392d74ee40c2345b99a6f710"
+    },
+    "adjacency": {
+      "source": "native/film_physics/nf_bounded_adjacency_f32_v1.c",
+      "source_sha256": "1f15a8b0dd200a7de74e03321c245923d38ed3949ade0da24e52113e60d34002",
+      "header": "native/film_physics/nf_bounded_adjacency_f32_v1.h",
+      "header_sha256": "8149eb1aa1e72db2c27e678c4344bcce9f964d4d8f33626a87e288d2917899dc"
+    }
+  },
+  "execution": {
+    "sample_storage": "float32",
+    "profile_parameters": "float64",
+    "scalar_transcendentals_and_accumulation": "float64",
+    "rounding": "once per explicit stage or separable pass",
+    "independent_reproducible_builds": 2
+  },
+  "gates": {
+    "maximum_stage_absolute_error_vs_float64": 0.000005,
+    "maximum_final_absolute_error_vs_float64": 0.000005,
+    "repeat_output_identity": "byte-exact",
+    "invalid_input_output_mutation": "none"
+  },
+  "forbidden_claims": [
+    "mobile runtime or device evidence",
+    "complete display renderer",
+    "calibrated stock or physical truth",
+    "memory or latency improvement before P8AE measurement"
+  ],
+  "claim_ceiling": "local Windows x64 small-image native float32 physical-chain conformance only"
+}
