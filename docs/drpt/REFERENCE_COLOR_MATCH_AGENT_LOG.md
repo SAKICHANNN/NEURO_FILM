@@ -4021,3 +4021,13 @@
   all 128 safety decisions are identity fallback and cleanup is complete.
 - P162 closes the 1 MP maximum-count transaction question only. P160/P161
   remain the separate 24 MP scale evidence.
+
+## 2026-07-29 - Freeze SDR JPEG/TIFF transaction matrix
+
+- P163 fixes three complete local file cases: JPEG8->JPEG8,
+  TIFF8->TIFF8 and profiled TIFF16->TIFF16 at 2048-by-1536.
+- Each case runs twice against exact P161 code and must preserve decoded
+  display-linear sRGB, format/depth, fallback, output/recipe/report identity,
+  resource gates and cleanup.
+- The matrix cannot be generalized to arbitrary raster metadata, RAW/HDR,
+  HEIF/AVIF/JXL, video or target devices.
