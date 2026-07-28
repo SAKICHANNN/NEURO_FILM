@@ -40,6 +40,13 @@ from .pyramid_scatter import (
     apply_pyramid_scatter,
     compile_pyramid_scatter_profile,
 )
+from .developed_structure import (
+    DevelopedStructureContext,
+    build_bw_silver_context,
+    build_colour_dye_cloud_context,
+    render_developed_structure,
+    render_developed_structure_region,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -50,6 +57,7 @@ __all__ = [
     "CompiledScatterKernel",
     "CompiledScatterProfile",
     "FilmProfileBundle",
+    "DevelopedStructureContext",
     "PhysicalDomain",
     "PhysicalDomainArray",
     "PhysicalScale",
@@ -64,6 +72,8 @@ __all__ = [
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
     "apply_pyramid_scatter",
+    "build_bw_silver_context",
+    "build_colour_dye_cloud_context",
     "apply_reference_scatter",
     "coordinate_counter_u64",
     "density_to_transmittance",
@@ -72,6 +82,8 @@ __all__ = [
     "gaussian_kernel_1d",
     "gaussian_kernel_2d",
     "profile_from_contract",
+    "render_developed_structure",
+    "render_developed_structure_region",
     "scene_exposure_from_working_image",
     "transmittance_to_density",
 ]
