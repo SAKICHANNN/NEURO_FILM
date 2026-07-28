@@ -1554,6 +1554,18 @@
   platform/data skips and zero failures; the temporary worktree was removed.
 - Review state remains `review-ready-not-merged`; main owns any actual merge.
 
+## 2026-07-28 - Freeze P90 Android quantizer Test Lab package
+
+- Added a minimal arm64 instrumentation package around the exact P87 core.
+  Its 4096-sample vector covers endpoint/sRGB-knee/random inputs and exact
+  sRGB8/sRGB16 arrays, two inner and two outer replays, plus two atomic
+  rejection paths.
+- Local package identity is `9fec7358...91b9`; app/test APK hashes are
+  `211c33c4...1d70` / `72ba3d98...effd`. Both share the bound test
+  certificate `32d07e30...66cb`.
+- Eight package/native tests pass. This is locally build-verified only until a
+  physical Test Lab result is parsed; no device-runtime claim opens yet.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
