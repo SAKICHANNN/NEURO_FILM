@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p8m_row_encoded_source_resources_decision.v1",
+  "node": "U6.P8M",
+  "software_commit": "790a8ab",
+  "contract_sha256": "5d31619a6c1150b943c7cf6cc195767d375d6c4b5c668db60e926b39031df0ac",
+  "report_sha256": "cc30fc838e17ad9c29293b696b1842b275d92c6a91ed3a64fe5a0b48eaba8b02",
+  "stable_evidence_id": "2d161415e267bdc13bacf7b1070352b2278b714b91b12fba85e52e123f36dfdf",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8l": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      3.896707799984142,
+      4.252848400006769
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      259235840,
+      262332416
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      43.33947760000592,
+      49.82528800002183
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1425924096,
+      1430269952
+    ]
+  },
+  "comparison_to_p8h": {
+    "twelve_mp_worker_time_increase_fraction_at_mean": 0.059955,
+    "twelve_mp_peak_rss_reduction_fraction_at_mean": 0.221614
+  },
+  "decision": "row-staged encoded-source construction preserves exact final pixels and cuts mean 12MP peak process-tree RSS by 22.16% while increasing mean worker time by 6.00%. Retain the implementation. The remaining roughly 1.33GiB process-tree peak still fails provisional mobile targets, so re-attribute the current production entry before another optimization",
+  "candidate_retained": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8N phase-local RSS re-attribution through the actual P8M production entry, with two exact 12MP repeats and no renderer changes",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact row-staged encoded-source construction; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
