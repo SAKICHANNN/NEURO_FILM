@@ -1,0 +1,46 @@
+{
+  "claim_ceiling": "24-patch single-figure Velvia 50 author-rendered sRGB display-proxy Look Approximation operator; not RAW, independently confirmed, transferable stock response, calibrated or production evidence",
+  "development_maximum_absolute_error": 0.1252089849011453,
+  "development_rgb_rmse": 0.033156498149289976,
+  "experiment_id": "u5.r2ao2-velvia-chart-one-matrix-operator-v1",
+  "exposure_floor": 1.52587890625e-05,
+  "fit_model": "one_matrix",
+  "fit_row_count": 24,
+  "parameter_bounds": {
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
+  },
+  "schema_version": 1,
+  "source_ao1_config_sha256": "abd20f5d20372a87c024fa48cebe7e4e79cc48d22cae5a247c60a33d7312bbea",
+  "source_paired_patch_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+  "witnesses": {
+    "velvia_chart_one_matrix": {
+      "capture_matrix": [
+        [0.7544965253598321, 0.24550196622395418, 1.508416213639587e-06],
+        [0.05732883803979449, 0.8827900216867328, 0.05988114027347266],
+        [0.03151319533067785, 0.1795131955555822, 0.7889736091137399]
+      ],
+      "exposure_floor": 1.52587890625e-05,
+      "matrix_minimum_determinant": 0.2,
+      "maximum_responses": [1.0, 1.0, 1.0],
+      "minimum_endpoint_span": 0.05,
+      "response_midpoints": [
+        1.9999999999999998,
+        0.022748771339387606,
+        -0.6611352857756176
+      ],
+      "response_slopes": [
+        1.347809999732198,
+        1.581319583071077,
+        2.1194236475546426
+      ],
+      "scan_matrix": [
+        [1.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 1.0]
+      ],
+      "schema": "roll2film.positive_film_response.v1",
+      "working_space": "linear_srgb_d65"
+    }
+  }
+}
