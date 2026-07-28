@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p8w_tile_row_grid_contract.v1",
+  "node": "U6.P8W",
+  "parent_decision": "configs/u6_p8v_current_phase_rss_decision_v1.json",
+  "parent_decision_sha256": "039e5ee6fcd1752b8e69af4da3bb9610cefe84e81e9d0ef4ba130f444a6e13ca",
+  "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "scenario": {
+    "scenario_id": "mobile-standard-12mp",
+    "height": 3000,
+    "width": 4000,
+    "repeats_per_candidate": 2,
+    "tile_rows_candidates": [
+      64,
+      32
+    ],
+    "timeout_seconds": 240
+  },
+  "measurement": {
+    "sample_interval_seconds": 0.005,
+    "expected_output_sha256": "d72f1569719cdb3c98a9ab15aa060960acc7a116a79a7a0f29d05780744fa4a2",
+    "phase_order": [
+      "setup",
+      "ingress-owned-scene",
+      "input-hash",
+      "encoded-source",
+      "source-context-build",
+      "runtime-reconstruct",
+      "roundtrip-linear",
+      "physical-spatial",
+      "gauge-and-encode",
+      "display-base-residual",
+      "receipt-hash"
+    ],
+    "p8v_baseline_tile_rows": 128,
+    "p8v_baseline_mean_peak_process_tree_rss_bytes": 802248704,
+    "minimum_mean_peak_rss_reduction_fraction": 0.02,
+    "largest_tile_within_bytes_of_minimum": 8388608,
+    "timing_comparison_valid": false,
+    "timing_and_raw_rss_excluded_from_stable_evidence_id": true,
+    "post_result_retuning_allowed": false
+  },
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 6442450944,
+    "maximum_process_tree_rss_bytes": 6442450944
+  },
+  "claim_ceiling": "local Windows Python CPU exact tile-row resource selection for the P8U reference topology; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
