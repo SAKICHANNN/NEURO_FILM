@@ -1,0 +1,159 @@
+{
+  "schema": "neuro_film.u6_p4c2_moment_corrected_lod_contract.v1",
+  "node": "U6.P4C2",
+  "parent_decision_sha256": "316d302674e67dab340ae4450ee3c50df30b3aa72b9b8418e73d152eb717ed26",
+  "base_profile_report_sha256": "611fb09633d7d4c8e76ed0cef552d9df60ffdbf9add4a77f05dc428059d3b7b4",
+  "claim_ceiling": "generic-physical-inspired-lod-development-challenger",
+  "base_physical_pitch_um": 1.0,
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "split": {
+    "development_reference_seed": 260745,
+    "confirmatory_reference_seed": 260747,
+    "development_direct_seed": 260753,
+    "confirmatory_direct_seed": 260757,
+    "fit_scope": "development-only-per-layer-per-lod-factor"
+  },
+  "lod_factors": [
+    2,
+    4,
+    8
+  ],
+  "fixed_rescale": {
+    "poisson_rate": "base_rate * factor^2",
+    "correlation_sigma_pixels": "base_sigma / factor",
+    "fit_parameters": [
+      "baseline",
+      "shot_scale"
+    ],
+    "reference": "float64 area mean of factor-by-factor base-pitch samples"
+  },
+  "compiled_base_profiles": [
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.5,
+      "baseline": 0.05712739443686818,
+      "scale": 0.567552498220445
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.55,
+      "baseline": 0.2832400701622278,
+      "scale": 1.293275511932659
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.6,
+      "baseline": 0.6366271444614632,
+      "scale": 2.337913014109513
+    },
+    {
+      "family": "transmittance-shot",
+      "poisson_rate": 1.0,
+      "correlation_sigma_pixels": 0.4,
+      "baseline": 0.13424229517324168,
+      "scale": 3.5799610553203878
+    }
+  ],
+  "density_fit": {
+    "method": "closed-form-positive-affine-moment-match",
+    "minimum_baseline": 1e-06
+  },
+  "transmittance_fit": {
+    "method": "scipy-least_squares-on-area-mean-transmittance-moments",
+    "initial_base_scale": [
+      0.1,
+      2.0
+    ],
+    "bounds_base_scale": [
+      [
+        0.0,
+        1e-08
+      ],
+      [
+        10.0,
+        100.0
+      ]
+    ],
+    "xtol": 1e-12,
+    "ftol": 1e-12,
+    "gtol": 1e-12,
+    "max_nfev": 300
+  },
+  "development_eligibility": {
+    "mean_abs_error_max": 0.01,
+    "variance_ratio_min": 0.9,
+    "variance_ratio_max": 1.1,
+    "domain_valid": true
+  },
+  "metrics": {
+    "acf_lags": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "radial_nps_bands_cycles_per_pixel": [
+      [
+        0.0,
+        0.08
+      ],
+      [
+        0.08,
+        0.22
+      ],
+      [
+        0.22,
+        0.5
+      ]
+    ]
+  },
+  "automatic_gates": {
+    "mean_abs_error_max": 0.04,
+    "variance_ratio_min": 0.55,
+    "variance_ratio_max": 1.8,
+    "acf_abs_error_max": 0.2,
+    "nps_band_relative_error_max": 0.5,
+    "repeat_exact": true,
+    "partition_exact": true,
+    "domain_valid": true,
+    "brightening_violation_count": 0
+  },
+  "negative_control": {
+    "id": "U6.2B-salt-like-bright-speckles",
+    "display_rgb_composition": false,
+    "density_below_baseline_forbidden": true,
+    "transmittance_above_clear_base_forbidden": true
+  },
+  "forbidden_fallbacks": [
+    "fit on confirmatory fields",
+    "change Poisson rate or correlation sigma",
+    "per-image normalization",
+    "signed density",
+    "hard clipping",
+    "display RGB noise",
+    "relax gates after result",
+    "claim measured film NPS, stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain a versioned per-LOD moment-corrected profile bank and open streamed full-resolution material-map performance and severe-artifact diagnostics",
+    "fail": "close direct moment-corrected LOD and retain only area-resolved P4B output before P5"
+  }
+}
