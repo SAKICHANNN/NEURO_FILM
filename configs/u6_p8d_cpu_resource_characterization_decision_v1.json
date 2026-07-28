@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8d_cpu_resource_characterization_decision.v1",
+  "node": "U6.P8D",
+  "software_commit": "e8ef00f",
+  "contract_sha256": "ae1152f9e385c5117cc91d1d211e74b54ebd57bbcba93741791d60944c7c1d6a",
+  "report_sha256": "b45237678a83d200ee1a8381b5be7ec0d1ba7ff2dd8f53a47d2b8cbf7c0fff70",
+  "stable_evidence_id": "068e69cb89299d1060fd8592bd835ee95753a26fe655e825b1fe79ce8aadecf6",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      7.033845599973574,
+      7.075905900012003
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      548433920,
+      551997440
+    ],
+    "output_sha256": "d498310ba35222566de6a67b203056ab465324640b503eecc483df9115caa3ed"
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      75.3520106000069,
+      76.96358199999668
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      5042315264,
+      5203738624
+    ],
+    "output_sha256": "d72f1569719cdb3c98a9ab15aa060960acc7a116a79a7a0f29d05780744fa4a2"
+  },
+  "decision": "exact row-streamed physical execution is retained as a canonical correctness reference but fails the provisional product resource targets; 12MP Python CPU runtime and memory are not acceptable for mobile or production use",
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8E stage-level time and memory attribution at 1MP, separating ingress, finite-support physical rows, neutral gauge, source-context safe-Lab base and t15/c35 residual before selecting optimizations",
+  "claim_ceiling": "local Windows canonical Python CPU correctness and resource-failure evidence for exact row-streamed generic physical-inspired rendering; not frozen cross-platform target, native runtime, mobile-device result, stock response, calibration or product promotion"
+}
