@@ -2242,6 +2242,32 @@
   `verified-local-files-shared-reference-look`; this remains file integrity,
   not app-level applied state or real producer admission.
 
+## 2026-07-28 - Implement and verify P57 shared delivery restart integrity
+
+- Implementation: `62e2579` adds a canonical read-only P56 verifier, strict
+  schema, public exports and restart/tamper tests.
+- Caller binding: exact P56 report SHA-256 and delivery ID are mandatory. The
+  verifier checks the report's recorded location and rehashes every P53
+  staging source and every delivered local file.
+- Preserved lineage: P55 authorization, P54 FilmFX verification and each
+  ordered P47 apply-receipt/producer-result are part of the verification
+  identity. Repeated verification preserves bytes, mtimes and identity.
+- Failure closure: report tamper/relocation, foreign delivery ID, staging or
+  delivered file tamper/absence, order/hash/state/claim/chain mutation and
+  unknown JSON fields reject.
+- Identities: implementation SHA-256
+  `8e37189b519a83c27f7940c85842920aa384983cfc877f6d195cb54d0275333e`;
+  schema `0325a907cfc9fb8dc3562382283e55cf10b52b10a22d1b1ae3c77170ec091ac4`.
+- Verification: 19 focused, 590 complete `test_color_match*`, full 1485
+  pass/1 skip/36 unchanged failures. Latest main `1f61119`, merge tree
+  `eb0cd14116dcb1f38e39a9ae0584dcd5e59ba8e5`; fresh detached merge
+  passes all 19 P56/P57 tests and was removed.
+- Producer propagation: CGIN-v0 closed negative at `ffdfd98`; 0/9 configs
+  pass and no model/capability/package/fixture exists. ROGR/RGIN/SPGIN/CGIN
+  now form a saturated same-60-image search family; any new attempt requires
+  materially new rights-cleared paired evidence, neutral companion/baseline,
+  human semantic constraints or separately governed foundation prior.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -8,8 +8,8 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P56 implementation head:
-  `d4a5d82b0e8b3597444f3abeb2bf35deaad15794`;
+- complete P1-P57 implementation head:
+  `62e2579f8ea16b4f28cae383bdfbf77d63a545a5`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - main read-only snapshot:
   `1dce72949ca98db73126991328969feebe911fa9`;
@@ -58,6 +58,8 @@ The consumer module implements:
   requires exact product-ready P49 plus all ordered source approvals;
 - rollback-safe shared local export that reconstructs P55, preserves exact
   P47 receipt/result lineage and atomically commits files plus report;
+- read-only shared local-export restart verification that caller-binds P56
+  and rehashes every staging source and delivered file;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -94,13 +96,15 @@ reference, public sharing or algorithm promotion.
 | shared delivery authorization schema | `bfbf365666d98bf642a5af6b4c1c517bfc5885f648e72f483063be75eb0c3a73` |
 | shared local delivery implementation | `1a4b4337ecd01c74a83e3e1d3e13d5963a4911febf01c24aeb923d4895979c0e` |
 | shared local delivery schema | `adccb9b822b51e8048f3e89e069ef84b1fbd2d89837abc1c8893112fd6541efc` |
+| shared local delivery verification implementation | `8e37189b519a83c27f7940c85842920aa384983cfc877f6d195cb54d0275333e` |
+| shared local delivery verification schema | `0325a907cfc9fb8dc3562382283e55cf10b52b10a22d1b1ae3c77170ec091ac4` |
 
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Review `c03c321..d4a5d82`; do not copy files manually and do not import
+2. Review `c03c321..62e2579`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree <reviewed-main> d4a5d82`.
+3. Recompute `git merge-tree --write-tree <reviewed-main> 62e2579`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -114,10 +118,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 579 passed;
-- latest isolated consumer full suite: 1474 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 590 passed;
+- latest isolated consumer full suite: 1485 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 19 P55/P56 shared-delivery tests
+- latest detached synthetic main merge: 19 P56/P57 delivery-integrity tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
@@ -141,3 +145,9 @@ name.
 SPGIN-v0 closed negative at producer `a2e5ed9`: none of 12 frozen safety
 configurations passed, and it emitted no model, capability, package or shared
 fixture. It remains below P45 and cannot enter P49/P50.
+
+CGIN-v0 also closed negative at producer `ffdfd98`: none of nine grouped
+contrastive safety configurations passed and it emitted no downstream
+artifact. Producer research now treats the four-generation same-60-image
+family as saturated; a successor needs materially new evidence rather than
+another architecture/loss sweep on the same development set.
