@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p7c_spatial_stage_attribution_contract.v1",
+  "node": "U6.P7C",
+  "parent_contract": "configs/u6_p7b_source_context_joint_ablation_v1.json",
+  "parent_contract_sha256": "0e7f91e631af684e7d480f3db9ea5be724a58ba2c176a2d4095b6e33ea3d2ab8",
+  "parent_decision": "configs/u6_p7b_source_context_joint_ablation_decision_v1.json",
+  "parent_decision_sha256": "df120727643eafffd197a3e052b1d02d68d7fc9ef33476c9306f0fd76fcc1c49",
+  "runtime_parent": "configs/u6_p7a3_source_supported_artifact_audit_v1.json",
+  "runtime_parent_sha256": "3a8b380dd26fe8944c954325a59e9a62a0b2b993c322b5cd222adde30b2963a6",
+  "question": "Which cumulative physical spatial stage causes the objectionable full-frame detail loss observed in U6.P7B, before any new parameter or strength candidate is allowed?",
+  "cumulative_arms": [
+    "cheap_no_spatial",
+    "forward_scatter",
+    "development_adjacency",
+    "dye_diffusion",
+    "scanner_mtf"
+  ],
+  "pipeline_boundary": {
+    "sensitometry_and_print_interpretation_present_in_every_arm": true,
+    "source_derived_fixed_ao6_context_present_in_every_post_colour_arm": true,
+    "physical_profile_unchanged": true,
+    "ao6_strengths_unchanged": true,
+    "hard_clipping_allowed": false
+  },
+  "metrics": {
+    "source_edge_mask": {
+      "luma": "linear Rec.709",
+      "operator": "central finite difference magnitude",
+      "minimum_percentile": 75.0,
+      "epsilon": 1e-12
+    },
+    "report_for_each_cumulative_arm": [
+      "pre-AO6 edge-energy ratio to cheap",
+      "post-AO6 edge-energy ratio to cheap",
+      "median Delta E76 to previous cumulative arm",
+      "new hard-boundary fraction",
+      "repeat identity"
+    ],
+    "stage_attribution": "largest median post-AO6 edge-energy ratio drop from the previous cumulative arm",
+    "diagnostic_contact_sheet": true
+  },
+  "population": {
+    "inherit_exact_16_rows_and_9_visual_ids": true,
+    "allowed_use": "development-evaluation-only",
+    "decoded_color_state": "display-referred-srgb"
+  },
+  "execution": {
+    "runs": 2,
+    "report_and_render_inventory_must_be_exact": true,
+    "preference_review": false,
+    "promotion_allowed": false
+  },
+  "post_result_retuning_allowed": false,
+  "branch_rule": {
+    "single_dominant_stage": "freeze a separately versioned bounded replacement or strength-path candidate for that stage only",
+    "distributed_loss": "freeze a joint spatial-budget compiler candidate with an explicit total MTF target",
+    "no_measured_loss": "close this metric and design a targeted full-resolution visual mechanism test",
+    "artifact_or_nondeterminism": "close the affected implementation before any new composition"
+  },
+  "claim_ceiling": "stagewise attribution of a generic physical-inspired spatial chain on a rights-cleared development population; no accepted replacement, product, stock, process, scanner or calibration claim"
+}

@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p7b_source_context_joint_ablation_decision.v1",
+  "node": "U6.P7B",
+  "decision": "close_full_spatial_composition_after_severe_visual_and_preference_failure",
+  "contract_sha256": "0e7f91e631af684e7d480f3db9ea5be724a58ba2c176a2d4095b6e33ea3d2ab8",
+  "software_commit": "1878632e17ab4a69e9bbb09fe8c9aca303e56cd4",
+  "report_sha256_run_a": "0738b05477e0f81be2651eb9eb5aef015e3f34134bd08537637d87fc403825e8",
+  "report_sha256_run_b": "0738b05477e0f81be2651eb9eb5aef015e3f34134bd08537637d87fc403825e8",
+  "stable_evidence_id": "e993894004c2062047809f0edc3daa6cb222eb764183726707a1929b2496ffc5",
+  "exact_file_count_per_run": 86,
+  "automatic_pass": true,
+  "automatic_summary": {
+    "combined_median_style_delta_e76": 23.150546501119088,
+    "combined_median_non_basic_delta_e76": 20.879194996981532,
+    "combined_to_colour_median_delta_e76": 20.961245593469812,
+    "full_to_cheap_median_delta_e76": 2.8380817177726803,
+    "combined_to_wrong_order_median_delta_e76": 6.5827768005227085,
+    "maximum_new_hard_boundary_fraction": 0.0003153483072916667,
+    "mechanism_outside_halo_max_abs": 0.0
+  },
+  "autonomous_visual_evidence": {
+    "diagnostic_sha256": "7fcc0dc27801d92286a6448ca254eab6be525f1fc390476273662d33f325f04c",
+    "blind_sha256": [
+      "1ea3950825adb7d49ede9b5e36efa3ebba77e034fccfd173196e86a06f701ed4",
+      "cfbfbd1111146fc100d5bfa3929dca7ef55e27884ad8d2648c5fe0d8add46e81",
+      "5018eda4e593ebe6ec42d7a0deaa15947dc98f87975040ddd14cf63345f76884"
+    ],
+    "mapping_sha256": "dc2e1cc364eceb83ab40e5b4d9bc2e6508065782079818920a999bf361c3eeb3",
+    "mapping_revealed_after_choices": true,
+    "round_choices": {
+      "round_1": {
+        "canon_eos_kiss_f": "A",
+        "nikon_d2x": "A",
+        "sony_nex_3n": "A",
+        "fujifilm_finepix_s5000": "B",
+        "olympus_sp550uz": "B",
+        "panasonic_dmc_gf2": "A",
+        "pentax_k_r": "A",
+        "leica_d_lux_6": "A",
+        "kodak_dcs_pro_14n": "A"
+      },
+      "round_2": {
+        "canon_eos_kiss_f": "B",
+        "nikon_d2x": "A",
+        "sony_nex_3n": "B",
+        "fujifilm_finepix_s5000": "A",
+        "olympus_sp550uz": "A",
+        "panasonic_dmc_gf2": "A",
+        "pentax_k_r": "B",
+        "leica_d_lux_6": "B",
+        "kodak_dcs_pro_14n": "A"
+      },
+      "round_3": {
+        "canon_eos_kiss_f": "B",
+        "nikon_d2x": "B",
+        "sony_nex_3n": "B",
+        "fujifilm_finepix_s5000": "B",
+        "olympus_sp550uz": "B",
+        "panasonic_dmc_gf2": "B",
+        "pentax_k_r": "B",
+        "leica_d_lux_6": "B",
+        "kodak_dcs_pro_14n": "B"
+      }
+    },
+    "decoded_preference": {
+      "colour_only_image_wins": 27,
+      "combined_image_wins": 0,
+      "combined_round_wins": 0,
+      "minimum_combined_round_wins": 2
+    },
+    "severe_veto": {
+      "passed": false,
+      "confirmed_examples": [
+        {
+          "sample_id": "canon_eos_kiss_f",
+          "failure": "global detail loss and highlight bleeding erase billboard text structure and vehicle edges"
+        },
+        {
+          "sample_id": "fujifilm_finepix_s5000",
+          "failure": "window, roof and foliage detail are objectionably blurred across the frame"
+        }
+      ],
+      "not_counted_as_severe": "the strong cyan-green colour cast is a style/preference issue, not by itself a glitch"
+    }
+  },
+  "retained_evidence": [
+    "source-derived fixed AO6 context removes the nonlocal impulse coupling and preserves colour-only pixels exactly",
+    "the current full physical spatial chain is not visually acceptable even when automatic colour and boundary metrics pass",
+    "individual physical primitives remain research candidates and require stagewise attribution before any new composition"
+  ],
+  "production_default_changed": false,
+  "next_leaf": "U6.P7C stagewise spatial-response attribution with fixed AO6 context",
+  "claim_ceiling": "closed generic physical-inspired joint composition and autonomous visual evidence; no population preference, product, stock, process, scanner or calibration claim"
+}
