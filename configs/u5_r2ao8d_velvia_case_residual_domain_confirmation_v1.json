@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8d-velvia-case-residual-domain-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8D",
+  "parent_decision": {
+    "path": "configs/u5_r2ao8c_velvia_crossfit_case_selector_decision_v1.json",
+    "sha256": "4ae81278b8f34eb8269f8a2a0d2f87e161be0e60bd26a7957729ca9b8c17c7be",
+    "required_decision": "open_ao8d_fixed_crossfit_case_photo_challenger_with_residual_domain_confirmatory_gate_first",
+    "fixed_candidate_id": "case_knn_k3_distance"
+  },
+  "inputs": {
+    "ao8c_contract": {
+      "path": "configs/u5_r2ao8c_velvia_crossfit_case_selector_v1.json",
+      "sha256": "f414c263e255338f75fcc791ab54e744d0cd80886e452bd42371897c94e8fa8a"
+    }
+  },
+  "fixed_candidate": {
+    "candidate_id": "case_knn_k3_distance",
+    "neighbors": 3,
+    "vote": "inverse_distance",
+    "selection_allowed": false
+  },
+  "split_repetitions": [
+    {
+      "split_id": "split_a",
+      "outer_chart_seed": 2026072831,
+      "outer_palette_seed": 2026072841,
+      "inner_chart_seed_base": 2026072851,
+      "inner_palette_seed_base": 2026072861,
+      "within_domain_shuffle_seed": 2026072871
+    },
+    {
+      "split_id": "split_b",
+      "outer_chart_seed": 2026072881,
+      "outer_palette_seed": 2026072891,
+      "inner_chart_seed_base": 2026072901,
+      "inner_palette_seed_base": 2026072911,
+      "within_domain_shuffle_seed": 2026072921
+    },
+    {
+      "split_id": "split_c",
+      "outer_chart_seed": 2026072931,
+      "outer_palette_seed": 2026072941,
+      "inner_chart_seed_base": 2026072951,
+      "inner_palette_seed_base": 2026072961,
+      "within_domain_shuffle_seed": 2026072971
+    }
+  ],
+  "evaluation": {
+    "outer_fold_count": 5,
+    "inner_fold_count": 4,
+    "within_domain_shuffled_label_replicates": 128,
+    "shuffle_preserves_chart_and_palette_label_counts_separately": true,
+    "empirical_pseudocount": 1,
+    "same_71_proxy_rows_acknowledged": true,
+    "independent_dataset_confirmation_claim_allowed": false
+  },
+  "gates": {
+    "minimum_oracle_rgb_rmse_gain_over_combined_each_split": 0.1,
+    "minimum_candidate_rgb_rmse_gain_over_combined_median": 0.05,
+    "minimum_candidate_mean_delta_e76_gain_over_combined_median": 0.03,
+    "minimum_candidate_rgb_rmse_gain_over_domain_control_median": 0.03,
+    "minimum_passing_splits_for_rgb_and_domain_gains": 2,
+    "maximum_within_domain_shuffle_empirical_p_value_each_split": 0.05,
+    "maximum_candidate_to_combined_maximum_absolute_error_ratio_each_split": 1.25,
+    "minimum_candidate_fraction_per_expert_each_split": 0.1,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "all_outer_and_inner_fits_must_converge": true,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "open_ao8e_fixed_case_photo_challenger",
+  "decision_if_within_domain_shuffle_fails": "close_case_selector_as_residual_domain_confound",
+  "decision_if_split_stability_fails": "close_case_selector_as_split_unstable",
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "novel_case_retrieval_claim_allowed": false,
+  "claim_ceiling": "same-pool split-sensitivity evidence for one frozen mature kNN case selector under within-domain label permutations; not an independent dataset confirmation, photographic result, novelty, stock mode, film response, calibration, preference or product claim"
+}
