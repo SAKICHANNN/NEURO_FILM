@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8t_current_phase_rss_decision.v1",
+  "node": "U6.P8T",
+  "software_commit": "7b0bda8",
+  "contract_sha256": "d2f9f24e2b23a49ba1438c86ae06aff66e12f410b6faaf01b27c56ad7fc7e8cf",
+  "report_sha256": "9172d71894fa2055418b5ab99f783160ae752e55a714ef68a829b2a4e9e469e2",
+  "stable_evidence_id": "9b232b723c75da521945811f24121e86b2606a2de9c7cb06f076cdb31258484b",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "dominant_phase_stable": true,
+  "dominant_phase": "source-context-build",
+  "phase_peak_rss_bytes_ranges": {
+    "source-context-build": [
+      865669120,
+      866557952
+    ],
+    "physical-spatial": [
+      797507584,
+      799522816
+    ],
+    "display-base-residual": [
+      735739904,
+      737726464
+    ],
+    "encoded-source": [
+      731762688,
+      732250112
+    ],
+    "gauge-and-encode": [
+      680681472,
+      681242624
+    ],
+    "roundtrip-linear": [
+      597270528,
+      598102016
+    ]
+  },
+  "decision": "two exact 12MP repeats through the actual P8S entry identify source-context-build as the stable dominant worker RSS phase at 865.7-866.6MB. The remaining full-frame float32 Lab array is the only context storage authorized for replacement. Open one exact packed-Lab candidate that writes Lab into the consumed float64 encoded allocation, computes the unchanged legacy NumPy reduction, then refills that allocation with the exact OETF-to-EOTF roundtrip from the retained WorkingImage",
+  "attribution_complete": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8U exact packed-Lab context in the encoded allocation plus row-local roundtrip-linear refill, preserving legacy context and final pixel identity",
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution through the exact current P8S production entry; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
