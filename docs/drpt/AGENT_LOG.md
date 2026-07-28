@@ -6593,3 +6593,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   differs by `.00875`, and noise creates zero new boundary pixels. Scanner MTF
   stays below Nyquist. This proves a software representation only: no real
   scanner, stock, process or repeat-scan calibration exists.
+- P6B compiles the global spectral mean into a profile/shape/stage-bound
+  scanner context, then carries finite local-flare plus MTF halos and
+  full-coordinate noise through row partitions. Two reports are byte-identical
+  at `4a1ce7c5...2baae7`; both generic profiles over two irregular shapes match
+  full-frame exactly for 31/127/257-row partitions. Required halos are 37/61
+  rows and wrong profile/shape contexts reject. Repeat scans, scanner
+  dark/flat/MTF targets and measured spectral response remain absent, so no
+  calibrated scanner claim opens.

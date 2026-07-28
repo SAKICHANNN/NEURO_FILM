@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p6b_scanner_streaming_decision.v1",
+  "node": "U6.P6B",
+  "status": "automatic-pass-reference-streaming",
+  "contract_sha256": "209f527507ba02ec96577d5d52136ad99168ab3aaf8c4e4a28becd813a1851fa",
+  "software_commit": "ee22b76d4e78977e6775ff0060b635757f65ed1c",
+  "report_sha256": "4a1ce7c5ac24aa95777a306a587e68c5a7cfcb78057e5d0a1b32088f7e2baae7",
+  "stable_evidence_id": "4a29efa8b839c3b119c449ba56211550206a53684970f5c0457a7035e64535cf",
+  "repeat_report_count": 2,
+  "metrics": {
+    "profile_shape_cases": 4,
+    "row_partitions": [
+      31,
+      127,
+      257
+    ],
+    "failed_partition_comparisons": 0,
+    "scanner_a_required_halo_rows": 37,
+    "scanner_b_required_halo_rows": 61,
+    "unique_context_ids": 4,
+    "wrong_context_rejected": true
+  },
+  "data_gap": {
+    "repeat_scans_of_same_physical_frames": "absent",
+    "scanner_dark_flat_mtf_targets": "absent",
+    "measured_illuminant_and_spectral_response": "absent",
+    "calibrated_scanner_claim_allowed": false
+  },
+  "claim_ceiling": "generic-scanner-context-and-reference-streaming-development",
+  "branch_decision": "Retain exact context-bound row streaming: global flare mean is compiled once, local flare plus MTF use finite summed halos, and noise uses full coordinates. Proceed to a separately frozen 24MP Standard-tier float32 performance/compiler challenger. Real scanner identification remains data-gapped."
+}
