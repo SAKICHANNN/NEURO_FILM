@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8-velvia-proxy-operator-diversity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8",
+  "parent_decision": {
+    "path": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_decision_v1.json",
+    "sha256": "e4e616e7ff03777ecfd69752b081e4750361a265877f64d4ad6add444a72c80f",
+    "required_decision": "close_fresh_confirmation_retain_AO6_development_evidence_only"
+  },
+  "inputs": {
+    "ao4_config": {
+      "path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_v1.json",
+      "sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14"
+    },
+    "ao4_report": {
+      "path": "outputs/u5_r2ao4c_velvia_chart_palette_cross_domain_v1/report_a.json",
+      "sha256": "f909fb9e365127b6ccedcdbc5f86f1a0a8ba0250da8d6edfcf95be44d0280913",
+      "required_decision": "retain_cross_domain_velvia_display_proxy_operator_evidence",
+      "required_fit_domains": [
+        "velvia_chart",
+        "velvia_palette"
+      ]
+    },
+    "ao4_decision": {
+      "path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_decision_v1.json",
+      "sha256": "59e3a85ea84eab5b8dff2488a1371ffe265ed2042f3d621d74eb9c7fab148695"
+    },
+    "ao5_combined_operator": {
+      "path": "configs/u5_r2ao5_combined_velvia_one_matrix_operator_v1.json",
+      "sha256": "e4a3bd332e1d92e10cf00f65b74260a2e994bee03c9d99792881f92681e61edd",
+      "operator_sha256": "976b3d637117a8d7754fd70610141fdcab6b8773f22f3a2a14314d17c53b4acd"
+    }
+  },
+  "evaluation_grid": {
+    "working_space": "linear_srgb_d65",
+    "axis_size": 17,
+    "minimum": 0.03125,
+    "maximum": 0.96875,
+    "expected_rows": 4913
+  },
+  "analysis": {
+    "operator_strength": 1.0,
+    "strength_alignment": "least_squares_nonnegative_scalar_clipped_to_interval",
+    "minimum_alignment_scale": 0.0,
+    "maximum_alignment_scale": 2.0,
+    "residual_space": "linear_srgb_d65",
+    "perceptual_space": "encoded_srgb_d65_cielab_delta_e76",
+    "basic_adjustment_control": "frozen_joint_ev_white_balance_contrast_saturation_global_luma",
+    "combined_operator_is_context_only": true
+  },
+  "negative_controls": {
+    "strength_scales": [
+      0.5,
+      1.5
+    ],
+    "minimum_cosine_similarity": 0.999999999999,
+    "maximum_strength_aligned_residual_fraction": 1e-12
+  },
+  "gates": {
+    "ao4_cross_domain_evidence_required": true,
+    "finite_and_in_cube_required": true,
+    "negative_controls_required": true,
+    "minimum_median_chart_palette_delta_e76": 2.0,
+    "minimum_nonbasic_chart_palette_delta_e76": 1.0,
+    "minimum_symmetric_strength_aligned_residual_fraction": 0.2,
+    "maximum_absolute_residual_cosine_similarity": 0.98,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "open_ao8b_explicit_colourwise_two_expert_candidate",
+  "decision_if_fail": "retain_k1_operator_family_do_not_add_expert_capacity",
+  "operator_refitting_allowed": false,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "latent_stock_mode_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "diversity or K=1 evidence for two already-frozen author-rendered Velvia display-proxy operator directions after strength and basic-adjustment controls; not a latent stock mode, physical condition, stock response, calibration, image preference or product claim"
+}
