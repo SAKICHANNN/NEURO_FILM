@@ -6174,3 +6174,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   positive-matrix-plus-curve and stationary-K3 controls. No photo, film pixel,
   learned content adaptation, stock or product claim opens. Goal remains
   ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AM1 SO(3) coordinate-curve capacity contract
+
+- **Node/contract:** `ULT > U5 > U5.R2 > U5.R2AM1`; DRPT L2/Mode A. Config
+  raw SHA-256 `2f081922...7e59` freezes the complete representation, targets,
+  controls, fit, audit geometry, gates and branch rules before implementation
+  or any candidate/control fit.
+- **Candidate:** 21 raw/18 effective parameters: bounded right-handed
+  `SO(3)` via Rodrigues, projection extrema from all eight cube corners and
+  three degree-six positive-increment Bernstein curves. The full inverse uses
+  the fixed coordinate projection and 64 scalar bisection steps, not an AL1
+  multidimensional fixed point. No image statistic enters the operator.
+- **Targets/controls:** project-owned density-cyan s0.50 and positive-warm
+  s0.35 config hashes are fixed, plus identity. Controls are global RGB
+  curves, a nonnegative row-stochastic matrix plus curves and stationary K3.
+  The candidate must beat both compact controls and stay within 1.20x of K3.
+- **Gates/boundary:** absolute/relative capacity joins exact identity, cube,
+  positive/bounded Jacobian, scalar inverse, rotation, curve increment,
+  neutral, hue-neighbour, red-ramp, strength, replay and two-process gates.
+  Zero photographs, film pixels, downloads, external assets, neural code or
+  GPU. Any failure closes without capacity, fit, target, threshold, clamp,
+  inverse or photograph rescue. Implementation is next; Goal remains ACTIVE.

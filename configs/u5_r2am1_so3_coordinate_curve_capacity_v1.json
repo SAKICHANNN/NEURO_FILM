@@ -1,0 +1,233 @@
+{
+  "schema_version": "u5-r2am1-so3-coordinate-curve-capacity-v1",
+  "experiment_id": "u5.r2am1-so3-coordinate-curve-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AM1",
+  "working_space": "linear_srgb_d65",
+  "parent_evidence": {
+    "nodes": [
+      "U5.R2AM0",
+      "U5.R2AL1",
+      "U5.R2O0"
+    ],
+    "finding": "AM0 retains only a stricter clean-room coordinate-curve prior; AL1 shows useful colour-selective capacity but fails its multidimensional inverse; O0 supplies the retained safe high-capacity explicit control"
+  },
+  "target_sources": {
+    "density_config": {
+      "path": "configs/u5_r2e0_density_domain_operator_v1.json",
+      "raw_sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337"
+    },
+    "positive_config": {
+      "path": "configs/u5_r2j0_positive_film_response_v1.json",
+      "raw_sha256": "3fa39f74faede3fac5767fca9f29a9ec61859d8b879a2ff95293163811a9fcf2"
+    }
+  },
+  "targets": {
+    "identity": {
+      "family": "identity",
+      "strength": 1.0
+    },
+    "density_cyan_s50": {
+      "family": "u5_r2e0_density",
+      "witness": "cyan_shadow_warm_highlight_like",
+      "strength": 0.5
+    },
+    "positive_warm_s35": {
+      "family": "u5_r2j0_positive",
+      "witness": "warm_highlight_like",
+      "strength": 0.35
+    }
+  },
+  "candidate": {
+    "schema": "roll2film.so3_coordinate_monotone_curve.v1",
+    "coordinate_matrix": "right_handed_so3_rodrigues",
+    "rotation_raw_parameter_count": 3,
+    "maximum_rotation_angle_radians": 0.45,
+    "rotation_parameterization": "w=max_angle*tanh(norm(raw))*raw/norm(raw), with exact zero branch",
+    "projection_normalization": "exact minima and maxima of all eight RGB cube corners after multiplication by Q",
+    "curve_basis": "degree_6_bernstein",
+    "curve_count": 3,
+    "control_count_per_curve": 7,
+    "minimum_control_increment": 0.02,
+    "curve_parameterization": "minimum_increment_plus_remaining_mass_times_softmax_over_six_increments",
+    "raw_parameter_count": 21,
+    "effective_parameter_count": 18,
+    "inverse": "project_with_Q_then_per_coordinate_monotone_bisection_then_multiply_Q_transpose",
+    "strength": "linear_identity_to_full_output"
+  },
+  "controls": {
+    "global_curves": {
+      "schema": "roll2film.global_bernstein_curve.v1",
+      "degree": 6,
+      "curve_count": 3,
+      "raw_parameter_count": 18,
+      "effective_parameter_count": 15,
+      "minimum_control_increment": 0.02
+    },
+    "positive_matrix_curves": {
+      "order": "three_degree_6_monotone_curves_then_nonnegative_row_stochastic_matrix",
+      "maximum_matrix_mix": 0.35,
+      "raw_parameter_count": 28,
+      "effective_parameter_count": 22,
+      "minimum_control_increment": 0.02
+    },
+    "stationary_k3": {
+      "schema": "roll2film.cube_diffeomorphic_colour_flow.v1",
+      "velocity_grid_axis_size": 3,
+      "velocity_interpolation": "trilinear",
+      "boundary_factor": "x_i*(1-x_i)",
+      "integration": "fixed_float64_rk4",
+      "integration_steps": 24,
+      "raw_parameter_count": 81,
+      "maximum_absolute_velocity_grid_coefficient": 6.0
+    }
+  },
+  "fit": {
+    "development_grid": {
+      "axis_size": 9,
+      "axis": "endpoint_inclusive_linspace_0_1",
+      "ordering": "numpy_meshgrid_ij_lexicographic"
+    },
+    "optimizer": "torch_cpu_adam_float64",
+    "seed": 72831,
+    "restarts": 4,
+    "steps": 2500,
+    "learning_rate": 0.03,
+    "candidate_rotation_l2": 0.000001,
+    "candidate_curve_l2_to_identity": 0.000001,
+    "positive_matrix_l2_to_identity": 0.000001,
+    "stationary_coefficient_l2": 0.00001,
+    "stationary_smoothness_l2": 0.0001,
+    "gradient_clip_norm": 10.0,
+    "project_stationary_coefficients_each_step": true,
+    "thread_count": 1,
+    "best_restart_rule": "minimum_final_regularized_objective_then_lowest_restart_index"
+  },
+  "audit_geometry": {
+    "confirmation_grid": {
+      "interior_axis_size": 13,
+      "interior_axis": "cell_centres_(i+0.5)/13",
+      "boundary_axis_size": 13,
+      "boundary_axis": "endpoint_inclusive_linspace_0_1",
+      "boundary_faces": "channel_0_to_2_then_value_0_then_1",
+      "deduplication": "first_occurrence_exact_float64_row_bytes",
+      "ordering": "interior_first_then_new_boundary_rows"
+    },
+    "identity_grid": {
+      "axis_size": 17,
+      "axis": "endpoint_inclusive_linspace_0_1"
+    },
+    "cube_grid": {
+      "axis_size": 25,
+      "axis": "endpoint_inclusive_linspace_0_1"
+    },
+    "jacobian_grid": {
+      "axis_size": 21,
+      "axis": "linspace_0.02_0.98",
+      "finite_difference_step": 0.00001
+    },
+    "inverse_samples": {
+      "seed": 72832,
+      "count": 1024,
+      "distribution": "independent_uniform",
+      "minimum": 0.02,
+      "maximum": 0.98,
+      "curve_bisection_iterations": 64
+    },
+    "neutral_axis": {
+      "sample_count": 4097,
+      "axis": "endpoint_inclusive_linspace_0_1",
+      "metric": "maximum_output_channel_spread"
+    },
+    "hue_neighbour": {
+      "base_angles_degrees": "endpoint_exclusive_arange_0_360_step_10",
+      "delta_degrees": 0.0001,
+      "radius_in_opponent_plane": 0.25,
+      "luma_values": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "rgb_reconstruction": "solve rows [luma_coefficients; opponent_u_coefficients; opponent_v_coefficients] times rgb equals [luma; radius*cos(angle); radius*sin(angle)]",
+      "invalid_pair_rule": "omit a plus/minus pair unless both exact reconstructed RGB rows lie in [0,1]",
+      "minimum_retained_pair_count": 60,
+      "metric": "maximum Euclidean output jump between plus/minus pair"
+    },
+    "red_ramp": {
+      "sample_count": 4097,
+      "t_axis": "endpoint_inclusive_linspace_0_1",
+      "rgb": [
+        "t",
+        "0.18*t",
+        "0.12*t"
+      ],
+      "luma_coefficients": [
+        0.212671,
+        0.71516,
+        0.072169
+      ],
+      "metrics": [
+        "minimum_output_luma_step",
+        "maximum_absolute_output_luma_second_difference"
+      ]
+    },
+    "strength_path": {
+      "strengths": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "points": "full_confirmation_grid",
+      "distance": "per-row Euclidean distance from identity",
+      "zero_distance_rows": "excluded from ratio only and retained for absolute collinearity"
+    }
+  },
+  "gates": {
+    "parameter_budget_raw_maximum": 21,
+    "parameter_budget_effective_maximum": 18,
+    "identity_maximum_absolute_error": 1e-12,
+    "candidate_confirmation_rgb_rmse_maximum": 0.015,
+    "candidate_improvement_over_global_curves_fraction_minimum": 0.2,
+    "candidate_improvement_over_positive_matrix_curves_fraction_minimum": 0.1,
+    "candidate_to_stationary_k3_rmse_ratio_maximum": 1.2,
+    "output_minimum": -1e-12,
+    "output_maximum": 1.000000000001,
+    "minimum_finite_difference_jacobian_determinant": 0.02,
+    "maximum_finite_difference_jacobian_spectral_norm": 8.0,
+    "inverse_roundtrip_maximum_absolute_error": 2e-08,
+    "rotation_orthogonality_maximum_absolute_error": 1e-12,
+    "rotation_determinant_maximum_absolute_error_from_one": 1e-12,
+    "rotation_angle_radians_maximum": 0.45,
+    "minimum_control_increment": 0.02,
+    "neutral_axis_maximum_channel_spread": 0.03,
+    "hue_neighbour_maximum_output_jump": 0.00001,
+    "red_ramp_minimum_luma_step": 0.0,
+    "red_ramp_maximum_second_difference": 0.002,
+    "strength_path_maximum_collinearity_error": 1e-12,
+    "strength_path_maximum_order_error": 1e-12,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "partition_replay_maximum_absolute_error": 0.0,
+    "two_process_report_byte_identity": true
+  },
+  "branch_rules": {
+    "contract_or_truth_failure": "close or supersede before implementation; never invent hidden defaults",
+    "capacity_failure": "close without rotation, curve, degree, target, control, fit, grid or threshold rescue",
+    "cube_or_structure_failure": "close without clamp, gamut projection, weaker inverse, altered audit geometry or photograph rescue",
+    "all_gates_pass": "retain only as clean-room synthetic representation evidence and separately preregister any later non-synthetic test"
+  },
+  "image_download_allowed": false,
+  "photograph_access_allowed": false,
+  "real_film_pixel_allowed": false,
+  "real_image_fitting_allowed": false,
+  "unpaired_distribution_fitting_allowed": false,
+  "synthetic_explicit_control_fitting_allowed": true,
+  "gpu_allowed": false,
+  "external_code_checkpoint_or_asset_allowed": false,
+  "neural_network_allowed": false,
+  "generative_model_allowed": false,
+  "implicit_output_clamp_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one bounded SO(3)-coordinate monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}
