@@ -3448,3 +3448,18 @@
 - A strict read-only sweep of all 369 JSON files under `configs` and
   `tests/fixtures` reports zero duplicate-key, non-finite, Unicode or decode
   failures.
+
+## 2026-07-28 - Publish and verify P120 integration v21
+
+- V21 binds P1-P119 payload `6ab44c4` to the read-only main stable point
+  `f3c52fd`: 420 payload paths, zero main paths in reference-match scope, zero
+  overlap, 50 public exports and 22 contract schemas. Main subsequently began
+  a new disjoint U6.P5A leaf; this manifest intentionally remains bound to the
+  exact verified stable point rather than chasing an active worktree.
+- Manifest/schema SHA-256 identities are `1410ccec...add40a` /
+  `44037de2...ff608`; merge tree `fb90567f...3dac` and detached merge commit
+  `19a50c0` bind the exact source state.
+- The detached merged tree passes 1170 color-match tests with 28 explicit
+  platform/data skips and 1258 unrelated deselections in 329.79 seconds. The
+  temporary verification worktree was removed after validation. State remains
+  `review-ready-not-merged`; main owns any merge.
