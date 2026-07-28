@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p7d1_virtual_scan_visual_confirmation_contract.v1",
+  "node": "U6.P7D1",
+  "parent_contract": "configs/u6_p7d_virtual_scan_sampling_audit_v1.json",
+  "parent_contract_sha256": "2d55a7b407776c8a768fc8461bf0b33a52337ff8824a920beae537578d622616",
+  "parent_report_run_a": "outputs/u6_p7d_virtual_scan_sampling_audit_v1/run_a/report.json",
+  "parent_report_run_b": "outputs/u6_p7d_virtual_scan_sampling_audit_v1/run_b/report.json",
+  "parent_report_sha256": "6ff15cc48a1580411dbaec3e43791a539ed013b9abbc9c3bad1349738191ae36",
+  "colour_baseline_report": "outputs/u6_p7b_source_context_joint_ablation_v1/run_a/report.json",
+  "colour_baseline_report_sha256": "0738b05477e0f81be2651eb9eb5aef015e3f34134bd08537637d87fc403825e8",
+  "selected_candidate_id": "scan_4000_dpi",
+  "selected_sampling_dpi": 4000,
+  "visual_ids": [
+    "canon_eos_kiss_f",
+    "nikon_d2x",
+    "sony_nex_3n",
+    "fujifilm_finepix_s5000",
+    "olympus_sp550uz",
+    "panasonic_dmc_gf2",
+    "pentax_k_r",
+    "leica_d_lux_6",
+    "kodak_dcs_pro_14n"
+  ],
+  "blind": {
+    "rounds": 3,
+    "seed": 2026072901,
+    "arms": [
+      "colour_only",
+      "combined_scan_4000_dpi"
+    ],
+    "mapping_must_differ_by_round": true,
+    "score_before_mapping_reveal": true,
+    "minimum_combined_round_wins": 2
+  },
+  "severe_review": {
+    "maximum_confirmed_severe_combined_artifacts": 0,
+    "full_resolution_before_blind_preference": true,
+    "confirmed_severe_blocks_mapping_reveal": true
+  },
+  "claim_ceiling": "autonomous severe-artifact and blind development preference evidence for one generic 4000-dpi virtual-scan challenger; not stock response, scanner calibration or product promotion",
+  "post_result_retuning_allowed": false
+}
