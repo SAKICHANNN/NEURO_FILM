@@ -225,10 +225,10 @@ with a selected stock, but reference matching alone is labeled
 | P58B | DONE | generate and validate deterministic manifest | enumerate P1-P57 payload, public API exports and schema inventory without self-reference | `7e490bd`; script/manifest/tests | review evidence only |
 | P58C | DONE | prove drift/tamper/coverage closure | wrong commit/blob/export/schema/overlap or missing public export rejects; exact regeneration passes | 8 dedicated tests | fail closed |
 | P58D | DONE | propagate manifest and peer handoff | 598 color-match; 1493 pass/1 skip/36 known; latest-main merge 19 pass | evidence commit | main owner decides merge |
-| P59A | IN PROGRESS | freeze strict integration-manifest wire contract | exact keys/types, Git identities, zero-overlap and review-only ceiling | plan commit | schema-first read only |
-| P59B | READY | publish strict JSON Schema and validator | validate structure before resolving pinned Git commits | schema/code/tests | no merge or state change |
-| P59C | BLOCKED ON P59B | prove malformed/tampered manifest closure | unknown/missing fields, bad hashes/modes/counts, overlap or ceiling escalation reject | adversarial tests | fail closed |
-| P59D | BLOCKED ON P59C | propagate schema evidence and peer handoff | focused/all-color/latest-main verification | evidence commit | main owner decides merge |
+| P59A | DONE | freeze strict integration-manifest wire contract | exact keys/types, Git identities, zero-overlap and review-only ceiling | `37353c4` | schema-first read only |
+| P59B | DONE | publish strict JSON Schema and validator | validate structure before resolving pinned Git commits | `0e3b376`; schema/code/tests | no merge or state change |
+| P59C | DONE | prove malformed/tampered manifest closure | unknown/missing fields, bad hashes/modes/counts, overlap or ceiling escalation reject | 14 dedicated tests | fail closed |
+| P59D | DONE | propagate schema evidence and peer handoff | 604 all-color; 1499 pass/1 skip/36 known; latest-main merge 25 pass | evidence commit | main owner decides merge |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

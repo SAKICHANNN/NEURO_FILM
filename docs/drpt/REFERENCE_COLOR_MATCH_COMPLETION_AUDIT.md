@@ -59,7 +59,8 @@ wire contract and not an algorithm promotion.
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
 | Main-integration evidence | P58 deterministically binds payload/base/main commits, all 253 payload Git blobs, 11 public exports, nine shared schemas and zero overlap | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies the pinned manifest, reviews and merges / main task or owner |
-| Main-project availability | P58 latest-main merge tree is conflict-free and a fresh detached merge passes 19 manifest/P57 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
+| Main-project availability | P59 latest-main merge tree is conflict-free and a fresh detached merge passes 25 manifest/P57 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -99,6 +100,8 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
 12. The main owner verifies the P58 deterministic integration manifest before
     merging; the manifest is review evidence and never upgrades candidate,
     transaction or product state.
+13. P59 validates the manifest against its strict schema before Git-backed
+    reconstruction; neither validation stage performs the merge.
 
 ## Non-blocking work policy
 

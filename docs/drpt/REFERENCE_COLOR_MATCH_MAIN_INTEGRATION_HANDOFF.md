@@ -8,17 +8,19 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P58 implementation head:
-  `7e490bd0b624d856fe2fe36333e5a48589e31266`;
+- complete P1-P59 implementation head:
+  `0e3b3761424f9f7f0716b62d196fe2a812585bba`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- main read-only snapshot:
+- P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
+- latest read-only main preflight:
+  `349db2e2866985e2b818289dfcb2160e13e10ba4`;
 - D-PCT read-only snapshot:
   `ffdfd98`;
 - conflict-free main/payload merge tree:
-  `ac6751f8992d329e257911b8cc5f86bc0b51c6fc`.
+  `d0c94491832b980005ce5e85dd606870c6e66432`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -30,6 +32,13 @@ The deterministic P58 review manifest is
 It binds 253 payload Git blobs, 178 main changed paths, zero overlap, 11
 required public exports and nine shared schemas. It deliberately binds the
 preceding payload commit so it never hashes itself.
+
+The independent strict P59 schema is
+`configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
+SHA-256
+`dcaa3caca5cee9082eb8ece9b5206ce2a337528f8ffb894019e76c2bb0f08a06`.
+It rejects malformed review data before resolving Git commits; the P58 exact
+rebuild remains authoritative for shape-valid blob or hash tampering.
 
 ## What the payload provides
 
@@ -111,10 +120,10 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P58 manifest, then review `c03c321..7e490bd`; do not
-   copy files manually and do not import
-   mutable paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree 7e490bd <reviewed-main>`.
+2. Verify the committed P59 schema and P58 manifest, then review
+   `c03c321..0e3b376`; do not copy files manually and do not import mutable
+   paths from the D-PCT repository.
+3. Recompute `git merge-tree --write-tree 0e3b376 <reviewed-main>`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -128,10 +137,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 598 passed;
-- latest isolated consumer full suite: 1493 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 604 passed;
+- latest isolated consumer full suite: 1499 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 19 P58/P57 integration-integrity tests
+- latest detached synthetic main merge: 25 P59/P57 integration-integrity tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 

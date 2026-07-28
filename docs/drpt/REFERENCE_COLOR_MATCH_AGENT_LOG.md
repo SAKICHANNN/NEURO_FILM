@@ -2320,6 +2320,30 @@
 - Scope: consumer schema/builder/tests/docs only. No main or producer write,
   merge, package release, candidate admission or product-state change.
 
+## 2026-07-28 - Implement and verify P59 strict review schema
+
+- Node/parent goal: P59B-D / schema-first main-owner review.
+- Implementation: `0e3b376` adds a strict Draft 2020-12 manifest schema,
+  schema-first validation in the P58 builder, six new adversarial tests and an
+  explicit `jsonschema==4.26.0` dependency for Windows and Apple manifests.
+- Schema SHA-256:
+  `dcaa3caca5cee9082eb8ece9b5206ce2a337528f8ffb894019e76c2bb0f08a06`.
+  Builder SHA-256:
+  `fb9809015c0371f203d0339a6b955d0f6ff85b3f5ff56c7d5bd96898306dd154`.
+- Fail-closed order: missing schema, unknown/missing field, invalid Git mode,
+  traversal path, negative count, nonempty overlap or ceiling/export
+  escalation rejects before any Git command. Shape-valid hash tampering still
+  rejects against commit-derived reconstruction.
+- Verification: 14 dedicated, 19 focused schema/manifest, 604 complete
+  `test_color_match*`; full suite 1499 pass/one skip/36 unchanged ignored
+  output or historical-hash failures.
+- Latest-main propagation: main `349db2e2866985e2b818289dfcb2160e13e10ba4`;
+  259 consumer versus 182 main paths with zero overlap; merge tree
+  `d0c94491832b980005ce5e85dd606870c6e66432`; fresh detached merge passes
+  25 P59/P57 tests and was removed. Main dirty files were not touched.
+- Ceiling remains `review-ready-not-merged`; schema validity does not admit an
+  algorithm, authorize a transaction or imply product application.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
