@@ -1,0 +1,108 @@
+{
+  "schema": "neuro_film.u6_p5b_spatial_halo_audit_contract.v1",
+  "node": "U6.P5B",
+  "parents": {
+    "p5a_contract_sha256": "38d5b93bbfe0f64cee74f3f42271bd548d3ea01cadd32299c844eea2e820791e",
+    "p5a_decision_sha256": "826bb76359e71eb0fc74ef71985579784b0880941255ebbff3befdd4e73b9cc8"
+  },
+  "claim_ceiling": "generic-physical-inspired-spatial-halo-development",
+  "candidate_policy": "evaluate the exact frozen P5A profile without retuning",
+  "charts": {
+    "shape": [
+      384,
+      1024
+    ],
+    "slant_degrees": 5.0,
+    "density_edges": [
+      [
+        0.05,
+        0.25
+      ],
+      [
+        0.25,
+        0.75
+      ],
+      [
+        0.5,
+        1.5
+      ],
+      [
+        1.0,
+        3.0
+      ]
+    ],
+    "exposure_edges": [
+      [
+        0.01,
+        0.03
+      ],
+      [
+        0.03,
+        0.18
+      ],
+      [
+        0.18,
+        1.0
+      ],
+      [
+        1.0,
+        4.0
+      ]
+    ],
+    "diagnostic_crop_half_width_pixels": 48
+  },
+  "measurements": {
+    "edge_frequency": "presampled edge MTF, reported only through physical sample Nyquist",
+    "nyquist_cycles_per_mm": 500.0,
+    "report": [
+      "MTF50",
+      "MTF10",
+      "normalized overshoot",
+      "normalized undershoot",
+      "absolute scan-linear halo excursion",
+      "halo width at one-percent edge span"
+    ]
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "finite_domain_valid": true,
+    "maximum_normalized_overshoot": 0.12,
+    "maximum_normalized_undershoot": 0.12,
+    "maximum_absolute_scan_linear_halo_excursion": 0.03,
+    "maximum_halo_width_pixels_at_one_percent": 12.0,
+    "all_reported_mtf_frequencies_must_not_exceed_nyquist": true,
+    "minimum_full_pipeline_mtf50_cycles_per_mm": 20.0,
+    "maximum_full_pipeline_mtf50_cycles_per_mm": 500.0
+  },
+  "visual_protocol": {
+    "always_generate_fixed_diagnostic": true,
+    "views": [
+      "adjacency-only density-to-transmittance crops",
+      "full exposure-to-scan-linear crops",
+      "difference-amplified crops"
+    ],
+    "severe_vetoes": [
+      "bright or dark contour ringing visible as a secondary edge",
+      "colour fringing caused by channel-dependent adjacency",
+      "posterized or clipped edge plateaus",
+      "row, tile or chart seam"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "negative_controls": [
+    "zero adjacency gain must remove adjacency halo exactly",
+    "frequency reporting above physical sample Nyquist must be rejected",
+    "reversing scanner MTF and density interpretation must remain distinguishable"
+  ],
+  "forbidden_fallbacks": [
+    "retune P5A gains, sigmas, sensitometry or thresholds after confirmatory output",
+    "hard clip density or scan-linear output",
+    "hide undershoot by reporting overshoot alone",
+    "promote from a visually pleasant contact sheet when an automatic severe-halo gate fails",
+    "claim measured film, stock, process or scanner MTF"
+  ],
+  "branch_rule": {
+    "pass": "retain the exact P5A profile as a development spatial candidate and proceed to held-out synthetic structure/OOD checks",
+    "fail": "close the exact failing adjacency profile, retain independently safe spatial stages, and freeze a new bounded adjacency family only under a separate candidate contract"
+  }
+}
