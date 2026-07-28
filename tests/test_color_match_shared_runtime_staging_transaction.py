@@ -858,7 +858,10 @@ def test_invalid_temp_root_cannot_poison_in_process_lock_set(
         "gettempdir",
         lambda: str(missing),
     )
-    with pytest.raises(FileNotFoundError):
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="temporary root must be a directory",
+    ):
         with runtime_staging_module._target_transaction_lock(paths):
             raise AssertionError("invalid temporary root must not be entered")
     assert runtime_staging_module._HELD_LOCK_KEYS.isdisjoint(
@@ -871,6 +874,37 @@ def test_invalid_temp_root_cannot_poison_in_process_lock_set(
     )
     with runtime_staging_module._target_transaction_lock(paths):
         pass
+
+
+def test_reparse_temp_root_is_rejected_before_lock_creation(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    real = tmp_path / "real-temp"
+    alias = tmp_path / "linked-temp"
+    real.mkdir()
+    try:
+        alias.symlink_to(real, target_is_directory=True)
+    except OSError as exc:
+        pytest.skip(f"directory symlink unavailable: {exc}")
+    monkeypatch.setattr(
+        runtime_staging_module.tempfile,
+        "gettempdir",
+        lambda: str(alias),
+    )
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="must not traverse a symlink or reparse point",
+    ):
+        with runtime_staging_module._target_transaction_lock(
+            (tmp_path / "output.png",)
+        ):
+            raise AssertionError("reparse temporary root must not be entered")
+
+    assert not (
+        real / "neuro-film-reference-match-target-locks-v1"
+    ).exists()
 
 
 def test_caller_pixel_mutation_after_snapshot_cannot_change_output(

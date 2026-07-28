@@ -368,7 +368,14 @@ def _target_transaction_lock(
     # Resolve every potentially failing prerequisite before reserving the
     # in-process keys. Otherwise a broken temporary-directory configuration
     # could poison the key set and reject every later valid retry.
-    temp_root = Path(tempfile.gettempdir()).resolve(strict=True)
+    temp_root = _reject_reparse_components(
+        Path(tempfile.gettempdir()),
+        label="runtime-qualified staging temporary root",
+    )
+    if not temp_root.is_dir():
+        raise ReferenceMatchContractError(
+            "runtime-qualified staging temporary root must be a directory"
+        )
     lock_root = temp_root / "neuro-film-reference-match-target-locks-v1"
     with _LOCK_GUARD:
         if any(key in _HELD_LOCK_KEYS for key in keys):

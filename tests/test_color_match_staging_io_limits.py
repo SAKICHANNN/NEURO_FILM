@@ -51,3 +51,23 @@ def test_runtime_collector_rejects_reparse_before_any_path_resolution(
     path = tmp_path / "output.png"
 
     assert runtime_staging._runtime_output_paths([path], count=1) == (path,)
+
+
+def test_runtime_lock_checks_original_temp_root_without_resolution(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    def forbidden_resolve(*_args, **_kwargs):
+        raise AssertionError("runtime lock root must not call Path.resolve")
+
+    monkeypatch.setattr(
+        runtime_staging.tempfile,
+        "gettempdir",
+        lambda: str(tmp_path),
+    )
+    monkeypatch.setattr(Path, "resolve", forbidden_resolve)
+
+    with runtime_staging._target_transaction_lock(
+        (tmp_path / "destination.png",)
+    ):
+        pass
