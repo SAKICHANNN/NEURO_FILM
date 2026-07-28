@@ -7,11 +7,13 @@ import numpy as np
 import pytest
 
 from src.color_engine import (
+    apply_safe_lab_transform,
     compress_chroma_to_working_gamut,
     compress_source_to_working_gamut,
     in_working_gamut,
     lab_to_linear_rgb,
     linear_rgb_to_lab,
+    safe_lab_context_from_lab,
 )
 from src.color_match import (
     MAX_REFERENCE_MATCH_BATCH_SOURCES,
@@ -279,6 +281,96 @@ def test_row_chunked_gamut_is_float32_exact_to_full_frame(
         working_space=source.working_space,
     )
     np.testing.assert_array_equal(chunked, full)
+
+
+@pytest.mark.parametrize("working_space", ["linear_srgb", "linear_rec2020"])
+@pytest.mark.parametrize("luma_detail", [0.0, 0.35])
+def test_halo_row_styled_lab_is_float32_exact_to_full_frame(
+    working_space: str,
+    luma_detail: float,
+) -> None:
+    reference = _working(
+        np.random.default_rng(27132).uniform(
+            0.1,
+            0.8,
+            size=(79, 83, 3),
+        ).astype(np.float32),
+        path="reference.png",
+        working_space=working_space,
+    )
+    source = _working(
+        np.random.default_rng(27133).uniform(
+            0.05,
+            0.85,
+            size=(257, 389, 3),
+        ).astype(np.float32),
+        path="source.png",
+        working_space=working_space,
+    )
+    recipe = fit_reference_look(
+        reference,
+        policy=replace(
+            ReferenceLookPolicy(),
+            preserve_luma_detail_strength=luma_detail,
+        ),
+    )
+    source_lab = linear_rgb_to_lab(
+        source.pixels,
+        working_space=working_space,
+    )
+    policy = recipe.policy
+    full = apply_safe_lab_transform(
+        source_lab,
+        source_context=safe_lab_context_from_lab(source_lab),
+        destination_mean=np.asarray(recipe.destination_lab_mean, dtype=np.float32),
+        destination_std=np.asarray(recipe.destination_lab_std, dtype=np.float32),
+        style="reference_look",
+        strength=policy.strength,
+        luma_strength=policy.luma_strength,
+        tone_rolloff=policy.tone_rolloff,
+        shadow_floor_l=policy.shadow_floor_l,
+        highlight_ceiling_l=policy.highlight_ceiling_l,
+        preserve_luma_detail_strength=policy.preserve_luma_detail_strength,
+        chroma_curve_strength=policy.chroma_curve_strength,
+        neutral_protect=policy.neutral_protect,
+        skin_protect=policy.skin_protect,
+        max_chroma_gain=policy.max_chroma_gain,
+        max_chroma_boost=policy.max_chroma_boost,
+        max_chroma_absolute=policy.max_chroma_absolute,
+    )
+    chunked = render_module._styled_lab(recipe, source_lab)
+    np.testing.assert_array_equal(chunked, full)
+
+
+def test_halo_row_style_never_exceeds_core_plus_two_halos(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed_rows: list[int] = []
+    original = render_module.apply_safe_lab_transform
+
+    def record_rows(source_lab, **kwargs):
+        observed_rows.append(int(source_lab.shape[0]))
+        return original(source_lab, **kwargs)
+
+    monkeypatch.setattr(render_module, "apply_safe_lab_transform", record_rows)
+    reference = _working(
+        np.random.default_rng(27134).uniform(
+            0.1,
+            0.8,
+            size=(71, 73, 3),
+        ).astype(np.float32),
+        path="reference.png",
+    )
+    source = _working(
+        np.random.default_rng(27135).uniform(
+            0.05,
+            0.85,
+            size=(400, 19, 3),
+        ).astype(np.float32),
+        path="source.png",
+    )
+    render_reference_look(fit_reference_look(reference), source)
+    assert observed_rows == [133, 138, 138, 21]
 
 
 def test_row_chunked_lab_to_rgb_and_gamut_check_are_exact() -> None:

@@ -30,6 +30,7 @@ from .row_kernels import (
 )
 
 _REFERENCE_RENDER_ROW_CHUNK = REFERENCE_MATCH_ROW_CHUNK
+_REFERENCE_STYLE_VERTICAL_HALO = 5
 
 
 def _working_image_batch(
@@ -111,25 +112,39 @@ def _styled_lab(
 ) -> np.ndarray:
     policy = recipe.policy
     context = safe_lab_context_from_lab(source_lab)
-    return apply_safe_lab_transform(
-        source_lab,
-        source_context=context,
-        destination_mean=np.asarray(recipe.destination_lab_mean, dtype=np.float32),
-        destination_std=np.asarray(recipe.destination_lab_std, dtype=np.float32),
-        style="reference_look",
-        strength=policy.strength,
-        luma_strength=policy.luma_strength,
-        tone_rolloff=policy.tone_rolloff,
-        shadow_floor_l=policy.shadow_floor_l,
-        highlight_ceiling_l=policy.highlight_ceiling_l,
-        preserve_luma_detail_strength=policy.preserve_luma_detail_strength,
-        chroma_curve_strength=policy.chroma_curve_strength,
-        neutral_protect=policy.neutral_protect,
-        skin_protect=policy.skin_protect,
-        max_chroma_gain=policy.max_chroma_gain,
-        max_chroma_boost=policy.max_chroma_boost,
-        max_chroma_absolute=policy.max_chroma_absolute,
-    )
+    destination_mean = np.asarray(recipe.destination_lab_mean, dtype=np.float32)
+    destination_std = np.asarray(recipe.destination_lab_std, dtype=np.float32)
+    output = np.empty_like(source_lab, dtype=np.float32)
+    for y0 in range(0, source_lab.shape[0], _REFERENCE_RENDER_ROW_CHUNK):
+        y1 = min(y0 + _REFERENCE_RENDER_ROW_CHUNK, source_lab.shape[0])
+        expanded_y0 = max(0, y0 - _REFERENCE_STYLE_VERTICAL_HALO)
+        expanded_y1 = min(
+            source_lab.shape[0],
+            y1 + _REFERENCE_STYLE_VERTICAL_HALO,
+        )
+        expanded = apply_safe_lab_transform(
+            source_lab[expanded_y0:expanded_y1],
+            source_context=context,
+            destination_mean=destination_mean,
+            destination_std=destination_std,
+            style="reference_look",
+            strength=policy.strength,
+            luma_strength=policy.luma_strength,
+            tone_rolloff=policy.tone_rolloff,
+            shadow_floor_l=policy.shadow_floor_l,
+            highlight_ceiling_l=policy.highlight_ceiling_l,
+            preserve_luma_detail_strength=policy.preserve_luma_detail_strength,
+            chroma_curve_strength=policy.chroma_curve_strength,
+            neutral_protect=policy.neutral_protect,
+            skin_protect=policy.skin_protect,
+            max_chroma_gain=policy.max_chroma_gain,
+            max_chroma_boost=policy.max_chroma_boost,
+            max_chroma_absolute=policy.max_chroma_absolute,
+        )
+        core_y0 = y0 - expanded_y0
+        core_y1 = core_y0 + (y1 - y0)
+        output[y0:y1] = expanded[core_y0:core_y1]
+    return output
 
 
 def _gamut_safe_lab(
@@ -179,6 +194,9 @@ def render_reference_look(
         styled_lab,
         working_space=source.working_space,
     )
+    adjusted = np.any(np.abs(output_lab - styled_lab) > 1e-6, axis=-1)
+    del styled_lab
+    del source_lab
     output_pixels = _lab_to_linear_rgb_rows(
         output_lab,
         working_space=source.working_space,
@@ -194,7 +212,6 @@ def render_reference_look(
             "reference-look output violates the declared working gamut"
         )
 
-    adjusted = np.any(np.abs(output_lab - styled_lab) > 1e-6, axis=-1)
     output = WorkingImage(
         pixels=np.asarray(output_pixels, dtype=np.float32),
         working_space=source.working_space,
