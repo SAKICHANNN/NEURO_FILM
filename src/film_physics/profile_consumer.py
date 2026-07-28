@@ -35,6 +35,7 @@ from src.film_physics.contracts import (
 )
 from src.film_physics.display_look import (
     DISPLAY_LOOK_SCHEMA,
+    build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
     validate_display_look_payload,
@@ -506,6 +507,13 @@ def render_working_image_fully_row_streamed(
         scene.values.astype(np.float64)
     )
     del scene
+    source_context = build_density_source_context_row_staged(
+        artifact["component_payloads"][
+            "ao6-source-context-display-look"
+        ],
+        encoded,
+        tile_rows=tile_rows,
+    )
     runtime, gauge = reconstruct_standalone_runtime(artifact)
     compiled = replace(
         runtime,
@@ -543,6 +551,7 @@ def render_working_image_fully_row_streamed(
         encoded,
         tile_rows=tile_rows,
         reuse_input_buffer=True,
+        source_context=source_context,
     )
     del encoded
     output = display(gauged_encoded)
