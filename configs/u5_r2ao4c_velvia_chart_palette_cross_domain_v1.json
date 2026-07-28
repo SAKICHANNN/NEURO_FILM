@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4c-velvia-chart-palette-cross-domain-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4C",
+  "inputs": {
+    "chart_pairs": "outputs/u5_r2ao0_balica_velvia_chart_proxy_source_v1/paired_patches.json",
+    "chart_paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+    "palette_pairs": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "palette_asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+    "velvia_palette_paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30",
+    "ektachrome_palette_paired_u8_sha256": "0104f997be4b1b32042193eecef644b22aab4bc6a66db3269ba5ee4071c294e0"
+  },
+  "pair_semantics": {
+    "source": "author-rendered HSI/reference sRGB display proxy",
+    "target": "author-rendered film sRGB display proxy",
+    "working_conversion": "IEC 61966-2-1 sRGB EOTF to linear-sRGB D65",
+    "chart_rows": 24,
+    "velvia_palette_rows": 47,
+    "ektachrome_palette_rows": 56
+  },
+  "models": [
+    "identity",
+    "per_channel_affine",
+    "full_affine",
+    "one_matrix"
+  ],
+  "positive_cross_domain_directions": [
+    {
+      "fit": "velvia_chart",
+      "confirm": "velvia_palette"
+    },
+    {
+      "fit": "velvia_palette",
+      "confirm": "velvia_chart"
+    }
+  ],
+  "diagnostic_wrong_stock": {
+    "fit_ektachrome_palette_and_score_velvia_palette": true,
+    "fit_velvia_chart_and_score_ektachrome_palette": true,
+    "claim": "content-confounded negative control only; cannot establish stock specificity"
+  },
+  "fit": {
+    "model": "one_matrix",
+    "loss": "linear",
+    "maximum_function_evaluations": 4000,
+    "exposure_floor": 1.52587890625e-05,
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
+  },
+  "gates": {
+    "maximum_one_matrix_rgb_rmse_each_direction": 0.12,
+    "minimum_one_matrix_gain_over_identity_each_direction": 0.15,
+    "minimum_one_matrix_gain_over_full_affine_each_direction": 0.05,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "retain_cross_domain_velvia_display_proxy_operator_evidence",
+  "decision_if_fail": "close_chart_operator_cross_domain_generalization",
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "bidirectional cross-domain validation between one Velvia ColorChecker display proxy and one stable-pigment palette display proxy, plus content-confounded Ektachrome controls; not raw, same-time pairs, independent process/scanner replication, stock specificity, transferable stock response, calibration or product evidence"
+}
