@@ -3492,3 +3492,22 @@
 - Detached synthetic merge `56fb13b` passes 1187 color-match tests with 28
   explicit skips and 1268 unrelated deselections. Its owned temporary
   worktree was removed. State remains `review-ready-not-merged`.
+
+## 2026-07-28 - Supersede v22 with corrected P125-P127 integration v23
+
+- Post-v22 review found the generic bounded staging collector called
+  `Path.resolve()` before the runtime-qualified transaction's explicit
+  symlink/reparse rejection. V22 was immediately announced as superseded
+  before any main-project merge. The collector is now split: ordinary staging
+  retains resolved-path collision checks, while runtime-qualified staging
+  performs bounded collection and then rejects reparse components without
+  calling `Path.resolve()`.
+- In-memory recipe replay also validates and bounds its source iterable before
+  recipe-file I/O. Current non-manifest color-match regression passes 892
+  tests with three skips.
+- V23 binds corrected payload `c926ea0` to the same main stable point
+  `82e1e19`: 429 consumer paths, 445 main paths, zero overlap. Manifest/schema
+  SHA-256 identities are `e4cf6bff...aef88` / `404afa8e...ec37a`; merge tree
+  `18e26502...34811` and detached merge `ee64ccd` pass 1199 color-match tests
+  with 28 skips and 1268 unrelated deselections. The owned worktree was
+  removed. V23 is the sole current `review-ready-not-merged` candidate.
