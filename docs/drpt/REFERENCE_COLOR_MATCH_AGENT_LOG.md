@@ -3244,3 +3244,25 @@
 - The exact unused arm64 AVD and system image were removed after the failed
   preflight; the working x86_64 AVD was preserved. Five parser/target tests
   pass. Physical arm64 or a matching-host arm64 emulator remains external.
+
+## 2026-07-28 - Add P107 capability-neutral invocation and P108 v17 handoff
+
+- P107 adds a strict, hash-bound invocation profile that pins the complete
+  producer/package/wheel/runtime/wire/capability/rights identity. The generic
+  v2 transport executes the existing exact wheel while preserving the v1
+  request bytes, and returns a profile-bound outcome. This is transport
+  readiness only: the currently rejected capability is not renamed or
+  promoted.
+- The verifier now independently reconstructs the source/reference request
+  views and domain-separated request ID before reading output. Capability,
+  request ID or pixels-file mutation fails closed. Fifty related tests pass.
+- P108 v17 binds P1-P107 `ee6595f` to read-only main `ebda2e1f` with 392/340
+  changed paths, zero overlap, 47 exports and 21 schemas. Manifest/schema
+  SHAs are `115e6bcb...652c4` / `efa1b18e...f2df3`.
+- A fresh detached merge produces tree `5d55747e...22c8` and passes 1098
+  color-match tests with 24 platform/data skips; its temporary worktree was
+  removed. State remains `review-ready-not-merged`.
+- D-PCT R0cm is recorded only as a future veto-only interface intent:
+  `invalidate-reuse` may force refit; `not-invalidated-veto-only` can never
+  authorize reuse. No consumer mapping exists before exact producer schema
+  and fixtures are published.

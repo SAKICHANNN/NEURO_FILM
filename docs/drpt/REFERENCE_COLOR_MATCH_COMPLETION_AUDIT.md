@@ -14,9 +14,9 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P100 at
-  `a8a2453`; P101-P104 extend the Android virtual runtime locally and will be
-  bound by the next immutable integration manifest.
+- Consumer reviewed payload: `codex/reference-color-match` through P107 at
+  `ee6595f`; P108 v17 binds the complete payload and the new
+  capability-neutral invocation profile.
 - Main Neuro-Film latest read-only snapshot observed during P100 is `5d355bd`;
   its concurrent AN0 work and untracked `.codex/`/`tmp/` belong to the main
   task and were not touched.
@@ -44,6 +44,7 @@ wire contract and not an algorithm promotion.
 | A5 album/batch consistency | P44 current candidate fails 6/6 shared-colour probes with worst median drift 72.64 Delta E76 | CURRENT INVOKED CANDIDATE REJECTED | Require a new capability with bounded adaptation or fixed operator and rerun / shared evidence, Neuro-Film decision |
 | Current candidate failure diagnosis | P46 proves 30/30 universal overcorrection, weak clipping/error association and 6/6 source-context bundle changes | COMPLETE NEGATIVE DIAGNOSIS | Prioritize a bounded reference-only shared operator with neutral/boundary controls / D-PCT research |
 | Exact producer/consumer compatibility | P27 pins v2 envelopes; P43 pins producer source/wheel/runtime/request/response and invokes through the P27 adapter | COMPLETE for fixed local relative-SDR package | Preserve both package and lower-envelope identities; re-audit any producer package change / D-PCT then Neuro-Film |
+| Capability-neutral producer invocation | P107 binds full producer/package/wheel/runtime/wire/capability/rights identity, preserves v1 wire bytes, executes the exact installed wheel and independently reconstructs request identity before output verification | COMPLETE AS FAIL-CLOSED TRANSPORT, NO NEW CANDIDATE | Instantiate only from a genuinely different producer package and rerun P45/P44; profile substitution cannot promote a candidate / D-PCT then Neuro-Film |
 | Actual D-PCT algorithm invocation | P43 executes exact verified wheel bytes and independently rebuilds a candidate receipt | LOCAL RESEARCH INVOCATION COMPLETE, PRODUCT ADMISSION CLOSED | Pass genuine A1/A4/A5, establish release rights and target runtime evidence / shared evidence then Neuro-Film |
 | External D-PCT output to durable product staging | P33 atomically commits exact authorized N-source receipt buffers; P34 restart-verifies report and every file | MECHANICS COMPLETE, REAL USE CLOSED | Supply a real promoted/invoked batch; synthetic promotion proves mechanics only / shared evidence |
 | Final user-visible delivery state | P37 verifies P36; P38 reauthorizes; P39 atomically commits local files; P40 restart-verifies report plus staging/delivered bytes | LOCAL TRANSACTION AND RESTART INTEGRITY COMPLETE, REAL USE CLOSED | Admit a real invocation only after A1/A4/A5 and merge the reviewed module into main / shared evidence and Neuro-Film integration |
@@ -70,9 +71,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; P105 v16 binds P1-P104 `e73a42c`, 384 payload paths, 47 exports, 20 schemas, exact v15 identity and zero overlap against main `4eb571c`; v13-v16 explicitly retain LF checkout identity | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v16, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; P108 v17 binds P1-P107 `ee6595f`, 392 payload paths, 47 exports, 21 schemas, exact v16 identity and zero overlap against main `ebda2e1f`; v13-v17 retain LF checkout identity | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v17, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P105 payload remains zero-overlap against main `4eb571c` and merges conflict-free as tree `7b0da229`; a fresh detached merge passes 1076 color-match tests with 22 platform/data skips and zero failures | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P108 payload remains zero-overlap against main `ebda2e1f` and merges conflict-free as tree `5d55747e`; a fresh detached merge passes 1098 color-match tests with 24 platform/data skips and zero failures | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 

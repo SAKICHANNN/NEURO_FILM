@@ -2,26 +2,26 @@
 
 Date: 2026-07-28
 
-Status: **P1-P104 consumer payload is pinned by the immutable P105 v16 review
+Status: **P1-P107 consumer payload is pinned by the immutable P108 v17 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P104 payload head:
-  `e73a42ce8c2d0c45c0b2b7e2d89224d82efa05de`;
+- complete reviewed P1-P107 payload head:
+  `ee6595f2bbb2e87f7d753d700bcc8453593fe8ad`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `4eb571c785f9a5d5109767c11a3b1bf16eac8430`;
+  `ebda2e1f642f892b4786dd0dd6444490bcb89145`;
 - D-PCT read-only snapshot:
   `46b77bb`;
 - conflict-free main/evidence-head merge tree:
-  `7b0da2298fd26424cc139cecc74dbf64cb5a9b6a`.
+  `5d55747e86abcc824e8fe9da1b7789adb59b22c8`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -141,6 +141,17 @@ P105 v16 binds payload `e73a42c` against main `4eb571c`: 384 payload paths,
 `0174ab22fd913d340b1c86c6ac7133fe4204a1ccd1c0285f288ee27036bb67ae`;
 it binds v15 and never hashes itself.
 
+P106 closes the local arm64-emulator shortcut without changing the Android
+x86_64 runtime identity. P107 adds a capability-neutral, rights-aware exact
+producer invocation profile and generic v2 transport while preserving the
+existing v1 request bytes and rejected candidate identity. P108 v17 binds
+P1-P107 `ee6595f` against main `ebda2e1f`: 392 payload paths, 340 main paths,
+zero overlap, 47 exports and 21 schemas. V17 SHA-256 is
+`115e6bcb2f60786f01298fbae667f40eb40a25f620d0cf124a1bf98c3e8652c4`;
+it binds v16 and never hashes itself. Detached merge tree
+`5d55747e86abcc824e8fe9da1b7789adb59b22c8` passes 1098 color-match tests
+with 24 platform/data skips.
+
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
 SHA-256
@@ -159,7 +170,8 @@ The consumer module implements:
 - strict D-PCT v2 relative-SDR fixture compatibility;
 - exact producer receipt, ordered batch, numeric and product-authorization
   guards;
-- exact-wheel local invocation, frozen A1/A4/A5 execution and a strict
+- capability-neutral, rights-aware exact-wheel invocation, frozen A1/A4/A5
+  execution and a strict
   two-stage successor-candidate intake after the current capability failed;
 - deterministic failure-signature analysis showing universal overcorrection,
   weak clipping association and source-context-dependent bundle drift;
