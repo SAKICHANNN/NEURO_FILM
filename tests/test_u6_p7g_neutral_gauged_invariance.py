@@ -19,6 +19,11 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p7g_neutral_gauged_invariance_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs"
+    / "u6_p7g_neutral_gauged_invariance_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -68,3 +73,12 @@ def test_row_tiled_challenger_matches_full_for_odd_partitions() -> None:
                 order=order,
             )
             assert np.array_equal(tiled, reference)
+
+
+def test_p7g_decision_keeps_fixed_resolution_and_opens_attribution() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["tile_result"]["decision"] == "pass"
+    assert decision["resolution_result"]["decision"] == "fail"
+    assert decision["production_default_changed"] is False
+    assert decision["runtime_packaging_opened"] is False
+    assert decision["next_leaf"].startswith("U6.P7G1")

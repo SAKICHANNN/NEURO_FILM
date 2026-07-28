@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p7g_neutral_gauged_invariance_decision.v1",
+  "node": "U6.P7G",
+  "software_commit": "744f638",
+  "contract_sha256": "ba1d510d563ae5f1931ed7472a383aeecf462f4a5a273f6b5b6bcd95e26ffab8",
+  "report_sha256": "61f97c0cc98b6d27edc4f2fe1cae5d1294ec5f90f80f20704f6fa07b4623cc3a",
+  "stable_evidence_id": "60ee2f6ff8979ee9e46834104f03ee9636060fe6934ed201a64f7259a5894f46",
+  "two_run_result": {
+    "byte_exact_reports": true,
+    "tile_cases": 28,
+    "resolution_cases": 8,
+    "repeat_exact": true
+  },
+  "tile_result": {
+    "decision": "pass",
+    "maximum_float_absolute_error": 0.0,
+    "maximum_seam_absolute_error": 0.0,
+    "maximum_quantized_mismatch_fraction": 0.0,
+    "interpretation": "The finite-support physical stages are exactly invariant to every frozen row size and forward/reverse execution order when one full-frame AO6 source context is retained."
+  },
+  "resolution_result": {
+    "decision": "fail",
+    "failed_cases": 5,
+    "maximum_median_delta_e76": 1.3835588603664037,
+    "maximum_p95_delta_e76": 8.8373082113533,
+    "maximum_delta_e76": 40.14681520684408,
+    "minimum_edge_energy_ratio": 1.0734191292595383,
+    "maximum_edge_energy_ratio": 1.3380535687099915,
+    "interpretation": "Rendering a resampled source at proportionally reduced virtual DPI is not interchangeable with rendering at 4000 dpi and then resampling the final nonlinear challenger output. This result does not identify whether the residual originates in physical stages, the neutral gauge, the AO6 residual or resampling order."
+  },
+  "decision": "retain exact fixed-resolution row streaming, close the broad cross-resolution-invariance claim and open stage attribution without changing thresholds",
+  "production_default_changed": false,
+  "runtime_packaging_opened": false,
+  "calibration_claim_opened": false,
+  "next_leaf": "U6.P7G1 stagewise cross-resolution attribution for physical intermediate, neutral gauge, AO6 residual and resampling order",
+  "claim_ceiling": "generic fixed-resolution physical-inspired partition evidence and negative cross-resolution evidence; not stock response, measured scanner/print response, calibration or product promotion"
+}
