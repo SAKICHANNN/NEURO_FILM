@@ -20,6 +20,11 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p8b_artifact_only_cpu_consumer_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs"
+    / "u6_p8b_artifact_only_cpu_consumer_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -80,3 +85,14 @@ def test_standalone_render_needs_only_artifact_and_pixels() -> None:
     )
     actual = render_standalone_profile(artifact, source)
     assert np.array_equal(expected, actual)
+
+
+def test_p8b_decision_freezes_artifact_only_exact_replay() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["software_commit"] == "b838491"
+    assert decision["two_run_byte_exact"]
+    assert decision["artifact_only_reconstruction"]
+    assert decision["replay_exact"]
+    assert decision["maximum_absolute_replay_error"] == 0.0
+    assert not decision["native_runtime_opened"]
+    assert decision["next_leaf"].startswith("U6.P8C")
