@@ -41,8 +41,15 @@
   },
   "fit": {
     "model": "one_matrix",
+    "identity_mixture": 0.25,
+    "restart_count": 3,
     "loss": "linear",
+    "loss_scale": 0.01,
     "maximum_function_evaluations": 4000,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11,
+    "seed": 20260728,
     "exposure_floor": 1.52587890625e-05,
     "matrix_minimum_determinant": 0.2,
     "minimum_endpoint_span": 0.05
