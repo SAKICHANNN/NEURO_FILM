@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8y_native_spatial_conformance_decision.v1",
+  "node": "U6.P8Y",
+  "contract": "configs/u6_p8y_native_spatial_conformance_v1.json",
+  "contract_sha256": "3ae1449de69d3d8232e9c6a3e8447e625654765130b52162b2a2e235b0853fce",
+  "formal_report": "outputs/u6_p8y_native_spatial_conformance_v1/report.json",
+  "formal_report_sha256": "bd10ce5ec2771808ae285ec9e80b511b158b47317a7afb7399fb60993657d739",
+  "stable_evidence_id": "4702970a719b9f358d0af62b54cfacc81595590e4f45997f2616d35596c79346",
+  "profile_payload_sha256": "6310108abdb6ca57b23310bf98f5ec241cf464e9cf9f9842758ab5ca0d64c534",
+  "oracle_sha256": "69c1ef2c236b1300274fcba4439096433d62d5a7dd63a9c98af485cb5dbd9054",
+  "native_source_sha256": "d37900aa4e0fcf9f5d608435be96d223e9dea94acf33bb8a36462a299d8e58aa",
+  "native_header_sha256": "bccc53356771521a0c79fa87c3d31d6738d1549122958d3e3a9dd112256c19b4",
+  "dll_sha256": "49ccdb3cf0377b5a2cfbfc5c557ee704c6b836af4b263be7d63358995a54a504",
+  "result": {
+    "status": "pass",
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "maximum_absolute_error": 3.3306690738754696e-16,
+    "tolerance": 5e-13,
+    "halo_by_stage": {
+      "forward_scatter": 2,
+      "development_adjacency": 1,
+      "dye_diffusion": 1,
+      "scanner_mtf": 1
+    },
+    "invalid_input_buffers_unchanged": true,
+    "overlap_rejected_before_write": true
+  },
+  "decision": "retain the caller-workspace finite nearest-edge Gaussian C11 ABI as the spatial primitive. All four fixed profile parameter rows match the SciPy float64 oracle, but this does not yet compose the ordered physical chain or establish measured MTF, halation, mobile or product evidence",
+  "production_default_changed": false,
+  "claim_ceiling": "portable local Windows x64 finite nearest-edge Gaussian spatial primitive conformance only",
+  "next_leaf": "U6.P8Z native physical-domain split P0: expose separately validated sensitometry and density-to-print interpretation functions so adjacency and dye diffusion can remain in their correct physical order before full-chain composition"
+}

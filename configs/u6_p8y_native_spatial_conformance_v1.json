@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p8y_native_spatial_conformance_contract.v1",
+  "node": "U6.P8Y",
+  "parent_decision": "configs/u6_p8x_native_print_conformance_decision_v1.json",
+  "parent_decision_sha256": "8715d9c5efbfeedd2691fe5e9471c61912601e0d02e3cdba456223724cbd3b3f",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "native_source": "native/film_physics/nf_gaussian_rgb_f64_v1.c",
+  "native_source_sha256": "d37900aa4e0fcf9f5d608435be96d223e9dea94acf33bb8a36462a299d8e58aa",
+  "native_header": "native/film_physics/nf_gaussian_rgb_f64_v1.h",
+  "native_header_sha256": "bccc53356771521a0c79fa87c3d31d6738d1549122958d3e3a9dd112256c19b4",
+  "expected_profile_payload_sha256": "6310108abdb6ca57b23310bf98f5ec241cf464e9cf9f9842758ab5ca0d64c534",
+  "expected_oracle_sha256": "69c1ef2c236b1300274fcba4439096433d62d5a7dd63a9c98af485cb5dbd9054",
+  "toolchain": {
+    "family": "MSVC",
+    "architecture": "x64",
+    "language": "C11",
+    "floating_point": "strict",
+    "optimization": "O2",
+    "warnings": "W4-WX",
+    "reproducible_link": true
+  },
+  "required_evidence": {
+    "stages": [
+      "forward_scatter",
+      "development_adjacency",
+      "dye_diffusion",
+      "scanner_mtf"
+    ],
+    "boundary_mode": "nearest",
+    "axis_order": [
+      "vertical",
+      "horizontal"
+    ],
+    "python_native_max_abs_tolerance": 5e-13,
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "invalid_input_buffers_unchanged": true,
+    "overlap_rejected_before_write": true
+  },
+  "allowed_actions": [
+    "compile and execute the fixed finite Gaussian C ABI on local MSVC x64",
+    "compare all four fixed spatial parameter rows against the SciPy float64 oracle",
+    "record exact source, header, profile, oracle and DLL identities"
+  ],
+  "forbidden_claims": [
+    "composed native physical chain",
+    "calibrated MTF, halation or development adjacency",
+    "native neutral-axis gauge or AO6 display look",
+    "full-frame performance, mobile runtime or product promotion"
+  ],
+  "claim_ceiling": "portable local Windows x64 finite nearest-edge Gaussian spatial primitive conformance only"
+}

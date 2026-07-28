@@ -7,7 +7,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import subprocess
 from typing import Any
 
 import numpy as np
@@ -22,6 +21,7 @@ from src.film_physics.native_profile import (
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
 )
+from src.eval.native_msvc import build_msvc_c11_dll
 
 
 class NativePrintProfileV1(ctypes.Structure):
@@ -54,14 +54,6 @@ class NativePrintProfileV1(ctypes.Structure):
         ("exposure_floor", ctypes.c_double),
         ("matrix_minimum_determinant", ctypes.c_double),
     ]
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -147,87 +139,18 @@ def profile_struct_from_payload(
     return result
 
 
-def find_msvc_installation() -> Path:
-    vswhere = Path(
-        r"C:\Program Files (x86)\Microsoft Visual Studio"
-        r"\Installer\vswhere.exe"
-    )
-    if not vswhere.is_file():
-        raise RuntimeError("vswhere is unavailable")
-    completed = subprocess.run(
-        [
-            str(vswhere),
-            "-latest",
-            "-products",
-            "*",
-            "-requires",
-            "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
-            "-property",
-            "installationPath",
-        ],
-        capture_output=True,
-        text=True,
-        check=True,
-        timeout=30,
-    )
-    lines = [line.strip() for line in completed.stdout.splitlines()]
-    if not lines:
-        raise RuntimeError("MSVC Build Tools are unavailable")
-    installation = Path(lines[-1])
-    if not installation.is_dir():
-        raise RuntimeError("MSVC installation path is invalid")
-    return installation
-
-
 def build_msvc_native_print_dll(
     *,
     root: Path,
     output_dir: Path,
 ) -> dict[str, Any]:
-    installation = find_msvc_installation()
-    vcvars = installation / "Common7" / "Tools" / "VsDevCmd.bat"
-    source = root / "native" / "film_physics" / "nf_physical_print_v1.c"
-    header = root / "native" / "film_physics" / "nf_physical_print_v1.h"
-    if not vcvars.is_file() or not source.is_file() or not header.is_file():
-        raise RuntimeError("native source or MSVC environment is missing")
-    output_dir.mkdir(parents=True, exist_ok=True)
-    dll = output_dir / "nf_physical_print_v1.dll"
-    obj = output_dir / "nf_physical_print_v1.obj"
-    import_library = output_dir / "nf_physical_print_v1.lib"
-    batch = output_dir / "build_nf_physical_print_v1.bat"
-    batch.write_text(
-        "@echo off\r\n"
-        f'call "{vcvars}" -no_logo -arch=x64 -host_arch=x64 >nul\r\n'
-        "if errorlevel 1 exit /b %errorlevel%\r\n"
-        f'cl.exe /nologo /std:c11 /O2 /fp:strict /W4 /WX /LD '
-        f'/Fo"{obj}" "{source}" /link /Brepro /OUT:"{dll}" '
-        f'/IMPLIB:"{import_library}"\r\n',
-        encoding="ascii",
-        newline="",
+    return build_msvc_c11_dll(
+        root=root,
+        output_dir=output_dir,
+        source_relative="native/film_physics/nf_physical_print_v1.c",
+        header_relative="native/film_physics/nf_physical_print_v1.h",
+        basename="nf_physical_print_v1",
     )
-    completed = subprocess.run(
-        ["cmd.exe", "/d", "/c", str(batch)],
-        capture_output=True,
-        timeout=120,
-        check=False,
-        cwd=output_dir,
-    )
-    compiler_output = (
-        completed.stdout + completed.stderr
-    ).decode("utf-8", errors="replace")
-    if completed.returncode != 0 or not dll.is_file():
-        raise RuntimeError(
-            "MSVC native build failed:\n"
-            + compiler_output
-        )
-    return {
-        "toolchain": "msvc-x64-c11",
-        "source_sha256": _sha256_file(source),
-        "header_sha256": _sha256_file(header),
-        "dll_sha256": _sha256_file(dll),
-        "dll_path": str(dll.resolve()),
-        "compiler_output": compiler_output.strip(),
-    }
 
 
 def run_loaded_conformance(
