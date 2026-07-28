@@ -5941,3 +5941,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frontier or stock claim opens. Retain only a clean-room quadratic-temporal
   bounded-flow representation prior for a separately frozen non-duplicate
   synthetic question. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze GCP autonomous-compute governance
+
+- **Node/governance:** `ULT > GOV.GCP1`; DRPT L3/Mode A with
+  `codex-super-ops-sre-harness` primary and project structure/log disciplines
+  secondary.
+- **New authority:** the user grants this Goal thread autonomous GCP
+  create/run/stop/cleanup authority under a USD 2,000 hard cumulative budget.
+  This specifically overrides the prior paid-cloud prohibition within the
+  frozen controls; it does not relax evidence, security or model-output gates.
+- **Ownership:** freeze prefix `nfg019f4b76` plus owner/thread/project/goal
+  labels. Existing, unknown, shared or differently prefixed resources remain
+  read-only. Stop/delete requires an exact full-name ledger row proving this
+  thread created the resource.
+- **Operations:** every paid job requires preflight estimate, cost cap,
+  liveness, idle and job timeouts, checkpoint/recovery where useful and
+  completion/failure/cancel/interruption cleanup. `PENDING` triggers diagnosis,
+  not blind waiting or duplicate resubmission.
+- **Credentials/security:** reuse existing OAuth; do not run
+  `gcloud auth login` without confirmed failure. No secret/key/header logging
+  or commit, no public exposure and no DeepSeek key persistence.
+- **State:** governance config, runbook, ledger and structure pointer are
+  created. No GCP mutation occurred; owned resources and accounted cost remain
+  zero. Goal remains ACTIVE.

@@ -27,6 +27,7 @@ logs/                      Ignored local run logs.
 ```text
 docs/
   data/                    Data-license notes, request templates, and dataset-specific docs.
+  ops/                     Cloud/resource governance, ownership ledgers, and runbooks.
   planning/                Strategic plans and research subplans that are not active task boards.
   reference/               External reference files such as PDFs.
 ```

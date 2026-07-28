@@ -38,6 +38,14 @@ The official supplement is PDF-only and supplies no source, checkpoint,
 licence or project structural gates. Direct execution/training closes; only a
 future clean-room time-dependent-flow representation ablation survives.
 
+The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
+USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
+ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources
+created by this thread and present in that ledger may be changed or deleted;
+all pre-existing or unknown resources are read-only. No cloud mutation has yet
+occurred and accounted thread spend is USD 0. Local compute remains preferred
+when sufficient.
+
 CT1C closes the remaining analytic L0 and gauge gap but not fixed-resolution
 HDR LUT parity. Exposure/WB roundtrip, roll-gauge recomposition and log1p
 shaper inversion pass near machine precision; `[0,16]` shaped 33/65 cubes

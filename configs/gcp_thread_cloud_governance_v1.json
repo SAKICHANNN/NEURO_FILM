@@ -1,0 +1,54 @@
+{
+  "schema_version": "neuro-film-gcp-thread-cloud-governance-v1",
+  "effective_date": "2026-07-28",
+  "goal_thread_id": "019f4b76-e70a-75c0-b7ea-b473ab38c200",
+  "resource_ownership": {
+    "frozen_prefix": "nfg019f4b76",
+    "resource_name_pattern": "nfg019f4b76-<purpose>-<unique-suffix>",
+    "required_labels": {
+      "owner": "codex-thread",
+      "thread": "019f4b76e70a75c0b7eab473ab38c200",
+      "project": "neuro-film",
+      "goal": "ultimate-stock-first"
+    },
+    "foreign_resource_policy": "read_only_for_discovery_and_collision_avoidance_never_modify_stop_delete_rename_reconfigure_or_occupy",
+    "destructive_action_precondition": "exact resource full name must exist in the local ownership ledger with created_by_this_thread=true"
+  },
+  "budget": {
+    "currency": "USD",
+    "hard_limit": 2000.0,
+    "preflight_estimate_required": true,
+    "running_cost_accounting_required": true,
+    "submission_denied_if_worst_case_total_exceeds_limit": true
+  },
+  "runtime_controls": {
+    "idle_paid_accelerator_allowed": false,
+    "liveness_check_required": true,
+    "idle_timeout_required": true,
+    "job_timeout_required": true,
+    "budget_cap_required": true,
+    "completion_failure_cancel_interrupt_cleanup_required": true,
+    "pending_policy": "diagnose_region_zone_quota_capacity_shape_image_service_account_api_schema_arguments_paths_data_and_job_content_before_any_resubmission",
+    "duplicate_billable_submission_forbidden": true
+  },
+  "credentials_and_security": {
+    "reuse_existing_gcloud_oauth": true,
+    "new_project_configuration_may_reuse_existing_login": true,
+    "gcloud_auth_login_without_confirmed_credential_failure": false,
+    "minimum_privilege": true,
+    "public_exposure_allowed": false,
+    "echo_or_commit_credentials_keys_tokens_headers_or_secrets": false,
+    "deepseek_key_on_disk_or_in_logs": false
+  },
+  "documentation": {
+    "official_google_cloud_docs_required_before_cloud_mutation": true,
+    "operation_evidence_must_record_official_links_or_conclusions": true,
+    "ownership_ledger_path": "docs/ops/GCP_THREAD_RESOURCE_OWNERSHIP_LEDGER.md",
+    "governance_doc_path": "docs/ops/GCP_AUTONOMOUS_COMPUTE_GOVERNANCE_2026.md"
+  },
+  "current_state": {
+    "cloud_mutation_performed": false,
+    "thread_owned_resource_count": 0,
+    "thread_accounted_cost_usd": 0.0
+  }
+}

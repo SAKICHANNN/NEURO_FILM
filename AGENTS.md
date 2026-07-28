@@ -22,6 +22,27 @@
 
 Do not describe the project as “Film Translation via InstructPix2Pix” or claim that diffusion is the current content-preserving solution.
 
+### GCP autonomous-compute authorization
+
+This Goal thread has a user-authorized USD 2,000 GCP hard budget. Before any
+cloud mutation, follow
+`docs/ops/GCP_AUTONOMOUS_COMPUTE_GOVERNANCE_2026.md` and the frozen
+`configs/gcp_thread_cloud_governance_v1.json`. Only exact resources created by
+this thread under prefix `nfg019f4b76` and recorded in
+`docs/ops/GCP_THREAD_RESOURCE_OWNERSHIP_LEDGER.md` may be modified, stopped or
+deleted. All existing, unknown, shared or differently prefixed resources are
+read-only forbidden territory. Paid accelerators may never idle; every job
+needs a cost cap, timeout, liveness and cleanup. Prefer current Google Cloud
+official documentation before mutation, reuse existing `gcloud` OAuth, never
+run `gcloud auth login` without confirmed credential failure, and never
+expose or persist secrets. The newer authorization overrides the earlier
+Goal-level paid-cloud prohibition only within these controls.
+
+All other project-scoped reversible research, implementation, dependency,
+environment, test, recovery, documentation and local-commit decisions are
+autonomous unless an existing explicit project prohibition or a
+platform-enforced action applies.
+
 ---
 
 ## 2. Read order
