@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao8c-velvia-crossfit-case-selector-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO8C",
+  "software_commit": "48390f55535389219199be259c01f76ef7016125",
+  "contract": {
+    "path": "configs/u5_r2ao8c_velvia_crossfit_case_selector_v1.json",
+    "sha256": "f414c263e255338f75fcc791ab54e744d0cd80886e452bd42371897c94e8fa8a"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ao8c_velvia_crossfit_case_selector_v1/report_a.json",
+    "sha256": "480d48c19f8412fc4e7e4bf4a96b98ea8ff455afbc4daf417456d61f828e864e"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ao8c_velvia_crossfit_case_selector_v1/report_b.json",
+    "sha256": "480d48c19f8412fc4e7e4bf4a96b98ea8ff455afbc4daf417456d61f828e864e"
+  },
+  "repeat_byte_identical": true,
+  "selected_candidate": {
+    "candidate_id": "case_knn_k3_distance",
+    "rgb_rmse": 0.027146866672340578,
+    "mean_delta_e76": 5.797769490889,
+    "maximum_absolute_rgb_error": 0.14657341883163771,
+    "chart_selection_fraction": 0.2112676056338028,
+    "palette_selection_fraction": 0.7887323943661971,
+    "raw_out_of_cube_fraction": 0.0
+  },
+  "gains": {
+    "oracle_rgb_rmse_over_global": 0.21630908046045905,
+    "selected_rgb_rmse_over_global": 0.12435234334472689,
+    "selected_mean_delta_e76_over_global": 0.09968556238461368,
+    "selected_rgb_rmse_over_best_domain_only": 0.059047092290976044,
+    "selected_to_global_maximum_absolute_error_ratio": 0.9092870487735284
+  },
+  "controls": {
+    "best_domain_only_rgb_rmse": 0.02885039883498118,
+    "crossfit_label_domain_agreement_minimum": 0.8035714285714286,
+    "crossfit_label_domain_agreement_maximum": 0.8793103448275862,
+    "global_shuffle_replicates": 32,
+    "global_shuffle_best_rgb_rmse": 0.0318643212930106,
+    "global_shuffle_empirical_p_value": 0.030303030303030304
+  },
+  "automatic_decision": "open_ao8d_fixed_crossfit_case_photo_challenger",
+  "decision": "open_ao8d_fixed_crossfit_case_photo_challenger_with_residual_domain_confirmatory_gate_first",
+  "interpretation": "a mature kNN case baseline recovers more than half of the held-out two-expert Oracle gain and passes the preregistered domain-only and global-shuffle controls, but high label/domain association leaves a plausible residual content-domain shortcut that must be challenged before any photographic render",
+  "next_leaf": "freeze the k3 inverse-distance selector, use new outer and inner splits, and test within-domain stratified label permutations; only repeat-stable gain beyond global and domain controls may open a fixed photo challenger",
+  "novelty_positioning": [
+    "nearest-neighbour case retrieval is prior art and is not a novelty claim",
+    "the candidate value is conditional on nested leakage control, explicit hard expert execution, bounded output, Oracle evidence and global fallback",
+    "AO6 t15/c35 remains the frozen Look Approximation development champion"
+  ],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "positive nested development evidence for one mature hard-sparse case selector and negative evidence against naive support routing; residual content-domain confounding remains unclosed, with no independent photo, novelty, stock-mode, film-response, calibration, preference or product claim"
+}
