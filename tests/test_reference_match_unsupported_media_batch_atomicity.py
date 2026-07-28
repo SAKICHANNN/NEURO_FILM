@@ -14,6 +14,11 @@ CONFIG = (
     / "configs"
     / "reference_match_unsupported_media_batch_atomicity_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs"
+    / "reference_match_unsupported_media_batch_atomicity_decision_v1.json"
+)
 
 
 def _run(case: dict, repeat: int, token: str = "same") -> dict:
@@ -73,3 +78,28 @@ def test_p164_evaluation_requires_exact_atomic_failure_replay() -> None:
     residue[-1]["residual_artifacts"] = [".orphan.reference-match-stage.png"]
     residue[-1]["automatic_pass"] = False
     assert not evaluate_runs(config, residue)["automatic_pass"]
+
+
+def test_p164_decision_binds_every_frozen_atomicity_gate() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert decision["repeat_count_per_case"] == config[
+        "repeat_count_per_case"
+    ]
+    assert set(decision["cases"]) == {
+        row["case_id"] for row in config["cases"]
+    }
+    for case in decision["cases"].values():
+        assert case["exception_type"] == config["gates"][
+            "expected_exception_type"
+        ]
+        assert case["encode_call_count_per_run"] == [1, 1]
+        assert case["target_hashes_unchanged"]
+        assert case["residual_artifact_count"] == 0
+        assert case["exact_replay"]
+        assert case["automatic_pass"]
+    assert decision["all_six_first_sources_reached_render_stage"]
+    assert decision["all_twenty_four_target_hash_checks_unchanged"]
+    assert decision["all_six_residual_artifact_counts_zero"]
+    assert decision["automatic_pass"]

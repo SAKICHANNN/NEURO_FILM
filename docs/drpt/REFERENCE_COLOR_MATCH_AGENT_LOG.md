@@ -4058,3 +4058,14 @@
 - This reuses existing main-ingress rejection semantics without changing a
   decoder or claiming complete media detection, HDR/gain-map support or
   product readiness.
+
+## 2026-07-29 - Pass unsupported-media batch atomicity
+
+- Transparent RGBA PNG, two-page TIFF and the exact pinned libultrahdr MPO each
+  reject as the second source in two independent real transactions.
+- All six valid first sources reach render/encode staging. All 24 pre-existing
+  output/recipe/report target hash checks remain exact, every stage/backup/temp
+  residue count is zero and normalized case results reproduce.
+- P164 proves the existing consumer transaction is atomic for these three
+  exact later-source failures only. It changes no media code and adds no
+  complete detection, HDR/gain-map, platform or product claim.
