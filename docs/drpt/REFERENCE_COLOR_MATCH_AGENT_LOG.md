@@ -2344,6 +2344,23 @@
 - Ceiling remains `review-ready-not-merged`; schema validity does not admit an
   algorithm, authorize a transaction or imply product application.
 
+## 2026-07-28 - Freeze P60 successor runtime-evidence binding
+
+- Node/parent goal: P60A-D / factual target-runtime closure after P45.
+- Finding: P45 declares `windows_x64`, `macos_arm64`, `ios_arm64` and
+  `android_arm64` as booleans. A true value is not source-bound evidence and
+  cannot distinguish native execution from object compilation, link-only or
+  cross-compilation.
+- Contract: a consumer-owned bundle binds the exact P45 declaration,
+  producer/capability/profile, target, proof class, OS/architecture,
+  device/backend/driver, runner/executable/report hashes and repeated
+  conformance/failure-injection facts. Windows/macOS require host runtime;
+  iOS/Android require device runtime. Weaker evidence remains visible but
+  cannot close product runtime readiness.
+- Scope: consumer contracts/schema/tests/docs only. No CUDA, D3D11, JNI,
+  Swift, RAW/HDR/video or other producer/native implementation; no product
+  admission from runtime evidence alone.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
