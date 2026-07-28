@@ -418,3 +418,25 @@ def test_runtime_and_generic_transactions_share_one_lock_namespace(
             )
 
     assert not destination.exists()
+
+
+def test_transaction_lock_rejects_empty_and_canonical_duplicate_targets(
+    tmp_path: Path,
+) -> None:
+    from src.color_match.transaction_lock import target_transaction_lock
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="must not be empty",
+    ):
+        with target_transaction_lock(()):
+            raise AssertionError("empty lock inventory must not be entered")
+
+    target = tmp_path / "output.bin"
+    alias = target.parent / "." / target.name
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="must be unique",
+    ):
+        with target_transaction_lock((target, alias)):
+            raise AssertionError("duplicate lock inventory must not be entered")

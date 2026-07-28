@@ -91,6 +91,14 @@ def _release_platform_lock(handle: Any) -> None:
 @contextmanager
 def target_transaction_lock(paths: Sequence[Path]) -> Iterator[None]:
     keys = tuple(sorted(_lock_key(path) for path in paths))
+    if not keys:
+        raise ReferenceMatchContractError(
+            "reference-match transaction paths must not be empty"
+        )
+    if len(set(keys)) != len(keys):
+        raise ReferenceMatchContractError(
+            "reference-match transaction paths must be unique"
+        )
     temp_root = _reject_reparse_components(
         Path(tempfile.gettempdir()),
         label="reference-match transaction temporary root",
@@ -125,6 +133,14 @@ def target_transaction_lock(paths: Sequence[Path]) -> Iterator[None]:
                 )
             handle = lock_path.open("a+b")
             try:
+                if (
+                    _is_reparse_point(lock_path)
+                    or not stat.S_ISREG(os.fstat(handle.fileno()).st_mode)
+                ):
+                    raise ReferenceMatchContractError(
+                        "reference-match transaction lock must be a "
+                        "non-reparse regular file"
+                    )
                 _acquire_platform_lock(handle)
             except Exception:
                 handle.close()
