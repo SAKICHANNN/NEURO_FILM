@@ -220,6 +220,27 @@ def _validate_input_bindings(
             )
 
 
+def _snapshot_applies(
+    applies: Sequence[PreparedSharedOperatorApplyV1],
+) -> tuple[PreparedSharedOperatorApplyV1, ...]:
+    snapshots: list[PreparedSharedOperatorApplyV1] = []
+    for prepared in applies:
+        pixels = np.array(
+            prepared.pixels,
+            dtype=np.float32,
+            order="C",
+            copy=True,
+        )
+        pixels.flags.writeable = False
+        snapshot = PreparedSharedOperatorApplyV1(
+            receipt=prepared.receipt,
+            pixels=pixels,
+        )
+        validate_prepared_shared_operator_apply_v1(snapshot)
+        snapshots.append(snapshot)
+    return tuple(snapshots)
+
+
 def commit_external_shared_staging_v1(
     *,
     batch: SharedOperatorBatchV1,
@@ -238,6 +259,7 @@ def commit_external_shared_staging_v1(
         authorization=authorization,
         applies=applies,
     )
+    applies = _snapshot_applies(applies)
     outputs = staging_output_paths(
         output_paths, count=batch.source_count
     )

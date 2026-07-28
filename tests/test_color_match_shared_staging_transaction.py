@@ -11,6 +11,7 @@ import numpy as np
 import pytest
 
 import src.color_match.files as file_module
+import src.color_match.shared_staging_transaction as transaction_module
 from src.color_match import (
     EXTERNAL_SHARED_STAGING_CLAIM_CEILING,
     FROZEN_GATE_POLICY_ID,
@@ -383,6 +384,56 @@ def test_sparse_out_of_bounds_pixel_fails_encoding_without_commit(
     assert not report.exists()
     assert not any(path.exists() for path in outputs)
     _assert_no_debris(tmp_path)
+
+
+def test_caller_pixel_mutation_after_validation_cannot_change_commit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    baseline_applies, baseline_batch, baseline_numeric, baseline_auth = (
+        _pipeline()
+    )
+    baseline_outputs = (
+        tmp_path / "baseline-one.png",
+        tmp_path / "baseline-two.png",
+    )
+    baseline = commit_external_shared_staging_v1(
+        batch=baseline_batch,
+        numeric_guard=baseline_numeric,
+        authorization=baseline_auth,
+        applies=baseline_applies,
+        output_paths=baseline_outputs,
+        report_path=tmp_path / "baseline.json",
+    )
+
+    applies, batch, numeric, authorization = _pipeline()
+    outputs, report = _destinations(tmp_path)
+    original_validate = (
+        transaction_module.validate_sdr_staging_destinations
+    )
+
+    def mutate_after_snapshot(*args, **kwargs) -> None:
+        applies[0].pixels.flags.writeable = True
+        applies[0].pixels.fill(0.99)
+        original_validate(*args, **kwargs)
+
+    monkeypatch.setattr(
+        transaction_module,
+        "validate_sdr_staging_destinations",
+        mutate_after_snapshot,
+    )
+    committed = commit_external_shared_staging_v1(
+        batch=batch,
+        numeric_guard=numeric,
+        authorization=authorization,
+        applies=applies,
+        output_paths=outputs,
+        report_path=report,
+    )
+    assert outputs[0].read_bytes() == baseline_outputs[0].read_bytes()
+    assert committed.run.outputs[0].output_file_sha256 == (
+        baseline.run.outputs[0].output_file_sha256
+    )
 
 
 def test_commit_failure_restores_every_previous_destination(
