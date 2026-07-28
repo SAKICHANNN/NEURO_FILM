@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p8ae_native_standard_f32_resource_decision.v1",
+  "node": "U6.P8AE",
+  "contract": "configs/u6_p8ae_native_standard_f32_resources_v1.json",
+  "contract_sha256": "a3247e5489a7f2aa53096c034879e81333914613560456c383c1d121a58eff30",
+  "formal_report": "outputs/u6_p8ae_native_standard_f32_resources_v1/report.json",
+  "formal_report_sha256": "8ecefcc6de7c8e1a58ce478e73f8e7fc450a355d56f50ca0a09f09fa65f72529",
+  "stable_evidence_id": "453ba203126235f4cb18abd539d70737373a0fd3b17ea8b6b4e9d69c31bd1b69",
+  "result": {
+    "status": "pass",
+    "output_identity_exact": true,
+    "output_sha256": "64a4f7b7b2972e5dca6bfbdeacc46e511c83438720b93f93f51e00f45eb4876b",
+    "peak_process_tree_rss_bytes": [
+      565248000,
+      564670464
+    ],
+    "median_peak_process_tree_rss_bytes": 564959232,
+    "float64_reference_median_peak_rss_bytes": 997212160,
+    "median_rss_ratio_vs_float64_reference": 0.5665386511131192,
+    "worker_elapsed_seconds": [
+      7.459364599984838,
+      7.161989300017012
+    ],
+    "memory_pass": true,
+    "ratio_pass": true,
+    "elapsed_pass": true
+  },
+  "decision": "retain native Standard float32 as the preferred scanner-linear physical-chain runtime candidate: the fixed 12MP workload is repeat-exact at about 565MB peak, 56.65% of the float64 reference median, with no material latency penalty. This does not yet include post-scan display/look execution or establish mobile/device performance",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP native Standard float32 scanner-linear physical-chain resource comparison only",
+  "next_leaf": "U6.P8AF native Standard memory attribution and bounded full-frame-buffer reduction before adding the post-scan display/look chain"
+}

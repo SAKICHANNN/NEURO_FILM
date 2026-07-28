@@ -132,6 +132,7 @@ def _render_f32_chain(
     spatial_payload: dict[str, Any],
     adjacency_payload: dict[str, Any],
     source: np.ndarray,
+    audit_failure_atomic: bool = True,
 ) -> tuple[dict[str, np.ndarray], dict[str, bool]]:
     domains = _load_domains(domains_dll)
     gaussian = _load_gaussian(gaussian_dll)
@@ -200,7 +201,9 @@ def _render_f32_chain(
     observed["interpretation"] = interpreted
     observed["scanner_mtf"] = blur(interpreted, "scanner_mtf")
 
-    failure_atomic = {}
+    failure_atomic: dict[str, bool] = {}
+    if not audit_failure_atomic:
+        return observed, failure_atomic
     sentinel = np.full_like(source, np.float32(-19.0))
     invalid = source.copy()
     invalid.reshape(-1)[0] = np.float32(np.nan)
@@ -252,6 +255,63 @@ def _render_f32_chain(
         status != 0 and output.tobytes() == before
     )
     return observed, failure_atomic
+
+
+def render_tiled_f32_chain(
+    *,
+    domains_dll: Path,
+    gaussian_dll: Path,
+    adjacency_dll: Path,
+    domains_payload: dict[str, Any],
+    spatial_payload: dict[str, Any],
+    adjacency_payload: dict[str, Any],
+    source: np.ndarray,
+    tile_rows: int,
+    reverse: bool = False,
+) -> np.ndarray:
+    """Render the Standard chain with the canonical summed vertical halo."""
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+    ):
+        raise ValueError("tile_rows must be a positive integer")
+    source = np.ascontiguousarray(source, dtype=np.float32)
+    if (
+        source.ndim != 3
+        or source.shape[-1] != 3
+        or source.size == 0
+        or not np.all(np.isfinite(source))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+    ):
+        raise ValueError("float32 tiled source must be finite [0,1] HxWx3")
+    height = int(source.shape[0])
+    halo = sum(
+        int(row["maximum_radius"]) for row in spatial_payload["stages"]
+    )
+    starts = list(range(0, height, tile_rows))
+    if reverse:
+        starts.reverse()
+    output = np.empty_like(source)
+    for y0 in starts:
+        y1 = min(height, y0 + tile_rows)
+        source_y0 = max(0, y0 - halo)
+        source_y1 = min(height, y1 + halo)
+        stages, _ = _render_f32_chain(
+            domains_dll=domains_dll,
+            gaussian_dll=gaussian_dll,
+            adjacency_dll=adjacency_dll,
+            domains_payload=domains_payload,
+            spatial_payload=spatial_payload,
+            adjacency_payload=adjacency_payload,
+            source=source[source_y0:source_y1],
+            audit_failure_atomic=False,
+        )
+        output[y0:y1] = stages["scanner_mtf"][
+            y0 - source_y0 : y1 - source_y0
+        ]
+    return output
 
 
 def run_native_f32_conformance(
