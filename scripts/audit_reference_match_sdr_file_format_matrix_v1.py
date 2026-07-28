@@ -45,6 +45,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = (
     ROOT / "configs" / "reference_match_sdr_file_format_matrix_v1.json"
 )
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def load_config(path: Path) -> dict[str, Any]:
