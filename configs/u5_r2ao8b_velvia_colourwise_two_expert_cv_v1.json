@@ -47,7 +47,10 @@
     "function_tolerance": 1e-11,
     "parameter_tolerance": 1e-11,
     "gradient_tolerance": 1e-11,
-    "seed": 20260728
+    "seed": 20260728,
+    "exposure_floor": 1.52587890625e-05,
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
   },
   "router": {
     "feature_space": "linear_srgb_d65_per_colour_only",
