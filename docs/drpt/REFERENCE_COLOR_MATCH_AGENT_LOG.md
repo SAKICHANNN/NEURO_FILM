@@ -3747,3 +3747,17 @@
   fail closed.
 - Fifty-six adjacent file/report/replay tests pass with one explicit skip.
   No HDR, RAW tone-map, FilmFX-wide-gamut or producer capability was added.
+
+## 2026-07-28 - Publish executable output capabilities in v32
+
+- V32 binds payload `00cc3ec` to main committed stable point `418a7c2`: 466
+  consumer paths, 497 main paths and zero overlap. It additionally requires
+  public `resolve_reference_file_output_capability`.
+- Manifest/schema SHA-256 identities are `dce2428b...ff573` /
+  `284b3513...e8d16`; merge tree `8720c254...bd25`. Detached synthetic merge
+  `90fccb5` passes 1273 color-match tests with 30 explicit skips and 1306
+  unrelated deselections; its owned worktree was removed.
+- All 368 discovered v1-v32 manifest tests pass. V32 supersedes v31 and remains
+  `review-ready-not-merged`; main owns merge. Producer training results remain
+  unmapped unless a distinct versioned callable capability clears the existing
+  admission and product gates.
