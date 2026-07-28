@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u6_p7g_neutral_gauged_invariance_contract.v1",
+  "node": "U6.P7G",
+  "parent_decision": "configs/u6_p7f_neutral_gauged_physical_chain_decision_v1.json",
+  "parent_decision_sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03",
+  "parent_contract": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+  "parent_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+  "selected_candidate_id": "gauged_spatial_4000",
+  "reference_sampling_dpi": 4000,
+  "tile_audit": {
+    "synthetic_shape": [
+      129,
+      193
+    ],
+    "synthetic_seed": 2026072903,
+    "tile_rows": [
+      1,
+      7,
+      31,
+      64,
+      257
+    ],
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "real_ids": [
+      "canon_eos_kiss_f",
+      "sony_nex_3n",
+      "nikon_d2x"
+    ],
+    "real_max_long_edge": 768,
+    "real_tile_rows": [
+      63,
+      127,
+      257
+    ]
+  },
+  "resolution_audit": {
+    "high_shape": [
+      384,
+      576
+    ],
+    "scale_factors": [
+      0.5,
+      0.25
+    ],
+    "real_ids": [
+      "canon_eos_kiss_f",
+      "sony_nex_3n",
+      "nikon_d2x"
+    ],
+    "resampler": "skimage_resize_order1_antialiasing_reflect"
+  },
+  "gates": {
+    "maximum_tile_float_absolute_error": 1e-12,
+    "maximum_tile_quantized_mismatch_fraction": 0.0,
+    "maximum_tile_seam_absolute_error": 1e-12,
+    "maximum_resolution_median_delta_e76": 1.5,
+    "maximum_resolution_p95_delta_e76": 4.0,
+    "maximum_resolution_max_delta_e76": 15.0,
+    "minimum_resolution_edge_energy_ratio": 0.75,
+    "maximum_resolution_edge_energy_ratio": 1.25,
+    "repeat_exact": true
+  },
+  "execution": {
+    "runs": 2,
+    "report_must_be_exact": true,
+    "post_result_retuning_allowed": false
+  },
+  "branch_rule": {
+    "pass": "retain the frozen challenger and open profile compilation/runtime packaging without changing the production default",
+    "tile_fail": "repair halo or source-context lifecycle and rerun the same frozen audit",
+    "resolution_fail": "retain the challenger only at its frozen reference resolution and revise the physical-scale compiler before runtime packaging"
+  },
+  "claim_ceiling": "generic physical-inspired resolution and partition invariance evidence; not stock response, measured scanner/print response, calibration or product promotion"
+}
