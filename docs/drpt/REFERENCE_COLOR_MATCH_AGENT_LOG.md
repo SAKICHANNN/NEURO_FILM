@@ -1516,6 +1516,62 @@
   media/HDR, FilmFX arithmetic and main-project files are forbidden.
 - Coordination: both equal peer tasks received intent and need not wait.
 
+## 2026-07-28 - Implement P67 strict path-free encoded decoding
+
+- Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.
+  P65 bytes are batch-preflighted before allocation, then decoded as exact
+  RGB uint8/uint16 PNG/JPEG/TIFF samples. PNG CRC/chunk/IHDR/IEND, JPEG
+  SOI/single EOI/RGB and TIFF one-page/sample/offset-end contracts reject
+  malformed, animated, appended or format/depth-substituted inputs.
+- No batch is returned if any preflight/decode fails. Arrays are C-contiguous,
+  readonly and hash-bound. This proves structure/samples, not colour profile.
+- Verification: 767 all-color/three skips; full 1662/four skips plus the
+  unchanged 36 historical failures; latest-main `66f0748`, merge tree
+  `3269a149...`, 215 related pass/one skip.
+
+## 2026-07-28 - Publish P68 immutable integration manifest v4
+
+- Evidence commit `f9f05b8`. V4 binds P1-P67 `a2bb952`, main `66f0748`,
+  287 payload blobs, 220 main paths, zero overlap, 30 exports, 16 schemas and
+  exact P66 v3 SHA `fc9373a0...c97eb`.
+- V4 manifest SHA-256:
+  `612c097715d36d2347d9b9bfd349c72d4ba8a640a59742baa87d734325daae14`.
+
+## 2026-07-28 - Implement P69 decoded-sample MatchView bridge
+
+- Code commit: `272db64b0cd4ff4e7221eb181e02a80c19e64c3f`.
+  Exact P67 integer samples pass through a frozen float32 IEC 61966-2-1 EOTF
+  into readonly display-relative linear-sRGB `PreparedMatchViewV1` buffers.
+- Validation is reconstruction-based: it reruns EOTF from P67 arrays,
+  recomputes f32be pixel hashes and rebuilds provenance from decode,
+  consumption, run, source, format and depth facts. A simultaneously forged
+  pixel buffer, descriptor and self-consistent record still rejects.
+- Claim is process-local MatchViews only: no path, persistence, application or
+  delivery authority. Embedded colour metadata is not yet attested, so P69
+  remains assumption-bound to the P62 encoder contract.
+
+## 2026-07-28 - Publish P70 immutable integration manifest v5
+
+- Evidence commit: `c5487a6cd6782396b968edba1b11286a0f54d344`.
+  V5 binds P1-P69 `272db64`, base `c03c321`, main `50b38dd`, 294 payload
+  blobs, 223 main paths, zero overlap, 35 exports and 17 schemas.
+- V5 manifest SHA-256:
+  `782043cc29db7a2489188c980e658fb5cc9f214808ba85b87d146bc07f0c97eb`;
+  it binds exact P68 v4 SHA `612c0977...daae14`.
+- Verification: 812 all-color/three skips; full 1707/four skips plus the same
+  36 historical failures; current evidence-head merge tree `cf93886e...`
+  passes 260 related tests/one skip and the temporary worktree is removed.
+
+## 2026-07-28 - Freeze P71 encoded colour-metadata attestation
+
+- P67 format/depth/sample validation is not equivalent to colour-space proof.
+  P71 will inspect only P65 bytes and require exact expected sRGB profile
+  semantics: PNG iCCP, JPEG reconstructed ICC and TIFF tag 34675.
+- Missing, duplicate, oversized, malformed/compressed/trailing profiles,
+  conflicting cICP and format substitution fail the whole batch.
+- P69 v1 remains immutable and assumption-bound. A new P72 bridge may claim
+  metadata-attested sRGB only by consuming exact P71 evidence.
+
 ## 2026-07-28 - Implement P65 same-handle process-local byte capture
 
 - Implementation commit:

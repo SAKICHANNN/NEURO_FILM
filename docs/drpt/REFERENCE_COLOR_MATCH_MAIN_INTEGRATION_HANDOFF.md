@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P65 consumer payload is pinned by the immutable P66 v3 review
-manifest; real external-algorithm admission, encoded-image decoding and
+Status: **P1-P69 consumer payload is pinned by the immutable P70 v5 review
+manifest; real external-algorithm admission, colour-metadata attestation and
 delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P65 payload head:
-  `e83c18aa5b9e86282d6c57a49c90a8a25d0bb639`;
-- P66 review-evidence head:
-  `00593c7`;
+- complete reviewed P1-P69 payload head:
+  `272db64b0cd4ff4e7221eb181e02a80c19e64c3f`;
+- P70 review-evidence head:
+  `c5487a6cd6782396b968edba1b11286a0f54d344`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `eef149c82b73ed57955d35315a7bfefcd43acf25`;
+  `50b38dd92c19812059b5420e3737683841b2964f`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/payload merge tree:
-  `7739d1223bff0e2e03cefac9e632c0a90146c69e`.
+  `cf93886ece87dbe3c51efcab78524c96d07fbdeb`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -50,6 +50,12 @@ SHA-256
 It binds 280 payload blobs, 218 latest-main changed paths, zero overlap, 25
 public exports, 15 exact schemas and the immutable P64 v2 manifest hash
 `ae67b3ef...d784dd`. V3 binds P65 payload `e83c18a` and does not hash itself.
+
+P68 v4 binds P67 payload `a2bb952` and preserves P66 v3. P70 v5 then binds
+P69 payload `272db64` against main `50b38dd`: 294 payload blobs, 223 main
+paths, zero overlap, 35 exports and 17 schemas. V5 SHA-256 is
+`782043cc29db7a2489188c980e658fb5cc9f214808ba85b87d146bc07f0c97eb`;
+it binds P68 v4 SHA-256 `612c0977...daae14` and never hashes itself.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -112,6 +118,10 @@ The consumer module implements:
 - process-local P65 byte capture that reads from those same live handles,
   returns no snapshot unless every final rehash succeeds, and persists only a
   path-free no-authority receipt;
+- strict P67 in-memory PNG/JPEG/TIFF sample decoding with whole-batch geometry
+  preflight and no partial decoded return;
+- P69 deterministic decoded-sample to display-relative linear-sRGB MatchView
+  bridge whose validator re-executes EOTF and provenance reconstruction;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -154,11 +164,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P66 v3 schema and rebuild its manifest by both direct
-   and module entry points. It preserves and binds P64 and transitively P58.
-3. Review `c03c321..e83c18a`; do not copy files manually and do not import
+2. Verify the committed P70 v5 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves P68/P66/P64/P58.
+3. Review `c03c321..272db64`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree e83c18a <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 272db64 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -173,10 +183,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 735 passed, three skipped;
-- latest isolated consumer full suite: 1630 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 812 passed, three skipped;
+- latest isolated consumer full suite: 1707 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 183 P45-P65/manifest related tests
+- latest detached synthetic main merge: 260 P45-P70/manifest related tests
   passed with one privilege skip; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
@@ -192,10 +202,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
    real RAW, real HDR, real video and license/provenance gates still failed.
    Windows runtime facts, Android compile/link-only facts and Apple
    object-only facts remain correctly separated.
-4. P65 now captures exact encoded bytes from the same handle session, but it
-   does not establish that the bytes decode as their declared format/depth.
-   P67 must validate decoding wholly in memory before any pixel consumer.
-5. P63/P65 persisted records never authorize a later path reopen or delivery.
+4. P67 now proves structure and exact integer samples, while P69 executes an
+   explicit sRGB EOTF. Exact embedded ICC/CICP/tag semantics remain open;
+   P71/P72 must close that gap without upgrading P69 v1 retroactively.
+5. P63/P65/P67/P69 persisted records never authorize path reopen,
+   persistence, application or delivery.
 6. The main owner must review and merge the payload.
 
 D-PCT RGIN-v0 closed at `fd036aa`: all 20 frozen uncertainty projections

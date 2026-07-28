@@ -255,10 +255,19 @@ with a selected stock, but reference matching alone is labeled
 | P65D | DONE | propagate full/latest-main evidence | 735 all-color/3 skips; 1630 pass/4 skips/36 known; main `eef149c`, merge `7739d12`, 183 pass/1 skip | evidence/docs | P64 remains immutable |
 | P66A | DONE | publish additive immutable integration manifest v3 | bind exact P1-P65 payload `e83c18a`, main `eef149c`, 280 blobs, 25 exports, 15 schemas and zero overlap | `00593c7` | P64 v2 byte-bound, not mutated |
 | P66B | DONE | prove v3 schema/rebuild/tamper closure | direct/module verification and v1/v2/v3 regression; wrong order/count/hash/base/prior manifest reject | 61 focused pass | review only |
-| P67A | IN PROGRESS | freeze path-free encoded-image decode gate | decode only P65 immutable bytes and prove declared PNG/JPEG/TIFF format, bit depth, single-frame and bounded geometry | contract/tests/docs | no filesystem reopen |
-| P67B | READY | implement strict in-memory decoder | reject malformed, polyglot/multi-frame, decompression-bomb, alpha/palette and format/depth mismatch | code/schema/tests | decoded evidence only |
-| P67C | BLOCKED ON P67B | prove parser and resource failure closure | truncated bytes, trailing ambiguity, oversized dimensions, unsupported samples and decoder exceptions | adversarial tests | no decoded batch on any failure |
-| P67D | BLOCKED ON P67C | propagate evidence and refresh integration review | all-color/full/latest-main; new manifest only after stable payload | evidence/docs | no product applied state |
+| P67A | DONE | freeze path-free encoded-image decode gate | decode only P65 immutable bytes and prove declared PNG/JPEG/TIFF format, bit depth, single-frame and bounded geometry | `a2bb952` | no filesystem reopen |
+| P67B | DONE | implement strict in-memory decoder | exact 8/16-bit RGB sample arrays; reject malformed, multi-frame, alpha/palette, appended data and format/depth mismatch | `a2bb952`; code/schema/tests | decoded evidence only |
+| P67C | DONE | prove parser and resource failure closure | CRC/chunk/EOI/page/sample checks plus full-batch geometry preflight before any pixel allocation; no partial batch | 47 P63/P65/P67 pass | no application/delivery |
+| P67D | DONE | propagate full/latest-main evidence | 767 all-color/3 skips; 1662 pass/4 skips/36 known; main `66f0748`, merge `3269a14`, 215 pass/1 skip | evidence/docs | colour metadata not yet attested |
+| P68A | DONE | publish immutable integration manifest v4 | bind P1-P67 `a2bb952`, main `66f0748`, 287 blobs, 30 exports, 16 schemas, zero overlap and exact P66 v3 | `f9f05b8` | review only |
+| P69A | DONE | bridge decoded sRGB samples to display-linear MatchViews | fixed float32 IEC 61966-2-1 EOTF, exact f32be pixel hashes and source/decode/run provenance | `272db64` | process-local views only |
+| P69B | DONE | prove reconstruction rather than self-consistency | validator re-executes EOTF and provenance from P67 samples; forged pixels+descriptor+receipt reject | 47 focused/adapter pass | no persistence/application/delivery |
+| P70A | DONE | publish immutable integration manifest v5 | bind P1-P69 `272db64`, main `50b38dd`, 294 blobs, 35 exports, 17 schemas, zero overlap and exact P68 v4 | `c5487a6` | review only |
+| P70B | DONE | propagate full/latest-main evidence | 812 all-color/3 skips; 1707 pass/4 skips/36 known; current evidence head/main merge `cf93886`, 260 pass/1 skip | evidence/docs | owner merge remains required |
+| P71A | IN PROGRESS | freeze path-free encoded colour-metadata attestation | prove P62 PNG/JPEG/TIFF bytes carry the exact expected sRGB profile before any semantic display-linear bridge | contract/tests/docs | P69 remains assumption-bound until v2 consumes attestation |
+| P71B | READY | implement exact ICC/CICP/tag inspector | PNG iCCP, JPEG APP2/Pillow reconstruction and TIFF 34675 must bind exact consumer sRGB profile bytes; conflicting signals reject | code/schema/tests | no profile conversion |
+| P71C | BLOCKED ON P71B | prove metadata parser/resource/conflict closure | missing/duplicate/oversized/compressed/trailing profile, cICP conflict and format substitution | adversarial tests | fail closed |
+| P72A | BLOCKED ON P71 | publish attestation-consuming MatchView bridge v2 | v2 must accept only exact P71-attested decoded batch; P69 v1 remains immutable historical evidence | code/schema/tests | no retroactive claim upgrade |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

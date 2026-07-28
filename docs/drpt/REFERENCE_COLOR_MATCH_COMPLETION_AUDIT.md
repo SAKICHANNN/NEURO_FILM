@@ -14,10 +14,10 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P65
-  implementation at `e83c18a`; P66 review evidence is committed at
-  `00593c7`.
-- Main Neuro-Film read-only commit snapshot: `eef149c`; its tracked dirty work,
+- Consumer reviewed payload: `codex/reference-color-match` through P69
+  implementation at `272db64`; P70 review evidence is committed at
+  `c5487a6`.
+- Main Neuro-Film read-only commit snapshot: `50b38dd`; its tracked dirty work,
   `.codex/` and `tmp/` belong to the main task and were not touched.
 - D-PCT latest fixed producer snapshot observed is `34af2fa`; its final local
   boundary remains `NOT_FREEZE_READY` with eight required gates still failed.
@@ -58,6 +58,8 @@ wire contract and not an algorithm promotion.
 | Runtime-qualified shared staging | P62 snapshots pixels, binds P61/P60/P49/P48/P47 and create-only publishes outputs followed by one canonical report commit marker | COMPLETE AS MANIFEST-LAST STAGING MECHANICS, REAL USE CLOSED | Report-less orphans are never consumed or auto-deleted; P63 verifies the committed run / Neuro-Film |
 | Runtime-qualified handle observation | P63 caller-pins P62 report/run/qualification, opens each object once, binds handle identity, double-reads and final-rehashes the same handle under bounded counts/sizes | COMPLETE AS OBSERVATION, PATH CONSUMPTION CLOSED | Windows denies write/delete sharing during verification; POSIX is sequential observation with an irreducible post-read window. P65 must consume bytes while the same verified handles remain live / Neuro-Film |
 | Same-handle byte consumption | P65 captures bounded immutable output bytes during the same P63 handle session and returns them only after every final rehash; its record carries no artifact path and fixes path/persistence/delivery authority false | COMPLETE AS PROCESS-LOCAL BYTE SNAPSHOT, DECODE/DELIVERY CLOSED | P67 must decode only returned bytes and prove declared encoded format/depth/frame/geometry before any pixel consumer / Neuro-Film |
+| Path-free encoded decode | P67 preflights the entire batch then strictly decodes one-page/frame RGB PNG/JPEG/TIFF to readonly uint8/uint16 arrays with exact decoded hashes | COMPLETE AS STRUCTURAL/SAMPLE EVIDENCE, COLOUR SEMANTICS OPEN | P71 must attest exact embedded sRGB colour metadata; P67 format/depth alone does not prove colour meaning / Neuro-Film |
+| Decoded samples to MatchView | P69 deterministically applies float32 sRGB EOTF, emits display-relative linear-sRGB MatchViews and replays both pixels and provenance during validation | COMPLETE AS ASSUMPTION-BOUND PROCESS-LOCAL BRIDGE | P72 must consume exact P71 colour attestation before this route can claim metadata-proven sRGB semantics / Neuro-Film |
 | Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
 | Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
@@ -65,9 +67,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | P58 v1 and P64 v2 remain immutable; P66 v3 binds the P1-P65 payload, all 280 payload Git blobs, 25 public exports, 15 schemas, exact prior-P64 identity and zero overlap against main `eef149c` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies the pinned v3 manifest, reviews and merges / main task or owner |
+| Main-integration evidence | P58/P64/P66/P68 remain immutable; P70 v5 binds P1-P69, 294 payload blobs, 35 exports, 17 schemas, exact prior-P68 identity and zero overlap against main `50b38dd` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v5, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P66 latest-main merge tree `7739d12` is conflict-free and a fresh detached merge passes 183 related tests with one privilege skip | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | Current P70 evidence head merges conflict-free as tree `cf93886`; fresh detached merge passes 260 related tests with one privilege skip | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -127,6 +129,10 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
     process-local immutable snapshot after every same-handle final rehash.
     Its persisted receipt grants no path, persistence or delivery authority;
     P67 must validate the encoded image entirely from those bytes.
+20. P67 structural/sample decoding and P69 sRGB EOTF execution do not by
+    themselves prove embedded colour semantics. P71 must attest the exact
+    expected sRGB profile in memory, and a new P72 bridge must consume that
+    attestation; P69 v1 cannot be retroactively relabeled.
 
 ## Non-blocking work policy
 
