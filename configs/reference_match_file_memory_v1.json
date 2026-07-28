@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "node": "P154",
+  "baseline_commit": "34259086fbbd6e479753a9f72bf77f2e0d463e93",
+  "candidate_commit": "de57918e23568ad6321262903addfac7f2349d3c",
+  "image": {
+    "width": 3000,
+    "height": 2000,
+    "reference_seed": 15401,
+    "source_seed": 15402,
+    "format": "PNG",
+    "mode": "RGB",
+    "bit_depth": 8
+  },
+  "file_match": {
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "guard_policy": "default-identity-fallback"
+  },
+  "execution_order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 300.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 12884901888,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 2147483648
+  },
+  "gates": {
+    "minimum_median_rss_reduction_bytes": 67108864,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.92,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0,
+    "worker_wall_seconds_max": 300.0,
+    "require_output_bytes_exact": true,
+    "require_recipe_bytes_exact": true,
+    "require_normalized_report_exact": true,
+    "require_identity_fallback": true
+  },
+  "claim_ceiling": "local-windows-python-file-path-rss-comparison-only-not-platform-or-algorithm-promotion"
+}
