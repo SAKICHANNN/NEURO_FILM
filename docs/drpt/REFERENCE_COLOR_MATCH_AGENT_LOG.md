@@ -3621,3 +3621,17 @@
   removed. All 366 v1-v28 manifest lineage tests pass.
 - V28 supersedes v27 and remains `review-ready-not-merged`; the main task owns
   any merge. Producer algorithm/media/native contracts are unchanged.
+
+## 2026-07-28 - Complete standalone report identity and locking
+
+- Direct report builders now validate captured reference, source, output and
+  recipe SHA-256 identities uniformly; forged result objects cannot emit an
+  invalid report before schema validation.
+- Standalone match/replay report saves now use the shared destination lock and
+  return the atomic writer's encoded-byte hash instead of reopening a mutable
+  path. A deterministic two-thread same-destination test rejects the competing
+  writer and leaves one valid report.
+- The complete non-manifest color-match regression passes 906 tests with five
+  explicit skips. Payloads `61e6dc4` and `efab99c` are consumer-only; v28
+  remains the last complete integration snapshot pending the next batched
+  payload manifest.
