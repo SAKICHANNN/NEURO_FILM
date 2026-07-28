@@ -486,12 +486,15 @@ evidence is written. The v1 config remains unchanged. A diagnostic-only
 inventory establishes an exact lane split: 227 Color RGB, 66 B&W 8-bit `L`
 and two 16-bit RGB root controls. AJ0B2 now passes at commit `9bd4e68`: two
 new processes reproduce archive/config SHA, all profiles/paths/CRCs, the 194
-primary members and canonical manifest/report bytes. AJ0C contract design is
-the current ready leaf. Before any primary metric it must freeze analytic
-identity, encoded-sRGB red-fastest trilinear semantics, native N=144/256
-streaming, controls-only threshold calibration, per-candidate safety,
-matched-basic/strength duplicate collapse and a deterministic cap-12 survivor
-policy. Preset names remain informational external Look Approximation labels;
+primary members and canonical manifest/report bytes. AJ0C is now explicitly
+split. C0 has frozen analytic identity, encoded-sRGB red-fastest trilinear
+semantics, N=17/33/144/256 conformance, RGB16 precision, analytic Jacobian,
+25 gradients, controls-only thresholds, matched-basic/strength/novelty
+expectations and a future deterministic cap-12 policy. C0 implementation and
+two-process execution are the current ready leaf and must record zero archive
+or primary reads. Only its committed exact pass permits a separately frozen
+C1 native-N=144/256 primary screen. Preset names remain informational
+external Look Approximation labels;
 no stock response, Push/Pull truth, training teacher, photograph render,
 current-film fitting, LSM or integration opens.
 

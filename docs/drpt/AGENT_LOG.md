@@ -5792,3 +5792,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   basic/strength duplicate collapse and deterministic cap-12 selection must
   be committed before primary metrics. Photography and aesthetics remain
   forbidden. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AJ0C0 controls before primary Hald metrics
+
+- **Node/skills:** `ULT > U5 > U5.R2 > U5.R2AJ0C0`; DRPT L2/Mode A with
+  `dev-research-reliability` as the sole writer and read-only structure,
+  project-log, research and contract review.
+- **Design split:** AJ0C is divided into controls-only C0 and primary-bank
+  C1. C0 must report zero archive bytes, zero decoded primary CLUTs, zero
+  primary metrics and zero photograph renders. Only a committed, two-process
+  exact C0 pass can open a separately frozen C1 contract.
+- **Frozen semantics:** encoded-sRGB, red-fastest Hald flattening, native
+  trilinear interpolation, analytic float64 identity, batched uint8 corner
+  gathering, analytic Sobol Jacobians, 25 exact gradients and generated
+  RGB16 `tifffile` conformance. No external root control pixels are
+  authorized.
+- **Control calibration:** exact identity/basic/warm/cool positives and
+  axis-swap/clip/staircase/single-cell-spike negatives freeze the safety,
+  style, non-basic, duplicate, strength-path and novelty gates before
+  primary access. The `0.25` warm control was omitted rather than weakening
+  the fixed strength thresholds after RGB8 quantization; no primary CLUT
+  metric informed this choice.
+- **Propagation/handoff:** AGENTS, tracker, real-film programme, board and
+  implementation plan now identify C0 implementation as the ready leaf and
+  C1 as blocked. Photography, aesthetic ranking, pseudo-teacher use,
+  fitting, training, routing, LSM and integration remain forbidden. Goal
+  remains ACTIVE.
