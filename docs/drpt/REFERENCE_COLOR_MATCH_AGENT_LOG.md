@@ -3570,5 +3570,11 @@
   unchanged.
 - A direct real-path versus symlink-alias contention regression passes where
   the platform permits directory symlinks. The complete non-manifest
-  color-match regression passes 897 tests with five explicit skips. V26 is
-  superseded pending a manifest that binds payload `21469a1`.
+  color-match regression passes 897 tests with five explicit skips.
+- V27 binds payload `21469a1` to main `560934f`: 446 consumer paths, 480 main
+  paths and zero overlap. Manifest/schema SHA-256 identities are
+  `02aa1f60...33eefb` / `54062df7...e0bb4`; merge tree
+  `45edeea0...24c04d`.
+- Detached synthetic merge `c210650` passes 1230 color-match tests with 30
+  explicit skips and 1289 unrelated deselections. Its owned worktree was
+  removed. V27 supersedes v26 and is `review-ready-not-merged`.
