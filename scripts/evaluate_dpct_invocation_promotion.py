@@ -199,7 +199,7 @@ def _invoke(
             "consumer_transform_id": candidate.transform.transform_id,
             "consumer_receipt_id": candidate.prepared_output.receipt.receipt_id,
             "output_pixel_sha256": (
-                candidate.prepared_output.receipt.output_pixel_sha256
+                candidate.prepared_output.receipt.output_view.pixel_sha256
             ),
             "out_of_gamut_fraction": (
                 candidate.diagnostics.out_of_gamut_fraction
