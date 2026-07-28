@@ -2,28 +2,28 @@
 
 Date: 2026-07-28
 
-Status: **P1-P80 consumer payload is pinned by the immutable P81 v10 review
+Status: **P1-P82 consumer payload is pinned by the immutable P83 v11 review
 manifest; metadata-attested local sRGB MatchViews are complete, while real
 external-algorithm admission and delivery remain closed**.
 
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete reviewed P1-P80 payload head:
-  `c87d36691380c2fbaf1dd7c72c3ae75ea6ae9f34`;
-- P81 review-evidence head:
-  `40b4768`;
+- complete reviewed P1-P82 payload head:
+  `20fb34a04e66f93475b978da595cdb6296b1a9a0`;
+- P83 review-evidence head:
+  `431729d`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `21a877fb3c29b80bc38b70c1c6123fb4f1b5dcb8`;
+  `4bbf362598779a04318ab440b063680eaa1178b0`;
 - D-PCT read-only snapshot:
   `34af2fa5a2d095dab87affa73f169fd5a051bcfa`;
 - conflict-free main/evidence-head merge tree:
-  `6f8512fbe83cff55567ff68803f5c785218d52fc`.
+  `f1df3ff9eeb02fab8ca12393ca0495382098b065`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -89,6 +89,16 @@ binds that P1-P80 payload against main `21a877f`: 333 payload blobs, 247 main
 paths, zero overlap, 47 exports and 20 schemas. V10 SHA-256 is
 `6663dbcabceaeed6d88ec54912377bee8d2d61f1962eba1be92c51edcada7ea1`;
 it binds v9 SHA-256 `041e28a2...04f8f` and never hashes itself.
+
+P82 `8bb9e0b` plus evidence `20fb34a` add the exact portable decoded-sample
+sRGB EOTF ABI: both Windows compilers execute every uint8/uint16 code exactly,
+while Android remains link-only and Apple remains object-only. P83 v11 binds
+that P1-P82 payload against main `a264a82`: 343 payload blobs, 253 main paths,
+zero overlap, 47 exports and 20 schemas. V11 SHA-256 is
+`b3bb7dee19a38c41620a00ae6e525ff20492adb3db705db9b8d26e85b7deccfe`;
+it binds v10 SHA-256 `6663dbca...7ea1` and never hashes itself. Main later
+advanced to `4bbf362`; the refreshed 347-versus-254 path comparison remains
+zero-overlap and the detached merge tree is `f1df3ff9...b065`.
 
 The independent strict P59 schema is
 `configs/schemas/reference_match_main_integration_manifest_v1.schema.json`,
@@ -215,11 +225,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed P81 v10 schema and rebuild its manifest by both direct
-   and module entry points. It transitively preserves v9/v8/v7/v6/v5/P68/P66/P64/P58.
-3. Review `c03c321..c87d366`; do not copy files manually and do not import
+2. Verify the committed P83 v11 schema and rebuild its manifest by both direct
+   and module entry points. It transitively preserves v10/v9/v8/v7/v6/v5/P68/P66/P64/P58.
+3. Review `c03c321..20fb34a`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree c87d366 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 20fb34a <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -234,10 +244,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete color-match suite: 980 passed, three skipped;
-- latest isolated consumer full suite: 1875 passed, four skipped, 36 unchanged
+- latest complete color-match suite: 1003 passed, three skipped;
+- latest isolated consumer full suite: 1898 passed, four skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main/evidence-head merge: 980 color-match tests
+- latest detached synthetic main/evidence-head merge: 1003 color-match tests
   passed with three platform skips and zero failures; the temporary worktree
   was removed;
 - consumer worktree is clean after every stable leaf.

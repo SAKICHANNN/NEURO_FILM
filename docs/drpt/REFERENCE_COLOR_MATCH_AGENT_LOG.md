@@ -2961,6 +2961,23 @@
   ICC application, RAW/HDR/video, colour-match algorithm, product
   authorization or delivery claim opens.
 
+## 2026-07-28 - Publish and verify P83 integration v11
+
+- P83 commit `431729d` publishes v11 for P1-P82 payload `20fb34a`, main
+  `a264a82` and base `c03c321`: 343 payload paths, 253 main paths, zero
+  overlap, 47 Python exports and 20 schemas. Manifest SHA-256 is
+  `b3bb7dee...ccfe`; exact v10 identity is preserved.
+- Main advanced during verification to `4bbf362`. A fresh comparison is 347
+  consumer versus 254 main changed paths with zero overlap; the conflict-free
+  evidence-head merge tree is `f1df3ff9...b065`.
+- Local and detached-merge color suites pass 1003 with three platform skips
+  and zero failures. The local full suite is 1898 pass/four skips plus the
+  same 36 historical missing-output/tracked-hash failures; no color-match test
+  fails. The detached worktree was removed.
+- P83 remains review-ready-not-merged. It neither changes the D-PCT producer
+  interface nor converts Android link-only or Apple object-only evidence into
+  runtime, and it opens no algorithm, media or delivery claim.
+
 ## 2026-07-28 - Freeze P39 atomic local export
 
 - Node/parent goal: P39A / local file transaction after P38.
