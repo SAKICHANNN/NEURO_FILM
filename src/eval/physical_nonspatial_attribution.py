@@ -173,6 +173,13 @@ def _save_rgb(path: Path, values: np.ndarray) -> str:
     return sha256_file(path)
 
 
+def _metric_sample(values: np.ndarray) -> np.ndarray:
+    sample = np.asarray(values, dtype=np.float64)[::8, ::8].reshape(-1, 3)
+    if sample.ndim != 2 or sample.shape[1] != 3:
+        raise RuntimeError("metric sample must flatten to Nx3")
+    return sample
+
+
 def evaluate_attribution(
     *, root: Path, config: dict[str, Any], output_dir: Path
 ) -> dict[str, Any]:
@@ -202,12 +209,11 @@ def evaluate_attribution(
                 / 255.0
             )
         first = _render_arms(source, runtime)
-        source_sample = source[::8, ::8]
-        colour_sample = first["colour_only"][::8, ::8]
+        source_sample = _metric_sample(source)
         for arm in config["arms"]:
             arm_id = arm["arm_id"]
             values = first[arm_id]
-            sample = values[::8, ::8]
+            sample = _metric_sample(values)
             style, non_basic = style_and_basic_residual(
                 source_sample, sample
             )
@@ -344,6 +350,7 @@ def write_report(report: dict[str, Any], path: Path) -> str:
 
 
 __all__ = [
+    "_metric_sample",
     "_neutral_axis",
     "_render_arms",
     "evaluate_attribution",

@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from src.eval.physical_nonspatial_attribution import (
+    _metric_sample,
     _neutral_axis,
     _render_arms,
     validate_contract,
@@ -57,3 +58,9 @@ def test_p7e_arms_are_repeat_exact_bounded_and_distinct() -> None:
             for values in first.values()
         }
     ) == len(first)
+
+
+def test_p7e_metric_sample_is_flat_n_by_three() -> None:
+    values = np.zeros((17, 19, 3), dtype=np.float64)
+    sample = _metric_sample(values)
+    assert sample.shape == (9, 3)
