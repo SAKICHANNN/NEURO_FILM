@@ -939,7 +939,10 @@ def validate_report(
         or report["fit_point_count"] != expected_fit_count
         or report["confirmation_point_count"] != expected_confirmation_count
         or report["claim_ceiling"] != v3["claim_ceiling"]
-        or list(report["targets"]) != list(v1["targets"])
+        # Canonical JSON sorts mapping keys, so persisted reports cannot retain
+        # the config insertion order. Validate the exact key set instead of
+        # treating a serialization-order change as an identity change.
+        or sorted(report["targets"]) != sorted(v1["targets"])
     ):
         raise ValueError("AM1 report identity mismatch")
     reconstructed = _reconstruct_checks(report, v1)

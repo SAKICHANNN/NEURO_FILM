@@ -6254,3 +6254,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `src/roll2film`; experiment targets, fitting protocol, reports and branch
   decisions stay in the runner/config/docs. No existing renderer, profile,
   stock programme, default or learned RGB path changes. Goal remains ACTIVE.
+
+## 2026-07-28 - Repair U5.R2AM1 persisted-report identity validation
+
+- **Node/scope:** `ULT > U5 > U5.R2 > U5.R2AM1`; DRPT L2/Mode A,
+  implementation-only correction after the two frozen child fits.
+- **Observed defect:** both fresh child processes completed and wrote
+  byte-identical canonical reports, but the parent could not validate the
+  persisted report. Canonical JSON sorts mapping keys, while
+  `validate_report` incorrectly required the in-memory config insertion order
+  for the `targets` mapping.
+- **Correction:** persisted target identity now requires the exact sorted key
+  set. No target, operator, fit, restart, metric, threshold, report byte,
+  automatic check or scientific branch rule changes.
+- **Evidence:** a focused regression reconstructs the canonical key-order
+  change and exact key-set match. The two original reports remain untouched
+  and retain software commit `bc049439599706c40c1930f61d71045420df1be3`.
+- **Handoff:** validate the two immutable reports with their recorded software
+  commit, reconstruct the parent repeat decision, then propagate the frozen
+  AM1 result.

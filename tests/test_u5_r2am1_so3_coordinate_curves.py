@@ -18,6 +18,7 @@ from src.roll2film.so3_coordinate_curves import (
 )
 from scripts.run_u5_r2am1_so3_coordinate_curve_capacity import (
     V3_SHA256,
+    _canonical_json,
     _confirmation_points,
     _hue_pairs,
     _load_contracts,
@@ -221,3 +222,16 @@ def test_frozen_contract_chain_truth_and_audit_geometry() -> None:
     assert len(hue_minus) == len(hue_plus) == 86
     assert np.all(np.isfinite(hue_minus))
     assert np.all(np.isfinite(hue_plus))
+
+
+def test_canonical_report_target_order_matches_config_identity() -> None:
+    root = Path(__file__).resolve().parents[1]
+    v1, _v2, _v3, _density, _positive, _ = _load_contracts(
+        root / "configs/u5_r2am1_so3_coordinate_curve_capacity_v3.json",
+        expected_v3_sha256=V3_SHA256,
+    )
+    persisted = json.loads(
+        _canonical_json({"targets": {name: {} for name in v1["targets"]}})
+    )
+    assert list(persisted["targets"]) != list(v1["targets"])
+    assert sorted(persisted["targets"]) == sorted(v1["targets"])
