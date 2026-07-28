@@ -14,13 +14,13 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer payload: `codex/reference-color-match` through P49 implementation
-  at `14fc7bf`.
-- Main Neuro-Film read-only snapshot: `1dce729`; its `.codex/` and `tmp/`
-  files belong to the main task and were not touched.
-- D-PCT audited RGIN closure: `fd036aa`; its only callable relative-SDR
-  capability is rejected by P44, while ROGR-v0 and RGIN-v0 also close as
-  non-callable negative development evidence.
+- Consumer payload: `codex/reference-color-match` through P62 implementation
+  at `e3372a9`.
+- Main Neuro-Film read-only commit snapshot: `473b577`; its tracked dirty work,
+  `.codex/` and `tmp/` belong to the main task and were not touched.
+- D-PCT latest fixed producer snapshot observed is `f1d3709`; its only
+  callable relative-SDR capability remains rejected by P44. Later research
+  and native evidence do not create a new P45 successor.
 - Neuro-Film owns one-reference/N-source product semantics, replay,
   transaction, reporting, A1/A4/A5, delivered-pixel guards and FilmFX
   composition.
@@ -48,11 +48,12 @@ wire contract and not an algorithm promotion.
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile | COMPLETE for host identity and cross-target core compilation | Android/Apple device runtime, SDK/app/JNI/Swift boundary and real invocation remain open / platform integration |
 | Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
-| Successor target-runtime evidence | P60 binds exact declaration/producer/capability/profile and per-target environment matrix, binary/report hashes, proof class and repeated factual gates; D-PCT R0bw `346b8cf` supplies actual dual-vendor Windows Vulkan host runtime but no successor declaration mapping | COMPLETE AS CONSUMER EVIDENCE CONTRACT, REAL MATRIX WINDOWS-ONLY/UNMAPPED | Publish a fixed successor declaration, bind the Windows report, and supply macOS/iOS/Android runtime reports; compile/link evidence never substitutes / D-PCT then Neuro-Film |
+| Successor target-runtime evidence | P60 binds exact declaration/producer/capability/profile and per-target environment matrix, binary/report hashes, proof class and repeated factual gates; corrected D-PCT R0bw `3a4948a` supplies actual dual-vendor Windows Vulkan host runtime, R0bx is Android compile/link-only, and R0by is an existing source-bound Windows CPU ABI | COMPLETE AS CONSUMER EVIDENCE CONTRACT, REAL MATRIX WINDOWS-ONLY/UNMAPPED | Publish a fixed successor declaration, bind applicable runtime reports, and supply macOS/iOS/Android runtime reports; compile/link/object evidence never substitutes / D-PCT then Neuro-Film |
 | Reference-only shared batch semantics | P47 binds one source-free operator to ordered N source-bound exact output receipts | COMPLETE AS CONSUMER CONTRACT | Map only to a producer build/apply fixture that proves source-free bundle construction / D-PCT then Neuro-Film |
 | Shared-batch numeric safety | P48 binds per-source producer facts, verifies output extrema/new boundary and falls back atomically | COMPLETE AS CONSUMER GUARD | Map exact producer diagnostics then replay before any shared-path authorization / D-PCT then Neuro-Film |
 | Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision; P61 additionally binds factual P60 runtime evidence | COMPLETE THROUGH RUNTIME QUALIFICATION, REAL USE CLOSED | A real callable shared producer must pass every lock and a durable consumer must require exact P61; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
-| Shared-path runtime qualification | P61 embeds and replays exact P60 against exact P49; only four factual target proofs plus upstream authorization yield runtime-qualified staging | COMPLETE AS NO-WRITE GUARD | Add a separately versioned durable staging consumer; never relabel historical P50 / Neuro-Film |
+| Shared-path runtime qualification | P61 embeds and replays exact P60 against exact P49; only four factual target proofs plus upstream authorization yield runtime-qualified staging | COMPLETE AS NO-WRITE GUARD | P62 consumes only an exact caller-pinned P61; never relabel historical P50 / Neuro-Film |
+| Runtime-qualified shared staging | P62 snapshots pixels, binds P61/P60/P49/P48/P47 and create-only publishes outputs followed by one canonical report commit marker | COMPLETE AS MANIFEST-LAST STAGING MECHANICS, REAL USE CLOSED | P63 must restart-open and verify report/output handles; report-less orphans are never consumed or auto-deleted / Neuro-Film |
 | Shared-path durable staging | P50 atomically commits exact P49-authorized outputs plus a P47/P48/P49-bound report and restores prior bytes on failure | MECHANICS COMPLETE, REAL USE CLOSED | Restart-verify P50, then bind optional composition only for a real promoted producer / Neuro-Film |
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
 | Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
@@ -108,6 +109,12 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
     declaration. P45 runtime booleans alone are not factual runtime evidence.
 15. P61 must qualify the exact P49 authorization before any new durable
     staging path; historical P50 remains explicitly pre-runtime-qualification.
+16. P62 may create a runtime-qualified staged run only from the exact
+    consumer-pinned P61. Its report is published last; report-less output
+    orphans never constitute a transaction.
+17. P63 must bind the caller-held P62 report hash/run/qualification and hash
+    the same open file handles whose identities it validates. Path lookup
+    followed by a second path open is not sufficient.
 
 ## Non-blocking work policy
 

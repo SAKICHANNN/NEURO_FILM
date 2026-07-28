@@ -2434,23 +2434,28 @@
   cannot be relabeled runtime-qualified; a separately versioned P62 durable
   staging consumer must require exact P61.
 
-## 2026-07-28 - Audit producer R0bw Windows runtime without qualifying P60
+## 2026-07-28 - Audit corrected producer R0bw/R0bx evidence without qualifying P60
 
 - Node/parent goal: P60D/P61D / read-only producer evidence propagation.
-- Producer snapshot: D-PCT is clean at
-  `346b8cfeac8f5681bb60b5eeaa425556dfb74809`. R0bw executes the same
-  reproducible Vulkan 1.1 SPIR-V on NVIDIA `10de:2f58` and AMD `1002:13c0`
-  Windows devices, with two byte-exact 65-cube and UHD replays per device,
-  four fail-closed negative vectors and cross-vendor UHD max/RMSE
-  `3.814697e-6` / `4.45567e-7`.
+- Corrected producer snapshot: fixed D-PCT commit
+  `3a4948a2ce280c064871f9302603a0efd204579b` supersedes the earlier
+  `346b8cf` artifact identities. R0bw uses Vulkan 1.1-safe local size 128 and
+  executes one reproducible SPIR-V on NVIDIA `10de:2f58` and AMD
+  `1002:13c0` Windows devices, with two byte-exact 65-cube and UHD replays per
+  device and unchanged cross-vendor UHD max/RMSE `3.814697e-6` /
+  `4.45567e-7`.
 - Pinned producer evidence: SPIR-V
-  `5d6c91c1af193d0769273734e8fb5dab642f83b6c99d7c15c3286f9d6bbd910b`;
-  reports `f51e71540d60edbf967c18137f68b5889de6d37e5e72ba6aa2544f3c642287af`
-  and `e8fcfa4e30faeafdc34a2a9a1a0165f2ef44aaa139c6f6a318cc159c2426557d`;
+  `e17ef3941ef4a9b20c97439710feef7624433b5b72adb47a14c55bbed5585d46`;
+  reports `a0b99bf0bc7893d00ee7a61a26a449942ffa1a31eea23849b38287369f3ecd49`
+  and `bb44d28c6bb2a461d9443c25290afa4799276a421bd418234d4d548fef90186d`;
   canonical non-timing identity
-  `cbac6c85ac3a97cea2b25f168f9af5aa6c1fee8688f79643516768ce6a365e9a`;
+  `b08d75fe94b0bc3e95aecc3f14941f735a263e38b6cc54176bb519a268ff901b`;
   reproducible executable
-  `07b9dfffed9b077a89050b658ad3ad3cb2aabf812d65707bcf3f74aa8a2fb25b`.
+  `6c2d8351692655a76f4f0265d817718ca682dda58d8123b3c03bb0cd598c1b06`.
+- R0bx additionally produces reproducible Android API24 arm64-v8a and x86_64
+  libraries, but its own report class is exactly
+  `COMPILE_LINK_ONLY_NOT_RUNTIME`; neither library nor shader was loaded or
+  executed on Android. It therefore cannot satisfy P60 device runtime.
 - Decision: this is factual Windows host-runtime evidence, but there is no new
   exact P45 successor declaration/capability/package to bind it to. Android
   still lacks device runtime and Apple lacks host/device runtime. Therefore no
@@ -2471,10 +2476,12 @@
   byte. Exact P61 state `runtime-qualified-for-staging` and factual
   `runtime_ready=true` are required before any directory, temporary file or
   destination is written.
-- Atomicity: reuse the established staging encoder and rollback-safe batch
-  replacement primitive. Output files and the new report commit together;
-  collision, encode failure or injected replacement failure restores every
-  previous destination.
+- Publication: every destination must be absent and is created by an
+  operating-system no-replace primitive. Outputs publish first and the report
+  publishes last as the sole commit marker. A pre-report failure may leave
+  immutable, report-less output orphans; they are not a committed run and
+  must never be consumed. P62 never check-then-unlinks published names, so a
+  non-cooperating replacement winner is not erased.
 - Identity/versioning: preserve all P47-P51 and P60-P61 v1 identities. P62
   gets a new schema/state/claim ceiling and carries qualification,
   runtime-evidence and declaration IDs explicitly. A later P63 read-only
@@ -2482,6 +2489,60 @@
 - Scope: consumer transaction/schema/tests/docs only. No producer call,
   algorithm promotion, FilmFX, delivery, main merge, platform implementation
   or use of the Windows-only R0bw evidence as a four-target substitute.
+
+## 2026-07-28 - Implement and verify P62 manifest-last runtime staging
+
+- Node/parent goal: P62B-D / durable consumer after exact P61.
+- Implementation: `e3372a9d00a87bd11a5669720c2d966a57a338eb` finalizes
+  `neuro-film.runtime-qualified-shared-staging-run.v1`. The callable requires
+  the caller's exact `expected_runtime_qualification_id`, snapshots pixels,
+  rejects reparse/colliding destinations and creates outputs plus report
+  without replacing any existing name.
+- Exact artifacts: implementation SHA-256
+  `40aece8b7a040f0593c0230f60ee3a35c192484ce066e4a40c19416d3fdb836a`;
+  schema SHA-256
+  `ff11bfd3c2c9117e4deb29a859f2ddbf6cb117532da82647c7141ec642534c51`;
+  shared publication helper SHA-256
+  `28622259384741dc179834f709ad0e92b74f46618d6bedfd02024e4225d6ea4f`.
+- Final v1 boundary: prior-hash replacement fields were removed before stable
+  evidence freeze. P62 is create-only and manifest-last. Failure before the
+  report can leave uncommitted output or hard-link-stage orphans; automatic
+  cleanup of published names is forbidden because conditional deletion cannot
+  be made race-free against non-cooperating writers.
+- Adversarial closure: initial/commit-boundary/final-operation destination
+  creation, post-publication replacement, stage mutation, caller-buffer
+  mutation, reparse paths, in-process/cross-process locks, invalid temp root,
+  lock-close failure and POSIX hard-link stage-cleanup failure are covered.
+  Historical P50 replacement remains separately regression-locked.
+- Verification: 31 P62 tests pass with one real-symlink privilege skip; 160
+  adjacent P47-P62/transaction tests pass with one skip; all color-match tests
+  are 674 pass/one skip. Full suite is 1569 pass/two skips with the same 36
+  missing ignored-output or historical tracked-hash failures.
+- Latest-main propagation: read-only main
+  `473b5773121bd4e059625a551432838b3fdbebb9`; 268 consumer versus 205 main
+  changed paths, zero overlap; merge tree
+  `d11d4fa736589e64e78dcb7bd587c67dd995e11a`; fresh detached merge passes
+  92 P62/P61/P60/P59/P57 tests with one privilege skip and was removed.
+- Limit: P62 is not process-crash/power-loss atomic, not a cryptographic
+  attestation and not safe to consume from report presence alone. P63 must
+  open each object once, bind file identity and hash those same handles before
+  any replay, cleanup or delivery.
+
+## 2026-07-28 - Record producer R0by CPU ABI without changing admission
+
+- Producer fixed snapshot:
+  `f1d3709bef1ae8e9b484080ba2c7c67483d4f0a2`. R0by supplies one C11
+  `zhuise_dpct_cpu_apply_v1` Windows x64 host-runtime/failure-boundary ABI for
+  the existing source-bound transform, with exact NumPy agreement and
+  fail-closed output/diagnostics preservation.
+- Evidence identities: report
+  `7dac31905e8ee7f67bf53ced639080a89229205b222b6b29bc6b35f0dc394649`;
+  canonical
+  `651d9135b7511ddcedb293b2196d85561139fc434f9e8913d3f001763dedcc91`.
+- Decision: this is no new P45 successor declaration, capability, package,
+  quality promotion, receipt or schema. It neither closes P60/P61 nor changes
+  P62. Planned Mach-O relocatable objects remain object-only until linked and
+  actually executed on the declared Apple targets.
 
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 

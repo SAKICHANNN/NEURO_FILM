@@ -232,15 +232,19 @@ with a selected stock, but reference matching alone is labeled
 | P60A | DONE | freeze successor runtime-evidence binding | replace unbound P45 runtime booleans with source/capability/target-bound proof records | `7972bc7` | consumer evidence only |
 | P60B | DONE | implement runtime bundle and decision | distinguish host/device execution from cross-compile/link/object evidence | `eee47a2`; code/schema/tests | no native implementation |
 | P60C | DONE | prove identity/proof-class/four-target closure | foreign declaration/capability, duplicate/missing target, weak proof, replay/hash/fact tamper reject | 17 dedicated tests | fail closed |
-| P60D | DONE | propagate evidence and reserve exact producer mapping | 621 all-color; 1516 pass/1 skip/36 known; latest-main merge 42 pass; D-PCT `346b8cf` Windows-only runtime observed read-only | evidence commit | real mapping waits for a fixed successor declaration and the other three targets |
+| P60D | DONE | propagate evidence and reserve exact producer mapping | 621 all-color; 1516 pass/1 skip/36 known; latest-main merge 42 pass; corrected D-PCT `3a4948a` Windows-only runtime observed read-only | evidence commit | real mapping waits for a fixed successor declaration and the other three targets |
 | P61A | DONE | freeze runtime-qualified shared authorization | bind exact P49 authorization to exact P60 evidence without mutating either v1 identity | `460ec54` | qualification only |
 | P61B | DONE | implement canonical qualification decision | require P49 authorized plus all four P60 targets factual-ready | `77a8d84`; code/schema/tests | no staging write |
 | P61C | DONE | prove foreign/tampered/weak-runtime closure | P49/declaration/evidence substitution, fallback, missing target and identity mutation reject | 15 dedicated tests | fail closed |
 | P61D | DONE | propagate guard and identify durable consumer | 636 all-color; 1531 pass/1 skip/36 known; latest-main merge 57 pass | evidence commit | P62 must version durable staging |
-| P62A | IN PROGRESS | freeze runtime-qualified durable shared staging | add a new atomic report binding exact P61/P60/P49/P48/P47 identities without mutating P50 | plan commit | staging only |
-| P62B | READY | implement atomic runtime-qualified commit | validate exact P61 before any directory or temporary-file write; bind encoded output bytes and report | code/schema/tests | no delivery |
-| P62C | BLOCKED ON P62B | prove substitution/rollback/path/state closure | foreign or fallback P61, evidence/declaration/authorization drift, output/path/report collision and injected commit failure reject | adversarial tests | fail closed |
-| P62D | BLOCKED ON P62C | propagate evidence and reserve restart verifier | all-color/full/latest-main evidence; identify P63 read-only restart consumer | evidence commit | no retroactive P50/P51 relabel |
+| P62A | DONE | freeze runtime-qualified durable shared staging | add a new report binding exact P61/P60/P49/P48/P47 identities without mutating P50 | `2457a0f` | staging only |
+| P62B | DONE | implement create-only manifest-last commit | validate exact consumer-pinned P61 before path writes; atomically create each encoded output and publish report last | `e3372a9`; code/schema/tests | no delivery |
+| P62C | DONE | prove substitution/path/race/commit-marker closure | foreign/fallback P61, drift, reparse/collision, stage tamper, non-cooperating destination races and cleanup faults reject or preserve the external winner | 31 dedicated tests/one privilege skip | failed runs may leave report-less orphans |
+| P62D | DONE | propagate evidence and reserve restart verifier | 674 all-color; 1569 pass/2 skips/36 known; latest-main merge 92 pass/1 skip | evidence commit | no retroactive P50/P51 relabel |
+| P63A | IN PROGRESS | freeze handle-based runtime staging restart verification | caller pins exact P62 report SHA/run/qualification; open report and outputs once, bind handle identity and hash those same handles | contract/docs | read only |
+| P63B | READY | implement canonical P62 verifier | reject missing report, report/output substitution, relocation, post-commit mutation and non-regular/reparse files | code/schema/tests | no cleanup or delivery |
+| P63C | BLOCKED ON P63B | prove path-to-handle TOCTOU closure | adversarial rename/replace between path lookup and read must either bind the opened object or reject | fault injection | fail closed |
+| P63D | BLOCKED ON P63C | propagate evidence and reserve new integration manifest | all-color/full/latest-main evidence; P64 supersedes but never mutates P58 | evidence commit | review only |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
