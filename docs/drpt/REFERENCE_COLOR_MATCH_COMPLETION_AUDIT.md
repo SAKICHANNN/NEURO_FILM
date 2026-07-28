@@ -55,6 +55,7 @@ wire contract and not an algorithm promotion.
 | Shared-path restart verification | P51 caller-binds report/run/auth/guard/operator and rehashes every P50 file without writes | COMPLETE AS RESTART-SAFE VERIFIER | A later shared composition/delivery path must consume this exact verification / Neuro-Film |
 | Shared-path FilmFX ownership and staging | P52 preserves the verified shared look as sole colour owner; P53 reruns P51 and atomically stages only profile-bound procedural effects afterward | COMPLETE THROUGH ROLLBACK-SAFE STAGING, NOT DELIVERY | Restart-verify the exact P53 report, inputs and outputs before any later authorization; never infer stock/calibrated identity / Neuro-Film |
 | Shared-path FilmFX restart integrity | P54 caller-binds the exact P53 report/run and read-only rehashes every P50 base and P53 output while preserving the P49/P48/P47 receipt chain | COMPLETE AS VERIFIED STAGING, NOT AUTHORIZATION | A later authorization must consume the exact P54 verification and still requires a real promoted shared producer / Neuro-Film |
+| Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Main-project availability | Latest-main synthetic merges are conflict-free and focused suites pass | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
@@ -89,7 +90,8 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
    cannot close device support.
 11. On the shared path, P52 binds ownership, P53 reruns P51 before atomically
     staging procedural FilmFX, and P54 restart-verifies the exact P53 report,
-    P50 bases and FilmFX outputs. Any delivery authority must bind exact P54.
+    P50 bases and FilmFX outputs. P55 binds exact P54 to product-ready P49 but
+    creates no destination; any file transaction must bind exact P55.
 
 ## Non-blocking work policy
 
