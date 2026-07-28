@@ -6022,3 +6022,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   formal-run clean-worktree guards failed because these result files were
   uncommitted. After the scoped result commit, those tests passed 2/2 and the
   clean full CPU suite passed 1108/1108 in 164.04 seconds.
+
+## 2026-07-28 - U5.R2AL0 NamedCurves source and method audit
+
+- **Node/scope:** `ULT > U5 > U5.R2 > U5.R2AL0`; DRPT L2/Mode A with
+  research-reliability, AIML evidence, structure and project-log disciplines.
+  Primary sources were the official ECCV paper, current NamedCurves+ arXiv
+  paper record and official repository/API/tree. No code clone, checkpoint,
+  learned asset, image dataset or model output was acquired.
+- **Source freeze:** ECCV PDF is 4,900,159 bytes at `5fdada4b...254`;
+  NamedCurves+ was submitted 2026-07-09 and its paper record links CC BY 4.0.
+  Official repository commit `35af838...c1` has no root/detected code licence,
+  contains `joost_color_naming.mat`, and still lists NamedCurves+ code as TODO.
+  Paper licensing does not authorize repository code, checkpoints or assets.
+- **Method decision:** retain only the hypothesis that a continuous fixed
+  analytic colour partition plus endpoint-fixed positive-increment monotone
+  curves may add safe colour-selective capacity. Close the learned UNet
+  canonicalizer, colour-naming model, hard probability threshold,
+  attention/transformer, paired-retouching data and direct external execution.
+  Component monotonicity does not prove a positive 3D Jacobian.
+- **Propagation/handoff:** `U5.R2AL1` is ready only to freeze a synthetic
+  capacity contract with exact partition, curve budget, synthetic truths,
+  controls, split, optimizer and cube/Jacobian/inverse/replay/strength gates.
+  Zero photograph, film-pixel and external asset access; no film, stock,
+  preference, safety or product claim. Goal remains ACTIVE.

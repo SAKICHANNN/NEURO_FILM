@@ -56,6 +56,15 @@ source/method audit for a clean-room fixed analytic named-colour monotone-curve
 representation. Original NamedCurves canonicalization, attention, code,
 weights and color-naming assets remain outside the allowed path.
 
+`U5.R2AL0` is complete. NamedCurves/NamedCurves+ confirm that colour-selective
+endpoint-fixed monotone curves are an interpretable representation, but their
+learned canonicalizer, colour-naming model and spatial attention/transformer
+fusion remain content-confounded and outside the renderer contract. The
+official repository has no detected/root code licence and includes a learned
+colour-naming asset, so code, checkpoints and assets are forbidden. `U5.R2AL1`
+must first freeze a synthetic-only clean-room analytic chroma-sector curve
+capacity contract. No new data or photograph access is needed or allowed.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources

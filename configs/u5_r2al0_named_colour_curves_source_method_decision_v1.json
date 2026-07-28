@@ -1,0 +1,97 @@
+{
+  "schema_version": "u5-r2al0-named-colour-curves-source-method-decision-v1",
+  "node": "U5.R2AL0",
+  "audit_date": "2026-07-28",
+  "decision": "retain_clean_room_analytic_colour_selective_curve_hypothesis",
+  "primary_sources": {
+    "namedcurves_landing_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8963_ECCV_2024_paper.php",
+    "namedcurves_paper_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08963.pdf",
+    "namedcurves_paper_bytes": 4900159,
+    "namedcurves_paper_sha256": "5fdada4bf7434eea8b46ea0240ada5918c1e5900f491feaae306216665076254",
+    "namedcurves_plus_url": "https://arxiv.org/abs/2607.08185",
+    "namedcurves_plus_submitted_utc": "2026-07-09T07:35:55Z",
+    "namedcurves_plus_paper_license": "CC-BY-4.0",
+    "repository_url": "https://github.com/davidserra9/NamedCurves",
+    "repository_commit": "35af8380137807d83881e9198b35b567af2c96c1",
+    "repository_detected_spdx": null,
+    "repository_license_file_found": false,
+    "learned_colour_naming_asset_found": true,
+    "namedcurves_plus_code_marked_todo": true
+  },
+  "published_method": {
+    "learned_unet_like_canonicalizer": true,
+    "learned_colour_naming_asset": true,
+    "source_colour_names": 11,
+    "grouped_colour_branches": 6,
+    "rgb_curves_per_branch": 3,
+    "endpoint_fixed_positive_normalized_increment_curves": true,
+    "namedcurves_spatial_attention_fusion": true,
+    "namedcurves_plus_transformer_fusion": true,
+    "paired_retouched_training_data": [
+      "MIT-Adobe FiveK",
+      "PPR10K"
+    ],
+    "film_stock_evidence": false,
+    "unpaired_operator_identification_solved": false
+  },
+  "rights_and_reproducibility": {
+    "namedcurves_plus_paper_text_reusable_under_recorded_paper_license": true,
+    "namedcurves_eccv_paper_reuse_beyond_citation_assumed": false,
+    "repository_code_reuse_allowed": false,
+    "checkpoint_reuse_allowed": false,
+    "colour_naming_asset_reuse_allowed": false,
+    "training_or_inference_output_reuse_allowed": false,
+    "reason": "The repository has no detected or root licence and contains a learned colour-naming asset with no project-cleared provenance."
+  },
+  "retained_hypothesis": {
+    "name": "clean-room analytic chroma-sector monotone curves",
+    "fixed_analytic_partition": true,
+    "continuous_partition_of_unity": true,
+    "neutral_chromatic_weight_exactly_zero": true,
+    "shared_achromatic_curve": true,
+    "endpoint_fixed_monotone_rgb_curves": true,
+    "continuous_strength": true,
+    "hard_mask_threshold_allowed": false,
+    "semantic_or_content_features_allowed": false,
+    "learned_spatial_fusion_allowed": false,
+    "neural_final_rgb_allowed": false
+  },
+  "al1_dor": {
+    "synthetic_only": true,
+    "photograph_access_allowed": false,
+    "film_pixel_access_allowed": false,
+    "external_code_weight_or_asset_access_allowed": false,
+    "requires_separately_committed_frozen_contract": true,
+    "required_controls": [
+      "global monotone curves",
+      "existing bounded explicit operator control"
+    ],
+    "required_gates": [
+      "identity",
+      "neutral axis",
+      "partition of unity",
+      "cube range",
+      "hue-boundary continuity",
+      "minimum Jacobian determinant",
+      "maximum Jacobian spectral norm",
+      "inverse roundtrip",
+      "serialization replay",
+      "full versus partition parity",
+      "strength path",
+      "relative capacity"
+    ],
+    "failure_branch": "close the fixed analytic representation without adding sectors curves controls capacity thresholds photographs or data"
+  },
+  "forbidden": [
+    "clone or reuse NamedCurves or NamedCurves+ code",
+    "download or use NamedCurves checkpoints or outputs",
+    "reuse the learned colour-naming model or joost_color_naming.mat",
+    "treat MIT-Adobe FiveK or PPR10K as film or stock evidence",
+    "infer film stock exposure illuminant push pull process or scanner truth",
+    "use content semantics attention or a transformer to route final RGB",
+    "claim monotone one-dimensional curves guarantee a positive three-dimensional Jacobian",
+    "weaken cube Jacobian inverse replay OOD or severe-artifact gates"
+  ],
+  "next_action": "Freeze AL1 as a clean-room synthetic capacity contract before implementing any operator.",
+  "claim_ceiling": "primary-source method and licence audit plus a clean-room analytic colour-selective monotone-curve hypothesis; no external implementation learned asset dataset result film operator stock calibration preference photographic-safety or production claim"
+}
