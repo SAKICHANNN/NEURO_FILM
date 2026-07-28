@@ -209,7 +209,22 @@ def apply_physical_display(
     density = runtime.apply_adjacency(density, runtime.profile)
     density = apply_dye_diffusion(density, runtime.profile)
     interpreted = runtime.print_operator.interpretation.apply(density)
-    return apply_scanner_mtf(interpreted, runtime.profile)
+    interpreted = _canonicalize_endpoint_roundoff(interpreted)
+    return _canonicalize_endpoint_roundoff(
+        apply_scanner_mtf(interpreted, runtime.profile)
+    )
+
+
+def _canonicalize_endpoint_roundoff(values: np.ndarray) -> np.ndarray:
+    array = np.asarray(values, dtype=np.float64)
+    tolerance = 1e-12
+    if (
+        not np.all(np.isfinite(array))
+        or np.any(array < -tolerance)
+        or np.any(array > 1.0 + tolerance)
+    ):
+        raise RuntimeError("physical display exceeded endpoint tolerance")
+    return np.where(array < 0.0, 0.0, np.where(array > 1.0, 1.0, array))
 
 
 def render_arms(

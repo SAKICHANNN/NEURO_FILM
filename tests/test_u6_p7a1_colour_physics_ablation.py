@@ -68,6 +68,18 @@ def test_small_joint_ablation_is_bounded_and_deterministic() -> None:
     assert not np.array_equal(first["combined"], first["wrong_order"])
 
 
+def test_endpoint_roundoff_does_not_block_full_white() -> None:
+    correction = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    _, runtime = load_contracts(ROOT, correction)
+    output = apply_physical_display(
+        np.ones((17, 19, 3), dtype=np.float64),
+        runtime,
+        spatial=True,
+    )
+    assert np.all(output >= 0.0)
+    assert np.all(output <= 1.0)
+
+
 def test_physical_display_rejects_out_of_domain() -> None:
     correction = json.loads(CONTRACT.read_text(encoding="utf-8"))
     _, runtime = load_contracts(ROOT, correction)
