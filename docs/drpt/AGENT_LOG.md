@@ -6338,3 +6338,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All frozen automatic and structural gates pass. Advance only to controlled
   noise/outlier robustness; real film, Velvia, calibration and product claims
   remain closed.
+
+## 2026-07-28 - Freeze U5.R2AN1 robust recovery contract
+
+- Two new deterministic perturbation seeds test dual source/target patch-mean
+  noise and 3% sparse target-correspondence corruption. Formal scoring remains
+  on the clean complement-held AN0 rows.
+- Robust two-matrix fitting must stay below `.001` RMSE, beat robust
+  one-matrix by 90%, beat linear two-matrix by 65% under outliers, and avoid
+  more than 20% loss to linear under noise alone. No formal AN1 fit exists yet.

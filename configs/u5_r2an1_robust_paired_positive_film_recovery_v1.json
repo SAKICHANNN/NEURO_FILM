@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an1-robust-paired-positive-film-recovery-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AN1",
+  "parent": {
+    "experiment_id": "u5.r2an0-paired-positive-film-recovery-v1",
+    "config_path": "configs/u5_r2an0_paired_positive_film_recovery_v1.json",
+    "config_sha256": "dd711c5e07344b60d5a954f0297bf513dc18f11a1c78e158eb7c65a7af4b89af",
+    "report_sha256": "22fc3542ed2b7a5304ac558c761683617414c4fed0af103b90789d35aedea36d",
+    "automatic_pass": true
+  },
+  "truth_witnesses": [
+    "warm_highlight_like",
+    "cyan_shadow_warm_highlight_like",
+    "cross_bias_like"
+  ],
+  "perturbation_seed": 20250901,
+  "scenarios": {
+    "dual_patch_mean_noise": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.0,
+      "target_outlier_uniform_magnitude": 0.0
+    },
+    "sparse_correspondence_outliers": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.03,
+      "target_outlier_uniform_magnitude": 0.2
+    }
+  },
+  "fit": {
+    "robust_loss": "soft_l1",
+    "robust_loss_scale": 0.005,
+    "linear_loss": "linear",
+    "restart_count": 3,
+    "maximum_function_evaluations": 2500,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11
+  },
+  "gates": {
+    "robust_confirmation_rgb_rmse_maximum": 0.001,
+    "robust_confirmation_maximum_absolute_error": 0.006,
+    "minimum_gain_over_robust_one_matrix": 0.9,
+    "minimum_outlier_gain_over_linear_two_matrix": 0.65,
+    "maximum_noise_only_relative_loss_to_linear": 0.2,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room synthetic robustness evidence for paired fitting of an explicit positive-film Look Approximation operator; not a fit to real film, not calibrated, not unpaired identification and not product promotion"
+}
