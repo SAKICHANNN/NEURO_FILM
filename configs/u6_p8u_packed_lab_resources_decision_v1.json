@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p8u_packed_lab_resources_decision.v1",
+  "node": "U6.P8U",
+  "software_commit": "2fb228a",
+  "contract_sha256": "3fdcd4d780c5f9a915797130c8e2d1a6f9f4dbf78bf8d0e8cccf5fe2a5bbf677",
+  "report_sha256": "a240429c17623a2e2c4a04f3b2ab9ee14cb22c07f6f39a3213f0f99eced412dd",
+  "stable_evidence_id": "95c44c745478012c6889e548edb273e6aedfb95164dd8ab165fe285318960bab",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_through_p8t": true,
+  "timing_comparison_valid": false,
+  "timing_note": "foreign Python activity overlapped the formal run; latency is recorded but excluded from selection",
+  "preview_1mp": {
+    "wall_seconds_range": [
+      5.309839000023203,
+      5.66124350001337
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      226443264,
+      231718912
+    ]
+  },
+  "mobile_standard_12mp": {
+    "wall_seconds_range": [
+      47.307374099997105,
+      48.40883199998643
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      853295104,
+      854802432
+    ]
+  },
+  "memory_comparison": {
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8s_at_mean": 0.019987,
+    "twelve_mp_peak_rss_reduction_fraction_vs_p8h_at_mean": 0.534500
+  },
+  "decision": "packed-Lab context storage and exact row-local roundtrip refill preserve final pixels and cut mean 12MP peak process-tree RSS by 2.00% versus P8S and 53.45% versus P8H. Retain provisionally because it removes one independently attributed full-frame allocation without a measured resource regression, but treat the gain as modest and re-attribute before opening any further complexity",
+  "candidate_retained": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8V phase-local RSS re-attribution through the exact P8U production entry, with two exact 12MP repeats and no parameter or pixel changes",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact packed-Lab context and roundtrip-linear refill; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
