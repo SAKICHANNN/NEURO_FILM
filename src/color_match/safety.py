@@ -172,9 +172,20 @@ def render_reference_look_guarded(
         candidate_new_boundary_fraction=new_boundary,
         research_baseline_override=resolved.allow_research_baseline,
     )
+    diagnostics = candidate.diagnostics
+    if accepted:
+        return GuardedReferenceMatchResult(
+            image=candidate.image,
+            candidate_diagnostics=diagnostics,
+            safety=decision,
+        )
+    # The rejected candidate pixels are not part of the identity fallback.
+    # Release them before cloning the source so three full-resolution images
+    # do not coexist during fallback construction.
+    del candidate
     return GuardedReferenceMatchResult(
-        image=candidate.image if accepted else _clone_source(source),
-        candidate_diagnostics=candidate.diagnostics,
+        image=_clone_source(source),
+        candidate_diagnostics=diagnostics,
         safety=decision,
     )
 

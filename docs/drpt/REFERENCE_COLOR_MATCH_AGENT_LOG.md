@@ -3894,3 +3894,16 @@
   amplitude-only NCAN gain scaling without a callable capability, so no
   producer mapping changes. V37 remains `review-ready-not-merged`; main owns
   merge.
+
+## 2026-07-29 - Release rejected candidates before identity fallback clone
+
+- P153 makes the guarded render return branches explicit. Accepted candidates
+  retain their exact image object; rejected candidates retain only diagnostics
+  and are released before the source is cloned for identity fallback.
+- A lifecycle regression proves rejected candidate pixels are collectible at
+  clone entry. This removes the transient source+candidate+fallback
+  three-image overlap without changing guard reasons, thresholds, diagnostics,
+  output pixels or identity semantics.
+- All 943 non-manifest color-match tests pass with five explicit environment
+  skips. Producer R0DJ rejects SAPA-v0 without a callable capability, so no
+  consumer mapping changes.

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
+import weakref
 
 import numpy as np
 import pytest
@@ -150,3 +152,36 @@ def test_research_override_is_explicit_in_decision() -> None:
 
     assert guarded.safety.accepted is True
     assert guarded.safety.research_baseline_override is True
+
+
+def test_rejected_candidate_pixels_are_released_before_identity_clone(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import safety
+
+    _, source = _reference_and_source()
+    candidate_ref: weakref.ReferenceType[WorkingImage] | None = None
+    diagnostics = SimpleNamespace(gamut_adjusted_fraction=0.0)
+
+    def render_candidate(recipe, source_image, **kwargs):
+        nonlocal candidate_ref
+        assert source_image is source
+        candidate_image = _working(source.pixels * np.float32(0.75))
+        candidate_ref = weakref.ref(candidate_image)
+        return SimpleNamespace(
+            image=candidate_image,
+            diagnostics=diagnostics,
+        )
+
+    def clone_identity(source_image: WorkingImage) -> WorkingImage:
+        assert candidate_ref is not None
+        assert candidate_ref() is None
+        return _working(np.array(source_image.pixels, copy=True))
+
+    monkeypatch.setattr(safety, "render_reference_look", render_candidate)
+    monkeypatch.setattr(safety, "_clone_source", clone_identity)
+
+    guarded = render_reference_look_guarded(object(), source)
+    assert guarded.safety.accepted is False
+    assert guarded.candidate_diagnostics is diagnostics
+    assert np.array_equal(guarded.image.pixels, source.pixels)
