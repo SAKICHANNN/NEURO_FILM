@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao6-b0-real-film-residual-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO6",
+  "split": "B0_development",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "base": {
+    "candidate_id": "density_then_anchor__density_s50",
+    "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+    "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+    "gold_style_delta_e76": 15.0576,
+    "gold_non_basic_residual_delta_e76": 11.3299,
+    "status": "retained_B0_development_comparator_not_independently_promoted"
+  },
+  "operator_config": "configs/u5_r2ao5_combined_velvia_one_matrix_operator_v1.json",
+  "operator_config_sha256": "e4a3bd332e1d92e10cf00f65b74260a2e994bee03c9d99792881f92681e61edd",
+  "operator_witness_id": "velvia_combined_one_matrix",
+  "inherited_frontier_config": "configs/u5_r2b_global_operator_frontier_v1.json",
+  "inherited_frontier_config_sha256": "209d9a0676f4ce887bee463f1de26eff52eaba727df8015764d0755429231ad6",
+  "factorization": {
+    "luma_weights": [
+      0.2126,
+      0.7152,
+      0.0722
+    ],
+    "tone_residual": "equal_linear_rgb_delta_matching_base_operator_luma_delta",
+    "chroma_residual": "base_operator_residual_minus_equal_rgb_luma_delta",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "rail_rule": "B0-output-inclusive encoded-srgb rails converted exactly to linear; sequential maximum safe scale for real-film tone then chroma",
+    "hard_clip_allowed": false,
+    "per_image_fit_or_adjustment_allowed": false
+  },
+  "residual_bank": [
+    {
+      "candidate_id": "b0_plus_film_t10_c25",
+      "tone_strength": 0.1,
+      "chroma_strength": 0.25
+    },
+    {
+      "candidate_id": "b0_plus_film_t15_c35",
+      "tone_strength": 0.15,
+      "chroma_strength": 0.35
+    },
+    {
+      "candidate_id": "b0_plus_film_t20_c50",
+      "tone_strength": 0.2,
+      "chroma_strength": 0.5
+    },
+    {
+      "candidate_id": "b0_plus_film_t25_c65",
+      "tone_strength": 0.25,
+      "chroma_strength": 0.65
+    }
+  ],
+  "candidate_count": 4,
+  "render_seed": 20260729,
+  "output_root": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1",
+  "working_space": "linear_srgb_d65",
+  "input_transfer": "srgb",
+  "output_transfer": "srgb",
+  "output_format": "rgb8_png",
+  "rendering": {
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "hard_clipping_allowed": false,
+    "post_result_parameter_change_allowed": false,
+    "require_repeat_manifest_byte_identity": true,
+    "verify_source_and_base_hash_before_render": true,
+    "require_matching_dimensions": true,
+    "require_rgb_decode": true
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_original_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "real_film_delta": "median_delta_e76_from_fixed_B0_base",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "minimum_gold_median_style_delta_e76": 12.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 9.0,
+    "minimum_gold_median_real_film_delta_e76": 1.5
+  },
+  "shortlist": {
+    "cross_candidate_order": [
+      "descending_gold_median_non_basic_residual_delta_e76",
+      "descending_gold_median_real_film_delta_e76",
+      "descending_gold_median_style_delta_e76",
+      "ascending_tone_strength",
+      "ascending_chroma_strength",
+      "ascending_candidate_id"
+    ],
+    "maximum_candidates": 2
+  },
+  "visual": {
+    "automatic_shortlist_only": true,
+    "blind_rounds": 3,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "compare_against_fixed_B0_base": true,
+    "claim": "autonomous B0 development evidence for a bounded real-film residual after a fixed vivid project look"
+  },
+  "training_allowed": false,
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "B0 autonomous real-photo composition of a fixed retained project look followed by a small deterministic residual from one 71-pair Velvia display proxy; not stock response, calibration, independent preference or product promotion"
+}
