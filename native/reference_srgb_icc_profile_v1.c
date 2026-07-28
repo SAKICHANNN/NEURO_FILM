@@ -62,11 +62,13 @@ const char *nf_srgb_icc_profile_sha256_v1(void) {
 
 int nf_srgb_icc_profile_copy_v1(uint8_t *output, size_t capacity) {
     size_t index;
+    volatile uint8_t *destination;
     if (output == NULL || capacity < sizeof(NF_PROFILE)) {
         return 0;
     }
+    destination = output;
     for (index = 0; index < sizeof(NF_PROFILE); ++index) {
-        output[index] = NF_PROFILE[index];
+        destination[index] = NF_PROFILE[index];
     }
     return 1;
 }

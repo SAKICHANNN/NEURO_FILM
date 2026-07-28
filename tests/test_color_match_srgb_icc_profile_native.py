@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import ctypes
 from pathlib import Path
 import subprocess
 
@@ -14,7 +15,9 @@ from scripts.build_srgb_icc_profile_native_v1 import (
     build_android,
     build_apple_objects,
     build_llvm_mingw,
+    build_llvm_mingw_dll,
     build_msvc,
+    build_msvc_dll,
 )
 from scripts.build_reference_chain_msvc import VSWHERE
 from src.color_match.srgb_icc_profile import (
@@ -49,6 +52,33 @@ def _assert_runtime(executable: Path) -> None:
             text=True,
         )
         assert completed.stdout.strip() == value
+
+
+def _assert_dynamic_abi(library: Path) -> None:
+    dll = ctypes.CDLL(str(library))
+    size = dll.nf_srgb_icc_profile_size_v1
+    size.argtypes = []
+    size.restype = ctypes.c_size_t
+    profile_hash = dll.nf_srgb_icc_profile_sha256_v1
+    profile_hash.argtypes = []
+    profile_hash.restype = ctypes.c_char_p
+    copy = dll.nf_srgb_icc_profile_copy_v1
+    copy.argtypes = [ctypes.POINTER(ctypes.c_uint8), ctypes.c_size_t]
+    copy.restype = ctypes.c_int
+
+    assert size() == 588
+    assert profile_hash().decode("ascii") == SRGB_ICC_PROFILE_SHA256
+    buffer_type = ctypes.c_uint8 * 588
+    short = buffer_type(*([0xA5] * 588))
+    before = bytes(short)
+    assert copy(short, 587) == 0
+    assert bytes(short) == before
+    assert copy(None, 588) == 0
+    output = buffer_type()
+    assert copy(output, 588) == 1
+    assert hashlib.sha256(bytes(output)).hexdigest() == (
+        SRGB_ICC_PROFILE_SHA256
+    )
 
 
 def test_generated_c_and_header_are_byte_exact() -> None:
@@ -97,6 +127,30 @@ def test_llvm_mingw_runtime_exact_profile_and_failure_boundary(
     assert report["llvm_version"] == "22.1.8"
     assert report["executable_sha256"] == repeated["executable_sha256"]
     _assert_runtime(executable)
+
+
+def test_msvc_dynamic_abi_executes_exactly(tmp_path: Path) -> None:
+    if not VSWHERE.is_file():
+        pytest.skip("MSVC discovery is unavailable")
+    library = tmp_path / "msvc" / "srgb_icc.dll"
+    repeated_library = tmp_path / "msvc-repeat" / "srgb_icc.dll"
+    report = build_msvc_dll(library)
+    repeated = build_msvc_dll(repeated_library)
+    assert report["dll_sha256"] == repeated["dll_sha256"]
+    _assert_dynamic_abi(library)
+
+
+def test_llvm_mingw_dynamic_abi_executes_exactly(
+    tmp_path: Path,
+) -> None:
+    if not LLVM.is_dir():
+        pytest.skip("pinned LLVM-MinGW is unavailable")
+    library = tmp_path / "llvm" / "srgb_icc.dll"
+    repeated_library = tmp_path / "llvm-repeat" / "srgb_icc.dll"
+    report = build_llvm_mingw_dll(LLVM, library)
+    repeated = build_llvm_mingw_dll(LLVM, repeated_library)
+    assert report["dll_sha256"] == repeated["dll_sha256"]
+    _assert_dynamic_abi(library)
 
 
 def test_android_two_abi_link_is_not_runtime(tmp_path: Path) -> None:

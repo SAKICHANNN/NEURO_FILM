@@ -34,6 +34,15 @@ ABI_SYMBOLS = {
     "nf_srgb_icc_profile_sha256_v1",
     "nf_srgb_icc_profile_size_v1",
 }
+DLL_ENTRY_SOURCE = (
+    "int DllMainCRTStartup(void *instance, unsigned long reason, "
+    "void *reserved) {\n"
+    "    (void)instance;\n"
+    "    (void)reason;\n"
+    "    (void)reserved;\n"
+    "    return 1;\n"
+    "}\n"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -121,6 +130,84 @@ def build_msvc(output: Path) -> dict[str, Any]:
     }
 
 
+def _write_exports(path: Path) -> None:
+    path.write_text(
+        "EXPORTS\n"
+        "nf_srgb_icc_profile_copy_v1\n"
+        "nf_srgb_icc_profile_sha256_v1\n"
+        "nf_srgb_icc_profile_size_v1\n",
+        encoding="ascii",
+        newline="\n",
+    )
+
+
+def build_msvc_dll(output: Path) -> dict[str, Any]:
+    output = output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    environment = _developer_environment()
+    compiler = shutil.which("cl.exe", path=environment.get("Path"))
+    linker = shutil.which("link.exe", path=environment.get("Path"))
+    dumpbin = shutil.which("dumpbin.exe", path=environment.get("Path"))
+    if compiler is None or linker is None or dumpbin is None:
+        raise FileNotFoundError("MSVC DLL tools are unavailable")
+    object_path = output.with_suffix(".obj")
+    exports_path = output.with_suffix(".def")
+    _write_exports(exports_path)
+    subprocess.run(
+        [
+            compiler,
+            "/nologo",
+            "/TC",
+            "/std:c11",
+            "/O2",
+            "/Brepro",
+            "/W4",
+            "/WX",
+            "/c",
+            str(SOURCE),
+            f"/Fo:{object_path}",
+        ],
+        env=environment,
+        check=True,
+    )
+    subprocess.run(
+        [
+            linker,
+            "/NOLOGO",
+            "/DLL",
+            "/NOENTRY",
+            "/Brepro",
+            str(object_path),
+            f"/DEF:{exports_path}",
+            f"/OUT:{output}",
+        ],
+        env=environment,
+        check=True,
+    )
+    export_output = subprocess.run(
+        [dumpbin, "/nologo", "/exports", output],
+        env=environment,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout
+    exports = {
+        line.split()[-1]
+        for line in export_output.splitlines()
+        if line.split()
+        and line.split()[-1].startswith("nf_srgb_icc_")
+    }
+    if exports != ABI_SYMBOLS:
+        raise ValueError("MSVC DLL exports mismatch")
+    return {
+        "protocol": "neuro-film.srgb-icc-profile-msvc-dll-runtime.v1",
+        "claim_scope": "Windows x86_64 dynamic C ABI execution",
+        **_source_identities(),
+        "dll_sha256": _sha256(output),
+        "exported_symbols": sorted(exports),
+    }
+
+
 def build_llvm_mingw(toolchain: Path, output: Path) -> dict[str, Any]:
     output = output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -198,6 +285,96 @@ def build_llvm_mingw(toolchain: Path, output: Path) -> dict[str, Any]:
         "llvm_version": lock["llvm_version"],
         **_source_identities(),
         "executable_sha256": _sha256(output),
+    }
+
+
+def build_llvm_mingw_dll(
+    toolchain: Path,
+    output: Path,
+) -> dict[str, Any]:
+    output = output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    lock, compiler = _validate_llvm_mingw(toolchain.resolve())
+    readobj = compiler.with_name("llvm-readobj.exe")
+    exports_path = output.with_suffix(".def")
+    object_path = output.with_suffix(".o")
+    entry_source = output.with_name("srgb_icc_dll_entry.c")
+    entry_object = output.with_name("srgb_icc_dll_entry.o")
+    _write_exports(exports_path)
+    entry_source.write_text(
+        DLL_ENTRY_SOURCE,
+        encoding="ascii",
+        newline="\n",
+    )
+    subprocess.run(
+        [
+            compiler,
+            "-x",
+            "c",
+            "-std=c11",
+            "-O2",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-c",
+            SOURCE,
+            "-o",
+            object_path,
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            compiler,
+            "-x",
+            "c",
+            "-std=c11",
+            "-O2",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-c",
+            entry_source,
+            "-o",
+            entry_object,
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            compiler,
+            "-shared",
+            "-nostdlib",
+            "-Wl,--no-insert-timestamp",
+            object_path,
+            entry_object,
+            exports_path,
+            "-o",
+            output,
+        ],
+        check=True,
+    )
+    export_output = subprocess.run(
+        [readobj, "--coff-exports", output],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout
+    exports = {
+        line.split(":", 1)[1].strip()
+        for line in export_output.splitlines()
+        if line.strip().startswith("Name:")
+        and line.split(":", 1)[1].strip().startswith("nf_srgb_icc_")
+    }
+    if exports != ABI_SYMBOLS:
+        raise ValueError("LLVM-MinGW DLL exports mismatch")
+    return {
+        "protocol": "neuro-film.srgb-icc-profile-llvm-mingw-dll-runtime.v1",
+        "claim_scope": "independent Windows x86_64 dynamic C ABI execution",
+        "llvm_version": lock["llvm_version"],
+        **_source_identities(),
+        "dll_sha256": _sha256(output),
+        "exported_symbols": sorted(exports),
     }
 
 
