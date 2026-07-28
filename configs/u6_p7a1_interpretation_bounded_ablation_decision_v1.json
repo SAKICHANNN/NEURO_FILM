@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p7a1_interpretation_bounded_ablation_decision.v1",
+  "node": "U6.P7A1",
+  "decision": "close_exact_artifact_metric_before_preference_review",
+  "contract_sha256": "54d0cf6348215c1fae7d7e51f6de828cc70feebd4018a255e7bb57e327e19478",
+  "report_sha256_run_a": "f97a45802e09e5d4ac9d65f61caa829b3d5e99c42513dc0c005a0685b26b0e0f",
+  "report_sha256_run_b": "f97a45802e09e5d4ac9d65f61caa829b3d5e99c42513dc0c005a0685b26b0e0f",
+  "stable_evidence_id": "8d9a3f0d13300ed62b01f3848aebcdea1a673d489ddca11e2fbd748b9510fda5",
+  "passed_gates": [
+    "population",
+    "finite_bounded",
+    "new_boundaries",
+    "style_envelope",
+    "non_basic",
+    "physics_material",
+    "physics_population",
+    "full_not_cheap",
+    "order_identifiable"
+  ],
+  "failed_gates": {
+    "isolated_excursions": {
+      "observed": 9839,
+      "maximum": 0,
+      "diagnosis": "combined-minus-colour includes the intended global print and colour response, so its edge-local differences are not an isolated spatial-artifact residual"
+    }
+  },
+  "visual_boundary": "diagnostic-only failure inspection found no confirmed contact-sheet speckle, break, seam or geometry corruption; frozen automatic failure forbids preference review or promotion",
+  "next_leaf": "U6.P7A2 keeps every threshold and arm fixed but computes the isolated-artifact gate on combined-minus-cheap, where both arms share the global print and AO6 response and differ by the explicit spatial stages",
+  "claim_ceiling": "closed generic joint-ablation metric; no preference, product, stock, process, scanner or calibration claim"
+}
