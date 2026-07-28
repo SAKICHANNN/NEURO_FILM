@@ -154,9 +154,11 @@ separate leaves and do not block the relative-SDR product shell from review.
 
 The independent Neuro-Film reference-match consumer is implementation-complete
 from advisory input/output capability discovery through fail-closed intake and
-verified local export mechanics. P160 additionally passes two exact ordered
-three-source 24 MP local batches below 2.25 GiB. The broader long-term goal is
-not complete: local exact-wheel invocation and Android x86_64 virtual
+verified local export mechanics. P160 passes two exact ordered three-source
+24 MP local batches below 2.25 GiB; P161 removes the evidenced prior-render
+lifetime overlap and lowers median peak to about 1.886 GB without output or
+wall regression. The broader long-term goal is not complete: local exact-wheel
+invocation and Android x86_64 virtual
 SDR-boundary runtime are verified, but no real external candidate is
 product-promoted, producer redistribution rights and Apple/physical-Android
 runtime evidence are absent, and reviewed v39 has not been merged into the

@@ -3990,3 +3990,15 @@
   median RSS reduction, candidate/baseline RSS ratio at most 0.92 and wall
   ratio at most 1.05.
 - No colour, guard, schema, transaction, producer or platform claim may change.
+
+## 2026-07-29 - Pass encoded-render lifetime release
+
+- P161 releases each encoded render result before the next source load; a
+  weak-reference regression proves the exact lifecycle.
+- Interleaved 24 MP batch comparison reduces median peak RSS
+  `2,166,706,176 -> 1,886,382,080 B`, a `280,324,096 B` reduction and
+  `0.870622` ratio. Median wall ratio is `0.984366`.
+- Ordered output, recipe, report and fallback identities are exact across all
+  four runs; cleanup passes. Focused tests pass. A broad repository attempt
+  records 36 unrelated historical main-fixture/output failures alongside
+  1876 passes and is not claimed green.
