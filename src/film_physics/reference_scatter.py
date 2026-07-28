@@ -155,14 +155,22 @@ def profile_from_contract(contract: dict[str, Any]) -> ReferenceScatterProfile:
     )
 
 
-def gaussian_kernel_2d(
+def gaussian_kernel_1d(
     component: ScatterComponent, scale: PhysicalScale
 ) -> np.ndarray:
     sigma_px = component.sigma_um / scale.pixel_pitch_um
     radius = max(1, int(math.ceil(component.cutoff_sigma * sigma_px)))
     coordinates = np.arange(-radius, radius + 1, dtype=np.float64)
-    kernel_1d = np.exp(-0.5 * np.square(coordinates / sigma_px))
-    kernel_1d /= np.sum(kernel_1d, dtype=np.float64)
+    kernel = np.exp(-0.5 * np.square(coordinates / sigma_px))
+    kernel /= np.sum(kernel, dtype=np.float64)
+    kernel.setflags(write=False)
+    return kernel
+
+
+def gaussian_kernel_2d(
+    component: ScatterComponent, scale: PhysicalScale
+) -> np.ndarray:
+    kernel_1d = gaussian_kernel_1d(component, scale)
     kernel = np.multiply.outer(kernel_1d, kernel_1d)
     kernel /= np.sum(kernel, dtype=np.float64)
     kernel.setflags(write=False)

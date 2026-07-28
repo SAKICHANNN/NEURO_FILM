@@ -24,7 +24,15 @@ from .reference_scatter import (
     ScatterComponent,
     apply_reference_scatter,
     gaussian_kernel_2d,
+    gaussian_kernel_1d,
     profile_from_contract,
+)
+from .compiled_scatter import (
+    CompiledScatterKernel,
+    CompiledScatterProfile,
+    apply_compiled_scatter,
+    apply_compiled_scatter_row_tiled,
+    compile_scatter_profile,
 )
 
 __all__ = [
@@ -33,6 +41,8 @@ __all__ = [
     "PROFILE_BUNDLE_SCHEMA",
     "QUALITY_TIERS",
     "ComponentBinding",
+    "CompiledScatterKernel",
+    "CompiledScatterProfile",
     "FilmProfileBundle",
     "PhysicalDomain",
     "PhysicalDomainArray",
@@ -43,9 +53,13 @@ __all__ = [
     "REFERENCE_SCATTER_SCHEMA",
     "ReferenceScatterProfile",
     "ScatterComponent",
+    "apply_compiled_scatter",
+    "apply_compiled_scatter_row_tiled",
     "apply_reference_scatter",
     "coordinate_counter_u64",
     "density_to_transmittance",
+    "compile_scatter_profile",
+    "gaussian_kernel_1d",
     "gaussian_kernel_2d",
     "profile_from_contract",
     "scene_exposure_from_working_image",
