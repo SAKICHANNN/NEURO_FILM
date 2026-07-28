@@ -1647,6 +1647,19 @@
   physical arm64, Apple runtime, D-PCT matching and product admission remain
   open.
 
+## 2026-07-28 - Publish and verify P100 integration v15
+
+- The first detached merge correctly found that v13's prior-manifest test
+  observed CRLF bytes under latest main. The immutable Git blob was unchanged;
+  `.gitattributes` now explicitly fixes LF for v13-v15 manifest/schema/build
+  inputs, preserving the byte-hash gate rather than weakening it.
+- V15 binds payload `10b1e4c` to main `5d355bd`: 380/320 changed paths, zero
+  overlap, manifest/schema SHAs `949ed4c6...c440` /
+  `28ca8e52...4724`.
+- The corrected real detached merge tree is `78d4b707...4548`; 1058
+  color-match tests pass, 22 platform/data tests skip and zero fail. The
+  temporary worktree was removed. Main remains the merge owner.
+
 ## 2026-07-28 - Implement P67 strict path-free encoded decoding
 
 - Code commit: `a2bb95274c26c63a65ec204b5a743e4ea6387a5c`.

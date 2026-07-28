@@ -14,9 +14,10 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer reviewed payload: `codex/reference-color-match` through P95 at
-  `2c33809`; P96 v14 review evidence binds it without self-inclusion.
-- Main Neuro-Film latest read-only snapshot observed during P96 is `8dcfdac`;
+- Consumer reviewed payload: `codex/reference-color-match` through P99 plus
+  LF identity correction at `10b1e4c`; P100 v15 review evidence binds it
+  without self-inclusion.
+- Main Neuro-Film latest read-only snapshot observed during P100 is `5d355bd`;
   its concurrent AN0 work and untracked `.codex/`/`tmp/` belong to the main
   task and were not touched.
 - D-PCT latest observed core snapshot is `46b77bb`; its polynomial RGB ABI is
@@ -68,9 +69,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; P96 v14 binds P1-P95 `2c33809`, 376 payload paths, 47 exports, 20 schemas, exact v13 identity and zero overlap against main `8dcfdac`; P74's CRLF checkout protection remains transitive | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v14, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; P100 v15 binds P1-P99/LF-fix `10b1e4c`, 380 payload paths, 47 exports, 20 schemas, exact v14 identity and zero overlap against main `5d355bd`; v13-v15 now explicitly retain LF checkout identity | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v15, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P96 payload remains zero-overlap against main `8dcfdac` and merges conflict-free as tree `8d869107`; a fresh detached merge passes 1040 color-match tests with 22 platform/data skips and zero failures | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P100 payload remains zero-overlap against main `5d355bd` and merges conflict-free as tree `78d4b707`; a fresh detached merge passes 1058 color-match tests with 22 platform/data skips and zero failures | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
