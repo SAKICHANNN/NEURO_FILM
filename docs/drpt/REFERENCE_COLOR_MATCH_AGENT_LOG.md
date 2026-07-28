@@ -3543,3 +3543,19 @@
   also blocks publication. 125 transaction-focused tests and the complete
   non-manifest color-match regression pass at 895 tests with four skips.
   V24 is superseded pending a P130-binding v25 integration artifact.
+
+## 2026-07-28 - Unify and harden P131-P134 transaction locks in v26
+
+- Follow-up found runtime-qualified staging still used its legacy lock
+  namespace while generic commits used the new shared namespace. Both now use
+  the same normalized in-process and cross-process lock; a direct cross-class
+  test rejects the competitor before publication.
+- The central lock rejects empty and canonical-duplicate target inventories,
+  and rechecks the opened lock handle as a non-reparse regular file before
+  writing/acquiring its byte lock. Non-manifest regression passes 897 tests
+  with four explicit skips.
+- V26 binds payload `3e14723` to main `e4c74cf`: 442 consumer and 473 main
+  paths with zero overlap. Manifest/schema hashes are `69459544...75e43` /
+  `af684c81...c3770`; merge tree `f2aaa316...aea94`. Detached merge
+  `c21bc04` passes 1226 color-match tests with 29 skips and 1286 unrelated
+  deselections; the owned worktree was removed. V26 supersedes v25.
