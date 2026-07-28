@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from src.film_physics.profile_consumer import (
+    _encoded_srgb_to_linear_row_staged,
     _linear_srgb_to_encoded_row_staged,
     compile_standalone_profile_artifact,
     render_working_image,
@@ -56,6 +57,16 @@ def test_row_staged_scene_oetf_is_float_exact() -> None:
     for tile_rows in (1, 31, 128, 509):
         staged = _linear_srgb_to_encoded_row_staged(
             scene, tile_rows=tile_rows
+        )
+        assert np.array_equal(reference, staged)
+
+
+def test_row_staged_roundtrip_eotf_is_float_exact() -> None:
+    encoded = np.random.default_rng(2026072918).random((257, 131, 3))
+    reference = encoded_srgb_to_linear(encoded)
+    for tile_rows in (1, 31, 128, 509):
+        staged = _encoded_srgb_to_linear_row_staged(
+            encoded, tile_rows=tile_rows
         )
         assert np.array_equal(reference, staged)
 

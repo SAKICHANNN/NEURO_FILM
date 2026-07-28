@@ -93,6 +93,30 @@ def _linear_srgb_to_encoded_row_staged(
     return encoded
 
 
+def _encoded_srgb_to_linear_row_staged(
+    encoded: np.ndarray, *, tile_rows: int
+) -> np.ndarray:
+    """Apply the exact pointwise EOTF without a full-frame output temporary."""
+
+    value = np.asarray(encoded)
+    if (
+        value.ndim != 3
+        or value.shape[-1] != 3
+        or value.shape[0] == 0
+        or value.shape[1] == 0
+        or isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or not np.all(np.isfinite(value))
+    ):
+        raise ValueError("row-staged EOTF requires finite HxWx3 input")
+    linear = np.empty(value.shape, dtype=np.float64)
+    for y0 in range(0, value.shape[0], tile_rows):
+        y1 = min(value.shape[0], y0 + tile_rows)
+        linear[y0:y1] = encoded_srgb_to_linear(value[y0:y1])
+    return linear
+
+
 @dataclass(frozen=True)
 class CompiledProfileRuntime:
     """Minimum runtime surface consumed by the frozen challenger renderer."""
@@ -542,7 +566,9 @@ def render_working_image_fully_row_streamed(
         ),
     )
     halo = required_spatial_response_halo(compiled.profile)
-    linear = encoded_srgb_to_linear(encoded)
+    linear = _encoded_srgb_to_linear_row_staged(
+        encoded, tile_rows=tile_rows
+    )
     ranges = [
         (y0, min(encoded.shape[0], y0 + tile_rows))
         for y0 in range(0, encoded.shape[0], tile_rows)
