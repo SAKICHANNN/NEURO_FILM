@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8h_lifetime_buffer_resources_decision.v1",
+  "node": "U6.P8H",
+  "software_commit": "a96e8af",
+  "contract_sha256": "d4b3686fe8832213219cc744ecb8e1dc4835885b952642810fca4ed2a4deab15",
+  "report_sha256": "f121e2325769c2fa8dde15e2049b51701b256162b0a3c4b142f3c7bf0eacc9d9",
+  "stable_evidence_id": "11ad553791500edfc1914e24dda842f978374018b1e6e6a7040709e52070132e",
+  "all_runs_successful": true,
+  "all_repeat_identity_exact": true,
+  "same_output_identity_as_p8d_p8f_and_p8g": true,
+  "preview_1mp": {
+    "worker_seconds_range": [
+      3.621138599992264,
+      3.8125122000055853
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      260952064,
+      267767808
+    ]
+  },
+  "mobile_standard_12mp": {
+    "worker_seconds_range": [
+      43.74604050000198,
+      44.148989200009964
+    ],
+    "peak_process_tree_rss_bytes_range": [
+      1787842560,
+      1881538560
+    ]
+  },
+  "comparison_to_p8g": {
+    "twelve_mp_worker_time_reduction_fraction_at_mean": 0.051793,
+    "twelve_mp_peak_rss_change_fraction_at_mean": 0.005858
+  },
+  "decision": "shortening full-frame lifetimes and reusing the consumed display buffer preserves exact final pixels and reduces mean 12MP worker time by about 5.18%, but peak RSS is statistically unchanged within the two-run local characterization and still fails provisional mobile targets. Retain the safe lifetime changes and remove the remaining full-frame linear decode copy without changing arithmetic or profile identity",
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8I exact per-halo-tile encoded-to-linear decode: remove the full-frame float64 linear copy while preserving the encoded source for the frozen source-context computation",
+  "claim_ceiling": "local Windows Python CPU resource evidence for exact profile lifetime shortening and display-buffer reuse; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
