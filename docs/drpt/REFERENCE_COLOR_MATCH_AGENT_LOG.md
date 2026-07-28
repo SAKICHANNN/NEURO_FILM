@@ -2150,6 +2150,22 @@
   safety configurations pass, and no model/capability/package/shared fixture
   exists. P45/P49 remain closed and P54 consumes nothing from SPGIN.
 
+## 2026-07-28 - Freeze P55 shared local-delivery authorization
+
+- Node/parent goal: P55A-D / no-write product authority after exact P54.
+- Contract: rerun P54 live, then bind its P53/P52/P51/P50 chain to the exact
+  P49 authorization. P49 must remain product/evaluation ready with every
+  ordered source action `authorized-for-staging`.
+- Output: one canonical capability with scope `local-user-export`, state
+  `authorized-for-shared-local-delivery`, and ceiling
+  `authorized-shared-local-delivery-not-committed`.
+- Prohibitions: no destination path, file copy, delivery, app-level applied
+  state, public sharing, stock identity, calibrated-reference claim or
+  producer promotion inference.
+- Evidence label: synthetic promoted fixtures can prove only authorization
+  mechanics. Real use remains closed until a genuine callable producer passes
+  P45/P49 and the frozen product gates.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

@@ -209,6 +209,10 @@ with a selected stock, but reference matching alone is labeled
 | P54B | DONE | implement shared FilmFX verifier | canonical verification identity preserves P49/P48/P47 lineage plus ordered receipt/result identities | `e987c11`; code/schema/tests | verified staging only |
 | P54C | DONE | prove restart tamper/relocation/claim closure | report/input/output tamper or absence, relocation, identity/order/seed/claim mutation and unknown fields fail closed | 36 focused tests | fail closed |
 | P54D | DONE | propagate evidence and peer handoff | 560 color-match; 1455 pass/1 skip/36 known; latest-main merge 36 pass | evidence commit | later authorization only |
+| P55A | IN PROGRESS | freeze shared local-delivery authorization | live rerun exact P54 and bind P52/P51/P50/P49/P48/P47 chain; emit no-write local scope only | plan commit | no destination |
+| P55B | READY | implement canonical shared delivery authorization | require P49 product-ready state and all ordered sources authorized; bind shared reference+FilmFX output label | code/schema/tests | authorization only |
+| P55C | BLOCKED ON P55B | prove foreign-chain/tamper/claim closure | live output tamper, valid foreign chain member, state/scope/output-label/claim/identity mutation reject | adversarial tests | fail closed |
+| P55D | BLOCKED ON P55C | propagate evidence and peer handoff | focused/full/latest-main merge evidence | evidence commit | real use still P45-gated |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
