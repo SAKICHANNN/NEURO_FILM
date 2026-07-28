@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
 
+import src.roll2film.positive_film_fitting as fitting_module
 from src.roll2film.positive_film import positive_film_operator_from_config
 from src.roll2film.positive_film_fitting import (
     fit_positive_film_response_operator,
@@ -137,3 +139,71 @@ def test_soft_l1_is_robust_to_sparse_correspondence_outliers() -> None:
     robust_rmse = np.sqrt(np.mean(np.square(robust.operator.apply(evaluation) - clean)))
     assert robust.loss == "soft_l1"
     assert robust_rmse < 0.5 * linear_rmse
+
+
+def test_lower_cost_degenerate_restart_cannot_displace_valid_operator(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    invalid = np.zeros(12, dtype=np.float64)
+    invalid[6:9] = 2.0
+    invalid[9:12] = 4.0
+    valid = np.zeros(12, dtype=np.float64)
+    valid[6:9] = -3.0
+    valid[9:12] = 1.0
+    results = iter(
+        (
+            SimpleNamespace(
+                x=invalid,
+                cost=1.0,
+                optimality=0.0,
+                nfev=1,
+                success=True,
+            ),
+            SimpleNamespace(
+                x=valid,
+                cost=2.0,
+                optimality=0.0,
+                nfev=1,
+                success=True,
+            ),
+        )
+    )
+    monkeypatch.setattr(
+        fitting_module, "least_squares", lambda *args, **kwargs: next(results)
+    )
+    source = np.random.default_rng(187).random((12, 3))
+    fit = fit_positive_film_response_operator(
+        source,
+        source,
+        model="one_matrix",
+        restart_count=2,
+    )
+    assert fit.restart_index == 1
+    assert np.min(fit.operator.endpoint_span) >= 0.05
+
+
+def test_all_degenerate_restarts_fail_with_structural_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    invalid = np.zeros(12, dtype=np.float64)
+    invalid[6:9] = 2.0
+    invalid[9:12] = 4.0
+    monkeypatch.setattr(
+        fitting_module,
+        "least_squares",
+        lambda *args, **kwargs: SimpleNamespace(
+            x=invalid,
+            cost=1.0,
+            optimality=0.0,
+            nfev=1,
+            success=True,
+        ),
+    )
+    source = np.random.default_rng(188).random((12, 3))
+    with pytest.raises(ValueError, match="no operator satisfying"):
+        fit_positive_film_response_operator(
+            source,
+            source,
+            model="one_matrix",
+            restart_count=2,
+        )

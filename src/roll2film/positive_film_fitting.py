@@ -260,6 +260,7 @@ def fit_positive_film_response_operator(
         return (prediction - target).reshape(-1)
 
     best_result = None
+    best_operator = None
     best_restart = -1
     for restart_index in range(restart_count):
         initial = np.clip(
@@ -282,24 +283,34 @@ def fit_positive_film_response_operator(
             loss=loss,
             f_scale=loss_scale,
         )
+        capture, scan, midpoints, slopes = _decode_parameters(
+            result.x, model=model, identity_mixture=identity_mixture
+        )
+        try:
+            operator = PositiveFilmResponseOperator(
+                capture_matrix=capture,
+                response_midpoints=midpoints,
+                response_slopes=slopes,
+                maximum_responses=np.ones(3, dtype=np.float64),
+                scan_matrix=scan,
+            )
+        except ValueError:
+            # Endpoint-normalized optimization can find a low-cost degenerate
+            # sigmoid whose theoretical response span violates the operator
+            # contract. Such a restart is inadmissible, not the winning fit.
+            continue
         if best_result is None or result.cost < best_result.cost:
             best_result = result
+            best_operator = operator
             best_restart = restart_index
-    assert best_result is not None
+    if best_result is None or best_operator is None:
+        raise ValueError(
+            "paired fit produced no operator satisfying the structural contract"
+        )
 
-    capture, scan, midpoints, slopes = _decode_parameters(
-        best_result.x, model=model, identity_mixture=identity_mixture
-    )
-    operator = PositiveFilmResponseOperator(
-        capture_matrix=capture,
-        response_midpoints=midpoints,
-        response_slopes=slopes,
-        maximum_responses=np.ones(3, dtype=np.float64),
-        scan_matrix=scan,
-    )
-    error = operator.apply(source) - target
+    error = best_operator.apply(source) - target
     return PositiveFilmFitResult(
-        operator=operator,
+        operator=best_operator,
         model=model,
         development_rgb_rmse=float(np.sqrt(np.mean(np.square(error)))),
         development_maximum_absolute_error=float(np.max(np.abs(error))),
