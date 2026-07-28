@@ -3463,3 +3463,16 @@
   platform/data skips and 1258 unrelated deselections in 329.79 seconds. The
   temporary verification worktree was removed after validation. State remains
   `review-ready-not-merged`; main owns any merge.
+
+## 2026-07-28 - Bound P121 legacy file fit/replay entrypoints
+
+- Product-entry audit found the executable statistical-baseline CLI/API still
+  accepted unbounded source/output lists even though D-PCT/shared contracts
+  were capped at 64. It could decode, render and stage arbitrarily many files
+  before its atomic commit.
+- Fit and recipe replay now reject either list above the shared 64-source
+  authority before checking files, decoding images or creating outputs.
+  Programmatically forged report results are also capped to 1..64 rows.
+- Match/replay report schemas bind `maxItems=64`; their SHA-256 identities are
+  `6fa335df...28016f` / `84b54e86...30affe`. Fit, replay, reporting, schema and
+  consistency tests pass 27/27.

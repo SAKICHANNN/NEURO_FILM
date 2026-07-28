@@ -54,6 +54,19 @@ def test_every_persisted_batch_schema_uses_the_single_source_limit() -> None:
             ), path
 
 
+def test_legacy_file_reports_use_the_same_source_limit() -> None:
+    for name in (
+        "reference_match_report_v1.schema.json",
+        "reference_match_replay_report_v1.schema.json",
+    ):
+        payload = json.loads(
+            (SCHEMAS / name).read_text(encoding="utf-8")
+        )
+        assert payload["properties"]["outputs"]["maxItems"] == (
+            MAX_REFERENCE_MATCH_BATCH_SOURCES
+        )
+
+
 def test_every_direct_python_batch_validator_uses_the_single_limit() -> None:
     checked: list[Path] = []
     for path in sorted(COLOR_MATCH.glob("*.py")):

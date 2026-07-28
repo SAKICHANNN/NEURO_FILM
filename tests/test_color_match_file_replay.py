@@ -12,6 +12,7 @@ import pytest
 from referencing import Registry, Resource
 
 from src.color_match import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID,
     ReferenceMatchContractError,
     ReferenceRenderGuardPolicy,
@@ -162,6 +163,31 @@ def test_replay_cleans_staging_and_commits_nothing_on_late_failure(
     assert not first_output.exists()
     assert not second_output.exists()
     assert not list(tmp_path.glob("*.reference-match-stage*"))
+
+
+def test_file_fit_and_replay_reject_oversized_batches_before_output(
+    tmp_path: Path,
+) -> None:
+    reference, recipe_path = _fit_recipe(tmp_path)
+    source = tmp_path / "source.png"
+    _image(source, 27809)
+    count = MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+    sources = [source] * count
+    fit_outputs = [tmp_path / f"fit-{index}.png" for index in range(count)]
+    replay_outputs = [
+        tmp_path / f"replay-{index}.png" for index in range(count)
+    ]
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        match_reference_files(reference, sources, fit_outputs)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="supports at most 64 sources",
+    ):
+        replay_reference_files(recipe_path, sources, replay_outputs)
+    assert not any(path.exists() for path in (*fit_outputs, *replay_outputs))
 
 
 @pytest.mark.parametrize("protected", ["recipe", "source"])

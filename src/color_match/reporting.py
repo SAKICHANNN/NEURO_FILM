@@ -8,6 +8,7 @@ from typing import Any
 
 from src.inference.render_contract import atomic_write_json, sha256_file
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .contracts import ReferenceMatchContractError
 from .files import (
     FileReferenceMatchOutput,
@@ -25,8 +26,21 @@ REFERENCE_MATCH_REPLAY_REPORT_SCHEMA_ID = (
 def _output_rows(
     rows: tuple[FileReferenceMatchOutput, ...],
 ) -> list[dict[str, Any]]:
+    if (
+        not isinstance(rows, tuple)
+        or not rows
+        or len(rows) > MAX_REFERENCE_MATCH_BATCH_SOURCES
+    ):
+        raise ReferenceMatchContractError(
+            "reference-match report outputs must contain between 1 and "
+            f"{MAX_REFERENCE_MATCH_BATCH_SOURCES} rows"
+        )
     outputs: list[dict[str, Any]] = []
     for row in rows:
+        if not isinstance(row, FileReferenceMatchOutput):
+            raise ReferenceMatchContractError(
+                "reference-match report output row type is invalid"
+            )
         diagnostics = asdict(row.diagnostics)
         diagnostics["source_shape"] = list(diagnostics["source_shape"])
         safety = asdict(row.safety)

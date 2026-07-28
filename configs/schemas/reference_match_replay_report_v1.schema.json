@@ -20,6 +20,7 @@
         "$ref": "https://neuro-film.local/schemas/reference-match-report-v1.json#/$defs/output"
       },
       "minItems": 1,
+      "maxItems": 64,
       "type": "array"
     },
     "recipe_file": {

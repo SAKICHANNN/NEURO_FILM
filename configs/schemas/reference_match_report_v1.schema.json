@@ -48,7 +48,8 @@
       "items": {
         "$ref": "#/$defs/output"
       },
-      "minItems": 1
+      "minItems": 1,
+      "maxItems": 64
     }
   },
   "$defs": {

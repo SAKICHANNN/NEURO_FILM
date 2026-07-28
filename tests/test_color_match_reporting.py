@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 import json
 from pathlib import Path
 import subprocess
@@ -10,6 +11,7 @@ import pytest
 from PIL import Image
 
 from src.color_match import (
+    MAX_REFERENCE_MATCH_BATCH_SOURCES,
     REFERENCE_MATCH_REPORT_SCHEMA_ID,
     ReferenceMatchContractError,
     build_file_match_report,
@@ -62,6 +64,26 @@ def test_report_covers_run_hashes_diagnostics_and_safety(tmp_path: Path) -> None
     second_hash = save_file_match_report(result, report_path)
     assert report_path.read_bytes() == first_bytes
     assert first_hash == second_hash
+
+
+def test_report_rejects_forged_oversized_result(tmp_path: Path) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(reference, 27421)
+    _image(source, 27422)
+    result = match_reference_files(reference, [source], [output])
+    forged = replace(
+        result,
+        outputs=result.outputs * (
+            MAX_REFERENCE_MATCH_BATCH_SOURCES + 1
+        ),
+    )
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="between 1 and 64 rows",
+    ):
+        build_file_match_report(forged)
 
 
 @pytest.mark.parametrize("protected", ["reference", "source", "output", "recipe"])

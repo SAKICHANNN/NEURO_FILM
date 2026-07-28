@@ -19,6 +19,7 @@ from src.preprocess import (
     working_image_to_srgb_float,
 )
 
+from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .contracts import (
     ReferenceLookPolicy,
     ReferenceLookRecipe,
@@ -112,6 +113,14 @@ def _validate_render_contract(
     artifact_label: str,
     output_bit_depth: int,
 ) -> None:
+    if (
+        len(source_paths) > MAX_REFERENCE_MATCH_BATCH_SOURCES
+        or len(output_paths) > MAX_REFERENCE_MATCH_BATCH_SOURCES
+    ):
+        raise ReferenceMatchContractError(
+            "file reference match supports at most "
+            f"{MAX_REFERENCE_MATCH_BATCH_SOURCES} sources"
+        )
     if len(source_paths) != len(output_paths):
         raise ReferenceMatchContractError(
             "source_paths and output_paths must have equal length"
