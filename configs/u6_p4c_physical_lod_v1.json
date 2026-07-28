@@ -1,0 +1,121 @@
+{
+  "schema": "neuro_film.u6_p4c_physical_lod_contract.v1",
+  "node": "U6.P4C1",
+  "parent_decision_sha256": "ede640d05e09c16cdfad3513588625ab4275847a680986d1dd21fa17ca312865",
+  "parent_report_sha256": "611fb09633d7d4c8e76ed0cef552d9df60ffdbf9add4a77f05dc428059d3b7b4",
+  "claim_ceiling": "generic-physical-inspired-lod-development-challenger",
+  "base_physical_pitch_um": 1.0,
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "reference_seed": 260743,
+  "direct_lod_seed": 260751,
+  "lod_factors": [
+    2,
+    4,
+    8
+  ],
+  "rescale_rule": {
+    "poisson_rate": "base_rate * factor^2",
+    "correlation_sigma_pixels": "base_sigma / factor",
+    "shot_scale": "base_scale / factor^2",
+    "baseline": "unchanged",
+    "transmittance": "exp(-(baseline + shot_scale * filtered_counts))",
+    "reference": "float64 area mean of factor-by-factor base-pitch samples"
+  },
+  "compiled_profiles": [
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.5,
+      "baseline": 0.05712739443686818,
+      "scale": 0.567552498220445
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.55,
+      "baseline": 0.2832400701622278,
+      "scale": 1.293275511932659
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 0.25,
+      "correlation_sigma_pixels": 0.6,
+      "baseline": 0.6366271444614632,
+      "scale": 2.337913014109513
+    },
+    {
+      "family": "transmittance-shot",
+      "poisson_rate": 1.0,
+      "correlation_sigma_pixels": 0.4,
+      "baseline": 0.13424229517324168,
+      "scale": 3.5799610553203878
+    }
+  ],
+  "metrics": {
+    "acf_lags": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "radial_nps_bands_cycles_per_pixel": [
+      [
+        0.0,
+        0.08
+      ],
+      [
+        0.08,
+        0.22
+      ],
+      [
+        0.22,
+        0.5
+      ]
+    ]
+  },
+  "automatic_gates": {
+    "mean_abs_error_max": 0.04,
+    "variance_ratio_min": 0.55,
+    "variance_ratio_max": 1.8,
+    "acf_abs_error_max": 0.2,
+    "nps_band_relative_error_max": 0.5,
+    "repeat_exact": true,
+    "partition_exact": true,
+    "domain_valid": true,
+    "brightening_violation_count": 0
+  },
+  "negative_control": {
+    "id": "U6.2B-salt-like-bright-speckles",
+    "density_rule": "every density sample is at least its nonnegative baseline",
+    "transmittance_rule": "every transmittance sample is at most exp(-baseline)",
+    "display_rgb_composition": false
+  },
+  "forbidden_fallbacks": [
+    "fit or normalize on LOD reference results",
+    "change compiled profiles",
+    "signed density",
+    "hard clipping",
+    "additive display RGB noise",
+    "relax gates after result",
+    "claim measured film NPS, stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain this direct LOD rule and open full-resolution streamed material-map performance plus severe-artifact diagnostics",
+    "fail": "close direct LOD and require area-resolved or separately preregistered moment-corrected LOD; do not alter P4B base-pitch evidence"
+  }
+}
