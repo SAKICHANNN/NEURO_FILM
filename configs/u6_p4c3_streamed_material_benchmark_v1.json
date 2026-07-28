@@ -1,0 +1,84 @@
+{
+  "schema": "neuro_film.u6_p4c3_streamed_material_benchmark_contract.v1",
+  "node": "U6.P4C3",
+  "parent_decision_sha256": "8ab8efb6e911bcc14a7a8cb527ba7146887f527372a8e19936e4df60e9be6798",
+  "parent_report_sha256": "eb3dba31f32286806169aee833b5aa0756e0fd12a4a35c788e13061c021975ea",
+  "claim_ceiling": "generic-physical-inspired-material-runtime-development",
+  "shape": [
+    4000,
+    6000
+  ],
+  "output_pitch_um": 8.0,
+  "seed": 260761,
+  "chunk_rows": [
+    257,
+    1024
+  ],
+  "rss_sample_interval_seconds": 0.01,
+  "worker_timeout_seconds": 120.0,
+  "compiled_profiles": [
+    {
+      "family": "density-shot",
+      "poisson_rate": 16.0,
+      "correlation_sigma_pixels": 0.0625,
+      "baseline": 0.06382580404704971,
+      "scale": 0.008406562299882294
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 16.0,
+      "correlation_sigma_pixels": 0.06875,
+      "baseline": 0.303492022049723,
+      "scale": 0.018841045350132198
+    },
+    {
+      "family": "density-shot",
+      "poisson_rate": 16.0,
+      "correlation_sigma_pixels": 0.075,
+      "baseline": 0.6801869278834346,
+      "scale": 0.03362102139326956
+    },
+    {
+      "family": "transmittance-shot",
+      "poisson_rate": 64.0,
+      "correlation_sigma_pixels": 0.05,
+      "baseline": 4.284388738770391e-19,
+      "scale": 0.024947297940190512
+    }
+  ],
+  "automatic_gates": {
+    "output_hashes_exact_across_chunk_policies": true,
+    "finite_domain_valid": true,
+    "brightening_violation_count": 0,
+    "worker_apply_seconds_max": 45.0,
+    "peak_process_tree_rss_bytes_max": 1073741824,
+    "worker_timeout": false
+  },
+  "diagnostic": {
+    "shape": [
+      1024,
+      1536
+    ],
+    "seed": 260763,
+    "views": [
+      "colour-density-to-transmittance",
+      "bw-transmittance"
+    ],
+    "allowed_interpretation": "material-map severe-artifact diagnostic only",
+    "forbidden_claim": "product image, stock grain, measured NPS or calibrated scan"
+  },
+  "forbidden_fallbacks": [
+    "allocate a full 24MP material layer",
+    "change profile parameters",
+    "clip or normalize output per chunk",
+    "add material field to display RGB",
+    "weaken runtime or memory gates after execution",
+    "claim stock, process or scanner calibration"
+  ],
+  "branch_rule": {
+    "automatic_pass": "permit fixed material-map diagnostic rendering and autonomous severe-artifact review",
+    "automatic_fail": "close current runtime policy; preserve P4C2 numerical evidence and optimize only the failed resource mechanism",
+    "visual_pass": "retain P4 compiler/LOD path and proceed to P5 spatial-response separation",
+    "visual_fail": "close the diagnostic policy without weakening severe-artifact veto; preserve the numerical compiler as research evidence only"
+  }
+}
