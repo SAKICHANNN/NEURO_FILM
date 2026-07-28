@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p8c_profile_ingress_receipt_contract.v1",
+  "node": "U6.P8C",
+  "parent_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "parent_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "parent_decision": "configs/u6_p8b_artifact_only_cpu_consumer_decision_v1.json",
+  "parent_decision_sha256": "7f237d456af61d6cbf7cf58770850614f2109908d2b01602483a8439d9cdde49",
+  "required_parent_artifact_sha256": "e5168fe89f94efc0e1a3b0a7b38ed26f6c4f4dd142dbe9f951be596c398267ae",
+  "ingress": {
+    "working_space": "linear_srgb_d65",
+    "transfer_state": "scene_linear",
+    "minimum_scene_value": 0.0,
+    "maximum_scene_value": 1.0,
+    "unmapped_headroom_allowed": false,
+    "unknown_color_state_allowed": false
+  },
+  "replay": {
+    "synthetic_shape": [
+      65,
+      67
+    ],
+    "synthetic_seed": 2026072908,
+    "real_ids": [
+      "canon_eos_kiss_f",
+      "sony_nex_3n",
+      "nikon_d2x"
+    ],
+    "real_max_long_edge": 512
+  },
+  "execution": {
+    "runs": 2,
+    "canonical_artifact_bytes_required": true,
+    "repeat_output_and_receipt_exact_required": true,
+    "final_quantization_allowed": false,
+    "post_result_retuning_allowed": false
+  },
+  "claim_ceiling": "bounded scene-linear WorkingImage ingress, canonical artifact bytes and deterministic unquantized render receipt for one generic physical-inspired profile; not scene tone mapping, HDR, stock response, calibration, native runtime or product promotion"
+}
