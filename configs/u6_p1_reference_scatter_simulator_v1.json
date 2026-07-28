@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p1_reference_scatter_simulator_contract.v1",
+  "node": "U6.P1A",
+  "claim_ceiling": "generic-physical-inspired-reference-only",
+  "input_domain": "film-layer-linear-exposure",
+  "output_domain": "film-layer-linear-exposure",
+  "arithmetic": "float64",
+  "pixel_pitch_um": 8.0,
+  "boundary_mode": "zero-outside-full-frame",
+  "components": [
+    {
+      "component_id": "forward-scatter",
+      "sigma_um": 24.0,
+      "cutoff_sigma": 6.0,
+      "energy_fraction_rgb": [
+        0.015,
+        0.025,
+        0.04
+      ]
+    },
+    {
+      "component_id": "backing-return",
+      "sigma_um": 240.0,
+      "cutoff_sigma": 6.0,
+      "energy_fraction_rgb": [
+        0.06,
+        0.02,
+        0.01
+      ]
+    }
+  ],
+  "synthetic_witnesses": {
+    "impulse_shape": [
+      513,
+      513,
+      3
+    ],
+    "edge_shape": [
+      512,
+      512,
+      3
+    ],
+    "exposure_scales": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "far_halo_radius_um": 160.0
+  },
+  "automatic_gates": {
+    "kernel_sum_abs_error_max": 1e-12,
+    "impulse_energy_abs_error_max": 1e-10,
+    "minimum_output": -1e-12,
+    "linearity_max_abs_error": 1e-12,
+    "far_halo_red_over_blue_min": 1.05,
+    "repeat_report_sha256_exact": true
+  },
+  "forbidden_claims": [
+    "stock-calibrated",
+    "process-calibrated",
+    "scanner-calibrated",
+    "product-runtime",
+    "display-rgb-halation"
+  ],
+  "branch_rule": {
+    "pass": "open U6.P1B reference structure and U6.P3 compiled scatter challenger",
+    "fail": "repair numerical or contract defect only; do not tune for aesthetics"
+  }
+}
