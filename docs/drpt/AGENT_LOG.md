@@ -6294,3 +6294,5 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** run focused validation and the full CPU suite, then prioritize
   reusable-operator identification or new rights/connectivity evidence over
   another compact representation. Goal remains ACTIVE.
+- **Post-leaf verification:** the complete local CPU suite passes
+  `1123/1123` in `184.02s`; stderr is empty.
