@@ -6375,3 +6375,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Pass opens only grouped display-proxy explainability; RAW, process/scanner
   independence, transferable stock response, calibration and product claims
   remain closed.
+
+## 2026-07-28 - U5.R2AO0 exact bounded source pass
+
+- Implemented bounded acquisition and exact chart extraction. A smoke caught
+  and corrected the frozen paired-channel order before formal evidence.
+- Two 291,706-byte downloads and both 24-pair extractions are exact; canonical
+  report SHA is `2a36949c...7d40`. AO1 leave-one-row-out explainability is now
+  ready; all stronger stock/calibration/product claims remain closed.
