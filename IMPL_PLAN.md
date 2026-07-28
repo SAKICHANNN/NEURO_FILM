@@ -80,6 +80,23 @@ metric. V3 `e4e8e812...6384` hash-binds v1/v2 and freezes all point/ramp
 construction without changing operator, truth, fit or thresholds; v3 is the
 only formal entry.
 
+`U5.R2AL1` is now complete and closes the fixed analytic sector bank. Two
+fresh reports are byte-identical at `4a8bf70d...e1c8`. Candidate confirmation
+RMSE is `.006254/.006222`: it improves 74.41%/74.89% over global curves and is
+slightly better than stationary K3, while every cube, Jacobian, neutral,
+continuity, replay, ramp and strength check passes. Both rows nevertheless
+miss the independent `.006` absolute ceiling, and neither frozen iterative
+inverse converges. No additional sector, curve, degree, optimizer, target,
+inverse, threshold or photograph rescue is allowed.
+
+The next ready algorithm leaf is `U5.R2AM0`, a source/method audit of
+image-adaptive invertible coordinate systems. The distinct hypothesis is one
+globally bounded coordinate transform followed by separable monotone curves
+with analytic inverse curves. It must not inherit IAC's random rank repair,
+unbounded matrix, per-image range ambiguity or paired-retouching truth. Any
+surviving clean-room representation remains synthetic-only; content
+adaptation does not identify a reusable film operator.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources

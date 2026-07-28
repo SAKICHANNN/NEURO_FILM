@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2al1-analytic-chroma-sector-curve-capacity-v3",
+  "node": "ULT > U5 > U5.R2 > U5.R2AL1",
+  "software_commit": "21a877fb3c29b80bc38b70c1c6123fb4f1b5dcb8",
+  "config_v1_sha256": "53fe4134ba384d0523d5b2d87c6b0029e15c0e414dcdf5501deddcef71780559",
+  "config_v2_sha256": "6adaba33dbcbd9ec84de81cb35b75534da8a40127244e9c0d1981d77d3aef00f",
+  "config_v3_sha256": "e4e8e812f1bbffe8a4124066e34cb6e3dcd0d549d807eaa9297d9cdaa6f26384",
+  "report_sha256": "4a8bf70dd1b877cd96c63bee7a6f18f757ad17e96d1260ff9f35a0ee5ecee1c8",
+  "repeat_decision_sha256": "cfb9ae14d35a860e7a5e1d71e5e8231690eae288a5c969de49932cc911e1ab5a",
+  "reports_byte_identical": true,
+  "target_pair_rgb_rmse": 0.002044972456246536,
+  "automatic_checks": {
+    "absolute_fidelity": false,
+    "bounded_jacobian": true,
+    "cube": true,
+    "global_curve_advantage": true,
+    "hue_continuity": true,
+    "identity": true,
+    "inverse": false,
+    "neutral_axis": true,
+    "partition": true,
+    "positive_jacobian": true,
+    "red_ramp": true,
+    "replay": true,
+    "stationary_k3_efficiency": true,
+    "strength_path": true,
+    "target_bounded_jacobian": true,
+    "target_cube": true,
+    "target_noncommutation": true,
+    "target_positive_jacobian": true
+  },
+  "target_results": {
+    "stage_a_then_stage_b": {
+      "candidate_confirmation_rgb_rmse": 0.006254447873190442,
+      "global_curves_confirmation_rgb_rmse": 0.024442416429587163,
+      "stationary_k3_confirmation_rgb_rmse": 0.006360577286896387,
+      "candidate_improvement_over_global_curves_fraction": 0.7441149940633721,
+      "candidate_to_stationary_k3_rmse_ratio": 0.983314499782184,
+      "candidate_minimum_jacobian_determinant": 0.5233199444575802,
+      "candidate_maximum_jacobian_spectral_norm": 2.0378478369505713,
+      "candidate_inverse_converged": false,
+      "candidate_inverse_roundtrip_maximum_absolute_error": 1.0
+    },
+    "stage_b_then_stage_a": {
+      "candidate_confirmation_rgb_rmse": 0.006221575296697631,
+      "global_curves_confirmation_rgb_rmse": 0.02477797223615759,
+      "stationary_k3_confirmation_rgb_rmse": 0.006476310657123226,
+      "candidate_improvement_over_global_curves_fraction": 0.7489070034706587,
+      "candidate_to_stationary_k3_rmse_ratio": 0.9606665933874845,
+      "candidate_minimum_jacobian_determinant": 0.5304578147921092,
+      "candidate_maximum_jacobian_spectral_norm": 2.070933391057887,
+      "candidate_inverse_converged": false,
+      "candidate_inverse_roundtrip_maximum_absolute_error": 1.0
+    }
+  },
+  "automatic_pass": false,
+  "decision": "close_fixed_analytic_chroma_sector_curve_representation",
+  "diagnosis": "The fixed analytic sector bank is strongly colour-selective, cube-safe and competitive with stationary K3, but both target orders miss the frozen 0.006 absolute RMSE ceiling and its input-dependent partition prevents the frozen inverse solver from converging. Relative capacity and the other structural gates cannot override either failure.",
+  "forbidden_followup": [
+    "increase sectors, curves, degree, optimizer steps or restarts",
+    "retune the partition, neutral gate, target stages, audit geometry or thresholds",
+    "replace or weaken the inverse requirement",
+    "render photographs from this fitted synthetic candidate",
+    "claim a reusable film operator, stock calibration, preference, severe safety or production readiness"
+  ],
+  "next_action": "Preserve the negative capacity evidence and move to a genuinely distinct globally invertible coordinate-system plus monotone-curve representation whose inverse is analytic rather than an iterative input-dependent partition inversion.",
+  "claim_ceiling": "repeat-exact clean-room synthetic negative capacity and invertibility evidence for one fixed analytic colour-selective monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}

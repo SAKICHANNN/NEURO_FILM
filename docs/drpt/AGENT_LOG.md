@@ -6119,3 +6119,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   successfully and correctly returns an automatic failure rather than a false
   pass. Formal v3 execution waits for this implementation commit and a clean
   tracked worktree; Goal remains ACTIVE.
+
+## 2026-07-28 - Close U5.R2AL1 on absolute fidelity and inverse
+
+- **Node/result:** `ULT > U5 > U5.R2 > U5.R2AL1`; DRPT L2/Mode A with
+  AIML/research-reliability, structure and project-log disciplines. Formal
+  execution used clean software commit `21a877f...dcb8`, executable v3 config
+  `e4e8e812...6384` and two fresh CPU child processes.
+- **Repeat evidence:** both 17,780-byte reports are byte-identical at
+  `4a8bf70d...e1c8`; repeat decision `cfb9ae14...ab5a`. An independent
+  post-run validator reconstructed the report identity and every check for
+  both children.
+- **Result:** candidate RMSE `.006254/.006222` improves 74.41%/74.89% over
+  global curves and has `.9833x/.9607x` the stationary-K3 error. Exact
+  identity/neutral/partition/cube/replay, hue continuity, red ramp, strength
+  and bounded positive-Jacobian gates all pass. Both rows exceed the frozen
+  `.006` absolute ceiling, and neither iterative inverse converges.
+- **Decision:** close the fixed five-sector/16-curve representation. Relative
+  capacity cannot override either independent failure. No sector, curve,
+  degree, restart, step, target, audit, inverse, threshold or photograph
+  rescue is allowed.
+- **Propagation/handoff:** preserve the useful colour-selective mechanism
+  evidence and move to `U5.R2AM0`, a distinct source/method audit of globally
+  bounded invertible coordinate systems with separable monotone curves and an
+  analytic inverse. Paired retouching performance is not film evidence, and
+  per-image content adaptation does not identify a reusable operator. Goal
+  remains ACTIVE.
