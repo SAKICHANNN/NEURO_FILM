@@ -8,19 +8,19 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P60 implementation head:
-  `eee47a2eac544b7583309b3a96fd93ff1ae6c6e9`;
+- complete P1-P61 implementation head:
+  `77a8d848b6fff072dfa6ffff1b17018daf89ef24`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `4b762be1ecd4f9591564392c78ce39c9a3c3932a`;
+  `4fac70db92f4f7eed4c2569d9951ab4aa6d736b3`;
 - D-PCT read-only snapshot:
-  `ffdfd98`;
+  `346b8cfeac8f5681bb60b5eeaa425556dfb74809`;
 - conflict-free main/payload merge tree:
-  `88198dd70551e7b4872c2b84d327d0376cf330ee`.
+  `6b05bf245516c26e106088e15a5e378137b3dc56`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -81,6 +81,8 @@ The consumer module implements:
 - exact successor runtime-evidence binding that distinguishes host/device
   execution from cross-compile, link-only and object-only evidence and binds
   versioned environment matrices plus runner/executable/report identities;
+- a no-write runtime qualification over exact P49/P60 so unbound runtime
+  booleans cannot enter any future versioned durable staging path;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -124,9 +126,9 @@ reference, public sharing or algorithm promotion.
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
 2. Verify the committed P59 schema and P58 manifest, then review
-   `c03c321..eee47a2`; do not copy files manually and do not import mutable
+   `c03c321..77a8d84`; do not copy files manually and do not import mutable
    paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree eee47a2 <reviewed-main>`.
+3. Recompute `git merge-tree --write-tree 77a8d84 <reviewed-main>`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -140,10 +142,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 621 passed;
-- latest isolated consumer full suite: 1516 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 636 passed;
+- latest isolated consumer full suite: 1531 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 42 P60/P59/P57 integrity tests
+- latest detached synthetic main merge: 57 P61/P60/P59/P57 integrity tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
@@ -154,9 +156,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 2. The successor must pass P45 intake, A1 reference identifiability, A4
    photographic preference/severe-tail review and A5 batch consistency
    without research override.
-3. P60 now makes the distinction explicit, but Android device/JNI and Apple
-   host/device runtime/invocation evidence remain open; cross-compilation is
-   not runtime proof.
+3. P60 now makes the distinction explicit. D-PCT R0bw supplies factual
+   dual-vendor Windows Vulkan host-runtime evidence, but it is not bound to a
+   new exact successor declaration. Android device/JNI and Apple host/device
+   runtime/invocation evidence remain open; cross-compilation is not runtime
+   proof.
 4. The main owner must review and merge the payload.
 
 D-PCT RGIN-v0 closed at `fd036aa`: all 20 frozen uncertainty projections
@@ -174,3 +178,10 @@ contrastive safety configurations passed and it emitted no downstream
 artifact. Producer research now treats the four-generation same-60-image
 family as saturated; a successor needs materially new evidence rather than
 another architecture/loss sweep on the same development set.
+
+D-PCT R0bw at `346b8cf` independently demonstrates the same reproducible
+Vulkan 1.1 SPIR-V on NVIDIA and AMD Windows devices with repeated exact
+per-device output and fail-closed negative vectors. This is useful factual
+Windows host-runtime evidence for a future P60 mapping, but it creates no P45
+successor capability/package and supplies neither Android device nor Apple
+runtime. It therefore does not qualify P61 or open staging.

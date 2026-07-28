@@ -2407,6 +2407,58 @@
 - Scope: consumer contract/schema/tests/docs only. No staging write, producer
   call, native implementation, product application or retroactive P49 relabel.
 
+## 2026-07-28 - Implement and verify P61 runtime-qualified authorization
+
+- Node/parent goal: P61B-D / factual runtime guard between P49 and staging.
+- Implementation: `77a8d84` adds one self-contained qualification containing
+  canonical successor-declaration and P60 evidence JSON, strict schema, public
+  API and 15 dedicated tests.
+- Exact artifacts: implementation SHA-256
+  `b9f13af5ffe4e173a7d6caae17ec8c619cca97fa0e21ec67db9ee624d0c49a67`;
+  schema SHA-256
+  `045e8dea47ece8526658bc67f9844aa9e6d4faafefce6f666dc77b92c1deebf0`.
+- State rule: exact P49 `authorized-for-staging` plus P60
+  `runtime_ready=true` is the only path to
+  `runtime-qualified-for-staging`. P49 fallback, missing target, weak proof or
+  any P60 reason produces atomic `identity-fallback`.
+- Fail-closed evidence: foreign P49 ID/batch/operator/declaration, foreign P60
+  declaration/evidence, embedded evidence tamper, readiness/upstream/state/
+  ceiling/identity mutation and malformed arrays/JSON all reject.
+- Verification: 62 focused, 636 complete `test_color_match*`; full suite 1531
+  pass/one skip/36 unchanged ignored-output or historical-hash failures.
+- Latest-main propagation: main `4fac70db92f4f7eed4c2569d9951ab4aa6d736b3`;
+  265 consumer versus 192 main paths with zero overlap; merge tree
+  `6b05bf245516c26e106088e15a5e378137b3dc56`; fresh detached merge passes
+  57 P61/P60/P59/P57 tests and was removed.
+- Change propagation: historical P49/P50 identities remain immutable. P50
+  cannot be relabeled runtime-qualified; a separately versioned P62 durable
+  staging consumer must require exact P61.
+
+## 2026-07-28 - Audit producer R0bw Windows runtime without qualifying P60
+
+- Node/parent goal: P60D/P61D / read-only producer evidence propagation.
+- Producer snapshot: D-PCT is clean at
+  `346b8cfeac8f5681bb60b5eeaa425556dfb74809`. R0bw executes the same
+  reproducible Vulkan 1.1 SPIR-V on NVIDIA `10de:2f58` and AMD `1002:13c0`
+  Windows devices, with two byte-exact 65-cube and UHD replays per device,
+  four fail-closed negative vectors and cross-vendor UHD max/RMSE
+  `3.814697e-6` / `4.45567e-7`.
+- Pinned producer evidence: SPIR-V
+  `5d6c91c1af193d0769273734e8fb5dab642f83b6c99d7c15c3286f9d6bbd910b`;
+  reports `f51e71540d60edbf967c18137f68b5889de6d37e5e72ba6aa2544f3c642287af`
+  and `e8fcfa4e30faeafdc34a2a9a1a0165f2ef44aaa139c6f6a318cc159c2426557d`;
+  canonical non-timing identity
+  `cbac6c85ac3a97cea2b25f168f9af5aa6c1fee8688f79643516768ce6a365e9a`;
+  reproducible executable
+  `07b9dfffed9b077a89050b658ad3ad3cb2aabf812d65707bcf3f74aa8a2fb25b`.
+- Decision: this is factual Windows host-runtime evidence, but there is no new
+  exact P45 successor declaration/capability/package to bind it to. Android
+  still lacks device runtime and Apple lacks host/device runtime. Therefore no
+  real P60 bundle can become ready and P61 remains atomic identity fallback.
+- Isolation: the producer repository and its evidence were read-only. No
+  Vulkan, D3D11, CUDA, platform or algorithm source was copied into the
+  consumer.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.
