@@ -67,6 +67,32 @@ def _array_sha256(value: np.ndarray) -> str:
     return hashlib.sha256(memoryview(contiguous).cast("B")).hexdigest()
 
 
+def _linear_srgb_to_encoded_row_staged(
+    linear: np.ndarray, *, tile_rows: int
+) -> np.ndarray:
+    """Apply the exact pointwise OETF without a full-frame float64 input cast."""
+
+    value = np.asarray(linear)
+    if (
+        value.ndim != 3
+        or value.shape[-1] != 3
+        or value.shape[0] == 0
+        or value.shape[1] == 0
+        or isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+        or not np.all(np.isfinite(value))
+    ):
+        raise ValueError("row-staged OETF requires finite HxWx3 input")
+    encoded = np.empty(value.shape, dtype=np.float64)
+    for y0 in range(0, value.shape[0], tile_rows):
+        y1 = min(value.shape[0], y0 + tile_rows)
+        encoded[y0:y1] = linear_srgb_to_encoded(
+            value[y0:y1].astype(np.float64)
+        )
+    return encoded
+
+
 @dataclass(frozen=True)
 class CompiledProfileRuntime:
     """Minimum runtime surface consumed by the frozen challenger renderer."""
@@ -502,8 +528,9 @@ def render_working_image_fully_row_streamed(
         raise ValueError("invalid fully row-streamed partition")
     input_array_sha256 = _array_sha256(scene.values)
     input_shape = list(scene.values.shape)
-    encoded = linear_srgb_to_encoded(
-        scene.values.astype(np.float64)
+    encoded = _linear_srgb_to_encoded_row_staged(
+        scene.values,
+        tile_rows=tile_rows,
     )
     del scene
     runtime, gauge = reconstruct_standalone_runtime(artifact)
