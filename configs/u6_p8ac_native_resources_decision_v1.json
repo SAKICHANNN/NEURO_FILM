@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8ac_native_resource_decision.v1",
+  "node": "U6.P8AC",
+  "contract": "configs/u6_p8ac_native_resources_v1.json",
+  "contract_sha256": "648f909989fefa40ab92c508fe94d6b5bf4a4a3d23908e3ddfb8e85d00cc9fb7",
+  "formal_report": "outputs/u6_p8ac_native_resources_v1/report.json",
+  "formal_report_sha256": "2a79fbea2630b74ec3d8728e431d729e516556591d455958689db65c3f14e8b6",
+  "stable_evidence_id": "c6ad03ef087e010b6e4c330891278e0c4b256fd0001f214a55be361948155afc",
+  "result": {
+    "status": "pass",
+    "scenario": "native-scanner-linear-12mp",
+    "tile_rows": 32,
+    "repeat_output_identity_exact": true,
+    "output_sha256": "8a86f88074464ebb10ce9447e4fec0d4e930495b8bd1cd59c0e1707c3ee07bf3",
+    "peak_process_tree_rss_bytes": [
+      997339136,
+      997085184
+    ],
+    "median_peak_process_tree_rss_bytes": 997212160,
+    "memory_gate_bytes": 1073741824,
+    "worker_elapsed_seconds": [
+      6.648743400000967,
+      6.685920799995074
+    ],
+    "elapsed_gate_seconds": 30.0,
+    "memory_pass": true,
+    "elapsed_pass": true
+  },
+  "decision": "retain the 32-row float64 native scanner-linear physical chain as a desktop reference implementation. It passes the frozen 12MP 1GiB and 30s gates with exact repeated output, but the narrow memory margin and absent post-scan display stages do not establish a complete desktop or mobile renderer",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP float64 native scanner-linear physical-chain resource evidence only",
+  "next_leaf": "U6.P8AD native Standard float32 P0: freeze separate f32 ABIs and tolerance oracles for domains, Gaussian and bounded adjacency, then measure whether the ordered 12MP chain materially reduces memory without severe numerical drift"
+}
