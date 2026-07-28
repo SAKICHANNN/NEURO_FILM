@@ -2361,6 +2361,38 @@
   Swift, RAW/HDR/video or other producer/native implementation; no product
   admission from runtime evidence alone.
 
+## 2026-07-28 - Implement and verify P60 factual runtime binding
+
+- Node/parent goal: P60B-D / target-runtime evidence after P45.
+- Implementation: `eee47a2` adds one immutable runtime record/bundle/decision
+  contract, strict schema, public API and 17 dedicated tests.
+- Exact artifacts: implementation SHA-256
+  `4c2402d5cbea4496751e81a7c171e1c8d632dcabb9e1eed3c8cb1e3c8a794b8a`;
+  schema SHA-256
+  `67f9ac7505f01905476b0b4c2c9b52abe67862c96cd2e72b916959fca2c83a8c`.
+- Semantics: every record binds the exact successor declaration,
+  producer/capability/profile, target, proof class, OS/architecture,
+  versioned environment-matrix count/hash/summary, backend,
+  runner/executable/report hashes and replay/conformance/failure-injection
+  facts. A matrix can represent the producer's NVIDIA+AMD Windows evidence
+  without pretending it is one device.
+- Product proof classes: Windows/macOS require `host-runtime`; iOS/Android
+  require `device-runtime`. Cross-compile, link-only and object-only records
+  remain reportable but never satisfy the target.
+- Fail-closed evidence: declaration/wire substitution, record/bundle identity
+  tamper, duplicate/noncanonical target, missing target, weak proof, false
+  declaration claim, replay count below two or any failed factual gate
+  prevents `runtime_ready`.
+- Verification: 47 focused, 621 complete `test_color_match*`; full suite 1516
+  pass/one skip/36 unchanged ignored-output or historical-hash failures.
+- Latest-main propagation: main `4b762be1ecd4f9591564392c78ce39c9a3c3932a`;
+  262 consumer versus 187 main paths, zero overlap; merge tree
+  `88198dd70551e7b4872c2b84d327d0376cf330ee`; fresh detached merge passes
+  42 P60/P59/P57 tests and was removed.
+- No real producer mapping is claimed: D-PCT has not published a new exact P45
+  declaration for its ongoing native work. Runtime readiness is also not
+  algorithm promotion or transaction authorization.
+
 ## 2026-07-28 - Implement and verify P38 local delivery authorization
 
 - Node/parent goal: P38B-D / authorization boundary after P37.

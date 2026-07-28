@@ -8,19 +8,19 @@ external-algorithm admission remains closed**.
 ## Frozen snapshots
 
 - consumer payload branch: `codex/reference-color-match`;
-- complete P1-P59 implementation head:
-  `0e3b3761424f9f7f0716b62d196fe2a812585bba`;
+- complete P1-P60 implementation head:
+  `eee47a2eac544b7583309b3a96fd93ff1ae6c6e9`;
 - P58 non-self-referential reviewed payload:
   `1aee24f1d0a76da91079f6b88c58036dbcf6c57e`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `349db2e2866985e2b818289dfcb2160e13e10ba4`;
+  `4b762be1ecd4f9591564392c78ce39c9a3c3932a`;
 - D-PCT read-only snapshot:
   `ffdfd98`;
 - conflict-free main/payload merge tree:
-  `d0c94491832b980005ce5e85dd606870c6e66432`.
+  `88198dd70551e7b4872c2b84d327d0376cf330ee`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -78,6 +78,9 @@ The consumer module implements:
   P47 receipt/result lineage and atomically commits files plus report;
 - read-only shared local-export restart verification that caller-binds P56
   and rehashes every staging source and delivered file;
+- exact successor runtime-evidence binding that distinguishes host/device
+  execution from cross-compile, link-only and object-only evidence and binds
+  versioned environment matrices plus runner/executable/report identities;
 - portable consumer identity conformance across Python, MSVC, LLVM-MinGW and
   Android cross-link evidence;
 - P33-P40 staging, restart verification, external-reference/FilmFX
@@ -121,9 +124,9 @@ reference, public sharing or algorithm promotion.
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
 2. Verify the committed P59 schema and P58 manifest, then review
-   `c03c321..0e3b376`; do not copy files manually and do not import mutable
+   `c03c321..eee47a2`; do not copy files manually and do not import mutable
    paths from the D-PCT repository.
-3. Recompute `git merge-tree --write-tree 0e3b376 <reviewed-main>`.
+3. Recompute `git merge-tree --write-tree eee47a2 <reviewed-main>`.
 4. Perform a normal reviewed merge of the payload branch in the main task.
 5. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
    grain tests.
@@ -137,10 +140,10 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest complete `test_color_match*` suite: 604 passed;
-- latest isolated consumer full suite: 1499 passed, one skipped, 36 unchanged
+- latest complete `test_color_match*` suite: 621 passed;
+- latest isolated consumer full suite: 1516 passed, one skipped, 36 unchanged
   environment/output/hash failures;
-- latest detached synthetic main merge: 25 P59/P57 integration-integrity tests
+- latest detached synthetic main merge: 42 P60/P59/P57 integrity tests
   passed; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
@@ -151,8 +154,9 @@ dirty worktree, Ultimate tracker and product integration decisions.
 2. The successor must pass P45 intake, A1 reference identifiability, A4
    photographic preference/severe-tail review and A5 batch consistency
    without research override.
-3. Android device/JNI and Apple compiler/runtime/invocation evidence remain
-   open; cross-compilation is not runtime proof.
+3. P60 now makes the distinction explicit, but Android device/JNI and Apple
+   host/device runtime/invocation evidence remain open; cross-compilation is
+   not runtime proof.
 4. The main owner must review and merge the payload.
 
 D-PCT RGIN-v0 closed at `fd036aa`: all 20 frozen uncertainty projections

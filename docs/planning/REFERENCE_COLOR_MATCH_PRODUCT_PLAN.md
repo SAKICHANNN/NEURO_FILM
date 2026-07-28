@@ -229,10 +229,10 @@ with a selected stock, but reference matching alone is labeled
 | P59B | DONE | publish strict JSON Schema and validator | validate structure before resolving pinned Git commits | `0e3b376`; schema/code/tests | no merge or state change |
 | P59C | DONE | prove malformed/tampered manifest closure | unknown/missing fields, bad hashes/modes/counts, overlap or ceiling escalation reject | 14 dedicated tests | fail closed |
 | P59D | DONE | propagate schema evidence and peer handoff | 604 all-color; 1499 pass/1 skip/36 known; latest-main merge 25 pass | evidence commit | main owner decides merge |
-| P60A | IN PROGRESS | freeze successor runtime-evidence binding | replace unbound P45 runtime booleans with source/capability/target-bound proof records | plan commit | consumer evidence only |
-| P60B | READY | implement runtime bundle and decision | distinguish host/device execution from cross-compile/link/object evidence | code/schema/tests | no native implementation |
-| P60C | BLOCKED ON P60B | prove identity/proof-class/four-target closure | foreign declaration/capability, duplicate/missing target, weak proof, replay/hash/fact tamper reject | adversarial tests | fail closed |
-| P60D | BLOCKED ON P60C | propagate evidence and map stable producer reports | all-color/latest-main plus exact producer fixture when published | evidence commit | runtime evidence is not algorithm promotion |
+| P60A | DONE | freeze successor runtime-evidence binding | replace unbound P45 runtime booleans with source/capability/target-bound proof records | `7972bc7` | consumer evidence only |
+| P60B | DONE | implement runtime bundle and decision | distinguish host/device execution from cross-compile/link/object evidence | `eee47a2`; code/schema/tests | no native implementation |
+| P60C | DONE | prove identity/proof-class/four-target closure | foreign declaration/capability, duplicate/missing target, weak proof, replay/hash/fact tamper reject | 17 dedicated tests | fail closed |
+| P60D | DONE | propagate evidence and reserve exact producer mapping | 621 all-color; 1516 pass/1 skip/36 known; latest-main merge 42 pass | evidence commit | real mapping waits for a fixed successor declaration |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

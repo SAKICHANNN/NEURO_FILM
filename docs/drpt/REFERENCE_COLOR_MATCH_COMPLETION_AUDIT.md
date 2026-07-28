@@ -48,6 +48,7 @@ wire contract and not an algorithm promotion.
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile | COMPLETE for host identity and cross-target core compilation | Android/Apple device runtime, SDK/app/JNI/Swift boundary and real invocation remain open / platform integration |
 | Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
+| Successor target-runtime evidence | P60 binds exact declaration/producer/capability/profile and per-target environment matrix, binary/report hashes, proof class and repeated factual gates | COMPLETE AS CONSUMER EVIDENCE CONTRACT, REAL MATRIX PARTIAL/UNMAPPED | Publish a fixed successor declaration and map actual Windows/macOS/iOS/Android runtime reports; compile/link evidence never substitutes / D-PCT then Neuro-Film |
 | Reference-only shared batch semantics | P47 binds one source-free operator to ordered N source-bound exact output receipts | COMPLETE AS CONSUMER CONTRACT | Map only to a producer build/apply fixture that proves source-free bundle construction / D-PCT then Neuro-Film |
 | Shared-batch numeric safety | P48 binds per-source producer facts, verifies output extrema/new boundary and falls back atomically | COMPLETE AS CONSUMER GUARD | Map exact producer diagnostics then replay before any shared-path authorization / D-PCT then Neuro-Film |
 | Shared-path product authorization | P49 requires product-ready P45 admission, exact P47/P48 binding and an independent promoted decision for the same evidence/model/options | COMPLETE AS FAIL-CLOSED STAGING AUTHORIZATION | A real callable shared producer must first pass every lock; declaration booleans alone are insufficient / D-PCT then Neuro-Film |
@@ -102,6 +103,8 @@ The shortest honest path to a non-identity D-PCT-backed product render is:
     transaction or product state.
 13. P59 validates the manifest against its strict schema before Git-backed
     reconstruction; neither validation stage performs the merge.
+14. P60 must bind actual host/device runtime reports to the exact successor
+    declaration. P45 runtime booleans alone are not factual runtime evidence.
 
 ## Non-blocking work policy
 
