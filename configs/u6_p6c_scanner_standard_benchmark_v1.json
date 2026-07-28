@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p6c_scanner_standard_benchmark_contract.v1",
+  "node": "U6.P6C",
+  "parents": {
+    "p6b_decision_sha256": "8a8d44ba0c4841ab669c7ebd1793e462872af029bd9fd3de06ec5ebddecda304"
+  },
+  "claim_ceiling": "generic-scanner-float32-standard-runtime-development",
+  "candidate": {
+    "arithmetic": "explicit-float32",
+    "profile": "scanner_b",
+    "global_context_mean_accumulator": "float64-cast-once-to-float32",
+    "local_spatial_arithmetic": "float32",
+    "counter_noise_arithmetic": "float32-after-coordinate-normal-generation",
+    "hard_clip_forbidden": true
+  },
+  "parity_fixture": {
+    "shape": [
+      1025,
+      259
+    ],
+    "seed": 2026072804,
+    "maximum_abs_vs_float64_reference": 0.000005,
+    "row_partitions": [
+      31,
+      257
+    ]
+  },
+  "benchmark": {
+    "shape": [
+      4000,
+      6000
+    ],
+    "input": "deterministic three-channel bounded coordinate gradient v1",
+    "row_partitions": [
+      257,
+      1024
+    ],
+    "rss_sample_interval_seconds": 0.05,
+    "worker_timeout_seconds": 180.0
+  },
+  "automatic_gates": {
+    "parity_max_abs": 0.000005,
+    "partition_hashes_exact": true,
+    "repeat_stable_identity": true,
+    "finite_bounded_domain": true,
+    "worker_apply_seconds_max": 45.0,
+    "peak_process_tree_rss_bytes_max": 1610612736,
+    "worker_timeout": false
+  },
+  "forbidden_fallbacks": [
+    "drop spectral, flare, Dmax, MTF or noise stages",
+    "recompute global mean per chunk",
+    "change profile or benchmark after observing runtime",
+    "hard clip or quantize scanner output",
+    "claim complete renderer, mobile runtime or calibrated scanner performance"
+  ],
+  "branch_rule": {
+    "automatic_pass": "retain Standard-tier float32 scanner compiler and proceed to combined colour-plus-physics evaluation",
+    "automatic_fail": "retain float64 reference scanner and profile boundary; optimize under a separately frozen candidate"
+  }
+}
