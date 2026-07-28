@@ -1,4 +1,4 @@
-"""Independent RAW source acquisition and integrity preflight for U5.R2AI1S."""
+"""Independent RAW source acquisition and integrity preflight."""
 
 from __future__ import annotations
 
@@ -79,11 +79,17 @@ def validate_contract(root: Path, config: dict[str, Any]) -> None:
     if max(makes.values()) > int(selection["maximum_rows_per_make"]):
         raise ConfirmationSourceError("maximum_rows_per_make exceeded")
 
-    for key in ("parent_decision",):
-        item = config[key]
-        path = root / item["path"]
-        if not path.is_file() or sha256_file(path) != item["sha256"]:
-            raise ConfirmationSourceError(f"{key} hash mismatch")
+    parent = config["parent_decision"]
+    parent_path = root / parent["path"]
+    if not parent_path.is_file() or sha256_file(parent_path) != parent["sha256"]:
+        raise ConfirmationSourceError("parent_decision hash mismatch")
+    parent_payload = json.loads(parent_path.read_text(encoding="utf-8"))
+    required_decision = parent.get("required_decision")
+    if (
+        required_decision is not None
+        and parent_payload.get("decision") != required_decision
+    ):
+        raise ConfirmationSourceError("parent_decision state mismatch")
     development = root / config["preflight"]["development_manifest"]
     if (
         not development.is_file()
@@ -91,6 +97,15 @@ def validate_contract(root: Path, config: dict[str, Any]) -> None:
         != config["preflight"]["development_manifest_sha256"]
     ):
         raise ConfirmationSourceError("development manifest hash mismatch")
+    for comparison in config["preflight"].get("comparison_manifests", []):
+        path = root / comparison["path"]
+        if (
+            comparison.get("format")
+            not in {"frozen_set", "rawpixls_manifest"}
+            or not path.is_file()
+            or sha256_file(path) != comparison["sha256"]
+        ):
+            raise ConfirmationSourceError("comparison manifest drift")
     if config.get("training_allowed") or config.get("operator_fitting_allowed"):
         raise ConfirmationSourceError("preflight must forbid learning/fitting")
 
@@ -265,12 +280,8 @@ def cross_pool_pairs(
     return exact, near
 
 
-def _development_rows(root: Path, config: dict[str, Any]) -> list[dict[str, Any]]:
-    document = json.loads(
-        (root / config["preflight"]["development_manifest"]).read_text(
-            encoding="utf-8"
-        )
-    )
+def _frozen_set_rows(root: Path, path: Path) -> list[dict[str, Any]]:
+    document = json.loads(path.read_text(encoding="utf-8"))
     rows: list[dict[str, Any]] = []
     for source in document["frozen_set"]["samples"]:
         path = root / source["source_path"]
@@ -286,8 +297,49 @@ def _development_rows(root: Path, config: dict[str, Any]) -> list[dict[str, Any]
     return rows
 
 
+def _comparison_rows(
+    root: Path, config: dict[str, Any]
+) -> list[dict[str, Any]]:
+    descriptors = config["preflight"].get("comparison_manifests")
+    if not descriptors:
+        return _frozen_set_rows(
+            root, root / config["preflight"]["development_manifest"]
+        )
+    rows: list[dict[str, Any]] = []
+    for descriptor in descriptors:
+        path = root / descriptor["path"]
+        if descriptor["format"] == "frozen_set":
+            rows.extend(_frozen_set_rows(root, path))
+            continue
+        document = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(document, list):
+            raise ConfirmationSourceError("rawpixls manifest must be a list")
+        for source in document:
+            decoded_path = root / str(source["decoded_path"])
+            if sha256_file(decoded_path) != source["decoded_sha256"]:
+                raise ConfirmationSourceError(
+                    "comparison decoded-image hash mismatch"
+                )
+            rows.append(
+                {
+                    "id": str(source["id"]),
+                    "decoded_sha256": str(source["decoded_sha256"]),
+                    "dhash64": str(source["dhash64"]),
+                }
+            )
+    identities = [
+        (row["decoded_sha256"], row["dhash64"]) for row in rows
+    ]
+    if len(set(identities)) != len(identities):
+        raise ConfirmationSourceError("comparison manifests overlap")
+    return rows
+
+
 def make_contact_sheet(
-    root: Path, rows: list[dict[str, Any]], output_path: Path
+    root: Path,
+    rows: list[dict[str, Any]],
+    output_path: Path,
+    experiment_id: str,
 ) -> None:
     font = ImageFont.load_default()
     tiles: list[Image.Image] = []
@@ -312,7 +364,7 @@ def make_contact_sheet(
     )
     ImageDraw.Draw(sheet).text(
         (8, 10),
-        "U5.R2AI1S source-only neutral RAW preflight (operator not applied)",
+        f"{experiment_id} source-only RAW preflight (operator not applied)",
         fill="black",
         font=font,
     )
@@ -409,7 +461,7 @@ def run_preflight(
             failures.append({"id": str(source["id"]), "error": repr(exc)})
 
     within_exact, within_near = duplicate_pairs(rows, threshold=4)
-    development = _development_rows(root, config)
+    development = _comparison_rows(root, config)
     cross_exact, cross_near = cross_pool_pairs(
         rows, development, threshold=4
     )
@@ -469,7 +521,12 @@ def run_preflight(
     report_path.write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
-    make_contact_sheet(root, rows, output_dir / "source_contact_sheet.png")
+    make_contact_sheet(
+        root,
+        rows,
+        output_dir / "source_contact_sheet.png",
+        str(config["experiment_id"]),
+    )
     return {
         "report": report,
         "manifest_path": manifest_path,
