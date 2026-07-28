@@ -337,7 +337,8 @@ Pilot requires controlled charts, -3EV..+3EV sequences, daylight/tungsten/LED/mi
 | Done/closed | U5.R2AJ0C1 | Repeat-exact execution finds 194/194 stylish/non-basic candidates structurally vetoed, universally by negative minimum determinant; zero photographs and no rescue |
 | Done/method prior only | U5.R2AK0 | NCT Bezier trajectories do not repair per-image distribution endpoint identifiability; no reproducible code package or direct execution opens |
 | Done/closed | U5.R2AK1 | The quadratic-time flow is accurate and structurally safe but loses both frozen relative-capacity controls; no capacity or photograph rescue |
-| Ready/source audit | U5.R2AL0 | Isolate a clean-room analytic colour-selective monotone-curve representation from the incompatible NamedCurves learned pipeline and assets |
+| Done/source audit | U5.R2AL0 | External learned pipeline/code/assets close; retain only the clean-room analytic colour-selective curve hypothesis |
+| Ready/implementation | U5.R2AL1 | Run the frozen synthetic five-sector/16-curve capacity pilot against global curves and stationary K3; zero photograph or film-pixel access |
 | Done/metadata pass | SF0.4 | Commons froze 658 metadata rows; three exact-stock categories pass, with no pixels downloaded and no stock-signal claim |
 | Done/one-stock pass | SF0.5 | 36 Commons derivatives are clean; Ektar passes source groups, Superia/Gold stop; learning remains forbidden |
 | P0 named-stock sources | SF0.6 | Obtain at least two further exact stocks that independently pass derivative-rights, author-group and content gates |

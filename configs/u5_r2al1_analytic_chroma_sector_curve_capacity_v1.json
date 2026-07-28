@@ -1,0 +1,206 @@
+{
+  "schema_version": "u5-r2al1-analytic-chroma-sector-curve-capacity-v1",
+  "experiment_id": "u5.r2al1-analytic-chroma-sector-curve-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AL1",
+  "representation": {
+    "working_space": "linear_srgb",
+    "direction_space": "project_d65_cielab_ab",
+    "neutral_gate_space": "orthonormal_linear_rgb_opponent",
+    "chromatic_sector_count": 5,
+    "sector_centres_degrees": [
+      0.0,
+      72.0,
+      144.0,
+      216.0,
+      288.0
+    ],
+    "direction_softening_lab": 4.0,
+    "direction_concentration": 4.0,
+    "neutral_chroma_half_activation": 0.08,
+    "curve_kind": "degree6_bernstein_positive_normalized_increments",
+    "curve_control_point_count": 7,
+    "minimum_control_increment": 0.04,
+    "achromatic_curve_count": 1,
+    "achromatic_curve_shared_across_rgb": true,
+    "chromatic_rgb_curve_count": 15,
+    "raw_fit_parameter_count": 96,
+    "effective_parameter_count": 80,
+    "strength_values": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "synthetic_truth": {
+    "kind": "ordered_composition_of_two_smooth_cube_residual_stages",
+    "direction_softening_lab": 5.0,
+    "direction_concentration": 5.5,
+    "neutral_chroma_half_activation": 0.07,
+    "gain_scale": 0.4,
+    "stage_a": [
+      {
+        "angle_degrees": 15.0,
+        "rgb_gain": [
+          0.5,
+          -0.2,
+          -0.28
+        ],
+        "luma_slope": -0.35
+      },
+      {
+        "angle_degrees": 150.0,
+        "rgb_gain": [
+          -0.18,
+          0.38,
+          -0.15
+        ],
+        "luma_slope": 0.25
+      },
+      {
+        "angle_degrees": 260.0,
+        "rgb_gain": [
+          -0.22,
+          -0.12,
+          0.48
+        ],
+        "luma_slope": 0.4
+      }
+    ],
+    "stage_b": [
+      {
+        "angle_degrees": 65.0,
+        "rgb_gain": [
+          0.32,
+          0.18,
+          -0.35
+        ],
+        "luma_slope": 0.3
+      },
+      {
+        "angle_degrees": 205.0,
+        "rgb_gain": [
+          -0.3,
+          0.12,
+          0.42
+        ],
+        "luma_slope": -0.25
+      },
+      {
+        "angle_degrees": 320.0,
+        "rgb_gain": [
+          0.42,
+          -0.28,
+          0.16
+        ],
+        "luma_slope": 0.2
+      }
+    ],
+    "target_orders": [
+      "stage_a_then_stage_b",
+      "stage_b_then_stage_a"
+    ],
+    "minimum_target_pair_rgb_rmse": 0.002,
+    "minimum_target_jacobian_determinant": 0.2,
+    "maximum_target_jacobian_spectral_norm": 3.0,
+    "maximum_target_cube_violation": 1e-12
+  },
+  "fit": {
+    "dtype": "float64",
+    "device": "cpu",
+    "deterministic_algorithms": true,
+    "threads": 1,
+    "seed": 71281,
+    "development_grid_size": 11,
+    "confirmation_grid_size": 13,
+    "confirmation_grid": "cell_centres_plus_all_faces_edges_vertices",
+    "restarts": 4,
+    "steps": 2500,
+    "learning_rate": 0.03,
+    "optimizer": "adam",
+    "identity_regularization": 0.0001,
+    "controls": {
+      "global_degree6_bernstein_curves": {
+        "raw_fit_parameter_count": 18,
+        "effective_parameter_count": 15,
+        "same_increment_floor_restarts_steps_optimizer": true
+      },
+      "stationary_cube_flow_k3": {
+        "raw_fit_parameter_count": 81,
+        "integration_steps": 8,
+        "same_restarts_steps_optimizer": true
+      }
+    }
+  },
+  "structural_audit": {
+    "cube_grid_size": 25,
+    "jacobian_grid_size": 21,
+    "jacobian_finite_difference_step": 1e-05,
+    "inverse_sample_seed": 71282,
+    "inverse_sample_count": 1024,
+    "inverse_max_iterations": 30,
+    "partition_chunk_sizes": [
+      1,
+      17,
+      257,
+      4096
+    ],
+    "hue_boundary_radius": 0.35,
+    "hue_boundary_delta_degrees": 0.0001,
+    "hue_boundary_luma_values": [
+      0.2,
+      0.5,
+      0.8
+    ],
+    "red_ramp_sample_count": 4097
+  },
+  "gates": {
+    "identity_maximum_absolute_error": 1e-12,
+    "partition_sum_maximum_absolute_error": 1e-12,
+    "minimum_partition_weight": 0.0,
+    "neutral_axis_maximum_channel_spread": 1e-10,
+    "cube_minimum": -1e-12,
+    "cube_maximum": 1.000000000001,
+    "minimum_jacobian_determinant": 0.1,
+    "maximum_negative_jacobian_fraction": 0.0,
+    "maximum_jacobian_spectral_norm": 4.0,
+    "inverse_roundtrip_maximum_absolute_error": 1e-05,
+    "serialization_replay_maximum_absolute_error": 1e-12,
+    "partition_replay_maximum_absolute_error": 1e-12,
+    "hue_boundary_maximum_output_jump": 1e-05,
+    "strength_path_maximum_collinearity_error": 1e-12,
+    "strength_path_maximum_order_error": 1e-12,
+    "red_ramp_minimum_luma_step": -1e-05,
+    "red_ramp_maximum_second_difference": 0.0005,
+    "candidate_confirmation_rgb_rmse_maximum": 0.006,
+    "candidate_improvement_over_global_curves_fraction_minimum": 0.25,
+    "candidate_to_stationary_k3_rmse_ratio_maximum": 1.2,
+    "both_target_orders_must_pass": true
+  },
+  "execution": {
+    "independent_processes": 2,
+    "reports_must_be_byte_identical": true,
+    "tracked_worktree_must_be_clean": true,
+    "photograph_access_allowed": false,
+    "film_pixel_access_allowed": false,
+    "external_code_checkpoint_asset_or_output_access_allowed": false,
+    "network_access_allowed": false,
+    "gpu_allowed": false
+  },
+  "branch_rules": {
+    "automatic_pass": "retain the fixed analytic representation as a separately gated photographic challenger; do not open film fitting training stock claims or product integration",
+    "absolute_or_structural_failure": "close the fixed representation without changing sectors curves thresholds targets optimizer or data",
+    "global_curve_failure": "close because colour-selective capacity is not established",
+    "stationary_k3_efficiency_failure": "close because the representation is not competitive with an existing similar-budget explicit operator",
+    "forbidden_rescue": [
+      "add or move sector centres",
+      "change chroma or direction bandwidths",
+      "add curves or control points",
+      "change truth stages target orders grids optimizer steps or gates",
+      "render photographs",
+      "access film pixels or external implementation assets"
+    ]
+  },
+  "claim_ceiling": "repeat-exact clean-room synthetic representation-capacity and structural-safety evidence for one fixed analytic colour-selective monotone-curve operator; no photograph film-pixel fitting unpaired identification stock calibration preference severe-safety or production claim"
+}

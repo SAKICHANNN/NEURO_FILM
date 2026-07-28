@@ -6046,3 +6046,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   controls, split, optimizer and cube/Jacobian/inverse/replay/strength gates.
   Zero photograph, film-pixel and external asset access; no film, stock,
   preference, safety or product claim. Goal remains ACTIVE.
+
+## 2026-07-28 - Freeze U5.R2AL1 analytic chroma-sector capacity contract
+
+- **Node/contract:** `ULT > U5 > U5.R2 > U5.R2AL1`; config raw SHA-256
+  `53fe4134...0559`. The fixed operator has five continuous D65-Lab direction
+  sectors, an exact linear-opponent neutral gate, one shared achromatic curve,
+  15 chromatic RGB curves and 96 raw/80 effective degree-six Bernstein
+  parameters. No learned naming map, threshold or spatial feature exists.
+- **Truth/controls:** two config-defined smooth cube-residual stages are
+  composed in both orders. A pre-freeze equation-only check gives pair RMSE
+  `.00204497`, exact `[0,1]` range, minimum determinants `.51975/.52039`,
+  maximum norms `2.73176/2.87400` and zero non-positive samples. Formal code
+  must reconstruct these facts. Controls are same-budget-protocol global
+  curves and stationary K3.
+- **Gates/branch:** development `11^3`, independent confirmation `13^3` plus
+  boundary; deterministic float64 CPU; exact partition/neutral/range,
+  continuity, Jacobian/inverse/replay, strength and red-ramp checks. Candidate
+  must improve 25% over global curves and stay within 1.20x K3 on both orders.
+  Any failure closes without sector/curve/truth/fit/gate/photo/data rescue.
+- **Boundary/handoff:** config and contract precede implementation. Network,
+  GPU, photographs, film pixels and external code/checkpoint/assets are
+  forbidden. A pass remains synthetic representation evidence only. AL1
+  implementation is next and Goal remains ACTIVE.

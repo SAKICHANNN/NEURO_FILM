@@ -65,6 +65,14 @@ colour-naming asset, so code, checkpoints and assets are forbidden. `U5.R2AL1`
 must first freeze a synthetic-only clean-room analytic chroma-sector curve
 capacity contract. No new data or photograph access is needed or allowed.
 
+`U5.R2AL1` is frozen at config `53fe4134...0559` before operator code. It
+compares one 96-raw/80-effective-parameter five-sector curve bank with global
+curves and stationary K3 on two independently defined smooth noncommuting
+colour reactions. Both orders must pass exact neutral/range/continuity,
+Jacobian/inverse/replay, red-ramp and strength-path gates, beat global curves
+by 25%, and stay within 1.20x of K3. Failure closes the fixed representation;
+no sector, curve, target, fit, threshold, photograph or data rescue is allowed.
+
 The Goal now also has an explicit autonomous GCP overlay. `GOV.GCP1` freezes a
 USD 2,000 hard ceiling, resource prefix `nfg019f4b76`, required labels, an
 ownership ledger and strict liveness/idle-timeout/cleanup rules. Only resources
