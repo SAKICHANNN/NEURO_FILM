@@ -12,6 +12,7 @@ import sys
 from typing import Any
 
 import numpy as np
+import torch
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -19,11 +20,12 @@ if str(ROOT) not in sys.path:
 
 from src.roll2film.cube_diffeomorphic_flow import (  # noqa: E402
     CubeDiffeomorphicColourFlow,
+    _smoothness_loss,
     finite_difference_jacobians,
-    fit_cube_diffeomorphic_colour_flow,
 )
 from src.roll2film.time_dependent_cube_flow import (  # noqa: E402
     TimeDependentCubeColourFlow,
+    _sample_grid_torch_vectorized,
     fit_time_dependent_cube_colour_flow,
 )
 
@@ -179,21 +181,61 @@ def _fit_stationary(
 ) -> CubeDiffeomorphicColourFlow:
     control = config["stationary_controls"][control_name]
     fit = config["fit"]
-    return fit_cube_diffeomorphic_colour_flow(
-        source,
-        target,
-        axis_size=int(control["velocity_grid_axis_size"]),
-        integration_steps=int(control["integration_steps"]),
-        maximum_absolute_coefficient=float(
-            config["candidate"]["maximum_absolute_coefficient"]
-        ),
-        seed=int(fit["seed"]),
-        steps=int(fit["steps"]),
-        learning_rate=float(fit["learning_rate"]),
-        coefficient_l2=float(fit["coefficient_l2"]),
-        velocity_smoothness_l2=float(fit["spatial_smoothness_l2"]),
-        gradient_clip_norm=float(fit["gradient_clip_norm"]),
-        thread_count=int(fit["thread_count"]),
+    axis_size = int(control["velocity_grid_axis_size"])
+    integration_steps = int(control["integration_steps"])
+    coefficient_cap = float(
+        config["candidate"]["maximum_absolute_coefficient"]
+    )
+    torch.manual_seed(int(fit["seed"]))
+    torch.use_deterministic_algorithms(True)
+    torch.set_num_threads(int(fit["thread_count"]))
+    source_tensor = torch.from_numpy(source.reshape(-1, 3).copy())
+    target_tensor = torch.from_numpy(target.reshape(-1, 3).copy())
+    grid = torch.zeros(
+        (axis_size, axis_size, axis_size, 3),
+        dtype=torch.float64,
+        requires_grad=True,
+    )
+    optimizer = torch.optim.Adam(
+        [grid], lr=float(fit["learning_rate"])
+    )
+    step = 1.0 / integration_steps
+
+    def velocity(values: torch.Tensor) -> torch.Tensor:
+        return (
+            values
+            * (1.0 - values)
+            * _sample_grid_torch_vectorized(values, grid)
+        )
+
+    for _ in range(int(fit["steps"])):
+        optimizer.zero_grad(set_to_none=True)
+        current = source_tensor
+        for _integration_index in range(integration_steps):
+            k1 = velocity(current)
+            k2 = velocity(current + 0.5 * step * k1)
+            k3 = velocity(current + 0.5 * step * k2)
+            k4 = velocity(current + step * k3)
+            current = current + (step / 6.0) * (
+                k1 + 2.0 * k2 + 2.0 * k3 + k4
+            )
+        loss = torch.mean((current - target_tensor) ** 2)
+        coefficient_l2 = float(fit["coefficient_l2"])
+        if coefficient_l2:
+            loss = loss + coefficient_l2 * torch.mean(grid**2)
+        smoothness_l2 = float(fit["spatial_smoothness_l2"])
+        if smoothness_l2:
+            loss = loss + smoothness_l2 * _smoothness_loss(grid)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(
+            [grid], float(fit["gradient_clip_norm"])
+        )
+        optimizer.step()
+        with torch.no_grad():
+            grid.clamp_(-coefficient_cap, coefficient_cap)
+    return CubeDiffeomorphicColourFlow(
+        velocity_grid=grid.detach().cpu().numpy(),
+        integration_steps=integration_steps,
     )
 
 

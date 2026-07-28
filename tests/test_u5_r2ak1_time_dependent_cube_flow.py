@@ -1,17 +1,29 @@
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 
 import numpy as np
+import torch
 
 from scripts.run_u5_r2ak1_time_dependent_cube_flow_capacity import (
+    _fit_stationary,
     _source_fields,
     _target,
 )
-from src.roll2film.cube_diffeomorphic_flow import finite_difference_jacobians
+from src.roll2film.cube_diffeomorphic_flow import (
+    CubeDiffeomorphicColourFlow,
+    _sample_grid_numpy,
+    _sample_grid_torch,
+    finite_difference_jacobians,
+    fit_cube_diffeomorphic_colour_flow,
+)
 from src.roll2film.time_dependent_cube_flow import (
     TimeDependentCubeColourFlow,
+    _bernstein_weights_numpy,
+    _sample_grid_torch_vectorized,
+    _velocity_numpy,
     fit_time_dependent_cube_colour_flow,
 )
 
@@ -91,6 +103,106 @@ def test_all_cube_boundary_faces_are_invariant() -> None:
             assert np.array_equal(
                 output[mask, channel], rgb[mask, channel]
             )
+
+
+def test_blend_before_sampling_matches_explicit_temporal_sum() -> None:
+    operator = _test_operator()
+    rgb = _rgb_grid(5, interior=True).reshape(-1, 3)
+    time = 0.37
+    weights = _bernstein_weights_numpy(time)
+    explicit = np.zeros_like(rgb)
+    for index in range(3):
+        explicit += weights[index] * _sample_grid_numpy(
+            rgb, operator.control_grids[index]
+        )
+    explicit *= rgb * (1.0 - rgb)
+    assert np.max(
+        np.abs(
+            _velocity_numpy(
+                rgb, time, operator.control_grids
+            )
+            - explicit
+        )
+    ) < 1e-15
+
+
+def test_vectorized_torch_sampler_matches_reference_and_gradients() -> None:
+    generator = torch.Generator().manual_seed(280729)
+    rgb = torch.rand(
+        (37, 3),
+        dtype=torch.float64,
+        generator=generator,
+        requires_grad=True,
+    )
+    grid = torch.rand(
+        (4, 4, 4, 3),
+        dtype=torch.float64,
+        generator=generator,
+        requires_grad=True,
+    )
+    reference = _sample_grid_torch(rgb, grid)
+    vectorized = _sample_grid_torch_vectorized(rgb, grid)
+    assert torch.max(torch.abs(reference - vectorized)).item() < 1e-15
+    reference.sum().backward(retain_graph=True)
+    reference_rgb_gradient = rgb.grad.detach().clone()
+    reference_grid_gradient = grid.grad.detach().clone()
+    rgb.grad.zero_()
+    grid.grad.zero_()
+    vectorized.sum().backward()
+    assert torch.max(
+        torch.abs(rgb.grad - reference_rgb_gradient)
+    ).item() < 1e-14
+    assert torch.max(
+        torch.abs(grid.grad - reference_grid_gradient)
+    ).item() < 1e-14
+
+
+def test_vectorized_stationary_control_matches_reference_fitter() -> None:
+    config = json.loads(
+        (
+            Path(__file__).resolve().parents[1]
+            / "configs/u5_r2ak1_time_dependent_cube_flow_capacity_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    config = copy.deepcopy(config)
+    config["fit"]["steps"] = 8
+    config["stationary_controls"]["lower_parameter_control"][
+        "integration_steps"
+    ] = 6
+    source = _rgb_grid(3, interior=True).reshape(-1, 3)
+    truth_grid = np.zeros((2, 2, 2, 3), dtype=np.float64)
+    truth_grid[..., 0] = 0.3
+    truth_grid[..., 1] = -0.2
+    truth_grid[..., 2] = 0.1
+    target = CubeDiffeomorphicColourFlow(
+        truth_grid, integration_steps=6
+    ).apply(source)
+    vectorized = _fit_stationary(
+        source,
+        target,
+        config,
+        control_name="lower_parameter_control",
+    )
+    fit = config["fit"]
+    reference = fit_cube_diffeomorphic_colour_flow(
+        source,
+        target,
+        axis_size=4,
+        integration_steps=6,
+        maximum_absolute_coefficient=6.0,
+        seed=int(fit["seed"]),
+        steps=int(fit["steps"]),
+        learning_rate=float(fit["learning_rate"]),
+        coefficient_l2=float(fit["coefficient_l2"]),
+        velocity_smoothness_l2=float(
+            fit["spatial_smoothness_l2"]
+        ),
+        gradient_clip_norm=float(fit["gradient_clip_norm"]),
+        thread_count=int(fit["thread_count"]),
+    )
+    assert np.max(
+        np.abs(vectorized.velocity_grid - reference.velocity_grid)
+    ) < 1e-14
 
 
 def test_deterministic_fit_recovers_time_varying_teacher() -> None:

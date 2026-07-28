@@ -7,10 +7,10 @@ from typing import Any
 
 import numpy as np
 import torch
+import torch.nn.functional as torch_functional
 
 from .cube_diffeomorphic_flow import (
     _sample_grid_numpy,
-    _sample_grid_torch,
     _smoothness_loss,
     _validate_rgb,
 )
@@ -55,11 +55,10 @@ def _velocity_numpy(
     control_grids: np.ndarray,
 ) -> np.ndarray:
     weights = _bernstein_weights_numpy(time)
-    field = np.zeros_like(rgb)
-    for index in range(_TEMPORAL_CONTROL_COUNT):
-        field += weights[index] * _sample_grid_numpy(
-            rgb, control_grids[index]
-        )
+    blended_grid = np.tensordot(
+        weights, control_grids, axes=((0,), (0,))
+    )
+    field = _sample_grid_numpy(rgb, blended_grid)
     return rgb * (1.0 - rgb) * field
 
 
@@ -109,6 +108,28 @@ def _bernstein_weights_torch(
     )
 
 
+def _sample_grid_torch_vectorized(
+    rgb: torch.Tensor,
+    grid: torch.Tensor,
+) -> torch.Tensor:
+    """Sample one RGB-indexed grid through deterministic CPU trilinear code."""
+
+    field = grid.permute(3, 0, 1, 2).unsqueeze(0)
+    # grid_sample indexes its volume as (x=W, y=H, z=D), whereas the
+    # explicit operator stores axes as (red=D, green=H, blue=W).
+    coordinates = (
+        2.0 * rgb[:, [2, 1, 0]] - 1.0
+    ).reshape(1, -1, 1, 1, 3)
+    sampled = torch_functional.grid_sample(
+        field,
+        coordinates,
+        mode="bilinear",
+        padding_mode="border",
+        align_corners=True,
+    )
+    return sampled[0, :, :, 0, 0].transpose(0, 1)
+
+
 def _velocity_torch(
     rgb: torch.Tensor,
     time: float,
@@ -119,11 +140,10 @@ def _velocity_torch(
         dtype=rgb.dtype,
         device=rgb.device,
     )
-    field = torch.zeros_like(rgb)
-    for index in range(_TEMPORAL_CONTROL_COUNT):
-        field = field + weights[index] * _sample_grid_torch(
-            rgb, control_grids[index]
-        )
+    blended_grid = torch.tensordot(
+        weights, control_grids, dims=([0], [0])
+    )
+    field = _sample_grid_torch_vectorized(rgb, blended_grid)
     return rgb * (1.0 - rgb) * field
 
 
