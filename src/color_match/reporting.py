@@ -6,7 +6,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
-from src.inference.render_contract import atomic_write_json, sha256_file
+from src.inference.render_contract import atomic_write_json
 
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .contracts import ReferenceMatchContractError
@@ -15,6 +15,7 @@ from .files import (
     FileReferenceMatchResult,
     FileReferenceReplayResult,
 )
+from .transaction_lock import target_transaction_lock
 
 
 REFERENCE_MATCH_REPORT_SCHEMA_ID = "neuro-film.reference-match-report.v1"
@@ -176,8 +177,11 @@ def save_file_match_report(
         raise ReferenceMatchContractError(
             "reference-match report path must not be a directory"
         )
-    atomic_write_json(destination, build_file_match_report(result))
-    return sha256_file(destination)
+    with target_transaction_lock((destination,)):
+        return atomic_write_json(
+            destination,
+            build_file_match_report(result),
+        )
 
 
 def save_file_replay_report(
@@ -204,8 +208,11 @@ def save_file_replay_report(
         raise ReferenceMatchContractError(
             "reference-match replay report path must not be a directory"
         )
-    atomic_write_json(destination, build_file_replay_report(result))
-    return sha256_file(destination)
+    with target_transaction_lock((destination,)):
+        return atomic_write_json(
+            destination,
+            build_file_replay_report(result),
+        )
 
 
 __all__ = [

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import threading
 
 import numpy as np
 import pytest
@@ -188,6 +189,54 @@ def test_report_never_overwrites_run_artifacts(
     }[protected]
     with pytest.raises(ReferenceMatchContractError, match="overwrite"):
         save_file_match_report(result, target)
+
+
+def test_report_save_rejects_concurrent_same_destination(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    from src.color_match import reporting
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    report_path = tmp_path / "report.json"
+    _image(reference, 27437)
+    _image(source, 27438)
+    result = match_reference_files(reference, [source], [output])
+    entered = threading.Event()
+    release = threading.Event()
+    original_write = reporting.atomic_write_json
+    first_errors: list[BaseException] = []
+
+    def blocked_write(path, payload):
+        entered.set()
+        assert release.wait(timeout=10)
+        return original_write(path, payload)
+
+    monkeypatch.setattr(reporting, "atomic_write_json", blocked_write)
+
+    def first_writer() -> None:
+        try:
+            save_file_match_report(result, report_path)
+        except BaseException as exc:  # pragma: no cover - diagnostic capture.
+            first_errors.append(exc)
+
+    thread = threading.Thread(target=first_writer)
+    thread.start()
+    assert entered.wait(timeout=10)
+    try:
+        with pytest.raises(
+            ReferenceMatchContractError,
+            match="already locked",
+        ):
+            save_file_match_report(result, report_path)
+    finally:
+        release.set()
+        thread.join(timeout=10)
+    assert not thread.is_alive()
+    assert not first_errors
+    assert report_path.is_file()
 
 
 def test_cli_runs_one_reference_n_sources_and_writes_report(
