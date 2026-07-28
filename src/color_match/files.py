@@ -1058,6 +1058,10 @@ def match_reference_files(
         label="reference",
     )
     recipe = fit_reference_look(reference_working, policy=policy)
+    # The recipe owns only fitted statistics and exact reference identities.
+    # Release the decoded pixels before the first source is decoded so large
+    # reference and source WorkingImages do not overlap for the whole batch.
+    del reference_working
 
     def report_factory(
         prepared: tuple[FileReferenceMatchOutput, ...],

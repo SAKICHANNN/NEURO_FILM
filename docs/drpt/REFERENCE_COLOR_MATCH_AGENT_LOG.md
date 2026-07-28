@@ -3840,3 +3840,18 @@
   unrelated deselections; its owned worktree was removed.
 - All 380 discovered v1-v35 manifest tests pass. V35 supersedes v34 and is the
   current `review-ready-not-merged` payload; main owns merge.
+
+## 2026-07-29 - Release fitted reference pixels before batch rendering
+
+- P151 removes the decoded reference `WorkingImage` after its immutable recipe
+  statistics and identities have been fitted, before the first source decode.
+  This avoids retaining an otherwise unused full-resolution float32 reference
+  throughout the ordered N-source render.
+- A lifecycle regression proves the reference object is still live during fit
+  and collectible before `_execute_file_render`; algorithms, recipe identity,
+  wire schemas, supported rails and transaction semantics are unchanged.
+- All 941 non-manifest color-match tests pass with five explicit environment
+  skips. The broader repository run has 1853 passes, six skips and the same 36
+  missing ignored-output or concurrent main-asset failures, with no
+  color-match failure. Producer R0DF is a rejected external baseline and adds
+  no consumer interface action.

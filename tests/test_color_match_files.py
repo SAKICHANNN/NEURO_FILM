@@ -6,6 +6,7 @@ import subprocess
 import sys
 import threading
 import time
+import weakref
 
 import numpy as np
 import pytest
@@ -610,6 +611,67 @@ def test_file_adapter_rejects_committed_bytes_that_differ_from_stage(
     assert recipe.read_bytes() == b"old-recipe"
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
     assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_match_releases_reference_pixels_before_source_render(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    reference.write_bytes(b"reference")
+    source.write_bytes(b"source")
+    reference_ref: weakref.ReferenceType[WorkingImage] | None = None
+
+    def load_reference(
+        path: Path,
+        *,
+        label: str,
+    ) -> tuple[WorkingImage, str]:
+        nonlocal reference_ref
+        assert path == reference
+        assert label == "reference"
+        image = WorkingImage(
+            pixels=np.zeros((2, 3, 3), dtype=np.float32),
+            working_space="linear_srgb",
+            transfer_state="display_linear",
+            source_transfer_state="display_referred",
+            source_profile=SourceProfile("assumed_srgb", "lifetime test"),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=8,
+            source_path=path,
+            warnings=[],
+        )
+        reference_ref = weakref.ref(image)
+        return image, "1" * 64
+
+    def fit_reference(
+        image: WorkingImage,
+        *,
+        policy,
+    ):
+        assert reference_ref is not None
+        assert reference_ref() is image
+        return object()
+
+    def execute_render(recipe, sources, outputs, **kwargs):
+        assert reference_ref is not None
+        assert reference_ref() is None
+        assert sources == (source,)
+        assert outputs == (output,)
+        return (), None, None
+
+    monkeypatch.setattr(files, "_load_stable_working_image", load_reference)
+    monkeypatch.setattr(files, "fit_reference_look", fit_reference)
+    monkeypatch.setattr(files, "_execute_file_render", execute_render)
+
+    result = match_reference_files(reference, [source], [output])
+    assert result.outputs == ()
 
 
 def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
