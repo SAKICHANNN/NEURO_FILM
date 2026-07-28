@@ -3609,3 +3609,15 @@
 - The complete non-manifest color-match regression passes 903 tests with five
   explicit skips. Payload `0ae3651` stacks on decoded-input identity payload
   `46af790`; no producer contract, algorithm or FilmFX policy changes.
+
+## 2026-07-28 - Publish decoded-input and publication integrity in v28
+
+- V28 binds payload `0ae3651` to main `1878632`: 450 consumer paths, 487 main
+  paths and zero overlap. Manifest/schema SHA-256 identities are
+  `5957ef6a...04d296` / `762e5218...ac7f54`; merge tree
+  `f56d6f2d...17139d`.
+- Detached synthetic merge `e43a5c7` passes 1240 color-match tests with 30
+  explicit skips and 1294 unrelated deselections. Its owned worktree was
+  removed. All 366 v1-v28 manifest lineage tests pass.
+- V28 supersedes v27 and remains `review-ready-not-merged`; the main task owns
+  any merge. Producer algorithm/media/native contracts are unchanged.
