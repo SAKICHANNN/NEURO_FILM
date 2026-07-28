@@ -1,0 +1,85 @@
+{
+  "schema": "neuro_film.u6_p5d_spatial_photographic_stress_contract.v1",
+  "node": "U6.P5D",
+  "parents": {
+    "p5c_decision_sha256": "9556561899eea5757b60936509b6f95831be4b13566a3c4b668de00303c88dc4"
+  },
+  "input": {
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "preflight_report": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+    "preflight_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de",
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "decoded_color_state": "relative_display_srgb_approximation",
+    "domain_use": "structural and severe-artifact stress only; sRGB EOTF linearized values are an uncalibrated pseudo-exposure, not scene exposure"
+  },
+  "pipeline": {
+    "source_decode": "exact manifest-bound RGB8 PNG",
+    "pseudo_exposure": "IEC-61966-2-1 sRGB EOTF to float64 linear RGB",
+    "spatial_profile": "exact P5C candidate around frozen U2.2 sensitometry",
+    "controls": [
+      "zero-adjacency",
+      "bounded-adjacency",
+      "wrong-order diagnostic"
+    ],
+    "row_partitions": [
+      257,
+      509
+    ],
+    "single_final_preview_encoding": "deterministic sRGB8 PNG for diagnostic only"
+  },
+  "automatic_gates": {
+    "all_input_hashes_exact": true,
+    "all_outputs_finite_and_inside_open_closed_unit_domain": true,
+    "row_partition_outputs_exact": true,
+    "maximum_bounded_vs_zero_adjacency_abs": 0.008,
+    "minimum_population_p95_bounded_vs_zero_adjacency_abs": 0.000001,
+    "maximum_flat_region_p99_adjacency_abs": 0.008,
+    "maximum_isolated_adjacency_excursion_count": 0,
+    "isolated_excursion_threshold": 0.008,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_new_hard_boundary_fraction": 0.0
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "columns": [
+      "source",
+      "zero-adjacency scan-linear interpretation",
+      "bounded-adjacency scan-linear interpretation",
+      "bounded-minus-zero difference x16"
+    ],
+    "severe_vetoes": [
+      "secondary bright or dark contours",
+      "colour fringing",
+      "isolated bright or dark speckles",
+      "banding, posterization or hard clipping",
+      "row-partition seam",
+      "geometry or content corruption"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "forbidden_fallbacks": [
+    "change P5C bounds, spatial profile, U2.2 sensitometry or gates",
+    "treat display-derived pseudo-exposure as calibrated scene exposure",
+    "claim stock, process, scanner or product authenticity",
+    "integrate the candidate into the production renderer from this stress test alone"
+  ],
+  "branch_rule": {
+    "pass": "retain the combined generic spatial candidate and proceed to scanner-chain separation and performance work",
+    "fail": "close bounded adjacency for photographic use and retain the zero-adjacency spatial chain"
+  }
+}
