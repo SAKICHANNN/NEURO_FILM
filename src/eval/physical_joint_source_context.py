@@ -15,6 +15,7 @@ from src.eval.physical_joint_ablation import (
     load_contracts,
     render_arms_with_source_context,
 )
+from src.eval.physical_joint_mechanism import _refresh_blind
 from src.film_physics import required_spatial_response_halo
 
 
@@ -165,6 +166,29 @@ def evaluate_source_context_ablation(
             evaluate_artifact_gate=False,
             save_visual_on_automatic_pass_only=True,
         )
+        if photo["automatic_pass"]:
+            _, runtime = load_contracts(root, runtime_parent)
+            parent = _load_exact_json(
+                root,
+                config["parent_audit"],
+                config["parent_audit_sha256"],
+            )
+            refreshed = _refresh_blind(
+                root=root,
+                config={
+                    "node": config["node"],
+                    "visual_refresh": parent["visual_refresh"],
+                },
+                runtime=runtime,
+                inherited_run_dir=output_dir,
+                output_dir=output_dir,
+            )
+            photo["visual_evidence"] = {
+                "diagnostic_sha256": photo["visual_evidence"][
+                    "diagnostic_sha256"
+                ],
+                **refreshed,
+            }
         decisions = {**smoke["decisions"], **photo["decisions"]}
         branch_key = "complete_pass" if all(decisions.values()) else "automatic_fail"
     core = {

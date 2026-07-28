@@ -20,6 +20,11 @@ def _config() -> dict:
 def test_p7b_contract_binds_closed_p7a4_and_runtime_parent() -> None:
     runtime_parent = validate_contract(ROOT, _config())
     assert runtime_parent["node"] == "U6.P7A3"
+    parent = json.loads(
+        (ROOT / _config()["parent_audit"]).read_text(encoding="utf-8")
+    )
+    assert parent["visual_refresh"]["randomize_each_image_independently"] is True
+    assert parent["visual_refresh"]["rounds"] == 3
 
 
 def test_source_context_mechanism_smoke_passes_frozen_controls() -> None:
