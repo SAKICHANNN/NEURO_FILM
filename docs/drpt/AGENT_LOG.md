@@ -6558,3 +6558,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   a generic research primitive. P5B must preregister Nyquist-bounded metrics,
   exposure/density sweeps and a severe-halo visual veto before any promotion.
 - The post-P4C3 complete CPU regression passes `1241/1241` in `387.44s`.
+- P5B freezes the missing Nyquist-aware, exposure/density-sweep and severe-halo
+  gates before rerunning the exact P5A profile. Three reports are byte-identical
+  at `025591a4...a3916`. The candidate fails normalized undershoot
+  (`.64067 > .12`) and absolute scan-linear halo (`.08793 > .03`) while
+  overshoot, width, full-pipeline MTF50, domain, replay, zero-gain and wrong-order
+  controls pass. The fixed diagnostic shows an edge-locked secondary contour
+  rather than a seam. Close only this linear-unsharp adjacency profile; preserve
+  forward scatter, dye diffusion, scanner MTF and the explicit physical order.

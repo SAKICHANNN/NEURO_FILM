@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p5b_spatial_halo_decision.v1",
+  "node": "U6.P5B",
+  "status": "closed-severe-halo-gates-failed",
+  "contract_sha256": "ea45da6a5bfcf8556cde7c0a68494c07f1c658069182df3225150b63cbed00f4",
+  "software_commit": "ebc04c8adfe1232f74cdf5010d260659592c0849",
+  "report_sha256": "025591a4ec5a380025d22a3cbaf986cd7d92c8467979d826d1a49326cf6a3916",
+  "stable_evidence_id": "45d4c82e055011ff6f4f6478f07d4dffd3aead6b0bcda118a4a52e447d8218ad",
+  "diagnostic_sha256": "288121be7c57f9681a10839f2731723fe4d608f4ddb05f6944e446510d5bd525",
+  "repeat_report_count": 3,
+  "metrics": {
+    "maximum_normalized_overshoot": 0.0818457255724681,
+    "maximum_normalized_undershoot": 0.640669262685246,
+    "maximum_absolute_scan_linear_halo_excursion": 0.0879250746115644,
+    "maximum_halo_width_pixels_at_one_percent": 5.0,
+    "full_pipeline_mtf50_cycles_per_mm": [
+      47.5213982805346,
+      59.5823370089285
+    ],
+    "wrong_order_max_abs": 0.23001255531915454
+  },
+  "failed_gates": [
+    "maximum_normalized_undershoot",
+    "maximum_absolute_scan_linear_halo_excursion"
+  ],
+  "autonomous_visual_evidence": {
+    "confirmed_chart_failure": true,
+    "observations": [
+      "The unamplified adjacency row shows a narrow secondary dark contour at the synthetic density edges.",
+      "The fixed difference-x8 row makes the same contour direction and channel dependence unmistakable.",
+      "No row, tile or chart seam is visible; the failure tracks the edge and agrees with the numeric halo gates."
+    ],
+    "scope": "fixed synthetic diagnostic, not a photographic-image preference or population judgment"
+  },
+  "claim_ceiling": "negative-generic-spatial-adjacency-evidence",
+  "branch_decision": "Close the exact P5A development-adjacency parameter profile without threshold relaxation or retuning. Retain forward scatter, dye diffusion, scanner MTF, the physical order and the zero-adjacency safe control. A new candidate may use a separately frozen density-dependent, analytically bounded chemical-spread correction; it must rerun the unchanged P5B gates."
+}
