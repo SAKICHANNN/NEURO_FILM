@@ -54,6 +54,7 @@ def test_p165_config_freezes_rec2020_and_mixed_sdr_cases() -> None:
         ["icc", "cicp"],
     ]
     assert config["output_bit_depth"] == 16
+    assert config["preflight"]["available_physical_memory_bytes_min"] == 2**33
 
 
 def test_p165_evaluation_requires_exact_ordered_rail_profile_parity() -> None:

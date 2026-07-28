@@ -45,6 +45,11 @@
   "repeat_count_per_case": 2,
   "rss_sample_interval_seconds": 0.02,
   "worker_timeout_seconds": 60.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 8589934592,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 4294967296
+  },
   "gates": {
     "maximum_peak_process_tree_rss_bytes_per_run": 1610612736,
     "maximum_peak_rss_repeat_ratio_per_case": 1.15,
