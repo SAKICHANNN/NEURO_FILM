@@ -31,6 +31,18 @@ class _QuarantinePartial(RuntimeError):
 EOCD_SIGNATURE = b"PK\x05\x06"
 EOCD_STRUCT = struct.Struct("<4s4H2LH")
 CONTENT_RANGE = re.compile(r"^bytes ([0-9]+)-([0-9]+)/([0-9]+)$")
+CONTRACT_EVIDENCE_SCHEMAS = {
+    "u5-r2aj0b-haldclut-acquisition-v1": {
+        "manifest": "u5-r2aj0b-haldclut-manifest-v1",
+        "report": "u5-r2aj0b-haldclut-report-v1",
+        "repeat_decision": "u5-r2aj0b-haldclut-repeat-decision-v1",
+    },
+    "u5-r2aj0b2-haldclut-acquisition-v2": {
+        "manifest": "u5-r2aj0b2-haldclut-manifest-v2",
+        "report": "u5-r2aj0b2-haldclut-report-v2",
+        "repeat_decision": "u5-r2aj0b2-haldclut-repeat-decision-v2",
+    },
+}
 
 
 def hash_file(path: Path) -> dict[str, str]:
@@ -97,12 +109,112 @@ def load_config_snapshot(
     return value, digest
 
 
-def validate_contract(config: dict[str, Any]) -> None:
-    if (
-        config.get("schema_version")
-        != "u5-r2aj0b-haldclut-acquisition-v1"
+def evidence_schemas(config: dict[str, Any]) -> dict[str, str]:
+    schema = str(config.get("schema_version"))
+    try:
+        expected = CONTRACT_EVIDENCE_SCHEMAS[schema]
+    except KeyError as exc:
+        raise HaldArchiveError("unsupported acquisition schema") from exc
+    if schema.endswith("-v2") and config.get("evidence_schemas") != expected:
+        raise HaldArchiveError("v2 evidence schemas do not match frozen identities")
+    return dict(expected)
+
+
+def _validate_decode_profiles(decode: dict[str, Any]) -> None:
+    profiles = decode.get("profiles")
+    if not isinstance(profiles, list) or not profiles:
+        raise HaldArchiveError("v2 decode profiles must be a non-empty list")
+    if sum(int(profile["expected_files"]) for profile in profiles) != int(
+        decode["expected_image_files"]
     ):
-        raise HaldArchiveError("unsupported acquisition schema")
+        raise HaldArchiveError("v2 decode profile count mismatch")
+    profile_ids = [str(profile["profile_id"]) for profile in profiles]
+    if len(profile_ids) != len(set(profile_ids)):
+        raise HaldArchiveError("v2 decode profile IDs must be unique")
+    allowed_modes = {str(value) for value in decode["allowed_modes"]}
+    allowed_extensions = {
+        str(value).casefold() for value in decode["allowed_extensions"]
+    }
+    exact_paths: set[str] = set()
+    for profile in profiles:
+        profile_id = str(profile["profile_id"])
+        include_prefix = profile.get("include_prefix")
+        paths = profile.get("exact_paths")
+        excludes = profile.get("exclude_paths")
+        if not isinstance(paths, list) or not isinstance(excludes, list):
+            raise HaldArchiveError(
+                f"v2 profile paths must be lists: {profile_id}"
+            )
+        if (include_prefix is None) == (not paths):
+            raise HaldArchiveError(
+                f"v2 profile needs exactly one selector form: {profile_id}"
+            )
+        if include_prefix is not None:
+            if not isinstance(include_prefix, str) or not include_prefix:
+                raise HaldArchiveError(
+                    f"invalid v2 profile prefix: {profile_id}"
+                )
+            if paths:
+                raise HaldArchiveError(
+                    f"prefix profile may not have exact paths: {profile_id}"
+                )
+        elif excludes:
+            raise HaldArchiveError(
+                f"exact-path profile may not have exclusions: {profile_id}"
+            )
+        for path in (*paths, *excludes):
+            _safe_zip_path(str(path))
+        overlap = exact_paths.intersection(str(path) for path in paths)
+        if overlap:
+            raise HaldArchiveError("v2 exact profile paths overlap")
+        exact_paths.update(str(path) for path in paths)
+        if int(profile["expected_files"]) <= 0:
+            raise HaldArchiveError(
+                f"v2 profile must retain at least one file: {profile_id}"
+            )
+        if str(profile["mode"]) not in allowed_modes:
+            raise HaldArchiveError(
+                f"v2 profile mode leaves allowed set: {profile_id}"
+            )
+        if str(profile["suffix"]).casefold() not in allowed_extensions:
+            raise HaldArchiveError(
+                f"v2 profile suffix leaves allowed set: {profile_id}"
+            )
+        if not isinstance(profile.get("bands"), list) or not isinstance(
+            profile.get("bits_per_sample"), list
+        ):
+            raise HaldArchiveError(
+                f"v2 profile bands/bits must be lists: {profile_id}"
+            )
+        if len(profile["bands"]) != len(profile["bits_per_sample"]):
+            raise HaldArchiveError(
+                f"v2 profile band/bit count mismatch: {profile_id}"
+            )
+        if profile.get("icc_profile_present") is not False:
+            raise HaldArchiveError(
+                f"v2 profile must require absent ICC: {profile_id}"
+            )
+        if int(profile["cube_side"]) != int(profile["hald_level"]) ** 2:
+            raise HaldArchiveError(
+                f"v2 profile Hald geometry mismatch: {profile_id}"
+            )
+    required_v2_flags = (
+        "require_single_frame",
+        "require_no_embedded_icc",
+        "require_exactly_one_profile_per_image",
+    )
+    if not all(decode.get(key) is True for key in required_v2_flags):
+        raise HaldArchiveError("v2 decode profile requirements were weakened")
+    if decode.get("pillow_pixel_samples_authoritative_for_16bit_rgb") is not False:
+        raise HaldArchiveError("v2 must reject Pillow as 16-bit pixel authority")
+    for key in ("expected_image_records_sha256",):
+        if len(str(decode[key])) != 64:
+            raise HaldArchiveError(f"invalid v2 decode hash: {key}")
+
+
+def validate_contract(config: dict[str, Any]) -> None:
+    schema = str(config.get("schema_version"))
+    evidence_schemas(config)
     archive = config["archive"]
     expected = config["expected_inventory"]
     primary = config["primary_universe"]
@@ -112,6 +224,8 @@ def validate_contract(config: dict[str, Any]) -> None:
         raise HaldArchiveError("archive byte ceiling must equal exact size")
     if len(str(archive["expected_md5"])) != 32:
         raise HaldArchiveError("invalid published archive MD5")
+    if schema.endswith("-v2") and len(str(archive["expected_sha256"])) != 64:
+        raise HaldArchiveError("invalid frozen archive SHA-256")
     if not str(archive["url"]).startswith(
         "https://rawtherapee.com/shared/"
     ):
@@ -139,6 +253,10 @@ def validate_contract(config: dict[str, Any]) -> None:
         expected["primary_noncreative_color_files"]
     ):
         raise HaldArchiveError("primary universe count mismatch")
+    if schema.endswith("-v2") and len(
+        str(primary["expected_paths_sha256"])
+    ) != 64:
+        raise HaldArchiveError("invalid frozen primary-path SHA-256")
     if int(decode["expected_image_files"]) != (
         int(expected["png_files"]) + int(expected["tiff_files"])
     ):
@@ -159,6 +277,8 @@ def validate_contract(config: dict[str, Any]) -> None:
         raise HaldArchiveError("AJ0B archive retention policy was weakened")
     if not decode["decode_from_archive_memory_only"]:
         raise HaldArchiveError("AJ0B must decode in memory without extraction")
+    if schema.endswith("-v2"):
+        _validate_decode_profiles(decode)
 
 
 def _validate_existing_archive(path: Path, archive: dict[str, Any]) -> dict[str, Any]:
@@ -171,6 +291,11 @@ def _validate_existing_archive(path: Path, archive: dict[str, Any]) -> dict[str,
     hashes = hash_file(path)
     if hashes["md5"] != str(archive["expected_md5"]):
         raise HaldArchiveError("existing archive MD5 mismatch")
+    expected_sha256 = archive.get("expected_sha256")
+    if expected_sha256 is not None and hashes["sha256"] != str(
+        expected_sha256
+    ):
+        raise HaldArchiveError("existing archive SHA-256 mismatch")
     return {"bytes": size, **hashes}
 
 
@@ -522,6 +647,85 @@ def _image_record(
         ) from exc
 
 
+def _profile_matches_path(profile: dict[str, Any], path: str) -> bool:
+    exact_paths = {str(value) for value in profile["exact_paths"]}
+    if exact_paths:
+        return path in exact_paths
+    include_prefix = str(profile["include_prefix"])
+    excludes = {str(value) for value in profile["exclude_paths"]}
+    return path.startswith(include_prefix) and path not in excludes
+
+
+def _decode_profile_audit(
+    image_records: list[dict[str, Any]], config: dict[str, Any]
+) -> dict[str, Any] | None:
+    if not str(config["schema_version"]).endswith("-v2"):
+        return None
+    profiles = config["decode"]["profiles"]
+    counts: Counter[str] = Counter()
+    assignments: list[dict[str, str]] = []
+    profile_by_id = {
+        str(profile["profile_id"]): profile for profile in profiles
+    }
+    for record in image_records:
+        matches = [
+            profile
+            for profile in profiles
+            if _profile_matches_path(profile, str(record["path"]))
+        ]
+        if len(matches) != 1:
+            raise HaldArchiveError(
+                "v2 image must match exactly one decode profile: "
+                f"{record['path']}"
+            )
+        profile = matches[0]
+        profile_id = str(profile["profile_id"])
+        observed = {
+            "format": record["format"],
+            "suffix": PurePosixPath(str(record["path"])).suffix.casefold(),
+            "mode": record["mode"],
+            "bands": record["bands"],
+            "bits_per_sample": record["bits_per_sample"],
+            "hald_level": record["hald_level"],
+            "cube_side": record["cube_side"],
+            "icc_profile_present": record["icc_profile_present"],
+        }
+        expected = {
+            "format": str(profile["format"]),
+            "suffix": str(profile["suffix"]).casefold(),
+            "mode": str(profile["mode"]),
+            "bands": [str(value) for value in profile["bands"]],
+            "bits_per_sample": [
+                int(value) for value in profile["bits_per_sample"]
+            ],
+            "hald_level": int(profile["hald_level"]),
+            "cube_side": int(profile["cube_side"]),
+            "icc_profile_present": bool(profile["icc_profile_present"]),
+        }
+        if observed != expected:
+            raise HaldArchiveError(
+                f"v2 decode profile mismatch for {record['path']}: "
+                f"{profile_id}"
+            )
+        counts[profile_id] += 1
+        assignments.append(
+            {"path": str(record["path"]), "profile_id": profile_id}
+        )
+    expected_counts = {
+        profile_id: int(profile["expected_files"])
+        for profile_id, profile in profile_by_id.items()
+    }
+    if dict(counts) != expected_counts:
+        raise HaldArchiveError("v2 decode profile counts mismatch")
+    assignments = sorted(assignments, key=lambda row: row["path"])
+    return {
+        "counts": expected_counts,
+        "assignments": assignments,
+        "assignments_sha256": canonical_sha256(assignments),
+        "profiles_exact": True,
+    }
+
+
 def _inventory(infos: list[zipfile.ZipInfo]) -> dict[str, int]:
     files = [info for info in infos if not info.is_dir()]
     extensions = Counter(
@@ -657,6 +861,10 @@ def audit_archive(
                     f"unexpected non-image ZIP member: {info.filename}"
                 )
 
+    image_records = sorted(image_records, key=lambda row: row["path"])
+    image_records_sha256 = canonical_sha256(image_records)
+    primary_paths_sha256 = canonical_sha256(primary_paths)
+    decode_profile_audit = _decode_profile_audit(image_records, config)
     inventory_exact = inventory == expected_inventory
     central_exact = central == expected_central
     readme_exact = readme == {
@@ -685,6 +893,24 @@ def audit_archive(
         == int(config["primary_universe"]["expected_files"]),
         "all_member_crc_reads_complete": True,
     }
+    if decode_profile_audit is not None:
+        gates.update(
+            {
+                "archive_sha256_exact": observed_archive["sha256"]
+                == str(config["archive"]["expected_sha256"]),
+                "decode_profiles_exact": decode_profile_audit[
+                    "profiles_exact"
+                ],
+                "primary_paths_sha256_exact": primary_paths_sha256
+                == str(
+                    config["primary_universe"]["expected_paths_sha256"]
+                ),
+                "image_records_sha256_exact": image_records_sha256
+                == str(
+                    config["decode"]["expected_image_records_sha256"]
+                ),
+            }
+        )
     automatic_pass = (
         gates["archive_size_exact"]
         and gates["archive_md5_exact"]
@@ -702,22 +928,33 @@ def audit_archive(
         and gates["primary_membership_exact"]
         and gates["all_member_crc_reads_complete"]
     )
-    return {
+    if decode_profile_audit is not None:
+        automatic_pass = automatic_pass and all(
+            gates[key]
+            for key in (
+                "archive_sha256_exact",
+                "decode_profiles_exact",
+                "primary_paths_sha256_exact",
+                "image_records_sha256_exact",
+            )
+        )
+    result = {
         "archive": observed_archive,
         "central_directory": central,
         "inventory": inventory,
         "readme": readme,
         "primary_paths": primary_paths,
-        "primary_paths_sha256": canonical_sha256(primary_paths),
-        "image_records": sorted(image_records, key=lambda row: row["path"]),
-        "image_records_sha256": canonical_sha256(
-            sorted(image_records, key=lambda row: row["path"])
-        ),
+        "primary_paths_sha256": primary_paths_sha256,
+        "image_records": image_records,
+        "image_records_sha256": image_records_sha256,
         "gates": gates,
         "automatic_pass": bool(automatic_pass),
         "operator_applied": False,
         "photograph_rendered": False,
     }
+    if decode_profile_audit is not None:
+        result["decode_profile_audit"] = decode_profile_audit
+    return result
 
 
 def run_acquisition(
@@ -729,6 +966,7 @@ def run_acquisition(
     software_commit: str,
 ) -> dict[str, Any]:
     validate_contract(config)
+    schemas = evidence_schemas(config)
     output_dir = _confined_output_directory(root, output_dir)
     archive_path, acquired = acquire_archive(root=root, config=config)
     audited = audit_archive(archive_path=archive_path, config=config)
@@ -736,7 +974,7 @@ def run_acquisition(
         raise HaldArchiveError("acquisition and audit archive identity mismatch")
 
     manifest = {
-        "schema_version": "u5-r2aj0b-haldclut-manifest-v1",
+        "schema_version": schemas["manifest"],
         "experiment_id": config["experiment_id"],
         "software_commit": software_commit,
         "config_sha256": config_sha256,
@@ -754,7 +992,7 @@ def run_acquisition(
         "claim_ceiling": config["claim_ceiling"],
     }
     report = {
-        "schema_version": "u5-r2aj0b-haldclut-report-v1",
+        "schema_version": schemas["report"],
         "experiment_id": config["experiment_id"],
         "software_commit": software_commit,
         "config_sha256": config_sha256,
@@ -772,6 +1010,9 @@ def run_acquisition(
         "photograph_rendered": False,
         "claim_ceiling": config["claim_ceiling"],
     }
+    if "decode_profile_audit" in audited:
+        manifest["decode_profile_audit"] = audited["decode_profile_audit"]
+        report["decode_profile_audit"] = audited["decode_profile_audit"]
     output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = output_dir / "manifest.json"
     report_path = output_dir / "automatic_report.json"
@@ -787,6 +1028,287 @@ def run_acquisition(
     }
 
 
+BASE_GATE_KEYS = frozenset(
+    {
+        "archive_size_exact",
+        "archive_md5_exact",
+        "central_directory_exact",
+        "safe_paths_only",
+        "duplicate_normalized_paths",
+        "encrypted_entries",
+        "symlink_like_entries",
+        "inventory_exact",
+        "readme_exact",
+        "all_images_decode",
+        "primary_membership_exact",
+        "all_member_crc_reads_complete",
+    }
+)
+V2_GATE_KEYS = frozenset(
+    {
+        "archive_sha256_exact",
+        "decode_profiles_exact",
+        "primary_paths_sha256_exact",
+        "image_records_sha256_exact",
+    }
+)
+INVENTORY_KEYS = frozenset(
+    {
+        "entries",
+        "files",
+        "directories",
+        "png_files",
+        "tiff_files",
+        "text_files",
+        "color_files",
+        "black_and_white_files",
+        "creative_pack_color_files",
+        "primary_noncreative_color_files",
+    }
+)
+IMAGE_RECORD_KEYS = frozenset(
+    {
+        "path",
+        "bytes",
+        "compressed_bytes",
+        "crc32",
+        "sha256",
+        "format",
+        "mode",
+        "bands",
+        "bits_per_sample",
+        "icc_profile_present",
+        "width",
+        "height",
+        "hald_level",
+        "cube_side",
+    }
+)
+
+
+def _is_strict_int(value: Any) -> bool:
+    return type(value) is int
+
+
+def _strict_archive_shape(value: Any) -> bool:
+    return (
+        isinstance(value, dict)
+        and set(value) == {"bytes", "md5", "sha256"}
+        and _is_strict_int(value["bytes"])
+        and isinstance(value["md5"], str)
+        and len(value["md5"]) == 32
+        and isinstance(value["sha256"], str)
+        and len(value["sha256"]) == 64
+    )
+
+
+def _strict_inventory_shape(value: Any) -> bool:
+    return (
+        isinstance(value, dict)
+        and set(value) == INVENTORY_KEYS
+        and all(_is_strict_int(item) for item in value.values())
+    )
+
+
+def _strict_image_records_shape(value: Any) -> bool:
+    if not isinstance(value, list):
+        return False
+    integer_keys = {
+        "bytes",
+        "compressed_bytes",
+        "width",
+        "height",
+        "hald_level",
+        "cube_side",
+    }
+    string_keys = {"path", "crc32", "sha256", "format", "mode"}
+    for row in value:
+        if not isinstance(row, dict) or set(row) != IMAGE_RECORD_KEYS:
+            return False
+        if not all(_is_strict_int(row[key]) for key in integer_keys):
+            return False
+        if not all(isinstance(row[key], str) for key in string_keys):
+            return False
+        if not isinstance(row["bands"], list) or not all(
+            isinstance(item, str) for item in row["bands"]
+        ):
+            return False
+        if not isinstance(row["bits_per_sample"], list) or not all(
+            _is_strict_int(item) for item in row["bits_per_sample"]
+        ):
+            return False
+        if type(row["icc_profile_present"]) is not bool:
+            return False
+    return True
+
+
+def _strict_profile_audit_shape(
+    value: Any, config: dict[str, Any]
+) -> bool:
+    if not isinstance(value, dict) or set(value) != {
+        "counts",
+        "assignments",
+        "assignments_sha256",
+        "profiles_exact",
+    }:
+        return False
+    profile_ids = {
+        str(profile["profile_id"]) for profile in config["decode"]["profiles"]
+    }
+    counts = value["counts"]
+    if (
+        not isinstance(counts, dict)
+        or set(counts) != profile_ids
+        or not all(_is_strict_int(item) for item in counts.values())
+    ):
+        return False
+    assignments = value["assignments"]
+    if not isinstance(assignments, list):
+        return False
+    for row in assignments:
+        if (
+            not isinstance(row, dict)
+            or set(row) != {"path", "profile_id"}
+            or not isinstance(row["path"], str)
+            or not isinstance(row["profile_id"], str)
+            or row["profile_id"] not in profile_ids
+        ):
+            return False
+    return (
+        isinstance(value["assignments_sha256"], str)
+        and len(value["assignments_sha256"]) == 64
+        and value["profiles_exact"] is True
+    )
+
+
+def _strict_evidence_shape(
+    value: Any, *, kind: str, config: dict[str, Any]
+) -> bool:
+    if not isinstance(value, dict):
+        return False
+    is_v2 = str(config["schema_version"]).endswith("-v2")
+    common = {
+        "schema_version",
+        "experiment_id",
+        "software_commit",
+        "config_sha256",
+        "archive",
+        "inventory",
+        "primary_paths_sha256",
+        "image_records_sha256",
+        "operator_applied",
+        "photograph_rendered",
+        "claim_ceiling",
+    }
+    if kind == "manifest":
+        expected_keys = common | {
+            "archive_relative_path",
+            "central_directory",
+            "readme",
+            "primary_paths",
+            "image_records",
+        }
+    elif kind == "report":
+        expected_keys = common | {
+            "gates",
+            "single_run_pass",
+            "automatic_pass",
+            "repeat_confirmation_required",
+            "structural_audit_ready",
+            "visual_review_allowed",
+        }
+    else:
+        raise HaldArchiveError("unsupported evidence kind")
+    if is_v2:
+        expected_keys.add("decode_profile_audit")
+    if set(value) != expected_keys:
+        return False
+    string_keys = {
+        "schema_version",
+        "experiment_id",
+        "software_commit",
+        "config_sha256",
+        "primary_paths_sha256",
+        "image_records_sha256",
+        "claim_ceiling",
+    }
+    if not all(isinstance(value[key], str) for key in string_keys):
+        return False
+    if not _strict_archive_shape(value["archive"]):
+        return False
+    if not _strict_inventory_shape(value["inventory"]):
+        return False
+    if (
+        type(value["operator_applied"]) is not bool
+        or type(value["photograph_rendered"]) is not bool
+    ):
+        return False
+    if is_v2 and not _strict_profile_audit_shape(
+        value["decode_profile_audit"], config
+    ):
+        return False
+    if kind == "manifest":
+        if (
+            not isinstance(value["archive_relative_path"], str)
+            or not isinstance(value["central_directory"], dict)
+            or set(value["central_directory"])
+            != {"offset", "bytes", "entries", "sha256"}
+            or not all(
+                _is_strict_int(value["central_directory"][key])
+                for key in ("offset", "bytes", "entries")
+            )
+            or not isinstance(value["central_directory"]["sha256"], str)
+            or not isinstance(value["readme"], dict)
+            or set(value["readme"])
+            != {
+                "path",
+                "bytes",
+                "crc32",
+                "sha256",
+                "license_marker_present",
+                "version_marker_present",
+            }
+            or not isinstance(value["readme"]["path"], str)
+            or not _is_strict_int(value["readme"]["bytes"])
+            or not isinstance(value["readme"]["crc32"], str)
+            or not isinstance(value["readme"]["sha256"], str)
+            or type(value["readme"]["license_marker_present"]) is not bool
+            or type(value["readme"]["version_marker_present"]) is not bool
+            or not isinstance(value["primary_paths"], list)
+            or not all(
+                isinstance(path, str) for path in value["primary_paths"]
+            )
+            or not _strict_image_records_shape(value["image_records"])
+        ):
+            return False
+    else:
+        gates = value["gates"]
+        expected_gate_keys = BASE_GATE_KEYS | (V2_GATE_KEYS if is_v2 else set())
+        if not isinstance(gates, dict) or set(gates) != expected_gate_keys:
+            return False
+        zero_keys = {
+            "duplicate_normalized_paths",
+            "encrypted_entries",
+            "symlink_like_entries",
+        }
+        if not all(_is_strict_int(gates[key]) for key in zero_keys):
+            return False
+        if not all(
+            type(gates[key]) is bool for key in set(gates) - zero_keys
+        ):
+            return False
+        bool_keys = {
+            "single_run_pass",
+            "automatic_pass",
+            "repeat_confirmation_required",
+            "structural_audit_ready",
+            "visual_review_allowed",
+        }
+        if not all(type(value[key]) is bool for key in bool_keys):
+            return False
+    return True
+
+
 def finalize_repeat_evidence(
     *,
     first_dir: Path,
@@ -798,6 +1320,7 @@ def finalize_repeat_evidence(
     """Promote two separate per-run audits only when their bytes are exact."""
 
     validate_contract(config)
+    schemas = evidence_schemas(config)
     first_manifest = (first_dir / "manifest.json").read_bytes()
     second_manifest = (second_dir / "manifest.json").read_bytes()
     first_report = (first_dir / "automatic_report.json").read_bytes()
@@ -811,6 +1334,20 @@ def finalize_repeat_evidence(
         manifest_b = json.loads(second_manifest)
     except Exception as exc:
         raise HaldArchiveError("per-run evidence is not valid JSON") from exc
+    if not all(
+        isinstance(value, dict)
+        for value in (report_a, report_b, manifest_a, manifest_b)
+    ):
+        raise HaldArchiveError("per-run evidence roots must be JSON objects")
+    evidence_shapes_exact = all(
+        _strict_evidence_shape(value, kind=kind, config=config)
+        for value, kind in (
+            (report_a, "report"),
+            (report_b, "report"),
+            (manifest_a, "manifest"),
+            (manifest_b, "manifest"),
+        )
+    )
 
     canonical_bytes_exact = all(
         raw == _canonical_bytes(value)
@@ -828,14 +1365,11 @@ def finalize_repeat_evidence(
         and value.get("claim_ceiling") == config["claim_ceiling"]
         for value in (report_a, report_b, manifest_a, manifest_b)
     )
-    schemas_exact = (
-        report_a.get("schema_version") == "u5-r2aj0b-haldclut-report-v1"
-        and report_b.get("schema_version")
-        == "u5-r2aj0b-haldclut-report-v1"
-        and manifest_a.get("schema_version")
-        == "u5-r2aj0b-haldclut-manifest-v1"
-        and manifest_b.get("schema_version")
-        == "u5-r2aj0b-haldclut-manifest-v1"
+    schemas_exact = evidence_shapes_exact and (
+        report_a.get("schema_version") == schemas["report"]
+        and report_b.get("schema_version") == schemas["report"]
+        and manifest_a.get("schema_version") == schemas["manifest"]
+        and manifest_b.get("schema_version") == schemas["manifest"]
     )
     single_runs_pass = all(
         report.get("single_run_pass") is True
@@ -858,15 +1392,28 @@ def finalize_repeat_evidence(
         "primary_membership_exact",
         "all_member_crc_reads_complete",
     }
+    if str(config["schema_version"]).endswith("-v2"):
+        required_true_gates.update(
+            {
+                "archive_sha256_exact",
+                "decode_profiles_exact",
+                "primary_paths_sha256_exact",
+                "image_records_sha256_exact",
+            }
+        )
     required_zero_gates = {
         "duplicate_normalized_paths",
         "encrypted_entries",
         "symlink_like_entries",
     }
-    gate_facts_exact = all(
+    gate_facts_exact = evidence_shapes_exact and all(
         isinstance(report.get("gates"), dict)
         and all(report["gates"].get(key) is True for key in required_true_gates)
-        and all(report["gates"].get(key) == 0 for key in required_zero_gates)
+        and all(
+            type(report["gates"].get(key)) is int
+            and report["gates"].get(key) == 0
+            for key in required_zero_gates
+        )
         for report in (report_a, report_b)
     )
     archive_identity_exact = (
@@ -882,6 +1429,8 @@ def finalize_repeat_evidence(
         and report.get("image_records_sha256")
         == manifest.get("image_records_sha256")
         and report.get("claim_ceiling") == manifest.get("claim_ceiling")
+        and report.get("decode_profile_audit")
+        == manifest.get("decode_profile_audit")
         and manifest.get("operator_applied") is False
         and manifest.get("photograph_rendered") is False
         for report, manifest in (
@@ -889,7 +1438,7 @@ def finalize_repeat_evidence(
             (report_b, manifest_b),
         )
     )
-    manifest_facts_exact = all(
+    manifest_facts_exact = evidence_shapes_exact and all(
         manifest.get("archive", {}).get("bytes")
         == int(config["archive"]["expected_bytes"])
         and manifest.get("archive", {}).get("md5")
@@ -958,6 +1507,27 @@ def finalize_repeat_evidence(
         == sorted(manifest["image_records"], key=lambda row: row["path"])
         and canonical_sha256(manifest["image_records"])
         == manifest.get("image_records_sha256")
+        and (
+            (
+                str(config["schema_version"]).endswith("-v2")
+                and manifest.get("archive", {}).get("sha256")
+                == str(config["archive"]["expected_sha256"])
+                and manifest.get("primary_paths_sha256")
+                == str(
+                    config["primary_universe"]["expected_paths_sha256"]
+                )
+                and manifest.get("image_records_sha256")
+                == str(
+                    config["decode"]["expected_image_records_sha256"]
+                )
+                and manifest.get("decode_profile_audit")
+                == _decode_profile_audit(manifest["image_records"], config)
+            )
+            or (
+                not str(config["schema_version"]).endswith("-v2")
+                and "decode_profile_audit" not in manifest
+            )
+        )
         for manifest in (manifest_a, manifest_b)
     )
     checks = {
@@ -975,7 +1545,7 @@ def finalize_repeat_evidence(
     automatic_pass = all(checks.values())
     archive = report_a.get("archive") if archive_identity_exact else None
     return {
-        "schema_version": "u5-r2aj0b-haldclut-repeat-decision-v1",
+        "schema_version": schemas["repeat_decision"],
         "experiment_id": report_a.get("experiment_id"),
         "software_commit": software_commit,
         "config_sha256": config_sha256,
@@ -1003,6 +1573,7 @@ __all__ = [
     "acquire_archive",
     "audit_archive",
     "canonical_sha256",
+    "evidence_schemas",
     "finalize_repeat_evidence",
     "hald_geometry",
     "hash_file",

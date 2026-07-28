@@ -18,6 +18,7 @@ from src.eval.haldclut_archive import (
     HaldArchiveError,
     acquire_archive,
     audit_archive,
+    canonical_sha256,
     finalize_repeat_evidence,
     hald_geometry,
     load_config_snapshot,
@@ -29,6 +30,9 @@ from src.eval.haldclut_archive import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2aj0b_haldclut_acquisition_v1.json"
+V2_CONFIG = (
+    ROOT / "configs/u5_r2aj0b2_haldclut_lane_aware_acquisition_v2.json"
+)
 
 
 def _png_bytes(side: int = 8) -> bytes:
@@ -38,11 +42,19 @@ def _png_bytes(side: int = 8) -> bytes:
     return stream.getvalue()
 
 
+def _gray_png_bytes(side: int = 8) -> bytes:
+    values = np.arange(side * side, dtype=np.uint8).reshape(side, side)
+    stream = io.BytesIO()
+    Image.fromarray(values, mode="L").save(stream, "PNG")
+    return stream.getvalue()
+
+
 def _write_fixture(
     path: Path,
     *,
     unsafe: bool = False,
     format_mismatch: bool = False,
+    lane_aware: bool = False,
 ) -> dict[str, bytes]:
     files = {
         "HaldCLUT/README.txt": (
@@ -52,7 +64,9 @@ def _write_fixture(
         "HaldCLUT/Hald_CLUT_Identity_2.png": _png_bytes(),
         "HaldCLUT/Color/Kodak/Test.png": _png_bytes(),
         "HaldCLUT/Color/CreativePack-1/Test.png": _png_bytes(),
-        "HaldCLUT/Black-and-White/Test.png": _png_bytes(),
+        "HaldCLUT/Black-and-White/Test.png": (
+            _gray_png_bytes() if lane_aware else _png_bytes()
+        ),
     }
     if unsafe:
         files["../escape.png"] = _png_bytes()
@@ -139,8 +153,90 @@ def _fixture_config(path: Path, files: dict[str, bytes]) -> dict:
     return base
 
 
+def _fixture_v2_config(path: Path, files: dict[str, bytes]) -> dict:
+    diagnostic_config = _fixture_config(path, files)
+    diagnostic_config["decode"]["allowed_modes"] = ["RGB", "L"]
+    diagnostic = audit_archive(
+        archive_path=path, config=diagnostic_config
+    )
+    base = json.loads(V2_CONFIG.read_text(encoding="utf-8"))
+    base["archive"].update(diagnostic_config["archive"])
+    base["archive"]["expected_sha256"] = hashlib.sha256(
+        path.read_bytes()
+    ).hexdigest()
+    base["expected_inventory"] = diagnostic_config["expected_inventory"]
+    base["primary_universe"].update(
+        {
+            "expected_files": 1,
+            "expected_paths_sha256": canonical_sha256(
+                ["HaldCLUT/Color/Kodak/Test.png"]
+            ),
+        }
+    )
+    common_rgb = {
+        "format": "PNG",
+        "suffix": ".png",
+        "mode": "RGB",
+        "bands": ["R", "G", "B"],
+        "bits_per_sample": [8, 8, 8],
+        "hald_level": 2,
+        "cube_side": 4,
+        "icc_profile_present": False,
+    }
+    base["decode"].update(
+        {
+            "allowed_extensions": [".png"],
+            "expected_image_files": 4,
+            "allowed_modes": ["RGB", "L"],
+            "expected_image_records_sha256": diagnostic[
+                "image_records_sha256"
+            ],
+            "profiles": [
+                {
+                    "profile_id": "fixture_color_rgb",
+                    "include_prefix": "HaldCLUT/Color/",
+                    "exclude_paths": [],
+                    "exact_paths": [],
+                    "expected_files": 2,
+                    **common_rgb,
+                },
+                {
+                    "profile_id": "fixture_bw_l",
+                    "include_prefix": "HaldCLUT/Black-and-White/",
+                    "exclude_paths": [],
+                    "exact_paths": [],
+                    "expected_files": 1,
+                    "format": "PNG",
+                    "suffix": ".png",
+                    "mode": "L",
+                    "bands": ["L"],
+                    "bits_per_sample": [8],
+                    "hald_level": 2,
+                    "cube_side": 4,
+                    "icc_profile_present": False,
+                },
+                {
+                    "profile_id": "fixture_identity_rgb",
+                    "include_prefix": None,
+                    "exclude_paths": [],
+                    "exact_paths": [
+                        "HaldCLUT/Hald_CLUT_Identity_2.png"
+                    ],
+                    "expected_files": 1,
+                    **common_rgb,
+                },
+            ],
+        }
+    )
+    return base
+
+
 def test_frozen_contract_validates() -> None:
     validate_contract(json.loads(CONFIG.read_text(encoding="utf-8")))
+
+
+def test_lane_aware_v2_contract_validates() -> None:
+    validate_contract(json.loads(V2_CONFIG.read_text(encoding="utf-8")))
 
 
 def test_hald_geometry_is_exact_and_fails_closed() -> None:
@@ -466,6 +562,142 @@ def test_two_exact_runs_are_required_for_structural_readiness(
     )
     assert laundered["automatic_pass"] is False
     assert laundered["structural_audit_ready"] is False
+
+
+def test_v2_lane_profiles_repeat_exactly_and_keep_v1_separate(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "fixture-v2.zip"
+    files = _write_fixture(path, lane_aware=True)
+    config = _fixture_v2_config(path, files)
+    config_sha256 = "c" * 64
+    software_commit = "d" * 40
+    for name in ("run_a", "run_b"):
+        result = run_acquisition(
+            root=tmp_path,
+            config=config,
+            config_sha256=config_sha256,
+            output_dir=tmp_path / name,
+            software_commit=software_commit,
+        )
+        assert result["manifest"]["schema_version"].endswith("-v2")
+        assert result["report"]["single_run_pass"] is True
+        assert result["report"]["automatic_pass"] is False
+        assert result["report"]["decode_profile_audit"]["counts"] == {
+            "fixture_bw_l": 1,
+            "fixture_color_rgb": 2,
+            "fixture_identity_rgb": 1,
+        }
+    decision = finalize_repeat_evidence(
+        first_dir=tmp_path / "run_a",
+        second_dir=tmp_path / "run_b",
+        config=config,
+        config_sha256=config_sha256,
+        software_commit=software_commit,
+    )
+    assert decision["schema_version"].endswith("-v2")
+    assert decision["automatic_pass"] is True
+    assert decision["structural_audit_ready"] is True
+
+    evidence_paths = [
+        tmp_path / name / filename
+        for name in ("run_a", "run_b")
+        for filename in ("manifest.json", "automatic_report.json")
+    ]
+    legal_bytes = {path: path.read_bytes() for path in evidence_paths}
+
+    for name in ("run_a", "run_b"):
+        report_path = tmp_path / name / "automatic_report.json"
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        report["gates"]["duplicate_normalized_paths"] = False
+        report_path.write_text(
+            json.dumps(
+                report, indent=2, sort_keys=True, ensure_ascii=False
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    boolean_zero = finalize_repeat_evidence(
+        first_dir=tmp_path / "run_a",
+        second_dir=tmp_path / "run_b",
+        config=config,
+        config_sha256=config_sha256,
+        software_commit=software_commit,
+    )
+    assert boolean_zero["automatic_pass"] is False
+    assert boolean_zero["checks"]["schema_identities_exact"] is False
+    for evidence_path, payload in legal_bytes.items():
+        evidence_path.write_bytes(payload)
+
+    for name in ("run_a", "run_b"):
+        for filename in ("manifest.json", "automatic_report.json"):
+            evidence_path = tmp_path / name / filename
+            evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+            evidence["calibrated_stock_response"] = True
+            evidence_path.write_text(
+                json.dumps(
+                    evidence, indent=2, sort_keys=True, ensure_ascii=False
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+    unknown_claim = finalize_repeat_evidence(
+        first_dir=tmp_path / "run_a",
+        second_dir=tmp_path / "run_b",
+        config=config,
+        config_sha256=config_sha256,
+        software_commit=software_commit,
+    )
+    assert unknown_claim["automatic_pass"] is False
+    assert unknown_claim["checks"]["schema_identities_exact"] is False
+    for evidence_path, payload in legal_bytes.items():
+        evidence_path.write_bytes(payload)
+
+    for name in ("run_a", "run_b"):
+        manifest_path = tmp_path / name / "manifest.json"
+        report_path = tmp_path / name / "automatic_report.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        corrupted = deepcopy(manifest["decode_profile_audit"])
+        corrupted["counts"]["fixture_bw_l"] = 999
+        manifest["decode_profile_audit"] = corrupted
+        report["decode_profile_audit"] = corrupted
+        manifest_path.write_text(
+            json.dumps(
+                manifest, indent=2, sort_keys=True, ensure_ascii=False
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        report_path.write_text(
+            json.dumps(
+                report, indent=2, sort_keys=True, ensure_ascii=False
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    laundered = finalize_repeat_evidence(
+        first_dir=tmp_path / "run_a",
+        second_dir=tmp_path / "run_b",
+        config=config,
+        config_sha256=config_sha256,
+        software_commit=software_commit,
+    )
+    assert laundered["automatic_pass"] is False
+    assert laundered["checks"]["manifest_facts_exact"] is False
+
+
+def test_v2_rejects_wrong_lane_profile_without_conversion(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "fixture-v2-wrong-mode.zip"
+    files = _write_fixture(path, lane_aware=True)
+    config = _fixture_v2_config(path, files)
+    config["decode"]["profiles"][1]["mode"] = "RGB"
+    config["decode"]["profiles"][1]["bands"] = ["R", "G", "B"]
+    config["decode"]["profiles"][1]["bits_per_sample"] = [8, 8, 8]
+    with pytest.raises(HaldArchiveError, match="decode profile mismatch"):
+        audit_archive(archive_path=path, config=config)
 
 
 def test_runner_help_loads_from_repo_root() -> None:
