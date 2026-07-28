@@ -6566,3 +6566,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   controls pass. The fixed diagnostic shows an edge-locked secondary contour
   rather than a seam. Close only this linear-unsharp adjacency profile; preserve
   forward scatter, dye diffusion, scanner MTF and the explicit physical order.
+- P5C preregisters a separate density-dependent chemical-spread challenger. Its
+  signed correction remains in developed-density domain and approaches
+  analytically derived density/transmittance limits smoothly rather than hard
+  clipping. Two reports are byte-identical at `c8cf5c24...b2e45`; every
+  unchanged P5B gate passes. Peak normalized undershoot falls from `.64067` to
+  `.08081`, absolute scan-linear halo is `.00800`, and the response remains
+  nonzero with `.07959` peak density correction. The fixed diagnostic has zero
+  confirmed secondary contour, colour fringe, clipping or seam. This is generic
+  synthetic development evidence; next require held-out structure, partition
+  and photographic severe-artifact stress before any renderer integration.

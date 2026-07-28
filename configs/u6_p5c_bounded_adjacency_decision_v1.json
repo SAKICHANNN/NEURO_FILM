@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p5c_bounded_adjacency_decision.v1",
+  "node": "U6.P5C",
+  "status": "automatic-and-autonomous-visual-pass-development-only",
+  "contract_sha256": "0f945f531dc5f0d1c78f30dd0ad5bf71ad6630a2e42ecde593bc907f05b61f99",
+  "software_commit": "4d476089ab018c99289adef78806250f3f40176d",
+  "report_sha256": "c8cf5c2417e8ed2225b271ec5292d61af9f028459e44ba371e897f3c498b2e45",
+  "stable_evidence_id": "7d5a9bb40a6446996022b0892850f45a221837920d987cdb2df7ced40ed9c8f8",
+  "diagnostic_sha256": "60f6ac1f0ea8a65b7916d4572f56f21a257f5d5155b40c5f53557e65ec2025f8",
+  "repeat_report_count": 2,
+  "metrics": {
+    "maximum_normalized_overshoot": 0.0242614177395202,
+    "maximum_normalized_undershoot": 0.08080722842836507,
+    "maximum_absolute_scan_linear_halo_excursion": 0.00799999985419492,
+    "maximum_halo_width_pixels_at_one_percent": 5.0,
+    "peak_absolute_density_correction": 0.0795932512270725,
+    "peak_absolute_transmittance_correction": 0.00799999999555645
+  },
+  "autonomous_visual_evidence": {
+    "confirmed_severe_failures": 0,
+    "observations": [
+      "No secondary bright or dark contour is visible in the unamplified adjacency row.",
+      "The fixed difference-x8 row retains only a thin, low-amplitude edge response with consistent direction.",
+      "No colour fringe, plateau clipping, row seam, tile seam or chart seam is visible."
+    ],
+    "scope": "fixed synthetic diagnostic only, not photographic preference, stock calibration or product promotion"
+  },
+  "claim_ceiling": "generic-physical-inspired-bounded-adjacency-development",
+  "branch_decision": "Retain the smooth analytically bounded density-domain adjacency candidate. It passes every unchanged P5B halo gate while remaining non-identity. Proceed to separately frozen combined synthetic OOD, partition and photographic stress evaluation before renderer integration."
+}
