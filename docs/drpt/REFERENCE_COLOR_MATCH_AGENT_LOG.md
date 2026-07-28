@@ -3803,3 +3803,17 @@
 - Added a strict batch Draft 2020-12 schema with the existing 64-input bound.
   The complete non-manifest color-match regression passes 939 tests with five
   explicit skips.
+
+## 2026-07-29 - Publish advisory input preflight in v34
+
+- V34 binds payload `11ea9c9` to main committed stable point `d75b147`: 476
+  consumer paths, 508 main paths and zero overlap. It requires 61 public
+  exports and all 24 exact contract schemas, including the input-inspection
+  batch schema.
+- Manifest/schema SHA-256 identities are `2379d12c...2c146` /
+  `034ea53b...dbdf4`; merge tree `99667285...4b9ad`. Detached synthetic merge
+  `3a73193` passes 1286 color-match tests with 30 explicit skips and 1313
+  unrelated deselections; its owned worktree was removed.
+- All 376 discovered v1-v34 manifest tests pass. V34 supersedes v33 and remains
+  `review-ready-not-merged`; main owns merge. Producer R0DE closed the SHEP
+  family without a selected model or callable contract, so no mapping changed.
