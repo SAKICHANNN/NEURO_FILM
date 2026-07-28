@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8n_current_phase_rss_decision.v1",
+  "node": "U6.P8N",
+  "software_commit": "9ee4fae",
+  "contract_sha256": "c0e5204b17f21b213a88524d1f7deec6ece27e4a896163cf5f39ac38b6461a14",
+  "report_sha256": "59ef1cc5f70fd2b3dddbf5ebb7da885865c90700f46ffb664619423b5fffe7ff",
+  "stable_evidence_id": "a0557df7bbc7e22e1709701a3bdb77bfde1c2bf31228e62bbd1d26ec0a2b7b9c",
+  "all_runs_successful": true,
+  "all_output_identity_exact": true,
+  "dominant_phase_stable": true,
+  "dominant_phase": "roundtrip-linear",
+  "phase_peak_rss_bytes_ranges": {
+    "roundtrip-linear": [
+      1453764608,
+      1458778112
+    ],
+    "physical-spatial": [
+      1332371456,
+      1334943744
+    ],
+    "source-context-build": [
+      1306288128,
+      1307103232
+    ],
+    "gauge-and-encode": [
+      1219710976,
+      1221283840
+    ],
+    "display-base-residual": [
+      747208704,
+      747933696
+    ],
+    "encoded-source": [
+      729284608,
+      741171200
+    ]
+  },
+  "decision": "two exact 12MP repeats through the actual P8M production entry identify roundtrip-linear as the stable dominant worker RSS phase at 1.454-1.459GB. P8M reduced encoded-source to 0.729-0.741GB. Physical-spatial and source-context are the next lower peaks. Open one exact row-staged encoded-to-linear writer and leave all downstream operators unchanged",
+  "attribution_complete": true,
+  "performance_target_pass": false,
+  "production_default_changed": false,
+  "calibration_claim_opened": false,
+  "native_runtime_opened": false,
+  "next_leaf": "U6.P8O exact row-staged roundtrip-linear construction into one preallocated float64 array, preserving P8M source encoding and downstream execution",
+  "claim_ceiling": "local Windows Python CPU phase-local RSS attribution through the exact current P8M production entry; not native runtime, mobile-device evidence, stock response, calibration or product promotion"
+}
