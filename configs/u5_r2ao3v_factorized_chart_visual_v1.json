@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao3v-factorized-chart-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO3V",
+  "parent_config_sha256": "f71240a536e9eeb7a836a2a8024ec9eb1276cd35bfc954181dba4461a36733a6",
+  "parent_automatic_report_sha256": "39a87159814aa14712e959a62753586a27df4df320971185af86c9041a937f42",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "candidate": {
+    "candidate_id": "tone_s50__chroma_s100",
+    "manifest": "outputs/u5_r2ao3_factorized_chart_boundary_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "f368b05a45d36b57f423f57fb46e02d568199a1f502df3827dbb730b1c09b278",
+    "automatic_style": 10.527725348540917,
+    "automatic_non_basic": 5.534453367413281,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0
+  },
+  "comparator": {
+    "candidate_id": "density_then_anchor__density_s50",
+    "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+    "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+    "status": "strongest_retained_B0_development_comparator_not_independently_promoted"
+  },
+  "blind": {
+    "round_count": 3,
+    "seed": 20260728,
+    "source_visible": true,
+    "candidate_labels_hidden": true,
+    "same_nine_gold_rows_each_round": true,
+    "minimum_candidate_preference_rounds": 2
+  },
+  "full_resolution": {
+    "all_nine_gold_required": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "inspect": [
+      "face_skin",
+      "text_logo",
+      "fine_texture",
+      "smooth_gradients",
+      "deep_shadows",
+      "highlights",
+      "boundary_pileup",
+      "posterization",
+      "id11_red_speckle"
+    ]
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "three-round autonomous B0 visual comparison and full-resolution severe review of a factorized 24-patch real Velvia display-proxy Look Approximation; not owner/population preference, independent confirmation, stock response, calibration or product promotion"
+}
