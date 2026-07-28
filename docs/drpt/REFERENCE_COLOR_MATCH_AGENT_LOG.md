@@ -3527,3 +3527,19 @@
   platform/data skips and 1268 unrelated deselections. The owned worktree was
   removed. All 350 v1-v24 manifest lineage tests also pass. V24 is the sole
   current `review-ready-not-merged` candidate.
+
+## 2026-07-28 - Serialize all P130 atomic batch commits
+
+- A deterministic two-writer interleaving proved the prior rollback-safe
+  transaction could still publish a mixed batch: both calls returned without
+  error while the two destinations contained bytes from different runs.
+- A shared non-blocking target lock now covers every `_commit_staged_batch`
+  consumer: file fit/replay, core/shared staging, external/shared FilmFX and
+  local delivery. It uses normalized destination identities, in-process
+  reservation and the same cross-process byte-lock discipline; the
+  runtime-qualified path declares its existing outer lock to avoid self-lock.
+- Deterministic thread interleaving now rejects the competing transaction
+  before its first write, and a separate child process holding the same target
+  also blocks publication. 125 transaction-focused tests and the complete
+  non-manifest color-match regression pass at 895 tests with four skips.
+  V24 is superseded pending a P130-binding v25 integration artifact.
