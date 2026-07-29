@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4c-recorder-proxy-code-reuse-frontier-v1",
+  "config_sha256": "5cb5f11701eca5a3071b27dba2951db307652af78c664fad3996b62108de7393",
+  "software_commit": "59f7ad7816d45eb13b227813bbe13bff807547fb",
+  "manifest_sha256": "7907a9b301f521b16dbc7ecb4320dbc3d4249e029941be6950816504815226b1",
+  "repeat_manifest_sha256": "7907a9b301f521b16dbc7ecb4320dbc3d4249e029941be6950816504815226b1",
+  "report_sha256": "5ab586ca859f23ca7e27898a7e7681d1d36c640983425d859c4befb4f50a57c1",
+  "repeat_report_sha256": "5ab586ca859f23ca7e27898a7e7681d1d36c640983425d859c4befb4f50a57c1",
+  "automatic_pass": false,
+  "visual_review_permitted": false,
+  "decision": "close_code_value_reuse_photo_route_without_visual_review",
+  "strongest_candidate": {
+    "candidate_id": "recorder_proxy_reuse_s100",
+    "gold_median_style_deltae76": 8.012018074872222,
+    "gold_median_non_basic_residual_deltae76": 3.9018478717314053,
+    "gold_median_unconstrained_operator_deltae76": 8.061397930486672,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0,
+    "maximum_gold_residual_limited_fraction": 0.6755444444444444
+  },
+  "interpretation": "direct numeric reuse of display-sRGB codes as recorder controls is clean but weak and mostly explainable by basic adjustment; the held-validated proxy does not by itself transfer a salient film look to photographs",
+  "next_leaf": "AQ4F",
+  "next_leaf_scope": "one frozen tone/chroma-factorized execution family for the same fixed bundle, with stronger chroma than tone under the same analytical source-inclusive rail",
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative ordinary-photo transfer evidence for direct code-value reuse; not Velvia stock response, calibration or product evidence"
+}
