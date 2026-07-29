@@ -7382,3 +7382,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only generic physical-inspired synthetic feasibility. P5G must
   independently freeze and test photographic severe/OOD behavior; no real
   DIR, stock, process, calibration or renderer claim opens.
+
+## 2026-07-30 - Freeze U6.P5G photographic interimage stress
+
+- Reuse the exact P5D 18-image/nine-make CC0 manifest, rights and pseudo-
+  exposure boundary. Baseline is unchanged P5C; candidate adds exact P5F
+  before unchanged dye diffusion/transmittance/scanner stages.
+- Freeze exact 257/509-row combined-halo replay, `.006` maximum output change,
+  flat-region, chromatic-spread, isolated-excursion and boundary gates.
+- If automation passes, inspect nine fixed overviews and one-to-one 256px
+  crops centred at each image's strongest candidate difference. Pass opens
+  only a separate combined-chain value ablation.
