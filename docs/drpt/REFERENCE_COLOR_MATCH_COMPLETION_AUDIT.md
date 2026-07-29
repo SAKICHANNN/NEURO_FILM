@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `07fa036`; R0EE independently
+- D-PCT latest stable communicated snapshot is `b2fc74b`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -72,6 +72,14 @@ wire contract and not an algorithm promotion.
   bytes (-41.5643%), with an independent -41.5487% replay, every tiled peak
   below every full peak and all 16 output hashes exact. This is local process
   memory evidence only, not native-media or product evidence.
+  R0EM adds a separate private synchronous row-sink ABI while restoring the
+  historical tiled source/header byte identity. Across 72 synthetic and 15
+  native rows, stream/full/atomic and MSVC/LLVM outputs are byte-exact.
+  Explicit second-stripe sink rejection and later nonfinite input preserve the
+  first 64 accepted rows and unchanged diagnostics, so the interface is
+  deliberately partial-output/non-atomic. Its 3040x2024 scratch model is
+  3,477,760 float32 values (-94.3478%), but no media encoder or public
+  producer contract exists.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

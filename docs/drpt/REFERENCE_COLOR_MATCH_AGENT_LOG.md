@@ -4512,3 +4512,23 @@
   native media, product, public package/schema/receipt/capability or consumer
   mapping. R0EM weaker-semantics row-sink research preserves the atomic ABI
   and is a separate producer leaf; P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EM explicit non-atomic row sink
+
+- Producer `b2fc74b` isolates the new synchronous stream ABI into its own
+  translation unit/header, restoring the historical tiled source/header byte
+  identity that the first implementation had changed. The existing atomic
+  ABI remains unchanged.
+- Across 72 synthetic plus 15 rights-cleared native Bayer rows, two MSVC and
+  LLVM replays make stream, full-v1, atomic-tiled and historical R0EI output
+  bytes exact. A second-stripe sink rejection and later nonfinite input both
+  preserve the exact first 64 accepted rows and leave diagnostics unchanged;
+  pre-callback failures emit no callback and preserve progress.
+- The 3040x2024 scratch model falls from 61,529,600 to 3,477,760 float32
+  values (-94.3478%). Two reports are byte-identical at
+  `b3ee96ca...c557`; stable identity is `e1ab2e4b...949ef`.
+  The ceiling is a private synchronous, explicitly partial-output/non-atomic
+  CPU row sink. There is no media encoder, public package/schema/receipt/
+  capability, product admission or consumer mapping. R0EN process-memory and
+  incremental-sink feasibility remain separate; P172, P45/P44 and v42 are
+  unchanged.
