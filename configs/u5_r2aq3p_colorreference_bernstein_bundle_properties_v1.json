@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3p-colorreference-bernstein-bundle-properties-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ3P",
+  "parent": {
+    "decision": "configs/u5_r2aq3b_colorreference_bounded_bernstein_proxy_decision_v1.json",
+    "config_sha256": "c8e99600ff112406a19271e502763e12cdf6733b2192e826fecf199c680d2597",
+    "report": "outputs/experiments/u5_r2aq3b_colorreference_bounded_bernstein_proxy_v1/report.json",
+    "report_sha256": "2c9f20e1ff541fb77037d418710cb5d679b5691a854d007fe2baadf93d4531c1",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "bundle_contract": {
+    "model_id": "bernstein_d3",
+    "degree": 3,
+    "basis_count": 64,
+    "parameter_count": 192,
+    "input_semantics": "ColorReference Lambda 10000 recorder-device normalized RGB",
+    "output_semantics": "measured developed Velvia 100F slide XYZ D50 2 degree, normalized by 100",
+    "coefficient_lower_bound": 0.0,
+    "coefficient_upper_bound": 1.2,
+    "fit_rows": 8640,
+    "fit_scope": "all AQ1 rows only after AQ3B held-fold evidence passed",
+    "post_fit_clipping": false,
+    "portable_dtype": "float64 canonical JSON coefficients",
+    "identity_fields": [
+      "schema",
+      "model_id",
+      "degree",
+      "input_semantics",
+      "output_semantics",
+      "pair_table_sha256",
+      "fit_config_sha256",
+      "software_commit",
+      "coefficients"
+    ]
+  },
+  "property_audit": {
+    "dense_grid_size": 65,
+    "dense_grid_rows": 274625,
+    "cross_fold_grid_size": 17,
+    "cross_fold_grid_rows": 4913,
+    "repeat_bundle_and_grid_byte_identity": true,
+    "all_values_finite": true,
+    "output_lower_bound": 0.0,
+    "output_upper_bound": 1.2,
+    "minimum_output_span_each_xyz_channel": 0.2,
+    "local_axis_neighbor_xyz_distance_p99_max": 0.04,
+    "local_axis_neighbor_xyz_distance_maximum_max": 0.15,
+    "cross_fold_to_global_deltae76_median_each_fold_max": 2.0,
+    "cross_fold_to_global_deltae76_p95_each_fold_max": 5.0,
+    "cross_fold_to_global_deltae76_maximum_each_fold_max": 20.0,
+    "analytic_partition_of_unity_tolerance": 2e-14
+  },
+  "fit_numerics": {
+    "float_dtype": "float64",
+    "coefficient_lower_bound": 0.0,
+    "coefficient_upper_bound": 1.2,
+    "lsq_linear_tolerance": 1e-12,
+    "lsq_linear_maximum_iterations": 2000,
+    "deterministic_single_thread": true
+  },
+  "decision_branches": {
+    "pass": "retain_internal_recorder_proxy_bundle_and_open_synthetic_visual_property_audit",
+    "fail": "close_global_recorder_proxy_bundle"
+  },
+  "forbidden_actions": [
+    "changing degree, thresholds or bounds after formal results",
+    "post-fit clipping",
+    "photo rendering",
+    "claiming recorder RGB is sRGB, camera RGB or scene-linear",
+    "using this bundle as a stock truth teacher",
+    "digital-camera-to-film, independent-roll, process or calibrated stock-response claims",
+    "production integration, redistribution or public weights"
+  ],
+  "fit_allowed": true,
+  "training_allowed": false,
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "stable analytically bounded recorder-device-to-measured-developed-slide proxy bundle; internal research only and not applicable to ordinary digital photographs"
+}
