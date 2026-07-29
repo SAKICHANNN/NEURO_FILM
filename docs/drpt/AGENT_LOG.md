@@ -6763,3 +6763,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   neutral density witness passes.
 - This does not scan or calibrate a medium. P2C may now exercise the existing
   generic scanner boundary and polarity order on synthetic controls only.
+
+## 2026-07-29 - U6.P2C scanned route topology
+
+- The fixed synthetic route/scanner/polarity ablation repeats byte-exactly at
+  `39ee9c47...ed43843`. Negative and slide finals differ by `.98258`;
+  print and negative differ by `.80727`; no route creates a boundary sample.
+- Moving negative polarity before the generic scanner changes the result by
+  `.11662`, while identity-scanner negative plus slide is exact one. The
+  required order is therefore density, medium, scanner, then polarity.
+- This remains generic synthetic topology evidence. P2D must now apply the
+  fixed routes to the existing rights-cleared photo population and run the
+  severe-artifact veto before retaining any photographic challenger.

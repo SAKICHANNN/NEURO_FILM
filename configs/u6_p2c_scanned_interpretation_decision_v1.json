@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2c-scanned-interpretation-v1",
+  "node": "U6.P2C",
+  "decision": "retain_generic_route_topology_open_photographic_severe_stress",
+  "software_commit": "0204f5b",
+  "contract": {
+    "path": "configs/u6_p2c_scanned_interpretation_ablation_v1.json",
+    "sha256": "d7eb8a57d85e2ff1923a500077a823dbe4a988bdd44d378fc6a8b172a4db1009"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p2c_scanned_interpretation_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2c_scanned_interpretation_v1/run_b/report.json",
+    "report_sha256": "39ee9c473c37de81e555e8ad012a53792f11a20cfeeb2db255102f757ed43843",
+    "stable_evidence_id": "3409911dd66b41a7d8d6f42541e10b748b625b7605434504cd5e9b7fc0df8a71",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "negative_vs_slide_final_max_abs": 0.9825823316626459,
+    "print_vs_negative_final_max_abs": 0.807267193223203,
+    "correct_vs_polarity_before_scanner_max_abs": 0.11661688871849452,
+    "identity_negative_plus_slide_max_error": 0.0,
+    "new_boundary_fraction": 0.0,
+    "all_route_replay_exact": true,
+    "non_neutral_bw_rejected": true,
+    "wrong_route_binding_rejected": true
+  },
+  "automatic_pass": true,
+  "interpretation": "The fixed generic scanner confirms that route polarity belongs after scanning: moving negative inversion before the scanner creates a 0.1166 maximum error. Negative, slide and print outputs remain strongly distinct, replay exactly and create no boundary samples. This is topology evidence, not visual or physical calibration evidence.",
+  "next_leaf": "U6.P2D fixed 18-image CC0 photographic severe-artifact stress of negative-neutral-scan, negative-print and slide routes using display-derived pseudo-exposure",
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic generic route-order evidence through one generic scanner; no measured film, process, paper, scanner, stock, calibration, visual-style or product claim"
+}
