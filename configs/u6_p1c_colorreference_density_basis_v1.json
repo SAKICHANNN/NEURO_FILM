@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "schema": "neuro_film.u6_p1c_colorreference_density_basis_contract.v1",
+  "experiment_id": "u6-p1c-colorreference-density-basis-v1",
+  "node": "U6.P1C",
+  "question": "Does a hard-routed bank of two rank-3 nonnegative optical-density spectral bases provide held-charge reconstruction value beyond one shared rank-3 basis and an equal-total-capacity shared rank-6 basis?",
+  "parent_decision": "configs/sf2_9b_colorreference_batch_family_decision_v1.json",
+  "parent_pilot_report": "outputs/sf2_9b_colorreference_batch_family_v1/pilot_a.json",
+  "parent_pilot_report_sha256": "97110652327253421d2468586f5828281c6d322ee31727eaecb9750d77050caa",
+  "parent_pilot_stable_evidence_id": "b845b3ad2a4a0a720f59862ffdbea48df107bbf22302fb67fead627824c52b72",
+  "seed": 2909,
+  "split": {
+    "fit_year_last_digits": [0, 1, 2, 3, 4, 5, 6, 7],
+    "held_charge_year_last_digits": [8, 9],
+    "note": "algorithm-specific preregistered held-charge evaluation; these archives were previously inspected for a different family-classification metric and are not a pristine new population"
+  },
+  "representation": {
+    "input": "measured spectral transmittance percent on the exact 380--780nm 10nm grid",
+    "optical_density": "-log10(max(transmittance_percent, 0.01) / 100)",
+    "transmittance_floor_percent": 0.01,
+    "rows": "charge x 288 common patches",
+    "columns": "41 wavelengths",
+    "claim": "nonnegative target-density factors; not identified dye layers"
+  },
+  "models": {
+    "shared_rank3": {"rank": 3, "fit": "all fit charges"},
+    "correct_family_rank3": {"rank": 3, "fit": "fit charges from the evaluated family only"},
+    "wrong_family_rank3": {"rank": 3, "fit": "fit charges from the other family only"},
+    "shared_rank6_capacity_control": {
+      "rank": 6,
+      "fit": "all fit charges",
+      "reason": "same total basis-component count as the two rank-3 family bank"
+    },
+    "nmf": {
+      "implementation": "sklearn.decomposition.NMF",
+      "init": "nndsvda",
+      "solver": "cd",
+      "beta_loss": "frobenius",
+      "tolerance": 0.00001,
+      "maximum_iterations": 5000,
+      "shuffle": false,
+      "random_state": 2909
+    }
+  },
+  "development_calibration": {
+    "fit_year_last_digits": [0, 1, 2, 3, 4, 5],
+    "validation_year_last_digits": [6, 7],
+    "validation_charges": 13,
+    "correct_rank3_beats_shared_rank3": "13/13",
+    "correct_rank3_beats_wrong_rank3": "13/13",
+    "median_relative_improvement_vs_shared_rank3": 0.01600621553664934,
+    "median_relative_improvement_vs_wrong_rank3": 0.05673831117205026,
+    "correct_rank3_beats_shared_rank6": "0/13",
+    "median_relative_improvement_vs_shared_rank6": -8.319802560276093
+  },
+  "held_charge_gates": {
+    "all_models_converge_before_maximum_iterations": true,
+    "structural_correct_vs_shared_rank3_minimum_wins": 10,
+    "structural_correct_vs_shared_rank3_median_relative_improvement_minimum": 0.01,
+    "negative_correct_vs_wrong_rank3_minimum_wins": 10,
+    "negative_correct_vs_wrong_rank3_median_relative_improvement_minimum": 0.04,
+    "each_family_correct_vs_shared_rank3_minimum_win_fraction": 0.5,
+    "utility_correct_vs_shared_rank6_minimum_wins": 10,
+    "utility_correct_vs_shared_rank6_median_relative_improvement_minimum": 0.0
+  },
+  "branch_rules": {
+    "structural_and_utility_pass": "retain a two-family rank-3 density-basis bank for further generic reference-simulator research only",
+    "structural_pass_utility_fail": "retain descriptive family structure but prefer the simpler unrouted shared rank-6 capacity control for the next generic reference-simulator leaf",
+    "structural_fail": "close family-specific density bases and retain only shared generic candidates",
+    "any_severe_or_nonfinite": "close the candidate without relaxing physical-domain guards"
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "development target-density factorization and held-charge reconstruction evidence only; components are not calibrated dye layers, stock response, scene-to-density mapping, latent modes or product profiles"
+}
