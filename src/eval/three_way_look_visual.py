@@ -21,6 +21,7 @@ class ThreeWayLookVisualError(ValueError):
 SUPPORTED_EXPERIMENT_IDS = {
     "u5.r2ao5v-three-way-visual-v1",
     "u5.r2ao6v-b0-real-film-residual-visual-v1",
+    "u5.r2aq4gv-b0-recorder-proxy-residual-visual-v1",
     "u5.r2ap3v-b0-ektachrome-residual-t10-c25-v1",
     "u5.r2ap3v-b0-ektachrome-residual-t20-c50-v1",
 }
