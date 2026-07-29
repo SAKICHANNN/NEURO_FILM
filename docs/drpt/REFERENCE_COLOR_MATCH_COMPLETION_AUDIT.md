@@ -20,18 +20,18 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `a68fcdd`; R0DZ's private
-  BSD-3 DDFAPD/Menon 2007 implementation matches the pinned
-  colour-demosaicing 0.2.7 reference within `4.44e-16`. On an independent
-  64-row synthetic cohort it preserves every sampled sensel, reaches
-  0.239625/0.254673 primary RGB/chroma RMSE ratios and improves 44/48 rows.
-  The frozen protocol nevertheless fails because the affine family's
-  baseline/candidate errors of about `9.14e-17`/`1.12e-16` produce a 1.228126
-  worst-family ratio. This is a strong research signal but a formal protocol
-  rejection, not a product promotion. DDFAPD remains non-public and R0DZ
-  publishes no package, compatible consumer rail, callable capability,
-  schema or receipt, so P172 remains fail-closed. R0DO/R0DP absolute-HDR
-  diagnostics remain explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `66f7fba`; R0EA retains the
+  exact R0DZ DDFAPD source and freezes a genuinely new 64-row synthetic
+  cohort plus a floor-aware tail metric before scoring. Two runs are exact
+  outside timing (`52af21c4...cf3ef`): all sampled sensels remain exact,
+  48/48 primary rows improve, RGB/chroma aggregate ratios are
+  0.240138/0.282039, the worst row is 0.900094 and all nine gates pass.
+  Deliberately uncorrelated, isoluminant and subpixel-colour alias stress can
+  still be worse. The result therefore opens only rights-cleared real-RAW
+  confirmation, not portability or product admission. DDFAPD remains
+  non-public and R0EA publishes no package, compatible consumer rail,
+  callable capability, schema or receipt, so P172 remains fail-closed.
+  R0DO/R0DP absolute-HDR diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.

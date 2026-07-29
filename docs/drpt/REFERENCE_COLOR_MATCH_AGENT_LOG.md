@@ -4318,3 +4318,20 @@
   published. P172, P45/P44 and v42 remain closed; a new floor-aware protocol
   must use a genuinely new cohort and still requires rights-cleared real-RAW
   confirmation before any portability or product claim.
+
+## 2026-07-29 - Register R0EA synthetic confirmation pass
+
+- Producer `66f7fba` keeps the exact R0DZ DDFAPD source
+  `b9346765...14b7` and freezes a new seed, 256x268 formulas and 64 exact
+  truth/mosaic identities before scoring. Ratios are disabled below a
+  `1e-8` baseline RMSE and replaced by a `1e-12` absolute candidate gate.
+- Two independent full runs are exact outside timing at
+  `52af21c4...cf3ef`. All sampled sensels remain exact; 48/48 primary rows
+  improve, aggregate RGB/chroma ratios are 0.240138/0.282039, the worst row
+  is 0.900094, the worst family median is 0.899397 and all nine gates pass.
+  Alias stress still exposes regressions on deliberately uncorrelated,
+  isoluminant and subpixel-colour cases.
+- The claim ceiling is synthetic confirmation eligible for rights-cleared
+  real-RAW confirmation. There is no export, portable package, schema,
+  receipt or capability, so P172, P45/P44 and v42 do not change. Real-image
+  evidence must separate demosaic quality from camera colour and denoise.
