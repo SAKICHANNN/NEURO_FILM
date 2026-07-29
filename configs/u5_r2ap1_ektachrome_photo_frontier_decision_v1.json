@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap1-ektachrome-photo-frontier-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP1",
+  "software_commit": "1342c3787914be58dcd521e6777ff6f241e74b32",
+  "contract": {
+    "path": "configs/u5_r2ap1_ektachrome_photo_frontier_v1.json",
+    "sha256": "bcf9ba1068b695243d7386dab4ddd5e4f1afdf137cdfa70ca1b1970977f19c8d"
+  },
+  "run_a": {
+    "manifest_path": "outputs/u5_r2ap1_ektachrome_photo_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "e9e40fbff1b7b03843929643e4470aad1254f0cbc8c6ddbc47a6383fa0c11c4c",
+    "report_path": "outputs/u5_r2ap1_ektachrome_photo_frontier_v1/automatic_report_a.json",
+    "report_sha256": "726c08bab84f93c674738b68978deb5492de1fa49ea1b8383ac9aa7036f120d9"
+  },
+  "run_b": {
+    "manifest_path": "outputs/u5_r2ap1_ektachrome_photo_frontier_v1/render_pass2/manifest.json",
+    "manifest_sha256": "e9e40fbff1b7b03843929643e4470aad1254f0cbc8c6ddbc47a6383fa0c11c4c",
+    "report_path": "outputs/u5_r2ap1_ektachrome_photo_frontier_v1/automatic_report_b.json",
+    "report_sha256": "726c08bab84f93c674738b68978deb5492de1fa49ea1b8383ac9aa7036f120d9"
+  },
+  "repeat_byte_identical": true,
+  "candidate_results": {
+    "ektachrome_palette_one_matrix__s50": {
+      "gold_median_style_delta_e76": 6.286133758133184,
+      "gold_median_non_basic_residual_delta_e76": 3.749086551376223,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "failed_gates": [
+        "style_floor",
+        "non_basic_floor"
+      ]
+    },
+    "ektachrome_palette_one_matrix__s75": {
+      "gold_median_style_delta_e76": 10.406082504751048,
+      "gold_median_non_basic_residual_delta_e76": 5.893279996855252,
+      "worst_gold_new_hard_clipping_fraction": 0.013102213541666666,
+      "failed_gates": [
+        "gold_clipping"
+      ]
+    },
+    "ektachrome_palette_one_matrix__s100": {
+      "gold_median_style_delta_e76": 15.187290321498415,
+      "gold_median_non_basic_residual_delta_e76": 10.320227716371457,
+      "worst_gold_new_hard_clipping_fraction": 0.30425315425315425,
+      "failed_gates": [
+        "gold_clipping"
+      ]
+    }
+  },
+  "automatic_survivors": [],
+  "visual_review_allowed": false,
+  "decision": "close_direct_ektachrome_photo_transplant_and_open_analytical_residual_guard",
+  "interpretation": "The direct operator has a real style-safety conflict rather than a blandness-only failure: 0.75 and 1.0 pass style/non-basic gates but approach new hard output boundaries, while 0.5 avoids the boundary at the cost of failing both style gates. The frozen strengths and thresholds remain unchanged.",
+  "forbidden_rescue": [
+    "insert an unregistered intermediate strength",
+    "relax the clipping or style gates",
+    "clip the direct output and rescore",
+    "visually select a failed candidate",
+    "refit or add capacity on the same 56 pairs"
+  ],
+  "next_leaf": "freeze U5.R2AP2 analytical source-inclusive residual-direction guard at the fixed 0.75 and 1.0 requests; require zero new hard clipping while preserving the inherited style and non-basic floors",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "negative direct-photograph transfer evidence for one Ektachrome author-rendered display-proxy operator, with a localized style-versus-boundary failure mechanism; no visual preference, stock response, calibration or product claim"
+}
