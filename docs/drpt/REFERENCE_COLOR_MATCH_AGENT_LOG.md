@@ -4417,3 +4417,20 @@
   capability, product admission or P60 mapping. P172, P45/P44 and v42 remain
   unchanged. R0EH is a producer-private finite-halo/workspace hypothesis and
   requires no consumer mapping.
+
+## 2026-07-29 - Register R0EH stripe-equivalence hypothesis
+
+- Producer `a5bafd8` freezes a conservative 12-row halo after source-derived
+  dependency analysis finds a maximum of 11 rows. The assembler uses
+  full-width row stripes and exact Bayer-phase remapping around the unchanged
+  private DDFAPD C implementation.
+- Core heights 7/16/31/64 across 72 synthetic combinations and core height 64
+  across all 15 native 1024 crops produce float32 bytes exactly equal to the
+  full-frame output. Two complete reports are byte-identical; report SHA is
+  `d52802da...c39de` and stable identity is `7962c457...a0ed4`.
+  The modeled 2024x3040 workspace falls from 61,529,600 to 2,675,200 float32
+  values (-95.6522%).
+- This is a private execution hypothesis only. It adds no public tiled ABI,
+  package, schema, receipt, capability, product admission or consumer
+  mapping. A later producer-private caller-workspace/failure-atomicity
+  contract is a separate gate; P172, P45/P44 and v42 remain unchanged.

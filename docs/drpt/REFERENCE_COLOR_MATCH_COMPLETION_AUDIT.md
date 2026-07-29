@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `c99f8e1`; R0EE independently
+- D-PCT latest stable communicated snapshot is `a5bafd8`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 2024x3040 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -38,6 +38,12 @@ wire contract and not an algorithm promotion.
   owned emulator/QEMU processes. This is private virtual-device arithmetic
   only, not physical arm64, JNI/app/media, native-RAW quality, Apple runtime
   or a public producer interface.
+  R0EH then proves a conservative 12-row-halo, full-width stripe assembly
+  byte-exact against the unchanged full-frame C output over 72 synthetic
+  combinations and all 15 native crops. Its 2024x3040 workspace model falls
+  from 61,529,600 to 2,675,200 float32 values (-95.6522%), but the stripe
+  assembler remains a private execution hypothesis without a public tiled
+  ABI, package, schema, receipt or capability.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
