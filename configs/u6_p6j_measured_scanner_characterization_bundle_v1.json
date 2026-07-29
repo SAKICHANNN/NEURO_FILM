@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u6_p6j_measured_scanner_characterization_bundle_contract.v1",
+  "node": "U6.P6J",
+  "claim_ceiling": "research-only per-device inverse characterization bundle from normalized unknown scanner-device RGB to normalized CIE XYZ D50 on one measured manufactured target set per device",
+  "parents": {
+    "p6i_decision_path": "configs/u6_p6i_measured_scanner_characterization_decision_v1.json",
+    "p6i_decision_sha256": "daa98e5c374e2a54ac807c70b67d1c2ac03fcdba5456ee43ea9a977ed4f9488f",
+    "p6i_contract_path": "configs/u6_p6i_measured_scanner_characterization_v1.json",
+    "p6i_contract_sha256": "ae9d527e1008c78969e4f18b0629826e10be0f8e16e8137ffd7282794b1f425d",
+    "p6i_alignment_retry_path": "configs/u6_p6i1_alignment_retry_v1.json",
+    "p6i_alignment_retry_sha256": "c93c48047f6adaaaf6921fdac8b50c123e0705b97ecb6abc6f106c319ab9fb36",
+    "p6i_report_path": "outputs/u6_p6i_measured_scanner_characterization_v1/report_pass1.json",
+    "p6i_report_sha256": "e37787aa732ae51f883533b19ffc42608afa3c1fb81dae92d5df32688a5cd108"
+  },
+  "compiler": {
+    "fit_support": "all five measured slides for each scanner/software pipeline",
+    "source_domain": "normalized-unknown-scanner-device-rgb",
+    "output_domain": "normalized-cie-xyz-d50",
+    "common_power_grid": [
+      0.5,
+      0.625,
+      0.75,
+      0.875,
+      1.0,
+      1.125,
+      1.25,
+      1.375,
+      1.5,
+      1.625,
+      1.75,
+      1.875,
+      2.0,
+      2.125,
+      2.25,
+      2.375,
+      2.5
+    ],
+    "matrix_coefficient_interval": [0.0, 4.0],
+    "hard_output_clipping_forbidden": true,
+    "entry_identity_fields": [
+      "scanner",
+      "software",
+      "target_set",
+      "archive_sha256"
+    ],
+    "wrong_scanner_software_target_or_archive_identity_fails_closed": true,
+    "forward_acquisition_scanner_profile_type_forbidden": true
+  },
+  "automatic_gates": {
+    "expected_entries": 13,
+    "expected_fit_patches_per_entry": 1320,
+    "all_parent_hashes_exact": true,
+    "p6i_automatic_pass_required": true,
+    "bundle_repeat_byte_exact": true,
+    "bundle_roundtrip_identity_exact": true,
+    "apply_matches_compiler_reference_max_abs": 1e-12,
+    "aggregate_development_median_delta_e76_max": 8.0,
+    "aggregate_development_p95_delta_e76_max": 25.0,
+    "each_entry_development_median_delta_e76_max": 15.0,
+    "output_xyz_minimum": 0.0,
+    "output_xyz_maximum": 1.5
+  },
+  "branch_rule": {
+    "pass": "retain the exact research-only bundle and open independent-target data search or future repeat-device confirmation",
+    "fail": "retain P6I equation-family evidence without a reusable compiled bundle; do not add capacity"
+  },
+  "forbidden_claims": [
+    "independent manufactured-target validation",
+    "scanner population or target-general transfer",
+    "calibrated scanner profile",
+    "film stock response, digital-to-film operator or emulsion physics",
+    "full-resolution scanner-image validation",
+    "production integration, redistribution or commercial use"
+  ]
+}
