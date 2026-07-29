@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap3v-b0-ektachrome-residual-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP3V",
+  "parent_config_sha256": "45f81100778a00896473f377d3041f6f9306f5a997ab86304910e286b1840d48",
+  "parent_automatic_report": "outputs/u5_r2ap3_b0_ektachrome_residual_frontier_v1/automatic_report_a.json",
+  "parent_automatic_report_sha256": "28ec54ebefb047c4778a936dc763bad10debaf77ab82cc7c73f550147507b61b",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "comparators": [
+    {
+      "role": "b0_fixed_base",
+      "candidate_id": "density_then_anchor__density_s50",
+      "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+      "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242"
+    },
+    {
+      "role": "ao6_velvia_residual",
+      "candidate_id": "b0_plus_film_t15_c35",
+      "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224"
+    }
+  ],
+  "shortlist": [
+    {
+      "experiment_id": "u5.r2ap3v-b0-ektachrome-residual-t10-c25-v1",
+      "role": "ap3_ektachrome_t10_c25",
+      "candidate_id": "b0_plus_ektachrome_t10_c25",
+      "manifest": "outputs/u5_r2ap3_b0_ektachrome_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "e42b10458d0bebfdb57ddcab390b277b2101eb8f09a4600058d6b8723df58a93"
+    },
+    {
+      "experiment_id": "u5.r2ap3v-b0-ektachrome-residual-t20-c50-v1",
+      "role": "ap3_ektachrome_t20_c50",
+      "candidate_id": "b0_plus_ektachrome_t20_c50",
+      "manifest": "outputs/u5_r2ap3_b0_ektachrome_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "e42b10458d0bebfdb57ddcab390b277b2101eb8f09a4600058d6b8723df58a93"
+    }
+  ],
+  "blind": {
+    "round_count": 3,
+    "seed": 20260730,
+    "source_visible": true,
+    "look_labels_hidden": true,
+    "same_nine_gold_rows_each_round": true,
+    "three_distinct_permutations_required": true,
+    "review_format": "rank_A_B_C_by_visible_film_style_and_appeal_subject_to_severe_veto",
+    "minimum_pairwise_round_wins": 2
+  },
+  "full_resolution": {
+    "both_shortlist_candidates_all_nine_gold_required": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "autonomous B0 development ranking of two analytically guarded Ektachrome display-proxy residual strengths against fixed B0 and AO6; not independent votes, owner/population preference, stock response, calibration or product promotion"
+}

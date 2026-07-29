@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap3-b0-ektachrome-residual-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP3",
+  "decision": "retain_t10_c25_as_secondary_B0_development_challenger_open_fresh_OOD_confirmation",
+  "retained_candidate": "b0_plus_ektachrome_t10_c25",
+  "rejected_candidates": [
+    "b0_plus_ektachrome_t15_c35",
+    "b0_plus_ektachrome_t20_c50",
+    "b0_plus_ektachrome_t25_c65"
+  ],
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2ap3_b0_ektachrome_residual_frontier_v1.json",
+      "sha256": "45f81100778a00896473f377d3041f6f9306f5a997ab86304910e286b1840d48"
+    },
+    "manifest": {
+      "path": "outputs/u5_r2ap3_b0_ektachrome_residual_frontier_v1/render_pass1/manifest.json",
+      "sha256": "e42b10458d0bebfdb57ddcab390b277b2101eb8f09a4600058d6b8723df58a93",
+      "repeat_byte_identical": true
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2ap3_b0_ektachrome_residual_frontier_v1/automatic_report_a.json",
+      "sha256": "28ec54ebefb047c4778a936dc763bad10debaf77ab82cc7c73f550147507b61b",
+      "repeat_byte_identical": true
+    },
+    "visual_config": {
+      "path": "configs/u5_r2ap3v_b0_ektachrome_residual_visual_v1.json",
+      "sha256": "20f4a51849338b925b0676cf3b6863a730e3dc31d007c6a7d7f888575388311c"
+    },
+    "visual_build_report": {
+      "path": "outputs/u5_r2ap3v_b0_ektachrome_residual_visual_v1/build_report.json",
+      "sha256": "94ab2d160e9d5576936cc24874f4a142ff266ba43e4bfcaaa0dbf3fd6f55de70"
+    },
+    "pre_reveal_review": {
+      "path": "outputs/u5_r2ap3v_b0_ektachrome_residual_visual_v1/pre_reveal_review.json",
+      "sha256": "3fe20f49af9d5436ac9e5e35fbb644442b219b5a21770e2a4de352fbfeb36b79"
+    }
+  },
+  "automatic_results": {
+    "b0_plus_ektachrome_t10_c25": {
+      "gold_median_style_delta_e76": 15.072502710046885,
+      "gold_median_non_basic_residual_delta_e76": 10.881397067750445,
+      "gold_median_real_film_delta_e76_from_base": 1.5744763704445235,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "automatic_survivor": true,
+      "shortlisted": true
+    },
+    "b0_plus_ektachrome_t20_c50": {
+      "gold_median_style_delta_e76": 14.997617724289869,
+      "gold_median_non_basic_residual_delta_e76": 10.824988727291796,
+      "gold_median_real_film_delta_e76_from_base": 3.0400551055865894,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "automatic_survivor": true,
+      "shortlisted": true
+    }
+  },
+  "visual_results": {
+    "b0_plus_ektachrome_t10_c25": {
+      "rankings_after_mapping": [
+        [
+          "ao6_velvia_residual",
+          "ap3_ektachrome_t10_c25",
+          "b0_fixed_base"
+        ],
+        [
+          "ap3_ektachrome_t10_c25",
+          "b0_fixed_base",
+          "ao6_velvia_residual"
+        ],
+        [
+          "ao6_velvia_residual",
+          "b0_fixed_base",
+          "ap3_ektachrome_t10_c25"
+        ]
+      ],
+      "wins_over_fixed_B0": 2,
+      "wins_over_AO6": 1,
+      "confirmed_severe_gold_artifacts": 0,
+      "full_resolution_gold_reviewed": 9,
+      "id11_red_speckle_or_posterization_confirmed": false,
+      "visual_gate": "pass_against_fixed_B0_only"
+    },
+    "b0_plus_ektachrome_t20_c50": {
+      "rankings_after_mapping": [
+        [
+          "ao6_velvia_residual",
+          "ap3_ektachrome_t20_c50",
+          "b0_fixed_base"
+        ],
+        [
+          "ao6_velvia_residual",
+          "b0_fixed_base",
+          "ap3_ektachrome_t20_c50"
+        ],
+        [
+          "b0_fixed_base",
+          "ao6_velvia_residual",
+          "ap3_ektachrome_t20_c50"
+        ]
+      ],
+      "wins_over_fixed_B0": 1,
+      "wins_over_AO6": 0,
+      "confirmed_severe_gold_artifacts": 0,
+      "full_resolution_gold_reviewed": 9,
+      "id11_red_speckle_or_posterization_confirmed": false,
+      "visual_gate": "fail"
+    }
+  },
+  "interpretation": [
+    "The analytical residual guard converts the independent Ektachrome display-proxy direction into severe-clean B0 compositions without hard clipping.",
+    "t10/c25 is visibly different enough to beat fixed B0 in two of three autonomous blind layouts, but AO6 remains preferred in two of three; t10/c25 is therefore a secondary development challenger, not a new champion.",
+    "t20/c50 adds more Ektachrome residual magnitude but loses to both comparators and is closed without parameter rescue."
+  ],
+  "next_leaf": "U5.R2AP4 freeze and run a fresh-population OOD comparison of fixed B0, AO6 and AP3 t10/c25 without changing any operator or threshold",
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "secondary autonomous B0 development challenger using a bounded residual from one single-painting Ektachrome author-rendered display proxy; not stock response, calibration, independent preference or product promotion"
+}
