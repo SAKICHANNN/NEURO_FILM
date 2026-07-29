@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p4g_film_structure_boundary_semantics_contract.v1",
+  "node": "U6.P4G",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4f_contract": "configs/u6_p4f_effective_mark_loss_lod_v1.json",
+    "p4f_contract_sha256": "ae29a9815b2a17c108927630483978a3f9e1580d6f4ab717392b727c55b46c88",
+    "p4f_decision": "configs/u6_p4f_effective_mark_loss_lod_decision_v1.json",
+    "p4f_decision_sha256": "02d12657ba8fd0e31e170963cc6b4b69bba78187f8be0aed057a0433e2ad2294"
+  },
+  "question": "Does an explicit normalized-support crop boundary remove the scale-dependent zero-fill edge artifact while preserving density conditioning, area-reference statistics, deterministic partitions and physical domains?",
+  "boundary_candidates": {
+    "incumbent_negative_control": "zero-fill-v1",
+    "candidate": "normalized-support-v1",
+    "candidate_definition": "Gaussian-filter the nonnegative count field and an all-ones support field with identical finite support and constant-zero exterior, then divide numerator by positive support before multiplying by grain optical density.",
+    "claim": "a computational crop-boundary convention, not a measured film aperture, gate flare or scanner-border model"
+  },
+  "compiler": {
+    "family": "P4F analytic effective-mark-loss",
+    "per_image_fit_or_normalization_allowed": false,
+    "empirical_parameter_fit_allowed": false,
+    "output_clipping_allowed": false
+  },
+  "synthetic_scene": {
+    "coarse_shape_at_factor_4": [96, 128],
+    "maximum_target_density": 2.0,
+    "horizontal_density_ramp": true,
+    "vertical_density_modulation": [0.65, 1.0],
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "density_bins": [0.0, 0.25, 0.5, 0.8, 1.2, 1.6, 2.000001],
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 2000
+  },
+  "lod_factors": [2, 4],
+  "automatic_gates": {
+    "minimum_candidate_target_column_correlation": 0.98,
+    "maximum_candidate_local_mean_absolute_error": 0.04,
+    "minimum_direct_to_area_reference_variance_ratio": 0.55,
+    "maximum_direct_to_area_reference_variance_ratio": 1.8,
+    "maximum_direct_to_area_reference_local_mean_difference": 0.03,
+    "maximum_constant_rate_target_column_correlation": 0.5,
+    "minimum_display_noise_out_of_domain_fraction": 0.001,
+    "minimum_zero_fill_factor_2_reference_local_mean_failure": 0.03,
+    "maximum_normalized_boundary_flat_mean_error": 0.02,
+    "density_and_transmittance_domain_valid": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain normalized-support as the explicit crop boundary for density-conditioned material structure and open a separately frozen edge/nonstationarity stress",
+    "fail": "close normalized-support and retain P4D base-pitch zero-fill evidence only"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic computational film-structure crop-boundary evidence; not a measured aperture, stock response, scanner border or product result"
+}
