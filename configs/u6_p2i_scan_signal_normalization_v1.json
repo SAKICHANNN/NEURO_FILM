@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u6_p2i_scan_signal_normalization.v1",
+  "node": "U6.P2I",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2h_decision_path": "configs/u6_p2h_reversal_scanner_stage_attribution_decision_v1.json",
+    "p2h_decision_sha256": "91e73ddcc042dd9f37ac482f2de7e8bbf4ccc298e4ef6b03a6bb507f3c53a383",
+    "p2f_contract_path": "configs/u6_p2f_generic_reversal_development_v1.json",
+    "p2f_operator_sha256": "b14c6a8c2c77144bbc57a9d76e3295e3d34a8082ac8e11d95bbb1183127b5431",
+    "scanner_contract_path": "configs/u6_p6a_scanner_profile_boundary_v1.json",
+    "scanner_contract_sha256": "bdf9595635002cee726e2dc63ab4a0a2def7d350a3e3033bab2e43c502cc34e7",
+    "scanner_profile": "scanner_a"
+  },
+  "endpoint_derivation": {
+    "black_relative_layer_exposure": 0.0,
+    "white_relative_layer_exposure": 16.0,
+    "flat_field_shape": [
+      64,
+      64,
+      3
+    ],
+    "sample": "center pixel after deterministic no-noise scanner stages",
+    "scanner_stages": [
+      "spectral",
+      "flare",
+      "dmax",
+      "mtf"
+    ],
+    "excluded_stage": "noise",
+    "definition": "display_linear = (scan_linear - black_scan_rgb) / (white_scan_rgb - black_scan_rgb)",
+    "out_of_endpoint_domain": "fail_closed_without_clipping"
+  },
+  "synthetic": {
+    "seed": 20260729,
+    "random_samples": 16384,
+    "neutral_samples": 4097,
+    "partition_stops": [
+      0,
+      257,
+      4097,
+      8193,
+      16384
+    ]
+  },
+  "automatic_gates": {
+    "minimum_endpoint_separation_per_channel": 0.50,
+    "maximum_endpoint_mapping_absolute_error": 1e-12,
+    "maximum_float64_inverse_roundtrip_absolute_error": 1e-12,
+    "minimum_neutral_first_difference": 0.0,
+    "minimum_positive_neutral_first_difference_magnitude": 1e-6,
+    "exact_replay": true,
+    "exact_partition": true,
+    "exact_serialization": true,
+    "input_unchanged": true,
+    "domain_endpoint_identity_and_outside_guards": true
+  },
+  "forbidden": [
+    "derive black or white endpoints from photographs",
+    "clip scan values into the endpoint interval",
+    "include stochastic scanner noise in endpoint derivation",
+    "fit or alter reversal, scanner, exposure or output parameters",
+    "call synthetic endpoints measured scanner calibration",
+    "change thresholds after observing the result",
+    "promote to stock, calibrated or product rendering"
+  ],
+  "branch_rules": {
+    "automatic_pass": "retain only as a generic scan-to-display normalization primitive and open a separately frozen photographic challenger",
+    "automatic_fail": "close the endpoint normalization hypothesis without parameter rescue"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic endpoint-derived scanner-signal normalization hypothesis; no measured scanner, emulsion, stock, calibration, authenticity, preference or product claim"
+}
