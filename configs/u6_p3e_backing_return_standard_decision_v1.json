@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3e-backing-return-standard-v1",
+  "node": "U6.P3E",
+  "decision": "retain_direct_float32_standard_compiler_open_photographic_stress",
+  "software_commit": "2181d33",
+  "contract": {
+    "path": "configs/u6_p3e_backing_return_standard_v1.json",
+    "canonical_sha256": "1e4d4ef9ff7855c34a3cacf37819034c0b7bbef822bc8e5dd0134bd80203f84d"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3e_backing_return_standard_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3e_backing_return_standard_v1/run_b/report.json",
+    "report_sha256": "59db1174b0a073e88f1c6e439051fee0734f47fd14e7d78d6d408545f4671b24",
+    "stable_evidence_id": "0cea72a3affa3f54bbf4e7745690e3621312fd8e89ce241f53c48f0ae022e885",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "reference_max_abs_error": 3.005311604020733e-7,
+    "reference_mean_abs_error": 3.791174363156873e-8,
+    "returned_energy_abs_error": 1.3062786519135727e-7,
+    "compiled_kernel_sum_abs_error": 6.589100598475284e-9,
+    "linearity_max_abs_error": 0.0,
+    "minimum_direct_increment": 0.0,
+    "zero_return_identity_exact": true,
+    "row_partitions_exact": [
+      7,
+      64,
+      257
+    ],
+    "required_halo_pixels": 180
+  },
+  "automatic_pass": true,
+  "interpretation": "The direct float32 separable implementation reproduces the frozen additive backing-return reference within the preregistered numerical gates while retaining direct exposure and exact row-partition execution. This validates the compiler, not photographic safety or any real film magnitude.",
+  "next_leaf": "U6.P3F freeze and run rights-cleared photographic severe-artifact stress without fitting the P3D profile",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired explicit-float32 Standard compiler for the frozen bounded backing-return reference; no photographic severe-stress, preference, stock, process, camera, pressure-plate, scanner, calibration, authenticity or product claim"
+}
