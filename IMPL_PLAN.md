@@ -99,6 +99,14 @@ scanner/software pipeline on an independently manufactured measured target.
 Autonomous priority returns to a distinct explicit film-image-formation or
 stock/look algorithm leaf.
 
+P6K adds a separate temporal-nuisance result without reopening that calibration
+route. Fourteen CC0 APPLAUSE TG13 scans from one recorded Epson/institutional
+workflow expose two stable normalized step-response regimes: the development
+prototype RMSE is `.15624`, and all six unseen confirmations pass with worst
+correct-prototype RMSE `.00134` and minimum classification margin `.15428`.
+Retain these only as scanner/wedge acquisition controls; exact target identity,
+cause, scanner calibration and film/emulsion interpretations remain unknown.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from copy import deepcopy
 from pathlib import Path
@@ -18,6 +19,11 @@ from src.eval.applause_tg13_temporal import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = json.loads(
     (ROOT / "configs/u6_p6k_applause_tg13_temporal_v1.json").read_text(
+        encoding="utf-8"
+    )
+)
+DECISION = json.loads(
+    (ROOT / "configs/u6_p6k_applause_tg13_temporal_decision_v1.json").read_text(
         encoding="utf-8"
     )
 )
@@ -97,3 +103,20 @@ def test_contract_rejects_support_and_download_drift() -> None:
     drifted["download"]["maximum_total_bytes"] = 300_000_000
     with pytest.raises(ApplauseTg13Error, match="download boundary"):
         validate_config(drifted)
+
+
+def test_decision_binds_exact_contract_and_keeps_calibration_closed() -> None:
+    contract_bytes = (
+        ROOT / "configs/u6_p6k_applause_tg13_temporal_v1.json"
+    ).read_bytes()
+    assert (
+        hashlib.sha256(contract_bytes).hexdigest()
+        == DECISION["evidence"]["contract"]["sha256"]
+    )
+    assert DECISION["automatic_pass"] is True
+    assert DECISION["support"]["confirmatory_files"] == 6
+    assert DECISION["metrics"]["maximum_confirmatory_correct_prototype_rmse"] < 0.02
+    assert "scanner calibration" in DECISION["forbidden"]
+    assert "film stock, emulsion, exposure or development response" in DECISION[
+        "forbidden"
+    ]

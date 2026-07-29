@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p6k_applause_tg13_temporal_decision.v1",
+  "node": "U6.P6K",
+  "decision": "retain_two_repeat_stable_scanner_wedge_response_regimes_as_nuisance_evidence",
+  "automatic_pass": true,
+  "software_commit": "7d7ceedfc9b665ad2080303b8897d3a533fe8e8c",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6k_applause_tg13_temporal_v1.json",
+      "sha256": "0d854de01923b1ada2b5feeeaaae7d715c9281510b5462dce042bce537d7d745"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6k_applause_tg13_temporal_v1/report.json",
+      "sha256": "5656c231e7a631e32de9ea03d00d48d59a45d5d98d25d92ce9fcb330b784ba48"
+    },
+    "stable_evidence_id": "55d47596d1abd6fdcd31e9a04c1ae767ae83bce179a8c9ce62b2515b30dbc1be",
+    "repeat_report_byte_identical": true
+  },
+  "support": {
+    "files": 14,
+    "bytes": 191802240,
+    "development_files": 8,
+    "confirmatory_files": 6,
+    "normalized_steps_per_file": 14,
+    "scanner": "Epson Expression 10000XL",
+    "wedge_type": "TG13",
+    "date_range": [
+      "2012-11-08 16:07:13",
+      "2016-09-15 17:47:48"
+    ]
+  },
+  "metrics": {
+    "development_prototype_rmse": 0.1562419189812495,
+    "maximum_confirmatory_correct_prototype_rmse": 0.00134372354723089,
+    "minimum_confirmatory_wrong_minus_correct_margin": 0.15428356621139477,
+    "minimum_raw_code_span": 50318.0,
+    "minimum_adjacent_normalized_step": 0.0033329576376253884
+  },
+  "interpretation": [
+    "The six unseen confirmation scans reproduce the frozen early/late response separation with large margin.",
+    "This is evidence for at least two acquisition-response regimes in one recorded scanner-model and institutional wedge workflow.",
+    "Exact physical-wedge identity, the cause and timing of the regime change, and transfer to another scanner or target remain unidentified.",
+    "The regimes are scanner/wedge nuisance evidence and must never be clustered or supervised as film-stock, emulsion, exposure, development or latent stock modes."
+  ],
+  "branch_action": {
+    "retain": "two response prototypes as a scanner-nuisance stress/control family",
+    "do_not_reopen": "U6.P6J independent-manufactured-target calibration route",
+    "next": "return to a distinct film image-formation or stock/look algorithm leaf; use P6K only when testing scanner-nuisance separation"
+  },
+  "forbidden": [
+    "scanner calibration or population transfer",
+    "exact physical-wedge identity claim",
+    "film stock, emulsion, exposure or development response",
+    "latent film mode supervision",
+    "digital-to-film operator fitting",
+    "product integration or promotion"
+  ],
+  "claim_ceiling": "confirmed two-regime scanner/wedge acquisition-response nuisance evidence for one APPLAUSE workflow; not scanner calibration, emulsion response, film-stock response, latent stock modes or product evidence"
+}

@@ -7266,3 +7266,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   determinant, strength, weights, folds or capacity. AO6 t15/c35 remains the
   development colour champion; Ultimate continues with a distinct
   evidence-authorized algorithm or controlled-data leaf.
+
+## 2026-07-30 - U6.P6K confirms scanner/wedge response regimes
+
+- APPLAUSE documents TG13 wedge scans as a check on transparency-unit time
+  variation. A bounded CC0 lane retains 14 exact FITS wedges/191.8MB from one
+  Epson/institutional workflow; no plate image was acquired.
+- Development freezes early/late 14-step prototypes at RMSE `.15624`. All six
+  previously unseen scans choose the expected prototype; worst correct RMSE is
+  `.00134` and minimum wrong-minus-correct margin `.15428`. Two reports are
+  byte-identical at `5656c231...84ba48`.
+- Retain only scanner/wedge acquisition nuisance stress. Exact wedge identity,
+  causal settings, scanner calibration, film/emulsion response, latent modes
+  and product use remain closed. P6J is not reopened; resume a distinct
+  film-image-formation or stock/look algorithm leaf.
