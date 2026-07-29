@@ -27,6 +27,15 @@ from .reference_scatter import (
     gaussian_kernel_1d,
     profile_from_contract,
 )
+from .backing_return import (
+    BACKING_RETURN_SCHEMA,
+    BackingReturnComponent,
+    BackingReturnProfile,
+    apply_reference_backing_return,
+    backing_return_kernel_1d,
+    backing_return_kernel_2d,
+    backing_return_profile_from_contract,
+)
 from .compiled_scatter import (
     CompiledScatterKernel,
     CompiledScatterProfile,
@@ -90,10 +99,13 @@ from .scanner import (
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
+    "BACKING_RETURN_SCHEMA",
     "DOMAIN_UNITS",
     "PROFILE_BUNDLE_SCHEMA",
     "QUALITY_TIERS",
     "ComponentBinding",
+    "BackingReturnComponent",
+    "BackingReturnProfile",
     "CompiledScatterKernel",
     "CompiledScatterProfile",
     "CompoundPoissonProfile",
@@ -117,6 +129,7 @@ __all__ = [
     "ScannerStandardContext",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
+    "apply_reference_backing_return",
     "apply_interpretation_bounded_development_adjacency",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
@@ -147,6 +160,9 @@ __all__ = [
     "counter_uniform_region",
     "gaussian_kernel_1d",
     "gaussian_kernel_2d",
+    "backing_return_kernel_1d",
+    "backing_return_kernel_2d",
+    "backing_return_profile_from_contract",
     "profile_from_contract",
     "render_developed_structure",
     "render_developed_structure_region",
