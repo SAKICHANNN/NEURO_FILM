@@ -4457,3 +4457,21 @@
   remains private CPU evidence: no public package, schema, receipt,
   capability, quality/product admission or consumer mapping. P172, P45/P44
   and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EJ target build and Windows performance
+
+- Producer `bad644c` reproducibly links the historical plus tiled ABI into
+  Android arm64-v8a/x86_64 shared libraries and reproducibly emits macOS/iOS
+  arm64 two-object bundles. Every final target boundary exposes exactly four
+  query/apply symbols, has zero unresolved symbols and is byte-exact across
+  two builds.
+- On the rights-cleared 3040x2024 Samsung native CFA, MSVC and LLVM core-64
+  tiled outputs are byte-exact to full v1. Two formal processes produce
+  tiled/full median timing ratios from 0.9328 to 1.6096, all below the frozen
+  2.0 ceiling; atomic workspace remains -64.3478%. Timing-free stable identity
+  is `a6878acd...b0894` and report SHA is `6190961b...aaab5`.
+- The ceiling is target link/object evidence plus local Windows performance.
+  There is no Android/Apple runtime, public package, schema, receipt,
+  capability, quality/product admission or consumer mapping. R0EK virtual
+  Android tiled runtime is a separate producer gate; P172, P45/P44 and v42
+  remain unchanged.
