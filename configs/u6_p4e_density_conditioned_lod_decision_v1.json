@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4e_density_conditioned_lod_decision.v1",
+  "node": "U6.P4E",
+  "decision": "close_density_conditioned_lod_integration_retain_p4d_base_pitch_only",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4e_density_conditioned_lod_audit_v1.json",
+      "sha256": "93f1ea71bf9a6ee9db873b76dff3f7ab99d0f75b0698c6f47af5c7540ba02488"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4e_density_conditioned_lod_audit_v1/report_a.json",
+      "sha256": "6f0627b8e9e57e36bca9b7162c1abe9430124effbfd13c75400595b8b5d9c3b2",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "885158d8831a045e08f6b43fdbdad020bc27bc2b46175c1a6b7db43fdcdb6037"
+    },
+    "software_commit": "8876dfd5"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "reference_local_mean"
+    ],
+    "development_factor_2_maximum_reference_local_mean_difference": 0.03414323465641278,
+    "confirmation_factor_2_maximum_reference_local_mean_difference": 0.06508868201874463,
+    "frozen_maximum_reference_local_mean_difference": 0.03,
+    "maximum_candidate_target_local_mean_error": 0.01770177384814353,
+    "minimum_candidate_target_column_correlation": 0.9998307701098458,
+    "minimum_reference_variance_ratio": 1.0140753351900524,
+    "maximum_reference_variance_ratio": 1.4876308067011337,
+    "minimum_display_noise_out_of_domain_fraction": 0.10945638020833333,
+    "constant_rate_maximum_absolute_target_column_correlation": 0.10666850185561252,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": [
+    "The frozen q/f^2 and sigma/f area compiler preserves target trend, density-domain validity, variance scale and deterministic partitioning.",
+    "It does not reproduce the factor-2 area-averaged transmittance reference within the frozen local-mean gate; the independent confirmation maximum difference is 0.06509 density units versus the 0.03 gate.",
+    "The mismatch is consistent with the nonlinear Jensen gap between averaging optical density and averaging Beer-Lambert transmittance. It is not evidence for relaxing the gate or normalizing each image.",
+    "P4D base-pitch synthetic evidence remains valid. This P4E compiler is closed and is not integrated into photographic or product paths."
+  ],
+  "next_leaf": "U6.P4F freeze a separately versioned analytic effective-mark-loss compiler that targets area-averaged transmittance without changing P4D or P4E results",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "negative generic physical-inspired LOD compiler evidence; not measured film NPS, dye-cloud calibration, stock response or product evidence"
+}
