@@ -80,6 +80,17 @@ predictions before clipping. Close RGB capacity rescue on this one-target
 pool. P6H audits independent-target and repeat-scan connectivity before any
 further measured scanner operator fit.
 
+P6H acquires 13 bounded official archives across measured target Sets 1/2/9:
+all integrity and decode gates pass, but no scanner/software pipeline repeats
+across manufactured target sets. P6I therefore limits itself to per-device
+leave-one-slide-out characterization. A common scalar power followed by a
+nonnegative bounded 3x3 passes every frozen gate at median/p95
+`7.303/24.133` Delta E76 versus identity `47.152/131.185`, without clipping.
+P6J next compiles this inverse scanner-device-RGB to normalized D50 XYZ family
+as a research-only replay bundle. It must remain distinct from P6A's forward
+film-transmittance-to-scan `ScannerProfile`, and it cannot claim independent
+target validation, calibration, stock response or product readiness.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

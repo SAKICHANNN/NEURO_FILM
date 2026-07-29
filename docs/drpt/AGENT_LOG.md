@@ -7097,3 +7097,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close threshold relaxation and RGB/LUT/neural capacity rescue on this
   one-target pool. P6H next audits independent-target/repeat-scan data
   feasibility; stock, calibration, training and product claims remain closed.
+
+## 2026-07-29 - U6.P6H/P6I measured scanner characterization
+
+- P6H acquired and twice audited 13 official ColorReference archives
+  (200,632,766 bytes, 65 RGB TIFFs). Sets 1/2/9 each contain multiple scanner
+  pipelines, but no pipeline repeats across sets; cross-target generalization
+  is unavailable.
+- P6I/P6I1 aligned 13 pipelines across five slides. Four cells used a
+  separately frozen feature-match retry after primary failure; all original
+  support and reprojection gates remained unchanged.
+- Two formal reports are byte-identical at `e37787aa...d108`. The retained
+  common-power plus nonnegative bounded 3x3 reaches median/p95
+  `7.303/24.133` Delta E76 on 17,160 held-slide predictions versus identity
+  `47.152/131.185`; every automatic gate passes and no clipping is used.
+- Open P6J research-only bundle compilation and replay. Keep this inverse
+  device-RGB characterization separate from the forward P6A ScannerProfile;
+  independent-target, calibrated scanner, stock and product claims stay
+  closed.
