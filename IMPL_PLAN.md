@@ -27,6 +27,9 @@ P5G reuses the exact P5D 18-image/nine-make CC0 cohort and compares unchanged
 P5C with P5C+P5F before dye diffusion. It freezes `.006` output, flat-region,
 isolated-excursion, boundary and exact 257/509-row gates plus nine overview and
 one-to-one worst-difference crop diagnostics.
+Two exact runs pass all gates and visual severe review, but the maximum/P95
+changes are only `.002843/.000157`. Freeze P5H to measure encoded visibility,
+edge benefit and runtime cost; no product integration follows from safety.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

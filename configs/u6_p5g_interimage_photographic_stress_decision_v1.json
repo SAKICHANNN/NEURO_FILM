@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p5g_interimage_photographic_stress_decision.v1",
+  "node": "U6.P5G",
+  "status": "automatic-and-autonomous-visual-pass-development-only",
+  "contract_sha256": "eb19b0a9ae553ebc79c319954434fdef572579899387ae38347d0e202aed2d9f",
+  "software_commit": "7ebe9132a2a4761c45f6d1eb702526787f22c108",
+  "report_sha256": "521bebd6c01c5d804dfa6358f50d243bf7039f9c126e2dfd5efd8909b943d969",
+  "stable_evidence_id": "a46003ed54f8698ddf59d2948250660433bd2a7e8e858310c88077c531db79e6",
+  "overview_sha256": "4c11beb2843b812cafa51b4d5bcf90858480089dd1b6ee42b1a013b2a2fb1c2f",
+  "worst_patches_sha256": "c925beab960d7e879d3925818f39aceb14b364598c9e1d8db210b210e7bd9ea7",
+  "repeat_report_count": 2,
+  "metrics": {
+    "input_rows": 18,
+    "camera_makes": 9,
+    "population_p95_candidate_vs_baseline_abs": 0.00015682792958329728,
+    "maximum_candidate_vs_baseline_abs": 0.00284273012615577,
+    "maximum_flat_region_p99_abs": 0.000759227284223672,
+    "maximum_difference_channel_spread": 0.00337777649049398,
+    "isolated_excursion_count": 0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "row_partitions_exact": [257, 509]
+  },
+  "autonomous_visual_evidence": {
+    "confirmed_severe_failures": 0,
+    "observations": [
+      "P5C baseline and P5C-plus-P5F remain visually aligned across all nine fixed overviews and strongest-difference one-to-one crops.",
+      "The 32x difference views contain only low-amplitude responses following existing colour or luminance edges.",
+      "No coloured speckle, posterization, secondary contour, edge echo, flat-region block, partition seam or geometry change is visible."
+    ],
+    "scope": "autonomous visual severe-artifact evidence on fixed relative-display-sRGB-derived photographic stress only"
+  },
+  "claim_ceiling": "generic-interimage-photographic-structural-stress-development",
+  "branch_decision": "Retain P5F as severe-clean photographic development evidence. Its visible effect is weak, so freeze a separate cost-and-value audit before any combined-chain or runtime integration.",
+  "forbidden_interpretations": [
+    "real DIR chemistry or stock/process response",
+    "calibrated scene-exposure behavior",
+    "style or preference improvement",
+    "product or runtime promotion"
+  ]
+}

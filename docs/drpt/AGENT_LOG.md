@@ -7393,3 +7393,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - If automation passes, inspect nine fixed overviews and one-to-one 256px
   crops centred at each image's strongest candidate difference. Pass opens
   only a separate combined-chain value ablation.
+
+## 2026-07-30 - U6.P5G is severe-clean but visually weak
+
+- Two formal runs are byte-identical: report `521bebd6...3d969`, overview
+  `4c11beb2...b1c2f`, worst patches `c925beab...d9ea7`.
+- Across 18 CC0 images, max/P95 candidate change is `.002843/.000157`,
+  flat-region P99 `.000759`, exact partitions 257/509, with zero isolated
+  excursions and zero new hard boundaries.
+- Fixed visual inspection finds only low-amplitude, existing-edge-following
+  difference structure and zero severe failures. Because the effect is weak,
+  P5H must prove encoded visibility/edge value relative to runtime cost before
+  any integration.
