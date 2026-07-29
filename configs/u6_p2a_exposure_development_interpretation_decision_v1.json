@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2a-exposure-development-interpretation-v1",
+  "node": "U6.P2A",
+  "decision": "retain_typed_u2_sensitometry_reuse_open_interpretation_mediums",
+  "software_commit": "52f71e5",
+  "contract": {
+    "path": "configs/u6_p2a_exposure_development_interpretation_contract_v1.json",
+    "sha256": "ab8204407ed965bbdd714527f68d45539ab3e1bbe669b77d0ebe6cfe17347466"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p2a_exposure_development_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2a_exposure_development_v1/run_b/report.json",
+    "report_sha256": "ae8db8ecdc862d7e165dc5f61d69dedc2fd0262db17d66be8b12e1733db62672",
+    "stable_evidence_id": "cdac7a7b7dcd458c627fd57f2ddc73ff862f233169a89ac11095c3936962005f",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "routes": 4,
+    "operator_replay_exact": true,
+    "partition_replay_exact": true,
+    "input_preserved_exact": true,
+    "duplicate_tone_curve_symbols": 0,
+    "wrong_domain_route_operator_and_process_evidence_rejected": true
+  },
+  "automatic_pass": true,
+  "interpretation": "The physical-domain wrapper reuses the exact U2.2 sensitometry implementation and binds negative, slide and B&W route semantics without copying a curve or inventing measured process labels. The shared density result is not itself an interpretation medium and the current colour-layer operator does not establish a neutral B&W silver image.",
+  "next_leaf": "U6.P2B distinct film-transmittance and print-reflectance media with scan-polarity metadata; reject non-neutral B&W density",
+  "production_integration_allowed": false,
+  "claim_ceiling": "typed generic U2.2 sensitometry reuse and route semantics only; no measured process, B&W silver, interpretation, scanner, stock, calibration or product claim"
+}

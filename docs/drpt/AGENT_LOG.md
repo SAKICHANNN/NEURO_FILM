@@ -6736,3 +6736,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the failed P3G combined topology or add stock, calibration, native/mobile or
   product claims. Next leaf returns to the missing P2 typed
   exposure-development-interpretation contract and reuses U2.2.
+
+## 2026-07-29 - U6.P2A typed exposure-development reuse
+
+- Added a physical-domain wrapper around the exact existing U2.2
+  sensitometry; no characteristic curve, exposure encoder or spline is
+  duplicated. Negative, slide and B&W route names are bound separately from
+  unknown or hypothesis-only process state.
+- Two formal reports are byte-identical at `ae8db8ec...b62672`. All four route
+  contracts reproduce the same density bytes and exact partitions; input,
+  domain, route-family, operator-identity and process-evidence guards pass.
+- This is only the shared exposure-to-density stage. It does not make the
+  current colour-layer density a B&W silver image or define the medium scanned
+  downstream. P2B must separate transmittance from print reflectance and reject
+  non-neutral B&W density.
