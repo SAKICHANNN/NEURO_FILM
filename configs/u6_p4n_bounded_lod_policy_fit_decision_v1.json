@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p4n_bounded_lod_policy_fit_decision.v1",
+  "node": "U6.P4N",
+  "decision": "close_threshold_router_retain_global_p4h_and_exact_reference",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4n_bounded_lod_policy_fit_v1.json",
+      "sha256": "dfad5f3cde53c70043ae9d9c64e80d7ec8fe4c73bca17709ed08a4d096640d1e"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4n_bounded_lod_policy_fit_v1/report.json",
+      "sha256": "170754ee1b91edf194e606fb08586f0cf60a1f16ced2e316af6ed9e189d3d5db",
+      "stable_evidence_id": "b7075146c16192915307f8e09a64508318c0c277b79fc67d348461f3db2a94c2"
+    },
+    "software_commit": "c2cdf3791ae75d053944939abd752352f1a357c4"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "development_improvement"
+    ],
+    "selected_threshold": 0.8,
+    "global_p4h_development_mean_score": 0.2102129035718736,
+    "selected_policy_development_mean_score": 0.2258461726428984,
+    "development_score_improvement_fraction_vs_global_p4h": -0.07436874143018367,
+    "selected_policy_mean_exact_fallback_fraction": {
+      "development": 0.18120117187499998,
+      "confirmation": 0.16453450520833335,
+      "stress": 0.14431966145833333
+    },
+    "selected_policy_sealed_maximum_global_mean_absolute_error": 0.0011603206861764415,
+    "selected_policy_sealed_maximum_block_mean_absolute_error": 0.029319709166884422,
+    "selected_policy_sealed_variance_ratio": [
+      0.9871404470653647,
+      1.0315869960002861
+    ],
+    "group_split_overlap_count": 0,
+    "repeat_exact": true,
+    "physical_domain_valid": true
+  },
+  "interpretation": [
+    "The hard fallback policy improves held-out mean, block and variance fidelity, but its exact-area execution cost outweighs those gains under the preregistered development objective.",
+    "The selected threshold is stable and all sealed safety/statistical gates pass, yet it is 7.44% worse than the simpler global P4H baseline on the only split allowed to select policy.",
+    "Threshold routing therefore closes without relaxing the objective or adding router capacity. Exact-area remains an offline reference and P4H remains stationary-only."
+  ],
+  "next_leaf": "U6.P4O freeze fresh-process full-resolution performance and partition evidence for the stationary global P4H compiler only; nonstationary routing and product integration remain closed",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "group-held-out synthetic explicit LOD policy evidence; not measured film structure, stock calibration, photographic evidence, preference or product promotion"
+}
