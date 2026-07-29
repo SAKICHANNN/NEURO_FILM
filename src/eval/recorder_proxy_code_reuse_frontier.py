@@ -323,8 +323,8 @@ def evaluate_bank(
                 validated["model"], source_pixels
             )
             raw_preview = linear_srgb_to_encoded(
-                np.clip(raw_target, 0.0, 1.0)
-            )
+                np.clip(raw_target, 0.0, 1.0).reshape(-1, 1, 3)
+            ).reshape(-1, 3)
             per_image.append(
                 {
                     "sample_id": sample_id,
