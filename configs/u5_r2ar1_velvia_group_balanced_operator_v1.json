@@ -1,0 +1,91 @@
+{
+  "schema": "neuro_film.u5_r2ar1_velvia_group_balanced_operator_contract.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AR1",
+  "question": "Does equal proxy-domain weighting improve the worst-domain stability of one shared bounded Velvia display-proxy operator without materially degrading pooled error?",
+  "parents": {
+    "combined_operator_decision": {
+      "path": "configs/u5_r2ao5_combined_velvia_decision_v1.json",
+      "sha256": "2142ae0b5eaab38da4f1ef42977aa4b86a9ded58adf5a2f7dd6a512cecf40f76",
+      "required_decision": "retain_combined_real_film_operator_and_direction_improvement_not_aesthetic_champion"
+    },
+    "cube_flow_decision": {
+      "path": "configs/u5_r2ar0_velvia_proxy_cube_flow_decision_v1.json",
+      "sha256": "f4308274443eca5381c7202e660b2cca6b565f70b7ccc9cdf5ea9330fb4faab3",
+      "required_decision": "close_flow_on_display_proxy_family_without_rescue"
+    }
+  },
+  "inputs": {
+    "chart_pairs": {
+      "path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+      "sha256": "0b51a236f366af5c0131a357da0edbc36c25e68238fcdf5a386f0ec068142aea",
+      "paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+      "rows": 24
+    },
+    "palette_pairs": {
+      "path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+      "sha256": "483b7db48ffdb6119d67694a1fbff6d0b878228bacb8a58147b701a927e12814",
+      "asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+      "paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30",
+      "rows": 47
+    },
+    "working_space": "linear_srgb_d65",
+    "pair_semantics": "author-rendered reference/display-film proxy pairs; not RAW or calibrated film response"
+  },
+  "development_disclosure": {
+    "post_exploratory_contract": true,
+    "same_exact_71_rows_seen_in_prior_AO4C_AO5_AO9_AR0_work": true,
+    "full_row_equal_group_weight_probe_seen_before_freeze": true,
+    "claim_as_untouched_confirmation_forbidden": true
+  },
+  "candidate": {
+    "family": "equal_proxy_group_weighted_bounded_one_matrix",
+    "weighting": "exact_equal_total_weight_by_cross_repetition",
+    "fold_count": 5,
+    "fold_seed": 34191
+  },
+  "fit": {
+    "model": "one_matrix",
+    "identity_mixture": 0.25,
+    "restart_count": 3,
+    "loss": "linear",
+    "loss_scale": 0.01,
+    "maximum_function_evaluations": 4000,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11,
+    "seed": 34191
+  },
+  "evaluation": {
+    "domains": [
+      "velvia_chart",
+      "velvia_palette"
+    ],
+    "cube_axis_count": 9,
+    "jacobian_axis_count": 7,
+    "jacobian_step": 0.0001
+  },
+  "automatic_gates": {
+    "minimum_full_worst_domain_rmse_improvement": 0.05,
+    "minimum_crossfit_worst_domain_rmse_improvement": 0.03,
+    "maximum_full_combined_rmse_regression": 0.05,
+    "maximum_crossfit_combined_rmse_regression": 0.05,
+    "minimum_fold_worst_domain_win_fraction": 0.6,
+    "minimum_jacobian_determinant": 0.01,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "repeat_report_byte_identity": true
+  },
+  "branch_rule": {
+    "automatic_pass": "retain one development-only group-balanced explicit operator challenger and freeze a fresh-population AO6-composition comparison",
+    "automatic_fail": "close group weighting on these proxy rows without weight, capacity, fold, threshold or photograph rescue"
+  },
+  "forbidden": [
+    "fit separate chart and palette product experts",
+    "use proxy-domain identity as an inference router",
+    "tune group weight or folds after formal results",
+    "increase operator capacity",
+    "hard clipping or projection",
+    "stock response, calibration or product claim"
+  ],
+  "claim_ceiling": "Post-exploratory development comparison of equal proxy-group weighting for one shared bounded explicit operator on two reused author-rendered Velvia display-proxy domains; not untouched confirmation, RAW, stock response, calibration or product evidence."
+}
