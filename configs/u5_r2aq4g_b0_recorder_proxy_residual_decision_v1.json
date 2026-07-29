@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4g-b0-recorder-proxy-residual-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ4G",
+  "decision": "close_B0_recorder_proxy_residual_photo_challenger_retain_AO6_development_champion",
+  "retained_candidate": "b0_plus_film_t15_c35",
+  "rejected_candidates": [
+    "b0_plus_recorder_factor_t50_c125",
+    "b0_plus_recorder_factor_t50_c175",
+    "b0_plus_recorder_factor_t75_c200"
+  ],
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1.json",
+      "sha256": "f668a3de564c6484bb893036f999812b94e3ebc05492547e51983c5419d7c361"
+    },
+    "manifest": {
+      "path": "outputs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1/render_pass1/manifest.json",
+      "sha256": "1963dff2bd27300c70f5fe7bf48af915de0c8b60a2565d20e39f596e69b855ba",
+      "repeat_byte_identical": true
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1/automatic_report_pass1.json",
+      "sha256": "83fc7cac199ad0920f11cd9a28e3ff451fd9f5880d74cd608d962e5f3ee76abb",
+      "repeat_byte_identical": true
+    },
+    "visual_config": {
+      "path": "configs/u5_r2aq4gv_b0_recorder_proxy_residual_visual_v1.json",
+      "sha256": "e192a32d987ee08d91c1dba3e32fc95d543b31a19f5b09a5a8bad5c3e3233ad5"
+    },
+    "visual_build_report": {
+      "path": "outputs/u5_r2aq4gv_b0_recorder_proxy_residual_visual_v1/build_report.json",
+      "sha256": "47f86a96a3a2ca5ab548b7f24e3dabb4e2edeb86fa26deb79792aca3d5f2a3cd"
+    },
+    "pre_reveal_review": {
+      "path": "outputs/u5_r2aq4gv_b0_recorder_proxy_residual_visual_v1/pre_reveal_review.json",
+      "sha256": "19837c9b263b919d2ce8bec9b9ba280bbb970036b1ae4192949bdabadd897186"
+    }
+  },
+  "automatic_results": {
+    "b0_plus_recorder_factor_t50_c125": {
+      "gold_median_style_delta_e76": 14.88363610128679,
+      "gold_median_non_basic_residual_delta_e76": 9.862768570653817,
+      "gold_median_recorder_delta_e76_from_base": 5.1374566673059165,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "worst_stress_new_hard_clipping_fraction": 0.0,
+      "automatic_survivor": true,
+      "shortlisted": true
+    },
+    "b0_plus_recorder_factor_t50_c175": {
+      "gold_median_style_delta_e76": 15.018586513001349,
+      "gold_median_non_basic_residual_delta_e76": 9.172645356670705,
+      "gold_median_recorder_delta_e76_from_base": 6.401203148941078,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "worst_stress_new_hard_clipping_fraction": 0.0,
+      "automatic_survivor": true,
+      "shortlisted": true
+    },
+    "b0_plus_recorder_factor_t75_c200": {
+      "gold_median_style_delta_e76": 15.185767277442464,
+      "gold_median_non_basic_residual_delta_e76": 9.154542685207295,
+      "gold_median_recorder_delta_e76_from_base": 8.01758255073378,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "worst_stress_new_hard_clipping_fraction": 0.0,
+      "automatic_survivor": true,
+      "shortlisted": false
+    }
+  },
+  "visual_results": {
+    "rankings_after_mapping": [
+      [
+        "b0_plus_film_t15_c35",
+        "b0_plus_recorder_factor_t50_c125",
+        "b0_plus_recorder_factor_t50_c175"
+      ],
+      [
+        "b0_plus_film_t15_c35",
+        "b0_plus_recorder_factor_t50_c125",
+        "b0_plus_recorder_factor_t50_c175"
+      ],
+      [
+        "b0_plus_film_t15_c35",
+        "b0_plus_recorder_factor_t50_c175",
+        "b0_plus_recorder_factor_t50_c125"
+      ]
+    ],
+    "b0_plus_recorder_factor_t50_c125": {
+      "wins_over_AO6": 0,
+      "confirmed_severe_gold_artifacts": 0,
+      "full_resolution_gold_reviewed": 9,
+      "id11_red_speckle_or_posterization_confirmed": false,
+      "visual_gate": "fail"
+    },
+    "b0_plus_recorder_factor_t50_c175": {
+      "wins_over_AO6": 0,
+      "confirmed_severe_gold_artifacts": 0,
+      "full_resolution_gold_reviewed": 9,
+      "id11_red_speckle_or_posterization_confirmed": false,
+      "visual_gate": "fail"
+    },
+    "review_scope": "three autonomous blind layouts plus all nine full-resolution gold images for both shortlisted recorder candidates",
+    "claim_ceiling": "autonomous visual evidence, not owner, population or independent human preference"
+  },
+  "interpretation": [
+    "All three bounded B0 recorder-proxy residuals are automatically strong and severe-clean, so the analytical guard is functioning as intended.",
+    "The two shortlisted candidates lose to AO6 t15/c35 in all three autonomous blind layouts despite higher automatic style scores; metric strength does not translate into greater visual appeal.",
+    "Neither candidate shows confirmed severe corruption or the ID11 red-speckle/posterization regression, so closure is a preference failure rather than an artifact failure.",
+    "The recorder parameterization remains a useful explicit chart-response control, but unidentified recorder-code semantics and failed visual preference make further photo-domain strength tuning unjustified."
+  ],
+  "next_leaf": "U5.R2AQ5S perform a bounded source-semantic audit of the recorder input encoding before any further recorder-proxy photo fitting; if no evidence-backed mapping exists, close the recorder photo route and pivot to another explicit film-simulation family",
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "closed B0 development challenger using a bounded residual from an unidentified recorder-code reuse hypothesis; not Velvia stock response, calibration, independent preference or product promotion"
+}
