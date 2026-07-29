@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p8bc_native_standard_working_image_concurrency_grid_decision.v1",
+  "node": "U6.P8BC",
+  "contract": "configs/u6_p8bc_native_standard_working_image_concurrency_grid_v1.json",
+  "contract_sha256": "2bc4857c77504fbeebe6ab902415811f233f3c2e2858a360220c46fa5436eb79",
+  "formal_report": "outputs/u6_p8bc_native_standard_working_image_concurrency_grid_v1/report.json",
+  "formal_report_sha256": "3cd8fbb26fb2bb5731cc9b15a1f332940502976b17daa7e00c5563e7d306000a",
+  "stable_evidence_id": "83484dab38c0f1f6684a5be27feaef972059f1a17c80a1baaf2492d6c65540dc",
+  "result": {
+    "status": "closed-no-eligible-concurrency",
+    "selected_workers": null,
+    "all_candidates_output_and_receipt_exact": true,
+    "all_candidates_elapsed_pass": true,
+    "all_candidates_memory_fail": true,
+    "candidate_peak_process_tree_rss_bytes": {
+      "1": [
+        422223872,
+        422043648
+      ],
+      "2": [
+        421445632,
+        421879808
+      ],
+      "3": [
+        421773312,
+        421998592
+      ]
+    },
+    "parent_four_worker_peak_process_tree_rss_bytes": [
+      422105088,
+      422010880
+    ],
+    "memory_gate_bytes": 402653184
+  },
+  "decision": "close concurrency tuning: peak RSS is effectively invariant across one through four workers, so no candidate can replace the package policy. The next discriminating implementation removes the two full-input byte copies used only for SHA-256 while preserving the exact four-worker operator and receipt",
+  "production_package_changed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 retained-input concurrency diagnosis only; no candidate passed the frozen memory gate and no product package or default changed",
+  "next_leaf": "U6.P8BD implement a versioned zero-copy C-contiguous input hashing runtime candidate, prove exact output and receipt parity, then rerun the unchanged P8BB 12MP resource gate"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p8bc_native_standard_working_image_concurrency_grid_contract.v1",
+  "node": "U6.P8BC",
+  "parent_decision": "configs/u6_p8bb_native_standard_working_image_resources_decision_v1.json",
+  "parent_decision_sha256": "9ab1c69c0321d8fb96f7f5f602c039cb123831d0fe251b0f8cd13ca2eec49d00",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "candidate_workers": [
+    1,
+    2,
+    3
+  ],
+  "max_in_flight_equals_workers": true,
+  "repeats_per_candidate": 2,
+  "selection_rule": "fastest median elapsed candidate passing exact output, cleanup, 384 MiB peak RSS and 15 second elapsed gates",
+  "candidate_only_policy_override": true,
+  "production_package_changed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP retained-input WorkingImage concurrency-selection evidence only; candidate policy overrides are not product-compatible packages or production promotion"
+}
