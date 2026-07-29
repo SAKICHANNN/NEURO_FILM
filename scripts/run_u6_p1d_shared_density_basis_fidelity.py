@@ -279,6 +279,7 @@ def build_report(
         "rank3_scanner_negative": max(rank3_scanner_p95.values())
         >= float(gates["rank3_negative_scanner_rgb_rmse_p95_minimum"]),
     }
+    checks = {key: bool(value) for key, value in checks.items()}
     passed = all(checks.values())
     basis_records = {
         str(rank): {
