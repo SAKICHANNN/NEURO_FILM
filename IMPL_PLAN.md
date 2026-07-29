@@ -7,6 +7,12 @@
 > AS1 subsequently closes Gaussian-specific priority: a simpler same-parameter
 > trilinear log-odds basis wins three of four analytic targets. Retain the
 > trilinear form only as a future controlled-pair baseline.
+>
+> U5.R2AT0 then tests a bounded photo-specific alternative without a content
+> router: select one existing AO6 strength whose measured residual is nearest a
+> fixed 2.5 Delta-E dose. The exact audit cuts residual MAD to `.37284x` and
+> remains severe-clean, but fixed B0 > fixed AO6 > adaptive in all three blind
+> permutations. Close this policy without same-population target retuning.
 
 U6.P3L also closes the unchanged split backing-return topology on genuine
 RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard

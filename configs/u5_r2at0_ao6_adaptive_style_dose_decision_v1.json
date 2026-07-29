@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "schema": "neuro-film.u5-r2at0-ao6-adaptive-style-dose-decision.v1",
+  "experiment_id": "u5.r2at0-ao6-adaptive-style-dose-v1",
+  "contract": "configs/u5_r2at0_ao6_adaptive_style_dose_v1.json",
+  "contract_sha256": "aec853877133288b6f0618c1ee97d136c2202a9b6e7105747ccf0b1d3db5d5f9",
+  "formal_report": "outputs/u5_r2at0_ao6_adaptive_style_dose_v1/report_pass1.json",
+  "formal_report_sha256": "6eb288dff4bf79db43188202d4500fca0966bb7429c925fac9449432342685b7",
+  "stable_evidence_id": "8593fce363dc4f7a4232bf21a8b062e35011157434a8bfe4c4fc946421416cdf",
+  "repeat_report_sha256_exact": true,
+  "automatic_result": {
+    "passed": true,
+    "selected_candidate_counts": {
+      "b0_plus_film_t10_c25": 13,
+      "b0_plus_film_t15_c35": 11,
+      "b0_plus_film_t20_c50": 16,
+      "b0_plus_film_t25_c65": 1
+    },
+    "dose_mad_ratio_vs_fixed_global": 0.37283805106312484,
+    "median_absolute_target_error": 0.19210372053775293,
+    "p90_absolute_target_error": 0.4096663637266671,
+    "gold_style_delta_e76": 13.01418130249789,
+    "gold_non_basic_residual_delta_e76": 9.517089320010284,
+    "gold_real_film_delta_e76_from_base": 2.6497148851730343,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0
+  },
+  "autonomous_visual_result": {
+    "population": "same nine fully seen AO6 gold images",
+    "reviewer_count": 1,
+    "round_count": 3,
+    "rounds": [
+      {
+        "round": 1,
+        "mapping": {
+          "A": "fixed B0",
+          "B": "adaptive dose",
+          "C": "fixed AO6 t15/c35"
+        },
+        "ranking_before_reveal": [
+          "A",
+          "C",
+          "B"
+        ]
+      },
+      {
+        "round": 2,
+        "mapping": {
+          "A": "adaptive dose",
+          "B": "fixed B0",
+          "C": "fixed AO6 t15/c35"
+        },
+        "ranking_before_reveal": [
+          "B",
+          "C",
+          "A"
+        ]
+      },
+      {
+        "round": 3,
+        "mapping": {
+          "A": "fixed AO6 t15/c35",
+          "B": "adaptive dose",
+          "C": "fixed B0"
+        },
+        "ranking_before_reveal": [
+          "C",
+          "A",
+          "B"
+        ]
+      }
+    ],
+    "revealed_ranking_all_rounds": [
+      "fixed B0",
+      "fixed AO6 t15/c35",
+      "adaptive dose"
+    ],
+    "adaptive_wins_vs_fixed_ao6": 0,
+    "required_adaptive_wins_vs_fixed_ao6": 2,
+    "confirmed_severe_artifacts": 0,
+    "id11_red_speckle_or_posterization": false,
+    "full_resolution_weak-dose_rows_reviewed": [
+      "11",
+      "29"
+    ],
+    "passed": false,
+    "claim": "single-reviewer autonomous development evidence, not population preference"
+  },
+  "decision": "close_adaptive_style_dose_target_2p5",
+  "reason": "The policy materially normalizes the numeric residual dose and remains severe-clean, but it loses to fixed AO6 in all three blinded permutations and fixed B0 ranks first in all three. Numeric salience consistency is not a proxy for aesthetic value.",
+  "forbidden_followup": [
+    "retune the target on the same AO6 population",
+    "relax the visual win gate",
+    "call the four strength choices latent modes or content experts",
+    "acquire a fresh confirmation population for this rejected policy",
+    "promote the policy to product"
+  ],
+  "next_direction": "retain fixed AO6 only at its existing development ceiling and pursue a genuinely different explicit colour direction or new controlled evidence, not another same-population strength target",
+  "claim_ceiling": "closed post-hoc AO6 development strength-normalization experiment; not independent preference, stock response, calibration, latent mode, content retrieval or product promotion"
+}

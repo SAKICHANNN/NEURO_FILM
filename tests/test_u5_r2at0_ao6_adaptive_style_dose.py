@@ -13,6 +13,9 @@ from src.eval.ao6_adaptive_style_dose import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2at0_ao6_adaptive_style_dose_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2at0_ao6_adaptive_style_dose_decision_v1.json"
+)
 CONFIG_SHA256 = "aec853877133288b6f0618c1ee97d136c2202a9b6e7105747ccf0b1d3db5d5f9"
 
 
@@ -66,3 +69,17 @@ def test_parent_hash_drift_fails_closed() -> None:
             contract=contract,
             contract_sha256=CONFIG_SHA256,
         )
+
+
+def test_frozen_decision_closes_visual_policy_without_safety_failure() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    visual = decision["autonomous_visual_result"]
+    assert decision["decision"] == "close_adaptive_style_dose_target_2p5"
+    assert decision["automatic_result"]["passed"]
+    assert not visual["passed"]
+    assert visual["adaptive_wins_vs_fixed_ao6"] == 0
+    assert visual["confirmed_severe_artifacts"] == 0
+    assert all(
+        row["ranking_before_reveal"]
+        for row in visual["rounds"]
+    )

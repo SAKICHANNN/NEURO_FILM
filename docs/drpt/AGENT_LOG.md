@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-28 - U5.R2AT0 adaptive AO6 dose closes visually
+
+- Added a hash-bound selector over the four frozen AO6 strength outputs. It
+  uses only measured residual dose from B0; content/camera features, refitting
+  and blending are forbidden.
+- Two formal reports are exact at `6eb288df...85b7`. Automatic gates pass:
+  residual MAD ratio `.37284`, target median/p90 error `.19210/.40967`, gold
+  style/non-basic/residual `13.0142/9.5171/2.6497`, zero new clipping.
+- Three blind permutations all rank fixed B0 > fixed AO6 > adaptive. No severe
+  artifact or ID11 regression is present, so the failure is aesthetic.
+- Close target 2.5 without retuning or fresh acquisition. Continue with a
+  genuinely different controlled colour direction rather than strength
+  normalization.
+
 ## 2026-07-30 - U6.P2K Apollo 7 step-chart source closes
 
 - The exact 1,755,600,801-byte archive passes SHA-256/CRC and contains one
