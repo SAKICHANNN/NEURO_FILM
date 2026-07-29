@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8bl_native_standard_strength_sweep_contract.v1",
+  "node": "U6.P8BL",
+  "parent_decision": "configs/u6_p8bk_native_standard_content_stress_decision_v1.json",
+  "parent_decision_sha256": "64d5033325d196fcc44b077475e181fb0d4613da66625a64f0d449127bd416e7",
+  "source_contract": "configs/u6_p8bk_native_standard_content_stress_v1.json",
+  "source_contract_sha256": "6b2910a7d23807aa94c303f52d469494bb80dd549dcad3a2502f69ffd46bb088",
+  "source_report": "outputs/u6_p8bk_native_standard_content_stress_v1/report.json",
+  "source_report_sha256": "59ca250a8618c051baa5308e6c8788c912b81773535a036f4a9bc873a07530b9",
+  "strengths": [
+    0.65,
+    0.8,
+    1.0
+  ],
+  "strength_domain": "encoded-display-srgb",
+  "formula": "source_encoded + strength * (full_native_standard_encoded - source_encoded)",
+  "style_diagnostic": {
+    "metric": "median_delta_e76_in_CIELAB",
+    "pixel_stride": 8,
+    "purpose": "confirm that a lower safe strength remains visibly nontrivial; not a preference or authenticity score"
+  },
+  "automatic_gate": {
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_output_code_boundary_fraction": 0.0,
+    "require_exact_full_strength_reproduction": true
+  },
+  "visual_gate": {
+    "maximum_confirmed_severe_artifacts": 0,
+    "retain_full_strength_unless_lower_strength_clearly_improves_portrait_without_making_wider_cohort_bland": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "development-only bounded display-domain strength comparison for the opt-in native Standard Look Approximation; not scene exposure, film response, calibration, population preference or product promotion"
+}

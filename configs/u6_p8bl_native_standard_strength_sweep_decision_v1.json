@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p8bl_native_standard_strength_sweep_decision.v1",
+  "node": "U6.P8BL",
+  "contract": "configs/u6_p8bl_native_standard_strength_sweep_v1.json",
+  "contract_sha256": "8a6bbe36fa3b3ebe29030b11e184aba82b2d3de675f3130cd7c60e5c954d6918",
+  "formal_report": "outputs/u6_p8bl_native_standard_strength_sweep_v1/report.json",
+  "formal_report_sha256": "f083d4718d25aa57914080c07ff917522e8ec768a5314bc9d3abba1c392d2438",
+  "contact_sheet": "outputs/u6_p8bl_native_standard_strength_sweep_v1/contact_sheet.png",
+  "contact_sheet_sha256": "e1d4efd15a4acf1ef4ba4fe5e8851d56831df276d5c697d1ed0eae088b8fe505",
+  "result": {
+    "status": "pass_limited",
+    "automatic_gate_pass": true,
+    "all_twelve_outputs_zero_boundary": true,
+    "all_twelve_outputs_zero_new_boundary": true,
+    "full_strength_reproduced_exactly": true,
+    "autonomous_visual_review": {
+      "confirmed_severe_artifact_count": 0,
+      "severe_artifact_gate_pass": true,
+      "preferred_global_development_strength": 0.8,
+      "reason": "0.80 visibly reduces the full-strength portrait's excessive orange highlight while retaining stronger global style than 0.65 across the wider cohort",
+      "population_preference_claimed": false
+    },
+    "median_style_delta_e76_by_strength": {
+      "0.65": [
+        3.9799576577291917,
+        11.125679639830743,
+        18.429307096355178,
+        10.04326766646497
+      ],
+      "0.80": [
+        4.92513214985901,
+        13.677096286861332,
+        22.65446397315292,
+        12.350212603092624
+      ],
+      "1.00": [
+        6.269063500139524,
+        17.060823606864126,
+        28.09497410170891,
+        15.417260816549675
+      ]
+    }
+  },
+  "decision": "retain 0.80 as the strongest globally reduced development challenger. Keep 1.00 available as an explicit stronger setting and 0.65 as a softer control; do not add content-aware routing from one portrait",
+  "production_default_changed": false,
+  "claim_ceiling": "development-only bounded display-domain strength comparison and autonomous visual selection on four mixed-rights RAW scenes; not population preference, scene exposure, film response, calibration, stock identity or product promotion",
+  "next_leaf": "U6.P8BM add an explicit hash-bound strength field to a separately versioned opt-in native Standard PNG transaction, preserve the current strength-1.0 transaction unchanged, and prove fresh-process exact 0.80 output plus restart verification and cleanup"
+}
