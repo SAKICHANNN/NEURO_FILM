@@ -1,0 +1,200 @@
+{
+  "schema": "neuro_film.u6_p6k_applause_tg13_temporal_contract.v1",
+  "experiment_id": "u6.p6k-applause-tg13-temporal-v1",
+  "node": "ULT > U6 > U6.P6K",
+  "question": "Does one APPLAUSE scanner/TG13 acquisition stream contain at least two repeat-stable step-response regimes that must remain an explicit scanner nuisance rather than being absorbed into film stock or emulsion parameters?",
+  "source": {
+    "name": "APPLAUSE Data Release 4",
+    "tap_url": "https://www.plate-archive.org/tap/sync",
+    "table_url": "https://www.plate-archive.org/metadata/applause_dr4/scan/",
+    "process_url": "https://www.plate-archive.org/cms/wiki/digitization-of-photographic-plates-at-the-dr-remeis-sternwarte-bamberg/",
+    "doi": "https://doi.org/10.17876/plate/dr.4/10",
+    "license": "CC0-1.0",
+    "observed_date": "2026-07-30",
+    "official_process_fact": "A TG13 grey wedge was scanned with each high-resolution plate scan to measure possible time variation of the scanner transparency unit.",
+    "metadata_query": "SELECT scan_id,plate_id,archive_id,filename_wedge,scanner,scan_date,scan_author,origin,scan_res1,pixel_size1,wedge FROM applause_dr4.scan WHERE wedge='TG13' ORDER BY scan_date,scan_id",
+    "eligible_metadata_rows": 15428,
+    "eligible_rows_canonical_sha256": "c0f8593adc6c8094f457948f39bbbb62fa45f0df83c50a086e5f34619cf2d5a4"
+  },
+  "data_root": "data/external/applause_tg13_temporal_v1",
+  "output_root": "outputs/experiments/u6_p6k_applause_tg13_temporal_v1",
+  "download": {
+    "base_url": "https://www.plate-archive.org/files/",
+    "allowed_host": "www.plate-archive.org",
+    "expected_bytes_per_file": 13700160,
+    "maximum_files": 14,
+    "maximum_total_bytes": 200000000,
+    "connect_timeout_seconds": 30,
+    "read_timeout_seconds": 90,
+    "chunk_bytes": 1048576
+  },
+  "fits": {
+    "bitpix": 16,
+    "naxis1": 9130,
+    "naxis2": 750,
+    "bscale": 1.0,
+    "bzero": 65535.0
+  },
+  "measurement": {
+    "row_start": 150,
+    "row_stop": 600,
+    "plateau_half_width": 100,
+    "step_edges_x": [
+      0,
+      562,
+      1229,
+      1879,
+      2555,
+      3206,
+      3869,
+      4518,
+      5177,
+      5834,
+      6488,
+      7144,
+      7788,
+      8456,
+      9130
+    ],
+    "normalization": "subtract first plateau and divide by last-minus-first",
+    "development_roles": {
+      "early": [30160, 29725, 34407],
+      "late": [33444, 37687, 38598, 58873, 56574]
+    }
+  },
+  "gates": {
+    "minimum_raw_code_span": 40000.0,
+    "minimum_adjacent_normalized_step": 0.001,
+    "minimum_development_prototype_rmse": 0.1,
+    "maximum_development_correct_prototype_rmse": 0.01,
+    "maximum_confirmatory_correct_prototype_rmse": 0.02,
+    "minimum_confirmatory_wrong_minus_correct_margin": 0.08,
+    "required_confirmatory_passes": 6
+  },
+  "rows": [
+    {
+      "role": "development_early",
+      "scan_id": 30160,
+      "plate_id": 28034,
+      "archive_id": 203,
+      "scan_date": "2012-11-08 16:07:13",
+      "filename_wedge": "DR4/wedges/Bamberg-South/000445_1963_w.fits",
+      "sha256": "887875ff6710ab29b837e155d4f6501ad03c7f4aeaf61ea1c45b2c51304c299c"
+    },
+    {
+      "role": "development_early",
+      "scan_id": 29725,
+      "plate_id": 27767,
+      "archive_id": 203,
+      "scan_date": "2013-02-20 15:45:56",
+      "filename_wedge": "DR4/wedges/Bamberg-South/000178_1963_w.fits",
+      "sha256": "4300dfb0c7bcd92b97df60b9ef0fccd40bb1cd797f0b3ca016b854957a4a88a9"
+    },
+    {
+      "role": "development_early",
+      "scan_id": 34407,
+      "plate_id": 31655,
+      "archive_id": 203,
+      "scan_date": "2013-05-23 17:15:38",
+      "filename_wedge": "DR4/wedges/Bamberg-South/004066_1964_w.fits",
+      "sha256": "49e0720e89e5d42804a4ffaa46a9f258fd7d0788427f527d69d1b6408ace19aa"
+    },
+    {
+      "role": "development_late",
+      "scan_id": 33444,
+      "plate_id": 31045,
+      "archive_id": 203,
+      "scan_date": "2014-04-10 11:04:07",
+      "filename_wedge": "DR4/wedges/Bamberg-South/003456_1964_w.fits",
+      "sha256": "b9c068ac92b460246e323edb6975f72cdb96f71dfefc15a60713d2d3fc95cb75"
+    },
+    {
+      "role": "development_late",
+      "scan_id": 37687,
+      "plate_id": 35533,
+      "archive_id": 203,
+      "scan_date": "2014-09-30 14:12:10",
+      "filename_wedge": "DR4/wedges/Bamberg-South/007944_1965_w.fits",
+      "sha256": "1934aa78e981858b766687a4086e66d724b5c1138fd63b409ae01ac51084a37f"
+    },
+    {
+      "role": "development_late",
+      "scan_id": 38598,
+      "plate_id": 37421,
+      "archive_id": 203,
+      "scan_date": "2015-04-23 17:09:30",
+      "filename_wedge": "DR4/wedges/Bamberg-South/009834_1966_w.fits",
+      "sha256": "c2a432b85d12ae0ebabd1315990c3350a34ef3c99d65db9e99549898c2d5772c"
+    },
+    {
+      "role": "development_late",
+      "scan_id": 58873,
+      "plate_id": 44079,
+      "archive_id": 204,
+      "scan_date": "2016-04-08 16:51:35",
+      "filename_wedge": "DR4/wedges/Bamberg-South/003967_1973_w.fits",
+      "sha256": "fb0dd48a66c4113b8fea75d33085347fb2bba4ff6171a9401425be858195864b"
+    },
+    {
+      "role": "development_late",
+      "scan_id": 56574,
+      "plate_id": 40696,
+      "archive_id": 204,
+      "scan_date": "2016-09-15 17:47:48",
+      "filename_wedge": "DR4/wedges/Bamberg-South/000561_1968_w.fits",
+      "sha256": "c00ff47e34b5f50f6569ce447ed0486ac2ace08d7e500fbcb1801c7f90d15e6b"
+    },
+    {
+      "role": "confirmatory_early",
+      "scan_id": 33709,
+      "plate_id": 31244,
+      "archive_id": 203,
+      "scan_date": "2013-01-08 10:34:25",
+      "filename_wedge": "DR4/wedges/Bamberg-South/003655_1964_w.fits"
+    },
+    {
+      "role": "confirmatory_early",
+      "scan_id": 33989,
+      "plate_id": 31415,
+      "archive_id": 203,
+      "scan_date": "2013-02-28 11:45:00",
+      "filename_wedge": "DR4/wedges/Bamberg-South/003826_1964_w.fits"
+    },
+    {
+      "role": "confirmatory_early",
+      "scan_id": 31623,
+      "plate_id": 29236,
+      "archive_id": 203,
+      "scan_date": "2013-05-08 15:46:50",
+      "filename_wedge": "DR4/wedges/Bamberg-South/001647_1963_w.fits"
+    },
+    {
+      "role": "confirmatory_late",
+      "scan_id": 39262,
+      "plate_id": 38997,
+      "archive_id": 203,
+      "scan_date": "2014-08-04 11:00:50",
+      "filename_wedge": "DR4/wedges/Bamberg-South/011411_1966_w.fits"
+    },
+    {
+      "role": "confirmatory_late",
+      "scan_id": 30375,
+      "plate_id": 40717,
+      "archive_id": 204,
+      "scan_date": "2015-03-25 09:39:45",
+      "filename_wedge": "DR4/wedges/Bamberg-South/000582_1968_w.fits"
+    },
+    {
+      "role": "confirmatory_late",
+      "scan_id": 54572,
+      "plate_id": 37446,
+      "archive_id": 203,
+      "scan_date": "2016-05-17 17:12:34",
+      "filename_wedge": "DR4/wedges/Bamberg-South/009859_1966_w.fits"
+    }
+  ],
+  "training_allowed": false,
+  "stock_or_emulsion_fitting_allowed": false,
+  "scanner_calibration_allowed": false,
+  "claim_ceiling": "One public-domain TG13 wedge type under one recorded Epson scanner model and one institutional workflow; evidence may identify repeat-stable scanner/wedge acquisition response regimes only, not exact physical-wedge identity, scanner calibration, population transfer, emulsion response, film stock response, development truth or product promotion."
+}
