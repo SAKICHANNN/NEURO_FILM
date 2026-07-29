@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8be_native_standard_runtime_factory_decision.v1",
+  "node": "U6.P8BE",
+  "parent_decision": "configs/u6_p8bd_native_standard_zero_copy_hash_resources_decision_v1.json",
+  "parent_decision_sha256": "6ca1fea887681f87d42711184b45c9140e3b299466939815d0a9add6145f5b81",
+  "factory": "src/film_physics/native_standard_factory.py",
+  "factory_sha256": "dec6e4558c7baf897b1e20079e15839f9b6743a77ade6fffdb036368973f563d",
+  "runtime": "src/film_physics/native_standard_runtime_v2.py",
+  "runtime_sha256": "245b3979d64b724bba6c836155a6948cfc21a16e345a920b85674e2b2429377c",
+  "runtime_implementation_id": "memory-bound-zero-copy-input-hash-v1",
+  "result": {
+    "status": "pass-opt-in-factory-boundary",
+    "exact_package_validation": true,
+    "exact_artifact_validation": true,
+    "exact_library_resolution": true,
+    "selected_runtime_type": "MemoryBoundNativeStandardRuntime",
+    "factory_receipt_hash_bound": true,
+    "small_render_exact": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in exact-package Windows x64 memory-bounded native Standard runtime factory only; no default renderer integration, decoder, encoder, durable commit, mobile, calibration or promotion",
+  "next_leaf": "U6.P8BF add a rollback-safe local float32 staging transaction consuming the exact WorkingImage/runtime receipt, then restart-verify its report and output without defining final quantization or delivery"
+}
