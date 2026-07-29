@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "schema": "neuro-film.u5-r2at0-ao6-adaptive-style-dose-contract.v1",
+  "experiment_id": "u5.r2at0-ao6-adaptive-style-dose-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AT0",
+  "question": "Can a deterministic per-image choice along the already frozen AO6 strength path reduce between-image residual-dose dispersion while retaining AO6 style, non-basic structure and severe-artifact safety?",
+  "parent_config": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+  "parent_automatic_report": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/automatic_report_pass1.json",
+  "parent_automatic_report_sha256": "582f3cd74c65b8bd0e7dff9a956336a422374b5c86158f1d1a894a671ff8c9ab",
+  "parent_render_manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+  "parent_render_manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
+  "development_status": "post-hoc policy development on the fully seen AO6 population; no confirmatory claim",
+  "policy": {
+    "policy_id": "nearest-fixed-residual-dose-2p5-v1",
+    "eligible_candidate_ids": [
+      "b0_plus_film_t10_c25",
+      "b0_plus_film_t15_c35",
+      "b0_plus_film_t20_c50",
+      "b0_plus_film_t25_c65"
+    ],
+    "fixed_global_comparator_id": "b0_plus_film_t15_c35",
+    "target_median_delta_e76_from_b0": 2.5,
+    "distance": "absolute difference between the candidate's measured per-image median Delta E76 from the exact B0 output and the fixed target",
+    "tie_break": "lower tone strength, then lower chroma strength, then candidate_id",
+    "content_features_allowed": false,
+    "scene_or_camera_labels_allowed": false,
+    "operator_refit_allowed": false,
+    "inter_candidate_blending_allowed": false,
+    "post_selection_pixel_change_allowed": false
+  },
+  "automatic_gates": {
+    "sample_count": 41,
+    "gold_sample_count": 9,
+    "stress_sample_count": 32,
+    "minimum_selected_strength_levels": 3,
+    "maximum_largest_strength_share": 0.6,
+    "median_absolute_target_error_maximum": 0.25,
+    "p90_absolute_target_error_maximum": 0.45,
+    "dose_mad_ratio_vs_fixed_global_maximum": 0.5,
+    "gold_median_style_delta_e76_minimum": 12.0,
+    "gold_median_non_basic_residual_delta_e76_minimum": 9.0,
+    "gold_median_real_film_delta_e76_from_base_minimum": 2.3,
+    "worst_gold_new_hard_clipping_fraction_maximum": 0.005,
+    "worst_stress_new_hard_clipping_fraction_maximum": 0.005,
+    "all_selected_output_hashes_match_parent_manifest": true,
+    "repeat_report_sha256_exact": true
+  },
+  "visual_gate": {
+    "population": "the same nine fully seen AO6 gold images; development only",
+    "comparators": [
+      "fixed B0",
+      "fixed AO6 t15/c35",
+      "adaptive dose"
+    ],
+    "blind_rounds": 3,
+    "minimum_adaptive_wins_vs_fixed_ao6": 2,
+    "maximum_confirmed_severe_artifacts": 0,
+    "full_resolution_required": true,
+    "id11_red_speckle_posterization_regression_required": true
+  },
+  "branch_rules": {
+    "automatic_fail": "close the adaptive-dose policy without threshold or target rescue",
+    "visual_fail": "retain fixed AO6 development evidence and close this dose policy; do not acquire confirmation data",
+    "development_pass": "freeze the exact policy and acquire a genuinely unused rights-cleared photo population before any independent claim"
+  },
+  "training_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "post-hoc AO6 development evidence for deterministic bounded strength selection along one existing display-proxy residual direction; not independent preference, stock response, calibration, latent mode, content retrieval or product promotion"
+}
