@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap0-ektachrome-one-matrix-operator-v1",
+  "source_config_sha256": "d1c36a560081256a268b30768d8f994fd76badb84705cff6df24230219a895f8",
+  "source_report_sha256": "9dc5d759cf571f882a805dbd645b8c1fa8f4304ac20b26c10cc336b2e8b9813f",
+  "fit_model": "one_matrix",
+  "fit_row_count": 56,
+  "cross_validated_rgb_rmse": 0.04779162646034599,
+  "cross_validated_mean_delta_e76": 10.2425784316024,
+  "development_rgb_rmse": 0.02799095268205744,
+  "development_maximum_absolute_error": 0.11395017929606255,
+  "operator_sha256": "675e1117ce31c6b5bd4e4088df6a2138ddf92cb9ef8f3ba28bff2f58b983182f",
+  "exposure_floor": 1.52587890625e-05,
+  "parameter_bounds": {
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
+  },
+  "witnesses": {
+    "ektachrome_palette_one_matrix": {
+      "capture_matrix": [
+        [
+          0.7544965253598321,
+          1.508416213639587e-06,
+          0.24550196622395418
+        ],
+        [
+          0.22261839608151823,
+          0.7540773981526183,
+          0.02330420576586347
+        ],
+        [
+          0.07998247483828676,
+          5.701539924456831e-05,
+          0.9199605097624687
+        ]
+      ],
+      "response_midpoints": [
+        -0.17035195054909508,
+        -0.743347650562881,
+        -0.8040554222551063
+      ],
+      "response_slopes": [
+        1.1663194121905642,
+        1.7766103083600764,
+        1.54203767614565
+      ],
+      "maximum_responses": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scan_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "exposure_floor": 1.52587890625e-05,
+      "matrix_minimum_determinant": 0.2,
+      "minimum_endpoint_span": 0.05,
+      "schema": "roll2film.positive_film_response.v1",
+      "working_space": "linear_srgb_d65"
+    }
+  },
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "one bounded explicit operator fitted to 56 exact author-rendered Ektachrome display-proxy pairs from one stable-pigment painting with complete-row cross-validation; no same-time pairs, transferable stock response, calibration or product claim"
+}

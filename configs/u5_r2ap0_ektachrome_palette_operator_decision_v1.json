@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap0-ektachrome-palette-operator-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP0",
+  "software_commit": "fa6d462678cd85243ea3c744d28610f884566e7d",
+  "contract": {
+    "path": "configs/u5_r2ap0_ektachrome_palette_operator_v1.json",
+    "sha256": "d1c36a560081256a268b30768d8f994fd76badb84705cff6df24230219a895f8"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2ap0_ektachrome_palette_operator_v1/report_a.json",
+    "sha256": "9dc5d759cf571f882a805dbd645b8c1fa8f4304ac20b26c10cc336b2e8b9813f"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2ap0_ektachrome_palette_operator_v1/report_b.json",
+    "sha256": "9dc5d759cf571f882a805dbd645b8c1fa8f4304ac20b26c10cc336b2e8b9813f"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "a02db5731547f5b32c6ed800a37a1c578abd3b6725f6839528b0a7d5d3c0ccd8",
+  "result": {
+    "automatic_pass": true,
+    "cross_validated_one_matrix_rgb_rmse": 0.04779162646034599,
+    "one_matrix_gain_over_identity": 0.5085932183385373,
+    "one_matrix_gain_over_full_affine": 0.4674300734265905,
+    "fold_wins_over_identity": 5,
+    "fold_wins_over_full_affine": 6,
+    "cross_validated_mean_delta_e76": 10.2425784316024,
+    "cross_validated_raw_out_of_cube_fraction": 0.0,
+    "grid_raw_out_of_cube_fraction": 0.0,
+    "velvia_direction_absolute_cosine": 0.16212408475445747,
+    "velvia_direction_residual_fraction_after_best_scalar_alignment": 0.9867703791371779,
+    "global_operator_sha256": "675e1117ce31c6b5bd4e4088df6a2138ddf92cb9ef8f3ba28bff2f58b983182f"
+  },
+  "decision": "retain_one_global_ektachrome_display_proxy_operator_and_open_separately_frozen_bounded_photo_frontier",
+  "interpretation": "A bounded one-matrix operator transfers across five of six complete palette rows against identity and all six against full affine, remains inside the RGB cube, and is not a scalar-strength duplicate of the retained Velvia display-proxy direction. This is evidence for one distinct author-rendered Ektachrome display-look approximation on a single painting, not an identified Ektachrome stock response.",
+  "forbidden_claims": [
+    "same-time digital-to-film pair",
+    "Ektachrome stock response",
+    "scanner-independent transform",
+    "calibration or authenticity",
+    "cross-scene or photographic preference",
+    "product promotion"
+  ],
+  "next_leaf": "freeze U5.R2AP1 direct bounded photo frontier before rendering photographs; compare fixed strengths against the frozen B0 and AO6 global champions under inherited style, non-basic, clipping and severe-artifact gates",
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "complete-row cross-validated single-painting Ektachrome/HSI author-rendered display-proxy operator plus content-confounded direction diversity from Velvia; no real-photo, preference, stock-response, calibration, authenticity or product claim"
+}
