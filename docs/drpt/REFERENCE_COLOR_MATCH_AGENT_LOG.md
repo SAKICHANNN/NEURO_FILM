@@ -4903,3 +4903,24 @@
   writes conflict-free merge tree
   `74df63fc9c7d396f12a942c1923f8dfbf5a81e01`. Main files and untracked
   artifacts were not touched.
+
+## 2026-07-29 - Register R0FI constructed DNG policy oracle
+
+- Producer clean HEAD `0a16c2ee22dd154a8131be32666ddb331cda72fe`
+  follows preregistration `7be6595`. The frozen cohort uses six locked CC0
+  photographs, four Bayer layouts and two full replays for 24 rows; a
+  pre-score parser calibration is excluded.
+- Each 256x256 linear photographic truth is adjusted and inverted through the
+  frozen Adobe dual-illuminant policy, expanded into 8x8 constant blocks and
+  sampled as uint16 CFA. Rawpy and the official Adobe SDK accept every DNG,
+  and official Stage-3 block interiors recover the constructed camera values
+  exactly.
+- All frozen gates pass. Overall Adobe-policy p99 linear error is
+  `1.7724e-5`; applying the LibRaw D65-only policy to the same data gives
+  `4.0504e-2`, ratio `0.0004376`. Stable identity is
+  `9ebeced2...89560c5`; evidence SHA is `eaaba8c6...e783b8`.
+- This is a policy-identifiability oracle constructed from the Adobe policy,
+  not independent real-camera renderer quality. Spectral or measured camera
+  truth is still required. No public RAW rail, schema, receipt, capability,
+  product admission or consumer mapping opens; P172/P45/P44/v42 remain
+  unchanged.
