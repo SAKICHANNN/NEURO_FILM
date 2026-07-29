@@ -4110,3 +4110,20 @@
   `.jpeg` and `.tif` aliases.
 - P166 proves only local executable advertisement truth; it adds no input
   codec/profile, metadata, HDR/RAW/video, target-device or product claim.
+
+## 2026-07-29 - Publish P1-P166 integration manifest v40
+
+- P167 binds consumer payload `892b929`, common base `c03c321` and latest
+  stable main commit `7994abd`: 570 consumer paths versus 783 main paths with
+  zero overlap, 61 exports and 24 strict contract schemas.
+- Manifest/schema SHA-256 are `bbbd4d8a...2c9b8` /
+  `5a8c913a...827d0`; v40 exactly supersedes v39.
+- Detached merge tree `829feee0...7940` / commit `6841083` passes
+  `918 passed, 30 skipped` non-manifest color-match tests and `25 passed`
+  P159-P166 tests. Direct v39/v40 schema/rebuild/tamper is `8 passed`.
+- Two attempted all-history manifest reruns hit external 120/300-second tool
+  limits without a pytest failure; prior v1-v39 `410 passed` evidence remains
+  authoritative and only the changed v39/v40 edge was rerun.
+- The temporary worktree was removed. Main-owned untracked `.codex/`, `tmp/`
+  and active native v2 files were never consumed or modified. V40 is
+  review-ready-not-merged; only the main task owns the real merge.

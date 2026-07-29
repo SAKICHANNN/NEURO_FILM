@@ -14,12 +14,10 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P166; v39 remains the latest immutable
-  main-review manifest and binds P1-P158. P159-P163 add local 24 MP,
-  maximum-count and bounded SDR file-format evidence; P164 adds unsupported
-  media batch-atomicity evidence and P165 adds bounded BT.2020 SDR file
-  transaction evidence. P166 proves every advertised v1 output tuple executes
-  after that reviewed payload.
+- Consumer branch now continues through P167; v40 is the latest immutable
+  main-review manifest and binds P1-P166, including local 24 MP,
+  maximum-count, bounded SDR file-format, unsupported-media atomicity,
+  BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `7f2ae6f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
 - D-PCT latest stable communicated snapshot is `b052a63`; R0DR rejects its
@@ -83,9 +81,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; v39 binds P1-P158 payload `6b5b815`, 518 payload paths, 61 exports, 24 schemas, exact v38 identity and zero overlap against main `7f2ae6f`; manifest/schema SHA-256 are `32bf47d2...df7bb` / `22662eea...36c9e` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v39, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; v40 binds P1-P166 payload `892b929`, 570 payload paths, 61 exports, 24 schemas, exact v39 identity and zero overlap against main `7994abd`; manifest/schema SHA-256 are `bbbd4d8a...2c9b8` / `5a8c913a...827d0` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v40, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P158 payload remains zero-overlap against main `7f2ae6f` and merges conflict-free as tree `9d468d91...36b3`; detached merge `3907ba7` passes 1323 color-match tests with 30 platform/data skips and zero failures; v1-v39 lineage passes 410 tests | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P166 payload remains zero-overlap against main `7994abd` and merges conflict-free as tree `829feee0...7940`; detached merge `6841083` passes 918 non-manifest color-match tests with 30 platform/data skips plus 25/25 P159-P166 tests; direct v39/v40 rebuild/tamper is 8/8 | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -170,5 +168,5 @@ wall regression. The broader long-term goal is not complete: local exact-wheel
 invocation and Android x86_64 virtual
 SDR-boundary runtime are verified, but no real external candidate is
 product-promoted, producer redistribution rights and Apple/physical-Android
-runtime evidence are absent, and reviewed v39 has not been merged into the
+runtime evidence are absent, and reviewed v40 has not been merged into the
 main project.

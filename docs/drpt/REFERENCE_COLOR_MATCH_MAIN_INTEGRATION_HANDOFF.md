@@ -1,27 +1,30 @@
 # Reference Color Match Main Integration Handoff
 
-Date: 2026-07-28
+Date: 2026-07-29
 
-Status: **P1-P158 consumer payload is pinned by the immutable v39 review
-manifest; exact 6 MP colour-kernel memory evidence is complete, while real
+Status: **P1-P166 consumer payload is pinned by the immutable v40 review
+manifest; local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v39 review snapshot
+## Current v40 review snapshot
 
-- payload: `6b5b815e493b42601ebf4ce722f043188afbfd94`;
-- main: `7f2ae6f55f3d8adc9d2c8c13c3c16ee0caf65767`;
+- payload: `892b929a9a1366fb25670e7705aa18000b181e69`;
+- main: `7994abdcb93d9c69070554e61bf35ff1590c469c`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- 518 consumer paths, 639 main paths, zero overlap;
-- merge tree: `9d468d91d0b9de592279dd3f85fcd5dcf90a36b3`;
-- detached synthetic merge: `3907ba7023b963c299f1a22647ea3a26ea1ea8ab`;
-- synthetic result: `1323 passed, 30 skipped`;
-- v1-v39 manifest lineage: `410 passed`;
+- 570 consumer paths, 783 main paths, zero overlap;
+- merge tree: `829feee0dc05936213b383d0cd90df8049077940`;
+- detached synthetic merge: `6841083db03265e98173881040591655a84cbbb0`;
+- merged non-manifest color-match result: `918 passed, 30 skipped`;
+- merged P159-P166 result: `25 passed`;
+- direct v39/v40 schema/rebuild/tamper result: `8 passed`;
+- prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `32bf47d232a99105a3a940f1d70ed47260fafa8533b11e4466b9925f114df7bb` /
-  `22662eea22cd8ed6d2473d4d9e9cf1272963f1bbe7889670b4096959cdd36c9e`.
+  `bbbd4d8adaf697bca655065b34e9e7fa0e9afb79920edc0b7c964103b442c9b8` /
+  `5a8c913a9b9e44388c583ca2918330a821dc3f864a30a0d1465fe2c7711827d0`.
 
 The synthetic worktree was removed after verification. The main worktree's
-untracked `.codex/` and `tmp/` remain main-task-owned and untouched.
+untracked `.codex/`, `tmp/` and active native v2 files remain main-task-owned
+and untouched.
 
 ## Frozen snapshots
 
@@ -307,7 +310,7 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v39 schema and rebuild its manifest; it transitively
+2. Verify the committed v40 schema and rebuild its manifest; it transitively
    preserves the immutable v1-v38 chain.
 3. Review `c03c321..6b5b815`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
