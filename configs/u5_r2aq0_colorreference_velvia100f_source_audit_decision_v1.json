@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq0-colorreference-velvia100f-source-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ0",
+  "config_sha256": "b67cf59e5881a26fce3dc31f2cae61e89bbb7eaea94542cac7a297154dc19dee",
+  "software_commit": "4e998e48ebab700c50e765f0db10cfb07e5f430d",
+  "report_path": "outputs/source_recon/colorreference_velvia100f_v1/report.json",
+  "report_sha256": "9004a7c3c4c406621cf32fd8c5793871840b172d6d3811d1a32ea56b4440d341",
+  "automatic_pass": true,
+  "decision": "open_aq1_pair_table_and_repeated_set_identifiability_only",
+  "observed_facts": {
+    "official_page_sha256": "3fa6ce744fcb6edf1576bf58f6ae4f68200856ce7d7c6b59ed5801d97186d2b9",
+    "download_bytes_per_pass": 3147395,
+    "source_tiff_count": 5,
+    "source_tiff_shape": [591, 763, 3],
+    "source_tiff_dtype": "uint8",
+    "measurement_archive_count": 12,
+    "test_set_ids": [1, 2, 3, 4, 5, 9],
+    "slides_per_test_set": 5,
+    "measured_patch_rows_per_slide": 288,
+    "it8_fields_per_row": 9,
+    "cgats_fields_per_row": 91,
+    "cgats_wavelength_samples": 41,
+    "material": "Fujichrome Velvia 100F (RVP 100F)",
+    "production_date": "2005:05",
+    "duplicate_reference_member_payload_count": 0
+  },
+  "epistemic_decision": {
+    "source_domain": "unknown-profile film-recorder device RGB; not sRGB and not a digital-camera scene",
+    "target_domain": "individually measured developed-slide XYZ/Lab/LCh plus spectral measurements",
+    "group_semantics": "six target-set or charge identifiers with five slide measurements each; physical sheet, roll, emulsion batch and process-session identity remain unknown",
+    "rights": "officially offered free test data for internal research and audit; no formal open-data licence was observed, so redistribution, commercial training and public weights remain forbidden",
+    "claim_ceiling": "recorder-device-to-measured-developed-slide paired proxy candidate"
+  },
+  "next_allowed_leaf": "U5.R2AQ1",
+  "next_allowed_actions": [
+    "freeze source-patch geometry before measuring target variation",
+    "build and integrity-check the 8640-row source-target table",
+    "quantify repeated-set target variability and IT8-versus-spectral consistency",
+    "decide whether a held-target-set proxy operator experiment is identifiable"
+  ],
+  "forbidden_actions": [
+    "operator fitting in AQ0 or AQ1",
+    "training",
+    "image rendering",
+    "stock calibration or stock-response claims",
+    "digital-camera-to-film claims",
+    "independent-roll or known-process claims",
+    "redistribution, commercial training or public weight release"
+  ]
+}

@@ -70,10 +70,14 @@ every witness, but hard deletion plus linear refitting loses 15.55% to soft-L1
 on the critical cyan-shadow row and also regresses two clean-noise rows. No
 fraction/refit/gate rescue. AN3 Cauchy is also closed: it loses 4.78%-11.87%
 to soft-L1 on every contaminated witness and still misses the critical 65%
-linear-gain gate. No loss/scale sweep. AQ0 is next: audit the newly located
-ColorReference Velvia 100F film-recorder source TIFF plus measured slide
-spectral/IT8 files for exact bytes, rights, pair semantics and independent
-groups before retaining data or fitting.
+linear-gain gate. No loss/scale sweep. AQ0 now passes source integrity and
+semantics on two exact 3,147,395-byte audits: five unknown-profile
+film-recorder RGB TIFFs align to six target sets x five measured Velvia 100F
+slides x 288 patches. All sets share production date 2005:05, so they are
+target-set/charge replicates rather than proven independent rolls or process
+sessions. AQ1 is next: freeze patch geometry and repeated-set identifiability
+gates, build the exact 8,640-row table and quantify nuisance variability before
+any explicit proxy fit.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

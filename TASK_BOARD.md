@@ -325,6 +325,9 @@ rescue. U5.R2AN2 then locates 26/27 corrupt rows for all three witnesses, but
 hard deletion plus linear refitting still loses on the critical cyan-shadow
 witness and on two clean-noise rows. U5.R2AN3 Cauchy then loses to soft-L1 on
 all three contaminated witnesses and still misses the critical linear-gain
-gate, closing this robust rescue family without a sweep. U5.R2AQ0 now audits a
-newly located public Velvia 100F recorder-source/measured-slide dataset for
-exact bytes, rights, pairing and group limits before any fit.
+gate, closing this robust rescue family without a sweep. U5.R2AQ0 passes the
+bounded source/semantics gate: two exact 3,147,395-byte audits cover five
+film-recorder RGB TIFFs and six target sets x five measured Velvia 100F
+slides, but all sets share production date 2005:05 and are not independent
+rolls/processes. U5.R2AQ1 is ready to freeze geometry and test the 8,640-row
+repeated-set table before any fit.

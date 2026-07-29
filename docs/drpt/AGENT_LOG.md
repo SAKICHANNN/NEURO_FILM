@@ -6948,3 +6948,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A web source search located ColorReference public source TIFF and measured
   Velvia 100F slide reference files. AQ0 will audit exact downloads, rights,
   recorder/measurement semantics and groups before retaining or fitting data.
+
+## 2026-07-29 - U5.R2AQ0 passes source semantics; fitting remains closed
+
+- Two independent bounded audits are exact at 3,147,395 bytes per pass and
+  report SHA `9004a7c...d341`. Five 763x591 RGB8 film-recorder grids and 12
+  IT8/CGATS archives provide six target sets x five slides x 288 rows.
+- Every member declares Velvia 100F, production date 2005:05 and diffuse opal
+  geometry. Set/slide serials are distinct, but target set is not evidence of
+  an independent roll, batch or process session.
+- The source is unknown-profile recorder-device RGB and the target is measured
+  developed-slide data, not scanner RGB or a digital-camera scene. Rights
+  support internal testing/audit only; redistribution/commercial training are
+  unidentified and remain closed.
+- AQ1 is the next ready leaf: freeze patch geometry and nuisance-variance gates,
+  then construct and validate the 8,640-row repeated-set table. AQ1 may not fit
+  an operator, train, render or claim stock calibration.
