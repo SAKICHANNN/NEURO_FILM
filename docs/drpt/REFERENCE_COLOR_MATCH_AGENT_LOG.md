@@ -4550,3 +4550,23 @@
   package/schema/receipt/capability, product admission or consumer mapping.
   R0EO real local incremental encoding is separate; P172, P45/P44 and v42
   remain unchanged.
+
+## 2026-07-29 - Register R0EO incremental float TIFF feasibility
+
+- Producer `8961235` sends R0EM core-64 callbacks directly into 32
+  uncompressed strips without retaining full RGB. Two independent classic
+  little-endian float32 RGB TIFF files are exactly 73,835,936 bytes and share
+  SHA `01aa36ac...a31b`.
+- A pinned test-only tifffile 2026.7.14 independently validates IEEE float32,
+  chunky RGB, no compression, exact strip offsets/counts and absence of ICC,
+  orientation and description tags. Decoded pixel SHA exactly matches R0EN
+  `b3906b24...5413a`. Positive peak RSS is about 77.9 MB. A second-strip
+  rejection preserves rows=64 and diagnostics but publishes neither final nor
+  temporary output; short writes and finalization failure also fail closed.
+  Stable identity is `f023b5f6...51f00`, report SHA
+  `63109505...424b`.
+- The ceiling is private local uncompressed scene-linear-float TIFF
+  feasibility. It provides no colour-space/ICC/camera transform, native
+  target, public package/schema/receipt/capability, product admission or
+  consumer mapping. R0EP portable writer evidence is separate; P172, P45/P44
+  and v42 remain unchanged.
