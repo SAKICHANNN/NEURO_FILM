@@ -29,6 +29,9 @@ from src.real_film.gold_matrix_transplant import (
     style_and_basic_residual,
 )
 from src.roll2film.positive_film import positive_film_operator_from_config
+from src.roll2film.factorized_boundary_guard import (
+    apply_residual_boundary_guard,
+)
 
 
 class PositiveFilmFrontierError(ValueError):
@@ -110,12 +113,33 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     }
     if comparator_records.keys() != expected_comparators:
         raise PositiveFilmFrontierError("incomplete comparator manifests")
+    execution_policy = str(
+        config["rendering"].get(
+            "execution_policy", "direct_operator_strength"
+        )
+    )
+    if execution_policy not in {
+        "direct_operator_strength",
+        "source_inclusive_residual_guard_v1",
+    }:
+        raise PositiveFilmFrontierError("unsupported execution policy")
+    if execution_policy == "source_inclusive_residual_guard_v1":
+        guard = config["rendering"].get("residual_guard")
+        if (
+            not isinstance(guard, Mapping)
+            or guard.get("hard_clip_allowed") is not False
+            or float(guard["hard_boundary_epsilon_encoded_srgb"]) < 0.0
+            or float(guard["guard_boundary_epsilon_encoded_srgb"])
+            <= float(guard["hard_boundary_epsilon_encoded_srgb"])
+        ):
+            raise PositiveFilmFrontierError("invalid residual guard contract")
     return {
         "operator": operator,
         "inherited": inherited,
         "samples": samples,
         "candidates": candidate_bank(config),
         "comparator_paths": comparator_records,
+        "execution_policy": execution_policy,
     }
 
 
@@ -152,15 +176,41 @@ def render_bank(
                 / 255.0
             )
     records = []
+    execution_policy = validated["execution_policy"]
     for candidate in validated["candidates"]:
         operator = operators[candidate["witness_id"]]
         candidate_dir = output_dir / candidate["candidate_id"]
         candidate_dir.mkdir(parents=True, exist_ok=True)
         for sample_id, sample in samples.items():
-            output_linear = operator.apply(
-                encoded_srgb_to_linear(source_arrays[sample_id]),
-                strength=float(candidate["strength"]),
-            )
+            source_linear = encoded_srgb_to_linear(source_arrays[sample_id])
+            execution_record: dict[str, Any] = {}
+            if execution_policy == "direct_operator_strength":
+                output_linear = operator.apply(
+                    source_linear,
+                    strength=float(candidate["strength"]),
+                )
+            else:
+                guard = config["rendering"]["residual_guard"]
+                guarded = apply_residual_boundary_guard(
+                    operator,
+                    source_linear,
+                    strength=float(candidate["strength"]),
+                    hard_boundary_epsilon_encoded_srgb=float(
+                        guard["hard_boundary_epsilon_encoded_srgb"]
+                    ),
+                    guard_boundary_epsilon_encoded_srgb=float(
+                        guard["guard_boundary_epsilon_encoded_srgb"]
+                    ),
+                )
+                output_linear = guarded.output
+                execution_record = {
+                    "residual_limited_fraction": float(
+                        np.mean(guarded.residual_scale < 1.0 - 1e-12)
+                    ),
+                    "minimum_residual_scale": float(
+                        np.min(guarded.residual_scale)
+                    ),
+                }
             output_pixels = np.rint(
                 linear_srgb_to_encoded(output_linear) * 255.0
             ).astype(np.uint8)
@@ -175,6 +225,7 @@ def render_bank(
                     "source_sha256": sample["source_sha256"],
                     "output": f"{candidate['candidate_id']}/{sample_id}.png",
                     "output_sha256": sha256_file(path),
+                    **execution_record,
                 }
             )
     manifest = {
@@ -187,6 +238,8 @@ def render_bank(
         "records": records,
         "claim_ceiling": config["claim_ceiling"],
     }
+    if execution_policy != "direct_operator_strength":
+        manifest["execution_policy"] = execution_policy
     encoded = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
     path = output_dir / "manifest.json"
     path.write_bytes(encoded)
@@ -207,6 +260,11 @@ def evaluate_bank(
     samples = validated["samples"]
     candidates = validated["candidates"]
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest_policy = str(
+        manifest.get("execution_policy", "direct_operator_strength")
+    )
+    if manifest_policy != validated["execution_policy"]:
+        raise PositiveFilmFrontierError("render execution policy drift")
     expected = {
         (row["candidate_id"], sample_id)
         for row in candidates
@@ -229,6 +287,22 @@ def evaluate_bank(
         per_image = []
         for sample_id, sample in samples.items():
             record = records[(candidate_id, sample_id)]
+            if validated["execution_policy"] == (
+                "source_inclusive_residual_guard_v1"
+            ):
+                limited = record.get("residual_limited_fraction")
+                minimum = record.get("minimum_residual_scale")
+                if (
+                    not isinstance(limited, (int, float))
+                    or not isinstance(minimum, (int, float))
+                    or not np.isfinite(limited)
+                    or not np.isfinite(minimum)
+                    or not 0.0 <= float(limited) <= 1.0
+                    or not 0.0 <= float(minimum) <= 1.0
+                ):
+                    raise PositiveFilmFrontierError(
+                        f"guard diagnostics invalid: {candidate_id}/{sample_id}"
+                    )
             output_path = manifest_path.parent / str(record["output"])
             if sha256_file(output_path) != record["output_sha256"]:
                 raise PositiveFilmFrontierError(

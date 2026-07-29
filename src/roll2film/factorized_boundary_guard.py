@@ -16,6 +16,12 @@ class FactorizedBoundaryGuardResult:
     chroma_scale: np.ndarray
 
 
+@dataclass(frozen=True)
+class ResidualBoundaryGuardResult:
+    output: np.ndarray
+    residual_scale: np.ndarray
+
+
 def _encoded_srgb_to_linear_scalar(value: float) -> float:
     if not np.isfinite(value) or value < 0.0 or value > 1.0:
         raise ValueError("encoded sRGB threshold must be finite and in [0,1]")
@@ -42,6 +48,97 @@ def _maximum_safe_scale(
         np.minimum(np.min(positive_limit, axis=-1), np.min(negative_limit, axis=-1)),
         0.0,
         1.0,
+    )
+
+
+def _source_inclusive_rails(
+    source: np.ndarray,
+    *,
+    hard_boundary_epsilon_encoded_srgb: float,
+    guard_boundary_epsilon_encoded_srgb: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    hard_low = _encoded_srgb_to_linear_scalar(
+        hard_boundary_epsilon_encoded_srgb
+    )
+    guard_low = _encoded_srgb_to_linear_scalar(
+        guard_boundary_epsilon_encoded_srgb
+    )
+    hard_high = _encoded_srgb_to_linear_scalar(
+        1.0 - hard_boundary_epsilon_encoded_srgb
+    )
+    guard_high = _encoded_srgb_to_linear_scalar(
+        1.0 - guard_boundary_epsilon_encoded_srgb
+    )
+    lower = np.where(
+        source <= hard_low,
+        0.0,
+        np.minimum(source, guard_low),
+    )
+    upper = np.where(
+        source >= hard_high,
+        1.0,
+        np.maximum(source, guard_high),
+    )
+    return lower, upper
+
+
+def apply_residual_boundary_guard(
+    operator: PositiveFilmResponseOperator,
+    linear_rgb: np.ndarray,
+    *,
+    strength: float,
+    hard_boundary_epsilon_encoded_srgb: float,
+    guard_boundary_epsilon_encoded_srgb: float,
+) -> ResidualBoundaryGuardResult:
+    """Apply the requested operator residual with analytical per-pixel scaling.
+
+    The result follows the actual operator direction and scales it only where
+    required to remain within source-inclusive encoded-sRGB guard rails.  This
+    is deterministic gamut execution, not clipping or a per-image fit.
+    """
+
+    source = np.asarray(linear_rgb, dtype=np.float64)
+    if (
+        source.ndim < 2
+        or source.shape[-1] != 3
+        or not np.all(np.isfinite(source))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+        or not np.isfinite(strength)
+        or strength < 0.0
+        or strength > 1.0
+        or not np.isfinite(hard_boundary_epsilon_encoded_srgb)
+        or not np.isfinite(guard_boundary_epsilon_encoded_srgb)
+        or hard_boundary_epsilon_encoded_srgb < 0.0
+        or guard_boundary_epsilon_encoded_srgb
+        <= hard_boundary_epsilon_encoded_srgb
+        or guard_boundary_epsilon_encoded_srgb >= 0.5
+    ):
+        raise ValueError("invalid residual boundary-guard inputs")
+    lower, upper = _source_inclusive_rails(
+        source,
+        hard_boundary_epsilon_encoded_srgb=(
+            hard_boundary_epsilon_encoded_srgb
+        ),
+        guard_boundary_epsilon_encoded_srgb=(
+            guard_boundary_epsilon_encoded_srgb
+        ),
+    )
+    requested_delta = strength * (operator.apply(source) - source)
+    residual_scale = _maximum_safe_scale(
+        source, requested_delta, lower, upper
+    )
+    output = source + residual_scale[..., None] * requested_delta
+    tolerance = 8.0 * np.finfo(np.float64).eps
+    if (
+        not np.all(np.isfinite(output))
+        or np.any(output < lower - tolerance)
+        or np.any(output > upper + tolerance)
+    ):
+        raise RuntimeError("residual boundary guard escaped source-inclusive rails")
+    return ResidualBoundaryGuardResult(
+        output=output,
+        residual_scale=residual_scale,
     )
 
 
@@ -90,27 +187,14 @@ def apply_factorized_boundary_guard(
     ):
         raise ValueError("invalid factorized boundary-guard inputs")
 
-    hard_low = _encoded_srgb_to_linear_scalar(
-        hard_boundary_epsilon_encoded_srgb
-    )
-    guard_low = _encoded_srgb_to_linear_scalar(
-        guard_boundary_epsilon_encoded_srgb
-    )
-    hard_high = _encoded_srgb_to_linear_scalar(
-        1.0 - hard_boundary_epsilon_encoded_srgb
-    )
-    guard_high = _encoded_srgb_to_linear_scalar(
-        1.0 - guard_boundary_epsilon_encoded_srgb
-    )
-    lower = np.where(
-        source <= hard_low,
-        0.0,
-        np.minimum(source, guard_low),
-    )
-    upper = np.where(
-        source >= hard_high,
-        1.0,
-        np.maximum(source, guard_high),
+    lower, upper = _source_inclusive_rails(
+        source,
+        hard_boundary_epsilon_encoded_srgb=(
+            hard_boundary_epsilon_encoded_srgb
+        ),
+        guard_boundary_epsilon_encoded_srgb=(
+            guard_boundary_epsilon_encoded_srgb
+        ),
     )
 
     full = operator.apply(source)
@@ -143,5 +227,7 @@ def apply_factorized_boundary_guard(
 
 __all__ = [
     "FactorizedBoundaryGuardResult",
+    "ResidualBoundaryGuardResult",
     "apply_factorized_boundary_guard",
+    "apply_residual_boundary_guard",
 ]
