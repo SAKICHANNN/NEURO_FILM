@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p8bd_native_standard_zero_copy_hash_resources_contract.v1",
+  "node": "U6.P8BD",
+  "parent_decision": "configs/u6_p8bc_native_standard_working_image_concurrency_grid_decision_v1.json",
+  "parent_decision_sha256": "b1b1763ae82bcff58d4fb811537af9c4117dd59a3b8708f4b4879da4d4e57b27",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "candidate_runtime": "src/film_physics/native_standard_runtime_v2.py",
+  "candidate_runtime_sha256": "245b3979d64b724bba6c836155a6948cfc21a16e345a920b85674e2b2429377c",
+  "implementation_change": "replace two full-input ndarray.tobytes SHA-256 copies with C-contiguous memoryview hashing",
+  "operator_changed": false,
+  "receipt_schema_changed": false,
+  "execution_policy_changed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP exact-receipt zero-copy input-hash native Standard resource evidence only; no decoder, encoder, durable commit, mobile, calibration or production promotion"
+}

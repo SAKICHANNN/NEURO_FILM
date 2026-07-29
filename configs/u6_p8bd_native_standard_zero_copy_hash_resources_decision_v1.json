@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8bd_native_standard_zero_copy_hash_resources_decision.v1",
+  "node": "U6.P8BD",
+  "contract": "configs/u6_p8bd_native_standard_zero_copy_hash_resources_v1.json",
+  "contract_sha256": "f593cbb92cfacd9fb8634cf7841e00a82019d911d78a2917f6d9318d0af882cc",
+  "formal_report": "outputs/u6_p8bd_native_standard_zero_copy_hash_resources_v1/report.json",
+  "formal_report_sha256": "7d7d447b0cfed94d19c2cc1535297dc52840aee9e84da5ee6ea1f3659519b70d",
+  "stable_evidence_id": "cc2695fe78d63c253a7acb9c1db1ebc3515b2925dc83420c2e0479010344b840",
+  "candidate_runtime": "src/film_physics/native_standard_runtime_v2.py",
+  "candidate_runtime_sha256": "245b3979d64b724bba6c836155a6948cfc21a16e345a920b85674e2b2429377c",
+  "result": {
+    "status": "pass",
+    "all_runs_successful": true,
+    "operator_changed": false,
+    "receipt_schema_changed": false,
+    "execution_policy_changed": false,
+    "output_and_receipt_exact": true,
+    "staging_cleanup_pass": true,
+    "peak_process_tree_rss_bytes": [
+      312946688,
+      313823232
+    ],
+    "memory_gate_bytes": 402653184,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      11.640536299993983,
+      11.424031500006095
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": true,
+    "median_peak_reduction_vs_p8bb_bytes": 108673024
+  },
+  "decision": "retain the memory-bounded runtime implementation. Replacing two full-input byte copies with C-contiguous memoryview hashing preserves exact output and receipts while reducing median 12MP peak RSS by 108,673,024 bytes and passing the unchanged memory and latency gates",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP exact-receipt zero-copy input-hash native Standard resource evidence only; no decoder, encoder, durable commit, mobile, calibration or production promotion",
+  "next_leaf": "U6.P8BE expose one opt-in exact-package runtime factory that selects the memory-bounded implementation, binds its source identity, and keeps the production renderer default unchanged"
+}
