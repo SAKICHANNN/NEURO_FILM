@@ -81,9 +81,14 @@ def _validate_base_manifest(
 
 
 def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
+    experiment_id = config.get("experiment_id")
+    evaluator_allowed = (
+        experiment_id == "u5.r2ao6-b0-real-film-residual-frontier-v1"
+        or config.get("evaluator_contract")
+        == "neuro-film.b0-factorized-positive-film-residual-frontier.v1"
+    )
     if (
-        config.get("experiment_id")
-        != "u5.r2ao6-b0-real-film-residual-frontier-v1"
+        not evaluator_allowed
         or config.get("production_integration_allowed")
         or config.get("operator_refit_allowed")
         or config.get("stock_response_claim_allowed")
