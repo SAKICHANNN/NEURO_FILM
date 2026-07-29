@@ -58,6 +58,7 @@ def adjudicate_fresh_native_standard(
         _load_bound_json(root, binding)
         for binding in config["blind_mappings"]
     ]
+    full_review = _load_bound_json(root, config["full_resolution_review"])
 
     if tuple(experiment["comparison"]["arms"]) != ARMS:
         raise ValueError("unexpected fixed comparison arms")
@@ -171,11 +172,19 @@ def adjudicate_fresh_native_standard(
             "confirmed_new_severe_count"
         ]
     )
-    full_severe = int(
-        config["full_resolution_review"][
-            "confirmed_new_severe_count"
-        ]
-    )
+    reviewed_ids = set(full_review["reviewed_source_ids"])
+    if (
+        full_review.get("schema")
+        != "neuro_film.u6_p8bp_full_resolution_review.v1"
+        or not full_review.get("completed")
+        or not reviewed_ids
+        or not reviewed_ids.issubset(expected_ids)
+        or not str(full_review.get("risk_basis", "")).strip()
+    ):
+        raise ValueError("full-resolution review evidence is incomplete")
+    full_severe = int(full_review["confirmed_new_severe_count"])
+    if contact_severe < 0 or full_severe < 0:
+        raise ValueError("severe finding counts cannot be negative")
     severe_count = contact_severe + full_severe
     preference = experiment["comparison"]["preference_gate"]
     required_round_wins = int(
@@ -220,6 +229,9 @@ def adjudicate_fresh_native_standard(
         "blind_mapping_sha256": [
             binding["sha256"] for binding in config["blind_mappings"]
         ],
+        "full_resolution_review_sha256": (
+            config["full_resolution_review"]["sha256"]
+        ),
         "round_results": round_results,
         "arm_total_choices": arm_total_choices,
         "native_vs_ao6_round_wins": pairwise_round_wins,

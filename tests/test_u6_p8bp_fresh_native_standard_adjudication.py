@@ -77,6 +77,13 @@ def _fixture(tmp_path: Path) -> dict[str, object]:
             "confirmed_new_severe_count": 0,
         },
     }
+    full_review = {
+        "schema": "neuro_film.u6_p8bp_full_resolution_review.v1",
+        "completed": True,
+        "reviewed_source_ids": ["one", "two"],
+        "risk_basis": "synthetic high-risk fixture",
+        "confirmed_new_severe_count": 0,
+    }
     return {
         "schema": "neuro_film.u6_p8bp_fixed_arm_adjudication.v1",
         "experiment": _write_json(tmp_path, "experiment.json", experiment),
@@ -93,9 +100,11 @@ def _fixture(tmp_path: Path) -> dict[str, object]:
             _write_json(tmp_path, f"mapping_{index}.json", mapping)
             for index in (1, 2, 3)
         ],
-        "full_resolution_review": {
-            "confirmed_new_severe_count": 0,
-        },
+        "full_resolution_review": _write_json(
+            tmp_path,
+            "full_review.json",
+            full_review,
+        ),
         "claim_ceiling": "test",
     }
 
@@ -129,9 +138,13 @@ def test_adjudication_rejects_native_on_any_severe_finding(
     tmp_path: Path,
 ) -> None:
     config = _fixture(tmp_path)
-    config["full_resolution_review"][
-        "confirmed_new_severe_count"
-    ] = 1
+    full_review = json.loads((tmp_path / "full_review.json").read_text())
+    full_review["confirmed_new_severe_count"] = 1
+    config["full_resolution_review"] = _write_json(
+        tmp_path,
+        "full_review_severe.json",
+        full_review,
+    )
     report = adjudicate_fresh_native_standard(
         root=tmp_path,
         config=config,
