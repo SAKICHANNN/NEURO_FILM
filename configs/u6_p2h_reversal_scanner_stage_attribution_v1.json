@@ -1,0 +1,107 @@
+{
+  "schema": "neuro_film.u6_p2h_reversal_scanner_stage_attribution.v1",
+  "node": "U6.P2H",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2g_contract_path": "configs/u6_p2g_reversal_photographic_stress_v1.json",
+    "p2g_contract_sha256": "53800ee7e1e9baf30a4cc82c7481fa4c7191db15fd200c32b20419f58f3cf572",
+    "p2g_decision_path": "configs/u6_p2g_reversal_photographic_decision_v1.json",
+    "p2g_decision_sha256": "5e00ffb1cbb06a6ac53c5c9e5fb3aaf9d46bb6eaad9599042719bb186d1077c4"
+  },
+  "input": {
+    "expected_rows": 18,
+    "expected_camera_makes": 9
+  },
+  "stage_chain": [
+    {
+      "id": "direct_transmittance",
+      "scanner_stages": []
+    },
+    {
+      "id": "spectral",
+      "scanner_stages": [
+        "spectral"
+      ]
+    },
+    {
+      "id": "spectral_flare",
+      "scanner_stages": [
+        "spectral",
+        "flare"
+      ]
+    },
+    {
+      "id": "spectral_flare_dmax",
+      "scanner_stages": [
+        "spectral",
+        "flare",
+        "dmax"
+      ]
+    },
+    {
+      "id": "spectral_flare_dmax_mtf",
+      "scanner_stages": [
+        "spectral",
+        "flare",
+        "dmax",
+        "mtf"
+      ]
+    },
+    {
+      "id": "spectral_flare_dmax_mtf_noise",
+      "scanner_stages": [
+        "spectral",
+        "flare",
+        "dmax",
+        "mtf",
+        "noise"
+      ]
+    }
+  ],
+  "metrics": {
+    "luma_coefficients": [
+      0.2126,
+      0.7152,
+      0.0722
+    ],
+    "per_stage": [
+      "mean_rgb",
+      "mean_luma",
+      "median_luma",
+      "luma_p95_minus_p05",
+      "mean_channel_spread"
+    ],
+    "successive_stage": [
+      "mean_abs_pixel_change",
+      "mean_luma_shift",
+      "mean_rgb_shift",
+      "channel_spread_shift"
+    ],
+    "attribution": [
+      "largest_absolute_population_luma_shift",
+      "largest_absolute_population_channel_spread_shift"
+    ]
+  },
+  "automatic_gates": {
+    "all_input_and_parent_hashes_exact": true,
+    "all_stage_outputs_finite_and_bounded": true,
+    "all_stage_replays_exact": true,
+    "stage_order_exact": true,
+    "direct_transmittance_bypasses_scanner": true,
+    "minimum_successive_stage_material_change": 0.0
+  },
+  "forbidden": [
+    "fit or alter reversal, scanner, exposure or output parameters",
+    "remove stages based on observed appearance",
+    "treat largest attribution as measured physical truth",
+    "promote the dense cyan-green look to style or preference evidence",
+    "change metrics or gates after execution",
+    "promote to stock, calibrated or product rendering"
+  ],
+  "branch_rules": {
+    "automatic_pass": "retain a mechanistic generic stage attribution and select the next distinct display-interpretation hypothesis",
+    "automatic_fail": "repair only implementation or identity defects; do not tune physical parameters"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "mechanistic attribution inside one generic reversal plus generic scanner hypothesis; no measured scanner, emulsion, stock, calibration, authenticity, preference or product claim"
+}
