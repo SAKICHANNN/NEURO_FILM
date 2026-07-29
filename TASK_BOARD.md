@@ -329,5 +329,7 @@ gate, closing this robust rescue family without a sweep. U5.R2AQ0 passes the
 bounded source/semantics gate: two exact 3,147,395-byte audits cover five
 film-recorder RGB TIFFs and six target sets x five measured Velvia 100F
 slides, but all sets share production date 2005:05 and are not independent
-rolls/processes. U5.R2AQ1 is ready to freeze geometry and test the 8,640-row
-repeated-set table before any fit.
+rolls/processes. U5.R2AQ1 passes all frozen gates on the exact 8,640-row table:
+median/p95/max repeated-set radius `.553/1.280/2.855` Delta E76 and held-set
+consensus RMSE `.890`. U5.R2AQ2 is ready to freeze complete target-set holdout
+baselines; the claim remains recorder-to-measured-slide proxy only.

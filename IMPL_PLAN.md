@@ -75,9 +75,13 @@ semantics on two exact 3,147,395-byte audits: five unknown-profile
 film-recorder RGB TIFFs align to six target sets x five measured Velvia 100F
 slides x 288 patches. All sets share production date 2005:05, so they are
 target-set/charge replicates rather than proven independent rolls or process
-sessions. AQ1 is next: freeze patch geometry and repeated-set identifiability
-gates, build the exact 8,640-row table and quantify nuisance variability before
-any explicit proxy fit.
+sessions. AQ1 then passes all frozen gates on the exact 8,640-row table:
+source grids have 285--288 unique RGB values and constant 3x3 patch interiors;
+median/p95/max target-set radius is `.553/1.280/2.855` Delta E76, distance
+structure Spearman is `.99990`, and leave-set consensus RMSE is `.890`. AQ2 is
+next: preregister complete held-target-set folds and compare the simplest
+explicit recorder-to-measured-slide proxy baselines. No camera, independent
+roll/process, stock-response, calibration or photo-transfer claim opens.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq1-colorreference-velvia100f-pair-table-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ1",
+  "config_sha256": "3843dc8b81980efd7b5c4ddf179e383c0f4fdf59539365f04ff511696f02aea1",
+  "software_commit": "c16c459083d6da580ff671c430a490257a76c725",
+  "report_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/report.json",
+  "report_sha256": "21177de2944d866079e8ac3c45862e6a83b397928a01366d3ded53bc52555e6c",
+  "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595",
+  "repeat_exact": true,
+  "automatic_pass": true,
+  "decision": "open_separately_frozen_aq2_held_target_set_explicit_proxy_baselines_only",
+  "support": {
+    "rows": 8640,
+    "test_sets": 6,
+    "slides_per_set": 5,
+    "patches_per_slide": 288,
+    "unique_source_rgb_per_slide_minimum": 285,
+    "unique_source_rgb_per_slide_maximum": 288,
+    "maximum_within_patch_channel_range_codes": 0,
+    "it8_cgats_base_field_maximum_difference": 0.0
+  },
+  "repeated_set_metrics": {
+    "median_patch_set_radius_deltae76": 0.5526866199503304,
+    "p95_patch_set_radius_deltae76": 1.2798871978128887,
+    "maximum_patch_set_radius_deltae76": 2.855280196408051,
+    "fraction_patch_set_radius_above_10": 0.0,
+    "median_slide_distance_structure_spearman": 0.999897976809268,
+    "minimum_slide_distance_structure_spearman": 0.9994774072608569,
+    "between_set_centroid_variance_fraction": 0.000015524518124796975,
+    "leave_one_set_consensus_rmse_deltae76": 0.8904634470111409
+  },
+  "next_allowed_leaf": "U5.R2AQ2",
+  "next_allowed_actions": [
+    "freeze complete held-target-set splits before fitting",
+    "compare identity, best-basic, affine, bounded positive matrix and two-matrix explicit proxy baselines",
+    "fit only development target sets and score the untouched held target set",
+    "report RGB/XYZ/Lab accuracy, structural safety and cross-set variance"
+  ],
+  "forbidden_actions": [
+    "calling target sets independent rolls or process sessions",
+    "digital-camera-to-film or stock-response claims",
+    "using recorder RGB as sRGB",
+    "photo rendering before a separately frozen transfer gate",
+    "training, product integration, redistribution or public weights"
+  ],
+  "claim_ceiling": "stable repeated manufactured-target recorder-to-developed-slide proxy table; no identified camera-to-film operator or calibrated stock response"
+}

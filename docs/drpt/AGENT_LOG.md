@@ -6964,3 +6964,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - AQ1 is the next ready leaf: freeze patch geometry and nuisance-variance gates,
   then construct and validate the 8,640-row repeated-set table. AQ1 may not fit
   an operator, train, render or claim stock calibration.
+
+## 2026-07-29 - U5.R2AQ1 passes repeated target-set identifiability
+
+- The geometry/metrics contract was committed before execution. Two formal
+  runs reproduce report SHA `21177de...e6c` and 8,640-row table SHA
+  `0bcb92e...f595`.
+- All 1,440 source patches are exact constant 3x3 interiors; each source slide
+  has 285--288 unique RGB triplets. IT8 and spectral base fields are exact.
+- Across six sets, median/p95/max Lab radius is `.553/1.280/2.855`, zero rows
+  exceed 10, distance-structure Spearman is `.99990`, between-set centroid
+  variance is `.00155%` of total and leave-set consensus RMSE is `.890`.
+- AQ2 may now preregister complete held-target-set explicit proxy baselines.
+  The source remains recorder RGB and the result is not camera/roll/process,
+  stock calibration or photo-transfer evidence.
