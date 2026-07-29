@@ -287,3 +287,10 @@ MSVC and LLVM-MinGW; Android arm64/x86_64 compile/link and macOS/iOS arm64
 object witnesses repeat exactly. This is not mobile runtime or product
 evidence. The next autonomous selection returns to the highest-information
 explicit film-simulation algorithm leaf.
+
+Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
+reference-gauge runs are exact, but neutral scan compresses three independent
+photo luma ranges to 8.3%-12.4% of source range and violates the frozen
+per-image range gate. Visual rescue and negative-route retuning are forbidden.
+U6.P2F now opens only a separately typed generic reversal-development
+primitive, beginning with synthetic polarity/partition evidence.

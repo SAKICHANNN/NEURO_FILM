@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2e-reference-gauge-negative-stress-v1",
+  "node": "U6.P2E",
+  "decision": "close_reference_gauge_challenger_on_automatic_luma_range_gate",
+  "software_commit": "bd4c552",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2e_reference_gauge_negative_stress_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2e_reference_gauge_negative_stress_v1/run_b/report.json",
+    "report_sha256": "01f87916b352dcf03d4efbe9dd456779d59c57d143840f2008f3be69fd996baf",
+    "contact_sheet_sha256": "dae8f988bdd6a4317495937fdfcb4b2f80229cfba0dab98df045a2511566aa35",
+    "stable_evidence_id": "eb2323e0362bdd2e40b3cb6a6a7ddef466b18eb6a3f5ba8f4be5f1d1126c43b1",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": false,
+    "passed_gates": [
+      "input_hashes",
+      "finite_bounded",
+      "repeat",
+      "material",
+      "boundary",
+      "isolated_noise",
+      "per_image_near_white",
+      "population_near_white"
+    ],
+    "failed_gates": [
+      "photographic_luma_range"
+    ],
+    "negative_median_mean_abs_change": 0.633689688976218,
+    "print_median_mean_abs_change": 0.06577108261431541,
+    "negative_minimum_luma_p95_minus_p05": 0.039686405842547345,
+    "print_minimum_luma_p95_minus_p05": 0.40881094129179535,
+    "maximum_near_white_fraction": 0.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "total_isolated_noise_count": 0
+  },
+  "failure_localization": {
+    "route": "color_negative_neutral_scan",
+    "failed_rows": [
+      {
+        "id": "nikon_d6_12bit",
+        "source_luma_p95_minus_p05": 0.47722136974334717,
+        "output_luma_p95_minus_p05": 0.039686405842547345,
+        "range_retention": 0.08316141807289762
+      },
+      {
+        "id": "nikon_d3s_14bit",
+        "source_luma_p95_minus_p05": 0.644801914691925,
+        "output_luma_p95_minus_p05": 0.07989252606825148,
+        "range_retention": 0.12390243305406858
+      },
+      {
+        "id": "sony_dslra560",
+        "source_luma_p95_minus_p05": 0.49511830508708954,
+        "output_luma_p95_minus_p05": 0.060821354008373296,
+        "range_retention": 0.12284206296447682
+      }
+    ],
+    "interpretation": "Restoring the U2.2 reference gauge removes the P2D near-white collapse but the neutral-scan route still compresses broad source luma ranges to 8.3%-12.4% on three independent photographs. This is a stable global tone-compression failure, not exact clipping or isolated noise."
+  },
+  "visual": {
+    "allowed": false,
+    "reason": "the preregistered automatic gate failed; visual rescue is forbidden"
+  },
+  "next_leaf": "U6.P2F separately preregistered generic reversal-development primitive; do not retune the closed negative routes",
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative evidence for one fixed generic reference-gauge negative/print challenger; no claim that negative film, printing, scanning or a distinct reversal operator is impossible"
+}

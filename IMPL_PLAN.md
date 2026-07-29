@@ -40,7 +40,13 @@ strength-1.0 Standard output is byte-exact between MSVC and LLVM-MinGW;
 Android arm64/x86_64 compile/link and macOS/iOS arm64 ABI objects repeat
 exactly. This is source/build evidence only; mobile runtime, production and
 calibration claims remain closed. The next autonomous selection returns to a
-distinct explicit film-simulation algorithm leaf.
+distinct explicit film-simulation algorithm leaf. U6.P2D's scale-16 negative
+route and U6.P2E's unchanged reference-gauge challenger are both closed:
+P2E removes the near-white collapse but the neutral-scan route still violates
+the frozen per-image luma-range gate on three independent photographs. No
+visual rescue or parameter retuning is allowed. U6.P2F is the next ready leaf:
+a separately typed generic reversal-development primitive, synthetic
+polarity first, without reusing the increasing-density negative operator.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

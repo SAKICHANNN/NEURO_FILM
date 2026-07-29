@@ -6802,3 +6802,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close the fixed display-linear times-16 branch. U2.2 already defines `0.18`
   as reference exposure, so P2E may preregister an unchanged scale-1.0 gauge
   challenger. No curve, print, scanner, source or threshold retuning is allowed.
+
+## 2026-07-29 - U6.P2E reference-gauge negative route closed
+
+- Froze display-linear `x1.0` before rendering so U2.2's `0.18` reference
+  remains reference, and added near-white plus luma-range gates that P2D
+  lacked. The same 18 CC0 photos, routes, print witness and scanner were used.
+- Two formal reports are byte-identical at `01f87916...996baf`. Replay,
+  bounds, materiality, zero new boundaries, zero isolated noise and both
+  near-white gates pass. The fixed visual sheet was not reviewed because an
+  automatic gate failed.
+- Neutral scan compresses three source luma ranges of `.477-.645` to
+  `.0397-.0799`, retaining only 8.3%-12.4% and failing the frozen `.10`
+  per-image range floor. Print's minimum remains `.4088`.
+- Close P2E without retuning. U6.P2F may now test a separately typed generic
+  reversal-development primitive on synthetic polarity/partition controls;
+  it must not reuse negative sensitometry or make a stock/calibration claim.
