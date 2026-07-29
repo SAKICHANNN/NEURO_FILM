@@ -4787,3 +4787,24 @@
   DDFAPD integration, target runtime, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FD DNG profile provenance recovery
+
+- Producer `6bc0f83` independently parses four CC0 DNGs against Adobe DNG
+  1.7.1.0, binding DNGVersion, UniqueCameraModel, ColorMatrix1/2,
+  CalibrationIlluminant1/2 and AsShotNeutral. The exact profile facts replay
+  twice, and all four profile-backed LibRaw final matrices are finite rank 3.
+- The unchanged R0EV pixel gates also replay twice. Samsung SM-G930A,
+  previously excluded because rawpy exposes `rgb_xyz_matrix=0`, is recovered
+  through verified DNG profile provenance and has p99/max/RMSE
+  0.989690/1.000014/0.563942 16-bit code. It was not missing a DNG profile.
+- Implementation commit is `9946b18`; stable identity is
+  `8e0e3fa2...a15f9e41`; second-run report SHA is
+  `3eb598ab...e7e43`; evidence SHA is `82740ab3...f7fe`.
+- DNG ColorMatrix tags are XYZ-to-camera inputs, not directly reusable final
+  camera-to-sRGB transforms. The final matrices and pixels tested here still
+  come from the same LibRaw implementation. The ceiling is provenance
+  recovery and same-LibRaw self-conformance only: no independent renderer,
+  DNG/profile quality, scene truth, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.

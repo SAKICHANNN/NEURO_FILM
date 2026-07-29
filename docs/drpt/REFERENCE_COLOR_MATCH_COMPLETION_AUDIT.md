@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `5a07366`; R0EE independently
+- D-PCT latest stable communicated snapshot is `6bc0f83`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -191,6 +191,18 @@ wire contract and not an algorithm promotion.
   `07c4a82f...5638f5`. This closes a private two-source same-LibRaw mechanical
   pipeline only; it is not independent RAW rendering, scene truth, quality,
   DDFAPD integration, target runtime or a public producer interface.
+  R0FD independently parses DNGVersion, UniqueCameraModel, ColorMatrix1/2,
+  CalibrationIlluminant1/2 and AsShotNeutral from four CC0 DNGs against the
+  Adobe DNG 1.7.1.0 contract. Profile facts replay exactly, and each
+  profile-backed LibRaw final `color_matrix` is finite/rank-3 and passes the
+  unchanged R0EV pixel gates twice. This recovers the Samsung SM-G930A row
+  previously excluded because `rgb_xyz_matrix` was zero: its p99/max/RMSE are
+  0.989690/1.000014/0.563942 16-bit code. Stable identity is
+  `8e0e3fa2...a15f9e41`; second report SHA is
+  `3eb598ab...e7e43`. DNG ColorMatrix tags are XYZ-to-camera inputs, while
+  the tested final matrix and pixels still come from LibRaw; this is
+  provenance recovery, not an independent renderer, quality evidence or a
+  public RAW contract.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
