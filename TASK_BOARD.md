@@ -294,9 +294,11 @@ Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
 within-minus-cross similarity is only .00364 against the frozen .03 effect
-gate. U6.P4S may compare a label-blind median target with the existing P4Q
-synthetic material baseline; stock-specific fitting and emulsion calibration
-remain forbidden.
+gate. U6.P4S's label-blind shared anisotropic Poisson candidate (`.90/.65px`)
+then improves held median NPS distance by 85.45% over P4D and passes exact
+repeat/partition gates. U6.P4T must still test held ACF, physical
+density/transmittance semantics and severe visual controls; stock-specific
+fitting and emulsion calibration remain forbidden.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent

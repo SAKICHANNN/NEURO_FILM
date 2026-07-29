@@ -7153,3 +7153,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scanner-convolved generic NPS/ACF candidate for P4S baseline comparison;
   physical grain size, emulsion, process, scanner-independent and product
   claims remain forbidden.
+
+## 2026-07-30 - U6.P4S generic anisotropic grain shaping
+
+- Development uses four fixed scans and no stock labels; four other scans are
+  sealed confirmation. Amplitude, per-channel and per-stock fitting are
+  disabled.
+- One shared positive Poisson kernel selects `sigma_y/x=.90/.65px`. Two
+  reports are exact at `ca5dcb24...ae5b`; held median NPS distance improves
+  85.45% (`.02781 -> .00405`) and held worst distance is 22.09% of P4D.
+- Retain only as a generic scanner-convolved shaping candidate. P4T must pass
+  held ACF, density/transmittance-domain and severe visual controls before any
+  renderer integration; no emulsion, stock or calibration claim opens.

@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p4s_generic_grain_shaping_decision.v1",
+  "node": "U6.P4S",
+  "software_commit": "30876bf3925c6fe25d9734991df93c876ace9d2b",
+  "contract": {
+    "path": "configs/u6_p4s_generic_grain_shaping_v1.json",
+    "sha256": "1b243f241313eb844e8f9e2ae5b958fa6cb8a536e6859dd3507fa3ba0f841f79"
+  },
+  "report": {
+    "path": "outputs/experiments/u6_p4s_generic_grain_shaping_v1/report.json",
+    "sha256": "ca5dcb2454f4d5ca91c228827fe5e4ac078438fa4e018e05cfdde81c7eaeae5b",
+    "stable_evidence_id": "12e61345e611209b725ba6f9c43454757b25e3ff51696fbc40e95a13ab0c0260",
+    "repeat_count": 2
+  },
+  "selected_candidate": {
+    "family": "positive-poisson-plus-shared-anisotropic-gaussian",
+    "sigma_y_pixels": 0.9,
+    "sigma_x_pixels": 0.65,
+    "stock_labels_used_for_fit": false,
+    "amplitude_fit": false,
+    "per_channel_fit": false
+  },
+  "confirmation": {
+    "baseline_median_distance": 0.027813146637847008,
+    "candidate_median_distance": 0.004047354140781445,
+    "median_improvement_fraction": 0.8544805378017182,
+    "baseline_maximum_distance": 0.03075512809978065,
+    "candidate_maximum_distance": 0.006792621311247582,
+    "candidate_to_baseline_worst_distance_ratio": 0.22086142152326227,
+    "candidate_vs_reversed_control_improvement_fraction": 0.9971822792546806
+  },
+  "result": {
+    "status": "generic_scanner_convolved_shaping_candidate_pass",
+    "decision": "retain the shared anisotropic Gaussian-shaped Poisson field for physical-domain and severe-artifact integration testing",
+    "reason": "the label-blind development selection improves held-scan median NPS distance by 85.45%, reduces worst distance to 22.09% of the P4D isotropic baseline, beats the reversed-frequency control, and preserves exact repeat/row partitions and nonnegative fields",
+    "production_default_changed": false,
+    "stock_profile_opened": false,
+    "calibration_claim_opened": false
+  },
+  "interpretation": [
+    "The selected vertical/horizontal width difference is consistent with a scanner or scan-processing anisotropy and must remain a generic scanner-convolved output-profile hypothesis.",
+    "The evidence does not identify Ektar100 or UltraMax400 emulsion structure and does not estimate physical grain size.",
+    "NPS-shape improvement alone is insufficient for integration; ACF, density/transmittance semantics and severe visual artifacts remain prospective gates."
+  ],
+  "claim_ceiling": "Held-scan generic scanner-convolved NPS-shape development evidence for one bounded anisotropic Poisson candidate; not emulsion truth, physical grain calibration, stock identity, scanner independence or product promotion.",
+  "next_leaf": "U6.P4T integrate the fixed 0.90x0.65-pixel kernel into a separately typed density/transmittance candidate, compare held ACF plus NPS, and run fixed flat/gradient/highlight visual severe controls before any renderer integration"
+}
