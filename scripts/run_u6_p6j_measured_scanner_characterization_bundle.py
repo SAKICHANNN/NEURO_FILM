@@ -1,13 +1,21 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from pathlib import Path
+import sys
 
-from src.eval.physical_measured_scanner_characterization_bundle import (
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.eval.physical_measured_scanner_characterization_bundle import (  # noqa: E402
     compile_measured_scanner_characterization_bundle,
     write_bundle,
     write_report,
 )
+
+CONTRACT_SHA256 = "98ddd7ab0c543614720210af61a11bcda028e5525947cca851e4061536a7ac3c"
 
 
 def main() -> None:
@@ -22,9 +30,12 @@ def main() -> None:
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
+    contract_path = root / args.contract
+    if hashlib.sha256(contract_path.read_bytes()).hexdigest() != CONTRACT_SHA256:
+        raise SystemExit("U6.P6J contract hash mismatch")
     bundle, report = compile_measured_scanner_characterization_bundle(
-        root, root / args.contract
+        root, contract_path
     )
     bundle_sha = write_bundle(bundle, root / args.bundle)
     report_sha = write_report(report, root / args.report)
