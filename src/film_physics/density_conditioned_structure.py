@@ -168,6 +168,111 @@ def counter_poisson_rate_field(
     return counts
 
 
+def _constant_rate_poisson_component(
+    rate_value: float,
+    full_shape: tuple[int, int],
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    seed: int,
+) -> np.ndarray:
+    uniform = counter_uniform_region(
+        full_shape,
+        origin_yx=origin_yx,
+        shape=shape,
+        seed=seed,
+    )
+    probability = float(np.exp(-np.float64(rate_value)))
+    cumulative = probability
+    maximum_uniform = float(np.max(uniform, initial=0.0))
+    thresholds = [cumulative]
+    order = 0
+    while maximum_uniform > cumulative:
+        order += 1
+        if order > 1024:
+            raise RuntimeError(
+                "constant-rate Poisson recurrence did not converge"
+            )
+        probability *= rate_value / order
+        cumulative += probability
+        thresholds.append(cumulative)
+    counts = np.searchsorted(
+        np.asarray(thresholds, dtype=np.float64),
+        uniform,
+        side="left",
+    ).astype(np.uint16)
+    counts.setflags(write=False)
+    return counts
+
+
+def counter_poisson_constant_rate_field(
+    rate_value: float,
+    full_shape: tuple[int, int],
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    seed: int,
+    maximum_rate: float | None = None,
+) -> np.ndarray:
+    """Sample a bit-constant rate with exact legacy decomposition semantics."""
+
+    value = float(rate_value)
+    if (
+        not math.isfinite(value)
+        or value < 0.0
+        or value > 4096.0
+        or len(full_shape) != 2
+        or len(origin_yx) != 2
+        or len(shape) != 2
+        or any(
+            not isinstance(item, int) or item < 0
+            for item in (*full_shape, *origin_yx, *shape)
+        )
+        or origin_yx[0] + shape[0] > full_shape[0]
+        or origin_yx[1] + shape[1] > full_shape[1]
+        or not isinstance(seed, int)
+        or seed < 0
+        or seed >= 2**64
+    ):
+        raise ValueError("invalid constant-rate Poisson inputs")
+    decomposition_maximum = (
+        value if maximum_rate is None else float(maximum_rate)
+    )
+    if (
+        not math.isfinite(decomposition_maximum)
+        or decomposition_maximum < value
+        or decomposition_maximum > 4096.0
+    ):
+        raise ValueError("Poisson decomposition maximum is invalid")
+    components = max(1, int(math.ceil(decomposition_maximum / 64.0)))
+    if components == 1:
+        return _constant_rate_poisson_component(
+            value,
+            full_shape,
+            origin_yx=origin_yx,
+            shape=shape,
+            seed=seed,
+        )
+    component_rate = value / float(components)
+    total = np.zeros(shape, dtype=np.uint32)
+    for component in range(components):
+        component_seed = (
+            seed + component * 0x9E3779B97F4A7C15
+        ) % (2**64)
+        total += _constant_rate_poisson_component(
+            component_rate,
+            full_shape,
+            origin_yx=origin_yx,
+            shape=shape,
+            seed=component_seed,
+        ).astype(np.uint32)
+    if np.any(total > np.iinfo(np.uint16).max):
+        raise RuntimeError("Poisson superposition exceeds uint16")
+    output = total.astype(np.uint16)
+    output.setflags(write=False)
+    return output
+
+
 def compile_density_conditioned_profiles(
     profiles: tuple[DensityConditionedLayerProfile, ...],
     *,
@@ -378,6 +483,7 @@ def _render_layer_region(
     *,
     origin_yx: tuple[int, int],
     shape: tuple[int, int],
+    constant_rate_executor: str = "legacy-v1",
 ) -> np.ndarray:
     full_shape = target_density.shape
     origin_y, origin_x = origin_yx
@@ -395,16 +501,34 @@ def _render_layer_region(
     x1 = min(full_shape[1], origin_x + width + halo)
     density_region = target_density[y0:y1, x0:x1]
     rate = density_region / profile.resolved_count_rate_density
-    counts = counter_poisson_rate_field(
-        rate,
-        full_shape,
-        origin_yx=(y0, x0),
-        seed=profile.seed,
-        maximum_rate=(
-            profile.maximum_target_density
-            / profile.resolved_count_rate_density
-        ),
-    ).astype(np.float64)
+    maximum_rate = (
+        profile.maximum_target_density
+        / profile.resolved_count_rate_density
+    )
+    if constant_rate_executor == "legacy-v1":
+        counts = counter_poisson_rate_field(
+            rate,
+            full_shape,
+            origin_yx=(y0, x0),
+            seed=profile.seed,
+            maximum_rate=maximum_rate,
+        ).astype(np.float64)
+    elif constant_rate_executor == "scalar-cdf-v1":
+        rate_value = float(rate.flat[0])
+        if not np.all(rate == rate_value):
+            raise ValueError(
+                "scalar-cdf-v1 requires a bit-constant rate field"
+            )
+        counts = counter_poisson_constant_rate_field(
+            rate_value,
+            full_shape,
+            origin_yx=(y0, x0),
+            shape=rate.shape,
+            seed=profile.seed,
+            maximum_rate=maximum_rate,
+        ).astype(np.float64)
+    else:
+        raise ValueError("unsupported constant-rate executor mode")
     if sigma > 0.0:
         counts = gaussian_filter(
             counts,
@@ -492,6 +616,7 @@ def iter_density_conditioned_structure_rows(
     profiles: tuple[DensityConditionedLayerProfile, ...],
     *,
     row_tile_height: int,
+    constant_rate_executor: str = "legacy-v1",
 ):
     """Yield coordinate-stable density/transmittance rows after one validation."""
 
@@ -517,6 +642,7 @@ def iter_density_conditioned_structure_rows(
                 profile,
                 origin_yx=(y0, 0),
                 shape=(height, target.shape[1]),
+                constant_rate_executor=constant_rate_executor,
             )
             for channel, profile in enumerate(profiles)
         ]
@@ -818,6 +944,7 @@ __all__ = [
     "compile_density_conditioned_profiles",
     "compile_effective_mark_loss_profiles",
     "compile_two_cumulant_profiles",
+    "counter_poisson_constant_rate_field",
     "counter_poisson_rate_field",
     "effective_mark_loss",
     "estimate_area_lod_region_workspace_bytes",

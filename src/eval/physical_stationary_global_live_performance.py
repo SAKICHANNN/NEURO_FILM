@@ -108,6 +108,7 @@ def stream_hash(
     profiles: tuple,
     *,
     row_tile_height: int,
+    executor_mode: str = "legacy-v1",
 ) -> dict[str, Any]:
     digest = hashlib.sha256()
     rows = 0
@@ -115,7 +116,10 @@ def stream_hash(
     minimum_density = float("inf")
     maximum_transmittance = 0.0
     for y0, result in iter_density_conditioned_structure_rows(
-        target, profiles, row_tile_height=row_tile_height
+        target,
+        profiles,
+        row_tile_height=row_tile_height,
+        constant_rate_executor=executor_mode,
     ):
         digest.update(int(y0).to_bytes(8, "little", signed=False))
         digest.update(result.density.tobytes(order="C"))

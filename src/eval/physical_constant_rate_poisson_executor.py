@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -12,9 +11,9 @@ from typing import Any
 import numpy as np
 
 from src.film_physics.density_conditioned_structure import (
+    counter_poisson_constant_rate_field,
     counter_poisson_rate_field,
 )
-from src.film_physics.structure_compiler import counter_uniform_region
 
 
 SCHEMA = "neuro_film.u6_p4p_constant_rate_poisson_executor_contract.v1"
@@ -63,111 +62,6 @@ def load_contract(
     ):
         raise ValueError("U6.P4O did not open executor optimization")
     return contract
-
-
-def _component_constant_counts(
-    rate_value: float,
-    full_shape: tuple[int, int],
-    *,
-    origin_yx: tuple[int, int],
-    shape: tuple[int, int],
-    seed: int,
-) -> np.ndarray:
-    uniform = counter_uniform_region(
-        full_shape,
-        origin_yx=origin_yx,
-        shape=shape,
-        seed=seed,
-    )
-    probability = float(np.exp(-np.float64(rate_value)))
-    cumulative = probability
-    maximum_uniform = float(np.max(uniform, initial=0.0))
-    thresholds = [cumulative]
-    order = 0
-    while maximum_uniform > cumulative:
-        order += 1
-        if order > 1024:
-            raise RuntimeError(
-                "constant-rate Poisson recurrence did not converge"
-            )
-        probability *= rate_value / order
-        cumulative += probability
-        thresholds.append(cumulative)
-    counts = np.searchsorted(
-        np.asarray(thresholds, dtype=np.float64),
-        uniform,
-        side="left",
-    ).astype(np.uint16)
-    counts.setflags(write=False)
-    return counts
-
-
-def counter_poisson_constant_rate_field(
-    rate_value: float,
-    full_shape: tuple[int, int],
-    *,
-    origin_yx: tuple[int, int],
-    shape: tuple[int, int],
-    seed: int,
-    maximum_rate: float | None = None,
-) -> np.ndarray:
-    """Sample a bit-constant rate field using the legacy decomposition."""
-
-    value = float(rate_value)
-    if (
-        not math.isfinite(value)
-        or value < 0.0
-        or value > 4096.0
-        or len(full_shape) != 2
-        or len(origin_yx) != 2
-        or len(shape) != 2
-        or any(
-            not isinstance(item, int) or item < 0
-            for item in (*full_shape, *origin_yx, *shape)
-        )
-        or origin_yx[0] + shape[0] > full_shape[0]
-        or origin_yx[1] + shape[1] > full_shape[1]
-        or not isinstance(seed, int)
-        or seed < 0
-        or seed >= 2**64
-    ):
-        raise ValueError("invalid constant-rate Poisson inputs")
-    decomposition_maximum = (
-        value if maximum_rate is None else float(maximum_rate)
-    )
-    if (
-        not math.isfinite(decomposition_maximum)
-        or decomposition_maximum < value
-        or decomposition_maximum > 4096.0
-    ):
-        raise ValueError("Poisson decomposition maximum is invalid")
-    components = max(1, int(math.ceil(decomposition_maximum / 64.0)))
-    if components == 1:
-        return _component_constant_counts(
-            value,
-            full_shape,
-            origin_yx=origin_yx,
-            shape=shape,
-            seed=seed,
-        )
-    component_rate = value / float(components)
-    total = np.zeros(shape, dtype=np.uint32)
-    for component in range(components):
-        component_seed = (
-            seed + component * 0x9E3779B97F4A7C15
-        ) % (2**64)
-        total += _component_constant_counts(
-            component_rate,
-            full_shape,
-            origin_yx=origin_yx,
-            shape=shape,
-            seed=component_seed,
-        ).astype(np.uint32)
-    if np.any(total > np.iinfo(np.uint16).max):
-        raise RuntimeError("Poisson superposition exceeds uint16")
-    output = total.astype(np.uint16)
-    output.setflags(write=False)
-    return output
 
 
 def _legacy(
