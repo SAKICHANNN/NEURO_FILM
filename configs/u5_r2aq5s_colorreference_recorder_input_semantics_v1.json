@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq5s-colorreference-recorder-input-semantics-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ5S",
+  "parent_decision": {
+    "path": "configs/u5_r2aq4g_b0_recorder_proxy_residual_decision_v1.json",
+    "required_decision": "close_B0_recorder_proxy_residual_photo_challenger_retain_AO6_development_champion"
+  },
+  "official_source": {
+    "url": "https://www.colorreference.de/testdata/index.html",
+    "accessed_utc": "2026-07-29",
+    "observed_statements": [
+      "the 1000 regular patches are a 10x10x10 RGB grid in the used recorder device space",
+      "the source RGB values are in the used recorder device space",
+      "the source RGB values are not in a widely known RGB space such as sRGB"
+    ],
+    "recorder_make_model": "unknown",
+    "recorder_profile_or_characterization": "unknown",
+    "recorder_transfer_function": "unknown",
+    "recorder_primaries_or_spectral_sensitivities": "unknown"
+  },
+  "source_files": [
+    {
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale1.tif",
+      "sha256": "bed2ef3c526f0ac9950dd395b8a69399eb8df537c5dd4060821b88944bde9a84"
+    },
+    {
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale2.tif",
+      "sha256": "95e1ee4dd44c00dbbce3eaf4414113228dddab064888714825dfab194319494e"
+    },
+    {
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale3.tif",
+      "sha256": "075f62e1c17150956fb3d649a3f2de1a1a7d9315094857db129b868271f23d74"
+    },
+    {
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale4.tif",
+      "sha256": "4d3fe71c268a29b83fd03f921afabe1e0b3e43ae616fde4cb35fc9eb7e7e983e"
+    },
+    {
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale5.tif",
+      "sha256": "4280155aba760c3a689d7a94944f069918b118f73e3c52ffb536de9e65a9cffd"
+    }
+  ],
+  "required_tiff_facts": {
+    "mode": "RGB",
+    "size": [763, 591],
+    "bits_per_sample": [8, 8, 8],
+    "samples_per_pixel": 3,
+    "photometric_interpretation": 2,
+    "icc_profile_present": false,
+    "white_point_present": false,
+    "primary_chromaticities_present": false,
+    "transfer_function_present": false
+  },
+  "identification_gate": {
+    "required_for_photo_domain_mapping": [
+      "an official or independently verified recorder-to-known-colour-space transform",
+      "identified recorder primaries or spectral response",
+      "identified recorder transfer function",
+      "an embedded or sidecar input profile bound to the exact source files"
+    ],
+    "minimum_required_evidence_items": 1,
+    "parameter_inference_from_developed_slide_measurements_allowed": false,
+    "guess_srgb_or_scene_linear_allowed": false
+  },
+  "decision_branches": {
+    "identified": "allow_one_separately_frozen_mapping_validation_without_photo_fit",
+    "unidentified": "close_recorder_photo_mapping_and_strength_tuning"
+  },
+  "fit_allowed": false,
+  "training_allowed": false,
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded recorder-input semantic identifiability audit; not a recorder characterization, digital-to-film operator or stock response"
+}
