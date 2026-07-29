@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u5_r2as1_gaussian_trilinear_equal_parameter.v1",
+  "experiment_id": "u5.r2as1-gaussian-trilinear-equal-parameter-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AS1",
+  "question": "Does fixed Gaussian localization add value beyond a simpler neutral-preserving trilinear corner basis with the same 24 fitted log-odds residual coefficients?",
+  "status": "post_as0_result_baseline_diagnostic",
+  "disclosure": {
+    "as0_confirmation_rows_reused": true,
+    "exploratory_trilinear_results_seen_before_freeze": true,
+    "purpose": "prevent a synthetic absolute pass from being mistaken for Gaussian-specific value",
+    "confirmation_claim_allowed": false
+  },
+  "parent": {
+    "decision_path": "configs/u5_r2as0_fixed_gaussian_log_odds_capacity_decision_v1.json",
+    "decision_sha256": "13a28d7fe660cf647bf92e61a52a3c3ece5fed01f55557e140e8f98e660f33fa",
+    "required_decision": "retain_fixed_gaussian_log_odds_as_future_controlled_pair_challenger_without_reopening_the_sealed_velvia_proxy_pool",
+    "contract_path": "configs/u5_r2as0_fixed_gaussian_log_odds_capacity_v1.json",
+    "contract_sha256": "8166e82b92fea90ef08b91e8ecc40376d2d46f66fa4e4a413ea1380c0738f0f9"
+  },
+  "models": {
+    "shared_base": "same_fitted_bounded_one_matrix_per_witness",
+    "shared_fit": {
+      "ridge": 1.0,
+      "fit_epsilon": 0.000001,
+      "fitted_scalar_count": 24,
+      "output_domain": "channel_log_odds",
+      "neutral_projection_subtraction": true
+    },
+    "candidate": {
+      "name": "fixed_gaussian",
+      "center_levels": [0.25, 0.75],
+      "sigma": 0.35
+    },
+    "control": {
+      "name": "trilinear_cube_corners",
+      "corner_count": 8
+    }
+  },
+  "gates": {
+    "minimum_gaussian_witness_wins": 3,
+    "minimum_gaussian_median_rmse_improvement_over_trilinear": 0.02,
+    "minimum_jacobian_determinant_both": 0.01,
+    "maximum_jacobian_spectral_norm_both": 4.0,
+    "output_minimum_both": 0.0,
+    "output_maximum_both": 1.0,
+    "maximum_neutral_axis_residual_both": 1e-12,
+    "two_run_report_byte_identity": true
+  },
+  "decision_if_gaussian_passes": "retain_gaussian_as_the_compact_local_basis_for_future_new_controlled_pairs",
+  "decision_if_gaussian_fails": "prefer_the_simpler_equal_parameter_trilinear_log_odds_baseline_and_close_gaussian_specific_priority",
+  "forbidden_actions": [
+    "retune sigma, ridge, centers or gates after this comparison",
+    "claim independent confirmation from reused AS0 samples",
+    "read or fit the sealed 71 display-proxy pairs",
+    "render photographs or claim stock response, preference or product value"
+  ],
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "Post-result synthetic equal-parameter baseline diagnostic only; no independent confirmation, real-film, stock, preference, safety or product claim."
+}

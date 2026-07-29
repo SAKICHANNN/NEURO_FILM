@@ -23,6 +23,9 @@ FIXED_GAUSSIAN_RESIDUAL_SCHEMA = (
 FIXED_GAUSSIAN_LOG_ODDS_SCHEMA = (
     "roll2film.fixed_neutral_gaussian_log_odds.v1"
 )
+FIXED_TRILINEAR_LOG_ODDS_SCHEMA = (
+    "roll2film.fixed_neutral_trilinear_log_odds.v1"
+)
 
 
 def fixed_cube_centers(levels: tuple[float, ...]) -> np.ndarray:
@@ -227,6 +230,90 @@ class FixedNeutralGaussianLogOddsOperator:
         )
 
 
+def neutral_trilinear_features(rgb: np.ndarray) -> np.ndarray:
+    """Return eight cube-corner weights minus their neutral projection."""
+
+    rows, _ = _rgb_rows(rgb)
+    corners = np.asarray(
+        [
+            [red, green, blue]
+            for red in (0.0, 1.0)
+            for green in (0.0, 1.0)
+            for blue in (0.0, 1.0)
+        ],
+        dtype=np.float64,
+    )
+
+    def weights(values: np.ndarray) -> np.ndarray:
+        factors = np.where(
+            corners[None, :, :] > 0.0,
+            values[:, None, :],
+            1.0 - values[:, None, :],
+        )
+        return np.prod(factors, axis=2)
+
+    neutral_level = np.mean(rows, axis=1, keepdims=True)
+    neutral = np.repeat(neutral_level, 3, axis=1)
+    features = weights(rows) - weights(neutral)
+    neutral_rows = np.max(rows, axis=1) == np.min(rows, axis=1)
+    features[neutral_rows] = 0.0
+    return features
+
+
+@dataclass(frozen=True)
+class FixedNeutralTrilinearLogOddsOperator:
+    """A same-parameter cube-corner control for the Gaussian residual."""
+
+    base: PositiveFilmResponseOperator
+    coefficients: np.ndarray
+
+    def __post_init__(self) -> None:
+        coefficients = np.asarray(self.coefficients, dtype=np.float64)
+        if coefficients.shape != (8, 3) or not np.all(
+            np.isfinite(coefficients)
+        ):
+            raise ValueError("trilinear coefficients must be finite 8x3")
+        coefficients = coefficients.copy()
+        coefficients.setflags(write=False)
+        object.__setattr__(self, "coefficients", coefficients)
+
+    def apply(self, rgb: np.ndarray) -> np.ndarray:
+        rows, shape = _rgb_rows(rgb)
+        base = self.base.apply(rows)
+        delta = neutral_trilinear_features(rows) @ self.coefficients
+        positive = np.exp(np.clip(0.5 * delta, -350.0, 350.0))
+        negative = np.exp(np.clip(-0.5 * delta, -350.0, 350.0))
+        numerator = base * positive
+        output = numerator / (
+            numerator + (1.0 - base) * negative
+        )
+        if (
+            not np.all(np.isfinite(output))
+            or np.any(output < 0.0)
+            or np.any(output > 1.0)
+        ):
+            raise RuntimeError("trilinear log-odds residual escaped the RGB cube")
+        return output.reshape(shape)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": FIXED_TRILINEAR_LOG_ODDS_SCHEMA,
+            "base": self.base.to_dict(),
+            "coefficients": self.coefficients.tolist(),
+        }
+
+    @classmethod
+    def from_dict(
+        cls, payload: dict[str, Any]
+    ) -> "FixedNeutralTrilinearLogOddsOperator":
+        if payload.get("schema") != FIXED_TRILINEAR_LOG_ODDS_SCHEMA:
+            raise ValueError("unsupported fixed trilinear log-odds schema")
+        return cls(
+            base=PositiveFilmResponseOperator.from_dict(payload["base"]),
+            coefficients=np.asarray(payload["coefficients"], dtype=np.float64),
+        )
+
+
 def fit_fixed_neutral_gaussian_residual(
     base: PositiveFilmResponseOperator,
     source_rgb: np.ndarray,
@@ -316,12 +403,56 @@ def fit_fixed_neutral_gaussian_log_odds(
     )
 
 
+def fit_fixed_neutral_trilinear_log_odds(
+    base: PositiveFilmResponseOperator,
+    source_rgb: np.ndarray,
+    target_rgb: np.ndarray,
+    *,
+    ridge: float,
+    fit_epsilon: float = 1e-6,
+) -> FixedNeutralTrilinearLogOddsOperator:
+    """Fit the same 24 residual coefficients on trilinear corner features."""
+
+    source, _ = _rgb_rows(source_rgb)
+    target, _ = _rgb_rows(target_rgb)
+    if target.shape != source.shape or len(source) < 8:
+        raise ValueError("paired rows must match and cover eight coefficients")
+    if (
+        not np.isfinite(ridge)
+        or ridge <= 0.0
+        or not np.isfinite(fit_epsilon)
+        or fit_epsilon <= 0.0
+        or fit_epsilon >= 0.5
+    ):
+        raise ValueError("ridge and fit_epsilon are invalid")
+    features = neutral_trilinear_features(source)
+    base_output = np.clip(base.apply(source), fit_epsilon, 1.0 - fit_epsilon)
+    target_output = np.clip(target, fit_epsilon, 1.0 - fit_epsilon)
+    residual = (
+        np.log(target_output) - np.log1p(-target_output)
+        - np.log(base_output)
+        + np.log1p(-base_output)
+    )
+    coefficients = np.linalg.solve(
+        features.T @ features + ridge * np.eye(8, dtype=np.float64),
+        features.T @ residual,
+    )
+    return FixedNeutralTrilinearLogOddsOperator(
+        base=base,
+        coefficients=coefficients,
+    )
+
+
 __all__ = [
     "FIXED_GAUSSIAN_LOG_ODDS_SCHEMA",
     "FIXED_GAUSSIAN_RESIDUAL_SCHEMA",
+    "FIXED_TRILINEAR_LOG_ODDS_SCHEMA",
     "FixedNeutralGaussianLogOddsOperator",
     "FixedNeutralGaussianResidualOperator",
+    "FixedNeutralTrilinearLogOddsOperator",
     "fit_fixed_neutral_gaussian_log_odds",
     "fit_fixed_neutral_gaussian_residual",
+    "fit_fixed_neutral_trilinear_log_odds",
     "fixed_cube_centers",
+    "neutral_trilinear_features",
 ]
