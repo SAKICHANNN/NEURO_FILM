@@ -130,6 +130,14 @@ from .scanner import (
     compile_scanner_standard_context,
     required_scanner_halo,
 )
+from .scanned_interpretation import (
+    SCANNED_INTERPRETATION_ORDER,
+    SCANNED_INTERPRETATION_SCHEMA,
+    ScannedInterpretation,
+    apply_post_scan_polarity,
+    scan_interpretation_medium,
+    scanner_profile_identity,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -172,9 +180,12 @@ __all__ = [
     "ReferenceScatterProfile",
     "ScatterComponent",
     "SCANNER_STAGES",
+    "SCANNED_INTERPRETATION_ORDER",
+    "SCANNED_INTERPRETATION_SCHEMA",
     "ScannerContext",
     "ScannerProfile",
     "ScannerStandardContext",
+    "ScannedInterpretation",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
@@ -190,6 +201,7 @@ __all__ = [
     "apply_dye_diffusion",
     "apply_forward_scatter",
     "apply_pyramid_scatter",
+    "apply_post_scan_polarity",
     "build_bw_silver_context",
     "build_colour_dye_cloud_context",
     "apply_reference_scatter",
@@ -231,6 +243,8 @@ __all__ = [
     "render_marginal_region",
     "required_scanner_halo",
     "scene_exposure_from_working_image",
+    "scan_interpretation_medium",
+    "scanner_profile_identity",
     "sensitometry_identity",
     "transmittance_to_density",
     "TRANSMITTANCE_OPERATOR_ID",
