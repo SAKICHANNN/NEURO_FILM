@@ -91,6 +91,14 @@ as a research-only replay bundle. It must remain distinct from P6A's forward
 film-transmittance-to-scan `ScannerProfile`, and it cannot claim independent
 target validation, calibration, stock response or product readiness.
 
+P6J passes: 13 identity-bound entries serialize and replay byte-exactly, and
+runtime application is exactly equal to the compiler reference. Full-support
+development median/p95 is `7.019/23.375` Delta E76 with no clipping. Further
+same-target capacity work closes; calibrated scanner work waits for a repeated
+scanner/software pipeline on an independently manufactured measured target.
+Autonomous priority returns to a distinct explicit film-image-formation or
+stock/look algorithm leaf.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

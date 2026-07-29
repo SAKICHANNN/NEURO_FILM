@@ -7115,3 +7115,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   device-RGB characterization separate from the forward P6A ScannerProfile;
   independent-target, calibrated scanner, stock and product claims stay
   closed.
+
+## 2026-07-29 - U6.P6J exact inverse scanner bundle
+
+- Compiled 13 full-five-slide common-power + positive-matrix entries into a
+  separate inverse scanner-device-RGB to normalized D50 XYZ research bundle.
+  Scanner/software/target/archive identity mismatch fails closed; the forward
+  P6A ScannerProfile type is not reused.
+- Bundle and report repeat byte-exact at `c93cbaf3...fea0f9` and
+  `8b172d3e...d7ad9a`; runtime equals compiler reference exactly. Full-support
+  median/p95 is `7.019/23.375` Delta E76 with output `.00026-.78476`.
+- Close further same-target capacity work. Independent-target/calibrated and
+  product claims remain data-blocked; return priority to a distinct explicit
+  film-image-formation or stock/look algorithm leaf.
