@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap4-b0-ektachrome-residual-fresh-confirmation-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP4",
+  "decision": "close_ektachrome_photo_challenger_after_fresh_B0_preference_failure",
+  "software_commit": "fa70367d88068a34ee4d7df7099800d37b8aa7e0",
+  "contract": {
+    "path": "configs/u5_r2ap4_b0_ektachrome_residual_fresh_confirmation_v1.json",
+    "sha256": "9306b2d18a39eef7756cd98184bb20de14c8b5ad963f0610b9a7c1ff6fe38ffb"
+  },
+  "run_a": {
+    "manifest_sha256": "fcad96fc959d8dca53c6a5717df495c6b74f3792c408d2851b239e0ab9eee6c9",
+    "automatic_report_sha256": "2dbc9dfe9697ebe2136ef05709ced1aaaddf35079b44d27a2d5ca10f868066f5"
+  },
+  "run_b": {
+    "manifest_sha256": "fcad96fc959d8dca53c6a5717df495c6b74f3792c408d2851b239e0ab9eee6c9",
+    "automatic_report_sha256": "2dbc9dfe9697ebe2136ef05709ced1aaaddf35079b44d27a2d5ca10f868066f5"
+  },
+  "repeat_byte_identical": true,
+  "automatic_evidence": {
+    "all_gates_pass": true,
+    "candidate_median_style_delta_e76": 12.037764404375359,
+    "candidate_median_non_basic_residual_delta_e76": 11.838211721054588,
+    "median_ektachrome_residual_delta_e76_from_base": 2.2023968869219432,
+    "candidate_to_base_median_style_ratio": 0.9263676256509913,
+    "candidate_to_base_median_non_basic_ratio": 0.8643871632753105,
+    "images_above_one_delta_e76": 16,
+    "camera_makes_above_one_delta_e76": 9,
+    "worst_new_hard_clipping_fraction": 0.0
+  },
+  "visual_evidence": {
+    "pre_reveal_review_sha256": "0ed2596d33250db43f4e8b9ab10c23935d39924cfe1b3ca93bf0f89e586cda48",
+    "private_mapping_sha256": "aaf26cb15fc2ec70d21f9a0f5a03976b36b863e85e40d889184f63ecf840250c",
+    "post_reveal_adjudication_sha256": "46c521af4c7e04db98affae723da0e64813468dad3d2e7fc85237eb4a245ec04",
+    "candidate_round_wins": 0,
+    "required_candidate_round_wins": 2,
+    "preference_gate_pass": false,
+    "fixed_B0_round_wins": 3,
+    "round_1_and_round_3_stimulus_byte_identical": true,
+    "round_1_and_round_3_rankings_consistent": true,
+    "sheet_resolution_confirmed_severe_artifact_count": 0,
+    "full_resolution_reviewed": 16,
+    "full_resolution_confirmed_severe_artifact_count": 0,
+    "id11_style_red_speckle_or_posterization_confirmed": false
+  },
+  "interpretation": "The fixed Ektachrome display-proxy residual is objectively material, repeatable and severe-clean on the fresh population, but fixed vivid B0 is preferred in all three frozen autonomous blind rounds; independent promotion closes.",
+  "retained_research_assets": [
+    "AP0 independent Ektachrome palette/display-proxy operator evidence",
+    "AP2 analytical residual-direction gamut guard",
+    "AP3 development-only t10/c25 bounded composition evidence"
+  ],
+  "forbidden_rescue": [
+    "threshold change",
+    "source removal or replacement",
+    "strength retuning",
+    "operator refit",
+    "per-image selection learned from confirmation outcomes",
+    "additional blind rounds on the same evidence"
+  ],
+  "production_default_changed": false,
+  "training_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "next_leaf": "select a distinct evidence-authorized film-imaging algorithm or physical-image-formation leaf; do not add capacity to the closed Ektachrome photo challenger",
+  "claim_ceiling": "negative autonomous fresh-population preference evidence for one fixed B0 plus bounded residual from one Ektachrome author-rendered display proxy; no owner or population preference, universal safety, measured film response, named stock, calibration, authenticity or product promotion"
+}
