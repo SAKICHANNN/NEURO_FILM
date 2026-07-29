@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "schema": "neuro_film.u6_p1d_shared_density_basis_fidelity_decision.v1",
+  "node": "U6.P1D",
+  "contract_sha256": "9c547763ad7bc58b0736a0bb810381eed25ea27cd0490426edceaec3fbc81340",
+  "software_commit": "82bde0a723637fba748775167542c4084efe3c89",
+  "report_sha256": "5945444041cbf4c44b3427b1544f7b3ee1e69b536c6da9ba838cc058e70f0e52",
+  "stable_evidence_id": "d65f137ed0357af28eb41e25d94615a6c7c69322d5c298a1bfec5d23df79f96f",
+  "repeat_report_byte_identical": true,
+  "forward_holdout": {
+    "years": "2020--2024",
+    "charges": 12,
+    "ektachrome_family": 6,
+    "velvia_50_family": 6
+  },
+  "metrics": {
+    "density_rmse_median": 0.015822202012750735,
+    "density_rmse_p95": 0.016628648862044952,
+    "transmittance_percent_rmse_median": 0.9244290545216745,
+    "transmittance_percent_rmse_p95": 1.4141401435137677,
+    "scanner_a_rgb_rmse_p95": 0.007855648582109584,
+    "scanner_b_rgb_rmse_p95": 0.0057500071420642646,
+    "rank6_vs_rank5_density_median_relative_improvement": 0.196998543896457,
+    "rank3_density_rmse_p95": 0.1477575047464611
+  },
+  "decision": "retain_shared_rank6_internal_reference_primitive",
+  "basis_asset_redistribution_allowed": false,
+  "family_or_mode_routing_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "next_leaf": "return algorithm priority to a new bounded AO6-like photographic colour candidate; use P1D only as an internal generic spectral-reference control",
+  "claim_ceiling": "forward-held target-spectrum reconstruction under two synthetic scanner observers; internal generic offline reference only"
+}

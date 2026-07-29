@@ -7450,3 +7450,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   815.56% worse at the median. Two reports are byte-identical.
 - Close family/mode routing from this evidence. Continue only with a generic
   shared rank-6 reference-simulator fidelity test; no operator/product claim.
+
+## 2026-07-28 - U6.P1D retains one generic shared spectral primitive
+
+- A new balanced 2020--2024 forward holdout passes at density
+  median/p95 `.01582/.01663D`, transmittance `.924/1.414` percentage points
+  and synthetic scanner A/B p95 `.00786/.00575`.
+- Rank 6 improves 19.70% over rank 5; rank 3 fails the frozen negative gates.
+  Reports repeat byte-exact.
+- Keep this internal and unrouted with no committed basis asset. Return
+  priority to photographic colour algorithms rather than extending a
+  non-distributable target-factorization branch.
