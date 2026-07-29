@@ -4180,7 +4180,8 @@
 - The strict schema prevents a client from being told that the algorithm is
   promoted, source metadata is copied, input revalidation is optional or the
   batch limit is larger than the executable contract.
-- Exact identities: schema `f5674487...a4eb0d`; compact sorted payload
+- Exact identities after the P171 strict-inventory correction: schema
+  `7ccf4695...a4f467`; compact sorted payload
   `8d4341f4...ede33`. Verification: 8 dedicated, 50 focused,
   1,010 non-manifest color/reference tests with five skips, and 9 v40/v41
   immutable-manifest tests pass.
