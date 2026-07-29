@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq2d-colorreference-source-support-diagnostic-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ2D",
+  "parent": {
+    "aq2_decision": "configs/u5_r2aq2_colorreference_velvia100f_held_group_baselines_decision_v1.json",
+    "aq2_report": "outputs/experiments/u5_r2aq2_colorreference_velvia100f_held_group_baselines_v1/report.json",
+    "aq2_report_sha256": "be080bbb1aed922efe60854dae34029b2aa4d9b28ddd135d8c945f1847f56d48",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "source_contract": {
+    "slide_indices": [1, 2, 3, 4, 5],
+    "unique_rows_per_slide": 288,
+    "distance_space": "raw recorder RGB divided by 255; Euclidean",
+    "development_support": "other four complete source slides",
+    "nearest_neighbor_reference": "leave-one-row-out nearest neighbor among the 1152 development rows",
+    "convex_hull": "scipy ConvexHull of all development recorder RGB rows",
+    "convex_hull_tolerance": 0.0000000001
+  },
+  "diagnostic_thresholds": {
+    "held_to_development_p95_nearest_distance_ratio": 1.5,
+    "held_outside_development_convex_hull_fraction": 0.05,
+    "held_exact_rgb_overlap_fraction_minimum_for_overlap_supported": 0.1
+  },
+  "decision_branches": {
+    "source_support_gap": "one or more held slides exceed the fixed nearest-distance or convex-hull support threshold",
+    "in_support_representation_failure": "all held slides remain within fixed source-support thresholds",
+    "integrity_failure": "source table or AQ2 identities fail"
+  },
+  "fit_allowed": false,
+  "target_fields_allowed": false,
+  "operator_promotion_allowed": false,
+  "capacity_rescue_allowed": false,
+  "render_allowed": false,
+  "claim_ceiling": "source-only support attribution for the already-rejected AQ2 recorder proxy; cannot promote an operator"
+}
