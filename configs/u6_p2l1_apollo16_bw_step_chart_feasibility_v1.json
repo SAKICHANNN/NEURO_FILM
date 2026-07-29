@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p2l1_apollo16_bw_step_chart_feasibility.v1",
+  "experiment_id": "u6.p2l1-apollo16-bw-step-chart-feasibility-v1",
+  "node": "ULT > U6 > U6.P2L1",
+  "status": "post_exploratory_development_contract_frozen",
+  "question": "Does the bounded AS16-111 segment 05 contain enough independently supported density-wedge levels to justify a later Kodak 3401 B&W response feasibility experiment?",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p2l_apollo16_bw_step_chart_source_v1.json",
+      "sha256": "841fabeb5caf8f50c963b7fe166b742a62a56c55c56a513cd89c78a2e55a056d"
+    },
+    "acquisition_manifest": {
+      "path": "outputs/experiments/u6_p2l_apollo16_bw_step_chart_source_v1/acquisition_manifest.json",
+      "sha256": "39698b05ac2eab20d4a344f77bd9dee9884c08a30666dea7bb8fc021b67255ee",
+      "archive_sha256": "a88dd57ee7f009718c4589466dd879b7b2b2cec0dde48e1ea3bad079e85c273b",
+      "archive_bytes": 84741732,
+      "member_path": "AS16-111-stepchart05.tif",
+      "member_uncompressed_bytes": 348250527,
+      "member_crc32": "ec17dc8e"
+    }
+  },
+  "development_disclosure": {
+    "sampled_preview_seen_before_numeric_gate_freeze": true,
+    "two_endpoint_like_regions_seen": true,
+    "untouched_confirmation_claim_forbidden": true,
+    "purpose": "make the source close mechanically rather than treating one strong edge as a sensitometry curve"
+  },
+  "analysis": {
+    "maximum_uncompressed_bytes": 2000000000,
+    "maximum_sample_rows": 1536,
+    "maximum_sample_columns": 1536,
+    "central_column_fraction": [0.12, 0.88],
+    "level_bin_width_u16": 1024,
+    "minimum_level_support_fraction": 0.02,
+    "merge_adjacent_supported_bins": true
+  },
+  "automatic_gates": {
+    "required_width": 14345,
+    "required_height": 12135,
+    "required_samples_per_pixel": 1,
+    "required_bits_per_sample": 16,
+    "required_rows_per_strip": 1,
+    "minimum_code_span_fraction": 0.8,
+    "minimum_supported_wedge_levels": 6,
+    "repeat_report_byte_identity": true
+  },
+  "branch_rule": {
+    "automatic_pass": "retain source feasibility only and freeze a separate B&W response experiment without using any photograph or colour-stock data",
+    "automatic_fail": "close segment 05 for response fitting; do not acquire segments 01-04 under this branch and do not reinterpret endpoint/edge evidence as a curve"
+  },
+  "forbidden": [
+    "curve fitting in this audit",
+    "manual region rescue or threshold changes after the report",
+    "expansion to segments 01-04",
+    "colour-stock, modern Plus-X, development, scanner-independent or calibrated claim",
+    "product integration"
+  ],
+  "report": "outputs/experiments/u6_p2l1_apollo16_bw_step_chart_feasibility_v1/report.json",
+  "claim_ceiling": "Post-exploratory development-only source geometry audit of one historical Kodak 3401-associated raw-scan segment; no response fit, untouched confirmation, calibration, process, scanner independence or product claim."
+}
