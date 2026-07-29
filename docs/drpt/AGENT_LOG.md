@@ -7189,3 +7189,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.05322 > .03`; the matched P4D control also misses density mean
   (`.01790 > .01`). No visual review, retune or renderer integration opens.
   P4V may only attribute the mechanism before proposing another model.
+
+## 2026-07-30 - U6.P4V tone mechanism remains unidentified
+
+- Two exact all-16 traces reproduce the `.05322` worst luma drift. Global
+  density-mean error is `<=.00588` and endpoint compression `<=14.20%`.
+- Drift correlates descriptively with local bounded residual (`r=.850`), not
+  global mean (`.150`) or compression (`-.235`), but the frozen population
+  median residual is `.04645 < .05`; formal attribution stays unidentified.
+- No threshold move, causal claim or material retry opens. P4W may measure
+  fixed-crop scan-code amplitude repeatability without fitting a renderer.

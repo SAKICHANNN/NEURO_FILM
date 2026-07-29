@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p4v_material_tone_mechanism_decision.v1",
+  "node": "U6.P4V",
+  "software_commit": "6f8b3d36d57e336304e4448a0ea78db92fd8439f",
+  "contract": {
+    "path": "configs/u6_p4v_material_tone_mechanism_v1.json",
+    "sha256": "fd83d23a5984548c5ed18598194f592f66dc1a27ba65a54d24540eb50d78a52b"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u6_p4v_material_tone_mechanism_v1/report_a.json",
+    "run_b": "outputs/experiments/u6_p4v_material_tone_mechanism_v1/report_b.json",
+    "sha256": "8e3fdd73409161f2de4b6397377b2bc984149679165aea9cca2e700c41f442f5",
+    "stable_evidence_id": "ddbc77a6e21f057e08e3aa332d12d0ee757d1c87341d757017072b518a31bd9e",
+    "repeat_count": 2
+  },
+  "formal_attribution": "unidentified",
+  "results": {
+    "maximum_channel_mean_density_error": 0.005876985968971793,
+    "frozen_small_mean_threshold": 0.01,
+    "maximum_compressed_pixel_fraction": 0.1420135640785781,
+    "frozen_sparse_compression_threshold": 0.2,
+    "median_local_bounded_density_residual": 0.04644527092232753,
+    "frozen_large_local_residual_threshold": 0.05,
+    "maximum_final_encoded_luma_drift": 0.05321573880947106,
+    "frozen_tone_drift_threshold": 0.03,
+    "descriptive_correlation_final_drift_vs_local_residual": 0.8496436258590256,
+    "descriptive_correlation_final_drift_vs_global_mean_error": 0.1496223641230218,
+    "descriptive_correlation_final_drift_vs_compressed_fraction": -0.2353446379610579
+  },
+  "decision": "retain_negative_p4u_stop_material_integration_mechanism_unidentified",
+  "interpretation": [
+    "Global density-mean error is small and interpretation-bound compression is sparse, so neither passes the preregistered primary-cause rule.",
+    "Final drift is strongly associated descriptively with local density residual, but the population median residual 0.04645 falls below the frozen 0.05 large-residual gate. The formal attribution therefore remains unidentified.",
+    "Do not move the threshold, retune amplitude, resume P4U or claim a causal mechanism from the correlation."
+  ],
+  "next_leaf": "U6.P4W independent fixed-crop scanner-code amplitude repeatability feasibility; no material parameter fitting unless scan-group amplitude is stable",
+  "claim_ceiling": "Unidentified mechanism evidence for a rejected generic photographic material path; not a new candidate, causal proof, preference, stock/emulsion/process/scanner calibration or product evidence."
+}
