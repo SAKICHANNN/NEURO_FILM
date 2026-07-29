@@ -6750,3 +6750,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   current colour-layer density a B&W silver image or define the medium scanned
   downstream. P2B must separate transmittance from print reflectance and reject
   non-neutral B&W density.
+
+## 2026-07-29 - U6.P2B interpretation media
+
+- Added a distinct immutable film-transmittance or print-reflectance medium
+  boundary. Negative and slide routes have exact equal medium bytes but retain
+  opposite post-scan polarity; the print route reuses U2.2B with a one-ULP
+  compiled endpoint envelope for float32 density.
+- Two reports are byte-identical at `b4582591...bdd86ad`; route replay,
+  partitions, bounds, input preservation and missing/foreign print guards pass.
+  Non-neutral colour density is rejected by the B&W route, while an explicit
+  neutral density witness passes.
+- This does not scan or calibrate a medium. P2C may now exercise the existing
+  generic scanner boundary and polarity order on synthetic controls only.

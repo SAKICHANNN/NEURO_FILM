@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2b-interpretation-medium-v1",
+  "node": "U6.P2B",
+  "decision": "retain_distinct_film_and_print_media_open_scanner_ablation",
+  "software_commit": "daad575",
+  "contract": {
+    "path": "configs/u6_p2b_interpretation_medium_contract_v1.json",
+    "sha256": "68b655cb343c26537438c3f242464669d533206c893a7ece26d21316e7630f41"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p2b_interpretation_medium_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2b_interpretation_medium_v1/run_b/report.json",
+    "report_sha256": "b4582591ec4e857ea42b0de094580be3c29e7526754b73185d9a848cfbdd86ad",
+    "stable_evidence_id": "77c8810e28d6bdff8b115b93b7943a779abb31251edef75ea41dd7740f079c01",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "negative_and_slide_transmittance_sha256": "1eb144b3a434f2971a4d3e492e9a0b01e898cbf993056fd4b181ee9c29381080",
+    "negative_and_slide_medium_bytes_equal": true,
+    "negative_and_slide_post_scan_polarity_distinct": true,
+    "print_reflectance_minimum": 1.20070078879486e-10,
+    "print_reflectance_maximum": 0.9999999403953552,
+    "non_neutral_bw_rejected": true,
+    "neutral_bw_passed": true,
+    "partition_replay_exact": true,
+    "duplicate_density_or_tone_symbols": 0
+  },
+  "automatic_pass": true,
+  "interpretation": "Negative and slide routes intentionally share physical film-transmittance bytes and differ only by explicit post-scan polarity. The print route produces a separately labelled bounded reflectance medium. Colour-layer density cannot pass as B&W; a neutral density witness can. All arithmetic reuses existing U2.2 and physical transmittance/print primitives.",
+  "next_leaf": "U6.P2C fixed synthetic route ablation through the independent scanner boundary and explicit post-scan polarity",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic interpretation-medium semantics only; no measured film, developer, paper, process, scanner, stock, calibration or product claim"
+}
