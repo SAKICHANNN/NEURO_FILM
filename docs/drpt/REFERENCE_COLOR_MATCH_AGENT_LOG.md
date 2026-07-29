@@ -4210,3 +4210,14 @@
 - Its post-hoc OOD observation is research motivation only. With no
   model/package/schema/receipt/capability, P45/P44 remain closed and no
   consumer mapping opens.
+
+## 2026-07-29 - Register R0DV as producer-negative
+
+- Producer `c54b591` freezes DCAS-v0 on a third identity-disjoint 64-row
+  evaluation: 53/64 improve and median +23.55% pass, while worst -38.49% and
+  maximum new boundary 6.71% fail.
+- Reference-distance harm AUC reverses to 0.331; only one of 11 regressions is
+  attenuated and the three worst rows remain unattenuated. The distance-veto
+  family therefore closes without threshold rescue.
+- No model/package/schema/receipt/capability exists. P45/P44 remain closed;
+  v42 stays the current review manifest and no consumer interface changes.
