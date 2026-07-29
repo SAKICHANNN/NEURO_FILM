@@ -7199,3 +7199,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   median residual is `.04645 < .05`; formal attribution stays unidentified.
 - No threshold move, causal claim or material retry opens. P4W may measure
   fixed-crop scan-code amplitude repeatability without fitting a renderer.
+
+## 2026-07-30 - U6.P4W scan-code amplitude feasibility passes
+
+- Two exact eight-scan reports retain one label-blind same-scanner relative
+  amplitude target: max within-scan crop CV `.238`, cross-scan CV `.279`,
+  max/min `1.972`, and development/confirmation median ratio `1.087`.
+- Source groups visibly differ, but stock/exposure/scan-batch factors are
+  confounded. No stock amplitude or optical-density interpretation opens.
+- P4X may fit one global positive scale through an explicit transmittance
+  observation proxy on development only, then inspect sealed scans; no photos.

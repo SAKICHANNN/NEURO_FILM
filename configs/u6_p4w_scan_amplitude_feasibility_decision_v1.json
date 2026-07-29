@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p4w_scan_amplitude_feasibility_decision.v1",
+  "node": "U6.P4W",
+  "software_commit": "00abc244163e62a5ae5eadd628aadadc847a701f",
+  "contract": {
+    "path": "configs/u6_p4w_scan_amplitude_feasibility_v1.json",
+    "sha256": "a0cf560309cc5c0496fa63fffe274a542e9b5f89ae70b987f3b43a88affaee4f"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u6_p4w_scan_amplitude_feasibility_v1/report_a.json",
+    "run_b": "outputs/experiments/u6_p4w_scan_amplitude_feasibility_v1/report_b.json",
+    "sha256": "8a830aec3ef4f1dc053f1cfd2b949a27bc236a879b290e2e9dc8a9800076a2ad",
+    "stable_evidence_id": "abd93961f19df01c8a79cc903517b81501a39c51c666539e8226c1c74fd12f60",
+    "repeat_count": 2
+  },
+  "result": {
+    "status": "generic_same_scanner_relative_amplitude_feasibility_pass",
+    "scan_groups": 8,
+    "median_scan_amplitude": 0.05899222603028191,
+    "minimum_scan_amplitude": 0.0427071017445558,
+    "maximum_scan_amplitude": 0.08420500023246122,
+    "maximum_within_scan_crop_cv": 0.23794320844770037,
+    "across_scan_cv": 0.27867222985123236,
+    "across_scan_maximum_to_minimum_ratio": 1.9716861316442638,
+    "development_median_amplitude": 0.05899222603028191,
+    "confirmation_median_amplitude": 0.0641020509812942,
+    "development_to_confirmation_median_ratio": 1.0866186156187652
+  },
+  "decision": "retain_one_generic_same_scanner_amplitude_target",
+  "interpretation": [
+    "All fixed-crop, scan-group and development/confirmation repeatability gates pass without using stock labels.",
+    "The source IDs show a large group separation, but stock, exposure and scan-batch factors are not independently connected. The result therefore authorizes only one generic same-scanner median target, never stock-specific amplitudes.",
+    "The observed scanner-code amplitude is not optical density and cannot be copied directly into a material profile."
+  ],
+  "next_leaf": "U6.P4X fit one global positive P4T mark-amplitude scale on development only through an explicit 10^-D transmittance observation proxy, then evaluate unchanged on confirmation scans; no photographs",
+  "claim_ceiling": "Same-scanner label-blind relative code-amplitude feasibility; not optical density, emulsion grain amplitude, stock/process/scanner-independent calibration or product evidence."
+}
