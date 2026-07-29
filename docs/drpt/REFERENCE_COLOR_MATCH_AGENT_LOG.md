@@ -4674,3 +4674,22 @@
   truth, sensor-noise/optics/camera-colour quality, physical arm64, JNI/app,
   public package/schema/receipt/capability, product admission or consumer
   mapping. P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EU four-pattern Android pipeline
+
+- Producer `ad64ddf` freezes four R0EE/R0EF rights-screened 1024x1024
+  native-RAW-derived crops spanning RGGB, GRBG, GBRG and BGGR after fixed
+  Windows rawpy/LibRaw normalization. The unchanged DDFAPD stream (core 64)
+  and unchanged float-TIFF writer consume their exact CFA bytes.
+- MSVC/LLVM first freeze double replays for every crop, with four distinct
+  file and pixel identities. Two Android 14 x86_64 runners then perform two
+  cold/wiped boots and four patterns each: all 16 positive pipelines reproduce
+  file/pixel/strip/tag facts exactly. Truncated-input and invalid-pattern
+  checks add 32 pre-output rejections with no artifact. Stable identity is
+  `7aba42ca...fbe4ee`; evidence SHA is `e2e11264...e9580`.
+- Owned remote artifacts, processes, AVDs and temporary mappings return to
+  zero. This extends private operational evidence across the four Bayer
+  patterns, but Android still does not decode RAW and there is no scene
+  truth, demosaic quality, camera colour, physical arm64, JNI/app, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.

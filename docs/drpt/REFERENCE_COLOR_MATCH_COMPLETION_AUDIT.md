@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `187abab`; R0EE independently
+- D-PCT latest stable communicated snapshot is `ad64ddf`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -133,6 +133,15 @@ wire contract and not an algorithm promotion.
   `a91c51eb...a9ce1`. Android did not decode the RAW container, and no scene
   truth, sensor/optics/camera-colour quality, physical arm64, JNI/app or
   public package/schema/receipt/capability is established.
+  R0EU extends the same private path to four rights-screened 1024x1024
+  native-RAW-derived crops spanning RGGB, GRBG, GBRG and BGGR. Windows
+  MSVC/LLVM prefreeze and 16 Android x86_64 virtual-device pipelines reproduce
+  pattern-specific file/pixel/strip/tag facts exactly; all four output
+  identities differ, and 32 truncated-input/invalid-pattern negatives reject
+  before output. Stable identity is `7aba42ca...fbe4ee`; evidence SHA is
+  `e2e11264...e9580`. This adds four-pattern operational coverage only:
+  Android still does not decode RAW, and no scene truth, camera colour,
+  physical arm64, app/JNI or public producer interface is established.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
