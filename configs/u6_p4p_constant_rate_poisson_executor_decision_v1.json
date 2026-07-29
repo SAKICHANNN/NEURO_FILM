@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4p_constant_rate_poisson_executor_decision.v1",
+  "node": "U6.P4P",
+  "decision": "retain_exact_constant_rate_executor_open_versioned_integration",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4p_constant_rate_poisson_executor_v1.json",
+      "sha256": "bdfc4423afd226250672f901f85e6f7a484c8a386e5c863f078e6e8d1d1d07d1"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4p_constant_rate_poisson_executor_v1/report.json",
+      "sha256": "9db1c7ebad4a1b9011ef383a4b90d37db8e026f83982d5bd6149e6057d591e2a",
+      "stable_evidence_id": "74458002904963545d7388bf6c6861916f05240df06f8e34ae8a4aa3a9986dfa"
+    },
+    "software_commit": "d81c9f79cddb54c139b4b531070cb6e38e6a615c"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "exactness_rows": 450,
+    "exactness_failures": 0,
+    "invalid_failure_parity": true,
+    "performance_shape": [
+      1024,
+      1536
+    ],
+    "legacy_median_seconds": 7.199422100005904,
+    "candidate_median_seconds": 1.178444599994691,
+    "median_speedup": 6.109257999941905,
+    "candidate_hash_repeat_exact": true
+  },
+  "interpretation": [
+    "The scalar-CDF/searchsorted candidate preserves the existing component count, seed sequence and left-boundary recurrence semantics for bit-constant rate fields.",
+    "All 450 rate/maximum/shape/origin/seed rows are byte-exact to the legacy recurrence, including decomposed rates up to the P4H regime.",
+    "The frozen 1.57MP case improves median sampler time by 6.11x. General spatial-rate behavior and the default sampler remain unchanged pending a separately versioned integration."
+  ],
+  "next_leaf": "U6.P4Q integrate the candidate behind an explicit constant-rate executor mode, prove legacy/default identities unchanged, then repeat the exact P4O 24MP contract as a new version",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "synthetic exact-semantics Poisson executor evidence; not film fidelity, measured grain, stock calibration, photographic evidence or product runtime"
+}
