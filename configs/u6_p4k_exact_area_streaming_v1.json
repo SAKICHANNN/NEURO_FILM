@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p4k_exact_area_streaming_contract.v1",
+  "node": "U6.P4K",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4j_decision": "configs/u6_p4j_adaptive_exact_area_fallback_decision_v1.json",
+    "p4j_decision_sha256": "f735324eea4677b9a4a8728f12ce5ace96a57974b62694b5b8ae0f4f52721ae7"
+  },
+  "question": "Can the exact base-pitch area reference simulator execute as coordinate-exact bounded row tiles without materializing a full factor^2 expanded target?",
+  "executor": {
+    "input_domain": "developed optical density",
+    "boundary_mode": "normalized-support-v1",
+    "output": "area-mean film transmittance and derived effective optical density",
+    "virtual_target": "map high-resolution coordinates to coarse target coordinates on demand",
+    "full_expanded_target_allowed": false,
+    "row_tile_height": 64,
+    "partition_test_heights": [17, 31, 64],
+    "output_assembly_required": false,
+    "single_final_hash_stream": true
+  },
+  "synthetic_evaluation": {
+    "parity_shape": [384, 512],
+    "stream_shape": [1536, 2048],
+    "lod_factors": [2, 4],
+    "maximum_target_density": 2.0,
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "seed_offsets": [0, 4000]
+  },
+  "automatic_gates": {
+    "full_region_partition_byte_exact": true,
+    "repeat_stream_hash_exact": true,
+    "factor_2_and_4_distinct_hashes": true,
+    "zero_density_exact_clear_base": true,
+    "density_and_transmittance_domain_valid": true,
+    "maximum_modeled_live_workspace_bytes": 536870912,
+    "maximum_virtual_target_rows": 264,
+    "full_expanded_target_allocation_count": 0
+  },
+  "branch_rule": {
+    "pass": "retain exact-area row streaming as reference-simulator infrastructure and open a separately frozen live RSS/runtime audit",
+    "fail": "retain only small full-frame exact-area reference execution and close scale-up"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic exact-area reference-simulator execution evidence; not a product renderer, measured film NPS, stock response or photographic result"
+}
