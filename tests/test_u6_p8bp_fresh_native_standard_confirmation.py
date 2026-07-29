@@ -8,6 +8,7 @@ import numpy as np
 from src.eval.fresh_native_standard_confirmation import (
     ARMS,
     boundary_metrics,
+    load_confirmation_working_image,
     validate_preflight,
 )
 
@@ -38,3 +39,18 @@ def test_boundary_metric_counts_only_new_candidate_boundaries() -> None:
     reference[0, 0, 1] = 1.0
     metrics = boundary_metrics(candidate, reference)
     assert metrics["new_boundary_fraction_vs_ao6"] == 0.0
+
+
+def test_ori_research_adapter_uses_existing_raw_decoder(
+    monkeypatch,
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "companion.ORI"
+    path.write_bytes(b"frozen-fixture")
+    sentinel = object()
+    monkeypatch.setattr(
+        "src.eval.fresh_native_standard_confirmation."
+        "load_raw_working_image",
+        lambda candidate: sentinel if candidate == path else None,
+    )
+    assert load_confirmation_working_image(path) is sentinel

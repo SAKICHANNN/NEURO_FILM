@@ -23,6 +23,7 @@ from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
 )
 from src.preprocess import load_working_image, save_srgb16_png
+from src.preprocess.raw_decode import load_raw_working_image
 
 
 SCHEMA = "neuro_film.u6_p8bp_fixed_arm_comparison_result.v1"
@@ -165,6 +166,14 @@ def boundary_metrics(
     return metrics
 
 
+def load_confirmation_working_image(path: Path) -> Any:
+    """Decode one frozen comparison source without changing product routing."""
+
+    if path.suffix.casefold() == ".ori":
+        return load_raw_working_image(path)
+    return load_working_image(path)
+
+
 def _canonical_sha256(payload: dict[str, Any]) -> str:
     encoded = (
         json.dumps(payload, indent=2, sort_keys=True) + "\n"
@@ -209,7 +218,7 @@ def run_comparison(
         raw_path = root / config_source["path"]
         if sha256_file(raw_path) != config_source["sha256"]:
             raise ValueError("U6.P8BP raw source identity drift")
-        working = load_working_image(raw_path)
+        working = load_confirmation_working_image(raw_path)
         if (
             working.transfer_state != "scene_linear"
             or working.working_space
@@ -365,6 +374,7 @@ __all__ = [
     "SCHEMA",
     "boundary_metrics",
     "build_blind_sheet",
+    "load_confirmation_working_image",
     "render_fixed_arms",
     "run_comparison",
     "validate_preflight",
