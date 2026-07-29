@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3t-colorreference-calibration-suite-topology-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ3T",
+  "new_source_fact": {
+    "official_page": "https://www.colorreference.de/testdata/index.html",
+    "official_page_sha256": "3fa6ce744fcb6edf1576bf58f6ae4f68200856ce7d7c6b59ed5801d97186d2b9",
+    "required_statement": "another four test images provide 1152 color test patches; 1000 patches basically consist of a 10x10x10 RGB grid and another 152 mainly provide tricky dark, bright or highly saturated patches",
+    "interpretation": "slides 1-4 are storage shards of one designed calibration suite, not independent source groups; slide 5 is the separate standard IT8 target"
+  },
+  "parent": {
+    "aq2_decision": "configs/u5_r2aq2_colorreference_velvia100f_held_group_baselines_decision_v1.json",
+    "aq2d_decision": "configs/u5_r2aq2d_colorreference_source_support_decision_v1.json",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "topology_contract": {
+    "calibration_grid_slides": [1, 2, 3, 4],
+    "calibration_suite_rows": 1152,
+    "ordered_grid_prefix_rows": 1000,
+    "ordered_hard_tail_rows": 152,
+    "nominal_grid_levels_r_uint8": [0, 28, 56, 85, 113, 141, 170, 198, 226, 255],
+    "nominal_grid_levels_gb_uint8": [0, 28, 56, 85, 113, 141, 170, 198, 226, 245],
+    "grid_prefix_rows_on_nominal_levels": 997,
+    "grid_prefix_unique_nominal_rows": 994,
+    "grid_prefix_off_nominal_indices": [264, 552, 840],
+    "grid_prefix_off_nominal_rgb_uint8": [255, 255, 255],
+    "hard_tail_unique_rows": 149,
+    "it8_slide": 5,
+    "it8_rows": 288,
+    "total_source_rows": 1440
+  },
+  "source_colour_fold_contract": {
+    "fold_count": 5,
+    "assignment": "uint64_be(first_8_bytes(SHA256(utf8('aq3t-v1') || uint8_rgb_bytes))) modulo 5",
+    "salt": "aq3t-v1",
+    "exact_rgb_duplicates_must_share_fold": true,
+    "expected_fold_row_counts": [266, 277, 257, 327, 313],
+    "minimum_fold_rows": 250,
+    "maximum_fold_rows": 330,
+    "maximum_p95_nearest_distance_ratio": 1.1,
+    "maximum_outside_development_convex_hull_fraction": 0.04
+  },
+  "decision_branches": {
+    "pass": "open_aq3i_joint_held_target_set_and_in_domain_source_colour_fold_baselines",
+    "fail": "close_colorreference_source_topology"
+  },
+  "fit_allowed": false,
+  "target_fields_allowed": false,
+  "aq2_reopened": false,
+  "operator_promotion_allowed": false,
+  "claim_ceiling": "source-only calibration-suite topology and in-domain colour-fold design; AQ2 whole-slide extrapolation close remains unchanged"
+}
