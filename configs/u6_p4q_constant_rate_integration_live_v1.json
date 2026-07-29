@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p4q_constant_rate_integration_live_contract.v1",
+  "node": "U6.P4Q",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4o_contract": "configs/u6_p4o_stationary_global_live_performance_v1.json",
+    "p4o_contract_sha256": "1621a3ffffde5b872fa96ae98fad2a5e0806db9e5a9cdb9f0ee6d0b27c1f03cc",
+    "p4p_decision": "configs/u6_p4p_constant_rate_poisson_executor_decision_v1.json",
+    "p4p_decision_sha256": "3b99ef190b774011eaee8489dc1ebf6343a353a76e18638a5cff64d8d0829f8a"
+  },
+  "question": "Does an explicit scalar-cdf-v1 stationary executor preserve legacy/default identities and complete the unchanged P4O 24MP stream within its original bounds?",
+  "executor": {
+    "mode": "scalar-cdf-v1",
+    "legacy_default_mode": "legacy-v1",
+    "nonconstant_rate_behavior": "fail-closed",
+    "pixel_size_factor": 4,
+    "output_shape": [4000, 6000],
+    "target_density": [0.8, 0.656, 0.512],
+    "seed_offset": 0,
+    "row_tile_height": 257,
+    "small_parity_shape": [192, 256],
+    "partition_test_heights": [31, 127, 257],
+    "expected_legacy_stream_sha256": {
+      "31": "e7a3c51d466045ee33f8867e60de6ad6d2bf4bdb35a30c590817ccbe1a5e6213",
+      "127": "b6cdc14ccf78e39bdfd2b2f2e5438a9b75d2debe0f60aa84e4dab46e25e66a01",
+      "257": "84819b0090442f1497b7cc8b92e146c0c80712873ed2e8b84bf9263468e4252c"
+    },
+    "fresh_process_runs": 2,
+    "sample_interval_seconds": 0.02,
+    "maximum_runtime_seconds": 180,
+    "full_output_assembly_allowed": false,
+    "full_target_allocation_allowed": false,
+    "network_allowed": false,
+    "gpu_allowed": false
+  },
+  "automatic_gates": {
+    "legacy_default_hash_unchanged": true,
+    "scalar_legacy_small_byte_exact": true,
+    "nonconstant_scalar_request_rejected": true,
+    "repeat_stream_hash_exact": true,
+    "output_rows": 4000,
+    "maximum_process_tree_peak_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 120,
+    "minimum_liveness_samples": 100,
+    "exit_code": 0,
+    "stderr_empty": true,
+    "owned_temp_residue_count": 0,
+    "density_and_transmittance_domain_valid": true
+  },
+  "branch_rule": {
+    "pass": "retain explicit scalar-cdf-v1 stationary reference execution and return to a distinct physical-film algorithm leaf",
+    "fail": "keep legacy default, close scalar integration or 24MP scale-up at the failed boundary, and do not broaden activation"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python explicit stationary executor evidence; not nonstationary fidelity, measured film structure, stock calibration, photographic evidence or product runtime"
+}
