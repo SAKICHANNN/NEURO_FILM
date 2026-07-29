@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u6_p8bp_fresh_native_standard_confirmation_v1.json"
 )
+DECISION = (
+    ROOT / "configs/u6_p8bp_fresh_source_preflight_decision_v1.json"
+)
 PRIOR_CONFIGS = (
     ROOT / "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1.json",
     ROOT / "configs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1.json",
@@ -84,3 +87,15 @@ def test_p8bp_sources_are_disjoint_from_prior_rawpixls_pools() -> None:
     assert current_ids.isdisjoint(prior_ids)
     assert current_hashes.isdisjoint(prior_hashes)
     assert current_models.isdisjoint(prior_models)
+
+
+def test_p8bp_preflight_decision_opens_only_fixed_arm_comparison() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["result"]["decoded_rows"] == 9
+    assert decision["result"]["camera_makes"] == 9
+    assert decision["result"]["automatic_pass"]
+    assert decision["result"]["visual_pass"]
+    assert decision["replacement_rows_added"] is False
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert decision["next_leaf"].startswith("U6.P8BP compare fixed B0")

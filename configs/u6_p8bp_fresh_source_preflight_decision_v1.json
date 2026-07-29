@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p8bp_fresh_source_preflight_decision.v1",
+  "node": "U6.P8BP.S0",
+  "software_commit": "30fad8c7b13fb1624ebac7d23d0db7c327b7fffd",
+  "contract": {
+    "path": "configs/u6_p8bp_fresh_native_standard_confirmation_v1.json",
+    "sha256": "e3f8a1fa7b2ad16ea697f4d0adf03d7c1599fd7d665d2cc7b9195bfdeb1ec97d"
+  },
+  "repeat_evidence": {
+    "byte_identical_runs": 2,
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "automatic_report_sha256": "b1ecc7cc62e737aebb2b0f1f15f872c3b4d475b95d9556d5166c10707250f1f8",
+    "contact_sheet_sha256": "814d10086adb42a7e2c12ec4bb3adc408c458e4596a784f49a26030b500cbf13",
+    "visual_source_review_sha256": "74fb0b75a8ac6e5b08d6e8140f2d673e0e735a141055c271faa3f5844b9d0d1f"
+  },
+  "result": {
+    "candidate_count": 10,
+    "decoded_rows": 9,
+    "camera_makes": 9,
+    "downloaded_bytes": 279759680,
+    "fixed_decode_failures": [
+      {
+        "id": "gopro_fusion",
+        "reason": "LibRaw file format unsupported"
+      }
+    ],
+    "within_exact_or_dhash_le_4_pairs": 0,
+    "cross_pool_exact_or_dhash_le_4_pairs": 0,
+    "near_empty_or_monochrome_rows": 0,
+    "confirmed_severe_source_artifact_count": 0,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "decision": "pass_fresh_population_and_open_fixed_arm_comparison"
+  },
+  "replacement_rows_added": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "next_leaf": "U6.P8BP compare fixed B0, fixed AO6 colour-only t15/c35 and fixed native Standard full-strength on the exact nine-row cohort",
+  "claim_ceiling": "fresh CC0 RAW source eligibility and autonomous severe-source review; not population preference, stock response, calibration, universal safety or product promotion"
+}
