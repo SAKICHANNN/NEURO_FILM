@@ -4495,3 +4495,20 @@
   public package, schema, receipt, capability, product admission or consumer
   mapping. R0EL process-memory measurement is separate; P172, P45/P44 and v42
   remain unchanged.
+
+## 2026-07-29 - Register R0EL isolated process-memory reduction
+
+- Producer `07fa036` measures fresh Windows CPython workers on the exact R0EF
+  3040x2024 normalized CFA. The parent decodes/freezes the NPY and builds the
+  DLL outside measurement; each child loads input, allocates output/workspace
+  and performs one full or tiled apply.
+- Four full plus four tiled tracked workers reduce median peak RSS from
+  381,087,744 to 222,691,328 bytes (-41.5643%). An independent replay gives
+  381,147,136 to 222,785,536 bytes (-41.5487%); every tiled peak is below
+  every full peak. All 16 outputs have exact SHA
+  `b3906b24...5413a`; stable non-measurement identity is
+  `2b2f19c3...9d251` and report SHA is `be204dc9...10a5e`.
+- The claim is local Windows/Python process-memory evidence only. It adds no
+  native media, product, public package/schema/receipt/capability or consumer
+  mapping. R0EM weaker-semantics row-sink research preserves the atomic ABI
+  and is a separate producer leaf; P172, P45/P44 and v42 remain unchanged.
