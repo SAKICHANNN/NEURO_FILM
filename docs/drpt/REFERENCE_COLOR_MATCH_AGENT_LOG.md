@@ -4831,3 +4831,28 @@
   independent demosaic, scene truth/quality, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FF LibRaw DNG renderer provenance
+
+- Producer repository clean HEAD is
+  `cd84a8573851dee83ea40e02a26ab2ce1ccda155`; the coordination message's
+  longer `cd84a851...` identity does not resolve and is treated as a typo.
+  Implementation commit is `ed1d720`.
+- R0FF hash-locks official LibRaw 0.22.0 commit
+  `0b56545a...9f9a2a` plus the exact identify, colorconst, colordata and
+  pseudoinverse source files. Its independent reconstruction follows the
+  observed LibRaw DNG policy: D65-first or first daylight-type ColorMatrix,
+  matching CameraCalibration/AnalogBalance, row normalization and LibRaw
+  pseudoinverse, without AsShotNeutral interpolation or ForwardMatrix.
+- Four `rawpy.color_matrix` values match within
+  `1.1920929e-7` and all unchanged R0EV pixel gates pass twice. Three
+  Ricoh/Pentax/GX200 `rgb_xyz_matrix` values separately match hardcoded
+  colordata while Samsung remains zero, proving the diagnostic table is not
+  the final embedded-profile DNG matrix source.
+- Stable identity is `3046a853...4a840f9`; second report SHA is
+  `075eaa14...ac78dfa`; evidence SHA is `f4e588d3...d930c`.
+  This is LibRaw renderer-policy provenance and same-decoder mechanical
+  conformance only, not DNG-spec correctness, independent renderer/scene
+  truth/quality, public package/schema/receipt/capability, product admission
+  or consumer mapping. R0FE remains a separate rejected renderer policy;
+  P172, P45/P44 and v42 remain unchanged.
