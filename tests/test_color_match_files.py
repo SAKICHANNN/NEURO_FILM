@@ -742,6 +742,14 @@ def test_render_releases_source_pixels_before_output_encode(
     monkeypatch.setattr(files, "_load_stable_working_image", load_source)
     monkeypatch.setattr(files, "render_reference_look_guarded", render_guarded)
     monkeypatch.setattr(files, "_encode_working_image", encode)
+    monkeypatch.setattr(
+        files,
+        "attest_reference_file_output_metadata",
+        lambda *args, **kwargs: SimpleNamespace(
+            accepted=True,
+            failure_code=None,
+        ),
+    )
     monkeypatch.setattr(files, "_commit_staged_batch", lambda *args, **kwargs: None)
 
     prepared, recipe_hash, report_hash = files._execute_file_render(
@@ -823,6 +831,14 @@ def test_render_releases_encoded_pixels_before_next_source_load(
     monkeypatch.setattr(files, "_load_stable_working_image", load_source)
     monkeypatch.setattr(files, "render_reference_look_guarded", render_guarded)
     monkeypatch.setattr(files, "_encode_working_image", encode)
+    monkeypatch.setattr(
+        files,
+        "attest_reference_file_output_metadata",
+        lambda *args, **kwargs: SimpleNamespace(
+            accepted=True,
+            failure_code=None,
+        ),
+    )
     monkeypatch.setattr(files, "_commit_staged_batch", lambda *args, **kwargs: None)
 
     prepared, recipe_hash, report_hash = files._execute_file_render(

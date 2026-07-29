@@ -4127,3 +4127,19 @@
 - The temporary worktree was removed. Main-owned untracked `.codex/`, `tmp/`
   and active native v2 files were never consumed or modified. V40 is
   review-ready-not-merged; only the main task owns the real merge.
+
+## 2026-07-29 - Enforce P168 output metadata minimization
+
+- Added a separate v1 policy and public attestor without mutating the frozen
+  output-capability v1 payload or encoded image bytes.
+- PNG, JPEG and TIFF metadata are parsed at the byte/tag boundary and bound to
+  a stable file hash. Only the advertised color binding plus required
+  structural metadata is allowed.
+- The real file transaction now attests every staged output before publication;
+  an injected text-metadata regression aborts the batch and cleans all stages.
+- All nine advertised tuples pass. Source EXIF description, artist, comment
+  and orientation are not copied into product PNG/JPEG/TIFF outputs.
+- Verification: 1001 non-manifest color-match/reference-match tests pass with
+  five environment/data skips; focused Ruff, compileall and diff checks pass.
+- Producer algorithms, RAW/HDR/video rails, FilmFX and main-project AO6 files
+  are unchanged.

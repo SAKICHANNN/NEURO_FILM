@@ -28,6 +28,7 @@ from .contracts import (
     ReferenceMatchContractError,
 )
 from .fit import fit_reference_look
+from .output_metadata_policy import attest_reference_file_output_metadata
 from .render import ReferenceMatchDiagnostics
 from .replay import (
     load_reference_look_recipe_bound,
@@ -931,6 +932,21 @@ def _execute_file_render(
                 stage,
                 output_bit_depth=output_bit_depth,
             )
+            output_capability = resolve_reference_file_output_capability(
+                working_space=rendered.image.working_space,
+                transfer_state=rendered.image.transfer_state,
+                output_bit_depth=output_bit_depth,
+                output_extension=stage.suffix,
+            )
+            metadata_attestation = attest_reference_file_output_metadata(
+                stage,
+                encoding_profile=output_capability.encoding_profile,
+            )
+            if not metadata_attestation.accepted:
+                raise ReferenceMatchContractError(
+                    "rendered output violates the metadata-minimization "
+                    f"policy: {metadata_attestation.failure_code}"
+                )
             staged_outputs.append(
                 (
                     source_path,

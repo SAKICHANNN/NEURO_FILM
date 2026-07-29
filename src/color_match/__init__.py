@@ -593,6 +593,13 @@ from .files import (
     resolve_reference_file_output_capability,
     replay_reference_files,
 )
+from .output_metadata_policy import (
+    REFERENCE_FILE_OUTPUT_METADATA_POLICY_CLAIM_CEILING,
+    REFERENCE_FILE_OUTPUT_METADATA_POLICY_ID,
+    ReferenceFileOutputMetadataAttestation,
+    attest_reference_file_output_metadata,
+    reference_file_output_metadata_policy_payload,
+)
 from .evaluation import (
     KnownOperatorBatchMetrics,
     KnownOperatorSampleMetrics,
@@ -1196,4 +1203,9 @@ __all__ = [
     "verify_external_local_delivery_v1",
     "inspect_reference_file_input",
     "inspect_reference_file_inputs",
+    "REFERENCE_FILE_OUTPUT_METADATA_POLICY_CLAIM_CEILING",
+    "REFERENCE_FILE_OUTPUT_METADATA_POLICY_ID",
+    "ReferenceFileOutputMetadataAttestation",
+    "attest_reference_file_output_metadata",
+    "reference_file_output_metadata_policy_payload",
 ]
