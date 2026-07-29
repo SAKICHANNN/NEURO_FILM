@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8bb_native_standard_working_image_resources_decision.v1",
+  "node": "U6.P8BB",
+  "contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "formal_report": "outputs/u6_p8bb_native_standard_working_image_resources_v1/report.json",
+  "formal_report_sha256": "b17da900e8c3b076e522604199ef04776f6b59a6fa56e3aaa119c578189c47a2",
+  "stable_evidence_id": "e4c8875c9fdd868d01ef0489afacd5a8efb70bc30dfdb32874c8a29240de5617",
+  "result": {
+    "status": "closed-memory-gate-failed",
+    "all_runs_successful": true,
+    "output_repeat_and_p8ay_exact": true,
+    "working_image_receipt_repeat_exact": true,
+    "staged_bytes": 144000000,
+    "staging_cleanup_pass": true,
+    "peak_process_tree_rss_bytes": [
+      422105088,
+      422010880
+    ],
+    "memory_gate_bytes": 402653184,
+    "memory_pass": false,
+    "worker_elapsed_seconds": [
+      11.272432500001742,
+      11.66430690002744
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": true
+  },
+  "decision": "retain the exact WorkingImage adapter and row-staging semantics, but close the four-worker retained-input policy because it exceeds the frozen 384 MiB gate by about 19.4 MiB; do not relax the gate",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP scene-linear WorkingImage retained-input plus float32 disk-staging native Standard resource evidence only; the tested four-worker policy fails its frozen memory gate",
+  "next_leaf": "U6.P8BC preregister and measure a bounded retained-input concurrency grid using the same exact output, staging and resource gates; select a smaller policy only if it passes without material latency regression"
+}
