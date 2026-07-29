@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2j-normalized-reversal-photographic-stress-v1",
+  "node": "U6.P2J",
+  "decision": "close_normalized_reversal_photographic_challenger_on_near_black_gate",
+  "software_commit": "addd2c2",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2j_normalized_reversal_photographic_stress_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2j_normalized_reversal_photographic_stress_v1/run_b/report.json",
+    "report_sha256": "869b9f41d5ec55c31e3913718fb21d5c8cb2ab3721048b8b7d15092482151e71",
+    "contact_sheet_sha256": "3b6b0cfce14136044360da088938af4f64cac3afa743b013876d47f180a6538d",
+    "stable_evidence_id": "b1945ff728b449e9898c6bbc88566baff59aa36ef87ae381053d70ccb0489eb8",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": false,
+    "passed_gates": [
+      "parents_and_inputs",
+      "endpoint_domain",
+      "finite_bounded",
+      "repeat",
+      "material",
+      "boundary",
+      "per_image_near_white",
+      "population_near_black",
+      "population_near_white",
+      "photographic_luma_range"
+    ],
+    "failed_gates": [
+      "per_image_near_black"
+    ],
+    "maximum_endpoint_domain_escape_fraction": 0.0,
+    "median_mean_abs_change": 0.11696906616759595,
+    "minimum_luma_p95_minus_p05": 0.15664576475894754,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_near_white_fraction": 0.0,
+    "maximum_near_black_fraction": 0.1176436303080766,
+    "failed_rows": [
+      {
+        "id": "ricoh_gx200",
+        "near_black_fraction": 0.1176436303080766
+      },
+      {
+        "id": "olympus_sp565uz",
+        "near_black_fraction": 0.11601764828738513
+      }
+    ]
+  },
+  "visual": {
+    "allowed": false,
+    "reason": "the preregistered automatic gate failed; visual rescue is forbidden"
+  },
+  "interpretation": "Endpoint normalization restores photographic luma range without endpoint escape or clipping, but pushes more than the frozen 10% of two independent photographs below luma 0.02. The photographic branch closes; endpoints, thresholds and toe behavior may not be retuned on this population.",
+  "next_leaf": "U5.R2AO4S bounded positive-film exact-correspondence source reconnaissance, the remaining legal ready algorithm-data leaf",
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative photographic evidence for one generic endpoint-normalized reversal/scanner hypothesis; no claim that reversal film or independently evidenced scan interpretation is impossible"
+}

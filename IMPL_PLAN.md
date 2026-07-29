@@ -56,6 +56,11 @@ P2H shows the direct transmittance itself has median luma/range `.092/.156`
 against source `.220/.574`; scanner spectral changes median luma by only
 `-.00278`. P2I therefore adds the missing typed scan-signal normalization
 from synthetic black/white flat endpoints before any downstream look.
+P2I passes synthetically, but P2J closes on the fixed photos: range,
+endpoint-domain and clipping gates pass while two rows exceed the frozen
+near-black fraction. Do not retune endpoints or add a learned toe on this
+population. Continue through AO4S source reconnaissance for independently
+evidenced positive-film correspondences.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

@@ -311,3 +311,10 @@ U6.P2I now passes that synthetic primitive exactly: endpoint separation is
 signals fail closed. U6.P2J is ready to challenge the unchanged 18-image
 population with reversal + scanner + normalization and the same severe-first
 discipline.
+
+U6.P2J is now closed automatically. Endpoint normalization restores range and
+creates zero endpoint escape or new boundaries, but two independent photos
+exceed the frozen 10% near-black gate at 11.76%/11.60%. Visual rescue,
+endpoint shrinkage and toe retuning are forbidden. The remaining legal ready
+algorithm-data leaf is U5.R2AO4S bounded positive-film exact-correspondence
+source reconnaissance.

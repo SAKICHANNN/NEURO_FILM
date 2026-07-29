@@ -6871,3 +6871,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Out-of-endpoint values are rejected; there is no hard clipping. Retain only
   as a generic normalization hypothesis. P2J may now run the unchanged photo
   population under fresh bounds/range/visual gates.
+
+## 2026-07-29 - U6.P2J normalized reversal photographic branch closed
+
+- Two 18-image reports are byte-identical at `869b9f41...151e71`. Every scan
+  remains inside the synthetic endpoint interval, exact replay and range pass,
+  and no new exact boundary is created.
+- Ricoh GX200 and Olympus SP565UZ place `11.76%/11.60%` of pixels below the
+  frozen luma `.02` threshold, exceeding the per-image 10% ceiling. The
+  automatic branch fails; visual review is forbidden.
+- Keep P2I only as a generic synthetic primitive. Close P2J without endpoint,
+  toe or threshold retuning. Continue AO4S bounded source reconnaissance for
+  independently evidenced positive-film exact correspondences.
