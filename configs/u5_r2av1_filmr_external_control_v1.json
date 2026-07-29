@@ -1,0 +1,96 @@
+{
+  "schema_version": "u5-r2av1-filmr-external-control-v1",
+  "experiment_id": "u5.r2av1-filmr-external-control-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AV1",
+  "external_source": {
+    "repository": "https://github.com/W-Mai/filmr",
+    "revision": "fee388e213dd77bfe6977b63071b1c136213373a",
+    "release": "v0.13.2",
+    "release_zip_url": "https://github.com/W-Mai/filmr/releases/download/v0.13.2/filmr_app-x86_64-pc-windows-msvc.zip",
+    "release_zip_sha256": "48d8421e0807fa554d766d6ac7558dde438a35035570bea4c32a7d8ab8bb70d6",
+    "code_license": "MIT",
+    "tracked_external_code_or_profile_copy_allowed": false
+  },
+  "runtime": {
+    "executable_path": "tmp/filmr_bin_v0.13.2/filmr-cli.exe",
+    "executable_sha256": "6af3dedb86e6264b3056d39ea7f0506a073074b65ba51b65f65eab8eea64639c",
+    "expected_version_stdout": "filmr_app 0.13.2",
+    "per_call_timeout_seconds": 30,
+    "gpu_allowed": false,
+    "paid_resource_allowed": false
+  },
+  "inputs": {
+    "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_gold_samples": 9,
+    "expected_stress_samples": 32,
+    "input_interpretation": "display-sRGB proxy decoded by the external CLI; Look Approximation only"
+  },
+  "source_audit": {
+    "independent_algorithm_family_vs_spektrafilm": true,
+    "profile_values_have_row_level_primary_source_lineage": false,
+    "spectral_response_is_stock_measured": false,
+    "spectral_response_model": "parameterized Gaussian peaks and widths",
+    "camera_sensitivity_model": "CIE 1931 XYZ colour matching functions transformed to sRGB; not a measured camera SSF",
+    "characteristic_curve_model": "parameterized sigmoid/error-function approximation",
+    "calibrated_stock_claim_allowed": false,
+    "valid_role": "generic physical-inspired external Look Approximation control"
+  },
+  "fixed_pipeline": {
+    "preset_id": "fujifilm-velvia-50",
+    "exported_preset_sha256": "720396603b1018efc599a236392bc84d932a58f30fefb2609f3edafa2ee86249",
+    "expected_preset_identity": {
+      "film_type": "ColorSlide",
+      "iso": 50.0,
+      "manufacturer": "Fujifilm",
+      "name": "Velvia 50"
+    },
+    "zero_grain_fields": [
+      "alpha",
+      "sigma_read",
+      "shadow_noise",
+      "highlight_coarseness"
+    ],
+    "auto_exposure": true,
+    "white_balance": "auto",
+    "output_mode": "positive",
+    "other_exported_parameters_unchanged": true
+  },
+  "automatic_gates": {
+    "exact_repeat_required": true,
+    "metric_sample_pixels_per_image": 65536,
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "minimum_gold_median_style_delta_e76": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 4.9
+  },
+  "visual_gate": {
+    "automatic_pass_required": true,
+    "blind_compare": [
+      "input",
+      "bland_safe_rich_control",
+      "ao6_t15_c35",
+      "filmr_velvia50_nograin_auto"
+    ],
+    "all_nine_gold_samples_required": true,
+    "full_resolution_risk_cases": [
+      "09",
+      "11",
+      "FS_FACE_01"
+    ],
+    "confirmed_severe_artifact_veto": true,
+    "claim": "autonomous visual development evidence only"
+  },
+  "branch_rules": {
+    "runtime_or_repeat_failure": "close external route without rebuilding or patching source",
+    "automatic_gate_failure": "close without exposure, white-balance, curve, matrix, halation or vignette search",
+    "visual_artifact": "close without rescue",
+    "visual_loss_to_ao6": "retain at most as an external mechanism control",
+    "visual_win_and_severe_clean": "retain as a generic physical-inspired challenger only"
+  },
+  "output_root": "outputs/external_controls/filmr_v0132_velvia50_nograin_v1",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "isolated deterministic generic physical-inspired Filmr control on display-sRGB proxy inputs; no identified digital-to-film operator, measured stock response, calibration, authenticity, training, product integration or licence decision"
+}
