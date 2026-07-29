@@ -50,6 +50,11 @@ from .compiled_backing_return import (
     apply_compiled_backing_return_row_tiled,
     compile_backing_return_profile,
 )
+from .fft_backing_return import (
+    FFT_RETURN_ROUNDOFF_FLOOR,
+    apply_fft_backing_return,
+    apply_fft_backing_return_row_tiled,
+)
 from .pyramid_scatter import (
     PyramidScatterComponent,
     PyramidScatterProfile,
@@ -117,6 +122,7 @@ __all__ = [
     "CompiledScatterProfile",
     "CompiledBackingReturnKernel",
     "CompiledBackingReturnProfile",
+    "FFT_RETURN_ROUNDOFF_FLOOR",
     "CompoundPoissonProfile",
     "FilmProfileBundle",
     "MarginalProfile",
@@ -144,6 +150,8 @@ __all__ = [
     "apply_compiled_scatter_row_tiled",
     "apply_compiled_backing_return",
     "apply_compiled_backing_return_row_tiled",
+    "apply_fft_backing_return",
+    "apply_fft_backing_return_row_tiled",
     "apply_development_adjacency",
     "apply_dye_diffusion",
     "apply_forward_scatter",
