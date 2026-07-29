@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p8ba_native_standard_runtime_decision.v1",
+  "node": "U6.P8BA",
+  "parent_decision": "configs/u6_p8az_native_standard_package_decision_v1.json",
+  "parent_decision_sha256": "42497c90c0b3dd7a482cdb0373a6f0d314c4381824753ec57750caebd5e9b726",
+  "package": "configs/u6_p8az_native_standard_package_v1.json",
+  "package_file_sha256": "7365e6c6a593d530c450ddc4a2bfa1671267abdea71509ca7ab9f7210442f6b0",
+  "implementation": {
+    "runtime": {
+      "path": "src/film_physics/native_standard_runtime.py",
+      "sha256": "a42312220be7581fa5b953919baa09dbb08b24ce0a64271f7de74d9983029cb6"
+    },
+    "abi_layouts": {
+      "path": "src/film_physics/native_abi_layouts.py",
+      "sha256": "1e3148119c2a1a9185dc410f64b6dee06c4d2dcad60aa6570593936f3048238a"
+    },
+    "ordered_pipeline": {
+      "path": "src/film_physics/bounded_ordered_pipeline.py",
+      "sha256": "8519f985e95f7cb18d41626cc48d63a2f720b98f7e3a232b9113141d725ec9d9"
+    },
+    "srgb_transfer": {
+      "path": "src/color_engine/srgb_transfer.py",
+      "sha256": "76adf9c9a1062052e56ff07fd287a80746facf99e3f8b593d00f765acb61ed3d"
+    }
+  },
+  "input_contract": {
+    "dtype": "float32",
+    "shape": "HxWx3",
+    "layout": "C-contiguous",
+    "finite": true,
+    "range": [
+      0.0,
+      1.0
+    ],
+    "domain": "scene-linear-relative-exposure",
+    "working_space": "linear-srgb",
+    "hidden_copy_allowed": false
+  },
+  "output_contract": {
+    "dtype": "float32",
+    "shape": "HxWx3",
+    "domain": "display-encoded-rgb",
+    "ordered_rows": true,
+    "read_only_during_sink_call": true,
+    "quantized": false,
+    "durable_commit": false
+  },
+  "execution_policy": {
+    "tile_rows": 32,
+    "pipeline_workers": 4,
+    "max_in_flight": 4,
+    "ordered_consumption": true,
+    "single_final_quantization": true
+  },
+  "result": {
+    "status": "pass-opt-in-runtime-boundary",
+    "benchmark_chain_exact": true,
+    "source_mutation_rejected": true,
+    "sink_failure_returns_success_receipt": false,
+    "production_eval_imports": false
+  },
+  "staging_boundary": "output_sink is responsible for atomic staging and rollback; the runtime emits no success receipt after a sink failure and does not itself publish or commit output",
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in exact-package Windows x64 native Standard float32 row-stream runtime; no WorkingImage adapter, decoder, encoder, durable commit, mobile, calibration or production promotion",
+  "next_leaf": "U6.P8BB add an opt-in WorkingImage adapter and measure retained-input plus staged-output resource behavior without weakening the P8BA runtime contract"
+}
