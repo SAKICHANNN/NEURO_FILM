@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 
 from src.eval.apollo_bw_edge_feasibility import analyze_edge_roi
@@ -17,6 +20,20 @@ ANALYSIS = {
     "phase_bin_count": 8,
     "negative_step_tolerance": 0.002,
 }
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_decision_closes_mtf_and_kernel_fitting() -> None:
+    decision = json.loads(
+        (
+            ROOT / "configs/u6_p5e_apollo_bw_edge_feasibility_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["decision"] == "close_boundary_for_mtf_or_kernel_fitting"
+    assert decision["evidence"]["width_10_90_pixels"] == 127.0
+    assert decision["evidence"]["maximum_10_90_width_pixels"] == 40.0
+    assert "MTF fitting" in decision["closed_use"]
+    assert "sharpening or acutance kernel fitting" in decision["closed_use"]
 
 
 def _edge(width_pixels: float) -> np.ndarray:

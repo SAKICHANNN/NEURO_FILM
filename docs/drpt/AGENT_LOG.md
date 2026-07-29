@@ -7294,3 +7294,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   this branch. The scan may be reused only by a separately frozen endpoint,
   edge or scanner-MTF stress audit; it is not calibrated sensitometry,
   development truth, modern Plus-X equivalence or colour-stock evidence.
+
+## 2026-07-30 - U6.P5E closes the Apollo B&W edge for MTF
+
+- A bounded 1000x11900 ROI is streamed directly from the ZIP. All columns have
+  sufficient contrast; `.99916` are robust line inliers, the edge shifts
+  `176.12px`, and every subpixel phase bin has at least 807 samples.
+- Two reports are exact at `1fd2c544...a4514`. Despite strong geometry, the
+  aligned 10-90 edge width is `127px`, well above the frozen `40px` maximum.
+- The boundary is not a near-ideal MTF target. Close MTF/acutance/kernel fitting
+  and component attribution; retain only broad-transition/endpoint nuisance
+  stress.

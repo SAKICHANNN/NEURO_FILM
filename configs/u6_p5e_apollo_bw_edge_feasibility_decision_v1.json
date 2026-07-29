@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p5e_apollo_bw_edge_feasibility_decision.v1",
+  "experiment_id": "u6.p5e-apollo-bw-edge-feasibility-v1",
+  "decision": "close_boundary_for_mtf_or_kernel_fitting",
+  "contract": {
+    "path": "configs/u6_p5e_apollo_bw_edge_feasibility_v1.json",
+    "software_commit": "f8dcb334"
+  },
+  "evidence": {
+    "report_path": "outputs/experiments/u6_p5e_apollo_bw_edge_feasibility_v1/report.json",
+    "report_sha256": "1fd2c5440ad6d378f8627273c73a5bbd962598cfd325397316f3c60bac1a4514",
+    "stable_evidence_id": "0de6a7802a9714d03af881770675aa7412878da46e6ee6a9e66cf67438b754c3",
+    "repeat_report_byte_identity": true,
+    "valid_column_fraction": 1.0,
+    "line_inlier_fraction": 0.9991596638655462,
+    "edge_shift_pixels": 176.11733996137593,
+    "minimum_phase_bin_count": 807,
+    "median_span_fraction": 0.945815213244831,
+    "width_10_90_pixels": 127.0,
+    "maximum_10_90_width_pixels": 40.0,
+    "negative_step_fraction": 0.0025
+  },
+  "interpretation": "Geometry, contrast and subpixel phase support pass, but the source boundary is intrinsically too broad for a near-ideal slanted-edge MTF or sharpening-kernel inference.",
+  "retained_use": [
+    "broad-transition and endpoint stress",
+    "historical film-plus-development-plus-scanner nuisance evidence"
+  ],
+  "closed_use": [
+    "MTF fitting",
+    "sharpening or acutance kernel fitting",
+    "separating film, development and scanner contributions",
+    "stock or scanner calibration",
+    "product integration"
+  ],
+  "claim_ceiling": "Development-only closure of one historical B&W edge source; no MTF, component, stock, scanner or product calibration."
+}
