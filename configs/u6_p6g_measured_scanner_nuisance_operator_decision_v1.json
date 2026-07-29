@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p6g_measured_scanner_nuisance_operator_decision.v1",
+  "node": "U6.P6G",
+  "decision": "close_safe_rgb_canonicalizer_on_tail_gate_retain_real_scanner_nuisance_evidence",
+  "software_commit": "9c8978c6bc2fd10b8adcd0000967e01c29cda8d1",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6g_measured_scanner_nuisance_operator_v1.json",
+      "sha256": "a2d8ddb9a60c317738e3e0d800e0457ea9e0dd0f8213b45963f6950e06f8b9d3"
+    },
+    "report": {
+      "path": "outputs/u6_p6g_measured_scanner_nuisance_operator_v1/report_pass1.json",
+      "sha256": "104105f4e5e10c45720b840862130cd5471bc920263713d48d01d661dc090c60"
+    },
+    "repeat_report_byte_identical": true,
+    "stable_evidence_id": "e80e93c2f4493b3692846079dbea028b1e09661881d461fb87b83ccd7fb9b22c"
+  },
+  "support": {
+    "physical_target_sets": 1,
+    "slides": 5,
+    "scanner_software_pipelines": 4,
+    "aligned_pipeline_slide_cells": 20,
+    "patch_predictions": 15840,
+    "colour_state": "unknown_scanner_device_rgb"
+  },
+  "safe_matrix": {
+    "aggregate_median_l2": 0.033476134355723955,
+    "aggregate_p90_l2": 0.1252269316309005,
+    "median_improvement_fraction_vs_identity": 0.44712475618310243,
+    "worst_directed_pair_median_l2": 0.07520439467947534,
+    "minimum_coefficient": 0.0,
+    "maximum_row_sum": 1.0000000000000002,
+    "outside_scalar_count": 0
+  },
+  "legacy_affine_diagnostic": {
+    "negative_coefficient_count": 192,
+    "negative_bias_count": 91,
+    "positive_bias_count": 89,
+    "unclipped_outside_patch_count": 119,
+    "unclipped_outside_patch_fraction": 0.007512626262626262,
+    "maximum_boundary_excursion": 0.16100033154289364,
+    "parent_clipped_median_reproduced": true,
+    "interpretation": "the historical clipped affine is useful nuisance-magnitude evidence but is not a no-clipping physical scanner operator"
+  },
+  "automatic_checks": {
+    "parent_source_pass": true,
+    "all_alignment_gates_pass": true,
+    "parent_replay_exact": true,
+    "safe_matrix_structure": true,
+    "safe_output_bounded": true,
+    "safe_relative_improvement": true,
+    "safe_aggregate_median": true,
+    "safe_aggregate_p90": false,
+    "safe_each_directed_pair_median": true
+  },
+  "branch_action": {
+    "retain": [
+      "P6D offline spectral scanner reference",
+      "P6A-C explicit RGB approximation and streaming implementation",
+      "SF2.7A and P6G as same-target scanner nuisance evidence"
+    ],
+    "close": [
+      "P6G safe RGB canonicalizer",
+      "threshold relaxation",
+      "quadratic, LUT, neural or per-image capacity rescue on this one-target pool"
+    ],
+    "next_leaf": "U6.P6H audit rights-cleared independent target and repeat-scan connectivity before any further measured scanner operator fit"
+  },
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "one-physical-target-set same-slide real-scanner device-RGB nuisance and rejected bounded canonicalizer evidence only; no scanner calibration, stock response, independent-target generalization, training, product or redistribution claim"
+}
