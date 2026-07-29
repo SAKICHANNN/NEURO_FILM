@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p5h_interimage_blind_choices.v1",
+  "node": "U6.P5H",
+  "observer": "Codex autonomous visual audit",
+  "key_status_at_choice_time": "withheld-not-read",
+  "question": "Which side has the more natural, coherent and useful colour-edge acuity without artifact?",
+  "tie_rule": "tie or no visible difference counts as no candidate preference",
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "0ce8f3acc9cd1e761bc8a1b92228b0ebea3b86d0621baf01941cbeef6434a1fd",
+      "choices": ["tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie"],
+      "confirmed_severe_failures": 0
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "88cd6bdfa2d646a4673c346e2972f29f9a78c172bc6f02546298a09aa0381e4c",
+      "choices": ["tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie"],
+      "confirmed_severe_failures": 0
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "4095bb0a86020b9f7663395902563de0ef2a8fa60b1ba84278009b57e2c081b4",
+      "choices": ["tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie", "tie"],
+      "confirmed_severe_failures": 0
+    }
+  ],
+  "observations": [
+    "No pair showed a reliable unamplified one-to-one natural acuity advantage.",
+    "Knowing that automatic edge metrics passed did not make an A/B identity visually distinguishable.",
+    "No coloured speckle, posterization, secondary contour, edge echo, clipping, seam or geometry failure was observed."
+  ],
+  "scope": "autonomous visual evidence, not human or population preference"
+}
