@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p3k_streamed_fft_backing_return_benchmark_contract.v1",
+  "node": "U6.P3K",
+  "status": "contract_frozen_run_ready",
+  "parents": {
+    "p3d_contract_path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "p3d_profile_sha256": "639b39f7b5d26f7a37bbe834e707f787e9e1e200f545f1c2fb031ec28376f6ea",
+    "p3j_report_sha256": "1b4700c8bf074d3f4532b98dac698e318d913fec4c44bf8651fa78de26543e7e",
+    "p3i_full_fft_24mp_median_seconds": 3.9300040999951307,
+    "p3i_full_fft_24mp_maximum_rss_bytes": 1631625216
+  },
+  "shape": [
+    4000,
+    6000,
+    3
+  ],
+  "tile_rows": 512,
+  "runs": 2,
+  "rss_sample_interval_seconds": 0.01,
+  "worker_timeout_seconds": 120.0,
+  "measurement": {
+    "runtime": "fresh child process wall and streamed apply/hash seconds",
+    "memory": "10ms sampled child process-tree RSS",
+    "output": "row cores hashed in global forward order without a full output allocation",
+    "source": "same deterministic P3I float32 analytic field",
+    "targets_are_development_only": true
+  },
+  "automatic_gates": {
+    "all_workers_exit_zero_before_timeout": true,
+    "source_hash_repeat_exact": true,
+    "output_hash_repeat_exact": true,
+    "coverage_exactly_once": true,
+    "all_outputs_finite_nonnegative_and_direct_retaining": true,
+    "maximum_live_output_core_rows": 512,
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_median_stream_seconds": 10.0,
+    "maximum_repeat_wall_ratio": 1.15
+  },
+  "forbidden_fallbacks": [
+    "change shape, tile rows, field, profile or FFT policy",
+    "exclude a slow or high-memory run",
+    "allocate or memory-map a full output",
+    "change thread settings after viewing results",
+    "claim native/mobile/GPU/product performance",
+    "connect to the closed P3G combined chain"
+  ],
+  "branch_rule": {
+    "pass": "retain tile-512 streamed FFT as the isolated Python CPU memory baseline; native and combined-chain eligibility remain separate",
+    "fail": "close streamed performance and retain the P3I full-frame FFT baseline"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "local Windows/Python 24MP streamed memory/runtime evidence for an isolated generic backing-return compiler; no combined-chain, native, mobile, GPU, calibration or product claim"
+}

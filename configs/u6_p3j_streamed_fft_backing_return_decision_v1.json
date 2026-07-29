@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3j-streamed-fft-backing-return-v1",
+  "node": "U6.P3J",
+  "decision": "retain_functional_streaming_open_24mp_memory_benchmark",
+  "software_commit": "fa1d218",
+  "contract": {
+    "path": "configs/u6_p3j_streamed_fft_backing_return_v1.json",
+    "canonical_sha256": "6761a350473077a07f425bbea3daa0c2e35e70b7da4ca0332bdc2c218ecaa0a5"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3j_streamed_fft_backing_return_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3j_streamed_fft_backing_return_v1/run_b/report.json",
+    "report_sha256": "1b4700c8bf074d3f4532b98dac698e318d913fec4c44bf8651fa78de26543e7e",
+    "stable_evidence_id": "bf00e215f72742921d165451faef90a4b35a1232644de8bb5abbd7275b1805f9",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "full_frame_max_abs_error": 2.384185791015625e-7,
+    "full_frame_mean_abs_error": 1.5990022392584378e-9,
+    "forward_reverse_exact_within_partition": true,
+    "repeat_exact_within_partition_order": true,
+    "coverage_exactly_once": true,
+    "maximum_live_output_core_rows": 509,
+    "minimum_direct_increment": 0.000860854983329773
+  },
+  "automatic_pass": true,
+  "interpretation": "The iterator yields only owned bounded row cores, has exact coordinate coverage and order/replay identity, and stays within the P3H full-frame tolerance. This proves functional streaming but not process RSS or 24MP runtime.",
+  "next_leaf": "U6.P3K two fresh 24MP tile-512 streamed runs with process-tree RSS, runtime, coverage and output-hash gates",
+  "production_integration_allowed": false,
+  "claim_ceiling": "functional row-streaming evidence for the isolated generic FFT backing-return compiler; no measured memory/runtime, combined-chain, calibration or product claim"
+}
