@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p8av_native_ao6_display_v4_decision.v1",
+  "node": "U6.P8AV",
+  "contract": "configs/u6_p8av_native_ao6_display_v4.json",
+  "contract_sha256": "58b8b5061b5a6767efee0eac3c6c54ffe2bc68d5cf698403c9a89cf33353147d",
+  "formal_report": "outputs/u6_p8av_native_ao6_display_v4/report.json",
+  "formal_report_sha256": "f6c51f5aa0429b36eb72bf50b40c2e24cbb2effabe74c93cc484b9979e706f10",
+  "stable_evidence_id": "153e71296c98bedc406b134cbdd9cb7eb7716a844a18f5188b2800b6914d3c9d",
+  "result": {
+    "status": "pass",
+    "display_v3_v4_byte_exact": true,
+    "partition_byte_exact": true,
+    "independent_build_byte_exact": true,
+    "invalid_input_scratch_and_final_output_unchanged": true,
+    "display_v4_dll_sha256": "a8a4aede80996d96f72ee805f4ae38d23caef3df786c0f4138a2ee5a37571ce9"
+  },
+  "decision": "retain AO6 display v4. The residual now computes each validated pixel once into expendable scratch while the final display output remains failure-atomic and byte-exact to v3",
+  "production_default_changed": false,
+  "claim_ceiling": "versioned local Windows x64 AO6 display v4 exact-output conformance; not a product promotion, stock response, calibration or renderer latency result",
+  "next_leaf": "U6.P8AW rerun the unchanged 12MP resource gate with context v2 and display v4; if latency still fails, re-profile"
+}
