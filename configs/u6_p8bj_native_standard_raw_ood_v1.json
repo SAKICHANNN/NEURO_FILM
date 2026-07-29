@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p8bj_native_standard_raw_ood_contract.v1",
+  "node": "U6.P8BJ",
+  "parent_decision": "configs/u6_p8bi_native_standard_raw_resources_decision_v1.json",
+  "parent_decision_sha256": "668e790e4b684ecc6bdbe3f97712c8e935cff0eae67b3684f3d7c1015d2f4479",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "rows": [
+    {
+      "id": "fujifilm-s5000",
+      "path": "data/external/rawpixls_ao7_v1/raw/fujifilm_finepix_s5000.raf",
+      "sha256": "dabd5e74521a6980156be9fd4b88d0c37b0fe4d0e0e6f5c12db8cffff1b76297"
+    },
+    {
+      "id": "olympus-sp550uz",
+      "path": "data/external/rawpixls_ao7_v1/raw/olympus_sp550uz.orf",
+      "sha256": "05f49918e1b1894c3abd2b5451b356f7a00adb1c8568abc5babff33fcade1bb2"
+    },
+    {
+      "id": "canon-kiss-f",
+      "path": "data/external/rawpixls_ao7_v1/raw/canon_eos_kiss_f.cr2",
+      "sha256": "12402b46f3cfaa66a671c7b6524c741dd17d6a2add3bc6cc41dcaf1570b0e722"
+    },
+    {
+      "id": "nikon-d200",
+      "path": "data/external/rawpixls_ao7_v1/raw/nikon_d200.nef",
+      "sha256": "b0800a1166b952430b255600373573e1d528adf8de98857781e06a98472b3c35"
+    }
+  ],
+  "automatic_gate": {
+    "maximum_output_code_boundary_fraction": 0.005,
+    "all_transactions_verified": true,
+    "zero_failures": true
+  },
+  "visual_gate": {
+    "review_only_if_automatic_gate_passes": true,
+    "confirmed_severe_artifacts_allowed": 0
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "four-camera CC0 generic rawpy OOD and autonomous severe-artifact evidence for the opt-in native Standard Look Approximation only; no calibrated scene exposure, stock response or promotion"
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p8bj_native_standard_raw_ood_decision.v1",
+  "node": "U6.P8BJ",
+  "contract": "configs/u6_p8bj_native_standard_raw_ood_v1.json",
+  "contract_sha256": "e08bf1c2a28fae022bf8f97dda9fe5a76dc368312daa7c2bac1684d635ece527",
+  "formal_report": "outputs/u6_p8bj_native_standard_raw_ood_v1/report.json",
+  "formal_report_sha256": "1420adc791700572f0c377536f613e3676ea4bd17af60c47b41e2e03a3af5e9d",
+  "contact_sheet": "outputs/u6_p8bj_native_standard_raw_ood_v1/contact_sheet.png",
+  "contact_sheet_sha256": "b870bcde0255256729bb789b411ca9e8eaa41bf9c18d494fbb6593cd82f95b94",
+  "result": {
+    "status": "pass_limited",
+    "automatic_gate_pass": true,
+    "transactions_verified": 4,
+    "output_code_boundary_fraction": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "autonomous_visual_review": {
+      "reviewed_full_resolution": [
+        "fujifilm-s5000",
+        "olympus-sp550uz",
+        "canon-kiss-f",
+        "nikon-d200"
+      ],
+      "confirmed_severe_artifact_count": 0,
+      "severe_artifact_gate_pass": true,
+      "observations": [
+        "no geometry corruption, posterization, red speckle, local colour blocks or tile seams were observed",
+        "the Olympus result has an unusually pale cyan treatment and the Nikon result has a strong pink-magenta treatment",
+        "those strong casts are style and appeal risks, not confirmed severe artifacts under the frozen veto"
+      ]
+    },
+    "coverage_gap": "the four-image cohort has no close face or controlled skin rendering and only weak text coverage"
+  },
+  "decision": "retain the opt-in native Standard RAW path as severe-clean on this bounded four-camera cohort, but do not promote it. The strong colour casts require broader content-aware OOD and appeal comparison, especially face, skin, text and highlight cases",
+  "production_default_changed": false,
+  "claim_ceiling": "four-camera CC0 generic rawpy OOD and autonomous severe-artifact evidence for the opt-in native Standard Look Approximation only; not population preference, calibrated scene exposure, stock response or product promotion",
+  "next_leaf": "U6.P8BK freeze and run a bounded face-skin-text-highlight RAW OOD cohort through the exact transaction, preserving the severe-artifact-first gate and adding a fixed global champion comparison where valid"
+}
