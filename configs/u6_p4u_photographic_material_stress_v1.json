@@ -1,0 +1,137 @@
+{
+  "schema": "neuro_film.u6_p4u_photographic_material_stress_contract.v1",
+  "node": "ULT > U6 > U6.P4U",
+  "parents": {
+    "p7f_contract": {
+      "path": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+      "sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f"
+    },
+    "p7f_decision": {
+      "path": "configs/u6_p7f_neutral_gauged_physical_chain_decision_v1.json",
+      "sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03"
+    },
+    "p7f_report": {
+      "path": "outputs/u6_p7f_neutral_gauged_physical_chain_v1/run_a/report.json",
+      "sha256": "84fb63e25571cbe75efeea95c86100b68ce1d12b2ca8b8ccc1880700f67cee3f"
+    },
+    "p4d_contract": {
+      "path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+      "sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab"
+    },
+    "p4t_contract": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+      "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+    },
+    "p4t_decision": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_decision_v1.json",
+      "sha256": "65433684b970d15c36d5e4a668131ba8ee21e68ba8ea883b11fb5f373f374339"
+    }
+  },
+  "question": "Can the fixed P4T anisotropic positive material kernel replace only the P4D isotropic kernel inside the already-retained neutral-gauged photographic chain without severe artifacts, output-boundary regressions, tone drift or loss of deterministic identity?",
+  "population": {
+    "source": "exact U6.P7F sixteen-image rights-cleared photographic population",
+    "expected_images": 16,
+    "decoded_color_state": "display-srgb",
+    "visual_ids": [
+      "canon_eos_kiss_f",
+      "nikon_d2x",
+      "sony_nex_3n",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "panasonic_dmc_gf2",
+      "pentax_k_r",
+      "leica_d_lux_6",
+      "kodak_dcs_pro_14n"
+    ]
+  },
+  "chain": {
+    "order": [
+      "display-srgb decode to scene-linear",
+      "forward scatter",
+      "sensitometry to developed optical density",
+      "one material kernel arm",
+      "shared analytical residual-direction density bound",
+      "development adjacency",
+      "dye diffusion",
+      "interpretation",
+      "scanner MTF",
+      "neutral-axis gauge",
+      "fixed AO6-like source-context display look"
+    ],
+    "sampling_dpi": 4000,
+    "arms": [
+      "colour_only",
+      "no_material_control",
+      "p4d_isotropic_shared_seed",
+      "p4t_anisotropic_shared_seed"
+    ],
+    "material_seed_policy": "use exact P4T layer seeds for both material arms so the comparison changes kernel geometry rather than random identity",
+    "material_density_safety": {
+      "method": "one shared per-pixel maximum scalar in [0,1] along the actual material-minus-target RGB density residual",
+      "lower_bound": "print interpretation black reference density",
+      "upper_bound": "print interpretation white reference density",
+      "channelwise clipping_allowed": false,
+      "residual_direction_change_allowed": false
+    },
+    "target_density_clipping_allowed": false,
+    "material_density_clipping_allowed": false,
+    "display_rgb_noise_allowed": false
+  },
+  "automatic_gates": {
+    "repeat_exact": true,
+    "no_material_parent_output_exact": true,
+    "maximum_target_density": 2.0,
+    "maximum_material_channel_mean_density_error": 0.01,
+    "minimum_material_residual_scale": 0.0,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_per_image_style_delta_e76": 41.10209,
+    "minimum_median_to_colour_delta_e76": 0.5,
+    "minimum_median_material_to_no_material_delta_e76": 0.02,
+    "minimum_median_p4t_to_p4d_delta_e76": 0.01,
+    "maximum_median_absolute_encoded_luma_drift_to_no_material": 0.03,
+    "p4t_boundary_must_not_exceed_p4d": true
+  },
+  "visual_gate": {
+    "required_only_after_automatic_pass": true,
+    "maximum_confirmed_severe_p4t_artifacts": 0,
+    "review_full_frame_and_fixed_100_percent_crops": true,
+    "hard_negatives": [
+      "U6.2B salt-like bright speckles",
+      "posterization or banding",
+      "tile seams or rings",
+      "colour blocks",
+      "face, text or object corruption"
+    ],
+    "blind_preference": {
+      "arms": [
+        "p4d_isotropic_shared_seed",
+        "p4t_anisotropic_shared_seed"
+      ],
+      "rounds": 3,
+      "seed": 2026072904,
+      "minimum_p4t_round_wins": 2
+    }
+  },
+  "execution": {
+    "runs": 2,
+    "post_result_retuning_allowed": false,
+    "production_integration_allowed": false,
+    "closed_p8bp_reopened": false
+  },
+  "branch_rule": {
+    "automatic_fail": "close P4T photographic integration and retain P4D/P7F evidence without changing AO6",
+    "automatic_pass": "freeze the exact P4D/P4T photographic renders and open the preregistered severe-artifact and blind preference review",
+    "automatic_pass_visual_fail": "reject P4T photographic integration without weakening severe gates",
+    "automatic_pass_preference_fail": "retain P4T as physical-domain evidence only and keep P4D/P7F/AO6 unchanged",
+    "complete_pass": "retain P4T as a bounded photographic material challenger and open row-tiled parity and runtime-cost audit; do not change the product default"
+  },
+  "forbidden_fallbacks": [
+    "retune sigma, grain optical density, seed or threshold after photographic results",
+    "remove failed images",
+    "clip target or material density",
+    "apply additive display-RGB grain",
+    "reopen or relabel the closed P8BP full-native challenger",
+    "claim stock, emulsion, process, scanner-independent or calibrated truth"
+  ],
+  "claim_ceiling": "Generic scanner-convolved physical-inspired material integration and autonomous photographic stress evidence; not population preference, stock response, emulsion/process/scanner calibration or product promotion."
+}
