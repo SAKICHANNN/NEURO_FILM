@@ -17,6 +17,7 @@ from src.film_physics import (
     PhysicalDomainArray,
     PhysicalUnit,
     PostScanPolarity,
+    compile_print_interpretation,
     develop_layer_exposure,
     prepare_interpretation_medium,
 )
@@ -61,31 +62,22 @@ def _developed(
 
 def _print_operator() -> DensityToPrintInterpretation:
     sensitometry = _operator()
-    references = sensitometry.apply(
-        np.asarray([[0.0] * 3, [16.0] * 3], dtype=np.float64)
-    )
-    # P2A preserves the caller dtype.  Enclose the exact float64 endpoints by
-    # one float32 ULP so a valid compiled float32 density cannot be rejected
-    # solely by endpoint representation roundoff.
-    black = np.nextafter(
-        references[0].astype(np.float32), np.float32(-np.inf)
-    ).astype(np.float64)
-    white = np.nextafter(
-        references[1].astype(np.float32), np.float32(np.inf)
-    ).astype(np.float64)
     witness = json.loads(
         (
             ROOT / "configs/u5_r2e0_density_domain_operator_v1.json"
         ).read_text(encoding="utf-8")
     )["witnesses"]["cyan_shadow_warm_highlight_like"]
-    return DensityToPrintInterpretation(
-        np.asarray(witness["dye_absorption_matrix"]),
-        np.asarray(witness["print_matrix"]),
-        np.asarray(witness["paper_midpoints"]),
-        np.asarray(witness["paper_slopes"]),
-        np.asarray(witness["paper_maximum_densities"]),
-        black,
-        white,
+    return compile_print_interpretation(
+        sensitometry,
+        dye_absorption_matrix=np.asarray(witness["dye_absorption_matrix"]),
+        print_matrix=np.asarray(witness["print_matrix"]),
+        paper_midpoints=np.asarray(witness["paper_midpoints"]),
+        paper_slopes=np.asarray(witness["paper_slopes"]),
+        paper_maximum_densities=np.asarray(
+            witness["paper_maximum_densities"]
+        ),
+        maximum_relative_layer_exposure=16.0,
+        density_dtype=np.float32,
     )
 
 

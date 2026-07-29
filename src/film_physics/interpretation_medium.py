@@ -10,6 +10,7 @@ from typing import Any
 
 import numpy as np
 
+from src.roll2film.sensitometry import RGBSensitometryOperator
 from src.roll2film.sensitometry_print import DensityToPrintInterpretation
 
 from .contracts import PhysicalDomain, PhysicalScale, density_to_transmittance
@@ -45,6 +46,46 @@ def print_interpretation_identity(
         allow_nan=False,
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def compile_print_interpretation(
+    sensitometry: RGBSensitometryOperator,
+    *,
+    dye_absorption_matrix: np.ndarray,
+    print_matrix: np.ndarray,
+    paper_midpoints: np.ndarray,
+    paper_slopes: np.ndarray,
+    paper_maximum_densities: np.ndarray,
+    maximum_relative_layer_exposure: float,
+    density_dtype: np.dtype[Any] | type[np.floating[Any]] = np.float32,
+) -> DensityToPrintInterpretation:
+    """Reuse U2.2B while enclosing compiled density endpoints by one ULP."""
+    if not isinstance(sensitometry, RGBSensitometryOperator):
+        raise TypeError("sensitometry must be RGBSensitometryOperator")
+    maximum = float(maximum_relative_layer_exposure)
+    if not np.isfinite(maximum) or maximum <= 0.0:
+        raise ValueError("maximum layer exposure must be finite and positive")
+    dtype = np.dtype(density_dtype)
+    if dtype not in (np.dtype(np.float32), np.dtype(np.float64)):
+        raise TypeError("density_dtype must be float32 or float64")
+    references = sensitometry.apply(
+        np.asarray([[0.0] * 3, [maximum] * 3], dtype=np.float64)
+    )
+    black = np.nextafter(
+        references[0].astype(dtype), dtype.type(-np.inf)
+    ).astype(np.float64)
+    white = np.nextafter(
+        references[1].astype(dtype), dtype.type(np.inf)
+    ).astype(np.float64)
+    return DensityToPrintInterpretation(
+        dye_absorption_matrix,
+        print_matrix,
+        paper_midpoints,
+        paper_slopes,
+        paper_maximum_densities,
+        black,
+        white,
+    )
 
 
 @dataclass(frozen=True)

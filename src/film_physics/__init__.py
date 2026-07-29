@@ -35,6 +35,7 @@ from .interpretation_medium import (
     InterpretationMedium,
     InterpretationMediumKind,
     PostScanPolarity,
+    compile_print_interpretation,
     prepare_interpretation_medium,
     print_interpretation_identity,
 )
@@ -204,6 +205,7 @@ __all__ = [
     "density_to_scan_transmittance",
     "required_spatial_response_halo",
     "compile_scatter_profile",
+    "compile_print_interpretation",
     "compile_backing_return_profile",
     "compile_pyramid_scatter_profile",
     "compile_scanner_context",
