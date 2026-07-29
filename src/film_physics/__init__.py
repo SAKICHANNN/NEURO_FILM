@@ -43,6 +43,13 @@ from .compiled_scatter import (
     apply_compiled_scatter_row_tiled,
     compile_scatter_profile,
 )
+from .compiled_backing_return import (
+    CompiledBackingReturnKernel,
+    CompiledBackingReturnProfile,
+    apply_compiled_backing_return,
+    apply_compiled_backing_return_row_tiled,
+    compile_backing_return_profile,
+)
 from .pyramid_scatter import (
     PyramidScatterComponent,
     PyramidScatterProfile,
@@ -108,6 +115,8 @@ __all__ = [
     "BackingReturnProfile",
     "CompiledScatterKernel",
     "CompiledScatterProfile",
+    "CompiledBackingReturnKernel",
+    "CompiledBackingReturnProfile",
     "CompoundPoissonProfile",
     "FilmProfileBundle",
     "MarginalProfile",
@@ -133,6 +142,8 @@ __all__ = [
     "apply_interpretation_bounded_development_adjacency",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
+    "apply_compiled_backing_return",
+    "apply_compiled_backing_return_row_tiled",
     "apply_development_adjacency",
     "apply_dye_diffusion",
     "apply_forward_scatter",
@@ -151,6 +162,7 @@ __all__ = [
     "density_to_scan_transmittance",
     "required_spatial_response_halo",
     "compile_scatter_profile",
+    "compile_backing_return_profile",
     "compile_pyramid_scatter_profile",
     "compile_scanner_context",
     "compile_scanner_standard_context",
