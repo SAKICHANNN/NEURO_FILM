@@ -1,0 +1,96 @@
+{
+  "schema": "neuro_film.u6_p3g_backing_return_combined_ablation_contract.v1",
+  "node": "U6.P3G",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p1_contract_path": "configs/u6_p1_reference_scatter_simulator_v1.json",
+    "p1_contract_file_sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b",
+    "p1_profile_sha256": "c8f7d533bb580e0fc780241e351d453f118d49393dda7b50ef14e93e7adbe737",
+    "p3d_contract_path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "p3d_profile_sha256": "639b39f7b5d26f7a37bbe834e707f787e9e1e200f545f1c2fb031ec28376f6ea",
+    "p3f_decision_path": "configs/u6_p3f_backing_return_photographic_stress_decision_v1.json",
+    "p3f_report_sha256": "e055096c344723d6bef905b24c3d413032c1166c3bff3c117bbf37b98c5b4da2",
+    "sensitometry_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_file_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "input": {
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "preflight_report": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+    "preflight_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de",
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "decoded_color_state": "relative_display_srgb_approximation",
+    "domain_use": "mechanism and severe-artifact ablation only; display-derived pseudo-exposure is not scene/layer truth"
+  },
+  "fixed_chain": {
+    "input": "sRGB-EOTF-linearized float32 pseudo-exposure",
+    "development": "exact frozen U2.2 sensitometry primitive",
+    "interpretation": "density-to-direct-scan transmittance",
+    "variants": [
+      "no-spatial",
+      "legacy-P1-full-energy-redistribution",
+      "P1-forward-only-then-P3E-additive-return",
+      "forbidden-double-counting-P1-full-then-P3E-additive-return"
+    ],
+    "candidate": "P1-forward-only-then-P3E-additive-return",
+    "forbidden_product_variant": "forbidden-double-counting-P1-full-then-P3E-additive-return",
+    "profile_fitting": false,
+    "hard_clipping": false
+  },
+  "automatic_gates": {
+    "all_input_hashes_exact": true,
+    "all_outputs_finite_and_inside_open_closed_unit_domain": true,
+    "maximum_candidate_vs_no_spatial_abs": 0.08,
+    "minimum_population_p95_candidate_vs_no_spatial_abs": 0.00001,
+    "minimum_population_p95_candidate_vs_legacy_abs": 0.00001,
+    "minimum_population_p95_candidate_vs_forbidden_double_abs": 0.00001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_isolated_candidate_excursion_count": 0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "columns": [
+      "no spatial",
+      "legacy P1 full",
+      "forward-only + additive return",
+      "forbidden double-counting control"
+    ],
+    "severe_vetoes": [
+      "secondary hard contour or objectionable colour fringe",
+      "isolated bright or dark speckle",
+      "banding, posterization or hard clipping",
+      "geometry or content corruption"
+    ],
+    "selection_rule": "retain the split candidate only if automatic gates pass and it is severe-clean; visual attractiveness is descriptive because there is no calibrated target or human preference label",
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "forbidden_fallbacks": [
+    "change P1, P3D, P3E or U2.2 parameters",
+    "fit or select parameters against the 18 photographs",
+    "drop the forbidden double-counting control",
+    "interpret a visual difference as stock or physical calibration",
+    "promote to production from this development ablation"
+  ],
+  "branch_rule": {
+    "pass": "retain the split forward-scatter plus additive-return topology for later fixed-profile performance and combined-chain work",
+    "fail": "close the split combined topology and retain the individually validated references only"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic fixed-chain mechanism and severe-artifact ablation on display-derived pseudo-exposure; no preference, scene/layer truth, stock, process, camera, pressure-plate, scanner, calibration, authenticity or product claim"
+}
