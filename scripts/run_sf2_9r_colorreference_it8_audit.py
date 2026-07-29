@@ -73,6 +73,9 @@ def _it8_member(archive: ZipFile, archive_stem: str) -> str:
         if not info.is_dir()
         and Path(info.filename).stem.casefold() == archive_stem.casefold()
         and Path(info.filename).suffix.casefold() in {".it8", ".txt"}
+        and "extras" not in {
+            part.casefold() for part in Path(info.filename).parts[:-1]
+        }
     )
     if len(names) != 1:
         raise ValueError(

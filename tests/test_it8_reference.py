@@ -135,6 +135,7 @@ END_DATA
     with ZipFile(path, "w") as archive:
         archive.writestr("E040227/E040227.txt", it8)
         archive.writestr("E040227/Readme.txt", b"not measurement data")
+        archive.writestr("E040227/EXTRAS/E040227.txt", b"alternate view")
         archive.writestr("E040227/EXTRAS/E040227.cgt", spectral)
     record = audit_archive(
         path,
