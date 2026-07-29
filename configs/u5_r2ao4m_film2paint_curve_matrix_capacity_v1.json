@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4m-film2paint-curve-matrix-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4M",
+  "question": "Does the simplest clean-room FILM2PAINT-style operator order, three monotone endpoint-fixed channel curves followed by one bounded positive matrix, outperform the existing equal-parameter bounded one-matrix response family on held rows and both leave-domain-out directions of the exact 71-pair Velvia display-proxy pool?",
+  "parent": {
+    "decision_path": "configs/u5_r2ao4s1_film2paint_exact_source_recon_decision_v1.json",
+    "decision_sha256": "f2b4b515ca9d158483cbe200b0f4384d7ef79aee78120d7bf4057cecdd8ecdc5",
+    "required_decision": "strong_controlled_design_but_publication_only_and_rights_blocked"
+  },
+  "external_method": {
+    "title": "FILM2PAINT: Transforming Photographic Documentation on Reversal Film into Paintings' Accurate Colors",
+    "doi": "10.2352/issn.2168-3204.2024.21.1.4",
+    "official_pdf_sha256": "bad7ee283b3d8352faf45bdc567cb8166d9aaf4f5a5dc05d206300165643f0f7",
+    "published_baseline_description": "three four-node per-channel lookup curves in Adobe RGB 1998 followed by a first-order 3x3 matrix without a constant term",
+    "source_code_obtained": false,
+    "dataset_obtained": false,
+    "fitted_parameters_obtained": false,
+    "implementation_status": "clean_room_equation_order_baseline_not_exact_source_reproduction"
+  },
+  "paired_source": {
+    "loader_config_path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_v1.json",
+    "loader_config_sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14",
+    "chart_pairs_path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+    "palette_pairs_path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "domains": {
+      "velvia_chart": 24,
+      "velvia_palette": 47
+    },
+    "working_space": "linear_srgb_d65",
+    "evidence_class": "author_rendered_display_proxy_not_digital_film_pair"
+  },
+  "models": {
+    "controls": [
+      "identity",
+      "full_affine",
+      "bounded_one_matrix"
+    ],
+    "candidate": "endpoint_fixed_monotone_curves_then_bounded_positive_matrix",
+    "candidate_parameter_count": 12,
+    "control_parameter_count": 12,
+    "candidate_parameterization": {
+      "curve_x_knots": [
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0
+      ],
+      "curve_free_logits_per_channel": 2,
+      "curve_identity_mixture": 0.75,
+      "curve_free_logit_bounds": [
+        -8.0,
+        4.0
+      ],
+      "matrix_free_logits": 6,
+      "matrix_identity_mixture": 0.25,
+      "matrix_free_logit_bounds": [
+        -8.0,
+        4.0
+      ],
+      "hard_output_clipping": false,
+      "endpoint_normalization": false
+    },
+    "fit": {
+      "method": "scipy.optimize.least_squares",
+      "loss": "linear",
+      "restart_count": 5,
+      "maximum_function_evaluations": 3000,
+      "function_tolerance": 1e-11,
+      "parameter_tolerance": 1e-11,
+      "gradient_tolerance": 1e-11,
+      "seed": 20250729
+    },
+    "bounded_control_fit": {
+      "identity_mixture": 0.25,
+      "restart_count": 3,
+      "maximum_function_evaluations": 2500,
+      "function_tolerance": 1e-11,
+      "parameter_tolerance": 1e-11,
+      "gradient_tolerance": 1e-11,
+      "loss": "linear",
+      "loss_scale": 0.01,
+      "seed": 20250729
+    }
+  },
+  "evaluation": {
+    "cross_validation": {
+      "fold_count": 5,
+      "assignment": "within_each_domain_index_modulo_fold_count",
+      "fit_normalization_on_development_only": true
+    },
+    "leave_domain_out_directions": [
+      {
+        "fit": "velvia_chart",
+        "confirm": "velvia_palette"
+      },
+      {
+        "fit": "velvia_palette",
+        "confirm": "velvia_chart"
+      }
+    ],
+    "jacobian_grid_size": 17,
+    "jacobian_step": 0.00001,
+    "metrics": [
+      "linear_rgb_rmse",
+      "mean_delta_e76",
+      "maximum_absolute_error",
+      "raw_out_of_cube_fraction",
+      "minimum_and_maximum_raw_output",
+      "finite_difference_jacobian_determinant"
+    ]
+  },
+  "gates": {
+    "all_fits_complete": true,
+    "equal_candidate_and_control_parameter_count": true,
+    "minimum_candidate_rgb_rmse_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_mean_delta_e76_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_rgb_rmse_gain_each_domain": 0.0,
+    "minimum_candidate_leave_domain_out_rgb_rmse_gain_each_direction": 0.0,
+    "maximum_mean_train_test_rgb_rmse_gap": 0.02,
+    "maximum_mean_raw_out_of_cube_fraction": 0.0,
+    "maximum_fold_raw_out_of_cube_fraction": 0.0,
+    "minimum_jacobian_determinant": 0.003,
+    "exact_black_white_endpoints": true,
+    "analytic_inverse_roundtrip_maximum": 1e-10,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "decision_if_pass": "open_separately_frozen_boundary_guarded_photo_frontier_for_curve_then_matrix_display_proxy_operator",
+  "decision_if_fail": "retain_bounded_one_matrix_global_proxy_operator_and_close_curve_then_matrix_family_on_this_pool",
+  "forbidden_rescue": [
+    "change curve knots, mixtures, parameter bounds, folds or restarts after seeing confirmation",
+    "clip outputs before scoring",
+    "drop a failed fold or leave-domain-out direction",
+    "fit any parameter on photographs",
+    "extract FILM2PAINT publication figures as new pairs",
+    "claim exact FILM2PAINT reproduction without source code and data",
+    "claim Velvia stock response or calibration from display proxies"
+  ],
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room equal-parameter explicit-capacity evidence on 71 author-rendered Velvia display-proxy pairs; not the authors' implementation or data, not a digital-film pair, stock response, calibration, preference or product promotion"
+}
