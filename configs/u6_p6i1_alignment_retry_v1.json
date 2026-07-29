@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p6i1_alignment_retry_contract.v1",
+  "node": "U6.P6I1",
+  "parent_contract_path": "configs/u6_p6i_measured_scanner_characterization_v1.json",
+  "parent_contract_sha256": "ae9d527e1008c78969e4f18b0629826e10be0f8e16e8137ffd7282794b1f425d",
+  "preflight_failure_path": "configs/u6_p6i_alignment_preflight_failure_v1.json",
+  "preflight_failure_sha256": "2f204fa9ed316a570de7a059b1c9f72817dd707e8033560e7bfe7e9267627d32",
+  "primary": {
+    "reuse_parent_alignment_exact": true,
+    "ratio_test": 0.72
+  },
+  "retry": {
+    "allowed_only_after_primary_scanner_nuisance_error": true,
+    "ratio_test": 0.75,
+    "all_other_alignment_parameters_unchanged": true
+  },
+  "unchanged_acceptance_gates": {
+    "minimum_good_matches": 50,
+    "minimum_ransac_inliers": 40,
+    "maximum_median_inlier_reprojection_error_px": 1.5
+  },
+  "colour_contract_unchanged": true,
+  "repeat_report_sha256_exact": true,
+  "claim_ceiling": "versioned deterministic alignment support retry only; no relaxed geometric or colour acceptance gate"
+}
