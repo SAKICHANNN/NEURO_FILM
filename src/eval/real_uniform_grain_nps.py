@@ -90,6 +90,54 @@ def radial_nps_signature(
     return output
 
 
+def acf_lag_signature(
+    crop: np.ndarray,
+    *,
+    lags_yx: list[list[int]],
+) -> np.ndarray:
+    """Return normalized detrended scanner-code autocorrelation at fixed lags."""
+    values = np.asarray(crop, dtype=np.float64)
+    if (
+        values.ndim != 2
+        or min(values.shape) < 64
+        or not np.all(np.isfinite(values))
+    ):
+        raise UniformGrainNpsError("ACF crop must be finite 2D and at least 64px")
+    mean = float(np.mean(values))
+    if mean <= 0.0:
+        raise UniformGrainNpsError("ACF crop mean must be positive")
+    residual = _quadratic_detrend(values / mean)
+    variance = float(np.mean(np.square(residual)))
+    if variance <= 0.0:
+        raise UniformGrainNpsError("degenerate ACF crop")
+    correlations: list[float] = []
+    for lag in lags_yx:
+        if (
+            len(lag) != 2
+            or any(not isinstance(value, int) for value in lag)
+            or any(value < 0 for value in lag)
+            or lag == [0, 0]
+        ):
+            raise UniformGrainNpsError("invalid nonzero ACF lag")
+        dy, dx = lag
+        if dy >= values.shape[0] or dx >= values.shape[1]:
+            raise UniformGrainNpsError("ACF lag leaves crop")
+        left = residual[
+            : values.shape[0] - dy if dy else None,
+            : values.shape[1] - dx if dx else None,
+        ]
+        right = residual[
+            dy:,
+            dx:,
+        ]
+        correlations.append(float(np.mean(left * right) / variance))
+    output = np.asarray(correlations, dtype=np.float64)
+    if not np.all(np.isfinite(output)):
+        raise UniformGrainNpsError("non-finite ACF signature")
+    output.setflags(write=False)
+    return output
+
+
 def fixed_fractional_crops(
     image: np.ndarray,
     *,
@@ -260,6 +308,7 @@ def evaluate_signatures(
 
 __all__ = [
     "UniformGrainNpsError",
+    "acf_lag_signature",
     "cosine_similarity",
     "evaluate_signatures",
     "exact_balanced_label_permutation",

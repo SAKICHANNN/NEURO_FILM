@@ -20,6 +20,19 @@
     ],
     "detrend": "least-squares 2D quadratic per fixed crop",
     "window": "separable Hann",
+    "acf_lags_pixels_yx": [
+      [0, 1],
+      [1, 0],
+      [1, 1],
+      [0, 2],
+      [2, 0],
+      [0, 4],
+      [4, 0],
+      [0, 8],
+      [8, 0],
+      [0, 16],
+      [16, 0]
+    ],
     "radial_nps_band_edges_cycles_per_pixel": [
       0.015625,
       0.0192766719449429,

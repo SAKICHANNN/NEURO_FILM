@@ -6,6 +6,7 @@ from scipy.ndimage import gaussian_filter
 
 from src.eval.real_uniform_grain_nps import (
     UniformGrainNpsError,
+    acf_lag_signature,
     evaluate_signatures,
     exact_balanced_label_permutation,
     fixed_fractional_crops,
@@ -31,6 +32,15 @@ def test_signature_ignores_constant_scale_and_quadratic_shading() -> None:
         band_edges_cycles_per_pixel=EDGES,
     )
     assert float(np.dot(left, right)) > 0.999
+    left_acf = acf_lag_signature(
+        base,
+        lags_yx=[[0, 1], [1, 0], [1, 1], [0, 4]],
+    )
+    right_acf = acf_lag_signature(
+        transformed,
+        lags_yx=[[0, 1], [1, 0], [1, 1], [0, 4]],
+    )
+    assert np.max(np.abs(left_acf - right_acf)) < 1e-11
 
 
 def test_fixed_fractional_crops_do_not_select_by_content() -> None:
