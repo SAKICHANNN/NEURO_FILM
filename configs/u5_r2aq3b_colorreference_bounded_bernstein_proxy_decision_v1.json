@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3b-colorreference-bounded-bernstein-proxy-v1",
+  "config_sha256": "c8e99600ff112406a19271e502763e12cdf6733b2192e826fecf199c680d2597",
+  "software_commit": "04bd61fd9c46c804878a6e6067d9607fb67944f3",
+  "report_sha256": "2c9f20e1ff541fb77037d418710cb5d679b5691a854d007fe2baadf93d4531c1",
+  "repeat_report_sha256": "2c9f20e1ff541fb77037d418710cb5d679b5691a854d007fe2baadf93d4531c1",
+  "automatic_pass": true,
+  "decision": "retain_simplest_eligible_bounded_bernstein_proxy_and_open_global_bundle_property_audit",
+  "champion": "bernstein_d3",
+  "eligible_models": ["bernstein_d2", "bernstein_d3"],
+  "key_results": {
+    "bernstein_d3_mean_deltae76": 6.104234119504067,
+    "bernstein_d3_worst_fold_mean_deltae76": 6.456041784824201,
+    "bernstein_d3_improvement_over_nonnegative_affine": 0.7161037517058301,
+    "bernstein_d3_improvement_over_unsafe_quadratic": 0.47134147191608056,
+    "bernstein_d3_improvement_over_bernstein_d2": 0.26658056363680105,
+    "raw_xyz_negative_component_fraction": 0.0,
+    "raw_xyz_above_1_2_component_fraction": 0.0,
+    "post_fit_clipping": false
+  },
+  "interpretation": "a degree-3 tensor Bernstein lattice with bounded coefficients is both substantially more accurate and analytically safer than the prior affine and unconstrained quadratic recorder proxies on all 30 supported joint folds",
+  "next_leaf": "AQ3P",
+  "next_leaf_scope": "fit one all-row degree-3 bundle after held evidence, then audit exact identity, dense-grid bounds, local smoothness and cross-fold operator stability",
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded recorder-device-to-measured-developed-slide proxy parameterization evidence; not a camera-to-film operator or calibrated Velvia stock response"
+}
