@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3b-colorreference-bounded-bernstein-proxy-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ3B",
+  "parent": {
+    "decision": "configs/u5_r2aq3i_colorreference_joint_in_domain_proxy_baselines_decision_v1.json",
+    "config_sha256": "e5840fd2dccc83c7cd97fb6b5201420e5e8cf7b60f942201068783ee877e1d52",
+    "report": "outputs/experiments/u5_r2aq3i_colorreference_joint_in_domain_proxy_baselines_v1/report.json",
+    "report_sha256": "55846a29a082174510fe566fecba1b14a5b4d9b5fc1d4f58472efca3067f1ef1",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "target_space": {
+    "fit_fields": ["XYZ_X", "XYZ_Y", "XYZ_Z"],
+    "fit_scale": 0.01,
+    "evaluation_space": "CIELAB D50 2 degree from raw predicted XYZ; no clipping",
+    "reference_white_xyz": [0.9642, 1.0, 0.8251],
+    "coefficient_lower_bound": 0.0,
+    "coefficient_upper_bound": 1.2
+  },
+  "split_contract": {
+    "target_sets": [1, 2, 3, 4, 5, 9],
+    "source_colour_fold_count": 5,
+    "source_colour_salt": "aq3t-v1",
+    "source_colour_fold_row_counts": [295, 302, 274, 275, 294],
+    "primary_fold_count": 30,
+    "development_rule": "target_set != held_target_set AND source_colour_fold != held_source_colour_fold",
+    "confirmation_rule": "target_set == held_target_set AND source_colour_fold == held_source_colour_fold",
+    "expected_development_rows_by_source_fold": [5725, 5690, 5830, 5825, 5730],
+    "expected_confirmation_rows_by_source_fold": [295, 302, 274, 275, 294],
+    "every_pair_table_row_is_confirmation_exactly_once": true,
+    "fit_on_development_only": true
+  },
+  "candidate_family": {
+    "id": "bounded_tensor_bernstein",
+    "degrees": [1, 2, 3],
+    "model_ids": ["bernstein_d1", "bernstein_d2", "bernstein_d3"],
+    "basis_counts": [8, 27, 64],
+    "parameter_counts": [24, 81, 192],
+    "definition": "tensor-product Bernstein basis on normalized recorder RGB; each XYZ output is a convex combination of coefficients independently bounded to [0,1.2]",
+    "fit": "per-output scipy lsq_linear with coefficient bounds [0,1.2]",
+    "post_fit_clipping": false,
+    "analytic_boundary_guarantee": "for every RGB in [0,1]^3, predicted XYZ is in [0,1.2]^3 because nonnegative Bernstein basis weights sum to one"
+  },
+  "model_selection": {
+    "primary_metric": "joint_holdout_mean_deltae76",
+    "eligibility": {
+      "all_30_folds_finite": true,
+      "every_fold_improves_over_nonnegative_affine": true,
+      "mean_deltae76_max": 13.0,
+      "worst_fold_mean_deltae76_max": 15.0,
+      "mean_improvement_over_nonnegative_affine_min": 0.25,
+      "mean_penalty_relative_to_unsafe_quadratic_max": 0.1,
+      "raw_xyz_negative_component_fraction_max": 0.0,
+      "raw_xyz_above_1_2_component_fraction_max": 0.0
+    },
+    "simpler_degree_tie_relative": 0.01,
+    "simplicity_order": ["bernstein_d1", "bernstein_d2", "bernstein_d3"],
+    "frozen_baselines": {
+      "nonnegative_affine_mean_deltae76": 21.5016371515376,
+      "nonnegative_affine_fold_source": "exact AQ3I report rows",
+      "unsafe_quadratic_mean_deltae76": 11.546648347144565,
+      "unsafe_quadratic_fold_source": "exact AQ3I report rows"
+    }
+  },
+  "numerics": {
+    "float_dtype": "float64",
+    "coefficient_lower_bound": 0.0,
+    "coefficient_upper_bound": 1.2,
+    "lsq_linear_tolerance": 1e-12,
+    "lsq_linear_maximum_iterations": 2000,
+    "deterministic_single_thread": true
+  },
+  "decision_branches": {
+    "pass": "retain_simplest_eligible_bounded_bernstein_proxy_and_open_global_bundle_property_audit",
+    "fail": "close_colorreference_bounded_proxy_route"
+  },
+  "forbidden_actions": [
+    "adding degrees or changing bounds after formal results",
+    "random row split",
+    "post-fit clipping",
+    "photo rendering",
+    "claiming recorder RGB is sRGB, camera RGB or scene-linear",
+    "digital-camera-to-film, independent-roll, process or calibrated stock-response claims",
+    "training, production integration, redistribution or public weights"
+  ],
+  "fit_allowed": true,
+  "fit_scope": "AQ1 internal recorder-source/manufactured-target proxy table only",
+  "training_allowed": false,
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded recorder-device-to-measured-developed-slide proxy parameterization evidence; not a camera-to-film operator or calibrated Velvia stock response"
+}
