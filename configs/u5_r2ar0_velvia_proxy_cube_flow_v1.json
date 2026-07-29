@@ -1,0 +1,112 @@
+{
+  "schema": "neuro_film.u5_r2ar0_velvia_proxy_cube_flow_contract.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AR0",
+  "question": "Can the already validated cube-preserving stationary colour flow improve materially over the bounded one-matrix operator on both directions of the exact chart/palette Velvia display-proxy bridge, rather than fitting one proxy domain?",
+  "parents": {
+    "cross_domain_decision": {
+      "path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_decision_v1.json",
+      "sha256": "59e3a85ea84eab5b8dff2488a1371ffe265ed2042f3d621d74eb9c7fab148695",
+      "required_decision": "retain_cross_domain_velvia_display_proxy_operator_evidence"
+    },
+    "combined_operator": {
+      "path": "configs/u5_r2ao5_combined_velvia_one_matrix_operator_v1.json",
+      "sha256": "e4a3bd332e1d92e10cf00f65b74260a2e994bee03c9d99792881f92681e61edd",
+      "required_operator": "velvia_combined_one_matrix"
+    }
+  },
+  "inputs": {
+    "chart_pairs": {
+      "path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+      "sha256": "0b51a236f366af5c0131a357da0edbc36c25e68238fcdf5a386f0ec068142aea",
+      "paired_u8_sha256": "e049b840a544c8409a811e4a85af41ac2e1c7e7f2b1467f2c0331da024ef2d1e",
+      "rows": 24
+    },
+    "palette_pairs": {
+      "path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+      "sha256": "483b7db48ffdb6119d67694a1fbff6d0b878228bacb8a58147b701a927e12814",
+      "asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+      "paired_u8_sha256": "2b3039b02a423dbfb26e77c1578df243f6592a98083aa034297fae73129d7e30",
+      "rows": 47
+    },
+    "working_space": "linear_srgb_d65",
+    "pair_semantics": "author-rendered reference/display-film proxy pairs; not RAW or calibrated film response"
+  },
+  "development_disclosure": {
+    "post_exploratory_contract": true,
+    "same_exact_71_rows_seen_in_prior_AO4C_AO5_AO9_work": true,
+    "small_K2_K3_K4_smoothness_probe_seen_before_freeze": true,
+    "claim_as_untouched_confirmation_forbidden": true
+  },
+  "candidate": {
+    "family": "stationary_boundary_vanishing_cube_diffeomorphic_flow",
+    "axis_size": 3,
+    "integration_steps": 8,
+    "coefficient_vector_norm_cap": 2.0,
+    "optimization_steps": 150,
+    "learning_rate": 0.05,
+    "coefficient_l2": 0.001,
+    "velocity_smoothness_l2": 0.01,
+    "gradient_clip_norm": 2.0,
+    "seed": 27101,
+    "device": "cpu",
+    "optimization_dtype": "float64",
+    "deterministic_algorithms": true
+  },
+  "controls": {
+    "identity": true,
+    "full_affine_fit_on_same_training_rows": true,
+    "bounded_one_matrix_fit_on_same_training_rows": true,
+    "one_matrix_fit": {
+      "identity_mixture": 0.25,
+      "restart_count": 3,
+      "loss": "linear",
+      "loss_scale": 0.01,
+      "maximum_function_evaluations": 4000,
+      "function_tolerance": 1e-11,
+      "parameter_tolerance": 1e-11,
+      "gradient_tolerance": 1e-11,
+      "seed": 20260728
+    }
+  },
+  "evaluation": {
+    "directions": [
+      {
+        "fit": "velvia_chart",
+        "score": "velvia_palette"
+      },
+      {
+        "fit": "velvia_palette",
+        "score": "velvia_chart"
+      },
+      {
+        "fit": "combined",
+        "score": "combined"
+      }
+    ],
+    "jacobian_axis_count": 7,
+    "jacobian_step": 0.0001,
+    "inverse_axis_count": 9
+  },
+  "automatic_gates": {
+    "minimum_cross_direction_flow_gain_over_one_matrix_each": 0.05,
+    "minimum_combined_flow_gain_over_one_matrix": 0.05,
+    "minimum_cross_direction_flow_gain_over_full_affine_each": 0.1,
+    "minimum_jacobian_determinant": 0.01,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_roundtrip_error": 0.0001,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "repeat_report_byte_identity": true
+  },
+  "branch_rule": {
+    "automatic_pass": "retain one development-only shared explicit flow challenger and freeze a separately designed photographic severe/style comparison",
+    "automatic_fail": "close this flow-on-display-proxy family without capacity, domain routing, threshold or photograph rescue"
+  },
+  "forbidden": [
+    "fit separate chart and palette experts for product routing",
+    "increase flow capacity after cross-domain result",
+    "tune on photographs",
+    "hard clipping or projection",
+    "stock response, calibration or product claim"
+  ],
+  "claim_ceiling": "Post-exploratory development comparison of one fixed bounded explicit flow against simple controls on two reused author-rendered Velvia display-proxy domains; not untouched confirmation, RAW, stock response, calibration or product evidence."
+}
