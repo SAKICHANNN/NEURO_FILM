@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p8ar_native_fastpath_phases_decision.v1",
+  "node": "U6.P8AR",
+  "contract": "configs/u6_p8ar_native_fastpath_phases_v1.json",
+  "contract_sha256": "4710e490e6d28959fd021599c5ec9cd49e5b482fe7107012f8c4d17599c09ebe",
+  "formal_report": "outputs/u6_p8ar_native_fastpath_phases_v1/report.json",
+  "formal_report_sha256": "e515c91f8025deb6427776789b1f68fb3ae5d1f805629cc2350afcb5e5d9bbdd",
+  "stable_evidence_id": "f77402bd3ee089322f1b9cfb0ac355233ba779b5f71f01f76bcfec8aaa7c56bb",
+  "result": {
+    "status": "pass-attribution",
+    "output_repeat_and_v1_exact": true,
+    "dominant_phase_repeat_exact": true,
+    "dominant_phase": "ao6_native_display_v2_seconds",
+    "minimum_dominant_phase_share": 0.5169926305409392,
+    "dominant_phase_share_gate": 0.35,
+    "phase_median_seconds": {
+      "ao6_native_display_v2_seconds": 14.14654999996128,
+      "physical_native_core_seconds": 6.433471000127611,
+      "context_native_update_v2_seconds": 4.043077649999759,
+      "gauge_native_seconds": 0.90247564992751,
+      "context_source_and_oetf_seconds": 0.7922018498211401,
+      "display_input_oetf_seconds": 0.7280795500410022,
+      "hash_sink_seconds": 0.09408405001158826,
+      "physical_source_provider_seconds": 0.06525784985569771
+    }
+  },
+  "decision": "optimize AO6 display v2 again. It remains the repeat-stable dominant phase above 51 percent; use its caller-owned scratch to remove redundant base computation and final OETF computation while preserving final-output failure atomicity and the frozen v1 hash",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP deterministic phase attribution for the native Standard physical plus exact-output AO6 v2 display chain",
+  "next_leaf": "U6.P8AS add an exact-output AO6 display v3 single-compute scratch path, prove v1/v2/v3 parity, then rerun the unchanged 12MP resource gate"
+}
