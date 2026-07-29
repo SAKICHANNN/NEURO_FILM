@@ -1,0 +1,98 @@
+{
+  "schema": "neuro_film.u6_p2g_reversal_photographic_stress.v1",
+  "node": "U6.P2G",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2f_contract_path": "configs/u6_p2f_generic_reversal_development_v1.json",
+    "p2f_contract_sha256": "16aeb2234f91191e7da757a869fae69e874fe99eac07169585931ef2004a30a7",
+    "p2f_decision_path": "configs/u6_p2f_generic_reversal_development_decision_v1.json",
+    "p2f_decision_sha256": "1db0c84e31432811ff6e372322e006832a06ed2fb4675305bac797e8a4085ffa",
+    "reversal_operator_sha256": "b14c6a8c2c77144bbc57a9d76e3295e3d34a8082ac8e11d95bbb1183127b5431",
+    "scanner_contract_path": "configs/u6_p6a_scanner_profile_boundary_v1.json",
+    "scanner_profile": "scanner_a"
+  },
+  "input": {
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "preflight_report": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+    "preflight_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de",
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "domain_use": "severe-artifact stress only; decoded display-sRGB is EOTF-linearized on the fixed x1 reference gauge, not scene/layer or slide-film truth"
+  },
+  "pipeline": {
+    "pseudo_exposure_scale": 1.0,
+    "pixel_pitch_um": 1.0,
+    "scanner_stages": [
+      "spectral",
+      "flare",
+      "dmax",
+      "mtf",
+      "noise"
+    ],
+    "noise_ablation_stage": "noise"
+  },
+  "automatic_gates": {
+    "all_input_hashes_exact": true,
+    "all_outputs_finite_and_bounded": true,
+    "exact_route_replay": true,
+    "minimum_population_median_mean_abs_change": 0.05,
+    "maximum_new_boundary_fraction": 0.0,
+    "isolated_noise_threshold": 0.01,
+    "isolated_noise_radius_pixels": 2,
+    "isolated_noise_minimum_support": 3,
+    "maximum_isolated_noise_count": 0,
+    "near_black_threshold": 0.02,
+    "near_white_threshold": 0.98,
+    "maximum_per_image_near_black_fraction": 0.10,
+    "maximum_per_image_near_white_fraction": 0.10,
+    "maximum_population_median_near_black_fraction": 0.05,
+    "maximum_population_median_near_white_fraction": 0.05,
+    "minimum_per_image_luma_p95_minus_p05": 0.10
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "columns": [
+      "source display approximation",
+      "generic reversal direct scan"
+    ],
+    "severe_vetoes": [
+      "global near-white or near-black tonal collapse",
+      "loss of photographic luma range",
+      "secondary bright or dark contours",
+      "objectionable red or cyan fringe",
+      "isolated bright or dark speckles",
+      "banding, posterization or hard clipping",
+      "geometry or content corruption"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "forbidden": [
+    "fit reversal, exposure scale or scanner parameters to these photographs",
+    "call the generic mirrored operator measured slide-film sensitometry",
+    "treat display-derived exposure as scene/layer truth",
+    "change thresholds after viewing outputs",
+    "visually rescue an automatic failure",
+    "promote to stock, calibrated or product rendering"
+  ],
+  "branch_rules": {
+    "automatic_pass": "open fixed autonomous visual severe review",
+    "automatic_fail": "close the generic reversal photographic branch without visual rescue or retuning",
+    "visual_pass": "retain only as generic direct-slide photographic development evidence",
+    "visual_fail": "close the visually failing generic reversal branch without parameter rescue"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic reversal direct-slide photographic severe-artifact stress on display-derived reference-gauge exposure; no scene/layer truth, preference, stock, process, scanner, calibration, authenticity or product claim"
+}
