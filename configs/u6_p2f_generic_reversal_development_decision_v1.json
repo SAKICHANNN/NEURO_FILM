@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2f-generic-reversal-development-v1",
+  "node": "U6.P2F",
+  "decision": "retain_generic_reversal_primitive_for_photographic_stress",
+  "software_commit": "5ba81ec",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2f_generic_reversal_development_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2f_generic_reversal_development_v1/run_b/report.json",
+    "report_sha256": "0e8484c1b767dc8ff0a4b87d2a52b32aff40e4256896a60a7502416a70c63d8c",
+    "stable_evidence_id": "6ba7bd6175ecac8b3e434eb64b4495b1ef295a8977ef8dbb055d148d68e74dd4",
+    "operator_sha256": "b14c6a8c2c77144bbc57a9d76e3295e3d34a8082ac8e11d95bbb1183127b5431",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": true,
+    "density_endpoint_change": [
+      -1.8376800412957355,
+      -1.7636690205618712,
+      -1.6472037731138127
+    ],
+    "direct_transmittance_endpoint_increase": [
+      0.702174519251776,
+      0.7100359692899101,
+      0.6346083400773957
+    ],
+    "inverse_roundtrip_max_abs": 3.907985046680551e-14,
+    "partition_replay_serialization_exact": true,
+    "domain_identity_route_guards_pass": true
+  },
+  "interpretation": "Endpoint density mirroring supplies the missing decreasing-density polarity while remaining exactly invertible and explicitly generic. It is a structural reversal-development hypothesis derived from a frozen negative curve family, not measured slide-film sensitometry.",
+  "next_leaf": "U6.P2G fixed 18-image reference-gauge direct-slide photographic severe-artifact stress",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic synthetic reversal-development primitive; no measured emulsion, stock, process, scanner, calibration, authenticity or product claim"
+}

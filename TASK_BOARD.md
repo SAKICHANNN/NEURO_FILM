@@ -292,5 +292,8 @@ Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent
 photo luma ranges to 8.3%-12.4% of source range and violates the frozen
 per-image range gate. Visual rescue and negative-route retuning are forbidden.
-U6.P2F now opens only a separately typed generic reversal-development
-primitive, beginning with synthetic polarity/partition evidence.
+U6.P2F now passes only as a separately typed generic reversal-development
+primitive: decreasing density, direct-transmittance polarity, inverse,
+partition and serialization are exact. U6.P2G is ready to apply that frozen
+operator to the 18-image CC0 population under automatic dark/white/range/noise
+gates and then, only if eligible, fixed visual severe review.

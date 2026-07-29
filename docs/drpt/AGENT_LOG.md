@@ -6818,3 +6818,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close P2E without retuning. U6.P2F may now test a separately typed generic
   reversal-development primitive on synthetic polarity/partition controls;
   it must not reuse negative sensitometry or make a stock/calibration claim.
+
+## 2026-07-29 - U6.P2F generic reversal primitive passes
+
+- Added a distinct typed operator `Drev(E)=Dneg(0)+Dneg(16)-Dneg(E)`.
+  The negative curve family is only a frozen shape template; the new operator
+  owns a separate identity and binds only to unknown-process direct slide.
+- Two 16,384-sample reports are exact at `0e8484c1...c63d8c`. Density falls
+  by 1.65-1.84 across the neutral ramp, direct transmittance rises by
+  `.635-.710`, inverse error is `3.91e-14`, and replay, partition,
+  serialization, input and fail-closed guards all pass.
+- Retain only as a generic synthetic reversal hypothesis. U6.P2G may now run
+  the unchanged operator on the fixed CC0 photographs; no photo fitting,
+  stock response, calibration or product integration is opened.
