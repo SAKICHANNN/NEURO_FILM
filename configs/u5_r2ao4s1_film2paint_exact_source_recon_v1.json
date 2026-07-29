@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4s1-film2paint-exact-source-recon-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4S1",
+  "parent": "U5.R2AO4S",
+  "question": "Does the independent FILM2PAINT controlled reversal-film study expose reusable measurement-level chart correspondences that can legally and scientifically extend the current display-proxy operator evidence?",
+  "official_sources": [
+    {
+      "kind": "publication",
+      "title": "FILM2PAINT: Transforming Photographic Documentation on Reversal Film into Paintings' Accurate Colors",
+      "doi": "10.2352/issn.2168-3204.2024.21.1.4",
+      "url": "https://library.imaging.org/archiving/articles/21/1/4",
+      "publisher": "Society for Imaging Science and Technology"
+    },
+    {
+      "kind": "official_article_pdf",
+      "url": "https://library.imaging.org/admin/apis/public/api/ist/website/downloadArticle/archiving/21/1/4",
+      "publisher": "Society for Imaging Science and Technology"
+    }
+  ],
+  "bounded_recon": {
+    "maximum_official_documents": 4,
+    "maximum_total_bytes": 10000000,
+    "maximum_bytes_per_document": 5000000,
+    "allowed_media_types": [
+      "application/pdf",
+      "application/json",
+      "text/html",
+      "text/plain"
+    ],
+    "official_or_author_repository_only": true,
+    "search_for_repository_relations": true,
+    "download_dataset_payloads": false,
+    "contact_authors": false
+  },
+  "eligibility_gate": {
+    "exact_stock_label": true,
+    "same_target_or_scene_correspondence": true,
+    "measurement_level_values_or_raw_scans": true,
+    "input_reference_semantics_documented": true,
+    "exposure_process_scanner_lineage_documented": true,
+    "immutable_manifest_or_equivalent_identity": true,
+    "explicit_reusable_data_rights": true,
+    "independent_of_balica_2026_figure_proxy": true
+  },
+  "allowed_decisions": [
+    "eligible_for_separate_bounded_acquisition_contract",
+    "publication_only",
+    "rights_blocked",
+    "scanner_nuisance_only",
+    "figure_proxy_only",
+    "unidentified"
+  ],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "pixel_payload_acquisition_allowed": false,
+  "production_integration_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "bounded official-source availability and rights reconnaissance; no retained chart pairs, fitting, training, stock response, calibration or product evidence"
+}
