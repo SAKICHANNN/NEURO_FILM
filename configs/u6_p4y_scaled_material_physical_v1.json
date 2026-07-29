@@ -1,0 +1,102 @@
+{
+  "schema": "neuro_film.u6_p4y_scaled_material_physical_contract.v1",
+  "node": "ULT > U6 > U6.P4Y",
+  "parents": {
+    "p4x_decision": {
+      "path": "configs/u6_p4x_global_material_amplitude_decision_v1.json",
+      "sha256": "007d99e50f10f36d8c88090e09cc1109e3176396b4fbca8a59a8f2db9c49eb99",
+      "required_decision": "retain_global_transmittance_proxy_amplitude_candidate"
+    },
+    "p4x_report": {
+      "path": "outputs/experiments/u6_p4x_global_material_amplitude_v1/report_a.json",
+      "sha256": "ec3ea44ecf085246c616b563d3e154516387cfc4f2c73dbf771227896d4d25fa"
+    },
+    "p4t_contract": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+      "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+    },
+    "p4r_report": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_nps_v1/report.json",
+      "sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889"
+    },
+    "p4r_analysis": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "p4s_contract": {
+      "path": "configs/u6_p4s_generic_grain_shaping_v1.json",
+      "sha256": "1b243f241313eb844e8f9e2ae5b958fa6cb8a536e6859dd3507fa3ba0f841f79"
+    },
+    "p4d_contract": {
+      "path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+      "sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab"
+    }
+  },
+  "question": "Does the fixed P4X 0.125 shared mark-amplitude scale preserve P4T held ACF shape, density/transmittance means, density conditioning, repeat and row partitions while remaining free of severe synthetic salt, band, seam, ring and colour-block failures?",
+  "candidate": {
+    "family": "density-conditioned-positive-poisson-shared-anisotropic-gaussian",
+    "source_amplitude_scale": 0.125,
+    "sigma_yx_pixels": [0.9, 0.65],
+    "grain_optical_density_by_rgb_layer": [0.005, 0.00625, 0.004375],
+    "layer_seeds": [261301, 261303, 261307],
+    "maximum_target_density": 2.0,
+    "truncate": 4.0,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false,
+    "signed_density_allowed": false
+  },
+  "evaluation": {
+    "shape": [384, 512],
+    "flat_density_levels": [0.0, 0.1, 0.3, 0.8, 1.2],
+    "ramp_maximum_density": 1.8,
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 8,
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "acf_baseline_seeds": [261401, 261403, 261407, 261419],
+    "acf_candidate_seeds": [261401, 261403, 261407, 261419],
+    "diagnostic_density_patterns": [
+      "flat-0.3",
+      "flat-0.8",
+      "flat-1.2",
+      "horizontal-ramp-0-to-1.8",
+      "hard-step-0.1-to-1.2",
+      "small-highlight-island-1.8-on-0.3"
+    ]
+  },
+  "automatic_gates": {
+    "minimum_held_acf_median_error_improvement_fraction": 0.1,
+    "maximum_held_acf_worst_error_ratio": 1.0,
+    "maximum_flat_mean_absolute_error": 0.02,
+    "minimum_density_variance_high_to_low_ratio": 2.0,
+    "minimum_ramp_target_output_correlation": 0.995,
+    "maximum_ramp_mean_absolute_error": 0.03,
+    "minimum_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "zero_density_exact": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "visual_gate": {
+    "required_after_automatic_pass": true,
+    "confirmed_salt_like_points_maximum": 0,
+    "confirmed_banding_or_seam_count_maximum": 0,
+    "confirmed_ring_or_colour_block_count_maximum": 0
+  },
+  "execution": {
+    "runs": 2,
+    "photographic_render_allowed": false,
+    "post_result_retuning_allowed": false,
+    "production_integration_allowed": false
+  },
+  "branch_rule": {
+    "automatic_fail": "close the scaled material candidate and retain P4X proxy evidence only",
+    "automatic_pass_visual_fail": "reject the scaled material candidate without weakening severe gates",
+    "complete_pass": "retain exact P4X scale as a synthetic-safe generic material candidate and open a separately frozen photographic stress retry"
+  },
+  "claim_ceiling": "Generic same-scanner proxy-scaled physical-domain and synthetic severe evidence; not optical-density/emulsion/stock/process/scanner calibration, photographic preference or product promotion."
+}
