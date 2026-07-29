@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p8au_native_display_v3_phases_decision.v1",
+  "node": "U6.P8AU",
+  "contract": "configs/u6_p8au_native_display_v3_phases_v1.json",
+  "contract_sha256": "e600d6b72a2923b7f252d71d16e4dd6c3224f45f442b9ac0fb1ab64c89662234",
+  "formal_report": "outputs/u6_p8au_native_display_v3_phases_v1/report.json",
+  "formal_report_sha256": "1fbb3911542b0a427a1ca43ffffc9dc37fc6e8ac1edba640adae4dd8d991ba67",
+  "stable_evidence_id": "fe3d5f58bebe1e3bc3281737e68482d8c51820c8ec98628ab4fe037d74e9b7d0",
+  "result": {
+    "status": "pass-attribution",
+    "output_repeat_and_v1_exact": true,
+    "dominant_phase_repeat_exact": true,
+    "dominant_phase": "ao6_native_display_v3_seconds",
+    "minimum_dominant_phase_share": 0.401176969899075,
+    "dominant_phase_share_gate": 0.35,
+    "phase_median_seconds": {
+      "ao6_native_display_v3_seconds": 8.35405630004243,
+      "physical_native_core_seconds": 6.121351650115685,
+      "context_native_update_v2_seconds": 3.839724350182223,
+      "gauge_native_seconds": 0.8442866999539547,
+      "context_source_and_oetf_seconds": 0.7753097500972217,
+      "display_input_oetf_seconds": 0.7039490499446401,
+      "hash_sink_seconds": 0.08883595003862865,
+      "physical_source_provider_seconds": 0.06479884989676066
+    }
+  },
+  "decision": "AO6 display v3 remains the repeat-stable dominant phase above 40 percent. Its residual v1 still evaluates every pixel twice for destination failure atomicity even though display already supplies expendable scratch; optimize that exact redundancy next",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP deterministic phase attribution for the native Standard physical plus exact-output AO6 display v3 chain",
+  "next_leaf": "U6.P8AV add a single-compute residual scratch ABI and AO6 display v4, prove exact parity and rerun the unchanged 12MP resource gate"
+}
