@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p4h_two_cumulant_lod_decision.v1",
+  "node": "U6.P4H",
+  "decision": "retain_two_cumulant_normalized_support_open_nonstationarity_stress",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4h_two_cumulant_lod_v1.json",
+      "sha256": "e4b7aca1234e5748addbf428907f4639d8b45255ed7d580174a65d7b6df536fa"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4h_two_cumulant_lod_v1/report_a.json",
+      "sha256": "40ec012b48b75fc70125a02cc25b05201075ca1a3c4953188df84df39de800e7",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "397cff1185bf9c2b70838ed2febd317776c4b22d5389159a93b34462d27c1836"
+    },
+    "software_commit": "fa2911f"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "single_cumulant_confirmation_factor_2_maximum_reference_variance_ratio": 1.8643206148119535,
+    "two_cumulant_confirmation_factor_2_reference_variance_ratio_range": [
+      0.9492529914249922,
+      1.0644328363378381
+    ],
+    "two_cumulant_confirmation_factor_4_reference_variance_ratio_range": [
+      0.9413687093503293,
+      1.0586464552892203
+    ],
+    "two_cumulant_confirmation_factor_2_maximum_reference_local_mean_difference": 0.008105663280067787,
+    "two_cumulant_confirmation_factor_4_maximum_reference_local_mean_difference": 0.004377539880638492,
+    "minimum_candidate_target_column_correlation": 0.9998868077534313,
+    "maximum_candidate_target_local_mean_error": 0.015892367060352353,
+    "minimum_display_noise_out_of_domain_fraction": 0.10918511284722222,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": [
+    "The no-fit two-cumulant compiler jointly matches analytic Beer-Lambert mean loss and the area-filtered shot-noise variance coefficient.",
+    "It repairs P4G's independent confirmation variance failure while retaining normalized crop support, strong density conditioning, physical density/transmittance domains and exact row partitions.",
+    "This is synthetic evidence for a resolution-independent generic material-structure compiler. The profile parameters remain hypotheses and no photographic appearance, measured NPS, stock identity or product value has been established.",
+    "The next stress must challenge sharp density transitions, checkerboards, isolated highlights and multiple output resolutions before any photograph is rendered."
+  ],
+  "next_leaf": "U6.P4I freeze edge, checkerboard, isolated-highlight and multi-resolution nonstationarity stress for the retained two-cumulant compiler",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic two-cumulant resolution-independent material-structure evidence; not measured film NPS, dye-cloud calibration, stock response or product evidence"
+}
