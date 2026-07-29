@@ -2,25 +2,26 @@
 
 Date: 2026-07-29
 
-Status: **P1-P166 consumer payload is pinned by the immutable v40 review
+Status: **P1-P168 consumer payload is pinned by the immutable v41 review
 manifest; local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v40 review snapshot
+## Current v41 review snapshot
 
-- payload: `892b929a9a1366fb25670e7705aa18000b181e69`;
-- main: `7994abdcb93d9c69070554e61bf35ff1590c469c`;
+- payload: `45247a42facaa357773451c0e2d18f300fcc575a`;
+- main: `7de95260240a7e3aa0390fdacb71c72fbb0eadd3`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- 570 consumer paths, 783 main paths, zero overlap;
-- merge tree: `829feee0dc05936213b383d0cd90df8049077940`;
-- detached synthetic merge: `6841083db03265e98173881040591655a84cbbb0`;
-- merged non-manifest color-match result: `918 passed, 30 skipped`;
-- merged P159-P166 result: `25 passed`;
-- direct v39/v40 schema/rebuild/tamper result: `8 passed`;
+- 578 consumer paths, 832 main paths, zero overlap;
+- 66 required public exports and 25 contract schemas;
+- merge tree: `937f4af5e855942f978e116e50e27aeb625a1076`;
+- detached synthetic merge: `9f4035f071aa4a87fc82812fd501c1899e2bc099`;
+- merged non-manifest color/reference-match result:
+  `976 passed, 30 skipped`;
+- direct v40/v41 schema/rebuild/tamper result: `9 passed`;
 - prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `bbbd4d8adaf697bca655065b34e9e7fa0e9afb79920edc0b7c964103b442c9b8` /
-  `5a8c913a9b9e44388c583ca2918330a821dc3f864a30a0d1465fe2c7711827d0`.
+  `c85978ef6dfc76309cea33e6f00af5e8c16b9115aa6901ba09176cce9f1a1a35` /
+  `f3b24eb60e6280c511e33e36f5c3a72cef79d17f08cfab6759fed382b32d82f4`.
 
 The synthetic worktree was removed after verification. The main worktree's
 untracked `.codex/`, `tmp/` and active native v2 files remain main-task-owned
@@ -310,7 +311,7 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v40 schema and rebuild its manifest; it transitively
+2. Verify the committed v41 schema and rebuild its manifest; it transitively
    preserves the immutable v1-v38 chain.
 3. Review `c03c321..6b5b815`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.

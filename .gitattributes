@@ -114,3 +114,7 @@ configs/schemas/reference_file_output_metadata_policy_v1.schema.json text eol=lf
 src/color_match/output_metadata_policy.py text eol=lf
 tests/test_color_match_output_metadata_policy.py text eol=lf
 docs/drpt/REFERENCE_COLOR_MATCH_OUTPUT_METADATA_POLICY.md text eol=lf
+configs/reference_match_main_integration_manifest_v41.json text eol=lf
+configs/schemas/reference_match_main_integration_manifest_v41.schema.json text eol=lf
+scripts/build_reference_match_integration_manifest_v41.py text eol=lf
+tests/test_color_match_main_integration_manifest_v41.py text eol=lf

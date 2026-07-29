@@ -14,11 +14,11 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P168; v40 is the latest immutable
-  main-review manifest and binds P1-P166, including local 24 MP,
+- Consumer branch now continues through P169; v41 is the latest immutable
+  main-review manifest and binds P1-P168, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
-- Main Neuro-Film latest bound committed snapshot is `7994abd`; its untracked
+- Main Neuro-Film latest bound committed snapshot is `7de9526`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
 - D-PCT latest stable communicated snapshot is `7dd60f4`; R0DS rejects its
   reference-only supervised shared-LUT prior on the frozen worst-tail gate
@@ -83,9 +83,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; v40 binds P1-P166 payload `892b929`, 570 payload paths, 61 exports, 24 schemas, exact v39 identity and zero overlap against main `7994abd`; manifest/schema SHA-256 are `bbbd4d8a...2c9b8` / `5a8c913a...827d0` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v40, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; v41 binds P1-P168 payload `45247a4`, 578 payload paths, 66 exports, 25 schemas, exact v40 identity and zero overlap against main `7de9526`; manifest/schema SHA-256 are `c85978ef...1a1a35` / `f3b24eb6...2d82f4` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v41, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P166 payload remains zero-overlap against main `7994abd` and merges conflict-free as tree `829feee0...7940`; detached merge `6841083` passes 918 non-manifest color-match tests with 30 platform/data skips plus 25/25 P159-P166 tests; direct v39/v40 rebuild/tamper is 8/8 | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P168 payload remains zero-overlap against main `7de9526` and merges conflict-free as tree `937f4af5...a1076`; detached merge `9f4035f` passes 976 non-manifest color/reference-match tests with 30 platform/data skips; direct v40/v41 rebuild/tamper is 9/9 | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -170,5 +170,5 @@ wall regression. The broader long-term goal is not complete: local exact-wheel
 invocation and Android x86_64 virtual
 SDR-boundary runtime are verified, but no real external candidate is
 product-promoted, producer redistribution rights and Apple/physical-Android
-runtime evidence are absent, and reviewed v40 has not been merged into the
+runtime evidence are absent, and reviewed v41 has not been merged into the
 main project.

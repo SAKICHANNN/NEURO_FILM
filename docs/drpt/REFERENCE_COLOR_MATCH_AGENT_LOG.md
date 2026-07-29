@@ -4146,3 +4146,16 @@
   report SHA-256 `47a3eb06...2278da`.
 - Producer algorithms, RAW/HDR/video rails, FilmFX and main-project AO6 files
   are unchanged.
+
+## 2026-07-29 - Publish P1-P168 integration manifest v41
+
+- P169 binds payload `45247a4`, common base `c03c321` and main stable commit
+  `7de9526`: 578 consumer paths versus 832 main paths, zero overlap, 66 public
+  exports and 25 strict contract schemas.
+- Manifest/schema SHA-256 are `c85978ef...1a1a35` /
+  `f3b24eb6...2d82f4`; v41 exactly supersedes v40.
+- Detached merge tree `937f4af5...a1076` / commit `9f4035f` passes
+  `976 passed, 30 skipped` non-manifest color/reference-match tests. Direct
+  v40/v41 schema/rebuild/tamper passes 9/9.
+- The owned temporary worktree was removed. Main-owned untracked `.codex/`,
+  `tmp/` and P8AU profiling files were excluded and untouched.
