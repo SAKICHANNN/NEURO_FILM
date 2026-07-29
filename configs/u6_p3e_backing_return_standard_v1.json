@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u6_p3e_backing_return_standard_contract.v1",
+  "node": "U6.P3E",
+  "status": "contract_frozen_implementation_ready",
+  "parent_contract": {
+    "path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "canonical_sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12"
+  },
+  "parent_decision": {
+    "path": "configs/u6_p3d_backing_return_reference_decision_v1.json",
+    "report_sha256": "551019d7488c0cb8ca539b122ec7aba7affc251993bc18ca4b355319bc6a79c3",
+    "stable_evidence_id": "bd11e6bccab89f3454ee7d1a4ee2de8ed3ac59126393b46f27819c867493ba0c"
+  },
+  "hypothesis": "the frozen additive backing-return reference can be compiled into a deterministic explicit-float32 separable Standard kernel without changing its profile, physical-domain order, positive returned-energy semantics or full-frame boundary condition",
+  "candidate": {
+    "arithmetic": "explicit-float32",
+    "operator": "direct-plus-positive-two-pass-separable-return",
+    "boundary_mode": "zero-outside-full-frame",
+    "kernel_source": "compile-exact-parent-profile",
+    "hard_clipping": false,
+    "resampling": false,
+    "product_dependency_allowed": false
+  },
+  "witnesses": {
+    "impulse_shape": [
+      513,
+      513,
+      3
+    ],
+    "edge_shape": [
+      512,
+      512,
+      3
+    ],
+    "random_shape": [
+      257,
+      263,
+      3
+    ],
+    "random_seed": 20260730,
+    "partition_rows": [
+      7,
+      64,
+      257
+    ],
+    "exposure_scales": [
+      0.25,
+      1.0,
+      4.0
+    ]
+  },
+  "automatic_gates": {
+    "reference_max_abs_error": 2e-6,
+    "reference_mean_abs_error": 2e-7,
+    "returned_energy_abs_error": 2e-6,
+    "minimum_output": -2e-7,
+    "minimum_direct_retention": 0.9999997,
+    "compiled_kernel_sum_abs_error": 2e-7,
+    "linearity_max_abs_error": 2e-6,
+    "zero_return_identity_exact": true,
+    "repeat_float32_exact": true,
+    "partition_reconstruction_exact": true
+  },
+  "required_controls": [
+    "P3D float64 additive backing-return reference",
+    "zero-return exact identity",
+    "wrong-domain, wrong-scale and non-float32 rejection",
+    "invalid hash, kernel, coupling and energy-profile rejection"
+  ],
+  "allowed_actions": [
+    "compile the frozen P3D profile to direct float32 separable kernels",
+    "evaluate only the frozen synthetic witnesses",
+    "repair implementation defects without changing the parent profile, hypothesis or gates"
+  ],
+  "forbidden_actions": [
+    "fit return fractions, coupling or radii to photographs",
+    "change the P3D profile or completed P1/P3 gates",
+    "hard clip, screen blend, reflect or wrap boundaries",
+    "claim a named stock, camera, pressure plate, process or calibrated anti-halation response",
+    "promote the compiler before a separately frozen photographic severe-artifact stress"
+  ],
+  "branch_rule": {
+    "pass": "retain as the direct separable Standard baseline and open a separately versioned photographic severe-artifact stress",
+    "fail": "close the compiled implementation or repair a demonstrated implementation defect; preserve the P3D float64 reference"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired explicit-float32 Standard compiler for the frozen bounded backing-return reference; no photographic severe-stress, preference, stock, process, camera, pressure-plate, scanner, calibration, authenticity or product claim"
+}
