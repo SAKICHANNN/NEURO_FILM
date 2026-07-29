@@ -1,0 +1,70 @@
+{
+  "schema": "neuro_film.u6_p6j_measured_scanner_characterization_bundle_decision.v1",
+  "node": "U6.P6J",
+  "decision": "retain_exact_research_bundle_close_calibrated_scanner_route_pending_independent_target_data",
+  "automatic_pass": true,
+  "software_commit": "a72df543dc2dcf11ee9603d21a9a5d7b34d5e23e",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6j_measured_scanner_characterization_bundle_v1.json",
+      "sha256": "98ddd7ab0c543614720210af61a11bcda028e5525947cca851e4061536a7ac3c"
+    },
+    "bundle": {
+      "path": "outputs/u6_p6j_measured_scanner_characterization_bundle_v1/bundle_pass1.json",
+      "sha256": "c93cbaf357db25a3fac7a4d4f4cc81d295b63b26a5a8733a442c54ce32fea0f9",
+      "bundle_id": "492e4f4dc51fe62bcddfbdd4b42ac6a5561395781b011118060f84629c3514d3"
+    },
+    "report": {
+      "path": "outputs/u6_p6j_measured_scanner_characterization_bundle_v1/report_pass1.json",
+      "sha256": "8b172d3e8b08894f2e6d4475bba2fbbe2224da807c86368ccdebe4205fd7ad9"
+    },
+    "stable_evidence_id": "e7665ace7cdb36d63d4fa97f407dd638057fd287eed0b8fc0f2ea6ad1aada84b",
+    "repeat_bundle_byte_identical": true,
+    "repeat_report_byte_identical": true
+  },
+  "support": {
+    "entries": 13,
+    "target_sets": [1, 2, 9],
+    "fit_patches_per_entry": 1320,
+    "alignment_cells": 65,
+    "alignment_retry_cells": 4,
+    "scanner_target_graph_connected_across_sets": false
+  },
+  "compiled_development_metrics": {
+    "median_delta_e76": 7.018621484315625,
+    "p95_delta_e76": 23.37526659956801,
+    "maximum_delta_e76": 50.05299332216809,
+    "output_xyz_minimum": 0.00026272450854613813,
+    "output_xyz_maximum": 0.7847611054797365,
+    "maximum_runtime_vs_compiler_reference_abs_error": 0.0,
+    "selected_common_power_counts": {
+      "1.0": 3,
+      "1.875": 2,
+      "2.0": 3,
+      "2.25": 2,
+      "2.375": 3
+    }
+  },
+  "engineering_result": {
+    "runtime_type": "MeasuredScannerCharacterizationBundle",
+    "source_domain": "normalized-unknown-scanner-device-rgb",
+    "output_domain": "normalized-cie-xyz-d50",
+    "wrong_scanner_software_target_or_archive_identity_fails_closed": true,
+    "forward_scanner_profile_type_reused": false,
+    "roundtrip_bundle_identity_exact": true
+  },
+  "branch_action": {
+    "retain": "research-only compiled inverse scanner characterization and exact replay boundary",
+    "close": "further same-target capacity work and calibrated/transferable scanner profile claims",
+    "data_requirement": "the same scanner/software pipeline measured on at least one independently manufactured target set with rights-cleared exact lineage",
+    "next": "return autonomous priority to a distinct explicit film-image-formation or stock/look algorithm leaf while independent-target scanner data remains unavailable"
+  },
+  "forbidden": [
+    "calibrated scanner profile",
+    "scanner population or target-general transfer",
+    "full-resolution scanner-image validation",
+    "film stock response, digital-to-film operator or emulsion physics",
+    "production integration, redistribution or commercial use"
+  ],
+  "claim_ceiling": "exact research bundle for 13 per-device same-target inverse characterization operators; reusable and fail-closed, but not independently target-validated, calibrated, transferable, stock-specific or product-ready"
+}
