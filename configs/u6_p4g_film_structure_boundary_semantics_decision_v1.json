@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p4g_film_structure_boundary_semantics_decision.v1",
+  "node": "U6.P4G",
+  "decision": "close_normalized_support_retain_p4d_base_pitch_only",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4g_film_structure_boundary_semantics_v1.json",
+      "sha256": "6321eb95bf282bf9f60997188b2162a20839e570b05ae9b6cbe502340cb4cd66"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4g_film_structure_boundary_semantics_v1/report_a.json",
+      "sha256": "203094603d73b4395fa412e82fef8d09f07b28bfab7cd3c7129cd6d9f567ccfd",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "ccb00ad876de759e3aefae4fc397b45374022c2d4152e471865f68d1a8673718"
+    },
+    "software_commit": "0644777"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "reference_variance"
+    ],
+    "zero_fill_factor_2_maximum_reference_local_mean_difference": 0.0661433519670791,
+    "normalized_support_confirmation_factor_2_maximum_reference_local_mean_difference": 0.008310982936545974,
+    "normalized_support_confirmation_factor_2_maximum_reference_variance_ratio": 1.8643206148119535,
+    "frozen_maximum_reference_variance_ratio": 1.8,
+    "development_flat_boundary_mean_error": 0.008783008541570103,
+    "confirmation_flat_boundary_mean_error": 0.0057341206527130595,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": [
+    "Normalized support removes the scale-dependent zero-fill mean artifact: the factor-2 confirmation local-mean difference falls from 0.06614 to 0.00831 and flat boundary means remain within 0.009 density units.",
+    "The candidate still exceeds the frozen local variance-ratio ceiling at 1.86432 versus 1.8. A crop-boundary mean repair alone is therefore insufficient for LOD promotion.",
+    "The surviving error is a second-order moment problem. Any successor must predict both the effective transmittance mean and spatial variance/NPS rather than tuning a scalar strength after evaluation.",
+    "P4D base-pitch evidence remains retained. Normalized support is not integrated into photographic or product paths."
+  ],
+  "next_leaf": "U6.P4H freeze an analytic two-cumulant LOD compiler with normalized support and independent development/confirmation seeds",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "negative generic crop-boundary and LOD evidence; not measured film NPS, aperture behavior, stock response or product evidence"
+}
