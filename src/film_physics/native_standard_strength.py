@@ -43,6 +43,10 @@ def apply_native_standard_display_strength(
             "native Standard strength requires finite contiguous float32 "
             "same-shape display-sRGB arrays and strength in [0,1]"
         )
+    if value == 0.0:
+        return np.array(source, copy=True, order="C")
+    if value == 1.0:
+        return np.array(styled, copy=True, order="C")
     output = np.empty_like(source)
     np.subtract(styled, source, out=output)
     output *= np.float32(value)
