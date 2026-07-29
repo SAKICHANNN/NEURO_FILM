@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8bk_native_standard_content_stress_decision.v1",
+  "node": "U6.P8BK",
+  "contract": "configs/u6_p8bk_native_standard_content_stress_v1.json",
+  "contract_sha256": "6b2910a7d23807aa94c303f52d469494bb80dd549dcad3a2502f69ffd46bb088",
+  "formal_report": "outputs/u6_p8bk_native_standard_content_stress_v1/report.json",
+  "formal_report_sha256": "59ca250a8618c051baa5308e6c8788c912b81773535a036f4a9bc873a07530b9",
+  "contact_sheet": "outputs/u6_p8bk_native_standard_content_stress_v1/contact_sheet.png",
+  "contact_sheet_sha256": "e1ba2a17d4f32faaefcb9960e5eb469958b9942cf42758f699a29b0bfd2b0fba",
+  "result": {
+    "status": "pass_limited",
+    "automatic_gate_pass": true,
+    "transactions_verified": 4,
+    "output_code_boundary_fraction": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "autonomous_visual_review": {
+      "reviewed_full_resolution": [
+        "mairi-portrait"
+      ],
+      "reviewed_contact_sheet": [
+        "mairi-portrait",
+        "sony-nex5-people-text",
+        "canon-7d-warm-text",
+        "samsung-snow-highlight"
+      ],
+      "confirmed_severe_artifact_count": 0,
+      "severe_artifact_gate_pass": true,
+      "face_structure_and_fine_detail_preserved": true,
+      "text_and_architecture_preserved_at_sheet_scale": true,
+      "appeal_risk": "the close portrait has very strong orange skin highlights and cyan-dark surroundings; the result is visibly stylized but requires a bounded strength comparison before any opt-in product recommendation"
+    }
+  },
+  "rights_boundary": "the Mairi portrait is CC-BY-NC-SA and remains internal noncommercial evaluation-only; it cannot enter training, released weights, commercial assets or a reusable product fixture",
+  "decision": "the exact native Standard operator remains severe-clean on this bounded face-skin-text-highlight cohort, but its full-strength portrait rendering exposes a material appeal risk. Do not promote or weaken the severe veto; test only a preregistered global convex strength path",
+  "production_default_changed": false,
+  "claim_ceiling": "bounded mixed-rights internal RAW content-stress and autonomous severe-artifact evidence for an opt-in Look Approximation; not population preference, commercial-rights clearance, calibration, stock response or promotion",
+  "next_leaf": "U6.P8BL compare frozen global convex strengths 0.65, 0.80 and 1.00 on the exact P8BK cohort, requiring zero new boundary pixels and no confirmed severe artifact, then retain full strength unless a lower strength clearly improves the portrait without making the wider cohort bland"
+}

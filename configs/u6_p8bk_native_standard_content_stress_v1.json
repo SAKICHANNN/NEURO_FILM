@@ -1,0 +1,91 @@
+{
+  "schema": "neuro_film.u6_p8bk_native_standard_content_stress_contract.v1",
+  "node": "U6.P8BK",
+  "parent_decision": "configs/u6_p8bj_native_standard_raw_ood_decision_v1.json",
+  "parent_decision_sha256": "6afe29694a8e54e71519f99f60d04894c1ed36ec6956f641f7c2ba2818717504",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "prior_cc0_manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+  "prior_cc0_manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+  "prior_visual_review": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/visual_source_review.json",
+  "prior_visual_review_sha256": "ee493ada0dff0e92ab32fba371b738600a26ad3a215285653fd26f93a4e2f73e",
+  "rows": [
+    {
+      "id": "mairi-portrait",
+      "content_stress": [
+        "close_face",
+        "skin",
+        "eyes",
+        "hair",
+        "deep_shadow"
+      ],
+      "path": "data/external/pixls_mairi_v1/mairi.orf",
+      "sha256": "85c076f8e44bea7b4bd48193d758bdcc7a6343d7f161e6d21d6c47c62b5de836",
+      "source_url": "https://pixls.us/articles/an-open-source-portrait-mairi/",
+      "download_url": "https://docs.google.com/uc?export=download&id=0B21lPI7Ov4CVNUk1Y01HQUNPckk",
+      "license": "CC-BY-NC-SA as stated by the source page",
+      "allowed_use": "internal_noncommercial_artifact_and_appearance_evaluation_only"
+    },
+    {
+      "id": "sony-nex5-people-text",
+      "content_stress": [
+        "people",
+        "skin_at_distance",
+        "text_signage",
+        "architecture",
+        "cloud_highlights"
+      ],
+      "path": "data/external/rawpixls_ai1_v1/raw/sony_nex5_12bit.arw",
+      "sha256": "3b085569ac1fec37a1289ed5ea517497692a3ea14cea41953dd6e878abf230a3",
+      "source_url": "https://raw.pixls.us/getfile.php/1457/nice/Sony%20-%20NEX-5%20-%2012bit%2012bit%20compressed%20%283%3A2%29.ARW",
+      "license": "CC0/Public Domain per exact repository row",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    },
+    {
+      "id": "canon-7d-warm-text",
+      "content_stress": [
+        "fine_text",
+        "saturated_objects",
+        "warm_indoor_light",
+        "specular_highlight"
+      ],
+      "path": "data/external/rawpixls_ai1_v1/raw/canon_eos7d_mraw.cr2",
+      "sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "source_url": "https://raw.pixls.us/getfile.php/130/nice/Canon%20-%20EOS%207D%20-%20sRAW1%20%28mRAW%29%20%283%3A2%29.CR2",
+      "license": "CC0/Public Domain per exact repository row",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    },
+    {
+      "id": "samsung-snow-highlight",
+      "content_stress": [
+        "snow",
+        "near_neutral_highlight",
+        "window_reflection",
+        "deep_shadow",
+        "small_text"
+      ],
+      "path": "data/external/rawpixls_ai1_v1/raw/samsung_smg930a.dng",
+      "sha256": "d3eee0353f3621338f349ddc9773796062bb157bfaf468699da726c0073953ff",
+      "source_url": "https://raw.pixls.us/getfile.php/2190/nice/Samsung%20-%20SAMSUNG-SM-G930A%20-%2016bit%20%2816%3A9%29.dng",
+      "license": "CC0/Public Domain per exact repository row",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    }
+  ],
+  "automatic_gate": {
+    "maximum_output_code_boundary_fraction": 0.005,
+    "all_transactions_verified": true,
+    "zero_failures": true
+  },
+  "visual_gate": {
+    "review_only_if_automatic_gate_passes": true,
+    "confirmed_severe_artifacts_allowed": 0,
+    "required_stress_coverage": [
+      "close_face",
+      "skin",
+      "text",
+      "highlight"
+    ]
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "bounded mixed-rights internal RAW content-stress and autonomous severe-artifact evidence for the opt-in native Standard Look Approximation only; the CC-BY-NC-SA portrait is evaluation-only and cannot enter training, release or commercial assets"
+}
