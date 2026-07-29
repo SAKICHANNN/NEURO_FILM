@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p5h_interimage_visible_value_contract.v1",
+  "node": "U6.P5H",
+  "parents": {
+    "p5g_decision_sha256": "8a17825a15fb9f68d848f278ff4a8cdbcaf1f76d305f9562f197b05647be0dcb",
+    "p5f_decision_sha256": "408edbc2d88d960d89e909240603572f2498966d199dd3e588a378b92172f1e3"
+  },
+  "question": "Does the severe-clean P5F mechanism add enough encoded and perceptual edge value over P5C to justify a later runtime-cost audit, without relying on amplified difference views?",
+  "claim_ceiling": "development-only-visible-value-audit-on-frozen-photographic-cohort",
+  "input": {
+    "reuse_p5g_contract": "configs/u6_p5g_interimage_photographic_stress_v1.json",
+    "reuse_p5g_contract_sha256": "eb19b0a9ae553ebc79c319954434fdef572579899387ae38347d0e202aed2d9f",
+    "reuse_exact_18_image_nine_make_cohort": true,
+    "independent_confirmation_claimed": false
+  },
+  "deterministic_metrics": {
+    "quantization": "IEC-61966-2-1 encoded sRGB rounded to uint8 exactly once",
+    "changed_pixel": "any RGB channel differs by at least one encoded code",
+    "strong_colour_edge_mask": "top decile of baseline opponent-gradient magnitude per image",
+    "flat_mask": "bottom quartile of source linear-luma gradient per image",
+    "opponent_gradient": "L2 norm of horizontal and vertical first differences after subtracting per-pixel RGB mean"
+  },
+  "automatic_gates": {
+    "all_p5g_parent_safety_decisions_must_pass": true,
+    "minimum_population_median_changed_pixel_fraction": 0.01,
+    "minimum_images_with_changed_pixel_fraction_at_least_0_005": 12,
+    "minimum_population_median_strong_edge_opponent_gain_fraction": 0.0025,
+    "minimum_images_with_positive_strong_edge_opponent_gain": 12,
+    "minimum_population_median_strong_edge_to_flat_changed_ratio": 2.0,
+    "maximum_encoded_uint8_channel_delta": 4,
+    "repeat_metrics_must_be_exact": true
+  },
+  "blind_visual_protocol": {
+    "enabled_only_after_automatic_pass": true,
+    "round_seeds": [62081, 62082, 62083],
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "crop_size": 384,
+    "crop_selection": "one-to-one crop centred on strongest unamplified candidate-versus-baseline difference",
+    "display": "two unlabeled A/B columns only; no source, difference map, candidate identity or metric",
+    "question": "Which side has the more natural, coherent and useful colour-edge acuity without artifact?",
+    "tie_rule": "tie or no visible difference counts as no candidate preference",
+    "minimum_candidate_preferences_per_round": 6,
+    "all_three_rounds_must_pass": true,
+    "maximum_confirmed_severe_failures": 0,
+    "not_population_preference": true
+  },
+  "forbidden_fallbacks": [
+    "amplify differences or reveal the key during blind judgement",
+    "change crops, thresholds, seeds or tie handling after viewing",
+    "count technical safety as visible value",
+    "retune P5F strength or coupling",
+    "call autonomous choices human or population preference",
+    "open runtime integration if either automatic or visual value gates fail"
+  ],
+  "branch_rule": {
+    "pass": "freeze a separate runtime cost and combined-chain ablation before any integration",
+    "fail": "retain P5F as research-only mechanism evidence and keep P5C as the simpler runtime authority"
+  }
+}

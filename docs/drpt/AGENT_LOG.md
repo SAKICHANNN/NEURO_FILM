@@ -7405,3 +7405,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   difference structure and zero severe failures. Because the effect is weak,
   P5H must prove encoded visibility/edge value relative to runtime cost before
   any integration.
+
+## 2026-07-30 - Freeze U6.P5H visible-value gate
+
+- Deterministic metrics quantify exact sRGB8 changed pixels, strong colour-edge
+  opponent-gradient gain, edge/flat concentration and maximum code delta.
+- Automation must pass before three fixed-seed, unlabeled A/B rounds are
+  exposed. Each uses one-to-one strongest-difference crops without source or
+  amplified differences. Tie/no visible difference counts against P5F.
+- Every round needs at least 6/9 candidate preferences and zero severe
+  failures. Failure retains P5F only as research mechanism evidence and keeps
+  P5C as the simpler runtime authority.

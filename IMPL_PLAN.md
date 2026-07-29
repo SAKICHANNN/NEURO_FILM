@@ -30,6 +30,10 @@ one-to-one worst-difference crop diagnostics.
 Two exact runs pass all gates and visual severe review, but the maximum/P95
 changes are only `.002843/.000157`. Freeze P5H to measure encoded visibility,
 edge benefit and runtime cost; no product integration follows from safety.
+P5H first measures exact sRGB8 changed-pixel coverage, strong-colour-edge
+opponent gain, edge/flat concentration and maximum code jump. Only an
+automatic pass exposes three unlabeled 9-pair one-to-one blind rounds; ties
+count against P5F and every round must reach 6/9 before runtime cost work.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
