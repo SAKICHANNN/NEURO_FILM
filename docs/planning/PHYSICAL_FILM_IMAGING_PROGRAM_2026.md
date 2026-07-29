@@ -112,6 +112,14 @@ metamer lower bound reproduce exactly. No nonlinear RGB compiler opens; keep
 the bounded 3x3 approximation and offline spectral reference as separate
 evidence levels.
 
+P6F then consumes 8,640 exact measured Velvia 100F IT8 target spectra under the
+same synthetic scanner identities. The bounded 3x3 improves joint-held mean by
+9.86% but fails all absolute transfer gates: joint-held mean/p95 are
+`.07098/.20960`, and held-set/held-slide p95 are `.17738/.20979`. This extends
+the information-loss evidence to measured film spectra without calibrating
+either scanner. Before any real scanner operator fit, P6G must audit the
+existing same-target multi-scanner pixel evidence and rights/connectivity.
+
 Current P8 boundary: P8A-P8W compile and validate a hash-bound, artifact-only
 Python canonical profile consumer. The fixed P7 identity remains float-exact
 through forward/reverse partitions and the frozen 32-row oracle. Successive

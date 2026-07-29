@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p6f_measured_slide_spectral_scanner_decision.v1",
+  "node": "U6.P6F",
+  "decision": "close_rgb_scanner_mapping_on_measured_spectra_retain_spectral_reference",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6f_measured_slide_spectral_scanner_v1.json",
+      "sha256": "ebe3d441e338623c55f086850dc79d11b2a107a5bc8c773bf6b2f2c23ac11b41"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6f_measured_slide_spectral_scanner_v1/report.json",
+      "sha256": "c3c81c2b5aa1d5345b93d274d8ecd9a3b2c547115b688dcc62c9bda3b26834d1",
+      "stable_evidence_id": "649e5efda935cb8bacb265d73dcd76fd495ce9cad078813ecb7a88980dace7d7"
+    },
+    "software_commit": "f1aaed0"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "held_set_p95",
+      "held_slide_p95",
+      "joint_mean",
+      "joint_p95"
+    ],
+    "repeat_report_byte_exact": true,
+    "measured_rows": 8640,
+    "wavelength_count": 31,
+    "test_set_count": 6,
+    "slide_count": 5,
+    "transmittance_interval": [
+      0.00002534,
+      0.90840824
+    ],
+    "split_rows": {
+      "development": 3456,
+      "held-set": 1728,
+      "held-slide": 2304,
+      "joint-held": 1152
+    },
+    "joint_held": {
+      "identity_mean_l2": 0.07874652061117467,
+      "matrix_mean_l2": 0.07098372109006906,
+      "matrix_vs_identity_mean_improvement": 0.09857958752788387,
+      "matrix_p95_l2": 0.20959962918373995
+    },
+    "held_set_matrix_p95_l2": 0.17738371670468236,
+    "held_slide_matrix_p95_l2": 0.2097884848289575,
+    "scanner_profile_separation_median_l2": 0.07247290297583345,
+    "spectral_oracle_exact": true,
+    "candidate_bounded_without_hard_clipping": true
+  },
+  "interpretation": [
+    "The experiment consumes exact rights-audited measured Velvia 100F IT8 target transmittance spectra, but the two scanner profiles remain synthetic and therefore identify scanner nuisance mechanics rather than real hardware.",
+    "A development-only bounded 3x3 improves joint-held mean error by 9.86%, yet joint-held mean/p95 remain 0.07098/0.20960 and held-set/held-slide p95 remain 0.17738/0.20979. It fails every absolute transfer gate.",
+    "The failure extends P6D's information-boundary result to measured film spectra. Added RGB, LUT, neural or per-image capacity is forbidden by the frozen P6E/P6F branch."
+  ],
+  "next_leaf": "U6.P6G audit the already acquired same-target multi-scanner ColorReference evidence for exact alignment, rights and scanner-nuisance connectivity before any measured scanner operator fit.",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "real_scanner_operator_fitting_allowed": false,
+  "scanner_calibration_claim_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "measured Velvia 100F manufactured-target spectra under synthetic scanners; not real scanner calibration, camera-to-film transfer, independent rolls or product runtime"
+}

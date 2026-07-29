@@ -65,6 +65,14 @@ confirmation/stress p95 errors are `.20575/.61053`. Close nonlinear RGB
 scanner rescue without retuning or added capacity. Retain the bounded 3x3 as
 the simplest approximation and P6D as the offline spectral reference.
 
+P6F applies those frozen scanner identities to 8,640 exact measured Velvia
+100F IT8 transmittance rows. A development-only bounded 3x3 improves
+joint-held mean L2 by 9.86%, but joint-held mean/p95 remain `.07098/.20960`;
+held-set and held-slide p95 remain `.17738/.20979`. Close RGB scanner mapping
+on measured spectra. P6G next audits the already acquired same-target
+multi-scanner evidence for alignment, rights and nuisance connectivity before
+any measured scanner fit.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

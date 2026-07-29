@@ -7067,3 +7067,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close nonlinear RGB scanner rescue without ridge/feature/capacity retuning.
   Retain bounded 3x3 as the simplest RGB approximation and P6D as the offline
   spectral reference. No measured-scanner, stock, photograph or product claim.
+
+## 2026-07-29 - U6.P6F measured Velvia spectra close RGB mapping
+
+- Reused the exact AQ1 table: 8,640 individually measured Velvia 100F IT8
+  target spectra at 10nm intervals. P6F consumes 400-700nm and partitions by
+  both target set and slide; fitting uses only 3,456 development rows.
+- Two formal reports are byte-exact at `c3c81c2b...834d1`. All inventory,
+  transmittance, bounded-output, scanner-separation and spectral-oracle gates
+  pass.
+- The bounded 3x3 improves joint-held mean by 9.86%, but joint-held mean/p95
+  are `.07098/.20960`; held-set and held-slide p95 are `.17738/.20979`.
+  Every absolute transfer gate fails.
+- Close RGB scanner mapping on measured spectra without LUT/neural/per-image
+  rescue. P6G may audit already acquired same-target multi-scanner evidence;
+  real scanner fitting, calibration, stock and product claims remain closed.
