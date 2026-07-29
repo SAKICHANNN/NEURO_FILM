@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3t-colorreference-calibration-suite-topology-v1",
+  "config_sha256": "b6518b88ba89496512a0f6b0eeef59f92d5b65bdf2ccbf2110a475b985b75df2",
+  "software_commit": "cfc71881d9692e673793ab173203e7d0f569ccea",
+  "report_sha256": "f07c9bb6f09d6b5357e86cb1c28de04488c925866d48f6127c5f7d00bad993fa",
+  "automatic_pass": false,
+  "decision": "close_colorreference_source_topology_v1_contract_mismatch",
+  "failure": {
+    "expected_fold_counts": [266, 277, 257, 327, 313],
+    "observed_fold_counts": [295, 302, 274, 275, 294],
+    "cause": "pre-freeze probe hashed int64 row storage rather than the contract's three uint8 RGB bytes",
+    "maximum_observed_outside_hull_fraction": 0.040145985401459854,
+    "target_fields_read": false,
+    "operator_fit_executed": false
+  },
+  "allowed_repair": "one separately versioned source-only v2 contract using the intended uint8 hash bytes and the prior 5% source-support hull threshold",
+  "aq2_reopened": false,
+  "operator_promotion_allowed": false
+}
