@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4p_constant_rate_poisson_executor_contract.v1",
+  "node": "U6.P4P",
+  "parents": {
+    "p4o_decision": "configs/u6_p4o_stationary_global_live_performance_decision_v1.json",
+    "p4o_decision_sha256": "b12d81bfb8bec642da9b128a3d97a72c6c3ff98305f970257c405f01f3ee7044"
+  },
+  "question": "Can a scalar-CDF/searchsorted executor accelerate bit-constant Poisson rate fields while remaining byte-exact to the existing decomposed counter recurrence?",
+  "candidate": {
+    "activation": "all input rate values must be float64 bit-identical",
+    "algorithm": "reuse exact decomposition count/seeds; build each scalar component CDF with the legacy recurrence order and use left searchsorted on the unchanged counter-uniform field",
+    "general_spatial_rate_path_change_allowed": false,
+    "default_integration_allowed": false,
+    "output_dtype": "uint16",
+    "maximum_rate": 4096.0
+  },
+  "exactness_matrix": {
+    "rate_values": [0.0, 0.1, 1.0, 8.0, 32.0, 64.0, 127.5, 410.0],
+    "decomposition_maxima": [0.0, 1.0, 64.0, 128.0, 1024.0],
+    "shapes": [[1, 1], [17, 19], [257, 263]],
+    "origins": [[0, 0], [11, 7]],
+    "full_shape_padding": [31, 37],
+    "seeds": [0, 260801, 18446744073709551557]
+  },
+  "performance": {
+    "shape": [1024, 1536],
+    "rate_value": 410.0,
+    "decomposition_maximum": 1024.0,
+    "seed": 260801,
+    "interleaved_runs": 3,
+    "maximum_candidate_wall_seconds": 30
+  },
+  "automatic_gates": {
+    "exact_matrix_byte_equal": true,
+    "candidate_repeat_exact": true,
+    "invalid_input_failure_parity": true,
+    "minimum_median_speedup": 2.0,
+    "maximum_candidate_wall_seconds": 30,
+    "maximum_output_count": 65535
+  },
+  "branch_rule": {
+    "pass": "retain the constant-rate executor candidate and open separately versioned integration plus a repeated 24MP P4O audit",
+    "fail": "close this optimization without changing the legacy sampler and retain P4O scale-up failure"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "synthetic exact-semantics Poisson executor evidence; not film fidelity, measured grain, stock calibration, photographic evidence or product runtime"
+}
