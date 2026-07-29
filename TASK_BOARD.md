@@ -298,10 +298,12 @@ gate. U6.P4S's label-blind shared anisotropic Poisson candidate (`.90/.65px`)
 then improves held median NPS distance by 85.45% over P4D and passes exact
 repeat/partition gates. U6.P4T also improves held ACF median error by 17.66%,
 preserves density/transmittance semantics and has zero confirmed severe
-failures on six fixed synthetic diagnostics. U6.P4U may replace only the P4D
-material kernel in a separate photographic stress path; it must not reopen the
-closed P8BP full-native challenger. Stock-specific fitting and calibration
-remain forbidden.
+failures on six fixed synthetic diagnostics. U6.P4U then closes the direct
+photographic integration: two exact 16-image runs reproduce the no-material
+P7F control and add zero boundary, but P4T's worst median luma drift is
+`.05322 > .03`; visual review and retuning are forbidden. U6.P4V may perform
+fixed mechanism attribution only. The closed P8BP challenger, stock-specific
+fitting and calibration remain forbidden.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent

@@ -7177,3 +7177,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   point, banding, seam, ring or colour-block failure. P4U may test only the
   material-kernel replacement photographically; P8BP remains closed and no
   emulsion/stock/calibration claim opens.
+
+## 2026-07-30 - U6.P4U photographic material stress closes
+
+- The frozen executor inserts P4D/P4T after sensitometry and before
+  adjacency/diffusion/interpretation, with one shared analytical
+  residual-direction density bound and no hard clipping.
+- Two 16-image runs are byte-identical at `06f862d4...bad9`; all 16
+  no-material outputs reproduce P7F and P4T adds zero new hard boundary.
+- Automatic promotion closes: P4T worst median encoded-luma drift is
+  `.05322 > .03`; the matched P4D control also misses density mean
+  (`.01790 > .01`). No visual review, retune or renderer integration opens.
+  P4V may only attribute the mechanism before proposing another model.

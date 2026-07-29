@@ -118,9 +118,11 @@ Stock-specific fitting closes. U6.P4S selects one shared `.90/.65px`
 anisotropic Poisson kernel without labels or amplitude fitting; held median
 NPS distance improves 85.45% over P4D. U6.P4T then improves held ACF median
 error 17.66%, preserves density/transmittance/repeat/partition semantics and
-has zero severe failures on six fixed synthetic diagnostics. U6.P4U may
-replace only P4D's material kernel in a separate photographic stress path;
-P8BP stays closed. No emulsion or calibration claim opens. U6.P2D's scale-16 negative
+has zero severe failures on six fixed synthetic diagnostics. U6.P4U's direct
+photographic insertion is repeat-exact and boundary-clean but closes because
+worst median luma drift is `.05322 > .03`; visual rescue and retuning are
+forbidden. P4V is diagnostic-only mechanism attribution before any new
+candidate. P8BP stays closed and no emulsion/calibration claim opens. U6.P2D's scale-16 negative
 route and U6.P2E's unchanged reference-gauge challenger are both closed:
 P2E removes the near-white collapse but the neutral-scan route still violates
 the frozen per-image luma-range gate on three independent photographs. No

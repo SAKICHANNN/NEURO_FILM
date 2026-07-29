@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p4u_photographic_material_stress_decision.v1",
+  "node": "U6.P4U",
+  "software_commit": "399dbc691b85a3594b22409b4900c0eb0825e00e",
+  "contract": {
+    "path": "configs/u6_p4u_photographic_material_stress_v1.json",
+    "sha256": "a617f81b5d4d8aeaa0453906bd9cfdaeb9b295544fe0168871143c083e2c5112"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u6_p4u_photographic_material_stress_v1/run_a/report.json",
+    "run_b": "outputs/experiments/u6_p4u_photographic_material_stress_v1/run_b/report.json",
+    "sha256": "06f862d4a06a54eb83128f7715654b818c631459b2f9bce586f8eaad32d7bad9",
+    "stable_evidence_id": "12e78d01b36cdaa75d2a3aaad1b97bb1c1e3dc65b682f3ec320385109f361edd",
+    "repeat_count": 2,
+    "files_per_run": 65,
+    "bytes_per_run": 214011244,
+    "inventory_sha256": "8c66ff63eded3a9c2b398a25221def3b9b97aff69bd91f2f2b957f917ec58574"
+  },
+  "automatic_result": {
+    "passed": false,
+    "failed_gates": [
+      "material_density_mean",
+      "p4t_tone_drift"
+    ],
+    "no_material_parent_output_exact": true,
+    "repeat_exact": true,
+    "p4t_maximum_new_hard_boundary_fraction": 0.0,
+    "p4t_maximum_style_delta_e76": 26.55322339983398,
+    "p4t_median_to_colour_delta_e76": 9.365413879120041,
+    "p4t_median_to_no_material_delta_e76": 7.82624467156365,
+    "p4t_median_to_p4d_delta_e76": 4.639474312504487,
+    "p4t_maximum_material_channel_mean_density_error": 0.005876985968971793,
+    "p4d_maximum_material_channel_mean_density_error": 0.01790214446757843,
+    "frozen_maximum_material_channel_mean_density_error": 0.01,
+    "p4t_maximum_median_absolute_encoded_luma_drift": 0.05321573880947106,
+    "p4d_maximum_median_absolute_encoded_luma_drift": 0.06402204101774495,
+    "frozen_maximum_median_absolute_encoded_luma_drift": 0.03
+  },
+  "visual_review": {
+    "allowed": false,
+    "reason": "the preregistered automatic gate failed before visual review"
+  },
+  "decision": "close_p4t_photographic_material_integration_retain_p4t_physical_domain_evidence",
+  "interpretation": [
+    "The exact no-material control reproduces every frozen P7F parent output and both P4U runs are byte-identical, so the failure is not chain or execution drift.",
+    "P4T is boundary-clean and materially distinct, and it improves both density-mean error and tone drift over the matched-seed P4D isotropic control, but its worst photographic median luma drift is 0.05322 against the frozen 0.03 gate.",
+    "The current positive-Poisson density replacement plus analytical interpretation-bound scaling therefore changes photographic tone too much even though synthetic flat/ramp means and physical domains pass.",
+    "Do not inspect preference sheets, retune the kernel, weaken thresholds, reopen P8BP or integrate this material path into the product renderer."
+  ],
+  "production_default_changed": false,
+  "stock_or_calibration_claim_opened": false,
+  "next_leaf": "U6.P4V fixed mechanism attribution of raw density mean, Beer-Lambert transmittance expectation, interpretation-bound compression and downstream tone drift; diagnostic only before any new material candidate",
+  "claim_ceiling": "Negative generic physical-inspired photographic material-integration evidence; not preference, stock response, emulsion/process/scanner calibration or product promotion."
+}
