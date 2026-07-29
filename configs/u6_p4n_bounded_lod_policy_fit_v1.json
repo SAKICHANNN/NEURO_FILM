@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p4n_bounded_lod_policy_fit_contract.v1",
+  "node": "U6.P4N",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4m_decision": "configs/u6_p4m_reference_profile_dataset_decision_v1.json",
+    "p4m_decision_sha256": "159f8d763cee6b46bd1b7df6b4d520003ef47a261ffa02130b12149c94b7889d",
+    "dataset_manifest": "outputs/experiments/u6_p4m_reference_profile_dataset_v1/dataset/manifest.json",
+    "dataset_manifest_sha256": "c64fa007fdafeef35f00018892e0ea74e5c674ef28de53d51d5a6c35fc173e45"
+  },
+  "question": "Can a development-only selected hard exact-area fallback threshold preserve group-held-out material-structure statistics better than the global P4H compiler while keeping exact fallback bounded?",
+  "policy": {
+    "family": "hard local-density-range exact-area fallback over P4H two-cumulant global compiler",
+    "threshold_candidates": [0.02, 0.05, 0.1, 0.2, 0.4, 0.8],
+    "selection_split": "development",
+    "sealed_splits": ["confirmation", "stress"],
+    "pixel_size_factor": 4,
+    "boundary_mode": "normalized-support-v1",
+    "per_image_fit_or_normalization_allowed": false,
+    "continuous_or_dense_mixture_allowed": false,
+    "output_clipping_allowed": false,
+    "final_rgb_generation_allowed": false
+  },
+  "metrics": {
+    "block_size": 8,
+    "score_components": {
+      "global_mean_absolute_error_scale": 0.03,
+      "block_mean_absolute_error_scale": 0.04,
+      "variance_log2_absolute_scale": 1.0,
+      "exact_fallback_fraction_scale": 0.5
+    },
+    "score_weights": {
+      "global_mean": 0.2,
+      "block_mean": 0.3,
+      "variance": 0.3,
+      "fallback": 0.2
+    }
+  },
+  "automatic_gates": {
+    "minimum_development_score_improvement_fraction_vs_global_p4h": 0.1,
+    "maximum_confirmation_score_ratio_to_development": 1.5,
+    "maximum_stress_score_ratio_to_development": 2.0,
+    "maximum_sealed_global_mean_absolute_error": 0.05,
+    "maximum_sealed_block_mean_absolute_error": 0.08,
+    "minimum_sealed_variance_ratio": 0.35,
+    "maximum_sealed_variance_ratio": 2.8,
+    "maximum_sealed_exact_fallback_fraction_mean": 0.6,
+    "minimum_exact_control_zero_error_fraction": 1.0,
+    "group_split_overlap_count": 0,
+    "repeat_exact": true,
+    "density_and_transmittance_domain_valid": true
+  },
+  "branch_rule": {
+    "pass": "freeze the selected explicit hard fallback policy and open full-resolution synthetic performance plus artifact-boundary validation",
+    "fail": "close learned threshold routing, retain exact-area reference and stationary P4H only, and do not add router capacity"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "group-held-out synthetic explicit LOD policy evidence; not measured film structure, stock calibration, photographic evidence, preference or product promotion"
+}
