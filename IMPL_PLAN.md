@@ -34,6 +34,9 @@ P5H first measures exact sRGB8 changed-pixel coverage, strong-colour-edge
 opponent gain, edge/flat concentration and maximum code jump. Only an
 automatic pass exposes three unlabeled 9-pair one-to-one blind rounds; ties
 count against P5F and every round must reach 6/9 before runtime cost work.
+Automation passes, but all 27 pre-key choices are ties, so each round scores
+`0/9`. Close P5F runtime and combined-chain integration without retuning;
+retain its explicit mechanism and safety evidence only.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

@@ -7416,3 +7416,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Every round needs at least 6/9 candidate preferences and zero severe
   failures. Failure retains P5F only as research mechanism evidence and keeps
   P5C as the simpler runtime authority.
+
+## 2026-07-30 - U6.P5H closes P5F runtime value
+
+- Two automatic reports, three blind sheets and the withheld key all replay
+  byte-exact. Median changed-pixel coverage is `2.086%`, strong-edge opponent
+  gain `.949%`, edge/flat concentration `2.167`, and max change one sRGB8 code.
+- Before key reveal, all 27 A/B pairs were committed as ties with zero severe
+  failures. Revealed scores are `0/9`, `0/9`, `0/9` versus the frozen `6/9`
+  requirement.
+- Numerical effect and safety are real, but product-visible value is not.
+  Close unchanged P5F runtime/combined integration without strength or matrix
+  rescue. P5C remains the simpler runtime authority.

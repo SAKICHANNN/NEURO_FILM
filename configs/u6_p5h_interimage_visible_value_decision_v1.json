@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p5h_interimage_visible_value_decision.v1",
+  "node": "U6.P5H",
+  "status": "automatic-pass-blind-visible-value-fail-runtime-route-closed",
+  "contract_sha256": "a89c7fd1f9b2fd9fd485ac86848c108eae5c0602186de829bd59e83a2adf8dd4",
+  "software_commit": "791c87238ec0c9a1c40fccdf73d3e7d119500158",
+  "blind_choices_commit": "f88fba48ea3e92a7129c34becb186fc6a177a517",
+  "blind_choices_sha256": "5a99da424b80d7dacaffb013c4c086b83b9ef55c80764839468bba608574897a",
+  "report_sha256": "d35d50418798f72e4aa15f03924449b5e1a63230d90839c19bd5a5437c64bb8b",
+  "stable_evidence_id": "11a54f40f718343361ec60b5485772b3ec99d58f4bc95897b994cdc0685aa7d0",
+  "blind_key_sha256": "79cec572fcbdb60916a0bdfb001f3bf81e71f98bd141febbc04dd165b0889308",
+  "repeat_report_count": 2,
+  "automatic_metrics": {
+    "median_changed_pixel_fraction": 0.02085718817760694,
+    "images_changed_fraction_at_least_0_005": 17,
+    "median_strong_edge_opponent_gain_fraction": 0.009486687277332706,
+    "images_positive_strong_edge_opponent_gain": 18,
+    "median_strong_edge_to_flat_changed_ratio": 2.166733727291927,
+    "maximum_encoded_uint8_channel_delta": 1
+  },
+  "automatic_pass": true,
+  "blind_visual_result": {
+    "round_candidate_preferences": [0, 0, 0],
+    "round_total_pairs": [9, 9, 9],
+    "rounds_passing": 0,
+    "required_candidate_preferences_per_round": 6,
+    "confirmed_severe_failures": 0,
+    "visual_pass": false,
+    "tie_count": 27
+  },
+  "claim_ceiling": "development-only-visible-value-audit-on-frozen-photographic-cohort",
+  "branch_decision": "Close P5F runtime and combined-chain integration. Retain the cross-layer operator only as explicit synthetic and photographic severe-clean research evidence; unchanged P5C remains the simpler runtime authority.",
+  "interpretation": "The mechanism creates exact, edge-concentrated one-code changes and a small measured opponent-gradient gain, but none of 27 unamplified one-to-one blind pairs is reliably distinguishable. Numerical existence and safety do not establish product-visible value.",
+  "forbidden_followups": [
+    "raise P5F strength or retune coupling on this cohort",
+    "use amplified difference views as product-value evidence",
+    "run a runtime-cost or integration leaf for this unchanged candidate",
+    "claim human or population preference"
+  ]
+}
