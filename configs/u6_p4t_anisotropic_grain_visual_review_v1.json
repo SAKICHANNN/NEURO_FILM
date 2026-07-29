@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4t_anisotropic_grain_visual_review.v1",
+  "node": "U6.P4T",
+  "report": {
+    "path": "outputs/experiments/u6_p4t_anisotropic_grain_physical_v1/report.json",
+    "sha256": "494b26d8bf7e79c0289020e75331ac8539e453deb1f35cef52038efa1cb1cd7d"
+  },
+  "contact_sheet": {
+    "path": "outputs/experiments/u6_p4t_anisotropic_grain_physical_v1/diagnostic_contact_sheet.png",
+    "sha256": "c21f442d528f8cbab894af1da266c3798e32682f972625a2f48978046276dbe4"
+  },
+  "reviewed_patterns": [
+    "flat-0.3",
+    "flat-0.8",
+    "flat-1.2",
+    "horizontal-ramp-0-to-1.8",
+    "hard-step-0.1-to-1.2",
+    "small-highlight-island-1.8-on-0.3"
+  ],
+  "findings": {
+    "confirmed_salt_like_bright_point_count": 0,
+    "confirmed_banding_or_seam_count": 0,
+    "confirmed_ring_or_colour_block_count": 0,
+    "confirmed_geometry_failure_count": 0,
+    "structured_anisotropic_texture_visible": true,
+    "interpretation": "The candidate is visibly smoother and directionally correlated relative to P4D, without the frozen U6.2B salt-like bright-point failure. This is an intended scanner-convolved material signature, not proof of emulsion structure."
+  },
+  "confirmed_severe_artifact_count": 0,
+  "passed": true,
+  "claim_ceiling": "Autonomous synthetic diagnostic severe-artifact review for one generic scanner-convolved anisotropic density/transmittance candidate; not photographic preference, emulsion calibration, stock identity or product promotion."
+}

@@ -116,9 +116,11 @@ finds repeat-stable scanner-convolved RGB NPS, but the label effect is only
 `.00364` within-minus-cross similarity against the frozen `.03` minimum.
 Stock-specific fitting closes. U6.P4S selects one shared `.90/.65px`
 anisotropic Poisson kernel without labels or amplitude fitting; held median
-NPS distance improves 85.45% over P4D. U6.P4T must now test held ACF,
-physical-domain composition and severe visual controls before any integration.
-No emulsion or calibration claim opens. U6.P2D's scale-16 negative
+NPS distance improves 85.45% over P4D. U6.P4T then improves held ACF median
+error 17.66%, preserves density/transmittance/repeat/partition semantics and
+has zero severe failures on six fixed synthetic diagnostics. U6.P4U may
+replace only P4D's material kernel in a separate photographic stress path;
+P8BP stays closed. No emulsion or calibration claim opens. U6.P2D's scale-16 negative
 route and U6.P2E's unchanged reference-gauge challenger are both closed:
 P2E removes the near-white collapse but the neutral-scan route still violates
 the frozen per-image luma-range gate on three independent photographs. No

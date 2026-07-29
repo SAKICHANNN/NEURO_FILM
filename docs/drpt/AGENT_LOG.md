@@ -7165,3 +7165,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only as a generic scanner-convolved shaping candidate. P4T must pass
   held ACF, density/transmittance-domain and severe visual controls before any
   renderer integration; no emulsion, stock or calibration claim opens.
+
+## 2026-07-30 - U6.P4T anisotropic physical-domain audit
+
+- Fixed `.90/.65px` shared kernel improves held ACF median error 17.66% and
+  reduces worst error to 28.18% of the isotropic P4D baseline.
+- Flat mean error is `.000114`, variance grows 4.00x from density .3 to 1.2,
+  ramp correlation is `.99941`; zero density, physical domains, repeat and
+  31/127-row partitions all pass in two exact reports.
+- Six fixed flat/ramp/step/highlight diagnostics show no confirmed salt-like
+  point, banding, seam, ring or colour-block failure. P4U may test only the
+  material-kernel replacement photographically; P8BP remains closed and no
+  emulsion/stock/calibration claim opens.

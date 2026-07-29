@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p4t_anisotropic_grain_physical_decision.v1",
+  "node": "U6.P4T",
+  "software_commit": "134e3bdfbbd48e4aea3c6a1bba09eb7096e66bbd",
+  "contract": {
+    "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+    "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+  },
+  "report": {
+    "path": "outputs/experiments/u6_p4t_anisotropic_grain_physical_v1/report.json",
+    "sha256": "494b26d8bf7e79c0289020e75331ac8539e453deb1f35cef52038efa1cb1cd7d",
+    "stable_evidence_id": "9e0b9c320480c2d61b130fe63eed48d3805fe1aaac2bc9eca55111c08acf7313",
+    "repeat_count": 2
+  },
+  "visual_review": {
+    "path": "configs/u6_p4t_anisotropic_grain_visual_review_v1.json",
+    "sha256": "204ad4aa58611d97e52f113881d73eab8902c24cced40d8929861ce682a879bf",
+    "confirmed_severe_artifact_count": 0
+  },
+  "held_acf": {
+    "baseline_median_absolute_error": 0.015239225163657201,
+    "candidate_median_absolute_error": 0.0125483868576414,
+    "median_error_improvement_fraction": 0.17657317069065714,
+    "baseline_maximum_absolute_error": 0.4954559352862029,
+    "candidate_maximum_absolute_error": 0.13961692134857873,
+    "candidate_to_baseline_worst_error_ratio": 0.28179483058958255
+  },
+  "physical_metrics": {
+    "maximum_flat_mean_absolute_error": 0.0001135582769631327,
+    "minimum_high_to_low_variance_ratio": 4.000167276205531,
+    "ramp_minimum_correlation": 0.9994126434977428,
+    "ramp_maximum_mean_absolute_error": 0.005996288515351418,
+    "zero_density_exact": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "physical_domain_valid": true
+  },
+  "result": {
+    "status": "automatic_and_synthetic_severe_pass",
+    "decision": "retain the fixed 0.90x0.65-pixel generic scanner-convolved anisotropic material candidate for bounded photographic integration testing",
+    "reason": "the fixed candidate improves held ACF median error by 17.66%, reduces worst ACF error to 28.18% of P4D, preserves density/transmittance means and domains, repeats and partitions exactly, and shows no confirmed salt-point, banding, seam, ring or colour-block failure on six fixed diagnostics",
+    "production_default_changed": false,
+    "photographic_preference_pass": false,
+    "stock_or_calibration_claim_opened": false
+  },
+  "claim_ceiling": "Generic scanner-convolved anisotropic material-structure development evidence in explicit density/transmittance domains plus synthetic severe review; not photographic preference, emulsion truth, physical grain calibration, stock identity, scanner independence or product promotion.",
+  "next_leaf": "U6.P4U replace only the P4D isotropic material kernel with the fixed P4T kernel inside a separately versioned bounded photographic stress path; compare colour-only, P4D and P4T under severe-artifact-first gates without reopening the closed P8BP full-native challenger"
+}

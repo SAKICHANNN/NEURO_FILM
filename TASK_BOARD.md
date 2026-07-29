@@ -296,9 +296,12 @@ TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
 within-minus-cross similarity is only .00364 against the frozen .03 effect
 gate. U6.P4S's label-blind shared anisotropic Poisson candidate (`.90/.65px`)
 then improves held median NPS distance by 85.45% over P4D and passes exact
-repeat/partition gates. U6.P4T must still test held ACF, physical
-density/transmittance semantics and severe visual controls; stock-specific
-fitting and emulsion calibration remain forbidden.
+repeat/partition gates. U6.P4T also improves held ACF median error by 17.66%,
+preserves density/transmittance semantics and has zero confirmed severe
+failures on six fixed synthetic diagnostics. U6.P4U may replace only the P4D
+material kernel in a separate photographic stress path; it must not reopen the
+closed P8BP full-native challenger. Stock-specific fitting and calibration
+remain forbidden.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent
