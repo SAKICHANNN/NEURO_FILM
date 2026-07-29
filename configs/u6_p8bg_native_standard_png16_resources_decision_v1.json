@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p8bg_native_standard_png16_resources_decision.v1",
+  "node": "U6.P8BG",
+  "contract": "configs/u6_p8bg_native_standard_png16_resources_v1.json",
+  "contract_sha256": "efcded4251463debea290ff16a62692070b54ac3a8c74ee1ec8ac9dbf1c8cdfc",
+  "formal_report": "outputs/u6_p8bg_native_standard_png16_resources_v1/report.json",
+  "formal_report_sha256": "faddd0fcb135eb019722f812f7067233a0c859e22a80e1cf2a05fed636b19f58",
+  "stable_evidence_id": "b074a8f42b1b6c8184caf853cd034e4a632ff471bd9fb09c3097cca2ad6fa201",
+  "result": {
+    "status": "pass",
+    "all_runs_successful": true,
+    "png_repeat_exact_and_each_receipt_verified": true,
+    "path_bound_transaction_ids_distinct": true,
+    "png_output_sha256": "4c86f53c89619ab25028533193d00c66e1dd233a85c02a4035255de794079064",
+    "png_bytes": 7886494,
+    "single_final_quantization": true,
+    "cleanup_pass": true,
+    "peak_process_tree_rss_bytes": [
+      627851264,
+      707067904
+    ],
+    "memory_gate_bytes": 1073741824,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      15.719234299991513,
+      15.410350999998627
+    ],
+    "elapsed_gate_seconds": 30.0,
+    "elapsed_pass": true
+  },
+  "decision": "retain the restart-verified sRGB16 ICC PNG transaction. Two fresh 12MP runs produce byte-identical PNG and raw pixels, each path-bound transaction verifies independently, and the complete runtime plus raw staging plus final encoding chain passes the frozen local desktop resource gates",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP synthetic scene-linear WorkingImage through native Standard to restart-verified sRGB16 ICC PNG resource evidence only; no decoder, mobile, calibration, delivery or production promotion",
+  "next_leaf": "U6.P8BH bind the existing fail-closed WorkingImage decoder to this opt-in transaction, first with deterministic raster and RAW smoke fixtures, while preserving unsupported HDR, alpha and multipage rejection"
+}

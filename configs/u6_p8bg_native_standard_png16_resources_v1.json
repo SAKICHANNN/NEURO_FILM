@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p8bg_native_standard_png16_resources_contract.v1",
+  "node": "U6.P8BG",
+  "parent_decision": "configs/u6_p8bf_native_standard_staging_decision_v1.json",
+  "parent_decision_sha256": "e1ba14ad3190f510bc0b96203ac77214216297079a0f1a5223ba8ec60fc0d2c9",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "implementation": {
+    "output": {
+      "path": "src/film_physics/native_standard_output.py",
+      "sha256": "07ade7e462177622c2cf77b2e63c779cd6b4958ba003acba0a979d06dcd3d755"
+    },
+    "staging": {
+      "path": "src/film_physics/native_standard_staging.py",
+      "sha256": "c15b2016c479b4dece557ef352273a8a9afd87520841d5042b05cf8342188513"
+    },
+    "factory": {
+      "path": "src/film_physics/native_standard_factory.py",
+      "sha256": "dec6e4558c7baf897b1e20079e15839f9b6743a77ade6fffdb036368973f563d"
+    }
+  },
+  "scenario": {
+    "scenario_id": "native-standard-working-image-srgb16-png-12mp",
+    "height": 3000,
+    "width": 4000,
+    "repeats": 2,
+    "timeout_seconds": 120
+  },
+  "execution": {
+    "full_frame_working_image_retained": true,
+    "raw_float32_staging": true,
+    "single_final_quantization": true,
+    "output_format": "PNG",
+    "output_bit_depth": 16,
+    "embedded_srgb_icc": true,
+    "restart_verification": true,
+    "all_owned_outputs_removed_after_verification": true,
+    "decoder_included": false,
+    "fresh_process_per_repeat": true,
+    "compile_outside_measured_worker": true
+  },
+  "monitor_interval_seconds": 0.02,
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 4294967296,
+    "worker_kill_rss_bytes": 1610612736
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_elapsed_seconds": 30.0,
+    "output_repeat": "byte-exact",
+    "cleanup_required": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP synthetic scene-linear WorkingImage through native Standard to restart-verified sRGB16 ICC PNG resource evidence only; no decoder, mobile, calibration, delivery or production promotion"
+}
