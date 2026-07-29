@@ -13,6 +13,7 @@ from src.eval.physical_density_conditioned_structure import (
     profiles_from_contract,
 )
 from src.film_physics.density_conditioned_structure import (
+    compile_density_conditioned_profiles,
     counter_poisson_rate_field,
     render_density_conditioned_structure,
     render_density_conditioned_structure_region,
@@ -36,10 +37,33 @@ def test_variable_rate_poisson_zero_and_domain() -> None:
     )
     assert counts.dtype == np.uint16
     assert counts[0, 0] == 0
-    with pytest.raises(ValueError, match="\\[0, 64\\]"):
+    with pytest.raises(ValueError, match="\\[0, 1024\\]"):
         counter_poisson_rate_field(
-            np.array([[65.0]]), (1, 1), origin_yx=(0, 0), seed=7
+            np.array([[1025.0]]), (1, 1), origin_yx=(0, 0), seed=7
         )
+
+
+def test_large_rate_superposition_and_lod_profile() -> None:
+    rate = np.full((31, 29), 900.0, dtype=np.float64)
+    first = counter_poisson_rate_field(
+        rate, rate.shape, origin_yx=(0, 0), seed=11
+    )
+    second = counter_poisson_rate_field(
+        rate, rate.shape, origin_yx=(0, 0), seed=11
+    )
+    assert np.array_equal(first, second)
+    assert abs(float(np.mean(first)) - 900.0) < 4.0
+    contract = load_contract(CONFIG, CONFIG_SHA256)
+    base = profiles_from_contract(contract)
+    compiled = compile_density_conditioned_profiles(
+        base, pixel_size_factor=4, seed_offset=200
+    )
+    assert compiled[0].grain_optical_density == (
+        base[0].grain_optical_density / 16.0
+    )
+    assert compiled[0].correlation_sigma_pixels == (
+        base[0].correlation_sigma_pixels / 4.0
+    )
 
 
 def test_density_structure_repeat_partition_and_domain() -> None:

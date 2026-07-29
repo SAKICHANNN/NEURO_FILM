@@ -39,7 +39,7 @@ class DensityConditionedLayerProfile:
             or self.correlation_sigma_pixels < 0.0
             or self.maximum_target_density <= 0.0
             or self.truncate <= 0.0
-            or self.maximum_target_density / self.grain_optical_density > 64.0
+            or self.maximum_target_density / self.grain_optical_density > 1024.0
             or not isinstance(self.seed, int)
             or self.seed < 0
             or self.seed >= 2**64
@@ -77,6 +77,7 @@ def counter_poisson_rate_field(
     *,
     origin_yx: tuple[int, int],
     seed: int,
+    maximum_rate: float | None = None,
 ) -> np.ndarray:
     """Sample coordinate-stable Poisson counts for a spatial rate field."""
 
@@ -85,9 +86,39 @@ def counter_poisson_rate_field(
         values.ndim != 2
         or not np.all(np.isfinite(values))
         or np.any(values < 0.0)
-        or np.any(values > 64.0)
+        or np.any(values > 1024.0)
     ):
-        raise ValueError("Poisson rate field must be finite in [0, 64]")
+        raise ValueError("Poisson rate field must be finite in [0, 1024]")
+    observed_maximum = float(np.max(values, initial=0.0))
+    decomposition_maximum = (
+        observed_maximum if maximum_rate is None else float(maximum_rate)
+    )
+    if (
+        not math.isfinite(decomposition_maximum)
+        or decomposition_maximum < observed_maximum
+        or decomposition_maximum > 1024.0
+    ):
+        raise ValueError("Poisson decomposition maximum is invalid")
+    components = max(1, int(math.ceil(decomposition_maximum / 64.0)))
+    if components > 1:
+        component_rate = values / float(components)
+        total = np.zeros(values.shape, dtype=np.uint32)
+        for component in range(components):
+            component_seed = (
+                seed + component * 0x9E3779B97F4A7C15
+            ) % (2**64)
+            total += counter_poisson_rate_field(
+                component_rate,
+                full_shape,
+                origin_yx=origin_yx,
+                seed=component_seed,
+                maximum_rate=decomposition_maximum / float(components),
+            ).astype(np.uint32)
+        if np.any(total > np.iinfo(np.uint16).max):
+            raise RuntimeError("Poisson superposition exceeds uint16")
+        output = total.astype(np.uint16)
+        output.setflags(write=False)
+        return output
     uniform = counter_uniform_region(
         full_shape,
         origin_yx=origin_yx,
@@ -109,6 +140,34 @@ def counter_poisson_rate_field(
         active = uniform > cumulative
     counts.setflags(write=False)
     return counts
+
+
+def compile_density_conditioned_profiles(
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    seed_offset: int = 0,
+) -> tuple[DensityConditionedLayerProfile, ...]:
+    """Compile base-pitch grains to area-mean output pixels."""
+
+    if not isinstance(pixel_size_factor, int) or pixel_size_factor < 1:
+        raise ValueError("pixel_size_factor must be a positive integer")
+    if not isinstance(seed_offset, int):
+        raise ValueError("seed_offset must be an integer")
+    area = float(pixel_size_factor * pixel_size_factor)
+    return tuple(
+        DensityConditionedLayerProfile(
+            layer_id=profile.layer_id,
+            grain_optical_density=profile.grain_optical_density / area,
+            correlation_sigma_pixels=(
+                profile.correlation_sigma_pixels / pixel_size_factor
+            ),
+            seed=(profile.seed + seed_offset) % (2**64),
+            maximum_target_density=profile.maximum_target_density,
+            truncate=profile.truncate,
+        )
+        for profile in profiles
+    )
 
 
 def _render_layer_region(
@@ -139,6 +198,9 @@ def _render_layer_region(
         full_shape,
         origin_yx=(y0, x0),
         seed=profile.seed,
+        maximum_rate=(
+            profile.maximum_target_density / profile.grain_optical_density
+        ),
     ).astype(np.float64)
     if sigma > 0.0:
         counts = gaussian_filter(
@@ -210,11 +272,75 @@ def render_density_conditioned_structure(
     )
 
 
+def render_density_conditioned_structure_area_lod_region(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+) -> DensityConditionedStructureResult:
+    """Area-resolve physical subpixels and average film transmittance."""
+
+    target = np.asarray(target_density, dtype=np.float64)
+    if (
+        target.ndim != 3
+        or not isinstance(pixel_size_factor, int)
+        or pixel_size_factor < 1
+    ):
+        raise ValueError("invalid area-LOD target or pixel factor")
+    factor = pixel_size_factor
+    expanded = np.repeat(
+        np.repeat(target, factor, axis=0), factor, axis=1
+    )
+    origin_y, origin_x = origin_yx
+    height, width = shape
+    high = render_density_conditioned_structure_region(
+        expanded,
+        profiles,
+        origin_yx=(origin_y * factor, origin_x * factor),
+        shape=(height * factor, width * factor),
+    )
+    transmittance = high.transmittance.reshape(
+        height,
+        factor,
+        width,
+        factor,
+        len(profiles),
+    ).mean(axis=(1, 3), dtype=np.float64)
+    density = -np.log(transmittance)
+    return DensityConditionedStructureResult(
+        density=density.astype(np.float32),
+        transmittance=transmittance.astype(np.float32),
+    )
+
+
+def render_density_conditioned_structure_area_lod(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+) -> DensityConditionedStructureResult:
+    target = np.asarray(target_density)
+    if target.ndim != 3:
+        raise ValueError("target density must be HxWxC")
+    return render_density_conditioned_structure_area_lod_region(
+        target,
+        profiles,
+        pixel_size_factor=pixel_size_factor,
+        origin_yx=(0, 0),
+        shape=target.shape[:2],
+    )
+
+
 __all__ = [
     "DENSITY_CONDITIONED_STRUCTURE_SCHEMA",
     "DensityConditionedLayerProfile",
     "DensityConditionedStructureResult",
+    "compile_density_conditioned_profiles",
     "counter_poisson_rate_field",
     "render_density_conditioned_structure",
+    "render_density_conditioned_structure_area_lod",
+    "render_density_conditioned_structure_area_lod_region",
     "render_density_conditioned_structure_region",
 ]

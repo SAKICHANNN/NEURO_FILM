@@ -116,8 +116,11 @@ from .density_conditioned_structure import (
     DENSITY_CONDITIONED_STRUCTURE_SCHEMA,
     DensityConditionedLayerProfile,
     DensityConditionedStructureResult,
+    compile_density_conditioned_profiles,
     counter_poisson_rate_field,
     render_density_conditioned_structure,
+    render_density_conditioned_structure_area_lod,
+    render_density_conditioned_structure_area_lod_region,
     render_density_conditioned_structure_region,
 )
 from .spatial_response import (
@@ -252,6 +255,7 @@ __all__ = [
     "compile_pyramid_scatter_profile",
     "compile_scanner_context",
     "compile_scanner_standard_context",
+    "compile_density_conditioned_profiles",
     "correlated_normal_region",
     "counter_normal_region",
     "counter_poisson_rate_field",
@@ -270,6 +274,8 @@ __all__ = [
     "render_compound_poisson",
     "render_compound_poisson_region",
     "render_density_conditioned_structure",
+    "render_density_conditioned_structure_area_lod",
+    "render_density_conditioned_structure_area_lod_region",
     "render_density_conditioned_structure_region",
     "rescale_compound_poisson_profile",
     "render_marginal",
