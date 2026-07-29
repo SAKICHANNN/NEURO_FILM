@@ -362,4 +362,10 @@ nonnegative affine remains `22.79/30.07`. No larger model or clipping rescue.
 AQ2D attributes this to source support: four of five held recorder grids exceed
 the frozen local-distance or convex-hull gate; slide 4 is 38.54% outside the
 other grids' hull. Reopen only with additional controlled grids or a distinct
-physical evidence source.
+physical evidence source. U5.R2AR0 then tests a distinct safe explicit family
+on the reused 71-pair Velvia proxy: the K3 cube flow is structurally healthy
+and improves chart-to-palette by 34.23%, but regresses palette-to-chart by
+26.64% and one combined fit by 42.66% versus one-matrix. It follows proxy
+support rather than yielding a stronger shared operator, so no capacity,
+domain-router or photo rescue opens; AO6 t15/c35 remains the colour
+development champion.

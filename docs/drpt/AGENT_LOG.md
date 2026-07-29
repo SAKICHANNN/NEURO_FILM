@@ -7233,3 +7233,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   same-scanner proxy-scaled material branch without retuning or a photographic
   retry; retain P4X only as proxy evidence and pivot to a distinct authorized
   algorithm/data leaf.
+
+## 2026-07-30 - U5.R2AR0 cube-flow proxy challenger closes
+
+- Reused the exact 24-row chart and 47-row stable-pigment Velvia display
+  proxies under an explicitly post-exploratory development contract. The
+  candidate is one fixed K3 stationary cube-preserving flow; controls are
+  fit on exactly the same rows.
+- Two reports are byte-identical at `128c4d36...56bb`. Range, inverse and
+  Jacobian gates pass. Chart-to-palette flow RMSE `.02507` beats one-matrix
+  `.03812`, but palette-to-chart `.07440` loses to `.05874`, and combined
+  `.04196` loses to `.02941`.
+- Close the family without more capacity, proxy-domain routing or
+  photographic rendering. The asymmetric result is evidence that nonlinear
+  capacity follows support in one proxy domain rather than identifying a
+  stronger shared film operator. AO6 t15/c35 remains the development colour
+  champion.

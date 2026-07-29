@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2ar0_velvia_proxy_cube_flow_decision.v1",
+  "node": "U5.R2AR0",
+  "software_commit": "089cc703a75b11ca74d9b4d208bcf23bc4986f3f",
+  "contract": {
+    "path": "configs/u5_r2ar0_velvia_proxy_cube_flow_v1.json",
+    "sha256": "1a3753d51d34ea1fadef9e6652313568a50e81e9d5ed59e355d9ee6b89648439"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u5_r2ar0_velvia_proxy_cube_flow_v1/report_a.json",
+    "run_b": "outputs/experiments/u5_r2ar0_velvia_proxy_cube_flow_v1/report_b.json",
+    "sha256": "128c4d36f2e207748cd35872853537fa29dd65345b6236aaebf89f79373856bb",
+    "stable_evidence_id": "198a237ae65188f2507db24ba2b7f29b4af6d8d70a833a2cc386f6127cdd90a5",
+    "repeat_count": 2
+  },
+  "result": {
+    "status": "automatic_fail_asymmetric_cross_domain_and_combined_capacity",
+    "chart_fit_palette_score": {
+      "cube_flow_rgb_rmse": 0.025074923875312793,
+      "one_matrix_rgb_rmse": 0.03812474808493509,
+      "flow_gain_over_one_matrix": 0.3422927328083488
+    },
+    "palette_fit_chart_score": {
+      "cube_flow_rgb_rmse": 0.07439553854260858,
+      "one_matrix_rgb_rmse": 0.05874483911015416,
+      "flow_gain_over_one_matrix": -0.266418287453428
+    },
+    "combined_fit_score": {
+      "cube_flow_rgb_rmse": 0.041956032863151776,
+      "one_matrix_rgb_rmse": 0.029410168766182444,
+      "flow_gain_over_one_matrix": -0.42658252649659434
+    },
+    "all_structural_gates_pass": true,
+    "minimum_jacobian_determinant": 0.08674332809132629,
+    "maximum_jacobian_spectral_norm": 2.691618433113302,
+    "maximum_inverse_roundtrip_error": 1.8563238912694402e-7,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "photographic_render_allowed": false
+  },
+  "decision": "close_flow_on_display_proxy_family_without_rescue",
+  "interpretation": [
+    "The fixed K3 stationary flow is numerically healthy and improves chart-to-palette transfer by 34.23% over the one-matrix control.",
+    "The gain reverses in the opposite direction: palette-to-chart is 26.64% worse than one-matrix, while one combined shared flow is 42.66% worse. Extra bounded nonlinear capacity therefore follows proxy-domain support rather than yielding a stronger shared operator.",
+    "Because the contract is post-exploratory development on reused rows, these results are not untouched confirmation. No capacity increase, chart/palette router, threshold change or photographic frontier is allowed."
+  ],
+  "next_leaf": "Retain AO6 t15/c35 as the current colour development champion and choose a distinct evidence-authorized algorithm or new controlled operator dataset; do not rescue AR0 on these 71 rows.",
+  "claim_ceiling": "Negative post-exploratory development comparison of one fixed bounded explicit flow on two reused author-rendered Velvia display-proxy domains; not untouched confirmation, RAW, stock response, calibration or product evidence."
+}
