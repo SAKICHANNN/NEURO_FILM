@@ -128,7 +128,11 @@ def _support_metrics(
     }
 
 
-def run_audit(config: dict[str, Any]) -> dict[str, Any]:
+def run_audit(
+    config: dict[str, Any],
+    *,
+    config_sha256: str = CONFIG_SHA256,
+) -> dict[str, Any]:
     table = ROOT / config["parent"]["pair_table"]
     grids = load_source_grids(
         table,
@@ -245,7 +249,7 @@ def run_audit(config: dict[str, Any]) -> dict[str, Any]:
         "schema": REPORT_SCHEMA,
         "experiment_id": config["experiment_id"],
         "software_commit": _git_commit(),
-        "config_sha256": CONFIG_SHA256,
+        "config_sha256": config_sha256,
         "pair_table_sha256": config["parent"]["pair_table_sha256"],
         "topology": {
             "suite_rows": int(suite.shape[0]),
