@@ -4570,3 +4570,23 @@
   target, public package/schema/receipt/capability, product admission or
   consumer mapping. R0EP portable writer evidence is separate; P172, P45/P44
   and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EP freestanding TIFF byte writer
+
+- Producer `ff520ae` isolates the R0EO format into a freestanding C ABI with
+  exactly init/write_rows/finish exports, caller-owned 64-byte state and a
+  synchronous byte sink. It uses no libc, heap, filesystem, VLA or full-frame
+  buffer; partially consumed sink bytes explicitly require outer rollback.
+- MSVC and LLVM each execute the exact 3040x2024 stream twice, and all four
+  files reproduce R0EO SHA `01aa36ac...a31b`. Header rejection preserves
+  initial state; second-strip rejection preserves first-64-row progress;
+  wrong order/count/stride causes no sink call; early finish and reserved-state
+  mutation fail closed. Two reports are byte-identical at
+  `208e86f0...a7d0`; stable identity is `4b72e2a5...0f4b7`.
+- NDK r27d Android arm64/x86_64 shared libraries and pinned-Clang macOS/iOS
+  arm64 objects are two-build reproducible with exactly three exports and
+  zero unresolved symbols. The ceiling remains Windows runtime plus Android
+  link/Apple object evidence: no device/JNI/app, native media colour state,
+  public package/schema/receipt/capability, product admission or consumer
+  mapping. R0EQ virtual runtime is separate; P172, P45/P44 and v42 remain
+  unchanged.

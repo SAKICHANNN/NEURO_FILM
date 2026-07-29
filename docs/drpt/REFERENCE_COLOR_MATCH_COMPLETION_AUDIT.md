@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `8961235`; R0EE independently
+- D-PCT latest stable communicated snapshot is `ff520ae`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -93,6 +93,13 @@ wire contract and not an algorithm promotion.
   final file. The format deliberately carries no ICC, orientation or colour
   transform, so this remains private scene-linear TIFF feasibility rather
   than a product media contract.
+  R0EP isolates that writer as a freestanding three-export C byte-sink ABI
+  with caller-owned 64-byte state and no libc, heap, filesystem, VLA or
+  full-frame storage. Four MSVC/LLVM 3040x2024 runs reproduce the R0EO file
+  hash exactly; Android arm64/x86_64 links and macOS/iOS arm64 objects are
+  reproducible with zero unresolved symbols. This adds Windows runtime and
+  mobile build evidence only, not device/app runtime, colour metadata or a
+  public producer contract.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
