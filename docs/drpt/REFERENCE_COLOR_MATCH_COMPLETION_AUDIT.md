@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `ff520ae`; R0EE independently
+- D-PCT latest stable communicated snapshot is `42f8ffe`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -100,6 +100,13 @@ wire contract and not an algorithm promotion.
   reproducible with zero unresolved symbols. This adds Windows runtime and
   mobile build evidence only, not device/app runtime, colour metadata or a
   public producer contract.
+  R0EQ executes a 71x97, four-strip TIFF state-machine probe eight times over
+  two independent runners and four cold/wiped Android 14 x86_64 virtual-device
+  boots. The 82,836-byte output/FNV and header, third-strip, wrong-order and
+  early-finish failure states exactly match the MSVC/LLVM oracle at stable
+  identity `b1da08a8...e8e6c1`; owned processes and mappings return to zero.
+  This remains private virtual-device state-machine evidence without
+  filesystem publication, JNI/app, physical arm64 or a public capability.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

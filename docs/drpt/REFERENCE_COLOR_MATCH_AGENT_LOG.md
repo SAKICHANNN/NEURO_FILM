@@ -4590,3 +4590,21 @@
   public package/schema/receipt/capability, product admission or consumer
   mapping. R0EQ virtual runtime is separate; P172, P45/P44 and v42 remain
   unchanged.
+
+## 2026-07-29 - Register R0EQ Android TIFF state-machine runtime
+
+- Producer `42f8ffe` freezes a 71x97 RGB float32, four-strip Windows oracle
+  across MSVC/LLVM, then executes two independent Android runners. Each runner
+  performs two Android 14 x86_64 cold/wiped virtual-device boots and two probe
+  processes per boot.
+- All eight executions exactly match the 82,836-byte oracle with FNV-1a64
+  `e0d90b269713690b`. Header rejection, third-strip rejection preserving
+  exactly 64 rows, wrong-order zero-sink behavior and early-finish incomplete
+  state also match field by field. Stable identity is
+  `b1da08a8...e8e6c1`; owned emulator/QEMU and temporary mapping counts
+  return to zero.
+- The ceiling is private Android 14 x86_64 virtual-device TIFF state-machine
+  runtime. It proves no physical arm64, JNI/app, filesystem publication,
+  DDFAPD/RAW quality, Apple runtime, public package/schema/receipt/capability,
+  product admission or consumer mapping. R0ER native executable publication
+  is separate; P172, P45/P44 and v42 remain unchanged.
