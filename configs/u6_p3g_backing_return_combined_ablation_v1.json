@@ -29,6 +29,7 @@
     "input": "sRGB-EOTF-linearized float32 pseudo-exposure",
     "development": "exact frozen U2.2 sensitometry primitive",
     "interpretation": "density-to-direct-scan transmittance",
+    "diagnostic_mapper": "one-minus transmittance then IEC-61966-2-1 OETF; fixed visualization only",
     "variants": [
       "no-spatial",
       "legacy-P1-full-energy-redistribution",
