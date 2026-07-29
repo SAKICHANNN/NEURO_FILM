@@ -781,6 +781,17 @@ metadata rename.
 
 ## Current executable entrypoint
 
+Frontends can discover the complete local product-shell boundary without
+probing a file or duplicating constants:
+
+```powershell
+python scripts/match_reference_color.py --product-capabilities
+```
+
+This additive v1 response composes the existing input rail, output matrix,
+metadata-minimization, batch, recipe and delivery-default contracts. The older
+`--capabilities` response remains unchanged.
+
 ```powershell
 python scripts/match_reference_color.py `
   --reference reference.png `

@@ -4167,3 +4167,22 @@
   norm mismatch is research evidence, not a consumer workaround.
 - No model, package, capability, schema or receipt exists. P45/P44 remain
   closed and v41 is not regenerated for this coordination-only update.
+
+## 2026-07-29 - Publish unified product-shell discovery
+
+- P170 adds an immutable read-only capability payload for future UI/IPC
+  clients. It composes the existing 1--64 batch ceiling, input rails, recipe,
+  output matrix, output metadata policy and current delivery fallback rather
+  than duplicating render behavior.
+- `--product-capabilities` prints that payload without probing files and
+  rejects render arguments. The pre-existing `--capabilities` response remains
+  unchanged.
+- The strict schema prevents a client from being told that the algorithm is
+  promoted, source metadata is copied, input revalidation is optional or the
+  batch limit is larger than the executable contract.
+- Exact identities: schema `f5674487...a4eb0d`; compact sorted payload
+  `8d4341f4...ede33`. Verification: 8 dedicated, 50 focused,
+  1,010 non-manifest color/reference tests with five skips, and 9 v40/v41
+  immutable-manifest tests pass.
+- Scope remains local relative-SDR discovery only. No producer, RAW/HDR/video,
+  target-device or main-integration claim changes.

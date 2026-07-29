@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +20,7 @@ from src.color_match import (  # noqa: E402
     inspect_reference_file_inputs,
     match_reference_files,
     reference_file_output_capabilities_payload,
+    reference_match_product_capabilities_payload,
     replay_reference_files,
 )
 
@@ -46,6 +47,14 @@ def _parser() -> argparse.ArgumentParser:
         "--capabilities",
         action="store_true",
         help="Print the exact supported file-output matrix as JSON and exit.",
+    )
+    mode.add_argument(
+        "--product-capabilities",
+        action="store_true",
+        help=(
+            "Print the unified product-shell discovery contract as JSON and "
+            "exit; this does not inspect files or authorize rendering."
+        ),
     )
     mode.add_argument(
         "--inspect-input",
@@ -117,6 +126,25 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 2
         payload = reference_file_output_capabilities_payload()
+        print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.product_capabilities:
+        render_arguments = (
+            args.source,
+            args.output,
+            args.recipe,
+            args.report,
+            args.bit_depth,
+            args.allow_research_baseline,
+        )
+        if any(value not in (None, False) for value in render_arguments):
+            print(
+                "reference match failed: --product-capabilities cannot be "
+                "combined with render arguments",
+                file=sys.stderr,
+            )
+            return 2
+        payload = reference_match_product_capabilities_payload()
         print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
         return 0
     if args.inspect_input is not None:

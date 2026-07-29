@@ -590,6 +590,7 @@ from .files import (
     match_reference_files,
     reference_file_output_capabilities,
     reference_file_output_capabilities_payload,
+    reference_file_supported_input_rails,
     resolve_reference_file_output_capability,
     replay_reference_files,
 )
@@ -599,6 +600,11 @@ from .output_metadata_policy import (
     ReferenceFileOutputMetadataAttestation,
     attest_reference_file_output_metadata,
     reference_file_output_metadata_policy_payload,
+)
+from .product_capabilities import (
+    REFERENCE_MATCH_PRODUCT_CAPABILITIES_CLAIM_CEILING,
+    REFERENCE_MATCH_PRODUCT_CAPABILITIES_ID,
+    reference_match_product_capabilities_payload,
 )
 from .evaluation import (
     KnownOperatorBatchMetrics,
@@ -1208,4 +1214,8 @@ __all__ = [
     "ReferenceFileOutputMetadataAttestation",
     "attest_reference_file_output_metadata",
     "reference_file_output_metadata_policy_payload",
+    "REFERENCE_MATCH_PRODUCT_CAPABILITIES_CLAIM_CEILING",
+    "REFERENCE_MATCH_PRODUCT_CAPABILITIES_ID",
+    "reference_match_product_capabilities_payload",
+    "reference_file_supported_input_rails",
 ]

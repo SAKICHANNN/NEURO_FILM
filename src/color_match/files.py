@@ -186,6 +186,18 @@ def inspect_reference_file_inputs(
     }
 
 
+def reference_file_supported_input_rails() -> tuple[dict[str, str], ...]:
+    """Return the decoded colour rails accepted by the render transaction."""
+
+    return tuple(
+        {
+            "working_space": working_space,
+            "transfer_state": transfer_state,
+        }
+        for working_space, transfer_state in sorted(_SUPPORTED_FILE_INPUT_RAILS)
+    )
+
+
 def reference_file_output_capabilities(
 ) -> tuple[FileReferenceOutputCapability, ...]:
     """Return the immutable v1 file-output support matrix."""
@@ -1213,6 +1225,7 @@ __all__ = [
     "inspect_reference_file_input",
     "inspect_reference_file_inputs",
     "match_reference_files",
+    "reference_file_supported_input_rails",
     "reference_file_output_capabilities",
     "reference_file_output_capabilities_payload",
     "resolve_reference_file_output_capability",

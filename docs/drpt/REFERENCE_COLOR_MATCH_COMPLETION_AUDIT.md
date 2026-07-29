@@ -14,7 +14,7 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P169; v41 is the latest immutable
+- Consumer branch now continues through P170; v41 remains the latest immutable
   main-review manifest and binds P1-P168, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
@@ -55,6 +55,7 @@ wire contract and not an algorithm promotion.
 | FilmFX composition | P18 binds local runs; P35 binds exact P34 external verification; P36 atomically renders its procedural branch; P37 restart-verifies report, inputs and outputs | VERIFIED STAGING COMPLETE, DELIVERY OPEN | Bind a real promoted producer invocation before final product delivery; physical halation still requires separately resolved controls / Neuro-Film |
 | SDR colour rail | Local product accepts display-linear relative linear-sRGB/Rec.2020; P27 compatibility is narrow relative sRGB | PARTIAL BY EXPLICIT PROFILE | Add only producer-published compatible rails and versioned trusted bridges / D-PCT rail, Neuro-Film adapter |
 | File input compatibility preflight | P148 hashes and decodes a bounded ordered input batch through the main `WorkingImage` loader, reports the actual rail and accepts only display-linear sRGB/Rec.2020; its claim is explicitly non-authorizing | COMPLETE AS ADVISORY PRODUCT-SHELL CONTRACT | Render still revalidates every input; add rails only after main/producer colour-state support is versioned / Neuro-Film |
+| Unified product-shell discovery | P170 publishes one strict read-only payload for operations, 1--64 ordered sources, accepted decoded rails, recipe semantics, exact existing output/metadata contracts and the current identity-fallback delivery truth. The legacy output-only capability response is unchanged | COMPLETE AS LOCAL UI/IPC DISCOVERY | Re-version rather than mutate when a rail, encoder, metadata policy or promoted algorithm changes / Neuro-Film |
 | SDR JPEG/TIFF transaction matrix | P163 executes JPEG8, TIFF8 and profiled TIFF16 input-to-output file transactions twice at 2048x1536. Every case preserves decoded display-linear sRGB, declared format/depth, exact output/recipe/normalized-report replay and identity fallback under 361 MB peak | EXACT LOCAL WINDOWS/PYTHON MATRIX PASS | Add only separately frozen formats/metadata semantics and obtain target-platform execution; do not infer arbitrary codec, profile, RAW/HDR or product readiness / Neuro-Film |
 | BT.2020 SDR PNG/CICP transaction | P165 executes BT.2020-only and ordered sRGB/BT.2020 mixed 16-bit PNG transactions twice at 2048x1536. Rail/profile order, output/recipe/report replay, identity fallback and <=515 MB peak all pass | EXACT LOCAL RELATIVE-SDR WINDOWS/PYTHON PASS | Keep absolute HDR/PQ/HLG and arbitrary profile conversion unmapped; obtain target-platform/media evidence separately / Neuro-Film |
 | Advertised output capability truth | P166 executes all nine tuples exposed by `reference-file-output-capabilities.v1` twice, including `.jpeg`/`.tif` aliases. Public inventory, format/depth/profile, artifacts, fallback and cleanup all match exactly | COMPLETE AS LOCAL EXECUTABLE V1 ADVERTISEMENT | Re-version the capability contract for any new output tuple and obtain target-platform evidence separately / Neuro-Film |
