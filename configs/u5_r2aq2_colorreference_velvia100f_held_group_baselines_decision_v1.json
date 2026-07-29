@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq2-colorreference-velvia100f-held-group-baselines-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ2",
+  "config_sha256": "596ba1379aa9689dd0c02f4b359fd2a9513a59e19af503939d7bb33ab4da34f2",
+  "software_commit": "75839dee1f4d7b4217db51199c65186b7c76cbb0",
+  "report_path": "outputs/experiments/u5_r2aq2_colorreference_velvia100f_held_group_baselines_v1/report.json",
+  "report_sha256": "be080bbb1aed922efe60854dae34029b2aa4d9b28ddd135d8c945f1847f56d48",
+  "repeat_exact": true,
+  "automatic_pass": false,
+  "champion": null,
+  "decision": "close_recorder_proxy_operator_identifiability",
+  "target_xyz_lab_consistency": {
+    "median_deltae76": 0.026491993745085735,
+    "p95_deltae76": 0.15763628059908558,
+    "maximum_deltae76": 0.4264041203968063,
+    "passed": true
+  },
+  "joint_holdout_results": {
+    "identity_mean_deltae76": 106.90808961664796,
+    "nonnegative_affine_mean_deltae76": 22.78575621430178,
+    "nonnegative_affine_worst_fold_mean_deltae76": 30.0659398358121,
+    "quadratic_mean_deltae76": 13.718637494083142,
+    "quadratic_worst_fold_mean_deltae76": 17.707498418162285,
+    "quadratic_raw_negative_xyz_component_fraction": 0.03287037037037037,
+    "quadratic_improvement_over_full_affine": 0.6780621892275753
+  },
+  "failure_attribution": {
+    "held_target_set_quadratic_mean_deltae76": 11.412297911996754,
+    "held_source_slide_quadratic_mean_deltae76": 13.717031209420988,
+    "held_source_slide_4_quadratic_mean_deltae76": 17.517186397936992,
+    "held_source_slide_4_raw_negative_xyz_component_fraction": 0.0787037037037037,
+    "interpretation": "target-set repeatability is strong, but generalization to an unseen recorder grid is not accurate or bounded enough; slide 4 is the dominant cross-set failure"
+  },
+  "closed_actions": [
+    "AQ3 iterative nonlinear capacity on this unchanged pool",
+    "threshold relaxation, output clipping or target-space retuning",
+    "photo rendering",
+    "camera-to-film, stock-response or calibration claims",
+    "training or product integration"
+  ],
+  "allowed_follow_up": [
+    "read-only source-support and OOD diagnosis that cannot promote an operator",
+    "search for additional rights-cleared controlled recorder or camera paired measurements",
+    "continue a distinct physical-image-formation or explicit-operator leaf"
+  ],
+  "claim_ceiling": "negative held-recorder-grid identifiability evidence for an internal manufactured-target Velvia 100F proxy"
+}

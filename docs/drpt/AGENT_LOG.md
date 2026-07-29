@@ -6978,3 +6978,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - AQ2 may now preregister complete held-target-set explicit proxy baselines.
   The source remains recorder RGB and the result is not camera/roll/process,
   stock calibration or photo-transfer evidence.
+
+## 2026-07-29 - U5.R2AQ2 closes held recorder-grid operator identification
+
+- Two formal reports are exact at `be080bb...6d48`. Thirty joint folds exclude
+  both one whole target set and one whole source slide from every fit.
+- Target XYZ/Lab consistency passes. Quadratic is directionally strongest at
+  `13.72/17.71` mean/worst-fold Delta E76, but 3.29% of raw XYZ components are
+  negative; nonnegative affine stays bounded but is `22.79/30.07`.
+- Held-set-only quadratic is `11.41`, while held-slide-only is `13.72`; slide
+  4 is worst across all six target sets at `17.52` and 7.87% negative XYZ.
+  Unseen recorder-grid generalization, not target-set measurement noise,
+  controls the failure.
+- AQ3 capacity rescue, clipping, target-space retuning and photo transfer are
+  closed on this pool. Continue with a distinct evidence source or physical
+  explicit-operator leaf; Ultimate remains active.

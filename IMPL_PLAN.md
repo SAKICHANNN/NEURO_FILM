@@ -82,6 +82,13 @@ structure Spearman is `.99990`, and leave-set consensus RMSE is `.890`. AQ2 is
 next: preregister complete held-target-set folds and compare the simplest
 explicit recorder-to-measured-slide proxy baselines. No camera, independent
 roll/process, stock-response, calibration or photo-transfer claim opens.
+AQ2 uses the stronger joint held-target-set/held-source-slide design and
+closes: quadratic improves strongly over affine but reaches `13.72/17.71`
+mean/worst Delta E76 with 3.29% negative raw XYZ; the strictly nonnegative
+affine is bounded but only `22.79/30.07`. Held-slide results explain the joint
+failure, especially slide 4. No clipping, target-space retune, larger LUT or
+photo rescue is allowed on this five-grid pool. Continue with a distinct
+evidence source or physical/explicit operator leaf.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

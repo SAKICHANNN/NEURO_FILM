@@ -332,4 +332,7 @@ slides, but all sets share production date 2005:05 and are not independent
 rolls/processes. U5.R2AQ1 passes all frozen gates on the exact 8,640-row table:
 median/p95/max repeated-set radius `.553/1.280/2.855` Delta E76 and held-set
 consensus RMSE `.890`. U5.R2AQ2 is ready to freeze complete target-set holdout
-baselines; the claim remains recorder-to-measured-slide proxy only.
+baselines; the claim remains recorder-to-measured-slide proxy only. AQ2 then
+closes on joint held-set/held-grid evidence: quadratic reaches `13.72/17.71`
+mean/worst-fold Delta E76 but produces 3.29% negative XYZ, while the bounded
+nonnegative affine remains `22.79/30.07`. No larger model or clipping rescue.
