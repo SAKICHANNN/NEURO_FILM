@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8ap_native_ao6_fastpath_contract.v1",
+  "node": "U6.P8AP",
+  "parent_decision": "configs/u6_p8ao_native_end_to_end_phases_decision_v1.json",
+  "parent_decision_sha256": "44f188c3b8e290f3b611d79b4241e116c0ad2b315e84d6622185fb2957c8bee5",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "native_sources": {
+    "context": {
+      "source_sha256": "9f16e1294e0e8d8b106e332a75c309b08f2ab2e1493203d4104e30324e7c1bb4",
+      "header_sha256": "79631ac81792830b9c008366bcd05eea8868f963459d99e962bc654cbf7f946f"
+    },
+    "display": {
+      "sources": {
+        "native/film_physics/nf_ao6_base_f32_v2.c": "969b37a4add0813d567ffeee0dd1b90427e18b22e6a912ac542d3ff3cfce02db",
+        "native/film_physics/nf_ao6_residual_f32_v1.c": "3d3be4e6afb40227e903aac4b01d80563fbe06f1d79622db6210c3476d41cd31",
+        "native/film_physics/nf_ao6_display_f32_v2.c": "c2b03c18362926c0de56ca145ee98603e5e1f5a6b815dfaa99f3505b8b888369"
+      },
+      "headers": {
+        "native/film_physics/nf_ao6_base_f32_v2.h": "3d9792f0057e61b2234c41e56ac3d0da51634bf0bd5cc43e4929efe17992a624",
+        "native/film_physics/nf_ao6_context_f32_v2.h": "79631ac81792830b9c008366bcd05eea8868f963459d99e962bc654cbf7f946f",
+        "native/film_physics/nf_ao6_display_f32_v2.h": "5b32143f0ef70e48a46288f10eecff527ae754198e9e5f79136fc903c7591fe8"
+      }
+    }
+  },
+  "oracle": {
+    "height": 71,
+    "width": 97,
+    "seed": 20260729
+  },
+  "tile_rows": [
+    1,
+    7,
+    32,
+    71
+  ],
+  "gates": {
+    "context_v1_v2": "byte-exact",
+    "base_v1_v2": "byte-exact",
+    "display_v1_v2": "byte-exact",
+    "partition": "byte-exact",
+    "independent_build": "byte-exact",
+    "invalid_input": "state-and-final-output-unchanged"
+  },
+  "claim_ceiling": "versioned local Windows x64 AO6 exact-output fast-path conformance; not a product promotion, stock response, calibration or renderer latency result"
+}

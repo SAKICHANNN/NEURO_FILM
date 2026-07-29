@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8ap_native_ao6_fastpath_decision.v1",
+  "node": "U6.P8AP",
+  "contract": "configs/u6_p8ap_native_ao6_fastpath_v1.json",
+  "contract_sha256": "be22cdd6ea3981c2fc43de89a25d7244c008f921f294cf6c51dd11df1ac5827b",
+  "formal_report": "outputs/u6_p8ap_native_ao6_fastpath_v1/report.json",
+  "formal_report_sha256": "7f04a35d8836cdd4ff8b2ae420564f263ff8985b5c141e918f02622ba47612c2",
+  "stable_evidence_id": "c11bedeef6a9695b9fbee6837d41108a1a0607e484790f4d66b2b4ab84c07bc0",
+  "result": {
+    "status": "pass",
+    "context_v1_v2_byte_exact": true,
+    "base_v1_v2_byte_exact": true,
+    "display_v1_v2_byte_exact": true,
+    "partition_byte_exact": true,
+    "independent_build_byte_exact": true,
+    "invalid_input_state_and_final_output_unchanged": true
+  },
+  "decision": "retain the separately versioned native AO6 v2 fast paths. They remove redundant Lab conversion and in-gamut search work while remaining byte-exact to the frozen v1 context, base and complete display outputs",
+  "production_default_changed": false,
+  "claim_ceiling": "versioned local Windows x64 AO6 exact-output fast-path conformance; not a product promotion, stock response, calibration or renderer latency result",
+  "next_leaf": "U6.P8AQ rerun the frozen 12MP native Standard physical plus AO6 resource gates using only the exact-output v2 fast paths"
+}
