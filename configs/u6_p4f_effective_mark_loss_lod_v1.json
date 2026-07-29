@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p4f_effective_mark_loss_lod_contract.v1",
+  "node": "U6.P4F",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4e_contract": "configs/u6_p4e_density_conditioned_lod_audit_v1.json",
+    "p4e_contract_sha256": "93f1ea71bf9a6ee9db873b76dff3f7ab99d0f75b0698c6f47af5c7540ba02488",
+    "p4e_decision": "configs/u6_p4e_density_conditioned_lod_decision_v1.json",
+    "p4e_decision_sha256": "8847056bcd30d05b6738665c1b08f7e3e63ba87a6896a4208b523b3336a78b16"
+  },
+  "question": "Can a separately versioned analytic effective-mark-loss compiler remove P4E's Beer-Lambert area-mean bias while retaining local variance, deterministic partitions and the physical-domain controls?",
+  "compiler": {
+    "base_gaussian_kernel": "the normalized discrete separable Gaussian kernel with the profile sigma and truncate",
+    "compiled_gaussian_kernel": "the normalized discrete separable Gaussian kernel with sigma/factor and the unchanged truncate",
+    "effective_mark_loss": "sum_j(1-exp(-grain_optical_density*kernel_weight_j))",
+    "compiled_grain_optical_density": "base_grain_optical_density/factor^2",
+    "compiled_count_rate_density": "base_grain_optical_density*compiled_effective_mark_loss/base_effective_mark_loss",
+    "expected_count_rate": "target_density/compiled_count_rate_density",
+    "derivation": "For independent Poisson arrivals, -log(E[transmittance]) equals rate times effective_mark_loss. The ratio maps the compiled field to the base-pitch area-reference expectation without per-image fitting.",
+    "per_image_fit_or_normalization_allowed": false,
+    "empirical_parameter_fit_allowed": false
+  },
+  "synthetic_scene": {
+    "coarse_shape_at_factor_4": [96, 128],
+    "maximum_target_density": 2.0,
+    "horizontal_density_ramp": true,
+    "vertical_density_modulation": [0.65, 1.0],
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "density_bins": [0.0, 0.25, 0.5, 0.8, 1.2, 1.6, 2.000001],
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 2000
+  },
+  "lod_factors": [2, 4],
+  "automatic_gates": {
+    "minimum_candidate_target_column_correlation": 0.98,
+    "maximum_candidate_local_mean_absolute_error": 0.04,
+    "minimum_direct_to_area_reference_variance_ratio": 0.55,
+    "maximum_direct_to_area_reference_variance_ratio": 1.8,
+    "maximum_direct_to_area_reference_local_mean_difference": 0.03,
+    "maximum_constant_rate_target_column_correlation": 0.5,
+    "minimum_display_noise_out_of_domain_fraction": 0.001,
+    "density_and_transmittance_domain_valid": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "analytic_identity_repeat_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the effective-mark-loss compiler and open a separately frozen synthetic edge/nonstationarity stress before any photograph or product use",
+    "fail": "close analytic effective-mark-loss LOD and retain P4D base-pitch evidence only"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic analytic physical-inspired LOD evidence; not measured film NPS, dye-cloud calibration, stock response or product evidence"
+}
