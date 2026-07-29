@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3h-fft-backing-return-compiler-v1",
+  "node": "U6.P3H",
+  "decision": "retain_functional_fft_challenger_open_fresh_process_benchmark",
+  "software_commit": "0046f30",
+  "contract": {
+    "path": "configs/u6_p3h_fft_backing_return_compiler_v1.json",
+    "canonical_sha256": "9c17e3d9e90b042ab71151cad258370ca9405405cc3d0282b92b022454a3d590"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3h_fft_backing_return_compiler_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3h_fft_backing_return_compiler_v1/run_b/report.json",
+    "report_sha256": "2c9c35f12f267c6a340579d0b1cea100032398e671c81a670ed9800401193d5d",
+    "stable_evidence_id": "70782aed57f3ca43c0ba9c2213beafe8b0407a17f406ef4d6516e538fce1b310",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "direct_compiler_max_abs_error": 2.384185791015625e-7,
+    "direct_compiler_mean_abs_error": 2.4979944089625716e-9,
+    "float64_reference_max_abs_error": 3.2195342081209333e-7,
+    "returned_energy_abs_error": 1.6564578841915534e-7,
+    "partition_max_abs_error": 2.384185791015625e-7,
+    "partition_mean_abs_error": 1.6756778433959754e-9,
+    "minimum_raw_returned_value": -2.7006171876564622e-7,
+    "repeat_float32_exact": true,
+    "zero_return_identity_exact": true
+  },
+  "automatic_pass": true,
+  "interpretation": "The fixed FFT implementation is functionally equivalent to the P3D/P3E references within all frozen gates, including tolerance-close row halos and exact same-shape replay. This is not yet a runtime or memory result.",
+  "next_leaf": "U6.P3I fresh-process direct-versus-FFT 1/12/24MP runtime and process-tree RSS benchmark",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired functional FFT compiler challenger for the isolated backing-return reference; no combined-chain, photographic, performance, calibration, authenticity or product claim"
+}
