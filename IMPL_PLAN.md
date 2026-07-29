@@ -111,9 +111,12 @@ RAWs. Two automatic runs are exact and all severe/boundary gates pass, but
 native Standard wins only one of three blind rounds against AO6 and 5/12
 pairwise choices. The frozen preference gate closes the current physical
 product challenger without retuning or routing; AO6 remains the simpler
-colour champion. U6.P4R next tests an exact CC0 uniform-film TIFF source for
-repeat-stable scanner-convolved RGB/IR NPS and ACF, without an emulsion or
-calibration claim. U6.P2D's scale-16 negative
+colour champion. U6.P4R then acquires eight exact CC0 uniform-film TIFFs and
+finds repeat-stable scanner-convolved RGB NPS, but the label effect is only
+`.00364` within-minus-cross similarity against the frozen `.03` minimum.
+Stock-specific fitting closes; U6.P4S may compare one label-blind generic NPS
+target with P4Q and the simplest bounded explicit shaping candidate. No
+emulsion or calibration claim opens. U6.P2D's scale-16 negative
 route and U6.P2E's unchanged reference-gauge challenger are both closed:
 P2E removes the near-white collapse but the neutral-scan route still violates
 the frozen per-image luma-range gate on three independent photographs. No

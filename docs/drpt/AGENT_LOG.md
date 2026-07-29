@@ -7140,3 +7140,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Keep AO6 colour-only t15/c35 and close this full native Standard product
   challenger without threshold changes, retuning or a content router. Next:
   U6.P4R bounded real uniform-film scanner-convolved NPS/ACF feasibility.
+
+## 2026-07-30 - U6.P4R real uniform-film NPS feasibility
+
+- Acquired the exact eight-file CC0 set: 1,303,713,928 bytes, four Ektar100
+  and four UltraMax400 scans from one uploader/Nikon Coolscan V ED. All are
+  single-page uncompressed uint16 RGBA; alpha is treated only as IR nuisance.
+- Two full analyses are byte-exact at `01791c96...c889`. Combined RGB
+  crop/within-label similarities are `.99464/.99766`; LOOCV is 100% with exact
+  p `.02857`, but within-minus-cross similarity is only `.00364 < .03`.
+- Close stock-associated fitting. Retain only one label-blind,
+  scanner-convolved generic NPS/ACF candidate for P4S baseline comparison;
+  physical grain size, emulsion, process, scanner-independent and product
+  claims remain forbidden.

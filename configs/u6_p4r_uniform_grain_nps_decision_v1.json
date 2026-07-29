@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4r_uniform_grain_nps_decision.v1",
+  "node": "U6.P4R",
+  "software_commit": "43bbc60c2e38494852e7d5d49af290cae7649e92",
+  "source_contract_sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a",
+  "analysis_contract_sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d",
+  "acquisition_manifest_sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929",
+  "preflight_report_sha256": "3460dbf66784336a19098e279889724741fb5ae8d0cfcd0b7c73e5f9efffb7ee",
+  "visual_review_sha256": "e3a4edbb557749834e943caf027572e044cfcb557c7e1e0c364e83a942ccab2d",
+  "analysis_report_sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889",
+  "stable_evidence_id": "34c1fd72b1981ebb96e7963442e7eae934a7d4e4df184c4615926edc4fc977cd",
+  "repeat_count": 2,
+  "source_count": 8,
+  "total_bytes": 1303713928,
+  "primary_combined_rgb_nps": {
+    "median_crop_to_scan_similarity": 0.9946425216188515,
+    "median_within_stock_similarity": 0.9976601295438503,
+    "median_cross_stock_similarity": 0.9940244509626175,
+    "within_minus_cross_similarity": 0.003635678581232815,
+    "leave_one_scan_out_balanced_accuracy": 1.0,
+    "exact_permutation_p_value": 0.02857142857142857,
+    "repeatability_pass": true,
+    "stock_association_pass": false
+  },
+  "result": {
+    "status": "repeatable_generic_signature_only",
+    "decision": "retain one generic scanner-convolved RGB NPS/ACF signature candidate and reject stock-associated profile fitting on this source",
+    "reason": "fixed-crop and within-label shapes are highly repeatable and the group-level classifier is statistically non-random, but the preregistered effect-size control fails: within-minus-cross similarity is 0.00364 against the frozen 0.03 minimum. Infrared separation is also weak, and one uploader/scanner plus unknown roll/process/profile prevents emulsion attribution.",
+    "stock_specific_parameter_fitting_allowed": false,
+    "generic_scanner_convolved_baseline_allowed": true,
+    "production_default_changed": false
+  },
+  "forbidden_rescue": [
+    "lower the frozen within-minus-cross effect-size threshold",
+    "select or replace crops after reviewing dust and scratches",
+    "add a classifier or neural capacity to amplify the small label difference",
+    "interpret scanner-code NPS as physical grain size or emulsion identity",
+    "fit separate Ektar100 and UltraMax400 product profiles from these scans"
+  ],
+  "claim_ceiling": "Same-scanner observable code-domain NPS/ACF feasibility and one generic scanner-convolved signature candidate only; not emulsion truth, physical grain size/rate, process response, scanner-independent stock identity or product promotion.",
+  "next_leaf": "U6.P4S freeze a label-blind median generic RGB NPS/ACF target, compare it with the existing P4Q synthetic material baseline, and test the simplest bounded explicit spectral-shaping candidate under held-scan and severe-artifact controls"
+}

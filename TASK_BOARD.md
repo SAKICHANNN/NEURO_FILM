@@ -290,10 +290,13 @@ rounds against AO6 colour-only and 5/12 pairwise choices. The frozen
 preference gate fails, so AO6 remains the simpler colour champion and no
 router/default/product promotion opens.
 
-Current real-grain leaf: U6.P4R may now acquire the exact eight-file CC0
-uniform-film TIFF set and test repeat stability plus scanner-convolved RGB/IR
-NPS and ACF feasibility. It cannot claim emulsion-only structure or
-calibration because roll, process and scanner-profile metadata remain unknown.
+Current real-grain leaf: U6.P4R closes stock association while retaining one
+generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
+TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
+within-minus-cross similarity is only .00364 against the frozen .03 effect
+gate. U6.P4S may compare a label-blind median target with the existing P4Q
+synthetic material baseline; stock-specific fitting and emulsion calibration
+remain forbidden.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent
