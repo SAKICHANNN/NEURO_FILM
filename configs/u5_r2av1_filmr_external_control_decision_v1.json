@@ -1,0 +1,70 @@
+{
+  "schema_version": "u5-r2av1-filmr-external-control-decision-v1",
+  "experiment_id": "u5.r2av1-filmr-external-control-v1",
+  "software_commit": "dfa238c7c37811a1377b22755e67cd7db81e22dd",
+  "config_sha256": "847e8dd0f0ebb7aada99fc749ea76b258c439d54e1a5ac5d4a818ff151b20999",
+  "formal_report_sha256": "583f665d8149b1588296520fa312de3f323fb7aae43f1d4a0d0ea9608fe84d4d",
+  "formal_report_repeats": 2,
+  "formal_report_byte_exact": true,
+  "render_manifest_sha256": [
+    "83e2d704204472e517ffb15eae0957daded3af4586abd43fe5d111cf85c389ad",
+    "3c8a6df31048ff43153d4d0d103f100d98db66a2f3cc183d383c7f6d37c396d5"
+  ],
+  "preset_receipt": {
+    "exported_preset_sha256": "720396603b1018efc599a236392bc84d932a58f30fefb2609f3edafa2ee86249",
+    "deterministic_preset_sha256": "58ef3ad922377e570eb87d58538aba87743663abd2191100cd4a3fba92b07bdc",
+    "deterministic_preset_canonical_sha256": "a3ba937867cbefc6382d3dc6bee0a72b10592ba8f6a19ced27630123b018346b",
+    "only_changes": [
+      "grain_model.alpha=0",
+      "grain_model.sigma_read=0",
+      "grain_model.shadow_noise=0",
+      "grain_model.highlight_coarseness=0"
+    ]
+  },
+  "population": {
+    "gold": 9,
+    "stress": 32,
+    "total": 41,
+    "render_passes": 2,
+    "exact_output_repeat": true,
+    "exact_exposure_receipt_repeat": true,
+    "distinct_exposure_receipts": [
+      "Exposure time: 1.0000s"
+    ]
+  },
+  "automatic_summary": {
+    "gold_median_style_delta_e76": 15.93836742600318,
+    "gold_median_non_basic_residual_delta_e76": 5.171054535420467,
+    "worst_gold_new_hard_clipping_fraction": 0.02058913308913309,
+    "worst_stress_new_hard_clipping_fraction": 0.029314500308278684
+  },
+  "gate_checks": {
+    "exact_repeat": true,
+    "style": true,
+    "non_basic": true,
+    "gold_clipping": false
+  },
+  "worst_cases": {
+    "gold": {
+      "sample_id": "09",
+      "new_hard_clipping_fraction": 0.02058913308913309
+    },
+    "stress": {
+      "sample_id": "10",
+      "new_hard_clipping_fraction": 0.029314500308278684
+    }
+  },
+  "decision": "close_automatic_gate_failure",
+  "visual_review_allowed": false,
+  "branch_closed_without": [
+    "exposure search",
+    "white-balance search",
+    "matrix or curve tuning",
+    "halation or vignette tuning",
+    "clipping projection or strength rescue",
+    "tracked external code or profile copy",
+    "production integration"
+  ],
+  "retained_evidence": "The independent MIT Filmr equation family can create strong, non-basic, deterministic colour after stochastic grain is disabled, but its Velvia-labelled preset violates the frozen severe-first clipping budget. Parameterized physical-looking code and stock labels are not calibration or safety evidence.",
+  "claim_ceiling": "isolated deterministic generic physical-inspired Filmr control on display-sRGB proxy inputs; no identified digital-to-film operator, measured stock response, calibration, authenticity, training, product integration or licence decision"
+}

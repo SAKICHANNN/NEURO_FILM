@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 - U5.R2AV1 Filmr control is strong but clips
+
+- Pinned Filmr v0.13.2 at exact release/source hashes and ran the official
+  Velvia-labelled preset on 9 gold plus 32 stress inputs. No external code or
+  profile is tracked.
+- The upstream CLI cannot disable its always-enabled random grain. Exporting
+  the official preset and zeroing only its four stochastic amplitudes yields
+  82/82 exact two-pass outputs with all colour/physical parameters unchanged.
+- Two committed-code reports are byte-identical at `583f665d...84d4d`.
+  Style/non-basic `15.9384/5.1711` pass, but worst gold/stress new clipping is
+  `2.0589%/2.9315%`; the gold `0.5%` veto fails.
+- Automatic failure forbids visual review and exposure/WB/matrix/curve/
+  halation/vignette/projection rescue. Retain the useful negative evidence:
+  strong physical-inspired styling and stock labels do not prove safety or
+  calibration. Continue with a distinct bounded operator or controlled source.
+
 ## 2026-07-30 - U5.R2AU0 paired CineStill source is unavailable
 
 - Audited the paper and official repository for the claimed 41-pair

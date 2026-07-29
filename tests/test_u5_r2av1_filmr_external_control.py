@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import json
+from pathlib import Path
 
 import pytest
 
@@ -79,3 +81,22 @@ def test_deterministic_preset_rejects_identity_or_override_drift() -> None:
             expected_identity={"name": "Velvia 50"},
             zero_grain_fields=("alpha",),
         )
+
+
+def test_formal_decision_closes_before_visual_review() -> None:
+    root = Path(__file__).resolve().parents[1]
+    decision = json.loads(
+        (
+            root
+            / "configs/u5_r2av1_filmr_external_control_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["formal_report_byte_exact"] is True
+    assert decision["gate_checks"] == {
+        "exact_repeat": True,
+        "style": True,
+        "non_basic": True,
+        "gold_clipping": False,
+    }
+    assert decision["decision"] == "close_automatic_gate_failure"
+    assert decision["visual_review_allowed"] is False

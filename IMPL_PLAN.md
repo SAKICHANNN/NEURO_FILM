@@ -21,6 +21,13 @@
 > unlicensed example pair is tracked. Close acquisition/fitting until an
 > author-controlled licensed release exists; this does not count against the
 > paired explicit-operator hypothesis.
+>
+> U5.R2AV1 then tests a genuinely separate MIT physical-inspired renderer
+> rather than another spektrafilm derivative. Pinned Filmr is deterministic
+> after only its stochastic grain amplitudes are disabled and is visibly
+> non-basic by metric (`15.94/5.17` style/residual), but worst gold clipping is
+> `2.059%` against the frozen `0.5%` veto. Close without visual review,
+> projection or parameter search; its preset is not a measured stock profile.
 
 U6.P3L also closes the unchanged split backing-return topology on genuine
 RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard
