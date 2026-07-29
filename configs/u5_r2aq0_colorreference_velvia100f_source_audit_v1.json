@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq0-colorreference-velvia100f-source-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ0",
+  "question": "Does the official ColorReference test-data surface provide stable, parseable and internally research-usable recorder-device-source to measured Velvia 100F slide correspondences with enough independent test-set structure to justify a separately frozen operator-identifiability pilot?",
+  "official_page": {
+    "url": "https://www.colorreference.de/testdata/index.html",
+    "author": "Wolf Faust",
+    "page_last_edited": "2007-03-09",
+    "required_text_facts": [
+      "providing data in order to test and help developing scanner color profiling software",
+      "made available here on this site for free to anybody interested",
+      "RGB values of the images are in the used recorder device space",
+      "The slides were produced on Velvia 100F films",
+      "The colors of the test sets are not 100% identical",
+      "Measurement faults, aging and more do affect the precission of the data"
+    ]
+  },
+  "acquisition": {
+    "output_root": "outputs/source_recon/colorreference_velvia100f_v1",
+    "two_independent_download_passes": true,
+    "expected_total_bytes_per_pass": 3147395,
+    "maximum_total_bytes_per_pass": 8388608,
+    "source_tiffs": [
+      {"slide_index": 1, "url": "https://www.colorreference.de/testdata/slidescale1.tif", "expected_bytes": 88828},
+      {"slide_index": 2, "url": "https://www.colorreference.de/testdata/slidescale2.tif", "expected_bytes": 88284},
+      {"slide_index": 3, "url": "https://www.colorreference.de/testdata/slidescale3.tif", "expected_bytes": 88608},
+      {"slide_index": 4, "url": "https://www.colorreference.de/testdata/slidescale4.tif", "expected_bytes": 94324},
+      {"slide_index": 5, "url": "https://www.colorreference.de/testdata/slidescale5.tif", "expected_bytes": 102112}
+    ],
+    "measured_reference_archives": [
+      {"test_set": 1, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan1.zip", "expected_bytes": 43250},
+      {"test_set": 1, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan1cgt.zip", "expected_bytes": 403508},
+      {"test_set": 2, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan2.zip", "expected_bytes": 43334},
+      {"test_set": 2, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan2cgt.zip", "expected_bytes": 404180},
+      {"test_set": 3, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan3.zip", "expected_bytes": 43308},
+      {"test_set": 3, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan3cgt.zip", "expected_bytes": 403413},
+      {"test_set": 4, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan4.zip", "expected_bytes": 43376},
+      {"test_set": 4, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan4cgt.zip", "expected_bytes": 404473},
+      {"test_set": 5, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan5.zip", "expected_bytes": 43360},
+      {"test_set": 5, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan5cgt.zip", "expected_bytes": 404625},
+      {"test_set": 9, "format": "IT8", "url": "https://www.colorreference.de/testdata/testscan9.zip", "expected_bytes": 43282},
+      {"test_set": 9, "format": "CGATS.5", "url": "https://www.colorreference.de/testdata/testscan9cgt.zip", "expected_bytes": 405130}
+    ]
+  },
+  "integrity_gates": {
+    "all_http_status_200": true,
+    "all_expected_byte_counts_exact": true,
+    "two_pass_file_sha256_identity": true,
+    "zip_member_paths_safe_and_unique": true,
+    "all_source_tiffs_decode": true,
+    "source_tiff_rgb_values_preserved_without_color_conversion": true,
+    "all_reference_text_files_parse": true,
+    "pair_keys_cover_each_test_set_and_slide_index": true,
+    "measurement_field_inventory_reported": true,
+    "duplicate_and_cross_set_identity_reported": true
+  },
+  "epistemic_contract": {
+    "observed_film_stock_id": "Fujifilm Velvia 100F",
+    "source_domain": "unknown-profile film-recorder device RGB, not sRGB and not a digital-camera scene",
+    "target_domain": "measured developed-slide reference values; exact fields determined by audit",
+    "test_set_interpretation": "separate target-set/charge identifier; physical sheet, roll, emulsion batch and process-session identity remain unknown unless files prove otherwise",
+    "scanner_profile_interpretation": "separate downstream nuisance; user scanner scans are excluded from this acquisition",
+    "operator_claim_ceiling_if_integrity_passes": "recorder-device-to-measured-developed-slide paired proxy candidate",
+    "forbidden_claims": [
+      "digital-camera-to-film operator",
+      "calibrated Velvia stock response",
+      "scanner-independent film appearance",
+      "independent-roll validation",
+      "known process or scanner profile"
+    ]
+  },
+  "rights_contract": {
+    "page_permission": "free to anybody interested",
+    "formal_open_data_license_observed": false,
+    "internal_research_download_and_audit_allowed": true,
+    "redistribution_allowed": false,
+    "commercial_training_allowed": false,
+    "public_weight_release_allowed": false,
+    "rights_claim_ceiling": "officially offered free test data for internal research/audit; redistribution and commercial reuse remain unidentified"
+  },
+  "fit_allowed": false,
+  "training_allowed": false,
+  "image_render_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "bounded official-source integrity, semantics, rights and group audit of ColorReference Velvia 100F recorder/measurement test data; no operator fit, stock calibration or product promotion"
+}
