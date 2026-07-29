@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4f-recorder-proxy-factorized-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ4F",
+  "hypothesis": "the direct code-reuse proxy is dominated by basic tone response; preserving less equal-RGB tone while amplifying the measured residual's remaining chroma direction may expose a salient non-basic film-inspired look without new clipping",
+  "parent": {
+    "decision": "configs/u5_r2aq4c_recorder_proxy_code_reuse_frontier_decision_v1.json",
+    "required_decision": "close_code_value_reuse_photo_route_without_visual_review",
+    "bundle": "outputs/experiments/u5_r2aq3p_colorreference_bernstein_bundle_properties_v1/bundle.json",
+    "bundle_sha256": "ee0a187e573c63bd2556d72e0294c776a36931db5495325d3a26485ecb57fea8",
+    "direct_manifest": "outputs/u5_r2aq4c_recorder_proxy_code_reuse_frontier_v1/render_pass1/manifest.json",
+    "direct_manifest_sha256": "7907a9b301f521b16dbc7ecb4320dbc3d4249e029941be6950816504815226b1",
+    "direct_candidate_id": "recorder_proxy_reuse_s100"
+  },
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "factorization": {
+    "input_control_coordinates": "decoded display-sRGB code values reused numerically as unidentified recorder-device normalized RGB",
+    "bundle_output": "measured developed-slide XYZ D50 mapped by fixed Bradford D50-to-D65 and XYZ-to-linear-sRGB",
+    "residual_base": "source decoded to linear-sRGB",
+    "luma_weights": [0.2126, 0.7152, 0.0722],
+    "tone_residual": "equal-linear-RGB delta matching the raw mapped residual's linear-sRGB luma delta",
+    "chroma_residual": "raw mapped residual minus the equal-RGB luma delta",
+    "execution": "sequential source-inclusive analytical maximum safe scale for tone then chroma",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "post_operator_clipping_allowed": false,
+    "per_image_fit_or_adjustment_allowed": false
+  },
+  "candidate_bank": [
+    {
+      "candidate_id": "recorder_proxy_factor_t50_c125",
+      "tone_strength": 0.5,
+      "chroma_strength": 1.25
+    },
+    {
+      "candidate_id": "recorder_proxy_factor_t50_c175",
+      "tone_strength": 0.5,
+      "chroma_strength": 1.75
+    },
+    {
+      "candidate_id": "recorder_proxy_factor_t75_c200",
+      "tone_strength": 0.75,
+      "chroma_strength": 2.0
+    }
+  ],
+  "candidate_count": 3,
+  "output_root": "outputs/u5_r2aq4f_recorder_proxy_factorized_frontier_v1",
+  "rendering": {
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "intermediate_quantization_allowed": false,
+    "final_format": "rgb8_png",
+    "verify_source_bundle_and_direct_control_hashes": true,
+    "require_matching_dimensions": true,
+    "require_repeat_manifest_and_report_byte_identity": true,
+    "post_result_parameter_change_allowed": false
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_original_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "factorized_delta": "median_delta_e76_from_frozen_direct_s100_output",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "maximum_worst_stress_new_hard_clipping_fraction": 0.01,
+    "minimum_gold_median_style_delta_e76": 10.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 7.0,
+    "minimum_gold_median_factorized_delta_e76": 2.0
+  },
+  "shortlist": {
+    "order": [
+      "descending_gold_median_non_basic_residual_delta_e76",
+      "descending_gold_median_factorized_delta_e76",
+      "descending_gold_median_style_delta_e76",
+      "ascending_tone_strength",
+      "ascending_chroma_strength",
+      "ascending_candidate_id"
+    ],
+    "maximum_candidates": 2
+  },
+  "visual": {
+    "automatic_shortlist_only": true,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "compare_against_original_direct_s100_and_fixed_AO6": true,
+    "preference_claim_allowed": false
+  },
+  "decision_branches": {
+    "no_automatic_survivor": "close_factorized_recorder_proxy_photo_route",
+    "automatic_survivor": "open_separately_frozen_AQ4V_visual_comparison",
+    "visual_fail": "close_photo_challenger_retain_bounded_proxy_parameterization_only",
+    "visual_pass": "retain_one_factorized_recorder_proxy_development_challenger_without_stock_claim"
+  },
+  "training_allowed": false,
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "isolated factorized Look Approximation challenger from an unidentified recorder-code reuse hypothesis; not Velvia stock response, calibration, authenticity or product promotion"
+}
