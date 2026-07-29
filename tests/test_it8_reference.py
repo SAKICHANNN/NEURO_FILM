@@ -106,3 +106,42 @@ END_DATA
     assert record["sample_count"] == 2
     assert record["spectral_wavelengths_nm"] == [380, 390]
     assert record["mean_batch_delta_e76_median"] == pytest.approx(0.3)
+
+
+def test_audit_archive_accepts_exact_legacy_charge_txt_only(
+    tmp_path: Path,
+) -> None:
+    it8 = b"""IT8.7/1
+NUMBER_OF_FIELDS 2
+BEGIN_DATA_FORMAT
+SAMPLE_ID MEAN_DE
+END_DATA_FORMAT
+NUMBER_OF_SETS 1
+BEGIN_DATA
+A1 0.2
+END_DATA
+"""
+    spectral = b"""IT8.7/1
+NUMBER_OF_FIELDS 11
+BEGIN_DATA_FORMAT
+SAMPLE_ID XYZ_X XYZ_Y XYZ_Z LAB_L LAB_A LAB_B LAB_C LAB_H SPECTRAL_NM SPECTRAL_PCT
+END_DATA_FORMAT
+NUMBER_OF_SETS 1
+BEGIN_DATA
+A1 1 2 3 40 5 6 7 8 380 0.1
+END_DATA
+"""
+    path = tmp_path / "E040227.zip"
+    with ZipFile(path, "w") as archive:
+        archive.writestr("E040227/E040227.txt", it8)
+        archive.writestr("E040227/Readme.txt", b"not measurement data")
+        archive.writestr("E040227/EXTRAS/E040227.cgt", spectral)
+    record = audit_archive(
+        path,
+        {
+            "path": path.name,
+            "declared_family": "fixture",
+            "exact_stock_id": "unknown",
+        },
+    )
+    assert record["it8_member"] == "E040227/E040227.txt"

@@ -64,6 +64,23 @@ def _member_by_suffix(archive: ZipFile, suffix: str) -> str:
     return names[0]
 
 
+def _it8_member(archive: ZipFile, archive_stem: str) -> str:
+    """Find the exact charge table across the historical .txt/.it8 naming."""
+
+    names = sorted(
+        info.filename
+        for info in archive.infolist()
+        if not info.is_dir()
+        and Path(info.filename).stem.casefold() == archive_stem.casefold()
+        and Path(info.filename).suffix.casefold() in {".it8", ".txt"}
+    )
+    if len(names) != 1:
+        raise ValueError(
+            f"expected one exact charge IT8/.txt member, found {names}"
+        )
+    return names[0]
+
+
 def audit_archive(path: Path, asset: dict[str, Any]) -> dict[str, Any]:
     with ZipFile(path) as archive:
         bad_member = archive.testzip()
@@ -78,7 +95,7 @@ def audit_archive(path: Path, asset: dict[str, Any]) -> dict[str, Any]:
             for info in sorted(archive.infolist(), key=lambda item: item.filename)
             if not info.is_dir()
         ]
-        it8_name = _member_by_suffix(archive, ".it8")
+        it8_name = _it8_member(archive, path.stem)
         cgt_name = _member_by_suffix(archive, ".cgt")
         it8_payload = archive.read(it8_name)
         cgt_payload = archive.read(cgt_name)
