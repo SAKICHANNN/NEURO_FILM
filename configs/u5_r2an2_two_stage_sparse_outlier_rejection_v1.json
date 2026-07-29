@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an2-two-stage-sparse-outlier-rejection-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AN2",
+  "question": "Can a deterministic label-blind two-stage residual rejection policy close AN1's sole sparse-outlier relative-recovery failure without weakening clean-noise recovery or the explicit positive-film structural contract?",
+  "parent": {
+    "experiment_id": "u5.r2an1-robust-paired-positive-film-recovery-v1",
+    "config_path": "configs/u5_r2an1_robust_paired_positive_film_recovery_v1.json",
+    "config_sha256": "d5b5658586661351d7ca8c803858a667446dcb03f7a9541c785cea1211873975",
+    "report_sha256": "ec5309e8f61388d8dc04b04162f865d404c6675d575252668423e8d40185bb08",
+    "automatic_pass": false,
+    "failed_check_count": 1,
+    "failed_check": "cyan_shadow_warm_highlight_like.sparse_correspondence_outliers.gain_over_linear"
+  },
+  "truth_witnesses": [
+    "warm_highlight_like",
+    "cyan_shadow_warm_highlight_like",
+    "cross_bias_like"
+  ],
+  "scenarios": {
+    "dual_patch_mean_noise": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.0,
+      "target_outlier_uniform_magnitude": 0.0
+    },
+    "sparse_correspondence_outliers": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.03,
+      "target_outlier_uniform_magnitude": 0.2
+    }
+  },
+  "perturbation_seed": 20250901,
+  "two_stage_fit": {
+    "stage_one_model": "two_matrix",
+    "stage_one_loss": "soft_l1",
+    "stage_one_loss_scale": 0.005,
+    "residual_score": "per_row_rgb_l2",
+    "ranking": "descending_score_then_ascending_original_row_index",
+    "rejected_row_fraction": 0.04,
+    "rejected_row_count_rule": "floor",
+    "stage_two_model": "two_matrix",
+    "stage_two_loss": "linear",
+    "stage_two_loss_scale": 0.005,
+    "restart_count": 3,
+    "maximum_function_evaluations": 2500,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11
+  },
+  "retained_support": {
+    "minimum_retained_total_rows": 876,
+    "minimum_retained_rows_per_development_illuminant_exposure_cell": 60,
+    "minimum_retained_rows_per_base_patch": 6,
+    "minimum_distinct_base_patches": 76,
+    "minimum_distinct_illuminants": 2,
+    "minimum_distinct_exposures": 6
+  },
+  "gates": {
+    "candidate_confirmation_rgb_rmse_maximum": 0.001,
+    "candidate_confirmation_maximum_absolute_error": 0.006,
+    "minimum_gain_over_robust_one_matrix": 0.9,
+    "minimum_outlier_gain_over_linear_two_matrix": 0.65,
+    "minimum_outlier_gain_over_stage_one_soft_l1": 0.05,
+    "maximum_noise_only_relative_loss_to_stage_one_soft_l1": 0.1,
+    "minimum_outlier_recall_for_diagnostic": 0.8,
+    "minimum_outlier_precision_for_diagnostic": 0.6,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "algorithm_may_read_true_outlier_rows": false,
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "proxy_pair_allowed": false,
+  "photographic_render_allowed": false,
+  "external_profile_parameter_or_code_copy_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room synthetic evidence for deterministic sparse-correspondence rejection in paired fitting of an explicit positive-film Look Approximation operator; not real-film fitting, not unpaired identification, not stock response, not calibrated and not product promotion"
+}
