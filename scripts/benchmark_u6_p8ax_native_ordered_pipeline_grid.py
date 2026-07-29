@@ -23,7 +23,7 @@ if str(ROOT) not in sys.path:
 
 import scripts.benchmark_u6_p8aq_native_fastpath_resources as p8aq  # noqa: E402
 import scripts.benchmark_u6_p8aw_native_display_v4_resources as p8aw  # noqa: E402
-from src.eval.bounded_ordered_pipeline import (  # noqa: E402
+from src.film_physics.bounded_ordered_pipeline import (  # noqa: E402
     BoundedOrderedPipeline,
 )
 from src.eval.density_witness_frontier import (  # noqa: E402

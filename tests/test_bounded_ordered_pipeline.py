@@ -5,7 +5,9 @@ import time
 
 import pytest
 
-from src.eval.bounded_ordered_pipeline import BoundedOrderedPipeline
+from src.film_physics.bounded_ordered_pipeline import (
+    BoundedOrderedPipeline,
+)
 
 
 def test_pipeline_consumes_out_of_order_completion_in_submit_order() -> None:

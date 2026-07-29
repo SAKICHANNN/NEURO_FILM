@@ -25,7 +25,7 @@ from src.color_engine.safe_lab import (
     safe_lab_context_from_lab,
     validate_safe_lab_source_context,
 )
-from src.eval.density_witness_frontier import (
+from src.color_engine.srgb_transfer import (
     encoded_srgb_to_linear,
     linear_srgb_to_encoded,
 )
