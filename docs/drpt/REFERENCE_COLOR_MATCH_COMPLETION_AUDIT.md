@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `cd84a85`; R0EE independently
+- D-PCT latest stable communicated snapshot is `b0769fd`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -228,6 +228,22 @@ wire contract and not an algorithm promotion.
   `075eaa14...ac78dfa`. This versions LibRaw renderer provenance and explains
   R0FE, but remains mechanical self-conformance rather than DNG-spec
   correctness, independent quality or a public RAW contract.
+  R0FG then runs the official unmodified Adobe DNG SDK 1.7.1 Build 2652
+  renderer against its diagnostic-only matrix instrumentation. Its frozen
+  raw-TIFF byte-identity gate correctly rejects because the SDK writes current
+  TIFF DateTime and XMP ModifyDate/MetadataDate values: one Ricoh replay
+  differs in only 3 of 123,190,068 bytes, but the unchanged exact-byte gate
+  still fails. R0FH prefreezes normalization of only those three volatile
+  metadata fields. Across all four DNGs, two full replays then match exactly
+  in float32 RGB pixel payload, embedded ICC, every other TIFF tag and
+  normalized XMP. R0FE CameraWhite differs from the SDK by at most `5.0e-7`
+  and CameraToPCS by at most `6.59835e-5`; the three inverse branches and the
+  Samsung ForwardMatrix branch are reproduced. Stable semantic identity is
+  `b7f7eb94...1ce76de`; second report SHA is
+  `47414219...ee4a9b`. This confirms that R0FE faithfully reproduces Adobe
+  SDK matrix policy, not that Adobe's policy is more accurate than LibRaw's.
+  It remains private renderer/mechanical evidence without a public RAW rail,
+  schema, receipt, capability or consumer mapping.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

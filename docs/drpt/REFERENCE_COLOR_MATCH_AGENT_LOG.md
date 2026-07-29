@@ -4856,3 +4856,29 @@
   truth/quality, public package/schema/receipt/capability, product admission
   or consumer mapping. R0FE remains a separate rejected renderer policy;
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FG/R0FH Adobe SDK semantic TIFF evidence
+
+- Producer clean HEAD is
+  `b0769fdf439c073f8632047ca7f669af93f77dc1`. R0FG keeps its preregistered
+  exact raw-TIFF byte-identity gate and is formally rejected: the official
+  Adobe DNG SDK writes current TIFF DateTime plus XMP
+  ModifyDate/MetadataDate, causing one Ricoh replay to differ in 3 of
+  123,190,068 bytes. Thresholds were not changed and the negative evidence is
+  retained separately at SHA `7a8dcc2a...5e8ac7`.
+- R0FH prefreezes normalization of only those three volatile metadata fields.
+  Official unmodified and diagnostic-only Adobe DNG SDK 1.7.1 Build 2652
+  renders of four DNGs then match exactly across two complete replays in
+  float32 RGB payload, embedded ICC, every other TIFF tag and normalized XMP.
+  R0FE CameraWhite differs by at most `5.0e-7` and CameraToPCS by at most
+  `6.59835e-5`; three inverse branches plus the Samsung ForwardMatrix branch
+  are exact.
+- R0FH implementation commit is `e6d47c8`; stable semantic identity is
+  `b7f7eb94...1ce76de`; second report SHA is
+  `47414219...ee4a9b`; evidence SHA is `10492301...58725`. Focused tests are
+  4 PASS and the producer suite is 965 PASS / 13 skip / 73 subtests.
+- The result establishes that R0FE faithfully reproduces Adobe SDK matrix
+  policy. It does not establish that Adobe is more accurate than LibRaw and
+  does not create a public RAW rail, schema, receipt, capability, product
+  admission or consumer mapping. R0FG remains rejected; R0FF remains a
+  distinct LibRaw policy; P172, P45/P44 and v42 remain unchanged.
