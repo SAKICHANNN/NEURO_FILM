@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import urllib.request
 from collections import Counter
 from pathlib import Path
@@ -107,7 +108,11 @@ def validate_contract(root: Path, config: dict[str, Any]) -> None:
         path = root / comparison["path"]
         if (
             comparison.get("format")
-            not in {"frozen_set", "rawpixls_manifest"}
+            not in {
+                "frozen_set",
+                "rawpixls_manifest",
+                "legacy_rawpixls_render_manifest",
+            }
             or not path.is_file()
             or sha256_file(path) != comparison["sha256"]
         ):
@@ -320,6 +325,33 @@ def _comparison_rows(
         document = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(document, list):
             raise ConfirmationSourceError("rawpixls manifest must be a list")
+        if descriptor["format"] == "legacy_rawpixls_render_manifest":
+            for source in document:
+                decoded_path = Path(str(source["before"]))
+                if not decoded_path.is_absolute():
+                    decoded_path = root / decoded_path
+                if not decoded_path.is_file():
+                    raise ConfirmationSourceError(
+                        "legacy comparison decoded image is missing"
+                    )
+                with Image.open(decoded_path) as opened:
+                    image = opened.convert("RGB")
+                match = re.search(
+                    r"raw\.pixls\.us/getfile\.php/(\d+)/nice/",
+                    str(source["download_url"]),
+                )
+                if match is None:
+                    raise ConfirmationSourceError(
+                        "legacy comparison source identity is invalid"
+                    )
+                rows.append(
+                    {
+                        "id": f"legacy_rawpixls:{match.group(1)}",
+                        "decoded_sha256": sha256_file(decoded_path),
+                        "dhash64": dhash64(image),
+                    }
+                )
+            continue
         for source in document:
             decoded_path = root / str(source["decoded_path"])
             if sha256_file(decoded_path) != source["decoded_sha256"]:
@@ -375,7 +407,10 @@ def make_contact_sheet(
         font=font,
     )
     for index, tile in enumerate(tiles):
-        sheet.paste(tile, ((index % columns) * 440, 36 + (index // columns) * 300))
+        sheet.paste(
+            tile,
+            ((index % columns) * 440, 36 + (index // columns) * 300),
+        )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(output_path, "PNG")
 
