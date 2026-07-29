@@ -14,15 +14,16 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P165; v39 remains the latest immutable
+- Consumer branch now continues through P166; v39 remains the latest immutable
   main-review manifest and binds P1-P158. P159-P163 add local 24 MP,
   maximum-count and bounded SDR file-format evidence; P164 adds unsupported
   media batch-atomicity evidence and P165 adds bounded BT.2020 SDR file
-  transaction evidence after that reviewed payload.
+  transaction evidence. P166 proves every advertised v1 output tuple executes
+  after that reviewed payload.
 - Main Neuro-Film latest bound committed snapshot is `7f2ae6f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `da4225b`; R0DQ rejects all
-  compact methods on its 64-row AceTone-Bench subset and publishes no
+- D-PCT latest stable communicated snapshot is `b052a63`; R0DR rejects its
+  nested group-OOF LPOR candidate and publishes no
   compatible consumer rail, callable capability, quality promotion or
   schema/receipt change. Its prior R0DO/R0DP absolute-HDR diagnostics remain
   explicitly unmapped.
@@ -57,6 +58,7 @@ wire contract and not an algorithm promotion.
 | File input compatibility preflight | P148 hashes and decodes a bounded ordered input batch through the main `WorkingImage` loader, reports the actual rail and accepts only display-linear sRGB/Rec.2020; its claim is explicitly non-authorizing | COMPLETE AS ADVISORY PRODUCT-SHELL CONTRACT | Render still revalidates every input; add rails only after main/producer colour-state support is versioned / Neuro-Film |
 | SDR JPEG/TIFF transaction matrix | P163 executes JPEG8, TIFF8 and profiled TIFF16 input-to-output file transactions twice at 2048x1536. Every case preserves decoded display-linear sRGB, declared format/depth, exact output/recipe/normalized-report replay and identity fallback under 361 MB peak | EXACT LOCAL WINDOWS/PYTHON MATRIX PASS | Add only separately frozen formats/metadata semantics and obtain target-platform execution; do not infer arbitrary codec, profile, RAW/HDR or product readiness / Neuro-Film |
 | BT.2020 SDR PNG/CICP transaction | P165 executes BT.2020-only and ordered sRGB/BT.2020 mixed 16-bit PNG transactions twice at 2048x1536. Rail/profile order, output/recipe/report replay, identity fallback and <=515 MB peak all pass | EXACT LOCAL RELATIVE-SDR WINDOWS/PYTHON PASS | Keep absolute HDR/PQ/HLG and arbitrary profile conversion unmapped; obtain target-platform/media evidence separately / Neuro-Film |
+| Advertised output capability truth | P166 executes all nine tuples exposed by `reference-file-output-capabilities.v1` twice, including `.jpeg`/`.tif` aliases. Public inventory, format/depth/profile, artifacts, fallback and cleanup all match exactly | COMPLETE AS LOCAL EXECUTABLE V1 ADVERTISEMENT | Re-version the capability contract for any new output tuple and obtain target-platform evidence separately / Neuro-Film |
 | Unsupported-media batch atomicity | P164 places transparent RGBA PNG, two-page TIFF or a pinned real libultrahdr MPO second in a two-source transaction. All six runs encode source one, reject source two, preserve 24/24 output/recipe/report target hashes and leave zero staging residue | EXACT LOCAL THREE-FIXTURE FAIL-CLOSED PASS | Keep decoder claims narrow; extend only with separately pinned real fixtures and do not infer complete HDR/gain-map/media detection / Neuro-Film |
 | High-resolution image and batch lifetime | P159 passes two exact 24 MP single-source runs. P160 passes two ordered three-source 24 MP runs; P161 releases encoded renders before the next load and lowers interleaved median peak 2.167 -> 1.886 GB with exact artifacts and no wall regression. P162 passes two exact 64-source 1 MP maximum-count transactions at about 167 MB peak | EXACT LOCAL 24 MP THREE-SOURCE PLUS 64-SOURCE 1 MP PASS | Obtain real target-platform/media execution; do not combine the separate scale/count facts into a 24MP-by-64 claim / Neuro-Film |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped | OPEN, CORRECTLY SEPARATED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel absolute HDR as relative SDR / D-PCT then Neuro-Film |

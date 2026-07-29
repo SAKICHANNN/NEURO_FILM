@@ -13,6 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs" / "reference_match_output_capability_execution_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs"
+    / "reference_match_output_capability_execution_decision_v1.json"
+)
 
 
 def _run(case: dict, repeat: int, token: str = "same") -> dict:
@@ -67,3 +72,23 @@ def test_p166_evaluation_requires_inventory_and_every_exact_replay() -> None:
         incomplete_payload,
         passing,
     )["automatic_pass"]
+
+
+def test_p166_decision_binds_all_nine_executable_tuples() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert decision["public_capability_inventory_exact"]
+    assert set(decision["cases"]) == {
+        row["case_id"] for row in config["cases"]
+    }
+    cases = {row["case_id"]: row for row in config["cases"]}
+    for case_id, result in decision["cases"].items():
+        expected = cases[case_id]
+        assert result["format"] == expected["expected_format"]
+        assert result["bit_depth"] == expected["output_bit_depth"]
+        assert result["profile_kind"] == expected["expected_profile_kind"]
+        assert result["exact_replay"]
+    assert decision["all_eighteen_safety_actions_identity_fallback"]
+    assert decision["all_eighteen_residual_artifact_counts_zero"]
+    assert decision["automatic_pass"]

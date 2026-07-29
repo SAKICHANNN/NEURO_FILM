@@ -4100,3 +4100,13 @@
   output/recipe/report replay, identity fallback and zero staging residue.
 - The leaf validates an existing advertisement only; it adds no codec, input
   profile, HDR/RAW/video, platform or product claim.
+
+## 2026-07-29 - Pass advertised output-capability execution
+
+- The runtime payload exactly matches the frozen public v1 inventory and all
+  nine advertised extension/bit-depth/rail tuples execute twice.
+- Format, depth, ICC/CICP profile, output/recipe/report replay, identity
+  fallback and zero staging residue pass for all 18 transactions, including
+  `.jpeg` and `.tif` aliases.
+- P166 proves only local executable advertisement truth; it adds no input
+  codec/profile, metadata, HDR/RAW/video, target-device or product claim.
