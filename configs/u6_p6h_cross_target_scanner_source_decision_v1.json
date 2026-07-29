@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p6h_cross_target_scanner_source_decision.v1",
+  "node": "U6.P6H",
+  "decision": "source_pass_open_per_device_measured_reference_pilot_cross_target_generalization_closed",
+  "software_commit": "ac838aafa6ae80756fcbbae8737daec41242d83f",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6h_cross_target_scanner_source_v1.json",
+      "sha256": "7a567fd8ded4ca38b833f5eef4768e9d18be3451e0afc3c276f9a6149ab4a0d5"
+    },
+    "report": {
+      "path": "outputs/u6_p6h_cross_target_scanner_source_v1/audit_pass1.json",
+      "sha256": "35d8717ee449320214f0225f6010b57b69de8d50fc5b838201fcac3f3e676e09"
+    },
+    "repeat_report_byte_identical": true,
+    "stable_evidence_id": "5f7afecf9ff4718a17158d5bd5a888e1c61abfd4d5a3c61caa81f329356057a8"
+  },
+  "inventory": {
+    "archive_count": 13,
+    "total_bytes": 200632766,
+    "decoded_rgb_members": 65,
+    "target_set_archive_counts": {
+      "1": 4,
+      "2": 6,
+      "9": 3
+    },
+    "target_set_unique_scanner_counts": {
+      "1": 2,
+      "2": 3,
+      "9": 3
+    },
+    "zero_exact_archive_duplicates": true
+  },
+  "connectivity": {
+    "same_target_multiple_scanners": true,
+    "scanners_repeated_across_target_sets": [],
+    "scanner_target_graph_connected_across_sets": false,
+    "consequence": "per-device measured-target characterization may be studied, but no scanner profile can be validated on an independent manufactured target set"
+  },
+  "rights": {
+    "official_page_statements_verified": true,
+    "scope": "internal research and testing of openly downloadable scaled developer data",
+    "redistribution_allowed": false,
+    "commercial_training_allowed": false
+  },
+  "branch_action": {
+    "open": "U6.P6I frozen per-device scan-to-measured-reference characterization using held patches/slides and no hard clipping",
+    "forbid": [
+      "cross-target scanner operator generalization",
+      "full-resolution or raw scanner claim",
+      "stock fitting, training, latent modes or product integration"
+    ]
+  },
+  "claim_ceiling": "bounded official-source integrity and same-target scanner connectivity for scaled Velvia 100F test scans; no repeated-device cross-target edge, scanner calibration generalization, stock response, training, product or redistribution claim"
+}
