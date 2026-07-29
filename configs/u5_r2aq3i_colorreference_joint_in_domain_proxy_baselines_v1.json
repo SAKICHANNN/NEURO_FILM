@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3i-colorreference-joint-in-domain-proxy-baselines-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ3I",
+  "parent": {
+    "topology_decision": "configs/u5_r2aq3t_colorreference_calibration_suite_topology_decision_v2.json",
+    "topology_config_sha256": "9af6185d76467757323ed8cc900dc900ad17ba4d20747535d981a96070647855",
+    "topology_report_sha256": "440f54bc6466a66866f321dcf07229037193112c01819895427c16eea35d8610",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "target_space": {
+    "fit_fields": ["XYZ_X", "XYZ_Y", "XYZ_Z"],
+    "fit_scale": 0.01,
+    "evaluation_space": "CIELAB D50 2 degree from raw predicted XYZ; no clipping",
+    "reference_white_xyz": [0.9642, 1.0, 0.8251],
+    "provided_xyz_lab_consistency_median_deltae76_max": 0.25,
+    "provided_xyz_lab_consistency_p95_deltae76_max": 0.5
+  },
+  "split_contract": {
+    "primary": "joint leave-one-target-set and leave-one-in-domain-source-colour-fold out",
+    "target_sets": [1, 2, 3, 4, 5, 9],
+    "source_colour_fold_count": 5,
+    "source_colour_assignment": "uint64_be(first_8_bytes(SHA256(utf8('aq3t-v1') || uint8_rgb_bytes))) modulo 5",
+    "source_colour_salt": "aq3t-v1",
+    "source_colour_fold_row_counts": [295, 302, 274, 275, 294],
+    "primary_fold_count": 30,
+    "primary_development_rule": "target_set != held_target_set AND source_colour_fold != held_source_colour_fold",
+    "primary_confirmation_rule": "target_set == held_target_set AND source_colour_fold == held_source_colour_fold",
+    "expected_development_rows_by_source_fold": [5725, 5690, 5830, 5825, 5730],
+    "expected_confirmation_rows_by_source_fold": [295, 302, 274, 275, 294],
+    "every_pair_table_row_is_confirmation_exactly_once": true,
+    "exact_source_rgb_duplicates_share_fold": true,
+    "normalization_fit_on_development_only": true,
+    "unused_buffer_rows": "held target set with other source folds plus held source fold in other target sets"
+  },
+  "candidate_models": [
+    {
+      "id": "identity",
+      "parameters": 0,
+      "definition": "predicted normalized XYZ equals recorder RGB"
+    },
+    {
+      "id": "target_mean",
+      "parameters": 3,
+      "definition": "development target XYZ mean"
+    },
+    {
+      "id": "diagonal_affine",
+      "parameters": 6,
+      "definition": "three independent least-squares channel affine maps"
+    },
+    {
+      "id": "nonnegative_affine",
+      "parameters": 12,
+      "definition": "per-output nonnegative 3x3 coefficients and nonnegative intercept, scipy lsq_linear"
+    },
+    {
+      "id": "full_affine",
+      "parameters": 12,
+      "definition": "unconstrained least-squares 3x3 plus intercept"
+    },
+    {
+      "id": "quadratic_full",
+      "parameters": 30,
+      "definition": "fixed [1,R,G,B,R2,G2,B2,RG,RB,GB] basis with ridge 1e-8 on non-intercept coefficients"
+    }
+  ],
+  "model_selection": {
+    "primary_metric": "joint_holdout_mean_deltae76",
+    "bounded_model_eligibility": [
+      "all 30 joint folds finite",
+      "every joint fold improves over identity",
+      "joint raw XYZ negative component fraction <= 0.005",
+      "joint raw XYZ component above 1.2 fraction <= 0.005",
+      "joint worst-fold mean Delta E76 <= 15"
+    ],
+    "bounded_champion_relative_gates": {
+      "mean_deltae76_improvement_over_identity_min": 0.25,
+      "mean_deltae76_improvement_over_diagonal_affine_min": 0.1
+    },
+    "unsafe_quadratic_mechanism_gate": {
+      "purpose": "permit one separately frozen bounded nonlinear challenger only when the already-observed accuracy-versus-boundary mechanism persists",
+      "mean_deltae76_max": 15.0,
+      "worst_fold_mean_deltae76_max": 18.0,
+      "mean_improvement_over_nonnegative_affine_min": 0.25,
+      "raw_xyz_negative_component_fraction_max": 0.05,
+      "raw_xyz_above_1_2_component_fraction_max": 0.005,
+      "every_fold_improves_over_nonnegative_affine": true
+    },
+    "simpler_model_tie_relative": 0.01,
+    "simplicity_order": [
+      "identity",
+      "target_mean",
+      "diagonal_affine",
+      "nonnegative_affine",
+      "full_affine",
+      "quadratic_full"
+    ]
+  },
+  "numerics": {
+    "float_dtype": "float64",
+    "least_squares_rcond": null,
+    "quadratic_ridge": 0.00000001,
+    "nonnegative_maximum_iterations": 1000,
+    "deterministic_single_thread": true
+  },
+  "decision_branches": {
+    "bounded_champion": "retain_simplest_bounded_recorder_proxy_champion",
+    "unsafe_quadratic_mechanism_pass": "open_one_separately_frozen_bounded_nonlinear_explicit_proxy_family",
+    "no_supported_model_or_mechanism": "close_in_domain_recorder_proxy_operator_identifiability"
+  },
+  "frozen_negative_evidence": {
+    "aq2_whole_slide_extrapolation": "closed and not reopened",
+    "aq2d_source_support": "slides 1, 3, 4 and 5 fail whole-slide support; retained as OOD stress evidence"
+  },
+  "forbidden_actions": [
+    "random row split",
+    "target-set or source-colour-fold leakage into normalization or fit",
+    "threshold or model-family changes after formal results",
+    "clipping predicted XYZ before evaluation",
+    "photo rendering",
+    "digital-camera-to-film, independent-roll, process or calibrated stock-response claims",
+    "training, production integration, redistribution or public weights"
+  ],
+  "fit_allowed": true,
+  "fit_scope": "AQ1 internal recorder-source/manufactured-target proxy table under source-supported in-domain colour folds only",
+  "training_allowed": false,
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "held-target-set and supported in-domain recorder-colour-fold explicit proxy explainability; not a camera-to-film operator or calibrated Velvia stock response"
+}
