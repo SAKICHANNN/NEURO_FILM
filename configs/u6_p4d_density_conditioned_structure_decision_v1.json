@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p4d_density_conditioned_structure_decision.v1",
+  "node": "U6.P4D",
+  "decision": "retain_generic_density_conditioned_material_structure_open_integration_lod_audit",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+      "sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4d_density_conditioned_structure_v1/report_pass1.json",
+      "sha256": "580c46adb89f36d0d58ddfd059ea7353e61df6c2abae951afc52345257a467a8",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "586355cd74888bedac916ffc5a2b7b996defe661bc383e99f9a38b587f5d3188"
+    },
+    "software_commit": "4710fe17"
+  },
+  "results": {
+    "development_maximum_flat_mean_absolute_error": 0.0003768156661612121,
+    "confirmation_maximum_flat_mean_absolute_error": 0.00012014525370385165,
+    "development_minimum_high_to_low_variance_ratio": 4.0028544253861265,
+    "confirmation_minimum_high_to_low_variance_ratio": 4.003037206647964,
+    "development_minimum_ramp_target_output_correlation": 0.9995011440260897,
+    "confirmation_minimum_ramp_target_output_correlation": 0.9994827774347254,
+    "development_maximum_ramp_mean_absolute_error": 0.006199606031020474,
+    "confirmation_maximum_ramp_mean_absolute_error": 0.006245122570373535,
+    "minimum_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "zero_density_clear_base_exact": true,
+    "repeat_exact": true,
+    "row_partitions_31_and_127_exact": true,
+    "all_frozen_gates_pass": true
+  },
+  "interpretation": [
+    "The primitive makes expected grain count proportional to supplied developed optical density and keeps every realized grain contribution nonnegative.",
+    "Flat-field means track target density in both independent seed splits while variance rises by about 4x from density 0.3 to 1.2, demonstrating real density conditioning rather than a constant noise overlay.",
+    "The horizontal density ramp remains strongly monotone without per-image normalization, and row-tiled execution is byte-exact.",
+    "This is a generic physical-inspired material model. The fixed grain optical densities, cloud widths and layer names are hypotheses, not measured stock parameters."
+  ],
+  "next_leaf": "U6.P4E freeze a developed-density integration and physical-LOD audit that compares density-conditioned material structure against constant-rate and display-RGB-noise controls before any photograph or product use",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic physical-inspired density-conditioned material structure; not measured grain, dye-cloud calibration, stock response or product evidence"
+}
