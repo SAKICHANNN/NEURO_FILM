@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2c1-route-exposure-polarity-v1",
+  "node": "U6.P2C1",
+  "decision": "close_shared_negative_sensitometry_slide_route",
+  "software_commit": "4e0ac6b",
+  "contract": {
+    "path": "configs/u6_p2c1_route_exposure_polarity_audit_v1.json",
+    "sha256": "de6a0622c67ce9b38b86a33e82fd8d61fd1ee0c7fa7d0594b27e3b1a9ab76536"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p2c1_route_exposure_polarity_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2c1_route_exposure_polarity_v1/run_b/report.json",
+    "report_sha256": "d20a4286f2ec0cb51bf908a5cffa5c400257a9a340cd3edb5c2c96deacdda568",
+    "stable_evidence_id": "7c435cd76d07031b9075cc9829a107ceda7f2c69a7d2fd8b68783f6bcdd28782",
+    "repeat_byte_identical": true
+  },
+  "route_results": {
+    "color_negative_neutral_scan": {
+      "passed": true,
+      "endpoint_delta_rgb": [
+        0.7021744847297668,
+        0.7100359825417399,
+        0.6346083115786314
+      ]
+    },
+    "color_negative_print": {
+      "passed": true,
+      "endpoint_delta_rgb": [
+        0.9999999402752852,
+        0.9999999398103179,
+        0.9999999401757896
+      ]
+    },
+    "slide_direct_scan": {
+      "passed": false,
+      "endpoint_delta_rgb": [
+        -0.7021744847297668,
+        -0.7100359825417399,
+        -0.6346083115786314
+      ],
+      "minimum_first_difference": -0.19967138767242432
+    },
+    "bw_developer_scan": {
+      "passed": true,
+      "endpoint_delta_rgb": [
+        0.7100359825417399,
+        0.7100359825417399,
+        0.7100359825417399
+      ],
+      "requires_explicit_neutral_density": true
+    }
+  },
+  "automatic_pass": false,
+  "branch": "slide_only_fail",
+  "interpretation": "The current U2.2 characteristic curves increase density with exposure. That is compatible with negative routes followed by positive inversion or printing, but direct scanning produces a decreasing slide signal. Reusing the negative sensitometry for slide is physically inconsistent and closes without polarity, curve or threshold rescue.",
+  "next_leaf": "U6.P2D photographic severe-artifact stress for the surviving negative-neutral-scan and negative-print routes only; slide requires a separately preregistered reversal-development operator and B&W requires neutral silver-density evidence",
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic route-polarity negative evidence closing shared negative-sensitometry slide interpretation; no claim that slide film is impossible or that any stock response is measured"
+}

@@ -6775,3 +6775,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This remains generic synthetic topology evidence. P2D must now apply the
   fixed routes to the existing rights-cleared photo population and run the
   severe-artifact veto before retaining any photographic challenger.
+
+## 2026-07-29 - U6.P2C1 exposure-polarity correction
+
+- Before photographic testing, a frozen 4097-sample neutral ramp checks that a
+  positive interpretation brightens as incident exposure rises. Two reports
+  are exact at `d20a4286...dda568`.
+- Negative-neutral-scan, print and explicit neutral B&W pass. Direct slide
+  fails alone: endpoint signals fall by `.63-.71` and the minimum step is
+  `-.19967`. The current increasing-density U2.2 negative curves therefore
+  cannot be reused as reversal development.
+- Close only the shared-sensitometry slide branch. A future slide route needs a
+  separately preregistered reversal-development operator. P2D may stress the
+  surviving negative/print routes; B&W remains neutral-silver data-gated.
