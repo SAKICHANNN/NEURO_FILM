@@ -20,17 +20,17 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `9ea70a5`; R0DX compares one
-  fixed Malvar-He-Cutler demosaic against Adobe DNG SDK 1.7.1 Stage 3 on 75
-  primary private CFA DNGs plus one OpcodeList3 diagnostic. Two independent
-  runs are exact outside timing (`c48813ed...f707`). MHC has 2.593914x MAE,
-  1.471112x RMSE and 0/75 lower-RMSE rows relative to the project bilinear
-  baseline, so all three frozen quality gates fail. Because the pinned SDK
-  Stage-3 path itself uses bilinear interpolation, this is only negative
-  mechanical-parity evidence, not scene-truth or visual-quality evidence.
-  MHC remains non-public and R0DX publishes no model, package, compatible
-  consumer rail, callable capability, schema or receipt. Its prior R0DO/R0DP
-  absolute-HDR diagnostics remain explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `ff9f9f7`; R0DY's pre-score
+  audit found that the public generic 3x3 `demosaic_bayer` mixed diagonal
+  green values into measured green sites. R0DY-v0 therefore closed before
+  any scene-quality score, and the producer repaired the core to preserve
+  every measured sensel while averaging only missing channels. Four
+  non-flat Bayer-pattern regressions and the producer suite pass. This
+  numeric fix publishes no model, package, compatible consumer rail,
+  callable capability, schema or receipt, so P172 remains fail-closed.
+  R0DX's prior MHC rejection is only Adobe Stage-3 mechanical-parity evidence,
+  not scene-truth or visual-quality evidence; R0DO/R0DP absolute-HDR
+  diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.

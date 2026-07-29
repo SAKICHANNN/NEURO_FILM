@@ -4268,3 +4268,21 @@
 - MHC is not publicly exported and R0DX publishes no model, package, schema,
   receipt or capability. P172 scene-linear RAW rejection remains correct,
   P45/P44 remain closed, and v42 requires no interface or manifest change.
+
+## 2026-07-29 - Register R0DY-v0 pre-score closure
+
+- Producer `ff9f9f7` reports that its public generic 3x3 `demosaic_bayer`
+  mixed diagonal green values into measured green CFA sites. An isolated
+  non-flat 8x8 ramp exposes 20--25 mismatches across each of four Bayer
+  patterns, so R0DY-v0 closes before any scene-quality score or MHC conclusion.
+- The producer repair preserves measured sensels exactly and averages only
+  missing channels; four non-flat pattern regressions and its 826-test suite
+  pass. No wire, schema, capability or consumer mapping changes.
+- Consumer verification remains clean: 1,011 non-manifest
+  color/reference-match tests pass with five explicit platform/data skips.
+  A broader repository run passes 1,923 with six skips and retains the same
+  36 pre-existing main-project asset/output/profile failures already
+  documented by P161; none is a reference-match failure.
+- P172 scene-linear RAW rejection and v42 remain unchanged. Any future
+  R0DY-v1 result must bind the corrected core hash and still publish an
+  explicit scene-to-display product rail before NFCM can map it.
