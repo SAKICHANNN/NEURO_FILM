@@ -1,0 +1,145 @@
+{
+  "schema": "neuro_film.u6_p6d_spectral_scanner_reference_contract.v1",
+  "node": "U6.P6D",
+  "claim_ceiling": "generic-synthetic-spectral-scanner-reference-only",
+  "parent_boundary": {
+    "p6a_decision_path": "configs/u6_p6a_scanner_profile_decision_v1.json",
+    "p6a_rgb_spectral_stage_is_approximation": true,
+    "p6c_standard_compiler_unchanged": true
+  },
+  "domain_contract": {
+    "input": "spectral-film-transmittance",
+    "output": "relative-scanner-linear-signal",
+    "arithmetic": "float64",
+    "clear_film_normalization": true,
+    "hard_clip_forbidden": true,
+    "scanner_profile_stock_identity_forbidden": true
+  },
+  "wavelength_grid_nm": {
+    "start": 400.0,
+    "stop": 700.0,
+    "step": 10.0
+  },
+  "synthetic_profiles": {
+    "scanner_a": {
+      "profile_id": "synthetic-spectral-scanner-a-v1",
+      "illuminant_components": [
+        {
+          "center_nm": 445.0,
+          "sigma_nm": 28.0,
+          "weight": 0.75
+        },
+        {
+          "center_nm": 545.0,
+          "sigma_nm": 42.0,
+          "weight": 1.0
+        },
+        {
+          "center_nm": 625.0,
+          "sigma_nm": 36.0,
+          "weight": 0.82
+        }
+      ],
+      "sensor_center_nm_rgb": [
+        610.0,
+        540.0,
+        460.0
+      ],
+      "sensor_sigma_nm_rgb": [
+        38.0,
+        32.0,
+        30.0
+      ]
+    },
+    "scanner_b": {
+      "profile_id": "synthetic-spectral-scanner-b-v1",
+      "illuminant_components": [
+        {
+          "center_nm": 430.0,
+          "sigma_nm": 22.0,
+          "weight": 0.92
+        },
+        {
+          "center_nm": 570.0,
+          "sigma_nm": 55.0,
+          "weight": 0.78
+        },
+        {
+          "center_nm": 655.0,
+          "sigma_nm": 24.0,
+          "weight": 1.0
+        }
+      ],
+      "sensor_center_nm_rgb": [
+        630.0,
+        555.0,
+        445.0
+      ],
+      "sensor_sigma_nm_rgb": [
+        30.0,
+        40.0,
+        24.0
+      ]
+    }
+  },
+  "synthetic_witnesses": {
+    "clear_transmittance": 1.0,
+    "neutral_transmittance": 0.55,
+    "metamer_perturbation_max_abs": 0.28,
+    "density_wedge": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ]
+  },
+  "automatic_gates": {
+    "clear_response_max_abs_error": 1e-12,
+    "neutral_channel_spread_max": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "density_wedge_maximum_positive_step": 1e-12,
+    "scanner_a_metamer_max_abs_difference": 1e-12,
+    "scanner_b_metamer_l2_difference_min": 0.02,
+    "rgb_only_irreducible_l2_error_min": 0.01,
+    "scanner_profile_cross_response_max_abs_min": 0.01,
+    "repeat_report_sha256_exact": true
+  },
+  "negative_controls": [
+    "identical spectral transmittance must produce identical output",
+    "clear and neutral spectra must remain scanner-normalized",
+    "a metamer pair for scanner A must not be called physically identical",
+    "scanner B separation must disappear when scanner B is replaced by scanner A"
+  ],
+  "forbidden_fallbacks": [
+    "fit or retune P6A RGB matrices against the synthetic witnesses",
+    "call synthetic Gaussian spectra measured scanner profiles",
+    "assign scanner profiles to film_stock_id or latent mode",
+    "clip spectral or scanner signals",
+    "open photographs, product integration or calibration claims"
+  ],
+  "branch_rule": {
+    "pass": "retain an offline spectral scanner reference and quantify the approximation gap before any compiler experiment",
+    "fail": "close the synthetic spectral witness or repair a numerical defect only; preserve P6A-C"
+  },
+  "research_basis": [
+    {
+      "source": "FADGI Technical Guidelines for Digitizing Cultural Heritage Materials, third edition",
+      "url": "https://www.digitizationguidelines.gov/guidelines/FADGITechnicalGuidelinesforDigitizingCulturalHeritageMaterials_ThirdEdition_05092023.pdf",
+      "use": "film capture colour depends on the acquisition system and profiling cannot restore information lost during capture"
+    },
+    {
+      "source": "Characterization of Scanner Sensitivity",
+      "url": "https://library.imaging.org/cic/articles/1/1/art00026",
+      "use": "scanner colour characterization depends on illuminant and spectral sensitivity"
+    },
+    {
+      "source": "ISO 21550:2004",
+      "url": "https://www.iso.org/standard/35939.html",
+      "use": "dynamic range evidence applies separately to transmissive scanners and does not identify spectral colour response"
+    }
+  ]
+}
