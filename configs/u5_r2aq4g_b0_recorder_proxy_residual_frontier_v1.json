@@ -23,7 +23,7 @@
   "ao6_control": {
     "candidate_id": "b0_plus_film_t15_c35",
     "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
-    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666cece223deabd48107dfa676b6224",
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
     "report": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/automatic_report_pass1.json",
     "report_sha256": "582f3cd74c65b8bd0e7dff9a956336a422374b5c86158f1d1a894a671ff8c9ab",
     "gold_median_style_delta_e76": 13.235349374774573,
