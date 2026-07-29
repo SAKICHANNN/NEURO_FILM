@@ -4608,3 +4608,25 @@
   DDFAPD/RAW quality, Apple runtime, public package/schema/receipt/capability,
   product admission or consumer mapping. R0ER native executable publication
   is separate; P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0ER Android TIFF filesystem publication
+
+- Producer `71d5fad` wraps the unchanged freestanding writer in an Android
+  native executable using same-directory temp, finish, fflush, fsync, close
+  and rename. Two independent runners each perform two cold/wiped Android 14
+  x86_64 boots and two native processes per boot.
+- All eight published files are pulled to the host and independently decoded
+  by the pinned verifier. Each is exactly 82,836 bytes with SHA
+  `cf549419...fe4b3`, pixel SHA `3a313748...e49b0`, four exact strip
+  tables and the frozen minimal tags. Third-strip rejection retains exactly
+  64 rows/two strips/54,720 bytes and leaves neither failure final nor temp.
+  Stable identity is `a733f7ed...f8df4`.
+- Two verifier defects in diagnostic runs (fact key names and adb shell
+  quoting) failed closed and were corrected before formal runs. Remote
+  artifacts, owned emulator/QEMU processes, mappings and the owned AVD return
+  to zero.
+- The ceiling is private Android 14 x86_64 virtual native-executable
+  filesystem publication plus host-pulled decoding. It proves no physical
+  arm64, JNI/app, Android decoder, colour space/camera transform, DDFAPD RAW
+  quality, Apple runtime, public package/schema/receipt/capability, product
+  admission or consumer mapping. P172, P45/P44 and v42 remain unchanged.
