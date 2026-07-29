@@ -278,3 +278,8 @@ named-stock milestone.
 ---
 
 *Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C/U2.5/U2.6 product gaps and U2.4A software boundary pass without overclaim; real interpretations remain absent; next selection stays evidence-gated | Integration owner: repository owner or explicitly assigned root agent*
+
+Current physical-runtime leaf: U6.P8BM passes a separate hash-bound native
+strength-0.80 RAW-to-PNG transaction with exact fresh-process output, restart
+verification and zero boundary pixels. U6.P8BN must test 0.80 versus 1.00 on a
+genuinely fresh rights-cleared RAW cohort before any default or promotion.

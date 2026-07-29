@@ -6645,3 +6645,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Scoped tests through P8W pass and commits are pushed. Python buffer
   micro-optimization closes; P8X native CPU ABI/conformance is next. Production,
   mobile runtime and calibration remain closed.
+## 2026-07-28 — U6.P8BM versioned native display-strength transaction
+
+- Added a separate strength-aware staging/output/file transaction; original v1
+  remains unchanged and strength 1.0 is byte-identical through final PNG.
+- Frozen and ran two fresh-process strength-0.80 Canon CC0 RAW transactions:
+  exact PNG `c1a20a1a...eac0f`, zero boundary pixels, 565-623MB peak,
+  15.32-15.49s worker time, exact restart verification and cleanup.
+- Corrected one evaluator-only overconstraint: path-bound run/delivery IDs are
+  expected to differ across transaction directories; renderer bytes and all
+  preregistered gates were unchanged.
+- Claim remains development Look Approximation. Next: U6.P8BN independent RAW
+  population comparison of 0.80 versus 1.00 before any default decision.

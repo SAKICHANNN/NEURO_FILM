@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8bm_native_standard_strength_transaction_contract.v1",
+  "node": "U6.P8BM",
+  "parent_decision": "configs/u6_p8bl_native_standard_strength_sweep_decision_v1.json",
+  "parent_decision_sha256": "304b4161810b1dd94a2ccc098bdf4e1b103b97748c7b81d8dbfde9efe2f4998b",
+  "working_image_contract": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+  "working_image_contract_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638",
+  "raw_fixture": "data/external/rawpixls_ai1_v1/raw/canon_eos7d_mraw.cr2",
+  "raw_fixture_sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+  "raw_fixture_rights": "CC0/Public Domain per exact raw.pixls.us repository row",
+  "legacy_quantized_sweep_output": "outputs/u6_p8bl_native_standard_strength_sweep_v1/canon-7d-warm-text/s080.png",
+  "legacy_quantized_sweep_output_sha256": "d559aca6842b59cd7d5a8366ab6da7e248ae7c28d9dee0e84a8b2cb2882d1873",
+  "strength": 0.8,
+  "strength_domain": "encoded-display-srgb",
+  "repeats": 2,
+  "timeout_seconds": 90,
+  "monitor_interval_seconds": 0.02,
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 4294967296,
+    "worker_kill_rss_bytes": 2147483648
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_worker_elapsed_seconds": 60.0,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_legacy_sweep_abs_code_delta": 1,
+    "png_repeat": "byte-exact",
+    "restart_verification_repeat": "exact",
+    "cleanup_required": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 one frozen CC0 RAW through generic rawpy scene-linear decode and separately versioned native Standard encoded-display strength 0.80 to verified sRGB16 PNG; not scene exposure, calibrated film response, delivery, mobile or promotion"
+}

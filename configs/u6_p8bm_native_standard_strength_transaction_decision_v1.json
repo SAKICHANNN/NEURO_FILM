@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8bm_native_standard_strength_transaction_decision.v1",
+  "node": "U6.P8BM",
+  "contract": "configs/u6_p8bm_native_standard_strength_transaction_v1.json",
+  "contract_sha256": "aa41a3feae40ebcbb473de8648ce3213d4ccb3916ff313f0a3010612484b5bb4",
+  "implementation_commit": "b9c4cf56",
+  "benchmark": "scripts/benchmark_u6_p8bm_native_standard_strength_transaction.py",
+  "benchmark_sha256": "f01711e24a5820c66c8d836d8bfbc4ce7e09a9ccdc2b1a9106de6ea54ad5a105",
+  "formal_report": "outputs/u6_p8bm_native_standard_strength_transaction_v1/report.json",
+  "formal_report_sha256": "d11d47f546e168b395fd0cd3a5f5ff7d745039b82148befcf9721f3a264c497c",
+  "result": {
+    "status": "pass-local-versioned-strength-transaction",
+    "strength": 0.8,
+    "strength_domain": "encoded-display-srgb",
+    "fresh_process_repeats": 2,
+    "png_output_sha256": "c1a20a1abd4099776946dd7a0c65a86d59684e89ea8deab81b1688c3534eac0f",
+    "raw_to_png_repeat_exact": true,
+    "restart_verification_repeat_exact": true,
+    "cleanup_pass": true,
+    "output_code_boundary_fraction": [
+      0.0,
+      0.0
+    ],
+    "peak_process_tree_rss_bytes": [
+      623292416,
+      565452800
+    ],
+    "worker_elapsed_seconds": [
+      15.490209300012793,
+      15.319910999998683
+    ],
+    "legacy_sweep_max_abs_code_delta": [
+      1,
+      1
+    ],
+    "legacy_sweep_changed_code_fraction": [
+      0.19835701202602923,
+      0.19835701202602923
+    ],
+    "all_frozen_gates_pass": true
+  },
+  "evaluation_correction": "the first evaluator incorrectly required path-bound staging run and delivery identities to match across different transaction directories. Output bytes were exact and each restart verification was exact. The evaluator was corrected to the preregistered byte-exact PNG and within-run restart contract without changing renderer code or thresholds.",
+  "decision": "retain the separately versioned 0.80 transaction as a development challenger. Strength 1.00 remains byte-identical to the original v1 transaction; no production default changes.",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 one frozen CC0 RAW through generic rawpy scene-linear decode and separately versioned native Standard encoded-display strength 0.80 to verified sRGB16 PNG; not scene exposure, calibrated film response, delivery, mobile or promotion",
+  "next_leaf": "U6.P8BN freeze a genuinely fresh rights-cleared RAW cohort and compare exact 0.80 versus 1.00 native Standard transactions under automatic severe-artifact gates and autonomous blind appeal review; do not expose 0.80 as a product default unless the reduced-strength preference generalizes"
+}
