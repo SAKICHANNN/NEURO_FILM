@@ -387,7 +387,16 @@ def evaluate_leave_one_slide_out(
     }
 
 
-def build_report(root: Path, config_path: Path) -> dict[str, Any]:
+def build_aligned_patch_bank(
+    root: Path, config_path: Path
+) -> tuple[dict[str, Any], dict[str, dict[str, np.ndarray]], list[dict[str, Any]]]:
+    """Load the frozen source and return aligned native-device-RGB patch medians.
+
+    This is the shared evidence boundary for later scanner-nuisance experiments.
+    It deliberately returns device RGB rather than assigning a colourimetric
+    meaning to the scans.
+    """
+
     config_bytes = config_path.read_bytes()
     config = json.loads(config_bytes)
     parent_config = root / str(config["parent_config"])
@@ -442,6 +451,12 @@ def build_report(root: Path, config_path: Path) -> dict[str, Any]:
                         **diagnostics,
                     }
                 )
+    return config, patch_bank, alignments
+
+
+def build_report(root: Path, config_path: Path) -> dict[str, Any]:
+    config_bytes = config_path.read_bytes()
+    config, patch_bank, alignments = build_aligned_patch_bank(root, config_path)
     evaluation = evaluate_leave_one_slide_out(patch_bank, config)
     commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=root, text=True
@@ -468,6 +483,7 @@ __all__ = [
     "ScannerNuisanceError",
     "align_source_to_scan",
     "apply_affine",
+    "build_aligned_patch_bank",
     "build_report",
     "distance_metrics",
     "evaluate_leave_one_slide_out",
