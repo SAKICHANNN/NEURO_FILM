@@ -1,0 +1,195 @@
+{
+  "schema": "neuro_film.u6_p6h_cross_target_scanner_source_contract.v1",
+  "node": "U6.P6H",
+  "claim_ceiling": "bounded official-source integrity rights and connectivity audit of scaled same-target multi-scanner test scans only",
+  "parents": {
+    "p6g_decision_path": "configs/u6_p6g_measured_scanner_nuisance_operator_decision_v1.json",
+    "p6g_decision_sha256": "744e63bb61c898541e03e3972d25739781c5c931c9fd8a40f46e7994baf47d5f",
+    "p6g_safe_rgb_route_closed": true,
+    "sf2_7r_contract_path": "configs/sf2_7r_colorreference_scanner_nuisance_v1.json",
+    "sf2_7r_contract_sha256": "ed44375415b7471aa1b0256d87e086a66c83f55c0cab3d2a25ec33a90e037fa0"
+  },
+  "source": {
+    "page_url": "https://www.colorreference.de/testdata/index.html",
+    "page_author": "Wolf Faust",
+    "page_last_edited": "2007-03-09",
+    "accessed_date": "2026-07-28",
+    "stated_purpose": "test and help develop scanner color profiling software; user-made scans collected and made available free to anybody interested",
+    "published_payload": "scaled versions because full-resolution files are too large",
+    "material": "Velvia 100F manufactured test slides",
+    "different_target_set_warning": "colours of different test sets are not fully identical and cross-set comparison requires care",
+    "rights_scope": "internal research and testing from the openly downloadable development/test surface; no standard redistribution or commercial-training licence identified"
+  },
+  "acquisition": {
+    "data_root": "data/external/colorreference_cross_target_scanner_v1",
+    "output_root": "outputs/u6_p6h_cross_target_scanner_source_v1",
+    "expected_archive_count": 13,
+    "expected_total_bytes": 200632766,
+    "maximum_total_bytes": 268435456,
+    "minimum_rgb_members_per_archive": 5,
+    "maximum_archive_members": 32,
+    "maximum_member_uncompressed_bytes": 268435456,
+    "archives": [
+      {
+        "target_set": 1,
+        "scanner": "Nikon LS 40 ED",
+        "software": "NikonScan 3.1",
+        "role": "nikon_ls40_nikonscan",
+        "path": "set1/NikonLS40ED_Set1.zip",
+        "url": "https://www.colorreference.de/testdata/scans/NikonLS40ED_Set1.zip",
+        "expected_bytes": 11979894,
+        "etag": "\"22df22-b6cc76-4197116998000\""
+      },
+      {
+        "target_set": 1,
+        "scanner": "Epson 3170",
+        "software": "Epson Scan 2.68G",
+        "role": "epson3170_epsonscan",
+        "path": "set1/Epson3170_Set1_EpsonScan.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Epson3170_Set1_EpsonScan.zip",
+        "expected_bytes": 17013259,
+        "etag": "\"22df1a-1039a0b-510476f627840\""
+      },
+      {
+        "target_set": 1,
+        "scanner": "Epson 3170",
+        "software": "VueScan 8.3.56",
+        "role": "epson3170_vuescan",
+        "path": "set1/Epson3170_Set1_Vuescan.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Epson3170_Set1_Vuescan.zip",
+        "expected_bytes": 18285056,
+        "etag": "\"22df1b-1170200-510476faec380\""
+      },
+      {
+        "target_set": 1,
+        "scanner": "Epson 3170",
+        "software": "sane 1.0.15-20.2",
+        "role": "epson3170_xsane_bundle",
+        "path": "set1/Epson3170_Set1_xsane-default.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Epson3170_Set1_xsane-default.zip",
+        "expected_bytes": 2158683,
+        "etag": "\"22df1c-20f05b-510476f903f00\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "PrimeFilm 3600 Pro",
+        "software": "SilverFast",
+        "role": "primefilm3600_silverfast",
+        "path": "set2/PF3600_Pro_Set2_S.zip",
+        "url": "https://www.colorreference.de/testdata/scans/PF3600%20Pro%20Set2_S.zip",
+        "expected_bytes": 12046100,
+        "etag": "\"22df27-b7cf14-41fea9d420300\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "PrimeFilm 3600 Pro",
+        "software": "VueScan",
+        "role": "primefilm3600_vuescan",
+        "path": "set2/PF3600_Pro_Set2_V.zip",
+        "url": "https://www.colorreference.de/testdata/scans/PF3600%20Pro%20Set2_V.zip",
+        "expected_bytes": 10164100,
+        "etag": "\"22df28-9b1784-41feac1f96d00\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "Minolta Dimage Scan Elite 5400",
+        "software": "Dimage Scan 1.1.5",
+        "role": "minolta_elite5400_dimage",
+        "path": "set2/Elite5400_Set2_D.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Elite5400_Set2_D.zip",
+        "expected_bytes": 31837326,
+        "etag": "\"22df11-1e5cc8e-51173fdc4d600\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "Minolta Dimage Scan Elite 5400",
+        "software": "VueScan 8.3.42",
+        "role": "minolta_elite5400_vuescan",
+        "path": "set2/Elite5400_Set2_V.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Elite5400_Set2_V.zip",
+        "expected_bytes": 31460937,
+        "etag": "\"22df12-1e00e49-51173feb8fa00\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "Nikon LS 4000",
+        "software": "NikonScan 4.0.2",
+        "role": "nikon_ls4000_nikonscan",
+        "path": "set2/NikonLS4000_Set2_N.zip",
+        "url": "https://www.colorreference.de/testdata/scans/NikonLS4000_Set2_N.zip",
+        "expected_bytes": 10723354,
+        "etag": "\"22df20-a3a01a-41feb9df99dc0\""
+      },
+      {
+        "target_set": 2,
+        "scanner": "Nikon LS 4000",
+        "software": "VueScan 8.3.42",
+        "role": "nikon_ls4000_vuescan",
+        "path": "set2/NikonLS4000_Set2_V.zip",
+        "url": "https://www.colorreference.de/testdata/scans/NikonLS4000_Set2_V.zip",
+        "expected_bytes": 10607325,
+        "etag": "\"22df21-a1dadd-41febc3e234c0\""
+      },
+      {
+        "target_set": 9,
+        "scanner": "Imacon Flextight 848",
+        "software": "FlexColor 4.5",
+        "role": "imacon848_flexcolor",
+        "path": "set9/Imacon_848.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Imacon%20848.zip",
+        "expected_bytes": 20139917,
+        "etag": "\"22df1f-1334f8d-41ac4f2b987c0\""
+      },
+      {
+        "target_set": 9,
+        "scanner": "Howtek 4500",
+        "software": "SilverFast",
+        "role": "howtek4500_silverfast",
+        "path": "set9/Howtek4500_Set9.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Howtek4500_Set9.zip",
+        "expected_bytes": 12096902,
+        "etag": "\"22df1e-b89586-41febeeeb0d40\""
+      },
+      {
+        "target_set": 9,
+        "scanner": "Scanmate 5000",
+        "software": "Color Quartet",
+        "role": "scanmate5000_colorquartet",
+        "path": "set9/Scanmate5000_Set9.zip",
+        "url": "https://www.colorreference.de/testdata/scans/Scanmate5000_Set9.zip",
+        "expected_bytes": 12119913,
+        "etag": "\"22df2c-b8ef69-41fec1a126a40\""
+      }
+    ]
+  },
+  "connectivity_contract": {
+    "target_sets": [1, 2, 9],
+    "existing_parent_target_set": 3,
+    "same_target_multiple_scanners_required": true,
+    "same_scanner_across_target_sets_expected": false,
+    "per_device_measured_target_characterization_possible": true,
+    "cross_target_per_device_replication_possible": false
+  },
+  "automatic_gates": {
+    "all_http_status_200": true,
+    "all_lengths_and_etags_exact": true,
+    "all_zip_crc_and_member_safety_pass": true,
+    "all_rgb_members_decode": true,
+    "all_archives_have_minimum_rgb_members": true,
+    "zero_exact_archive_duplicates": true,
+    "same_target_multiple_scanners_for_sets": [1, 2, 9],
+    "repeat_audit_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "open only a separately frozen per-device measured-reference scanner characterization pilot with target-set held-patch controls",
+    "fail": "retain P6D spectral reference and P6G nuisance evidence; close this source",
+    "disconnected_target_scanner_graph": "forbid cross-target scanner-operator generalization and record the missing repeated-device edge"
+  },
+  "forbidden_claims": [
+    "independent-target generalization for any one scanner or software pipeline",
+    "full-resolution or raw scanner output",
+    "scanner spectral sensitivity calibration",
+    "Velvia stock response or digital-to-film operator",
+    "training, product integration, redistribution or commercial use"
+  ]
+}
