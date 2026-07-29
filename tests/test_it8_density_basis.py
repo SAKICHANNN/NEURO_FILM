@@ -5,6 +5,7 @@ import numpy as np
 from src.real_film.it8_density_basis import (
     fit_density_basis,
     optical_density,
+    reconstruct_density,
     reconstruction_rmse,
 )
 
@@ -31,4 +32,5 @@ def test_rank_two_basis_reconstructs_nonnegative_low_rank_fixture() -> None:
     )
     assert fitted.converged
     assert fitted.components.shape == (2, 3)
+    assert reconstruct_density(model, values).shape == values.shape
     assert reconstruction_rmse(model, values) < 1e-4

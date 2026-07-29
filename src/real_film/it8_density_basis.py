@@ -80,7 +80,12 @@ def fit_density_basis(
 
 
 def reconstruction_rmse(model: NMF, rows: np.ndarray) -> float:
+    reconstructed = reconstruct_density(model, rows)
+    values = np.asarray(rows, dtype=np.float64)
+    return float(np.sqrt(np.mean((values - reconstructed) ** 2)))
+
+
+def reconstruct_density(model: NMF, rows: np.ndarray) -> np.ndarray:
     values = np.asarray(rows, dtype=np.float64)
     weights = model.transform(values)
-    reconstructed = weights @ model.components_
-    return float(np.sqrt(np.mean((values - reconstructed) ** 2)))
+    return weights @ model.components_
