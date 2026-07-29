@@ -1,0 +1,86 @@
+{
+  "schema": "neuro_film.u6_p4d_density_conditioned_structure_contract.v1",
+  "node": "U6.P4D",
+  "parents": {
+    "p4c2_contract": "configs/u6_p4c2_moment_corrected_lod_v1.json",
+    "p4c2_contract_sha256": "4e3b2bbd20e8867d18941b54ec066eeb167d52ef2ea582a668a36f8ff6434ca8",
+    "p4c2_decision": "configs/u6_p4c2_moment_corrected_lod_decision_v1.json",
+    "p4c2_decision_sha256": "8ab8efb6e911bcc14a7a8cb527ba7146887f527372a8e19936e4df60e9be6798"
+  },
+  "question": "Can an explicit nonnegative marked-Poisson material model make local dye-cloud or silver-image structure depend on the supplied developed optical density while preserving the target mean, physical domain, coordinate identity and row partitions?",
+  "model": {
+    "input_domain": "developed_optical_density",
+    "output_domains": [
+      "developed_optical_density",
+      "film_transmittance"
+    ],
+    "expected_grain_count_per_pixel": "target_density / grain_optical_density",
+    "grain_count_distribution": "coordinate-counter Poisson",
+    "spatial_shape": "positive Gaussian cloud kernel in physical pixel coordinates",
+    "density_output": "grain_optical_density * filtered_nonnegative_count",
+    "transmittance_output": "exp(-density_output)",
+    "display_rgb_noise_allowed": false,
+    "signed_density_allowed": false,
+    "per_image_normalization_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "profiles": [
+    {
+      "layer_id": "cyan_dye_like",
+      "grain_optical_density": 0.04,
+      "correlation_sigma_pixels": 0.55,
+      "seed": 260801
+    },
+    {
+      "layer_id": "magenta_dye_like",
+      "grain_optical_density": 0.05,
+      "correlation_sigma_pixels": 0.65,
+      "seed": 260803
+    },
+    {
+      "layer_id": "yellow_dye_like",
+      "grain_optical_density": 0.035,
+      "correlation_sigma_pixels": 0.45,
+      "seed": 260807
+    }
+  ],
+  "synthetic_evaluation": {
+    "shape": [384, 512],
+    "flat_density_levels": [0.0, 0.1, 0.3, 0.7, 1.2, 1.8],
+    "maximum_input_density": 2.0,
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 1000,
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 4,
+    "density_ramp_axis": "horizontal",
+    "report_float_precision": 12
+  },
+  "automatic_gates": {
+    "maximum_flat_mean_absolute_error": 0.01,
+    "minimum_flat_mean_step": 0.07,
+    "minimum_high_to_low_variance_ratio": 2.5,
+    "minimum_ramp_target_output_correlation": 0.995,
+    "maximum_ramp_mean_absolute_error": 0.02,
+    "minimum_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "zero_density_is_exact_zero": true,
+    "zero_density_transmittance_is_exact_one": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "negative_controls": [
+    "constant-rate field independent of target density",
+    "signed display-RGB noise",
+    "U6.2B salt-like bright speckles",
+    "per-image variance normalization"
+  ],
+  "branch_rule": {
+    "pass": "retain a generic density-conditioned material-structure primitive and open a separately frozen developed-density integration/LOD audit",
+    "fail": "close this marked-Poisson parameterization and retain P4C2 fixed-field evidence only"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic physical-inspired density-conditioned material structure; not measured film grain, dye-cloud calibration, stock response or product evidence"
+}
