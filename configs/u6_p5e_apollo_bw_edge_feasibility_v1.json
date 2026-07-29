@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p5e_apollo_bw_edge_feasibility.v1",
+  "experiment_id": "u6.p5e-apollo-bw-edge-feasibility-v1",
+  "node": "ULT > U6 > U6.P5E",
+  "status": "post_exploratory_development_contract_frozen",
+  "question": "Is the camera-free opaque/clear boundary in AS16-111 segment 05 sufficiently sharp, stable and subpixel-sampled to support a later combined film-plus-scanner edge/MTF experiment?",
+  "parent": {
+    "decision_path": "configs/u6_p2l1_apollo16_bw_step_chart_feasibility_decision_v1.json",
+    "decision_sha256": "1b327b49d38de5d29937ca7c9fef84e89454e39b68da56b489774274fe42f111",
+    "required_decision": "close_segment_without_curve_fitting_insufficient_wedge_levels",
+    "archive_path": "data/external/apollo16_bw_step_chart_v1/AS16-111-stepchart05.zip",
+    "archive_sha256": "a88dd57ee7f009718c4589466dd879b7b2b2cec0dde48e1ea3bad079e85c273b",
+    "member_path": "AS16-111-stepchart05.tif"
+  },
+  "development_disclosure": {
+    "edge_probe_seen_before_numeric_gate_freeze": true,
+    "observed_transition_wider_than_typical_sharp_edge": true,
+    "untouched_confirmation_claim_forbidden": true
+  },
+  "roi": {
+    "row_start": 5700,
+    "row_stop": 6700,
+    "column_start": 1200,
+    "column_stop": 13100,
+    "maximum_output_bytes": 67108864,
+    "maximum_uncompressed_bytes": 2000000000
+  },
+  "edge_analysis": {
+    "plateau_rows": 200,
+    "minimum_column_span_code": 30000,
+    "robust_fit_iterations": 5,
+    "minimum_residual_pixels": 3.0,
+    "mad_multiplier": 5.0,
+    "profile_column_stride": 4,
+    "profile_radius_pixels": 300,
+    "oversampling": 4,
+    "phase_bin_count": 8,
+    "negative_step_tolerance": 0.002
+  },
+  "automatic_gates": {
+    "minimum_valid_column_fraction": 0.95,
+    "minimum_line_inlier_fraction": 0.95,
+    "minimum_edge_shift_pixels": 32.0,
+    "minimum_phase_bin_count": 100,
+    "minimum_median_span_fraction": 0.8,
+    "maximum_10_90_width_pixels": 40.0,
+    "maximum_negative_step_fraction": 0.01,
+    "repeat_report_byte_identity": true
+  },
+  "branch_rule": {
+    "automatic_pass": "retain only a combined historical-film-plus-scanner edge source and freeze a separate MTF identifiability audit",
+    "automatic_fail": "close this boundary for MTF/kernel fitting; retain only endpoint and broad-transition stress evidence"
+  },
+  "forbidden": [
+    "sensitometry fitting",
+    "MTF or sharpening-kernel fitting in this feasibility audit",
+    "manual edge-region rescue or gate changes after formal execution",
+    "separating emulsion, development, film deformation and scanner contributions",
+    "stock calibration, scanner calibration or product integration"
+  ],
+  "report": "outputs/experiments/u6_p5e_apollo_bw_edge_feasibility_v1/report.json",
+  "claim_ceiling": "Post-exploratory source-feasibility audit of one historical B&W opaque/clear boundary; at most combined film-plus-development-plus-scanner evidence, never component calibration or product evidence."
+}
