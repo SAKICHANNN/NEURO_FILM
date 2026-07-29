@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3i-colorreference-joint-in-domain-proxy-baselines-v1",
+  "config_sha256": "e5840fd2dccc83c7cd97fb6b5201420e5e8cf7b60f942201068783ee877e1d52",
+  "software_commit": "acad153718fd6d8a8df7b17c3cd077903a67ff20",
+  "report_sha256": "55846a29a082174510fe566fecba1b14a5b4d9b5fc1d4f58472efca3067f1ef1",
+  "repeat_report_sha256": "55846a29a082174510fe566fecba1b14a5b4d9b5fc1d4f58472efca3067f1ef1",
+  "automatic_pass": true,
+  "decision": "open_one_separately_frozen_bounded_nonlinear_explicit_proxy_family",
+  "bounded_champion": null,
+  "key_results": {
+    "nonnegative_affine_mean_deltae76": 21.5016371515376,
+    "nonnegative_affine_worst_fold_mean_deltae76": 22.21496162522773,
+    "quadratic_full_mean_deltae76": 11.546648347144565,
+    "quadratic_full_worst_fold_mean_deltae76": 11.850439422583147,
+    "quadratic_full_improvement_over_nonnegative_affine": 0.4620514699053495,
+    "quadratic_full_raw_xyz_negative_component_fraction": 0.024807098765432096,
+    "quadratic_full_raw_xyz_above_1_2_component_fraction": 0.0
+  },
+  "interpretation": "supported in-domain colour folds remove the AQ2 whole-slide extrapolation confound, but the accurate quadratic proxy still violates the raw negative-XYZ boundary while the bounded affine proxy is materially less accurate",
+  "next_leaf": "AQ3B",
+  "next_leaf_scope": "one bounded smooth Bernstein-lattice explicit proxy family with degrees frozen before formal execution",
+  "aq2_reopened": false,
+  "render_allowed": false,
+  "operator_promotion_allowed": false,
+  "claim_ceiling": "recorder-device-to-measured-developed-slide proxy mechanism evidence only; not camera-to-film or calibrated stock response"
+}
