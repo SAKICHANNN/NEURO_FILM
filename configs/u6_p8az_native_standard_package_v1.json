@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.native_standard_runtime_package.v1",
+  "package_id": "native-standard-physical-ao6-display-v4-win-x64",
+  "profile_artifact": {
+    "schema": "neuro_film.u6_p8b_artifact_only_cpu_profile_artifact.v1",
+    "sha256": "e5168fe89f94efc0e1a3b0a7b38ed26f6c4f4dd142dbe9f951be596c398267ae",
+    "bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af"
+  },
+  "platform": {
+    "os": "windows",
+    "architecture": "x86_64",
+    "float": "ieee754-binary32"
+  },
+  "components": {
+    "domains": {
+      "abi": "nf_physical_domains_f32_v1",
+      "abi_version": 1,
+      "sha256": "122f67c531686018621f087b2281e85277832b67a5e19a04de732e0d4f3ad823"
+    },
+    "gaussian": {
+      "abi": "nf_gaussian_rgb_f32_v1",
+      "abi_version": 1,
+      "sha256": "37686905def49425235a2d1625fb7728448263013cd376173171dec2e5c9693f"
+    },
+    "adjacency": {
+      "abi": "nf_bounded_adjacency_f32_v1",
+      "abi_version": 1,
+      "sha256": "50dd895ff40d1f4ca2e61fae6c8d9f92f18dd8c5a0d96569269efa2a6f763ed0"
+    },
+    "gauge": {
+      "abi": "nf_neutral_gauge_f32_v1",
+      "abi_version": 1,
+      "sha256": "1954a07850b70e1c528782cd92265b46e015d9d1ace76a02935c1c0e74faab6b"
+    },
+    "context": {
+      "abi": "nf_ao6_context_f32_v2",
+      "abi_version": 2,
+      "sha256": "45a9a68b2177560cc1fd1ac4634e872918a47affcff396e251df446f22e92a8f"
+    },
+    "display": {
+      "abi": "nf_ao6_display_f32_v4",
+      "abi_version": 4,
+      "sha256": "a8a4aede80996d96f72ee805f4ae38d23caef3df786c0f4138a2ee5a37571ce9"
+    }
+  },
+  "execution_policy": {
+    "tile_rows": 32,
+    "pipeline_workers": 4,
+    "max_in_flight": 4,
+    "ordered_consumption": true,
+    "single_final_quantization": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in exact prebuilt Windows x64 native Standard library and profile identity package only; no runtime loading, rendering, decoder, encoder, mobile, calibration or production promotion"
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8az_native_standard_package_decision.v1",
+  "node": "U6.P8AZ",
+  "parent_decision": "configs/u6_p8ay_native_ordered_pipeline_resources_decision_v1.json",
+  "parent_decision_sha256": "e396fa137d61c14b4a0e4e049f05deeefbeec394274c7675487b38c2f054f01b",
+  "package": "configs/u6_p8az_native_standard_package_v1.json",
+  "package_file_sha256": "7365e6c6a593d530c450ddc4a2bfa1671267abdea71509ca7ab9f7210442f6b0",
+  "package_canonical_sha256": "aca6459952998d29ce8375d02009cccdd89d4b31ddcbf2ae88ad58e0e37c1557",
+  "result": {
+    "status": "pass-package-boundary",
+    "related_native_profile_tests_passed": 93,
+    "related_native_profile_tests_failed": 0,
+    "package_target": "windows-x86_64",
+    "component_count": 6,
+    "profile_artifact_exact": true,
+    "prebuilt_library_hashes_exact": true,
+    "runtime_loading_or_rendering_implemented": false
+  },
+  "decision": "retain the opt-in hash-bound native Standard package boundary. It accepts only the exact P8B profile artifact, six exact prebuilt component libraries and the P8AY four-worker policy, and it performs no compilation or loading",
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in exact prebuilt Windows x64 native Standard library and profile identity package only; no runtime loading, rendering, decoder, encoder, mobile, calibration or production promotion",
+  "next_leaf": "U6.P8BA move reusable ctypes layouts and execution out of src.eval into an opt-in film_physics runtime that consumes only a resolved P8AZ package"
+}
