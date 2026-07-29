@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p2k_apollo_step_chart_source.v1",
+  "experiment_id": "u6.p2k-apollo-step-chart-source-v1",
+  "node": "ULT > U6 > U6.P2K",
+  "status": "bounded_acquisition_contract_frozen",
+  "question": "Does one rights-clear, camera-free density-wedge scan from an independently documented Ektachrome SO-368 magazine expose usable monotone channel response and scanner/process diagnostics for a later generic physical-film interpretation pilot?",
+  "source": {
+    "name": "March to the Moon / NASA Johnson Space Center",
+    "about_url": "https://tothemoon.im-ldi.com/about",
+    "download_url": "https://tothemoon.im-ldi.com/download_step?step_name=AS07-03-StepChart",
+    "allowed_download_host": "tothemoon.im-ldi.com",
+    "download_filename": "AS07-03-StepChart.zip",
+    "observed_date": "2026-07-30",
+    "source_description": "The archive states that density wedges were placed directly on film and exposed without a camera; wedge levels run from 100 percent opaque to 0 percent opaque.",
+    "scanner_description": "Apollo film scans are described as Leica DSW700 scans at up to 200 pixels/mm and 14-bit A/D; exact file metadata remains to be audited.",
+    "rights_description": "The source states that NASA/JSC raw scans of Apollo flight film are public domain under NASA still-image/computer-file policy; processed ASU products have separate restrictions and are excluded.",
+    "allowed_use": "bounded internal research and reproducible derived measurement from raw scan members only; no processed ASU product use"
+  },
+  "magazine_evidence": {
+    "parent_path": "configs/real_film_apollo7_metadata_feasibility_v1.json",
+    "parent_sha256": "1366a2aaefa6aef83b504df8e88ce5c6e1f18ebcaa5b5cabfea0eb7c4930ec5e",
+    "mission": "AS07",
+    "photo_roll": "3",
+    "physical_magazine": "M",
+    "film_stock_id": "kodak_ektachrome_so_368",
+    "film_code": "SO368",
+    "filter": "none",
+    "association_status": "independently documented magazine association; archive contents must still match AS07-03 and remain raw-scan evidence"
+  },
+  "acquisition": {
+    "destination": "data/external/apollo_step_chart_v1/AS07-03-StepChart.zip",
+    "manifest": "outputs/experiments/u6_p2k_apollo_step_chart_source_v1/acquisition_manifest.json",
+    "advertised_compressed_size": "1.6 GB",
+    "maximum_compressed_bytes": 2200000000,
+    "maximum_uncompressed_bytes": 6000000000,
+    "maximum_member_count": 64,
+    "request_timeout_seconds": 120,
+    "chunk_bytes": 4194304,
+    "resume_allowed": false,
+    "reason_resume_forbidden": "The endpoint ignored a one-byte HTTP Range request and returned 200 chunked content on 2026-07-30."
+  },
+  "gates_before_analysis": {
+    "exact_archive_sha256_recorded": true,
+    "zip_crc_and_member_paths_valid": true,
+    "raw_scan_identity_supported": true,
+    "member_format_dimensions_bit_depth_recorded": true,
+    "density_wedge_geometry_detected_without fitting": true,
+    "processed_product_detected": "close"
+  },
+  "forbidden_actions": [
+    "fit any curve before acquisition integrity and raw-scan identity pass",
+    "treat wedge percentages as scene RGB or a digital-photo pair",
+    "claim modern Ektachrome, Velvia, stock calibration or scanner-independent response",
+    "infer process, exposure spacing, illuminant spectrum or density values absent from independent evidence",
+    "use ASU processed derivatives",
+    "expand to further Apollo archives before this bounded pilot is adjudicated"
+  ],
+  "branch_rule": {
+    "source_pass": "open a separately frozen parsing and monotonic-response feasibility audit only",
+    "source_fail": "close this archive without curve fitting and retain manufacturer priors plus generic physical-inspired sensitometry"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "claim_ceiling": "One historical SO-368 magazine-associated, camera-free density-wedge raw-scan source audit; not a digital-to-film pair, modern stock response, calibrated sensitometry, process truth, scanner independence or product promotion."
+}
