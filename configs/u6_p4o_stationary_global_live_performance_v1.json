@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p4o_stationary_global_live_performance_contract.v1",
+  "node": "U6.P4O",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4n_decision": "configs/u6_p4n_bounded_lod_policy_fit_decision_v1.json",
+    "p4n_decision_sha256": "6241b2b28f511237f2db63da5c99e944e4b9344b6805f6d4232b142118e4909d"
+  },
+  "question": "Can the retained stationary global P4H compiler stream a 24MP constant developed-density field repeatably within explicit local CPU time, process-tree memory and partition bounds?",
+  "executor": {
+    "compiler": "P4H analytic two-cumulant normalized-support-v1",
+    "pixel_size_factor": 4,
+    "output_shape": [4000, 6000],
+    "target_density": [0.8, 0.656, 0.512],
+    "seed_offset": 0,
+    "row_tile_height": 257,
+    "small_parity_shape": [192, 256],
+    "partition_test_heights": [31, 127, 257],
+    "fresh_process_runs": 2,
+    "sample_interval_seconds": 0.02,
+    "maximum_runtime_seconds": 180,
+    "full_output_assembly_allowed": false,
+    "full_target_allocation_allowed": false,
+    "network_allowed": false,
+    "gpu_allowed": false
+  },
+  "automatic_gates": {
+    "small_partition_byte_exact": true,
+    "repeat_stream_hash_exact": true,
+    "output_rows": 4000,
+    "maximum_process_tree_peak_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 120,
+    "minimum_liveness_samples": 100,
+    "exit_code": 0,
+    "stderr_empty": true,
+    "owned_temp_residue_count": 0,
+    "density_and_transmittance_domain_valid": true
+  },
+  "branch_rule": {
+    "pass": "retain stationary global P4H as bounded offline/compiler infrastructure and return to a distinct physical-film algorithm leaf",
+    "fail": "retain small stationary P4H evidence only and optimize its executor before any scale-up"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python 24MP stationary synthetic performance; not nonstationary fidelity, measured film structure, stock calibration, photographic evidence or product runtime"
+}
