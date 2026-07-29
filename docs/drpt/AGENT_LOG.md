@@ -7357,3 +7357,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   does not prove causation and does not authorize padding, masking, strength or
   profile changes. Close P3L/P3M and resume a distinct explicit algorithm or
   data question.
+
+## 2026-07-30 - Freeze U6.P5F cross-layer interimage adjacency
+
+- Parent: Physical Film Image Formation P5 spatial response.
+- P5C/P5D remain frozen and retained; failed external AD1 is not reused.
+- The new candidate is a data-independent, zero-row-sum graph-Laplacian
+  coupling across developed-density layers after one shared finite Gaussian.
+  Fixed smooth density/transmittance bounds prohibit clipping.
+- DoD is synthetic and falsifiable: exact constants and neutral-axis,
+  material opponent-edge gain in all channels, exact 31/47-row execution,
+  finite impulse support and repeat identity. The claim ceiling is generic
+  physical-inspired feasibility; no film stock, process, DIR chemistry,
+  calibration, photographic safety or product promotion is allowed.

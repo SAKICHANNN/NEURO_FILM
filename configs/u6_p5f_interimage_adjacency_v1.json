@@ -1,0 +1,93 @@
+{
+  "schema": "neuro_film.u6_p5f_interimage_adjacency_contract.v1",
+  "node": "U6.P5F",
+  "parents": {
+    "p5c_contract_sha256": "0f945f531dc5f0d1c78f30dd0ad5bf71ad6630a2e42ecde593bc907f05b61f99",
+    "p5c_decision_sha256": "9556561899eea5757b60936509b6f95831be4b13566a3c4b668de00303c88dc4",
+    "p5d_contract_sha256": "50a9d985b94dc1bd9f013b16d4d93f97d43bd4a8c867cde87d20a1370952955e",
+    "p5d_decision_sha256": "9c569258310999b95f270321beabcaecca15367a928cf6f3a16ebe5ceb1ab6603d"
+  },
+  "question": "Can a separately bounded cross-layer interimage adjacency operator retain constant fields and the complete neutral axis while producing a material, deterministic opponent-edge response that is not available from P5C's independent per-channel correction?",
+  "claim_ceiling": "generic-physical-inspired-interimage-adjacency-synthetic-feasibility",
+  "candidate": {
+    "name": "zero-sum-cross-layer-bounded-interimage-adjacency-v1",
+    "domain": "developed optical density",
+    "pixel_pitch_um": 1.0,
+    "diffusion_sigma_um": 1.2,
+    "gaussian_truncate": 4.0,
+    "coupling_matrix": [
+      [0.12, -0.06, -0.06],
+      [-0.06, 0.12, -0.06],
+      [-0.06, -0.06, 0.12]
+    ],
+    "matrix_contract": "finite symmetric graph-Laplacian; diagonal nonnegative; off-diagonal nonpositive; each row sums to zero",
+    "maximum_absolute_transmittance_delta": 0.006,
+    "maximum_absolute_density_delta": 0.05,
+    "black_reference_density": [0.0, 0.0, 0.0],
+    "white_reference_density": [3.0, 3.0, 3.0],
+    "smooth_projection": "signed_limit_times_tanh_raw_over_signed_limit",
+    "hard_clip_forbidden": true
+  },
+  "synthetic_witnesses": {
+    "shape": [96, 192],
+    "constant_density_levels": [0.0, 0.2, 1.0, 2.4, 3.0],
+    "neutral_edge_low_high": [0.4, 1.6],
+    "single_channel_edge_low_high": [0.4, 1.6],
+    "single_channel_neutral_background": 1.0,
+    "impulse_background": 1.0,
+    "impulse_delta": 0.5,
+    "random_seed": 6205,
+    "random_density_range": [0.1, 2.9],
+    "row_partitions": [31, 47]
+  },
+  "automatic_gates": {
+    "repeat_must_be_exact": true,
+    "constant_fields_must_be_exact_identity": true,
+    "maximum_neutral_axis_abs_error": 1e-12,
+    "maximum_density_domain_violation": 1e-12,
+    "maximum_absolute_density_correction": 0.050000000001,
+    "maximum_absolute_transmittance_correction": 0.006000000001,
+    "minimum_material_absolute_density_correction": 0.002,
+    "minimum_single_channel_peak_opponent_gradient_gain_fraction": 0.01,
+    "all_three_single_channel_edges_must_pass": true,
+    "row_partition_outputs_must_be_exact": true,
+    "maximum_remote_impulse_correction": 0.0,
+    "hard_clip_fraction_must_be_zero": true
+  },
+  "research_basis": [
+    {
+      "source": "US4833070A, Interimage effects from development inhibitor releasing couplers",
+      "url": "https://patents.google.com/patent/US4833070A/en",
+      "use": "mechanism precedent for interimage effects, sharpness and colour-purity interactions; not parameter calibration"
+    },
+    {
+      "source": "US6686136B1, Colour photographic material with interlayer imagewise suppression",
+      "url": "https://patents.google.com/patent/US6686136B1/en",
+      "use": "mechanism precedent for cross-layer development suppression; not a stock recipe"
+    },
+    {
+      "source": "Rajkowski and Nowak, Numerical investigation of sharpness in photographic layers containing DIR compounds",
+      "url": "https://opticaapplicata.pwr.edu.pl/article.php?id=1998200095",
+      "use": "model precedent connecting DIR/DAR chemistry and spatial response; not measured K-MCFM evidence"
+    }
+  ],
+  "negative_controls": [
+    "zero coupling",
+    "constant fields",
+    "complete neutral-axis edge",
+    "row partition replay",
+    "impulse support outside the exact Gaussian halo"
+  ],
+  "forbidden_fallbacks": [
+    "reuse or retune the failed external spektrafilm AD1 spatial-DIR candidate",
+    "change P5C or P5D frozen parameters, thresholds or results",
+    "fit coupling, bounds or gates after viewing this confirmatory report",
+    "hard clip density or transmittance",
+    "call the generic matrix a measured DIR coupler, emulsion, stock or process response",
+    "advance to photographic or product integration if any automatic gate fails"
+  ],
+  "branch_rule": {
+    "pass": "retain only synthetic feasibility and freeze a separate rights-cleared photographic severe-artifact and OOD audit",
+    "fail": "close the cross-layer interimage candidate without modifying the retained independent-channel P5C path"
+  }
+}

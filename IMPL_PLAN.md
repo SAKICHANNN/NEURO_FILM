@@ -17,6 +17,14 @@ association, below its 90% dominance gate; zero/highlight/shadow controls also
 fail. The combined route is closed without a parameter, boundary, visual or
 product rescue.
 
+U6.P5F now freezes a distinct cross-layer interimage adjacency question. P5C
+remains the independent-channel bounded path and AD1 remains a failed external
+spatial-DIR ablation. The new fixed graph-Laplacian coupling must preserve
+constant fields and the complete neutral axis, obey analytical density and
+transmittance bounds, produce material opponent-edge response in all three
+channels, and replay exactly under finite-halo row partitions. A synthetic
+pass opens only a separately frozen photographic severe/OOD audit.
+
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
 `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock
