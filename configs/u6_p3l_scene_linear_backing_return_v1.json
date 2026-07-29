@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p3l_scene_linear_backing_return_contract.v1",
+  "node": "U6.P3L",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "the fixed P1-forward plus P3D-additive backing-return topology may remain numerically bounded on genuine RAW-derived scene-linear inputs because it no longer begins from display-encoded channel zeros",
+  "parents": {
+    "p1_contract_path": "configs/u6_p1_reference_scatter_simulator_v1.json",
+    "p1_contract_sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b",
+    "p3d_contract_path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "p3d_contract_sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12",
+    "sensitometry_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "p3g_decision_path": "configs/u6_p3g_backing_return_combined_ablation_decision_v1.json",
+    "p8bp_contract_path": "configs/u6_p8bp_fresh_native_standard_confirmation_v1.json",
+    "p8bp_contract_sha256": "e3f8a1fa7b2ad16ea697f4d0adf03d7c1599fd7d665d2cc7b9195bfdeb1ec97d",
+    "p8bp_preflight_decision_path": "configs/u6_p8bp_fresh_source_preflight_decision_v1.json",
+    "p8bp_preflight_decision_sha256": "004fad263ee0ddc437e57f5cc70fc69890c9bbb1bfeb5759383180bfba22cc0e",
+    "p8bp_manifest_path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "p8bp_manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521"
+  },
+  "input": {
+    "source_count": 9,
+    "camera_make_count": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "decode": "existing LibRaw/rawpy WorkingImage scene-linear linear-sRGB path",
+    "maximum_long_edge": 768,
+    "resize": "OpenCV INTER_AREA in scene-linear float32",
+    "virtual_pixel_pitch_um": 8.0,
+    "physical_scale_claimed": false
+  },
+  "fixed_chain": {
+    "input": "RAW-derived bounded scene-linear linear-sRGB treated as generic relative layer exposure",
+    "forward_scatter": "unchanged compiled P1 forward-only component",
+    "backing_return": "unchanged P3D additive return through retained P3H FFT arithmetic",
+    "development": "unchanged U2.2 sensitometry primitive",
+    "interpretation": "density-to-direct-scan transmittance",
+    "variants": [
+      "no-spatial",
+      "legacy-P1-full-energy-redistribution",
+      "P1-forward-only-then-P3D-additive-return",
+      "forbidden-double-counting-P1-full-then-P3D-additive-return"
+    ],
+    "profile_fitting": false,
+    "parameter_selection": false,
+    "hard_clipping": false
+  },
+  "automatic_gates": {
+    "all_source_raw_hashes_exact": true,
+    "all_inputs_scene_linear_srgb": true,
+    "all_outputs_finite_and_inside_open_closed_unit_domain": true,
+    "maximum_candidate_vs_no_spatial_abs": 0.08,
+    "minimum_population_p95_candidate_vs_no_spatial_abs": 0.00001,
+    "minimum_population_p95_candidate_vs_legacy_abs": 0.00001,
+    "minimum_population_p95_candidate_vs_forbidden_double_abs": 0.00001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_isolated_candidate_excursion_count": 0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "repeat_report_sha256_exact": true
+  },
+  "visual_protocol": {
+    "automatic_pass_required": true,
+    "fixed_ids": [
+      "nikon_d2xs",
+      "dji_fc9287",
+      "leica_m10_r",
+      "blackmagic_micro_cinema",
+      "hasselblad_cfv_50c"
+    ],
+    "severe_vetoes": [
+      "secondary hard contour or objectionable colour fringe",
+      "isolated bright or dark speckle",
+      "banding, posterization or hard clipping",
+      "geometry or content corruption"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "forbidden_actions": [
+    "change P1, P3D, P3H, U2.2 or P3G parameters or gates",
+    "fit or select parameters against these photographs",
+    "call generic LibRaw linear-sRGB calibrated film-layer exposure",
+    "reinterpret the P8BP source pool as film or stock evidence",
+    "reopen P3G or the closed P8BP product challenger",
+    "promote to product from this mechanism audit"
+  ],
+  "branch_rule": {
+    "pass": "retain scene-linear backing-return topology as isolated development evidence and open only a separately frozen combined-chain value ablation",
+    "fail": "close this fixed backing-return combined topology without retuning and preserve isolated P3D/P3H references"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic fixed-chain mechanism and severe-artifact audit on RAW-derived scene-linear relative inputs; no calibrated exposure, stock, process, scanner, camera-rendering, preference, product or authenticity claim"
+}
