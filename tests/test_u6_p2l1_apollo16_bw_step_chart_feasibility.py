@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 import pytest
 
@@ -7,6 +10,25 @@ from src.eval.apollo16_bw_step_chart_feasibility import (
     Apollo16BWWedgeFeasibilityError,
     supported_level_groups,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_decision_closes_curve_fitting_and_segment_expansion() -> None:
+    decision = json.loads(
+        (
+            ROOT
+            / "configs/u6_p2l1_apollo16_bw_step_chart_feasibility_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert (
+        decision["decision"]
+        == "close_segment_without_curve_fitting_insufficient_wedge_levels"
+    )
+    assert decision["evidence"]["supported_level_count"] == 2
+    assert decision["evidence"]["minimum_supported_wedge_levels"] == 6
+    assert "sensitometry or characteristic-curve fitting" in decision["closed_use"]
+    assert "acquisition of segments 01-04 under this branch" in decision["closed_use"]
 
 
 def test_supported_level_groups_keep_six_separated_plateaus() -> None:

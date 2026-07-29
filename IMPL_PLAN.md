@@ -107,6 +107,13 @@ correct-prototype RMSE `.00134` and minimum classification margin `.15428`.
 Retain these only as scanner/wedge acquisition controls; exact target identity,
 cause, scanner calibration and film/emulsion interpretations remain unknown.
 
+P2L/P2L1 then audit the smallest camera-free Apollo 16 B&W wedge segment while
+the larger Apollo 7 SO-368 P2K stream continues. The exact 84.7MB archive and
+348.3MB classic uint16 TIFF pass CRC and bounded row-streaming, but the central
+profile contains only two materially supported endpoint-like levels against a
+frozen six-level minimum. Close sensitometry fitting and the other four
+segments; retain this file only as a possible endpoint/edge stress source.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

@@ -7280,3 +7280,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   causal settings, scanner calibration, film/emulsion response, latent modes
   and product use remain closed. P6J is not reopened; resume a distinct
   film-image-formation or stock/look algorithm leaf.
+
+## 2026-07-30 - U6.P2L1 closes the small Apollo 16 B&W segment
+
+- Exact acquisition passes for one 84,741,732-byte ZIP containing a
+  348,250,527-byte `14345x12135` uint16 grayscale TIFF associated with Apollo
+  16 magazine 111/J and Kodak 3401 Plus-X. A bounded row-streaming reader avoids
+  materializing the 348MB member and validates all strips/CRC.
+- Two formal reports are byte-identical at `f4a22b71...6e9fc`. The central
+  profile spans `.96828` of the uint16 code range but has only two
+  high-support endpoint-like levels versus the frozen six-level minimum.
+- Close characteristic-curve fitting and do not acquire segments 01-04 under
+  this branch. The scan may be reused only by a separately frozen endpoint,
+  edge or scanner-MTF stress audit; it is not calibrated sensitometry,
+  development truth, modern Plus-X equivalence or colour-stock evidence.

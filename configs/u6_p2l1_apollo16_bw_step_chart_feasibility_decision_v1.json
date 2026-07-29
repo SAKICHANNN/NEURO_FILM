@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p2l1_apollo16_bw_step_chart_feasibility_decision.v1",
+  "experiment_id": "u6.p2l1-apollo16-bw-step-chart-feasibility-v1",
+  "decision": "close_segment_without_curve_fitting_insufficient_wedge_levels",
+  "contract": {
+    "path": "configs/u6_p2l1_apollo16_bw_step_chart_feasibility_v1.json",
+    "software_commit": "ae23f5e7"
+  },
+  "evidence": {
+    "report_path": "outputs/experiments/u6_p2l1_apollo16_bw_step_chart_feasibility_v1/report.json",
+    "report_sha256": "f4a22b71c86d3f8d26205c467ef2cb3e8d04d12d326f40d24963e1588626e9fc",
+    "stable_evidence_id": "0c3878e6b87fce8737178fb909b1d1e89b548bc284037e449fb9faab0908b20e",
+    "repeat_report_byte_identity": true,
+    "archive_sha256": "a88dd57ee7f009718c4589466dd879b7b2b2cec0dde48e1ea3bad079e85c273b",
+    "archive_bytes": 84741732,
+    "member_uncompressed_bytes": 348250527,
+    "layout": "14345x12135x1 uint16 classic TIFF, one uncompressed row per strip",
+    "code_span_fraction": 0.9682764934767681,
+    "supported_level_count": 2,
+    "minimum_supported_wedge_levels": 6
+  },
+  "retained_use": [
+    "historical B&W clear/opaque endpoint stress",
+    "candidate edge or scanner-MTF source only under a separate frozen contract"
+  ],
+  "closed_use": [
+    "sensitometry or characteristic-curve fitting",
+    "acquisition of segments 01-04 under this branch",
+    "modern Plus-X equivalence",
+    "colour-stock response",
+    "development or scanner calibration",
+    "product integration"
+  ],
+  "claim_ceiling": "Post-exploratory source closure for one historical Kodak 3401-associated raw-scan segment; two endpoint-like levels are not a sensitometry curve."
+}
