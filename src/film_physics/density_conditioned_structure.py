@@ -6,7 +6,12 @@ from dataclasses import dataclass
 import math
 
 import numpy as np
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import (
+    binary_dilation,
+    gaussian_filter,
+    maximum_filter,
+    minimum_filter,
+)
 from scipy.signal import convolve2d
 
 from .structure_compiler import counter_uniform_region
@@ -542,16 +547,124 @@ def render_density_conditioned_structure_area_lod(
     )
 
 
+def adaptive_exact_area_mask(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    density_range_threshold: float,
+) -> np.ndarray:
+    """Select nonstationary pixels for exact base-pitch area execution."""
+
+    target = np.asarray(target_density, dtype=np.float64)
+    if (
+        target.ndim != 3
+        or target.shape[2] != len(profiles)
+        or not isinstance(pixel_size_factor, int)
+        or pixel_size_factor < 1
+        or not math.isfinite(density_range_threshold)
+        or density_range_threshold <= 0.0
+    ):
+        raise ValueError("invalid adaptive exact-area mask inputs")
+    local_range = maximum_filter(
+        target, size=(3, 3, 1), mode="nearest"
+    ) - minimum_filter(target, size=(3, 3, 1), mode="nearest")
+    mask = np.max(local_range, axis=2) > density_range_threshold
+    maximum_radius = max(
+        int(
+            profile.truncate
+            * profile.correlation_sigma_pixels
+            / pixel_size_factor
+            + 0.5
+        )
+        for profile in profiles
+    )
+    mask = binary_dilation(mask, iterations=maximum_radius + 1)
+    output = np.asarray(mask, dtype=bool)
+    output.setflags(write=False)
+    return output
+
+
+def render_density_conditioned_structure_adaptive_lod_region(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    density_range_threshold: float,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+) -> DensityConditionedStructureResult:
+    """Use two-cumulant LOD in smooth pixels and exact area LOD elsewhere."""
+
+    target = np.asarray(target_density, dtype=np.float64)
+    mask = adaptive_exact_area_mask(
+        target,
+        profiles,
+        pixel_size_factor=pixel_size_factor,
+        density_range_threshold=density_range_threshold,
+    )
+    compiled = compile_two_cumulant_profiles(
+        profiles, pixel_size_factor=pixel_size_factor
+    )
+    smooth = render_density_conditioned_structure_region(
+        target,
+        compiled,
+        origin_yx=origin_yx,
+        shape=shape,
+    )
+    exact = render_density_conditioned_structure_area_lod_region(
+        target,
+        profiles,
+        pixel_size_factor=pixel_size_factor,
+        origin_yx=origin_yx,
+        shape=shape,
+    )
+    y0, x0 = origin_yx
+    height, width = shape
+    selection = mask[y0 : y0 + height, x0 : x0 + width, None]
+    density = np.where(selection, exact.density, smooth.density)
+    transmittance = np.where(
+        selection, exact.transmittance, smooth.transmittance
+    )
+    return DensityConditionedStructureResult(
+        density=np.asarray(density, dtype=np.float32),
+        transmittance=np.asarray(transmittance, dtype=np.float32),
+    )
+
+
+def render_density_conditioned_structure_adaptive_lod(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    density_range_threshold: float,
+) -> DensityConditionedStructureResult:
+    target = np.asarray(target_density)
+    if target.ndim != 3:
+        raise ValueError("target density must be HxWxC")
+    return render_density_conditioned_structure_adaptive_lod_region(
+        target,
+        profiles,
+        pixel_size_factor=pixel_size_factor,
+        density_range_threshold=density_range_threshold,
+        origin_yx=(0, 0),
+        shape=target.shape[:2],
+    )
+
+
 __all__ = [
     "DENSITY_CONDITIONED_STRUCTURE_SCHEMA",
     "DensityConditionedLayerProfile",
     "DensityConditionedStructureResult",
+    "adaptive_exact_area_mask",
     "compile_density_conditioned_profiles",
     "compile_effective_mark_loss_profiles",
     "compile_two_cumulant_profiles",
     "counter_poisson_rate_field",
     "effective_mark_loss",
     "render_density_conditioned_structure",
+    "render_density_conditioned_structure_adaptive_lod",
+    "render_density_conditioned_structure_adaptive_lod_region",
     "render_density_conditioned_structure_area_lod",
     "render_density_conditioned_structure_area_lod_region",
     "render_density_conditioned_structure_region",
