@@ -4882,3 +4882,19 @@
   does not create a public RAW rail, schema, receipt, capability, product
   admission or consumer mapping. R0FG remains rejected; R0FF remains a
   distinct LibRaw policy; P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Refresh main FilmFX composition boundary
+
+- Main Neuro-Film advanced from `fc59ce7` to clean committed HEAD
+  `62bc8d08a70d9311281e188361b8fba830b3ba23`; only main-owned untracked
+  `.codex/` and `tmp/` remain. The new commit adds an exact-area row-streaming
+  reference for density-conditioned film structure plus its workspace model
+  and tests.
+- This is FilmFX implementation owned by the main project. It does not change
+  MatchView, producer receipts, reference-match transactions or the consumer
+  FilmFX composition contract, so no code or schema was copied into NFCM.
+- Read-only merge preflight at consumer `4f6aceaa` uses base `c03c321b`, counts
+  590 consumer and 1,188 main changed paths, finds zero path overlap, and
+  writes conflict-free merge tree
+  `74df63fc9c7d396f12a942c1923f8dfbf5a81e01`. Main files and untracked
+  artifacts were not touched.
