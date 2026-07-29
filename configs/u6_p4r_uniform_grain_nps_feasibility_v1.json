@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p4r_uniform_grain_nps_feasibility.v1",
+  "node": "ULT > U6 > U6.P4R",
+  "status": "analysis_contract_frozen_before_pixel_access",
+  "parent_metadata_decision": {
+    "path": "configs/u6_p4r_uniform_grain_metadata_decision_v1.json",
+    "sha256": "b5ccba28f590326237338823d000f8d3f8e8a2f171615517d92dc7bacf56baf5",
+    "required_decision": "pass_exact_metadata_open_bounded_pixel_acquisition"
+  },
+  "primary_question": "After fixed quadratic shading removal and variance normalization, is scanner-code radial NPS shape repeat-stable across four independent scans per label, and is any stock-associated separation stronger than exact balanced-label permutations?",
+  "pixel_contract": {
+    "channels": "RGB analyzed separately from the infrared alpha channel; alpha is nuisance-only",
+    "code_domain": "native scanner code normalized by its crop mean; no unsupported density, linear-light or spectral interpretation",
+    "crop_size_pixels": 512,
+    "fixed_fractional_centers_yx": [
+      [0.25, 0.25],
+      [0.25, 0.75],
+      [0.75, 0.25],
+      [0.75, 0.75]
+    ],
+    "detrend": "least-squares 2D quadratic per fixed crop",
+    "window": "separable Hann",
+    "radial_nps_band_edges_cycles_per_pixel": [
+      0.015625,
+      0.0192766719449429,
+      0.02378176520146871,
+      0.02933973030786375,
+      0.03619663079025841,
+      0.044656036944385955,
+      0.0550924655704434,
+      0.06796796066812788,
+      0.0838525491562421,
+      0.10344947723725297,
+      0.1276263446770152,
+      0.157453515383746,
+      0.1942515048083514,
+      0.2396494421121336,
+      0.2956571953525875,
+      0.3647543528303184,
+      0.45
+    ],
+    "scan_group_is_unit": true,
+    "crop_level_split_or_pseudoreplication_forbidden": true
+  },
+  "automatic_gates": {
+    "minimum_median_crop_to_scan_similarity": 0.85,
+    "minimum_median_within_stock_similarity": 0.9,
+    "minimum_leave_one_scan_out_balanced_accuracy": 0.75,
+    "maximum_exact_permutation_p_value": 0.1,
+    "minimum_within_minus_cross_similarity": 0.03
+  },
+  "controls": [
+    "exact balanced stock-label permutations at the scan-group level",
+    "within-scan spatial crop stationarity",
+    "within-stock scan-to-scan repeatability",
+    "RGB and infrared alpha reported separately",
+    "normalized spectral shape separated from raw code variance/amplitude",
+    "no parameter fitting until repeatability gates are adjudicated"
+  ],
+  "branch_rules": {
+    "repeatability_fail": "close observable NPS source as unstable; do not fit material profiles",
+    "repeatability_pass_association_fail": "retain one generic scanner-convolved NPS shape candidate only",
+    "repeatability_and_association_pass": "retain descriptive stock-associated scanner-convolved signatures; any physical or stock-calibrated interpretation remains forbidden"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed_before_gate": false,
+  "stock_calibration_allowed": false,
+  "claim_ceiling": "same-scanner observable code-domain NPS/ACF feasibility; not emulsion truth, physical grain size/rate, process response, scanner-independent stock identity or product promotion"
+}
