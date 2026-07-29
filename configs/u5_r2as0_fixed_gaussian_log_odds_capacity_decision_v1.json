@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2as0_fixed_gaussian_log_odds_capacity_decision.v1",
+  "experiment_id": "u5.r2as0-fixed-gaussian-log-odds-capacity-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AS0",
+  "software_commit": "43a70bc6bbbd54904c1844e2340f2ab56d1ff178",
+  "contract": {
+    "path": "configs/u5_r2as0_fixed_gaussian_log_odds_capacity_v1.json",
+    "sha256": "8166e82b92fea90ef08b91e8ecc40376d2d46f66fa4e4a413ea1380c0738f0f9"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2as0_fixed_gaussian_log_odds_capacity_v1/report_a.json",
+    "sha256": "6d3f0ee19f46626b4c1c35b0f0ddc4efc4d73556aca1ebe859f42eb161da686a"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2as0_fixed_gaussian_log_odds_capacity_v1/report_b.json",
+    "sha256": "6d3f0ee19f46626b4c1c35b0f0ddc4efc4d73556aca1ebe859f42eb161da686a"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "217443e1d64eeb2bb13eb6f04bfb0ca1a68bd84a4a1617adec903a605f2b41d7",
+  "result": {
+    "automatic_pass": true,
+    "minimum_witness_confirmation_rmse_gain": 0.08960157077969266,
+    "median_confirmation_rmse_gain": 0.1308477906091256,
+    "maximum_candidate_confirmation_rgb_rmse": 0.05378595818171512,
+    "minimum_jacobian_determinant": 0.08524980913148604,
+    "maximum_jacobian_spectral_norm": 1.8459831247382139,
+    "maximum_coefficient_row_norm": 3.8499894783682,
+    "output_range": [0.0, 1.0],
+    "maximum_neutral_axis_residual": 0.0,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "real_film_or_display_proxy_rows_accessed": false
+  },
+  "decision": "retain_fixed_gaussian_log_odds_as_future_controlled_pair_challenger_without_reopening_the_sealed_velvia_proxy_pool",
+  "interpretation": "The fixed eight-centre Gaussian log-odds residual adds useful compact local colour capacity over the bounded one-matrix base on four independent analytic known-operator witnesses while preserving the RGB cube, exact neutral-axis base response and positive sampled Jacobians. This is representation evidence only. It neither identifies a film operator nor authorizes fitting the frozen 71 display-proxy pairs.",
+  "next_leaf": "wait for a genuinely new controlled-pair source or use the representation in a separately authorized synthetic/compiler comparison; continue Apollo 7 source acquisition and other distinct physical-film evidence work",
+  "forbidden_rescue_or_promotion": [
+    "fit this or another higher-capacity model on the sealed AO9 71-pair pool",
+    "render photographs or compare preference from this synthetic result",
+    "claim Gaussian LUT originality, film stock response or calibration",
+    "relax structural gates or add primitives after seeing confirmation"
+  ],
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "Synthetic known-operator representation and structural evidence only; not real-film learning, stock response, calibration, preference, photographic safety or product promotion."
+}

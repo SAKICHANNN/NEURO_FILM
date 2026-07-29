@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 — U5.R2AS0 fixed Gaussian log-odds capacity
+
+- Added a clean-room eight-centre Gaussian local residual in output log-odds,
+  with exact neutral-axis base preservation and no output clamp.
+- Preserved AO9: the sealed 71 display-proxy pairs were not read or refit.
+- Two formal synthetic known-operator runs are byte-identical at
+  `6d3f0ee1...a686a`; four confirmation gains are 8.96%-20.12%, minimum
+  sampled Jacobian determinant is `.08525`, and cube/neutral/replay gates pass.
+- Retain the representation only for a genuinely new controlled-pair source.
+  Apollo 7 P2K acquisition continues independently.
+
 ---
 
 ## 2026-07-10 — Ultimate research and roadmap reset

@@ -1,5 +1,10 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-07-30: U5.R2AS0 retains a compact fixed-geometry Gaussian log-odds
+> residual as synthetic representation evidence only. It may challenge a
+> future genuinely new controlled-pair source, but AO9's frozen 71-pair pool,
+> photo rendering, stock claims and product integration remain closed.
+
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
 `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock
