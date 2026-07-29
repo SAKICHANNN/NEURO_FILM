@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u5_r2as1_gaussian_trilinear_equal_parameter_decision.v1",
+  "experiment_id": "u5.r2as1-gaussian-trilinear-equal-parameter-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AS1",
+  "software_commit": "a6c9a712afe36e8bd3d9749c90fa0ecbedd7c955",
+  "contract": {
+    "path": "configs/u5_r2as1_gaussian_trilinear_equal_parameter_v1.json",
+    "sha256": "3e740fd5b756c02d122f91e39edcda33e32aab4af50a6b2299093a7f02adf2a2"
+  },
+  "run_a": {
+    "path": "outputs/u5_r2as1_gaussian_trilinear_equal_parameter_v1/report_a.json",
+    "sha256": "df13fd540dd1d22f2777ccfd2c04cba58386f2d4f0aa89066040ce3ed30c4218"
+  },
+  "run_b": {
+    "path": "outputs/u5_r2as1_gaussian_trilinear_equal_parameter_v1/report_b.json",
+    "sha256": "df13fd540dd1d22f2777ccfd2c04cba58386f2d4f0aa89066040ce3ed30c4218"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "95b48e8324a05edd50ac5f2c967e1423f7810bbcd318c447b19eca703469b8a8",
+  "result": {
+    "automatic_pass": false,
+    "gaussian_witness_wins": 1,
+    "witness_count": 4,
+    "median_gaussian_rmse_improvement_over_trilinear": -0.02278369984072981,
+    "gaussian_improvement_range": [
+      -0.05284611921646132,
+      0.008298684920399424
+    ],
+    "both_cube_safe": true,
+    "both_jacobian_safe": true,
+    "both_neutral_safe": true
+  },
+  "failed_checks": [
+    "gaussian_witness_wins",
+    "gaussian_median_improvement"
+  ],
+  "decision": "prefer_the_simpler_equal_parameter_trilinear_log_odds_baseline_and_close_gaussian_specific_priority",
+  "interpretation": "AS0 established that Gaussian local log-odds residuals can add safe compact capacity over the bounded global base. AS1 shows that this value is not Gaussian-specific: the simpler equal-parameter trilinear corner basis wins three of four analytic targets and lowers median RMSE by 2.28% relative to Gaussian. Both families remain structurally safe. Gaussian-specific priority therefore closes; retain the trilinear operator as the simpler synthetic baseline for genuinely new controlled pairs.",
+  "forbidden_rescue": [
+    "retune Gaussian sigma, centres, ridge or primitive count",
+    "promote trilinear from this post-result synthetic diagnostic",
+    "fit either family to the sealed AO9 71-pair pool",
+    "render photographs or claim film stock response, preference or product value"
+  ],
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "Post-result synthetic equal-parameter baseline diagnostic only; no independent confirmation, real-film, stock, preference, safety or product claim."
+}

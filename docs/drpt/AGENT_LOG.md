@@ -12,6 +12,9 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   sampled Jacobian determinant is `.08525`, and cube/neutral/replay gates pass.
 - Retain the representation only for a genuinely new controlled-pair source.
   Apollo 7 P2K acquisition continues independently.
+- AS1 adds the missing equal-parameter control: trilinear wins 3/4 witnesses
+  and improves median RMSE 2.28% relative to Gaussian; both remain structurally
+  safe. Gaussian-specific priority closes without retuning.
 
 ---
 

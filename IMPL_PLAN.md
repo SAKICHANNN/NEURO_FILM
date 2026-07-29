@@ -4,6 +4,9 @@
 > residual as synthetic representation evidence only. It may challenge a
 > future genuinely new controlled-pair source, but AO9's frozen 71-pair pool,
 > photo rendering, stock claims and product integration remain closed.
+> AS1 subsequently closes Gaussian-specific priority: a simpler same-parameter
+> trilinear log-odds basis wins three of four analytic targets. Retain the
+> trilinear form only as a future controlled-pair baseline.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
