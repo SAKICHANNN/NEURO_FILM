@@ -2,11 +2,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import hashlib
+import numpy as np
+
 from scripts.run_u6_p4m_reference_profile_dataset import (
     CONFIG_SHA256,
     ROOT,
 )
 from src.eval.physical_reference_profile_dataset import (
+    _field,
     evaluate_reference_datasets,
     generate_reference_dataset,
     load_contract,
@@ -25,6 +29,32 @@ def test_contract_is_exact_group_split_and_synthetic_only() -> None:
         "confirmation",
         "stress",
     }
+
+
+def test_frozen_input_fields_have_no_cross_split_hash_overlap() -> None:
+    contract, _ = load_contract(ROOT, CONFIG, CONFIG_SHA256)
+    dataset = contract["dataset"]
+    hashes: dict[str, set[str]] = {}
+    for split, seeds in dataset["splits"].items():
+        hashes[split] = {
+            hashlib.sha256(
+                _field(
+                    family,
+                    seed=int(seed),
+                    shape=tuple(dataset["coarse_shape"]),
+                    scales=np.asarray(
+                        dataset["channel_density_scales"],
+                        dtype=np.float64,
+                    ),
+                    density_domain=tuple(dataset["density_domain"]),
+                ).tobytes(order="C")
+            ).hexdigest()
+            for seed in seeds
+            for family in dataset["field_families"]
+        }
+    assert hashes["development"].isdisjoint(hashes["confirmation"])
+    assert hashes["development"].isdisjoint(hashes["stress"])
+    assert hashes["confirmation"].isdisjoint(hashes["stress"])
 
 
 def test_small_generation_is_repeat_exact_and_leakage_free(

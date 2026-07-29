@@ -92,8 +92,9 @@ def _field(
     if family == "flat":
         base = np.full(shape, 0.20 + 1.30 * phase)
     elif family == "gradient":
+        x_weight = 0.25 + 0.50 * phase
         base = low + (high - low) * np.clip(
-            0.65 * x + 0.35 * y, 0.0, 1.0
+            x_weight * x + (1.0 - x_weight) * y, 0.0, 1.0
         )
     elif family == "step":
         boundary = 0.30 + 0.05 * (seed % 7)
