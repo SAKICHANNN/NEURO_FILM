@@ -29,6 +29,15 @@ from .exposure_development import (
     develop_layer_exposure,
     sensitometry_identity,
 )
+from .interpretation_medium import (
+    INTERPRETATION_MEDIUM_SCHEMA,
+    TRANSMITTANCE_OPERATOR_ID,
+    InterpretationMedium,
+    InterpretationMediumKind,
+    PostScanPolarity,
+    prepare_interpretation_medium,
+    print_interpretation_identity,
+)
 from .reference_scatter import (
     REFERENCE_SCATTER_SCHEMA,
     ReferenceScatterProfile,
@@ -144,12 +153,16 @@ __all__ = [
     "DevelopmentInterpretationContract",
     "EmulsionFamily",
     "InterpretationEvidence",
+    "INTERPRETATION_MEDIUM_SCHEMA",
+    "InterpretationMedium",
+    "InterpretationMediumKind",
     "InterpretationRoute",
     "PhysicalDomain",
     "PhysicalDomainArray",
     "PhysicalScale",
     "PhysicalUnit",
     "ProcessCondition",
+    "PostScanPolarity",
     "PyramidScatterComponent",
     "PyramidScatterProfile",
     "QualityTier",
@@ -205,6 +218,8 @@ __all__ = [
     "backing_return_kernel_2d",
     "backing_return_profile_from_contract",
     "profile_from_contract",
+    "prepare_interpretation_medium",
+    "print_interpretation_identity",
     "render_developed_structure",
     "render_developed_structure_region",
     "render_compound_poisson",
@@ -216,4 +231,5 @@ __all__ = [
     "scene_exposure_from_working_image",
     "sensitometry_identity",
     "transmittance_to_density",
+    "TRANSMITTANCE_OPERATOR_ID",
 ]
