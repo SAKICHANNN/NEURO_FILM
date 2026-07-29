@@ -24,6 +24,10 @@ from src.eval.physical_native_spatial_conformance import (
     build_msvc_native_gaussian_dll,
     gaussian_profile_struct,
 )
+from src.film_physics.native_abi_layouts import (
+    NativeAdjacencyProfileV1,
+    native_adjacency_profile_struct as adjacency_profile_struct,
+)
 from src.film_physics.native_adjacency_profile import (
     build_native_ordered_chain_oracle,
     compile_native_adjacency_profile_payload,
@@ -38,19 +42,6 @@ from src.film_physics.native_spatial_profile import (
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
 )
-
-
-class NativeAdjacencyProfileV1(ctypes.Structure):
-    _fields_ = [
-        ("struct_size", ctypes.c_uint32),
-        ("abi_version", ctypes.c_uint32),
-        ("source_component_sha256", ctypes.c_char * 65),
-        ("gain_rgb", ctypes.c_double * 3),
-        ("maximum_absolute_transmittance_delta", ctypes.c_double),
-        ("maximum_absolute_density_delta", ctypes.c_double),
-        ("black_reference_density", ctypes.c_double * 3),
-        ("white_reference_density", ctypes.c_double * 3),
-    ]
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -73,34 +64,6 @@ def _load_exact_json(
     if not isinstance(value, dict):
         raise ValueError(f"JSON root must be an object: {relative}")
     return value
-
-
-def adjacency_profile_struct(
-    payload: dict[str, Any],
-) -> NativeAdjacencyProfileV1:
-    profile = NativeAdjacencyProfileV1()
-    profile.struct_size = ctypes.sizeof(NativeAdjacencyProfileV1)
-    profile.abi_version = 1
-    profile.source_component_sha256 = payload["source_component"][
-        "sha256"
-    ].encode("ascii")
-    for channel in range(3):
-        profile.gain_rgb[channel] = float(
-            payload["development_adjacency_gain_rgb"][channel]
-        )
-        profile.black_reference_density[channel] = float(
-            payload["black_reference_density"][channel]
-        )
-        profile.white_reference_density[channel] = float(
-            payload["white_reference_density"][channel]
-        )
-    profile.maximum_absolute_transmittance_delta = float(
-        payload["maximum_absolute_transmittance_delta"]
-    )
-    profile.maximum_absolute_density_delta = float(
-        payload["maximum_absolute_density_delta"]
-    )
-    return profile
 
 
 def build_msvc_native_adjacency_dll(

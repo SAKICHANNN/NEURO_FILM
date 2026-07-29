@@ -12,48 +12,18 @@ from typing import Any
 import numpy as np
 
 from src.film_physics.native_profile import (
-    NATIVE_PRINT_ABI_VERSION,
-    NATIVE_PRINT_MAX_KNOTS,
     build_native_print_oracle,
     compile_native_print_profile_payload,
     native_print_payload_sha256,
+)
+from src.film_physics.native_abi_layouts import (
+    NativePrintProfileV1,
+    native_print_profile_struct as profile_struct_from_payload,
 )
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
 )
 from src.eval.native_msvc import build_msvc_c11_dll
-
-
-class NativePrintProfileV1(ctypes.Structure):
-    _fields_ = [
-        ("struct_size", ctypes.c_uint32),
-        ("abi_version", ctypes.c_uint32),
-        ("source_component_sha256", ctypes.c_char * 65),
-        ("reference_linear", ctypes.c_double),
-        ("black_offset", ctypes.c_double),
-        ("knot_count", ctypes.c_uint32 * 3),
-        (
-            "x_knots",
-            (ctypes.c_double * NATIVE_PRINT_MAX_KNOTS) * 3,
-        ),
-        (
-            "y_knots",
-            (ctypes.c_double * NATIVE_PRINT_MAX_KNOTS) * 3,
-        ),
-        (
-            "derivatives",
-            (ctypes.c_double * NATIVE_PRINT_MAX_KNOTS) * 3,
-        ),
-        ("dye_absorption_matrix", (ctypes.c_double * 3) * 3),
-        ("print_matrix", (ctypes.c_double * 3) * 3),
-        ("paper_midpoints", ctypes.c_double * 3),
-        ("paper_slopes", ctypes.c_double * 3),
-        ("paper_maximum_densities", ctypes.c_double * 3),
-        ("black_reference_density", ctypes.c_double * 3),
-        ("white_reference_density", ctypes.c_double * 3),
-        ("exposure_floor", ctypes.c_double),
-        ("matrix_minimum_determinant", ctypes.c_double),
-    ]
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -77,66 +47,6 @@ def _load_exact_json(
     if not isinstance(value, dict):
         raise ValueError(f"JSON root must be an object: {relative}")
     return value
-
-
-def _copy_matrix(target: Any, values: list[list[float]]) -> None:
-    for row in range(3):
-        for column in range(3):
-            target[row][column] = float(values[row][column])
-
-
-def profile_struct_from_payload(
-    payload: dict[str, Any],
-) -> NativePrintProfileV1:
-    operator = payload["operator"]
-    sensitometry = operator["sensitometry"]
-    interpretation = operator["interpretation"]
-    result = NativePrintProfileV1()
-    result.struct_size = ctypes.sizeof(NativePrintProfileV1)
-    result.abi_version = NATIVE_PRINT_ABI_VERSION
-    result.source_component_sha256 = payload["source_component"][
-        "sha256"
-    ].encode("ascii")
-    result.reference_linear = float(
-        sensitometry["encoder"]["reference_linear"]
-    )
-    result.black_offset = float(
-        sensitometry["encoder"]["black_offset"]
-    )
-    for channel, curve in enumerate(sensitometry["curves"]):
-        spline = curve["spline"]
-        count = len(spline["x_knots"])
-        result.knot_count[channel] = count
-        for index in range(count):
-            result.x_knots[channel][index] = float(
-                spline["x_knots"][index]
-            )
-            result.y_knots[channel][index] = float(
-                spline["y_knots"][index]
-            )
-            result.derivatives[channel][index] = float(
-                spline["derivatives"][index]
-            )
-    _copy_matrix(
-        result.dye_absorption_matrix,
-        interpretation["dye_absorption_matrix"],
-    )
-    _copy_matrix(result.print_matrix, interpretation["print_matrix"])
-    for name in (
-        "paper_midpoints",
-        "paper_slopes",
-        "paper_maximum_densities",
-        "black_reference_density",
-        "white_reference_density",
-    ):
-        target = getattr(result, name)
-        for index, value in enumerate(interpretation[name]):
-            target[index] = float(value)
-    result.exposure_floor = float(interpretation["exposure_floor"])
-    result.matrix_minimum_determinant = float(
-        interpretation["matrix_minimum_determinant"]
-    )
-    return result
 
 
 def build_msvc_native_print_dll(

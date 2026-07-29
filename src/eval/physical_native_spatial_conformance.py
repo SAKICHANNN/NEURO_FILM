@@ -12,8 +12,11 @@ from typing import Any
 import numpy as np
 
 from src.eval.native_msvc import build_msvc_c11_dll
+from src.film_physics.native_abi_layouts import (
+    NativeGaussianProfileV1,
+    native_gaussian_profile_struct as gaussian_profile_struct,
+)
 from src.film_physics.native_spatial_profile import (
-    NATIVE_GAUSSIAN_ABI_VERSION,
     build_native_gaussian_oracle,
     compile_native_gaussian_profile_payload,
     native_gaussian_payload_sha256,
@@ -21,16 +24,6 @@ from src.film_physics.native_spatial_profile import (
 from src.film_physics.profile_consumer import (
     compile_standalone_profile_artifact,
 )
-
-
-class NativeGaussianProfileV1(ctypes.Structure):
-    _fields_ = [
-        ("struct_size", ctypes.c_uint32),
-        ("abi_version", ctypes.c_uint32),
-        ("source_component_sha256", ctypes.c_char * 65),
-        ("sigma_pixels_rgb", ctypes.c_double * 3),
-        ("truncate", ctypes.c_double),
-    ]
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -53,22 +46,6 @@ def _load_exact_json(
     if not isinstance(value, dict):
         raise ValueError(f"JSON root must be an object: {relative}")
     return value
-
-
-def gaussian_profile_struct(
-    payload: dict[str, Any],
-    stage: dict[str, Any],
-) -> NativeGaussianProfileV1:
-    profile = NativeGaussianProfileV1()
-    profile.struct_size = ctypes.sizeof(NativeGaussianProfileV1)
-    profile.abi_version = NATIVE_GAUSSIAN_ABI_VERSION
-    profile.source_component_sha256 = payload["source_component"][
-        "sha256"
-    ].encode("ascii")
-    for channel, sigma in enumerate(stage["sigma_pixels_rgb"]):
-        profile.sigma_pixels_rgb[channel] = float(sigma)
-    profile.truncate = float(payload["gaussian_truncate"])
-    return profile
 
 
 def build_msvc_native_gaussian_dll(
