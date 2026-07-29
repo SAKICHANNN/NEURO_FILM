@@ -1,0 +1,122 @@
+{
+  "schema": "neuro_film.u6_p6i_measured_scanner_characterization_contract.v1",
+  "node": "U6.P6I",
+  "claim_ceiling": "per-device scaled-scan to individually measured D50 target characterization on one manufactured target set per device",
+  "parents": {
+    "p6h_decision_path": "configs/u6_p6h_cross_target_scanner_source_decision_v1.json",
+    "p6h_decision_sha256": "fac7f0ae067ec056fa37766be6f0c32c476663028d2da1b287442064360f8f55",
+    "p6h_report_path": "outputs/u6_p6h_cross_target_scanner_source_v1/audit_pass1.json",
+    "p6h_report_sha256": "35d8717ee449320214f0225f6010b57b69de8d50fc5b838201fcac3f3e676e09",
+    "aq1_report_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/report.json",
+    "aq1_report_sha256": "21177de2944d866079e8ac3c45862e6a83b397928a01366d3ded53bc52555e6c",
+    "pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595",
+    "alignment_contract_path": "configs/sf2_7a_scanner_nuisance_quantification_v1.json",
+    "alignment_contract_sha256": "0f8a3a701fd03e0ac811eb28a6b254e176a87fcf0f4accf3c5d0c4e70e90a5ad"
+  },
+  "source_images": [
+    {
+      "slide": 1,
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale1.tif",
+      "sha256": "bed2ef3c526f0ac9950dd395b8a69399eb8df537c5dd4060821b88944bde9a84"
+    },
+    {
+      "slide": 2,
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale2.tif",
+      "sha256": "95e1ee4dd44c00dbbce3eaf4414113228dddab064888714825dfab194319494e"
+    },
+    {
+      "slide": 3,
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale3.tif",
+      "sha256": "075f62e1c17150956fb3d649a3f2de1a1a7d9315094857db129b868271f23d74"
+    },
+    {
+      "slide": 4,
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale4.tif",
+      "sha256": "4d3fe71c268a29b83fd03f921afabe1e0b3e43ae616fde4cb35fc9eb7e7e983e"
+    },
+    {
+      "slide": 5,
+      "path": "outputs/source_recon/colorreference_velvia100f_v1/run_a/downloads/slidescale5.tif",
+      "sha256": "4280155aba760c3a689d7a94944f069918b118f73e3c52ffb536de9e65a9cffd"
+    }
+  ],
+  "measurement_contract": {
+    "target_sets": [1, 2, 9],
+    "slides_per_target_set": 5,
+    "colour_patches_per_slide": 264,
+    "selected_sample_ids": "A1 through L22 in row-major order; grayscale strip excluded",
+    "target_xyz_scale": 100.0,
+    "target_lab_illuminant": "D50",
+    "target_lab_observer": "2_degree",
+    "maximum_xyz_to_published_lab_delta_e76": 0.5,
+    "scanner_colour_state": "unknown_scanner_device_rgb",
+    "scanner_payload": "official scaled TIFF scans"
+  },
+  "split_contract": {
+    "method": "per-pipeline leave-one-slide-out",
+    "development_slides_per_fold": 4,
+    "confirmation_slides_per_fold": 1,
+    "fit_on_held_slide_forbidden": true,
+    "cross_target_per_device_generalization_forbidden": true
+  },
+  "candidate_contract": {
+    "candidates": [
+      "identity-device-rgb-as-xyz-control",
+      "nonnegative-bounded-3x3",
+      "common-power-plus-nonnegative-bounded-3x3"
+    ],
+    "matrix_coefficient_interval": [0.0, 4.0],
+    "common_power_grid": [
+      0.5,
+      0.625,
+      0.75,
+      0.875,
+      1.0,
+      1.125,
+      1.25,
+      1.375,
+      1.5,
+      1.625,
+      1.75,
+      1.875,
+      2.0,
+      2.125,
+      2.25,
+      2.375,
+      2.5
+    ],
+    "selection_metric": "development mean normalized XYZ L2",
+    "primary_metric": "held-slide Delta E76 against published D50 Lab",
+    "secondary_metric": "held-slide normalized XYZ L2",
+    "hard_output_clipping_forbidden": true,
+    "bias_lut_neural_and_per_image_capacity_forbidden": true
+  },
+  "automatic_gates": {
+    "expected_pipelines": 13,
+    "expected_alignment_cells": 65,
+    "all_alignment_gates_pass": true,
+    "source_patch_to_pair_table_rgb_max_l2": 1e-12,
+    "published_xyz_lab_consistency_max_delta_e76": 0.5,
+    "candidate_xyz_minimum": 0.0,
+    "candidate_xyz_maximum": 1.5,
+    "common_power_vs_identity_median_improvement_min": 0.5,
+    "common_power_aggregate_median_delta_e76_max": 8.0,
+    "common_power_aggregate_p95_delta_e76_max": 25.0,
+    "common_power_each_pipeline_median_delta_e76_max": 15.0,
+    "common_power_each_target_set_median_delta_e76_max": 10.0,
+    "common_power_not_worse_than_linear_matrix_median": true,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the simplest passing per-device measured-target scanner characterization family and open an independent-target data requirement",
+    "fail": "retain P6D spectral reference and P6G nuisance evidence; close measured scanner RGB characterization without added capacity"
+  },
+  "forbidden_claims": [
+    "independent manufactured-target validation for any scanner",
+    "full-resolution, raw or spectrally calibrated scanner output",
+    "universal scanner profile or scanner population generalization",
+    "Velvia stock response or digital-to-film operator",
+    "training, product integration, redistribution or commercial use"
+  ]
+}
