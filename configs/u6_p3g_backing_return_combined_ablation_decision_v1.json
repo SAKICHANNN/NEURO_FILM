@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3g-backing-return-combined-ablation-v1",
+  "node": "U6.P3G",
+  "decision": "close_split_combined_topology_on_display_derived_pseudo_exposure",
+  "software_commit": "72245ea",
+  "contract": {
+    "path": "configs/u6_p3g_backing_return_combined_ablation_v1.json",
+    "canonical_sha256": "eba0acce0c9de08f6f93b76464c373ffa93f06693ece82ac8c10358b84217aed"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3g_backing_return_combined_ablation_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3g_backing_return_combined_ablation_v1/run_b/report.json",
+    "report_sha256": "33ba053adcf1834ad7ea1b6cc65d857a65c178b18b372e2ca333b9455f32358a",
+    "stable_evidence_id": "8f2d70dcbd94a589929cfbbc5760580a05aef0af0f594fb2d7625bee19d120dd",
+    "contact_sheet_sha256": "3a83a42fa5fceb0f9395b484e57d93224b7cae7fa387af9ebe8b4147251c79f1",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "maximum_candidate_vs_no_spatial_abs": 0.43865744555864983,
+    "population_p95_candidate_vs_no_spatial_abs": 0.018775765241580242,
+    "population_p95_candidate_vs_legacy_abs": 0.0074079638519089054,
+    "population_p95_candidate_vs_forbidden_double_abs": 0.011789106651839604,
+    "total_isolated_candidate_excursion_count": 74903,
+    "maximum_new_hard_boundary_fraction": 0.0
+  },
+  "failed_gates": [
+    "maximum candidate-vs-no-spatial absolute delta 0.43866 exceeds 0.08",
+    "74903 isolated candidate excursions exceed zero"
+  ],
+  "post_hoc_mechanism_diagnostic": {
+    "scope": "diagnostic only; not a new gate or rescue",
+    "sample_id": "fujifilm_s2pro",
+    "maximum_delta_pixel_source_rgb": [
+      0.0,
+      0.34670406579971313,
+      0.5972017645835876
+    ],
+    "no_spatial_transmittance_rgb": [
+      0.7125288591599871,
+      0.06644444220985088,
+      0.05011443699648673
+    ],
+    "split_candidate_transmittance_rgb": [
+      0.27387141360133727,
+      0.06471474680456962,
+      0.049868053384141874
+    ],
+    "interpretation": "a display-gamut-clipped zero red channel is strongly changed by spatial/cross-layer exposure before the nonlinear U2.2 characteristic curve; this confirms that pre-development safety does not imply combined-chain safety and that display-derived pseudo-exposure cannot identify a physical layer-exposure operator"
+  },
+  "visual_evidence": {
+    "promotion_review_opened": false,
+    "reason": "automatic gates failed; the fixed one-minus-transmittance diagnostic is also strongly washed out and is not suitable preference evidence"
+  },
+  "automatic_pass": false,
+  "interpretation": "The individually valid P3D/P3E representation cannot be inserted into the present display-derived pseudo-exposure plus U2.2 chain. No magnitude, coupling, curve or threshold rescue is allowed. P3D/P3E/P3F remain reusable reference and compiler evidence only.",
+  "next_leaf": "preserve the closed combined topology and pursue an independent performance compiler or a future evidence-backed scene-to-layer exposure programme; do not retry P3G on the same pseudo-exposure population",
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative combined-chain evidence on display-derived pseudo-exposure; no conclusion that physical backing return is absent in real film"
+}

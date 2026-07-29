@@ -6717,3 +6717,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Claim remains generic physical-inspired/display-derived pseudo-exposure.
   No magnitude is calibrated to a stock, camera or pressure plate. Next:
   fixed combined-chain ablation against no-return and legacy redistribution.
+- P3G then closes that combined route: two exact runs reach `.43866` maximum
+  output delta and 74,903 isolated excursions. A post-hoc diagnostic localizes
+  the worst case to a display-clipped zero channel amplified after cross-layer
+  return and the nonlinear U2.2 curve. Gates and profiles were not changed.
+  P3D/P3E/P3F remain isolated reference/compiler evidence only.
