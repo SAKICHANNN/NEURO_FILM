@@ -4766,3 +4766,24 @@
   evidence only: no native-RAW E2E, camera quality, OS colour transform,
   target runtime, public package/schema/receipt/capability, product admission
   or consumer mapping. P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FC native-RAW colour TIFF pipeline
+
+- Producer `5a07366` composes two rights-screened native RAW sources through
+  LibRaw camera-RGB, explicit-kind camera-colour C arithmetic and 128-row
+  linear-sRGB ICC float32 TIFF v2 on Windows. Ricoh GR II DNG uses the direct
+  final matrix; Panasonic DMC-G10 uses vendor cam_xyz reconstruction.
+- MSVC and LLVM each run two full replays. C and an independent scalar Python
+  oracle match every pixel exactly, TIFF bytes match across compilers, and
+  tifffile independently recovers exact pixels plus the 576-byte ICC. A late
+  sink failure publishes neither final nor temporary file. The unchanged
+  R0EV self-conformance gates pass with maximum error about 1.0004 16-bit
+  code and RMSE 0.4757/0.5770.
+- Implementation commit is `ac023ce`; stable identity is
+  `5dd4e07f...be57e29`; second independent-run report SHA is
+  `07c4a82f...5638f5`; evidence SHA is `aad9fac6...311e`.
+- The ceiling is private two-source, same-LibRaw mechanical closure. It
+  provides no independent RAW renderer, unseen-camera/scene truth/quality,
+  DDFAPD integration, target runtime, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.

@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `aea5bf6`; R0EE independently
+- D-PCT latest stable communicated snapshot is `5a07366`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -180,6 +180,17 @@ wire contract and not an algorithm promotion.
   pass without being re-frozen. This remains private writer/build evidence,
   not native-RAW E2E, OS colour processing, target runtime or a public
   producer interface.
+  R0FC composes two rights-screened native RAW sources through LibRaw
+  camera-RGB, the explicit-kind camera-colour C ABI and 128-row linear-sRGB
+  ICC float32 TIFF v2 on Windows. Ricoh GR II uses the DNG final matrix and
+  Panasonic DMC-G10 uses vendor cam_xyz reconstruction. MSVC/LLVM each replay
+  twice; C and an independent scalar Python oracle match pixel-for-pixel,
+  output TIFF bytes match across compilers, and tifffile recovers exact pixels
+  plus the 576-byte ICC. Late sink failure leaves no final/temp artifact.
+  Stable identity is `5dd4e07f...be57e29`; second-run report SHA is
+  `07c4a82f...5638f5`. This closes a private two-source same-LibRaw mechanical
+  pipeline only; it is not independent RAW rendering, scene truth, quality,
+  DDFAPD integration, target runtime or a public producer interface.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
