@@ -6883,3 +6883,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Keep P2I only as a generic synthetic primitive. Close P2J without endpoint,
   toe or threshold retuning. Continue AO4S bounded source reconnaissance for
   independently evidenced positive-film exact correspondences.
+
+## 2026-07-29 - U5.R2AO4S1 FILM2PAINT source closes before data use
+
+- Froze a bounded official-source contract before the new audit. The exact
+  six-page IS&T PDF is 2,002,643 bytes at `bad7ee2...3f0f7`; it documents
+  Digital SG and film-recorder IT8 targets across multiple reversal-film
+  families plus hyperspectral digitisation.
+- The publication exposes no patch table, raw scans, manifest, code or data
+  licence and says Zurich Central Library provided the dataset to the authors.
+  Crossref has no related-resource relation; exact Zenodo and DataCite checks
+  return zero. The cited Basel thesis repository has one original PDF and no
+  dataset bitstream; its repository licence grants distribution/preservation,
+  not experimental-data reuse.
+- Close as strong controlled-design precedent but publication-only and
+  rights-blocked. No figure extraction, fitting, training, stock response,
+  calibration or product action opens. Three focused tests pass.
+- AO4M is ready to clean-room the paper's simplest explicit baseline
+  (monotone per-channel curves plus bounded positive matrix) against the
+  frozen 71-pair proxy and existing cross-domain controls. This is a
+  display-proxy capacity test, not recovery of the unavailable dataset.

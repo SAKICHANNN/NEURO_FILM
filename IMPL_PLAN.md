@@ -59,8 +59,12 @@ from synthetic black/white flat endpoints before any downstream look.
 P2I passes synthetically, but P2J closes on the fixed photos: range,
 endpoint-domain and clipping gates pass while two rows exceed the frozen
 near-black fraction. Do not retune endpoints or add a learned toe on this
-population. Continue through AO4S source reconnaissance for independently
-evidenced positive-film correspondences.
+population. AO4S1 confirms that FILM2PAINT has a valuable independent
+Digital-SG/IT8/hyperspectral design, but its official surfaces expose no
+measurement files or reusable data rights. Do not extract figures. AO4M is
+the next ready leaf: preregister and clean-room only the paper's simple
+monotone per-channel curve plus bounded positive-matrix baseline on the frozen
+71-pair proxy, with held-row and leave-domain-out controls before photographs.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

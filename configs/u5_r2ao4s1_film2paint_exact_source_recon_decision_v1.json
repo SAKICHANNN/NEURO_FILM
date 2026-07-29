@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2ao4s1-film2paint-exact-source-recon-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4S1",
+  "date": "2026-07-29",
+  "status": "complete_publication_only_rights_blocked",
+  "software_commit": "88afcce9ef699ee451bc866a5c5c5c445298a65a",
+  "contract": {
+    "path": "configs/u5_r2ao4s1_film2paint_exact_source_recon_v1.json",
+    "sha256": "7de1310df861585c5b61fcb34a146b83ea4d59fa1b03011d99e1a024fd375ea3"
+  },
+  "primary_publication": {
+    "title": "FILM2PAINT: Transforming Photographic Documentation on Reversal Film into Paintings' Accurate Colors",
+    "doi": "10.2352/issn.2168-3204.2024.21.1.4",
+    "publisher": "Society for Imaging Science and Technology",
+    "official_pdf_bytes": 2002643,
+    "official_pdf_sha256": "bad7ee283b3d8352faf45bdc567cb8166d9aaf4f5a5dc05d206300165643f0f7",
+    "pages": 6,
+    "copyright_statement": "Copyright 2024 Society for Imaging Science and Technology",
+    "explicit_data_licence": "NOASSERTION"
+  },
+  "observed_capture_design": {
+    "colorchecker_digital_sg_patches": 140,
+    "colorchecker_illumination": "D50 Bron tungsten flashbulbs with softboxes, reported color temperature 5500 K; Kodachrome exception under daylight",
+    "colorchecker_exposure_semantics": "films shot at various exposures; row-level exposure mapping is not published",
+    "colorchecker_stocks": [
+      "Fujichrome Velvia 50 120",
+      "Kodak Ektachrome 100 120",
+      "Kodak Ektachrome 100 35mm exposure1",
+      "Kodak Ektachrome 100 35mm exposure2",
+      "Kodachrome 35mm",
+      "Fujichrome Velvia 35mm"
+    ],
+    "coloraid_it8_patches": 288,
+    "coloraid_input_semantics": "film-recorder device values, not camera scene exposure",
+    "coloraid_exposure_semantics": "same reported light exposure for all slides",
+    "coloraid_stock_families": [
+      "Provia/Astia/Sensia",
+      "Velvia/Astia/Sensia 100F",
+      "Kodak Ektachrome",
+      "Fujichrome Velvia RVP50",
+      "Agfa RSX"
+    ],
+    "digitisation": "hyperspectral camera; D65 and CIE 1931 2 degree observer conversion"
+  },
+  "availability_audit": {
+    "publication_supplies_patch_table": false,
+    "publication_supplies_raw_or_measurement_files": false,
+    "publication_supplies_code_or_model": false,
+    "crossref_related_resources": 0,
+    "zenodo_exact_title_hits": 0,
+    "datacite_related_doi_hits": 0,
+    "source_thesis_repository": {
+      "title": "Chromatic Divide: von der Farbigwerdung medialer Repräsentation am Beispiel der Fotografie",
+      "doi": "10.5451/unibas-006820282",
+      "repository_item": "0485fd09-fdcd-4dfe-97ee-95b133ea8b99",
+      "original_files": 1,
+      "original_file_name": "Elias_Kreyenbuehl_Chromatic_Divide_2018.pdf",
+      "original_file_bytes": 24242582,
+      "dataset_files": 0,
+      "repository_license_sha256": "a8040d2e48c8d2ddfd12083c096d2b9bdc4c661147edc83bf308645401d48bb8",
+      "repository_license_scope": "non-exclusive repository distribution and preservation only; no dataset reuse grant"
+    },
+    "provenance_fact": "the paper acknowledges that Zurich Central Library provided the film-stock dataset to the authors"
+  },
+  "scientific_limits": {
+    "digital_to_film_pairs": false,
+    "independent_roll_support": "unknown",
+    "process_session": "unknown",
+    "scanner_or_hsi_profile_release": false,
+    "digital_sg_stock_signal_separable_from_exposure": false,
+    "it8_camera_scene_response_identified": false,
+    "film_recorder_device_space_is_scene_linear_rgb": false
+  },
+  "decision": {
+    "code": "strong_controlled_design_but_publication_only_and_rights_blocked",
+    "separate_bounded_data_acquisition_contract_allowed": false,
+    "figure_pixel_extraction_allowed": false,
+    "operator_fitting_allowed": false,
+    "training_allowed": false,
+    "latent_mode_study_allowed": false,
+    "production_integration_allowed": false,
+    "reopen_condition": "an official source releases immutable per-patch film measurements or raw scans, target/reference values, exposure/process/scanner lineage and explicit reusable data rights"
+  },
+  "claim_ceiling": "publication-level evidence for a strong controlled reversal-film target design and explicit correction baselines; no reusable chart pairs, camera-scene stock response, operator fit, training, calibration, authenticity or product promotion"
+}

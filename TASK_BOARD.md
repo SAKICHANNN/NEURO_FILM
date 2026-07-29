@@ -315,6 +315,9 @@ discipline.
 U6.P2J is now closed automatically. Endpoint normalization restores range and
 creates zero endpoint escape or new boundaries, but two independent photos
 exceed the frozen 10% near-black gate at 11.76%/11.60%. Visual rescue,
-endpoint shrinkage and toe retuning are forbidden. The remaining legal ready
-algorithm-data leaf is U5.R2AO4S bounded positive-film exact-correspondence
-source reconnaissance.
+endpoint shrinkage and toe retuning are forbidden. AO4S1 then finds a strong
+independent FILM2PAINT controlled-target design, but no public patch table,
+raw scan, manifest or reusable data licence; figure extraction and fitting are
+closed. U5.R2AO4M is the next ready algorithm leaf: clean-room the paper's
+simple monotone-channel-curves plus bounded positive-matrix baseline against
+the frozen 71-pair proxy and existing cross-domain controls.
