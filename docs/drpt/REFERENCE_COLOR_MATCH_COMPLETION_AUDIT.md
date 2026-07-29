@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `6bc0f83`; R0EE independently
+- D-PCT latest stable communicated snapshot is `4c3cd16`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -203,6 +203,18 @@ wire contract and not an algorithm promotion.
   the tested final matrix and pixels still come from LibRaw; this is
   provenance recovery, not an independent renderer, quality evidence or a
   public RAW contract.
+  R0FE independently implements the Adobe DNG 1.7.1 / official SDK Build 2652
+  dual-illuminant inverse-CCT, Bradford adaptation, matrix adaptation/inversion
+  and the Samsung ForwardMatrix branch without reading
+  `rawpy.color_matrix`. Matrix derivation and replay pass, and CameraWhite
+  differs from inverse rawpy white balance by at most `4.7e-8`; nevertheless,
+  all four unchanged R0EV pixel gates fail. Ricoh/Pentax/GX200 RMSE is
+  5.27/86.10/10.53 codes; Samsung is closest at RMSE 1.68 and max 14.65 but
+  fails p99 at 5.81. Stable negative identity is
+  `5433acce...2446000`; second report SHA is
+  `c6080a64...20e898`. Therefore a DNG-spec renderer and LibRaw's
+  camera-specific final-matrix policy are different operators and must retain
+  distinct renderer/policy identities; no threshold or formula was adjusted.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

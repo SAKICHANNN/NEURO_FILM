@@ -4808,3 +4808,26 @@
   DNG/profile quality, scene truth, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FE independent DNG renderer rejection
+
+- Producer `4c3cd16` independently implements Adobe DNG 1.7.1 and official
+  SDK 1.7.1 Build 2652 dual-illuminant inverse-CCT, Bradford adaptation,
+  matrix adaptation/inversion and the Samsung ForwardMatrix branch. The SDK
+  download SHA is `73499b47...3360e`; no SDK artifact becomes a project
+  dependency.
+- The derivation never reads `rawpy.color_matrix`. Four rows pass iterative
+  convergence, finite-matrix and replay gates. CameraWhite versus inverse
+  rawpy white balance differs by at most `4.7e-8`, locating the material
+  difference in renderer matrix policy rather than white-balance coordinates.
+- All four unchanged R0EV pixel gates formally fail: Ricoh/Pentax/GX200 RMSE
+  is 5.27/86.10/10.53 16-bit codes; Samsung has RMSE 1.68 and max 14.65 but
+  fails p99 at 5.81. No threshold or formula was adjusted.
+- Implementation commit is `fb47b65`; stable negative identity is
+  `5433acce...2446000`; second report SHA is
+  `c6080a64...20e898`; evidence SHA is `8433525c...ff1a5`.
+  The DNG-spec renderer and LibRaw camera-specific final matrix are distinct
+  operators and must retain explicit renderer/policy identity. There is no
+  independent demosaic, scene truth/quality, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.
