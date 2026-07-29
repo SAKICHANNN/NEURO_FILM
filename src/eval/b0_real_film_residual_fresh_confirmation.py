@@ -41,6 +41,12 @@ class FreshResidualConfirmationError(ValueError):
     """Raised when AO7 contract, lineage, or evidence drifts."""
 
 
+SUPPORTED_EXPERIMENTS = {
+    "u5.r2ao7-b0-real-film-residual-fresh-confirmation-v1": (0.15, 0.35),
+    "u5.r2ap4-b0-ektachrome-residual-fresh-confirmation-v1": (0.10, 0.25),
+}
+
+
 def _load_hashed_json(
     root: Path, path: str, expected_sha256: str
 ) -> Any:
@@ -60,9 +66,9 @@ def validate_contract(
 ) -> dict[str, Any]:
     """Validate all source and operator identities before any render."""
 
+    experiment_id = str(config.get("experiment_id"))
     if (
-        config.get("experiment_id")
-        != "u5.r2ao7-b0-real-film-residual-fresh-confirmation-v1"
+        experiment_id not in SUPPORTED_EXPERIMENTS
         or config.get("status") != "contract_frozen_implementation_ready"
         or config.get("training_allowed")
         or config.get("real_film_operator_fitting_allowed")
@@ -157,15 +163,18 @@ def validate_contract(
         str(candidate_spec["decision"]),
         str(candidate_spec["decision_sha256"]),
     )
+    retained_candidate = candidate_decision.get("retained_candidate")
+    if retained_candidate is None:
+        retained_candidate = candidate_decision.get(
+            "automatic_evidence", {}
+        ).get("retained_candidate")
+    expected_tone, expected_chroma = SUPPORTED_EXPERIMENTS[experiment_id]
     if (
         candidate_decision.get("decision")
         != candidate_spec["required_decision"]
-        or candidate_decision["automatic_evidence"].get(
-            "retained_candidate"
-        )
-        != candidate_spec["candidate_id"]
-        or float(candidate_spec["tone_strength"]) != 0.15
-        or float(candidate_spec["chroma_strength"]) != 0.35
+        or retained_candidate != candidate_spec["candidate_id"]
+        or float(candidate_spec["tone_strength"]) != expected_tone
+        or float(candidate_spec["chroma_strength"]) != expected_chroma
     ):
         raise FreshResidualConfirmationError("fixed AO6 candidate drift")
     operator_payload = _load_hashed_json(
