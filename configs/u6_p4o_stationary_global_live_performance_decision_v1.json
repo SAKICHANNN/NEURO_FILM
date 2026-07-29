@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p4o_stationary_global_live_performance_decision.v1",
+  "node": "U6.P4O",
+  "decision": "close_python_scale_retain_small_stationary_p4h_open_executor_optimization",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4o_stationary_global_live_performance_v1.json",
+      "sha256": "1621a3ffffde5b872fa96ae98fad2a5e0806db9e5a9cdb9f0ee6d0b27c1f03cc"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4o_stationary_global_live_performance_v1/report.json",
+      "sha256": "5408121e5d1e0acc84d8ad068ba30086678c5e0a041c5c22e5b4cbf9e37ae813",
+      "stable_evidence_id": "18a4756bc13444e9ed3c049280357dc8297a7d25c19a21a18bc06fa109c80fa4"
+    },
+    "software_commit": "e26431a63d309e3df4e7807f362c689388b7856d"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "exit_code",
+      "output_rows",
+      "physical_domain",
+      "repeat_stream_hash_exact",
+      "worker_wall"
+    ],
+    "small_partition_byte_exact": true,
+    "fresh_process_runs": 2,
+    "timed_out": [
+      true,
+      true
+    ],
+    "wall_seconds": [
+      180.06940290000057,
+      180.07982049998827
+    ],
+    "process_tree_peak_rss_bytes": [
+      301858816,
+      302399488
+    ],
+    "liveness_samples": [
+      4633,
+      4654
+    ],
+    "stderr_bytes": [
+      0,
+      0
+    ],
+    "owned_temp_residue_count": [
+      0,
+      0
+    ]
+  },
+  "interpretation": [
+    "The once-validated row stream is byte-exact across 31/127/257-row partitions and stays below the memory gate.",
+    "Both independent 24MP workers hit the unchanged 180-second watchdog before producing a complete stream, so runtime identity and physical-domain output cannot be claimed.",
+    "This is an executor failure rather than a memory, partition or scientific-fidelity result. Large stationary P4H scale-up remains closed."
+  ],
+  "next_leaf": "U6.P4P preregister an exact-semantics constant-rate Poisson executor optimization against the existing counter recurrence before repeating any 24MP audit",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python stationary executor failure evidence; not measured film structure, stock calibration, photographic evidence or product runtime"
+}
