@@ -42,6 +42,16 @@ exactly. This is source/build evidence only; mobile runtime, production and
 calibration claims remain closed. The next autonomous selection returns to a
 distinct explicit film-simulation algorithm leaf.
 
+U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
+establishes a repeat-exact operator direction distinct from Velvia, and AP2
+retains an analytical no-clipping residual executor. The fixed AP3 B0
+composition remains material and has zero confirmed severe failures on all 16
+fresh full-resolution outputs, but fixed B0 wins all three frozen AP4 blind
+rounds. The photo challenger therefore closes without retuning, source
+selection or added capacity. AP0/AP2 remain research primitives; neither is a
+stock response or calibrated profile. The next algorithm leaf must use a
+genuinely distinct evidence source or physical-image-formation hypothesis.
+
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary
 Color Halds pass the frozen style and non-basic gates, but all 194 fail the

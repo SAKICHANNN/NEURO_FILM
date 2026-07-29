@@ -6684,3 +6684,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Android remains compile/link-only and Apple remains object-only. Production,
   mobile runtime, stock/calibration and default claims remain closed. Return
   to the highest-information explicit film-simulation algorithm leaf.
+
+## 2026-07-29 - U5.R2AP0-AP4 Ektachrome proxy branch
+
+- AP0 recovers a repeat-exact one-matrix direction from 56 uniform
+  Ektachrome/HSI display-proxy pairs; it beats identity/full affine and is
+  nearly orthogonal to the retained Velvia direction. This remains a
+  single-painting author-rendered proxy, not stock response.
+- AP1 closes direct photo transfer because useful strengths are either weak or
+  clipping. AP2 retains a reusable per-pixel analytical residual-direction
+  guard, but its direct candidate loses blind comparisons.
+- AP3 retains fixed B0+t10/c25 for one fresh confirmation only. AP4 repeats
+  exactly (`fcad96fc...ee6c9` manifest, `2dbc9dfe...66f5` report), remains
+  material on 16/16 images and nine/nine makes, has zero clipping and zero
+  confirmed full-resolution severe failures, but fixed B0 wins all three
+  frozen blind rounds.
+- Decision `3f610aa`: close the Ektachrome photo challenger without threshold,
+  source, strength, operator or capacity rescue. Preserve AP0/AP2 as bounded
+  research primitives and continue a distinct explicit film-imaging leaf.
