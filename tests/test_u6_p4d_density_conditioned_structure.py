@@ -15,6 +15,7 @@ from src.eval.physical_density_conditioned_structure import (
 from src.film_physics.density_conditioned_structure import (
     compile_density_conditioned_profiles,
     compile_effective_mark_loss_profiles,
+    compile_two_cumulant_profiles,
     counter_poisson_rate_field,
     effective_mark_loss,
     render_density_conditioned_structure,
@@ -39,9 +40,9 @@ def test_variable_rate_poisson_zero_and_domain() -> None:
     )
     assert counts.dtype == np.uint16
     assert counts[0, 0] == 0
-    with pytest.raises(ValueError, match="\\[0, 1024\\]"):
+    with pytest.raises(ValueError, match="\\[0, 4096\\]"):
         counter_poisson_rate_field(
-            np.array([[1025.0]]), (1, 1), origin_yx=(0, 0), seed=7
+            np.array([[4097.0]]), (1, 1), origin_yx=(0, 0), seed=7
         )
 
 
@@ -74,6 +75,13 @@ def test_large_rate_superposition_and_lod_profile() -> None:
     assert effective_mark_loss(0.04, 0.0, 4.0) == pytest.approx(
         1.0 - np.exp(-0.04)
     )
+    two_cumulant = compile_two_cumulant_profiles(
+        base, pixel_size_factor=4
+    )
+    assert 0.0 < two_cumulant[0].grain_optical_density < (
+        base[0].grain_optical_density
+    )
+    assert two_cumulant[0].count_rate_density is not None
 
 
 def test_density_structure_repeat_partition_and_domain() -> None:

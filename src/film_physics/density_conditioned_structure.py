@@ -7,6 +7,7 @@ import math
 
 import numpy as np
 from scipy.ndimage import gaussian_filter
+from scipy.signal import convolve2d
 
 from .structure_compiler import counter_uniform_region
 
@@ -50,7 +51,7 @@ class DensityConditionedLayerProfile:
             or self.truncate <= 0.0
             or self.boundary_mode
             not in {"zero-fill-v1", "normalized-support-v1"}
-            or self.maximum_target_density / rate_density > 1024.0
+            or self.maximum_target_density / rate_density > 4096.0
             or not isinstance(self.seed, int)
             or self.seed < 0
             or self.seed >= 2**64
@@ -105,9 +106,9 @@ def counter_poisson_rate_field(
         values.ndim != 2
         or not np.all(np.isfinite(values))
         or np.any(values < 0.0)
-        or np.any(values > 1024.0)
+        or np.any(values > 4096.0)
     ):
-        raise ValueError("Poisson rate field must be finite in [0, 1024]")
+        raise ValueError("Poisson rate field must be finite in [0, 4096]")
     observed_maximum = float(np.max(values, initial=0.0))
     decomposition_maximum = (
         observed_maximum if maximum_rate is None else float(maximum_rate)
@@ -115,7 +116,7 @@ def counter_poisson_rate_field(
     if (
         not math.isfinite(decomposition_maximum)
         or decomposition_maximum < observed_maximum
-        or decomposition_maximum > 1024.0
+        or decomposition_maximum > 4096.0
     ):
         raise ValueError("Poisson decomposition maximum is invalid")
     components = max(1, int(math.ceil(decomposition_maximum / 64.0)))
@@ -271,6 +272,95 @@ def compile_effective_mark_loss_profiles(
                 boundary_mode=candidate.boundary_mode,
                 maximum_target_density=candidate.maximum_target_density,
                 truncate=candidate.truncate,
+            )
+        )
+    return tuple(output)
+
+
+def compile_two_cumulant_profiles(
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    seed_offset: int = 0,
+) -> tuple[DensityConditionedLayerProfile, ...]:
+    """Match analytic area mean and shot-noise variance at a coarser LOD."""
+
+    if not isinstance(pixel_size_factor, int) or pixel_size_factor < 1:
+        raise ValueError("pixel_size_factor must be a positive integer")
+    if not isinstance(seed_offset, int):
+        raise ValueError("seed_offset must be an integer")
+    output = []
+    box = np.full(
+        (pixel_size_factor, pixel_size_factor),
+        1.0 / float(pixel_size_factor * pixel_size_factor),
+        dtype=np.float64,
+    )
+    for base in profiles:
+        base_kernel = _discrete_gaussian_kernel_2d(
+            base.correlation_sigma_pixels, base.truncate
+        )
+        area_kernel = convolve2d(base_kernel, box, mode="full")
+        reference_variance_coefficient = (
+            base.grain_optical_density
+            * float(np.sum(area_kernel * area_kernel, dtype=np.float64))
+        )
+        compiled_sigma = (
+            base.correlation_sigma_pixels / pixel_size_factor
+        )
+        compiled_kernel = _discrete_gaussian_kernel_2d(
+            compiled_sigma, base.truncate
+        )
+        compiled_kernel_square_sum = float(
+            np.sum(compiled_kernel * compiled_kernel, dtype=np.float64)
+        )
+        base_loss_per_density = (
+            effective_mark_loss(
+                base.grain_optical_density,
+                base.correlation_sigma_pixels,
+                base.truncate,
+            )
+            / base.grain_optical_density
+        )
+
+        def residual(grain_density: float) -> float:
+            compiled_loss = effective_mark_loss(
+                grain_density, compiled_sigma, base.truncate
+            )
+            return (
+                grain_density
+                * grain_density
+                * compiled_kernel_square_sum
+                * base_loss_per_density
+                / compiled_loss
+                - reference_variance_coefficient
+            )
+
+        lower = 0.000001
+        upper = base.grain_optical_density
+        if residual(lower) >= 0.0 or residual(upper) <= 0.0:
+            raise RuntimeError("two-cumulant root is not bracketed")
+        for _ in range(80):
+            midpoint = 0.5 * (lower + upper)
+            if residual(midpoint) > 0.0:
+                upper = midpoint
+            else:
+                lower = midpoint
+        compiled_grain_density = 0.5 * (lower + upper)
+        compiled_loss = effective_mark_loss(
+            compiled_grain_density, compiled_sigma, base.truncate
+        )
+        output.append(
+            DensityConditionedLayerProfile(
+                layer_id=base.layer_id,
+                grain_optical_density=compiled_grain_density,
+                correlation_sigma_pixels=compiled_sigma,
+                seed=(base.seed + seed_offset) % (2**64),
+                count_rate_density=(
+                    compiled_loss / base_loss_per_density
+                ),
+                boundary_mode=base.boundary_mode,
+                maximum_target_density=base.maximum_target_density,
+                truncate=base.truncate,
             )
         )
     return tuple(output)
@@ -458,6 +548,7 @@ __all__ = [
     "DensityConditionedStructureResult",
     "compile_density_conditioned_profiles",
     "compile_effective_mark_loss_profiles",
+    "compile_two_cumulant_profiles",
     "counter_poisson_rate_field",
     "effective_mark_loss",
     "render_density_conditioned_structure",
