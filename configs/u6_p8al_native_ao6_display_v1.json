@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8al_native_ao6_display_contract.v1",
+  "node": "U6.P8AL",
+  "parent_decision": "configs/u6_p8ak_native_ao6_context_decision_v1.json",
+  "parent_decision_sha256": "855a08dfc9efd9f71a4593d94ab9cd90b9113ab09c9c64fd6dc37b5457e129e3",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "native_sources": {
+    "sources": {
+      "native/film_physics/nf_ao6_base_f32_v1.c": "a73566395038896ad4b5e65d67e7729eb3eb28adf04af5746f441e995c37a573",
+      "native/film_physics/nf_ao6_residual_f32_v1.c": "3d3be4e6afb40227e903aac4b01d80563fbe06f1d79622db6210c3476d41cd31",
+      "native/film_physics/nf_ao6_display_f32_v1.c": "2630f13d078f9551fda47f8484339a271f9ddfa54379c8ff0ba273128499ed06"
+    },
+    "headers": {
+      "native/film_physics/nf_ao6_base_f32_v1.h": "eb56715b36dd91194248138696e7a0629cc8727d4f98859bcc1c483e2d1ee4e5",
+      "native/film_physics/nf_ao6_residual_f32_v1.h": "9301af8dce8fdc4f84791abb0ce05aab727101d8a84d6d39239321e6f26f9ae2",
+      "native/film_physics/nf_ao6_display_f32_v1.h": "867a16040798c1569edecdd16d582e0061ed44b98527997cca669b61bd1e4d27"
+    }
+  },
+  "oracle": {
+    "height": 71,
+    "width": 97,
+    "seed": 20260729
+  },
+  "tile_rows": [
+    1,
+    7,
+    32,
+    71
+  ],
+  "gates": {
+    "maximum_output_error": 0.0001,
+    "partition_output": "byte-exact",
+    "independent_build": "byte-exact",
+    "invalid_input_final_output": "unchanged"
+  },
+  "stage_boundary": {
+    "input": "encoded relative-display sRGB float32",
+    "output": "encoded relative-display sRGB float32",
+    "scratch": "one caller-owned row-tile float32 RGB buffer",
+    "context": "native row-major streaming reduction",
+    "hard_clip_in_residual": false,
+    "operator_refit": false
+  },
+  "claim_ceiling": "complete native AO6 display-look approximation conformance; not physical truth, stock response, calibration, full renderer or product promotion"
+}

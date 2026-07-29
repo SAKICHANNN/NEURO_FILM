@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p8al_native_ao6_display_decision.v1",
+  "node": "U6.P8AL",
+  "contract": "configs/u6_p8al_native_ao6_display_v1.json",
+  "contract_sha256": "16a810c459af2587d69f0c92cd9dca19c4cdc3850475633c75146f36b4b80e63",
+  "formal_report": "outputs/u6_p8al_native_ao6_display_v1/report.json",
+  "formal_report_sha256": "46139deb4e4aa5ed9bd54ac17247917bc495ed66071fbdde3634d30e638fd235",
+  "stable_evidence_id": "35b0cbcb32013be979959131fcdc2a6883b8b4a3596f6816a08c69d050976d43",
+  "result": {
+    "status": "pass",
+    "maximum_output_error": 2.1666288375854492e-05,
+    "p999_output_error": 6.258487701416016e-07,
+    "partition_output_byte_exact": true,
+    "invalid_input_final_output_unchanged": true,
+    "independent_display_build_dll_sha_exact": true
+  },
+  "decision": "retain the complete row-streamed native AO6 display-look execution. Native source context, active density-plus-Lab base, exact sRGB transfers and fixed t15/c35 residual are partition exact and remain inside the frozen Python-reference gate",
+  "production_default_changed": false,
+  "claim_ceiling": "complete native AO6 display-look approximation conformance; not physical truth, stock response, calibration, full renderer or product promotion",
+  "next_leaf": "U6.P8AM compose the native Standard physical chain, neutral gauge and complete native AO6 display look end to end; measure partition parity, no-double-count receipts and resources"
+}
