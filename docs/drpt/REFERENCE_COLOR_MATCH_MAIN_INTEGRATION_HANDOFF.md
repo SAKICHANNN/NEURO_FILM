@@ -2,26 +2,26 @@
 
 Date: 2026-07-29
 
-Status: **P1-P168 consumer payload is pinned by the immutable v41 review
+Status: **P1-P170 consumer payload is pinned by the immutable v42 review
 manifest; local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v41 review snapshot
+## Current v42 review snapshot
 
-- payload: `45247a42facaa357773451c0e2d18f300fcc575a`;
-- main: `7de95260240a7e3aa0390fdacb71c72fbb0eadd3`;
+- payload: `544c6b530afc9c8f8dbdedfc594b63550f4dc2c8`;
+- main: `f61c1314adc5fc54968b2f4b3c8cbaa76e1970a4`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- 578 consumer paths, 832 main paths, zero overlap;
-- 66 required public exports and 25 contract schemas;
-- merge tree: `937f4af5e855942f978e116e50e27aeb625a1076`;
-- detached synthetic merge: `9f4035f071aa4a87fc82812fd501c1899e2bc099`;
+- 586 consumer paths, 854 main paths, zero overlap;
+- 70 required public exports and 26 contract schemas;
+- merge tree: `6f7c0cceb2e0554b437685d6adf2410b212b3876`;
+- detached synthetic merge: `be9e12688a5f24f43c9c0e3310ae1dc99e2314a9`;
 - merged non-manifest color/reference-match result:
-  `976 passed, 30 skipped`;
-- direct v40/v41 schema/rebuild/tamper result: `9 passed`;
+  `985 passed, 30 skipped`;
+- direct v41/v42 schema/rebuild/tamper result: `10 passed`;
 - prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `c85978ef6dfc76309cea33e6f00af5e8c16b9115aa6901ba09176cce9f1a1a35` /
-  `f3b24eb60e6280c511e33e36f5c3a72cef79d17f08cfab6759fed382b32d82f4`.
+  `d6e2815b128c42e87417953cee180c081a70856e4cf463870cdf6f7fef12f17c` /
+  `74c08d1f29db5a95b305eca5edaaaeee179609a5e3e474bf94d744d770da4eb2`.
 
 The synthetic worktree was removed after verification. The main worktree's
 untracked `.codex/`, `tmp/` and active native v2 files remain main-task-owned
@@ -311,11 +311,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v41 schema and rebuild its manifest; it transitively
-   preserves the immutable v1-v38 chain.
-3. Review `c03c321..6b5b815`; do not copy files manually and do not import
+2. Verify the committed v42 schema and rebuild its manifest; it transitively
+   preserves the immutable v1-v41 chain.
+3. Review `c03c321..544c6b5`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 6b5b815 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 544c6b5 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled

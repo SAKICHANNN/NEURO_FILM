@@ -4187,3 +4187,26 @@
   immutable-manifest tests pass.
 - Scope remains local relative-SDR discovery only. No producer, RAW/HDR/video,
   target-device or main-integration claim changes.
+
+## 2026-07-29 - Publish P1-P170 integration manifest v42
+
+- P171 binds consumer payload `544c6b5`, common base `c03c321` and committed
+  main `f61c131`: 586 consumer paths versus 854 main paths with zero overlap,
+  70 public exports and 26 strict schemas.
+- The manifest/schema SHA-256 values are `d6e2815b...12f17c` /
+  `74c08d1f...a4eb2`; v42 exactly supersedes v41.
+- Detached merge tree `6f7c0cce...b3876` / commit `be9e126` passes 985
+  non-manifest color/reference tests with 30 platform/data skips. Direct
+  v41/v42 rebuild/schema/tamper passes 10/10.
+- The owned detached worktree was removed. Main-owned untracked `.codex/`,
+  `tmp/`, `native_standard_runtime.py` and its test were excluded and
+  untouched.
+
+## 2026-07-29 - Register R0DU as producer-negative
+
+- Producer `6d414e1` aligns the R0DT family to single-view inference: 59/64
+  improve, median +26.21% and boundary 0.454% pass, but worst -15.13% fails
+  the unchanged -10% tail gate.
+- Its post-hoc OOD observation is research motivation only. With no
+  model/package/schema/receipt/capability, P45/P44 remain closed and no
+  consumer mapping opens.

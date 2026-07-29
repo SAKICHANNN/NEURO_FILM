@@ -14,15 +14,16 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P170; v41 remains the latest immutable
+- Consumer branch now continues through P171; v42 is the latest immutable
   main-review manifest and binds P1-P168, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
-- Main Neuro-Film latest bound committed snapshot is `7de9526`; its untracked
+- Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `151627e`; R0DT rejects its
-  multiview-invariant reference-only LUT prior on frozen median and worst-tail
-  gates and publishes no
+- D-PCT latest stable communicated snapshot is `6d414e1`; R0DU fixes the R0DT
+  single-view norm mismatch and passes its improvement-rate, median and
+  boundary gates, but its -15.13% worst row still fails the frozen -10% tail
+  gate. It publishes no
   compatible consumer rail, callable capability, quality promotion or
   schema/receipt change. Its prior R0DO/R0DP absolute-HDR diagnostics remain
   explicitly unmapped.
@@ -84,9 +85,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; v41 binds P1-P168 payload `45247a4`, 578 payload paths, 66 exports, 25 schemas, exact v40 identity and zero overlap against main `7de9526`; manifest/schema SHA-256 are `c85978ef...1a1a35` / `f3b24eb6...2d82f4` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v41, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; v42 binds P1-P170 payload `544c6b5`, 586 payload paths, 70 exports, 26 schemas, exact v41 identity and zero overlap against main `f61c131`; manifest/schema SHA-256 are `d6e2815b...12f17c` / `74c08d1f...a4eb2` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v42, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P168 payload remains zero-overlap against main `7de9526` and merges conflict-free as tree `937f4af5...a1076`; detached merge `9f4035f` passes 976 non-manifest color/reference-match tests with 30 platform/data skips; direct v40/v41 rebuild/tamper is 9/9 | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P170 payload remains zero-overlap against main `f61c131` and merges conflict-free as tree `6f7c0cce...b3876`; detached merge `be9e126` passes 985 non-manifest color/reference-match tests with 30 platform/data skips; direct v41/v42 rebuild/tamper is 10/10 | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 
@@ -171,5 +172,5 @@ wall regression. The broader long-term goal is not complete: local exact-wheel
 invocation and Android x86_64 virtual
 SDR-boundary runtime are verified, but no real external candidate is
 product-promoted, producer redistribution rights and Apple/physical-Android
-runtime evidence are absent, and reviewed v41 has not been merged into the
+runtime evidence are absent, and reviewed v42 has not been merged into the
 main project.
