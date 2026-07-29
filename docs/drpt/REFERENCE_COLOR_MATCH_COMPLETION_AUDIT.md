@@ -20,9 +20,9 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `7de9526`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `7dd60f4`; R0DS rejects its
-  reference-only supervised shared-LUT prior on the frozen worst-tail gate
-  and publishes no
+- D-PCT latest stable communicated snapshot is `151627e`; R0DT rejects its
+  multiview-invariant reference-only LUT prior on frozen median and worst-tail
+  gates and publishes no
   compatible consumer rail, callable capability, quality promotion or
   schema/receipt change. Its prior R0DO/R0DP absolute-HDR diagnostics remain
   explicitly unmapped.

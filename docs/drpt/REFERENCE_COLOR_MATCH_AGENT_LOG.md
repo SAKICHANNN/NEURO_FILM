@@ -4159,3 +4159,11 @@
   v40/v41 schema/rebuild/tamper passes 9/9.
 - The owned temporary worktree was removed. Main-owned untracked `.codex/`,
   `tmp/` and P8AU profiling files were excluded and untouched.
+
+## 2026-07-29 - Register R0DT as producer-negative
+
+- Producer `151627e` closes MIRP-v0: 56/64 improve, median +14.79% and worst
+  -12.57% fail the unchanged gates. Its 1.91x train/inference canonical-feature
+  norm mismatch is research evidence, not a consumer workaround.
+- No model, package, capability, schema or receipt exists. P45/P44 remain
+  closed and v41 is not regenerated for this coordination-only update.
