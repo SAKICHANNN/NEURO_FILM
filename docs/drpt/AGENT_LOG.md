@@ -6788,3 +6788,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close only the shared-sensitometry slide branch. A future slide route needs a
   separately preregistered reversal-development operator. P2D may stress the
   surviving negative/print routes; B&W remains neutral-silver data-gated.
+
+## 2026-07-29 - U6.P2D scale-16 photographic route closed
+
+- Two 18-image runs repeat exactly at `6662bf13...37a5e6`; a preview-lifetime
+  defect found during the second attempt was fixed without changing any report
+  or contact-sheet byte. Automatic bounds, replay, materiality and isolated
+  noise gates pass.
+- The fixed visual sheet nevertheless fails both routes on all nine scenes:
+  negative-neutral-scan nearly erases subjects, and print remains pervasively
+  washed out with objectionable tonal/colour loss. Zero exact clipping does
+  not override this global severe-content failure.
+- Close the fixed display-linear times-16 branch. U2.2 already defines `0.18`
+  as reference exposure, so P2E may preregister an unchanged scale-1.0 gauge
+  challenger. No curve, print, scanner, source or threshold retuning is allowed.

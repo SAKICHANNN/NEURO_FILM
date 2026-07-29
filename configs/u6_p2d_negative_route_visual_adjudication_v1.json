@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p2d_negative_route_visual_adjudication.v1",
+  "node": "U6.P2D",
+  "date": "2026-07-29",
+  "evidence": {
+    "report_sha256": "6662bf13ceb80d2c99e32c2349933ee573aa397562802e06c5324991d637a5e6",
+    "stable_evidence_id": "f96092313ed21dea327ca389611bd892c9ce9f4a7e83eae3216bef2bcb98d012",
+    "contact_sheet_sha256": "45d23c96d3899fdfe698d54adfa8b2ba0301d1b4aedc68e956429df37b7ed89f",
+    "two_run_report_and_contact_exact": true
+  },
+  "review_type": "autonomous_visual_severe_artifact_adjudication",
+  "fixed_ids": [
+    "canon_eos250d_16x9",
+    "nikon_d6_12bit",
+    "sony_nex5_12bit",
+    "fujifilm_s2pro",
+    "olympus_epl8",
+    "panasonic_dmcg10",
+    "pentax_k20d",
+    "ricoh_grii",
+    "samsung_gx1l"
+  ],
+  "route_results": {
+    "color_negative_neutral_scan": {
+      "confirmed_severe_failures": 9,
+      "reviewed": 9,
+      "failure": "global near-white tonal collapse removes subject, colour and texture legibility across every fixed scene"
+    },
+    "color_negative_print": {
+      "confirmed_severe_failures": 9,
+      "reviewed": 9,
+      "failure": "pervasive high-key washout and colour/contrast collapse cause objectionable content loss across every fixed scene"
+    }
+  },
+  "visual_pass": false,
+  "automatic_pass_cannot_override_visual_failure": true,
+  "decision": "close_scale16_display_derived_photographic_route",
+  "root_cause_hypothesis": "Multiplying display-linear values by 16 moves ordinary 0.18 midtones to 2.88 relative exposure even though the reused U2.2 encoder already defines 0.18 as its reference; the fixed branch drives much of the image into the shoulder.",
+  "allowed_next": "A separately preregistered scale-1.0 reference-gauge challenger may reuse the unchanged U2.2, print and scanner profiles.",
+  "forbidden": [
+    "relabel near-white collapse as harmless style because exact clipping is zero",
+    "change the completed scale-16 thresholds or report",
+    "retune curves, print or scanner against the fixed photographs",
+    "promote either route from automatic metrics alone"
+  ],
+  "claim_ceiling": "autonomous visual negative evidence closing the display-derived scale-16 photographic route; no population preference and no claim that generic negative interpretation is impossible"
+}

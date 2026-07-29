@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2d-negative-route-photographic-stress-v1",
+  "node": "U6.P2D",
+  "decision": "close_scale16_photographic_route_on_visual_severe_veto",
+  "software_commit": "838b4ba",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2d_negative_route_photographic_stress_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2d_negative_route_photographic_stress_v1/run_b/report.json",
+    "report_sha256": "6662bf13ceb80d2c99e32c2349933ee573aa397562802e06c5324991d637a5e6",
+    "contact_sheet_sha256": "45d23c96d3899fdfe698d54adfa8b2ba0301d1b4aedc68e956429df37b7ed89f",
+    "stable_evidence_id": "f96092313ed21dea327ca389611bd892c9ce9f4a7e83eae3216bef2bcb98d012",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": true,
+    "negative_median_mean_abs_change": 0.7397270814819644,
+    "print_median_mean_abs_change": 0.45927665001017526,
+    "maximum_new_boundary_fraction": 0.0,
+    "total_isolated_noise_count": 0
+  },
+  "visual": {
+    "path": "configs/u6_p2d_negative_route_visual_adjudication_v1.json",
+    "passed": false,
+    "negative_severe_failures": "9/9",
+    "print_severe_failures": "9/9"
+  },
+  "interpretation": "Exact-boundary and isolated-noise gates miss a severe global near-white tonal collapse. Both routes are vetoed visually. The fixed scale-16 display-derived branch is closed; this does not invalidate P2 topology or a separately frozen reference-gauge challenger.",
+  "next_leaf": "U6.P2E unchanged-route scale-1.0 challenger justified by the U2.2 0.18 reference exposure",
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative photographic evidence for one fixed display-derived scale-16 route; no claim that negative interpretation, printing or measured film response is impossible"
+}
