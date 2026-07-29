@@ -6722,3 +6722,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the worst case to a display-clipped zero channel amplified after cross-layer
   return and the nonlinear U2.2 curve. Gates and profiles were not changed.
   P3D/P3E/P3F remain isolated reference/compiler evidence only.
+
+## 2026-07-29 - U6.P3H-P3K isolated FFT compiler
+
+- P3H matches the retained direct additive-return compiler within `2.38e-7`
+  and repeats exactly. P3I measures a `4.54x-4.83x` 1/12/24MP CPU speedup,
+  while its full-output 24MP peak remains `1.52GiB`.
+- P3J proves exact bounded row-core streaming. P3K then runs two fresh 24MP
+  workers at `7.37s` median stream time and `.750GiB` maximum process-tree
+  RSS, `.494x` the P3I full-output FFT peak. Source/output hashes, coverage,
+  numeric bounds and replay all pass without a full output allocation.
+- Retain this as an isolated generic Standard CPU compiler. It does not reopen
+  the failed P3G combined topology or add stock, calibration, native/mobile or
+  product claims. Next leaf returns to the missing P2 typed
+  exposure-development-interpretation contract and reuses U2.2.

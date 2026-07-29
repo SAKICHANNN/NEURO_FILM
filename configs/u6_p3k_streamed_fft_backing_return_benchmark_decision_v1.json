@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3k-streamed-fft-backing-return-benchmark-v1",
+  "node": "U6.P3K",
+  "decision": "retain_streamed_fft_as_isolated_standard_cpu_compiler",
+  "software_commit": "7c70d9a",
+  "contract": {
+    "path": "configs/u6_p3k_streamed_fft_backing_return_benchmark_v1.json",
+    "sha256": "ca0f3a3cf6b9f809101d12a1c64aacf4becec24afb9ac60e38a19bea5b6d00df"
+  },
+  "formal_report": {
+    "path": "outputs/u6_p3k_streamed_fft_backing_return_benchmark_v1/formal/report.json",
+    "sha256": "678c3d2010dfa1e762b7195b43eaf69b2084b75e9d6c9c70f802d9bc3c380b11",
+    "evidence_id": "20af2387dc78c5000a5e7e30ddd9fa130e5cc003ca996b0cf0c3bd6ac6cf47f7"
+  },
+  "metrics": {
+    "maximum_peak_process_tree_rss_bytes": 805539840,
+    "median_stream_seconds": 7.373990400010371,
+    "repeat_wall_ratio": 1.0512804502397874,
+    "rss_ratio_to_p3i_full_fft": 0.49370396589899235,
+    "maximum_live_output_core_rows": 512,
+    "source_repeat_exact": true,
+    "output_repeat_exact": true,
+    "coverage_exactly_once": true,
+    "full_output_allocated": false
+  },
+  "automatic_pass": true,
+  "interpretation": "The isolated tile-512 FFT compiler streams a repeat-exact 24MP result in 7.37 seconds median core time at 0.750 GiB peak process-tree RSS, less than half the P3I full-output FFT peak. This closes the isolated Standard CPU performance question but does not reopen the P3G combined topology.",
+  "next_leaf": "U6.P2A reuse-map and typed generic negative/slide/B&W exposure-development-interpretation contract without duplicating U2.2 sensitometry",
+  "production_integration_allowed": false,
+  "claim_ceiling": "local Windows/Python isolated generic backing-return compiler performance; no combined-chain, native, mobile, stock, calibration or product claim"
+}
