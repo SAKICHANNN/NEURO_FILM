@@ -10,6 +10,11 @@ from scripts.audit_reference_match_rec2020_sdr_file_matrix_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "reference_match_rec2020_sdr_file_matrix_v1.json"
+DECISION = (
+    ROOT
+    / "configs"
+    / "reference_match_rec2020_sdr_file_matrix_decision_v1.json"
+)
 
 
 def _run(case: dict, token: str = "same", peak: int = 500_000_000) -> dict:
@@ -76,3 +81,33 @@ def test_p165_evaluation_requires_exact_ordered_rail_profile_parity() -> None:
     excessive = _runs(config)
     excessive[0]["monitor"]["peak_process_tree_rss_bytes"] = 1_700_000_000
     assert not evaluate_runs(config, excessive)["automatic_pass"]
+
+
+def test_p165_decision_recomputes_frozen_resources_and_semantics() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["candidate_commit"] == config["candidate_commit"]
+    assert set(decision["cases"]) == {
+        row["case_id"] for row in config["cases"]
+    }
+    config_cases = {row["case_id"]: row for row in config["cases"]}
+    for case_id, result in decision["cases"].items():
+        expected = config_cases[case_id]
+        peaks = result["peak_process_tree_rss_bytes"]
+        assert result["output_rails"] == expected["expected_output_rails"]
+        assert result["output_profiles"] == expected[
+            "expected_output_profiles"
+        ]
+        assert result["peak_rss_repeat_ratio"] == max(peaks) / min(peaks)
+        assert max(peaks) <= config["gates"][
+            "maximum_peak_process_tree_rss_bytes_per_run"
+        ]
+        assert max(result["worker_wall_seconds"]) <= config["gates"][
+            "worker_wall_seconds_max"
+        ]
+        assert result["safety_actions"] == [
+            "identity-fallback"
+        ] * len(expected["source_rails"])
+        assert result["automatic_pass"]
+    assert decision["pre_pixel_contract_attempts"]["pixel_tasks_executed"] == 0
+    assert decision["automatic_pass"]

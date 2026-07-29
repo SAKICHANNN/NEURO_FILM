@@ -4079,3 +4079,15 @@
   peak, 1.15 repeat ratio, 60-second wall and cleanup gates are mandatory.
 - This is relative display-linear SDR evidence only, never absolute HDR,
   arbitrary profile conversion, RAW/OCIO/ACES, platform or product readiness.
+
+## 2026-07-29 - Pass BT.2020 SDR PNG/CICP file matrix
+
+- BT.2020-only and ordered sRGB/BT.2020 mixed PNG16 transactions each pass two
+  complete runs. Peak RSS is 493.8--514.6 MB and repeat ratios are
+  1.000672/1.011872.
+- Ordered ICC/CICP output rails, output bytes, recipe and normalized report
+  reproduce; all three decisions are identity fallback and cleanup passes.
+- One missing-preflight contract attempt stopped before input/pixel work and
+  was corrected without relaxing a gate.
+- P165 remains relative SDR host evidence, not absolute HDR/PQ/HLG, arbitrary
+  profile conversion, RAW/OCIO/ACES, device or product readiness.

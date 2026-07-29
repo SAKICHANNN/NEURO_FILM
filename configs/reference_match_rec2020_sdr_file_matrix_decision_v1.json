@@ -1,0 +1,97 @@
+{
+  "schema_id": "neuro-film.reference-match-rec2020-sdr-file-matrix-decision.v1",
+  "node": "P165",
+  "decision": "rec2020-only-and-mixed-sdr-png16-transaction-gates-pass",
+  "contract_commit": "822a753eb115e7de5b2b411cfe830832c8045f68",
+  "contract_correction_commit": "bc0aa7a65d709f7eb93eacb6380ae76c5438f39f",
+  "candidate_commit": "f2ea6f77841e04a64ba40e973ab03f0542202bb4",
+  "harness_commit": "2b2157535a196b1c7456117d7ccd57cd7fe7eb64",
+  "config_sha256": "a89d3b1c51c60128d33de4c0c937971c06c65fcf659d3f211d54ed2dca2bd725",
+  "runner_sha256": "06adf04a8295b192c344707d3300233f7735cf9fb7e1533c2d33069cb7b9bc27",
+  "raw_report_sha256": "9a4b423160b476eeddbbb4ff03b1d2bfeb4c872544c269d2d46e73d8c48bc629",
+  "workload": {
+    "width": 2048,
+    "height": 1536,
+    "pixel_count": 3145728,
+    "output_bit_depth": 16,
+    "output_format": "PNG",
+    "repeat_count_per_case": 2
+  },
+  "cases": {
+    "rec2020-single": {
+      "output_rails": [
+        "linear_rec2020"
+      ],
+      "output_profiles": [
+        "cicp"
+      ],
+      "peak_process_tree_rss_bytes": [
+        493764608,
+        494096384
+      ],
+      "worker_wall_seconds": [
+        5.54074130000663,
+        5.573300300020492
+      ],
+      "peak_rss_repeat_ratio": 1.0006719315127584,
+      "output_sha256": [
+        "1589679bf02406ce6feaf57f53c87471b2f5884ea8f1ee81f7681cce77f8105b"
+      ],
+      "recipe_sha256": "87c3b69915947466371e2541c22496aed42f88aef10755111549d2ae77866f55",
+      "normalized_report_sha256": "150edb9f80eabbdb0c3ff0395ebe58bb734218120bf2b39881b13c805d8deee3",
+      "safety_actions": [
+        "identity-fallback"
+      ],
+      "automatic_pass": true
+    },
+    "mixed-srgb-rec2020": {
+      "output_rails": [
+        "linear_srgb",
+        "linear_rec2020"
+      ],
+      "output_profiles": [
+        "icc",
+        "cicp"
+      ],
+      "peak_process_tree_rss_bytes": [
+        508538880,
+        514576384
+      ],
+      "worker_wall_seconds": [
+        9.993741599988425,
+        9.757513300020946
+      ],
+      "peak_rss_repeat_ratio": 1.0118722564536264,
+      "output_sha256": [
+        "8047c50a9856a3b54c039b9f3a6c597b02adc85c34364ab71c6070af13fc3718",
+        "cde7c0b8f083978f67aa59da618d2f8a5c5943984da4abf974193b14831da0a7"
+      ],
+      "recipe_sha256": "3f4f1b6f9750af1deebb00f72d15582ec742ecd3492cad1a9b9a22960c7e65f3",
+      "normalized_report_sha256": "c0500ba73885abd5d9abef47d0cc461a1643ccf8a4923acc6b02ad24b26dd2b6",
+      "safety_actions": [
+        "identity-fallback",
+        "identity-fallback"
+      ],
+      "automatic_pass": true
+    }
+  },
+  "frozen_gates": {
+    "maximum_peak_process_tree_rss_bytes_per_run": 1610612736,
+    "maximum_peak_rss_repeat_ratio_per_case": 1.15,
+    "worker_wall_seconds_max": 60.0,
+    "require_output_bytes_exact_per_case": true,
+    "require_recipe_bytes_exact_per_case": true,
+    "require_normalized_report_exact_per_case": true,
+    "require_ordered_rail_and_profile_retention": true,
+    "require_identity_fallback": true,
+    "passed": true
+  },
+  "pre_pixel_contract_attempts": {
+    "missing_preflight_key_count": 1,
+    "pixel_tasks_executed": 0,
+    "corrected_without_gate_relaxation": true
+  },
+  "worktree_cleanup_passed": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-bt2020-sdr-png16-cicp-and-mixed-sdr-file-transaction-evidence-only-not-hdr-arbitrary-profile-platform-or-product-readiness"
+}
