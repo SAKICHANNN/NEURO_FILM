@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3f-backing-return-photographic-stress-v1",
+  "node": "U6.P3F",
+  "decision": "retain_generic_additive_backing_return_for_combined_chain_ablation",
+  "software_commit": "3359a6ac",
+  "contract": {
+    "path": "configs/u6_p3f_backing_return_photographic_stress_v1.json",
+    "canonical_sha256": "b891f0e743e1b4ae29dd94e8bcdcec6cd4f8997017e30ca26fbc67bb2b99bc13"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3f_backing_return_photographic_stress_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3f_backing_return_photographic_stress_v1/run_b/report.json",
+    "report_sha256": "e055096c344723d6bef905b24c3d413032c1166c3bff3c117bbf37b98c5b4da2",
+    "stable_evidence_id": "99e038bc826dcc290163eb28d94b10fabf1345ebaeaa2a0f24848c8f94d9418d",
+    "contact_sheet_sha256": "fb90e795d915f07ab441dc07fb18c74261b34f75c4ca32a3aec3cba7ee128cd4",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "input_rows": 18,
+    "camera_makes": 9,
+    "population_maximum_increment_rgb": [
+      0.06291055679321289,
+      0.019025564193725586,
+      0.006701350212097168
+    ],
+    "minimum_direct_increment": 2.84449197351933e-6,
+    "isolated_excursion_count": 0,
+    "row_partitions_exact": [
+      257,
+      509
+    ]
+  },
+  "automatic_pass": true,
+  "autonomous_visual_evidence": {
+    "fixed_images": 9,
+    "confirmed_severe_failures": 0,
+    "observations": [
+      "Source and candidate geometry and content remain aligned in all nine fixed diagnostics.",
+      "The change is continuous and structure-correlated; no isolated red speckle, posterization, banding, hard clipping, secondary hard contour or row seam is visible.",
+      "The warm edge signal in the third column is a 16x diagnostic difference and is not the final candidate magnitude."
+    ],
+    "scope": "autonomous development visual evidence on display-derived pseudo-exposure; not human preference or calibrated film evidence"
+  },
+  "interpretation": "The frozen generic additive return is numerically bounded and severe-clean on this rights-cleared photographic stress. This only opens later combined-chain ablation; it does not show that the chosen fractions or radii match any film, camera or pressure plate.",
+  "next_leaf": "U6.P3G compare additive return, legacy redistribution and no-return inside one fixed exposure-development-interpretation chain before any product integration",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic photographic severe-artifact stress of a display-derived pseudo-exposure; no scene/layer truth, preference, stock, process, camera, pressure-plate, scanner, calibration, authenticity or product claim"
+}

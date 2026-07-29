@@ -6702,3 +6702,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Decision `3f610aa`: close the Ektachrome photo challenger without threshold,
   source, strength, operator or capacity rescue. Preserve AP0/AP2 as bounded
   research primitives and continue a distinct explicit film-imaging leaf.
+
+## 2026-07-29 - U6.P3D-P3F additive backing return
+
+- Added a separate bounded second-pass layer-exposure reference instead of
+  relabeling the completed energy-redistribution scatter model. P3D passes
+  exact energy, linearity, positivity, spectral-order and identity gates.
+- The direct float32 separable P3E compiler repeats exactly, stays within
+  `3.01e-7` of the float64 reference and reconstructs arbitrary row partitions
+  exactly.
+- Two P3F runs on 18 existing CC0 images/nine makes are byte-identical. All
+  analytic bounds and 257/509-row parity pass, with zero isolated excursions
+  and zero confirmed severe failures on nine fixed autonomous visuals.
+- Claim remains generic physical-inspired/display-derived pseudo-exposure.
+  No magnitude is calibrated to a stock, camera or pressure plate. Next:
+  fixed combined-chain ablation against no-return and legacy redistribution.
