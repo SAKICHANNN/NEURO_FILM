@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p4e_density_conditioned_lod_audit_contract.v1",
+  "node": "U6.P4E",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4d_decision": "configs/u6_p4d_density_conditioned_structure_decision_v1.json",
+    "p4d_decision_sha256": "39e6798327a8836cb10418bfa0684c454b5f2c832ff7de7fa94be197c73abdd8"
+  },
+  "question": "Does area-compiled density-conditioned marked-Poisson structure preserve local material statistics across physical LOD, while constant-rate and display-RGB-noise controls fail the density/domain contract?",
+  "synthetic_scene": {
+    "coarse_shape_at_factor_4": [96, 128],
+    "maximum_target_density": 2.0,
+    "horizontal_density_ramp": true,
+    "vertical_density_modulation": [0.65, 1.0],
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "density_bins": [0.0, 0.25, 0.5, 0.8, 1.2, 1.6, 2.000001],
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 2000
+  },
+  "lod_factors": [2, 4],
+  "compiler": {
+    "grain_optical_density": "base_grain_optical_density / factor^2",
+    "expected_count_rate": "target_density / compiled_grain_optical_density",
+    "correlation_sigma_pixels": "base_sigma / factor",
+    "large_rate_sampling": "exact Poisson superposition with each counter component rate <= 64",
+    "per_image_fit_or_normalization_allowed": false
+  },
+  "controls": {
+    "constant_rate": "replace the target density map by its per-channel mean before marked-Poisson rendering",
+    "display_rgb_noise": "add a matched zero-mean Gaussian perturbation after Beer-Lambert transmittance without clipping",
+    "display_rgb_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_candidate_target_column_correlation": 0.98,
+    "maximum_candidate_local_mean_absolute_error": 0.04,
+    "minimum_direct_to_area_reference_variance_ratio": 0.55,
+    "maximum_direct_to_area_reference_variance_ratio": 1.8,
+    "maximum_direct_to_area_reference_local_mean_difference": 0.03,
+    "maximum_constant_rate_target_column_correlation": 0.5,
+    "minimum_display_noise_out_of_domain_fraction": 0.001,
+    "density_and_transmittance_domain_valid": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the area-compiled density-conditioned material model and open a separately frozen developed-density photographic severe/OOD stress without aesthetic promotion",
+    "fail": "close density-conditioned LOD integration and retain P4D synthetic base-pitch evidence only"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic physical-inspired density-conditioned LOD evidence; not measured film NPS, dye-cloud calibration, stock response or product evidence"
+}
