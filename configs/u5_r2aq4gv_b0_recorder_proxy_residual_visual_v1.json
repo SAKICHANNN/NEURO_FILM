@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4gv-b0-recorder-proxy-residual-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ4GV",
+  "parent_config_sha256": "f668a3de564c6484bb893036f999812b94e3ebc05492547e51983c5419d7c361",
+  "parent_manifest_sha256": "1963dff2bd27300c70f5fe7bf48af915de0c8b60a2565d20e39f596e69b855ba",
+  "parent_automatic_report_sha256": "83fc7cac199ad0920f11cd9a28e3ff451fd9f5880d74cd608d962e5f3ee76abb",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "looks": [
+    {
+      "role": "ao6_real_film_residual_t15_c35",
+      "candidate_id": "b0_plus_film_t15_c35",
+      "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
+      "automatic_style": 13.235349374774573,
+      "automatic_non_basic": 9.87424571023939,
+      "status": "AO6_development_champion_control"
+    },
+    {
+      "role": "recorder_residual_t50_c125",
+      "candidate_id": "b0_plus_recorder_factor_t50_c125",
+      "manifest": "outputs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "1963dff2bd27300c70f5fe7bf48af915de0c8b60a2565d20e39f596e69b855ba",
+      "automatic_style": 14.88363610128679,
+      "automatic_non_basic": 9.862768570653817,
+      "automatic_recorder_delta_from_base": 5.1374566673059165,
+      "worst_gold_new_hard_clipping_fraction": 0.0
+    },
+    {
+      "role": "recorder_residual_t50_c175",
+      "candidate_id": "b0_plus_recorder_factor_t50_c175",
+      "manifest": "outputs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1/render_pass1/manifest.json",
+      "manifest_sha256": "1963dff2bd27300c70f5fe7bf48af915de0c8b60a2565d20e39f596e69b855ba",
+      "automatic_style": 15.018586513001349,
+      "automatic_non_basic": 9.172645356670705,
+      "automatic_recorder_delta_from_base": 6.401203148941078,
+      "worst_gold_new_hard_clipping_fraction": 0.0
+    }
+  ],
+  "auxiliary_controls": [
+    {
+      "role": "fixed_B0",
+      "candidate_id": "density_then_anchor__density_s50",
+      "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+      "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242"
+    },
+    {
+      "role": "source_only_AQ4F",
+      "candidate_id": "recorder_proxy_factor_t75_c200",
+      "manifest": "outputs/u5_r2aq4f_recorder_proxy_factorized_frontier_v1/render_pass1_fresh/manifest.json",
+      "manifest_sha256": "00ef4c9e5a69360099ab0be3aac6440a1cdee3ee967d9f47959412321f994b2d"
+    }
+  ],
+  "blind": {
+    "round_count": 3,
+    "seed": 2026072901,
+    "source_visible": true,
+    "look_labels_hidden": true,
+    "same_nine_gold_rows_each_round": true,
+    "three_distinct_permutations_required": true,
+    "review_format": "rank_A_B_C_by_visible_film_style_and_appeal_subject_to_severe_veto",
+    "minimum_pairwise_round_wins": 2
+  },
+  "decisions": {
+    "recorder_t50_c125_beats_AO6": "recorder_residual_t50_c125 ranks above ao6_real_film_residual_t15_c35 in at least two rounds",
+    "recorder_t50_c175_beats_AO6": "recorder_residual_t50_c175 ranks above ao6_real_film_residual_t15_c35 in at least two rounds",
+    "preferred_recorder_strength": "the higher-ranked severe-clean recorder candidate in at least two rounds"
+  },
+  "full_resolution": {
+    "both_recorder_candidates_all_nine_gold_required": true,
+    "auxiliary_controls_available_for_unblinded_diagnosis": true,
+    "maximum_confirmed_severe_artifacts": 0,
+    "inspect": [
+      "face_skin",
+      "text_logo",
+      "fine_texture",
+      "smooth_gradients",
+      "deep_shadows",
+      "highlights",
+      "boundary_pileup",
+      "posterization",
+      "id11_red_speckle"
+    ]
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "three-layout autonomous B0 development comparison of AO6 and two bounded recorder-proxy residuals; not independent votes, owner or population preference, stock response, calibration or product promotion"
+}
