@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p4y_scaled_material_physical_decision.v1",
+  "node": "U6.P4Y",
+  "software_commit": "f533a1669a2f10f1c76cc0b4317357827b542576",
+  "contract": {
+    "path": "configs/u6_p4y_scaled_material_physical_v1.json",
+    "sha256": "2968ef6a9fb664af6b4a390424afe37c3a9cea25310ba765321c0de3aaa89dcd"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u6_p4y_scaled_material_physical_v1/report_a.json",
+    "run_b": "outputs/experiments/u6_p4y_scaled_material_physical_v1/report_b.json",
+    "sha256": "52d01f8739816eee6d1bea69ef96aee67ea508e6d8ed87209012589092a09180",
+    "stable_evidence_id": "8fcb78cf182cf2cb7c317cda25ec50eadec9cffd61a836eb8f82ce548a30d47c",
+    "repeat_count": 2
+  },
+  "result": {
+    "status": "automatic_fail_held_acf_median_improvement",
+    "selected_shared_amplitude_scale": 0.125,
+    "baseline_held_acf_median_absolute_error": 0.014655385465636219,
+    "candidate_held_acf_median_absolute_error": 0.013944916740279575,
+    "held_acf_median_improvement_fraction": 0.04847833767474363,
+    "minimum_held_acf_median_improvement_fraction": 0.1,
+    "baseline_held_acf_maximum_absolute_error": 0.4940951865675967,
+    "candidate_held_acf_maximum_absolute_error": 0.13434402774501875,
+    "candidate_to_baseline_worst_error_ratio": 0.2718990821956515,
+    "maximum_flat_mean_absolute_error": 0.00014496945696373942,
+    "minimum_high_to_low_variance_ratio": 4.001693084520214,
+    "ramp_minimum_correlation": 0.9995396096494703,
+    "ramp_maximum_mean_absolute_error": 0.002640568989967813,
+    "physical_domain_repeat_and_partition_gates_pass": true,
+    "visual_review_allowed": false
+  },
+  "decision": "close_scaled_material_candidate_retain_p4x_proxy_evidence_only",
+  "interpretation": [
+    "The fixed 0.125 scale preserves physical density/transmittance semantics, density conditioning, repeat identity and row partitions, and reduces the worst held ACF error to 27.19% of P4D.",
+    "Its held median ACF error improves by only 4.85%, below the preregistered 10% gate. The automatic gate therefore fails and visual diagnostics remain forbidden.",
+    "No threshold change, same-data scale retune, photographic retry, renderer integration or product claim opens. P4X remains a same-scanner transmittance-proxy amplitude result only."
+  ],
+  "next_leaf": "Pivot away from the closed scanner-proxy material-integration family to the highest-information evidence-authorized explicit colour/operator or physical-imaging leaf; do not rescue P4Y on the same scans.",
+  "claim_ceiling": "Negative held-ACF confirmation of one fixed generic proxy-scaled physical-domain material candidate; not optical-density/emulsion/stock/process/scanner calibration, photographic preference or product evidence."
+}

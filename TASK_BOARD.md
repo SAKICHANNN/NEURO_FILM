@@ -303,10 +303,13 @@ photographic integration: two exact 16-image runs reproduce the no-material
 P7F control and add zero boundary, but P4T's worst median luma drift is
 `.05322 > .03`; visual review and retuning are forbidden. U6.P4V remains
 formally unidentified: drift/local-residual correlation is `.850`, but the
-frozen large-residual gate misses (`.04645 < .05`). P4W may independently
-test whether scanner-code amplitude is repeat-stable before any fit. The
-closed P8BP challenger, stock-specific fitting and calibration remain
-forbidden.
+frozen large-residual gate misses (`.04645 < .05`). P4W then retains one
+repeat-stable same-scanner amplitude target and P4X selects a fixed global
+`.125` proxy scale. P4Y closes the resulting material candidate: physical,
+repeat and partition gates plus worst held ACF improve, but held median ACF
+improvement is only `4.85% < 10%`. Visual review, same-scan retuning and
+photographic integration remain forbidden. The closed P8BP challenger,
+stock-specific fitting and calibration remain forbidden.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent

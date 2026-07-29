@@ -7219,3 +7219,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The explicit `10^-D` plus local scanner proportionality assumption is not
   calibration. P4Y must re-run physical/ACF/synthetic severe gates before
   any photograph is accessed.
+
+## 2026-07-30 - U6.P4Y scaled material candidate closes
+
+- Two reports are byte-identical at `52d01f87...9180`. The fixed `.125`
+  candidate preserves physical density/transmittance semantics,
+  density-conditioned variance, ramp response, repeat identity and 31/127-row
+  partitions.
+- Worst held ACF error improves strongly (`.49410 -> .13434`), but median held
+  ACF error changes only `.01466 -> .01394`, a `4.85%` improvement below the
+  frozen `10%` gate.
+- The automatic gate fails, so visual review is forbidden. Close this
+  same-scanner proxy-scaled material branch without retuning or a photographic
+  retry; retain P4X only as proxy evidence and pivot to a distinct authorized
+  algorithm/data leaf.
