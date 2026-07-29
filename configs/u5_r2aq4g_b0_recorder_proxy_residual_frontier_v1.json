@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4g-b0-recorder-proxy-residual-frontier-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ4G",
+  "hypothesis": "the bounded recorder proxy may express a more salient non-basic look when used as a small explicit residual after the fixed vivid B0 base, analogous to AO6, even though direct source-only reuse failed",
+  "parent": {
+    "decision": "configs/u5_r2aq4f_recorder_proxy_factorized_frontier_decision_v1.json",
+    "decision_sha256": "3f9e2a5ea90988646c401c92597a4e838f3ab39f3575c95312f3286a89e6e743",
+    "required_decision": "close_factorized_recorder_proxy_photo_route_without_visual_review",
+    "bundle": "outputs/experiments/u5_r2aq3p_colorreference_bernstein_bundle_properties_v1/bundle.json",
+    "bundle_sha256": "ee0a187e573c63bd2556d72e0294c776a36931db5495325d3a26485ecb57fea8"
+  },
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "base": {
+    "candidate_id": "density_then_anchor__density_s50",
+    "manifest": "outputs/u5_r2ai0_dual_champion_global_composition_v1/run_a/manifest.json",
+    "manifest_sha256": "8093823497a8ba69a5e2c15db003eed4d6e2b05e1e49cc10ed559478250d9242",
+    "status": "retained_B0_development_comparator_not_independently_promoted"
+  },
+  "ao6_control": {
+    "candidate_id": "b0_plus_film_t15_c35",
+    "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666cece223deabd48107dfa676b6224",
+    "report": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/automatic_report_pass1.json",
+    "report_sha256": "582f3cd74c65b8bd0e7dff9a956336a422374b5c86158f1d1a894a671ff8c9ab",
+    "gold_median_style_delta_e76": 13.235349374774573,
+    "gold_median_non_basic_residual_delta_e76": 9.87424571023939
+  },
+  "factorization": {
+    "input_control_coordinates": "fixed B0 display-sRGB code values reused numerically as unidentified recorder-device normalized RGB",
+    "bundle_output": "measured developed-slide XYZ D50 mapped by fixed Bradford D50-to-D65 and XYZ-to-linear-sRGB",
+    "residual_base": "fixed B0 output decoded to linear-sRGB",
+    "metric_reference": "original frozen source",
+    "luma_weights": [0.2126, 0.7152, 0.0722],
+    "tone_residual": "equal-linear-RGB delta matching the raw mapped residual's linear-sRGB luma delta",
+    "chroma_residual": "raw mapped residual minus the equal-RGB luma delta",
+    "execution": "sequential B0-inclusive analytical maximum safe scale for tone then chroma",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "post_operator_clipping_allowed": false,
+    "per_image_fit_or_adjustment_allowed": false
+  },
+  "candidate_bank": [
+    {
+      "candidate_id": "b0_plus_recorder_factor_t50_c125",
+      "tone_strength": 0.5,
+      "chroma_strength": 1.25
+    },
+    {
+      "candidate_id": "b0_plus_recorder_factor_t50_c175",
+      "tone_strength": 0.5,
+      "chroma_strength": 1.75
+    },
+    {
+      "candidate_id": "b0_plus_recorder_factor_t75_c200",
+      "tone_strength": 0.75,
+      "chroma_strength": 2.0
+    }
+  ],
+  "candidate_count": 3,
+  "output_root": "outputs/u5_r2aq4g_b0_recorder_proxy_residual_frontier_v1",
+  "rendering": {
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "intermediate_quantization": "the frozen RGB8 B0 artifact is the explicit composition boundary",
+    "final_format": "rgb8_png",
+    "verify_source_base_bundle_and_control_hashes": true,
+    "require_matching_dimensions": true,
+    "require_repeat_manifest_and_report_byte_identity": true,
+    "post_result_parameter_change_allowed": false
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "style": "median_delta_e76_from_original_input",
+    "non_basic": "median_delta_e76_after_frozen_joint_ev_wb_contrast_saturation_affine",
+    "recorder_delta": "median_delta_e76_from_fixed_B0_base",
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "maximum_worst_stress_new_hard_clipping_fraction": 0.01,
+    "minimum_gold_median_style_delta_e76": 12.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 9.0,
+    "minimum_gold_median_recorder_delta_e76": 1.5
+  },
+  "shortlist": {
+    "order": [
+      "descending_gold_median_non_basic_residual_delta_e76",
+      "descending_gold_median_recorder_delta_e76",
+      "descending_gold_median_style_delta_e76",
+      "ascending_tone_strength",
+      "ascending_chroma_strength",
+      "ascending_candidate_id"
+    ],
+    "maximum_candidates": 2
+  },
+  "visual": {
+    "automatic_shortlist_only": true,
+    "all_nine_gold_samples_required": true,
+    "full_resolution_review_required": true,
+    "maximum_confirmed_severe_gold_artifacts": 0,
+    "explicit_id11_red_speckle_regression": true,
+    "compare_against_original_fixed_B0_AQ4F_and_AO6": true,
+    "blind_rounds": 3,
+    "preference_claim_allowed": false
+  },
+  "decision_branches": {
+    "no_automatic_survivor": "close_B0_recorder_proxy_residual_route",
+    "automatic_survivor": "open_separately_frozen_AQ4GV_visual_comparison",
+    "visual_fail": "close_photo_challenger_retain_bounded_proxy_parameterization_only",
+    "visual_pass": "retain_one_B0_recorder_proxy_development_challenger_without_stock_claim"
+  },
+  "training_allowed": false,
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "B0 development Look Approximation plus a bounded residual from an unidentified recorder-code reuse hypothesis; not Velvia stock response, calibration, authenticity or product promotion"
+}
