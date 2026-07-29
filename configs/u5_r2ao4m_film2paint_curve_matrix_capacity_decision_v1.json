@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "decision_id": "u5.r2ao4m-film2paint-curve-matrix-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4M",
+  "date": "2026-07-29",
+  "status": "complete_automatic_failure_family_closed",
+  "software_commit": "ede844ebeac43e06dd90ab77608e1321008a8bf7",
+  "contract": {
+    "path": "configs/u5_r2ao4m_film2paint_curve_matrix_capacity_v1.json",
+    "sha256": "7d3be9c4fc6359ee404f75604a1ed491f45f0e9cb20db942edd9360403fe6d4a"
+  },
+  "formal_runs": {
+    "run_a_path": "outputs/u5_r2ao4m_film2paint_curve_matrix_capacity_v1/run_a/report.json",
+    "run_b_path": "outputs/u5_r2ao4m_film2paint_curve_matrix_capacity_v1/run_b/report.json",
+    "report_bytes": 63979,
+    "report_sha256": "62e24b682c0263ec255ff560b422f602df685b5a3bb676e7e8493ab92b48bc3b",
+    "two_run_byte_identical": true
+  },
+  "candidate": {
+    "operator": "endpoint-fixed monotone channel curves then bounded positive row-stochastic matrix",
+    "parameter_count": 12,
+    "control_parameter_count": 12,
+    "combined_rgb_rmse": 0.033128116050757064,
+    "bounded_one_matrix_combined_rgb_rmse": 0.03351518780479239,
+    "combined_rgb_rmse_gain": 0.01154914471283297,
+    "combined_mean_delta_e76": 9.281429153706656,
+    "bounded_one_matrix_combined_mean_delta_e76": 6.601281103768557,
+    "mean_delta_e76_gain": -0.40600422975595585,
+    "chart_rgb_rmse_gain": -0.008418216053795557,
+    "palette_rgb_rmse_gain": 0.06901618094349293,
+    "chart_to_palette_rgb_rmse_gain": 0.25008147562375815,
+    "palette_to_chart_rgb_rmse_gain": 0.09400789079061234
+  },
+  "structural_evidence": {
+    "maximum_fold_raw_out_of_cube_fraction": 0.0,
+    "minimum_cube_jacobian_determinant": 0.019715682820921385,
+    "maximum_endpoint_error": 2.220446049250313e-16,
+    "maximum_inverse_roundtrip_error": 3.608224830031759e-16,
+    "mean_train_test_rgb_rmse_gap": 0.00402247603397058,
+    "all_structure_and_replay_gates_passed": true
+  },
+  "failed_gates": [
+    "candidate_rgb_rmse_gain",
+    "candidate_mean_delta_e76_gain",
+    "candidate_rgb_rmse_gain_each_domain"
+  ],
+  "interpretation": "the curve-then-matrix order transfers between the two proxy domains better than the bounded one-matrix control, but does not supply the required held-row RGB gain and substantially worsens perceptual Delta E; the failure is representation/objective mismatch rather than gamut, folding or numerical instability",
+  "decision": {
+    "code": "retain_bounded_one_matrix_global_proxy_operator_and_close_curve_then_matrix_family_on_this_pool",
+    "photo_frontier_allowed": false,
+    "parameter_or_metric_retuning_allowed": false,
+    "training_allowed": false,
+    "production_integration_allowed": false,
+    "stock_response_claim_allowed": false,
+    "calibrated_reference_claim_allowed": false
+  },
+  "next_leaf": "U5.R2AN2 separately frozen two-stage sparse-outlier rejection challenger on the existing synthetic paired-recovery witnesses before any proxy or photographic use",
+  "claim_ceiling": "negative equal-parameter clean-room capacity evidence on 71 author-rendered Velvia display-proxy pairs; not FILM2PAINT reproduction, digital-film pairs, stock response, calibration, preference or product promotion"
+}

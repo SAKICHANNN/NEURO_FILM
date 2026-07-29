@@ -318,6 +318,9 @@ exceed the frozen 10% near-black gate at 11.76%/11.60%. Visual rescue,
 endpoint shrinkage and toe retuning are forbidden. AO4S1 then finds a strong
 independent FILM2PAINT controlled-target design, but no public patch table,
 raw scan, manifest or reusable data licence; figure extraction and fitting are
-closed. U5.R2AO4M is the next ready algorithm leaf: clean-room the paper's
-simple monotone-channel-curves plus bounded positive-matrix baseline against
-the frozen 71-pair proxy and existing cross-domain controls.
+closed. U5.R2AO4M then passes all structure gates and transfers between whole
+proxy domains, but misses the frozen held-row RGB gain, regresses the chart
+domain and worsens mean Delta E76 by 40.60%; it closes without photo or metric
+rescue. U5.R2AN2 is the next ready algorithm leaf: freeze a deterministic
+two-stage sparse-outlier rejection challenger on the existing synthetic paired
+recovery witnesses before any proxy or photographic use.

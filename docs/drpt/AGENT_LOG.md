@@ -6903,3 +6903,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   (monotone per-channel curves plus bounded positive matrix) against the
   frozen 71-pair proxy and existing cross-domain controls. This is a
   display-proxy capacity test, not recovery of the unavailable dataset.
+
+## 2026-07-29 - U5.R2AO4M safe curve/matrix family closes on accuracy
+
+- Added a clean-room 12-parameter endpoint-fixed monotone-curve plus bounded
+  positive-matrix operator with exact serialization, analytic inverse,
+  positive Jacobian and cube-preserving execution. The retained one-matrix
+  control also has 12 parameters.
+- Two 63,979-byte five-fold plus leave-domain-out reports are byte-identical at
+  `62e24b6...8bc3b`. Cross-domain gains are 25.01% and 9.40%, but combined RGB
+  gain is only 1.15% versus the frozen 5% gate; chart RGB regresses .84% and
+  mean Delta E76 worsens from 6.60 to 9.28.
+- Zero gamut escape, minimum Jacobian `.01972`, endpoint error `2.22e-16`,
+  inverse error `3.61e-16`, train/test gap and replay all pass. Close as
+  representation/objective mismatch, not an artifact or optimizer failure.
+  No photo rendering, gate/metric/knob rescue or FILM2PAINT/stock claim.
+- AN2 is ready to challenge AN1's fixed soft-L1 with a separately frozen
+  two-stage sparse-outlier rejection method on synthetic witnesses only.

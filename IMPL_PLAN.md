@@ -62,9 +62,12 @@ near-black fraction. Do not retune endpoints or add a learned toe on this
 population. AO4S1 confirms that FILM2PAINT has a valuable independent
 Digital-SG/IT8/hyperspectral design, but its official surfaces expose no
 measurement files or reusable data rights. Do not extract figures. AO4M is
-the next ready leaf: preregister and clean-room only the paper's simple
-monotone per-channel curve plus bounded positive-matrix baseline on the frozen
-71-pair proxy, with held-row and leave-domain-out controls before photographs.
+now closed: the equal-parameter curve/matrix family is bounded, invertible and
+cross-domain positive, but its combined RGB gain is only 1.15%, the chart
+domain regresses and mean Delta E76 worsens 40.60%. No photo or metric rescue.
+AN2 is next: freeze a deterministic two-stage sparse-outlier rejection
+challenger on AN1's synthetic paired-recovery witnesses, and require a pass
+before any proxy or photograph.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2
