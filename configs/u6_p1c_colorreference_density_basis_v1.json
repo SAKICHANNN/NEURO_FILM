@@ -5,6 +5,8 @@
   "node": "U6.P1C",
   "question": "Does a hard-routed bank of two rank-3 nonnegative optical-density spectral bases provide held-charge reconstruction value beyond one shared rank-3 basis and an equal-total-capacity shared rank-6 basis?",
   "parent_decision": "configs/sf2_9b_colorreference_batch_family_decision_v1.json",
+  "parent_decision_sha256": "8b50848d4b3f20c3cfc144ca09548cbeec91e155f596247eb878410f347bbc49",
+  "source_config_sha256": "3a63460865686eb1de01b99b20aaa0681b148ddf1fd0e9be3f71edfb202c2c15",
   "parent_pilot_report": "outputs/sf2_9b_colorreference_batch_family_v1/pilot_a.json",
   "parent_pilot_report_sha256": "97110652327253421d2468586f5828281c6d322ee31727eaecb9750d77050caa",
   "parent_pilot_stable_evidence_id": "b845b3ad2a4a0a720f59862ffdbea48df107bbf22302fb67fead627824c52b72",
