@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p4k_exact_area_streaming_decision.v1",
+  "node": "U6.P4K",
+  "decision": "retain_exact_area_row_streaming_open_live_performance_audit",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4k_exact_area_streaming_v1.json",
+      "sha256": "8498358206a37a32aebb1df5c877fd25d894063c9c7fe05fd1674fdc745bc8c3"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4k_exact_area_streaming_v1/report_a.json",
+      "sha256": "7625d763ce877f97154e04baf648b437815ff5c1b5ecf27ed807c46975e63727",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "64b28c2f73e2cc5742960d39aa60c96ada4ac2c532a2981fe59b46144e25d95a"
+    },
+    "software_commit": "62bc8d0"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "parity_factors": [
+      2,
+      4
+    ],
+    "partition_heights_byte_exact": [
+      17,
+      31,
+      64
+    ],
+    "stream_output_shape": [
+      1536,
+      2048
+    ],
+    "stream_seed_offsets": [
+      0,
+      4000
+    ],
+    "factor_2_maximum_virtual_target_rows": 134,
+    "factor_4_maximum_virtual_target_rows": 262,
+    "factor_2_modeled_live_workspace_bytes": 105381888,
+    "factor_4_modeled_live_workspace_bytes": 412090368,
+    "full_expanded_target_allocation_count": 0,
+    "repeat_stream_hash_exact": true,
+    "zero_density_exact_clear_base": true,
+    "physical_domains_valid": true
+  },
+  "interpretation": [
+    "Exact base-pitch area simulation now maps virtual high-resolution coordinates to the coarse developed-density field on demand rather than allocating the full factor-squared target.",
+    "Full-region and 17/31/64-row execution are byte-exact at both factors and both independent seed offsets; large-scale streamed hashes repeat exactly without assembling the output.",
+    "This retains a scalable high-fidelity synthetic reference simulator. The workspace figure is an explicit-array model, not a live RSS result, and no product or photographic claim opens.",
+    "A separately frozen subprocess audit must measure wall time and process-tree RSS before larger reference jobs or any GCP scale-up."
+  ],
+  "next_leaf": "U6.P4L freeze fresh-process wall-time, process-tree RSS, liveness and cleanup gates for the exact-area stream",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic exact-area reference-simulator streaming evidence; not a product renderer, measured film NPS, stock response or photographic result"
+}
