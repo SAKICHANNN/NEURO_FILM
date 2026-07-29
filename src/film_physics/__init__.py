@@ -178,6 +178,14 @@ from .scan_normalization import (
     derive_scan_signal_normalization,
     scan_signal_normalization_identity,
 )
+from .scanner_characterization import (
+    MEASURED_SCANNER_CHARACTERIZATION_SCHEMA,
+    MeasuredScannerCharacterization,
+    MeasuredScannerCharacterizationBundle,
+    apply_measured_scanner_characterization,
+    measured_scanner_bundle_from_payload,
+    select_measured_scanner_characterization,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -232,6 +240,9 @@ __all__ = [
     "ScannerContext",
     "ScannerProfile",
     "ScannerStandardContext",
+    "MEASURED_SCANNER_CHARACTERIZATION_SCHEMA",
+    "MeasuredScannerCharacterization",
+    "MeasuredScannerCharacterizationBundle",
     "ScannedInterpretation",
     "ScanSignalNormalization",
     "SpatialResponseProfile",
@@ -258,6 +269,7 @@ __all__ = [
     "apply_scanner_profile",
     "apply_scanner_profile_row_tiled",
     "apply_scanner_profile_standard_row_tiled",
+    "apply_measured_scanner_characterization",
     "apply_spatial_response_pipeline",
     "apply_spatial_response_pipeline_row_tiled",
     "coordinate_counter_u64",
@@ -273,6 +285,7 @@ __all__ = [
     "compile_pyramid_scatter_profile",
     "compile_scanner_context",
     "compile_scanner_standard_context",
+    "measured_scanner_bundle_from_payload",
     "compile_density_conditioned_profiles",
     "compile_effective_mark_loss_profiles",
     "compile_two_cumulant_profiles",
@@ -313,6 +326,7 @@ __all__ = [
     "scene_exposure_from_working_image",
     "scan_interpretation_medium",
     "scan_signal_normalization_identity",
+    "select_measured_scanner_characterization",
     "scanner_profile_identity",
     "SpectralScannerProfile",
     "construct_primary_metamer_pair",
