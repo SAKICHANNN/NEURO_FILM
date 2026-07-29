@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an3-redescending-cauchy-paired-recovery-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AN3",
+  "question": "Can one fixed redescending Cauchy influence function close AN1's sparse-correspondence failure without hard deletion, a loss sweep, or clean-noise regression?",
+  "parents": {
+    "an1": {
+      "config_path": "configs/u5_r2an1_robust_paired_positive_film_recovery_v1.json",
+      "config_sha256": "d5b5658586661351d7ca8c803858a667446dcb03f7a9541c785cea1211873975",
+      "report_sha256": "ec5309e8f61388d8dc04b04162f865d404c6675d575252668423e8d40185bb08",
+      "decision": "fixed_soft_l1_closed_on_one_relative_gate"
+    },
+    "an2": {
+      "config_path": "configs/u5_r2an2_two_stage_sparse_outlier_rejection_v1.json",
+      "config_sha256": "a19a16f2d91bf8c85bd84889cd75fc4459884dfd6b9400a24460c95f8f995abf",
+      "report_sha256": "d5490ff406b7c26c0dcf56ab5957e4093b6e95cfb0892a6e62d880399ae0bcdb",
+      "decision": "hard_delete_linear_refit_closed"
+    }
+  },
+  "truth_witnesses": [
+    "warm_highlight_like",
+    "cyan_shadow_warm_highlight_like",
+    "cross_bias_like"
+  ],
+  "perturbation_seed": 20250901,
+  "scenarios": {
+    "dual_patch_mean_noise": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.0,
+      "target_outlier_uniform_magnitude": 0.0
+    },
+    "sparse_correspondence_outliers": {
+      "source_noise_standard_deviation": 0.001,
+      "target_noise_standard_deviation": 0.003,
+      "target_outlier_row_fraction": 0.03,
+      "target_outlier_uniform_magnitude": 0.2
+    }
+  },
+  "fit": {
+    "candidate_model": "two_matrix",
+    "candidate_loss": "cauchy",
+    "candidate_loss_scale": 0.005,
+    "soft_l1_control_loss": "soft_l1",
+    "linear_control_loss": "linear",
+    "robust_one_matrix_control_loss": "soft_l1",
+    "loss_or_scale_sweep_allowed": false,
+    "restart_count": 3,
+    "maximum_function_evaluations": 2500,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11
+  },
+  "gates": {
+    "candidate_confirmation_rgb_rmse_maximum": 0.001,
+    "candidate_confirmation_maximum_absolute_error": 0.006,
+    "minimum_gain_over_robust_one_matrix": 0.9,
+    "minimum_outlier_gain_over_linear_two_matrix": 0.65,
+    "minimum_outlier_gain_over_soft_l1_two_matrix": 0.05,
+    "maximum_noise_only_relative_loss_to_soft_l1": 0.2,
+    "minimum_finite_difference_jacobian_determinant": 0.0,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "image_download_allowed": false,
+  "real_film_pixel_allowed": false,
+  "proxy_pair_allowed": false,
+  "photographic_render_allowed": false,
+  "external_profile_parameter_or_code_copy_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "clean-room synthetic evidence for one fixed redescending robust loss in paired fitting of an explicit positive-film Look Approximation operator; not real-film fitting, not unpaired identification, not stock response, not calibrated and not product promotion"
+}
