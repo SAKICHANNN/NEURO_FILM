@@ -23,6 +23,11 @@ from src.film_physics.structure_compiler import counter_normal_region
 SCHEMA = "neuro_film.u6_p4e_density_conditioned_lod_audit_contract.v1"
 REPORT_SCHEMA = "neuro_film.u6_p4e_density_conditioned_lod_audit_report.v1"
 ProfileCompiler = Callable[..., tuple[Any, ...]]
+ProfileTransform = Callable[[tuple[Any, ...]], tuple[Any, ...]]
+
+
+def _identity_profiles(profiles: tuple[Any, ...]) -> tuple[Any, ...]:
+    return profiles
 
 
 def _sha256(path: Path) -> str:
@@ -192,9 +197,12 @@ def _evaluate_split(
     *,
     seed_offset: int,
     profile_compiler: ProfileCompiler,
+    base_profile_transform: ProfileTransform,
 ) -> dict[str, Any]:
     target_base = _scene(contract)
-    base_profiles = profiles_from_contract(parent, seed_offset=seed_offset)
+    base_profiles = base_profile_transform(
+        profiles_from_contract(parent, seed_offset=seed_offset)
+    )
     factors: list[dict[str, Any]] = []
     for factor in (int(value) for value in contract["lod_factors"]):
         target = _area_mean(target_base, factor)
@@ -291,6 +299,7 @@ def evaluate_density_conditioned_lod(
         parent,
         profile_compiler=compile_density_conditioned_profiles,
         report_schema=REPORT_SCHEMA,
+        base_profile_transform=_identity_profiles,
     )
 
 
@@ -300,6 +309,7 @@ def evaluate_density_conditioned_lod_with_compiler(
     *,
     profile_compiler: ProfileCompiler,
     report_schema: str,
+    base_profile_transform: ProfileTransform = _identity_profiles,
 ) -> dict[str, Any]:
     scene = contract["synthetic_scene"]
     development = _evaluate_split(
@@ -307,12 +317,14 @@ def evaluate_density_conditioned_lod_with_compiler(
         parent,
         seed_offset=int(scene["development_seed_offset"]),
         profile_compiler=profile_compiler,
+        base_profile_transform=base_profile_transform,
     )
     confirmation = _evaluate_split(
         contract,
         parent,
         seed_offset=int(scene["confirmation_seed_offset"]),
         profile_compiler=profile_compiler,
+        base_profile_transform=base_profile_transform,
     )
     rows = development["factors"] + confirmation["factors"]
     gates = contract["automatic_gates"]

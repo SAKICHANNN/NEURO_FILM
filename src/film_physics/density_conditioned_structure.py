@@ -23,6 +23,7 @@ class DensityConditionedLayerProfile:
     correlation_sigma_pixels: float
     seed: int
     count_rate_density: float | None = None
+    boundary_mode: str = "zero-fill-v1"
     maximum_target_density: float = 2.0
     truncate: float = 4.0
 
@@ -47,6 +48,8 @@ class DensityConditionedLayerProfile:
             or self.correlation_sigma_pixels < 0.0
             or self.maximum_target_density <= 0.0
             or self.truncate <= 0.0
+            or self.boundary_mode
+            not in {"zero-fill-v1", "normalized-support-v1"}
             or self.maximum_target_density / rate_density > 1024.0
             or not isinstance(self.seed, int)
             or self.seed < 0
@@ -180,6 +183,7 @@ def compile_density_conditioned_profiles(
             ),
             seed=(profile.seed + seed_offset) % (2**64),
             count_rate_density=None,
+            boundary_mode=profile.boundary_mode,
             maximum_target_density=profile.maximum_target_density,
             truncate=profile.truncate,
         )
@@ -264,6 +268,7 @@ def compile_effective_mark_loss_profiles(
                     * compiled_loss
                     / base_loss
                 ),
+                boundary_mode=candidate.boundary_mode,
                 maximum_target_density=candidate.maximum_target_density,
                 truncate=candidate.truncate,
             )
@@ -313,6 +318,18 @@ def _render_layer_region(
             cval=0.0,
             truncate=profile.truncate,
         )
+        if profile.boundary_mode == "normalized-support-v1":
+            support = gaussian_filter(
+                np.ones(counts.shape, dtype=np.float64),
+                sigma=sigma,
+                order=0,
+                mode="constant",
+                cval=0.0,
+                truncate=profile.truncate,
+            )
+            if np.any(support <= 0.0):
+                raise RuntimeError("normalized Gaussian support is not positive")
+            counts /= support
     crop_y = origin_y - y0
     crop_x = origin_x - x0
     return (
