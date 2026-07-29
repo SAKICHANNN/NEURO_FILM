@@ -50,6 +50,15 @@ def main() -> None:
         "P1 contract",
     )
     p3d = json.loads((ROOT / parents["p3d_contract_path"]).read_text("utf-8"))
+    p3f_decision = json.loads(
+        (ROOT / parents["p3f_decision_path"]).read_text("utf-8")
+    )
+    if (
+        not p3f_decision.get("automatic_pass")
+        or p3f_decision.get("formal_runs", {}).get("report_sha256")
+        != parents["p3f_report_sha256"]
+    ):
+        raise ValueError("P3F predecessor decision is not the frozen pass")
     sensitometry = _exact_json(
         ROOT / parents["sensitometry_path"],
         parents["sensitometry_file_sha256"],

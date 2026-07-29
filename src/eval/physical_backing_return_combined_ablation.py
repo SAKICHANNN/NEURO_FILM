@@ -190,6 +190,11 @@ def evaluate_combined_ablation(
             raise ValueError("photographic color-state drift")
 
     legacy, forward, backing = _compile_profiles(p1_contract, p3d_contract)
+    parents = contract["parents"]
+    if legacy.parent_profile_sha256 != parents["p1_profile_sha256"]:
+        raise ValueError("P1 profile identity drift")
+    if backing.parent_profile_sha256 != parents["p3d_profile_sha256"]:
+        raise ValueError("P3D profile identity drift")
     operator = build_operator(sensitometry)
     gates = contract["automatic_gates"]
     rows: list[dict[str, Any]] = []
