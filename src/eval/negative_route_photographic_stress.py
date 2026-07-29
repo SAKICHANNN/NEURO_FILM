@@ -104,13 +104,7 @@ def _contact_sheet(
         row = by_id[sample_id]
         y = index * (tile_height + header)
         draw.text((4, y + 4), sample_id, fill=(235, 235, 235))
-        outputs = (
-            row["source_encoded"],
-            linear_srgb_to_encoded(row["negative"]),
-            linear_srgb_to_encoded(row["print"]),
-        )
-        for column, values in enumerate(outputs):
-            image = _preview(values, (tile_width, tile_height))
+        for column, image in enumerate(row["previews"]):
             x = column * tile_width + (tile_width - image.width) // 2
             canvas.paste(image, (x, y + header))
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -236,12 +230,23 @@ def evaluate(
                 pixel_pitch_um=pitch,
                 stages=stages,
             ).scan_linear.values
+            repeat_exact = first.tobytes() == second.tobytes()
+            del second
             no_noise = scan_interpretation_medium(
                 medium,
                 scanner,
                 pixel_pitch_um=pitch,
                 stages=no_noise_stages,
             ).scan_linear.values
+            isolated_noise_count = _isolated_noise(
+                first - no_noise,
+                threshold=float(gates["isolated_noise_threshold"]),
+                radius=int(gates["isolated_noise_radius_pixels"]),
+                minimum_support=int(
+                    gates["isolated_noise_minimum_support"]
+                ),
+            )
+            del no_noise
             boundary = (
                 ((first <= 0.0) | (first >= 1.0))
                 & ~((linear <= 0.0) | (linear >= 1.0))
@@ -249,7 +254,7 @@ def evaluate(
             route_outputs[name] = first
             route_rows[name] = {
                 "output_sha256": _array_sha256(first),
-                "repeat_exact": first.tobytes() == second.tobytes(),
+                "repeat_exact": repeat_exact,
                 "finite_bounded": bool(
                     np.all(np.isfinite(first))
                     and np.all(first >= 0.0)
@@ -257,14 +262,7 @@ def evaluate(
                 ),
                 "mean_abs_change": float(np.mean(np.abs(first - linear))),
                 "new_boundary_fraction": float(np.mean(boundary)),
-                "isolated_noise_count": _isolated_noise(
-                    first - no_noise,
-                    threshold=float(gates["isolated_noise_threshold"]),
-                    radius=int(gates["isolated_noise_radius_pixels"]),
-                    minimum_support=int(
-                        gates["isolated_noise_minimum_support"]
-                    ),
-                ),
+                "isolated_noise_count": isolated_noise_count,
             }
         rows.append(
             {
@@ -279,8 +277,19 @@ def evaluate(
             visuals.append(
                 {
                     "id": source_row["id"],
-                    "source_encoded": encoded,
-                    **route_outputs,
+                    "previews": (
+                        _preview(encoded, (320, 210)),
+                        _preview(
+                            linear_srgb_to_encoded(
+                                route_outputs["negative"]
+                            ),
+                            (320, 210),
+                        ),
+                        _preview(
+                            linear_srgb_to_encoded(route_outputs["print"]),
+                            (320, 210),
+                        ),
+                    ),
                 }
             )
     fixed_ids = contract["visual_protocol"]["fixed_ids"]

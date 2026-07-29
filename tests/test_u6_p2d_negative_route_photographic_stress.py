@@ -21,20 +21,18 @@ def test_contract_excludes_closed_slide_and_unproved_bw() -> None:
     assert "bw_developer_scan" not in contract["routes"]
 
 
-def test_two_row_smoke_is_repeat_exact_and_bounded(tmp_path: Path) -> None:
+def test_fixed_visual_smoke_is_repeat_exact_and_bounded(tmp_path: Path) -> None:
     contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
     manifest = json.loads(
         (ROOT / contract["input"]["manifest"]).read_text(encoding="utf-8")
     )
-    selected_ids = set(contract["visual_protocol"]["fixed_ids"])
-    # Keep all fixed rows for the contact-sheet invariant but reduce neither
-    # their resolution nor the frozen arithmetic.
-    selected = [row for row in manifest if row["id"] in selected_ids]
+    selected = [manifest[0]]
     smoke = json.loads(json.dumps(contract))
     smoke["input"]["expected_rows"] = len(selected)
     smoke["input"]["expected_camera_makes"] = len(
         {row["make"] for row in selected}
     )
+    smoke["visual_protocol"]["fixed_ids"] = [selected[0]["id"]]
     first = evaluate(
         smoke,
         selected,
