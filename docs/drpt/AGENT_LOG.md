@@ -7082,3 +7082,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close RGB scanner mapping on measured spectra without LUT/neural/per-image
   rescue. P6G may audit already acquired same-target multi-scanner evidence;
   real scanner fitting, calibration, stock and product claims remain closed.
+
+## 2026-07-29 - U6.P6G closes safe real-scanner RGB canonicalization
+
+- Reused the exact SF2.7R/A four-pipeline, five-slide patch bank and reproduced
+  the frozen identity and clipped-affine aggregates. Two P6G reports are
+  byte-exact at `104105f4...90c60`.
+- A no-bias, nonnegative row-sum-bounded 3x3 remains in `[0,1]` and improves
+  median L2 by 44.71% to `.03348`; however p90 `.12523` fails the frozen `.12`
+  tail gate.
+- The historical affine contains 192 negative coefficients and produces 119
+  out-of-range patches before clipping, with maximum excursion `.16100`.
+  Retain it only as scanner-nuisance magnitude evidence.
+- Close threshold relaxation and RGB/LUT/neural capacity rescue on this
+  one-target pool. P6H next audits independent-target/repeat-scan data
+  feasibility; stock, calibration, training and product claims remain closed.

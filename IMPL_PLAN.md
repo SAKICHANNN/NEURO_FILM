@@ -69,9 +69,16 @@ P6F applies those frozen scanner identities to 8,640 exact measured Velvia
 100F IT8 transmittance rows. A development-only bounded 3x3 improves
 joint-held mean L2 by 9.86%, but joint-held mean/p95 remain `.07098/.20960`;
 held-set and held-slide p95 remain `.17738/.20979`. Close RGB scanner mapping
-on measured spectra. P6G next audits the already acquired same-target
-multi-scanner evidence for alignment, rights and nuisance connectivity before
-any measured scanner fit.
+on measured spectra.
+
+P6G reuses the exact aligned same-slide ColorReference pool and removes the
+historical hard-clipping assumption. Its nonnegative row-sum-bounded 3x3 is
+44.71% better than identity at the aggregate median and remains in gamut, but
+its p90 `.12523` misses the frozen `.12` gate. The older affine's clipped
+headline hides 192 negative coefficients and 119 out-of-range patch
+predictions before clipping. Close RGB capacity rescue on this one-target
+pool. P6H audits independent-target and repeat-scan connectivity before any
+further measured scanner operator fit.
 
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
