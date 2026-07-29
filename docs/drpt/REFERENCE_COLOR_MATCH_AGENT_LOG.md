@@ -4475,3 +4475,23 @@
   capability, quality/product admission or consumer mapping. R0EK virtual
   Android tiled runtime is a separate producer gate; P172, P45/P44 and v42
   remain unchanged.
+
+## 2026-07-29 - Register R0EK Android virtual tiled arithmetic
+
+- Producer `4b3e857` freezes a 71x97 RGGB, core-64/halo-12, two-stripe
+  non-identity probe after exact MSVC/LLVM agreement. Full/tiled output,
+  replay, measured sensels, nonfinite rejection and insufficient-workspace
+  failure atomicity are exact; output FNV-1a64 is
+  `309feca02a1a2806`.
+- Two independent runners each perform two Android 14 x86_64 cold/wiped
+  virtual-device boots and two probe processes per boot. All eight executions
+  exactly match the Windows oracle; stable identity is
+  `21a5ecc4...29f6c`, and the tracked report is
+  `7f92851e...dddc8`. The initial Unicode SDK-path failure ran no probe;
+  the temporary ASCII mapping was removed and owned emulator/QEMU process
+  count returned to zero.
+- The ceiling is private Android 14 x86_64 virtual tiled arithmetic. Android
+  arm64 remains link-only, and there is no JNI/app/media, native-RAW quality,
+  public package, schema, receipt, capability, product admission or consumer
+  mapping. R0EL process-memory measurement is separate; P172, P45/P44 and v42
+  remain unchanged.
