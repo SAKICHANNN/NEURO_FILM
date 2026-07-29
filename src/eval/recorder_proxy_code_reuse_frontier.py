@@ -192,8 +192,10 @@ def render_bank(
                     ),
                 )
                 output_uint8[start:stop] = np.rint(
-                    linear_srgb_to_encoded(guarded.output).reshape(
-                        stop - start, source_uint8.shape[1], 3
+                    linear_srgb_to_encoded(
+                        guarded.output.reshape(
+                            stop - start, source_uint8.shape[1], 3
+                        )
                     )
                     * 255.0
                 ).astype(np.uint8)
