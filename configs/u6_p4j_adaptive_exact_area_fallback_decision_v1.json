@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p4j_adaptive_exact_area_fallback_decision.v1",
+  "node": "U6.P4J",
+  "decision": "close_adaptive_lod_retain_p4h_stationary_only",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4j_adaptive_exact_area_fallback_v1.json",
+      "sha256": "fe49b43076caf17fb7cb6d01d4cc5d0d708122c886aa384609eb017ad711f140"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4j_adaptive_exact_area_fallback_v1/report_a.json",
+      "sha256": "08521ab3df84795a3701634d694deeb92b391e85b0c37bc08976b84169d8fa72",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "abff0f663ae0fdb802433502befed246c82b14d52d8139b768bbe3ca80d120ab"
+    },
+    "software_commit": "a38eca0"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "density_map_correlation",
+      "display_noise_negative"
+    ],
+    "minimum_density_map_correlation": 0.49446646307513514,
+    "minimum_display_noise_out_of_domain_fraction": 0.0005859375,
+    "maximum_region_mean_absolute_difference": 0.007983982524345068,
+    "region_variance_ratio_range": [
+      0.906392964790953,
+      1.3462128573924552
+    ],
+    "checkerboard_contrast_ratio_range": [
+      0.9998202100434848,
+      1.0005294933492512
+    ],
+    "island_excess_ratio_range": [
+      0.9862782871290514,
+      1.0083057823007988
+    ],
+    "maximum_island_centroid_shift_pixels": 0.20644456652921073,
+    "mean_exact_fallback_fraction": 0.4487701416015625,
+    "maximum_step_exact_fallback_fraction": 0.0375,
+    "maximum_executor_boundary_mean_absolute_error": 0.03558916269702044,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": [
+    "The heterogeneity gate repairs P4I's nonstationary mean, variance, checkerboard contrast and island mass/centroid failures while keeping mean exact fallback below 45% and step fallback below 4%.",
+    "It nevertheless fails the frozen all-scene pixel correlation and display-noise negative-control gates on sparse island scenes. The failed result cannot open sparse execution or photographic rendering.",
+    "The exact area branch remains useful as high-fidelity synthetic reference truth. P4H remains limited to locally stationary fields; P4J is not a promoted hybrid.",
+    "The next legal work is to make the exact area reference simulator tile/stream correctly and measure its cost, not to retune P4J or relax its gates."
+  ],
+  "next_leaf": "U6.P4K freeze exact base-pitch area-reference tile/stream parity and bounded-memory performance audit",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "negative synthetic adaptive-execution evidence; exact area remains reference-simulator-only and no sparse product, film NPS, stock response or photographic claim opens"
+}
