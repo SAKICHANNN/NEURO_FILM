@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4l_exact_area_live_performance_contract.v1",
+  "node": "U6.P4L",
+  "parents": {
+    "p4k_contract": "configs/u6_p4k_exact_area_streaming_v1.json",
+    "p4k_contract_sha256": "8498358206a37a32aebb1df5c877fd25d894063c9c7fe05fd1674fdc745bc8c3",
+    "p4k_decision": "configs/u6_p4k_exact_area_streaming_decision_v1.json",
+    "p4k_decision_sha256": "cefeafe3aedbdf23a248b71096a37d8bca57b7637a5146b6c4a69f61b9b93f9c"
+  },
+  "question": "Does the exact-area reference stream complete repeatably in fresh local processes within explicit wall-time, process-tree RSS, liveness and cleanup bounds?",
+  "worker": {
+    "output_shape": [1536, 2048],
+    "pixel_size_factor": 4,
+    "seed_offset": 0,
+    "row_tile_height": 64,
+    "expected_stream_sha256": "acf34828c8abf635d211697bba43d774b80c043d9693d191bc1c638871951457",
+    "fresh_process_runs": 2,
+    "sample_interval_seconds": 0.02,
+    "maximum_runtime_seconds": 180,
+    "network_allowed": false,
+    "gpu_allowed": false
+  },
+  "automatic_gates": {
+    "stream_hash_exact": true,
+    "repeat_hash_exact": true,
+    "maximum_process_tree_peak_rss_bytes": 805306368,
+    "maximum_worker_wall_seconds": 120,
+    "minimum_liveness_samples": 100,
+    "exit_code": 0,
+    "stderr_empty": true,
+    "owned_temp_residue_count": 0
+  },
+  "branch_rule": {
+    "pass": "retain local exact-area reference performance and open a separately frozen reference-profile compilation/data-generation leaf",
+    "fail": "retain P4K semantic streaming only and require executor optimization before scale-up"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python exact-area reference-simulator performance; not product, mobile, measured film NPS, stock response or photographic evidence"
+}
