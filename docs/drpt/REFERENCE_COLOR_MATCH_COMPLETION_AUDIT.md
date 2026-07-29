@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `71d5fad`; R0EE independently
+- D-PCT latest stable communicated snapshot is `e308ec0`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -114,6 +114,14 @@ wire contract and not an algorithm promotion.
   artifact. Remote artifacts, owned processes, mappings and the owned AVD
   return to zero. This remains virtual native-executable evidence, not
   app/JNI, Android decoding, colour-state or physical-device evidence.
+  R0ES combines the unchanged DDFAPD stream and TIFF writer in one Android
+  native executable. Eight synthetic-CFA pipelines perform non-identity
+  demosaic, incremental TIFF publication, host pull and independent decode
+  with exact file/pixel/sensel/diagnostics/strip/tag facts. Two distinct
+  third-stripe failures stop at 64 rows and leave no final/temp artifact;
+  workspace is 51,688 float32 values with no full RGB buffer. This remains a
+  private synthetic virtual-device pipeline, not native-RAW quality, camera
+  colour or a public producer contract.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

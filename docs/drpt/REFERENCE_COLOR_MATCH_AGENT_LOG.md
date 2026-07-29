@@ -4630,3 +4630,25 @@
   arm64, JNI/app, Android decoder, colour space/camera transform, DDFAPD RAW
   quality, Apple runtime, public package/schema/receipt/capability, product
   admission or consumer mapping. P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0ES Android CFA-to-TIFF pipeline
+
+- Producer `e308ec0` combines the unchanged private DDFAPD streaming ABI and
+  unchanged float-TIFF writer inside one Android native executable:
+  synthetic 71x97 RGGB CFA -> core-32 streaming demosaic callback -> row-32
+  TIFF temp/finish/fsync/rename -> host pull -> independent decode.
+- Two independent runners each perform two cold/wiped Android 14 x86_64 boots
+  and two native processes. All eight files have SHA
+  `9cdc20f2...de57b0` and decoded pixel SHA
+  `efe4161c...434456`; measured CFA sensels remain bit-exact, RGB is
+  non-identity, and diagnostics, strips and tags are exact. Third TIFF-sink
+  rejection and third-stripe nonfinite input both stop at exactly 64 rows,
+  two strips and 54,720 bytes with unchanged diagnostics and no final/temp.
+  Stable identity is `9fb9b692...76d3e5`.
+- Workspace is 51,688 float32 values and the probe owns no full RGB buffer.
+  Remote artifacts, processes, mappings and the owned AVD return to zero.
+  The ceiling is a synthetic/private Android 14 x86_64 virtual pipeline:
+  no native-RAW quality, sensor noise/optics, camera colour, physical arm64,
+  JNI/app, Android decoder, ICC, public package/schema/receipt/capability,
+  product admission or consumer mapping. P172, P45/P44 and v42 remain
+  unchanged.
