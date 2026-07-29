@@ -4091,3 +4091,12 @@
   was corrected without relaxing a gate.
 - P165 remains relative SDR host evidence, not absolute HDR/PQ/HLG, arbitrary
   profile conversion, RAW/OCIO/ACES, device or product readiness.
+
+## 2026-07-29 - Freeze advertised output-capability execution
+
+- P166 enumerates every tuple in the public v1 output capability payload:
+  five sRGB8 extensions, three sRGB16 extensions and BT.2020 SDR PNG16.
+- Every tuple must execute twice with exact format/depth/profile,
+  output/recipe/report replay, identity fallback and zero staging residue.
+- The leaf validates an existing advertisement only; it adds no codec, input
+  profile, HDR/RAW/video, platform or product claim.

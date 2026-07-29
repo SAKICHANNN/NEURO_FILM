@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "node": "P166",
+  "candidate_commit": "f2ea6f77841e04a64ba40e973ab03f0542202bb4",
+  "image": {
+    "width": 64,
+    "height": 48,
+    "reference_seed": 16601,
+    "source_seed": 16602
+  },
+  "cases": [
+    {
+      "case_id": "srgb8-jpeg",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 8,
+      "extension": ".jpeg",
+      "expected_format": "JPEG",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb8-jpg",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 8,
+      "extension": ".jpg",
+      "expected_format": "JPEG",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb8-png",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 8,
+      "extension": ".png",
+      "expected_format": "PNG",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb8-tif",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 8,
+      "extension": ".tif",
+      "expected_format": "TIFF",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb8-tiff",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 8,
+      "extension": ".tiff",
+      "expected_format": "TIFF",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb16-png",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 16,
+      "extension": ".png",
+      "expected_format": "PNG",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb16-tif",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 16,
+      "extension": ".tif",
+      "expected_format": "TIFF",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "srgb16-tiff",
+      "working_space": "linear_srgb",
+      "output_bit_depth": 16,
+      "extension": ".tiff",
+      "expected_format": "TIFF",
+      "expected_profile_kind": "icc"
+    },
+    {
+      "case_id": "rec2020-16-png",
+      "working_space": "linear_rec2020",
+      "output_bit_depth": 16,
+      "extension": ".png",
+      "expected_format": "PNG",
+      "expected_profile_kind": "cicp"
+    }
+  ],
+  "repeat_count_per_case": 2,
+  "gates": {
+    "require_exact_public_capability_inventory": true,
+    "require_each_public_tuple_executes": true,
+    "require_output_format_depth_profile_exact": true,
+    "require_output_recipe_normalized_report_exact_replay": true,
+    "require_identity_fallback": true,
+    "require_zero_stage_backup_or_temporary_artifacts": true
+  },
+  "claim_ceiling": "local-windows-python-executable-conformance-for-reference-file-output-capabilities-v1-only-not-arbitrary-input-profile-codec-platform-or-product-readiness"
+}
