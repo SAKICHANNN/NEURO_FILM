@@ -4141,5 +4141,8 @@
   and orientation are not copied into product PNG/JPEG/TIFF outputs.
 - Verification: 1001 non-manifest color-match/reference-match tests pass with
   five environment/data skips; focused Ruff, compileall and diff checks pass.
+- A two-repeat 24 MP PNG16 transaction on exact P168 code preserves exact
+  output/recipe/report and peaks at 1.875 GB process-tree RSS (ratio 1.00044);
+  report SHA-256 `47a3eb06...2278da`.
 - Producer algorithms, RAW/HDR/video rails, FilmFX and main-project AO6 files
   are unchanged.

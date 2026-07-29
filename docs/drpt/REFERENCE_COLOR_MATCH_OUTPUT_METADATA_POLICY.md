@@ -24,6 +24,12 @@ orientation and prove PNG/JPEG/TIFF outputs contain none of that source
 metadata. Injected metadata regressions leave no output, recipe or staging
 residue.
 
+The final streaming implementation was also rerun twice through the frozen
+6000x4000 PNG16 product transaction. Output, recipe and normalized report are
+exact; peak process-tree RSS is 1,874,522,112 / 1,875,349,504 bytes (ratio
+1.00044), with 31.85 / 32.07 second worker time. The local report SHA-256 is
+`47a3eb066c82225baaa374aa8e58da0e414943008dc1ec94b8366ee4812278da`.
+
 Claim ceiling: this proves the current Neuro-Film reference-match encoders and
 transaction boundary do not copy source metadata. It is not a sanitizer for
 arbitrary third-party files or future formats.
