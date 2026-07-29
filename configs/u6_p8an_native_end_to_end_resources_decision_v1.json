@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p8an_native_end_to_end_resources_decision.v1",
+  "node": "U6.P8AN",
+  "contract": "configs/u6_p8an_native_end_to_end_resources_v1.json",
+  "contract_sha256": "c2bdcc74ae8956c668293176460aed034a7a139952e86a99a6be14d6988039a7",
+  "formal_report": "outputs/u6_p8an_native_end_to_end_resources_v1/report.json",
+  "formal_report_sha256": "b416bf0a2d2a7c12e0013ae7ded59c034dc4750e44ed7d1670908d551ba7422b",
+  "stable_evidence_id": "d8e07e5599fc25131189c13fac27ac8ba035fc4c14efe583be5a010ae0a4d57d",
+  "result": {
+    "status": "fail-latency",
+    "all_runs_successful": true,
+    "output_repeat_exact": true,
+    "peak_process_tree_rss_bytes": [
+      166596608,
+      166850560
+    ],
+    "median_peak_process_tree_rss_bytes": 166723584,
+    "memory_gate_bytes": 402653184,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      32.633723199978704,
+      32.87287069999729
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": false,
+    "overall_pass": false
+  },
+  "decision": "retain the row-streamed memory architecture and exact output identity, but reject the current Standard end-to-end runtime against the frozen 15 second CPU target. Do not relax the gate; attribute phase cost and optimize the dominant native stage without changing domain order or output semantics",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP analytic-row and hash-sink native Standard physical plus AO6 display resource evidence only",
+  "next_leaf": "U6.P8AO measure deterministic phase attribution for context reduction, physical chain, gauge and AO6 display; optimize only the dominant phase under exact-output gates"
+}
