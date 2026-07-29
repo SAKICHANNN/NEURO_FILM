@@ -4693,3 +4693,31 @@
   truth, demosaic quality, camera colour, physical arm64, JNI/app, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EV-R0EY explicit camera-matrix provenance
+
+- R0EV rejects rgb_xyz-only reconstruction across the frozen camera cohort:
+  10/12 confirmation rows pass, but two DNG rows fail. R0EW also rejects
+  selecting every nonzero `color_matrix`: all three DNG rows pass direct
+  matrix use, while three ORF/PEF rows with nonzero matrices fail. Thresholds
+  remain unchanged; their evidence SHAs are `95531879...f049` and
+  `2216b4b8...64dd`.
+- R0EX passes 13/13 eligible rows only with caller-visible provenance:
+  `dng-final-color-matrix` for three DNGs and
+  `vendor-rgb-xyz-reconstruction` for ten vendor RAWs. Two zero-matrix
+  Samsung rows remain explicitly rejected. This same-cohort LibRaw
+  self-conformance evidence has SHA `29c0f505...0ec1`; it is not independent
+  renderer, unseen-camera or scene-quality evidence.
+- Producer `29b9c39` R0EY implements a private C11 arithmetic ABI that requires
+  explicit `matrix_kind` plus the exact 3x3 payload. Across 13 rows x 257
+  samples, MSVC/LLVM double replays are byte-exact to the Python oracle with
+  max/RMSE zero; six failure/overlap classes preserve outputs. Android
+  arm64/x86_64 links and macOS/iOS arm64 objects are two-build reproducible
+  with exactly two exports and zero unresolved symbols. Runtime stable
+  identity is `5ce6a339...cf4265`, target identity is
+  `4437cb1d...d99b5`, and evidence SHA is `90b534bb...24a6`.
+- The ceiling is private camera-colour arithmetic plus target build only:
+  no RAW parser or provenance authorization, independent renderer, unseen
+  camera/scene truth/quality, target runtime, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.

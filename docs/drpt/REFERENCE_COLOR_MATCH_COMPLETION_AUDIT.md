@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `ad64ddf`; R0EE independently
+- D-PCT latest stable communicated snapshot is `29b9c39`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -142,6 +142,20 @@ wire contract and not an algorithm promotion.
   `e2e11264...e9580`. This adds four-pattern operational coverage only:
   Android still does not decode RAW, and no scene truth, camera colour,
   physical arm64, app/JNI or public producer interface is established.
+  R0EV and R0EW then reject two implicit camera-matrix selectors on the same
+  frozen cohort: rgb_xyz-only reconstruction fails two DNG rows, while
+  selecting every nonzero `color_matrix` fails three ORF/PEF rows. R0EX
+  passes 13/13 eligible rows only after matrix provenance is explicit:
+  three DNGs use the final camera-to-linear-sRGB matrix and ten vendor RAWs
+  use rgb_xyz reconstruction; two zero-matrix Samsung rows remain rejected.
+  R0EY carries this distinction into a private C11 arithmetic ABI whose caller
+  must supply `matrix_kind` and the exact 3x3 payload. MSVC/LLVM match the
+  Python oracle bit-for-bit over 13x257 samples, six failure/overlap classes
+  are atomic, and Android/Apple targets build reproducibly. Runtime identity
+  is `5ce6a339...cf4265`; target identity is
+  `4437cb1d...d99b5`. This is private arithmetic and target-build evidence,
+  not RAW parsing, provenance authorization, independent rendering, unseen
+  camera quality, target runtime or a public producer interface.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
