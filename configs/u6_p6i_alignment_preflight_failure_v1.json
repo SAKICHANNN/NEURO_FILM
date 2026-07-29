@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p6i_alignment_preflight_failure.v1",
+  "node": "U6.P6I",
+  "decision": "preflight_alignment_support_failure_no_colour_evaluation",
+  "contract_path": "configs/u6_p6i_measured_scanner_characterization_v1.json",
+  "contract_sha256": "ae9d527e1008c78969e4f18b0629826e10be0f8e16e8137ffd7282794b1f425d",
+  "software_commit": "5e932a48d19287ed9be115e3c72a0eeb7aeaf480",
+  "completed_cells_before_failure": 12,
+  "failed_cell": {
+    "role": "epson3170_vuescan",
+    "target_set": 1,
+    "slide": 3,
+    "primary_ratio_test": 0.72,
+    "ransac_inliers": 37,
+    "minimum_ransac_inliers": 40,
+    "colour_candidate_evaluation_started": false
+  },
+  "diagnostic": {
+    "increasing_maximum_features_to_4000_6000_10000": "still_37_inliers",
+    "ratio_test_0_75": {
+      "good_matches": 70,
+      "ransac_inliers": 42,
+      "median_inlier_reprojection_error_px": 0.3875683546066284
+    },
+    "interpretation": "descriptor ratio support, not a colour-model or threshold result"
+  },
+  "branch_action": "freeze a separately versioned ratio-0.75 retry used only after the exact primary alignment fails; keep 40-inlier and 1.5px gates unchanged",
+  "claim_ceiling": "alignment preflight failure only; no scanner characterization result"
+}
