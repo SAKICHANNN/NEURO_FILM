@@ -15,6 +15,12 @@
     "direct-separable",
     "fft-2d"
   ],
+  "execution_order_per_shape": [
+    "direct-separable",
+    "fft-2d",
+    "fft-2d",
+    "direct-separable"
+  ],
   "shapes": [
     [
       1024,
