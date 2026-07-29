@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "schema": "neuro_film.u6_p1c_colorreference_density_basis_decision.v1",
+  "node": "U6.P1C",
+  "contract_sha256": "c1f50d2e48063c88a0e9c0531ef5ceb00b7b4a636c58b239a4908ed3141b4510",
+  "software_commit": "054e7384219d7f4e1bd448b992fe24693c3346d0",
+  "report_sha256": "f4fe8b46b28e377d02a12f8c67d3f779ffcc3b54128bd0109b66bd3df5b4c85b",
+  "stable_evidence_id": "f04990a68b8a56aec60cdf09898ff1c385f9cd6579f5837cd8da2bd237a95635",
+  "repeat_report_byte_identical": true,
+  "metrics": {
+    "held_charges": 13,
+    "correct_family_rank3_vs_shared_rank3_wins": 12,
+    "correct_family_rank3_vs_shared_rank3_median_relative_improvement": 0.014477113367366077,
+    "correct_family_rank3_vs_wrong_family_rank3_wins": 13,
+    "correct_family_rank3_vs_wrong_family_rank3_median_relative_improvement": 0.0590438754294004,
+    "correct_family_rank3_vs_shared_rank6_wins": 0,
+    "correct_family_rank3_vs_shared_rank6_median_relative_improvement": -8.155628628099095,
+    "measurement_floor_values": 317,
+    "total_density_values": 1180800
+  },
+  "structural_pass": true,
+  "utility_pass": false,
+  "decision": "retain_family_structure_but_prefer_shared_rank6",
+  "mode_or_family_router_allowed": false,
+  "family_basis_bank_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "next_leaf": "evaluate the single shared rank-6 optical-density basis as a generic reference-simulator primitive with held-charge density, transmittance and colourimetric fidelity controls",
+  "claim_ceiling": "development target-density factorization and held-charge reconstruction evidence only; components are not calibrated dye layers, stock response, scene-to-density mapping, latent modes or product profiles"
+}

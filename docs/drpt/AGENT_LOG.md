@@ -7441,3 +7441,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   manufacture, aim adjustment, process and material remain entangled; stock
   appearance/operator fitting, training, LSM and product integration remain
   closed. Next: held-charge shared-vs-family optical-density spectral bases.
+
+## 2026-07-28 - U6.P1C rejects a routed family density-basis bank
+
+- On 13 frozen held charges, correct family rank-3 beats shared rank-3 on
+  12/13 and wrong family rank-3 on 13/13, confirming descriptive structure.
+- The equal-total-capacity unrouted shared rank-6 wins 13/13; family rank-3 is
+  815.56% worse at the median. Two reports are byte-identical.
+- Close family/mode routing from this evidence. Continue only with a generic
+  shared rank-6 reference-simulator fidelity test; no operator/product claim.
