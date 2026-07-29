@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p3m_scene_linear_backing_return_attribution_contract.v1",
+  "node": "U6.P3M",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "contract_path": "configs/u6_p3l_scene_linear_backing_return_v1.json",
+    "contract_sha256": "33b46cf5b03239c68e1ca66cd115ba279feb078ce805cc5802bddfb61930968c",
+    "decision_path": "configs/u6_p3l_scene_linear_backing_return_decision_v1.json",
+    "decision_sha256": "8486a89aaceb6e3ef014ca4dd7af39c92969f66c16a3c130be37867b23994faf",
+    "report_path": "outputs/u6_p3l_scene_linear_backing_return_v1/run_a/report.json",
+    "report_sha256": "6eb4fcf2b359347713be408d5bfaf4ca8bd3d05d45538a4a63736111c8c4fb7b"
+  },
+  "analysis": {
+    "candidate_bound_threshold": 0.08,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "edge_distance_bands_pixels": [
+      2,
+      8,
+      32,
+      180
+    ],
+    "shadow_maximum": 0.01,
+    "highlight_minimum": 0.9,
+    "dominance_fraction": 0.9,
+    "top_locations_per_source": 8
+  },
+  "classification_order": [
+    "frame-boundary-associated",
+    "exact-zero-associated",
+    "highlight-associated",
+    "shadow-associated",
+    "distributed-or-content-associated"
+  ],
+  "allowed_actions": [
+    "replay the exact P3L source and fixed operators",
+    "count frozen failure masks by frame distance and input-state bins",
+    "record bounded top-location diagnostics",
+    "report association rather than physical causation"
+  ],
+  "forbidden_actions": [
+    "change any P3L source, decode, operator, parameter, threshold or gate",
+    "generate or inspect aesthetic visual candidates",
+    "open a boundary-mode, strength or profile rescue from attribution alone",
+    "claim the diagnosed association is calibrated physical causation",
+    "change the P3L closed decision"
+  ],
+  "branch_rule": {
+    "frame-boundary-associated": "retain boundary handling as the leading mechanism hypothesis; any challenger requires a separately preregistered physical aperture contract and cannot reopen P3L",
+    "other": "close mechanism attribution at the strongest observed association and move to a distinct algorithm or data leaf"
+  },
+  "claim_ceiling": "read-only spatial association diagnosis of a closed generic scene-linear backing-return candidate; no visual, causal, stock, calibration or product claim"
+}
