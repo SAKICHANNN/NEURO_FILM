@@ -115,6 +115,50 @@ def apply_residual_boundary_guard(
         or guard_boundary_epsilon_encoded_srgb >= 0.5
     ):
         raise ValueError("invalid residual boundary-guard inputs")
+    return apply_target_residual_boundary_guard(
+        source,
+        operator.apply(source),
+        strength=strength,
+        hard_boundary_epsilon_encoded_srgb=(
+            hard_boundary_epsilon_encoded_srgb
+        ),
+        guard_boundary_epsilon_encoded_srgb=(
+            guard_boundary_epsilon_encoded_srgb
+        ),
+    )
+
+
+def apply_target_residual_boundary_guard(
+    linear_rgb: np.ndarray,
+    target_linear_rgb: np.ndarray,
+    *,
+    strength: float,
+    hard_boundary_epsilon_encoded_srgb: float,
+    guard_boundary_epsilon_encoded_srgb: float,
+) -> ResidualBoundaryGuardResult:
+    """Scale one explicit target direction inside source-inclusive rails."""
+
+    source = np.asarray(linear_rgb, dtype=np.float64)
+    target = np.asarray(target_linear_rgb, dtype=np.float64)
+    if (
+        source.ndim < 2
+        or source.shape[-1] != 3
+        or not np.all(np.isfinite(source))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+        or target.shape != source.shape
+        or not np.all(np.isfinite(target))
+        or not np.isfinite(strength)
+        or strength < 0.0
+        or strength > 1.0
+        or not np.isfinite(hard_boundary_epsilon_encoded_srgb)
+        or not np.isfinite(guard_boundary_epsilon_encoded_srgb)
+        or hard_boundary_epsilon_encoded_srgb < 0.0
+        or guard_boundary_epsilon_encoded_srgb
+        <= hard_boundary_epsilon_encoded_srgb
+        or guard_boundary_epsilon_encoded_srgb >= 0.5
+    ):
+        raise ValueError("invalid target residual boundary-guard inputs")
     lower, upper = _source_inclusive_rails(
         source,
         hard_boundary_epsilon_encoded_srgb=(
@@ -124,7 +168,7 @@ def apply_residual_boundary_guard(
             guard_boundary_epsilon_encoded_srgb
         ),
     )
-    requested_delta = strength * (operator.apply(source) - source)
+    requested_delta = strength * (target - source)
     residual_scale = _maximum_safe_scale(
         source, requested_delta, lower, upper
     )
@@ -230,4 +274,5 @@ __all__ = [
     "ResidualBoundaryGuardResult",
     "apply_factorized_boundary_guard",
     "apply_residual_boundary_guard",
+    "apply_target_residual_boundary_guard",
 ]
