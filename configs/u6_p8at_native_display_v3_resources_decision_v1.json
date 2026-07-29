@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8at_native_display_v3_resources_decision.v1",
+  "node": "U6.P8AT",
+  "contract": "configs/u6_p8at_native_display_v3_resources_v1.json",
+  "contract_sha256": "58f00ed29dcb68d55acfb31988f24d21e7456f86c8ee8310346b700b0f77964e",
+  "formal_report": "outputs/u6_p8at_native_display_v3_resources_v1/report.json",
+  "formal_report_sha256": "c0ae07aa1379f591d0f2f631beb74ed2bfcf51c6e84807edd82bc02ac167eb7b",
+  "stable_evidence_id": "3dc0f2926c89d7673e21bac98b2b763f34777ca7649502370d3052431469d991",
+  "result": {
+    "status": "fail-latency",
+    "output_repeat_and_v1_exact": true,
+    "peak_process_tree_rss_bytes": [
+      167428096,
+      167301120
+    ],
+    "memory_gate_bytes": 402653184,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      21.783004700002493,
+      21.938799499999732
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": false,
+    "mean_elapsed_ratio_vs_p8aq": 0.818896670899219
+  },
+  "decision": "retain display v3 as a second exact-output latency improvement, but reject the complete CPU chain against the unchanged 15 second gate. Re-profile before selecting any additional optimization",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP analytic-row and hash-sink native Standard physical plus exact-output AO6 display v3 resource evidence only",
+  "next_leaf": "U6.P8AU perform deterministic display-v3 phase attribution, then optimize only the new dominant phase under the frozen v1 output hash and 15 second gate"
+}

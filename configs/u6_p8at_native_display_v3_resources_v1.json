@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p8at_native_display_v3_resources_contract.v1",
+  "node": "U6.P8AT",
+  "parent_decision": "configs/u6_p8as_native_ao6_display_v3_decision_v1.json",
+  "parent_decision_sha256": "9421aa068dd7bc7302a939cef5ba4424d22eb282e32d4bfc901e2d5405e646c9",
+  "frozen_resource_contract": "configs/u6_p8aq_native_fastpath_resources_v1.json",
+  "frozen_resource_contract_sha256": "9b1c54954f5b8bdc79fe9af74029bde966caf82aba7efc9c4a3330c5ead255ca",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "component_dll_sha256": {
+    "domains": "122f67c531686018621f087b2281e85277832b67a5e19a04de732e0d4f3ad823",
+    "gaussian": "37686905def49425235a2d1625fb7728448263013cd376173171dec2e5c9693f",
+    "adjacency": "50dd895ff40d1f4ca2e61fae6c8d9f92f18dd8c5a0d96569269efa2a6f763ed0",
+    "gauge": "1954a07850b70e1c528782cd92265b46e015d9d1ace76a02935c1c0e74faab6b",
+    "context": "45a9a68b2177560cc1fd1ac4634e872918a47affcff396e251df446f22e92a8f",
+    "display": "92358ba6c5b8d17ebb33b6501620672ca5f662f7b084d79c6b92bfe7b1eb9a2d"
+  },
+  "expected_output_sha256": "96f4a65812d06173fe5d22a36691de30617660bc5de6b1b55e1a7af168305e3f",
+  "tile_rows": 32,
+  "scenario": {
+    "scenario_id": "native-standard-physical-plus-ao6-display-12mp",
+    "height": 3000,
+    "width": 4000,
+    "repeats": 2,
+    "timeout_seconds": 120
+  },
+  "execution": {
+    "local_cpu_only": true,
+    "fresh_process_per_repeat": true,
+    "compile_outside_measured_worker": true,
+    "two_pass_source_context": true,
+    "input_rows_generated_on_demand": true,
+    "output_rows_consumed_by_hash_sink": true,
+    "timing_excluded_from_stable_evidence_id": true,
+    "foreign_processes_must_not_be_terminated": true,
+    "ao6_context_abi": "v2",
+    "ao6_display_abi": "v3"
+  },
+  "monitor_interval_seconds": 0.02,
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 4294967296,
+    "worker_kill_rss_bytes": 1073741824
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 402653184,
+    "maximum_worker_elapsed_seconds": 15.0,
+    "output_repeat": "byte-exact"
+  },
+  "forbidden_claims": [
+    "decoder or encoder resources",
+    "mobile or physical-device runtime",
+    "calibrated stock or physical truth",
+    "production promotion"
+  ],
+  "claim_ceiling": "local Windows x64 12MP analytic-row and hash-sink native Standard physical plus exact-output AO6 display v3 resource evidence only"
+}
