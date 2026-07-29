@@ -4882,6 +4882,11 @@
   does not create a public RAW rail, schema, receipt, capability, product
   admission or consumer mapping. R0FG remains rejected; R0FF remains a
   distinct LibRaw policy; P172, P45/P44 and v42 remain unchanged.
+- Consumer RAW/file-ingress regression using the existing main-project
+  Python 3.12 environment is 33 PASS / 1 environment skip, including
+  `unsupported-decoded-rail` preflight and late second-source transaction
+  atomicity. The default Python 3.14 lacked pytest and the standalone 3.12
+  lacked tifffile; neither environment was modified.
 
 ## 2026-07-29 - Refresh main FilmFX composition boundary
 
