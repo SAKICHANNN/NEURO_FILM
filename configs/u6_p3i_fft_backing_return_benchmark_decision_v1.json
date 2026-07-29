@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3i-fft-backing-return-benchmark-v1",
+  "node": "U6.P3I",
+  "decision": "retain_fft_large_radius_cpu_baseline_open_streaming_memory_challenger",
+  "software_commit": "3049b17",
+  "contract_sha256": "7ab1e5b1100c05ff804901d0cdd62d081dae7409e02b4847df6d5433d4403ed1",
+  "formal_report": {
+    "path": "outputs/u6_p3i_fft_backing_return_benchmark_v1/formal/report.json",
+    "sha256": "c3fd96383ff7002cea407437907a52779be133102c25883c6015828b04945e24",
+    "evidence_id": "7505a73e260c359905d2f31d28620525d55871cf490edac776d249160f91120a"
+  },
+  "metrics": {
+    "fft_median_speedup": {
+      "1mp": 4.821585,
+      "12mp": 4.539409,
+      "24mp": 4.825426
+    },
+    "direct_24mp_median_apply_seconds": 18.96394840000721,
+    "fft_24mp_median_apply_seconds": 3.9300040999951307,
+    "direct_24mp_maximum_rss_bytes": 1397981184,
+    "fft_24mp_maximum_rss_bytes": 1631625216,
+    "fft_24mp_median_wall_seconds": 5.830427699998836
+  },
+  "automatic_pass": true,
+  "interpretation": "The functional FFT challenger produces a repeat-exact roughly 4.5-4.8x local Python CPU speedup and passes the frozen 24MP time and 3GiB memory gates. Its 1.52GiB maximum RSS remains above the Ultimate preferred desktop memory target, so streaming is the next independent optimization rather than product integration.",
+  "next_leaf": "U6.P3J finite-halo row-streamed FFT tile iterator with tolerance parity and partition/order determinism",
+  "production_integration_allowed": false,
+  "claim_ceiling": "local Windows/Python fresh-process performance evidence for an isolated generic backing-return compiler; no combined-chain, native, mobile, GPU, stock, calibration or product claim"
+}

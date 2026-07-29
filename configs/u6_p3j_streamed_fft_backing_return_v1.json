@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p3j_streamed_fft_backing_return_contract.v1",
+  "node": "U6.P3J",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3d_contract_path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "p3d_profile_sha256": "639b39f7b5d26f7a37bbe834e707f787e9e1e200f545f1c2fb031ec28376f6ea",
+    "p3h_report_sha256": "2c9c35f12f267c6a340579d0b1cea100032398e671c81a670ed9800401193d5d",
+    "p3i_report_sha256": "c3fd96383ff7002cea407437907a52779be133102c25883c6015828b04945e24"
+  },
+  "hypothesis": "a finite-halo FFT row iterator can avoid a full output allocation while preserving the P3H full-frame result within its frozen numerical tolerance for arbitrary partitions and forward/reverse execution order",
+  "candidate": {
+    "input": "read-only full float32 layer exposure",
+    "output": "owned float32 row cores yielded one at a time",
+    "halo_source": "exact compiled profile required_halo",
+    "boundary_mode": "zero outside full frame",
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "hard_clipping": false,
+    "persistent_output_allocation": false,
+    "product_dependency_allowed": false
+  },
+  "witnesses": {
+    "shape": [
+      1024,
+      1536,
+      3
+    ],
+    "random_seed": 20260801,
+    "partition_rows": [
+      257,
+      509
+    ]
+  },
+  "automatic_gates": {
+    "full_frame_max_abs_error": 2e-6,
+    "full_frame_mean_abs_error": 2e-7,
+    "forward_reverse_exact_within_partition": true,
+    "repeat_exact_within_partition_order": true,
+    "coverage_exactly_once": true,
+    "maximum_live_output_core_rows": 509,
+    "minimum_output": -2e-7,
+    "minimum_direct_increment": -2e-7
+  },
+  "forbidden_fallbacks": [
+    "change the P3D/P3H profile, FFT kernel or roundoff policy",
+    "allocate a hidden full output array",
+    "drop reverse-order or coverage checks",
+    "relax numerical gates",
+    "claim memory or runtime before a separate fresh-process benchmark",
+    "connect to the closed P3G combined chain"
+  ],
+  "branch_rule": {
+    "pass": "retain the row-streamed iterator and open one fixed 24MP fresh-process memory/runtime comparison",
+    "fail": "close streaming and retain the P3H/P3I full-frame FFT baseline"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "functional row-streaming evidence for the isolated generic FFT backing-return compiler; no measured memory/runtime, combined-chain, calibration or product claim"
+}
