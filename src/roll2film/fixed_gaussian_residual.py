@@ -20,6 +20,9 @@ from .positive_film import PositiveFilmResponseOperator
 FIXED_GAUSSIAN_RESIDUAL_SCHEMA = (
     "roll2film.fixed_neutral_gaussian_residual.v1"
 )
+FIXED_GAUSSIAN_LOG_ODDS_SCHEMA = (
+    "roll2film.fixed_neutral_gaussian_log_odds.v1"
+)
 
 
 def fixed_cube_centers(levels: tuple[float, ...]) -> np.ndarray:
@@ -147,6 +150,83 @@ class FixedNeutralGaussianResidualOperator:
         )
 
 
+@dataclass(frozen=True)
+class FixedNeutralGaussianLogOddsOperator:
+    """A cube-preserving Gaussian residual in output-channel log-odds."""
+
+    base: PositiveFilmResponseOperator
+    centers: np.ndarray
+    sigma: float
+    coefficients: np.ndarray
+    normalization_epsilon: float = 1e-12
+
+    def __post_init__(self) -> None:
+        # Reuse the additive operator's strict immutable parameter validation.
+        validated = FixedNeutralGaussianResidualOperator(
+            base=self.base,
+            centers=self.centers,
+            sigma=self.sigma,
+            coefficients=self.coefficients,
+            normalization_epsilon=self.normalization_epsilon,
+        )
+        object.__setattr__(self, "centers", validated.centers)
+        object.__setattr__(self, "coefficients", validated.coefficients)
+
+    def features(self, rgb: np.ndarray) -> np.ndarray:
+        helper = FixedNeutralGaussianResidualOperator(
+            base=self.base,
+            centers=self.centers,
+            sigma=self.sigma,
+            coefficients=self.coefficients,
+            normalization_epsilon=self.normalization_epsilon,
+        )
+        return helper.features(rgb)
+
+    def apply(self, rgb: np.ndarray) -> np.ndarray:
+        rows, shape = _rgb_rows(rgb)
+        base = self.base.apply(rows)
+        delta = self.features(rows) @ self.coefficients
+        # This is sigmoid(logit(base) + delta), written without evaluating
+        # logit(0) or logit(1). The half-exponent form is stable under the
+        # finite fitted coefficients allowed by the constructor.
+        positive = np.exp(np.clip(0.5 * delta, -350.0, 350.0))
+        negative = np.exp(np.clip(-0.5 * delta, -350.0, 350.0))
+        numerator = base * positive
+        denominator = numerator + (1.0 - base) * negative
+        output = numerator / denominator
+        if (
+            not np.all(np.isfinite(output))
+            or np.any(output < 0.0)
+            or np.any(output > 1.0)
+        ):
+            raise RuntimeError("Gaussian log-odds residual escaped the RGB cube")
+        return output.reshape(shape)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": FIXED_GAUSSIAN_LOG_ODDS_SCHEMA,
+            "base": self.base.to_dict(),
+            "centers": self.centers.tolist(),
+            "sigma": self.sigma,
+            "coefficients": self.coefficients.tolist(),
+            "normalization_epsilon": self.normalization_epsilon,
+        }
+
+    @classmethod
+    def from_dict(
+        cls, payload: dict[str, Any]
+    ) -> "FixedNeutralGaussianLogOddsOperator":
+        if payload.get("schema") != FIXED_GAUSSIAN_LOG_ODDS_SCHEMA:
+            raise ValueError("unsupported fixed Gaussian log-odds schema")
+        return cls(
+            base=PositiveFilmResponseOperator.from_dict(payload["base"]),
+            centers=np.asarray(payload["centers"], dtype=np.float64),
+            sigma=float(payload["sigma"]),
+            coefficients=np.asarray(payload["coefficients"], dtype=np.float64),
+            normalization_epsilon=float(payload["normalization_epsilon"]),
+        )
+
+
 def fit_fixed_neutral_gaussian_residual(
     base: PositiveFilmResponseOperator,
     source_rgb: np.ndarray,
@@ -185,9 +265,63 @@ def fit_fixed_neutral_gaussian_residual(
     )
 
 
+def fit_fixed_neutral_gaussian_log_odds(
+    base: PositiveFilmResponseOperator,
+    source_rgb: np.ndarray,
+    target_rgb: np.ndarray,
+    *,
+    centers: np.ndarray,
+    sigma: float,
+    ridge: float,
+    fit_epsilon: float = 1e-6,
+) -> FixedNeutralGaussianLogOddsOperator:
+    """Fit a deterministic cube-preserving local residual in log-odds."""
+
+    source, _ = _rgb_rows(source_rgb)
+    target, _ = _rgb_rows(target_rgb)
+    if target.shape != source.shape or len(source) < len(centers):
+        raise ValueError("paired rows must match and cover every Gaussian centre")
+    if (
+        not np.isfinite(ridge)
+        or ridge <= 0.0
+        or not np.isfinite(fit_epsilon)
+        or fit_epsilon <= 0.0
+        or fit_epsilon >= 0.5
+    ):
+        raise ValueError("ridge and fit_epsilon are invalid")
+    zero = np.zeros_like(np.asarray(centers, dtype=np.float64))
+    provisional = FixedNeutralGaussianLogOddsOperator(
+        base=base,
+        centers=centers,
+        sigma=sigma,
+        coefficients=zero,
+    )
+    features = provisional.features(source)
+    base_output = np.clip(base.apply(source), fit_epsilon, 1.0 - fit_epsilon)
+    target_output = np.clip(target, fit_epsilon, 1.0 - fit_epsilon)
+    residual = (
+        np.log(target_output) - np.log1p(-target_output)
+        - np.log(base_output)
+        + np.log1p(-base_output)
+    )
+    gram = features.T @ features + ridge * np.eye(
+        features.shape[1], dtype=np.float64
+    )
+    coefficients = np.linalg.solve(gram, features.T @ residual)
+    return FixedNeutralGaussianLogOddsOperator(
+        base=base,
+        centers=centers,
+        sigma=sigma,
+        coefficients=coefficients,
+    )
+
+
 __all__ = [
+    "FIXED_GAUSSIAN_LOG_ODDS_SCHEMA",
     "FIXED_GAUSSIAN_RESIDUAL_SCHEMA",
+    "FixedNeutralGaussianLogOddsOperator",
     "FixedNeutralGaussianResidualOperator",
+    "fit_fixed_neutral_gaussian_log_odds",
     "fit_fixed_neutral_gaussian_residual",
     "fixed_cube_centers",
 ]

@@ -1,0 +1,91 @@
+{
+  "schema": "neuro_film.u5_r2as0_fixed_gaussian_log_odds_capacity.v1",
+  "experiment_id": "u5.r2as0-fixed-gaussian-log-odds-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AS0",
+  "question": "Can a compact, fixed-geometry Gaussian local residual in output log-odds recover unseen samples from safe analytic colour operators beyond the bounded one-matrix base while preserving the RGB cube, neutral axis and positive local orientation?",
+  "development_disclosure": {
+    "status": "post_exploratory_representation_contract",
+    "observed_seed": 63100,
+    "observed_sigma_values": [0.2, 0.35, 0.5],
+    "observed_ridge_values": [0.001, 0.01, 0.1, 1.0],
+    "selected_sigma": 0.35,
+    "selected_ridge": 1.0,
+    "reason": "sigma 0.35 and ridge 1.0 gave a compact stable coefficient scale and 13.5-19.3 percent held-sample improvement across four analytic witnesses; formal samples use a new untouched seed"
+  },
+  "method_prior": {
+    "title": "GLUT: 3D Gaussian Lookup Table for Continuous Color Transformation",
+    "url": "https://arxiv.org/abs/2605.19889",
+    "arxiv_id": "2605.19889",
+    "observed_pdf_sha256": "2a71064ec5db9ad1cc899ccf9a6d769acbecb9cb342e6b2deebf5d997ba09c3f",
+    "adopted_principle": "explicit continuous colour-space-localized Gaussian primitives",
+    "not_adopted": [
+      "learned Gaussian geometry",
+      "local affine matrices",
+      "output clipping",
+      "conditional neural parameter generator"
+    ],
+    "implementation_status": "clean_room_fixed_geometry_cube_preserving_subset"
+  },
+  "parent_witness": {
+    "path": "configs/u5_r2k3_gamut_polar_palette_v1.json",
+    "sha256": "02634f1f95aa2e397492b0cad1bfcf38335eaa732b09f1ed23df9625dc47f647",
+    "witnesses": [
+      "cyan_shadow_warm_highlight_like",
+      "warm_dense_like",
+      "cool_soft_like",
+      "cross_palette_like"
+    ]
+  },
+  "candidate": {
+    "base": "bounded_one_matrix_positive_film_response",
+    "center_levels": [0.25, 0.75],
+    "primitive_count": 8,
+    "sigma": 0.35,
+    "ridge": 1.0,
+    "fit_epsilon": 0.000001,
+    "local_transform": "neutral_axis_zero_gaussian_bias_in_output_log_odds",
+    "hard_output_clipping": false
+  },
+  "fit": {
+    "development_seed": 63101,
+    "development_rows": 1024,
+    "confirmation_seed": 63102,
+    "confirmation_rows": 1024,
+    "base_restart_count": 3,
+    "base_maximum_function_evaluations": 2500,
+    "base_seed": 63103
+  },
+  "audit": {
+    "cube_axis_size": 25,
+    "jacobian_axis_size": 9,
+    "jacobian_margin": 0.05,
+    "jacobian_step": 0.00001,
+    "neutral_axis_rows": 257
+  },
+  "gates": {
+    "minimum_each_witness_confirmation_rmse_gain": 0.05,
+    "minimum_median_confirmation_rmse_gain": 0.1,
+    "maximum_candidate_confirmation_rgb_rmse": 0.06,
+    "minimum_jacobian_determinant": 0.01,
+    "maximum_jacobian_spectral_norm": 4.0,
+    "maximum_neutral_axis_residual": 1e-12,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "serialization_replay_maximum_absolute_error": 0.0,
+    "source_nonmutation": true,
+    "two_run_report_byte_identity": true
+  },
+  "frozen_boundary": {
+    "ao9_same_71_pair_capacity_rescue_forbidden": true,
+    "real_film_or_display_proxy_rows_accessed": false,
+    "image_rendering_allowed": false,
+    "operator_fitting_to_current_real_pixels_allowed": false,
+    "next_if_pass": "retain representation as a future controlled-pair challenger; do not fit the sealed 71-pair proxy pool",
+    "next_if_fail": "close the fixed Gaussian local residual representation without capacity rescue"
+  },
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "Synthetic known-operator representation and structural evidence only; not real-film learning, stock response, calibration, preference, photographic safety or product promotion."
+}

@@ -4,7 +4,9 @@ import numpy as np
 import pytest
 
 from src.roll2film.fixed_gaussian_residual import (
+    FixedNeutralGaussianLogOddsOperator,
     FixedNeutralGaussianResidualOperator,
+    fit_fixed_neutral_gaussian_log_odds,
     fit_fixed_neutral_gaussian_residual,
     fixed_cube_centers,
 )
@@ -79,3 +81,53 @@ def test_invalid_geometry_and_inputs_fail_closed() -> None:
     )
     with pytest.raises(ValueError):
         operator.apply(np.asarray([[np.nan, 0.0, 0.0]]))
+
+
+def test_log_odds_variant_is_cube_and_endpoint_preserving() -> None:
+    rng = np.random.default_rng(20260731)
+    centers = fixed_cube_centers((0.25, 0.75))
+    operator = FixedNeutralGaussianLogOddsOperator(
+        base=_base(),
+        centers=centers,
+        sigma=0.35,
+        coefficients=rng.normal(0.0, 3.0, size=(8, 3)),
+    )
+    rgb = np.vstack(
+        (
+            np.zeros((1, 3)),
+            np.ones((1, 3)),
+            rng.random((256, 3)),
+        )
+    )
+    output = operator.apply(rgb)
+    assert np.all(output >= 0.0)
+    assert np.all(output <= 1.0)
+    assert np.array_equal(output[:2], rgb[:2])
+    neutral = np.repeat(np.linspace(0.0, 1.0, 23)[:, None], 3, axis=1)
+    assert np.array_equal(operator.apply(neutral), operator.base.apply(neutral))
+
+
+def test_log_odds_fit_recovers_known_local_transform() -> None:
+    rng = np.random.default_rng(20260801)
+    source = rng.uniform(0.02, 0.98, size=(256, 3))
+    centers = fixed_cube_centers((0.25, 0.75))
+    truth = FixedNeutralGaussianLogOddsOperator(
+        base=_base(),
+        centers=centers,
+        sigma=0.35,
+        coefficients=rng.normal(0.0, 0.4, size=(8, 3)),
+    )
+    target = truth.apply(source)
+    fitted = fit_fixed_neutral_gaussian_log_odds(
+        _base(),
+        source,
+        target,
+        centers=centers,
+        sigma=0.35,
+        ridge=1e-8,
+    )
+    base_rmse = float(np.sqrt(np.mean((_base().apply(source) - target) ** 2)))
+    fit_rmse = float(np.sqrt(np.mean((fitted.apply(source) - target) ** 2)))
+    assert fit_rmse < base_rmse * 1e-4
+    replay = FixedNeutralGaussianLogOddsOperator.from_dict(fitted.to_dict())
+    assert np.array_equal(replay.apply(source), fitted.apply(source))
