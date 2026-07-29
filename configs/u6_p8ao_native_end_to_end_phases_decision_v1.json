@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p8ao_native_end_to_end_phases_decision.v1",
+  "node": "U6.P8AO",
+  "contract": "configs/u6_p8ao_native_end_to_end_phases_v1.json",
+  "contract_sha256": "a753b2237b099ab2542800c1538538efe76b554a4c6123acbea14a5bc4670b42",
+  "formal_report": "outputs/u6_p8ao_native_end_to_end_phases_v1/report.json",
+  "formal_report_sha256": "87fedd09ccc183b774ce78d2918b42d2330a136fea7426635be09191c23ffd0b",
+  "stable_evidence_id": "6f48306e6cfb69becbbfe2460cd184a2c7acc6fc64c15caa0c6fadfe6735ab76",
+  "result": {
+    "status": "pass-attribution",
+    "output_repeat_exact": true,
+    "dominant_phase_repeat_exact": true,
+    "dominant_phase": "ao6_native_display_seconds",
+    "minimum_dominant_phase_share": 0.49261291848737915,
+    "dominant_phase_share_gate": 0.35,
+    "phase_median_seconds": {
+      "ao6_native_display_seconds": 16.294670799950836,
+      "context_native_update_seconds": 7.66091140008939,
+      "physical_native_core_seconds": 6.404109899827745,
+      "gauge_native_seconds": 0.8924237000173889,
+      "context_source_and_oetf_seconds": 0.7972733000351582,
+      "display_input_oetf_seconds": 0.7258927500370191,
+      "hash_sink_seconds": 0.09431030000268947,
+      "physical_source_provider_seconds": 0.06411995003873017
+    }
+  },
+  "decision": "optimize the AO6 display first and context reduction second. Display is the repeat-stable dominant phase at about 49 percent; context is another 23 percent because v1 recomputes density and Lab for failure atomicity. Preserve physical domain order, old v1 ABIs and exact output gates",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP deterministic phase attribution for the native Standard physical plus AO6 display chain",
+  "next_leaf": "U6.P8AP add versioned exact-output fast paths for in-gamut AO6 base pixels and scratch-backed single-compute context reduction, then rerun frozen 12MP resource gates"
+}

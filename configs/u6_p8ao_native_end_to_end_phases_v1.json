@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p8ao_native_end_to_end_phases_contract.v1",
+  "node": "U6.P8AO",
+  "parent_decision": "configs/u6_p8an_native_end_to_end_resources_decision_v1.json",
+  "parent_decision_sha256": "8f8ce6cb50e518663d2b8309fd14d420cfa5c2df691052ee8ac020b68557d138",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "component_dll_sha256": {
+    "domains": "122f67c531686018621f087b2281e85277832b67a5e19a04de732e0d4f3ad823",
+    "gaussian": "37686905def49425235a2d1625fb7728448263013cd376173171dec2e5c9693f",
+    "adjacency": "50dd895ff40d1f4ca2e61fae6c8d9f92f18dd8c5a0d96569269efa2a6f763ed0",
+    "gauge": "1954a07850b70e1c528782cd92265b46e015d9d1ace76a02935c1c0e74faab6b",
+    "context": "0efccf6b2e2cabe60929a862ac90ad691c860e144131289f430efc7fd2152457",
+    "display": "370622ba855cdb16f6520e33673fc7d880ce19d49156f02d88b0cacebe2ae18d"
+  },
+  "tile_rows": 32,
+  "scenario": {
+    "scenario_id": "native-standard-physical-plus-ao6-display-phase-attribution-12mp",
+    "height": 3000,
+    "width": 4000,
+    "repeats": 2
+  },
+  "gates": {
+    "output_repeat": "byte-exact",
+    "dominant_phase_repeat": "exact",
+    "minimum_dominant_phase_share": 0.35
+  },
+  "timing_policy": {
+    "phase_timing_excluded_from_stable_evidence_id": true,
+    "optimization_requires_same_dominant_phase_in_both_runs": true,
+    "thresholds_must_not_be_relaxed_after_observation": true
+  },
+  "claim_ceiling": "local Windows x64 12MP deterministic phase attribution for the native Standard physical plus AO6 display chain"
+}
