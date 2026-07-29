@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4r_uniform_grain_metadata_decision.v1",
+  "node": "ULT > U6 > U6.P4R",
+  "decision": "pass_exact_metadata_open_bounded_pixel_acquisition",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "metadata_snapshot": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/metadata_snapshot.json",
+      "sha256": "8246bbf8fb3ec0d4bf4e2de8bba3a96ef396f89326b983777196e3178a329cff",
+      "request_count": 1,
+      "rows": 8,
+      "image_payloads_downloaded_or_decoded": false
+    }
+  },
+  "results": {
+    "film_stock_rows": {
+      "kodak-ektar-100": 4,
+      "kodak-ultramax-400": 4
+    },
+    "expected_total_bytes": 1303713928,
+    "uploader_groups": 1,
+    "scanner_groups": 1,
+    "exact_cc0_rows": 8,
+    "exact_imageinfo_identity_passed": true
+  },
+  "interpretation": [
+    "The exact eight TIFFs are rights-clear and bounded enough for a pixel feasibility audit.",
+    "Same-uploader and same-scanner acquisition controls content and scanner differences between the two labels but provides no independent source or scanner replication.",
+    "The scans can measure observable scanner-convolved RGB NPS/ACF repeatability; they cannot identify emulsion grain size, process response or a calibrated stock profile.",
+    "Infrared alpha must remain separate from RGB and cannot be interpreted as optical transmittance truth."
+  ],
+  "next_leaf": "After the active P8BP run frees memory and disk pressure, acquire exactly the eight files, verify SHA-1/size/decode and freeze independent crop and nuisance controls before NPS analysis.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "claim_ceiling": "CC0 same-scanner uniform film-scan metadata feasibility only; not pixels, measured NPS, emulsion truth, physical grain-size calibration, stock response, process identity or product promotion"
+}
