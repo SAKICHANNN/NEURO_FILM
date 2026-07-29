@@ -4434,3 +4434,22 @@
   package, schema, receipt, capability, product admission or consumer
   mapping. A later producer-private caller-workspace/failure-atomicity
   contract is a separate gate; P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EI private atomic tiled ABI
+
+- Producer `aad56d0` converts the R0EH hypothesis into a private
+  caller-workspace C ABI with fixed halo 12/core 64 and full-output failure
+  atomicity. A full-suite regression caught that the first declaration changed
+  the frozen v1 header; the tiled declaration was moved to a separate
+  extension header, restoring the v1 SHA and R0EG oracle identity.
+- MSVC and pinned LLVM execute 72 synthetic plus 15 rights-cleared native
+  cases twice. Tiled/full-frame/toolchain output bytes, measured sensels and
+  diagnostics extrema are exact. Workspace, nonfinite, invalid pattern,
+  invalid diagnostics and overlap failures all preserve caller output and
+  diagnostics. Two formal reports are byte-identical at
+  `a03de90b...9697a`; stable identity is `5132ac30...04fa8`.
+- The honest atomic 2024x3040 workspace falls from 61,529,600 to 20,774,336
+  float32 values (-66.2368%); this is distinct from R0EH's compute-only
+  reduction. The ABI remains private CPU evidence: no public package, schema,
+  receipt, capability, quality/product admission or consumer mapping. P172,
+  P45/P44 and v42 remain unchanged.
