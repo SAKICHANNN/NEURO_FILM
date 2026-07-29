@@ -252,7 +252,9 @@ def run_comparison(
                     "source_raw_sha256": config_source["sha256"],
                     "arm_id": arm_id,
                     "output_sha256": sha256_file(path),
-                    "output_path": path.relative_to(root).as_posix(),
+                    # Keep durable evidence independent of the caller's
+                    # create-only run directory (for example run_b/run_c).
+                    "output_path": path.relative_to(output_dir).as_posix(),
                     **metrics,
                 }
             )
