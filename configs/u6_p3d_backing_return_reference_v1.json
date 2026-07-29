@@ -1,0 +1,144 @@
+{
+  "schema": "neuro_film.u6_p3d_backing_return_reference_contract.v1",
+  "node": "U6.P3D",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "a distinct nonnegative base-return term that adds bounded second-pass layer exposure is more physically faithful than representing backing reflection only as an energy-conserving redistribution of the incident layer exposure",
+  "evidence_basis": [
+    {
+      "source": "Kodak VISION Color Print Film 2383/3383 technical information",
+      "url": "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION-Color-Print-Film-2383-3383-technical-information.pdf",
+      "fact": "an antihalation layer under the emulsion absorbs light reflected from support surfaces and reduces colour fringing around bright features"
+    },
+    {
+      "source": "Kodak VISION3 AHU talking points",
+      "url": "https://www.kodak.com/content/pdfs/motion/AHU-talking-points.pdf",
+      "fact": "the anti-halation undercoat is a separate beneath-emulsion structure whose density is removed in processing"
+    },
+    {
+      "source": "Eastman Kodak US2131747A",
+      "url": "https://patents.google.com/patent/US2131747A/en",
+      "fact": "halation is caused by light reflected from the support back into light-sensitive material; absorbing backing reduces that return"
+    }
+  ],
+  "input_domain": "film-layer-linear-exposure",
+  "output_domain": "film-layer-linear-exposure",
+  "arithmetic": "float64",
+  "pixel_pitch_um": 8.0,
+  "boundary_mode": "zero-outside-full-frame",
+  "components": [
+    {
+      "component_id": "internal-base-return",
+      "sigma_um": 80.0,
+      "cutoff_sigma": 6.0,
+      "return_fraction_rgb": [
+        0.04,
+        0.012,
+        0.004
+      ],
+      "source_to_layer_coupling": [
+        [
+          0.96,
+          0.03,
+          0.01
+        ],
+        [
+          0.03,
+          0.94,
+          0.03
+        ],
+        [
+          0.01,
+          0.03,
+          0.92
+        ]
+      ]
+    },
+    {
+      "component_id": "rear-surface-return",
+      "sigma_um": 240.0,
+      "cutoff_sigma": 6.0,
+      "return_fraction_rgb": [
+        0.025,
+        0.006,
+        0.002
+      ],
+      "source_to_layer_coupling": [
+        [
+          0.96,
+          0.03,
+          0.01
+        ],
+        [
+          0.03,
+          0.94,
+          0.03
+        ],
+        [
+          0.01,
+          0.03,
+          0.92
+        ]
+      ]
+    }
+  ],
+  "synthetic_witnesses": {
+    "impulse_shape": [
+      513,
+      513,
+      3
+    ],
+    "edge_shape": [
+      512,
+      512,
+      3
+    ],
+    "exposure_scales": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "far_halo_radius_um": 160.0,
+    "zero_return_identity_shape": [
+      37,
+      41,
+      3
+    ],
+    "random_seed": 20260729
+  },
+  "automatic_gates": {
+    "kernel_sum_abs_error_max": 1e-12,
+    "returned_energy_abs_error_max": 1e-10,
+    "returned_energy_bound_epsilon": 1e-12,
+    "minimum_output": -1e-12,
+    "minimum_direct_retention": 1.0,
+    "linearity_max_abs_error": 1e-12,
+    "far_halo_red_over_blue_min": 5.0,
+    "zero_return_identity_max_abs_error": 0.0,
+    "repeat_report_sha256_exact": true
+  },
+  "required_controls": [
+    "existing U6.P1A energy-redistribution reference",
+    "zero-return exact identity",
+    "wrong-domain, wrong-scale and non-float64 rejection",
+    "negative, nonfinite, over-unity and excess-column-coupling profile rejection"
+  ],
+  "allowed_actions": [
+    "implement one isolated float64 full-frame reference",
+    "evaluate only frozen synthetic impulse, edge, scale and identity witnesses",
+    "repair implementation defects without changing the physical hypothesis or gates"
+  ],
+  "forbidden_actions": [
+    "fit return fractions or radii to photographs",
+    "call the generic profile Cinestill, Vision3 or any named stock",
+    "reuse display-RGB screen blend as the reference",
+    "change U6.P1A, U6.P3A, U6.P3C or any completed gate",
+    "render product photographs before the synthetic reference passes",
+    "claim stock, process, camera, pressure-plate or anti-halation calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain a generic backing-return reference and freeze a separately versioned Standard compiler/photographic severe-stress challenger",
+    "fail": "close the additive-return representation or repair a demonstrated implementation defect; preserve U6.P1A/P3A"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired float64 reference for bounded backing-reflection second-pass exposure; no measured film, named stock, process, camera, pressure-plate, scanner, calibration, authenticity, preference or product claim"
+}
