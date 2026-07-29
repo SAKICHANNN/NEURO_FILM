@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p4i_two_cumulant_nonstationarity_decision.v1",
+  "node": "U6.P4I",
+  "decision": "close_nonstationary_two_cumulant_integration_retain_p4h_stationary_only",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4i_two_cumulant_nonstationarity_stress_v1.json",
+      "sha256": "c93cf009e54a3c3ed13c98d50dc7c1320137c76b44d02f128838c74c0acea5d1"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4i_two_cumulant_nonstationarity_stress_v1/report_a.json",
+      "sha256": "55268ee0247a03250e730971166018bef927f717fc505355cfaf290bd61b9d07",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "da733ad8ae7779776118f65586145c45dddb9a66d5f983565794f3d55f28a128"
+    },
+    "software_commit": "c21f38e"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "density_map_correlation",
+      "region_mean",
+      "region_variance",
+      "checkerboard_contrast",
+      "display_noise_negative"
+    ],
+    "minimum_density_map_correlation": 0.4884134400980121,
+    "maximum_region_mean_absolute_difference": 0.10237316942359831,
+    "minimum_region_variance_ratio": 0.22968822428305516,
+    "maximum_checkerboard_contrast_ratio": 1.2319319399624287,
+    "minimum_display_noise_out_of_domain_fraction": 0.000634765625,
+    "step_contrast_ratio_range": [
+      0.9986152771485141,
+      1.0021421187798627
+    ],
+    "maximum_step_center_shift_pixels": 0.0020741374198962603,
+    "island_excess_ratio_range": [
+      0.9931179130990795,
+      1.0138910593430923
+    ],
+    "maximum_island_centroid_shift_pixels": 0.27673220760445333,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": [
+    "P4H's stationary two-cumulant approximation preserves simple step position and contrast but does not generalize to all high-frequency or sparse nonstationary density fields.",
+    "The smallest checkerboard overshoots reference contrast by up to 23.19%, and region variance can collapse to 0.2297 of the area-resolved reference.",
+    "A single stationary coarse profile is therefore insufficient. The retained P4H result is limited to locally stationary fields and cannot open photographic rendering.",
+    "A successor may use an explicit density-heterogeneity gate to fall back to exact base-pitch area resolution, but it must measure fallback coverage, seams, determinism and the unchanged P4I gates."
+  ],
+  "next_leaf": "U6.P4J freeze deterministic heterogeneity-gated exact-area fallback versus stationary two-cumulant execution",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "negative synthetic nonstationary LOD evidence; not measured film NPS, dye-cloud calibration, stock response, photographic preference or product evidence"
+}
