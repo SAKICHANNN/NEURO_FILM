@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u6_p3h_fft_backing_return_compiler_contract.v1",
+  "node": "U6.P3H",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3d_contract_path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "p3d_profile_sha256": "639b39f7b5d26f7a37bbe834e707f787e9e1e200f545f1c2fb031ec28376f6ea",
+    "p3e_report_sha256": "59db1174b0a073e88f1c6e439051fee0734f47fd14e7d78d6d408545f4671b24",
+    "p3g_closed_report_sha256": "33ba053adcf1834ad7ea1b6cc65d857a65c178b18b372e2ca333b9455f32358a"
+  },
+  "hypothesis": "a fixed float32 two-dimensional FFT convolution can reproduce the frozen P3E direct separable backing-return operator within strict numerical and seam tolerances while creating a credible independent route to lower large-radius CPU cost",
+  "candidate": {
+    "arithmetic": "explicit-float32",
+    "operator": "direct-plus-positive-2d-fft-return",
+    "kernel_source": "outer-product-of-exact-P3E-float32-kernel",
+    "boundary_mode": "zero-outside-full-frame",
+    "row_tiling": "finite-support halo; tolerance parity because FFT shape changes rounding",
+    "roundoff_policy": "reject returned values below -2e-6 then clamp only negative FFT roundoff to zero",
+    "hard_output_clipping": false,
+    "profile_fitting": false,
+    "production_dependency_allowed": false
+  },
+  "witnesses": {
+    "impulse_shape": [
+      513,
+      513,
+      3
+    ],
+    "edge_shape": [
+      512,
+      512,
+      3
+    ],
+    "random_shape": [
+      1024,
+      1536,
+      3
+    ],
+    "random_seed": 20260731,
+    "partition_rows": [
+      257,
+      509
+    ]
+  },
+  "automatic_gates": {
+    "direct_compiler_max_abs_error": 2e-6,
+    "direct_compiler_mean_abs_error": 2e-7,
+    "float64_reference_max_abs_error": 3e-6,
+    "returned_energy_abs_error": 3e-6,
+    "partition_max_abs_error": 2e-6,
+    "partition_mean_abs_error": 2e-7,
+    "minimum_output": -2e-7,
+    "minimum_direct_increment": -2e-7,
+    "minimum_raw_returned_value": -2e-6,
+    "repeat_float32_exact": true,
+    "zero_return_identity_exact": true
+  },
+  "required_controls": [
+    "P3D float64 reference",
+    "P3E direct float32 separable compiler",
+    "zero-return exact identity",
+    "wrong-domain, wrong-scale and non-float32 rejection"
+  ],
+  "forbidden_fallbacks": [
+    "change the P3D/P3E profile or kernels",
+    "retune any physical parameter after viewing results",
+    "relax numerical or seam gates",
+    "use the closed P3G combined chain as success evidence",
+    "claim performance before a separate fresh-process benchmark",
+    "claim stock, camera, pressure-plate, process or product calibration"
+  ],
+  "branch_rule": {
+    "pass": "retain as an independent functional performance challenger and open a fresh-process 1/12/24MP runtime-memory benchmark",
+    "fail": "close the FFT candidate and preserve the P3E direct compiler"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired functional FFT compiler challenger for the isolated backing-return reference; no combined-chain, photographic, performance, calibration, authenticity or product claim"
+}
