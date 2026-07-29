@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p2c1_route_exposure_polarity_audit.v1",
+  "node": "U6.P2C1",
+  "date_frozen": "2026-07-29",
+  "parent": {
+    "p2c_decision_path": "configs/u6_p2c_scanned_interpretation_decision_v1.json",
+    "p2c_stable_evidence_id": "3409911dd66b41a7d8d6f42541e10b748b625b7605434504cd5e9b7fc0df8a71"
+  },
+  "question": "Does each route produce a positive display interpretation whose neutral scan-linear signal increases with incident scene exposure?",
+  "neutral_exposure_ramp": {
+    "minimum": 0.0,
+    "maximum": 16.0,
+    "samples": 4097
+  },
+  "scanner": {
+    "contract_path": "configs/u6_p6a_scanner_profile_boundary_v1.json",
+    "profile": "identity",
+    "reason": "isolate development and interpretation polarity from scanner nuisance"
+  },
+  "automatic_gates": {
+    "routes": [
+      "color_negative_neutral_scan",
+      "color_negative_print",
+      "slide_direct_scan",
+      "bw_developer_scan"
+    ],
+    "minimum_endpoint_increase": 0.5,
+    "minimum_first_difference": -1e-12,
+    "maximum_channel_spread": 0.15,
+    "exact_repeat": true,
+    "non_neutral_bw_rejected": true
+  },
+  "branch_rules": {
+    "all_pass": "open photographic route stress",
+    "slide_only_fail": "close shared negative-sensitometry slide route; require a distinct reversal-development operator before slide photographic stress",
+    "negative_or_print_fail": "close the failed route before photographic stress",
+    "bw_fail": "retain only the B&W data-gap/neutral-density guard"
+  },
+  "forbidden": [
+    "invert slide after scanning to disguise a negative development curve",
+    "change U2.2 curve knots or thresholds after the audit",
+    "use visual appeal to override exposure polarity",
+    "claim generic monotonicity is measured stock response"
+  ],
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic exposure-polarity consistency of generic route semantics; no measured film, process, scanner, stock, calibration, style or product claim"
+}
