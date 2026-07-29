@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 import math
 
@@ -504,18 +505,77 @@ def render_density_conditioned_structure_area_lod_region(
     ):
         raise ValueError("invalid area-LOD target or pixel factor")
     factor = pixel_size_factor
-    expanded = np.repeat(
-        np.repeat(target, factor, axis=0), factor, axis=1
-    )
     origin_y, origin_x = origin_yx
     height, width = shape
-    high = render_density_conditioned_structure_region(
-        expanded,
-        profiles,
-        origin_yx=(origin_y * factor, origin_x * factor),
-        shape=(height * factor, width * factor),
+    high_full_shape = (
+        target.shape[0] * factor,
+        target.shape[1] * factor,
     )
-    transmittance = high.transmittance.reshape(
+    high_origin = (origin_y * factor, origin_x * factor)
+    high_shape = (height * factor, width * factor)
+    high_layers = []
+    for channel, profile in enumerate(profiles):
+        sigma = profile.correlation_sigma_pixels
+        halo = (
+            int(profile.truncate * sigma + 0.5)
+            if sigma > 0.0
+            else 0
+        )
+        y0 = max(0, high_origin[0] - halo)
+        x0 = max(0, high_origin[1] - halo)
+        y1 = min(
+            high_full_shape[0], high_origin[0] + high_shape[0] + halo
+        )
+        x1 = min(
+            high_full_shape[1], high_origin[1] + high_shape[1] + halo
+        )
+        coarse_ys = np.arange(y0, y1, dtype=np.int64) // factor
+        coarse_xs = np.arange(x0, x1, dtype=np.int64) // factor
+        density_region = target[
+            coarse_ys[:, None], coarse_xs[None, :], channel
+        ]
+        rate = density_region / profile.resolved_count_rate_density
+        counts = counter_poisson_rate_field(
+            rate,
+            high_full_shape,
+            origin_yx=(y0, x0),
+            seed=profile.seed,
+            maximum_rate=(
+                profile.maximum_target_density
+                / profile.resolved_count_rate_density
+            ),
+        ).astype(np.float64)
+        if sigma > 0.0:
+            counts = gaussian_filter(
+                counts,
+                sigma=sigma,
+                order=0,
+                mode="constant",
+                cval=0.0,
+                truncate=profile.truncate,
+            )
+            if profile.boundary_mode == "normalized-support-v1":
+                support = gaussian_filter(
+                    np.ones(counts.shape, dtype=np.float64),
+                    sigma=sigma,
+                    order=0,
+                    mode="constant",
+                    cval=0.0,
+                    truncate=profile.truncate,
+                )
+                counts /= support
+        crop_y = high_origin[0] - y0
+        crop_x = high_origin[1] - x0
+        high_layers.append(
+            profile.grain_optical_density
+            * counts[
+                crop_y : crop_y + high_shape[0],
+                crop_x : crop_x + high_shape[1],
+            ]
+        )
+    high_density = np.stack(high_layers, axis=-1)
+    high_transmittance = np.exp(-high_density)
+    transmittance = high_transmittance.reshape(
         height,
         factor,
         width,
@@ -652,6 +712,61 @@ def render_density_conditioned_structure_adaptive_lod(
     )
 
 
+def iter_density_conditioned_structure_area_lod_rows(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    row_tile_height: int,
+) -> Iterator[tuple[int, DensityConditionedStructureResult]]:
+    """Yield bounded exact-area output row regions in order."""
+
+    target = np.asarray(target_density)
+    if (
+        target.ndim != 3
+        or not isinstance(row_tile_height, int)
+        or row_tile_height < 1
+    ):
+        raise ValueError("invalid exact-area row stream inputs")
+    for y0 in range(0, target.shape[0], row_tile_height):
+        y1 = min(target.shape[0], y0 + row_tile_height)
+        yield (
+            y0,
+            render_density_conditioned_structure_area_lod_region(
+                target,
+                profiles,
+                pixel_size_factor=pixel_size_factor,
+                origin_yx=(y0, 0),
+                shape=(y1 - y0, target.shape[1]),
+            ),
+        )
+
+
+def estimate_area_lod_region_workspace_bytes(
+    *,
+    output_width: int,
+    output_row_tile_height: int,
+    pixel_size_factor: int,
+    maximum_halo_rows: int,
+) -> int:
+    """Conservative explicit-array workspace model for the Python reference."""
+
+    values = (
+        output_width,
+        output_row_tile_height,
+        pixel_size_factor,
+        maximum_halo_rows,
+    )
+    if any(not isinstance(value, int) or value < 0 for value in values):
+        raise ValueError("workspace dimensions must be nonnegative integers")
+    high_rows = (
+        output_row_tile_height * pixel_size_factor
+        + 2 * maximum_halo_rows
+    )
+    high_columns = output_width * pixel_size_factor
+    return high_rows * high_columns * 24 * np.dtype(np.float64).itemsize
+
+
 __all__ = [
     "DENSITY_CONDITIONED_STRUCTURE_SCHEMA",
     "DensityConditionedLayerProfile",
@@ -662,6 +777,8 @@ __all__ = [
     "compile_two_cumulant_profiles",
     "counter_poisson_rate_field",
     "effective_mark_loss",
+    "estimate_area_lod_region_workspace_bytes",
+    "iter_density_conditioned_structure_area_lod_rows",
     "render_density_conditioned_structure",
     "render_density_conditioned_structure_adaptive_lod",
     "render_density_conditioned_structure_adaptive_lod_region",
