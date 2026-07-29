@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2au0-sillystill-cinestill-paired-source-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AU0",
+  "decision": "method_relevant_but_dataset_and_rights_unavailable",
+  "checked_at_utc": "2026-07-29T23:30:00Z",
+  "paper": {
+    "title": "CNNs for Style Transfer of Digital to Film Photography",
+    "arxiv_id": "2411.15967",
+    "claimed_stock": "CineStill 800T",
+    "claimed_pair_count": 41,
+    "digital_camera": "Sony Alpha 7",
+    "film_camera": "Nikon F3",
+    "pairing": "tripod-constrained sequential captures followed by keypoint and luminance alignment"
+  },
+  "official_repository": {
+    "url": "https://github.com/mikasenghaas/sillystill",
+    "commit": "b1ebdb971207b403b7126b759c1d30d30954a722",
+    "tree": "59b3dd5ebe0b0daae28493712cc97742d9a2266f",
+    "tree_entries": 221,
+    "root_license_present": false,
+    "release_count": 0,
+    "dataset_directory_entries": 0,
+    "tracked_example_digital_raw_count": 1,
+    "tracked_example_film_jpeg_count": 1
+  },
+  "availability": {
+    "readme_zenodo_link_status": "not_yet_available",
+    "readme_huggingface_link_status": "not_yet_available",
+    "open_dataset_release_issue": 1,
+    "author_release_response_present": false,
+    "full_41_pair_dataset_retrievable": false,
+    "model_checkpoint_retrievable": false,
+    "dataset_license_retrievable": false
+  },
+  "scientific_assessment": {
+    "high_value_features": [
+      "same-scene digital and real-film captures",
+      "one named film stock",
+      "diverse scenes and lighting",
+      "explicit spatial-alignment procedure"
+    ],
+    "unresolved_fields": [
+      "complete pair manifest and file hashes",
+      "film roll and process-session grouping",
+      "scanner make, settings, profile and raw lineage",
+      "independent held roll or process session",
+      "dataset and example-image reuse rights",
+      "fixed colour-state mapping for both domains"
+    ]
+  },
+  "allowed_use": "publication and repository source-method reconnaissance only",
+  "forbidden_actions": [
+    "download_or_fit_the_unreleased_41_pair_dataset",
+    "fit_or_train_on_the_unlicensed_example_pair",
+    "treat_the_example_pair_as_confirmatory_evidence",
+    "claim_stock_response_calibration_or_product_readiness"
+  ],
+  "reopen_condition": "an author-controlled release provides the complete pair manifest, immutable image payloads, explicit reusable data rights, colour/scanner lineage and group metadata sufficient for held-group evaluation",
+  "next_leaf": "continue bounded search for a rights-cleared downloadable controlled digital-film pair source; otherwise advance a distinct generic physical-image-formation experiment",
+  "claim_ceiling": "source-method and data-gap evidence only; no CineStill operator, stock response, training, visual or product claim"
+}

@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 - U5.R2AU0 paired CineStill source is unavailable
+
+- Audited the paper and official repository for the claimed 41-pair
+  CineStill-800T digital/film dataset.
+- The exact repository tree has no dataset directory, release or root licence;
+  both advertised dataset links remain unavailable. One example ARW/JPEG pair
+  has insufficient rights and no held-group lineage, so it was not acquired or
+  fitted.
+- Reopen only on an author-controlled licensed release with capture,
+  process/scanner and grouping metadata. Continue searching for executable
+  paired evidence or advance a distinct physical mechanism.
+
 ## 2026-07-28 - U5.R2AT0 adaptive AO6 dose closes visually
 
 - Added a hash-bound selector over the four frozen AO6 strength outputs. It

@@ -13,6 +13,14 @@
 > fixed 2.5 Delta-E dose. The exact audit cuts residual MAD to `.37284x` and
 > remains severe-clean, but fixed B0 > fixed AO6 > adaptive in all three blind
 > permutations. Close this policy without same-population target retuning.
+>
+> U5.R2AU0 audits the strongest newly found paired-data lead before touching
+> pixels. The CineStill-800T paper reports 41 same-scene digital/film pairs,
+> but the official repository still publishes neither the dataset nor reusable
+> image rights: both advertised dataset links remain unavailable and only one
+> unlicensed example pair is tracked. Close acquisition/fitting until an
+> author-controlled licensed release exists; this does not count against the
+> paired explicit-operator hypothesis.
 
 U6.P3L also closes the unchanged split backing-return topology on genuine
 RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard
