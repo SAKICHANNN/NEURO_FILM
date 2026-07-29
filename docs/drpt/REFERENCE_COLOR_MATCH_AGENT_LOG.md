@@ -4368,3 +4368,17 @@
   public schema, receipt, capability, native-RAW confirmation or product
   promotion, so P172, P45/P44 and v42 remain unchanged. Android/Apple
   object/link evidence and native-RAW confirmation are separate next gates.
+
+## 2026-07-29 - Register R0ED cross-target build evidence
+
+- Producer `657f5ce` removes hosted C dependencies without changing the
+  algorithm, workspace, vectors or exact R0EC Windows output aggregate.
+- Pinned NDK r27d reproducibly links Android arm64-v8a and x86_64 ELF
+  libraries; pinned Clang 22.1.8 reproducibly emits macOS and iOS arm64
+  Mach-O objects. Every target has exactly the two frozen ABI exports, zero
+  undefined globals and byte-exact independent cross-directory builds.
+  Stable evidence is `ba3f3d27...fe36f`.
+- The ceiling is compile/link/object-only. There is no Android/Apple runtime,
+  native RAW, package, schema, receipt, capability or product claim, so P172,
+  P45/P44 and v42 remain unchanged. Rights-cleared native-RAW evidence is the
+  next producer gate.

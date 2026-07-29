@@ -20,15 +20,14 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `fcd833c`; R0EC implements a
-  private C11 DDFAPD caller-workspace/no-heap ABI and freezes 24 vectors
-  across all four Bayer patterns before scoring. Two MSVC and pinned
-  LLVM-MinGW Windows DLL runs are byte-identical (`68d94ce7...51efc`) with
-  `2.3841858e-7` maximum absolute error and `3.3396553e-8` RMSE against the
-  Python reference. Measured sensels, replay and nonfinite,
-  insufficient-workspace and invalid-pattern failure atomicity all pass.
-  This remains private portable CPU development: it is not native RAW,
-  target-mobile/Apple runtime or product admission, and publishes no package,
+- D-PCT latest stable communicated snapshot is `657f5ce`; R0ED makes the
+  private DDFAPD C11 ABI freestanding while preserving the exact R0EC Windows
+  output aggregate. Pinned NDK r27d reproducibly links arm64-v8a and x86_64
+  ELF libraries with exactly two exports and zero undefined globals; pinned
+  Clang 22.1.8 reproducibly emits macOS and iOS arm64 Mach-O objects with the
+  same two-export/zero-undefined boundary. Stable evidence is
+  `ba3f3d27...fe36f`. This is strictly compile/link/object-only: there is no
+  Android/Apple runtime, native RAW or product admission, and no package,
   compatible consumer rail, public schema, receipt or capability. P172
   therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics remain
   explicitly unmapped.
