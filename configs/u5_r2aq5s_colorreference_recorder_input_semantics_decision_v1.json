@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq5s-colorreference-recorder-input-semantics-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ5S",
+  "decision": "close_recorder_photo_mapping_and_strength_tuning",
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2aq5s_colorreference_recorder_input_semantics_v1.json",
+      "sha256": "390cb4f96e9bc94752d6bdee8edc8cbf4d61e3b28fc0e1b3ec3ba66d43fd2d7b"
+    },
+    "report": {
+      "path": "outputs/experiments/u5_r2aq5s_colorreference_recorder_input_semantics_v1/report_pass1.json",
+      "sha256": "d93389b2e6d5afb9fd502ffbe14d9d8c80a106359374fc217585df9c1cbe8f1a",
+      "repeat_byte_identical": true
+    },
+    "software_commit": "915cb13fc84ff82d52c756eae720e82ff6919f7d"
+  },
+  "observed_facts": {
+    "official_page_defines_input_as_recorder_device_rgb": true,
+    "official_page_excludes_srgb": true,
+    "exact_source_tiff_count": 5,
+    "exact_source_tiffs_with_icc_profile": 0,
+    "exact_source_tiffs_with_white_point": 0,
+    "exact_source_tiffs_with_primary_chromaticities": 0,
+    "exact_source_tiffs_with_transfer_function": 0,
+    "identified_recorder_make_model": false,
+    "identified_recorder_to_known_space_transform": false,
+    "identified_recorder_primaries_or_spectral_response": false,
+    "identified_recorder_transfer_function": false
+  },
+  "identification_gate": {
+    "minimum_required_evidence_items": 1,
+    "observed_evidence_items": 0,
+    "passed": false
+  },
+  "interpretation": [
+    "The five exact RGB8 TIFFs preserve device codes but contain no profile, white point, primaries or transfer function.",
+    "The official source explicitly states that the values are recorder-device RGB and are not sRGB.",
+    "The developed-slide measurements cannot recover the missing input encoding independently of the film response; estimating both from the same pairs would make photo-domain reuse unidentified.",
+    "The strong but visually inferior AQ4G residuals therefore cannot be repaired by another strength grid or by silently choosing sRGB, linear RGB or another familiar colour space."
+  ],
+  "retained_use": "bounded internal recorder-device-to-developed-slide chart proxy and negative control only",
+  "forbidden_next_actions": [
+    "additional photo-domain recorder residual strength tuning",
+    "assuming recorder codes are sRGB, scene-linear or camera RGB",
+    "using developed-slide targets to backfill recorder input semantics",
+    "claiming a digital-camera-to-film or calibrated Velvia operator"
+  ],
+  "next_leaf": "select and preregister the next independent explicit film-simulation algorithm family; retain AO6 t15/c35 as the current development champion",
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "closed recorder photo-transfer hypothesis; bounded semantic identifiability evidence only"
+}
