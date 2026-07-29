@@ -4924,3 +4924,23 @@
   truth is still required. No public RAW rail, schema, receipt, capability,
   product admission or consumer mapping opens; P172/P45/P44/v42 remain
   unchanged.
+
+## 2026-07-29 - Revalidate consumer scope and classify full-repo failures
+
+- Using the existing main-project Python 3.12 environment without installing
+  or changing dependencies, every `tests/test_color_match*.py` test passes:
+  1,396 PASS / 5 platform-or-environment skips in 502.86 seconds. The narrower
+  RAW/file-ingress suite remains 33 PASS / 1 skip.
+- An unscoped repository run completes at 2,347 PASS / 6 skip / 36 FAIL in
+  633.87 seconds. The failures are outside the reference-match test namespace
+  and split between local ignored evidence absent from this worktree
+  (FilmStyle/Film-R/frontier manifests and images) and standalone-branch
+  version skew against main-owned profile/config assets.
+- A read-only hash diagnosis verified one apparent YAML mismatch was CRLF-only,
+  but after temporary LF normalization the next required asset still differed
+  because consumer carries an older main-owned `film_color_stats.json` while
+  the profile expects main's newer file. No broad line-ending rule, main asset
+  copy, threshold change or frozen-manifest rewrite was retained. The
+  consumer-only suite is the authoritative branch-health result; full main
+  validation remains a post-merge responsibility with main's ignored evidence
+  present.
