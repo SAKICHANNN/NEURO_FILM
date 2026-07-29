@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8bi_native_standard_raw_resources_decision.v1",
+  "node": "U6.P8BI",
+  "contract": "configs/u6_p8bi_native_standard_raw_resources_v1.json",
+  "contract_sha256": "73f607ab9d42f450bb1f4d0b6c6b19db25b3ca9e027d24fe0e5a1d7b5018cd46",
+  "formal_report": "outputs/u6_p8bi_native_standard_raw_resources_v1/report.json",
+  "formal_report_sha256": "f900fddba8834b8e44daff06d9702d8e51ec6a192109017841648fd359f31742",
+  "stable_evidence_id": "273c85a07337d89c70710045c89cb10f554758faae74ea5c04251dc41536815a",
+  "result": {
+    "status": "pass",
+    "all_runs_successful": true,
+    "raw_to_png_repeat_exact": true,
+    "png_output_sha256": "8063c941b23831cc48e6cb9cb725b2d2092d469fe21bcc8871194930a78e0c4c",
+    "png_bytes": 15432101,
+    "cleanup_pass": true,
+    "peak_process_tree_rss_bytes": [
+      269217792,
+      294723584
+    ],
+    "memory_gate_bytes": 1073741824,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      4.384516100020846,
+      4.435964400006924
+    ],
+    "elapsed_gate_seconds": 30.0,
+    "elapsed_pass": true
+  },
+  "decision": "retain the opt-in generic RAW file path. Two fresh-process runs of the exact frozen CC0 RAF produce byte-identical verified PNG output and pass cleanup, memory and elapsed gates",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 one frozen CC0 RAW through generic rawpy scene-linear decode and native Standard to verified sRGB16 PNG resource evidence only; no calibrated scene exposure, stock response, delivery, mobile or promotion",
+  "next_leaf": "U6.P8BJ run a bounded multi-camera RAW OOD cohort through the exact transaction, compute clipping and boundary diagnostics, and create a contact sheet for autonomous severe-artifact review before any wider opt-in integration"
+}
