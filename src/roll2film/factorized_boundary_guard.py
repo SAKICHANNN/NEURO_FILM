@@ -205,6 +205,43 @@ def apply_factorized_boundary_guard(
     """
 
     source = np.asarray(linear_rgb, dtype=np.float64)
+    if (
+        source.ndim < 2
+        or source.shape[-1] != 3
+        or not np.all(np.isfinite(source))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+    ):
+        raise ValueError("invalid factorized boundary-guard inputs")
+    return apply_target_factorized_boundary_guard(
+        source,
+        operator.apply(source),
+        tone_strength=tone_strength,
+        chroma_strength=chroma_strength,
+        luma_weights=luma_weights,
+        hard_boundary_epsilon_encoded_srgb=(
+            hard_boundary_epsilon_encoded_srgb
+        ),
+        guard_boundary_epsilon_encoded_srgb=(
+            guard_boundary_epsilon_encoded_srgb
+        ),
+    )
+
+
+def apply_target_factorized_boundary_guard(
+    linear_rgb: np.ndarray,
+    target_linear_rgb: np.ndarray,
+    *,
+    tone_strength: float,
+    chroma_strength: float,
+    luma_weights: np.ndarray,
+    hard_boundary_epsilon_encoded_srgb: float,
+    guard_boundary_epsilon_encoded_srgb: float,
+) -> FactorizedBoundaryGuardResult:
+    """Factor an explicit target residual into bounded tone and chroma stages."""
+
+    source = np.asarray(linear_rgb, dtype=np.float64)
+    target = np.asarray(target_linear_rgb, dtype=np.float64)
     weights = np.asarray(luma_weights, dtype=np.float64)
     if (
         source.ndim < 2
@@ -212,6 +249,8 @@ def apply_factorized_boundary_guard(
         or not np.all(np.isfinite(source))
         or np.any(source < 0.0)
         or np.any(source > 1.0)
+        or target.shape != source.shape
+        or not np.all(np.isfinite(target))
         or weights.shape != (3,)
         or not np.all(np.isfinite(weights))
         or np.any(weights <= 0.0)
@@ -241,8 +280,7 @@ def apply_factorized_boundary_guard(
         ),
     )
 
-    full = operator.apply(source)
-    residual = full - source
+    residual = target - source
     luma_delta = residual @ weights
     tone_delta = tone_strength * luma_delta[..., None]
     tone_scale = _maximum_safe_scale(source, tone_delta, lower, upper)
@@ -274,5 +312,6 @@ __all__ = [
     "ResidualBoundaryGuardResult",
     "apply_factorized_boundary_guard",
     "apply_residual_boundary_guard",
+    "apply_target_factorized_boundary_guard",
     "apply_target_residual_boundary_guard",
 ]
