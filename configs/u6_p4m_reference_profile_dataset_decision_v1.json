@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p4m_reference_profile_dataset_decision.v1",
+  "node": "U6.P4M",
+  "decision": "retain_group_split_reference_pairs_open_bounded_compiler_fit",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4m_reference_profile_dataset_v1.json",
+      "sha256": "4f106f552fd1b6b0e760e76ebc4ab712df6901d2687fab9852b3b70d5db1db27"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4m_reference_profile_dataset_v1/report.json",
+      "sha256": "e731a7b694ce566e0c10a0aa153773a546d72d88f27b7761a736416740f81e98",
+      "stable_evidence_id": "1a1807bd10e28ebf26699b27b43cdcd581966fb13a5529484e1b99d50c0f240b"
+    },
+    "manifest": {
+      "path": "outputs/experiments/u6_p4m_reference_profile_dataset_v1/dataset/manifest.json",
+      "sha256": "c64fa007fdafeef35f00018892e0ea74e5c674ef28de53d51d5a6c35fc173e45",
+      "inventory_sha256": "f2df0d94d2c18fdea50523e8fb3991dad42495d912252b3348982790e7ce9f17"
+    },
+    "software_commit": "21986f79bbaf03d03d574f5d8503850315ed8558"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "records": {
+      "development": 24,
+      "confirmation": 12,
+      "stress": 12,
+      "total": 48
+    },
+    "files": 145,
+    "dataset_bytes": 8925295,
+    "independent_generations": 2,
+    "generation_wall_seconds": [
+      5.015292999974918,
+      5.080779300013091
+    ],
+    "group_split_overlap_count": 0,
+    "cross_split_input_hash_overlap_count": 0,
+    "cross_split_target_hash_overlap_count": 0,
+    "repeat_inventory_byte_exact": true,
+    "row_stream_full_region_byte_exact": true
+  },
+  "interpretation": [
+    "The retained exact-area simulator now emits deterministic developed-density to exact material-structure reference pairs across six synthetic field families.",
+    "Development, confirmation and stress groups are disjoint by seed and have zero cross-split input or target hash overlap.",
+    "The compact dataset is sufficient to test a bounded explicit approximation policy, but it contains no photographs, scans or measured film statistics."
+  ],
+  "next_leaf": "U6.P4N fit candidate thresholds only on development groups, freeze the selected explicit policy, then evaluate once on sealed confirmation and stress groups against global P4H and exact-area controls",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic reference-pair dataset for explicit compiler research; not measured film structure, stock calibration, photographic evidence or product training data"
+}
