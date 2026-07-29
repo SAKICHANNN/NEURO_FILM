@@ -368,4 +368,9 @@ and improves chart-to-palette by 34.23%, but regresses palette-to-chart by
 26.64% and one combined fit by 42.66% versus one-matrix. It follows proxy
 support rather than yielding a stronger shared operator, so no capacity,
 domain-router or photo rescue opens; AO6 t15/c35 remains the colour
-development champion.
+development champion. U5.R2AR1 then gives both proxy domains equal total
+weight in one shared bounded operator. Worst-domain RMSE improves 9.20% on
+the full rows and 4.17% in fixed five-fold cross-fit for only 2.33%/3.72%
+pooled regression, but minimum Jacobian determinant is `.001516 < .01`.
+The frozen structural gate closes the family without strength, weighting,
+capacity or photograph rescue; AO6 remains the colour development champion.

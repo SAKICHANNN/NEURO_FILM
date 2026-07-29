@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u5_r2ar1_velvia_group_balanced_operator_decision.v1",
+  "node": "U5.R2AR1",
+  "software_commit": "d6ca15d0c3a6dc8403f8ba92b796f87ad6b45794",
+  "contract": {
+    "path": "configs/u5_r2ar1_velvia_group_balanced_operator_v1.json",
+    "sha256": "0ff58dc1193b2691e8d670ff33d71f612ac74b30eda5578f1bd927fefd282dea"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u5_r2ar1_velvia_group_balanced_operator_v1/report_a.json",
+    "run_b": "outputs/experiments/u5_r2ar1_velvia_group_balanced_operator_v1/report_b.json",
+    "sha256": "bc88455d576390bbcfbcd1b2834c4ba29759b6bc9dcc4b10fa6cceed3aeddf2",
+    "stable_evidence_id": "5d39094660fae664a9d98b715e72ce6e19f8b32f2438d59c8269df88dfb3f81c",
+    "repeat_count": 2
+  },
+  "result": {
+    "status": "automatic_fail_minimum_jacobian_determinant",
+    "full_fit": {
+      "pooled_control_worst_domain_rgb_rmse": 0.04121239489443251,
+      "group_balanced_worst_domain_rgb_rmse": 0.037421655445062714,
+      "worst_domain_improvement": 0.09198056698912915,
+      "pooled_control_combined_rgb_rmse": 0.029410168766182444,
+      "group_balanced_combined_rgb_rmse": 0.03009548052731727,
+      "combined_regression": 0.023301864283173934
+    },
+    "crossfit": {
+      "pooled_control_worst_domain_rgb_rmse": 0.047764332352620766,
+      "group_balanced_worst_domain_rgb_rmse": 0.04577122915568569,
+      "worst_domain_improvement": 0.04172785630543241,
+      "pooled_control_combined_rgb_rmse": 0.03315725988901252,
+      "group_balanced_combined_rgb_rmse": 0.034391656186508385,
+      "combined_regression": 0.03722853763030387,
+      "fold_worst_domain_win_fraction": 0.8
+    },
+    "structural": {
+      "minimum_jacobian_determinant": 0.0015155975978752572,
+      "maximum_jacobian_spectral_norm": 1.53710016370091,
+      "raw_out_of_cube_fraction": 0.0
+    },
+    "photographic_render_allowed": false
+  },
+  "decision": "close_group_balancing_on_display_proxy_family_without_rescue",
+  "interpretation": [
+    "Equal total chart/palette weight improves the full worst-domain RGB RMSE by 9.20% and the five-fold cross-fit worst-domain RGB RMSE by 4.17%, while pooled RMSE regresses by only 2.33% and 3.72%.",
+    "The candidate nevertheless compresses colour volume too aggressively: its minimum sampled Jacobian determinant is 0.00152, below the frozen 0.01 gate. The pooled AO5 control also measures only 0.00287 under the newer diagnostic, so the issue is a limitation of this one-matrix response family rather than evidence for a safe replacement.",
+    "The contract is post-exploratory development on reused proxy rows. No determinant threshold change, strength shrinkage, group-weight sweep, fold change, capacity increase or photographic rescue is allowed."
+  ],
+  "next_leaf": "Retain AO6 t15/c35 as the current colour development champion and seek new controlled operator evidence or a structurally distinct bounded explicit family; do not rescue AR1 on these 71 rows.",
+  "claim_ceiling": "Negative post-exploratory development comparison of equal proxy-group weighting for one shared bounded explicit operator on reused author-rendered Velvia display-proxy domains; not untouched confirmation, RAW, stock response, calibration or product evidence."
+}

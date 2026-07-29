@@ -7249,3 +7249,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capacity follows support in one proxy domain rather than identifying a
   stronger shared film operator. AO6 t15/c35 remains the development colour
   champion.
+
+## 2026-07-30 - U5.R2AR1 group-balanced proxy operator closes
+
+- One shared bounded one-matrix operator gives the 24-row chart and 47-row
+  palette equal total fit weight; it does not fit or route domain experts.
+  Two formal reports are byte-identical at `bc88455d...ddf2`.
+- Full/cross-fit worst-domain RGB RMSE improves `9.20%/4.17%`; combined RMSE
+  regresses only `2.33%/3.72%`, and four of five folds improve their
+  worst-domain score.
+- Minimum sampled Jacobian determinant is `.001516`, below the frozen `.01`
+  gate. The pooled AO5 control is also only `.002874` under the same newer
+  diagnostic, so equal weighting improves group fairness but does not produce
+  a structurally acceptable replacement.
+- Automatic promotion and photographic rendering are closed without changing
+  determinant, strength, weights, folds or capacity. AO6 t15/c35 remains the
+  development colour champion; Ultimate continues with a distinct
+  evidence-authorized algorithm or controlled-data leaf.
