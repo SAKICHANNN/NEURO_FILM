@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p4j_adaptive_exact_area_fallback_contract.v1",
+  "node": "U6.P4J",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4i_contract": "configs/u6_p4i_two_cumulant_nonstationarity_stress_v1.json",
+    "p4i_contract_sha256": "c93cf009e54a3c3ed13c98d50dc7c1320137c76b44d02f128838c74c0acea5d1",
+    "p4i_decision": "configs/u6_p4i_two_cumulant_nonstationarity_decision_v1.json",
+    "p4i_decision_sha256": "edf6138b70563088ed3cade0835894928493a65c8996f6255de4ac2e7fac8829"
+  },
+  "question": "Can a deterministic density-heterogeneity gate retain P4H two-cumulant execution in smooth regions and use exact base-pitch area resolution near nonstationary structure without seams or unbounded fallback?",
+  "router": {
+    "input": "developed optical density only",
+    "local_statistic": "maximum per-channel 3x3 density range",
+    "exact_fallback_threshold": 0.1,
+    "mask_dilation_pixels": "ceil(max compiled Gaussian radius)+1 at each LOD",
+    "smooth_executor": "P4H analytic two-cumulant normalized-support",
+    "nonstationary_executor": "P4D base-pitch normalized-support followed by area-mean transmittance and -log",
+    "composition": "hard per-output-pixel executor choice; no learned or dense expert blending",
+    "full_exact_reference_materialization_allowed_in_this_audit": true,
+    "sparse_product_executor_claim_allowed": false,
+    "per_image_fit_or_normalization_allowed": false,
+    "output_clipping_allowed": false
+  },
+  "scenes": {
+    "reuse": "U6.P4I exact step, checkerboard and island populations",
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 3000
+  },
+  "lod_factors": [2, 4],
+  "automatic_gates": {
+    "minimum_density_map_correlation": 0.97,
+    "maximum_region_mean_absolute_difference": 0.05,
+    "minimum_region_variance_ratio": 0.45,
+    "maximum_region_variance_ratio": 2.2,
+    "minimum_step_contrast_ratio": 0.85,
+    "maximum_step_contrast_ratio": 1.15,
+    "maximum_step_center_shift_pixels": 0.75,
+    "minimum_checkerboard_contrast_ratio": 0.8,
+    "maximum_checkerboard_contrast_ratio": 1.2,
+    "minimum_island_excess_ratio": 0.75,
+    "maximum_island_excess_ratio": 1.25,
+    "maximum_island_centroid_shift_pixels": 0.75,
+    "maximum_constant_rate_density_map_correlation": 0.2,
+    "minimum_display_noise_out_of_domain_fraction": 0.001,
+    "maximum_exact_fallback_fraction_mean": 0.6,
+    "maximum_step_exact_fallback_fraction": 0.1,
+    "maximum_executor_boundary_mean_absolute_error": 0.05,
+    "density_and_transmittance_domain_valid": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain adaptive exact-area semantics and open a separately frozen sparse-executor and seam-free tiling implementation audit before photographs",
+    "fail": "close adaptive LOD and retain P4H stationary-only evidence"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic adaptive-execution semantics; not a sparse product implementation, measured film NPS, stock response or photographic result"
+}
