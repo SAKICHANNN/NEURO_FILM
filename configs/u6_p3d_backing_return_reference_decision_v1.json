@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p3d-backing-return-reference-v1",
+  "node": "U6.P3D",
+  "decision": "retain_generic_bounded_backing_return_reference_open_standard_compiler",
+  "software_commit": "ebc9c91",
+  "contract": {
+    "path": "configs/u6_p3d_backing_return_reference_v1.json",
+    "canonical_sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12"
+  },
+  "formal_runs": {
+    "run_a": "outputs/u6_p3d_backing_return_reference_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3d_backing_return_reference_v1/run_b/report.json",
+    "report_sha256": "551019d7488c0cb8ca539b122ec7aba7affc251993bc18ca4b355319bc6a79c3",
+    "stable_evidence_id": "bd11e6bccab89f3454ee7d1a4ee2de8ed3ac59126393b46f27819c867493ba0c",
+    "repeat_byte_identical": true
+  },
+  "metrics": {
+    "kernel_sum_abs_error_max": 0.0,
+    "expected_returned_energy_by_source": [
+      0.065,
+      0.018,
+      0.00576
+    ],
+    "returned_energy_abs_error_max": 1.2750217548429532e-16,
+    "linearity_max_abs_error": 0.0,
+    "zero_return_identity_max_abs_error": 0.0,
+    "legacy_energy_redistribution_total": 3.0,
+    "additive_backing_return_total": 3.0887599999999997,
+    "additive_energy_above_legacy": 0.08875999999999973,
+    "far_halo_red_over_blue_at_160um": 9.222246414345339
+  },
+  "automatic_pass": true,
+  "interpretation": "The isolated reference distinguishes support-reflected second-pass exposure from the older energy-redistribution control while remaining nonnegative, linear and explicitly energy-bounded. It proves a software representation, not the magnitude or radius of a real film/camera system.",
+  "retained_controls": [
+    "U6.P1A energy-redistribution reference",
+    "zero-return exact identity",
+    "wrong-domain, wrong-scale and non-float64 rejection"
+  ],
+  "next_leaf": "U6.P3E freeze a separately versioned float32 separable Standard compiler with reference-error, partition, energy, edge and photographic severe-artifact gates",
+  "production_integration_allowed": false,
+  "stock_or_camera_claim_allowed": false,
+  "claim_ceiling": "generic physical-inspired float64 reference for bounded backing-reflection second-pass exposure; no measured film, named stock, process, camera, pressure-plate, scanner, calibration, authenticity, preference or product claim"
+}
