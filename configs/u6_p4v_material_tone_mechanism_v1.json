@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4v_material_tone_mechanism_contract.v1",
+  "node": "ULT > U6 > U6.P4V",
+  "parent_decision": {
+    "path": "configs/u6_p4u_photographic_material_stress_decision_v1.json",
+    "sha256": "143255d4d7a7ae98ff924faa90a797b6c31e7fa80882a19ae6e9f3f9d20f4da5",
+    "required_decision": "close_p4t_photographic_material_integration_retain_p4t_physical_domain_evidence"
+  },
+  "question": "Which fixed stage explains the closed P4T photographic tone drift: global density-mean error, analytical interpretation-bound compression, or large local material variance propagated through nonlinear interpretation and display?",
+  "population": {
+    "source": "all sixteen exact P4U photographs",
+    "expected_images": 16,
+    "selection_after_result_allowed": false
+  },
+  "candidate": {
+    "identity": "exact closed P4U p4t_anisotropic_shared_seed",
+    "parameter_changes_allowed": false,
+    "render_changes_allowed": false
+  },
+  "trace_stages": [
+    "target_developed_density",
+    "raw_p4t_density",
+    "analytically_bounded_p4t_density",
+    "development_adjacency",
+    "dye_diffusion",
+    "interpretation",
+    "scanner_mtf",
+    "neutral_gauge",
+    "fixed_ao6_display"
+  ],
+  "diagnostic_thresholds": {
+    "maximum_channel_mean_density_error_considered_small": 0.01,
+    "minimum_median_absolute_local_density_residual_considered_large": 0.05,
+    "maximum_compressed_pixel_fraction_considered_sparse": 0.2,
+    "photographic_tone_drift_failure_threshold": 0.03
+  },
+  "execution": {
+    "runs": 2,
+    "report_repeat_exact_required": true,
+    "new_render_files_allowed": false,
+    "post_result_parameter_change_allowed": false
+  },
+  "branch_rule": {
+    "global_mean_primary": "do not renormalize photographs; close the current mark-rate semantics and require a separately derived expectation-preserving material model",
+    "bound_compression_primary": "close the current endpoint handling and require a separately derived physical-domain boundary model before material retry",
+    "local_variance_nonlinearity_primary": "close direct full-strength material replacement; any successor must derive bounded local variance or optical averaging independently before photographic confirmation",
+    "unidentified": "retain the negative P4U result and stop material integration until a new discriminating hypothesis exists"
+  },
+  "claim_ceiling": "Mechanism attribution for a rejected generic physical-inspired photographic material path; not a new candidate, preference result, emulsion/stock/process/scanner calibration or product evidence."
+}
