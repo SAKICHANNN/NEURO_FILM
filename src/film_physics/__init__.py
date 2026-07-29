@@ -146,6 +146,13 @@ from .spatial_response import (
     density_to_scan_transmittance,
     required_spatial_response_halo,
 )
+from .interimage_adjacency import (
+    InterimageAdjacencyProfile,
+    apply_interimage_adjacency,
+    apply_interimage_adjacency_row_tiled,
+    interimage_adjacency_profile_from_contract,
+    required_interimage_adjacency_halo,
+)
 from .scanner import (
     SCANNER_STAGES,
     ScannerContext,
@@ -246,9 +253,12 @@ __all__ = [
     "ScannedInterpretation",
     "ScanSignalNormalization",
     "SpatialResponseProfile",
+    "InterimageAdjacencyProfile",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
     "apply_interpretation_bounded_development_adjacency",
+    "apply_interimage_adjacency",
+    "apply_interimage_adjacency_row_tiled",
     "apply_compiled_scatter",
     "apply_compiled_scatter_row_tiled",
     "apply_compiled_backing_return",
@@ -279,6 +289,7 @@ __all__ = [
     "density_to_scan_transmittance",
     "derive_scan_signal_normalization",
     "required_spatial_response_halo",
+    "required_interimage_adjacency_halo",
     "compile_scatter_profile",
     "compile_print_interpretation",
     "compile_backing_return_profile",
@@ -305,6 +316,7 @@ __all__ = [
     "backing_return_kernel_2d",
     "backing_return_profile_from_contract",
     "profile_from_contract",
+    "interimage_adjacency_profile_from_contract",
     "prepare_interpretation_medium",
     "print_interpretation_identity",
     "render_developed_structure",
