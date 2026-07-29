@@ -7428,3 +7428,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Numerical effect and safety are real, but product-visible value is not.
   Close unchanged P5F runtime/combined integration without strength or matrix
   rescue. P5C remains the simpler runtime authority.
+
+## 2026-07-28 - SF2.9B establishes a held-charge target-family signal
+
+- Acquired and twice audited 100 official ColorReference K3/V3 spectral
+  archives: 29,856,706 bytes, 288 common patches, 51 Ektachrome-compatible
+  and 49 Velvia-50-compatible charges across 19 shared years.
+- A result-blind committed split fits all transforms on 87 charges and tests
+  13 years-ending-8/9 charges. Spectral and Lab both reach BA/AUC 1.0 with
+  exact stratified `p=.000583`; year-only is .536 and batch-error-only .357.
+- Retain only cross-charge target-family measurement evidence. Target
+  manufacture, aim adjustment, process and material remain entangled; stock
+  appearance/operator fitting, training, LSM and product integration remain
+  closed. Next: held-charge shared-vs-family optical-density spectral bases.
