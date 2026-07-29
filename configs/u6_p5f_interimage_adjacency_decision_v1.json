@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p5f_interimage_adjacency_decision.v1",
+  "node": "U6.P5F",
+  "status": "automatic-pass-synthetic-feasibility-only",
+  "contract_sha256": "3f40e22073763358ac97b15d78076adc0575a76cc3a58b6c44ac119c257b2b0d",
+  "software_commit": "666d854cc1518bff1c2f42dffb97147243c39ba5",
+  "report_sha256": "317eed8703074bc90d3beadfc4c4287c5cf00b1907d70e1722b4df0bdec1251d",
+  "stable_evidence_id": "c6804ed2a0df8b3e8907000d630afe96a9f160905067378a19b8cec7fd114ca8",
+  "repeat_report_count": 2,
+  "metrics": {
+    "halo_rows": 5,
+    "neutral_axis_maximum_absolute_error": 0.0,
+    "peak_absolute_density_correction": 0.049999831319974763,
+    "peak_absolute_transmittance_correction": 0.006000000000000061,
+    "minimum_single_channel_opponent_gradient_gain_fraction": 0.06802419054350661,
+    "remote_impulse_maximum_absolute_correction": 0.0,
+    "hard_clip_fraction": 0.0,
+    "row_partitions_exact": [
+      31,
+      47
+    ]
+  },
+  "automatic_decisions": {
+    "repeat": true,
+    "constant_fields": true,
+    "neutral_axis": true,
+    "density_domain": true,
+    "density_bound": true,
+    "transmittance_bound": true,
+    "material_response": true,
+    "all_channel_opponent_gain": true,
+    "row_partitions": true,
+    "finite_support": true,
+    "no_hard_clip": true,
+    "zero_coupling": true
+  },
+  "claim_ceiling": "generic-physical-inspired-interimage-adjacency-synthetic-feasibility",
+  "branch_decision": "Retain the fixed zero-sum cross-layer operator as synthetic feasibility only. Freeze a separate rights-cleared photographic severe-artifact and OOD audit before any combined-chain or product use.",
+  "forbidden_interpretations": [
+    "measured DIR coupler chemistry",
+    "film stock or process response",
+    "photographic severe-artifact safety",
+    "product or renderer promotion"
+  ]
+}

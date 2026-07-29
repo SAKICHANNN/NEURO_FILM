@@ -7370,3 +7370,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   finite impulse support and repeat identity. The claim ceiling is generic
   physical-inspired feasibility; no film stock, process, DIR chemistry,
   calibration, photographic safety or product promotion is allowed.
+
+## 2026-07-30 - U6.P5F synthetic feasibility passes
+
+- Two formal reports from committed implementation `666d854c` are
+  byte-identical at `317eed87...1251d`.
+- Constant fields and the full neutral axis remain exact. Each single-channel
+  edge gains `6.8024%` peak opponent gradient. Maximum density/transmittance
+  changes are `.04999984/.0060000001`; 31/47-row partitions are exact, and
+  remote impulse response and hard clipping are zero.
+- Retain only generic physical-inspired synthetic feasibility. P5G must
+  independently freeze and test photographic severe/OOD behavior; no real
+  DIR, stock, process, calibration or renderer claim opens.
