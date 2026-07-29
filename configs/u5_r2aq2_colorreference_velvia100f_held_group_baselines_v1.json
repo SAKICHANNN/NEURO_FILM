@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq2-colorreference-velvia100f-held-group-baselines-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ2",
+  "parent": {
+    "config_sha256": "3843dc8b81980efd7b5c4ddf179e383c0f4fdf59539365f04ff511696f02aea1",
+    "decision": "configs/u5_r2aq1_colorreference_velvia100f_pair_table_decision_v1.json",
+    "report": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/report.json",
+    "report_sha256": "21177de2944d866079e8ac3c45862e6a83b397928a01366d3ded53bc52555e6c",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "target_space": {
+    "fit_fields": ["XYZ_X", "XYZ_Y", "XYZ_Z"],
+    "fit_scale": 0.01,
+    "evaluation_space": "CIELAB D50 2 degree from raw predicted XYZ; no clipping",
+    "reference_white_xyz": [0.9642, 1.0, 0.8251],
+    "provided_xyz_lab_consistency_median_deltae76_max": 0.25,
+    "provided_xyz_lab_consistency_p95_deltae76_max": 0.5
+  },
+  "split_contract": {
+    "primary": "joint leave-one-target-set and leave-one-source-slide out",
+    "primary_fold_count": 30,
+    "primary_development_rule": "test_set != held_test_set AND slide_index != held_slide_index",
+    "primary_confirmation_rule": "test_set == held_test_set AND slide_index == held_slide_index",
+    "primary_expected_development_rows": 5760,
+    "primary_expected_confirmation_rows": 288,
+    "secondary": [
+      "leave-one-target-set-out",
+      "leave-one-source-slide-out"
+    ],
+    "normalization_fit_on_development_only": true,
+    "duplicate_source_rows_in_development": "retained as independent target-set measurements with equal weight"
+  },
+  "candidate_models": [
+    {
+      "id": "identity",
+      "parameters": 0,
+      "definition": "predicted normalized XYZ equals recorder RGB"
+    },
+    {
+      "id": "target_mean",
+      "parameters": 3,
+      "definition": "development target XYZ mean"
+    },
+    {
+      "id": "diagonal_affine",
+      "parameters": 6,
+      "definition": "three independent least-squares channel affine maps"
+    },
+    {
+      "id": "nonnegative_affine",
+      "parameters": 12,
+      "definition": "per-output nonnegative 3x3 coefficients and nonnegative intercept, scipy lsq_linear"
+    },
+    {
+      "id": "full_affine",
+      "parameters": 12,
+      "definition": "unconstrained least-squares 3x3 plus intercept"
+    },
+    {
+      "id": "quadratic_full",
+      "parameters": 30,
+      "definition": "fixed [1,R,G,B,R2,G2,B2,RG,RB,GB] basis with ridge 1e-8 on non-intercept coefficients"
+    }
+  ],
+  "model_selection": {
+    "primary_metric": "joint_holdout_mean_deltae76",
+    "eligibility": [
+      "all 30 joint folds finite",
+      "every joint fold improves over identity",
+      "joint raw XYZ negative component fraction <= 0.005",
+      "joint raw XYZ component above 1.2 fraction <= 0.005",
+      "joint worst-fold mean Delta E76 <= 15"
+    ],
+    "relative_gates": {
+      "champion_mean_deltae76_improvement_over_identity_min": 0.25,
+      "champion_mean_deltae76_improvement_over_diagonal_affine_min": 0.1,
+      "quadratic_improvement_over_full_affine_to_open_iterative_nonlinear_family_min": 0.05
+    },
+    "simpler_model_tie_relative": 0.01,
+    "simplicity_order": [
+      "identity",
+      "target_mean",
+      "diagonal_affine",
+      "nonnegative_affine",
+      "full_affine",
+      "quadratic_full"
+    ]
+  },
+  "numerics": {
+    "float_dtype": "float64",
+    "least_squares_rcond": null,
+    "quadratic_ridge": 0.00000001,
+    "nonnegative_maximum_iterations": 1000,
+    "deterministic_single_thread": true
+  },
+  "decision_branches": {
+    "no_eligible_model": "close_recorder_proxy_operator_identifiability",
+    "simple_model_champion": "retain_simple_recorder_proxy_champion_and_close_added_capacity",
+    "quadratic_material_gain": "open_separately_frozen_aq3_bounded_nonlinear_explicit_proxy_challengers"
+  },
+  "forbidden_actions": [
+    "random row split",
+    "target-set or slide leakage into normalization or fit",
+    "threshold or model-family changes after formal results",
+    "operator fitting in display sRGB or camera RGB semantics",
+    "photo rendering",
+    "digital-camera-to-film, independent-roll, process or calibrated stock-response claims",
+    "training, production integration, redistribution or public weights"
+  ],
+  "fit_allowed": true,
+  "fit_scope": "AQ1 internal recorder-source/manufactured-target proxy table only",
+  "training_allowed": false,
+  "render_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "held-target-set and held-recorder-grid explicit proxy explainability; not a camera-to-film operator or calibrated Velvia stock response"
+}
