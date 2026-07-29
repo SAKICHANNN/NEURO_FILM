@@ -86,7 +86,7 @@ def validate_parent_evidence(root: Path, config: Mapping[str, Any]) -> None:
         raise ApolloStepChartSourceError("magazine evidence hash drifted")
 
 
-def _safe_members(
+def safe_zip_members(
     archive: zipfile.ZipFile,
     *,
     maximum_member_count: int,
@@ -129,7 +129,7 @@ def inspect_archive(path: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         raise ApolloStepChartSourceError("archive size is outside the bound")
     try:
         with zipfile.ZipFile(path, "r") as archive:
-            members = _safe_members(
+            members = safe_zip_members(
                 archive,
                 maximum_member_count=int(acquisition["maximum_member_count"]),
                 maximum_uncompressed_bytes=int(
@@ -157,7 +157,7 @@ def inspect_archive(path: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _write_stream(
+def write_stream_bounded(
     blocks: Iterable[bytes],
     destination: Path,
     *,
@@ -222,7 +222,7 @@ def acquire_archive(
             raise ApolloStepChartSourceError("download content type is not ZIP")
         if str(config["source"]["download_filename"]) not in disposition:
             raise ApolloStepChartSourceError("download disposition drifted")
-        _write_stream(
+        write_stream_bounded(
             response.iter_content(chunk_size=int(acquisition["chunk_bytes"])),
             partial,
             maximum_bytes=int(acquisition["maximum_compressed_bytes"]),
@@ -263,8 +263,10 @@ __all__ = [
     "SCHEMA",
     "acquire_archive",
     "inspect_archive",
+    "safe_zip_members",
     "sha256_file",
     "validate_config",
     "validate_parent_evidence",
+    "write_stream_bounded",
     "write_manifest",
 ]

@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p2l_apollo16_bw_step_chart_source.v1",
+  "experiment_id": "u6.p2l-apollo16-bw-step-chart-source-v1",
+  "node": "ULT > U6 > U6.P2L",
+  "status": "bounded_acquisition_contract_frozen",
+  "question": "Does one bounded raw-scan segment from the camera-free density wedge associated with Apollo 16 magazine 111/J expose an integrity-clean Kodak 3401 Plus-X black-and-white response source for a later generic B&W interpretation pilot?",
+  "source": {
+    "name": "March to the Moon / NASA Johnson Space Center",
+    "about_url": "https://tothemoon.im-ldi.com/about",
+    "download_url": "https://tothemoon.im-ldi.com/download_step?step_name=AS16-111-stepchart05",
+    "allowed_download_host": "tothemoon.im-ldi.com",
+    "download_filename": "AS16-111-stepchart05.zip",
+    "observed_date": "2026-07-30",
+    "source_description": "The archive states that fixed-percent density wedges were placed directly on film without a camera. Segment 05 is the smallest advertised part of the five-part AS16-111 wedge.",
+    "scanner_description": "Apollo film scans are described as Leica DSW700 scans at up to 200 pixels/mm and 14-bit A/D; exact member metadata remains to be audited.",
+    "rights_description": "The source states that NASA/JSC raw scans of Apollo flight film are public domain; processed ASU derivatives are excluded.",
+    "allowed_use": "bounded internal research and reproducible derived measurement from raw scan members only; no processed ASU product use"
+  },
+  "magazine_evidence": {
+    "nasa_index_url": "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a16/a16.photidx.pdf",
+    "image_library_url": "https://apollojournals.org/alsj/a16/images16.html",
+    "mission": "AS16",
+    "photo_roll": "111",
+    "physical_magazine": "J",
+    "film_stock_id": "kodak_3401_plus_x",
+    "film_code": "3401",
+    "film_description": "High Speed Black and White Plus-X, ASA 80-125",
+    "association_status": "independently documented magazine association; archive contents must still match AS16-111 and remain raw-scan evidence"
+  },
+  "acquisition": {
+    "destination": "data/external/apollo16_bw_step_chart_v1/AS16-111-stepchart05.zip",
+    "manifest": "outputs/experiments/u6_p2l_apollo16_bw_step_chart_source_v1/acquisition_manifest.json",
+    "advertised_compressed_size": "81 MB",
+    "maximum_compressed_bytes": 300000000,
+    "maximum_uncompressed_bytes": 2000000000,
+    "maximum_member_count": 16,
+    "request_timeout_seconds": 120,
+    "chunk_bytes": 4194304,
+    "resume_allowed": false,
+    "reason_resume_forbidden": "The same source endpoint ignored HTTP Range for the AS07-03 sibling on 2026-07-30."
+  },
+  "gates_before_analysis": {
+    "exact_archive_sha256_recorded": true,
+    "zip_crc_and_member_paths_valid": true,
+    "raw_scan_identity_supported": true,
+    "member_format_dimensions_bit_depth_recorded": true,
+    "density_wedge_geometry_detected_without_fitting": true,
+    "segment_contains_usable_wedge_levels": true,
+    "processed_product_detected": "close"
+  },
+  "forbidden_actions": [
+    "fit any response before acquisition integrity and raw-scan identity pass",
+    "treat wedge percentages as scene RGB or a digital-photo pair",
+    "use this black-and-white source for SO-368 or any colour-stock response",
+    "claim scanner-independent response, calibrated sensitometry, developer identity or modern Plus-X equivalence",
+    "infer exposure spacing, illuminant spectrum, development parameters or density values absent from independent evidence",
+    "use ASU processed derivatives",
+    "expand to the other four segments before segment 05 is adjudicated"
+  ],
+  "branch_rule": {
+    "source_pass": "open a separately frozen black-and-white parsing and monotonic-response feasibility audit only",
+    "source_fail": "close this segment without curve fitting and retain manufacturer priors plus generic physical-inspired B&W sensitometry"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "claim_ceiling": "One historical Kodak 3401 Plus-X magazine-associated, camera-free density-wedge raw-scan segment source audit; not a digital-to-film pair, modern stock response, calibrated sensitometry, process truth, scanner independence or product promotion."
+}
