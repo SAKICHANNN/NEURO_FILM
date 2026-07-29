@@ -29,6 +29,21 @@ scanner response, combined ablation, profile compilation and still/video
 runtime. Existing AO6/AO9 display-proxy evidence and procedural FilmFX are
 controls only, not calibrated emulsion or scanner truth.
 
+U6.P4D-P4J now establish a narrower material-structure result. A nonnegative
+marked-Poisson field can depend on developed density, and an analytic
+two-cumulant compiler preserves stationary area-mean transmittance and
+variance across 2x/4x LOD. The same stationary approximation fails frozen
+checkerboard/island stress; a deterministic exact-area fallback repairs the
+main structure metrics but still fails unchanged sparse-scene controls, so it
+does not open photographs or product integration. U6.P4K/P4L retain
+virtual-target row streaming for the exact-area reference simulator at
+`465.05-465.06MB` process-tree peak and `61.28-64.61s` locally. P4M produces
+48 repeat-exact, group-disjoint synthetic reference pairs with zero cross-split
+input/target hash overlap. P4N closes hard threshold routing: the selected
+policy improves sealed fidelity but is `7.44%` worse than simpler global P4H
+under the frozen development objective. P4O next measures only stationary
+global P4H; no added router, photographs or product integration open.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

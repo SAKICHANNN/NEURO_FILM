@@ -7004,3 +7004,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   cannot distinguish transferable nonlinearity from grid-specific
   interpolation. Additional controlled grids or a distinct physical source
   are required; model-capacity rescue remains closed.
+
+## 2026-07-29 - U6.P4K-P4N close exact-reference scale-up and routing
+
+- P4K makes factor-2/4 exact-area execution coordinate-streamed without a full
+  expanded target. P4L then passes two fresh local processes at about 465MB
+  peak and 61-65 seconds with identical output and zero residue.
+- P4M generates 48 deterministic synthetic reference pairs across disjoint
+  development/confirmation/stress seed groups. Two inventories are byte-exact;
+  all cross-split group/input/target overlaps are zero.
+- P4N selects threshold `.8` using development only. Sealed fidelity gates
+  pass, but the cost-aware score is 7.44% worse than global stationary P4H.
+  Hard routing closes without added capacity. Exact-area remains offline
+  reference infrastructure; no photograph, measured-film or product claim.
+- Next leaf: P4O fresh-process performance/partition evidence for stationary
+  global P4H only.
