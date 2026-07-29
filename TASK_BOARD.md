@@ -299,3 +299,9 @@ failures. The outputs remain uniformly dense and cyan-green, so style and
 preference are unresolved and no product/stock promotion opens. U6.P2H is
 ready to attribute that appearance across direct transmittance and scanner
 stages without fitting.
+
+U6.P2H now localizes the problem: most luma/range compression already exists
+in raw transmittance, while spectral is only the largest small incremental
+scanner shift. U6.P2I is ready to define an explicit endpoint-derived
+scan-signal black/white normalization; it must use synthetic flat endpoints,
+never photograph fitting or silent clipping.

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2h-reversal-scanner-stage-attribution-v1",
+  "node": "U6.P2H",
+  "decision": "retain_attribution_and_open_explicit_scan_normalization",
+  "software_commit": "436a315",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2h_reversal_scanner_stage_attribution_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2h_reversal_scanner_stage_attribution_v1/run_b/report.json",
+    "report_sha256": "ddee1e9796f5beb848dddeb26344c082abc10bc880db3c311405b21946f0da2d",
+    "stable_evidence_id": "aab6f452416f09221d9be9540f87726bde90f8849c386013204fc08289dfe108",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": true,
+    "largest_incremental_scanner_luma_shift": "spectral",
+    "largest_incremental_scanner_channel_spread_shift": "spectral",
+    "direct_transmittance_median_mean_luma": 0.09222235530614853,
+    "full_scanner_median_mean_luma": 0.08965857134951652,
+    "direct_transmittance_median_luma_range": 0.15621363446116449,
+    "full_scanner_median_luma_range": 0.14428893221770933,
+    "spectral_median_luma_shift": -0.0027760099267098715,
+    "spectral_median_mean_abs_pixel_change": 0.005649161017927524
+  },
+  "posthoc_non_gating_source_localization": {
+    "source_median_mean_luma": 0.2200617864727974,
+    "source_median_luma_range": 0.5739059058018028,
+    "direct_transmittance_mean_luma_shift_from_source": -0.12783943116664887,
+    "direct_transmittance_luma_range_shift_from_source": -0.4176922713406383,
+    "interpretation": "Most dense/low-range appearance is already present in physical transmittance before the scanner. Spectral is the largest incremental scanner contributor but is an order of magnitude smaller in luma shift. The missing mechanism is an explicit scanner exposure/black-white normalization between physical scan signal and display interpretation."
+  },
+  "next_leaf": "U6.P2I endpoint-derived scan-signal normalization on synthetic flat fields; no photograph fitting",
+  "production_integration_allowed": false,
+  "claim_ceiling": "mechanistic attribution inside one generic reversal/scanner hypothesis; posthoc source comparison is diagnostic only, with no measured scanner, stock, calibration, authenticity, preference or product claim"
+}

@@ -6845,3 +6845,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preference and film authenticity are unresolved. U6.P2H will attribute the
   dense appearance across direct transmittance and fixed scanner stages
   without fitting or promotion.
+
+## 2026-07-29 - U6.P2H scanner-stage attribution
+
+- Two six-stage, 18-image reports are exact at `ddee1e97...f0da2d`; all
+  parent/input identities, bounds, replay, order and direct-bypass checks pass.
+- Direct transmittance already has population median luma/range `.092/.156`
+  versus source `.220/.574`. Spectral is the largest incremental scanner
+  contributor, but changes median luma by only `-.00278`; later stages are
+  smaller in global tone.
+- The missing boundary is therefore explicit scanner exposure/black-white
+  normalization between physical scan signal and display interpretation, not
+  reversal-curve or photo retuning. P2I will derive endpoints from synthetic
+  flats only and prohibit clipping and calibration claims.

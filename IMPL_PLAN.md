@@ -52,6 +52,10 @@ photographic severe-artifact gate with no confirmed local/structural failure.
 Its uniformly dense cyan-green display appearance is not a style/preference
 pass. U6.P2H must first attribute the shift across direct transmittance and
 fixed scanner stages before any downstream display/look experiment.
+P2H shows the direct transmittance itself has median luma/range `.092/.156`
+against source `.220/.574`; scanner spectral changes median luma by only
+`-.00278`. P2I therefore adds the missing typed scan-signal normalization
+from synthetic black/white flat endpoints before any downstream look.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2
