@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `af1d4b3`; R0EE independently
+- D-PCT latest stable communicated snapshot is `aea5bf6`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -166,6 +166,20 @@ wire contract and not an algorithm promotion.
   zero. This is private x86_64 virtual arithmetic only; arm64 remains
   link-only, and RAW parsing, matrix-provenance authorization, native-RAW
   quality, JNI/app/media and a public producer interface remain absent.
+  R0FA freezes a project-generated 576-byte ICC v4.3 linear-sRGB profile at
+  SHA `fccdf7ec...7ea84f`; LittleCMS loading, required matrix/TRC/chad tags,
+  Profile-ID MD5 and D50 fixed16 checks pass. R0FB embeds those exact bytes as
+  TIFF tag 34675 in a private freestanding float32 RGB TIFF v2 writer.
+  MSVC/LLVM output bytes replay exactly at `fd90c993...d2e2a4`, independent
+  TIFF parsing recovers exact pixels/profile, sink failure is atomic, and
+  Android/Apple targets build reproducibly. Runtime identity is
+  `af947f38...0b4d41c`; target identity is
+  `fa411730...ee8ea7`. A full regression caught the initial v2 implementation
+  changing the historical v1 source hash; v2 was moved to independent
+  versioned files and v1 bytes restored, so the existing R0EQ-R0ET oracles
+  pass without being re-frozen. This remains private writer/build evidence,
+  not native-RAW E2E, OS colour processing, target runtime or a public
+  producer interface.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

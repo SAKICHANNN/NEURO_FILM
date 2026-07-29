@@ -4741,3 +4741,28 @@
   provenance authorization, native-RAW quality, JNI/app/media, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0FA/R0FB linear-sRGB ICC TIFF v2
+
+- R0FA freezes a project-generated 576-byte ICC v4.3 linear-sRGB profile with
+  SHA `fccdf7ec...7ea84f`. LittleCMS loads it, required matrix/TRC/chad tags
+  are exact, and Profile-ID MD5 plus D50 fixed16 checks pass against the
+  ICC.1:2022 primary reference. Evidence SHA is `c82140fd...f8490`.
+- Producer `aea5bf6` R0FB adds a separate private freestanding float32 RGB
+  TIFF v2 writer that embeds the exact profile in tag 34675. MSVC/LLVM
+  double replays produce byte-identical files at `fd90c993...d2e2a4`;
+  tifffile independently recovers exact pixels and profile bytes; sink
+  failure preserves state. Android arm64/x86_64 links and macOS/iOS objects
+  are two-build reproducible. Runtime stable identity is
+  `af947f38...0b4d41c`, target identity is `fa411730...ee8ea7`, and R0FB
+  evidence SHA is `84549147...170d9`.
+- Full regression correctly rejected the initial macro-isolated v2 because
+  editing the v1 source changed frozen source-hash identities despite
+  unchanged v1 output bytes. Commit `c013c54` moves v2 into independent
+  versioned source/header files and restores the exact v1 source/header;
+  23 focused R0EQ-R0ET oracle checks and the full suite pass without
+  re-freezing historical evidence.
+- The ceiling is private ICC identity, TIFF writer and cross-target build
+  evidence only: no native-RAW E2E, camera quality, OS colour transform,
+  target runtime, public package/schema/receipt/capability, product admission
+  or consumer mapping. P172, P45/P44 and v42 remain unchanged.
