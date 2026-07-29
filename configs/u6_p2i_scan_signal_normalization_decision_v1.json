@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2i-scan-signal-normalization-v1",
+  "node": "U6.P2I",
+  "decision": "retain_generic_scan_normalization_for_photographic_stress",
+  "software_commit": "e7221d7",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2i_scan_signal_normalization_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2i_scan_signal_normalization_v1/run_b/report.json",
+    "report_sha256": "343ed33744eebfaf84626c1d0fdd3073817696605faee267b1457416ebe8c183",
+    "stable_evidence_id": "38828478bd0bdac1e6d258a82dc1c9e49748e61bba5a116ab0514caca22895b5",
+    "normalization_sha256": "2e914bff9062d60dc3e3b27102e8f66d0b86ff833269a8da519d21885ad2eccf",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": true,
+    "black_scan_rgb": [
+      0.010261163215640514,
+      0.012411659570937117,
+      0.013060867267818008
+    ],
+    "white_scan_rgb": [
+      0.671771662406458,
+      0.710012863177466,
+      0.5877897374605008
+    ],
+    "endpoint_separation_rgb": [
+      0.6615104991908175,
+      0.6976012036065289,
+      0.5747288701926828
+    ],
+    "endpoint_mapping_max_abs_error": 0.0,
+    "inverse_roundtrip_max_abs": 1.1102230246251565e-16,
+    "partition_replay_serialization_exact": true,
+    "outside_domain_clipping_forbidden": true
+  },
+  "interpretation": "Synthetic reversal/scanner flat endpoints define a strict scan-linear to display-linear normalization with no photograph fitting. The primitive is exactly invertible on its endpoint domain and rejects rather than clips out-of-domain scan signals.",
+  "next_leaf": "U6.P2J fixed 18-image normalized reversal photographic severe-artifact stress",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic synthetic scan-signal normalization primitive; no measured scanner, emulsion, stock, calibration, authenticity, preference or product claim"
+}

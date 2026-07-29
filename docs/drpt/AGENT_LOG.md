@@ -6858,3 +6858,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   normalization between physical scan signal and display interpretation, not
   reversal-curve or photo retuning. P2I will derive endpoints from synthetic
   flats only and prohibit clipping and calibration claims.
+
+## 2026-07-29 - U6.P2I scan-signal normalization primitive
+
+- Added a typed `SCAN_LINEAR -> DISPLAY_LINEAR` operator whose RGB black and
+  white endpoints come only from deterministic synthetic reversal/scanner
+  flat fields. Stochastic noise is excluded from endpoint derivation.
+- Two 16,384-sample reports are exact at `343ed337...e8c183`. Endpoint
+  separation is `.575-.698`, 0/1 mapping is exact, inverse error is
+  `1.11e-16`, and replay, partition, serialization, identity and domain
+  guards pass.
+- Out-of-endpoint values are rejected; there is no hard clipping. Retain only
+  as a generic normalization hypothesis. P2J may now run the unchanged photo
+  population under fresh bounds/range/visual gates.

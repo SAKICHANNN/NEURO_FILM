@@ -305,3 +305,9 @@ in raw transmittance, while spectral is only the largest small incremental
 scanner shift. U6.P2I is ready to define an explicit endpoint-derived
 scan-signal black/white normalization; it must use synthetic flat endpoints,
 never photograph fitting or silent clipping.
+
+U6.P2I now passes that synthetic primitive exactly: endpoint separation is
+`.575-.698`, 0/1 mapping is exact, inverse error is `1.11e-16`, and outside
+signals fail closed. U6.P2J is ready to challenge the unchanged 18-image
+population with reversal + scanner + normalization and the same severe-first
+discipline.
