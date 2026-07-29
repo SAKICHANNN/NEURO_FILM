@@ -1,0 +1,101 @@
+{
+  "schema": "neuro_film.u6_p4t_anisotropic_grain_physical_contract.v1",
+  "node": "ULT > U6 > U6.P4T",
+  "parents": {
+    "p4s_contract": {
+      "path": "configs/u6_p4s_generic_grain_shaping_v1.json",
+      "sha256": "1b243f241313eb844e8f9e2ae5b958fa6cb8a536e6859dd3507fa3ba0f841f79"
+    },
+    "p4s_report": {
+      "path": "outputs/experiments/u6_p4s_generic_grain_shaping_v1/report.json",
+      "sha256": "ca5dcb2454f4d5ca91c228827fe5e4ac078438fa4e018e05cfdde81c7eaeae5b",
+      "required_decision": "retain_generic_anisotropic_shaping_candidate"
+    },
+    "p4s_decision": {
+      "path": "configs/u6_p4s_generic_grain_shaping_decision_v1.json",
+      "sha256": "0f613ce89b3c9503b18c729c87bd67a11cf72e73938332e8017136400345557b",
+      "required_status": "generic_scanner_convolved_shaping_candidate_pass"
+    },
+    "p4r_report": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_nps_v1/report.json",
+      "sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889"
+    },
+    "p4r_analysis": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "p4d_contract": {
+      "path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+      "sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab"
+    }
+  },
+  "question": "Does the fixed generic 0.90x0.65-pixel scanner-convolved kernel improve held ACF as well as NPS while preserving developed-density, transmittance, zero-density, repeat and row-partition semantics?",
+  "candidate": {
+    "family": "density-conditioned-positive-poisson-shared-anisotropic-gaussian",
+    "sigma_yx_pixels": [0.9, 0.65],
+    "grain_optical_density_by_rgb_layer": [0.04, 0.05, 0.035],
+    "layer_seeds": [261001, 261003, 261007],
+    "maximum_target_density": 2.0,
+    "truncate": 4.0,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false,
+    "signed_density_allowed": false
+  },
+  "evaluation": {
+    "shape": [384, 512],
+    "flat_density_levels": [0.0, 0.1, 0.3, 0.8, 1.2],
+    "ramp_maximum_density": 1.8,
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 8,
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "acf_baseline_seeds": [261101, 261103, 261107, 261109],
+    "acf_candidate_seeds": [261101, 261103, 261107, 261109],
+    "diagnostic_density_patterns": [
+      "flat-0.3",
+      "flat-0.8",
+      "flat-1.2",
+      "horizontal-ramp-0-to-1.8",
+      "hard-step-0.1-to-1.2",
+      "small-highlight-island-1.8-on-0.3"
+    ]
+  },
+  "automatic_gates": {
+    "minimum_held_acf_median_error_improvement_fraction": 0.1,
+    "maximum_held_acf_worst_error_ratio": 1.0,
+    "maximum_flat_mean_absolute_error": 0.02,
+    "minimum_density_variance_high_to_low_ratio": 2.0,
+    "minimum_ramp_target_output_correlation": 0.995,
+    "maximum_ramp_mean_absolute_error": 0.03,
+    "minimum_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "zero_density_exact": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "visual_gate": {
+    "required_after_automatic_pass": true,
+    "hard_negative": "U6.2B salt-like bright speckles",
+    "confirmed_salt_like_points_maximum": 0,
+    "confirmed_banding_or_seam_count_maximum": 0,
+    "confirmed_ring_or_colour_block_count_maximum": 0
+  },
+  "branch_rule": {
+    "automatic_fail": "close the anisotropic physical candidate and retain P4D/P4Q",
+    "automatic_pass_visual_fail": "reject the candidate without weakening severe gates",
+    "automatic_and_visual_pass": "retain as a generic scanner-convolved physical-domain development challenger for bounded runtime integration"
+  },
+  "forbidden_fallbacks": [
+    "retune sigma or amplitude after held ACF reveal",
+    "remove failed patterns or source groups",
+    "add per-channel, per-stock or per-image kernels",
+    "apply additive display-RGB grain",
+    "hard clip density or transmittance",
+    "claim emulsion, stock, process or scanner-independent calibration"
+  ],
+  "claim_ceiling": "Generic scanner-convolved anisotropic material-structure development evidence in explicit density/transmittance domains; not emulsion truth, physical grain calibration, stock identity, scanner independence or product promotion."
+}
