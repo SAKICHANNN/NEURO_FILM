@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p6i_measured_scanner_characterization_decision.v1",
+  "node": "U6.P6I",
+  "decision": "retain_common_power_positive_matrix_per_device_characterization_family_independent_target_validation_required",
+  "automatic_pass": true,
+  "software_commit": "40f21ca15fea5f8e272c637011f121a418c35dba",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6i_measured_scanner_characterization_v1.json",
+      "sha256": "ae9d527e130f74bbab13d93b717bd33cd68d556e38318662995e409654d8425d"
+    },
+    "alignment_retry": {
+      "path": "configs/u6_p6i1_alignment_retry_v1.json",
+      "sha256": "c93c4804c696c47c0045123353ad3b213fd06d02aa690881a3931f593864fb36",
+      "cells": 4,
+      "minimum_ransac_inliers": 40,
+      "maximum_median_inlier_reprojection_error_px": 0.8352117538452148,
+      "note": "The separately frozen retry changed only the feature-match ratio after the primary alignment failed; all acceptance gates remained unchanged."
+    },
+    "report": {
+      "path": "outputs/u6_p6i_measured_scanner_characterization_v1/report_pass1.json",
+      "sha256": "e37787aa732ae51f883533b19ffc42608afa3c1fb81dae92d5df32688a5cd108"
+    },
+    "repeat_report_byte_identical": true,
+    "stable_evidence_id": "9d0e2efa9bf3604a8a9766bc3b594732147e3681431d8c4f9582e53712a8c1a3"
+  },
+  "support": {
+    "scanner_software_pipelines": 13,
+    "target_sets": [1, 2, 9],
+    "alignment_cells": 65,
+    "held_slide_patch_predictions": 17160,
+    "scanner_repeated_across_target_sets": false,
+    "independent_target_validation_available": false
+  },
+  "reference_checks": {
+    "source_patch_to_pair_table_rgb_max_l2": 0.0,
+    "published_xyz_to_lab_max_delta_e76": 0.38276299606756575
+  },
+  "candidate_results": {
+    "identity_device_rgb_as_xyz_control": {
+      "median_delta_e76": 47.15163694337073,
+      "p95_delta_e76": 131.18458984012108,
+      "maximum_delta_e76": 340.0086243678063
+    },
+    "nonnegative_bounded_3x3": {
+      "median_delta_e76": 20.630251359132124,
+      "p95_delta_e76": 48.12016845704036,
+      "maximum_delta_e76": 98.14152838233711
+    },
+    "common_power_plus_nonnegative_bounded_3x3": {
+      "median_delta_e76": 7.302972906890237,
+      "p95_delta_e76": 24.13266898994984,
+      "maximum_delta_e76": 50.469675650940914,
+      "median_improvement_vs_identity_fraction": 0.8451172985646048,
+      "output_xyz_minimum": 0.0002590069701489794,
+      "output_xyz_maximum": 0.7854689501693933
+    }
+  },
+  "target_set_primary_metrics": {
+    "1": {
+      "median_delta_e76": 7.137703590006641,
+      "p95_delta_e76": 22.614326729345148
+    },
+    "2": {
+      "median_delta_e76": 9.027109771442973,
+      "p95_delta_e76": 26.56239798251152
+    },
+    "9": {
+      "median_delta_e76": 4.965099654392156,
+      "p95_delta_e76": 17.588261958970506
+    }
+  },
+  "branch_action": {
+    "retain": [
+      "common-power plus nonnegative bounded 3x3 as the simplest passing per-device measured-target characterization family",
+      "P6D spectral scanner reference",
+      "P6G real-scanner nuisance evidence"
+    ],
+    "close": [
+      "identity device RGB as XYZ",
+      "linear positive 3x3 alone as the primary characterization family"
+    ],
+    "next_leaf": "U6.P6J compile a versioned research-only measured scanner characterization bundle with exact replay and domain-mismatch rejection",
+    "independent_data_requirement": "repeat at least one scanner/software pipeline on an independently manufactured measured target before any calibrated or transferable scanner-profile claim"
+  },
+  "forbidden": [
+    "reuse of the forward acquisition ScannerProfile type for this inverse device-RGB canonicalization stage",
+    "independent-target, scanner-population or universal scanner generalization",
+    "full-resolution, raw or spectrally calibrated scanner output claim",
+    "Velvia stock response or digital-to-film operator claim",
+    "training, product integration, redistribution or commercial use"
+  ],
+  "claim_ceiling": "development evidence that a common scalar power followed by a nonnegative bounded 3x3 characterizes 13 scanner/software pipelines against individually measured D50 patches on one manufactured target set per device; not independently target-validated, calibrated, transferable, stock-specific or product-ready"
+}
