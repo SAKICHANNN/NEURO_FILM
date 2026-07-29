@@ -94,6 +94,16 @@ at about 284MB. This is offline stationary reference infrastructure only.
 Nonstationary fidelity, measured film structure and product integration remain
 unidentified or closed.
 
+Current P6 spectral boundary: the retained P6A scanner stage is an RGB
+illuminant and nonnegative 3x3 approximation. P6D adds a separate float64
+reference integral over film spectral transmittance, illuminant SPD and sensor
+sensitivity. A deterministic bounded pair is metameric for synthetic scanner A
+to `2.22e-16` but differs by `.25236` L2 for scanner B, giving every
+scanner-A-RGB-only mapping an irreducible `.12618` worst-member lower bound on
+that witness. This proves an information boundary, not measured scanner
+calibration. Population-level approximation remains to be quantified before
+any compiler work.
+
 Current P8 boundary: P8A-P8W compile and validate a hash-bound, artifact-only
 Python canonical profile consumer. The fixed P7 identity remains float-exact
 through forward/reverse partitions and the frozen 32-row oracle. Successive

@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p6d_spectral_scanner_reference_decision.v1",
+  "node": "U6.P6D",
+  "decision": "retain_offline_spectral_reference_open_population_approximation_audit",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6d_spectral_scanner_reference_v1.json",
+      "sha256": "582e488679812323744300d56b0d150c5d7e8e69ee3e8036b912cda20f37dc87"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6d_spectral_scanner_reference_v1/report.json",
+      "sha256": "388d4d6fc976051a015afa8b8e29e0903c1f80727d8189ce7904c33d13a63b3a",
+      "stable_evidence_id": "80075ebbd91b9c1c4932b5ed1d673ba3977ab014b6075e59b3045eeaa0f77436"
+    },
+    "software_commit": "3caa8e91"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "repeat_report_byte_exact": true,
+    "wavelength_count": 31,
+    "clear_response_max_abs_error": 2.220446049250313e-16,
+    "scanner_a_metamer_max_abs_difference": 2.220446049250313e-16,
+    "scanner_b_metamer_l2_difference": 0.2523592708962802,
+    "rgb_only_irreducible_l2_error": 0.1261796354481401,
+    "scanner_profile_cross_response_max_abs": 0.1259613015714262,
+    "metamer_transmittance_interval": [
+      0.27,
+      0.8300000000000001
+    ]
+  },
+  "interpretation": [
+    "The reference integrates film spectral transmittance against an explicit illuminant SPD and three sensor sensitivity curves, normalized by clear-film response.",
+    "A deterministic pair is metameric for scanner A to floating-point precision but differs by 0.25236 L2 under scanner B. Any operator that receives only scanner-A RGB must assign the same prediction to both inputs and therefore incurs at least 0.12618 L2 error on one of them.",
+    "The existing P6A RGB illuminant and 3x3 stage remains a safe explicit approximation, not a spectral scanner truth model. The Gaussian witnesses are synthetic and do not calibrate either scanner."
+  ],
+  "next_leaf": "U6.P6E preregister a group-split synthetic spectral population and compare identity, positive 3x3, bounded nonlinear RGB and spectral-oracle controls without fitting photographs or changing P6A-C.",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "scanner_calibration_claim_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic spectral-scanner identifiability evidence; not measured scanner response, film stock response, photographic evidence or product runtime"
+}

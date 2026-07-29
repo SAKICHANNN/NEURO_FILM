@@ -49,6 +49,15 @@ and small hashes remain unchanged. Stationary P4 routing/scale work is closed;
 the next algorithm leaf must be physically distinct and may not reopen P4N
 capacity.
 
+U6.P6D adds a float64 offline spectral scanner reference distinct from P6A's
+RGB illuminant/3x3 approximation. Two exact reports construct bounded film
+transmittance spectra whose scanner-A RGB differs by only `2.22e-16` while
+scanner-B output differs by `.25236` L2. Any scanner-A-RGB-only predictor has
+an irreducible `.12618` worst-member error on that pair. This is synthetic
+identifiability evidence, not measured scanner calibration. P6E next freezes a
+group-split spectral population and compares bounded RGB approximations with
+the spectral oracle; P6A-C remain unchanged.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

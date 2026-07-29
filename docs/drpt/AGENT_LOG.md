@@ -7037,3 +7037,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the explicit stationary reference executor and close P4 routing/scale
   work. No photograph, measured-film, stock-calibration or product claim
   opens. Continue through a physically distinct algorithm leaf.
+
+## 2026-07-29 - U6.P6D spectral scanner identifiability
+
+- The existing P6A spectral-labelled stage is explicitly an RGB
+  illuminant/3x3 approximation. P6D adds a separate float64 acquisition
+  reference over a 31-wavelength film-transmittance vector, illuminant SPD and
+  three sensor-sensitivity curves.
+- Two formal reports are byte-exact at `388d4d6f...a63b3`. Clear/neutral
+  normalization, density monotonicity, bounded signal and negative controls
+  pass.
+- A constructed pair differs by only `2.22e-16` under scanner A but `.25236`
+  L2 under scanner B. Any mapping that sees only scanner-A RGB has an
+  irreducible `.12618` worst-member lower bound on this pair.
+- Retain the synthetic spectral reference and keep P6A-C unchanged. P6E may
+  quantify typical approximation error on a group-split synthetic population;
+  photographs, measured-scanner, stock and product claims remain closed.
