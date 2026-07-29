@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3v-colorreference-recorder-patch-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AQ3V",
+  "parent": {
+    "decision": "configs/u5_r2aq3p_colorreference_bernstein_bundle_properties_decision_v1.json",
+    "bundle": "outputs/experiments/u5_r2aq3p_colorreference_bernstein_bundle_properties_v1/bundle.json",
+    "bundle_sha256": "ee0a187e573c63bd2556d72e0294c776a36931db5495325d3a26485ecb57fea8",
+    "bundle_report_sha256": "14df0c051cbaf0528278b503ece1be1435bdfe272fb123f7303637bd029f40d4",
+    "pair_table": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "consensus_contract": {
+    "target_sets": [1, 2, 3, 4, 5, 9],
+    "slide_indices": [1, 2, 3, 4, 5],
+    "patches_per_slide": 288,
+    "aggregation": "componentwise median measured XYZ across six target sets for each exact slide_index and sample_id",
+    "source_equality_required_across_target_sets": true,
+    "layout_rows": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "GS"],
+    "layout_columns": 24,
+    "lettered_row_columns": 22,
+    "grayscale_row_columns": 24
+  },
+  "preview_contract": {
+    "panels": [
+      "recorder RGB code preview",
+      "bounded bundle predicted measured-slide preview",
+      "six-set measured XYZ consensus preview",
+      "prediction Delta E76 heatmap"
+    ],
+    "xyz_source_white": "D50",
+    "display_white": "D65",
+    "chromatic_adaptation": "Bradford D50 to D65",
+    "display_encoding": "IEC 61966-2-1 sRGB",
+    "display_clipping": "preview-only clamp after reporting pre-clamp component fractions",
+    "patch_pixels": 20,
+    "panel_gap_pixels": 24,
+    "slide_gap_pixels": 32,
+    "labels": true
+  },
+  "automatic_gates": {
+    "all_1440_consensus_patches_finite": true,
+    "mean_deltae76_max": 6.0,
+    "p95_deltae76_max": 15.0,
+    "maximum_deltae76_max": 40.0,
+    "repeat_png_and_report_byte_identity": true
+  },
+  "visual_gate": {
+    "review": "autonomous full-resolution inspection of labeled patch panels",
+    "severe_failures": [
+      "non-finite or blank panel",
+      "unexpected missing or reordered patches",
+      "banding or block corruption not present in the discrete patch design",
+      "panel identity or label mismatch"
+    ],
+    "style_or_photo_claim_allowed": false
+  },
+  "decision_branches": {
+    "automatic_and_visual_pass": "retain_recorder_proxy_as_internal_explicit_operator_evidence_only",
+    "fail": "close_recorder_proxy_visual_evidence"
+  },
+  "ordinary_photo_application_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic recorder-patch visualization of an internal bounded proxy; not photographic film simulation, stock calibration or product evidence"
+}
