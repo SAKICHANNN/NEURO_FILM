@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p8ay_native_ordered_pipeline_resources_decision.v1",
+  "node": "U6.P8AY",
+  "contract": "configs/u6_p8ay_native_ordered_pipeline_resources_v1.json",
+  "contract_sha256": "bdb2c6e9064e1bd3f5a96580959f7a152269a76b78a857583f4341a566a09ff7",
+  "formal_report": "outputs/u6_p8ay_native_ordered_pipeline_resources_v1/report.json",
+  "formal_report_sha256": "8a8c4abbc979d2e9642b4216a5e03a3adb230a4fe58cfd677ac260269318aa83",
+  "stable_evidence_id": "0d06b3e4f8955e7ed00026f36f16f9a7e434eab87724ff63e876d60423d5bfe2",
+  "result": {
+    "status": "pass",
+    "output_repeat_and_v1_exact": true,
+    "pipeline_workers": 4,
+    "max_in_flight": 4,
+    "submitted_and_consumed_tiles": 94,
+    "peak_process_tree_rss_bytes": [
+      184614912,
+      184049664
+    ],
+    "memory_gate_bytes": 402653184,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      11.053468600002816,
+      11.071419599989895
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": true,
+    "mean_elapsed_ratio_vs_p8aw": 0.54659578032536
+  },
+  "decision": "retain the four-worker bounded ordered pipeline as the first exact-output native Standard policy to pass the frozen 12MP CPU resource gate. It nearly halves P8AW elapsed time while keeping peak RSS below half of the limit",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP exact-output four-worker ordered native Standard physical plus AO6 display v4 resource evidence only",
+  "next_leaf": "U6.P8AZ run the complete related native/profile regression set and define the smallest opt-in consumer assembly without changing the production default"
+}
