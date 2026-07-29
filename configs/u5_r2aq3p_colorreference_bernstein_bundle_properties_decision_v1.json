@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3p-colorreference-bernstein-bundle-properties-v1",
+  "config_sha256": "2c29507a4cb0a5e0ce53efdea1e565c23f6399122553b8e3472522aac9ea481b",
+  "software_commit": "a61f76d8d449e57adfccc6efc470ce913746f510",
+  "report_sha256": "14df0c051cbaf0528278b503ece1be1435bdfe272fb123f7303637bd029f40d4",
+  "repeat_report_sha256": "14df0c051cbaf0528278b503ece1be1435bdfe272fb123f7303637bd029f40d4",
+  "bundle_sha256": "ee0a187e573c63bd2556d72e0294c776a36931db5495325d3a26485ecb57fea8",
+  "dense_grid_xyz_f32_sha256": "886f58c1e512661afabe9d600cec6bafc5690e810a1bb799b917c1363679b1a3",
+  "automatic_pass": true,
+  "decision": "retain_internal_recorder_proxy_bundle_and_open_synthetic_visual_property_audit",
+  "key_results": {
+    "dense_grid_rows": 274625,
+    "dense_grid_xyz_channel_spans": [0.7303160979183593, 0.7542167055611311, 0.6149222959727898],
+    "partition_of_unity_maximum_error": 0.0,
+    "local_axis_neighbor_xyz_distance_p99": 0.017366650825768548,
+    "local_axis_neighbor_xyz_distance_maximum": 0.022726743173939475,
+    "cross_fold_worst_median_deltae76": 0.46724508384734714,
+    "cross_fold_worst_p95_deltae76": 2.3126261030124637,
+    "cross_fold_worst_maximum_deltae76": 9.038059572947047
+  },
+  "next_leaf": "AQ3V",
+  "next_leaf_scope": "strictly labeled synthetic recorder-input, bounded-prediction and measured-consensus patch visualization plus autonomous artifact inspection",
+  "ordinary_photo_application_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "stable internal recorder-device-to-measured-developed-slide proxy bundle; not applicable to ordinary digital photographs"
+}
