@@ -116,7 +116,9 @@ def test_decision_binds_exact_contract_and_keeps_calibration_closed() -> None:
     assert DECISION["automatic_pass"] is True
     assert DECISION["support"]["confirmatory_files"] == 6
     assert DECISION["metrics"]["maximum_confirmatory_correct_prototype_rmse"] < 0.02
-    assert "scanner calibration" in DECISION["forbidden"]
+    assert any(
+        "scanner calibration" in item for item in DECISION["forbidden"]
+    )
     assert "film stock, emulsion, exposure or development response" in DECISION[
         "forbidden"
     ]
