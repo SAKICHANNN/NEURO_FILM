@@ -4388,7 +4388,7 @@
 - Producer `25a4dea` first freezes an independent R0EE source audit: 15
   rights-cleared native 2x2 RGB Bayer rows spanning eight makes and all four
   patterns. R0EF then freezes all 15 even-aligned 1024 crops plus one
-  2024x3040 Samsung full frame before execution.
+  3040x2024 Samsung full frame before execution.
 - MSVC, LLVM-MinGW and Python, across two process runs and two internal
   evaluations, are byte-exact at `057907a9...780f3`. Aggregate output is
   `a077d528...5d423`; maximum absolute error/RMSE are
@@ -4428,8 +4428,9 @@
   across all 15 native 1024 crops produce float32 bytes exactly equal to the
   full-frame output. Two complete reports are byte-identical; report SHA is
   `d52802da...c39de` and stable identity is `7962c457...a0ed4`.
-  The modeled 2024x3040 workspace falls from 61,529,600 to 2,675,200 float32
-  values (-95.6522%).
+  At the correct 3040x2024 geometry, the compute-only workspace falls from
+  61,529,600 to 2,675,200 float32 values (-95.6522%); byte-exact
+  stripe/full-frame equivalence is unaffected.
 - This is a private execution hypothesis only. It adds no public tiled ABI,
   package, schema, receipt, capability, product admission or consumer
   mapping. A later producer-private caller-workspace/failure-atomicity
@@ -4437,7 +4438,8 @@
 
 ## 2026-07-29 - Register R0EI private atomic tiled ABI
 
-- Producer `aad56d0` converts the R0EH hypothesis into a private
+- Producer `d632ed7` corrects and supersedes the original `aad56d0` geometry
+  model while retaining the R0EH implementation as a private
   caller-workspace C ABI with fixed halo 12/core 64 and full-output failure
   atomicity. A full-suite regression caught that the first declaration changed
   the frozen v1 header; the tiled declaration was moved to a separate
@@ -4447,9 +4449,11 @@
   diagnostics extrema are exact. Workspace, nonfinite, invalid pattern,
   invalid diagnostics and overlap failures all preserve caller output and
   diagnostics. Two formal reports are byte-identical at
-  `a03de90b...9697a`; stable identity is `5132ac30...04fa8`.
-- The honest atomic 2024x3040 workspace falls from 61,529,600 to 20,774,336
-  float32 values (-66.2368%); this is distinct from R0EH's compute-only
-  reduction. The ABI remains private CPU evidence: no public package, schema,
-  receipt, capability, quality/product admission or consumer mapping. P172,
-  P45/P44 and v42 remain unchanged.
+  `2be944bd...0d83a`; corrected stable identity is
+  `f0dba1a6...c58b6`.
+- The corrected 3040x2024 atomic workspace falls from 61,529,600 to
+  21,936,640 float32 values (-64.3478%), still passing the frozen >=64% gate.
+  Pixel, toolchain and failure-atomicity conclusions are unchanged. The ABI
+  remains private CPU evidence: no public package, schema, receipt,
+  capability, quality/product admission or consumer mapping. P172, P45/P44
+  and v42 remain unchanged.
