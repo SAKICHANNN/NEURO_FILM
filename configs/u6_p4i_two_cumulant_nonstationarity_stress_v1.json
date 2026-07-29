@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p4i_two_cumulant_nonstationarity_stress_contract.v1",
+  "node": "U6.P4I",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4h_contract": "configs/u6_p4h_two_cumulant_lod_v1.json",
+    "p4h_contract_sha256": "e4b7aca1234e5748addbf428907f4639d8b45255ed7d580174a65d7b6df536fa",
+    "p4h_decision": "configs/u6_p4h_two_cumulant_lod_decision_v1.json",
+    "p4h_decision_sha256": "73e7dfd898ff8fa60cbe64ed0bab2a454ab8540433a6c340abaf932384042ba8"
+  },
+  "question": "Does the retained analytic two-cumulant compiler remain faithful and artifact-safe on nonstationary density edges, checkerboards, isolated density islands/holes and both 2x and 4x output LODs?",
+  "scenes": {
+    "coarse_shape_at_factor_4": [128, 160],
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "step": {
+      "low_density": 0.2,
+      "high_density": 1.6,
+      "axis": "horizontal"
+    },
+    "checkerboard": {
+      "low_density": 0.25,
+      "high_density": 1.5,
+      "base_cell_sizes": [8, 32]
+    },
+    "islands": {
+      "background_density": 0.8,
+      "high_density": 1.8,
+      "low_density": 0.1,
+      "base_radius": 24
+    },
+    "development_seed_offset": 0,
+    "confirmation_seed_offset": 3000
+  },
+  "lod_factors": [2, 4],
+  "compiler": {
+    "family": "P4H analytic two-cumulant",
+    "boundary_mode": "normalized-support-v1",
+    "per_image_fit_or_normalization_allowed": false,
+    "empirical_parameter_fit_allowed": false,
+    "output_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_density_map_correlation": 0.97,
+    "maximum_region_mean_absolute_difference": 0.05,
+    "minimum_region_variance_ratio": 0.45,
+    "maximum_region_variance_ratio": 2.2,
+    "minimum_step_contrast_ratio": 0.85,
+    "maximum_step_contrast_ratio": 1.15,
+    "maximum_step_center_shift_pixels": 0.75,
+    "minimum_checkerboard_contrast_ratio": 0.8,
+    "maximum_checkerboard_contrast_ratio": 1.2,
+    "minimum_island_excess_ratio": 0.75,
+    "maximum_island_excess_ratio": 1.25,
+    "maximum_island_centroid_shift_pixels": 0.75,
+    "maximum_constant_rate_density_map_correlation": 0.2,
+    "minimum_display_noise_out_of_domain_fraction": 0.001,
+    "density_and_transmittance_domain_valid": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the two-cumulant compiler through nonstationary synthetic stress and open a separately frozen rights-cleared developed-density photographic severe/OOD pilot",
+    "fail": "close nonstationary LOD integration and retain P4H stationary synthetic evidence only"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic nonstationary material-structure evidence; not measured film NPS, dye-cloud calibration, stock response, photographic preference or product evidence"
+}
