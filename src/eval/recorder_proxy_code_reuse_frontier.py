@@ -163,13 +163,13 @@ def render_bank(
             raw_oog_count = 0
             for start in range(0, source_uint8.shape[0], 128):
                 stop = min(start + 128, source_uint8.shape[0])
-                encoded = (
-                    source_uint8[start:stop].reshape(-1, 3).astype(
-                        np.float64
-                    )
-                    / 255.0
+                encoded_image = (
+                    source_uint8[start:stop].astype(np.float64) / 255.0
                 )
-                source_linear = encoded_srgb_to_linear(encoded)
+                encoded = encoded_image.reshape(-1, 3)
+                source_linear = encoded_srgb_to_linear(
+                    encoded_image
+                ).reshape(-1, 3)
                 target_linear = recorder_target_linear_srgb(model, encoded)
                 raw_oog_count += int(
                     np.sum(
