@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p2g_reversal_photographic_visual_adjudication.v1",
+  "node": "U6.P2G",
+  "date": "2026-07-29",
+  "reviewer": "autonomous_coding_agent_visual_inspection",
+  "evidence": {
+    "contact_sheet": "outputs/u6_p2g_reversal_photographic_stress_v1/run_a/contact_sheet.png",
+    "contact_sheet_sha256": "559ddaa24867a8beb16374caadc01456ad1af2c3689a8f6718522fed1e42c12c",
+    "full_resolution_visual_directory": "outputs/u6_p2g_reversal_photographic_stress_v1/full_visuals",
+    "fixed_ids_reviewed": 9
+  },
+  "automatic_gate_passed": true,
+  "severe_review": {
+    "confirmed_severe_failures": 0,
+    "secondary_contours": 0,
+    "objectionable_colour_fringe": 0,
+    "isolated_speckles": 0,
+    "banding_or_posterization": 0,
+    "geometry_or_content_corruption": 0,
+    "global_observation": "All nine outputs are uniformly darker and cyan-green relative to source, with compressed-looking display contrast. Fine structure, edges and objects remain continuous and identifiable; the shift is global rather than a local glitch or artifact."
+  },
+  "severe_pass": true,
+  "style_or_preference_pass": null,
+  "style_or_preference_reason": "This protocol adjudicates only severe artifacts. The dense cyan-green appearance is not promoted as appealing, film-authentic or stock-specific and requires separate downstream interpretation/display evaluation.",
+  "claim_ceiling": "autonomous severe-artifact review of nine fixed generic reversal direct-scan outputs; no population preference, stock, calibration, authenticity or product claim"
+}

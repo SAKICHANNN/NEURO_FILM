@@ -47,6 +47,11 @@ the frozen per-image luma-range gate on three independent photographs. No
 visual rescue or parameter retuning is allowed. U6.P2F is the next ready leaf:
 a separately typed generic reversal-development primitive, synthetic
 polarity first, without reusing the increasing-density negative operator.
+U6.P2F passes that synthetic contract, and U6.P2G passes the fixed
+photographic severe-artifact gate with no confirmed local/structural failure.
+Its uniformly dense cyan-green display appearance is not a style/preference
+pass. U6.P2H must first attribute the shift across direct transmittance and
+fixed scanner stages before any downstream display/look experiment.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

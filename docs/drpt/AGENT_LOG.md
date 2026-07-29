@@ -6831,3 +6831,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only as a generic synthetic reversal hypothesis. U6.P2G may now run
   the unchanged operator on the fixed CC0 photographs; no photo fitting,
   stock response, calibration or product integration is opened.
+
+## 2026-07-29 - U6.P2G generic reversal photographic severe pass
+
+- Two fixed 18-image runs are byte-identical at `883112a7...971d7a`.
+  Materiality, bounds, replay, dark/white population, per-image luma range,
+  zero new boundaries and zero isolated-noise gates all pass.
+- The nine fixed full-resolution visual candidates have no confirmed
+  speckle, banding, posterization, fringe, geometry or object corruption.
+  They are uniformly darker and cyan-green, but that global look is not
+  relabeled a severe glitch.
+- Retain only generic physical-inspired development evidence. Style,
+  preference and film authenticity are unresolved. U6.P2H will attribute the
+  dense appearance across direct transmittance and fixed scanner stages
+  without fitting or promotion.

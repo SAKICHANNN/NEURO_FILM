@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u6.p2g-reversal-photographic-stress-v1",
+  "node": "U6.P2G",
+  "decision": "retain_generic_reversal_photographic_development_evidence",
+  "software_commit": "96b9bfb",
+  "formal_runs": {
+    "run_a": "outputs/u6_p2g_reversal_photographic_stress_v1/run_a/report.json",
+    "run_b": "outputs/u6_p2g_reversal_photographic_stress_v1/run_b/report.json",
+    "report_sha256": "883112a72976c9a590a6573abab45b663f01b7313597a86598e6fa6571971d7a",
+    "contact_sheet_sha256": "559ddaa24867a8beb16374caadc01456ad1af2c3689a8f6718522fed1e42c12c",
+    "stable_evidence_id": "cdab14d9706e814614d8e246aa57ae92ecbbb6f99eea198faf665f7b6d351cf5",
+    "operator_sha256": "b14c6a8c2c77144bbc57a9d76e3295e3d34a8082ac8e11d95bbb1183127b5431",
+    "repeat_byte_identical": true
+  },
+  "automatic": {
+    "passed": true,
+    "median_mean_abs_change": 0.14511582123331793,
+    "maximum_near_black_fraction": 0.051269319131161235,
+    "maximum_near_white_fraction": 0.0,
+    "minimum_luma_p95_minus_p05": 0.1063587702837018,
+    "maximum_new_boundary_fraction": 0.0,
+    "total_isolated_noise_count": 0
+  },
+  "visual": {
+    "path": "configs/u6_p2g_reversal_photographic_visual_adjudication_v1.json",
+    "severe_pass": true,
+    "confirmed_severe_failures": "0/9",
+    "style_or_preference_pass": null
+  },
+  "interpretation": "The generic decreasing-density reversal operator survives the fixed photographic severe-artifact gate. Its output is consistently dark and cyan-green but contains no confirmed local or structural artifact. Retention is development/topology evidence only; style appeal and downstream display interpretation remain unresolved.",
+  "next_leaf": "U6.P2H fixed scanner-stage attribution of the dense cyan-green appearance; no parameter fitting",
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic reversal direct-slide photographic development evidence; no preference, measured emulsion, stock, process, scanner, calibration, authenticity or product claim"
+}
