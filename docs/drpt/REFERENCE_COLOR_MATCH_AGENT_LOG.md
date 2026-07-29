@@ -4249,3 +4249,7 @@
   environment-dependent skip under the main Python 3.12 environment. P172
   changes tests/evidence only: no decoder, MatchView rail, schema, public
   export or v42 integration payload changes.
+- A detached merge against committed main `0a99ad0a` is conflict-free at tree
+  `0b79cba6...e0e65`; the file/capability set passes 41 tests with one skip.
+  The owned temporary worktree was removed. This is post-v42 compatibility
+  evidence, not a rewritten manifest or merge authorization.
