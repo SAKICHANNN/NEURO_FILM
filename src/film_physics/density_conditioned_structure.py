@@ -487,6 +487,49 @@ def render_density_conditioned_structure(
     )
 
 
+def iter_density_conditioned_structure_rows(
+    target_density: np.ndarray,
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    row_tile_height: int,
+):
+    """Yield coordinate-stable density/transmittance rows after one validation."""
+
+    target = np.asarray(target_density, dtype=np.float64)
+    if (
+        target.ndim != 3
+        or target.shape[2] != len(profiles)
+        or not profiles
+        or not isinstance(row_tile_height, int)
+        or row_tile_height < 1
+        or not np.all(np.isfinite(target))
+        or np.any(target < 0.0)
+    ):
+        raise ValueError("invalid row-stream density target")
+    for channel, profile in enumerate(profiles):
+        if np.any(target[..., channel] > profile.maximum_target_density):
+            raise ValueError("target density exceeds the profile domain")
+    for y0 in range(0, target.shape[0], row_tile_height):
+        height = min(row_tile_height, target.shape[0] - y0)
+        layers = [
+            _render_layer_region(
+                target[..., channel],
+                profile,
+                origin_yx=(y0, 0),
+                shape=(height, target.shape[1]),
+            )
+            for channel, profile in enumerate(profiles)
+        ]
+        density = np.stack(layers, axis=-1).astype(np.float32)
+        transmittance = np.exp(-density.astype(np.float64)).astype(
+            np.float32
+        )
+        yield y0, DensityConditionedStructureResult(
+            density=density,
+            transmittance=transmittance,
+        )
+
+
 def render_density_conditioned_structure_area_lod_region(
     target_density: np.ndarray,
     profiles: tuple[DensityConditionedLayerProfile, ...],
@@ -780,6 +823,7 @@ __all__ = [
     "estimate_area_lod_region_workspace_bytes",
     "iter_density_conditioned_structure_area_lod_rows",
     "render_density_conditioned_structure",
+    "iter_density_conditioned_structure_rows",
     "render_density_conditioned_structure_adaptive_lod",
     "render_density_conditioned_structure_adaptive_lod_region",
     "render_density_conditioned_structure_area_lod",
