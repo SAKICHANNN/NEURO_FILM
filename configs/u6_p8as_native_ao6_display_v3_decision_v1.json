@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8as_native_ao6_display_v3_decision.v1",
+  "node": "U6.P8AS",
+  "contract": "configs/u6_p8as_native_ao6_display_v3.json",
+  "contract_sha256": "b12ad3804ebe0208861512e2f85f937964b19c6ef518bd15ed194c9dbcf239ac",
+  "formal_report": "outputs/u6_p8as_native_ao6_display_v3/report.json",
+  "formal_report_sha256": "1c8bc737465466feaaa6160e2b0a1dab3e405712fae628ed191ce842888556a5",
+  "stable_evidence_id": "c4c51cbfba259ccb393b06b572309ee443bef0b75bc759686c74c10d7e14d099",
+  "result": {
+    "status": "pass",
+    "base_v2_v3_byte_exact": true,
+    "display_v2_v3_byte_exact": true,
+    "partition_byte_exact": true,
+    "independent_build_byte_exact": true,
+    "invalid_input_scratch_and_final_output_unchanged": true,
+    "display_v3_dll_sha256": "92358ba6c5b8d17ebb33b6501620672ca5f662f7b084d79c6b92bfe7b1eb9a2d"
+  },
+  "decision": "retain AO6 display v3. Caller-owned scratch permits a single base computation and a single final OETF computation while final output remains failure-atomic and byte-exact to v2",
+  "production_default_changed": false,
+  "claim_ceiling": "versioned local Windows x64 AO6 display v3 exact-output conformance; not a product promotion, stock response, calibration or renderer latency result",
+  "next_leaf": "U6.P8AT rerun the unchanged 12MP resource gate with context v2 and display v3; if latency still fails, re-profile"
+}

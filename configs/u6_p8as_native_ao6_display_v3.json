@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8as_native_ao6_display_v3_contract.v1",
+  "node": "U6.P8AS",
+  "parent_decision": "configs/u6_p8ar_native_fastpath_phases_decision_v1.json",
+  "parent_decision_sha256": "c2b7f21a2f0d165bec0e6e98379fe01019b11aa1709140617e60845c62806e53",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "native_sources": {
+    "sources": {
+      "native/film_physics/nf_ao6_base_f32_v3.c": "d0c9249c003439d816b351b1e23c9fb82f661c5c951e6fa2d85063eb144dd9a1",
+      "native/film_physics/nf_ao6_residual_f32_v1.c": "3d3be4e6afb40227e903aac4b01d80563fbe06f1d79622db6210c3476d41cd31",
+      "native/film_physics/nf_ao6_display_f32_v3.c": "5644f8afcdf667d35555ed00781ebc285447506923f7a73ee4bea895ffad9dee"
+    },
+    "headers": {
+      "native/film_physics/nf_ao6_base_f32_v3.h": "f3cab4884e6a649b720642a656574cc6de44c7de6b3bf4f9d0d01fa0acb95c1f",
+      "native/film_physics/nf_ao6_display_f32_v3.h": "afbf5c032d00cb544026a9208d809564c937d40292de7af4cfe6d4cd3b06b7ff"
+    }
+  },
+  "oracle": {
+    "height": 71,
+    "width": 97,
+    "seed": 20260729
+  },
+  "tile_rows": [
+    1,
+    7,
+    32,
+    71
+  ],
+  "gates": {
+    "base_v2_v3": "byte-exact",
+    "display_v2_v3": "byte-exact",
+    "partition": "byte-exact",
+    "independent_build": "byte-exact",
+    "invalid_input": "scratch-and-final-output-unchanged"
+  },
+  "claim_ceiling": "versioned local Windows x64 AO6 display v3 exact-output conformance; not a product promotion, stock response, calibration or renderer latency result"
+}
