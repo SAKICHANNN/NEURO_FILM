@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p4f_effective_mark_loss_lod_decision.v1",
+  "node": "U6.P4F",
+  "decision": "close_effective_mark_loss_lod_retain_p4d_base_pitch_only",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4f_effective_mark_loss_lod_v1.json",
+      "sha256": "ae29a9815b2a17c108927630483978a3f9e1580d6f4ab717392b727c55b46c88"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4f_effective_mark_loss_lod_v1/report_a.json",
+      "sha256": "9d5bbd749074e48d7936b7219f5ce352de941aa18e0a437aafd211e82f5c9b1d",
+      "repeat_byte_identical": true,
+      "stable_evidence_id": "415b72a4e01eb281be9330cb87566ff120b6cba666f42db8599c80a32ac6caa3"
+    },
+    "software_commit": "3f0cc34"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "reference_local_mean"
+    ],
+    "development_factor_2_maximum_reference_local_mean_difference": 0.036518510187126374,
+    "confirmation_factor_2_maximum_reference_local_mean_difference": 0.0661433519670791,
+    "frozen_maximum_reference_local_mean_difference": 0.03,
+    "maximum_candidate_target_local_mean_error": 0.015326498317429937,
+    "minimum_candidate_target_column_correlation": 0.9998316035724484,
+    "minimum_reference_variance_ratio": 0.9984210084879466,
+    "maximum_reference_variance_ratio": 1.4898313926306517,
+    "minimum_display_noise_out_of_domain_fraction": 0.1093478732638889,
+    "constant_rate_maximum_absolute_target_column_correlation": 0.10027405128609915,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "post_hoc_mechanism_diagnostic": {
+      "label": "diagnostic_only_not_a_frozen_gate",
+      "confirmation_factor_2_full_frame_maximum_reference_local_mean_difference": 0.0661433519670791,
+      "confirmation_factor_2_one_coarse_pixel_interior_maximum_reference_local_mean_difference": 0.0029005632492776767,
+      "development_factor_2_one_coarse_pixel_interior_maximum_reference_local_mean_difference": 0.005959392706051503
+    }
+  },
+  "interpretation": [
+    "The analytic Poisson effective-mark-loss correction is deterministic, physical-domain safe and improves the factor-4 reference-local-mean match.",
+    "It does not repair the factor-2 confirmation mismatch, which remains 0.06614 density units against the frozen 0.03 gate.",
+    "The surviving mismatch is concentrated at finite image boundaries where the base renderer clips the Gaussian support and fills outside-frame counts with zero. That boundary operation is not scale invariant and is outside the stationary effective-mark-loss derivation.",
+    "The result does not justify per-image normalization, gate relaxation or photographic integration. P4D base-pitch evidence remains the highest retained density-conditioned material result."
+  ],
+  "next_leaf": "U6.P4G freeze film-aperture boundary semantics and compare zero-fill, normalized support and explicit guard-band fields before any further LOD compiler",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "negative generic analytic LOD evidence; not measured film NPS, dye-cloud calibration, stock response or product evidence"
+}
