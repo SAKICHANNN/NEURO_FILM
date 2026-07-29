@@ -41,8 +41,13 @@ virtual-target row streaming for the exact-area reference simulator at
 48 repeat-exact, group-disjoint synthetic reference pairs with zero cross-split
 input/target hash overlap. P4N closes hard threshold routing: the selected
 policy improves sealed fidelity but is `7.44%` worse than simpler global P4H
-under the frozen development objective. P4O next measures only stationary
-global P4H; no added router, photographs or product integration open.
+under the frozen development objective. P4O exposes a 180-second legacy
+executor timeout without a memory or partition failure. P4P/P4Q retain a
+separately explicit, byte-exact constant-rate scalar-CDF executor: two 24MP
+streams finish in `60.06-68.03s` at `283.69-283.87MB`, while legacy defaults
+and small hashes remain unchanged. Stationary P4 routing/scale work is closed;
+the next algorithm leaf must be physically distinct and may not reopen P4N
+capacity.
 
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed

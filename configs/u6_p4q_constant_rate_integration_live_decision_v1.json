@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p4q_constant_rate_integration_live_decision.v1",
+  "node": "U6.P4Q",
+  "decision": "retain_explicit_stationary_reference_executor_close_p4_scale_work",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4q_constant_rate_integration_live_v1.json",
+      "sha256": "a8fbc049027a2ca6a34aca84c8d05e52c81225b9f7bb6bcc2b8844d0a8a6b1ed"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4q_constant_rate_integration_live_v1/report.json",
+      "sha256": "e61c413aa793f79b1aeb86fcc32e9074f3c8c232f6b2f9cf0ee89cb3a3c7348c",
+      "stable_evidence_id": "3d37168fb769e557a99774f5ff82980da8e086ba67a2cc1982d1f46dd3331496"
+    },
+    "software_commit": "50284d0afa3a8b922b1e11492265459ee3cfe998"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "fresh_process_runs": 2,
+    "wall_seconds": [
+      68.02872259999276,
+      60.061735399998724
+    ],
+    "process_tree_peak_rss_bytes": [
+      283873280,
+      283688960
+    ],
+    "repeat_stream_sha256": "e1948bdb969b2231ad052580e748e5c653bc93609c3e602f3f0f0e6702a9c594",
+    "output_rows": 4000,
+    "maximum_live_output_rows": 257,
+    "full_output_assembly_count": 0,
+    "target_owns_data": false,
+    "legacy_small_partition_hashes_unchanged": true,
+    "scalar_legacy_small_byte_exact": true,
+    "nonconstant_scalar_request_rejected": true,
+    "owned_temp_residue_count": [
+      0,
+      0
+    ]
+  },
+  "interpretation": [
+    "The explicit scalar-CDF executor completes the frozen stationary 24 MP reference stream in both fresh processes, where the unchanged legacy recurrence timed out at 180 seconds.",
+    "The two full streams are byte-identical and all 31/127/257-row integrations remain byte-exact to the legacy default. The default executor and nonconstant-rate path are unchanged.",
+    "This closes the stationary P4 scale-up leaf. It does not identify nonstationary film structure, measured grain or dye-cloud statistics, and it does not open product integration."
+  ],
+  "next_leaf": "Select a distinct physical-film algorithm leaf outside stationary P4 routing and scale work; do not add router capacity or retune the closed P4N policy.",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python explicit stationary executor evidence; not nonstationary fidelity, measured film structure, stock calibration, photographic evidence or product runtime"
+}

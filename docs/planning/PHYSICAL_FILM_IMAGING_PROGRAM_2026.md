@@ -84,6 +84,16 @@ source-context/resampling order is the dominant real-image contributor. P8 may
 therefore compile only a fixed-reference bundle. Preview remains
 reference-derived or a separately validated approximation.
 
+Current P4 execution boundary: exact-area reference streaming and a
+group-disjoint synthetic profile dataset are retained, while bounded hard
+routing is closed because its frozen development objective is 7.44% worse than
+the stationary global P4H compiler. The legacy stationary 24MP executor times
+out at 180 seconds; an explicit bit-constant scalar-CDF executor is byte-exact
+to the legacy recurrence and completes two fresh 24MP streams in 60-68 seconds
+at about 284MB. This is offline stationary reference infrastructure only.
+Nonstationary fidelity, measured film structure and product integration remain
+unidentified or closed.
+
 Current P8 boundary: P8A-P8W compile and validate a hash-bound, artifact-only
 Python canonical profile consumer. The fixed P7 identity remains float-exact
 through forward/reverse partitions and the frozen 32-row oracle. Successive

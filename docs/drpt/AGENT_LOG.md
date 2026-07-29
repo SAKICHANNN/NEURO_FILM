@@ -7019,3 +7019,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reference infrastructure; no photograph, measured-film or product claim.
 - Next leaf: P4O fresh-process performance/partition evidence for stationary
   global P4H only.
+
+## 2026-07-29 - U6.P4O-P4Q close stationary reference execution
+
+- P4O preserves exact 31/127/257-row partition identities and stays near
+  302MB, but both unchanged legacy 24MP workers hit the frozen 180-second
+  watchdog. The failure is CPU execution rather than memory or stream
+  semantics.
+- P4P freezes one bit-constant scalar-CDF replacement for the existing Poisson
+  recurrence. It is exact on 450 rows, preserves invalid-input behavior and is
+  6.11x faster on the frozen 1.57MP sampler case.
+- P4Q integrates that candidate behind an explicit mode while leaving the
+  legacy default unchanged. Two fresh 24MP processes finish in 68.03/60.06s at
+  283.87/283.69MB; both emit the same 4000-row stream hash, assemble no full
+  output and leave no residue. Small legacy partition hashes remain exact and
+  nonconstant requests fail closed.
+- Retain the explicit stationary reference executor and close P4 routing/scale
+  work. No photograph, measured-film, stock-calibration or product claim
+  opens. Continue through a physically distinct algorithm leaf.
