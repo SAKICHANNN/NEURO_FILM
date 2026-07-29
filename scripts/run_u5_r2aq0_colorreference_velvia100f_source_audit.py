@@ -150,6 +150,18 @@ def reference_member_record(
     text = _decode_reference_text(payload)
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     upper = [line.upper() for line in lines]
+    header_fields: dict[str, str] = {}
+    for line in lines:
+        if line.upper() == "BEGIN_DATA_FORMAT":
+            break
+        match = re.match(r"^([A-Z][A-Z0-9_]*)\s+(.+)$", line)
+        if match is None:
+            continue
+        key = match.group(1)
+        value = match.group(2).strip()
+        if len(value) >= 2 and value[0] == value[-1] == '"':
+            value = value[1:-1]
+        header_fields[key] = value
     number_of_fields = None
     number_of_sets = None
     for line in lines:
@@ -184,6 +196,7 @@ def reference_member_record(
         "member": member_name,
         "bytes": len(payload),
         "sha256": _sha256(payload),
+        "header_fields": header_fields,
         "number_of_fields": number_of_fields,
         "number_of_sets": number_of_sets,
         "format_fields": format_fields,

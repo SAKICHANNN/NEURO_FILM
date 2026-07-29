@@ -56,6 +56,7 @@ def test_reference_member_parser_checks_declared_shape() -> None:
     text = b"\n".join(
         [
             b"CGATS.5",
+            b'MATERIAL "Fujichrome Velvia 100F (RVP 100F)"',
             b'NUMBER_OF_FIELDS "3"',
             b"BEGIN_DATA_FORMAT",
             b"SAMPLE_ID XYZ_X XYZ_Y",
@@ -73,6 +74,10 @@ def test_reference_member_parser_checks_declared_shape() -> None:
     assert record["number_of_sets"] == 2
     assert record["data_row_count"] == 2
     assert record["data_token_count"] == 6
+    assert (
+        record["header_fields"]["MATERIAL"]
+        == "Fujichrome Velvia 100F (RVP 100F)"
+    )
     bad = text.replace(b'NUMBER_OF_SETS "2"', b'NUMBER_OF_SETS "3"')
     with pytest.raises(ValueError, match="inconsistent"):
         reference_member_record(
