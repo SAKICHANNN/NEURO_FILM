@@ -4721,3 +4721,23 @@
   camera/scene truth/quality, target runtime, public
   package/schema/receipt/capability, product admission or consumer mapping.
   P172, P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EZ Android camera-colour arithmetic
+
+- Producer `af1d4b3` freezes one nontrivial Ricoh GR II DNG-final and one
+  Panasonic DMC-G10 vendor-cam_xyz oracle across Windows MSVC/LLVM before
+  Android execution.
+- Two Android 14 x86_64 cold/wiped virtual-device boots with two probe replays
+  each exactly reproduce 257 pixels per matrix kind, in-place behavior and
+  nonfinite/overlap/invalid/singular failure atomicity. Runtime stable
+  identity is `3f1ee308...33fcf`; report SHA is
+  `0ffb8d3c...88f226`; evidence SHA is `03d9c866...a5cb`.
+- Owned emulator processes return to zero, the AVD is deleted and the
+  temporary ASCII mapping is removed. Startup-space cleanup was limited to
+  producer-owned reconstructible old temporary environments; formal evidence
+  and source data were retained.
+- The ceiling is private Android x86_64 virtual camera-colour arithmetic.
+  Physical arm64 remains link-only, and there is no RAW parser, matrix
+  provenance authorization, native-RAW quality, JNI/app/media, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  P172, P45/P44 and v42 remain unchanged.
