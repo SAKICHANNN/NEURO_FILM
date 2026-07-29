@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p8ak_native_ao6_context_decision.v1",
+  "node": "U6.P8AK",
+  "contract": "configs/u6_p8ak_native_ao6_context_v1.json",
+  "contract_sha256": "1b3bba18bd0a279181aa97f383c2c1b8ecbb2180bcafb4e7866d7495a79def8a",
+  "formal_report": "outputs/u6_p8ak_native_ao6_context_v1/report.json",
+  "formal_report_sha256": "384db0afa72aaf0702bc86908e981b966575a973c32a84a549ef1188a6867b01",
+  "stable_evidence_id": "3d62e56f53efa53caf88fe0a58685b955bde77dc7de7f5745c745bdb64e80905",
+  "result": {
+    "status": "pass",
+    "maximum_context_mean_error": 4.57763671875e-05,
+    "maximum_context_std_error": 1.52587890625e-05,
+    "maximum_output_error": 2.2530555725097656e-05,
+    "partition_context_byte_exact": true,
+    "invalid_update_state_unchanged": true,
+    "independent_context_build_dll_sha_exact": true
+  },
+  "decision": "retain the deterministic native row-major source-context reducer. Welford accumulation is byte-identical across four row partitions; the native six-float context stays close to the historical NumPy reduction and propagated base output remains inside the frozen gate. No Python image-level colour stage remains",
+  "production_default_changed": false,
+  "claim_ceiling": "native streaming AO6 source-context reduction and base conformance; not complete display execution, stock response, calibration or product promotion",
+  "next_leaf": "U6.P8AL compose native context, AO6 base, explicit sRGB transfer and native t15/c35 residual as one row-streamed display-look execution with Python-reference and partition gates"
+}
