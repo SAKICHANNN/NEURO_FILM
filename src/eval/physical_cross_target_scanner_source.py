@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
+import re
 import subprocess
 from typing import Any
 from urllib.request import Request, urlopen
@@ -240,12 +241,13 @@ def audit_cross_target_scanner_source(
         contract["source"]["page_url"], 1024 * 1024
     )
     page_text = page_payload.decode("latin-1", errors="strict")
+    normalized_page_text = re.sub(r"\s+", " ", page_text)
     required_page_phrases = (
         "made available here on this site for free",
         "scaled version",
         "Velvia 100F",
     )
-    if not all(phrase in page_text for phrase in required_page_phrases):
+    if not all(phrase in normalized_page_text for phrase in required_page_phrases):
         raise ValueError("official page statements changed")
 
     data_root = root / acquisition["data_root"]
