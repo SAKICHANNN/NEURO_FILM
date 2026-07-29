@@ -7128,3 +7128,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close further same-target capacity work. Independent-target/calibrated and
   product claims remain data-blocked; return priority to a distinct explicit
   film-image-formation or stock/look algorithm leaf.
+
+## 2026-07-30 - U6.P8BP fresh native Standard confirmation
+
+- Two fixed-code runs over nine fresh CC0 RAWs from nine camera makes produce
+  the same 27-row report SHA `75409181...e6dc8`; all automatic boundary gates
+  pass and six full-resolution risk reviews confirm zero new severe artifacts.
+- Three mapping-hidden autonomous blind rounds give native Standard one round
+  versus AO6 colour-only's two; native receives 5/12 native-or-AO6 choices,
+  below the frozen two-round and 50% gates.
+- Keep AO6 colour-only t15/c35 and close this full native Standard product
+  challenger without threshold changes, retuning or a content router. Next:
+  U6.P4R bounded real uniform-film scanner-convolved NPS/ACF feasibility.

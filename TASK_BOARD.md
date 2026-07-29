@@ -283,12 +283,17 @@ named-stock milestone.
 
 *Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C/U2.5/U2.6 product gaps and U2.4A software boundary pass without overclaim; real interpretations remain absent; next selection stays evidence-gated | Integration owner: repository owner or explicitly assigned root agent*
 
-Current physical-runtime leaf: U6.P8BO passes the portable source/build gate.
-The fixed strength-1.0 native Standard package is output-byte-exact between
-MSVC and LLVM-MinGW; Android arm64/x86_64 compile/link and macOS/iOS arm64
-object witnesses repeat exactly. This is not mobile runtime or product
-evidence. The next autonomous selection returns to the highest-information
-explicit film-simulation algorithm leaf.
+Current physical-runtime leaf: U6.P8BP is closed after a fresh nine-camera
+CC0 RAW confirmation. Full native Standard is repeat-exact, boundary-clean and
+has zero confirmed new severe artifacts, but wins only one of three blind
+rounds against AO6 colour-only and 5/12 pairwise choices. The frozen
+preference gate fails, so AO6 remains the simpler colour champion and no
+router/default/product promotion opens.
+
+Current real-grain leaf: U6.P4R may now acquire the exact eight-file CC0
+uniform-film TIFF set and test repeat stability plus scanner-convolved RGB/IR
+NPS and ACF feasibility. It cannot claim emulsion-only structure or
+calibration because roll, process and scanner-profile metadata remain unknown.
 
 Current explicit-algorithm leaf: U6.P2E is closed automatically. Its two
 reference-gauge runs are exact, but neutral scan compresses three independent

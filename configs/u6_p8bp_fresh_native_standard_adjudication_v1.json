@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p8bp_fixed_arm_adjudication.v1",
+  "experiment": {
+    "path": "configs/u6_p8bp_fresh_native_standard_confirmation_v1.json",
+    "sha256": "e3f8a1fa7b2ad16ea697f4d0adf03d7c1599fd7d665d2cc7b9195bfdeb1ec97d"
+  },
+  "automatic_reports": [
+    {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_c/report.json",
+      "sha256": "75409181b81142af4085bbff8df7bfaad88fe1f7bec866de95bc27ee3eec8af4"
+    },
+    {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/report.json",
+      "sha256": "75409181b81142af4085bbff8df7bfaad88fe1f7bec866de95bc27ee3eec8af4"
+    }
+  ],
+  "blind_observations": {
+    "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/blind_review_observations.json",
+    "sha256": "700c39bc29b309a800dc43d15352bf45ecdda04cb5673979574ad8be88bef272"
+  },
+  "blind_mappings": [
+    {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/blind_round_1_mapping.json",
+      "sha256": "a9163075a73bdec9dfcfa45a4ae5463774400f27635c195a0aa83e445b45e06a"
+    },
+    {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/blind_round_2_mapping.json",
+      "sha256": "0f8c39938eca33bf4866da13b79f2b5012b0e6158dfc32ec09ed74a986a54679"
+    },
+    {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/blind_round_3_mapping.json",
+      "sha256": "cdf667c36d83b6fc12539d256ff276903639df5e75ffec5c348892f2f6b320d5"
+    }
+  ],
+  "full_resolution_review": {
+    "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/full_resolution_review.json",
+    "sha256": "81f3e21f09282eeee6eabdb1e38f161080c29cb8a1bb022e0b2edac14017cdc8"
+  },
+  "claim_ceiling": "Fresh nine-image, nine-camera-make CC0 RAW autonomous visual confirmation of one frozen full-strength native Standard arm against fixed AO6 colour-only and fixed B0. This is not population preference, calibrated stock response, or a product promotion."
+}

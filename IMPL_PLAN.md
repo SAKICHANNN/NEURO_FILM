@@ -105,12 +105,15 @@ fixed-reference bundle and close the Python canonical buffer topology:
 forward/reverse and all formal outputs remain exact, 32 rows wins the frozen
 tile grid, and 12MP process-tree peak falls from 1.79-1.88GiB to
 717.14-717.15MB. This passes only the desktop Python reference memory target.
-U6.P8X-P8BO now freeze and execute the portable native CPU package. The fixed
-strength-1.0 Standard output is byte-exact between MSVC and LLVM-MinGW;
-Android arm64/x86_64 compile/link and macOS/iOS arm64 ABI objects repeat
-exactly. This is source/build evidence only; mobile runtime, production and
-calibration claims remain closed. The next autonomous selection returns to a
-distinct explicit film-simulation algorithm leaf. U6.P2D's scale-16 negative
+U6.P8X-P8BO freeze and execute the portable native CPU package. U6.P8BP then
+compares fixed B0, AO6 colour-only and full native Standard on nine fresh CC0
+RAWs. Two automatic runs are exact and all severe/boundary gates pass, but
+native Standard wins only one of three blind rounds against AO6 and 5/12
+pairwise choices. The frozen preference gate closes the current physical
+product challenger without retuning or routing; AO6 remains the simpler
+colour champion. U6.P4R next tests an exact CC0 uniform-film TIFF source for
+repeat-stable scanner-convolved RGB/IR NPS and ACF, without an emulsion or
+calibration claim. U6.P2D's scale-16 negative
 route and U6.P2E's unchanged reference-gauge challenger are both closed:
 P2E removes the near-white collapse but the neutral-scan route still violates
 the frozen per-image luma-range gate on three independent photographs. No
