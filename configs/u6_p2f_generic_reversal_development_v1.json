@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p2f_generic_reversal_development.v1",
+  "node": "U6.P2F",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2c1_decision_path": "configs/u6_p2c1_route_exposure_polarity_decision_v1.json",
+    "p2c1_decision_sha256": "c25e60b0347742f9ffbfcd17d11aa309079c3a4c9e4f424ed3566c9a8184af53",
+    "negative_sensitometry_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "negative_sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "candidate": {
+    "family": "generic_density_mirrored_reversal_v1",
+    "definition": "D_reversal(E) = D_negative(0) + D_negative(E_max) - D_negative(E), independently per layer",
+    "maximum_relative_layer_exposure": 16.0,
+    "reference_linear_exposure": 0.18,
+    "interpretation_route": "slide_direct_scan",
+    "process_condition": "unknown",
+    "interpretation_evidence": "unknown",
+    "endpoint_source": "exact frozen negative-sensitometry evaluations at E=0 and E=16",
+    "calibrated": false,
+    "production_eligible": false
+  },
+  "synthetic": {
+    "neutral_ramp_samples": 4097,
+    "neutral_ramp": "zero plus 4096 geometric samples from 1e-6 through 16",
+    "random_seed": 20260729,
+    "random_rgb_samples": 16384,
+    "partition_stops": [
+      0,
+      257,
+      2049,
+      8193,
+      16384
+    ]
+  },
+  "automatic_gates": {
+    "all_density_finite_and_nonnegative": true,
+    "maximum_neutral_density_first_difference": 0.0,
+    "minimum_negative_neutral_density_first_difference_magnitude": 1e-6,
+    "minimum_direct_transmittance_endpoint_increase_per_channel": 0.50,
+    "maximum_inverse_roundtrip_absolute_error": 1e-9,
+    "exact_replay": true,
+    "exact_partition": true,
+    "exact_serialization": true,
+    "input_unchanged": true,
+    "domain_identity_and_route_guards": true
+  },
+  "forbidden": [
+    "call the mirrored curve measured slide-film sensitometry",
+    "reuse the increasing-density negative operator as direct slide development",
+    "fit endpoints or curve shape to photographs or archive display proxies",
+    "interpret the operator as push, pull, process, stock or scanner truth",
+    "change thresholds after observing the synthetic result",
+    "render photographs before this primitive passes",
+    "promote to calibrated or product rendering"
+  ],
+  "branch_rules": {
+    "automatic_pass": "retain only as a generic reversal-development primitive and open a separately frozen photographic stress leaf",
+    "automatic_fail": "close density mirroring without parameter rescue"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "deterministic generic density-mirrored reversal-development hypothesis; no measured emulsion, stock, process, scanner, calibration, authenticity or product claim"
+}
