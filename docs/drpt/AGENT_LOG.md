@@ -7332,3 +7332,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The boundary is not a near-ideal MTF target. Close MTF/acutance/kernel fitting
   and component attribution; retain only broad-transition/endpoint nuisance
   stress.
+
+## 2026-07-30 - U6.P3L scene-linear backing-return topology closes
+
+- Reused the exact P8BP nine-make CC0 RAW cohort and existing WorkingImage
+  scene-linear decoder. P1 forward scatter, P3D additive return, P3H FFT
+  arithmetic, U2.2 development and every P3G automatic threshold remained
+  unchanged; no fitting or visual selection occurred.
+- Two reports are byte-identical at `6eb4fcf2...4fb7b`. The candidate creates
+  no new hard output boundaries, but its maximum local delta is `.36101`
+  against the frozen `.08` gate and it creates 5,563 isolated excursions.
+- Exact-zero RAW channels are at most `.6004%`, so the prior
+  display-clipped-zero explanation is insufficient. Automatic failure forbids
+  visual review. Close the topology without retuning; P3M may only attribute
+  the fixed failures spatially.

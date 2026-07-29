@@ -8,6 +8,13 @@
 > trilinear log-odds basis wins three of four analytic targets. Retain the
 > trilinear form only as a future controlled-pair baseline.
 
+U6.P3L also closes the unchanged split backing-return topology on genuine
+RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard
+boundaries, but fail the unchanged local-amplitude and isolated-excursion gates
+at `.36101` and 5,563. Sparse exact-zero RAW channels are not a sufficient
+explanation. P3M may perform read-only spatial attribution only; no parameter,
+gate, visual or product rescue is open.
+
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
 `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock

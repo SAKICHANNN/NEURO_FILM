@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p3l_scene_linear_backing_return_decision.v1",
+  "node": "U6.P3L",
+  "decision": "close_fixed_scene_linear_backing_return_topology",
+  "contract": {
+    "path": "configs/u6_p3l_scene_linear_backing_return_v1.json",
+    "software_commit": "b8482ee1"
+  },
+  "repeat_evidence": {
+    "run_a": "outputs/u6_p3l_scene_linear_backing_return_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3l_scene_linear_backing_return_v1/run_b/report.json",
+    "byte_identical": true,
+    "report_sha256": "6eb4fcf2b359347713be408d5bfaf4ca8bd3d05d45538a4a63736111c8c4fb7b",
+    "stable_evidence_id": "a8f901ac0a4be9cd33f70b187b9ce7c3643c982c565790fae57b6fd9db8e69e9"
+  },
+  "support": {
+    "source_count": 9,
+    "camera_make_count": 9,
+    "input": "CC0 RAW-derived scene-linear linear-sRGB",
+    "maximum_long_edge": 768,
+    "operator_fitting": false
+  },
+  "metrics": {
+    "maximum_input_exact_zero_channel_fraction": 0.006004192487497282,
+    "maximum_candidate_vs_no_spatial_abs": 0.36101206604437214,
+    "maximum_candidate_vs_no_spatial_abs_gate": 0.08,
+    "population_p95_candidate_vs_no_spatial_abs": 0.024105717305979407,
+    "total_isolated_candidate_excursion_count": 5563,
+    "maximum_isolated_candidate_excursion_count_gate": 0,
+    "maximum_new_hard_boundary_fraction": 0.0
+  },
+  "automatic_gate": {
+    "passed": false,
+    "failed": [
+      "candidate_bound",
+      "isolated_excursions"
+    ],
+    "visual_review_allowed": false
+  },
+  "interpretation": "Replacing display-derived pseudo-exposure with RAW-derived scene-linear input does not repair the fixed P1-forward plus P3D-additive return topology. Exact-zero input channels are sparse and no new hard output boundary appears, but local changes remain far above the frozen amplitude gate and create thousands of isolated excursions. The earlier display-zero-only explanation is therefore insufficient.",
+  "next_leaf": "U6.P3M read-only spatial attribution of the frozen P3L failures; no parameter, boundary, threshold, visual or product rescue",
+  "production_default_changed": false,
+  "claim_ceiling": "negative generic mechanism evidence on RAW-derived scene-linear relative inputs; no conclusion that physical backing return is absent from real film and no stock, calibration, preference or product claim"
+}

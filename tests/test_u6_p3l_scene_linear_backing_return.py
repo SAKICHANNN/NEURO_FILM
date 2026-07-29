@@ -21,6 +21,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u6_p3l_scene_linear_backing_return_v1.json"
 )
+DECISION = (
+    ROOT / "configs/u6_p3l_scene_linear_backing_return_decision_v1.json"
+)
 
 
 def test_contract_is_scene_linear_data_gated_and_non_promotional() -> None:
@@ -78,3 +81,16 @@ def test_fft_fixed_chain_is_finite_and_mechanistically_distinct() -> None:
     assert not np.array_equal(
         variants["split_candidate"], variants["forbidden_double"]
     )
+
+
+def test_decision_closes_without_visual_or_threshold_rescue() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    run_a = ROOT / decision["repeat_evidence"]["run_a"]
+    run_b = ROOT / decision["repeat_evidence"]["run_b"]
+    assert run_a.read_bytes() == run_b.read_bytes()
+    assert decision["automatic_gate"]["passed"] is False
+    assert decision["automatic_gate"]["visual_review_allowed"] is False
+    assert decision["metrics"]["maximum_candidate_vs_no_spatial_abs"] > (
+        decision["metrics"]["maximum_candidate_vs_no_spatial_abs_gate"]
+    )
+    assert decision["next_leaf"].startswith("U6.P3M read-only")
