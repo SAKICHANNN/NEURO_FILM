@@ -4234,3 +4234,18 @@
 - No model/package/schema/receipt/capability exists. P45/P44 remain closed;
   v42 remains current and no consumer interface or integration manifest
   changes.
+
+## 2026-07-29 - Freeze scene-linear RAW non-mapping
+
+- P172 covers the main ingress change that now returns an orientation-applied
+  scene-linear `WorkingImage` for successfully decoded RAW files. Advisory
+  inspection preserves the observed `linear_srgb` / `scene_linear` facts but
+  returns `unsupported-decoded-rail`.
+- In a two-source transaction, a display-linear first source reaches encoded
+  staging before the scene-linear RAW source rejects. All four pre-existing
+  output/recipe/report destinations remain byte-exact and no stage or backup
+  residue survives.
+- Verification: `tests/test_color_match_files.py` passes 33 tests with one
+  environment-dependent skip under the main Python 3.12 environment. P172
+  changes tests/evidence only: no decoder, MatchView rail, schema, public
+  export or v42 integration payload changes.

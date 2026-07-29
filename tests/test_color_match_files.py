@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 import subprocess
 import sys
 import threading
 import time
-from types import SimpleNamespace
 import weakref
+from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -233,6 +233,44 @@ def test_file_input_preflight_structures_decoder_runtime_failure(
     assert result.file_sha256 is not None
     assert result.working_space is None
     assert result.failure_code == "decode-or-color-state-rejected"
+
+
+def test_file_input_preflight_rejects_decoded_scene_linear_raw_rail(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "source.dng"
+    source.write_bytes(b"stable-scene-linear-raw")
+    from src.color_match import files as files_module
+
+    monkeypatch.setattr(
+        files_module,
+        "load_working_image",
+        lambda path: WorkingImage(
+            pixels=np.full((7, 9, 3), 0.25, dtype=np.float32),
+            working_space="linear_srgb",
+            transfer_state="scene_linear",
+            source_transfer_state="scene_linear",
+            source_profile=SourceProfile(
+                "raw_metadata",
+                "generic camera metadata",
+            ),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=14,
+            source_path=Path(path),
+            warnings=[],
+        ),
+    )
+
+    result = inspect_reference_file_input(source)
+
+    assert result.accepted is False
+    assert result.file_sha256 is not None
+    assert result.working_space == "linear_srgb"
+    assert result.transfer_state == "scene_linear"
+    assert result.failure_code == "unsupported-decoded-rail"
 
 
 def test_file_adapter_matches_png_jpeg_tiff_batch_and_saves_recipe(
@@ -511,6 +549,75 @@ def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     assert not output_b.exists()
     assert not recipe.exists()
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+
+
+def test_file_adapter_rejects_late_decoded_scene_linear_raw_atomically(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    raw = tmp_path / "source.dng"
+    output_a = tmp_path / "output-a.png"
+    output_b = tmp_path / "output-b.png"
+    recipe = tmp_path / "look.json"
+    report = tmp_path / "report.json"
+    _image(reference, 27353)
+    _image(good, 27354)
+    raw.write_bytes(b"stable-scene-linear-raw")
+    original_load = files.load_working_image
+
+    def load_with_scene_linear_raw(path: Path) -> WorkingImage:
+        if Path(path) != raw:
+            return original_load(path)
+        return WorkingImage(
+            pixels=np.full((7, 9, 3), 0.25, dtype=np.float32),
+            working_space="linear_srgb",
+            transfer_state="scene_linear",
+            source_transfer_state="scene_linear",
+            source_profile=SourceProfile(
+                "raw_metadata",
+                "generic camera metadata",
+            ),
+            hdr_metadata={},
+            orientation_applied=True,
+            alpha_policy="absent",
+            bit_depth_in=14,
+            source_path=raw,
+            warnings=[],
+        )
+
+    monkeypatch.setattr(files, "load_working_image", load_with_scene_linear_raw)
+    original_destinations = {
+        output_a: b"existing-output-a",
+        output_b: b"existing-output-b",
+        recipe: b"existing-recipe",
+        report: b"existing-report",
+    }
+    for path, payload in original_destinations.items():
+        path.write_bytes(payload)
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match=(
+            "file adapter currently requires display-linear "
+            "linear_srgb or linear_rec2020 sources"
+        ),
+    ):
+        match_reference_files(
+            reference,
+            [good, raw],
+            [output_a, output_b],
+            recipe_path=recipe,
+            report_path=report,
+        )
+
+    for path, payload in original_destinations.items():
+        assert path.read_bytes() == payload
+    assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+    assert not list(tmp_path.glob(".*.reference-match-backup"))
 
 
 def test_file_adapter_rejects_16_bit_jpeg(tmp_path: Path) -> None:
