@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Run the frozen U6.P2D photographic negative-route stress."""
+"""Run a frozen U6.P2D/P2E photographic negative-route stress."""
 
 from __future__ import annotations
 

@@ -32,6 +32,17 @@ from src.film_physics import (
 
 
 SCHEMA = "neuro_film.u6_p2d_negative_route_photographic_stress.v1"
+REFERENCE_GAUGE_SCHEMA = (
+    "neuro_film.u6_p2e_reference_gauge_negative_stress.v1"
+)
+_REPORT_SCHEMAS = {
+    SCHEMA: (
+        "neuro_film.u6_p2d_negative_route_photographic_stress_report.v1"
+    ),
+    REFERENCE_GAUGE_SCHEMA: (
+        "neuro_film.u6_p2e_reference_gauge_negative_stress_report.v1"
+    ),
+}
 
 
 def _file_sha256(path: Path) -> str:
@@ -119,8 +130,10 @@ def evaluate(
     root: Path,
     contact_sheet_path: Path,
 ) -> dict[str, Any]:
-    if contract.get("schema") != SCHEMA:
-        raise ValueError("unsupported U6.P2D contract")
+    contract_schema = contract.get("schema")
+    if contract_schema not in _REPORT_SCHEMAS:
+        raise ValueError("unsupported negative-route photographic contract")
+    reference_gauge = contract_schema == REFERENCE_GAUGE_SCHEMA
     expected = contract["input"]
     manifest_path = root / expected["manifest"]
     preflight_path = root / expected["preflight_report"]
@@ -161,7 +174,10 @@ def evaluate(
             witness["paper_maximum_densities"]
         ),
         maximum_relative_layer_exposure=float(
-            contract["pipeline"]["pseudo_exposure_scale"]
+            contract["pipeline"].get(
+                "print_maximum_relative_layer_exposure",
+                contract["pipeline"]["pseudo_exposure_scale"],
+            )
         ),
     )
     scanner_contract = json.loads(
@@ -252,7 +268,7 @@ def evaluate(
                 & ~((linear <= 0.0) | (linear >= 1.0))
             )
             route_outputs[name] = first
-            route_rows[name] = {
+            route_row = {
                 "output_sha256": _array_sha256(first),
                 "repeat_exact": repeat_exact,
                 "finite_bounded": bool(
@@ -264,6 +280,21 @@ def evaluate(
                 "new_boundary_fraction": float(np.mean(boundary)),
                 "isolated_noise_count": isolated_noise_count,
             }
+            if reference_gauge:
+                luma = (
+                    np.float32(0.2126) * first[..., 0]
+                    + np.float32(0.7152) * first[..., 1]
+                    + np.float32(0.0722) * first[..., 2]
+                )
+                route_row["near_white_fraction"] = float(
+                    np.mean(
+                        luma
+                        >= float(gates["near_white_threshold"])
+                    )
+                )
+                p05, p95 = np.percentile(luma, [5.0, 95.0])
+                route_row["luma_p95_minus_p05"] = float(p95 - p05)
+            route_rows[name] = route_row
         rows.append(
             {
                 "id": source_row["id"],
@@ -337,32 +368,82 @@ def evaluate(
         )
         <= int(gates["maximum_isolated_noise_count"]),
     }
+    if reference_gauge:
+        decisions["per_image_near_white"] = max(
+            row["routes"][route]["near_white_fraction"]
+            for row in rows
+            for route in route_names
+        ) <= float(gates["maximum_per_image_near_white_fraction"])
+        decisions["population_near_white"] = all(
+            float(
+                np.median(
+                    [
+                        row["routes"][route]["near_white_fraction"]
+                        for row in rows
+                    ]
+                )
+            )
+            <= float(
+                gates["maximum_population_median_near_white_fraction"]
+            )
+            for route in route_names
+        )
+        decisions["photographic_luma_range"] = min(
+            row["routes"][route]["luma_p95_minus_p05"]
+            for row in rows
+            for route in route_names
+        ) >= float(gates["minimum_per_image_luma_p95_minus_p05"])
     passed = all(decisions.values())
+    population = {
+        route: {
+            "median_mean_abs_change": float(
+                np.median(
+                    [
+                        row["routes"][route]["mean_abs_change"]
+                        for row in rows
+                    ]
+                )
+            ),
+            "maximum_new_boundary_fraction": max(
+                row["routes"][route]["new_boundary_fraction"]
+                for row in rows
+            ),
+            "total_isolated_noise_count": sum(
+                row["routes"][route]["isolated_noise_count"]
+                for row in rows
+            ),
+        }
+        for route in route_names
+    }
+    if reference_gauge:
+        for route in route_names:
+            population[route].update(
+                {
+                    "maximum_near_white_fraction": max(
+                        row["routes"][route]["near_white_fraction"]
+                        for row in rows
+                    ),
+                    "median_near_white_fraction": float(
+                        np.median(
+                            [
+                                row["routes"][route][
+                                    "near_white_fraction"
+                                ]
+                                for row in rows
+                            ]
+                        )
+                    ),
+                    "minimum_luma_p95_minus_p05": min(
+                        row["routes"][route]["luma_p95_minus_p05"]
+                        for row in rows
+                    ),
+                }
+            )
     core = {
-        "schema": "neuro_film.u6_p2d_negative_route_photographic_stress_report.v1",
+        "schema": _REPORT_SCHEMAS[contract_schema],
         "node": contract["node"],
         "rows": rows,
-        "population": {
-            route: {
-                "median_mean_abs_change": float(
-                    np.median(
-                        [
-                            row["routes"][route]["mean_abs_change"]
-                            for row in rows
-                        ]
-                    )
-                ),
-                "maximum_new_boundary_fraction": max(
-                    row["routes"][route]["new_boundary_fraction"]
-                    for row in rows
-                ),
-                "total_isolated_noise_count": sum(
-                    row["routes"][route]["isolated_noise_count"]
-                    for row in rows
-                ),
-            }
-            for route in route_names
-        },
+        "population": population,
         "contact_sheet_sha256": contact_sha,
         "decisions": decisions,
         "automatic_pass": passed,
