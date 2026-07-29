@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8bn_fresh_strength_adjudication.v1",
+  "node": "U6.P8BN",
+  "experiment": {
+    "path": "configs/u6_p8bn_fresh_strength_population_v1.json",
+    "sha256": "e90f36c091f7bbb4106b3a5a23f9dd2b56170af6aaa848e9220025098e41b330"
+  },
+  "automatic_report": {
+    "path": "outputs/u6_p8bn_fresh_strength_population_v1/comparison_v1/report.json",
+    "sha256": "6b2b94a3624f4ff35300ed7d4c3d214ef59eaf6e55b5655198aea2672af9dcb7"
+  },
+  "blind_observations": {
+    "path": "outputs/u6_p8bn_fresh_strength_population_v1/comparison_v1/blind_review_observations.json",
+    "sha256": "0c00d8ffccd6728790b8bb4b0b41e49000cd6c8ed3de73eef95d6263725e72d4"
+  },
+  "blind_mappings": [
+    {
+      "path": "outputs/u6_p8bn_fresh_strength_population_v1/comparison_v1/blind_round_1_mapping.json",
+      "sha256": "f559789ebfc15fda4385035db006cd62caf9f3213f1ed917a9f08aed767510f4"
+    },
+    {
+      "path": "outputs/u6_p8bn_fresh_strength_population_v1/comparison_v1/blind_round_2_mapping.json",
+      "sha256": "5dbdaef9bfe5484773ef02fe98d984eb5ecf27e1079f3152ec27f21dc37252a5"
+    },
+    {
+      "path": "outputs/u6_p8bn_fresh_strength_population_v1/comparison_v1/blind_round_3_mapping.json",
+      "sha256": "1afa616d1ce9fbacebb5a61f00a24ffd584d68cde360a1dcd5983f216321b11a"
+    }
+  ],
+  "full_resolution_review": {
+    "reviewed_pairs": [
+      "nikon_z_fc",
+      "canon_r6_iii"
+    ],
+    "confirmed_new_severe_count": 0,
+    "reason": "The two source-risk cases were inspected at original output resolution for both strengths. High ISO colour noise and the strong source colour state remain source characteristics; neither strength adds geometry failure, banding, posterization, seams or clipping blocks."
+  },
+  "claim_ceiling": "fresh CC0 RAW autonomous visual evidence comparing two fixed global encoded-display strengths for the native Standard Look Approximation; not population preference, stock response, calibration, universal safety or product promotion"
+}

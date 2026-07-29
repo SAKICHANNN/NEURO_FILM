@@ -6657,3 +6657,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preregistered gates were unchanged.
 - Claim remains development Look Approximation. Next: U6.P8BN independent RAW
   population comparison of 0.80 versus 1.00 before any default decision.
+
+## 2026-07-29 — U6.P8BN fresh strength confirmation
+
+- Froze eight exact CC0 raw.pixls.us rows; seven rows/seven makes decode and
+  pass exact/dHash leakage plus source severe gates. The pinned Sony row remains
+  a transparent LibRaw unsupported-format failure and was not replaced.
+- Rendered both fixed native strengths on all seven eligible scenes. All 14
+  transactions verify with zero output-code and new-boundary fractions.
+- Three pre-reveal autonomous blind rounds decode to one win for 0.80 and two
+  for 1.00. Original-resolution Nikon/Canon risk-pair review finds no newly
+  introduced severe artifact. The frozen 2/3 preference gate rejects 0.80 as a
+  global default challenger; no threshold rescue or content router opens.
+- Verification: four P8BN contract/adjudication tests pass. Production remains
+  unchanged. Next: P8BO portable source package and cross-toolchain conformance.

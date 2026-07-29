@@ -279,7 +279,9 @@ named-stock milestone.
 
 *Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C/U2.5/U2.6 product gaps and U2.4A software boundary pass without overclaim; real interpretations remain absent; next selection stays evidence-gated | Integration owner: repository owner or explicitly assigned root agent*
 
-Current physical-runtime leaf: U6.P8BM passes a separate hash-bound native
-strength-0.80 RAW-to-PNG transaction with exact fresh-process output, restart
-verification and zero boundary pixels. U6.P8BN must test 0.80 versus 1.00 on a
-genuinely fresh rights-cleared RAW cohort before any default or promotion.
+Current physical-runtime leaf: U6.P8BN closes strength 0.80 as a global default
+challenger. Seven fresh CC0 RAW scenes across seven camera makes produce 14
+boundary-clean and severe-clean renders, but 0.80 wins only one of three
+autonomous blind rounds against 1.00. No content router or product default
+opens. U6.P8BO next verifies a portable source-level strength-1.0 native
+package across a second Windows compiler and Android/Apple build targets.

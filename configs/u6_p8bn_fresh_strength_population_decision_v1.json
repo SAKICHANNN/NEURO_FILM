@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p8bn_fresh_strength_population_decision.v1",
+  "node": "U6.P8BN",
+  "contract": "configs/u6_p8bn_fresh_strength_population_v1.json",
+  "contract_sha256": "e90f36c091f7bbb4106b3a5a23f9dd2b56170af6aaa848e9220025098e41b330",
+  "preflight": {
+    "manifest_sha256": "f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c",
+    "automatic_report_sha256": "951ad057baf64e726d38defff7db24064d38c51fcc888f7dad9c66f0530a91fa",
+    "visual_source_review_sha256": "199585255e3c4b9f392d3a90d0ac9cbca25f4d57517b59ceac1829a9f6454368",
+    "candidate_count": 8,
+    "decoded_rows": 7,
+    "camera_makes": 7,
+    "frozen_decode_failure": "sony_a7_v",
+    "exact_or_dhash_leakage_pairs": 0,
+    "confirmed_severe_source_artifact_count": 0,
+    "pass": true
+  },
+  "comparison": {
+    "report_sha256": "6b2b94a3624f4ff35300ed7d4c3d214ef59eaf6e55b5655198aea2672af9dcb7",
+    "render_count": 14,
+    "automatic_gate_pass": true,
+    "worst_output_code_boundary_fraction": 0.0,
+    "worst_new_boundary_fraction": 0.0,
+    "adjudication_report_sha256": "b848885bb8bd314b8249a7e168ad5621ca9f699c141c66d8c1fd2d48593a986f",
+    "stable_evidence_id": "ed32ab6b51a25d1ce69f5a23113e6a7c00f15bf851d1670fe7c4c78bb39d7eb6",
+    "strength_0.8_round_wins": 1,
+    "strength_1.0_round_wins": 2,
+    "required_strength_0.8_round_wins": 2,
+    "preference_gate_pass": false,
+    "confirmed_new_severe_artifact_count": 0,
+    "full_resolution_risk_pairs_reviewed": [
+      "nikon_z_fc",
+      "canon_r6_iii"
+    ]
+  },
+  "result": {
+    "status": "automatic_and_severe_pass_preference_closed",
+    "decision": "retain the native Standard strength-1.0 policy and close strength-0.8 as a global default challenger",
+    "reason": "both strengths are boundary-clean and severe-clean, but the preregistered fresh-population autonomous blind gate requires strength 0.8 to win at least two of three rounds; it wins one while strength 1.0 wins two",
+    "production_default_changed": false,
+    "content_router_opened": false,
+    "forbidden_rescue": [
+      "change the frozen preference threshold",
+      "remove or replace a decoded scene after reveal",
+      "add rounds on the same evidence",
+      "train a content router from seven visual outcomes",
+      "relabel autonomous votes as population preference"
+    ]
+  },
+  "claim_ceiling": "fresh CC0 RAW autonomous visual evidence comparing two fixed global encoded-display strengths for the native Standard Look Approximation; not population preference, stock response, calibration, universal safety or product promotion",
+  "next_leaf": "U6.P8BO freeze a portable source-level native Standard package and verify the exact strength-1.0 C ABI with a second Windows compiler plus Android link and Apple object conformance before any device runtime claim"
+}

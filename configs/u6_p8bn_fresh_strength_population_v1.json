@@ -1,0 +1,186 @@
+{
+  "schema": "neuro_film.u6_p8bn_fresh_strength_population_contract.v1",
+  "schema_version": 1,
+  "experiment_id": "u6-p8bn-fresh-strength-population-v1",
+  "node": "U6.P8BN",
+  "parent_decision": {
+    "path": "configs/u6_p8bm_native_standard_strength_transaction_decision_v1.json",
+    "sha256": "58a4d16cfff4b536b6572f6233e7b8388e0c7f90fd380eb42fd7ece15978b3b0"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-28",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "license": "CC0/Public Domain per each exact repository row",
+    "selection": "eight preregistered exact IDs, one per camera make, absent from prior AI1S/AO7/P8BJ/P8BK pools; no pixels inspected before freeze"
+  },
+  "selection": {
+    "candidate_count": 8,
+    "expected_makes": 8,
+    "maximum_rows_per_make": 1,
+    "download_root": "data/external/rawpixls_p8bn_v1/raw",
+    "decoded_root": "outputs/u6_p8bn_fresh_strength_population_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {
+      "id": "ricoh_gr_iiix",
+      "repository_id": 5818,
+      "make": "Ricoh",
+      "model": "GR IIIx",
+      "mode": "14bit (3:2)",
+      "date": "2022-07-30",
+      "megapixels": 24.84,
+      "filename": "ricoh_gr_iiix.dng",
+      "path": "data/external/rawpixls_p8bn_v1/raw/ricoh_gr_iiix.dng",
+      "sha256": "1e318af31be4baa9949f0ed4af5cfe8ffb2c180e2c12926cd75ac1d029bb0fae",
+      "url": "https://raw.pixls.us/getfile.php/5818/nice/Ricoh%20-%20GR%20IIIx%20-%2014bit%20(3%3A2).DNG"
+    },
+    {
+      "id": "olympus_em10_ii",
+      "repository_id": 5915,
+      "make": "Olympus",
+      "model": "E-M10 Mark II",
+      "mode": "16bit (4:3)",
+      "date": "2022-09-04",
+      "megapixels": 16.11,
+      "filename": "olympus_em10_ii.orf",
+      "path": "data/external/rawpixls_p8bn_v1/raw/olympus_em10_ii.orf",
+      "sha256": "1a95224502963c892aa69ceb58767e58730f223c4b60b62119261d45eeba8bd9",
+      "url": "https://raw.pixls.us/getfile.php/5915/nice/Olympus%20-%20E-M10%20Mark%20II%20-%2016bit%20(4%3A3).ORF"
+    },
+    {
+      "id": "pentax_k1_ii",
+      "repository_id": 7134,
+      "make": "Pentax",
+      "model": "K-1 Mark II",
+      "mode": "14bit (3:2)",
+      "date": "2023-12-25",
+      "megapixels": 15.65,
+      "filename": "pentax_k1_ii.dng",
+      "path": "data/external/rawpixls_p8bn_v1/raw/pentax_k1_ii.dng",
+      "sha256": "8ba36273780d810cbd25e847b6bfa2d22861b8bfda486bc81a8b3648f505cbb2",
+      "url": "https://raw.pixls.us/getfile.php/7134/nice/Pentax%20-%20K-1%20Mark%20II%20-%2014bit%20(3%3A2).DNG"
+    },
+    {
+      "id": "nikon_z_fc",
+      "repository_id": 8566,
+      "make": "Nikon",
+      "model": "Z fc",
+      "mode": "14bit compressed ((10)) (3:2)",
+      "date": "2025-09-05",
+      "megapixels": 20.88,
+      "filename": "nikon_z_fc.nef",
+      "path": "data/external/rawpixls_p8bn_v1/raw/nikon_z_fc.nef",
+      "sha256": "8ff63bbe2a55aa682112662674b302e50a650a671a3022c68f787672961a0683",
+      "url": "https://raw.pixls.us/getfile.php/8566/nice/Nikon%20-%20Z%20fc%20-%2014bit%20compressed%20((10))%20(3%3A2).NEF"
+    },
+    {
+      "id": "fujifilm_xt30_iii",
+      "repository_id": 8771,
+      "make": "Fujifilm",
+      "model": "X-T30 III",
+      "mode": "14bit compressed (3:2)",
+      "date": "2025-12-01",
+      "megapixels": 26.5,
+      "filename": "fujifilm_xt30_iii.raf",
+      "path": "data/external/rawpixls_p8bn_v1/raw/fujifilm_xt30_iii.raf",
+      "sha256": "1910b95422240f97781fa3296d67a56cc8f62de63144ac11cbf4267a11278042",
+      "url": "https://raw.pixls.us/getfile.php/8771/nice/Fujifilm%20-%20X-T30%20III%20-%2014bit%20compressed%20(3%3A2).RAF"
+    },
+    {
+      "id": "panasonic_s1m2",
+      "repository_id": 8790,
+      "make": "Panasonic",
+      "model": "DC-S1M2",
+      "mode": "3:2",
+      "date": "2025-12-08",
+      "megapixels": 24.04,
+      "filename": "panasonic_s1m2.rw2",
+      "path": "data/external/rawpixls_p8bn_v1/raw/panasonic_s1m2.rw2",
+      "sha256": "e50ae28ab990a7997b1f2142e976619d072969186ed4f0095bef0724d2c70563",
+      "url": "https://raw.pixls.us/getfile.php/8790/nice/Panasonic%20-%20DC-S1M2%20-%203%3A2.RW2"
+    },
+    {
+      "id": "sony_a7_v",
+      "repository_id": 8850,
+      "make": "Sony",
+      "model": "ILCE-7M5",
+      "mode": "14bit (3:2)",
+      "date": "2025-12-18",
+      "megapixels": 14.33,
+      "filename": "sony_a7_v.arw",
+      "path": "data/external/rawpixls_p8bn_v1/raw/sony_a7_v.arw",
+      "sha256": "8315af2a9889709f4c836dbaadc23d226847e5a0630fda212a9f896d5fe0569f",
+      "url": "https://raw.pixls.us/getfile.php/8850/nice/Sony%20-%20ILCE-7M5%20-%2014bit%20(3%3A2).ARW"
+    },
+    {
+      "id": "canon_r6_iii",
+      "repository_id": 8963,
+      "make": "Canon",
+      "model": "EOS R6 Mark III",
+      "mode": "RAW (3:2)",
+      "date": "2026-01-22",
+      "megapixels": 12.44,
+      "filename": "canon_r6_iii.cr3",
+      "path": "data/external/rawpixls_p8bn_v1/raw/canon_r6_iii.cr3",
+      "sha256": "1f533686b2230817dac98266a6cc8ffd960413c109965768b7efc05cc1ca96eb",
+      "url": "https://raw.pixls.us/getfile.php/8963/nice/Canon%20-%20EOS%20R6%20Mark%20III%20-%20RAW%20(3%3A2).CR3"
+    }
+  ],
+  "maximum_download_bytes": 536870912,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "development_manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "comparison_manifests": [
+      {
+        "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+        "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+        "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+        "format": "rawpixls_manifest"
+      }
+    ],
+    "minimum_hash_clean_decoded_rows": 6,
+    "minimum_camera_makes": 6,
+    "maximum_largest_make_fraction": 0.16666666666666666,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 1,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 6,
+    "minimum_camera_makes": 6,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "comparison": {
+    "strengths": [
+      0.8,
+      1.0
+    ],
+    "automatic_gate": {
+      "all_transactions_verified": true,
+      "maximum_output_code_boundary_fraction": 0.005,
+      "maximum_new_boundary_fraction_at_0_80": 0.0,
+      "zero_confirmed_severe_artifact": true
+    },
+    "preference_gate": {
+      "three_autonomous_blind_rounds": true,
+      "minimum_round_wins_for_0_80": 2,
+      "ties_allowed": true
+    }
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "fresh CC0 RAW development comparison of two global encoded-display strength settings for the native Standard Look Approximation; not population preference, stock response, calibration or product promotion"
+}
