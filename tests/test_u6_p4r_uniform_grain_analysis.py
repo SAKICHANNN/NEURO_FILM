@@ -4,6 +4,10 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 
 from src.eval.real_uniform_grain_analysis import build_scan_signatures
+from src.eval.real_uniform_grain_analysis import (
+    UniformGrainAnalysisError,
+    _validate_acquisition_manifest,
+)
 
 
 def test_build_scan_signatures_keeps_rgb_and_ir_distinct() -> None:
@@ -48,3 +52,46 @@ def test_build_scan_signatures_keeps_rgb_and_ir_distinct() -> None:
         result["channel_nps"]["red"],
         result["channel_nps"]["infrared"],
     )
+
+
+def test_acquisition_manifest_must_bind_every_source_row() -> None:
+    source = {
+        "experiment_id": "source-v1",
+        "selection": {"expected_total_bytes": 12},
+        "files": [
+            {
+                "title": "File:one.tif",
+                "film_stock_id": "stock-a",
+                "path": "data/one.tif",
+                "api_sha1": "1" * 40,
+                "expected_bytes": 12,
+                "allowed_use": "research",
+            }
+        ],
+    }
+    manifest = {
+        "schema": (
+            "neuro_film.u6_p4r_uniform_grain_acquisition_manifest.v1"
+        ),
+        "source_contract_id": "source-v1",
+        "total_bytes": 12,
+        "rows": [
+            {
+                "title": "File:one.tif",
+                "film_stock_id": "stock-a",
+                "path": "data/one.tif",
+                "sha1": "1" * 40,
+                "sha256": "2" * 64,
+                "bytes": 12,
+                "allowed_use": "research",
+            }
+        ],
+    }
+    _validate_acquisition_manifest(manifest, source)
+    manifest["rows"][0]["sha1"] = "3" * 40
+    try:
+        _validate_acquisition_manifest(manifest, source)
+    except UniformGrainAnalysisError as error:
+        assert "row identity" in str(error)
+    else:
+        raise AssertionError("mutated acquisition identity must fail closed")

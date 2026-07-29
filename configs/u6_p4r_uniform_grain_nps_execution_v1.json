@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4r_uniform_grain_nps_execution.v1",
+  "node": "ULT > U6 > U6.P4R",
+  "source_contract": {
+    "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+    "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+  },
+  "analysis_contract": {
+    "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+    "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+  },
+  "acquisition_manifest": {
+    "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/acquisition_manifest.json",
+    "sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929"
+  },
+  "preflight_report": {
+    "path": "outputs/experiments/u6_p4r_uniform_grain_preflight_v1/report.json",
+    "sha256": "3460dbf66784336a19098e279889724741fb5ae8d0cfcd0b7c73e5f9efffb7ee"
+  },
+  "visual_review": {
+    "path": "configs/u6_p4r_uniform_grain_visual_review_v1.json",
+    "sha256": "e3a4edbb557749834e943caf027572e044cfcb557c7e1e0c364e83a942ccab2d"
+  },
+  "fixed_crop_policy": "All four preregistered fractional crops from every scan; no crop replacement after visual review.",
+  "parameter_fitting_allowed": false,
+  "claim_ceiling": "Same-scanner observable code-domain NPS/ACF feasibility; not emulsion truth, physical grain size/rate, process response, scanner-independent stock identity or product promotion."
+}

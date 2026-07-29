@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p4r_uniform_grain_visual_review.v1",
+  "node": "ULT > U6 > U6.P4R",
+  "preflight_report": {
+    "path": "outputs/experiments/u6_p4r_uniform_grain_preflight_v1/report.json",
+    "sha256": "3460dbf66784336a19098e279889724741fb5ae8d0cfcd0b7c73e5f9efffb7ee"
+  },
+  "contact_sheet": {
+    "path": "outputs/experiments/u6_p4r_uniform_grain_preflight_v1/source_contact_sheet.png",
+    "sha256": "38dbbaadd91963f47d94cbfee7448debdc65f00539551e800b5ad90b04848e43"
+  },
+  "reviewed_source_ids": [
+    "KodakEktar100GrainScan01",
+    "KodakEktar100GrainScan02",
+    "KodakEktar100GrainScan03",
+    "KodakEktar100GrainScan04",
+    "KodakUltramax400GrainScan01",
+    "KodakUltramax400GrainScan02",
+    "KodakUltramax400GrainScan03",
+    "KodakUltramax400GrainScan04"
+  ],
+  "findings": {
+    "uniform_field_present_all_rows": true,
+    "rgb_and_infrared_alpha_both_visually_decodable": true,
+    "confirmed_scan_failure_count": 0,
+    "confirmed_severe_source_artifact_count": 0,
+    "minor_dust_or_scratch_present": true,
+    "nuisance_note": "Sparse dust, hair and scratch marks are visible in both RGB and IR on several scans. Fixed preregistered crops are retained without appearance-based replacement; any instability they cause must close or limit the NPS branch."
+  },
+  "confirmed_severe_source_artifact_count": 0,
+  "passed": true,
+  "claim_ceiling": "Autonomous visual source admission for eight uniform same-scanner film scans only; not proof of clean emulsion texture, scanner independence, stock calibration or population preference."
+}

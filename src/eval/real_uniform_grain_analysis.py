@@ -33,6 +33,53 @@ def _load_bound_json(root: Path, binding: dict[str, str]) -> dict[str, Any]:
     return payload
 
 
+def _validate_acquisition_manifest(
+    manifest: dict[str, Any],
+    source_config: dict[str, Any],
+) -> None:
+    if (
+        manifest.get("schema")
+        != "neuro_film.u6_p4r_uniform_grain_acquisition_manifest.v1"
+        or manifest.get("source_contract_id")
+        != source_config["experiment_id"]
+    ):
+        raise UniformGrainAnalysisError("acquisition manifest identity mismatch")
+    observed_rows = manifest.get("rows")
+    if not isinstance(observed_rows, list):
+        raise UniformGrainAnalysisError("acquisition rows are missing")
+    expected_rows = {
+        str(row["title"]): row for row in source_config["files"]
+    }
+    if len(observed_rows) != len(expected_rows):
+        raise UniformGrainAnalysisError("acquisition row count mismatch")
+    observed_bytes = 0
+    observed_titles: set[str] = set()
+    for observed in observed_rows:
+        if not isinstance(observed, dict):
+            raise UniformGrainAnalysisError("acquisition row must be an object")
+        expected = expected_rows.get(str(observed.get("title")))
+        if expected is None:
+            raise UniformGrainAnalysisError("acquisition row binding mismatch")
+        observed_titles.add(str(observed["title"]))
+        if (
+            observed.get("sha1") != expected["api_sha1"]
+            or observed.get("bytes") != expected["expected_bytes"]
+            or observed.get("path") != expected["path"]
+            or observed.get("film_stock_id") != expected["film_stock_id"]
+            or not isinstance(observed.get("sha256"), str)
+            or len(observed["sha256"]) != 64
+        ):
+            raise UniformGrainAnalysisError("acquisition row identity mismatch")
+        observed_bytes += int(observed["bytes"])
+    if observed_titles != set(expected_rows):
+        raise UniformGrainAnalysisError("acquisition row coverage mismatch")
+    if (
+        observed_bytes != manifest.get("total_bytes")
+        or observed_bytes != source_config["selection"]["expected_total_bytes"]
+    ):
+        raise UniformGrainAnalysisError("acquisition byte total mismatch")
+
+
 def build_scan_signatures(
     *,
     rgb: np.ndarray,
@@ -128,6 +175,11 @@ def run_analysis(
     )
     if bound_source != source_config or bound_analysis != analysis_config:
         raise UniformGrainAnalysisError("execution contract binding mismatch")
+    acquisition = _load_bound_json(
+        root,
+        execution_config["acquisition_manifest"],
+    )
+    _validate_acquisition_manifest(acquisition, source_config)
     preflight = _load_bound_json(
         root,
         execution_config["preflight_report"],
@@ -225,6 +277,9 @@ def run_analysis(
             root / "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
             "sha256",
         ),
+        "acquisition_manifest_sha256": execution_config[
+            "acquisition_manifest"
+        ]["sha256"],
         "preflight_report_sha256": execution_config[
             "preflight_report"
         ]["sha256"],
@@ -258,6 +313,7 @@ def write_report(report: dict[str, Any], path: Path) -> str:
 
 __all__ = [
     "UniformGrainAnalysisError",
+    "_validate_acquisition_manifest",
     "build_scan_signatures",
     "run_analysis",
     "write_report",
