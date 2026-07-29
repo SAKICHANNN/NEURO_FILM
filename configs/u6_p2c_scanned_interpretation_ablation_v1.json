@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p2c_scanned_interpretation_ablation.v1",
+  "node": "U6.P2C",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2b_decision_path": "configs/u6_p2b_interpretation_medium_decision_v1.json",
+    "p2b_stable_evidence_id": "77c8810e28d6bdff8b115b93b7943a779abb31251edef75ea41dd7740f079c01",
+    "scanner_contract_path": "configs/u6_p6a_scanner_profile_boundary_v1.json",
+    "scanner_profile": "scanner_a"
+  },
+  "synthetic_input": {
+    "seed": 20260729,
+    "shape": [192, 384, 3],
+    "minimum_relative_layer_exposure": 0.0,
+    "maximum_relative_layer_exposure": 16.0,
+    "pixel_pitch_um": 1.0
+  },
+  "required_order": [
+    "developed_density",
+    "interpretation_medium",
+    "scanner_profile",
+    "post_scan_polarity"
+  ],
+  "routes": [
+    "color_negative_neutral_scan",
+    "color_negative_print",
+    "slide_direct_scan",
+    "bw_developer_scan"
+  ],
+  "automatic_gates": {
+    "exact_repeat": true,
+    "exact_input_preservation": true,
+    "minimum_negative_vs_slide_final_max_abs": 0.1,
+    "minimum_print_vs_negative_final_max_abs": 0.01,
+    "minimum_correct_vs_polarity_before_scanner_max_abs": 0.001,
+    "maximum_new_boundary_fraction": 0.0,
+    "identity_scanner_negative_plus_slide_max_error": 1e-7,
+    "non_neutral_bw_rejected": true,
+    "wrong_profile_or_route_binding_rejected": true
+  },
+  "forbidden": [
+    "apply post-scan polarity before the scanner",
+    "treat print reflectance as film transmittance metadata",
+    "reuse scanner profile as stock or latent-mode identity",
+    "claim the synthetic scanner or print profile is measured",
+    "integrate into the production renderer"
+  ],
+  "branch_rules": {
+    "pass": "retain the complete generic P2 route topology and return to the highest-information film algorithm or calibrated-data leaf",
+    "fail": "close the failed route/order and retain P2A/P2B representations only"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic generic route-order and interpretation ablation through an independent scanner profile; no measured film, process, print, scanner, stock, calibration, visual-style or product claim"
+}
