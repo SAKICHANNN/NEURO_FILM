@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p2j_normalized_reversal_photographic_stress.v1",
+  "node": "U6.P2J",
+  "date_frozen": "2026-07-29",
+  "parents": {
+    "p2g_contract_path": "configs/u6_p2g_reversal_photographic_stress_v1.json",
+    "p2g_contract_sha256": "53800ee7e1e9baf30a4cc82c7481fa4c7191db15fd200c32b20419f58f3cf572",
+    "p2i_contract_path": "configs/u6_p2i_scan_signal_normalization_v1.json",
+    "p2i_contract_sha256": "abbaab157e50e7af9bfda0437c9d4333cfe63982e1616e9984d1c0d216a0fec0",
+    "p2i_decision_path": "configs/u6_p2i_scan_signal_normalization_decision_v1.json",
+    "p2i_decision_sha256": "ed762f2b913850daba93db09a4f7a557c78d4c276e2a7ca93fe3f03111b32256",
+    "normalization_sha256": "2e914bff9062d60dc3e3b27102e8f66d0b86ff833269a8da519d21885ad2eccf"
+  },
+  "input": {
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "domain_use": "same rights-cleared P2G display-derived severe-artifact population; not scene/layer or slide-film truth"
+  },
+  "pipeline": {
+    "pseudo_exposure_scale": 1.0,
+    "scanner_stages": [
+      "spectral",
+      "flare",
+      "dmax",
+      "mtf"
+    ],
+    "noise_stage": "excluded_until_a_separate_bounded_headroom_contract",
+    "order": [
+      "display_derived_layer_exposure",
+      "generic_reversal_development",
+      "direct_slide_transmittance",
+      "deterministic_scanner_core",
+      "endpoint_scan_signal_normalization",
+      "display_linear"
+    ]
+  },
+  "automatic_gates": {
+    "all_parent_and_input_hashes_exact": true,
+    "maximum_endpoint_domain_escape_fraction": 0.0,
+    "all_outputs_finite_and_bounded": true,
+    "exact_replay": true,
+    "minimum_population_median_mean_abs_change": 0.05,
+    "maximum_new_boundary_fraction": 0.0,
+    "near_black_threshold": 0.02,
+    "near_white_threshold": 0.98,
+    "maximum_per_image_near_black_fraction": 0.10,
+    "maximum_per_image_near_white_fraction": 0.10,
+    "maximum_population_median_near_black_fraction": 0.05,
+    "maximum_population_median_near_white_fraction": 0.05,
+    "minimum_per_image_luma_p95_minus_p05": 0.10
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "columns": [
+      "source display approximation",
+      "normalized generic reversal"
+    ],
+    "severe_vetoes": [
+      "global near-white or near-black tonal collapse",
+      "loss of photographic luma range",
+      "secondary bright or dark contours",
+      "objectionable colour fringe",
+      "banding, posterization or endpoint clipping",
+      "geometry or content corruption"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "forbidden": [
+    "fit endpoints, reversal, scanner or exposure to photographs",
+    "clip endpoint-domain escapes",
+    "include noise without a separately frozen bounded headroom contract",
+    "change thresholds after observing outputs",
+    "call synthetic endpoint normalization scanner calibration",
+    "promote to stock, calibrated or product rendering"
+  ],
+  "branch_rules": {
+    "automatic_pass": "open fixed autonomous visual severe review",
+    "automatic_fail": "close the normalized photographic challenger without clipping or parameter rescue",
+    "visual_pass": "retain only as generic normalized reversal photographic evidence",
+    "visual_fail": "close the visually failing normalized challenger without retuning"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic normalized reversal photographic severe-artifact stress; no scene/layer truth, preference, measured scanner, emulsion, stock, calibration, authenticity or product claim"
+}
