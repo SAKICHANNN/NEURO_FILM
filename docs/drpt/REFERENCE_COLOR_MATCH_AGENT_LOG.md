@@ -4532,3 +4532,21 @@
   capability, product admission or consumer mapping. R0EN process-memory and
   incremental-sink feasibility remain separate; P172, P45/P44 and v42 are
   unchanged.
+
+## 2026-07-29 - Register R0EN checksum-sink process memory
+
+- Producer `aec7361` runs 12 fresh Windows/Python workers interleaving
+  full-v1, atomic-tiled and stream-checksum execution four times each on the
+  exact 3040x2024 Samsung normalized CFA.
+- Median peak RSS is 381,220,864 / 222,846,976 / 77,516,800 bytes for
+  full/atomic/stream. Stream is 65.2152% below atomic and every stream worker
+  is below every atomic worker. Two independent matrices share exact
+  non-measurement identity `198ad7b9...e09d0`; replay reductions are
+  -65.2160%/-65.2249%, and tracked report SHA is
+  `f9be668c...0c62c1`. All 12 outputs remain exact at
+  `b3906b24...5413a`.
+- The ceiling is local Windows/Python checksum-sink memory. It does not prove
+  an incremental image encoder, media metadata, native target, public
+  package/schema/receipt/capability, product admission or consumer mapping.
+  R0EO real local incremental encoding is separate; P172, P45/P44 and v42
+  remain unchanged.
