@@ -20,16 +20,18 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `66f7fba`; R0EA retains the
-  exact R0DZ DDFAPD source and freezes a genuinely new 64-row synthetic
-  cohort plus a floor-aware tail metric before scoring. Two runs are exact
-  outside timing (`52af21c4...cf3ef`): all sampled sensels remain exact,
-  48/48 primary rows improve, RGB/chroma aggregate ratios are
-  0.240138/0.282039, the worst row is 0.900094 and all nine gates pass.
-  Deliberately uncorrelated, isoluminant and subpixel-colour alias stress can
-  still be worse. The result therefore opens only rights-cleared real-RAW
-  confirmation, not portability or product admission. DDFAPD remains
-  non-public and R0EA publishes no package, compatible consumer rail,
+- D-PCT latest stable communicated snapshot is `c00bfec`; R0EB freezes 60
+  byte-locked, metadata-screened CC0 real photographs into 240 known-truth
+  synthetic CFA rows using a fixed display-sRGB-to-linear, 2x2 reduction and
+  four-Bayer pipeline. Two runs are exact outside timing
+  (`7a56a602...8dc34`): all sampled sensels remain exact, 220/240 rows
+  improve, aggregate RGB/chroma ratios are 0.543263/0.555323, and the
+  p95/worst/worst-image-median ratios are 1.051256/1.168061/1.114847; all
+  frozen gates pass. This is real photographic display-sRGB structure under
+  synthetic CFA, not native RAW, sensor noise, optics, camera colour or
+  denoise; rights remain an automated metadata screen rather than final
+  legal review. It opens only private portable CPU development. DDFAPD
+  remains non-public and R0EB publishes no package, compatible consumer rail,
   callable capability, schema or receipt, so P172 remains fail-closed.
   R0DO/R0DP absolute-HDR diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

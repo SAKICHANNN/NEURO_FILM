@@ -4335,3 +4335,21 @@
   real-RAW confirmation. There is no export, portable package, schema,
   receipt or capability, so P172, P45/P44 and v42 do not change. Real-image
   evidence must separate demosaic quality from camera colour and denoise.
+
+## 2026-07-29 - Register R0EB photographic-structure pass
+
+- Producer `c00bfec` freezes 60 byte-locked, metadata-screened CC0 real
+  photographs into 240 known-truth synthetic CFA rows using fixed
+  Pillow/NumPy versions, centre-512 crop, sRGB EOTF, linear 2x2 reduction and
+  all four Bayer patterns.
+- Two runs are exact outside timing at `7a56a602...8dc34`: 220/240 rows
+  improve, aggregate RGB/chroma ratios are 0.543263/0.555323, and the
+  p95/worst/worst-image-median ratios are 1.051256/1.168061/1.114847; all
+  sampled sensels and frozen gates pass. A pre-score 1280-versus-declared
+  1024 proxy mismatch was corrected by freezing actual decoded geometry
+  before any method metric, without changing bytes, candidate or gates.
+- The claim is limited to photographic display-sRGB structure under
+  synthetic CFA. It is not native RAW, sensor noise, optics, camera colour,
+  denoise or final legal review. Only private portable CPU development opens;
+  no export, package, schema, receipt or capability exists, so P172,
+  P45/P44 and v42 remain unchanged.
