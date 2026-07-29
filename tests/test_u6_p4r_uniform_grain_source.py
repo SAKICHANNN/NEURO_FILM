@@ -6,8 +6,10 @@ from pathlib import Path
 
 import pytest
 
+import src.eval.real_uniform_grain_source as source_module
 from src.eval.real_uniform_grain_source import (
     UniformGrainSourceError,
+    acquire_files,
     normalize_api_payload,
     validate_contract,
 )
@@ -108,3 +110,26 @@ def test_contract_rejects_unbounded_or_foreign_payload() -> None:
     config["files"][0]["original_url"] = "https://example.com/foreign.tif"
     with pytest.raises(UniformGrainSourceError, match="frozen host"):
         validate_contract(config)
+
+
+def test_acquisition_manifest_paths_are_root_relative(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = _config()
+
+    def fake_download(row: dict, destination: Path) -> dict:
+        return {
+            "path": str(destination),
+            "bytes": row["expected_bytes"],
+            "sha1": row["api_sha1"],
+            "sha256": "0" * 64,
+            "reused": False,
+        }
+
+    monkeypatch.setattr(source_module, "_download_exact", fake_download)
+    manifest = acquire_files(tmp_path, config)
+    assert all(not Path(row["path"]).is_absolute() for row in manifest["rows"])
+    assert manifest["rows"][0]["path"].startswith(
+        "data/external/wikimedia_uniform_grain_v1/"
+    )

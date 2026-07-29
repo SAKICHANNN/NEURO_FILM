@@ -256,9 +256,13 @@ def acquire_files(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     for source in sorted(config["files"], key=lambda row: str(row["title"])):
         result = _download_exact(source, root / str(source["path"]))
+        relative_path = (
+            Path(str(result["path"])).resolve().relative_to(root.resolve())
+        )
         rows.append(
             {
                 **result,
+                "path": relative_path.as_posix(),
                 "title": source["title"],
                 "film_stock_id": source["film_stock_id"],
                 "uploader_group": source["uploader"],
