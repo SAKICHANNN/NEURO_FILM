@@ -39,6 +39,13 @@ from .interpretation_medium import (
     prepare_interpretation_medium,
     print_interpretation_identity,
 )
+from .reversal_development import (
+    REVERSAL_DEVELOPMENT_SCHEMA,
+    GenericReversalDevelopment,
+    develop_reversal_layer_exposure,
+    reversal_development_contract,
+    reversal_development_identity,
+)
 from .reference_scatter import (
     REFERENCE_SCATTER_SCHEMA,
     ReferenceScatterProfile,
@@ -166,6 +173,7 @@ __all__ = [
     "InterpretationMedium",
     "InterpretationMediumKind",
     "InterpretationRoute",
+    "GenericReversalDevelopment",
     "PhysicalDomain",
     "PhysicalDomainArray",
     "PhysicalScale",
@@ -177,6 +185,7 @@ __all__ = [
     "QualityTier",
     "QualityTierSpec",
     "REFERENCE_SCATTER_SCHEMA",
+    "REVERSAL_DEVELOPMENT_SCHEMA",
     "ReferenceScatterProfile",
     "ScatterComponent",
     "SCANNER_STAGES",
@@ -214,6 +223,7 @@ __all__ = [
     "coordinate_counter_u64",
     "density_to_transmittance",
     "develop_layer_exposure",
+    "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
     "required_spatial_response_halo",
     "compile_scatter_profile",
@@ -241,6 +251,8 @@ __all__ = [
     "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
+    "reversal_development_contract",
+    "reversal_development_identity",
     "required_scanner_halo",
     "scene_exposure_from_working_image",
     "scan_interpretation_medium",
