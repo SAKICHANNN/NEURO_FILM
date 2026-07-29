@@ -1,0 +1,120 @@
+{
+  "schema": "neuro_film.u6_p6f_measured_slide_spectral_scanner_contract.v1",
+  "node": "U6.P6F",
+  "claim_ceiling": "measured-velvia100f-target-spectra-with-synthetic-scanners-only",
+  "parents": {
+    "p6d_contract_path": "configs/u6_p6d_spectral_scanner_reference_v1.json",
+    "p6d_contract_sha256": "582e488679812323744300d56b0d150c5d7e8e69ee3e8036b912cda20f37dc87",
+    "p6e_decision_path": "configs/u6_p6e_spectral_scanner_rgb_approximation_decision_v1.json",
+    "p6e_nonlinear_rgb_route_closed": true,
+    "aq1_report_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/report.json",
+    "aq1_report_sha256": "21177de2944d866079e8ac3c45862e6a83b397928a01366d3ded53bc52555e6c",
+    "pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "measured_data_contract": {
+    "material": "Fujichrome Velvia 100F (RVP 100F)",
+    "measurement_semantics": "individually measured diffuse-opal IT8 target spectral transmittance percent",
+    "source_wavelength_nm": {
+      "start": 380,
+      "stop": 780,
+      "step": 10,
+      "count": 41
+    },
+    "consumed_wavelength_nm": {
+      "start": 400,
+      "stop": 700,
+      "step": 10,
+      "count": 31
+    },
+    "expected_rows": 8640,
+    "expected_test_sets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      9
+    ],
+    "expected_slides": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_samples_per_set_slide": 288,
+    "spectral_pct_interval": [
+      0.002534,
+      93.175985
+    ],
+    "rights_scope": "internal research and audit only; redistribution and commercial training unidentified"
+  },
+  "split_contract": {
+    "development_test_sets": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "development_slides": [
+      1,
+      2,
+      3
+    ],
+    "held_test_sets": [
+      5,
+      9
+    ],
+    "held_slides": [
+      4,
+      5
+    ],
+    "evaluation_cells": {
+      "development": "development sets x development slides",
+      "held-set": "held sets x development slides",
+      "held-slide": "development sets x held slides",
+      "joint-held": "held sets x held slides"
+    },
+    "fit_cell": "development",
+    "fit_on_held_cells_forbidden": true
+  },
+  "candidate_contract": {
+    "candidates": [
+      "identity",
+      "nonnegative-row-sum-bounded-3x3",
+      "spectral-oracle"
+    ],
+    "p6e_quadratic_lut_neural_and_per_image_capacity_forbidden": true,
+    "hard_output_clipping_forbidden": true
+  },
+  "automatic_gates": {
+    "expected_development_rows": 3456,
+    "expected_held_set_rows": 1728,
+    "expected_held_slide_rows": 2304,
+    "expected_joint_held_rows": 1152,
+    "all_transmittance_strictly_inside_zero_one": true,
+    "spectral_oracle_l2_max": 1e-12,
+    "candidate_output_minimum": 0.0,
+    "candidate_output_maximum": 1.0,
+    "joint_held_matrix_vs_identity_mean_improvement_min": 0.05,
+    "joint_held_matrix_mean_l2_max": 0.02,
+    "joint_held_matrix_p95_l2_max": 0.05,
+    "held_set_matrix_p95_l2_max": 0.05,
+    "held_slide_matrix_p95_l2_max": 0.05,
+    "scanner_profile_separation_median_l2_min": 0.01,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the bounded 3x3 as a measured-slide-spectrum compiler approximation with explicit synthetic-scanner identity",
+    "fail_relative": "retain identity plus the P6D spectral reference; close matrix fitting on this measured pool",
+    "fail_absolute": "retain the P6D reference and classify RGB approximation as support-limited on measured slide spectra"
+  },
+  "forbidden_claims": [
+    "real scanner calibration",
+    "camera-to-film or digital-to-film operator",
+    "independent roll, process or development-session evidence",
+    "Velvia 100F stock response outside manufactured IT8 target spectra",
+    "product integration or redistributable training data"
+  ]
+}
