@@ -1,0 +1,139 @@
+{
+  "schema": "neuro_film.u6_p6e_spectral_scanner_rgb_approximation_contract.v1",
+  "node": "U6.P6E",
+  "claim_ceiling": "synthetic-group-split-scanner-rgb-approximation-only",
+  "parents": {
+    "p6d_contract_path": "configs/u6_p6d_spectral_scanner_reference_v1.json",
+    "p6d_contract_sha256": "582e488679812323744300d56b0d150c5d7e8e69ee3e8036b912cda20f37dc87",
+    "p6d_decision_path": "configs/u6_p6d_spectral_scanner_reference_decision_v1.json",
+    "p6d_report_sha256": "388d4d6fc976051a015afa8b8e29e0903c1f80727d8189ce7904c33d13a63b3a"
+  },
+  "data_contract": {
+    "development": {
+      "group_seeds": [
+        2026072901,
+        2026072902,
+        2026072903,
+        2026072904,
+        2026072905,
+        2026072906,
+        2026072907,
+        2026072908
+      ],
+      "samples_per_group": 128,
+      "basis_sigma_nm_interval": [
+        24.0,
+        65.0
+      ],
+      "density_base_interval": [
+        0.01,
+        0.35
+      ],
+      "density_component_scale": 0.75
+    },
+    "confirmation": {
+      "group_seeds": [
+        2026072911,
+        2026072912,
+        2026072913,
+        2026072914
+      ],
+      "samples_per_group": 128,
+      "basis_sigma_nm_interval": [
+        24.0,
+        65.0
+      ],
+      "density_base_interval": [
+        0.01,
+        0.35
+      ],
+      "density_component_scale": 0.75
+    },
+    "stress": {
+      "group_seeds": [
+        2026072921,
+        2026072922,
+        2026072923,
+        2026072924
+      ],
+      "samples_per_group": 128,
+      "basis_sigma_nm_interval": [
+        8.0,
+        24.0
+      ],
+      "density_base_interval": [
+        0.01,
+        0.5
+      ],
+      "density_component_scale": 1.0
+    },
+    "basis_center_nm": [
+      415.0,
+      455.0,
+      500.0,
+      545.0,
+      590.0,
+      635.0,
+      680.0
+    ],
+    "group_center_jitter_nm": 8.0,
+    "exact_spectrum_or_rgb_overlap_across_splits_forbidden": true
+  },
+  "candidate_contract": {
+    "fit_split": "development",
+    "evaluation_splits": [
+      "confirmation",
+      "stress"
+    ],
+    "baselines": [
+      "identity",
+      "nonnegative-row-sum-bounded-3x3",
+      "fixed-quadratic-logit-ridge",
+      "spectral-oracle"
+    ],
+    "quadratic_feature_order": [
+      "bias",
+      "r",
+      "g",
+      "b",
+      "r2",
+      "g2",
+      "b2",
+      "rg",
+      "rb",
+      "gb"
+    ],
+    "quadratic_logit_target_epsilon": 0.000001,
+    "quadratic_ridge": 0.0001,
+    "output_hard_clip_forbidden": true,
+    "fit_or_normalization_on_confirmation_or_stress_forbidden": true
+  },
+  "automatic_gates": {
+    "expected_development_rows": 1024,
+    "expected_confirmation_rows": 512,
+    "expected_stress_rows": 512,
+    "cross_split_group_overlap": 0,
+    "cross_split_spectrum_hash_overlap": 0,
+    "cross_split_scanner_a_rgb_hash_overlap": 0,
+    "spectral_oracle_l2_max": 1e-12,
+    "candidate_output_minimum": 0.0,
+    "candidate_output_maximum": 1.0,
+    "confirmation_quadratic_vs_matrix_mean_improvement_min": 0.1,
+    "confirmation_quadratic_l2_p95_max": 0.08,
+    "stress_quadratic_l2_p95_max": 0.15,
+    "p6d_metamer_lower_bound_reproduced_abs_error_max": 1e-12,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the bounded nonlinear RGB approximation as a compiler candidate while keeping the spectral oracle and metamer fallback boundary explicit",
+    "fail_relative": "retain the simpler bounded 3x3 approximation and the spectral reference; do not add RGB model capacity",
+    "fail_absolute_or_stress": "close RGB spectral approximation as unidentified outside its synthetic development support"
+  },
+  "forbidden_fallbacks": [
+    "change P6D profiles or metamer witness",
+    "fit on confirmation or stress groups",
+    "add LUT, neural or per-image capacity after inspecting sealed results",
+    "hard clip candidate output",
+    "use photographs or call the synthetic spectra film-stock or scanner calibration"
+  ]
+}
