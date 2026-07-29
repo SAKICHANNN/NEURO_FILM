@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p4l_exact_area_live_performance_decision.v1",
+  "node": "U6.P4L",
+  "decision": "retain_local_exact_area_reference_performance_open_profile_dataset",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p4l_exact_area_live_performance_v1.json",
+      "sha256": "31bbdeb1dc494f55b6344f8275de2e9a71ecdd76ef247bb29882363219075700"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p4l_exact_area_live_performance_v1/report.json",
+      "sha256": "44013bdad09f61c77418a0c4f11b1adec1b13ce7563e766b714235841f972075",
+      "stable_evidence_id": "6f1d402943e1d04f429a303510ab8464647e33089af2e62c328908b3963f5d45"
+    },
+    "software_commit": "4d21553966f26d182ecd04310bd9e3594f2f2401"
+  },
+  "results": {
+    "automatic_pass": true,
+    "failed_gates": [],
+    "fresh_process_runs": 2,
+    "stream_sha256": "acf34828c8abf635d211697bba43d774b80c043d9693d191bc1c638871951457",
+    "process_tree_peak_rss_bytes": [
+      465059840,
+      465047552
+    ],
+    "wall_seconds": [
+      64.60766239999793,
+      61.281214899994666
+    ],
+    "liveness_samples": [
+      1634,
+      1562
+    ],
+    "stderr_bytes": [
+      0,
+      0
+    ],
+    "owned_temp_residue_count": [
+      0,
+      0
+    ]
+  },
+  "interpretation": [
+    "The exact-area factor-4 reference stream repeats its frozen output identity in two fresh local Windows processes.",
+    "Both runs remain below the preregistered 768 MiB process-tree RSS and 120 second worker gates while retaining frequent liveness observations and exact cleanup.",
+    "This is sufficient to generate bounded synthetic reference-profile evidence locally. It does not establish a product runtime, mobile performance, measured film statistics or stock calibration."
+  ],
+  "next_leaf": "U6.P4M freeze a deterministic group-split synthetic reference-profile dataset and manifest for explicit low-cost LOD compiler research",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "local Windows/Python exact-area reference-simulator performance; not product, mobile, measured film NPS, stock response or photographic evidence"
+}
