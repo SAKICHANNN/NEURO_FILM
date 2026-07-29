@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `e308ec0`; R0EE independently
+- D-PCT latest stable communicated snapshot is `187abab`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -122,6 +122,17 @@ wire contract and not an algorithm promotion.
   workspace is 51,688 float32 values with no full RGB buffer. This remains a
   private synthetic virtual-device pipeline, not native-RAW quality, camera
   colour or a public producer contract.
+  R0ET then freezes one rights-screened Samsung GX-1L 2024x3040 RGGB frame
+  after Windows RAW decode/normalization and feeds its exact float32 CFA bytes
+  to the unchanged Android x86_64 native stream-to-TIFF pipeline. MSVC/LLVM
+  prefreeze and eight Android full-frame executions reproduce the historical
+  R0EO file/pixel identities and 32-strip layout exactly; truncated input is
+  rejected before output, and third-strip failure retains exactly 128 rows
+  while publishing no final/temp artifact. Stable identity is
+  `99fa31d8...7ff639`; producer evidence SHA is
+  `a91c51eb...a9ce1`. Android did not decode the RAW container, and no scene
+  truth, sensor/optics/camera-colour quality, physical arm64, JNI/app or
+  public package/schema/receipt/capability is established.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

@@ -4652,3 +4652,25 @@
   JNI/app, Android decoder, ICC, public package/schema/receipt/capability,
   product admission or consumer mapping. P172, P45/P44 and v42 remain
   unchanged.
+
+## 2026-07-29 - Register R0ET native-RAW-derived Android pipeline
+
+- Producer `187abab` freezes the rights-screened Samsung GX-1L 2024x3040
+  RGGB frame after Windows RAW decode/normalization as exact float32le CFA
+  `0670cb94...df25c`. Android consumes those bytes through the unchanged
+  DDFAPD stream (core 64) and unchanged float-TIFF writer; it does not decode
+  the RAW container.
+- MSVC/LLVM prefreeze plus two Android 14 x86_64 runners, each with two
+  cold/wiped boots and two native processes, reproduce the historical R0EO
+  file SHA `01aa36ac...a31b`, pixel SHA `b3906b24...5413a` and 32-strip
+  layout in all eight full-frame executions. Truncated input is rejected
+  before output. Third-strip failure retains exactly 128 rows/two strips and
+  4,669,856 bytes while publishing neither final nor temporary artifact.
+  Stable identity is `99fa31d8...7ff639`; evidence SHA is
+  `a91c51eb...a9ce1`.
+- Owned remote artifacts, processes, AVDs and temporary mappings return to
+  zero. The ceiling remains private Windows-normalized RAW-derived CFA plus
+  Android x86_64 virtual native execution: no Android RAW decoder, scene
+  truth, sensor-noise/optics/camera-colour quality, physical arm64, JNI/app,
+  public package/schema/receipt/capability, product admission or consumer
+  mapping. P172, P45/P44 and v42 remain unchanged.
