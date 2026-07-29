@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8ax_native_ordered_pipeline_grid_decision.v1",
+  "node": "U6.P8AX",
+  "contract": "configs/u6_p8ax_native_ordered_pipeline_grid_v1.json",
+  "contract_sha256": "93ef3ff74ff9a265a357bcb0ddd9daef4335713b33e67d676f4e54839b4ef042",
+  "formal_report": "outputs/u6_p8ax_native_ordered_pipeline_grid_v1/report.json",
+  "formal_report_sha256": "6cee6d87d18f9ecfdc352ca6d336d040dafd245834009766e1939e31c8759379",
+  "stable_evidence_id": "3162d3cd50a45a8c0a39637d2bdf412ded72ac95637b43c6d1d6c12ccc9e719a",
+  "result": {
+    "status": "pass-selection",
+    "all_policies_serial_exact": true,
+    "serial_median_worker_elapsed_seconds": 3.641409649993875,
+    "selected_pipeline_workers": 4,
+    "selected_max_in_flight": 4,
+    "selected_median_worker_elapsed_seconds": 2.0137352000019746,
+    "selected_median_elapsed_ratio_vs_serial": 0.5530097938872002,
+    "eight_worker_median_elapsed_ratio_vs_serial": 0.5652862346871412
+  },
+  "decision": "select four workers with four maximum in-flight tiles. All candidate policies preserve the serial output hash; four workers are fastest under the frozen interleaved grid and eight workers already regress",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 2MP exact-output bounded ordered tile concurrency selection evidence only",
+  "next_leaf": "U6.P8AY rerun the unchanged 12MP 384MiB and 15 second resource gate with the selected four-worker ordered pipeline"
+}

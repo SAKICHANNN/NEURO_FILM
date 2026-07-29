@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p8ax_native_ordered_pipeline_grid_contract.v1",
+  "node": "U6.P8AX",
+  "parent_decision": "configs/u6_p8aw_native_display_v4_resources_decision_v1.json",
+  "parent_decision_sha256": "032332fb016afb17f03022e1cf464a6a08de4d577ceebdb9eb62d935ec13a503",
+  "p8aw_contract": "configs/u6_p8aw_native_display_v4_resources_v1.json",
+  "p8aw_contract_sha256": "ed7ccac5bb05d0ff053df81101270ca9db4f966519b757f7bd31620800fd9e0f",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "component_dll_sha256": {
+    "domains": "122f67c531686018621f087b2281e85277832b67a5e19a04de732e0d4f3ad823",
+    "gaussian": "37686905def49425235a2d1625fb7728448263013cd376173171dec2e5c9693f",
+    "adjacency": "50dd895ff40d1f4ca2e61fae6c8d9f92f18dd8c5a0d96569269efa2a6f763ed0",
+    "gauge": "1954a07850b70e1c528782cd92265b46e015d9d1ace76a02935c1c0e74faab6b",
+    "context": "45a9a68b2177560cc1fd1ac4634e872918a47affcff396e251df446f22e92a8f",
+    "display": "a8a4aede80996d96f72ee805f4ae38d23caef3df786c0f4138a2ee5a37571ce9"
+  },
+  "scenario": {
+    "scenario_id": "native-standard-ordered-pipeline-2mp-grid",
+    "height": 1024,
+    "width": 2048,
+    "repeats_per_policy": 2,
+    "timeout_seconds": 60
+  },
+  "tile_rows": 32,
+  "pipeline_workers_candidates": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "execution_order": [
+    1,
+    2,
+    4,
+    8,
+    8,
+    4,
+    2,
+    1
+  ],
+  "max_in_flight_per_worker": 1,
+  "monitor_interval_seconds": 0.01,
+  "safety": {
+    "minimum_available_memory_bytes_before_launch": 4294967296,
+    "worker_kill_rss_bytes": 536870912
+  },
+  "selection": {
+    "metric": "minimum_median_worker_elapsed_seconds",
+    "maximum_median_ratio_vs_serial": 0.95,
+    "tie_break": "fewer_workers"
+  },
+  "execution": {
+    "local_cpu_only": true,
+    "fresh_process_per_repeat": true,
+    "compile_outside_measured_worker": true,
+    "serial_reference_first": true,
+    "completion_order_may_vary": true,
+    "consumption_order_is_submission_order": true,
+    "owned_tile_copy_before_submit": true,
+    "output_rows_consumed_by_hash_sink": true,
+    "foreign_processes_must_not_be_terminated": true
+  },
+  "forbidden_claims": [
+    "12MP latency promotion",
+    "mobile or physical-device runtime",
+    "calibrated stock or physical truth",
+    "production promotion"
+  ],
+  "claim_ceiling": "local Windows x64 2MP exact-output bounded ordered tile concurrency selection evidence only"
+}
