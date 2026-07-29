@@ -304,10 +304,90 @@ def summarize_classic_tiff_zip_member(
     )
 
 
+def read_classic_tiff_zip_roi(
+    archive_path: Path,
+    member_name: str,
+    *,
+    row_start: int,
+    row_stop: int,
+    column_start: int,
+    column_stop: int,
+    maximum_output_bytes: int = 256 * 1024 * 1024,
+    maximum_uncompressed_bytes: int = 6_000_000_000,
+) -> tuple[ClassicTiffLayout, np.ndarray]:
+    """Read one bounded pixel ROI while still consuming the member for CRC."""
+
+    with zipfile.ZipFile(archive_path, "r") as archive:
+        infos = [info for info in archive.infolist() if not info.is_dir()]
+        if len(infos) != 1 or infos[0].filename != member_name:
+            raise ClassicTiffStreamError("ZIP member identity is not exact")
+        info = infos[0]
+        if info.file_size <= 0 or info.file_size > maximum_uncompressed_bytes:
+            raise ClassicTiffStreamError("TIFF member size is outside the bound")
+        with archive.open(info, "r") as handle:
+            layout, position = read_classic_tiff_layout(handle)
+            if (
+                row_start < 0
+                or row_stop <= row_start
+                or row_stop > layout.height
+                or column_start < 0
+                or column_stop <= column_start
+                or column_stop > layout.width
+            ):
+                raise ClassicTiffStreamError("ROI is outside the TIFF")
+            output_shape = (
+                row_stop - row_start,
+                column_stop - column_start,
+                layout.samples_per_pixel,
+            )
+            output_bytes = int(np.prod(output_shape, dtype=np.int64)) * 2
+            if output_bytes <= 0 or output_bytes > maximum_output_bytes:
+                raise ClassicTiffStreamError("ROI output exceeds the bound")
+            output = np.empty(output_shape, dtype=np.uint16)
+            dtype = np.dtype(layout.endian + "u2")
+            current_row = 0
+            written_rows = 0
+            for strip_offset, byte_count in zip(
+                layout.strip_offsets,
+                layout.strip_byte_counts,
+                strict=True,
+            ):
+                if strip_offset < position:
+                    raise ClassicTiffStreamError("TIFF strips overlap or regress")
+                _discard_exact(handle, strip_offset - position)
+                position = strip_offset
+                raw = _read_exact(handle, byte_count)
+                position += byte_count
+                rows = byte_count // layout.row_bytes
+                strip_stop = current_row + rows
+                overlap_start = max(row_start, current_row)
+                overlap_stop = min(row_stop, strip_stop)
+                if overlap_start < overlap_stop:
+                    pixels = np.frombuffer(raw, dtype=dtype).reshape(
+                        rows, layout.width, layout.samples_per_pixel
+                    )
+                    source_start = overlap_start - current_row
+                    source_stop = overlap_stop - current_row
+                    target_start = overlap_start - row_start
+                    target_stop = overlap_stop - row_start
+                    output[target_start:target_stop] = pixels[
+                        source_start:source_stop,
+                        column_start:column_stop,
+                    ]
+                    written_rows += overlap_stop - overlap_start
+                current_row = strip_stop
+            while handle.read(1024 * 1024):
+                pass
+    if written_rows != row_stop - row_start:
+        raise ClassicTiffStreamError("ROI row coverage is incomplete")
+    return layout, output
+
+
 __all__ = [
     "ClassicTiffLayout",
     "ClassicTiffStreamError",
     "ClassicTiffSummary",
+    "read_classic_tiff_zip_roi",
     "read_classic_tiff_layout",
     "summarize_classic_tiff_zip_member",
 ]

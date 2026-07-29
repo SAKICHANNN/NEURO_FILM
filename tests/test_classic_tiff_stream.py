@@ -9,6 +9,7 @@ import tifffile
 
 from src.eval.classic_tiff_stream import (
     ClassicTiffStreamError,
+    read_classic_tiff_zip_roi,
     summarize_classic_tiff_zip_member,
 )
 
@@ -63,6 +64,40 @@ def test_wrong_member_and_compressed_tiff_fail_closed(tmp_path: Path) -> None:
         output.write(tiff, arcname="compressed.tif")
     with pytest.raises(ClassicTiffStreamError, match="unsupported"):
         summarize_classic_tiff_zip_member(compressed, "compressed.tif")
+
+
+def test_bounded_roi_matches_exact_pixels(tmp_path: Path) -> None:
+    source = np.arange(29 * 31 * 3, dtype=np.uint16).reshape(29, 31, 3)
+    archive = _archive(tmp_path, source)
+    layout, roi = read_classic_tiff_zip_roi(
+        archive,
+        "scan.tif",
+        row_start=5,
+        row_stop=23,
+        column_start=7,
+        column_stop=19,
+    )
+    assert layout.width == 31
+    np.testing.assert_array_equal(roi, source[5:23, 7:19])
+    with pytest.raises(ClassicTiffStreamError, match="outside"):
+        read_classic_tiff_zip_roi(
+            archive,
+            "scan.tif",
+            row_start=-1,
+            row_stop=3,
+            column_start=0,
+            column_stop=2,
+        )
+    with pytest.raises(ClassicTiffStreamError, match="exceeds"):
+        read_classic_tiff_zip_roi(
+            archive,
+            "scan.tif",
+            row_start=0,
+            row_stop=29,
+            column_start=0,
+            column_stop=31,
+            maximum_output_bytes=8,
+        )
 
 
 def test_unbounded_sample_request_and_truncation_fail_closed(
