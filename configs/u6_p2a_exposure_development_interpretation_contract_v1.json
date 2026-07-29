@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p2a_exposure_development_interpretation_contract.v1",
+  "node": "U6.P2A",
+  "date_frozen": "2026-07-29",
+  "reused_sensitometry": {
+    "contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "schema": "roll2film.rgb_sensitometry.v1",
+    "implementation": "src/roll2film/sensitometry.py",
+    "duplicate_curve_implementation_allowed": false
+  },
+  "input": {
+    "domain": "film-layer-linear-exposure",
+    "unit": "relative-layer-exposure",
+    "channels": ["red", "green", "blue"],
+    "minimum": 0.0,
+    "maximum": 16.0
+  },
+  "output": {
+    "domain": "developed-optical-density",
+    "unit": "log10-optical-density",
+    "channels": ["red", "green", "blue"]
+  },
+  "allowed_routes": {
+    "color_negative": [
+      "color_negative_neutral_scan",
+      "color_negative_print"
+    ],
+    "slide": [
+      "slide_direct_scan"
+    ],
+    "black_and_white": [
+      "bw_developer_scan"
+    ]
+  },
+  "process_conditions": [
+    "unknown",
+    "normal",
+    "push",
+    "pull"
+  ],
+  "epistemic_rules": {
+    "physical_interpretation_evidence": [
+      "unknown",
+      "hypothesis_only"
+    ],
+    "unknown_process_requires_unknown_evidence": true,
+    "non_unknown_process_requires_hypothesis_only": true,
+    "observed_metadata_backfill_allowed": false,
+    "calibrated_claim_allowed": false,
+    "production_integration_allowed": false
+  },
+  "automatic_gates": {
+    "exact_operator_replay": true,
+    "exact_partition_replay": true,
+    "exact_input_preservation": true,
+    "minimum_density": 0.0,
+    "wrong_input_domain_rejected": true,
+    "wrong_route_family_rejected": true,
+    "operator_identity_mismatch_rejected": true,
+    "process_evidence_mismatch_rejected": true,
+    "duplicate_tone_curve_symbols": 0
+  },
+  "branch_rules": {
+    "pass": "open U6.P2B generic interpretation-medium operators under the frozen routes",
+    "fail": "close P2A implementation and retain U2.2 plus U2.4A separately"
+  },
+  "claim_ceiling": "typed reuse of the existing uncalibrated U2.2 sensitometry primitive with generic negative/slide/B&W route semantics; process state is unknown or hypothesis-only and no stock, process, scanner, calibration or product claim is allowed"
+}
