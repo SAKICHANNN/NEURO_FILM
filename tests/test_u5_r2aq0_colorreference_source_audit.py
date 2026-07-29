@@ -72,6 +72,7 @@ def test_reference_member_parser_checks_declared_shape() -> None:
     assert record["number_of_fields"] == 3
     assert record["number_of_sets"] == 2
     assert record["data_row_count"] == 2
+    assert record["data_token_count"] == 6
     bad = text.replace(b'NUMBER_OF_SETS "2"', b'NUMBER_OF_SETS "3"')
     with pytest.raises(ValueError, match="inconsistent"):
         reference_member_record(

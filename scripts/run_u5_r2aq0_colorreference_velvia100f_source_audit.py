@@ -163,7 +163,7 @@ def reference_member_record(
         raise ValueError("AQ0 reference member lacks a CGATS data block")
     begin_data = upper.index("BEGIN_DATA")
     end_data = upper.index("END_DATA")
-    data_rows = lines[begin_data + 1 : end_data]
+    data_physical_lines = lines[begin_data + 1 : end_data]
     format_fields: list[str] = []
     if "BEGIN_DATA_FORMAT" in upper and "END_DATA_FORMAT" in upper:
         begin_format = upper.index("BEGIN_DATA_FORMAT")
@@ -173,10 +173,12 @@ def reference_member_record(
         ).split()
     if (
         number_of_sets is None
-        or number_of_sets != len(data_rows)
         or number_of_fields is None
         or (format_fields and number_of_fields != len(format_fields))
     ):
+        raise ValueError("AQ0 reference member declares inconsistent fields")
+    data_tokens = " ".join(data_physical_lines).split()
+    if len(data_tokens) != number_of_sets * number_of_fields:
         raise ValueError("AQ0 reference member declares inconsistent fields")
     return {
         "member": member_name,
@@ -185,7 +187,9 @@ def reference_member_record(
         "number_of_fields": number_of_fields,
         "number_of_sets": number_of_sets,
         "format_fields": format_fields,
-        "data_row_count": len(data_rows),
+        "data_physical_line_count": len(data_physical_lines),
+        "data_token_count": len(data_tokens),
+        "data_row_count": number_of_sets,
     }
 
 
