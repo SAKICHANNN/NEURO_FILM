@@ -18,7 +18,7 @@ wire contract and not an algorithm promotion.
   main-review manifest and binds P1-P168, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
-- Main Neuro-Film latest observed committed snapshot is `62bc8d0`; its untracked
+- Main Neuro-Film latest observed committed snapshot is `fced14f`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
 - D-PCT latest stable observed snapshot is `0a16c2e`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes

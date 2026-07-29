@@ -4944,3 +4944,22 @@
   consumer-only suite is the authoritative branch-health result; full main
   validation remains a post-merge responsibility with main's ignored evidence
   present.
+
+## 2026-07-29 - Refresh main exact-area FilmFX research boundary
+
+- Main Neuro-Film is clean at committed HEAD
+  `fced14f589f9d46d65d479c6bb0d3247d4d1b3e4` except its owned untracked
+  `.codex/` and `tmp/`. Since `62bc8d0`, U6.P4L retains local exact-area
+  reference performance: two hash-exact 1536-row runs take 64.61/61.28
+  seconds and peak at 465,059,840/465,047,552 bytes with no stderr or residue.
+- Main then produces 48 group-split synthetic reference pairs at U6.P4M and
+  closes U6.P4N routing: threshold 0.8 passes sealed fidelity/domain/repeat
+  gates but scores 0.22585 versus stationary global P4H at 0.21021, a
+  -7.44% improvement. No router capacity opens. Current U6.P4O is a frozen
+  24MP stationary-performance contract, not yet a result.
+- These are main-owned FilmFX/reference-simulator facts, not reference-match
+  producer compatibility or product composition changes. Consumer
+  `323f7c1c` against main `fced14f5` has 590/1,206 changed paths, zero overlap
+  and conflict-free merge tree
+  `81f9fdc5839fe30433b1ce6206561fa9e4eb3396`. No main file or output was
+  modified or copied.
