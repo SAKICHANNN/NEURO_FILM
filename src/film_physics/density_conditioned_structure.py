@@ -22,13 +22,20 @@ class DensityConditionedLayerProfile:
     grain_optical_density: float
     correlation_sigma_pixels: float
     seed: int
+    count_rate_density: float | None = None
     maximum_target_density: float = 2.0
     truncate: float = 4.0
 
     def __post_init__(self) -> None:
+        rate_density = (
+            self.grain_optical_density
+            if self.count_rate_density is None
+            else self.count_rate_density
+        )
         values = (
             self.grain_optical_density,
             self.correlation_sigma_pixels,
+            rate_density,
             self.maximum_target_density,
             self.truncate,
         )
@@ -36,15 +43,24 @@ class DensityConditionedLayerProfile:
             not self.layer_id
             or any(not math.isfinite(value) for value in values)
             or self.grain_optical_density <= 0.0
+            or rate_density <= 0.0
             or self.correlation_sigma_pixels < 0.0
             or self.maximum_target_density <= 0.0
             or self.truncate <= 0.0
-            or self.maximum_target_density / self.grain_optical_density > 1024.0
+            or self.maximum_target_density / rate_density > 1024.0
             or not isinstance(self.seed, int)
             or self.seed < 0
             or self.seed >= 2**64
         ):
             raise ValueError("invalid density-conditioned layer profile")
+
+    @property
+    def resolved_count_rate_density(self) -> float:
+        return (
+            self.grain_optical_density
+            if self.count_rate_density is None
+            else self.count_rate_density
+        )
 
 
 @dataclass(frozen=True)
@@ -163,11 +179,96 @@ def compile_density_conditioned_profiles(
                 profile.correlation_sigma_pixels / pixel_size_factor
             ),
             seed=(profile.seed + seed_offset) % (2**64),
+            count_rate_density=None,
             maximum_target_density=profile.maximum_target_density,
             truncate=profile.truncate,
         )
         for profile in profiles
     )
+
+
+def _discrete_gaussian_kernel_2d(
+    sigma: float, truncate: float
+) -> np.ndarray:
+    if sigma == 0.0:
+        return np.ones((1, 1), dtype=np.float64)
+    radius = int(truncate * sigma + 0.5)
+    coordinates = np.arange(-radius, radius + 1, dtype=np.float64)
+    kernel_1d = np.exp(-0.5 * (coordinates / sigma) ** 2)
+    kernel_1d /= np.sum(kernel_1d, dtype=np.float64)
+    return np.outer(kernel_1d, kernel_1d)
+
+
+def effective_mark_loss(
+    grain_optical_density: float,
+    correlation_sigma_pixels: float,
+    truncate: float,
+) -> float:
+    """Return the Poisson mark's analytic Beer-Lambert log loss."""
+
+    values = (
+        float(grain_optical_density),
+        float(correlation_sigma_pixels),
+        float(truncate),
+    )
+    if (
+        any(not math.isfinite(value) for value in values)
+        or grain_optical_density <= 0.0
+        or correlation_sigma_pixels < 0.0
+        or truncate <= 0.0
+    ):
+        raise ValueError("invalid effective-mark-loss parameters")
+    kernel = _discrete_gaussian_kernel_2d(
+        correlation_sigma_pixels, truncate
+    )
+    return float(
+        np.sum(-np.expm1(-grain_optical_density * kernel), dtype=np.float64)
+    )
+
+
+def compile_effective_mark_loss_profiles(
+    profiles: tuple[DensityConditionedLayerProfile, ...],
+    *,
+    pixel_size_factor: int,
+    seed_offset: int = 0,
+) -> tuple[DensityConditionedLayerProfile, ...]:
+    """Compile profiles while preserving expected area transmittance."""
+
+    compiled = compile_density_conditioned_profiles(
+        profiles,
+        pixel_size_factor=pixel_size_factor,
+        seed_offset=seed_offset,
+    )
+    output = []
+    for base, candidate in zip(profiles, compiled, strict=True):
+        base_loss = effective_mark_loss(
+            base.grain_optical_density,
+            base.correlation_sigma_pixels,
+            base.truncate,
+        )
+        compiled_loss = effective_mark_loss(
+            candidate.grain_optical_density,
+            candidate.correlation_sigma_pixels,
+            candidate.truncate,
+        )
+        output.append(
+            DensityConditionedLayerProfile(
+                layer_id=candidate.layer_id,
+                grain_optical_density=candidate.grain_optical_density,
+                correlation_sigma_pixels=(
+                    candidate.correlation_sigma_pixels
+                ),
+                seed=candidate.seed,
+                count_rate_density=(
+                    base.grain_optical_density
+                    * compiled_loss
+                    / base_loss
+                ),
+                maximum_target_density=candidate.maximum_target_density,
+                truncate=candidate.truncate,
+            )
+        )
+    return tuple(output)
 
 
 def _render_layer_region(
@@ -192,14 +293,15 @@ def _render_layer_region(
     y1 = min(full_shape[0], origin_y + height + halo)
     x1 = min(full_shape[1], origin_x + width + halo)
     density_region = target_density[y0:y1, x0:x1]
-    rate = density_region / profile.grain_optical_density
+    rate = density_region / profile.resolved_count_rate_density
     counts = counter_poisson_rate_field(
         rate,
         full_shape,
         origin_yx=(y0, x0),
         seed=profile.seed,
         maximum_rate=(
-            profile.maximum_target_density / profile.grain_optical_density
+            profile.maximum_target_density
+            / profile.resolved_count_rate_density
         ),
     ).astype(np.float64)
     if sigma > 0.0:
@@ -338,7 +440,9 @@ __all__ = [
     "DensityConditionedLayerProfile",
     "DensityConditionedStructureResult",
     "compile_density_conditioned_profiles",
+    "compile_effective_mark_loss_profiles",
     "counter_poisson_rate_field",
+    "effective_mark_loss",
     "render_density_conditioned_structure",
     "render_density_conditioned_structure_area_lod",
     "render_density_conditioned_structure_area_lod_region",

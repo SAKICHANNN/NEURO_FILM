@@ -14,7 +14,9 @@ from src.eval.physical_density_conditioned_structure import (
 )
 from src.film_physics.density_conditioned_structure import (
     compile_density_conditioned_profiles,
+    compile_effective_mark_loss_profiles,
     counter_poisson_rate_field,
+    effective_mark_loss,
     render_density_conditioned_structure,
     render_density_conditioned_structure_region,
 )
@@ -63,6 +65,14 @@ def test_large_rate_superposition_and_lod_profile() -> None:
     )
     assert compiled[0].correlation_sigma_pixels == (
         base[0].correlation_sigma_pixels / 4.0
+    )
+    corrected = compile_effective_mark_loss_profiles(
+        base, pixel_size_factor=4
+    )
+    assert corrected[0].count_rate_density is not None
+    assert corrected[0].count_rate_density > compiled[0].grain_optical_density
+    assert effective_mark_loss(0.04, 0.0, 4.0) == pytest.approx(
+        1.0 - np.exp(-0.04)
     )
 
 

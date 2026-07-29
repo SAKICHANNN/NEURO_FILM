@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 
@@ -22,6 +22,7 @@ from src.film_physics.structure_compiler import counter_normal_region
 
 SCHEMA = "neuro_film.u6_p4e_density_conditioned_lod_audit_contract.v1"
 REPORT_SCHEMA = "neuro_film.u6_p4e_density_conditioned_lod_audit_report.v1"
+ProfileCompiler = Callable[..., tuple[Any, ...]]
 
 
 def _sha256(path: Path) -> str:
@@ -190,6 +191,7 @@ def _evaluate_split(
     parent: dict[str, Any],
     *,
     seed_offset: int,
+    profile_compiler: ProfileCompiler,
 ) -> dict[str, Any]:
     target_base = _scene(contract)
     base_profiles = profiles_from_contract(parent, seed_offset=seed_offset)
@@ -206,7 +208,7 @@ def _evaluate_split(
             base_reference.transmittance, factor
         )
         reference_density = -np.log(reference_transmittance)
-        compiled_profiles = compile_density_conditioned_profiles(
+        compiled_profiles = profile_compiler(
             base_profiles, pixel_size_factor=factor
         )
         direct = render_density_conditioned_structure(
@@ -284,16 +286,33 @@ def _evaluate_split(
 def evaluate_density_conditioned_lod(
     contract: dict[str, Any], parent: dict[str, Any]
 ) -> dict[str, Any]:
+    return evaluate_density_conditioned_lod_with_compiler(
+        contract,
+        parent,
+        profile_compiler=compile_density_conditioned_profiles,
+        report_schema=REPORT_SCHEMA,
+    )
+
+
+def evaluate_density_conditioned_lod_with_compiler(
+    contract: dict[str, Any],
+    parent: dict[str, Any],
+    *,
+    profile_compiler: ProfileCompiler,
+    report_schema: str,
+) -> dict[str, Any]:
     scene = contract["synthetic_scene"]
     development = _evaluate_split(
         contract,
         parent,
         seed_offset=int(scene["development_seed_offset"]),
+        profile_compiler=profile_compiler,
     )
     confirmation = _evaluate_split(
         contract,
         parent,
         seed_offset=int(scene["confirmation_seed_offset"]),
+        profile_compiler=profile_compiler,
     )
     rows = development["factors"] + confirmation["factors"]
     gates = contract["automatic_gates"]
@@ -342,7 +361,7 @@ def evaluate_density_conditioned_lod(
         ),
     }
     return {
-        "schema": REPORT_SCHEMA,
+        "schema": report_schema,
         "node": contract["node"],
         "development": development,
         "confirmation": confirmation,
@@ -361,5 +380,6 @@ __all__ = [
     "REPORT_SCHEMA",
     "SCHEMA",
     "evaluate_density_conditioned_lod",
+    "evaluate_density_conditioned_lod_with_compiler",
     "load_contract",
 ]
