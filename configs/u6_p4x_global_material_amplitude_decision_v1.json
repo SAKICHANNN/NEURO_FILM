@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p4x_global_material_amplitude_decision.v1",
+  "node": "U6.P4X",
+  "software_commit": "ba61849b7d882c31946f8beeaae5082f2d05920a",
+  "contract": {
+    "path": "configs/u6_p4x_global_material_amplitude_v1.json",
+    "sha256": "a647d73da36c8220dacd48d66ec011a52637587accf2e7e7ead0243b8e871b5a"
+  },
+  "report": {
+    "run_a": "outputs/experiments/u6_p4x_global_material_amplitude_v1/report_a.json",
+    "run_b": "outputs/experiments/u6_p4x_global_material_amplitude_v1/report_b.json",
+    "sha256": "ec3ea44ecf085246c616b563d3e154516387cfc4f2c73dbf771227896d4d25fa",
+    "stable_evidence_id": "991476513089585e5ac7885d6bdba2afd1c112295213c014814b176fd51f35b6",
+    "repeat_count": 2
+  },
+  "result": {
+    "status": "global_transmittance_proxy_amplitude_candidate_pass",
+    "selected_shared_amplitude_scale": 0.125,
+    "development_target_amplitude": 0.05899222603028191,
+    "confirmation_target_amplitude": 0.0641020509812942,
+    "confirmation_candidate_amplitude": 0.054645513321228044,
+    "confirmation_relative_error": 0.14752316837452986,
+    "original_p4t_confirmation_amplitude": 0.1520608033972401,
+    "original_p4t_relative_error": 1.3721675214668774,
+    "confirmation_error_improvement_fraction": 0.8924889519197887,
+    "all_physical_repeat_partition_and_proxy_gates_pass": true
+  },
+  "decision": "retain_global_transmittance_proxy_amplitude_candidate",
+  "interpretation": [
+    "One label-blind shared scale 0.125 is selected on development only and reduces sealed relative-amplitude error by 89.25% versus the original P4T mark amplitude.",
+    "The candidate maps standard optical density through 10^-D and assumes a locally proportional scanner response. That explicit assumption is not scanner calibration or emulsion truth.",
+    "No photograph, stock label, per-channel value or per-scan fit was used."
+  ],
+  "next_leaf": "U6.P4Y rerun held ACF, physical-domain, repeat/partition and fixed synthetic severe diagnostics for the exact 0.125 candidate before any photograph",
+  "claim_ceiling": "Development/confirmation generic same-scanner transmittance-proxy amplitude hypothesis; not optical-density calibration, emulsion grain amplitude, stock/process/scanner-independent truth, photographic preference or product evidence."
+}

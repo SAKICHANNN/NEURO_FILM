@@ -7209,3 +7209,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   confounded. No stock amplitude or optical-density interpretation opens.
 - P4X may fit one global positive scale through an explicit transmittance
   observation proxy on development only, then inspect sealed scans; no photos.
+
+## 2026-07-30 - U6.P4X global proxy amplitude passes
+
+- Development selects one label-blind shared mark scale `.125`; sealed
+  proxy amplitude is `.05465` versus observed `.06410`.
+- Confirmation relative error is `.1475`, down from original P4T's `1.3722`
+  (89.25% improvement); density mean, domain, repeat and partitions pass.
+- The explicit `10^-D` plus local scanner proportionality assumption is not
+  calibration. P4Y must re-run physical/ACF/synthetic severe gates before
+  any photograph is accessed.
