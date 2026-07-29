@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p4m_reference_profile_dataset_contract.v1",
+  "node": "U6.P4M",
+  "parents": {
+    "p4d_contract": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4l_decision": "configs/u6_p4l_exact_area_live_performance_decision_v1.json",
+    "p4l_decision_sha256": "7727b421b4aa1fe98cae8de286a6103bf367db6f36ceb9525b163040d979a681"
+  },
+  "question": "Can the exact-area simulator generate a deterministic, leakage-free, group-split synthetic reference-pair dataset that is sufficient to fit and confirm an explicit low-cost material-structure LOD compiler?",
+  "dataset": {
+    "coarse_shape": [64, 80],
+    "pixel_size_factor": 4,
+    "channel_density_scales": [1.0, 0.82, 0.64],
+    "density_domain": [0.0, 2.0],
+    "field_families": [
+      "flat",
+      "gradient",
+      "step",
+      "checker",
+      "islands",
+      "harmonic"
+    ],
+    "splits": {
+      "development": [101, 211, 307, 401],
+      "confirmation": [503, 607],
+      "stress": [701, 809]
+    },
+    "group_definition": "one seed group contains all six field families and may appear in exactly one split",
+    "record_format": "one float32 little-endian NumPy .npy input density plus exact-area effective-density and transmittance targets",
+    "manifest_format": "canonical JSON with exact file size and SHA-256 identities",
+    "photograph_or_scan_inputs_allowed": false,
+    "measured_film_statistics_allowed": false
+  },
+  "execution": {
+    "independent_generations": 2,
+    "row_tile_height": 17,
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "per_image_fit_or_normalization_allowed": false,
+    "output_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "expected_record_count": 48,
+    "expected_development_records": 24,
+    "expected_confirmation_records": 12,
+    "expected_stress_records": 12,
+    "group_split_overlap_count": 0,
+    "cross_split_input_hash_overlap_count": 0,
+    "cross_split_target_hash_overlap_count": 0,
+    "repeat_inventory_byte_exact": true,
+    "row_stream_full_region_byte_exact": true,
+    "density_and_transmittance_domain_valid": true,
+    "maximum_dataset_bytes": 33554432,
+    "maximum_generation_wall_seconds": 120,
+    "owned_temp_residue_count": 0
+  },
+  "branch_rule": {
+    "pass": "retain the synthetic reference dataset contract and open an explicit bounded compiler fit with sealed group-held-out confirmation",
+    "fail": "retain P4K/P4L reference execution only and repair dataset lineage, leakage or scale before fitting"
+  },
+  "training_allowed": false,
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic reference-pair dataset for explicit compiler research; not measured film structure, stock calibration, photographic evidence or product training data"
+}
