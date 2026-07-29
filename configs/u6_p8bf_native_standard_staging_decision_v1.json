@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p8bf_native_standard_staging_decision.v1",
+  "node": "U6.P8BF",
+  "parent_decision": "configs/u6_p8be_native_standard_runtime_factory_decision_v1.json",
+  "parent_decision_sha256": "005593da52829f91caffb2051253c814ab5297f169acfe7ef1e5882e5addef83",
+  "implementation": "src/film_physics/native_standard_staging.py",
+  "implementation_sha256": "c15b2016c479b4dece557ef352273a8a9afd87520841d5042b05cf8342188513",
+  "result": {
+    "status": "pass-local-staging-boundary",
+    "create_only": true,
+    "same_canonical_parent_required": true,
+    "output_committed_before_report": true,
+    "report_is_commit_marker": true,
+    "failure_cleanup_exact": true,
+    "caller_held_report_hash_required": true,
+    "caller_held_run_id_required": true,
+    "restart_verification_repeat_exact": true,
+    "output_tamper_rejected": true,
+    "final_quantization_performed": false,
+    "delivery_defined": false
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in local raw-float32 native Standard staging and restart verification only; not quantized, delivered, applied, mobile, calibrated or promoted",
+  "next_leaf": "U6.P8BG add a separately versioned final sRGB quantization and encoded-file transaction consuming only verified P8BF staging, then measure exact 12MP file output resources"
+}
