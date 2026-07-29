@@ -31,8 +31,9 @@ def test_contract_is_synthetic_and_not_product_rendering() -> None:
 def test_sample_layout_matches_it8_rows() -> None:
     assert sample_position("A1") == (0, 0)
     assert sample_position("L22") == (11, 21)
-    assert sample_position("GS24") == (12, 23)
-    with pytest.raises(ValueError, match="column"):
+    assert sample_position("GS0") == (12, 0)
+    assert sample_position("GS23") == (12, 23)
+    with pytest.raises(ValueError, match="unsupported"):
         sample_position("A23")
     with pytest.raises(ValueError, match="unsupported"):
         sample_position("M1")

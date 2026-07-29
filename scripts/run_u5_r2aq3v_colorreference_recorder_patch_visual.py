@@ -90,14 +90,18 @@ def load_config(path: Path, expected_sha256: str) -> dict[str, Any]:
 
 
 def sample_position(sample_id: str) -> tuple[int, int]:
-    match = re.fullmatch(r"(A|B|C|D|E|F|G|H|I|J|K|L|GS)([1-9]|1[0-9]|2[0-4])", sample_id)
+    grayscale = re.fullmatch(r"GS([0-9]|1[0-9]|2[0-3])", sample_id)
+    if grayscale is not None:
+        return 12, int(grayscale.group(1))
+    match = re.fullmatch(
+        r"(A|B|C|D|E|F|G|H|I|J|K|L)([1-9]|1[0-9]|2[0-2])",
+        sample_id,
+    )
     if match is None:
         raise ValueError("unsupported ColorReference sample id")
     prefix, number = match.groups()
-    row = 12 if prefix == "GS" else ord(prefix) - ord("A")
+    row = ord(prefix) - ord("A")
     column = int(number) - 1
-    if prefix != "GS" and column >= 22:
-        raise ValueError("lettered patch column exceeds 22")
     return row, column
 
 
