@@ -68,9 +68,12 @@ domain regresses and mean Delta E76 worsens 40.60%. No photo or metric rescue.
 AN2 is closed: label-blind residual ranking finds 26/27 true corruptions for
 every witness, but hard deletion plus linear refitting loses 15.55% to soft-L1
 on the critical cyan-shadow row and also regresses two clean-noise rows. No
-fraction/refit/gate rescue. AN3 is next: freeze exactly one redescending
-soft-weight candidate at the existing `.005` scale and unchanged AN1 gates;
-no loss sweep, proxy pair or photograph is allowed before a synthetic pass.
+fraction/refit/gate rescue. AN3 Cauchy is also closed: it loses 4.78%-11.87%
+to soft-L1 on every contaminated witness and still misses the critical 65%
+linear-gain gate. No loss/scale sweep. AQ0 is next: audit the newly located
+ColorReference Velvia 100F film-recorder source TIFF plus measured slide
+spectral/IT8 files for exact bytes, rights, pair semantics and independent
+groups before retaining data or fitting.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

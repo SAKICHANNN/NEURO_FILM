@@ -323,6 +323,8 @@ proxy domains, but misses the frozen held-row RGB gain, regresses the chart
 domain and worsens mean Delta E76 by 40.60%; it closes without photo or metric
 rescue. U5.R2AN2 then locates 26/27 corrupt rows for all three witnesses, but
 hard deletion plus linear refitting still loses on the critical cyan-shadow
-witness and on two clean-noise rows; it closes without retuning. U5.R2AN3 is
-next: freeze one redescending soft-weight candidate at the existing loss scale
-and unchanged synthetic gates, with no sweep or proxy/photo access.
+witness and on two clean-noise rows. U5.R2AN3 Cauchy then loses to soft-L1 on
+all three contaminated witnesses and still misses the critical linear-gain
+gate, closing this robust rescue family without a sweep. U5.R2AQ0 now audits a
+newly located public Velvia 100F recorder-source/measured-slide dataset for
+exact bytes, rights, pairing and group limits before any fit.

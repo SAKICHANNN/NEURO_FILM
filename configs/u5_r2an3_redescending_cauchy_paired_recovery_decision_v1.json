@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an3-redescending-cauchy-paired-recovery-v1",
+  "config_sha256": "7fc6f03d6d48f9f140f9116ab98775ec4d83133b26326add9c3a80582a2a7e10",
+  "software_commit": "9849dccf18a3f52d6d8cd971e7304d33158340b6",
+  "report_sha256": [
+    "50b2c773a29013e9d6ffcccd5ddafaa136db5fcd9c88efabd298fb712d033e97",
+    "50b2c773a29013e9d6ffcccd5ddafaa136db5fcd9c88efabd298fb712d033e97"
+  ],
+  "reports_byte_identical": true,
+  "repeat_decision_sha256": "9be0269609a71782de7be62e77c3145f6efde023511bdba84769ca09d39cba8d",
+  "automatic_pass": false,
+  "failed_check_count": 4,
+  "failed_checks": [
+    "warm_highlight_like.sparse_correspondence_outliers.gain_over_soft_l1",
+    "cyan_shadow_warm_highlight_like.sparse_correspondence_outliers.gain_over_linear",
+    "cyan_shadow_warm_highlight_like.sparse_correspondence_outliers.gain_over_soft_l1",
+    "cross_bias_like.sparse_correspondence_outliers.gain_over_soft_l1"
+  ],
+  "mechanism_evidence": {
+    "outlier_gain_over_soft_l1": {
+      "warm_highlight_like": -0.09194618327289028,
+      "cyan_shadow_warm_highlight_like": -0.047836016508023826,
+      "cross_bias_like": -0.11865127774288609
+    },
+    "cyan_shadow_gain_over_linear": 0.595939266960315,
+    "all_absolute_error_checks_pass": true,
+    "all_one_matrix_gain_checks_pass": true,
+    "all_structure_checks_pass": true
+  },
+  "decision": "close_fixed_cauchy_and_stop_robust_loss_or_rejection_family",
+  "interpretation": "The fixed Cauchy influence is structurally safe and absolutely accurate but loses to soft-L1 on every contaminated witness and still misses the critical unchanged 65% gain over linear. Together with AN2, this closes hard deletion and one stronger redescending loss as productive rescues of AN1.",
+  "loss_or_scale_sweep_allowed": false,
+  "proxy_pair_allowed": false,
+  "photographic_render_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "next_leaf": "audit the ColorReference Velvia 100F film-recorder slide source and measured spectral/IT8 files for exact downloadable paired measurement, rights, stock/process/scanner semantics and group limitations before any retained fit",
+  "claim_ceiling": "clean-room synthetic negative evidence for one fixed redescending robust loss; not real-film fitting, not stock response, not calibrated and not product promotion"
+}

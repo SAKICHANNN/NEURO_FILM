@@ -6935,3 +6935,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   without changing fraction, refit loss or gates.
 - AN3 may test one separately frozen redescending soft-weight influence
   function at the existing scale, without a loss sweep or proxy/photo access.
+
+## 2026-07-29 - U5.R2AN3 closes the local robust-rescue family
+
+- Froze one Cauchy candidate at the existing `.005` loss scale, same
+  perturbations/seeds and unchanged AN1 gates; no loss or scale sweep.
+- Two 76,372-byte reports are exact at `50b2c77...33e97`. Cauchy loses
+  4.78%-11.87% to soft-L1 on all contaminated witnesses; cyan-shadow gain over
+  linear is 59.59%, below the unchanged 65% gate.
+- All absolute, one-matrix and structural checks pass, so this is a relative
+  robust-estimation close, not a renderer safety failure. No proxy/photo opens.
+- A web source search located ColorReference public source TIFF and measured
+  Velvia 100F slide reference files. AQ0 will audit exact downloads, rights,
+  recorder/measurement semantics and groups before retaining or fitting data.
