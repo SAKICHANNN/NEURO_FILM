@@ -122,6 +122,14 @@ profile contains only two materially supported endpoint-like levels against a
 frozen six-level minimum. Close sensitometry fitting and the other four
 segments; retain this file only as a possible endpoint/edge stress source.
 
+P2K later completes at 1,755,600,801 bytes with exact ZIP CRC and one
+3,193,703,785-byte classic uint16 RGB TIFF. Two bounded full-member preflights
+are byte-identical and detect 11 high-confidence horizontal separators. The
+automatic source gate still closes: its post-exploratory first/last-4%
+endpoint statistic includes the visibly black bottom film border and measures
+only `.00635` span against `.8`. The crop and gate are not changed after the
+result; no response fit or further Apollo acquisition opens.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:

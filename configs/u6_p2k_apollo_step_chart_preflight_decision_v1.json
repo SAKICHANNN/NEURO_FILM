@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p2k_apollo_step_chart_preflight_decision.v1",
+  "node": "ULT > U6 > U6.P2K",
+  "software_commit": "8fcf0c2745c0258e11d65186e3c128d633c9377b",
+  "source_contract": {
+    "path": "configs/u6_p2k_apollo_step_chart_source_v1.json",
+    "sha256": "1092a8bfbf86b87406ba1b5622720efc905b1957648f6f197c0d968678bb7290"
+  },
+  "acquisition_manifest": {
+    "path": "outputs/experiments/u6_p2k_apollo_step_chart_source_v1/acquisition_manifest.json",
+    "sha256": "3391cdd7354cdfe91bc8cdf91af825bfa1cd0a753ec5909aa6668c418786910a",
+    "archive_sha256": "e004be84c624bfe670290f12930be1e4bddff14713fc460184f4665230653eda",
+    "archive_bytes": 1755600801,
+    "member_path": "AS07-03-StepChart.tif",
+    "member_uncompressed_bytes": 3193703785,
+    "member_crc32": "1967963c",
+    "zip_crc_pass": true
+  },
+  "preflight_contract": {
+    "path": "configs/u6_p2k_apollo_step_chart_preflight_v1.json",
+    "sha256": "07f3586994084b791d6544c18d009c58e463908f172261b37c87caf981ab173f"
+  },
+  "run_a": {
+    "path": "outputs/experiments/u6_p2k_apollo_step_chart_preflight_v1/report_a.json",
+    "sha256": "533e6df717e243977ebeea64ef659b6a2238e4560571e3204b09aa0506118cef"
+  },
+  "run_b": {
+    "path": "outputs/experiments/u6_p2k_apollo_step_chart_preflight_v1/report_b.json",
+    "sha256": "533e6df717e243977ebeea64ef659b6a2238e4560571e3204b09aa0506118cef"
+  },
+  "repeat_report_byte_identical": true,
+  "stable_evidence_id": "80c2cb6b60b47af95940a4f9387d29afc95c8f284eb56187e715f9ebc274fc28",
+  "visual_review": {
+    "path": "configs/u6_p2k_apollo_step_chart_visual_review_v1.json",
+    "visual_pass": true,
+    "automatic_gate_override_allowed": false
+  },
+  "evidence": {
+    "layout": {
+      "width": 14534,
+      "height": 36620,
+      "samples_per_pixel": 3,
+      "bits_per_sample": [16, 16, 16],
+      "rows_per_strip": 1,
+      "strip_count": 36620
+    },
+    "high_confidence_horizontal_separator_count": 11,
+    "minimum_required_horizontal_separator_count": 10,
+    "top_endpoint_code": 224.0,
+    "bottom_endpoint_code": 640.0,
+    "endpoint_span_fraction": 0.0063477531090257115,
+    "minimum_endpoint_span_fraction": 0.8,
+    "failed_checks": ["endpoint_span"]
+  },
+  "decision": "close_source_geometry_without_curve_fitting",
+  "reason": "Archive integrity, narrow TIFF layout, high-confidence horizontal separators and bounded visual geometry pass. The preregistered first/last-4% endpoint statistic includes the visibly black bottom film border and therefore fails its 0.8 span gate at 0.00635. Because the border was visible before the post-exploratory gate freeze, changing the crop after the formal result would be an invalid rescue.",
+  "forbidden_rescue": [
+    "change the endpoint fraction, crop, threshold or gate after seeing the report",
+    "use the visual pass to override the automatic failure",
+    "fit a response or characteristic curve from this source",
+    "expand to another Apollo 7 step-chart archive under this branch",
+    "claim calibrated sensitometry, exposure spacing, process truth, scanner independence or stock response"
+  ],
+  "retained_evidence": "Exact historical SO-368-associated camera-free raw-scan archive integrity, classic uint16 RGB layout, and horizontal wedge geometry only.",
+  "next_action": "Pivot to a distinct evidence-authorized film-image-formation or explicit-operator leaf; do not reopen P2K.",
+  "claim_ceiling": "Historical source integrity and bounded source geometry only; no response fit, calibration, digital-to-film operator, preference or product claim."
+}

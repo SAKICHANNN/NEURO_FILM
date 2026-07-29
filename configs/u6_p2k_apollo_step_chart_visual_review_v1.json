@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p2k_apollo_step_chart_visual_review.v1",
+  "node": "ULT > U6 > U6.P2K",
+  "review_type": "autonomous bounded source-geometry review",
+  "preview": {
+    "path": "outputs/experiments/u6_p2k_apollo_step_chart_preflight_v1/preview_a.png",
+    "sha256": "002975886c0287aca1bfc4cc5043c770a1787f92773df9a75e070b2e3ae4b7a0",
+    "dimensions": [768, 768],
+    "rendering": "per-channel 0.5%-99.5% display stretch from the fixed 768x768 uint16 sample grid"
+  },
+  "observations": {
+    "complete_film_width_visible": true,
+    "left_and_right_sprocket_holes_visible": true,
+    "horizontal_density_step_geometry_visible": true,
+    "broad_top_to_bottom_lightening_visible": true,
+    "photographic_scene_content_visible": false,
+    "processed_graphics_or_text_overlay_visible": false,
+    "confirmed_severe_source_corruption": false,
+    "bottom_black_film_border_visible": true
+  },
+  "visual_pass": true,
+  "automatic_gate_override_allowed": false,
+  "interpretation": "The bounded preview supports a camera-free horizontal density-wedge raw-scan geometry. It also visibly contains a bottom black film border, so the separately frozen first/last-4% endpoint gate is not rescued after its formal failure.",
+  "claim_ceiling": "Autonomous source-geometry review only; not response fitting, calibrated sensitometry, exposure spacing, process truth, scanner independence or product evidence."
+}

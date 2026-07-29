@@ -29,6 +29,21 @@ def test_contract_stops_before_response_fitting() -> None:
     ]
 
 
+def test_formal_decision_closes_post_result_endpoint_rescue() -> None:
+    decision = json.loads(
+        (
+            ROOT
+            / "configs/u6_p2k_apollo_step_chart_preflight_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["decision"] == "close_source_geometry_without_curve_fitting"
+    assert decision["repeat_report_byte_identical"] is True
+    assert decision["evidence"]["failed_checks"] == ["endpoint_span"]
+    assert decision["visual_review"]["visual_pass"] is True
+    assert decision["visual_review"]["automatic_gate_override_allowed"] is False
+    assert "fit a response" in decision["forbidden_rescue"][2]
+
+
 def test_separator_detection_keeps_separated_downward_edges() -> None:
     profile = np.concatenate(
         (

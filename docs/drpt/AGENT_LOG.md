@@ -2,6 +2,19 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 - U6.P2K Apollo 7 step-chart source closes
+
+- The exact 1,755,600,801-byte archive passes SHA-256/CRC and contains one
+  3,193,703,785-byte 14534x36620 uint16 RGB TIFF.
+- Two full-member bounded preflights are byte-identical at
+  `533e6df7...8cef`; layout and 11 high-confidence horizontal separators pass.
+- Autonomous visual review confirms the film width, two sprocket rows and
+  horizontal density steps, but also the black bottom film border.
+- The frozen first/last-4% endpoint statistic includes that border and fails
+  `.00635 < .8`. Because the border was visible before gate freeze, no crop or
+  threshold rescue is valid. Close without curve fitting or further Apollo
+  acquisition; retain exact source/layout/geometry evidence only.
+
 ## 2026-07-30 — U5.R2AS0 fixed Gaussian log-odds capacity
 
 - Added a clean-room eight-centre Gaussian local residual in output log-odds,
