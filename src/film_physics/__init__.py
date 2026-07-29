@@ -145,6 +145,12 @@ from .scanned_interpretation import (
     scan_interpretation_medium,
     scanner_profile_identity,
 )
+from .scan_normalization import (
+    SCAN_SIGNAL_NORMALIZATION_SCHEMA,
+    ScanSignalNormalization,
+    derive_scan_signal_normalization,
+    scan_signal_normalization_identity,
+)
 
 __all__ = [
     "CANONICAL_DOMAIN_ORDER",
@@ -191,10 +197,12 @@ __all__ = [
     "SCANNER_STAGES",
     "SCANNED_INTERPRETATION_ORDER",
     "SCANNED_INTERPRETATION_SCHEMA",
+    "SCAN_SIGNAL_NORMALIZATION_SCHEMA",
     "ScannerContext",
     "ScannerProfile",
     "ScannerStandardContext",
     "ScannedInterpretation",
+    "ScanSignalNormalization",
     "SpatialResponseProfile",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
@@ -225,6 +233,7 @@ __all__ = [
     "develop_layer_exposure",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
+    "derive_scan_signal_normalization",
     "required_spatial_response_halo",
     "compile_scatter_profile",
     "compile_print_interpretation",
@@ -256,6 +265,7 @@ __all__ = [
     "required_scanner_halo",
     "scene_exposure_from_working_image",
     "scan_interpretation_medium",
+    "scan_signal_normalization_identity",
     "scanner_profile_identity",
     "sensitometry_identity",
     "transmittance_to_density",
