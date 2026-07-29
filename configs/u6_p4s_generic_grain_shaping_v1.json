@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p4s_generic_grain_shaping_contract.v1",
+  "node": "ULT > U6 > U6.P4S",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "analysis_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "p4r_report": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_nps_v1/report.json",
+      "sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889",
+      "required_decision": "retain_generic_scanner_convolved_signature_only"
+    },
+    "p4r_decision": {
+      "path": "configs/u6_p4r_uniform_grain_nps_decision_v1.json",
+      "sha256": "1540aadc8f9819f1387659063f5c46ede1a234c66b17cb8c53b79c64922aaec2",
+      "required_status": "repeatable_generic_signature_only"
+    },
+    "p4d_contract": {
+      "path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+      "sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab"
+    }
+  },
+  "question": "Can one label-blind, positive, anisotropic Gaussian-shaped Poisson field improve held-scan generic NPS shape over the existing P4D isotropic three-layer baseline without changing density amplitude or fitting stock-specific profiles?",
+  "split": {
+    "development_source_ids": [
+      "KodakEktar100GrainScan01",
+      "KodakEktar100GrainScan02",
+      "KodakUltramax400GrainScan01",
+      "KodakUltramax400GrainScan02"
+    ],
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "stock_labels_available_to_fit": false,
+    "normalization_and_selection": "development scans only"
+  },
+  "model": {
+    "family": "positive-poisson-plus-shared-anisotropic-gaussian",
+    "target_density": 0.8,
+    "baseline_layer_sigmas_yx": [
+      [0.55, 0.55],
+      [0.65, 0.65],
+      [0.45, 0.45]
+    ],
+    "grain_optical_density_by_rgb_layer": [0.04, 0.05, 0.035],
+    "shared_sigma_y_grid_pixels": [0.35, 0.45, 0.55, 0.65, 0.75, 0.9],
+    "shared_sigma_x_grid_pixels": [0.35, 0.45, 0.55, 0.65, 0.75, 0.9],
+    "truncate": 4.0,
+    "field_shape": [768, 768],
+    "central_analysis_crop": [128, 128, 512, 512],
+    "development_seeds": [260901, 260903, 260909, 260917],
+    "confirmation_seeds": [260921, 260927, 260929, 260933],
+    "selection": "minimize development median one-minus-cosine NPS distance, then maximum distance, then anisotropy magnitude, then sigma_y, then sigma_x",
+    "amplitude_fit_allowed": false,
+    "per_channel_sigma_fit_allowed": false,
+    "stock_specific_fit_allowed": false,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_confirmation_median_distance_improvement_fraction": 0.1,
+    "maximum_confirmation_worst_distance_ratio": 1.0,
+    "minimum_candidate_vs_reversed_frequency_control_improvement_fraction": 0.1,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "positive_field": true
+  },
+  "branch_rule": {
+    "pass": "retain the generic scanner-convolved anisotropic shaping candidate for a separately frozen severe-artifact and physical-domain integration audit",
+    "fail": "retain the existing P4D/P4Q generic material baseline and close measured generic shaping without adding capacity"
+  },
+  "forbidden_fallbacks": [
+    "read stock labels during fitting",
+    "change the development/confirmation split after reveal",
+    "fit amplitude, per-channel kernels or per-scan parameters",
+    "relax held-scan gates",
+    "use display-RGB additive noise or hard clipping",
+    "claim emulsion, process, stock or scanner-independent calibration"
+  ],
+  "claim_ceiling": "Development/confirmation comparison to one label-blind scanner-convolved generic NPS target; not emulsion truth, physical grain calibration, stock identity, scanner independence or product promotion."
+}
