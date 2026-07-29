@@ -54,6 +54,7 @@ from .fft_backing_return import (
     FFT_RETURN_ROUNDOFF_FLOOR,
     apply_fft_backing_return,
     apply_fft_backing_return_row_tiled,
+    iter_fft_backing_return_row_cores,
 )
 from .pyramid_scatter import (
     PyramidScatterComponent,
@@ -152,6 +153,7 @@ __all__ = [
     "apply_compiled_backing_return_row_tiled",
     "apply_fft_backing_return",
     "apply_fft_backing_return_row_tiled",
+    "iter_fft_backing_return_row_cores",
     "apply_development_adjacency",
     "apply_dye_diffusion",
     "apply_forward_scatter",
