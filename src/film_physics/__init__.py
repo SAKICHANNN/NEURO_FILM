@@ -112,6 +112,14 @@ from .compound_poisson import (
     render_compound_poisson_region,
     rescale_compound_poisson_profile,
 )
+from .density_conditioned_structure import (
+    DENSITY_CONDITIONED_STRUCTURE_SCHEMA,
+    DensityConditionedLayerProfile,
+    DensityConditionedStructureResult,
+    counter_poisson_rate_field,
+    render_density_conditioned_structure,
+    render_density_conditioned_structure_region,
+)
 from .spatial_response import (
     SpatialResponseProfile,
     apply_bounded_development_adjacency,
@@ -157,6 +165,7 @@ __all__ = [
     "BACKING_RETURN_SCHEMA",
     "DOMAIN_UNITS",
     "DEVELOPMENT_CONTRACT_SCHEMA",
+    "DENSITY_CONDITIONED_STRUCTURE_SCHEMA",
     "PROFILE_BUNDLE_SCHEMA",
     "QUALITY_TIERS",
     "ComponentBinding",
@@ -172,6 +181,8 @@ __all__ = [
     "MarginalProfile",
     "DevelopedStructureContext",
     "DevelopedExposureResult",
+    "DensityConditionedLayerProfile",
+    "DensityConditionedStructureResult",
     "DevelopmentInterpretationContract",
     "EmulsionFamily",
     "InterpretationEvidence",
@@ -243,6 +254,7 @@ __all__ = [
     "compile_scanner_standard_context",
     "correlated_normal_region",
     "counter_normal_region",
+    "counter_poisson_rate_field",
     "counter_poisson_region",
     "counter_uniform_region",
     "gaussian_kernel_1d",
@@ -257,6 +269,8 @@ __all__ = [
     "render_developed_structure_region",
     "render_compound_poisson",
     "render_compound_poisson_region",
+    "render_density_conditioned_structure",
+    "render_density_conditioned_structure_region",
     "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
