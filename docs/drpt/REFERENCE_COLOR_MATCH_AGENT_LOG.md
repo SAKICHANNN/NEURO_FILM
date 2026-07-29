@@ -4302,3 +4302,19 @@
   There is no package, schema, receipt, capability or mapping. P172, P45/P44
   and v42 remain unchanged; a materially different edge-adaptive producer
   candidate must start a new evidence chain.
+
+## 2026-07-29 - Register R0DZ as protocol-negative
+
+- Producer `a68fcdd` implements private BSD-3 DDFAPD/Menon 2007 and matches
+  the pinned colour-demosaicing 0.2.7 wheel across three geometries and four
+  Bayer patterns within `4.44e-16`; conformance is `b442aa9d...c960`.
+- Two independent 64-row synthetic runs are exact outside timing at
+  `9da349ea...b19a`. DDFAPD preserves all sampled sensels, reaches
+  0.239625/0.254673 primary RGB/chroma RMSE ratios and improves 44/48 rows.
+  The one frozen failure is a 1.228126 worst-family ratio caused by affine
+  baseline/candidate errors near the `1e-16` floating-point floor.
+- The result is scientifically promising but formally rejected under its
+  unchanged protocol. No export, package, schema, receipt or capability is
+  published. P172, P45/P44 and v42 remain closed; a new floor-aware protocol
+  must use a genuinely new cohort and still requires rights-cleared real-RAW
+  confirmation before any portability or product claim.

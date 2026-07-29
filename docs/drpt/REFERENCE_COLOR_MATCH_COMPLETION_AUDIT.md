@@ -20,17 +20,18 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `92374d6`; after repairing its
-  generic bilinear core to preserve measured sensels, R0DY-v1 evaluates fixed
-  MHC on rights-cleared synthetic linear-RGB ground truth spanning 12 primary
-  and four alias-stress families across all four Bayer patterns. Two runs are
-  exact outside timing (`9b7d5db8...1a857`). MHC primary RGB/chroma RMSE
-  ratios are 1.461487/1.283869, only 4/48 rows improve and the worst ratio is
-  2.238049; all five frozen quality gates fail. MHC improves only the
-  fixed-chroma luma-edge family and is rejected as the next portable
-  candidate. It remains non-public and publishes no package, compatible
-  consumer rail, callable capability, schema or receipt, so P172 remains
-  fail-closed. R0DO/R0DP absolute-HDR diagnostics remain explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `a68fcdd`; R0DZ's private
+  BSD-3 DDFAPD/Menon 2007 implementation matches the pinned
+  colour-demosaicing 0.2.7 reference within `4.44e-16`. On an independent
+  64-row synthetic cohort it preserves every sampled sensel, reaches
+  0.239625/0.254673 primary RGB/chroma RMSE ratios and improves 44/48 rows.
+  The frozen protocol nevertheless fails because the affine family's
+  baseline/candidate errors of about `9.14e-17`/`1.12e-16` produce a 1.228126
+  worst-family ratio. This is a strong research signal but a formal protocol
+  rejection, not a product promotion. DDFAPD remains non-public and R0DZ
+  publishes no package, compatible consumer rail, callable capability,
+  schema or receipt, so P172 remains fail-closed. R0DO/R0DP absolute-HDR
+  diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
