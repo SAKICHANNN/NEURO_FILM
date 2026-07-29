@@ -13,6 +13,7 @@ from src.eval.apollo_step_chart_source import (
     acquire_archive,
     inspect_archive,
     validate_config,
+    validate_parent_evidence,
 )
 
 
@@ -64,6 +65,7 @@ class _Session:
 
 def test_contract_binds_one_so368_archive_without_fitting() -> None:
     validate_config(CONFIG)
+    validate_parent_evidence(ROOT, CONFIG)
     assert CONFIG["magazine_evidence"]["film_code"] == "SO368"
     assert CONFIG["acquisition"]["resume_allowed"] is False
     assert CONFIG["operator_fitting_allowed"] is False
@@ -72,6 +74,10 @@ def test_contract_binds_one_so368_archive_without_fitting() -> None:
 def test_acquisition_is_bounded_atomic_and_audited(tmp_path: Path) -> None:
     config = deepcopy(CONFIG)
     config["acquisition"]["destination"] = "archive.zip"
+    evidence = config["magazine_evidence"]
+    parent = tmp_path / evidence["parent_path"]
+    parent.parent.mkdir(parents=True)
+    parent.write_bytes((ROOT / evidence["parent_path"]).read_bytes())
     response = _Response(_zip_bytes())
     manifest = acquire_archive(
         tmp_path, config, session=_Session(response)
@@ -90,6 +96,10 @@ def test_unsafe_member_and_off_host_redirect_fail_closed(
 ) -> None:
     config = deepcopy(CONFIG)
     config["acquisition"]["destination"] = "archive.zip"
+    evidence = config["magazine_evidence"]
+    parent = tmp_path / evidence["parent_path"]
+    parent.parent.mkdir(parents=True)
+    parent.write_bytes((ROOT / evidence["parent_path"]).read_bytes())
     response = _Response(_zip_bytes("../escape.tif"))
     with pytest.raises(ApolloStepChartSourceError, match="unsafe member"):
         acquire_archive(tmp_path, config, session=_Session(response))
@@ -106,6 +116,10 @@ def test_unsafe_member_and_off_host_redirect_fail_closed(
 def test_overflow_removes_owned_partial(tmp_path: Path) -> None:
     config = deepcopy(CONFIG)
     config["acquisition"]["destination"] = "archive.zip"
+    evidence = config["magazine_evidence"]
+    parent = tmp_path / evidence["parent_path"]
+    parent.parent.mkdir(parents=True)
+    parent.write_bytes((ROOT / evidence["parent_path"]).read_bytes())
     config["acquisition"]["maximum_compressed_bytes"] = 8
     response = _Response(_zip_bytes())
     with pytest.raises(ApolloStepChartSourceError, match="exceeded"):

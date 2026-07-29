@@ -74,6 +74,18 @@ def validate_config(config: Mapping[str, Any]) -> None:
         raise ApolloStepChartSourceError("operator fitting must remain forbidden")
 
 
+def validate_parent_evidence(root: Path, config: Mapping[str, Any]) -> None:
+    """Bind the acquisition to the already-audited magazine metadata."""
+
+    validate_config(config)
+    evidence = config["magazine_evidence"]
+    parent = root / str(evidence["parent_path"])
+    if not parent.is_file():
+        raise ApolloStepChartSourceError("magazine evidence file is missing")
+    if sha256_file(parent) != str(evidence["parent_sha256"]):
+        raise ApolloStepChartSourceError("magazine evidence hash drifted")
+
+
 def _safe_members(
     archive: zipfile.ZipFile,
     *,
@@ -178,6 +190,7 @@ def acquire_archive(
     """Download once to an owned partial, validate, then publish atomically."""
 
     validate_config(config)
+    validate_parent_evidence(root, config)
     acquisition = config["acquisition"]
     destination = root / str(acquisition["destination"])
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -252,5 +265,6 @@ __all__ = [
     "inspect_archive",
     "sha256_file",
     "validate_config",
+    "validate_parent_evidence",
     "write_manifest",
 ]
