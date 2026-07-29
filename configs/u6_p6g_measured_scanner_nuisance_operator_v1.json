@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p6g_measured_scanner_nuisance_operator_contract.v1",
+  "node": "U6.P6G",
+  "claim_ceiling": "one-physical-target-set same-slide real-scanner device-RGB nuisance and bounded canonicalizer research evidence only",
+  "parents": {
+    "sf2_7r_contract_path": "configs/sf2_7r_colorreference_scanner_nuisance_v1.json",
+    "sf2_7r_contract_sha256": "ed44375415b7471aa1b0256d87e086a66c83f55c0cab3d2a25ec33a90e037fa0",
+    "sf2_7r_audit_path": "outputs/sf2_7r_colorreference_scanner_nuisance_v1/audit_pass1.json",
+    "sf2_7r_audit_sha256": "b88da41c129b58087c68194f21545c1f7b708be91ba7d1b868ce50579d410fb6",
+    "sf2_7a_contract_path": "configs/sf2_7a_scanner_nuisance_quantification_v1.json",
+    "sf2_7a_contract_sha256": "0f8a3a701fd03e0ac811eb28a6b254e176a87fcf0f4accf3c5d0c4e70e90a5ad",
+    "sf2_7a_report_path": "outputs/sf2_7a_scanner_nuisance_quantification_v1/report_pass1.json",
+    "sf2_7a_report_sha256": "bd093389e4e3808979ada7380308b6fe0e573a8421e4ec10c0de797c781993ad",
+    "sf2_7a_decision_path": "configs/sf2_7a_scanner_nuisance_quantification_decision_v1.json",
+    "sf2_7a_decision_sha256": "7a85a1ea1c083f7b9e62e8f4f52061530980f8ca4a300e0030627127dd454053"
+  },
+  "evidence_contract": {
+    "material": "Fujichrome Velvia 100F ColorReference Set 3 target",
+    "physical_target_sets": 1,
+    "slides": 5,
+    "scanner_software_pipelines": 4,
+    "patches_per_slide": 264,
+    "aligned_pipeline_slide_cells": 20,
+    "colour_state": "unknown_scanner_device_rgb",
+    "rights_scope": "internal research and testing only; no redistribution or commercial training",
+    "independent_roll_or_process_support": false
+  },
+  "split_contract": {
+    "method": "leave-one-slide-out",
+    "development_slides_per_fold": 4,
+    "confirmation_slides_per_fold": 1,
+    "pipeline_pairs": "all-six-unordered-pairs-both-directions",
+    "fit_on_held_slide_forbidden": true
+  },
+  "candidate_contract": {
+    "candidates": [
+      "identity",
+      "legacy-unclipped-full-affine-diagnostic-only",
+      "nonnegative-row-sum-bounded-3x3"
+    ],
+    "legacy_affine_fit": "reuse SF2.7A coefficient and bias bounds but evaluate before clipping",
+    "safe_matrix_fit": "nonnegative least squares per output row followed by row-sum projection to at most one",
+    "hard_output_clipping_forbidden": true,
+    "bias_in_safe_candidate_forbidden": true,
+    "quadratic_lut_neural_and_per_image_capacity_forbidden": true
+  },
+  "automatic_gates": {
+    "parent_source_pass": true,
+    "all_alignment_gates_pass": true,
+    "aligned_pipeline_slide_cells": 20,
+    "legacy_unclipped_factual_diagnostics_present": true,
+    "safe_matrix_coefficient_minimum": 0.0,
+    "safe_matrix_row_sum_maximum": 1.0,
+    "safe_output_minimum": 0.0,
+    "safe_output_maximum": 1.0,
+    "safe_matrix_vs_identity_aggregate_median_improvement_min": 0.25,
+    "safe_matrix_aggregate_median_l2_max": 0.04,
+    "safe_matrix_aggregate_p90_l2_max": 0.12,
+    "safe_matrix_each_directed_pair_median_l2_max": 0.08,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the bounded matrix as a one-target-set scanner-nuisance canonicalizer research control and open held-target replication",
+    "fail_relative": "retain SF2.7A as nuisance-magnitude evidence and close this safe RGB canonicalizer",
+    "fail_absolute_or_pair": "retain the spectral P6D reference and classify real-scanner RGB canonicalization as support-limited"
+  },
+  "forbidden_claims": [
+    "scanner spectral calibration or device-independent colourimetry",
+    "Velvia stock response or digital-to-film operator",
+    "independent roll, target manufacture, process or scanner population generalization",
+    "latent film mode, stock identity or authenticity",
+    "training, product integration, redistribution or commercial use"
+  ]
+}
