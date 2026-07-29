@@ -89,6 +89,11 @@ affine is bounded but only `22.79/30.07`. Held-slide results explain the joint
 failure, especially slide 4. No clipping, target-space retune, larger LUT or
 photo rescue is allowed on this five-grid pool. Continue with a distinct
 evidence source or physical/explicit operator leaf.
+AQ2D confirms the data gap without target access or fitting: slides 1/3 exceed
+the 1.5x local-support ratio and slides 4/5 place 38.54%/11.46% outside the
+other four grids' convex hull. Four of five grids are source-support failures.
+Do not add capacity; search for additional rights-cleared controlled grids or
+advance a distinct physical evidence leaf.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

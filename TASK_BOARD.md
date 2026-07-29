@@ -336,3 +336,7 @@ baselines; the claim remains recorder-to-measured-slide proxy only. AQ2 then
 closes on joint held-set/held-grid evidence: quadratic reaches `13.72/17.71`
 mean/worst-fold Delta E76 but produces 3.29% negative XYZ, while the bounded
 nonnegative affine remains `22.79/30.07`. No larger model or clipping rescue.
+AQ2D attributes this to source support: four of five held recorder grids exceed
+the frozen local-distance or convex-hull gate; slide 4 is 38.54% outside the
+other grids' hull. Reopen only with additional controlled grids or a distinct
+physical evidence source.

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq2d-colorreference-source-support-diagnostic-v1",
+  "config_sha256": "5818cf339be8c50dd209c15ee552839812b796c5fe1b3ed7f3eb8538a9b61114",
+  "software_commit": "1f5e3a57642db53238e18b0b78c01605a8611bb4",
+  "report_sha256": "23e05fc5b094908bbc415761bef2b93dc82d4b8b605f3f1ae9c8aad61592365f",
+  "repeat_exact": true,
+  "decision": "source_support_gap",
+  "gap_slides": [1, 3, 4, 5],
+  "observed_metrics": {
+    "slide_1_p95_nearest_distance_ratio": 1.6387039667129892,
+    "slide_3_p95_nearest_distance_ratio": 1.9510101790222585,
+    "slide_4_outside_convex_hull_fraction": 0.3854166666666667,
+    "slide_5_outside_convex_hull_fraction": 0.11458333333333333
+  },
+  "capacity_rescue_allowed": false,
+  "reopen_requires": "additional rights-cleared controlled source grids or a distinct physical evidence source",
+  "claim_ceiling": "source-only support attribution for the already-rejected AQ2 recorder proxy"
+}

@@ -6993,3 +6993,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - AQ3 capacity rescue, clipping, target-space retuning and photo transfer are
   closed on this pool. Continue with a distinct evidence source or physical
   explicit-operator leaf; Ultimate remains active.
+
+## 2026-07-29 - U5.R2AQ2D attributes closure to source support
+
+- Source-only report SHA `23e05fc...2365f` repeats exactly; no target field,
+  fit, operator or render is consumed.
+- Slides 1/3 have held/development p95 nearest-distance ratios `1.639/1.951`.
+  Slides 4/5 place `38.54%/11.46%` outside the other grids' convex hull.
+- Four of five grids exceed a frozen support threshold. The five-grid pool
+  cannot distinguish transferable nonlinearity from grid-specific
+  interpolation. Additional controlled grids or a distinct physical source
+  are required; model-capacity rescue remains closed.
