@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8aw_native_display_v4_resources_decision.v1",
+  "node": "U6.P8AW",
+  "contract": "configs/u6_p8aw_native_display_v4_resources_v1.json",
+  "contract_sha256": "ed7ccac5bb05d0ff053df81101270ca9db4f966519b757f7bd31620800fd9e0f",
+  "formal_report": "outputs/u6_p8aw_native_display_v4_resources_v1/report.json",
+  "formal_report_sha256": "5aeccfdb1c7d8a25ce13cce550caf5e303b18202a4f6b2530029358ccebca543",
+  "stable_evidence_id": "d2071290d9bb41041471a45ea012eefaa8c8c8828a04254006818efa827c767a",
+  "result": {
+    "status": "fail-latency",
+    "output_repeat_and_v1_exact": true,
+    "peak_process_tree_rss_bytes": [
+      167260160,
+      167071744
+    ],
+    "memory_gate_bytes": 402653184,
+    "memory_pass": true,
+    "worker_elapsed_seconds": [
+      20.342810400004964,
+      20.134794799989322
+    ],
+    "elapsed_gate_seconds": 15.0,
+    "elapsed_pass": false,
+    "mean_elapsed_ratio_vs_p8at": 0.925799059316775
+  },
+  "decision": "retain exact-output display v4, but reject the complete CPU chain against the unchanged 15 second gate. The clean rerun confirms a further 7.42 percent mean latency reduction versus display v3, which is useful but insufficient",
+  "production_default_changed": false,
+  "claim_ceiling": "local Windows x64 12MP analytic-row and hash-sink native Standard physical plus exact-output AO6 display v4 resource evidence only",
+  "next_leaf": "U6.P8AX select bounded ordered tile concurrency on a small exact-output grid, then rerun the unchanged 12MP gate with the selected policy"
+}
