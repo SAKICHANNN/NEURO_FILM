@@ -7,9 +7,9 @@ import numpy as np
 import pytest
 
 from src.eval.physical_spectral_scanner_rgb_approximation import (
-    _fit_bounded_matrix,
     _predict_quadratic,
     evaluate_spectral_scanner_rgb_approximation,
+    fit_nonnegative_row_sum_bounded_matrix,
     load_contract,
     write_report,
 )
@@ -47,7 +47,7 @@ def test_bounded_matrix_is_nonnegative_and_row_sum_bounded() -> None:
     rng = np.random.default_rng(20260729)
     source = rng.random((128, 3))
     target = rng.random((128, 3))
-    matrix = _fit_bounded_matrix(source, target)
+    matrix = fit_nonnegative_row_sum_bounded_matrix(source, target)
     assert np.all(matrix >= 0.0)
     assert np.all(np.sum(matrix, axis=1) <= 1.0 + 1e-15)
     prediction = source @ matrix.T

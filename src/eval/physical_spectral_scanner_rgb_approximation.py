@@ -96,7 +96,9 @@ def _generate_split(
     return np.concatenate(spectra, axis=0), tuple(groups)
 
 
-def _fit_bounded_matrix(source: np.ndarray, target: np.ndarray) -> np.ndarray:
+def fit_nonnegative_row_sum_bounded_matrix(
+    source: np.ndarray, target: np.ndarray
+) -> np.ndarray:
     rows = []
     for channel in range(3):
         weights, _ = nnls(source, target[:, channel])
@@ -200,7 +202,9 @@ def evaluate_spectral_scanner_rgb_approximation(
     candidate = contract["candidate_contract"]
     development_source = scanner_a_rgb["development"]
     development_target = scanner_b_rgb["development"]
-    matrix = _fit_bounded_matrix(development_source, development_target)
+    matrix = fit_nonnegative_row_sum_bounded_matrix(
+        development_source, development_target
+    )
     coefficients = _fit_quadratic_logit(
         development_source,
         development_target,
@@ -414,6 +418,7 @@ def write_report(report: dict[str, Any], path: Path) -> str:
 
 __all__ = [
     "evaluate_spectral_scanner_rgb_approximation",
+    "fit_nonnegative_row_sum_bounded_matrix",
     "load_contract",
     "write_report",
 ]
