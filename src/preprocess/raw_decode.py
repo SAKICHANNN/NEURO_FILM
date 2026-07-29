@@ -118,6 +118,7 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
             output_bps=16,
             output_color=rawpy.ColorSpace.sRGB,
             gamma=(1, 1),
+            user_flip=None,
         )
     pixels = (rgb16.astype(np.float32) / 65535.0).clip(0.0, 1.0)
     warnings.append(
@@ -139,7 +140,7 @@ def load_raw_working_image(path: Path, use_camera_wb: bool = True, no_auto_brigh
         source_transfer_state=inspection.transfer_state,
         source_profile=SourceProfile("raw_metadata", "LibRaw camera metadata"),
         hdr_metadata={},
-        orientation_applied=False,
+        orientation_applied=True,
         alpha_policy="absent",
         bit_depth_in=inspection.bit_depth,
         source_path=path,

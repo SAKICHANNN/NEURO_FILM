@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8bh_native_standard_file_ingress_decision.v1",
+  "node": "U6.P8BH",
+  "parent_decision": "configs/u6_p8bg_native_standard_png16_resources_decision_v1.json",
+  "parent_decision_sha256": "3dea0ac28bcf47d4e469cd4ee117b2f8803c0024184eb17252b9bdfa608ff4f0",
+  "implementation": {
+    "file_ingress": {
+      "path": "src/film_physics/native_standard_file.py",
+      "sha256": "22074b98dde4cc49cd306c193e1deb3e230a46c24724e28f2343acd786480a51"
+    },
+    "raw_decode": {
+      "path": "src/preprocess/raw_decode.py",
+      "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe"
+    }
+  },
+  "raw_orientation_basis": {
+    "rawpy_params": "https://letmaik.github.io/rawpy/api/rawpy.Params.html",
+    "libraw_structures": "https://www.libraw.org/docs/API-datastruct-eng.html",
+    "frozen_parameter": "user_flip=None",
+    "meaning": "use camera orientation from RAW metadata when available"
+  },
+  "real_raw_smoke": {
+    "path": "data/external/rawpixls_ao7_v1/raw/fujifilm_finepix_s5000.raf",
+    "sha256": "dabd5e74521a6980156be9fd4b88d0c37b0fe4d0e0e6f5c12db8cffff1b76297",
+    "decoded_shape": [
+      1521,
+      2012,
+      3
+    ],
+    "working_space": "linear_srgb",
+    "transfer_state": "scene_linear",
+    "orientation_applied": true
+  },
+  "result": {
+    "status": "pass-file-ingress-smoke",
+    "orientation_contract_test_passed": true,
+    "display_linear_raster_rejected_before_output": true,
+    "real_raw_reached_png16_transaction": true,
+    "input_file_pre_post_decode_hash_exact": true,
+    "tests_passed": 3,
+    "tests_failed": 0
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "opt-in generic rawpy scene-linear RAW decode through native Standard to staged sRGB16 PNG smoke only; no calibrated scene exposure, stock response, delivery, mobile or production promotion",
+  "next_leaf": "U6.P8BI run two fresh-process exact-output and resource repeats on the frozen RAW fixture, preserving generic-raw and uncalibrated claim ceilings"
+}
