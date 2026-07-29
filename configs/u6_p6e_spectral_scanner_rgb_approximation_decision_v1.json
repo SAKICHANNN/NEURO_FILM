@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p6e_spectral_scanner_rgb_approximation_decision.v1",
+  "node": "U6.P6E",
+  "decision": "close_nonlinear_rgb_rescue_retain_bounded_matrix_and_spectral_reference",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6e_spectral_scanner_rgb_approximation_v1.json",
+      "sha256": "f3da0aedf8f3836ef4d8fa5a0680bde7b03c1892c2d2d4af400b324ea8905878"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6e_spectral_scanner_rgb_approximation_v1/report.json",
+      "sha256": "bb1401870b51cb868aaefc463679cef1ff69303bd8c991710bc3005063051caa",
+      "stable_evidence_id": "f28abe94140d50a4a0049aa25b5578f6cd605fc192632161444d24d1544e44d7"
+    },
+    "software_commit": "5377442"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "confirmation_relative",
+      "confirmation_absolute",
+      "stress_absolute"
+    ],
+    "repeat_report_byte_exact": true,
+    "row_counts": {
+      "development": 1024,
+      "confirmation": 512,
+      "stress": 512
+    },
+    "group_counts": {
+      "development": 8,
+      "confirmation": 4,
+      "stress": 4
+    },
+    "cross_split_group_overlap": 0,
+    "cross_split_spectrum_hash_overlap": 0,
+    "cross_split_scanner_a_rgb_hash_overlap": 0,
+    "confirmation": {
+      "bounded_matrix_mean_l2": 0.024621659899276276,
+      "bounded_matrix_p95_l2": 0.07519163555062452,
+      "quadratic_mean_l2": 0.04965201722624583,
+      "quadratic_p95_l2": 0.2057515781341585,
+      "quadratic_vs_matrix_mean_improvement": -1.0165991013345648
+    },
+    "stress": {
+      "bounded_matrix_mean_l2": 0.06994116976294004,
+      "bounded_matrix_p95_l2": 0.16698863086419108,
+      "quadratic_mean_l2": 0.24630100092705753,
+      "quadratic_p95_l2": 0.6105288904754796
+    },
+    "p6d_metamer_lower_bound_reproduced": true,
+    "candidate_outputs_bounded_without_hard_clipping": true
+  },
+  "interpretation": [
+    "Development, confirmation and narrow-band stress groups are disjoint in seed, spectral bytes and scanner-A RGB bytes. The spectral oracle and P6D metamer lower bound reproduce exactly.",
+    "The fixed quadratic-logit candidate is 101.66% worse than the bounded 3x3 matrix by confirmation mean L2 and has much worse confirmation and stress tails. This is a frozen nonlinear representation/generalization failure, not a threshold failure.",
+    "The bounded 3x3 remains the strongest tested RGB-only approximation, while P6D remains the reference for spectral information that RGB cannot identify. Neither is a measured scanner profile."
+  ],
+  "next_leaf": "Return to a distinct physical-film or stock-first explicit-operator leaf; do not add LUT, neural, per-image or retuned RGB scanner capacity on P6E.",
+  "photograph_access_allowed": false,
+  "production_integration_allowed": false,
+  "scanner_calibration_claim_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "synthetic group-split scanner approximation failure evidence; not measured scanner response, film stock response, photographic evidence or product runtime"
+}

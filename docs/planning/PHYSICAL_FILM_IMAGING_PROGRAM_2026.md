@@ -104,6 +104,14 @@ that witness. This proves an information boundary, not measured scanner
 calibration. Population-level approximation remains to be quantified before
 any compiler work.
 
+P6E quantifies that approximation on disjoint synthetic development,
+confirmation and narrow-band stress groups. A fixed bounded quadratic-logit
+candidate is 101.66% worse than the bounded 3x3 by confirmation mean and fails
+the unchanged confirmation/stress tail gates. The spectral oracle and P6D
+metamer lower bound reproduce exactly. No nonlinear RGB compiler opens; keep
+the bounded 3x3 approximation and offline spectral reference as separate
+evidence levels.
+
 Current P8 boundary: P8A-P8W compile and validate a hash-bound, artifact-only
 Python canonical profile consumer. The fixed P7 identity remains float-exact
 through forward/reverse partitions and the frozen 32-row oracle. Successive

@@ -7053,3 +7053,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the synthetic spectral reference and keep P6A-C unchanged. P6E may
   quantify typical approximation error on a group-split synthetic population;
   photographs, measured-scanner, stock and product claims remain closed.
+
+## 2026-07-29 - U6.P6E closes nonlinear RGB scanner rescue
+
+- Generated `1024/512/512` development/confirmation/stress spectra across
+  `8/4/4` disjoint groups. Group IDs, spectrum hashes and scanner-A RGB hashes
+  have zero cross-split overlap; only development is used for fitting.
+- Two formal reports are byte-exact at `bb140187...51caa`. The spectral oracle,
+  bounded-output gates and P6D metamer lower bound all reproduce.
+- The fixed quadratic-logit candidate has confirmation mean/p95
+  `.04965/.20575` versus bounded-3x3 `.02462/.07519`, or `-101.66%` relative
+  improvement. Stress p95 is `.61053` versus matrix `.16699`.
+- Close nonlinear RGB scanner rescue without ridge/feature/capacity retuning.
+  Retain bounded 3x3 as the simplest RGB approximation and P6D as the offline
+  spectral reference. No measured-scanner, stock, photograph or product claim.

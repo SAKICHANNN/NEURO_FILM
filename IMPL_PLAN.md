@@ -58,6 +58,13 @@ identifiability evidence, not measured scanner calibration. P6E next freezes a
 group-split spectral population and compares bounded RGB approximations with
 the spectral oracle; P6A-C remain unchanged.
 
+P6E executes that split with `1024/512/512` rows and zero group, spectrum or
+scanner-A-RGB overlap. The fixed quadratic-logit candidate is 101.66% worse
+than the nonnegative row-sum-bounded 3x3 by confirmation mean L2; its
+confirmation/stress p95 errors are `.20575/.61053`. Close nonlinear RGB
+scanner rescue without retuning or added capacity. Retain the bounded 3x3 as
+the simplest approximation and P6D as the offline spectral reference.
+
 U6.P7F retains one generic neutral-gauged 4000-dpi physical challenger and
 P7G freezes its fixed-resolution boundary. U6.P8A-P8W now compile the hashed
 fixed-reference bundle and close the Python canonical buffer topology:
