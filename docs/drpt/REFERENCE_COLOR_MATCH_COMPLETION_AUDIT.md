@@ -20,17 +20,17 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `ff9f9f7`; R0DY's pre-score
-  audit found that the public generic 3x3 `demosaic_bayer` mixed diagonal
-  green values into measured green sites. R0DY-v0 therefore closed before
-  any scene-quality score, and the producer repaired the core to preserve
-  every measured sensel while averaging only missing channels. Four
-  non-flat Bayer-pattern regressions and the producer suite pass. This
-  numeric fix publishes no model, package, compatible consumer rail,
-  callable capability, schema or receipt, so P172 remains fail-closed.
-  R0DX's prior MHC rejection is only Adobe Stage-3 mechanical-parity evidence,
-  not scene-truth or visual-quality evidence; R0DO/R0DP absolute-HDR
-  diagnostics remain explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `92374d6`; after repairing its
+  generic bilinear core to preserve measured sensels, R0DY-v1 evaluates fixed
+  MHC on rights-cleared synthetic linear-RGB ground truth spanning 12 primary
+  and four alias-stress families across all four Bayer patterns. Two runs are
+  exact outside timing (`9b7d5db8...1a857`). MHC primary RGB/chroma RMSE
+  ratios are 1.461487/1.283869, only 4/48 rows improve and the worst ratio is
+  2.238049; all five frozen quality gates fail. MHC improves only the
+  fixed-chroma luma-edge family and is rejected as the next portable
+  candidate. It remains non-public and publishes no package, compatible
+  consumer rail, callable capability, schema or receipt, so P172 remains
+  fail-closed. R0DO/R0DP absolute-HDR diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.

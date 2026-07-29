@@ -4286,3 +4286,19 @@
 - P172 scene-linear RAW rejection and v42 remain unchanged. Any future
   R0DY-v1 result must bind the corrected core hash and still publish an
   explicit scene-to-display product rail before NFCM can map it.
+
+## 2026-07-29 - Register R0DY-v1 as producer-negative
+
+- Producer `92374d6` freezes a 64-row rights-cleared synthetic linear-RGB
+  benchmark after the sample-preserving baseline correction: 12 primary and
+  four alias-stress families across all four Bayer patterns, with no private
+  DNG, external image or retained pixel dependency.
+- Two independent full runs are exact outside timing at
+  `9b7d5db8...1a857`. Both methods preserve every sampled sensel, but fixed
+  MHC records 1.461487/1.283869 primary RGB/chroma RMSE ratios, improves only
+  4/48 rows and reaches a 2.238049 worst ratio; all five quality gates fail.
+  Its only improving primary family is fixed-chroma luma edges.
+- MHC is rejected as the next portable candidate and remains unexported.
+  There is no package, schema, receipt, capability or mapping. P172, P45/P44
+  and v42 remain unchanged; a materially different edge-adaptive producer
+  candidate must start a new evidence chain.
