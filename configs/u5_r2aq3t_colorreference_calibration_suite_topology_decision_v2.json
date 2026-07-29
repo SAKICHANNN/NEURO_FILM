@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "experiment_id": "u5.r2aq3t-colorreference-calibration-suite-topology-v2",
+  "config_sha256": "9af6185d76467757323ed8cc900dc900ad17ba4d20747535d981a96070647855",
+  "software_commit": "c768d5bd63bfc0f54891b01e16be427588285637",
+  "report_sha256": "440f54bc6466a66866f321dcf07229037193112c01819895427c16eea35d8610",
+  "repeat_report_sha256": "440f54bc6466a66866f321dcf07229037193112c01819895427c16eea35d8610",
+  "automatic_pass": true,
+  "decision": "open_aq3i_joint_held_target_set_and_in_domain_source_colour_fold_baselines",
+  "source_only_result": {
+    "fold_counts": [295, 302, 274, 275, 294],
+    "maximum_p95_nearest_distance_ratio": 1.0,
+    "maximum_outside_development_convex_hull_fraction": 0.040145985401459854,
+    "exact_rgb_duplicate_grouping_passed": true
+  },
+  "interpretation": "the official 1152-patch recorder calibration suite supports five deterministic in-domain source-colour folds; this corrects the grouping interpretation without erasing the frozen AQ2 whole-slide extrapolation failure",
+  "aq2_reopened": false,
+  "target_fields_read": false,
+  "operator_fit_executed": false,
+  "operator_promotion_allowed": false,
+  "next_leaf": "AQ3I",
+  "claim_ceiling": "source-only recorder calibration-suite topology and supported colour-fold design; no film-stock response or product claim"
+}
