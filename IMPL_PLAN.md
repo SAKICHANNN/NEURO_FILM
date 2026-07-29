@@ -12,8 +12,10 @@ U6.P3L also closes the unchanged split backing-return topology on genuine
 RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard
 boundaries, but fail the unchanged local-amplitude and isolated-excursion gates
 at `.36101` and 5,563. Sparse exact-zero RAW channels are not a sufficient
-explanation. P3M may perform read-only spatial attribution only; no parameter,
-gate, visual or product rescue is open.
+explanation. P3M's fixed attribution finds only 80.15%/80.57% frame-support
+association, below its 90% dominance gate; zero/highlight/shadow controls also
+fail. The combined route is closed without a parameter, boundary, visual or
+product rescue.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

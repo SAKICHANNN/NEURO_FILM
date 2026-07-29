@@ -18,6 +18,10 @@ CONTRACT = (
     ROOT
     / "configs/u6_p3m_scene_linear_backing_return_attribution_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u6_p3m_scene_linear_backing_return_attribution_decision_v1.json"
+)
 
 
 def test_contract_is_read_only_and_pins_closed_parent() -> None:
@@ -73,3 +77,17 @@ def test_classification_uses_frozen_precedence_and_fraction() -> None:
         },
         dominance_fraction=0.9,
     ) == "frame-boundary-associated"
+
+
+def test_decision_preserves_closed_parent_and_forbids_simple_rescue() -> None:
+    import json
+
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    run_a = ROOT / decision["repeat_evidence"]["run_a"]
+    run_b = ROOT / decision["repeat_evidence"]["run_b"]
+    assert run_a.read_bytes() == run_b.read_bytes()
+    assert decision["classification"] == "distributed-or-content-associated"
+    assert decision["aggregate"]["bound_fail_within_halo_fraction"] < (
+        decision["aggregate"]["dominance_fraction"]
+    )
+    assert "do not create a P3L" in decision["next_leaf"]

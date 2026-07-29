@@ -7346,3 +7346,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   display-clipped-zero explanation is insufficient. Automatic failure forbids
   visual review. Close the topology without retuning; P3M may only attribute
   the fixed failures spatially.
+
+## 2026-07-30 - U6.P3M finds no simple backing-return failure explanation
+
+- Two read-only attribution reports are exact at `61c3bebc...3384`.
+  Frame-support proximity is the largest association, covering 80.15% of
+  amplitude failures and 80.57% of isolated excursions, but misses the frozen
+  90% dominance threshold.
+- Exact-zero, highlight and extreme-shadow bins also fail to dominate. This
+  does not prove causation and does not authorize padding, masking, strength or
+  profile changes. Close P3L/P3M and resume a distinct explicit algorithm or
+  data question.

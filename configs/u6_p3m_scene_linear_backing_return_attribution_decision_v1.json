@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p3m_scene_linear_backing_return_attribution_decision.v1",
+  "node": "U6.P3M",
+  "decision": "close_attribution_without_simple_rescue",
+  "contract": {
+    "path": "configs/u6_p3m_scene_linear_backing_return_attribution_v1.json",
+    "software_commit": "cb622243"
+  },
+  "repeat_evidence": {
+    "run_a": "outputs/u6_p3m_scene_linear_backing_return_attribution_v1/run_a/report.json",
+    "run_b": "outputs/u6_p3m_scene_linear_backing_return_attribution_v1/run_b/report.json",
+    "byte_identical": true,
+    "report_sha256": "61c3bebcd42a2d81258890ef876a784b9e34b7d15d7ee53069e73149d9493384",
+    "stable_evidence_id": "845579bd37c404a49afb52c27e4c2c3f1daf43df57460369bb9effa4c252c717"
+  },
+  "classification": "distributed-or-content-associated",
+  "aggregate": {
+    "bound_failure_pixels": 32667,
+    "bound_fail_within_halo_fraction": 0.8015122294670463,
+    "bound_fail_exact_zero_fraction": 0.17724308935623106,
+    "bound_fail_highlight_fraction": 0.0,
+    "bound_fail_shadow_fraction": 0.2659564698319405,
+    "isolated_excursion_pixels": 5563,
+    "isolated_within_halo_fraction": 0.8056803882797052,
+    "isolated_exact_zero_fraction": 0.0,
+    "isolated_highlight_fraction": 0.0,
+    "isolated_shadow_fraction": 0.01923422613697645,
+    "dominance_fraction": 0.9
+  },
+  "interpretation": "Most failures lie inside the large finite-support region, but neither frame proximity, exact-zero inputs, highlights nor the frozen extreme-shadow bin reaches the preregistered 90% dominance threshold. The fixed P3L failure is therefore not eligible for a simple padding, zero-mask, highlight-mask or shadow-mask explanation. Association is descriptive and does not establish physical causation.",
+  "next_leaf": "return to a distinct explicit colour or physical algorithm question; do not create a P3L boundary/strength/profile rescue",
+  "production_default_changed": false,
+  "claim_ceiling": "read-only association diagnosis of a closed generic candidate; no causal, visual, stock, calibration or product claim"
+}
