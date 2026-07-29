@@ -158,6 +158,12 @@ from .scanner import (
     compile_scanner_standard_context,
     required_scanner_halo,
 )
+from .spectral_scanner import (
+    SpectralScannerProfile,
+    apply_spectral_scanner,
+    construct_primary_metamer_pair,
+    synthetic_profile_from_contract,
+)
 from .scanned_interpretation import (
     SCANNED_INTERPRETATION_ORDER,
     SCANNED_INTERPRETATION_SCHEMA,
@@ -248,6 +254,7 @@ __all__ = [
     "build_colour_dye_cloud_context",
     "apply_reference_scatter",
     "apply_scanner_mtf",
+    "apply_spectral_scanner",
     "apply_scanner_profile",
     "apply_scanner_profile_row_tiled",
     "apply_scanner_profile_standard_row_tiled",
@@ -307,6 +314,9 @@ __all__ = [
     "scan_interpretation_medium",
     "scan_signal_normalization_identity",
     "scanner_profile_identity",
+    "SpectralScannerProfile",
+    "construct_primary_metamer_pair",
+    "synthetic_profile_from_contract",
     "sensitometry_identity",
     "transmittance_to_density",
     "TRANSMITTANCE_OPERATOR_ID",
