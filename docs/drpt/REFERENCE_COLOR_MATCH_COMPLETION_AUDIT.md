@@ -20,7 +20,7 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `25a4dea`; R0EE independently
+- D-PCT latest stable communicated snapshot is `c99f8e1`; R0EE independently
   qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
   and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
   one 2024x3040 full frame before execution. MSVC, LLVM-MinGW and Python,
@@ -29,8 +29,15 @@ wire contract and not an algorithm promotion.
   `2.3841858e-7`/`1.4531343e-8`, and the full-frame workspace is about
   234.7 MiB. This proves rights-cleared native-mosaic decoding plus private
   portable arithmetic only. There is no scene truth, quality, native
-  sensor-noise/optics/colour, target runtime or product admission, and no
+  sensor-noise/optics/colour or product admission, and no
   package, compatible consumer rail, public schema, receipt or capability.
+  R0EG additionally executes one non-identity DDFAPD probe eight times over
+  two independent runners and four cold/wiped Android 14 x86_64 virtual-device
+  boots. Every Android JSON result exactly equals the frozen MSVC/LLVM oracle;
+  stable identity is `b3ce13b0...12797`, and both runners finish with zero
+  owned emulator/QEMU processes. This is private virtual-device arithmetic
+  only, not physical arm64, JNI/app/media, native-RAW quality, Apple runtime
+  or a public producer interface.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but

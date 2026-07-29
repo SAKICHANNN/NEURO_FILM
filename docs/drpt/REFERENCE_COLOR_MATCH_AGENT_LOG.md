@@ -4399,3 +4399,21 @@
   or product readiness. There is no package, schema, receipt, capability or
   RAW-default change, so P172, P45/P44 and v42 remain unchanged. R0EG may add
   owned Android x86_64 emulator arithmetic only.
+
+## 2026-07-29 - Register R0EG Android virtual arithmetic
+
+- Producer `c99f8e1` freezes a 33x31 RGGB non-identity probe after exact
+  MSVC/LLVM agreement, then runs two independent Android runners. Each runner
+  performs two Android 14 x86_64 cold/wiped virtual-device boots and two probe
+  process replays per boot.
+- All eight Android executions exactly equal the frozen Windows JSON. Stable
+  identity is `b3ce13b0...12797`; the formal report is
+  `dad98ee3...8262`, runner SHA is `99b55bbd...b46d`, and the x86 runtime
+  binary is `8ed067e9...ae55c`. Both runners return with an exact owned
+  emulator/QEMU process count of zero.
+- The claim ceiling is private Android 14 x86_64 virtual-device DDFAPD
+  arithmetic. It does not establish physical arm64, JNI/app/media,
+  native-RAW quality, Apple runtime, package, public schema, receipt,
+  capability, product admission or P60 mapping. P172, P45/P44 and v42 remain
+  unchanged. R0EH is a producer-private finite-halo/workspace hypothesis and
+  requires no consumer mapping.
