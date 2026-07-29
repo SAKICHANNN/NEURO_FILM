@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p4w_scan_amplitude_feasibility_contract.v1",
+  "node": "ULT > U6 > U6.P4W",
+  "parents": {
+    "p4v_decision": {
+      "path": "configs/u6_p4v_material_tone_mechanism_decision_v1.json",
+      "sha256": "91641a329ccb39b9abcae0559dfc994d7a43202b9e58e0311172ce8261cd5a8d",
+      "required_decision": "retain_negative_p4u_stop_material_integration_mechanism_unidentified"
+    },
+    "source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "analysis_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "execution_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_execution_v1.json",
+      "sha256": "76f6637c4165295b9823656b0741a77b0d21371da78a22d920dbb2adba6f0ef9"
+    }
+  },
+  "question": "Is label-blind scanner-code grain/noise amplitude repeat-stable across fixed crops, independent scans and a frozen development/confirmation split strongly enough to justify a later generic amplitude-fit experiment?",
+  "split": {
+    "development_source_ids": [
+      "KodakEktar100GrainScan01",
+      "KodakEktar100GrainScan02",
+      "KodakUltramax400GrainScan01",
+      "KodakUltramax400GrainScan02"
+    ],
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "stock_labels_available_to_analysis": false,
+    "scan_group_is_unit": true,
+    "crop_pseudoreplication_allowed": false
+  },
+  "estimator": {
+    "input": "native scanner RGB code normalized by fixed-crop mean",
+    "detrend": "same fixed least-squares quadratic as P4R",
+    "amplitude": "1.4826 times median absolute deviation from the residual median",
+    "crop_amplitude": "median of three RGB channel amplitudes",
+    "scan_amplitude": "median of four preregistered crop amplitudes",
+    "infrared_used": false,
+    "content_based_crop_selection_allowed": false,
+    "outlier_or_dust_removal_allowed": false,
+    "density_or_emulsion_interpretation_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_within_scan_crop_coefficient_of_variation": 0.25,
+    "maximum_across_scan_coefficient_of_variation": 0.35,
+    "maximum_across_scan_maximum_to_minimum_ratio": 2.0,
+    "maximum_development_to_confirmation_median_ratio": 1.35,
+    "minimum_scan_groups": 8,
+    "repeat_exact": true
+  },
+  "execution": {
+    "runs": 2,
+    "parameter_fitting_allowed": false,
+    "photographic_render_allowed": false,
+    "post_result_crop_or_threshold_change_allowed": false
+  },
+  "branch_rule": {
+    "pass": "retain scanner-code amplitude as a generic same-scanner development/confirmation target and open one separately frozen global-amplitude candidate fit",
+    "fail": "close amplitude fitting from this source; keep only normalized NPS/ACF shape evidence and do not resume photographic material integration"
+  },
+  "claim_ceiling": "Same-scanner label-blind relative code-amplitude feasibility; not optical density, emulsion grain amplitude, stock/process/scanner-independent calibration or product evidence."
+}
