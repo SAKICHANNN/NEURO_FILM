@@ -65,9 +65,12 @@ measurement files or reusable data rights. Do not extract figures. AO4M is
 now closed: the equal-parameter curve/matrix family is bounded, invertible and
 cross-domain positive, but its combined RGB gain is only 1.15%, the chart
 domain regresses and mean Delta E76 worsens 40.60%. No photo or metric rescue.
-AN2 is next: freeze a deterministic two-stage sparse-outlier rejection
-challenger on AN1's synthetic paired-recovery witnesses, and require a pass
-before any proxy or photograph.
+AN2 is closed: label-blind residual ranking finds 26/27 true corruptions for
+every witness, but hard deletion plus linear refitting loses 15.55% to soft-L1
+on the critical cyan-shadow row and also regresses two clean-noise rows. No
+fraction/refit/gate rescue. AN3 is next: freeze exactly one redescending
+soft-weight candidate at the existing `.005` scale and unchanged AN1 gates;
+no loss sweep, proxy pair or photograph is allowed before a synthetic pass.
 
 U5.R2AP0-AP4 complete the independent Ektachrome display-proxy branch. AP0
 establishes a repeat-exact operator direction distinct from Velvia, and AP2

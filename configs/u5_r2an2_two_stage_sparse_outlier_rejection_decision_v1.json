@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2an2-two-stage-sparse-outlier-rejection-v1",
+  "config_sha256": "a19a16f2d91bf8c85bd84889cd75fc4459884dfd6b9400a24460c95f8f995abf",
+  "software_commit": "a0a2182fd0686cbc9b9962dca5ef2cca983eb0ab",
+  "report_sha256": [
+    "d5490ff406b7c26c0dcf56ab5957e4093b6e95cfb0892a6e62d880399ae0bcdb",
+    "d5490ff406b7c26c0dcf56ab5957e4093b6e95cfb0892a6e62d880399ae0bcdb"
+  ],
+  "reports_byte_identical": true,
+  "repeat_decision_sha256": "052821386199319211e6a081c966dd79f6eef5a664c0edebbba9bbcc03351cc5",
+  "automatic_pass": false,
+  "failed_check_count": 5,
+  "failed_checks": [
+    "warm_highlight_like.dual_patch_mean_noise.relative_loss_to_stage_one",
+    "cyan_shadow_warm_highlight_like.sparse_correspondence_outliers.gain_over_linear",
+    "cyan_shadow_warm_highlight_like.sparse_correspondence_outliers.gain_over_stage_one",
+    "cross_bias_like.dual_patch_mean_noise.relative_loss_to_stage_one",
+    "cross_bias_like.sparse_correspondence_outliers.gain_over_stage_one"
+  ],
+  "mechanism_evidence": {
+    "rejected_row_count": 36,
+    "true_outlier_row_count": 27,
+    "outlier_recall_all_witnesses": 0.9629629629629629,
+    "outlier_precision_all_witnesses": 0.7222222222222222,
+    "cyan_shadow_warm_highlight_like": {
+      "candidate_confirmation_rgb_rmse": 0.0005044645732286328,
+      "stage_one_soft_l1_confirmation_rgb_rmse": 0.00043656815119117755,
+      "linear_two_matrix_confirmation_rgb_rmse": 0.0011321363227678632,
+      "candidate_gain_over_linear_two_matrix": 0.5544135780439315,
+      "candidate_gain_over_stage_one_soft_l1": -0.1555230766426723
+    },
+    "noise_only_relative_loss_to_stage_one": {
+      "warm_highlight_like": 0.14430501894326486,
+      "cyan_shadow_warm_highlight_like": -0.05273295984441562,
+      "cross_bias_like": 0.19183200793138488
+    },
+    "all_retained_support_checks_pass": true,
+    "all_structure_checks_pass": true
+  },
+  "decision": "close_fixed_two_stage_hard_rejection_and_linear_refit",
+  "interpretation": "The label-blind residual ranking finds 26 of 27 true corruptions for every witness, so failed recovery is not explained by outlier-detection failure. Hard deletion followed by linear refitting increases estimator variance or parameter coupling on clean and cyan-shadow witnesses. The fixed rejection fraction, refit loss and gates may not be retuned.",
+  "proxy_pair_allowed": false,
+  "photographic_render_allowed": false,
+  "production_integration_allowed": false,
+  "stock_identity_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "next_leaf": "U5.R2AN3 separately frozen redescending soft-weight robust fit using the same loss scale and witnesses; no threshold sweep or proxy/photo access before pass",
+  "claim_ceiling": "clean-room synthetic negative evidence for one deterministic hard sparse-correspondence rejection policy; not real-film fitting, not stock response, not calibrated and not product promotion"
+}

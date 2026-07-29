@@ -321,6 +321,8 @@ raw scan, manifest or reusable data licence; figure extraction and fitting are
 closed. U5.R2AO4M then passes all structure gates and transfers between whole
 proxy domains, but misses the frozen held-row RGB gain, regresses the chart
 domain and worsens mean Delta E76 by 40.60%; it closes without photo or metric
-rescue. U5.R2AN2 is the next ready algorithm leaf: freeze a deterministic
-two-stage sparse-outlier rejection challenger on the existing synthetic paired
-recovery witnesses before any proxy or photographic use.
+rescue. U5.R2AN2 then locates 26/27 corrupt rows for all three witnesses, but
+hard deletion plus linear refitting still loses on the critical cyan-shadow
+witness and on two clean-noise rows; it closes without retuning. U5.R2AN3 is
+next: freeze one redescending soft-weight candidate at the existing loss scale
+and unchanged synthetic gates, with no sweep or proxy/photo access.

@@ -6920,3 +6920,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   No photo rendering, gate/metric/knob rescue or FILM2PAINT/stock claim.
 - AN2 is ready to challenge AN1's fixed soft-L1 with a separately frozen
   two-stage sparse-outlier rejection method on synthetic witnesses only.
+
+## 2026-07-29 - U5.R2AN2 finds outliers but closes hard refitting
+
+- Froze and implemented a label-blind soft-L1 residual-L2 ranking, fixed 4%
+  rejection and linear retained-row refit with explicit patch,
+  illuminant/exposure support gates.
+- Two 92,893-byte reports are exact at `d5490ff...0bcdb`. The selector finds
+  26/27 true corruptions for every witness (96.30% recall, 72.22% precision);
+  every support and structural gate passes.
+- The critical cyan-shadow witness nevertheless reaches only 55.44% gain over
+  linear and loses 15.55% to the soft-L1 stage. Warm-highlight and cross-bias
+  clean-noise rows also regress 14.43%/19.18%. Close hard deletion/refit
+  without changing fraction, refit loss or gates.
+- AN3 may test one separately frozen redescending soft-weight influence
+  function at the existing scale, without a loss sweep or proxy/photo access.
