@@ -181,7 +181,7 @@ def evaluate_live_records(
     expected = int(contract["executor"]["fresh_process_runs"])
     if len(runs) != expected:
         raise ValueError("U6.P4O run count does not match contract")
-    hashes = [row["stream_sha256"] for row in runs]
+    hashes = [str(row.get("stream_sha256", "")) for row in runs]
     checks = {
         "small_partition_byte_exact": all(
             row["byte_exact"]
@@ -192,7 +192,7 @@ def evaluate_live_records(
         and bool(hashes[0])
         == bool(gates["repeat_stream_hash_exact"]),
         "output_rows": all(
-            int(row["output_rows"]) == int(gates["output_rows"])
+            int(row.get("output_rows", 0)) == int(gates["output_rows"])
             for row in runs
         ),
         "process_tree_peak_rss": max(
@@ -218,10 +218,13 @@ def evaluate_live_records(
         )
         == int(gates["owned_temp_residue_count"]),
         "physical_domain": min(
-            float(row["minimum_density"]) for row in runs
+            float(row.get("minimum_density", -1.0)) for row in runs
         )
         >= 0.0
-        and max(float(row["maximum_transmittance"]) for row in runs)
+        and max(
+            float(row.get("maximum_transmittance", 2.0))
+            for row in runs
+        )
         <= 1.0,
     }
     passed = all(checks.values())

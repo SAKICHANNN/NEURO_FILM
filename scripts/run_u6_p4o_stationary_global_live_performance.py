@@ -175,7 +175,8 @@ def main() -> None:
                 "schema": report["schema"],
                 "node": report["node"],
                 "stream_hashes": [
-                    row["stream_sha256"] for row in report["runs"]
+                    row.get("stream_sha256", "")
+                    for row in report["runs"]
                 ],
                 "small_parity": report["small_parity"],
                 "checks": report["checks"],
