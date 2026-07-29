@@ -4353,3 +4353,18 @@
   denoise or final legal review. Only private portable CPU development opens;
   no export, package, schema, receipt or capability exists, so P172,
   P45/P44 and v42 remain unchanged.
+
+## 2026-07-29 - Register R0EC private CPU portability
+
+- Producer `fcd833c` implements a private C11 DDFAPD ABI with caller-owned
+  workspace and no heap allocation. Its 24-vector, four-Bayer freeze
+  `fd508046...90ec7` precedes scores and includes the direction-tie regression.
+- MSVC `/W4 /WX /fp:strict` and pinned LLVM-MinGW execute Windows DLLs twice
+  with byte-identical reports at `68d94ce7...51efc`. The 24-output aggregate
+  is `38f1327a...14c9`; maximum absolute error/RMSE are
+  `2.3841858e-7`/`3.3396553e-8`. Measured sensels, replay and nonfinite,
+  insufficient-workspace and invalid-pattern failure atomicity all pass.
+- The claim remains private portable CPU development. There is no package,
+  public schema, receipt, capability, native-RAW confirmation or product
+  promotion, so P172, P45/P44 and v42 remain unchanged. Android/Apple
+  object/link evidence and native-RAW confirmation are separate next gates.

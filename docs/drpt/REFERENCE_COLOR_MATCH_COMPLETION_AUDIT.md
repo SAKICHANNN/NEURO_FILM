@@ -20,20 +20,18 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `c00bfec`; R0EB freezes 60
-  byte-locked, metadata-screened CC0 real photographs into 240 known-truth
-  synthetic CFA rows using a fixed display-sRGB-to-linear, 2x2 reduction and
-  four-Bayer pipeline. Two runs are exact outside timing
-  (`7a56a602...8dc34`): all sampled sensels remain exact, 220/240 rows
-  improve, aggregate RGB/chroma ratios are 0.543263/0.555323, and the
-  p95/worst/worst-image-median ratios are 1.051256/1.168061/1.114847; all
-  frozen gates pass. This is real photographic display-sRGB structure under
-  synthetic CFA, not native RAW, sensor noise, optics, camera colour or
-  denoise; rights remain an automated metadata screen rather than final
-  legal review. It opens only private portable CPU development. DDFAPD
-  remains non-public and R0EB publishes no package, compatible consumer rail,
-  callable capability, schema or receipt, so P172 remains fail-closed.
-  R0DO/R0DP absolute-HDR diagnostics remain explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `fcd833c`; R0EC implements a
+  private C11 DDFAPD caller-workspace/no-heap ABI and freezes 24 vectors
+  across all four Bayer patterns before scoring. Two MSVC and pinned
+  LLVM-MinGW Windows DLL runs are byte-identical (`68d94ce7...51efc`) with
+  `2.3841858e-7` maximum absolute error and `3.3396553e-8` RMSE against the
+  Python reference. Measured sensels, replay and nonfinite,
+  insufficient-workspace and invalid-pattern failure atomicity all pass.
+  This remains private portable CPU development: it is not native RAW,
+  target-mobile/Apple runtime or product admission, and publishes no package,
+  compatible consumer rail, public schema, receipt or capability. P172
+  therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics remain
+  explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
