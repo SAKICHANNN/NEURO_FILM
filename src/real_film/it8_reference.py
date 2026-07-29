@@ -3,11 +3,43 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 import re
 from typing import Iterable
+from zipfile import ZipFile
 
 
 _HEADER_VALUE = re.compile(r'^([A-Z][A-Z0-9_]*)\s+(?:"([^"]*)"|([^#\s]+))')
+
+
+def find_unique_suffix_member(archive: ZipFile, suffix: str) -> str:
+    names = sorted(
+        info.filename
+        for info in archive.infolist()
+        if not info.is_dir() and info.filename.lower().endswith(suffix)
+    )
+    if len(names) != 1:
+        raise ValueError(f"expected one {suffix} member, found {names}")
+    return names[0]
+
+
+def find_charge_table_member(archive: ZipFile, archive_stem: str) -> str:
+    """Find one primary charge table across historical .txt/.it8 naming."""
+
+    names = sorted(
+        info.filename
+        for info in archive.infolist()
+        if not info.is_dir()
+        and Path(info.filename).stem.casefold() == archive_stem.casefold()
+        and Path(info.filename).suffix.casefold() in {".it8", ".txt"}
+        and "extras"
+        not in {part.casefold() for part in Path(info.filename).parts[:-1]}
+    )
+    if len(names) != 1:
+        raise ValueError(
+            f"expected one exact charge IT8/.txt member, found {names}"
+        )
+    return names[0]
 
 
 @dataclass(frozen=True)

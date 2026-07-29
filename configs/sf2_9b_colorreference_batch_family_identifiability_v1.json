@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.9b-colorreference-batch-family-identifiability-v1",
+  "node": "ULT > RF0.4 > SF2.9R > SF2.9B",
+  "parent_config": "configs/sf2_9b_colorreference_batch_family_v1.json",
+  "parent_source_report": "outputs/sf2_9b_colorreference_batch_family_v1/formal_a.json",
+  "parent_source_report_sha256": "5f4f392cbd6377fa65b9f0474951f3092d5c559070268c0e658ef511f5a00550",
+  "parent_stable_evidence_id": "e19f5d9bb906811b4f8e1d01718c0200d5fe82f14147c1c80a826d4586fd254f",
+  "seed": 2909,
+  "split": {
+    "development_year_last_digits": [0, 1, 2, 3, 4, 5, 6, 7],
+    "confirmatory_year_last_digits": [8, 9],
+    "minimum_confirmatory_charges_per_family": 6
+  },
+  "views": {
+    "spectral_primary": {
+      "representation": "flattened per-charge 288x41 spectral transmittance after subtracting development-only patchwise pooled mean",
+      "transform": "signed log1p after development-only residual centering"
+    },
+    "lab_secondary": {
+      "representation": "flattened per-charge 288x3 measured Lab after subtracting development-only patchwise pooled mean",
+      "transform": "development-only residual centering"
+    }
+  },
+  "family_model": {
+    "pipeline": [
+      "StandardScaler fit on development groups only",
+      "PCA full SVD retaining 95 percent development variance with maximum 32 components",
+      "balanced L2 logistic regression"
+    ],
+    "c_grid": [0.01, 0.1, 1.0, 10.0],
+    "selection": "maximum mean leave-one-calendar-year-out development balanced accuracy; ties choose smaller C",
+    "maximum_iterations": 5000
+  },
+  "nuisance_models": {
+    "calendar_year_only": [
+      "standardized numeric calendar year",
+      "standardized squared centered calendar year",
+      "balanced L2 logistic regression using the same C selection"
+    ],
+    "batch_error_only": [
+      "reported per-charge median MEAN_DE",
+      "reported per-charge p90 MEAN_DE",
+      "balanced L2 logistic regression using the same C selection"
+    ],
+    "majority_balanced_accuracy": 0.5
+  },
+  "confirmatory_metrics": [
+    "balanced_accuracy",
+    "roc_auc",
+    "family_minus_best_nuisance_balanced_accuracy",
+    "exact_fixed-score_stratified_label_permutation_p"
+  ],
+  "gates": {
+    "spectral_balanced_accuracy_minimum": 0.75,
+    "spectral_roc_auc_minimum": 0.8,
+    "spectral_minus_best_nuisance_minimum": 0.1,
+    "spectral_exact_permutation_p_maximum": 0.05,
+    "lab_balanced_accuracy_minimum": 0.65,
+    "zero_confirmatory_fit": true,
+    "all_normalization_pca_and_c_selection_development_only": true
+  },
+  "branch_rules": {
+    "pass": "retain cross-charge target-family physical distinguishability only; operator fitting remains forbidden",
+    "family_fails": "close target-family identifiability under this representation",
+    "nuisance_wins": "close as calendar-year or manufacturing-error shortcut",
+    "spectral_only": "retain spectral material evidence; do not infer display appearance",
+    "lab_only": "treat as target aim/manufacturing evidence unless independently replicated spectrally"
+  },
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "batch-held-out target-family measurement identifiability only; no exact Ektachrome stock, camera-scene pair, digital-to-film operator, stock appearance, calibration, latent mode, production or redistribution claim"
+}

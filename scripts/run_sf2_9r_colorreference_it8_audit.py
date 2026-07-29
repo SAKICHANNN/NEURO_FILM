@@ -19,7 +19,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.it8_reference import parse_cgats_spectral, parse_it8
+from src.real_film.it8_reference import (
+    find_charge_table_member,
+    find_unique_suffix_member,
+    parse_cgats_spectral,
+    parse_it8,
+)
 
 
 def _sha256(payload: bytes) -> str:
@@ -53,37 +58,6 @@ def _download(url: str, path: Path, expected_bytes: int) -> str:
     return "downloaded"
 
 
-def _member_by_suffix(archive: ZipFile, suffix: str) -> str:
-    names = sorted(
-        info.filename
-        for info in archive.infolist()
-        if not info.is_dir() and info.filename.lower().endswith(suffix)
-    )
-    if len(names) != 1:
-        raise ValueError(f"expected one {suffix} member, found {names}")
-    return names[0]
-
-
-def _it8_member(archive: ZipFile, archive_stem: str) -> str:
-    """Find the exact charge table across the historical .txt/.it8 naming."""
-
-    names = sorted(
-        info.filename
-        for info in archive.infolist()
-        if not info.is_dir()
-        and Path(info.filename).stem.casefold() == archive_stem.casefold()
-        and Path(info.filename).suffix.casefold() in {".it8", ".txt"}
-        and "extras" not in {
-            part.casefold() for part in Path(info.filename).parts[:-1]
-        }
-    )
-    if len(names) != 1:
-        raise ValueError(
-            f"expected one exact charge IT8/.txt member, found {names}"
-        )
-    return names[0]
-
-
 def audit_archive(path: Path, asset: dict[str, Any]) -> dict[str, Any]:
     with ZipFile(path) as archive:
         bad_member = archive.testzip()
@@ -98,8 +72,8 @@ def audit_archive(path: Path, asset: dict[str, Any]) -> dict[str, Any]:
             for info in sorted(archive.infolist(), key=lambda item: item.filename)
             if not info.is_dir()
         ]
-        it8_name = _it8_member(archive, path.stem)
-        cgt_name = _member_by_suffix(archive, ".cgt")
+        it8_name = find_charge_table_member(archive, path.stem)
+        cgt_name = find_unique_suffix_member(archive, ".cgt")
         it8_payload = archive.read(it8_name)
         cgt_payload = archive.read(cgt_name)
     reference = parse_it8(it8_payload)
