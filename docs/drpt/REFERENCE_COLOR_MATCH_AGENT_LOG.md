@@ -4221,3 +4221,16 @@
   family therefore closes without threshold rescue.
 - No model/package/schema/receipt/capability exists. P45/P44 remain closed;
   v42 stays the current review manifest and no consumer interface changes.
+
+## 2026-07-29 - Register R0DW as producer-negative
+
+- Producer `4cdd0af` freezes centered-RBF NKR-v0 after two exact independent
+  64-row evaluations: 57/64 improve, but median +18.93% and worst -43.23%
+  fail the unchanged gates; maximum new boundary is only 0.00295%.
+- The worst row has zero new boundary and 0.172% projection. Clipping cannot
+  explain the failed tail, and only 21 eligible open singleton components
+  remain, below the frozen 64-row cohort size. The same-corpus AceTone
+  reference-only tuning family therefore closes without reading sealed data.
+- No model/package/schema/receipt/capability exists. P45/P44 remain closed;
+  v42 remains current and no consumer interface or integration manifest
+  changes.

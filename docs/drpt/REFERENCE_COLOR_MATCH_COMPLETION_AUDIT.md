@@ -20,11 +20,14 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `c54b591`; R0DV layers a
-  fit-only reference-distance attenuation over R0DU. Its +23.55% median passes,
-  but -38.49% worst improvement and 6.71% new boundary fail. The distance harm
-  AUC reverses to 0.331 on the third identity-disjoint split, so the veto is
-  not a reusable safety signal. It publishes no
+- D-PCT latest stable communicated snapshot is `4cdd0af`; R0DW replaces the
+  prior linear predictor with a centered-RBF reference-only NKR prior. Its
+  independent 64-row evaluation improves 57 rows, but +18.93% median and
+  -43.23% worst improvement both fail. The worst row has zero new boundary
+  and only 0.172% projection, so clipping is not a sufficient explanation.
+  Only 21 eligible open singleton components remain, below the frozen 64-row
+  cohort size, so the same-corpus AceTone reference-only tuning family closes
+  without opening sealed data. It publishes no
   compatible consumer rail, callable capability, quality promotion or
   schema/receipt change. Its prior R0DO/R0DP absolute-HDR diagnostics remain
   explicitly unmapped.
