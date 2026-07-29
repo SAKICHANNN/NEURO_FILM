@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "schema": "neuro_film.u6_p1d_shared_density_basis_fidelity_contract.v1",
+  "experiment_id": "u6-p1d-shared-density-basis-fidelity-v1",
+  "node": "U6.P1D",
+  "question": "Can one unrouted shared rank-6 nonnegative optical-density basis preserve forward-held 2020--2024 target spectra closely enough for an internal generic offline reference simulator?",
+  "parent_decision": "configs/u6_p1c_colorreference_density_basis_decision_v1.json",
+  "parent_decision_sha256": "7f7d560c625ffdfbcfcf2efd1df12fb70441527327765dc3fd5f0ff46955ed52",
+  "scanner_reference_contract": "configs/u6_p6d_spectral_scanner_reference_v1.json",
+  "scanner_reference_contract_sha256": "582e488679812323744300d56b0d150c5d7e8e69ee3e8036b912cda20f37dc87",
+  "source_config": "configs/sf2_9b_colorreference_batch_family_v1.json",
+  "source_config_sha256": "3a63460865686eb1de01b99b20aaa0681b148ddf1fd0e9be3f71edfb202c2c15",
+  "split": {
+    "fit_year_maximum": 2019,
+    "forward_held_year_minimum": 2020,
+    "expected_forward_held_charges": 12,
+    "expected_forward_held_charges_per_family": 6,
+    "note": "new forward temporal reconstruction holdout; P1C evaluated years ending 8/9 instead"
+  },
+  "representation": {
+    "transmittance_floor_percent": 0.01,
+    "density_formula": "-log10(max(transmittance_percent, 0.01) / 100)",
+    "fit_rows": "all 288 patches from pre-2020 charges",
+    "wavelength_grid_nm": [380, 780, 10],
+    "scanner_observer_grid_nm": [400, 700, 10]
+  },
+  "models": {
+    "candidate_rank": 6,
+    "lower_rank_controls": [3, 4, 5],
+    "nmf": {
+      "init": "nndsvda",
+      "solver": "cd",
+      "beta_loss": "frobenius",
+      "tolerance": 0.00001,
+      "maximum_iterations": 5000,
+      "shuffle": false,
+      "random_state": 2909
+    }
+  },
+  "automatic_gates": {
+    "all_models_converge_before_maximum_iterations": true,
+    "rank6_density_rmse_median_maximum": 0.02,
+    "rank6_density_rmse_p95_maximum": 0.025,
+    "rank6_transmittance_percent_rmse_median_maximum": 1.0,
+    "rank6_transmittance_percent_rmse_p95_maximum": 1.5,
+    "rank6_scanner_a_rgb_rmse_p95_maximum": 0.01,
+    "rank6_scanner_b_rgb_rmse_p95_maximum": 0.01,
+    "rank6_each_family_density_rmse_p95_maximum": 0.025,
+    "rank6_vs_rank5_density_median_relative_improvement_minimum": 0.1,
+    "rank3_negative_density_rmse_p95_minimum": 0.1,
+    "rank3_negative_scanner_rgb_rmse_p95_minimum": 0.05,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rules": {
+    "pass": "retain rank-6 as an internal generic offline target-density spectral reference primitive; no family routing and no distributable/profile integration",
+    "fail": "close the rank-6 primitive or repair a demonstrated implementation defect; do not raise rank without a new capacity contract"
+  },
+  "forbidden_claims": [
+    "identified dye layers",
+    "scene-to-density or digital-to-film operator",
+    "stock or process calibration",
+    "family or latent-mode routing",
+    "redistributable basis asset",
+    "production profile or runtime integration"
+  ],
+  "claim_ceiling": "forward-held target-spectrum reconstruction under two synthetic scanner observers; internal generic offline reference only"
+}
