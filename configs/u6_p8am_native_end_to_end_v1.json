@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p8am_native_end_to_end_contract.v1",
+  "node": "U6.P8AM",
+  "parent_decision": "configs/u6_p8al_native_ao6_display_decision_v1.json",
+  "parent_decision_sha256": "94465a479ef797153641337f37454e94eb96cd733b4078767966898dde6f5d09",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+  "expected_display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a",
+  "fixture": {
+    "height": 71,
+    "width": 97,
+    "seed": 20260729
+  },
+  "tile_rows": [
+    1,
+    7,
+    32,
+    71
+  ],
+  "gates": {
+    "maximum_output_error": 0.0001,
+    "physical_partition": "byte-exact",
+    "gauge_partition": "byte-exact",
+    "display_partition": "byte-exact"
+  },
+  "no_double_count_receipts": {
+    "physical_sensitometry_used_once": true,
+    "physical_scatter_and_mtf_used_once": true,
+    "neutral_gauge_used_once_after_scanner_linear": true,
+    "ao6_density_base_used_once_downstream": true,
+    "ao6_t15_c35_residual_used_once_downstream": true,
+    "physical_parameters_reused_as_ao6_parameters": false,
+    "ao6_parameters_claimed_as_physical_truth": false
+  },
+  "stage_boundary": {
+    "input": "relative scene-linear sRGB WorkingImage plus deterministic encoded source-context view",
+    "output": "encoded relative-display sRGB float32",
+    "physical_chain": "native Standard explicit domains and bounded spatial response",
+    "display_chain": "native neutral gauge plus AO6 look approximation",
+    "final_quantization": "outside this fixture"
+  },
+  "claim_ceiling": "small-fixture end-to-end native Standard physical plus AO6 look approximation; not calibrated stock response, full media renderer or product promotion"
+}

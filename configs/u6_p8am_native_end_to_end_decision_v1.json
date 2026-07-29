@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p8am_native_end_to_end_decision.v1",
+  "node": "U6.P8AM",
+  "contract": "configs/u6_p8am_native_end_to_end_v1.json",
+  "contract_sha256": "f1c4026c87f586c2d14718df72b6d2b34d63bd560bddc45ccd9c8bb4772fdb6e",
+  "formal_report": "outputs/u6_p8am_native_end_to_end_v1/report.json",
+  "formal_report_sha256": "2b9a10e98f024900fe9decd13eab8279be9e44b2795621e878085fbc82fca6ce",
+  "stable_evidence_id": "500afde1b4e0dbf6003be7c92bc4136cf2040d145e3a8eae1ecdcaf82f6a3091",
+  "result": {
+    "status": "pass",
+    "shape": [
+      71,
+      97,
+      3
+    ],
+    "maximum_output_error_vs_python_reference": 7.152557373046875e-07,
+    "all_stage_partition_rows_byte_exact": true,
+    "no_double_count_receipts_pass": true
+  },
+  "decision": "retain the end-to-end native Standard physical, neutral-gauge and complete AO6 display-look composition. All physical, gauge and display stages are byte-exact across four row sizes and both processing orders; AO6 remains a separately identified downstream look approximation",
+  "production_default_changed": false,
+  "claim_ceiling": "small-fixture end-to-end native Standard physical plus AO6 look approximation; not calibrated stock response, full media renderer or product promotion",
+  "next_leaf": "U6.P8AN measure 12MP row-streamed end-to-end CPU latency and memory, then compare against the provisional Standard targets"
+}
