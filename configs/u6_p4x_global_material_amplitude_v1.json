@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u6_p4x_global_material_amplitude_contract.v1",
+  "node": "ULT > U6 > U6.P4X",
+  "parents": {
+    "p4w_decision": {
+      "path": "configs/u6_p4w_scan_amplitude_feasibility_decision_v1.json",
+      "sha256": "d33ddecb68c1be36384a7485a4b62013de0195fd67be537d9e87da02f1c7b7b9",
+      "required_decision": "retain_one_generic_same_scanner_amplitude_target"
+    },
+    "p4w_report": {
+      "path": "outputs/experiments/u6_p4w_scan_amplitude_feasibility_v1/report_a.json",
+      "sha256": "8a830aec3ef4f1dc053f1cfd2b949a27bc236a879b290e2e9dc8a9800076a2ad"
+    },
+    "p4t_contract": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+      "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+    },
+    "p4t_decision": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_decision_v1.json",
+      "sha256": "65433684b970d15c36d5e4a668131ba8ee21e68ba8ea883b11fb5f373f374339"
+    }
+  },
+  "question": "Can one label-blind global positive mark-amplitude scale map the fixed P4T kernel through an explicit standard-optical-density 10^-D transmittance proxy to the P4W development amplitude and generalize to sealed scans?",
+  "observed_target": {
+    "domain": "relative same-scanner RGB code amplitude",
+    "development_statistic": "P4W development median scan amplitude",
+    "confirmation_statistic": "P4W confirmation median scan amplitude",
+    "stock_labels_available_to_fit": false
+  },
+  "proxy_model": {
+    "target_density": 0.8,
+    "density_to_transmittance": "10^-D",
+    "scanner_response_assumption": "relative code locally proportional to transmittance",
+    "assumption_is_calibration": false,
+    "fixed_sigma_yx_pixels": [0.9, 0.65],
+    "base_grain_optical_density_by_rgb_layer": [0.04, 0.05, 0.035],
+    "shared_amplitude_scale_grid": [
+      0.0625,
+      0.125,
+      0.1875,
+      0.25,
+      0.375,
+      0.5,
+      1.0
+    ],
+    "field_shape": [384, 384],
+    "central_analysis_crop": [64, 64, 256, 256],
+    "development_seeds": [261201, 261203, 261211],
+    "confirmation_seeds": [261223, 261229, 261233, 261241],
+    "maximum_target_density": 2.0,
+    "truncate": 4.0,
+    "selection": "minimum absolute relative error to development target, then smaller shared amplitude scale",
+    "per_channel_scale_allowed": false,
+    "stock_specific_fit_allowed": false,
+    "per_scan_fit_allowed": false,
+    "photographic_fit_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_confirmation_relative_amplitude_error": 0.25,
+    "minimum_confirmation_error_improvement_over_original_p4t": 0.5,
+    "candidate_confirmation_amplitude_must_be_within_observed_scan_range": true,
+    "maximum_channel_mean_density_error": 0.01,
+    "minimum_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "execution": {
+    "runs": 2,
+    "photographic_render_allowed": false,
+    "post_confirmation_retuning_allowed": false,
+    "production_integration_allowed": false
+  },
+  "branch_rule": {
+    "pass": "retain one generic same-scanner transmittance-proxy amplitude candidate and open separately frozen physical-domain/severe diagnostics before any photograph",
+    "fail": "close amplitude fitting from current scans and retain P4T shape evidence only"
+  },
+  "claim_ceiling": "Development/confirmation generic same-scanner transmittance-proxy amplitude hypothesis; not optical-density calibration, emulsion grain amplitude, stock/process/scanner-independent truth, photographic preference or product evidence."
+}
