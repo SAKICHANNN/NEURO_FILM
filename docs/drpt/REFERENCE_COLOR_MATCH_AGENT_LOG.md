@@ -4382,3 +4382,20 @@
   native RAW, package, schema, receipt, capability or product claim, so P172,
   P45/P44 and v42 remain unchanged. Rights-cleared native-RAW evidence is the
   next producer gate.
+
+## 2026-07-29 - Register R0EE/R0EF native-mosaic arithmetic
+
+- Producer `25a4dea` first freezes an independent R0EE source audit: 15
+  rights-cleared native 2x2 RGB Bayer rows spanning eight makes and all four
+  patterns. R0EF then freezes all 15 even-aligned 1024 crops plus one
+  2024x3040 Samsung full frame before execution.
+- MSVC, LLVM-MinGW and Python, across two process runs and two internal
+  evaluations, are byte-exact at `057907a9...780f3`. Aggregate output is
+  `a077d528...5d423`; maximum absolute error/RMSE are
+  `2.3841858e-7`/`1.4531343e-8`. Replay, measured sensels and failure
+  atomicity pass; the full-frame workspace is about 234.7 MiB.
+- The evidence proves native-mosaic decoding plus private portable arithmetic,
+  not scene truth, quality, native sensor-noise/optics/colour, target runtime
+  or product readiness. There is no package, schema, receipt, capability or
+  RAW-default change, so P172, P45/P44 and v42 remain unchanged. R0EG may add
+  owned Android x86_64 emulator arithmetic only.

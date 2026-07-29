@@ -20,17 +20,19 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `657f5ce`; R0ED makes the
-  private DDFAPD C11 ABI freestanding while preserving the exact R0EC Windows
-  output aggregate. Pinned NDK r27d reproducibly links arm64-v8a and x86_64
-  ELF libraries with exactly two exports and zero undefined globals; pinned
-  Clang 22.1.8 reproducibly emits macOS and iOS arm64 Mach-O objects with the
-  same two-export/zero-undefined boundary. Stable evidence is
-  `ba3f3d27...fe36f`. This is strictly compile/link/object-only: there is no
-  Android/Apple runtime, native RAW or product admission, and no package,
-  compatible consumer rail, public schema, receipt or capability. P172
-  therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics remain
-  explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `25a4dea`; R0EE independently
+  qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
+  and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
+  one 2024x3040 full frame before execution. MSVC, LLVM-MinGW and Python,
+  across two processes and two internal evaluations, are byte-exact at
+  `057907a9...780f3`; maximum absolute error/RMSE are
+  `2.3841858e-7`/`1.4531343e-8`, and the full-frame workspace is about
+  234.7 MiB. This proves rights-cleared native-mosaic decoding plus private
+  portable arithmetic only. There is no scene truth, quality, native
+  sensor-noise/optics/colour, target runtime or product admission, and no
+  package, compatible consumer rail, public schema, receipt or capability.
+  P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
+  remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
