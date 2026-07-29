@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf2.9b-colorreference-batch-family-v1",
+  "node": "ULT > RF0.4 > SF2.9R > SF2.9B",
+  "question": "Do direct IT8 measurements retain a stable Ektachrome-family versus Velvia-50-family signal across held-out target-production charges after controlling production year and common calibration-patch identity?",
+  "source_page": "https://www.colorreference.de/targets/index.html",
+  "source_page_checked_utc": "2026-07-28",
+  "data_root": "data/external/colorreference_batch_family_v1",
+  "output_root": "outputs/sf2_9b_colorreference_batch_family_v1",
+  "expected_total_bytes": 29856706,
+  "maximum_download_bytes": 67108864,
+  "maximum_archive_bytes": 1048576,
+  "families": {
+    "E": {
+      "declared_family": "Kodak Ektachrome compatible K3 target family",
+      "exact_stock_id": "unknown",
+      "archive_names": [
+        "E040227.zip", "E040407.zip", "E040527.zip", "E040528.zip",
+        "E040629.zip", "E040630.zip", "E040701.zip", "E041210.zip",
+        "E050202.zip", "E050203.zip", "E050925.zip", "E050926.zip",
+        "E051025.zip", "E051026.zip", "E060110.zip", "E060111.zip",
+        "E060829.zip", "E070508.zip", "E070509.zip", "E080220.zip",
+        "E080515.zip", "E090401.zip", "E091111.zip", "E100221.zip",
+        "E100505.zip", "E100701.zip", "E101212.zip", "E110220.zip",
+        "E110411.zip", "E120607.zip", "E121001.zip", "E130315.zip",
+        "E130401.zip", "E131102.zip", "E140430.zip", "E141011.zip",
+        "E141027.zip", "E150202.zip", "E160310.zip", "E160618.zip",
+        "E170320.zip", "E171008.zip", "E180301.zip", "E190304.zip",
+        "E190811.zip", "E200408.zip", "E201020.zip", "E210526.zip",
+        "E211127.zip", "E220910.zip", "E240220.zip"
+      ]
+    },
+    "V": {
+      "declared_family": "Fujichrome Velvia 50 compatible V3 target family",
+      "exact_stock_id": "Fujifilm Fujichrome Velvia 50 family",
+      "archive_names": [
+        "V040102.zip", "V040220.zip", "V040221.zip", "V040510.zip",
+        "V041214.zip", "V041215.zip", "V041216.zip", "V041217.zip",
+        "V050505.zip", "V050712.zip", "V050727.zip", "V050728.zip",
+        "V050729.zip", "V070218.zip", "V071010.zip", "V080513.zip",
+        "V090119.zip", "V090721.zip", "V100201.zip", "V100401.zip",
+        "V100710.zip", "V110202.zip", "V110606.zip", "V110902.zip",
+        "V111010.zip", "V120101.zip", "V120306.zip", "V120601.zip",
+        "V120913.zip", "V130214.zip", "V130608.zip", "V131103.zip",
+        "V140202.zip", "V140410.zip", "V141121.zip", "V150205.zip",
+        "V150507.zip", "V151103.zip", "V160501.zip", "V170526.zip",
+        "V180325.zip", "V181014.zip", "V191005.zip", "V200720.zip",
+        "V210704.zip", "V220524.zip", "V220525.zip", "V220920.zip",
+        "V240219.zip"
+      ]
+    }
+  },
+  "source_gates": {
+    "expected_archive_count": 100,
+    "minimum_charges_per_family": 45,
+    "minimum_shared_calendar_years": 15,
+    "required_sample_count": 288,
+    "required_spectral_wavelengths_nm": {
+      "start": 380,
+      "stop": 780,
+      "step": 10
+    },
+    "minimum_common_patch_fraction": 0.95
+  },
+  "analysis_preregistration": {
+    "development_year_rule": "calendar years ending in 0,1,2,3,4,5,6,7",
+    "confirmatory_year_rule": "calendar years ending in 8 or 9",
+    "primary_unit": "target production charge",
+    "primary_views": [
+      "per-charge 288x3 measured Lab residual from patchwise pooled aim",
+      "per-charge 288x41 log-transmittance spectral residual from patchwise pooled aim"
+    ],
+    "nuisance_controls": [
+      "calendar year",
+      "within-family charge identity",
+      "common target patch identity",
+      "reported mean batch Delta E76"
+    ],
+    "baselines": [
+      "majority family",
+      "calendar-year-only classifier",
+      "reported batch-error-only classifier",
+      "shuffled family labels"
+    ],
+    "confirmatory_freeze_required_before_fit": true
+  },
+  "rights": {
+    "page_purpose": "public download of IT8 scanner-target reference files and updates",
+    "allowed_use": "bounded internal measurement and identifiability audit",
+    "redistribution_allowed": false,
+    "commercial_training_allowed": false,
+    "licence_spdx": "NOASSERTION"
+  },
+  "image_download_allowed": false,
+  "measurement_download_allowed": true,
+  "stock_operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_study_allowed": false,
+  "production_integration_allowed": false,
+  "redistribution_allowed": false,
+  "claim_ceiling": "target-family and production-charge measurement identifiability only; no exact Ektachrome stock, camera-scene pair, digital-to-film operator, stock appearance, calibration, latent mode, training, production or redistribution claim"
+}
