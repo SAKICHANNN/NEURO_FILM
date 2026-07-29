@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap0-ektachrome-palette-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP0",
+  "parents": {
+    "ao8d_split_instability_decision": {
+      "path": "configs/u5_r2ao8d_velvia_case_residual_domain_confirmation_decision_v1.json",
+      "sha256": "08978a2d6315e66d2f0c927e00c0a99de3e8a85c58feecbd3c8e6b5750624efc"
+    },
+    "ao9_capacity_decision": {
+      "path": "configs/u5_r2ao9_emulating_emulsion_capacity_baseline_decision_v1.json",
+      "sha256": "6c9e1d66df4b3bf98ff7610f659fdc99e16badcf7b8d622e8b947c4eab64c7b2"
+    }
+  },
+  "source": {
+    "palette_contract": "configs/u5_r2ao4p_balica_paired_palette_proxy_v1.json",
+    "palette_contract_sha256": "36e249cb21c72f837cf8236e18817f2269570f78850c3cdf674aa3278f656425",
+    "paired_palettes": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "paired_palettes_sha256": "483b7db48ffdb6119d67694a1fbff6d0b878228bacb8a58147b701a927e12814",
+    "asset_sha256": "a87b7839ab516721e5f45985b9cb6bfc25b5ef275c02e3e90f5d498c1c63c113",
+    "group_id": "cactus_ektachrome_halogen_well_exposed",
+    "paired_u8_sha256": "0104f997be4b1b32042193eecef644b22aab4bc6a66db3269ba5ee4071c294e0",
+    "row_cell_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      6
+    ],
+    "expected_pair_count": 56,
+    "source_semantics": "author-rendered post-ageing HSI sRGB display proxy",
+    "target_semantics": "author-rendered Ektachrome film sRGB display proxy",
+    "known_confounds": [
+      "single painting",
+      "different capture epochs",
+      "author rendering",
+      "scanner and interpretation embedded",
+      "physical roll unknown"
+    ]
+  },
+  "controls": [
+    "identity",
+    "per_channel_affine",
+    "full_affine",
+    "one_matrix"
+  ],
+  "cross_validation": {
+    "scheme": "leave_one_complete_palette_row_out",
+    "fold_count": 6,
+    "fit_preprocessing_on_training_rows_only": true,
+    "all_rows_tested_exactly_once": true
+  },
+  "fit": {
+    "model": "one_matrix",
+    "identity_mixture": 0.25,
+    "restart_count": 3,
+    "loss": "linear",
+    "loss_scale": 0.01,
+    "maximum_function_evaluations": 4000,
+    "function_tolerance": 1e-11,
+    "parameter_tolerance": 1e-11,
+    "gradient_tolerance": 1e-11,
+    "seed": 20260730,
+    "exposure_floor": 1.52587890625e-05,
+    "matrix_minimum_determinant": 0.2,
+    "minimum_endpoint_span": 0.05
+  },
+  "velvia_direction_control": {
+    "operator_config": "configs/u5_r2ao5_combined_velvia_one_matrix_operator_v1.json",
+    "operator_config_sha256": "e4a3bd332e1d92e10cf00f65b74260a2e994bee03c9d99792881f92681e61edd",
+    "operator_witness_id": "velvia_combined_one_matrix",
+    "grid_size": 17,
+    "maximum_absolute_direction_cosine": 0.985,
+    "minimum_residual_fraction_after_best_scalar_alignment": 0.15,
+    "interpretation": "operator-direction diversity only; content-confounded and not stock specificity"
+  },
+  "gates": {
+    "maximum_cross_validated_one_matrix_rgb_rmse": 0.09,
+    "minimum_gain_over_identity": 0.15,
+    "minimum_gain_over_full_affine": 0.02,
+    "minimum_fold_wins_over_identity": 5,
+    "minimum_fold_wins_over_full_affine": 4,
+    "maximum_raw_out_of_cube_fraction": 0.0,
+    "all_structural_fits_must_converge": true,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "retain_one_global_ektachrome_display_proxy_operator_and_open_separately_frozen_bounded_photo_frontier",
+  "decision_if_fail": "close_ektachrome_single_palette_operator_without_split_or_threshold_rescue",
+  "forbidden_rescue": [
+    "change row folds after result",
+    "add model capacity on the same 56 pairs",
+    "drop a failed row",
+    "change optimizer or thresholds after result",
+    "render photographs after automatic failure",
+    "claim Ektachrome stock response or calibration"
+  ],
+  "operator_fitting_allowed": true,
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "single-painting Ektachrome/HSI author-rendered display-proxy operator development with complete-row cross-validation and content-confounded Velvia direction control; not same-time digital-film pairs, stock response, calibration, authenticity, preference or product evidence"
+}
