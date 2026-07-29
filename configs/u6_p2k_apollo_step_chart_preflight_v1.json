@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p2k_apollo_step_chart_preflight.v1",
+  "experiment_id": "u6.p2k-apollo-step-chart-preflight-v1",
+  "node": "ULT > U6 > U6.P2K",
+  "status": "post_exploratory_geometry_contract_frozen",
+  "question": "Does the exact AS07-03 raw-scan member satisfy the narrow streaming TIFF contract and expose a large, camera-free horizontal density-step geometry before any response fitting?",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p2k_apollo_step_chart_source_v1.json",
+      "sha256": "1092a8bfbf86b87406ba1b5622720efc905b1957648f6f197c0d968678bb7290"
+    },
+    "acquisition_manifest": {
+      "path": "outputs/experiments/u6_p2k_apollo_step_chart_source_v1/acquisition_manifest.json",
+      "sha256": "3391cdd7354cdfe91bc8cdf91af825bfa1cd0a753ec5909aa6668c418786910a",
+      "archive_sha256": "e004be84c624bfe670290f12930be1e4bddff14713fc460184f4665230653eda",
+      "archive_bytes": 1755600801,
+      "member_path": "AS07-03-StepChart.tif",
+      "member_uncompressed_bytes": 3193703785,
+      "member_crc32": "1967963c"
+    }
+  },
+  "development_disclosure": {
+    "bounded_preview_seen_before_gate_freeze": true,
+    "horizontal_step_geometry_seen": true,
+    "untouched_confirmation_claim_forbidden": true,
+    "purpose": "freeze a reproducible source/layout decision after one bounded geometry preview without fitting or interpreting a response curve"
+  },
+  "analysis": {
+    "maximum_uncompressed_bytes": 6000000000,
+    "maximum_sample_rows": 768,
+    "maximum_sample_columns": 768,
+    "central_column_fraction": [0.16, 0.84],
+    "smoothing_rows": 3,
+    "minimum_separator_drop_fraction": 0.01,
+    "minimum_separator_separation_rows": 12,
+    "endpoint_fraction": 0.04
+  },
+  "automatic_gates": {
+    "required_width": 14534,
+    "required_height": 36620,
+    "required_samples_per_pixel": 3,
+    "required_bits_per_sample": 16,
+    "required_rows_per_strip": 1,
+    "minimum_endpoint_span_fraction": 0.8,
+    "minimum_high_confidence_horizontal_separators": 10,
+    "repeat_report_byte_identity": true
+  },
+  "outputs": {
+    "report": "outputs/experiments/u6_p2k_apollo_step_chart_preflight_v1/report.json",
+    "preview": "outputs/experiments/u6_p2k_apollo_step_chart_preflight_v1/preview.png"
+  },
+  "branch_rule": {
+    "automatic_and_visual_pass": "open one separately frozen response-feasibility audit; still no curve fitting under this preflight",
+    "automatic_or_visual_fail": "close the source without response fitting or further Apollo acquisition"
+  },
+  "curve_fitting_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "Post-exploratory source/layout evidence for one historical SO-368 magazine-associated, camera-free raw-scan density wedge; not response fitting, calibrated sensitometry, exposure spacing, process truth, scanner independence, a digital-to-film pair or product promotion."
+}
