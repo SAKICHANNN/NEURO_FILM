@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq4f-recorder-proxy-factorized-frontier-v1",
+  "config_sha256": "6d4c0cdc76dd0fe7e4cc98e8ab82ff4e5685246e2596f646f2e2dc1400ef7e09",
+  "software_commit": "5b82f1c759280cfd312f550cdf90ab88ee182ad1",
+  "manifest_sha256": "00ef4c9e5a69360099ab0be3aac6440a1cdee3ee967d9f47959412321f994b2d",
+  "repeat_manifest_sha256": "00ef4c9e5a69360099ab0be3aac6440a1cdee3ee967d9f47959412321f994b2d",
+  "report_sha256": "9ed4c0f2f8c727ef6f6ed769fd40b1333ba99f606bd8fd82ef7f8301a5970b40",
+  "repeat_report_sha256": "9ed4c0f2f8c727ef6f6ed769fd40b1333ba99f606bd8fd82ef7f8301a5970b40",
+  "automatic_pass": false,
+  "visual_review_permitted": false,
+  "decision": "close_factorized_recorder_proxy_photo_route_without_visual_review",
+  "strongest_candidate": {
+    "candidate_id": "recorder_proxy_factor_t75_c200",
+    "tone_strength": 0.75,
+    "chroma_strength": 2.0,
+    "gold_median_style_deltae76": 10.180941171092499,
+    "gold_median_non_basic_residual_deltae76": 6.416257690023413,
+    "gold_median_factorized_deltae76": 5.990430076390933,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0,
+    "maximum_gold_tone_limited_fraction": 0.5358076388888889,
+    "maximum_gold_chroma_limited_fraction": 0.27718333333333334
+  },
+  "failed_gate": {
+    "metric": "gold_median_non_basic_residual_deltae76",
+    "observed": 6.416257690023413,
+    "frozen_minimum": 7.0
+  },
+  "interpretation": "tone/chroma factorization materially strengthens the unidentified recorder-code residual and remains clipping-clean, but the strongest fixed candidate is still too explainable by basic adjustment to open visual review; the frozen threshold is not relaxed",
+  "next_leaf": "AQ4G",
+  "next_leaf_scope": "one fixed-B0 plus bounded recorder-proxy residual composition using the unchanged AQ4F factor bank, with B0-only, AQ4F and AO6 controls and no operator refit",
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "negative ordinary-photo evidence for the source-only factorized recorder-code route; not Velvia stock response, calibration, authenticity or product evidence"
+}
