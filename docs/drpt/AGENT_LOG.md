@@ -6671,3 +6671,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   global default challenger; no threshold rescue or content router opens.
 - Verification: four P8BN contract/adjudication tests pass. Production remains
   unchanged. Next: P8BO portable source package and cross-toolchain conformance.
+
+## 2026-07-29 — U6.P8BO portable native Standard package
+
+- Froze the six-component strength-1.0 source package and corrected the
+  portable builder to use the authoritative three-source display-v4 link
+  closure rather than an invalid single-source shortcut.
+- Two complete runs are report-byte-identical (`328c5f3...32cb5`) with stable
+  evidence `0c43c8f...7adbc`. MSVC and LLVM-MinGW produce the same 64x96
+  output bytes; Windows builds, Android arm64/x86_64 libraries and Apple
+  arm64 ABI objects repeat exactly.
+- Android remains compile/link-only and Apple remains object-only. Production,
+  mobile runtime, stock/calibration and default claims remain closed. Return
+  to the highest-information explicit film-simulation algorithm leaf.

@@ -35,8 +35,12 @@ fixed-reference bundle and close the Python canonical buffer topology:
 forward/reverse and all formal outputs remain exact, 32 rows wins the frozen
 tile grid, and 12MP process-tree peak falls from 1.79-1.88GiB to
 717.14-717.15MB. This passes only the desktop Python reference memory target.
-U6.P8X next freezes a portable native CPU ABI and small-vector oracle; native
-mobile performance, production and calibration claims remain closed.
+U6.P8X-P8BO now freeze and execute the portable native CPU package. The fixed
+strength-1.0 Standard output is byte-exact between MSVC and LLVM-MinGW;
+Android arm64/x86_64 compile/link and macOS/iOS arm64 ABI objects repeat
+exactly. This is source/build evidence only; mobile runtime, production and
+calibration claims remain closed. The next autonomous selection returns to a
+distinct explicit film-simulation algorithm leaf.
 
 `U5.R2AJ0C1` now closes the licensed Hald-bank challenger. Two new child
 processes and independent parent reconstruction are exact. All 194 primary

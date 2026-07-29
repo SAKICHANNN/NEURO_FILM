@@ -1,0 +1,90 @@
+{
+  "schema": "neuro_film.u6_p8bo_portable_native_standard_contract.v1",
+  "node": "U6.P8BO",
+  "parent_decision": {
+    "path": "configs/u6_p8bn_fresh_strength_population_decision_v1.json",
+    "sha256": "546c29b043a8d9567870f65a5def900d2461908c7e226a398a434c4d13b468fd"
+  },
+  "windows_package": "configs/u6_p8az_native_standard_package_v1.json",
+  "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+  "components": {
+    "domains": {
+      "basename": "nf_physical_domains_f32_v1",
+      "link_sources": {
+        "native/film_physics/nf_physical_domains_f32_v1.c": "a47d4cd92e1b3f41ca88f9519b2a99444cc9c9c07084529495c5b65babaac502"
+      },
+      "header_sha256": "eb440cfd1b4e30ce8593a7bc43e506daa5f6bbb6c8ac4c8eba408cd709f981e3"
+    },
+    "gaussian": {
+      "basename": "nf_gaussian_rgb_f32_v1",
+      "link_sources": {
+        "native/film_physics/nf_gaussian_rgb_f32_v1.c": "dcb26b664e1fd8cbd514246846070c257b5250994f996d0c4b8e4f30040116c9"
+      },
+      "header_sha256": "1f75a36fbbcc6944ad2dbe4daea634a8d3d4b2e1392d74ee40c2345b99a6f710"
+    },
+    "adjacency": {
+      "basename": "nf_bounded_adjacency_f32_v1",
+      "link_sources": {
+        "native/film_physics/nf_bounded_adjacency_f32_v1.c": "1f15a8b0dd200a7de74e03321c245923d38ed3949ade0da24e52113e60d34002"
+      },
+      "header_sha256": "8149eb1aa1e72db2c27e678c4344bcce9f964d4d8f33626a87e288d2917899dc"
+    },
+    "gauge": {
+      "basename": "nf_neutral_gauge_f32_v1",
+      "link_sources": {
+        "native/film_physics/nf_neutral_gauge_f32_v1.c": "cb399f8f31d945074ebae393aff8a9bb2e3d3b90029d1da1253ef50782366188"
+      },
+      "header_sha256": "6ae31d723b9d4d2b2ab21c6d9a71457df52dd4a030f82e46a562686bad6f9a06"
+    },
+    "context": {
+      "basename": "nf_ao6_context_f32_v2",
+      "link_sources": {
+        "native/film_physics/nf_ao6_context_f32_v2.c": "9f16e1294e0e8d8b106e332a75c309b08f2ab2e1493203d4104e30324e7c1bb4"
+      },
+      "header_sha256": "79631ac81792830b9c008366bcd05eea8868f963459d99e962bc654cbf7f946f"
+    },
+    "display": {
+      "basename": "nf_ao6_display_f32_v4",
+      "link_sources": {
+        "native/film_physics/nf_ao6_base_f32_v3.c": "d0c9249c003439d816b351b1e23c9fb82f661c5c951e6fa2d85063eb144dd9a1",
+        "native/film_physics/nf_ao6_residual_f32_v2.c": "dd1429a42757021a13256efef5815f52c4f2f4525f0a043ff55ee99bb1139b5c",
+        "native/film_physics/nf_ao6_display_f32_v4.c": "09207a736009007e5988c8303376067a40efa9e42d54f64af9f654fc6992c029"
+      },
+      "header_sha256": "fb77521d56668d029b6d1293df2d3d39a4d6bcb5a9cfae66c9ee425f8b65c0d3"
+    }
+  },
+  "toolchains": {
+    "llvm_mingw": {
+      "version": "22.1.8",
+      "clang_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "llvm_readobj_sha256": "3088728b4588ca185687dac94aed3aca1d379b31433053d824b89b0d4d28d246",
+      "license_sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee"
+    },
+    "android_ndk": {
+      "release": "r27d",
+      "revision": "27.3.13750724",
+      "source_properties_sha256": "fb5eec1ca5dac09442109cf79e9ce49faecd8b312dbc997e88903a394e14994a",
+      "notice_sha256": "4d5224d1c0b54ffa88b0dc0088191638fdbb7227835095dfb98f7f66b416a323"
+    }
+  },
+  "targets": {
+    "windows": "x86_64-w64-windows-gnu",
+    "android": {
+      "arm64-v8a": "aarch64-linux-android21",
+      "x86_64": "x86_64-linux-android21"
+    },
+    "apple_object_only": {
+      "macos-arm64": "arm64-apple-macosx13.0",
+      "ios-arm64": "arm64-apple-ios15.0"
+    }
+  },
+  "oracle": {
+    "height": 64,
+    "width": 96,
+    "strength": 1.0,
+    "windows_msvc_and_llvm_output_must_be_byte_exact": true,
+    "all_builds_must_be_repeat_byte_exact": true
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "source-level native Standard portability and Windows dual-compiler execution evidence; Android is compile/link only and Apple is header/ABI object only, with no simulator/device/runtime/product or calibration claim"
+}

@@ -279,9 +279,9 @@ named-stock milestone.
 
 *Active parent: `ULT > RF stock-first real-film mainline` | SF1.3B and conditioned-SCIS remain closed; LSM1 remains ineligible; U1.5C/U2.5/U2.6 product gaps and U2.4A software boundary pass without overclaim; real interpretations remain absent; next selection stays evidence-gated | Integration owner: repository owner or explicitly assigned root agent*
 
-Current physical-runtime leaf: U6.P8BN closes strength 0.80 as a global default
-challenger. Seven fresh CC0 RAW scenes across seven camera makes produce 14
-boundary-clean and severe-clean renders, but 0.80 wins only one of three
-autonomous blind rounds against 1.00. No content router or product default
-opens. U6.P8BO next verifies a portable source-level strength-1.0 native
-package across a second Windows compiler and Android/Apple build targets.
+Current physical-runtime leaf: U6.P8BO passes the portable source/build gate.
+The fixed strength-1.0 native Standard package is output-byte-exact between
+MSVC and LLVM-MinGW; Android arm64/x86_64 compile/link and macOS/iOS arm64
+object witnesses repeat exactly. This is not mobile runtime or product
+evidence. The next autonomous selection returns to the highest-information
+explicit film-simulation algorithm leaf.

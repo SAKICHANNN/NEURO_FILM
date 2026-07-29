@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p8bo_portable_native_standard_decision.v1",
+  "node": "U6.P8BO",
+  "contract": "configs/u6_p8bo_portable_native_standard_v1.json",
+  "contract_file_sha256": "14af3b194888d65e69925a81dfe3a48bb999d2ab6fa906d9037d7c1883849054",
+  "formal_report": "outputs/u6_p8bo_portable_native_standard_v1/report.json",
+  "formal_report_sha256": "328c5f367bb1ca8cf303b42a0d8c707f8984e984e3cd5886f14ff628d0832cb5",
+  "stable_evidence_id": "0c43c8f59ee4ebbf135f288983860a8f2e6a68c2dd3a724796e63ecdd577adbc",
+  "result": {
+    "status": "pass",
+    "windows_msvc_llvm_output_byte_exact": true,
+    "windows_repeat_build_byte_exact": true,
+    "android_arm64_x86_64_compile_link_repeat_byte_exact": true,
+    "apple_macos_ios_arm64_header_abi_object_repeat_byte_exact": true,
+    "oracle_output_sha256": "916858fc48cce6a8214a8acdb08a044fbbeaec1392bdcae186ef388ff5350950"
+  },
+  "decision": "retain the complete strength-1.0 native Standard source package as a portable development package. The display component is explicitly linked from the same base-v3, residual-v2 and display-v4 source closure as the MSVC reference. This evidence does not establish Android or Apple runtime behavior.",
+  "production_default_changed": false,
+  "claim_ceiling": "source-level native Standard portability and Windows dual-compiler execution evidence; Android is compile/link only and Apple is header/ABI object only, with no simulator/device/runtime/product or calibration claim",
+  "next_leaf": "return to the highest-information explicit film-simulation algorithm leaf; platform runtime execution remains a separately gated productization task"
+}
