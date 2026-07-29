@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ap2-ektachrome-guarded-photo-frontier-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AP2",
+  "software_commit": "b14d943d4eabd55dde3c768966c9390454f90441",
+  "contract": {
+    "path": "configs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1.json",
+    "sha256": "8defb46249fd74115410c3f27732313fe7226fdede7e110457d6208eaea1b8c5"
+  },
+  "run_a": {
+    "manifest_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "d9c77d63420a9febe74b0c9fe6c19b2a4c42ea91ee05f279f442b7451be2ba57",
+    "report_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/automatic_report_a.json",
+    "report_sha256": "51db76e2bd96b8076dc71910a7ea4a45d6c6c6a0744e14a1f8262e2fb335ecc0"
+  },
+  "run_b": {
+    "manifest_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/render_pass2/manifest.json",
+    "manifest_sha256": "d9c77d63420a9febe74b0c9fe6c19b2a4c42ea91ee05f279f442b7451be2ba57",
+    "report_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/automatic_report_b.json",
+    "report_sha256": "51db76e2bd96b8076dc71910a7ea4a45d6c6c6a0744e14a1f8262e2fb335ecc0"
+  },
+  "repeat_byte_identical": true,
+  "automatic_results": {
+    "ektachrome_palette_one_matrix__guarded_s75": {
+      "gold_median_style_delta_e76": 10.369364514674452,
+      "gold_median_non_basic_residual_delta_e76": 6.080078495184058,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "worst_stress_new_hard_clipping_fraction": 0.0,
+      "automatic_pass": true
+    },
+    "ektachrome_palette_one_matrix__guarded_s100": {
+      "gold_median_style_delta_e76": 14.888763986001567,
+      "gold_median_non_basic_residual_delta_e76": 10.73594427687453,
+      "worst_gold_new_hard_clipping_fraction": 0.0,
+      "worst_stress_new_hard_clipping_fraction": 0.0,
+      "automatic_pass": true,
+      "median_full_population_residual_limited_fraction": 0.16115416666666665,
+      "maximum_full_population_residual_limited_fraction": 0.5270790182270091
+    }
+  },
+  "visual_evidence": {
+    "pre_reveal_review_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/visual/pre_reveal_review.json",
+    "pre_reveal_review_sha256": "202fa8775d3401849071088e0592c5854f7a44295f1949eeceb554b4eff18292",
+    "private_mapping_path": "outputs/u5_r2ap2_ektachrome_guarded_photo_frontier_v1/visual/private_mapping.json",
+    "private_mapping_sha256": "796691fdb9db35918acd6c8c1a437e71ecedc28ca13f729e24f1ac7d787b36cd",
+    "candidate_wins": 0,
+    "rounds": 3,
+    "fixed_b0_wins": 3,
+    "ao6_wins": 0,
+    "all_nine_gold_full_resolution_reviewed": true,
+    "confirmed_severe_artifact_count": 0,
+    "id11_red_speckle_or_posterization": false,
+    "face_geometry_or_texture_corruption": false,
+    "preference_failure": "strong magenta and dense-shadow cast loses broad appeal against both fixed global comparators"
+  },
+  "decision": "retain_analytical_residual_guard_mechanism_but_close_direct_ektachrome_photo_challenger",
+  "interpretation": "The analytical source-inclusive residual guard solves the exact AP1 boundary failure without averaging away the requested operator: full strength retains 14.89 style and 10.74 non-basic Delta E76 with zero new hard clipping. Full-resolution severe review is clean, but the fixed Ektachrome display-proxy direction loses all three autonomous blind layouts because its strong magenta/dense appearance is less appealing than the fixed B0 and AO6 comparators.",
+  "forbidden_rescue": [
+    "re-rank or reinterpret the three revealed blind rounds",
+    "change AP2 strengths, rails or thresholds",
+    "claim the direct guarded candidate is a photographic champion",
+    "claim Ektachrome stock response or calibration"
+  ],
+  "next_leaf": "freeze U5.R2AP3 using the pre-existing AO6 factorized t10/c25, t15/c35, t20/c50 and t25/c65 bank on the fixed B0 base with the Ektachrome operator; compare unchanged against B0 and AO6, with no AP2-derived parameter choice",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "positive analytical gamut-safety mechanism evidence and negative direct-photo preference evidence for one Ektachrome author-rendered display-proxy direction; no independent-human preference, stock response, calibration, authenticity or product claim"
+}
