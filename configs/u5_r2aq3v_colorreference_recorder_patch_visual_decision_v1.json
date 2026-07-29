@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2aq3v-colorreference-recorder-patch-visual-v1",
+  "config_sha256": "1332ad10ff028a8c27747c5b6e4648c9de3fb725fb894ca40b3fb4307c2bc567",
+  "software_commit": "900f700c3cfbbcec746bfa93ace29177c33b548a",
+  "report_sha256": "3bbfc59fd24e5653deca4473f41f5a4e87d2425b1769b6bc5603163e86984a7d",
+  "repeat_report_sha256": "3bbfc59fd24e5653deca4473f41f5a4e87d2425b1769b6bc5603163e86984a7d",
+  "contact_sheet_sha256": "c2bfc26daf8fa9da6f598fdd12397c163cf256344ed9ca47a4c896224dd91bb3",
+  "automatic_pass": true,
+  "visual_pass": true,
+  "decision": "retain_recorder_proxy_as_internal_explicit_operator_evidence_only",
+  "consensus_prediction": {
+    "patch_count": 1440,
+    "mean_deltae76": 5.831506441541487,
+    "median_deltae76": 4.888061647424182,
+    "p95_deltae76": 13.717376962096235,
+    "maximum_deltae76": 30.04579957867074
+  },
+  "autonomous_visual_evidence": "all five labeled predicted panels preserve the measured-consensus hue, lightness and saturation layout without blank regions, reordered patches, unexpected block corruption, banding or label mismatch",
+  "preview_boundary": "display-sRGB negative components were reported before preview-only clamping; the bounded XYZ operator itself used no clipping",
+  "next_leaf": "AQ4C",
+  "next_leaf_scope": "isolated code-value-reuse Look Approximation challenger on existing rights-cleared gold/stress photographs with automatic severe and OOD gates before visual review",
+  "ordinary_photo_application_currently_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "autonomous synthetic recorder-patch evidence for an internal bounded proxy; not photographic film simulation, stock calibration or product evidence"
+}
