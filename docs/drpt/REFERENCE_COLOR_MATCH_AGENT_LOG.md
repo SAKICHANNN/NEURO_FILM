@@ -4253,3 +4253,18 @@
   `0b79cba6...e0e65`; the file/capability set passes 41 tests with one skip.
   The owned temporary worktree was removed. This is post-v42 compatibility
   evidence, not a rewritten manifest or merge authorization.
+
+## 2026-07-29 - Register R0DX as producer-negative
+
+- Producer `9ea70a5` runs two independent exact-outside-timing comparisons of
+  fixed MHC against Adobe DNG SDK 1.7.1 Stage 3 over 75 primary private CFA
+  DNGs plus one OpcodeList3 diagnostic; stable evidence is
+  `c48813ed...f707`.
+- Across 2,273,447,808 primary samples, MHC records 2.593914x MAE, 1.471112x
+  RMSE and 0/75 lower-RMSE rows relative to the project bilinear baseline, so
+  all three frozen quality gates fail. The SDK Stage-3 path itself uses
+  bilinear interpolation, making this a mechanical-parity rejection rather
+  than scene-truth or visual-quality evidence.
+- MHC is not publicly exported and R0DX publishes no model, package, schema,
+  receipt or capability. P172 scene-linear RAW rejection remains correct,
+  P45/P44 remain closed, and v42 requires no interface or manifest change.

@@ -20,17 +20,17 @@ wire contract and not an algorithm promotion.
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest bound committed snapshot is `f61c131`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable communicated snapshot is `4cdd0af`; R0DW replaces the
-  prior linear predictor with a centered-RBF reference-only NKR prior. Its
-  independent 64-row evaluation improves 57 rows, but +18.93% median and
-  -43.23% worst improvement both fail. The worst row has zero new boundary
-  and only 0.172% projection, so clipping is not a sufficient explanation.
-  Only 21 eligible open singleton components remain, below the frozen 64-row
-  cohort size, so the same-corpus AceTone reference-only tuning family closes
-  without opening sealed data. It publishes no
-  compatible consumer rail, callable capability, quality promotion or
-  schema/receipt change. Its prior R0DO/R0DP absolute-HDR diagnostics remain
-  explicitly unmapped.
+- D-PCT latest stable communicated snapshot is `9ea70a5`; R0DX compares one
+  fixed Malvar-He-Cutler demosaic against Adobe DNG SDK 1.7.1 Stage 3 on 75
+  primary private CFA DNGs plus one OpcodeList3 diagnostic. Two independent
+  runs are exact outside timing (`c48813ed...f707`). MHC has 2.593914x MAE,
+  1.471112x RMSE and 0/75 lower-RMSE rows relative to the project bilinear
+  baseline, so all three frozen quality gates fail. Because the pinned SDK
+  Stage-3 path itself uses bilinear interpolation, this is only negative
+  mechanical-parity evidence, not scene-truth or visual-quality evidence.
+  MHC remains non-public and R0DX publishes no model, package, compatible
+  consumer rail, callable capability, schema or receipt. Its prior R0DO/R0DP
+  absolute-HDR diagnostics remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
   no arm64 physical-device run. P106 confirms the current official QEMU2
   emulator also rejects arm64 images on this x86_64 host before boot.
