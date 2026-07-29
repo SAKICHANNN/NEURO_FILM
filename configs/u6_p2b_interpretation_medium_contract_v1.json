@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p2b_interpretation_medium_contract.v1",
+  "node": "U6.P2B",
+  "date_frozen": "2026-07-29",
+  "parent": {
+    "decision_path": "configs/u6_p2a_exposure_development_interpretation_decision_v1.json",
+    "stable_evidence_id": "cdac7a7b7dcd458c627fd57f2ddc73ff862f233169a89ac11095c3936962005f"
+  },
+  "reused_operators": {
+    "density_to_transmittance": "src/film_physics/contracts.py",
+    "print_interpretation": "src/roll2film/sensitometry_print.py",
+    "new_density_or_tone_curve_allowed": false
+  },
+  "route_media": {
+    "color_negative_neutral_scan": {
+      "medium": "film_transmittance",
+      "post_scan_polarity": "invert_to_positive"
+    },
+    "color_negative_print": {
+      "medium": "print_reflectance",
+      "post_scan_polarity": "identity"
+    },
+    "slide_direct_scan": {
+      "medium": "film_transmittance",
+      "post_scan_polarity": "identity"
+    },
+    "bw_developer_scan": {
+      "medium": "film_transmittance",
+      "post_scan_polarity": "invert_to_positive",
+      "maximum_density_neutral_axis_error": 1e-6
+    }
+  },
+  "print_profile": {
+    "source": "cyan_shadow_warm_highlight_like clean-room U5.R2E0 witness",
+    "density_reference_exposure_minimum": 0.0,
+    "density_reference_exposure_maximum": 16.0,
+    "claim": "generic print-reflectance interpretation only"
+  },
+  "automatic_gates": {
+    "exact_route_replay": true,
+    "exact_partition_replay": true,
+    "exact_input_preservation": true,
+    "minimum_medium_value": 0.0,
+    "maximum_medium_value": 1.0,
+    "negative_and_slide_film_bytes_equal": true,
+    "negative_and_slide_polarity_distinct": true,
+    "non_neutral_bw_rejected": true,
+    "neutral_bw_passes": true,
+    "missing_or_wrong_print_operator_rejected": true,
+    "wrong_route_rejected": true,
+    "duplicate_density_or_tone_symbols": 0
+  },
+  "branch_rules": {
+    "pass": "open P2C synthetic end-to-end route ablation through the separate scanner boundary",
+    "fail": "close P2B and retain P2A route metadata without a medium compiler"
+  },
+  "production_integration_allowed": false,
+  "calibrated_claim_allowed": false,
+  "claim_ceiling": "generic film-transmittance versus print-reflectance medium semantics and post-scan polarity using existing operators; no measured emulsion, B&W developer, print paper, process, scanner, stock, calibration or product claim"
+}
