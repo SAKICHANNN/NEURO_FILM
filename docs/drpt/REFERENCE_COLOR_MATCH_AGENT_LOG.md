@@ -5119,3 +5119,27 @@
   finite-halo mechanical pipeline without a public package/schema/receipt,
   compatible RAW rail or product-quality claim. Consumer mapping remains
   unchanged.
+
+## 2026-07-31 - Freeze corrected post-merge manifest v46
+
+- Node/parent goal: P175 bottom-up integration after the corrected directory
+  ownership implementation and P174 topology preflight. V46 supersedes the
+  immutable but integration-rejected v45 review artifact.
+- V46 pins payload `36be7e9ff8f7ce83dbfcbfc3a256c535d5ee02a3`
+  against main `0014744810fcac60448be0e1d7d7427925a973df` from common
+  base `f53faeb5079c17fbd36cceb1607444088f279615`: 14 payload
+  paths, 1,862 main paths, zero overlap, 70 public exports and 26 schemas.
+  The conflict-free merge tree is
+  `93dc0e15baf91375df2805cc9891ce8ca58e0256`.
+- Manifest/schema SHA-256 are
+  `93890cd168d9eb5333034f55d7a01c30630d66bdbe07978e312bc989ef38c866`
+  and
+  `240eb162ddfe4769038b1b7c0a19725bd650079a80eb221dbcfbaf1c177a3447`.
+  Direct schema/rebuild/tamper tests pass 5/5.
+- A detached real merge passes file/replay plus v44/v45/v46 at
+  `70 passed, 1 skipped`; strict diff check passes and the temporary worktree
+  is removed. The corrected branch full suite remains
+  `1,421 passed, 5 skipped`.
+- D-PCT R0JF is still private one-Pixel Android x86_64 virtual mechanics
+  without a public producer interface or compatible RAW rail. No algorithm,
+  product or consumer mapping state changes.
