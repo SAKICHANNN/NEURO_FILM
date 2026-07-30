@@ -13,7 +13,6 @@ from sklearn.linear_model import Ridge
 from sklearn.model_selection import GroupKFold
 from sklearn.preprocessing import StandardScaler
 
-from src.eval.boundary_safe_neutral_base import apply_boundary_safe_residual
 from src.eval.fivek_hard_case_medoid_development import (
     _load_ay0_population,
     _load_fresh_population,
@@ -237,6 +236,68 @@ def apply_residual_lut(source: np.ndarray, residual_lut: np.ndarray) -> np.ndarr
     return source_array + residual.reshape(source_array.shape)
 
 
+def apply_unbounded_residual_safely(
+    source_rgb: np.ndarray,
+    candidate_rgb: np.ndarray,
+    *,
+    boundary_epsilon: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Apply one shared analytical scale to a finite, possibly OOG candidate."""
+
+    source = np.asarray(source_rgb, dtype=np.float64)
+    candidate = np.asarray(candidate_rgb, dtype=np.float64)
+    if (
+        source.shape != candidate.shape
+        or source.ndim != 3
+        or source.shape[2] != 3
+        or not 0.0 < boundary_epsilon < 0.5
+        or not np.all(np.isfinite(source))
+        or not np.all(np.isfinite(candidate))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+    ):
+        raise FiveKAdaptiveLUTError("invalid analytical residual peers")
+    residual = candidate - source
+    source_interior = (source > boundary_epsilon) & (
+        source < 1.0 - boundary_epsilon
+    )
+    lower = np.where(source_interior, boundary_epsilon, 0.0)
+    upper = np.where(source_interior, 1.0 - boundary_epsilon, 1.0)
+    channel_scale = np.ones_like(source)
+    positive = residual > 0.0
+    negative = residual < 0.0
+    channel_scale[positive] = (
+        upper[positive] - source[positive]
+    ) / residual[positive]
+    channel_scale[negative] = (
+        lower[negative] - source[negative]
+    ) / residual[negative]
+    scale = np.clip(np.min(channel_scale, axis=2), 0.0, 1.0)
+    scale = np.where(scale < 1.0, np.nextafter(scale, 0.0), scale)
+    source_boundary = (source <= boundary_epsilon) | (
+        source >= 1.0 - boundary_epsilon
+    )
+    for _ in range(16):
+        output = source + scale[..., None] * residual
+        output_boundary = (output <= boundary_epsilon) | (
+            output >= 1.0 - boundary_epsilon
+        )
+        escaped = (output < 0.0) | (output > 1.0)
+        bad = np.any(
+            escaped | (output_boundary & ~source_boundary), axis=2
+        )
+        if not np.any(bad):
+            break
+        scale[bad] = np.nextafter(scale[bad], 0.0)
+    else:
+        raise FiveKAdaptiveLUTError(
+            "analytical scale did not converge to the safe cube"
+        )
+    if not np.all(np.isfinite(output)):
+        raise FiveKAdaptiveLUTError("analytical output is non-finite")
+    return output, scale
+
+
 def _canonical_bytes(value: Mapping[str, Any]) -> bytes:
     return (
         json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
@@ -433,7 +494,7 @@ def _evaluate_population(
         record = {"pair_id": row["pair_id"], "group": row["group"]}
         for method, lut in lut_map.items():
             raw_candidate = apply_residual_lut(row["source"], lut)
-            candidate, scale = apply_boundary_safe_residual(
+            candidate, scale = apply_unbounded_residual_safely(
                 row["source"],
                 raw_candidate,
                 boundary_epsilon=epsilon,
@@ -622,6 +683,7 @@ def run_development(
 __all__ = [
     "FiveKAdaptiveLUTError",
     "apply_residual_lut",
+    "apply_unbounded_residual_safely",
     "fit_residual_lut",
     "run_development",
     "validate_contract",

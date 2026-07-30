@@ -9,6 +9,7 @@ import pytest
 from src.eval.fivek_adaptive_lut_basis_development import (
     FiveKAdaptiveLUTError,
     apply_residual_lut,
+    apply_unbounded_residual_safely,
     fit_residual_lut,
     validate_contract,
 )
@@ -64,3 +65,16 @@ def test_fitted_lut_improves_known_smooth_transform() -> None:
     )
     assert after < before * 0.35
     assert np.max(np.abs(fitted)) <= 0.25
+
+
+def test_unbounded_candidate_uses_one_safe_rgb_scale_without_clipping() -> None:
+    source = np.asarray([[[0.2, 0.4, 0.8], [0.0, 0.5, 1.0]]])
+    candidate = np.asarray([[[1.4, -0.3, 0.9], [-0.5, 1.4, 1.2]]])
+    output, scale = apply_unbounded_residual_safely(
+        source, candidate, boundary_epsilon=1.0 / 510.0
+    )
+    assert np.all(output >= 0.0)
+    assert np.all(output <= 1.0)
+    reconstructed = source + scale[..., None] * (candidate - source)
+    assert np.array_equal(output, reconstructed)
+    assert np.all(scale < 1.0)
