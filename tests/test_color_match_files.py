@@ -627,6 +627,57 @@ def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
 
 
+def test_file_adapter_preserves_replaced_staging_entry_on_failure(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    output_a = tmp_path / "output-a.png"
+    output_b = tmp_path / "output-b.png"
+    _image(reference, 27367)
+    _image(good, 27368)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+    replacement: Path | None = None
+    replacement_identity: tuple[int, int] | None = None
+
+    def load_after_replacing_stage(path: Path) -> WorkingImage:
+        nonlocal replacement, replacement_identity
+        if Path(path) == bad:
+            stages = list(
+                tmp_path.glob(".*.reference-match-stage.*")
+            )
+            assert len(stages) == 1
+            replacement = stages[0]
+            replacement.unlink()
+            replacement.write_bytes(b"external-stage-replacement")
+            replacement_identity = files._path_entry_identity(replacement)
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_after_replacing_stage,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+        )
+
+    assert replacement is not None
+    assert replacement_identity is not None
+    assert replacement.read_bytes() == b"external-stage-replacement"
+    assert files._path_entry_identity(replacement) == replacement_identity
+    assert not output_a.exists()
+    assert not output_b.exists()
+
+
 def test_file_adapter_removes_owned_empty_directories_on_late_failure(
     tmp_path: Path,
 ) -> None:

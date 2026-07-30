@@ -672,6 +672,36 @@ def _path_entry_has_identity(
         return False
 
 
+def _remember_owned_file(
+    path: Path,
+    identities: dict[Path, tuple[int, int]],
+) -> None:
+    if not path.is_file() or path.is_symlink():
+        raise ReferenceMatchContractError(
+            "transaction staging artifact must be a regular file"
+        )
+    identities[path] = _path_entry_identity(path)
+
+
+def _cleanup_owned_files(
+    paths: Iterable[Path],
+    identities: Mapping[Path, tuple[int, int]],
+) -> None:
+    """Unlink only staging entries whose exact identity is transaction-owned."""
+
+    for path in paths:
+        identity = identities.get(path)
+        if (
+            identity is None
+            or not _path_entry_has_identity(path, identity)
+        ):
+            continue
+        try:
+            path.unlink()
+        except OSError:
+            pass
+
+
 def _owned_directory_is_current(owned: _OwnedDirectory) -> bool:
     try:
         return (
@@ -1161,6 +1191,7 @@ def _execute_file_render(
     ] = []
     staged_recipe: Path | None = None
     staged_report: Path | None = None
+    staged_identities: dict[Path, tuple[int, int]] = {}
     owned_directories: list[_OwnedDirectory] = []
     committed = False
     try:
@@ -1173,6 +1204,7 @@ def _execute_file_render(
             staged_recipe = _stage_path(recipe_destination, token)
             staged.append(staged_recipe)
             save_reference_look_recipe(recipe, staged_recipe)
+            _remember_owned_file(staged_recipe, staged_identities)
 
         for index, (source_path, output_path) in enumerate(
             zip(sources, outputs, strict=True)
@@ -1211,6 +1243,7 @@ def _execute_file_render(
                 stage,
                 output_bit_depth=output_bit_depth,
             )
+            _remember_owned_file(stage, staged_identities)
             output_capability = resolve_reference_file_output_capability(
                 working_space=rendered.image.working_space,
                 transfer_state=rendered.image.transfer_state,
@@ -1306,6 +1339,7 @@ def _execute_file_render(
                     "report payload factory must return an object"
                 )
             atomic_write_json(staged_report, payload)
+            _remember_owned_file(staged_report, staged_identities)
             report_file_sha256 = sha256_file(staged_report)
             commit_pairs.append((staged_report, report_destination))
         expected_stage_sha256 = {
@@ -1321,8 +1355,7 @@ def _execute_file_render(
         committed = True
         return prepared, recipe_file_sha256, report_file_sha256
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
         _cleanup_owned_directories(
             owned_directories,
             remove_directories=not committed,

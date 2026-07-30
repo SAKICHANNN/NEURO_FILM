@@ -32,7 +32,12 @@ from .external_delivery_authorization import (
 from .external_filmfx_verification import (
     ExternalFilmFxStagingVerificationV1,
 )
-from .files import _commit_staged_batch, _stage_path
+from .files import (
+    _cleanup_owned_files,
+    _commit_staged_batch,
+    _remember_owned_file,
+    _stage_path,
+)
 
 
 EXTERNAL_LOCAL_DELIVERY_SCHEMA_ID = (
@@ -232,6 +237,7 @@ def commit_external_local_delivery_v1(
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
+    staged_identities: dict[Path, tuple[int, int]] = {}
     prepared: list[ExternalLocalDeliveryOutputV1] = []
     try:
         for row, output in zip(
@@ -243,6 +249,7 @@ def commit_external_local_delivery_v1(
             stage = _stage_path(output, token)
             staged.append(stage)
             _copy_exact(Path(row.output_path), stage)
+            _remember_owned_file(stage, staged_identities)
             digest = sha256_file(stage)
             if digest != row.output_file_sha256:
                 raise ReferenceMatchContractError(
@@ -281,6 +288,7 @@ def commit_external_local_delivery_v1(
         staged_report = _stage_path(report, token)
         staged.append(staged_report)
         atomic_write_json(staged_report, delivery.to_dict())
+        _remember_owned_file(staged_report, staged_identities)
         report_digest = sha256_file(staged_report)
         pairs = tuple(
             (_stage_path(output, token), output) for output in outputs
@@ -291,8 +299,7 @@ def commit_external_local_delivery_v1(
             report_file_sha256=report_digest,
         )
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
 
 
 def validate_external_local_delivery_v1(
