@@ -15,7 +15,8 @@
     "maximum_side": 256,
     "raw": "WorkingImage generic LibRaw linear-sRGB then exact project sRGB encoding",
     "expert": "FiveK Expert C ProPhoto transfer and D50-to-D65 conversion from frozen freeze builder",
-    "pair_alignment": "reuse frozen freeze-builder Lanczos expert-to-RAW-visible-shape resize"
+    "pair_alignment": "reuse frozen freeze-builder Lanczos expert-to-RAW-visible-shape resize",
+    "post_resize_bounds": "clip only Lanczos overshoot to the legal encoded display interval [0,1] before fitting"
   },
   "neutral_target": {
     "luma_strength": 0.82,

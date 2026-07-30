@@ -341,11 +341,13 @@ def run_pilot(
         raw, _ = load_raw_default(
             root / row["raw_path"], int(config["decode"]["maximum_side"])
         )
+        raw = np.clip(raw, 0.0, 1.0)
         expert = load_expert_icc_srgb(
             root / row["expert_path"], int(config["decode"]["maximum_side"])
         )
         if expert.shape != raw.shape:
             expert = resize_to_shape(expert, raw.shape[:2])
+        expert = np.clip(expert, 0.0, 1.0)
         target = filtered_target(raw, expert, target_policy)
         parameters, success = _fit_parameters(raw, target, config)
         oracle = apply_neutral_base(raw, parameters)
