@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj2-fivek-strict-interior-lut-basis-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BJ2",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "b42dd9c4da81be73a31b75c7f4802e0f704c0f2e",
+  "question": "Can a strict-epsilon-interior adaptive explicit LUT preserve source-only prediction gains over a global LUT while proving zero post-operator scaling, zero out-of-cube pixels and zero new epsilon-boundary pixels?",
+  "parent": {
+    "decision": "configs/u5_r2bj1_fivek_cube_preserving_lut_basis_development_decision_v1.json",
+    "decision_sha256": "0abba19081b15ce30617f62412e5318aad3ff6903d39f5f55e5476ea576a767b",
+    "required_status": "closed_strict_boundary_and_fresh_tail_failed"
+  },
+  "development_populations": [
+    {"name": "ay0_camera_group_crossfit", "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json", "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01", "rows": 64},
+    {"name": "ay3_seen_fresh", "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json", "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b", "rows": 63},
+    {"name": "ay6_seen_confirmation", "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json", "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22", "rows": 64}
+  ],
+  "operator": {
+    "family": "strict_epsilon_interior_headroom_trilinear_residual_lut",
+    "grid_size": 4,
+    "boundary_epsilon": 0.00196078431372549,
+    "channel_headroom": "max(0,min(x_c-epsilon,1-epsilon-x_c))",
+    "headroom_safety_factor": 0.9999999999,
+    "node_coefficient_minimum": -1.0,
+    "node_coefficient_maximum": 1.0,
+    "proof": "trilinear coefficient remains in [-1,1]; multiplying it by a fixed sub-unit factor and symmetric strict-interior headroom cannot reach epsilon, while a source already in the boundary band has zero residual",
+    "fit_sample_stride": 8,
+    "identity_shrinkage": 0.01,
+    "first_difference_smoothness": 0.1,
+    "hard_output_clipping_allowed": false,
+    "post_operator_gamut_scaling_allowed": false,
+    "spatial_or_semantic_features_allowed": false
+  },
+  "basis_prediction": {
+    "basis": "training-only PCA of fitted coefficient LUT vectors",
+    "basis_rank": 8,
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "predictor": "StandardScaler plus Ridge",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner camera-group cross-validation on AY0 outer-development only",
+    "learned_final_rgb_allowed": false
+  },
+  "methods": ["identity", "global_lut", "adaptive_basis_lut", "oracle_fitted_lut"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.2,
+    "minimum_adaptive_mean_improvement_over_global_each_population": 0.03,
+    "minimum_adaptive_win_fraction_over_global_each_population": 0.55,
+    "maximum_adaptive_p95_ratio_to_global_each_population": 1.0,
+    "maximum_adaptive_worst_ratio_to_global_each_population": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global_each_population": 0.8,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_operator_out_of_cube_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the complete strict-interior operator, fit, basis and predictor; acquire one new disjoint official FiveK population for unchanged confirmation",
+    "oracle_fails": "close the strict-interior representation capacity",
+    "predictor_or_tail_fails": "close without tuning envelope, grid, rank, regularization, descriptor, alpha, target or AO6",
+    "cube_or_boundary_fails": "treat as proof or implementation failure before visual review"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only strict-interior adaptive explicit LUT evidence on already-seen digital-retouch pairs before fixed AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}

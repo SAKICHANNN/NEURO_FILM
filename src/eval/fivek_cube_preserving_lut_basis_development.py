@@ -156,10 +156,13 @@ def fit_cube_preserving_lut(
 
 
 def _prepare_luts(
-    population: Mapping[str, Any], operator: Mapping[str, Any]
+    population: Mapping[str, Any],
+    operator: Mapping[str, Any],
+    *,
+    fit_function: Any = fit_cube_preserving_lut,
 ) -> None:
     for row in population["rows"]:
-        row["fitted_lut"] = fit_cube_preserving_lut(
+        row["fitted_lut"] = fit_function(
             row["source"],
             row["target"],
             grid_size=int(operator["grid_size"]),
@@ -177,6 +180,7 @@ def _evaluate(
     *,
     renderer: Any,
     epsilon: float,
+    apply_function: Any = apply_cube_preserving_lut,
 ) -> dict[str, Any]:
     methods = (
         "identity",
@@ -201,7 +205,7 @@ def _evaluate(
         target_look, _ = renderer(row["target"])
         record = {"pair_id": row["pair_id"], "group": row["group"]}
         for method, lut in lut_map.items():
-            candidate = apply_cube_preserving_lut(row["source"], lut)
+            candidate = apply_function(row["source"], lut)
             look, _ = renderer(candidate)
             error = _rmse(candidate, row["target"])
             errors[method].append(error)
@@ -292,6 +296,33 @@ def run_development(
         raise FiveKCubeLUTError("BJ0 parent config drift")
     parent_config = json.loads(parent_config_path.read_text(encoding="utf-8"))
     bj0 = validate_bj0_contract(root, parent_config)
+    return run_validated_development(
+        root=root,
+        config=config,
+        config_path=config_path,
+        output_dir=output_dir,
+        software_commit=software_commit,
+        validated=validated,
+        bj0=bj0,
+        fit_function=fit_cube_preserving_lut,
+        apply_function=apply_cube_preserving_lut,
+    )
+
+
+def run_validated_development(
+    *,
+    root: Path,
+    config: Mapping[str, Any],
+    config_path: Path,
+    output_dir: Path,
+    software_commit: str,
+    validated: Mapping[str, Any],
+    bj0: Mapping[str, Any],
+    fit_function: Any,
+    apply_function: Any,
+) -> dict[str, Any]:
+    """Run a validated bounded-LUT representation through the fixed protocol."""
+
     curve = bj0["curve_validated"]
     ay0 = _load_ay0_population(
         root, curve["ay0_config"], curve["ay0_report"]
@@ -305,7 +336,11 @@ def run_development(
         population["name"] = item["name"]
         others.append(population)
     for population in [ay0, *others]:
-        _prepare_luts(population, config["operator"])
+        _prepare_luts(
+            population,
+            config["operator"],
+            fit_function=fit_function,
+        )
     predictions = _build_predictions(ay0, others, config)
     renderer = build_fixed_ao6_renderer(
         curve["safe_validated"]["fixed_config"],
@@ -320,6 +355,7 @@ def run_development(
             predictions[population["name"]],
             renderer=renderer,
             epsilon=epsilon,
+            apply_function=apply_function,
         )
         for population in [ay0, *others]
     }
@@ -394,5 +430,6 @@ __all__ = [
     "apply_cube_preserving_lut",
     "fit_cube_preserving_lut",
     "run_development",
+    "run_validated_development",
     "validate_contract",
 ]
