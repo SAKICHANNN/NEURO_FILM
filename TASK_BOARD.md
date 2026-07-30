@@ -427,3 +427,7 @@ cube-preserving residual basis; do not retune or confirm BJ0.
 BJ1 closed: cube membership is exact, but strict near-boundary safety and AY3
 P95 fail. Next legal leaf is one preregistered strict-epsilon-interior LUT
 basis, not a BJ1 parameter rescue.
+
+BJ2 closes the adaptive neutral-base LUT family: strict safety is solved, but
+AY3 fresh-tail generalization misses the fixed P95 gate by 0.3719%. Return to
+a distinct film-look or physical-image-formation algorithm leaf.

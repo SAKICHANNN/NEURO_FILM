@@ -997,3 +997,8 @@ BJ1 proves zero out-of-cube pixels and retains 11.95--14.99% adaptive mean
 gain, but produces 0.329--0.819% new epsilon-boundary pixels and misses AY3
 P95 by 0.4%. It closes without tuning or confirmation. One strict-interior
 explicit residual basis may test the remaining representation gap.
+
+BJ2 proves zero out-of-cube and zero new epsilon-boundary pixels without
+post-operator scaling, while retaining 8.87--15.60% adaptive mean gains. It
+still misses AY3 P95 by 0.3719%, so the complete BJ0--BJ2 adaptive
+neutral-base LUT family closes without confirmation acquisition.

@@ -8091,3 +8091,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.004049x` global. Automatic passage fails; no visual review or data opens.
 - One strict-epsilon-interior residual representation may test this isolated
   mathematical gap. BJ1 itself is closed without tuning.
+
+## 2026-07-31 - Close U5.R2BJ2 and the adaptive neutral-LUT family
+
+- Added a strict-interior headroom basis that provably leaves existing
+  boundary-band pixels unchanged and cannot create new cube or epsilon-boundary
+  pixels. Ten BJ0--BJ2 tests pass.
+- Two complete reports are byte-identical at `7f46c3cd...d5721`. Safety is
+  exact and adaptive mean gain is 8.87--15.60% across all three populations.
+- AY3 P95 is `1.003719x` global. The frozen `<=1.0` tail gate fails; the miss
+  is not rounded away and no visual review or confirmation data opens.
+- BJ0--BJ2 now provide positive bounded-parameter prediction evidence and a
+  reusable strict-safety construction, but the neutral-base adaptive LUT
+  product route closes. Continue a distinct film-look/physical algorithm leaf.

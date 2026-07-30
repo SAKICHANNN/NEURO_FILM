@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj2-fivek-strict-interior-lut-basis-development-v1",
+  "status": "closed_fresh_p95_tail_failed",
+  "config": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1.json",
+  "report": "outputs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1/run_a/report.json",
+  "report_sha256": "7f46c3cddce10c098343070496b32684c3c7d0be39453190537c97fa250d5721",
+  "stable_evidence_id": "98dc2a587f0c07142c9efc75f8f27dcb80263f7ffbae93180ea4ef2138051ffc",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "observed": {
+    "ay0_camera_group_crossfit": {"adaptive_mean_improvement_over_global": 0.120448, "adaptive_win_fraction": 0.75, "adaptive_p95_ratio": 0.900185, "maximum_new_boundary_fraction": 0.0, "maximum_out_of_cube_fraction": 0.0},
+    "ay3_seen_fresh": {"adaptive_mean_improvement_over_global": 0.088689, "adaptive_win_fraction": 0.587302, "adaptive_p95_ratio": 1.003719, "maximum_new_boundary_fraction": 0.0, "maximum_out_of_cube_fraction": 0.0},
+    "ay6_seen_confirmation": {"adaptive_mean_improvement_over_global": 0.155971, "adaptive_win_fraction": 0.609375, "adaptive_p95_ratio": 0.828468, "maximum_new_boundary_fraction": 0.0, "maximum_out_of_cube_fraction": 0.0}
+  },
+  "decision": "The strict-interior construction closes both identified safety gaps and retains substantial source-adaptive mean value, but AY3 P95 is 0.3719% worse than the global LUT. The frozen all-population tail gate fails and BJ2 closes without further LUT-envelope, basis, predictor or threshold iteration.",
+  "forbidden_rescue": [
+    "do not relax or round the AY3 P95 gate",
+    "do not tune headroom, safety factor, coefficient range, grid, rank, regularization, descriptor, alpha, target or AO6",
+    "do not acquire a new confirmation population or run visual review",
+    "do not treat the two passing populations as confirmation"
+  ],
+  "allowed_next": "leave the adaptive neutral-base LUT family closed and return to a distinct evidence-backed film-look or physical-image-formation algorithm leaf",
+  "claim_ceiling": "negative development decision for one strict-interior adaptive LUT with strong mean and safety evidence but failed fresh-tail generalization"
+}
