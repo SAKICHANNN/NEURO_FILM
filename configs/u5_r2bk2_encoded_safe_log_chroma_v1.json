@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u5_r2bk2_encoded_safe_log_chroma.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk2-encoded-safe-log-chroma-v1",
+  "node": "ULT > U5 > U5.R2BK2",
+  "status": "primitive_contract_frozen",
+  "question": "Can a stronger asymmetric log-chroma response keep a visibly material generic film-inspired direction while aligning its analytical safety margin with final encoded 16-bit quantization?",
+  "parent": {
+    "decision": "configs/u5_r2bk1_log_chroma_fresh_comparison_decision_v1.json",
+    "required_decision": "reject_fixed_bk0_log_chroma_v1",
+    "branch_rule": "BK1 population is development evidence only and may not be reused for successor confirmation"
+  },
+  "operator": {
+    "representation": "symmetric-power scene-linear luminance plus asymmetric nonlinear log-chroma response followed by one source-inclusive encoded-RGB residual scale",
+    "contrast": 1.18,
+    "red_green_gain": 1.22,
+    "blue_yellow_gain": 1.14,
+    "midtone_chroma_lift": 0.12,
+    "opponent_rotation": 0.09,
+    "hue_bend": 0.06,
+    "encoded_margin": 0.000015259021896696422,
+    "strength": 1.0
+  },
+  "primitive_gates": {
+    "identity_strength_zero_exact": true,
+    "neutral_axis_maximum_range": 0.000000000001,
+    "black_white_endpoints_exact": true,
+    "partition_output_exact": true,
+    "new_uint16_boundary_fraction_on_interior_synthetic_cube": 0.0,
+    "minimum_synthetic_median_delta_e76": 5.0,
+    "minimum_synthetic_style_gain_over_bk0_v1": 1.1
+  },
+  "forbidden": [
+    "change BK1 thresholds or reinterpret BK1 as a pass",
+    "use BK1 images as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "hard clipping",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "freeze another leakage-clean CC0 RAW population before pixel access and compare fixed BK2, AO6 and safe-rich without parameter changes",
+  "claim_ceiling": "generic fixed film-inspired explicit operator primitive only"
+}
