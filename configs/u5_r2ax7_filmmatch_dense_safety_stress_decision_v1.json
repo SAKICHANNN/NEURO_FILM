@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2ax7_filmmatch_dense_safety_stress_decision.v1",
+  "experiment_id": "u5.r2ax7-filmmatch-dense-safety-stress-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/dense_safety_ax7/report.json",
+  "report_sha256": "907d6aa100cb10ef884371a0ef0ac8cda1958761b06392de2a49115817d33728",
+  "stable_evidence_id": "add6d54f5d70948ba6d6c60a0847e1faea30c50443faebc6222baeebf0301692",
+  "automatic_gate_passed": true,
+  "autonomous_visual_review": {
+    "reviewed_outputs": ["hue_luma_source", "hue_luma_candidate"],
+    "confirmed_severe_artifact": false,
+    "continuous_gradient": true,
+    "visible_banding_or_colour_blocks": false
+  },
+  "decision": "pass_dense_safety_open_nested_group_confirmation",
+  "promotion_opened": false,
+  "claim_ceiling": "dense synthetic code-domain safety evidence for one fixed Look Approximation operator; no calibrated stock response, real-image OOD generalization or product promotion"
+}

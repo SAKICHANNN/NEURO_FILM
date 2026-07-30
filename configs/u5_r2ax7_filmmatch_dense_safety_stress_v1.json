@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2ax7_filmmatch_dense_safety_stress.v1",
+  "experiment_id": "u5.r2ax7-filmmatch-dense-safety-stress-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX7",
+  "parent": {
+    "decision": "configs/u5_r2ax6_filmmatch_domain_balanced_validation_decision_v1.json",
+    "decision_sha256": "556566cd0a68da1a56ee2733591bf94c42f773244ac5c726fdcc46e977c7fe14",
+    "operator_report": "outputs/external_controls/filmmatch_ektachrome_v1/domain_balanced_report.json",
+    "operator_report_sha256": "d4bb91ac967c871c1202a628d20810dbd974f28083d0cdc4c4c8ab8a396ac857",
+    "operator_stable_evidence_id": "44c4db74154f4053cb394054b8c17d5c78b6f6ed675c13d7dcb7c9849058ffd7"
+  },
+  "execution": {
+    "cube_grid_size": 65,
+    "sample_chunk": 8192,
+    "axis_anchors": [0.1, 0.5, 0.9],
+    "gradient_size": 1024,
+    "output": "RGB16 PNG carrying synthetic code-domain values"
+  },
+  "metrics": {
+    "luma_coefficients": [0.2126, 0.7152, 0.0722]
+  },
+  "automatic_gate": {
+    "minimum_jacobian_determinant": 0.0,
+    "maximum_new_interior_boundary_fraction": 0.0,
+    "maximum_ramp_code_jump": 128,
+    "minimum_neutral_luma_step": 0.0
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_hue_luma_source_and_candidate": true
+  },
+  "gates": {
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "dense synthetic code-domain numerical and autonomous visual safety evidence for one fixed Look Approximation operator; no calibrated stock response, real-image OOD generalization or product promotion"
+}
