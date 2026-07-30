@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p3o_response_bounded_fresh_confirmation_contract.v1",
+  "node": "U6.P3O",
+  "status": "fresh_confirmation_contract_frozen_before_operator_render",
+  "question": "Does the unchanged P3N response-bounded exposure residual remain deterministic, nontrivial and severe-clean on a disjoint rights-cleared RAW population, and does it provide repeatable visible physical-effect value over the no-spatial parent?",
+  "parents": {
+    "p3n_contract_path": "configs/u6_p3n_response_bounded_backing_return_v1.json",
+    "p3n_contract_sha256": "702d5e5df1392452db8b6570542f015a5769ce7d86fc5d8207a32730c1f69043",
+    "p3n_decision_path": "configs/u6_p3n_response_bounded_backing_return_decision_v1.json",
+    "p3n_decision_sha256": "ec350e2837ba2af38dcd4563f90ac8151ef05bffa0ae365b387afc3e44909ba1"
+  },
+  "population": {
+    "source": "raw.pixls.us exact CC0/Public Domain rows",
+    "preflight_decision_path": "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_decision_v1.json",
+    "preflight_decision_sha256": "7100c96c28c6b33d2c6b7f964625e25f4a6cbe13c68808d586f58da1a72b9bcd",
+    "required_preflight_decision": "pass_17_of_18_open_frozen_u5_r2ai1_confirmation",
+    "manifest_path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "visual_source_review_path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/visual_source_review.json",
+    "visual_source_review_sha256": "ee493ada0dff0e92ab32fba371b738600a26ad3a215285653fd26f93a4e2f73e",
+    "development_manifest_path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "development_manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "eligible_source_count": 17,
+    "camera_make_count": 9,
+    "excluded_ids": [
+      "fujifilm_s2pro"
+    ],
+    "maximum_long_edge": 768,
+    "require_zero_exact_raw_hash_overlap_with_development": true,
+    "selection_used_image_appearance": false
+  },
+  "candidate": {
+    "maximum_transmittance_delta": 0.009,
+    "shared_rgb_residual_scale": true,
+    "hard_clipping_allowed": false,
+    "per_image_parameter_selection_allowed": false,
+    "profile_fitting_allowed": false
+  },
+  "automatic_gates": {
+    "source_count_exact": 17,
+    "camera_make_count_exact": 9,
+    "maximum_exact_raw_hash_overlap_with_development": 0,
+    "bounded_maximum_abs_maximum": 0.009000000001,
+    "bounded_population_p95_abs_minimum": 0.0075,
+    "bounded_median_fraction_pixels_over_0p005_minimum": 0.3,
+    "bounded_median_shared_scale_minimum": 0.8,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_isolated_candidate_excursion_count": 0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_shared_direction_error": 2e-15,
+    "repeat_report_sha256_exact": true
+  },
+  "visual_protocol": {
+    "automatic_pass_required": true,
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s7000",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "direct_severe_review_columns": [
+      "no spatial",
+      "response-bounded P3N"
+    ],
+    "blind_value_round_seeds": [
+      193771,
+      604729,
+      881317
+    ],
+    "blind_value_question": "Which rendering provides the more useful and plausible restrained film-layer spatial response without artificial sharpening, colour fringe or other severe artifact?",
+    "ties_allowed": true,
+    "minimum_candidate_votes_per_round": 5,
+    "minimum_passing_rounds": 2,
+    "zero_confirmed_severe_artifact_required": true,
+    "autonomous_visual_evidence_only": true,
+    "population_preference_claim_allowed": false
+  },
+  "branch_rule": {
+    "automatic_fail": "close P3O without changing the cap, parents, source population or gates",
+    "severe_fail": "close photographic use and retain only the numerical primitive",
+    "value_fail": "retain P3N as a research primitive but close runtime and product integration",
+    "value_pass": "retain P3N as a physical-image-formation product challenger and open only a separately frozen integration ablation"
+  },
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "fresh CC0 RAW autonomous confirmation of one generic physical-inspired explicit residual; no population preference, measured film, stock, process, scanner, calibration, authenticity or product claim"
+}
