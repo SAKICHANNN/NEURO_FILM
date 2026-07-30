@@ -21,6 +21,13 @@
 > zero new clipping, but blind preference against AZ0 is only `5/9`, `4/9`,
 > `3/9`; 0/3 rounds passes. Close coordinate/strength rescue and continue with
 > a genuinely distinct operator or product-value mechanism.
+>
+> U5.R2BB0 then audits the public Flickr Analog + Digital group without image
+> access. Two byte-identical metadata runs cover the 136 records visible on
+> signed-out pages 1-2. Six weak adjacent film/digital candidates exist, but
+> none has derivative permission on both sides; all 77 reusable rows belong to
+> one digital-only uploader. Close this visible surface before pixels, fitting
+> or training and continue source discovery or a distinct bounded operator.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.

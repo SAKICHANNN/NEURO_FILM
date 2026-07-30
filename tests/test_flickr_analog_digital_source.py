@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -12,6 +13,8 @@ from src.eval.flickr_analog_digital_source import (
     parse_pool_page,
     summarize_audit,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _photo_html(
@@ -182,3 +185,22 @@ def test_parser_rejects_drift_and_unbounded_pages() -> None:
             "<html></html>",
             PoolRow(1, 0, "owner", "101", "title"),
         )
+
+
+def test_frozen_decision_preserves_rights_and_claim_boundary() -> None:
+    decision = json.loads(
+        (
+            ROOT
+            / "configs"
+            / "u5_r2bb0_flickr_analog_digital_source_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    result = decision["observed_result"]
+    assert decision["reports"]["repeat_byte_identical"] is True
+    assert result["visible_records"] == 136
+    assert result["explicit_adjacent_candidate_pairs"] == 6
+    assert result["derivative_rights_records"] == 77
+    assert result["rights_eligible_explicit_pairs"] == 0
+    assert decision["operator_fitting_allowed"] is False
+    assert decision["training_allowed"] is False
+    assert "not a complete 712-photo group inventory" in decision["claim_ceiling"]

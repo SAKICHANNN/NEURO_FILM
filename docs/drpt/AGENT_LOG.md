@@ -7834,3 +7834,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preferences are `5/9`, `4/9`, `3/9`, so 0/3 rounds passes versus two
   required. Close BA1 without floor, strength, threshold, round or routing
   rescue. Numerical strength and severe safety again do not prove preference.
+
+## 2026-07-28 - U5.R2BB0 closes the visible Flickr pair source before pixels
+
+- Added a bounded metadata-only auditor for signed-out pages 1-2 of Flickr's
+  Analog + Digital group and their 136 unique photo pages. No image payload was
+  requested.
+- Two live runs are byte-identical at SHA-256 `446dd1c4...e767`: seven owners,
+  six weak adjacent film/digital candidates, 77 CC BY-NC 2.0 rows and 59 All
+  Rights Reserved rows.
+- All 77 derivative-rights rows come from one uploader; 62 expose digital
+  camera metadata and zero expose film metadata. None of the six explicit
+  candidates is rights-eligible on both sides.
+- Close this signed-out surface for pixels, fitting and training. The claim is
+  limited to the visible 136-record metadata surface, not the full group or a
+  paired-dataset nonexistence result.

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bb0-flickr-analog-digital-source-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BB0",
+  "software_commit": "715497ddf1d4156bb15e273239b319e494b49cf1",
+  "source": {
+    "pool_url": "https://www.flickr.com/groups/lomoplusdigital/pool/",
+    "group_rule": "same subject submitted as one film and one digital photo",
+    "surface": "signed-out HTML metadata for pool pages 1-2 and their 136 unique photo pages",
+    "image_payloads_requested": false
+  },
+  "reports": {
+    "run_a": "outputs/u5_r2bb0_flickr_analog_digital_source_v1/report_a.json",
+    "run_b": "outputs/u5_r2bb0_flickr_analog_digital_source_v1/report_b.json",
+    "sha256": "446dd1c4193049b035e2524370f3a77742e4efa1fff93e2f7ea4255e93d9e767",
+    "repeat_byte_identical": true
+  },
+  "observed_result": {
+    "visible_records": 136,
+    "visible_owners": 7,
+    "license_counts": {
+      "all_rights_reserved": 59,
+      "cc_by_nc_2_0": 77
+    },
+    "derivative_rights_records": 77,
+    "derivative_rights_owners": 1,
+    "largest_rights_owner_share": 1.0,
+    "rights_rows_with_digital_camera_metadata": 62,
+    "rights_rows_with_film_metadata": 0,
+    "explicit_adjacent_candidate_pairs": 6,
+    "rights_eligible_explicit_pairs": 0
+  },
+  "decision": "close_current_visible_pool_no_rights_eligible_explicit_pair",
+  "interpretation": "The public group demonstrates that real same-subject film/digital examples exist, but the audited signed-out surface has no pair whose two sides both permit derivative research use. All rights-eligible rows come from one uploader and none carries film metadata. This source therefore cannot identify or fit a digital-to-film operator.",
+  "allowed_use": [
+    "retain source-level metadata evidence",
+    "retain the six candidate identities as non-downloadable discovery leads",
+    "re-audit only if the source later exposes additional pages or explicit reusable licences"
+  ],
+  "forbidden_use": [
+    "request image payloads from the audited pool",
+    "fit or train an operator",
+    "treat adjacent submissions as verified pixel-aligned pairs",
+    "treat All Rights Reserved examples as reusable research data",
+    "generalize the result beyond the signed-out 136-record surface"
+  ],
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "repeat-identical metadata-only source audit of the signed-out 136-record surface; not a complete 712-photo group inventory, pixel audit, paired dataset or operator result",
+  "next_leaf": "continue searching for a rights-cleared paired or controlled source with group/stock/process/scanner lineage; otherwise pursue a distinct bounded explicit operator using already authorized evidence"
+}
