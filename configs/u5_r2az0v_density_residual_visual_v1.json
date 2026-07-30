@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2az0v-density-residual-visual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AZ0V",
+  "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+  "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+  "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
+  "candidate": {
+    "candidate_id": "b0_plus_density_film_t15_c35",
+    "report": "outputs/u5_r2az0_density_residual_factorization_v1/run_a/report.json",
+    "report_sha256": "c007111a07716d9199b5955e7d1386112463f167c4e50d733f78288627553322"
+  },
+  "comparator": {
+    "candidate_id": "b0_plus_film_t15_c35",
+    "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224"
+  },
+  "blind": {
+    "seed": 2026073017,
+    "round_count": 3,
+    "labels": [
+      "A",
+      "B"
+    ],
+    "score_before_mapping_reveal": true,
+    "minimum_candidate_preferences_per_passing_round": 6,
+    "minimum_passing_rounds": 2,
+    "maximum_confirmed_severe_artifacts": 0
+  },
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "three-round autonomous blind same-population development comparison of fixed optical-density and linear-RGB factorizations; not population preference, stock response, calibration or product promotion"
+}
