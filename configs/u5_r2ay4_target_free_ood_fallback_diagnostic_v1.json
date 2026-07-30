@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay4-target-free-ood-fallback-diagnostic-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY4",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "9941ca34e6aa8e1ea6249ae38102e149c0b6807e",
+  "hypothesis": "target-free uncertainty derived only from the frozen AY0 training descriptors, group ensemble and bounded prediction can route unsafe fresh-tail cases to the global fallback while preserving a non-trivial fraction of the predictor's mean gain",
+  "failed_confirmation": {
+    "config": "configs/u5_r2ay3f_fivek_fresh_boundary_safe_confirmation_v1.json",
+    "config_sha256": "7f2d5007e517593ac448642494f2a508ee5e5b415217e793fbbdcd0b95359bba",
+    "report": "outputs/u5_r2ay3f_fivek_fresh_boundary_safe_confirmation_v1/run_a/report.json",
+    "report_sha256": "8373128d2dc226fa2812eff3c2842697b5c556a06add887f0210e1e6b2df539c",
+    "decision": "configs/u5_r2ay3f_fivek_fresh_boundary_safe_confirmation_decision_v1.json",
+    "decision_sha256": "0bcd64f352032f85aa0ebff71dc93bab5d2f421e712fe3898e79b8024006a6ea",
+    "required_status": "closed_tail_quality_gate_failed",
+    "use": "development failure diagnostic only; forbidden as later confirmation"
+  },
+  "development_model": {
+    "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+    "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+    "report": "outputs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1/run_a/report.json",
+    "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d",
+    "ridge_alpha": 100.0,
+    "change_allowed": false
+  },
+  "score_candidates": [
+    "standardized_centroid_l2",
+    "standardized_nearest_neighbor_l2",
+    "leave_one_training_group_parameter_disagreement_l2",
+    "prediction_to_global_normalized_l2",
+    "prediction_bound_proximity",
+    "safe_executor_limited_fraction"
+  ],
+  "routing": {
+    "group": "fresh camera_model",
+    "outer_evaluation": "leave-one-camera-model-out",
+    "score_and_threshold_selection": "inside each outer training partition only",
+    "threshold_quantiles": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "eligible_rule": "use ridge when uncertainty score is at or below the selected threshold, otherwise use global",
+    "selection_objective": "minimum training mean neutral RMSE among policies with training P95 no worse than global; ties prefer higher ridge coverage, then score name",
+    "target_or_oracle_features_allowed": false
+  },
+  "evaluation": {
+    "harm_label": "ridge neutral RMSE greater than global neutral RMSE",
+    "permutation_seed": 20260731,
+    "permutation_count": 10000,
+    "minimum_oracle_mean_improvement_over_global": 0.1,
+    "minimum_best_score_harm_auroc": 0.65,
+    "maximum_best_score_permutation_p": 0.05,
+    "minimum_crossfit_mean_improvement_over_global": 0.03,
+    "maximum_crossfit_p95_ratio_to_global": 1.0,
+    "maximum_crossfit_worst_ratio_to_global": 1.25,
+    "minimum_crossfit_ridge_active_fraction": 0.25,
+    "minimum_active_ridge_win_fraction": 0.6,
+    "minimum_camera_groups_with_active_ridge": 5,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the selected score and threshold on this development population, acquire another untouched official FiveK selection and confirm without changes",
+    "oracle_fails": "close target-free routing because the fixed two-expert bank lacks sufficient value",
+    "score_or_crossfit_fails": "close this uncertainty family and move to a different explicit operator or hard case-retrieval hypothesis",
+    "pass_without_new_data": "retain development evidence only; no product routing"
+  },
+  "training_allowed": false,
+  "new_operator_fitting_allowed": false,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "visual_review_allowed": false,
+  "claim_ceiling": "development-only target-free uncertainty and global-fallback identifiability for one bounded explicit digital-retouch predictor; not confirmation, film, stock, calibration, preference or product promotion"
+}
