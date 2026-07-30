@@ -1,0 +1,122 @@
+{
+  "schema": "neuro_film.u5_r2be0_filmmatch_registered_case_oracle.v1",
+  "experiment_id": "u5.r2be0-filmmatch-registered-case-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BE0",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "After fixed geometric registration of the fit-forbidden same-scene validation pair, does an exposure-regime or exact-EV explicit operator bank have evaluator-Oracle value beyond the FilmMatch global operator?",
+  "parents": {
+    "validation_decision": {
+      "path": "configs/u5_r2aw9_filmmatch_validation_scene_decision_v1.json",
+      "sha256": "5d118a5b0837b8ed8acb25e6b0550022a441e034fc00e59bb183b4b4fdd8313c",
+      "required_decision": "closed_without_promotion"
+    },
+    "fixed_baseline_blind_decision": {
+      "path": "configs/u5_r2ax17_filmmatch_fixed_baseline_blind_decision_v1.json",
+      "sha256": "60ce60587aef45e1065c31784f9db575dd0dd46f9e26a3f40d51a45dc13d7aec",
+      "required_decision": "close_filmmatch_cap070_global_challenger_on_blind_preference_failure"
+    },
+    "sample_config": {
+      "path": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+      "sha256": "1f5aa2e0d0c1a4a438642891db84dfcd3180fc236a5d061f5cb825d88eb12fbf"
+    }
+  },
+  "data": {
+    "root": "data/external_controls/filmmatch_ektachrome_v1",
+    "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+    "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+    "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+    "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+    "target_fit_allowed": false,
+    "target_operator_selection_allowed": false
+  },
+  "registration": {
+    "input": "uint16 RGB validation rasters converted to rounded uint8 grayscale",
+    "detector": "OpenCV SIFT",
+    "maximum_features": 8000,
+    "matcher": "L2 two-nearest-neighbour",
+    "ratio_threshold": 0.7,
+    "model": "source-to-target homography",
+    "ransac_reprojection_threshold_pixels": 3.0,
+    "mask_erosion_pixels": 15,
+    "target_code_minimum": 0.005,
+    "target_code_maximum": 0.995,
+    "maximum_target_luma_gradient_quantile": 0.75,
+    "minimum_good_matches": 500,
+    "minimum_inlier_fraction": 0.85,
+    "maximum_median_inlier_reprojection_error_pixels": 1.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 3.0,
+    "minimum_evaluation_pixel_fraction": 0.25
+  },
+  "operator_bank": {
+    "global": "fit all 5,412 reflective chart pairs",
+    "regimes": {
+      "negative": "EV < 0",
+      "zero": "EV = 0",
+      "positive": "EV > 0"
+    },
+    "exact_ev": [
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "candidate": "monotone_curves_positive_matrix",
+    "fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [
+        -8.0,
+        4.0
+      ],
+      "restart_count": 2,
+      "maximum_function_evaluations": 2000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "evaluation": {
+    "warp_interpolation": "OpenCV INTER_LINEAR",
+    "metric": "RGB RMSE in the author-prepared paired code domain over the frozen registered low-gradient mask",
+    "secondary": [
+      "median RGB Euclidean error",
+      "p95 RGB Euclidean error",
+      "operator-bank output diversity",
+      "new source-relative boundary fraction"
+    ],
+    "row_chunk": 128
+  },
+  "automatic_gates": {
+    "repeat_byte_identical": true,
+    "minimum_global_improvement_over_identity": 0.05,
+    "minimum_regime_oracle_improvement_over_global": 0.05,
+    "minimum_exact_ev_oracle_improvement_over_global": 0.1,
+    "minimum_best_case_improvement_over_second_best_case": 0.005,
+    "minimum_operator_bank_output_pairwise_rmse": 0.002,
+    "maximum_new_source_relative_boundary_fraction": 0.0
+  },
+  "branches": {
+    "registration_fail": "close before operator evaluation; retain AW9 visual-only boundary",
+    "oracle_fail": "close case routing on this source without retrieval or capacity rescue",
+    "oracle_pass": "freeze a separate target-blind content-normalized retrieval contract with global fallback; do not use target pixels for selection",
+    "retrieval_later_fails": "retain global operator or identity fallback and close routing"
+  },
+  "forbidden": [
+    "fit any operator, feature, threshold or selector to the validation target",
+    "select the deployed case using validation target error",
+    "change registration, mask, bank, fit or gate settings after formal execution",
+    "claim calibrated Ektachrome response, inferred physical exposure, stock mode or scanner independence",
+    "promote or visually shortlist a case merely because the evaluator Oracle passes"
+  ],
+  "claim_ceiling": "development-only evaluator-Oracle evidence for explicit case operators on one author-prepared paired code-domain session; not a target-blind selector, calibrated stock response, inferred exposure, scanner-independent operator or product promotion"
+}
