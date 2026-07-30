@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay1-fivek-neutral-base-fixed-ao6-ablation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "ae10f5fc73bed0a41e27526a196fb58494355b97",
+  "hypothesis": "camera-group-held-out bounded neutral-base prediction retains its advantage over the outer-train global control after both are passed through the same unchanged fixed AO6 look",
+  "neutral_base": {
+    "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+    "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+    "decision": "configs/u5_r2ay0_fivek_neutral_base_parameter_decision_v1.json",
+    "decision_sha256": "b24953e064de479d761c8c57659e6c3000046b429b6566ff55acdfd207b81b74",
+    "report": "outputs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1/run_a/report.json",
+    "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d",
+    "required_stable_evidence_id": "26353480f55cdd88c8b21f3d4200269693d0158013f7a679bd92bf8c80f4e3c4",
+    "required_automatic_pass": true
+  },
+  "fixed_look": {
+    "base_config": "configs/u5_r2ai0_dual_champion_global_composition_v1.json",
+    "base_config_sha256": "136593e7765e0fee06cce8263c52b5326899577f149eebcde60c6b5f1136247f",
+    "base_candidate_id": "density_then_anchor__density_s50",
+    "base_order": "density_then_anchor",
+    "base_density_strength": 0.5,
+    "ao6_config": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+    "ao6_config_sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b",
+    "ao6_candidate_id": "b0_plus_film_t15_c35",
+    "tone_strength": 0.15,
+    "chroma_strength": 0.35,
+    "operator_refit_allowed": false,
+    "strength_change_allowed": false,
+    "per_image_style_adjustment_allowed": false
+  },
+  "methods": [
+    "identity",
+    "global",
+    "ridge",
+    "oracle"
+  ],
+  "evaluation": {
+    "target": "the_same_fixed_AO6_look_applied_to_the_existing_filtered_Expert_C_neutral_target",
+    "primary_metric": "float_domain_rgb_rmse_to_fixed_look_target",
+    "style_metric": "median_delta_e76_between_each_method_neutral_base_and_its_fixed_look_output",
+    "bootstrap_seed": 20260730,
+    "bootstrap_resamples": 10000,
+    "minimum_ridge_mean_improvement_over_global": 0.05,
+    "minimum_ridge_win_fraction_over_global": 0.6,
+    "maximum_ridge_p95_rmse_ratio_to_global": 0.95,
+    "minimum_ridge_bootstrap_improvement_lower": 0.0,
+    "minimum_target_median_style_delta_e76": 8.0,
+    "minimum_ridge_to_target_median_style_ratio": 0.8,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain neutral-base-before-fixed-look architecture as development evidence and open only a fixed-comparator OOD or product-cost leaf",
+    "quality_gate_fails": "close learned neutral-base insertion before AO6 without model-capacity rescue",
+    "style_gate_fails": "close because canonicalization averages away the fixed look",
+    "boundary_gate_fails": "veto the composition regardless of quality gain"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "final_rgb_learning_allowed": false,
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "camera-model-group-held-out internal ablation of one bounded neutral photographic base predictor followed by one unchanged AO6 Look Approximation; Expert C remains a neutral digital retouch control, not film or stock truth, and AO6 remains development-only"
+}
