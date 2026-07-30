@@ -44,6 +44,7 @@
   "alignment_audit": {
     "audit_side": 256,
     "feature": "normalized Sobel gradient magnitude",
+    "reported_decimal_places": 6,
     "minimum_per_pair_gradient_correlation": 0.25,
     "minimum_median_gradient_correlation": 0.5,
     "maximum_absolute_phase_shift_pixels": 8.0

@@ -130,8 +130,13 @@ def center_crop_to_aspect(
 
 
 def _alignment(
-    source: np.ndarray, target: np.ndarray, audit_side: int
+    source: np.ndarray,
+    target: np.ndarray,
+    audit_side: int,
+    decimal_places: int,
 ) -> tuple[float, float]:
+    cv2.setNumThreads(1)
+    cv2.ocl.setUseOpenCL(False)
     def gradient(rgb: np.ndarray) -> np.ndarray:
         luma = (
             0.2126 * rgb[..., 0]
@@ -173,7 +178,10 @@ def _alignment(
     shift, _ = cv2.phaseCorrelate(
         first.astype(np.float32), second.astype(np.float32)
     )
-    return correlation, float(np.hypot(shift[0], shift[1]))
+    return (
+        round(correlation, decimal_places),
+        round(float(np.hypot(shift[0], shift[1])), decimal_places),
+    )
 
 
 def _dhash64(rgb: np.ndarray) -> str:
@@ -301,7 +309,10 @@ def run_audit(
         expert = resize_to_shape(expert, source.shape[:2])
         target = filtered_target(source, expert, target_policy)
         correlation, phase_shift = _alignment(
-            source, expert, int(alignment["audit_side"])
+            source,
+            expert,
+            int(alignment["audit_side"]),
+            int(alignment["reported_decimal_places"]),
         )
         if (
             correlation
