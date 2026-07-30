@@ -655,6 +655,23 @@ def _file_identity(path: Path) -> tuple[int, int]:
     return int(value.st_dev), int(value.st_ino)
 
 
+def _path_entry_identity(path: Path) -> tuple[int, int]:
+    """Return identity for the directory entry itself, without following links."""
+
+    value = path.lstat()
+    return int(value.st_dev), int(value.st_ino)
+
+
+def _path_entry_has_identity(
+    path: Path,
+    identity: tuple[int, int],
+) -> bool:
+    try:
+        return _path_entry_identity(path) == identity
+    except OSError:
+        return False
+
+
 def _owned_directory_is_current(owned: _OwnedDirectory) -> bool:
     try:
         return (
@@ -762,11 +779,21 @@ def _commit_staged_batch_unlocked(
         return value
 
     committed: list[
-        tuple[Path, Path | None, tuple[int, int] | None, str | None]
+        tuple[
+            Path,
+            Path | None,
+            tuple[int, int],
+            tuple[int, int] | None,
+            str | None,
+        ]
     ] = []
     try:
         for stage, destination in pairs:
-            published_identity: tuple[int, int] | None = None
+            if not stage.is_file() or stage.is_symlink():
+                raise ReferenceMatchContractError(
+                    "batch stage must be a regular file"
+                )
+            published_identity = _path_entry_identity(stage)
             published_sha256: str | None = None
             if expected_stage_sha256 is not None:
                 expected_stage = checked_hash(
@@ -804,47 +831,82 @@ def _commit_staged_batch_unlocked(
                             "destination changed before batch replacement"
                         )
             backup: Path | None = None
+            backup_identity: tuple[int, int] | None = None
             if replace_existing and destination.exists():
+                if destination.is_symlink():
+                    raise ReferenceMatchContractError(
+                        "batch destination must not be a symbolic link"
+                    )
+                original_identity = _path_entry_identity(destination)
                 backup = _backup_path(destination, token)
                 _replace(destination, backup)
                 cleanup.append(backup)
+                backup_identity = _path_entry_identity(backup)
+                if backup_identity != original_identity:
+                    cleanup.remove(backup)
+                    raise ReferenceMatchContractError(
+                        "destination changed while creating rollback backup"
+                    )
             try:
                 if replace_existing:
                     _replace(stage, destination)
                 else:
-                    published_identity = _file_identity(stage)
                     _move_noreplace(stage, destination)
             except Exception:
-                if backup is not None and backup.exists():
-                    _replace(backup, destination)
+                if backup is not None:
+                    if (
+                        backup_identity is None
+                        or not _path_entry_has_identity(
+                            backup,
+                            backup_identity,
+                        )
+                        or os.path.lexists(destination)
+                    ):
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        raise ReferenceMatchContractError(
+                            "batch publish failed and rollback backup "
+                            "could not be restored safely"
+                        ) from None
+                    try:
+                        _move_noreplace(backup, destination)
+                    except OSError as exc:
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        raise ReferenceMatchContractError(
+                            "batch publish failed and rollback backup "
+                            "could not be restored safely"
+                        ) from exc
                     cleanup.remove(backup)
                 raise
-            if (
-                not replace_existing
-                and (
-                    not destination.is_file()
-                    or destination.is_symlink()
-                    or _file_identity(destination)
-                    != published_identity
-                    or (
-                        published_sha256 is not None
-                        and sha256_file(destination)
-                        != published_sha256
-                    )
-                )
-            ):
-                raise ReferenceMatchContractError(
-                    "create-only destination changed during publication"
-                )
             committed.append(
                 (
                     destination,
                     backup,
                     published_identity,
+                    backup_identity,
                     published_sha256,
                 )
             )
             cleanup.remove(stage)
+            if (
+                not destination.is_file()
+                or destination.is_symlink()
+                or not _path_entry_has_identity(
+                    destination,
+                    published_identity,
+                )
+            ):
+                raise ReferenceMatchContractError(
+                    "destination changed during publication"
+                )
+            if (
+                published_sha256 is not None
+                and sha256_file(destination) != published_sha256
+            ):
+                raise ReferenceMatchContractError(
+                    "committed destination bytes differ from staged hash"
+                )
         if expected_stage_sha256 is not None and replace_existing:
             for (
                 (stage, destination),
@@ -852,6 +914,7 @@ def _commit_staged_batch_unlocked(
                     committed_destination,
                     _backup,
                     published_identity,
+                    _backup_identity,
                     _published_sha256,
                 ),
             ) in zip(pairs, committed, strict=True):
@@ -868,15 +931,14 @@ def _commit_staged_batch_unlocked(
                         "committed destination bytes differ from staged hash"
                     )
                 if (
-                    published_identity is not None
-                    and (
-                        destination.is_symlink()
-                        or _file_identity(destination)
-                        != published_identity
+                    destination.is_symlink()
+                    or not _path_entry_has_identity(
+                        destination,
+                        published_identity,
                     )
                 ):
                     raise ReferenceMatchContractError(
-                        "committed create-only destination identity changed"
+                        "committed destination identity changed"
                     )
     except Exception:
         if not replace_existing:
@@ -890,18 +952,42 @@ def _commit_staged_batch_unlocked(
         for (
             destination,
             backup,
-            _published_identity,
+            published_identity,
+            backup_identity,
             _published_sha256,
         ) in reversed(committed):
             try:
-                destination.unlink(missing_ok=True)
-                if (
-                    backup is not None
-                    and backup.exists()
-                ):
-                    _replace(backup, destination)
+                if os.path.lexists(destination):
+                    if not _path_entry_has_identity(
+                        destination,
+                        published_identity,
+                    ):
+                        if backup is not None and backup in cleanup:
+                            cleanup.remove(backup)
+                        rollback_errors.append(
+                            f"{destination}: published destination was replaced"
+                        )
+                        continue
+                    destination.unlink()
+                if backup is not None:
+                    if (
+                        backup_identity is None
+                        or not _path_entry_has_identity(
+                            backup,
+                            backup_identity,
+                        )
+                    ):
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        rollback_errors.append(
+                            f"{destination}: rollback backup was replaced"
+                        )
+                        continue
+                    _move_noreplace(backup, destination)
                     cleanup.remove(backup)
             except Exception as exc:  # pragma: no cover - catastrophic filesystem failure.
+                if backup is not None and backup in cleanup:
+                    cleanup.remove(backup)
                 rollback_errors.append(f"{destination}: {exc}")
         if rollback_errors:
             raise ReferenceMatchContractError(
@@ -909,15 +995,25 @@ def _commit_staged_batch_unlocked(
                 + "; ".join(rollback_errors)
             )
         raise
-    for _destination, backup, _identity, _sha256 in committed:
+    for (
+        _destination,
+        backup,
+        _published_identity,
+        backup_identity,
+        _sha256,
+    ) in committed:
         if backup is None:
             continue
-        for _attempt in range(3):
-            try:
-                backup.unlink(missing_ok=True)
-                break
-            except OSError:
-                continue
+        if (
+            backup_identity is not None
+            and _path_entry_has_identity(backup, backup_identity)
+        ):
+            for _attempt in range(3):
+                try:
+                    backup.unlink(missing_ok=True)
+                    break
+                except OSError:
+                    continue
         if backup in cleanup:
             # Do not let the caller's finally block reclassify an already
             # committed transaction. A persistent backup is recoverable
