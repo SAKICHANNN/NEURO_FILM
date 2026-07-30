@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3-boundary-safe-neutral-base-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY3",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "07104a9334672ac1278054677a915d50e06e26ce",
+  "hypothesis": "a per-pixel shared analytical scale along the already predicted five-parameter RGB residual can eliminate new near-boundary pixels without averaging away the predictor's untouched-content quality or the unchanged AO6 style",
+  "development_evidence": {
+    "ay2_config": "configs/u5_r2ay2_fivek_unseen_content_confirmation_v1.json",
+    "ay2_config_sha256": "546bf2cc4582781982a5f980494d34e7a94f5b67cb3a11949d37d5078d44a30b",
+    "ay2_report": "outputs/u5_r2ay2_fivek_unseen_content_confirmation_v1/run_a/report.json",
+    "ay2_report_sha256": "b63dc5c422432708605d4109ef550a531bc475b57be68d55755db35355e3e678",
+    "ay2_source_manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
+    "ay2_source_manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "rows": 64,
+    "status": "seen development population after AY2 closure; forbidden as AY3 confirmation"
+  },
+  "neutral_operator": {
+    "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+    "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+    "candidate": "existing endpoint-exact five-parameter sigmoid-WB-saturation transform",
+    "safe_executor": "source plus one common per-pixel scale times candidate-minus-source",
+    "boundary_epsilon": 0.00196078431372549,
+    "interior_lower": "nextafter(boundary_epsilon, 1)",
+    "interior_upper": "nextafter(1-boundary_epsilon, 0)",
+    "scale_rule": "minimum positive channel-wise distance-to-interior-bound divided by signed residual magnitude, clamped only to [0,1]",
+    "hard_output_clipping_allowed": false,
+    "channel_independent_residual_scaling_allowed": false,
+    "parameter_feature_alpha_or_capacity_change_allowed": false
+  },
+  "fixed_look": {
+    "base_config": "configs/u5_r2ai0_dual_champion_global_composition_v1.json",
+    "base_config_sha256": "136593e7765e0fee06cce8263c52b5326899577f149eebcde60c6b5f1136247f",
+    "ao6_config": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+    "ao6_config_sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b",
+    "base_candidate_id": "density_then_anchor__density_s50",
+    "base_order": "density_then_anchor",
+    "base_density_strength": 0.5,
+    "ao6_candidate_id": "b0_plus_film_t15_c35",
+    "tone_strength": 0.15,
+    "chroma_strength": 0.35,
+    "change_allowed": false
+  },
+  "methods": [
+    "global",
+    "ridge",
+    "oracle"
+  ],
+  "evaluation": {
+    "minimum_safe_ridge_mean_improvement_over_safe_global": 0.1,
+    "minimum_safe_ridge_win_fraction_over_safe_global": 0.6,
+    "maximum_safe_ridge_p95_ratio_to_safe_global": 0.85,
+    "maximum_safe_ridge_neutral_rmse_ratio_to_original_ridge": 1.01,
+    "maximum_safe_ridge_look_rmse_ratio_to_original_ridge": 1.01,
+    "minimum_safe_ridge_style_ratio_to_original_ridge": 0.98,
+    "maximum_safe_ridge_median_limited_fraction": 0.02,
+    "maximum_safe_ridge_p95_limited_fraction": 0.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain as AY3 development candidate only and run the exact frozen operator on the separately acquired fresh 64-pair confirmation",
+    "quality_or_style_gate_fails": "close this analytical executor without scale smoothing, epsilon, parameter or AO6 rescue",
+    "boundary_gate_fails": "close as an implementation or proof failure",
+    "fresh_data_unavailable": "retain development mechanism only; do not promote"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "seen-population development evidence for an analytical boundary-safe executor around one bounded explicit neutral photographic parameter predictor before unchanged AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}
