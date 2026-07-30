@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ba1v-hue-value-residual-adjudication-v1",
+  "visual_contract": {
+    "path": "configs/u5_r2ba1v_hue_value_residual_visual_v1.json",
+    "sha256": "def29bf4ba10dcff911c96f702e5a3b98eb62f5c2196b6924660013660b14231"
+  },
+  "observations": {
+    "path": "configs/u5_r2ba1v_hue_value_residual_visual_observations_v1.json",
+    "sha256": "e59f332b954f4bd7b4adc8101e67fc788ef3fd0bc3fea75b238807e77425b465"
+  },
+  "build_report": {
+    "path": "outputs/u5_r2ba1v_hue_value_residual_visual_v1/build_report.json",
+    "sha256": "5b34740b23fd32e8453db86cbfb2dfe7264280de53c885ba50a230c3f24da3cc"
+  },
+  "private_mapping": {
+    "path": "outputs/u5_r2ba1v_hue_value_residual_visual_v1/private_mapping.json",
+    "sha256": "0b4c6ddd61e341916a0e24397daafa64ba2c5c216ce0dc9210208988dbbaa097"
+  },
+  "retuning_allowed": false,
+  "additional_rounds_allowed": false
+}
