@@ -17,13 +17,13 @@ from src.eval.b0_real_film_residual_fresh_confirmation import (
 )
 from src.eval.fresh_native_standard_confirmation import (
     boundary_metrics,
-    load_confirmation_working_image,
 )
 from src.film_physics.display_look import (
     build_source_context_display_look_row_stages,
 )
 from src.eval.global_frontier import sha256_file
 from src.preprocess import save_srgb16_png
+from src.preprocess.raw_decode import load_raw_working_image
 from src.roll2film.density_residual_guard import (
     apply_density_residual_guard,
 )
@@ -394,7 +394,7 @@ def run_render(
             or source["raw_sha256"] != candidate["sha256"]
         ):
             raise FixedBankOracleError("live RAW identity drift")
-        working = load_confirmation_working_image(raw_path)
+        working = load_raw_working_image(raw_path)
         if (
             working.transfer_state != "scene_linear"
             or working.working_space not in {"linear_srgb", "linear_srgb_d65"}

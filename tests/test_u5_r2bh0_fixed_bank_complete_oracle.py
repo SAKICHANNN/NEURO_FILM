@@ -30,6 +30,24 @@ def test_bh0_validator_recovers_exact_population_and_operators() -> None:
     assert validated["ao6_operator"] is not None
     assert validated["ap3_operator"] is not None
     assert validated["az0_candidate"]["neutral_strength"] == 0.15
+    candidates = validated["source_contract"]["candidates"]
+    assert all(
+        Path(row["path"]).suffix.casefold()
+        in {
+            ".arw",
+            ".rw2",
+            ".cr3",
+            ".nef",
+            ".dng",
+            ".ori",
+            ".mrw",
+            ".iiq",
+            ".gpr",
+            ".raf",
+            ".srw",
+        }
+        for row in candidates
+    )
 
 
 def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit() -> None:
