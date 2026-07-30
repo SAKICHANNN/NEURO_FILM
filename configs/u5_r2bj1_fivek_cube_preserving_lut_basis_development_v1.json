@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj1-fivek-cube-preserving-lut-basis-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BJ1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "e091bb94e8eb44277573c61606f3083c148ce90b",
+  "question": "Can an intrinsically cube-preserving source-adaptive explicit LUT basis retain BJ0's cross-population prediction gains without any analytical limiting, clipping or new RGB boundary pixels?",
+  "parent": {
+    "decision": "configs/u5_r2bj0_fivek_adaptive_lut_basis_development_decision_v1.json",
+    "decision_sha256": "26d0fbf06344d588f81730651f238e0eb94e8617a80b34e65120e557095eb0ec",
+    "required_status": "closed_safety_limited_tail_failed"
+  },
+  "development_populations": [
+    {
+      "name": "ay0_camera_group_crossfit",
+      "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json",
+      "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01",
+      "rows": 64,
+      "evaluation": "five-fold camera-group crossfit"
+    },
+    {
+      "name": "ay3_seen_fresh",
+      "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+      "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+      "rows": 63,
+      "evaluation": "source-only prediction from full AY0 development fit"
+    },
+    {
+      "name": "ay6_seen_confirmation",
+      "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json",
+      "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22",
+      "rows": 64,
+      "evaluation": "source-only prediction from full AY0 development fit; development-only"
+    }
+  ],
+  "operator": {
+    "family": "channel_enveloped_cube_preserving_trilinear_residual_lut",
+    "grid_size": 4,
+    "channel_envelope": "4*x_c*(1-x_c)",
+    "node_coefficient_minimum": -0.25,
+    "node_coefficient_maximum": 0.25,
+    "proof": "trilinear interpolation preserves the node interval; abs(4*x*(1-x)*0.25) <= min(x,1-x), hence every output channel remains in [0,1]",
+    "fit_sample_stride": 8,
+    "identity_shrinkage": 0.01,
+    "first_difference_smoothness": 0.1,
+    "hard_output_clipping_allowed": false,
+    "post_operator_gamut_scaling_allowed": false,
+    "spatial_or_semantic_features_allowed": false
+  },
+  "basis_prediction": {
+    "basis": "training-only PCA of fitted coefficient LUT vectors",
+    "basis_rank": 8,
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "predictor": "StandardScaler plus Ridge",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner camera-group cross-validation on AY0 outer-development only",
+    "learned_final_rgb_allowed": false
+  },
+  "methods": ["identity", "global_lut", "adaptive_basis_lut", "oracle_fitted_lut"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.2,
+    "minimum_adaptive_mean_improvement_over_global_each_population": 0.03,
+    "minimum_adaptive_win_fraction_over_global_each_population": 0.55,
+    "maximum_adaptive_p95_ratio_to_global_each_population": 1.0,
+    "maximum_adaptive_worst_ratio_to_global_each_population": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global_each_population": 0.8,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_operator_out_of_cube_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the complete operator proof, fit, basis and predictor, then acquire one new disjoint official FiveK population for unchanged confirmation",
+    "oracle_fails": "close this representation capacity",
+    "predictor_or_tail_fails": "close without tuning grid, rank, regularization, descriptor, alpha, target or AO6",
+    "cube_or_boundary_fails": "treat as implementation/proof failure and close before visual review",
+    "pass_without_new_data": "development evidence only"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only intrinsically cube-preserving adaptive explicit LUT evidence on already-seen digital-retouch pairs before fixed AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}
