@@ -158,6 +158,7 @@ def _alignment(
 ) -> tuple[float, float]:
     cv2.setNumThreads(1)
     cv2.ocl.setUseOpenCL(False)
+    cv2.setUseOptimized(False)
     def gradient(rgb: np.ndarray) -> np.ndarray:
         luma = (
             0.2126 * rgb[..., 0]

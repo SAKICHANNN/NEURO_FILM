@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from src.eval.fivek_fresh_normalization_support import (
+    _alignment,
     center_crop_to_aspect,
     validate_contract,
 )
@@ -37,3 +38,13 @@ def test_center_crop_portrait_to_shorter_portrait() -> None:
     cropped = center_crop_to_aspect(source, 150, 100)
     assert cropped.shape == (150, 100, 3)
     assert cropped.flags.c_contiguous
+
+
+def test_alignment_repeat_is_exact_with_optimized_kernels_disabled() -> None:
+    rng = np.random.default_rng(20260730)
+    source = rng.random((96, 128, 3), dtype=np.float32)
+    target = np.roll(source, shift=(1, -2), axis=(0, 1))
+    first = _alignment(source, target, 96, 9)
+    assert all(
+        _alignment(source, target, 96, 9) == first for _ in range(8)
+    )
