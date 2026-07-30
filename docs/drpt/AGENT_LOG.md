@@ -8052,3 +8052,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision:** zero eligible sources. No image/data payload was requested and
   no author was contacted. Fitting/training remain closed; continue a distinct
   explicit algorithm or genuinely new source lead.
+
+## 2026-07-31 - Freeze U5.R2BJ0 adaptive explicit LUT basis
+
+- Opened a distinct algorithm leaf after BI0 closed public paired-source
+  acquisition and AY7 had already closed the monotone-curve product route.
+- Froze a `4^3` smooth identity-shrunk residual LUT, eight training-only PCA
+  coefficients, source-only ridge prediction, analytical gamut safety and
+  unchanged AO6 downstream rendering.
+- AY0/AY3/AY6 are development evidence only. Grid, basis rank,
+  regularization, descriptor, alphas and gates may not be tuned on outcomes;
+  only a complete pass can open one new disjoint FiveK confirmation download.
+- Three primitive/contract tests pass. Implementation and the unchanged
+  development run are the next ready work.

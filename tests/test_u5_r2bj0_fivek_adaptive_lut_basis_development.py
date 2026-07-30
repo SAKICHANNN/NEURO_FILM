@@ -1,0 +1,66 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import numpy as np
+import pytest
+
+from src.eval.fivek_adaptive_lut_basis_development import (
+    FiveKAdaptiveLUTError,
+    apply_residual_lut,
+    fit_residual_lut,
+    validate_contract,
+)
+
+
+ROOT = Path(__file__).resolve().parents[1]
+CONFIG = (
+    ROOT / "configs/u5_r2bj0_fivek_adaptive_lut_basis_development_v1.json"
+)
+
+
+def test_contract_is_fail_closed_and_parent_bound() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    validated = validate_contract(ROOT, config)
+    assert [item["rows"] for item in validated["populations"]] == [64, 63, 64]
+
+    drifted = json.loads(CONFIG.read_text(encoding="utf-8"))
+    drifted["operator"]["grid_size"] = 5
+    with pytest.raises(FiveKAdaptiveLUTError):
+        validate_contract(ROOT, drifted)
+
+
+def test_identity_residual_lut_is_exact() -> None:
+    rng = np.random.default_rng(20260731)
+    source = rng.random((17, 19, 3), dtype=np.float64)
+    residual = np.zeros((4, 4, 4, 3), dtype=np.float64)
+    assert np.array_equal(apply_residual_lut(source, residual), source)
+
+
+def test_fitted_lut_improves_known_smooth_transform() -> None:
+    rng = np.random.default_rng(71)
+    source = rng.random((96, 80, 3), dtype=np.float64)
+    target = source + 0.04 * np.stack(
+        (
+            source[..., 1] * (1.0 - source[..., 0]),
+            source[..., 2] * (1.0 - source[..., 1]),
+            source[..., 0] * (1.0 - source[..., 2]),
+        ),
+        axis=-1,
+    )
+    fitted = fit_residual_lut(
+        source,
+        target,
+        grid_size=4,
+        sample_stride=2,
+        identity_shrinkage=0.01,
+        smoothness=0.1,
+        maximum_absolute_residual=0.25,
+    )
+    before = float(np.sqrt(np.mean((source - target) ** 2)))
+    after = float(
+        np.sqrt(np.mean((apply_residual_lut(source, fitted) - target) ** 2))
+    )
+    assert after < before * 0.35
+    assert np.max(np.abs(fitted)) <= 0.25

@@ -414,3 +414,8 @@ the full rows and 4.17% in fixed five-fold cross-fit for only 2.33%/3.72%
 pooled regression, but minimum Jacobian determinant is `.001516 < .01`.
 The frozen structural gate closes the family without strength, weighting,
 capacity or photograph rescue; AO6 remains the colour development champion.
+
+Current algorithm leaf: `U5.R2BJ0` adaptive explicit LUT-basis development.
+Contract and primitive tests are frozen; implement and run the unchanged
+three-population audit next. No new data is allowed unless every development
+gate passes.

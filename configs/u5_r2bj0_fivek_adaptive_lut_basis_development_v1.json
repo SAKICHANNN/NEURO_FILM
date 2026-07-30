@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj0-fivek-adaptive-lut-basis-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BJ0",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "d4186d1eb3fb5937c2a55e6c1f367991972cad1b",
+  "question": "Can a source-only predictor of a low-rank bank of bounded explicit residual LUTs improve both mean and tail neutral-target error over one global LUT on three already-seen FiveK development populations, while preserving analytical gamut safety before unchanged AO6?",
+  "parents": {
+    "confirmed_curve": {
+      "decision": "configs/u5_r2ay6f_monotone_channel_curve_confirmation_decision_v1.json",
+      "decision_sha256": "38cf67c27d0a654562a1eed08b22c8347d6b5fdf1bf1d99bf766cfd85377034f",
+      "required_status": "confirmed_digital_neutral_base_product_value_required"
+    },
+    "closed_curve_product_value": {
+      "decision": "configs/u5_r2ay7_monotone_curve_blind_product_value_decision_v1.json",
+      "decision_sha256": "8d05243400af4812462fc93e485d759e59b6e1800f8710d61dd8af9fd0e3c63b",
+      "required_status": "closed_blind_product_value_failed"
+    }
+  },
+  "development_populations": [
+    {
+      "name": "ay0_camera_group_crossfit",
+      "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json",
+      "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01",
+      "rows": 64,
+      "evaluation": "five-fold camera-group crossfit"
+    },
+    {
+      "name": "ay3_seen_fresh",
+      "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+      "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+      "rows": 63,
+      "evaluation": "source-only prediction from the full AY0 development fit"
+    },
+    {
+      "name": "ay6_seen_confirmation",
+      "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json",
+      "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22",
+      "rows": 64,
+      "evaluation": "source-only prediction from the full AY0 development fit; explicitly development-only because AY6 outcomes are already seen"
+    }
+  ],
+  "operator": {
+    "family": "identity_plus_smooth_trilinear_residual_lut",
+    "grid_size": 4,
+    "node_order": "r-major then g then b, RGB residual at each node",
+    "fit_sample_stride": 8,
+    "identity_shrinkage": 0.01,
+    "first_difference_smoothness": 0.1,
+    "maximum_absolute_node_residual": 0.25,
+    "execution": "trilinear interpolation followed by one analytical shared RGB residual scale per pixel",
+    "hard_output_clipping_allowed": false,
+    "spatial_or_semantic_features_allowed": false
+  },
+  "basis_prediction": {
+    "basis": "training-only PCA of fitted residual LUT vectors",
+    "basis_rank": 8,
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "predictor": "StandardScaler plus Ridge",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner camera-group cross-validation on AY0 outer-development only",
+    "test_target_access_allowed": false,
+    "learned_final_rgb_allowed": false
+  },
+  "methods": [
+    "identity",
+    "global_lut",
+    "adaptive_basis_lut",
+    "oracle_fitted_lut"
+  ],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.2,
+    "minimum_adaptive_mean_improvement_over_global_each_population": 0.03,
+    "minimum_adaptive_win_fraction_over_global_each_population": 0.55,
+    "maximum_adaptive_p95_ratio_to_global_each_population": 1.0,
+    "maximum_adaptive_worst_ratio_to_global_each_population": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global_each_population": 0.8,
+    "maximum_adaptive_median_limited_fraction_each_population": 0.02,
+    "maximum_adaptive_p95_limited_fraction_each_population": 0.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the complete LUT fit, basis, predictor and safety executor; then acquire one new disjoint official FiveK population for unchanged confirmation before any blind product-value test",
+    "oracle_fails": "close this LUT representation capacity without predictor rescue",
+    "predictor_or_tail_fails": "close this fixed basis/predictor pair without tuning grid, rank, regularization, descriptor, alpha, target or AO6 on outcomes",
+    "boundary_fails": "close as implementation or safety failure before visual review",
+    "pass_without_new_data": "development evidence only"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only image-adaptive explicit LUT-basis evidence on already-seen digital-retouch pairs before fixed AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}

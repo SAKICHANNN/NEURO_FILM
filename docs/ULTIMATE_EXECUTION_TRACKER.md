@@ -979,3 +979,10 @@ Current approval state: research and local documentation are authorized; all ite
 ---
 
 *Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11; Roll2Film subtree opened: 2026-07-12 and re-gated after external audit on 2026-07-15. U0.3 remains a fail-closed 4,210-row legacy audit while current Windows `film_domain` contains 4,212 JPEGs of not-yet-propagated eligibility. FilmSet is local and ready for manifest/lockbox freeze; only BlueNeg acquisition remains download-gated. Integration owner: repository owner or explicitly assigned Codex root agent.*
+
+Current algorithm leaf: U5.R2BJ0 freezes a distinct `4^3`
+identity-shrunk smooth residual-LUT representation and a source-only predictor
+of eight training-only PCA coefficients. Final pixels remain deterministic
+trilinear LUT execution plus analytical gamut-safe residual scaling. AY0,
+AY3 and AY6 are development-only; only a complete pass can open one new
+disjoint official FiveK confirmation population.
