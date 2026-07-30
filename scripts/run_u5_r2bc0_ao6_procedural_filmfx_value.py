@@ -43,25 +43,35 @@ def main() -> int:
         config_sha256=sha256_file(CONFIG),
     )
     report["automatic"] = evaluate_report(config, report)
-    blind = build_blind_sheets(
-        root=ROOT,
-        config=config,
-        report=report,
-        output_dir=output_dir / "blind",
-    )
-    report["blind"] = {
-        "sample_ids": blind["sample_ids"],
-        "round_count": blind["round_count"],
-        "sheet_paths": blind["sheet_paths"],
-        "mapping_commitment_sha256": blind["mapping_commitment_sha256"],
-    }
+    blind = None
+    if report["automatic"]["automatic_pass"]:
+        blind = build_blind_sheets(
+            root=ROOT,
+            config=config,
+            report=report,
+            output_dir=output_dir / "blind",
+        )
+        report["blind"] = {
+            "status": "built_after_automatic_pass",
+            "sample_ids": blind["sample_ids"],
+            "round_count": blind["round_count"],
+            "sheet_paths": [
+                f"blind/blind_round_{index}.png" for index in range(1, 4)
+            ],
+            "mapping_commitment_sha256": blind["mapping_commitment_sha256"],
+        }
+        mapping_path = output_dir / "blind" / "mapping.json"
+        mapping_path.write_text(
+            json.dumps(blind, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+    else:
+        report["blind"] = {
+            "status": "forbidden_by_automatic_failure",
+            "mapping_commitment_sha256": None,
+        }
     report_path = output_dir / "report.json"
     report_path.write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
-    mapping_path = output_dir / "blind" / "mapping.json"
-    mapping_path.write_text(
-        json.dumps(blind, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     print(
         json.dumps(
@@ -69,7 +79,9 @@ def main() -> int:
                 "automatic": report["automatic"],
                 "report": report_path.as_posix(),
                 "report_sha256": sha256_file(report_path),
-                "mapping_commitment_sha256": blind["mapping_commitment_sha256"],
+                "mapping_commitment_sha256": (
+                    None if blind is None else blind["mapping_commitment_sha256"]
+                ),
             },
             indent=2,
             sort_keys=True,
