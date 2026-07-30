@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u5_r2aw4_filmmatch_condition_oracle.v1",
+  "experiment_id": "u5.r2aw4-filmmatch-condition-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW4",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "capacity_report": "outputs/external_controls/filmmatch_ektachrome_v1/factorized_capacity_report.json",
+    "capacity_report_sha256": "18bbea75d8769d8ddf075493498271ed94cebbe4baedae5da0e6ff6d107eb157",
+    "capacity_stable_evidence_id": "dd399ec5b8e9a31de44a3a48413510b2a0f79ee2a936ff4c3a4a376e86a3142d"
+  },
+  "candidate": {
+    "operator": "monotone_curves_positive_matrix",
+    "expert_key_reflective": "author-declared illuminant",
+    "expert_key_emissive": "controlled stimulus hue sector",
+    "fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "cross_validation": {
+    "reflective": "leave one complete exposure frame out within each illuminant",
+    "emissive": "leave one complete 21-step stimulus out within each hue sector",
+    "global_control": "same operator family fit on all other groups",
+    "correct_expert": "same condition only, excluding the complete held group"
+  },
+  "oracle_gate": {
+    "minimum_reflective_median_improvement": 0.1,
+    "minimum_reflective_win_fraction": 0.6666666666666666,
+    "minimum_emissive_median_improvement": 0.1,
+    "minimum_emissive_win_fraction": 0.6666666666666666
+  },
+  "gates": {
+    "condition_metadata_required": true,
+    "condition_inference_or_router_training_allowed": false,
+    "film_mode_claim_allowed": false,
+    "validation_render_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only evaluator Oracle for known controlled capture conditions inside one author-prepared paired session; no inferred illuminant, latent stock mode, calibrated Ektachrome response, router, validation or product promotion"
+}
