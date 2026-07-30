@@ -5084,8 +5084,9 @@
 - Verification: focused topology `7 passed`; complete file/replay
   `54 passed, 1 skipped`; reporting, product-capability, unsupported-media,
   file and replay coverage `88 passed, 1 skipped`; `py_compile` and strict
-  diff checks pass. No public export, schema, colour algorithm, producer
-  adapter, rail or promotion state changes.
+  diff checks pass. The final isolated consumer collection contains 1,425
+  tests and completes at `1,420 passed, 5 skipped`. No public export, schema,
+  colour algorithm, producer adapter, rail or promotion state changes.
 - Producer R0JD remains a private one-Pixel mechanical Android x86_64 DNG to
   linear-sRGB TIFF chain without a public package/schema/receipt/capability
   or RAW rail. It creates no P174 interface impact.
