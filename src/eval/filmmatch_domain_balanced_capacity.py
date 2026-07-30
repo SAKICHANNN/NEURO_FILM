@@ -59,8 +59,15 @@ def _fit(
         loss=str(fit["loss"]),
         loss_scale=float(fit["loss_scale"]),
         seed=int(fit["seed"]),
-        residual_degree=int(fit["residual_degree"]),
-        residual_identity_ridge=float(fit["residual_identity_ridge"]),
+        residual_degree=int(
+            variant.get("residual_degree", fit["residual_degree"])
+        ),
+        residual_identity_ridge=float(
+            variant.get(
+                "residual_identity_ridge",
+                fit["residual_identity_ridge"],
+            )
+        ),
         jacobian_floor=float(fit["jacobian_floor"]),
         safety_grid_size=int(fit["safety_grid_size"]),
         strength_steps=int(fit["strength_steps"]),
@@ -125,6 +132,21 @@ def _aggregate(folds: list[dict[str, Any]], names: list[str]) -> dict[str, Any]:
                 all(row["variants"][name]["converged"] for row in folds)
             ),
         }
+        if all("identity_rgb_rmse" in row for row in folds):
+            improvements = np.asarray(
+                [
+                    1.0
+                    - row["variants"][name]["metrics"]["rgb_rmse"]
+                    / row["identity_rgb_rmse"]
+                    for row in folds
+                ]
+            )
+            result[name]["win_count_over_identity"] = int(
+                np.sum(improvements > 0.0)
+            )
+            result[name]["worst_fold_improvement_over_identity"] = float(
+                np.min(improvements)
+            )
     return result
 
 
@@ -156,8 +178,7 @@ def evaluate_domain_balanced_capacity(
     hue_folds = []
     for hue in sorted(set(hues)):
         emissive_mask = hues != hue
-        hue_folds.append(
-            _fold(
+        fold = _fold(
                 np.concatenate([rs, es[emissive_mask]]),
                 np.concatenate([rt, et[emissive_mask]]),
                 es[~emissive_mask],
@@ -165,8 +186,11 @@ def evaluate_domain_balanced_capacity(
                 fold_id=f"held-emissive-hue-{hue}",
                 config=config,
                 domain_counts=(len(rs), int(np.sum(emissive_mask))),
-            )
         )
+        fold["identity_rgb_rmse"] = prediction_metrics(
+            es[~emissive_mask], et[~emissive_mask]
+        )["rgb_rmse"]
+        hue_folds.append(fold)
     names = [str(row["id"]) for row in config["candidate"]["variants"]]
     reflective = _aggregate(reflective_folds, names)
     emissive = _aggregate(hue_folds, names)
@@ -200,6 +224,14 @@ def evaluate_domain_balanced_capacity(
         >= float(gates["minimum_reflective_improvement_over_affine"])
         and emissive[selected]["improvement_over_identity"]
         >= float(gates["minimum_emissive_improvement_over_identity"])
+        and emissive[selected].get("win_count_over_identity", 0)
+        >= int(gates.get("minimum_emissive_hue_win_count", 0))
+        and emissive[selected].get(
+            "worst_fold_improvement_over_identity", 0.0
+        )
+        >= float(
+            gates.get("minimum_worst_emissive_hue_improvement", -1.0)
+        )
         and reflective[selected]["all_converged"]
         and emissive[selected]["all_converged"]
     )
@@ -221,7 +253,10 @@ def evaluate_domain_balanced_capacity(
         np.meshgrid(axis, axis, axis, indexing="ij"), axis=-1
     ).reshape(-1, 3)
     report = {
-        "schema": "neuro_film.u5_r2ax5_filmmatch_domain_balanced.v1",
+        "schema": config.get(
+            "report_schema",
+            "neuro_film.u5_r2ax5_filmmatch_domain_balanced.v1",
+        ),
         "experiment_id": config["experiment_id"],
         "reflective_folds": reflective_folds,
         "emissive_hue_folds": hue_folds,

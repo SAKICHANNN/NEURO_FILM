@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2ax9_filmmatch_residual_degree.v1",
+  "report_schema": "neuro_film.u5_r2ax9_filmmatch_residual_degree.v1",
+  "experiment_id": "u5.r2ax9-filmmatch-residual-degree-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX9",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/nested_hue_robustness_report.json",
+    "report_sha256": "295ed36cbc78adeb515a8868bbf119387c15fe02682666430318579349b9b221",
+    "stable_evidence_id": "f34ec41bc8c9b8d7dce3d180d78affdcbb7605db6f157cb50c8316bc4be53244",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity": {
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "fixed_domain_balanced_factorized_operator_residual_degree_challenge",
+    "variants": [
+      {"id": "degree3_ridge01", "emissive_loss_share": 0.75, "residual_degree": 3, "residual_identity_ridge": 0.01},
+      {"id": "degree4_ridge01", "emissive_loss_share": 0.75, "residual_degree": 4, "residual_identity_ridge": 0.01},
+      {"id": "degree4_ridge1", "emissive_loss_share": 0.75, "residual_degree": 4, "residual_identity_ridge": 0.1}
+    ],
+    "fit": {
+      "segment_count": 9,
+      "curve_learned_mixture": 0.75,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730,
+      "residual_degree": 3,
+      "residual_identity_ridge": 0.01,
+      "jacobian_floor": 0.0001,
+      "safety_grid_size": 13,
+      "strength_steps": 101,
+      "maximum_residual_iterations": 500
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05,
+    "minimum_emissive_hue_win_count": 5,
+    "minimum_worst_emissive_hue_improvement": -0.1
+  },
+  "gates": {
+    "positive_jacobian_required": true,
+    "hard_output_clipping_forbidden": true,
+    "validation_target_fit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation development evidence for residual-degree capacity on one Sony/E100 session; no calibrated stock response, scanner independence, fresh confirmation or product promotion"
+}
