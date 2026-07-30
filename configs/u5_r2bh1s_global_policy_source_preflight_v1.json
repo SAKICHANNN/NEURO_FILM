@@ -1,0 +1,267 @@
+{
+  "schema": "neuro_film.u5_r2bh1s_global_policy_source_preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh1s-global-policy-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2BH1S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2bh0_fixed_bank_complete_oracle_decision_v1.json",
+    "sha256": "5c625e8b60bb1394a532a7909cb753a3842c44110a18b81d242fcb97ba25da85"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-28",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "purpose": "second fresh digital-photo population for fixed B0 versus fixed AO6 global-policy confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact stratified freeze before pixel access: twelve CC0 rows, one per make, unseen repository ID, source hash and make/model across every tracked raw.pixls.us pool including BH0; 4-30 MB per row and <=224 MiB aggregate; scanner/chart/flat/target/film metadata excluded; no image appearance used for selection",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 230000000,
+    "download_root": "data/external/rawpixls_bh1_v1/raw",
+    "decoded_root": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {
+      "id": "epson_r_d1x",
+      "repository_id": 3158,
+      "make": "Epson",
+      "model": "R-D1x",
+      "mode": "12bit (3:2)",
+      "date": "2019-05-17",
+      "megapixels": 6.15,
+      "bytes_reported_mb": 9.52,
+      "filename": "Epson - R-D1x - 12bit (3:2).ERF",
+      "path": "data/external/rawpixls_bh1_v1/raw/epson_r_d1x.erf",
+      "sha256": "fa1bff3e0b9b9a14f83b8db9fae022c2aca8d455896bf4f25f2c1a0034e295e6",
+      "url": "https://raw.pixls.us/getfile.php/3158/nice/Epson%20-%20R-D1x%20-%2012bit%20%283%3A2%29.ERF"
+    },
+    {
+      "id": "motorola_moto_g_7_play",
+      "repository_id": 3554,
+      "make": "motorola",
+      "model": "moto g(7) play",
+      "mode": "16bit (4:3)",
+      "date": "2019-11-15",
+      "megapixels": 13.13,
+      "bytes_reported_mb": 25.07,
+      "filename": "motorola - moto g(7) play - 16bit (4:3).dng",
+      "path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575",
+      "url": "https://raw.pixls.us/getfile.php/3554/nice/motorola%20-%20moto%20g%287%29%20play%20-%2016bit%20%284%3A3%29.dng"
+    },
+    {
+      "id": "lg_lg_h850",
+      "repository_id": 3864,
+      "make": "LG",
+      "model": "LG-H850",
+      "mode": "16bit (4:3)",
+      "date": "2020-04-11",
+      "megapixels": 7.99,
+      "bytes_reported_mb": 15.26,
+      "filename": "LG - LG-H850 - 16bit (4:3).dng",
+      "path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f",
+      "url": "https://raw.pixls.us/getfile.php/3864/nice/LG%20-%20LG-H850%20-%2016bit%20%284%3A3%29.dng"
+    },
+    {
+      "id": "autel_robotics_xb015",
+      "repository_id": 3876,
+      "make": "Autel Robotics",
+      "model": "XB015",
+      "mode": "16bit (16:9)",
+      "date": "2020-04-17",
+      "megapixels": 9.0,
+      "bytes_reported_mb": 17.56,
+      "filename": "Autel Robotics - XB015 - 16bit (16:9).DNG",
+      "path": "data/external/rawpixls_bh1_v1/raw/autel_robotics_xb015.dng",
+      "sha256": "4e889a718a14e9f613ff4a3429bf7b84263d4920ebc497a11d12a7d2a4076e90",
+      "url": "https://raw.pixls.us/getfile.php/3876/nice/Autel%20Robotics%20-%20XB015%20-%2016bit%20%2816%3A9%29.DNG"
+    },
+    {
+      "id": "hasselblad_lunar",
+      "repository_id": 4051,
+      "make": "HASSELBLAD",
+      "model": "Lunar",
+      "mode": "12bit (3:2)",
+      "date": "2020-08-03",
+      "megapixels": 24.34,
+      "bytes_reported_mb": 23.72,
+      "filename": "HASSELBLAD - Lunar - 12bit (3:2).ARW",
+      "path": "data/external/rawpixls_bh1_v1/raw/hasselblad_lunar.arw",
+      "sha256": "029b1283a3d1226e08fc1eb3b81874347f5c128e437f78f853436fd6ba15873b",
+      "url": "https://raw.pixls.us/getfile.php/4051/nice/HASSELBLAD%20-%20Lunar%20-%2012bit%20%283%3A2%29.ARW"
+    },
+    {
+      "id": "xiaomi_m2010j19cg",
+      "repository_id": 4233,
+      "make": "Xiaomi",
+      "model": "M2010J19CG",
+      "mode": "16bit (4:3)",
+      "date": "2020-12-24",
+      "megapixels": 12.0,
+      "bytes_reported_mb": 22.92,
+      "filename": "Xiaomi - M2010J19CG - 16bit (4:3).dng",
+      "path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f",
+      "url": "https://raw.pixls.us/getfile.php/4233/nice/Xiaomi%20-%20M2010J19CG%20-%2016bit%20%284%3A3%29.dng"
+    },
+    {
+      "id": "apple_iphone_12_pro",
+      "repository_id": 4264,
+      "make": "Apple",
+      "model": "iPhone 12 Pro",
+      "mode": "8bit (4:3)",
+      "date": "2020-12-31",
+      "megapixels": 12.19,
+      "bytes_reported_mb": 27.84,
+      "filename": "Apple - iPhone 12 Pro - 8bit (4:3).DNG",
+      "path": "data/external/rawpixls_bh1_v1/raw/apple_iphone_12_pro.dng",
+      "sha256": "e91e77a4533ed7cce551d83330676ea5c47dd5e55fb38adda7819366afdbdfc2",
+      "url": "https://raw.pixls.us/getfile.php/4264/nice/Apple%20-%20iPhone%2012%20Pro%20-%208bit%20%284%3A3%29.DNG"
+    },
+    {
+      "id": "blackmagic_pocket_cinema_camera_4k",
+      "repository_id": 4439,
+      "make": "Blackmagic",
+      "model": "Blackmagic Pocket Cinema Camera 4k",
+      "mode": "12bit (16:9)",
+      "date": "2021-03-23",
+      "megapixels": 8.98,
+      "bytes_reported_mb": 4.29,
+      "filename": "Blackmagic - Blackmagic Pocket Cinema Camera 4k - 12bit (16:9).dng",
+      "path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+      "url": "https://raw.pixls.us/getfile.php/4439/nice/Blackmagic%20-%20Blackmagic%20Pocket%20Cinema%20Camera%204k%20-%2012bit%20%2816%3A9%29.dng"
+    },
+    {
+      "id": "leica_c_typ_112",
+      "repository_id": 4963,
+      "make": "Leica",
+      "model": "C (Typ 112)",
+      "mode": "3:2",
+      "date": "2021-11-13",
+      "megapixels": 10.74,
+      "bytes_reported_mb": 12.48,
+      "filename": "Leica - C (Typ 112) - 3:2.RWL",
+      "path": "data/external/rawpixls_bh1_v1/raw/leica_c_typ_112.rwl",
+      "sha256": "95ff5be4dab1d8415ddcaae674a40d024d625d0684893fcaaa0139983611a455",
+      "url": "https://raw.pixls.us/getfile.php/4963/nice/Leica%20-%20C%20%28Typ%20112%29%20-%203%3A2.RWL"
+    },
+    {
+      "id": "olympus_e_450",
+      "repository_id": 5782,
+      "make": "Olympus",
+      "model": "E-450",
+      "mode": "16bit (4:3)",
+      "date": "2022-07-16",
+      "megapixels": 10.42,
+      "bytes_reported_mb": 9.3,
+      "filename": "Olympus - E-450 - 16bit (4:3).ORF",
+      "path": "data/external/rawpixls_bh1_v1/raw/olympus_e_450.orf",
+      "sha256": "ce44576886d214d194896c32bdd05881f25a23053455decc3da18c46fee96fad",
+      "url": "https://raw.pixls.us/getfile.php/5782/nice/Olympus%20-%20E-450%20-%2016bit%20%284%3A3%29.ORF"
+    },
+    {
+      "id": "huawei_eml_l29",
+      "repository_id": 3127,
+      "make": "HUAWEI",
+      "model": "EML-L29",
+      "mode": "16bit (4:3)",
+      "date": "2019-05-07",
+      "megapixels": 11.81,
+      "bytes_reported_mb": 22.55,
+      "filename": "HUAWEI - EML-L29 - 16bit (4:3).dng",
+      "path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a",
+      "url": "https://raw.pixls.us/getfile.php/3127/nice/HUAWEI%20-%20EML-L29%20-%2016bit%20%284%3A3%29.dng"
+    },
+    {
+      "id": "leaf_aptus_22",
+      "repository_id": 3196,
+      "make": "Leaf",
+      "model": "Aptus 22",
+      "mode": "16bit (4:3)",
+      "date": "2019-05-31",
+      "megapixels": 21.42,
+      "bytes_reported_mb": 22.34,
+      "filename": "Leaf - Aptus 22 - 16bit (4:3).mos",
+      "path": "data/external/rawpixls_bh1_v1/raw/leaf_aptus_22.mos",
+      "sha256": "8a1a101cb3940b0648af54a721d92e6fb8612dd29a0909036ea2753196a00ec2",
+      "url": "https://raw.pixls.us/getfile.php/3196/nice/Leaf%20-%20Aptus%2022%20-%2016bit%20%284%3A3%29.mos"
+    }
+  ],
+  "maximum_download_bytes": 234881024,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "development_manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "comparison_manifests": [
+      {
+        "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+        "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+        "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u6_p8bn_fresh_strength_population_v1/manifest.json",
+        "sha256": "f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+        "sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+        "sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json",
+        "sha256": "5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc",
+        "format": "legacy_rawpixls_render_manifest"
+      }
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": [
+      "fixed_b0",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "complete_pairwise_rounds": 3,
+    "strength_retuning_allowed": false,
+    "router_training_allowed": false
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "fresh CC0 RAW source eligibility for autonomous fixed B0 versus AO6 global-policy confirmation; not population preference, film truth, stock response, calibration, universal safety, router evidence or product promotion"
+}
