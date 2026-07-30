@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay2s-fivek-unseen-content-source-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY2S",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "7c45f2ff1f2bc5ae4edeed4b4f993e04d2636452",
+  "question": "Are the untouched rows 65-128 of the retained FiveK high-precision pack complete, distinct from AY0 training content and eligible for an unseen-content neutral-base confirmation?",
+  "freeze": {
+    "manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "summary": "outputs/fivek_auto_optimize/freeze_v1/summary.json",
+    "summary_sha256": "45032415c91f2f5a61e3415d2ce4c99ff27696e4fb2d0add4d385b92d4fc522b",
+    "expected_total_rows": 128,
+    "development_row_start_one_based": 1,
+    "development_row_end_one_based": 64,
+    "confirmation_row_start_one_based": 65,
+    "confirmation_row_end_one_based": 128
+  },
+  "development_evidence": {
+    "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json",
+    "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01",
+    "expected_rows": 64
+  },
+  "confirmation_assets": {
+    "source_column": "raw_default_srgb16",
+    "target_column": "filtered_target_srgb16",
+    "preview_column": "raw_preview",
+    "expected_rows": 64,
+    "expected_dtype": "uint16",
+    "expected_channels": 3,
+    "perceptual_hash": "64-bit difference hash on retained raw preview",
+    "maximum_cross_split_hamming_distance": 4
+  },
+  "rights_scope": "internal research under the existing retained MIT-Adobe FiveK project boundary; no redistribution",
+  "grouping_limit": "rows 65-128 do not retain verified camera metadata; this source can support unseen-content confirmation only, never camera-model OOD",
+  "allowed": [
+    "hash, decode, dimension and cross-split duplicate audit",
+    "unseen-content confirmation using the already frozen five-parameter operator, descriptor, ridge alpha and AO6 look",
+    "fit per-pair holdout parameters only for oracle evaluation"
+  ],
+  "forbidden": [
+    "use confirmation targets to select features, alpha, bounds, thresholds or AO6 settings",
+    "claim camera-group independence for the confirmation rows",
+    "call Expert C or the filtered target film or stock truth",
+    "redistribute retained pixels",
+    "increase capacity after a failed confirmation"
+  ],
+  "pass_gates": {
+    "confirmation_rows": 64,
+    "missing_assets": 0,
+    "decode_or_dtype_failures": 0,
+    "dimension_mismatches": 0,
+    "duplicate_pair_ids_across_splits": 0,
+    "exact_source_or_target_duplicates_across_splits": 0,
+    "perceptual_source_duplicates_across_splits_at_or_below_hamming_4": 0,
+    "repeat_manifest_byte_identity": true
+  },
+  "output_root": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1",
+  "training_allowed": false,
+  "pixel_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "exact internal retained-source feasibility for an unseen-content FiveK neutral-base confirmation; no camera OOD, film, stock, calibration, preference or product claim"
+}
