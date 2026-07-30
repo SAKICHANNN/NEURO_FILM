@@ -67,6 +67,15 @@ association, below its 90% dominance gate; zero/highlight/shadow controls also
 fail. The combined route is closed without a parameter, boundary, visual or
 product rescue.
 
+U6.P3N tests a distinct analytical repair rather than retuning P3L: derive an
+exact admissible scale from the inverse U2.2 response and apply the minimum
+scale identically to the three exposure-residual channels. Two exact
+development runs preserve residual direction, cap response change at `.009`
+and remove all 5,563 isolated excursions without new boundaries. Five fixed
+direct rows have zero confirmed severe artifacts, but visible value remains
+unproved. Freeze the primitive and acquire a disjoint RAW-derived population
+for unchanged severe and value confirmation; no runtime integration opens.
+
 U6.P5F passes its distinct cross-layer interimage adjacency synthetic audit. P5C
 remains the independent-channel bounded path and AD1 remains a failed external
 spatial-DIR ablation. Two exact reports show constant/neutral identity,

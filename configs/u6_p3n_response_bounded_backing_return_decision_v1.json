@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p3n_response_bounded_backing_return_decision.v1",
+  "node": "U6.P3N",
+  "decision": "retain_development_challenger_require_fresh_value_confirmation",
+  "contract": {
+    "path": "configs/u6_p3n_response_bounded_backing_return_v1.json",
+    "sha256": "702d5e5df1392452db8b6570542f015a5769ce7d86fc5d8207a32730c1f69043"
+  },
+  "formal_evidence": {
+    "report_path": "outputs/u6_p3n_response_bounded_backing_return_v1/run_a/report.json",
+    "report_sha256": "75ce71f6cf08ae468dcc7e326cbbecf60736e3df0d4b7bda64c794c10e2e3bd6",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "c2230092eff806ba1c3b460f1288d24763fde6dd0748088547ff0844ef4ba438",
+    "software_commit": "b4dec909430b0c7d516fbecbb9991de1824b67cc",
+    "contact_sheet_sha256": "fc6ed8e1499222d0c32a2b74b4da2e6ab5b693f3bb5fb948cefcf2ed8571d9f3"
+  },
+  "automatic_gate": {
+    "passed": true,
+    "source_count": 9,
+    "camera_make_count": 9,
+    "parent_unbounded_maximum_abs": 0.36101206604437214,
+    "parent_unbounded_isolated_excursion_count": 5563,
+    "bounded_maximum_abs": 0.009000000000000119,
+    "bounded_population_p95_abs": 0.008795900754745126,
+    "bounded_median_fraction_pixels_over_0p005": 0.42002133969907407,
+    "bounded_median_shared_scale": 0.9195570621430532,
+    "bounded_isolated_excursion_count": 0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_shared_direction_error": 1.1102230246251565e-16
+  },
+  "autonomous_visual_review": {
+    "scope": "five preregistered direct no-spatial/unbounded/bounded diagnostic rows at the formal report identity",
+    "confirmed_severe_artifact_count": 0,
+    "observations": [
+      "The bounded direct outputs show no confirmed secondary hard contour, objectionable colour fringe, isolated speckle, banding, posterization, hard clipping, geometry failure or content corruption.",
+      "The bounded effect is visually subtle in the direct diagnostic renders; numerical safety and broad pixel support do not establish preference or useful product salience.",
+      "An amplified difference diagnostic was used only to inspect spatial structure. It shows smooth structure-aligned changes rather than isolated blocks or speckles and is excluded from preference evidence."
+    ],
+    "preference_claimed": false
+  },
+  "interpretation": [
+    "The shared-scale inverse-response bound repairs the exact amplitude and isolated-excursion failure that closed P3L without hard clipping or changing the residual direction.",
+    "The nine-source population informed the cap prototype and is development evidence only.",
+    "This result does not identify physical halation, backing reflection, a stock, process, scanner or calibrated film response."
+  ],
+  "next_gate": {
+    "required": true,
+    "name": "fresh_population_severe_and_value_confirmation",
+    "rules": [
+      "Freeze a rights-cleared RAW-derived population disjoint from the nine development sources before rendering.",
+      "Do not change the 0.009 response cap, shared-direction rule, P1/P3D/U2.2 parents or severe gates.",
+      "Repeat deterministic automatic and direct severe review first.",
+      "Only if severe-clean, compare the fixed bounded candidate against its no-spatial parent for visible physical-effect value; a tie or weak effect retains the primitive as research-only.",
+      "No runtime or product integration opens from this decision."
+    ]
+  },
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired development challenger; no measured film, stock, process, scanner, calibration, authenticity, preference or product claim"
+}

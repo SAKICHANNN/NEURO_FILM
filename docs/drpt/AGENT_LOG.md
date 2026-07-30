@@ -7732,3 +7732,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the confirmed bounded curve mechanism as research evidence, but not
   as the preferred product auto-base. Resume a distinct film-imaging or
   physical-image-formation algorithm leaf; Ultimate remains active.
+
+## 2026-07-30 - U6.P3N retains a response-bounded development challenger
+
+- Implemented an explicit inverse-response bound for an exposure-domain
+  residual. One per-pixel scale is shared across RGB; no clipping, learned RGB,
+  per-image fit, stock inference or profile adjustment is used.
+- Two formal nine-source runs are exact at report SHA
+  `75ce71f6...e3bd6`. They reproduce P3L's `.36101` maximum and 5,563 isolated
+  failures, then cap the bounded result at `.009` with zero isolated
+  excursions/new boundaries. Median affected-pixel fraction is `.4200` and
+  median shared scale is `.9196`.
+- Five preregistered direct rows have zero confirmed severe contours, colour
+  fringes, speckles, banding, clipping or content corruption. The effect is
+  subtle, so numerical/severe success does not establish preference or product
+  value.
+- Retain only as a generic physical-inspired development challenger. Next
+  freeze a rights-cleared RAW-derived population disjoint from the nine
+  development sources and rerun unchanged severe/value gates. Goal remains
+  active.

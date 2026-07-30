@@ -296,6 +296,15 @@ rounds against AO6 colour-only and 5/12 pairwise choices. The frozen
 preference gate fails, so AO6 remains the simpler colour champion and no
 router/default/product promotion opens.
 
+Current physical-algorithm leaf: U6.P3N retains one response-bounded
+exposure-residual challenger after two exact development runs. It reproduces
+P3L's `.36101`/5,563 failure, then reaches a `.009` maximum response delta
+with zero isolated excursions or new boundaries while preserving a median
+`.4200` affected-pixel fraction and `.9196` shared residual scale. Five fixed
+direct rows have zero confirmed severe artifacts, but the effect is visually
+subtle. A disjoint rights-cleared RAW-derived population and unchanged
+severe/value gates are required before any runtime or product decision.
+
 Independent grain confirmation U6.P4Z-P4Z2 is also closed. Three new exact
 CC0 16-bit B&W uniform scans pass source integrity, but the frozen P4T model
 improves radial NPS while worsening short-lag ACF, and P4X's colour-derived
