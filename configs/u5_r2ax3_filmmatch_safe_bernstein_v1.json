@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2ax3_filmmatch_safe_bernstein.v1",
+  "experiment_id": "u5.r2ax3-filmmatch-safe-bernstein-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX3",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/triangular_conditional_report.json",
+    "report_sha256": "070002bda5271d9c08b3acf2dada8456d8107035f6f668cb3c40e4e2375826da",
+    "stable_evidence_id": "837843157b2d1817fa1acafb97df22fc1ebae9519c3c5dd63733556a2b6ee0f0",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity": {
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "bounded_cubic_bernstein_lut_with_identity_strength_safety",
+    "variants": [
+      {"id": "degree3_ridge0001", "degree": 3, "identity_ridge": 0.0001},
+      {"id": "degree3_ridge001", "degree": 3, "identity_ridge": 0.001},
+      {"id": "degree3_ridge01", "degree": 3, "identity_ridge": 0.01}
+    ],
+    "fit": {
+      "jacobian_floor": 0.0001,
+      "safety_grid_size": 13,
+      "strength_steps": 101,
+      "maximum_iterations": 500
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05
+  },
+  "gates": {
+    "positive_jacobian_required": true,
+    "hard_output_clipping_forbidden": true,
+    "validation_target_fit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation development evidence for a smooth bounded Bernstein LUT on one Sony/E100 session; no calibrated stock response, scanner independence, validation or product promotion"
+}
