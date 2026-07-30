@@ -14,8 +14,9 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P173; v44 is the latest immutable
-  main-review manifest and binds P1-P173, including local 24 MP,
+- Consumer branch now continues through P173; main `efb9ba82` has merged
+  P1-P172 and v45 is the latest immutable review manifest for the remaining
+  ten-path P173 increment, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest observed committed snapshot is `f6cc28eb`; its untracked
@@ -337,9 +338,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; v44 binds P1-P173 payload `91a74413`, 597 payload paths, 70 exports, 26 schemas and zero overlap against main `f6cc28eb`; manifest/schema SHA-256 are `63c96d55...49c8f` / `ac1271b4...4c8e0` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v44, reviews and merges / main task or owner |
+| Main-integration evidence | Main `efb9ba82` merged consumer parent `f53faeb5` (P1-P172). V45 binds only the remaining P173 payload `d4d817d6`: 10 payload paths, 70 exports, 26 schemas and zero overlap; manifest/schema SHA-256 are `e51baa1b...cd924` / `1b23048d...b0cf9` | P1-P172 MERGED; P173 REVIEW MANIFEST READY | Repository owner verifies v45 and merges the ten-path increment / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P173 payload remains zero-overlap against main `f6cc28eb` and merges conflict-free as tree `72e5d5b4...a5b2c`; the detached merge file/replay plus v43/v44 subset passes 58 tests with one platform skip, while direct v44 rebuild/tamper is 5/5 and strict payload `git diff --check` is clean | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | The ten-path P173 post-merge payload remains zero-overlap against main `efb9ba82` and merges conflict-free as tree `4fd158a9...02c`; detached file/replay plus v44/v45 tests pass 58 with one platform skip, direct v45 rebuild/tamper is 5/5 and strict payload diff is clean | P173 READY FOR REVIEW, NOT MERGED | Repository-owner review and incremental merge, then main-worktree targeted/full suite / main task or owner |
 
 ## Critical path
 

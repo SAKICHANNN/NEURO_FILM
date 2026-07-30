@@ -2,28 +2,33 @@
 
 Date: 2026-07-31
 
-Status: **P1-P173 consumer payload is pinned by the immutable v44 review
-manifest; local scale/file/capability evidence is complete, while real
+Status: **P1-P172 is merged into main and the remaining P173 increment is
+pinned by the immutable v45 review manifest; local scale/file/capability
+evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v44 review snapshot
+## Current v45 post-merge review snapshot
 
-- payload: `91a7441350059bc98672f1504d10d2b250171f64`;
-- main: `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`;
-- common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- 597 consumer paths, 1,858 main paths, zero overlap;
+- payload: `d4d817d636c097206e381cd7b4fc6db003fc5191`;
+- main: `efb9ba8208c1eb4caa5229f926e212615f30f4dd`;
+- common base: `f53faeb5079c17fbd36cceb1607444088f279615`;
+- 10 consumer paths, 1,858 main paths, zero overlap;
 - 70 required public exports and 26 contract schemas;
-- merge tree: `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`;
-- detached merge file/replay plus v43/v44 review subset:
+- merge tree: `4fd158a9fe3f9351a22a356ad2ea13036f91802c`;
+- detached post-merge file/replay plus v44/v45 review subset:
   `58 passed, 1 skipped`;
-- direct v44 schema/rebuild/tamper result: `5 passed`;
+- direct v45 schema/rebuild/tamper result: `5 passed`;
 - prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `63c96d55d768e0d26b6258307e13fe508ca7ca0ba1a36ef06ea0675d10349c8f` /
-  `ac1271b4e1110e08d60843687bc33741d11854247d54249a2d3ffad0b0b4c8e0`.
+  `e51baa1be4dc896b086fe21b351d9498488593f8c6b3553b8513950ace5cd924` /
+  `1b23048dbb962726fb3a08adf139d3498f167cbad9e50b7c3e96d1202f4b0cf9`.
 
-The synthetic worktree was removed after verification. The main worktree's
-untracked `.codex/` and `tmp/` remain main-task-owned and untouched.
+V44 remains the immutable pre-merge P1-P173 snapshot. Main subsequently
+merged its P1-P172 parent `f53faeb5` at `efb9ba82`, so v45 deliberately binds
+only the ten-path remainder instead of asking main to merge the old payload
+again. The synthetic worktree was removed after verification. Main's modified
+`docs/drpt/AGENT_LOG.md` and untracked `.codex/`/`tmp/` remain main-task-owned
+and untouched.
 
 P173 closes a narrower transaction defect: a failure after an earlier source
 had encoded output could remove staged files yet leave newly created empty
@@ -44,11 +49,11 @@ rollback, not universal filesystem transactionality.
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`;
+  `efb9ba8208c1eb4caa5229f926e212615f30f4dd`;
 - D-PCT read-only snapshot:
   `e667fe1ef6d9a70078685971fa25b2a1ab182eb9`;
 - conflict-free main/evidence-head merge tree:
-  `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`.
+  `4fd158a9fe3f9351a22a356ad2ea13036f91802c`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -317,11 +322,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v44 schema and rebuild its manifest; it transitively
-   preserves the immutable v1-v43 chain.
-3. Review `c03c321..91a74413`; do not copy files manually and do not import
+2. Verify the committed v45 schema and rebuild its manifest; it transitively
+   preserves the immutable v1-v44 chain.
+3. Review `f53faeb5..d4d817d6`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 91a74413 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree d4d817d6 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -336,11 +341,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest detached main/P1-P173 file/replay plus v43/v44 review subset:
+- latest detached post-merge P173 file/replay plus v44/v45 review subset:
   58 passed, one platform skip and zero failures;
 - P173 file/replay suites: 48 passed, one platform skip;
 - latest isolated consumer full suite: 1,409 passed, five skipped;
-- detached merge tree is `72e5d5b4...a5b2c`; the temporary worktree was removed;
+- detached merge tree is `4fd158a9...02c`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real

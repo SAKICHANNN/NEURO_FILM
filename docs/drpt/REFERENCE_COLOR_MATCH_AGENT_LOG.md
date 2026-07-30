@@ -5040,3 +5040,26 @@
   parse/decode path without GainMap, Stage2, camera-colour, general-DNG,
   public package/schema/receipt/capability or RAW rail. It does not alter P172
   fail-closed rail handling or create a consumer mapping.
+
+## 2026-07-31 - Rebase the P173 handoff after main integration
+
+- Main independently created merge commit
+  `efb9ba8208c1eb4caa5229f926e212615f30f4dd` with parents main
+  `f6cc28eb` and consumer `f53faeb5`. This closes the earlier P1-P172
+  repository-integration blocker and changes the correct P173 merge base to
+  `f53faeb5`; the pre-merge v44 remains immutable historical evidence.
+- V45 binds the minimal post-merge payload
+  `d4d817d636c097206e381cd7b4fc6db003fc5191`: 10 payload paths versus
+  1,858 main paths, zero overlap, merge tree
+  `4fd158a9fe3f9351a22a356ad2ea13036f91802c`. Manifest/schema SHA-256 are
+  `e51baa1be4dc896b086fe21b351d9498488593f8c6b3553b8513950ace5cd924`
+  and `1b23048dbb962726fb3a08adf139d3498f167cbad9e50b7c3e96d1202f4b0cf9`.
+- Direct v45 rebuild/schema/tamper is 5/5. A detached real merge of
+  `d4d817d6` into `efb9ba82`, with the out-of-payload v45 manifest supplied
+  as an audit input, passes file/replay plus v44/v45 tests at
+  `58 passed, 1 skipped`; strict payload diff is clean and the temporary
+  worktree was removed.
+- Main's modified `docs/drpt/AGENT_LOG.md` and untracked `.codex/`/`tmp/`
+  remain untouched. R0JB is structural private Pixel OpcodeList2 parsing
+  without an interpolation, Stage2, colour, public producer or RAW-rail
+  contract, so no consumer mapping changes.
