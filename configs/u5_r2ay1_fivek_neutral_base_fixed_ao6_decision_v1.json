@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay1-fivek-neutral-base-fixed-ao6-ablation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY1",
+  "decision": "retain_neutral_base_before_fixed_AO6_as_development_architecture_and_open_fresh_unseen_content_confirmation",
+  "software_commit": "1613cd747281ae1d6cbf1df7a0aca89a86abed90",
+  "visual_harness_commit": "a9ebb97b1a2d3111bf1c2e4bb0e4200b858e1685",
+  "contract": {
+    "path": "configs/u5_r2ay1_fivek_neutral_base_fixed_ao6_ablation_v1.json",
+    "sha256": "fa3de8af51eb2846726d047a4229066103519ee1ce577f74691323ea0640ae20"
+  },
+  "run_a": {
+    "report_sha256": "bd4d327637e8bbac35259d0755216f8298fb5de1dcace7428f03caaff2aa9896"
+  },
+  "run_b": {
+    "report_sha256": "bd4d327637e8bbac35259d0755216f8298fb5de1dcace7428f03caaff2aa9896"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "a90223c22fca0c2c6a5a7d1a9fd4e1851ee47c784689ec98a85215105c151195",
+  "automatic_evidence": {
+    "ridge_mean_improvement_over_global": 0.12620079423314703,
+    "ridge_win_fraction_over_global": 0.75,
+    "ridge_p95_rmse_ratio_to_global": 0.8224750720771441,
+    "ridge_bootstrap_improvement_lower": 0.008398597027283536,
+    "target_median_style_delta_e76": 13.968170118398485,
+    "ridge_to_target_median_style_ratio": 1.0157764939236524,
+    "maximum_new_boundary_fraction": 0.0,
+    "automatic_pass": true
+  },
+  "visual_evidence": {
+    "sheet_sha256": "96cd7802c252e1af1acf80958f3b85f584d594ae60fa808117785e75aed60d47",
+    "selection_sha256": "6cb4a500be7a38836ae6bbd73cefe02407e018c64e71c5231d7800b1695d4d9a",
+    "stress_biased_rows": 10,
+    "confirmed_severe_artifact_count": 0,
+    "style_is_visibly_salient": true,
+    "review_limit": "autonomous 512px stress sheet; not full-resolution, human-panel or population preference"
+  },
+  "allowed_next": "freeze the untouched rows 65-128 of the retained FiveK high-precision pack as an unseen-content confirmation; train only on rows 1-64 and keep the same explicit parameter bounds and fixed AO6",
+  "forbidden_next": [
+    "claim camera-group independence for the rows 65-128 without camera metadata",
+    "fit or tune AO6 on the confirmation rows",
+    "use Expert C as film or stock truth",
+    "increase model capacity to rescue a failed confirmation",
+    "integrate into production before independent confirmation and product-cost gates"
+  ],
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "camera-model-group-held-out internal development evidence that one bounded explicit neutral photographic base predictor retains its advantage and visible style dose before one unchanged AO6 Look Approximation; not film identity, stock response, calibration, population preference or product promotion"
+}

@@ -7606,3 +7606,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Keep this internal and unrouted with no committed basis asset. Return
   priority to photographic colour algorithms rather than extending a
   non-distributable target-factorization branch.
+
+## 2026-07-30 - U5.R2AY0/AY1 retain a bounded neutral base before fixed AO6
+
+- AY0 freezes 64 exact retained FiveK RAW/Expert-C pairs across 21 camera
+  groups. A five-parameter explicit ridge predictor is evaluated with complete
+  camera-model GroupKFold and beats the outer-train global control by 13.12%
+  mean RMSE, wins 75% of rows, improves P95 to .8179x and creates zero new
+  boundaries. Two reports are byte-identical.
+- AY1 keeps AO6 B0 + `t15/c35` unchanged. After that fixed strong look, ridge
+  still improves 12.62%, wins 75%, reaches .8225x P95 and preserves 1.0158x
+  the target median style dose with zero new boundaries.
+- A ten-row worst-case-heavy 512px review has zero confirmed severe failures
+  and visibly strong color/density styling. This is neutral digital-retouch
+  and Look Approximation evidence only. Open an untouched-content rows 65-128
+  confirmation; without camera metadata it cannot claim camera OOD.
