@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2ax2_filmmatch_triangular_conditional.v1",
+  "experiment_id": "u5.r2ax2-filmmatch-triangular-conditional-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX2",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/matrix_curve_matrix_report.json",
+    "report_sha256": "a33784bd3fafa2cb489d9ced05394ed28f8aae38632f67958d3b355d9ccb1693",
+    "stable_evidence_id": "a394a12b766990476d75ab8b3b18605d02053f0eafdc9fd4767db93864e4e804",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity": {
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "triangular_conditioned_positive_monotone_curves",
+    "variants": [
+      {"id": "rgb5_mix075", "channel_order": [0, 1, 2], "segment_count": 5, "learned_mixture": 0.75},
+      {"id": "gbr5_mix075", "channel_order": [1, 2, 0], "segment_count": 5, "learned_mixture": 0.75},
+      {"id": "brg5_mix075", "channel_order": [2, 0, 1], "segment_count": 5, "learned_mixture": 0.75}
+    ],
+    "fit": {
+      "free_logit_bounds": [-4.0, 4.0],
+      "conditioner_l2": 0.001,
+      "restart_count": 1,
+      "maximum_function_evaluations": 1200,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05
+  },
+  "gates": {
+    "positive_jacobian_required": true,
+    "hard_output_clipping_forbidden": true,
+    "validation_target_fit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation development evidence for a triangular conditional monotone operator on one Sony/E100 session; no calibrated stock response, scanner independence, validation or product promotion"
+}
