@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay7-monotone-curve-blind-product-value-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY7",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "a100fba36f5d29a5681cf073b9e6c1d4b52f828d",
+  "question": "Does the independently confirmed source-predicted monotone neutral base produce a visibly better fixed-AO6 result than the global monotone neutral base when compared blind against the same target look?",
+  "parent": {
+    "config": "configs/u5_r2ay6f_monotone_channel_curve_confirmation_v1.json",
+    "config_sha256": "863d0920c94442c12f57201dfeebc119dc37c41c03dcfab04d4ab1837527dd3a",
+    "decision": "configs/u5_r2ay6f_monotone_channel_curve_confirmation_decision_v1.json",
+    "decision_sha256": "38cf67c27d0a654562a1eed08b22c8347d6b5fdf1bf1d99bf766cfd85377034f",
+    "report": "outputs/u5_r2ay6f_monotone_channel_curve_confirmation_v1/run_a/report.json",
+    "report_sha256": "129eca30052e87ead8c6a7bc8a07772cd174dc4a920dc48e8201437423e204d2",
+    "required_status": "confirmed_digital_neutral_base_product_value_required"
+  },
+  "comparison": {
+    "reference": "confirmation filtered target followed by unchanged AO6",
+    "candidate_global": "confirmation source followed by frozen global monotone curve, analytical safety and unchanged AO6",
+    "candidate_ridge": "confirmation source followed by frozen source-predicted monotone curve, analytical safety and unchanged AO6",
+    "candidate_labels_hidden": true,
+    "reference_label_visible": true,
+    "criterion": "prefer the candidate closer to reference tone and colour while rejecting any candidate with a confirmed severe artifact",
+    "strength_or_parameter_change_allowed": false
+  },
+  "selection": {
+    "rows": 16,
+    "method": "sort all 64 rows by signed ridge-minus-global neutral RMSE, split into four contiguous equal strata, take indices 1,5,9,13 within each stratum, then sort pair_id before each round permutation",
+    "semantic_or_manual_selection_allowed": false,
+    "round_seeds": [20260811, 20260812, 20260813],
+    "same_rows_each_round": true,
+    "independent_row_order_and_ab_swap_each_round": true
+  },
+  "evaluation": {
+    "minimum_ridge_preferences_per_round": 10,
+    "maximum_ties_per_round": 4,
+    "minimum_passing_rounds": 2,
+    "maximum_confirmed_severe_failures": 0,
+    "require_exact_pack_rebuild": true
+  },
+  "branch_rules": {
+    "pass": "retain source-predicted monotone curves as the preferred optional auto-base before fixed AO6 and open runtime/profile compilation work without film or stock claims",
+    "fail": "keep the simpler global curve or current global AO6 path; do not tune the curve predictor or blind set",
+    "severe_failure": "close candidate regardless of preference"
+  },
+  "assessment_label": "autonomous blinded visual target-match evidence; not human population preference",
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "blind visual product-value evidence for one explicit digital neutral base before fixed AO6; not film, stock, calibration, owner preference or product promotion"
+}
