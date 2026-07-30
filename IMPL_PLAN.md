@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> U5.R2BF0 tests the literature-motivated exposure-homogeneous root-polynomial
+> family in both directions on the exact FilmMatch charts after published
+> S-Log3 decoding. Two reports are exact. Signed RPCC loses to affine in both
+> held-illuminant and held-EV protocols and fails dense Jacobian/range safety;
+> the inverse diagnostic also loses. An ordinary cubic control has capacity
+> but folds and leaves gamut, while AX3-AX17 already closes bounded FilmMatch
+> global challengers. Close without validation, visual review or rescue.
+>
 > 2026-07-30: U5.R2AZ0 adds a distinct optical-density residual
 > factorization at the already frozen AO6 `.15/.35` strengths. Two exact
 > 41-image runs improve style/non-basic Delta E76 over AO6 with zero new

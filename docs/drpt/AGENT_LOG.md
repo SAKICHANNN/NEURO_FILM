@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-28 - U5.R2BF0 closes FilmMatch root-polynomial directionality
+
+- Added deterministic signed-root and ordinary polynomial explicit operators,
+  preserving negative S-Log3-decoded black values and exact positive-scale
+  homogeneity for RPCC.
+- Two full held-illuminant/held-EV forward and inverse runs are byte-identical
+  at stable ID `8f133043...5468b`.
+- Root degree 2 fails all forward gates except equivariance and is not render
+  safe. The inverse diagnostic also loses. Ordinary degree 3 is more accurate
+  but folds and leaves gamut; prior AX3-AX17 bounded FilmMatch work prevents a
+  post-result safety rescue.
+- Close BF0. Preserve the result as evidence that exposure homogeneity alone
+  suppresses the nonlinear look signal in this author code-domain source.
+
 # 2026-07-30 - U6.4B closes fixed strong photographic diffusion
 
 - The preregistered 18-image/nine-make run passes component bounds, zero new
