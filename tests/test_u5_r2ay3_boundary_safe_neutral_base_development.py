@@ -56,3 +56,16 @@ def test_safe_executor_is_identity_exact() -> None:
     )
     assert np.array_equal(output, source)
     assert np.array_equal(scale, np.ones(source.shape[:2]))
+
+
+def test_limited_scale_rounds_strictly_inside_boundary() -> None:
+    epsilon = 1.0 / 510.0
+    source = np.array(
+        [[[0.00377380452118814, 0.4, 0.6]]], dtype=np.float64
+    )
+    parameters = np.array([1.0, -0.75, 0.0, 0.0, 1.0])
+    output, scale = apply_boundary_safe_neutral_base(
+        source, parameters, boundary_epsilon=epsilon
+    )
+    assert scale[0, 0] < 1.0
+    assert output[0, 0, 0] > epsilon

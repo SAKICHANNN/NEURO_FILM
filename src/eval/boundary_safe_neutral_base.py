@@ -150,6 +150,13 @@ def apply_boundary_safe_neutral_base(
         1.0, np.min(channel_scale, axis=2)
     )
     scale = np.maximum(scale, 0.0)
+    # The exact quotient can reconstruct to the excluded boundary after the
+    # multiply-add rounds.  Move every genuinely limited shared scale by one
+    # representable float toward the source; this preserves the analytical
+    # direction and common RGB scale without clipping an output channel.
+    scale = np.where(
+        scale < 1.0, np.nextafter(scale, 0.0), scale
+    )
     output = source + scale[..., None] * residual
     if (
         not np.all(np.isfinite(output))
