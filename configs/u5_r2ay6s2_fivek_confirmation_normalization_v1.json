@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6s2-fivek-confirmation-normalization-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY6S2",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "657048540139b757b49fd20d4d7bb0c28fde8749",
+  "hypothesis": "the third exact FiveK population yields at least 60 geometry-aligned normalized sRGB16 pairs across at least eight camera models with zero exact or dHash<=4 leakage against all 191 prior normalized AY rows",
+  "parent_acquisition": {
+    "config": "configs/u5_r2ay6s1_fivek_confirmation_acquisition_v1.json",
+    "config_sha256": "e765a4c6e83e62b6f2f8d42ee2a65597f2a2d45cafb0622dbbb8d98a5a572cad",
+    "manifest": "outputs/u5_r2ay6s1_fivek_confirmation_acquisition_v1/run_c/manifest.json",
+    "manifest_sha256": "283e157eba2f1d2497a4eb17d9b7eff523b397ae8007891e9837cd1bb16fe83e",
+    "report": "outputs/u5_r2ay6s1_fivek_confirmation_acquisition_v1/run_c/report.json",
+    "report_sha256": "03647ca5e93153c475c65854554948a559206c05d48210a8a3ad3835efae14c6",
+    "required_assets": 128,
+    "required_decode_failures": 0,
+    "required_automatic_pass": true
+  },
+  "development_candidate": {
+    "decision": "configs/u5_r2ay6_monotone_channel_curve_development_decision_v1.json",
+    "decision_sha256": "70fbe26d6f3cf6fdc3ec2860e7d80a9383c5fd64a18454c8e5611c999bdd161d",
+    "required_status": "development_pass_new_confirmation_required",
+    "use_during_this_leaf": false
+  },
+  "normalization": {
+    "source_decode": "project WorkingImage generic RAW decode then exact sRGB encoding",
+    "target_decode": "Expert-C ProPhoto RGB16 TIFF through pinned ProPhoto-to-D50-to-D65-to-sRGB conversion",
+    "orientation_policy": "reject source-target orientation mismatch",
+    "crop_policy": "geometry-only centered source crop to target aspect ratio",
+    "resize_policy": "Lanczos4, preserve source crop aspect, maximum side 1536, then target to exact source shape",
+    "target_policy": {
+      "luma_strength": 0.82,
+      "chroma_strength": 0.18,
+      "chroma_headroom": 0.02,
+      "white_balance_anchor_strength": 1.0
+    },
+    "output_dtype": "uint16",
+    "output_space": "display-encoded sRGB",
+    "external_root": "D:/nf-019f4b76-neuro-film-data/fivek-ay6-confirm64-v1/normalized_srgb16_v1",
+    "maximum_side": 1536
+  },
+  "alignment_audit": {
+    "audit_side": 256,
+    "feature": "normalized Sobel gradient magnitude",
+    "reported_decimal_places": 6,
+    "minimum_per_pair_gradient_correlation": 0.25,
+    "minimum_median_gradient_correlation": 0.5,
+    "maximum_absolute_phase_shift_pixels": 8.0
+  },
+  "support_and_leakage": {
+    "existing_128_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "existing_128_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "existing_rows": 128,
+    "additional_existing_manifests": [
+      {
+        "path": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+        "sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+        "expected_rows": 63,
+        "id_field": "pair_id",
+        "source_hash_field": "source_sha256",
+        "target_hash_field": "target_sha256",
+        "dhash_field": "dhash64"
+      }
+    ],
+    "existing_total_rows": 191,
+    "maximum_cross_split_dhash_hamming": 4,
+    "minimum_eligible_pairs": 60,
+    "minimum_camera_models": 8,
+    "maximum_largest_camera_share": 0.35
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze exact normalized manifest and open one unchanged AY6 confirmation",
+    "alignment_fails": "close without per-image registration, manual crop or row substitution",
+    "support_or_leakage_fails": "close confirmation and retain data only as internal diagnostics",
+    "individual_rows_fail": "retain explicit reasons; up to four rows may remain unassigned"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "candidate_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "data-only deterministic normalization, alignment, camera support and leakage evidence for a third FiveK population; no operator, confirmation, film, stock, calibration, preference or product claim"
+}

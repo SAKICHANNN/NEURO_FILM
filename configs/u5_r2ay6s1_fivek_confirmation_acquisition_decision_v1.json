@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6s1-fivek-confirmation-acquisition-v1",
+  "status": "pass_integrity_geometry_normalization_required",
+  "config": "configs/u5_r2ay6s1_fivek_confirmation_acquisition_v1.json",
+  "manifest": "outputs/u5_r2ay6s1_fivek_confirmation_acquisition_v1/run_c/manifest.json",
+  "manifest_sha256": "283e157eba2f1d2497a4eb17d9b7eff523b397ae8007891e9837cd1bb16fe83e",
+  "report": "outputs/u5_r2ay6s1_fivek_confirmation_acquisition_v1/run_c/report.json",
+  "report_sha256": "03647ca5e93153c475c65854554948a559206c05d48210a8a3ad3835efae14c6",
+  "stable_evidence_id": "20e9ca0356f8c1768dce5cadbc7aaab5c0c9e5d0a7e6a8f9ff41add5e36d3d25",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "observed": {
+    "pairs": 64,
+    "assets": 128,
+    "bytes": 3667932324,
+    "decode_failures": 0,
+    "dimension_mismatches": 64
+  },
+  "interpretation": "all exact assets are hash, length and decode clean; ordinary visible-frame/render crop differences are recorded and require the separately frozen geometry-only normalization audit",
+  "claim_ceiling": "integrity-complete owned FiveK confirmation acquisition; not normalized, leakage-cleared, confirmed, film, stock, calibration or product evidence"
+}
