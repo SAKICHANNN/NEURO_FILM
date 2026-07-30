@@ -274,7 +274,10 @@ def apply_unbounded_residual_safely(
     ) / residual[negative]
     scale = np.clip(np.min(channel_scale, axis=2), 0.0, 1.0)
     limited = scale < 1.0
-    safety_margin = 1.0 - 64.0 * np.finfo(np.float64).eps
+    # A fixed 1e-10 relative retreat is still over 100,000x below one
+    # uint16 code step, while remaining robust to cancellation when a large
+    # residual is reconstructed near a strict boundary.
+    safety_margin = 1.0 - 1.0e-10
     scale = np.where(limited, scale * safety_margin, scale)
     source_boundary = (source <= boundary_epsilon) | (
         source >= 1.0 - boundary_epsilon
@@ -290,7 +293,7 @@ def apply_unbounded_residual_safely(
         )
         if not np.any(bad):
             break
-        scale[bad] = np.nextafter(scale[bad], 0.0)
+        scale[bad] *= safety_margin
     else:
         raise FiveKAdaptiveLUTError(
             "analytical scale did not converge to the safe cube"
