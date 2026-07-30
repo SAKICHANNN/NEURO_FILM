@@ -144,12 +144,10 @@ def main() -> int:
         pair_id = str(result_row["pair_id"])
         source_row = source_rows[pair_id]
         parameters = parameter_rows[pair_id]
-        raw, _ = load_raw_default(
-            ROOT / source_row["raw_path"], maximum_side=512
-        )
+        raw, _ = load_raw_default(ROOT / source_row["raw_path"], 512)
         raw = np.clip(raw, 0.0, 1.0)
         expert = load_expert_icc_srgb(
-            ROOT / source_row["expert_path"], maximum_side=512
+            ROOT / source_row["expert_path"], 512
         )
         if expert.shape != raw.shape:
             expert = resize_to_shape(expert, raw.shape[:2])
