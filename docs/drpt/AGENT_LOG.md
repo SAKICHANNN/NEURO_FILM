@@ -8042,3 +8042,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `O:\neuro_film_storage\migration`.
 - The separate D-PCT project was independently bound to
   `O:\zhuise_storage\{data,outputs}` and is not part of this repository.
+## 2026-07-31 - U5.R2BI0 closes current paired-film public surfaces
+
+- **Question:** whether SillyStill or Emulating Emulsion now exposes a
+  downloadable and explicitly licensed digital/film paired dataset.
+- **Execution:** implemented a bounded official GitHub API/author-page audit;
+  3 focused tests pass. Two live reports are byte-identical at
+  `4434b62f...bb0b` with stable evidence `2f405d45...b5b`.
+- **Decision:** zero eligible sources. No image/data payload was requested and
+  no author was contacted. Fitting/training remain closed; continue a distinct
+  explicit algorithm or genuinely new source lead.

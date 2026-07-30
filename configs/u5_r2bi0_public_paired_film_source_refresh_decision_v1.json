@@ -1,0 +1,33 @@
+{
+  "schema_version": "u5-r2bi0-public-paired-film-source-refresh-decision-v1",
+  "experiment_id": "u5.r2bi0-public-paired-film-source-refresh-v1",
+  "status": "closed_no_eligible_public_paired_source",
+  "contract": "configs/u5_r2bi0_public_paired_film_source_refresh_v1.json",
+  "report_a": "outputs/external_controls/u5_r2bi0_public_paired_film_source_refresh_v1/report_a.json",
+  "report_b": "outputs/external_controls/u5_r2bi0_public_paired_film_source_refresh_v1/report_b.json",
+  "report_sha256": "4434b62fc03c75bd6f3d855728f36cd9d77609695b7ddede410bd1257be2bb0b",
+  "stable_evidence_id": "2f405d451959775c5f64aae857136e8c04ced2fee4841f5eb7bec2f10b01bb5b",
+  "repeat_report_byte_identical": true,
+  "eligible_source_count": 0,
+  "observed": {
+    "sillystill_repository_head": "b1ebdb971207b403b7126b759c1d30d30954a722",
+    "sillystill_tree_entries": 221,
+    "sillystill_dataset_paths": 0,
+    "sillystill_root_license_paths": 0,
+    "emulating_emulsion_author_repositories": 11,
+    "emulating_emulsion_matching_repositories": 0,
+    "emulating_emulsion_public_data_links": 0,
+    "image_or_dataset_payload_requests": 0,
+    "external_contacts": 0
+  },
+  "decision": "Neither author-controlled public surface currently exposes both a downloadable paired-data package and explicit dataset reuse licence. Close only the present public surface.",
+  "allowed_next": "continue a distinct bounded explicit algorithm or a genuinely new controlled-source lead; re-run this gate only after a new committed repository or dataset artifact appears",
+  "forbidden_next": [
+    "infer data rights from the paper or webpage claim",
+    "contact authors under this leaf",
+    "download unlicensed examples",
+    "fit or train an operator",
+    "claim stock response or calibration"
+  ],
+  "claim_ceiling": "repeat-exact live metadata and repository-surface closure for two paired-film claims; no pixel rights, pair integrity, stock response, calibration, fitting, training or product evidence"
+}
