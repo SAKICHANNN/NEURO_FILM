@@ -137,7 +137,7 @@ def validate_contract(
     }
 
 
-def _load_srgb16(path: Path, maximum_side: int) -> np.ndarray:
+def load_srgb16(path: Path, maximum_side: int) -> np.ndarray:
     data = tifffile.imread(path)
     if data.ndim != 3 or data.shape[-1] != 3 or data.dtype != np.uint16:
         raise FiveKUnseenContentConfirmationError(
@@ -145,6 +145,10 @@ def _load_srgb16(path: Path, maximum_side: int) -> np.ndarray:
         )
     encoded = data.astype(np.float32) / np.float32(65535.0)
     return np.clip(resize_float(encoded, maximum_side), 0.0, 1.0)
+
+
+# Preserve the former private name for frozen downstream research scripts.
+_load_srgb16 = load_srgb16
 
 
 def _rmse(first: np.ndarray, second: np.ndarray) -> float:
@@ -271,8 +275,8 @@ def run_confirmation(
             raise FiveKUnseenContentConfirmationError(
                 f"confirmation asset drift: {evidence['pair_id']}"
             )
-        source = _load_srgb16(source_path, maximum_side)
-        target = _load_srgb16(target_path, maximum_side)
+        source = load_srgb16(source_path, maximum_side)
+        target = load_srgb16(target_path, maximum_side)
         fitted, success = fit_neutral_base_parameters(
             source, target, development_config
         )
@@ -488,6 +492,7 @@ def run_confirmation(
 
 __all__ = [
     "FiveKUnseenContentConfirmationError",
+    "load_srgb16",
     "run_confirmation",
     "validate_contract",
 ]
