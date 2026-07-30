@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3s1-fivek-fresh-pair-acquisition-v1",
+  "status": "frozen_gate_failed_valid_owned_assets_retained",
+  "manifest_sha256": "aa5c94630b9b948148e5f76a0a49b75a55dad9c4af09433dd7c8d002db5cf9fa",
+  "report_sha256": "e5e08531c9ea343ce16f7ad2846462fb40a0e55d2d9a60465238ce2eb8f9b566",
+  "stable_evidence_id": "4d998d875daca84b18755498666281b898d70bede48d77f4319ebac69dbb38e3",
+  "automatic_pass": false,
+  "observed": {
+    "pairs": 64,
+    "assets": 128,
+    "downloaded_bytes": 3648683762,
+    "length_failures": 0,
+    "hash_failures": 0,
+    "decode_failures": 0,
+    "dimension_mismatches": 63,
+    "license_copies": 2
+  },
+  "decision": "the exact visible-dimension gate was invalidated by normal DNG-versus-rendered-TIFF crop margins and remains formally failed; do not rewrite its threshold or call the acquisition passing",
+  "allowed_next": "retain the exact owned files and freeze a separate no-fitting normalization/alignment feasibility leaf using the already established FiveK decode, ICC conversion and resize policy",
+  "forbidden_next": [
+    "changing or reinterpreting the frozen acquisition gate",
+    "substituting rows or mirrors",
+    "operator fitting or confirmation before normalization, leakage and support gates pass"
+  ],
+  "claim_ceiling": "integrity-valid owned file acquisition with a failed exact-dimension gate; no normalized pair eligibility, learning, film, stock, calibration or product claim"
+}

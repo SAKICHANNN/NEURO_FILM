@@ -7633,3 +7633,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is .4496% and all-method worst 1.5648%. Per protocol no visual review or
   rescue is allowed. Close product insertion while retaining the result as
   positive bounded-explicit-parameter ML evidence.
+
+## 2026-07-30 - U5.R2AY3 passes seen development; fresh files need normalization
+
+- A shared per-pixel scale along the existing five-parameter RGB residual runs
+  twice byte-identically and creates zero new near-boundary pixels. Ridge keeps
+  13.03% mean gain, 60.94% wins, `.7428x` P95 and exactly `1.0x` the prior
+  AO6 style dose; median/P95 limited pixels are `.0046%/.3758%`.
+- The first implementation exposed float reconstruction onto the excluded
+  boundary. The fixed executor moves only the affected shared RGB scale toward
+  the source until strict interior reconstruction; 192 real calls and focused
+  tests pass without output clipping or channel-independent scaling.
+- Ten worst/error-and-intervention rows show zero confirmed severe artifacts;
+  unchanged AO6 remains visibly strong. This is still seen-development only.
+- The official 64-pair/3.65GB fresh download is complete and hash/decode clean,
+  but its frozen exact-dimension gate fails on 63 ordinary DNG/rendered-TIFF
+  crop differences. Keep the failure frozen and the owned files intact. Next
+  is a separate no-fitting normalization/alignment and leakage gate before any
+  fresh confirmation.

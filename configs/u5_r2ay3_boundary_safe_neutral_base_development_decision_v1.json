@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3-boundary-safe-neutral-base-development-v1",
+  "status": "development_pass_fresh_confirmation_required",
+  "config_sha256": "a4914847f7e0fb0217fc243d42d31ba2067de11334e4087c38f05f7a4c8861ff",
+  "report_sha256": "694b611df507ec9b7c6dc7bb2cf346d74014b13530cf71e7c68a54706ae19b5d",
+  "repeat_report_sha256": "694b611df507ec9b7c6dc7bb2cf346d74014b13530cf71e7c68a54706ae19b5d",
+  "stable_evidence_id": "510644e6942a3b2a0a185b5e076196d0daf372c71ba35e4337a185083e2b9b32",
+  "automatic_pass": true,
+  "observed": {
+    "safe_ridge_mean_improvement_over_safe_global": 0.13027963167716333,
+    "safe_ridge_win_fraction_over_safe_global": 0.609375,
+    "safe_ridge_p95_ratio_to_safe_global": 0.7427955843884237,
+    "safe_ridge_neutral_rmse_ratio_to_original_ridge": 0.9999877538345723,
+    "safe_ridge_look_rmse_ratio_to_original_ridge": 1.0000006686494436,
+    "safe_ridge_style_ratio_to_original_ridge": 1.0,
+    "safe_ridge_median_limited_fraction": 0.000045955882352941176,
+    "safe_ridge_p95_limited_fraction": 0.003758042279411764,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "visual_review": {
+    "reviewer": "Codex autonomous vision",
+    "rows": 10,
+    "selection": "worst look error plus largest analytical intervention",
+    "sheet_sha256": "fd05ef9bf18ff235201feb1564c4dca96982bec318c7692b7c3d8b0b4574c858",
+    "selection_sha256": "a4f766f59ffd3fcecdcbfd3e94775d05f9a24507ac1c4fed8f1c0323e2a91575",
+    "confirmed_severe_failures": 0,
+    "finding": "safe and unsafe neutral outputs are visually indistinguishable at sheet scale; unchanged AO6 remains strongly stylized without observed geometry, face, text, banding, posterization or clipping corruption"
+  },
+  "decision": "retain the shared-scale analytical executor as an AY3 development candidate; it preserves the fixed predictor and AO6 result while eliminating all new near-boundary pixels on the seen AY2 population",
+  "allowed_next": "normalize and integrity-audit the separately acquired frozen 64-pair FiveK population, then run one unchanged fresh confirmation",
+  "forbidden_next": [
+    "production integration",
+    "threshold, epsilon, predictor, feature, alpha, capacity or AO6 retuning",
+    "film, stock, calibration or population-preference claim"
+  ],
+  "claim_ceiling": "seen-population development evidence for an analytical boundary-safe executor around one bounded explicit neutral photographic parameter predictor before unchanged AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}
