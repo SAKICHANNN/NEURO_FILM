@@ -1,0 +1,194 @@
+{
+  "additional_rounds_allowed": false,
+  "adjudicator_software_commit": "16d8adb944561ca39b41c509d33863fddc8fb5e5",
+  "aggregate_counts": {
+    "fixed_ao6_colour_only_t15_c35": 15,
+    "fixed_b0": 21
+  },
+  "arm_retuning_allowed": false,
+  "b0_round_wins": 3,
+  "claim_ceiling": "independent-population autonomous global-policy comparison of two fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion",
+  "experiment_id": "u5.r2bh1-fixed-global-policy-confirmation-v1",
+  "gates": {
+    "automatic_gate": {
+      "pass": true,
+      "threshold": true,
+      "value": true
+    },
+    "maximum_confirmed_severe_artifact_count": {
+      "pass": true,
+      "threshold": 0,
+      "value": 0
+    },
+    "minimum_b0_aggregate_choices": {
+      "pass": false,
+      "threshold": 22,
+      "value": 21
+    },
+    "minimum_b0_round_wins": {
+      "pass": true,
+      "threshold": 2,
+      "value": 3
+    },
+    "repeat_exact": {
+      "pass": true,
+      "threshold": true,
+      "value": true
+    }
+  },
+  "inputs": {
+    "blind_mapping_sha256": [
+      "3b66345c1a92c4d384d6270488d14182b8417777c245dbf7d03dc6c2503710ad",
+      "a571e024ebfbc5a545f961eb7e3c5e3d7c30fdcff9ed18a232c310c16b7ee8d1",
+      "cb70bbeab2bea99ff09785b8e20a57dea035c8fbe5f79eb967a01528ce1222fb"
+    ],
+    "config_sha256": "e28a71160267aabf1ecf088de5ef8907da0c94bc36d1148da281988cf5c14223",
+    "full_resolution_review_sha256": "335783845929caab704724b611cf7ce13707da5efbcf4362fe5092e3d122e723",
+    "mapping_receipt_sha256": "16e0688bb24dc90966f2071144d013711720eb68f11eee7437fc14ca2ad8eab1",
+    "observations_sha256": "b1c34215d4396437d974f9d75c60dec7d16ff56f1224157b4a00f55c3df84d83",
+    "render_report_sha256": "1376d6ef6b6988e4263f66b3b7d197636238c3cd9f1f5dccc2f0db32cd7b84fe",
+    "render_stable_evidence_id": "9f52dd3ecafb0305649a1675ad0b0586cc385cf14f716cbf3205e5bf67a02640"
+  },
+  "next_branch": "retain_ao6_and_continue_distinct_algorithm_leaf",
+  "node": "ULT > U5 > U5.R2BH1",
+  "pass": false,
+  "per_source_resolved_choices": {
+    "apple_iphone_12_pro": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "autel_robotics_xb015": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_b0"
+    ],
+    "blackmagic_pocket_cinema_camera_4k": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "epson_r_d1x": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_b0"
+    ],
+    "hasselblad_lunar": [
+      "fixed_b0",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "huawei_eml_l29": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_b0",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "leaf_aptus_22": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_b0"
+    ],
+    "leica_c_typ_112": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_b0"
+    ],
+    "lg_lg_h850": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_b0"
+    ],
+    "motorola_moto_g_7_play": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ao6_colour_only_t15_c35"
+    ],
+    "olympus_e_450": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_b0"
+    ],
+    "xiaomi_m2010j19cg": [
+      "fixed_b0",
+      "fixed_b0",
+      "fixed_b0"
+    ]
+  },
+  "production_default_changed": false,
+  "rounds": [
+    {
+      "counts": {
+        "fixed_ao6_colour_only_t15_c35": 5,
+        "fixed_b0": 7
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "fixed_b0",
+        "autel_robotics_xb015": "fixed_b0",
+        "blackmagic_pocket_cinema_camera_4k": "fixed_ao6_colour_only_t15_c35",
+        "epson_r_d1x": "fixed_ao6_colour_only_t15_c35",
+        "hasselblad_lunar": "fixed_b0",
+        "huawei_eml_l29": "fixed_ao6_colour_only_t15_c35",
+        "leaf_aptus_22": "fixed_b0",
+        "leica_c_typ_112": "fixed_b0",
+        "lg_lg_h850": "fixed_ao6_colour_only_t15_c35",
+        "motorola_moto_g_7_play": "fixed_ao6_colour_only_t15_c35",
+        "olympus_e_450": "fixed_b0",
+        "xiaomi_m2010j19cg": "fixed_b0"
+      },
+      "round": 1,
+      "winner": "fixed_b0"
+    },
+    {
+      "counts": {
+        "fixed_ao6_colour_only_t15_c35": 5,
+        "fixed_b0": 7
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "fixed_b0",
+        "autel_robotics_xb015": "fixed_b0",
+        "blackmagic_pocket_cinema_camera_4k": "fixed_ao6_colour_only_t15_c35",
+        "epson_r_d1x": "fixed_ao6_colour_only_t15_c35",
+        "hasselblad_lunar": "fixed_ao6_colour_only_t15_c35",
+        "huawei_eml_l29": "fixed_b0",
+        "leaf_aptus_22": "fixed_b0",
+        "leica_c_typ_112": "fixed_b0",
+        "lg_lg_h850": "fixed_ao6_colour_only_t15_c35",
+        "motorola_moto_g_7_play": "fixed_ao6_colour_only_t15_c35",
+        "olympus_e_450": "fixed_b0",
+        "xiaomi_m2010j19cg": "fixed_b0"
+      },
+      "round": 2,
+      "winner": "fixed_b0"
+    },
+    {
+      "counts": {
+        "fixed_ao6_colour_only_t15_c35": 5,
+        "fixed_b0": 7
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "fixed_ao6_colour_only_t15_c35",
+        "autel_robotics_xb015": "fixed_b0",
+        "blackmagic_pocket_cinema_camera_4k": "fixed_ao6_colour_only_t15_c35",
+        "epson_r_d1x": "fixed_b0",
+        "hasselblad_lunar": "fixed_ao6_colour_only_t15_c35",
+        "huawei_eml_l29": "fixed_ao6_colour_only_t15_c35",
+        "leaf_aptus_22": "fixed_b0",
+        "leica_c_typ_112": "fixed_b0",
+        "lg_lg_h850": "fixed_b0",
+        "motorola_moto_g_7_play": "fixed_ao6_colour_only_t15_c35",
+        "olympus_e_450": "fixed_b0",
+        "xiaomi_m2010j19cg": "fixed_b0"
+      },
+      "round": 3,
+      "winner": "fixed_b0"
+    }
+  ],
+  "schema": "neuro_film.u5_r2bh1_fixed_global_policy_decision.v1",
+  "schema_version": 1,
+  "selected_research_global_policy": "fixed_ao6_colour_only_t15_c35",
+  "selector_or_router_training_allowed": false,
+  "stable_evidence_id": "0c5aad3cf3a87fdcf198ca269a39fb1a9f02acdd210f032beda0a22d07b7a08e",
+  "status": "b0_confirmation_fail_retain_ao6_incumbent",
+  "thresholds_changed": false,
+  "training_allowed": false
+}

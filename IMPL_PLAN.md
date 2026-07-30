@@ -1,15 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
-> U5.R2BH0 closes the complete fixed-bank selector/router hypothesis.
-> Two 50-render runs and the report are byte-identical, all automatic and
-> severe gates pass, and three complete anonymous rounds select fixed B0 as
-> the best global arm. Leave-one-round-out hard choices gain only 2 ranks
-> (3.85%) with three stable non-global sources, below the frozen 6-rank,
-> 8% and four-source gates. Do not train a selector or blend experts. The next
-> U5.R2BH1S now provides that independent population: 12 repeat-exact CC0 RAW
-> sources from 12 camera makes, with zero tracked-pool leakage and no confirmed
-> severe source artifact. U5.R2BH1 is ready to test fixed B0 versus fixed AO6
-> t15/c35 as global policies; it may not fit or retune either arm.
+> U5.R2BH1 closes the independent fixed B0-versus-AO6 global-policy
+> confirmation. Two 24-output runs and nine blind sheets are byte-identical;
+> automatic and risk-based full-resolution severe gates pass. B0 wins each
+> round 7-5, but its 21/36 aggregate choices miss the frozen 22-choice gate by
+> one. Do not add rounds, lower the gate or retune either arm. Retain fixed AO6
+> t15/c35 as the incumbent research global Look Approximation policy and move
+> to a genuinely distinct algorithm leaf; selector/router training, production
+> default changes and stock/calibration claims remain closed.
 >
 > U6.P8BQ performs a hash-bound retrospective Oracle diagnostic without
 > reopening P8BP or adding visual rounds. The P7F development observations

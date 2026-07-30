@@ -2,6 +2,24 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U5.R2BH1 retains AO6 after independent confirmation
+
+- Rendered fixed B0 and fixed AO6 t15/c35 on the 12-source BH1S population.
+  Two 24-output runs, reports and nine blind sheets are byte-identical; the
+  report is `1376d6ef...84fe` and stable render evidence is
+  `9f52dd3e...2640`.
+- All automatic gates pass and the blind-sheet plus risk-based full-resolution
+  review confirms zero severe arm-generated artifacts. A direct oversized
+  16-bit viewer cache mismatch was independently rejected by regenerated
+  previews, same-input hashes and structural matching.
+- B0 wins every anonymous round 7-5, but totals 21/36 choices and misses the
+  frozen 22-choice gate by one. The formal decision is
+  `b0_confirmation_fail_retain_ao6_incumbent`.
+- No extra rounds, threshold relaxation or arm retuning is allowed. AO6 t15/c35
+  remains the incumbent research global Look Approximation policy; production,
+  selector/router, stock/calibration and current-pixel learning remain closed.
+  Continue a genuinely distinct algorithm leaf.
+
 # 2026-07-31 - U5.R2BH1S opens fixed global-policy confirmation
 
 - Re-ran the frozen 12-source CC0 RAW preflight after the data-tree migration
