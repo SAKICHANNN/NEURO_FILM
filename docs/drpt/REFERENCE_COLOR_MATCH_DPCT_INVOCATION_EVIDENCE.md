@@ -1,7 +1,7 @@
 # Fixed D-PCT Invocation Consumer Evidence
 
-Date: 2026-07-28  
-Node: P43A-D  
+Date: 2026-07-28
+Node: P43A-D
 Status: exact-wheel local candidate invocation complete
 
 ## Result

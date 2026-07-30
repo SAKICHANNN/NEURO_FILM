@@ -1,7 +1,7 @@
 # Reference Color Match Product Staging Authorization Evidence
 
-Date: 2026-07-28  
-Node: P30A-D  
+Date: 2026-07-28
+Node: P30A-D
 Status: stable staging authorization contract; no commit or delivery
 
 ## Purpose

@@ -84,4 +84,3 @@ The auditor:
   persistence or delivery occurred.
 - The result does not change identity fallback, A1/A4/A5 or the producer
   compatibility boundary.
-

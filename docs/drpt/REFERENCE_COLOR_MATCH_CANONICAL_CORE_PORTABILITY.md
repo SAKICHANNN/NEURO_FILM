@@ -1,7 +1,7 @@
 # Reference Color Match Canonical Core Portability
 
-Date: 2026-07-28  
-Node: P42A-D  
+Date: 2026-07-28
+Node: P42A-D
 Status: host exact execution, Android link and Apple object evidence complete
 
 ## Result

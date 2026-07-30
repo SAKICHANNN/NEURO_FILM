@@ -1,7 +1,7 @@
 # Exact D-PCT Invocation Promotion Evidence
 
-Date: 2026-07-28  
-Node: P44A-D  
+Date: 2026-07-28
+Node: P44A-D
 Decision: **rejected**
 
 ## Result

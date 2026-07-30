@@ -1,7 +1,7 @@
 # Reference Color Match Product-Chain Portable Conformance
 
-Date: 2026-07-28  
-Node: P31A-D  
+Date: 2026-07-28
+Node: P31A-D
 Status: Windows exact execution and Android cross-link evidence
 
 ## Scope

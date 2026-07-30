@@ -1,7 +1,7 @@
 # Reference Color Match Exact-Receipt Numeric Guard Evidence
 
-Date: 2026-07-28  
-Node: P29A-D  
+Date: 2026-07-28
+Node: P29A-D
 Status: stable consumer candidate; no delivery or applied state
 
 ## Boundary
