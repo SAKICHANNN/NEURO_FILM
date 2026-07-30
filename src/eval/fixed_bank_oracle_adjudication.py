@@ -244,7 +244,16 @@ def adjudicate_files(
     mapping_receipt_path: Path,
     render_report_path: Path,
     mapping_paths: Sequence[Path],
+    adjudicator_software_commit: str,
 ) -> dict[str, Any]:
+    if (
+        len(adjudicator_software_commit) != 40
+        or any(
+            character not in "0123456789abcdef"
+            for character in adjudicator_software_commit
+        )
+    ):
+        raise FixedBankAdjudicationError("invalid adjudicator software commit")
     config = json.loads(config_path.read_text(encoding="utf-8"))
     observations = json.loads(observations_path.read_text(encoding="utf-8"))
     mapping_receipt = json.loads(
@@ -317,6 +326,7 @@ def adjudicate_files(
         "schema_version": 1,
         "experiment_id": config["experiment_id"],
         "node": config["node"],
+        "adjudicator_software_commit": adjudicator_software_commit,
         "status": (
             "oracle_pass_open_simplest_hard_selector"
             if result["pass"]

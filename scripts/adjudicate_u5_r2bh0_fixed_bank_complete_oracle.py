@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 
@@ -39,6 +40,9 @@ def main() -> int:
             render_dir / "blind" / f"blind_round_{index}_mapping.json"
             for index in (1, 2, 3)
         ],
+        adjudicator_software_commit=subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+        ).strip(),
     )
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
