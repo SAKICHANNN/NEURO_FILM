@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2aw8_filmmatch_luma_proxy_router.v1",
+  "experiment_id": "u5.r2aw8-filmmatch-luma-proxy-router-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW8",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "selective_oracle": {
+      "path": "outputs/external_controls/filmmatch_ektachrome_v1/selective_oracle_report.json",
+      "sha256": "7933f34593a249b3540b532a60115414fef2480037c1ad134f7248af31aa2a2f",
+      "stable_evidence_id": "d76e2dd2d2dd3394e4737f1377defa6c60ba1eeb292dead4fbe079315b4d9ac9"
+    },
+    "regime_oracle": {
+      "path": "outputs/external_controls/filmmatch_ektachrome_v1/exposure_regime_oracle_report.json",
+      "sha256": "e890fee2d764f0fa22788dc10016dd08685ae6a0eb7398c4e8e5c4aa7cf70354",
+      "stable_evidence_id": "82f7da89cb8a6847384b96b8d826ae51aac3a4ef099bdffc02dce095b76deef1"
+    }
+  },
+  "router": {
+    "feature": "median of all source frame paired RGB code values",
+    "fit": "development-only conservative scalar threshold",
+    "tie_break": "balanced accuracy, then precision, then higher threshold",
+    "high_exposure_minimum_ev": 2,
+    "high_action": "positive exposure-regime expert",
+    "low_action": "global operator"
+  },
+  "router_gate": {
+    "minimum_precision": 1.0,
+    "minimum_recall": 0.75,
+    "minimum_balanced_accuracy": 0.875,
+    "minimum_routed_median_improvement": 0.1,
+    "minimum_routed_worst_improvement": 0.0,
+    "minimum_all_fold_mean_improvement": 0.03,
+    "minimum_all_fold_worst_improvement": 0.0
+  },
+  "gates": {
+    "threshold_fit_on_held_group_allowed": false,
+    "content_generalization_claim_allowed": false,
+    "validation_pair_fit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only held-frame median-code hard routing evidence on repeated controlled charts in one paired session; no content-general luma router, inferred physical exposure, calibrated Ektachrome response, validation or product promotion"
+}
