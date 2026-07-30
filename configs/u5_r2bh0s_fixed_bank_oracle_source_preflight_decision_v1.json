@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2bh0s_fixed_bank_oracle_source_preflight_decision.v1",
+  "node": "U5.R2BH0S",
+  "software_commit": "43e4bd4d97ef9f642cf48c1b3dfcd40b58c2ee17",
+  "contract": {
+    "path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1.json",
+    "sha256": "48c622787dba8d651db5f44eadc3223e00839b75740dfbab1d95ca45cd4d3bc6"
+  },
+  "repeat_evidence": {
+    "byte_identical_runs": 2,
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "automatic_report_sha256": "10ceb978e3fa5a909804012e338a09645a6a2b504b6e953effafd46d9587c465",
+    "contact_sheet_sha256": "dd57570e76eae90478f3381eea62c7f62b5a93950b68c1056657ac223c9dbab7",
+    "visual_source_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e"
+  },
+  "result": {
+    "candidate_count": 12,
+    "decoded_rows": 11,
+    "eligible_rows": 10,
+    "eligible_camera_makes": 10,
+    "downloaded_bytes": 240462929,
+    "fixed_decode_failures": [
+      {
+        "id": "gopro_hero11_black",
+        "reason": "LibRaw file format unsupported"
+      }
+    ],
+    "fixed_visual_decode_failures": [
+      {
+        "id": "canon_powershot_v1",
+        "reason": "untrustworthy pervasive magenta decode veil"
+      }
+    ],
+    "replacement_rows_added": false,
+    "within_exact_or_dhash_le_4_pairs": 0,
+    "cross_pool_exact_or_dhash_le_4_pairs": 0,
+    "near_empty_or_monochrome_rows": 0,
+    "confirmed_severe_source_artifact_count": 0,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "next_leaf": "U5.R2BH0 render the five exact fixed explicit arms for the ten eligible sources and collect complete three-round rankings before any selector work",
+  "claim_ceiling": "fresh CC0 RAW source eligibility and autonomous severe-source review; not population preference, film truth, stock response, calibration, universal safety, router evidence or product promotion"
+}

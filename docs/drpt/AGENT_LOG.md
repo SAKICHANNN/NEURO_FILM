@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-28 - U5.R2BH0S opens a complete fixed-bank Oracle
+
+- Froze twelve metadata-only raw.pixls.us CC0 rows before pixel access,
+  disjoint by repository ID, source hash and make/model from all five tracked
+  RAW populations; the exact acquisition cap was 256 MiB.
+- Two runs are byte-identical (`e7dc8c86...8e0e` manifest,
+  `10ceb978...c465` report). Eleven rows decode; GoPro GPR is a fixed LibRaw
+  failure. Canon V1 is retained but excluded because its decoded relative
+  display state has an untrustworthy pervasive magenta veil. No replacements.
+- Ten rows from ten makes remain eligible, with zero exact/dHash<=4
+  within/cross-pool leakage and zero confirmed severe source artifact.
+- U5.R2BH0 may now render only the five frozen explicit arms and obtain complete
+  three-round rankings. Fitting, training and router work remain forbidden.
+
 # 2026-07-28 - U5.R2BG0 closes an emerging controlled-film surface
 
 - Implemented a bounded HTML-only source audit with 40-page/8MiB/request caps,

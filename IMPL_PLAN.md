@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> U5.R2BH0S now passes the source gate for the complete fixed-bank Oracle
+> required by P8BQ. Twelve metadata-frozen CC0 RAW rows produce ten eligible
+> rows from ten makes after one fixed LibRaw failure and one retained
+> untrustworthy magenta decode; no replacements were added. Two runs are
+> byte-identical with zero within/cross-pool leakage and no severe artifact
+> among eligible rows. U5.R2BH0 must now render five exact existing explicit
+> arms and collect complete rankings before any selector or router work.
+>
 > U6.P8BQ performs a hash-bound retrospective Oracle diagnostic without
 > reopening P8BP or adding visual rounds. The P7F development observations
 > have a 20/27 per-source Oracle versus AO6's 13/27. On the fresh P8BP
