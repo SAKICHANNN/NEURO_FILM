@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6s2-fivek-confirmation-normalization-v1",
+  "status": "pass_unchanged_confirmation_ready",
+  "config": "configs/u5_r2ay6s2_fivek_confirmation_normalization_v1.json",
+  "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json",
+  "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22",
+  "report": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/report.json",
+  "report_sha256": "33f0deaefb7c55371b1ec104971dfa1eb8aeec3f148e5fb908c09cb8a33a5120",
+  "stable_evidence_id": "78023ea505c1175e366d66aa4fd71d52dd182e6f9ce7d300d42f1916e0f4e5e9",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "observed": {
+    "eligible_pairs": 64,
+    "rejected_pairs": 0,
+    "camera_models": 19,
+    "largest_camera_share": 0.234375,
+    "minimum_gradient_correlation": 0.743011,
+    "median_gradient_correlation": 0.892844,
+    "maximum_phase_shift_pixels": 0.564051,
+    "exact_cross_split_duplicates": 0,
+    "perceptual_cross_split_duplicates": 0
+  },
+  "visual_review": {
+    "sheet": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/visual/alignment_sheet.png",
+    "sheet_sha256": "336b2a1419403e33aef8c6402c844d40a21abc1c5de12941441b5fdead58bb68",
+    "selection": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/visual/selection.json",
+    "selection_sha256": "bdb4379b962a44305405afd95328cf5a94d8212cb825a2160437815a7c9e9d0d",
+    "rows": 12,
+    "content_mismatches": 0,
+    "confirmed_severe_failures": 0
+  },
+  "next_leaf": "run unchanged AY6 monotone-curve predictor and analytical executor once as a confirmation, with no alpha, knot, target, projection, safety or AO6 change",
+  "claim_ceiling": "normalization, alignment, support and leakage passage for one untouched FiveK confirmation population; not algorithm confirmation, film, stock, calibration or product evidence"
+}
