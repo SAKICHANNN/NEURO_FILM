@@ -90,6 +90,9 @@ def build_schema(
     result["properties"]["required_public_exports"]["const"] = list(
         V43_REQUIRED_PUBLIC_EXPORTS
     )
+    result["properties"]["verification_commands"]["const"] = list(
+        VERIFICATION_COMMANDS
+    )
     prior = result["$defs"]["prior_manifest"]["properties"]
     prior["path"]["const"] = PRIOR_MANIFEST_PATH
     prior["schema_id"]["const"] = PRIOR_MANIFEST_SCHEMA_ID

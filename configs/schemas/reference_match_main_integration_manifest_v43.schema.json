@@ -623,6 +623,7 @@
     "verification_commands": {
       "const": [
         "git merge-tree --write-tree <payload_commit> <main_commit>",
+        "git diff --check <base_commit> <payload_commit>",
         "python -m pytest -q -k color_match",
         "python -m pytest -q"
       ]
