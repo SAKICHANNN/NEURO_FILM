@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p8bq_fixed_arm_oracle_diagnostic_contract.v1",
+  "node": "U6.P8BQ",
+  "purpose": "Retrospective, hash-bound evaluator-Oracle diagnostic over already frozen autonomous winner-only observations. It must not reopen P8BP, add visual rounds, or train a router.",
+  "parents": {
+    "p7f_decision": {
+      "path": "configs/u6_p7f_neutral_gauged_physical_chain_decision_v1.json",
+      "sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03"
+    },
+    "p7f_development_adjudication": {
+      "path": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/adjudication.json",
+      "sha256": "ac45e83300c0695789d2bb68e273577c2a6763ceb0a7bddb60c09e7b407376bc"
+    },
+    "p8a_profile_compiler": {
+      "path": "configs/u6_p8a_fixed_reference_profile_compiler_v1.json",
+      "sha256": "235a4f4781f975363fbdbd56d4afdeaa952ac1e09f2c598646b607ee97ae2570"
+    },
+    "p8a_profile_compiler_decision": {
+      "path": "configs/u6_p8a_fixed_reference_profile_compiler_decision_v1.json",
+      "sha256": "038cab54c5b7aa4fdbc3c7307b2ade43f58ec272c98ad274df0880109263fc68"
+    },
+    "p8bp_fresh_adjudication": {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/adjudication.json",
+      "sha256": "a70beb83bcb60d1792ebfe38220102de357c6a7d7b7a68cb4e2ef8d0e93fe6dc"
+    },
+    "p8bp_fresh_report": {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/report.json",
+      "sha256": "75409181b81142af4085bbff8df7bfaad88fe1f7bec866de95bc27ee3eec8af4"
+    }
+  },
+  "identity": {
+    "development_arm": "gauged_spatial_4000",
+    "compiled_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af",
+    "fresh_physical_arm": "fixed_native_standard_full_strength_1_0",
+    "fresh_global_arm": "fixed_ao6_colour_only_t15_c35",
+    "fresh_censor_arm": "fixed_b0"
+  },
+  "method": {
+    "unit": "source image",
+    "vote_source": "three already frozen independently masked winner-only rounds",
+    "oracle_choice": "For each source, choose physical only when its observed winner count is strictly greater than the global AO6 count; ties fall back to AO6.",
+    "oracle_score": "Sum the observed winner counts of the selected arm across sources.",
+    "global_score": "Sum the observed AO6 winner counts across sources.",
+    "censor_rule": "B0-winning rounds expose neither the AO6-versus-physical runner-up ordering nor a pairwise preference and remain censored; they must not be imputed.",
+    "development_role": "descriptive heterogeneity check only",
+    "fresh_role": "retrospective product-value diagnostic only, not a preregistered confirmatory test"
+  },
+  "decision_gate": {
+    "minimum_fresh_observed_oracle_gain_votes": 1,
+    "minimum_fresh_observed_oracle_gain_fraction": 0.05,
+    "minimum_fresh_physical_selected_sources": 2,
+    "require_zero_censoring_for_router_open": true
+  },
+  "branch_rule": {
+    "pass": "Retain only an evaluator-Oracle research gap; separately preregister complete pairwise evidence before any selector or router.",
+    "fail": "Close routing for the frozen physical arm and retain AO6 as the simpler global colour champion.",
+    "censored": "No router opens. Record that winner-only evidence cannot establish pairwise Oracle value."
+  },
+  "forbidden": [
+    "new render",
+    "new visual round",
+    "threshold change after reading the report",
+    "content feature fitting",
+    "selector or router training",
+    "P8BP promotion or reopen",
+    "stock, process, scanner, calibration, or population-preference claim"
+  ],
+  "claim_ceiling": "Retrospective autonomous winner-only evaluator-Oracle diagnostic on two frozen nine-image development/fresh populations. B0-winning fresh rounds are censored; this is not complete pairwise Oracle evidence, population preference, stock response, calibration, or product promotion."
+}
