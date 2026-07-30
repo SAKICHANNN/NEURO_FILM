@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u5_r2aw3_filmmatch_factorized_capacity.v1",
+  "experiment_id": "u5.r2aw3-filmmatch-factorized-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW3",
+  "parent": {
+    "config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity_result": {
+    "path": "outputs/external_controls/filmmatch_ektachrome_v1/capacity_report.json",
+    "sha256": "aa5a5787dcd375cbe42cad0cd196531d01775f91031a3807929ade284ee4b5dd",
+    "stable_evidence_id": "7a6307171572bd280fd45a952245cd1e57fe0452ae44ef1c8404b016ad81b769",
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "monotone_curves_positive_matrix_then_local_gaussian_headroom",
+    "epsilon": 1e-12,
+    "base_fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 2,
+      "maximum_function_evaluations": 2000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    },
+    "variants": [
+      {"id": "base_g2_s032_r1e2", "axis_size": 2, "sigma": 0.32, "ridge": 0.01},
+      {"id": "base_g2_s032_r1e3", "axis_size": 2, "sigma": 0.32, "ridge": 0.001},
+      {"id": "base_g2_s032_r1e4", "axis_size": 2, "sigma": 0.32, "ridge": 0.0001},
+      {"id": "base_g3_s024_r1e2", "axis_size": 3, "sigma": 0.24, "ridge": 0.01},
+      {"id": "base_g3_s024_r1e3", "axis_size": 3, "sigma": 0.24, "ridge": 0.001},
+      {"id": "base_g3_s024_r1e4", "axis_size": 3, "sigma": 0.24, "ridge": 0.0001}
+    ],
+    "structural_audit": {
+      "cube_size": 9,
+      "jacobian_size": 7,
+      "jacobian_margin": 0.01,
+      "jacobian_step": 0.00001,
+      "strength_schedule": [1.0, 0.75, 0.5, 0.35, 0.25, 0.15, 0.1, 0.05, 0.025, 0.0],
+      "minimum_jacobian_determinant": 1e-8,
+      "maximum_jacobian_spectral_norm": 8.0
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05,
+    "validation_required_before_promotion": true
+  },
+  "gates": {
+    "validation_pair_fit_forbidden": true,
+    "hard_output_clipping_forbidden": true,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal factorized paired code-domain Look Approximation development evidence for one author-prepared Sony FX3/Ektachrome E100 capture-and-scan session; no calibrated stock response, scanner independence, public fitted asset or product promotion"
+}
