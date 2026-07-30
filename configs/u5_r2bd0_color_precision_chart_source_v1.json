@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.u5-r2bd0-color-precision-chart-source-contract.v1",
+  "experiment_id": "u5.r2bd0-color-precision-chart-source-v1",
+  "status": "contract_frozen_before_payload_access",
+  "question": "Does the publicly offered Color Precision chart-comparison download contain a bounded, internally auditable same-chart graph spanning multiple named stocks, exposures and scanner interpretations?",
+  "source": {
+    "landing_page": "https://www.colorprecision.com/pages/film-comparison-tool",
+    "terms_page": "https://www.colorprecision.com/pages/terms",
+    "chart_download_google_drive_id": "12U8xfTge_k5yEzovnU_GELBAc7KpVrD9",
+    "advertised_download_bytes": null,
+    "advertised_download_label": "2.2 GB",
+    "retrieved_date": "2026-07-28",
+    "observed_public_description": "6K 35mm film scans across film stocks, lighting conditions, exposures and Frontier/Noritsu/SP-3000 scanner interpretations; no colour adjustments, with minor exposure adjustments for consistency",
+    "rights_status": "unknown_all_rights_reserved_no_training_or_redistribution_grant",
+    "terms_last_updated": "2026-07-15"
+  },
+  "acquisition": {
+    "destination_root": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1",
+    "maximum_download_bytes": 2500000000,
+    "maximum_files_after_extraction": 20000,
+    "maximum_extracted_bytes": 12000000000,
+    "purchase_allowed": false,
+    "authentication_allowed": false,
+    "other_download_categories_allowed": false,
+    "emulation_products_or_profiles_allowed": false
+  },
+  "data_readiness_gates": {
+    "minimum_distinct_named_stock_labels": 3,
+    "minimum_distinct_scanner_labels": 2,
+    "minimum_distinct_exposure_labels": 3,
+    "minimum_exact_same_chart_connected_components": 1,
+    "minimum_rows_in_largest_connected_component": 18,
+    "duplicate_and_sibling_grouping_required": true,
+    "scanner_must_remain_nuisance_or_output_profile": true,
+    "stock_source_and_exposure_must_not_be_inferred_from_pixels": true
+  },
+  "allowed_actions": [
+    "download_only_the_publicly_offered_chart_comparison_payload_within_the_frozen_byte_cap",
+    "hash_and_inventory_the_payload",
+    "inspect_filenames_container_metadata_and_low_resolution_contact_sheets",
+    "audit_stock_exposure_scanner_and_same_chart_connectivity",
+    "use_as_internal_nonreleased_source_or_nuisance_evidence_if_lineage_is_sufficient"
+  ],
+  "forbidden_actions": [
+    "operator_fitting",
+    "training",
+    "latent_mode_clustering",
+    "product_profile_extraction",
+    "reverse_engineering_paid_emulation_products",
+    "redistribution",
+    "commercial_weights",
+    "stock_response_or_calibration_claims",
+    "treating_scanner_interpretation_as_emulsion_truth",
+    "accessing_studio_landscape_night_or_daylight_downloads"
+  ],
+  "branching": {
+    "download_or_integrity_failure": "close_source_without_retrying_other_categories",
+    "insufficient_connectivity": "retain_metadata_only_source_note_and_close",
+    "rights_or_lineage_ambiguous": "allow_internal_stress_or_nuisance_audit_only_and_keep_fitting_training_closed",
+    "connectivity_and_rights_sufficient": "open_a_separately_frozen_pixel_identifiability_pilot_not_operator_fitting"
+  },
+  "claim_ceiling": "prospective bounded source and connectivity audit only; no pixel evidence, operator, training, film-stock response, calibration, authenticity, product promotion or redistribution right has been established"
+}
