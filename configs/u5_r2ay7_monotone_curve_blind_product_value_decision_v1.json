@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay7-monotone-curve-blind-product-value-v1",
+  "status": "closed_blind_product_value_failed",
+  "config": "configs/u5_r2ay7_monotone_curve_blind_product_value_v1.json",
+  "pack": "outputs/u5_r2ay7_monotone_curve_blind_product_value_v1/run_c/pack.json",
+  "pack_sha256": "3028cf213f8a30930c3cfad26d77bb1435dd26749a496ad48a3b13e282bbffba",
+  "report": "outputs/u5_r2ay7_monotone_curve_blind_product_value_v1/run_c/report.json",
+  "report_sha256": "d0739c9b04cd1ae3d75f983702f17fd64f9039bae166198b7ee54d3761319841",
+  "stable_evidence_id": "9bbfdf402abee015922b51436b907d2acbd6cd59ce959c08c7aeed4c0edb9706",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "passing_rounds": 1,
+  "required_passing_rounds": 2,
+  "rounds": [
+    {
+      "round": 1,
+      "ridge_preferences": 5,
+      "global_preferences": 8,
+      "ties": 3,
+      "confirmed_severe_failures": 0,
+      "round_pass": false
+    },
+    {
+      "round": 2,
+      "ridge_preferences": 7,
+      "global_preferences": 9,
+      "ties": 0,
+      "confirmed_severe_failures": 0,
+      "round_pass": false
+    },
+    {
+      "round": 3,
+      "ridge_preferences": 10,
+      "global_preferences": 6,
+      "ties": 0,
+      "confirmed_severe_failures": 0,
+      "round_pass": true
+    }
+  ],
+  "decision": "The source-predicted monotone curve is numerically confirmed and severe-clean, but it does not demonstrate repeatable blind visual product value over the simpler global curve before the same fixed AO6 look.",
+  "forbidden_rescue": "Do not tune the predictor, row set, round seeds, thresholds, curve strength or AO6 after unblinding.",
+  "retained_evidence": "Retain monotone source prediction as a bounded explicit digital-neutral-base research mechanism, not as the preferred product auto-base.",
+  "next_leaf": "Return to a distinct film-imaging algorithm or physical-image-formation leaf; the simpler global curve or unchanged AO6 remains the fallback.",
+  "allowed_claim": "Three blinded autonomous target-match rounds found no confirmed severe artifact, but only one met the frozen ridge-preference gate.",
+  "forbidden_claim": "Not owner or population preference, film, stock, calibration, product promotion, or evidence that explicit adaptive curves never help.",
+  "claim_ceiling": "closed blind visual product-value test for one source-predicted digital neutral base before fixed AO6"
+}

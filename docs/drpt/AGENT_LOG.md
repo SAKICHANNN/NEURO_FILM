@@ -7717,3 +7717,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Reports repeat byte-exact. Twelve worst/harmed confirmation rows have zero
   confirmed severe visual failures. The mechanism is confirmed as a digital
   neutral base only; next compare its actual visual product value before AO6.
+
+## 2026-07-30 - U5.R2AY7 closes source-predicted curve product value
+
+- Three frozen blind rounds compare source-predicted versus global monotone
+  curves before the same AO6 render, using the same 16 mechanically stratified
+  confirmation rows with independently shuffled A/B slots.
+- Ridge receives `5/7/10` preferences versus global `8/9/6`, with `3/0/0`
+  ties. Only round 3 reaches the frozen 10-vote gate; two passing rounds were
+  required. All 48 judgments record zero confirmed severe artifacts.
+- The scorer reproduces byte-identically at report SHA
+  `d0739c9b...19841`. Automatic failure closes predictor tuning, selection,
+  thresholds, strength and AO6 rescue after unblinding.
+- Retain the confirmed bounded curve mechanism as research evidence, but not
+  as the preferred product auto-base. Resume a distinct film-imaging or
+  physical-image-formation algorithm leaf; Ultimate remains active.

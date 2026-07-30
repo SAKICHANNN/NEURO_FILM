@@ -295,9 +295,154 @@ def build_packs(
     }
 
 
+def score_judgments(
+    *,
+    config: Mapping[str, Any],
+    pack_dir: Path,
+) -> dict[str, Any]:
+    """Decode completed blind judgments and apply the frozen product-value gate."""
+
+    pack_path = pack_dir / "pack.json"
+    key_path = pack_dir / "private_key.json"
+    if not pack_path.is_file() or not key_path.is_file():
+        raise FiveKMonotoneCurveBlindError("blind pack is incomplete")
+    pack = json.loads(pack_path.read_text(encoding="utf-8"))
+    if (
+        pack.get("experiment_id") != config["experiment_id"]
+        or pack.get("private_key") != key_path.name
+        or pack.get("private_key_sha256") != _sha256(key_path)
+        or pack.get("selected_pair_count") != config["selection"]["rows"]
+    ):
+        raise FiveKMonotoneCurveBlindError("blind pack identity drift")
+    key = json.loads(key_path.read_text(encoding="utf-8"))
+    if key.get("experiment_id") != config["experiment_id"]:
+        raise FiveKMonotoneCurveBlindError("private key identity drift")
+    keyed_rounds = key.get("rounds", [])
+    if len(keyed_rounds) != len(config["selection"]["round_seeds"]):
+        raise FiveKMonotoneCurveBlindError("private round count drift")
+
+    evaluated_rounds = []
+    all_pairs: list[list[str]] = []
+    total_severe = 0
+    for expected_round, keyed in enumerate(keyed_rounds, start=1):
+        if (
+            keyed.get("round") != expected_round
+            or keyed.get("seed")
+            != config["selection"]["round_seeds"][expected_round - 1]
+        ):
+            raise FiveKMonotoneCurveBlindError("private round identity drift")
+        judgment_path = (
+            pack_dir / f"round_{expected_round}_judgment.json"
+        )
+        if not judgment_path.is_file():
+            raise FiveKMonotoneCurveBlindError(
+                f"missing judgment: {judgment_path.name}"
+            )
+        judgment = json.loads(judgment_path.read_text(encoding="utf-8"))
+        if (
+            judgment.get("round") != expected_round
+            or judgment.get("assessment_label")
+            != "autonomous blinded visual target-match evidence"
+        ):
+            raise FiveKMonotoneCurveBlindError("judgment identity drift")
+        keyed_items = {
+            item["blind_id"]: item for item in keyed.get("items", [])
+        }
+        judged_items = judgment.get("items", [])
+        judged_ids = [item.get("blind_id") for item in judged_items]
+        if (
+            len(keyed_items) != config["selection"]["rows"]
+            or len(judged_items) != config["selection"]["rows"]
+            or len(set(judged_ids)) != len(judged_ids)
+            or set(judged_ids) != set(keyed_items)
+        ):
+            raise FiveKMonotoneCurveBlindError("judgment row coverage drift")
+        counts = {"ridge": 0, "global": 0, "tie": 0}
+        severe = 0
+        for item in judged_items:
+            choice = item.get("choice")
+            if choice not in {"A", "B", "tie"}:
+                raise FiveKMonotoneCurveBlindError("invalid blind choice")
+            if not isinstance(item.get("severe"), bool):
+                raise FiveKMonotoneCurveBlindError(
+                    "invalid severe-artifact judgment"
+                )
+            keyed_item = keyed_items[item["blind_id"]]
+            if {
+                keyed_item.get("ridge_slot"),
+                keyed_item.get("global_slot"),
+            } != {"A", "B"}:
+                raise FiveKMonotoneCurveBlindError("invalid private slots")
+            if choice == "tie":
+                counts["tie"] += 1
+            elif choice == keyed_item["ridge_slot"]:
+                counts["ridge"] += 1
+            else:
+                counts["global"] += 1
+            severe += int(item["severe"])
+        gate = config["evaluation"]
+        round_pass = (
+            counts["ridge"]
+            >= gate["minimum_ridge_preferences_per_round"]
+            and counts["tie"] <= gate["maximum_ties_per_round"]
+            and severe == 0
+        )
+        total_severe += severe
+        all_pairs.append(
+            sorted(item["pair_id"] for item in keyed_items.values())
+        )
+        evaluated_rounds.append(
+            {
+                "round": expected_round,
+                "ridge_preferences": counts["ridge"],
+                "global_preferences": counts["global"],
+                "ties": counts["tie"],
+                "confirmed_severe_failures": severe,
+                "round_pass": round_pass,
+                "judgment": judgment_path.name,
+                "judgment_sha256": _sha256(judgment_path),
+            }
+        )
+    if config["selection"]["same_rows_each_round"] and any(
+        pairs != all_pairs[0] for pairs in all_pairs[1:]
+    ):
+        raise FiveKMonotoneCurveBlindError("round row population drift")
+
+    passing_rounds = sum(
+        int(round_result["round_pass"])
+        for round_result in evaluated_rounds
+    )
+    gate = config["evaluation"]
+    automatic_pass = (
+        passing_rounds >= gate["minimum_passing_rounds"]
+        and total_severe <= gate["maximum_confirmed_severe_failures"]
+    )
+    stable_payload = {
+        "experiment_id": config["experiment_id"],
+        "pack_sha256": _sha256(pack_path),
+        "private_key_sha256": _sha256(key_path),
+        "rounds": evaluated_rounds,
+        "passing_rounds": passing_rounds,
+        "confirmed_severe_failures": total_severe,
+        "automatic_pass": automatic_pass,
+        "assessment_label": config["assessment_label"],
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    stable_evidence_id = hashlib.sha256(
+        _canonical_bytes(stable_payload)
+    ).hexdigest()
+    return {
+        "schema_version": 1,
+        **stable_payload,
+        "stable_evidence_id": stable_evidence_id,
+        "branch": "pass" if automatic_pass else "fail",
+    }
+
+
 __all__ = [
     "FiveKMonotoneCurveBlindError",
     "build_packs",
+    "score_judgments",
     "select_rows",
     "validate_contract",
 ]
