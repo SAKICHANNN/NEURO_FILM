@@ -8,6 +8,9 @@ from src.eval.global_frontier import sha256_file
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_v1.json"
+OBSERVATIONS = (
+    ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_observations_v1.json"
+)
 
 
 def test_bh0_contract_freezes_five_distinct_existing_arms() -> None:
@@ -66,3 +69,32 @@ def test_bh0_primary_gate_is_complete_and_cross_round() -> None:
     assert "leave-one-round-out" in protocol["primary_product_value_estimator"]
     assert protocol["minimum_improved_leave_one_round_out_folds"] == 2
     assert protocol["minimum_sources_with_stable_non_global_choice"] == 4
+
+
+def test_bh0_blind_observations_are_complete_and_mapping_sealed() -> None:
+    observations = json.loads(OBSERVATIONS.read_text(encoding="utf-8"))
+    expected_sources = {
+        "sony_ilme_fx2",
+        "panasonic_dc_s1m2es",
+        "nikon_d5300",
+        "dji_fc4382",
+        "om_system_om_3",
+        "minolta_dimage_5",
+        "phase_one_p45_plus",
+        "fujifilm_x_e5",
+        "samsung_ek_gn120",
+        "google_pixel_7_pro",
+    }
+    assert observations["status"] == (
+        "blind_complete_rankings_frozen_before_mapping_reveal"
+    )
+    assert not observations["mapping_files_read"]
+    assert observations["ties_allowed"] is False
+    assert len(observations["blind_sheets"]) == 6
+    assert len(observations["rounds"]) == 3
+    for round_row in observations["rounds"]:
+        assert set(round_row["rankings"]) == expected_sources
+        for ranking in round_row["rankings"].values():
+            assert len(ranking) == 5
+            assert set(ranking) == {"A", "B", "C", "D", "E"}
+    assert observations["severe_artifact_review"]["confirmed_severe_count"] == 0

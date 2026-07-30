@@ -1,0 +1,111 @@
+{
+  "schema": "neuro_film.u5_r2bh0_fixed_bank_complete_oracle_observations.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh0-fixed-bank-complete-oracle-v1",
+  "node": "ULT > U5 > U5.R2BH0",
+  "status": "blind_complete_rankings_frozen_before_mapping_reveal",
+  "observer": "autonomous_codex_visual_review",
+  "observation_date": "2026-07-28",
+  "render_report_sha256": "976f9e735ca461cbe2905aa8d156bfec866e9f1b97e0c9fbc8a83e999099aacc",
+  "stable_render_evidence_id": "1c398ba9e6355fc1cbf74034989cc76e82c0b1a73165aa14bce97ff5827f9dcb",
+  "mapping_files_read": false,
+  "ranking_direction": "best_to_worst",
+  "ties_allowed": false,
+  "blind_sheets": [
+    {
+      "round": 1,
+      "part": 1,
+      "sha256": "c80bad9e080609d5cda4d743fc68f5279c0fff0d62cb066e57e50cd8b031c3bc"
+    },
+    {
+      "round": 1,
+      "part": 2,
+      "sha256": "67f3c58801661e4072aa66f2467e604a10389c1c56ff3574e66cf565cc18f8ad"
+    },
+    {
+      "round": 2,
+      "part": 1,
+      "sha256": "b9343095a5e67a888d12a605fbecd3a8a69df99a24eb99bff661f9557fff11fe"
+    },
+    {
+      "round": 2,
+      "part": 2,
+      "sha256": "7126cb81513090c0b1f08373276f5e86cf4eaf5ea70a9cc3d33761a9ed64f9ac"
+    },
+    {
+      "round": 3,
+      "part": 1,
+      "sha256": "f659a78b259766a73556409afedc316aff761fdfaecd3543785270a0249cccc6"
+    },
+    {
+      "round": 3,
+      "part": 2,
+      "sha256": "4f63a5b138333026c61dda7fa4aabf50e06358b508c3a815058c89ddaa93c8aa"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "rankings": {
+        "sony_ilme_fx2": ["D", "C", "E", "A", "B"],
+        "panasonic_dc_s1m2es": ["C", "B", "A", "E", "D"],
+        "nikon_d5300": ["B", "E", "C", "A", "D"],
+        "dji_fc4382": ["B", "C", "E", "D", "A"],
+        "om_system_om_3": ["A", "E", "B", "C", "D"],
+        "minolta_dimage_5": ["B", "E", "C", "A", "D"],
+        "phase_one_p45_plus": ["E", "A", "B", "C", "D"],
+        "fujifilm_x_e5": ["A", "B", "E", "D", "C"],
+        "samsung_ek_gn120": ["D", "B", "A", "E", "C"],
+        "google_pixel_7_pro": ["E", "A", "D", "B", "C"]
+      }
+    },
+    {
+      "round": 2,
+      "rankings": {
+        "sony_ilme_fx2": ["B", "C", "A", "E", "D"],
+        "panasonic_dc_s1m2es": ["C", "E", "A", "D", "B"],
+        "nikon_d5300": ["D", "E", "B", "A", "C"],
+        "dji_fc4382": ["B", "C", "A", "D", "E"],
+        "om_system_om_3": ["B", "A", "C", "D", "E"],
+        "minolta_dimage_5": ["A", "E", "D", "C", "B"],
+        "phase_one_p45_plus": ["A", "D", "E", "B", "C"],
+        "fujifilm_x_e5": ["C", "E", "A", "D", "B"],
+        "samsung_ek_gn120": ["C", "A", "E", "B", "D"],
+        "google_pixel_7_pro": ["D", "B", "A", "C", "E"]
+      }
+    },
+    {
+      "round": 3,
+      "rankings": {
+        "sony_ilme_fx2": ["C", "E", "A", "B", "D"],
+        "panasonic_dc_s1m2es": ["D", "B", "E", "A", "C"],
+        "nikon_d5300": ["E", "D", "A", "C", "B"],
+        "dji_fc4382": ["A", "D", "C", "E", "B"],
+        "om_system_om_3": ["D", "E", "A", "C", "B"],
+        "minolta_dimage_5": ["A", "D", "E", "C", "B"],
+        "phase_one_p45_plus": ["E", "B", "D", "A", "C"],
+        "fujifilm_x_e5": ["D", "A", "C", "E", "B"],
+        "samsung_ek_gn120": ["A", "E", "C", "B", "D"],
+        "google_pixel_7_pro": ["C", "A", "E", "D", "B"]
+      }
+    }
+  ],
+  "severe_artifact_review": {
+    "confirmed_severe_count": 0,
+    "review_scope": "all 50 anonymous candidates in the six exact blind sheets",
+    "rejected_failure_classes_checked": [
+      "geometry_or_object_corruption",
+      "large_colour_blocks",
+      "posterization_or_banding",
+      "red_speckle",
+      "hard_clipping_failure",
+      "unstable_local_colour_artifact"
+    ],
+    "notes": [
+      "All five candidates preserve the same source geometry and visible detail for every source.",
+      "The Google source preview and RAW-render presentation differ in orientation, but all five candidates share one consistent decoded geometry; this is a frozen source-presentation issue rather than an arm-specific corruption.",
+      "Strong magenta-cyan, cyan-orange and deep-shadow interpretations are treated as intended style unless they create visible structural or quantization failure; none did at blind-sheet scale."
+    ]
+  },
+  "claim_ceiling": "autonomous blind complete-ranking and severe-artifact evidence on the frozen ten-source fresh population; not population preference, calibrated film truth, stock response, universal safety, selector evidence or product promotion"
+}
