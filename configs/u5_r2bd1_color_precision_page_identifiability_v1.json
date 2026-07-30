@@ -1,0 +1,133 @@
+{
+  "schema": "neuro-film.u5-r2bd1-color-precision-page-identifiability-contract.v1",
+  "experiment_id": "u5.r2bd1-color-precision-page-identifiability-v1",
+  "status": "contract_frozen_before_full_pixel_extraction",
+  "parent": {
+    "decision": "configs/u5_r2bd0_color_precision_chart_source_decision_v1.json",
+    "decision_sha256": "69ecb0c1043fe6b3946c6dd0401300dd226f55dae93ee510fe6b9b627d17b9f3",
+    "evidence_bundle_id": "dd83638e0f807ffac2b95d2b0399bcc8901313620b015cec5458853dca9372eb"
+  },
+  "question": "When each chart page is treated as an unordered exposure-unassigned bag, does stock/process-variant appearance remain distinguishable across the paired Frontier and Noritsu scanner nuisance views?",
+  "source": {
+    "rights_status": "unknown_all_rights_reserved_no_training_or_redistribution_grant",
+    "allowed_use": "internal_source_specific_scanner_nuisance_identifiability_audit_only",
+    "pdfs": [
+      {
+        "scanner_id": "frontier",
+        "path": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1/pdfs/Charts Frontier Scans.pdf",
+        "bytes": 1422900860,
+        "sha256": "e0752ad04b9979245795ff217501b77cd9ec440f8c2aea97569f9541bc2110d8"
+      },
+      {
+        "scanner_id": "noritsu",
+        "path": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1/pdfs/Charts Norritsu Scans.pdf",
+        "bytes": 986816453,
+        "sha256": "0bfdf2b568ebee194ef5de703cf82f7ca8a40e68709d81a2985930b91655e7ef"
+      }
+    ]
+  },
+  "extractor": {
+    "name": "Poppler pdfimages",
+    "executable": "C:/Users/hhvrf/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdfimages.exe",
+    "version": "24.04.0",
+    "sha256": "fcc3be76d69b8bba2b356b680d5c5d5b667be2b523cc1e78e47003cc0299bb5f",
+    "arguments": [
+      "-png"
+    ],
+    "destination_root": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1/bd1_images",
+    "minimum_width": 2500,
+    "minimum_height": 1800,
+    "maximum_extracted_files": 512,
+    "maximum_extracted_bytes": 12000000000,
+    "embedded_profile_semantics": "not_preserved_or_proven_by_pdfimages_png_output",
+    "decoded_pixel_label": "display_proxy_unknown_embedded_icc_interpretation"
+  },
+  "sample_unit": {
+    "unit": "one_stock_process_variant_page_as_unordered_image_bag",
+    "expected_variant_count": 12,
+    "expected_scanner_count": 2,
+    "exposure_assignment_allowed": false,
+    "brightness_rank_interpretation": "observed_bag_canonicalization_only_not_physical_ev",
+    "duplicate_object_policy": "collapse_exact_duplicate_embedded_objects_within_page",
+    "varying_bag_sizes_allowed": true,
+    "imputation_allowed": false
+  },
+  "features": {
+    "image_resize": [
+      256,
+      256
+    ],
+    "raw_image_descriptor": [
+      "linearized_srgb_global_rgb_mean_std",
+      "linearized_srgb_luma_quantiles_05_25_50_75_95",
+      "linearized_srgb_4x4_block_rgb_means"
+    ],
+    "basic_normalized_image_descriptor": [
+      "robust_luma_center_and_scale_normalization",
+      "median_centered_log_r_over_g_and_log_b_over_g",
+      "rms_normalized_log_chromaticity",
+      "normalized_4x4_block_rgb_means"
+    ],
+    "bag_aggregation": [
+      "descriptor_q25",
+      "descriptor_median",
+      "descriptor_q75"
+    ],
+    "normalization_scope": "each_image_then_each_page_bag_without_cross_scanner_or_label_fit",
+    "learned_representation_allowed": false
+  },
+  "evaluation": {
+    "distance": "standardized_euclidean_with_scale_fitted_on_all_24_unlabeled_page_descriptors",
+    "directions": [
+      "frontier_to_noritsu",
+      "noritsu_to_frontier"
+    ],
+    "metrics": [
+      "symmetric_cross_scanner_top1_accuracy",
+      "median_correct_cross_scanner_rank",
+      "same_variant_scanner_distance_over_within_scanner_wrong_variant_median_distance",
+      "paired_same_minus_mismatched_distance_permutation_p"
+    ],
+    "permutation": {
+      "seed": 20260728,
+      "draws": 9999,
+      "alternative": "same_variant_distance_is_smaller"
+    },
+    "frozen_gates": {
+      "raw_symmetric_top1_accuracy_minimum": 0.75,
+      "basic_normalized_symmetric_top1_accuracy_minimum": 0.75,
+      "raw_median_correct_rank_maximum": 2.0,
+      "basic_normalized_median_correct_rank_maximum": 2.0,
+      "raw_same_over_wrong_distance_ratio_maximum": 0.75,
+      "basic_normalized_same_over_wrong_distance_ratio_maximum": 0.75,
+      "raw_permutation_p_maximum": 0.05,
+      "basic_normalized_permutation_p_maximum": 0.05
+    },
+    "branching": {
+      "raw_and_normalized_pass": "retain_source_specific_stock_process_signal_but_keep_rights_and_operator_fitting_closed",
+      "raw_pass_normalized_fail": "close_as_basic_scanner_or_global_adjustment_shortcut",
+      "normalized_pass_raw_fail": "retain_descriptive_residual_signal_only_and_keep_learning_closed",
+      "both_fail": "close_for_stock_learning_and_retain_scanner_nuisance_stress_only"
+    }
+  },
+  "allowed_actions": [
+    "extract_bounded_embedded_chart_images_from_the_two_exact_pdfs",
+    "hash_group_and_deduplicate_extracted_objects",
+    "compute_the_two_frozen_handcrafted_page_bag_descriptors",
+    "run_the_frozen_paired_scanner_distance_and_permutation_diagnostics",
+    "inspect_contact_sheets_only_for_integrity_and_nuisance_interpretation"
+  ],
+  "forbidden_actions": [
+    "assigning_exposure_ev_to_images",
+    "inferring_exposure_process_or_scanner_metadata_from_pixel_brightness",
+    "operator_fitting",
+    "training",
+    "latent_mode_clustering",
+    "learned_feature_extraction",
+    "stock_response_or_calibration_claims",
+    "treating_scanner_interpretation_as_emulsion_truth",
+    "redistribution",
+    "product_profile_extraction"
+  ],
+  "claim_ceiling": "single-source internal page-bag identifiability evidence for one fixed chart setup and two scanner interpretations; no exposure-resolved mapping, independent content/source generalization, operator fitting, training, stock response, calibration, authenticity, product promotion, embedded-profile interpretation or redistribution right"
+}
