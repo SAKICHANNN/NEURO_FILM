@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2aw9_filmmatch_validation_scene.v1",
+  "experiment_id": "u5.r2aw9-filmmatch-validation-scene-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW9",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "router_report": "outputs/external_controls/filmmatch_ektachrome_v1/luma_proxy_router_report.json",
+    "router_report_sha256": "8cee603ae7c6b8ff3adc53bf3666093f73d6e5150d2ab2ed41dda002a4189c2a",
+    "router_stable_evidence_id": "a09917545652ed9a48f5d83736c2bc70d253d12c12208e97161a4142a3ec996a"
+  },
+  "data_root": "data/external_controls/filmmatch_ektachrome_v1",
+  "validation": {
+    "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+    "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+    "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+    "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+    "fit_forbidden": true,
+    "pixel_metric_forbidden": true
+  },
+  "candidate": {
+    "operator": "monotone_curves_positive_matrix",
+    "fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 2,
+      "maximum_function_evaluations": 2000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "router": {
+    "feature": "median RGB code value",
+    "minimum_exposure_ev": 2,
+    "positive_expert_training_regime": "EV greater than zero"
+  },
+  "execution": {
+    "row_chunk": 128,
+    "output": "RGB16 PNG carrying author code values without a standardized display profile"
+  },
+  "automatic_gate": {
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_style_rgb_rmse_from_source": 0.03
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_source_global_expert_routed_and_target": true
+  },
+  "gates": {
+    "validation_target_fit_allowed": false,
+    "target_pixel_metric_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "fit-forbidden real-scene visual and bounded-output validation of an internal paired code-domain Look Approximation; target framing prevents pixel accuracy claims; no calibrated stock response, scanner independence or product promotion"
+}
