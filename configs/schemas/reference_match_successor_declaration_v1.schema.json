@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "neuro-film.reference-match-successor-declaration.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "policy_id",
+    "candidate_id",
+    "producer",
+    "package",
+    "wire",
+    "semantics",
+    "rights",
+    "runtime_evidence",
+    "product_evidence",
+    "declaration_id"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-match-successor-declaration.v1"
+    },
+    "policy_id": {
+      "const": "neuro-film.reference-match-successor-admission.v1"
+    },
+    "candidate_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stable_commit",
+        "package_source_commit",
+        "fixture_commit",
+        "package_lock_sha256",
+        "conformance_fixture_sha256"
+      ],
+      "properties": {
+        "stable_commit": {"$ref": "#/$defs/commit"},
+        "package_source_commit": {"$ref": "#/$defs/commit"},
+        "fixture_commit": {"$ref": "#/$defs/commit"},
+        "package_lock_sha256": {"$ref": "#/$defs/sha256"},
+        "conformance_fixture_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distribution",
+        "version",
+        "entrypoint",
+        "wheel_filename",
+        "wheel_size_bytes",
+        "wheel_sha256"
+      ],
+      "properties": {
+        "distribution": {"$ref": "#/$defs/nonempty"},
+        "version": {"$ref": "#/$defs/nonempty"},
+        "entrypoint": {"$ref": "#/$defs/nonempty"},
+        "wheel_filename": {"$ref": "#/$defs/nonempty"},
+        "wheel_size_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1073741824
+        },
+        "wheel_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "wire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "profile_id",
+        "lower_compatibility_profile_id",
+        "request_schema",
+        "request_schema_sha256",
+        "response_schema",
+        "response_schema_sha256"
+      ],
+      "properties": {
+        "capability_id": {"$ref": "#/$defs/nonempty"},
+        "profile_id": {"$ref": "#/$defs/nonempty"},
+        "lower_compatibility_profile_id": {"$ref": "#/$defs/nonempty"},
+        "request_schema": {"$ref": "#/$defs/nonempty"},
+        "request_schema_sha256": {"$ref": "#/$defs/sha256"},
+        "response_schema": {"$ref": "#/$defs/nonempty"},
+        "response_schema_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fit_semantics",
+        "batch_transform_policy",
+        "deterministic",
+        "hidden_state"
+      ],
+      "properties": {
+        "fit_semantics": {
+          "enum": [
+            "source-reference-per-source",
+            "reference-only-shared"
+          ]
+        },
+        "batch_transform_policy": {
+          "enum": ["per-source-bundle", "shared-bundle"]
+        },
+        "deterministic": {"const": true},
+        "hidden_state": {"const": "none"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "fit_semantics": {
+                "const": "source-reference-per-source"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "batch_transform_policy": {
+                "const": "per-source-bundle"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fit_semantics": {"const": "reference-only-shared"}
+            }
+          },
+          "then": {
+            "properties": {
+              "batch_transform_policy": {"const": "shared-bundle"}
+            }
+          }
+        }
+      ]
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluation_allowed",
+        "commercial_use_allowed",
+        "redistribution_allowed",
+        "evidence_id"
+      ],
+      "properties": {
+        "evaluation_allowed": {"type": "boolean"},
+        "commercial_use_allowed": {"type": "boolean"},
+        "redistribution_allowed": {"type": "boolean"},
+        "evidence_id": {"$ref": "#/$defs/nonempty"}
+      }
+    },
+    "runtime_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "windows_x64",
+        "macos_arm64",
+        "ios_arm64",
+        "android_arm64"
+      ],
+      "properties": {
+        "windows_x64": {"type": "boolean"},
+        "macos_arm64": {"type": "boolean"},
+        "ios_arm64": {"type": "boolean"},
+        "android_arm64": {"type": "boolean"}
+      }
+    },
+    "product_evidence": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "gate_policy_id",
+            "stable_evidence_id",
+            "a1_passed",
+            "a4_passed",
+            "a5_passed",
+            "blind_aesthetic_passed"
+          ],
+          "properties": {
+            "gate_policy_id": {"$ref": "#/$defs/nonempty"},
+            "stable_evidence_id": {"$ref": "#/$defs/sha256"},
+            "a1_passed": {"type": "boolean"},
+            "a4_passed": {"type": "boolean"},
+            "a5_passed": {"type": "boolean"},
+            "blind_aesthetic_passed": {"type": "boolean"}
+          }
+        }
+      ]
+    },
+    "declaration_id": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "nonempty": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    }
+  }
+}

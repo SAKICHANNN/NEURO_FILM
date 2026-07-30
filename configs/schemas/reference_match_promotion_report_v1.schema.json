@@ -1,0 +1,524 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-match-promotion-report-v1.json",
+  "title": "Neuro-Film reference match promotion report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "report_id",
+    "algorithm_ids",
+    "sample_ids",
+    "reference_paths",
+    "source_paths",
+    "target_paths",
+    "reference_file_sha256",
+    "source_file_sha256",
+    "target_file_sha256",
+    "recipe_ids",
+    "known_operator",
+    "photographic_safety",
+    "context_invariance",
+    "visual_review",
+    "promotion_decision"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-match-promotion-report.v1"
+    },
+    "report_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "algorithm_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sample_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "reference_paths": {
+      "$ref": "#/$defs/path_map"
+    },
+    "source_paths": {
+      "$ref": "#/$defs/path_map"
+    },
+    "target_paths": {
+      "$ref": "#/$defs/path_map"
+    },
+    "reference_file_sha256": {
+      "$ref": "#/$defs/hash_map"
+    },
+    "source_file_sha256": {
+      "$ref": "#/$defs/hash_map"
+    },
+    "target_file_sha256": {
+      "$ref": "#/$defs/hash_map"
+    },
+    "recipe_ids": {
+      "$ref": "#/$defs/hash_map"
+    },
+    "known_operator": {
+      "$ref": "#/$defs/known_operator"
+    },
+    "photographic_safety": {
+      "$ref": "#/$defs/photographic_safety"
+    },
+    "context_invariance": {
+      "$ref": "#/$defs/context_invariance"
+    },
+    "visual_review": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/visual_review"
+        }
+      ]
+    },
+    "promotion_decision": {
+      "$ref": "#/$defs/promotion_decision"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "visual_review": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "promotion_decision": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "rejected",
+                  "eligible-for-visual-review"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "fraction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "path_map": {
+      "type": "object",
+      "minProperties": 2,
+      "propertyNames": {
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "hash_map": {
+      "type": "object",
+      "minProperties": 2,
+      "propertyNames": {
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/sha256"
+      }
+    },
+    "known_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_id",
+        "source_target_delta_e76_median",
+        "source_target_delta_e76_p95",
+        "candidate_target_delta_e76_median",
+        "candidate_target_delta_e76_p95",
+        "median_improvement_fraction",
+        "candidate_new_boundary_fraction"
+      ],
+      "properties": {
+        "sample_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_target_delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "source_target_delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidate_target_delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidate_target_delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "median_improvement_fraction": {
+          "type": "number"
+        },
+        "candidate_new_boundary_fraction": {
+          "$ref": "#/$defs/fraction"
+        }
+      }
+    },
+    "known_operator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "samples",
+        "improved_sample_count",
+        "regressed_sample_count",
+        "improvement_rate",
+        "median_improvement_fraction",
+        "worst_improvement_fraction",
+        "maximum_new_boundary_fraction"
+      ],
+      "properties": {
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_sample"
+          },
+          "minItems": 1
+        },
+        "improved_sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "regressed_sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "improvement_rate": {
+          "$ref": "#/$defs/fraction"
+        },
+        "median_improvement_fraction": {
+          "type": "number"
+        },
+        "worst_improvement_fraction": {
+          "type": "number"
+        },
+        "maximum_new_boundary_fraction": {
+          "$ref": "#/$defs/fraction"
+        }
+      }
+    },
+    "safety_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "reasons",
+        "neutral_chroma_p95",
+        "tone_reversal_fraction",
+        "tone_largest_reversal_delta_l",
+        "tone_plateau_fraction",
+        "new_boundary_fraction",
+        "semantic_hue_rotation_p95_degrees"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "neutral-axis-chroma",
+              "tone-reversal",
+              "tone-plateau",
+              "new-boundary-fraction",
+              "semantic-hue-rotation"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "neutral_chroma_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tone_reversal_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "tone_largest_reversal_delta_l": {
+          "type": "number",
+          "maximum": 0
+        },
+        "tone_plateau_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "new_boundary_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "semantic_hue_rotation_p95_degrees": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "passed": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reasons": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "photographic_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "samples",
+        "passed_recipe_count",
+        "failed_recipe_count",
+        "maximum_neutral_chroma_p95",
+        "maximum_tone_reversal_fraction",
+        "largest_tone_reversal_delta_l",
+        "maximum_tone_plateau_fraction",
+        "maximum_new_boundary_fraction",
+        "maximum_semantic_hue_rotation_p95_degrees"
+      ],
+      "properties": {
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/safety_sample"
+          },
+          "minItems": 1
+        },
+        "passed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_neutral_chroma_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_tone_reversal_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "largest_tone_reversal_delta_l": {
+          "type": "number",
+          "maximum": 0
+        },
+        "maximum_tone_plateau_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "maximum_new_boundary_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "maximum_semantic_hue_rotation_p95_degrees": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        }
+      }
+    },
+    "context_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "reasons",
+        "delta_e76_median",
+        "delta_e76_p95",
+        "delta_e76_maximum"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "shared-colour-median-drift",
+              "shared-colour-p95-drift",
+              "shared-colour-maximum-drift"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "delta_e76_maximum": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "passed": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reasons": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "context_invariance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "samples",
+        "passed_recipe_count",
+        "failed_recipe_count",
+        "maximum_delta_e76_median",
+        "maximum_delta_e76_p95",
+        "maximum_delta_e76"
+      ],
+      "properties": {
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/context_sample"
+          },
+          "minItems": 1
+        },
+        "passed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_recipe_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_delta_e76_median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_delta_e76_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_delta_e76": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "visual_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewed_sample_count",
+        "preferred_sample_count",
+        "severe_artifact_count",
+        "blinded"
+      ],
+      "properties": {
+        "reviewed_sample_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "preferred_sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "severe_artifact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blinded": {
+          "type": "boolean"
+        }
+      }
+    },
+    "promotion_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reasons"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "rejected",
+            "eligible-for-visual-review",
+            "promoted"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

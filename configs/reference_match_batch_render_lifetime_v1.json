@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "node": "P161",
+  "baseline_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "candidate_commit": "6ae40df1ee87e7e994b0571da6d81c5e24e26ff6",
+  "image": {
+    "width": 6000,
+    "height": 4000,
+    "reference_seed": 16001,
+    "source_seeds": [
+      16002,
+      16003,
+      16004
+    ],
+    "format": "PNG",
+    "mode": "RGB",
+    "bit_depth": 8
+  },
+  "file_match": {
+    "source_count": 3,
+    "output_bit_depth": 16,
+    "guard_policy": "default-identity-fallback",
+    "execution_semantics": "ordered-sequential-source-processing"
+  },
+  "execution_order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 150.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 17179869184,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 8589934592
+  },
+  "gates": {
+    "minimum_median_rss_reduction_bytes": 209715200,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.92,
+    "maximum_candidate_to_baseline_median_wall_ratio": 1.05,
+    "require_ordered_output_bytes_exact": true,
+    "require_recipe_bytes_exact": true,
+    "require_normalized_report_exact": true,
+    "require_all_identity_fallback": true,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0
+  },
+  "claim_ceiling": "local-windows-python-24mp-three-source-encoded-render-lifetime-evidence-only-not-platform-or-product-readiness"
+}

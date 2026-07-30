@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-dpct-compatibility-lock-v1.json",
+  "title": "Neuro-Film pinned D-PCT compatibility lock v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "producer",
+    "schemas",
+    "conformance",
+    "profile_mapping",
+    "verdict"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.dpct-compatibility-lock.v1"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_id",
+        "commit",
+        "producer_contracts_sha256",
+        "native_reference_sha256"
+      ],
+      "properties": {
+        "repository_id": {
+          "const": "zhuise-dpct"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "producer_contracts_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "native_reference_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "match_view",
+        "transform_bundle",
+        "diagnostics",
+        "apply_result"
+      ],
+      "properties": {
+        "match_view": {
+          "$ref": "#/$defs/schema_lock"
+        },
+        "transform_bundle": {
+          "$ref": "#/$defs/schema_lock"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/schema_lock"
+        },
+        "apply_result": {
+          "$ref": "#/$defs/schema_lock"
+        }
+      }
+    },
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_id",
+        "fixture_sha256",
+        "python_identity_count",
+        "cpp17_identity_count",
+        "msvc_w4_wx_passed"
+      ],
+      "properties": {
+        "fixture_id": {
+          "const": "zhuise-producer-contract-exact-bits-v1"
+        },
+        "fixture_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "python_identity_count": {
+          "const": 8
+        },
+        "cpp17_identity_count": {
+          "const": 8
+        },
+        "msvc_w4_wx_passed": {
+          "const": true
+        }
+      }
+    },
+    "profile_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "producer_profile_id",
+        "consumer_profile_id",
+        "pixel_layout",
+        "pixel_hash_mapping",
+        "semantic_state"
+      ],
+      "properties": {
+        "producer_profile_id": {
+          "const": "zhuise.display-linear-srgb-d65-relative-f32.v1"
+        },
+        "consumer_profile_id": {
+          "const": "neuro-film.display-relative-linear-srgb-d65.v1"
+        },
+        "pixel_layout": {
+          "const": "f32be-rgb-interleaved-row-major"
+        },
+        "pixel_hash_mapping": {
+          "const": "strip-sha256-prefix"
+        },
+        "semantic_state": {
+          "const": "explicitly-mappable-not-yet-compatible"
+        }
+      }
+    },
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "blockers",
+        "consumer_may_invoke",
+        "consumer_may_issue_apply_receipt",
+        "consumer_may_admit_candidate",
+        "identity_fallback_required"
+      ],
+      "properties": {
+        "status": {
+          "const": "contract-mapped-candidate-pixel-bridge-closed"
+        },
+        "blockers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "consumer_may_invoke": {
+          "const": false
+        },
+        "consumer_may_issue_apply_receipt": {
+          "const": false
+        },
+        "consumer_may_admit_candidate": {
+          "const": false
+        },
+        "identity_fallback_required": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "schema_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "sha256"
+      ],
+      "properties": {
+        "schema_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

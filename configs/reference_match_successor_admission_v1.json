@@ -1,0 +1,51 @@
+{
+  "schema_id": "neuro-film.reference-match-successor-admission-policy.v1",
+  "policy_id": "neuro-film.reference-match-successor-admission.v1",
+  "rejected_candidate": {
+    "capability_id": "zhuise.dpct-chroma.cpu-reference.v1",
+    "wheel_sha256": "fd995ad88c9f30f2136508f7c3879ce6768fde7ff2e149537d2b58f78e36c292",
+    "producer_stable_commit": "e22725d8524ed6ba56f37180abc400213908c6f4",
+    "stable_evidence_id": "90d0022c8c0d16070f38f96364e9f055ca86a3f5571a6eeafc780deea3f82d2a"
+  },
+  "evaluation_readiness": {
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "lower_compatibility_profile_id": "neuro-film.dpct-consumer.v2",
+    "require_new_capability_id": true,
+    "require_new_exact_wheel": true,
+    "require_new_producer_snapshot": true,
+    "require_conformance_fixture": true,
+    "require_explicit_fit_and_batch_semantics": true,
+    "require_deterministic_static_execution": true,
+    "require_evaluation_rights": true
+  },
+  "product_readiness": {
+    "gate_policy_id": "neuro-film.reference-match-p44-gates.v1",
+    "minimum_known_operator_samples": 12,
+    "minimum_cross_content_improvement_rate": 0.75,
+    "minimum_median_improvement_fraction": 0.1,
+    "minimum_worst_improvement_fraction": -0.1,
+    "maximum_new_boundary_fraction": 0.05,
+    "maximum_neutral_chroma_p95": 18.0,
+    "maximum_tone_reversal_fraction": 0.0,
+    "maximum_tone_plateau_fraction": 0.2,
+    "maximum_semantic_hue_rotation_p95_degrees": 75.0,
+    "maximum_context_median_delta_e76": 0.5,
+    "maximum_context_p95_delta_e76": 1.0,
+    "maximum_context_delta_e76": 3.0,
+    "require_a1": true,
+    "require_a4": true,
+    "require_a5": true,
+    "minimum_blind_review_samples": 12,
+    "minimum_blind_preference_rate": 0.5,
+    "maximum_blind_severe_artifact_count": 0,
+    "require_commercial_rights": true,
+    "require_redistribution_rights": true,
+    "required_target_runtimes": [
+      "windows_x64",
+      "macos_arm64",
+      "ios_arm64",
+      "android_arm64"
+    ]
+  },
+  "claim_ceiling": "intake-only-no-invocation-no-promotion-no-delivery"
+}

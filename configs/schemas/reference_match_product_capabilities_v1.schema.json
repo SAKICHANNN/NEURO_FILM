@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-match-product-capabilities-v1",
+  "title": "Neuro-Film Reference Match Product Capabilities V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "claim_ceiling",
+    "operations",
+    "batch",
+    "input",
+    "recipe",
+    "output",
+    "output_metadata",
+    "delivery"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-match-product-capabilities.v1"
+    },
+    "claim_ceiling": {
+      "const": "discovery-only-relative-sdr-local-product-shell-not-render-authorization-or-algorithm-promotion"
+    },
+    "operations": {
+      "const": [
+        "fit-and-render",
+        "input-inspection",
+        "recipe-replay"
+      ]
+    },
+    "batch": {
+      "const": {
+        "minimum_sources": 1,
+        "maximum_sources": 64,
+        "order_semantics": "caller-order-preserved",
+        "transaction_semantics": "all-artifacts-or-no-new-artifacts"
+      }
+    },
+    "input": {
+      "const": {
+        "inspection_schema_id": "neuro-film.reference-file-input-inspection.v1",
+        "inspection_batch_schema_id": "neuro-film.reference-file-input-inspection-batch.v1",
+        "inspection_claim_ceiling": "preflight-only-not-render-authorization",
+        "accepted_decoded_rails": [
+          {
+            "working_space": "linear_rec2020",
+            "transfer_state": "display_linear"
+          },
+          {
+            "working_space": "linear_srgb",
+            "transfer_state": "display_linear"
+          }
+        ],
+        "render_revalidates_inputs": true
+      }
+    },
+    "recipe": {
+      "const": {
+        "schema_id": "neuro-film.reference-look-recipe.v1",
+        "reference_required_for_fit": true,
+        "reference_required_for_replay": false
+      }
+    },
+    "output": {
+      "const": {
+        "schema_id": "neuro-film.reference-file-output-capabilities.v1",
+        "capabilities": [
+          {
+            "working_space": "linear_srgb",
+            "transfer_state": "display_linear",
+            "output_bit_depth": 8,
+            "extensions": [
+              ".jpeg",
+              ".jpg",
+              ".png",
+              ".tif",
+              ".tiff"
+            ],
+            "encoding_profile": "srgb-icc.v1"
+          },
+          {
+            "working_space": "linear_srgb",
+            "transfer_state": "display_linear",
+            "output_bit_depth": 16,
+            "extensions": [
+              ".png",
+              ".tif",
+              ".tiff"
+            ],
+            "encoding_profile": "srgb-icc.v1"
+          },
+          {
+            "working_space": "linear_rec2020",
+            "transfer_state": "display_linear",
+            "output_bit_depth": 16,
+            "extensions": [
+              ".png"
+            ],
+            "encoding_profile": "bt2020-sdr-cicp-1-1-0-1.v1"
+          }
+        ]
+      }
+    },
+    "output_metadata": {
+      "const": {
+        "schema_id": "neuro-film.reference-file-output-metadata-policy.v1",
+        "source_metadata_copy": "none",
+        "orientation": "pixels-normalized-no-nonidentity-tag",
+        "forbidden_metadata_classes": [
+          "exif",
+          "gps",
+          "iptc",
+          "xmp",
+          "source-free-text",
+          "embedded-thumbnail",
+          "application-private"
+        ],
+        "allowed_color_bindings": [
+          "srgb-icc.v1",
+          "bt2020-sdr-cicp-1-1-0-1.v1"
+        ],
+        "claim_ceiling": "advertised-reference-file-outputs-only-no-source-metadata-copy-not-arbitrary-encoder-or-third-party-metadata-sanitization"
+      }
+    },
+    "delivery": {
+      "const": {
+        "guard_policy_id": "reference-render-guard.v2",
+        "algorithm_status": "not-promoted",
+        "default_action": "identity-fallback",
+        "research_override": "explicit-opt-in-only-not-product"
+      }
+    }
+  }
+}

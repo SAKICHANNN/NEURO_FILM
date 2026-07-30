@@ -1,0 +1,101 @@
+{
+  "schema_id": "neuro-film.reference-match-sdr-file-format-matrix-decision.v1",
+  "node": "P163",
+  "decision": "jpeg8-tiff8-tiff16-local-transaction-gates-pass",
+  "contract_commit": "8698319d81e21229151777853aa9bb3bc06202b8",
+  "candidate_commit": "6ae40df1ee87e7e994b0571da6d81c5e24e26ff6",
+  "harness_commit": "e7d3e2d3954bc8028e1d71fcbf099ba2ab56e61b",
+  "config_sha256": "0248d87a4e04dbf2d0924a097f7a23e8209306eff757f0bfeb8c6bd1758fafae",
+  "runner_sha256": "a3e8f53367115e2b7ce7b77e822879a9b79c3786b1a873fdc0a1ec9b7e08a569",
+  "raw_report_sha256": "e3d5d44e2bfc4d53efdc804652b66a8566451098ba8e49267d3c4eeb08f9cea2",
+  "workload": {
+    "width": 2048,
+    "height": 1536,
+    "pixel_count": 3145728,
+    "repeat_count_per_case": 2,
+    "case_count": 3
+  },
+  "cases": {
+    "jpeg8": {
+      "input_bit_depth": 8,
+      "output_format": "JPEG",
+      "output_bit_depth": 8,
+      "peak_process_tree_rss_bytes": [
+        357687296,
+        336494592
+      ],
+      "worker_wall_seconds": [
+        4.582428299996536,
+        4.335470499994699
+      ],
+      "peak_rss_repeat_ratio": 1.0629808160483007,
+      "output_sha256": "20b39a7712c19f19b9628422810cde8b9cbeb06a34a7b726d4ceda0e3f82fb3a",
+      "recipe_sha256": "593c3d5a89924bfa754c6b2780262de0221204f250c56b495df4dbb73821f8fa",
+      "normalized_report_sha256": "061b66e4c7228333decac7fb8b185ac1192f9369feba5ccbc2bd2748e3831177",
+      "safety_action": "identity-fallback",
+      "automatic_pass": true
+    },
+    "tiff8": {
+      "input_bit_depth": 8,
+      "output_format": "TIFF",
+      "output_bit_depth": 8,
+      "peak_process_tree_rss_bytes": [
+        360718336,
+        352264192
+      ],
+      "worker_wall_seconds": [
+        4.3651139000139665,
+        3.8745679999992717
+      ],
+      "peak_rss_repeat_ratio": 1.0239994418734448,
+      "output_sha256": "b136e473bf867cd0e5c6daec7666a79d67e045a00ed28a3e5cc77ba627eaf074",
+      "recipe_sha256": "c2771908f8a50fd9977abf82a3a933c4579eff0ab7c4cba1641f0d1f0ff05a6a",
+      "normalized_report_sha256": "2790c2d90004d01df4f247386b815ff2d967baf548def8ba8031f586075e60c0",
+      "safety_action": "identity-fallback",
+      "automatic_pass": true
+    },
+    "tiff16": {
+      "input_bit_depth": 16,
+      "output_format": "TIFF",
+      "output_bit_depth": 16,
+      "peak_process_tree_rss_bytes": [
+        308346880,
+        322600960
+      ],
+      "worker_wall_seconds": [
+        4.239684100000886,
+        4.1008669000002556
+      ],
+      "peak_rss_repeat_ratio": 1.0462274176408077,
+      "output_sha256": "1e5129b59a1b36f613e8bff714dc8faabf0d1be4276f84c0195ba6693e57ea76",
+      "recipe_sha256": "c2771908f8a50fd9977abf82a3a933c4579eff0ab7c4cba1641f0d1f0ff05a6a",
+      "normalized_report_sha256": "bb3898fe9cce60a62af4cbfd57c72bbe75c2480b2a22afe781cf76b43cd53f4f",
+      "safety_action": "identity-fallback",
+      "automatic_pass": true
+    }
+  },
+  "frozen_gates": {
+    "maximum_peak_process_tree_rss_bytes_per_run": 1610612736,
+    "maximum_peak_rss_repeat_ratio_per_case": 1.15,
+    "worker_wall_seconds_max": 60.0,
+    "require_output_bytes_exact_per_case": true,
+    "require_recipe_bytes_exact_per_case": true,
+    "require_normalized_report_exact_per_case": true,
+    "require_identity_fallback": true,
+    "require_decoded_display_linear_srgb": true,
+    "passed": true
+  },
+  "non_pixel_attempts": {
+    "preflight_foreign_process_report_sha256": [
+      "42907f39f4339e29cdd8d23133df68d7bada2c50741e59f24e262e6df0a8043e",
+      "c5251b6ba8cefc24ba03a80e14d17670e561cd55ede5a19d88bda3c5f1b7f4c6"
+    ],
+    "direct_entry_src_import_stderr_sha256": "7970fff1bf849cb86e7228eaf4dd60569af5958b7ee24028107567c8b0d9f73a",
+    "wrong_python_numpy_stderr_sha256": "de17d2ac707b673917964ded2550895e10a6d7274bfc8e50226361a6db17f22d",
+    "incomplete_python_psutil_stderr_sha256": "46cef228f939570adaed7bcfae31d8b75862a48bfa56b856ddd09207c00145df",
+    "pixel_tasks_executed": 0
+  },
+  "worktree_cleanup_passed": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-sdr-jpeg8-tiff8-tiff16-file-transaction-evidence-only-not-arbitrary-codec-raw-hdr-platform-or-product-readiness"
+}

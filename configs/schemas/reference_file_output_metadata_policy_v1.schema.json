@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-file-output-metadata-policy-v1",
+  "title": "Neuro-Film Reference File Output Metadata Policy V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "source_metadata_copy",
+    "orientation",
+    "forbidden_metadata_classes",
+    "allowed_color_bindings",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-file-output-metadata-policy.v1"
+    },
+    "source_metadata_copy": {
+      "const": "none"
+    },
+    "orientation": {
+      "const": "pixels-normalized-no-nonidentity-tag"
+    },
+    "forbidden_metadata_classes": {
+      "const": [
+        "exif",
+        "gps",
+        "iptc",
+        "xmp",
+        "source-free-text",
+        "embedded-thumbnail",
+        "application-private"
+      ]
+    },
+    "allowed_color_bindings": {
+      "const": [
+        "srgb-icc.v1",
+        "bt2020-sdr-cicp-1-1-0-1.v1"
+      ]
+    },
+    "claim_ceiling": {
+      "const": "advertised-reference-file-outputs-only-no-source-metadata-copy-not-arbitrary-encoder-or-third-party-metadata-sanitization"
+    }
+  }
+}

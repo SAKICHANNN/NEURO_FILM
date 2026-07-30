@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "node": "P165",
+  "candidate_commit": "f2ea6f77841e04a64ba40e973ab03f0542202bb4",
+  "image": {
+    "width": 2048,
+    "height": 1536,
+    "pixel_count": 3145728,
+    "reference_seed": 16501,
+    "source_seed_start": 16502
+  },
+  "cases": [
+    {
+      "case_id": "rec2020-single",
+      "reference_rail": "linear_rec2020",
+      "source_rails": [
+        "linear_rec2020"
+      ],
+      "expected_output_rails": [
+        "linear_rec2020"
+      ],
+      "expected_output_profiles": [
+        "cicp"
+      ]
+    },
+    {
+      "case_id": "mixed-srgb-rec2020",
+      "reference_rail": "linear_srgb",
+      "source_rails": [
+        "linear_srgb",
+        "linear_rec2020"
+      ],
+      "expected_output_rails": [
+        "linear_srgb",
+        "linear_rec2020"
+      ],
+      "expected_output_profiles": [
+        "icc",
+        "cicp"
+      ]
+    }
+  ],
+  "output_bit_depth": 16,
+  "output_extension": ".png",
+  "repeat_count_per_case": 2,
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 60.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 8589934592,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 4294967296
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes_per_run": 1610612736,
+    "maximum_peak_rss_repeat_ratio_per_case": 1.15,
+    "worker_wall_seconds_max": 60.0,
+    "require_output_bytes_exact_per_case": true,
+    "require_recipe_bytes_exact_per_case": true,
+    "require_normalized_report_exact_per_case": true,
+    "require_ordered_rail_and_profile_retention": true,
+    "require_identity_fallback": true,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0
+  },
+  "claim_ceiling": "local-windows-python-bt2020-sdr-png16-cicp-and-mixed-sdr-file-transaction-evidence-only-not-hdr-arbitrary-profile-platform-or-product-readiness"
+}

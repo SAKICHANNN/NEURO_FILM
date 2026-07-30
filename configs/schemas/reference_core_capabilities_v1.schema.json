@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-capabilities-v1.json",
+  "title": "Neuro-Film external core capabilities v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "capability_id",
+    "producer_id",
+    "producer_version",
+    "producer_build_sha256",
+    "contract_schema_ids",
+    "supported_profile_ids",
+    "supported_algorithm_ids",
+    "feature_flags",
+    "determinism"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-capabilities.v1"
+    },
+    "capability_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "producer_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "producer_version": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "producer_build_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "contract_schema_ids": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "supported_profile_ids": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "neuro-film.display-relative-linear-srgb-d65.v1",
+          "neuro-film.display-relative-linear-rec2020-d65.v1",
+          "scene-relative-linear-acescg-d60.v1",
+          "display-absolute-linear-xyz-d65.v1"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "supported_algorithm_ids": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "feature_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "uniqueItems": true
+    },
+    "determinism": {
+      "enum": [
+        "bit-exact",
+        "bounded-numeric"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonempty_unique_strings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}

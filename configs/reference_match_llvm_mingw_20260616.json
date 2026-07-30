@@ -1,0 +1,9 @@
+{
+  "protocol": "neuro-film.reference-match-llvm-mingw-toolchain.v1",
+  "release": "20260616",
+  "llvm_version": "22.1.8",
+  "target": "x86_64-w64-windows-gnu",
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "license_sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
+  "scope": "independent consumer-contract Windows x86_64 execution"
+}

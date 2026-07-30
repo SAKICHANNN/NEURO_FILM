@@ -1,0 +1,536 @@
+{
+  "$defs": {
+    "contract_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "blob": {
+          "$ref": "#/$defs/git_object"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755"
+          ]
+        },
+        "path": {
+          "enum": [
+            "configs/schemas/reference_match_successor_declaration_v1.schema.json",
+            "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json",
+            "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json",
+            "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json",
+            "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json",
+            "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json",
+            "configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json",
+            "configs/schemas/reference_runtime_staging_color_attestation_v1.schema.json",
+            "configs/schemas/reference_runtime_staging_attested_match_view_bridge_v2.schema.json",
+            "configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json",
+            "configs/schemas/reference_shared_composition_v1.schema.json",
+            "configs/schemas/reference_shared_filmfx_run_v1.schema.json",
+            "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+            "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+            "configs/schemas/reference_shared_local_delivery_v1.schema.json",
+            "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+            "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json",
+            "configs/schemas/reference_shared_operator_batch_v1.schema.json",
+            "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json",
+            "configs/schemas/reference_shared_runtime_qualification_v1.schema.json"
+          ]
+        },
+        "schema_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "blob",
+        "mode",
+        "path",
+        "schema_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "git_blob": {
+      "additionalProperties": false,
+      "properties": {
+        "blob": {
+          "$ref": "#/$defs/git_object"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755",
+            "120000"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blob",
+        "mode",
+        "path"
+      ],
+      "type": "object"
+    },
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "git_object": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "prior_manifest": {
+      "additionalProperties": false,
+      "properties": {
+        "blob": {
+          "$ref": "#/$defs/git_object"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755"
+          ]
+        },
+        "path": {
+          "const": "configs/reference_match_main_integration_manifest_v9.json"
+        },
+        "schema_id": {
+          "const": "neuro-film.reference-match-main-integration-manifest.v9"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "blob",
+        "mode",
+        "path",
+        "schema_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://neuro-film.local/schemas/reference-match-main-integration-manifest-v10",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "claim_ceiling": {
+      "const": "review-ready-not-merged"
+    },
+    "contract_schemas": {
+      "items": false,
+      "maxItems": 20,
+      "minItems": 20,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_match_successor_declaration_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_staging_color_attestation_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_staging_attested_match_view_bridge_v2.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_composition_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_filmfx_run_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_local_delivery_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_operator_batch_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/contract_schema"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "type": "array",
+      "uniqueItems": true
+    },
+    "main_changed_file_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "main_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "overlap_paths": {
+      "const": []
+    },
+    "payload_changed_file_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "payload_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "payload_files": {
+      "items": {
+        "$ref": "#/$defs/git_blob"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "payload_scope": {
+      "const": "P1-P80"
+    },
+    "required_public_exports": {
+      "const": [
+        "make_shared_reference_operator_v1",
+        "guard_shared_numeric_batch_v1",
+        "authorize_shared_product_staging_v1",
+        "commit_external_shared_staging_v1",
+        "verify_external_shared_staging_v1",
+        "build_shared_reference_composition_v1",
+        "commit_shared_filmfx_staging_v1",
+        "verify_shared_filmfx_staging_v1",
+        "authorize_shared_local_delivery_v1",
+        "commit_shared_local_delivery_v1",
+        "verify_shared_local_delivery_v1",
+        "make_successor_runtime_evidence_v1",
+        "bind_successor_runtime_evidence_v1",
+        "validate_successor_runtime_evidence_v1",
+        "qualify_shared_product_authorization_runtime_v1",
+        "validate_runtime_qualified_shared_authorization_v1",
+        "commit_runtime_qualified_external_shared_staging_v1",
+        "validate_runtime_qualified_external_shared_staging_run_v1",
+        "verify_runtime_qualified_external_shared_staging_v1",
+        "validate_runtime_qualified_external_shared_staging_verification_v1",
+        "capture_runtime_qualified_shared_staging_bytes_v1",
+        "runtime_qualified_shared_staging_consumption_record_from_json",
+        "runtime_qualified_shared_staging_consumption_record_to_json",
+        "validate_runtime_qualified_shared_staging_byte_snapshot_v1",
+        "validate_runtime_qualified_shared_staging_consumption_record_v1",
+        "decode_runtime_qualified_shared_staging_bytes_v1",
+        "runtime_qualified_shared_staging_decode_record_from_json",
+        "runtime_qualified_shared_staging_decode_record_to_json",
+        "validate_runtime_qualified_shared_staging_decode_record_v1",
+        "validate_runtime_qualified_shared_staging_decoded_batch_v1",
+        "prepare_runtime_staging_match_views_v1",
+        "runtime_staging_match_view_bridge_record_from_json",
+        "runtime_staging_match_view_bridge_record_to_json",
+        "validate_runtime_staging_match_view_bridge_record_v1",
+        "validate_runtime_staging_prepared_match_view_batch_v1",
+        "attest_runtime_staging_srgb_metadata_v1",
+        "runtime_staging_color_attestation_record_from_json",
+        "runtime_staging_color_attestation_record_to_json",
+        "validate_runtime_staging_color_attestation_record_v1",
+        "validate_runtime_staging_color_attested_decoded_batch_v1",
+        "prepare_runtime_staging_attested_match_views_v2",
+        "runtime_staging_attested_match_view_bridge_record_from_json",
+        "runtime_staging_attested_match_view_bridge_record_to_json",
+        "validate_runtime_staging_attested_match_view_bridge_record_v2",
+        "validate_runtime_staging_attested_prepared_match_view_batch_v2",
+        "srgb_icc_profile_conformance_v1",
+        "srgb_icc_profile_v1"
+      ]
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-main-integration-manifest.v10"
+    },
+    "supersedes_manifest": {
+      "$ref": "#/$defs/prior_manifest"
+    },
+    "verification_commands": {
+      "const": [
+        "git merge-tree --write-tree <payload_commit> <main_commit>",
+        "python -m pytest -q -k color_match",
+        "python -m pytest -q"
+      ]
+    }
+  },
+  "required": [
+    "base_commit",
+    "claim_ceiling",
+    "contract_schemas",
+    "main_changed_file_count",
+    "main_commit",
+    "overlap_paths",
+    "payload_changed_file_count",
+    "payload_commit",
+    "payload_files",
+    "payload_scope",
+    "required_public_exports",
+    "schema_id",
+    "supersedes_manifest",
+    "verification_commands"
+  ],
+  "title": "Neuro-Film Reference Match Main Integration Manifest V10",
+  "type": "object"
+}

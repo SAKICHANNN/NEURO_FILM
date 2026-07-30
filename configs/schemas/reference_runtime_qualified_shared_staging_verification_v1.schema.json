@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "neuro-film.runtime-qualified-shared-staging-verification.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "verification_id",
+    "handle_policy_id",
+    "handle_identity_scheme",
+    "handle_observation_scope",
+    "path_consumption_authorized",
+    "run_id",
+    "runtime_qualification_id",
+    "runtime_evidence_id",
+    "declaration_id",
+    "authorization_id",
+    "upstream_batch_id",
+    "numeric_guard_batch_id",
+    "operator_id",
+    "reference_view_id",
+    "report_path",
+    "report_file_sha256",
+    "report_file_size_bytes",
+    "report_handle_identity_id",
+    "source_count",
+    "state",
+    "outputs",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.runtime-qualified-shared-staging-verification.v1"
+    },
+    "verification_id": {"$ref": "#/$defs/hash"},
+    "handle_policy_id": {
+      "const": "neuro-film.single-open-double-read-final-rehash.v1"
+    },
+    "handle_identity_scheme": {
+      "enum": [
+        "windows-volume-file-id.v1",
+        "posix-device-inode.v1"
+      ]
+    },
+    "handle_observation_scope": {
+      "enum": [
+        "windows-write-delete-share-denied-during-verification",
+        "posix-sequential-observation-no-write-exclusion"
+      ]
+    },
+    "path_consumption_authorized": {"const": false},
+    "run_id": {"$ref": "#/$defs/hash"},
+    "runtime_qualification_id": {"$ref": "#/$defs/hash"},
+    "runtime_evidence_id": {"$ref": "#/$defs/hash"},
+    "declaration_id": {"$ref": "#/$defs/hash"},
+    "authorization_id": {"$ref": "#/$defs/hash"},
+    "upstream_batch_id": {"$ref": "#/$defs/hash"},
+    "numeric_guard_batch_id": {"$ref": "#/$defs/hash"},
+    "operator_id": {"$ref": "#/$defs/hash"},
+    "reference_view_id": {"$ref": "#/$defs/hash"},
+    "report_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\.[jJ][sS][oO][nN]$"
+    },
+    "report_file_sha256": {"$ref": "#/$defs/hash"},
+    "report_file_size_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16777216
+    },
+    "report_handle_identity_id": {"$ref": "#/$defs/hash"},
+    "source_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "state": {
+      "const": "verified-runtime-qualified-shared-staging"
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {"$ref": "#/$defs/output"}
+    },
+    "claim_ceiling": {
+      "const": "runtime-qualified-shared-staging-handle-observation-only-no-path-consumption-or-delivery"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "handle_identity_scheme": {
+            "const": "windows-volume-file-id.v1"
+          }
+        },
+        "required": ["handle_identity_scheme"]
+      },
+      "then": {
+        "properties": {
+          "handle_observation_scope": {
+            "const": "windows-write-delete-share-denied-during-verification"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "handle_identity_scheme": {
+            "const": "posix-device-inode.v1"
+          }
+        },
+        "required": ["handle_identity_scheme"]
+      },
+      "then": {
+        "properties": {
+          "handle_observation_scope": {
+            "const": "posix-sequential-observation-no-write-exclusion"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "producer_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_index",
+        "source_view_id",
+        "apply_receipt_id",
+        "producer_apply_result_id",
+        "diagnostics_id",
+        "output_view_id",
+        "output_path",
+        "output_file_sha256",
+        "output_file_size_bytes",
+        "handle_identity_id",
+        "output_format",
+        "output_bit_depth",
+        "encode_clipped_fraction"
+      ],
+      "properties": {
+        "source_index": {"type": "integer", "minimum": 0, "maximum": 63},
+        "source_view_id": {"$ref": "#/$defs/hash"},
+        "apply_receipt_id": {"$ref": "#/$defs/hash"},
+        "producer_apply_result_id": {"$ref": "#/$defs/producer_hash"},
+        "diagnostics_id": {"$ref": "#/$defs/producer_hash"},
+        "output_view_id": {"$ref": "#/$defs/hash"},
+        "output_path": {"type": "string", "minLength": 1},
+        "output_file_sha256": {"$ref": "#/$defs/hash"},
+        "output_file_size_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1073741824
+        },
+        "handle_identity_id": {"$ref": "#/$defs/hash"},
+        "output_format": {"enum": ["PNG", "JPEG", "TIFF"]},
+        "output_bit_depth": {"enum": [8, 16]},
+        "encode_clipped_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"output_format": {"const": "PNG"}},
+            "required": ["output_format"]
+          },
+          "then": {
+            "properties": {
+              "output_path": {"pattern": "\\.[pP][nN][gG]$"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"output_format": {"const": "JPEG"}},
+            "required": ["output_format"]
+          },
+          "then": {
+            "properties": {
+              "output_path": {
+                "pattern": "\\.([jJ][pP][gG]|[jJ][pP][eE][gG])$"
+              },
+              "output_bit_depth": {"const": 8}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"output_format": {"const": "TIFF"}},
+            "required": ["output_format"]
+          },
+          "then": {
+            "properties": {
+              "output_path": {
+                "pattern": "\\.([tT][iI][fF]|[tT][iI][fF][fF])$"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

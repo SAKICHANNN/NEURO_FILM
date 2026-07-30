@@ -1,0 +1,63 @@
+{
+  "schema_id": "neuro-film.reference-match-batch-render-lifetime-decision.v1",
+  "node": "P161",
+  "decision": "encoded-render-lifetime-release-passes-frozen-gates",
+  "contract_commit": "ff87e0a67f1c3965c60b8d22a23b3e5dc408c19d",
+  "implementation_commit": "6ae40df1ee87e7e994b0571da6d81c5e24e26ff6",
+  "harness_commit": "6e1e04d861c6793e919a157ebc709700c4b9f548",
+  "baseline_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "config_sha256": "996f22618328f812c7f32840fdee25934dc091305e7701d9b322eae2dafdda3a",
+  "runner_sha256": "1febdbfe454a4f11dc1b042532516136eb7b0be16fd7ffffbb39b8a66a41c2bd",
+  "raw_report_sha256": "3903253b5f784a7dfc00fd32dd479f904e045989868ed21bd5242b1f3874d1a3",
+  "execution_order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "peak_process_tree_rss_bytes": [
+    2171011072,
+    1887207424,
+    1885556736,
+    2162401280
+  ],
+  "worker_wall_seconds": [
+    94.36243259999901,
+    93.72640859999228,
+    91.54591740001342,
+    93.85249370001839
+  ],
+  "baseline_median_peak_process_tree_rss_bytes": 2166706176.0,
+  "candidate_median_peak_process_tree_rss_bytes": 1886382080.0,
+  "median_peak_rss_reduction_bytes": 280324096.0,
+  "candidate_to_baseline_median_peak_rss_ratio": 0.8706220072176505,
+  "baseline_median_worker_wall_seconds": 94.1074631500087,
+  "candidate_median_worker_wall_seconds": 92.63616300000285,
+  "candidate_to_baseline_median_worker_wall_ratio": 0.984365744216688,
+  "frozen_gates": {
+    "minimum_median_rss_reduction_bytes": 209715200,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.92,
+    "maximum_candidate_to_baseline_median_wall_ratio": 1.05,
+    "passed": true
+  },
+  "artifact_identity": {
+    "ordered_output_sha256": [
+      "eb5b631774e4d5f6e5c6ffe442e311e4fcebd7cca30aa3e2b2ff3143f07f3e49",
+      "59d2e7b9adaeafe2ab468bc59fb2439398e6425095838e1dccf90d9e218c441e",
+      "902d86e649533f3759df035fc25f712dc3e415b8a05b82830353fb4d91b6a01e"
+    ],
+    "recipe_sha256": "67a11df7aa35af2d979c94957f122a52452723547969d7eb86b695d7088562c9",
+    "normalized_report_sha256": "a0a8df416845839f5ec735fb8acb734f826b1c76580c81af3b566bef0ace9d9f",
+    "all_four_runs_exact": true
+  },
+  "verification": {
+    "focused_file_tests": "31 passed, 1 skipped",
+    "audit_tests": "2 passed",
+    "broad_non_manifest_attempt": "1876 passed, 6 skipped, 36 unrelated historical data/hash/output failures",
+    "broad_failure_scope": "main-project film-style fixtures and absent generated outputs; no failure names src.color_match or P161",
+    "weakref_collection_before_next_source_load": true,
+    "worktree_cleanup_passed": true
+  },
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-24mp-three-source-encoded-render-lifetime-evidence-only-not-platform-or-product-readiness"
+}

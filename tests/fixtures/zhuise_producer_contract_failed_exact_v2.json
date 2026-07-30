@@ -1,0 +1,24 @@
+{
+  "diagnostics": {
+    "backend": {
+      "backend_id": "zhuise.fixture.cpu",
+      "backend_version": "zhuise.fixture.v2",
+      "build_fingerprint": "sha256:5656565656565656565656565656565656565656565656565656565656565656"
+    },
+    "bundle_id": null,
+    "canonical_json": "zhuise-json-sort-keys-utf8-v1",
+    "capability_id": "zhuise.dpct.cpu-reference.v1",
+    "diagnostics_id": "sha256:d97bd90fb80b658cab52f121d131dde4556a92c93c146b1d93a573e1524bc109",
+    "failure_code": "zhuise.nonfinite-output",
+    "measurements": null,
+    "reference_view_id": "sha256:d72abd55e8996380f31a1de69fa8a9e9974ce32840559c39f9d6e400e5a67965",
+    "schema": "zhuise.diagnostics.v2",
+    "source_view_id": "sha256:d91d4b52bc9d7540fcce10a7ee4ba57a4e0b5539bda8c2ce45313e6b9872b1f5",
+    "status": "failed",
+    "warnings": [
+      "identity-fallback-required"
+    ]
+  },
+  "fixture": "zhuise-producer-contract-failed-exact-v2",
+  "result": null
+}

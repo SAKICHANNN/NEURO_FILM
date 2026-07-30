@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-look-recipe-v1.json",
+  "title": "Neuro-Film reference look recipe v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "algorithm_id",
+    "recipe_id",
+    "claim_ceiling",
+    "evidence_grade",
+    "reference_working_space",
+    "reference_transfer_state",
+    "reference_shape",
+    "reference_pixel_sha256",
+    "destination_lab_mean",
+    "destination_lab_std",
+    "policy"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-look-recipe.v1"
+    },
+    "algorithm_id": {
+      "const": "safe-lab-reference-statistics.v1"
+    },
+    "recipe_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "claim_ceiling": {
+      "const": "reference-look"
+    },
+    "evidence_grade": {
+      "const": "deterministic-statistical-baseline"
+    },
+    "reference_working_space": {
+      "enum": [
+        "linear_srgb",
+        "linear_rec2020"
+      ]
+    },
+    "reference_transfer_state": {
+      "const": "display_linear"
+    },
+    "reference_shape": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "const": 3
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "reference_pixel_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "destination_lab_mean": {
+      "$ref": "#/$defs/finite_triplet"
+    },
+    "destination_lab_std": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "policy": {
+      "$ref": "#/$defs/policy"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "finite_triplet": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "nullable_positive": {
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strength",
+        "luma_strength",
+        "tone_rolloff",
+        "shadow_floor_l",
+        "highlight_ceiling_l",
+        "preserve_luma_detail_strength",
+        "chroma_curve_strength",
+        "neutral_protect",
+        "skin_protect",
+        "max_chroma_gain",
+        "max_chroma_boost",
+        "max_chroma_absolute",
+        "gamut_mode",
+        "gamut_iterations"
+      ],
+      "properties": {
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "luma_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tone_rolloff": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "shadow_floor_l": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 25
+        },
+        "highlight_ceiling_l": {
+          "type": "number",
+          "minimum": 75,
+          "maximum": 100
+        },
+        "preserve_luma_detail_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "chroma_curve_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "neutral_protect": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "skin_protect": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "max_chroma_gain": {
+          "$ref": "#/$defs/nullable_positive"
+        },
+        "max_chroma_boost": {
+          "$ref": "#/$defs/nullable_positive"
+        },
+        "max_chroma_absolute": {
+          "$ref": "#/$defs/nullable_positive"
+        },
+        "gamut_mode": {
+          "enum": [
+            "source",
+            "chroma"
+          ]
+        },
+        "gamut_iterations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-match-report-v1.json",
+  "title": "Neuro-Film reference match report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "algorithm_id",
+    "recipe_id",
+    "claim_ceiling",
+    "evidence_grade",
+    "reference",
+    "recipe_file",
+    "outputs"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-match-report.v1"
+    },
+    "algorithm_id": {
+      "const": "safe-lab-reference-statistics.v1"
+    },
+    "recipe_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "claim_ceiling": {
+      "const": "reference-look"
+    },
+    "evidence_grade": {
+      "const": "deterministic-statistical-baseline"
+    },
+    "reference": {
+      "$ref": "#/$defs/reference"
+    },
+    "recipe_file": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/recipe_file"
+        }
+      ]
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/output"
+      },
+      "minItems": 1,
+      "maxItems": 64
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "file_sha256",
+        "pixel_sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "file_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "pixel_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "recipe_file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "candidate_diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipe_id",
+        "claim_ceiling",
+        "source_index",
+        "source_working_space",
+        "source_shape",
+        "gamut_adjusted_fraction",
+        "output_min",
+        "output_max"
+      ],
+      "properties": {
+        "recipe_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "claim_ceiling": {
+          "const": "reference-look"
+        },
+        "source_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_working_space": {
+          "enum": [
+            "linear_srgb",
+            "linear_rec2020"
+          ]
+        },
+        "source_shape": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "const": 3
+            }
+          ],
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "gamut_adjusted_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "output_min": {
+          "type": "number"
+        },
+        "output_max": {
+          "type": "number"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "accepted",
+        "action",
+        "reasons",
+        "candidate_gamut_adjusted_fraction",
+        "candidate_new_boundary_fraction",
+        "research_baseline_override"
+      ],
+      "properties": {
+        "policy_id": {
+          "const": "reference-render-guard.v2"
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "action": {
+          "enum": [
+            "applied",
+            "identity-fallback"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "gamut-adjusted-fraction",
+              "new-boundary-fraction",
+              "algorithm-not-promoted"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "candidate_gamut_adjusted_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "candidate_new_boundary_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "research_baseline_override": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "accepted": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "applied"
+              },
+              "reasons": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "action": {
+                "const": "identity-fallback"
+              },
+              "reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "research_baseline_override": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "accepted": {
+                "const": false
+              },
+              "action": {
+                "const": "identity-fallback"
+              },
+              "reasons": {
+                "contains": {
+                  "const": "algorithm-not-promoted"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fraction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_path",
+        "source_sha256",
+        "output_path",
+        "output_sha256",
+        "output_format",
+        "output_bit_depth",
+        "encode_clipped_fraction",
+        "candidate_diagnostics",
+        "safety"
+      ],
+      "properties": {
+        "source_path": {
+          "$ref": "#/$defs/path"
+        },
+        "source_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "output_path": {
+          "$ref": "#/$defs/path"
+        },
+        "output_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "output_format": {
+          "enum": [
+            "PNG",
+            "JPEG",
+            "TIFF"
+          ]
+        },
+        "output_bit_depth": {
+          "enum": [
+            8,
+            16
+          ]
+        },
+        "encode_clipped_fraction": {
+          "$ref": "#/$defs/fraction"
+        },
+        "candidate_diagnostics": {
+          "$ref": "#/$defs/candidate_diagnostics"
+        },
+        "safety": {
+          "$ref": "#/$defs/safety"
+        }
+      }
+    }
+  }
+}

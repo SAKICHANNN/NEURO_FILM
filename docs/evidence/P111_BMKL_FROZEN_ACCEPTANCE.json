@@ -1,0 +1,54 @@
+{
+  "schema_id": "neuro-film.bmkl-frozen-acceptance-evidence.v1",
+  "candidate_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+  "producer_package_commit": "98073d4a61f904061341ae7a01451c2ce8b28177",
+  "consumer_intake_commit": "7ccd4b696d87cf239795a0dd086064baad469f32",
+  "invocation_profile_id": "de6a590e5e4448d1a097ecf12e2d1f4df4669d8b27a4a6f0af75046132a53adc",
+  "wheel_sha256": "cd95c2665a99e604da3b30e524885762d0d8327389f583606c36675499934bee",
+  "gate_policy_id": "neuro-film.reference-match-p44-gates.v1",
+  "stable_evidence_id": "25789c1dd698c40621040ea9fc75d22bc6b60cfe6d1e113d32e55dfc658320b9",
+  "replay": {
+    "first_report_id": "55ae5fd880ed7a0dac6bdc27437fe5b1d336b4ba03d34c2c1881fd09bd81fa16",
+    "first_file_sha256": "540a728f520c3a414d3d793b5913c17a0d6f7d01d2737dd510ece9d22622d88b",
+    "second_report_id": "bee46a41f8a261f37f2b82486a249e9b5daf3e4198a91b81f73bf5cae6d555da",
+    "second_file_sha256": "2b071ae9068ddff46c062fe3d5bf2dcb13f2dfa46ad77514db431ff8a97335ea",
+    "stable_evidence_exact": true
+  },
+  "a1_known_operator": {
+    "sample_count": 30,
+    "improved_sample_count": 13,
+    "regressed_sample_count": 17,
+    "improvement_rate": 0.43333333333333335,
+    "median_improvement_fraction": -0.1205771639633899,
+    "worst_improvement_fraction": -1.225607092870129,
+    "maximum_new_boundary_fraction": 0.0,
+    "passed": false
+  },
+  "a4_photographic_safety": {
+    "passed_recipe_count": 6,
+    "failed_recipe_count": 0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_neutral_chroma_p95": 9.899436950683594,
+    "maximum_semantic_hue_rotation_p95_degrees": 11.41763687133789,
+    "automated_passed": true,
+    "blind_review_opened": false
+  },
+  "a5_context_invariance": {
+    "passed_recipe_count": 0,
+    "failed_recipe_count": 6,
+    "maximum_delta_e76_median": 21.99414825439453,
+    "maximum_delta_e76_p95": 35.62344741821289,
+    "maximum_delta_e76": 44.73575210571289,
+    "passed": false
+  },
+  "promotion_status": "rejected",
+  "promotion_reasons": [
+    "known-operator-improvement-rate",
+    "known-operator-median",
+    "known-operator-tail",
+    "context-invariance:shared-colour-maximum-drift",
+    "context-invariance:shared-colour-median-drift",
+    "context-invariance:shared-colour-p95-drift"
+  ],
+  "claim_ceiling": "evaluated-and-rejected-not-promoted-not-applied-not-delivered"
+}

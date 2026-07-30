@@ -1,0 +1,87 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-run-composition-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "batch_safety_status": {
+      "enum": [
+        "reference-color-applied",
+        "identity-fallback"
+      ]
+    },
+    "binding_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "composition_plan": {
+      "$ref": "https://neuro-film.local/schemas/reference-composition-v1.json"
+    },
+    "outputs": {
+      "items": {
+        "$ref": "#/$defs/output"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "research_baseline_requested": {
+      "type": "boolean"
+    },
+    "run_report_schema_id": {
+      "enum": [
+        "neuro-film.reference-match-report.v1",
+        "neuro-film.reference-match-replay-report.v1"
+      ]
+    },
+    "run_report_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-run-composition-binding.v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "binding_id",
+    "run_report_schema_id",
+    "run_report_sha256",
+    "batch_safety_status",
+    "research_baseline_requested",
+    "composition_plan",
+    "outputs"
+  ],
+  "title": "Neuro-Film run-bound reference composition v1",
+  "type": "object",
+  "$defs": {
+    "output": {
+      "additionalProperties": false,
+      "properties": {
+        "output_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "safety_action": {
+          "enum": [
+            "applied",
+            "identity-fallback"
+          ]
+        },
+        "source_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "source_index",
+        "source_sha256",
+        "output_sha256",
+        "safety_action"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  }
+}

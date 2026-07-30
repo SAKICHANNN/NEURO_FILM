@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "neuro-film.srgb-icc-profile-conformance.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "profile_id",
+    "profile_sha256",
+    "profile_size_bytes",
+    "profile_base64",
+    "icc_declared_size_bytes",
+    "device_class",
+    "data_color_space",
+    "profile_connection_space",
+    "icc_signature",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.srgb-icc-profile-conformance.v1"
+    },
+    "profile_id": {
+      "const": "neuro-film.srgb-icc-profile.v1"
+    },
+    "profile_sha256": {
+      "const": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+    },
+    "profile_size_bytes": {"const": 588},
+    "profile_base64": {
+      "type": "string",
+      "minLength": 784,
+      "maxLength": 784,
+      "pattern": "^[A-Za-z0-9+/]+={0,2}$"
+    },
+    "icc_declared_size_bytes": {"const": 588},
+    "device_class": {"const": "mntr"},
+    "data_color_space": {"const": "RGB "},
+    "profile_connection_space": {"const": "XYZ "},
+    "icc_signature": {"const": "acsp"},
+    "claim_ceiling": {
+      "const": "exact-profile-bytes-for-conformance-not-proof-of-application"
+    }
+  }
+}

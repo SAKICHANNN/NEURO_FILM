@@ -1,0 +1,158 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-match-main-integration-manifest-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "claim_ceiling": {
+      "const": "review-ready-not-merged"
+    },
+    "main_changed_file_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "main_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "overlap_paths": {
+      "const": []
+    },
+    "payload_changed_file_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "payload_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "payload_files": {
+      "items": {
+        "$ref": "#/$defs/git_blob"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "required_public_exports": {
+      "const": [
+        "make_shared_reference_operator_v1",
+        "guard_shared_numeric_batch_v1",
+        "authorize_shared_product_staging_v1",
+        "commit_external_shared_staging_v1",
+        "verify_external_shared_staging_v1",
+        "build_shared_reference_composition_v1",
+        "commit_shared_filmfx_staging_v1",
+        "verify_shared_filmfx_staging_v1",
+        "authorize_shared_local_delivery_v1",
+        "commit_shared_local_delivery_v1",
+        "verify_shared_local_delivery_v1"
+      ]
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-main-integration-manifest.v1"
+    },
+    "shared_schemas": {
+      "items": {
+        "$ref": "#/$defs/shared_schema"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "verification_commands": {
+      "const": [
+        "git merge-tree --write-tree <payload_commit> <main_commit>",
+        "python -m pytest -q tests/test_color_match*.py",
+        "python -m pytest -q"
+      ]
+    }
+  },
+  "required": [
+    "base_commit",
+    "claim_ceiling",
+    "main_changed_file_count",
+    "main_commit",
+    "overlap_paths",
+    "payload_changed_file_count",
+    "payload_commit",
+    "payload_files",
+    "required_public_exports",
+    "schema_id",
+    "shared_schemas",
+    "verification_commands"
+  ],
+  "title": "Neuro-Film Reference Match Main Integration Manifest V1",
+  "type": "object",
+  "$defs": {
+    "git_blob": {
+      "additionalProperties": false,
+      "properties": {
+        "blob": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755",
+            "120000"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blob",
+        "mode",
+        "path"
+      ],
+      "type": "object"
+    },
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "shared_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "blob": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755"
+          ]
+        },
+        "path": {
+          "pattern": "^configs/schemas/reference_shared[^/]*\\.schema\\.json$",
+          "type": "string"
+        },
+        "schema_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "blob",
+        "mode",
+        "path",
+        "schema_id",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  }
+}

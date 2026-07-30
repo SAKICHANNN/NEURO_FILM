@@ -1,0 +1,60 @@
+{
+  "schema_id": "neuro-film.reference-match-unsupported-media-batch-atomicity-decision.v1",
+  "node": "P164",
+  "decision": "three-exact-unsupported-second-source-cases-fail-closed-atomically",
+  "contract_commit": "dc04c0f78f6fde8a01dc908976e6cf2ad366b71f",
+  "candidate_commit": "f2ea6f77841e04a64ba40e973ab03f0542202bb4",
+  "harness_commit": "d26e08f62009c767ee63daf23330eb3c20365d67",
+  "config_sha256": "017b2abf93f5657d29442aec36c77a8123d732cc42217cb550c0ef068632a434",
+  "runner_sha256": "569c13d04e1d568134c607d7fc59b92264c028ca715a132527884212d8eeeca7",
+  "raw_report_sha256": "db55efd88cfc7259d81384b911f9c34fcb1928b70738dcd18ac3caedc3bd0cf2",
+  "execution_head": "d26e08f62009c767ee63daf23330eb3c20365d67",
+  "product_source_diff_from_candidate": false,
+  "repeat_count_per_case": 2,
+  "cases": {
+    "transparent-alpha-second-source": {
+      "invalid_source_sha256": "ab6ffcf3677f22e350be7b13f5707bb2b17202beb153db0fa962e2dde9d4a8a8",
+      "exception_type": "ValueError",
+      "exception_message": "raster alpha preservation/compositing is not implemented; refusing transparent hidden-RGB fallback",
+      "encode_call_count_per_run": [
+        1,
+        1
+      ],
+      "target_hashes_unchanged": true,
+      "residual_artifact_count": 0,
+      "exact_replay": true,
+      "automatic_pass": true
+    },
+    "multipage-tiff-second-source": {
+      "invalid_source_sha256": "d02a3297c57823d7d00fb3505567661a2e10ca6f5705124a3f9f1ccc7652012f",
+      "exception_type": "ValueError",
+      "exception_message": "multi-frame raster rendering is not implemented; refusing silent frame-zero fallback (frame_count=2)",
+      "encode_call_count_per_run": [
+        1,
+        1
+      ],
+      "target_hashes_unchanged": true,
+      "residual_artifact_count": 0,
+      "exact_replay": true,
+      "automatic_pass": true
+    },
+    "libultrahdr-mpo-second-source": {
+      "invalid_source_sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "exception_type": "ValueError",
+      "exception_message": "multi-frame raster rendering is not implemented; refusing silent frame-zero fallback (frame_count=2)",
+      "encode_call_count_per_run": [
+        1,
+        1
+      ],
+      "target_hashes_unchanged": true,
+      "residual_artifact_count": 0,
+      "exact_replay": true,
+      "automatic_pass": true
+    }
+  },
+  "all_six_first_sources_reached_render_stage": true,
+  "all_twenty_four_target_hash_checks_unchanged": true,
+  "all_six_residual_artifact_counts_zero": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-consumer-transaction-fail-closed-evidence-for-three-exact-unsupported-second-source-cases-only-not-complete-media-detection-or-format-support"
+}

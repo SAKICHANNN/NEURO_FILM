@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference_external_local_delivery_authorization_v1.schema.json",
+  "title": "Neuro-Film External Local Delivery Authorization V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "authorization_id",
+    "filmfx_verification_id",
+    "filmfx_run_id",
+    "composition_plan_id",
+    "core_staging_verification_id",
+    "product_staging_authorization_id",
+    "reference_intent_id",
+    "source_count",
+    "delivery_scope",
+    "output_label",
+    "state",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.external-local-delivery-authorization.v1"
+    },
+    "authorization_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "filmfx_verification_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "filmfx_run_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "composition_plan_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "core_staging_verification_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "product_staging_authorization_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "reference_intent_id": {
+      "$ref": "#/$defs/hash"
+    },
+    "source_count": {
+      "type": "integer",
+      "minimum": 1, "maximum": 64
+    },
+    "delivery_scope": {
+      "const": "local-user-export"
+    },
+    "output_label": {
+      "const": "reference-look+film-effects"
+    },
+    "state": {
+      "const": "authorized-for-local-delivery"
+    },
+    "claim_ceiling": {
+      "const": "authorized-local-delivery-not-committed"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "node": "P159",
+  "candidate_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "image": {
+    "width": 6000,
+    "height": 4000,
+    "reference_seed": 15901,
+    "source_seed": 15902,
+    "format": "PNG",
+    "mode": "RGB",
+    "bit_depth": 8
+  },
+  "file_match": {
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "guard_policy": "default-identity-fallback"
+  },
+  "repeat_count": 2,
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 120.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 17179869184,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 4294967296
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 3221225472,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "worker_wall_seconds_max": 120.0,
+    "require_output_bytes_exact": true,
+    "require_recipe_bytes_exact": true,
+    "require_normalized_report_exact": true,
+    "require_identity_fallback": true,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0
+  },
+  "claim_ceiling": "local-windows-python-24mp-file-path-scale-evidence-only-not-platform-or-product-readiness"
+}

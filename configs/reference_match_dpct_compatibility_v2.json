@@ -1,0 +1,56 @@
+{
+  "schema_id": "neuro-film.dpct-compatibility-lock.v2",
+  "producer": {
+    "repository_id": "zhuise-dpct",
+    "commit": "b1b68b664d99e7d16ce06af106faf206a7d6fc07",
+    "producer_contracts_sha256": "73fcf290f64dc8bb58526b83b8a7c1444ae4f50273b9339c431f7f62d7493454",
+    "native_reference_sha256": "01b8b28c9c189524eacc200651d18ff68a952b74727570e5bf56bd73e8e62398"
+  },
+  "schemas": {
+    "match_view": {
+      "schema_id": "zhuise.match-view.v1",
+      "sha256": "ac422dd80721799a6a0a7e1f65f8f7ee7205981c2ea74343721287806bba7bc7"
+    },
+    "transform_bundle": {
+      "schema_id": "zhuise.transform-bundle.v1",
+      "sha256": "e1cf6a7e3bf7c5b85d1da1a21a0b3cbf284919759771866e8c273773fae8222f"
+    },
+    "diagnostics": {
+      "schema_id": "zhuise.diagnostics.v2",
+      "sha256": "6f12c68df17074445eeca0ccf71a3776dc72828a5b395965e8283ae4dd72eacf"
+    },
+    "apply_result": {
+      "schema_id": "zhuise.apply-result.v2",
+      "sha256": "5ab3fa9cb29337a139118bf1fa1f9b1c5f6fe648874116e82e6c4bb0f39d43e2"
+    }
+  },
+  "conformance": {
+    "fixture_id": "zhuise-producer-contract-exact-bits-v2",
+    "fixture_sha256": "60e7466d373a60835fecc910550bcc10723b497f362464d51d09b3f288dead48",
+    "failed_fixture_id": "zhuise-producer-contract-failed-exact-v2",
+    "failed_fixture_sha256": "9f7a358144fb089b0e6c9fad4da3b60e840e3c77d85f1f362f5569918af1e6db",
+    "python_identity_count": 8,
+    "cpp17_identity_count": 8,
+    "msvc_w4_wx_passed": true,
+    "factual_clipping_consistency": true,
+    "failed_apply_result_rejected": true,
+    "failed_diagnostics_msvc_exact": true,
+    "failed_diagnostics_llvm_mingw_exact": true
+  },
+  "profile_mapping": {
+    "compatibility_profile_id": "neuro-film.dpct-consumer.v2",
+    "producer_profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "consumer_profile_id": "neuro-film.display-relative-linear-srgb-d65.v1",
+    "pixel_layout": "f32be-rgb-interleaved-row-major",
+    "pixel_hash_mapping": "strip-sha256-prefix",
+    "identity_policy": "retain-producer-aliases-regenerate-consumer-identities"
+  },
+  "verdict": {
+    "status": "producer-conformant-consumer-adapter-open-candidate-only",
+    "consumer_may_invoke": true,
+    "consumer_may_issue_apply_receipt": true,
+    "consumer_may_admit_after_a1_a4_a5": true,
+    "consumer_may_directly_apply": false,
+    "identity_fallback_before_product_guard": true
+  }
+}

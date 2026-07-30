@@ -1,0 +1,46 @@
+{
+  "schema_id": "neuro-film.cfsm-prior-selection.v1",
+  "experiment_id": "reference-match-cfsm-prior-selection-v1",
+  "parent_config": "configs/u5_r2d1_synthetic_operator_recovery_v1.json",
+  "parent_manifest_sha256": "d1291de7ff6d724882f7429a04287ae015c231a1cedca2c27130ec0ee2ff09b5",
+  "prior_kinds": [
+    "fixed-uniform-cube",
+    "analytic-low-key-neutral-v1",
+    "analytic-mid-key-neutral-v1",
+    "analytic-wide-chroma-v1"
+  ],
+  "splits": {
+    "development": {
+      "parent_split": "fit",
+      "operators_per_family": 8
+    },
+    "validation": {
+      "parent_split": "validation",
+      "operators_per_family": 4
+    },
+    "confirmation": {
+      "parent_split": "confirmation",
+      "operators_per_family": 8
+    }
+  },
+  "selection": {
+    "primary_metric": "median_captured_style_fraction",
+    "tie_breakers": [
+      "improvement_rate",
+      "worst_captured_style_fraction"
+    ],
+    "minimum_validation_median_gain_over_uniform": 0.05,
+    "minimum_confirmation_median_gain_over_uniform": 0.03,
+    "maximum_confirmation_worst_loss_vs_uniform": 0.02,
+    "all_constraint_reports_must_pass": true,
+    "identity_fallbacks_allowed": 0
+  },
+  "execution": {
+    "cpu_only": true,
+    "external_images_allowed": false,
+    "training_allowed": false,
+    "real_matrix_access_before_synthetic_confirmation": false,
+    "confirmation_requires_frozen_validation_winner": true
+  },
+  "claim_ceiling": "synthetic generated-operator selection evidence for one analytic canonical-prior hypothesis; no real-image, photographic-preference, stock, calibration, authenticity or production claim"
+}

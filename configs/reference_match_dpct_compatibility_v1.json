@@ -1,0 +1,57 @@
+{
+  "schema_id": "neuro-film.dpct-compatibility-lock.v1",
+  "producer": {
+    "repository_id": "zhuise-dpct",
+    "commit": "3c2e9fdfa5d226d92016c530856a7df94f9c42ab",
+    "producer_contracts_sha256": "98a320534eed924a3b8eca3cf822b54dc2eed2bf7c27aa0a037745639f92e68c",
+    "native_reference_sha256": "dab41ef64083ece5aa31b28ce94ab32e4ce2a2bcdfa19a1561cb5f2863c3a628"
+  },
+  "schemas": {
+    "match_view": {
+      "schema_id": "zhuise.match-view.v1",
+      "sha256": "ac422dd80721799a6a0a7e1f65f8f7ee7205981c2ea74343721287806bba7bc7"
+    },
+    "transform_bundle": {
+      "schema_id": "zhuise.transform-bundle.v1",
+      "sha256": "e1cf6a7e3bf7c5b85d1da1a21a0b3cbf284919759771866e8c273773fae8222f"
+    },
+    "diagnostics": {
+      "schema_id": "zhuise.diagnostics.v1",
+      "sha256": "f6c1dec034183017e9668f23ee3a9cee0ad21dec3357e499c602c2ad43b06463"
+    },
+    "apply_result": {
+      "schema_id": "zhuise.apply-result.v1",
+      "sha256": "887e964d7885941a4bd9031fcc9815859f765291a4595b889d2bce5e15c7e3fa"
+    }
+  },
+  "conformance": {
+    "fixture_id": "zhuise-producer-contract-exact-bits-v1",
+    "fixture_sha256": "c9c8c0ff6faf69078b17ea56d870973fa8b5824170ad8f00e8a5869ae9f3e326",
+    "python_identity_count": 8,
+    "cpp17_identity_count": 8,
+    "msvc_w4_wx_passed": true
+  },
+  "profile_mapping": {
+    "producer_profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "consumer_profile_id": "neuro-film.display-relative-linear-srgb-d65.v1",
+    "pixel_layout": "f32be-rgb-interleaved-row-major",
+    "pixel_hash_mapping": "strip-sha256-prefix",
+    "semantic_state": "explicitly-mappable-not-yet-compatible"
+  },
+  "verdict": {
+    "status": "contract-mapped-candidate-pixel-bridge-closed",
+    "blockers": [
+      "apply-result-v1-does-not-bind-source-geometry",
+      "diagnostics-v1-missing-backend-build-identity",
+      "diagnostics-v1-missing-clipping-fraction",
+      "diagnostics-v1-missing-confidence-contract",
+      "diagnostics-v1-missing-out-of-gamut-fraction",
+      "diagnostics-v1-missing-projected-fraction",
+      "diagnostics-v1-missing-timing-ms"
+    ],
+    "consumer_may_invoke": false,
+    "consumer_may_issue_apply_receipt": false,
+    "consumer_may_admit_candidate": false,
+    "identity_fallback_required": true
+  }
+}

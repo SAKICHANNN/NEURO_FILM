@@ -1,0 +1,136 @@
+{
+  "algorithm_id": "fixture.identity.v1",
+  "capabilities": {
+    "capability_id": "4f05e8b8a72ff9872ba1dd05985135b0216b7dbe60360f7705378cf7b94e5bf0",
+    "contract_schema_ids": [
+      "fixture.transform-bundle.v1"
+    ],
+    "determinism": "bit-exact",
+    "feature_flags": [
+      "source-bound-fit"
+    ],
+    "producer_build_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "producer_id": "neuro-film.consumer-conformance-fixture",
+    "producer_version": "1.0.0",
+    "schema_id": "neuro-film.reference-core-capabilities.v1",
+    "supported_algorithm_ids": [
+      "fixture.identity.v1"
+    ],
+    "supported_profile_ids": [
+      "neuro-film.display-relative-linear-rec2020-d65.v1",
+      "neuro-film.display-relative-linear-srgb-d65.v1"
+    ]
+  },
+  "capability_requirements": [
+    "source-bound-fit"
+  ],
+  "cases": [
+    {
+      "alpha_policy": "absent",
+      "bit_depth_in": 8,
+      "case_id": "display-srgb-2x2",
+      "expected_match_view": {
+        "alpha_mode": "absent",
+        "channel_layout": "rgb",
+        "domain": "display-relative-linear",
+        "pixel_sha256": "89895ffda2d76a3396b72ac872bc0feeef490f00f1b4201f5819e286b117ada3",
+        "primaries": "srgb-rec709",
+        "profile_id": "neuro-film.display-relative-linear-srgb-d65.v1",
+        "provenance_fingerprint": "5cb1a1d07440b507b0f76c6d5b4fd37b012138aa297066831a690bdcd4bad15a",
+        "range": "extended-float",
+        "reference_white_nits": null,
+        "render_bridge_id": "neuro-film.working-image-direct.v1",
+        "schema_id": "neuro-film.reference-core-match-view.v1",
+        "shape": [
+          2,
+          2,
+          3
+        ],
+        "strides_bytes": [
+          24,
+          12,
+          4
+        ],
+        "transfer": "linear",
+        "view_id": "af07e2b0e24dd08eb9883025c5008ec350bc2d6d6e3e0dee05b2b88e91e36432",
+        "white_point": "D65"
+      },
+      "hdr_metadata": {},
+      "orientation_applied": true,
+      "pixels_f32be_hex": "000000003e3851ec3f8000003fa00000bd4ccccd3f0000003b4d2e1c3f0000003f400000400000003f80000000000000",
+      "shape": [
+        2,
+        2,
+        3
+      ],
+      "source_profile": {
+        "bytes_length": 128,
+        "description": "synthetic-srgb-d65",
+        "kind": "icc"
+      },
+      "source_transfer_state": "display_referred",
+      "warnings": [
+        {
+          "code": "fixture",
+          "message": "synthetic SDR vector"
+        }
+      ],
+      "working_space": "linear_srgb"
+    },
+    {
+      "alpha_policy": "absent",
+      "bit_depth_in": 16,
+      "case_id": "display-rec2020-2x2",
+      "expected_match_view": {
+        "alpha_mode": "absent",
+        "channel_layout": "rgb",
+        "domain": "display-relative-linear",
+        "pixel_sha256": "6d940c6ab42aa316e63220ad0ea787db70de511b8683f678c93222e7308c066b",
+        "primaries": "rec2020",
+        "profile_id": "neuro-film.display-relative-linear-rec2020-d65.v1",
+        "provenance_fingerprint": "43a68f04d31126a46fd896fe45558df145e1f6b3642c1d205689169f3c319337",
+        "range": "extended-float",
+        "reference_white_nits": null,
+        "render_bridge_id": "neuro-film.working-image-direct.v1",
+        "schema_id": "neuro-film.reference-core-match-view.v1",
+        "shape": [
+          2,
+          2,
+          3
+        ],
+        "strides_bytes": [
+          24,
+          12,
+          4
+        ],
+        "transfer": "linear",
+        "view_id": "49e33b165993f3e9872e561623792cf03a7c93e82c2027d1416bed55c546d8bc",
+        "white_point": "D65"
+      },
+      "hdr_metadata": {
+        "cicp": "9/16/9/1",
+        "reference_white_nits": 203.0
+      },
+      "orientation_applied": true,
+      "pixels_f32be_hex": "000000003e8000003fc000003dcccccd3f0000003f6666663f8ccccdbdcccccd3ca3d70a40800000400000003f400000",
+      "shape": [
+        2,
+        2,
+        3
+      ],
+      "source_profile": {
+        "bytes_length": 4,
+        "description": "synthetic-bt2020-linearized",
+        "kind": "cicp"
+      },
+      "source_transfer_state": "display_referred",
+      "warnings": [],
+      "working_space": "linear_rec2020"
+    }
+  ],
+  "contract_schema_id": "fixture.transform-bundle.v1",
+  "fixture_id": "b723284f6041d183386ddc157a26a3733b577550e859e752a6e98e4cbe7624f2",
+  "float_encoding": "ieee754-binary32-big-endian-hex",
+  "producer_role": "synthetic-consumer-fixture",
+  "schema_id": "neuro-film.reference-core-consumer-conformance.v1"
+}

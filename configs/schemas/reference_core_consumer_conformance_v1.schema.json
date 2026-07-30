@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-consumer-conformance-v1.json",
+  "title": "Neuro-Film external core consumer conformance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "fixture_id",
+    "float_encoding",
+    "producer_role",
+    "capabilities",
+    "algorithm_id",
+    "contract_schema_id",
+    "capability_requirements",
+    "cases"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-consumer-conformance.v1"
+    },
+    "fixture_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "float_encoding": {
+      "const": "ieee754-binary32-big-endian-hex"
+    },
+    "producer_role": {
+      "const": "synthetic-consumer-fixture"
+    },
+    "capabilities": {
+      "$ref": "reference_core_capabilities_v1.schema.json"
+    },
+    "algorithm_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "contract_schema_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "capability_requirements": {
+      "$ref": "#/$defs/unique_strings"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/case"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unique_strings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "uniqueItems": true
+    },
+    "source_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "description",
+        "bytes_length"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "icc",
+            "cicp",
+            "nclx",
+            "raw_metadata",
+            "assumed_srgb",
+            "unknown"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/nonempty"
+        },
+        "bytes_length": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/nonempty"
+        },
+        "message": {
+          "$ref": "#/$defs/nonempty"
+        }
+      }
+    },
+    "shape": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "const": 3
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "working_space",
+        "source_transfer_state",
+        "source_profile",
+        "hdr_metadata",
+        "orientation_applied",
+        "alpha_policy",
+        "bit_depth_in",
+        "warnings",
+        "shape",
+        "pixels_f32be_hex",
+        "expected_match_view"
+      ],
+      "properties": {
+        "case_id": {
+          "$ref": "#/$defs/nonempty"
+        },
+        "working_space": {
+          "enum": [
+            "linear_srgb",
+            "linear_rec2020"
+          ]
+        },
+        "source_transfer_state": {
+          "enum": [
+            "scene_linear",
+            "display_linear",
+            "display_referred",
+            "unknown"
+          ]
+        },
+        "source_profile": {
+          "$ref": "#/$defs/source_profile"
+        },
+        "hdr_metadata": {
+          "type": "object"
+        },
+        "orientation_applied": {
+          "const": true
+        },
+        "alpha_policy": {
+          "const": "absent"
+        },
+        "bit_depth_in": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/warning"
+          }
+        },
+        "shape": {
+          "$ref": "#/$defs/shape"
+        },
+        "pixels_f32be_hex": {
+          "type": "string",
+          "pattern": "^[0-9a-f]+$"
+        },
+        "expected_match_view": {
+          "$ref": "reference_core_match_view_v1.schema.json"
+        }
+      }
+    }
+  }
+}

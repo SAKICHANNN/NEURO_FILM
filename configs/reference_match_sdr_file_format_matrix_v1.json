@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "node": "P163",
+  "candidate_commit": "6ae40df1ee87e7e994b0571da6d81c5e24e26ff6",
+  "image": {
+    "width": 2048,
+    "height": 1536,
+    "pixel_count": 3145728,
+    "reference_seed": 16301,
+    "source_seed": 16302
+  },
+  "cases": [
+    {
+      "case_id": "jpeg8",
+      "input_extension": ".jpg",
+      "input_bit_depth": 8,
+      "output_extension": ".jpg",
+      "output_bit_depth": 8,
+      "expected_output_format": "JPEG"
+    },
+    {
+      "case_id": "tiff8",
+      "input_extension": ".tiff",
+      "input_bit_depth": 8,
+      "output_extension": ".tiff",
+      "output_bit_depth": 8,
+      "expected_output_format": "TIFF"
+    },
+    {
+      "case_id": "tiff16",
+      "input_extension": ".tiff",
+      "input_bit_depth": 16,
+      "output_extension": ".tiff",
+      "output_bit_depth": 16,
+      "expected_output_format": "TIFF"
+    }
+  ],
+  "repeat_count_per_case": 2,
+  "rss_sample_interval_seconds": 0.02,
+  "worker_timeout_seconds": 60.0,
+  "preflight": {
+    "available_physical_memory_bytes_min": 8589934592,
+    "competing_process_rss_bytes_max": 8589934592,
+    "minimum_free_disk_bytes": 4294967296
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes_per_run": 1610612736,
+    "maximum_peak_rss_repeat_ratio_per_case": 1.15,
+    "worker_wall_seconds_max": 60.0,
+    "require_output_bytes_exact_per_case": true,
+    "require_recipe_bytes_exact_per_case": true,
+    "require_normalized_report_exact_per_case": true,
+    "require_identity_fallback": true,
+    "require_decoded_display_linear_srgb": true,
+    "orphan_worker_count": 0,
+    "staging_temporary_count": 0
+  },
+  "claim_ceiling": "local-windows-python-sdr-jpeg8-tiff8-tiff16-file-transaction-evidence-only-not-arbitrary-codec-raw-hdr-platform-or-product-readiness"
+}

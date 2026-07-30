@@ -1,0 +1,42 @@
+{
+  "schema_id": "neuro-film.cfsm-empirical-prior-experiment.v1",
+  "experiment_id": "reference-match-cfsm-empirical-prior-v1",
+  "parent_config": "configs/u5_r2d1_synthetic_operator_recovery_v1.json",
+  "parent_manifest_sha256": "d1291de7ff6d724882f7429a04287ae015c231a1cedca2c27130ec0ee2ff09b5",
+  "empirical_prior_artifact": "outputs/reference_match_empirical_prior/fivek_raw_default_moments_v1.json",
+  "empirical_prior_artifact_sha256": "d590f75a4240e35aca73e0823ea0e0ad231e8d507505720f2fff8a9acb02895d",
+  "empirical_prior_id": "bb8238743da6ee6355c40a5414096943fc80d65a4b0fb1a1cf95b5b54bfdb0ae",
+  "prior_kinds": [
+    "fixed-uniform-cube",
+    "empirical-neutral-photo-v1"
+  ],
+  "splits": {
+    "development": {
+      "parent_split": "fit",
+      "operators_per_family": 8
+    },
+    "confirmation": {
+      "parent_split": "confirmation",
+      "operators_per_family": 8
+    }
+  },
+  "confirmation_gate": {
+    "primary_metric": "median_captured_style_fraction",
+    "minimum_median_gain_over_uniform": 0.03,
+    "minimum_improvement_rate": 0.75,
+    "maximum_worst_loss_vs_uniform": 0.02,
+    "maximum_new_boundary_fraction": 0.05,
+    "all_constraint_reports_must_pass": true,
+    "identity_fallbacks_allowed": 0
+  },
+  "execution": {
+    "cpu_only": true,
+    "research_only_data": true,
+    "training_allowed": false,
+    "parameter_tuning_allowed": false,
+    "development_result_cannot_change_confirmation_gate": true,
+    "confirmation_prior_frozen_before_development": true,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "research-only synthetic evidence for a fixed empirical neutral-photo moment prior; no product, commercial, real-photo preference, film-stock, calibration or authenticity claim"
+}

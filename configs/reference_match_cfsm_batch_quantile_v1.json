@@ -1,0 +1,37 @@
+{
+  "schema_id": "neuro-film.cfsm-batch-quantile-experiment.v1",
+  "experiment_id": "reference-match-cfsm-batch-quantile-v1",
+  "parent_config": "configs/u5_r2d1_synthetic_operator_recovery_v1.json",
+  "parent_manifest_sha256": "d1291de7ff6d724882f7429a04287ae015c231a1cedca2c27130ec0ee2ff09b5",
+  "confirmation": {
+    "parent_split": "stress",
+    "within_split_start": 8,
+    "operators_per_family": 8,
+    "source_batch_uses_all_stress_palettes": true,
+    "observations_per_operator": 2
+  },
+  "candidates": [
+    "uploaded-source-batch-gaussian-v1",
+    "uploaded-source-batch-monotone-quantile-v1"
+  ],
+  "confirmation_gate": {
+    "primary_metric": "median_captured_style_fraction",
+    "minimum_median_gain_over_gaussian_batch": 0.03,
+    "minimum_improvement_rate": 0.75,
+    "maximum_worst_loss_vs_gaussian_batch": 0.02,
+    "maximum_new_boundary_fraction": 0.05,
+    "all_constraint_reports_must_pass": true,
+    "identity_fallbacks_allowed": 0
+  },
+  "execution": {
+    "cpu_only": true,
+    "external_images_allowed": false,
+    "training_allowed": false,
+    "parameter_tuning_allowed": false,
+    "confirmation_rows_unopened_before_freeze": true,
+    "candidate_may_depend_on_complete_source_batch": true,
+    "candidate_must_be_fixed_within_batch": true,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "synthetic evidence for one source-batch-conditioned bounded quantile Look Approximation hypothesis; no reusable reference-only recipe, real-photo preference, film-stock, calibration, authenticity or production claim"
+}

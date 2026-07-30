@@ -1,0 +1,1606 @@
+{
+  "base_commit": "c03c321b9fc642e2e092d59e20dd1b145b96192d",
+  "claim_ceiling": "review-ready-not-merged",
+  "contract_schemas": [
+    {
+      "blob": "20ca068e33444c47899194d8d3417c4bb782dce5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_declaration_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-declaration.v1",
+      "sha256": "aedc03e3ab0f7ea4aa5b9c395447d6f0c193c5d58a3a34f150ebaa7a6854a5d3"
+    },
+    {
+      "blob": "ca7aab458690db6413b3347efdd698d0af72c500",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-runtime-evidence.v1",
+      "sha256": "67f9ac7505f01905476b0b4c2c9b52abe67862c96cd2e72b916959fca2c83a8c"
+    },
+    {
+      "blob": "be29c1e562b95c650ae19e32e92a17542ef82a42",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-run.v1",
+      "sha256": "ff11bfd3c2c9117e4deb29a859f2ddbf6cb117532da82647c7141ec642534c51"
+    },
+    {
+      "blob": "92c8a202a48bce72459f3a6134aac9d64b27cdc9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-verification.v1",
+      "sha256": "e76f4b7a57a5098d5e151fc92fe6effe906ddbba0866e2ba0e4d3be65def305c"
+    },
+    {
+      "blob": "25cd1e5414b6774ad3659c9413e31452304c777d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-consumption.v1",
+      "sha256": "9298948724462d0903752eb3a76f888ddf686429e07b1de63aed92bc40c81bc6"
+    },
+    {
+      "blob": "b181c52e82e65b3f38b9a1e98332ccc11ef04ad1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-decode.v1",
+      "sha256": "cec3700a21b7fde688f45955f80ec022220bddb943bd82e23f37d52d11787d3f"
+    },
+    {
+      "blob": "4f4dddfb776d5953a60f963157f5eef08e109366",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_composition_v1.schema.json",
+      "schema_id": "neuro-film.shared-reference-composition.v1",
+      "sha256": "e7735bf1c88fc951a75812a16f95c0d6ee87a5b30582ab9e1e9c7a46e8add4ab"
+    },
+    {
+      "blob": "5ca1bb29575db6d42743ed37394502b2f2658454",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_run_v1.schema.json",
+      "schema_id": "neuro-film.shared-filmfx-run.v1",
+      "sha256": "0d48d27b8cc120ea6703a5502a3e8ebf9f05bcddcc272d8dec1274c25a36720f"
+    },
+    {
+      "blob": "9cb465f1862554a003ee76377780414bda3a60ca",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "sha256": "70aafd69a66eda74dab76361cd1a3f95022c7a835ef743ad4463e53ea79fad0f"
+    },
+    {
+      "blob": "e100b035e2d6bc10dd327d0075f87130298cf89c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "sha256": "bfbf365666d98bf642a5af6b4c1c517bfc5885f648e72f483063be75eb0c3a73"
+    },
+    {
+      "blob": "60aee5a9c6528738a02f9ad5b2a40ad8452c4772",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_v1.schema.json",
+      "sha256": "adccb9b822b51e8048f3e89e069ef84b1fbd2d89837abc1c8893112fd6541efc"
+    },
+    {
+      "blob": "e35de219075fdccaa38de5cde72d1916b6828fb3",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "sha256": "0325a907cfc9fb8dc3562382283e55cf10b52b10a22d1b1ae3c77170ec091ac4"
+    },
+    {
+      "blob": "9f63eec0329f7cb0c8796574667684cef00e9b11",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json",
+      "schema_id": "neuro-film.shared-numeric-batch-guard.v1",
+      "sha256": "0f290a6e48e9162a2108e6af612f38ca306342b50dcb44b9ac059b3eb1e850cc"
+    },
+    {
+      "blob": "248a688440bbea8889fd09caec02f1c2e91ca351",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_operator_batch_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-batch.v1",
+      "sha256": "c64375f2a08fdcb54b2212c69feb49503a86e3a83f0a8daca4f90b61dcb944d1"
+    },
+    {
+      "blob": "7caa763db26a2c54231c3d3ff1a75c98c1dd594e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-product-staging-authorization.v1",
+      "sha256": "1bb69b96b35fe1feb9fcf3ffb0f78f5950239b3b359375bdae9251fe0d5511d8"
+    },
+    {
+      "blob": "75769c667e4e41507448f6fd63145a579fcc0f39",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-runtime-qualification.v1",
+      "sha256": "045e8dea47ece8526658bc67f9844aa9e6d4faafefce6f666dc77b92c1deebf0"
+    }
+  ],
+  "main_changed_file_count": 220,
+  "main_commit": "66f07482912eda963b75065906d98e6d6ac7ec05",
+  "overlap_paths": [],
+  "payload_changed_file_count": 287,
+  "payload_commit": "a2bb95274c26c63a65ec204b5a743e4ea6387a5c",
+  "payload_files": [
+    {
+      "blob": "f05c0332384df9c33b0236b9e4f9af320dde3c8d",
+      "mode": "100644",
+      "path": ".gitattributes"
+    },
+    {
+      "blob": "b55dafc59f13bd791d7330bc1728bc33c0655f65",
+      "mode": "100644",
+      "path": "configs/reference_match_android_ndk_r27d.json"
+    },
+    {
+      "blob": "5c3aa843fba0bbf385ebf4c77d3629e1502f3491",
+      "mode": "100644",
+      "path": "configs/reference_match_canoncgt_external_v1.json"
+    },
+    {
+      "blob": "95c2427d9f7e4c3f4fdf058c543fe1d1f99edf75",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_batch_quantile_v1.json"
+    },
+    {
+      "blob": "a4cf110a8b498a78f5643fe700c4d2f24e928328",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_empirical_prior_v1.json"
+    },
+    {
+      "blob": "fcec6ee6946fb496045a0191c6649b61d8e26e11",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_prior_selection_v1.json"
+    },
+    {
+      "blob": "46e2a3e9d5acc4daa3b9d2f3c05e4eb8241ca60f",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_quantile_v1.json"
+    },
+    {
+      "blob": "f456f056873c7f52f3474fb78fa50edb3daed447",
+      "mode": "100644",
+      "path": "configs/reference_match_core_consumer_conformance_v1.json"
+    },
+    {
+      "blob": "2b2edda7cb4f017eec2b299f0077f3e0c6fcd215",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_compatibility_v1.json"
+    },
+    {
+      "blob": "3aa0bd6742c57d42939124cc566d8e32c28339e3",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_compatibility_v2.json"
+    },
+    {
+      "blob": "79404148bb6dacfe859c20d4021a731213200978",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_invocation_v1.json"
+    },
+    {
+      "blob": "1d7bfd34549254ff4f7e83da646adcac49efe305",
+      "mode": "100644",
+      "path": "configs/reference_match_llvm_mingw_20260616.json"
+    },
+    {
+      "blob": "2622c67249977541daac4997c5044fc301461b67",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v1.json"
+    },
+    {
+      "blob": "1cc895855d0db85b8ceb263dba4305838d168e4c",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v2.json"
+    },
+    {
+      "blob": "cf4bbe9b83f22d5235c43473b9f17235d6f67875",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v3.json"
+    },
+    {
+      "blob": "c3836e6d3b5810a22cf793d8f67788c43f0904ec",
+      "mode": "100644",
+      "path": "configs/reference_match_portable_conformance_v1.json"
+    },
+    {
+      "blob": "51fe3fd8c3d4658ee3024ebe1d033d337b627730",
+      "mode": "100644",
+      "path": "configs/reference_match_statlut_lite_v1.json"
+    },
+    {
+      "blob": "6c0c3407f4349cbd39ac716768025ae2b74f7d06",
+      "mode": "100644",
+      "path": "configs/reference_match_successor_admission_v1.json"
+    },
+    {
+      "blob": "dc219e356ba284b96e5e5e8e21698de991141806",
+      "mode": "100644",
+      "path": "configs/reference_match_w1_development_decision_v1.json"
+    },
+    {
+      "blob": "5aa65d33773dd545a88de63aa55a9f20af53ea98",
+      "mode": "100644",
+      "path": "configs/reference_match_w1_development_intake_v1.json"
+    },
+    {
+      "blob": "d8d77bbafe36197a3f03734f0f3fa6c283ef680b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_composition_v1.schema.json"
+    },
+    {
+      "blob": "c32298118b26e3c75773052fc23d69ea512cd42a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_acceptance_v1.schema.json"
+    },
+    {
+      "blob": "235b523ed8558519a51d6d2d996441be3876a05d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_apply_receipt_v1.schema.json"
+    },
+    {
+      "blob": "5921a2fb4a1c5a25de24d0a2a39ac4fbf13f8986",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_candidate_admission_v2.schema.json"
+    },
+    {
+      "blob": "cc392ffc574f739bc20ef5d5fe576a8aa13dfdf0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_capabilities_v1.schema.json"
+    },
+    {
+      "blob": "b75b3a22e542c568944a12839c145fb19f193a51",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_consumer_conformance_result_v1.schema.json"
+    },
+    {
+      "blob": "4481186ca27e082c3ece985c016038e5f582bda8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_consumer_conformance_v1.schema.json"
+    },
+    {
+      "blob": "e01a3e896221223cdda905d28d866fbe22e0c1e8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_diagnostics_v1.schema.json"
+    },
+    {
+      "blob": "0b22b45c53e7a4a57a5c7bc89098580d4a7eb394",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_match_view_v1.schema.json"
+    },
+    {
+      "blob": "765bd5b140f19b2a264e539ef4ba9360c2fbf255",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_numeric_batch_guard_v1.schema.json"
+    },
+    {
+      "blob": "124b42154178d6a51b87d75f7a685853480420f8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_numeric_guard_decision_v1.schema.json"
+    },
+    {
+      "blob": "cdab8e574aaa7c6d5ffad842769c4557aadd5f03",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_product_staging_authorization_v1.schema.json"
+    },
+    {
+      "blob": "62bfed12fc588c7094b432d6269ff8a673d79f41",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_transform_bundle_v1.schema.json"
+    },
+    {
+      "blob": "8c694de7461921bc311845b2fb888c698f76fefd",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_batch_resolution_v1.schema.json"
+    },
+    {
+      "blob": "419462303d0f8e3ab8c908a81862440d967b8f8f",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_compatibility_lock_v1.schema.json"
+    },
+    {
+      "blob": "4f115a1ffb3d025796cbb6a59383ff0906d28fbf",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_compatibility_lock_v2.schema.json"
+    },
+    {
+      "blob": "7739d476947514906ce6087c3bbf86a70bc632b9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_invocation_compatibility_lock_v1.schema.json"
+    },
+    {
+      "blob": "ea45f214e63670d699b2efe1f8f54b94a1decf33",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_composition_v1.schema.json"
+    },
+    {
+      "blob": "103f7f535f1a478245c615d3c6b989da2b8e3332",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_core_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "0c05331f889b3300350f2007bed3dfefdd09bc12",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_core_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "7a0dde03a1cdf10f085e838aac91c5ba5afb19e6",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_filmfx_run_v1.schema.json"
+    },
+    {
+      "blob": "1b8a56f80b1040f84e270b2564033e1bed7ca531",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_filmfx_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "6c0527691f121d83d75eb6a15d9bdeba0007b743",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_authorization_v1.schema.json"
+    },
+    {
+      "blob": "9ae4da8a4e6a0eb2a799b8ab61960a9d5b05508e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_v1.schema.json"
+    },
+    {
+      "blob": "812eb6d1ecf61eb7ab65112208d53e5f16c4b17d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_verification_v1.schema.json"
+    },
+    {
+      "blob": "10e4ba1c575fdcfc0385c249b5d5c3d24006dafd",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_shared_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "f200f2e4dbfc910807841a7cdad77122473bdfd9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_shared_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "2e7aeb465374d483211ae375389e1dee251cc351",
+      "mode": "100644",
+      "path": "configs/schemas/reference_look_recipe_v1.schema.json"
+    },
+    {
+      "blob": "bb1758f5b83692f03987ee5ffac652fcaa1351d5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v1.schema.json"
+    },
+    {
+      "blob": "1b73815c82944cddc0bde5d61e882e5d26401695",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v2.schema.json"
+    },
+    {
+      "blob": "27f0c8c40ab3b7adfd60f4b301f4c0916bf00f28",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v3.schema.json"
+    },
+    {
+      "blob": "29a5ab2b71ce51525e81038868691d5544919483",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_portable_conformance_result_v1.schema.json"
+    },
+    {
+      "blob": "d33585c2d5c97880d47b6bce4d72a01ad2b6cbb3",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_portable_conformance_v1.schema.json"
+    },
+    {
+      "blob": "ea6ce2e9f42d8b3156be60fc525cabae17417aef",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_promotion_report_v1.schema.json"
+    },
+    {
+      "blob": "cc0fe04b242ed431d6ccdcd49abfb23ecdb823e2",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_replay_report_v1.schema.json"
+    },
+    {
+      "blob": "36ba63d1548dcc8eea1f9c1e65ec5117e1fc2df4",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_report_v1.schema.json"
+    },
+    {
+      "blob": "20ca068e33444c47899194d8d3417c4bb782dce5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_declaration_v1.schema.json"
+    },
+    {
+      "blob": "ca7aab458690db6413b3347efdd698d0af72c500",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json"
+    },
+    {
+      "blob": "54c7f4c50afe03e0375ae739d940753b1f1ea4c5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_w1_development_decision_v1.schema.json"
+    },
+    {
+      "blob": "cbcce2d8a884be501f7024ad73adfed3818163c7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_product_chain_conformance_v1.schema.json"
+    },
+    {
+      "blob": "5c8a53b33c8a04d6ff4de03adaf56d9319d6deb9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_run_composition_v1.schema.json"
+    },
+    {
+      "blob": "25cd1e5414b6774ad3659c9413e31452304c777d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json"
+    },
+    {
+      "blob": "b181c52e82e65b3f38b9a1e98332ccc11ef04ad1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json"
+    },
+    {
+      "blob": "be29c1e562b95c650ae19e32e92a17542ef82a42",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "92c8a202a48bce72459f3a6134aac9d64b27cdc9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "4f4dddfb776d5953a60f963157f5eef08e109366",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_composition_v1.schema.json"
+    },
+    {
+      "blob": "5ca1bb29575db6d42743ed37394502b2f2658454",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_run_v1.schema.json"
+    },
+    {
+      "blob": "9cb465f1862554a003ee76377780414bda3a60ca",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "e100b035e2d6bc10dd327d0075f87130298cf89c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json"
+    },
+    {
+      "blob": "60aee5a9c6528738a02f9ad5b2a40ad8452c4772",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_v1.schema.json"
+    },
+    {
+      "blob": "e35de219075fdccaa38de5cde72d1916b6828fb3",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json"
+    },
+    {
+      "blob": "9f63eec0329f7cb0c8796574667684cef00e9b11",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json"
+    },
+    {
+      "blob": "248a688440bbea8889fd09caec02f1c2e91ca351",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_operator_batch_v1.schema.json"
+    },
+    {
+      "blob": "7caa763db26a2c54231c3d3ff1a75c98c1dd594e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json"
+    },
+    {
+      "blob": "75769c667e4e41507448f6fd63145a579fcc0f39",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json"
+    },
+    {
+      "blob": "2673109342c91f823bab33dea5f4329290e7f0a9",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md"
+    },
+    {
+      "blob": "443ecb6392230170a8cb88805334018acc987854",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_BATCH_QUANTILE_EVIDENCE.md"
+    },
+    {
+      "blob": "5f865e9c66f19c11451bbc6a82e58aab618a5943",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_CANONICAL_CORE_PORTABILITY.md"
+    },
+    {
+      "blob": "a8c543d2f589cbe8775e38912d8ad54b5d31a872",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_COMPLETION_AUDIT.md"
+    },
+    {
+      "blob": "486a807e5c65832e930e60f06b2ec842f04eab77",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md"
+    },
+    {
+      "blob": "53a2e3cba207b36c37f5fd275f5e00c6ba7a7240",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_CORE_ADAPTER_EVIDENCE.md"
+    },
+    {
+      "blob": "d3edd5a43c56e13ea201a9a8ad406b90ba39903d",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DELIVERY_EVIDENCE.md"
+    },
+    {
+      "blob": "e535226b8b4ae04dcf63dc5606fac9d44745d015",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_FAILURE_SIGNATURES.md"
+    },
+    {
+      "blob": "9b78a300d55517e201e56e38e68b041a16267fd4",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_INVOCATION_EVIDENCE.md"
+    },
+    {
+      "blob": "9feeff88eeb8e1a72559ee95b1a1e4737e89552f",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_PROMOTION_EVIDENCE.md"
+    },
+    {
+      "blob": "c14d1a8633f80e1bca08721aa813d2042686e4d1",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EMPIRICAL_PRIOR_EVIDENCE.md"
+    },
+    {
+      "blob": "466a90401902fde5955b75b7e1ccb348eefb25a5",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EVIDENCE.md"
+    },
+    {
+      "blob": "8cc03ff303be1f09ed748f33f9187277dd710e4e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_BASELINES_2026.md"
+    },
+    {
+      "blob": "d5a524f1342c6b5f4ac7f1f89821557a7f19a3f3",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "ab3403555d69d7a40693cd8bc4079ce45960a99d",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_FILMFX_EXECUTION_EVIDENCE.md"
+    },
+    {
+      "blob": "e87563415f88574635b7af68eb390e0ab3f9d4fc",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_STAGING_EVIDENCE.md"
+    },
+    {
+      "blob": "5e1a41b5aed1d16e4011c3febfb0cb54e6eab059",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_FILMFX_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "45d4c79f3908ea502eb42bde96f05f0c14c157f1",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "70f8fe1c7027a31ba6176d331aa5db08ef76cc64",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_EVIDENCE.md"
+    },
+    {
+      "blob": "772a07d845b8f39c472f785c6bc82665cf7fa79a",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "3e8f42b9ad29d5d38118fad4c34615fafcbefbc8",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_MAIN_INTEGRATION_HANDOFF.md"
+    },
+    {
+      "blob": "d774c69bb4d4207106d5e64ca0feb0e1addee763",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_NUMERIC_GUARD_EVIDENCE.md"
+    },
+    {
+      "blob": "02bc94c9e47c10fa754a4c2e3b3e8a09b9da6b74",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PORTABLE_CONFORMANCE.md"
+    },
+    {
+      "blob": "80438bb2db3ec033208fe10a75f4602e7335afa5",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "d93ac1d240f0b7d479b80972d39e71ecc4f965e7",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_CHAIN_CONFORMANCE.md"
+    },
+    {
+      "blob": "fcf239c4fa2f021fd308b3e3b0cb02a70824bb58",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_QUALITY_BASELINE.md"
+    },
+    {
+      "blob": "6178b3bb8d37c5d8b26fe9794a47251375b26244",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_QUANTILE_EVIDENCE.md"
+    },
+    {
+      "blob": "2f38f2960bb47307f08ecd1cbefda9a88bf04bfc",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_REPLAY_EVIDENCE.md"
+    },
+    {
+      "blob": "9e73af5ef84e8a967577c398763213a3882814b9",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_RUN_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "659fe93b977e678ee6532343c35201c314aed8aa",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_RUN_TRANSACTION_EVIDENCE.md"
+    },
+    {
+      "blob": "73ef120cd1be31c860f31e7710f3517b2d93161b",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "b0663044184ce25558f3e063d8ede735cd7ceb5e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_NUMERIC_GUARD_EVIDENCE.md"
+    },
+    {
+      "blob": "c05bb594103927a728c039ccc08016f06764bf87",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_OPERATOR_BATCH_EVIDENCE.md"
+    },
+    {
+      "blob": "bf76794273f49b56a6199925497a30c346ef55df",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_PRODUCT_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "1923cafdc6364bc082d4ac1405fe993476b01653",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_STAGING_EVIDENCE.md"
+    },
+    {
+      "blob": "34f48b7a0e5614ce021dcd9be0d4d61edd9e1a6c",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "9e3b5f9dd6a9509047c880a9fa24e4f86756c10f",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "92ced42eb12ecd78c0f59f7993fe6c3061fbc62b",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_STATLUT_LITE_EVIDENCE.md"
+    },
+    {
+      "blob": "6668299e978e76f6fe4b0da87af99c0dd805e82e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SUCCESSOR_ADMISSION_EVIDENCE.md"
+    },
+    {
+      "blob": "bb5746baca4b709a4dd73cf9e1efb4d3af99feec",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_W1_DECISION_EVIDENCE.md"
+    },
+    {
+      "blob": "ad2ebd22995ff15fbad7cf91edd4e21856ef6cda",
+      "mode": "100644",
+      "path": "docs/planning/REFERENCE_COLOR_MATCH_CFSM_RESEARCH.md"
+    },
+    {
+      "blob": "7bf52b7728b26bc3113a5024ba6bde39479e364e",
+      "mode": "100644",
+      "path": "docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md"
+    },
+    {
+      "blob": "a52e49c81bac1a5cbfaf8c0d117f2dc864f4f9dc",
+      "mode": "100644",
+      "path": "docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md"
+    },
+    {
+      "blob": "dca602fb50cddaa65bb6ab315599afceb908192b",
+      "mode": "100644",
+      "path": "native/reference_canonical_core.c"
+    },
+    {
+      "blob": "3ffe7ef22de6a5c1decd3cd5479ebdeb792bc1d0",
+      "mode": "100644",
+      "path": "native/reference_canonical_core.h"
+    },
+    {
+      "blob": "2db40f456e43ccf1471969aa1130b668e1646fdd",
+      "mode": "100644",
+      "path": "native/reference_product_chain_conformance.cpp"
+    },
+    {
+      "blob": "2babda2622798cb78375132e1ea4b420ea92723b",
+      "mode": "100644",
+      "path": "requirements-macos-arm.txt"
+    },
+    {
+      "blob": "48a1f08c77c541c54678f87562a7e6ad4a8030e5",
+      "mode": "100644",
+      "path": "requirements.txt"
+    },
+    {
+      "blob": "bf143dbf8c74e2d6edd5a3ad9e78ae39b602f715",
+      "mode": "100644",
+      "path": "scripts/adjudicate_reference_match_w1_evidence.py"
+    },
+    {
+      "blob": "fa45ffa50269c47ac27dad979add8df2468a05c3",
+      "mode": "100644",
+      "path": "scripts/analyze_dpct_invocation_failure_signatures.py"
+    },
+    {
+      "blob": "1dffe873bccce1196b7e28eaf69aa35347947b60",
+      "mode": "100644",
+      "path": "scripts/build_fivek_empirical_prior.py"
+    },
+    {
+      "blob": "aaa161939779d8d542ea4e93599bff449179accc",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_android.py"
+    },
+    {
+      "blob": "c85f1ac714a540572729f7ca6604f3dc9b84d0d0",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_apple_objects.py"
+    },
+    {
+      "blob": "e786d50e2066ea7a947ed7f10cd072bfe640825b",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_conformance.py"
+    },
+    {
+      "blob": "4773eb966c12c9909927e773e2ea732b16f4f17d",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_llvm_mingw.py"
+    },
+    {
+      "blob": "99552c85f25a3c7b61846b765b588d0dc58005cb",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_msvc.py"
+    },
+    {
+      "blob": "ff7f81a58f3a17ce0a4cd2f4fefac663c062927b",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest.py"
+    },
+    {
+      "blob": "23b5e430d4b6e355a0181342d5b30a37e4ef0532",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v2.py"
+    },
+    {
+      "blob": "0feed974b3de8275db4267b77af8ac09256f68f5",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v3.py"
+    },
+    {
+      "blob": "baed395359f8d56c45140760873fe20d93eeaad7",
+      "mode": "100644",
+      "path": "scripts/evaluate_canoncgt_reference_match.py"
+    },
+    {
+      "blob": "e6950c0f32bb05618d9ae68ef963772e3d719859",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_batch_quantile.py"
+    },
+    {
+      "blob": "216b87957f9b51e74d2d278247eb2f2344db9f5d",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_empirical_prior.py"
+    },
+    {
+      "blob": "9599e208622b3d2e352de6d4b4da5b6a57fe17ff",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_prior_selection.py"
+    },
+    {
+      "blob": "6742157d89341749cdd04ca307e768724ea66ba3",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_quantile.py"
+    },
+    {
+      "blob": "66e7ddfcda7bd0a471eb497e95246b7b53b46e4f",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_v0.py"
+    },
+    {
+      "blob": "b7cfbc506e27c7a03667ef34d6930204662da4e5",
+      "mode": "100644",
+      "path": "scripts/evaluate_dpct_invocation_promotion.py"
+    },
+    {
+      "blob": "5e7f1956d676874030261a52ebc35bd106129011",
+      "mode": "100644",
+      "path": "scripts/evaluate_reference_match_promotion.py"
+    },
+    {
+      "blob": "bf23c0c7544e014da762b054001df7d90e1b1a64",
+      "mode": "100644",
+      "path": "scripts/evaluate_statlut_lite.py"
+    },
+    {
+      "blob": "8872a0b30fe958889d5fc07fce9c72d33a49023c",
+      "mode": "100644",
+      "path": "scripts/match_reference_color.py"
+    },
+    {
+      "blob": "3f7aa3296af300cead44c0956cbc52429c8da542",
+      "mode": "100644",
+      "path": "scripts/verify_reference_match_portable_conformance.py"
+    },
+    {
+      "blob": "92cc82a05f544e1a599ab863402e77926ea81aac",
+      "mode": "100644",
+      "path": "src/color_match/__init__.py"
+    },
+    {
+      "blob": "abf94ef17cfb76c9de1faf255a75b6b3a31bd2d2",
+      "mode": "100644",
+      "path": "src/color_match/canonical.py"
+    },
+    {
+      "blob": "9ff117ca075d37edc5e560fb1f181dc1af431514",
+      "mode": "100644",
+      "path": "src/color_match/composition.py"
+    },
+    {
+      "blob": "1120bffe775755a4134f4eecfd61ac5f1c17aa87",
+      "mode": "100644",
+      "path": "src/color_match/conformance.py"
+    },
+    {
+      "blob": "9d262211d9ca37b4f438a094d76d983ea05c2f85",
+      "mode": "100644",
+      "path": "src/color_match/consistency.py"
+    },
+    {
+      "blob": "2cdb4b236882352d86ddceb4784800a823c8e1f5",
+      "mode": "100644",
+      "path": "src/color_match/contracts.py"
+    },
+    {
+      "blob": "801311da2082284e4352034de85be60215353fa3",
+      "mode": "100644",
+      "path": "src/color_match/core_acceptance.py"
+    },
+    {
+      "blob": "42722ceb235fe9cdb5bc61f113c861d4121b6c70",
+      "mode": "100644",
+      "path": "src/color_match/core_adapter.py"
+    },
+    {
+      "blob": "0902e7b3b14bc76a38990355fb795e24a885d8cd",
+      "mode": "100644",
+      "path": "src/color_match/core_apply_receipt.py"
+    },
+    {
+      "blob": "38861c5e8ed2d1f07f4d882c7fa7205edbce9744",
+      "mode": "100644",
+      "path": "src/color_match/core_candidate_admission.py"
+    },
+    {
+      "blob": "106066c480ae7015cc9db7b294b38dd1e3e57e1c",
+      "mode": "100644",
+      "path": "src/color_match/core_conformance.py"
+    },
+    {
+      "blob": "e089c215abcf26a5aba9b9f77717a5f33aa03337",
+      "mode": "100644",
+      "path": "src/color_match/core_contracts.py"
+    },
+    {
+      "blob": "bfd5d310cc2f735ed3de6725d6a715c97f290f5f",
+      "mode": "100644",
+      "path": "src/color_match/core_numeric_batch_guard.py"
+    },
+    {
+      "blob": "66cad191c5127f1df85ec2a009c7cb2045531d7b",
+      "mode": "100644",
+      "path": "src/color_match/core_numeric_guard.py"
+    },
+    {
+      "blob": "b5710b87977a9e4d4508447c0845b7f999e77794",
+      "mode": "100644",
+      "path": "src/color_match/core_product_authorization.py"
+    },
+    {
+      "blob": "28d79c3e0f6f1db58366cceab118396ee360edb2",
+      "mode": "100644",
+      "path": "src/color_match/core_staging_transaction.py"
+    },
+    {
+      "blob": "1b00d6992a9ee193ff7ec652866699fc3168e4d2",
+      "mode": "100644",
+      "path": "src/color_match/core_staging_verification.py"
+    },
+    {
+      "blob": "1caf6607540b78e9877881f526f38c4e87240b58",
+      "mode": "100644",
+      "path": "src/color_match/dpct_adapter.py"
+    },
+    {
+      "blob": "8f69b3f769d8f7c3ce48ddc94ac33e78a2085894",
+      "mode": "100644",
+      "path": "src/color_match/dpct_batch.py"
+    },
+    {
+      "blob": "01efa8e1d9f07aa6a5c8fb43a6c454c1cd6d2eb9",
+      "mode": "100644",
+      "path": "src/color_match/dpct_invocation.py"
+    },
+    {
+      "blob": "71039d93ae83b6bef93f24e37f965249163c808a",
+      "mode": "100644",
+      "path": "src/color_match/evaluation.py"
+    },
+    {
+      "blob": "08100df1c9bfea3f03927b7eadb1ff212a8e6352",
+      "mode": "100644",
+      "path": "src/color_match/external_composition.py"
+    },
+    {
+      "blob": "91a34b70325233fe8b2d051fb6077619ffdbf61a",
+      "mode": "100644",
+      "path": "src/color_match/external_delivery_authorization.py"
+    },
+    {
+      "blob": "b628e4c9c09fad557be634f901848c7d89d1a47a",
+      "mode": "100644",
+      "path": "src/color_match/external_filmfx_transaction.py"
+    },
+    {
+      "blob": "e9e0c4c38ecb5b3583eb568d6ce72244b47a1be4",
+      "mode": "100644",
+      "path": "src/color_match/external_filmfx_verification.py"
+    },
+    {
+      "blob": "46ecb5410693b455fbf1e8d84b390ad68f464725",
+      "mode": "100644",
+      "path": "src/color_match/external_local_delivery.py"
+    },
+    {
+      "blob": "406ef9be09a7b8fe3379743c8653731c8ec369d3",
+      "mode": "100644",
+      "path": "src/color_match/external_local_delivery_verification.py"
+    },
+    {
+      "blob": "50bff8161818c926102e6579c50f2deef6b74ef4",
+      "mode": "100644",
+      "path": "src/color_match/files.py"
+    },
+    {
+      "blob": "9c6f29926ce2e40e60f243011bfcf9d8bb7c7b07",
+      "mode": "100644",
+      "path": "src/color_match/filmfx_staging_io.py"
+    },
+    {
+      "blob": "e12f6f3004b8cebc1ef37609b6d0aa4db17c98fe",
+      "mode": "100644",
+      "path": "src/color_match/fit.py"
+    },
+    {
+      "blob": "1e5c9eef0ed7d5905228343ccc0f80009b7d74f1",
+      "mode": "100644",
+      "path": "src/color_match/handle_verification_io.py"
+    },
+    {
+      "blob": "9587961826e0a73a0be865d91948fa0eab8c07fb",
+      "mode": "100644",
+      "path": "src/color_match/promotion.py"
+    },
+    {
+      "blob": "626a261fcecb4877e0433571cda65e4f91e9886a",
+      "mode": "100644",
+      "path": "src/color_match/render.py"
+    },
+    {
+      "blob": "73ca6d6202d7996ed09c1963e19ce458f57c159b",
+      "mode": "100644",
+      "path": "src/color_match/replay.py"
+    },
+    {
+      "blob": "ef05beb93cbd44561fc2cb94b645c29871fec448",
+      "mode": "100644",
+      "path": "src/color_match/reporting.py"
+    },
+    {
+      "blob": "ad59f91299b59f0e4206c0bac8e67e494f51bf2b",
+      "mode": "100644",
+      "path": "src/color_match/research/__init__.py"
+    },
+    {
+      "blob": "7c12169d6a69c6df027646ed570773492744c280",
+      "mode": "100644",
+      "path": "src/color_match/research/cfsm.py"
+    },
+    {
+      "blob": "8a257dd5658be5cf96fc940c4ca4b74a6fe927b4",
+      "mode": "100644",
+      "path": "src/color_match/research/empirical_prior.py"
+    },
+    {
+      "blob": "167b5a96090084ec419beed983a590a60404c4c6",
+      "mode": "100644",
+      "path": "src/color_match/research/fivek_prior_build.py"
+    },
+    {
+      "blob": "741b236cf7a324a01e91661af1ae497000f83fbf",
+      "mode": "100644",
+      "path": "src/color_match/research/statlut_features.py"
+    },
+    {
+      "blob": "e3d9a60de83ccb0dd98759b140853d5156bd69f6",
+      "mode": "100644",
+      "path": "src/color_match/research/w1_evidence.py"
+    },
+    {
+      "blob": "6c0ed0bd9e4b57e3433800b3f3f8007f48b88bbc",
+      "mode": "100644",
+      "path": "src/color_match/run_composition.py"
+    },
+    {
+      "blob": "2f0c544928b189b08ead17df0e8fd33754bd6c8f",
+      "mode": "100644",
+      "path": "src/color_match/safety.py"
+    },
+    {
+      "blob": "7ba50cdb5c9960a89872be56155c5ea0cf6b3988",
+      "mode": "100644",
+      "path": "src/color_match/shared_composition.py"
+    },
+    {
+      "blob": "02be3dcf8a60d6ae3a3fa824e0ce0817a8b44f00",
+      "mode": "100644",
+      "path": "src/color_match/shared_delivery_authorization.py"
+    },
+    {
+      "blob": "dcc00a5f363011863a40c74a4154a5a2c5d53406",
+      "mode": "100644",
+      "path": "src/color_match/shared_filmfx_transaction.py"
+    },
+    {
+      "blob": "a56484c80856f5b2d108da9b856543760b25da84",
+      "mode": "100644",
+      "path": "src/color_match/shared_filmfx_verification.py"
+    },
+    {
+      "blob": "4498e3da59aad3149d08b06ee07931ec17b73bb1",
+      "mode": "100644",
+      "path": "src/color_match/shared_local_delivery.py"
+    },
+    {
+      "blob": "3a91ef08c1dd17c5be8992dea3d26c6184d1e036",
+      "mode": "100644",
+      "path": "src/color_match/shared_local_delivery_verification.py"
+    },
+    {
+      "blob": "72dd49e07e76eb61f4e58cc573de4eb62437db29",
+      "mode": "100644",
+      "path": "src/color_match/shared_numeric_guard.py"
+    },
+    {
+      "blob": "f1d5e872bb7b2ab7cf4bf39574983226ec121685",
+      "mode": "100644",
+      "path": "src/color_match/shared_operator_batch.py"
+    },
+    {
+      "blob": "d812b743488db91eb44b85878424ffeccd6c0e90",
+      "mode": "100644",
+      "path": "src/color_match/shared_product_authorization.py"
+    },
+    {
+      "blob": "245f333c2c2f5ee7dd6fb0d8ae3f79cd1fb19be4",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_qualification.py"
+    },
+    {
+      "blob": "e98f98a10b6ffd526a64b9a567773efd3472bdd1",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_consumption.py"
+    },
+    {
+      "blob": "6dc49e443e525bf6dedda54a9b9a3e84a4ceeaea",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_decode.py"
+    },
+    {
+      "blob": "11e70062becef177a078e12cdb3353debef47b43",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_transaction.py"
+    },
+    {
+      "blob": "ff97f8e02d5a5cd7f701c6df631877ee4edfbdb3",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_verification.py"
+    },
+    {
+      "blob": "b6053d72d9dd9d926a86ea7d5f77614ca820239a",
+      "mode": "100644",
+      "path": "src/color_match/shared_staging_transaction.py"
+    },
+    {
+      "blob": "42fa41df98b09f146510c436df225de045debc88",
+      "mode": "100644",
+      "path": "src/color_match/shared_staging_verification.py"
+    },
+    {
+      "blob": "8321af4f1d53599aaf874559d94cb00ac5bd150b",
+      "mode": "100644",
+      "path": "src/color_match/staging_io.py"
+    },
+    {
+      "blob": "96e0e78449dc6788392886667ad69bffc6aa5b7a",
+      "mode": "100644",
+      "path": "src/color_match/successor_admission.py"
+    },
+    {
+      "blob": "f813e616b8538465ba5cc6de10e2a2215dbcb527",
+      "mode": "100644",
+      "path": "src/color_match/successor_runtime_evidence.py"
+    },
+    {
+      "blob": "f16bfed99db8db0b8f8d54305203a6e7c812d2de",
+      "mode": "100644",
+      "path": "src/color_match/verification_io.py"
+    },
+    {
+      "blob": "8b881967c5ffdfa975bc1a351c380314829d1cd0",
+      "mode": "100644",
+      "path": "tests/fixtures/reference_product_chain_conformance_v1.json"
+    },
+    {
+      "blob": "8f9bbedbd50dff4f9ab173bd039df7f8f108ed00",
+      "mode": "100644",
+      "path": "tests/fixtures/zhuise_producer_contract_exact_bits_v2.json"
+    },
+    {
+      "blob": "2afcf0c642d64f1d67eaaba745e6b080e4a681be",
+      "mode": "100644",
+      "path": "tests/fixtures/zhuise_producer_contract_failed_exact_v2.json"
+    },
+    {
+      "blob": "43d596471fddf28479c7662574c2538d9b909013",
+      "mode": "100644",
+      "path": "tests/test_color_match_canoncgt_external_evaluation.py"
+    },
+    {
+      "blob": "91195b96faae85d84257c033ff4a7f74950574e3",
+      "mode": "100644",
+      "path": "tests/test_color_match_canonical.py"
+    },
+    {
+      "blob": "6e4f65608db027528403edff13caaf61dc425087",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm.py"
+    },
+    {
+      "blob": "3035c2d56d1075d9623b67840733686e1b1ce9a4",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_batch_quantile_evaluation.py"
+    },
+    {
+      "blob": "b88e6be40363116af75f42d44ec51ab83221d338",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_empirical_evaluation.py"
+    },
+    {
+      "blob": "c70709e99341a937467b3fd5229b99ce87bab206",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_prior_selection.py"
+    },
+    {
+      "blob": "b55e88bf8fb904fef135b9cc95c4c627609f2e74",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_quantile_evaluation.py"
+    },
+    {
+      "blob": "d59772a7b07bd572326f21c305032489d54170ef",
+      "mode": "100644",
+      "path": "tests/test_color_match_composition.py"
+    },
+    {
+      "blob": "13b2a4d98240a3b59af8bb279e45e3179ffac45a",
+      "mode": "100644",
+      "path": "tests/test_color_match_conformance.py"
+    },
+    {
+      "blob": "0de43af986a4644d0847dafbd1d9b8441989cc38",
+      "mode": "100644",
+      "path": "tests/test_color_match_consistency.py"
+    },
+    {
+      "blob": "2198b8729c3240e99d4ac8edcf433c0107e859ca",
+      "mode": "100644",
+      "path": "tests/test_color_match_contracts.py"
+    },
+    {
+      "blob": "3f5a03dd450b6270b8a7348d91379383b354db7b",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_acceptance.py"
+    },
+    {
+      "blob": "9f84a26dd428339cf9ed2764d9ea37b60a19a57d",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_adapter.py"
+    },
+    {
+      "blob": "99712c21a315e4c41ff8739bca33f0a1e9e99ea8",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_apply_receipt.py"
+    },
+    {
+      "blob": "447dafe2e9c5ea0047f99550bc9451f2ca1c066b",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_candidate_admission.py"
+    },
+    {
+      "blob": "208ffc1450e1752fdaecd59e6edca7fbf1d25ffe",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_conformance.py"
+    },
+    {
+      "blob": "4eaa84d3422c6fe1e88e249b4a0ada5109b37fd9",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_contracts.py"
+    },
+    {
+      "blob": "14330eee314a5650fa30d8bdbcc122f01991fa37",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_numeric_batch_guard.py"
+    },
+    {
+      "blob": "0b34a707b81a1f2935ca7ef41fe57ae775be37ca",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_numeric_guard.py"
+    },
+    {
+      "blob": "6e16880897221168c67670e49a9dfb8ab8ea50d2",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_product_authorization.py"
+    },
+    {
+      "blob": "87415d5fbc9b0b88ce8f67f1858c743a3e66245d",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_staging_transaction.py"
+    },
+    {
+      "blob": "7381ffd835743bf155df1aa10aa43525bc34eb02",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_staging_verification.py"
+    },
+    {
+      "blob": "09a587baf80834a7b11f91336627cc684fdd8429",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_adapter.py"
+    },
+    {
+      "blob": "e58fae5a00828bcc7eb288f7682e2e8090d6b443",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_batch.py"
+    },
+    {
+      "blob": "1d23f3b040dfefb295e7632fba6deaf6e381f690",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_compatibility_lock.py"
+    },
+    {
+      "blob": "7aefe42b6d06709825f98e230d6167f3b706f54b",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_failure_signatures.py"
+    },
+    {
+      "blob": "c5ad1de37907dd857c1861debf75a828b1d9ce67",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation.py"
+    },
+    {
+      "blob": "e406933649e8066036a17a8b29887ee78eeb1b19",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation_promotion.py"
+    },
+    {
+      "blob": "e2cb546ae50466ff22569b06884c7f6308c06a4f",
+      "mode": "100644",
+      "path": "tests/test_color_match_empirical_prior.py"
+    },
+    {
+      "blob": "84fe5f1e952332acdfcbd889db47193c437c757a",
+      "mode": "100644",
+      "path": "tests/test_color_match_evaluation.py"
+    },
+    {
+      "blob": "e1a34f8690154db1b05ccd11df5f6df1bae4baa6",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_composition.py"
+    },
+    {
+      "blob": "17abd0eb66293b2e73a214a03c11d8e62874b7c7",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_delivery_authorization.py"
+    },
+    {
+      "blob": "d5465f08599d7f6f7cf08736374afc7513d4400c",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_filmfx_transaction.py"
+    },
+    {
+      "blob": "8a7fd3f37ae3686f49c52c6da2a518cf7b379c72",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_filmfx_verification.py"
+    },
+    {
+      "blob": "a9381c2e9892618fa5a778aeb08c4bcf4c80ff3b",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_local_delivery.py"
+    },
+    {
+      "blob": "3799f5a23e3a68c633e3184b02632d154681ddc0",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_local_delivery_verification.py"
+    },
+    {
+      "blob": "74cb08ed6873cc8589f13a9969f8ba7d61658136",
+      "mode": "100644",
+      "path": "tests/test_color_match_file_replay.py"
+    },
+    {
+      "blob": "e0ff0191627294e530d2167e93b4234040260967",
+      "mode": "100644",
+      "path": "tests/test_color_match_files.py"
+    },
+    {
+      "blob": "1a9d21e3e926cad824a70fba2f2ca4b4b684d3a9",
+      "mode": "100644",
+      "path": "tests/test_color_match_handle_verification_io.py"
+    },
+    {
+      "blob": "99739ade298a83d1216d71ed3cded21bd88ed553",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest.py"
+    },
+    {
+      "blob": "e1d30c8a48baec3f00c1a87afa47f3ba66356cca",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v2.py"
+    },
+    {
+      "blob": "e61b4941f7228adf17c751b244faa8b180805476",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v3.py"
+    },
+    {
+      "blob": "65cc37e00d6c2f9c8616b2e64c9ac2f13099d827",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_android.py"
+    },
+    {
+      "blob": "df072d00b433c6227d6d233264709c41f8838dc5",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_apple_objects.py"
+    },
+    {
+      "blob": "9be7b063661ffe90dfda4df35badc835343217e7",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_conformance.py"
+    },
+    {
+      "blob": "fe86672c5fc9cb17679d5b04772e6ac3dd7af0c2",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_llvm_mingw.py"
+    },
+    {
+      "blob": "72cb6a739fff435ea1ad5cb8668d088ae89d58f9",
+      "mode": "100644",
+      "path": "tests/test_color_match_promotion.py"
+    },
+    {
+      "blob": "28beccaf894c1e2578b7fe38368c54a9d5b01de3",
+      "mode": "100644",
+      "path": "tests/test_color_match_promotion_cli.py"
+    },
+    {
+      "blob": "c86b21de1bd8c362d40eaf8600b3683c22505905",
+      "mode": "100644",
+      "path": "tests/test_color_match_render.py"
+    },
+    {
+      "blob": "e39287fa97efefd3f4d74cb1de4ef4e57c499127",
+      "mode": "100644",
+      "path": "tests/test_color_match_replay.py"
+    },
+    {
+      "blob": "9b6fb7d50cab0b04303f3be2f8ff3451d57daabe",
+      "mode": "100644",
+      "path": "tests/test_color_match_reporting.py"
+    },
+    {
+      "blob": "9922accfe5265eaf49f6c36e6cbe8b6596186e21",
+      "mode": "100644",
+      "path": "tests/test_color_match_run_composition.py"
+    },
+    {
+      "blob": "9c933065d7ca808f91598535768bd50b345bec0e",
+      "mode": "100644",
+      "path": "tests/test_color_match_run_transaction.py"
+    },
+    {
+      "blob": "f4d0d3cf5e430df286b096ba8b41b9cf8d6bbd18",
+      "mode": "100644",
+      "path": "tests/test_color_match_safety.py"
+    },
+    {
+      "blob": "e7dc87b765b805bb5b0bca7bc624973ca03f24cb",
+      "mode": "100644",
+      "path": "tests/test_color_match_schemas.py"
+    },
+    {
+      "blob": "7e5dfeaad87d3db2c304c1497a5954758172cdf2",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_composition.py"
+    },
+    {
+      "blob": "f6c3692d76eeb4ca69405558a73517cee868e7bb",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_delivery_authorization.py"
+    },
+    {
+      "blob": "171173de9cc1f5df9cf5804f255cb5fa644375cc",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_filmfx_transaction.py"
+    },
+    {
+      "blob": "19e846068fd0be39f26c0475dd3593292e496703",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_filmfx_verification.py"
+    },
+    {
+      "blob": "0d7287bc09ac5bb9793b070687e1d7f5d4b3dc67",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_local_delivery.py"
+    },
+    {
+      "blob": "0845e93f659eebf73a69adb318487914a19a4479",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_local_delivery_verification.py"
+    },
+    {
+      "blob": "cde81b92d563453f1bed3eae2121cb44c1da1e22",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_numeric_guard.py"
+    },
+    {
+      "blob": "e84adab1ea319c53d0e3b0c3369cb1b10a78ea7f",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_operator_batch.py"
+    },
+    {
+      "blob": "a3b57b888889d0b593b3483caba566e60c3d7fb4",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_product_authorization.py"
+    },
+    {
+      "blob": "57dc1062325af74193824bfaea86dbc56ac7a6a6",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_qualification.py"
+    },
+    {
+      "blob": "f76bf3af8147b87b5087c960abdc0dcf29802ee1",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_consumption.py"
+    },
+    {
+      "blob": "914930d7ae530d81880bc02963de4c384bd304fc",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_decode.py"
+    },
+    {
+      "blob": "799b9f4459f3601a8411efba9e8c073369fbb055",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_transaction.py"
+    },
+    {
+      "blob": "ed5b4d22ba151a7ee5fcc675c95c205a39e74d5d",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_verification.py"
+    },
+    {
+      "blob": "3d528ed28787f366aeda3611b1a215f90d58e4aa",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_staging_transaction.py"
+    },
+    {
+      "blob": "9896f71b9f113d317dba9437a470bb5592ae13ee",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_staging_verification.py"
+    },
+    {
+      "blob": "853b7c9334b7fc5c48f7c5dc67a07a9aef77eb15",
+      "mode": "100644",
+      "path": "tests/test_color_match_statlut_features.py"
+    },
+    {
+      "blob": "aff1de96c557c8b6e989434d4a0787ddc6d072e1",
+      "mode": "100644",
+      "path": "tests/test_color_match_statlut_lite_evaluation.py"
+    },
+    {
+      "blob": "b77e0fc9634287d1753e6f9829b4d177482b4a47",
+      "mode": "100644",
+      "path": "tests/test_color_match_successor_admission.py"
+    },
+    {
+      "blob": "74271fd94baf81fafdd8a5d7693157a6e0284f24",
+      "mode": "100644",
+      "path": "tests/test_color_match_successor_runtime_evidence.py"
+    },
+    {
+      "blob": "3975c5ba0e7decde59a67f34585ab7b10b3f5167",
+      "mode": "100644",
+      "path": "tests/test_color_match_w1_evidence.py"
+    }
+  ],
+  "payload_scope": "P1-P67",
+  "required_public_exports": [
+    "make_shared_reference_operator_v1",
+    "guard_shared_numeric_batch_v1",
+    "authorize_shared_product_staging_v1",
+    "commit_external_shared_staging_v1",
+    "verify_external_shared_staging_v1",
+    "build_shared_reference_composition_v1",
+    "commit_shared_filmfx_staging_v1",
+    "verify_shared_filmfx_staging_v1",
+    "authorize_shared_local_delivery_v1",
+    "commit_shared_local_delivery_v1",
+    "verify_shared_local_delivery_v1",
+    "make_successor_runtime_evidence_v1",
+    "bind_successor_runtime_evidence_v1",
+    "validate_successor_runtime_evidence_v1",
+    "qualify_shared_product_authorization_runtime_v1",
+    "validate_runtime_qualified_shared_authorization_v1",
+    "commit_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_run_v1",
+    "verify_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_verification_v1",
+    "capture_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_consumption_record_from_json",
+    "runtime_qualified_shared_staging_consumption_record_to_json",
+    "validate_runtime_qualified_shared_staging_byte_snapshot_v1",
+    "validate_runtime_qualified_shared_staging_consumption_record_v1",
+    "decode_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_decode_record_from_json",
+    "runtime_qualified_shared_staging_decode_record_to_json",
+    "validate_runtime_qualified_shared_staging_decode_record_v1",
+    "validate_runtime_qualified_shared_staging_decoded_batch_v1"
+  ],
+  "schema_id": "neuro-film.reference-match-main-integration-manifest.v4",
+  "supersedes_manifest": {
+    "blob": "cf4bbe9b83f22d5235c43473b9f17235d6f67875",
+    "mode": "100644",
+    "path": "configs/reference_match_main_integration_manifest_v3.json",
+    "schema_id": "neuro-film.reference-match-main-integration-manifest.v3",
+    "sha256": "fc9373a0452df7f1bff309b1bf9a2be83fc50a1cfa025e20236942b1bd2cf07c"
+  },
+  "verification_commands": [
+    "git merge-tree --write-tree <payload_commit> <main_commit>",
+    "python -m pytest -q -k color_match",
+    "python -m pytest -q"
+  ]
+}

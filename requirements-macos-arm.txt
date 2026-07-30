@@ -57,6 +57,7 @@ matplotlib==3.10.9
 ninja==1.13.0
 pytest==9.0.3
 pytest-cov==7.1.0
+jsonschema==4.26.0
 
 # CUDA-only packages intentionally omitted on ARM Mac:
 # causal-conv1d, mamba-ssm, bitsandbytes, xformers

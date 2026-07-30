@@ -1,0 +1,77 @@
+{
+  "schema_id": "neuro-film.reference-match-target-scale-memory-decision.v1",
+  "node": "P159",
+  "decision": "frozen-24mp-resource-and-replay-gates-pass",
+  "contract_commit": "ac496492c085c9782bba0e1e5461931121b9d44e",
+  "candidate_commit": "4741507edcc03520147cdef11a13b1a78e4f8409",
+  "harness_commit": "92506a819558bb681603820a60e4935eea70fa41",
+  "config_sha256": "81f6d95177f908d52c609e6bf0c3be3a380e8ca8666add41f4a0c6d28e41086a",
+  "runner_sha256": "239d61809d822ae4b4a56476fe5dca277e11fba06b2dbebf64317679cbafb755",
+  "raw_report_sha256": "8a8d2b34c05c9ce0446417a3ede1187d62b106b36f26dd9df5d4f077cddf9861",
+  "environment": {
+    "platform": "windows-x86_64-local",
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "psutil": "7.2.2"
+  },
+  "workload": {
+    "width": 6000,
+    "height": 4000,
+    "pixel_count": 24000000,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "repeat_count": 2,
+    "rss_sample_interval_seconds": 0.02,
+    "reference_sha256": "6e7d2f182b5309c715ff0d5905a1e503e8c47d55d49d7e904453098cc0f22586",
+    "source_sha256": "0dc566bd0e9abd163ec0dc39c837d886eff869f5773918f4e8c67019c03c5699"
+  },
+  "peak_process_tree_rss_bytes": [
+    1887232000,
+    1876660224
+  ],
+  "worker_wall_seconds": [
+    33.076110800000606,
+    30.928862900007516
+  ],
+  "maximum_peak_process_tree_rss_bytes": 1887232000,
+  "minimum_peak_process_tree_rss_bytes": 1876660224,
+  "peak_rss_repeat_ratio": 1.0056332925186995,
+  "frozen_gates": {
+    "maximum_peak_process_tree_rss_bytes": 3221225472,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "worker_wall_seconds_max": 120.0,
+    "passed": true
+  },
+  "artifact_identity": {
+    "output_sha256": "21e590ca48a77e2ecabafa69ddf06f2a60d70aca7ffc04556c3a571e506346c8",
+    "recipe_sha256": "a8506e9c2992b3436fabf5b3d42d35f6f48a19b3e3ef4d9aa08bfea04d8d76eb",
+    "normalized_report_sha256": "637cc10151834519f1a6c4caec137da567885ef986879c0bd12b7d99f0cfe61e",
+    "repeat_exact": true
+  },
+  "phase_attribution": {
+    "sample_interval_seconds": 0.005,
+    "load_reference_peak_worker_rss_bytes": [
+      1875619840,
+      1880391680
+    ],
+    "load_source_peak_worker_rss_bytes": [
+      1884078080,
+      1881595904
+    ],
+    "encode_output_peak_worker_rss_bytes": [
+      1598296064,
+      1523408896
+    ],
+    "render_gamut_safe_lab_peak_worker_rss_bytes": [
+      1352531968,
+      1357176832
+    ],
+    "interpretation": "At 24 MP the dominant observed phase is the existing WorkingImage file loader around 1.88 GB, followed by encoding around 1.52-1.60 GB. Both remain below the frozen whole-process 3 GiB ceiling, so this result does not justify an immediate consumer-side loader rewrite."
+  },
+  "safety_action": "identity-fallback",
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-24mp-file-path-scale-evidence-only-not-platform-or-product-readiness"
+}

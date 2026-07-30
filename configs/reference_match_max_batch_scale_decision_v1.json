@@ -1,0 +1,50 @@
+{
+  "schema_id": "neuro-film.reference-match-max-batch-scale-decision.v1",
+  "node": "P162",
+  "decision": "maximum-64-source-ordered-batch-gates-pass",
+  "contract_commit": "f1d3499fab000218bee1895b19b9152d942e6b00",
+  "candidate_commit": "6ae40df1ee87e7e994b0571da6d81c5e24e26ff6",
+  "harness_commit": "4b0e667204c9ad437ea2db086efab1e0ed7a1981",
+  "config_sha256": "4d280c5b39935bc6a77ef516c470072f531f22f6c2c36eff0dd3c5401db8e850",
+  "runner_sha256": "e25803935de3eed160181f252d86a3332f38b50d5066d3f18db4fa537dff3d30",
+  "raw_report_sha256": "ace10e688cedc582076c171e4202e35e934c0cac196a49700bad7f75d046fac0",
+  "workload": {
+    "width": 1000,
+    "height": 1000,
+    "pixel_count_per_image": 1000000,
+    "source_count": 64,
+    "output_bit_depth": 16,
+    "repeat_count": 2,
+    "reference_sha256": "597a2e22c854c9830bb587a6cda1b6adfa841916e5240ac6d35f02265bc29e38",
+    "ordered_source_list_sha256": "9329c9b008b97f386bc9e2a13697138f6f91287db74ff3ed33b6fa2274c546b5"
+  },
+  "peak_process_tree_rss_bytes": [
+    166305792,
+    166797312
+  ],
+  "worker_wall_seconds": [
+    69.44513500001631,
+    70.86652680000407
+  ],
+  "maximum_peak_process_tree_rss_bytes": 166797312,
+  "minimum_peak_process_tree_rss_bytes": 166305792,
+  "peak_rss_repeat_ratio": 1.0029555194325404,
+  "frozen_gates": {
+    "maximum_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "worker_wall_seconds_max": 240.0,
+    "passed": true
+  },
+  "artifact_identity": {
+    "ordered_output_list_sha256": "74bbb3aea19261b0d19e5914d13f17030d85d480502064e62cffbaad0d7e0f34",
+    "first_output_sha256": "670e8af10be7d18476860155f02d44db6e21db6631a18840c87feafe3113ef39",
+    "last_output_sha256": "1eaff852bbbc11ebc69b25173a3152f8c04b4f793330c43c8065665b064f28fb",
+    "recipe_sha256": "73c24d9f988e539c7f3aec3ce3bc183f9b9cfd54657a5f2d5dc6c5afcd4d3f8d",
+    "normalized_report_sha256": "5e8b645078effd6c122089547ac320a8792db0b3c9dbeceaaf02781c8ba48ce1",
+    "all_64_ordered_outputs_repeat_exact": true
+  },
+  "all_128_safety_actions_identity_fallback": true,
+  "worktree_cleanup_passed": true,
+  "automatic_pass": true,
+  "claim_ceiling": "local-windows-python-one-megapixel-64-source-maximum-count-batch-evidence-only-not-24mp64-platform-or-product-readiness"
+}

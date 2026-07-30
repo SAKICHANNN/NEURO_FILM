@@ -71,3 +71,4 @@ ninja==1.13.0
 # --- 测试 ---
 pytest==9.0.3
 pytest-cov==7.1.0
+jsonschema==4.26.0

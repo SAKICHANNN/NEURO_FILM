@@ -1,0 +1,8 @@
+{
+  "protocol": "neuro-film.reference-match-android-toolchain.v1",
+  "release": "r27d",
+  "revision": "27.3.13750724",
+  "source_properties_sha256": "fb5eec1ca5dac09442109cf79e9ce49faecd8b312dbc997e88903a394e14994a",
+  "notice_sha256": "4d5224d1c0b54ffa88b0dc0088191638fdbb7227835095dfb98f7f66b416a323",
+  "scope": "consumer contract cross-compile and link evidence only"
+}

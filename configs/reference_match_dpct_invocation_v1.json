@@ -1,0 +1,40 @@
+{
+  "schema_id": "neuro-film.dpct-invocation-compatibility-lock.v1",
+  "compatibility_profile_id": "neuro-film.dpct-invocation-consumer.v1",
+  "producer": {
+    "repository_id": "zhuise-dpct",
+    "stable_commit": "e22725d8524ed6ba56f37180abc400213908c6f4",
+    "package_source_commit": "01ef0616610b16246623236301234ff3b4c4a7f2",
+    "fixture_commit": "eb4b889bc18f1aba078e19e7e62fbf8c4add6e54",
+    "package_lock_sha256": "300b95b05954b8f1de7aaec6f86429bf584a40088e15d07dd439384c73090287"
+  },
+  "package": {
+    "distribution": "zhuise-research",
+    "version": "0.2.0",
+    "entrypoint": "zhuise-producer-invoke",
+    "wheel_filename": "zhuise_research-0.2.0-py3-none-any.whl",
+    "wheel_size_bytes": 95994,
+    "wheel_sha256": "fd995ad88c9f30f2136508f7c3879ce6768fde7ff2e149537d2b58f78e36c292"
+  },
+  "runtime": {
+    "python_major_minor": "3.12",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1"
+  },
+  "wire": {
+    "request_schema": "zhuise.invocation-request.v1",
+    "request_schema_sha256": "bac2866842d31c1d42e8b813da5c6632bdb9de49ef296e7542209639aa9b37b8",
+    "response_schema": "zhuise.invocation-response.v1",
+    "response_schema_sha256": "204da4f668e69beba7705f8ab0d7966d962c5d6933870bde481bbaee8a15473e",
+    "fixture_sha256": "eab24eaed81e3602de519ce4ba89e640bf8185a452d4104b2577b54fdf15b295",
+    "capability_id": "zhuise.dpct-chroma.cpu-reference.v1",
+    "profile_id": "zhuise.display-linear-srgb-d65-relative-f32.v1",
+    "lower_compatibility_profile_id": "neuro-film.dpct-consumer.v2"
+  },
+  "rights": {
+    "scope": "local-research-integration-only",
+    "redistribution": false,
+    "reason": "producer repository has no project-level release license"
+  },
+  "claim_ceiling": "candidate-only-not-promoted-not-applied-not-delivered"
+}

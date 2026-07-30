@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-dpct-batch-resolution-v1.json",
+  "title": "Neuro-Film atomic D-PCT batch resolution v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "batch_id",
+    "policy_id",
+    "compatibility_profile_id",
+    "producer_commit",
+    "reference_view_id",
+    "producer_reference_view_id",
+    "source_count",
+    "atomic_state",
+    "required_gates",
+    "sources"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.dpct-batch-resolution.v1"
+    },
+    "batch_id": {"$ref": "#/$defs/hash"},
+    "policy_id": {"const": "neuro-film.dpct-atomic-batch.v1"},
+    "compatibility_profile_id": {
+      "const": "neuro-film.dpct-consumer.v2"
+    },
+    "producer_commit": {
+      "const": "b1b68b664d99e7d16ce06af106faf206a7d6fc07"
+    },
+    "reference_view_id": {"$ref": "#/$defs/hash"},
+    "producer_reference_view_id": {"$ref": "#/$defs/producer_hash"},
+    "source_count": {"type": "integer", "minimum": 1, "maximum": 64},
+    "atomic_state": {
+      "enum": ["pending-product-guard", "identity-fallback"]
+    },
+    "required_gates": {
+      "const": ["A1", "A4", "A5"]
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {"$ref": "#/$defs/source"}
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "producer_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "nullable_hash": {
+      "oneOf": [
+        {"$ref": "#/$defs/hash"},
+        {"type": "null"}
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_index",
+        "source_view_id",
+        "producer_source_view_id",
+        "producer_status",
+        "producer_outcome_id",
+        "consumer_transform_id",
+        "apply_receipt_id",
+        "acceptance_decision_id",
+        "admission_id",
+        "individual_action"
+      ],
+      "properties": {
+        "source_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        },
+        "source_view_id": {"$ref": "#/$defs/hash"},
+        "producer_source_view_id": {"$ref": "#/$defs/producer_hash"},
+        "producer_status": {"enum": ["candidate", "failed"]},
+        "producer_outcome_id": {"$ref": "#/$defs/producer_hash"},
+        "consumer_transform_id": {"$ref": "#/$defs/nullable_hash"},
+        "apply_receipt_id": {"$ref": "#/$defs/nullable_hash"},
+        "acceptance_decision_id": {"$ref": "#/$defs/nullable_hash"},
+        "admission_id": {"$ref": "#/$defs/nullable_hash"},
+        "individual_action": {
+          "enum": [
+            "candidate-for-product-guard",
+            "identity-fallback",
+            "not-evaluated"
+          ]
+        }
+      }
+    }
+  }
+}

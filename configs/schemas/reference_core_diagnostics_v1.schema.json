@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-diagnostics-v1.json",
+  "title": "Neuro-Film external core diagnostics v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "transform_id",
+    "status",
+    "fallback_reason",
+    "finite",
+    "out_of_gamut_fraction",
+    "clipping_fraction",
+    "projected_fraction",
+    "confidence",
+    "timing_ms",
+    "backend_id",
+    "backend_fingerprint",
+    "warnings"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-diagnostics.v1"
+    },
+    "transform_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "identity-fallback",
+        "unsupported",
+        "invalid"
+      ]
+    },
+    "fallback_reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonempty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "finite": {
+      "type": "boolean"
+    },
+    "out_of_gamut_fraction": {
+      "$ref": "#/$defs/fraction"
+    },
+    "clipping_fraction": {
+      "$ref": "#/$defs/fraction"
+    },
+    "projected_fraction": {
+      "$ref": "#/$defs/fraction"
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timing_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "backend_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "backend_fingerprint": {
+      "$ref": "#/$defs/sha256"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "fallback_reason": {
+            "type": "null"
+          },
+          "finite": {
+            "const": true
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "fallback_reason": {
+            "$ref": "#/$defs/nonempty"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fraction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_id": "neuro-film.bmkl-failure-signature-evidence.v1",
+  "candidate_id": "zhuise.bmkl-cross-scene-0.4.cpu-reference.v1",
+  "producer_package_commit": "98073d4a61f904061341ae7a01451c2ce8b28177",
+  "consumer_acceptance_evidence": "docs/evidence/P111_BMKL_FROZEN_ACCEPTANCE.json",
+  "analysis": {
+    "script": "scripts/analyze_dpct_invocation_failure_signatures.py",
+    "input_protocol": "neuro-film.dpct-invocation-promotion-evaluation.v1",
+    "stable_evidence_id": "b0894a94696ab6beb07875dc63a153011dfe20a86f7bd7d9f8cc6d633bb81305",
+    "first_progress_sha256": "0aa9659098090e370a5610c6087f5b2b4ed692f06fcd9b099c4454477db6ddf6",
+    "second_progress_sha256": "9e4c67e6f7a1e24986a0979031b2f40d774858304ee38ea2370d3418355bcb49",
+    "first_report_sha256": "9e1400ef00d3d65cebe725fce48e3048b3847fc064f22c4b91414178a75f5f3f",
+    "second_report_sha256": "9e1400ef00d3d65cebe725fce48e3048b3847fc064f22c4b91414178a75f5f3f",
+    "exact_replay": true
+  },
+  "known_operator": {
+    "row_count": 30,
+    "regressed_count": 17,
+    "median_improvement_fraction": -0.1205771639633899,
+    "worst_improvement_fraction": -1.225607092870129,
+    "median_clipping_fraction": 0.06150268961294744,
+    "clipping_error_ratio_pearson": 0.43155550011541943,
+    "regressed_with_clipping_at_most_5pct_count": 3,
+    "source_median_improvement_fraction": {
+      "01": 0.07509005002954297,
+      "02": -0.41704094494076605,
+      "03": -0.2032005213298032,
+      "05": 0.43936534252404,
+      "07": 0.1753895574727504,
+      "09": -0.4519174662349143
+    },
+    "reference_median_improvement_fraction": {
+      "01": 0.01843793143246383,
+      "02": 0.4934304111334938,
+      "03": 0.07509005002954297,
+      "05": -0.1646916782769404,
+      "07": -0.2032005213298032,
+      "09": -0.664113478211606
+    }
+  },
+  "photographic_safety": {
+    "failed_count": 0,
+    "sample_count": 6,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_neutral_chroma_p95": 9.899436950683594,
+    "maximum_semantic_hue_rotation_p95_degrees": 11.41763687133789
+  },
+  "context_invariance": {
+    "failed_count": 6,
+    "sample_count": 6,
+    "changed_bundle_pair_count": 6,
+    "maximum_delta_e76_median": 21.99414825439453,
+    "maximum_delta_e76_p95": 35.62344741821289,
+    "maximum_delta_e76": 44.73575210571289
+  },
+  "interpretation": {
+    "primary_failure": "source-and-reference-content-dependent-fit",
+    "clipping_only_explanation_rejected": true,
+    "reference_identity_sensitivity_present": true,
+    "source_identity_sensitivity_present": true,
+    "reference_only_shared_bundle_required_for_next_route": true,
+    "claim_ceiling": "mechanism-diagnostic-for-rejected-candidate-only"
+  }
+}

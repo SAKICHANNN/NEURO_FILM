@@ -1,0 +1,176 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-match-portable-conformance-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm_id": {
+      "const": "safe-lab-reference-statistics.v1"
+    },
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/case"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "fixture_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "float_encoding": {
+      "const": "ieee754-binary32-big-endian-hex"
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-portable-conformance.v1"
+    },
+    "tolerances": {
+      "$ref": "#/$defs/tolerances"
+    }
+  },
+  "required": [
+    "schema_id",
+    "algorithm_id",
+    "fixture_id",
+    "float_encoding",
+    "tolerances",
+    "cases"
+  ],
+  "title": "Neuro-Film portable reference-match conformance v1",
+  "type": "object",
+  "$defs": {
+    "case": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expected": {
+          "$ref": "#/$defs/expected"
+        },
+        "policy": {
+          "$ref": "https://neuro-film.local/schemas/reference-look-recipe-v1.json#/$defs/policy"
+        },
+        "reference": {
+          "$ref": "#/$defs/image"
+        },
+        "source": {
+          "$ref": "#/$defs/image"
+        }
+      },
+      "required": [
+        "case_id",
+        "reference",
+        "source",
+        "policy",
+        "expected"
+      ],
+      "type": "object"
+    },
+    "expected": {
+      "additionalProperties": false,
+      "properties": {
+        "gamut_adjusted_fraction": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "output_f32be_hex": {
+          "pattern": "^[0-9a-f]+$",
+          "type": "string"
+        },
+        "output_max": {
+          "type": "number"
+        },
+        "output_min": {
+          "type": "number"
+        },
+        "recipe_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_pixel_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "recipe_id",
+        "reference_pixel_sha256",
+        "output_f32be_hex",
+        "gamut_adjusted_fraction",
+        "output_min",
+        "output_max"
+      ],
+      "type": "object"
+    },
+    "image": {
+      "additionalProperties": false,
+      "properties": {
+        "pixels_f32be_hex": {
+          "pattern": "^[0-9a-f]+$",
+          "type": "string"
+        },
+        "shape": {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "const": 3
+            }
+          ],
+          "type": "array"
+        },
+        "working_space": {
+          "enum": [
+            "linear_srgb",
+            "linear_rec2020"
+          ]
+        }
+      },
+      "required": [
+        "shape",
+        "working_space",
+        "pixels_f32be_hex"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "tolerances": {
+      "additionalProperties": false,
+      "properties": {
+        "diagnostics_max_abs": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "lab_delta_e76_max": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "lab_delta_e76_p95": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "linear_rgb_max_abs": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "linear_rgb_max_abs",
+        "lab_delta_e76_p95",
+        "lab_delta_e76_max",
+        "diagnostics_max_abs"
+      ],
+      "type": "object"
+    }
+  }
+}

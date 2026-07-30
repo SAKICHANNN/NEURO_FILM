@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-acceptance-v1.json",
+  "title": "Neuro-Film external core acceptance decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "decision_id",
+    "policy_id",
+    "transform_id",
+    "accepted_for_product_guard",
+    "action",
+    "reasons",
+    "core_status",
+    "core_fallback_reason",
+    "promotion_status",
+    "promotion_reasons",
+    "required_gates",
+    "research_baseline_override"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-acceptance.v1"
+    },
+    "decision_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "policy_id": {
+      "const": "reference-core-acceptance.v1"
+    },
+    "transform_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "accepted_for_product_guard": {
+      "type": "boolean"
+    },
+    "action": {
+      "enum": [
+        "candidate-for-product-guard",
+        "identity-fallback"
+      ]
+    },
+    "reasons": {
+      "$ref": "#/$defs/unique_strings"
+    },
+    "core_status": {
+      "enum": [
+        "ok",
+        "identity-fallback",
+        "unsupported",
+        "invalid"
+      ]
+    },
+    "core_fallback_reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonempty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "promotion_status": {
+      "enum": [
+        "rejected",
+        "eligible-for-visual-review",
+        "promoted"
+      ]
+    },
+    "promotion_reasons": {
+      "$ref": "#/$defs/unique_strings"
+    },
+    "required_gates": {
+      "const": [
+        "A1",
+        "A4",
+        "A5"
+      ]
+    },
+    "research_baseline_override": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unique_strings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "uniqueItems": true
+    }
+  }
+}

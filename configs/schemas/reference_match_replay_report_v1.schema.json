@@ -1,0 +1,52 @@
+{
+  "$id": "https://neuro-film.local/schemas/reference-match-replay-report-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm_id": {
+      "const": "safe-lab-reference-statistics.v1"
+    },
+    "claim_ceiling": {
+      "const": "reference-look"
+    },
+    "evidence_grade": {
+      "const": "deterministic-statistical-baseline"
+    },
+    "operation": {
+      "const": "recipe-replay"
+    },
+    "outputs": {
+      "items": {
+        "$ref": "https://neuro-film.local/schemas/reference-match-report-v1.json#/$defs/output"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "type": "array"
+    },
+    "recipe_file": {
+      "$ref": "https://neuro-film.local/schemas/reference-match-report-v1.json#/$defs/recipe_file"
+    },
+    "recipe_id": {
+      "$ref": "https://neuro-film.local/schemas/reference-match-report-v1.json#/$defs/sha256"
+    },
+    "reference_pixel_sha256": {
+      "$ref": "https://neuro-film.local/schemas/reference-match-report-v1.json#/$defs/sha256"
+    },
+    "schema_id": {
+      "const": "neuro-film.reference-match-replay-report.v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "operation",
+    "algorithm_id",
+    "recipe_id",
+    "claim_ceiling",
+    "evidence_grade",
+    "reference_pixel_sha256",
+    "recipe_file",
+    "outputs"
+  ],
+  "title": "Neuro-Film reference match recipe replay report v1",
+  "type": "object"
+}

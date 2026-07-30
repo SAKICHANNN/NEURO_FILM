@@ -1,0 +1,104 @@
+{
+  "algorithm_id": "safe-lab-reference-statistics.v1",
+  "cases": [
+    {
+      "case_id": "srgb-default-detail",
+      "expected": {
+        "gamut_adjusted_fraction": 0.16666666666666666,
+        "output_f32be_hex": "3da7aab33e01a6dd3db882b73dc0e8a73ea7fd9d3e462cb33dd54c6d3f0b81243e9a3ab13de9da453f4440853ed2a1173ed09fbd3de89ca53e8692f83ed0fabd3ea6d8963eb83fc33ef192be3f07037d3eff36193ef792703f40289e3f1c91e23f4479943dbeeaf53ee457d03f4746653e9c90a13f0ed2133f43e15b3f099e973f27411c3f548f293f3e7f783f4b3d6c",
+        "output_max": 0.8303094506263733,
+        "output_min": 0.08186855167150497,
+        "recipe_id": "26b1ece23f690b18da3468a0b60a3f84112e1c9e07486c3ca912ece7d2848520",
+        "reference_pixel_sha256": "7e97f2491f4f6d0b496410556877e81d4f4a75a1b22894c5506c76f851747b96"
+      },
+      "policy": {
+        "chroma_curve_strength": 0.2,
+        "gamut_iterations": 24,
+        "gamut_mode": "source",
+        "highlight_ceiling_l": 99.0,
+        "luma_strength": 0.85,
+        "max_chroma_absolute": 110.0,
+        "max_chroma_boost": 18.0,
+        "max_chroma_gain": 1.8,
+        "neutral_protect": 0.35,
+        "preserve_luma_detail_strength": 0.35,
+        "shadow_floor_l": 1.0,
+        "skin_protect": 0.25,
+        "strength": 1.0,
+        "tone_rolloff": 0.0
+      },
+      "reference": {
+        "pixels_f32be_hex": "3da3d70a3df5c28f3dcccccd3eaaaaaa3df5c28f3e6eeef03f162fc93df5c28f3ebbbbbc3f570a3d3df5c28f3f0000003da3d70a3edc28f63e75c2903eaaaaaa3edc28f63ebf258c3f162fc93edc28f63f01b4e83f570a3d3edc28f63f23d70a3da3d70a3f3d70a43ec28f5c3eaaaaaa3f3d70a43f0369d03f162fc93f3d70a43f258bf23f570a3d3f3d70a43f47ae14",
+        "shape": [
+          3,
+          4,
+          3
+        ],
+        "working_space": "linear_srgb"
+      },
+      "source": {
+        "pixels_f32be_hex": "3d4ccccd3e23d70a3da3d70a3d4ccccd3eb4e81b3e2aaaaa3d4ccccd3f0bf2583e81b4e83d4ccccd3f3d70a43eae147a3ea666673e23d70a3e6b851f3ea666673eb4e81b3ea222223ea666673f0bf2583ece81b53ea666673f3d70a43efae1473f19999a3e23d70a3ec28f5c3f19999a3eb4e81b3eeeeeef3f19999a3f0bf2583f0da7413f19999a3f3d70a43f23d70a",
+        "shape": [
+          3,
+          4,
+          3
+        ],
+        "working_space": "linear_srgb"
+      }
+    },
+    {
+      "case_id": "rec2020-chroma-compression",
+      "expected": {
+        "gamut_adjusted_fraction": 1.0,
+        "output_f32be_hex": "3e7e9b4d3efac3f03da290b33e6220fe3ea7f5d83e43cec13e791d9e3e1c98df3e8240b13e0f66fe3ce580353eb92a963f0e2d933ef8454f3daa58fa3f1a53c63e9778093e50708a3f0976cb3e1e75683e87894b3ed05b7e3d0020783ec84e5a3f56ae1f3ef8d94e3daf83803f4f10313ea96a643e52c3ab3f3f55a43e3df7143ea362693f2db65c3d204ac43ed4360e",
+        "output_max": 0.838594377040863,
+        "output_min": 0.02801523543894291,
+        "recipe_id": "b7234c22eb3cc3c68ad9991da275c4cd40706a06010ade111d15ffd1cf5db618",
+        "reference_pixel_sha256": "47cbfb1c4eadae5cf60c9c430316b566b9351bcff4fbfe61cf41f80b595d389f"
+      },
+      "policy": {
+        "chroma_curve_strength": 0.4,
+        "gamut_iterations": 24,
+        "gamut_mode": "chroma",
+        "highlight_ceiling_l": 99.0,
+        "luma_strength": 0.85,
+        "max_chroma_absolute": 110.0,
+        "max_chroma_boost": 18.0,
+        "max_chroma_gain": 1.8,
+        "neutral_protect": 0.35,
+        "preserve_luma_detail_strength": 0.55,
+        "shadow_floor_l": 1.0,
+        "skin_protect": 0.25,
+        "strength": 1.0,
+        "tone_rolloff": 0.25
+      },
+      "reference": {
+        "pixels_f32be_hex": "3e3851ec3d23d70a3d75c28f3ed3a06e3d23d70a3d75c28f3f258bf23d23d70a3d75c28f3f6147ae3d23d70a3d75c28f3e3851ec3e428f5c3ed1eb853ed3a06e3e428f5c3e962fc93f258bf23e428f5c3e34e81b3f6147ae3e428f5c3d75c28f3e3851ec3eae147b3f428f5c3ed3a06e3eae147b3f06d3a03f258bf23eae147b3e962fc93f6147ae3eae147b3d75c28f",
+        "shape": [
+          3,
+          4,
+          3
+        ],
+        "working_space": "linear_rec2020"
+      },
+      "source": {
+        "pixels_f32be_hex": "3dcccccd3f3851eb3df5c28f3dcccccd3f01b4e73ea06d3a3dcccccd3e962fc83f01b4e83dcccccd3da3d70a3f3333333eeb851f3f3851eb3df5c28f3eeb851f3f01b4e73ea06d3a3eeb851f3e962fc83f01b4e83eeb851f3da3d70a3f3333333f51eb863f3851eb3df5c28f3f51eb863f01b4e73ea06d3a3f51eb863e962fc83f01b4e83f51eb863da3d70a3f333333",
+        "shape": [
+          3,
+          4,
+          3
+        ],
+        "working_space": "linear_rec2020"
+      }
+    }
+  ],
+  "fixture_id": "ed064c761e729a29bc7d5dda4180de016d2ed8aa68f66a781172e74012efa1ed",
+  "float_encoding": "ieee754-binary32-big-endian-hex",
+  "schema_id": "neuro-film.reference-match-portable-conformance.v1",
+  "tolerances": {
+    "diagnostics_max_abs": 2e-05,
+    "lab_delta_e76_max": 0.01,
+    "lab_delta_e76_p95": 0.003,
+    "linear_rgb_max_abs": 2e-05
+  }
+}

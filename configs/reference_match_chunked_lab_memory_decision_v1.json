@@ -1,0 +1,84 @@
+{
+  "schema_id": "neuro-film.reference-match-chunked-lab-memory-decision.v1",
+  "node": "P157",
+  "decision": "frozen-memory-and-wall-gates-pass",
+  "contract_commit": "0972628c07ca509e88558ec4cac55c80b6c2acb6",
+  "implementation_commit": "6e1387b0f98a18ba7e89f9c68e47bc143205ac5b",
+  "run_binding_commit": "fdb5a46e37099275a36a52db19dba2502c0e42c8",
+  "baseline_commit": "bfb36d6065145bf21ec418c16d64483b1226e6eb",
+  "candidate_commit": "6e1387b0f98a18ba7e89f9c68e47bc143205ac5b",
+  "gate_config_sha256": "6877fddbc59f5c01134c13a2a1c5630a2a087f92de811cd174c59481db31c2f4",
+  "run_config_sha256": "87738353a2a4e0422cdf499e3695f1be2dee93de63e31c135eeb0c2af5c9ba31",
+  "runner_sha256": "2135583917369a58fe15521d49cb42d8184498f5549b46867ccb1226c1aed450",
+  "raw_report_sha256": "3838e43d977d99861ad8b2db229c14727f996b31a15f9094551086fc35a21160",
+  "environment": {
+    "platform": "windows-x86_64-local",
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "psutil": "7.2.2"
+  },
+  "workload": {
+    "width": 3000,
+    "height": 2000,
+    "source_count": 1,
+    "output_bit_depth": 16,
+    "fixed_row_chunk": 128,
+    "execution_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "rss_sample_interval_seconds": 0.02,
+    "reference_sha256": "345174185e5618a0d37bacb1d8c3eda6bc9a99850966b580e210b32659a16244",
+    "source_sha256": "1e4de9f8ae4f9d77025199947304a84a98263d3569ee7d9f99ce06dca67092ee"
+  },
+  "run_peak_process_tree_rss_bytes": [
+    1093337088,
+    931061760,
+    927539200,
+    1097990144
+  ],
+  "baseline_median_peak_process_tree_rss_bytes": 1095663616,
+  "candidate_median_peak_process_tree_rss_bytes": 929300480,
+  "median_rss_reduction_bytes": 166363136,
+  "candidate_to_baseline_median_rss_ratio": 0.8481622155097647,
+  "baseline_median_worker_wall_seconds": 10.112663899999461,
+  "candidate_median_worker_wall_seconds": 8.701913700002478,
+  "candidate_to_baseline_median_worker_wall_ratio": 0.8604966788229699,
+  "frozen_gates": {
+    "minimum_median_rss_reduction_bytes": 67108864,
+    "maximum_candidate_to_baseline_median_rss_ratio": 0.94,
+    "maximum_candidate_to_baseline_median_worker_wall_ratio": 1.05,
+    "passed": true
+  },
+  "artifact_identity": {
+    "output_sha256": "2fdb6f01c158c096f49d7e2108f61b6b706f0df873160ba17616068bf320c26d",
+    "recipe_sha256": "70a357489958a32bf28f9e7c59a28dfe0bd6350b3cdca499cd75cfce00877bce",
+    "normalized_report_sha256": "ef0fa5a01c50808b837c7f2f1b7429526e06c1421884ea94018af76a3c6fabec",
+    "cross_revision_exact": true
+  },
+  "phase_attribution": {
+    "sample_interval_seconds": 0.005,
+    "baseline_fit_reference_peak_worker_rss_bytes": [
+      1092231168,
+      1097809920
+    ],
+    "candidate_fit_reference_peak_worker_rss_bytes": [
+      374337536,
+      371781632
+    ],
+    "candidate_render_style_lab_peak_worker_rss_bytes": [
+      1009684480,
+      993263616
+    ],
+    "interpretation": "The bounded conversion removes reference-fit as the dominant phase. The unmodified full-frame safe-Lab style phase is now the highest phase sample; its 5 ms worker samples are attribution evidence and are not interchangeable with the frozen 20 ms process-tree gate samples."
+  },
+  "safety_action": "identity-fallback",
+  "run_matrix_passed": true,
+  "cleanup_passed": true,
+  "automatic_pass": true,
+  "interpretation": "Exact 128-row RGB-to-Lab conversion and reuse of validated Lab close the frozen local 6 MP ingress-memory leaf without changing durable output, recipe, report, safety disposition or algorithm semantics.",
+  "claim_ceiling": "local-windows-python-row-chunked-lab-ingress-memory-only-not-algorithm-or-platform-promotion"
+}

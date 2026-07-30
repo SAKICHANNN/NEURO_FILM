@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-core-transform-bundle-v1.json",
+  "title": "Neuro-Film external core transform bundle binding v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "transform_id",
+    "producer_id",
+    "producer_version",
+    "producer_build_sha256",
+    "contract_schema_id",
+    "algorithm_id",
+    "algorithm_version",
+    "binding_scope",
+    "intent_id",
+    "source_view_id",
+    "reference_view_id",
+    "payload_schema_id",
+    "payload_sha256",
+    "capability_requirements",
+    "determinism"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-core-transform-bundle.v1"
+    },
+    "transform_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "producer_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "producer_version": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "producer_build_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "contract_schema_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "algorithm_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "algorithm_version": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "binding_scope": {
+      "const": "source-bound"
+    },
+    "intent_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "source_view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "reference_view_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "payload_schema_id": {
+      "$ref": "#/$defs/nonempty"
+    },
+    "payload_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "capability_requirements": {
+      "$ref": "#/$defs/sorted_unique_strings"
+    },
+    "determinism": {
+      "enum": [
+        "bit-exact",
+        "bounded-numeric"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sorted_unique_strings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonempty"
+      },
+      "uniqueItems": true
+    }
+  }
+}

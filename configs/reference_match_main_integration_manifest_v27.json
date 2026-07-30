@@ -1,0 +1,2463 @@
+{
+  "base_commit": "c03c321b9fc642e2e092d59e20dd1b145b96192d",
+  "claim_ceiling": "review-ready-not-merged",
+  "contract_schemas": [
+    {
+      "blob": "20ca068e33444c47899194d8d3417c4bb782dce5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_declaration_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-declaration.v1",
+      "sha256": "aedc03e3ab0f7ea4aa5b9c395447d6f0c193c5d58a3a34f150ebaa7a6854a5d3"
+    },
+    {
+      "blob": "ca7aab458690db6413b3347efdd698d0af72c500",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-runtime-evidence.v1",
+      "sha256": "67f9ac7505f01905476b0b4c2c9b52abe67862c96cd2e72b916959fca2c83a8c"
+    },
+    {
+      "blob": "b25f02ec05ed4dca56870152f7d2ed6b86a7b388",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-run.v1",
+      "sha256": "8fe7bb835e4664cc53a3fd5eb66d1743ea5692ceec38e5f8fd93d6b847086c5b"
+    },
+    {
+      "blob": "48e19f6c42d112580fef4d0480927cfbc88ced50",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-verification.v1",
+      "sha256": "bb95e61c424a521c985447d87a136dedc76a8569afcbb588db8516f4c1439907"
+    },
+    {
+      "blob": "25cd1e5414b6774ad3659c9413e31452304c777d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-consumption.v1",
+      "sha256": "9298948724462d0903752eb3a76f888ddf686429e07b1de63aed92bc40c81bc6"
+    },
+    {
+      "blob": "b181c52e82e65b3f38b9a1e98332ccc11ef04ad1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-decode.v1",
+      "sha256": "cec3700a21b7fde688f45955f80ec022220bddb943bd82e23f37d52d11787d3f"
+    },
+    {
+      "blob": "26bdb79030d586340efa3b35fbbe128b8533648c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json",
+      "schema_id": "neuro-film.srgb-icc-profile-conformance.v1",
+      "sha256": "d3f70d75b6ca5e2a923cdb49260c30bc57652588d102f2609364a2c80597232e"
+    },
+    {
+      "blob": "31cd82c037840e6281d653f655ef004ebaed8080",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_color_attestation_v1.schema.json",
+      "schema_id": "neuro-film.runtime-staging-color-attestation.v1",
+      "sha256": "4db512eb2ced28d9cdf0b176393d917cff35c65396f07b45a7e06632b793a93a"
+    },
+    {
+      "blob": "7386e43d5dd2b876e4fee6bcaab64103c180fef0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_attested_match_view_bridge_v2.schema.json",
+      "schema_id": "neuro-film.runtime-staging-attested-match-view-bridge.v2",
+      "sha256": "ce4d6919e6b9e729a24fe2b1f37f7b1096391846d7879a80098d5aca4c9269f5"
+    },
+    {
+      "blob": "acd49f9f0e41254e6212022f5d8665c748c4382e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json",
+      "schema_id": "neuro-film.runtime-staging-match-view-bridge.v1",
+      "sha256": "d2c94fe0aab77a92e317d4462ee830da4199be2e540d941e026287a71a9204eb"
+    },
+    {
+      "blob": "228bf0b5d4c9b463c381efe40a5c933d122d5f5a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_composition_v1.schema.json",
+      "schema_id": "neuro-film.shared-reference-composition.v1",
+      "sha256": "9f4773222799b174cf32f55e71bd92793a8ca98971ad8627685e668a556c0967"
+    },
+    {
+      "blob": "b525dcb95470fb4186d99b7eb00fe79a991db006",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_run_v1.schema.json",
+      "schema_id": "neuro-film.shared-filmfx-run.v1",
+      "sha256": "7e803e0d70317e9f941753773d9f1220c34a3440e3d3e2e06d6bf0a9868fc593"
+    },
+    {
+      "blob": "0486b5fb17fcf80f95323b6a147f46c6e95ee72d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "sha256": "be0fcdd1e281782c4040ba31b0bfc8732f549f517047ab77d467b6d739426c4e"
+    },
+    {
+      "blob": "d7f23167dfded320034c86696d35c52d88c850d5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "sha256": "6bd8f5475fed5fe82f56b0efe669698ee6de05c7fafe02c3d1f0951fe190b28f"
+    },
+    {
+      "blob": "90d9f12b1cc6712710efb5e27e80fe597abb5ed7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_v1.schema.json",
+      "sha256": "971c4c7346241e6c0877f5f8d565604515d6b276de2b84594235f67a41bc32ee"
+    },
+    {
+      "blob": "397467cd09ae0e739e2964cbee1df3105f5ea7e1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "sha256": "961e8283f52b6447ceee51baa0eb74409dd1d56583a6c9ffccb49b909ba0833d"
+    },
+    {
+      "blob": "6a288f59789ed4bbdda60bdf74e3b75601541e5b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json",
+      "schema_id": "neuro-film.shared-numeric-batch-guard.v1",
+      "sha256": "06d9adf852f6829c529ba7690c1d6c80f6f27829eb6b57ec28ba84ea40129cde"
+    },
+    {
+      "blob": "c75ce57b1f5db24c5c2715b722e42144b4a3f99c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_operator_batch_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-batch.v1",
+      "sha256": "2c2e0e9a9513dd41b0b841426d2548a9589c4de0d657267e4d7b54745618bc21"
+    },
+    {
+      "blob": "6d6d705bfd54fe6ffa56f00a5cc30ae261a6d885",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-product-staging-authorization.v1",
+      "sha256": "7aa811eb328195b5b451b0865448d01a53dd5e965204997b8c51a380321e92ad"
+    },
+    {
+      "blob": "75769c667e4e41507448f6fd63145a579fcc0f39",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-runtime-qualification.v1",
+      "sha256": "045e8dea47ece8526658bc67f9844aa9e6d4faafefce6f666dc77b92c1deebf0"
+    },
+    {
+      "blob": "96af98d1a5972b215ba57aa7a2ad4ca738260a21",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_invocation_profile_v2.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-dpct-invocation-profile-v2.json",
+      "sha256": "6863cacaed5f2f1136cce956c88b591bbc788c4c7bce080216c81c0b58fd2f49"
+    },
+    {
+      "blob": "b5fcea1195807a91b98fe16945046581f4f5d87c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_hdr_shot_reuse_veto_decision_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-hdr-shot-reuse-veto-decision-v1",
+      "sha256": "a7ebf89d68e90f336d8664361e7c1a797c9f246cbd0d5d410ce8aa609875973c"
+    }
+  ],
+  "main_changed_file_count": 480,
+  "main_commit": "560934fddd1acc8f24326a119479c20ae828d294",
+  "overlap_paths": [],
+  "payload_changed_file_count": 446,
+  "payload_commit": "21469a1f926c52d54d0e10861308747868a767c7",
+  "payload_files": [
+    {
+      "blob": "9e5ba046c1455f11fafa481fa60179b4651069f6",
+      "mode": "100644",
+      "path": ".gitattributes"
+    },
+    {
+      "blob": "b55dafc59f13bd791d7330bc1728bc33c0655f65",
+      "mode": "100644",
+      "path": "configs/reference_match_android_ndk_r27d.json"
+    },
+    {
+      "blob": "0fe0cd29842d6a8eb1e5af24e04fab45b1a66082",
+      "mode": "100644",
+      "path": "configs/reference_match_bmkl_invocation_profile_v2.json"
+    },
+    {
+      "blob": "04de5aba02e1f869e1c630a7a0216f65a1608f7c",
+      "mode": "100644",
+      "path": "configs/reference_match_bmkl_successor_declaration_v1.json"
+    },
+    {
+      "blob": "5c3aa843fba0bbf385ebf4c77d3629e1502f3491",
+      "mode": "100644",
+      "path": "configs/reference_match_canoncgt_external_v1.json"
+    },
+    {
+      "blob": "95c2427d9f7e4c3f4fdf058c543fe1d1f99edf75",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_batch_quantile_v1.json"
+    },
+    {
+      "blob": "a4cf110a8b498a78f5643fe700c4d2f24e928328",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_empirical_prior_v1.json"
+    },
+    {
+      "blob": "fcec6ee6946fb496045a0191c6649b61d8e26e11",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_prior_selection_v1.json"
+    },
+    {
+      "blob": "46e2a3e9d5acc4daa3b9d2f3c05e4eb8241ca60f",
+      "mode": "100644",
+      "path": "configs/reference_match_cfsm_quantile_v1.json"
+    },
+    {
+      "blob": "f456f056873c7f52f3474fb78fa50edb3daed447",
+      "mode": "100644",
+      "path": "configs/reference_match_core_consumer_conformance_v1.json"
+    },
+    {
+      "blob": "2b2edda7cb4f017eec2b299f0077f3e0c6fcd215",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_compatibility_v1.json"
+    },
+    {
+      "blob": "3aa0bd6742c57d42939124cc566d8e32c28339e3",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_compatibility_v2.json"
+    },
+    {
+      "blob": "9c8a0619f068003f0aa05afd9113d67f41ff2e0f",
+      "mode": "100644",
+      "path": "configs/reference_match_dpct_invocation_v1.json"
+    },
+    {
+      "blob": "1d7bfd34549254ff4f7e83da646adcac49efe305",
+      "mode": "100644",
+      "path": "configs/reference_match_llvm_mingw_20260616.json"
+    },
+    {
+      "blob": "2622c67249977541daac4997c5044fc301461b67",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v1.json"
+    },
+    {
+      "blob": "536c9496f0741ac7ae24e58c748b73966b07d845",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v10.json"
+    },
+    {
+      "blob": "680191a062a2d2ba548487e3d0c2731ed7a7646e",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v11.json"
+    },
+    {
+      "blob": "814099ff752dcd034fd19a86e30f9e4ce60ba776",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v12.json"
+    },
+    {
+      "blob": "0e8b82125a1b71d3a9c9bc53aea3818d17f3317d",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v13.json"
+    },
+    {
+      "blob": "bb277798e2b38f9a149513d11c8f8b38c59e96af",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v14.json"
+    },
+    {
+      "blob": "e26a7d10ff95123d7f120a4f3163aea8b00adba2",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v15.json"
+    },
+    {
+      "blob": "c9d957a96d52a44f122300ea876e56b867728fcc",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v16.json"
+    },
+    {
+      "blob": "ac78c6c8c0bd69a34a6762b35721e5ca2edde65a",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v17.json"
+    },
+    {
+      "blob": "97f3d6b039b4710709c12f10df18f2f464f58f0d",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v18.json"
+    },
+    {
+      "blob": "e3632b95f97c6f6666308f04e0961a37a2f67764",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v19.json"
+    },
+    {
+      "blob": "1cc895855d0db85b8ceb263dba4305838d168e4c",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v2.json"
+    },
+    {
+      "blob": "c0f354e4ab9fdad1353aeaacbcb9e63541bcba9e",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v20.json"
+    },
+    {
+      "blob": "7baed1ad89fe282ec3df2bf000db6920d071029c",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v21.json"
+    },
+    {
+      "blob": "8d41f34f50d845de36d617197ec28f4097a5a0e4",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v22.json"
+    },
+    {
+      "blob": "6036bea282379a6da4e89ec5c4095989c3283ce1",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v23.json"
+    },
+    {
+      "blob": "9c6d5d48c220b9949eb503c357c96e6689cf77e9",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v24.json"
+    },
+    {
+      "blob": "37d98b47622dc10573b2888079132916d7c85f9e",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v25.json"
+    },
+    {
+      "blob": "97e46f5acb8423df81ed3c08daf9a66c0ea61768",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v26.json"
+    },
+    {
+      "blob": "cf4bbe9b83f22d5235c43473b9f17235d6f67875",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v3.json"
+    },
+    {
+      "blob": "f652dbb3f38b77b583b0c00ed5228ef0aaee9601",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v4.json"
+    },
+    {
+      "blob": "550cce13c64ff27b71e7c3b175a8aad620a57522",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v5.json"
+    },
+    {
+      "blob": "727f7a4811b4e53a84654a8bfd980e105e96de4a",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v6.json"
+    },
+    {
+      "blob": "7fe3c6a8569731eb1065d9ecfd8f244d54bf3e3f",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v7.json"
+    },
+    {
+      "blob": "ab24ba63a7a0a61a524387dd51db788a88c975fe",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v8.json"
+    },
+    {
+      "blob": "cb5e53c4b0a82139b3e3f00c46d0a7e9d7975343",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v9.json"
+    },
+    {
+      "blob": "c3836e6d3b5810a22cf793d8f67788c43f0904ec",
+      "mode": "100644",
+      "path": "configs/reference_match_portable_conformance_v1.json"
+    },
+    {
+      "blob": "51fe3fd8c3d4658ee3024ebe1d033d337b627730",
+      "mode": "100644",
+      "path": "configs/reference_match_statlut_lite_v1.json"
+    },
+    {
+      "blob": "6c0c3407f4349cbd39ac716768025ae2b74f7d06",
+      "mode": "100644",
+      "path": "configs/reference_match_successor_admission_v1.json"
+    },
+    {
+      "blob": "dc219e356ba284b96e5e5e8e21698de991141806",
+      "mode": "100644",
+      "path": "configs/reference_match_w1_development_decision_v1.json"
+    },
+    {
+      "blob": "5aa65d33773dd545a88de63aa55a9f20af53ea98",
+      "mode": "100644",
+      "path": "configs/reference_match_w1_development_intake_v1.json"
+    },
+    {
+      "blob": "d8d77bbafe36197a3f03734f0f3fa6c283ef680b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_composition_v1.schema.json"
+    },
+    {
+      "blob": "c32298118b26e3c75773052fc23d69ea512cd42a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_acceptance_v1.schema.json"
+    },
+    {
+      "blob": "235b523ed8558519a51d6d2d996441be3876a05d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_apply_receipt_v1.schema.json"
+    },
+    {
+      "blob": "5921a2fb4a1c5a25de24d0a2a39ac4fbf13f8986",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_candidate_admission_v2.schema.json"
+    },
+    {
+      "blob": "cc392ffc574f739bc20ef5d5fe576a8aa13dfdf0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_capabilities_v1.schema.json"
+    },
+    {
+      "blob": "b75b3a22e542c568944a12839c145fb19f193a51",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_consumer_conformance_result_v1.schema.json"
+    },
+    {
+      "blob": "4481186ca27e082c3ece985c016038e5f582bda8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_consumer_conformance_v1.schema.json"
+    },
+    {
+      "blob": "e01a3e896221223cdda905d28d866fbe22e0c1e8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_diagnostics_v1.schema.json"
+    },
+    {
+      "blob": "0b22b45c53e7a4a57a5c7bc89098580d4a7eb394",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_match_view_v1.schema.json"
+    },
+    {
+      "blob": "78f39c704b71ee49d66eb8b38a21bc44436af165",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_numeric_batch_guard_v1.schema.json"
+    },
+    {
+      "blob": "124b42154178d6a51b87d75f7a685853480420f8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_numeric_guard_decision_v1.schema.json"
+    },
+    {
+      "blob": "2e44be5bf460d1f7ce39b75cf250e325410c8844",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_product_staging_authorization_v1.schema.json"
+    },
+    {
+      "blob": "62bfed12fc588c7094b432d6269ff8a673d79f41",
+      "mode": "100644",
+      "path": "configs/schemas/reference_core_transform_bundle_v1.schema.json"
+    },
+    {
+      "blob": "66d90fb0bcaf298f237455b377074e61e0c35799",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_batch_resolution_v1.schema.json"
+    },
+    {
+      "blob": "419462303d0f8e3ab8c908a81862440d967b8f8f",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_compatibility_lock_v1.schema.json"
+    },
+    {
+      "blob": "4f115a1ffb3d025796cbb6a59383ff0906d28fbf",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_compatibility_lock_v2.schema.json"
+    },
+    {
+      "blob": "9cb9b60d38392a51f3a7606991b12fcb4149be8d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_invocation_compatibility_lock_v1.schema.json"
+    },
+    {
+      "blob": "96af98d1a5972b215ba57aa7a2ad4ca738260a21",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_invocation_profile_v2.schema.json"
+    },
+    {
+      "blob": "36f7d0e46484d74874305b38eda2d9c0b45a38c0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_composition_v1.schema.json"
+    },
+    {
+      "blob": "ba95255344a9209c680146443bd857d2b7e7bb05",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_core_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "7862370a988ae226ceb69b8bca9d55b7e45d5526",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_core_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "14516332c85ec286c6bec82816d8652c53fd4a3c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_filmfx_run_v1.schema.json"
+    },
+    {
+      "blob": "65fd5cfe1089851fb0908e74afb5f8cb2c0ce465",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_filmfx_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "d86376a8351a1f05d0bbe0cfb1ad4a5e8f0f8c5c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_authorization_v1.schema.json"
+    },
+    {
+      "blob": "df727031039538ae60d22cfe652bbb09dd904c5f",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_v1.schema.json"
+    },
+    {
+      "blob": "c7707c23b8b2d5d0eb342c7a26eb4d035b12e94b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_local_delivery_verification_v1.schema.json"
+    },
+    {
+      "blob": "a7a50ccafbcb13aedcff353f046cd09537444b35",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_shared_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "005fea04381ec16d6d242ee3309ff1ba42db0176",
+      "mode": "100644",
+      "path": "configs/schemas/reference_external_shared_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "b5fcea1195807a91b98fe16945046581f4f5d87c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_hdr_shot_reuse_veto_decision_v1.schema.json"
+    },
+    {
+      "blob": "2e7aeb465374d483211ae375389e1dee251cc351",
+      "mode": "100644",
+      "path": "configs/schemas/reference_look_recipe_v1.schema.json"
+    },
+    {
+      "blob": "bb1758f5b83692f03987ee5ffac652fcaa1351d5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v1.schema.json"
+    },
+    {
+      "blob": "ad25578e870446bf22e067bf9609a20759ee8992",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v10.schema.json"
+    },
+    {
+      "blob": "3890f97b6b5ec69b403cca5c4cfee9d19bd7c2d2",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v11.schema.json"
+    },
+    {
+      "blob": "c48364f0442d0b6b45d1d0209bc1fff08ac03a13",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v12.schema.json"
+    },
+    {
+      "blob": "ffa5d37f29daf428688c5ff2b351652c8605316d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v13.schema.json"
+    },
+    {
+      "blob": "582aaeb571d595464576bb17a260975486a3c234",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v14.schema.json"
+    },
+    {
+      "blob": "4c3d3fdf8e828fce2eeadfca7bb7896e771317b7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v15.schema.json"
+    },
+    {
+      "blob": "c72e27e8a97df9b579bc61da5416c4879680d67a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v16.schema.json"
+    },
+    {
+      "blob": "5c4eb95914e794147f44a57719bdcc11165f3aee",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v17.schema.json"
+    },
+    {
+      "blob": "51e75ed4a5708e97bf10ce227317fccaa5447dd0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v18.schema.json"
+    },
+    {
+      "blob": "d6d5207fae9a27f8b0d1bf918e8ae5d631a61cfe",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v19.schema.json"
+    },
+    {
+      "blob": "1b73815c82944cddc0bde5d61e882e5d26401695",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v2.schema.json"
+    },
+    {
+      "blob": "ff35eca2bb8e2f8b38898853e82d10b64dbadc5d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v20.schema.json"
+    },
+    {
+      "blob": "b2048ee43907edff34c02124e1f224b58d7c36b7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v21.schema.json"
+    },
+    {
+      "blob": "0183967ca25e5ca6aa1dd4c6cfb933a3b2141e87",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v22.schema.json"
+    },
+    {
+      "blob": "e5d937c1509fa83a179874143602f7bcdb8a4bf8",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v23.schema.json"
+    },
+    {
+      "blob": "9c54251c942f5c1926ac2bfa30d20ba474de41c6",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v24.schema.json"
+    },
+    {
+      "blob": "99d4db3dbc543ac2223ba91a69c2b7523843c672",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v25.schema.json"
+    },
+    {
+      "blob": "d407a16b79649dd0455f17e4569753c31a71184b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v26.schema.json"
+    },
+    {
+      "blob": "27f0c8c40ab3b7adfd60f4b301f4c0916bf00f28",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v3.schema.json"
+    },
+    {
+      "blob": "970d4dba40a5be228222989ef79fc61840b99bc5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v4.schema.json"
+    },
+    {
+      "blob": "505a3018d6534aba65da3c9849ecdb24f0bbafe2",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v5.schema.json"
+    },
+    {
+      "blob": "c388cba519e69e060af7d4c553ed543919e429ee",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v6.schema.json"
+    },
+    {
+      "blob": "3eed1c65ebc9f93ba46c8f3438f7b2716254532d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v7.schema.json"
+    },
+    {
+      "blob": "b2c891bd393c29e1cf857670e66b9996f060b59d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v8.schema.json"
+    },
+    {
+      "blob": "5f453aa2263f1d23e6f30c4aa28b56126be83bca",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v9.schema.json"
+    },
+    {
+      "blob": "29a5ab2b71ce51525e81038868691d5544919483",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_portable_conformance_result_v1.schema.json"
+    },
+    {
+      "blob": "d33585c2d5c97880d47b6bce4d72a01ad2b6cbb3",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_portable_conformance_v1.schema.json"
+    },
+    {
+      "blob": "ea6ce2e9f42d8b3156be60fc525cabae17417aef",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_promotion_report_v1.schema.json"
+    },
+    {
+      "blob": "96d62d8091ee4ac6754e6aae4a9cbceda9088fe7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_replay_report_v1.schema.json"
+    },
+    {
+      "blob": "b91fb56c55fdc2fed62e2a8c2da8029e5b2ed580",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_report_v1.schema.json"
+    },
+    {
+      "blob": "20ca068e33444c47899194d8d3417c4bb782dce5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_declaration_v1.schema.json"
+    },
+    {
+      "blob": "ca7aab458690db6413b3347efdd698d0af72c500",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json"
+    },
+    {
+      "blob": "54c7f4c50afe03e0375ae739d940753b1f1ea4c5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_w1_development_decision_v1.schema.json"
+    },
+    {
+      "blob": "cbcce2d8a884be501f7024ad73adfed3818163c7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_product_chain_conformance_v1.schema.json"
+    },
+    {
+      "blob": "5c8a53b33c8a04d6ff4de03adaf56d9319d6deb9",
+      "mode": "100644",
+      "path": "configs/schemas/reference_run_composition_v1.schema.json"
+    },
+    {
+      "blob": "25cd1e5414b6774ad3659c9413e31452304c777d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json"
+    },
+    {
+      "blob": "b181c52e82e65b3f38b9a1e98332ccc11ef04ad1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json"
+    },
+    {
+      "blob": "b25f02ec05ed4dca56870152f7d2ed6b86a7b388",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json"
+    },
+    {
+      "blob": "48e19f6c42d112580fef4d0480927cfbc88ced50",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "7386e43d5dd2b876e4fee6bcaab64103c180fef0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_attested_match_view_bridge_v2.schema.json"
+    },
+    {
+      "blob": "31cd82c037840e6281d653f655ef004ebaed8080",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_color_attestation_v1.schema.json"
+    },
+    {
+      "blob": "acd49f9f0e41254e6212022f5d8665c748c4382e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json"
+    },
+    {
+      "blob": "228bf0b5d4c9b463c381efe40a5c933d122d5f5a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_composition_v1.schema.json"
+    },
+    {
+      "blob": "b525dcb95470fb4186d99b7eb00fe79a991db006",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_run_v1.schema.json"
+    },
+    {
+      "blob": "0486b5fb17fcf80f95323b6a147f46c6e95ee72d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json"
+    },
+    {
+      "blob": "d7f23167dfded320034c86696d35c52d88c850d5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json"
+    },
+    {
+      "blob": "90d9f12b1cc6712710efb5e27e80fe597abb5ed7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_v1.schema.json"
+    },
+    {
+      "blob": "397467cd09ae0e739e2964cbee1df3105f5ea7e1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json"
+    },
+    {
+      "blob": "6a288f59789ed4bbdda60bdf74e3b75601541e5b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json"
+    },
+    {
+      "blob": "c75ce57b1f5db24c5c2715b722e42144b4a3f99c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_operator_batch_v1.schema.json"
+    },
+    {
+      "blob": "6d6d705bfd54fe6ffa56f00a5cc30ae261a6d885",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json"
+    },
+    {
+      "blob": "75769c667e4e41507448f6fd63145a579fcc0f39",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json"
+    },
+    {
+      "blob": "26bdb79030d586340efa3b35fbbe128b8533648c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json"
+    },
+    {
+      "blob": "98da5ce6d60854a661d1b74994f2bbcf333f60ef",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md"
+    },
+    {
+      "blob": "443ecb6392230170a8cb88805334018acc987854",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_BATCH_QUANTILE_EVIDENCE.md"
+    },
+    {
+      "blob": "5f865e9c66f19c11451bbc6a82e58aab618a5943",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_CANONICAL_CORE_PORTABILITY.md"
+    },
+    {
+      "blob": "45d7e3096f3dc16e358d90108ea8cac8d1e151a4",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_COMPLETION_AUDIT.md"
+    },
+    {
+      "blob": "486a807e5c65832e930e60f06b2ec842f04eab77",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_COORDINATION.md"
+    },
+    {
+      "blob": "53a2e3cba207b36c37f5fd275f5e00c6ba7a7240",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_CORE_ADAPTER_EVIDENCE.md"
+    },
+    {
+      "blob": "d3edd5a43c56e13ea201a9a8ad406b90ba39903d",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DELIVERY_EVIDENCE.md"
+    },
+    {
+      "blob": "e535226b8b4ae04dcf63dc5606fac9d44745d015",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_FAILURE_SIGNATURES.md"
+    },
+    {
+      "blob": "1b47c3c1db50876673e292d69344cffc4414e1f0",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_INVOCATION_EVIDENCE.md"
+    },
+    {
+      "blob": "9feeff88eeb8e1a72559ee95b1a1e4737e89552f",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_DPCT_PROMOTION_EVIDENCE.md"
+    },
+    {
+      "blob": "c14d1a8633f80e1bca08721aa813d2042686e4d1",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EMPIRICAL_PRIOR_EVIDENCE.md"
+    },
+    {
+      "blob": "466a90401902fde5955b75b7e1ccb348eefb25a5",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EVIDENCE.md"
+    },
+    {
+      "blob": "8cc03ff303be1f09ed748f33f9187277dd710e4e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_BASELINES_2026.md"
+    },
+    {
+      "blob": "d5a524f1342c6b5f4ac7f1f89821557a7f19a3f3",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "ab3403555d69d7a40693cd8bc4079ce45960a99d",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_FILMFX_EXECUTION_EVIDENCE.md"
+    },
+    {
+      "blob": "e87563415f88574635b7af68eb390e0ab3f9d4fc",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_EXTERNAL_STAGING_EVIDENCE.md"
+    },
+    {
+      "blob": "5e1a41b5aed1d16e4011c3febfb0cb54e6eab059",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_FILMFX_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "45d4c79f3908ea502eb42bde96f05f0c14c157f1",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "70f8fe1c7027a31ba6176d331aa5db08ef76cc64",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_EVIDENCE.md"
+    },
+    {
+      "blob": "772a07d845b8f39c472f785c6bc82665cf7fa79a",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_LOCAL_DELIVERY_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "b4ca8984378285063fd49d57e6a9a311a63e3886",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_MAIN_INTEGRATION_HANDOFF.md"
+    },
+    {
+      "blob": "d774c69bb4d4207106d5e64ca0feb0e1addee763",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_NUMERIC_GUARD_EVIDENCE.md"
+    },
+    {
+      "blob": "02bc94c9e47c10fa754a4c2e3b3e8a09b9da6b74",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PORTABLE_CONFORMANCE.md"
+    },
+    {
+      "blob": "80438bb2db3ec033208fe10a75f4602e7335afa5",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "d93ac1d240f0b7d479b80972d39e71ecc4f965e7",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_PRODUCT_CHAIN_CONFORMANCE.md"
+    },
+    {
+      "blob": "fcf239c4fa2f021fd308b3e3b0cb02a70824bb58",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_QUALITY_BASELINE.md"
+    },
+    {
+      "blob": "6178b3bb8d37c5d8b26fe9794a47251375b26244",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_QUANTILE_EVIDENCE.md"
+    },
+    {
+      "blob": "2f38f2960bb47307f08ecd1cbefda9a88bf04bfc",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_REPLAY_EVIDENCE.md"
+    },
+    {
+      "blob": "9e73af5ef84e8a967577c398763213a3882814b9",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_RUN_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "659fe93b977e678ee6532343c35201c314aed8aa",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_RUN_TRANSACTION_EVIDENCE.md"
+    },
+    {
+      "blob": "73ef120cd1be31c860f31e7710f3517b2d93161b",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_COMPOSITION_EVIDENCE.md"
+    },
+    {
+      "blob": "b0663044184ce25558f3e063d8ede735cd7ceb5e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_NUMERIC_GUARD_EVIDENCE.md"
+    },
+    {
+      "blob": "c05bb594103927a728c039ccc08016f06764bf87",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_OPERATOR_BATCH_EVIDENCE.md"
+    },
+    {
+      "blob": "bf76794273f49b56a6199925497a30c346ef55df",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_PRODUCT_AUTHORIZATION_EVIDENCE.md"
+    },
+    {
+      "blob": "1923cafdc6364bc082d4ac1405fe993476b01653",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_STAGING_EVIDENCE.md"
+    },
+    {
+      "blob": "34f48b7a0e5614ce021dcd9be0d4d61edd9e1a6c",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SHARED_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "042c232c72f1417094b1b70ed1f93249c1c59f26",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SRGB_EOTF_PORTABILITY.md"
+    },
+    {
+      "blob": "cddff2579b20b76792e2df78cd42d5c07e826e20",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SRGB_EOTF_STREAMING.md"
+    },
+    {
+      "blob": "fd2eb0070e6d07bcb1cbc2d6746265e2889bcac1",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SRGB_ICC_PORTABILITY.md"
+    },
+    {
+      "blob": "9e3b5f9dd6a9509047c880a9fa24e4f86756c10f",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_STAGING_VERIFICATION_EVIDENCE.md"
+    },
+    {
+      "blob": "92ced42eb12ecd78c0f59f7993fe6c3061fbc62b",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_STATLUT_LITE_EVIDENCE.md"
+    },
+    {
+      "blob": "6668299e978e76f6fe4b0da87af99c0dd805e82e",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_SUCCESSOR_ADMISSION_EVIDENCE.md"
+    },
+    {
+      "blob": "bb5746baca4b709a4dd73cf9e1efb4d3af99feec",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_W1_DECISION_EVIDENCE.md"
+    },
+    {
+      "blob": "f49bcb25cb73dfe8ccdd78e066e1a81beb251e98",
+      "mode": "100644",
+      "path": "docs/evidence/P111_BMKL_FROZEN_ACCEPTANCE.json"
+    },
+    {
+      "blob": "aa99be8271361bfeb4b6e68217ea32432405e8db",
+      "mode": "100644",
+      "path": "docs/evidence/P113_BMKL_FAILURE_SIGNATURES.json"
+    },
+    {
+      "blob": "ad2ebd22995ff15fbad7cf91edd4e21856ef6cda",
+      "mode": "100644",
+      "path": "docs/planning/REFERENCE_COLOR_MATCH_CFSM_RESEARCH.md"
+    },
+    {
+      "blob": "242d98152e6a803dba60b1aa726ed2687338bd3b",
+      "mode": "100644",
+      "path": "docs/planning/REFERENCE_COLOR_MATCH_PRODUCT_PLAN.md"
+    },
+    {
+      "blob": "a52e49c81bac1a5cbfaf8c0d117f2dc864f4f9dc",
+      "mode": "100644",
+      "path": "docs/reference/REFERENCE_MATCH_WIRE_FORMAT_V1.md"
+    },
+    {
+      "blob": "dca602fb50cddaa65bb6ab315599afceb908192b",
+      "mode": "100644",
+      "path": "native/reference_canonical_core.c"
+    },
+    {
+      "blob": "3ffe7ef22de6a5c1decd3cd5479ebdeb792bc1d0",
+      "mode": "100644",
+      "path": "native/reference_canonical_core.h"
+    },
+    {
+      "blob": "2db40f456e43ccf1471969aa1130b668e1646fdd",
+      "mode": "100644",
+      "path": "native/reference_product_chain_conformance.cpp"
+    },
+    {
+      "blob": "27d6569435c03d2d1948f8fcc7ccb0f0dbe1aa47",
+      "mode": "100644",
+      "path": "native/reference_srgb_eotf_f32_v1.c"
+    },
+    {
+      "blob": "83dabcbaba3e68a1382afd5ef0b63a02a48e8b9d",
+      "mode": "100644",
+      "path": "native/reference_srgb_eotf_f32_v1.h"
+    },
+    {
+      "blob": "21949ee654795953a00894efe75b99da2d83fd6b",
+      "mode": "100644",
+      "path": "native/reference_srgb_icc_profile_conformance.cpp"
+    },
+    {
+      "blob": "c45532736d5c17fae663cd3d69281963605b52ff",
+      "mode": "100644",
+      "path": "native/reference_srgb_icc_profile_v1.c"
+    },
+    {
+      "blob": "a79742704e4497f74c551115d12c919305725930",
+      "mode": "100644",
+      "path": "native/reference_srgb_icc_profile_v1.h"
+    },
+    {
+      "blob": "a1cb380a054351c97866e2507257f80c5cce4364",
+      "mode": "100644",
+      "path": "native/reference_srgb_oetf_quantize_v1.c"
+    },
+    {
+      "blob": "d1cd1afb29ab8e2511c580f6db2060419755d740",
+      "mode": "100644",
+      "path": "native/reference_srgb_oetf_quantize_v1.h"
+    },
+    {
+      "blob": "2babda2622798cb78375132e1ea4b420ea92723b",
+      "mode": "100644",
+      "path": "requirements-macos-arm.txt"
+    },
+    {
+      "blob": "48a1f08c77c541c54678f87562a7e6ad4a8030e5",
+      "mode": "100644",
+      "path": "requirements.txt"
+    },
+    {
+      "blob": "dfdbc0c552e3c2783149ed0ca1a0d0f2b4a2db70",
+      "mode": "100644",
+      "path": "runtime/android_srgb_quantizer_testlab/app/AndroidManifest.xml"
+    },
+    {
+      "blob": "245e048ea1ca1c0c0d941997d723f9ab1c057d08",
+      "mode": "100644",
+      "path": "runtime/android_srgb_quantizer_testlab/app/src/com/neurofilm/srgbquantizer/TargetAnchor.java"
+    },
+    {
+      "blob": "4425bc5919afd1026382576b2cdceaaccb409843",
+      "mode": "100644",
+      "path": "runtime/android_srgb_quantizer_testlab/test/AndroidManifest.xml"
+    },
+    {
+      "blob": "eeaa08eb93d6b705490900a9760988e64b803159",
+      "mode": "100644",
+      "path": "runtime/android_srgb_quantizer_testlab/test/jni/nf_srgb_quantizer_testlab.c"
+    },
+    {
+      "blob": "d0b925d67d0600091ce83478d9487a5c2e6d1051",
+      "mode": "100644",
+      "path": "runtime/android_srgb_quantizer_testlab/test/src/com/neurofilm/srgbquantizer/QuantizerInstrumentation.java"
+    },
+    {
+      "blob": "bf143dbf8c74e2d6edd5a3ad9e78ae39b602f715",
+      "mode": "100644",
+      "path": "scripts/adjudicate_reference_match_w1_evidence.py"
+    },
+    {
+      "blob": "1836a8b63e3660c0f415627bdaed02961f0c074a",
+      "mode": "100644",
+      "path": "scripts/analyze_dpct_invocation_failure_signatures.py"
+    },
+    {
+      "blob": "a03381a77ab3cc58f9ded3c6b8165b2777dec9ce",
+      "mode": "100644",
+      "path": "scripts/audit_srgb_eotf_streaming_v1.py"
+    },
+    {
+      "blob": "f6ea8a31bd89e805ea2c6fe0a95c64194e241394",
+      "mode": "100644",
+      "path": "scripts/audit_srgb_oetf_quantize_streaming_v1.py"
+    },
+    {
+      "blob": "ea574b60ff7966cbf6b396980abbeddb55b9c864",
+      "mode": "100644",
+      "path": "scripts/build_android_srgb_quantizer_testlab_v1.py"
+    },
+    {
+      "blob": "1dffe873bccce1196b7e28eaf69aa35347947b60",
+      "mode": "100644",
+      "path": "scripts/build_fivek_empirical_prior.py"
+    },
+    {
+      "blob": "aaa161939779d8d542ea4e93599bff449179accc",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_android.py"
+    },
+    {
+      "blob": "c85f1ac714a540572729f7ca6604f3dc9b84d0d0",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_apple_objects.py"
+    },
+    {
+      "blob": "e786d50e2066ea7a947ed7f10cd072bfe640825b",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_conformance.py"
+    },
+    {
+      "blob": "4773eb966c12c9909927e773e2ea732b16f4f17d",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_llvm_mingw.py"
+    },
+    {
+      "blob": "99552c85f25a3c7b61846b765b588d0dc58005cb",
+      "mode": "100644",
+      "path": "scripts/build_reference_chain_msvc.py"
+    },
+    {
+      "blob": "ff7f81a58f3a17ce0a4cd2f4fefac663c062927b",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest.py"
+    },
+    {
+      "blob": "d5c265efa6b53d23f40b4078792a0ca280a49402",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v10.py"
+    },
+    {
+      "blob": "5501c0dd0d8af1805d2bad83b27777854aada570",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v11.py"
+    },
+    {
+      "blob": "9a80751363f5047ef1c750f6329f5e91db6d6733",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v12.py"
+    },
+    {
+      "blob": "22b056b8a128a7acce3ee72db90204d211177f6a",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v13.py"
+    },
+    {
+      "blob": "a0a1794d92053d50e3ae33c4910757eb3d7d4427",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v14.py"
+    },
+    {
+      "blob": "57c6ee2ee3726d1fe889856fd71b0cad6d3ae23c",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v15.py"
+    },
+    {
+      "blob": "f79a619557745d42c84a582b45719f2c8e0e4441",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v16.py"
+    },
+    {
+      "blob": "ad9fa7606885c140c92ad55428c958752e290f33",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v17.py"
+    },
+    {
+      "blob": "ef76f39882352ee2edf55e2777d578cbf4987daf",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v18.py"
+    },
+    {
+      "blob": "2b6296a855dcc72772ecc83c717ddfd0e9d813f3",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v19.py"
+    },
+    {
+      "blob": "23b5e430d4b6e355a0181342d5b30a37e4ef0532",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v2.py"
+    },
+    {
+      "blob": "23b830e6a9131b72b7db1c2219702eaddaa7d1e4",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v20.py"
+    },
+    {
+      "blob": "a78c8988afaf1ed524cebee5e6303a87bdb45352",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v21.py"
+    },
+    {
+      "blob": "9ec1c8a33dc62695102db12a231be6ce61ba801e",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v22.py"
+    },
+    {
+      "blob": "1197024470b535192e1d88c407756573147e213c",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v23.py"
+    },
+    {
+      "blob": "1f75e835d93ee43ce47bc07a77523a8bebf64864",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v24.py"
+    },
+    {
+      "blob": "82bd957ad3b5840f6a74c4d8b141ad9dab1cc675",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v25.py"
+    },
+    {
+      "blob": "a6e1ee27f2f57e9b953fe6d388a7b8c8ef433ca3",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v26.py"
+    },
+    {
+      "blob": "0feed974b3de8275db4267b77af8ac09256f68f5",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v3.py"
+    },
+    {
+      "blob": "c26cc53681c10517b236414d2d57502b2389e764",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v4.py"
+    },
+    {
+      "blob": "6901d80bed3466082c185ef92158887ed1fb6530",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v5.py"
+    },
+    {
+      "blob": "e6509c7302401cffd4107b3e63de1d6c3464f7a2",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v6.py"
+    },
+    {
+      "blob": "c072a2b2c39366727ea5cfa23186205b43159c59",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v7.py"
+    },
+    {
+      "blob": "ca02a12086a900abec0587988dd391e2e9710f26",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v8.py"
+    },
+    {
+      "blob": "bf517485ea930e8bdf325d869ae36f3ab6330a92",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v9.py"
+    },
+    {
+      "blob": "101a1dabcb031272908ed5a71b308f7abb7db4e8",
+      "mode": "100644",
+      "path": "scripts/build_srgb_eotf_lut_c_v1.py"
+    },
+    {
+      "blob": "cd391c86b038d0c20a7ee7d593efc575a127b27f",
+      "mode": "100644",
+      "path": "scripts/build_srgb_eotf_native_v1.py"
+    },
+    {
+      "blob": "85c2634fbdc4929fa728bf9deaca7bf365fcf347",
+      "mode": "100644",
+      "path": "scripts/build_srgb_icc_profile_c_abi_v1.py"
+    },
+    {
+      "blob": "8f3d5f0594a5cb30d118edead5bc358d49e0ce8d",
+      "mode": "100644",
+      "path": "scripts/build_srgb_icc_profile_conformance_v1.py"
+    },
+    {
+      "blob": "fa9032d93b2009de1d85064d9d4d55ed1c43ae61",
+      "mode": "100644",
+      "path": "scripts/build_srgb_icc_profile_native_v1.py"
+    },
+    {
+      "blob": "e394e4a7a5a140a692b4bcf78a77581f5408eedf",
+      "mode": "100644",
+      "path": "scripts/build_srgb_oetf_quantize_c_v1.py"
+    },
+    {
+      "blob": "a55fcef65103379ae593b33b1fe53deea1f8320a",
+      "mode": "100644",
+      "path": "scripts/build_srgb_oetf_quantize_native_v1.py"
+    },
+    {
+      "blob": "baed395359f8d56c45140760873fe20d93eeaad7",
+      "mode": "100644",
+      "path": "scripts/evaluate_canoncgt_reference_match.py"
+    },
+    {
+      "blob": "e6950c0f32bb05618d9ae68ef963772e3d719859",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_batch_quantile.py"
+    },
+    {
+      "blob": "216b87957f9b51e74d2d278247eb2f2344db9f5d",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_empirical_prior.py"
+    },
+    {
+      "blob": "9599e208622b3d2e352de6d4b4da5b6a57fe17ff",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_prior_selection.py"
+    },
+    {
+      "blob": "6742157d89341749cdd04ca307e768724ea66ba3",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_quantile.py"
+    },
+    {
+      "blob": "66e7ddfcda7bd0a471eb497e95246b7b53b46e4f",
+      "mode": "100644",
+      "path": "scripts/evaluate_cfsm_v0.py"
+    },
+    {
+      "blob": "a57eb16388fd02295b9284638cd52d1773e84670",
+      "mode": "100644",
+      "path": "scripts/evaluate_dpct_invocation_promotion.py"
+    },
+    {
+      "blob": "5e7f1956d676874030261a52ebc35bd106129011",
+      "mode": "100644",
+      "path": "scripts/evaluate_reference_match_promotion.py"
+    },
+    {
+      "blob": "bf23c0c7544e014da762b054001df7d90e1b1a64",
+      "mode": "100644",
+      "path": "scripts/evaluate_statlut_lite.py"
+    },
+    {
+      "blob": "8872a0b30fe958889d5fc07fce9c72d33a49023c",
+      "mode": "100644",
+      "path": "scripts/match_reference_color.py"
+    },
+    {
+      "blob": "55808e3a7412b0dc5d2f44ecda31e1db2799848c",
+      "mode": "100644",
+      "path": "scripts/reference_match_integration_manifest_common.py"
+    },
+    {
+      "blob": "34d28a52f09f06a7e31cfcf53911b732c1eddbb0",
+      "mode": "100644",
+      "path": "scripts/run_android_srgb_quantizer_emulator_v1.py"
+    },
+    {
+      "blob": "d74589f9ed6276bb4b5f53885494df799517b460",
+      "mode": "100644",
+      "path": "scripts/run_android_srgb_quantizer_testlab_gcp_v1.py"
+    },
+    {
+      "blob": "3f7aa3296af300cead44c0956cbc52429c8da542",
+      "mode": "100644",
+      "path": "scripts/verify_reference_match_portable_conformance.py"
+    },
+    {
+      "blob": "0488d8d2cf246fb95d721d42ed91187ecb89e0d3",
+      "mode": "100644",
+      "path": "src/color_match/__init__.py"
+    },
+    {
+      "blob": "b46330cac84d78d73502a6388d08ce35902203b2",
+      "mode": "100644",
+      "path": "src/color_match/batch_limits.py"
+    },
+    {
+      "blob": "abf94ef17cfb76c9de1faf255a75b6b3a31bd2d2",
+      "mode": "100644",
+      "path": "src/color_match/canonical.py"
+    },
+    {
+      "blob": "bd863f12d867af12957746f9cf4dad07a41e075b",
+      "mode": "100644",
+      "path": "src/color_match/composition.py"
+    },
+    {
+      "blob": "c71e3cf5c753e3610c6b57f9da8cdec7eac531a1",
+      "mode": "100644",
+      "path": "src/color_match/conformance.py"
+    },
+    {
+      "blob": "9d262211d9ca37b4f438a094d76d983ea05c2f85",
+      "mode": "100644",
+      "path": "src/color_match/consistency.py"
+    },
+    {
+      "blob": "3194e8566fe029f1aa468e13a4418e0bfbcd3269",
+      "mode": "100644",
+      "path": "src/color_match/contracts.py"
+    },
+    {
+      "blob": "b7017032e450adb3a402ddfa77bbb032584bf1ba",
+      "mode": "100644",
+      "path": "src/color_match/core_acceptance.py"
+    },
+    {
+      "blob": "42722ceb235fe9cdb5bc61f113c861d4121b6c70",
+      "mode": "100644",
+      "path": "src/color_match/core_adapter.py"
+    },
+    {
+      "blob": "23cdcbe3d387d869b5467ffbd6c10ea25dc03687",
+      "mode": "100644",
+      "path": "src/color_match/core_apply_receipt.py"
+    },
+    {
+      "blob": "5f4b3192048363649d792a7e0d9910779d5d4e36",
+      "mode": "100644",
+      "path": "src/color_match/core_candidate_admission.py"
+    },
+    {
+      "blob": "38292a3bccc3b708c3773b0485066748e4123d3d",
+      "mode": "100644",
+      "path": "src/color_match/core_conformance.py"
+    },
+    {
+      "blob": "8e2353fd788045b74ba6deebebdf80928655d350",
+      "mode": "100644",
+      "path": "src/color_match/core_contracts.py"
+    },
+    {
+      "blob": "5964ec8d5e71e649cec1e21ac2a7075fae5a8197",
+      "mode": "100644",
+      "path": "src/color_match/core_numeric_batch_guard.py"
+    },
+    {
+      "blob": "463821cbfad088eb5f2f9705a981be505ba42aa9",
+      "mode": "100644",
+      "path": "src/color_match/core_numeric_guard.py"
+    },
+    {
+      "blob": "7ba4e921fce2b59c6890761f58866cf43de37ae8",
+      "mode": "100644",
+      "path": "src/color_match/core_product_authorization.py"
+    },
+    {
+      "blob": "ebbcded407965477f69315d705840bf20bf9513c",
+      "mode": "100644",
+      "path": "src/color_match/core_staging_transaction.py"
+    },
+    {
+      "blob": "3e35a8f78b9af5939fb79c7dc24fe734ad4f084d",
+      "mode": "100644",
+      "path": "src/color_match/core_staging_verification.py"
+    },
+    {
+      "blob": "407887fe3ee979d52b2152f4f519091808731f5a",
+      "mode": "100644",
+      "path": "src/color_match/dpct_adapter.py"
+    },
+    {
+      "blob": "12c0b51d398120c3fd798ba59e028cfb9557effb",
+      "mode": "100644",
+      "path": "src/color_match/dpct_batch.py"
+    },
+    {
+      "blob": "79b7940982dd56a63cb0bae694fa8d12d88b7c92",
+      "mode": "100644",
+      "path": "src/color_match/dpct_invocation.py"
+    },
+    {
+      "blob": "95136a033138818de9f10ee80c4411fe8cb37992",
+      "mode": "100644",
+      "path": "src/color_match/dpct_invocation_profile.py"
+    },
+    {
+      "blob": "71039d93ae83b6bef93f24e37f965249163c808a",
+      "mode": "100644",
+      "path": "src/color_match/evaluation.py"
+    },
+    {
+      "blob": "bbf4350117a990a7bfe3c638c7220a7989c10feb",
+      "mode": "100644",
+      "path": "src/color_match/external_composition.py"
+    },
+    {
+      "blob": "8e5be877976f4e7022261c0619cb3dad7186cd7b",
+      "mode": "100644",
+      "path": "src/color_match/external_delivery_authorization.py"
+    },
+    {
+      "blob": "c8c337030b38a8fbbf49e756c633474a1a013825",
+      "mode": "100644",
+      "path": "src/color_match/external_filmfx_transaction.py"
+    },
+    {
+      "blob": "9c9ce9dab7a3bbd0cf24564a17b52da2aa8b9f78",
+      "mode": "100644",
+      "path": "src/color_match/external_filmfx_verification.py"
+    },
+    {
+      "blob": "b9e5531733b2d54b73c0ba59674b4e3df91627cb",
+      "mode": "100644",
+      "path": "src/color_match/external_local_delivery.py"
+    },
+    {
+      "blob": "afa2df52353d89339afc1dd2dd3d02657dfe578f",
+      "mode": "100644",
+      "path": "src/color_match/external_local_delivery_verification.py"
+    },
+    {
+      "blob": "864655f9f0a1ce99c9932d1c5d17f17fb216e6e2",
+      "mode": "100644",
+      "path": "src/color_match/files.py"
+    },
+    {
+      "blob": "9c6f29926ce2e40e60f243011bfcf9d8bb7c7b07",
+      "mode": "100644",
+      "path": "src/color_match/filmfx_staging_io.py"
+    },
+    {
+      "blob": "e12f6f3004b8cebc1ef37609b6d0aa4db17c98fe",
+      "mode": "100644",
+      "path": "src/color_match/fit.py"
+    },
+    {
+      "blob": "1e5c9eef0ed7d5905228343ccc0f80009b7d74f1",
+      "mode": "100644",
+      "path": "src/color_match/handle_verification_io.py"
+    },
+    {
+      "blob": "fb700e393c6a58fdad70780b1ca80e356717f3a4",
+      "mode": "100644",
+      "path": "src/color_match/hdr_shot_veto.py"
+    },
+    {
+      "blob": "9587961826e0a73a0be865d91948fa0eab8c07fb",
+      "mode": "100644",
+      "path": "src/color_match/promotion.py"
+    },
+    {
+      "blob": "d0678144b11552e430f960af16119f297cae6686",
+      "mode": "100644",
+      "path": "src/color_match/render.py"
+    },
+    {
+      "blob": "e74942ecf54ad866c374cd9ff2c801dc9b3020cf",
+      "mode": "100644",
+      "path": "src/color_match/replay.py"
+    },
+    {
+      "blob": "0d39bed21d6c0d79ae0ad32ec3e11ee683c2954c",
+      "mode": "100644",
+      "path": "src/color_match/reporting.py"
+    },
+    {
+      "blob": "ad59f91299b59f0e4206c0bac8e67e494f51bf2b",
+      "mode": "100644",
+      "path": "src/color_match/research/__init__.py"
+    },
+    {
+      "blob": "70a687445587d99bc58c02a2382ae122ca9657a3",
+      "mode": "100644",
+      "path": "src/color_match/research/cfsm.py"
+    },
+    {
+      "blob": "b79777922979ddeba756865ea778fa38e19ca83c",
+      "mode": "100644",
+      "path": "src/color_match/research/empirical_prior.py"
+    },
+    {
+      "blob": "540a37eb1727325aea7f7d6d0bcaf350538bfba0",
+      "mode": "100644",
+      "path": "src/color_match/research/fivek_prior_build.py"
+    },
+    {
+      "blob": "741b236cf7a324a01e91661af1ae497000f83fbf",
+      "mode": "100644",
+      "path": "src/color_match/research/statlut_features.py"
+    },
+    {
+      "blob": "f461bba0380a5a72d34d7c44a5f9e4c01de4d824",
+      "mode": "100644",
+      "path": "src/color_match/research/w1_evidence.py"
+    },
+    {
+      "blob": "430f3f993b986b99ea29f06a26a34f738b1ed45e",
+      "mode": "100644",
+      "path": "src/color_match/run_composition.py"
+    },
+    {
+      "blob": "93f74f26359bad6870a2bc425e9761077a075bb2",
+      "mode": "100644",
+      "path": "src/color_match/safety.py"
+    },
+    {
+      "blob": "64e2b7cb82aa614c498efa84a65bb57b52395b4a",
+      "mode": "100644",
+      "path": "src/color_match/shared_composition.py"
+    },
+    {
+      "blob": "71777dd2765d300661e7111a7130580053cb4c9f",
+      "mode": "100644",
+      "path": "src/color_match/shared_delivery_authorization.py"
+    },
+    {
+      "blob": "760fd2ae5111b8eb08601928a5c34e8a5fe6d3ca",
+      "mode": "100644",
+      "path": "src/color_match/shared_filmfx_transaction.py"
+    },
+    {
+      "blob": "44d6bc899f7b6d61ad69a59f13a20341e05471bb",
+      "mode": "100644",
+      "path": "src/color_match/shared_filmfx_verification.py"
+    },
+    {
+      "blob": "d98989dc4c6a6d194a159c703ef6188f43b334a4",
+      "mode": "100644",
+      "path": "src/color_match/shared_local_delivery.py"
+    },
+    {
+      "blob": "6e55dc50ef3b9ec5688585291cbd513767e94186",
+      "mode": "100644",
+      "path": "src/color_match/shared_local_delivery_verification.py"
+    },
+    {
+      "blob": "142fa58b127d6684750b1e43bbdf213472644468",
+      "mode": "100644",
+      "path": "src/color_match/shared_numeric_guard.py"
+    },
+    {
+      "blob": "a669cc5caaee22466cb2683528741d72fe056406",
+      "mode": "100644",
+      "path": "src/color_match/shared_operator_batch.py"
+    },
+    {
+      "blob": "40628e5479b2527c5d229c06e472f9796f92e771",
+      "mode": "100644",
+      "path": "src/color_match/shared_product_authorization.py"
+    },
+    {
+      "blob": "d8a0861c0ba80b28d60e89a3e4fbf60de67be9dd",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_qualification.py"
+    },
+    {
+      "blob": "785d6a62e3cfab142372513ecdd7a4bca99393bc",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_attested_match_views.py"
+    },
+    {
+      "blob": "f7726914b47de6c9aa9ca25a0fd3137508cfdb13",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_color_attestation.py"
+    },
+    {
+      "blob": "755833bb5c46d4a86d244c102a30389b647d5456",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_consumption.py"
+    },
+    {
+      "blob": "aa51afd8c64321dbd0163db036b2a20a58709e25",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_decode.py"
+    },
+    {
+      "blob": "8ce83f8b00c22cd9ebf9273e456da59561784c02",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_match_views.py"
+    },
+    {
+      "blob": "8b539e54fa2a467bc8cfeabf9d5e4e42e011ae66",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_transaction.py"
+    },
+    {
+      "blob": "5daf962a6b150b0d7538ddb540bce756f628318a",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_verification.py"
+    },
+    {
+      "blob": "274885bf7f16f3c6f9ff250a5e93293664875baf",
+      "mode": "100644",
+      "path": "src/color_match/shared_staging_transaction.py"
+    },
+    {
+      "blob": "6a44b177a40889e2fb182c90339b5c540fe6d222",
+      "mode": "100644",
+      "path": "src/color_match/shared_staging_verification.py"
+    },
+    {
+      "blob": "7533392779d7217be480653d970fe3fb4963c115",
+      "mode": "100644",
+      "path": "src/color_match/srgb_icc_profile.py"
+    },
+    {
+      "blob": "b1530071f55ae29fe91e75eaaf53272b1f4b927d",
+      "mode": "100644",
+      "path": "src/color_match/staging_io.py"
+    },
+    {
+      "blob": "c14584f4b7e9e47c6518fcf332073ad1b429b579",
+      "mode": "100644",
+      "path": "src/color_match/strict_json.py"
+    },
+    {
+      "blob": "96e0e78449dc6788392886667ad69bffc6aa5b7a",
+      "mode": "100644",
+      "path": "src/color_match/successor_admission.py"
+    },
+    {
+      "blob": "9e1884228fa279c2ef71cff37e202431b494bb6e",
+      "mode": "100644",
+      "path": "src/color_match/successor_runtime_evidence.py"
+    },
+    {
+      "blob": "13f0090a9695ebfc705584f31ab92a630d28b75e",
+      "mode": "100644",
+      "path": "src/color_match/transaction_lock.py"
+    },
+    {
+      "blob": "f16bfed99db8db0b8f8d54305203a6e7c812d2de",
+      "mode": "100644",
+      "path": "src/color_match/verification_io.py"
+    },
+    {
+      "blob": "8b881967c5ffdfa975bc1a351c380314829d1cd0",
+      "mode": "100644",
+      "path": "tests/fixtures/reference_product_chain_conformance_v1.json"
+    },
+    {
+      "blob": "1744d999c21d0b4a093d13af9a59463f70106861",
+      "mode": "100644",
+      "path": "tests/fixtures/reference_srgb_icc_profile_conformance_v1.json"
+    },
+    {
+      "blob": "8f9bbedbd50dff4f9ab173bd039df7f8f108ed00",
+      "mode": "100644",
+      "path": "tests/fixtures/zhuise_producer_contract_exact_bits_v2.json"
+    },
+    {
+      "blob": "2afcf0c642d64f1d67eaaba745e6b080e4a681be",
+      "mode": "100644",
+      "path": "tests/fixtures/zhuise_producer_contract_failed_exact_v2.json"
+    },
+    {
+      "blob": "af853b4e6166798cb70cdd8539a19d3c9c383ad1",
+      "mode": "100644",
+      "path": "tests/test_android_srgb_quantizer_emulator_runner.py"
+    },
+    {
+      "blob": "ab6534df6ebecbb0a499fb72daa872644411396a",
+      "mode": "100644",
+      "path": "tests/test_android_srgb_quantizer_testlab_gcp_runner.py"
+    },
+    {
+      "blob": "cd9c815c1be1882b9082f8c24bb99482464f7a42",
+      "mode": "100644",
+      "path": "tests/test_android_srgb_quantizer_testlab_package.py"
+    },
+    {
+      "blob": "1aa6a4387639ac83024e16749821947cb28df53b",
+      "mode": "100644",
+      "path": "tests/test_color_match_batch_limit_consistency.py"
+    },
+    {
+      "blob": "21e26342646bc13ee30b1fe513505ddceffc2e89",
+      "mode": "100644",
+      "path": "tests/test_color_match_bmkl_successor.py"
+    },
+    {
+      "blob": "43d596471fddf28479c7662574c2538d9b909013",
+      "mode": "100644",
+      "path": "tests/test_color_match_canoncgt_external_evaluation.py"
+    },
+    {
+      "blob": "91195b96faae85d84257c033ff4a7f74950574e3",
+      "mode": "100644",
+      "path": "tests/test_color_match_canonical.py"
+    },
+    {
+      "blob": "6e4f65608db027528403edff13caaf61dc425087",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm.py"
+    },
+    {
+      "blob": "3035c2d56d1075d9623b67840733686e1b1ce9a4",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_batch_quantile_evaluation.py"
+    },
+    {
+      "blob": "b88e6be40363116af75f42d44ec51ab83221d338",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_empirical_evaluation.py"
+    },
+    {
+      "blob": "c70709e99341a937467b3fd5229b99ce87bab206",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_prior_selection.py"
+    },
+    {
+      "blob": "b55e88bf8fb904fef135b9cc95c4c627609f2e74",
+      "mode": "100644",
+      "path": "tests/test_color_match_cfsm_quantile_evaluation.py"
+    },
+    {
+      "blob": "d59772a7b07bd572326f21c305032489d54170ef",
+      "mode": "100644",
+      "path": "tests/test_color_match_composition.py"
+    },
+    {
+      "blob": "13b2a4d98240a3b59af8bb279e45e3179ffac45a",
+      "mode": "100644",
+      "path": "tests/test_color_match_conformance.py"
+    },
+    {
+      "blob": "0de43af986a4644d0847dafbd1d9b8441989cc38",
+      "mode": "100644",
+      "path": "tests/test_color_match_consistency.py"
+    },
+    {
+      "blob": "36710f21be438d8dc80ac3905f7160713432eebd",
+      "mode": "100644",
+      "path": "tests/test_color_match_contracts.py"
+    },
+    {
+      "blob": "3f5a03dd450b6270b8a7348d91379383b354db7b",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_acceptance.py"
+    },
+    {
+      "blob": "9f84a26dd428339cf9ed2764d9ea37b60a19a57d",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_adapter.py"
+    },
+    {
+      "blob": "3707660c1d47d63d12567dab5c769c5f9d6078a5",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_apply_receipt.py"
+    },
+    {
+      "blob": "447dafe2e9c5ea0047f99550bc9451f2ca1c066b",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_candidate_admission.py"
+    },
+    {
+      "blob": "208ffc1450e1752fdaecd59e6edca7fbf1d25ffe",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_conformance.py"
+    },
+    {
+      "blob": "4eaa84d3422c6fe1e88e249b4a0ada5109b37fd9",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_contracts.py"
+    },
+    {
+      "blob": "a5b45db8b854859958a397d6aee6087bae7125d2",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_numeric_batch_guard.py"
+    },
+    {
+      "blob": "0b34a707b81a1f2935ca7ef41fe57ae775be37ca",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_numeric_guard.py"
+    },
+    {
+      "blob": "6e16880897221168c67670e49a9dfb8ab8ea50d2",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_product_authorization.py"
+    },
+    {
+      "blob": "87415d5fbc9b0b88ce8f67f1858c743a3e66245d",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_staging_transaction.py"
+    },
+    {
+      "blob": "7381ffd835743bf155df1aa10aa43525bc34eb02",
+      "mode": "100644",
+      "path": "tests/test_color_match_core_staging_verification.py"
+    },
+    {
+      "blob": "09a587baf80834a7b11f91336627cc684fdd8429",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_adapter.py"
+    },
+    {
+      "blob": "2a232d0373bd61d2d021837df1ad3c4e28db2796",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_batch.py"
+    },
+    {
+      "blob": "1d23f3b040dfefb295e7632fba6deaf6e381f690",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_compatibility_lock.py"
+    },
+    {
+      "blob": "8ada123c9a2bbcda47a8ae5d4250a1bf87ff5736",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_failure_signatures.py"
+    },
+    {
+      "blob": "71c46e8c81ab8b819772184dada1e62fcc5238b4",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation.py"
+    },
+    {
+      "blob": "1ad8a4bfda7a32ff038bc3381337c97b2b95644a",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation_profile.py"
+    },
+    {
+      "blob": "b39bd3707afa04199180ee3901fe2a1eb5292f15",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation_promotion.py"
+    },
+    {
+      "blob": "54da161f9c195aaf7c4385db83f9b2e1de140999",
+      "mode": "100644",
+      "path": "tests/test_color_match_dpct_invocation_v2.py"
+    },
+    {
+      "blob": "e2cb546ae50466ff22569b06884c7f6308c06a4f",
+      "mode": "100644",
+      "path": "tests/test_color_match_empirical_prior.py"
+    },
+    {
+      "blob": "84fe5f1e952332acdfcbd889db47193c437c757a",
+      "mode": "100644",
+      "path": "tests/test_color_match_evaluation.py"
+    },
+    {
+      "blob": "e1a34f8690154db1b05ccd11df5f6df1bae4baa6",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_composition.py"
+    },
+    {
+      "blob": "17abd0eb66293b2e73a214a03c11d8e62874b7c7",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_delivery_authorization.py"
+    },
+    {
+      "blob": "d5465f08599d7f6f7cf08736374afc7513d4400c",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_filmfx_transaction.py"
+    },
+    {
+      "blob": "8a7fd3f37ae3686f49c52c6da2a518cf7b379c72",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_filmfx_verification.py"
+    },
+    {
+      "blob": "a9381c2e9892618fa5a778aeb08c4bcf4c80ff3b",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_local_delivery.py"
+    },
+    {
+      "blob": "3799f5a23e3a68c633e3184b02632d154681ddc0",
+      "mode": "100644",
+      "path": "tests/test_color_match_external_local_delivery_verification.py"
+    },
+    {
+      "blob": "b93799e9ec7400534f23c3e86548d1b07f6fae5f",
+      "mode": "100644",
+      "path": "tests/test_color_match_file_replay.py"
+    },
+    {
+      "blob": "f1db0029d506e3cdd328616f3f0f6a9110a75d11",
+      "mode": "100644",
+      "path": "tests/test_color_match_files.py"
+    },
+    {
+      "blob": "1a9d21e3e926cad824a70fba2f2ca4b4b684d3a9",
+      "mode": "100644",
+      "path": "tests/test_color_match_handle_verification_io.py"
+    },
+    {
+      "blob": "2c6a436946a4e3487c48ecbe9a5673f586f4559a",
+      "mode": "100644",
+      "path": "tests/test_color_match_hdr_shot_veto.py"
+    },
+    {
+      "blob": "99739ade298a83d1216d71ed3cded21bd88ed553",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest.py"
+    },
+    {
+      "blob": "8f343b59cac81754304b59b85e623eabc5dd4cdd",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v10.py"
+    },
+    {
+      "blob": "44e1f8302180bb8a5b09d88df88724ebd4521138",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v11.py"
+    },
+    {
+      "blob": "e1da6f0c1ca61117dbc8a8944242d88f92bf013f",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v12.py"
+    },
+    {
+      "blob": "b94bcc86a3c788845b51a4983c9dbc189cd8b55f",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v13.py"
+    },
+    {
+      "blob": "5c1ac2df8b78ed65dd2e4632264655e5ca5085d0",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v14.py"
+    },
+    {
+      "blob": "8f655d15a3f27d71d46ece60b348b4c7ef6cb508",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v15.py"
+    },
+    {
+      "blob": "69d169cbeb2ffdcd31a3ba2d50b6cdf91dbf688a",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v16.py"
+    },
+    {
+      "blob": "c9fd430e0fb64f1cc7a662bfa2288625861bbc61",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v17.py"
+    },
+    {
+      "blob": "3e2bd8b7036b0d3e6aafdc7b3fd6fc427d20f8be",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v18.py"
+    },
+    {
+      "blob": "ad8974dc6e1381012be65a9e67d604a76d16a551",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v19.py"
+    },
+    {
+      "blob": "e1d30c8a48baec3f00c1a87afa47f3ba66356cca",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v2.py"
+    },
+    {
+      "blob": "0d452a32b174dfddb00fc1aae098c9efb086fa3b",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v20.py"
+    },
+    {
+      "blob": "69b853abb74da321c35b3cdb3026c9b9e6b5c612",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v21.py"
+    },
+    {
+      "blob": "df87b6a952b09013aa5a65f98c9f02e771d7ab9f",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v22.py"
+    },
+    {
+      "blob": "8105b6f62c25b3ad22699ced05b2b47e6b7e67c8",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v23.py"
+    },
+    {
+      "blob": "467acac49438cde1a042e708639c290692dbd9b4",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v24.py"
+    },
+    {
+      "blob": "0d13163bfaa248869758178245b5625eb4363b22",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v25.py"
+    },
+    {
+      "blob": "7385ef88b4d079f42a2ed606b06b007b241d6339",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v26.py"
+    },
+    {
+      "blob": "e61b4941f7228adf17c751b244faa8b180805476",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v3.py"
+    },
+    {
+      "blob": "b65171fe8acd0a06482a72bee0a2419f2d0987ce",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v4.py"
+    },
+    {
+      "blob": "7a492c71c0b17f6ef820c78425cbbff1ed84c324",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v5.py"
+    },
+    {
+      "blob": "c7c7e4078d14d08319190898787c0fc91af51a1a",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v6.py"
+    },
+    {
+      "blob": "c01525dbd52e1bcd0db02e179ec0c1acd6bcce0b",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v7.py"
+    },
+    {
+      "blob": "bc870a27f542f64ccee264efcab7d8b1991b31ef",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v8.py"
+    },
+    {
+      "blob": "3dbf866ae30ad76a4136fdce2fd4c3a93ae4003f",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v9.py"
+    },
+    {
+      "blob": "65cc37e00d6c2f9c8616b2e64c9ac2f13099d827",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_android.py"
+    },
+    {
+      "blob": "df072d00b433c6227d6d233264709c41f8838dc5",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_apple_objects.py"
+    },
+    {
+      "blob": "9be7b063661ffe90dfda4df35badc835343217e7",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_conformance.py"
+    },
+    {
+      "blob": "fe86672c5fc9cb17679d5b04772e6ac3dd7af0c2",
+      "mode": "100644",
+      "path": "tests/test_color_match_product_chain_llvm_mingw.py"
+    },
+    {
+      "blob": "72cb6a739fff435ea1ad5cb8668d088ae89d58f9",
+      "mode": "100644",
+      "path": "tests/test_color_match_promotion.py"
+    },
+    {
+      "blob": "28beccaf894c1e2578b7fe38368c54a9d5b01de3",
+      "mode": "100644",
+      "path": "tests/test_color_match_promotion_cli.py"
+    },
+    {
+      "blob": "b74c2d7c51d63908d08ffd4994822add4d0aaf98",
+      "mode": "100644",
+      "path": "tests/test_color_match_render.py"
+    },
+    {
+      "blob": "3f26a7f37d64b02a2f292d3b5bf4f808159f6488",
+      "mode": "100644",
+      "path": "tests/test_color_match_replay.py"
+    },
+    {
+      "blob": "a1f2c2c87640ae9889ecff17ce6aacfa3301872a",
+      "mode": "100644",
+      "path": "tests/test_color_match_reporting.py"
+    },
+    {
+      "blob": "9922accfe5265eaf49f6c36e6cbe8b6596186e21",
+      "mode": "100644",
+      "path": "tests/test_color_match_run_composition.py"
+    },
+    {
+      "blob": "9c933065d7ca808f91598535768bd50b345bec0e",
+      "mode": "100644",
+      "path": "tests/test_color_match_run_transaction.py"
+    },
+    {
+      "blob": "53282325fe8a16ca702340a417ba6eef53a69b42",
+      "mode": "100644",
+      "path": "tests/test_color_match_safety.py"
+    },
+    {
+      "blob": "e7dc87b765b805bb5b0bca7bc624973ca03f24cb",
+      "mode": "100644",
+      "path": "tests/test_color_match_schemas.py"
+    },
+    {
+      "blob": "7e5dfeaad87d3db2c304c1497a5954758172cdf2",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_composition.py"
+    },
+    {
+      "blob": "f6c3692d76eeb4ca69405558a73517cee868e7bb",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_delivery_authorization.py"
+    },
+    {
+      "blob": "171173de9cc1f5df9cf5804f255cb5fa644375cc",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_filmfx_transaction.py"
+    },
+    {
+      "blob": "19e846068fd0be39f26c0475dd3593292e496703",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_filmfx_verification.py"
+    },
+    {
+      "blob": "0d7287bc09ac5bb9793b070687e1d7f5d4b3dc67",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_local_delivery.py"
+    },
+    {
+      "blob": "0845e93f659eebf73a69adb318487914a19a4479",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_local_delivery_verification.py"
+    },
+    {
+      "blob": "cde81b92d563453f1bed3eae2121cb44c1da1e22",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_numeric_guard.py"
+    },
+    {
+      "blob": "eced98770ed3e1523d6e8acf040cfd373d04991b",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_operator_batch.py"
+    },
+    {
+      "blob": "a3b57b888889d0b593b3483caba566e60c3d7fb4",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_product_authorization.py"
+    },
+    {
+      "blob": "57dc1062325af74193824bfaea86dbc56ac7a6a6",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_qualification.py"
+    },
+    {
+      "blob": "ed685fbd1f9394c1d0a894863b819c13a27764ee",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_attested_match_views.py"
+    },
+    {
+      "blob": "b8721e00f754e9db90d2c1a5508994c38ca89ec9",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_color_attestation.py"
+    },
+    {
+      "blob": "f76bf3af8147b87b5087c960abdc0dcf29802ee1",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_consumption.py"
+    },
+    {
+      "blob": "914930d7ae530d81880bc02963de4c384bd304fc",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_decode.py"
+    },
+    {
+      "blob": "904c0ad669dea2ae8800f4495a4eeebb00e5045a",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_match_views.py"
+    },
+    {
+      "blob": "a2f41610279e98723b26c3a542884aec4b40c68c",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_transaction.py"
+    },
+    {
+      "blob": "55b0756bcbda7b00773f1422b0b107e224cdbc24",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_runtime_staging_verification.py"
+    },
+    {
+      "blob": "3d528ed28787f366aeda3611b1a215f90d58e4aa",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_staging_transaction.py"
+    },
+    {
+      "blob": "9896f71b9f113d317dba9437a470bb5592ae13ee",
+      "mode": "100644",
+      "path": "tests/test_color_match_shared_staging_verification.py"
+    },
+    {
+      "blob": "3504b83b576534a851df7a1d2400626d8e3a0816",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_eotf_native.py"
+    },
+    {
+      "blob": "80c7773998ffac732fd263aaac47aa08e53b458a",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_eotf_streaming.py"
+    },
+    {
+      "blob": "3fad4688949cec0b7e67ab48519bf5de3f115790",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_icc_profile.py"
+    },
+    {
+      "blob": "921d75ff26b023f8521425b6ee01a1325a373134",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_icc_profile_native.py"
+    },
+    {
+      "blob": "5a8c3afcbdb393cceed0899186cde2098125a7c7",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_oetf_quantize_native.py"
+    },
+    {
+      "blob": "2df07a2eee8e71a57ed53ca0cfe5b7ffbf47fb18",
+      "mode": "100644",
+      "path": "tests/test_color_match_srgb_oetf_quantize_streaming.py"
+    },
+    {
+      "blob": "eddbdab5cf28ff7449f3588bbb54bc95e77355d0",
+      "mode": "100644",
+      "path": "tests/test_color_match_staging_io_limits.py"
+    },
+    {
+      "blob": "853b7c9334b7fc5c48f7c5dc67a07a9aef77eb15",
+      "mode": "100644",
+      "path": "tests/test_color_match_statlut_features.py"
+    },
+    {
+      "blob": "aff1de96c557c8b6e989434d4a0787ddc6d072e1",
+      "mode": "100644",
+      "path": "tests/test_color_match_statlut_lite_evaluation.py"
+    },
+    {
+      "blob": "08ac137a99b021bdd87325b30f2f2354ea96cf24",
+      "mode": "100644",
+      "path": "tests/test_color_match_strict_json.py"
+    },
+    {
+      "blob": "b77e0fc9634287d1753e6f9829b4d177482b4a47",
+      "mode": "100644",
+      "path": "tests/test_color_match_successor_admission.py"
+    },
+    {
+      "blob": "74271fd94baf81fafdd8a5d7693157a6e0284f24",
+      "mode": "100644",
+      "path": "tests/test_color_match_successor_runtime_evidence.py"
+    },
+    {
+      "blob": "3975c5ba0e7decde59a67f34585ab7b10b3f5167",
+      "mode": "100644",
+      "path": "tests/test_color_match_w1_evidence.py"
+    }
+  ],
+  "payload_scope": "P1-P135",
+  "required_public_exports": [
+    "make_shared_reference_operator_v1",
+    "guard_shared_numeric_batch_v1",
+    "authorize_shared_product_staging_v1",
+    "commit_external_shared_staging_v1",
+    "verify_external_shared_staging_v1",
+    "build_shared_reference_composition_v1",
+    "commit_shared_filmfx_staging_v1",
+    "verify_shared_filmfx_staging_v1",
+    "authorize_shared_local_delivery_v1",
+    "commit_shared_local_delivery_v1",
+    "verify_shared_local_delivery_v1",
+    "make_successor_runtime_evidence_v1",
+    "bind_successor_runtime_evidence_v1",
+    "validate_successor_runtime_evidence_v1",
+    "qualify_shared_product_authorization_runtime_v1",
+    "validate_runtime_qualified_shared_authorization_v1",
+    "commit_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_run_v1",
+    "verify_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_verification_v1",
+    "capture_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_consumption_record_from_json",
+    "runtime_qualified_shared_staging_consumption_record_to_json",
+    "validate_runtime_qualified_shared_staging_byte_snapshot_v1",
+    "validate_runtime_qualified_shared_staging_consumption_record_v1",
+    "decode_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_decode_record_from_json",
+    "runtime_qualified_shared_staging_decode_record_to_json",
+    "validate_runtime_qualified_shared_staging_decode_record_v1",
+    "validate_runtime_qualified_shared_staging_decoded_batch_v1",
+    "prepare_runtime_staging_match_views_v1",
+    "runtime_staging_match_view_bridge_record_from_json",
+    "runtime_staging_match_view_bridge_record_to_json",
+    "validate_runtime_staging_match_view_bridge_record_v1",
+    "validate_runtime_staging_prepared_match_view_batch_v1",
+    "attest_runtime_staging_srgb_metadata_v1",
+    "runtime_staging_color_attestation_record_from_json",
+    "runtime_staging_color_attestation_record_to_json",
+    "validate_runtime_staging_color_attestation_record_v1",
+    "validate_runtime_staging_color_attested_decoded_batch_v1",
+    "prepare_runtime_staging_attested_match_views_v2",
+    "runtime_staging_attested_match_view_bridge_record_from_json",
+    "runtime_staging_attested_match_view_bridge_record_to_json",
+    "validate_runtime_staging_attested_match_view_bridge_record_v2",
+    "validate_runtime_staging_attested_prepared_match_view_batch_v2",
+    "srgb_icc_profile_conformance_v1",
+    "srgb_icc_profile_v1",
+    "hdr_shot_reuse_veto_decision_payload_v1",
+    "load_hdr_shot_reuse_veto_decision_v1",
+    "map_hdr_shot_reuse_veto_v1"
+  ],
+  "schema_id": "neuro-film.reference-match-main-integration-manifest.v27",
+  "supersedes_manifest": {
+    "blob": "97e46f5acb8423df81ed3c08daf9a66c0ea61768",
+    "mode": "100644",
+    "path": "configs/reference_match_main_integration_manifest_v26.json",
+    "schema_id": "neuro-film.reference-match-main-integration-manifest.v26",
+    "sha256": "69459544b81310b3b65f8814525faa4203ec96d0ab00d2e8d43d64a390a75e43"
+  },
+  "verification_commands": [
+    "git merge-tree --write-tree <payload_commit> <main_commit>",
+    "python -m pytest -q -k color_match",
+    "python -m pytest -q"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuro-film.local/schemas/reference-file-output-capabilities-v1",
+  "title": "Neuro-Film Reference File Output Capabilities V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "neuro-film.reference-file-output-capabilities.v1"
+    },
+    "capabilities": {
+      "const": [
+        {
+          "working_space": "linear_srgb",
+          "transfer_state": "display_linear",
+          "output_bit_depth": 8,
+          "extensions": [
+            ".jpeg",
+            ".jpg",
+            ".png",
+            ".tif",
+            ".tiff"
+          ],
+          "encoding_profile": "srgb-icc.v1"
+        },
+        {
+          "working_space": "linear_srgb",
+          "transfer_state": "display_linear",
+          "output_bit_depth": 16,
+          "extensions": [
+            ".png",
+            ".tif",
+            ".tiff"
+          ],
+          "encoding_profile": "srgb-icc.v1"
+        },
+        {
+          "working_space": "linear_rec2020",
+          "transfer_state": "display_linear",
+          "output_bit_depth": 16,
+          "extensions": [
+            ".png"
+          ],
+          "encoding_profile": "bt2020-sdr-cicp-1-1-0-1.v1"
+        }
+      ]
+    }
+  }
+}
