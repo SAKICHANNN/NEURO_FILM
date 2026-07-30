@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2az0-density-residual-factorization-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AZ0",
+  "question": "At the already-frozen t15/c35 strengths, does optical-density neutral/opponent factorization produce a stronger and preferable severe-clean film look than AO6 linear-RGB tone/chroma factorization?",
+  "parent": {
+    "config": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+    "config_sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b",
+    "decision": "configs/u5_r2ao6_b0_real_film_residual_decision_v1.json",
+    "decision_sha256": "3a394fb669bcb6d9e9e244cee2640c8daf8086b58bcf8065b81efdad90afa68b",
+    "manifest": "outputs/u5_r2ao6_b0_real_film_residual_frontier_v1/render_pass1/manifest.json",
+    "manifest_sha256": "87b2c50a7325aacd5541d8106c13181a666ceceb223deabd48107dfa676b6224",
+    "candidate_id": "b0_plus_film_t15_c35"
+  },
+  "candidate": {
+    "candidate_id": "b0_plus_density_film_t15_c35",
+    "neutral_strength": 0.15,
+    "opponent_strength": 0.35,
+    "neutral_weights": [
+      0.2126,
+      0.7152,
+      0.0722
+    ],
+    "density_floor": 0.0000152587890625,
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098
+  },
+  "frozen_gates": {
+    "minimum_gold_median_style_gain_delta_e76_over_ao6": 1.0,
+    "minimum_gold_median_non_basic_gain_delta_e76_over_ao6": 0.75,
+    "minimum_gold_median_real_film_delta_gain_delta_e76_over_ao6": 0.75,
+    "minimum_gold_median_candidate_difference_delta_e76": 1.0,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "maximum_worst_stress_new_hard_clipping_fraction": 0.005,
+    "maximum_confirmed_severe_gold_artifacts": 0
+  },
+  "visual_gate": {
+    "automatic_pass_required": true,
+    "blind_rounds": 3,
+    "gold_rows_per_round": 9,
+    "minimum_candidate_preferences_per_passing_round": 6,
+    "minimum_passing_rounds": 2,
+    "all_full_resolution_gold_rows_required": true,
+    "explicit_id11_red_speckle_posterization_regression": true
+  },
+  "render_seed": 20260730,
+  "maximum_pixels_per_image": 65536,
+  "working_space": "linear_srgb_d65",
+  "output_transfer": "srgb",
+  "output_format": "rgb8_png",
+  "hard_clipping_allowed": false,
+  "per_image_fit_allowed": false,
+  "parameter_search_allowed": false,
+  "operator_refit_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "same-population development comparison of two fixed factorizations of one 71-pair author-rendered Velvia display-proxy residual after B0; not independent preference, stock response, calibration or product promotion"
+}
