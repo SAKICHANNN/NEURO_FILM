@@ -128,9 +128,40 @@ def apply_boundary_safe_neutral_base(
     """Apply one shared per-pixel scale along the explicit RGB residual."""
 
     source = np.asarray(encoded_rgb, dtype=np.float64)
+    candidate = apply_neutral_base(source, parameters)
+    return apply_boundary_safe_residual(
+        source,
+        candidate,
+        boundary_epsilon=boundary_epsilon,
+    )
+
+
+def apply_boundary_safe_residual(
+    encoded_rgb: np.ndarray,
+    candidate_rgb: np.ndarray,
+    *,
+    boundary_epsilon: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Scale one explicit candidate residual without clipping or hue rotation."""
+
+    source = np.asarray(encoded_rgb, dtype=np.float64)
+    candidate = np.asarray(candidate_rgb, dtype=np.float64)
     if not 0.0 < boundary_epsilon < 0.5:
         raise BoundarySafeNeutralBaseError("invalid boundary epsilon")
-    candidate = apply_neutral_base(source, parameters)
+    if (
+        source.shape != candidate.shape
+        or source.ndim != 3
+        or source.shape[2] != 3
+        or not np.all(np.isfinite(source))
+        or not np.all(np.isfinite(candidate))
+        or np.any(source < 0.0)
+        or np.any(source > 1.0)
+        or np.any(candidate < 0.0)
+        or np.any(candidate > 1.0)
+    ):
+        raise BoundarySafeNeutralBaseError(
+            "source and candidate must be finite bounded RGB peers"
+        )
     residual = candidate - source
     lower = np.nextafter(float(boundary_epsilon), 1.0)
     upper = np.nextafter(1.0 - float(boundary_epsilon), 0.0)
@@ -445,6 +476,7 @@ def run_development(
 __all__ = [
     "BoundarySafeNeutralBaseError",
     "apply_boundary_safe_neutral_base",
+    "apply_boundary_safe_residual",
     "run_development",
     "validate_contract",
 ]
