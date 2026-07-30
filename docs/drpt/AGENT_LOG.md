@@ -8121,3 +8121,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** continue the main Ultimate algorithm tree independently. Any
   future real reference-match use still requires a versioned callable producer
   that passes the unchanged admission and product gates.
+
+## 2026-07-31 - Restore clean full-suite isolation after NFCM integration
+
+- The first full CPU regression exposed two environment-order defects rather
+  than colour-output changes: the FiveK alignment helper leaked OpenCV global
+  execution state into the P6G scanner replay, and one Android Test Lab test
+  assumed an ignored local package report was present.
+- FiveK and scanner alignment now save and restore OpenCV thread, optimization,
+  OpenCL and RNG state around deterministic execution. The cloud-device test
+  skips when its explicitly ignored local evidence package is absent.
+- Focused verification passed `21` tests with one expected skip; a forced
+  inherited `cv2.setUseOptimized(False)` P6G replay passed all seven tests.
+  The tracked-clean complete CPU suite then passed `3648` tests with seven
+  skips and five known metadata/duplicate-fixture warnings in `1587.65s`.
+- This is test isolation and reproducibility repair only. No renderer,
+  algorithm, profile, scientific gate or product claim changed.
