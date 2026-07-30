@@ -2,6 +2,19 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-28 - U5.R2BG0 closes an emerging controlled-film surface
+
+- Implemented a bounded HTML-only source audit with 40-page/8MiB/request caps,
+  generic robots validation, delay, canonical image-URL parsing and a hard
+  zero-image/API contract.
+- Two runs are byte-identical at `f405c7ad...b0f29`: 27 pages, but only APX400
+  and CineStill50D have complete five-frame groups. CineStill alone supplies
+  two filename-identifiable scanner variants.
+- The five-stock structure gate fails. No complete group has an explicit CC
+  licence; future open-source intent is not counted as permission.
+- Close before pixels/contact/fitting/training. Revisit only after materially
+  more controlled groups and explicit reusable rights are published.
+
 # 2026-07-28 - U5.R2BF0 closes FilmMatch root-polynomial directionality
 
 - Added deterministic signed-root and ordinary polynomial explicit operators,

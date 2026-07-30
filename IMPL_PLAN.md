@@ -1,5 +1,11 @@
 # Active stock-first pointer — 2026-07-16
 
+> U5.R2BG0 then audits an emerging same-scene plus/minus-two film catalogue
+> without requesting images. Two exact runs find 27 stock pages but only two
+> complete five-frame filename groups, below the frozen five-stock gate; only
+> CineStill 50D has two scanner variants. No explicit reusable pixel licence
+> exists. Close the current surface before pixels/contact/fitting/training.
+>
 > U5.R2BF0 tests the literature-motivated exposure-homogeneous root-polynomial
 > family in both directions on the exact FilmMatch charts after published
 > S-Log3 decoding. Two reports are exact. Signed RPCC loses to affine in both
