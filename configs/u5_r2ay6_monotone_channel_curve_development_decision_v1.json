@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6-monotone-channel-curve-development-v1",
+  "status": "development_pass_new_confirmation_required",
+  "config": "configs/u5_r2ay6_monotone_channel_curve_development_v1.json",
+  "report": "outputs/u5_r2ay6_monotone_channel_curve_development_v1/run_a/report.json",
+  "report_sha256": "f909a65f63b8b9467d45dfae2dcbcdb2591f521acf5d0c44a3094355564684a8",
+  "stable_evidence_id": "1442b2f49db587ccc48ebf514a0aa1eca7e10409b25c2b62b15d8c21df644345",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "observed": {
+    "ay0_complete_camera_group_crossfit": {
+      "oracle_mean_improvement_over_identity": 0.449579,
+      "ridge_mean_improvement_over_global": 0.122347,
+      "ridge_win_fraction_over_global": 0.734375,
+      "ridge_p95_ratio_to_global": 0.855125,
+      "ridge_worst_ratio_to_global": 0.923429,
+      "ridge_style_ratio_to_global": 1.008856
+    },
+    "fresh_63": {
+      "oracle_mean_improvement_over_identity": 0.485199,
+      "ridge_mean_improvement_over_global": 0.112747,
+      "ridge_win_fraction_over_global": 0.634921,
+      "ridge_p95_ratio_to_global": 0.993812,
+      "ridge_worst_ratio_to_global": 0.680106,
+      "ridge_style_ratio_to_global": 1.057221
+    },
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "visual_review": {
+    "sheet": "outputs/u5_r2ay6_monotone_channel_curve_development_v1/visual/fresh_visual_stress_sheet.png",
+    "sheet_sha256": "36407e6c5eb8ba163cf2ab9bb5248110bfc3fe7f5e448f40d316f7a595cd246e",
+    "selection": "outputs/u5_r2ay6_monotone_channel_curve_development_v1/visual/selection.json",
+    "selection_sha256": "9f7a9a26178b90df032fddfe81621bf0ec1cb6316fbd22339c015e3f22685b42",
+    "rows": 12,
+    "confirmed_severe_failures": 0,
+    "adjudication": "worst-error and harmed-row review retains strong AO6 styling with no confirmed face, text, geometry, banding, posterization, colour-block or new-clipping failure"
+  },
+  "next_leaf": "bounded official FiveK URL preflight excluding both the retained 128 and AY3 fresh 64, followed by unchanged normalization and confirmation",
+  "forbidden_upgrade": [
+    "do not treat the fresh_63 reuse as confirmation",
+    "do not change knots, fit, endpoint weights, descriptor, alphas, projection, safety executor or AO6 before confirmation",
+    "do not claim film, stock, calibration, population preference or product promotion"
+  ],
+  "claim_ceiling": "positive development evidence for a source-only predictor of endpoint-exact monotone explicit photographic curves before fixed AO6; new untouched confirmation is required"
+}

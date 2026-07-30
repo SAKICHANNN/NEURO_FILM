@@ -7692,3 +7692,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.066x--1.158x` global. Automatic failure forbids visual review and all
   k/distance/alpha/bound/AO6 rescue. Retain discrete-case character as
   development evidence; move to a distinct bounded explicit representation.
+
+## 2026-07-30 - U5.R2AY6 monotone explicit curves pass development
+
+- Three endpoint-exact monotone channel curves (15 predicted ordinates) are
+  projected after source-only ridge prediction and executed through the AY3
+  shared-residual safety primitive. No final RGB is learned.
+- Complete camera-group cross-fit improves 12.23% over its global curve,
+  wins 73.44% and reaches `.855x` P95. Fresh-63 development improves 11.27%,
+  wins 63.49%, reaches `.994x` P95 and `.680x` worst error.
+- Two reports are byte-identical; all methods create zero new boundaries.
+  Twelve worst/harmed fresh rows retain strong AO6 styling with zero confirmed
+  severe visual failures. Freeze the full method and acquire another disjoint
+  official FiveK population for unchanged confirmation.
