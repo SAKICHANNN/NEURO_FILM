@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bc1-ao6-density-grain-value-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BC1",
+  "status": "contract_frozen_before_render",
+  "question": "Does shared optical-density grain in linear RGB remove BC0 chromatic speckles while adding visible film-like value to fixed AO6 colour?",
+  "parent": {
+    "decision_path": "configs/u5_r2bc0_ao6_procedural_filmfx_value_decision_v1.json",
+    "decision_sha256": "a40923d7d06d6d5aa51e8cc13f629f44c1e4662cea0262d82b0237e3b3466f83",
+    "required_decision": "close_encoded_rgb_additive_grain_and_inherited_full_arm_before_visual_review"
+  },
+  "population": {
+    "base_directory": "outputs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1/run_a/b0_plus_film_t15_c35",
+    "base_inventory_sha256": "82e04b9f10c7af137cbc38a635df2c922174dfb5c83c2a9dfcd03a5eb1ca7bba",
+    "expected_ids": [
+      "canon_eos_1d_mark_iv",
+      "canon_eos_kiss_f",
+      "fujifilm_finepix_s5000",
+      "kodak_dcs_pro_14n",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "nikon_d200",
+      "nikon_d2x",
+      "olympus_e_p7",
+      "olympus_sp550uz",
+      "panasonic_dmc_fz100",
+      "panasonic_dmc_gf2",
+      "pentax_k100d_super",
+      "pentax_k_r",
+      "sony_dslr_a290",
+      "sony_nex_3n"
+    ]
+  },
+  "candidate": {
+    "density_sigma": 0.0225,
+    "derivation": "fixed analytical match to about .012 encoded change near sRGB 0.5: .012 divided by the local encoded response to one optical-density unit",
+    "noise": "unit-variance Gaussian minus sigma-1.2 Gaussian low pass",
+    "envelope": "0.45 + 0.75 * (1 - encoded luma)",
+    "channel_contract": "one shared density delta multiplies all three linear-RGB channels",
+    "bright_end_guard": "per-pixel analytical scale from source max channel to linear 1.0",
+    "dark_end_guard": "none required: positive transmittance multiplication cannot cross linear zero",
+    "halation_strength": 0.14
+  },
+  "arms": [
+    "fixed_ao6_colour_only_t15_c35",
+    "ao6_plus_linear_density_grain_0225",
+    "ao6_plus_linear_density_grain_0225_simple_halation_014"
+  ],
+  "execution": {
+    "seed": 320260728,
+    "seed_rule": "seed + sorted_sample_index * 1009",
+    "png_compress_level": 6
+  },
+  "automatic_gates": {
+    "repeat_byte_identical": true,
+    "maximum_new_raw_clipping_fraction": 0.0,
+    "maximum_linear_chromaticity_drift_p999": 0.000002,
+    "minimum_median_changed_pixel_fraction": 0.5,
+    "maximum_median_bright_guard_limited_fraction": 0.1,
+    "maximum_worst_p999_abs_encoded_change": 0.08,
+    "minimum_halation_supported_rows": 4
+  },
+  "visual_gate": {
+    "population_size": 9,
+    "selection": "first nine sorted IDs fixed before render",
+    "rounds": 3,
+    "candidate_preference_threshold_per_round": 6,
+    "required_passing_rounds": 2,
+    "severe_artifact_veto": true
+  },
+  "branches": {
+    "automatic_fail": "close BC1 without visual review or parameter rescue",
+    "visual_fail": "retain the primitive only if mechanically useful; do not integrate",
+    "visual_pass": "freeze the winning fixed arm and confirm unchanged on a disjoint full-resolution population"
+  },
+  "forbidden": [
+    "change density sigma, envelope, guard, halation or thresholds after render",
+    "claim measured film grain, stock response or calibration",
+    "use the effect result to reopen AO7 colour promotion",
+    "integrate a product default before independent confirmation"
+  ],
+  "claim_ceiling": "development-only explicit density-domain grain value audit on fixed AO6 outputs; not measured film structure, population preference, stock response, calibration or product promotion"
+}
