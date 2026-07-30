@@ -232,7 +232,19 @@ def run_audit(
     marker = external_root.parent / ".neuro_film_owner.json"
     if not marker.is_file():
         raise FiveKFreshNormalizationError("owned root marker missing")
-    target_policy = type("TargetPolicy", (), normalization["target_policy"])()
+    target_values = normalization["target_policy"]
+    target_policy = type(
+        "TargetPolicy",
+        (),
+        {
+            "luma_strength": target_values["luma_strength"],
+            "chroma_strength": target_values["chroma_strength"],
+            "chroma_headroom": target_values["chroma_headroom"],
+            "wb_anchor_strength": target_values[
+                "white_balance_anchor_strength"
+            ],
+        },
+    )()
     maximum_side = int(normalization["maximum_side"])
     with validated["existing_manifest"].open(
         newline="", encoding="utf-8-sig"
