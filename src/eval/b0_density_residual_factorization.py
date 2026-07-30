@@ -198,6 +198,7 @@ def render_and_evaluate(
         )
         records.append(
             {
+                "candidate_id": candidate["candidate_id"],
                 "sample_id": sample_id,
                 "split": sample["split"],
                 "source_sha256": sample["source_sha256"],
