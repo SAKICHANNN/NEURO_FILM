@@ -4963,3 +4963,25 @@
   and conflict-free merge tree
   `81f9fdc5839fe30433b1ce6206561fa9e4eb3396`. No main file or output was
   modified or copied.
+
+## 2026-07-31 - Classify producer RAW invocation envelopes during main data migration
+
+- Main requested an immediate write freeze for its data, ignored outputs,
+  manifests, downloads and temporary experiment artifacts while moving data
+  to a new `O:` location. Read-only process/status inspection found no writer
+  started by this task; consumer `35470ed` and producer `1110ed6` were clean.
+  Main `b52b765` retained only its pre-existing untracked `.codex/` and `tmp/`.
+  The exact status and committed absolute-path dependencies were sent back to
+  main; no main file, data artifact, path or process was changed.
+- Read-only producer audit classifies R0HU Stage-2 Bayer schemas
+  `7f815cbc...b23f` / `abc48ace...05c` and R0HX native-DNG schemas
+  `fbd573b3...f3d2` / `296a7beb...e2d` as producer-owned media invocation
+  envelopes. They emit relative-linear-sRGB MatchView-shaped output but no
+  reference/source fit, TransformBundle or mapped DiagnosticsV2/ApplyResultV2.
+  Their own claim ceilings deny public licensing, product promotion and
+  consumer compatibility.
+- R0IW adds only Windows-prepared-input Android 14 x86_64 virtual arithmetic;
+  Android does not decode DNG and arm64 remains link-only. NFCM therefore
+  records both capabilities as known but unmapped, preserves P172
+  `unsupported-decoded-rail`, and copies no RAW/Stage2/native implementation.
+  The classification and exact hashes were also sent to the producer task.

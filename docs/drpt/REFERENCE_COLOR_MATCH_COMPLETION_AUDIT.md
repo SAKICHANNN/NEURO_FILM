@@ -256,6 +256,25 @@ wire contract and not an algorithm promotion.
   discrimination only. It is not independent evidence that Adobe is a more
   accurate real-camera renderer; spectral or measured camera truth remains
   required, and no public RAW interface opens.
+  R0HU and R0HX subsequently publish producer-visible local invocation
+  envelopes, rather than a consumer-compatible reference-match rail. R0HU's
+  Stage-2 Bayer request/response schema hashes are
+  `7f815cbc...b23f` / `abc48ace...05c` and its installed-wheel capability is
+  `zhuise.stage2-bayer-ddfapd-libraw-matrix.cpu-reference.v1`. R0HX's native
+  DNG schema hashes are `fbd573b3...f3d2` / `296a7beb...e2d` and its
+  source-locked capability is
+  `zhuise.native-dng-ddfapd-libraw-0.22.cpu-reference.v1`. Both render to the
+  existing producer relative-linear-sRGB MatchView profile, but neither
+  performs reference/source fitting or emits a TransformBundle; both use
+  media-render-specific diagnostics rather than the mapped
+  DiagnosticsV2/ApplyResultV2 colour-match envelope. Their evidence explicitly
+  denies public licensing, product promotion and consumer compatibility.
+  R0IW adds exact Android 14 x86_64 virtual execution for a fused Pixel
+  Stage-2 source stream, but Windows still prepares the raw mosaic, GainMap and
+  camera profile; Android does not decode the DNG and arm64 remains link-only.
+  Therefore a shared output profile name is insufficient to establish
+  reference-match compatibility, and these producer media capabilities remain
+  known but unmapped.
   P172 therefore remains fail-closed and R0DO/R0DP absolute-HDR diagnostics
   remain explicitly unmapped.
   NFCM has Android 14 x86_64 emulator evidence for its consumer quantizer, but
@@ -295,6 +314,7 @@ wire contract and not an algorithm promotion.
 | Unsupported-media batch atomicity | P164 places transparent RGBA PNG, two-page TIFF or a pinned real libultrahdr MPO second in a two-source transaction. All six runs encode source one, reject source two, preserve 24/24 output/recipe/report target hashes and leave zero staging residue | EXACT LOCAL THREE-FIXTURE FAIL-CLOSED PASS | Keep decoder claims narrow; extend only with separately pinned real fixtures and do not infer complete HDR/gain-map/media detection / Neuro-Film |
 | High-resolution image and batch lifetime | P159 passes two exact 24 MP single-source runs. P160 passes two ordered three-source 24 MP runs; P161 releases encoded renders before the next load and lowers interleaved median peak 2.167 -> 1.886 GB with exact artifacts and no wall regression. P162 passes two exact 64-source 1 MP maximum-count transactions at about 167 MB peak | EXACT LOCAL 24 MP THREE-SOURCE PLUS 64-SOURCE 1 MP PASS | Obtain real target-platform/media execution; do not combine the separate scale/count facts into a 24MP-by-64 claim / Neuro-Film |
 | RAW, HDR/gain-map and video | Deliberately outside this consumer branch; D-PCT absolute BT.2020 HDR is explicitly unmapped. P172 proves that a successfully decoded, orientation-applied scene-linear RAW is reported as `unsupported-decoded-rail`; when it is the second source, all existing destinations remain byte-exact and no transaction residue survives | OPEN, CORRECTLY SEPARATED AND FAIL-CLOSED | Producer media evidence plus explicit scene/display bridge and new compatibility profile; never relabel scene-linear or absolute HDR as relative SDR / D-PCT then Neuro-Film |
+| Producer media invocation discovery | R0HU/R0HX expose exact local Stage-2 Bayer and one-source native-DNG request/response schemas and wheels, but no reference/source fit, TransformBundle or mapped DiagnosticsV2/ApplyResultV2; R0IW executes Windows-prepared Pixel Stage-2 inputs on an Android x86_64 virtual device without Android DNG decode | KNOWN PRODUCER CAPABILITIES, EXPLICITLY UNMAPPED | Require a separately versioned media-to-MatchView compatibility profile, release/redistribution rights, product admission and consumer adapter evidence; matching profile text alone never authorizes consumption / D-PCT then Neuro-Film |
 | HDR shot reuse invalidation | P109 pins R0cn model/assessment schemas and fixture, reconstructs both producer identities and emits a persisted consumer decision with `reuse_authorized=false`; only `invalidate-reuse` forces refit | COMPLETE AS VETO-ONLY MAPPING, NO CACHE AUTHORITY | A future shot cache may consume the veto only after exact descriptor/input invocation binding; `not-invalidated` never authorizes reuse / D-PCT then Neuro-Film |
 | Portable consumer identity chain | P42 routes exact P28-P30 vectors through one freestanding C ABI; MSVC/LLVM-MinGW execute, Android arm64/x86_64 link, macOS/iOS arm64 objects compile. P101-P104 additionally execute all ten frozen canonical payloads, SHA failure atomicity and all eight staging predicate inputs through JNI on two cold Android 14 x86_64 emulator boots with stable identity `a3fa50e0...e03f20` | COMPLETE for host identity, cross-target compilation and Android x86_64 virtual runtime | Physical arm64 and Apple runtime remain open; emulator evidence is not a physical-device or producer-algorithm claim / platform integration |
 | Successor-candidate substitution | P45 requires new exact producer/package/wheel/capability identities, explicit fit/batch semantics and two-stage readiness | COMPLETE AS FAIL-CLOSED INTAKE | Populate only after a producer publishes a genuinely new callable package / D-PCT then Neuro-Film |
