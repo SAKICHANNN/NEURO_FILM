@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3s2-fivek-fresh-normalization-support-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY3S2",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "7a2ee54e8923055b40946612113269a435132edb",
+  "hypothesis": "the exact owned fresh FiveK DNG and Expert-C files can be converted into at least 60 deterministic content-aligned sRGB16 pairs with sufficient camera support and zero cross-split leakage, without fitting any colour operator",
+  "parent_acquisition": {
+    "config": "configs/u5_r2ay3s1_fivek_fresh_pair_acquisition_v1.json",
+    "config_sha256": "5e2e04206ff43d15984a76510151f2b7673c4f2581a9c9a9fef2e421948f4d05",
+    "decision": "configs/u5_r2ay3s1_fivek_fresh_pair_acquisition_decision_v1.json",
+    "decision_sha256": "becaedff01d1625bfaa10a75911ec17e156393b97a6dadbef2744099f253fad0",
+    "manifest": "outputs/u5_r2ay3s1_fivek_fresh_pair_acquisition_v1/run_a/manifest.json",
+    "manifest_sha256": "aa5c94630b9b948148e5f76a0a49b75a55dad9c4af09433dd7c8d002db5cf9fa",
+    "report": "outputs/u5_r2ay3s1_fivek_fresh_pair_acquisition_v1/run_a/report.json",
+    "report_sha256": "e5e08531c9ea343ce16f7ad2846462fb40a0e55d2d9a60465238ce2eb8f9b566",
+    "required_assets": 128,
+    "required_decode_failures": 0,
+    "exact_dimension_gate_remains_failed": true
+  },
+  "development_candidate": {
+    "decision": "configs/u5_r2ay3_boundary_safe_neutral_base_development_decision_v1.json",
+    "decision_sha256": "70f6abeef5e92dfdb488a50c29ef7b7a1d6f868765fb8258f854ec71c71bbb30",
+    "required_status": "development_pass_fresh_confirmation_required",
+    "use_during_this_leaf": false
+  },
+  "normalization": {
+    "source_decode": "project WorkingImage generic RAW decode then exact sRGB encoding",
+    "target_decode": "Expert-C ProPhoto RGB16 TIFF through pinned ProPhoto-to-D50-to-D65-to-sRGB conversion",
+    "orientation_policy": "reject source-target orientation mismatch",
+    "crop_policy": "geometry-only centered source crop to the target aspect ratio",
+    "resize_policy": "Lanczos4, preserve source crop aspect, maximum side 1536, then target to exact source shape",
+    "target_policy": {
+      "luma_strength": 0.82,
+      "chroma_strength": 0.18,
+      "chroma_headroom": 0.02,
+      "white_balance_anchor_strength": 1.0
+    },
+    "output_dtype": "uint16",
+    "output_space": "display-encoded sRGB",
+    "external_root": "D:/nf-019f4b76-neuro-film-data/fivek-ay3-fresh64-v1/normalized_srgb16_v1",
+    "maximum_side": 1536
+  },
+  "alignment_audit": {
+    "audit_side": 256,
+    "feature": "normalized Sobel gradient magnitude",
+    "minimum_per_pair_gradient_correlation": 0.25,
+    "minimum_median_gradient_correlation": 0.5,
+    "maximum_absolute_phase_shift_pixels": 8.0
+  },
+  "support_and_leakage": {
+    "development_manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
+    "development_manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "maximum_cross_split_dhash_hamming": 4,
+    "minimum_eligible_pairs": 60,
+    "minimum_camera_models": 8,
+    "maximum_largest_camera_share": 0.35
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the exact normalized manifest and open one unchanged AY3 fresh confirmation",
+    "alignment_fails": "close fresh confirmation on this selection without per-image registration, manual crop or row substitution",
+    "support_or_leakage_fails": "close fresh confirmation and retain the data only as internal diagnostics",
+    "individual_rows_fail": "retain explicit rejection reasons; up to four rows may remain unassigned"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "candidate_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "data-only deterministic normalization, content alignment, camera support and leakage evidence for fresh FiveK digital-retouch pairs; no operator, film, stock, calibration, preference or product claim"
+}
