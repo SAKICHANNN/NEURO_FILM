@@ -6,6 +6,7 @@
   "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
   "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
   "expected_gold_samples": 9,
+  "expected_stress_samples": 32,
   "candidate": {
     "candidate_id": "b0_plus_hue_value_film_t15_c35",
     "report": "outputs/u5_r2ba1_hue_value_residual_factorization_v1/run_a/report.json",
