@@ -78,3 +78,13 @@ def test_unbounded_candidate_uses_one_safe_rgb_scale_without_clipping() -> None:
     reconstructed = source + scale[..., None] * (candidate - source)
     assert np.array_equal(output, reconstructed)
     assert np.all(scale < 1.0)
+
+    extreme = np.asarray([[[1e12, -1e12, 1e12]]])
+    safe, extreme_scale = apply_unbounded_residual_safely(
+        np.asarray([[[0.25, 0.5, 0.75]]]),
+        extreme,
+        boundary_epsilon=1.0 / 510.0,
+    )
+    assert np.all(safe > 0.0)
+    assert np.all(safe < 1.0)
+    assert 0.0 < extreme_scale.item() < 1.0

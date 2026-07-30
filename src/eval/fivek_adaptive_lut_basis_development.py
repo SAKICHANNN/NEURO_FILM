@@ -273,7 +273,9 @@ def apply_unbounded_residual_safely(
         lower[negative] - source[negative]
     ) / residual[negative]
     scale = np.clip(np.min(channel_scale, axis=2), 0.0, 1.0)
-    scale = np.where(scale < 1.0, np.nextafter(scale, 0.0), scale)
+    limited = scale < 1.0
+    safety_margin = 1.0 - 64.0 * np.finfo(np.float64).eps
+    scale = np.where(limited, scale * safety_margin, scale)
     source_boundary = (source <= boundary_epsilon) | (
         source >= 1.0 - boundary_epsilon
     )
