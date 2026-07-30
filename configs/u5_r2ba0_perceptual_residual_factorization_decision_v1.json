@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ba0-perceptual-residual-factorization-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BA0",
+  "software_commit": "47544d89",
+  "contract": {
+    "path": "configs/u5_r2ba0_perceptual_residual_factorization_v1.json",
+    "sha256": "f214187f798cd00428dc2556d6afebb6f09a2bfa7e1b3753d438675b34e311da"
+  },
+  "reports": {
+    "run_a": "outputs/u5_r2ba0_perceptual_residual_factorization_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2ba0_perceptual_residual_factorization_v1/run_b/report.json",
+    "sha256": "96134b9c94198560265658ef710012ba7bd961806948958fd9c5fb24b92cdc9e",
+    "stable_evidence_id": "92852dda4a941f506183cf5aebd788088ec83865b05ed3077661a7fd20265523",
+    "repeat_byte_identical": true
+  },
+  "result": {
+    "automatic_pass": false,
+    "gold_median_style_delta_e76": 14.034351054221338,
+    "gold_median_style_gain_delta_e76_over_ao6": 0.7990016794467643,
+    "gold_median_non_basic_residual_delta_e76": 10.973398799635515,
+    "gold_median_non_basic_gain_delta_e76_over_ao6": 1.0991530893961254,
+    "gold_median_real_film_delta_gain_delta_e76_over_ao6": 0.5743686869768161,
+    "gold_median_difference_delta_e76_from_ao6": 0.875961132113162,
+    "gold_median_difference_delta_e76_from_density": 1.143823887151775,
+    "gold_median_style_ratio_to_density": 0.9332199600831804,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0
+  },
+  "passed_checks": [
+    "non_basic_gain",
+    "difference_from_density",
+    "gold_clipping",
+    "stress_clipping"
+  ],
+  "failed_checks": [
+    "style_gain",
+    "real_film_delta_gain",
+    "difference_from_ao6",
+    "density_style_floor"
+  ],
+  "decision": "close_perceptual_factorization_without_visual_review_or_rescue",
+  "interpretation": "The fixed D65 CIELAB lightness/chroma factorization is materially different from AZ0 and introduces no clipping, but it attenuates the explicit film-proxy residual: style gain, real-film displacement, difference from AO6 and the preregistered AZ0 style floor all fail. This supports the diagnosis that a perceptual lightness/chroma decomposition averages away part of the salient channel structure rather than producing a stronger film look.",
+  "forbidden_rescue": [
+    "increase lightness or chroma strength after seeing the result",
+    "change automatic thresholds",
+    "select rows or render a visual candidate",
+    "add capacity on the sealed 71-pair proxy pool",
+    "claim stock response, calibration or product value"
+  ],
+  "next_leaf": "choose a distinct explicit operator that preserves channel-selective structure without increasing fitted capacity on the sealed proxy pool",
+  "visual_review_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "negative same-population development comparison of one fixed perceptual factorization; no independent preference, stock response, calibration or product claim"
+}

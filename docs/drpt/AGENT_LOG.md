@@ -7805,3 +7805,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close product/default promotion and every same-population rescue. Retain the
   density factorization only as reproducible research evidence and proceed to
   a genuinely different explicit colour representation or evidence source.
+
+## 2026-07-30 - U5.R2BA0 closes perceptual residual factorization
+
+- Added a fixed D65 CIELAB lightness/chroma residual executor with analytical
+  source-inclusive RGB scaling, exact identity and no hard clipping. Strengths
+  remain the frozen `.15/.35`; no fitting, tuning or ML is introduced.
+- Two 41-image reports are byte-identical at SHA-256 `96134b9c...dc9e`.
+  The candidate is distinct from AZ0 (`1.1438` median Delta E76) and has zero
+  new gold/stress clipping, but style gain over AO6 is only `.7990`, real-film
+  displacement gain `.5744`, AO6 difference `.8760`, and style is `.9332x`
+  AZ0. Four preregistered gates fail.
+- Close BA0 before visual review. Strength, thresholds, row selection and
+  capacity rescue on the sealed proxy pool are forbidden. The result supports
+  preserving channel-selective structure rather than perceptual averaging.

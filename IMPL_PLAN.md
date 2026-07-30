@@ -9,6 +9,12 @@
 > only `5/9`, `5/9`, `6/9`; 1/3 rounds passes versus 2 required. Retain the
 > representation as research evidence only and move to a distinct algorithm
 > without retuning or additional rounds.
+>
+> U5.R2BA0 then tests a fixed D65 CIELAB lightness/chroma decomposition at
+> the same `.15/.35` strengths. It is clipping-free and differs materially
+> from AZ0, but reaches only `0.7990` style gain over AO6 and `0.9332x` AZ0
+> style, while also missing the real-film-displacement and AO6-difference
+> gates. Close without visual review or parameter rescue.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.
