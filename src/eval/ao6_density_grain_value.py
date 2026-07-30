@@ -300,3 +300,121 @@ def build_blind_sheets(
         "mappings": mappings,
         "mapping_commitment_sha256": _canonical_sha(mappings),
     }
+
+
+def build_blind_crop_sheets(
+    *,
+    root: Path,
+    config: Mapping[str, Any],
+    report: Mapping[str, Any],
+    output_dir: Path,
+    crop_size: int = 256,
+    sample_orders: list[Mapping[str, list[str]]] | None = None,
+) -> dict[str, Any]:
+    """Build mapping-blind 1:1 crop sheets for scale-sensitive grain review."""
+
+    if crop_size < 64:
+        raise AO6DensityGrainError("blind crop size is too small")
+    records = {
+        (str(row["sample_id"]), str(row["arm_id"])): row
+        for row in report["records"]
+    }
+    ids = list(config["population"]["expected_ids"])[:9]
+    arms = list(config["arms"])
+    default_orders = [
+        [arms[0], arms[1], arms[2]],
+        [arms[2], arms[0], arms[1]],
+        [arms[1], arms[2], arms[0]],
+    ]
+    if sample_orders is not None:
+        if len(sample_orders) != 3:
+            raise AO6DensityGrainError("blind crop orders require three rounds")
+        for round_orders in sample_orders:
+            if set(round_orders) != set(ids):
+                raise AO6DensityGrainError("blind crop sample order drift")
+            if any(sorted(order) != sorted(arms) for order in round_orders.values()):
+                raise AO6DensityGrainError("blind crop arm order drift")
+    labels = ["A", "B", "C"]
+    mappings: list[dict[str, Any]] = []
+    tile_width = crop_size * 2 + 28
+    tile_height = crop_size + 34
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for round_index in range(1, 4):
+        if sample_orders is None:
+            round_orders = {
+                sample_id: default_orders[round_index - 1] for sample_id in ids
+            }
+            mappings.append(
+                dict(zip(labels, default_orders[round_index - 1], strict=True))
+            )
+        else:
+            round_orders = sample_orders[round_index - 1]
+            mappings.append(
+                {
+                    sample_id: dict(zip(labels, round_orders[sample_id], strict=True))
+                    for sample_id in ids
+                }
+            )
+        sheet = Image.new(
+            "RGB",
+            (tile_width * len(labels), tile_height * len(ids)),
+            (230, 230, 230),
+        )
+        for y, sample_id in enumerate(ids):
+            order = round_orders[sample_id]
+            for x, arm_id in enumerate(order):
+                if arm_id == arms[0]:
+                    path = (
+                        root
+                        / str(config["population"]["base_directory"])
+                        / f"{sample_id}.png"
+                    )
+                else:
+                    path = output_dir.parent / records[(sample_id, arm_id)][
+                        "output_path"
+                    ]
+                with Image.open(path) as image:
+                    rgb = image.convert("RGB")
+                    if min(rgb.size) < crop_size:
+                        raise AO6DensityGrainError(
+                            f"{sample_id} is smaller than blind crop"
+                        )
+                    half = crop_size // 2
+                    centers = [
+                        (rgb.width // 2, rgb.height // 2),
+                        (3 * rgb.width // 4, rgb.height // 4),
+                    ]
+                    crops = []
+                    for center_x, center_y in centers:
+                        left = min(max(center_x - half, 0), rgb.width - crop_size)
+                        top = min(max(center_y - half, 0), rgb.height - crop_size)
+                        crops.append(
+                            rgb.crop(
+                                (
+                                    left,
+                                    top,
+                                    left + crop_size,
+                                    top + crop_size,
+                                )
+                            )
+                        )
+                canvas = Image.new("RGB", (tile_width, tile_height), "white")
+                canvas.paste(crops[0], (8, 28))
+                canvas.paste(crops[1], (crop_size + 20, 28))
+                ImageDraw.Draw(canvas).text(
+                    (8, 6), f"{labels[x]}  {sample_id}", fill="black"
+                )
+                sheet.paste(canvas, (x * tile_width, y * tile_height))
+        sheet.save(
+            output_dir / f"blind_round_{round_index}_crops.png",
+            format="PNG",
+            compress_level=6,
+        )
+    return {
+        "sample_ids": ids,
+        "crop_size": crop_size,
+        "crop_centers": ["image_center", "three_quarter_x_one_quarter_y"],
+        "mappings": mappings,
+        "mapping_commitment_sha256": _canonical_sha(mappings),
+    }

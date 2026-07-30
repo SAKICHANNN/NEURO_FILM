@@ -5,10 +5,12 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from PIL import Image
 
 from src.eval.ao6_density_grain_value import (
     AO6DensityGrainError,
     apply_linear_density_grain,
+    build_blind_crop_sheets,
     validate_contract,
 )
 
@@ -69,3 +71,114 @@ def test_density_grain_rejects_invalid_input() -> None:
 def test_frozen_contract_binds_parent_and_population() -> None:
     rows = validate_contract(ROOT, _config())
     assert len(rows) == 16
+
+
+def test_blind_crop_sheets_are_mapping_consistent(tmp_path: Path) -> None:
+    ids = [f"sample_{index}" for index in range(9)]
+    arms = ["base", "grain", "full"]
+    base_dir = tmp_path / "base"
+    run_dir = tmp_path / "run"
+    blind_dir = run_dir / "blind"
+    base_dir.mkdir()
+    records = []
+    for sample_index, sample_id in enumerate(ids):
+        image = np.full(
+            (96, 128, 3), 32 + sample_index, dtype=np.uint8
+        )
+        Image.fromarray(image).save(base_dir / f"{sample_id}.png")
+        for arm_index, arm_id in enumerate(arms[1:], start=1):
+            relative = Path(arm_id) / f"{sample_id}.png"
+            (run_dir / relative).parent.mkdir(parents=True, exist_ok=True)
+            Image.fromarray(image + arm_index).save(run_dir / relative)
+            records.append(
+                {
+                    "sample_id": sample_id,
+                    "arm_id": arm_id,
+                    "output_path": relative.as_posix(),
+                }
+            )
+    config = {
+        "population": {
+            "expected_ids": ids,
+            "base_directory": base_dir.relative_to(tmp_path).as_posix(),
+        },
+        "arms": arms,
+    }
+    result = build_blind_crop_sheets(
+        root=tmp_path,
+        config=config,
+        report={"records": records},
+        output_dir=blind_dir,
+        crop_size=64,
+    )
+
+    assert result["crop_size"] == 64
+    assert result["mappings"] == [
+        {"A": "base", "B": "grain", "C": "full"},
+        {"A": "full", "B": "base", "C": "grain"},
+        {"A": "grain", "B": "full", "C": "base"},
+    ]
+    for round_index in range(1, 4):
+        with Image.open(
+            blind_dir / f"blind_round_{round_index}_crops.png"
+        ) as sheet:
+            assert sheet.size == ((64 * 2 + 28) * 3, (64 + 34) * 9)
+
+
+def test_blind_crop_sheets_accept_per_sample_orders(tmp_path: Path) -> None:
+    ids = [f"sample_{index}" for index in range(9)]
+    arms = ["base", "grain", "full"]
+    base_dir = tmp_path / "base"
+    run_dir = tmp_path / "run"
+    base_dir.mkdir()
+    records = []
+    for sample_index, sample_id in enumerate(ids):
+        image = np.full((96, 128, 3), 32 + sample_index, dtype=np.uint8)
+        Image.fromarray(image).save(base_dir / f"{sample_id}.png")
+        for arm_index, arm_id in enumerate(arms[1:], start=1):
+            relative = Path(arm_id) / f"{sample_id}.png"
+            (run_dir / relative).parent.mkdir(parents=True, exist_ok=True)
+            Image.fromarray(image + arm_index).save(run_dir / relative)
+            records.append(
+                {
+                    "sample_id": sample_id,
+                    "arm_id": arm_id,
+                    "output_path": relative.as_posix(),
+                }
+            )
+    config = {
+        "population": {
+            "expected_ids": ids,
+            "base_directory": base_dir.relative_to(tmp_path).as_posix(),
+        },
+        "arms": arms,
+    }
+    orders = [
+        {
+            sample_id: [
+                arms[(sample_index + round_index + offset) % 3]
+                for offset in range(3)
+            ]
+            for sample_index, sample_id in enumerate(ids)
+        }
+        for round_index in range(3)
+    ]
+    result = build_blind_crop_sheets(
+        root=tmp_path,
+        config=config,
+        report={"records": records},
+        output_dir=run_dir / "randomized_blind",
+        crop_size=64,
+        sample_orders=orders,
+    )
+
+    assert result["mappings"][0]["sample_0"] == {
+        "A": "base",
+        "B": "grain",
+        "C": "full",
+    }
+    assert result["mappings"][1]["sample_0"] == {
+        "A": "grain",
+        "B": "full",
+        "C": "base",
+    }

@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.eval.ao6_density_grain_value import (
+    build_blind_crop_sheets,
     build_blind_sheets,
     evaluate_report,
     render_bank,
@@ -46,6 +47,17 @@ def main() -> int:
             report=report,
             output_dir=output_dir / "blind",
         )
+        crops = build_blind_crop_sheets(
+            root=ROOT,
+            config=config,
+            report=report,
+            output_dir=output_dir / "blind",
+        )
+        if (
+            crops["mapping_commitment_sha256"]
+            != blind["mapping_commitment_sha256"]
+        ):
+            raise RuntimeError("blind crop mapping drift")
         report["blind"] = {
             "status": "built_after_automatic_pass",
             "sample_ids": blind["sample_ids"],
