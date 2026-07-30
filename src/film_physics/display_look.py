@@ -264,6 +264,133 @@ def build_source_context_display_look_stages(
     return apply_base, apply_residual
 
 
+def build_source_context_display_look_row_stages(
+    payload: dict[str, Any],
+    source: np.ndarray,
+    *,
+    tile_rows: int,
+) -> tuple[
+    Callable[[np.ndarray], np.ndarray],
+    Callable[[np.ndarray], np.ndarray],
+]:
+    """Build exact base/residual row kernels with one staged full-frame context."""
+
+    validate_display_look_payload(payload)
+    if (
+        isinstance(tile_rows, bool)
+        or not isinstance(tile_rows, int)
+        or tile_rows <= 0
+    ):
+        raise ValueError("tile_rows must be a positive integer")
+    source_value = np.asarray(source)
+    if (
+        source_value.ndim != 3
+        or source_value.shape[-1] != 3
+        or source_value.shape[0] == 0
+        or source_value.shape[1] == 0
+        or not np.all(np.isfinite(source_value))
+        or np.any(source_value < 0.0)
+        or np.any(source_value > 1.0)
+    ):
+        raise ValueError("row-stage source must be finite encoded HxWx3")
+    base = payload["base"]
+    anchor = payload["anchor"]
+    residual = payload["residual"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    residual_operator = PositiveFilmResponseOperator.from_dict(
+        residual["operator"]
+    )
+    source_context = build_density_source_context_row_staged(
+        payload,
+        source_value,
+        tile_rows=tile_rows,
+    )
+
+    def apply_density(encoded: np.ndarray) -> np.ndarray:
+        linear = encoded_srgb_to_linear(
+            np.asarray(encoded, dtype=np.float64)
+        )
+        return linear_srgb_to_encoded(
+            density_operator.apply(
+                linear, strength=float(base["density_strength"])
+            )
+        )
+
+    def apply_base_rows(encoded_rows: np.ndarray) -> np.ndarray:
+        rows = np.asarray(encoded_rows)
+        if (
+            rows.ndim != 3
+            or rows.shape[-1] != 3
+            or rows.shape[1:] != source_value.shape[1:]
+            or rows.shape[0] == 0
+            or not np.all(np.isfinite(rows))
+            or np.any(rows < 0.0)
+            or np.any(rows > 1.0)
+        ):
+            raise ValueError("base rows must match source width and RGB")
+        output = _style_transfer_rgb_with_context(
+            np.asarray(apply_density(rows), dtype=np.float32),
+            anchor["stats"],
+            str(anchor["style"]),
+            float(anchor["strength"]),
+            float(anchor["luma_strength"]),
+            float(anchor["grain"]),
+            int(anchor["seed"]),
+            True,
+            gamut_mode=str(anchor["gamut_mode"]),
+            output_margin=0,
+            source_context=source_context,
+        )
+        return np.asarray(
+            apply_output_margin(
+                np.asarray(output, dtype=np.float64),
+                int(base["final_output_margin"]),
+            ),
+            dtype=np.float32,
+        )
+
+    def apply_residual_rows(base_rows: np.ndarray) -> np.ndarray:
+        rows = np.asarray(base_rows)
+        if (
+            rows.ndim != 3
+            or rows.shape[-1] != 3
+            or rows.shape[1:] != source_value.shape[1:]
+            or rows.shape[0] == 0
+            or not np.all(np.isfinite(rows))
+            or np.any(rows < 0.0)
+            or np.any(rows > 1.0)
+        ):
+            raise ValueError("residual rows must match source width and RGB")
+        result = apply_factorized_boundary_guard(
+            residual_operator,
+            encoded_srgb_to_linear(rows),
+            tone_strength=float(residual["tone_strength"]),
+            chroma_strength=float(residual["chroma_strength"]),
+            luma_weights=np.asarray(
+                residual["luma_weights"], dtype=np.float64
+            ),
+            hard_boundary_epsilon_encoded_srgb=float(
+                residual["hard_boundary_epsilon_encoded_srgb"]
+            ),
+            guard_boundary_epsilon_encoded_srgb=float(
+                residual["guard_boundary_epsilon_encoded_srgb"]
+            ),
+        )
+        output = linear_srgb_to_encoded(result.output)
+        if (
+            output.shape != rows.shape
+            or not np.all(np.isfinite(output))
+            or np.any(output < 0.0)
+            or np.any(output > 1.0)
+        ):
+            raise RuntimeError("row residual left encoded RGB")
+        return np.asarray(output, dtype=np.float32)
+
+    return apply_base_rows, apply_residual_rows
+
+
 def build_source_context_display_look_row_streamed(
     payload: dict[str, Any],
     source: np.ndarray,
@@ -504,6 +631,7 @@ def build_density_source_context_inplace_packed_lab(
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
     "build_source_context_display_look",
+    "build_source_context_display_look_row_stages",
     "build_source_context_display_look_stages",
     "build_source_context_display_look_row_streamed",
     "build_density_source_context_row_staged",

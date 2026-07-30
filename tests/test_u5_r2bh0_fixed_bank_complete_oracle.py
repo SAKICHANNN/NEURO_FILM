@@ -7,6 +7,12 @@ import numpy as np
 from PIL import Image
 
 import src.eval.fixed_bank_complete_oracle as oracle
+from src.film_physics.profile_consumer import (
+    compile_standalone_profile_artifact,
+)
+from src.film_physics.display_look import (
+    build_source_context_display_look_stages,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,42 +32,45 @@ def test_bh0_validator_recovers_exact_population_and_operators() -> None:
     assert validated["az0_candidate"]["neutral_strength"] == 0.15
 
 
-def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit(
-    monkeypatch,
-) -> None:
+def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit() -> None:
     validated = oracle.validate_contract(ROOT, _config())
     scene = np.full((257, 11, 3), 0.18, dtype=np.float32)
-    base = np.full_like(scene, 0.42)
-    ao6 = np.full_like(scene, 0.48)
     native = np.full_like(scene, 0.51)
+    build_config = validated["build_config"]
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT,
+        config=json.loads(
+            (ROOT / build_config["profile_compiler_config"]).read_text()
+        ),
+    )
 
-    def fake_render_fixed_arms(**_: object):
-        return (
-            {
-                oracle.ARMS[0]: base,
-                oracle.ARMS[1]: ao6,
-                "fixed_native_standard_full_strength_1_0": native,
-            },
-            {
+    class FakeRuntime:
+        def render_to_sink(self, source, *, output_sink):
+            output_sink(0, source.shape[0], native)
+            return {
                 "receipt_sha256": "a" * 64,
                 "output": {
-                    "array_sha256": "b" * 64,
+                    "array_sha256": oracle.hashlib.sha256(
+                        native.tobytes()
+                    ).hexdigest(),
                 },
-            },
-        )
+            }
 
-    monkeypatch.setattr(
-        oracle, "render_fixed_arms", fake_render_fixed_arms
-    )
     outputs, diagnostics = oracle.render_fixed_bank(
         scene_linear=scene,
-        artifact={},
-        runtime=object(),
+        artifact=artifact,
+        runtime=FakeRuntime(),
         ap3_operator=validated["ap3_operator"],
         ao6_operator=validated["ao6_operator"],
         ap3_config=validated["ap3_config"],
         az0_candidate=validated["az0_candidate"],
     )
+    base = outputs[oracle.ARMS[0]]
+    assert not np.array_equal(
+        outputs[oracle.ARMS[0]],
+        outputs[oracle.ARMS[1]],
+    )
+    assert np.array_equal(outputs[oracle.ARMS[4]], native)
     assert tuple(outputs) == oracle.ARMS
     assert all(value.shape == scene.shape for value in outputs.values())
     assert all(value.dtype == np.float32 for value in outputs.values())
@@ -74,6 +83,21 @@ def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit(
     assert not np.array_equal(outputs[oracle.ARMS[3]], base)
     assert diagnostics["native_receipt_sha256"] == "a" * 64
     assert diagnostics["residual_row_chunk"] == 128
+    encoded = oracle.linear_srgb_to_encoded(
+        scene.astype(np.float64)
+    ).astype(np.float32)
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    full_base, full_residual = build_source_context_display_look_stages(
+        payload, encoded
+    )
+    expected_base = np.asarray(full_base(encoded), dtype=np.float32)
+    expected_ao6 = np.asarray(
+        full_residual(expected_base), dtype=np.float32
+    )
+    assert np.array_equal(outputs[oracle.ARMS[0]], expected_base)
+    assert np.array_equal(outputs[oracle.ARMS[1]], expected_ao6)
 
     base_linear = oracle.encoded_srgb_to_linear(base.astype(np.float64))
     ap3_spec = validated["ap3_config"]["fixed_candidate"]

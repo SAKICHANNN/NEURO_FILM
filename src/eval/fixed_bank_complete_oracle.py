@@ -18,7 +18,9 @@ from src.eval.b0_real_film_residual_fresh_confirmation import (
 from src.eval.fresh_native_standard_confirmation import (
     boundary_metrics,
     load_confirmation_working_image,
-    render_fixed_arms,
+)
+from src.film_physics.display_look import (
+    build_source_context_display_look_row_stages,
 )
 from src.eval.global_frontier import sha256_file
 from src.preprocess import save_srgb16_png
@@ -210,12 +212,42 @@ def render_fixed_bank(
     ap3_config: Mapping[str, Any],
     az0_candidate: Mapping[str, Any],
 ) -> tuple[dict[str, np.ndarray], dict[str, Any]]:
-    base_outputs, receipt = render_fixed_arms(
-        scene_linear=scene_linear,
-        artifact=artifact,
-        runtime=runtime,
+    source = np.ascontiguousarray(scene_linear, dtype=np.float32)
+    row_chunk = 128
+    encoded = np.empty_like(source)
+    for y0 in range(0, source.shape[0], row_chunk):
+        y1 = min(source.shape[0], y0 + row_chunk)
+        encoded[y0:y1] = linear_srgb_to_encoded(
+            np.asarray(source[y0:y1], dtype=np.float64)
+        ).astype(np.float32)
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    apply_base_rows, apply_residual_rows = (
+        build_source_context_display_look_row_stages(
+            payload,
+            encoded,
+            tile_rows=row_chunk,
+        )
     )
-    base = np.asarray(base_outputs[ARMS[0]], dtype=np.float32)
+    base = np.empty_like(source)
+    ao6 = np.empty_like(source)
+    for y0 in range(0, source.shape[0], row_chunk):
+        y1 = min(source.shape[0], y0 + row_chunk)
+        base[y0:y1] = apply_base_rows(encoded[y0:y1])
+        ao6[y0:y1] = apply_residual_rows(base[y0:y1])
+    del encoded
+    native = np.empty_like(source)
+
+    def sink(y0: int, y1: int, rows: np.ndarray) -> None:
+        native[y0:y1] = rows
+
+    receipt = runtime.render_to_sink(source, output_sink=sink)
+    if (
+        hashlib.sha256(native.tobytes()).hexdigest()
+        != receipt["output"]["array_sha256"]
+    ):
+        raise FixedBankOracleError("native Standard receipt drift")
     ap3_spec = ap3_config["fixed_candidate"]
     ap3_controls = ap3_spec["factorization"]
     ap3 = np.empty_like(base)
@@ -277,11 +309,11 @@ def render_fixed_bank(
             np.count_nonzero(az0_guarded.opponent_scale < 1.0 - 1e-12)
         )
     outputs = {
-        ARMS[0]: base_outputs[ARMS[0]],
-        ARMS[1]: base_outputs[ARMS[1]],
+        ARMS[0]: base,
+        ARMS[1]: ao6,
         ARMS[2]: ap3,
         ARMS[3]: az0,
-        ARMS[4]: base_outputs["fixed_native_standard_full_strength_1_0"],
+        ARMS[4]: native,
     }
     source_shape = np.asarray(scene_linear).shape
     for arm_id, values in outputs.items():
