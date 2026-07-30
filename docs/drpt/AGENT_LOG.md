@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-28 - U5.R2BH0 complete fixed-bank Oracle closes routing
+
+- Implemented bounded-memory exact execution for fixed B0, AO6 t15/c35,
+  AP3 t10/c25, AZ0 .15/.35 and native Standard 1.0, including deterministic
+  RAW decode and create-only RGB16 output.
+- Two independent 50-output runs are byte-identical: report SHA
+  `976f9e73...aacc`, stable evidence `1c398ba9...dcb`; all automatic gates pass.
+- Three anonymous complete-ranking rounds were committed before mapping reveal.
+  Zero severe artifacts were confirmed. Fixed B0 is the best all-round global
+  arm, while the descriptive per-source Oracle gains 10 ranks.
+- The preregistered cross-round product gate fails: only 2/3 folds improve,
+  aggregate held-out gain is 2 ranks/3.85%, and only three sources have a
+  stable non-global choice. Selector/router training and dense blending close.
+- Next safe colour leaf is an independent-population fixed B0-versus-AO6 global
+  confirmation. BH0 sources, strengths and rankings cannot be reused or tuned.
+
 # 2026-07-28 - U5.R2BH0S opens a complete fixed-bank Oracle
 
 - Froze twelve metadata-only raw.pixls.us CC0 rows before pixel access,

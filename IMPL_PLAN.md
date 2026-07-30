@@ -1,12 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
-> U5.R2BH0S now passes the source gate for the complete fixed-bank Oracle
-> required by P8BQ. Twelve metadata-frozen CC0 RAW rows produce ten eligible
-> rows from ten makes after one fixed LibRaw failure and one retained
-> untrustworthy magenta decode; no replacements were added. Two runs are
-> byte-identical with zero within/cross-pool leakage and no severe artifact
-> among eligible rows. U5.R2BH0 must now render five exact existing explicit
-> arms and collect complete rankings before any selector or router work.
+> U5.R2BH0 now closes the complete fixed-bank selector/router hypothesis.
+> Two 50-render runs and the report are byte-identical, all automatic and
+> severe gates pass, and three complete anonymous rounds select fixed B0 as
+> the best global arm. Leave-one-round-out hard choices gain only 2 ranks
+> (3.85%) with three stable non-global sources, below the frozen 6-rank,
+> 8% and four-source gates. Do not train a selector or blend experts. The next
+> colour-algorithm leaf must use a new population to test B0 versus AO6 as
+> fixed global policies; it may not reuse BH0 sources or retune either arm.
 >
 > U6.P8BQ performs a hash-bound retrospective Oracle diagnostic without
 > reopening P8BP or adding visual rounds. The P7F development observations

@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from src.eval.global_frontier import sha256_file
 
 
@@ -14,6 +16,9 @@ OBSERVATIONS = (
 MAPPING_RECEIPT = (
     ROOT
     / "configs/u5_r2bh0_fixed_bank_complete_oracle_mapping_receipt_v1.json"
+)
+DECISION = (
+    ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_decision_v1.json"
 )
 
 
@@ -115,3 +120,32 @@ def test_bh0_mapping_receipt_binds_frozen_observations() -> None:
     )
     assert receipt["observations_sha256"] == sha256_file(OBSERVATIONS)
     assert len(receipt["mapping_sha256_by_round"]) == 3
+
+
+def test_bh0_formal_decision_closes_selector_router() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["status"] == "oracle_fail_close_selector_and_router"
+    assert not decision["pass"]
+    assert decision["stable_evidence_id"] == (
+        "d2507b4f954084d9e93abbfd826c5868e72c8ebd3e2d81a79aaea0fb0262d278"
+    )
+    assert decision["leave_one_round_out"]["improved_folds"] == 2
+    assert decision["leave_one_round_out"]["aggregate_rank_gain"] == 2
+    assert decision["leave_one_round_out"][
+        "aggregate_relative_rank_gain"
+    ] == pytest.approx(0.038461538461538464)
+    assert len(
+        decision["leave_one_round_out"]["stable_non_global_choices"]
+    ) == 3
+    assert not decision["gates"][
+        "minimum_aggregate_heldout_rank_gain"
+    ]["pass"]
+    assert not decision["gates"][
+        "minimum_aggregate_heldout_relative_rank_gain"
+    ]["pass"]
+    assert not decision["gates"][
+        "minimum_sources_with_stable_non_global_choice"
+    ]["pass"]
+    assert decision["descriptive_all_round_oracle"][
+        "selected_global_arm"
+    ] == "fixed_b0"

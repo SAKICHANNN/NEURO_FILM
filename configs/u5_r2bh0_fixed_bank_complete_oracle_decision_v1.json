@@ -1,0 +1,193 @@
+{
+  "adjudicator_software_commit": "a03fbb5d7ae21ec5776a052132716de6fd88914c",
+  "claim_ceiling": "fresh-population autonomous complete-ranking product-value audit of five fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety, selector evidence or product promotion",
+  "dense_blending_allowed": false,
+  "descriptive_all_round_oracle": {
+    "global_arm_rank_sums": {
+      "fixed_ao6_colour_only_t15_c35": 106,
+      "fixed_ap3_ektachrome_composition": 98,
+      "fixed_az0_optical_density_residual": 69,
+      "fixed_b0": 52,
+      "fixed_native_standard_full_strength_1_0": 125
+    },
+    "global_rank_total": 52,
+    "oracle_rank_total": 42,
+    "rank_gain": 10,
+    "selected_global_arm": "fixed_b0",
+    "selected_source_arms": {
+      "dji_fc4382": "fixed_b0",
+      "fujifilm_x_e5": "fixed_b0",
+      "google_pixel_7_pro": "fixed_b0",
+      "minolta_dimage_5": "fixed_b0",
+      "nikon_d5300": "fixed_b0",
+      "om_system_om_3": "fixed_az0_optical_density_residual",
+      "panasonic_dc_s1m2es": "fixed_az0_optical_density_residual",
+      "phase_one_p45_plus": "fixed_b0",
+      "samsung_ek_gn120": "fixed_b0",
+      "sony_ilme_fx2": "fixed_az0_optical_density_residual"
+    }
+  },
+  "direct_rgb_prediction_allowed": false,
+  "experiment_id": "u5.r2bh0-fixed-bank-complete-oracle-v1",
+  "gates": {
+    "maximum_confirmed_severe_artifact_count": {
+      "pass": true,
+      "threshold": 0,
+      "value": 0
+    },
+    "minimum_aggregate_heldout_rank_gain": {
+      "pass": false,
+      "threshold": 6,
+      "value": 2
+    },
+    "minimum_aggregate_heldout_relative_rank_gain": {
+      "pass": false,
+      "threshold": 0.08,
+      "value": 0.038461538461538464
+    },
+    "minimum_improved_leave_one_round_out_folds": {
+      "pass": true,
+      "threshold": 2,
+      "value": 2
+    },
+    "minimum_sources_with_stable_non_global_choice": {
+      "pass": false,
+      "threshold": 4,
+      "value": 3
+    }
+  },
+  "inputs": {
+    "blind_mapping_sha256": [
+      "2e372e50b225dd7015b71aeb7333ad470311a5eac1f1e2d9c88c4db81d2ce072",
+      "df9e48958facf9f23f2fca361b3dfd26d7dc922b7a77e47d99674921c7e2ac5c",
+      "157918798736d43a56afd997513124a0917526c8176ba21d5f3e7f27737231a4"
+    ],
+    "config_sha256": "9cf24d0a4dfe4e6d6b81775e7156f283accdd538d7f08ea61f8b886269bf4d1f",
+    "mapping_receipt_sha256": "178960042fb95d29afe911ac12952829a8d28a42c44f91d0d0f73acb5aca6e35",
+    "observations_sha256": "d3307e561abba27a5db76c3f62cb51292e4de571f6ffd87a9e2ba97f599890b7",
+    "render_report_sha256": "976f9e735ca461cbe2905aa8d156bfec866e9f1b97e0c9fbc8a83e999099aacc",
+    "render_stable_evidence_id": "1c398ba9e6355fc1cbf74034989cc76e82c0b1a73165aa14bce97ff5827f9dcb"
+  },
+  "leave_one_round_out": {
+    "aggregate_global_rank_total": 52,
+    "aggregate_rank_gain": 2,
+    "aggregate_relative_rank_gain": 0.038461538461538464,
+    "aggregate_selected_rank_total": 50,
+    "folds": [
+      {
+        "development_global_rank_sums": {
+          "fixed_ao6_colour_only_t15_c35": 69,
+          "fixed_ap3_ektachrome_composition": 66,
+          "fixed_az0_optical_density_residual": 48,
+          "fixed_b0": 35,
+          "fixed_native_standard_full_strength_1_0": 82
+        },
+        "development_rounds": [
+          2,
+          3
+        ],
+        "heldout_global_rank_total": 17,
+        "heldout_rank_gain": 0,
+        "heldout_round": 1,
+        "heldout_selected_rank_total": 17,
+        "selected_global_arm": "fixed_b0",
+        "selected_source_arms": {
+          "dji_fc4382": "fixed_b0",
+          "fujifilm_x_e5": "fixed_b0",
+          "google_pixel_7_pro": "fixed_b0",
+          "minolta_dimage_5": "fixed_b0",
+          "nikon_d5300": "fixed_b0",
+          "om_system_om_3": "fixed_az0_optical_density_residual",
+          "panasonic_dc_s1m2es": "fixed_az0_optical_density_residual",
+          "phase_one_p45_plus": "fixed_b0",
+          "samsung_ek_gn120": "fixed_b0",
+          "sony_ilme_fx2": "fixed_az0_optical_density_residual"
+        }
+      },
+      {
+        "development_global_rank_sums": {
+          "fixed_ao6_colour_only_t15_c35": 77,
+          "fixed_ap3_ektachrome_composition": 62,
+          "fixed_az0_optical_density_residual": 43,
+          "fixed_b0": 33,
+          "fixed_native_standard_full_strength_1_0": 85
+        },
+        "development_rounds": [
+          1,
+          3
+        ],
+        "heldout_global_rank_total": 19,
+        "heldout_rank_gain": 1,
+        "heldout_round": 2,
+        "heldout_selected_rank_total": 18,
+        "selected_global_arm": "fixed_b0",
+        "selected_source_arms": {
+          "dji_fc4382": "fixed_b0",
+          "fujifilm_x_e5": "fixed_b0",
+          "google_pixel_7_pro": "fixed_b0",
+          "minolta_dimage_5": "fixed_b0",
+          "nikon_d5300": "fixed_az0_optical_density_residual",
+          "om_system_om_3": "fixed_b0",
+          "panasonic_dc_s1m2es": "fixed_az0_optical_density_residual",
+          "phase_one_p45_plus": "fixed_b0",
+          "samsung_ek_gn120": "fixed_b0",
+          "sony_ilme_fx2": "fixed_az0_optical_density_residual"
+        }
+      },
+      {
+        "development_global_rank_sums": {
+          "fixed_ao6_colour_only_t15_c35": 66,
+          "fixed_ap3_ektachrome_composition": 68,
+          "fixed_az0_optical_density_residual": 47,
+          "fixed_b0": 36,
+          "fixed_native_standard_full_strength_1_0": 83
+        },
+        "development_rounds": [
+          1,
+          2
+        ],
+        "heldout_global_rank_total": 16,
+        "heldout_rank_gain": 1,
+        "heldout_round": 3,
+        "heldout_selected_rank_total": 15,
+        "selected_global_arm": "fixed_b0",
+        "selected_source_arms": {
+          "dji_fc4382": "fixed_b0",
+          "fujifilm_x_e5": "fixed_b0",
+          "google_pixel_7_pro": "fixed_native_standard_full_strength_1_0",
+          "minolta_dimage_5": "fixed_b0",
+          "nikon_d5300": "fixed_b0",
+          "om_system_om_3": "fixed_az0_optical_density_residual",
+          "panasonic_dc_s1m2es": "fixed_az0_optical_density_residual",
+          "phase_one_p45_plus": "fixed_b0",
+          "samsung_ek_gn120": "fixed_b0",
+          "sony_ilme_fx2": "fixed_az0_optical_density_residual"
+        }
+      }
+    ],
+    "improved_folds": 2,
+    "stable_non_global_choices": {
+      "om_system_om_3": {
+        "arm": "fixed_az0_optical_density_residual",
+        "fold_count": 2
+      },
+      "panasonic_dc_s1m2es": {
+        "arm": "fixed_az0_optical_density_residual",
+        "fold_count": 3
+      },
+      "sony_ilme_fx2": {
+        "arm": "fixed_az0_optical_density_residual",
+        "fold_count": 3
+      }
+    }
+  },
+  "node": "ULT > U5 > U5.R2BH0",
+  "pass": false,
+  "production_default_changed": false,
+  "schema": "neuro_film.u5_r2bh0_fixed_bank_oracle_decision.v1",
+  "schema_version": 1,
+  "stable_evidence_id": "d2507b4f954084d9e93abbfd826c5868e72c8ebd3e2d81a79aaea0fb0262d278",
+  "status": "oracle_fail_close_selector_and_router",
+  "training_allowed": false,
+  "training_scope_if_pass": "none"
+}
