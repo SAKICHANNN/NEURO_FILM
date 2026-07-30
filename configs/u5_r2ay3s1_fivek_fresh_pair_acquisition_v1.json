@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3s1-fivek-fresh-pair-acquisition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY3S1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "1a297a3746737641c0131d65b4d8bca9d4fb7f66",
+  "preflight": {
+    "manifest": "outputs/u5_r2ay3s0_fivek_fresh_pair_preflight_v1/run_a/manifest.json",
+    "manifest_sha256": "d03e66b6dc64ed8f89943f1d11edb437106973c2fc3f38608d4b927c7083fbdb",
+    "report": "outputs/u5_r2ay3s0_fivek_fresh_pair_preflight_v1/run_a/report.json",
+    "report_sha256": "445e9843b7bd246e151e532ec3e4917e34aeb55cd3781fb2c8004fd9d6125ad9",
+    "required_automatic_pass": true,
+    "expected_pairs": 64,
+    "expected_assets": 128,
+    "expected_bytes": 3648683762
+  },
+  "ownership": {
+    "external_root": "D:/nf-019f4b76-neuro-film-data/fivek-ay3-fresh64-v1",
+    "owner": "codex-thread-019f4b76-e70a-75c0-b7ea-b473ab38c200",
+    "purpose": "bounded internal-research fresh FiveK confirmation data",
+    "foreign_resource_mutation_allowed": false,
+    "move_or_delete_unrelated_files_allowed": false
+  },
+  "download": {
+    "maximum_workers": 4,
+    "timeout_seconds": 120,
+    "resume_partial_files": true,
+    "atomic_part_then_replace": true,
+    "maximum_total_bytes": 4294967296,
+    "minimum_free_bytes_before_start": 10737418240,
+    "user_agent": "Neuro-Film-Research/1.0"
+  },
+  "integrity": {
+    "require_exact_content_length": true,
+    "hash": "sha256",
+    "dng_decode": "project WorkingImage raw decoder, validation only",
+    "expert_decode": "TIFF first-page RGB uint16 shape validation",
+    "require_source_target_visible_dimensions_equal": true,
+    "copy_license_and_file_list_into_owned_root": true
+  },
+  "license_inputs": {
+    "license": "data/raw/fivek/legal/LicenseAdobe.txt",
+    "license_sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+    "file_list": "data/raw/fivek/legal/filesAdobe.txt",
+    "file_list_sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"
+  },
+  "pass_gates": {
+    "pairs": 64,
+    "assets": 128,
+    "downloaded_bytes": 3648683762,
+    "length_failures": 0,
+    "hash_failures": 0,
+    "decode_failures": 0,
+    "dimension_mismatches": 0,
+    "license_copies": 2
+  },
+  "branch_rules": {
+    "pass": "open duplicate/leakage and camera/content support audit before any fitting",
+    "fail": "retain only valid completed owned files for exact resume; do not substitute mirrors or expand the selection"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded integrity-verified internal-research acquisition of 64 fresh FiveK digital-retouch pairs; no learning, film, stock, calibration, preference or product claim"
+}
