@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bc1-ao6-density-grain-value-v1",
+  "status": "observations_frozen_before_mapping_reveal",
+  "protocol": {
+    "source": "per-sample randomized 1:1 crop sheets",
+    "crop_size": 256,
+    "crop_centers": [
+      "image_center",
+      "three_quarter_x_one_quarter_y"
+    ],
+    "rounds": 3,
+    "population_size": 9,
+    "ranking_rule": "prefer visible organic film-like texture while preserving local clarity; reject severe artifacts before preference",
+    "original_global_mapping_sheets": "excluded because the implementation disclosed their fixed order to the primary evaluator"
+  },
+  "mapping_commitment_sha256": "5885c8b0d3e797a7d095fcaf9c74333f8c68a102a77ea1e817cc665a236a9e4d",
+  "sheet_sha256": {
+    "round_1": "97e63194591b2c9a1f5510edf8364cd53a22472406a2a93422941621e4934102",
+    "round_2": "7c735dd0a487817b550ea1daae3b69d8102c55ffca273f9b97ad677ae1b50e7a",
+    "round_3": "6df05aad822ea2f99af6e0a7cf8899b17476992189cb45e66caec0a3032b5b5f"
+  },
+  "sample_ids": [
+    "canon_eos_1d_mark_iv",
+    "canon_eos_kiss_f",
+    "fujifilm_finepix_s5000",
+    "kodak_dcs_pro_14n",
+    "leica_d_lux_6",
+    "leica_digilux_3",
+    "nikon_d200",
+    "nikon_d2x",
+    "olympus_e_p7"
+  ],
+  "preferred_labels": {
+    "round_1": [
+      "A",
+      "A",
+      "B",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "B"
+    ],
+    "round_2": [
+      "C",
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "A"
+    ],
+    "round_3": [
+      "B",
+      "A",
+      "A",
+      "B",
+      "A",
+      "A",
+      "A",
+      "A",
+      "B"
+    ]
+  },
+  "severe_artifact_review": {
+    "confirmed_severe_failures": 0,
+    "red_or_colored_speckle": false,
+    "posterization_or_banding": false,
+    "geometry_or_content_corruption": false,
+    "objectionable_halo": false,
+    "notes": "The two density-grain arms remain natural and achromatic at 1:1 crops. Grain is most legible in skies, painted walls and deep shadows; no BC0 colored-boundary failure recurs."
+  },
+  "claim_ceiling": "autonomous masked development preference on fixed crops; not population preference, measured film grain, stock response, calibration or product promotion"
+}
