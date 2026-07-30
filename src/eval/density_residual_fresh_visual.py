@@ -159,4 +159,107 @@ def build_fresh_visual_evidence(
     return build
 
 
-__all__ = ["build_fresh_visual_evidence"]
+def adjudicate_fresh_visual(
+    *,
+    config: Mapping[str, Any],
+    observations: Mapping[str, Any],
+    build_dir: Path,
+) -> dict[str, Any]:
+    if (
+        observations.get("mapping_unread_when_recorded") is not True
+        or observations.get("experiment_id") != "U5.R2AZ1V"
+    ):
+        raise ValueError("AZ1 observations were not recorded blind")
+    build_path = build_dir / "build_report.json"
+    mapping_path = build_dir / "private_mapping.json"
+    build = json.loads(build_path.read_text(encoding="utf-8"))
+    if (
+        build.get("experiment_id") != config["experiment_id"]
+        or sha256_file(mapping_path) != build["private_mapping_sha256"]
+    ):
+        raise ValueError("AZ1 visual evidence identity drift")
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    expected_sheets = {
+        int(row["round"]): row["sha256"] for row in build["blind_sheets"]
+    }
+    rounds = []
+    passing_rounds = 0
+    for observed in observations["rounds"]:
+        round_index = int(observed["round"])
+        if expected_sheets.get(round_index) != observed["sheet_sha256"]:
+            raise ValueError("AZ1 blind sheet identity drift")
+        round_mapping = mapping[f"round_{round_index}"]
+        if set(round_mapping) != set(observed["choices"]):
+            raise ValueError("AZ1 blind population drift")
+        decoded = {}
+        candidate_preferences = 0
+        for sample_id, label in observed["choices"].items():
+            if label not in {"A", "B"}:
+                raise ValueError("invalid AZ1 blind choice")
+            arm = round_mapping[sample_id][label]
+            decoded[sample_id] = arm
+            candidate_preferences += arm == "candidate"
+        passed = candidate_preferences >= int(
+            config["visual_protocol"][
+                "minimum_candidate_preferences_per_passing_round"
+            ]
+        )
+        passing_rounds += passed
+        rounds.append(
+            {
+                "round": round_index,
+                "candidate_preferences": candidate_preferences,
+                "comparator_preferences": len(decoded)
+                - candidate_preferences,
+                "decoded_choices": decoded,
+                "pass": bool(passed),
+            }
+        )
+    severe = int(
+        observations["direct_severe_review"]["confirmed_severe_count"]
+    )
+    visual_pass = (
+        passing_rounds
+        >= int(config["visual_protocol"]["minimum_passing_rounds"])
+        and severe
+        <= int(
+            config["visual_protocol"][
+                "maximum_confirmed_severe_artifacts"
+            ]
+        )
+    )
+    core = {
+        "schema": "neuro-film.u5-r2az1v-density-residual-fresh-adjudication.v1",
+        "experiment_id": config["experiment_id"],
+        "automatic_report_sha256": build["automatic_report_sha256"],
+        "automatic_stable_evidence_id": build[
+            "automatic_stable_evidence_id"
+        ],
+        "build_report_sha256": sha256_file(build_path),
+        "private_mapping_sha256": sha256_file(mapping_path),
+        "rounds": rounds,
+        "passing_rounds": passing_rounds,
+        "confirmed_severe_artifact_count": severe,
+        "visual_gate_passed": visual_pass,
+        "production_integration_opened": False,
+        "branch": (
+            config["branch_rules"]["complete_pass"]
+            if visual_pass
+            else config["branch_rules"]["visual_fail"]
+        ),
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    return {
+        **core,
+        "stable_evidence_id": hashlib.sha256(
+            json.dumps(
+                core,
+                sort_keys=True,
+                separators=(",", ":"),
+                ensure_ascii=True,
+            ).encode("ascii")
+        ).hexdigest(),
+    }
+
+
+__all__ = ["adjudicate_fresh_visual", "build_fresh_visual_evidence"]

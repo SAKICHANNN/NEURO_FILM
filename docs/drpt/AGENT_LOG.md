@@ -7787,3 +7787,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain AZ0 as a same-population development Look Approximation champion,
   not a stock response or product promotion. U5.R2AZ1 must rerun the exact
   operator and gates on an independent image population without retuning.
+
+## 2026-07-30 - U5.R2AZ1 confirms mechanics but closes preference promotion
+
+- Reused the already rights/integrity-audited 16-photo, nine-camera-make CC0
+  RAW-derived population with zero decoded-pixel hash overlap against the 41
+  AZ0 development sources. The fixed AZ0 operator and all thresholds were
+  unchanged.
+- Two reports are byte-identical at SHA-256 `4649a2c6...7cb82`. All automatic
+  gates pass: median style/non-basic is `13.3550/12.2078`, median difference
+  from AO6 is `3.7856` Delta E76, all 16 photos and nine makes clear material
+  support, and worst new clipping is zero.
+- All nine fixed candidates were reviewed at full resolution with zero
+  confirmed severe artifacts. Blind choices frozen before reveal decode to
+  `5/9`, `5/9`, `6/9`; only one round reaches the six-vote threshold versus
+  two required.
+- Close product/default promotion and every same-population rescue. Retain the
+  density factorization only as reproducible research evidence and proceed to
+  a genuinely different explicit colour representation or evidence source.

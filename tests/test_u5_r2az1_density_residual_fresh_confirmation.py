@@ -7,6 +7,7 @@ import pytest
 
 from src.eval.density_residual_fresh_confirmation import validate_contract
 from src.eval.density_residual_fresh_visual import (
+    adjudicate_fresh_visual,
     build_fresh_visual_evidence,
 )
 
@@ -99,3 +100,47 @@ def test_az1_visual_builder_is_repeat_deterministic(tmp_path: Path) -> None:
     assert [row["sha256"] for row in first["blind_sheets"]] == [
         row["sha256"] for row in second["blind_sheets"]
     ]
+
+
+def test_az1_visual_adjudication_closes_unstable_preference() -> None:
+    config = json.loads(
+        (
+            ROOT
+            / "configs/u5_r2az1_density_residual_fresh_confirmation_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    observations = json.loads(
+        (
+            ROOT
+            / "configs/"
+            "u5_r2az1v_density_residual_fresh_visual_observations_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    report = adjudicate_fresh_visual(
+        config=config,
+        observations=observations,
+        build_dir=(
+            ROOT / "outputs/u5_r2az1v_density_residual_fresh_visual_v1"
+        ),
+    )
+    assert [
+        row["candidate_preferences"] for row in report["rounds"]
+    ] == [5, 5, 6]
+    assert report["passing_rounds"] == 1
+    assert report["confirmed_severe_artifact_count"] == 0
+    assert report["visual_gate_passed"] is False
+    assert report["production_integration_opened"] is False
+    decision = json.loads(
+        (
+            ROOT
+            / "configs/"
+            "u5_r2az1_density_residual_fresh_confirmation_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["visual_evidence"]["stable_evidence_id"] == report[
+        "stable_evidence_id"
+    ]
+    assert decision["decision"].startswith(
+        "close_density_factorization_product_promotion"
+    )
+    assert decision["production_default_changed"] is False

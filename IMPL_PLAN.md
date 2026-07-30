@@ -4,9 +4,11 @@
 > factorization at the already frozen AO6 `.15/.35` strengths. Two exact
 > 41-image runs improve style/non-basic Delta E76 over AO6 with zero new
 > clipping; autonomous blind preference is `6/9`, `7/9`, `5/9`, so 2/3 rounds
-> pass and no severe artifact is confirmed. This is development Look
-> Approximation evidence only. U5.R2AZ1 is the active leaf: unchanged
-> independent-population confirmation before any product decision.
+> pass and no severe artifact is confirmed. AZ1 then repeats every automatic
+> and severe gate on 16 disjoint RAW-derived photos, but blind preference is
+> only `5/9`, `5/9`, `6/9`; 1/3 rounds passes versus 2 required. Retain the
+> representation as research evidence only and move to a distinct algorithm
+> without retuning or additional rounds.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.

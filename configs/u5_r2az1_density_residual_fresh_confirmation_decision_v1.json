@@ -1,0 +1,44 @@
+{
+  "schema_version": "neuro-film.u5-r2az1-density-residual-fresh-decision.v1",
+  "experiment_id": "U5.R2AZ1",
+  "automatic_evidence": {
+    "run_a_sha256": "4649a2c6f100978e7f7a71f1cf9477a66a81c781a210add493729ccfea77cb82",
+    "run_b_sha256": "4649a2c6f100978e7f7a71f1cf9477a66a81c781a210add493729ccfea77cb82",
+    "stable_evidence_id": "8a5835bba07b5af0c5094d1305f8e1fec5a9f1d56c59255ee722b6d4276ff7ff",
+    "automatic_pass": true,
+    "candidate_median_style_delta_e76": 13.354959835607083,
+    "candidate_median_non_basic_residual_delta_e76": 12.207764629537229,
+    "median_difference_delta_e76_from_ao6": 3.785630972732192,
+    "images_above_difference": 16,
+    "camera_makes_above_difference": 9,
+    "worst_new_hard_clipping_fraction": 0.0
+  },
+  "visual_evidence": {
+    "adjudication_sha256": "2c3934ee309b500c66b1aaf8183016c2d6441a9a20c6743bac8d62d03d7984b0",
+    "stable_evidence_id": "cee4e4a54c06232cc89fcdd4a686d62a2564a90cb5044e7c2b14d61db047f530",
+    "round_candidate_preferences": [
+      5,
+      5,
+      6
+    ],
+    "passing_rounds": 1,
+    "required_passing_rounds": 2,
+    "confirmed_severe_artifact_count": 0,
+    "visual_gate_passed": false
+  },
+  "decision": "close_density_factorization_product_promotion_retain_development_evidence_only",
+  "interpretation": "The fixed density-domain factorization repeats deterministic style, non-basic character, material difference and severe safety on a disjoint camera-diverse population, but its visual preference advantage over AO6 is unstable.",
+  "forbidden_rescue": [
+    "strength retuning",
+    "threshold relaxation",
+    "additional rounds",
+    "row replacement or selection",
+    "per-image routing learned from confirmation outcomes"
+  ],
+  "production_default_changed": false,
+  "production_integration_opened": false,
+  "stock_response_claim_opened": false,
+  "calibrated_reference_claim_opened": false,
+  "next_leaf": "test a distinct explicit colour representation or data-backed operator; do not rescue AZ0/AZ1 on the revealed populations",
+  "claim_ceiling": "negative fresh-population preference evidence for one fixed optical-density Look Approximation; not population preference, measured film response, stock response, calibration or product promotion"
+}

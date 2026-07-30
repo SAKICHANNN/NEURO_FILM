@@ -1,0 +1,70 @@
+{
+  "schema_version": "neuro-film.u5-r2az1v-density-residual-fresh-observations.v1",
+  "experiment_id": "U5.R2AZ1V",
+  "mapping_unread_when_recorded": true,
+  "question": "Which rendering is more visibly stylized and appealing, subject to a hard severe-artifact veto?",
+  "direct_severe_review": {
+    "reviewed_ids": [
+      "canon_eos_kiss_f",
+      "nikon_d2x",
+      "sony_nex_3n",
+      "fujifilm_finepix_s5000",
+      "olympus_e_p7",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "leica_d_lux_6",
+      "kodak_dcs_pro_14n"
+    ],
+    "all_candidate_files_reviewed_at_full_resolution": true,
+    "confirmed_severe_count": 0,
+    "confirmed_severe_ids": [],
+    "notes": "The fixed density candidate is often materially warmer and harder than AO6, including orange grass and strong highlight colour, but no posterization, banding, colour block, geometry/content corruption, unstable speckle or new clipping damage was confirmed. Source noise and the pre-existing finger occlusion were not attributed to the operator."
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "f936d46cd9368571c8a6ceac4e39f0cdcb121487b00c53268bbe5bec05854fda",
+      "choices": {
+        "canon_eos_kiss_f": "B",
+        "nikon_d2x": "B",
+        "sony_nex_3n": "B",
+        "fujifilm_finepix_s5000": "B",
+        "olympus_e_p7": "B",
+        "panasonic_dmc_fz100": "B",
+        "pentax_k_r": "A",
+        "leica_d_lux_6": "B",
+        "kodak_dcs_pro_14n": "B"
+      }
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "2099df4bed4b97eb9691d831baa2845e33ef088753120ad4390edabb2f0bcda4",
+      "choices": {
+        "canon_eos_kiss_f": "B",
+        "nikon_d2x": "B",
+        "sony_nex_3n": "B",
+        "fujifilm_finepix_s5000": "B",
+        "olympus_e_p7": "B",
+        "panasonic_dmc_fz100": "B",
+        "pentax_k_r": "A",
+        "leica_d_lux_6": "B",
+        "kodak_dcs_pro_14n": "B"
+      }
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "e4cd6d3cb17446072009e555619aadb0d706d43aa9b0cf06137d1ef57b4bcd69",
+      "choices": {
+        "canon_eos_kiss_f": "B",
+        "nikon_d2x": "B",
+        "sony_nex_3n": "B",
+        "fujifilm_finepix_s5000": "B",
+        "olympus_e_p7": "B",
+        "panasonic_dmc_fz100": "B",
+        "pentax_k_r": "A",
+        "leica_d_lux_6": "B",
+        "kodak_dcs_pro_14n": "B"
+      }
+    }
+  ]
+}
