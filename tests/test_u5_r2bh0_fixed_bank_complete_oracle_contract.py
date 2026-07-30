@@ -52,6 +52,17 @@ def test_bh0_primary_gate_is_complete_and_cross_round() -> None:
     assert protocol["arms_per_source"] == 5
     assert protocol["strict_complete_ranking_required"]
     assert not protocol["ties_allowed"]
+    assert protocol["global_tie_break_order"] == [
+        "fixed_ao6_colour_only_t15_c35",
+        "fixed_b0",
+        "fixed_ap3_ektachrome_composition",
+        "fixed_az0_optical_density_residual",
+        "fixed_native_standard_full_strength_1_0",
+    ]
+    assert (
+        protocol["per_source_tie_break"]
+        == "fall_back_to_the_selected_global_arm_for_that_leave_one_round_out_fold"
+    )
     assert "leave-one-round-out" in protocol["primary_product_value_estimator"]
     assert protocol["minimum_improved_leave_one_round_out_folds"] == 2
     assert protocol["minimum_sources_with_stable_non_global_choice"] == 4

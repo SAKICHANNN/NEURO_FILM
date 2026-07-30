@@ -95,6 +95,14 @@
     "ties_allowed": false,
     "mapping_hidden_until_all_rankings_are_frozen": true,
     "independent_per_source_mapping_each_round": true,
+    "global_tie_break_order": [
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_b0",
+      "fixed_ap3_ektachrome_composition",
+      "fixed_az0_optical_density_residual",
+      "fixed_native_standard_full_strength_1_0"
+    ],
+    "per_source_tie_break": "fall_back_to_the_selected_global_arm_for_that_leave_one_round_out_fold",
     "primary_product_value_estimator": "leave-one-round-out selection: on two development rounds choose the lowest-rank-sum global arm and each source's lowest-rank-sum arm; ties fall back to that fold's global arm; score both choices on the held-out round",
     "descriptive_oracle": "per-source lowest total rank across all three rounds versus the lowest total-rank fixed global arm",
     "minimum_improved_leave_one_round_out_folds": 2,
