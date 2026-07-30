@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from scripts.build_u5_r2ay1_visual_stress_sheet import _select_rows
 from src.eval.fivek_neutral_base_fixed_ao6_ablation import (
     FiveKFixedAO6AblationError,
     build_fixed_ao6_renderer,
@@ -53,3 +54,20 @@ def test_contract_rejects_style_strength_change() -> None:
     config["fixed_look"]["tone_strength"] = 0.16
     with pytest.raises(FiveKFixedAO6AblationError):
         validate_contract(ROOT, config)
+
+
+def test_visual_selection_is_unique_and_stress_biased() -> None:
+    rows = [
+        {
+            "pair_id": str(index),
+            "ridge": {"rmse_to_fixed_look_target": float(index)},
+            "global": {"rmse_to_fixed_look_target": float(index + index % 3)},
+        }
+        for index in range(12)
+    ]
+    selected = _select_rows(rows, 6)
+    assert len(selected) == 6
+    assert len({row["pair_id"] for row in selected}) == 6
+    assert {"11", "10", "9"}.issubset(
+        {row["pair_id"] for row in selected}
+    )
