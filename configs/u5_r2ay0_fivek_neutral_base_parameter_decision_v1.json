@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay0-fivek-neutral-base-parameter-pilot-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY0",
+  "decision": "retain_camera_group_held_out_bounded_parameter_predictor_and_open_fixed_ao6_downstream_ablation",
+  "software_commit": "730a368ae2118c8e5d9480537f0de77bea8ff2f1",
+  "contract": {
+    "path": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+    "sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b"
+  },
+  "source_manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01",
+  "run_a": {
+    "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d"
+  },
+  "run_b": {
+    "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "26353480f55cdd88c8b21f3d4200269693d0158013f7a679bd92bf8c80f4e3c4",
+  "evidence": {
+    "rows": 64,
+    "camera_groups": 21,
+    "fit_success_fraction": 1.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "per_pair_oracle_median_improvement_over_identity": 0.34343405213497114,
+    "ridge_mean_improvement_over_global": 0.13123179824652056,
+    "ridge_win_fraction_over_global": 0.75,
+    "ridge_p95_rmse_ratio_to_global": 0.8178630388168286,
+    "ridge_bootstrap_improvement_lower": 0.006898593368160796
+  },
+  "automatic_pass": true,
+  "allowed_next": "apply one frozen camera-group-held-out neutral-base prediction and the controls through the unchanged fixed AO6 look; compare against AO6 applied to the paired neutral target without fitting AO6",
+  "forbidden_next": [
+    "call Expert C film or stock ground truth",
+    "fit or tune AO6 on FiveK",
+    "train a final-RGB generator",
+    "claim product promotion or population preference"
+  ],
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "camera-model-group-held-out internal evidence that a low-dimensional bounded explicit neutral photographic base parameter predictor beats the outer-train global control on 64 retained FiveK RAW/Expert-C pairs; not film style, stock response, calibration, preference, product promotion or final-RGB learning"
+}
