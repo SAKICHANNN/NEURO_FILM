@@ -1,0 +1,118 @@
+{
+  "schema": "neuro_film.u5_r2bh0_fixed_bank_complete_oracle.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh0-fixed-bank-complete-oracle-v1",
+  "node": "ULT > U5 > U5.R2BH0",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does a complete-ranking evaluator Oracle over five fixed severe-clean explicit looks beat the best fixed global arm on a genuinely fresh population strongly enough to justify any content selector research?",
+  "source_preflight": {
+    "decision": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "manifest": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "expected_eligible_rows": 10,
+    "expected_camera_makes": 10
+  },
+  "fixed_arms": [
+    {
+      "arm_id": "fixed_b0",
+      "role": "base_control",
+      "implementation": "native-profile AO6 source-context base stage"
+    },
+    {
+      "arm_id": "fixed_ao6_colour_only_t15_c35",
+      "role": "current_global_champion",
+      "implementation": "native-profile AO6 source-context residual stage"
+    },
+    {
+      "arm_id": "fixed_ap3_ektachrome_composition",
+      "role": "severe-clean_secondary_display_proxy_look",
+      "implementation": "AP3/AP4 factorized boundary guard at exact t10/c25"
+    },
+    {
+      "arm_id": "fixed_az0_optical_density_residual",
+      "role": "severe-clean_density_factorization_look",
+      "implementation": "AZ0 density residual guard at exact neutral15/opponent35"
+    },
+    {
+      "arm_id": "fixed_native_standard_full_strength_1_0",
+      "role": "severe-clean_physical_image_formation_look",
+      "implementation": "exact opt-in native Standard runtime at strength 1.0"
+    }
+  ],
+  "arm_provenance": {
+    "ao6_and_b0": {
+      "config": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1.json",
+      "sha256": "72bae1105a002deb299767e06c8d99be039b95292ae5cff810bbda3201ac7591"
+    },
+    "ap3": {
+      "config": "configs/u5_r2ap4_b0_ektachrome_residual_fresh_confirmation_v1.json",
+      "config_sha256": "9306b2d18a39eef7756cd98184bb20de14c8b5ad963f0610b9a7c1ff6fe38ffb",
+      "decision": "configs/u5_r2ap4_b0_ektachrome_residual_fresh_confirmation_decision_v1.json",
+      "decision_sha256": "89c41eafdb76428c67a4a5ee5edc4b72be245eae40bef97be906ad084bb7745f",
+      "tone_strength": 0.1,
+      "chroma_strength": 0.25
+    },
+    "az0": {
+      "config": "configs/u5_r2az0_density_residual_factorization_v1.json",
+      "config_sha256": "c293159eae69dd6dd3d1569690fc1c32b807f5185aafdc432bd4f775ec8fc9b9",
+      "decision": "configs/u5_r2az0v_density_residual_visual_decision_v1.json",
+      "decision_sha256": "0c64f6d1a83fbcda49f62472a54fbda2be918ccddb8fcead6074baae1571641e",
+      "neutral_strength": 0.15,
+      "opponent_strength": 0.35
+    },
+    "native_standard": {
+      "comparison_config": "configs/u6_p8bp_fresh_native_standard_confirmation_v1.json",
+      "comparison_config_sha256": "e3f8a1fa7b2ad16ea697f4d0adf03d7c1599fd7d665d2cc7b9195bfdeb1ec97d",
+      "build_config": "configs/u6_p8bb_native_standard_working_image_resources_v1.json",
+      "build_config_sha256": "94b65d08810f0b78f144db430c3a5c73183f6a820bb2f4318a0b8861a37e8638"
+    }
+  },
+  "rendering": {
+    "create_only": true,
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "strength_retuning_allowed": false,
+    "hard_clipping_allowed": false,
+    "final_format": "rgb16_png",
+    "require_repeat_report_and_output_identity": true
+  },
+  "automatic_gate": {
+    "expected_outputs": 50,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "ranking_protocol": {
+    "rounds": 3,
+    "sources_per_round": 10,
+    "arms_per_source": 5,
+    "strict_complete_ranking_required": true,
+    "ties_allowed": false,
+    "mapping_hidden_until_all_rankings_are_frozen": true,
+    "independent_per_source_mapping_each_round": true,
+    "primary_product_value_estimator": "leave-one-round-out selection: on two development rounds choose the lowest-rank-sum global arm and each source's lowest-rank-sum arm; ties fall back to that fold's global arm; score both choices on the held-out round",
+    "descriptive_oracle": "per-source lowest total rank across all three rounds versus the lowest total-rank fixed global arm",
+    "minimum_improved_leave_one_round_out_folds": 2,
+    "minimum_aggregate_heldout_rank_gain": 6,
+    "minimum_aggregate_heldout_relative_rank_gain": 0.08,
+    "minimum_sources_with_stable_non_global_choice": 4,
+    "stable_non_global_choice_definition": "the same non-global arm is selected in at least two of three leave-one-round-out folds",
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branch_rules": {
+    "automatic_or_severe_fail": "reject the affected fixed arm or close the bank without weakening the severe veto",
+    "oracle_fail": "close selector and router training; retain the best fixed global arm as research evidence without changing production default",
+    "oracle_pass": "freeze the bank and open only the simplest hard content selector with OOD global fallback; dense blending and direct RGB prediction remain forbidden"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fresh-population autonomous complete-ranking product-value audit of five fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety, selector evidence or product promotion"
+}
