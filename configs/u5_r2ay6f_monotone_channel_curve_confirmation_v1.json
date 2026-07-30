@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6f-monotone-channel-curve-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY6F",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "f4b3f9371306923af8a859cd6b18cd3e948b36a8",
+  "hypothesis": "the unchanged AY6 source-only predictor of endpoint-exact monotone curves improves mean and tail neutral-target error over its frozen AY0 global curve on a third disjoint FiveK population while preserving fixed AO6 style and analytical boundary safety",
+  "development": {
+    "config": "configs/u5_r2ay6_monotone_channel_curve_development_v1.json",
+    "config_sha256": "e99d034bbdefa393eb0c2dc8785d48b16e923b2ed9ebf6abd420734717f7b86f",
+    "decision": "configs/u5_r2ay6_monotone_channel_curve_development_decision_v1.json",
+    "decision_sha256": "70fbe26d6f3cf6fdc3ec2860e7d80a9383c5fd64a18454c8e5611c999bdd161d",
+    "report": "outputs/u5_r2ay6_monotone_channel_curve_development_v1/run_a/report.json",
+    "report_sha256": "f909a65f63b8b9467d45dfae2dcbcdb2591f521acf5d0c44a3094355564684a8",
+    "required_status": "development_pass_new_confirmation_required",
+    "expected_full_training_alpha": 100.0,
+    "change_allowed": false
+  },
+  "confirmation": {
+    "normalization_config": "configs/u5_r2ay6s2_fivek_confirmation_normalization_v1.json",
+    "normalization_config_sha256": "c15e65cee426e302bf3de777b53e3cad2b4e85172affbea1fb23cc07be948378",
+    "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json",
+    "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22",
+    "report": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/report.json",
+    "report_sha256": "33f0deaefb7c55371b1ec104971dfa1eb8aeec3f148e5fb908c09cb8a33a5120",
+    "decision": "configs/u5_r2ay6s2_fivek_confirmation_normalization_decision_v1.json",
+    "decision_sha256": "b6650900042c8b58995e3f2dfad05983adf9ce2e1782985da97747247eaf72f4",
+    "required_status": "pass_unchanged_confirmation_ready",
+    "required_rows": 64
+  },
+  "methods": ["identity", "global", "ridge", "oracle"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity": 0.15,
+    "minimum_ridge_mean_improvement_over_global": 0.03,
+    "minimum_ridge_win_fraction_over_global": 0.55,
+    "maximum_ridge_p95_ratio_to_global": 1.0,
+    "maximum_ridge_worst_ratio_to_global": 1.25,
+    "minimum_ridge_ao6_style_ratio_to_global": 0.8,
+    "maximum_ridge_median_limited_fraction": 0.02,
+    "maximum_ridge_p95_limited_fraction": 0.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain the fixed monotone-curve predictor as confirmed digital-photographic neutral-base evidence and open a product-value comparison before unchanged AO6",
+    "oracle_fails": "close the representation capacity claim",
+    "predictor_or_tail_fails": "close the representation/predictor pair without parameter, knot, descriptor, alpha, projection, target, safety or AO6 rescue",
+    "boundary_fails": "close as safety or implementation failure before visual review",
+    "visual_severe_failure": "close regardless of metric passage"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "confirmation_target_use_for_training_allowed": false,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "independent FiveK confirmation of one source-only bounded explicit monotone digital-retouch predictor before fixed AO6; not film, stock, calibration, preference or product promotion"
+}
