@@ -2,12 +2,13 @@
 
 Date: 2026-07-31
 
-Status: **P1-P172 is merged into main and the remaining P173 increment is
-pinned by the immutable v45 review manifest; local scale/file/capability
-evidence is complete, while real
+Status: **P1-P172 is merged into main; v45 is immutable but explicitly
+rejected for integration after a confirmed P173 directory-ownership race.
+Corrected P173/P175 plus P174 is verified and awaits a replacement manifest;
+local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v45 post-merge review snapshot
+## Rejected v45 post-merge review snapshot
 
 - payload: `d4d817d636c097206e381cd7b4fc6db003fc5191`;
 - main: `efb9ba8208c1eb4caa5229f926e212615f30f4dd`;
@@ -30,13 +31,20 @@ again. The synthetic worktree was removed after verification. Main's modified
 `docs/drpt/AGENT_LOG.md` and untracked `.codex/`/`tmp/` remain main-task-owned
 and untouched.
 
-P173 closes a narrower transaction defect: a failure after an earlier source
-had encoded output could remove staged files yet leave newly created empty
-output/recipe directory trees. The file renderer now tracks only directories
-it created, removes them in reverse order on failure, and preserves any
-non-empty directory or concurrently created content. Successful transactions
-retain their destination directories. This is best-effort empty-directory
-rollback, not universal filesystem transactionality.
+V45 and payload `d4d817d6` must not be merged. Its P173 implementation tracked
+only directory paths: a non-cooperating process could remove a transaction
+directory and recreate a new empty directory at the same path before cleanup,
+allowing path-only `rmdir` to delete foreign state.
+
+Corrected P173/P175 records the directory file identity, an exclusive random
+transaction marker, the marker identity and exact marker bytes. Cleanup first
+revalidates all four ownership facts; after marker removal it revalidates the
+directory identity again before `rmdir`. Any missing, replaced, symlinked or
+tampered evidence is preserved fail-safe. A deterministic regression removes
+the complete owned tree, recreates a new empty directory at the same path and
+proves it survives rollback. Successful transactions remove their ownership
+markers but retain destination directories. P174 independently rejects nested
+input/output/recipe/report path topology before decode.
 
 ## Frozen snapshots
 

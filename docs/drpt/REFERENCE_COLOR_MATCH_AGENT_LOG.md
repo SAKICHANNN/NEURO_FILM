@@ -5090,3 +5090,32 @@
 - Producer R0JD remains a private one-Pixel mechanical Android x86_64 DNG to
   linear-sRGB TIFF chain without a public package/schema/receipt/capability
   or RAW rail. It creates no P174 interface impact.
+
+## 2026-07-31 - Bind transaction directory ownership and reject v45
+
+- Node/parent goal: P175 corrective P173 concurrency closure after main-owner
+  review. V45 and payload `d4d817d6` are immutable historical evidence but
+  explicitly forbidden from integration.
+- The confirmed defect was path ownership: after a transaction created an
+  empty destination tree, another process could delete it and recreate a new
+  empty directory at the same path; path-only rollback could then remove the
+  replacement. The renderer now binds every created directory to its
+  `(st_dev, st_ino)` identity plus an exclusive random marker, marker identity
+  and exact marker bytes. Cleanup revalidates all ownership facts and
+  revalidates directory identity after marker removal. Missing, replaced,
+  symlinked or tampered evidence is preserved fail-safe.
+- The deterministic regression removes the entire owned tree during the late
+  second-source failure, recreates an empty directory at the same path and
+  proves rollback preserves its new identity and empty contents. Existing
+  concurrent-content and success tests additionally prove ownership markers
+  do not survive normal cleanup.
+- Verification: complete file/replay `55 passed, 1 skipped`; broader
+  file/report/product coverage `86 passed, 1 skipped`; `py_compile` and strict
+  diff checks pass. The isolated reference-match suite collects 1,426 tests
+  and completes at `1,421 passed, 5 skipped`. Ruff reports only previously
+  existing repository findings in the touched files; no broad cleanup was
+  mixed into this corrective leaf.
+- Producer R0JF remains a private one-Pixel Android x86_64 virtual
+  finite-halo mechanical pipeline without a public package/schema/receipt,
+  compatible RAW rail or product-quality claim. Consumer mapping remains
+  unchanged.
