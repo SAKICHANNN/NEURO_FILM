@@ -1,0 +1,108 @@
+{
+  "schema": "neuro_film.u6_p4z_bw_uniform_grain_source.v1",
+  "experiment_id": "u6.p4z-bw-uniform-grain-source-v1",
+  "node": "ULT > U6 > U6.P4Z",
+  "status": "metadata_contract_frozen",
+  "question": "Do three newly published same-uploader, same-scanner, uniform-medium-density CC0 B&W film scans provide an independent fit-forbidden confirmation source for the retained generic grain model?",
+  "source": {
+    "name": "Wikimedia Commons",
+    "api_endpoint": "https://commons.wikimedia.org/w/api.php",
+    "user_agent": "neuro-film-u6-p4z/1.0 (bounded B&W uniform-grain research source audit)",
+    "metadata_observed_date": "2026-07-30",
+    "api_documentation": "https://www.mediawiki.org/wiki/API:Imageinfo",
+    "rights_documentation": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia"
+  },
+  "selection": {
+    "rule": "all exact embedded-profile 16-bit grayscale PNG originals for the uploader's T-MAX 100 and Tri-X 400 uniform-grain scans; no appearance-based selection and no JPEG/no-profile duplicates",
+    "exact_file_count": 3,
+    "expected_rows_per_stock": {
+      "kodak-tmax-100": 1,
+      "kodak-trix-400": 2
+    },
+    "expected_total_bytes": 110295676,
+    "maximum_total_bytes": 120000000,
+    "same_uploader_and_scanner_required": true
+  },
+  "observed_setup": {
+    "uploader": "Wiley.andrew.r",
+    "scanner": "Nikon Coolscan V ED",
+    "scanner_resolution_dpi": 4000,
+    "scene_description": "lens covered with white paper, focus at infinity, automatic exposure, described by uploader as a uniform medium-density negative",
+    "processing_description": "raw scan rotated horizontally in GIMP and luminance normalized approximately to CIELAB middle gray; selected PNGs are described as 16-bit grayscale with GIMP D65 Linear Grayscale ICC",
+    "epistemic_limits": [
+      "one uploader and one scanner are fixed nuisance variables, not independent scanner evidence",
+      "actual exposure, physical roll, B&W developer/process batch, scanner settings and scanner transfer are unknown",
+      "the uploader normalized luminance, so absolute density and grain amplitude are not physical truth",
+      "T-MAX has one frame and Tri-X has two; neither stock has sufficient group support for stock-specific fitting",
+      "the source can test only scanner-convolved relative NPS/ACF shape and a fit-forbidden generic model"
+    ]
+  },
+  "files": [
+    {
+      "film_stock_id": "kodak-tmax-100",
+      "title": "File:Tmax100 Grain.png",
+      "file_page_url": "https://commons.wikimedia.org/wiki/File:Tmax100_Grain.png",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Tmax100_Grain.png",
+      "path": "data/external/wikimedia_bw_uniform_grain_v1/Tmax100_Grain.png",
+      "api_sha1": "6177cef98c846542df2ba611ff8b276c3c346730",
+      "expected_bytes": 36437454,
+      "width": 5603,
+      "height": 3663,
+      "mime": "image/png",
+      "uploader": "Wiley.andrew.r",
+      "upload_timestamp": "2025-10-13T19:51:57Z",
+      "scanner": "Nikon Coolscan V ED",
+      "process_type": "unknown",
+      "physical_roll": "unknown",
+      "license_short_name": "CC0",
+      "allowed_use": "internal research, validation and derived parameter study under CC0; no calibration claim"
+    },
+    {
+      "film_stock_id": "kodak-trix-400",
+      "title": "File:Tri-x 400 grain1.png",
+      "file_page_url": "https://commons.wikimedia.org/wiki/File:Tri-x_400_grain1.png",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Tri-x_400_grain1.png",
+      "path": "data/external/wikimedia_bw_uniform_grain_v1/Tri-x_400_grain1.png",
+      "api_sha1": "485023c8416e9eb82dd06352d3ffc877a2c898c8",
+      "expected_bytes": 36591375,
+      "width": 5623,
+      "height": 3667,
+      "mime": "image/png",
+      "uploader": "Wiley.andrew.r",
+      "upload_timestamp": "2025-10-13T19:48:07Z",
+      "scanner": "Nikon Coolscan V ED",
+      "process_type": "unknown",
+      "physical_roll": "unknown",
+      "license_short_name": "CC0",
+      "allowed_use": "internal research, validation and derived parameter study under CC0; no calibration claim"
+    },
+    {
+      "film_stock_id": "kodak-trix-400",
+      "title": "File:Tri-x 400 grain2.png",
+      "file_page_url": "https://commons.wikimedia.org/wiki/File:Tri-x_400_grain2.png",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Tri-x_400_grain2.png",
+      "path": "data/external/wikimedia_bw_uniform_grain_v1/Tri-x_400_grain2.png",
+      "api_sha1": "975f1b946c768dcd329c3477b1ba0671d72fd463",
+      "expected_bytes": 37266847,
+      "width": 5642,
+      "height": 3671,
+      "mime": "image/png",
+      "uploader": "Wiley.andrew.r",
+      "upload_timestamp": "2025-10-13T19:48:15Z",
+      "scanner": "Nikon Coolscan V ED",
+      "process_type": "unknown",
+      "physical_roll": "unknown",
+      "license_short_name": "CC0",
+      "allowed_use": "internal research, validation and derived parameter study under CC0; no calibration claim"
+    }
+  ],
+  "outputs": {
+    "metadata_snapshot": "outputs/experiments/u6_p4z_bw_uniform_grain_source_v1/metadata_snapshot.json",
+    "acquisition_manifest": "outputs/experiments/u6_p4z_bw_uniform_grain_source_v1/acquisition_manifest.json"
+  },
+  "next_gate": "Only after exact acquisition: prove grayscale uint16 decode and embedded-profile identity, inspect uniformity/artifacts, freeze spatial crops, and evaluate the unchanged P4T/P4X family without fitting or threshold changes.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "claim_ceiling": "CC0 same-scanner B&W uniform film-scan source feasibility and fit-forbidden scanner-convolved NPS/ACF confirmation only; not stock grain, process, density, scanner or product calibration"
+}
