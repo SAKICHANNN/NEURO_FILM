@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import random
 from typing import Any, Mapping
@@ -360,6 +361,10 @@ def run_render(
     create_runtime: Any,
 ) -> dict[str, Any]:
     validated = validate_contract(root, config)
+    if os.environ.get("OMP_NUM_THREADS") != "1":
+        raise FixedBankOracleError(
+            "BH0 RAW decode requires OMP_NUM_THREADS=1 before rawpy import"
+        )
     if output_dir.exists():
         raise FileExistsError("BH0 render is create-only")
     output_dir.mkdir(parents=True)
@@ -401,6 +406,9 @@ def run_render(
             or not working.orientation_applied
         ):
             raise FixedBankOracleError("WorkingImage contract drift")
+        input_array_sha256 = hashlib.sha256(
+            working.pixels.tobytes()
+        ).hexdigest()
         outputs, diagnostics = render_fixed_bank(
             scene_linear=working.pixels,
             artifact=artifact,
@@ -424,6 +432,7 @@ def run_render(
             row = {
                 "source_id": source_id,
                 "source_raw_sha256": candidate["sha256"],
+                "input_array_sha256": input_array_sha256,
                 "make": source["make"],
                 "arm_id": arm_id,
                 "output": path.relative_to(output_dir).as_posix(),

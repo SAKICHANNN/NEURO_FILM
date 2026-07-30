@@ -17,6 +17,7 @@ from src.film_physics.display_look import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_v1.json"
+RUNNER = ROOT / "scripts/run_u5_r2bh0_fixed_bank_complete_oracle.py"
 
 
 def _config() -> dict:
@@ -47,6 +48,15 @@ def test_bh0_validator_recovers_exact_population_and_operators() -> None:
             ".srw",
         }
         for row in candidates
+    )
+
+
+def test_bh0_runner_freezes_libraw_openmp_before_project_imports() -> None:
+    source = RUNNER.read_text(encoding="utf-8")
+    freeze = 'os.environ["OMP_NUM_THREADS"] = "1"'
+    assert freeze in source
+    assert source.index(freeze) < source.index(
+        "import scripts.benchmark_u6_p8aq"
     )
 
 

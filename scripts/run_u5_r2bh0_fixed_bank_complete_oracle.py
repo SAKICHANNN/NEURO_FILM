@@ -5,10 +5,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 
+
+# LibRaw/X-Trans auto-bright and demosaic reductions are not byte-stable under
+# unconstrained OpenMP scheduling. Freeze before any module can import rawpy.
+os.environ["OMP_NUM_THREADS"] = "1"
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
