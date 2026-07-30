@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u6_p3n_response_bounded_backing_return_contract.v1",
+  "node": "U6.P3N",
+  "status": "development_contract_frozen_after_read_only_mechanism_prototype",
+  "question": "Can one shared-scale, characteristic-response-bounded exposure residual retain a nontrivial P1-forward plus P3D-backing-return signal while removing the exact amplitude and isolated-excursion failures that closed P3L?",
+  "epistemic_scope": "development only: the exact nine P3L RAW sources informed feasibility and are not a fresh confirmation population",
+  "parents": {
+    "p3l_contract_path": "configs/u6_p3l_scene_linear_backing_return_v1.json",
+    "p3l_contract_sha256": "33b46cf5b03239c68e1ca66cd115ba279feb078ce805cc5802bddfb61930968c",
+    "p3l_decision_path": "configs/u6_p3l_scene_linear_backing_return_decision_v1.json",
+    "p3l_decision_sha256": "8486a89aaceb6e3ef014ca4dd7af39c92969f66c16a3c130be37867b23994faf",
+    "p3l_report_path": "outputs/u6_p3l_scene_linear_backing_return_v1/run_a/report.json",
+    "p3l_report_sha256": "6eb4fcf2b359347713be408d5bfaf4ca8bd3d05d45538a4a63736111c8c4fb7b"
+  },
+  "candidate": {
+    "unbounded_exposure": "unchanged P1 forward-only scatter followed by unchanged P3D additive backing return",
+    "source_endpoint": "the unmodified RAW-derived relative scene-linear exposure",
+    "residual": "unbounded_exposure minus source_endpoint",
+    "response": "unchanged U2.2 characteristic curves followed by direct-scan transmittance 10^-density",
+    "soft_limit": "c*tanh(raw_max_abs_transmittance_delta/c)",
+    "shared_scale": "minimum exact admissible scale across RGB layers, then applied identically to all three exposure residual channels",
+    "maximum_transmittance_delta": 0.009,
+    "hard_clipping_allowed": false,
+    "per_image_parameter_selection_allowed": false,
+    "profile_fitting_allowed": false
+  },
+  "input": {
+    "source_count": 9,
+    "camera_make_count": 9,
+    "maximum_long_edge": 768,
+    "physical_scale_claimed": false
+  },
+  "automatic_gates": {
+    "source_support_exact": true,
+    "parent_unbounded_maximum_abs_minimum": 0.08,
+    "parent_unbounded_isolated_excursion_minimum": 1,
+    "bounded_maximum_abs_maximum": 0.009000000001,
+    "bounded_population_p95_abs_minimum": 0.0075,
+    "bounded_median_fraction_pixels_over_0p005_minimum": 0.3,
+    "bounded_median_shared_scale_minimum": 0.8,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_isolated_candidate_excursion_count": 0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_shared_direction_error": 2e-15,
+    "repeat_report_sha256_exact": true
+  },
+  "visual_protocol": {
+    "automatic_pass_required": true,
+    "fixed_ids": [
+      "nikon_d2xs",
+      "dji_fc9287",
+      "leica_m10_r",
+      "blackmagic_micro_cinema",
+      "hasselblad_cfv_50c"
+    ],
+    "columns": [
+      "no spatial",
+      "unbounded P3L",
+      "response-bounded P3N"
+    ],
+    "review_direct_outputs_only": true,
+    "severe_vetoes": [
+      "secondary hard contour or objectionable colour fringe",
+      "isolated bright or dark speckle",
+      "banding, posterization or hard clipping",
+      "geometry or content corruption"
+    ],
+    "preference_claim_allowed": false
+  },
+  "branch_rule": {
+    "automatic_fail": "close P3N without changing cap, response, projection, parents, gates or population",
+    "automatic_pass_visual_fail": "retain numerical primitive only and close photographic use",
+    "development_pass": "retain as a generic physical-inspired development challenger; require a separately frozen fresh population before any runtime or product value test"
+  },
+  "forbidden_actions": [
+    "change P1, P3D, U2.2 or the closed P3L result",
+    "select cap or gates after the formal run",
+    "fit or infer a stock, process, scanner or anti-halation profile",
+    "call the bounded residual calibrated physical truth",
+    "promote from this seen development population",
+    "use a visual pass to override any automatic failure"
+  ],
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic physical-inspired development evidence for one response-bounded exposure residual; no measured film, stock, process, scanner, calibration, preference, authenticity or product claim"
+}
