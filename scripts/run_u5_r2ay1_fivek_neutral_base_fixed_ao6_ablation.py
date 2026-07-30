@@ -5,9 +5,16 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 from pathlib import Path
 
-from src.eval.fivek_neutral_base_fixed_ao6_ablation import run_ablation
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.eval.fivek_neutral_base_fixed_ao6_ablation import (  # noqa: E402
+    run_ablation,
+)
 
 
 def main() -> None:
@@ -18,7 +25,7 @@ def main() -> None:
     )
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
     config_path = root / args.config
     config = json.loads(config_path.read_text(encoding="utf-8"))
     software_commit = subprocess.check_output(
