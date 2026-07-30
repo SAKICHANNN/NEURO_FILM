@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6f-monotone-channel-curve-confirmation-v1",
+  "status": "confirmed_digital_neutral_base_product_value_required",
+  "config": "configs/u5_r2ay6f_monotone_channel_curve_confirmation_v1.json",
+  "report": "outputs/u5_r2ay6f_monotone_channel_curve_confirmation_v1/run_a/report.json",
+  "report_sha256": "129eca30052e87ead8c6a7bc8a07772cd174dc4a920dc48e8201437423e204d2",
+  "stable_evidence_id": "8b37c8219fc9923d171cff4412f7053d072bd5d10fe5f504ab2019d202882d43",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "selected_training_alpha": 100.0,
+  "observed": {
+    "oracle_mean_improvement_over_identity": 0.526205,
+    "ridge_mean_improvement_over_global": 0.151641,
+    "ridge_win_fraction_over_global": 0.671875,
+    "ridge_p95_ratio_to_global": 0.774034,
+    "ridge_worst_ratio_to_global": 0.747941,
+    "ridge_style_ratio_to_global": 0.969707,
+    "ridge_median_limited_fraction": 0.0,
+    "ridge_p95_limited_fraction": 0.0005448,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "visual_review": {
+    "sheet": "outputs/u5_r2ay6f_monotone_channel_curve_confirmation_v1/visual/fresh_visual_stress_sheet.png",
+    "sheet_sha256": "18a71301d320714ca22a959403427b360b7518c66ddce9938d14dcb5fb420643",
+    "selection": "outputs/u5_r2ay6f_monotone_channel_curve_confirmation_v1/visual/selection.json",
+    "selection_sha256": "032caed56d993add2dcfce2dbdfffc38a7d59a79f9b7bdd113a7df4f54163ab8",
+    "rows": 12,
+    "confirmed_severe_failures": 0,
+    "adjudication": "worst-error and harmed-row review retains strong fixed AO6 styling with no confirmed face, text, geometry, banding, posterization, colour-block or new-clipping failure"
+  },
+  "next_leaf": "fixed blind product-value comparison of global-curve plus AO6 versus source-predicted monotone-curve plus unchanged AO6",
+  "allowed_claim": "confirmed source-only prediction of bounded explicit monotone digital-retouch curves improves three disjoint FiveK evaluations before a fixed strong look",
+  "forbidden_claim": "not film, stock, emulsion, calibration, population preference or product promotion",
+  "claim_ceiling": "independently confirmed digital-photographic neutral-base mechanism before fixed AO6; product-value comparison remains required"
+}

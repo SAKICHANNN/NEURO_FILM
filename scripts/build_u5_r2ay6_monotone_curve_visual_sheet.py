@@ -71,6 +71,12 @@ def main() -> int:
         / "configs/u5_r2ay6_monotone_channel_curve_development_v1.json",
     )
     parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=None,
+        help="Optional exact normalized manifest for a later confirmation.",
+    )
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--rows", type=int, default=12)
     args = parser.parse_args()
@@ -83,10 +89,17 @@ def main() -> int:
         validated["safe_validated"]["fixed_config"],
         validated["safe_validated"]["fixed_validated"],
     )
-    evidence = {
-        row["pair_id"]: row for row in validated["fresh_manifest"]["rows"]
-    }
-    rows = report["populations"]["fresh_63"]["rows"]
+    manifest = (
+        json.loads(args.manifest.read_text(encoding="utf-8"))
+        if args.manifest is not None
+        else validated["fresh_manifest"]
+    )
+    evidence = {row["pair_id"]: row for row in manifest["rows"]}
+    rows = (
+        report["populations"]["fresh_63"]["rows"]
+        if "populations" in report
+        else report["population"]["rows"]
+    )
     selected = _select(rows, int(args.rows))
     knots = np.asarray(config["operator"]["knot_inputs"])
     epsilon = float(config["parents"]["ay3"]["boundary_epsilon"])

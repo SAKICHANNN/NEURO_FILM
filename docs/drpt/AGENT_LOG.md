@@ -7705,3 +7705,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Twelve worst/harmed fresh rows retain strong AO6 styling with zero confirmed
   severe visual failures. Freeze the full method and acquire another disjoint
   official FiveK population for unchanged confirmation.
+
+## 2026-07-30 - U5.R2AY6F independently confirms the curve predictor
+
+- A third 64-pair/3.67GB official selection is disjoint from all prior 192
+  source names. Normalization retains 64 pairs across 19 camera models with
+  zero exact/dHash<=4 leakage against 191 prior normalized rows.
+- The unchanged alpha-100 predictor improves 15.16% over the global curve,
+  wins 67.19%, reaches `.774x` P95 and `.748x` worst error. AO6 style remains
+  `.970x` global and all methods create zero new boundaries.
+- Reports repeat byte-exact. Twelve worst/harmed confirmation rows have zero
+  confirmed severe visual failures. The mechanism is confirmed as a digital
+  neutral base only; next compare its actual visual product value before AO6.
