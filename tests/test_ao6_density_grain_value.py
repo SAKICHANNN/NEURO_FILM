@@ -9,6 +9,7 @@ from PIL import Image
 
 from src.eval.ao6_density_grain_value import (
     AO6DensityGrainError,
+    adjudicate_masked_observations,
     apply_linear_density_grain,
     build_blind_crop_sheets,
     validate_contract,
@@ -182,3 +183,48 @@ def test_blind_crop_sheets_accept_per_sample_orders(tmp_path: Path) -> None:
         "B": "full",
         "C": "base",
     }
+
+
+def test_masked_adjudication_uses_committed_per_sample_mapping() -> None:
+    config = _config()
+    ids = list(config["population"]["expected_ids"])[:9]
+    arms = list(config["arms"])
+    mappings = [
+        {
+            sample_id: {
+                "A": arms[(sample_index + round_index) % 3],
+                "B": arms[(sample_index + round_index + 1) % 3],
+                "C": arms[(sample_index + round_index + 2) % 3],
+            }
+            for sample_index, sample_id in enumerate(ids)
+        }
+        for round_index in range(3)
+    ]
+    commitment = __import__("hashlib").sha256(
+        json.dumps(
+            mappings, sort_keys=True, separators=(",", ":")
+        ).encode()
+    ).hexdigest()
+    observations = {
+        "status": "observations_frozen_before_mapping_reveal",
+        "mapping_commitment_sha256": commitment,
+        "sample_ids": ids,
+        "preferred_labels": {
+            "round_1": ["A"] * 9,
+            "round_2": ["A"] * 9,
+            "round_3": ["A"] * 9,
+        },
+        "severe_artifact_review": {"confirmed_severe_failures": 0},
+    }
+    result = adjudicate_masked_observations(
+        config=config,
+        observations=observations,
+        mapping={
+            "mappings": mappings,
+            "mapping_commitment_sha256": commitment,
+        },
+    )
+
+    assert result["visual_preference_pass"] is False
+    assert result["severe_artifact_pass"] is True
+    assert result["decision"] == "close_visual_value_no_parameter_rescue"

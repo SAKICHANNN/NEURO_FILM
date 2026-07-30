@@ -1,0 +1,55 @@
+{
+  "automatic": {
+    "automatic_gates": {
+      "bright_guard_support": true,
+      "changed_support": true,
+      "encoded_tail": true,
+      "halation_support": true,
+      "linear_chromaticity": true,
+      "new_raw_clipping": true
+    },
+    "automatic_pass": true,
+    "halation_supported_rows": 16,
+    "median_bright_guard_limited_fraction": 0.004157161111238105,
+    "median_changed_pixel_fraction": 0.7909412575408351,
+    "worst_linear_chromaticity_drift_p999": 2.220446049250313e-16,
+    "worst_new_raw_clipping_fraction": 0.0,
+    "worst_p999_abs_encoded_change": 0.04063499631503272
+  },
+  "claim_ceiling": "development-only explicit density-domain grain value audit on fixed AO6 outputs; not measured film structure, population preference, stock response, calibration or product promotion",
+  "config_sha256": "f938ac5615732fab181f6f07e47a1a64c0ff959eaca0418554eba98229c6d644",
+  "experiment_id": "u5.r2bc1-ao6-density-grain-value-v1",
+  "mapping_sha256": "e97c09643a043b6dbb5d40675058c4192e148126f8012f10ad0e7b9a92d2eba8",
+  "observations_sha256": "7c78229f52e79bfa59dbb2b6345a96058b745de70191f2d7971eecb0d26bfb70",
+  "report_sha256": "abd7b09a6f6d2bbd7ab4ed9b90bdffe5a8494df1af560966aad8ea6bcd982165",
+  "schema": "neuro-film.u5-r2bc1-density-grain-decision.v1",
+  "visual": {
+    "decision": "close_visual_value_no_parameter_rescue",
+    "mapping_commitment_sha256": "5885c8b0d3e797a7d095fcaf9c74333f8c68a102a77ea1e817cc665a236a9e4d",
+    "passing_rounds": {
+      "ao6_plus_linear_density_grain_0225": 0,
+      "ao6_plus_linear_density_grain_0225_simple_halation_014": 0,
+      "fixed_ao6_colour_only_t15_c35": 0
+    },
+    "round_preference_counts": [
+      {
+        "ao6_plus_linear_density_grain_0225": 3,
+        "ao6_plus_linear_density_grain_0225_simple_halation_014": 3,
+        "fixed_ao6_colour_only_t15_c35": 3
+      },
+      {
+        "ao6_plus_linear_density_grain_0225": 2,
+        "ao6_plus_linear_density_grain_0225_simple_halation_014": 2,
+        "fixed_ao6_colour_only_t15_c35": 5
+      },
+      {
+        "ao6_plus_linear_density_grain_0225": 3,
+        "ao6_plus_linear_density_grain_0225_simple_halation_014": 4,
+        "fixed_ao6_colour_only_t15_c35": 2
+      }
+    ],
+    "severe_artifact_pass": true,
+    "visual_preference_pass": false,
+    "winning_arms": []
+  }
+}

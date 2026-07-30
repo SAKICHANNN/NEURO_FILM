@@ -418,3 +418,73 @@ def build_blind_crop_sheets(
         "mappings": mappings,
         "mapping_commitment_sha256": _canonical_sha(mappings),
     }
+
+
+def adjudicate_masked_observations(
+    *,
+    config: Mapping[str, Any],
+    observations: Mapping[str, Any],
+    mapping: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Reveal a committed per-sample mapping and apply the frozen visual gate."""
+
+    if observations.get("status") != "observations_frozen_before_mapping_reveal":
+        raise AO6DensityGrainError("masked observations were not frozen")
+    mappings = mapping.get("mappings")
+    if not isinstance(mappings, list) or len(mappings) != 3:
+        raise AO6DensityGrainError("invalid masked mapping")
+    commitment = _canonical_sha(mappings)
+    if (
+        commitment != mapping.get("mapping_commitment_sha256")
+        or commitment != observations.get("mapping_commitment_sha256")
+    ):
+        raise AO6DensityGrainError("masked mapping commitment mismatch")
+    ids = list(observations["sample_ids"])
+    expected_ids = list(config["population"]["expected_ids"])[:9]
+    if ids != expected_ids:
+        raise AO6DensityGrainError("masked observation population drift")
+    arms = list(config["arms"])
+    round_counts: list[dict[str, int]] = []
+    for round_index, round_mapping in enumerate(mappings, start=1):
+        labels = list(observations["preferred_labels"][f"round_{round_index}"])
+        if len(labels) != len(ids):
+            raise AO6DensityGrainError("masked preference count drift")
+        counts = {arm: 0 for arm in arms}
+        for sample_id, label in zip(ids, labels, strict=True):
+            try:
+                arm_id = round_mapping[sample_id][label]
+            except (KeyError, TypeError) as exc:
+                raise AO6DensityGrainError(
+                    "masked mapping label drift"
+                ) from exc
+            if arm_id not in counts:
+                raise AO6DensityGrainError("masked mapping arm drift")
+            counts[arm_id] += 1
+        round_counts.append(counts)
+    threshold = int(
+        config["visual_gate"]["candidate_preference_threshold_per_round"]
+    )
+    required_rounds = int(config["visual_gate"]["required_passing_rounds"])
+    passing_rounds = {
+        arm: sum(counts[arm] >= threshold for counts in round_counts)
+        for arm in arms
+    }
+    winning_arms = [
+        arm for arm in arms[1:] if passing_rounds[arm] >= required_rounds
+    ]
+    severe_failures = int(
+        observations["severe_artifact_review"]["confirmed_severe_failures"]
+    )
+    return {
+        "mapping_commitment_sha256": commitment,
+        "round_preference_counts": round_counts,
+        "passing_rounds": passing_rounds,
+        "severe_artifact_pass": severe_failures == 0,
+        "visual_preference_pass": bool(winning_arms),
+        "winning_arms": winning_arms,
+        "decision": (
+            "open_disjoint_confirmation"
+            if winning_arms and severe_failures == 0
+            else "close_visual_value_no_parameter_rescue"
+        ),
+    }

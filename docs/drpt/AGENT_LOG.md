@@ -7863,3 +7863,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Visual review and strength rescue are forbidden. Proceed with a separately
   versioned linear optical-density grain that preserves chromaticity and uses
   analytical bright-end safety.
+
+## 2026-07-28 - U5.R2BC1 removes coloured grain artifacts but closes product value
+
+- Implemented one shared optical-density noise field in linear RGB with a
+  source-inclusive analytical bright-end guard. The fixed `.0225` density
+  sigma and optional `.14` simple halation operate after unchanged AO6 colour.
+- Two 16-image reports are byte-identical at `abd7b09a...2165`. All automatic
+  gates pass: 79.09% median support, 0.416% median guard activation,
+  `2.22e-16` worst chromaticity drift P99.9 and zero new clipping.
+- The first global-order sheets were excluded because their mapping was visible
+  in source. A per-sample randomized mapping was hash-committed before review;
+  preferences decode to grain `3/2/3`, grain+halation `3/2/4`, colour-only
+  `3/5/2`. No arm reaches six votes in any round.
+- Full 1:1 crops have zero confirmed severe failures and no BC0 coloured
+  speckles. Close without strength, threshold, round or integration rescue.
+  Retain the primitive as mechanically valid research code only.

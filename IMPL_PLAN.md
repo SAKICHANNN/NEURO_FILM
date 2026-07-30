@@ -35,6 +35,13 @@
 > high-frequency chroma tail (`.01302 > .004`) because per-channel clipping
 > colours nominally neutral noise near gamut boundaries. Close before visual
 > review; next implement a distinct shared optical-density grain in linear RGB.
+>
+> U5.R2BC1 implements that distinct shared density primitive with analytical
+> gamut safety. It passes every automatic and severe gate, including numerical
+> chromaticity drift and zero new clipping, but a per-sample randomized masked
+> adjudication gives neither fixed effect arm a six-vote round. Close product
+> value without strength or extra-round rescue; retain only the reusable
+> primitive and return to a higher-information physical/color leaf.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.
