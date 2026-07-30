@@ -423,3 +423,7 @@ gate passes.
 BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
 win-rate and P95 error improvements. Next: freeze an intrinsically
 cube-preserving residual basis; do not retune or confirm BJ0.
+
+BJ1 closed: cube membership is exact, but strict near-boundary safety and AY3
+P95 fail. Next legal leaf is one preregistered strict-epsilon-interior LUT
+basis, not a BJ1 parameter rescue.

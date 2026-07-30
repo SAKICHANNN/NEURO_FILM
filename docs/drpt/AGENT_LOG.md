@@ -8079,3 +8079,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The fixed representation closes without tuning. The next legal algorithm
   leaf may change the residual mathematics to be intrinsically cube
   preserving; it may not rescue BJ0 by changing its parameters or gates.
+
+## 2026-07-31 - Close U5.R2BJ1 on strict-boundary and AY3 tail gates
+
+- Implemented a channel-enveloped residual LUT whose coefficient interval
+  proves the output stays in the RGB cube; 7 BJ0/BJ1 tests pass.
+- Two 191-image reports are byte-identical at `69870b5c...083b4`. All
+  out-of-cube fractions are exactly zero and adaptive mean gain remains
+  11.95--14.99%.
+- New epsilon-boundary pixels reach 0.329--0.819%, and AY3 P95 is
+  `1.004049x` global. Automatic passage fails; no visual review or data opens.
+- One strict-epsilon-interior residual representation may test this isolated
+  mathematical gap. BJ1 itself is closed without tuning.

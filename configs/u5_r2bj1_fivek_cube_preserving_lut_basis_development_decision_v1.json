@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj1-fivek-cube-preserving-lut-basis-development-v1",
+  "status": "closed_strict_boundary_and_fresh_tail_failed",
+  "config": "configs/u5_r2bj1_fivek_cube_preserving_lut_basis_development_v1.json",
+  "report": "outputs/u5_r2bj1_fivek_cube_preserving_lut_basis_development_v1/run_a/report.json",
+  "report_sha256": "69870b5c48822f4b33ed5ee3f5ed44030555a151a3cffd86a8043b52a65083b4",
+  "stable_evidence_id": "b52a56a19132377a03eb4107c3750a5558e08fcaa44f97435f72fb43ed30fc6b",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "observed": {
+    "ay0_camera_group_crossfit": {
+      "adaptive_mean_improvement_over_global": 0.134452,
+      "adaptive_win_fraction": 0.765625,
+      "adaptive_p95_ratio": 0.847676,
+      "maximum_new_boundary_fraction": 0.0032935049019607843,
+      "maximum_out_of_cube_fraction": 0.0
+    },
+    "ay3_seen_fresh": {
+      "adaptive_mean_improvement_over_global": 0.119476,
+      "adaptive_win_fraction": 0.587302,
+      "adaptive_p95_ratio": 1.004049,
+      "maximum_new_boundary_fraction": 0.008185611598440546,
+      "maximum_out_of_cube_fraction": 0.0
+    },
+    "ay6_seen_confirmation": {
+      "adaptive_mean_improvement_over_global": 0.149892,
+      "adaptive_win_fraction": 0.640625,
+      "adaptive_p95_ratio": 0.852198,
+      "maximum_new_boundary_fraction": 0.007195723684210526,
+      "maximum_out_of_cube_fraction": 0.0
+    }
+  },
+  "decision": "The channel envelope proves and achieves zero out-of-cube pixels while retaining strong adaptive mean gains, but it does not preserve the stricter epsilon-interior product boundary and AY3 P95 is 0.4% worse than global. The fixed BJ1 representation closes without coefficient, envelope, grid, rank, regularization, predictor or gate tuning.",
+  "forbidden_rescue": [
+    "do not reinterpret zero out-of-cube as zero new product-boundary pixels",
+    "do not tune the BJ1 envelope, coefficient range, grid, rank, regularization, predictor, target, AO6 or gates",
+    "do not download confirmation data or run visual review",
+    "do not make film, stock, calibration, preference or product claims"
+  ],
+  "allowed_next": "one separately preregistered strict-epsilon-interior explicit residual basis may test the remaining identified representation gap; it must not alter BJ1 or reuse confirmation language",
+  "claim_ceiling": "negative development decision for one intrinsically cube-preserving adaptive LUT with positive prediction evidence but failed strict-boundary and one fresh-tail gate"
+}

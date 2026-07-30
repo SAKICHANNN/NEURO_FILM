@@ -992,3 +992,8 @@ BJ0 is now closed: adaptive LUT prediction improves mean error by
 but P95 safety-limited fractions are 17.55--22.07%, above the frozen 10% gate.
 No visual review or new confirmation data opens. A separately preregistered
 intrinsically cube-preserving residual basis is the next legal algorithm leaf.
+
+BJ1 proves zero out-of-cube pixels and retains 11.95--14.99% adaptive mean
+gain, but produces 0.329--0.819% new epsilon-boundary pixels and misses AY3
+P95 by 0.4%. It closes without tuning or confirmation. One strict-interior
+explicit residual basis may test the remaining representation gap.
