@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u5_r2ax16_filmmatch_fresh_ood.v1",
+  "report_schema": "neuro_film.u5_r2ax16_filmmatch_fresh_ood.v1",
+  "experiment_id": "u5.r2ax16-filmmatch-fresh-ood-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX16",
+  "parent": {
+    "validation_decision": "configs/u5_r2ax15_filmmatch_cap070_validation_decision_v1.json",
+    "validation_decision_sha256": "677f26bfc0b62485a465870fdf8a17aaa26af860a66cc8a73f4c8888afe091ab",
+    "operator_report": "outputs/external_controls/filmmatch_ektachrome_v1/degree5_strength_cap_report.json",
+    "operator_report_sha256": "af5d4cbd270342b9a2a6829a1d0e6e3cd265b3f275bbf141ff2e65b6d7a487a5",
+    "operator_stable_evidence_id": "99a24d6596aa714910c1d32e5eec2c4a36013991aeedc7e99254b9ba61b861e7"
+  },
+  "population": {
+    "manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "source_decision": "configs/u6_p8bp_fresh_source_preflight_decision_v1.json",
+    "source_decision_sha256": "004fad263ee0ddc437e57f5cc70fc69890c9bbb1bfeb5759383180bfba22cc0e",
+    "fixed_before_filmmatch_operator": true,
+    "rights": "CC0/Public Domain per each exact raw.pixls.us repository row",
+    "operator_fitting_allowed": false
+  },
+  "domain_adapter": {
+    "official_reference": "https://download.pro.sony/FNGP/protein/1237494271390/1237494271406.pdf",
+    "official_reference_sha256": "d9c8a042e7e9e8ee248df97633b645681b5370099a508b6cee97d8bad880d5d3",
+    "slog3_range": "full",
+    "sgamut3_cine_primaries_xy": [[0.766, 0.275], [0.225, 0.8], [0.089, -0.087]],
+    "white_xy": [0.3127, 0.329],
+    "not_camera_idt": true,
+    "not_calibrated": true
+  },
+  "execution": {
+    "row_chunk": 128,
+    "contact_sheet_cell_width": 480,
+    "output": "RGB16 PNG carrying author target code values without a standardized display profile"
+  },
+  "automatic_gate": {
+    "minimum_source_count": 8,
+    "minimum_camera_make_count": 8,
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_median_style_rgb_rmse": 0.03
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_all_full_resolution_candidates": true
+  },
+  "gates": {
+    "threshold_relaxation_allowed": false,
+    "population_replacement_allowed": false,
+    "operator_refit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "fresh nine-camera CC0 OOD artifact and style evidence for one fixed code-domain Look Approximation under an explicit non-calibrated display-to-S-Log3 adapter; no camera IDT, Ektachrome stock response, scanner independence, population preference or product promotion"
+}

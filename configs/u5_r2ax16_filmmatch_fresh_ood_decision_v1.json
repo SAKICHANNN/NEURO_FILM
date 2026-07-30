@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2ax16_filmmatch_fresh_ood_decision.v1",
+  "experiment_id": "u5.r2ax16-filmmatch-fresh-ood-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/fresh_ood_ax16/report.json",
+  "report_sha256": "4d11a436fec54d30f9f320660b6ff9aceed7f8e15187ba78ed3cc32b4ab4630c",
+  "stable_evidence_id": "45af250f4324b03ed6e2aa89b194497942d8a5ebce8b4c7f5c2d3fc6ac581e4a",
+  "exact_repeat_passed": true,
+  "automatic_gate_passed": true,
+  "automatic_summary": {
+    "source_count": 9,
+    "camera_make_count": 9,
+    "worst_new_boundary_fraction": 0.0,
+    "median_style_rgb_rmse_in_operator_code_domain": 0.09569663655392004,
+    "minimum_output": 0.0322578578552993,
+    "maximum_output": 0.755666386516961
+  },
+  "autonomous_visual_review": {
+    "contact_sheet_reviewed": true,
+    "full_resolution_candidates_reviewed": 9,
+    "confirmed_severe_artifact_count": 0,
+    "visible_style_count": 9,
+    "observations": [
+      "the fixed operator produces an obvious warm, dense and often brown-biased global look across all nine unrelated scenes",
+      "faces, text, fine foliage, clouds, hard edges, painted colour regions and highlight structures remain coherent",
+      "no visible red speckles, posterization, banding, colour blocks, geometry damage or source-dependent discontinuity",
+      "strong vegetation hue shifts are a conspicuous aesthetic property of this look, not evidence of calibrated Ektachrome response"
+    ]
+  },
+  "decision": "pass_fresh_nine_camera_ood_safety_and_style_development_confirmation",
+  "promotion_opened": false,
+  "claim_ceiling": "fresh nine-camera CC0 autonomous visual OOD evidence for one fixed code-domain Look Approximation under an explicit non-calibrated display-to-S-Log3 adapter; no camera IDT, Ektachrome stock response, scanner independence, population preference or product promotion"
+}

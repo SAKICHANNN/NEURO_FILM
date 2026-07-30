@@ -101,6 +101,24 @@ def chart_sample_geometry(config: Mapping[str, Any]) -> list[dict[str, Any]]:
     return output
 
 
+def linear_reflection_to_slog3(values: np.ndarray) -> np.ndarray:
+    """Encode scene-linear reflection with Sony's published S-Log3 formula."""
+    linear = np.asarray(values, dtype=np.float64)
+    if not np.all(np.isfinite(linear)):
+        raise ValueError("linear reflection values must be finite")
+    threshold = 0.01125
+    output = np.empty_like(linear)
+    upper = linear >= threshold
+    output[upper] = (
+        420.0
+        + np.log10((linear[upper] + 0.01) / 0.19) * 261.5
+    ) / 1023.0
+    output[~upper] = (
+        linear[~upper] * (171.2102946929 - 95.0) / threshold + 95.0
+    ) / 1023.0
+    return output
+
+
 def _load_rgb16(path: Path, *, stride: int) -> np.ndarray:
     pixels = tifffile.memmap(path)
     if pixels.ndim != 3 or pixels.shape[2] != 3 or pixels.dtype != np.uint16:
@@ -401,4 +419,5 @@ __all__ = [
     "extract_pair_datasets",
     "sample_audit_report",
     "slog3_to_linear_reflection",
+    "linear_reflection_to_slog3",
 ]
