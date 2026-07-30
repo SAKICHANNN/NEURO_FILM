@@ -150,11 +150,119 @@ class GeneralizedMonotoneCurveMatrixOperator:
 
 @dataclass(frozen=True)
 class GeneralizedMonotoneFitResult:
-    operator: GeneralizedMonotoneCurveMatrixOperator
+    operator: (
+        GeneralizedMonotoneCurveMatrixOperator
+        | PositiveMatrixCurveMatrixOperator
+    )
     development_rgb_rmse: float
     function_evaluations: int
     restart_index: int
     converged: bool
+
+
+@dataclass(frozen=True)
+class PositiveMatrixCurveMatrixOperator:
+    """Positive matrix, monotone curves, then a second positive matrix."""
+
+    input_matrix: np.ndarray
+    curve_segment_weights: np.ndarray
+    output_matrix: np.ndarray
+
+    def __post_init__(self) -> None:
+        helper = GeneralizedMonotoneCurveMatrixOperator(
+            self.curve_segment_weights, self.output_matrix
+        )
+        input_matrix = np.asarray(self.input_matrix, dtype=np.float64)
+        if (
+            input_matrix.shape != (3, 3)
+            or not np.all(np.isfinite(input_matrix))
+            or np.any(input_matrix < 0.0)
+            or not np.allclose(
+                np.sum(input_matrix, axis=1), 1.0, atol=1e-12
+            )
+            or np.linalg.det(input_matrix) <= 0.0
+        ):
+            raise ValueError("input matrix must be positive and oriented")
+        input_matrix = input_matrix.copy()
+        input_matrix.setflags(write=False)
+        object.__setattr__(self, "input_matrix", input_matrix)
+        object.__setattr__(
+            self, "curve_segment_weights", helper.curve_segment_weights
+        )
+        object.__setattr__(self, "output_matrix", helper.matrix)
+
+    @property
+    def segment_count(self) -> int:
+        return int(self.curve_segment_weights.shape[1])
+
+    def _intermediate(
+        self, rgb: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
+        values = _rgb(rgb)
+        mixed = values @ self.input_matrix.T
+        helper = GeneralizedMonotoneCurveMatrixOperator(
+            self.curve_segment_weights, np.eye(3)
+        )
+        curved, indices = helper._curves(mixed)
+        return curved, indices
+
+    def apply(self, rgb: np.ndarray) -> np.ndarray:
+        curved, _ = self._intermediate(rgb)
+        output = curved @ self.output_matrix.T
+        if (
+            not np.all(np.isfinite(output))
+            or np.any(output < -1e-12)
+            or np.any(output > 1.0 + 1e-12)
+        ):
+            raise RuntimeError("matrix-curve-matrix operator escaped cube")
+        return np.clip(output, 0.0, 1.0)
+
+    def jacobian_determinants(self, rgb: np.ndarray) -> np.ndarray:
+        values = _rgb(rgb)
+        _, indices = self._intermediate(values)
+        channels = np.arange(3)[None, :]
+        slopes = (
+            float(self.segment_count)
+            * self.curve_segment_weights[channels, indices]
+        )
+        return (
+            float(np.linalg.det(self.input_matrix))
+            * float(np.linalg.det(self.output_matrix))
+            * np.prod(slopes, axis=1)
+        ).reshape(values.shape[:-1])
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": "roll2film.positive_matrix_curve_matrix.v1",
+            "segment_count": self.segment_count,
+            "input_matrix": self.input_matrix.tolist(),
+            "curve_segment_weights": self.curve_segment_weights.tolist(),
+            "output_matrix": self.output_matrix.tolist(),
+            "hard_output_clipping": False,
+        }
+
+    @classmethod
+    def from_dict(
+        cls, payload: dict[str, Any]
+    ) -> "PositiveMatrixCurveMatrixOperator":
+        if (
+            payload.get("schema")
+            != "roll2film.positive_matrix_curve_matrix.v1"
+            or payload.get("hard_output_clipping") is not False
+        ):
+            raise ValueError("unsupported matrix-curve-matrix schema")
+        operator = cls(
+            input_matrix=np.asarray(payload["input_matrix"], dtype=np.float64),
+            curve_segment_weights=np.asarray(
+                payload["curve_segment_weights"], dtype=np.float64
+            ),
+            output_matrix=np.asarray(
+                payload["output_matrix"], dtype=np.float64
+            ),
+        )
+        if operator.segment_count != int(payload["segment_count"]):
+            raise ValueError("segment count drift")
+        return operator
 
 
 def fit_generalized_monotone_curve_matrix(
@@ -252,8 +360,118 @@ def fit_generalized_monotone_curve_matrix(
     )
 
 
+def fit_positive_matrix_curve_matrix(
+    source: np.ndarray,
+    target: np.ndarray,
+    *,
+    segment_count: int,
+    curve_learned_mixture: float,
+    input_matrix_identity_mixture: float,
+    output_matrix_identity_mixture: float,
+    free_logit_bounds: tuple[float, float],
+    restart_count: int,
+    maximum_function_evaluations: int,
+    function_tolerance: float,
+    parameter_tolerance: float,
+    gradient_tolerance: float,
+    loss: PositiveFilmFitLoss,
+    loss_scale: float,
+    seed: int,
+) -> GeneralizedMonotoneFitResult:
+    source_values = _rgb(source)
+    target_values = _rgb(target)
+    if (
+        source_values.ndim != 2
+        or source_values.shape != target_values.shape
+        or len(source_values) < 3 * segment_count
+        or segment_count < 3
+        or not 0.0 < curve_learned_mixture < 1.0
+        or not 0.0 <= input_matrix_identity_mixture <= 1.0
+        or not 0.0 <= output_matrix_identity_mixture <= 1.0
+        or restart_count < 1
+        or maximum_function_evaluations < 1
+    ):
+        raise ValueError("invalid matrix-curve-matrix fit data")
+    lower, upper = map(float, free_logit_bounds)
+    if not np.isfinite(lower) or not np.isfinite(upper) or lower >= upper:
+        raise ValueError("invalid matrix-curve-matrix logit bounds")
+    curve_parameters = 3 * (segment_count - 1)
+    parameter_count = curve_parameters + 12
+
+    def operator(parameters: np.ndarray) -> PositiveMatrixCurveMatrixOperator:
+        logits = np.zeros((3, segment_count), dtype=np.float64)
+        logits[:, 1:] = parameters[:curve_parameters].reshape(
+            3, segment_count - 1
+        )
+        probabilities = _softmax(logits)
+        weights = (
+            (1.0 - curve_learned_mixture) / float(segment_count)
+            + curve_learned_mixture * probabilities
+        )
+        return PositiveMatrixCurveMatrixOperator(
+            input_matrix=row_stochastic_identity_mixture(
+                parameters[curve_parameters : curve_parameters + 6],
+                identity_mixture=input_matrix_identity_mixture,
+            ),
+            curve_segment_weights=weights,
+            output_matrix=row_stochastic_identity_mixture(
+                parameters[curve_parameters + 6 :],
+                identity_mixture=output_matrix_identity_mixture,
+            ),
+        )
+
+    def residual(parameters: np.ndarray) -> np.ndarray:
+        return (operator(parameters).apply(source_values) - target_values).reshape(
+            -1
+        )
+
+    best = None
+    best_operator = None
+    best_restart = -1
+    for restart in range(restart_count):
+        initial = np.zeros(parameter_count, dtype=np.float64)
+        initial[curve_parameters:] = np.log(1.0 / 8.0)
+        if restart:
+            rng = np.random.default_rng(seed + restart)
+            initial += rng.normal(0.0, 0.25, parameter_count)
+        initial = np.clip(initial, lower + 1e-9, upper - 1e-9)
+        result = least_squares(
+            residual,
+            initial,
+            bounds=(
+                np.full(parameter_count, lower),
+                np.full(parameter_count, upper),
+            ),
+            method="trf",
+            max_nfev=maximum_function_evaluations,
+            ftol=function_tolerance,
+            xtol=parameter_tolerance,
+            gtol=gradient_tolerance,
+            x_scale="jac",
+            loss=loss,
+            f_scale=loss_scale,
+        )
+        candidate = operator(result.x)
+        if best is None or result.cost < best.cost:
+            best = result
+            best_operator = candidate
+            best_restart = restart
+    if best is None or best_operator is None:
+        raise RuntimeError("matrix-curve-matrix fit produced no result")
+    error = best_operator.apply(source_values) - target_values
+    return GeneralizedMonotoneFitResult(
+        operator=best_operator,
+        development_rgb_rmse=float(np.sqrt(np.mean(np.square(error)))),
+        function_evaluations=int(best.nfev),
+        restart_index=best_restart,
+        converged=bool(best.success),
+    )
+
+
 __all__ = [
     "GeneralizedMonotoneCurveMatrixOperator",
     "GeneralizedMonotoneFitResult",
+    "PositiveMatrixCurveMatrixOperator",
     "fit_generalized_monotone_curve_matrix",
+    "fit_positive_matrix_curve_matrix",
 ]
