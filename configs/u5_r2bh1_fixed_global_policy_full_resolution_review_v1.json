@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2bh1_fixed_global_policy_full_resolution_review.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh1-fixed-global-policy-confirmation-v1",
+  "status": "full_resolution_severe_review_complete",
+  "review_date": "2026-07-31",
+  "observer": "autonomous_codex_visual_review",
+  "render_report_sha256": "1376d6ef6b6988e4263f66b3b7d197636238c3cd9f1f5dccc2f0db32cd7b84fe",
+  "confirmed_severe_count": 0,
+  "reviewed_scope": {
+    "blind_sheet_scope": "all 24 candidates across nine exact sheets",
+    "full_resolution_risk_rows": [
+      "epson_r_d1x",
+      "xiaomi_m2010j19cg",
+      "leica_c_typ_112",
+      "lg_lg_h850",
+      "leaf_aptus_22"
+    ],
+    "arms_per_risk_row": 2,
+    "risk_coverage": [
+      "saturated_red_orange_and_text",
+      "smooth_sky_gradient",
+      "water_and_fine_repetitive_texture",
+      "low_light_noise_and_edges",
+      "smooth_background_and_hot_pixel_lineage"
+    ]
+  },
+  "findings": [
+    "No arm-generated geometry failure, large colour block, posterization, banding, red-speckle field, clipping failure or unstable local colour artifact was confirmed.",
+    "The isolated coloured pixels in the Leaf smooth background occur at the same coordinates in both arms and are source or sensor hot pixels, not an arm-generated severe artifact.",
+    "The Leica, Xiaomi and LG rows retain continuous spatial structure at full resolution despite strong stylization and source noise.",
+    "Direct oversized 16-bit PNG display produced one viewer-cache mismatch; independent RGB downsampling, structure matching, report input hashes and regenerated previews confirmed same-source arm pairing before review continued."
+  ],
+  "claim_ceiling": "risk-based autonomous full-resolution severe-artifact review on the frozen BH1 population; not universal safety, population preference, calibrated film truth or product promotion"
+}

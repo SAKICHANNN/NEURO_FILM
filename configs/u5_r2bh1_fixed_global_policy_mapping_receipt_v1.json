@@ -1,0 +1,15 @@
+{
+  "schema": "neuro_film.u5_r2bh1_fixed_global_policy_mapping_receipt.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh1-fixed-global-policy-confirmation-v1",
+  "status": "mapping_identities_bound_after_observations_commit",
+  "observations_commit": "30534ce5a06ed3cefc9e37dfe774fed632b7de3b",
+  "observations_sha256": "b1c34215d4396437d974f9d75c60dec7d16ff56f1224157b4a00f55c3df84d83",
+  "mapping_revealed": true,
+  "mapping_sha256_by_round": [
+    "3b66345c1a92c4d384d6270488d14182b8417777c245dbf7d03dc6c2503710ad",
+    "a571e024ebfbc5a545f961eb7e3c5e3d7c30fdcff9ed18a232c310c16b7ee8d1",
+    "cb70bbeab2bea99ff09785b8e20a57dea035c8fbe5f79eb967a01528ce1222fb"
+  ],
+  "claim_ceiling": "post-observation mapping identity receipt; does not alter choices, thresholds, severe review or scientific outcome"
+}
