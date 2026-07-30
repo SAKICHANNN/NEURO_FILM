@@ -1,0 +1,71 @@
+{
+  "schema_version": "u5-r2bi0-public-paired-film-source-refresh-v1",
+  "experiment_id": "u5.r2bi0-public-paired-film-source-refresh-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BI0",
+  "question": "Does either of the two strongest author-controlled real digital/film paired projects now expose a directly downloadable, explicitly licensed paired-data package that can open a bounded operator-learning leaf?",
+  "sources": [
+    {
+      "source_id": "sillystill-cinestill800t",
+      "project_url": "https://github.com/mikasenghaas/sillystill",
+      "repository_api_url": "https://api.github.com/repos/mikasenghaas/sillystill",
+      "tree_api_template": "https://api.github.com/repos/mikasenghaas/sillystill/git/trees/{tree_sha}?recursive=1",
+      "claimed_stock": "CineStill 800T",
+      "required_dataset_path_prefixes": [
+        "data/"
+      ],
+      "required_root_license_paths": [
+        "LICENSE",
+        "LICENSE.txt",
+        "LICENCE",
+        "LICENCE.txt"
+      ],
+      "paper_claim": "the paper says the aligned paired dataset is contributed and its appendix says /data contains the dataset"
+    },
+    {
+      "source_id": "emulating-emulsion-velvia100",
+      "project_url": "https://musicofmusix.github.io/siggraphposters25",
+      "project_page_url": "https://musicofmusix.github.io/siggraphposters25",
+      "author_repositories_api_url": "https://api.github.com/users/musicofmusix/repos?per_page=100",
+      "claimed_stock": "Fujifilm Velvia 100",
+      "required_repository_name_patterns": [
+        "emulsion",
+        "film"
+      ],
+      "required_public_data_link_patterns": [
+        "dataset",
+        "zenodo",
+        "figshare",
+        "huggingface"
+      ],
+      "paper_claim": "the project reports 3168 chart correspondences from one 36-exposure roll"
+    }
+  ],
+  "network_contract": {
+    "https_get_only": true,
+    "image_or_dataset_payload_requests_allowed": false,
+    "maximum_requests": 8,
+    "maximum_response_bytes": 8388608,
+    "timeout_seconds": 45,
+    "user_agent": "K-MCFM-Ultimate-paired-source-refresh/1.0",
+    "repeat_count": 2
+  },
+  "eligibility_gates": {
+    "author_controlled_public_endpoint_required": true,
+    "downloadable_pair_manifest_or_dataset_tree_required": true,
+    "explicit_dataset_reuse_license_required": true,
+    "stock_label_and_pair_topology_required": true,
+    "paper_or_webpage_claim_alone_sufficient": false,
+    "repository_code_alone_sufficient": false
+  },
+  "branch_rules": {
+    "eligible_source_found": "freeze a separate bounded acquisition, rights, pair-integrity and group-split contract before requesting any data payload",
+    "no_eligible_source": "close the current public surface and continue a distinct explicit algorithm or controlled-source search without contacting authors or weakening rights and topology gates"
+  },
+  "dataset_download_allowed": false,
+  "image_request_allowed": false,
+  "external_contact_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "live author-controlled metadata and repository-surface audit for paired digital/film data availability; not pixel rights, pair integrity, stock response, calibration, operator fitting, training or product evidence"
+}

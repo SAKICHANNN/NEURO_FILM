@@ -2189,3 +2189,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 ---
 
 *修订版本: V3.0 | 2026-05-23 | Diffusion-Based Film Translation*
+> `U5.R2BI0` refreshes the two strongest author-controlled paired-film data
+> claims after BH1 closes the fixed global-policy comparison. It is a bounded
+> official-API/page audit only: SillyStill must actually expose its claimed
+> dataset tree plus an explicit root data licence, and Emulating Emulsion must
+> expose a public data repository/link rather than only the 3168-pair method
+> description. No image payload, contact, fitting or training is allowed.
+> A pass opens a separately frozen acquisition leaf; failure closes only the
+> current public surface and does not weaken the stock-first data gate.
+>
