@@ -40,7 +40,7 @@ def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit(
             {
                 oracle.ARMS[0]: base,
                 oracle.ARMS[1]: ao6,
-                oracle.ARMS[2]: native,
+                "fixed_native_standard_full_strength_1_0": native,
             },
             {
                 "receipt_sha256": "a" * 64,

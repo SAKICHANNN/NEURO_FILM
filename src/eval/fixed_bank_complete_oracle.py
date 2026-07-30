@@ -255,7 +255,7 @@ def render_fixed_bank(
         ARMS[1]: base_outputs[ARMS[1]],
         ARMS[2]: np.ascontiguousarray(ap3, dtype=np.float32),
         ARMS[3]: np.ascontiguousarray(az0, dtype=np.float32),
-        ARMS[4]: base_outputs[ARMS[2]],
+        ARMS[4]: base_outputs["fixed_native_standard_full_strength_1_0"],
     }
     source_shape = np.asarray(scene_linear).shape
     for arm_id, values in outputs.items():
