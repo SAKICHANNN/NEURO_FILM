@@ -15,6 +15,12 @@
 > from AZ0, but reaches only `0.7990` style gain over AO6 and `0.9332x` AZ0
 > style, while also missing the real-film-displacement and AO6-difference
 > gates. Close without visual review or parameter rescue.
+>
+> U5.R2BA1 preserves channel-selective structure through fixed HSV value and
+> circular hue/saturation residuals. All automatic and severe gates pass with
+> zero new clipping, but blind preference against AZ0 is only `5/9`, `4/9`,
+> `3/9`; 0/3 rounds passes. Close coordinate/strength rescue and continue with
+> a genuinely distinct operator or product-value mechanism.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.

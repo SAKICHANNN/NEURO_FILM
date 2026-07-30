@@ -7819,3 +7819,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close BA0 before visual review. Strength, thresholds, row selection and
   capacity rescue on the sealed proxy pool are forbidden. The result supports
   preserving channel-selective structure rather than perceptual averaging.
+
+## 2026-07-30 - U5.R2BA1 passes mechanics but closes blind product value
+
+- Implemented a fixed HSV value then hue/saturation residual with circular hue
+  interpolation, a fixed `1/64` neutral-colour boundary and analytical
+  source-inclusive RGB scaling. No clipping, fitting, ML or parameter search.
+- Two reports are byte-identical at SHA-256 `7846c3ac...45408`. Every
+  automatic gate passes: style gain over AO6 `1.2807`, non-basic gain
+  `1.1276`, real-film displacement gain `1.0291`, material difference from
+  AZ0 `.9202`, and zero new gold/stress clipping.
+- All nine candidate gold images pass full-resolution severe review, including
+  ID11 and the face. Choices were committed before mapping reveal; candidate
+  preferences are `5/9`, `4/9`, `3/9`, so 0/3 rounds passes versus two
+  required. Close BA1 without floor, strength, threshold, round or routing
+  rescue. Numerical strength and severe safety again do not prove preference.

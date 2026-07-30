@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ba1-hue-value-residual-factorization-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BA1",
+  "software_commit": "e5014488",
+  "contract": {
+    "path": "configs/u5_r2ba1_hue_value_residual_factorization_v1.json",
+    "sha256": "324ad086b18e0d4aee56787fd4108a5c5cbb1401f2a8d566dce4534e195cd8a9"
+  },
+  "automatic_report": {
+    "run_a": "outputs/u5_r2ba1_hue_value_residual_factorization_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2ba1_hue_value_residual_factorization_v1/run_b/report.json",
+    "sha256": "7846c3aca427cfe154b26c6a1d3ca8ea4911adc4c1ddc671d2af89f5a6045408",
+    "stable_evidence_id": "bbd82184339d85a8a8a832deb2f1020fba8baa31d3ea1ce141cd993e63f41860",
+    "repeat_byte_identical": true,
+    "automatic_pass": true
+  },
+  "automatic_result": {
+    "gold_median_style_delta_e76": 14.516009145068782,
+    "gold_median_style_gain_delta_e76_over_ao6": 1.2806597702942089,
+    "gold_median_non_basic_gain_delta_e76_over_ao6": 1.1276489576891535,
+    "gold_median_real_film_delta_gain_delta_e76_over_ao6": 1.029116351464527,
+    "gold_median_difference_delta_e76_from_ao6": 1.9714832620082914,
+    "gold_median_difference_delta_e76_from_density": 0.920240836511027,
+    "gold_median_style_ratio_to_density": 0.9652480134344034,
+    "worst_gold_new_hard_clipping_fraction": 0.0,
+    "worst_stress_new_hard_clipping_fraction": 0.0
+  },
+  "visual_adjudication": {
+    "path": "outputs/u5_r2ba1v_hue_value_residual_visual_v1/adjudication.json",
+    "sha256": "b62ee3a34da5522b801d60df54965431bd618961b0020be3489846f453e521aa",
+    "stable_evidence_id": "e168ab7b15a52e353e80d79cc62b0c45a23624838a760df53c241013844138ef",
+    "round_candidate_preferences": [
+      5,
+      4,
+      3
+    ],
+    "passing_rounds": 0,
+    "required_passing_rounds": 2,
+    "confirmed_severe_artifact_count": 0,
+    "visual_pass": false
+  },
+  "decision": "close_hue_value_factorization_on_blind_preference_without_rescue",
+  "interpretation": "The fixed hue/value factorization preserves more salient channel structure than the CIELAB factorization and passes every automatic and severe-artifact gate. Against the stronger AZ0 density comparator, however, autonomous blind preference falls from 5/9 to 4/9 to 3/9 and no round passes. Numerical style strength and safety therefore do not establish product value.",
+  "forbidden_rescue": [
+    "change value, hue/saturation strength or neutral saturation floor",
+    "change blind thresholds or add rounds",
+    "select rows after mapping reveal",
+    "route between BA1 and AZ0 from these outcomes",
+    "claim stock response, calibration or product promotion"
+  ],
+  "next_leaf": "retain AZ0 only as research evidence and move to a distinct evidence-authorized operator or product-value mechanism rather than another coordinate-factorization sweep",
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "same-population autonomous development evidence for one fixed hue/value factorization; not population preference, stock response, calibration or product promotion"
+}
