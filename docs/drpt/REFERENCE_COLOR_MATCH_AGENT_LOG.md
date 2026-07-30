@@ -5143,3 +5143,29 @@
 - D-PCT R0JF is still private one-Pixel Android x86_64 virtual mechanics
   without a public producer interface or compatible RAW rail. No algorithm,
   product or consumer mapping state changes.
+
+## 2026-07-31 - Bind file-entry ownership across rollback and staging
+
+- Node/parent goal: P176/P177 continuation of the confirmed P175 ownership
+  class. Code review found two concrete path-only deletion paths after the
+  directory fix, so V46 was paused before main integration.
+- P176 changes the shared batch commit primitive to bind the exact entry
+  identity of each stage-published destination and each rollback backup.
+  Rollback unlinks only the still-owned published entry. If a non-cooperating
+  process replaces that destination, its file survives, rollback reports
+  incomplete and the original bytes remain in an identity-bound backup.
+  Successful cleanup also preserves a foreign replacement at a backup name.
+- P177 records stage identities after every successful encode/copy/JSON write
+  in the reference file renderer and all seven core/external/shared/runtime
+  staging and delivery writers. `finally` now unlinks only a path whose entry
+  identity still equals the transaction-created stage; an external
+  replacement is preserved.
+- Deterministic tests replace a published destination before a later output
+  fails, replace a rollback backup before success cleanup and replace an
+  uncommitted stage before a late decode failure. File/replay plus every
+  affected writer suite pass `155 passed, 3 skipped`; `py_compile` and strict
+  diff checks pass. The isolated reference-match suite collects 1,434 tests
+  and completes at `1,429 passed, 5 skipped`.
+- Producer R0JH remains private one-Pixel Android x86_64 virtual performance
+  evidence without a public package/schema/receipt/capability or compatible
+  RAW rail. Consumer mapping remains unchanged.

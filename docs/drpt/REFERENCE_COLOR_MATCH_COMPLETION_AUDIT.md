@@ -14,11 +14,13 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P175; main `efb9ba82` has merged
+- Consumer branch now continues through P177; main `efb9ba82` has merged
   P1-P172. V45 remains immutable evidence but is explicitly rejected for
   integration because its P173 cleanup tracked directory paths without
-  binding directory ownership. V46 pins the corrected P173 plus P174/P175
-  against main snapshot `00147448`. The branch also retains local 24 MP,
+  binding directory ownership. V46 correctly pins P173-P175 but is now a
+  historical snapshot because P176/P177 close the same ownership class for
+  published destinations, rollback backups and staging entries. A replacement
+  manifest is pending. The branch also retains local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest observed committed snapshot is `f6cc28eb`; its untracked
@@ -296,7 +298,7 @@ wire contract and not an algorithm promotion.
 |---|---|---|---|
 | One uploaded reference plus ordered N sources | P1-P8 local fit/render/replay and P28 external per-source binding | COMPLETE | Maintain order and shared-reference identity in future adapters / Neuro-Film |
 | Immutable replayable look intent | `ReferenceLookRecipe` JSON/canonical identity and stored-reference-free replay | COMPLETE for local baseline | A future D-PCT-backed recipe must reference fixed producer bundle identities rather than copy their parameter layout / Neuro-Film |
-| Rollback-safe image/recipe/report transaction | P16-P18 transactional local file path; corrected P173/P175 binds every newly created directory to its file identity plus an exclusive random transaction marker and revalidates both before cleanup, so an empty directory replaced at the same path is preserved; P174 rejects existing directory targets and all input/output/recipe/report ancestor-descendant path conflicts before recipe or pixel decode | COMPLETE for current local renderer, within explicitly bounded filesystem semantics | Bind P30 authorization and real external output receipts to a separately versioned transaction leaf / Neuro-Film |
+| Rollback-safe image/recipe/report transaction | P16-P18 transactional local file path; corrected P173/P175 binds every newly created directory to its file identity plus an exclusive random transaction marker; P174 rejects nested run-file topology before decode; P176 binds published destination and rollback-backup entry identities, preserves foreign replacements and retains the original backup when rollback cannot safely restore it; P177 applies exact entry-identity cleanup to all local/reference/shared/runtime staging and delivery stage files | COMPLETE for current local renderer, within explicitly bounded filesystem semantics | Bind P30 authorization and real external output receipts to a separately versioned transaction leaf / Neuro-Film |
 | Product safety and claim ceiling | Identity default, strict research override, P29 numeric guard, P30 staging authorization | COMPLETE as fail-closed machinery | No state above `authorized-for-staging` until every later gate passes / Neuro-Film |
 | A1 reference identifiability | P111 exact BMKL improves 13/30 cross-content rows, median -12.06%, worst -122.56%; this is safer than P44 D-PCT but still fails | LATEST INVOKED CANDIDATE REJECTED | A genuinely different versioned capability must rerun the same frozen gate / D-PCT evidence, Neuro-Film adjudication |
 | A4 photographic preference and severe tail | P111 BMKL passes 6/6 automated photographic probes with zero new boundary, but A1/A5 failure prevents blind review | AUTOMATED SAFETY PASS, PRODUCT REJECTED | Blind review opens only for a candidate that also clears upstream automated gates / shared evidence, Neuro-Film decision |
@@ -340,9 +342,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Main `efb9ba82` merged consumer parent `f53faeb5` (P1-P172). V45 is immutable but rejected after the confirmed empty-directory replacement race. V46 binds corrected payload `36be7e9f` against main `00147448`: 14 payload paths, 1,862 main paths, zero overlap, 70 exports and 26 schemas; manifest/schema SHA-256 are `93890cd1...c866` / `240eb162...3447` | P1-P172 MERGED; V45 MUST NOT MERGE; V46 REVIEW MANIFEST READY | Repository owner verifies v46 and merges only the corrected payload / main task or owner |
+| Main-integration evidence | Main `efb9ba82` merged consumer parent `f53faeb5` (P1-P172). V45 is rejected. V46 remains valid historical P173-P175 evidence but omits confirmed P176/P177 file-entry ownership fixes and is paused as the latest integration candidate | P1-P172 MERGED; V45 MUST NOT MERGE; V46 SUPERSEDED FOR LATEST REVIEW | Freeze a replacement manifest containing P174-P177 against refreshed main / consumer |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | Corrected P173/P175 file/replay tests pass 55 with one platform skip; the broader file/report/product subset passes 86 with one skip and the isolated color-match suite passes 1,421 with five skips. V46 merges conflict-free as tree `93dc0e15...0256`; its detached file/replay plus v44/v45/v46 subset passes 70 with one skip and direct rebuild/tamper is 5/5 | V46 READY FOR REVIEW, NOT MERGED | Repository-owner review and incremental merge, then main-worktree targeted/full suite / main task or owner |
+| Main-project availability | P176/P177 transaction-writer coverage passes 155 with three platform skips and the isolated color-match suite passes 1,429 with five skips. A refreshed overlap/merge-tree snapshot is pending; V46's prior clean merge is historical only | CORRECTED IMPLEMENTATION VERIFIED; REPLACEMENT MANIFEST PENDING | Rebuild strict payload/overlap/merge-tree evidence against refreshed main / consumer |
 
 ## Critical path
 

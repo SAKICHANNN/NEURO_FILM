@@ -2,13 +2,14 @@
 
 Date: 2026-07-31
 
-Status: **P1-P172 is merged into main; v45 is immutable but explicitly
-rejected for integration after a confirmed P173 directory-ownership race.
-V46 now pins corrected P173/P175 plus P174 for review;
+Status: **P1-P172 is merged into main; v45 is rejected. V46 remains immutable
+P173-P175 evidence but is paused as the latest integration candidate after
+confirmed P176/P177 file-entry ownership gaps. Corrected P174-P177 is verified
+and awaits a replacement manifest;
 local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v46 corrected post-merge review snapshot
+## Historical v46 corrected-directory review snapshot
 
 - payload: `36be7e9ff8f7ce83dbfcbfc3a256c535d5ee02a3`;
 - main: `0014744810fcac60448be0e1d7d7427925a973df`;
@@ -45,6 +46,17 @@ the complete owned tree, recreates a new empty directory at the same path and
 proves it survives rollback. Successful transactions remove their ownership
 markers but retain destination directories. P174 independently rejects nested
 input/output/recipe/report path topology before decode.
+
+P176 extends the ownership boundary to regular files. Replace-existing commit
+records the exact published destination entry and rollback-backup entry
+identities. A later failure removes a destination only if it is still the
+entry published by this transaction; if an external process replaces it, the
+replacement survives and the original bytes remain in a retained recovery
+backup. Success cleanup likewise never deletes a foreign replacement at the
+backup name. P177 records every created stage identity across the local,
+external, shared and runtime-qualified transaction writers and removes only
+that same entry during `finally`. Deterministic regressions cover destination,
+backup and stage replacement.
 
 ## Frozen snapshots
 
