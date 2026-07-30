@@ -9,6 +9,9 @@ from src.eval.rawpixls_confirmation_preflight import validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk1s_log_chroma_fresh_source_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2bk1s_log_chroma_fresh_source_decision_v1.json"
+)
 PRIOR_CONFIGS = (
     ROOT / "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1.json",
     ROOT / "configs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1.json",
@@ -94,3 +97,20 @@ def test_bk1s_selection_excludes_obvious_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk1s_decision_opens_only_fixed_three_arm_comparison() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert result["eligible_rows"] == 10
+    assert result["eligible_camera_makes"] == 10
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert not result["replacement_rows_added"]
+    assert len(result["fixed_decode_failures"]) == 2
+    assert result["fixed_orientation_stress_rows"] == ["phaseone_p25"]
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert "unchanged BK0" in decision["next_leaf"]
+    assert "without strength tuning" in decision["next_leaf"]

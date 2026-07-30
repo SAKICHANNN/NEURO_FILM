@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u5_r2bk1s_log_chroma_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk1s-log-chroma-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK1S",
+  "status": "source_eligible_fixed_comparison_open",
+  "config": {
+    "path": "configs/u5_r2bk1s_log_chroma_fresh_source_v1.json",
+    "sha256": "8b7e62ef4688b1f47aaefdea92dc41dcf0ca5c2c83cbea7a2d0b52b594adbb44"
+  },
+  "evidence": {
+    "manifest": {
+      "path": "outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json",
+      "sha256": "f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk1s_log_chroma_fresh_source_v1/automatic_report.json",
+      "sha256": "204e55e0ce6c80e02d766cdfd626935cd06e11fe406a8aa9047004d0d7314463"
+    },
+    "contact_sheet": {
+      "path": "outputs/u5_r2bk1s_log_chroma_fresh_source_v1/source_contact_sheet.png",
+      "sha256": "9e30bd3f2d32236afcfb6c8fb07e31b55bbb87b3147f59bd7e5460c4d1367dc9"
+    },
+    "repeat_runs": 2,
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true
+  },
+  "result": {
+    "frozen_candidates": 12,
+    "eligible_rows": 10,
+    "eligible_camera_makes": 10,
+    "downloaded_bytes": 200430130,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "fixed_decode_failures": [
+      {
+        "id": "gopro_hero8",
+        "reason": "LibRaw unsupported GPR"
+      },
+      {
+        "id": "nikon_z6_3",
+        "reason": "LibRaw unsupported compressed NEF"
+      }
+    ],
+    "replacement_rows_added": false,
+    "fixed_orientation_stress_rows": [
+      "phaseone_p25"
+    ],
+    "confirmed_severe_source_artifact_count": 0,
+    "visual_observation": "Ten distinct photographic scenes are usable and show no confirmed corruption, posterization, banding, geometry failure or decode blocks. phaseone_p25 is sideways under the frozen orientation path and remains an explicit orientation stress case rather than a replacement trigger."
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": "Render the ten fixed eligible sources through unchanged BK0, fixed AO6 t15/c35 and safe-rich; run automatic severe-artifact and independent visual comparison without strength tuning.",
+  "claim_ceiling": "fresh CC0 digital-photo source eligibility only; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
