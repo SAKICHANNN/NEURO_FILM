@@ -1,5 +1,16 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-07-30: U5.R2AW0-AW9 acquire and audit FilmMatch's exact 140-file
+> Sony/E100 practice source, extract 68 ordered chart pairs, and test bounded
+> global, factorized residual and hard-routing candidates. No global family
+> clears both held-illuminant and held-hue gates. A known high-positive-exposure
+> Oracle wins 12/12 folds (median 16.11%), but the median-code router is
+> content-confounded on the fit-forbidden real scene; its render is
+> severe-clean but visibly too flat/muted versus the E100 reference. Close the
+> router and continue with content-normalized or matched-case explicit
+> operators. All evidence remains internal unidentified code-domain Look
+> Approximation, not a calibrated stock response.
+>
 > 2026-07-30: U5.R2AS0 retains a compact fixed-geometry Gaussian log-odds
 > residual as synthetic representation evidence only. It may challenge a
 > future genuinely new controlled-pair source, but AO9's frozen 71-pair pool,

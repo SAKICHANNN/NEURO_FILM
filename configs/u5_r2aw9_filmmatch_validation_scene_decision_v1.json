@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2aw9_filmmatch_validation_scene_decision.v1",
+  "experiment_id": "u5.r2aw9-filmmatch-validation-scene-v1",
+  "report": {
+    "path": "outputs/external_controls/filmmatch_ektachrome_v1/validation_scene/report.json",
+    "sha256": "c5627f5c9cec46bfd02a4245b0ef7fe9bca743e89af7172641ad88fcbc80f1b0",
+    "stable_evidence_id": "13c6ccada5dfc03272aadf1b073c10f51da6fd89d4eb7aa74a9897b222999a01",
+    "two_run_byte_exact": true
+  },
+  "automatic_result": {
+    "passed": true,
+    "route": "positive_exposure_expert",
+    "validation_feature": 0.5322346837567712,
+    "threshold": 0.4948805981536583,
+    "style_rgb_rmse_from_source": 0.06882901026544806,
+    "new_boundary_fraction": 0.0
+  },
+  "autonomous_visual_review": {
+    "reviewed_full_resolution": true,
+    "confirmed_severe_artifact": false,
+    "red_speckle_or_posterization": false,
+    "geometry_or_text_corruption": false,
+    "style_salience_against_target_reference": "fail",
+    "finding": "the routed result is clean but remains visibly flat and muted compared with the much higher-contrast, more chromatic E100 reference",
+    "router_generalization": "fail",
+    "router_finding": "whole-frame median code is content-dependent; the new validation composition has large bright neutral regions and cannot inherit the repeated-chart exposure interpretation"
+  },
+  "decision": {
+    "status": "closed_without_promotion",
+    "luma_proxy_router_retained": false,
+    "known_high_exposure_oracle_retained": true,
+    "validation_or_product_opened": false,
+    "next": "content-normalized or matched-case explicit operator research with global fallback; raw whole-frame luma may not define exposure state"
+  },
+  "claim_ceiling": "clean but visually insufficient fit-forbidden validation evidence for one unidentified paired code-domain session; no calibrated Ektachrome response, exposure inference, scanner independence or product promotion"
+}

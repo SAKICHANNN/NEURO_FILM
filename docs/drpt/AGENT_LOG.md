@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 - U5.R2AW0-AW9 FilmMatch capacity and routing close
+
+- Acquired and hash/decode audited 140 author-hosted files
+  (4,255,132,151 bytes), proving 68 ordered Sony/E100 chart pairs; both rails
+  remain unidentified code values and use is internal/non-redistributed.
+- Global explicit families and bounded base+Gaussian residuals do not jointly
+  pass held-illuminant and held-hue gates. Increasing local capacity without a
+  base folds the RGB mapping; factorization is safe but still underfits.
+- A sparse known-high-exposure Oracle wins all 12 eligible folds with 16.11%
+  median gain. A development-only median-code router reproduces it on repeated
+  charts, but the fit-forbidden real scene exposes content confounding.
+- The real-scene render has zero new boundaries and no severe visual artifact,
+  yet is visibly flat/muted against the E100 reference. Close the router and
+  retain the Oracle only as motivation for content-normalized or matched-case
+  explicit operators with global fallback.
+
 ## 2026-07-30 - U5.R2AW0 FilmMatch paired-source intake
 
 - Freeze a bounded 140-file/4,255,132,151-byte audit of the public FilmMatch
