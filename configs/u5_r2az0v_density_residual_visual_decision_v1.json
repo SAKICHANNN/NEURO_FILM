@@ -1,0 +1,31 @@
+{
+  "schema_version": "neuro-film.u5-r2az0v-density-residual-visual-decision.v1",
+  "experiment_id": "U5.R2AZ0V",
+  "candidate_id": "b0_plus_density_film_t15_c35",
+  "comparator_id": "b0_plus_film_t15_c35",
+  "automatic_report": {
+    "path": "outputs/u5_r2az0_density_residual_factorization_v1/run_a/report.json",
+    "sha256": "c007111a07716d9199b5955e7d1386112463f167c4e50d733f78288627553322",
+    "stable_evidence_id": "37d7351a09309fbfa53e3986203d9b48563b9c8948715fc8026504e9b1e6efd5"
+  },
+  "visual_adjudication": {
+    "path": "outputs/u5_r2az0v_density_residual_visual_v1/adjudication.json",
+    "sha256": "ac970f1e79af8058560cecc07faa8b52d474f50014cb41327a88f36c47218865",
+    "stable_evidence_id": "442277de37f3dc4005d965de14252fb705e7ee9b7e867a47332a7307f38bec09",
+    "round_candidate_preferences": [
+      6,
+      7,
+      5
+    ],
+    "passing_rounds": 2,
+    "required_passing_rounds": 2,
+    "confirmed_severe_artifact_count": 0
+  },
+  "decision": "retain_density_factorization_as_development_look_approximation_champion",
+  "next_leaf": "U5.R2AZ1 fresh independent population confirmation with the exact frozen operator and gates",
+  "production_integration_opened": false,
+  "stock_response_claim_opened": false,
+  "calibrated_reference_claim_opened": false,
+  "retuning_on_development_population_allowed": false,
+  "claim_ceiling": "same-population autonomous development evidence for a fixed optical-density factorization; not population preference, stock response, calibration or product promotion"
+}

@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-07-30: U5.R2AZ0 adds a distinct optical-density residual
+> factorization at the already frozen AO6 `.15/.35` strengths. Two exact
+> 41-image runs improve style/non-basic Delta E76 over AO6 with zero new
+> clipping; autonomous blind preference is `6/9`, `7/9`, `5/9`, so 2/3 rounds
+> pass and no severe artifact is confirmed. This is development Look
+> Approximation evidence only. U5.R2AZ1 is the active leaf: unchanged
+> independent-population confirmation before any product decision.
+
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.
 > Two exact synthetic reports preserve constants, neutral channels, energy

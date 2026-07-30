@@ -7768,3 +7768,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and product promotion. Retain only the confirmed response-bounding
   primitive as generic research infrastructure; Ultimate continues with a
   distinct explicit algorithm leaf.
+
+## 2026-07-30 - U5.R2AZ0 retains optical-density residual factorization
+
+- Implemented a distinct explicit colour operator: source and fixed AO5
+  display-proxy target are decomposed in soft-floor optical-density
+  coordinates into neutral-density and opponent residuals, then executed at
+  the unchanged `.15/.35` strengths through one analytical source-inclusive
+  per-pixel scale. It performs no image-specific fitting, hard clipping, ML or
+  final-RGB generation.
+- Two exact 41-image runs pass the frozen automatic gate. Gold median
+  style/non-basic Delta E76 is `15.0386/11.6927`, gains over AO6 are
+  `1.8033/1.8184`, and worst gold/stress new clipping is zero.
+- Blind observations were frozen before mapping reveal. Candidate preference
+  is `6/9`, `7/9`, `5/9`; two rounds meet the preregistered six-vote gate.
+  Direct and full-resolution review records zero confirmed severe artifacts,
+  including no red-speckle/posterization recurrence on ID 11.
+- Retain AZ0 as a same-population development Look Approximation champion,
+  not a stock response or product promotion. U5.R2AZ1 must rerun the exact
+  operator and gates on an independent image population without retuning.

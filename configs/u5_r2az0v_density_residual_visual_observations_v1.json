@@ -1,0 +1,69 @@
+{
+  "schema_version": "neuro-film.u5-r2az0v-density-residual-visual-observations.v1",
+  "experiment_id": "U5.R2AZ0V",
+  "mapping_unread_when_recorded": true,
+  "review_contract": {
+    "primary_question": "Which rendering is more visibly stylized and appealing, subject to a hard severe-artifact veto?",
+    "choices": [
+      "A",
+      "B"
+    ],
+    "severe_artifact_definition": "Confirmed face, text, object or geometry corruption; posterization, banding, colour blocks, clipping damage, repeated texture or unstable red-speckle artifacts.",
+    "direct_full_resolution_reviewed_ids": [
+      "11",
+      "FS_FACE_01"
+    ]
+  },
+  "direct_severe_review": {
+    "confirmed_severe_count": 0,
+    "confirmed_severe_ids": [],
+    "notes": "All nine gold rows were inspected in the direct sheet; IDs 11 and FS_FACE_01 were also inspected at full resolution. The candidate is visibly stronger and sometimes warmer/harder than AO6, but no severe artifact was confirmed."
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "f1201037efd2a3e58a6caa54bad9fdf4aa97b4dcbd19b4e5cfaadc7a22519074",
+      "choices": {
+        "01": "B",
+        "05": "B",
+        "08": "B",
+        "09": "B",
+        "11": "B",
+        "18": "B",
+        "21": "B",
+        "29": "A",
+        "FS_FACE_01": "A"
+      }
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "46bdc49cb2acd88177f4738b738c178b0dfc855588ec00dd130603dfeccf066a",
+      "choices": {
+        "01": "B",
+        "05": "B",
+        "08": "A",
+        "09": "A",
+        "11": "A",
+        "18": "A",
+        "21": "B",
+        "29": "B",
+        "FS_FACE_01": "B"
+      }
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "e3ac42c8425fe8c969bccf9f0dc9905b6e844bcd720db76efa2f31944e4ba737",
+      "choices": {
+        "01": "B",
+        "05": "B",
+        "08": "A",
+        "09": "A",
+        "11": "A",
+        "18": "A",
+        "21": "B",
+        "29": "B",
+        "FS_FACE_01": "B"
+      }
+    }
+  ]
+}
