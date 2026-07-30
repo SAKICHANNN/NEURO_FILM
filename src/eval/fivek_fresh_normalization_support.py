@@ -70,8 +70,12 @@ def validate_contract(
     report = _load_hashed_json(
         root, parent["report"], parent["report_sha256"]
     )
-    decision = _load_hashed_json(
-        root, parent["decision"], parent["decision_sha256"]
+    decision = (
+        _load_hashed_json(
+            root, parent["decision"], parent["decision_sha256"]
+        )
+        if "decision" in parent
+        else None
     )
     development = config["development_candidate"]
     candidate = _load_hashed_json(
@@ -85,13 +89,30 @@ def validate_contract(
         != support["existing_128_manifest_sha256"]
     ):
         raise FiveKFreshNormalizationError("existing 128 manifest drift")
+    for item in support.get("additional_existing_manifests", []):
+        path = root / str(item["path"])
+        if not path.is_file() or _sha256(path) != str(
+            item["sha256"]
+        ).lower():
+            raise FiveKFreshNormalizationError(
+                f"additional existing manifest drift: {item['path']}"
+            )
+    parent_eligible = (
+        report.get("automatic_pass")
+        is parent["required_automatic_pass"]
+        if "required_automatic_pass" in parent
+        else (
+            report.get("gates", {}).get("dimension_mismatches") is False
+            and decision is not None
+            and decision.get("automatic_pass") is False
+        )
+    )
     if (
         report.get("observed", {}).get("assets")
         != parent["required_assets"]
         or report.get("observed", {}).get("decode_failures")
         != parent["required_decode_failures"]
-        or report.get("gates", {}).get("dimension_mismatches") is not False
-        or decision.get("automatic_pass") is not False
+        or not parent_eligible
         or candidate.get("status") != development["required_status"]
         or development.get("use_during_this_leaf") is not False
     ):
@@ -260,18 +281,46 @@ def run_audit(
         development_rows = list(csv.DictReader(handle))
     if len(development_rows) != support["existing_rows"]:
         raise FiveKFreshNormalizationError("existing split row drift")
-    development_source_hashes = {
+    existing_source_hashes = {
         _sha256(root / row["raw_default_srgb16"])
         for row in development_rows
     }
-    development_target_hashes = {
+    existing_target_hashes = {
         _sha256(root / row["filtered_target_srgb16"])
         for row in development_rows
     }
-    development_dhashes = {
+    existing_dhashes = {
         row["id"]: _dhash64_path(root / row["raw_preview"])
         for row in development_rows
     }
+    for item in support.get("additional_existing_manifests", []):
+        payload = json.loads(
+            (root / str(item["path"])).read_text(encoding="utf-8")
+        )
+        additional_rows = payload.get("rows", [])
+        if len(additional_rows) != int(item["expected_rows"]):
+            raise FiveKFreshNormalizationError(
+                f"additional existing row drift: {item['path']}"
+            )
+        for row in additional_rows:
+            row_id = str(row[item["id_field"]])
+            existing_source_hashes.add(
+                str(row[item["source_hash_field"]])
+            )
+            existing_target_hashes.add(
+                str(row[item["target_hash_field"]])
+            )
+            existing_dhashes[row_id] = int(
+                str(row[item["dhash_field"]]), 16
+            )
+    expected_total = support.get("existing_total_rows")
+    if (
+        expected_total is not None
+        and len(existing_dhashes) != int(expected_total)
+    ):
+        raise FiveKFreshNormalizationError(
+            "combined existing split row drift"
+        )
     rows: list[dict[str, Any]] = []
     rejected: list[dict[str, str]] = []
     perceptual_pairs: list[dict[str, Any]] = []
@@ -341,13 +390,13 @@ def run_audit(
             source, preview_output, save_preview
         )
         dhash = _dhash64(source)
-        for development_id, value in development_dhashes.items():
+        for development_id, value in existing_dhashes.items():
             distance = (int(dhash, 16) ^ value).bit_count()
             if distance <= support["maximum_cross_split_dhash_hamming"]:
                 perceptual_pairs.append(
                     {
                         "fresh_pair_id": pair_id,
-                        "development_pair_id": development_id,
+                        "existing_pair_id": development_id,
                         "hamming_distance": distance,
                     }
                 )
@@ -378,8 +427,8 @@ def run_audit(
     eligible = len(rows)
     largest_share = max(cameras.values(), default=0) / max(eligible, 1)
     exact_cross_split = sum(
-        row["source_sha256"] in development_source_hashes
-        or row["target_sha256"] in development_target_hashes
+        row["source_sha256"] in existing_source_hashes
+        or row["target_sha256"] in existing_target_hashes
         for row in rows
     )
     correlations = [row["gradient_correlation"] for row in rows]
