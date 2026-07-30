@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p4z1_bw_uniform_grain_preflight_decision.v1",
+  "experiment_id": "u6.p4z1-bw-uniform-grain-preflight-v1",
+  "node": "ULT > U6 > U6.P4Z1",
+  "software_commit": "f88c10f8",
+  "contract_sha256": "0bd238096109742cf429fd736f17ca2c7295cdf77fc41bba7063fa1ba00bc207",
+  "acquisition_manifest_sha256": "df350377edb34057af9433aeea07c66ea273db7808ed4b0549a361b2a73e552a",
+  "report_sha256": "069a0602d89b72fce23a47db821672074438c42afb97b5060eb61ee7f04a7979",
+  "contact_sheet_sha256": "546d2b1fc87924b3e4dbc7cbb36b9c40065814b7b54468bcfcb64643032e3abe",
+  "stable_evidence_id": "6dd30101d03c3e1f7a8e0695f96dc3ab7c86bdd5a6b972a1982d8753f6b9d948",
+  "automatic_pass": true,
+  "autonomous_visual_source_integrity_pass": true,
+  "decision": "open_fit_forbidden_bw_model_confirmation",
+  "observed_results": {
+    "source_count": 3,
+    "stocks": {
+      "kodak-tmax-100": 1,
+      "kodak-trix-400": 2
+    },
+    "all_uint16_grayscale": true,
+    "all_exact_4000_dpi": true,
+    "shared_icc_profile_sha256": "9d60350ff3a77d2ebf5d00b1c563ed413391105ebf2a748c23a10f5934506066",
+    "maximum_exact_boundary_fraction": 4.84976847932745e-08,
+    "maximum_within_file_crop_mean_range": 0.02717084750036286,
+    "crop_standard_deviation_range": [
+      0.0209094452122527,
+      0.0488918132824184
+    ]
+  },
+  "autonomous_visual_evidence": {
+    "scope": "the fixed 27-crop 1:1 contrast-normalized sheet after automatic admission",
+    "confirmed_gross_banding_or_seams": 0,
+    "confirmed_large_nonuniform_regions": 0,
+    "observed_small_dark_or_bright_spots": true,
+    "interpretation": "The crops visibly contain fine scanner-convolved texture and sparse dust-like spots, but no gross corruption that invalidates relative NPS/ACF shape analysis."
+  },
+  "interpretation": [
+    "The three new originals are exact CC0 16-bit grayscale scans with one shared embedded linear-gray profile and 4000 dpi metadata.",
+    "T-MAX has one frame and Tri-X has two, so stock-specific fitting, stock separation and calibration remain forbidden.",
+    "Luminance normalization and the fixed scanner make absolute density and physical grain amplitude unidentified.",
+    "The source is eligible only for a zero-fit external check of already frozen generic grain candidates."
+  ],
+  "next_leaf": "U6.P4Z2 compare unchanged P4D isotropic, P4T anisotropic and P4X scaled signatures on the fixed 27 crops; freeze all metrics and gates before consuming NPS/ACF outcomes",
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "B&W uniform-scan integrity and fixed-crop feasibility only; not film-grain, stock, process, density, scanner or product calibration"
+}

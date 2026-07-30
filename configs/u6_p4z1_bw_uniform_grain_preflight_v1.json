@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p4z1_bw_uniform_grain_preflight_contract.v1",
+  "experiment_id": "u6.p4z1-bw-uniform-grain-preflight-v1",
+  "node": "ULT > U6 > U6.P4Z1",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p4z_bw_uniform_grain_source_v1.json",
+      "sha256": "7cc2e7d4d52237086de0dfd18f83f5fb911d02c7f20fe7829437d59d9c66b13b"
+    },
+    "acquisition_manifest": {
+      "path": "outputs/experiments/u6_p4z_bw_uniform_grain_source_v1/acquisition_manifest.json",
+      "sha256": "df350377edb34057af9433aeea07c66ea273db7808ed4b0549a361b2a73e552a"
+    }
+  },
+  "decode_contract": {
+    "mode": "I;16",
+    "dtype": "uint16",
+    "channels": 1,
+    "icc_profile_bytes": 496,
+    "icc_profile_sha256": "9d60350ff3a77d2ebf5d00b1c563ed413391105ebf2a748c23a10f5934506066",
+    "expected_dpi": 4000.0,
+    "maximum_dpi_absolute_error": 0.1
+  },
+  "crop_contract": {
+    "crop_size_pixels": 512,
+    "fixed_fractional_centers_yx": [
+      [0.25, 0.25],
+      [0.25, 0.50],
+      [0.25, 0.75],
+      [0.50, 0.25],
+      [0.50, 0.50],
+      [0.50, 0.75],
+      [0.75, 0.25],
+      [0.75, 0.50],
+      [0.75, 0.75]
+    ]
+  },
+  "automatic_gates": {
+    "maximum_exact_zero_fraction": 0.001,
+    "maximum_exact_full_scale_fraction": 0.001,
+    "minimum_crop_standard_deviation": 0.001,
+    "maximum_crop_standard_deviation": 0.25,
+    "maximum_within_file_crop_mean_range": 0.25
+  },
+  "outputs": {
+    "report": "outputs/experiments/u6_p4z1_bw_uniform_grain_preflight_v1/report.json",
+    "contact_sheet": "outputs/experiments/u6_p4z1_bw_uniform_grain_preflight_v1/contact_sheet.png"
+  },
+  "operator_fitting_allowed": false,
+  "visual_review_rule": "Only inspect the fixed crop sheet after every automatic decode, identity, profile, range and uniformity gate passes.",
+  "next_gate": "If automatic and autonomous source-integrity review pass, preregister a fit-forbidden comparison of the unchanged P4D isotropic, P4T anisotropic and P4X scaled candidates on all three B&W scans.",
+  "claim_ceiling": "B&W uniform-scan integrity and fixed-crop feasibility only; not film-grain, stock, process, density, scanner or product calibration"
+}
