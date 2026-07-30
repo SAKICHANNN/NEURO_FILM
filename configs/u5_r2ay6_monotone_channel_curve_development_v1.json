@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6-monotone-channel-curve-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY6",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "7e14897e5e6209ab1c72187c07c78afb5243805f",
+  "hypothesis": "endpoint-exact monotone per-channel curves capture nonlinear photographic tone and colour adjustment that the five-parameter logit-affine operator misses, while group-held-out source-only prediction plus shared-scale analytical safety improves fresh mean and tail error over its own global curve",
+  "parents": {
+    "ay0": {
+      "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+      "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+      "report": "outputs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1/run_a/report.json",
+      "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d"
+    },
+    "ay3": {
+      "config": "configs/u5_r2ay3_boundary_safe_neutral_base_development_v1.json",
+      "config_sha256": "a4914847f7e0fb0217fc243d42d31ba2067de11334e4087c38f05f7a4c8861ff",
+      "decision": "configs/u5_r2ay3_boundary_safe_neutral_base_development_decision_v2.json",
+      "decision_sha256": "6a75bb00379fb22f24c6035d53810fe36cbe75a06b8a95994827bab2c8b6ab22",
+      "boundary_epsilon": 0.00196078431372549
+    },
+    "fresh_population": {
+      "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+      "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+      "report": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/report.json",
+      "report_sha256": "40a78d9ec7cc1046116148b62c88cf268f94c4a074bfc2b40f023bdd4cb75ec8",
+      "decision": "configs/u5_r2ay3s2_fivek_fresh_normalization_support_decision_v1.json",
+      "decision_sha256": "f466e34fda206241507afb6e2e139e4e2b9a9332789e6e929c252548caea6a1c"
+    },
+    "closed_hard_cases": {
+      "config": "configs/u5_r2ay5_hard_case_medoid_development_v1.json",
+      "config_sha256": "d4977bc8330becd965d67615a990de3aca47a3020e74502f1b72a6415d3ab99d",
+      "decision": "configs/u5_r2ay5_hard_case_medoid_development_decision_v1.json",
+      "decision_sha256": "6ea0a7854c1e96fe31e090a97f6662ed9b883f1c0c3128a2c70e8de1bdfd4a70",
+      "required_status": "closed_fixed_hard_case_tail_gate_failed"
+    }
+  },
+  "operator": {
+    "family": "endpoint_exact_monotone_piecewise_linear_rgb_curves",
+    "knot_inputs": [0.0, 0.125, 0.25, 0.5, 0.75, 0.875, 1.0],
+    "predicted_parameters": "five interior output ordinates per channel in RGB order",
+    "parameter_count": 15,
+    "fit": "per-channel isotonic regression of target channel on source channel with endpoint anchors, then sample fixed knots",
+    "fit_sample_stride": 4,
+    "endpoint_anchor_weight": 1000000.0,
+    "prediction_projection": "per-channel isotonic projection with exact zero and one endpoints",
+    "execution": "piecewise linear interpolation followed by one analytical shared RGB residual scale per pixel",
+    "hard_output_clipping_allowed": false,
+    "channel_independent_residual_scaling_allowed": false,
+    "spatial_or_semantic_features_allowed": false
+  },
+  "prediction": {
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner complete camera-group cross-validation on outer-development only; full AY0 alpha by complete camera-group cross-validation",
+    "methods": ["identity", "global", "ridge", "oracle"]
+  },
+  "evaluation_populations": {
+    "ay0_complete_camera_group_crossfit": true,
+    "fresh_63_development": true
+  },
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.15,
+    "minimum_ridge_mean_improvement_over_global_each_population": 0.03,
+    "minimum_ridge_win_fraction_over_global_each_population": 0.55,
+    "maximum_ridge_p95_ratio_to_global_each_population": 1.0,
+    "maximum_ridge_worst_ratio_to_global_each_population": 1.25,
+    "minimum_ridge_ao6_style_ratio_to_global_each_population": 0.8,
+    "maximum_ridge_median_limited_fraction_each_population": 0.02,
+    "maximum_ridge_p95_limited_fraction_each_population": 0.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the complete operator, projection, alpha selection and executor, then acquire another untouched official FiveK population for confirmation",
+    "oracle_fails": "close the curve representation capacity without predictor rescue",
+    "predictor_or_tail_fails": "close the fixed representation/predictor pair without knots, features, alphas, projection, target or AO6 rescue",
+    "boundary_fails": "close as implementation or safety failure before visual review",
+    "pass_without_new_data": "development evidence only"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only capacity and group-held-out generalization evidence for monotone explicit digital-retouch curves before fixed AO6; not film, stock, calibration, preference, confirmation or product promotion"
+}
