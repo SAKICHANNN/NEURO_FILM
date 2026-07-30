@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6s1-fivek-confirmation-acquisition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY6S1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "90e0d0a64bb66d0af6b70df6c48bcbaed8d3ca21",
+  "preflight": {
+    "config": "configs/u5_r2ay6s0_fivek_confirmation_preflight_v1.json",
+    "config_sha256": "014c63951e963619cd04681597969899e42c4b094ada200be9a273c4686b30c3",
+    "manifest": "outputs/u5_r2ay6s0_fivek_confirmation_preflight_v1/run_a/manifest.json",
+    "manifest_sha256": "852e3821da941367be875182a821a62ed822362c191104cf0e8130aed3eb1949",
+    "report": "outputs/u5_r2ay6s0_fivek_confirmation_preflight_v1/run_a/report.json",
+    "report_sha256": "37176ea4b75afbd19f0112d672b1ca3610618e3bcb407d82663b4c4ff82a52c1",
+    "required_automatic_pass": true,
+    "expected_pairs": 64,
+    "expected_assets": 128,
+    "expected_bytes": 3667932324
+  },
+  "ownership": {
+    "external_root": "D:/nf-019f4b76-neuro-film-data/fivek-ay6-confirm64-v1",
+    "owner": "codex-thread-019f4b76-e70a-75c0-b7ea-b473ab38c200",
+    "purpose": "bounded internal-research untouched FiveK AY6 confirmation data",
+    "foreign_resource_mutation_allowed": false,
+    "move_or_delete_unrelated_files_allowed": false
+  },
+  "download": {
+    "maximum_workers": 4,
+    "timeout_seconds": 120,
+    "resume_partial_files": true,
+    "atomic_part_then_replace": true,
+    "maximum_total_bytes": 4294967296,
+    "minimum_free_bytes_before_start": 10737418240,
+    "user_agent": "Neuro-Film-Research/1.0"
+  },
+  "integrity": {
+    "require_exact_content_length": true,
+    "hash": "sha256",
+    "dng_decode": "project WorkingImage raw decoder, validation only",
+    "expert_decode": "TIFF first-page RGB uint16 validation",
+    "dimension_mismatches": "record only; ordinary DNG visible-frame versus rendered-TIFF crop differences pass only through a separately frozen geometry-only normalization audit",
+    "copy_license_and_file_list_into_owned_root": true
+  },
+  "license_inputs": {
+    "license": "data/raw/fivek/legal/LicenseAdobe.txt",
+    "license_sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+    "file_list": "data/raw/fivek/legal/filesAdobe.txt",
+    "file_list_sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"
+  },
+  "pass_gates": {
+    "pairs": 64,
+    "assets": 128,
+    "downloaded_bytes": 3667932324,
+    "length_failures": 0,
+    "hash_failures": 0,
+    "decode_failures": 0,
+    "license_copies": 2
+  },
+  "branch_rules": {
+    "pass": "open only geometry normalization, duplicate/leakage and camera/content support audit before confirmation",
+    "fail": "retain valid completed owned files for exact resume; do not substitute mirrors or expand selection"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded integrity-verified internal-research acquisition of a third disjoint 64-pair FiveK population; no confirmation, film, stock, calibration, preference or product claim"
+}
