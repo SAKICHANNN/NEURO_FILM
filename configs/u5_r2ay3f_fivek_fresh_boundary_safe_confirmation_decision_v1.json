@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3f-fivek-fresh-boundary-safe-confirmation-v1",
+  "status": "closed_tail_quality_gate_failed",
+  "config_sha256": "7f2d5007e517593ac448642494f2a508ee5e5b415217e793fbbdcd0b95359bba",
+  "report_sha256": "8373128d2dc226fa2812eff3c2842697b5c556a06add887f0210e1e6b2df539c",
+  "repeat_report_sha256": "8373128d2dc226fa2812eff3c2842697b5c556a06add887f0210e1e6b2df539c",
+  "stable_evidence_id": "885bef8f82798c2faefed0374ea7cbeaea32c70296959ba8889866a7637bbf94",
+  "automatic_pass": false,
+  "passed": {
+    "neutral_ridge_mean_improvement_over_global": 0.12760393624968044,
+    "neutral_ridge_win_fraction_over_global": 0.6666666666666666,
+    "neutral_ridge_bootstrap_improvement_lower": 0.005617535915467631,
+    "look_ridge_mean_improvement_over_global": 0.14288115281282035,
+    "look_ridge_win_fraction_over_global": 0.7142857142857143,
+    "look_ridge_bootstrap_improvement_lower": 0.0086193063245665,
+    "oracle_median_improvement_over_identity": 0.4273679838207456,
+    "ridge_to_target_median_style_ratio": 1.0062551575465934,
+    "maximum_new_boundary_fraction": 0.0,
+    "ridge_p95_limited_fraction": 0.0042663989938080465
+  },
+  "failed": {
+    "neutral_ridge_p95_ratio_to_global": {
+      "observed": 1.085515897958686,
+      "maximum": 0.97
+    },
+    "look_ridge_p95_ratio_to_global": {
+      "observed": 1.0531583663315047,
+      "maximum": 0.97
+    }
+  },
+  "visual_review": "forbidden because the frozen automatic gate failed",
+  "decision": "close unconditional use of this predictor/executor pair; strong mean gain, style and analytical safety do not compensate for worse fresh-population tail quality",
+  "allowed_next": "use this failed fresh population only for a separately labeled target-free uncertainty and OOD fallback diagnostic; any learned or frozen routing policy requires another untouched confirmation population",
+  "forbidden_next": [
+    "feature, alpha, parameter, capacity, threshold, epsilon or AO6 rescue on this population",
+    "product integration or visual rescue",
+    "film, stock, calibration or population-preference claim"
+  ],
+  "claim_ceiling": "fresh independent digital-retouch evidence that the bounded explicit predictor has real average value but fails unconditional tail-quality promotion; not film, stock, calibration, preference or product promotion"
+}

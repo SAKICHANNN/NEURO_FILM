@@ -7651,3 +7651,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   crop differences. Keep the failure frozen and the owned files intact. Next
   is a separate no-fitting normalization/alignment and leakage gate before any
   fresh confirmation.
+
+## 2026-07-30 - U5.R2AY3F confirms average value but closes unconditional use
+
+- A separate 3.65GB official download yields 63 aligned pairs across 21 camera
+  models after one orientation mismatch is rejected. Two normalized manifests
+  and reports are byte-identical; exact/dHash<=4 overlap with the prior 128 is
+  zero. Worst gradient correlation is `.5773` and maximum phase shift `.4551`
+  audit pixels; 12-row worst alignment review confirms zero content mismatch.
+- On this fresh set, the unchanged predictor improves neutral/AO6 mean error by
+  12.76%/14.29%, wins 66.67%/71.43%, preserves `1.0063x` target style and has
+  zero new boundaries. Reports repeat byte-exact.
+- Both frozen tail gates fail: neutral/AO6 P95 is `1.0855x/1.0532x` the global
+  fallback versus the required maximum `.97x`. Automatic failure forbids
+  visual review and all feature/alpha/threshold/capacity/AO6 rescue.
+- Close unconditional predictor use. A separate target-free uncertainty/OOD
+  fallback diagnostic may use this failed set for development, but any policy
+  needs another untouched confirmation population.
