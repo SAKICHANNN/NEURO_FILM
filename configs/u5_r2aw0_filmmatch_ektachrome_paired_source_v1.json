@@ -28,6 +28,7 @@
         "lane": "ektachrome_reflective",
         "folder_id": "1TloxlzGgcFH02delCGmxhbRXZGbMF5u7",
         "expected_files": 33,
+        "expected_sequence": [315, 347],
         "expected_file_bytes": 49766672,
         "expected_bytes": 1642300176
       },
@@ -35,6 +36,7 @@
         "lane": "ektachrome_emissive",
         "folder_id": "1hDT8EM0Ym4EBv3dKN5PgxgbRzr__Cnel",
         "expected_files": 35,
+        "expected_sequence": [315, 349],
         "expected_file_bytes": 49766582,
         "expected_bytes": 1741830370
       },
@@ -42,6 +44,7 @@
         "lane": "sony_reflective",
         "folder_id": "1wf_pJS-81py_T7UuYNcYpFCZI3X3m94D",
         "expected_files": 33,
+        "expected_sequence": [233, 265],
         "expected_file_bytes": 12441782,
         "expected_bytes": 410578806
       },
@@ -49,6 +52,7 @@
         "lane": "sony_emissive",
         "folder_id": "12MZ2cy_wmOOvfBx3hhJNx_6Kj0Rx-odK",
         "expected_files": 35,
+        "expected_sequence": [271, 305],
         "expected_file_bytes": 12441782,
         "expected_bytes": 435462370
       },
