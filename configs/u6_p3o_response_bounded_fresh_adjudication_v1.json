@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p3o_response_bounded_fresh_adjudication_contract.v1",
+  "node": "U6.P3O",
+  "experiment_contract": {
+    "path": "configs/u6_p3o_response_bounded_fresh_confirmation_v1.json",
+    "sha256": "b4abdfaec9a21faab923cd4433ca21ff4b2411f3b088a2793f101d680c1b950b"
+  },
+  "formal_runs": [
+    {
+      "path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/run_a/report.json",
+      "sha256": "e37f804e6f3281ca208cccf0878bcd227c968b1357637f9ff427ba9335a5215c"
+    },
+    {
+      "path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/run_b/report.json",
+      "sha256": "e37f804e6f3281ca208cccf0878bcd227c968b1357637f9ff427ba9335a5215c"
+    }
+  ],
+  "blind_review": {
+    "path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/run_a/blind_review_observations.json",
+    "sha256": "079a59ebe945ae4a30545c458d2416d4bac9e6192df145354cb7b6459f3167c4"
+  },
+  "required": {
+    "automatic_pass": true,
+    "repeat_report_sha256_exact": true,
+    "zero_confirmed_severe_artifact": true,
+    "minimum_candidate_votes_per_round": 5,
+    "minimum_passing_rounds": 2
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "autonomous fresh CC0 RAW adjudication of one generic physical-inspired residual; no population preference, measured film, stock, process, scanner, calibration, authenticity or product claim"
+}
