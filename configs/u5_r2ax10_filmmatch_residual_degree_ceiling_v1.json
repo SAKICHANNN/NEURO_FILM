@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2ax10_filmmatch_residual_degree_ceiling.v1",
+  "report_schema": "neuro_film.u5_r2ax10_filmmatch_residual_degree_ceiling.v1",
+  "experiment_id": "u5.r2ax10-filmmatch-residual-degree-ceiling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX10",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/residual_degree_report.json",
+    "report_sha256": "e7afd2c901e145ad48fa3bae33b4da51cc83400c45ef7224492b566f16a74b4a",
+    "stable_evidence_id": "cb0d87264ef3038bbf2f77e5d21bb674e75fc4789654b02af66ceedb77ce11cc",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity": {
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "final_smooth_safe_residual_degree_ceiling",
+    "variants": [
+      {"id": "degree4_ridge1", "emissive_loss_share": 0.75, "residual_degree": 4, "residual_identity_ridge": 0.1},
+      {"id": "degree5_ridge1", "emissive_loss_share": 0.75, "residual_degree": 5, "residual_identity_ridge": 0.1},
+      {"id": "degree5_ridge10", "emissive_loss_share": 0.75, "residual_degree": 5, "residual_identity_ridge": 1.0}
+    ],
+    "fit": {
+      "segment_count": 9,
+      "curve_learned_mixture": 0.75,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730,
+      "residual_degree": 4,
+      "residual_identity_ridge": 0.1,
+      "jacobian_floor": 0.0001,
+      "safety_grid_size": 13,
+      "strength_steps": 101,
+      "maximum_residual_iterations": 700
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05,
+    "minimum_emissive_hue_win_count": 5,
+    "minimum_worst_emissive_hue_improvement": -0.1
+  },
+  "gates": {
+    "positive_jacobian_required": true,
+    "hard_output_clipping_forbidden": true,
+    "validation_target_fit_allowed": false,
+    "capacity_expansion_after_failure_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "final smooth global residual capacity challenge on one Sony/E100 session; no calibrated stock response, scanner independence, fresh confirmation or product promotion"
+}
