@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2ax6_filmmatch_domain_balanced_validation.v1",
+  "experiment_id": "u5.r2ax6-filmmatch-domain-balanced-validation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX6",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/domain_balanced_report.json",
+    "report_sha256": "d4bb91ac967c871c1202a628d20810dbd974f28083d0cdc4c4c8ab8a396ac857",
+    "stable_evidence_id": "44c4db74154f4053cb394054b8c17d5c78b6f6ed675c13d7dcb7c9849058ffd7"
+  },
+  "data_root": "data/external_controls/filmmatch_ektachrome_v1",
+  "validation": {
+    "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+    "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+    "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+    "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+    "fit_forbidden": true,
+    "pixel_metric_forbidden": true
+  },
+  "execution": {
+    "row_chunk": 128,
+    "output": "RGB16 PNG carrying author code values without a standardized display profile"
+  },
+  "automatic_gate": {
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_style_rgb_rmse_from_source": 0.03
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_source_candidate_and_target": true
+  },
+  "gates": {
+    "validation_target_fit_allowed": false,
+    "target_pixel_metric_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "fit-forbidden real-scene visual and bounded-output validation of a domain-balanced internal paired code-domain Look Approximation; target framing prevents pixel accuracy claims; no calibrated stock response, scanner independence or product promotion"
+}

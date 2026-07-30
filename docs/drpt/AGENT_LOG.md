@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-30 - U5.R2AX0-AX6 FilmMatch safe nonlinear operator
+
+- Higher-resolution monotone, matrix sandwich, triangular conditional and
+  unbalanced smooth-residual candidates did not clear the frozen held-hue
+  readout. A fixed monotone-base plus safe cubic Bernstein residual cleared
+  only after development loss was explicitly balanced to 75% emissive-domain
+  mass: reflective median improvement is 69.04% over identity and 50.36% over
+  affine; held-hue median improvement is 9.55% over identity.
+- The fixed operator is cube-bounded, has positive sampled composite Jacobian
+  and uses no hard clipping. Two report runs are byte-identical.
+- Fit-forbidden validation scene automation passes with zero new boundary
+  pixels and style RGB RMSE 0.1342. Autonomous full-resolution review finds
+  visible style with no confirmed severe artifact. This remains one-session,
+  one-scene code-domain Look Approximation evidence; dense synthetic safety
+  stress is the next leaf and product/calibration claims remain closed.
+
 ## 2026-07-30 - U5.R2AW0-AW9 FilmMatch capacity and routing close
 
 - Acquired and hash/decode audited 140 author-hosted files
