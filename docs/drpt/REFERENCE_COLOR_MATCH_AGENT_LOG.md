@@ -5063,3 +5063,29 @@
   remain untouched. R0JB is structural private Pixel OpcodeList2 parsing
   without an interpolation, Stage2, colour, public producer or RAW-rail
   contract, so no consumer mapping changes.
+
+## 2026-07-31 - Reject nested run-file topology before decode
+
+- Node/parent goal: P174 file transaction contract hardening after P173.
+  Audit found that exact path uniqueness did not reject an output such as
+  `a.png/b.png` when another run artifact was `a.png`. The transaction
+  normally failed and rolled back only after reference/source processing,
+  wasting the batch and exposing unnecessary directory interleavings.
+- `src/color_match/files.py` now resolves each run file path, rejects existing
+  directory destinations and rejects strict ancestor/descendant relations
+  whenever at least one path is an output, recipe or report destination.
+  Different Windows drives are explicitly non-nested. Exact-collision rules
+  remain unchanged.
+- Fit tests cover output/output, recipe/output, source/output and
+  report/output nesting plus an existing output directory. Replay separately
+  proves output-under-recipe rejection. Monkeypatched decoders/loaders raise
+  if entered, proving every new rejection occurs before recipe or pixel
+  decode.
+- Verification: focused topology `7 passed`; complete file/replay
+  `54 passed, 1 skipped`; reporting, product-capability, unsupported-media,
+  file and replay coverage `88 passed, 1 skipped`; `py_compile` and strict
+  diff checks pass. No public export, schema, colour algorithm, producer
+  adapter, rail or promotion state changes.
+- Producer R0JD remains a private one-Pixel mechanical Android x86_64 DNG to
+  linear-sRGB TIFF chain without a public package/schema/receipt/capability
+  or RAW rail. It creates no P174 interface impact.

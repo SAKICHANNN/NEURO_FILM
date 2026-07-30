@@ -363,6 +363,48 @@ def _resolved_key(path: Path) -> str:
     return str(path.resolve(strict=False)).casefold()
 
 
+def _strict_path_ancestor(ancestor: str, descendant: str) -> bool:
+    if ancestor == descendant:
+        return False
+    try:
+        return os.path.commonpath((ancestor, descendant)) == ancestor
+    except ValueError:
+        # Different Windows drives cannot be nested.
+        return False
+
+
+def _validate_run_path_topology(
+    *,
+    protected_paths: tuple[Path, ...],
+    destination_paths: tuple[Path, ...],
+) -> None:
+    """Reject file destinations that require another run file to be a directory."""
+
+    for destination in destination_paths:
+        if destination.exists() and destination.is_dir():
+            raise ReferenceMatchContractError(
+                f"run destination must not be a directory: {destination}"
+            )
+    protected = tuple(
+        (_resolved_key(path), path)
+        for path in protected_paths
+    )
+    destinations = tuple(
+        (_resolved_key(path), path)
+        for path in destination_paths
+    )
+    for destination_key, destination in destinations:
+        for other_key, other in (*protected, *destinations):
+            if (
+                _strict_path_ancestor(destination_key, other_key)
+                or _strict_path_ancestor(other_key, destination_key)
+            ):
+                raise ReferenceMatchContractError(
+                    "run file paths must not be nested: "
+                    f"{destination} and {other}"
+                )
+
+
 def _validate_render_contract(
     protected_input_paths: tuple[Path, ...],
     source_paths: tuple[Path, ...],
@@ -424,6 +466,13 @@ def _validate_render_contract(
             raise ReferenceMatchContractError(
                 f"unsupported {output_bit_depth}-bit output extension: {suffix or '<none>'}"
             )
+    _validate_run_path_topology(
+        protected_paths=(*protected_input_paths, *source_paths),
+        destination_paths=(
+            *output_paths,
+            *((artifact_path,) if artifact_path is not None else ()),
+        ),
+    )
 
 
 def _validate_file_contract(
@@ -485,6 +534,10 @@ def _validate_report_contract(
         raise ReferenceMatchContractError(
             "reference-match report path must not be a directory"
         )
+    _validate_run_path_topology(
+        protected_paths=protected_paths,
+        destination_paths=(report_path,),
+    )
 
 
 def _stage_path(destination: Path, token: str) -> Path:

@@ -526,6 +526,81 @@ def test_file_adapter_rejects_duplicate_outputs(tmp_path: Path) -> None:
         match_reference_files(reference, [a, b], [output, output])
 
 
+@pytest.mark.parametrize(
+    "case",
+    (
+        "output-under-output",
+        "recipe-under-output",
+        "output-under-source",
+        "report-under-output",
+    ),
+)
+def test_file_adapter_rejects_nested_run_paths_before_decode(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    case: str,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source_a = tmp_path / "source-a.png"
+    source_b = tmp_path / "source-b.png"
+    _image(reference, 27360)
+    _image(source_a, 27361)
+    _image(source_b, 27362)
+    output_a = tmp_path / "output.png"
+    outputs = [output_a]
+    sources = [source_a]
+    recipe: Path | None = None
+    report: Path | None = None
+    if case == "output-under-output":
+        sources.append(source_b)
+        outputs.append(output_a / "nested.png")
+    elif case == "recipe-under-output":
+        recipe = output_a / "look.json"
+    elif case == "output-under-source":
+        outputs = [source_a / "nested.png"]
+    else:
+        report = output_a / "run.json"
+
+    def fail_if_decoded(_path: Path) -> WorkingImage:
+        raise AssertionError("path topology must be rejected before decode")
+
+    monkeypatch.setattr(files, "load_working_image", fail_if_decoded)
+    with pytest.raises(ReferenceMatchContractError, match="must not be nested"):
+        match_reference_files(
+            reference,
+            sources,
+            outputs,
+            recipe_path=recipe,
+            report_path=report,
+        )
+
+
+def test_file_adapter_rejects_existing_output_directory_before_decode(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(reference, 27363)
+    _image(source, 27364)
+    output.mkdir()
+
+    def fail_if_decoded(_path: Path) -> WorkingImage:
+        raise AssertionError("directory destination must be rejected before decode")
+
+    monkeypatch.setattr(files, "load_working_image", fail_if_decoded)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="run destination must not be a directory",
+    ):
+        match_reference_files(reference, [source], [output])
+
+
 def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     tmp_path: Path,
 ) -> None:
