@@ -59,15 +59,11 @@ def _alignment_gray(rgb: np.ndarray) -> np.ndarray:
     return cv2.cvtColor(encoded, cv2.COLOR_RGB2GRAY)
 
 
-def align_source_to_scan(
+def _align_source_to_scan_impl(
     source_rgb: np.ndarray,
     scan_rgb: np.ndarray,
     alignment: Mapping[str, Any],
 ) -> tuple[np.ndarray, dict[str, float | int]]:
-    """Return a deterministic source-to-scan homography and diagnostics."""
-
-    cv2.setNumThreads(1)
-    cv2.setRNGSeed(0)
     sift = cv2.SIFT_create(nfeatures=int(alignment["maximum_features"]))
     source_keypoints, source_descriptors = sift.detectAndCompute(
         _alignment_gray(source_rgb), None
@@ -121,6 +117,32 @@ def align_source_to_scan(
         "median_inlier_reprojection_error_px": median_error,
         "maximum_inlier_reprojection_error_px": float(np.max(errors)),
     }
+
+
+def align_source_to_scan(
+    source_rgb: np.ndarray,
+    scan_rgb: np.ndarray,
+    alignment: Mapping[str, Any],
+) -> tuple[np.ndarray, dict[str, float | int]]:
+    """Return a deterministic source-to-scan homography and diagnostics."""
+
+    previous_threads = cv2.getNumThreads()
+    previous_opencl = cv2.ocl.useOpenCL()
+    previous_optimized = cv2.useOptimized()
+    try:
+        cv2.setNumThreads(1)
+        cv2.setUseOptimized(True)
+        cv2.ocl.setUseOpenCL(False)
+        cv2.setRNGSeed(0)
+        return _align_source_to_scan_impl(
+            source_rgb,
+            scan_rgb,
+            alignment,
+        )
+    finally:
+        cv2.setUseOptimized(previous_optimized)
+        cv2.ocl.setUseOpenCL(previous_opencl)
+        cv2.setNumThreads(previous_threads)
 
 
 def patch_medians(

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 from src.eval.fivek_fresh_normalization_support import (
@@ -48,3 +49,23 @@ def test_alignment_repeat_is_exact_with_optimized_kernels_disabled() -> None:
     assert all(
         _alignment(source, target, 96, 9) == first for _ in range(8)
     )
+
+
+def test_alignment_restores_process_global_opencv_state() -> None:
+    source = np.zeros((48, 64, 3), dtype=np.float32)
+    target = source.copy()
+    previous_threads = cv2.getNumThreads()
+    previous_opencl = cv2.ocl.useOpenCL()
+    previous_optimized = cv2.useOptimized()
+    try:
+        cv2.setNumThreads(2)
+        cv2.setUseOptimized(True)
+        cv2.ocl.setUseOpenCL(False)
+        _alignment(source, target, 32, 9)
+        assert cv2.getNumThreads() == 2
+        assert cv2.ocl.useOpenCL() is False
+        assert cv2.useOptimized() is True
+    finally:
+        cv2.setUseOptimized(previous_optimized)
+        cv2.ocl.setUseOpenCL(previous_opencl)
+        cv2.setNumThreads(previous_threads)

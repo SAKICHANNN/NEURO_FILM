@@ -150,15 +150,12 @@ def center_crop_to_aspect(
     return np.ascontiguousarray(array[top : top + crop_height, :])
 
 
-def _alignment(
+def _alignment_impl(
     source: np.ndarray,
     target: np.ndarray,
     audit_side: int,
     decimal_places: int,
 ) -> tuple[float, float]:
-    cv2.setNumThreads(1)
-    cv2.ocl.setUseOpenCL(False)
-    cv2.setUseOptimized(False)
     def gradient(rgb: np.ndarray) -> np.ndarray:
         luma = (
             0.2126 * rgb[..., 0]
@@ -204,6 +201,33 @@ def _alignment(
         round(correlation, decimal_places),
         round(float(np.hypot(shift[0], shift[1])), decimal_places),
     )
+
+
+def _alignment(
+    source: np.ndarray,
+    target: np.ndarray,
+    audit_side: int,
+    decimal_places: int,
+) -> tuple[float, float]:
+    """Run the frozen alignment without leaking process-global OpenCV state."""
+
+    previous_threads = cv2.getNumThreads()
+    previous_opencl = cv2.ocl.useOpenCL()
+    previous_optimized = cv2.useOptimized()
+    try:
+        cv2.setNumThreads(1)
+        cv2.setUseOptimized(False)
+        cv2.ocl.setUseOpenCL(False)
+        return _alignment_impl(
+            source,
+            target,
+            audit_side,
+            decimal_places,
+        )
+    finally:
+        cv2.setUseOptimized(previous_optimized)
+        cv2.ocl.setUseOpenCL(previous_opencl)
+        cv2.setNumThreads(previous_threads)
 
 
 def _dhash64(rgb: np.ndarray) -> str:

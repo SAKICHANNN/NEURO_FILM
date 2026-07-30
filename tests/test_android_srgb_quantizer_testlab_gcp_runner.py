@@ -7,6 +7,7 @@ import pytest
 
 from scripts.run_android_srgb_quantizer_testlab_gcp_v1 import (
     CloudRuntimeError,
+    PACKAGE_REPORT,
     _find_matrix_id,
     _matrix_failure_codes,
     _package,
@@ -60,6 +61,8 @@ def test_matrix_failure_codes_are_enum_only() -> None:
 
 
 def test_local_package_report_rehashes_exact_apks() -> None:
+    if not PACKAGE_REPORT.is_file():
+        pytest.skip("ignored local Test Lab package evidence is unavailable")
     package = _package()
     assert package["status"] == "PASS"
     assert package["package_prefix"] == "nf-019f9f37-p90"

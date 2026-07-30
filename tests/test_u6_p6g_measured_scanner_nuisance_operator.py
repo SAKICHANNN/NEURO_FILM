@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import cv2
 import numpy as np
 import pytest
 
@@ -44,6 +45,28 @@ def test_parent_replay_is_exact(report: dict) -> None:
     assert report["aggregate"][
         "legacy-clipped-full-affine-parent-replay"
     ]["median_l2"] == pytest.approx(0.014462732544002719, abs=1e-15)
+
+
+def test_parent_replay_is_independent_of_inherited_opencv_state() -> None:
+    previous_threads = cv2.getNumThreads()
+    previous_opencl = cv2.ocl.useOpenCL()
+    previous_optimized = cv2.useOptimized()
+    try:
+        cv2.setNumThreads(3)
+        cv2.setUseOptimized(False)
+        cv2.ocl.setUseOpenCL(False)
+        replay = evaluate_measured_scanner_nuisance_operator(ROOT, CONTRACT)
+        assert all(replay["parent_replay_checks"].values())
+        assert replay["aggregate"]["identity"]["median_l2"] == pytest.approx(
+            0.06054916498813366, abs=1e-15
+        )
+        assert cv2.getNumThreads() == 3
+        assert cv2.ocl.useOpenCL() is False
+        assert cv2.useOptimized() is False
+    finally:
+        cv2.setUseOptimized(previous_optimized)
+        cv2.ocl.setUseOpenCL(previous_opencl)
+        cv2.setNumThreads(previous_threads)
 
 
 def test_safe_candidate_is_structurally_and_numerically_bounded(
