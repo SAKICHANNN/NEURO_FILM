@@ -8104,3 +8104,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - BJ0--BJ2 now provide positive bounded-parameter prediction evidence and a
   reusable strict-safety construction, but the neutral-base adaptive LUT
   product route closes. Continue a distinct film-look/physical algorithm leaf.
+## 2026-07-31 - Integrate NFCM P1-P172 consumer payload v43
+
+- **Node/scope:** cross-tree consumer integration after the O-drive data
+  migration; exact consumer head `f53faeb5` was merged by the main owner at
+  `efb9ba82`. The merge is additive and had zero exact changed-path overlap
+  with the main branch from common base `c03c321`.
+- **Evidence:** post-merge main-worktree execution of
+  `pytest -q -p no:cacheprovider tests -k color_match` completed with
+  `1400 passed, 6 skipped, 2247 deselected` in 478.66 seconds. The complete
+  merge delta passes `git diff --check`.
+- **Claim boundary:** this integrates the fail-closed reference-match consumer,
+  file/runtime contracts and verification machinery only. No current D-PCT
+  candidate passes A1/A4/A5, so product admission remains identity fallback;
+  no film-stock, calibration, applied-output or producer-promotion claim opens.
+- **Handoff:** continue the main Ultimate algorithm tree independently. Any
+  future real reference-match use still requires a versioned callable producer
+  that passes the unchanged admission and product gates.
