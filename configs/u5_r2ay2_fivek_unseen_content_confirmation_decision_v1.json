@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay2-fivek-unseen-content-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY2",
+  "decision": "close_learned_neutral_base_insertion_on_frozen_boundary_gate",
+  "software_commit": "6981e3c463dac74b98b48b1ba6eed28779574349",
+  "source_evidence": {
+    "contract_sha256": "e24c8aedf45469ec73cbdf136cefd4306c5cac6925cf1de8914a6c943bd81d2e",
+    "manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "report_sha256": "90f16d48b391a0ba8baa4347e73129a2348b62cbaa69eefeddfe28aa2899decc",
+    "repeat_byte_identical": true,
+    "automatic_pass": true
+  },
+  "contract": {
+    "path": "configs/u5_r2ay2_fivek_unseen_content_confirmation_v1.json",
+    "sha256": "546bf2cc4582781982a5f980494d34e7a94f5b67cb3a11949d37d5078d44a30b"
+  },
+  "run_a": {
+    "report_sha256": "b63dc5c422432708605d4109ef550a531bc475b57be68d55755db35355e3e678"
+  },
+  "run_b": {
+    "report_sha256": "b63dc5c422432708605d4109ef550a531bc475b57be68d55755db35355e3e678"
+  },
+  "repeat_byte_identical": true,
+  "stable_evidence_id": "00aead9b968109a8eb58f29cda57cce11acf8d0b1daab1f382ae7501babaff9a",
+  "positive_mechanism_evidence": {
+    "oracle_median_improvement_over_identity": 0.3581202661791033,
+    "neutral_ridge_mean_improvement_over_global": 0.13031804680015535,
+    "neutral_ridge_win_fraction_over_global": 0.609375,
+    "neutral_ridge_p95_ratio_to_global": 0.7427911074603861,
+    "neutral_ridge_bootstrap_improvement_lower": 0.006732673175011895,
+    "look_ridge_mean_improvement_over_global": 0.13812635197595646,
+    "look_ridge_win_fraction_over_global": 0.640625,
+    "look_ridge_p95_ratio_to_global": 0.7728444275596265,
+    "look_ridge_bootstrap_improvement_lower": 0.00953005891041121,
+    "target_median_style_delta_e76": 12.636146729306859,
+    "ridge_to_target_median_style_ratio": 1.0471235473494231
+  },
+  "veto_evidence": {
+    "maximum_new_boundary_fraction_all_methods": 0.01564797794117647,
+    "ridge_maximum_new_boundary_fraction": 0.004496017156862745,
+    "required_maximum_new_boundary_fraction": 0.0,
+    "failed_gate": "new_boundaries"
+  },
+  "visual_review_allowed": false,
+  "production_integration_allowed": false,
+  "feature_alpha_capacity_threshold_or_AO6_rescue_allowed": false,
+  "research_interpretation": "ML successfully predicts useful bounded explicit neutral photographic parameters on untouched content and preserves a strong fixed style, but this exact operator-policy pair violates the preregistered severe-first boundary budget and is not product eligible",
+  "allowed_next": "move to a separately preregistered explicit operator family or other evidence-backed film algorithm; the AY2 confirmation population is now seen and cannot confirm a redesigned neutral operator",
+  "claim_ceiling": "closed unseen-content neutral-base confirmation with positive explicit-parameter prediction evidence but failed boundary safety; no camera OOD, film identity, stock response, calibration, preference or product promotion"
+}

@@ -7621,3 +7621,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and visibly strong color/density styling. This is neutral digital-retouch
   and Look Approximation evidence only. Open an untouched-content rows 65-128
   confirmation; without camera metadata it cannot claim camera OOD.
+
+## 2026-07-30 - U5.R2AY2 confirms the ML mechanism but closes product use
+
+- Rows 65-128 pass exact source, decode, dimension and cross-split duplicate
+  gates twice. They are unseen content but lack camera metadata.
+- Frozen ridge improves neutral/look mean error by 13.03%/13.81%, wins
+  60.94%/64.06%, and keeps P95 at .7428x/.7728x global. The fixed AO6 style
+  dose remains 1.0471x target.
+- The exact operator-policy pair fails the zero-new-boundary gate: ridge worst
+  is .4496% and all-method worst 1.5648%. Per protocol no visual review or
+  rescue is allowed. Close product insertion while retaining the result as
+  positive bounded-explicit-parameter ML evidence.
