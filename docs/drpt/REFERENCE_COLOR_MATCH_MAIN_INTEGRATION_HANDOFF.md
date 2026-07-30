@@ -331,7 +331,7 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 - latest detached main/P1-P172 code merge: 1,371 color/reference-match tests
   passed, 30 platform/data skips and zero failures;
-- latest isolated consumer full suite: 1,396 passed, five skipped;
+- latest isolated consumer full suite: 1,401 passed, five skipped;
 - detached merge tree is `7df2e74b...1751`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 

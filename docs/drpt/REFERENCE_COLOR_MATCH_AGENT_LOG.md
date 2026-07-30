@@ -5005,7 +5005,8 @@
   manifest for P172 scene-linear RAW fail-closed evidence. Manifest/schema
   SHA-256 are `f3b97f9ba8cf0949d10cb366e44d1371ac4108d4868fa3ed0c910ae12bcff11d`
   and `86d3d05e2a76c4a07cac44213a3ed943908a3070c6919929a07af5dc37948abc`;
-  direct rebuild/schema/tamper verification is 5/5.
+  direct rebuild/schema/tamper verification is 5/5. The final consumer branch
+  suite is 1,401 PASS / 5 platform-or-environment skips.
 - Claim remains `review-ready-not-merged`. Main owns review and merge; D-PCT
   R0IX/R0IY remain private Pixel tile/runtime evidence with no consumer
   interface action.
