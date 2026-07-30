@@ -192,6 +192,7 @@ def fit_safe_bernstein_lut(
     safety_grid_size: int,
     strength_steps: int,
     maximum_iterations: int,
+    sample_weights: np.ndarray | None = None,
 ) -> SafeBernsteinFitResult:
     source_values = _rgb(source)
     target_values = _rgb(target)
@@ -210,22 +211,34 @@ def fit_safe_bernstein_lut(
     ):
         raise ValueError("invalid safe Bernstein LUT fit contract")
     design = _design(source_values, degree)
+    if sample_weights is None:
+        row_scale = np.ones((len(source_values), 1), dtype=np.float64)
+    else:
+        weights = np.asarray(sample_weights, dtype=np.float64)
+        if (
+            weights.shape != (len(source_values),)
+            or not np.all(np.isfinite(weights))
+            or np.any(weights <= 0.0)
+        ):
+            raise ValueError("invalid safe Bernstein sample weights")
+        row_scale = np.sqrt(weights / np.mean(weights)).reshape(-1, 1)
+    weighted_design = design * row_scale
     identity = _identity_control_points(degree)
     if identity_ridge > 0.0:
         augmented_design = np.concatenate(
             (
-                design,
+                weighted_design,
                 np.sqrt(identity_ridge)
                 * np.eye(len(identity), dtype=np.float64),
             ),
             axis=0,
         )
     else:
-        augmented_design = design
+        augmented_design = weighted_design
     controls = np.empty_like(identity)
     converged = True
     for channel in range(3):
-        target_channel = target_values[:, channel]
+        target_channel = target_values[:, channel] * row_scale[:, 0]
         if identity_ridge > 0.0:
             target_channel = np.concatenate(
                 (

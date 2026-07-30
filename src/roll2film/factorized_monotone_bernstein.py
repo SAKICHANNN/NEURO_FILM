@@ -92,6 +92,7 @@ def fit_factorized_monotone_bernstein(
     safety_grid_size: int,
     strength_steps: int,
     maximum_residual_iterations: int,
+    sample_weights: np.ndarray | None = None,
 ) -> FactorizedMonotoneBernsteinFitResult:
     base = fit_generalized_monotone_curve_matrix(
         source,
@@ -108,6 +109,7 @@ def fit_factorized_monotone_bernstein(
         loss=loss,
         loss_scale=loss_scale,
         seed=seed,
+        sample_weights=sample_weights,
     )
     base_output = base.operator.apply(source)
     residual = fit_safe_bernstein_lut(
@@ -119,6 +121,7 @@ def fit_factorized_monotone_bernstein(
         safety_grid_size=safety_grid_size,
         strength_steps=strength_steps,
         maximum_iterations=maximum_residual_iterations,
+        sample_weights=sample_weights,
     )
     operator = FactorizedMonotoneBernsteinOperator(
         base=base.operator, residual=residual.operator

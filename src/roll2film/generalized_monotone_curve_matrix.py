@@ -281,6 +281,7 @@ def fit_generalized_monotone_curve_matrix(
     loss: PositiveFilmFitLoss,
     loss_scale: float,
     seed: int,
+    sample_weights: np.ndarray | None = None,
 ) -> GeneralizedMonotoneFitResult:
     source_values = _rgb(source)
     target_values = _rgb(target)
@@ -293,6 +294,17 @@ def fit_generalized_monotone_curve_matrix(
     ):
         raise ValueError("invalid generalized monotone fit data")
     lower, upper = map(float, free_logit_bounds)
+    if sample_weights is None:
+        residual_scale = np.ones((len(source_values), 1), dtype=np.float64)
+    else:
+        weights = np.asarray(sample_weights, dtype=np.float64)
+        if (
+            weights.shape != (len(source_values),)
+            or not np.all(np.isfinite(weights))
+            or np.any(weights <= 0.0)
+        ):
+            raise ValueError("invalid generalized monotone sample weights")
+        residual_scale = np.sqrt(weights / np.mean(weights)).reshape(-1, 1)
     curve_parameters = 3 * (segment_count - 1)
     parameter_count = curve_parameters + 6
 
@@ -313,9 +325,10 @@ def fit_generalized_monotone_curve_matrix(
         return GeneralizedMonotoneCurveMatrixOperator(weights, matrix)
 
     def residual(parameters: np.ndarray) -> np.ndarray:
-        return (operator(parameters).apply(source_values) - target_values).reshape(
-            -1
-        )
+        return (
+            residual_scale
+            * (operator(parameters).apply(source_values) - target_values)
+        ).reshape(-1)
 
     best = None
     best_operator = None
