@@ -1,6 +1,6 @@
 # Reference Color Match Completion Audit
 
-Date: 2026-07-29
+Date: 2026-07-31
 
 Status: **consumer module complete; real external-algorithm product delivery
 not yet complete**.
@@ -14,16 +14,17 @@ wire contract and not an algorithm promotion.
 
 ## Audited scope and ownership
 
-- Consumer branch now continues through P172; v42 is the latest immutable
-  main-review manifest and binds P1-P168, including local 24 MP,
+- Consumer branch now continues through P173; v44 is the latest immutable
+  main-review manifest and binds P1-P173, including local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
-- Main Neuro-Film latest observed committed snapshot is `fced14f`; its untracked
+- Main Neuro-Film latest observed committed snapshot is `f6cc28eb`; its untracked
   `.codex/`/`tmp/` belong to the main task and were not touched.
-- D-PCT latest stable observed snapshot is `0a16c2e`; R0EE independently
-  qualifies 15 rights-cleared native 2x2 RGB Bayer rows across eight makes
-  and all four patterns. R0EF then freezes all 15 even-aligned 1024 crops plus
-  one 3040x2024 full frame before execution. MSVC, LLVM-MinGW and Python,
+- D-PCT latest stable observed snapshot is `e667fe1e`; R0JA directly parses
+  and decodes one exact Pixel DNG on an Android x86_64 virtual device, but
+  remains private, single-file-family evidence without a public RAW rail.
+  Earlier R0EF froze 15 native 1024 crops plus one 3040x2024 full frame.
+  MSVC, LLVM-MinGW and Python,
   across two processes and two internal evaluations, are byte-exact at
   `057907a9...780f3`; maximum absolute error/RMSE are
   `2.3841858e-7`/`1.4531343e-8`, and the full-frame workspace is about
@@ -292,7 +293,7 @@ wire contract and not an algorithm promotion.
 |---|---|---|---|
 | One uploaded reference plus ordered N sources | P1-P8 local fit/render/replay and P28 external per-source binding | COMPLETE | Maintain order and shared-reference identity in future adapters / Neuro-Film |
 | Immutable replayable look intent | `ReferenceLookRecipe` JSON/canonical identity and stored-reference-free replay | COMPLETE for local baseline | A future D-PCT-backed recipe must reference fixed producer bundle identities rather than copy their parameter layout / Neuro-Film |
-| Rollback-safe image/recipe/report transaction | P16-P18 transactional local file path with fault injection | COMPLETE for current local renderer | Bind P30 authorization and real external output receipts to a separately versioned transaction leaf / Neuro-Film |
+| Rollback-safe image/recipe/report transaction | P16-P18 transactional local file path plus P173 owned-directory rollback: late failure removes only empty directories created by this transaction, preserves concurrent/non-empty content, and successful commits retain destinations | COMPLETE for current local renderer, within best-effort filesystem semantics | Bind P30 authorization and real external output receipts to a separately versioned transaction leaf / Neuro-Film |
 | Product safety and claim ceiling | Identity default, strict research override, P29 numeric guard, P30 staging authorization | COMPLETE as fail-closed machinery | No state above `authorized-for-staging` until every later gate passes / Neuro-Film |
 | A1 reference identifiability | P111 exact BMKL improves 13/30 cross-content rows, median -12.06%, worst -122.56%; this is safer than P44 D-PCT but still fails | LATEST INVOKED CANDIDATE REJECTED | A genuinely different versioned capability must rerun the same frozen gate / D-PCT evidence, Neuro-Film adjudication |
 | A4 photographic preference and severe tail | P111 BMKL passes 6/6 automated photographic probes with zero new boundary, but A1/A5 failure prevents blind review | AUTOMATED SAFETY PASS, PRODUCT REJECTED | Blind review opens only for a candidate that also clears upstream automated gates / shared evidence, Neuro-Film decision |
@@ -336,9 +337,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Earlier manifests remain immutable; v43 binds P1-P172 payload `ae9c983`, 593 payload paths, 70 exports, 26 schemas, exact v42 identity and zero overlap against main `16d8adb`; manifest/schema SHA-256 are `f3b97f9b...cff11d` / `86d3d05e...948abc` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v43, reviews and merges / main task or owner |
+| Main-integration evidence | Earlier manifests remain immutable; v44 binds P1-P173 payload `91a74413`, 597 payload paths, 70 exports, 26 schemas and zero overlap against main `f6cc28eb`; manifest/schema SHA-256 are `63c96d55...49c8f` / `ac1271b4...4c8e0` | COMPLETE AS REVIEW MANIFEST, NOT MERGED | Repository owner verifies v44, reviews and merges / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P172 payload remains zero-overlap against main `16d8adb` and merges conflict-free as tree `7df2e74b...1751`; the detached merge passes 1,371 color/reference-match tests with 30 platform/data skips, while direct v43 rebuild/tamper is 5/5. Strict payload `git diff --check` is now clean after removing seven historical whitespace defects | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
+| Main-project availability | P173 payload remains zero-overlap against main `f6cc28eb` and merges conflict-free as tree `72e5d5b4...a5b2c`; the detached merge file/replay plus v43/v44 subset passes 58 tests with one platform skip, while direct v44 rebuild/tamper is 5/5 and strict payload `git diff --check` is clean | READY FOR REVIEW, NOT MERGED | Repository-owner review and merge, then main-worktree full suite with local ignored evidence / main task or owner |
 
 ## Critical path
 

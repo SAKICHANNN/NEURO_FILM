@@ -2,29 +2,36 @@
 
 Date: 2026-07-31
 
-Status: **P1-P172 consumer payload is pinned by the immutable v43 review
+Status: **P1-P173 consumer payload is pinned by the immutable v44 review
 manifest; local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Current v43 review snapshot
+## Current v44 review snapshot
 
-- payload: `ae9c983c7c7e84f0436700f8459f266b9bf5f0d3`;
-- main: `16d8adb944561ca39b41c509d33863fddc8fb5e5`;
+- payload: `91a7441350059bc98672f1504d10d2b250171f64`;
+- main: `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`;
 - common base: `c03c321b9fc642e2e092d59e20dd1b145b96192d`;
-- 593 consumer paths, 1,833 main paths, zero overlap;
+- 597 consumer paths, 1,858 main paths, zero overlap;
 - 70 required public exports and 26 contract schemas;
-- merge tree: `7df2e74b0b0d74f085c9ca0961e47f891a031751`;
-- detached merge of the same code payload before the v43 manifest artifact:
-  `1371 passed, 30 skipped`;
-- direct v43 schema/rebuild/tamper result: `5 passed`;
+- merge tree: `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`;
+- detached merge file/replay plus v43/v44 review subset:
+  `58 passed, 1 skipped`;
+- direct v44 schema/rebuild/tamper result: `5 passed`;
 - prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `f3b97f9ba8cf0949d10cb366e44d1371ac4108d4868fa3ed0c910ae12bcff11d` /
-  `86d3d05e2a76c4a07cac44213a3ed943908a3070c6919929a07af5dc37948abc`.
+  `63c96d55d768e0d26b6258307e13fe508ca7ca0ba1a36ef06ea0675d10349c8f` /
+  `ac1271b4e1110e08d60843687bc33741d11854247d54249a2d3ffad0b0b4c8e0`.
 
 The synthetic worktree was removed after verification. The main worktree's
-untracked `.codex/`, `tmp/` and active native v2 files remain main-task-owned
-and untouched.
+untracked `.codex/` and `tmp/` remain main-task-owned and untouched.
+
+P173 closes a narrower transaction defect: a failure after an earlier source
+had encoded output could remove staged files yet leave newly created empty
+output/recipe directory trees. The file renderer now tracks only directories
+it created, removes them in reverse order on failure, and preserves any
+non-empty directory or concurrently created content. Successful transactions
+retain their destination directories. This is best-effort empty-directory
+rollback, not universal filesystem transactionality.
 
 ## Frozen snapshots
 
@@ -37,11 +44,11 @@ and untouched.
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `629876ea9041fef53f4b70da2667369dc6d503ac`;
+  `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`;
 - D-PCT read-only snapshot:
-  `46b77bb`;
+  `e667fe1ef6d9a70078685971fa25b2a1ab182eb9`;
 - conflict-free main/evidence-head merge tree:
-  `189c8bdc3044ed6a62be2e4273800bc91fc34c99`.
+  `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -310,11 +317,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v43 schema and rebuild its manifest; it transitively
-   preserves the immutable v1-v42 chain.
-3. Review `c03c321..ae9c983`; do not copy files manually and do not import
+2. Verify the committed v44 schema and rebuild its manifest; it transitively
+   preserves the immutable v1-v43 chain.
+3. Review `c03c321..91a74413`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree ae9c983 <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 91a74413 <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -329,10 +336,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest detached main/P1-P172 code merge: 1,371 color/reference-match tests
-  passed, 30 platform/data skips and zero failures;
-- latest isolated consumer full suite: 1,401 passed, five skipped;
-- detached merge tree is `7df2e74b...1751`; the temporary worktree was removed;
+- latest detached main/P1-P173 file/replay plus v43/v44 review subset:
+  58 passed, one platform skip and zero failures;
+- P173 file/replay suites: 48 passed, one platform skip;
+- latest isolated consumer full suite: 1,409 passed, five skipped;
+- detached merge tree is `72e5d5b4...a5b2c`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real

@@ -5010,3 +5010,33 @@
 - Claim remains `review-ready-not-merged`. Main owns review and merge; D-PCT
   R0IX/R0IY remain private Pixel tile/runtime evidence with no consumer
   interface action.
+
+## 2026-07-31 - Close P173 owned-directory rollback and freeze v44
+
+- Node/parent goal: P173 file transaction integrity and current-main review
+  handoff. The consumer remains the sole writer; main and D-PCT were read-only.
+- A real late second-source decode failure showed that file rollback restored
+  all artifacts but left empty output/recipe directory trees created earlier
+  in the transaction. `src/color_match/files.py` now records only directories
+  created by the current call and removes them in reverse order after failure.
+  `rmdir` failure is deliberately non-destructive: concurrent/non-empty
+  content is preserved and the original exception is not masked.
+- Tests cover removal of a wholly owned empty tree, preservation of a
+  concurrent marker, retention of successful destination directories and
+  nested replay failure. File/replay suites pass `48 passed, 1 skipped`;
+  `py_compile` and strict diff checks pass. Ruff is not installed in the
+  pinned main virtual environment and was not added only for this leaf.
+- V44 pins non-self-referential P1-P173 payload
+  `91a7441350059bc98672f1504d10d2b250171f64` against main
+  `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`: 597/1,858 changed paths,
+  zero overlap, merge tree `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`.
+  Manifest/schema SHA-256 are `63c96d55d768e0d26b6258307e13fe508ca7ca0ba1a36ef06ea0675d10349c8f`
+  and `ac1271b4e1110e08d60843687bc33741d11854247d54249a2d3ffad0b0b4c8e0`.
+  Direct v44 rebuild/tamper is 5/5; a detached real merge passes the
+  file/replay plus v43/v44 subset at `58 passed, 1 skipped`. The temporary
+  worktree was removed. The final isolated consumer suite collects 1,414
+  tests and completes at `1,409 passed, 5 skipped`.
+- Producer R0JA remains a private one-Pixel Android x86_64 virtual
+  parse/decode path without GainMap, Stage2, camera-colour, general-DNG,
+  public package/schema/receipt/capability or RAW rail. It does not alter P172
+  fail-closed rail handling or create a consumer mapping.
