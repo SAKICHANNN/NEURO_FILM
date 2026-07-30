@@ -1,0 +1,264 @@
+{
+  "schema": "neuro_film.u5_r2bh0s_fixed_bank_oracle_source_preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh0s-fixed-bank-oracle-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2BH0S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u6_p8bq_fixed_arm_oracle_diagnostic_v1.json",
+    "sha256": "1b924d1c61871976c6f578e491adf7e744faa43089ab6e9612ec92b78d225b04"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-28",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "purpose": "fresh digital-photo population for a complete fixed-bank evaluator-Oracle audit",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact stratified freeze before pixel access: twelve CC0 rows, one per make, unseen repository ID, source hash and make/model across every tracked raw.pixls.us pool; 4-40 MB per row and <=256 MiB aggregate; scanner/chart/flat/target/film metadata excluded; no image appearance used for selection",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 229310000,
+    "download_root": "data/external/rawpixls_bh0_v1/raw",
+    "decoded_root": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {
+      "id": "sony_ilme_fx2",
+      "repository_id": 8811,
+      "make": "Sony",
+      "model": "ILME-FX2",
+      "mode": "4:3",
+      "date": "2026-01-23",
+      "megapixels": 33.0,
+      "bytes_reported_mb": 15.72,
+      "filename": "Sony - ILME-FX2 - 4:3.ARW",
+      "path": "data/external/rawpixls_bh0_v1/raw/sony_ilme_fx2.arw",
+      "sha256": "582735361d972ff4e29d3dd998de992f51ca0a57657598e10c4b88f0bafc9b86",
+      "url": "https://raw.pixls.us/getfile.php/8811/nice/Sony%20-%20ILME-FX2%20-%204%3A3.ARW"
+    },
+    {
+      "id": "panasonic_dc_s1m2es",
+      "repository_id": 8630,
+      "make": "Panasonic",
+      "model": "DC-S1M2ES",
+      "mode": "3:2",
+      "date": "2025-10-24",
+      "megapixels": 24.1,
+      "bytes_reported_mb": 33.25,
+      "filename": "Panasonic - DC-S1M2ES - 3:2.RW2",
+      "path": "data/external/rawpixls_bh0_v1/raw/panasonic_dc_s1m2es.rw2",
+      "sha256": "4a10d20cf5d17087d75b7acd3d1fbdab66605505e9b7af62390f1948be4b09a5",
+      "url": "https://raw.pixls.us/getfile.php/8630/nice/Panasonic%20-%20DC-S1M2ES%20-%203%3A2.RW2"
+    },
+    {
+      "id": "canon_powershot_v1",
+      "repository_id": 8500,
+      "make": "Canon",
+      "model": "PowerShot V1",
+      "mode": "CRAW (3:2)",
+      "date": "2025-08-22",
+      "megapixels": 22.3,
+      "bytes_reported_mb": 10.89,
+      "filename": "Canon - PowerShot V1 - CRAW (3:2).CR3",
+      "path": "data/external/rawpixls_bh0_v1/raw/canon_powershot_v1.cr3",
+      "sha256": "0a0abfd81b3a34fa513ac8ed24c809275160d65b07e892c2eb4353b77c535a31",
+      "url": "https://raw.pixls.us/getfile.php/8500/nice/Canon%20-%20PowerShot%20V1%20-%20CRAW%20%283%3A2%29.CR3"
+    },
+    {
+      "id": "nikon_d5300",
+      "repository_id": 8366,
+      "make": "Nikon",
+      "model": "D5300",
+      "mode": "14bit compressed (Lossy (type 2)) (3:2)",
+      "date": "2025-08-01",
+      "megapixels": 24.16,
+      "bytes_reported_mb": 27.8,
+      "filename": "Nikon - D5300 - 14bit compressed (Lossy (type 2)) (3:2).NEF",
+      "path": "data/external/rawpixls_bh0_v1/raw/nikon_d5300.nef",
+      "sha256": "8751a0a3bc491bb5c79ed6b32f83b3923b119ae9d950b851ad26db2a0fbb3b91",
+      "url": "https://raw.pixls.us/getfile.php/8366/nice/Nikon%20-%20D5300%20-%2014bit%20compressed%20%28Lossy%20%28type%202%29%29%20%283%3A2%29.NEF"
+    },
+    {
+      "id": "dji_fc4382",
+      "repository_id": 7823,
+      "make": "DJI",
+      "model": "FC4382",
+      "mode": "16bit (4:3)",
+      "date": "2025-05-04",
+      "megapixels": 48.0,
+      "bytes_reported_mb": 14.19,
+      "filename": "DJI - FC4382 - 16bit (4:3).DNG",
+      "path": "data/external/rawpixls_bh0_v1/raw/dji_fc4382.dng",
+      "sha256": "f33ddaf2a7fa70b395abced251faccea11100d2ab7e54ae0a6adbff043d72027",
+      "url": "https://raw.pixls.us/getfile.php/7823/nice/DJI%20-%20FC4382%20-%2016bit%20%284%3A3%29.DNG"
+    },
+    {
+      "id": "om_system_om_3",
+      "repository_id": 7804,
+      "make": "OM System",
+      "model": "OM-3",
+      "mode": "16bit (4:3)",
+      "date": "2025-05-02",
+      "megapixels": 20.4,
+      "bytes_reported_mb": 21.0,
+      "filename": "OM System - OM-3 - 16bit (4:3).ORI",
+      "path": "data/external/rawpixls_bh0_v1/raw/om_system_om_3.ori",
+      "sha256": "bcc05bd57e78cbbb308a596f97987975f7167b17768d8c2d536c87e0c34298e0",
+      "url": "https://raw.pixls.us/getfile.php/7804/nice/OM%20System%20-%20OM-3%20-%2016bit%20%284%3A3%29.ORI"
+    },
+    {
+      "id": "minolta_dimage_5",
+      "repository_id": 7795,
+      "make": "Minolta",
+      "model": "DiMAGE 5",
+      "mode": "4:3",
+      "date": "2025-05-02",
+      "megapixels": 3.3,
+      "bytes_reported_mb": 6.12,
+      "filename": "Minolta - DiMAGE 5 - 4:3.MRW",
+      "path": "data/external/rawpixls_bh0_v1/raw/minolta_dimage_5.mrw",
+      "sha256": "d60bfd80bcb1f7b9c88b14a5e46ea27885bbf92d990ab30b3939288678fea0d9",
+      "url": "https://raw.pixls.us/getfile.php/7795/nice/Minolta%20-%20DiMAGE%205%20-%204%3A3.MRW"
+    },
+    {
+      "id": "phase_one_p45_plus",
+      "repository_id": 7536,
+      "make": "Phase One",
+      "model": "P45+",
+      "mode": "IIQ S (4:3)",
+      "date": "2024-12-20",
+      "megapixels": 39.0,
+      "bytes_reported_mb": 26.72,
+      "filename": "Phase One - P45+ - IIQ S (4:3).IIQ",
+      "path": "data/external/rawpixls_bh0_v1/raw/phase_one_p45_plus.iiq",
+      "sha256": "cd2e6d90eb58798415958d093fffe53cc0fb382fc772e30eab3bb2642e2d8e6e",
+      "url": "https://raw.pixls.us/getfile.php/7536/nice/Phase%20One%20-%20P45%2B%20-%20IIQ%20S%20%284%3A3%29.IIQ"
+    },
+    {
+      "id": "gopro_hero11_black",
+      "repository_id": 7319,
+      "make": "GoPro",
+      "model": "HERO11 Black",
+      "mode": "16bit (5:4)",
+      "date": "2024-03-07",
+      "megapixels": 27.13,
+      "bytes_reported_mb": 13.28,
+      "filename": "GoPro - HERO11 Black - 16bit (5:4).GPR",
+      "path": "data/external/rawpixls_bh0_v1/raw/gopro_hero11_black.gpr",
+      "sha256": "d7a6be163c847cb8456e6858a99aef3b85dc3d8836bca1da1b8886effe0d43e1",
+      "url": "https://raw.pixls.us/getfile.php/7319/nice/GoPro%20-%20HERO11%20Black%20-%2016bit%20%285%3A4%29.GPR"
+    },
+    {
+      "id": "fujifilm_x_e5",
+      "repository_id": 8509,
+      "make": "Fujifilm",
+      "model": "X-E5",
+      "mode": "14bit lossy compressed (3:2)",
+      "date": "2025-08-20",
+      "megapixels": 40.2,
+      "bytes_reported_mb": 28.37,
+      "filename": "Fujifilm - X-E5 - 14bit lossy compressed (3:2).RAF",
+      "path": "data/external/rawpixls_bh0_v1/raw/fujifilm_x_e5.raf",
+      "sha256": "28f56cc9784164209e92fae209bdcc78267bd692aa2fb964595485f7e93692ab",
+      "url": "https://raw.pixls.us/getfile.php/8509/nice/Fujifilm%20-%20X-E5%20-%2014bit%20lossy%20compressed%20%283%3A2%29.RAF"
+    },
+    {
+      "id": "samsung_ek_gn120",
+      "repository_id": 6880,
+      "make": "Samsung",
+      "model": "EK-GN120",
+      "mode": "12bit (3:2)",
+      "date": "2023-05-27",
+      "megapixels": 20.3,
+      "bytes_reported_mb": 20.29,
+      "filename": "Samsung - EK-GN120 - 12bit (3:2).srw",
+      "path": "data/external/rawpixls_bh0_v1/raw/samsung_ek_gn120.srw",
+      "sha256": "21f9dc02676e0d2e5e5b9b5b090852ca00e1423c3a7d7395214472e6d6ea9cea",
+      "url": "https://raw.pixls.us/getfile.php/6880/nice/Samsung%20-%20EK-GN120%20-%2012bit%20%283%3A2%29.srw"
+    },
+    {
+      "id": "google_pixel_7_pro",
+      "repository_id": 6168,
+      "make": "Google",
+      "model": "Pixel 7 Pro",
+      "mode": "16bit (4:3)",
+      "date": "2022-10-21",
+      "megapixels": 50.1,
+      "bytes_reported_mb": 11.68,
+      "filename": "Google - Pixel 7 Pro - 16bit (4:3).dng",
+      "path": "data/external/rawpixls_bh0_v1/raw/google_pixel_7_pro.dng",
+      "sha256": "6b921558944db5fdb4f1c63dc64919b6666ef700857a187e18500099c6e7c6c6",
+      "url": "https://raw.pixls.us/getfile.php/6168/nice/Google%20-%20Pixel%207%20Pro%20-%2016bit%20%284%3A3%29.dng"
+    }
+  ],
+  "maximum_download_bytes": 268435456,
+  "preflight": {
+    "development_manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "development_manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "comparison_manifests": [
+      {
+        "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+        "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+        "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u6_p8bn_fresh_strength_population_v1/manifest.json",
+        "sha256": "f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+        "sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+        "format": "rawpixls_manifest"
+      },
+      {
+        "path": "outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json",
+        "sha256": "5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc",
+        "format": "legacy_rawpixls_render_manifest"
+      }
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": [
+      "fixed_b0",
+      "fixed_ao6_colour_only_t15_c35",
+      "fixed_ap3_ektachrome_composition",
+      "fixed_az0_optical_density_residual",
+      "fixed_native_standard_full_strength_1_0"
+    ],
+    "complete_ranking_required": true,
+    "router_training_allowed": false
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "fresh CC0 RAW source eligibility for complete autonomous fixed-bank Oracle evaluation; not population preference, film truth, stock response, calibration, universal safety, router evidence or product promotion"
+}
