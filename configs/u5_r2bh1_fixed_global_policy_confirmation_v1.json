@@ -1,0 +1,81 @@
+{
+  "schema": "neuro_film.u5_r2bh1_fixed_global_policy_confirmation.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh1-fixed-global-policy-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BH1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the fixed B0 global policy beat the incumbent fixed AO6 t15/c35 policy on an independent fresh CC0 RAW population without any source-specific routing, fitting or retuning?",
+  "source_preflight": {
+    "decision": "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json",
+    "decision_sha256": "9b3cb743e186d8c7fe9a27202aba9bbbd8aae6785a2ea318e44478a2b36e93a5",
+    "required_decision": "pass_fresh_population_and_open_fixed_global_policy_confirmation",
+    "manifest": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "visual_review": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388acf3710d2cb850a3f048db5b27441f63160f21dd944af24443fc2497ce268",
+    "expected_eligible_rows": 12,
+    "expected_camera_makes": 12
+  },
+  "fixed_arms": [
+    {
+      "arm_id": "fixed_b0",
+      "role": "BH0_best_global_challenger"
+    },
+    {
+      "arm_id": "fixed_ao6_colour_only_t15_c35",
+      "role": "incumbent_global_look_approximation"
+    }
+  ],
+  "arm_provenance": {
+    "bh0_contract": "configs/u5_r2bh0_fixed_bank_complete_oracle_v1.json",
+    "bh0_contract_sha256": "9cf24d0a4dfe4e6d6b81775e7156f283accdd538d7f08ea61f8b886269bf4d1f",
+    "bh0_decision": "configs/u5_r2bh0_fixed_bank_complete_oracle_decision_v1.json",
+    "bh0_decision_sha256": "5c625e8b60bb1394a532a7909cb753a3842c44110a18b81d242fcb97ba25da85",
+    "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+    "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "source_context_component": "ao6-source-context-display-look"
+  },
+  "rendering": {
+    "create_only": true,
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "dense_blending_allowed": false,
+    "hard_clipping_allowed": false,
+    "final_format": "rgb16_png",
+    "require_repeat_report_and_output_identity": true
+  },
+  "automatic_gate": {
+    "expected_outputs": 24,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "sources_per_round": 12,
+    "arms_per_source": 2,
+    "ties_allowed": false,
+    "mapping_hidden_until_all_choices_are_frozen": true,
+    "independent_per_source_mapping_each_round": true,
+    "minimum_b0_round_wins": 2,
+    "minimum_b0_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branch_rules": {
+    "repeat_or_automatic_fail": "close BH1 without changing sources, arms, thresholds or strengths",
+    "severe_fail": "reject the affected policy; never trade severe artifacts for preference",
+    "b0_gate_pass": "retain fixed B0 as the independently confirmed research global Look Approximation champion; production default remains unchanged",
+    "b0_gate_fail": "do not promote B0; retain fixed AO6 as the simpler incumbent research global policy and continue a distinct algorithm leaf"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "independent-population autonomous global-policy comparison of two fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
