@@ -1,0 +1,64 @@
+{
+  "schema_version": "u5-r2bg0-talkative-controlled-film-source-v1",
+  "experiment_id": "u5.r2bg0-talkative-controlled-film-source-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BG0",
+  "source": {
+    "catalogue_url": "https://talkativephotographer.com/film-samples",
+    "allowed_page_prefix": "https://talkativephotographer.com/film-samples/",
+    "robots_url": "https://talkativephotographer.com/robots.txt",
+    "announcement_url": "https://www.reddit.com/r/AnalogCommunity/comments/1qubfbg/scanning_every_film_box_i_can_find_290_so_far/",
+    "announcement_observation": "author states a controlled plus-or-minus-two bracket of one white-box, Lego and colour-checker scene per film, with camera, expiration, film and development information on the image",
+    "announcement_rights_boundary": "author says open-source publication will be worked out later; this is intent, not a current licence"
+  },
+  "network_contract": {
+    "html_get_only": true,
+    "image_requests_allowed": false,
+    "api_requests_allowed": false,
+    "maximum_catalogue_pages": 40,
+    "maximum_response_bytes_per_page": 8388608,
+    "timeout_seconds": 30,
+    "minimum_delay_seconds": 0.25,
+    "user_agent": "K-MCFM-Ultimate-source-audit/1.0 (+noncommercial metadata-only research)"
+  },
+  "parser_contract": {
+    "controlled_filename_pattern": "(?i)5framesample",
+    "expected_bracket_slots": [1, 2, 3, 4, 5],
+    "scanner_variant_patterns": {
+      "noritsu_ls600": "(?i)_LS600_[1-5]\\.",
+      "other_or_unlabelled": "(?i)_5FrameSample_[1-5]\\."
+    },
+    "strip_image_query": true,
+    "stock_identity_source": "page URL slug and page title only",
+    "physical_metadata_inference_forbidden": true
+  },
+  "structure_gates": {
+    "minimum_catalogue_pages": 20,
+    "minimum_stocks_with_complete_five_frame_bracket": 5,
+    "minimum_stocks_with_two_complete_scanner_variants": 1,
+    "maximum_duplicate_canonical_image_urls": 0
+  },
+  "rights_gate": {
+    "explicit_reusable_pixel_licence_required": true,
+    "author_future_open_source_intent_is_sufficient": false,
+    "public_web_display_is_sufficient": false,
+    "missing_licence_action": "metadata-only source lead; no pixel retention, fitting, training, redistribution or product use"
+  },
+  "decision_branches": {
+    "structure_fails": "close current public surface without image access",
+    "structure_passes_rights_fails": "retain metadata-only high-value source lead; pixel access requires an explicit licence or separately approved author contact",
+    "structure_and_rights_pass": "freeze a separately bounded derivative acquisition with exact lineage before any pixel use"
+  },
+  "execution": {
+    "repeat_count": 2,
+    "output": "outputs/external_controls/talkative_film_samples_v1/metadata_audit.json"
+  },
+  "gates": {
+    "pixel_access_allowed": false,
+    "operator_fitting_allowed": false,
+    "training_allowed": false,
+    "stock_claim_allowed": false,
+    "lsm_allowed": false,
+    "external_contact_allowed": false
+  },
+  "claim_ceiling": "live HTML metadata-only feasibility evidence for a potentially controlled multi-stock bracket source; no pixel rights, stock response, scanner calibration, operator fitting, training or product use"
+}
