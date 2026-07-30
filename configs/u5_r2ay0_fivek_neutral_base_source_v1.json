@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay0-fivek-neutral-base-source-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY0S",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the retained FiveK freeze contain enough exact paired RAW/Expert-C support and camera-model connectivity to test a bounded explicit neutral-base parameter predictor without teaching film identity or final RGB?",
+  "source": {
+    "name": "MIT-Adobe FiveK retained freeze v1",
+    "freeze_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "freeze_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "freeze_summary": "outputs/fivek_auto_optimize/freeze_v1/summary.json",
+    "freeze_summary_sha256": "45032415c91f2f5a61e3415d2ce4c99ff27696e4fb2d0add4d385b92d4fc522b",
+    "raw_root": "outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples/raw",
+    "expert_root": "outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples/expert_tiff_c",
+    "expected_pair_count": 64,
+    "expected_camera_model_groups": 21,
+    "maximum_group_share": 0.25,
+    "rights_scope": "internal research under the existing FiveK project boundary; no redistribution"
+  },
+  "grouping": {
+    "primary_group": "normalized EXIF make + model",
+    "split_policy": "camera-model-group-held-out only",
+    "content_split_substitute_forbidden": true,
+    "unknown_group_forbidden": true
+  },
+  "allowed": [
+    "hash and decode integrity audit",
+    "fit bounded explicit neutral-base parameters to paired RAW/Expert-C observations",
+    "predict only bounded explicit neutral-base parameters from low-dimensional source statistics",
+    "compare identity, global, nearest-neighbour and ridge parameter predictors",
+    "apply a separately frozen fixed film-look operator only after neutral-base evaluation passes"
+  ],
+  "forbidden": [
+    "call Expert C film, stock or scanner ground truth",
+    "train a network or model that directly emits final RGB",
+    "fit or alter AO6 or any stock-look parameters",
+    "split by individual image while leaking a camera-model group",
+    "use semantic, CLIP, face, object or scene labels as the neutral-base predictor",
+    "claim calibrated, stock-specific or unpaired digital-to-film identification",
+    "delete or redistribute retained source pixels"
+  ],
+  "output": {
+    "root": "outputs/u5_r2ay0_fivek_neutral_base_source_v1",
+    "manifest": "manifest.json",
+    "report": "report.json"
+  },
+  "pass_gates": {
+    "pair_count": 64,
+    "camera_model_groups_minimum": 12,
+    "largest_group_share_maximum": 0.25,
+    "missing_pairs": 0,
+    "unknown_camera_groups": 0,
+    "hash_and_metadata_repeat_exact": true
+  },
+  "claim_ceiling": "exact internal paired-digital-retouch source and camera-group feasibility for a bounded neutral photographic base experiment; no film, stock, calibration, preference, product or final-RGB-learning claim"
+}
