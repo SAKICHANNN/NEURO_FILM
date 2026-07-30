@@ -157,7 +157,28 @@ def apply_boundary_safe_neutral_base(
     scale = np.where(
         scale < 1.0, np.nextafter(scale, 0.0), scale
     )
-    output = source + scale[..., None] * residual
+    source_boundary = (source <= boundary_epsilon) | (
+        source >= 1.0 - boundary_epsilon
+    )
+    # A division and subsequent multiply-add can round differently by more
+    # than one adjacent scale value on some channel configurations.  Tighten
+    # only the affected shared per-pixel scale until the reconstructed RGB is
+    # strictly interior.  No output channel is clipped or scaled separately.
+    for _ in range(16):
+        output = source + scale[..., None] * residual
+        output_boundary = (output <= boundary_epsilon) | (
+            output >= 1.0 - boundary_epsilon
+        )
+        bad_pixels = np.any(
+            output_boundary & ~source_boundary, axis=2
+        )
+        if not np.any(bad_pixels):
+            break
+        scale[bad_pixels] = np.nextafter(scale[bad_pixels], 0.0)
+    else:
+        raise BoundarySafeNeutralBaseError(
+            "analytical scale did not converge to the strict interior"
+        )
     if (
         not np.all(np.isfinite(output))
         or np.any(output < 0.0)
@@ -165,16 +186,6 @@ def apply_boundary_safe_neutral_base(
     ):
         raise BoundarySafeNeutralBaseError(
             "analytical executor escaped the RGB cube"
-        )
-    source_boundary = (source <= boundary_epsilon) | (
-        source >= 1.0 - boundary_epsilon
-    )
-    output_boundary = (output <= boundary_epsilon) | (
-        output >= 1.0 - boundary_epsilon
-    )
-    if np.any(output_boundary & ~source_boundary):
-        raise BoundarySafeNeutralBaseError(
-            "analytical proof failed to prevent a new boundary"
         )
     return output, scale
 
