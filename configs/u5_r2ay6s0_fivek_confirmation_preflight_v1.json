@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay6s0-fivek-confirmation-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY6S0",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "5b73b11351f8ad7db70c1cbac940242078336706",
+  "question": "Can the official FiveK individual-file interface provide a third bounded 64-pair population disjoint from all 192 prior AY rows for unchanged AY6 confirmation?",
+  "parent": {
+    "config": "configs/u5_r2ay6_monotone_channel_curve_development_v1.json",
+    "config_sha256": "e99d034bbdefa393eb0c2dc8785d48b16e923b2ed9ebf6abd420734717f7b86f",
+    "decision": "configs/u5_r2ay6_monotone_channel_curve_development_decision_v1.json",
+    "decision_sha256": "70fbe26d6f3cf6fdc3ec2860e7d80a9383c5fd64a18454c8e5611c999bdd161d",
+    "required_status": "development_pass_new_confirmation_required"
+  },
+  "official_source": {
+    "base_url": "https://data.csail.mit.edu/graphics/fivek/",
+    "page": "data/raw/fivek/official_20260730/index.html",
+    "page_sha256": "cc11c048a6c29459628cd0989ba28324857988eac10894773b8a20dbb9fd3127",
+    "license": "data/raw/fivek/legal/LicenseAdobe.txt",
+    "license_sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+    "license_file_list": "data/raw/fivek/legal/filesAdobe.txt",
+    "license_file_list_sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383",
+    "rights_scope": "internal non-commercial research only; preserve copyright and license with retained data; no redistribution or product-rights decision"
+  },
+  "exclusion": {
+    "retained_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "retained_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "expected_excluded_rows": 128,
+    "additional_manifests": [
+      {
+        "path": "outputs/u5_r2ay3s1_fivek_fresh_pair_acquisition_v1/run_a/manifest.json",
+        "sha256": "aa5c94630b9b948148e5f76a0a49b75a55dad9c4af09433dd7c8d002db5cf9fa",
+        "name_field": "source_name",
+        "expected_rows": 64
+      }
+    ],
+    "expected_total_unique_names": 192
+  },
+  "selection": {
+    "eligible_license_partition": "Adobe",
+    "seed": 20260801,
+    "sample_without_replacement": true,
+    "sort_selected_by_source_name_after_sampling": true,
+    "pair_count": 64,
+    "required_assets": ["individual DNG input", "Expert C TIFF16"],
+    "semantic_metadata_used_for_selection": false,
+    "camera_metadata_used_for_selection": false
+  },
+  "network_preflight": {
+    "method": "HEAD",
+    "maximum_requests": 128,
+    "timeout_seconds": 30,
+    "required_status": 200,
+    "content_length_required": true,
+    "maximum_expected_bytes": 8589934592,
+    "pixel_payload_download_allowed": false
+  },
+  "pass_gates": {
+    "selected_pairs": 64,
+    "selected_ids_in_exact_license_partition": 64,
+    "selected_ids_overlapping_retained_128": 0,
+    "selected_ids_overlapping_all_exclusions": 0,
+    "total_unique_excluded_names": 192,
+    "missing_page_links": 0,
+    "non_200_assets": 0,
+    "assets_missing_content_length": 0,
+    "expected_bytes_at_or_below_limit": true,
+    "repeat_selection_byte_identity": true
+  },
+  "branch_rules": {
+    "pass": "open only exact bounded acquisition, normalization/leakage audit and unchanged AY6 confirmation",
+    "fail": "close this selection without mirror substitution, broad scraping or archive download"
+  },
+  "image_download_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "metadata, rights and URL feasibility for one third disjoint FiveK internal-research population; no pixels, confirmation, film, stock, calibration or product claim"
+}
