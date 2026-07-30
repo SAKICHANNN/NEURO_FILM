@@ -97,6 +97,63 @@
       "independent roll, process and scan groups"
     ]
   },
+  "integrity_audit": {
+    "schema_version": "u5-r2aw0-filmmatch-integrity-audit-v1",
+    "expected_tiff": {
+      "ektachrome_reflective": {
+        "shape": [2160, 3840, 3],
+        "dtype": "uint16",
+        "embedded_icc": false
+      },
+      "ektachrome_emissive": {
+        "shape": [2160, 3840, 3],
+        "dtype": "uint16",
+        "embedded_icc": false
+      },
+      "sony_reflective": {
+        "shape": [1080, 1920, 3],
+        "dtype": "uint16",
+        "embedded_icc": false
+      },
+      "sony_emissive": {
+        "shape": [1080, 1920, 3],
+        "dtype": "uint16",
+        "embedded_icc": false
+      }
+    },
+    "pair_lanes": [
+      {
+        "pair_lane": "reflective",
+        "film_lane": "ektachrome_reflective",
+        "digital_lane": "sony_reflective",
+        "film_sequence": [315, 347],
+        "digital_sequence": [233, 265],
+        "expected_pairs": 33
+      },
+      {
+        "pair_lane": "emissive",
+        "film_lane": "ektachrome_emissive",
+        "digital_lane": "sony_emissive",
+        "film_sequence": [315, 349],
+        "digital_sequence": [271, 305],
+        "expected_pairs": 35
+      }
+    ],
+    "mapping_feature": {
+      "sample_grid": [135, 240],
+      "quantiles": [0.001, 0.01, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 0.999],
+      "include_channel_mean": true,
+      "include_channel_std": true,
+      "domain_standardization_epsilon": 1e-06
+    },
+    "mapping_gate": {
+      "permutation_seed": 20260730,
+      "permutations": 1000,
+      "maximum_permutation_p": 0.01,
+      "maximum_cost_to_permutation_median_ratio": 0.75,
+      "require_unique_best_circular_shift": true
+    }
+  },
   "gates": {
     "integrity_before_fit": true,
     "pair_mapping_before_fit": true,
