@@ -30,7 +30,7 @@ def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit(
     monkeypatch,
 ) -> None:
     validated = oracle.validate_contract(ROOT, _config())
-    scene = np.full((9, 11, 3), 0.18, dtype=np.float32)
+    scene = np.full((257, 11, 3), 0.18, dtype=np.float32)
     base = np.full_like(scene, 0.42)
     ao6 = np.full_like(scene, 0.48)
     native = np.full_like(scene, 0.51)
@@ -73,6 +73,50 @@ def test_bh0_renderer_adds_two_fixed_residual_arms_without_refit(
     assert not np.array_equal(outputs[oracle.ARMS[2]], base)
     assert not np.array_equal(outputs[oracle.ARMS[3]], base)
     assert diagnostics["native_receipt_sha256"] == "a" * 64
+    assert diagnostics["residual_row_chunk"] == 128
+
+    base_linear = oracle.encoded_srgb_to_linear(base.astype(np.float64))
+    ap3_spec = validated["ap3_config"]["fixed_candidate"]
+    ap3_controls = ap3_spec["factorization"]
+    full_ap3 = oracle.apply_factorized_boundary_guard(
+        validated["ap3_operator"],
+        base_linear,
+        tone_strength=float(ap3_spec["tone_strength"]),
+        chroma_strength=float(ap3_spec["chroma_strength"]),
+        luma_weights=np.asarray(ap3_controls["luma_weights"]),
+        hard_boundary_epsilon_encoded_srgb=float(
+            ap3_controls["hard_boundary_epsilon_encoded_srgb"]
+        ),
+        guard_boundary_epsilon_encoded_srgb=float(
+            ap3_controls["guard_boundary_epsilon_encoded_srgb"]
+        ),
+    )
+    full_az0 = oracle.apply_density_residual_guard(
+        validated["ao6_operator"],
+        base_linear,
+        neutral_strength=float(validated["az0_candidate"]["neutral_strength"]),
+        opponent_strength=float(validated["az0_candidate"]["opponent_strength"]),
+        neutral_weights=np.asarray(validated["az0_candidate"]["neutral_weights"]),
+        density_floor=float(validated["az0_candidate"]["density_floor"]),
+        hard_boundary_epsilon_encoded_srgb=float(
+            validated["az0_candidate"][
+                "hard_boundary_epsilon_encoded_srgb"
+            ]
+        ),
+        guard_boundary_epsilon_encoded_srgb=float(
+            validated["az0_candidate"][
+                "guard_boundary_epsilon_encoded_srgb"
+            ]
+        ),
+    )
+    assert np.array_equal(
+        outputs[oracle.ARMS[2]],
+        oracle.linear_srgb_to_encoded(full_ap3.output).astype(np.float32),
+    )
+    assert np.array_equal(
+        outputs[oracle.ARMS[3]],
+        oracle.linear_srgb_to_encoded(full_az0.output).astype(np.float32),
+    )
 
 
 def test_bh0_blind_round_is_complete_and_mapping_changes(

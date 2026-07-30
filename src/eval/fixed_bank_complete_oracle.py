@@ -215,46 +215,72 @@ def render_fixed_bank(
         artifact=artifact,
         runtime=runtime,
     )
-    base = np.asarray(base_outputs[ARMS[0]], dtype=np.float64)
-    base_linear = encoded_srgb_to_linear(base)
-
+    base = np.asarray(base_outputs[ARMS[0]], dtype=np.float32)
     ap3_spec = ap3_config["fixed_candidate"]
     ap3_controls = ap3_spec["factorization"]
-    ap3_guarded = apply_factorized_boundary_guard(
-        ap3_operator,
-        base_linear,
-        tone_strength=float(ap3_spec["tone_strength"]),
-        chroma_strength=float(ap3_spec["chroma_strength"]),
-        luma_weights=np.asarray(ap3_controls["luma_weights"]),
-        hard_boundary_epsilon_encoded_srgb=float(
-            ap3_controls["hard_boundary_epsilon_encoded_srgb"]
-        ),
-        guard_boundary_epsilon_encoded_srgb=float(
-            ap3_controls["guard_boundary_epsilon_encoded_srgb"]
-        ),
-    )
-    ap3 = linear_srgb_to_encoded(ap3_guarded.output)
-
-    az0_guarded = apply_density_residual_guard(
-        ao6_operator,
-        base_linear,
-        neutral_strength=float(az0_candidate["neutral_strength"]),
-        opponent_strength=float(az0_candidate["opponent_strength"]),
-        neutral_weights=np.asarray(az0_candidate["neutral_weights"]),
-        density_floor=float(az0_candidate["density_floor"]),
-        hard_boundary_epsilon_encoded_srgb=float(
-            az0_candidate["hard_boundary_epsilon_encoded_srgb"]
-        ),
-        guard_boundary_epsilon_encoded_srgb=float(
-            az0_candidate["guard_boundary_epsilon_encoded_srgb"]
-        ),
-    )
-    az0 = linear_srgb_to_encoded(az0_guarded.output)
+    ap3 = np.empty_like(base)
+    az0 = np.empty_like(base)
+    row_chunk = 128
+    pixel_count = base.shape[0] * base.shape[1]
+    ap3_tone_limited = 0
+    ap3_chroma_limited = 0
+    az0_neutral_limited = 0
+    az0_opponent_limited = 0
+    for y0 in range(0, base.shape[0], row_chunk):
+        y1 = min(base.shape[0], y0 + row_chunk)
+        base_linear = encoded_srgb_to_linear(
+            np.asarray(base[y0:y1], dtype=np.float64)
+        )
+        ap3_guarded = apply_factorized_boundary_guard(
+            ap3_operator,
+            base_linear,
+            tone_strength=float(ap3_spec["tone_strength"]),
+            chroma_strength=float(ap3_spec["chroma_strength"]),
+            luma_weights=np.asarray(ap3_controls["luma_weights"]),
+            hard_boundary_epsilon_encoded_srgb=float(
+                ap3_controls["hard_boundary_epsilon_encoded_srgb"]
+            ),
+            guard_boundary_epsilon_encoded_srgb=float(
+                ap3_controls["guard_boundary_epsilon_encoded_srgb"]
+            ),
+        )
+        az0_guarded = apply_density_residual_guard(
+            ao6_operator,
+            base_linear,
+            neutral_strength=float(az0_candidate["neutral_strength"]),
+            opponent_strength=float(az0_candidate["opponent_strength"]),
+            neutral_weights=np.asarray(az0_candidate["neutral_weights"]),
+            density_floor=float(az0_candidate["density_floor"]),
+            hard_boundary_epsilon_encoded_srgb=float(
+                az0_candidate["hard_boundary_epsilon_encoded_srgb"]
+            ),
+            guard_boundary_epsilon_encoded_srgb=float(
+                az0_candidate["guard_boundary_epsilon_encoded_srgb"]
+            ),
+        )
+        ap3[y0:y1] = linear_srgb_to_encoded(
+            ap3_guarded.output
+        ).astype(np.float32)
+        az0[y0:y1] = linear_srgb_to_encoded(
+            az0_guarded.output
+        ).astype(np.float32)
+        ap3_tone_limited += int(
+            np.count_nonzero(ap3_guarded.tone_scale < 1.0 - 1e-12)
+        )
+        ap3_chroma_limited += int(
+            np.count_nonzero(ap3_guarded.chroma_scale < 1.0 - 1e-12)
+        )
+        az0_neutral_limited += int(
+            np.count_nonzero(az0_guarded.neutral_scale < 1.0 - 1e-12)
+        )
+        az0_opponent_limited += int(
+            np.count_nonzero(az0_guarded.opponent_scale < 1.0 - 1e-12)
+        )
     outputs = {
         ARMS[0]: base_outputs[ARMS[0]],
         ARMS[1]: base_outputs[ARMS[1]],
-        ARMS[2]: np.ascontiguousarray(ap3, dtype=np.float32),
-        ARMS[3]: np.ascontiguousarray(az0, dtype=np.float32),
+        ARMS[2]: ap3,
+        ARMS[3]: az0,
         ARMS[4]: base_outputs["fixed_native_standard_full_strength_1_0"],
     }
     source_shape = np.asarray(scene_linear).shape
@@ -269,18 +295,11 @@ def render_fixed_bank(
             raise FixedBankOracleError(f"{arm_id} left display RGB")
     diagnostics = {
         "native_receipt_sha256": receipt["receipt_sha256"],
-        "ap3_tone_limited_fraction": float(
-            np.mean(ap3_guarded.tone_scale < 1.0 - 1e-12)
-        ),
-        "ap3_chroma_limited_fraction": float(
-            np.mean(ap3_guarded.chroma_scale < 1.0 - 1e-12)
-        ),
-        "az0_neutral_limited_fraction": float(
-            np.mean(az0_guarded.neutral_scale < 1.0 - 1e-12)
-        ),
-        "az0_opponent_limited_fraction": float(
-            np.mean(az0_guarded.opponent_scale < 1.0 - 1e-12)
-        ),
+        "residual_row_chunk": row_chunk,
+        "ap3_tone_limited_fraction": ap3_tone_limited / pixel_count,
+        "ap3_chroma_limited_fraction": ap3_chroma_limited / pixel_count,
+        "az0_neutral_limited_fraction": az0_neutral_limited / pixel_count,
+        "az0_opponent_limited_fraction": az0_opponent_limited / pixel_count,
     }
     return outputs, diagnostics
 
