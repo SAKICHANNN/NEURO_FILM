@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u5_r2aw6_filmmatch_exposure_regime_oracle.v1",
+  "experiment_id": "u5.r2aw6-filmmatch-exposure-regime-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW6",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "oracle_report": "outputs/external_controls/filmmatch_ektachrome_v1/exposure_oracle_report.json",
+    "oracle_report_sha256": "8b27e42e7aa3398e23c224fbee88e2480de164cb85acb6406fefe5a6367cf12b",
+    "oracle_stable_evidence_id": "0f9e2412ab0233a4bf094843f48a0160e0692b96688a215e870efc2fde7aa149"
+  },
+  "candidate": {
+    "operator": "monotone_curves_positive_matrix",
+    "expert_key": "negative / zero / positive author-declared exposure regime",
+    "fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "cross_validation": {
+    "held_group": "one complete illuminant and exposure frame",
+    "correct_expert": "same exposure-sign regime excluding the held frame",
+    "global_control": "all other frames"
+  },
+  "oracle_gate": {
+    "minimum_median_improvement": 0.1,
+    "minimum_win_fraction": 0.6666666666666666,
+    "minimum_worst_improvement": -0.1
+  },
+  "gates": {
+    "true_exposure_required_for_oracle": true,
+    "luma_proxy_router_training_allowed_only_if_oracle_passes": true,
+    "film_mode_claim_allowed": false,
+    "validation_render_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only negative/zero/positive exposure-regime evaluator Oracle in one controlled paired session; no inferred EV, physical film mode, calibrated Ektachrome response, router, validation or promotion"
+}

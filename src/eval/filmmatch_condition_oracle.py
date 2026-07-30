@@ -229,4 +229,64 @@ def evaluate_exposure_oracle(
     return report
 
 
-__all__ = ["evaluate_condition_oracle", "evaluate_exposure_oracle"]
+def exposure_regime(exposure_ev: int) -> str:
+    if exposure_ev < 0:
+        return "negative"
+    if exposure_ev > 0:
+        return "positive"
+    return "zero"
+
+
+def evaluate_exposure_regime_oracle(
+    datasets: Mapping[str, Any],
+    config: Mapping[str, Any],
+) -> dict[str, Any]:
+    source = np.asarray(datasets["reflective_source"], dtype=np.float64)
+    target = np.asarray(datasets["reflective_target"], dtype=np.float64)
+    records = datasets["reflective_records"]
+    condition = np.asarray(
+        [exposure_regime(int(row["exposure_ev"])) for row in records]
+    )
+    groups = np.asarray(
+        [
+            f"{row['illuminant']}|ev={int(row['exposure_ev']):+d}"
+            for row in records
+        ]
+    )
+    rows = _held_group_oracle(
+        source, target, condition, groups, config=config
+    )
+    aggregate = _aggregate(rows)
+    gates = config["oracle_gate"]
+    passed = bool(
+        aggregate["median_improvement_over_global"]
+        >= float(gates["minimum_median_improvement"])
+        and aggregate["expert_win_fraction"]
+        >= float(gates["minimum_win_fraction"])
+        and aggregate["worst_improvement_over_global"]
+        >= float(gates["minimum_worst_improvement"])
+    )
+    report = {
+        "schema": "neuro_film.u5_r2aw6_filmmatch_exposure_regime_oracle.v1",
+        "experiment_id": config["experiment_id"],
+        "folds": rows,
+        "aggregate": aggregate,
+        "oracle_gate_passed": passed,
+        "luma_proxy_router_research_opened": passed,
+        "promotion_opened": False,
+        "interpretation": (
+            "known controlled exposure-sign regime Oracle; not inferred EV "
+            "or a physical film mode"
+        ),
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    report["stable_evidence_id"] = canonical_sha256(report)
+    return report
+
+
+__all__ = [
+    "evaluate_condition_oracle",
+    "evaluate_exposure_oracle",
+    "evaluate_exposure_regime_oracle",
+    "exposure_regime",
+]
