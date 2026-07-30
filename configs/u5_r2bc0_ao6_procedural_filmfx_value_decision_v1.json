@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bc0-ao6-procedural-filmfx-value-decision-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BC0",
+  "software_commit": "2685c5bb3f2061ff258f8b246fe94ff12f87c793",
+  "contract": {
+    "path": "configs/u5_r2bc0_ao6_procedural_filmfx_value_v1.json",
+    "sha256": "81b688ceda4e74fecb4efcd3ea85bf28a45ef57fa9f712c0c81106c51f9a9fc1"
+  },
+  "report": {
+    "run_a": "outputs/u5_r2bc0_ao6_procedural_filmfx_value_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bc0_ao6_procedural_filmfx_value_v1/run_b/report.json",
+    "sha256": "e01081a6ec2a452da0c12c492f5d2e4f31e67803907045cda8f643e0dd45d783",
+    "stable_evidence_id": "dfa70e595493a92b368499224f34208e2b5e1d9b76fefc7946d029cc071da343",
+    "repeat_byte_identical": true
+  },
+  "automatic_result": {
+    "automatic_pass": false,
+    "median_grain_changed_pixel_fraction": 0.8403933341143393,
+    "halation_supported_rows": 16,
+    "worst_new_raw_clipping_fraction": 0.0,
+    "worst_grain_high_frequency_chroma_p999": 0.01301691122353077,
+    "maximum_allowed_grain_high_frequency_chroma_p999": 0.004
+  },
+  "visual_review": {
+    "allowed": false,
+    "reason": "the frozen automatic chroma-speckle gate failed before visual review"
+  },
+  "decision": "close_encoded_rgb_additive_grain_and_inherited_full_arm_before_visual_review",
+  "interpretation": "The fixed legacy monochrome grain is deterministic, material and raw-clipping-free, but encoded-RGB additive composition followed by per-channel clipping creates high-frequency chromatic residuals on all 16 AO6 images. The full grain-plus-halation arm inherits that failed primitive. This is a mechanism failure, not evidence that procedural film structure has no value.",
+  "forbidden_rescue": [
+    "lower the grain strength or relax the chroma gate on this population",
+    "inspect or score the already generated blind sheets",
+    "promote the grain-plus-halation arm despite the inherited failure",
+    "reopen AO7 colour promotion",
+    "claim measured film grain or halation"
+  ],
+  "next_leaf": "test a separately versioned shared optical-density grain primitive in linear RGB with analytical bright-end safety and chromaticity preservation; keep AO6 colour and the BC0 population fixed for development",
+  "production_integration_allowed": false,
+  "claim_ceiling": "automatic development rejection of two fixed legacy procedural-effect arms on AO6 Look Approximation outputs; not a general rejection of density-domain grain or film physics"
+}

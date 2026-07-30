@@ -7849,3 +7849,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this signed-out surface for pixels, fitting and training. The claim is
   limited to the visible 136-record metadata surface, not the full group or a
   paired-dataset nonexistence result.
+
+## 2026-07-28 - U5.R2BC0 rejects legacy additive grain before visual review
+
+- Held AO6 colour fixed and applied the existing `.012` monochrome
+  encoded-RGB grain, alone and before `.14` simple halation, to the exact 16
+  AO7 images. This is an effect-only development ablation, not an AO7 reopen.
+- Two reports are byte-identical at `e01081a6...d783`. Median grain support is
+  84.04%, all images support halation and new raw clipping is zero.
+- The frozen chroma-speckle gate fails on every image; worst high-frequency
+  chroma P99.9 is `.01302 > .004`. Per-channel clipping colours otherwise
+  shared additive noise near channel boundaries.
+- Visual review and strength rescue are forbidden. Proceed with a separately
+  versioned linear optical-density grain that preserves chromaticity and uses
+  analytical bright-end safety.

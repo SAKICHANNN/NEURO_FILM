@@ -28,6 +28,13 @@
 > none has derivative permission on both sides; all 77 reusable rows belong to
 > one digital-only uploader. Close this visible surface before pixels, fitting
 > or training and continue source discovery or a distinct bounded operator.
+>
+> U5.R2BC0 isolates downstream procedural value without altering AO6 colour.
+> Existing monochrome encoded-RGB grain and grain-plus-simple-halation repeat
+> exactly and add no raw clipping, but the grain arm exceeds the frozen
+> high-frequency chroma tail (`.01302 > .004`) because per-channel clipping
+> colours nominally neutral noise near gamut boundaries. Close before visual
+> review; next implement a distinct shared optical-density grain in linear RGB.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.
