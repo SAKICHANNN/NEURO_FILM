@@ -7668,3 +7668,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close unconditional predictor use. A separate target-free uncertainty/OOD
   fallback diagnostic may use this failed set for development, but any policy
   needs another untouched confirmation population.
+
+## 2026-07-30 - U5.R2AY4 closes simple target-free uncertainty fallback
+
+- The global-versus-ridge Oracle still offers 16.41% mean value, but all six
+  target-free uncertainty candidates are weak. Best harm AUROC is `.5680`
+  with familywise permutation `p=.609`.
+- Nested leave-one-camera-model-out routing retains 3.30% mean gain and never
+  worsens the single worst row, but P95 is `1.107x` global and fails. Reports
+  repeat byte-exact.
+- Do not combine, invert or retune these scores on the failed population.
+  Move to a distinct hard case/medoid explicit candidate bank; any passing
+  development policy still requires another untouched confirmation.
