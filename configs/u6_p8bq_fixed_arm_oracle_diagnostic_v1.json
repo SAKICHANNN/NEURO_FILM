@@ -11,6 +11,14 @@
       "path": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/adjudication.json",
       "sha256": "ac45e83300c0695789d2bb68e273577c2a6763ceb0a7bddb60c09e7b407376bc"
     },
+    "p7f_development_blind_scoring": {
+      "path": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/blind_scoring_frozen.json",
+      "sha256": "1314922778e4c15f8909003d29931c3650d80d082bd9d0337f6ea8079bf328f5"
+    },
+    "p7f_development_private_mapping": {
+      "path": "outputs/u6_p7f1_neutral_gauged_visual_confirmation_v1/private_mapping.json",
+      "sha256": "8d41fc0f1675d73b9a66aad892d5ef6836984c04e390ac358a131bb40ddc492e"
+    },
     "p8a_profile_compiler": {
       "path": "configs/u6_p8a_fixed_reference_profile_compiler_v1.json",
       "sha256": "235a4f4781f975363fbdbd56d4afdeaa952ac1e09f2c598646b607ee97ae2570"
