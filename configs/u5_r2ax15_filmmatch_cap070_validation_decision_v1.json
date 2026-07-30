@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2ax15_filmmatch_cap070_validation_decision.v1",
+  "experiment_id": "u5.r2ax15-filmmatch-cap070-validation-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/validation_scene_ax15/report.json",
+  "report_sha256": "479e8df3c2e846925d62ff3c44f21b9a6685e315f42c5aba3bd40d27e9236c98",
+  "stable_evidence_id": "d2f156761ef871a9f83009a32bc81c5f2ddffc6eaae21a08177c3698de7725ee",
+  "exact_repeat_passed": true,
+  "automatic_gate_passed": true,
+  "automatic_summary": {
+    "finite": true,
+    "minimum_output": 0.001018580630598732,
+    "maximum_output": 0.9187550184540016,
+    "new_boundary_fraction": 0.0,
+    "style_rgb_rmse_from_source": 0.11243319667552217
+  },
+  "autonomous_visual_review": {
+    "reviewed_outputs": ["source", "candidate", "target_reference"],
+    "confirmed_severe_artifact": false,
+    "visible_style": true,
+    "observations": [
+      "candidate has clearly stronger contrast and colour separation than source",
+      "red, skin, neutral and saturated chart transitions remain coherent",
+      "no visible posterization, red speckles, colour blocks, geometry damage or text corruption",
+      "target has materially different crop and film border, so no pixel-accuracy conclusion is permitted"
+    ]
+  },
+  "decision": "pass_fixed_operator_real_scene_development_validation",
+  "promotion_opened": false,
+  "claim_ceiling": "single fit-forbidden real-scene autonomous visual evidence for one capped code-domain FilmMatch Look Approximation; no calibrated stock response, scanner independence, population preference or product promotion"
+}

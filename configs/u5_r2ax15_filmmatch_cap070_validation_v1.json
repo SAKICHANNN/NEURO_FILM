@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2ax15_filmmatch_cap070_validation.v1",
+  "report_schema": "neuro_film.u5_r2ax15_filmmatch_cap070_validation.v1",
+  "experiment_id": "u5.r2ax15-filmmatch-cap070-validation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX15",
+  "expected_development_champion": "degree5_ridge10_cap070",
+  "parent": {
+    "dense_safety_decision": "configs/u5_r2ax14_filmmatch_cap070_dense_safety_decision_v1.json",
+    "dense_safety_decision_sha256": "dea22373a4b044082a112aa48e76fb0c8b383119f96d4138889d5988b5d58e01",
+    "operator_report": "outputs/external_controls/filmmatch_ektachrome_v1/degree5_strength_cap_report.json",
+    "operator_report_sha256": "af5d4cbd270342b9a2a6829a1d0e6e3cd265b3f275bbf141ff2e65b6d7a487a5",
+    "operator_stable_evidence_id": "99a24d6596aa714910c1d32e5eec2c4a36013991aeedc7e99254b9ba61b861e7"
+  },
+  "data_root": "data/external_controls/filmmatch_ektachrome_v1",
+  "validation": {
+    "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+    "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+    "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+    "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+    "fit_forbidden": true,
+    "pixel_metric_forbidden": true
+  },
+  "execution": {
+    "row_chunk": 128,
+    "output": "RGB16 PNG carrying author code values without a standardized display profile"
+  },
+  "automatic_gate": {
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_style_rgb_rmse_from_source": 0.03
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_source_candidate_and_target": true
+  },
+  "gates": {
+    "validation_target_fit_allowed": false,
+    "target_pixel_metric_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "fit-forbidden real-scene visual and bounded-output validation of the cap-0.70 code-domain Look Approximation; target framing prevents pixel accuracy claims; no calibrated stock response, scanner independence or product promotion"
+}
