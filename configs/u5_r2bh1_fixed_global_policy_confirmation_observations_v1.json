@@ -1,0 +1,99 @@
+{
+  "schema": "neuro_film.u5_r2bh1_fixed_global_policy_confirmation_observations.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh1-fixed-global-policy-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BH1",
+  "status": "blind_choices_frozen_before_mapping_reveal",
+  "observer": "autonomous_codex_visual_review",
+  "observation_date": "2026-07-31",
+  "render_report_sha256": "1376d6ef6b6988e4263f66b3b7d197636238c3cd9f1f5dccc2f0db32cd7b84fe",
+  "stable_render_evidence_id": "9f52dd3ecafb0305649a1675ad0b0586cc385cf14f716cbf3205e5bf67a02640",
+  "repeat_exact_file_count": 37,
+  "repeat_mismatch_count": 0,
+  "mapping_files_read": false,
+  "choice_direction": "preferred",
+  "ties_allowed": false,
+  "blind_sheets": [
+    {"round": 1, "part": 1, "sha256": "cf3a69865cb2eb72130a8af8ad568cc64a4f175561844dbc2a9012a1dba03490"},
+    {"round": 1, "part": 2, "sha256": "6d5ea125566167616b5f012e323d8f0b3906586c34e7a54bccdb8b11c4c3dedd"},
+    {"round": 1, "part": 3, "sha256": "b96296b17376be1620bf3a695c3efc3058a753d9bfb5d81f5b7193d4c5fe4721"},
+    {"round": 2, "part": 1, "sha256": "79a3e41b28bff1d81ca41aad4571b00e7dc5db5331cd4f303e848135aa355cab"},
+    {"round": 2, "part": 2, "sha256": "89ffbf0ede058ce7227e6b67f98d27dc020944dbd2a39598bba9a88ae42a8b42"},
+    {"round": 2, "part": 3, "sha256": "415d6ceb4878af4247685b44944c60a6c0c35ddd43ba0239ab722ae30701ad5f"},
+    {"round": 3, "part": 1, "sha256": "bf130cb3a096bfaefd8f362d48741a51ab19a6473ab47ab6a661478d198ed79f"},
+    {"round": 3, "part": 2, "sha256": "bc1185fc67ca5d9a8b5a4a4be6d084e54a5de79645f43d13b66579e3ccd6791f"},
+    {"round": 3, "part": 3, "sha256": "07498e54659385c7bcdd2eb7bebe2b272d8c8a098e73aa35300bb3f2dd9f34c9"}
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "choices": {
+        "epson_r_d1x": "A",
+        "motorola_moto_g_7_play": "A",
+        "lg_lg_h850": "A",
+        "autel_robotics_xb015": "B",
+        "hasselblad_lunar": "A",
+        "xiaomi_m2010j19cg": "A",
+        "apple_iphone_12_pro": "A",
+        "blackmagic_pocket_cinema_camera_4k": "A",
+        "leica_c_typ_112": "A",
+        "olympus_e_450": "B",
+        "huawei_eml_l29": "A",
+        "leaf_aptus_22": "A"
+      }
+    },
+    {
+      "round": 2,
+      "choices": {
+        "epson_r_d1x": "A",
+        "motorola_moto_g_7_play": "A",
+        "lg_lg_h850": "A",
+        "autel_robotics_xb015": "B",
+        "hasselblad_lunar": "A",
+        "xiaomi_m2010j19cg": "A",
+        "apple_iphone_12_pro": "A",
+        "blackmagic_pocket_cinema_camera_4k": "A",
+        "leica_c_typ_112": "A",
+        "olympus_e_450": "B",
+        "huawei_eml_l29": "A",
+        "leaf_aptus_22": "A"
+      }
+    },
+    {
+      "round": 3,
+      "choices": {
+        "epson_r_d1x": "A",
+        "motorola_moto_g_7_play": "B",
+        "lg_lg_h850": "A",
+        "autel_robotics_xb015": "A",
+        "hasselblad_lunar": "A",
+        "xiaomi_m2010j19cg": "A",
+        "apple_iphone_12_pro": "A",
+        "blackmagic_pocket_cinema_camera_4k": "B",
+        "leica_c_typ_112": "B",
+        "olympus_e_450": "A",
+        "huawei_eml_l29": "A",
+        "leaf_aptus_22": "A"
+      }
+    }
+  ],
+  "blind_sheet_severe_review": {
+    "confirmed_severe_count": 0,
+    "review_scope": "all 24 anonymous candidates across nine exact blind sheets",
+    "checked_failure_classes": [
+      "geometry_or_object_corruption",
+      "large_colour_blocks",
+      "posterization_or_banding",
+      "red_speckle",
+      "hard_clipping_failure",
+      "unstable_local_colour_artifact"
+    ],
+    "notes": [
+      "All candidates preserve source geometry and visible structure.",
+      "The three frozen orientation-stress rows retain the same geometry in both anonymous candidates.",
+      "Strong cyan, magenta, orange and green interpretations are intended style unless visibly broken; no severe failure was confirmed at blind-sheet scale."
+    ]
+  },
+  "full_resolution_severe_review_status": "pending_after_blind_choice_freeze",
+  "claim_ceiling": "autonomous blind pairwise and blind-sheet severe-artifact evidence on the frozen twelve-source population; not population preference, calibrated film truth, stock response, universal safety or product promotion"
+}

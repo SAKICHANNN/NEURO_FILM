@@ -18,6 +18,10 @@ from src.film_physics.profile_consumer import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bh1_fixed_global_policy_confirmation_v1.json"
+OBSERVATIONS = (
+    ROOT
+    / "configs/u5_r2bh1_fixed_global_policy_confirmation_observations_v1.json"
+)
 RUNNER = ROOT / "scripts/run_u5_r2bh1_fixed_global_policy_confirmation.py"
 
 
@@ -138,3 +142,25 @@ def test_bh1_blind_round_is_complete_and_changes_mapping(
     )
     assert mapping_a != mapping_b
     assert len(first["parts"]) == len(second["parts"]) == 3
+
+
+def test_bh1_blind_choices_are_complete_and_mapping_sealed() -> None:
+    observations = json.loads(OBSERVATIONS.read_text(encoding="utf-8"))
+    eligible = set(confirmation.validate_contract(ROOT, _config())["eligible_ids"])
+    assert observations["status"] == (
+        "blind_choices_frozen_before_mapping_reveal"
+    )
+    assert not observations["mapping_files_read"]
+    assert observations["repeat_exact_file_count"] == 37
+    assert observations["repeat_mismatch_count"] == 0
+    assert len(observations["blind_sheets"]) == 9
+    assert len(observations["rounds"]) == 3
+    for round_row in observations["rounds"]:
+        assert set(round_row["choices"]) == eligible
+        assert set(round_row["choices"].values()).issubset({"A", "B"})
+    assert observations["blind_sheet_severe_review"][
+        "confirmed_severe_count"
+    ] == 0
+    assert observations["full_resolution_severe_review_status"] == (
+        "pending_after_blind_choice_freeze"
+    )
