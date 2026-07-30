@@ -52,6 +52,31 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> None:
                 raise FiveKFreshPairPreflightError(
                     f"frozen source drift: {section}.{key}"
                 )
+    for item in config["exclusion"].get("additional_manifests", []):
+        path = root / str(item["path"])
+        if not path.is_file() or _sha256(path) != str(
+            item["sha256"]
+        ).lower():
+            raise FiveKFreshPairPreflightError(
+                f"frozen source drift: exclusion {item['path']}"
+            )
+    parent = config.get("parent")
+    if parent is not None:
+        for key in ("config", "decision"):
+            path = root / str(parent[key])
+            if not path.is_file() or _sha256(path) != str(
+                parent[f"{key}_sha256"]
+            ).lower():
+                raise FiveKFreshPairPreflightError(
+                    f"frozen parent drift: {key}"
+                )
+        decision = json.loads(
+            (root / str(parent["decision"])).read_text(encoding="utf-8")
+        )
+        if decision.get("status") != parent["required_status"]:
+            raise FiveKFreshPairPreflightError(
+                "parent is not eligible for confirmation preflight"
+            )
     network = config["network_preflight"]
     if (
         config.get("image_download_allowed")
@@ -154,10 +179,30 @@ def run_preflight(
     if len(retained_rows) != exclusion["expected_excluded_rows"]:
         raise FiveKFreshPairPreflightError("retained exclusion count drift")
     retained_names = {str(row["source_name"]) for row in retained_rows}
+    all_excluded_names = set(retained_names)
+    for item in exclusion.get("additional_manifests", []):
+        payload = json.loads(
+            (root / str(item["path"])).read_text(encoding="utf-8")
+        )
+        additional_rows = payload.get("rows", [])
+        if len(additional_rows) != int(item["expected_rows"]):
+            raise FiveKFreshPairPreflightError(
+                f"additional exclusion count drift: {item['path']}"
+            )
+        field = str(item["name_field"])
+        all_excluded_names.update(str(row[field]) for row in additional_rows)
+    expected_total = exclusion.get("expected_total_unique_names")
+    if (
+        expected_total is not None
+        and len(all_excluded_names) != int(expected_total)
+    ):
+        raise FiveKFreshPairPreflightError(
+            "total unique exclusion count drift"
+        )
     selection = config["selection"]
     selected = select_pair_names(
         licensed_names=licensed_names,
-        retained_names=retained_names,
+        retained_names=all_excluded_names,
         seed=int(selection["seed"]),
         count=int(selection["pair_count"]),
     )
@@ -216,6 +261,10 @@ def run_preflight(
         "selected_ids_overlapping_retained_128": sum(
             name in retained_names for name in selected
         ),
+        "selected_ids_overlapping_all_exclusions": sum(
+            name in all_excluded_names for name in selected
+        ),
+        "total_unique_excluded_names": len(all_excluded_names),
         "missing_page_links": missing_links,
         "non_200_assets": non_200,
         "assets_missing_content_length": missing_length,
