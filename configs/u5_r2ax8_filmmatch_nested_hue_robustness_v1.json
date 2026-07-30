@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2ax8_filmmatch_nested_hue_robustness.v1",
+  "experiment_id": "u5.r2ax8-filmmatch-nested-hue-robustness-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX8",
+  "parent": {
+    "decision": "configs/u5_r2ax7_filmmatch_dense_safety_stress_decision_v1.json",
+    "decision_sha256": "a21ebcc49d0f7f67b7b2254289340feee59eaede1473efdbcb98a06e02cb0886",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "candidate": {
+    "family": "nested_selection_of_fixed_factorized_operator_loss_balance",
+    "variants": [
+      {"id": "emissive_share025", "emissive_loss_share": 0.25},
+      {"id": "emissive_share050", "emissive_loss_share": 0.5},
+      {"id": "emissive_share075", "emissive_loss_share": 0.75}
+    ],
+    "fit": {
+      "segment_count": 9,
+      "curve_learned_mixture": 0.75,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730,
+      "residual_degree": 3,
+      "residual_identity_ridge": 0.01,
+      "jacobian_floor": 0.0001,
+      "safety_grid_size": 13,
+      "strength_steps": 101,
+      "maximum_residual_iterations": 500
+    }
+  },
+  "development_readout": {
+    "minimum_median_improvement_over_identity": 0.05,
+    "minimum_outer_win_count": 4,
+    "minimum_worst_improvement_over_identity": -0.25
+  },
+  "gates": {
+    "independent_confirmation_claim_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "nested group-reuse development robustness for domain-loss selection on one Sony/E100 session; not fresh confirmatory data, calibrated stock response, scanner independence or product promotion"
+}
