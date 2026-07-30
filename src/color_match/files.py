@@ -499,6 +499,33 @@ def _backup_path(destination: Path, token: str) -> Path:
     )
 
 
+def _ensure_parent_directory(
+    destination: Path,
+    created_directories: list[Path],
+) -> None:
+    """Create destination parents while recording only directories we own."""
+
+    missing: list[Path] = []
+    current = destination.parent
+    while not current.exists():
+        missing.append(current)
+        current = current.parent
+    if not current.is_dir():
+        raise ReferenceMatchContractError(
+            f"destination parent is not a directory: {current}"
+        )
+    for directory in reversed(missing):
+        try:
+            directory.mkdir()
+        except FileExistsError:
+            if not directory.is_dir():
+                raise ReferenceMatchContractError(
+                    f"destination parent is not a directory: {directory}"
+                ) from None
+        else:
+            created_directories.append(directory)
+
+
 def _replace(source: Path, destination: Path) -> None:
     os.replace(source, destination)
 
@@ -904,9 +931,14 @@ def _execute_file_render(
     ] = []
     staged_recipe: Path | None = None
     staged_report: Path | None = None
+    created_directories: list[Path] = []
+    committed = False
     try:
         if recipe_destination is not None:
-            recipe_destination.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(
+                recipe_destination,
+                created_directories,
+            )
             staged_recipe = _stage_path(recipe_destination, token)
             staged.append(staged_recipe)
             save_reference_look_recipe(recipe, staged_recipe)
@@ -936,7 +968,7 @@ def _execute_file_render(
             # diagnostics. The decoded source is no longer needed while that
             # output is encoded, so do not retain both full-resolution arrays.
             del source
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(output_path, created_directories)
             stage = _stage_path(output_path, token)
             staged.append(stage)
             output_format, clipped_fraction = _encode_working_image(
@@ -1023,7 +1055,10 @@ def _execute_file_render(
             report_destination is not None
             and report_payload_factory is not None
         ):
-            report_destination.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(
+                report_destination,
+                created_directories,
+            )
             staged_report = _stage_path(report_destination, token)
             staged.append(staged_report)
             payload = report_payload_factory(
@@ -1047,10 +1082,18 @@ def _execute_file_render(
             cleanup=staged,
             expected_stage_sha256=expected_stage_sha256,
         )
+        committed = True
         return prepared, recipe_file_sha256, report_file_sha256
     finally:
         for path in staged:
             path.unlink(missing_ok=True)
+        if not committed:
+            for directory in reversed(created_directories):
+                try:
+                    directory.rmdir()
+                except OSError:
+                    # Never erase or mask concurrently created content.
+                    pass
 
 
 def match_reference_files(

@@ -551,6 +551,109 @@ def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
 
 
+def test_file_adapter_removes_owned_empty_directories_on_late_failure(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    recipe = created / "metadata" / "look.json"
+    report = created / "reports" / "run.json"
+    _image(reference, 27354)
+    _image(good, 27355)
+    bad.write_bytes(b"not an image")
+
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+            recipe_path=recipe,
+            report_path=report,
+        )
+
+    assert not created.exists()
+
+
+def test_file_adapter_preserves_concurrent_content_in_created_directory(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    marker = created / "images" / "external.txt"
+    _image(reference, 27356)
+    _image(good, 27357)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+
+    def load_then_publish_external_content(path: Path) -> WorkingImage:
+        if Path(path) == bad:
+            marker.write_bytes(b"external-writer")
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_then_publish_external_content,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+        )
+
+    assert marker.read_bytes() == b"external-writer"
+    assert not output_a.exists()
+    assert not output_b.exists()
+    assert not (created / "other-images").exists()
+
+
+def test_file_adapter_keeps_created_directories_after_commit(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    created = tmp_path / "created"
+    output = created / "images" / "output.png"
+    recipe = created / "metadata" / "look.json"
+    report = created / "reports" / "run.json"
+    _image(reference, 27358)
+    _image(source, 27359)
+
+    result = match_reference_files(
+        reference,
+        [source],
+        [output],
+        recipe_path=recipe,
+        report_path=report,
+    )
+
+    assert tuple(row.output_path for row in result.outputs) == (output,)
+    assert output.is_file()
+    assert recipe.is_file()
+    assert report.is_file()
+    assert all(
+        path.is_dir()
+        for path in (
+            created,
+            output.parent,
+            recipe.parent,
+            report.parent,
+        )
+    )
+
+
 def test_file_adapter_rejects_late_decoded_scene_linear_raw_atomically(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
