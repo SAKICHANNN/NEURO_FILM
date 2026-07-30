@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-07-30 - U5.R2AW0 FilmMatch paired-source intake
+
+- Freeze a bounded 140-file/4,255,132,151-byte audit of the public FilmMatch
+  Ektachrome/Sony chart series. A two-file pilot confirms paired chart content;
+  pair mapping, both untagged colour states and independent roll/process/scan
+  support remain unknown.
+- Internal non-redistributed research only. No fitting until integrity,
+  pairing, colour-state and group gates pass; no calibrated stock or product
+  claim.
+- Next: acquire the exact five leaf folders, hash/decode them, then resolve
+  condition mapping and colour-state semantics.
+
 ## 2026-07-30 - U5.R2AV1 Filmr control is strong but clips
 
 - Pinned Filmr v0.13.2 at exact release/source hashes and ran the official

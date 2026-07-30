@@ -28,6 +28,12 @@
 > non-basic by metric (`15.94/5.17` style/residual), but worst gold clipping is
 > `2.059%` against the frozen `0.5%` veto. Close without visual review,
 > projection or parameter search; its preset is not a measured stock profile.
+>
+> U5.R2AW0 opens only a bounded source-integrity leaf for FilmMatch's public
+> Ektachrome/Sony paired charts. The author-hosted practice download has no
+> observed reusable dataset licence. Pair mapping, both colour-state encodings
+> and independent grouping must pass before a minimal explicit operator
+> experiment can be frozen.
 
 U6.P3L also closes the unchanged split backing-return topology on genuine
 RAW-derived scene-linear inputs. Two exact nine-source runs have zero new hard

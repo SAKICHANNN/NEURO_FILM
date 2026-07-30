@@ -866,6 +866,7 @@ No film purchase, lab booking, model download or GPU training occurs without the
 | EXP-FX-02 | Density-aware grain matches real NPS | current procedural grain | density-conditioned params | Held-out NPS/ACF within repeatability | Scanner noise not separated |
 | EXP-GEN-01 | Research-only Creative comparison outside FilmCase | IP2P fixed grid | FLUX.2 FP8 | Only after a future explicit instruction/approval; never FilmCase evidence | Not scheduled by this plan |
 | EXP-RUNTIME-01 | FP16/CoreML/ONNX is color-noninferior | FP32 reference | runtime/precision | ΔE/golden parity + speed gain | Neutral/skin drift or instability |
+| U5.R2AW0 | FilmMatch's same-chart Ektachrome/Sony series is a usable controlled-pair source | no paired source available | bounded integrity, pairing, colour-state and group audit | all four readiness gates pass without inferred metadata | close fitting if pixels, rights, pairing, rail or grouping are unusable |
 
 Each experiment produces: contract, config, input manifest hash, environment, raw per-image metrics, failure gallery, aggregate with CI, decision and scoped commit. No result may update a profile merely because one contact sheet looks good.
 
