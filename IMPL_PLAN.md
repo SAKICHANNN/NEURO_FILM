@@ -57,6 +57,14 @@
 > cross-scanner top-1 accuracy; both miss the frozen rank and distance gates.
 > Close stock learning on this source. Its remaining value is a controlled
 > scanner-nuisance stress set, not an operator teacher.
+>
+> U5.R2BE0 repairs the earlier FilmMatch visual-only validation limitation with
+> a fixed same-scene homography and low-gradient registered evaluator. Two
+> exact runs show genuine positive-regime evaluator-Oracle value (+11.15% over
+> global), but the frozen combined case bank fails diversity: zero-regime and
+> EV0 are identical, while EV-5/EV-4 are numerically collapsed. Close without
+> deleting cases after the result or recycling the consumed target as a
+> target-blind retrieval confirmation.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.

@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u5_r2be0_filmmatch_registered_case_oracle_decision.v1",
+  "experiment_id": "u5.r2be0-filmmatch-registered-case-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BE0",
+  "contract": {
+    "path": "configs/u5_r2be0_filmmatch_registered_case_oracle_v1.json",
+    "sha256": "5584f06989fbcce53a0f7f04407948f2ba949638065d159b0012912ec81904aa"
+  },
+  "software_commit": "d4b70f6b6206e27977cd05bebd2553c380936011",
+  "runs": {
+    "run_a": {
+      "path": "outputs/external_controls/filmmatch_ektachrome_v1/registered_case_oracle_be0/run_a.json",
+      "sha256": "2c07628ec3dc07e5e1f4512739b6a74542d49b0b799cc99ed9a02079c279c06d"
+    },
+    "run_b": {
+      "path": "outputs/external_controls/filmmatch_ektachrome_v1/registered_case_oracle_be0/run_b.json",
+      "sha256": "2c07628ec3dc07e5e1f4512739b6a74542d49b0b799cc99ed9a02079c279c06d"
+    },
+    "byte_identical": true,
+    "stable_evidence_id": "8aaeba68365a8dc5fdfcec808053c6079cd69d847af43e322153dfefa8b56e70"
+  },
+  "registration": {
+    "good_matches": 779,
+    "inliers": 706,
+    "inlier_fraction": 0.9062901155327343,
+    "median_reprojection_error_pixels": 0.5187042389456162,
+    "p95_reprojection_error_pixels": 2.1087183952331543,
+    "evaluation_pixel_fraction": 0.3873779899691358,
+    "passed": true
+  },
+  "evaluator_oracle": {
+    "identity_rgb_rmse": 0.20015988461154677,
+    "global_rgb_rmse": 0.17279752851883112,
+    "global_improvement_over_identity": 0.1367024973351587,
+    "best_regime": "regime_positive",
+    "best_regime_rgb_rmse": 0.15352497851748292,
+    "regime_oracle_improvement_over_global": 0.11153255585624833,
+    "best_exact_ev": "ev_+2",
+    "best_exact_ev_rgb_rmse": 0.15537036848471686,
+    "exact_ev_oracle_improvement_over_global": 0.10085306302407615,
+    "best_case_improvement_over_second_best": 0.011877361077478943,
+    "new_source_relative_boundary_fraction": 0.0
+  },
+  "case_bank_structure": {
+    "minimum_all_bank_pairwise_output_rmse": 0.0,
+    "exact_duplicate": [
+      "regime_zero",
+      "ev_+0"
+    ],
+    "near_duplicate": {
+      "left": "ev_-5",
+      "right": "ev_-4",
+      "output_rmse": 3.196651527634784e-10
+    },
+    "regime_pairwise_output_rmse_range": [
+      0.012775487432575556,
+      0.07725730455581628
+    ]
+  },
+  "automatic_gates": {
+    "global_beats_identity": true,
+    "regime_oracle_value": true,
+    "exact_ev_oracle_value": true,
+    "best_case_separation": true,
+    "operator_bank_diversity": false,
+    "source_relative_boundary": true
+  },
+  "automatic_passed": false,
+  "decision": "close_be0_case_routing_on_frozen_bank_diversity_failure",
+  "interpretation": [
+    "The fit-forbidden same-scene pair is geometrically identifiable and supports a valid registered code-domain evaluator.",
+    "A distinct three-regime bank has descriptive evaluator-Oracle value, with the positive regime reducing registered RGB RMSE by 11.15% relative to the global operator.",
+    "The preregistered combined bank is structurally invalid as a routing bank: regime-zero is exactly EV0 and the EV-5/EV-4 operators also collapse numerically.",
+    "Because the sole validation target has now been consumed, this result cannot be recycled as an independent target-blind retrieval confirmation."
+  ],
+  "next": "seek a genuinely independent paired validation source or a different bounded operator; do not reopen BE0 by removing duplicate cases or changing the diversity gate",
+  "promotion_opened": false,
+  "retrieval_opened": false,
+  "claim_ceiling": "development-only registered evaluator and negative case-bank structure evidence for one author-prepared paired code-domain session; not a target-blind selector, calibrated stock response, inferred exposure, scanner-independent operator or product promotion"
+}

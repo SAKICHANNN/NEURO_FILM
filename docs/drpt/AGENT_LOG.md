@@ -7910,3 +7910,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   .8092). Both fail the frozen identification gates.
 - Retain the source only for scanner-nuisance stress. No EV assignment,
   operator fitting, training, LSM, product extraction or redistribution opens.
+
+## 2026-07-30 - Close U5.R2BE0 registered FilmMatch case bank
+
+- Added a deterministic SIFT/RANSAC same-scene evaluator and fitted global,
+  three exposure-regime and eleven exact-EV bounded explicit operators without
+  validation-target fitting.
+- Two reports are byte-identical at `2c07628e...c06d`; registration passes at
+  706/779 inliers. Positive regime improves registered RMSE 11.15% over
+  global, but frozen bank diversity fails because zero-regime equals EV0 and
+  EV-5/EV-4 collapse.
+- No retrieval or promotion opens. The consumed target cannot serve as
+  independent confirmation; next requires new paired validation or a distinct
+  bounded algorithm.
