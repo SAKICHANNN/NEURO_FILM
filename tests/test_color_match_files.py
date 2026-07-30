@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import threading
@@ -692,6 +693,58 @@ def test_file_adapter_preserves_concurrent_content_in_created_directory(
     assert not output_a.exists()
     assert not output_b.exists()
     assert not (created / "other-images").exists()
+    assert not list(
+        created.rglob(".*.reference-match-directory-owner")
+    )
+
+
+def test_file_adapter_preserves_concurrently_replaced_empty_directory(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    recipe = created / "metadata" / "look.json"
+    _image(reference, 27360)
+    _image(good, 27361)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+    replacement_identity: tuple[int, int] | None = None
+
+    def load_after_replacing_owned_tree(path: Path) -> WorkingImage:
+        nonlocal replacement_identity
+        if Path(path) == bad:
+            shutil.rmtree(created)
+            created.mkdir()
+            replacement_identity = files._file_identity(created)
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_after_replacing_owned_tree,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+            recipe_path=recipe,
+        )
+
+    assert replacement_identity is not None
+    assert created.is_dir()
+    assert files._file_identity(created) == replacement_identity
+    assert not list(created.iterdir())
+    assert not output_a.exists()
+    assert not output_b.exists()
+    assert not recipe.exists()
 
 
 def test_file_adapter_keeps_created_directories_after_commit(
@@ -726,6 +779,9 @@ def test_file_adapter_keeps_created_directories_after_commit(
             recipe.parent,
             report.parent,
         )
+    )
+    assert not list(
+        created.rglob(".*.reference-match-directory-owner")
     )
 
 

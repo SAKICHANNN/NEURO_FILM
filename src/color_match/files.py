@@ -405,6 +405,15 @@ def _validate_run_path_topology(
                 )
 
 
+@dataclass(frozen=True)
+class _OwnedDirectory:
+    path: Path
+    directory_identity: tuple[int, int]
+    marker_path: Path
+    marker_identity: tuple[int, int]
+    marker_payload: bytes
+
+
 def _validate_render_contract(
     protected_input_paths: tuple[Path, ...],
     source_paths: tuple[Path, ...],
@@ -554,9 +563,11 @@ def _backup_path(destination: Path, token: str) -> Path:
 
 def _ensure_parent_directory(
     destination: Path,
-    created_directories: list[Path],
+    owned_directories: list[_OwnedDirectory],
+    *,
+    token: str,
 ) -> None:
-    """Create destination parents while recording only directories we own."""
+    """Create destination parents and bind each to transaction-owned evidence."""
 
     missing: list[Path] = []
     current = destination.parent
@@ -576,7 +587,33 @@ def _ensure_parent_directory(
                     f"destination parent is not a directory: {directory}"
                 ) from None
         else:
-            created_directories.append(directory)
+            directory_identity = _file_identity(directory)
+            marker_path = (
+                directory
+                / f".{token}.reference-match-directory-owner"
+            )
+            marker_payload = (
+                "neuro-film.reference-match-directory-owner.v1\n"
+                f"{token}\n"
+                f"{directory_identity[0]}:{directory_identity[1]}\n"
+            ).encode("ascii")
+            with marker_path.open("xb") as marker:
+                marker.write(marker_payload)
+            owned = _OwnedDirectory(
+                path=directory,
+                directory_identity=directory_identity,
+                marker_path=marker_path,
+                marker_identity=_file_identity(marker_path),
+                marker_payload=marker_payload,
+            )
+            owned_directories.append(owned)
+            if (
+                directory.is_symlink()
+                or _file_identity(directory) != directory_identity
+            ):
+                raise ReferenceMatchContractError(
+                    "created destination directory identity changed"
+                )
 
 
 def _replace(source: Path, destination: Path) -> None:
@@ -616,6 +653,50 @@ def _file_identity(path: Path) -> tuple[int, int]:
 
     value = path.stat()
     return int(value.st_dev), int(value.st_ino)
+
+
+def _owned_directory_is_current(owned: _OwnedDirectory) -> bool:
+    try:
+        return (
+            not owned.path.is_symlink()
+            and _file_identity(owned.path) == owned.directory_identity
+            and not owned.marker_path.is_symlink()
+            and _file_identity(owned.marker_path) == owned.marker_identity
+            and owned.marker_path.read_bytes() == owned.marker_payload
+        )
+    except OSError:
+        return False
+
+
+def _cleanup_owned_directories(
+    owned_directories: list[_OwnedDirectory],
+    *,
+    remove_directories: bool,
+) -> None:
+    """Remove only marker-proven directory state owned by this transaction."""
+
+    for owned in reversed(owned_directories):
+        if not _owned_directory_is_current(owned):
+            continue
+        try:
+            owned.marker_path.unlink()
+        except OSError:
+            continue
+        if not remove_directories:
+            continue
+        try:
+            # Revalidate after marker removal. If another process replaced the
+            # path, preserving the new directory is safer than path-based
+            # cleanup. A subsequent non-empty change also makes rmdir fail.
+            if (
+                owned.path.is_symlink()
+                or _file_identity(owned.path)
+                != owned.directory_identity
+            ):
+                continue
+            owned.path.rmdir()
+        except OSError:
+            pass
 
 
 def _commit_staged_batch_unlocked(
@@ -984,13 +1065,14 @@ def _execute_file_render(
     ] = []
     staged_recipe: Path | None = None
     staged_report: Path | None = None
-    created_directories: list[Path] = []
+    owned_directories: list[_OwnedDirectory] = []
     committed = False
     try:
         if recipe_destination is not None:
             _ensure_parent_directory(
                 recipe_destination,
-                created_directories,
+                owned_directories,
+                token=token,
             )
             staged_recipe = _stage_path(recipe_destination, token)
             staged.append(staged_recipe)
@@ -1021,7 +1103,11 @@ def _execute_file_render(
             # diagnostics. The decoded source is no longer needed while that
             # output is encoded, so do not retain both full-resolution arrays.
             del source
-            _ensure_parent_directory(output_path, created_directories)
+            _ensure_parent_directory(
+                output_path,
+                owned_directories,
+                token=token,
+            )
             stage = _stage_path(output_path, token)
             staged.append(stage)
             output_format, clipped_fraction = _encode_working_image(
@@ -1110,7 +1196,8 @@ def _execute_file_render(
         ):
             _ensure_parent_directory(
                 report_destination,
-                created_directories,
+                owned_directories,
+                token=token,
             )
             staged_report = _stage_path(report_destination, token)
             staged.append(staged_report)
@@ -1140,13 +1227,10 @@ def _execute_file_render(
     finally:
         for path in staged:
             path.unlink(missing_ok=True)
-        if not committed:
-            for directory in reversed(created_directories):
-                try:
-                    directory.rmdir()
-                except OSError:
-                    # Never erase or mask concurrently created content.
-                    pass
+        _cleanup_owned_directories(
+            owned_directories,
+            remove_directories=not committed,
+        )
 
 
 def match_reference_files(
