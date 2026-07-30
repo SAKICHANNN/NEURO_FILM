@@ -151,7 +151,53 @@
       "held-group accuracy",
       "simplest adequate explicit operator",
       "validation-scene severe-artifact veto"
-    ]
+    ],
+    "fit": {
+      "cross_validation": {
+        "restart_count": 2,
+        "maximum_function_evaluations": 2000
+      },
+      "final": {
+        "restart_count": 5,
+        "maximum_function_evaluations": 4000
+      },
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "seed": 20260730,
+      "bounded_loss": "soft_l1",
+      "bounded_loss_scale": 0.02
+    },
+    "parameterization": {
+      "bounded_positive": {
+        "identity_mixture": 0.25
+      },
+      "monotone_curves_positive_matrix": {
+        "curve_identity_mixture": 0.25,
+        "matrix_identity_mixture": 0.25,
+        "free_logit_bounds": [-8.0, 4.0]
+      },
+      "emulating_emulsion_equation_30p": {
+        "capture_matrix_entry_bounds": [-2.0, 2.0],
+        "scan_matrix_entry_bounds": [-2.0, 2.0],
+        "response_amplitude_bounds": [0.01, 2.0],
+        "response_slope_bounds": [0.05, 10.0],
+        "response_midpoint_bounds": [-2.0, 2.0],
+        "response_offset_bounds": [-1.0, 1.0]
+      }
+    },
+    "structural_audit": {
+      "cube_size": 17,
+      "jacobian_interior_margin": 0.01,
+      "maximum_safe_out_of_cube_fraction": 0.0,
+      "minimum_jacobian_determinant": 1e-08
+    },
+    "development_readout": {
+      "minimum_median_reflective_rmse_improvement_over_identity": 0.4,
+      "minimum_median_reflective_rmse_improvement_over_affine": 0.15,
+      "minimum_median_hue_rmse_improvement_over_identity": 0.05,
+      "validation_required_before_any_promotion": true
+    }
   },
   "gates": {
     "code_domain_operator_fitting_allowed": true,
