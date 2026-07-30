@@ -7751,3 +7751,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   freeze a rights-cleared RAW-derived population disjoint from the nine
   development sources and rerun unchanged severe/value gates. Goal remains
   active.
+
+## 2026-07-30 - U6.P3O confirms safety but closes visible product value
+
+- Reused a previously rights-audited raw.pixls.us CC0 population: 17 eligible
+  photos across nine camera makes, excluding the preregistered colour-chart
+  row. Exact RAW hash overlap with the nine P3N development sources is zero.
+- Two complete runs are byte-identical at report SHA
+  `e37f804e...5215c`. The unchanged `.009` cap, P95, affected-pixel, shared
+  scale, zero-isolated, zero-boundary and direction gates all pass.
+- Direct severe review finds zero confirmed artifacts. Before opening the
+  mappings, all nine A/B rows were ties in each of three fixed-seed blind
+  rounds because the physical effect was not reliably distinguishable.
+  Scoring therefore passes 0/3 rounds against the required 2/3.
+- Close parameter strengthening, same-population rescue, runtime integration
+  and product promotion. Retain only the confirmed response-bounding
+  primitive as generic research infrastructure; Ultimate continues with a
+  distinct explicit algorithm leaf.

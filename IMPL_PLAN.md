@@ -76,6 +76,13 @@ direct rows have zero confirmed severe artifacts, but visible value remains
 unproved. Freeze the primitive and acquire a disjoint RAW-derived population
 for unchanged severe and value confirmation; no runtime integration opens.
 
+U6.P3O performs that confirmation on 17 eligible CC0 RAW photos across nine
+makes with zero exact RAW overlap to development. Two reports are exact and
+the unchanged automatic/severe gates pass, but all nine fixed rows are ties in
+all three blinded value rounds. Close runtime/product use without increasing
+the cap or changing P1/P3D; keep only the response-bound primitive as
+confirmed generic numerical infrastructure.
+
 U6.P5F passes its distinct cross-layer interimage adjacency synthetic audit. P5C
 remains the independent-channel bounded path and AD1 remains a failed external
 spatial-DIR ablation. Two exact reports show constant/neutral identity,

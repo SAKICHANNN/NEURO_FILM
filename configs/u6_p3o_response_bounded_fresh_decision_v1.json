@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p3o_response_bounded_fresh_decision.v1",
+  "node": "U6.P3O",
+  "decision": "close_product_value_retain_research_primitive",
+  "experiment_contract": {
+    "path": "configs/u6_p3o_response_bounded_fresh_confirmation_v1.json",
+    "sha256": "b4abdfaec9a21faab923cd4433ca21ff4b2411f3b088a2793f101d680c1b950b"
+  },
+  "adjudication_contract": {
+    "path": "configs/u6_p3o_response_bounded_fresh_adjudication_v1.json",
+    "sha256": "f8b71a6be9afd79f393f3920f3f0cd11df3d744da553eca54f5832b9e8f8f538"
+  },
+  "formal_evidence": {
+    "report_path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/run_a/report.json",
+    "report_sha256": "e37f804e6f3281ca208cccf0878bcd227c968b1357637f9ff427ba9335a5215c",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "0cd2ada8f836bb8f4ef97e8df5d5030a6296a56c8db8ac8e02c174ab105e14aa",
+    "software_commit": "b4545a12",
+    "source_count": 17,
+    "camera_make_count": 9,
+    "development_raw_hash_overlap_count": 0
+  },
+  "automatic_gate": {
+    "passed": true,
+    "bounded_maximum_abs": 0.009000000000000119,
+    "bounded_population_p95_abs": 0.007881197461068686,
+    "bounded_median_fraction_pixels_over_0p005": 0.38116064133986927,
+    "bounded_median_shared_scale": 0.9108515415430736,
+    "bounded_isolated_excursion_count": 0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_shared_direction_error": 1.1102230246251565e-16
+  },
+  "visual_and_value_gate": {
+    "blind_review_path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/run_a/blind_review_observations.json",
+    "blind_review_sha256": "079a59ebe945ae4a30545c458d2416d4bac9e6192df145354cb7b6459f3167c4",
+    "adjudication_report_path": "outputs/u6_p3o_response_bounded_fresh_confirmation_v1/adjudication_report.json",
+    "adjudication_report_sha256": "fab4da25999be0f7cb48a95fda1982249364850786bcbed2cf254b5ee5e70aeb",
+    "adjudication_stable_evidence_id": "a174811af672cd4551708ff50cd131ebdca1f74f18a62f912f6c2d1d8c547b96",
+    "confirmed_severe_artifact_count": 0,
+    "candidate_votes_by_round": [
+      0,
+      0,
+      0
+    ],
+    "ties_by_round": [
+      9,
+      9,
+      9
+    ],
+    "passing_rounds": 0,
+    "required_passing_rounds": 2,
+    "passed": false
+  },
+  "interpretation": [
+    "The unchanged P3N analytical bound transfers numerically to a disjoint 17-photo, nine-make CC0 RAW population and remains severe-clean on the frozen direct review.",
+    "At the frozen direct diagnostic scale the bounded and no-spatial renders are not reliably distinguishable. Numerical support therefore does not translate into demonstrated visible physical-effect value.",
+    "The explicit primitive remains useful as a safe research building block, but this topology does not justify runtime integration, product promotion or a film-halation claim."
+  ],
+  "forbidden_followups": [
+    "raise the 0.009 cap or lower the blind vote gate after seeing this result",
+    "rerun the same population with stronger P1/P3D parameters",
+    "reinterpret numerical transfer as preference, authenticity or calibration",
+    "integrate P3N into the product runtime from this evidence"
+  ],
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "confirmed generic response-bounded research primitive with no demonstrated product value; no measured film, stock, process, scanner, calibration, authenticity or population preference claim"
+}

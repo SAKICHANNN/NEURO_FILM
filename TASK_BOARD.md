@@ -296,14 +296,13 @@ rounds against AO6 colour-only and 5/12 pairwise choices. The frozen
 preference gate fails, so AO6 remains the simpler colour champion and no
 router/default/product promotion opens.
 
-Current physical-algorithm leaf: U6.P3N retains one response-bounded
-exposure-residual challenger after two exact development runs. It reproduces
-P3L's `.36101`/5,563 failure, then reaches a `.009` maximum response delta
-with zero isolated excursions or new boundaries while preserving a median
-`.4200` affected-pixel fraction and `.9196` shared residual scale. Five fixed
-direct rows have zero confirmed severe artifacts, but the effect is visually
-subtle. A disjoint rights-cleared RAW-derived population and unchanged
-severe/value gates are required before any runtime or product decision.
+Current physical-algorithm leaf: U6.P3O confirms P3N numerically and closes its
+product value. Two exact runs over 17 disjoint CC0 RAW photos/nine makes retain
+the `.009` response bound, zero isolated excursions/new boundaries and zero
+confirmed severe artifacts. At the frozen direct diagnostic scale, all nine
+rows are ties in all three blind rounds, so 0/3 rounds pass the 2-round value
+gate. Retain the explicit numerical primitive only; parameter strengthening,
+same-population rescue and runtime/product integration are closed.
 
 Independent grain confirmation U6.P4Z-P4Z2 is also closed. Three new exact
 CC0 16-bit B&W uniform scans pass source integrity, but the frozen P4T model
