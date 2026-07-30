@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_4a_creative_diffusion_representation_decision.v1",
+  "experiment_id": "u6.4a-creative-diffusion-representation-v1",
+  "decision": "pass_generic_bounded_creative_diffusion_representation_open_photographic_severe_audit",
+  "reports": [
+    {
+      "path": "outputs/u6_4a_creative_diffusion_representation_v1/report_a.json",
+      "sha256": "633b28e5cbc9c82b3d82f0ef3ae7025364e7cdd6d70b4d9639e5fa7ea237770c"
+    },
+    {
+      "path": "outputs/u6_4a_creative_diffusion_representation_v1/report_b.json",
+      "sha256": "633b28e5cbc9c82b3d82f0ef3ae7025364e7cdd6d70b4d9639e5fa7ea237770c"
+    }
+  ],
+  "stable_evidence_id": "f7d8334842a3ef22604c05b48ab3d1d3f065ffafe1c9223d78554990965e4ba3",
+  "two_run_byte_exact": true,
+  "automatic_gate_passed": true,
+  "summary": {
+    "constant_max_error": 0.0,
+    "impulse_relative_energy_error": 1.1920928955078125e-7,
+    "neutral_channel_max_error": 0.0,
+    "strong_peak_reduction": 0.16996043920516968,
+    "strong_to_mild_far_tail_ratio": 2.1323410281543786,
+    "component_bounds_passed": true
+  },
+  "promotion_opened": false,
+  "next_leaf": "U6.4B fixed-profile photographic severe and OOD audit; no profile fitting or production integration",
+  "claim_ceiling": "generic synthetic representation evidence for a deterministic bounded creative optical-diffusion operator; not film halation, measured lens-filter response, stock calibration, photographic severe-artifact evidence or product readiness"
+}

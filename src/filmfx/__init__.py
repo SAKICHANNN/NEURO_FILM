@@ -1,6 +1,12 @@
 """Film effect layer compositing."""
 
 from .compositor import composite_layers
+from .creative_diffusion import (
+    CREATIVE_DIFFUSION_VERSION,
+    CreativeDiffusionProfile,
+    apply_creative_diffusion_linear,
+    validate_creative_diffusion_profile,
+)
 from .effects import density_halation_layer, dust_scratch_layer, grain_residual_layer, halation_layer, physical_halation_layer
 from .halation_controls import (
     HALATION_PRESETS,
@@ -86,6 +92,8 @@ from .tiled_effects import (
 
 __all__ = [
     "CHUNK_INVARIANT_GLOBAL_RESAMPLE_VERSION",
+    "CREATIVE_DIFFUSION_VERSION",
+    "CreativeDiffusionProfile",
     "ChunkInvariantRowStageMetadata",
     "FilmLayer",
     "FieldLifetime",
@@ -119,6 +127,7 @@ __all__ = [
     "build_chunk_invariant_global_stage",
     "build_chunk_invariant_global_stage_from_rows",
     "array_scalar_window_reader",
+    "apply_creative_diffusion_linear",
     "build_halation_resource_plan",
     "available_halation_integration_capabilities",
     "build_shape_stable_global_stage",
@@ -154,6 +163,7 @@ __all__ = [
     "simple_halation_required_halo",
     "staged_grain_residual_layer",
     "validate_physical_halation_controls",
+    "validate_creative_diffusion_profile",
     "validate_halation_capability_bindings",
     "validate_halation_nodes",
     "layer_metrics",

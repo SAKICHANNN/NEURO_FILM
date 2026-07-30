@@ -302,6 +302,12 @@ improves radial NPS while worsening short-lag ACF, and P4X's colour-derived
 amplitude scale does not transfer. No T-MAX/Tri-X profile, retune or product
 reopen is allowed.
 
+U6.4A now passes one separate generic creative-diffusion representation:
+positive six-scale linear-light scatter preserves constants, neutral channels,
+energy and component bounds in two exact synthetic audits. It is explicitly
+not film halation or a measured filter profile. U6.4B is the next photographic
+severe/OOD leaf before any integration.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

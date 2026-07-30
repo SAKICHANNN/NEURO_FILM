@@ -2,6 +2,21 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-30 - U6.4A separates creative diffusion from film halation
+
+- Implemented one deterministic positive six-scale PSF mixture in relative
+  linear RGB. It has no threshold mask, tint, screen blend, density response
+  or film-stock interpretation.
+- Two reports are byte-identical at `633b28e5...7770c`. Constants and neutral
+  channels are exact, impulse energy error is `1.19e-7`, strong peak reduction
+  is 17.00%, the strong/mild far-tail ratio is 2.13, and random inputs remain
+  inside their source component range.
+- The current ProMist-5K listing is 23.31GB with unknown dataset licence, so no
+  pixels were accessed. Its six-scale scene-linear construction is mechanism
+  precedent only.
+- Open U6.4B fixed-profile photographic severe/OOD testing. No parameter fit,
+  film-halation claim or production integration is allowed.
+
 # 2026-07-30 - U6.P4Z-P4Z2 closes cross-material grain reuse
 
 - Acquired three newly published CC0, 16-bit grayscale, 4000-dpi uniform scans:

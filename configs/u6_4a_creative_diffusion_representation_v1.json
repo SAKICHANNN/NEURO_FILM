@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_4a_creative_diffusion_representation.v1",
+  "experiment_id": "u6.4a-creative-diffusion-representation-v1",
+  "node": "ULT > U6 > U6.4 > U6.4A",
+  "hypothesis": "A positive multi-scale linear-light PSF mixture can create visible near-core and far-tail optical diffusion while preserving constants, channel neutrality and source component bounds, and can remain explicitly separate from film-layer halation.",
+  "source_method": {
+    "title": "ProMist-5K: A Comprehensive Dataset for Digital Emulation of Cinematic Pro-Mist Filter Effects",
+    "url": "https://arxiv.org/abs/2601.19295",
+    "used_as": "six-scale scene-linear diffusion mechanism precedent only",
+    "dataset_use": "none",
+    "reason": "The current Kaggle record reports 23,314,712,659 bytes and an unknown licence; it is not required for this synthetic representation test."
+  },
+  "profiles": {
+    "mild": {
+      "profile_id": "generic-creative-diffusion-mild-v1",
+      "sigmas_px": [0.8, 1.6, 3.2, 6.4, 12.8, 25.6],
+      "scatter_fractions": [0.015, 0.015, 0.015, 0.015, 0.01, 0.01]
+    },
+    "strong": {
+      "profile_id": "generic-creative-diffusion-strong-v1",
+      "sigmas_px": [0.8, 1.6, 3.2, 6.4, 12.8, 25.6],
+      "scatter_fractions": [0.03, 0.03, 0.035, 0.035, 0.03, 0.02]
+    }
+  },
+  "gates": {
+    "constant_max_error": 0.000001,
+    "impulse_relative_energy_error": 0.0005,
+    "neutral_channel_max_error": 0.000001,
+    "component_bound_tolerance": 0.000001,
+    "minimum_strong_peak_reduction": 0.10,
+    "minimum_strong_to_mild_far_tail_ratio": 1.5,
+    "minimum_far_tail_value": 0.000001
+  },
+  "forbidden_claims": [
+    "film halation",
+    "emulsion backscatter",
+    "specific optical-filter calibration",
+    "stock response",
+    "product promotion"
+  ],
+  "claim_ceiling": "generic synthetic representation evidence for a deterministic bounded creative optical-diffusion operator; not film halation, measured lens-filter response, stock calibration, photographic severe-artifact evidence or product readiness"
+}

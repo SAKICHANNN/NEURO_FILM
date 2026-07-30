@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-07-30: U6.4A separates downstream creative/lens diffusion from
+> film-layer halation with a positive six-scale linear-light PSF mixture.
+> Two exact synthetic reports preserve constants, neutral channels, energy
+> and source component bounds while producing both peak attenuation and a
+> measurable far tail. This opens only a fixed-profile photographic
+> severe/OOD audit; it is not film halation, Pro-Mist calibration or a product
+> effect.
+>
 > 2026-07-30: U5.R2AW0-AW9 acquire and audit FilmMatch's exact 140-file
 > Sony/E100 practice source, extract 68 ordered chart pairs, and test bounded
 > global, factorized residual and hard-routing candidates. No global family
