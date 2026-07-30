@@ -1,0 +1,91 @@
+{
+  "schema_version": "neuro-film.u5-r2az1-density-residual-fresh-confirmation.v1",
+  "experiment_id": "u5.r2az1-density-residual-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AZ1",
+  "status": "contract_frozen_before_candidate_render",
+  "question": "Does the exact AZ0 optical-density factorization retain its automatic style, non-basic character, severe safety and preference advantage over AO6 on a camera-diverse CC0 RAW-derived population unseen by AZ0?",
+  "development_decision": {
+    "path": "configs/u5_r2az0v_density_residual_visual_decision_v1.json",
+    "sha256": "0c64f6d1a83fbcda49f62472a54fbda2be918ccddb8fcead6074baae1571641e",
+    "required_decision": "retain_density_factorization_as_development_look_approximation_champion"
+  },
+  "fresh_population": {
+    "ao7_config": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1.json",
+    "ao7_config_sha256": "72bae1105a002deb299767e06c8d99be039b95292ae5cff810bbda3201ac7591",
+    "ao7_decision": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_decision_v1.json",
+    "ao7_decision_sha256": "e4e616e7ff03777ecfd69752b081e4750361a265877f64d4ad6add444a72c80f",
+    "ao7_manifest": "outputs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1/run_a/manifest.json",
+    "ao7_manifest_sha256": "ea201c785d45bacbc22ccae47101872a61c6a92330530795e19657dce93436e8",
+    "ao7_automatic_report": "outputs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1/run_a/automatic_report.json",
+    "ao7_automatic_report_sha256": "e7bbe79b38524f87824548708f0915d8e532e346493026d4293efae6a3cde0ca",
+    "required_sample_count": 16,
+    "required_camera_make_count": 9,
+    "required_ao7_automatic_pass": true,
+    "required_zero_decoded_sha256_overlap_with_az0_development": true,
+    "selection_uses_image_appearance": false
+  },
+  "candidate": {
+    "candidate_id": "b0_plus_density_film_t15_c35",
+    "comparator_id": "b0_plus_film_t15_c35",
+    "base_id": "density_then_anchor__density_s50",
+    "neutral_strength": 0.15,
+    "opponent_strength": 0.35,
+    "neutral_weights": [
+      0.2126,
+      0.7152,
+      0.0722
+    ],
+    "density_floor": 0.0000152587890625,
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098
+  },
+  "automatic_gates": {
+    "minimum_candidate_median_style_delta_e76": 11.519070414288793,
+    "minimum_candidate_median_non_basic_residual_delta_e76": 10.887458419940813,
+    "maximum_candidate_p95_style_delta_e76": 20.71748110538445,
+    "maximum_candidate_per_image_style_delta_e76": 20.990005038449434,
+    "minimum_median_difference_delta_e76_from_ao6": 1.0,
+    "minimum_per_image_difference_delta_e76_from_ao6": 0.5,
+    "minimum_images_above_difference": 12,
+    "minimum_camera_makes_above_difference": 7,
+    "maximum_worst_new_hard_clipping_fraction": 0.0,
+    "require_repeat_report_sha256_exact": true
+  },
+  "visual_protocol": {
+    "automatic_pass_required": true,
+    "fixed_ids": [
+      "canon_eos_kiss_f",
+      "nikon_d2x",
+      "sony_nex_3n",
+      "fujifilm_finepix_s5000",
+      "olympus_e_p7",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "leica_d_lux_6",
+      "kodak_dcs_pro_14n"
+    ],
+    "round_seeds": [
+      719513,
+      885301,
+      990707
+    ],
+    "minimum_candidate_preferences_per_passing_round": 6,
+    "minimum_passing_rounds": 2,
+    "maximum_confirmed_severe_artifacts": 0,
+    "score_before_mapping_reveal": true
+  },
+  "operator_refit_allowed": false,
+  "strength_retuning_allowed": false,
+  "row_replacement_allowed": false,
+  "hard_clipping_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "branch_rules": {
+    "automatic_fail": "close AZ1 without visual review, retuning, row replacement or threshold rescue",
+    "visual_fail": "retain AZ0 development evidence only and close product promotion",
+    "complete_pass": "retain a fresh-population-confirmed Look Approximation challenger and open a separately frozen product-readiness comparison without changing the default"
+  },
+  "claim_ceiling": "autonomous fresh CC0 RAW-derived confirmation of one fixed optical-density Look Approximation; not owner or population preference, measured film response, named stock, calibration, authenticity or product promotion"
+}
