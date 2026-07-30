@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u5_r2ax14_filmmatch_cap070_dense_safety_decision.v1",
+  "experiment_id": "u5.r2ax14-filmmatch-cap070-dense-safety-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/dense_safety_ax14/report.json",
+  "report_sha256": "a4bdecf5513154d3971a108803ec62a3da35803d6bdcf3d2174e94d29dc6f72d",
+  "stable_evidence_id": "e4e7a64653a86075b231627b18b0b39a5345a333bab6f7162d9ddb51af30a8e5",
+  "exact_repeat_passed": true,
+  "automatic_gate_passed": true,
+  "automatic_summary": {
+    "cube_sample_count": 274625,
+    "minimum_jacobian_determinant": 0.0022263403990711098,
+    "nonpositive_jacobian_fraction": 0.0,
+    "new_interior_boundary_fraction": 0.0,
+    "maximum_ramp_code_jump": 4,
+    "minimum_neutral_luma_step": 4.95816129646165e-07
+  },
+  "autonomous_visual_review": {
+    "reviewed_outputs": ["hue_luma_source", "hue_luma_candidate"],
+    "confirmed_severe_artifact": false,
+    "continuous_gradient": true,
+    "visible_banding_or_colour_blocks": false
+  },
+  "decision": "pass_dense_safety_open_fixed_operator_real_scene_validation",
+  "promotion_opened": false,
+  "claim_ceiling": "dense synthetic code-domain safety evidence for one capped FilmMatch Look Approximation; no calibrated stock response, real-image OOD generalization or product promotion"
+}
