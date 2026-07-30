@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u6_4b_creative_diffusion_photographic_stress.v1",
+  "experiment_id": "u6.4b-creative-diffusion-photographic-stress-v1",
+  "node": "ULT > U6 > U6.4 > U6.4B",
+  "parents": {
+    "u6_4a_decision": "configs/u6_4a_creative_diffusion_representation_decision_v1.json",
+    "u6_4a_decision_sha256": "c7b32feabdb8c74c4f297ff537226a785665a9b6a9114e358e727c7f5b8149ae",
+    "required_decision": "pass_generic_bounded_creative_diffusion_representation_open_photographic_severe_audit"
+  },
+  "input": {
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "preflight_report": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+    "preflight_report_sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de",
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation"
+  },
+  "operator": {
+    "profile_id": "generic-creative-diffusion-strong-v1",
+    "sigmas_px": [0.8, 1.6, 3.2, 6.4, 12.8, 25.6],
+    "scatter_fractions": [0.03, 0.03, 0.035, 0.035, 0.03, 0.02],
+    "domain": "sRGB-EOTF-decoded relative display-linear RGB",
+    "fit_to_photographs": false
+  },
+  "automatic_gates": {
+    "maximum_component_bound_escape": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_population_luma_mean_abs_drift": 0.005,
+    "maximum_per_image_abs_change": 0.20,
+    "minimum_population_median_mean_abs_change": 0.0005,
+    "maximum_population_flat_region_p99_abs_change": 0.04,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_threshold": 0.04,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "repeat_outputs_byte_exact": true
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "columns": ["source", "fixed strong diffusion", "difference x8"],
+    "severe_vetoes": [
+      "secondary bright or dark contour",
+      "broad gray veil or local contrast collapse",
+      "skin or neutral-axis colour contamination",
+      "banding, posterization or hard clipping",
+      "isolated speckle or block",
+      "geometry, text or content corruption"
+    ],
+    "visual_review_allowed_only_after_automatic_pass": true
+  },
+  "branch_rule": {
+    "automatic_fail": "close this fixed profile without retuning or visual rescue",
+    "automatic_pass_visual_fail": "close photographic use and retain synthetic representation only",
+    "automatic_and_visual_pass": "retain one research-only generic creative-diffusion profile and open a value/runtime comparison; do not integrate"
+  },
+  "forbidden_fallbacks": [
+    "fit weights, scales or strength to this population",
+    "rename the effect film halation or a calibrated optical filter",
+    "use visual review to override an automatic failure",
+    "integrate into the production renderer from this leaf"
+  ],
+  "claim_ceiling": "fixed-profile photographic severe/OOD development evidence for generic creative optical diffusion on 18 CC0 display-derived inputs; not film halation, optical-filter calibration, stock response, independent preference or product promotion"
+}
