@@ -7993,3 +7993,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - No retrieval or promotion opens. The consumed target cannot serve as
   independent confirmation; next requires new paired validation or a distinct
   bounded algorithm.
+
+## 2026-07-31 - Move the local data payload to the O drive
+
+- Paused all three related tasks and confirmed there were no active
+  neuro_film data writers before changing storage.
+- Copied `data/` to `O:\neuro_film_storage\data`, then passed two Robocopy
+  zero-difference scans and a complete path/size/block/SHA-256 comparison:
+  29,171 files, 126,645,748,045 bytes, manifest
+  `5a2c391a...d0dd9`.
+- Replaced only the repository `data` entry with an NTFS junction; configs and
+  scripts retain the canonical repo-relative `data/...` interface.
+- Post-switch BH1S decoding reproduced the frozen manifest
+  `75a5139d...72fc` and report `0938fde0...3d0f` for all 12 RAW sources.
+  The verified C-drive payload was cleared, raising C free space from 2.68 to
+  196.21 GiB. Migration evidence is local under
+  `O:\neuro_film_storage\migration`.
+- The separate D-PCT project was independently bound to
+  `O:\zhuise_storage\{data,outputs}` and is not part of this repository.

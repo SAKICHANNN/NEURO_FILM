@@ -196,6 +196,16 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 ## 7. Data and claim boundaries
 
+Local Windows storage binding, 2026-07-31: the canonical repository path
+`C:\Users\hhvrf\Documents\neuro_film\data` is an NTFS junction to the
+project-owned physical root `O:\neuro_film_storage\data`. Keep configs and
+scripts repo-relative under `data/...`; do not bypass the junction with a
+machine-specific `O:` path. If `O:` is unavailable, data-dependent work must
+fail closed rather than recreate a partial `data` tree on `C:`. The full
+29,171-file / 126,645,748,045-byte copy was block-compared and SHA-256
+verified before the old C-drive payload was cleared; local migration evidence
+is retained under `O:\neuro_film_storage\migration`.
+
 | Source | Default lane | Valid use | Invalid default use |
 |---|---|---|---|
 | Self-owned paired digital/film captures | deferred calibration candidate | future calibration after a new explicit scope and rights closure | active FilmCase dependency or current user ask |

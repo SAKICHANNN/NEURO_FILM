@@ -22,6 +22,17 @@ outputs/                   Ignored generated outputs.
 logs/                      Ignored local run logs.
 ```
 
+### Local data storage binding
+
+On the current Windows workstation, the canonical repository path `data/` is
+an NTFS junction to `O:\neuro_film_storage\data`. This is a storage binding,
+not a new public configuration surface: code, configs, manifests and commands
+must continue to use repo-relative `data/...` paths. Do not create a fallback
+directory on C when O is offline; fail closed so new downloads cannot split
+the dataset across two roots. The 2026-07-31 migration evidence and complete
+per-file SHA-256 manifest live under
+`O:\neuro_film_storage\migration`.
+
 ## Docs
 
 ```text
