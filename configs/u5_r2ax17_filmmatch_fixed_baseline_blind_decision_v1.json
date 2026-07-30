@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2ax17_filmmatch_fixed_baseline_blind_decision.v1",
+  "experiment_id": "u5.r2ax17-filmmatch-fixed-baseline-blind-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/fixed_baseline_blind_ax17/adjudication.json",
+  "report_sha256": "45a78d1402aff4a95033a81cbb2815e3f5c5cd739070fc3d551769e70af4c570",
+  "stable_evidence_id": "a8355507feded95044d581d86a2637cf5f159ac33ebe532016eef2d25ee4a3ba",
+  "build_stable_evidence_id": "e84bec3967de602514fc9b5b9032ab944c461c8419b29f56ae4586f988e0c0b5",
+  "exact_repeat_passed": true,
+  "blind_protocol_passed": true,
+  "automatic_summary": {
+    "filmmatch_choice_count": 3,
+    "ao6_choice_count": 9,
+    "b0_choice_count": 15,
+    "total_choice_count": 27,
+    "filmmatch_total_choice_share": 0.1111111111111111,
+    "filmmatch_choice_share_vs_ao6": 0.25,
+    "filmmatch_overall_round_wins": 0,
+    "filmmatch_round_wins_vs_ao6": 0,
+    "confirmed_severe_artifact_count": 0
+  },
+  "blind_gate_passed": false,
+  "decision": "close_filmmatch_cap070_global_challenger_on_blind_preference_failure",
+  "interpretation": [
+    "The fixed FilmMatch operator remains a repeat-exact, dense-safe and visibly stylized Look Approximation with no selected severe artifact.",
+    "It was selected only for the Hasselblad tank scene in every round, where it avoided the conspicuous green-magenta split shown by the stronger-looking alternatives.",
+    "Across the full nine-image population its dense warm-brown rendering lost decisively to both fixed B0 and fixed AO6 under the frozen blind gate.",
+    "The result does not authorize strength retuning, additional rounds, content routing, operator refitting, product promotion or an Ektachrome stock-response claim."
+  ],
+  "next_branch": "retain_ax13_ax16_as_safe_explicit_operator_mechanism_evidence_and_continue_a_distinct_non_brown_bounded_colour_family_or_independent_data_source",
+  "promotion_opened": false,
+  "claim_ceiling": "three-round autonomous blind development comparison of one fixed FilmMatch code-domain Look Approximation against fixed B0 and AO6 on nine previously frozen CC0 photographs; not population preference, calibrated stock response or product promotion"
+}

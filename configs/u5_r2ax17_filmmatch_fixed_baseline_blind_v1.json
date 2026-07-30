@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u5_r2ax17_filmmatch_fixed_baseline_blind.v1",
+  "experiment_id": "u5.r2ax17-filmmatch-fixed-baseline-blind-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX17",
+  "parents": {
+    "filmmatch_decision": {
+      "path": "configs/u5_r2ax16_filmmatch_fresh_ood_decision_v1.json",
+      "sha256": "2da66430f8742f977064ae4fd1cbaf6afec08381063b1507905670ee0511faa4"
+    },
+    "filmmatch_report": {
+      "path": "outputs/external_controls/filmmatch_ektachrome_v1/fresh_ood_ax16/report.json",
+      "sha256": "4d11a436fec54d30f9f320660b6ff9aceed7f8e15187ba78ed3cc32b4ab4630c"
+    },
+    "filmmatch_render_root": "outputs/external_controls/filmmatch_ektachrome_v1/fresh_ood_ax16",
+    "baseline_report": {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d/report.json",
+      "sha256": "75409181b81142af4085bbff8df7bfaad88fe1f7bec866de95bc27ee3eec8af4"
+    },
+    "baseline_render_root": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/run_d"
+  },
+  "population": {
+    "manifest": {
+      "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+      "sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521"
+    },
+    "fixed_before_filmmatch_operator": true,
+    "replacement_allowed": false
+  },
+  "arms": ["fixed_b0", "fixed_ao6_t15_c35", "filmmatch_cap070"],
+  "blind_gate": {
+    "rounds": 3,
+    "ties_allowed": true,
+    "minimum_overall_round_wins": 2,
+    "minimum_total_choice_share": 0.4,
+    "minimum_round_wins_vs_ao6": 2,
+    "minimum_choice_share_vs_ao6": 0.55,
+    "confirmed_severe_artifact_allowed": false
+  },
+  "gates": {
+    "threshold_relaxation_allowed": false,
+    "additional_rounds_after_reveal_allowed": false,
+    "operator_refit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "three-round autonomous blind development comparison of fixed FilmMatch, B0 and AO6 on nine previously frozen CC0 photographs; not population preference, calibrated stock response or product promotion"
+}

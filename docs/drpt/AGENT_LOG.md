@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-30 - U5.R2AX13-AX17 closes FilmMatch as a global challenger
+
+- Degree-5 FilmMatch required an explicit `.70` residual cap to pass dense
+  cube safety: 274,625 probes have minimum Jacobian `.002226`, zero
+  nonpositive cells or boundary violations, and monotone neutral ramps.
+- The fixed operator remains repeat-exact and visibly styled with zero
+  confirmed severe failures on one held scene and nine fresh, pre-frozen CC0
+  camera-make OOD photographs.
+- The frozen three-round blind comparison nevertheless rejects it: FilmMatch
+  receives 3/27 choices (11.11%), 3/12 against AO6 (25%), and wins zero
+  overall or pairwise rounds; B0 receives 15/27. FilmMatch is preferred only
+  on the tank scene where it avoids the alternatives' green-magenta split.
+- Close the global challenger without strength, routing, capacity or extra
+  rounds. Retain only safe explicit-operator mechanism evidence; continue a
+  distinct bounded colour family or independent data source.
+
 # 2026-07-30 - U5.R2AX0-AX6 FilmMatch safe nonlinear operator
 
 - Higher-resolution monotone, matrix sandwich, triangular conditional and
