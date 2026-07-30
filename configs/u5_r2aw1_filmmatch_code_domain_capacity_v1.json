@@ -1,0 +1,165 @@
+{
+  "schema_version": "u5-r2aw1-filmmatch-code-domain-capacity-v1",
+  "experiment_id": "u5.r2aw1-filmmatch-code-domain-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW1",
+  "parent": {
+    "experiment_id": "u5.r2aw0-filmmatch-ektachrome-paired-source-v1",
+    "config": "configs/u5_r2aw0_filmmatch_ektachrome_paired_source_v1.json",
+    "download_manifest": "outputs/external_controls/filmmatch_ektachrome_v1/download_manifest.json",
+    "integrity_report": "outputs/external_controls/filmmatch_ektachrome_v1/integrity_audit.json",
+    "integrity_report_sha256": "61660625f2b76dcaa8258fcb8236657b9d21bc6059f5e0d6cb80518252d75c25",
+    "stable_evidence_id": "548ba96c956036047ed990c417eec3b30040f797d8dc1a69979220d0a9613cc7"
+  },
+  "colour_state": {
+    "digital": {
+      "camera": "Sony FX3",
+      "author_declared_rail": "S-Gamut3.Cine/S-Log3 full-range code values",
+      "embedded_profile": false,
+      "evidence": [
+        "https://www.film-match.com/blog/color-matching-algorithms-comparison",
+        "https://pro.sony/s3/cms-static-content/uploadfile/06/1237494271406.pdf"
+      ],
+      "claim": "author-declared camera-log rail; not independently reconstructed sensor RAW"
+    },
+    "film": {
+      "stock": "Kodak Ektachrome E100",
+      "author_description": "narrow-RGB-light scan prepared for profiling",
+      "embedded_profile": false,
+      "author_documented_workflow_context_not_per_file_metadata": [
+        "scanner native sensor colour retained without a colourimetric matrix",
+        "profiling workflow balances middle grey to Cineon code 445",
+        "author describes export as 16-bit linear TIFF"
+      ],
+      "unknown": [
+        "whether every documented profiling step was applied unchanged to these exact delivered E100 TIFFs",
+        "exact transfer interpretation of the delivered TIFF code values",
+        "scanner spectral sensitivities and native primaries",
+        "scanner flare, MTF, sharpening and noise",
+        "roll, process session and scan repeat groups"
+      ],
+      "evidence": "https://www.film-match.com/scanning",
+      "claim": "author-prepared scan code values; not a standardized display, scene-linear or calibrated stock-response rail"
+    },
+    "allowed_fit": "paired code-domain Look Approximation only",
+    "forbidden_claims": [
+      "calibrated Ektachrome response",
+      "scanner-independent stock operator",
+      "physical sensitometry or spectral response",
+      "generic digital-photo product transform"
+    ]
+  },
+  "sampling": {
+    "research_resampling_only": true,
+    "film_to_digital_reflective_homography_at_960x540": [
+      [1.3635199428561946, 0.01162761052299079, -178.7342085881865],
+      [-0.005001408573080628, 1.3682452027888188, -126.11291990052027],
+      [-9.693560842670465e-06, 1.3443235370138259e-05, 1.0]
+    ],
+    "homography_pilot": {
+      "film_sha256": "100102db3c8fca8d02a988f0717ef2ce4e5c423dc88c0f793264de4fedabb663",
+      "digital_sha256": "f25acad0e9a8fd1a51ab32661f38e403954cd9331f886588231b4bff1fc6ea8b",
+      "sift_ratio": 0.7,
+      "good_matches": 445,
+      "ransac_inliers": 364,
+      "inlier_fraction": 0.8179775280898877
+    },
+    "reflective": {
+      "film_stride": 4,
+      "digital_stride": 2,
+      "canvas": [540, 960],
+      "sg": {
+        "rows": 10,
+        "columns": 14,
+        "center_origin_xy": [15.0, 196.0],
+        "center_step_xy": [31.3, 28.0],
+        "half_window_xy": [10, 8]
+      },
+      "classic": {
+        "rows": 4,
+        "columns": 6,
+        "center_origin_xy": [516.0, 216.0],
+        "center_step_xy": [75.0, 64.0],
+        "half_window_xy": [25, 20]
+      },
+      "expected_patches_per_pair": 164,
+      "illuminant_groups": [
+        {
+          "name": "5600K",
+          "film_sequence": [315, 325],
+          "digital_sequence": [233, 243]
+        },
+        {
+          "name": "3200K",
+          "film_sequence": [326, 336],
+          "digital_sequence": [244, 254]
+        },
+        {
+          "name": "5600K_CTB",
+          "film_sequence": [337, 347],
+          "digital_sequence": [255, 265]
+        }
+      ],
+      "exposure_order_ev": [0, 1, 2, 3, 4, 5, -1, -2, -3, -4, -5]
+    },
+    "emissive": {
+      "film_stride": 4,
+      "digital_stride": 2,
+      "steps": 21,
+      "film_center_x_range": [282.0, 610.0],
+      "film_center_y": 276,
+      "digital_center_x_range": [178.0, 624.0],
+      "digital_center_y": 285,
+      "half_window_xy": [5, 7],
+      "expected_stimuli": 35,
+      "expected_patches": 735,
+      "stimulus_coordinates": "unknown",
+      "held_group_proxy": "six hue sectors derived only from the paired digital controlled stimulus after official S-Log3 decoding"
+    },
+    "validation": {
+      "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+      "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+      "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+      "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+      "fit_forbidden": true
+    }
+  },
+  "development": {
+    "candidate_models": [
+      "identity",
+      "full_affine",
+      "bounded_positive_one_matrix",
+      "bounded_positive_two_matrix",
+      "monotone_curves_positive_matrix",
+      "emulating_emulsion_equation_30p"
+    ],
+    "reflective_cross_validation": "leave-one-complete-illuminant-out",
+    "emissive_cross_validation": "leave-one-controlled-stimulus-hue-sector-out",
+    "fit_populations": [
+      "reflective_only",
+      "reflective_plus_emissive"
+    ],
+    "primary_metric": "held_group_rgb_rmse_in_author_code_domain",
+    "secondary_metrics": [
+      "median and p95 RGB Euclidean error",
+      "out-of-cube fraction",
+      "33-cube structural diagnostics",
+      "fit-forbidden validation-scene display-proxy diagnostics"
+    ],
+    "selection_order": [
+      "finite and deterministic fit",
+      "zero unsafe cube output for bounded candidates",
+      "held-group accuracy",
+      "simplest adequate explicit operator",
+      "validation-scene severe-artifact veto"
+    ]
+  },
+  "gates": {
+    "code_domain_operator_fitting_allowed": true,
+    "validation_fit_allowed": false,
+    "product_integration_allowed": false,
+    "calibrated_claim_allowed": false,
+    "rights_allow_public_fitted_asset": false,
+    "development_only": true
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation capacity evidence for one author-prepared Sony FX3/Ektachrome E100 capture-and-scan session; no calibrated stock response, no scanner independence, no redistribution and no product promotion"
+}
