@@ -158,7 +158,7 @@ def source_descriptor(
     return np.asarray(features, dtype=np.float64)
 
 
-def _fit_parameters(
+def fit_neutral_base_parameters(
     source: np.ndarray,
     target: np.ndarray,
     config: Mapping[str, Any],
@@ -195,6 +195,10 @@ def _fit_parameters(
         max_nfev=int(fit["maximum_evaluations"]),
     )
     return np.asarray(result.x, dtype=np.float64), bool(result.success)
+
+
+# Preserve the frozen AY0 test/import boundary while exposing a reusable name.
+_fit_parameters = fit_neutral_base_parameters
 
 
 def _rmse(a: np.ndarray, b: np.ndarray) -> float:
@@ -349,7 +353,9 @@ def run_pilot(
             expert = resize_to_shape(expert, raw.shape[:2])
         expert = np.clip(expert, 0.0, 1.0)
         target = filtered_target(raw, expert, target_policy)
-        parameters, success = _fit_parameters(raw, target, config)
+        parameters, success = fit_neutral_base_parameters(
+            raw, target, config
+        )
         oracle = apply_neutral_base(raw, parameters)
         sources.append(raw)
         targets.append(target)
@@ -505,6 +511,7 @@ def run_pilot(
 __all__ = [
     "FiveKNeutralBasePilotError",
     "apply_neutral_base",
+    "fit_neutral_base_parameters",
     "run_pilot",
     "source_descriptor",
     "validate_contract",
