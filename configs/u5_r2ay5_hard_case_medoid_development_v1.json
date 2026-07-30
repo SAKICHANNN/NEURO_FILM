@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay5-hard-case-medoid-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY5",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "e42322a5e041805c5d2f36fdc040161e9d7240b6",
+  "hypothesis": "a hard case operator selected from fitted FiveK training examples can preserve discrete photographic adjustment character and improve both mean and tail target error over the single global operator on development and fresh populations without blending cases or violating analytical boundary safety",
+  "parents": {
+    "ay0": {
+      "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+      "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+      "report": "outputs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1/run_a/report.json",
+      "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d"
+    },
+    "ay3": {
+      "config": "configs/u5_r2ay3_boundary_safe_neutral_base_development_v1.json",
+      "config_sha256": "a4914847f7e0fb0217fc243d42d31ba2067de11334e4087c38f05f7a4c8861ff",
+      "decision": "configs/u5_r2ay3_boundary_safe_neutral_base_development_decision_v2.json",
+      "decision_sha256": "6a75bb00379fb22f24c6035d53810fe36cbe75a06b8a95994827bab2c8b6ab22",
+      "boundary_epsilon": 0.00196078431372549
+    },
+    "fresh_population": {
+      "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+      "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+      "report": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/report.json",
+      "report_sha256": "40a78d9ec7cc1046116148b62c88cf268f94c4a074bfc2b40f023bdd4cb75ec8",
+      "decision": "configs/u5_r2ay3s2_fivek_fresh_normalization_support_decision_v1.json",
+      "decision_sha256": "f466e34fda206241507afb6e2e139e4e2b9a9332789e6e929c252548caea6a1c"
+    },
+    "failed_uncertainty": {
+      "decision": "configs/u5_r2ay4_target_free_ood_fallback_diagnostic_decision_v1.json",
+      "decision_sha256": "5194c498edd6623ef48bce11904cd3563361cd83bcbb8d87559c567b3bebf3b2",
+      "required_status": "closed_uncertainty_unidentified"
+    }
+  },
+  "fixed_model": {
+    "ridge_alpha": 100.0,
+    "parameter_distance": "euclidean after division by frozen operator bound span",
+    "content_distance": "euclidean in training-standardized AY0 source descriptor space divided by sqrt(feature_count)",
+    "case_bank": "actual fitted parameter vectors from training rows only",
+    "case_blending_allowed": false,
+    "case_refitting_allowed": false
+  },
+  "methods": [
+    "global",
+    "ridge",
+    "content_nearest",
+    "ridge_projected_medoid",
+    "content_top3_ridge_medoid",
+    "content_top5_ridge_medoid"
+  ],
+  "evaluation_populations": {
+    "ay0_complete_camera_group_crossfit": {
+      "bank_and_models": "fit inside each held-out camera_group_id fold only",
+      "target_use": "evaluation only"
+    },
+    "fresh_63": {
+      "bank_and_models": "fit once from all AY0 rows",
+      "target_use": "development evaluation only; prior AY3F failure prevents confirmation reuse"
+    }
+  },
+  "evaluation": {
+    "minimum_mean_improvement_over_global_each_population": 0.03,
+    "minimum_win_fraction_over_global_each_population": 0.55,
+    "maximum_p95_ratio_to_global_each_population": 1.0,
+    "maximum_worst_ratio_to_global_each_population": 1.25,
+    "minimum_ao6_style_ratio_each_population": 0.8,
+    "maximum_median_limited_fraction_each_population": 0.02,
+    "maximum_p95_limited_fraction_each_population": 0.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_distinct_selected_cases_each_population": 3,
+    "require_repeat_report_byte_identity": true
+  },
+  "selection": {
+    "eligible": "one fixed hard-case method must pass every gate on both populations",
+    "ranking": "maximize the smaller of the two population mean improvements, then minimize the larger P95 ratio, then method name",
+    "ridge_is_control_only": true,
+    "content_nearest_is_prior_art_baseline": true
+  },
+  "branch_rules": {
+    "one_or_more_methods_pass": "freeze the top hard-case method and acquire another untouched official FiveK population for unchanged confirmation",
+    "no_method_passes": "close this fixed hard-case family and move to a distinct bounded explicit operator family; do not tune k, distances, alpha, bounds or AO6 on these outcomes",
+    "boundary_failure": "close as safety or implementation failure before visual review",
+    "pass_without_new_data": "development evidence only; no product, film or stock promotion"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_training_allowed": false,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only hard case selection among bounded explicit digital-retouch operators; not film, stock, calibration, preference, confirmation or product promotion"
+}
