@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay2-fivek-unseen-content-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AY2",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "89bb1dbbfc30344bdbf5593aacbf2c4589e17866",
+  "hypothesis": "the five-parameter neutral-base predictor frozen on FiveK rows 1-64 improves over the training-global control on untouched rows 65-128 both before and after the unchanged AO6 look",
+  "development": {
+    "config": "configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json",
+    "config_sha256": "f9fb66679dfa4f8b5489308401e3ed3c5e5a86bee75f10f78d3b350738bd513b",
+    "report": "outputs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1/run_a/report.json",
+    "report_sha256": "5fb8e8e74312fd2b71f5ce50f43893225fcccf61f48f5b59ff9a50c6a169af5d",
+    "rows": 64,
+    "ridge_alpha": 100.0,
+    "alpha_source": "largest and modal nested-group-CV selection from the frozen AY0 folds",
+    "feature_or_parameter_change_allowed": false
+  },
+  "confirmation": {
+    "manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
+    "manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "report": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/report.json",
+    "report_sha256": "90f16d48b391a0ba8baa4347e73129a2348b62cbaa69eefeddfe28aa2899decc",
+    "required_automatic_pass": true,
+    "rows": 64,
+    "maximum_side": 256,
+    "group_claim": "unseen content only; camera metadata unknown"
+  },
+  "fixed_look": {
+    "base_config": "configs/u5_r2ai0_dual_champion_global_composition_v1.json",
+    "base_config_sha256": "136593e7765e0fee06cce8263c52b5326899577f149eebcde60c6b5f1136247f",
+    "base_candidate_id": "density_then_anchor__density_s50",
+    "base_order": "density_then_anchor",
+    "base_density_strength": 0.5,
+    "ao6_config": "configs/u5_r2ao6_b0_real_film_residual_frontier_v1.json",
+    "ao6_config_sha256": "631b6e92377319a8b961fe190d6955add03b1c9f8546c443d9bc2d02778bbe0b",
+    "ao6_candidate_id": "b0_plus_film_t15_c35",
+    "tone_strength": 0.15,
+    "chroma_strength": 0.35,
+    "operator_refit_allowed": false,
+    "strength_change_allowed": false
+  },
+  "methods": [
+    "identity",
+    "global",
+    "ridge",
+    "oracle"
+  ],
+  "evaluation": {
+    "bootstrap_seed": 20260730,
+    "bootstrap_resamples": 10000,
+    "minimum_oracle_median_improvement_over_identity": 0.15,
+    "minimum_neutral_ridge_mean_improvement_over_global": 0.03,
+    "minimum_neutral_ridge_win_fraction_over_global": 0.6,
+    "maximum_neutral_ridge_p95_ratio_to_global": 0.97,
+    "minimum_neutral_ridge_bootstrap_improvement_lower": 0.0,
+    "minimum_look_ridge_mean_improvement_over_global": 0.03,
+    "minimum_look_ridge_win_fraction_over_global": 0.6,
+    "maximum_look_ridge_p95_ratio_to_global": 0.97,
+    "minimum_look_ridge_bootstrap_improvement_lower": 0.0,
+    "minimum_target_median_style_delta_e76": 8.0,
+    "minimum_ridge_to_target_median_style_ratio": 0.8,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_fit_success_fraction": 1.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain the explicit neutral-base predictor as an optional pre-look development component and open bounded product-cost and wider real-photo OOD tests",
+    "any_quality_gate_fails": "close the learned neutral-base insertion without feature, alpha, capacity, threshold or AO6 rescue",
+    "style_gate_fails": "close because the neutral base averages away visible styling",
+    "boundary_gate_fails": "veto regardless of quality gain"
+  },
+  "training_allowed": true,
+  "training_scope": "fit one StandardScaler and one Ridge(alpha=100) on the 64 frozen development descriptors/parameters only",
+  "confirmation_target_access_during_training_allowed": false,
+  "operator_fitting_allowed_on_confirmation": false,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "untouched-content confirmation of one low-dimensional bounded explicit neutral photographic base predictor before one unchanged AO6 Look Approximation; camera OOD, film identity, stock response, calibration, preference and product promotion remain unproved"
+}
