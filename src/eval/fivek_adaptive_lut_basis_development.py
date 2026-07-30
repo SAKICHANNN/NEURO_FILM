@@ -414,7 +414,12 @@ def _build_predictions(
     alphas = [
         float(value) for value in config["basis_prediction"]["ridge_alphas"]
     ]
-    maximum = float(config["operator"]["maximum_absolute_node_residual"])
+    maximum = float(
+        config["operator"].get(
+            "maximum_absolute_node_residual",
+            config["operator"].get("node_coefficient_maximum"),
+        )
+    )
     train_x = np.stack([row["descriptor"] for row in ay0["rows"]])
     train_y = np.stack([row["fitted_lut"] for row in ay0["rows"]])
     groups = np.asarray([row["group"] for row in ay0["rows"]], dtype=object)
