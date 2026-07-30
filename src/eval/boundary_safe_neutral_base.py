@@ -219,6 +219,18 @@ def _summary(values: list[float]) -> dict[str, float]:
     }
 
 
+def _new_boundary_fraction(
+    source: np.ndarray, output: np.ndarray, epsilon: float
+) -> float:
+    source_boundary = (source <= epsilon) | (
+        source >= 1.0 - epsilon
+    )
+    output_boundary = (output <= epsilon) | (
+        output >= 1.0 - epsilon
+    )
+    return float(np.mean(output_boundary & ~source_boundary))
+
+
 def run_development(
     *,
     root: Path,
@@ -275,15 +287,13 @@ def run_development(
             look_error = _rmse(look, target_look)
             style = _median_delta_e76(neutral, look)
             limited_fraction = float(np.mean(scale < 1.0 - 1e-12))
-            source_boundary = (source <= epsilon) | (
-                source >= 1.0 - epsilon
+            neutral_boundary = _new_boundary_fraction(
+                source, neutral, epsilon
             )
-            output_boundary = (neutral <= epsilon) | (
-                neutral >= 1.0 - epsilon
+            look_boundary = _new_boundary_fraction(
+                neutral, look, epsilon
             )
-            boundary = float(
-                np.mean(output_boundary & ~source_boundary)
-            )
+            boundary = max(neutral_boundary, look_boundary)
             neutral_errors[method].append(neutral_error)
             look_errors[method].append(look_error)
             styles[method].append(style)
@@ -295,6 +305,8 @@ def run_development(
                 "style_delta_e76": style,
                 "limited_fraction": limited_fraction,
                 "minimum_scale": float(np.min(scale)),
+                "neutral_new_boundary_fraction": neutral_boundary,
+                "look_new_boundary_fraction": look_boundary,
                 "new_boundary_fraction": boundary,
                 **diagnostics,
             }
