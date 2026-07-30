@@ -11,6 +11,10 @@ CONFIG = ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_v1.json"
 OBSERVATIONS = (
     ROOT / "configs/u5_r2bh0_fixed_bank_complete_oracle_observations_v1.json"
 )
+MAPPING_RECEIPT = (
+    ROOT
+    / "configs/u5_r2bh0_fixed_bank_complete_oracle_mapping_receipt_v1.json"
+)
 
 
 def test_bh0_contract_freezes_five_distinct_existing_arms() -> None:
@@ -98,3 +102,16 @@ def test_bh0_blind_observations_are_complete_and_mapping_sealed() -> None:
             assert len(ranking) == 5
             assert set(ranking) == {"A", "B", "C", "D", "E"}
     assert observations["severe_artifact_review"]["confirmed_severe_count"] == 0
+
+
+def test_bh0_mapping_receipt_binds_frozen_observations() -> None:
+    receipt = json.loads(MAPPING_RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["status"] == (
+        "mapping_identities_bound_after_rankings_commit"
+    )
+    assert receipt["mapping_revealed"]
+    assert receipt["rankings_commit"] == (
+        "e1ea9e44164f399de8396aade57041e2d9d36e21"
+    )
+    assert receipt["observations_sha256"] == sha256_file(OBSERVATIONS)
+    assert len(receipt["mapping_sha256_by_round"]) == 3

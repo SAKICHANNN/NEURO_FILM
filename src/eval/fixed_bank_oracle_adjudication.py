@@ -241,11 +241,15 @@ def adjudicate_files(
     *,
     config_path: Path,
     observations_path: Path,
+    mapping_receipt_path: Path,
     render_report_path: Path,
     mapping_paths: Sequence[Path],
 ) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     observations = json.loads(observations_path.read_text(encoding="utf-8"))
+    mapping_receipt = json.loads(
+        mapping_receipt_path.read_text(encoding="utf-8")
+    )
     render_report = json.loads(render_report_path.read_text(encoding="utf-8"))
     if len(mapping_paths) != 3:
         raise FixedBankAdjudicationError("exactly three mapping files required")
@@ -259,7 +263,15 @@ def adjudicate_files(
     ):
         raise FixedBankAdjudicationError("render evidence drift or automatic gate failure")
 
-    expected_mapping_hashes = render_report["blind_mapping_sha256"]
+    if (
+        mapping_receipt.get("status")
+        != "mapping_identities_bound_after_rankings_commit"
+        or not mapping_receipt.get("mapping_revealed")
+        or mapping_receipt.get("observations_sha256")
+        != sha256_file(observations_path)
+    ):
+        raise FixedBankAdjudicationError("mapping receipt does not bind observations")
+    expected_mapping_hashes = mapping_receipt["mapping_sha256_by_round"]
     if [sha256_file(path) for path in mapping_paths] != expected_mapping_hashes:
         raise FixedBankAdjudicationError("blind mapping identity drift")
     arms = [row["arm_id"] for row in config["fixed_arms"]]
@@ -313,6 +325,7 @@ def adjudicate_files(
         "inputs": {
             "config_sha256": sha256_file(config_path),
             "observations_sha256": sha256_file(observations_path),
+            "mapping_receipt_sha256": sha256_file(mapping_receipt_path),
             "render_report_sha256": sha256_file(render_report_path),
             "render_stable_evidence_id": render_report[
                 "stable_evidence_id"

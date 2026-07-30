@@ -1,0 +1,15 @@
+{
+  "schema": "neuro_film.u5_r2bh0_fixed_bank_complete_oracle_mapping_receipt.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bh0-fixed-bank-complete-oracle-v1",
+  "status": "mapping_identities_bound_after_rankings_commit",
+  "rankings_commit": "e1ea9e44164f399de8396aade57041e2d9d36e21",
+  "observations_sha256": "d3307e561abba27a5db76c3f62cb51292e4de571f6ffd87a9e2ba97f599890b7",
+  "mapping_revealed": true,
+  "mapping_sha256_by_round": [
+    "2e372e50b225dd7015b71aeb7333ad470311a5eac1f1e2d9c88c4db81d2ce072",
+    "df9e48958facf9f23f2fca361b3dfd26d7dc922b7a77e47d99674921c7e2ac5c",
+    "157918798736d43a56afd997513124a0917526c8176ba21d5f3e7f27737231a4"
+  ],
+  "claim_ceiling": "post-ranking mapping identity receipt; does not alter observations, thresholds, ranks or scientific outcome"
+}

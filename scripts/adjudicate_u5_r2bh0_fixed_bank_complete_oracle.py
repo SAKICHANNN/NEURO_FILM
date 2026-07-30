@@ -32,6 +32,8 @@ def main() -> int:
         / "configs/u5_r2bh0_fixed_bank_complete_oracle_v1.json",
         observations_path=ROOT
         / "configs/u5_r2bh0_fixed_bank_complete_oracle_observations_v1.json",
+        mapping_receipt_path=ROOT
+        / "configs/u5_r2bh0_fixed_bank_complete_oracle_mapping_receipt_v1.json",
         render_report_path=render_dir / "report.json",
         mapping_paths=[
             render_dir / "blind" / f"blind_round_{index}_mapping.json"
