@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u5_r2bk1_log_chroma_fresh_comparison_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk1-log-chroma-fresh-comparison-v1",
+  "node": "ULT > U5 > U5.R2BK1",
+  "status": "closed_automatic_gate_failed_visual_forbidden",
+  "decision": "reject_fixed_bk0_log_chroma_v1",
+  "config": {
+    "path": "configs/u5_r2bk1_log_chroma_fresh_comparison_v1.json",
+    "sha256": "23b5aa52d2ebb644d19090804452176d586d1a0c53007ca7b4ba24139cee6667"
+  },
+  "evidence": {
+    "run_a": {
+      "path": "outputs/u5_r2bk1_log_chroma_fresh_comparison_v1/run_a/report.json",
+      "sha256": "b1a4e1aa1c42ebf9b92f59cf4b70de1ee1db5f77d4e9b25714cb5dc32b52f2f3"
+    },
+    "run_b": {
+      "path": "outputs/u5_r2bk1_log_chroma_fresh_comparison_v1/run_b/report.json",
+      "sha256": "b1a4e1aa1c42ebf9b92f59cf4b70de1ee1db5f77d4e9b25714cb5dc32b52f2f3"
+    },
+    "repeat_report_byte_exact": true,
+    "repeat_output_count": 30,
+    "repeat_output_hash_differences": 0,
+    "stable_evidence_id": "a1f890da363c8999e5fd6d2d9b4a7c1c6f120cdc98a85f48c7e14611262f1632"
+  },
+  "result": {
+    "source_count": 10,
+    "output_count": 30,
+    "automatic_pass": false,
+    "visual_review_allowed": false,
+    "population_median_style_delta_e76": {
+      "fixed_bk0_log_chroma": 4.3757922649383545,
+      "fixed_ao6_colour_only_t15_c35": 10.787677764892578,
+      "safe_rich_velvia_50": 2.9894845485687256
+    },
+    "bk0_minimum_required_style_delta_e76": 5.0,
+    "maximum_new_code_boundary_fraction_vs_source": 0.01799342105263158,
+    "maximum_allowed_new_code_boundary_fraction_vs_source": 0.005,
+    "boundary_failure_arm": "fixed_bk0_log_chroma",
+    "boundary_failure_mode": "highlight_code_65535",
+    "mechanism": "BK0 constrains its residual to a 1/65535 margin in scene-linear RGB. Near display white, the sRGB OETF compresses that linear margin below half of one 16-bit encoded code, so quantization can still create code 65535. The source-inclusive analytical guard is mathematically cube-safe but its margin is in the wrong domain for the frozen encoded-output gate.",
+    "confirmed_severe_artifact_count": "not_reviewed",
+    "claim": "BK0 v1 is deterministic and more salient than safe-rich on this population, but it is below the frozen style floor and fails the encoded-boundary gate. Automatic failure forbids visual promotion."
+  },
+  "forbidden_followups": [
+    "lower the BK1 style threshold",
+    "raise the BK1 boundary threshold",
+    "change BK0 parameters and rerun on the same population as confirmation",
+    "inspect BK1 candidate sheets after the automatic failure",
+    "claim stock response, calibration, preference or product promotion"
+  ],
+  "next_leaf": "Treat BK1 as development evidence only. A successor may use an encoded-domain analytical residual guard and a separately frozen stronger explicit response, but must use a new leakage-clean population for confirmation.",
+  "production_default_changed": false,
+  "claim_ceiling": "rejected generic fixed film-inspired explicit operator evidence only"
+}

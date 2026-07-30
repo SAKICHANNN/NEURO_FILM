@@ -20,6 +20,9 @@ from src.film_physics.profile_consumer import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk1_log_chroma_fresh_comparison_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2bk1_log_chroma_fresh_comparison_decision_v1.json"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -105,3 +108,21 @@ def test_bk1_contract_mutation_fails_closed() -> None:
     config["rendering"]["strength_retuning_allowed"] = True
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk1_decision_rejects_v1_without_visual_or_threshold_relaxation() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == "reject_fixed_bk0_log_chroma_v1"
+    assert not result["automatic_pass"]
+    assert not result["visual_review_allowed"]
+    assert result["population_median_style_delta_e76"][
+        "fixed_bk0_log_chroma"
+    ] < result["bk0_minimum_required_style_delta_e76"]
+    assert result["maximum_new_code_boundary_fraction_vs_source"] > result[
+        "maximum_allowed_new_code_boundary_fraction_vs_source"
+    ]
+    assert result["boundary_failure_arm"] == "fixed_bk0_log_chroma"
+    assert decision["evidence"]["repeat_report_byte_exact"]
+    assert decision["evidence"]["repeat_output_hash_differences"] == 0
+    assert not decision["production_default_changed"]
