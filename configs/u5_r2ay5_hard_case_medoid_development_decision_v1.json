@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay5-hard-case-medoid-development-v1",
+  "status": "closed_fixed_hard_case_tail_gate_failed",
+  "config": "configs/u5_r2ay5_hard_case_medoid_development_v1.json",
+  "report": "outputs/u5_r2ay5_hard_case_medoid_development_v1/run_a/report.json",
+  "report_sha256": "392b2c1fa887e8283c9a0f4df567fe183a2b0b39cb12c562604659f779e176ce",
+  "stable_evidence_id": "4a4269f9eb4940d288c46fcca7bf6bc612df55911c88841e057139218c8a5062",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "selected_method": null,
+  "observed": {
+    "content_top3_ridge_medoid": {
+      "ay0_mean_improvement": 0.06822,
+      "ay0_p95_ratio_to_global": 0.94891,
+      "fresh_mean_improvement": 0.07073,
+      "fresh_p95_ratio_to_global": 1.15842
+    },
+    "content_top5_ridge_medoid": {
+      "ay0_mean_improvement": 0.08298,
+      "ay0_p95_ratio_to_global": 0.94249,
+      "fresh_mean_improvement": 0.0481,
+      "fresh_p95_ratio_to_global": 1.14996
+    },
+    "ridge_projected_medoid": {
+      "ay0_mean_improvement": 0.07901,
+      "ay0_p95_ratio_to_global": 0.91926,
+      "fresh_mean_improvement": 0.07956,
+      "fresh_p95_ratio_to_global": 1.06575
+    },
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "interpretation": "hard selection of one actual fitted case preserves discrete adjustment character and improves mean error on both development populations, but every fixed hard-case candidate worsens the fresh P95 tail; content-nearest alone is not useful",
+  "forbidden_rescue": [
+    "do not tune k, distance, alpha, bounds, target policy or AO6 on these outcomes",
+    "do not replace the failed P95 gate with mean-only evidence",
+    "do not present this digital-retouch case bank as film, stock, calibration or product evidence"
+  ],
+  "next_leaf": "a distinct bounded explicit operator representation with preregistered group-held-out and fresh-tail controls",
+  "claim_ceiling": "development-only evidence that discrete case selection can preserve stronger photographic adjustment character but is not tail-safe on fresh FiveK"
+}

@@ -7680,3 +7680,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Do not combine, invert or retune these scores on the failed population.
   Move to a distinct hard case/medoid explicit candidate bank; any passing
   development policy still requires another untouched confirmation.
+
+## 2026-07-30 - U5.R2AY5 hard cases improve means but fail the fresh tail
+
+- The fixed hard bank selects one actual fitted training-case operator; no
+  case blending, target features or final-RGB learning is used. Two complete
+  runs are byte-identical and all candidates create zero new boundaries.
+- Top-3/top-5 content-restricted medoids improve AY0 by 6.82%/8.30% and fresh
+  FiveK by 7.07%/4.81%. Ridge-projected medoids improve 7.90%/7.96%.
+- Every candidate passes the AY0 P95 gate, but fresh P95 remains
+  `1.066x--1.158x` global. Automatic failure forbids visual review and all
+  k/distance/alpha/bound/AO6 rescue. Retain discrete-case character as
+  development evidence; move to a distinct bounded explicit representation.
