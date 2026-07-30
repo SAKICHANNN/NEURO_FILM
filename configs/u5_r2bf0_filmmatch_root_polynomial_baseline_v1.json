@@ -1,0 +1,116 @@
+{
+  "schema_version": "u5-r2bf0-filmmatch-root-polynomial-baseline-v1",
+  "experiment_id": "u5.r2bf0-filmmatch-root-polynomial-baseline-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BF0",
+  "parent": {
+    "experiment_id": "u5.r2aw1-filmmatch-code-domain-capacity-v1",
+    "config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "config_sha256": "1f5aa2e0d0c1a4a438642891db84dfcd3180fc236a5d061f5cb825d88eb12fbf",
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/capacity_report.json",
+    "report_sha256": "aa5a5787dcd375cbe42cad0cd196531d01775f91031a3807929ade284ee4b5dd",
+    "stable_evidence_id": "7a6307171572bd280fd45a952245cd1e57fe0452ae44ef1c8404b016ad81b769",
+    "input_array_sha256": {
+      "reflective_source": "a45ac15ffa2fa3887cbc03ca394b899d8ffaa463be7220147c025b53238e17fc",
+      "reflective_target": "0e0207c4cc9df9ff197e882c5020cf1d9cdd0a6b3c93e416ccd011802e41c899",
+      "emissive_source": "ad8df815045e2bb0c91de8881e6c347ceda254d82079cca70fe9e7e25de45e89",
+      "emissive_target": "fc06b7ad9f9fc5666e40a12036d25f4267254a52ec9dfa008cbf02681d5562cb"
+    }
+  },
+  "research_question": "Does an exposure-homogeneous signed root-polynomial explicit operator generalize from Sony FX3 scene-linear values to the author-prepared Ektachrome scan code domain across held illuminants and held exposure settings, or is root-polynomial regression useful only in the inverse film-correction direction?",
+  "epistemic_contract": {
+    "primary_direction": "Sony S-Log3 decoded scene-linear reflection -> author-prepared Ektachrome scan code values",
+    "inverse_diagnostic_direction": "author-prepared Ektachrome scan code values -> Sony S-Log3 decoded scene-linear reflection",
+    "source_decode": "published Sony full-range S-Log3 formula already frozen in src.eval.filmmatch_chart_pairs.slog3_to_linear_reflection",
+    "negative_scene_linear_values": "retained; signed roots are used for mixed monomials and pure powers beyond degree one are deduplicated",
+    "allowed_claim": "development-only paired code-domain explicit-operator capacity evidence for this one author-prepared capture-and-scan source",
+    "forbidden_claims": [
+      "calibrated Ektachrome stock response",
+      "identified digital-to-film operator",
+      "scanner-independent transform",
+      "physical sensitometry",
+      "product-ready or artifact-safe renderer",
+      "validation-scene confirmation"
+    ]
+  },
+  "models": {
+    "families": [
+      "identity",
+      "homogeneous_affine",
+      "full_affine",
+      "ordinary_polynomial_degree2",
+      "ordinary_polynomial_degree3",
+      "signed_root_polynomial_degree2",
+      "signed_root_polynomial_degree3"
+    ],
+    "ordinary_polynomial": {
+      "include_intercept": false,
+      "maximum_degrees": [2, 3]
+    },
+    "signed_root_polynomial": {
+      "include_intercept": false,
+      "maximum_degrees": [2, 3],
+      "deduplicate_normalized_exponent_rays": true,
+      "mixed_monomial_rule": "sign(product) * abs(product) ** (1 / total_degree)"
+    },
+    "ridge": {
+      "objective": "mean_squared_error_plus_lambda_l2",
+      "lambda": 1e-06,
+      "feature_scale": "development_root_mean_square_without_centering",
+      "minimum_feature_scale": 1e-12,
+      "penalize_intercept": false
+    }
+  },
+  "development": {
+    "population": "reflective chart patches only",
+    "outer_protocols": [
+      "leave-one-complete-illuminant-out",
+      "leave-one-exposure-EV-out-across-all-illuminants"
+    ],
+    "selection": {
+      "eligible_family": "signed_root_polynomial_degree2_or_degree3",
+      "primary_score": "sum of mean held-group RGB RMSE across both outer protocols",
+      "near_best_relative_tolerance": 0.02,
+      "tie_break": "lower degree"
+    },
+    "capacity_gates": {
+      "minimum_median_improvement_over_homogeneous_affine_each_protocol": 0.05,
+      "minimum_median_improvement_over_full_affine_each_protocol": 0.02,
+      "minimum_worst_fold_improvement_over_homogeneous_affine_each_protocol": -0.05,
+      "maximum_held_sample_out_of_cube_fraction_each_protocol": 0.25,
+      "maximum_positive_scale_equivariance_absolute_error": 1e-10
+    },
+    "positive_scale_equivariance_scales": [0.25, 0.5, 2.0, 4.0],
+    "structural_audit": {
+      "slog3_code_axis_minimum": 0.07714961,
+      "slog3_code_axis_maximum": 0.86720073,
+      "cube_size": 17,
+      "finite_required": true,
+      "minimum_jacobian_determinant_for_render_candidate": 1e-08,
+      "maximum_out_of_target_cube_fraction_for_render_candidate": 0.0,
+      "capacity_pass_does_not_override_render_candidate_gate": true
+    },
+    "validation_scene_fit_allowed": false,
+    "visual_review_allowed": false,
+    "confirmatory_claim_allowed": false
+  },
+  "decision_branches": {
+    "forward_capacity_fails": "close root-polynomial forward look route under this paired source",
+    "inverse_only_passes": "record direction asymmetry; treat root-polynomial as correction evidence, not a film-look operator",
+    "forward_capacity_passes_but_render_gate_fails": "open only a separately preregistered bounded residual execution challenger",
+    "forward_capacity_and_render_gate_pass": "open fit-forbidden validation and severe-artifact audit; do not promote automatically"
+  },
+  "execution": {
+    "seed": 20260728,
+    "repeat_count": 2,
+    "output": "outputs/external_controls/filmmatch_ektachrome_v1/root_polynomial_baseline_report.json"
+  },
+  "gates": {
+    "current_pixel_fitting_allowed": false,
+    "this_exact_paired_source_development_fit_allowed": true,
+    "operator_rendering_allowed": false,
+    "product_integration_allowed": false,
+    "calibrated_claim_allowed": false,
+    "public_asset_redistribution_allowed": false
+  },
+  "claim_ceiling": "development-only directionality and grouped-capacity evidence for deterministic polynomial explicit operators on one author-prepared Sony FX3/Ektachrome E100 paired chart source"
+}
