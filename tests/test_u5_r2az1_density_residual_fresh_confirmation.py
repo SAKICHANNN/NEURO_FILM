@@ -6,6 +6,9 @@ from pathlib import Path
 import pytest
 
 from src.eval.density_residual_fresh_confirmation import validate_contract
+from src.eval.density_residual_fresh_visual import (
+    build_fresh_visual_evidence,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,3 +68,34 @@ def test_az1_rejects_strength_drift() -> None:
     config["candidate"]["opponent_strength"] = 0.36
     with pytest.raises(ValueError, match="frozen boundary drift"):
         validate_contract(ROOT, config)
+
+
+def test_az1_visual_builder_is_repeat_deterministic(tmp_path: Path) -> None:
+    config = json.loads(
+        (
+            ROOT
+            / "configs/u5_r2az1_density_residual_fresh_confirmation_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    candidate_dir = (
+        ROOT
+        / "outputs/u5_r2az1_density_residual_fresh_confirmation_v1/run_a"
+    )
+    first = build_fresh_visual_evidence(
+        root=ROOT,
+        config=config,
+        candidate_dir=candidate_dir,
+        output_dir=tmp_path / "first",
+    )
+    second = build_fresh_visual_evidence(
+        root=ROOT,
+        config=config,
+        candidate_dir=candidate_dir,
+        output_dir=tmp_path / "second",
+    )
+    assert first["private_mapping_sha256"] == second[
+        "private_mapping_sha256"
+    ]
+    assert [row["sha256"] for row in first["blind_sheets"]] == [
+        row["sha256"] for row in second["blind_sheets"]
+    ]
