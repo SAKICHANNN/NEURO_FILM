@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2ax13_filmmatch_degree5_strength_cap_decision.v1",
+  "experiment_id": "u5.r2ax13-filmmatch-degree5-strength-cap-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/degree5_strength_cap_report.json",
+  "report_sha256": "af5d4cbd270342b9a2a6829a1d0e6e3cd265b3f275bbf141ff2e65b6d7a487a5",
+  "stable_evidence_id": "99a24d6596aa714910c1d32e5eec2c4a36013991aeedc7e99254b9ba61b861e7",
+  "exact_repeat_passed": true,
+  "development_readout_passed": true,
+  "selected_candidate": "degree5_ridge10_cap070",
+  "selected_residual_strength": 0.7,
+  "held_group_summary": {
+    "reflective_improvement_over_identity": 0.6881654692169921,
+    "reflective_improvement_over_affine": 0.5000802363291117,
+    "emissive_hue_improvement_over_identity": 0.1898879449691796,
+    "emissive_hue_win_count": 5,
+    "worst_emissive_hue_improvement": -0.0443001817928661,
+    "minimum_sampled_composite_jacobian_determinant": 0.0022402958508433574
+  },
+  "decision": "development_pass_open_dense_safety_for_fixed_cap070_operator",
+  "promotion_opened": false,
+  "claim_ceiling": "development-only held-group evidence for one capped code-domain FilmMatch Look Approximation; no calibrated stock response, fresh confirmation or product promotion"
+}

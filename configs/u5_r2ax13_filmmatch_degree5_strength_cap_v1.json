@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2ax13_filmmatch_degree5_strength_cap.v1",
+  "report_schema": "neuro_film.u5_r2ax13_filmmatch_degree5_strength_cap.v1",
+  "experiment_id": "u5.r2ax13-filmmatch-degree5-strength-cap-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX13",
+  "parent": {
+    "decision": "configs/u5_r2ax12_filmmatch_degree5_dense_safety_decision_v1.json",
+    "decision_sha256": "babe35dc97031c5b047b8b59dbeaa5b7083e2729876449e083ae751afabfb5fd",
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json"
+  },
+  "parent_capacity": {
+    "reflective_identity_median_rmse": 0.13273110112207398,
+    "reflective_affine_median_rmse": 0.0827935673812693,
+    "emissive_identity_median_rmse": 0.1314015323671596
+  },
+  "candidate": {
+    "family": "fixed_degree5_residual_strength_cap",
+    "variants": [
+      {"id": "degree5_ridge10_cap070", "emissive_loss_share": 0.75, "residual_degree": 5, "residual_identity_ridge": 1.0, "residual_strength_cap": 0.7},
+      {"id": "degree5_ridge10_cap065", "emissive_loss_share": 0.75, "residual_degree": 5, "residual_identity_ridge": 1.0, "residual_strength_cap": 0.65},
+      {"id": "degree5_ridge10_cap060", "emissive_loss_share": 0.75, "residual_degree": 5, "residual_identity_ridge": 1.0, "residual_strength_cap": 0.6}
+    ],
+    "fit": {
+      "segment_count": 9,
+      "curve_learned_mixture": 0.75,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730,
+      "residual_degree": 5,
+      "residual_identity_ridge": 1.0,
+      "jacobian_floor": 0.0001,
+      "safety_grid_size": 13,
+      "strength_steps": 101,
+      "maximum_residual_iterations": 700
+    }
+  },
+  "development_readout": {
+    "minimum_reflective_improvement_over_identity": 0.4,
+    "minimum_reflective_improvement_over_affine": 0.15,
+    "minimum_emissive_improvement_over_identity": 0.05,
+    "minimum_emissive_hue_win_count": 5,
+    "minimum_worst_emissive_hue_improvement": -0.1
+  },
+  "gates": {
+    "strength_cap_is_frozen_before_result": true,
+    "automatic_safety_threshold_relaxation_allowed": false,
+    "capacity_expansion_allowed": false,
+    "validation_target_fit_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only strength-cap challenge for one code-domain FilmMatch Look Approximation; no calibrated stock response, fresh confirmation or product promotion"
+}

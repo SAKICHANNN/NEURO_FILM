@@ -73,6 +73,9 @@ def _fit(
         strength_steps=int(fit["strength_steps"]),
         maximum_residual_iterations=int(fit["maximum_residual_iterations"]),
         sample_weights=sample_weights,
+        residual_strength_cap=float(
+            variant.get("residual_strength_cap", 1.0)
+        ),
     )
 
 

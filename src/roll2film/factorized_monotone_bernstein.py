@@ -93,7 +93,11 @@ def fit_factorized_monotone_bernstein(
     strength_steps: int,
     maximum_residual_iterations: int,
     sample_weights: np.ndarray | None = None,
+    residual_strength_cap: float = 1.0,
 ) -> FactorizedMonotoneBernsteinFitResult:
+    cap = float(residual_strength_cap)
+    if not np.isfinite(cap) or not 0.0 < cap <= 1.0:
+        raise ValueError("residual_strength_cap must be finite in (0, 1]")
     base = fit_generalized_monotone_curve_matrix(
         source,
         target,
@@ -123,8 +127,16 @@ def fit_factorized_monotone_bernstein(
         maximum_iterations=maximum_residual_iterations,
         sample_weights=sample_weights,
     )
+    residual_operator = residual.operator
+    if residual_operator.strength > cap:
+        residual_operator = SafeBernsteinLUTOperator(
+            degree=residual_operator.degree,
+            fitted_control_points=residual_operator.fitted_control_points,
+            strength=cap,
+            jacobian_floor=residual_operator.jacobian_floor,
+        )
     operator = FactorizedMonotoneBernsteinOperator(
-        base=base.operator, residual=residual.operator
+        base=base.operator, residual=residual_operator
     )
     error = operator.apply(source) - target
     return FactorizedMonotoneBernsteinFitResult(
