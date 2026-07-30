@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ba1v-hue-value-residual-visual-observations-v1",
+  "status": "frozen_before_private_mapping_reveal",
+  "reviewer": "autonomous_codex_vision",
+  "blind_choices": {
+    "round_1": {
+      "01": "A",
+      "05": "A",
+      "08": "A",
+      "09": "B",
+      "11": "B",
+      "18": "TIE",
+      "21": "A",
+      "29": "A",
+      "FS_FACE_01": "A"
+    },
+    "round_2": {
+      "01": "A",
+      "05": "A",
+      "08": "A",
+      "09": "B",
+      "11": "B",
+      "18": "TIE",
+      "21": "A",
+      "29": "A",
+      "FS_FACE_01": "A"
+    },
+    "round_3": {
+      "01": "A",
+      "05": "A",
+      "08": "A",
+      "09": "B",
+      "11": "B",
+      "18": "TIE",
+      "21": "A",
+      "29": "A",
+      "FS_FACE_01": "A"
+    }
+  },
+  "full_resolution_candidate_review": {
+    "required_sample_ids": [
+      "01",
+      "05",
+      "08",
+      "09",
+      "11",
+      "18",
+      "21",
+      "29",
+      "FS_FACE_01"
+    ],
+    "reviewed_sample_ids": [
+      "01",
+      "05",
+      "08",
+      "09",
+      "11",
+      "18",
+      "21",
+      "29",
+      "FS_FACE_01"
+    ],
+    "confirmed_severe_artifact_sample_ids": [],
+    "id11_red_speckle_or_posterization_confirmed": false,
+    "notes": {
+      "01": "strong warm/cool separation and edge colour are continuous; no banding, blocks, seams or content corruption",
+      "05": "strong pink-blue water and warm wood remain spatially continuous; no clipping-shaped blocks or posterization",
+      "08": "deep shadows and cyan-orange palette are strong but preserve object and surface structure",
+      "09": "warm wall and cool shadows remain smooth; no visible gradient banding",
+      "11": "no recurrence of the historical red-speckle or posterization failure; fine object edges remain coherent",
+      "18": "existing mottled material texture is strongly revealed but not synthesized into salt-like isolated speckles",
+      "21": "face, text, suit seams and helmet geometry remain intact",
+      "29": "high-contrast structure and flare remain coherent without halos, seams or colour blocks",
+      "FS_FACE_01": "skin, eyes, hair and fine facial detail remain coherent without patching or posterization"
+    }
+  },
+  "confirmed_severe_artifact_count": 0,
+  "mapping_read_before_freeze": false,
+  "claim_ceiling": "autonomous visual development evidence only; not population preference, stock response, calibration or product promotion"
+}
