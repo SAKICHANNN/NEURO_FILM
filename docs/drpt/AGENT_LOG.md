@@ -7879,3 +7879,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Full 1:1 crops have zero confirmed severe failures and no BC0 coloured
   speckles. Close without strength, threshold, round or integration rescue.
   Retain the primitive as mechanically valid research code only.
+
+## 2026-07-28 - U5.R2BD0 acquires a connected chart source but closes exposure fitting
+
+- Froze a Charts-only 2.5 GB acquisition cap, then downloaded and CRC-audited
+  the exact 2,410,038,342-byte Color Precision archive at
+  `6f1ccdb2...cd91a` to the external D-drive data root.
+- The two primary PDFs contain 24 pages for nine named stocks, 12
+  stock/process variants and paired Frontier/Noritsu scanner interpretations.
+  All connectivity gates pass; no other site category or paid profile was
+  accessed.
+- Text labels advertise 168 EV cells, but PDF object metadata has 192 photo
+  placements/191 unique objects and one duplicate placement. Visual inspection
+  confirms the fixed chart setup and material scanner interpretation
+  differences, but does not supply the missing exposure identities.
+- The All Rights Reserved source has no training/redistribution grant. Keep
+  operator fitting, training, LSM, exposure assignment and product claims
+  closed. BD1 may perform only a page-level internal stock-versus-scanner
+  nuisance audit.

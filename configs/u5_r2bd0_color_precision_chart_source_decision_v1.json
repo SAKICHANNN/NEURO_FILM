@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u5-r2bd0-color-precision-chart-source-decision.v1",
+  "experiment_id": "u5.r2bd0-color-precision-chart-source-v1",
+  "contract": "configs/u5_r2bd0_color_precision_chart_source_v1.json",
+  "contract_sha256": "ebda3f52490fdafaf3341f4397a9569437f61f68c5d77948db788f2fcb9a94ba",
+  "archive": {
+    "external_path": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1/Charts-PDFs.zip",
+    "bytes": 2410038342,
+    "sha256": "6f1ccdb2f97bd2eae334057be29f28c2125b5967dd7129ba8efec589bc7cd91a",
+    "archive_report_sha256": "2ed3d4666f12a70bc1645090ad59bbe65e640a2baa2fbfa7f1170f68fb6ddbad",
+    "zip_crc_pass": true,
+    "primary_pdf_count": 2,
+    "primary_pdfs": [
+      {
+        "scanner_id": "frontier",
+        "bytes": 1422900860,
+        "sha256": "e0752ad04b9979245795ff217501b77cd9ec440f8c2aea97569f9541bc2110d8"
+      },
+      {
+        "scanner_id": "noritsu",
+        "bytes": 986816453,
+        "sha256": "0bfdf2b568ebee194ef5de703cf82f7ca8a40e68709d81a2985930b91655e7ef"
+      }
+    ]
+  },
+  "connectivity": {
+    "report_sha256": "069b358b842fb692fd221661ca0e4e02745e73036061d3427d80b357d8143159",
+    "evidence_bundle_id": "dd83638e0f807ffac2b95d2b0399bcc8901313620b015cec5458853dca9372eb",
+    "chart_pages": 24,
+    "named_stocks": 9,
+    "stock_process_variants": 12,
+    "scanners": 2,
+    "advertised_exposure_labels": 168,
+    "cross_scanner_variants": 12,
+    "largest_same_chart_component_rows": 24,
+    "structure_passed": true
+  },
+  "layout_diagnostic": {
+    "embedded_photo_placements": 192,
+    "unique_embedded_photo_objects": 191,
+    "pages_with_exact_label_object_count": 1,
+    "pages_with_duplicate_object_placements": 1,
+    "exposure_assignment_allowed": false,
+    "reason": "Every page advertises seven EV values, while the PDFs contain 192 full-photo placements across 24 pages; only one page has the same unique-object count as its labels and one page reuses an object. Exposure identities cannot be assigned from page text or pixel appearance."
+  },
+  "autonomous_visual_evidence": {
+    "contact_sheet": "D:/neuro_film_external/u5_r2bd0_color_precision_chart_source_v1/thumbs/color_precision_charts_contact.jpg",
+    "observed": [
+      "all 24 pages visibly contain the same chart-and-tabletop setup",
+      "stock/process and scanner headings agree with the extracted text",
+      "scanner interpretation differences are visually substantial and must remain a nuisance/output-profile variable",
+      "the page layouts contain more photo placements than advertised EV labels"
+    ],
+    "population_preference_claimed": false
+  },
+  "rights": {
+    "status": "unknown_all_rights_reserved_no_training_or_redistribution_grant",
+    "allowed_use": "internal_source_integrity_connectivity_and_nuisance_audit_only",
+    "operator_fitting_allowed": false,
+    "training_allowed": false,
+    "latent_mode_clustering_allowed": false,
+    "redistribution_allowed": false
+  },
+  "decision": "retain_internal_scanner_nuisance_source_open_bd1_page_level_identifiability_only",
+  "next_leaf": "U5.R2BD1 preregisters a page-level, exposure-unassigned descriptive audit that asks whether stock/process differences remain distinguishable after treating Frontier/Noritsu as paired nuisance views; it may not fit or publish an operator",
+  "claim_ceiling": "bounded internal source/connectivity evidence for one controlled chart setup across nine named stocks and two scanner interpretations; exposure-to-image identities, reuse rights, stock response, operator fitting, training, calibration, authenticity, product promotion and redistribution remain unestablished"
+}

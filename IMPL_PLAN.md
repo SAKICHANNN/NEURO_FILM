@@ -42,6 +42,15 @@
 > adjudication gives neither fixed effect arm a six-vote round. Close product
 > value without strength or extra-round rescue; retain only the reusable
 > primitive and return to a higher-information physical/color leaf.
+>
+> U5.R2BD0 then acquires the separately frozen public Color Precision Charts
+> archive to an external data root. Exact ZIP/PDF integrity and a low-resolution
+> visual audit establish 24 same-setup pages, nine named stocks, 12
+> stock/process variants and paired Frontier/Noritsu views. However, 192
+> embedded photo placements do not map to the 168 advertised EV labels, and
+> one object is duplicated. Site rights also do not grant training or
+> redistribution. Retain only page-level internal scanner-nuisance evidence;
+> exposure assignment, fitting, LSM and product claims stay closed.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.
