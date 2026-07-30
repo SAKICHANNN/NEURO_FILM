@@ -23,8 +23,11 @@ def evaluate_domain_balanced_validation(
     root: Path,
     output_dir: Path,
 ) -> dict[str, Any]:
-    if parent_report.get("development_champion") != "emissive_share075":
-        raise ValueError("AX5 development champion identity drift")
+    expected_champion = config.get(
+        "expected_development_champion", "emissive_share075"
+    )
+    if parent_report.get("development_champion") != expected_champion:
+        raise ValueError("development champion identity drift")
     operator = FactorizedMonotoneBernsteinOperator.from_dict(
         parent_report["final_fit"]["operator"]
     )
@@ -78,7 +81,10 @@ def evaluate_domain_balanced_validation(
         >= float(gates["minimum_style_rgb_rmse_from_source"])
     )
     report = {
-        "schema": "neuro_film.u5_r2ax6_filmmatch_domain_balanced_validation.v1",
+        "schema": config.get(
+            "report_schema",
+            "neuro_film.u5_r2ax6_filmmatch_domain_balanced_validation.v1",
+        ),
         "experiment_id": config["experiment_id"],
         "operator": operator.to_dict(),
         "outputs": output_sha,

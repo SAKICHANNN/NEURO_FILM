@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2ax12_filmmatch_degree5_dense_safety.v1",
+  "report_schema": "neuro_film.u5_r2ax12_filmmatch_degree5_dense_safety.v1",
+  "experiment_id": "u5.r2ax12-filmmatch-degree5-dense-safety-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AX12",
+  "parent": {
+    "validation_report": "outputs/external_controls/filmmatch_ektachrome_v1/validation_scene_ax11/report.json",
+    "validation_report_sha256": "e3f838d6725c4dc725231339d00975735cb8e1ec663f29dc4f532c4ce9db7752",
+    "operator_report": "outputs/external_controls/filmmatch_ektachrome_v1/residual_degree_ceiling_report.json",
+    "operator_report_sha256": "96928ecc5684c8b48b7db990a27a17a669c0e397f28803571c480e3b232ea6d7",
+    "operator_stable_evidence_id": "584baec7796f6728368b9ce1aa6d4e27cda013ddfec016398916e56c7f346395"
+  },
+  "execution": {
+    "cube_grid_size": 65,
+    "sample_chunk": 8192,
+    "axis_anchors": [0.1, 0.5, 0.9],
+    "gradient_size": 1024,
+    "output": "RGB16 PNG carrying synthetic code-domain values"
+  },
+  "metrics": {
+    "luma_coefficients": [0.2126, 0.7152, 0.0722]
+  },
+  "automatic_gate": {
+    "minimum_jacobian_determinant": 0.0,
+    "maximum_new_interior_boundary_fraction": 0.0,
+    "maximum_ramp_code_jump": 128,
+    "minimum_neutral_luma_step": 0.0
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "review_hue_luma_source_and_candidate": true
+  },
+  "gates": {
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "dense synthetic code-domain numerical and autonomous visual safety evidence for the degree-5 Look Approximation operator; no calibrated stock response, real-image OOD generalization or product promotion"
+}

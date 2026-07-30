@@ -159,7 +159,10 @@ def evaluate_dense_safety_stress(
         >= float(gates["minimum_neutral_luma_step"])
     )
     report = {
-        "schema": "neuro_film.u5_r2ax7_filmmatch_dense_safety_stress.v1",
+        "schema": config.get(
+            "report_schema",
+            "neuro_film.u5_r2ax7_filmmatch_dense_safety_stress.v1",
+        ),
         "experiment_id": config["experiment_id"],
         "operator": operator.to_dict(),
         "automatic_diagnostics": diagnostics,

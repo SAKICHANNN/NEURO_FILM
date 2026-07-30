@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2ax12_filmmatch_degree5_dense_safety_decision.v1",
+  "experiment_id": "u5.r2ax12-filmmatch-degree5-dense-safety-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/dense_safety_ax12/report.json",
+  "report_sha256": "b05cac1cdfb523603667caf0f126179b55772496133f0bd2ef59397983493e94",
+  "stable_evidence_id": "2f8e26dadf3c85af79e9f46c22dd43701e2dc1d69404d693b537734ce6fc791e",
+  "automatic_gate_passed": false,
+  "failed_gate": {
+    "metric": "neutral_luma_min_step",
+    "observed": -6.303793975009908e-08,
+    "required_minimum": 0.0
+  },
+  "autonomous_visual_review": {
+    "opened": false,
+    "reason": "frozen automatic safety gate failed"
+  },
+  "decision": "reject_unbounded_degree5_strength_open_preregistered_strength_cap_candidates",
+  "promotion_opened": false,
+  "claim_ceiling": "dense synthetic rejection of the fixed degree-five Look Approximation operator; no threshold relaxation, calibrated stock response or product promotion"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2ax11_filmmatch_degree5_validation_decision.v1",
+  "experiment_id": "u5.r2ax11-filmmatch-degree5-validation-v1",
+  "report": "outputs/external_controls/filmmatch_ektachrome_v1/validation_scene_ax11/report.json",
+  "report_sha256": "e3f838d6725c4dc725231339d00975735cb8e1ec663f29dc4f532c4ce9db7752",
+  "stable_evidence_id": "b6fd3cb8bafe45b582952a115da277efdecc49d84590b0d98db2299e30302844",
+  "automatic_gate_passed": true,
+  "autonomous_visual_review": {
+    "reviewed_outputs": ["source", "candidate", "target_reference"],
+    "confirmed_severe_artifact": false,
+    "visible_style": true,
+    "observations": [
+      "candidate is visibly stylized while retaining natural red and skin transitions",
+      "no visible posterization, red speckles, colour blocks, geometry damage or text corruption",
+      "faces, object boundaries and colour-card structure remain coherent",
+      "target has materially different crop and film border, so no pixel-accuracy conclusion is permitted"
+    ]
+  },
+  "decision": "pass_single_scene_development_validation_pending_dense_safety",
+  "promotion_opened": false,
+  "claim_ceiling": "single fit-forbidden real-scene autonomous visual evidence for a code-domain Look Approximation; no calibrated stock response, scanner independence, population preference or product promotion"
+}
