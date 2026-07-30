@@ -19,6 +19,14 @@
       "path": "configs/u6_p8a_fixed_reference_profile_compiler_decision_v1.json",
       "sha256": "038cab54c5b7aa4fdbc3c7307b2ade43f58ec272c98ad274df0880109263fc68"
     },
+    "p8b_artifact_consumer": {
+      "path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+      "sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4"
+    },
+    "p8b_artifact_consumer_decision": {
+      "path": "configs/u6_p8b_artifact_only_cpu_consumer_decision_v1.json",
+      "sha256": "7f237d456af61d6cbf7cf58770850614f2109908d2b01602483a8439d9cdde49"
+    },
     "p8bp_fresh_adjudication": {
       "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/adjudication.json",
       "sha256": "a70beb83bcb60d1792ebfe38220102de357c6a7d7b7a68cb4e2ef8d0e93fe6dc"
