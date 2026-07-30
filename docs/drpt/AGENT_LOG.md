@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-30 - U6.4B closes fixed strong photographic diffusion
+
+- The preregistered 18-image/nine-make run passes component bounds, zero new
+  boundaries, luma-mean, maximum-change, visible-change and internal
+  repeat-exact gates.
+- It fails automatically: worst flat-region P99 is `.046892 > .04`, and the
+  fixed isolated-excursion detector counts 47,960 pixels above `.04` versus
+  the zero allowance.
+- Per contract, no visual candidate was reviewed and no strength, scale or
+  threshold rescue is allowed. Retain U6.4A only as generic synthetic
+  representation evidence, separate from film halation.
+
 # 2026-07-30 - U6.4A separates creative diffusion from film halation
 
 - Implemented one deterministic positive six-scale PSF mixture in relative

@@ -7,6 +7,10 @@
 > measurable far tail. This opens only a fixed-profile photographic
 > severe/OOD audit; it is not film halation, Pro-Mist calibration or a product
 > effect.
+> U6.4B then closes the fixed strong photographic profile automatically:
+> component bounds, luma, visibility and repeat pass, but flat-region P99 is
+> `.04689 > .04` and 47,960 frozen isolated excursions exceed zero. Visual
+> review and same-population strength/threshold rescue are forbidden.
 >
 > 2026-07-30: U5.R2AW0-AW9 acquire and audit FilmMatch's exact 140-file
 > Sony/E100 practice source, extract 68 ordered chart pairs, and test bounded

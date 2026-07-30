@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_4b_creative_diffusion_photographic_stress_decision.v1",
+  "experiment_id": "u6.4b-creative-diffusion-photographic-stress-v1",
+  "report": {
+    "path": "outputs/u6_4b_creative_diffusion_photographic_stress_v1/run_a/report.json",
+    "sha256": "6230b3f0c0a42b5b3bdb8c9e076f0e19790ca2916b960c56f2806e79b22a1f54",
+    "stable_evidence_id": "d6a53872b50f4b406fa13523ee4d7c2ecd57e75ec35cfbb4ba1521e1d21eed49"
+  },
+  "automatic_gate_passed": false,
+  "passed_checks": [
+    "component_bounds",
+    "new_boundaries",
+    "luma_mean",
+    "maximum_change",
+    "minimum_visible_change",
+    "repeat"
+  ],
+  "failed_checks": {
+    "flat_regions": {
+      "observed_worst_p99_abs_change": 0.046892017126083374,
+      "maximum_allowed": 0.04
+    },
+    "isolated_excursions": {
+      "observed_total": 47960,
+      "maximum_allowed": 0,
+      "threshold": 0.04
+    }
+  },
+  "supporting_metrics": {
+    "source_count": 18,
+    "camera_make_count": 9,
+    "median_mean_abs_change": 0.003801876213401556,
+    "worst_component_bound_escape": 0.0,
+    "worst_new_hard_boundary_fraction": 0.0,
+    "worst_luma_mean_abs_drift": 8.285045623779297e-6,
+    "worst_maximum_abs_change": 0.1550472378730774,
+    "all_repeat_byte_exact": true
+  },
+  "visual_review_performed": false,
+  "decision": "close_fixed_strong_creative_diffusion_photographic_route_retain_synthetic_representation_only",
+  "forbidden_followups": [
+    "inspect or adjudicate the generated visual candidates",
+    "reduce strength or change scales on the same population",
+    "relax flat-region or isolated-excursion gates",
+    "integrate into the product renderer",
+    "claim film halation or measured optical-filter response"
+  ],
+  "claim_ceiling": "negative fixed-profile photographic automatic evidence for generic creative optical diffusion on 18 CC0 display-derived inputs; not a visual quality finding, film halation, optical-filter calibration, stock response or product result"
+}

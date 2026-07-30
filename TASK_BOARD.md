@@ -305,8 +305,9 @@ reopen is allowed.
 U6.4A now passes one separate generic creative-diffusion representation:
 positive six-scale linear-light scatter preserves constants, neutral channels,
 energy and component bounds in two exact synthetic audits. It is explicitly
-not film halation or a measured filter profile. U6.4B is the next photographic
-severe/OOD leaf before any integration.
+not film halation or a measured filter profile. U6.4B then closes the fixed
+strong photographic route automatically: flat-region and isolated-excursion
+gates fail, so visual review, retuning and integration remain forbidden.
 
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
