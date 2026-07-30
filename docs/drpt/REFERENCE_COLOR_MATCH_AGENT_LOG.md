@@ -4985,3 +4985,27 @@
   records both capabilities as known but unmapped, preserves P172
   `unsupported-decoded-rail`, and copies no RAW/Stage2/native implementation.
   The classification and exact hashes were also sent to the producer task.
+
+## 2026-07-31 - Publish strict P172 main-integration manifest v43
+
+- Node/parent goal: main-integration review handoff for the complete
+  P1-P172 reference-match consumer; no main merge, producer admission or
+  product promotion is performed by this leaf.
+- A real detached merge of main `16d8adb944561ca39b41c509d33863fddc8fb5e5`
+  with the current consumer code payload passes 1,371
+  color/reference-match tests with 30 platform/data skips. The final pinned
+  payload `ae9c983c7c7e84f0436700f8459f266b9bf5f0d3` has 593 changed paths
+  versus 1,833 main paths, zero overlap and merge tree
+  `7df2e74b0b0d74f085c9ca0961e47f891a031751`.
+- The first strict merged `git diff --check` exposed twelve trailing spaces
+  across six historical evidence headers plus one EOF blank line. Commit
+  `ea8a2398` removes only those whitespace defects; no implementation,
+  schema, identity rule or scientific conclusion changes.
+- V43 adds a versioned builder, strict schema, tamper tests and immutable
+  manifest for P172 scene-linear RAW fail-closed evidence. Manifest/schema
+  SHA-256 are `f3b97f9ba8cf0949d10cb366e44d1371ac4108d4868fa3ed0c910ae12bcff11d`
+  and `86d3d05e2a76c4a07cac44213a3ed943908a3070c6919929a07af5dc37948abc`;
+  direct rebuild/schema/tamper verification is 5/5.
+- Claim remains `review-ready-not-merged`. Main owns review and merge; D-PCT
+  R0IX/R0IY remain private Pixel tile/runtime evidence with no consumer
+  interface action.
