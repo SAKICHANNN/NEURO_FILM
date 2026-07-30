@@ -296,6 +296,12 @@ rounds against AO6 colour-only and 5/12 pairwise choices. The frozen
 preference gate fails, so AO6 remains the simpler colour champion and no
 router/default/product promotion opens.
 
+Independent grain confirmation U6.P4Z-P4Z2 is also closed. Three new exact
+CC0 16-bit B&W uniform scans pass source integrity, but the frozen P4T model
+improves radial NPS while worsening short-lag ACF, and P4X's colour-derived
+amplitude scale does not transfer. No T-MAX/Tri-X profile, retune or product
+reopen is allowed.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

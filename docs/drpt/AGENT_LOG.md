@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-30 - U6.P4Z-P4Z2 closes cross-material grain reuse
+
+- Acquired three newly published CC0, 16-bit grayscale, 4000-dpi uniform scans:
+  one T-MAX 100 and two Tri-X 400 frames from the same uploader/scanner. Exact
+  source, ICC, fixed-crop and autonomous visual-integrity gates pass.
+- Two fit-forbidden external reports are byte-identical at
+  `88f3c9e5...be8e`. Frozen P4T improves radial NPS error by 40.39% and the
+  worst scan, but worsens median short-lag ACF error by 54.29% with a 1.522
+  worst ratio.
+- The colour-derived P4X scale produces amplitude `.05465` versus observed
+  `.16149-.18985`; unscaled P4T is `.15206`. This post-result observation
+  cannot authorize a B&W profile or retune.
+- Close one cross-material scanner-convolved grain profile. Preserve the new
+  source and negative evidence; future B&W work requires new development data
+  plus an untouched independent scanner/process group.
+
 # 2026-07-30 - U5.R2AX13-AX17 closes FilmMatch as a global challenger
 
 - Degree-5 FilmMatch required an explicit `.70` residual cap to pass dense

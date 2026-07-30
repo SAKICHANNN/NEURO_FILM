@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4z2_bw_grain_external_confirmation_decision.v1",
+  "experiment_id": "u6.p4z2-bw-grain-external-confirmation-v1",
+  "node": "ULT > U6 > U6.P4Z2",
+  "software_commit": "286102cc",
+  "contract_sha256": "615e462d80ee81ffff46b0e49b41db8cb7b8c08e732462e64192f93973aa22ec",
+  "report_sha256": "88f3c9e54339f85d47a8098f8a2ea25e0490657f17a769a77010984a3219be8e",
+  "repeat_report_sha256": "88f3c9e54339f85d47a8098f8a2ea25e0490657f17a769a77010984a3219be8e",
+  "stable_evidence_id": "35309c3676958276d44371b759cec80146ffbec9ded80d3b5d8a5f70297bac20",
+  "automatic_pass": false,
+  "decision": "close_bw_shape_generalization_and_cross_material_amplitude_reuse",
+  "results": {
+    "p4t_nps_median_improvement_over_p4d": 0.4038781973138317,
+    "p4t_nps_worst_error_ratio": 0.6022336191048561,
+    "p4t_acf_median_improvement_over_p4d": -0.5429199406363261,
+    "p4t_acf_worst_error_ratio": 1.521763810274562,
+    "observed_relative_amplitude_range": [
+      0.16148822209043764,
+      0.18985023119234076
+    ],
+    "p4t_relative_amplitude": 0.15206083623332523,
+    "p4x_relative_amplitude": 0.054645502999699544,
+    "p4x_amplitude_error_improvement_over_p4t": -7.139060501805604,
+    "p4x_nps_improvement_over_reversed_control": 0.9927744107987195,
+    "repeat_exact": true
+  },
+  "interpretation": [
+    "The fixed P4T anisotropy transfers useful radial-frequency shape to the independent B&W scans, improving median NPS error by 40.39% and the worst scan as well.",
+    "The same kernel overshoots short-lag directional correlation: median ACF error worsens 54.29% and the worst error ratio is 1.522. Radial NPS alone would therefore have produced a false promotion.",
+    "The P4X 0.125 amplitude derived from uploader-normalized colour-negative scans does not transfer to uploader-normalized B&W scans. Unscaled P4T amplitude is much closer, but this post-result observation cannot authorize a new profile.",
+    "A single cross-material scanner-convolved grain profile is not supported. Film image structure and scanner nuisance remain entangled, and B&W metallic-silver versus colour dye-cloud branches must stay separate."
+  ],
+  "forbidden_next_actions": [
+    "retune sigma, mixture weight, amplitude, density, crop, lag or threshold on these three B&W scans",
+    "treat nine crops as independent confirmation samples",
+    "create or name a T-MAX 100 or Tri-X 400 profile from this source",
+    "reopen P4Y, P8BP or the current product default",
+    "claim that radial NPS improvement alone validates realistic grain"
+  ],
+  "retained_evidence": [
+    "exact CC0 B&W source and fixed-crop integrity",
+    "positive but insufficient external NPS transfer for the P4T anisotropy",
+    "negative ACF and amplitude evidence requiring separate material/scanner controls"
+  ],
+  "next_leaf": "return to a distinct explicit colour family or independently controlled source; any future B&W grain algorithm must use new development data and reserve an untouched independent scanner/process group",
+  "operator_fitting_allowed": false,
+  "stock_calibration_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Closed fit-forbidden same-scanner B&W external comparison; not stock, process, density, scanner-independent or product calibration"
+}
