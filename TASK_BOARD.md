@@ -419,3 +419,7 @@ Current algorithm leaf: `U5.R2BJ0` adaptive explicit LUT-basis development.
 Contract and primitive tests are frozen; implement and run the unchanged
 three-population audit next. No new data is allowed unless every development
 gate passes.
+
+BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
+win-rate and P95 error improvements. Next: freeze an intrinsically
+cube-preserving residual basis; do not retune or confirm BJ0.

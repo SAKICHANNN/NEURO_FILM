@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bj0-fivek-adaptive-lut-basis-development-v1",
+  "status": "closed_safety_limited_tail_failed",
+  "config": "configs/u5_r2bj0_fivek_adaptive_lut_basis_development_v1.json",
+  "report": "outputs/u5_r2bj0_fivek_adaptive_lut_basis_development_v1/run_a/report.json",
+  "report_sha256": "509ba9f204efd766c707cdbbca8569915ce076782a51b0966d95720d954e82fc",
+  "stable_evidence_id": "17d82a6dc0a486389f5b0865b374b7af29e6652852d1e048b72a9fa3b5086252",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "observed": {
+    "ay0_camera_group_crossfit": {
+      "adaptive_mean_improvement_over_global": 0.144327,
+      "adaptive_win_fraction": 0.796875,
+      "adaptive_p95_ratio": 0.834778,
+      "adaptive_p95_limited_fraction": 0.220714
+    },
+    "ay3_seen_fresh": {
+      "adaptive_mean_improvement_over_global": 0.135996,
+      "adaptive_win_fraction": 0.650794,
+      "adaptive_p95_ratio": 0.983254,
+      "adaptive_p95_limited_fraction": 0.175524
+    },
+    "ay6_seen_confirmation": {
+      "adaptive_mean_improvement_over_global": 0.152417,
+      "adaptive_win_fraction": 0.6875,
+      "adaptive_p95_ratio": 0.841065,
+      "adaptive_p95_limited_fraction": 0.205236
+    }
+  },
+  "decision": "The source-only low-rank explicit LUT predictor has repeatable cross-population predictive value and improves both mean and tail error over one global LUT, but all three populations violate the frozen 10% P95 analytical-limiting gate. The fixed grid, rank, regularization, predictor and residual execution close without tuning or confirmation acquisition.",
+  "forbidden_rescue": [
+    "do not tune grid size, basis rank, shrinkage, smoothness, descriptor, ridge alphas, target, AO6 or the 10% gate on these outcomes",
+    "do not download a new confirmation population for BJ0",
+    "do not run visual review after automatic failure",
+    "do not claim film, stock, calibration, preference or product value"
+  ],
+  "allowed_next": "test a separately preregistered intrinsically cube-preserving explicit operator representation that changes the mathematical residual basis rather than retuning BJ0",
+  "claim_ceiling": "negative development decision for one adaptive explicit LUT-basis predictor with positive digital-retouch prediction evidence but excessive safety-limited tail"
+}

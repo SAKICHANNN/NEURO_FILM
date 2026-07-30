@@ -986,3 +986,9 @@ of eight training-only PCA coefficients. Final pixels remain deterministic
 trilinear LUT execution plus analytical gamut-safe residual scaling. AY0,
 AY3 and AY6 are development-only; only a complete pass can open one new
 disjoint official FiveK confirmation population.
+
+BJ0 is now closed: adaptive LUT prediction improves mean error by
+13.60--15.24% and improves P95 versus the global LUT on all three populations,
+but P95 safety-limited fractions are 17.55--22.07%, above the frozen 10% gate.
+No visual review or new confirmation data opens. A separately preregistered
+intrinsically cube-preserving residual basis is the next legal algorithm leaf.

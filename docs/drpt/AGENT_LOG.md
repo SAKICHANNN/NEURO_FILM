@@ -8065,3 +8065,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   only a complete pass can open one new disjoint FiveK confirmation download.
 - Three primitive/contract tests pass. Implementation and the unchanged
   development run are the next ready work.
+
+## 2026-07-31 - Close U5.R2BJ0 on safety-limited tails
+
+- Implemented and ran the fixed `4^3` residual-LUT/PCA/ridge evaluator twice;
+  reports are byte-identical at `509ba9f2...e82fc`.
+- Adaptive prediction improves mean error by 13.60--15.24%, wins 65.08--79.69%
+  of rows and improves P95 on AY0, AY3 and AY6. Oracle, style, worst and
+  zero-new-boundary gates pass.
+- P95 analytically limited pixels are 17.55--22.07% in all three populations,
+  above the frozen 10% gate. Automatic passage fails, so visual review and new
+  confirmation acquisition are forbidden.
+- The fixed representation closes without tuning. The next legal algorithm
+  leaf may change the residual mathematics to be intrinsically cube
+  preserving; it may not rescue BJ0 by changing its parameters or gates.
