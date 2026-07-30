@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3-boundary-safe-neutral-base-development-v1",
+  "status": "development_pass_fresh_confirmation_required",
+  "supersedes": "configs/u5_r2ay3_boundary_safe_neutral_base_development_decision_v1.json",
+  "reason_for_version": "the final unchanged AO6 stage is now measured explicitly in the frozen boundary score instead of relying on a separate diagnostic",
+  "report_sha256": "b3ec9b1344c1f509f610c6236e0e2633c668a394652effc451386d46a023fe47",
+  "repeat_report_sha256": "b3ec9b1344c1f509f610c6236e0e2633c668a394652effc451386d46a023fe47",
+  "stable_evidence_id": "7d1f84c3d1a4f63a1d101fe673ba1743d608c4198ef9252c67aae71d0bf5b7bd",
+  "automatic_pass": true,
+  "maximum_neutral_or_final_ao6_new_boundary_fraction": 0.0,
+  "all_other_metrics_and_visual_evidence_unchanged": true,
+  "decision": "retain the shared-scale analytical executor as the AY3 development candidate and open only the separately frozen fresh confirmation",
+  "claim_ceiling": "seen-population development evidence for an analytical boundary-safe executor around one bounded explicit neutral photographic parameter predictor before unchanged AO6; not confirmation, film, stock, calibration, preference or product promotion"
+}

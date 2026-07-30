@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ay3s2-fivek-fresh-normalization-support-v1",
+  "status": "pass_fresh_confirmation_ready",
+  "config_sha256": "79896deabe82f52a13d5089dfabd1dd2caaea813f5a21fc6840532b1e4b73371",
+  "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+  "repeat_manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+  "report_sha256": "40a78d9ec7cc1046116148b62c88cf268f94c4a074bfc2b40f023bdd4cb75ec8",
+  "repeat_report_sha256": "40a78d9ec7cc1046116148b62c88cf268f94c4a074bfc2b40f023bdd4cb75ec8",
+  "stable_evidence_id": "bbaf0346889396595938df5cf79173ca8dae1cc1cc803ca88690d2f976dae47b",
+  "automatic_pass": true,
+  "observed": {
+    "eligible_pairs": 63,
+    "rejected_pairs": 1,
+    "camera_models": 21,
+    "largest_camera_share": 0.2222222222222222,
+    "minimum_gradient_correlation": 0.577315,
+    "median_gradient_correlation": 0.889361,
+    "maximum_phase_shift_pixels": 0.45509,
+    "exact_cross_split_duplicates": 0,
+    "perceptual_cross_split_duplicates": 0
+  },
+  "visual_review": {
+    "reviewer": "Codex autonomous vision",
+    "rows": 12,
+    "selection": "lowest alignment correlation plus camera-diverse rows",
+    "sheet_sha256": "dbe1324b7b0af2d5c49069bc5d9fa8e7d7329bdc6aabf7afaeb9a48a53e740d2",
+    "selection_sha256": "a7041dc2d3866cb193d822ca3a2a054539332c5fd7ff0e1f9508c4c24f0faa7d",
+    "confirmed_content_mismatches": 0,
+    "confirmed_severe_failures": 0
+  },
+  "decision": "freeze the 63 exact normalized pairs as a fresh independent content and camera-diverse confirmation population; the one orientation-mismatched row remains rejected and is not substituted",
+  "allowed_next": "run the unchanged AY0 predictor, AY3 analytical executor and fixed AO6 exactly once under a separately frozen confirmatory contract",
+  "forbidden_next": [
+    "per-image registration, manual crop or row substitution",
+    "feature, alpha, parameter, epsilon, capacity, threshold or AO6 changes",
+    "film, stock, calibration or product claim"
+  ],
+  "claim_ceiling": "data-only deterministic normalization, content alignment, camera support and leakage evidence for fresh FiveK digital-retouch pairs; no operator, film, stock, calibration, preference or product claim"
+}
