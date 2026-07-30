@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u5_r2aw7_filmmatch_selective_oracle.v1",
+  "experiment_id": "u5.r2aw7-filmmatch-selective-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW7",
+  "parent": {
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/exposure_regime_oracle_report.json",
+    "report_sha256": "e890fee2d764f0fa22788dc10016dd08685ae6a0eb7398c4e8e5c4aa7cf70354",
+    "stable_evidence_id": "82f7da89cb8a6847384b96b8d826ae51aac3a4ef099bdffc02dce095b76deef1"
+  },
+  "disclosure": {
+    "status": "post_aw6_mechanism_diagnostic",
+    "aw6_results_seen_before_threshold": true,
+    "confirmatory_claim_allowed": false,
+    "purpose": "decide whether a sparse high-confidence router pilot has enough evaluator-Oracle value to justify implementation"
+  },
+  "selective_policy": {
+    "minimum_exposure_ev": 2,
+    "eligible_action": "positive_exposure_regime_expert",
+    "ineligible_action": "global_operator"
+  },
+  "selective_oracle_gate": {
+    "minimum_eligible_folds": 12,
+    "minimum_eligible_win_fraction": 0.75,
+    "minimum_eligible_median_improvement": 0.1,
+    "minimum_eligible_worst_improvement": -0.1
+  },
+  "gates": {
+    "luma_proxy_router_training_allowed_only_if_passes": true,
+    "validation_or_promotion_allowed": false,
+    "physical_exposure_claim_allowed": false
+  },
+  "claim_ceiling": "post-development selective evaluator-Oracle diagnostic for known high positive exposures with global fallback; not confirmatory, no inferred exposure, film mode, calibrated response, router validation or product promotion"
+}

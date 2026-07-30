@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
+import re
 from typing import Any
 
 import numpy as np
@@ -284,9 +285,69 @@ def evaluate_exposure_regime_oracle(
     return report
 
 
+def evaluate_selective_high_exposure_oracle(
+    parent_report: Mapping[str, Any],
+    config: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Test sparse use of the existing positive-regime expert."""
+
+    minimum_ev = int(config["selective_policy"]["minimum_exposure_ev"])
+    eligible = []
+    for row in parent_report["folds"]:
+        match = re.search(r"\|ev=([+-]\d+)$", str(row["held_group"]))
+        if match is None:
+            raise ValueError("parent held-group exposure identity drift")
+        exposure_ev = int(match.group(1))
+        if exposure_ev >= minimum_ev:
+            eligible.append(
+                {
+                    "held_group": row["held_group"],
+                    "exposure_ev": exposure_ev,
+                    "improvement_over_global": row[
+                        "expert_improvement_over_global"
+                    ],
+                }
+            )
+    improvements = np.asarray(
+        [row["improvement_over_global"] for row in eligible]
+    )
+    aggregate = {
+        "eligible_folds": len(eligible),
+        "eligible_win_fraction": float(np.mean(improvements > 0.0)),
+        "eligible_median_improvement": float(np.median(improvements)),
+        "eligible_worst_improvement": float(np.min(improvements)),
+        "fallback_folds": int(len(parent_report["folds"]) - len(eligible)),
+        "fallback_policy": "global_operator",
+    }
+    gates = config["selective_oracle_gate"]
+    passed = bool(
+        len(eligible) >= int(gates["minimum_eligible_folds"])
+        and aggregate["eligible_win_fraction"]
+        >= float(gates["minimum_eligible_win_fraction"])
+        and aggregate["eligible_median_improvement"]
+        >= float(gates["minimum_eligible_median_improvement"])
+        and aggregate["eligible_worst_improvement"]
+        >= float(gates["minimum_eligible_worst_improvement"])
+    )
+    report = {
+        "schema": "neuro_film.u5_r2aw7_filmmatch_selective_oracle.v1",
+        "experiment_id": config["experiment_id"],
+        "eligible_folds": eligible,
+        "aggregate": aggregate,
+        "selective_oracle_gate_passed": passed,
+        "luma_proxy_router_pilot_opened": passed,
+        "promotion_opened": False,
+        "disclosure": config["disclosure"],
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    report["stable_evidence_id"] = canonical_sha256(report)
+    return report
+
+
 __all__ = [
     "evaluate_condition_oracle",
     "evaluate_exposure_oracle",
     "evaluate_exposure_regime_oracle",
+    "evaluate_selective_high_exposure_oracle",
     "exposure_regime",
 ]
