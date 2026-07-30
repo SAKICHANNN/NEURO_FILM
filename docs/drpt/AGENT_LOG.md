@@ -7938,6 +7938,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the source only for scanner-nuisance stress. No EV assignment,
   operator fitting, training, LSM, product extraction or redistribution opens.
 
+## 2026-07-30 - U6.P8BQ finds a censored physical-arm Oracle hint
+
+- Bound the P7F challenger, its compiled standalone bundle and the frozen P8BP
+  fresh observations by exact SHA-256; no output was rerendered and no new
+  visual round was added.
+- The P7F development per-source observed Oracle is 20/27 versus AO6 13/27.
+  Fresh P8BP is only 9/27 versus 7/27 and selects physical for 2/9 sources.
+- B0 wins 15/27 fresh rounds, leaving AO6-versus-physical runner-up order
+  unknown. The complete-pairwise gate therefore fails despite the two-vote
+  observed hint.
+- Decision: no imputation, router, selector training, P8BP reopen or product
+  change. AO6 remains the global colour champion.
+
 ## 2026-07-30 - Close U5.R2BE0 registered FilmMatch case bank
 
 - Added a deterministic SIFT/RANSAC same-scene evaluator and fitted global,

@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> U6.P8BQ performs a hash-bound retrospective Oracle diagnostic without
+> reopening P8BP or adding visual rounds. The P7F development observations
+> have a 20/27 per-source Oracle versus AO6's 13/27. On the fresh P8BP
+> population the observed Oracle is only 9/27 versus 7/27 and 15/27 rounds
+> are censored by a B0 win, so the AO6/physical runner-up order is unknown.
+> The complete-pairwise gate fails: no selector/router opens and AO6 remains
+> the simpler global colour champion.
+>
 > U5.R2BG0 then audits an emerging same-scene plus/minus-two film catalogue
 > without requesting images. Two exact runs find 27 stock pages but only two
 > complete five-frame filename groups, below the frozen five-stock gate; only
