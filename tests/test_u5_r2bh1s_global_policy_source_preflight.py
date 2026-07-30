@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bh1s_global_policy_source_preflight_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json"
+)
 PRIOR_CONFIGS = (
     ROOT / "configs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1.json",
     ROOT / "configs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1.json",
@@ -91,3 +95,21 @@ def test_bh1s_selection_excludes_obvious_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bh1s_decision_opens_only_fixed_global_policy_confirmation() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert result["eligible_rows"] == 12
+    assert result["eligible_camera_makes"] == 12
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert not result["replacement_rows_added"]
+    assert not result["fixed_decode_failures"]
+    assert not result["fixed_visual_decode_failures"]
+    assert len(result["fixed_orientation_stress_rows"]) == 3
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert "fixed B0 and fixed AO6" in decision["next_leaf"]
+    assert "without fitting or retuning" in decision["next_leaf"]

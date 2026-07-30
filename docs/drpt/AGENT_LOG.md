@@ -2,6 +2,19 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U5.R2BH1S opens fixed global-policy confirmation
+
+- Re-ran the frozen 12-source CC0 RAW preflight after the data-tree migration
+  to `O:\neuro_film_storage\data`; both the manifest and automatic report
+  identities remain exact.
+- All 12 sources from 12 camera makes are eligible. There are no within-pool or
+  tracked-pool exact/dHash<=4 pairs, near-empty rows or confirmed severe source
+  artifacts. LG, Apple and Leica remain explicit orientation-stress rows.
+- The visual decision is source eligibility only; it is not film truth,
+  preference evidence, stock calibration or universal safety.
+- U5.R2BH1 may now render only fixed B0 and fixed AO6 t15/c35 on these sources,
+  without fitting, retuning, routing or dense blending.
+
 # 2026-07-28 - U5.R2BH0 complete fixed-bank Oracle closes routing
 
 - Implemented bounded-memory exact execution for fixed B0, AO6 t15/c35,
