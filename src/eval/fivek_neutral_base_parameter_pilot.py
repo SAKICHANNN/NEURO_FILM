@@ -17,6 +17,7 @@ from scripts.build_fivek_freeze_pack import (
     load_expert_icc_srgb,
     load_raw_default,
     filtered_target,
+    resize_to_shape,
 )
 
 
@@ -344,9 +345,7 @@ def run_pilot(
             root / row["expert_path"], int(config["decode"]["maximum_side"])
         )
         if expert.shape != raw.shape:
-            raise FiveKNeutralBasePilotError(
-                f"pair shape mismatch: {row['pair_id']}"
-            )
+            expert = resize_to_shape(expert, raw.shape[:2])
         target = filtered_target(raw, expert, target_policy)
         parameters, success = _fit_parameters(raw, target, config)
         oracle = apply_neutral_base(raw, parameters)

@@ -31,6 +31,7 @@ def test_ay0_contract_binds_source_and_forbids_direct_rgb() -> None:
     validate_contract(ROOT, config)
     assert config["operator"]["direct_final_rgb_learning_forbidden"] is True
     assert config["evaluation"]["outer_split"].startswith("five-fold")
+    assert "expert-to-RAW-visible-shape" in config["decode"]["pair_alignment"]
     assert any("neural" in row for row in config["forbidden_rescues"])
 
 
