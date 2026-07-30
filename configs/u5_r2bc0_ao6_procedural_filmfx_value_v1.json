@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bc0-ao6-procedural-filmfx-value-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BC0",
+  "status": "contract_frozen_before_render",
+  "question": "Do already-shipped deterministic procedural grain and simple halation add visible film-like product value to fixed AO6 colour without introducing severe artifacts?",
+  "parent": {
+    "decision_path": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_decision_v1.json",
+    "decision_sha256": "e4e616e7ff03777ecfd69752b081e4750361a265877f64d4ad6add444a72c80f",
+    "reuse_boundary": "AO7 remains closed for colour promotion; this is a new downstream effect-only ablation and does not refit or reinterpret AO6"
+  },
+  "population": {
+    "source": "the exact 16 CC0 RAW-derived AO7 confirmation rows",
+    "base_directory": "outputs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1/run_a/b0_plus_film_t15_c35",
+    "base_inventory_sha256": "82e04b9f10c7af137cbc38a635df2c922174dfb5c83c2a9dfcd03a5eb1ca7bba",
+    "expected_ids": [
+      "canon_eos_1d_mark_iv",
+      "canon_eos_kiss_f",
+      "fujifilm_finepix_s5000",
+      "kodak_dcs_pro_14n",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "nikon_d200",
+      "nikon_d2x",
+      "olympus_e_p7",
+      "olympus_sp550uz",
+      "panasonic_dmc_fz100",
+      "panasonic_dmc_gf2",
+      "pentax_k100d_super",
+      "pentax_k_r",
+      "sony_dslr_a290",
+      "sony_nex_3n"
+    ]
+  },
+  "arms": [
+    {
+      "id": "fixed_ao6_colour_only_t15_c35",
+      "grain_strength": 0.0,
+      "halation_strength": 0.0
+    },
+    {
+      "id": "ao6_plus_mono_grain_012",
+      "grain_strength": 0.012,
+      "grain_color": false,
+      "halation_strength": 0.0
+    },
+    {
+      "id": "ao6_plus_mono_grain_012_simple_halation_014",
+      "grain_strength": 0.012,
+      "grain_color": false,
+      "halation_strength": 0.14
+    }
+  ],
+  "execution": {
+    "seed": 320260728,
+    "seed_rule": "seed + sorted_sample_index * 1009",
+    "output_margin_srgb8_codes": 4,
+    "png_compress_level": 6,
+    "effect_order": [
+      "monochrome_grain_residual",
+      "simple_halation_screen"
+    ]
+  },
+  "automatic_gates": {
+    "repeat_byte_identical": true,
+    "maximum_new_raw_clipping_fraction": 0.0,
+    "minimum_median_changed_pixel_fraction_grain": 0.5,
+    "minimum_halation_supported_rows": 4,
+    "maximum_grain_high_frequency_chroma_p999": 0.004
+  },
+  "visual_gate": {
+    "population_size": 9,
+    "selection": "first nine sorted IDs fixed before render",
+    "rounds": 3,
+    "candidate_preference_threshold_per_round": 6,
+    "required_passing_rounds": 2,
+    "severe_artifact_veto": true,
+    "comparison": "rank colour-only, grain-only and grain-plus-halation for film-like style and appeal; record severe artifacts separately"
+  },
+  "branches": {
+    "automatic_fail": "close the failing arm without visual review or parameter rescue",
+    "severe_fail": "reject the failing arm regardless of style preference",
+    "grain_wins": "retain grain-only as a downstream product-value challenger and require fresh-population confirmation",
+    "full_wins": "retain grain-plus-halation as a downstream product-value challenger and require fresh-population confirmation",
+    "no_effect_wins": "keep AO6 colour-only and close these fixed procedural settings"
+  },
+  "forbidden": [
+    "change effect parameters after seeing outputs",
+    "use effects to reopen AO7 colour promotion",
+    "claim measured grain, measured halation, stock response or calibration",
+    "treat autonomous layouts as population preference",
+    "integrate a default before independent confirmation"
+  ],
+  "claim_ceiling": "effect-only autonomous development ablation on fixed AO6 Look Approximation outputs; not stock response, calibrated film physics, population preference or product promotion"
+}
