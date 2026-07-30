@@ -3,7 +3,7 @@
   "experiment_id": "u5.r2ay3s2-fivek-fresh-normalization-support-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2AY3S2",
   "status": "contract_frozen_implementation_ready",
-  "software_commit_at_freeze": "7a2ee54e8923055b40946612113269a435132edb",
+  "software_commit_at_freeze": "7a2ee54e61e1d4ffaa30dc349d65792a91227511",
   "hypothesis": "the exact owned fresh FiveK DNG and Expert-C files can be converted into at least 60 deterministic content-aligned sRGB16 pairs with sufficient camera support and zero cross-split leakage, without fitting any colour operator",
   "parent_acquisition": {
     "config": "configs/u5_r2ay3s1_fivek_fresh_pair_acquisition_v1.json",
@@ -49,8 +49,9 @@
     "maximum_absolute_phase_shift_pixels": 8.0
   },
   "support_and_leakage": {
-    "development_manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
-    "development_manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "existing_128_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "existing_128_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "existing_rows": 128,
     "maximum_cross_split_dhash_hamming": 4,
     "minimum_eligible_pairs": 60,
     "minimum_camera_models": 8,
