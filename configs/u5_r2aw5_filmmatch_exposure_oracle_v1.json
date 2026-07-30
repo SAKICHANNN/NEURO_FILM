@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u5_r2aw5_filmmatch_exposure_oracle.v1",
+  "experiment_id": "u5.r2aw5-filmmatch-exposure-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AW5",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "oracle_report": "outputs/external_controls/filmmatch_ektachrome_v1/condition_oracle_report.json",
+    "oracle_report_sha256": "a4c4db1978ea71fe1e3628d587c05fe0ef6fde5f1a6fcca4f541011b048dacf9",
+    "oracle_stable_evidence_id": "1f19be204f2f848b5c5fa6d234f6b80085f9d2c149ab02de9aa9238549dc758b"
+  },
+  "candidate": {
+    "operator": "monotone_curves_positive_matrix",
+    "expert_key": "author-declared controlled exposure EV",
+    "fit": {
+      "curve_identity_mixture": 0.25,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260730
+    }
+  },
+  "cross_validation": {
+    "held_group": "one complete illuminant and exposure frame",
+    "correct_expert": "same exposure EV from the other two illuminants",
+    "global_control": "all other exposure and illuminant frames",
+    "held_patches": 164,
+    "same_exposure_development_patches": 328
+  },
+  "oracle_gate": {
+    "minimum_median_improvement": 0.1,
+    "minimum_win_fraction": 0.6666666666666666,
+    "minimum_worst_improvement": -0.1
+  },
+  "gates": {
+    "exposure_metadata_required": true,
+    "exposure_inference_allowed": false,
+    "router_training_allowed": false,
+    "film_mode_claim_allowed": false,
+    "validation_render_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only evaluator Oracle for known controlled exposure labels inside one author-prepared paired session; no inferred exposure, latent stock mode, calibrated Ektachrome response, router, validation or product promotion"
+}
