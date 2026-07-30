@@ -46,6 +46,11 @@ from .reversal_development import (
     reversal_development_contract,
     reversal_development_identity,
 )
+from .response_bounded_exposure import (
+    ResponseBoundedExposure,
+    apply_response_bounded_exposure_residual,
+    scan_transmittance,
+)
 from .reference_scatter import (
     REFERENCE_SCATTER_SCHEMA,
     ReferenceScatterProfile,
@@ -334,6 +339,9 @@ __all__ = [
     "render_marginal_region",
     "reversal_development_contract",
     "reversal_development_identity",
+    "ResponseBoundedExposure",
+    "apply_response_bounded_exposure_residual",
+    "scan_transmittance",
     "required_scanner_halo",
     "scene_exposure_from_working_image",
     "scan_interpretation_medium",
