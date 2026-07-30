@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u5-r2bd1-color-precision-page-identifiability-decision.v1",
+  "experiment_id": "u5.r2bd1-color-precision-page-identifiability-v1",
+  "contract": "configs/u5_r2bd1_color_precision_page_identifiability_v1.json",
+  "contract_sha256": "25d2ef7c65b3a9729d73947a358563e875ae8847c461dc4397e65e4fe7934769",
+  "source": {
+    "selected_unique_photo_objects": 191,
+    "extracted_pdf_objects": 240,
+    "extracted_bytes": 1660230246,
+    "extraction_inventory_id": "3fdd9481ffe347db5a027d63e523e099cd899b56f56f6942ff917f25a7ab2686",
+    "page_bags": 24,
+    "stock_process_variants": 12,
+    "scanners": 2,
+    "embedded_profile_semantics": "not_preserved_or_proven_by_pdfimages_png_output",
+    "decoded_pixel_label": "display_proxy_unknown_embedded_icc_interpretation"
+  },
+  "repeatability": {
+    "runs": 2,
+    "reports_byte_identical": true,
+    "report_sha256": "6a56d2849e71daab31cfa7e6fddefa52c4dbe13cbdebd31976690b5d7df541f7",
+    "stable_evidence_id": "164a34510fff9d14903cfaa92b51d30022e43ee2dc07a05f7a2555580e52f9b3"
+  },
+  "metrics": {
+    "raw": {
+      "symmetric_cross_scanner_top1_accuracy": 0.20833333333333334,
+      "median_correct_cross_scanner_rank": 4.5,
+      "same_over_wrong_distance_ratio": 0.8857476709844875,
+      "permutation_p": 0.0386,
+      "passed": false
+    },
+    "basic_normalized": {
+      "symmetric_cross_scanner_top1_accuracy": 0.3333333333333333,
+      "median_correct_cross_scanner_rank": 2.5,
+      "same_over_wrong_distance_ratio": 0.8091587134886032,
+      "permutation_p": 0.0001,
+      "passed": false
+    }
+  },
+  "frozen_gate_result": "both_fail",
+  "interpretation": [
+    "The normalized descriptor retains a statistically detectable paired-distance signal, but this is not sufficient 12-way stock/process identification.",
+    "Neither raw nor basic-normalized page-bag descriptors meet the frozen top-1, rank and distance-ratio gates.",
+    "Scanner interpretation, unknown PDF colour semantics and the unassigned exposure mixture remain material nuisance variables.",
+    "The source is not eligible for stock learning, operator fitting, training or latent-mode discovery."
+  ],
+  "decision": "close_for_stock_learning_and_retain_scanner_nuisance_stress_only",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "latent_mode_clustering_allowed": false,
+  "exposure_assignment_allowed": false,
+  "product_profile_extraction_allowed": false,
+  "redistribution_allowed": false,
+  "claim_ceiling": "repeatable single-source scanner-nuisance diagnostic on one fixed chart setup; no exposure-resolved mapping, independently generalized stock signal, operator, training, stock response, calibration, authenticity, product promotion, embedded-profile interpretation or redistribution right"
+}

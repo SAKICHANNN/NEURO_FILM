@@ -7897,3 +7897,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator fitting, training, LSM, exposure assignment and product claims
   closed. BD1 may perform only a page-level internal stock-versus-scanner
   nuisance audit.
+
+## 2026-07-28 - U5.R2BD1 closes Color Precision stock identification
+
+- Froze the page-bag contract before full extraction, including exact PDF and
+  Poppler identities, exposure non-assignment, rights and claim boundaries.
+- Extracted 240 PDF objects/1,660,230,246 bytes to the owned external data
+  root; 191 unique full-photo objects form 24 page bags/12 variants/two
+  scanners. Poppler output has no preserved/proven embedded ICC semantics.
+- Two reports are byte-identical at `6a56d284...541f7`. Raw symmetric top-1 is
+  20.83% (rank 4.5, ratio .8857); basic-normalized is 33.33% (rank 2.5, ratio
+  .8092). Both fail the frozen identification gates.
+- Retain the source only for scanner-nuisance stress. No EV assignment,
+  operator fitting, training, LSM, product extraction or redistribution opens.

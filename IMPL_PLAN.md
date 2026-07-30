@@ -51,6 +51,12 @@
 > one object is duplicated. Site rights also do not grant training or
 > redistribution. Retain only page-level internal scanner-nuisance evidence;
 > exposure assignment, fitting, LSM and product claims stay closed.
+>
+> U5.R2BD1 then tests all 24 pages as exposure-unassigned bags. Two exact
+> reports retain only 20.83% raw and 33.33% basic-normalized symmetric
+> cross-scanner top-1 accuracy; both miss the frozen rank and distance gates.
+> Close stock learning on this source. Its remaining value is a controlled
+> scanner-nuisance stress set, not an operator teacher.
 
 > 2026-07-30: U6.4A separates downstream creative/lens diffusion from
 > film-layer halation with a positive six-scale linear-light PSF mixture.

@@ -175,3 +175,25 @@ def test_page_bag_requires_exact_label_identity(tmp_path: Path) -> None:
         ColorPrecisionPageIdentifiabilityError, match="page identities"
     ):
         aggregate_page_bags(rows, [], resize=(256, 256))
+
+
+def test_frozen_decision_closes_stock_learning() -> None:
+    decision = json.loads(
+        (
+            ROOT
+            / "configs/"
+            "u5_r2bd1_color_precision_page_identifiability_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["repeatability"]["reports_byte_identical"] is True
+    assert decision["source"]["selected_unique_photo_objects"] == 191
+    assert decision["metrics"]["raw"][
+        "symmetric_cross_scanner_top1_accuracy"
+    ] == pytest.approx(5 / 24)
+    assert decision["metrics"]["basic_normalized"][
+        "symmetric_cross_scanner_top1_accuracy"
+    ] == pytest.approx(8 / 24)
+    assert decision["frozen_gate_result"] == "both_fail"
+    assert decision["operator_fitting_allowed"] is False
+    assert decision["training_allowed"] is False
+    assert decision["latent_mode_clustering_allowed"] is False
