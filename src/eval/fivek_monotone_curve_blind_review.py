@@ -255,9 +255,9 @@ def build_packs(
         public_rounds.append(
             {
                 "round": round_index,
-                "image": image_path.as_posix(),
+                "image": image_path.name,
                 "image_sha256": _sha256(image_path),
-                "blind_manifest": public_path.as_posix(),
+                "blind_manifest": public_path.name,
                 "blind_manifest_sha256": _sha256(public_path),
             }
         )
@@ -282,7 +282,7 @@ def build_packs(
         "experiment_id": config["experiment_id"],
         "selected_pair_count": len(rows),
         "rounds": public_rounds,
-        "private_key": key_path.as_posix(),
+        "private_key": key_path.name,
         "private_key_sha256": _sha256(key_path),
         "claim_ceiling": config["claim_ceiling"],
     }
