@@ -138,7 +138,9 @@ class EncodedSafeLogChromaFilmResponse:
         residual = (encoded_candidate - encoded) * amount
         positive = residual > 0.0
         negative = residual < 0.0
-        with np.errstate(divide="ignore", invalid="ignore"):
+        # Infinite scale is the intended result for a zero/tiny residual;
+        # np.where evaluates both branches, so suppress benign overflow too.
+        with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
             upper = np.where(
                 positive,
                 (1.0 - self.encoded_margin - encoded) / residual,
