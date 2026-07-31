@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4ah_covariance_moment_lod_decision.v1",
+  "experiment_id": "u6.p4ah-covariance-moment-lod-v1",
+  "decision": "retain_covariance_moment_synthetic_lod_candidate",
+  "report_sha256": "a7c9c757f0e4d2994a0265c83badec7a959c18834d8a72ae8ea0015e9dd02b88",
+  "stable_evidence_id": "c1987a55c8770823999092c4d37afe83bf4629a7e5a214ccb1183c6970bde0ea",
+  "passed": true,
+  "metrics": {
+    "factor2_variance_scale": 0.5777486595111011,
+    "factor4_variance_scale": 0.2200442414859566,
+    "maximum_mean_density_absolute_error": 1.6565074474783614e-05,
+    "minimum_variance_ratio": 0.9859096846197037,
+    "maximum_variance_ratio": 1.0171311035456776,
+    "maximum_lag1_acf_absolute_error": 0.2149439636853072,
+    "median_variance_error_improvement_over_direct": 0.9854108739576777,
+    "worst_variance_error_improvement_over_direct": 0.9833395885631573,
+    "median_variance_error_improvement_over_unscaled": 0.9821378892244608,
+    "density_transmittance_domain": true,
+    "repeat_exact": true
+  },
+  "interpretation": "The exact discrete-Gaussian block covariance provides the missing no-fit area variance factor. On frozen flat fields it preserves density mean, variance, ACF tolerance, physical domain and repeat identity while strongly outperforming both P4AG controls. This is a first-order moment approximation to the nonlinear gamma-copula field, not an exact area renderer.",
+  "branch_action": "Open only a separately frozen nonstationary, seam and scale audit using the unchanged analytic factors. Do not access photographs or integrate the runtime.",
+  "claim_ceiling": "No-fit first-order covariance moment approximation for synthetic P4AF area averaging on fixed flat fields; not exact nonlinear gamma-copula LOD, measured grain, photographic quality, stock response, calibration or product evidence."
+}
