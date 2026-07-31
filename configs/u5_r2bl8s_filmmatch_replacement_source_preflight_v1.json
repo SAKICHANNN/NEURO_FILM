@@ -1,0 +1,100 @@
+{
+  "schema": "neuro_film.u5_r2bl8s_filmmatch_replacement_source_preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl8s-filmmatch-replacement-source-preflight-v1",
+  "node": "ULT > U5 > U5.R2BL8S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2bl7s_filmmatch_fresh_source_preflight_decision_v1.json",
+    "sha256": "735bcb14d3257679818ef2238a532a23d7c1e6d25787e2cda2fb7c971526f965",
+    "required_decision": "close_bl7s_open_explicit_replacement_source_leaf"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-08-01",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "purpose": "replacement genuinely fresh digital-photo population for fixed BL5 strict-interior versus fixed AO6 confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "retain the thirteen BL7S hash-clean decoded rows with no prior-pool dHash<=4 match; replace two decode failures and three leaking rows with five metadata-only CC0 rows from unseen repository IDs, raw hashes, makes and make-model pairs; no image appearance used for replacement selection",
+    "candidate_count": 18,
+    "expected_makes": 18,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 110000000,
+    "download_root": "data/external/rawpixls_bl7_v1/raw",
+    "decoded_root": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {"id":"ricoh_gr_iii","repository_id":3115,"make":"Ricoh","model":"GR III","mode":"14bit (3:2)","date":"2019-05-02","megapixels":24.84,"bytes_reported_mb":31.83,"filename":"Ricoh - GR III - 14bit (3:2).DNG","path":"data/external/rawpixls_bl7_v1/raw/ricoh_gr_iii.dng","sha256":"05513ee72f7cac4165534c9f64995412084f414a033c80c473c79fd94154292e","url":"https://raw.pixls.us/getfile.php/3115/nice/Ricoh%20-%20GR%20III%20-%2014bit%20%283%3A2%29.DNG"},
+    {"id":"google_pixel_4_xl","repository_id":3502,"make":"Google","model":"Pixel 4 XL","mode":"16bit (4:3)","date":"2019-10-24","megapixels":10.26,"bytes_reported_mb":10.87,"filename":"Google - Pixel 4 XL - 16bit (4:3).dng","path":"data/external/rawpixls_bl7_v1/raw/google_pixel_4_xl.dng","sha256":"0c03a6c93b4b8593cd0e4426166e6389710007238b82eb23861ef191322f0c54","url":"https://raw.pixls.us/getfile.php/3502/nice/Google%20-%20Pixel%204%20XL%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"leica_c_lux","repository_id":3863,"make":"Leica","model":"C-Lux","mode":"4:3","date":"2020-04-10","megapixels":20.03,"bytes_reported_mb":22.44,"filename":"Leica - C-Lux - 4:3.RWL","path":"data/external/rawpixls_bl7_v1/raw/leica_c_lux.rwl","sha256":"286106ec2df65539912709c64e84a9b94686443fe5ea05b8ebada76daa1feb2d","url":"https://raw.pixls.us/getfile.php/3863/nice/Leica%20-%20C-Lux%20-%204%3A3.RWL"},
+    {"id":"huawei_ane_lx1","repository_id":4099,"make":"HUAWEI","model":"ANE-LX1","mode":"16bit (4:3)","date":"2020-09-22","megapixels":15.93,"bytes_reported_mb":30.4,"filename":"HUAWEI - ANE-LX1 - 16bit (4:3).dng","path":"data/external/rawpixls_bl7_v1/raw/huawei_ane_lx1.dng","sha256":"0efb67add448d20a82912e465f98e2be9ddb7cae87485e4905ef1cd2a9aa3ce6","url":"https://raw.pixls.us/getfile.php/4099/nice/HUAWEI%20-%20ANE-LX1%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"oneplus_oneplus_a6003","repository_id":4128,"make":"OnePlus","model":"ONEPLUS A6003","mode":"16bit (4:3)","date":"2020-10-19","megapixels":16.28,"bytes_reported_mb":31.07,"filename":"OnePlus - ONEPLUS A6003 - 16bit (4:3).dng","path":"data/external/rawpixls_bl7_v1/raw/oneplus_oneplus_a6003.dng","sha256":"14dc45528376ee8354ccacd658bf7cc94855e0ca2e4dede947e00b0592fb838d","url":"https://raw.pixls.us/getfile.php/4128/nice/OnePlus%20-%20ONEPLUS%20A6003%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"minolta_dynax_5d","repository_id":4246,"make":"MINOLTA","model":"DYNAX 5D","mode":"3:2","date":"2020-12-26","megapixels":6.02,"bytes_reported_mb":8.76,"filename":"MINOLTA - DYNAX 5D - 3:2.MRW","path":"data/external/rawpixls_bl7_v1/raw/minolta_dynax_5d.mrw","sha256":"45eee786da72e284054ae81892b7226e8a08cf405b320edaaf767bbf1b2a77c8","url":"https://raw.pixls.us/getfile.php/4246/nice/MINOLTA%20-%20DYNAX%205D%20-%203%3A2.MRW"},
+    {"id":"dji_fc7303","repository_id":4785,"make":"DJI","model":"FC7303","mode":"16bit (4:3)","date":"2021-07-19","megapixels":12.0,"bytes_reported_mb":23.39,"filename":"DJI - FC7303 - 16bit (4:3).DNG","path":"data/external/rawpixls_bl7_v1/raw/dji_fc7303.dng","sha256":"21a49e63966f82391ca1188c7559c3acc01a35a89a70194fda4bf44cbd64a851","url":"https://raw.pixls.us/getfile.php/4785/nice/DJI%20-%20FC7303%20-%2016bit%20%284%3A3%29.DNG"},
+    {"id":"blackmagic_design_pocket_cinema_camera_6k_pro","repository_id":5415,"make":"Blackmagic Design","model":"Pocket Cinema Camera 6k Pro","mode":"12bit (16:9)","date":"2022-04-10","megapixels":21.23,"bytes_reported_mb":30.38,"filename":"Blackmagic Design - Pocket Cinema Camera 6k Pro - 12bit (16:9).dng","path":"data/external/rawpixls_bl7_v1/raw/blackmagic_design_pocket_cinema_camera_6k_pro.dng","sha256":"28b6a26662fea4723afa2fdd7148bf9fa2691c00c8cacf771469e90eaeb90736","url":"https://raw.pixls.us/getfile.php/5415/nice/Blackmagic%20Design%20-%20Pocket%20Cinema%20Camera%206k%20Pro%20-%2012bit%20%2816%3A9%29.dng"},
+    {"id":"olympus_e_10","repository_id":5424,"make":"Olympus","model":"E-10","mode":"16bit (4:3)","date":"2022-04-14","megapixels":3.8,"bytes_reported_mb":7.26,"filename":"Olympus - E-10 - 16bit (4:3).ORF","path":"data/external/rawpixls_bl7_v1/raw/olympus_e_10.orf","sha256":"2bfdade72439017a60a47aad1e5bbcb1aca36f2be7a21e94a4257a678fb6f4da","url":"https://raw.pixls.us/getfile.php/5424/nice/Olympus%20-%20E-10%20-%2016bit%20%284%3A3%29.ORF"},
+    {"id":"phase_one_p40","repository_id":8009,"make":"Phase One","model":"P40+","mode":"IIQ L (4:3)","date":"2025-05-25","megapixels":40.14,"bytes_reported_mb":36.4,"filename":"Phase One - P40+ - IIQ L (4:3).IIQ","path":"data/external/rawpixls_bl7_v1/raw/phase_one_p40.iiq","sha256":"fae3fb04ba65984812af6fd85986b48e803c7b2fcaee66169a653a24814162a6","url":"https://raw.pixls.us/getfile.php/8009/nice/Phase%20One%20-%20P40%2B%20-%20IIQ%20L%20%284%3A3%29.IIQ"},
+    {"id":"panasonic_dc_gh7","repository_id":8065,"make":"Panasonic","model":"DC-GH7","mode":"1:1","date":"2025-06-02","megapixels":25.13,"bytes_reported_mb":38.85,"filename":"Panasonic - DC-GH7 - 1:1.RW2","path":"data/external/rawpixls_bl7_v1/raw/panasonic_dc_gh7.rw2","sha256":"fe5d894cec5d9e82e40b55ecf9c68c047bab860cc8c4496086bb151f944679de","url":"https://raw.pixls.us/getfile.php/8065/nice/Panasonic%20-%20DC-GH7%20-%201%3A1.RW2"},
+    {"id":"fujifilm_x_t30_iii","repository_id":8769,"make":"Fujifilm","model":"X-T30 III","mode":"14bit compressed (3:2)","date":"2025-12-01","megapixels":26.5,"bytes_reported_mb":28.66,"filename":"Fujifilm - X-T30 III - 14bit compressed (3:2).RAF","path":"data/external/rawpixls_bl7_v1/raw/fujifilm_x_t30_iii.raf","sha256":"49f77d6162abfa5c94d2d8b90e4e926b7386c42bcf7e84a152c9ffe1ebd584da","url":"https://raw.pixls.us/getfile.php/8769/nice/Fujifilm%20-%20X-T30%20III%20-%2014bit%20compressed%20%283%3A2%29.RAF"},
+    {"id":"nikon_d2x","repository_id":9064,"make":"Nikon","model":"D2X","mode":"12bit uncompressed (3:2)","date":"2026-02-25","megapixels":12.39,"bytes_reported_mb":19.36,"filename":"Nikon - D2X - 12bit uncompressed (3:2).NEF","path":"data/external/rawpixls_bl7_v1/raw/nikon_d2x.nef","sha256":"4d4b89f85bdfef233ef9b8aa7ecfeb609874ab592cb44e777f5b36814df5883c","url":"https://raw.pixls.us/getfile.php/9064/nice/Nikon%20-%20D2X%20-%2012bit%20uncompressed%20%283%3A2%29.NEF"},
+    {"id":"leaf_credo_40","repository_id":2092,"make":"Leaf","model":"Credo 40","mode":"IIQ L (4:3)","date":"2017-12-17","megapixels":40.14,"bytes_reported_mb":33.86,"filename":"Leaf - Credo 40 - IIQ L (4:3).IIQ","path":"data/external/rawpixls_bl7_v1/raw/leaf_credo_40.iiq","sha256":"b3b25ca62bdf9b162c3c001e615ce0af3117a240b3585e556f08767e927890e7","url":"https://raw.pixls.us/getfile.php/2092/nice/Leaf%20-%20Credo%2040%20-%20IIQ%20L%20%284%3A3%29.IIQ"},
+    {"id":"motorola_moto_g_5s_plus","repository_id":2456,"make":"motorola","model":"Moto G (5S) Plus","mode":"16bit (4:3)","date":"2018-03-31","megapixels":13.13,"bytes_reported_mb":25.07,"filename":"motorola - Moto G (5S) Plus - 16bit (4:3).dng","path":"data/external/rawpixls_bl7_v1/raw/motorola_moto_g_5s_plus.dng","sha256":"dc54074b5b71d727cd62aca2d99ffe322ccb0ee6d8572f392edde62cf41c30fe","url":"https://raw.pixls.us/getfile.php/2456/nice/motorola%20-%20Moto%20G%20%285S%29%20Plus%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"epson_r_d1s","repository_id":2834,"make":"Epson","model":"R-D1s","mode":"12bit (3:2)","date":"2018-11-06","megapixels":6.15,"bytes_reported_mb":9.63,"filename":"Epson - R-D1s - 12bit (3:2).ERF","path":"data/external/rawpixls_bl7_v1/raw/epson_r_d1s.erf","sha256":"45bb0081baf1c813c7cd9e05b3e6ae734b90aba408dd1195118dc94dc6abbbb9","url":"https://raw.pixls.us/getfile.php/2834/nice/Epson%20-%20R-D1s%20-%2012bit%20%283%3A2%29.ERF"},
+    {"id":"apple_iphone_8","repository_id":2835,"make":"Apple","model":"iPhone 8","mode":"16bit (4:3)","date":"2018-11-08","megapixels":12.19,"bytes_reported_mb":10.05,"filename":"Apple - iPhone 8 - 16bit (4:3).dng","path":"data/external/rawpixls_bl7_v1/raw/apple_iphone_8.dng","sha256":"75cc053e427c3ca2dfa8526dc6c9c77fdb265bc5d005af1fd408b5084250a9fc","url":"https://raw.pixls.us/getfile.php/2835/nice/Apple%20-%20iPhone%208%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"kodak_easyshare_z981","repository_id":3482,"make":"Kodak","model":"EasyShare Z981","mode":"","date":"2019-10-13","megapixels":null,"bytes_reported_mb":24.51,"filename":"Kodak - EasyShare Z981.KDC","path":"data/external/rawpixls_bl7_v1/raw/kodak_easyshare_z981.kdc","sha256":"b2642a8ff212781b6990a9281e3f8bf7a404bfcf9fc249ec76abe258dd008bee","url":"https://raw.pixls.us/getfile.php/3482/nice/Kodak%20-%20EasyShare%20Z981.KDC"}
+  ],
+  "maximum_download_bytes": 469762048,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "development_manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "comparison_manifests": [
+      {"path":"outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json","sha256":"8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json","sha256":"e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json","sha256":"75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json","sha256":"f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json","sha256":"a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
+      {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"},
+      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk11s_orthogonal_residual_fresh_source_v1/run_a/manifest.json","sha256":"708eea624edd8b9370519b30e4962b6d4fff8f577b014b684b017810b0d83a82","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk12s_orthogonal_residual_replacement_source_v1/run_a/manifest.json","sha256":"0f3915ba6e3480060c70d4e6753556f1bfff500168ea3767e1763eba5eca238f","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json","sha256":"a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/manifest.json","sha256":"a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json","sha256":"444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json","sha256":"8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8","format":"rawpixls_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 14,
+    "minimum_camera_makes": 14,
+    "maximum_largest_make_fraction": 0.07142857142857143,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 4,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 14,
+    "minimum_camera_makes": 14,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": ["fixed_ao6_colour_only_t15_c35", "fixed_bl5_strict_interior_sigmoid"],
+    "complete_pairwise_rounds": 3,
+    "strength_retuning_allowed": false,
+    "router_training_allowed": false
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "replacement fresh CC0 RAW source eligibility for autonomous fixed BL5 strict-interior versus fixed AO6 confirmation; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
