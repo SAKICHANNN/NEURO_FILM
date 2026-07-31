@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p6p_fixed_callier_measurement_compatibility_decision.v1",
+  "experiment_id": "u6.p6p-fixed-callier-measurement-compatibility-v1",
+  "decision": "close_fixed_p6n_quantitative_compatibility_without_retuning",
+  "report_sha256": "ac8d11245294b5510ab489afae6da99187a43f5fb8a96c38943ef4c9721122b7",
+  "stable_evidence_id": "1bafabfe287fe55082db736629ae483b789a2db237b22854f93c1449d6bcbfda",
+  "passed": false,
+  "passing_controls": [
+    "dye reported Q remains within 0.1 of identity",
+    "dye raw density ratio remains within 0.1 of identity",
+    "silver Q exceeds same-density-level dye Q",
+    "parent identities, finite values and no-fit policy pass"
+  ],
+  "failed_gates": {
+    "silver_reported_q_within_fixed_rgb_envelope_plus_0_05": false,
+    "silver_raw_ratio_within_fixed_rgb_envelope_plus_0_05": false
+  },
+  "observed_bounds": {
+    "silverHD_model_envelope": [1.1746760784303654, 1.3175928698733914],
+    "silverHD_reported_q": 1.76,
+    "silverHD_raw_ratio": 1.7586206896551724,
+    "silverLD_model_envelope": [1.0648015071655506, 1.117820922119183],
+    "silverLD_reported_q": 1.4,
+    "silverLD_raw_ratio": 1.4499999999999997
+  },
+  "branch_action": "Keep P6N only as a dormant synthetic equation primitive. Do not tune its peak density, amplitude, wavelength weights or collimation to these four samples. Continue another independent physical or colour leaf.",
+  "claim_ceiling": "One fixed synthetic profile failed an external four-sample amplitude check; this does not reject the Callier mechanism, identify a population Q curve or calibrate any stock/process/scanner."
+}

@@ -8402,3 +8402,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the primitive as dormant generic physical-inspired infrastructure.
   No measured curve, photographic value, calibration, stock or product claim
   opens; P2O1 remains closed.
+
+## 2026-08-01 - Pass U6.P6O source; close P6P fixed amplitude compatibility
+
+- Acquired one exact 35,683,532-byte University of Basel thesis PDF and audited
+  four printed silver/dye measurements twice. Reports are byte-identical at
+  `876a9162...497e0`; the silverLD reported `Q=1.40` and raw ratio `1.45` remain
+  separately recorded rather than silently reconciled.
+- Frozen P6P before evaluation and changed no P6N parameter. Two reports are
+  exact at `ac8d1124...122b7`. Dye identity and silver-over-dye controls pass,
+  but both reported and raw silver values exceed the fixed RGB Q envelopes
+  plus `.05`.
+- Close P6N quantitative compatibility without rescue. This rejects only the
+  fixed synthetic amplitude, not the Callier mechanism; P6N remains dormant
+  generic infrastructure and the Goal proceeds to another independent leaf.

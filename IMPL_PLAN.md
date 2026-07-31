@@ -2284,3 +2284,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > dormant unless an independent source supplies a legitimate metallic-silver
 > component; ordinary chromogenic colour film remains exact identity.
 >
+> `U6.P6O/P6P` add a separately frozen quantitative check without fitting.
+> Four exact thesis rows pass source extraction, including the explicit
+> silverLD reported/raw discrepancy (`1.40` versus `1.45`). The fixed P6N
+> envelope fails both silver rows by more than `.05`, although dye identity and
+> material ordering pass. Close measured-amplitude compatibility without
+> retuning; retain P6N only as a synthetic equation primitive.
+>

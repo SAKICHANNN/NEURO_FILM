@@ -477,3 +477,10 @@ strictly increasing directed density, `1.78e-15` inverse error and exact row
 partitioning. Retain it as dormant generic infrastructure. Do not invent a
 silver component for ordinary chromogenic film or reuse P2O1 photographs;
 continue only with independent component evidence or another mechanism.
+
+U6.P6O reproduces four thesis measurements from an exact 35,683,532-byte PDF
+and explicitly preserves the silverLD table-rounding mismatch (`Q=1.40` versus
+raw density ratio `1.45`). U6.P6P then closes the unchanged P6N quantitative
+amplitude route: both silver samples exceed its fixed RGB envelope plus `.05`,
+while dye identity and silver-over-dye controls pass. Do not retune P6N from
+these four samples; continue a distinct physical or colour leaf.
