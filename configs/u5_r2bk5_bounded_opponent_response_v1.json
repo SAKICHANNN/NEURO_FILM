@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u5_r2bk5_bounded_opponent_response.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk5-bounded-opponent-response-v1",
+  "node": "ULT > U5 > U5.R2BK5",
+  "status": "primitive_contract_frozen",
+  "question": "Can a division-free encoded opponent response retain material generic film-inspired style while bounding the zero-channel derivative and eliminating BK2's severe sky artifact?",
+  "parent": {
+    "decision": "configs/u5_r2bk4_quantization_regularized_log_chroma_decision_v1.json",
+    "decision_sha256": "ffc21aef9669096c1e315fc1a2c0aa8e1abe70d24565a3d2c721d53c0bcb0948",
+    "required_decision": "reject_half_code_regularization_continuity_gate"
+  },
+  "operator": {
+    "representation": "display-encoded luma plus division-free R-minus-G and B-minus-G opponent coordinates, fixed tone and opponent response, followed by one source-inclusive encoded-RGB residual scale",
+    "contrast": 1.18,
+    "red_green_gain": 1.22,
+    "blue_yellow_gain": 1.14,
+    "midtone_chroma_lift": 0.12,
+    "opponent_rotation": 0.09,
+    "hue_bend": 0.06,
+    "encoded_margin": 0.000015259021896696422,
+    "strength": 1.0
+  },
+  "mechanism_basis": {
+    "division_free": true,
+    "zero_channel_logarithm": false,
+    "opponent_reconstruction": "g = Y - wr*(r-g) - wb*(b-g); r = g+(r-g); b = g+(b-g)",
+    "prototype_synthetic_median_style_delta_e76": 5.692193119236433,
+    "prototype_zero_to_one_red_code_max_delta_e76": 0.9106892932866687,
+    "prototype_new_uint16_boundary_fraction": 0.0
+  },
+  "primitive_gates": {
+    "identity_strength_zero_exact": true,
+    "neutral_axis_maximum_range": 0.000000000001,
+    "black_white_endpoints_exact": true,
+    "partition_output_exact": true,
+    "new_uint16_boundary_fraction_on_interior_synthetic_cube": 0.0,
+    "minimum_synthetic_median_delta_e76": 5.0,
+    "maximum_zero_to_one_red_code_delta_e76": 1.0,
+    "bk2_phaseone_regression_requires_zero_confirmed_severe_artifact": true
+  },
+  "forbidden": [
+    "change BK3 or BK4 thresholds or reinterpret either as a pass",
+    "lower strength to rescue any prior population",
+    "fit parameters to BK3 images",
+    "use BK3 images as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "hard clipping",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "freeze a third leakage-clean CC0 RAW population before pixel access and compare fixed BK5, AO6 and safe-rich without parameter changes",
+  "claim_ceiling": "division-free bounded generic film-inspired explicit operator primitive and BK2 failure-regression evidence only"
+}
