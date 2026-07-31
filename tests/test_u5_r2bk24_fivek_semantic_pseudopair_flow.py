@@ -8,6 +8,7 @@ import pytest
 
 from src.eval.fivek_semantic_pseudopair_flow import (
     FiveKSemanticPseudoPairError,
+    _resize_crop,
     build_pseudo_pairs,
     load_config,
     load_rows,
@@ -58,3 +59,14 @@ def test_pseudo_pairs_exclude_identity_and_preserve_control_multiset() -> None:
     assert facts["same_identity_matches"] == 0
     assert facts["target_colour_multiset_sha256"] == facts["control_colour_multiset_sha256"]
     assert not np.array_equal(semantic, control)
+
+
+def test_resize_repairs_only_float32_endpoint_epsilon() -> None:
+    image = np.ones((19, 31, 3), dtype=np.float32)
+    output = _resize_crop(image)
+    assert output.min() >= 0.0
+    assert output.max() <= 1.0
+    invalid = image.copy()
+    invalid[4:8, 4:8] = 1.01
+    with pytest.raises(FiveKSemanticPseudoPairError, match="material"):
+        _resize_crop(invalid)

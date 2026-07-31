@@ -90,7 +90,17 @@ def _resize_crop(image: np.ndarray, size: int = 224) -> np.ndarray:
     )
     top = (resized.shape[-2] - size) // 2
     left = (resized.shape[-1] - size) // 2
-    return resized[0, :, top : top + size, left : left + size].permute(1, 2, 0).numpy()
+    output = (
+        resized[0, :, top : top + size, left : left + size]
+        .permute(1, 2, 0)
+        .numpy()
+    )
+    # Antialiased float32 interpolation can overshoot a legal endpoint by one
+    # or two ULPs. Restore only that numerical domain error; material overflow
+    # remains a hard failure.
+    if float(output.min()) < -1e-6 or float(output.max()) > 1.0 + 1e-6:
+        raise FiveKSemanticPseudoPairError("resize produced material RGB overflow")
+    return np.clip(output, 0.0, 1.0)
 
 
 def _load_view(path: Path) -> np.ndarray:
