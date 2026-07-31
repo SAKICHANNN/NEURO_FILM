@@ -39,13 +39,16 @@ from src.film_physics.silver_retention import (
 from src.real_film.gold_matrix_transplant import style_and_basic_residual
 
 
-SCHEMA = "neuro_film.u6_p2o_silver_retention_photographic_contract.v1"
+SCHEMAS = {
+    "neuro_film.u6_p2o_silver_retention_photographic_contract.v1",
+    "neuro_film.u6_p2o1_silver_retention_photographic_contract.v1",
+}
 
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema") != SCHEMA:
-        raise ValueError("unsupported U6.P2O contract")
+    if payload.get("schema") not in SCHEMAS:
+        raise ValueError("unsupported U6.P2O/P2O1 contract")
     return payload
 
 
@@ -191,6 +194,10 @@ def evaluate_silver_photographic(
         != int(contract["population"]["expected_makes"])
     ):
         raise ValueError("P2O population drift")
+    if "expected_ids" in contract["population"] and list(runtime.eligible_ids) != list(
+        contract["population"]["expected_ids"]
+    ):
+        raise ValueError("P2O eligible ID drift")
     profile = _silver_profile(p2n)
     gates = contract["automatic_gates"]
     rows = []
@@ -351,4 +358,3 @@ def write_report(report: dict[str, Any], path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(payload)
     return hashlib.sha256(payload).hexdigest()
-

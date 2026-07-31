@@ -1,0 +1,12 @@
+{
+  "schema": "neuro_film.u6_p2o_silver_retention_photographic_contract_failure.v1",
+  "node": "U6.P2O",
+  "date": "2026-07-31",
+  "status": "pre-execution-contract-failure",
+  "formal_runs": 0,
+  "photographs_read": 0,
+  "outputs_written": 0,
+  "failure": "The contract bound the upstream P5D 18-row population and P5D visual IDs, while the exact retained P7F runtime has 16 eligible rows across nine makes with a different fixed ID set.",
+  "forbidden_interpretation": "This is not algorithm evidence and does not pass or fail retained silver.",
+  "next_leaf": "U6.P2O1 may correct only the population count and exact eligible IDs while preserving the P2N profile, pipeline, automatic gates and no-retuning rule."
+}

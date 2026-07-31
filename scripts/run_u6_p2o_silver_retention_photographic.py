@@ -22,7 +22,7 @@ def main() -> None:
     parser.add_argument(
         "--contract",
         type=Path,
-        default=ROOT / "configs/u6_p2o_silver_retention_photographic_v1.json",
+        default=ROOT / "configs/u6_p2o1_silver_retention_photographic_v1.json",
     )
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
