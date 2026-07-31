@@ -22,6 +22,10 @@ from src.roll2film.smooth_perceptual_hue_density import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk10_orthogonal_perceptual_residual_v1.json"
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk10_orthogonal_perceptual_residual_decision_v1.json"
+)
 
 
 def test_bk10_primitive_contract_is_frozen_before_implementation() -> None:
@@ -205,3 +209,28 @@ def test_bk10_regression_contract_mutation_fails_closed() -> None:
     config["operator"]["residual_strength"] = 0.75
     with pytest.raises(OrthogonalResidualRegressionError):
         validate_contract(ROOT, config)
+
+
+def test_bk10_decision_opens_only_fifth_fresh_confirmation() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "retain_fixed_bk10_open_fifth_fresh_confirmation"
+    )
+    assert decision["status"] == (
+        "primitive_and_known_failure_regression_pass"
+    )
+    assert result["automatic_pass"]
+    assert result["repeat_file_count"] == 5
+    assert result["repeat_file_hash_differences"] == 0
+    assert result["cube_median_style_delta_e76"] >= 9.0
+    assert result["cube_median_increment_vs_base_delta_e76"] >= 5.0
+    assert result["maximum_increment_before_gamut_delta_e76"] <= 9.61
+    assert result["cube_new_uint16_boundary_fraction"] == 0.0
+    assert result["confirmed_severe_artifact_count"] == 0
+    assert result["bk2_failure_reproduced"]
+    assert result["bk10_failure_regression_pass"]
+    assert not result["thresholds_or_parameters_changed"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["production_default_changed"]

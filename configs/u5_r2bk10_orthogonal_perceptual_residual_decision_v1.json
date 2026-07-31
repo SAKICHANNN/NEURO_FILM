@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u5_r2bk10_orthogonal_perceptual_residual_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk10-orthogonal-perceptual-residual-v1",
+  "node": "ULT > U5 > U5.R2BK10",
+  "status": "primitive_and_known_failure_regression_pass",
+  "decision": "retain_fixed_bk10_open_fifth_fresh_confirmation",
+  "result": {
+    "automatic_pass": true,
+    "repeat_file_count": 5,
+    "repeat_file_hash_differences": 0,
+    "cube_median_style_delta_e76": 9.951919555664062,
+    "cube_median_increment_vs_base_delta_e76": 5.406957149505615,
+    "maximum_increment_before_gamut_delta_e76": 9.600000000000003,
+    "cube_new_uint16_boundary_fraction": 0.0,
+    "phaseone_style_delta_e76": {
+      "rejected_bk2": 6.981490135192871,
+      "safe_rich_base": 6.0341362953186035,
+      "bk10": 7.2234697341918945
+    },
+    "phaseone_bk10_new_boundary_fraction": 0.0,
+    "confirmed_severe_artifact_count": 0,
+    "bk2_failure_reproduced": true,
+    "bk10_failure_regression_pass": true,
+    "thresholds_or_parameters_changed": false,
+    "visual_finding": "Autonomous full-population regression review reproduced BK2's electric-blue sky speckling. The safe-rich base and fixed BK10 remain spatially continuous through the same clouds and blue sky. BK10 adds a visible but bounded cyan-density and neutral-building separation over safe-rich without confirmed posterization, speckle, clipping block, seam or geometry corruption."
+  },
+  "evidence": {
+    "software_commit": "547bea2e534c06442fd9a0e109f99d6241262238",
+    "config_sha256": "23a1f2362c4aa5d2a2c57cf7b726b2cb70d3bb89570bba37b33f438ed9f453b7",
+    "stable_evidence_id": "556c0b308c1ba003723f0472b06beff8c95559b26fce6fb73e64b8628cfd3dd3",
+    "report_sha256": "f2a03e6ad376560e22cdfff9d3b71cf190ba00996f7b2361c228e8e960819437",
+    "visual_sheet_sha256": "f82b9a9213956b8fcc9e8fcf29d748587141d6745ebd0594bcdf5f2b5a8dc3a8",
+    "run_a": "outputs/u5_r2bk10_orthogonal_residual_regression_v1/run_a",
+    "run_b": "outputs/u5_r2bk10_orthogonal_residual_regression_v1/run_b"
+  },
+  "branch_action": "Retain fixed BK10 only as a synthetic and known-failure-regression generic explicit challenger. Freeze a fifth leakage-clean CC0 RAW population before pixel access, then compare unchanged BK10, unchanged BK7 mechanism control, AO6 and safe-rich without tuning.",
+  "next_leaf": "freeze a fifth metadata-only CC0 RAW population with unseen repository IDs, camera makes/models and hashes before any pixel acquisition",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "synthetic and one known-failure regression pass for fixed factorized safe-base plus bounded orthogonal residual; no generalized preference, stock identity, calibration, universal safety or product promotion"
+}
