@@ -1,0 +1,407 @@
+{
+  "base_commit": "f53faeb5079c17fbd36cceb1607444088f279615",
+  "claim_ceiling": "review-ready-file-identity-hardened-not-merged",
+  "contract_schemas": [
+    {
+      "blob": "20ca068e33444c47899194d8d3417c4bb782dce5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_declaration_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-declaration.v1",
+      "sha256": "aedc03e3ab0f7ea4aa5b9c395447d6f0c193c5d58a3a34f150ebaa7a6854a5d3"
+    },
+    {
+      "blob": "ca7aab458690db6413b3347efdd698d0af72c500",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_successor_runtime_evidence_v1.schema.json",
+      "schema_id": "neuro-film.reference-match-successor-runtime-evidence.v1",
+      "sha256": "67f9ac7505f01905476b0b4c2c9b52abe67862c96cd2e72b916959fca2c83a8c"
+    },
+    {
+      "blob": "b25f02ec05ed4dca56870152f7d2ed6b86a7b388",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_run_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-run.v1",
+      "sha256": "8fe7bb835e4664cc53a3fd5eb66d1743ea5692ceec38e5f8fd93d6b847086c5b"
+    },
+    {
+      "blob": "48e19f6c42d112580fef4d0480927cfbc88ced50",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_verification_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-verification.v1",
+      "sha256": "bb95e61c424a521c985447d87a136dedc76a8569afcbb588db8516f4c1439907"
+    },
+    {
+      "blob": "25cd1e5414b6774ad3659c9413e31452304c777d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_consumption_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-consumption.v1",
+      "sha256": "9298948724462d0903752eb3a76f888ddf686429e07b1de63aed92bc40c81bc6"
+    },
+    {
+      "blob": "b181c52e82e65b3f38b9a1e98332ccc11ef04ad1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_qualified_shared_staging_decode_v1.schema.json",
+      "schema_id": "neuro-film.runtime-qualified-shared-staging-decode.v1",
+      "sha256": "cec3700a21b7fde688f45955f80ec022220bddb943bd82e23f37d52d11787d3f"
+    },
+    {
+      "blob": "26bdb79030d586340efa3b35fbbe128b8533648c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_srgb_icc_profile_conformance_v1.schema.json",
+      "schema_id": "neuro-film.srgb-icc-profile-conformance.v1",
+      "sha256": "d3f70d75b6ca5e2a923cdb49260c30bc57652588d102f2609364a2c80597232e"
+    },
+    {
+      "blob": "31cd82c037840e6281d653f655ef004ebaed8080",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_color_attestation_v1.schema.json",
+      "schema_id": "neuro-film.runtime-staging-color-attestation.v1",
+      "sha256": "4db512eb2ced28d9cdf0b176393d917cff35c65396f07b45a7e06632b793a93a"
+    },
+    {
+      "blob": "7386e43d5dd2b876e4fee6bcaab64103c180fef0",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_attested_match_view_bridge_v2.schema.json",
+      "schema_id": "neuro-film.runtime-staging-attested-match-view-bridge.v2",
+      "sha256": "ce4d6919e6b9e729a24fe2b1f37f7b1096391846d7879a80098d5aca4c9269f5"
+    },
+    {
+      "blob": "acd49f9f0e41254e6212022f5d8665c748c4382e",
+      "mode": "100644",
+      "path": "configs/schemas/reference_runtime_staging_match_view_bridge_v1.schema.json",
+      "schema_id": "neuro-film.runtime-staging-match-view-bridge.v1",
+      "sha256": "d2c94fe0aab77a92e317d4462ee830da4199be2e540d941e026287a71a9204eb"
+    },
+    {
+      "blob": "228bf0b5d4c9b463c381efe40a5c933d122d5f5a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_composition_v1.schema.json",
+      "schema_id": "neuro-film.shared-reference-composition.v1",
+      "sha256": "9f4773222799b174cf32f55e71bd92793a8ca98971ad8627685e668a556c0967"
+    },
+    {
+      "blob": "b525dcb95470fb4186d99b7eb00fe79a991db006",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_run_v1.schema.json",
+      "schema_id": "neuro-film.shared-filmfx-run.v1",
+      "sha256": "7e803e0d70317e9f941753773d9f1220c34a3440e3d3e2e06d6bf0a9868fc593"
+    },
+    {
+      "blob": "0486b5fb17fcf80f95323b6a147f46c6e95ee72d",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_filmfx_staging_verification_v1.schema.json",
+      "sha256": "be0fcdd1e281782c4040ba31b0bfc8732f549f517047ab77d467b6d739426c4e"
+    },
+    {
+      "blob": "d7f23167dfded320034c86696d35c52d88c850d5",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_authorization_v1.schema.json",
+      "sha256": "6bd8f5475fed5fe82f56b0efe669698ee6de05c7fafe02c3d1f0951fe190b28f"
+    },
+    {
+      "blob": "90d9f12b1cc6712710efb5e27e80fe597abb5ed7",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_v1.schema.json",
+      "sha256": "971c4c7346241e6c0877f5f8d565604515d6b276de2b84594235f67a41bc32ee"
+    },
+    {
+      "blob": "397467cd09ae0e739e2964cbee1df3105f5ea7e1",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference_shared_local_delivery_verification_v1.schema.json",
+      "sha256": "961e8283f52b6447ceee51baa0eb74409dd1d56583a6c9ffccb49b909ba0833d"
+    },
+    {
+      "blob": "6a288f59789ed4bbdda60bdf74e3b75601541e5b",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_numeric_batch_guard_v1.schema.json",
+      "schema_id": "neuro-film.shared-numeric-batch-guard.v1",
+      "sha256": "06d9adf852f6829c529ba7690c1d6c80f6f27829eb6b57ec28ba84ea40129cde"
+    },
+    {
+      "blob": "c75ce57b1f5db24c5c2715b722e42144b4a3f99c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_operator_batch_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-batch.v1",
+      "sha256": "2c2e0e9a9513dd41b0b841426d2548a9589c4de0d657267e4d7b54745618bc21"
+    },
+    {
+      "blob": "6d6d705bfd54fe6ffa56f00a5cc30ae261a6d885",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_product_staging_authorization_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-product-staging-authorization.v1",
+      "sha256": "7aa811eb328195b5b451b0865448d01a53dd5e965204997b8c51a380321e92ad"
+    },
+    {
+      "blob": "75769c667e4e41507448f6fd63145a579fcc0f39",
+      "mode": "100644",
+      "path": "configs/schemas/reference_shared_runtime_qualification_v1.schema.json",
+      "schema_id": "neuro-film.reference-shared-runtime-qualification.v1",
+      "sha256": "045e8dea47ece8526658bc67f9844aa9e6d4faafefce6f666dc77b92c1deebf0"
+    },
+    {
+      "blob": "96af98d1a5972b215ba57aa7a2ad4ca738260a21",
+      "mode": "100644",
+      "path": "configs/schemas/reference_dpct_invocation_profile_v2.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-dpct-invocation-profile-v2.json",
+      "sha256": "6863cacaed5f2f1136cce956c88b591bbc788c4c7bce080216c81c0b58fd2f49"
+    },
+    {
+      "blob": "b5fcea1195807a91b98fe16945046581f4f5d87c",
+      "mode": "100644",
+      "path": "configs/schemas/reference_hdr_shot_reuse_veto_decision_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-hdr-shot-reuse-veto-decision-v1",
+      "sha256": "a7ebf89d68e90f336d8664361e7c1a797c9f246cbd0d5d410ce8aa609875973c"
+    },
+    {
+      "blob": "015157f0b742ade36c822db4eda20ae8fcb6af62",
+      "mode": "100644",
+      "path": "configs/schemas/reference_file_output_capabilities_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-file-output-capabilities-v1",
+      "sha256": "486bcd90af138efbfd2b28483b16ded2f02e70cd014da8dc6b99fc8dccedf703"
+    },
+    {
+      "blob": "1c5bda541366a76cc6a639098c2f0e4f38d58798",
+      "mode": "100644",
+      "path": "configs/schemas/reference_file_input_inspection_batch_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-file-input-inspection-batch-v1",
+      "sha256": "a288970645f6d16a77c4d3ffc860cf2afdd7201384bbebcb880bf1920a080dd5"
+    },
+    {
+      "blob": "cf7f379c786b9e2dcc003a5cb13621cf1706649a",
+      "mode": "100644",
+      "path": "configs/schemas/reference_file_output_metadata_policy_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-file-output-metadata-policy-v1",
+      "sha256": "a8f09100c23e02de243fd8e60135c356b5d1a99d7815ee34ec0ad4bbcd2c8b06"
+    },
+    {
+      "blob": "38648fa8c34ebca0388701b42a1cae0dbb3df6e2",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_product_capabilities_v1.schema.json",
+      "schema_id": "https://neuro-film.local/schemas/reference-match-product-capabilities-v1",
+      "sha256": "7ccf46959e5b5f920981cf3fa0eef9dea85bc321db92c252f0cee539e8a4f467"
+    }
+  ],
+  "main_changed_file_count": 1873,
+  "main_commit": "5c356f125e019bd882472c9f43a0b4f4fcbabb5a",
+  "overlap_paths": [],
+  "payload_changed_file_count": 25,
+  "payload_commit": "4117062aa938d0e1efead994f788d6fbc68e5dc6",
+  "payload_files": [
+    {
+      "blob": "c7b5c043190b38f19d38aa2876139425162bbc68",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v44.json"
+    },
+    {
+      "blob": "1288914d70aa58fc4843e824ab3d2f79aa51752e",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v45.json"
+    },
+    {
+      "blob": "5bcc47c1273df353cf0cc171e5b905a4c19f03fa",
+      "mode": "100644",
+      "path": "configs/reference_match_main_integration_manifest_v46.json"
+    },
+    {
+      "blob": "ca4bb9569651982aa313590f7b450b94de8562bf",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v44.schema.json"
+    },
+    {
+      "blob": "50ed2c6e9fc94c55d3dc219c69b75c40771e2be6",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v45.schema.json"
+    },
+    {
+      "blob": "2b0751f1df442bf03e0b7d8f42339fb591271719",
+      "mode": "100644",
+      "path": "configs/schemas/reference_match_main_integration_manifest_v46.schema.json"
+    },
+    {
+      "blob": "3a83e479ad498e6568745bb033c07de02acb3f75",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_AGENT_LOG.md"
+    },
+    {
+      "blob": "20c35792192573ae52cdac07034a87992df12496",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_COMPLETION_AUDIT.md"
+    },
+    {
+      "blob": "2d4d3c49416fffd3309db52daa255b9ad3cb246b",
+      "mode": "100644",
+      "path": "docs/drpt/REFERENCE_COLOR_MATCH_MAIN_INTEGRATION_HANDOFF.md"
+    },
+    {
+      "blob": "572c87b8bb53bf4b6ffe2a70f7fa8fe23bdd608d",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v44.py"
+    },
+    {
+      "blob": "7fe3287344f5d317b21b501ae9fd96cb0a7cc805",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v45.py"
+    },
+    {
+      "blob": "5a2a18cc0a48a2758ce0a317ca74bbff39e13306",
+      "mode": "100644",
+      "path": "scripts/build_reference_match_integration_manifest_v46.py"
+    },
+    {
+      "blob": "0ec2b8261dfe432edea3c5e506ddf71b9ec06d26",
+      "mode": "100644",
+      "path": "src/color_match/core_staging_transaction.py"
+    },
+    {
+      "blob": "210fff577bc40d2863488bbef7522a99cca96c92",
+      "mode": "100644",
+      "path": "src/color_match/external_filmfx_transaction.py"
+    },
+    {
+      "blob": "bc3ec23964773d77c003709f730553c2815e0acc",
+      "mode": "100644",
+      "path": "src/color_match/external_local_delivery.py"
+    },
+    {
+      "blob": "96da3eadbcb19d57851716dd7e43dab909bf8c86",
+      "mode": "100644",
+      "path": "src/color_match/files.py"
+    },
+    {
+      "blob": "329c5c5ab3bce10b3fdc7fbd4f21e731bcc45e2d",
+      "mode": "100644",
+      "path": "src/color_match/shared_filmfx_transaction.py"
+    },
+    {
+      "blob": "f3d20bc9dae95213b2a4855a69f6dffc0fd02bd1",
+      "mode": "100644",
+      "path": "src/color_match/shared_local_delivery.py"
+    },
+    {
+      "blob": "008149bccce05146886c8e18d42606a9d4d8afd6",
+      "mode": "100644",
+      "path": "src/color_match/shared_runtime_staging_transaction.py"
+    },
+    {
+      "blob": "c18a5a53c9fb1202d71fd4aa088b647569f1bf5f",
+      "mode": "100644",
+      "path": "src/color_match/shared_staging_transaction.py"
+    },
+    {
+      "blob": "f00cbefb0af377589987f0029529097c3752ad1f",
+      "mode": "100644",
+      "path": "tests/test_color_match_file_replay.py"
+    },
+    {
+      "blob": "396d123e8d2603a49d0812e6f85704ffed7dc274",
+      "mode": "100644",
+      "path": "tests/test_color_match_files.py"
+    },
+    {
+      "blob": "f3e42d9262657dd638477533d92f2116a99ef212",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v44.py"
+    },
+    {
+      "blob": "dcc70028512fabb1db80c9f7897a89b8979d93e4",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v45.py"
+    },
+    {
+      "blob": "8b8f3ca35572b0623b0f233cc92251f08d00977a",
+      "mode": "100644",
+      "path": "tests/test_color_match_main_integration_manifest_v46.py"
+    }
+  ],
+  "payload_scope": "P173-P177-file-identity-hardened-post-main-merge",
+  "required_public_exports": [
+    "make_shared_reference_operator_v1",
+    "guard_shared_numeric_batch_v1",
+    "authorize_shared_product_staging_v1",
+    "commit_external_shared_staging_v1",
+    "verify_external_shared_staging_v1",
+    "build_shared_reference_composition_v1",
+    "commit_shared_filmfx_staging_v1",
+    "verify_shared_filmfx_staging_v1",
+    "authorize_shared_local_delivery_v1",
+    "commit_shared_local_delivery_v1",
+    "verify_shared_local_delivery_v1",
+    "make_successor_runtime_evidence_v1",
+    "bind_successor_runtime_evidence_v1",
+    "validate_successor_runtime_evidence_v1",
+    "qualify_shared_product_authorization_runtime_v1",
+    "validate_runtime_qualified_shared_authorization_v1",
+    "commit_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_run_v1",
+    "verify_runtime_qualified_external_shared_staging_v1",
+    "validate_runtime_qualified_external_shared_staging_verification_v1",
+    "capture_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_consumption_record_from_json",
+    "runtime_qualified_shared_staging_consumption_record_to_json",
+    "validate_runtime_qualified_shared_staging_byte_snapshot_v1",
+    "validate_runtime_qualified_shared_staging_consumption_record_v1",
+    "decode_runtime_qualified_shared_staging_bytes_v1",
+    "runtime_qualified_shared_staging_decode_record_from_json",
+    "runtime_qualified_shared_staging_decode_record_to_json",
+    "validate_runtime_qualified_shared_staging_decode_record_v1",
+    "validate_runtime_qualified_shared_staging_decoded_batch_v1",
+    "prepare_runtime_staging_match_views_v1",
+    "runtime_staging_match_view_bridge_record_from_json",
+    "runtime_staging_match_view_bridge_record_to_json",
+    "validate_runtime_staging_match_view_bridge_record_v1",
+    "validate_runtime_staging_prepared_match_view_batch_v1",
+    "attest_runtime_staging_srgb_metadata_v1",
+    "runtime_staging_color_attestation_record_from_json",
+    "runtime_staging_color_attestation_record_to_json",
+    "validate_runtime_staging_color_attestation_record_v1",
+    "validate_runtime_staging_color_attested_decoded_batch_v1",
+    "prepare_runtime_staging_attested_match_views_v2",
+    "runtime_staging_attested_match_view_bridge_record_from_json",
+    "runtime_staging_attested_match_view_bridge_record_to_json",
+    "validate_runtime_staging_attested_match_view_bridge_record_v2",
+    "validate_runtime_staging_attested_prepared_match_view_batch_v2",
+    "srgb_icc_profile_conformance_v1",
+    "srgb_icc_profile_v1",
+    "hdr_shot_reuse_veto_decision_payload_v1",
+    "load_hdr_shot_reuse_veto_decision_v1",
+    "map_hdr_shot_reuse_veto_v1",
+    "REFERENCE_FILE_OUTPUT_CAPABILITIES_ID",
+    "FileReferenceOutputCapability",
+    "reference_file_output_capabilities",
+    "resolve_reference_file_output_capability",
+    "reference_file_output_capabilities_payload",
+    "REFERENCE_FILE_INPUT_INSPECTION_CLAIM_CEILING",
+    "REFERENCE_FILE_INPUT_INSPECTION_BATCH_SCHEMA_ID",
+    "REFERENCE_FILE_INPUT_INSPECTION_SCHEMA_ID",
+    "FileReferenceInputInspection",
+    "inspect_reference_file_input",
+    "inspect_reference_file_inputs",
+    "REFERENCE_FILE_OUTPUT_METADATA_POLICY_CLAIM_CEILING",
+    "REFERENCE_FILE_OUTPUT_METADATA_POLICY_ID",
+    "ReferenceFileOutputMetadataAttestation",
+    "attest_reference_file_output_metadata",
+    "reference_file_output_metadata_policy_payload",
+    "REFERENCE_MATCH_PRODUCT_CAPABILITIES_CLAIM_CEILING",
+    "REFERENCE_MATCH_PRODUCT_CAPABILITIES_ID",
+    "reference_file_supported_input_rails",
+    "reference_match_product_capabilities_payload"
+  ],
+  "schema_id": "neuro-film.reference-match-main-integration-manifest.v47",
+  "supersedes_manifest": {
+    "blob": "5bcc47c1273df353cf0cc171e5b905a4c19f03fa",
+    "mode": "100644",
+    "path": "configs/reference_match_main_integration_manifest_v46.json",
+    "schema_id": "neuro-film.reference-match-main-integration-manifest.v46",
+    "sha256": "93890cd168d9eb5333034f55d7a01c30630d66bdbe07978e312bc989ef38c866"
+  },
+  "verification_commands": [
+    "git merge-tree --write-tree <payload_commit> <main_commit>",
+    "git diff --check <base_commit> <payload_commit>",
+    "python -m pytest -q tests/test_color_match_files.py tests/test_color_match_file_replay.py",
+    "python -m pytest -q -k color_match"
+  ]
+}

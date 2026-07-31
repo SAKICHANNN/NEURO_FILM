@@ -5169,3 +5169,24 @@
 - Producer R0JH remains private one-Pixel Android x86_64 virtual performance
   evidence without a public package/schema/receipt/capability or compatible
   RAW rail. Consumer mapping remains unchanged.
+
+## 2026-07-31 - Freeze file-identity-hardened manifest v47
+
+- Node/parent goal: P176/P177 bottom-up integration. V47 supersedes V46 for
+  latest review while retaining v46 as immutable P173-P175 evidence.
+- V47 pins payload `4117062aa938d0e1efead994f788d6fbc68e5dc6`
+  against main `5c356f125e019bd882472c9f43a0b4f4fcbabb5a`
+  from base `f53faeb5079c17fbd36cceb1607444088f279615`:
+  25 payload paths, 1,873 main paths, zero overlap, 70 exports and 26 schemas.
+  The conflict-free merge tree is
+  `ee3d8ccaa40184cfc182999724a5b1391cdbae46`.
+- Manifest/schema SHA-256 are
+  `1794c8c3c81063b41589ed7733cb978b875657166bdbdba60cd664bb25942474`
+  and
+  `debcb0b0721bada999e1e7eb62e02d410a37f007e5d2b94d554032c2ccfb5eea`.
+  Direct schema/rebuild/tamper tests pass 5/5.
+- A detached real merge passes file/replay plus v44-v47 at
+  `78 passed, 1 skipped`; strict diff passes and the temporary worktree is
+  removed. The full isolated suite remains `1,429 passed, 5 skipped`.
+- R0JH stays private one-Pixel virtual performance evidence and does not add
+  a public producer interface, compatible RAW rail or consumer mapping.

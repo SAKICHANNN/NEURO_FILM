@@ -2,28 +2,26 @@
 
 Date: 2026-07-31
 
-Status: **P1-P172 is merged into main; v45 is rejected. V46 remains immutable
-P173-P175 evidence but is paused as the latest integration candidate after
-confirmed P176/P177 file-entry ownership gaps. Corrected P174-P177 is verified
-and awaits a replacement manifest;
+Status: **P1-P172 is merged into main; v45 is rejected and V46 is historical
+P173-P175 evidence. V47 now pins the file-identity-hardened P173-P177 payload;
 local scale/file/capability evidence is complete, while real
 external-algorithm admission, main merge and product delivery remain closed**.
 
-## Historical v46 corrected-directory review snapshot
+## Current v47 file-identity-hardened review snapshot
 
-- payload: `36be7e9ff8f7ce83dbfcbfc3a256c535d5ee02a3`;
-- main: `0014744810fcac60448be0e1d7d7427925a973df`;
+- payload: `4117062aa938d0e1efead994f788d6fbc68e5dc6`;
+- main: `5c356f125e019bd882472c9f43a0b4f4fcbabb5a`;
 - common base: `f53faeb5079c17fbd36cceb1607444088f279615`;
-- 14 consumer paths, 1,862 main paths, zero overlap;
+- 25 consumer paths, 1,873 main paths, zero overlap;
 - 70 required public exports and 26 contract schemas;
-- merge tree: `93dc0e15baf91375df2805cc9891ce8ca58e0256`;
-- detached post-merge file/replay plus v44/v45/v46 review subset:
-  `70 passed, 1 skipped`;
-- direct v46 schema/rebuild/tamper result: `5 passed`;
+- merge tree: `ee3d8ccaa40184cfc182999724a5b1391cdbae46`;
+- detached post-merge file/replay plus v44-v47 review subset:
+  `78 passed, 1 skipped`;
+- direct v47 schema/rebuild/tamper result: `5 passed`;
 - prior v1-v39 manifest lineage remains `410 passed`;
 - manifest/schema SHA-256:
-  `93890cd168d9eb5333034f55d7a01c30630d66bdbe07978e312bc989ef38c866` /
-  `240eb162ddfe4769038b1b7c0a19725bd650079a80eb221dbcfbaf1c177a3447`.
+  `1794c8c3c81063b41589ed7733cb978b875657166bdbdba60cd664bb25942474` /
+  `debcb0b0721bada999e1e7eb62e02d410a37f007e5d2b94d554032c2ccfb5eea`.
 
 V44 remains the immutable pre-merge P1-P173 snapshot. Main subsequently
 merged its P1-P172 parent `f53faeb5` at `efb9ba82`, so v45 deliberately binds
@@ -69,11 +67,11 @@ backup and stage replacement.
 - P58 manifest main snapshot:
   `1f61119087cdb72d939b8db0c7b915e4adb7c5ce`;
 - latest read-only main preflight:
-  `0014744810fcac60448be0e1d7d7427925a973df`;
+  `5c356f125e019bd882472c9f43a0b4f4fcbabb5a`;
 - D-PCT read-only snapshot:
-  `4466c79` (R0JF stable snapshot);
+  `d6b2877` (R0JH stable snapshot);
 - conflict-free main/evidence-head merge tree:
-  `93dc0e15baf91375df2805cc9891ce8ca58e0256`.
+  `ee3d8ccaa40184cfc182999724a5b1391cdbae46`.
 
 The payload and main snapshots have zero exact changed-path overlap from the
 common base. The main worktree's `.codex/` and `tmp/` remain owner-controlled
@@ -342,11 +340,11 @@ reference, public sharing or algorithm promotion.
 ## Integration procedure for the main owner
 
 1. Refresh main instructions and preserve its uncommitted/untracked work.
-2. Verify the committed v46 schema and rebuild its manifest; it transitively
-   preserves the immutable v1-v45 chain while explicitly superseding v45.
-3. Review `f53faeb5..36be7e9f`; do not copy files manually and do not import
+2. Verify the committed v47 schema and rebuild its manifest; it transitively
+   preserves the immutable v1-v46 chain while superseding v46 for review.
+3. Review `f53faeb5..4117062a`; do not copy files manually and do not import
    mutable paths from the D-PCT repository.
-4. Recompute `git merge-tree --write-tree 36be7e9f <reviewed-main>` against the
+4. Recompute `git merge-tree --write-tree 4117062a <reviewed-main>` against the
    refreshed main head.
 5. Perform a normal reviewed merge of the selected payload in the main task.
 6. Run all `tests/test_color_match*.py` plus halation, tiled dust and tiled
@@ -361,11 +359,11 @@ dirty worktree, Ultimate tracker and product integration decisions.
 
 ## Current evidence
 
-- latest detached corrected P173-P175 file/replay plus v44/v45/v46 review
-  subset: 70 passed, one platform skip and zero failures;
-- corrected P173/P175 file/replay suites: 55 passed, one platform skip;
-- latest isolated consumer full suite: 1,421 passed, five skipped;
-- detached merge tree is `93dc0e15...0256`; the temporary worktree was removed;
+- latest detached corrected P173-P177 file/replay plus v44-v47 review subset:
+  78 passed, one platform skip and zero failures;
+- P176/P177 transaction-writer suites: 155 passed, three platform skips;
+- latest isolated consumer full suite: 1,429 passed, five skipped;
+- detached merge tree is `ee3d8cca...ae46`; the temporary worktree was removed;
 - consumer worktree is clean after every stable leaf.
 
 ## External blockers that remain real

@@ -19,8 +19,9 @@ wire contract and not an algorithm promotion.
   integration because its P173 cleanup tracked directory paths without
   binding directory ownership. V46 correctly pins P173-P175 but is now a
   historical snapshot because P176/P177 close the same ownership class for
-  published destinations, rollback backups and staging entries. A replacement
-  manifest is pending. The branch also retains local 24 MP,
+  published destinations, rollback backups and staging entries. V47 pins the
+  complete P173-P177 payload against main `5c356f12`. The branch also retains
+  local 24 MP,
   maximum-count, bounded SDR file-format, unsupported-media atomicity,
   BT.2020 SDR and advertised-output execution evidence.
 - Main Neuro-Film latest observed committed snapshot is `f6cc28eb`; its untracked
@@ -342,9 +343,9 @@ wire contract and not an algorithm promotion.
 | Shared-path local-delivery authority | P55 reruns P54, rebinds P52/P51/P50/P49 and emits only a canonical no-write local scope when every product-ready source remains authorized | COMPLETE AS AUTHORIZATION MECHANICS, REAL USE CLOSED | Atomically deliver only from exact P55 after a genuine shared producer passes P45/P49 / Neuro-Film |
 | Shared-path atomic local export | P56 reconstructs exact P55, protects all staging artifacts and atomically commits byte-identical ordered files plus report with rollback | COMPLETE AS LOCAL TRANSACTION MECHANICS, REAL USE CLOSED | Restart-verify the exact P56 report, staging and delivered bytes / Neuro-Film |
 | Shared-path local-export restart integrity | P57 caller-binds exact P56 report/delivery and read-only rehashes every P53 source and delivered file while preserving P55/P54/receipt lineage | COMPLETE AS VERIFIED LOCAL FILE MECHANICS, REAL USE CLOSED | Main integration and a genuine P45/P49-passing producer remain required / shared evidence |
-| Main-integration evidence | Main `efb9ba82` merged consumer parent `f53faeb5` (P1-P172). V45 is rejected. V46 remains valid historical P173-P175 evidence but omits confirmed P176/P177 file-entry ownership fixes and is paused as the latest integration candidate | P1-P172 MERGED; V45 MUST NOT MERGE; V46 SUPERSEDED FOR LATEST REVIEW | Freeze a replacement manifest containing P174-P177 against refreshed main / consumer |
+| Main-integration evidence | Main `efb9ba82` merged consumer parent `f53faeb5` (P1-P172). V45 is rejected and V46 is historical. V47 binds payload `4117062a` against main `5c356f12`: 25 payload paths, 1,873 main paths, zero overlap, 70 exports and 26 schemas; manifest/schema SHA-256 are `1794c8c3...2474` / `debcb0b0...5eea` | P1-P172 MERGED; V47 REVIEW MANIFEST READY | Repository owner verifies v47 and merges only the file-identity-hardened payload / main task or owner |
 | Main-integration wire validation | P59 independently validates the strict manifest shape before Git access, then P58 reconstructs exact commit-derived facts | COMPLETE AS FAIL-CLOSED REVIEW CONTRACT | Keep schema and pinned Git reconstruction together during owner review / main task or owner |
-| Main-project availability | P176/P177 transaction-writer coverage passes 155 with three platform skips and the isolated color-match suite passes 1,429 with five skips. A refreshed overlap/merge-tree snapshot is pending; V46's prior clean merge is historical only | CORRECTED IMPLEMENTATION VERIFIED; REPLACEMENT MANIFEST PENDING | Rebuild strict payload/overlap/merge-tree evidence against refreshed main / consumer |
+| Main-project availability | P176/P177 transaction-writer coverage passes 155 with three platform skips and the isolated color-match suite passes 1,429 with five skips. V47 merges conflict-free as tree `ee3d8cca...ae46`; detached file/replay plus v44-v47 passes 78 with one skip and direct rebuild/tamper is 5/5 | V47 READY FOR REVIEW, NOT MERGED | Repository-owner review and incremental merge, then main-worktree targeted/full suite / main task or owner |
 
 ## Critical path
 
