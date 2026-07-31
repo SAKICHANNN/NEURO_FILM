@@ -175,6 +175,39 @@ def derivative_variance_shape(
     return density, shape
 
 
+def gamma_mean_transmittance_density_offset(
+    mean_density: np.ndarray,
+    density_variance: np.ndarray,
+) -> np.ndarray:
+    """Return the analytic density offset that preserves mean transmittance.
+
+    For ``X ~ Gamma(m^2/v, v/m)``, this returns ``c`` such that
+    ``E[10**(-(X+c))] == 10**(-m)``.  The correction is pointwise and does not
+    use rendered samples, so it cannot introduce image-dependent normalization.
+    """
+
+    mean = np.asarray(mean_density, dtype=np.float64)
+    variance = np.asarray(density_variance, dtype=np.float64)
+    if (
+        mean.shape != variance.shape
+        or not np.all(np.isfinite(mean))
+        or not np.all(np.isfinite(variance))
+        or np.any(mean <= 0.0)
+        or np.any(variance < 0.0)
+    ):
+        raise ValueError("invalid gamma density moments")
+    offset = np.zeros_like(mean)
+    active = variance > 0.0
+    if np.any(active):
+        shape = np.square(mean[active]) / variance[active]
+        scale = variance[active] / mean[active]
+        log_ten = math.log(10.0)
+        offset[active] = mean[active] - shape * np.log1p(log_ten * scale) / log_ten
+    if not np.all(np.isfinite(offset)) or np.any(offset < 0.0):
+        raise RuntimeError("invalid gamma mean-transmittance correction")
+    return offset
+
+
 def render_derivative_conditioned_structure_region(
     linear_exposure: np.ndarray,
     operator: RGBSensitometryOperator,
@@ -245,11 +278,62 @@ def render_derivative_conditioned_structure(
     )
 
 
+def render_transmittance_corrected_structure_region(
+    linear_exposure: np.ndarray,
+    operator: RGBSensitometryOperator,
+    profile: DerivativeConditionedStructureProfile,
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+) -> DerivativeConditionedStructureResult:
+    """Render P4AF structure with an analytic mean-transmittance correction."""
+
+    values = _validate_exposure(linear_exposure, profile)
+    base = render_derivative_conditioned_structure_region(
+        values,
+        operator,
+        profile,
+        origin_yx=origin_yx,
+        shape=shape,
+    )
+    target, normalized_shape = derivative_variance_shape(values, operator, profile)
+    y0, x0 = origin_yx
+    height, width = shape
+    target = target[y0 : y0 + height, x0 : x0 + width]
+    variance = profile.peak_density_variance * normalized_shape[
+        y0 : y0 + height, x0 : x0 + width
+    ]
+    offset = gamma_mean_transmittance_density_offset(target, variance)
+    density = np.asarray(base.density.astype(np.float64) + offset, dtype=np.float32)
+    transmittance = np.asarray(
+        np.power(10.0, -density.astype(np.float64)), dtype=np.float32
+    )
+    return DerivativeConditionedStructureResult(density, transmittance)
+
+
+def render_transmittance_corrected_structure(
+    linear_exposure: np.ndarray,
+    operator: RGBSensitometryOperator,
+    profile: DerivativeConditionedStructureProfile,
+) -> DerivativeConditionedStructureResult:
+    values = _validate_exposure(linear_exposure, profile)
+    return render_transmittance_corrected_structure_region(
+        values,
+        operator,
+        profile,
+        origin_yx=(0, 0),
+        shape=values.shape[:2],
+    )
+
+
 __all__ = [
     "DerivativeConditionedStructureProfile",
     "DerivativeConditionedStructureResult",
     "derivative_variance_shape",
+    "gamma_mean_transmittance_density_offset",
     "gaussian_block_mean_variance_scale",
     "render_derivative_conditioned_structure",
     "render_derivative_conditioned_structure_region",
+    "render_transmittance_corrected_structure",
+    "render_transmittance_corrected_structure_region",
 ]
