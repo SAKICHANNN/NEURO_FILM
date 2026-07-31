@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u5_r2bl2_filmmatch_identity_residual_validation_decision.v1",
+  "experiment_id": "u5.r2bl2-filmmatch-identity-residual-validation-v1",
+  "report": {
+    "path": "outputs/external_controls/filmmatch_ektachrome_v1/identity_residual_validation_bl2/run_a/report.json",
+    "sha256": "db8e589b9710c2a3431f9f9c6c8b638cc9d8a7ff3c326cbca4e42dbb21ebe37c",
+    "stable_evidence_id": "f0ba09781c485dfc797c974e913a83cbc1218eb6504f538c9b0f06829a4beacd",
+    "two_run_byte_exact": true
+  },
+  "automatic_result": {
+    "passed": true,
+    "style_rgb_rmse_from_source": 0.15397510096559475,
+    "new_boundary_fraction": 0.0,
+    "minimum_output": 0.0005994171958412609,
+    "maximum_output": 0.9581416224246789
+  },
+  "autonomous_visual_review": {
+    "reviewed_full_resolution": true,
+    "confirmed_severe_artifact": false,
+    "red_speckle_or_posterization": false,
+    "banding_or_colour_blocks": false,
+    "geometry_text_or_face_corruption": false,
+    "style_salience": "pass",
+    "finding": "The fixed operator produces clearly stronger contrast and chroma than the source while preserving chart edges, text, faces and object geometry. It does not reproduce the film border, optical falloff or complete capture/scan interpretation visible in the differently framed target."
+  },
+  "decision": {
+    "status": "retain_internal_look_approximation_candidate",
+    "independent_confirmation_opened": false,
+    "calibrated_stock_response_opened": false,
+    "product_integration_opened": false,
+    "next": "seek a genuinely independent rights-cleared paired source or a new content-diverse fit-forbidden paired population; do not tune on this consumed scene"
+  },
+  "claim_ceiling": "development-only clean and visibly stylized Look Approximation evidence for one author-prepared Sony FX3/Ektachrome E100 session; the reused scene is not independent confirmation and provides no calibrated stock, scanner-independent or product claim"
+}

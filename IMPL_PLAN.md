@@ -2341,3 +2341,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > do not promote dense conditioning or reuse the consumed validation scene as
 > confirmation.
 >
+> `U5.R2BL1/BL2` retain the FilmMatch two-matrix sigmoid's useful capacity with
+> a fixed identity derivative floor. Reflective/emissive held-group RMSE is
+> `.04694/.09618`, cube OOG is zero and minimum Jacobian is `.01071`. The fixed
+> fit-forbidden real-scene render is visibly strong and severe-clean. Retain an
+> internal Look Approximation candidate only: the scene is already consumed,
+> so independent paired confirmation and product use remain closed.
+>

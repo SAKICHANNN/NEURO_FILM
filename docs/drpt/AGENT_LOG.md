@@ -8503,3 +8503,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close as `oracle_only`: only 13/33 groups win, including 0/15 negative-EV
   groups. Do not lower the gate or promote dense routing; retain the global
   fallback and continue only with hard abstention or independent evidence.
+
+## 2026-08-01 - Retain U5.R2BL1/BL2 identity-residual sigmoid
+
+- BL1 adds a fixed 25% identity derivative floor inside the normalized sigmoid
+  between two bounded positive matrices. Two reports are byte-identical at
+  `8e10c665...a709784`; reflective/emissive held-group RMSE is
+  `.04694/.09618`, cube OOG is zero and minimum Jacobian is `.01071`.
+- BL2 applies the exact frozen operator to the already-consumed fit-forbidden
+  scene. Two reports are exact at `db8e589b...1ebe37c`; style displacement is
+  `.15398`, with zero new-boundary pixels. Full-resolution autonomous review
+  finds clear style and no severe artifact.
+- Retain an internal Look Approximation candidate. No target-pixel metric,
+  independent confirmation, calibrated stock response or product integration
+  opens; continue with genuinely independent paired evidence or a new
+  content-diverse population.
