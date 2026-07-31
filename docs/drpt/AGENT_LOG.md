@@ -8555,3 +8555,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain BL5 only as a high-priority internal Look Approximation challenger.
   The reused population is not independent confirmation or population
   preference; next run the unchanged operator on genuinely fresh cleared data.
+
+## 2026-08-01 - U5.R2BL8/BL9 close BL5 fresh preference promotion
+
+- Froze 17 ordinary photographs from 17 camera makes after two exact source
+  audits and an autonomous source review. Two unchanged BL5-versus-AO6 runs,
+  34 full-resolution outputs and 15 anonymous sheets are byte-identical;
+  report SHA-256 is `9ad3ad2e...068f`.
+- Mapping-sealed review finds zero confirmed severe artifact, but BL5 wins only
+  `7/17`, `5/17`, and `4/17` choices: `0/3` rounds, `16/51` aggregate and
+  `5/17` source majorities. AO6 remains the research colour incumbent.
+- The separately frozen BL9 adversary fits per-image EV, diagonal white
+  balance, contrast and saturation only. Its two reports are byte-identical at
+  `1a38ecc6...9f53`; BL5 retains `8.323` median non-basic DeltaE76, `.5495`
+  residual/style ratio and `16/17` images above 3.0.
+- Interpretation: BL5 is a genuinely non-basic explicit look whose direction
+  fails fresh preference, not another bland/basic model. Do not rescue it with
+  strength or capacity. A future hard-fallback selector must first prove
+  source-only value under nested development and then pass a new population.
