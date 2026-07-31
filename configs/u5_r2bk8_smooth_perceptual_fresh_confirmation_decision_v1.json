@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u5_r2bk8_smooth_perceptual_fresh_confirmation_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk8-smooth-perceptual-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK8",
+  "status": "fixed_challenger_retained_preference_gate_open",
+  "decision": "retain_bk7_open_independent_blind_preference",
+  "result": {
+    "automatic_pass": true,
+    "repeat_file_count": 37,
+    "repeat_file_hash_differences": 0,
+    "source_count": 11,
+    "output_count": 33,
+    "population_median_style_delta_e76": {
+      "fixed_bk7_smooth_perceptual_hue_density": 6.491488456726074,
+      "fixed_ao6_colour_only_t15_c35": 13.187395095825195,
+      "safe_rich_velvia_50": 2.7116336822509766
+    },
+    "bk7_per_source_style_delta_e76_range": [
+      4.328047752380371,
+      12.10827922821045
+    ],
+    "maximum_new_code_boundary_fraction_vs_source": 0.0,
+    "confirmed_bk7_severe_artifact_count": 0,
+    "visual_pass": true,
+    "visual_finding": "Autonomous full-population review found BK7 materially stronger than safe-rich while retaining continuous colour, geometry and texture on all 11 rows. The backlit Apple, Pentax fine texture, saturated cube, foliage, water and snow stress rows showed no confirmed clipping block, posterization, speckle, seam or structural corruption. AO6 remained much stronger numerically and sometimes more dramatic, but showed more aggressive hue interpretation in backlight and neutral interiors; preference is therefore unresolved.",
+    "thresholds_sources_parameters_or_strengths_changed": false
+  },
+  "evidence": {
+    "software_commit": "32c9bce22cbf0803fc0910fab69c7f9b4d7c6bf1",
+    "config_sha256": "8084c14a1da6bd0511a32b7cf1da6e860d2362a3f1ed1183dda85acbee4e7ccf",
+    "stable_evidence_id": "b3a81321cd9a6d0bdffeb44008581bc0584c315baea5667bcd784e13e789d36d",
+    "report_sha256": "c52622d3f7e4a3c847f57ac3f41d8b11a8e92ec0989215fd930b1c90d5698721",
+    "visual_sheet_sha256": [
+      "6ec588b5a32ee90a7f04d93a92ee803335f93e5e6c2911e3bef26158804a5562",
+      "354844b5f4c3ad0f38a81150f1fb709f2187e7fb81b6f60b7aaef01ae42d7302",
+      "d776cc3c6e4b04736e76e506f23cb3debac2f4454ee78f120ee5e78a709b5f39"
+    ],
+    "run_a": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a",
+    "run_b": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_b"
+  },
+  "next_leaf": "freeze a label-blinded, severe-first independent autonomous preference comparison of fixed BK7, AO6 and safe-rich without rerendering or parameter changes",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "artifact-safe, visibly material generic explicit Look Approximation challenger on one fourth-fresh autonomous population; no preference winner, stock identity, calibration, universal safety or product promotion"
+}

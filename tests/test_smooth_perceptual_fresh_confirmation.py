@@ -15,6 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk8_smooth_perceptual_fresh_confirmation_decision_v1.json"
+)
 
 
 def test_bk8_comparison_contract_is_frozen() -> None:
@@ -56,3 +60,27 @@ def test_bk8_contract_mutation_fails_closed() -> None:
     config["fixed_arms"][0]["strength"] = 0.75
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk8_decision_retains_only_generic_challenger() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "retain_bk7_open_independent_blind_preference"
+    )
+    assert result["automatic_pass"]
+    assert result["repeat_file_count"] == 37
+    assert result["repeat_file_hash_differences"] == 0
+    assert result["confirmed_bk7_severe_artifact_count"] == 0
+    assert result["visual_pass"]
+    assert (
+        result["population_median_style_delta_e76"][
+            "fixed_bk7_smooth_perceptual_hue_density"
+        ]
+        >= 5.0
+    )
+    assert result["maximum_new_code_boundary_fraction_vs_source"] == 0.0
+    assert not result["thresholds_sources_parameters_or_strengths_changed"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["production_default_changed"]
