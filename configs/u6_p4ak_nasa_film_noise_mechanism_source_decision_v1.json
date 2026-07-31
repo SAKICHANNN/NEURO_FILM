@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4ak_nasa_film_noise_mechanism_source_decision.v1",
+  "experiment_id": "u6.p4ak-nasa-film-noise-mechanism-source-v1",
+  "decision": "close_machine_text_source_without_anchor_rescue",
+  "report_sha256": "921ec049923827a417c7662b97dc39825561b75f9e8f3dba1489d02bd23a155e",
+  "stable_evidence_id": "d9c9806f9c8a4333e5e5ab4a5ba7d0f19fbe229f2564622716f922b39237fdf5",
+  "source_pass": false,
+  "source_identity": {
+    "record_id": "19680012473",
+    "pdf_sha256": "3e0d85f4c7cb860c1e1dd9795973624bab73a122e627d014ee0e2b545fea75e9",
+    "pdf_bytes": 1648609,
+    "text_sha256": "8a74c9b79c89f5602d9e528d1f50501d7a6500be0ad75bb516974b376b35e249",
+    "text_bytes": 48668,
+    "repeat_exact": true,
+    "public_rights": true
+  },
+  "failed_gates": {
+    "all_required_text_anchors": false,
+    "missing_anchor": "scanning aperture area"
+  },
+  "interpretation": "The official NTRS PDF/text are bounded, public-rights eligible and repeat-exact, but the frozen machine-text anchor set is incomplete in the supplied extraction. The protocol forbids changing to fuzzy anchors, alternate mirrors, OCR or figure digitization after observing the result.",
+  "branch_action": "Close P4AK. Retain the exact source files as audited background only; do not use them to validate, fit or reinterpret P4AD-P4AF. Continue an independent algorithm or data leaf.",
+  "claim_ceiling": "Negative machine-text source-gate evidence for NASA TN D-4501; not a completed mechanism extraction, numeric film dataset, measured emulsion evidence, calibration or product evidence."
+}
