@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p2m_density_interimage_recovery_decision.v1",
+  "node": "U6.P2M",
+  "date_decided": "2026-07-31",
+  "formal_report_sha256": "5e64379b9be1cebe1cfd9b0ce0682d9980e9993b5db93fd5db7591e6659795a4",
+  "stable_evidence_id": "2015baa8291e914af6c73cecd2899ddc0272c7df2385444b00680e3f228e8e1c",
+  "two_reports_byte_identical": true,
+  "automatic_pass": false,
+  "passing_witnesses": ["asymmetric-strong", "weak-crossover"],
+  "failing_witnesses": ["symmetric-moderate"],
+  "failure": {
+    "gate": "maximum_symmetric_neutral_channel_spread",
+    "observed": 0.000036716073568365815,
+    "maximum": 1e-12,
+    "mechanism": "six independently fitted off-diagonal coefficients absorb deterministic measurement noise and no longer preserve the equal-row structure required for an exact neutral axis"
+  },
+  "retained_evidence": {
+    "candidate_confirmation_rmse_density_range": [0.0004957412087567857, 0.0005098495172865112],
+    "gain_over_independent_fraction_range": [0.9829546058519959, 0.9945464015596],
+    "gain_over_affine_fraction_range": [0.9798941884213141, 0.9938096460920423],
+    "maximum_coupling_absolute_error": 0.00026152211050670116,
+    "own_derivatives_nonnegative": true,
+    "cross_derivatives_nonpositive": true,
+    "density_domain_exact": true
+  },
+  "branch_decision": "Close the six-free-coupling P2M fitting parameterization. Retain the equation family only as strong synthetic capacity evidence with a demonstrated missing structural-neutrality constraint. Do not impose a symmetry repair, change the neutral gate, remove measurement noise, or advance to photographs on this result. Existing P2, P7 and AO6 authorities remain unchanged.",
+  "claim_ceiling": "generic-physical-inspired synthetic known-operator representation evidence only; no stock, process, calibrated response, real-film operator or product claim"
+}

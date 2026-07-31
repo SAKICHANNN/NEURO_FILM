@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-07-31: U6.P2M tests a bounded density-dependent interimage
+> development equation on synthetic known operators only. Two reports are
+> byte-identical and recovery strongly beats independent curves plus a fixed
+> affine density map, but six independently fitted couplings violate the
+> exact symmetric neutral-axis gate under measurement noise. The parameterization
+> closes without a symmetry repair, AO9 reuse, photographs or product claim.
+> AO6 t15/c35 remains the global Look Approximation incumbent.
+>
 > U5.R2BH1 closes the independent fixed B0-versus-AO6 global-policy
 > confirmation. Two 24-output runs and nine blind sheets are byte-identical;
 > automatic and risk-based full-resolution severe gates pass. B0 wins each

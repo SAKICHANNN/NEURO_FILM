@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U6.P2M density-dependent interimage recovery
+
+- **Node/parent:** `ULT > U6 > U6.P2M`, after P2 typed development and the
+  closure of currently accessible measured response sources.
+- **Implementation/evidence:** froze and implemented a six-parameter
+  nonnegative cross-layer suppression operator with independent-curve and
+  fixed-affine controls. Five tests pass; two reports are exact at
+  `5e64379b...795a4`. No sealed AO9 pair or photograph was read.
+- **Result:** held RMSE is `.000496-.000510`, but symmetric neutral spread
+  `3.67e-5` fails the frozen `1e-12` gate.
+- **Decision/handoff:** close without symmetry, noise or gate rescue. Retain
+  only synthetic capacity evidence; P2/P7/AO6 and calibration claims remain
+  unchanged. Continue a genuinely distinct explicit colour or physical leaf.
+
 # 2026-07-31 - U5.R2BK23 returns K=1 on real FiveK content cells
 
 - **Node/parent:** `ULT > U5 > U5.R2BK23`, after BK22 retains an external-cell

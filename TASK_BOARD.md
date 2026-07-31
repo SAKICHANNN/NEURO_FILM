@@ -452,3 +452,10 @@ after best affine basic removal. Two canonicalizers recover no hidden twist.
 The next algorithm leaf must therefore optimize film-inspired appearance value
 with an explicit claim ceiling, canonicalizer sensitivity and hard fallback;
 it cannot call reference-only output the real digital-to-film operator.
+
+U6.P2M then tests a distinct density-dependent interimage development
+equation without touching the sealed AO9 proxy pairs. Recovery is numerically
+strong on unseen synthetic exposure groups, but the six independently fitted
+couplings break an exact symmetric neutral-axis gate under measurement noise.
+Close the fitter without a symmetry rescue or photograph stage. AO6 remains
+the incumbent; the next algorithm leaf must be genuinely distinct.
