@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u5_r2bl13_ao6_nonbasic_chroma_emphasis_observations.v1",
+  "experiment_id": "u5.r2bl13-ao6-nonbasic-chroma-emphasis-v1",
+  "reviewer": "autonomous_codex_vision",
+  "review_population": "consumed_bl8_development_population",
+  "blind_mapping_sha256": "6e6a992c3c962ae931d31da0157494f096c62e00cb81089f117bf446e83221d8",
+  "mapping_revealed_before_choices_fixed": false,
+  "observations_committed_before_mapping_reveal": true,
+  "source_order": [
+    "ricoh_gr_iii",
+    "google_pixel_4_xl",
+    "leica_c_lux",
+    "huawei_ane_lx1",
+    "oneplus_oneplus_a6003",
+    "minolta_dynax_5d",
+    "dji_fc7303",
+    "blackmagic_design_pocket_cinema_camera_6k_pro",
+    "olympus_e_10",
+    "phase_one_p40",
+    "panasonic_dc_gh7",
+    "fujifilm_x_t30_iii",
+    "nikon_d2x",
+    "leaf_credo_40",
+    "motorola_moto_g_5s_plus",
+    "epson_r_d1s",
+    "kodak_easyshare_z981"
+  ],
+  "round_choices": [
+    ["A", "A", "B", "B", "A", "B", "B", "B", "B", "A", "B", "B", "A", "B", "A", "A", "A"],
+    ["A", "A", "A", "B", "A", "B", "B", "B", "A", "A", "B", "A", "A", "A", "B", "A", "A"],
+    ["A", "A", "A", "B", "A", "B", "B", "B", "A", "A", "B", "A", "A", "A", "B", "A", "A"]
+  ],
+  "confirmed_severe_artifact_count": 0,
+  "severe_review_scope": "all 51 anonymous render comparisons across three permutations plus analytical no-clip metrics; no geometry rewrite is possible in this pixelwise transform",
+  "visual_summary_before_decode": "Both arms remain clean and strongly stylized. The preferred anonymous variants more often show stronger cyan-magenta or teal-orange separation without visible banding, posterization, speckling or boundary clipping.",
+  "population_preference_claimed": false,
+  "product_promotion_allowed": false
+}
