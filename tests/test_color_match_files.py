@@ -1409,6 +1409,36 @@ def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
     assert not list(tmp_path.glob(".*.reference-match-backup"))
 
 
+def test_batch_commit_rejects_existing_directory_without_moving_it(
+    tmp_path: Path,
+) -> None:
+    from src.color_match import files
+
+    destination = tmp_path / "output.bin"
+    destination.mkdir()
+    external_marker = destination / "external.txt"
+    external_marker.write_bytes(b"external-directory")
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"new")
+    cleanup = [stage]
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="destination must be a regular file",
+    ):
+        files._commit_staged_batch(
+            ((stage, destination),),
+            token="token",
+            cleanup=cleanup,
+        )
+
+    assert destination.is_dir()
+    assert external_marker.read_bytes() == b"external-directory"
+    assert stage.read_bytes() == b"new"
+    assert cleanup == [stage]
+    assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
 def test_concurrent_batch_commit_cannot_publish_mixed_destinations(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

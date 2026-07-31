@@ -823,6 +823,13 @@ def _commit_staged_batch_unlocked(
                 raise ReferenceMatchContractError(
                     "batch stage must be a regular file"
                 )
+            destination_exists = os.path.lexists(destination)
+            if destination_exists and (
+                destination.is_symlink() or not destination.is_file()
+            ):
+                raise ReferenceMatchContractError(
+                    "batch destination must be a regular file when it exists"
+                )
             published_identity = _path_entry_identity(stage)
             published_sha256: str | None = None
             if expected_stage_sha256 is not None:
@@ -862,11 +869,7 @@ def _commit_staged_batch_unlocked(
                         )
             backup: Path | None = None
             backup_identity: tuple[int, int] | None = None
-            if replace_existing and destination.exists():
-                if destination.is_symlink():
-                    raise ReferenceMatchContractError(
-                        "batch destination must not be a symbolic link"
-                    )
+            if replace_existing and destination_exists:
                 original_identity = _path_entry_identity(destination)
                 backup = _backup_path(destination, token)
                 _replace(destination, backup)
