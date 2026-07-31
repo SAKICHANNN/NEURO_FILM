@@ -1,0 +1,73 @@
+{
+  "schema": "neuro_film.u6_p6n_generic_callier_operator_contract.v1",
+  "experiment_id": "u6.p6n-generic-callier-operator-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6N",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p6m_contract_path": "configs/u6_p6m_callier_source_v1.json",
+    "p6m_contract_sha256": "91d713467840d549c5633e876e96a739f63cd99963871686871d82c9cea4663a",
+    "p6m_decision_path": "configs/u6_p6m_callier_source_decision_v1.json",
+    "p6m_decision_sha256": "4b27daed267bb29c74bece220c38148c70c0ddf39c5d5cc8e6e2f85aa75a9c9e"
+  },
+  "question": "Can a non-fitted, bounded and invertible density-domain Callier primitive preserve dye identity while exposing explicit metallic-silver illumination-geometry response without clipping or hidden RGB generation?",
+  "operator": {
+    "input_domain": "separate diffuse optical-density components: invariant dye density plus scattering metallic-silver density",
+    "output_domain": "directed-illumination total optical density",
+    "equation": "D_directed = D_dye + D_silver * Q(D_silver, wavelength, collimation)",
+    "q_family": "Q = 1 + collimation * peak_q_increment * wavelength_weight * x * exp(1-x), x=D_silver/peak_diffuse_density",
+    "profile": {
+      "profile_id": "generic-callier-synthetic-v1",
+      "peak_diffuse_density": 1.4,
+      "peak_q_increment": 0.35,
+      "wavelength_weights_rgb": [0.55, 0.75, 1.0],
+      "maximum_component_density": 4.05
+    },
+    "collimation_support": [0.0, 1.0],
+    "parameter_origin": "synthetic design values constrained by P6M qualitative observations; not fitted, digitized or calibrated",
+    "ordinary_chromogenic_control": "silver density is exactly zero, so dye-only output is exact identity"
+  },
+  "synthetic_evaluation": {
+    "density_grid_samples": 4097,
+    "density_grid_range": [0.0, 4.05],
+    "collimation_values": [0.0, 0.5, 1.0],
+    "inverse_iterations": 64,
+    "partition_rows": [1, 7, 31],
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "two_reports_must_be_byte_identical": true,
+    "q_at_zero_must_equal_one_exactly": true,
+    "q_must_be_finite_and_at_least_one": true,
+    "maximum_q_must_not_exceed": 1.35,
+    "maximum_peak_density_error": 0.002,
+    "full_collimation_peak_order": "blue > green > red > 1",
+    "half_collimation_increment_relative_error_maximum": 1e-12,
+    "directed_silver_density_must_be_strictly_increasing": true,
+    "inverse_maximum_absolute_error": 1e-12,
+    "dye_only_identity_must_be_exact": true,
+    "zero_collimation_identity_must_be_exact": true,
+    "mixed_component_formula_error_maximum": 1e-14,
+    "full_vs_partition_maximum_absolute_error": 0.0,
+    "invalid_domain_must_fail_before_output": true
+  },
+  "allowed_after_pass": [
+    "retain the primitive as generic physical-inspired scanner/output-profile infrastructure",
+    "test one separately frozen qualitative chromaticity or photographic nuisance control without fitting this profile",
+    "compile the same explicit equation only after a separate performance and parity contract"
+  ],
+  "forbidden": [
+    "fit peak density, Q increment, wavelength weights or collimation on P6M figures or photographs",
+    "apply nonzero silver density to ordinary bleached and fixed chromogenic colour film",
+    "hard clip optical density or final RGB",
+    "describe the profile as a measured film, stock, process, projector or scanner response",
+    "merge the Callier stage with scanner flare, MTF, noise, creative bloom or AO6 colour",
+    "photographic promotion or production integration under this contract",
+    "relax any gate after observing results"
+  ],
+  "branch_rule": {
+    "pass": "Retain generic primitive and freeze one independent value/compatibility leaf; no product promotion.",
+    "fail": "Close this q-family without parameter rescue and continue another independent physical or colour leaf."
+  },
+  "claim_ceiling": "Generic physical-inspired metallic-silver illumination-geometry primitive with synthetic evidence only; not measured Callier response, stock/process/scanner calibration, photographic value or product promotion."
+}
