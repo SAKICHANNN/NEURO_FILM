@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u5_r2bk4_quantization_regularized_log_chroma_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk4-quantization-regularized-log-chroma-v1",
+  "node": "ULT > U5 > U5.R2BK4",
+  "decision": "reject_half_code_regularization_continuity_gate",
+  "status": "closed_automatic_gate",
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2bk4_quantization_regularized_log_chroma_v1.json",
+      "sha256": "df3bb0a12062e20a106d9829ba93d10a463942e9225fcae1bee3681ba0daff97"
+    },
+    "software_commit": "uncommitted implementation evaluated against frozen contract; implementation and decision committed together",
+    "automatic_results": {
+      "maximum_zero_to_one_red_code_delta_e76": 3.233544438520992,
+      "median_zero_to_one_red_code_delta_e76": 2.860672096280805,
+      "synthetic_median_style_delta_e76": 7.62463913595211,
+      "new_uint16_boundary_fraction_on_interior_synthetic_cube": 0.0
+    },
+    "frozen_gates": {
+      "maximum_zero_to_one_red_code_delta_e76": 1.0,
+      "minimum_synthetic_median_delta_e76": 5.0,
+      "new_uint16_boundary_fraction_on_interior_synthetic_cube": 0.0
+    }
+  },
+  "result": {
+    "automatic_pass": false,
+    "continuity_gate_pass": false,
+    "style_gate_pass": true,
+    "encoded_boundary_gate_pass": true,
+    "visual_review_formally_opened": false,
+    "mechanism_information": "The half-code floor reduces the BK2 zero-to-one-code worst discontinuity from 85.8030 to 3.2335 Delta E76 while retaining style, but it does not meet the preregistered continuity ceiling.",
+    "thresholds_or_strengths_changed": false
+  },
+  "branch_action": "Close BK4 without changing the floor or gate. Investigate a bounded continuous opponent representation whose derivative is limited by construction, not by selecting a larger quantization floor.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "synthetic mechanism evidence and a failed fixed primitive gate only"
+}

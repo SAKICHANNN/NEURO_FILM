@@ -40,6 +40,7 @@ class EncodedSafeLogChromaFilmResponse:
     opponent_rotation: float = 0.09
     hue_bend: float = 0.06
     encoded_margin: float = 1.0 / 65535.0
+    chroma_floor_encoded: float = 0.0
 
     def __post_init__(self) -> None:
         values = (
@@ -50,6 +51,7 @@ class EncodedSafeLogChromaFilmResponse:
             self.opponent_rotation,
             self.hue_bend,
             self.encoded_margin,
+            self.chroma_floor_encoded,
         )
         if (
             not all(np.isfinite(values))
@@ -60,6 +62,7 @@ class EncodedSafeLogChromaFilmResponse:
             or abs(self.opponent_rotation) >= 0.25
             or abs(self.hue_bend) >= 0.25
             or not 0.0 < self.encoded_margin < 0.01
+            or not 0.0 <= self.chroma_floor_encoded < 0.1
         ):
             raise ValueError("invalid encoded-safe log-chroma response")
 
@@ -99,7 +102,15 @@ class EncodedSafeLogChromaFilmResponse:
             where=(yp + invp) > 0,
         )
 
-        safe = np.maximum(linear, eps)
+        if self.chroma_floor_encoded > 0.0:
+            chroma_floor = float(
+                _encoded_to_linear(
+                    np.asarray(self.chroma_floor_encoded, dtype=np.float64)
+                )
+            )
+            safe = linear + chroma_floor
+        else:
+            safe = np.maximum(linear, eps)
         rg = np.log(safe[..., 0] / safe[..., 1])
         bg = np.log(safe[..., 2] / safe[..., 1])
         mid = 4.0 * np.clip(y, 0.0, 1.0) * (
