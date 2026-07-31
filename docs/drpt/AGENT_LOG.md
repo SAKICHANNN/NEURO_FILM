@@ -8195,3 +8195,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   dual-fisheye and bright-feather rows as legitimate stress content, with zero
   confirmed severe source artifacts. No operator output was inspected.
 - Open only the frozen BK16/BK7/AO6/safe-rich sixth-fresh comparison.
+
+## 2026-07-31 - Freeze U5.R2BK18 sixth-fresh four-arm confirmation
+
+- Bound the exact BK17S decision and 12-row manifest before inspecting any
+  BK16 output on this population. The four unchanged arms are BK16, BK7, AO6
+  t15/c35 and safe-rich; fitting, tuning, routing, blending and effects remain
+  forbidden.
+- Frozen automatic gates require all 48 RGB16 outputs, BK16 population median
+  style Delta E76 at least 8.0, median increment over safe-rich at least 3.5,
+  no output above 0.5% new code-boundary pixels and repeat-exact evidence.
+- Only an automatic pass opens full-population autonomous visual review with
+  the four preregistered stress rows. Severe artifacts veto advancement before
+  any style judgment; no stock, preference or product claim is available.
