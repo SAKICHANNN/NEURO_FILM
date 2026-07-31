@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U5.R2BK23 returns K=1 on real FiveK content cells
+
+- **Node/parent:** `ULT > U5 > U5.R2BK23`, after BK22 retains an external-cell
+  synthetic prior.
+- **Implementation/evidence:** reused BK22 O0 capacity and objectives. Fit saw
+  only shuffled development marginals; 64 disjoint photograph identities were
+  exposed only to confirmation. Five tests plus BK22 adjacency pass. Two formal
+  reports are exact at `709372fa...b561`.
+- **Result:** pooled improvement is 92.89% and operator disagreement `.01669`,
+  but valid worst-cell improvement is `-6.6918` and only 64.06% pass. Observed
+  and target-permuted views both return identity; all structure gates pass.
+- **Decision/handoff:** retain the content-cell gate and formal K=1 outcome.
+  Do not rescue the confirmation set or call FiveK film evidence. Continue a
+  distinct explicit/physical film-imaging leaf while searching only for
+  genuinely observed rights-cleared real-film connectivity.
+
 # 2026-07-31 - Retain U5.R2BK22 external content-cell gate prior
 
 - **Node/parent:** `ULT > U5 > U5.R2BK22`, after BK21 proves canonicalizer

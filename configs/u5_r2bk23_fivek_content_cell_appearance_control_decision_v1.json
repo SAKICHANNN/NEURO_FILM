@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u5_r2bk23_fivek_content_cell_appearance_control_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk23-fivek-content-cell-appearance-control-v1",
+  "config": "configs/u5_r2bk23_fivek_content_cell_appearance_control_v1.json",
+  "config_sha256": "b24c097477424c159ff07bfa1c5fc831a0a9aac536dcfcc5744aacbc721a494a",
+  "software_commit": "eee10d11",
+  "formal_report": "outputs/u5_r2bk23_fivek_content_cell_appearance_control_v1/formal_a/report.json",
+  "repeat_report": "outputs/u5_r2bk23_fivek_content_cell_appearance_control_v1/formal_b/report.json",
+  "report_sha256": "709372fa5cf8d9db068abc0e29b4893684f4be4f11e1c20a4706b0ec1808b561",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "decision": "retain_real_raster_k1_identity_outcome",
+  "observations": {
+    "development_cells": 64,
+    "confirmation_cells": 64,
+    "development_confirmation_identity_overlap": 0,
+    "paired_pixel_coordinates_used": false,
+    "fit_target_order_destroyed": true,
+    "selected_canonicalizer": "sliced_quantile_48",
+    "canonicalizer_operator_rmse": 0.0166910448133133,
+    "pooled_improvement_fraction": 0.9289005797456958,
+    "valid_correspondence": {
+      "policy_result": "identity_fallback",
+      "worst_cell_improvement_fraction": -6.691789063213221,
+      "median_cell_improvement_fraction": 0.369692329317787,
+      "cell_pass_fraction": 0.640625,
+      "fallback_reason": "content-cell-worst-case"
+    },
+    "confounded_correspondence": {
+      "policy_result": "identity_fallback",
+      "worst_cell_improvement_fraction": -3.9528561817554575,
+      "median_cell_improvement_fraction": 0.0555935850564656,
+      "cell_pass_fraction": 0.46875,
+      "fallback_reason": "content-cell-worst-case"
+    },
+    "minimum_jacobian_determinant": 0.35732584555475566,
+    "maximum_jacobian_spectral_norm": 1.728720252228669,
+    "maximum_inverse_error": 1.78206005507775e-09,
+    "maximum_replay_error": 0.0
+  },
+  "interpretation": "A pooled unpaired appearance score can look extremely strong and two canonicalizers can agree while the same explicit operator fails badly on individual photographs. Exact photograph identity exposes the failure and correctly returns identity. The fixed Expert C control therefore supports K=1/identity, not one shared appearance operator.",
+  "allowed_next": [
+    "retain external content-cell worst-case validation as a mandatory gate when observed cells exist",
+    "search for rights-cleared real-film same-look/different-content connectivity",
+    "continue a distinct explicit or physical film-imaging algorithm with identity/global fallback"
+  ],
+  "forbidden": [
+    "relax the all-cell gate or remove hard photographs",
+    "infer cells from colour or content embeddings",
+    "fit per-cell operators or a router on this confirmation population",
+    "call FiveK film, stock, scanner, calibration or commercial product evidence"
+  ],
+  "claim_ceiling": "repeat-exact research-only FiveK digital-retouch control showing pooled unpaired appearance improvement is insufficient and the frozen external-cell gate returns K=1/identity"
+}

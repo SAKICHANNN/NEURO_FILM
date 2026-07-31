@@ -2231,3 +2231,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > same-look/different-content cells; cells may not be inferred from appearance,
 > source or scanner shortcuts.
 >
+> `U5.R2BK23` supplies the first real-raster control for that gate using the
+> existing research-only FiveK Expert C freeze. The unchanged unpaired O0
+> candidate improves pooled appearance by 92.89% and the canonicalizers agree,
+> yet only 64.06% of disjoint confirmation photographs clear the per-cell gate
+> and the worst row regresses by 669.18%. Both observed and permuted
+> correspondences return identity. This is a formal K=1 outcome: keep the
+> external-cell gate and do not rescue the shared operator or relabel FiveK as
+> film evidence.
+>
