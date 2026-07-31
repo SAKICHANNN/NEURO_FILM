@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u5_r2bk20_unpaired_operator_nonidentifiability.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk20-unpaired-operator-nonidentifiability-v1",
+  "node": "ULT > U5 > U5.R2BK20",
+  "status": "contract_frozen",
+  "question": "Can two materially different smooth cube-safe explicit operators produce the exact same observed unpaired control and target colour sets, proving that appearance-only matching cannot identify the digital-to-film operator even under perfect finite synthetic evidence?",
+  "parent": {
+    "decision": "configs/u5_r2bk19_synthetic_hard_mode_identifiability_decision_v1.json",
+    "required_decision": "retain_group_aware_hard_mode_bank_as_synthetic_method_prior_and_open_unpaired_identifiability_design_only"
+  },
+  "witness": {
+    "centre": 0.5,
+    "z_offsets": [
+      -0.24,
+      -0.16,
+      -0.08,
+      0.0,
+      0.08,
+      0.16,
+      0.24
+    ],
+    "radii": [
+      0.08,
+      0.16,
+      0.24
+    ],
+    "angles_per_ring": 24,
+    "twist_steps_by_z": [
+      -3,
+      -2,
+      -1,
+      1,
+      2,
+      3,
+      4
+    ],
+    "worlds": [
+      "identity",
+      "z-conditioned angular twist"
+    ]
+  },
+  "canonicalizers": [
+    "lexicographic-rank",
+    "minimum-euclidean-assignment"
+  ],
+  "gates": {
+    "observed_source_sets_must_be_byte_exact": true,
+    "observed_target_sets_must_be_byte_exact_after_canonical_sort": true,
+    "minimum_true_operator_paired_rgb_rmse": 0.02,
+    "minimum_twist_non_affine_residual_rmse": 0.01,
+    "minimum_twist_inverse_maximum_error": 0.0,
+    "maximum_twist_inverse_maximum_error": 1e-12,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_canonicalizer_recovered_twist_fraction": 0.0,
+    "exact_repeat_required": true
+  },
+  "decision_if_witness_passes": "unpaired_operator_identification_remains_unidentified_require_film_inspired_claim_ceiling",
+  "decision_if_witness_fails": "close_current_counterexample_and_redesign_without_claim_change",
+  "forbidden": [
+    "claim that unpaired appearance identifies a real digital-to-film operator",
+    "claim any film stock or latent mode from this synthetic witness",
+    "use current community film pixels",
+    "weaken existing stock, source, content or scanner identifiability gates",
+    "train a router or production model"
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "constructive synthetic nonidentifiability witness for unpaired explicit colour operators; no real-film, stock, mode, calibration or product result"
+}
