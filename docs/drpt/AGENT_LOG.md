@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U6.P2O1 retained-silver photographic close
+
+- P2O first closed with zero pixel reads because it bound P5D's 18 rows rather
+  than P7F's 16 eligible rows. P2O1 corrected only that binding.
+- Two full runs are exact at `8d229b08...67237`. Style/non-basic are
+  `26.67/16.25`, but magnitude, luma, chroma direction and 1,854 isolated
+  excursions fail frozen gates.
+- Close before visual review; do not lower retention or tune photographs.
+  Retain P2N primitive only and continue a distinct algorithm.
+
 # 2026-07-31 - U6.P2N retained-silver density primitive
 
 - **Node/parent:** `ULT > U6 > U6.P2N`, a distinct process branch after P2M.

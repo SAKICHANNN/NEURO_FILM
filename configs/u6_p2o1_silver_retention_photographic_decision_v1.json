@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p2o1_silver_retention_photographic_decision.v1",
+  "node": "U6.P2O1",
+  "date_decided": "2026-07-31",
+  "formal_report_sha256": "8d229b08aa580ffa8bc8671d2c911d727b09276ddcc6717aa6e5cd4e54767237",
+  "stable_evidence_id": "07d94959c6bc79b9d0565daf892a519c184cb5c6a9816d5df3059fa2a0cd471f",
+  "two_reports_and_output_inventories_exact": true,
+  "automatic_pass": false,
+  "passing_gates": ["new hard boundary", "style floor", "non-basic floor", "population support", "retention support"],
+  "failing_gates": {
+    "maximum_per_image_median_delta_e76": {"observed": 40.86210122665352, "maximum": 25.0},
+    "population_median_luma_absolute_shift": {"observed": 0.22063766374226726, "maximum": 0.15},
+    "population_median_lab_chroma_ratio": {"observed": 1.0939546319356452, "maximum": 0.98},
+    "maximum_isolated_excursion_count": {"observed": 1854, "maximum": 0}
+  },
+  "retained_evidence": {
+    "population_median_delta_e76": 26.672280904984458,
+    "population_median_non_basic_delta_e76": 16.252730014787083,
+    "images_with_delta_e76_at_least_1": 16,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "population_median_applied_retention_scale": 1.0
+  },
+  "branch_decision": "Close the fixed P2N photographic silver-retention branch before visual review. The effect is strong and non-basic but violates frozen magnitude, luma, chroma-direction and isolated-excursion gates. Do not lower retention, change headroom, tune on photographs or reinterpret increased chroma as calibrated bleach bypass. Retain P2N primitive only.",
+  "claim_ceiling": "generic physical-inspired retained-silver Look Approximation failure evidence; not measured bleach bypass, stock/process response, scanner calibration or product promotion"
+}

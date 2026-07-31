@@ -459,3 +459,8 @@ strong on unseen synthetic exposure groups, but the six independently fitted
 couplings break an exact symmetric neutral-axis gate under measurement noise.
 Close the fitter without a symmetry rescue or photograph stage. AO6 remains
 the incumbent; the next algorithm leaf must be genuinely distinct.
+
+U6.P2N proves exact dye-plus-retained-silver density composition, but P2O1
+closes its fixed photographic profile: the look is strong/non-basic yet too
+large, shifts luma, increases rather than reduces chroma, and creates isolated
+high-difference points. Visual review and lower-strength rescue are forbidden.

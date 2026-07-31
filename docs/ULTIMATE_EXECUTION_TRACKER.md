@@ -709,6 +709,7 @@ FLUX.2 gate:
 | U6.P2L/P2L1 | complete: source integrity pass / response source closed | Audit the smallest Apollo 16 magazine 111/J Kodak 3401 B&W wedge segment | official magazine/film mapping + raw-scan rights | exact 84,741,732-byte ZIP and 348,250,527-byte uint16 TIFF pass CRC/layout/streaming. Central profile spans 96.83% code range but has only two supported endpoint-like levels versus the frozen six-level minimum. No curve fit or segments 01-04 |
 | U6.P2M | complete: strong synthetic capacity / structural-neutrality fail | Recover a bounded density-dependent interimage development operator from known controls and compare with independent curves plus fixed affine density mixing | P2A typed development boundary + literature mechanism prior | two reports exact (`5e64379b...795a4`); held RMSE `.000496-.000510`, 97.99%-99.45% gains and coupling error `<=.000262`, but independent noisy coupling fits break the symmetric neutral axis at `3.67e-5 > 1e-12`. Close six-free-coupling fitter without symmetry rescue or photographs; `docs/U6_P2M_DENSITY_INTERIMAGE_RECOVERY_RESULTS.md` |
 | U6.P2N | complete: generic primitive pass | Add bounded neutral retained-silver density after colour-dye development, with normal bleach/fix as exact zero-retention control | P2 typed density boundary + Kodak qualitative process evidence | two reports exact (`6a713877...253fa`); composition error zero, opponent/transmittance chromaticity errors `<=4.44e-16`, exact identity/partition/domain and no clipping. Opens P2O photographic severe/matched-basic value only; fixed fraction is hypothesis-only |
+| U6.P2O/P2O1 | complete: contract repair / automatic close | Insert fixed P2N silver density into the retained P7F print chain with analytical density headroom | P2N pass + P7F fixed physical chain | P2O closes pre-pixel on wrong population binding; corrected P2O1 has two exact 16-image reports (`8d229b08...67237`). Style/non-basic are strong at `26.67/16.25`, but worst change `40.86`, luma shift `.2206`, chroma ratio `1.094` and 1,854 isolated excursions fail. No visual or strength rescue; retain primitive only |
 | U6.P4A | complete: closed | Compile P1B dye-cloud/silver references with a counter-Gaussian-copula marginal model | P1B pass + U6.2B negative | mean/variance/NPS/domain/repeat/partition pass, but colour-layer ACF max error `0.20262` exceeds frozen `0.20`; no retune |
 | U6.P4B | complete: development pass | Test a separately preregistered compound-Poisson structure approximation | P4A closure + P1B reference | two exact reports; confirmatory mean max `.01040`, variance ratio `1.0605-1.0800`, ACF max `.05785`, NPS relative max `.19378`; exact repeat/partition and physical domains |
 | U6.P4C1 | complete: closed | Validate naive physical-scale direct LOD against area-resolved P4B fields | P4B pass | ACF/NPS/repeat/partition/domain/brightening pass, but variance spans `.0875-1.8860` and B&W mean error reaches `.1743`; density-before-exponential is not area-mean transmittance |
@@ -989,12 +990,11 @@ Current approval state: research and local documentation are authorized; all ite
 
 *Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11; Roll2Film subtree opened: 2026-07-12 and re-gated after external audit on 2026-07-15. U0.3 remains a fail-closed 4,210-row legacy audit while current Windows `film_domain` contains 4,212 JPEGs of not-yet-propagated eligibility. FilmSet is local and ready for manifest/lockbox freeze; only BlueNeg acquisition remains download-gated. Integration owner: repository owner or explicitly assigned Codex root agent.*
 
-Current algorithm state: U6.P2M closes a six-free-coupling
-density-dependent interimage fitter despite strong synthetic recovery because
-it lacks an exact structural neutral-axis guarantee under measurement noise.
-Do not repair or retune P2M on its consumed witnesses. Continue with a
-genuinely distinct explicit colour or physical-image-formation mechanism;
-AO6 t15/c35 remains the incumbent global Look Approximation.
+Current algorithm state: U6.P2O1 closes a fixed retained-silver photographic
+branch despite strong non-basic style because magnitude, luma, chroma direction
+and isolated-excursion gates fail. P2N remains a generic primitive only. Do not
+lower retention or tune on the consumed photographs; continue a distinct
+explicit colour or physical mechanism. AO6 remains the incumbent.
 
 BJ0 is now closed: adaptive LUT prediction improves mean error by
 13.60--15.24% and improves P95 versus the global LUT on all three populations,
