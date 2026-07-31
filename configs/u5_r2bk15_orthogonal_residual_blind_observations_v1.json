@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u5_r2bk15_blind_observations.v1",
+  "experiment_id": "u5.r2bk15-orthogonal-residual-blind-preference-v1",
+  "status": "blind_choices_frozen_before_mapping_reveal",
+  "observer": "autonomous_codex_visual_review",
+  "observation_date": "2026-07-31",
+  "mapping_unread_when_recorded": true,
+  "preference_question": "Which anonymous candidate best combines clearly visible film-inspired style, photographic appeal and natural continuity without severe artifact?",
+  "build_receipt_sha256": "8357c673fd87f901f7047d49b04b841a078e05fc845f19ebe684f48272aa69b0",
+  "sheet_sha256": {
+    "round_1_part_1": "7a686362fe743b83d9f6bc4948ec56ea50582728b90c7141aff319e6bb1380bb",
+    "round_1_part_2": "ee2b6a240d26e9fa8d88349cc6b828fab233b7a8ae1d7a8e4b50104cc8500087",
+    "round_1_part_3": "d52bfc75de97de2d7babd9e7da97d6d9ae2a99c32b34252ab84f9474d211a6ad",
+    "round_2_part_1": "b3fe205961e5f7cefc3f45baa7e076b3334bae5d0b2c3f7982b6860e8a267558",
+    "round_2_part_2": "3b3b0c1281a006b1e1e2d85c7c1c0067bf2da1f2e6b3fac0da79fd0df82c61aa",
+    "round_2_part_3": "a1f5f906905ac39813479037195edab19404e37899b63f91dd8fae790d8f596e",
+    "round_3_part_1": "809dbae1126712bb2f2271240d73e9ec8b4ce4d4c89a1de7e254460949d99b7f",
+    "round_3_part_2": "bf8e42b6e3c808f3219e165802faf87a28acf0c67c63f5c27135e47893e40c28",
+    "round_3_part_3": "feae4378a0ebf49d1eadacd81f8e8fcf267575972e37cf4d95f559a5002f4d05"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "votes": {
+        "fimi_x8se": "A",
+        "gitup_git2": "D",
+        "hmd_nokia_7_plus": "C",
+        "htc_10": "A",
+        "microsoft_lumia_950xl": "B",
+        "oneplus_one": "C",
+        "yuneec_cgo3": "A",
+        "parrot_bebop2": "B",
+        "autel_model_323": "A",
+        "nokia_lumia_930": "C",
+        "asus_i01wd": "B",
+        "kandao_qoocam": "C"
+      }
+    },
+    {
+      "round": 2,
+      "votes": {
+        "fimi_x8se": "D",
+        "gitup_git2": "A",
+        "hmd_nokia_7_plus": "A",
+        "htc_10": "A",
+        "microsoft_lumia_950xl": "A",
+        "oneplus_one": "D",
+        "yuneec_cgo3": "A",
+        "parrot_bebop2": "C",
+        "autel_model_323": "B",
+        "nokia_lumia_930": "D",
+        "asus_i01wd": "B",
+        "kandao_qoocam": "A"
+      }
+    },
+    {
+      "round": 3,
+      "votes": {
+        "fimi_x8se": "A",
+        "gitup_git2": "B",
+        "hmd_nokia_7_plus": "D",
+        "htc_10": "A",
+        "microsoft_lumia_950xl": "D",
+        "oneplus_one": "C",
+        "yuneec_cgo3": "A",
+        "parrot_bebop2": "B",
+        "autel_model_323": "A",
+        "nokia_lumia_930": "D",
+        "asus_i01wd": "B",
+        "kandao_qoocam": "A"
+      }
+    }
+  ],
+  "confirmed_severe_artifact_count": 0,
+  "severe_observation": "Across all 144 anonymous candidate views no confirmed face, text, geometry, banding, posterization, clipping block, seam, colour block or newly created severe speckling was visible. The sparse warm grass speckles in the rotated OnePlus source were already present before all candidate transforms.",
+  "review_notes": "Votes select the candidate that best balances clear film-like density and colour separation with photographic plausibility. The most aggressive magenta/cyan arm was retained when compelling but usually lost to a comparably stylized, more continuous alternative. No mapping or arm identity was read or inferred while recording these choices.",
+  "claim_ceiling": "autonomous contact-sheet visual evidence on one frozen 12-source population; not owner preference, population preference, universal full-resolution adjudication, stock truth, calibration or product promotion"
+}

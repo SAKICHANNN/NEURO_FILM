@@ -10,6 +10,9 @@ from src.eval.orthogonal_residual_blind_preference import ARMS, _validate_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk15_orthogonal_residual_blind_preference_v1.json"
+OBSERVATIONS = (
+    ROOT / "configs/u5_r2bk15_orthogonal_residual_blind_observations_v1.json"
+)
 
 
 def _config() -> dict:
@@ -48,3 +51,19 @@ def test_bk15_contract_mutation_fails_closed() -> None:
     config["arms"].reverse()
     with pytest.raises(ValueError):
         _validate_inputs(ROOT, config)
+
+
+def test_bk15_observations_are_complete_and_frozen_blind() -> None:
+    observations = json.loads(OBSERVATIONS.read_text(encoding="utf-8"))
+    manifest, _ = _validate_inputs(ROOT, _config())
+    source_ids = {str(row["id"]) for row in manifest}
+    assert observations["status"] == (
+        "blind_choices_frozen_before_mapping_reveal"
+    )
+    assert observations["mapping_unread_when_recorded"]
+    assert observations["confirmed_severe_artifact_count"] == 0
+    assert len(observations["sheet_sha256"]) == 9
+    assert [row["round"] for row in observations["rounds"]] == [1, 2, 3]
+    for row in observations["rounds"]:
+        assert set(row["votes"]) == source_ids
+        assert set(row["votes"].values()) <= {"A", "B", "C", "D", "tie"}
