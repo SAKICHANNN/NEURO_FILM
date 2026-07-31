@@ -1,0 +1,103 @@
+{
+  "schema": "neuro_film.u6_p2m_density_interimage_recovery_contract.v1",
+  "node": "U6.P2M",
+  "date_frozen": "2026-07-31",
+  "parents": {
+    "p2a_contract_sha256": "ab8204407ed965bbdd714527f68d45539ab3e1bbe669b77d0ebe6cfe17347466",
+    "p2a_decision_sha256": "b1b7e935fffef6ab0dc7abc459e69aa536bc514715dc86c2ef41758c2d56c1b2"
+  },
+  "question": "Can a bounded density-dependent interimage development operator recover known cross-layer suppression that independent characteristic curves and a fixed post-density affine matrix cannot explain on held exposure groups?",
+  "claim_ceiling": "generic-physical-inspired synthetic known-operator representation evidence only; no stock, process, calibrated response, real-film operator or product claim",
+  "operator": {
+    "name": "positive-cross-layer-log-exposure-suppression-v1",
+    "input_domain": "log2 relative layer exposure",
+    "output_domain": "developed optical density",
+    "equation": "D_i = Dmin_i + (Dmax_i-Dmin_i)*sigmoid(slope_i*(log2(E_i)-mid_i) - sum_j!=i A_ij*sigmoid(slope_j*(log2(E_j)-mid_j)))",
+    "coupling_constraints": "A has zero diagonal and finite nonnegative off-diagonal entries bounded by 0.8",
+    "base_curve_parameters_are_frozen_known_controls": true,
+    "candidate_fits_only_six_off_diagonal_couplings": true,
+    "hard_clipping_forbidden": true
+  },
+  "synthetic_witnesses": [
+    {
+      "id": "symmetric-moderate",
+      "density_min": [0.08, 0.08, 0.08],
+      "density_max": [2.55, 2.55, 2.55],
+      "slope": [1.35, 1.35, 1.35],
+      "midpoint": [0.0, 0.0, 0.0],
+      "coupling": [[0.0, 0.28, 0.18], [0.18, 0.0, 0.28], [0.28, 0.18, 0.0]]
+    },
+    {
+      "id": "asymmetric-strong",
+      "density_min": [0.05, 0.09, 0.07],
+      "density_max": [2.75, 2.45, 2.60],
+      "slope": [1.55, 1.20, 1.42],
+      "midpoint": [-0.18, 0.12, 0.04],
+      "coupling": [[0.0, 0.52, 0.10], [0.14, 0.0, 0.44], [0.36, 0.20, 0.0]]
+    },
+    {
+      "id": "weak-crossover",
+      "density_min": [0.10, 0.07, 0.09],
+      "density_max": [2.35, 2.65, 2.50],
+      "slope": [1.18, 1.48, 1.30],
+      "midpoint": [0.16, -0.10, 0.08],
+      "coupling": [[0.0, 0.12, 0.08], [0.06, 0.0, 0.16], [0.14, 0.05, 0.0]]
+    }
+  ],
+  "sampling": {
+    "development_seed": 62031,
+    "confirmation_seed": 62032,
+    "development_rows_per_group": 384,
+    "confirmation_rows_per_group": 256,
+    "development_groups": ["uniform", "warm-biased", "cool-biased"],
+    "confirmation_groups": ["diagonal-ramp", "corner-mixture"],
+    "log2_exposure_range": [-3.0, 3.0],
+    "measurement_noise_sigma_density": 0.0005
+  },
+  "baselines": [
+    "known independent per-layer curves with zero coupling",
+    "known independent curves followed by one fitted unconstrained affine density map"
+  ],
+  "automatic_gates": {
+    "two_reports_must_be_byte_identical": true,
+    "maximum_confirmation_rmse_density": 0.003,
+    "minimum_gain_over_independent_fraction": 0.7,
+    "minimum_gain_over_affine_fraction": 0.35,
+    "maximum_coupling_absolute_error": 0.03,
+    "minimum_own_log_exposure_derivative": 0.0,
+    "maximum_cross_log_exposure_derivative": 1e-12,
+    "maximum_density_domain_violation": 0.0,
+    "maximum_symmetric_neutral_channel_spread": 1e-12,
+    "zero_coupling_must_equal_independent_curves": true
+  },
+  "research_basis": [
+    {
+      "source": "Hanson and Horton, Subtractive Color Reproduction: Interimage Effects, JOSA 42(9), 1952",
+      "url": "https://doi.org/10.1364/JOSA.42.000663",
+      "use": "equation-level precedent that dye image density depends on multiple layer exposures; no parameter calibration"
+    },
+    {
+      "source": "Wychorski, Interimage Effects in Various Subtractive Color Materials, RIT, 1976",
+      "url": "https://repository.rit.edu/theses/4827/",
+      "use": "experimental precedent that combined-layer development changes characteristic curves; no reusable measurements"
+    },
+    {
+      "source": "Kodak, Exploring the Color Image",
+      "url": "https://www.kodak.com/content/products-brochures/Film/Exploring-the-Color-Image.pdf",
+      "use": "manufacturer-level subtractive dye and colour-film process context; no stock recipe"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "fit or retune any parameter on the sealed 71-pair AO9 display-proxy pool",
+    "change witnesses, seeds, controls, thresholds or exposure groups after confirmatory output",
+    "fit base characteristic curves jointly with coupling in this pilot",
+    "use photograph content, scanner identity or source identity as an input",
+    "hard clip densities or outputs",
+    "call synthetic recovery a measured interimage effect, stock response, push/pull mode or calibrated film operator",
+    "advance to photographs if any automatic gate fails"
+  ],
+  "branch_rule": {
+    "pass": "retain the explicit density-dependent interimage representation as a generic physical-inspired mechanism and seek new controlled single-layer plus neutral sensitometry before any real fit",
+    "fail": "close this parameterization without modifying the existing P2/P7/AO6 champions"
+  }
+}
