@@ -1,0 +1,82 @@
+{
+  "schema": "neuro_film.u6_p4ao_zero_dc_dog_copula_structure_contract.v1",
+  "experiment_id": "u6.p4ao-zero-dc-dog-copula-structure-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AO",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4an_decision_path": "configs/u6_p4an_balanced_gaussian_copula_structure_decision_v1.json",
+    "p4an_decision_sha256": "bea8ffa388cb6216126855ce96287f9017ce5ff51c1405b508db24e5b691e835",
+    "p4af_decision_path": "configs/u6_p4af_derivative_conditioned_structure_decision_v1.json",
+    "p4af_decision_sha256": "27e5ef636d4dbf7c290efc920d379645bca9ae1fe2f7cacb4dc35c2668ebc126",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can a fixed zero-DC difference-of-Gaussians source suppress single-realization low-frequency tone drift while retaining positive grain-scale correlation and the unchanged P4AF density marginal?",
+  "research_basis": {
+    "motivation": "Low-frequency stochastic error is perceptually objectionable; blue-noise research motivates suppressing low spatial frequencies, but this candidate is a deterministic Gaussian band-pass field rather than a claimed blue-noise mask or measured film NPS.",
+    "primary_reference": "https://arxiv.org/abs/2112.09629"
+  },
+  "model": {
+    "marginal": "unchanged P4AF moment-matched gamma density",
+    "source_field": "one coordinate-counter normal field filtered by an equal-weight narrow-minus-broad 2D Gaussian kernel",
+    "narrow_sigma_pixels": 0.65,
+    "broad_sigma_pixels": 1.2,
+    "broad_weight": 1.0,
+    "truncate": 4.0,
+    "peak_density_variance": 0.0001,
+    "layer_seeds": [260831, 260837, 260851],
+    "variance_normalization_domain": [0.0001, 16.0],
+    "variance_normalization_samples": 32769,
+    "fitted_parameters": 0,
+    "sample_or_image_centering_allowed": false,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "shape": [512, 768],
+    "flat_exposure_levels": [0.001, 0.0055, 0.18, 4.0],
+    "ramp_exposure_interval": [0.0001, 16.0],
+    "ramp_bins": 24,
+    "low_frequency_block_sizes": [4, 8],
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 8,
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "maximum_kernel_dc_absolute_sum": 1e-15,
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.001,
+    "minimum_flat_transmittance_error_improvement_over_p4af": 0.5,
+    "maximum_density_variance_relative_error": 0.2,
+    "minimum_ramp_variance_shape_spearman": 0.9,
+    "minimum_lag1_autocorrelation": 0.15,
+    "maximum_lag1_autocorrelation": 0.45,
+    "maximum_lag1_anisotropy": 0.03,
+    "maximum_low_frequency_block_mean_std_ratio_to_p4af": 0.5,
+    "maximum_checker_frequency_power_ratio_to_neighborhood": 3.0,
+    "maximum_isolated_standardized_excursions": 0,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true,
+    "no_parameter_fit": true
+  },
+  "negative_controls": [
+    "unchanged P4AF correlated Gaussian copula",
+    "P4AN coordinate-block balancing",
+    "single narrow Gaussian without zero-DC subtraction",
+    "sample-dependent global or local centering"
+  ],
+  "branch_rule": {
+    "pass": "Retain as a generic synthetic band-pass structure candidate and open one independently seeded photographic severe/NPS/value audit.",
+    "fail": "Close without sigma, weight, seed, marginal, strength or threshold rescue; leave P4AF as the full-resolution synthetic reference and continue another colour or physical mechanism."
+  },
+  "forbidden": [
+    "using sample/image statistics to recenter the field",
+    "changing the frozen P4AF marginal or amplitude",
+    "calling the field measured film NPS or calibrated grain",
+    "photographic rendering before every synthetic gate passes"
+  ],
+  "claim_ceiling": "Generic synthetic zero-DC Gaussian-band-pass density structure; not measured film NPS, physical particle geometry, stock response, photographic quality or product evidence."
+}
