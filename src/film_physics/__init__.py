@@ -151,6 +151,13 @@ from .derivative_conditioned_structure import (
     render_derivative_conditioned_structure,
     render_derivative_conditioned_structure_region,
 )
+from .subpixel_moment_structure import (
+    CompiledDensityMoments,
+    compile_subpixel_density_moments,
+    gaussian_subpixel_covariance,
+    render_density_moment_structure,
+    render_density_moment_structure_region,
+)
 from .spatial_response import (
     SpatialResponseProfile,
     apply_bounded_development_adjacency,
@@ -275,6 +282,7 @@ __all__ = [
     "HillCharacteristicProfile",
     "DerivativeConditionedStructureProfile",
     "DerivativeConditionedStructureResult",
+    "CompiledDensityMoments",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
     "apply_interpretation_bounded_development_adjacency",
@@ -305,10 +313,12 @@ __all__ = [
     "apply_spatial_response_pipeline_row_tiled",
     "coordinate_counter_u64",
     "density_to_transmittance",
+    "compile_subpixel_density_moments",
     "develop_layer_exposure",
     "developed_density_variance",
     "derivative_variance_shape",
     "gaussian_block_mean_variance_scale",
+    "gaussian_subpixel_covariance",
     "propagate_poisson_exposure_variance",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
@@ -356,6 +366,8 @@ __all__ = [
     "render_density_conditioned_structure_region",
     "render_derivative_conditioned_structure",
     "render_derivative_conditioned_structure_region",
+    "render_density_moment_structure",
+    "render_density_moment_structure_region",
     "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
