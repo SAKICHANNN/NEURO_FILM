@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u5_r2bk10_orthogonal_perceptual_residual.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk10-orthogonal-perceptual-residual-v1",
+  "node": "ULT > U5 > U5.R2BK10",
+  "status": "primitive_contract_frozen",
+  "question": "Can a fixed Lab-orthogonal residual add BK7's complementary hue-density direction to the artifact-safe safe-rich base without double-counting their shared basic adjustment or creating new gamut boundaries?",
+  "parent": {
+    "decision": "configs/u5_r2bk9_smooth_perceptual_blind_preference_decision_v1.json",
+    "decision_sha256": "2614ec260912f0684dbda88d3475fecd6d77ba38b9648da927594342c61f958f",
+    "required_decision": "close_bk7_as_generalized_preference_challenger"
+  },
+  "fixed_inputs": {
+    "base": {
+      "role": "existing artifact-safe deterministic fallback",
+      "profile": "configs/render_profiles/safe_rich_v1.json",
+      "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+      "style": "velvia_50"
+    },
+    "residual_source": {
+      "role": "closed but smooth artifact-safe mechanism baseline",
+      "config": "configs/u5_r2bk7_smooth_perceptual_hue_density_v1.json",
+      "config_sha256": "2e2f901aa51e027cadfb95eef9f035b749523aa05018ba00e8e5f5378bbb543b"
+    }
+  },
+  "operator": {
+    "representation": "source, validated base and fixed candidate display-sRGB -> D65 CIELAB; remove the candidate residual projection along the base residual per pixel; cap the remaining Lab vector; add it to the base with fixed strength; fixed-L chroma compression; analytical linear and encoded residual safety",
+    "residual_strength": 0.8,
+    "maximum_orthogonal_delta_e76": 12.0,
+    "minimum_lightness": 0.1,
+    "maximum_lightness": 99.9,
+    "projection_epsilon": 1e-12,
+    "gamut_iterations": 24,
+    "encoded_margin": 0.000015259021896696422,
+    "row_chunk": 128
+  },
+  "mechanism_basis": {
+    "fixed_global_parameters": true,
+    "per_image_fit_or_routing": false,
+    "dense_arm_weight_prediction": false,
+    "shared_base_direction_removed": true,
+    "residual_norm_bounded_before_gamut": true,
+    "source_inclusive_linear_and_encoded_safety": true,
+    "synthetic_only_parameter_selection": true,
+    "bk8_or_bk9_pixels_read_for_parameter_selection": false,
+    "prototype_17_cube_median_style_delta_e76": 9.951919555664062,
+    "prototype_17_cube_p95_style_delta_e76": 18.810422897338867,
+    "prototype_17_cube_median_increment_vs_base_delta_e76": 5.406957149505615,
+    "prototype_17_cube_p95_increment_vs_base_delta_e76": 12.237357139587402,
+    "prototype_maximum_increment_before_gamut_delta_e76": 9.600000000000003,
+    "prototype_maximum_absolute_projection_dot": 1.4210854715202004e-13,
+    "prototype_new_uint16_boundary_fraction": 0.0
+  },
+  "primitive_gates": {
+    "identity_strength_zero_returns_base_exact": true,
+    "black_white_source_endpoints_exact": true,
+    "partition_output_exact_given_fixed_inputs": true,
+    "minimum_17_cube_median_style_delta_e76": 9.0,
+    "minimum_17_cube_median_increment_vs_base_delta_e76": 5.0,
+    "maximum_increment_before_gamut_delta_e76": 9.61,
+    "maximum_absolute_projection_dot": 1e-10,
+    "new_uint16_boundary_fraction_on_17_cube": 0.0
+  },
+  "forbidden": [
+    "reinterpret BK9 as a pass or lower its preference gate",
+    "fit or tune parameters on BK8/BK9 images or votes",
+    "reuse the fourth-fresh population as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "per-image parameter fitting, learned routing or dense arm blending",
+    "hard clipping as gamut handling",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "run the frozen BK2 Phase One severe regression, then freeze a fifth leakage-clean CC0 RAW population before any generalized comparison",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "synthetic factorized safe-base plus bounded orthogonal perceptual-residual primitive and known-failure regression candidate only"
+}
