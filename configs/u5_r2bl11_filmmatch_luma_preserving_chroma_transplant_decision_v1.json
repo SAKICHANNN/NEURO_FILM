@@ -1,0 +1,111 @@
+{
+  "ao6_choices": 14,
+  "automatic_gate_pass": true,
+  "blind_mapping_sha256": "729527f43693185a86165a0b398dc9899471a1d27a3037917c1e53c7cf593b6b",
+  "blind_observations_sha256": "c43078dba93935bb217d41caf067d39ae2fc6874a29ca074f4df1560aac04b14",
+  "candidate_choices": 3,
+  "candidate_won_descriptive_majority": false,
+  "choice_denominator": 17,
+  "claim_ceiling": "fit-free development-only factorization of two fixed explicit Look Approximation arms on a consumed CC0 population; not independent preference, film truth, stock response, calibration or product promotion",
+  "config_sha256": "aaf50d53df082ed9f4561469b1eb36c30d38b88ced8b7ca91fa282408fe45891",
+  "confirmed_severe_artifact_count": 0,
+  "decision": "close_bl11_preference_retain_ao6",
+  "decoded_choices": [
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "ricoh_gr_iii"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "ao6_lightness_bl5_chroma_analytical_safe",
+      "source_id": "google_pixel_4_xl"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "leica_c_lux"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "huawei_ane_lx1"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "oneplus_oneplus_a6003"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "ao6_lightness_bl5_chroma_analytical_safe",
+      "source_id": "minolta_dynax_5d"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "dji_fc7303"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "blackmagic_design_pocket_cinema_camera_6k_pro"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "ao6_lightness_bl5_chroma_analytical_safe",
+      "source_id": "olympus_e_10"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "phase_one_p40"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "panasonic_dc_gh7"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "fujifilm_x_t30_iii"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "nikon_d2x"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "leaf_credo_40"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "motorola_moto_g_5s_plus"
+    },
+    {
+      "anonymous_choice": "B",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "epson_r_d1s"
+    },
+    {
+      "anonymous_choice": "A",
+      "selected_arm": "fixed_ao6_colour_only_t15_c35",
+      "source_id": "kodak_easyshare_z981"
+    }
+  ],
+  "experiment_id": "u5.r2bl11-filmmatch-luma-preserving-chroma-transplant-v1",
+  "interpretation": "BL11 cleanly removes the BL5 tone failure and preserves its chroma request, but the transplant loses the descriptive autonomous preference comparison because it usually reduces AO6's salient cyan-magenta colour separation.",
+  "product_integration_opened": false,
+  "report_sha256": "cd7c452ef6add4e963268f69ec565920531dda9f00411787d6ae26dfde30bada",
+  "report_stable_evidence_id": "20e9762464518350cd9af39440d17716bd8845b6733888e74f41c271eeca30be",
+  "schema": "neuro_film.u5_r2bl11_filmmatch_luma_preserving_chroma_transplant_decision.v1",
+  "severe_artifact_veto_pass": true,
+  "stable_evidence_id": "31660243114b6ca636e2adec55b3b9f822cc280353782898f0964978ac4b9ed8",
+  "threshold_retuning_allowed": false,
+  "two_run_identity": true,
+  "visual_evidence_grade": "autonomous_development_non_precommitted"
+}
