@@ -118,11 +118,16 @@ class EncodedSafeLogChromaFilmResponse:
             + bg_gain * bg
             - self.hue_bend * mid * np.tanh(rg)
         )
-        ratios = np.stack(
-            (np.exp(rg2), np.ones_like(rg2), np.exp(bg2)), axis=-1
+        log_ratios = np.stack(
+            (rg2, np.zeros_like(rg2), bg2), axis=-1
         )
-        ratio_luma = np.sum(ratios * _LUMA, axis=-1)
-        linear_candidate = ratios * np.divide(
+        # This is algebraically the same luminance normalization as direct
+        # ratio exponentiation, but stays finite when one encoded channel is
+        # exactly zero and its opponent is not.
+        log_scale = np.max(log_ratios, axis=-1, keepdims=True)
+        scaled_ratios = np.exp(log_ratios - log_scale)
+        ratio_luma = np.sum(scaled_ratios * _LUMA, axis=-1)
+        linear_candidate = scaled_ratios * np.divide(
             y_film,
             ratio_luma,
             out=np.zeros_like(y_film),

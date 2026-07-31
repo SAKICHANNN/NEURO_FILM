@@ -101,3 +101,17 @@ def test_v2_invalid_inputs_fail_closed() -> None:
         op.apply(np.zeros((2, 2, 4), dtype=np.float32))
     with pytest.raises(ValueError):
         op.apply(np.zeros((2, 2, 3), dtype=np.float32), strength=-0.01)
+
+
+def test_v2_exact_zero_individual_channels_stay_finite() -> None:
+    source = np.asarray(
+        [
+            [[0.0, 0.4, 0.8], [0.7, 0.0, 0.2]],
+            [[0.3, 0.9, 0.0], [0.0, 0.0, 1.0]],
+        ],
+        dtype=np.float32,
+    )
+    output = EncodedSafeLogChromaFilmResponse().apply(source)
+    assert np.all(np.isfinite(output))
+    assert np.all(output >= 0.0)
+    assert np.all(output <= 1.0)
