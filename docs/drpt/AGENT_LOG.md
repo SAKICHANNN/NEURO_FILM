@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P4AG-P4AJ close derivative-structure LOD
+
+- P4AG clears synthetic severe controls but closes inverse-area LOD. P4AH's
+  exact Gaussian covariance scale passes flat fields at `.9859-1.0171`
+  variance ratios.
+- P4AI shows scalar block-mean exposure is insufficient (`842.85x` worst
+  cell). P4AJ preserves subpixel developed-density moments and reduces this to
+  `1.551x`, but misses the fixed `1.3x` and median-gain gates.
+- Close without factor, marginal or threshold rescue. P4AF remains only a
+  full-resolution generic synthetic reference.
+
 # 2026-08-01 - Pass U6.P4AD-P4AF derivative-conditioned grain structure
 
 - P4AD derives `H*(dD/dH)^2` from exposure Poisson statistics; P4AE verifies

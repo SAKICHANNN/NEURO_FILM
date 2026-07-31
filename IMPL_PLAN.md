@@ -2314,3 +2314,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > (`dd53b816...1640`). The amplitude, correlation and marginal family are fixed
 > synthetic choices; only a separate synthetic severe/LOD comparison opens.
 >
+> `U6.P4AG-P4AJ` close that first LOD family. Full-resolution P4AF is
+> synthetic-severe-clean and exact covariance repairs flat-field area variance,
+> but scalar mean exposure fails nonstationary cells by up to `842.85x`.
+> Subpixel developed-density moments reduce this to `1.551x` and repair mean
+> and boundary error, yet miss the frozen worst-cell and median-gain gates.
+> No per-factor correction or marginal rescue is allowed.
+>

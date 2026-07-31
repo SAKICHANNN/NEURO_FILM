@@ -423,12 +423,11 @@ capacity or photograph rescue; AO6 remains the colour development champion.
 Current algorithm state: BJ0-BJ2 adaptive neutral-base LUTs are closed. U6.P4AC
 closes the no-fit 2.0D-peaked family; P4AD-P4AE instead pass an exposure-Poisson
 variance mechanism propagated through characteristic-curve slope and unchanged
-U2.2 sensitometry. P4AF compiles that shape into positive, mean-preserving,
-partition-exact synthetic density structure. It is not measured emulsion; P4AG
-must now compare severe/LOD behavior against P4D and constant variance.
-Contract and primitive tests are frozen; implement and run the unchanged
-three-population audit next. No new data is allowed unless every development
-gate passes.
+U2.2 sensitometry. P4AF is synthetic-severe-clean, but P4AG-P4AJ close its first
+LOD family: flat-field covariance moments pass, scalar exposure fails by up to
+`842.85x`, and exact subpixel density moments still reach `1.551x` versus the
+frozen `1.3x` gate. Retain P4AF as a full-resolution synthetic reference only;
+the next grain leaf needs independent evidence or a genuinely different model.
 
 BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
 win-rate and P95 error improvements. Next: freeze an intrinsically
