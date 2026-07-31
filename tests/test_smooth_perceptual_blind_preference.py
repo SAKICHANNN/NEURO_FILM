@@ -3,6 +3,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
+from src.eval.smooth_perceptual_blind_preference import (
+    _validate_inputs,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
@@ -32,3 +38,17 @@ def test_bk9_blind_contract_is_frozen() -> None:
     assert not config["gates"]["rerender_allowed"]
     assert not config["training_allowed"]
     assert not config["operator_fitting_allowed"]
+
+
+def test_bk9_inputs_bind_exact_fixed_inventory() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    manifest, report = _validate_inputs(ROOT, config)
+    assert len(manifest) == 11
+    assert len(report["records"]) == 33
+
+
+def test_bk9_contract_mutation_fails_closed() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    config["arms"].reverse()
+    with pytest.raises(ValueError):
+        _validate_inputs(ROOT, config)
