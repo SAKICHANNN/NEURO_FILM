@@ -9,6 +9,7 @@ from src.eval.rawpixls_confirmation_preflight import validate_contract
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1.json"
 BL7_MANIFEST = ROOT / "outputs/u5_r2bl7s_filmmatch_fresh_source_preflight_v1/run_a/manifest.json"
+DECISION = ROOT / "configs/u5_r2bl8s_filmmatch_replacement_source_preflight_decision_v1.json"
 
 
 def _config() -> dict:
@@ -48,3 +49,16 @@ def test_bl8s_retains_only_clean_bl7_rows_and_adds_exact_replacements() -> None:
     assert len(retained) == 13
     assert current == retained | replacements
     assert current.isdisjoint(excluded)
+
+
+def test_bl8s_decision_binds_repeat_exact_outputs_and_excludes_chart() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["automatic_pass"] is True
+    assert decision["two_run_report_manifest_and_sheet_identity"] is True
+    assert decision["visual_pass"] is True
+    assert decision["eligible_ordinary_photo_rows"] == 17
+    assert decision["content_exclusions"] == ["apple_iphone_8"]
+    assert (
+        decision["decision"]
+        == "pass_replacement_fresh_population_open_fixed_bl5_vs_ao6_confirmation"
+    )

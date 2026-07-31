@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2bl8s_filmmatch_replacement_source_preflight_decision.v1",
+  "experiment_id": "u5.r2bl8s-filmmatch-replacement-source-preflight-v1",
+  "automatic_report_sha256": "16ab1c60f132b660f6c9f002b77b406bc883c56e256526c5ade2a9dbe0f7933a",
+  "manifest_sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733",
+  "contact_sheet_sha256": "aaea6914d93847fb1e493105edee4291cabcf6b301d6d2418ac54a69002e2d74",
+  "visual_review_sha256": "3df7066d1d275b584ae0c0888670c2851418b1a281f74c579c251a487d59ade7",
+  "decoded_rows": 18,
+  "decoded_makes": 18,
+  "eligible_ordinary_photo_rows": 17,
+  "eligible_camera_makes": 17,
+  "content_exclusions": ["apple_iphone_8"],
+  "automatic_pass": true,
+  "two_run_report_manifest_and_sheet_identity": true,
+  "visual_pass": true,
+  "confirmed_severe_source_artifact_count": 0,
+  "decision": "pass_replacement_fresh_population_open_fixed_bl5_vs_ao6_confirmation",
+  "operator_rendered": false,
+  "claim_ceiling": "fresh CC0 source eligibility and deterministic acquisition evidence only; not algorithm preference, population preference, film truth, stock response, calibration, product promotion or universal safety"
+}
