@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p4ai_covariance_lod_nonstationary_contract.v1",
+  "experiment_id": "u6.p4ai-covariance-lod-nonstationary-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AI",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4ah_decision_path": "configs/u6_p4ah_covariance_moment_lod_decision_v1.json",
+    "p4ah_decision_sha256": "df182ac5e8a5464c287f66f2e25bbeda232d255e3d6cd4088927ba86262de5c1",
+    "p4af_contract_path": "configs/u6_p4af_derivative_conditioned_structure_v1.json",
+    "p4af_contract_sha256": "911908a50149d74697c3e2b4211011133261563cdd6f32bbde45bb600e0b5556",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Does the unchanged P4AH covariance-moment LOD retain local moments and structure across nonstationary exposure fields, row partitions and an unseen 8x scale?",
+  "evaluation": {
+    "shape": [512, 768],
+    "lod_factors": [2, 4, 8],
+    "row_partitions": [17, 61],
+    "patterns": {
+      "ramp": [0.0001, 16.0],
+      "step": [0.001, 0.18, 4.0],
+      "checkerboard": [0.001, 0.18, 64],
+      "sparse": [0.001, 8.0, 47]
+    },
+    "statistics_grid": [4, 6],
+    "minimum_cell_pixels": 64,
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "candidate": {
+    "variance_scale": "exact P4AH discrete-Gaussian block covariance",
+    "correlation_sigma_pixels": "P4AF sigma divided by factor",
+    "low_resolution_exposure": "block mean of full-resolution exposure",
+    "seeds": "unchanged",
+    "fit_allowed": false
+  },
+  "control": "P4AG inverse-area variance direct LOD",
+  "gates": {
+    "maximum_cell_mean_density_absolute_error": 0.02,
+    "maximum_cell_mean_transmittance_absolute_error": 0.01,
+    "minimum_cell_variance_ratio": 0.5,
+    "maximum_cell_variance_ratio": 1.8,
+    "maximum_median_absolute_log_variance_error": 0.3,
+    "minimum_median_variance_error_improvement_over_direct": 0.3,
+    "maximum_boundary_contrast_absolute_error": 0.02,
+    "maximum_lag1_acf_absolute_error": 0.3,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_z_threshold": 7.0,
+    "isolated_neighbor_support_z_threshold": 3.5,
+    "minimum_isolated_neighbor_support": 1,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "input_unchanged": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "no_parameter_fit": true
+  },
+  "branch_rule": {
+    "pass": "Retain P4AH LOD as a generic synthetic nonstationary candidate and open bounded scale/performance compilation only.",
+    "fail": "Close nonstationary reuse without scale, threshold, kernel or marginal rescue; retain P4AF full-resolution reference and P4AH flat-field evidence only."
+  },
+  "forbidden": [
+    "photograph access or visual promotion",
+    "factor-specific empirical correction",
+    "gate, scale, seed, marginal or kernel retuning",
+    "stock, process, scanner, calibration or product claims"
+  ],
+  "claim_ceiling": "Synthetic nonstationary and scale evidence for a fixed covariance-moment developed-density LOD; not exact nonlinear area rendering, measured emulsion, photographic quality, calibration or product evidence."
+}
