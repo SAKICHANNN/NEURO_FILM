@@ -2321,3 +2321,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > and boundary error, yet miss the frozen worst-cell and median-gain gates.
 > No per-factor correction or marginal rescue is allowed.
 >
+> `U6.P4AK-P4AL` close two independent machine-readable source audits without
+> OCR or post-result term rescue. `U6.P4AM` separately derives an exact
+> Gamma-Laplace density offset: analytic mean transmittance is correct to
+> `2.78e-17`, but the fixed correlated realization improves only `1.20%` and
+> retains `.00295` flat mean error. It closes before photographic rendering;
+> sample-dependent centering and marginal/gate retuning remain forbidden.
+>

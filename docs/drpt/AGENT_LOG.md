@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P4AK-P4AM source and transmittance closure
+
+- P4AK and P4AL retain two exact primary-source acquisitions as background,
+  but both fail their frozen non-OCR machine-text gates; no term or rights
+  relaxation is used.
+- P4AM implements a no-fit Gamma-Laplace density offset. Two exact reports
+  prove analytic mean-transmittance error `2.78e-17` and preserve variance,
+  ACF, domain and partition behavior.
+- The fixed correlated realization improves only `1.20%` over P4AF and keeps
+  `.00295` flat mean error. Close before photographs and continue a genuinely
+  different stochastic structure or another physical/colour mechanism.
+
 # 2026-08-01 - U6.P4AG-P4AJ close derivative-structure LOD
 
 - P4AG clears synthetic severe controls but closes inverse-area LOD. P4AH's

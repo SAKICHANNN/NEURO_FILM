@@ -429,6 +429,14 @@ LOD family: flat-field covariance moments pass, scalar exposure fails by up to
 frozen `1.3x` gate. Retain P4AF as a full-resolution synthetic reference only;
 the next grain leaf needs independent evidence or a genuinely different model.
 
+U6.P4AK/P4AL close two independent source routes under their frozen non-OCR
+contracts. U6.P4AM then proves an exact Gamma-Laplace mean-transmittance
+correction mathematically, but it reduces the fixed correlated-field bias by
+only 1.20% and misses the empirical flat gate. It therefore closes before
+photographs. Do not rescue the same marginal with sample centering; the next
+physical leaf must change the stochastic structure or move to another
+high-information mechanism.
+
 BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
 win-rate and P95 error improvements. Next: freeze an intrinsically
 cube-preserving residual basis; do not retune or confirm BJ0.
