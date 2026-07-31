@@ -8172,3 +8172,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock, calibration, router or product claim opens. The next leaf must freeze
   a sixth rights-cleared RAW population disjoint from all prior manifests
   before any BK16 output on it is inspected.
+
+## 2026-07-31 - Freeze U5.R2BK17S sixth-fresh RAW source contract
+
+- Metadata-only selection retained 12 exact CC0 RawPixls rows across 12 camera
+  makes after excluding every prior tracked repository ID, source hash and
+  make/model identity. Five makes are new to the tracked RawPixls contracts.
+- The 320 MiB acquisition is source-only and must pass hash/decode,
+  within/cross-pool duplicate, make-diversity and autonomous visual source
+  gates. No candidate pixels or BK16 outputs were inspected before freeze.
+- A pass opens only an unchanged BK16/BK7/AO6/safe-rich comparison; learning,
+  routing, strength tuning, stock claims and production changes remain closed.
