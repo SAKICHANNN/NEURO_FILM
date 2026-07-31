@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2bl9_filmmatch_fresh_nonbasic_audit.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl9-filmmatch-fresh-nonbasic-audit-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL9",
+  "status": "contract_frozen_evaluation_ready",
+  "question": "Does the fixed BL5 fresh-photo look retain material structure after the strongest per-image EV, white-balance, contrast and saturation diagnostic fit?",
+  "parent": {
+    "bl8_contract": "configs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1.json",
+    "bl8_contract_sha256": "efa7e52747e07e23c61451d072f6635968463afa568860c9769775f601790d75",
+    "bl8_report": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a/report.json",
+    "bl8_report_sha256": "9ad3ad2ea4ea585c375dc13aabb87b21b96bf276ea522b70d1fd9d9abd71068f",
+    "bl8_stable_evidence_id": "d5b20bed73ddfaeae8e5b435d895cd1ca7038bab26c5233d7b6aa25f4c08f8c7",
+    "bl8_output_dir": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a",
+    "repeat_identity_must_pass_before_execution": true
+  },
+  "evaluation": {
+    "maximum_pixels_per_image": 12000,
+    "sampling": "deterministic full-raster evenly-spaced aligned pixels including endpoints",
+    "basic_family": "joint EV plus diagonal white balance plus contrast plus saturation",
+    "fit_role": "evaluator-only per-image adversary; never a renderer, candidate fit or product path"
+  },
+  "automatic_gate": {
+    "minimum_candidate_median_non_basic_delta_e76": 4.9,
+    "minimum_candidate_median_non_basic_to_style_ratio": 0.35,
+    "per_image_non_basic_delta_e76_floor": 3.0,
+    "minimum_images_above_non_basic_floor": 12
+  },
+  "branches": {
+    "pass": "retain explicit evidence that BL5 fresh-photo style is not reducible to basic global adjustments",
+    "fail": "describe BL5 as predominantly basic global adjustment despite any blind preference result; do not retune thresholds or operator"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "fresh-photo evaluator evidence against one strong basic-adjustment adversary; not film truth, stock response, calibration, population preference, universal irreducibility or product promotion"
+}
