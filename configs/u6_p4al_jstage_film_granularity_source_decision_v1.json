@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4al_jstage_film_granularity_source_decision.v1",
+  "experiment_id": "u6.p4al-jstage-film-granularity-source-v1",
+  "decision": "close_scanned_source_without_ocr_or_term_rescue",
+  "report_sha256": "c429f83daa3d842ddafb56f75317de21acd4bc323c662325cf836d4525f051d5",
+  "stable_evidence_id": "5fa0d222d19d904a173fb076fb4e8efb1702648fc246a33a9a87f0d6e0ef21a6",
+  "source_pass": false,
+  "source_identity": {
+    "doi": "10.3169/itej1954.23.13",
+    "pdf_sha256": "f145295b7f4f08ab903fd457787c5584fd7a40120e785e466c84dd4dd68ab945",
+    "pdf_bytes": 4634073,
+    "text_sha256": "368ce61774bf21a28ee66ba0964fbccaa28d0391cbe82f7d2bf6ea0de1998bc0",
+    "text_bytes": 6490,
+    "repeat_exact": true,
+    "free_access": true,
+    "redistribution_allowed": false
+  },
+  "failed_gates": {
+    "minimum_text": false,
+    "minimum_japanese_text": false,
+    "all_required_terms": false,
+    "japanese_characters": 0
+  },
+  "interpretation": "The official article identity, free-access label, copyright holder and bounded repeat-exact PDF acquisition pass. The frozen non-OCR extraction yields only 6,490 characters, no Japanese characters and none of the five preregistered theory terms, so the paper is not machine-readable under the allowed protocol.",
+  "branch_action": "Close P4AL. Retain the exact PDF/text for internal background only; do not OCR, use alternate copies, fuzz the term gate, fit physical parameters or infer a modern stock mechanism. Continue an independent algorithm leaf.",
+  "claim_ceiling": "Negative machine-readability evidence for one free-access copyrighted 1969 paper; not a mechanism extraction, reusable dataset, calibrated parameter source, stock response or product evidence."
+}
