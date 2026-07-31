@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u5_r2bl4_filmmatch_analytical_residual_ood.v1",
+  "experiment_id": "u5.r2bl4-filmmatch-analytical-residual-ood-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL4",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can fixed BL1 supply a strong residual direction over fixed AO6 while the existing source-inclusive analytical maximum-safe-scale policy removes its ordinary-photo boundary failure without averaging the look away?",
+  "parent": {
+    "bl3_decision": "configs/u5_r2bl3_filmmatch_identity_residual_ood_decision_v1.json",
+    "bl3_decision_sha256": "998c955874f201631393afcbe1dba40cc13879cae3327abe4986b6b9b9112b85",
+    "required_status": "close_bl1_direct_ordinary_photo_application",
+    "run_a": "outputs/u5_r2bl3_filmmatch_identity_residual_ood_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bl3_filmmatch_identity_residual_ood_v1/run_b/report.json",
+    "report_sha256": "b1c437072baeacd4c95a38deb42855f305161a9ec0ae441e29e0930efd3dbb75",
+    "stable_evidence_id": "502be0d57cd2c138dee539098e1ee38060371b1afd38810bbf429931986ab995"
+  },
+  "candidate": {
+    "base": "fixed_ao6_colour_only_t15_c35",
+    "requested_residual_target": "fixed_bl1_identity_residual_sigmoid",
+    "execution": "base plus per-pixel analytical maximum safe scale times the exact BL1-minus-AO6 RGB residual",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "hard_clipping_allowed": false,
+    "post_result_parameter_search_allowed": false
+  },
+  "automatic_gate": {
+    "expected_outputs": 12,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "minimum_median_residual_energy_retention": 0.9,
+    "maximum_p95_safety_limited_pixel_fraction": 0.1,
+    "minimum_median_style_rgb_rmse_from_ao6": 0.04,
+    "require_two_run_report_and_output_identity": true
+  },
+  "visual_gate": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "red_speckle_or_posterization_allowed": false,
+    "blind_comparator": "fixed_ao6_colour_only_t15_c35",
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36
+  },
+  "branches": {
+    "automatic_fail": "close AO6-base BL1 residual composition without changing rails or thresholds",
+    "severe_fail": "reject the composition without preference tradeoff",
+    "preference_fail": "retain AO6 incumbent and BL1 paired-code-domain evidence only",
+    "preference_pass": "retain a high-priority internal challenger; require a genuinely fresh population before incumbent replacement"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "product_integration_allowed": false,
+  "calibrated_stock_response_claim_allowed": false,
+  "claim_ceiling": "development-only analytical composition evidence on a program-wide reused CC0 population; not independent confirmation, population preference, film truth, calibrated stock response, universal safety or product promotion"
+}
