@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4af_derivative_conditioned_structure_decision.v1",
+  "experiment_id": "u6.p4af-derivative-conditioned-structure-v1",
+  "decision": "retain_generic_derivative_conditioned_structure",
+  "report_sha256": "dd53b816ec658f2f98aa09377730ee27bb30614925462646deac5c4ed2ae1640",
+  "stable_evidence_id": "199ae9fe5a2883dbe4c008e8d7896b02a72e10a6c55f7c43d5a7d5209f4b98f3",
+  "passed": true,
+  "metrics": {
+    "maximum_flat_mean_absolute_error": 2.8298672332616182e-05,
+    "maximum_flat_variance_relative_error": 0.005670864765204654,
+    "minimum_lag1_autocorrelation": 0.5190728450756239,
+    "ramp_variance_shape_spearman": 0.9997427487298219,
+    "ramp_variance_relative_error_p90": 0.030658065735567418,
+    "zero_exposure_density_exact": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true,
+    "density_minimum": 0.13611026108264923,
+    "transmittance_minimum": 0.010344550013542175,
+    "transmittance_maximum": 0.7309534549713135
+  },
+  "interpretation": "The frozen gamma-copula approximation reproduces the derivative-conditioned density mean and variance shape, remains positive in density/transmittance domains, and is repeat- and row-partition-exact. The amplitude, correlation scale and marginal family remain fixed synthetic engineering choices rather than measured emulsion properties.",
+  "branch_action": "Open only a separately frozen synthetic severe-artifact and LOD comparison against the P4D monotone density control and a constant-variance post-development control. Do not access photographs or integrate the renderer.",
+  "claim_ceiling": "Generic synthetic positive developed-density structure driven by the existing uncalibrated sensitometry derivative; not exact marked-Poisson emulsion geometry, measured grain, stock response, calibration, photographic quality or product evidence."
+}
