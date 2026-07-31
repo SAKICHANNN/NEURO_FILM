@@ -5,9 +5,11 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from PIL import Image
 
 from src.eval.ao6_nonbasic_chroma_emphasis import (
     _encoded_samples_to_lab,
+    build_blind_review_sheets,
     compose_ao6_nonbasic_chroma_emphasis,
     validate_contract,
 )
@@ -67,6 +69,43 @@ def test_aligned_sample_lab_conversion_preserves_row_shape() -> None:
     lab = _encoded_samples_to_lab(samples)
     assert lab.shape == samples.shape
     assert np.all(np.isfinite(lab))
+
+
+def test_blind_builder_is_three_round_deterministic(tmp_path: Path) -> None:
+    source_id = "camera"
+    source_path = tmp_path / "source.png"
+    Image.new("RGB", (32, 24), (80, 100, 120)).save(source_path)
+    parent = tmp_path / "parent"
+    candidate = tmp_path / "candidate"
+    (parent / "renders" / "fixed_ao6_colour_only_t15_c35").mkdir(parents=True)
+    candidate.mkdir()
+    Image.new("RGB", (32, 24), (60, 110, 130)).save(
+        parent
+        / "renders"
+        / "fixed_ao6_colour_only_t15_c35"
+        / f"{source_id}.png"
+    )
+    Image.new("RGB", (32, 24), (55, 115, 140)).save(
+        candidate / f"{source_id}.png"
+    )
+    first = tmp_path / "blind_a"
+    second = tmp_path / "blind_b"
+    kwargs = {
+        "root": tmp_path,
+        "parent_output_dir": parent,
+        "candidate_output_dir": candidate,
+        "source_rows": {source_id: {"decoded_path": source_path.name}},
+        "source_ids": [source_id],
+        "rounds": 3,
+    }
+    evidence_a = build_blind_review_sheets(output_dir=first, **kwargs)
+    evidence_b = build_blind_review_sheets(output_dir=second, **kwargs)
+    assert evidence_a == evidence_b
+    assert evidence_a["rounds"] == 3
+    assert evidence_a["sources_per_round"] == 1
+    assert (first / "mapping.json").read_bytes() == (
+        second / "mapping.json"
+    ).read_bytes()
 
 
 @pytest.mark.parametrize(

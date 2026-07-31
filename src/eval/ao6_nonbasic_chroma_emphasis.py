@@ -10,6 +10,7 @@ from typing import Any, Mapping
 
 import cv2
 import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 from src.color_engine.lab import lab_to_linear_rgb, linear_rgb_to_lab
 from src.color_engine.srgb_transfer import encoded_srgb_to_linear, linear_srgb_to_encoded
@@ -27,6 +28,7 @@ from src.roll2film.factorized_boundary_guard import apply_target_residual_bounda
 
 
 SCHEMA = "neuro_film.u5_r2bl13_ao6_nonbasic_chroma_emphasis_report.v1"
+CANDIDATE_ARM = "ao6_nonbasic_chroma_emphasis_025"
 
 
 class AO6ChromaEmphasisError(RuntimeError):
@@ -333,8 +335,96 @@ def run_ao6_nonbasic_chroma_emphasis(
     return report
 
 
+def build_blind_review_sheets(
+    *,
+    root: Path,
+    parent_output_dir: Path,
+    candidate_output_dir: Path,
+    source_rows: Mapping[str, Mapping[str, Any]],
+    source_ids: list[str],
+    output_dir: Path,
+    rounds: int = 3,
+) -> dict[str, Any]:
+    """Build deterministic multi-round AO6/candidate sheets without printing mappings."""
+
+    import random
+
+    if output_dir.exists():
+        raise FileExistsError("BL13 blind review is create-only")
+    if rounds < 1:
+        raise ValueError("blind review requires at least one round")
+    output_dir.mkdir(parents=True)
+    font = ImageFont.load_default()
+    mappings: list[dict[str, Any]] = []
+    part_hashes: list[str] = []
+    for round_index in range(1, rounds + 1):
+        tiles: list[Image.Image] = []
+        round_rows: list[dict[str, str]] = []
+        for source_id in source_ids:
+            order = [AO6_ARM, CANDIDATE_ARM]
+            random.Random(
+                hashlib.sha256(
+                    f"u5-r2bl13:{round_index}:{source_id}".encode("ascii")
+                ).digest()
+            ).shuffle(order)
+            round_rows.append(
+                {"source_id": source_id, "A": order[0], "B": order[1]}
+            )
+            with Image.open(root / source_rows[source_id]["decoded_path"]) as opened:
+                source = opened.convert("RGB")
+                source.thumbnail((520, 330), Image.Resampling.LANCZOS)
+            compared: list[Image.Image] = []
+            for arm_id in order:
+                path = (
+                    parent_output_dir / "renders" / AO6_ARM / f"{source_id}.png"
+                    if arm_id == AO6_ARM
+                    else candidate_output_dir / f"{source_id}.png"
+                )
+                with Image.open(path) as opened:
+                    rendered = opened.convert("RGB")
+                    rendered.thumbnail((520, 330), Image.Resampling.LANCZOS)
+                compared.append(rendered)
+            tile = Image.new("RGB", (1580, 375), "white")
+            draw = ImageDraw.Draw(tile)
+            for index, (label, image) in enumerate(
+                zip(("Source", "A", "B"), (source, *compared), strict=True)
+            ):
+                x = 5 + index * 525
+                draw.text((x, 3), label, fill="black", font=font)
+                tile.paste(image, (x, 23))
+            draw.text((5, 357), source_id, fill="black", font=font)
+            tiles.append(tile)
+        mappings.append({"round": round_index, "rows": round_rows})
+        for part_index, start in enumerate(range(0, len(tiles), 4), start=1):
+            selected = tiles[start : start + 4]
+            sheet = Image.new("RGB", (1580, len(selected) * 375 + 28), "white")
+            ImageDraw.Draw(sheet).text(
+                (5, 5),
+                f"U5.R2BL13 blind round {round_index} part {part_index}",
+                fill="black",
+                font=font,
+            )
+            for tile_index, tile in enumerate(selected):
+                sheet.paste(tile, (0, 28 + tile_index * 375))
+            path = output_dir / f"round_{round_index}_part_{part_index}.png"
+            sheet.save(path, "PNG")
+            part_hashes.append(sha256_file(path))
+    mapping_path = output_dir / "mapping.json"
+    mapping_path.write_text(
+        json.dumps(mappings, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    return {
+        "rounds": rounds,
+        "sources_per_round": len(source_ids),
+        "parts": part_hashes,
+        "mapping_sha256": sha256_file(mapping_path),
+    }
+
+
 __all__ = [
     "AO6ChromaEmphasisError",
+    "CANDIDATE_ARM",
+    "build_blind_review_sheets",
     "compose_ao6_nonbasic_chroma_emphasis",
     "run_ao6_nonbasic_chroma_emphasis",
     "validate_contract",
