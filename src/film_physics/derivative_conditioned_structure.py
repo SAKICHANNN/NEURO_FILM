@@ -10,7 +10,11 @@ from scipy.special import gammaincinv, ndtr
 
 from src.roll2film.sensitometry import RGBSensitometryOperator
 
-from .structure_compiler import balanced_correlated_normal_region, correlated_normal_region
+from .structure_compiler import (
+    balanced_correlated_normal_region,
+    correlated_normal_region,
+    zero_dc_dog_normal_region,
+)
 
 
 @dataclass(frozen=True)
@@ -373,6 +377,88 @@ def render_balanced_derivative_structure(
     return render_balanced_derivative_structure_region(values, operator, profile, origin_yx=(0, 0), shape=values.shape[:2])
 
 
+def render_zero_dc_dog_derivative_structure_region(
+    linear_exposure: np.ndarray,
+    operator: RGBSensitometryOperator,
+    profile: DerivativeConditionedStructureProfile,
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    narrow_sigma: float,
+    broad_sigma: float,
+    broad_weight: float = 1.0,
+) -> DerivativeConditionedStructureResult:
+    """Render the P4AF Gamma marginal from a fixed Gaussian band-pass field."""
+
+    values = _validate_exposure(linear_exposure, profile)
+    full_shape = values.shape[:2]
+    y0, x0 = origin_yx
+    height, width = shape
+    if (
+        y0 < 0
+        or x0 < 0
+        or height <= 0
+        or width <= 0
+        or y0 + height > full_shape[0]
+        or x0 + width > full_shape[1]
+    ):
+        raise ValueError("requested band-pass structure region is outside the field")
+    target, normalized_shape = derivative_variance_shape(values, operator, profile)
+    target = target[y0 : y0 + height, x0 : x0 + width]
+    variance = profile.peak_density_variance * normalized_shape[
+        y0 : y0 + height, x0 : x0 + width
+    ]
+    output = np.empty_like(target)
+    for channel, seed in enumerate(profile.layer_seeds):
+        mean = target[..., channel]
+        active = variance[..., channel] > 0.0
+        layer = mean.copy()
+        if np.any(active):
+            normal = zero_dc_dog_normal_region(
+                full_shape,
+                origin_yx=origin_yx,
+                shape=shape,
+                narrow_sigma=narrow_sigma,
+                broad_sigma=broad_sigma,
+                broad_weight=broad_weight,
+                seed=seed,
+            )
+            uniform = ndtr(normal)
+            if np.any(uniform <= 0.0) or np.any(uniform >= 1.0):
+                raise RuntimeError("band-pass gamma copula escaped the unit interval")
+            gamma_shape = np.square(mean[active]) / variance[..., channel][active]
+            gamma_scale = variance[..., channel][active] / mean[active]
+            layer[active] = gammaincinv(gamma_shape, uniform[active]) * gamma_scale
+        output[..., channel] = layer
+    density = np.asarray(output, dtype=np.float32)
+    transmittance = np.asarray(
+        np.power(10.0, -density.astype(np.float64)), dtype=np.float32
+    )
+    return DerivativeConditionedStructureResult(density, transmittance)
+
+
+def render_zero_dc_dog_derivative_structure(
+    linear_exposure: np.ndarray,
+    operator: RGBSensitometryOperator,
+    profile: DerivativeConditionedStructureProfile,
+    *,
+    narrow_sigma: float,
+    broad_sigma: float,
+    broad_weight: float = 1.0,
+) -> DerivativeConditionedStructureResult:
+    values = _validate_exposure(linear_exposure, profile)
+    return render_zero_dc_dog_derivative_structure_region(
+        values,
+        operator,
+        profile,
+        origin_yx=(0, 0),
+        shape=values.shape[:2],
+        narrow_sigma=narrow_sigma,
+        broad_sigma=broad_sigma,
+        broad_weight=broad_weight,
+    )
+
+
 __all__ = [
     "DerivativeConditionedStructureProfile",
     "DerivativeConditionedStructureResult",
@@ -383,6 +469,8 @@ __all__ = [
     "render_derivative_conditioned_structure_region",
     "render_balanced_derivative_structure",
     "render_balanced_derivative_structure_region",
+    "render_zero_dc_dog_derivative_structure",
+    "render_zero_dc_dog_derivative_structure_region",
     "render_transmittance_corrected_structure",
     "render_transmittance_corrected_structure_region",
 ]
