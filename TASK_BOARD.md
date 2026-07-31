@@ -471,3 +471,9 @@ wavelength and illumination-geometry constraints, but provide no numeric Q
 table. P6N may design a generic synthetic bounded operator; digitized-figure
 fitting, scanner calibration, stock claims and photographic promotion remain
 closed.
+
+U6.P6N now passes all frozen synthetic gates with exact dye/diffuse identity,
+strictly increasing directed density, `1.78e-15` inverse error and exact row
+partitioning. Retain it as dormant generic infrastructure. Do not invent a
+silver component for ordinary chromogenic film or reuse P2O1 photographs;
+continue only with independent component evidence or another mechanism.

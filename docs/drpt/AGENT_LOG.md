@@ -8389,3 +8389,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The paper publishes no reusable numeric Q table. P6N may implement only a
   generic synthetic bounded scanner/output-profile operator; digitized-figure
   fitting, stock/process/scanner calibration and product use remain closed.
+
+## 2026-08-01 - Retain U6.P6N generic Callier primitive
+
+- Implemented an explicit density equation with separate invariant dye and
+  scattering metallic-silver components; ordinary chromogenic dye-only input
+  and diffuse illumination are exact identity controls.
+- Two reports are byte-identical at `afd8873e...2fe59`. All 14 gates pass:
+  bounded Q, peak-density and spectral order, strictly increasing directed
+  density, `1.78e-15` inverse error, exact component formula/partitions and
+  4/4 invalid-domain rejection.
+- Retain the primitive as dormant generic physical-inspired infrastructure.
+  No measured curve, photographic value, calibration, stock or product claim
+  opens; P2O1 remains closed.

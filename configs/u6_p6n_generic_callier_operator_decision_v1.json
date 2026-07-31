@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p6n_generic_callier_operator_decision.v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6N",
+  "date": "2026-08-01",
+  "contract_path": "configs/u6_p6n_generic_callier_operator_v1.json",
+  "contract_sha256": "7ea6622deb66519b6375a46bfb8435c03a7a02995f729b8db869a70e911d92ea",
+  "report_paths": [
+    "outputs/eval/u6_p6n_generic_callier_operator_v1/report_run1.json",
+    "outputs/eval/u6_p6n_generic_callier_operator_v1/report_run2.json"
+  ],
+  "report_sha256": "afd8873e1afb2dcca66ef040c13f88e7da213fb6d3e129450c7837041e12fe59",
+  "stable_evidence_id": "003c1ec6743f26e9ca6bdfca130856952559b12db61cedb9e868b21879b3f1aa",
+  "result": {
+    "all_fourteen_gates_pass": true,
+    "maximum_q": 1.3499999991485447,
+    "peak_density_rgb": [
+      1.40009765625,
+      1.40009765625,
+      1.40009765625
+    ],
+    "peak_q_rgb": [
+      1.1924999995316996,
+      1.2624999993614086,
+      1.3499999991485447
+    ],
+    "minimum_directed_density_step": 0.0008541391094114559,
+    "inverse_maximum_absolute_error": 1.7763568394002505e-15,
+    "dye_only_identity_exact": true,
+    "zero_collimation_identity_exact": true,
+    "partition_errors_all_zero": true,
+    "invalid_cases_rejected": "4/4"
+  },
+  "decision": "retain_generic_physical_inspired_callier_primitive",
+  "not_opened": [
+    "numeric curve fit or figure digitization",
+    "ordinary chromogenic colour-film silver response",
+    "photographic promotion",
+    "stock, process, projector or scanner calibration",
+    "production or profile integration"
+  ],
+  "next_allowed": "Freeze one independent component-boundary or value leaf; if no evidence-backed nonzero metallic-silver component is available, keep the operator dormant and continue another physical or colour mechanism.",
+  "claim_ceiling": "Generic physical-inspired metallic-silver illumination-geometry primitive with synthetic evidence only; not measured Callier response, stock/process/scanner calibration, photographic value or product promotion."
+}

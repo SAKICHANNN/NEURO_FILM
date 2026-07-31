@@ -2277,3 +2277,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > implement only a synthetic generic bounded operator; curve digitization,
 > fitting, calibration and product integration are forbidden.
 >
+> `U6.P6N` implements that synthetic-only component equation. Two exact runs
+> pass all 14 gates: Q is bounded and peaks at 1.40010D, wavelength order is
+> blue>green>red, directed density stays strictly monotone, inverse error is
+> `1.78e-15`, and dye/diffuse/partition controls are exact. Keep the primitive
+> dormant unless an independent source supplies a legitimate metallic-silver
+> component; ordinary chromogenic colour film remains exact identity.
+>
