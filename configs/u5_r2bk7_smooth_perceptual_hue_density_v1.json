@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u5_r2bk7_smooth_perceptual_hue_density.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk7-smooth-perceptual-hue-density-v1",
+  "node": "ULT > U5 > U5.R2BK7",
+  "status": "primitive_contract_frozen",
+  "question": "Can one smooth Lab-domain density, hue-response and split-tone operator retain AO6-scale visible styling without BK2's zero-channel singularity or hard clipping?",
+  "parent": {
+    "decision": "configs/u5_r2bk6_bounded_opponent_fresh_confirmation_decision_v1.json",
+    "decision_sha256": "4e2a236e231f0c9474951e07158f14b096afb38589da003809e985a67870f62b",
+    "required_decision": "close_fixed_bk5_insufficient_population_style"
+  },
+  "operator": {
+    "representation": "display sRGB -> linear sRGB -> D65 CIELAB; smooth density tone, periodic hue/chroma response and luminance-dependent split tone; fixed-L chroma gamut compression; source-inclusive encoded residual safety",
+    "tone_power": 1.35,
+    "luminance_floor": 0.0001,
+    "base_chroma_gain": 1.3,
+    "first_harmonic_gain": 0.12,
+    "first_harmonic_center_degrees": 35.0,
+    "second_harmonic_gain": -0.08,
+    "second_harmonic_center_degrees": 110.0,
+    "hue_warp": 0.11,
+    "hue_warp_center_degrees": 45.0,
+    "luminance_hue_tilt": 0.04,
+    "split_tone_a": 4.8,
+    "split_tone_b": 8.0,
+    "gamut_iterations": 24,
+    "encoded_margin": 0.000015259021896696422,
+    "strength": 1.0
+  },
+  "mechanism_basis": {
+    "zero_channel_logarithm": false,
+    "per_pixel_division_by_channel_or_chroma": false,
+    "hue_response_periodic": true,
+    "tone_and_chroma_factorized": true,
+    "fixed_luminance_chroma_compression": true,
+    "source_inclusive_encoded_residual_scale": true,
+    "synthetic_only_parameter_selection": true,
+    "bk6_pixels_read_for_parameter_selection": false,
+    "prototype_17_cube_median_style_delta_e76": 11.556008851240582,
+    "prototype_17_cube_p95_style_delta_e76": 42.39644309512513,
+    "prototype_zero_to_one_axis_max_delta_e76": 0.9958921074867249,
+    "prototype_maximum_neutral_axis_channel_range": 0.04697025194764137,
+    "prototype_new_uint16_boundary_fraction": 0.0
+  },
+  "primitive_gates": {
+    "identity_strength_zero_exact": true,
+    "black_white_endpoints_exact": true,
+    "partition_output_exact": true,
+    "minimum_17_cube_median_style_delta_e76": 10.0,
+    "maximum_zero_to_one_axis_delta_e76": 1.05,
+    "maximum_neutral_axis_channel_range": 0.05,
+    "new_uint16_boundary_fraction_on_17_cube": 0.0,
+    "bk2_phaseone_regression_requires_zero_confirmed_severe_artifact": true
+  },
+  "forbidden": [
+    "change BK3, BK4 or BK6 thresholds or reinterpret their failures",
+    "fit or tune parameters on BK6 images",
+    "reuse BK6 images as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "hard clipping",
+    "per-image fitting, strength retuning, routing or dense blending",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "run the frozen BK2 Phase One severe regression, then freeze a fourth leakage-clean CC0 RAW population before any generalized confirmation",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "synthetic smooth perceptual hue-density primitive and known-failure regression candidate only"
+}
