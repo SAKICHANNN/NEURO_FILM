@@ -1,0 +1,405 @@
+{
+  "aggregate_choice_denominator": 51,
+  "blind_mapping_sha256": [
+    "6104ec97cebbf9d260cc5a26f6142303b35e130e275b9985ef8a3f901837172a",
+    "6cd58b50a3e40665431e969c381aaf84c029aa535dfd452ed19c870c808bec1c",
+    "4ecd5fa95ce5322eb843c61e2c9534d51dff5e20147ca04cdecaafd47d6b26d0"
+  ],
+  "blind_observations_sha256": "f956745d86f3517d1691984d54787c452d2cab02e68e3a4d3fd45aeb463e94a2",
+  "candidate": "fixed_bl5_strict_interior_sigmoid",
+  "candidate_aggregate_choices": 16,
+  "candidate_round_wins": 0,
+  "candidate_source_majority_wins": 5,
+  "claim_ceiling": "genuinely fresh CC0-population autonomous comparison of fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion",
+  "confirmed_severe_artifact_count": 0,
+  "decision": "retain_ao6_incumbent_close_bl5_preference_promotion",
+  "experiment_id": "u5.r2bl8-filmmatch-strict-interior-fresh-confirmation-v1",
+  "interpretation": "BL5 is materially non-basic on fresh images but loses the frozen preference gate; do not rescue by strength or capacity.",
+  "nonbasic_passed": true,
+  "nonbasic_report_sha256": "1a38ecc6b7191102738118034e1aacc4618e0d80703ae70d4110ca1b945a9f53",
+  "nonbasic_stable_evidence_id": "b98578822bc73214a1b94d832b295ddf42205b54331064eccec760aee09cbae3",
+  "output_sha256": {
+    "blackmagic_design_pocket_cinema_camera_6k_pro": {
+      "fixed_ao6_colour_only_t15_c35": "e661972bbf7450ee5a608e15396ce289c472b968d48b021859fd84018b66c164",
+      "fixed_bl5_strict_interior_sigmoid": "08ca3c2b962cb4c6993df902fd02bd671f5fc24f0cea30e56f8463f04822ecc6"
+    },
+    "dji_fc7303": {
+      "fixed_ao6_colour_only_t15_c35": "29031d18983beefd3dc7b8ae3f96bf30625e96427828fa41fe15b6e8727c9d07",
+      "fixed_bl5_strict_interior_sigmoid": "c50259f2c01ed3bcc81d60bfdc317df77d7dab43080534d77ecc2158814da512"
+    },
+    "epson_r_d1s": {
+      "fixed_ao6_colour_only_t15_c35": "17bb13f130229b56e15113f71c9f063ba5a07d00ce88eeb3747148a39c17aa2c",
+      "fixed_bl5_strict_interior_sigmoid": "ed85ffcefdaa6cd241d18a33c393f1e5e3ac1f0b219dbe4642ccbcd60e7b1143"
+    },
+    "fujifilm_x_t30_iii": {
+      "fixed_ao6_colour_only_t15_c35": "6935cad14dc1b92e257bb00820da9809d4860683cf3dfc5943ab04d8d681dba6",
+      "fixed_bl5_strict_interior_sigmoid": "a45e6f7680d31a3fb173a8d1c65941517b69dfffd5e4cdf03e1485015eeb8964"
+    },
+    "google_pixel_4_xl": {
+      "fixed_ao6_colour_only_t15_c35": "0f34ebce2ae0a81b41c5c0fc39c65a5d1869daac94c9512b7f5ce6aa474e7ba2",
+      "fixed_bl5_strict_interior_sigmoid": "7a008f952c235eff3e3ed735d7972c5c4ea10a2557b22b2121babd4c0bf37210"
+    },
+    "huawei_ane_lx1": {
+      "fixed_ao6_colour_only_t15_c35": "3d57063435af9881e97311ead8986f5a596f4a78f4483175ba6137f4ca962207",
+      "fixed_bl5_strict_interior_sigmoid": "ddb04fcb78abd1d4ea33438048f94855ad60c830cb08e22c06fd72c0ee81779a"
+    },
+    "kodak_easyshare_z981": {
+      "fixed_ao6_colour_only_t15_c35": "803471ac5ceba2663d029e17b2500ead2c2b2302a881b25a0fcc19940f8a2134",
+      "fixed_bl5_strict_interior_sigmoid": "a35b834259b5670cf188cde85f9fa4883fcb0eefecd378a4eed1d9ee122df3ed"
+    },
+    "leaf_credo_40": {
+      "fixed_ao6_colour_only_t15_c35": "8fa959d7d25f3fb4261cdefb1e6e3dcb7a7305ed45b38bfcbc282e398c702482",
+      "fixed_bl5_strict_interior_sigmoid": "4041f367b9651331dfa3f8858b3ff2039cb1d7093d5d13de14ce1d86f57898ab"
+    },
+    "leica_c_lux": {
+      "fixed_ao6_colour_only_t15_c35": "a56f88db4651f944ede101e5bad4d3e45130ac8df2d2b41402088d1d1a4a1f26",
+      "fixed_bl5_strict_interior_sigmoid": "60b7c8ad94a4828c317dcfcee6f3b7509a5cd8292eb935c5718a8b7a82d031ff"
+    },
+    "minolta_dynax_5d": {
+      "fixed_ao6_colour_only_t15_c35": "5ab73786bef5180ba1052369ddeeeb9d93f82f051529612a90e5b42a64d3603f",
+      "fixed_bl5_strict_interior_sigmoid": "9f7f0d5176ed0a948c8a364189abd44905759d2979d2a7f315a1c3fa5f9920bb"
+    },
+    "motorola_moto_g_5s_plus": {
+      "fixed_ao6_colour_only_t15_c35": "407d57981686a9757c0d57a780dcab5259823d1e7466d5a10375da60eb4c7542",
+      "fixed_bl5_strict_interior_sigmoid": "31feb0cedf23e180c57b46a553a4353b3799535d3f5389d2299a71ade0df301d"
+    },
+    "nikon_d2x": {
+      "fixed_ao6_colour_only_t15_c35": "ef1eafb89245a964286bdf59b1ee74e06edf8add99e6ac5b5fdab128bb14b3f5",
+      "fixed_bl5_strict_interior_sigmoid": "58ea650c8db6e2d1456b5d3ea5a2ffd5a27654ea6b8b313050f9f8e853c32765"
+    },
+    "olympus_e_10": {
+      "fixed_ao6_colour_only_t15_c35": "08448edd2182febb595348bdeeb473f0340039c954918a8976745f1e8fdd0d0f",
+      "fixed_bl5_strict_interior_sigmoid": "c31a5c3b1118681566555eeb963a007abf878eb5121652cfca017c0593d17008"
+    },
+    "oneplus_oneplus_a6003": {
+      "fixed_ao6_colour_only_t15_c35": "d7997b3716e919a1b0f003907eb04283a0cc07e046afead7bb5637b7c4162eba",
+      "fixed_bl5_strict_interior_sigmoid": "602c3a4093d04baecad6593f1bb6f277810974c71157274bc6b6780a35bbeeab"
+    },
+    "panasonic_dc_gh7": {
+      "fixed_ao6_colour_only_t15_c35": "9dec99a4c873887bc439dc7725508592ece1be4eadb7c6014f0cec1f08c31f05",
+      "fixed_bl5_strict_interior_sigmoid": "6bf806a54a5e6515b8d3c219c51bc6529ef798986ed0440092e4f94ba4bcac7f"
+    },
+    "phase_one_p40": {
+      "fixed_ao6_colour_only_t15_c35": "5e11031cbb284e6c8fd3ace2421b92759b0de9a0153c310bcf3bab86ea949a5c",
+      "fixed_bl5_strict_interior_sigmoid": "ff333d18cfdb9d1abf048e5419bf6eeb8a109ee145e255b072ef4ae12012385f"
+    },
+    "ricoh_gr_iii": {
+      "fixed_ao6_colour_only_t15_c35": "eb64371a183e3c63c8b4786560995aa9324338a49bfeb3936dd20622548aa265",
+      "fixed_bl5_strict_interior_sigmoid": "a0d2356b6aaa92f48be621068a7ae6963aa2a1bcb80553b3d5f5af7de5f0fcb7"
+    }
+  },
+  "per_source_candidate_choices": {
+    "blackmagic_design_pocket_cinema_camera_6k_pro": 0,
+    "dji_fc7303": 3,
+    "epson_r_d1s": 0,
+    "fujifilm_x_t30_iii": 0,
+    "google_pixel_4_xl": 0,
+    "huawei_ane_lx1": 3,
+    "kodak_easyshare_z981": 3,
+    "leaf_credo_40": 0,
+    "leica_c_lux": 0,
+    "minolta_dynax_5d": 0,
+    "motorola_moto_g_5s_plus": 0,
+    "nikon_d2x": 2,
+    "olympus_e_10": 3,
+    "oneplus_oneplus_a6003": 1,
+    "panasonic_dc_gh7": 0,
+    "phase_one_p40": 0,
+    "ricoh_gr_iii": 1
+  },
+  "preference_gates": {
+    "automatic_gate": true,
+    "minimum_candidate_aggregate_choices": false,
+    "minimum_candidate_round_wins": false,
+    "severe_artifact_veto": true,
+    "two_run_identity": true
+  },
+  "preference_passed": false,
+  "product_integration_opened": false,
+  "reference": "fixed_ao6_colour_only_t15_c35",
+  "report_sha256": "9ad3ad2ea4ea585c375dc13aabb87b21b96bf276ea522b70d1fd9d9abd71068f",
+  "report_stable_evidence_id": "d5b20bed73ddfaeae8e5b435d895cd1ca7038bab26c5233d7b6aa25f4c08f8c7",
+  "rounds": [
+    {
+      "candidate_choices": 7,
+      "candidate_won_round": false,
+      "decoded": [
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "ricoh_gr_iii"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "google_pixel_4_xl"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leica_c_lux"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "huawei_ane_lx1"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "oneplus_oneplus_a6003"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "minolta_dynax_5d"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "dji_fc7303"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "blackmagic_design_pocket_cinema_camera_6k_pro"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "olympus_e_10"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "phase_one_p40"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "panasonic_dc_gh7"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "fujifilm_x_t30_iii"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "nikon_d2x"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leaf_credo_40"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "motorola_moto_g_5s_plus"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "epson_r_d1s"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "kodak_easyshare_z981"
+        }
+      ],
+      "reference_choices": 10,
+      "round": 1
+    },
+    {
+      "candidate_choices": 5,
+      "candidate_won_round": false,
+      "decoded": [
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "ricoh_gr_iii"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "google_pixel_4_xl"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leica_c_lux"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "huawei_ane_lx1"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "oneplus_oneplus_a6003"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "minolta_dynax_5d"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "dji_fc7303"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "blackmagic_design_pocket_cinema_camera_6k_pro"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "olympus_e_10"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "phase_one_p40"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "panasonic_dc_gh7"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "fujifilm_x_t30_iii"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "nikon_d2x"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leaf_credo_40"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "motorola_moto_g_5s_plus"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "epson_r_d1s"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "kodak_easyshare_z981"
+        }
+      ],
+      "reference_choices": 12,
+      "round": 2
+    },
+    {
+      "candidate_choices": 4,
+      "candidate_won_round": false,
+      "decoded": [
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "ricoh_gr_iii"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "google_pixel_4_xl"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leica_c_lux"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "huawei_ane_lx1"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "oneplus_oneplus_a6003"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "minolta_dynax_5d"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "dji_fc7303"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "blackmagic_design_pocket_cinema_camera_6k_pro"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "olympus_e_10"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "phase_one_p40"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "panasonic_dc_gh7"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "fujifilm_x_t30_iii"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "nikon_d2x"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "leaf_credo_40"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "motorola_moto_g_5s_plus"
+        },
+        {
+          "anonymous_choice": "A",
+          "selected_arm": "fixed_ao6_colour_only_t15_c35",
+          "source_id": "epson_r_d1s"
+        },
+        {
+          "anonymous_choice": "B",
+          "selected_arm": "fixed_bl5_strict_interior_sigmoid",
+          "source_id": "kodak_easyshare_z981"
+        }
+      ],
+      "reference_choices": 13,
+      "round": 3
+    }
+  ],
+  "schema": "neuro_film.u5_r2bl8_filmmatch_fresh_confirmation_decision.v1",
+  "stable_evidence_id": "5635fd272c82a5247de6b6bdfe268c8526566ae390c0d98ffaad81c032d04702"
+}
