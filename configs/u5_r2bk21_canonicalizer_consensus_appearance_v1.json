@@ -5,7 +5,7 @@
   "node": "ULT > U5 > U5.R2BK21",
   "parent": {
     "decision": "configs/u5_r2bk20_unpaired_operator_nonidentifiability_decision_v1.json",
-    "required_decision": "unpaired_operator_unidentified"
+    "required_decision": "unpaired_operator_identification_remains_unidentified_require_film_inspired_claim_ceiling"
   },
   "question": "Can two independently specified unpaired appearance objectives support a hard-selected bounded explicit look when they agree, while forcing a hard identity fallback when the observed reference appearance is already matched or the inferred operators disagree?",
   "scenarios": [
