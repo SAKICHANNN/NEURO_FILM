@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2bk9_blind_observations.v1",
+  "experiment_id": "u5.r2bk9-smooth-perceptual-blind-preference-v1",
+  "status": "blind_choices_frozen_before_mapping_reveal",
+  "observer": "autonomous_codex_visual_review",
+  "observation_date": "2026-07-31",
+  "mapping_unread_when_recorded": true,
+  "preference_question": "Which anonymous candidate best combines visibly film-inspired style, photographic appeal and natural colour without severe artifact?",
+  "sheet_sha256": {
+    "round_1_part_1": "e5fff58dfb2f51111f362a44d5ba4458f058a1718a754488ff79360e0f3cfd5b",
+    "round_1_part_2": "bb39f9144039cfc8fb766efff5d66088aaa4c6cf700f47207093034c3f278a74",
+    "round_1_part_3": "a83cf65063baf776b6c10c6334748c09deb938a876c9107110acffd702208412",
+    "round_2_part_1": "d52e51facbe894e3b95bc35c831476e52ad4904ac5e889215cbb59de91cf40e9",
+    "round_2_part_2": "ee0a196915c192ec2fdde00f587c956ea3c944500ed1d864fe6250a51fd192de",
+    "round_2_part_3": "69ad1d95e123eaf2ab66dea5380360293108c7d23188c406b7d9cec1f92f3365",
+    "round_3_part_1": "2439659aada5900196e734fec744ea1ec0d16f214b2fed9329b8ca3e3bf49e22",
+    "round_3_part_2": "3d4fc478f475e2e47eac9cccba2897eab087a0dde76a149f14674f51d7ce9887",
+    "round_3_part_3": "cecb83d9d80eb303dec0f899c5a46ba74cac2ef67e7f3b82abff4558147f36d9"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "votes": {
+        "apple_iphone_6s_plus": "B",
+        "canon_eos_350d": "A",
+        "fujifilm_xm1": "C",
+        "leica_dlux_typ109": "B",
+        "lg_h815": "C",
+        "nikon_d3200": "B",
+        "olympus_ep3": "C",
+        "panasonic_dmc_gf6": "B",
+        "pentax_k7": "C",
+        "samsung_nx3000": "B",
+        "sony_nex6": "C"
+      }
+    },
+    {
+      "round": 2,
+      "votes": {
+        "apple_iphone_6s_plus": "B",
+        "canon_eos_350d": "A",
+        "fujifilm_xm1": "C",
+        "leica_dlux_typ109": "A",
+        "lg_h815": "A",
+        "nikon_d3200": "C",
+        "olympus_ep3": "A",
+        "panasonic_dmc_gf6": "C",
+        "pentax_k7": "C",
+        "samsung_nx3000": "A",
+        "sony_nex6": "C"
+      }
+    },
+    {
+      "round": 3,
+      "votes": {
+        "apple_iphone_6s_plus": "B",
+        "canon_eos_350d": "A",
+        "fujifilm_xm1": "C",
+        "leica_dlux_typ109": "B",
+        "lg_h815": "C",
+        "nikon_d3200": "A",
+        "olympus_ep3": "C",
+        "panasonic_dmc_gf6": "C",
+        "pentax_k7": "C",
+        "samsung_nx3000": "C",
+        "sony_nex6": "C"
+      }
+    }
+  ],
+  "confirmed_severe_artifact_count": 0,
+  "severe_observation": "Across all 99 anonymous candidate views, no confirmed face, text, geometry, banding, posterization, clipping block, seam or other severe corruption was visible at contact-sheet scale.",
+  "review_notes": "Votes favor the candidate that best balances visible film-like colour separation and density with photographic plausibility. Extremely magenta/cyan or high-contrast candidates were not automatically rejected, but lost when a comparably stylized and more natural alternative was present.",
+  "claim_ceiling": "autonomous contact-sheet visual evidence on one frozen 11-source population; not owner preference, population preference, full-resolution adjudication, stock truth, calibration or product promotion"
+}
