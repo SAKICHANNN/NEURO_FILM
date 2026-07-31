@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u5_r2bk8s_smooth_perceptual_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk8s-smooth-perceptual-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK8S",
+  "status": "source_eligible_fixed_comparison_open",
+  "decision": "open_fixed_bk7_fourth_fresh_confirmation",
+  "config": {
+    "path": "configs/u5_r2bk8s_smooth_perceptual_fresh_source_v1.json",
+    "sha256": "fbf3a5a6ea664d7389b30600bd99e341f5c5b7ed7843e150e64a3b4006726e8a"
+  },
+  "result": {
+    "candidate_rows": 12,
+    "eligible_rows": 11,
+    "eligible_camera_makes": 11,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "confirmed_severe_source_artifact_count": 0,
+    "fixed_decode_failures": [
+      {
+        "id": "gopro_hero5_black",
+        "reason": "LibRawFileUnsupportedError: unsupported GPR format"
+      }
+    ],
+    "stress_rows": [
+      "apple_iphone_6s_plus",
+      "pentax_k7"
+    ],
+    "visual_finding": "Autonomous contact-sheet review found a broad, usable digital-photo population spanning daylight, artificial light, saturated objects, foliage, water, snow, high dynamic range and close texture. The dark Apple backlit city and Pentax near-focus texture are retained as stress, not discarded as artifacts."
+  },
+  "evidence": {
+    "manifest": {
+      "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+      "sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/automatic_report.json",
+      "sha256": "8ece39c6da385cfd7558a43e6fc12f734fbcba98809095d78b36785dbe8bc341"
+    },
+    "contact_sheet": {
+      "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/source_contact_sheet.png",
+      "sha256": "ec44a7c5216ec5b817e1bd5eacd93037d0e09adb26c0d980fc5d15aaa42a295a"
+    },
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true,
+    "repeat_contact_sheet_sha256_exact": true,
+    "software_commit": "4da21b89fd0981cacf1fda85b386e586ff5e129c"
+  },
+  "next_leaf": "freeze and execute fixed BK7 versus unchanged AO6 and safe-rich on the 11 eligible rows",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fourth fresh CC0 digital-photo eligibility for one fixed BK7/AO6/safe-rich comparison; not population preference, film truth, calibration or promotion"
+}

@@ -9,6 +9,10 @@ from src.eval.rawpixls_confirmation_preflight import validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk8s_smooth_perceptual_fresh_source_v1.json"
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk8s_smooth_perceptual_fresh_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -92,3 +96,27 @@ def test_bk8s_selection_excludes_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk8s_decision_binds_repeatable_eligible_evidence() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    evidence = decision["evidence"]
+    assert decision["status"] == "source_eligible_fixed_comparison_open"
+    assert result["eligible_rows"] == 11
+    assert result["eligible_camera_makes"] == 11
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert result["fixed_decode_failures"] == [
+        {
+            "id": "gopro_hero5_black",
+            "reason": "LibRawFileUnsupportedError: unsupported GPR format",
+        }
+    ]
+    assert evidence["repeat_manifest_sha256_exact"]
+    assert evidence["repeat_report_sha256_exact"]
+    assert evidence["repeat_contact_sheet_sha256_exact"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
