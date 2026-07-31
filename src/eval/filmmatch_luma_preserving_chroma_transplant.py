@@ -10,6 +10,7 @@ from typing import Any, Mapping
 
 import cv2
 import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 from src.color_engine.lab import lab_to_linear_rgb, linear_rgb_to_lab
 from src.color_engine.srgb_transfer import (
@@ -310,9 +311,82 @@ def run_luma_preserving_chroma_transplant(
     return report
 
 
+def build_blind_review_sheets(
+    *,
+    root: Path,
+    parent_output_dir: Path,
+    candidate_output_dir: Path,
+    source_rows: Mapping[str, Mapping[str, Any]],
+    source_ids: list[str],
+    output_dir: Path,
+) -> dict[str, Any]:
+    """Build a deterministic one-round AO6/candidate blind visual audit."""
+
+    import random
+
+    if output_dir.exists():
+        raise FileExistsError("BL11 blind review is create-only")
+    output_dir.mkdir(parents=True)
+    font = ImageFont.load_default()
+    tiles: list[Image.Image] = []
+    mapping: list[dict[str, str]] = []
+    candidate_arm = "ao6_lightness_bl5_chroma_analytical_safe"
+    for source_id in source_ids:
+        order = [AO6_ARM, candidate_arm]
+        random.Random(
+            hashlib.sha256(f"u5-r2bl11:{source_id}".encode()).digest()
+        ).shuffle(order)
+        mapping.append({"source_id": source_id, "A": order[0], "B": order[1]})
+        with Image.open(root / source_rows[source_id]["decoded_path"]) as opened:
+            source = opened.convert("RGB")
+            source.thumbnail((520, 330), Image.Resampling.LANCZOS)
+        compared: list[Image.Image] = []
+        for arm_id in order:
+            base_dir = parent_output_dir if arm_id == AO6_ARM else candidate_output_dir
+            if arm_id == AO6_ARM:
+                path = base_dir / "renders" / AO6_ARM / f"{source_id}.png"
+            else:
+                path = base_dir / "renders" / candidate_arm / f"{source_id}.png"
+            with Image.open(path) as opened:
+                rendered = opened.convert("RGB")
+                rendered.thumbnail((520, 330), Image.Resampling.LANCZOS)
+            compared.append(rendered)
+        tile = Image.new("RGB", (1580, 375), "white")
+        draw = ImageDraw.Draw(tile)
+        for index, (label, image) in enumerate(
+            zip(("Source", "A", "B"), (source, *compared))
+        ):
+            x = 5 + index * 525
+            draw.text((x, 3), label, fill="black", font=font)
+            tile.paste(image, (x, 23))
+        draw.text((5, 357), source_id, fill="black", font=font)
+        tiles.append(tile)
+    part_hashes: list[str] = []
+    for part_index, start in enumerate(range(0, len(tiles), 4), start=1):
+        selected = tiles[start : start + 4]
+        sheet = Image.new("RGB", (1580, len(selected) * 375 + 28), "white")
+        ImageDraw.Draw(sheet).text(
+            (5, 5), f"U5.R2BL11 blind part {part_index}", fill="black", font=font
+        )
+        for index, tile in enumerate(selected):
+            sheet.paste(tile, (0, 28 + index * 375))
+        path = output_dir / f"blind_part_{part_index}.png"
+        sheet.save(path, "PNG")
+        part_hashes.append(sha256_file(path))
+    mapping_path = output_dir / "mapping.json"
+    mapping_path.write_text(
+        json.dumps(mapping, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    return {
+        "parts": part_hashes,
+        "mapping_sha256": sha256_file(mapping_path),
+    }
+
+
 __all__ = [
     "LumaPreservingChromaResult",
     "compose_luma_preserving_chroma",
+    "build_blind_review_sheets",
     "run_luma_preserving_chroma_transplant",
     "validate_contract",
 ]
