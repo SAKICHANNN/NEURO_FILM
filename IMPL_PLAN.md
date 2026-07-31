@@ -2291,3 +2291,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > material ordering pass. Close measured-amplitude compatibility without
 > retuning; retain P6N only as a synthetic equation primitive.
 >
+> `U6.P4AA/P4AB` add a second independent measured-data check. An exact public
+> NASA report exposes 14 machine-readable density/RMS-granularity rows across
+> three apertures, so no OCR or figure digitization is used. Unchanged P4D
+> `RMS proportional to sqrt(density)` passes normalized error magnitude but
+> fails rank order and high-density behavior (`.41039` median Spearman; 3/9
+> maxima at the highest density). Close measured-shape compatibility without
+> retuning; the historical radiographic/process conditions are not stock truth.
+>

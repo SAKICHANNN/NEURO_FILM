@@ -8416,3 +8416,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close P6N quantitative compatibility without rescue. This rejects only the
   fixed synthetic amplitude, not the Callier mechanism; P6N remains dormant
   generic infrastructure and the Goal proceeds to another independent leaf.
+
+## 2026-08-01 - Pass U6.P4AA source; close P4AB fixed measured shape
+
+- Froze before acquisition and downloaded only NASA report 19730022682: exact
+  2,179,830 bytes, 85 pages, SHA-256 `8773bb57...90814`; NTRS marks it public
+  and US-government public-use permitted.
+- A first test exposed a parser bug that counted numeric prose as table rows.
+  The implementation was corrected without changing the gate: Tables 4-6
+  provide 14 structured density/RMS rows with 13/27/57um aperture columns.
+  Two source reports are exact at `98be0f68...c9b42`.
+- P4AB changed no P4D parameter. Normalized median/P90 shape errors pass, but
+  median Spearman is `.41039 < .7` and only 3/9 series peak at the highest
+  density. Two reports are exact at `6984f3a5...e450a0`.
+- Close P4D measured-shape compatibility without rescue. Retain generic
+  synthetic structure only; this radiographic/process-confounded report is not
+  modern camera-film, stock, scanner-calibration or product evidence.

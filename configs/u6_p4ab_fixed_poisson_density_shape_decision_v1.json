@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p4ab_fixed_poisson_density_shape_decision.v1",
+  "experiment_id": "u6.p4ab-fixed-poisson-density-shape-v1",
+  "decision": "close_p4d_measured_shape_compatibility_without_retuning",
+  "report_sha256": "6984f3a5da756b671bf5956753ff3b6469214e903dcc9704c0ebd23bb9e450a0",
+  "stable_evidence_id": "4dd7a10a21caafe74de89b2dbb5769b081f7a8519789a6c9e418f73719005fcd",
+  "passed": false,
+  "passing_gates": {
+    "eligible_series": 9,
+    "median_normalized_relative_error": 0.061343825659794196,
+    "p90_normalized_relative_error": 0.29694982672676856,
+    "finite_positive": true,
+    "no_parameter_fit": true
+  },
+  "failed_gates": {
+    "median_spearman": 0.41039134083406165,
+    "required_median_spearman": 0.7,
+    "series_with_observed_maximum_at_highest_density": 3,
+    "required_series_with_observed_maximum_at_highest_density": 7
+  },
+  "branch_action": "Keep P4D as a generic synthetic marked-Poisson primitive only. Do not retune it on the nine historical radiographic series. Any peaked-density exploratory primitive must be separately frozen and cannot use this source as confirmatory stock evidence.",
+  "claim_ceiling": "One monotone generic Poisson density-shape failed rank and high-density behavior against nine historical radiographic-film series; this is not a rejection of marked-Poisson structure, a modern camera-film result or calibration."
+}

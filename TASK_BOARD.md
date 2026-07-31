@@ -420,7 +420,10 @@ pooled regression, but minimum Jacobian determinant is `.001516 < .01`.
 The frozen structural gate closes the family without strength, weighting,
 capacity or photograph rescue; AO6 remains the colour development champion.
 
-Current algorithm leaf: `U5.R2BJ0` adaptive explicit LUT-basis development.
+Current algorithm state: BJ0-BJ2 adaptive neutral-base LUTs are closed; U6.P4AA
+passes a new measured granularity-table source and P4AB closes unchanged P4D
+measured-shape compatibility on rank/high-density behavior. Continue a distinct
+explicit colour or physical mechanism; do not retune either closed family.
 Contract and primitive tests are frozen; implement and run the unchanged
 three-population audit next. No new data is allowed unless every development
 gate passes.
