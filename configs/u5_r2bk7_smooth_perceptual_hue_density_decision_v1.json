@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2bk7_smooth_perceptual_hue_density_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk7-smooth-perceptual-hue-density-v1",
+  "node": "ULT > U5 > U5.R2BK7",
+  "status": "primitive_and_known_failure_regression_pass",
+  "decision": "retain_fixed_bk7_open_fourth_fresh_confirmation",
+  "result": {
+    "automatic_pass": true,
+    "repeat_file_hash_differences": 0,
+    "cube_median_style_delta_e76": 11.031479835510254,
+    "maximum_zero_to_one_axis_delta_e76": 0.9958921074867249,
+    "maximum_neutral_axis_channel_range": 0.046970248222351074,
+    "cube_new_uint16_boundary_fraction": 0.0,
+    "bk2_style_delta_e76_on_regression": 6.981490135192871,
+    "bk7_style_delta_e76_on_regression": 5.298448085784912,
+    "bk2_new_boundary_fraction": 0.0,
+    "bk7_new_boundary_fraction": 0.0,
+    "confirmed_severe_artifact_count": 0,
+    "bk2_failure_reproduced": true,
+    "bk7_failure_regression_pass": true,
+    "visual_finding": "Autonomous full-resolution review found a smooth cyan-blue density response with preserved clouds, buildings and fine structure; no BK2 blue discontinuity, red speckle, posterization, hard clipping or geometry corruption was confirmed.",
+    "thresholds_or_strengths_changed": false
+  },
+  "evidence": {
+    "software_commit": "598417852abbad50970dc85af254499dcc7dad8c",
+    "config_sha256": "2e2f901aa51e027cadfb95eef9f035b749523aa05018ba00e8e5f5378bbb543b",
+    "stable_evidence_id": "dd8a909613f8e214ce66dcdf0101594d80612e409aacebe5d5ad2d9add15a64e",
+    "report_sha256": "988353f72c8c2ef4b9884253cff8d1b3b8f3e8d572c89cd37293e35b02c34ad2",
+    "visual_sheet_sha256": "b9d1149cc5264cc9f931b6b8bd103a0da4880cdec7ed9340241a712202173397",
+    "bk7_output_sha256": "b61d9d7100b181df72bc0b42847e3785214a784265a7ef91ce815508eab8b9f8",
+    "run_a": "outputs/u5_r2bk7_smooth_perceptual_hue_density_regression_v1/run_a",
+    "run_b": "outputs/u5_r2bk7_smooth_perceptual_hue_density_regression_v1/run_b"
+  },
+  "next_leaf": "freeze a fourth leakage-clean CC0 RAW population before decoding or rendering any confirmation pixels",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fixed generic smooth perceptual look primitive with one known-failure regression pass; no fresh-population confirmation, stock identity, calibration or product promotion"
+}
