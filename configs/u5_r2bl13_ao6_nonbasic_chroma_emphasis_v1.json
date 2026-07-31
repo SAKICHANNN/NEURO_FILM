@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2bl13_ao6_nonbasic_chroma_emphasis.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl13-ao6-nonbasic-chroma-emphasis-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL13",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can AO6 become more visibly film-stylized without severe artifacts by emphasizing only its non-basic Lab chroma residual relative to its own strongest fitted basic adjustment?",
+  "parent": {
+    "bl8_contract": "configs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1.json",
+    "bl8_contract_sha256": "efa7e52747e07e23c61451d072f6635968463afa568860c9769775f601790d75",
+    "bl8_report": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a/report.json",
+    "bl8_report_sha256": "9ad3ad2ea4ea585c375dc13aabb87b21b96bf276ea522b70d1fd9d9abd71068f",
+    "bl8_stable_evidence_id": "d5b20bed73ddfaeae8e5b435d895cd1ca7038bab26c5233d7b6aa25f4c08f8c7",
+    "bl8_output_dir": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a",
+    "base_arm": "fixed_ao6_colour_only_t15_c35"
+  },
+  "candidate": {
+    "candidate_arm": "ao6_nonbasic_chroma_emphasis_025",
+    "basic_family": "per-image joint EV plus diagonal white balance plus contrast plus saturation fit to the deterministic AO6 output",
+    "fit_pixel_budget": 12000,
+    "domain": "D65 CIELAB derived from encoded sRGB through the project linear-sRGB primitives",
+    "chroma_residual_strength": 0.25,
+    "target_equation": "Lab_target = [L_AO6, ab_AO6 + 0.25 * (ab_AO6 - ab_best_basic)]",
+    "execution_equation": "linear_AO6 + alpha_max * (linear_target - linear_AO6)",
+    "hard_boundary_epsilon_encoded_srgb": 0.00001525902189669642,
+    "guard_boundary_epsilon_encoded_srgb": 0.00012207217517357137,
+    "hard_clipping_allowed": false,
+    "free_strength_parameter": false,
+    "source_feature_router_allowed": false
+  },
+  "automatic_gate": {
+    "expected_outputs": 17,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "maximum_p95_safety_limited_pixel_fraction": 0.1,
+    "minimum_median_requested_residual_energy_retention": 0.8,
+    "minimum_median_style_delta_e76_ratio_vs_ao6": 1.05,
+    "minimum_median_difference_from_ao6_delta_e76": 1.5,
+    "maximum_median_image_p95_absolute_lightness_drift_delta_lstar": 1.0,
+    "require_two_run_report_and_output_identity": true
+  },
+  "visual_gate": {
+    "severe_artifact_veto": true,
+    "minimum_candidate_choices_per_17": 10,
+    "minimum_passing_rounds_of_3": 2,
+    "mapping_must_remain_sealed_until_choices_are_fixed": true
+  },
+  "branches": {
+    "automatic_fail": "close BL13 without changing the residual strength, basic family, colour domain, thresholds or rails",
+    "automatic_pass": "open autonomous severe and three-round blind development review against unchanged AO6",
+    "visual_fail": "close BL13 and retain unchanged AO6",
+    "visual_pass": "retain BL13 only as a development challenger and require a new independent population before promotion"
+  },
+  "training_allowed": false,
+  "product_integration_allowed": false,
+  "production_default_changed": false,
+  "calibrated_stock_response_claim_allowed": false,
+  "claim_ceiling": "content-adaptive deterministic development Look Approximation on a consumed CC0 population; not independent preference, film truth, stock response, calibration or product promotion"
+}
