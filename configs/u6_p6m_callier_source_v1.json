@@ -1,0 +1,82 @@
+{
+  "schema": "neuro_film.u6_p6m_callier_source_contract.v1",
+  "experiment_id": "u6.p6m-callier-source-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6M",
+  "date_frozen": "2026-08-01",
+  "question": "Does one bounded primary-source audit establish enough material-, density- and illumination-geometry structure to design a generic Callier scanner/output-profile operator without claiming measured scanner or stock calibration?",
+  "parent_boundary": {
+    "programme": "docs/planning/PHYSICAL_FILM_IMAGING_PROGRAM_2026.md",
+    "scanner_stage": "U6.P6",
+    "completed_results_immutable": true,
+    "p2o1_silver_photographic_result_must_not_reopen": true
+  },
+  "source": {
+    "title": "Conflicting Colors: Film Scanning versus Film Projection",
+    "authors": [
+      "Giorgio Trumpy",
+      "Rudolf Gschwind"
+    ],
+    "venue": "25th Color and Imaging Conference",
+    "year": 2017,
+    "publisher": "Society for Imaging Science and Technology",
+    "article_id": "cic/25/1/art00031",
+    "url": "https://library.imaging.org/admin/apis/public/api/ist/website/downloadArticle/cic/25/1/art00031",
+    "expected_content_type": "application/pdf",
+    "expected_bytes": 6128203,
+    "expected_pages": 4,
+    "source_snapshot_date": "2026-08-01",
+    "rights_boundary": "Publicly downloadable copyrighted paper; internal reproducible source audit and short factual extraction only. Do not redistribute the PDF, figures or derived image assets."
+  },
+  "acquisition": {
+    "destination": "data/physical_scanner/callier_cic2017_v1/CIC_2017_art00031_Giorgio-Trumpy.pdf",
+    "maximum_total_bytes": 6128203,
+    "exact_url_only": true,
+    "redirect_host_allowlist": [
+      "library.imaging.org"
+    ],
+    "resume_partial_download": false,
+    "no_other_payloads": true
+  },
+  "required_observations": {
+    "callier_definition": "Q is directed optical density divided by diffuse optical density as a function of diffuse density.",
+    "transparent_anchor": "A transparent point has diffuse density zero and Q equal to one.",
+    "material_control": "Silver-based material has Q at least one, whereas modern chromogenic dye images scatter weakly and have negligible Callier effect.",
+    "density_support": "The measured silver frame spans diffuse density approximately zero to 2.2 and interpolation is reported over zero to 2.4.",
+    "spectral_support": "The experiment uses 31 bands from 400 to 700 nanometres in 10 nanometre steps and reports a stronger effect at short wavelengths.",
+    "peak_region": "The reported maximum Callier effect occurs between 1.3 and 1.5 diffuse optical density for all measured wavelengths.",
+    "component_equation": "For a tinted silver image, directed film density is modelled as silver diffuse density times Q plus dye density.",
+    "residual_warning": "The simple model approaches but does not reproduce measured directed appearance, with discrepancies attributed to differing silver particles."
+  },
+  "source_gate": {
+    "exact_size": true,
+    "sha256_recorded_after_acquisition": true,
+    "single_pdf": true,
+    "page_count_must_equal": 4,
+    "all_required_observations_must_be_present": true,
+    "two_independent_audits": true,
+    "no_numeric_curve_digitization": true,
+    "no_parameter_fit": true
+  },
+  "allowed_actions_after_pass": [
+    "design a generic bounded material-aware Callier operator with Q(0)=1 and Q>=1",
+    "use synthetic density and wavelength controls to test monotonicity, boundedness, invertibility and material separation",
+    "treat illumination geometry as a scanner or display-interpretation nuisance",
+    "retain K=1 or identity for chromogenic dye material"
+  ],
+  "forbidden": [
+    "digitize Figure 3 into pseudo-measurements",
+    "fit or claim a measured Q curve from the paper",
+    "infer stock, emulsion, process, scanner, illuminant or profile metadata",
+    "apply the silver branch to ordinary bleached and fixed chromogenic colour film",
+    "call a generic operator scanner calibration or stock response",
+    "reopen P2O1 or alter any completed P2/P6 experiment gate",
+    "redistribute the source PDF or figures",
+    "production integration"
+  ],
+  "branch_rule": {
+    "source_pass": "Open U6.P6N generic bounded Callier operator design with synthetic controls only.",
+    "source_fail": "Close this source and continue another independent scanner or physical mechanism leaf.",
+    "operator_failure": "Retain the source audit and keep the scanner interpretation at identity; continue another ready physical or colour leaf."
+  },
+  "claim_ceiling": "Primary-paper-supported generic Callier mechanism and synthetic operator design only; not a measured Q curve, film stock/process response, scanner calibration, product profile or photographic promotion."
+}
