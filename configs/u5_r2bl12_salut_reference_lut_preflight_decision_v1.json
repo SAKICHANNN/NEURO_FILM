@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u5_r2bl12_salut_reference_lut_preflight_decision.v1",
+  "experiment_id": "u5.r2bl12-salut-reference-lut-preflight-v1",
+  "status": "closed",
+  "decision": "close_direct_reproduction_retain_literature_baseline",
+  "config_commit": "ee0a95fc",
+  "implementation_commit": "6b35d180",
+  "repository_commit": "3e62f9c9b59ea7b30d220ff6ba61047dab898c9a",
+  "checkpoint_sha256": "5ad3685cf6bbf14230d71580b9b93f03e76bf6d7dfaceecd0a3527341cc92f2b",
+  "run_a_report_sha256": "a929906ad01bef9bb6678df0158ba2fced59c9aac6d90ac28b6ed8555071196a",
+  "run_b_report_sha256": "a929906ad01bef9bb6678df0158ba2fced59c9aac6d90ac28b6ed8555071196a",
+  "stable_evidence_id": "d5aba0d1c6a2d6d1e3e510d2db6af95e28a3fef9292aeafa0f41cde3b2ffdfa3",
+  "facts": {
+    "checkpoint_weights_only_load": true,
+    "checkpoint_model_key_count": 88,
+    "checkpoint_4d_lut_shape": [3, 2, 17, 17, 17],
+    "published_cuda_probe_max_index": 7369,
+    "published_cpu_probe_max_index": 41760,
+    "lut_channel_plane_elements": 9826,
+    "published_cpu_probe_in_bounds": false,
+    "published_cpu_cuda_semantics_equal": false,
+    "published_512_attention_float32_bytes": 17179869184,
+    "local_vram_bytes": 12884901888
+  },
+  "interpretation": "The pinned checkpoint is structurally readable, but the published CPU and CUDA quadrilinear forward paths are not the same operator and the CPU probe exceeds the two-context-plane LUT bounds. The published dense 512 attention matrix alone exceeds local VRAM before other tensors. Repairing either defect would create a new implementation rather than reproduce the frozen official baseline.",
+  "forbidden_rescue": [
+    "do not relabel a reduced-resolution context network as official reproduction",
+    "do not substitute a repaired interpolation kernel under the same evidence identity",
+    "do not open film-reference quality comparison from this failed compatibility gate",
+    "do not use the checkpoint in product or redistribute it"
+  ],
+  "next_ready_leaf": "evaluate a clean-room statistical explicit-3D-LUT reference baseline without a generative branch",
+  "claim_ceiling": "Internal non-commercial source and checkpoint compatibility audit; not a SA-LUT quality result, film simulation, stock response, product authorization or license decision"
+}
