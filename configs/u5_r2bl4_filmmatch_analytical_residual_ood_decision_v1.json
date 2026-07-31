@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u5_r2bl4_filmmatch_analytical_residual_ood_decision.v1",
+  "experiment_id": "u5.r2bl4-filmmatch-analytical-residual-ood-v1",
+  "report": {
+    "path": "outputs/u5_r2bl4_filmmatch_analytical_residual_ood_v1/run_a/report.json",
+    "sha256": "0de27873700ac6c2cd472225118a208af17a63d3687883874ecc6dec8ec0d391",
+    "stable_evidence_id": "4a930503b1d85e63f68d10bb46f5dbcafee37a4984893f250cba75a78f00428d",
+    "two_run_report_and_output_identity": true
+  },
+  "automatic_result": {
+    "passed": false,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "median_residual_energy_retention": 0.9999762277881339,
+    "median_style_rgb_rmse_from_ao6": 0.08714152455943654,
+    "p95_safety_limited_pixel_fraction": 0.17995976890359905,
+    "failed_gate": "maximum_p95_safety_limited_pixel_fraction_0.1"
+  },
+  "decision": {
+    "status": "close_bl4_analytical_composition_before_visual_review",
+    "visual_review_opened": false,
+    "rail_or_threshold_retuning_allowed": false,
+    "product_integration_opened": false,
+    "next": "test a separately parameterized strict-interior sigmoid family in paired code-domain evaluation; do not reinterpret BL4 as a pass"
+  },
+  "interpretation": "The analytical executor eliminates all output and new boundary pixels and retains nearly all residual energy, but more than the frozen share of pixels require safety intervention in the tail population. This proves the execution mechanism works while closing this composition policy under its preregistered gate.",
+  "claim_ceiling": "repeat-exact automatic close of one AO6-base analytical BL1 residual policy; no visual, preference, film, calibration or product claim"
+}

@@ -42,3 +42,18 @@ Direct BL1 ordinary-photo application is closed without refitting, threshold
 changes or post-fit clipping. A separately frozen experiment may use AO6 as a
 safe base and treat fixed BL1 only as an analytically bounded residual
 direction; that is a new composition test, not a rescue or promotion of BL1.
+
+## BL4 analytical residual composition
+
+BL4 uses AO6 as the base and fixed BL1 only as a residual direction, with the
+existing source-inclusive analytical maximum-safe-scale policy. Two runs are
+exact at report SHA-256 `0de27873...0d391`. It removes all output/new boundary
+pixels, retains `99.9976%` median residual L2 energy, and keeps `0.08714` median
+RGB style displacement from AO6. However, the P95 per-source fraction of
+safety-limited pixels is `17.996%`, above the frozen `10%` gate. Visual review
+therefore remains closed.
+
+The analytical executor is effective, but this particular composition policy
+is not promoted or retuned. A next family must make strict-interior behavior
+part of the fitted equation rather than relying on a large tail of per-pixel
+safety intervention.

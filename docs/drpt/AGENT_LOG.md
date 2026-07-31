@@ -8526,3 +8526,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   new code-boundary pixels versus AO6, above the frozen `.5%` gate.
 - Blind and visual review stay closed. Do not refit BL1 or change the gate; a
   distinct AO6-base analytical safe-residual composition may be tested next.
+
+## 2026-08-01 - Close U5.R2BL4 analytical BL1 residual composition
+
+- Two reports/12 outputs are exact at `0de27873...0d391`. Analytical execution
+  reaches zero output/new-boundary pixels and retains `99.9976%` median
+  residual energy with `.08714` median displacement from AO6.
+- P95 safety-limited pixels are `17.996% > 10%`; the frozen gate closes visual
+  review. Do not change rails or thresholds. Test a strict-interior fitted
+  equation family next.
