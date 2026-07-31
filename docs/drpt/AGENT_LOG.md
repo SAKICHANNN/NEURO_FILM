@@ -8377,3 +8377,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision:** close before affine normalization, alternate registration,
   crop selection or NPS/ACF analysis. Preserve the source and negative result;
   do not call it scanner-noise, emulsion-grain, stock or calibration evidence.
+
+## 2026-08-01 - Pass U6.P6M bounded Callier mechanism source
+
+- Froze and acquired only the public primary-paper PDF: 6,128,203 bytes,
+  SHA-256 `c9513ecb...f49223`; no other payload was requested.
+- Two four-page audits are byte-identical at `964a32cc...7964`. All eight
+  preregistered observations pass, including Q definition/transparent anchor,
+  silver-versus-dye control, density/wavelength support and the paper's model
+  residual warning.
+- The paper publishes no reusable numeric Q table. P6N may implement only a
+  generic synthetic bounded scanner/output-profile operator; digitized-figure
+  fitting, stock/process/scanner calibration and product use remain closed.

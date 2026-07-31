@@ -464,3 +464,10 @@ U6.P2N proves exact dye-plus-retained-silver density composition, but P2O1
 closes its fixed photographic profile: the look is strong/non-basic yet too
 large, shifts luma, increases rather than reduces chroma, and creates isolated
 high-difference points. Visual review and lower-strength rescue are forbidden.
+
+U6.P6M passes a bounded primary-paper Callier mechanism audit. The exact
+6,128,203-byte source and two byte-identical reports support material, density,
+wavelength and illumination-geometry constraints, but provide no numeric Q
+table. P6N may design a generic synthetic bounded operator; digitized-figure
+fitting, scanner calibration, stock claims and photographic promotion remain
+closed.

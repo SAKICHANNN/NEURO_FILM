@@ -2270,3 +2270,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > preregistered order forbids post-result photometric normalization, alternate
 > crops or threshold changes, so NPS/ACF residual modelling does not open.
 >
+> `U6.P6M` independently passes a bounded primary-paper Callier mechanism
+> audit. The exact four-page source supports Q(0)=1, Q>=1 for silver,
+> near-identity for modern chromogenic dye, density and wavelength dependence,
+> and a residual warning. It contains no reusable numeric curve table. P6N may
+> implement only a synthetic generic bounded operator; curve digitization,
+> fitting, calibration and product integration are forbidden.
+>

@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p6m_callier_source_decision.v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6M",
+  "date": "2026-08-01",
+  "contract_path": "configs/u6_p6m_callier_source_v1.json",
+  "contract_sha256": "91d713467840d549c5633e876e96a739f63cd99963871686871d82c9cea4663a",
+  "source_path": "data/physical_scanner/callier_cic2017_v1/CIC_2017_art00031_Giorgio-Trumpy.pdf",
+  "source_sha256": "c9513ecbad6704c482b87217374bf247cb165a6dcebbc15f967f011098f49223",
+  "source_bytes": 6128203,
+  "report_paths": [
+    "outputs/eval/u6_p6m_callier_source_v1/report_run1.json",
+    "outputs/eval/u6_p6m_callier_source_v1/report_run2.json"
+  ],
+  "report_sha256": "964a32ccce0d7a8523df878381681305439e5e7e244d67cdf974967aeafb7964",
+  "stable_evidence_id": "eff1cf29be4989299188a81fbb916c5cef85d6265180931e1892e429451544db",
+  "observed_facts": {
+    "page_count": 4,
+    "all_eight_required_observations_present": true,
+    "two_reports_byte_identical": true,
+    "callier_definition_and_transparent_anchor_present": true,
+    "silver_and_chromogenic_dye_material_control_present": true,
+    "density_and_wavelength_support_present": true,
+    "simple_component_equation_and_residual_warning_present": true
+  },
+  "measurement_limits": {
+    "numeric_q_curve_table_available": false,
+    "curve_digitization_allowed": false,
+    "parameter_fit_allowed": false,
+    "stock_or_scanner_calibration_open": false
+  },
+  "decision": "pass_source_and_open_u6_p6n_generic_bounded_callier_operator",
+  "next_allowed": "Implement a synthetic-only material-aware scanner/output-profile operator with Q(0)=1, Q>=1, bounded density/wavelength response and exact dye identity control.",
+  "claim_ceiling": "Primary-paper-supported generic Callier mechanism and synthetic operator design only; not a measured Q curve, film stock/process response, scanner calibration, product profile or photographic promotion."
+}
