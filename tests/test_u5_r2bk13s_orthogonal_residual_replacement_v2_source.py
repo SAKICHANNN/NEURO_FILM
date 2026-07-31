@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1.json"
 BK12 = ROOT / "configs/u5_r2bk12s_orthogonal_residual_replacement_source_v1.json"
 DECISION = ROOT / "configs/u5_r2bk12s_orthogonal_residual_replacement_source_decision_v1.json"
+BK13_DECISION = (
+    ROOT
+    / "configs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -105,3 +109,25 @@ def test_bk13s_preserves_fixed_algorithm_boundary() -> None:
     ]
     assert not config["next_leaf"]["strength_retuning_allowed"]
     assert not config["next_leaf"]["router_training_allowed"]
+
+
+def test_bk13s_decision_opens_only_fixed_comparison() -> None:
+    decision = json.loads(BK13_DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == "open_fixed_bk10_fifth_fresh_confirmation"
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["eligible_rows"] == 12
+    assert result["eligible_camera_makes"] == 12
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert not result["operator_outputs_inspected"]
+    assert decision["evidence"]["repeat_manifest_sha256_exact"]
+    assert decision["evidence"]["repeat_report_sha256_exact"]
+    assert decision["evidence"]["repeat_contact_sheet_sha256_exact"]
+    assert decision["evidence"][
+        "initial_run_a_interrupted_before_formal_artifact_publication"
+    ]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
+    assert not decision["strength_retuning_allowed"]

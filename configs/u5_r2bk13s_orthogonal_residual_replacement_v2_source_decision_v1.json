@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2bk13s_orthogonal_residual_replacement_v2_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk13s-orthogonal-residual-replacement-v2-source-v1",
+  "node": "ULT > U5 > U5.R2BK13S",
+  "status": "source_eligible_fixed_comparison_open",
+  "decision": "open_fixed_bk10_fifth_fresh_confirmation",
+  "config": {
+    "path": "configs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1.json",
+    "sha256": "bcebb9fda7a68a765cd8549dad3cedc709bf4f1a99b4782e27fe17b24039c56a"
+  },
+  "result": {
+    "candidate_rows": 12,
+    "eligible_rows": 12,
+    "eligible_camera_makes": 12,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "confirmed_severe_source_artifact_count": 0,
+    "fixed_decode_failures": [],
+    "stress_rows": [
+      "oneplus_one",
+      "parrot_bebop2",
+      "asus_i01wd",
+      "kandao_qoocam"
+    ],
+    "visual_finding": "Autonomous source-only review found twelve natural photographic scenes across aerial landscape, foliage, interior wood, street detail, waterfall, low-light architecture, dusk, suburban roofs, rail landscape and dual-fisheye 360 capture. OnePlus orientation, Parrot and KanDao fisheye geometry, and the dark Asus frame are retained as legitimate stress characteristics rather than decoded corruption. No chart, repeated-image corruption or confirmed severe source artifact is present.",
+    "operator_outputs_inspected": false
+  },
+  "evidence": {
+    "manifest": {
+      "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json",
+      "sha256": "a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/automatic_report.json",
+      "sha256": "aa1349dcfd21fd005dc0ad4cb049155282f486211f6b1333311a872eec5239b5"
+    },
+    "contact_sheet": {
+      "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/source_contact_sheet.png",
+      "sha256": "bd7a94dea03af7d4543829c8c36524cb688f5f09124d3d3a048f202a467c589e"
+    },
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true,
+    "repeat_contact_sheet_sha256_exact": true,
+    "formal_runs": [
+      "run_a_retry",
+      "run_b"
+    ],
+    "initial_run_a_interrupted_before_formal_artifact_publication": true,
+    "software_commit": "f7491e57b38463ce63c4cf39ff3680981fc3d0e4"
+  },
+  "next_leaf": "freeze and execute fixed BK10 versus unchanged BK7, AO6 and safe-rich on all twelve eligible rows",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "strength_retuning_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fifth fresh CC0 digital-photo eligibility for one fixed BK10/BK7/AO6/safe-rich comparison; not population preference, film truth, calibration or promotion"
+}
