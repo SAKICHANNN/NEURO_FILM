@@ -27,3 +27,18 @@ has different film framing, so it cannot serve as independent confirmation or
 support target-pixel accuracy. No product integration opens. The next useful
 step is genuinely independent paired evidence or a new content-diverse
 fit-forbidden population; BL2 must not be tuned on the consumed scene.
+
+## BL3 ordinary-photo OOD result
+
+BL3 then applied the unchanged operator to 12 CC0 RAW photographs from 12
+camera makes and compared its boundary behavior with fixed AO6. Both complete
+24-output runs are exact at report SHA-256 `b1c43707...3dbb75`. Median BL1
+style displacement remains strong at `0.12196`, but the Olympus E-450 output
+places `3.09543%` of pixels on the output code boundary where AO6 does not,
+above the frozen `0.5%` gate. Automatic failure correctly prevents blind or
+visual preference review.
+
+Direct BL1 ordinary-photo application is closed without refitting, threshold
+changes or post-fit clipping. A separately frozen experiment may use AO6 as a
+safe base and treat fixed BL1 only as an analytically bounded residual
+direction; that is a new composition test, not a rescue or promotion of BL1.

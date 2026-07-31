@@ -8518,3 +8518,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent confirmation, calibrated stock response or product integration
   opens; continue with genuinely independent paired evidence or a new
   content-diverse population.
+
+## 2026-08-01 - Close U5.R2BL3 direct ordinary-photo application
+
+- Two full 12-source/24-output runs are exact at `b1c43707...3dbb75`.
+  Median style displacement is `.12196`, but one source reaches `3.09543%`
+  new code-boundary pixels versus AO6, above the frozen `.5%` gate.
+- Blind and visual review stay closed. Do not refit BL1 or change the gate; a
+  distinct AO6-base analytical safe-residual composition may be tested next.

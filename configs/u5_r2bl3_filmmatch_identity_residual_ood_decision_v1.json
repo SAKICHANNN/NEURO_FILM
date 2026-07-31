@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u5_r2bl3_filmmatch_identity_residual_ood_decision.v1",
+  "experiment_id": "u5.r2bl3-filmmatch-identity-residual-ood-v1",
+  "report": {
+    "path": "outputs/u5_r2bl3_filmmatch_identity_residual_ood_v1/run_a/report.json",
+    "sha256": "b1c437072baeacd4c95a38deb42855f305161a9ec0ae441e29e0930efd3dbb75",
+    "stable_evidence_id": "502be0d57cd2c138dee539098e1ee38060371b1afd38810bbf429931986ab995",
+    "two_run_report_and_output_identity": true
+  },
+  "automatic_result": {
+    "passed": false,
+    "expected_outputs": 24,
+    "actual_outputs": 24,
+    "median_bl1_style_rgb_rmse_from_source": 0.12195951864123344,
+    "maximum_output_code_boundary_fraction": 0.030954301075268816,
+    "maximum_new_boundary_fraction_vs_ao6": 0.030954301075268816,
+    "failing_source": "olympus_e_450"
+  },
+  "decision": {
+    "status": "close_bl1_direct_ordinary_photo_application",
+    "blind_review_generated": false,
+    "visual_review_opened": false,
+    "operator_retuning_allowed": false,
+    "product_integration_opened": false,
+    "next": "test a separately frozen AO6-base analytical safe-residual composition using the fixed BL1 direction; do not change BL1 fit or BL3 gates"
+  },
+  "interpretation": "BL1 retains strong OOD style displacement, but its endpoint-preserving response leaves up to 3.09543% of one ordinary-photo output at the code boundary where AO6 does not. This closes direct application before visual preference; it does not erase BL1 paired-code-domain capacity evidence.",
+  "claim_ceiling": "repeat-exact automatic OOD failure of direct BL1 application on a program-wide reused CC0 population; no visual, preference, film, calibration or product claim"
+}
