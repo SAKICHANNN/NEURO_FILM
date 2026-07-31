@@ -1,0 +1,139 @@
+{
+  "schema": "neuro_film.u5_r2bk23_fivek_content_cell_appearance_control.v1",
+  "status": "contract_frozen",
+  "experiment_id": "u5.r2bk23-fivek-content-cell-appearance-control-v1",
+  "node": "ULT > U5 > U5.R2BK23",
+  "parent": {
+    "decision": "configs/u5_r2bk22_content_cell_appearance_gate_decision_v1.json",
+    "decision_sha256": "a7c08436ded5274cf056385b86d5d7b94dc0dd02561fc0789589e1071206411e",
+    "required_decision": "retain_content_cell_worst_case_gate_prior"
+  },
+  "question": "Does the frozen BK22 appearance gate find a single shared bounded operator for one real-raster FiveK Expert C control when photograph identity supplies colour-independent content cells, while rejecting an exact pooled-target cell permutation?",
+  "source": {
+    "dataset": "MIT-Adobe FiveK",
+    "role": "research-only digital-retouch method control",
+    "development_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "development_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "development_rows": 64,
+    "development_source_field": "raw_default_srgb16",
+    "development_target_field": "filtered_target_srgb16",
+    "confirmation_manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
+    "confirmation_manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "confirmation_rows": 64,
+    "confirmation_source_field": "source_path",
+    "confirmation_target_field": "target_path",
+    "content_cell_identity": "exact FiveK photograph/pair identity, observed independently of pixel colour",
+    "development_confirmation_identity_overlap_required": 0,
+    "licence_scope": "research-only, non-commercial",
+    "licence_files": [
+      {
+        "path": "data/raw/fivek/legal/LicenseAdobe.txt",
+        "sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf"
+      },
+      {
+        "path": "data/raw/fivek/legal/LicenseAdobeMIT.txt",
+        "sha256": "69f73c481140c40d3a02a15a739da76073de35646108a70bb1dfffadb182af3d"
+      },
+      {
+        "path": "data/raw/fivek/legal/filesAdobe.txt",
+        "sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"
+      },
+      {
+        "path": "data/raw/fivek/legal/filesAdobeMIT.txt",
+        "sha256": "c4cc6ef8cc9e519466ac130b977cd4292ffe9405f94d04227d0e2aee38aa5475"
+      }
+    ]
+  },
+  "sampling": {
+    "pixels_per_cell": 128,
+    "development_source_seed": 52301,
+    "development_target_seed": 52302,
+    "confirmation_source_seed": 52303,
+    "confirmation_target_seed": 52304,
+    "fit_target_order_seed": 52305,
+    "paired_pixel_coordinates_used": false,
+    "decode_dtype": "uint16",
+    "normalized_dtype": "float64"
+  },
+  "confounded_control": {
+    "kind": "cyclic_target_cell_permutation",
+    "rotation": 17,
+    "pooled_source_bytes_must_match": true,
+    "pooled_target_multiset_must_match": true
+  },
+  "canonicalizers": [
+    {
+      "id": "sliced_quantile_48",
+      "kind": "fixed_projection_sorted_quantile",
+      "projection_count": 48,
+      "projection_seed": 52331
+    },
+    {
+      "id": "rff_mmd_144",
+      "kind": "fixed_random_fourier_mmd",
+      "frequencies_per_bandwidth": 48,
+      "bandwidths": [0.08, 0.16, 0.32],
+      "feature_seed": 52332
+    }
+  ],
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.75,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cpu",
+    "dtype": "float32",
+    "seed": 52340,
+    "steps": 140,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true,
+    "device_reason": "pre-freeze 8192-point 10-step smoke measured 7.13s CPU versus 7.17s CUDA; CPU avoids GPU overhead and preserves BK22 capacity"
+  },
+  "policy": {
+    "maximum_canonicalizer_operator_rmse": 0.06,
+    "minimum_pooled_cross_objective_improvement_fraction": 0.25,
+    "minimum_cell_cross_objective_improvement_fraction": 0.1,
+    "minimum_cell_pass_fraction": 1.0,
+    "selection": "hard select one whole operator by confirmation pooled mean normalized residual; never blend",
+    "fallback": "identity"
+  },
+  "gates": {
+    "require_exact_manifest_and_licence_hashes": true,
+    "require_zero_development_confirmation_identity_overlap": true,
+    "require_exact_pooled_target_multiset_between_valid_and_confounded": true,
+    "confounded_correspondence_must_return_identity": true,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "repeat_report_sha256_equal": true
+  },
+  "branch_rules": {
+    "valid_hard_and_confounded_identity": "retain a real-raster digital-retouch positive control for the external content-cell gate",
+    "valid_identity_and_confounded_identity": "formal K=1/identity outcome: no shared Expert C appearance candidate passes every confirmation content cell",
+    "confounded_hard": "close the gate as unsafe on real rasters",
+    "lineage_or_structure_failure": "reject the experiment without visual review or rescue"
+  },
+  "allowed_actions": [
+    "fit the unchanged BK22 two-objective O0 capacity on pooled development marginals only",
+    "destroy target row order before fitting and never use paired pixel correspondence",
+    "use exact photograph identity only for confirmation cell scoring",
+    "hard-select one explicit operator or return identity"
+  ],
+  "forbidden_actions": [
+    "call FiveK film, film stock, scanner, emulsion or calibrated evidence",
+    "infer content cells from image colour, embeddings, source or geometry",
+    "fit per-image or per-cell operators",
+    "change losses, capacity, thresholds, samples or permutation after formal output",
+    "reuse the confirmation population to redesign a candidate",
+    "promote a product or commercial-use asset"
+  ],
+  "claim_ceiling": "research-only real-raster digital-retouch control of an unpaired marginal appearance candidate under externally observed photograph cells; no film, stock, physical operator, calibration, preference, commercial or product claim"
+}
