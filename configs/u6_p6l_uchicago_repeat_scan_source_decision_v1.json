@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p6l_uchicago_repeat_scan_source_decision.v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6L",
+  "automatic_pass": false,
+  "decision": "close_source_before_residual_analysis",
+  "contract": {
+    "path": "configs/u6_p6l_uchicago_repeat_scan_source_v1.json",
+    "software_commit": "db5ed58719d47c4157a983a1fde1921722675de1"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/u6_p6l_uchicago_repeat_scan_source_v1/report_a.json",
+      "sha256": "5aa10c16f6b197602337af3a42edcc5c8ac99afed5a8ed47ec9493a5a2c5b557"
+    },
+    {
+      "path": "outputs/u6_p6l_uchicago_repeat_scan_source_v1/report_b.json",
+      "sha256": "5aa10c16f6b197602337af3a42edcc5c8ac99afed5a8ed47ec9493a5a2c5b557"
+    }
+  ],
+  "stable_evidence_id": "51bb644ef80f16a434a07e4e9b24f1dcdde752a952ebb483d5a39642bf04523f",
+  "observed": {
+    "downloaded_bytes": 88475062,
+    "tiff_count": 3,
+    "shape": [
+      3835,
+      3841
+    ],
+    "dtype": "uint16",
+    "integer_shifts_xy": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "registered_correlations": [
+      0.9951790761199382,
+      0.9931006543165473
+    ],
+    "minimum_registered_pair_correlation": 0.9931006543165473,
+    "frozen_minimum_registered_pair_correlation": 0.995
+  },
+  "branch_action": {
+    "retain": "exact CC-BY-4.0 source files, hashes and source-gate negative evidence",
+    "close": "repeat residual variance, NPS, ACF, row-column analysis and P6A noise comparison",
+    "forbidden_rescue": "photometric normalization, registration-model expansion, correlation-threshold change, alternate crop or selective repeat removal"
+  },
+  "claim_ceiling": "CC-BY-4.0 same-plate same-workflow scanner-repeat source-gate failure only; not scanner noise, film grain, stock, calibration, colour, product or population evidence."
+}

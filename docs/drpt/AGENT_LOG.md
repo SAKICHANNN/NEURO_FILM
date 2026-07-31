@@ -8330,3 +8330,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   common signal, while repeat differences are scanner/workflow nuisance plus
   registration error. No film-stock, emulsion-grain, scanner-calibration,
   colour or product claim opens.
+
+## 2026-07-31 - Close U6.P6L before repeat-residual modelling
+
+- **Evidence:** exact 88,475,062-byte acquisition; official MD5, local
+  SHA-256, single-frame `uint16` decode and equal `3835x3841` shape pass.
+  Two formal reports are byte-identical at `5aa10c16...c5b557`.
+- **Result:** integer shifts are zero, but repeat correlations are `.9951791`
+  and `.9931007`; the latter misses the frozen `.995` minimum.
+- **Decision:** close before affine normalization, alternate registration,
+  crop selection or NPS/ACF analysis. Preserve the source and negative result;
+  do not call it scanner-noise, emulsion-grain, stock or calibration evidence.

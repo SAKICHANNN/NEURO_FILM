@@ -2256,3 +2256,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > row/column residual analysis against P6A's generic shot-plus-read noise; it
 > cannot identify plate grain, stock, process, scanner calibration or colour.
 >
+> `U6.P6L` is now closed at that source gate. The exact 88,475,062-byte
+> subset and equal `uint16` decode pass, but the minimum registered repeat
+> correlation is `.99310 < .995`; both reports are byte-identical. The
+> preregistered order forbids post-result photometric normalization, alternate
+> crops or threshold changes, so NPS/ACF residual modelling does not open.
+>
