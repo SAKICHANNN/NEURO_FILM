@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p4ab_fixed_poisson_density_shape_contract.v1",
+  "experiment_id": "u6.p4ab-fixed-poisson-density-shape-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AB",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4d_contract_path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "p4d_decision_path": "configs/u6_p4d_density_conditioned_structure_decision_v1.json",
+    "p4d_decision_sha256": "39e6798327a8836cb10418bfa0684c454b5f2c832ff7de7fa94be197c73abdd8",
+    "p4aa_report_path": "outputs/eval/u6_p4aa_nasa_density_grain_source_v1/report_run1.json",
+    "p4aa_report_sha256": "98be0f689842b9ec92ecc6ea9b51c2fd73269345da5508dcc9e07dba477c9b42",
+    "p4aa_stable_evidence_id": "c58138f5fff35cf5e116a7329ed4ff84ea96d2aca8b7eb104045a2eec947ff9b"
+  },
+  "question": "Without fitting amplitude or density response, does P4D's fixed marked-Poisson implication RMS proportional to sqrt(developed density) reproduce the normalized shape and high-density behavior of the extracted NASA Tables 4-6 series?",
+  "evaluation": {
+    "tables": [4, 5, 6],
+    "apertures_um": [13, 27, 57],
+    "minimum_points_per_series": 4,
+    "normalization": "divide observed RMS and sqrt-density prediction by their values at the lowest-density row of each table/aperture series",
+    "prediction": "sqrt(density / lowest_density); no fitted coefficient",
+    "rank_metric": "Spearman correlation over every eligible full-density series",
+    "turnover_metric": "whether the observed maximum occurs at the highest-density row, as required by unchanged monotone P4D",
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "two_reports_must_be_byte_identical": true,
+    "parent_hashes_and_evidence_must_match": true,
+    "required_eligible_series": 9,
+    "median_normalized_relative_error_maximum": 0.2,
+    "p90_normalized_relative_error_maximum": 0.35,
+    "median_spearman_minimum": 0.7,
+    "minimum_series_with_observed_maximum_at_highest_density": 7,
+    "all_values_must_be_finite_and_positive": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "retain P4D's monotone density-amplitude shape as one generic measured-compatible control",
+    "seek independent non-radiographic confirmation before any photographic use"
+  ],
+  "forbidden": [
+    "fit a scale, exponent, peak density or aperture response",
+    "drop individual tables, apertures or high-density rows",
+    "reinterpret radiographic film as consumer colour-film stock evidence",
+    "attribute deviations to processing chemistry as supervision truth",
+    "visual or product integration"
+  ],
+  "branch_rule": {
+    "pass": "Retain only a generic normalized density/granularity shape control; no calibration claim.",
+    "fail": "Close P4D measured-shape compatibility without retuning. A separately frozen peaked-density exploratory primitive may be studied, but this source cannot provide confirmatory stock evidence."
+  },
+  "claim_ceiling": "No-fit normalized shape comparison between one generic marked-Poisson primitive and nine series from one historical radiographic-film report; not amplitude calibration, modern camera-film evidence, stock response or product validation."
+}
