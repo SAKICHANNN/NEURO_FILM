@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u6_p4ag_derivative_structure_severe_lod_contract.v1",
+  "experiment_id": "u6.p4ag-derivative-structure-severe-lod-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AG",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4af_decision_path": "configs/u6_p4af_derivative_conditioned_structure_decision_v1.json",
+    "p4af_decision_sha256": "27e5ef636d4dbf7c290efc920d379645bca9ae1fe2f7cacb4dc35c2668ebc126",
+    "p4af_contract_path": "configs/u6_p4af_derivative_conditioned_structure_v1.json",
+    "p4af_contract_sha256": "911908a50149d74697c3e2b4211011133261563cdd6f32bbde45bb600e0b5556",
+    "p4d_contract_path": "configs/u6_p4d_density_conditioned_structure_v1.json",
+    "p4d_contract_sha256": "8c0af4e3e485a1b790294d868fa729f8aeee8bfd206b3488b5f862f43a12ddab",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Does P4AF remain free of synthetic salt-like, banding and seam failures, and can one no-fit direct LOD preserve area-averaged density structure better than an unscaled-variance shortcut?",
+  "populations": {
+    "shape": [256, 384],
+    "flat_exposure_levels": [0.001, 0.0055, 0.18, 4.0],
+    "ramp_exposure_interval": [0.0001, 16.0],
+    "step_exposure_levels": [0.001, 0.18, 4.0],
+    "checkerboard_exposure_levels": [0.001, 0.18],
+    "checkerboard_period_pixels": 16,
+    "sparse_highlight_exposure": 8.0,
+    "sparse_highlight_spacing_pixels": 31,
+    "row_partitions": [29, 113],
+    "lod_factors": [2, 4],
+    "runs": 2
+  },
+  "controls": {
+    "constant_variance": "same sensitometry mean, fixed P4AF peak variance, same copula correlation and seeds",
+    "p4d": "unchanged P4D density-conditioned marked-Poisson profiles",
+    "lod_unscaled": "block-mean exposure with unchanged peak density variance and correlation sigma divided by factor"
+  },
+  "candidate_lod": {
+    "input": "block-mean relative linear exposure",
+    "peak_density_variance": "P4AF peak variance divided by pixel area",
+    "correlation_sigma_pixels": "P4AF sigma divided by pixel factor",
+    "seeds": "unchanged",
+    "comparison_truth": "block-mean full-resolution developed density and transmittance",
+    "fit_allowed": false
+  },
+  "gates": {
+    "maximum_absolute_standardized_density_residual": 8.0,
+    "isolated_excursion_z_threshold": 6.0,
+    "isolated_neighbor_support_z_threshold": 3.0,
+    "minimum_isolated_neighbor_support": 1,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_ramp_column_second_difference": 0.01,
+    "minimum_candidate_variance_shape_spearman": 0.9,
+    "minimum_candidate_spearman_advantage_over_each_control": 0.5,
+    "maximum_lod_mean_density_absolute_error": 0.01,
+    "minimum_lod_variance_ratio": 0.4,
+    "maximum_lod_variance_ratio": 1.6,
+    "maximum_lod_lag1_acf_absolute_error": 0.25,
+    "minimum_lod_variance_error_improvement_over_unscaled": 0.1,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "input_unchanged": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "no_parameter_fit": true
+  },
+  "branch_rule": {
+    "severe_fail": "Close P4AF structure before photographs or LOD rescue; retain P4AD/P4AE analytic evidence only.",
+    "severe_pass_lod_fail": "Retain P4AF as a full-resolution generic synthetic reference only; close direct LOD without retuning and freeze a distinct moment-aware LOD leaf only if justified.",
+    "all_pass": "Retain the fixed direct LOD as a development candidate and open separately frozen scale/performance evidence; no photographs or product integration."
+  },
+  "forbidden": [
+    "photograph access or visual promotion",
+    "amplitude, correlation, seed, LOD or gate retuning after results",
+    "display-RGB noise or hard clipping",
+    "stock, process, scanner, calibration or product claims"
+  ],
+  "claim_ceiling": "Synthetic severe-artifact and distributional LOD evidence for a generic derivative-conditioned developed-density approximation; not measured emulsion, photographic quality, stock response, calibration or product evidence."
+}
