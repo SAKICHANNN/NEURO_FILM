@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4ao_zero_dc_dog_copula_structure_decision.v1",
+  "experiment_id": "u6.p4ao-zero-dc-dog-copula-structure-v1",
+  "decision": "close_zero_dc_dog_copula_below_comparative_gate",
+  "passed": false,
+  "report_sha256": "26e2d5446c53a86d1ca3e8d4d1edd982d25725c7d8e05c93decedfdee5c95efa",
+  "stable_evidence_id": "bd9528abe6b41e5916fc3dd9ab9d5c124819c27c5b8a7f8b2a04ca6c90ca5eb1",
+  "passed_evidence": {
+    "kernel_dc_absolute_sum": 1.7778472964413404e-17,
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.00014150684836278238,
+    "maximum_density_variance_relative_error": 0.007669872868876599,
+    "ramp_variance_shape_spearman": 0.9997427487298219,
+    "lag1_x": 0.23336576919598112,
+    "lag1_y": 0.23221850649379164,
+    "lag1_anisotropy": 0.0011472627021894832,
+    "maximum_low_frequency_block_mean_std_ratio_to_p4af": 0.4488216712065696,
+    "checker_frequency_power_ratio_to_neighborhood": 1.0631600439820401,
+    "isolated_standardized_excursions": 0,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true
+  },
+  "failed_evidence": {
+    "metric": "flat_transmittance_error_improvement_over_p4af",
+    "observed": 0.1467858747076155,
+    "frozen_minimum": 0.5
+  },
+  "interpretation": "The fixed band-pass source has effectively zero DC response and materially suppresses 4x4/8x8 low-frequency block means without checker energy, anisotropy or isolated excursions. Despite that spatial improvement, the matched P4AF flat transmittance error improves only 14.68%, showing that low-frequency source drift is not the dominant remaining mean error under this unchanged nonlinear marginal.",
+  "branch": {
+    "action": "close_before_photographic_rendering",
+    "forbidden_rescue": [
+      "sigma_search",
+      "weight_search",
+      "seed_search",
+      "marginal_change",
+      "strength_change",
+      "threshold_relaxation"
+    ],
+    "next": "leave_P4AF_as_synthetic_reference_and_continue_a_distinct_colour_or_physical_mechanism"
+  },
+  "claim_ceiling": "Negative synthetic evidence for one zero-DC Gaussian-band-pass density structure; not measured film NPS, physical particle geometry, stock response, photographic quality or product evidence."
+}
