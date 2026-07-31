@@ -8222,3 +8222,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   visual rescue. Do not lower the gate or retune BK16 on these pixels. Close
   the generalized BK16 branch and proceed to a distinct explicit operator
   family using only development or synthetic design evidence.
+
+## 2026-07-31 - Pass U5.R2BK19 synthetic hard-mode prerequisite
+
+- Two formal runs are byte-identical at `7260c3aa...d2d6a`; all frozen
+  synthetic gates pass.
+- Two known explicit residual directions reach 100% leave-one-group-out
+  recovery across 12 groups per mode and reduce absolute directional error by
+  `.8154` with a hard two-medoid bank.
+- One direction at strengths `.6/.8/1.0` has minimum cosine `.999909`; K2
+  reduces absolute error by only `2.94e-6`. This is the 53/55/56-style
+  strength-path negative control and formally remains K1 plus strength.
+- No real film pixels were used. This does not establish a real stock mode or
+  solve unpaired operator identification. BK20 may test multiple synthetic
+  unpaired canonicalizers/control pools and must return `unidentified` when
+  they disagree.

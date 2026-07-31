@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2bk19_synthetic_hard_mode_identifiability_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk19-synthetic-hard-mode-identifiability-v1",
+  "config": "configs/u5_r2bk19_synthetic_hard_mode_identifiability_v1.json",
+  "config_sha256": "8b2ae8d7d463048fca0176c21bd11ea6942da379851486dd7478e967c886ec7e",
+  "formal_report": "outputs/u5_r2bk19_synthetic_hard_mode_identifiability_v1/formal_a/report.json",
+  "formal_report_sha256": "7260c3aa065fd0a889c038ad20c47fad30f230d133110cad6d12dbb539dd2d6a",
+  "repeat_report": "outputs/u5_r2bk19_synthetic_hard_mode_identifiability_v1/formal_b/report.json",
+  "repeat_report_sha256": "7260c3aa065fd0a889c038ad20c47fad30f230d133110cad6d12dbb539dd2d6a",
+  "automatic_pass": true,
+  "observations": {
+    "true_mode_leave_one_group_out_accuracy": 1.0,
+    "true_mode_k2_absolute_directional_error_improvement": 0.8154238834820629,
+    "true_mode_medoid_cross_direction_cosine": -0.6361534502591342,
+    "true_mode_independent_groups_each": 12,
+    "strength_path_minimum_cross_strength_cosine": 0.9999093510131952,
+    "strength_path_k2_absolute_directional_error_improvement": 0.0000029425461836873873,
+    "maximum_output_out_of_cube_fraction": 0.0
+  },
+  "decision": "retain_group_aware_hard_mode_bank_as_synthetic_method_prior_and_open_unpaired_identifiability_design_only",
+  "allowed_next": [
+    "freeze a synthetic unpaired identifiability pilot with multiple canonicalizers and distribution-matched control pools",
+    "retain K=1 as the formal result when only one residual direction exists",
+    "retain hard medoids rather than dense averaging when multiple directions are independently stable"
+  ],
+  "forbidden": [
+    "claim a real film stock has multiple modes",
+    "treat synthetic paired recovery as unpaired operator identification",
+    "train a real router or use current community pixels",
+    "interpret a latent mode as exposure, illuminant, push, pull, process or scanner truth",
+    "reopen BK16 or BK18"
+  ],
+  "claim_ceiling": "synthetic known-operator evidence that a group-aware direction signature can distinguish true modes from one strength path; no real-film, unpaired-identification, product-value or calibration claim"
+}

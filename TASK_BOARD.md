@@ -431,3 +431,11 @@ basis, not a BJ1 parameter rescue.
 BJ2 closes the adaptive neutral-base LUT family: strict safety is solved, but
 AY3 fresh-tail generalization misses the fixed P95 gate by 0.3719%. Return to
 a distinct film-look or physical-image-formation algorithm leaf.
+
+U5.R2BK19 now passes a synthetic known-operator prerequisite for hard latent
+modes. Two genuine residual directions are recovered at 100% held-group
+accuracy with `.8154` absolute K2 error gain, while one direction at three
+strengths has `.999909` minimum cosine and only `2.94e-6` absolute K2 gain.
+This is not real-film or unpaired evidence. BK20 is the next algorithm leaf:
+freeze multiple unpaired canonicalizers/control pools and return
+`unidentified` whenever their inferred directions disagree.

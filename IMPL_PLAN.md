@@ -2197,4 +2197,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > description. No image payload, contact, fitting or training is allowed.
 > A pass opens a separately frozen acquisition leaf; failure closes only the
 > current public surface and does not weaken the stock-first data gate.
+
+> `U5.R2BK19` passes only a synthetic known-operator method prerequisite.
+> Group-aware hard medoids recover two true residual directions at 100%
+> held-group accuracy, while one direction at three strengths correctly has
+> negligible absolute K2 value. `U5.R2BK20` may now freeze a synthetic
+> unpaired-identifiability sensitivity audit across multiple canonicalizers
+> and matched control pools. Any disagreement returns `unidentified`; no real
+> pixels, stock modes, router or product integration are open.
 >
