@@ -147,6 +147,7 @@ from .derivative_conditioned_structure import (
     DerivativeConditionedStructureProfile,
     DerivativeConditionedStructureResult,
     derivative_variance_shape,
+    gaussian_block_mean_variance_scale,
     render_derivative_conditioned_structure,
     render_derivative_conditioned_structure_region,
 )
@@ -307,6 +308,7 @@ __all__ = [
     "develop_layer_exposure",
     "developed_density_variance",
     "derivative_variance_shape",
+    "gaussian_block_mean_variance_scale",
     "propagate_poisson_exposure_variance",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",

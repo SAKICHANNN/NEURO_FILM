@@ -71,6 +71,47 @@ class DerivativeConditionedStructureResult:
         transmittance.setflags(write=False)
 
 
+def gaussian_block_mean_variance_scale(
+    correlation_sigma_pixels: float,
+    pixel_size_factor: int,
+    *,
+    truncate: float = 4.0,
+) -> float:
+    """Return the exact linear-Gaussian variance scale of a square block mean."""
+
+    sigma = float(correlation_sigma_pixels)
+    if (
+        not math.isfinite(sigma)
+        or sigma < 0.0
+        or not isinstance(pixel_size_factor, int)
+        or pixel_size_factor < 1
+        or not math.isfinite(truncate)
+        or truncate <= 0.0
+    ):
+        raise ValueError("invalid Gaussian block-mean variance inputs")
+    if sigma == 0.0:
+        return 1.0 / float(pixel_size_factor * pixel_size_factor)
+    radius = int(truncate * sigma + 0.5)
+    coordinates = np.arange(-radius, radius + 1, dtype=np.float64)
+    kernel = np.exp(-0.5 * np.square(coordinates / sigma))
+    kernel /= np.sum(kernel, dtype=np.float64)
+    autocorrelation = np.correlate(kernel, kernel, mode="full")
+    center = kernel.size - 1
+    variance = float(autocorrelation[center])
+    factor = pixel_size_factor
+    one_dimensional = sum(
+        (factor - abs(offset))
+        * float(autocorrelation[center + offset])
+        / variance
+        for offset in range(-(factor - 1), factor)
+        if 0 <= center + offset < autocorrelation.size
+    ) / float(factor * factor)
+    scale = one_dimensional * one_dimensional
+    if not math.isfinite(scale) or not 0.0 < scale <= 1.0:
+        raise RuntimeError("invalid Gaussian block-mean variance scale")
+    return scale
+
+
 def _validate_exposure(
     linear_exposure: np.ndarray,
     profile: DerivativeConditionedStructureProfile,
@@ -208,6 +249,7 @@ __all__ = [
     "DerivativeConditionedStructureProfile",
     "DerivativeConditionedStructureResult",
     "derivative_variance_shape",
+    "gaussian_block_mean_variance_scale",
     "render_derivative_conditioned_structure",
     "render_derivative_conditioned_structure_region",
 ]
