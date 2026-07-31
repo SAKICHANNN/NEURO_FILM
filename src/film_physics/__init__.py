@@ -143,6 +143,13 @@ from .characteristic_slope_grain import (
     developed_density_variance,
     propagate_poisson_exposure_variance,
 )
+from .derivative_conditioned_structure import (
+    DerivativeConditionedStructureProfile,
+    DerivativeConditionedStructureResult,
+    derivative_variance_shape,
+    render_derivative_conditioned_structure,
+    render_derivative_conditioned_structure_region,
+)
 from .spatial_response import (
     SpatialResponseProfile,
     apply_bounded_development_adjacency,
@@ -265,6 +272,8 @@ __all__ = [
     "SpatialResponseProfile",
     "InterimageAdjacencyProfile",
     "HillCharacteristicProfile",
+    "DerivativeConditionedStructureProfile",
+    "DerivativeConditionedStructureResult",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
     "apply_interpretation_bounded_development_adjacency",
@@ -297,6 +306,7 @@ __all__ = [
     "density_to_transmittance",
     "develop_layer_exposure",
     "developed_density_variance",
+    "derivative_variance_shape",
     "propagate_poisson_exposure_variance",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
@@ -342,6 +352,8 @@ __all__ = [
     "render_density_conditioned_structure_area_lod",
     "render_density_conditioned_structure_area_lod_region",
     "render_density_conditioned_structure_region",
+    "render_derivative_conditioned_structure",
+    "render_derivative_conditioned_structure_region",
     "rescale_compound_poisson_profile",
     "render_marginal",
     "render_marginal_region",
