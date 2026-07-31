@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p4ad_characteristic_slope_grain_reference_contract.v1",
+  "experiment_id": "u6.p4ad-characteristic-slope-grain-reference-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AD",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4ac_decision_path": "configs/u6_p4ac_peaked_density_grain_shape_decision_v1.json",
+    "p4ac_decision_sha256": "86ec230de2dcdb1085839f91b60fe3ffd1bee7ebe42a78956992e8cb6989d7b5",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "sensitometry_decision_path": "configs/u2_2a_sensitometry_primitive_decision_v1.json",
+    "sensitometry_decision_sha256": "0a92f7cc06744909bc7f3faeb4b1e2eb1ea0a3048b8ef8c1605f35a787e0fdc6"
+  },
+  "question": "Can latent-exposure Poisson statistics propagated through an explicit monotone characteristic curve provide a finite, nonmonotone and analytically verifiable developed-density variance reference without fitting a density peak?",
+  "model": {
+    "exposure_domain": "strictly_positive_relative_linear_exposure",
+    "characteristic_curve": "density_min + density_span * h^gamma / (h^gamma + half_exposure^gamma)",
+    "density_variance_shape": "exposure * square(d_density_d_exposure)",
+    "normalized_photon_scale": 1.0,
+    "density_min": 0.1,
+    "density_span": 2.0,
+    "half_exposure": 0.18,
+    "gamma": 1.6,
+    "parameter_origin": "fixed generic synthetic witness; no P4AA table, photographic or stock fit",
+    "display_rgb_noise_allowed": false,
+    "post_development_additive_noise_allowed": false
+  },
+  "evaluation": {
+    "exposure_minimum": 0.0001,
+    "exposure_maximum": 16.0,
+    "sample_count": 32769,
+    "finite_difference_relative_step": 0.0001,
+    "photon_scales": [128.0, 1024.0, 8192.0],
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "maximum_characteristic_derivative_relative_error": 0.00001,
+    "maximum_analytic_peak_log_exposure_error": 0.002,
+    "maximum_peak_index_distance": 1,
+    "maximum_low_tail_to_peak_variance_ratio": 0.05,
+    "maximum_high_tail_to_peak_variance_ratio": 0.05,
+    "maximum_normalized_shape_difference_across_photon_scales": 1e-12,
+    "density_must_be_strictly_increasing": true,
+    "variance_must_be_finite_nonnegative_and_interior_peaked": true,
+    "exact_repeat": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "implement one separately frozen adapter that evaluates the same delta-method variance through the existing U2.2 sensitometry derivatives",
+    "retain the Hill curve only as an analytic synthetic reference and negative/positive control"
+  ],
+  "forbidden": [
+    "fit the curve or variance shape to P4AA tables or photographs",
+    "replace the existing U2.2 sensitometry with the Hill witness",
+    "call the variance amplitude calibrated film grain",
+    "add noise in display RGB",
+    "photographic or product promotion"
+  ],
+  "branch_rule": {
+    "pass": "Open a separately frozen existing-sensitometry derivative-propagation audit; no stochastic renderer or product integration yet.",
+    "fail": "Close this curve-slope propagation formulation without parameter rescue and continue another distinct physical leaf."
+  },
+  "claim_ceiling": "Analytic synthetic reference for exposure-domain Poisson variance propagated to developed density through one generic monotone characteristic curve; not measured grain, stock response, process calibration or product evidence."
+}
