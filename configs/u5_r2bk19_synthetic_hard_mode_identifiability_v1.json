@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u5_r2bk19_synthetic_hard_mode_identifiability.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk19-synthetic-hard-mode-identifiability-v1",
+  "node": "ULT > U5 > U5.R2BK19",
+  "status": "contract_frozen",
+  "question": "Under known explicit-operator truth, can a group-aware hard medoid bank recover two genuinely different residual directions while correctly collapsing one direction observed at three strengths to K=1?",
+  "parent": {
+    "decision": "configs/u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_decision_v1.json",
+    "required_decision": "close_bk16_generalized_style_salience_open_distinct_explicit_algorithm_family"
+  },
+  "synthetic_design": {
+    "grid_size": 9,
+    "grid_margin": 0.08,
+    "independent_groups": 12,
+    "noise_sigma": 0.00015,
+    "seed": 20260731,
+    "basic_nuisance": [
+      "per-channel affine",
+      "global cross-channel affine",
+      "group-specific offset"
+    ],
+    "true_mode_case": {
+      "mode_ids": [
+        "Mode A",
+        "Mode B"
+      ],
+      "samples_per_group_per_mode": 1
+    },
+    "strength_path_negative_control": {
+      "mode_id": "Mode A",
+      "strengths": [
+        0.6,
+        0.8,
+        1.0
+      ],
+      "samples_per_group_per_strength": 1
+    }
+  },
+  "signature": {
+    "fit_basic_affine_per_case": true,
+    "project_residual_to_fixed_quadratic_interaction_basis": true,
+    "residual_direction_l2_normalized": true,
+    "distance": "one-minus-cosine",
+    "clustering": "deterministic-k-medoids",
+    "allowed_k": [
+      1,
+      2
+    ],
+    "selection_evidence": "leave-one-group-out only",
+    "noise_or_unassigned_allowed": false
+  },
+  "gates": {
+    "minimum_true_mode_leave_one_group_out_accuracy": 0.9,
+    "minimum_true_mode_k2_absolute_directional_error_improvement": 0.5,
+    "minimum_independent_groups_per_true_mode": 10,
+    "maximum_single_group_share_per_true_mode": 0.1,
+    "minimum_same_direction_strength_cosine": 0.995,
+    "maximum_strength_path_k2_absolute_directional_error_improvement": 0.05,
+    "maximum_true_mode_cross_direction_cosine": 0.9,
+    "maximum_output_out_of_cube_fraction": 0.0,
+    "exact_repeat_required": true
+  },
+  "decision_if_pass": "retain_group_aware_hard_mode_bank_as_synthetic_method_prior_and_open_unpaired_identifiability_design_only",
+  "decision_if_fail": "close_current_hard_mode_signature_before_real_data",
+  "forbidden": [
+    "use real film or current community pixels",
+    "claim any current stock has K greater than 1",
+    "interpret Mode A or Mode B as exposure, illuminant, push, pull, process or scanner truth",
+    "treat synthetic paired recovery as unpaired operator identification",
+    "train a router or dense blend",
+    "change frozen BK16, BK18, LSM or stock-identifiability decisions",
+    "production integration"
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "stock_or_calibration_claim_allowed": false,
+  "claim_ceiling": "synthetic known-operator method evidence for separating true residual directions from a single strength path; no real-film mode, unpaired identification, routing-value or product claim"
+}
