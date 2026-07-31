@@ -1,0 +1,100 @@
+{
+  "schema": "neuro_film.u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk14-orthogonal-residual-fifth-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK14",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does fixed BK10 retain material, artifact-safe style on the fifth leakage-clean CC0 RAW population, and does its safe-base plus orthogonal-residual factorization add visible value over unchanged BK7, AO6 t15/c35 and safe-rich?",
+  "source_preflight": {
+    "decision": "configs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_decision_v1.json",
+    "decision_sha256": "710d750bc3515136f2b9e42b5689eadccc430a5f0170d68243d935fb79240a16",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "required_decision": "open_fixed_bk10_fifth_fresh_confirmation",
+    "manifest": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json",
+    "manifest_sha256": "a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547",
+    "expected_eligible_rows": 12,
+    "expected_camera_makes": 12
+  },
+  "fixed_arms": [
+    {
+      "arm_id": "fixed_bk10_safe_base_orthogonal_residual",
+      "role": "new_factorized_explicit_film_look_candidate",
+      "config": "configs/u5_r2bk10_orthogonal_perceptual_residual_v1.json",
+      "config_sha256": "23a1f2362c4aa5d2a2c57cf7b726b2cb70d3bb89570bba37b33f438ed9f453b7"
+    },
+    {
+      "arm_id": "fixed_bk7_smooth_perceptual_hue_density",
+      "role": "fixed_residual_source_and_prior_generic_challenger",
+      "config": "configs/u5_r2bk7_smooth_perceptual_hue_density_v1.json",
+      "config_sha256": "2e2f901aa51e027cadfb95eef9f035b749523aa05018ba00e8e5f5378bbb543b",
+      "strength": 1.0
+    },
+    {
+      "arm_id": "fixed_ao6_colour_only_t15_c35",
+      "role": "development_champion_look_approximation",
+      "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+      "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+      "component": "ao6-source-context-display-look"
+    },
+    {
+      "arm_id": "safe_rich_velvia_50",
+      "role": "current_safe_rich_fallback_and_bk10_base",
+      "profile": "configs/render_profiles/safe_rich_v1.json",
+      "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+      "style_statistics": "configs/film_color_stats.json",
+      "style_statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+      "guardrails": "configs/color_guardrails.json",
+      "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "style": "velvia_50",
+      "seed": 20260731
+    }
+  ],
+  "rendering": {
+    "create_only": true,
+    "source_domain": "frozen_relative_display_srgb_approximation",
+    "final_format": "rgb16_png",
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "dense_blending_allowed": false,
+    "hard_clipping_allowed": false,
+    "require_repeat_report_and_output_identity": true
+  },
+  "automatic_gate": {
+    "expected_outputs": 48,
+    "minimum_bk10_population_median_style_delta_e76": 5.0,
+    "minimum_bk10_population_median_increment_vs_safe_delta_e76": 2.0,
+    "maximum_per_output_new_code_boundary_fraction_vs_source": 0.005,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "visual_protocol": {
+    "review_eligible_only_after_automatic_pass": true,
+    "review_full_population": true,
+    "source_and_four_arms_visible": true,
+    "severe_artifact_veto_precedes_style": true,
+    "inspect_stress_rows": [
+      "oneplus_one",
+      "parrot_bebop2",
+      "asus_i01wd",
+      "kandao_qoocam"
+    ],
+    "judge_bk10_increment_over_safe_separately": true,
+    "no_population_preference_claim": true
+  },
+  "branch_rules": {
+    "repeat_or_automatic_fail": "close BK10 without changing sources, parameters, strengths or gates",
+    "severe_fail": "reject BK10 regardless of style strength",
+    "artifact_safe_but_bland": "close BK10 and continue another explicit algorithm family",
+    "artifact_safe_material_but_not_better": "retain descriptive factorization evidence but do not open preference or product promotion",
+    "artifact_safe_material_and_visually_competitive": "retain BK10 as fifth-fresh generic challenger and open only a separately frozen independent comparison or next explicit-family leaf"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fifth-fresh-population autonomous comparison of four fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
