@@ -8478,3 +8478,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close P4D measured-shape compatibility without rescue. Retain generic
   synthetic structure only; this radiographic/process-confounded report is not
   modern camera-film, stock, scanner-calibration or product evidence.
+
+## 2026-08-01 - Close U5.R2AO4R mature root-polynomial baseline
+
+- Added the missing paper-supported gamma-ProPhoto third-degree
+  root-polynomial baseline on the frozen 24 chart + 47 palette proxy pairs.
+- Two reports are byte-identical at `fe127107...8d0f`. Combined RGB/DeltaE
+  regress `180.82%/61.32%` versus bounded one-matrix; both cross-domain
+  directions regress over `131%`, held OOG reaches `13.33%`, and minimum
+  Jacobian is `-.11519`.
+- Close without clipping, parameter rescue or photographic rendering. The
+  result separates inverse colour-correction precedent from forward film-look
+  transfer and leaves AO6 at its development-only ceiling.

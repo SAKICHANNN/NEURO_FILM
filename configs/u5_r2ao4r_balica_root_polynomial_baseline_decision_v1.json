@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4r-balica-root-polynomial-baseline-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4R",
+  "decision": "retain_bounded_ao6_development_champion_and_close_root_polynomial_on_this_proxy_pool",
+  "software_commit": "be75f047c286335f4b52a8d3ad998202bc2e57aa",
+  "contract": {
+    "path": "configs/u5_r2ao4r_balica_root_polynomial_baseline_v1.json",
+    "sha256": "83454d5e575521c9d2c6d089623a6a3206c2156e6171e3ecd038da303c1465b3"
+  },
+  "formal_report": "outputs/u5_r2ao4r_balica_root_polynomial_baseline_v1/report_pass1.json",
+  "formal_report_sha256": "fe12710716a1006bc694b0876fdab49a0f001a3d00223792eb8488f981388d0f",
+  "repeat_report_sha256_exact": true,
+  "automatic_result": {
+    "passed": false,
+    "combined_root_rgb_rmse": 0.09411585979578625,
+    "combined_bounded_one_matrix_rgb_rmse": 0.033515187188249924,
+    "combined_rgb_gain_over_bounded_one_matrix": -1.8081555763705324,
+    "combined_root_mean_delta_e76": 10.648868953877871,
+    "combined_bounded_one_matrix_mean_delta_e76": 6.601281030334679,
+    "combined_delta_e76_gain_over_bounded_one_matrix": -0.6131518874811459,
+    "chart_to_palette_rgb_gain": -1.3111964496049264,
+    "palette_to_chart_rgb_gain": -1.3372063875467415,
+    "maximum_fold_raw_out_of_cube_fraction": 0.13333333333333333,
+    "minimum_cube_jacobian_determinant": -0.11518575646239711
+  },
+  "interpretation": "The paper-supported root-polynomial family is useful as an inverse colour-correction precedent but fails as a transferable forward film-look operator on the exact 71 display-proxy pairs. Its failure is both predictive and structural, not a missing post-fit clip.",
+  "visual_review_allowed": false,
+  "forbidden_followup": [
+    "retune degree, ridge, transfer or colour space on these rows",
+    "clip or gamut-map the failed raw outputs as a rescue",
+    "render photographs from this failed operator",
+    "treat inverse colour-correction performance as forward film-look evidence",
+    "claim stock response, calibration, preference or product promotion"
+  ],
+  "next_direction": "seek new controlled paired information or a genuinely different bounded film-look mechanism; do not add capacity to the sealed 71-pair pool",
+  "claim_ceiling": "negative mature-baseline evidence on 71 author-rendered Velvia display proxies; not a statement about the paper on its unavailable controlled dataset and not stock response or calibration"
+}

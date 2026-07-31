@@ -1004,6 +1004,14 @@ Current approval state: research and local documentation are authorized; all ite
 
 *Tracker initialized: 2026-07-10; FilmCase subtree frozen: 2026-07-11; Roll2Film subtree opened: 2026-07-12 and re-gated after external audit on 2026-07-15. U0.3 remains a fail-closed 4,210-row legacy audit while current Windows `film_domain` contains 4,212 JPEGs of not-yet-propagated eligibility. FilmSet is local and ready for manifest/lockbox freeze; only BlueNeg acquisition remains download-gated. Integration owner: repository owner or explicitly assigned Codex root agent.*
 
+### 2026-08-01 algorithm addendum
+
+- `U5.R2AO4R` is complete and closed. The missing mature third-degree
+  root-polynomial baseline regresses bounded one-matrix RGB/DeltaE by
+  `180.82%/61.32%`, regresses both leave-domain-out directions by more than
+  `131%`, reaches `13.33%` held OOG and has negative Jacobians. No clipping or
+  rendering rescue opens; see `docs/U5_R2AO4R_BALICA_ROOT_POLYNOMIAL_RESULTS.md`.
+
 Current algorithm state: U6.P2O1 closes a fixed retained-silver photographic
 branch despite strong non-basic style because magnitude, luma, chroma direction
 and isolated-excursion gates fail. P2N remains a generic primitive only. Do not

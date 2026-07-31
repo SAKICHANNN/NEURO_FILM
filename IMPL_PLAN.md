@@ -2328,3 +2328,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > retains `.00295` flat mean error. It closes before photographic rendering;
 > sample-dependent centering and marginal/gate retuning remain forbidden.
 >
+> `U5.R2AO4R` adds the missing mature root-polynomial baseline from the
+> controlled-film colour-correction literature. On the exact 71 Velvia
+> display-proxy rows it strongly regresses the bounded one-matrix control in
+> pooled and both leave-domain-out tests, while producing raw OOG rows and
+> negative Jacobians. Close the forward route without clipping or retuning;
+> inverse correction evidence is not forward film-look evidence.
+>

@@ -496,3 +496,10 @@ raw density ratio `1.45`). U6.P6P then closes the unchanged P6N quantitative
 amplitude route: both silver samples exceed its fixed RGB envelope plus `.05`,
 while dye identity and silver-over-dye controls pass. Do not retune P6N from
 these four samples; continue a distinct physical or colour leaf.
+
+U5.R2AO4R closes the missing mature root-polynomial baseline on the 71-pair
+Velvia proxy pool. It regresses combined RGB RMSE by 180.82% versus the bounded
+one-matrix control, regresses both cross-domain directions by more than 131%,
+and has negative cube Jacobians plus 13.33% held-row OOG. This separates
+inverse colour correction from forward film-look generation; do not rescue it
+with clipping or more capacity.
