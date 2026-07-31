@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2bl10_filmmatch_semantic_hard_case_development_decision.v1",
+  "experiment_id": "u5.r2bl10-filmmatch-semantic-hard-case-development-v1",
+  "config_sha256": "0232abc11a7a12f5f6d25aeb355cda29ac6521207425ac7fcfb292849c7e5b9f",
+  "report_sha256": "314f3b6033b57818346305f568ded042e468173eb89716c0bd335323f98d8e4c",
+  "stable_evidence_id": "913075ae8ef258e584edc2a433a6bdd6f50b8cddf5b92b91a334539362cdf5fb",
+  "two_run_byte_identity": true,
+  "global_ao6_choice_utility": 35,
+  "selector_choice_utility": 38,
+  "oracle_choice_utility": 48,
+  "selector_choice_gain": 3,
+  "global_ao6_correct_sources": 12,
+  "selector_correct_sources": 13,
+  "selector_correct_source_gain": 1,
+  "candidate_selected_sources": 3,
+  "false_candidate_selections": 1,
+  "negative_control_choice_gain_p95": 3.0,
+  "automatic_gate_pass": false,
+  "decision": "close_semantic_hard_case_retain_ao6",
+  "interpretation": "The fixed colour-blind DINO Top-1 case rule recovers one useful BL5 pair and gains three choices, but it does not exceed the preregistered product-value gates or the label-permutation P95. Semantic similarity alone does not identify the transferable look preference on this development population.",
+  "forbidden_followups": [
+    "tune k, pooling, embedding, labels, similarity threshold or strength on BL8",
+    "acquire a confirmation population for this failed selector",
+    "train a denser router as rescue",
+    "call the cases film modes, stock identity or physical-condition inference"
+  ],
+  "next": "retain fixed AO6 and continue a distinct explicit operator or physical-image-formation leaf",
+  "product_integration_opened": false,
+  "claim_ceiling": "development-only autonomous preference-routing evidence for two fixed film-inspired explicit looks using colour-blind source semantics; not population preference, film mode, stock response, calibrated operator, authenticity or product promotion"
+}
