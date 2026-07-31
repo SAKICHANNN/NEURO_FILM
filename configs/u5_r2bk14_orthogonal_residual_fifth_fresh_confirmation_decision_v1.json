@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk14-orthogonal-residual-fifth-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK14",
+  "status": "automatic_and_visual_pass_blind_comparison_open",
+  "decision": "retain_bk10_open_independent_blind_comparison",
+  "config": {
+    "path": "configs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1.json",
+    "sha256": "bf6fcc2b6855d9c087b86b0e5de4f8515df838a06a6eb6ba059c280091e2fee2"
+  },
+  "result": {
+    "source_rows": 12,
+    "outputs": 48,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "confirmed_severe_artifact_count": 0,
+    "population_median_style_delta_e76": {
+      "fixed_bk10_safe_base_orthogonal_residual": 5.397847890853882,
+      "fixed_bk7_smooth_perceptual_hue_density": 6.325593709945679,
+      "fixed_ao6_colour_only_t15_c35": 8.643071174621582,
+      "safe_rich_velvia_50": 2.332733154296875
+    },
+    "bk10_population_median_increment_vs_safe_delta_e76": 4.431051969528198,
+    "maximum_new_code_boundary_fraction_vs_source": 0.0,
+    "stress_rows_full_resolution_reviewed": [
+      "oneplus_one",
+      "parrot_bebop2",
+      "asus_i01wd",
+      "kandao_qoocam"
+    ],
+    "visual_finding": "Across all twelve rows BK10 remains continuous and artifact-safe: no red-speckle creation, posterization, banding, block colour, clipping edge, seam or geometry corruption was confirmed. Full-resolution stress review shows the sparse warm grass speckles on OnePlus already exist in the source. BK10 is visibly denser and more cyan-warm separated than safe-rich and often stronger than BK7 while remaining less aggressive than AO6. The contact-sheet review is not a blinded preference result, so it opens rather than substitutes for a separate anonymous comparison."
+  },
+  "evidence": {
+    "report": {
+      "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/report.json",
+      "sha256": "641f36934958623575d11d34af1ac2ea8bab62c41105c14917955549152f4340",
+      "stable_evidence_id": "7121cd9dd7c1bbfae328c8de61cf98d1f0afa2999acac585b3cdf8c4809d7127"
+    },
+    "visual_sheets": [
+      {
+        "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/visual_review_part_1.png",
+        "sha256": "efb63a22e761c4bac3a60b025294f0be423803f47b166d9b03bc62dd0eee0f67"
+      },
+      {
+        "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/visual_review_part_2.png",
+        "sha256": "767639abde3ded7d21103e410696a7d4598258831dd7c010b533f0613b40a5b3"
+      },
+      {
+        "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/visual_review_part_3.png",
+        "sha256": "061f39b7d9996eefd4d7407f30370e68428e08b5b506009681abcf51ad46c3e9"
+      }
+    ],
+    "repeat_report_and_all_output_hashes_exact": true,
+    "software_commit": "38d2e299b6f686a1e9f6697415cd0f6ee5ef3508"
+  },
+  "next_leaf": "freeze a three-round anonymous BK10/BK7/AO6/safe-rich comparison on the exact BK14 renders; freeze all votes and severe observations before reading the mapping",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "strength_retuning_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fifth-fresh autonomous artifact-safety and visible-style evidence for fixed BK10; not blinded, owner or population preference, film truth, stock response, calibration or product promotion"
+}

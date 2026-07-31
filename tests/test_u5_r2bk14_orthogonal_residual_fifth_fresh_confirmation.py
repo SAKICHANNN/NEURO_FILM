@@ -20,6 +20,10 @@ CONFIG = (
     ROOT
     / "configs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -67,3 +71,25 @@ def test_bk14_rejects_contract_drift() -> None:
     config["rendering"]["strength_retuning_allowed"] = True
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk14_decision_opens_blind_comparison_without_promotion() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "retain_bk10_open_independent_blind_comparison"
+    )
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["confirmed_severe_artifact_count"] == 0
+    assert result["outputs"] == 48
+    assert result["maximum_new_code_boundary_fraction_vs_source"] == 0.0
+    assert result["bk10_population_median_increment_vs_safe_delta_e76"] >= 2.0
+    assert decision["evidence"][
+        "repeat_report_and_all_output_hashes_exact"
+    ]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
+    assert not decision["strength_retuning_allowed"]
+    assert not decision["production_default_changed"]
