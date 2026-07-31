@@ -85,7 +85,7 @@ def test_bk12s_replacements_are_disjoint_from_prior_tracked_pools() -> None:
     prior_models: set[tuple[str, str]] = set()
     prior_makes: set[str] = set()
     for path in ROOT.glob("configs/*.json"):
-        if path == CONFIG:
+        if path == CONFIG or path.name.startswith("u5_r2bk13"):
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
         prior_ids.update(_repository_ids(payload))

@@ -1,0 +1,109 @@
+{
+  "schema": "neuro_film.u5_r2bk13s_orthogonal_residual_replacement_v2_source.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk13s-orthogonal-residual-replacement-v2-source-v1",
+  "node": "ULT > U5 > U5.R2BK13S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2bk12s_orthogonal_residual_replacement_source_decision_v1.json",
+    "sha256": "a5fa4f6fb382820c024bb27d420b0621e285d562921e3e0105510c6b2b54df04",
+    "required_decision": "close_bk12s_open_corrected_replacement_freeze"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-31",
+    "api_snapshot": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/rawpixls_repository_snapshot.json",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact selected row",
+    "purpose": "corrected replacement fifth fresh digital-photo population for fixed BK10/BK7/AO6/safe-rich confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "carry forward the eleven hash-clean decoded BK12S rows without inspecting their contact sheet or any operator output, replace only unsupported Xiro with one previously unused CC0 make before its pixel access, retain one row per make and the established 1/minimum-required-rows make-share ceiling",
+    "candidate_count": 12,
+    "carried_candidate_count": 11,
+    "replacement_candidate_count": 1,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 258327184,
+    "download_root": "data/external/rawpixls_bk10_replacements_v2/raw",
+    "decoded_root": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "carried_from_failed_pool": {
+    "contract": "configs/u5_r2bk12s_orthogonal_residual_replacement_source_v1.json",
+    "decision": "configs/u5_r2bk12s_orthogonal_residual_replacement_source_decision_v1.json",
+    "source_contact_sheet_inspected": false,
+    "operator_outputs_inspected": false,
+    "ids": [
+      "fimi_x8se",
+      "gitup_git2",
+      "hmd_nokia_7_plus",
+      "htc_10",
+      "microsoft_lumia_950xl",
+      "oneplus_one",
+      "yuneec_cgo3",
+      "parrot_bebop2",
+      "autel_model_323",
+      "nokia_lumia_930",
+      "asus_i01wd"
+    ]
+  },
+  "replacement_ids": ["kandao_qoocam"],
+  "candidates": [
+    {"id":"fimi_x8se","repository_id":2989,"make":"FIMI","model":"X8SE","mode":"16bit (16:9)","date":"2019-01-31","megapixels":8.29,"bytes_reported_mb":15.82,"filename":"FIMI - X8SE - 16bit (16:9).DNG","path":"data/external/rawpixls_bk10_v1/raw/fimi_x8se.dng","sha256":"8f82cfc6832ee7747ec0775aa653059bd3ed63c4a7b41f9a776516c4598dad5b","url":"https://raw.pixls.us/getfile.php/2989/nice/FIMI%20-%20X8SE%20-%2016bit%20%2816%3A9%29.DNG"},
+    {"id":"gitup_git2","repository_id":738,"make":"GITUP","model":"GIT2","mode":"16:9","date":"2016-12-31","megapixels":null,"bytes_reported_mb":22.78,"filename":"GITUP - GIT2 - 16:9.RAW","path":"data/external/rawpixls_bk10_v1/raw/gitup_git2.raw","sha256":"3bb78a24903b12921580697dc14d048ccf79694622e19e45fed6955a22a09448","url":"https://raw.pixls.us/getfile.php/738/nice/GITUP%20-%20GIT2%20-%2016%3A9.RAW"},
+    {"id":"hmd_nokia_7_plus","repository_id":3232,"make":"HMD Global","model":"Nokia 7 plus","mode":"16bit (4:3)","date":"2019-07-04","megapixels":12.19,"bytes_reported_mb":23.28,"filename":"HMD Global - Nokia 7 plus - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/hmd_nokia_7_plus.dng","sha256":"82e060c5197fda5eff12d658285256a2ba2c5eaf8ae4997507bda2242a766216","url":"https://raw.pixls.us/getfile.php/3232/nice/HMD%20Global%20-%20Nokia%207%20plus%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"htc_10","repository_id":1265,"make":"HTC","model":"HTC 10","mode":"16bit (4:3)","date":"2017-03-26","megapixels":12.5,"bytes_reported_mb":23.87,"filename":"HTC - HTC 10 - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/htc_10.dng","sha256":"3aac646ae2bb9cceda41559afaf6354c66ef371b6ade02bcbe1ba1be093696bd","url":"https://raw.pixls.us/getfile.php/1265/nice/HTC%20-%20HTC%2010%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"microsoft_lumia_950xl","repository_id":1564,"make":"Microsoft","model":"Lumia 950 XL Dual SIM","mode":"10bit (4:3)","date":"2017-07-02","megapixels":18.69,"bytes_reported_mb":25.63,"filename":"Microsoft - Lumia 950 XL Dual SIM - 10bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/microsoft_lumia_950xl.dng","sha256":"b941427cea25c3e3b6136f143adfc514fede9854e5ab3f84a8ebacc95c4f1731","url":"https://raw.pixls.us/getfile.php/1564/nice/Microsoft%20-%20Lumia%20950%20XL%20Dual%20SIM%20-%2010bit%20%284%3A3%29.dng"},
+    {"id":"oneplus_one","repository_id":1372,"make":"OnePlus","model":"One","mode":"10bit (4:3)","date":"2017-04-30","megapixels":13.14,"bytes_reported_mb":16.37,"filename":"OnePlus - One - 10bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/oneplus_one.dng","sha256":"ff5385e5b1066d8c2ef452ceb98a669177be059b424b9a7ade430355c1051a1b","url":"https://raw.pixls.us/getfile.php/1372/nice/OnePlus%20-%20One%20-%2010bit%20%284%3A3%29.dng"},
+    {"id":"yuneec_cgo3","repository_id":1383,"make":"Yuneec","model":"CGO3","mode":"16bit (4:3)","date":"2017-05-07","megapixels":12.0,"bytes_reported_mb":12.11,"filename":"Yuneec - CGO3 - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/yuneec_cgo3.dng","sha256":"ad04545fb82426dd0592dc80a9f3df7882304e9be9a71f90d3efd761b1a88dcb","url":"https://raw.pixls.us/getfile.php/1383/nice/Yuneec%20-%20CGO3%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"parrot_bebop2","repository_id":1287,"make":"PARROT","model":"Bebop 2","mode":"16bit (4:3)","date":"2017-03-30","megapixels":13.6,"bytes_reported_mb":26.1,"filename":"PARROT - Bebop 2 - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_replacements_v1/raw/parrot_bebop2.dng","sha256":"b46caab341ea90cd4ae157c3741eb3cd82e8f7f8c9bec2b00607f458b21e9e6e","url":"https://raw.pixls.us/getfile.php/1287/nice/PARROT%20-%20Bebop%202%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"autel_model_323","repository_id":1529,"make":"Autel","model":"Model 323","mode":"16bit (4:3)","date":"2017-06-18","megapixels":12.0,"bytes_reported_mb":23.01,"filename":"Autel - Model 323 - 16bit (4:3).DNG","path":"data/external/rawpixls_bk10_replacements_v1/raw/autel_model_323.dng","sha256":"fec086e0a3fdf4cab8d1a0fea9beb07703989e7e1a4d1ccbfe3619c9f83efaf7","url":"https://raw.pixls.us/getfile.php/1529/nice/Autel%20-%20Model%20323%20-%2016bit%20%284%3A3%29.DNG"},
+    {"id":"nokia_lumia_930","repository_id":2916,"make":"Nokia","model":"Lumia 930","mode":"10bit (16:9)","date":"2018-12-21","megapixels":16.26,"bytes_reported_mb":21.36,"filename":"Nokia - Lumia 930 - 10bit (16:9).dng","path":"data/external/rawpixls_bk10_replacements_v1/raw/nokia_lumia_930.dng","sha256":"d0ec6d07b79b1de2999503d0a1da53473a71b6a4a12daf7a529ee1d1a6c72d61","url":"https://raw.pixls.us/getfile.php/2916/nice/Nokia%20-%20Lumia%20930%20-%2010bit%20%2816%3A9%29.dng"},
+    {"id":"asus_i01wd","repository_id":3418,"make":"asus","model":"ASUS_I01WD","mode":"16bit (4:3)","date":"2019-09-22","megapixels":13.25,"bytes_reported_mb":25.29,"filename":"asus - ASUS_I01WD - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_replacements_v1/raw/asus_i01wd.dng","sha256":"4ecfa74046da397396d481c964550e69e6abc178e83b10a057cac3e97ec4c260","url":"https://raw.pixls.us/getfile.php/3418/nice/asus%20-%20ASUS_I01WD%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"kandao_qoocam","repository_id":3023,"make":"KanDao","model":"QooCam","mode":"16bit 16bit (2)","date":"2019-03-15","megapixels":9.33,"bytes_reported_mb":10.74,"filename":"KanDao - QooCam - 16bit 16bit (2).dng","path":"data/external/rawpixls_bk10_replacements_v2/raw/kandao_qoocam.dng","sha256":"f6aab065b68822536866acab9d67207b8bf7ffb88ce09ec7a7b3bb2f4fb202fe","url":"https://raw.pixls.us/getfile.php/3023/nice/KanDao%20-%20QooCam%20-%2016bit%2016bit%20%282%29.dng"}
+  ],
+  "maximum_download_bytes": 277872640,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+    "development_manifest_sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8",
+    "comparison_manifests": [
+      {"path":"outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json","sha256":"8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json","sha256":"e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json","sha256":"75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json","sha256":"f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json","sha256":"a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json","sha256":"444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json","sha256":"8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8","format":"rawpixls_manifest"},
+      {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": [
+      "fixed_bk10_safe_base_orthogonal_residual",
+      "fixed_bk7_smooth_perceptual_hue_density",
+      "fixed_ao6_colour_only_t15_c35",
+      "safe_rich_velvia_50"
+    ],
+    "strength_retuning_allowed": false,
+    "router_training_allowed": false
+  },
+  "claim_ceiling": "corrected replacement fifth fresh CC0 digital-photo eligibility for fixed BK10/BK7/AO6/safe-rich comparison only"
+}
