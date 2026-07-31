@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p6p_fixed_callier_measurement_compatibility_contract.v1",
+  "experiment_id": "u6.p6p-fixed-callier-measurement-compatibility-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6P",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p6n_contract_path": "configs/u6_p6n_generic_callier_operator_v1.json",
+    "p6n_contract_sha256": "7ea6622deb66519b6375a46bfb8435c03a7a02995f729b8db869a70e911d92ea",
+    "p6n_decision_path": "configs/u6_p6n_generic_callier_operator_decision_v1.json",
+    "p6n_decision_sha256": "faba7ad701f639b929e21cabeb8ac80ce79deb2f8ea03a312dd4d75f1a218481",
+    "p6o_contract_path": "configs/u6_p6o_callier_measurement_source_v1.json",
+    "p6o_contract_sha256": "c8172a7645402bc57f9e221bc9413f15353a4c424911f36cfae6e44be09d3d79",
+    "p6o_report_path": "outputs/eval/u6_p6o_callier_measurement_source_v1/report_run1.json",
+    "p6o_report_sha256": "876a9162e03b55098c51b74ea458d94b51395ba2dd8f80a201bb7f4d1d5497e0",
+    "p6o_stable_evidence_id": "eb606136a3a5438cd8dcd5fd7640766add122b2ec77fec5bc19d033ff24b6c30"
+  },
+  "question": "Without changing any P6N parameter, does its full-collimation synthetic RGB Q envelope cover both reported and directly recomputed silver-sample Q values while preserving the dye-material negative control?",
+  "evaluation": {
+    "collimation": 1.0,
+    "silver_samples": ["silverHD", "silverLD"],
+    "dye_samples": ["dyeHD", "dyeLD"],
+    "model_envelope": "minimum and maximum of the unchanged P6N red, green and blue Q values at each measured silver diffuse density",
+    "measurement_values": "evaluate reported_q and raw directed_density/diffuse_density separately; neither may replace the other",
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "two_reports_must_be_byte_identical": true,
+    "parent_hashes_and_p6o_evidence_must_match": true,
+    "all_measurements_must_be_finite": true,
+    "silver_model_envelope_absolute_tolerance": 0.05,
+    "all_silver_reported_q_must_be_within_envelope": true,
+    "all_silver_raw_ratio_must_be_within_envelope": true,
+    "dye_reported_q_distance_from_identity_maximum": 0.1,
+    "dye_raw_ratio_distance_from_identity_maximum": 0.1,
+    "silver_q_must_exceed_same_level_dye_q": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "retain P6N as a quantitatively compatible generic Callier amplitude control",
+    "open one separately frozen photographic nuisance-value pilot without stock or scanner claims"
+  ],
+  "forbidden": [
+    "change P6N peak density, Q increment, wavelength weights or collimation",
+    "choose one RGB channel after seeing measurements",
+    "replace reported Q with raw ratios or hide their discrepancy",
+    "fit a curve to four samples",
+    "infer stock, process, scanner or illuminant metadata",
+    "claim calibration or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "Retain fixed P6N as a quantitatively compatible generic amplitude control; no calibration claim.",
+    "fail": "Close fixed P6N quantitative compatibility without parameter rescue, retain only its synthetic primitive evidence, and continue another ready physical or colour leaf."
+  },
+  "claim_ceiling": "Fixed synthetic P6N compatibility against four homogeneous-sample measurements from one thesis experiment; not a fitted curve, population result, stock/process/scanner calibration or product profile."
+}
