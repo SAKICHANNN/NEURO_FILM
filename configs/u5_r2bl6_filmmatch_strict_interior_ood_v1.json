@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u5_r2bl6_filmmatch_strict_interior_ood.v1",
+  "experiment_id": "u5.r2bl6-filmmatch-strict-interior-ood-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL6",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the exact BL5 strict-interior equation eliminate BL3's ordinary-photo boundary failure while retaining a strong visible look across twelve camera makes?",
+  "candidate": {
+    "bl5_report": "outputs/external_controls/filmmatch_ektachrome_v1/strict_interior_sigmoid_bl5/run_a.json",
+    "bl5_report_sha256": "805f4850ca7ec32f820befdf86674cbef4fc54152e45b5025cd0cd0464f6d151",
+    "bl5_stable_evidence_id": "40140f3ab1fd992fc483692b29288eb704884dffcbab7a26d84cc8546b8623b7",
+    "bl5_decision": "configs/u5_r2bl5_filmmatch_strict_interior_sigmoid_decision_v1.json",
+    "bl5_decision_sha256": "9c5a537a1b2d5656099c9e64733b0c51d424f5ad5141945fd3ce5dc013d21ad4",
+    "required_status": "pass_open_fixed_ordinary_photo_ood"
+  },
+  "population": {
+    "bl3_contract": "configs/u5_r2bl3_filmmatch_identity_residual_ood_v1.json",
+    "bl3_contract_sha256": "754ca979bc2048fcb098cc899750b85262144f975532e9f250fdb89353e2bc50",
+    "bl3_parent_output_dir": "outputs/u5_r2bl3_filmmatch_identity_residual_ood_v1/run_a",
+    "bl3_parent_report_sha256": "b1c437072baeacd4c95a38deb42855f305161a9ec0ae441e29e0930efd3dbb75",
+    "expected_sources": 12,
+    "expected_camera_makes": 12,
+    "program_wide_fresh_population": false,
+    "candidate_fit_or_tuning_population": false
+  },
+  "rendering": {
+    "input": "rowwise IEC-61966-2-1 encoded display RGB from the frozen scene-linear WorkingImage",
+    "reference_arm": "fixed_ao6_colour_only_t15_c35",
+    "candidate_arm": "fixed_bl5_strict_interior_sigmoid",
+    "create_only": true,
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "hard_clipping_allowed": false,
+    "final_format": "rgb16_png"
+  },
+  "automatic_gate": {
+    "expected_outputs": 12,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "minimum_median_style_rgb_rmse_from_source": 0.08,
+    "require_two_run_report_and_output_identity": true
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "sources_per_round": 12,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branches": {
+    "automatic_or_severe_fail": "close strict-interior ordinary-photo use without changing epsilon or fit",
+    "preference_fail": "retain AO6 incumbent and BL5 paired-code-domain evidence only",
+    "preference_pass": "retain BL5 as a high-priority internal challenger; require a genuinely fresh population before incumbent replacement"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "product_integration_allowed": false,
+  "calibrated_stock_response_claim_allowed": false,
+  "claim_ceiling": "candidate-fit-independent but program-wide reused CC0 OOD safety and autonomous visual-value evidence for a fixed strict-interior Look Approximation; not independent confirmation, population preference, film truth, calibrated stock response, universal safety or product promotion"
+}
