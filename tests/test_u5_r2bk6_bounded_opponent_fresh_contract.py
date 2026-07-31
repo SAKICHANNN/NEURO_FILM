@@ -23,6 +23,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk6_bounded_opponent_fresh_confirmation_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk6_bounded_opponent_fresh_confirmation_decision_v1.json"
+)
 ARMS = (
     "fixed_bk5_bounded_opponent_response",
     "fixed_ao6_colour_only_t15_c35",
@@ -110,3 +114,30 @@ def test_bk6_contract_mutation_fails_closed() -> None:
     config["rendering"]["strength_retuning_allowed"] = True
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk6_decision_closes_repeatable_blind_fixed_bk5() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    evidence = decision["evidence"]
+    assert decision["decision"] == (
+        "close_fixed_bk5_insufficient_population_style"
+    )
+    assert decision["status"] == "closed_automatic_style_gate"
+    assert not result["automatic_pass"]
+    assert result["failed_gate"] == "bk5_style_salience"
+    assert (
+        result["population_median_style_delta_e76"][
+            "fixed_bk5_bounded_opponent_response"
+        ]
+        == 3.979306221008301
+    )
+    assert result["maximum_new_code_boundary_fraction_vs_source"] == 0.0
+    assert not result["visual_review_allowed"]
+    assert result["confirmed_severe_artifact_count"] is None
+    assert evidence["repeat_file_count_per_run"] == 37
+    assert evidence["repeat_file_hash_differences"] == 0
+    assert not evidence["visual_candidates_generated"]
+    assert not result["thresholds_or_strengths_changed"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]

@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u5_r2bk6_bounded_opponent_fresh_confirmation_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk6-bounded-opponent-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK6",
+  "decision": "close_fixed_bk5_insufficient_population_style",
+  "status": "closed_automatic_style_gate",
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2bk6_bounded_opponent_fresh_confirmation_v1.json",
+      "sha256": "b2745620872d80578e59c571249d2753034c91cd1f2d1948756bd6513f2ae800"
+    },
+    "formal_runs": [
+      "outputs/u5_r2bk6_bounded_opponent_fresh_confirmation_v1/run_a",
+      "outputs/u5_r2bk6_bounded_opponent_fresh_confirmation_v1/run_b"
+    ],
+    "report_sha256": "60dc85a3225f0147fdbeefdb9cf0915c796754bc88a0ce2aefb13c623d3e0b4b",
+    "stable_evidence_id": "d8f8d5f41a33bdd1da0c50d30c1e2d04b66ac2280662677a81fcf2eac2dbae42",
+    "repeat_file_count_per_run": 37,
+    "repeat_file_hash_differences": 0,
+    "visual_candidates_generated": false
+  },
+  "result": {
+    "automatic_pass": false,
+    "failed_gate": "bk5_style_salience",
+    "minimum_bk5_population_median_style_delta_e76": 5.0,
+    "population_median_style_delta_e76": {
+      "fixed_bk5_bounded_opponent_response": 3.979306221008301,
+      "fixed_ao6_colour_only_t15_c35": 12.540948867797852,
+      "safe_rich_velvia_50": 3.102269172668457
+    },
+    "maximum_new_code_boundary_fraction_vs_source": 0.0,
+    "visual_review_allowed": false,
+    "confirmed_severe_artifact_count": null,
+    "thresholds_or_strengths_changed": false,
+    "interpretation": "BK5 is numerically bounded and solved the known BK2 sky regression, but its fixed direction does not retain the preregistered minimum population style salience on the independent third fresh population. The automatic failure forbids visual promotion review and strength retuning."
+  },
+  "branch_action": "Close BK5 as a generalized challenger. Continue with a separately frozen smooth perceptual hue-density operator developed only on synthetic controls and known failure regressions; require a new leakage-clean confirmation population before any generalized claim.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "repeatable third-fresh-population automatic rejection of fixed BK5; no visual safety, population preference, film truth, stock response, calibration or product claim"
+}
