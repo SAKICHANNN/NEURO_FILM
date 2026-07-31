@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2ao4r-balica-root-polynomial-baseline-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2AO4R",
+  "question": "Does the paper-supported third-degree root-polynomial colour-correction baseline generalize across the chart and palette domains of the exact 71-pair Velvia display-proxy pool while remaining an admissible explicit forward look?",
+  "parents": {
+    "source_reconstruction_decision": {
+      "path": "configs/u5_r2ao4s1_film2paint_exact_source_recon_decision_v1.json",
+      "sha256": "f2b4b515ca9d158483cbe200b0f4384d7ef79aee78120d7bf4057cecdd8ecdc5",
+      "required_decision": "strong_controlled_design_but_publication_only_and_rights_blocked"
+    },
+    "ao6_development_decision": {
+      "path": "configs/u5_r2ao6_b0_real_film_residual_decision_v1.json",
+      "sha256": "3a394fb669bcb6d9e9e244cee2640c8daf8086b58bcf8065b81efdad90afa68b",
+      "required_decision": "retain_b0_plus_film_t15_c35_as_B0_development_champion_open_fresh_OOD_confirmation"
+    }
+  },
+  "external_method": {
+    "primary_article": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "doi": "10.1016/j.daach.2026.e00550",
+    "article_license": "CC BY 4.0",
+    "method_lineage": "Finlayson et al. root-polynomial colour correction",
+    "reported_best_space": "gamma-encoded ProPhoto RGB",
+    "reported_ridge_lambda": 0.001,
+    "dataset_publicly_downloadable": false,
+    "implementation_status": "clean-room mature-method baseline on the existing exact display-proxy pairs"
+  },
+  "paired_source": {
+    "loader_config_path": "configs/u5_r2ao4c_velvia_chart_palette_cross_domain_v1.json",
+    "loader_config_sha256": "0258b12294fd98cedfb2fa987f1fb0aefb9a8dd4aac9d5d9cc0b11613a4adc14",
+    "chart_pairs_path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+    "chart_pairs_sha256": "0b51a236f366af5c0131a357da0edbc36c25e68238fcdf5a386f0ec068142aea",
+    "palette_pairs_path": "outputs/u5_r2ao4p_balica_paired_palette_proxy_v1/paired_palettes.json",
+    "palette_pairs_sha256": "483b7db48ffdb6119d67694a1fbff6d0b878228bacb8a58147b701a927e12814",
+    "domains": {
+      "velvia_chart": 24,
+      "velvia_palette": 47
+    },
+    "input_working_space": "linear_srgb_d65",
+    "evidence_class": "author_rendered_display_proxy_not_digital_film_pair"
+  },
+  "models": {
+    "controls": [
+      "identity",
+      "full_affine_linear_srgb",
+      "bounded_one_matrix_linear_srgb",
+      "ordinary_polynomial_degree3_gamma_prophoto"
+    ],
+    "candidate": "root_polynomial_degree3_gamma_prophoto",
+    "root_feature_contract": "unique normalized exponent rays through total degree 3; signed real roots",
+    "include_intercept": false,
+    "ridge_lambda": 0.001,
+    "minimum_feature_scale": 1e-12,
+    "hard_output_clipping": false,
+    "color_space": {
+      "linear_srgb_d65_to_xyz_d65": [
+        [0.4124564, 0.3575761, 0.1804375],
+        [0.2126729, 0.7151522, 0.072175],
+        [0.0193339, 0.119192, 0.9503041]
+      ],
+      "bradford_d65_to_d50": [
+        [1.0478112, 0.0228866, -0.050127],
+        [0.0295424, 0.9904844, -0.0170491],
+        [-0.0092345, 0.0150436, 0.7521316]
+      ],
+      "prophoto_linear_to_xyz_d50": [
+        [0.7976749, 0.1351917, 0.0313534],
+        [0.2880402, 0.7118741, 0.0000857],
+        [0.0, 0.0, 0.82521]
+      ],
+      "prophoto_transfer": "sign-preserving ROMM toe 1/512 mapped to 16/512, otherwise power 1/1.8; inverse exact",
+      "matrix_inverse_method": "numpy.linalg.inv_float64"
+    }
+  },
+  "evaluation": {
+    "cross_validation": {
+      "fold_count": 5,
+      "assignment": "within_each_domain_index_modulo_fold_count",
+      "normalization_fit_on_development_only": true
+    },
+    "leave_domain_out_directions": [
+      {"fit": "velvia_chart", "confirm": "velvia_palette"},
+      {"fit": "velvia_palette", "confirm": "velvia_chart"}
+    ],
+    "structural_cube_size": 17,
+    "jacobian_step": 0.00001,
+    "metrics": [
+      "linear_rgb_rmse",
+      "mean_delta_e76",
+      "maximum_absolute_error",
+      "raw_out_of_cube_fraction",
+      "minimum_jacobian_determinant",
+      "positive_scale_equivariance_error"
+    ]
+  },
+  "gates": {
+    "all_fits_complete": true,
+    "minimum_candidate_combined_rgb_rmse_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_combined_delta_e76_gain_over_bounded_one_matrix": 0.05,
+    "minimum_candidate_rgb_rmse_gain_each_domain": 0.0,
+    "minimum_candidate_leave_domain_out_rgb_rmse_gain_each_direction": 0.0,
+    "maximum_mean_train_test_rgb_rmse_gap": 0.02,
+    "maximum_mean_raw_out_of_cube_fraction": 0.0,
+    "maximum_fold_raw_out_of_cube_fraction": 0.0,
+    "minimum_jacobian_determinant": 0.003,
+    "maximum_positive_scale_equivariance_absolute_error": 1e-10,
+    "two_run_report_byte_identity": true,
+    "source_nonmutation": true
+  },
+  "decision_if_pass": "retain_root_polynomial_as_a_mature_explicit_baseline_and_open_one_separately_frozen_photo_severe_value_challenge",
+  "decision_if_capacity_passes_but_structure_fails": "retain_capacity_baseline_only_and_do_not_clip_or_render",
+  "decision_if_fail": "retain_bounded_ao6_development_champion_and_close_root_polynomial_on_this_proxy_pool",
+  "forbidden_rescue": [
+    "change degree, ridge, transfer, colour space, folds or gates after seeing results",
+    "clip or gamut-map predictions before scoring",
+    "fit any parameter on photographs",
+    "claim exact reproduction of the authors' unavailable code or dataset",
+    "claim Velvia stock response, calibration, preference or product promotion"
+  ],
+  "execution": {
+    "seed": 20260801,
+    "repeat_count": 2,
+    "output_directory": "outputs/u5_r2ao4r_balica_root_polynomial_baseline_v1"
+  },
+  "training_allowed": false,
+  "image_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "clean-room mature root-polynomial capacity and structure baseline on 71 author-rendered Velvia display-proxy pairs; not the authors' data or implementation, not a digital-film pair, stock response, calibration, preference or product promotion"
+}
