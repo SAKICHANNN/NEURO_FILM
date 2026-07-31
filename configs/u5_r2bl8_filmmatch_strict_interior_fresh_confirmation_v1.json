@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u5_r2bl8_filmmatch_strict_interior_fresh_confirmation.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl8-filmmatch-strict-interior-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL8",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does fixed BL5 strict-interior beat fixed AO6 on a genuinely unused seventeen-camera CC0 ordinary-photo population while remaining boundary-safe?",
+  "source_preflight": {
+    "decision": "configs/u5_r2bl8s_filmmatch_replacement_source_preflight_decision_v1.json",
+    "decision_sha256": "7065b6a0d98fa21e7985696ea02f580e8bef64ac0d2c2d587ada85d0b1961c63",
+    "required_decision": "pass_replacement_fresh_population_open_fixed_bl5_vs_ao6_confirmation",
+    "manifest": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_b/manifest.json",
+    "manifest_sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733",
+    "visual_review": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "3df7066d1d275b584ae0c0888670c2851418b1a281f74c579c251a487d59ade7",
+    "expected_eligible_rows": 17,
+    "expected_camera_makes": 17,
+    "program_wide_fresh_population": true,
+    "candidate_fit_or_tuning_population": false
+  },
+  "candidate": {
+    "bl5_report": "outputs/external_controls/filmmatch_ektachrome_v1/strict_interior_sigmoid_bl5/run_a.json",
+    "bl5_report_sha256": "805f4850ca7ec32f820befdf86674cbef4fc54152e45b5025cd0cd0464f6d151",
+    "bl5_stable_evidence_id": "40140f3ab1fd992fc483692b29288eb704884dffcbab7a26d84cc8546b8623b7",
+    "bl6_decision": "configs/u5_r2bl6_filmmatch_strict_interior_ood_decision_v1.json",
+    "bl6_decision_sha256": "ff04fec95e5d93592f681926c6fd40e5fdb69a030de3e948d53ffe4e49d48ede",
+    "required_bl6_decision": "retain_strict_interior_as_high_priority_internal_challenger"
+  },
+  "ao6_provenance": {
+    "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+    "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "source_context_component": "ao6-source-context-display-look"
+  },
+  "rendering": {
+    "input": "rowwise IEC-61966-2-1 encoded display RGB from frozen scene-linear WorkingImage",
+    "reference_arm": "fixed_ao6_colour_only_t15_c35",
+    "candidate_arm": "fixed_bl5_strict_interior_sigmoid",
+    "create_only": true,
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "hard_clipping_allowed": false,
+    "final_format": "rgb16_png"
+  },
+  "automatic_gate": {
+    "expected_sources": 17,
+    "expected_outputs": 34,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "minimum_median_style_rgb_rmse_from_source": 0.08,
+    "require_two_run_report_and_output_identity": true
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "sources_per_round": 17,
+    "ties_allowed": false,
+    "mapping_hidden_until_all_choices_are_frozen": true,
+    "independent_per_source_mapping_each_round": true,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 31,
+    "aggregate_choice_denominator": 51,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branches": {
+    "automatic_or_repeat_fail": "close BL8 without changing source set, operator, epsilon, thresholds or strengths",
+    "severe_fail": "reject BL5 as challenger; never trade severe artifacts for style",
+    "preference_fail": "retain AO6 as research Look Approximation incumbent and preserve BL5 as paired/internal evidence only",
+    "preference_pass": "replace AO6 with BL5 as research Look Approximation colour champion; production default remains unchanged"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "product_integration_allowed": false,
+  "production_default_changed": false,
+  "calibrated_stock_response_claim_allowed": false,
+  "claim_ceiling": "genuinely fresh CC0-population autonomous comparison of fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
