@@ -1,0 +1,71 @@
+{
+  "schema_version": "neuro-film.u5-r2bl8-blind-observations.v1",
+  "experiment_id": "U5.R2BL8",
+  "evidence_class": "fresh-autonomous-visual-evidence-not-population-preference",
+  "revealed_mapping_at_capture": false,
+  "review_scope": "fifteen anonymous contact sheets; three independent deterministic permutations; style preference recorded only after severe-artifact veto",
+  "severe_artifact_observations": 0,
+  "source_order": [
+    "ricoh_gr_iii",
+    "google_pixel_4_xl",
+    "leica_c_lux",
+    "huawei_ane_lx1",
+    "oneplus_oneplus_a6003",
+    "minolta_dynax_5d",
+    "dji_fc7303",
+    "blackmagic_design_pocket_cinema_camera_6k_pro",
+    "olympus_e_10",
+    "phase_one_p40",
+    "panasonic_dc_gh7",
+    "fujifilm_x_t30_iii",
+    "nikon_d2x",
+    "leaf_credo_40",
+    "motorola_moto_g_5s_plus",
+    "epson_r_d1s",
+    "kodak_easyshare_z981"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "choices": ["A", "B", "A", "A", "A", "B", "A", "A", "B", "B", "B", "B", "A", "B", "A", "A", "A"],
+      "anonymous_tally": {"A": 10, "B": 7},
+      "sheet_sha256": [
+        "26dfaa374236dc90342ccf4c8fcd32d7d84857925916ebac3f195ab22cfa923c",
+        "63fee863995bfc769d88d778e24fa090742210e4c82efc261890dbf0aa4bb0e2",
+        "e33625871209d846420fe59d9fcf283dbda0725383e5a56d798cb9ea2ee438a6",
+        "1e423923e6fea711112940218c49704dfe5ff7caaec774fe06e753f1119980ed",
+        "876040a03996c845097cc5684df9180aa76995325686f26c057a3821e960d87a"
+      ]
+    },
+    {
+      "round": 2,
+      "choices": ["A", "A", "B", "A", "A", "A", "B", "A", "A", "B", "A", "A", "A", "A", "B", "B", "B"],
+      "anonymous_tally": {"A": 11, "B": 6},
+      "sheet_sha256": [
+        "9e663be59405f9bb03560f9475b915e3b4597c37ffdb46fcf005cc13147c0297",
+        "3305243aad2f28e23780554732e55f4e1a1b69aee3f834e3ee5b4f1140aadd63",
+        "e8df41e42241e2e99ac08e25554926ea7c0f43a4bc2f03bf1fd9bdcabd6a9c72",
+        "33d59ce5ee8b51850c8a62aa27ef76b139c0b6b5a25e9e625b4f7a5de5b7d018",
+        "18d502aebb5c910311e9f1d75ff73d3dd6ed9529a44ec7bc354afd3ad6ff6dbb"
+      ]
+    },
+    {
+      "round": 3,
+      "choices": ["B", "B", "B", "B", "A", "B", "B", "A", "A", "B", "A", "B", "A", "B", "B", "A", "B"],
+      "anonymous_tally": {"A": 6, "B": 11},
+      "sheet_sha256": [
+        "8a12586c68456ce577fe5c85b9e385f0a6cd76a1ecb068743b44c0abaf510bfd",
+        "ad7ae3904cf0eabcceb456a7ba9fe58da92167e3f745f3c4917de9917af05d50",
+        "cd8944234f9dce59561dabc7594199ab9855a8e89be392c6784a77c76170c960",
+        "1d0a46de14de2133cafe484858e59c8507a3f6c43bd987d073878791d6366af2",
+        "dc70d59f7215f3d63c3eab8a838decbdb461df470813d680bce8f1a74568969f"
+      ]
+    }
+  ],
+  "review_notes": [
+    "No anonymous arm showed geometry corruption, banding, posterization, red speckles, text damage, seams, or another confirmed severe artifact at contact-sheet scale.",
+    "Several dark-scene alternatives showed aggressive shadow compression; these are queued for mapping-aware full-resolution review rather than silently promoted or pre-emptively classified as severe.",
+    "Choices prefer visibly stylized but photographic colour and contrast; a stronger cast or darker rendering was not automatically preferred merely for being stronger.",
+    "Mapping files were not read before this observation artifact was written and committed."
+  ]
+}
