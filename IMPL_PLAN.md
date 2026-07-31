@@ -2299,3 +2299,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > maxima at the highest density). Close measured-shape compatibility without
 > retuning; the historical radiographic/process conditions are not stock truth.
 >
+> `U6.P4AC` then tests, without fitting, the report's stated approximate 2.0D
+> peak as one explicit exponential variance shape. It correctly captures all
+> nine observed peak locations, reaches `.80` median rank correlation and
+> improves P90 error, but median normalized error worsens from `.06134` to
+> `.09711`. The preregistered comparative gate closes this family without
+> peak/exponent/aperture rescue. A next grain mechanism must be independently
+> motivated, such as characteristic-curve slope plus exposure statistics.
+>

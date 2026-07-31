@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - Close U6.P4AC no-fit peaked grain shape
+
+- Froze a 2.0D-peaked exponential variance family before evaluating the same
+  nine P4AA table/aperture series; no amplitude, table or aperture parameter
+  was fit. Two reports are byte-identical at `5eb1f9b9...053df`.
+- The candidate captures 9/9 peak locations, reaches `.80` median Spearman and
+  reduces P90 error to `.26386`, but median normalized error rises from the
+  P4D control's `.06134` to `.09711`, failing the required comparative gain.
+- Close without peak/exponent/gate rescue. The next physical algorithm must be
+  distinct and preserve the radiographic/source claim ceiling.
+
 # 2026-07-31 - U6.P2O1 retained-silver photographic close
 
 - P2O first closed with zero pixel reads because it bound P5D's 18 rows rather
