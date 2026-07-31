@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p4aa_nasa_density_grain_source_contract.v1",
+  "experiment_id": "u6.p4aa-nasa-density-grain-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AA",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4d_role": "generic density-dependent marked-Poisson structure primitive",
+    "p4z2_role": "closed cross-material scanner-convolved image route"
+  },
+  "question": "Does one bounded public NASA report contain machine-extractable numerical measurements, rather than figure-only curves, that can test density-dependent film RMS granularity or NPS/MTF shape without fitting or stock claims?",
+  "source": {
+    "record_id": "19730022682",
+    "title": "Computer enhancement of radiographs",
+    "report_number": "NASA-CR-124393 / MFR-73-3",
+    "publication_date": "1973-07-15",
+    "record_url": "https://ntrs.nasa.gov/citations/19730022682",
+    "metadata_url": "https://ntrs.nasa.gov/api/citations/19730022682",
+    "url": "https://ntrs.nasa.gov/api/citations/19730022682/downloads/19730022682.pdf",
+    "expected_content_type_prefix": "application/pdf",
+    "expected_bytes": 2179830,
+    "distribution": "PUBLIC",
+    "copyright": "Work of the US Government; public use permitted according to the NTRS record",
+    "source_snapshot_date": "2026-08-01"
+  },
+  "acquisition": {
+    "destination": "data/physical_grain/nasa_cr_124393_v1/19730022682.pdf",
+    "maximum_total_bytes": 2179830,
+    "exact_pdf_only": true,
+    "redirect_host_allowlist": ["ntrs.nasa.gov"],
+    "no_other_payloads": true
+  },
+  "source_gate": {
+    "exact_size": true,
+    "sha256_recorded_after_acquisition": true,
+    "pdf_page_count_range": [20, 200],
+    "required_mechanism_terms": [
+      "root-mean-square",
+      "graininess",
+      "power spectral density",
+      "modulation transfer function",
+      "aperture"
+    ],
+    "minimum_machine_extractable_numeric_density_granularity_rows": 3,
+    "numeric_rows_must_include_density_and_rms_granularity": true,
+    "two_independent_audits": true,
+    "no_figure_digitization": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "freeze one no-fit comparison of an unchanged generic density-dependent grain amplitude primitive against extracted table values",
+    "retain aperture/MTF/PSD facts only as separated scanner-plus-film controls when explicitly tabulated"
+  ],
+  "forbidden": [
+    "digitize plots or infer values from raster/vector figure geometry",
+    "treat radiographic film as colour-negative or consumer-camera stock evidence",
+    "infer exposure, developer, scanner or process labels not printed in the report",
+    "fit P4 parameters during the source audit",
+    "redistribute source content as project fixtures",
+    "photographic or product promotion"
+  ],
+  "branch_rule": {
+    "source_pass": "Open one fixed no-fit generic density/granularity compatibility audit.",
+    "source_fail": "Close this source without figure digitization and continue another ready algorithm or physical leaf."
+  },
+  "claim_ceiling": "Source-feasibility evidence from one public 1973 radiographic-film/scanner report; not camera-film stock, modern emulsion, colour, process, scanner calibration or product evidence."
+}
