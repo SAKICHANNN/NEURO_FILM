@@ -1,0 +1,101 @@
+{
+  "schema": "neuro_film.u6_p6o_callier_measurement_source_contract.v1",
+  "experiment_id": "u6.p6o-callier-measurement-source-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6O",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p6m_decision_path": "configs/u6_p6m_callier_source_decision_v1.json",
+    "p6n_decision_path": "configs/u6_p6n_generic_callier_operator_decision_v1.json"
+  },
+  "question": "Does the author's public doctoral thesis provide a reproducible four-sample directed-versus-diffuse density table that can independently test the fixed P6N synthetic amplitude without digitizing a figure or inferring film metadata?",
+  "source": {
+    "title": "Photographic film and its interaction with light: detection of dust and scratches for image restoration",
+    "author": "Giorgio Trumpy",
+    "type": "doctoral thesis",
+    "institution": "University of Basel",
+    "year": 2013,
+    "doi": "10.5451/unibas-006194800",
+    "item_uuid": "e1897a01-a018-4931-a38d-96f03b82c785",
+    "bitstream_uuid": "5ecf9782-07b8-4a6b-813c-203988b777d6",
+    "record_url": "https://edoc.unibas.ch/entities/publication/e1897a01-a018-4931-a38d-96f03b82c785",
+    "url": "https://edoc.unibas.ch/server/api/core/bitstreams/5ecf9782-07b8-4a6b-813c-203988b777d6/content",
+    "expected_content_type_prefix": "application/pdf",
+    "expected_bytes": 35683532,
+    "expected_md5": "ee6433a8421e5070c89b32c0dc226fb8",
+    "source_snapshot_date": "2026-08-01",
+    "rights_boundary": "Public repository download of a copyrighted thesis; internal factual measurement audit only. Do not redistribute the PDF, figures or page images."
+  },
+  "acquisition": {
+    "destination": "data/physical_scanner/callier_thesis2013_v1/PhD-GiorgioTrumpy.pdf",
+    "maximum_total_bytes": 35683532,
+    "exact_bitstream_only": true,
+    "redirect_host_allowlist": [
+      "edoc.unibas.ch"
+    ],
+    "no_other_payloads": true
+  },
+  "frozen_measurement_table": [
+    {
+      "sample_id": "silverHD",
+      "material": "silver-based",
+      "density_level": "high",
+      "directed_density": 1.53,
+      "diffuse_density": 0.87,
+      "reported_q": 1.76
+    },
+    {
+      "sample_id": "silverLD",
+      "material": "silver-based",
+      "density_level": "low",
+      "directed_density": 0.29,
+      "diffuse_density": 0.2,
+      "reported_q": 1.4
+    },
+    {
+      "sample_id": "dyeHD",
+      "material": "dye-based",
+      "density_level": "high",
+      "directed_density": 1.59,
+      "diffuse_density": 1.55,
+      "reported_q": 1.02
+    },
+    {
+      "sample_id": "dyeLD",
+      "material": "dye-based",
+      "density_level": "low",
+      "directed_density": 0.75,
+      "diffuse_density": 0.69,
+      "reported_q": 1.09
+    }
+  ],
+  "source_gate": {
+    "exact_size_and_md5": true,
+    "sha256_recorded_after_acquisition": true,
+    "pdf_page_count_range": [130, 150],
+    "all_four_sample_labels_and_density_rows_present": true,
+    "all_four_reported_q_values_present": true,
+    "raw_density_ratio_rounding_discrepancy_must_be_reported": true,
+    "two_independent_audits": true,
+    "no_figure_digitization": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "compare the unchanged P6N Q family against the two silver raw-density ratios as an external amplitude check",
+    "use the two dye rows as a material negative control",
+    "close the fixed P6N measured-value route without tuning if frozen compatibility gates fail"
+  ],
+  "forbidden": [
+    "infer sample stock, emulsion, process, scanner, illuminant spectrum or settings",
+    "treat four homogeneous fragments as a population Q curve",
+    "fit P6N parameters to the four samples",
+    "silently replace reported Q by recomputed raw-density ratios",
+    "digitize any thesis figure",
+    "redistribute source content",
+    "photographic or product integration"
+  ],
+  "branch_rule": {
+    "source_pass": "Open one fixed P6N measurement-compatibility audit with no fitting.",
+    "source_fail": "Close this source and keep P6N synthetic-only; continue another ready leaf."
+  },
+  "claim_ceiling": "Four homogeneous-sample Callier measurements from one thesis experiment; not a Q curve, stock/process/scanner calibration, population evidence or product profile."
+}
