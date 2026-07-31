@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - U6.P2N retained-silver density primitive
+
+- **Node/parent:** `ULT > U6 > U6.P2N`, a distinct process branch after P2M.
+- **Implementation/evidence:** explicit colour-dye plus neutral-silver optical
+  density, with zero-retention normal bleach/fix control. Four tests pass; two
+  formal reports are exact at `6a713877...253fa`.
+- **Result:** identity, density composition, derivative, chromaticity,
+  partition, input-preservation and no-clip gates all pass.
+- **Decision/handoff:** open P2O photographic severe/matched-basic value with
+  analytical print-density headroom. Values remain hypothesis-only and no
+  product or measured process claim opens.
+
 # 2026-07-31 - U6.P2M density-dependent interimage recovery
 
 - **Node/parent:** `ULT > U6 > U6.P2M`, after P2 typed development and the

@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p2n_silver_retention_density_decision.v1",
+  "node": "U6.P2N",
+  "date_decided": "2026-07-31",
+  "formal_report_sha256": "6a7138779bcd3352c9dfd236d85de662e7df19c934fcd5458decd0cee9a253fa",
+  "stable_evidence_id": "8037fd22c5d5f4fba13a8b2a43f24f2b7dfbd864b6e081451db7729b521c6e0f",
+  "two_reports_byte_identical": true,
+  "automatic_pass": true,
+  "metrics": {
+    "silver_density_range": [0.013381117021065333, 1.029073788950066],
+    "maximum_total_density": 4.018784766374231,
+    "maximum_density_composition_error": 0.0,
+    "maximum_dye_opponent_difference_error": 4.440892098500626e-16,
+    "maximum_transmittance_chromaticity_error": 3.885780586188048e-16,
+    "hard_clip_count": 0
+  },
+  "branch_decision": "Retain the explicit dye-density plus neutral-silver-density primitive. Open only a separately frozen photographic severe-artifact and matched-basic style-value audit with analytical downstream density headroom; do not alter the normal zero-retention process or product default.",
+  "claim_ceiling": "generic physical-inspired silver-retention process primitive; retention fraction and density weights are hypothesis-only and are not a measured bleach-bypass, stock, lab, scanner or product profile"
+}
