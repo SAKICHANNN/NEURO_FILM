@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk3s_encoded_log_chroma_fresh_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -94,3 +98,32 @@ def test_bk3s_selection_excludes_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk3s_decision_binds_repeatable_eligible_evidence() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    evidence = decision["evidence"]
+    assert decision["status"] == "source_eligible_fixed_comparison_open"
+    assert decision["config"]["sha256"] == (
+        "cc622e4df51ea39cf736f91c1266e56af2477b2436413ba46f7495a0aa5b9630"
+    )
+    assert evidence["manifest"]["sha256"] == (
+        "a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761"
+    )
+    assert evidence["automatic_report"]["sha256"] == (
+        "5dc0bd1bc64eef3879ecbc1c0f3b035049a19bfdb3e2c17a343ac30e5cf72da9"
+    )
+    assert evidence["repeat_manifest_sha256_exact"]
+    assert evidence["repeat_report_sha256_exact"]
+    assert result["eligible_rows"] == 11
+    assert result["eligible_camera_makes"] == 11
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert result["fixed_decode_failures"] == [
+        {"id": "gopro_hero7", "reason": "LibRaw unsupported GPR"}
+    ]
+    assert result["fixed_orientation_stress_rows"] == ["phaseone_p25plus"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]

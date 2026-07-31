@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2bk3s_encoded_log_chroma_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk3s-encoded-log-chroma-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK3S",
+  "status": "source_eligible_fixed_comparison_open",
+  "config": {
+    "path": "configs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1.json",
+    "sha256": "cc622e4df51ea39cf736f91c1266e56af2477b2436413ba46f7495a0aa5b9630"
+  },
+  "evidence": {
+    "manifest": {
+      "path": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json",
+      "sha256": "a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/automatic_report.json",
+      "sha256": "5dc0bd1bc64eef3879ecbc1c0f3b035049a19bfdb3e2c17a343ac30e5cf72da9"
+    },
+    "contact_sheet": {
+      "path": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/source_contact_sheet.png",
+      "sha256": "a5ec6a85ec46a3daa47d1d504586458a5d5f1abc87940923b91802f828359546"
+    },
+    "repeat_runs": 2,
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true
+  },
+  "result": {
+    "frozen_candidates": 12,
+    "eligible_rows": 11,
+    "eligible_camera_makes": 11,
+    "downloaded_bytes": 208482722,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "fixed_decode_failures": [
+      {
+        "id": "gopro_hero7",
+        "reason": "LibRaw unsupported GPR"
+      }
+    ],
+    "replacement_rows_added": false,
+    "fixed_orientation_stress_rows": [
+      "phaseone_p25plus"
+    ],
+    "confirmed_severe_source_artifact_count": 0,
+    "visual_observation": "Eleven distinct photographic scenes are usable and show no confirmed corruption, posterization, banding, geometry failure or decode blocks. phaseone_p25plus is sideways under the frozen orientation path and remains an explicit orientation stress case rather than a replacement trigger."
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": "Render the eleven fixed eligible sources through unchanged BK2, fixed AO6 t15/c35 and safe-rich; run automatic severe-artifact gates before independent visual comparison without strength tuning.",
+  "claim_ceiling": "second fresh CC0 digital-photo source eligibility only; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
