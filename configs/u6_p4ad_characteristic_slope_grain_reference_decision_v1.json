@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4ad_characteristic_slope_grain_reference_decision.v1",
+  "experiment_id": "u6.p4ad-characteristic-slope-grain-reference-v1",
+  "decision": "open_existing_sensitometry_derivative_propagation_audit",
+  "report_sha256": "b3aec5cf0da2b0ada1dafb80ca2b186154378cb7c9dfaf6131141990833f8469",
+  "stable_evidence_id": "6b3e366577c72014a698542ff12aa9eab864c551804df9768a7a5cd100da4b3d",
+  "passed": true,
+  "metrics": {
+    "maximum_characteristic_derivative_relative_error": 1.6362717125936053e-08,
+    "analytic_variance_peak_exposure": 0.12015888069032807,
+    "sampled_variance_peak_exposure": 0.12016609350339359,
+    "analytic_peak_log_exposure_error": 6.0025497490520922e-05,
+    "peak_index_distance": 0,
+    "maximum_low_tail_to_peak_variance_ratio": 9.041678554257214e-07,
+    "maximum_high_tail_to_peak_variance_ratio": 8.538410508748206e-08,
+    "maximum_normalized_shape_difference_across_photon_scales": 0.0
+  },
+  "interpretation": "A latent-exposure Poisson process propagated through a monotone characteristic curve yields an analytically verifiable interior developed-density variance peak without fitting a density-domain peak. Photon scale changes amplitude but not normalized shape.",
+  "branch_action": "Freeze and evaluate the same delta-method variance through the existing U2.2 sensitometry derivatives. Keep the Hill curve as a synthetic reference only; do not create a stochastic renderer yet.",
+  "claim_ceiling": "Analytic synthetic reference for exposure-domain Poisson variance propagated to developed density; not measured grain, stock response, process calibration or product evidence."
+}
