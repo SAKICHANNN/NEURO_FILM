@@ -141,6 +141,7 @@ from .density_conditioned_structure import (
 from .characteristic_slope_grain import (
     HillCharacteristicProfile,
     developed_density_variance,
+    propagate_poisson_exposure_variance,
 )
 from .spatial_response import (
     SpatialResponseProfile,
@@ -296,6 +297,7 @@ __all__ = [
     "density_to_transmittance",
     "develop_layer_exposure",
     "developed_density_variance",
+    "propagate_poisson_exposure_variance",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
     "derive_scan_signal_normalization",

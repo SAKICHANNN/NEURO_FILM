@@ -78,6 +78,29 @@ def developed_density_variance(
     if not math.isfinite(scale) or scale <= 0.0:
         raise ValueError("photon scale must be finite and positive")
     derivative = profile.derivative(values)
+    return propagate_poisson_exposure_variance(
+        values, derivative, photon_scale=scale
+    )
+
+
+def propagate_poisson_exposure_variance(
+    exposure: np.ndarray,
+    density_derivative: np.ndarray,
+    *,
+    photon_scale: float,
+) -> np.ndarray:
+    """Propagate normalized Poisson exposure variance through dD/dH."""
+
+    values = _positive_exposure(exposure)
+    derivative = np.asarray(density_derivative, dtype=np.float64)
+    scale = float(photon_scale)
+    if (
+        derivative.shape != values.shape
+        or not np.all(np.isfinite(derivative))
+        or not math.isfinite(scale)
+        or scale <= 0.0
+    ):
+        raise ValueError("density derivative and photon scale are invalid")
     variance = values * np.square(derivative) / scale
     if not np.all(np.isfinite(variance)) or np.any(variance < 0.0):
         raise RuntimeError("developed-density variance escaped its domain")
@@ -87,4 +110,5 @@ def developed_density_variance(
 __all__ = [
     "HillCharacteristicProfile",
     "developed_density_variance",
+    "propagate_poisson_exposure_variance",
 ]
