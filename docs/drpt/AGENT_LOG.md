@@ -8535,3 +8535,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - P95 safety-limited pixels are `17.996% > 10%`; the frozen gate closes visual
   review. Do not change rails or thresholds. Test a strict-interior fitted
   equation family next.
+
+## 2026-08-01 - Pass U5.R2BL5 strict-interior equation
+
+- Two reports are byte-identical at `805f4850...6d151`. Reflective/emissive
+  held-group RMSE is `.04669/.09633`, combined `.14302`, zero cube code
+  boundaries and minimum Jacobian `.01064`.
+- Strict-interior fitting preserves BL1 capacity without per-pixel safety
+  intervention. Open only a fixed no-fit/no-retune OOD execution on BL3's CC0
+  population; no calibration or product claim.

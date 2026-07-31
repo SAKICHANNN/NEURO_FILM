@@ -57,3 +57,13 @@ The analytical executor is effective, but this particular composition policy
 is not promoted or retuned. A next family must make strict-interior behavior
 part of the fitted equation rather than relying on a large tail of per-pixel
 safety intervention.
+
+## BL5 strict-interior equation
+
+BL5 makes the `0.5/255` output margin part of the fitted equation instead of a
+per-pixel post-execution guard. Two reports are exact at SHA-256
+`805f4850...6d151`. Reflective RMSE improves slightly from BL1 to `0.04669`;
+emissive RMSE changes only to `0.09633`; combined mean RMSE is `0.14302`.
+The 33-cube has zero quantized endpoint samples and minimum Jacobian
+`0.01064`. All frozen gates pass, opening only fixed ordinary-photo OOD
+execution with no refit or retuning.

@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u5_r2bl5_filmmatch_strict_interior_sigmoid_decision.v1",
+  "experiment_id": "u5.r2bl5-filmmatch-strict-interior-sigmoid-v1",
+  "report": {
+    "path": "outputs/external_controls/filmmatch_ektachrome_v1/strict_interior_sigmoid_bl5/run_a.json",
+    "sha256": "805f4850ca7ec32f820befdf86674cbef4fc54152e45b5025cd0cd0464f6d151",
+    "stable_evidence_id": "40140f3ab1fd992fc483692b29288eb704884dffcbab7a26d84cc8546b8623b7",
+    "two_run_byte_exact": true
+  },
+  "automatic_result": {
+    "passed": true,
+    "reflective_mean_rgb_rmse": 0.046693877581161995,
+    "emissive_mean_rgb_rmse": 0.09632623145692425,
+    "combined_mean_rgb_rmse_sum": 0.14302010903808623,
+    "maximum_cube_output_code_boundary_fraction": 0.0,
+    "minimum_cube_jacobian_determinant": 0.01064392490392915
+  },
+  "decision": {
+    "status": "pass_open_fixed_ordinary_photo_ood",
+    "ordinary_photo_execution_opened": true,
+    "calibrated_stock_response_opened": false,
+    "product_integration_opened": false,
+    "next": "apply the exact fixed final operator to the frozen BL3 CC0 population with no fitting or retuning"
+  },
+  "claim_ceiling": "repeat-exact paired code-domain capacity and structural evidence for one strict-interior equation family; no OOD safety, visual value, calibrated stock response or product claim"
+}
