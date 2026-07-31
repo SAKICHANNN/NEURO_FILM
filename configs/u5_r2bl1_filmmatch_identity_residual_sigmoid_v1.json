@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u5_r2bl1_filmmatch_identity_residual_sigmoid.v1",
+  "experiment_id": "u5.r2bl1-filmmatch-identity-residual-sigmoid-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL1",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "sample_config_sha256": "1f5aa2e0d0c1a4a438642891db84dfcd3180fc236a5d061f5cb825d88eb12fbf",
+    "capacity_report": "outputs/external_controls/filmmatch_ektachrome_v1/capacity_report.json",
+    "capacity_report_sha256": "aa5a5787dcd375cbe42cad0cd196531d01775f91031a3807929ade284ee4b5dd",
+    "capacity_stable_evidence_id": "7a6307171572bd280fd45a952245cd1e57fe0452ae44ef1c8404b016ad81b769"
+  },
+  "question": "Can a fixed identity derivative floor retain the high paired accuracy of the two-matrix sigmoid film equation while making its full cube response structurally invertible and bounded?",
+  "candidate": {
+    "family": "positive_capture_matrix_then_identity_residual_normalized_log_sigmoid_then_positive_scan_matrix",
+    "parameters": 18,
+    "nonlinear_strength": 0.75,
+    "identity_derivative_floor": 0.25,
+    "matrix_identity_mixture": 0.25,
+    "exposure_floor": 0.0000152587890625,
+    "matrix_logit_bounds": [-8.0, 4.0],
+    "midpoint_bounds": [-12.0, 2.0],
+    "slope_bounds": [0.2, 4.0],
+    "fit": {
+      "restart_count": 2,
+      "maximum_function_evaluations": 2000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260801
+    }
+  },
+  "evaluation": {
+    "reflective_split": "leave one complete author-declared illuminant out",
+    "emissive_split": "leave one controlled-stimulus hue sector out",
+    "primary": "mean held-fold RGB RMSE in author-prepared paired code domain",
+    "secondary": [
+      "median and p95 RGB Euclidean error",
+      "out-of-cube fraction",
+      "analytic dense-cube Jacobian determinant"
+    ],
+    "cube_size": 33
+  },
+  "bound_controls": {
+    "original_two_matrix_sigmoid_reflective_mean_rgb_rmse": 0.05175857558484468,
+    "original_two_matrix_sigmoid_emissive_mean_rgb_rmse": 0.13982254078898468,
+    "identity_reflective_mean_rgb_rmse": 0.133258150404446,
+    "identity_emissive_mean_rgb_rmse": 0.13189524271901798,
+    "safe_monotone_combined_mean_rgb_rmse_sum": 0.20526712929278884
+  },
+  "automatic_gate": {
+    "maximum_reflective_rmse_ratio_to_original_sigmoid": 1.15,
+    "minimum_reflective_mean_improvement_over_identity": 0.55,
+    "maximum_emissive_rmse_ratio_to_identity": 1.0,
+    "maximum_combined_mean_rmse_sum": 0.20526712929278884,
+    "maximum_out_of_cube_fraction": 0.0,
+    "minimum_cube_jacobian_determinant": 0.0009,
+    "require_all_fits_finite": true,
+    "require_two_run_byte_identity": true
+  },
+  "branches": {
+    "pass": "retain as a structurally safe paired-code-domain equation-family candidate; a separate fixed validation comparison is required and cannot be calibration",
+    "accuracy_fail": "close without changing nonlinear strength, bounds, loss or capacity",
+    "structural_fail": "close without post-fit clipping, Jacobian penalties or strength rescue"
+  },
+  "gates": {
+    "paired_code_domain_fit_allowed": true,
+    "validation_scene_fit_allowed": false,
+    "physical_parameter_interpretation_allowed": false,
+    "calibrated_stock_response_claim_allowed": false,
+    "scanner_independence_claim_allowed": false,
+    "public_fitted_asset_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain equation-family evidence for one author-prepared Sony FX3/Ektachrome E100 capture-and-scan session; no physical parameter recovery, calibrated stock response, scanner independence, public asset or product promotion"
+}
