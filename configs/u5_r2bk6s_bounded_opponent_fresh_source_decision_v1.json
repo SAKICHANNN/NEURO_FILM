@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2bk6s_bounded_opponent_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk6s-bounded-opponent-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK6S",
+  "decision": "open_fixed_bk5_fresh_confirmation",
+  "status": "source_eligible_fixed_comparison_open",
+  "config": {
+    "path": "configs/u5_r2bk6s_bounded_opponent_fresh_source_v1.json",
+    "sha256": "ce80b257495d22859b12fec00cde224dba3dcfdba8ce5affba8d8a48c2d57934"
+  },
+  "evidence": {
+    "formal_runs": [
+      "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a",
+      "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_b"
+    ],
+    "manifest": {
+      "path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+      "sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/automatic_report.json",
+      "sha256": "6b5bb3167e5803d899639f42e427959788bdb660f6b5c123f761a64e55ec9f9b"
+    },
+    "source_contact_sheet": {
+      "path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/source_contact_sheet.png",
+      "sha256": "1bb9fc9264c6175ad81e45ebfac266d9669d686871d24630223deaa09a222538"
+    },
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true,
+    "repeat_contact_sheet_sha256_exact": true
+  },
+  "result": {
+    "candidate_rows": 12,
+    "eligible_rows": 12,
+    "eligible_camera_makes": 12,
+    "downloaded_bytes": 182852683,
+    "fixed_decode_failures": [],
+    "near_empty_or_monochrome_rows": 0,
+    "within_pool_exact_pairs": 0,
+    "within_pool_dhash_pairs_le_4": 0,
+    "cross_pool_exact_pairs": 0,
+    "cross_pool_dhash_pairs_le_4": 0,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "confirmed_severe_source_artifact_count": 0,
+    "fixed_orientation_stress_rows": [
+      "samsung_sm_g950u"
+    ],
+    "visual_observation": "All twelve decoded rows are recognizable photographic scenes with broad content, illumination and camera diversity. No source shows confirmed posterization, banding, colour blocks, geometry corruption or severe clipping. The Samsung row is a fixed sideways-orientation stress case; the Leica row is intentionally defocused/low-light but remains a valid non-empty photographic source.",
+    "visual_review_scope": "autonomous source-only eligibility audit; no operator applied and no population preference claim"
+  },
+  "branch_action": "Freeze and execute exactly one fixed comparison of unchanged BK5, AO6 t15/c35 and safe-rich on these twelve sources. No fitting, strength retuning, routing or dense blending is allowed.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "third fresh CC0 digital-photo eligibility for fixed BK5/AO6/safe-rich comparison only"
+}

@@ -9,6 +9,10 @@ from src.eval.rawpixls_confirmation_preflight import validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bk6s_bounded_opponent_fresh_source_v1.json"
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk6s_bounded_opponent_fresh_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -92,3 +96,31 @@ def test_bk6s_selection_excludes_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk6s_decision_binds_repeatable_eligible_evidence() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    evidence = decision["evidence"]
+    assert decision["status"] == "source_eligible_fixed_comparison_open"
+    assert decision["config"]["sha256"] == (
+        "ce80b257495d22859b12fec00cde224dba3dcfdba8ce5affba8d8a48c2d57934"
+    )
+    assert evidence["manifest"]["sha256"] == (
+        "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978"
+    )
+    assert evidence["automatic_report"]["sha256"] == (
+        "6b5bb3167e5803d899639f42e427959788bdb660f6b5c123f761a64e55ec9f9b"
+    )
+    assert evidence["repeat_manifest_sha256_exact"]
+    assert evidence["repeat_report_sha256_exact"]
+    assert evidence["repeat_contact_sheet_sha256_exact"]
+    assert result["eligible_rows"] == 12
+    assert result["eligible_camera_makes"] == 12
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert result["fixed_decode_failures"] == []
+    assert result["fixed_orientation_stress_rows"] == ["samsung_sm_g950u"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
