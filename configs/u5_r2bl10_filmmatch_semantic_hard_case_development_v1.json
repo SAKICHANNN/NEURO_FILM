@@ -1,0 +1,81 @@
+{
+  "schema": "neuro_film.u5_r2bl10_filmmatch_semantic_hard_case_development.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl10-filmmatch-semantic-hard-case-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a colour-blind semantic nearest-case rule recover enough of BL8's evaluator Oracle to select BL5 only for similar photographs while otherwise hard-falling back to AO6?",
+  "parent": {
+    "decision": "configs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_decision_v1.json",
+    "decision_sha256": "fa938ca8f4b9a358066bd023b2bbac1db3584adb8f2fd7f91978440ff1d014b7",
+    "required_decision": "retain_ao6_incumbent_close_bl5_preference_promotion",
+    "required_preference_passed": false,
+    "required_nonbasic_passed": true,
+    "source_manifest": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_b/manifest.json",
+    "source_manifest_sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733"
+  },
+  "cases": {
+    "population": "the 17 BL8 sources after their promotion test is closed",
+    "label": "candidate-majority if BL5 received at least two of three mapping-sealed autonomous choices; otherwise AO6",
+    "positive_cases": 5,
+    "negative_cases": 12,
+    "evaluation_utility": "sum of the three already-frozen per-source choices won by the selected arm",
+    "target_pixels_or_reference_metadata_used": false
+  },
+  "feature_model": {
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "license": "Apache-2.0",
+    "root": "data/models/huggingface/facebook-dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "config_sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+    "preprocessor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+    "input": "decoded source luma replicated to RGB before fixed DINO normalization",
+    "image_size": 224,
+    "feature": "L2-normalized mean of the 16x16 patch tokens; no colour, target, arm output or label enters the feature",
+    "device": "cuda",
+    "batch_size": 8,
+    "training_allowed": false,
+    "fine_tuning_allowed": false
+  },
+  "selector": {
+    "family": "leave-one-source-out hard top-1 nearest case",
+    "distance": "cosine distance between fixed normalized semantic features",
+    "rule": "select the held source's single nearest development case label; ties break by source_id; AO6 is the explicit negative label and fallback",
+    "fitting_allowed": false,
+    "dense_blending_allowed": false,
+    "candidate_strength_retuning_allowed": false,
+    "source_output_diagnostics_allowed": false
+  },
+  "controls": {
+    "global_fallback": "always AO6",
+    "evaluator_oracle": "post-hoc better arm per source using the same three frozen choices",
+    "negative_control": "same features and leave-one-out rule under 256 deterministic label permutations preserving five positive cases",
+    "negative_control_seed": 20260801
+  },
+  "automatic_gate": {
+    "minimum_selector_choice_gain_over_global_ao6": 4,
+    "minimum_selector_correct_source_gain_over_global_ao6": 2,
+    "minimum_candidate_selected_sources": 2,
+    "maximum_false_candidate_selections": 1,
+    "minimum_choice_gain_over_negative_control_p95": 1,
+    "require_all_distances_finite": true,
+    "require_zero_self_matches": true,
+    "require_two_run_byte_identity": true
+  },
+  "branches": {
+    "pass": "retain a development-only semantic hard-case selector and acquire a genuinely new confirmation population before any promotion",
+    "fail": "close this top-1 retrieval rule and retain AO6; do not tune k, embedding, labels, thresholds or candidate strength on BL8",
+    "oracle_only": "record product-value heterogeneity but close retrieval when the source-only rule misses the gate"
+  },
+  "forbidden_actions": [
+    "read target/reference pixels or hidden grade truth as a feature",
+    "use BL8 output colour or candidate diagnostics as selector inputs",
+    "change k, model, pooling, distance, labels, thresholds or seed after the report",
+    "call source similarity a film mode, stock identity or physical-condition inference",
+    "train a neural renderer or directly generate final RGB",
+    "promote without a disjoint fresh-population confirmation"
+  ],
+  "product_integration_allowed": false,
+  "claim_ceiling": "development-only autonomous preference-routing evidence for two fixed film-inspired explicit looks using colour-blind source semantics; not population preference, film mode, stock response, calibrated operator, authenticity or product promotion"
+}
