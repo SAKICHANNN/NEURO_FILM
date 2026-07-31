@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.eval.filmmatch_paired_source import load_all_pairs  # noqa: E402
+from src.eval.filmmatch_chart_pairs import extract_pair_datasets  # noqa: E402
 from src.eval.filmmatch_strict_interior_sigmoid import (  # noqa: E402
     evaluate_strict_interior_sigmoid,
 )
@@ -41,10 +41,14 @@ def main() -> int:
         raise ValueError("BL4 decision identity drift")
     if json.loads(bl4_raw)["decision"]["status"] != parent["required_bl4_status"]:
         raise ValueError("BL4 decision status drift")
-    sample_config = json.loads(
-        (ROOT / "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json").read_text()
-    )
-    datasets = load_all_pairs(ROOT / sample_config["data_root"], sample_config)
+    sample_config_raw = (ROOT / parent["sample_config"]).read_bytes()
+    if (
+        hashlib.sha256(sample_config_raw).hexdigest()
+        != parent["sample_config_sha256"]
+    ):
+        raise ValueError("sample config identity drift")
+    sample_config = json.loads(sample_config_raw)
+    datasets = extract_pair_datasets(ROOT, sample_config)
     report = evaluate_strict_interior_sigmoid(datasets, config)
     output = args.output if args.output.is_absolute() else ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)

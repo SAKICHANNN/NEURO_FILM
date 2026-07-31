@@ -3,6 +3,8 @@
   "experiment_id": "u5.r2bl5-filmmatch-strict-interior-sigmoid-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BL5",
   "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "sample_config_sha256": "1f5aa2e0d0c1a4a438642891db84dfcd3180fc236a5d061f5cb825d88eb12fbf",
     "bl1_report": "outputs/external_controls/filmmatch_ektachrome_v1/identity_residual_sigmoid_bl1/run_a.json",
     "bl1_report_sha256": "8e10c665c2fd6816d21e4ab10534e6852c72e9518baad0532ee33f138a709784",
     "bl1_stable_evidence_id": "6cb29367190311a52f968e54447a2bb00653f751d6fcfea2b7bda472293893d6",
