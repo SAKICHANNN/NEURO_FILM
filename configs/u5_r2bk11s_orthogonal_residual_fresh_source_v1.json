@@ -1,0 +1,87 @@
+{
+  "schema": "neuro_film.u5_r2bk11s_orthogonal_residual_fresh_source.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk11s-orthogonal-residual-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK11S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2bk10_orthogonal_perceptual_residual_decision_v1.json",
+    "sha256": "cca1fb77442b6e69404600c88c0a4bb58775fe6c33d44fcfcf30b465f586fe64",
+    "required_decision": "retain_fixed_bk10_open_fifth_fresh_confirmation"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-31",
+    "api_snapshot": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/rawpixls_repository_snapshot.json",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact selected row",
+    "purpose": "fifth fresh digital-photo population for fixed BK10 versus BK7, AO6 and safe-rich confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact freeze before pixel access: twelve CC0 rows, one per previously unused camera make and make/model, with repository ID, source hash and make/model unseen across every tracked raw.pixls.us pool including BK1, BK3, BK6 and BK8; 4-30 MB per row and <=230 MiB aggregate; scanner/chart/flat/target/film/buggy metadata excluded; no image appearance used for selection",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 225192182,
+    "download_root": "data/external/rawpixls_bk10_v1/raw",
+    "decoded_root": "outputs/u5_r2bk11s_orthogonal_residual_fresh_source_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {"id":"arri_alexa_mini","repository_id":3497,"make":"Arri","model":"Alexa Mini","mode":"","date":"2019-10-21","megapixels":null,"bytes_reported_mb":11.0,"filename":"Arri - Alexa Mini.ari","path":"data/external/rawpixls_bk10_v1/raw/arri_alexa_mini.ari","sha256":"4d487a43d1259049d6f7145049ec33da378681dab1278a8eb3941ac231cc844a","url":"https://raw.pixls.us/getfile.php/3497/nice/Arri%20-%20Alexa%20Mini.ari"},
+    {"id":"fimi_x8se","repository_id":2989,"make":"FIMI","model":"X8SE","mode":"16bit (16:9)","date":"2019-01-31","megapixels":8.29,"bytes_reported_mb":15.82,"filename":"FIMI - X8SE - 16bit (16:9).DNG","path":"data/external/rawpixls_bk10_v1/raw/fimi_x8se.dng","sha256":"8f82cfc6832ee7747ec0775aa653059bd3ed63c4a7b41f9a776516c4598dad5b","url":"https://raw.pixls.us/getfile.php/2989/nice/FIMI%20-%20X8SE%20-%2016bit%20%2816%3A9%29.DNG"},
+    {"id":"gitup_git2","repository_id":738,"make":"GITUP","model":"GIT2","mode":"16:9","date":"2016-12-31","megapixels":null,"bytes_reported_mb":22.78,"filename":"GITUP - GIT2 - 16:9.RAW","path":"data/external/rawpixls_bk10_v1/raw/gitup_git2.raw","sha256":"3bb78a24903b12921580697dc14d048ccf79694622e19e45fed6955a22a09448","url":"https://raw.pixls.us/getfile.php/738/nice/GITUP%20-%20GIT2%20-%2016%3A9.RAW"},
+    {"id":"hmd_nokia_7_plus","repository_id":3232,"make":"HMD Global","model":"Nokia 7 plus","mode":"16bit (4:3)","date":"2019-07-04","megapixels":12.19,"bytes_reported_mb":23.28,"filename":"HMD Global - Nokia 7 plus - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/hmd_nokia_7_plus.dng","sha256":"82e060c5197fda5eff12d658285256a2ba2c5eaf8ae4997507bda2242a766216","url":"https://raw.pixls.us/getfile.php/3232/nice/HMD%20Global%20-%20Nokia%207%20plus%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"htc_10","repository_id":1265,"make":"HTC","model":"HTC 10","mode":"16bit (4:3)","date":"2017-03-26","megapixels":12.5,"bytes_reported_mb":23.87,"filename":"HTC - HTC 10 - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/htc_10.dng","sha256":"3aac646ae2bb9cceda41559afaf6354c66ef371b6ade02bcbe1ba1be093696bd","url":"https://raw.pixls.us/getfile.php/1265/nice/HTC%20-%20HTC%2010%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"microsoft_lumia_950xl","repository_id":1564,"make":"Microsoft","model":"Lumia 950 XL Dual SIM","mode":"10bit (4:3)","date":"2017-07-02","megapixels":18.69,"bytes_reported_mb":25.63,"filename":"Microsoft - Lumia 950 XL Dual SIM - 10bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/microsoft_lumia_950xl.dng","sha256":"b941427cea25c3e3b6136f143adfc514fede9854e5ab3f84a8ebacc95c4f1731","url":"https://raw.pixls.us/getfile.php/1564/nice/Microsoft%20-%20Lumia%20950%20XL%20Dual%20SIM%20-%2010bit%20%284%3A3%29.dng"},
+    {"id":"oneplus_one","repository_id":1372,"make":"OnePlus","model":"One","mode":"10bit (4:3)","date":"2017-04-30","megapixels":13.14,"bytes_reported_mb":16.37,"filename":"OnePlus - One - 10bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/oneplus_one.dng","sha256":"ff5385e5b1066d8c2ef452ceb98a669177be059b424b9a7ade430355c1051a1b","url":"https://raw.pixls.us/getfile.php/1372/nice/OnePlus%20-%20One%20-%2010bit%20%284%3A3%29.dng"},
+    {"id":"paralenz_dive_camera","repository_id":2167,"make":"Paralenz","model":"Dive Camera","mode":"","date":"2017-12-31","megapixels":null,"bytes_reported_mb":15.82,"filename":"Paralenz - Dive Camera.RAW","path":"data/external/rawpixls_bk10_v1/raw/paralenz_dive_camera.raw","sha256":"f2ecb08a221f7e5f9da4a41ae5d9d47a7ac7269ab7fe6d5aba1e6214c5e78b12","url":"https://raw.pixls.us/getfile.php/2167/nice/Paralenz%20-%20Dive%20Camera.RAW"},
+    {"id":"raspberrypi_imx477","repository_id":4169,"make":"RaspberryPi","model":"RP_imx477","mode":"12bit (4:3)","date":"2020-11-20","megapixels":12.33,"bytes_reported_mb":17.64,"filename":"RaspberryPi - RP_imx477 - 12bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/raspberrypi_imx477.dng","sha256":"57be25b3d1dc98a84a3e79ffb2486b06d2747d22d16fc6c9baac0262331d34b8","url":"https://raw.pixls.us/getfile.php/4169/nice/RaspberryPi%20-%20RP_imx477%20-%2012bit%20%284%3A3%29.dng"},
+    {"id":"sjcam_m20","repository_id":987,"make":"SJCAM","model":"M20","mode":"","date":"2017-01-26","megapixels":null,"bytes_reported_mb":22.78,"filename":"SJCAM - M20.RAW","path":"data/external/rawpixls_bk10_v1/raw/sjcam_m20.raw","sha256":"c7940d59265a0a96811c7fa98bab71b88e5be991e0691d881f593502036e7857","url":"https://raw.pixls.us/getfile.php/987/nice/SJCAM%20-%20M20.RAW"},
+    {"id":"xiaoyi_yi4k","repository_id":2599,"make":"XIAOYI","model":"YI 4K","mode":"16bit (16:9)","date":"2018-05-23","megapixels":8.29,"bytes_reported_mb":7.66,"filename":"XIAOYI - YI 4K - 16bit (16:9).DNG","path":"data/external/rawpixls_bk10_v1/raw/xiaoyi_yi4k.dng","sha256":"b588a612b4c8c4c8dc4199ea2c7e792dee69c1a5017fecf731a6ab19969412fc","url":"https://raw.pixls.us/getfile.php/2599/nice/XIAOYI%20-%20YI%204K%20-%2016bit%20%2816%3A9%29.DNG"},
+    {"id":"yuneec_cgo3","repository_id":1383,"make":"Yuneec","model":"CGO3","mode":"16bit (4:3)","date":"2017-05-07","megapixels":12.0,"bytes_reported_mb":12.11,"filename":"Yuneec - CGO3 - 16bit (4:3).dng","path":"data/external/rawpixls_bk10_v1/raw/yuneec_cgo3.dng","sha256":"ad04545fb82426dd0592dc80a9f3df7882304e9be9a71f90d3efd761b1a88dcb","url":"https://raw.pixls.us/getfile.php/1383/nice/Yuneec%20-%20CGO3%20-%2016bit%20%284%3A3%29.dng"}
+  ],
+  "maximum_download_bytes": 241172480,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+    "development_manifest_sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8",
+    "comparison_manifests": [
+      {"path":"outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json","sha256":"8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json","sha256":"e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json","sha256":"75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json","sha256":"f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json","sha256":"a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json","sha256":"444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json","sha256":"8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8","format":"rawpixls_manifest"},
+      {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": [
+      "fixed_bk10_safe_base_orthogonal_residual",
+      "fixed_bk7_smooth_perceptual_hue_density",
+      "fixed_ao6_colour_only_t15_c35",
+      "safe_rich_velvia_50"
+    ],
+    "strength_retuning_allowed": false,
+    "router_training_allowed": false
+  },
+  "claim_ceiling": "fifth fresh CC0 digital-photo eligibility for fixed BK10/BK7/AO6/safe-rich comparison only"
+}
