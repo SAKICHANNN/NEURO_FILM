@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4ae_existing_sensitometry_grain_variance_decision.v1",
+  "experiment_id": "u6.p4ae-existing-sensitometry-grain-variance-v1",
+  "decision": "open_synthetic_derivative_conditioned_structure_compiler",
+  "report_sha256": "66c6cc4f4fc8159b7dcc86698359a55cbeebc45c5832fb7b531da83a49d726a7",
+  "stable_evidence_id": "0153a8408934c72a7572c1394357b8abd8748ec39ce070e2904b4d79f07085a8",
+  "passed": true,
+  "metrics": {
+    "maximum_chain_derivative_relative_error": 1.371517167002416e-05,
+    "interior_peaked_channels": 3,
+    "peak_exposure_rgb": [0.0058564541495931, 0.00549340664299615, 0.005445404388755803],
+    "peak_density_rgb": [0.31051472476366443, 0.326309236006788, 0.3730425323186872],
+    "maximum_low_tail_to_peak_variance_ratio": 0.3796640487521037,
+    "maximum_high_tail_to_peak_variance_ratio": 0.000260271219989264,
+    "minimum_pairwise_normalized_shape_linf_distance": 0.10562279602849031
+  },
+  "interpretation": "All three unchanged U2.2 layers support finite interior-peaked exposure-Poisson variance after exact derivative propagation. The layer-dependent normalized shapes are materially distinct, but all amplitudes remain generic and uncalibrated.",
+  "branch_action": "Freeze one synthetic mean-preserving derivative-conditioned structure compiler with exact coordinate/partition/domain controls. Do not fit amplitude or access photographs.",
+  "claim_ceiling": "No-fit numerical compatibility of the existing uncalibrated U2.2 sensitometry with an exposure-domain Poisson delta-method grain-variance mechanism; not measured grain, stock response, process calibration or product evidence."
+}
