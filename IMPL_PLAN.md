@@ -2335,3 +2335,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > negative Jacobians. Close the forward route without clipping or retuning;
 > inverse correction evidence is not forward film-look evidence.
 >
+> `U5.R2BL0` maps source-only statistics to a bounded twelve-parameter
+> curve/matrix operator across held illuminants. Aggregate and P95 error
+> improve, but group stability fails at 13/33 wins. Retain the global fallback;
+> do not promote dense conditioning or reuse the consumed validation scene as
+> confirmation.
+>

@@ -1037,3 +1037,10 @@ BJ2 proves zero out-of-cube and zero new epsilon-boundary pixels without
 post-operator scaling, while retaining 8.87--15.60% adaptive mean gains. It
 still misses AY3 P95 by 0.3719%, so the complete BJ0--BJ2 adaptive
 neutral-base LUT family closes without confirmation acquisition.
+
+BL0 closes dense source-conditioned parameter prediction on the FilmMatch
+paired session. Aggregate RGB RMSE improves `6.98%`, P95 improves `18.34%`,
+and the bounded operator remains structurally safe, but only `13/33` complete
+groups win. The `17.86%` evaluator-Oracle gain establishes conditional value,
+not a reliable router. Keep the global fallback and require hard abstention or
+independent content-diverse evidence next.

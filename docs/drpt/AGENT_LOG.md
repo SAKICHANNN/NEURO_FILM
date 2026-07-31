@@ -8490,3 +8490,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close without clipping, parameter rescue or photographic rendering. The
   result separates inverse colour-correction precedent from forward film-look
   transfer and leaves AO6 at its development-only ceiling.
+
+## 2026-08-01 - Close U5.R2BL0 dense source-conditioned operator
+
+- Implemented source-only descriptors, nested leave-illuminant-out ridge and
+  bounded twelve-parameter curve/matrix prediction on 33 same-chart FilmMatch
+  groups. Targets only fit development group operators and evaluator Oracles.
+- Two reports are byte-identical at `abe7b1e7...2ed`. Adaptive prediction
+  improves aggregate RGB RMSE `6.98%`, P95 `18.34%`, and beats shuffled labels
+  `11.48%`; Oracle gain is `17.86%`. Cube output is bounded with minimum
+  Jacobian `.2844`.
+- Close as `oracle_only`: only 13/33 groups win, including 0/15 negative-EV
+  groups. Do not lower the gate or promote dense routing; retain the global
+  fallback and continue only with hard abstention or independent evidence.

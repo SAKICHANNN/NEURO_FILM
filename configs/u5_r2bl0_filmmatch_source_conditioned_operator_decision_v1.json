@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl0-filmmatch-source-conditioned-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL0",
+  "decision": "close_dense_source_conditioning_and_retain_global_fallback",
+  "software_commit": "fa1c65a639cd2d6a3cf414d4286dab13cb3d390f",
+  "contract": {
+    "path": "configs/u5_r2bl0_filmmatch_source_conditioned_operator_v1.json",
+    "sha256": "d9154bc3747073db78879b31d19c19c6766503ea0d49d779d2673cc7577d1fbf"
+  },
+  "formal_report": "outputs/external_controls/filmmatch_ektachrome_v1/source_conditioned_bl0/run_a.json",
+  "formal_report_sha256": "abe7b1e707ad56d76041fb9afb84d69382afd8c34b311f48221919a458cf1a4f",
+  "stable_evidence_id": "f2c8a0c13ccee8560191a73c202520683ae60a64f0eeee7072ec2d69b14e25fc",
+  "repeat_report_sha256_exact": true,
+  "automatic_result": {
+    "passed": false,
+    "branch": "oracle_only",
+    "oracle_rgb_rmse_improvement_over_global": 0.17858578456880791,
+    "adaptive_rgb_rmse_improvement_over_global": 0.06975192306703681,
+    "adaptive_group_wins": 13,
+    "adaptive_group_win_fraction": 0.3939393939393939,
+    "adaptive_p95_ratio_to_global": 0.8166445411275833,
+    "adaptive_rgb_rmse_improvement_over_shuffled": 0.11483541218515114,
+    "predicted_logit_clip_fraction": 0.06565656565656566,
+    "minimum_cube_jacobian": 0.28439762093324067,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "failure_structure": {
+    "negative_ev_group_wins": "0/15",
+    "ev_zero_to_plus_one_group_wins": "2/6",
+    "ev_plus_two_group_wins": "2/3",
+    "ev_plus_three_to_plus_five_group_wins": "9/9",
+    "interpretation": "The dense predictor captures a real high-exposure conditional advantage but applies harmful changes to most low-exposure groups. Aggregate and tail gains therefore do not establish a reliable all-input router."
+  },
+  "visual_review_allowed": false,
+  "forbidden_followup": [
+    "lower the frozen group-win gate",
+    "present aggregate error gain as stable routing",
+    "reuse the consumed validation scene as independent confirmation",
+    "interpret source statistics as physical exposure or illuminant truth",
+    "claim a film mode, calibrated stock response, scanner independence or product promotion"
+  ],
+  "next_direction": "test only a preregistered hard selective fallback that can abstain to the global operator, or move to independent content-diverse paired evidence; do not deploy the dense predictor",
+  "claim_ceiling": "negative dense-routing and positive evaluator-Oracle evidence inside one author-prepared paired code-domain session; no physical exposure inference, film mode, calibrated stock response, scanner independence or product promotion"
+}

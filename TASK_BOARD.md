@@ -503,3 +503,8 @@ one-matrix control, regresses both cross-domain directions by more than 131%,
 and has negative cube Jacobians plus 13.33% held-row OOG. This separates
 inverse colour correction from forward film-look generation; do not rescue it
 with clipping or more capacity.
+
+U5.R2BL0 closes dense source-conditioned prediction: aggregate and tail error
+improve, but only 13/33 held groups win. The next colour leaf must use a frozen
+hard fallback or independent content-diverse evidence; dense routing cannot
+advance.
