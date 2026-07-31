@@ -1,0 +1,105 @@
+{
+  "schema": "neuro_film.u5_r2bk22_content_cell_appearance_gate.v1",
+  "status": "contract_frozen",
+  "experiment_id": "u5.r2bk22-content-cell-appearance-gate-v1",
+  "node": "ULT > U5 > U5.R2BK22",
+  "parent": {
+    "decision": "configs/u5_r2bk21_canonicalizer_consensus_appearance_decision_v1.json",
+    "required_decision": "close_frozen_consensus_policy"
+  },
+  "question": "Can a colour-independent content-cell worst-case validation gate reject a reference whose pooled appearance is byte-identical to a valid reference but whose content-cell correspondence is shuffled?",
+  "content_cells": {
+    "count": 4,
+    "ids": ["cell-a", "cell-b", "cell-c", "cell-d"],
+    "confounded_target_permutation": [1, 2, 3, 0],
+    "identity_source": "generated latent scene identity exposed only to the evaluator, never inferred from RGB"
+  },
+  "population": {
+    "palette_seed": 52200,
+    "fit_seed": 52201,
+    "validation_seed": 52202,
+    "samples_per_cell": 256,
+    "component_counts": [3, 4],
+    "weight_dirichlet_alpha": 1.4,
+    "mean_minimum": 0.08,
+    "mean_maximum": 0.92,
+    "standard_deviation_minimum": 0.045,
+    "standard_deviation_maximum": 0.12
+  },
+  "style": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.35
+  },
+  "canonicalizers": [
+    {
+      "id": "sliced_quantile_48",
+      "kind": "fixed_projection_sorted_quantile",
+      "projection_count": 48,
+      "projection_seed": 52231
+    },
+    {
+      "id": "rff_mmd_144",
+      "kind": "fixed_random_fourier_mmd",
+      "frequencies_per_bandwidth": 48,
+      "bandwidths": [0.08, 0.16, 0.32],
+      "feature_seed": 52232
+    }
+  ],
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.75,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cpu",
+    "dtype": "float32",
+    "seed": 52240,
+    "steps": 140,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true,
+    "device_reason": "frozen local smoke measured 10 steps at 2.91s CPU versus 6.71s CUDA for this small RK4 workload"
+  },
+  "policy": {
+    "maximum_canonicalizer_operator_rmse": 0.06,
+    "minimum_pooled_cross_objective_improvement_fraction": 0.25,
+    "minimum_worst_cell_cross_objective_improvement_fraction": 0.1,
+    "minimum_cell_pass_fraction": 1.0,
+    "selection": "hard select one candidate by pooled validation mean normalized residual; authorize only when every frozen content cell passes",
+    "fallback": "identity"
+  },
+  "gates": {
+    "pooled_source_bytes_equal_between_valid_and_confounded": true,
+    "pooled_target_bytes_equal_between_valid_and_confounded": true,
+    "valid_correspondence_must_select_hard_candidate": true,
+    "confounded_correspondence_must_select_identity": true,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "reuse the BK21 two-objective O0 fitting path without adding capacity",
+    "fit one candidate per canonicalizer on pooled generated fit cells",
+    "evaluate pooled and per-cell validation losses on independent samples",
+    "use external generated cell identity only for this mechanism test",
+    "hard-select one explicit operator or return exact identity"
+  ],
+  "forbidden_actions": [
+    "infer content cells from RGB, histograms, CLIP, uploader, geometry or scanner",
+    "fit a separate operator per content cell",
+    "average operators or RGB",
+    "change the cell permutation, threshold, losses or capacity after formal output",
+    "use current film pixels, claim operator identification or promote a product"
+  ],
+  "decision_if_all_gates_pass": "retain_content_cell_worst_case_gate_prior",
+  "decision_if_any_gate_fails": "close_content_cell_gate",
+  "claim_ceiling": "synthetic mechanism evidence that externally supplied colour-independent content cells can or cannot veto a pooled appearance shortcut; no real content labels, film operator, stock, mode, calibration, preference or product claim"
+}
