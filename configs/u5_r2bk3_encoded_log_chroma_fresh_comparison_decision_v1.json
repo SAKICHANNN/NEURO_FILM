@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u5_r2bk3_encoded_log_chroma_fresh_comparison_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk3-encoded-log-chroma-fresh-comparison-v1",
+  "node": "ULT > U5 > U5.R2BK3",
+  "decision": "reject_fixed_bk2_severe_artifact",
+  "status": "closed_severe_artifact",
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1.json",
+      "sha256": "5300cb069542bdd54808594973b0c766683060079e838cca954960e4826efca1"
+    },
+    "formal_runs": [
+      "outputs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1/run_b",
+      "outputs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1/run_c"
+    ],
+    "report_sha256": "915bd2fddb081c13914f1f679406af0eacf6af38c9079a6ad49a9d5fd0bce5f8",
+    "stable_evidence_id": "b89be8a50a7117cd29592e4fd97fb035cc0b087c5f6ce0661fe998a8ec6517f3",
+    "repeat_report_byte_exact": true,
+    "repeat_file_count_per_run": 37,
+    "repeat_output_hash_differences": 0,
+    "visual_sheets": [
+      {
+        "path": "outputs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1/run_b/visual_review_part_1.png",
+        "sha256": "3e65485ae3e34c6b2ed2e31e66892a6de9dd37e78d153944951b8e4434ea10e3"
+      },
+      {
+        "path": "outputs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1/run_b/visual_review_part_2.png",
+        "sha256": "2e9f202fad9a9afe73a23312e02dff967fb76ce2c1cf50a7f917f8fe2ac7ff5c"
+      },
+      {
+        "path": "outputs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1/run_b/visual_review_part_3.png",
+        "sha256": "444f57ad6b597b1695f14ebdde026558f3222229e9d7ff2e962c827e85875823"
+      }
+    ]
+  },
+  "result": {
+    "automatic_pass": true,
+    "population_median_style_delta_e76": {
+      "fixed_bk2_encoded_safe_log_chroma": 5.945910930633545,
+      "fixed_ao6_colour_only_t15_c35": 9.947608947753906,
+      "safe_rich_velvia_50": 2.893735408782959
+    },
+    "maximum_new_code_boundary_fraction_vs_source": 0.0,
+    "confirmed_severe_artifact_count": 1,
+    "confirmed_severe_rows": [
+      {
+        "source_id": "phaseone_p25plus",
+        "arm_id": "fixed_bk2_encoded_safe_log_chroma",
+        "source_sha256": "a81bd65ce6b88f50d26862ae6f38a03109a7ca02d782eb87ffc3368d657afe9a",
+        "output_sha256": "a91786338fedc9e8dd960224c8c1b2a24cae5b742ab99080eda9d7e8fb7e6e90",
+        "median_style_delta_e76": 6.942482948303223,
+        "output_code_boundary_fraction": 0.11127914238134888,
+        "new_code_boundary_fraction_vs_source": 0.0,
+        "observation": "The smooth blue sky develops widespread electric-blue speckling and posterized patches that are absent from the source. This is a severe color artifact even though no new uint16 boundary pixel is introduced."
+      }
+    ],
+    "other_bk2_rows_with_confirmed_severe_artifact": 0,
+    "visual_review_scope": "autonomous full-population severe-first review; not population preference or owner blind adjudication",
+    "mechanism_hypothesis": "Strong nonlinear log-chroma amplification plus source-inclusive per-pixel gamut scaling is discontinuous around already quantized near-boundary blue pixels. Avoiding new exact boundaries is therefore necessary but not sufficient for artifact safety.",
+    "thresholds_or_strengths_changed": false
+  },
+  "branch_action": "Reject BK2. Do not rescue it by lowering frozen strength on this population. Open a separately versioned candidate whose gamut-safe execution is spatially continuous and explicitly tests near-boundary smooth gradients before another fresh confirmation.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "repeatable fresh-population negative evidence for fixed BK2; not universal algorithm failure, population preference, film truth, stock response, calibration or product promotion"
+}

@@ -24,6 +24,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk3_encoded_log_chroma_fresh_comparison_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk3_encoded_log_chroma_fresh_comparison_decision_v1.json"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -105,3 +109,22 @@ def test_bk3_contract_mutation_fails_closed() -> None:
     config["rendering"]["strength_retuning_allowed"] = True
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk3_decision_rejects_repeatable_severe_artifact() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    severe = result["confirmed_severe_rows"]
+    assert decision["decision"] == "reject_fixed_bk2_severe_artifact"
+    assert decision["status"] == "closed_severe_artifact"
+    assert result["automatic_pass"]
+    assert result["confirmed_severe_artifact_count"] == 1
+    assert severe[0]["source_id"] == "phaseone_p25plus"
+    assert severe[0]["arm_id"] == "fixed_bk2_encoded_safe_log_chroma"
+    assert severe[0]["new_code_boundary_fraction_vs_source"] == 0.0
+    assert decision["evidence"]["repeat_report_byte_exact"]
+    assert decision["evidence"]["repeat_output_hash_differences"] == 0
+    assert not result["thresholds_or_strengths_changed"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["production_default_changed"]
