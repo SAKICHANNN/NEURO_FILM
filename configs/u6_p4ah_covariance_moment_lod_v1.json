@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p4ah_covariance_moment_lod_contract.v1",
+  "experiment_id": "u6.p4ah-covariance-moment-lod-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AH",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4ag_decision_path": "configs/u6_p4ag_derivative_structure_severe_lod_decision_v1.json",
+    "p4ag_decision_sha256": "6a67c3c67165ca3ffd6a4dda76ff66507a18b47ad683f5b49710579e680ae0d4",
+    "p4af_contract_path": "configs/u6_p4af_derivative_conditioned_structure_v1.json",
+    "p4af_contract_sha256": "911908a50149d74697c3e2b4211011133261563cdd6f32bbde45bb600e0b5556",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can a preregistered covariance-derived area-mean variance scale repair P4AG direct LOD without fitted coefficients?",
+  "model": {
+    "spatial_kernel": "same truncated separable discrete Gaussian as P4AF",
+    "one_dimensional_area_variance": "sum_d (factor-|d|)*rho(d)/factor^2",
+    "two_dimensional_area_variance": "one_dimensional_area_variance^2",
+    "lod_peak_density_variance": "P4AF peak variance times two-dimensional area variance",
+    "lod_correlation_sigma_pixels": "P4AF sigma divided by factor",
+    "seeds": "unchanged",
+    "fit_allowed": false,
+    "post_result_retuning_allowed": false
+  },
+  "evaluation": {
+    "shape": [256, 384],
+    "flat_exposure_levels": [0.001, 0.0055, 0.18, 4.0],
+    "lod_factors": [2, 4],
+    "runs": 2,
+    "reference": "block-mean full-resolution P4AF density and transmittance",
+    "controls": ["P4AG inverse-area direct LOD", "P4AG unscaled-variance LOD"]
+  },
+  "gates": {
+    "maximum_mean_density_absolute_error": 0.01,
+    "minimum_variance_ratio": 0.7,
+    "maximum_variance_ratio": 1.3,
+    "maximum_lag1_acf_absolute_error": 0.25,
+    "minimum_median_variance_error_improvement_over_direct": 0.5,
+    "minimum_worst_variance_error_improvement_over_direct": 0.1,
+    "minimum_median_variance_error_improvement_over_unscaled": 0.1,
+    "analytic_scale_strictly_between_direct_and_unscaled": true,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "repeat_exact": true,
+    "no_parameter_fit": true
+  },
+  "branch_rule": {
+    "pass": "Retain one covariance-moment synthetic LOD candidate and open a separately frozen nonstationary/seam/scale audit.",
+    "fail": "Close this first-order covariance LOD without coefficient, threshold or marginal rescue; retain full-resolution P4AF only."
+  },
+  "forbidden": [
+    "photograph access or visual promotion",
+    "empirical variance-scale fitting",
+    "changing the P4AF marginal, correlation or seeds",
+    "stock, process, scanner, calibration or product claims"
+  ],
+  "claim_ceiling": "No-fit first-order covariance moment approximation for synthetic P4AF area averaging; not exact nonlinear gamma-copula LOD, measured grain, photographic quality, calibration or product evidence."
+}
