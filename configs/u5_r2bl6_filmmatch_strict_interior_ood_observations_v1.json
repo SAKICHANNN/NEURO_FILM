@@ -1,0 +1,59 @@
+{
+  "schema_version": "neuro-film.u5-r2bl6-blind-observations.v1",
+  "experiment_id": "U5.R2BL6",
+  "evidence_class": "autonomous-visual-evidence-not-population-preference",
+  "revealed_mapping_at_capture": false,
+  "review_scope": "nine anonymous contact sheets; three independent deterministic permutations; style preference recorded only after severe-artifact veto",
+  "severe_artifact_observations": 0,
+  "source_order": [
+    "epson_r_d1x",
+    "motorola_moto_g_7_play",
+    "lg_lg_h850",
+    "autel_robotics_xb015",
+    "hasselblad_lunar",
+    "xiaomi_m2010j19cg",
+    "apple_iphone_12_pro",
+    "blackmagic_pocket_cinema_camera_4k",
+    "leica_c_typ_112",
+    "olympus_e_450",
+    "huawei_eml_l29",
+    "leaf_aptus_22"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "choices": ["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "A", "B"],
+      "anonymous_tally": {"A": 10, "B": 2},
+      "sheet_sha256": [
+        "f53b28a59da6701fc4978a9f5313878b4c6a254ec22f2ad17bd77c93b2c34069",
+        "eb33b120765f7ce0d6dc2b9948262d62cf97e751f49de6a1a3e643e9ef49f988",
+        "6aec71fd5339e9c974fdf279a4dad03540706d24a27577e9dab377e0b6b431ef"
+      ]
+    },
+    {
+      "round": 2,
+      "choices": ["A", "B", "B", "A", "B", "B", "B", "B", "B", "B", "B", "A"],
+      "anonymous_tally": {"A": 3, "B": 9},
+      "sheet_sha256": [
+        "3a407190cf9da84cea88a1c82afddf13ffd254bf8d06d446c53207c0350fc495",
+        "e441345cfc34c521e95c5126943ad2ab27f1e79bb86ff5c0109055aae8104e8e",
+        "562df47692dffaedf5191cd1d5bf8d3e4f90623c1d1afac712a8ee5cf7bf7aa4"
+      ]
+    },
+    {
+      "round": 3,
+      "choices": ["A", "A", "A", "A", "B", "A", "A", "B", "A", "B", "A", "B"],
+      "anonymous_tally": {"A": 8, "B": 4},
+      "sheet_sha256": [
+        "5d6c853e6a976eaab1d146a3dede47b0429c9da3bdf497d877af3415f955944c",
+        "895f45e77832d525b01b270fa95a843cc2c8a9fd8c5463d7754110cce6bb32d0",
+        "63cbc9744e95ef7dde6b69b09af7f731bc33b429ab616352dccd169a5f7c8797"
+      ]
+    }
+  ],
+  "review_notes": [
+    "No anonymous arm showed geometry corruption, banding, posterization, red speckles, text damage, or other confirmed severe artifact at contact-sheet scale.",
+    "Choices prefer visible but photographic colour and contrast; a strong magenta cast was not automatically preferred merely for being stronger.",
+    "Mapping files were not read before this observation artifact was written and committed."
+  ]
+}
