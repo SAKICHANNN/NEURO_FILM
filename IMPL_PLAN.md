@@ -2222,3 +2222,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > across content cells defined independently of colour appearance, with exact
 > hard fallback and the same film-inspired claim ceiling.
 >
+> `U5.R2BK22` passes that synthetic mechanism test without adding capacity.
+> Valid and cell-shuffled views share the exact pooled target multiset. The
+> hard RFF-MMD candidate improves every valid cell by at least 92.99%, while
+> the shuffled view has a 5.25% worst cell and returns identity. This retains
+> only an external-connectivity prior. The next leaf must audit whether
+> rights-cleared real data actually supplies colour-independent
+> same-look/different-content cells; cells may not be inferred from appearance,
+> source or scanner shortcuts.
+>

@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u5_r2bk22_content_cell_appearance_gate_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk22-content-cell-appearance-gate-v1",
+  "config": "configs/u5_r2bk22_content_cell_appearance_gate_v1.json",
+  "config_sha256": "50da34d6ade0b0e9b202baf7f85a0aa10c0d21c297e71d1084b47c519e267731",
+  "software_commit": "27adb0b8",
+  "formal_report": "outputs/u5_r2bk22_content_cell_appearance_gate_v1/formal_a/report.json",
+  "formal_report_sha256": "677dfbd2467ad1857e14923fe242ffbbff0023903d9d661d5ffe5462eb91c73c",
+  "repeat_report": "outputs/u5_r2bk22_content_cell_appearance_gate_v1/formal_b/report.json",
+  "repeat_report_sha256": "677dfbd2467ad1857e14923fe242ffbbff0023903d9d661d5ffe5462eb91c73c",
+  "automatic_pass": true,
+  "decision": "retain_content_cell_worst_case_gate_prior",
+  "observations": {
+    "device": "cpu",
+    "pooled_target_sets_exact": true,
+    "canonicalizer_operator_rmse": 0.010943361485759596,
+    "selected_canonicalizer": "rff_mmd_144",
+    "valid_correspondence": {
+      "policy_result": "hard_explicit_candidate",
+      "worst_cell_improvement_fraction": 0.9299462256875795,
+      "cell_improvement_fractions": [
+        0.9629419248606411,
+        0.9299462256875795,
+        0.9427714351714149,
+        0.962684335488897
+      ]
+    },
+    "confounded_correspondence": {
+      "policy_result": "identity_fallback",
+      "worst_cell_improvement_fraction": 0.052464701686520065,
+      "cell_improvement_fractions": [
+        0.4667733908976872,
+        0.1553065497602596,
+        0.052464701686520065,
+        0.5442938186758812
+      ],
+      "fallback_reason": "content-cell-worst-case"
+    },
+    "minimum_jacobian_determinant": 0.20468631126637077,
+    "maximum_jacobian_spectral_norm": 1.9036725046873562,
+    "maximum_inverse_error": 1.1045063197379079e-09,
+    "maximum_replay_error": 0.0
+  },
+  "interpretation": "When an external colour-independent cell correspondence exists, worst-cell validation distinguishes a valid shared appearance look from a cell-shuffled confound even though the pooled source and target colour multisets are identical. This is a connectivity prior, not a method for inferring cells or identifying the physical operator.",
+  "allowed_next": [
+    "audit current rights-cleared data for externally observed same-look/different-content cells",
+    "use the gate only when cell identity is independent of image colour and target style",
+    "retain identity or stock-global hard fallback when connectivity is absent"
+  ],
+  "forbidden": [
+    "infer cells from RGB, histograms, CLIP, source, scanner or uploader and call them content truth",
+    "treat the synthetic pass as real-film operator identification",
+    "train a router or per-cell experts on current stock pixels",
+    "promote a product or calibrated claim"
+  ],
+  "claim_ceiling": "synthetic evidence that externally supplied colour-independent content-cell connectivity can veto a pooled appearance shortcut"
+}

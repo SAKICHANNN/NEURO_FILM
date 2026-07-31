@@ -2,6 +2,25 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - Retain U5.R2BK22 external content-cell gate prior
+
+- **Node/parent:** `ULT > U5 > U5.R2BK22`, after BK21 proves canonicalizer
+  agreement alone accepts a content shift.
+- **Method:** held the two BK21 objectives, O0 capacity and hard-selection
+  policy fixed. Valid and confounded views have exact pooled source/target
+  multisets; only an external four-cell correspondence is rotated.
+- **Evidence:** five focused tests pass. Two CPU float32 reports are exact at
+  `677dfbd2...c73c`. The valid worst-cell improvement is 92.99%; the
+  confounded worst cell is 5.25% and triggers identity fallback. Output,
+  Jacobian, inverse and replay gates pass.
+- **Decision:** retain only the mechanism that externally supplied,
+  colour-independent connectivity can veto a pooled appearance shortcut.
+  This is not permission to infer cells from RGB, embeddings, source or
+  scanner metadata.
+- **Handoff:** audit current rights-cleared data for genuine observed
+  same-look/different-content cells. Without them, keep global/identity
+  fallback and do not train routing.
+
 # 2026-07-31 - Close U5.R2BK21 canonicalizer-consensus appearance policy
 
 - **Node/parent:** `ULT > U5 > U5.R2BK21`, after BK20 constructive unpaired
