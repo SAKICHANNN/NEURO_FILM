@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p2n_silver_retention_density_contract.v1",
+  "node": "U6.P2N",
+  "date_frozen": "2026-07-31",
+  "question": "Can colour-dye density and retained neutral silver be combined as a bounded explicit density-domain process branch with exact identity, domain, partition and analytical composition guarantees before any photographic style test?",
+  "claim_ceiling": "generic physical-inspired silver-retention process primitive; retention fraction and density weights are hypothesis-only and are not a measured bleach-bypass, stock, lab, scanner or product profile",
+  "profile": {
+    "name": "generic-partial-silver-retention-v1",
+    "retention_fraction": 0.35,
+    "dye_to_silver_weights": [0.2126, 0.7152, 0.0722],
+    "maximum_input_dye_density": 3.0,
+    "maximum_output_total_density": 4.05,
+    "normal_bleach_fix_retention_fraction": 0.0,
+    "application_order": ["developed_colour_dye_density", "retained_neutral_silver_density", "combined_total_density", "transmittance"],
+    "colour_film_material": "dye density plus optional retained metallic silver",
+    "hard_clipping_forbidden": true
+  },
+  "synthetic_witnesses": {
+    "shape": [73, 109],
+    "seed": 62041,
+    "density_range": [0.0, 3.0],
+    "constant_density_levels": [0.0, 0.18, 0.8, 1.6, 3.0],
+    "row_partitions": [17, 31],
+    "derivative_epsilon": 1e-6
+  },
+  "automatic_gates": {
+    "zero_retention_identity_must_be_exact": true,
+    "repeat_must_be_exact": true,
+    "row_partitions_must_be_exact": true,
+    "minimum_silver_density": 0.0,
+    "maximum_silver_density": 1.05,
+    "maximum_total_density": 4.05,
+    "maximum_density_composition_error": 1e-15,
+    "maximum_dye_opponent_difference_error": 1e-15,
+    "maximum_transmittance_chromaticity_error": 1e-15,
+    "minimum_own_density_derivative": 1.0,
+    "minimum_cross_density_derivative": 0.0,
+    "input_must_remain_exact": true,
+    "hard_clip_count_must_be_zero": true
+  },
+  "research_basis": [
+    {
+      "source": "Kodak Motion Picture Film Processing Techniques",
+      "url": "https://www.kodak.com/en/motion/page/processing-techniques/",
+      "use": "manufacturer statement that retained silver raises contrast and reduces colour saturation; no parameter calibration"
+    },
+    {
+      "source": "Kodak Exploring the Color Image",
+      "url": "https://www.kodak.com/content/products-brochures/Film/Exploring-the-Color-Image.pdf",
+      "use": "dye-density and colour-film process context; no process recipe"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "treat retained silver as RGB display noise or a saturation slider",
+    "infer bleach, fixer, process session or retention fraction from image appearance",
+    "call the fixed fraction a measured skip-bleach or bleach-bypass recipe",
+    "hard clip density or transmittance",
+    "change the profile, witnesses or gates after the formal report",
+    "advance to photographs or product integration if any automatic gate fails"
+  ],
+  "branch_rule": {
+    "pass": "retain the primitive and freeze a separate photographic severe-artifact and matched-basic style-value audit",
+    "fail": "close the silver-retention branch and retain the normal dye-only colour process"
+  }
+}
