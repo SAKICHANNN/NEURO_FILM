@@ -13,6 +13,10 @@ CONFIG = ROOT / "configs/u5_r2bk15_orthogonal_residual_blind_preference_v1.json"
 OBSERVATIONS = (
     ROOT / "configs/u5_r2bk15_orthogonal_residual_blind_observations_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk15_orthogonal_residual_blind_preference_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -67,3 +71,38 @@ def test_bk15_observations_are_complete_and_frozen_blind() -> None:
     for row in observations["rounds"]:
         assert set(row["votes"]) == source_ids
         assert set(row["votes"].values()) <= {"A", "B", "C", "D", "tie"}
+
+
+def test_bk15_decision_closes_bk10_without_relaxing_gate() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "close_bk10_as_generalized_preference_challenger"
+    )
+    assert not result["blind_gate_passed"]
+    assert result["confirmed_severe_artifact_count"] == 0
+    assert result["counts"][
+        "fixed_bk10_safe_base_orthogonal_residual"
+    ] == 13
+    assert result["round_wins"][
+        "fixed_bk10_safe_base_orthogonal_residual"
+    ] == 1
+    assert result["bk10_pairwise_round_wins"][
+        "safe_rich_velvia_50"
+    ] == 1
+    assert result["failed_gates"] == [
+        {
+            "name": "minimum_bk10_overall_round_wins",
+            "observed": 1,
+            "required": 2,
+        },
+        {
+            "name": "minimum_bk10_round_wins_vs_safe_rich",
+            "observed": 1,
+            "required": 2,
+        },
+    ]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
+    assert not decision["production_default_changed"]

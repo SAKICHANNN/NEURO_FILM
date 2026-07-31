@@ -1,0 +1,83 @@
+{
+  "schema": "neuro_film.u5_r2bk15_orthogonal_residual_blind_preference_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk15-orthogonal-residual-blind-preference-v1",
+  "node": "ULT > U5 > U5.R2BK15",
+  "status": "blind_preference_gate_failed_branch_closed",
+  "decision": "close_bk10_as_generalized_preference_challenger",
+  "result": {
+    "blind_gate_passed": false,
+    "confirmed_severe_artifact_count": 0,
+    "total_votes": 36,
+    "counts": {
+      "fixed_bk10_safe_base_orthogonal_residual": 13,
+      "fixed_bk7_smooth_perceptual_hue_density": 12,
+      "fixed_ao6_colour_only_t15_c35": 2,
+      "safe_rich_velvia_50": 9,
+      "tie": 0
+    },
+    "round_wins": {
+      "fixed_bk10_safe_base_orthogonal_residual": 1,
+      "fixed_bk7_smooth_perceptual_hue_density": 1,
+      "fixed_ao6_colour_only_t15_c35": 0,
+      "safe_rich_velvia_50": 0,
+      "tie": 1
+    },
+    "bk10_total_choice_share": 0.3611111111111111,
+    "bk10_choice_share_vs_controls": {
+      "fixed_bk7_smooth_perceptual_hue_density": 0.52,
+      "fixed_ao6_colour_only_t15_c35": 0.8666666666666667,
+      "safe_rich_velvia_50": 0.5909090909090909
+    },
+    "bk10_pairwise_round_wins": {
+      "fixed_bk7_smooth_perceptual_hue_density": 2,
+      "fixed_ao6_colour_only_t15_c35": 3,
+      "safe_rich_velvia_50": 1
+    },
+    "failed_gates": [
+      {
+        "name": "minimum_bk10_overall_round_wins",
+        "observed": 1,
+        "required": 2
+      },
+      {
+        "name": "minimum_bk10_round_wins_vs_safe_rich",
+        "observed": 1,
+        "required": 2
+      }
+    ],
+    "passed_secondary_gates": {
+      "minimum_bk10_total_choice_share": true,
+      "minimum_bk10_round_wins_vs_bk7": true,
+      "minimum_bk10_round_wins_vs_ao6": true,
+      "minimum_bk10_choice_share_vs_each_control": true,
+      "confirmed_severe_artifact_allowed": true
+    },
+    "interpretation": "BK10 is a strong artifact-safe factorization result and has the highest aggregate choices, narrowly exceeds BK7, decisively exceeds full AO6 and exceeds safe-rich in aggregate. It nevertheless wins only one overall round and fails the preregistered two-round requirement against safe-rich. The result is round-unstable rather than a generalized preference winner. No threshold relaxation, revote, rerender or post-reveal tuning is allowed."
+  },
+  "evidence": {
+    "software_commit": "536cd85441f4eeac53f6a4e0154db18e3a414e0e",
+    "contract_sha256": "144b97ef609f671ab9e410867b61e5f728172b44d338a1719f4c64929df0a818",
+    "blind_observations_commit": "536cd85441f4eeac53f6a4e0154db18e3a414e0e",
+    "blind_observations_sha256": "86c7862c17fab8f6ba3fa9d9f886813266c5a21349e4886ecd0cd514c5e5a4b5",
+    "build_receipt_sha256": "8357c673fd87f901f7047d49b04b841a078e05fc845f19ebe684f48272aa69b0",
+    "result_sha256": "effcec3bed546ee011c4d7715a1b1e8c3b7647a1157b6ee9cb21c201d34cdb9d",
+    "stable_evidence_id": "4a7973f72e1a2cafd82c01e77cd7193c630826069ad1042c99498c178e636888"
+  },
+  "forbidden_rescue": [
+    "lower the frozen two-round overall or safe-rich pairwise gates",
+    "reinterpret the tied round as a BK10 win",
+    "revote after mapping reveal",
+    "retune BK10 on BK13S/BK14/BK15 pixels or votes",
+    "promote BK10 because it has the largest aggregate count",
+    "reuse the fifth-fresh population as successor confirmation"
+  ],
+  "branch_action": "Close BK10 as the generalized preference challenger while retaining it as artifact-safe factorization evidence. The next synthetic-only candidate may reuse the proven safe-base and analytical gamut machinery but must change the residual source/mechanism before any sixth leakage-clean population.",
+  "next_leaf": "freeze a synthetic-only safe-rich-base plus bounded AO6-direction orthogonal residual candidate, using only the fixed synthetic cube and known severe regression controls for parameter gates; do not read BK13S/BK14/BK15 pixels for tuning",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "autonomous blind negative preference gate for fixed BK10 on one frozen fifth-fresh population; BK10 remains artifact-safe mechanism evidence but is not a generalized winner, owner preference, population preference, stock response, calibration or product promotion"
+}
