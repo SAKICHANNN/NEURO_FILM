@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u5_r2bl3_filmmatch_identity_residual_ood.v1",
+  "experiment_id": "u5.r2bl3-filmmatch-identity-residual-ood-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL3",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the fixed BL1 equation remain severe-clean and visually valuable versus fixed AO6 on twelve content-diverse CC0 RAW photographs from twelve camera makes?",
+  "candidate": {
+    "bl1_report": "outputs/external_controls/filmmatch_ektachrome_v1/identity_residual_sigmoid_bl1/run_a.json",
+    "bl1_report_sha256": "8e10c665c2fd6816d21e4ab10534e6852c72e9518baad0532ee33f138a709784",
+    "bl1_stable_evidence_id": "6cb29367190311a52f968e54447a2bb00653f751d6fcfea2b7bda472293893d6",
+    "bl2_decision": "configs/u5_r2bl2_filmmatch_identity_residual_validation_decision_v1.json",
+    "bl2_decision_sha256": "37e6fc73503124bc2436964e049b7eecde174a16e9c5008bcfe2cab73d047d45",
+    "required_bl2_status": "retain_internal_look_approximation_candidate"
+  },
+  "population": {
+    "bh1_contract": "configs/u5_r2bh1_fixed_global_policy_confirmation_v1.json",
+    "bh1_contract_sha256": "e28a71160267aabf1ecf088de5ef8907da0c94bc36d1148da281988cf5c14223",
+    "bh1_decision": "configs/u5_r2bh1_fixed_global_policy_confirmation_decision_v1.json",
+    "bh1_decision_sha256": "47e37316f8910c27d885d3e0f8a680e76592aae526212d3ecaae5c6fd523234c",
+    "expected_sources": 12,
+    "expected_camera_makes": 12,
+    "program_wide_fresh_population": false,
+    "candidate_fit_or_tuning_population": false
+  },
+  "fixed_arms": [
+    "fixed_ao6_colour_only_t15_c35",
+    "fixed_bl1_identity_residual_sigmoid"
+  ],
+  "rendering": {
+    "input_to_bl1": "rowwise IEC-61966-2-1 encoded display RGB from the same scene-linear WorkingImage used by AO6",
+    "create_only": true,
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "hard_clipping_allowed": false,
+    "final_format": "rgb16_png",
+    "require_two_run_report_and_output_identity": true
+  },
+  "automatic_gate": {
+    "expected_outputs": 24,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_boundary_fraction_vs_ao6": 0.005,
+    "minimum_median_bl1_style_rgb_rmse_from_source": 0.08
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "sources_per_round": 12,
+    "ties_allowed": false,
+    "independent_per_source_mapping_each_round": true,
+    "minimum_bl1_round_wins": 2,
+    "minimum_bl1_aggregate_choices": 22,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branches": {
+    "automatic_or_severe_fail": "close BL1 ordinary-photo use without retuning",
+    "preference_fail": "retain BL1 paired-code-domain evidence only; AO6 remains incumbent",
+    "preference_pass": "retain BL1 as a high-priority internal Look Approximation challenger; require a genuinely fresh population before incumbent replacement"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "product_integration_allowed": false,
+  "calibrated_stock_response_claim_allowed": false,
+  "claim_ceiling": "candidate-fit-independent but program-wide reused CC0 OOD safety and autonomous visual-value evidence for a fixed internal Look Approximation; not independent confirmation, population preference, film truth, calibrated Ektachrome response, universal safety or product promotion"
+}
