@@ -29,8 +29,8 @@ def _canonical_json(value: Any) -> bytes:
     ).encode("utf-8")
 
 
-def _hash_file(path: Path) -> str:
-    digest = hashlib.sha256()
+def hash_file(path: Path, algorithm: str = "sha256") -> str:
+    digest = hashlib.new(algorithm)
     with path.open("rb") as stream:
         while chunk := stream.read(1024 * 1024):
             digest.update(chunk)
@@ -131,11 +131,11 @@ def _tool_identity(executable: str) -> dict[str, str]:
     return {
         "name": executable,
         "version": banner[0].strip(),
-        "sha256": _hash_file(Path(resolved)),
+        "sha256": hash_file(Path(resolved)),
     }
 
 
-def _extract_pdf(pdf: Path) -> tuple[str, int, list[dict[str, str]]]:
+def extract_pdf(pdf: Path) -> tuple[str, int, list[dict[str, str]]]:
     pdftotext = _tool_identity("pdftotext.exe")
     pdfinfo = _tool_identity("pdfinfo.exe")
     text_run = subprocess.run(
@@ -220,7 +220,7 @@ def audit_source(config: dict[str, Any], root: Path) -> dict[str, Any]:
     expected = int(config["source"]["expected_bytes"])
     if not pdf.is_file() or pdf.stat().st_size != expected:
         raise CallierSourceError("P6M local source integrity mismatch")
-    text, pages, tools = _extract_pdf(pdf)
+    text, pages, tools = extract_pdf(pdf)
     observations = evaluate_observations(text)
     source_pass = (
         pages == int(config["source"]["expected_pages"])
@@ -228,7 +228,7 @@ def audit_source(config: dict[str, Any], root: Path) -> dict[str, Any]:
     )
     stable = {
         "experiment_id": config["experiment_id"],
-        "source_sha256": _hash_file(pdf),
+        "source_sha256": hash_file(pdf),
         "source_bytes": pdf.stat().st_size,
         "page_count": pages,
         "extracted_text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
@@ -256,5 +256,7 @@ __all__ = [
     "acquire_source",
     "audit_source",
     "evaluate_observations",
+    "extract_pdf",
+    "hash_file",
     "load_contract",
 ]
