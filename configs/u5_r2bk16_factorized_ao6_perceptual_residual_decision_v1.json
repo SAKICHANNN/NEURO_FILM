@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u5_r2bk16_factorized_ao6_perceptual_residual_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk16-factorized-ao6-perceptual-residual-v1",
+  "node": "ULT > U5 > U5.R2BK16",
+  "status": "primitive_and_known_failure_regression_pass",
+  "decision": "retain_fixed_bk16_open_sixth_fresh_source_preflight",
+  "result": {
+    "automatic_pass": true,
+    "repeat_file_count": 6,
+    "repeat_file_differences": 0,
+    "visual_review_allowed": true,
+    "confirmed_severe_artifact_count": 0,
+    "known_phaseone_failure_reproduced": false,
+    "known_phaseone_finding": "Full-resolution source, safe-rich, BK16 and AO6 plus two 600x600 sky/cloud crops show that BK16 adds visible cool-cyan shadow and warm-gray cloud separation without reproducing BK2 electric-blue/red speckling or posterization. Source dust, sensor points and texture remain spatially aligned; no new geometry, texture or severe colour artifact is confirmed.",
+    "cube_median_style_delta_e76": 13.841256141662598,
+    "cube_p95_style_delta_e76": 18.86687469482422,
+    "cube_median_increment_vs_base_delta_e76": 6.052452564239502,
+    "cube_p95_increment_vs_base_delta_e76": 6.638333320617676,
+    "cube_maximum_increment_vs_base_delta_e76": 8.00002384185791,
+    "cube_final_cap_fraction": 0.008141664970486465,
+    "cube_new_uint16_boundary_fraction": 0.0,
+    "neutral_ramp_minimum_lightness_step": 0.0040531158447265625,
+    "neutral_ramp_maximum_chroma": 5.91982889175415,
+    "safe_base_neutral_ramp_maximum_chroma": 8.502643585205078,
+    "phaseone_style": {
+      "safe_rich_median_delta_e76": 6.0341362953186035,
+      "bk16_median_delta_e76": 10.696483612060547,
+      "ao6_median_delta_e76": 18.843318939208984,
+      "bk16_median_increment_vs_base_delta_e76": 5.713605880737305,
+      "bk16_maximum_increment_vs_base_delta_e76": 6.92949104309082,
+      "bk16_new_boundary_fraction": 0.0
+    },
+    "rejected_projection_prototype": {
+      "retained": false,
+      "neutral_ramp_local_lightness_reversals": 8,
+      "worst_lightness_step": -1.730667,
+      "reason": "The per-pixel orthogonal projection prototype violated neutral-ramp monotonicity before the contract was frozen."
+    }
+  },
+  "evidence": {
+    "software_commit": "0bb6d1bea36d70520f440a4b485fafa55850aef7",
+    "config": {
+      "path": "configs/u5_r2bk16_factorized_ao6_perceptual_residual_v1.json",
+      "sha256": "bda70dd31ff16dd55663a3380acbba88ab60876270241c193fa8e9bb87c28889"
+    },
+    "formal_runs": [
+      "outputs/u5_r2bk16_factorized_ao6_perceptual_residual_v1/run_a",
+      "outputs/u5_r2bk16_factorized_ao6_perceptual_residual_v1/run_b"
+    ],
+    "report_sha256": "2b950000a02d06e27000390974b98b8456546616eadac8f36a14e238e920a79e",
+    "visual_sheet_sha256": "d939653f6914a64676df32d9787b8b274a6c4f6275360989370deab718aacffd",
+    "stable_evidence_id": "9b1348f3cd13cf1936c6d520a6c2d22d0fa7b40eadff858a984113c44defef0",
+    "repeat_report_sha256_exact": true,
+    "repeat_visual_sheet_sha256_exact": true,
+    "repeat_output_sha256_exact": true
+  },
+  "branch_action": "Retain BK16 as a fixed artifact-safe factorized AO6-direction Look Approximation challenger. Freeze a sixth leakage-clean rights-cleared RAW population before any generalized automatic or blind comparison.",
+  "next_leaf": "freeze and run a sixth leakage-clean CC0 RAW source preflight that excludes every prior tracked source manifest, including BK13S/BK14/BK15; do not inspect BK16 outputs on that population before source eligibility is frozen",
+  "forbidden_rescue_or_promotion": [
+    "use this primitive and one known-failure image as generalized preference evidence",
+    "reuse BK13S, BK14 or BK15 images or votes for tuning or confirmation",
+    "change the frozen BK16 strength, lightness cap, chroma cap, final Delta E cap or gamut policy after seeing sixth-population pixels",
+    "train a selector, router or dense blend",
+    "claim stock, process, exposure, scanner, calibration or product promotion",
+    "change the production default"
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "strength_retuning_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fixed synthetic safe-base plus factorized bounded AO6-direction Look Approximation primitive with one autonomous known-severe-failure regression pass; not generalized preference, owner preference, population preference, stock response, calibration or product promotion"
+}

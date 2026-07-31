@@ -1,11 +1,20 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 import pytest
 from skimage.color import rgb2lab
 
 from src.roll2film.factorized_ao6_perceptual_residual import (
     FactorizedAO6PerceptualResidual,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk16_factorized_ao6_perceptual_residual_decision_v1.json"
 )
 
 
@@ -72,3 +81,28 @@ def test_factorized_ao6_residual_rejects_invalid_contracts() -> None:
         operator.apply(source, source[..., :2], source)
     with pytest.raises(ValueError):
         operator.apply(source, source, source, strength=1.01)
+
+
+def test_bk16_decision_opens_only_sixth_fresh_source_preflight() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["status"] == "primitive_and_known_failure_regression_pass"
+    assert decision["decision"] == (
+        "retain_fixed_bk16_open_sixth_fresh_source_preflight"
+    )
+    assert result["automatic_pass"]
+    assert result["repeat_file_count"] == 6
+    assert result["repeat_file_differences"] == 0
+    assert result["confirmed_severe_artifact_count"] == 0
+    assert not result["known_phaseone_failure_reproduced"]
+    assert result["cube_new_uint16_boundary_fraction"] == 0.0
+    assert result["neutral_ramp_minimum_lightness_step"] > 0.0
+    assert decision["evidence"]["repeat_report_sha256_exact"]
+    assert decision["evidence"]["repeat_visual_sheet_sha256_exact"]
+    assert decision["evidence"]["repeat_output_sha256_exact"]
+    assert "sixth leakage-clean" in decision["next_leaf"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
+    assert not decision["strength_retuning_allowed"]
+    assert not decision["production_default_changed"]

@@ -8158,3 +8158,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   skips and five known metadata/duplicate-fixture warnings in `1587.65s`.
 - This is test isolation and reproducibility repair only. No renderer,
   algorithm, profile, scientific gate or product claim changed.
+
+## 2026-07-31 - Retain U5.R2BK16 and open sixth-fresh source preflight
+
+- The frozen safe-rich plus factorized AO6 residual passed all synthetic,
+  neutral-ramp, analytical gamut and Phase One known-failure gates in two
+  byte-identical six-file runs (`2b950000...20a79e`; stable
+  `9b1348f3...fef0e`).
+- Full-resolution autonomous review confirmed zero severe artifacts and did
+  not reproduce BK2 electric-blue/red speckling or posterization. BK16 visibly
+  increases the safe-rich style but remains below full AO6 strength.
+- Retain BK16 only as a fixed Look Approximation challenger. No preference,
+  stock, calibration, router or product claim opens. The next leaf must freeze
+  a sixth rights-cleared RAW population disjoint from all prior manifests
+  before any BK16 output on it is inspected.
