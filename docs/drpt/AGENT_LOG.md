@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - Pass U6.P4AD-P4AF derivative-conditioned grain structure
+
+- P4AD derives `H*(dD/dH)^2` from exposure Poisson statistics; P4AE verifies
+  finite interior peaks for all unchanged U2.2 channels. These are generic
+  mechanism checks, not measured stock evidence.
+- P4AF compiles the fixed derivative variance into positive developed density
+  using a deterministic gamma copula. Two reports are exact at
+  `dd53b816...1640`; mean, variance, ramp-shape, ACF, physical-domain, repeat
+  and row-partition gates pass.
+- Retain only as a synthetic approximation. P4AG must compare severe artifacts
+  and LOD against P4D and constant variance before any photographic branch.
+
 # 2026-08-01 - Close U6.P4AC no-fit peaked grain shape
 
 - Froze a 2.0D-peaked exponential variance family before evaluating the same

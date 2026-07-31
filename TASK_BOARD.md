@@ -420,11 +420,12 @@ pooled regression, but minimum Jacobian determinant is `.001516 < .01`.
 The frozen structural gate closes the family without strength, weighting,
 capacity or photograph rescue; AO6 remains the colour development champion.
 
-Current algorithm state: BJ0-BJ2 adaptive neutral-base LUTs are closed; U6.P4AA
-passes a new measured granularity-table source, P4AB closes unchanged P4D, and
-P4AC closes a no-fit 2.0D-peaked replacement because it improves rank/tail but
-worsens median error by 58.31%. Continue a distinct explicit colour or physical
-mechanism; do not retune any closed density-shape family.
+Current algorithm state: BJ0-BJ2 adaptive neutral-base LUTs are closed. U6.P4AC
+closes the no-fit 2.0D-peaked family; P4AD-P4AE instead pass an exposure-Poisson
+variance mechanism propagated through characteristic-curve slope and unchanged
+U2.2 sensitometry. P4AF compiles that shape into positive, mean-preserving,
+partition-exact synthetic density structure. It is not measured emulsion; P4AG
+must now compare severe/LOD behavior against P4D and constant variance.
 Contract and primitive tests are frozen; implement and run the unchanged
 three-population audit next. No new data is allowed unless every development
 gate passes.

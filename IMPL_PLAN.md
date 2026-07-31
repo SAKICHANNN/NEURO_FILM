@@ -2307,3 +2307,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > peak/exponent/aperture rescue. A next grain mechanism must be independently
 > motivated, such as characteristic-curve slope plus exposure statistics.
 >
+> `U6.P4AD-P4AF` implement that distinct mechanism. Exposure-Poisson variance
+> propagated through characteristic slope has an interior peak analytically and
+> under the unchanged U2.2 curves. A positive moment-matched gamma structure
+> reproduces its mean/variance shape with exact repeat and row partitions
+> (`dd53b816...1640`). The amplitude, correlation and marginal family are fixed
+> synthetic choices; only a separate synthetic severe/LOD comparison opens.
+>
