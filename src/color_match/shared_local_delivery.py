@@ -17,7 +17,12 @@ from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
-from .files import _commit_staged_batch, _stage_path
+from .files import (
+    _cleanup_owned_files,
+    _commit_staged_batch,
+    _remember_owned_file,
+    _stage_path,
+)
 from .shared_composition import SharedReferenceCompositionV1
 from .shared_delivery_authorization import (
     SharedLocalDeliveryAuthorizationV1,
@@ -219,6 +224,7 @@ def commit_shared_local_delivery_v1(
     )
     token = uuid.uuid4().hex
     staged: list[Path] = []
+    staged_identities: dict[Path, tuple[int, int]] = {}
     prepared: list[SharedLocalDeliveryOutputV1] = []
     try:
         for row, output in zip(
@@ -230,6 +236,7 @@ def commit_shared_local_delivery_v1(
             stage = _stage_path(output, token)
             staged.append(stage)
             _copy_exact(Path(row.output_path), stage)
+            _remember_owned_file(stage, staged_identities)
             digest = sha256_file(stage)
             if digest != row.output_file_sha256:
                 raise ReferenceMatchContractError(
@@ -268,6 +275,7 @@ def commit_shared_local_delivery_v1(
         staged_report = _stage_path(report, token)
         staged.append(staged_report)
         atomic_write_json(staged_report, delivery.to_dict())
+        _remember_owned_file(staged_report, staged_identities)
         report_digest = sha256_file(staged_report)
         pairs = tuple(
             (_stage_path(output, token), output) for output in outputs
@@ -278,8 +286,7 @@ def commit_shared_local_delivery_v1(
             report_file_sha256=report_digest,
         )
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
 
 
 def validate_shared_local_delivery_v1(value: SharedLocalDeliveryV1) -> None:

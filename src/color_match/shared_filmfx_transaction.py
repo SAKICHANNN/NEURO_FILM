@@ -15,7 +15,12 @@ from .strict_json import strict_json_loads
 from .batch_limits import MAX_REFERENCE_MATCH_BATCH_SOURCES
 from .canonical import canonical_sha256
 from .contracts import ReferenceMatchContractError
-from .files import _commit_staged_batch, _stage_path
+from .files import (
+    _cleanup_owned_files,
+    _commit_staged_batch,
+    _remember_owned_file,
+    _stage_path,
+)
 from .filmfx_staging_io import (
     protect_staging_inputs,
     render_procedural_filmfx,
@@ -225,6 +230,7 @@ def commit_shared_filmfx_staging_v1(
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
+    staged_identities: dict[Path, tuple[int, int]] = {}
     prepared: list[SharedFilmFxOutputV1] = []
     try:
         for index, (source_row, output) in enumerate(
@@ -242,6 +248,7 @@ def commit_shared_filmfx_staging_v1(
                 source_index=index,
                 output_bit_depth=output_bit_depth,
             )
+            _remember_owned_file(stage, staged_identities)
             prepared.append(
                 SharedFilmFxOutputV1(
                     source_index=index,
@@ -284,6 +291,7 @@ def commit_shared_filmfx_staging_v1(
         staged_report = _stage_path(report, token)
         staged.append(staged_report)
         atomic_write_json(staged_report, run.to_dict())
+        _remember_owned_file(staged_report, staged_identities)
         report_sha256 = sha256_file(staged_report)
         pairs = tuple(
             (_stage_path(output, token), output) for output in outputs
@@ -294,8 +302,7 @@ def commit_shared_filmfx_staging_v1(
             report_file_sha256=report_sha256,
         )
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
 
 
 def validate_shared_filmfx_run_v1(value: SharedFilmFxRunV1) -> None:

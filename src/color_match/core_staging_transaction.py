@@ -32,7 +32,12 @@ from .dpct_batch import (
     DpctBatchResolutionV1,
     validate_dpct_batch_resolution_v1,
 )
-from .files import _commit_staged_batch, _stage_path
+from .files import (
+    _cleanup_owned_files,
+    _commit_staged_batch,
+    _remember_owned_file,
+    _stage_path,
+)
 from .staging_io import (
     SDR16_OUTPUT_EXTENSIONS,
     SDR_OUTPUT_EXTENSIONS,
@@ -252,6 +257,7 @@ def commit_external_core_staging_v1(
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
+    staged_identities: dict[Path, tuple[int, int]] = {}
     prepared: list[ExternalCoreStagedOutputV1] = []
     try:
         for index, (candidate, output) in enumerate(
@@ -266,6 +272,7 @@ def commit_external_core_staging_v1(
                 output_bit_depth=output_bit_depth,
                 label="external",
             )
+            _remember_owned_file(stage, staged_identities)
             receipt = candidate.prepared_output.receipt
             prepared.append(
                 ExternalCoreStagedOutputV1(
@@ -302,6 +309,7 @@ def commit_external_core_staging_v1(
         staged_report = _stage_path(report, token)
         staged.append(staged_report)
         atomic_write_json(staged_report, run.to_dict())
+        _remember_owned_file(staged_report, staged_identities)
         report_file_sha256 = sha256_file(staged_report)
         pairs = tuple(
             (_stage_path(output, token), output) for output in outputs
@@ -312,8 +320,7 @@ def commit_external_core_staging_v1(
             report_file_sha256=report_file_sha256,
         )
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
 
 
 def validate_external_core_staging_run_v1(

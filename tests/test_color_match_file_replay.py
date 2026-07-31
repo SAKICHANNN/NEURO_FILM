@@ -218,8 +218,10 @@ def test_replay_cleans_staging_and_commits_nothing_on_late_failure(
     _reference, recipe_path = _fit_recipe(tmp_path)
     good = tmp_path / "good.png"
     invalid = tmp_path / "invalid.png"
-    first_output = tmp_path / "first.png"
-    second_output = tmp_path / "second.png"
+    created = tmp_path / "created"
+    first_output = created / "first" / "output.png"
+    second_output = created / "second" / "output.png"
+    report = created / "reports" / "replay.json"
     _image(good, 27805)
     invalid.write_bytes(b"not an image")
     with pytest.raises((OSError, ValueError)):
@@ -227,9 +229,12 @@ def test_replay_cleans_staging_and_commits_nothing_on_late_failure(
             recipe_path,
             [good, invalid],
             [first_output, second_output],
+            report_path=report,
         )
     assert not first_output.exists()
     assert not second_output.exists()
+    assert not report.exists()
+    assert not created.exists()
     assert not list(tmp_path.glob("*.reference-match-stage*"))
 
 
@@ -298,6 +303,29 @@ def test_replay_never_overwrites_recipe_or_source(
     with pytest.raises(ReferenceMatchContractError, match="overwrite"):
         replay_reference_files(recipe_path, [source], [output])
     assert output.read_bytes() == before
+
+
+def test_replay_rejects_output_nested_under_recipe_before_loading_recipe(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    _reference, recipe_path = _fit_recipe(tmp_path)
+    source = tmp_path / "source.png"
+    output = recipe_path / "nested.png"
+    _image(source, 27812)
+
+    def fail_if_loaded(*_args, **_kwargs):
+        raise AssertionError("path topology must be rejected before recipe load")
+
+    monkeypatch.setattr(
+        files,
+        "load_reference_look_recipe_bound",
+        fail_if_loaded,
+    )
+    with pytest.raises(ReferenceMatchContractError, match="must not be nested"):
+        replay_reference_files(recipe_path, [source], [output])
 
 
 def test_tampered_recipe_fails_before_any_output(tmp_path: Path) -> None:

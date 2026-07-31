@@ -363,6 +363,57 @@ def _resolved_key(path: Path) -> str:
     return str(path.resolve(strict=False)).casefold()
 
 
+def _strict_path_ancestor(ancestor: str, descendant: str) -> bool:
+    if ancestor == descendant:
+        return False
+    try:
+        return os.path.commonpath((ancestor, descendant)) == ancestor
+    except ValueError:
+        # Different Windows drives cannot be nested.
+        return False
+
+
+def _validate_run_path_topology(
+    *,
+    protected_paths: tuple[Path, ...],
+    destination_paths: tuple[Path, ...],
+) -> None:
+    """Reject file destinations that require another run file to be a directory."""
+
+    for destination in destination_paths:
+        if destination.exists() and destination.is_dir():
+            raise ReferenceMatchContractError(
+                f"run destination must not be a directory: {destination}"
+            )
+    protected = tuple(
+        (_resolved_key(path), path)
+        for path in protected_paths
+    )
+    destinations = tuple(
+        (_resolved_key(path), path)
+        for path in destination_paths
+    )
+    for destination_key, destination in destinations:
+        for other_key, other in (*protected, *destinations):
+            if (
+                _strict_path_ancestor(destination_key, other_key)
+                or _strict_path_ancestor(other_key, destination_key)
+            ):
+                raise ReferenceMatchContractError(
+                    "run file paths must not be nested: "
+                    f"{destination} and {other}"
+                )
+
+
+@dataclass(frozen=True)
+class _OwnedDirectory:
+    path: Path
+    directory_identity: tuple[int, int]
+    marker_path: Path
+    marker_identity: tuple[int, int]
+    marker_payload: bytes
+
+
 def _validate_render_contract(
     protected_input_paths: tuple[Path, ...],
     source_paths: tuple[Path, ...],
@@ -424,6 +475,13 @@ def _validate_render_contract(
             raise ReferenceMatchContractError(
                 f"unsupported {output_bit_depth}-bit output extension: {suffix or '<none>'}"
             )
+    _validate_run_path_topology(
+        protected_paths=(*protected_input_paths, *source_paths),
+        destination_paths=(
+            *output_paths,
+            *((artifact_path,) if artifact_path is not None else ()),
+        ),
+    )
 
 
 def _validate_file_contract(
@@ -485,6 +543,10 @@ def _validate_report_contract(
         raise ReferenceMatchContractError(
             "reference-match report path must not be a directory"
         )
+    _validate_run_path_topology(
+        protected_paths=protected_paths,
+        destination_paths=(report_path,),
+    )
 
 
 def _stage_path(destination: Path, token: str) -> Path:
@@ -497,6 +559,61 @@ def _backup_path(destination: Path, token: str) -> Path:
     return destination.with_name(
         f".{destination.name}.{token}.reference-match-backup"
     )
+
+
+def _ensure_parent_directory(
+    destination: Path,
+    owned_directories: list[_OwnedDirectory],
+    *,
+    token: str,
+) -> None:
+    """Create destination parents and bind each to transaction-owned evidence."""
+
+    missing: list[Path] = []
+    current = destination.parent
+    while not current.exists():
+        missing.append(current)
+        current = current.parent
+    if not current.is_dir():
+        raise ReferenceMatchContractError(
+            f"destination parent is not a directory: {current}"
+        )
+    for directory in reversed(missing):
+        try:
+            directory.mkdir()
+        except FileExistsError:
+            if not directory.is_dir():
+                raise ReferenceMatchContractError(
+                    f"destination parent is not a directory: {directory}"
+                ) from None
+        else:
+            directory_identity = _file_identity(directory)
+            marker_path = (
+                directory
+                / f".{token}.reference-match-directory-owner"
+            )
+            marker_payload = (
+                "neuro-film.reference-match-directory-owner.v1\n"
+                f"{token}\n"
+                f"{directory_identity[0]}:{directory_identity[1]}\n"
+            ).encode("ascii")
+            with marker_path.open("xb") as marker:
+                marker.write(marker_payload)
+            owned = _OwnedDirectory(
+                path=directory,
+                directory_identity=directory_identity,
+                marker_path=marker_path,
+                marker_identity=_file_identity(marker_path),
+                marker_payload=marker_payload,
+            )
+            owned_directories.append(owned)
+            if (
+                directory.is_symlink()
+                or _file_identity(directory) != directory_identity
+            ):
+                raise ReferenceMatchContractError(
+                    "created destination directory identity changed"
+                )
 
 
 def _replace(source: Path, destination: Path) -> None:
@@ -536,6 +653,97 @@ def _file_identity(path: Path) -> tuple[int, int]:
 
     value = path.stat()
     return int(value.st_dev), int(value.st_ino)
+
+
+def _path_entry_identity(path: Path) -> tuple[int, int]:
+    """Return identity for the directory entry itself, without following links."""
+
+    value = path.lstat()
+    return int(value.st_dev), int(value.st_ino)
+
+
+def _path_entry_has_identity(
+    path: Path,
+    identity: tuple[int, int],
+) -> bool:
+    try:
+        return _path_entry_identity(path) == identity
+    except OSError:
+        return False
+
+
+def _remember_owned_file(
+    path: Path,
+    identities: dict[Path, tuple[int, int]],
+) -> None:
+    if not path.is_file() or path.is_symlink():
+        raise ReferenceMatchContractError(
+            "transaction staging artifact must be a regular file"
+        )
+    identities[path] = _path_entry_identity(path)
+
+
+def _cleanup_owned_files(
+    paths: Iterable[Path],
+    identities: Mapping[Path, tuple[int, int]],
+) -> None:
+    """Unlink only staging entries whose exact identity is transaction-owned."""
+
+    for path in paths:
+        identity = identities.get(path)
+        if (
+            identity is None
+            or not _path_entry_has_identity(path, identity)
+        ):
+            continue
+        try:
+            path.unlink()
+        except OSError:
+            pass
+
+
+def _owned_directory_is_current(owned: _OwnedDirectory) -> bool:
+    try:
+        return (
+            not owned.path.is_symlink()
+            and _file_identity(owned.path) == owned.directory_identity
+            and not owned.marker_path.is_symlink()
+            and _file_identity(owned.marker_path) == owned.marker_identity
+            and owned.marker_path.read_bytes() == owned.marker_payload
+        )
+    except OSError:
+        return False
+
+
+def _cleanup_owned_directories(
+    owned_directories: list[_OwnedDirectory],
+    *,
+    remove_directories: bool,
+) -> None:
+    """Remove only marker-proven directory state owned by this transaction."""
+
+    for owned in reversed(owned_directories):
+        if not _owned_directory_is_current(owned):
+            continue
+        try:
+            owned.marker_path.unlink()
+        except OSError:
+            continue
+        if not remove_directories:
+            continue
+        try:
+            # Revalidate after marker removal. If another process replaced the
+            # path, preserving the new directory is safer than path-based
+            # cleanup. A subsequent non-empty change also makes rmdir fail.
+            if (
+                owned.path.is_symlink()
+                or _file_identity(owned.path)
+                != owned.directory_identity
+            ):
+                continue
+            owned.path.rmdir()
+        except OSError:
+            pass
 
 
 def _commit_staged_batch_unlocked(
@@ -601,11 +809,28 @@ def _commit_staged_batch_unlocked(
         return value
 
     committed: list[
-        tuple[Path, Path | None, tuple[int, int] | None, str | None]
+        tuple[
+            Path,
+            Path | None,
+            tuple[int, int],
+            tuple[int, int] | None,
+            str | None,
+        ]
     ] = []
     try:
         for stage, destination in pairs:
-            published_identity: tuple[int, int] | None = None
+            if not stage.is_file() or stage.is_symlink():
+                raise ReferenceMatchContractError(
+                    "batch stage must be a regular file"
+                )
+            destination_exists = os.path.lexists(destination)
+            if destination_exists and (
+                destination.is_symlink() or not destination.is_file()
+            ):
+                raise ReferenceMatchContractError(
+                    "batch destination must be a regular file when it exists"
+                )
+            published_identity = _path_entry_identity(stage)
             published_sha256: str | None = None
             if expected_stage_sha256 is not None:
                 expected_stage = checked_hash(
@@ -643,47 +868,78 @@ def _commit_staged_batch_unlocked(
                             "destination changed before batch replacement"
                         )
             backup: Path | None = None
-            if replace_existing and destination.exists():
+            backup_identity: tuple[int, int] | None = None
+            if replace_existing and destination_exists:
+                original_identity = _path_entry_identity(destination)
                 backup = _backup_path(destination, token)
                 _replace(destination, backup)
                 cleanup.append(backup)
+                backup_identity = _path_entry_identity(backup)
+                if backup_identity != original_identity:
+                    cleanup.remove(backup)
+                    raise ReferenceMatchContractError(
+                        "destination changed while creating rollback backup"
+                    )
             try:
                 if replace_existing:
                     _replace(stage, destination)
                 else:
-                    published_identity = _file_identity(stage)
                     _move_noreplace(stage, destination)
             except Exception:
-                if backup is not None and backup.exists():
-                    _replace(backup, destination)
+                if backup is not None:
+                    if (
+                        backup_identity is None
+                        or not _path_entry_has_identity(
+                            backup,
+                            backup_identity,
+                        )
+                        or os.path.lexists(destination)
+                    ):
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        raise ReferenceMatchContractError(
+                            "batch publish failed and rollback backup "
+                            "could not be restored safely"
+                        ) from None
+                    try:
+                        _move_noreplace(backup, destination)
+                    except OSError as exc:
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        raise ReferenceMatchContractError(
+                            "batch publish failed and rollback backup "
+                            "could not be restored safely"
+                        ) from exc
                     cleanup.remove(backup)
                 raise
-            if (
-                not replace_existing
-                and (
-                    not destination.is_file()
-                    or destination.is_symlink()
-                    or _file_identity(destination)
-                    != published_identity
-                    or (
-                        published_sha256 is not None
-                        and sha256_file(destination)
-                        != published_sha256
-                    )
-                )
-            ):
-                raise ReferenceMatchContractError(
-                    "create-only destination changed during publication"
-                )
             committed.append(
                 (
                     destination,
                     backup,
                     published_identity,
+                    backup_identity,
                     published_sha256,
                 )
             )
             cleanup.remove(stage)
+            if (
+                not destination.is_file()
+                or destination.is_symlink()
+                or not _path_entry_has_identity(
+                    destination,
+                    published_identity,
+                )
+            ):
+                raise ReferenceMatchContractError(
+                    "destination changed during publication"
+                )
+            if (
+                published_sha256 is not None
+                and sha256_file(destination) != published_sha256
+            ):
+                raise ReferenceMatchContractError(
+                    "committed destination bytes differ from staged hash"
+                )
         if expected_stage_sha256 is not None and replace_existing:
             for (
                 (stage, destination),
@@ -691,6 +947,7 @@ def _commit_staged_batch_unlocked(
                     committed_destination,
                     _backup,
                     published_identity,
+                    _backup_identity,
                     _published_sha256,
                 ),
             ) in zip(pairs, committed, strict=True):
@@ -707,15 +964,14 @@ def _commit_staged_batch_unlocked(
                         "committed destination bytes differ from staged hash"
                     )
                 if (
-                    published_identity is not None
-                    and (
-                        destination.is_symlink()
-                        or _file_identity(destination)
-                        != published_identity
+                    destination.is_symlink()
+                    or not _path_entry_has_identity(
+                        destination,
+                        published_identity,
                     )
                 ):
                     raise ReferenceMatchContractError(
-                        "committed create-only destination identity changed"
+                        "committed destination identity changed"
                     )
     except Exception:
         if not replace_existing:
@@ -729,18 +985,42 @@ def _commit_staged_batch_unlocked(
         for (
             destination,
             backup,
-            _published_identity,
+            published_identity,
+            backup_identity,
             _published_sha256,
         ) in reversed(committed):
             try:
-                destination.unlink(missing_ok=True)
-                if (
-                    backup is not None
-                    and backup.exists()
-                ):
-                    _replace(backup, destination)
+                if os.path.lexists(destination):
+                    if not _path_entry_has_identity(
+                        destination,
+                        published_identity,
+                    ):
+                        if backup is not None and backup in cleanup:
+                            cleanup.remove(backup)
+                        rollback_errors.append(
+                            f"{destination}: published destination was replaced"
+                        )
+                        continue
+                    destination.unlink()
+                if backup is not None:
+                    if (
+                        backup_identity is None
+                        or not _path_entry_has_identity(
+                            backup,
+                            backup_identity,
+                        )
+                    ):
+                        if backup in cleanup:
+                            cleanup.remove(backup)
+                        rollback_errors.append(
+                            f"{destination}: rollback backup was replaced"
+                        )
+                        continue
+                    _move_noreplace(backup, destination)
                     cleanup.remove(backup)
             except Exception as exc:  # pragma: no cover - catastrophic filesystem failure.
+                if backup is not None and backup in cleanup:
+                    cleanup.remove(backup)
                 rollback_errors.append(f"{destination}: {exc}")
         if rollback_errors:
             raise ReferenceMatchContractError(
@@ -748,15 +1028,25 @@ def _commit_staged_batch_unlocked(
                 + "; ".join(rollback_errors)
             )
         raise
-    for _destination, backup, _identity, _sha256 in committed:
+    for (
+        _destination,
+        backup,
+        _published_identity,
+        backup_identity,
+        _sha256,
+    ) in committed:
         if backup is None:
             continue
-        for _attempt in range(3):
-            try:
-                backup.unlink(missing_ok=True)
-                break
-            except OSError:
-                continue
+        if (
+            backup_identity is not None
+            and _path_entry_has_identity(backup, backup_identity)
+        ):
+            for _attempt in range(3):
+                try:
+                    backup.unlink(missing_ok=True)
+                    break
+                except OSError:
+                    continue
         if backup in cleanup:
             # Do not let the caller's finally block reclassify an already
             # committed transaction. A persistent backup is recoverable
@@ -904,12 +1194,20 @@ def _execute_file_render(
     ] = []
     staged_recipe: Path | None = None
     staged_report: Path | None = None
+    staged_identities: dict[Path, tuple[int, int]] = {}
+    owned_directories: list[_OwnedDirectory] = []
+    committed = False
     try:
         if recipe_destination is not None:
-            recipe_destination.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(
+                recipe_destination,
+                owned_directories,
+                token=token,
+            )
             staged_recipe = _stage_path(recipe_destination, token)
             staged.append(staged_recipe)
             save_reference_look_recipe(recipe, staged_recipe)
+            _remember_owned_file(staged_recipe, staged_identities)
 
         for index, (source_path, output_path) in enumerate(
             zip(sources, outputs, strict=True)
@@ -936,7 +1234,11 @@ def _execute_file_render(
             # diagnostics. The decoded source is no longer needed while that
             # output is encoded, so do not retain both full-resolution arrays.
             del source
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(
+                output_path,
+                owned_directories,
+                token=token,
+            )
             stage = _stage_path(output_path, token)
             staged.append(stage)
             output_format, clipped_fraction = _encode_working_image(
@@ -944,6 +1246,7 @@ def _execute_file_render(
                 stage,
                 output_bit_depth=output_bit_depth,
             )
+            _remember_owned_file(stage, staged_identities)
             output_capability = resolve_reference_file_output_capability(
                 working_space=rendered.image.working_space,
                 transfer_state=rendered.image.transfer_state,
@@ -1023,7 +1326,11 @@ def _execute_file_render(
             report_destination is not None
             and report_payload_factory is not None
         ):
-            report_destination.parent.mkdir(parents=True, exist_ok=True)
+            _ensure_parent_directory(
+                report_destination,
+                owned_directories,
+                token=token,
+            )
             staged_report = _stage_path(report_destination, token)
             staged.append(staged_report)
             payload = report_payload_factory(
@@ -1035,6 +1342,7 @@ def _execute_file_render(
                     "report payload factory must return an object"
                 )
             atomic_write_json(staged_report, payload)
+            _remember_owned_file(staged_report, staged_identities)
             report_file_sha256 = sha256_file(staged_report)
             commit_pairs.append((staged_report, report_destination))
         expected_stage_sha256 = {
@@ -1047,10 +1355,14 @@ def _execute_file_render(
             cleanup=staged,
             expected_stage_sha256=expected_stage_sha256,
         )
+        committed = True
         return prepared, recipe_file_sha256, report_file_sha256
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
+        _cleanup_owned_directories(
+            owned_directories,
+            remove_directories=not committed,
+        )
 
 
 def match_reference_files(

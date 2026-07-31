@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import threading
@@ -526,6 +527,81 @@ def test_file_adapter_rejects_duplicate_outputs(tmp_path: Path) -> None:
         match_reference_files(reference, [a, b], [output, output])
 
 
+@pytest.mark.parametrize(
+    "case",
+    (
+        "output-under-output",
+        "recipe-under-output",
+        "output-under-source",
+        "report-under-output",
+    ),
+)
+def test_file_adapter_rejects_nested_run_paths_before_decode(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    case: str,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source_a = tmp_path / "source-a.png"
+    source_b = tmp_path / "source-b.png"
+    _image(reference, 27360)
+    _image(source_a, 27361)
+    _image(source_b, 27362)
+    output_a = tmp_path / "output.png"
+    outputs = [output_a]
+    sources = [source_a]
+    recipe: Path | None = None
+    report: Path | None = None
+    if case == "output-under-output":
+        sources.append(source_b)
+        outputs.append(output_a / "nested.png")
+    elif case == "recipe-under-output":
+        recipe = output_a / "look.json"
+    elif case == "output-under-source":
+        outputs = [source_a / "nested.png"]
+    else:
+        report = output_a / "run.json"
+
+    def fail_if_decoded(_path: Path) -> WorkingImage:
+        raise AssertionError("path topology must be rejected before decode")
+
+    monkeypatch.setattr(files, "load_working_image", fail_if_decoded)
+    with pytest.raises(ReferenceMatchContractError, match="must not be nested"):
+        match_reference_files(
+            reference,
+            sources,
+            outputs,
+            recipe_path=recipe,
+            report_path=report,
+        )
+
+
+def test_file_adapter_rejects_existing_output_directory_before_decode(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    _image(reference, 27363)
+    _image(source, 27364)
+    output.mkdir()
+
+    def fail_if_decoded(_path: Path) -> WorkingImage:
+        raise AssertionError("directory destination must be rejected before decode")
+
+    monkeypatch.setattr(files, "load_working_image", fail_if_decoded)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="run destination must not be a directory",
+    ):
+        match_reference_files(reference, [source], [output])
+
+
 def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     tmp_path: Path,
 ) -> None:
@@ -549,6 +625,215 @@ def test_file_adapter_cleans_all_staging_files_on_late_source_failure(
     assert not output_b.exists()
     assert not recipe.exists()
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+
+
+def test_file_adapter_preserves_replaced_staging_entry_on_failure(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    output_a = tmp_path / "output-a.png"
+    output_b = tmp_path / "output-b.png"
+    _image(reference, 27367)
+    _image(good, 27368)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+    replacement: Path | None = None
+    replacement_identity: tuple[int, int] | None = None
+
+    def load_after_replacing_stage(path: Path) -> WorkingImage:
+        nonlocal replacement, replacement_identity
+        if Path(path) == bad:
+            stages = list(
+                tmp_path.glob(".*.reference-match-stage.*")
+            )
+            assert len(stages) == 1
+            replacement = stages[0]
+            replacement.unlink()
+            replacement.write_bytes(b"external-stage-replacement")
+            replacement_identity = files._path_entry_identity(replacement)
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_after_replacing_stage,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+        )
+
+    assert replacement is not None
+    assert replacement_identity is not None
+    assert replacement.read_bytes() == b"external-stage-replacement"
+    assert files._path_entry_identity(replacement) == replacement_identity
+    assert not output_a.exists()
+    assert not output_b.exists()
+
+
+def test_file_adapter_removes_owned_empty_directories_on_late_failure(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    recipe = created / "metadata" / "look.json"
+    report = created / "reports" / "run.json"
+    _image(reference, 27354)
+    _image(good, 27355)
+    bad.write_bytes(b"not an image")
+
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+            recipe_path=recipe,
+            report_path=report,
+        )
+
+    assert not created.exists()
+
+
+def test_file_adapter_preserves_concurrent_content_in_created_directory(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    marker = created / "images" / "external.txt"
+    _image(reference, 27356)
+    _image(good, 27357)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+
+    def load_then_publish_external_content(path: Path) -> WorkingImage:
+        if Path(path) == bad:
+            marker.write_bytes(b"external-writer")
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_then_publish_external_content,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+        )
+
+    assert marker.read_bytes() == b"external-writer"
+    assert not output_a.exists()
+    assert not output_b.exists()
+    assert not (created / "other-images").exists()
+    assert not list(
+        created.rglob(".*.reference-match-directory-owner")
+    )
+
+
+def test_file_adapter_preserves_concurrently_replaced_empty_directory(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    good = tmp_path / "good.png"
+    bad = tmp_path / "bad.png"
+    created = tmp_path / "created"
+    output_a = created / "images" / "a.png"
+    output_b = created / "other-images" / "b.png"
+    recipe = created / "metadata" / "look.json"
+    _image(reference, 27360)
+    _image(good, 27361)
+    bad.write_bytes(b"not an image")
+    original_load = files.load_working_image
+    replacement_identity: tuple[int, int] | None = None
+
+    def load_after_replacing_owned_tree(path: Path) -> WorkingImage:
+        nonlocal replacement_identity
+        if Path(path) == bad:
+            shutil.rmtree(created)
+            created.mkdir()
+            replacement_identity = files._file_identity(created)
+        return original_load(path)
+
+    monkeypatch.setattr(
+        files,
+        "load_working_image",
+        load_after_replacing_owned_tree,
+    )
+    with pytest.raises(ValueError, match="Unsupported raster input"):
+        match_reference_files(
+            reference,
+            [good, bad],
+            [output_a, output_b],
+            recipe_path=recipe,
+        )
+
+    assert replacement_identity is not None
+    assert created.is_dir()
+    assert files._file_identity(created) == replacement_identity
+    assert not list(created.iterdir())
+    assert not output_a.exists()
+    assert not output_b.exists()
+    assert not recipe.exists()
+
+
+def test_file_adapter_keeps_created_directories_after_commit(
+    tmp_path: Path,
+) -> None:
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    created = tmp_path / "created"
+    output = created / "images" / "output.png"
+    recipe = created / "metadata" / "look.json"
+    report = created / "reports" / "run.json"
+    _image(reference, 27358)
+    _image(source, 27359)
+
+    result = match_reference_files(
+        reference,
+        [source],
+        [output],
+        recipe_path=recipe,
+        report_path=report,
+    )
+
+    assert tuple(row.output_path for row in result.outputs) == (output,)
+    assert output.is_file()
+    assert recipe.is_file()
+    assert report.is_file()
+    assert all(
+        path.is_dir()
+        for path in (
+            created,
+            output.parent,
+            recipe.parent,
+            report.parent,
+        )
+    )
+    assert not list(
+        created.rglob(".*.reference-match-directory-owner")
+    )
 
 
 def test_file_adapter_rejects_late_decoded_scene_linear_raw_atomically(
@@ -678,6 +963,129 @@ def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
     assert recipe.read_bytes() == b"old-recipe"
     assert not list(tmp_path.glob(".*.reference-match-stage.*"))
     assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_file_adapter_preserves_replacement_of_published_destination(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source_a = tmp_path / "a.png"
+    source_b = tmp_path / "b.png"
+    output_a = tmp_path / "output-a.png"
+    output_b = tmp_path / "output-b.png"
+    recipe = tmp_path / "look.json"
+    _image(reference, 27362)
+    _image(source_a, 27363)
+    _image(source_b, 27364)
+    output_a.write_bytes(b"old-output-a")
+    output_b.write_bytes(b"old-output-b")
+    recipe.write_bytes(b"old-recipe")
+    original = files._replace
+    replacement_identity: tuple[int, int] | None = None
+
+    def replace_with_external_winner(
+        source: Path,
+        destination: Path,
+    ) -> None:
+        nonlocal replacement_identity
+        if (
+            destination == output_b
+            and "reference-match-stage" in source.name
+        ):
+            raise OSError("injected second-output publish failure")
+        original(source, destination)
+        if (
+            source == output_b
+            and destination.name.endswith(".reference-match-backup")
+        ):
+            output_a.unlink()
+            output_a.write_bytes(b"external-replacement")
+            replacement_identity = files._path_entry_identity(output_a)
+
+    monkeypatch.setattr(files, "_replace", replace_with_external_winner)
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="rollback was incomplete.*published destination was replaced",
+    ):
+        match_reference_files(
+            reference,
+            [source_a, source_b],
+            [output_a, output_b],
+            recipe_path=recipe,
+        )
+
+    assert replacement_identity is not None
+    assert files._path_entry_identity(output_a) == replacement_identity
+    assert output_a.read_bytes() == b"external-replacement"
+    assert output_b.read_bytes() == b"old-output-b"
+    assert recipe.read_bytes() == b"old-recipe"
+    retained = list(tmp_path.glob(".output-a.png.*.reference-match-backup"))
+    assert len(retained) == 1
+    assert retained[0].read_bytes() == b"old-output-a"
+    assert not list(tmp_path.glob(".*.reference-match-stage.*"))
+
+
+def test_file_adapter_preserves_replacement_of_rollback_backup(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    reference = tmp_path / "reference.png"
+    source = tmp_path / "source.png"
+    output = tmp_path / "output.png"
+    recipe = tmp_path / "look.json"
+    _image(reference, 27365)
+    _image(source, 27366)
+    output.write_bytes(b"old-output")
+    recipe.write_bytes(b"old-recipe")
+    original = files._replace
+    replacement_path: Path | None = None
+    replacement_identity: tuple[int, int] | None = None
+
+    def replace_backup_before_cleanup(
+        source_path: Path,
+        destination: Path,
+    ) -> None:
+        nonlocal replacement_path, replacement_identity
+        original(source_path, destination)
+        if (
+            destination == output
+            and "reference-match-stage" in source_path.name
+        ):
+            backups = list(
+                tmp_path.glob(".output.png.*.reference-match-backup")
+            )
+            assert len(backups) == 1
+            replacement_path = backups[0]
+            replacement_path.unlink()
+            replacement_path.write_bytes(b"external-backup-replacement")
+            replacement_identity = files._path_entry_identity(
+                replacement_path
+            )
+
+    monkeypatch.setattr(files, "_replace", replace_backup_before_cleanup)
+    result = match_reference_files(
+        reference,
+        [source],
+        [output],
+        recipe_path=recipe,
+    )
+
+    assert result.outputs[0].output_path == output
+    assert replacement_path is not None
+    assert replacement_identity is not None
+    assert replacement_path.read_bytes() == b"external-backup-replacement"
+    assert (
+        files._path_entry_identity(replacement_path)
+        == replacement_identity
+    )
+    assert output.is_file()
+    assert recipe.is_file()
+    assert not list(tmp_path.glob(".*.reference-match-stage.*"))
 
 
 def test_file_adapter_rejects_committed_bytes_that_differ_from_stage(
@@ -998,6 +1406,36 @@ def test_post_commit_backup_cleanup_retry_does_not_report_false_failure(
     assert failures == 1
     assert destination.read_bytes() == b"new"
     assert cleanup == []
+    assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_batch_commit_rejects_existing_directory_without_moving_it(
+    tmp_path: Path,
+) -> None:
+    from src.color_match import files
+
+    destination = tmp_path / "output.bin"
+    destination.mkdir()
+    external_marker = destination / "external.txt"
+    external_marker.write_bytes(b"external-directory")
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"new")
+    cleanup = [stage]
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="destination must be a regular file",
+    ):
+        files._commit_staged_batch(
+            ((stage, destination),),
+            token="token",
+            cleanup=cleanup,
+        )
+
+    assert destination.is_dir()
+    assert external_marker.read_bytes() == b"external-directory"
+    assert stage.read_bytes() == b"new"
+    assert cleanup == [stage]
     assert not list(tmp_path.glob(".*.reference-match-backup"))
 
 

@@ -28,7 +28,12 @@ from .external_composition import (
     ExternalReferenceCompositionV1,
     validate_external_reference_composition_v1,
 )
-from .files import _commit_staged_batch, _stage_path
+from .files import (
+    _cleanup_owned_files,
+    _commit_staged_batch,
+    _remember_owned_file,
+    _stage_path,
+)
 from .filmfx_staging_io import (
     protect_staging_inputs,
     render_procedural_filmfx,
@@ -205,6 +210,7 @@ def commit_external_filmfx_staging_v1(
 
     token = uuid.uuid4().hex
     staged: list[Path] = []
+    staged_identities: dict[Path, tuple[int, int]] = {}
     prepared: list[ExternalFilmFxOutputV1] = []
     try:
         for index, (source_row, output) in enumerate(
@@ -222,6 +228,7 @@ def commit_external_filmfx_staging_v1(
                 source_index=index,
                 output_bit_depth=output_bit_depth,
             )
+            _remember_owned_file(stage, staged_identities)
             prepared.append(
                 ExternalFilmFxOutputV1(
                     source_index=index,
@@ -256,6 +263,7 @@ def commit_external_filmfx_staging_v1(
         staged_report = _stage_path(report, token)
         staged.append(staged_report)
         atomic_write_json(staged_report, run.to_dict())
+        _remember_owned_file(staged_report, staged_identities)
         report_sha256 = sha256_file(staged_report)
         pairs = tuple(
             (_stage_path(output, token), output) for output in outputs
@@ -266,8 +274,7 @@ def commit_external_filmfx_staging_v1(
             report_file_sha256=report_sha256,
         )
     finally:
-        for path in staged:
-            path.unlink(missing_ok=True)
+        _cleanup_owned_files(staged, staged_identities)
 
 
 def validate_external_filmfx_run_v1(value: ExternalFilmFxRunV1) -> None:

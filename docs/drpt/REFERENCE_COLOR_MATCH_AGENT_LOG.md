@@ -5010,3 +5010,206 @@
 - Claim remains `review-ready-not-merged`. Main owns review and merge; D-PCT
   R0IX/R0IY remain private Pixel tile/runtime evidence with no consumer
   interface action.
+
+## 2026-07-31 - Close P173 owned-directory rollback and freeze v44
+
+- Node/parent goal: P173 file transaction integrity and current-main review
+  handoff. The consumer remains the sole writer; main and D-PCT were read-only.
+- A real late second-source decode failure showed that file rollback restored
+  all artifacts but left empty output/recipe directory trees created earlier
+  in the transaction. `src/color_match/files.py` now records only directories
+  created by the current call and removes them in reverse order after failure.
+  `rmdir` failure is deliberately non-destructive: concurrent/non-empty
+  content is preserved and the original exception is not masked.
+- Tests cover removal of a wholly owned empty tree, preservation of a
+  concurrent marker, retention of successful destination directories and
+  nested replay failure. File/replay suites pass `48 passed, 1 skipped`;
+  `py_compile` and strict diff checks pass. Ruff is not installed in the
+  pinned main virtual environment and was not added only for this leaf.
+- V44 pins non-self-referential P1-P173 payload
+  `91a7441350059bc98672f1504d10d2b250171f64` against main
+  `f6cc28eb914c2532ad2cd692c36edec22a53dfdf`: 597/1,858 changed paths,
+  zero overlap, merge tree `72e5d5b4ddce8916b02e65d18f0ba7d7ba5b2c23`.
+  Manifest/schema SHA-256 are `63c96d55d768e0d26b6258307e13fe508ca7ca0ba1a36ef06ea0675d10349c8f`
+  and `ac1271b4e1110e08d60843687bc33741d11854247d54249a2d3ffad0b0b4c8e0`.
+  Direct v44 rebuild/tamper is 5/5; a detached real merge passes the
+  file/replay plus v43/v44 subset at `58 passed, 1 skipped`. The temporary
+  worktree was removed. The final isolated consumer suite collects 1,414
+  tests and completes at `1,409 passed, 5 skipped`.
+- Producer R0JA remains a private one-Pixel Android x86_64 virtual
+  parse/decode path without GainMap, Stage2, camera-colour, general-DNG,
+  public package/schema/receipt/capability or RAW rail. It does not alter P172
+  fail-closed rail handling or create a consumer mapping.
+
+## 2026-07-31 - Rebase the P173 handoff after main integration
+
+- Main independently created merge commit
+  `efb9ba8208c1eb4caa5229f926e212615f30f4dd` with parents main
+  `f6cc28eb` and consumer `f53faeb5`. This closes the earlier P1-P172
+  repository-integration blocker and changes the correct P173 merge base to
+  `f53faeb5`; the pre-merge v44 remains immutable historical evidence.
+- V45 binds the minimal post-merge payload
+  `d4d817d636c097206e381cd7b4fc6db003fc5191`: 10 payload paths versus
+  1,858 main paths, zero overlap, merge tree
+  `4fd158a9fe3f9351a22a356ad2ea13036f91802c`. Manifest/schema SHA-256 are
+  `e51baa1be4dc896b086fe21b351d9498488593f8c6b3553b8513950ace5cd924`
+  and `1b23048dbb962726fb3a08adf139d3498f167cbad9e50b7c3e96d1202f4b0cf9`.
+- Direct v45 rebuild/schema/tamper is 5/5. A detached real merge of
+  `d4d817d6` into `efb9ba82`, with the out-of-payload v45 manifest supplied
+  as an audit input, passes file/replay plus v44/v45 tests at
+  `58 passed, 1 skipped`; strict payload diff is clean and the temporary
+  worktree was removed.
+- Main's modified `docs/drpt/AGENT_LOG.md` and untracked `.codex/`/`tmp/`
+  remain untouched. R0JB is structural private Pixel OpcodeList2 parsing
+  without an interpolation, Stage2, colour, public producer or RAW-rail
+  contract, so no consumer mapping changes.
+
+## 2026-07-31 - Reject nested run-file topology before decode
+
+- Node/parent goal: P174 file transaction contract hardening after P173.
+  Audit found that exact path uniqueness did not reject an output such as
+  `a.png/b.png` when another run artifact was `a.png`. The transaction
+  normally failed and rolled back only after reference/source processing,
+  wasting the batch and exposing unnecessary directory interleavings.
+- `src/color_match/files.py` now resolves each run file path, rejects existing
+  directory destinations and rejects strict ancestor/descendant relations
+  whenever at least one path is an output, recipe or report destination.
+  Different Windows drives are explicitly non-nested. Exact-collision rules
+  remain unchanged.
+- Fit tests cover output/output, recipe/output, source/output and
+  report/output nesting plus an existing output directory. Replay separately
+  proves output-under-recipe rejection. Monkeypatched decoders/loaders raise
+  if entered, proving every new rejection occurs before recipe or pixel
+  decode.
+- Verification: focused topology `7 passed`; complete file/replay
+  `54 passed, 1 skipped`; reporting, product-capability, unsupported-media,
+  file and replay coverage `88 passed, 1 skipped`; `py_compile` and strict
+  diff checks pass. The final isolated consumer collection contains 1,425
+  tests and completes at `1,420 passed, 5 skipped`. No public export, schema,
+  colour algorithm, producer adapter, rail or promotion state changes.
+- Producer R0JD remains a private one-Pixel mechanical Android x86_64 DNG to
+  linear-sRGB TIFF chain without a public package/schema/receipt/capability
+  or RAW rail. It creates no P174 interface impact.
+
+## 2026-07-31 - Bind transaction directory ownership and reject v45
+
+- Node/parent goal: P175 corrective P173 concurrency closure after main-owner
+  review. V45 and payload `d4d817d6` are immutable historical evidence but
+  explicitly forbidden from integration.
+- The confirmed defect was path ownership: after a transaction created an
+  empty destination tree, another process could delete it and recreate a new
+  empty directory at the same path; path-only rollback could then remove the
+  replacement. The renderer now binds every created directory to its
+  `(st_dev, st_ino)` identity plus an exclusive random marker, marker identity
+  and exact marker bytes. Cleanup revalidates all ownership facts and
+  revalidates directory identity after marker removal. Missing, replaced,
+  symlinked or tampered evidence is preserved fail-safe.
+- The deterministic regression removes the entire owned tree during the late
+  second-source failure, recreates an empty directory at the same path and
+  proves rollback preserves its new identity and empty contents. Existing
+  concurrent-content and success tests additionally prove ownership markers
+  do not survive normal cleanup.
+- Verification: complete file/replay `55 passed, 1 skipped`; broader
+  file/report/product coverage `86 passed, 1 skipped`; `py_compile` and strict
+  diff checks pass. The isolated reference-match suite collects 1,426 tests
+  and completes at `1,421 passed, 5 skipped`. Ruff reports only previously
+  existing repository findings in the touched files; no broad cleanup was
+  mixed into this corrective leaf.
+- Producer R0JF remains a private one-Pixel Android x86_64 virtual
+  finite-halo mechanical pipeline without a public package/schema/receipt,
+  compatible RAW rail or product-quality claim. Consumer mapping remains
+  unchanged.
+
+## 2026-07-31 - Freeze corrected post-merge manifest v46
+
+- Node/parent goal: P175 bottom-up integration after the corrected directory
+  ownership implementation and P174 topology preflight. V46 supersedes the
+  immutable but integration-rejected v45 review artifact.
+- V46 pins payload `36be7e9ff8f7ce83dbfcbfc3a256c535d5ee02a3`
+  against main `0014744810fcac60448be0e1d7d7427925a973df` from common
+  base `f53faeb5079c17fbd36cceb1607444088f279615`: 14 payload
+  paths, 1,862 main paths, zero overlap, 70 public exports and 26 schemas.
+  The conflict-free merge tree is
+  `93dc0e15baf91375df2805cc9891ce8ca58e0256`.
+- Manifest/schema SHA-256 are
+  `93890cd168d9eb5333034f55d7a01c30630d66bdbe07978e312bc989ef38c866`
+  and
+  `240eb162ddfe4769038b1b7c0a19725bd650079a80eb221dbcfbaf1c177a3447`.
+  Direct schema/rebuild/tamper tests pass 5/5.
+- A detached real merge passes file/replay plus v44/v45/v46 at
+  `70 passed, 1 skipped`; strict diff check passes and the temporary worktree
+  is removed. The corrected branch full suite remains
+  `1,421 passed, 5 skipped`.
+- D-PCT R0JF is still private one-Pixel Android x86_64 virtual mechanics
+  without a public producer interface or compatible RAW rail. No algorithm,
+  product or consumer mapping state changes.
+
+## 2026-07-31 - Bind file-entry ownership across rollback and staging
+
+- Node/parent goal: P176/P177 continuation of the confirmed P175 ownership
+  class. Code review found two concrete path-only deletion paths after the
+  directory fix, so V46 was paused before main integration.
+- P176 changes the shared batch commit primitive to bind the exact entry
+  identity of each stage-published destination and each rollback backup.
+  Rollback unlinks only the still-owned published entry. If a non-cooperating
+  process replaces that destination, its file survives, rollback reports
+  incomplete and the original bytes remain in an identity-bound backup.
+  Successful cleanup also preserves a foreign replacement at a backup name.
+- P177 records stage identities after every successful encode/copy/JSON write
+  in the reference file renderer and all seven core/external/shared/runtime
+  staging and delivery writers. `finally` now unlinks only a path whose entry
+  identity still equals the transaction-created stage; an external
+  replacement is preserved.
+- Deterministic tests replace a published destination before a later output
+  fails, replace a rollback backup before success cleanup and replace an
+  uncommitted stage before a late decode failure. File/replay plus every
+  affected writer suite pass `155 passed, 3 skipped`; `py_compile` and strict
+  diff checks pass. The isolated reference-match suite collects 1,434 tests
+  and completes at `1,429 passed, 5 skipped`.
+- Producer R0JH remains private one-Pixel Android x86_64 virtual performance
+  evidence without a public package/schema/receipt/capability or compatible
+  RAW rail. Consumer mapping remains unchanged.
+
+## 2026-07-31 - Freeze file-identity-hardened manifest v47
+
+- Node/parent goal: P176/P177 bottom-up integration. V47 supersedes V46 for
+  latest review while retaining v46 as immutable P173-P175 evidence.
+- V47 pins payload `4117062aa938d0e1efead994f788d6fbc68e5dc6`
+  against main `5c356f125e019bd882472c9f43a0b4f4fcbabb5a`
+  from base `f53faeb5079c17fbd36cceb1607444088f279615`:
+  25 payload paths, 1,873 main paths, zero overlap, 70 exports and 26 schemas.
+  The conflict-free merge tree is
+  `ee3d8ccaa40184cfc182999724a5b1391cdbae46`.
+- Manifest/schema SHA-256 are
+  `1794c8c3c81063b41589ed7733cb978b875657166bdbdba60cd664bb25942474`
+  and
+  `debcb0b0721bada999e1e7eb62e02d410a37f007e5d2b94d554032c2ccfb5eea`.
+  Direct schema/rebuild/tamper tests pass 5/5.
+- A detached real merge passes file/replay plus v44-v47 at
+  `78 passed, 1 skipped`; strict diff passes and the temporary worktree is
+  removed. The full isolated suite remains `1,429 passed, 5 skipped`.
+- R0JH stays private one-Pixel virtual performance evidence and does not add
+  a public producer interface, compatible RAW rail or consumer mapping.
+
+## 2026-07-31 - Revalidate destination type at batch commit
+
+- Node/parent goal: P178 bounded follow-up audit of the P176 shared commit
+  primitive. V47 was paused before main integration after a distinct
+  commit-time entry-type gap was confirmed.
+- Trigger: destination preflight occurred before staging. If an existing
+  destination was a directory or other non-regular entry when the shared
+  commit helper ran, the old replace-existing branch could move that external
+  entry to a rollback-backup name and publish the stage at its former path.
+- Change: commit-time `lexists` plus non-symlink regular-file validation now
+  runs for every destination before backup or publication. All seven
+  core/external/shared/runtime writers inherit the same fail-closed invariant.
+- Evidence: the deterministic regression retains an external directory and
+  marker at their original path, leaves the stage unpublished and creates no
+  backup. File plus affected writer suites pass `165 passed, 3 skipped`; the
+  isolated `test_color_match*` suite passes `1,435 passed, 5 skipped`.
+- Full-repository context: `2,387 passed, 6 skipped`; 35 failures remain the
+  isolated worktree's historical missing-output and tracked-profile-hash
+  failures, with no color-match failure.
+- Producer R0JK/R0JL remains private RAW mechanics without a public package,
+  schema, receipt, capability or compatible RAW rail. Consumer mapping remains
+  unchanged.
