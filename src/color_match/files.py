@@ -881,10 +881,13 @@ def _commit_staged_batch_unlocked(
                         "destination changed while creating rollback backup"
                     )
             try:
-                if replace_existing:
-                    _replace(stage, destination)
-                else:
-                    _move_noreplace(stage, destination)
+                # The destination is absent here either because it was absent
+                # at validation or because its exact prior entry was moved to
+                # the rollback backup. Always publish without replacement:
+                # a non-cooperating writer may claim the name after either
+                # operation, and overwriting that new entry would violate the
+                # transaction's ownership boundary.
+                _move_noreplace(stage, destination)
             except Exception:
                 if backup is not None:
                     if (

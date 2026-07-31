@@ -940,7 +940,7 @@ def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
     output_a.write_bytes(b"old-output-a")
     output_b.write_bytes(b"old-output-b")
     recipe.write_bytes(b"old-recipe")
-    original = files._replace
+    original = files._move_noreplace
 
     def fail_second_stage(source: Path, destination: Path) -> None:
         if (
@@ -950,7 +950,7 @@ def test_file_adapter_rolls_back_all_prior_outputs_on_commit_failure(
             raise OSError("injected final-commit failure")
         original(source, destination)
 
-    monkeypatch.setattr(files, "_replace", fail_second_stage)
+    monkeypatch.setattr(files, "_move_noreplace", fail_second_stage)
     with pytest.raises(OSError, match="injected final-commit failure"):
         match_reference_files(
             reference,
@@ -1042,7 +1042,7 @@ def test_file_adapter_preserves_replacement_of_rollback_backup(
     _image(source, 27366)
     output.write_bytes(b"old-output")
     recipe.write_bytes(b"old-recipe")
-    original = files._replace
+    original = files._move_noreplace
     replacement_path: Path | None = None
     replacement_identity: tuple[int, int] | None = None
 
@@ -1067,7 +1067,11 @@ def test_file_adapter_preserves_replacement_of_rollback_backup(
                 replacement_path
             )
 
-    monkeypatch.setattr(files, "_replace", replace_backup_before_cleanup)
+    monkeypatch.setattr(
+        files,
+        "_move_noreplace",
+        replace_backup_before_cleanup,
+    )
     result = match_reference_files(
         reference,
         [source],
@@ -1102,7 +1106,7 @@ def test_file_adapter_rejects_committed_bytes_that_differ_from_stage(
     _image(source, 27345)
     output.write_bytes(b"old-output")
     recipe.write_bytes(b"old-recipe")
-    original_replace = files._replace
+    original_replace = files._move_noreplace
 
     def corrupt_after_publish(source_path: Path, destination: Path) -> None:
         original_replace(source_path, destination)
@@ -1112,7 +1116,11 @@ def test_file_adapter_rejects_committed_bytes_that_differ_from_stage(
         ):
             destination.write_bytes(b"corrupted-after-publish")
 
-    monkeypatch.setattr(files, "_replace", corrupt_after_publish)
+    monkeypatch.setattr(
+        files,
+        "_move_noreplace",
+        corrupt_after_publish,
+    )
     with pytest.raises(
         ReferenceMatchContractError,
         match="committed destination bytes differ from staged hash",
@@ -1439,6 +1447,89 @@ def test_batch_commit_rejects_existing_directory_without_moving_it(
     assert not list(tmp_path.glob(".*.reference-match-backup"))
 
 
+def test_batch_commit_preserves_destination_created_during_publication(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    destination = tmp_path / "output.bin"
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"transaction")
+    cleanup = [stage]
+    original_move_noreplace = files._move_noreplace
+
+    def create_external_before_publish(
+        source: Path,
+        target: Path,
+    ) -> None:
+        if source == stage:
+            target.write_bytes(b"external")
+        original_move_noreplace(source, target)
+
+    monkeypatch.setattr(
+        files,
+        "_move_noreplace",
+        create_external_before_publish,
+    )
+
+    with pytest.raises(FileExistsError):
+        files._commit_staged_batch(
+            ((stage, destination),),
+            token="token",
+            cleanup=cleanup,
+        )
+
+    assert destination.read_bytes() == b"external"
+    assert stage.read_bytes() == b"transaction"
+    assert cleanup == [stage]
+    assert not list(tmp_path.glob(".*.reference-match-backup"))
+
+
+def test_batch_commit_preserves_destination_recreated_after_backup(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from src.color_match import files
+
+    destination = tmp_path / "output.bin"
+    destination.write_bytes(b"original")
+    stage = tmp_path / "output.stage"
+    stage.write_bytes(b"transaction")
+    cleanup = [stage]
+    original_move_noreplace = files._move_noreplace
+
+    def recreate_external_before_publish(
+        source: Path,
+        target: Path,
+    ) -> None:
+        if source == stage:
+            target.write_bytes(b"external")
+        original_move_noreplace(source, target)
+
+    monkeypatch.setattr(
+        files,
+        "_move_noreplace",
+        recreate_external_before_publish,
+    )
+
+    with pytest.raises(
+        ReferenceMatchContractError,
+        match="rollback backup could not be restored safely",
+    ):
+        files._commit_staged_batch(
+            ((stage, destination),),
+            token="token",
+            cleanup=cleanup,
+        )
+
+    backup = tmp_path / ".output.bin.token.reference-match-backup"
+    assert destination.read_bytes() == b"external"
+    assert backup.read_bytes() == b"original"
+    assert stage.read_bytes() == b"transaction"
+    assert cleanup == [stage]
+
+
 def test_concurrent_batch_commit_cannot_publish_mixed_destinations(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -1457,7 +1548,7 @@ def test_concurrent_batch_commit_cannot_publish_mixed_destinations(
 
     first_published = threading.Event()
     release_first = threading.Event()
-    original_replace = files._replace
+    original_replace = files._move_noreplace
     failures: list[BaseException] = []
 
     def pause_after_first_publish(source: Path, destination: Path) -> None:
@@ -1467,7 +1558,11 @@ def test_concurrent_batch_commit_cannot_publish_mixed_destinations(
             if not release_first.wait(5):
                 raise TimeoutError("concurrency test release timed out")
 
-    monkeypatch.setattr(files, "_replace", pause_after_first_publish)
+    monkeypatch.setattr(
+        files,
+        "_move_noreplace",
+        pause_after_first_publish,
+    )
 
     def commit_a() -> None:
         try:

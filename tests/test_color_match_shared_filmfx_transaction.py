@@ -268,7 +268,7 @@ def test_commit_failure_restores_all_previous_outputs(
     for path, payload in previous.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(payload)
-    original_replace = file_module._replace
+    original_replace = file_module._move_noreplace
 
     def fail_report(source: Path, destination: Path) -> None:
         if (
@@ -278,7 +278,7 @@ def test_commit_failure_restores_all_previous_outputs(
             raise OSError("injected shared FilmFX commit failure")
         original_replace(source, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report)
+    monkeypatch.setattr(file_module, "_move_noreplace", fail_report)
     with pytest.raises(
         OSError,
         match="injected shared FilmFX commit failure",

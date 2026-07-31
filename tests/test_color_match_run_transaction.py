@@ -113,7 +113,7 @@ def test_fit_report_commit_failure_rolls_back_outputs_recipe_and_report(
     }
     for path, content in old.items():
         path.write_bytes(content)
-    original_replace = file_module._replace
+    original_replace = file_module._move_noreplace
 
     def fail_report_stage(source_path: Path, destination: Path) -> None:
         if (
@@ -123,7 +123,11 @@ def test_fit_report_commit_failure_rolls_back_outputs_recipe_and_report(
             raise OSError("injected report commit failure")
         original_replace(source_path, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report_stage)
+    monkeypatch.setattr(
+        file_module,
+        "_move_noreplace",
+        fail_report_stage,
+    )
     with pytest.raises(OSError, match="injected report commit failure"):
         match_reference_files(
             reference,
@@ -159,7 +163,7 @@ def test_replay_report_commit_failure_rolls_back_output_and_report(
     recipe_before = recipe.read_bytes()
     output.write_bytes(b"old-output")
     report.write_bytes(b"old-report")
-    original_replace = file_module._replace
+    original_replace = file_module._move_noreplace
 
     def fail_report_stage(source_path: Path, destination: Path) -> None:
         if (
@@ -169,7 +173,11 @@ def test_replay_report_commit_failure_rolls_back_output_and_report(
             raise OSError("injected replay report commit failure")
         original_replace(source_path, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report_stage)
+    monkeypatch.setattr(
+        file_module,
+        "_move_noreplace",
+        fail_report_stage,
+    )
     with pytest.raises(
         OSError,
         match="injected replay report commit failure",

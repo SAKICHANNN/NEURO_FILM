@@ -5213,3 +5213,62 @@
 - Producer R0JK/R0JL remains private RAW mechanics without a public package,
   schema, receipt, capability or compatible RAW rail. Consumer mapping remains
   unchanged.
+
+## 2026-07-31 - Freeze destination-type-hardened manifest v48
+
+- Node/parent goal: P178 bottom-up integration. V48 supersedes withdrawn V47
+  for latest review while retaining v47 as immutable P173-P177 evidence.
+- V48 pins payload `3adb218f1837a734fc131239e23f1cacb7af2359`
+  against main `db06a657f56dd3e893aa8135f7a1bdcd96cb497e` from base
+  `f53faeb5079c17fbd36cceb1607444088f279615`: 29 payload paths,
+  1,899 main paths, zero overlap, 70 exports and 26 schemas.
+- Manifest/schema SHA-256 are
+  `2201819a8dd8fb37e61e3715cd4b534eab1424e5634d88498d6713184745bed6`
+  and
+  `c90e290eb147bcd80506be7958a01f5437ad7d66e9ae58d0273e2543dee71bd8`.
+  Direct schema/rebuild/tamper tests pass 5/5.
+- Detached merge tree `14bd695c30d98632e5d0fb27ab6f6fe15addd7f7`
+  passes file/replay plus v44-v47 at `79 passed, 1 skipped`; strict diff
+  passes and the temporary worktree is removed. An initial verification
+  command incorrectly requested the non-payload v48 test from the detached
+  payload tree, collected zero tests and was discarded before this successful
+  rerun.
+
+## 2026-07-31 - Verify P178 main integration
+
+- Main merged exact P173-P178 payload `3adb218f` as
+  `554749a456c8b973f9ffda15f450a21259f03b1e`.
+- Parent identities are main `85023934` plus payload `3adb218f`; merge tree
+  `4a7ae76b1ba1933d8612c1e9cca4517a13f1c43a` exactly matches the
+  consumer's prospective recomputation against that parent.
+- Read-only main validation confirms exact `files.py` blob identity, strict
+  diff and `59 passed, 1 skipped` file/replay tests. Main-owned `.codex/`,
+  `tmp/`, BK research and data remain untouched.
+- V48 is now consumed review evidence. V45 remains prohibited, V46 historical
+  and V47 withdrawn; no repeat merge is required.
+
+## 2026-07-31 - Reject non-cooperating destination claims during publication
+
+- Node/parent goal: P179 bounded concurrency follow-up to the shared
+  P176-P178 batch commit primitive.
+- A confirmed race remained after commit-time destination validation: a
+  non-cooperating writer could create a previously absent destination, or
+  recreate one after the transaction moved its old entry to a rollback
+  backup, before `os.replace(stage, destination)`. The replacement publish
+  would silently overwrite that foreign entry.
+- Publication now always uses the existing same-volume no-replace primitive.
+  A concurrent winner is preserved; if an original destination was already
+  backed up, the original bytes remain in the identity-bound recovery backup
+  when safe restoration is impossible.
+- Two deterministic regressions cover both absent-destination and
+  post-backup claims. Existing failure injection across file,
+  core/external/shared staging, FilmFX, run-report and delivery transactions
+  now targets the actual no-replace publication primitive.
+- Evidence: focused affected writers pass `119 passed, 1 skipped`; the
+  isolated reference-match suite passes `1,442 passed, 5 skipped`;
+  `py_compile` and strict diff checks pass. The O-to-P data migration completed
+  during this leaf; post-recovery junction checks were read-only and no P:
+  path was introduced into code.
+- Producer R0JU remains private RAW mechanics without a public package,
+  schema, receipt, capability or compatible RAW rail. Consumer mapping is
+  unchanged.

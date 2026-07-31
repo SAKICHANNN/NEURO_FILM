@@ -145,14 +145,14 @@ def test_commit_failure_restores_previous_bytes(
     for path, payload in previous.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(payload)
-    original = file_module._replace
+    original = file_module._move_noreplace
 
     def fail_report(source: Path, destination: Path) -> None:
         if destination == report and "reference-match-stage" in source.name:
             raise OSError("injected shared delivery failure")
         original(source, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report)
+    monkeypatch.setattr(file_module, "_move_noreplace", fail_report)
     with pytest.raises(OSError, match="injected shared delivery failure"):
         _commit(chain, authorization, outputs, report)
     for path, payload in previous.items():

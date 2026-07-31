@@ -194,14 +194,14 @@ def test_commit_failure_restores_every_previous_destination(
     for path, payload in previous.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(payload)
-    original_replace = file_module._replace
+    original_replace = file_module._move_noreplace
 
     def fail_report(source: Path, destination: Path) -> None:
         if destination == report and "reference-match-stage" in source.name:
             raise OSError("injected local delivery failure")
         original_replace(source, destination)
 
-    monkeypatch.setattr(file_module, "_replace", fail_report)
+    monkeypatch.setattr(file_module, "_move_noreplace", fail_report)
     with pytest.raises(OSError, match="injected local delivery failure"):
         _commit(chain, authorization, outputs, report)
     for path, payload in previous.items():
