@@ -129,12 +129,20 @@ def _numeric_rows(text: str) -> list[dict[str, Any]]:
             )
             if match is None:
                 continue
-            values = [
-                float(value)
-                for value in re.findall(r"(?<![A-Za-z])\d+(?:\.\d+)?", match.group(3))
-            ]
+            value_matches = list(re.finditer(r"\d+(?:\.\d+)?", match.group(3)))
+            values = [float(item.group()) for item in value_matches]
             if len(values) < 2:
                 continue
+            tail_start = match.start(3)
+            apertures: dict[str, float] = {}
+            for item, value in zip(value_matches, values, strict=True):
+                column = tail_start + item.start()
+                aperture = "13" if column < 32 else "27" if column < 42 else "57"
+                if aperture in apertures:
+                    raise DensityGrainSourceError(
+                        "ambiguous P4AA RMS granularity table columns"
+                    )
+                apertures[aperture] = value
             density_text = match.group(2)
             rows.append(
                 {
@@ -143,7 +151,7 @@ def _numeric_rows(text: str) -> list[dict[str, Any]]:
                     "density": float(
                         f"0{density_text}" if density_text.startswith(".") else density_text
                     ),
-                    "rms_granularity_values": values,
+                    "rms_granularity_by_aperture_um": apertures,
                 }
             )
         previous_label_end = label.end()

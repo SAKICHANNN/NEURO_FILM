@@ -60,4 +60,13 @@ def test_report_exposes_machine_extractable_granularity_tables() -> None:
         5,
         6,
     }
+    table4_row4 = next(
+        row
+        for row in first["numeric_density_granularity_rows"]
+        if row["table"] == 4 and row["row"] == 4
+    )
+    assert table4_row4["rms_granularity_by_aperture_um"] == {
+        "13": 31.6,
+        "57": 14.5,
+    }
     assert first["decision"] == "open_fixed_density_granularity_compatibility"
