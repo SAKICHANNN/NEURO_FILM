@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4am_transmittance_moment_corrected_structure_decision.v1",
+  "experiment_id": "u6.p4am-transmittance-moment-corrected-structure-v1",
+  "decision": "close_analytic_mean_transmittance_correction",
+  "report_sha256": "f59a4bca364770a1467eca66224183d011f196c4f2961efece8b27fd130a45e9",
+  "stable_evidence_id": "e5ac6b81c8ea5f888464acbefc0e065fc87990d1937d157403b94781b28442e9",
+  "passed": false,
+  "passed_gates": {
+    "analytic_transmittance_mean_absolute_error": 2.7755575615628914e-17,
+    "density_variance_relative_error": 0.005674007767632326,
+    "ramp_transmittance_mean_absolute_error_p90": 0.0001970942028206357,
+    "ramp_variance_shape_spearman": 0.9997427487298219,
+    "minimum_lag1_autocorrelation": 0.5190728450756239,
+    "physical_domain_repeat_partition_and_input": true
+  },
+  "failed_gates": {
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.002952190525673748,
+    "frozen_maximum_empirical_flat_transmittance_mean_absolute_error": 0.0005,
+    "transmittance_bias_improvement_over_p4af": 0.01201534876853716,
+    "frozen_minimum_transmittance_bias_improvement_over_p4af": 0.5
+  },
+  "interpretation": "The exact Gamma-Laplace offset removes the analytic Jensen bias while preserving P4AF variance shape, correlation, physical domains and deterministic partitions. It does not materially reduce the finite-sample mean error of the fixed correlated realization: improvement is only 1.20%, and the worst flat error remains 0.00295. Pointwise expectation correction is therefore insufficient for the observed single-render tone-drift problem.",
+  "branch_action": "Close P4AM without marginal, amplitude, seed, gate or sample-normalization rescue. Do not reopen P4U or enter photographic/product evaluation. Retain P4AF only as a full-resolution synthetic reference and pursue a distinct algorithmic mechanism.",
+  "claim_ceiling": "Negative generic synthetic evidence for analytic mean-transmittance correction of P4AF; not photographic quality, measured film response, stock calibration or product evidence."
+}
