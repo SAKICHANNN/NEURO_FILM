@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p4ak_nasa_film_noise_mechanism_source_contract.v1",
+  "experiment_id": "u6.p4ak-nasa-film-noise-mechanism-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AK",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "p4aj_decision_path": "configs/u6_p4aj_subpixel_moment_lod_decision_v1.json",
+    "p4aj_decision_sha256": "e1365944e609c613da11e515502215230f789dbd50729bd527b79dd1d4f4b89d"
+  },
+  "source": {
+    "record_id": "19680012473",
+    "title": "A lighting strategy for Lunar Orbiter mission design",
+    "report_number": "NASA-TN-D-4501",
+    "publication_date": "1968-05-01",
+    "metadata_url": "https://ntrs.nasa.gov/api/citations/19680012473",
+    "pdf_url": "https://ntrs.nasa.gov/api/citations/19680012473/downloads/19680012473.pdf",
+    "text_url": "https://ntrs.nasa.gov/api/citations/19680012473/downloads/19680012473.txt",
+    "expected_distribution": "PUBLIC",
+    "expected_rights_determination": "GOV_PUBLIC_USE_PERMITTED",
+    "maximum_pdf_bytes": 25000000,
+    "maximum_text_bytes": 5000000
+  },
+  "acquisition": {
+    "destination": "data/external/u6_p4ak_nasa_tn_d4501",
+    "downloads": 2,
+    "timeout_seconds": 120,
+    "user_agent": "NeuroFilmResearch/1.0",
+    "ocr_allowed": false,
+    "figure_digitization_allowed": false
+  },
+  "observations": {
+    "required_text_anchors": [
+      "Film granularity noise",
+      "film response",
+      "background exposure",
+      "film transmission noise",
+      "scanning aperture area",
+      "film-sensitivity-to-rms-system-noise"
+    ],
+    "questions": [
+      "Is film response represented as an exposure-dependent derivative or slope?",
+      "Is rms density granularity represented as a separately measured exposure-dependent function?",
+      "Is density noise transformed to transmission noise explicitly?",
+      "Is scanning aperture treated as a separate measurement/system variable?",
+      "Does machine-readable text provide a reusable numeric granularity-versus-exposure table?"
+    ]
+  },
+  "gates": {
+    "metadata_identity_exact": true,
+    "public_distribution_and_rights_exact": true,
+    "pdf_and_text_within_bounds": true,
+    "pdf_magic": "%PDF-",
+    "minimum_text_bytes": 20000,
+    "all_required_text_anchors_case_insensitive": true,
+    "repeat_download_sha256_exact": true,
+    "no_ocr": true,
+    "no_figure_digitization": true
+  },
+  "branch_rule": {
+    "source_pass_numeric_table": "Open a separately frozen no-fit numerical compatibility audit; do not fit or calibrate.",
+    "source_pass_no_numeric_table": "Retain qualitative mechanism constraints only; explicitly test whether they support or limit the P4AD interpretation, with no curve fitting.",
+    "source_fail": "Close this source without alternate mirrors, OCR, figure digitization or rights relaxation."
+  },
+  "forbidden": [
+    "OCR or figure digitization",
+    "treating lunar-orbiter film as a modern photographic stock",
+    "fitting P4AF amplitude, correlation or marginal",
+    "stock, process, scanner, calibration or product claims"
+  ],
+  "claim_ceiling": "Primary-source mechanism and measurement-boundary evidence for historical photographic film noise; not reusable stock data, measured modern emulsion parameters, calibration or product evidence."
+}
