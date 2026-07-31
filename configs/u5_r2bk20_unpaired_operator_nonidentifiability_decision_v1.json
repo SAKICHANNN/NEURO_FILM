@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u5_r2bk20_unpaired_operator_nonidentifiability_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk20-unpaired-operator-nonidentifiability-v1",
+  "config": "configs/u5_r2bk20_unpaired_operator_nonidentifiability_v1.json",
+  "config_sha256": "d013bf9614b12c5cc0c6022af46ff457e6768cc332e8abe0630daffc56af5fc1",
+  "formal_report": "outputs/u5_r2bk20_unpaired_operator_nonidentifiability_v1/formal_a/report.json",
+  "formal_report_sha256": "340d31d041fe94e80b97cdc8ea11a3d2b79496b7653c48bd0ebf52c15c449970",
+  "repeat_report": "outputs/u5_r2bk20_unpaired_operator_nonidentifiability_v1/formal_b/report.json",
+  "repeat_report_sha256": "340d31d041fe94e80b97cdc8ea11a3d2b79496b7653c48bd0ebf52c15c449970",
+  "automatic_pass": true,
+  "observations": {
+    "point_count": 504,
+    "observed_source_and_both_target_set_sha256": "9778578d239814230391a4e2a87e846fbaa70c3ede691b56851bca2df10cd39b",
+    "true_operator_paired_rgb_rmse": 0.06359614752787504,
+    "twist_non_affine_residual_rmse": 0.059002711396279474,
+    "twist_inverse_maximum_error": 0.0,
+    "twist_out_of_cube_fraction": 0.0,
+    "canonicalizer_true_twist_recovery_fraction": 0.0
+  },
+  "decision": "unpaired_operator_identification_remains_unidentified_require_film_inspired_claim_ceiling",
+  "allowed_next": [
+    "develop a reference-conditioned appearance matcher explicitly labelled film-inspired",
+    "retain hard case or medoid selection and bounded explicit rendering",
+    "require sensitivity controls and fall back when canonicalizers or reference pools disagree"
+  ],
+  "forbidden": [
+    "claim a reference-only appearance match is the real digital-to-film operator",
+    "backfill exposure, illuminant, push, pull, process or scanner labels",
+    "claim a real stock has multiple modes from appearance clusters",
+    "weaken stock/source/content identifiability or severe-artifact gates"
+  ],
+  "claim_ceiling": "constructive synthetic proof that unpaired appearance sets do not identify a unique explicit colour operator; future reference matching is film-inspired unless stronger paired evidence exists"
+}

@@ -439,3 +439,11 @@ strengths has `.999909` minimum cosine and only `2.94e-6` absolute K2 gain.
 This is not real-film or unpaired evidence. BK20 is the next algorithm leaf:
 freeze multiple unpaired canonicalizers/control pools and return
 `unidentified` whenever their inferred directions disagree.
+
+U5.R2BK20 now provides that strict nonidentifiability result. Identity and a
+nonlinear, invertible, cube-safe z-conditioned twist have byte-identical
+unpaired observed sets, yet differ by `.06360` paired RGB RMSE and `.05900`
+after best affine basic removal. Two canonicalizers recover no hidden twist.
+The next algorithm leaf must therefore optimize film-inspired appearance value
+with an explicit claim ceiling, canonicalizer sensitivity and hard fallback;
+it cannot call reference-only output the real digital-to-film operator.

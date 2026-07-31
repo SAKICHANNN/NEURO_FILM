@@ -8237,3 +8237,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   solve unpaired operator identification. BK20 may test multiple synthetic
   unpaired canonicalizers/control pools and must return `unidentified` when
   they disagree.
+
+## 2026-07-31 - Preserve unpaired operator nonidentifiability in U5.R2BK20
+
+- Two exact reports at `340d31d0...9970` construct identity and nonlinear
+  z-conditioned twist worlds with the same 504-colour observed source/target
+  set SHA `9778578d...d39b`.
+- The hidden operators differ by `.06360` paired RGB RMSE and `.05900`
+  non-affine residual RMSE; the twist is exactly invertible and cube-safe.
+- Lexicographic and minimum-distance canonicalizers both recover identity and
+  zero hidden twist rows. Unpaired appearance does not identify the operator.
+- This does not close useful reference matching. It fixes the claim ceiling:
+  proceed with bounded film-inspired appearance matching, hard case selection,
+  sensitivity controls and fallback, never real operator/physical mode truth.

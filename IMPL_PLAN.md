@@ -2205,4 +2205,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > unpaired-identifiability sensitivity audit across multiple canonicalizers
 > and matched control pools. Any disagreement returns `unidentified`; no real
 > pixels, stock modes, router or product integration are open.
+
+> `U5.R2BK20` constructs two materially different, invertible, cube-safe
+> operators with exactly the same observed unpaired source/target colour sets.
+> It formally preserves `unidentified` for real operator recovery. The next
+> implementation leaf may build a bounded reference-conditioned appearance
+> matcher, but must label it film-inspired, compare multiple canonicalizers or
+> control pools, and fail back when their results disagree.
 >
