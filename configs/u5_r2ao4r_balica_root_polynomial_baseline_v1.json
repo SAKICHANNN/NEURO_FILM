@@ -84,6 +84,7 @@
     ],
     "structural_cube_size": 17,
     "jacobian_step": 0.00001,
+    "positive_scale_equivariance_role": "diagnostic only because the published best-performing gamma-domain representation is intentionally nonlinear in linear light",
     "metrics": [
       "linear_rgb_rmse",
       "mean_delta_e76",
@@ -103,7 +104,6 @@
     "maximum_mean_raw_out_of_cube_fraction": 0.0,
     "maximum_fold_raw_out_of_cube_fraction": 0.0,
     "minimum_jacobian_determinant": 0.003,
-    "maximum_positive_scale_equivariance_absolute_error": 1e-10,
     "two_run_report_byte_identity": true,
     "source_nonmutation": true
   },
