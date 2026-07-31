@@ -1,0 +1,85 @@
+{
+  "schema": "neuro_film.u5_r2bk6_bounded_opponent_fresh_confirmation.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk6-bounded-opponent-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK6",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does fixed BK5 retain materially visible, artifact-safe generic film-inspired styling on a third leakage-clean fresh CC0 RAW population, and how does it compare with unchanged AO6 t15/c35 and safe-rich?",
+  "source_preflight": {
+    "decision": "configs/u5_r2bk6s_bounded_opponent_fresh_source_decision_v1.json",
+    "decision_sha256": "c09b30f2e66c694ee167e4c3ca4205a9bd14e086cf9b30237712354a31806e73",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978",
+    "expected_eligible_rows": 12,
+    "expected_camera_makes": 12
+  },
+  "fixed_arms": [
+    {
+      "arm_id": "fixed_bk5_bounded_opponent_response",
+      "role": "new_generic_explicit_film_look_candidate",
+      "config": "configs/u5_r2bk5_bounded_opponent_response_v1.json",
+      "config_sha256": "d89684c51cc85c8f59715f017a574a9f6aa3194c0a413acd7217982957da91b5",
+      "strength": 1.0
+    },
+    {
+      "arm_id": "fixed_ao6_colour_only_t15_c35",
+      "role": "development_champion_look_approximation",
+      "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+      "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+      "component": "ao6-source-context-display-look"
+    },
+    {
+      "arm_id": "safe_rich_velvia_50",
+      "role": "current_safe_rich_fallback_control",
+      "profile": "configs/render_profiles/safe_rich_v1.json",
+      "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+      "style_statistics": "configs/film_color_stats.json",
+      "style_statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+      "guardrails": "configs/color_guardrails.json",
+      "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "style": "velvia_50",
+      "seed": 20260731
+    }
+  ],
+  "rendering": {
+    "create_only": true,
+    "source_domain": "frozen_relative_display_srgb_approximation",
+    "final_format": "rgb16_png",
+    "effects_allowed": false,
+    "resampling_allowed": false,
+    "per_image_fit_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "routing_allowed": false,
+    "dense_blending_allowed": false,
+    "hard_clipping_allowed": false,
+    "require_repeat_report_and_output_identity": true
+  },
+  "automatic_gate": {
+    "expected_outputs": 36,
+    "minimum_bk5_population_median_style_delta_e76": 5.0,
+    "maximum_per_output_new_code_boundary_fraction_vs_source": 0.005,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "visual_protocol": {
+    "review_eligible_only_after_automatic_pass": true,
+    "review_full_population": true,
+    "source_and_three_arms_visible": true,
+    "severe_artifact_veto_precedes_style": true,
+    "inspect_fixed_orientation_stress_row": "samsung_sm_g950u",
+    "no_population_preference_claim": true
+  },
+  "branch_rules": {
+    "repeat_or_automatic_fail": "close BK5 without changing sources, parameters, strengths or gates",
+    "severe_fail": "reject BK5 regardless of style strength",
+    "artifact_safe_but_bland": "close BK5 and continue another explicit algorithm family",
+    "artifact_safe_and_visibly_material": "retain BK5 as a generic explicit challenger and open a separately frozen independent preference comparison; do not promote product or stock claims"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "third-fresh-population autonomous comparison of three fixed explicit Look Approximation arms; not population preference, film truth, stock response, calibration, universal safety or product promotion"
+}
