@@ -66,6 +66,16 @@ def _aligned_sample(*arrays: np.ndarray, maximum: int) -> tuple[np.ndarray, ...]
     return tuple(value[indices] for value in flat)
 
 
+def _encoded_samples_to_lab(samples: np.ndarray) -> np.ndarray:
+    """Convert an Nx3 aligned sample through the image-shaped colour API."""
+
+    image = np.asarray(samples, dtype=np.float64)[None, ...]
+    return linear_rgb_to_lab(
+        np.asarray(encoded_srgb_to_linear(image), dtype=np.float32),
+        working_space="linear_srgb",
+    )[0].astype(np.float64)
+
+
 def compose_ao6_nonbasic_chroma_emphasis(
     source_encoded: np.ndarray,
     ao6_encoded: np.ndarray,
@@ -217,18 +227,9 @@ def run_ao6_nonbasic_chroma_emphasis(
         sample_source, sample_ao6, sample_output = _aligned_sample(
             source, ao6, output, maximum=int(spec["fit_pixel_budget"])
         )
-        source_lab = linear_rgb_to_lab(
-            np.asarray(encoded_srgb_to_linear(sample_source), dtype=np.float32),
-            working_space="linear_srgb",
-        ).astype(np.float64)
-        ao6_lab = linear_rgb_to_lab(
-            np.asarray(encoded_srgb_to_linear(sample_ao6), dtype=np.float32),
-            working_space="linear_srgb",
-        ).astype(np.float64)
-        output_lab = linear_rgb_to_lab(
-            np.asarray(encoded_srgb_to_linear(sample_output), dtype=np.float32),
-            working_space="linear_srgb",
-        ).astype(np.float64)
+        source_lab = _encoded_samples_to_lab(sample_source)
+        ao6_lab = _encoded_samples_to_lab(sample_ao6)
+        output_lab = _encoded_samples_to_lab(sample_output)
         ao6_style = np.linalg.norm(ao6_lab - source_lab, axis=1)
         candidate_style = np.linalg.norm(output_lab - source_lab, axis=1)
         difference = np.linalg.norm(output_lab - ao6_lab, axis=1)

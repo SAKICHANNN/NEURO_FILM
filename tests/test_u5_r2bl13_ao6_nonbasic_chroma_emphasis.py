@@ -7,6 +7,7 @@ import numpy as np
 import pytest
 
 from src.eval.ao6_nonbasic_chroma_emphasis import (
+    _encoded_samples_to_lab,
     compose_ao6_nonbasic_chroma_emphasis,
     validate_contract,
 )
@@ -59,6 +60,13 @@ def test_nonbasic_colour_residual_changes_output_without_clipping() -> None:
     result = _compose(source, ao6)
     assert np.mean(np.abs(result["output"] - ao6)) > 1e-4
     assert np.all((result["output"] >= 0.0) & (result["output"] <= 1.0))
+
+
+def test_aligned_sample_lab_conversion_preserves_row_shape() -> None:
+    samples = np.linspace(0.05, 0.95, 33, dtype=np.float64).reshape(11, 3)
+    lab = _encoded_samples_to_lab(samples)
+    assert lab.shape == samples.shape
+    assert np.all(np.isfinite(lab))
 
 
 @pytest.mark.parametrize(
