@@ -1,0 +1,122 @@
+{
+  "schema": "neuro_film.u5_r2bk21_canonicalizer_consensus_appearance.v1",
+  "status": "contract_frozen",
+  "experiment_id": "u5.r2bk21-canonicalizer-consensus-appearance-v1",
+  "node": "ULT > U5 > U5.R2BK21",
+  "parent": {
+    "decision": "configs/u5_r2bk20_unpaired_operator_nonidentifiability_decision_v1.json",
+    "required_decision": "unpaired_operator_unidentified"
+  },
+  "question": "Can two independently specified unpaired appearance objectives support a hard-selected bounded explicit look when they agree, while forcing a hard identity fallback when the observed reference appearance is already matched or the inferred operators disagree?",
+  "scenarios": [
+    {
+      "id": "material_shared_look",
+      "kind": "same_population_bounded_style",
+      "seed_a": 52101,
+      "seed_b": 52102,
+      "expected_policy": "hard_explicit_candidate"
+    },
+    {
+      "id": "appearance_already_matched",
+      "kind": "identical_distribution",
+      "seed_a": 52111,
+      "seed_b": 52112,
+      "expected_policy": "identity_fallback"
+    },
+    {
+      "id": "content_confounded_reference",
+      "kind": "different_population",
+      "seed_a": 52121,
+      "seed_b": 52122,
+      "expected_policy": "identity_fallback"
+    }
+  ],
+  "population": {
+    "scenes_per_split": 4,
+    "samples_per_scene": 192,
+    "component_counts": [3, 4],
+    "weight_dirichlet_alpha": 1.4,
+    "mean_minimum": 0.08,
+    "mean_maximum": 0.92,
+    "standard_deviation_minimum": 0.045,
+    "standard_deviation_maximum": 0.12,
+    "different_population_shift": [0.28, -0.22, 0.18]
+  },
+  "style": {
+    "seed": 52100,
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.35,
+    "minimum_true_style_identity_rmse": 0.025
+  },
+  "canonicalizers": [
+    {
+      "id": "sliced_quantile_48",
+      "kind": "fixed_projection_sorted_quantile",
+      "projection_count": 48,
+      "projection_seed": 52131
+    },
+    {
+      "id": "rff_mmd_144",
+      "kind": "fixed_random_fourier_mmd",
+      "frequencies_per_bandwidth": 48,
+      "bandwidths": [0.08, 0.16, 0.32],
+      "feature_seed": 52132
+    }
+  ],
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.75,
+    "evaluation_grid_axis_size": 9
+  },
+  "optimization": {
+    "device": "cuda_if_available_else_cpu",
+    "dtype": "float32",
+    "seed": 52140,
+    "steps": 140,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": true
+  },
+  "policy": {
+    "weak_reference_combined_identity_loss_maximum": 0.000001,
+    "maximum_canonicalizer_operator_rmse": 0.06,
+    "minimum_selected_cross_objective_improvement_fraction": 0.25,
+    "selection": "hard argmin of the validation mean normalized residual ratio across both frozen objectives; never average operators or RGB",
+    "fallback": "identity"
+  },
+  "gates": {
+    "material_scenario_must_select_hard_candidate": true,
+    "material_minimum_cross_objective_improvement_fraction": 0.25,
+    "already_matched_must_select_identity": true,
+    "confounded_must_select_identity": true,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "repeat_report_sha256_equal": true
+  },
+  "allowed_actions": [
+    "reuse the frozen O0 cube-preserving explicit flow and existing SWD/RFF-MMD objectives without changing their implementations",
+    "fit only generated development distributions",
+    "hard-select one whole explicit operator after validation",
+    "fall back to exact identity on weak appearance change, canonicalizer disagreement, insufficient validation improvement or structural failure",
+    "use the local RTX 5070 Ti Laptop GPU under deterministic settings"
+  ],
+  "forbidden_actions": [
+    "claim either canonicalizer identifies the hidden digital-to-film operator",
+    "average candidate operators, velocity grids or RGB outputs",
+    "use project film pixels, current stock pools, confirmation populations or owner preference votes",
+    "relax thresholds or change scenario generation after observing formal output",
+    "train a neural RGB generator or route by content/source/scanner identity",
+    "promote a stock, mode, product renderer or calibrated claim"
+  ],
+  "decision_if_all_gates_pass": "retain_canonicalizer_consensus_appearance_policy_prior",
+  "decision_if_any_gate_fails": "close_frozen_consensus_policy",
+  "claim_ceiling": "synthetic mechanism evidence for a hard-selected bounded film-inspired appearance matcher with canonicalizer sensitivity and identity fallback; no real-film operator, stock, mode, calibration, preference or product claim"
+}
