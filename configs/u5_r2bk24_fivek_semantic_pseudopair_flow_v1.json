@@ -1,0 +1,96 @@
+{
+  "schema": "neuro_film.u5_r2bk24_fivek_semantic_pseudopair_flow.v1",
+  "status": "contract_frozen",
+  "experiment_id": "u5.r2bk24-fivek-semantic-pseudopair-flow-v1",
+  "node": "ULT > U5 > U5.R2BK24",
+  "parent": {
+    "decision": "configs/u5_r2bk23_fivek_content_cell_appearance_control_decision_v1.json",
+    "decision_sha256": "7d5a0bafcdecfe98a5ff7bc2c7b07eb49b78e0429651cdc29b8d905dd2742ad6",
+    "required_decision": "retain_real_raster_k1_identity_outcome"
+  },
+  "question": "Can colour-blind DINOv2 patch retrieval across different FiveK photographs construct pseudo-pairs that fit one bounded explicit operator with better held-out per-photo tails than a target-colour-permuted control?",
+  "source": {
+    "manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "rows": 64,
+    "fit_rows": 48,
+    "development_evaluation_rows": 16,
+    "source_field": "raw_default_srgb16",
+    "target_field": "filtered_target_srgb16",
+    "same_identity_matching_allowed": false,
+    "confirmation_population_used": false,
+    "licence_scope": "research-only, non-commercial"
+  },
+  "external_method": {
+    "paper": "https://arxiv.org/abs/2605.07495",
+    "repository": "https://github.com/nuniniyujin/Unpaired-ISP",
+    "repository_commit": "f5d70aac7be23283873616a41acaf0f5d53a608a",
+    "repository_license": "MIT",
+    "adaptation": "DINOv2 semantic pseudo-pairing only; no copied code, CNN, GAN, RAW ISP, or final-RGB model"
+  },
+  "feature_model": {
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "license": "Apache-2.0",
+    "root": "data/models/huggingface/facebook-dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "config_sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+    "preprocessor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+    "input": "luma replicated to RGB before DINO normalization",
+    "image_size": 224,
+    "patch_grid": 16,
+    "topk_images": 5,
+    "sinkhorn_regularization": 0.05,
+    "sinkhorn_iterations": 40,
+    "batch_size": 8,
+    "device": "cuda"
+  },
+  "operator": {
+    "velocity_grid_axis_size": 4,
+    "integration_steps": 24,
+    "coefficient_vector_norm_cap": 1.75,
+    "steps": 180,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "seed": 52420,
+    "device": "cuda",
+    "dtype": "float32"
+  },
+  "control": {
+    "kind": "fixed_target_colour_permutation_after_semantic_transport",
+    "seed": 52430,
+    "same_target_colour_multiset_required": true
+  },
+  "gates": {
+    "minimum_distinct_target_images": 12,
+    "maximum_largest_target_share": 0.25,
+    "minimum_semantic_median_improvement_fraction": 0.1,
+    "minimum_semantic_worst_improvement_fraction": -0.05,
+    "minimum_semantic_pass_fraction": 0.75,
+    "per_photo_pass_threshold": 0.0,
+    "minimum_semantic_minus_control_median_improvement": 0.05,
+    "maximum_new_boundary_fraction": 0.005,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "repeat_report_sha256_equal": true
+  },
+  "branch_rules": {
+    "pass": "retain semantic pseudo-pairing as a development mechanism and freeze a disjoint confirmation population before further fitting",
+    "fail": "retain K=1 identity and close this fixed semantic pseudo-pair configuration without tuning on the 16 evaluation photographs"
+  },
+  "forbidden_actions": [
+    "use the held-out 16 targets before rendering",
+    "match a source to its own target identity",
+    "feed colour into the semantic descriptor",
+    "train or fine-tune DINOv2",
+    "directly generate final RGB with ML",
+    "call FiveK film, stock, emulsion, scanner, calibration or product evidence",
+    "reuse BK23 confirmation photographs",
+    "change thresholds, top-k, regularization, capacity or split after formal output"
+  ],
+  "claim_ceiling": "research-only development test of semantic pseudo-pair construction for one bounded explicit digital-retouch operator; no film, stock, unpaired-identification, calibration, preference, product or commercial claim"
+}
