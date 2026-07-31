@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u6_p2o_silver_retention_photographic_contract.v1",
+  "node": "U6.P2O",
+  "date_frozen": "2026-07-31",
+  "parents": {
+    "p2n_contract_path": "configs/u6_p2n_silver_retention_density_v1.json",
+    "p2n_contract_sha256": "64255577379f989ce97e7f4281e4e3f19d8db2f3aa14f39068fe9a7b3954abfc",
+    "p2n_decision_path": "configs/u6_p2n_silver_retention_density_decision_v1.json",
+    "p2n_decision_sha256": "f831f9bd28e107dcac4dfb36b2721327f3d520cfa11c14e2b03904cdbc39d564",
+    "p7f_contract_path": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+    "p7f_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f"
+  },
+  "question": "Does the fixed P2N retained-silver density branch add a material, non-basic and severe-safe photographic process look to the retained P7F physical chain when downstream print-density headroom is enforced analytically?",
+  "claim_ceiling": "generic physical-inspired retained-silver Look Approximation on display-derived pseudo-exposure; not measured bleach bypass, stock/process response, scanner calibration or product promotion",
+  "population": {
+    "source": "exact P7F 18-image / nine-make rights-cleared cohort",
+    "expected_rows": 18,
+    "expected_makes": 9,
+    "new_data_allowed": false,
+    "photograph_fitting_allowed": false
+  },
+  "arms": {
+    "baseline": "exact P7F gauged spatial 4000-dpi physical chain plus unchanged AO6 colour",
+    "candidate": "same chain with exact P2N neutral silver after dye diffusion and before print interpretation",
+    "matched_basic_control": "best exposure, white-balance, contrast and saturation fit used only to measure candidate non-basic residual"
+  },
+  "density_headroom_guard": {
+    "direction": "exact P2N requested neutral-silver density",
+    "limit": "minimum per-channel distance to the existing print-interpretation white-reference density",
+    "scale": "per-pixel min(1, nonnegative headroom/requested silver density)",
+    "hard_clipping_forbidden": true,
+    "negative_scale_forbidden": true
+  },
+  "execution": {
+    "sampling_dpi": 4000,
+    "runs": 2,
+    "outputs": ["baseline", "silver-retention", "difference-x4"],
+    "png_compress_level": 6,
+    "post_result_retuning_allowed": false
+  },
+  "automatic_gates": {
+    "two_reports_and_output_inventories_must_be_exact": true,
+    "all_outputs_finite_and_in_unit_cube": true,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_per_image_median_delta_e76": 25.0,
+    "minimum_population_median_delta_e76": 3.0,
+    "minimum_population_median_non_basic_delta_e76": 1.5,
+    "minimum_images_with_delta_e76_at_least_1": 14,
+    "minimum_median_applied_retention_scale": 0.5,
+    "maximum_median_luma_absolute_shift": 0.15,
+    "minimum_population_median_lab_chroma_ratio": 0.5,
+    "maximum_population_median_lab_chroma_ratio": 0.98,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_threshold": 0.08,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3
+  },
+  "visual_protocol": {
+    "opens_only_if_all_automatic_gates_pass": true,
+    "fixed_ids": ["canon_eos250d_16x9", "nikon_d6_12bit", "sony_nex5_12bit", "fujifilm_s2pro", "olympus_epl8", "panasonic_dmcg10", "pentax_k20d", "ricoh_grii", "samsung_gx1l"],
+    "severe_vetoes": ["posterization or banding", "hard clipping or blocked colour fields", "colour fringing", "secondary contours", "isolated speckles", "geometry or content corruption"],
+    "style_question": "Does retained silver add a coherent contrast/desaturation process character beyond a basic edit, without making all photographs uniformly muddy or grey?"
+  },
+  "forbidden_fallbacks": [
+    "change P2N fraction, weights, P7F profile, AO6 colour, population or thresholds",
+    "fit any parameter on photographs",
+    "remove difficult photographs or rerun extra visual rounds",
+    "hard clip print density or final RGB",
+    "call the candidate a measured bleach-bypass, stock, lab or scanner profile",
+    "advance to visual review if any automatic gate fails"
+  ],
+  "branch_rule": {
+    "automatic_pass": "freeze exact outputs for one severe-first autonomous visual audit; no product integration",
+    "automatic_fail": "close the fixed P2N photographic branch without strength, headroom, population or threshold rescue",
+    "visual_pass": "retain as a generic process-look challenger for later fixed-bank evaluation",
+    "visual_fail": "retain P2N primitive only and close photographic use"
+  }
+}
