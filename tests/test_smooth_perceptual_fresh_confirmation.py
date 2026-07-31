@@ -3,6 +3,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
+from src.eval.log_chroma_fresh_comparison import (
+    LogChromaFreshComparisonError,
+)
+from src.eval.smooth_perceptual_fresh_confirmation import validate_contract
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
@@ -35,3 +42,17 @@ def test_bk8_comparison_contract_is_frozen() -> None:
     assert not config["training_allowed"]
     assert not config["operator_fitting_allowed"]
     assert not config["selector_training_allowed"]
+
+
+def test_bk8_contract_binds_eligible_source_and_fixed_operator() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    validated = validate_contract(ROOT, config)
+    assert len(validated["source_rows"]) == 11
+    assert validated["bk7_strength"] == 1.0
+
+
+def test_bk8_contract_mutation_fails_closed() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    config["fixed_arms"][0]["strength"] = 0.75
+    with pytest.raises(LogChromaFreshComparisonError):
+        validate_contract(ROOT, config)
