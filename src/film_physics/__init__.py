@@ -138,6 +138,10 @@ from .density_conditioned_structure import (
     render_density_conditioned_structure_area_lod_region,
     render_density_conditioned_structure_region,
 )
+from .characteristic_slope_grain import (
+    HillCharacteristicProfile,
+    developed_density_variance,
+)
 from .spatial_response import (
     SpatialResponseProfile,
     apply_bounded_development_adjacency,
@@ -259,6 +263,7 @@ __all__ = [
     "ScanSignalNormalization",
     "SpatialResponseProfile",
     "InterimageAdjacencyProfile",
+    "HillCharacteristicProfile",
     "apply_bounded_development_adjacency",
     "apply_reference_backing_return",
     "apply_interpretation_bounded_development_adjacency",
@@ -290,6 +295,7 @@ __all__ = [
     "coordinate_counter_u64",
     "density_to_transmittance",
     "develop_layer_exposure",
+    "developed_density_variance",
     "develop_reversal_layer_exposure",
     "density_to_scan_transmittance",
     "derive_scan_signal_normalization",
