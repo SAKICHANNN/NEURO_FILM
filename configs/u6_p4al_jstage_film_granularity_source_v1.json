@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u6_p4al_jstage_film_granularity_source_contract.v1",
+  "experiment_id": "u6.p4al-jstage-film-granularity-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AL",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "p4ak_decision_path": "configs/u6_p4ak_nasa_film_noise_mechanism_source_decision_v1.json",
+    "p4ak_decision_sha256": "e6c58e06d0459b474cd9ed5da67a2a4a022ab57ed904972c78e57b1539dbb4d4"
+  },
+  "source": {
+    "title": "Granularity of Photographic Film",
+    "author": "Masao Takano",
+    "journal": "The Journal of the Institute of Television Engineers of Japan",
+    "volume": 23,
+    "issue": 1,
+    "pages": "13-23",
+    "publication_date": "1969-01-01",
+    "doi": "10.3169/itej1954.23.13",
+    "article_url": "https://www.jstage.jst.go.jp/article/itej1954/23/1/23_1_13/_article/-char/en",
+    "pdf_url": "https://www.jstage.jst.go.jp/article/itej1954/23/1/23_1_13/_pdf/-char/en",
+    "expected_access_label": "JOURNAL FREE ACCESS",
+    "expected_copyright_holder": "The Institute of Image Information and Television Engineers",
+    "maximum_article_bytes": 2000000,
+    "maximum_pdf_bytes": 10000000
+  },
+  "acquisition": {
+    "destination": "data/external/u6_p4al_jstage_takano_1969",
+    "downloads": 2,
+    "timeout_seconds": 120,
+    "user_agent": "NeuroFilmResearch/1.0",
+    "ocr_allowed": false,
+    "figure_digitization_allowed": false,
+    "redistribution_allowed": false
+  },
+  "machine_text": {
+    "extractor": "pdftotext",
+    "minimum_characters": 12000,
+    "minimum_japanese_characters": 3000,
+    "required_terms": [
+      "粒状性",
+      "写真",
+      "濃度",
+      "自己相関",
+      "ウィーナー"
+    ]
+  },
+  "gates": {
+    "article_identity_exact": true,
+    "free_access_label_exact": true,
+    "copyright_holder_exact": true,
+    "pdf_within_bound": true,
+    "pdf_magic": "%PDF-",
+    "repeat_download_sha256_exact": true,
+    "repeat_extraction_sha256_exact": true,
+    "all_required_terms_exact": true,
+    "no_ocr": true,
+    "no_figure_digitization": true,
+    "no_redistribution": true
+  },
+  "branch_rule": {
+    "source_pass": "Open a separately frozen qualitative mechanism audit of equations and definitions only; no parameter fitting, figure digitization or stock calibration.",
+    "source_fail": "Close this source without OCR, alternate copies, fuzzy term rescue or rights relaxation."
+  },
+  "forbidden": [
+    "OCR, translation-model transcription or figure digitization",
+    "redistribution or use as training data",
+    "fitting P4AF or P4AJ parameters",
+    "treating a general 1969 review as a modern stock or process calibration",
+    "stock, scanner, product or authenticity claims"
+  ],
+  "claim_ceiling": "Internal research-only primary-source readability evidence for historical photographic-film granularity theory; not reusable training data, calibrated parameters, stock response or product evidence."
+}
