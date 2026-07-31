@@ -8208,3 +8208,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Only an automatic pass opens full-population autonomous visual review with
   the four preregistered stress rows. Severe artifacts veto advancement before
   any style judgment; no stock, preference or product claim is available.
+
+## 2026-07-31 - Close U5.R2BK18 on frozen style salience
+
+- Two complete 49-file runs are byte-identical (`db76e278...e1615`; stable
+  `2a6d4594...0cdb4`). All 48 renders exist and the maximum new code-boundary
+  fraction is zero.
+- BK16 adds a material median 4.6871 Delta E76 over safe-rich, but its total
+  sixth-fresh style median is only 6.1368, below the frozen 8.0 gate and
+  essentially tied with BK7 at 6.1550; fixed AO6 remains much stronger at
+  12.9086.
+- The automatic failure correctly generated no visual sheets and forbids
+  visual rescue. Do not lower the gate or retune BK16 on these pixels. Close
+  the generalized BK16 branch and proceed to a distinct explicit operator
+  family using only development or synthetic design evidence.

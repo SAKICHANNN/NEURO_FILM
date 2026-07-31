@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk18-factorized-ao6-sixth-fresh-confirmation-v1",
+  "node": "ULT > U5 > U5.R2BK18",
+  "status": "automatic_fail_visual_forbidden_branch_closed",
+  "decision": "close_bk16_generalized_style_salience_open_distinct_explicit_algorithm_family",
+  "config": {
+    "path": "configs/u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_v1.json",
+    "sha256": "75d3598d3483e3c9a7f321d0dc74bb686742daea4b06c6e7277c8dc11ec37de2"
+  },
+  "result": {
+    "source_rows": 12,
+    "outputs": 48,
+    "automatic_pass": false,
+    "visual_review_allowed": false,
+    "visual_review_performed": false,
+    "confirmed_severe_artifact_count": null,
+    "population_median_style_delta_e76": {
+      "fixed_bk16_safe_base_factorized_ao6_residual": 6.136772871017456,
+      "fixed_bk7_smooth_perceptual_hue_density": 6.155012130737305,
+      "fixed_ao6_colour_only_t15_c35": 12.9085693359375,
+      "safe_rich_velvia_50": 3.32005512714386
+    },
+    "bk16_population_median_increment_vs_safe_delta_e76": 4.687052249908447,
+    "maximum_new_code_boundary_fraction_vs_source": 0.0,
+    "automatic_gates": {
+      "complete_outputs": true,
+      "bk16_style_salience": false,
+      "bk16_increment_over_safe": true,
+      "new_boundary": true
+    },
+    "finding": "BK16 is deterministic, boundary-safe and materially different from safe-rich, but its sixth-fresh population style median is 6.1368 Delta E76, below the preregistered 8.0 gate and essentially tied with BK7 at 6.1550 while fixed AO6 reaches 12.9086. The automatic failure forbids visual review. Thresholds and strengths remain frozen; the generalized BK16 branch closes rather than being rescued."
+  },
+  "evidence": {
+    "report": {
+      "path": "outputs/u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_v1/run_a/report.json",
+      "sha256": "db76e278994df8a0089c4824dc992f9b832ae3026bceddb0e4212937fbce1615",
+      "stable_evidence_id": "2a6d45941013852ddf5d65006a4c1324e2b8225927067509825e04515490cdb4"
+    },
+    "formal_runs": [
+      "run_a",
+      "run_b"
+    ],
+    "repeat_report_and_all_output_hashes_exact": true,
+    "files_per_run": 49,
+    "visual_sheets_generated": 0,
+    "software_commit": "6ec597eb940afda0d586728665542c9dd3863584"
+  },
+  "next_leaf": "freeze a distinct explicit colour-operator family using only development/synthetic evidence; do not tune or rescue BK16 on BK17S pixels",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "strength_retuning_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "negative sixth-fresh style-salience evidence for fixed BK16 with exact execution and boundary safety; not visual preference, film truth, stock response, calibration or product promotion"
+}

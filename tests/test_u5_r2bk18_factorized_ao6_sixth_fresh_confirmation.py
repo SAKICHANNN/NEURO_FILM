@@ -20,6 +20,10 @@ CONFIG = (
     ROOT
     / "configs/u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk18_factorized_ao6_sixth_fresh_confirmation_decision_v1.json"
+)
 
 
 def _config() -> dict:
@@ -65,6 +69,27 @@ def test_bk18_rejects_contract_and_source_identity_drift() -> None:
     config["rendering"]["strength_retuning_allowed"] = True
     with pytest.raises(LogChromaFreshComparisonError):
         validate_contract(ROOT, config)
+
+
+def test_bk18_decision_closes_failed_style_branch_without_visual_rescue() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "close_bk16_generalized_style_salience_open_distinct_explicit_algorithm_family"
+    )
+    assert not result["automatic_pass"]
+    assert not result["visual_review_allowed"]
+    assert not result["visual_review_performed"]
+    assert result["confirmed_severe_artifact_count"] is None
+    assert result["automatic_gates"]["complete_outputs"]
+    assert not result["automatic_gates"]["bk16_style_salience"]
+    assert result["automatic_gates"]["bk16_increment_over_safe"]
+    assert result["automatic_gates"]["new_boundary"]
+    assert result["population_median_style_delta_e76"][ARMS[0]] < 8.0
+    assert decision["evidence"]["repeat_report_and_all_output_hashes_exact"]
+    assert decision["evidence"]["visual_sheets_generated"] == 0
+    assert not decision["strength_retuning_allowed"]
+    assert not decision["production_default_changed"]
     config = _config()
     config["source_preflight"]["decision_sha256"] = "0" * 64
     with pytest.raises(LogChromaFreshComparisonError):
