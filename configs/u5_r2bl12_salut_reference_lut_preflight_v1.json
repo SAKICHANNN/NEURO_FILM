@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u5_r2bl12_salut_reference_lut_preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl12-salut-reference-lut-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL12",
+  "status": "contract_frozen_acquisition_ready",
+  "question": "Can the official SA-LUT checkpoint be reproduced locally as a non-generative reference-conditioned explicit-LUT baseline before any film-reference quality experiment?",
+  "primary_source": {
+    "paper": "https://arxiv.org/abs/2506.13465",
+    "official_repository": "https://github.com/Ry3nG/SA-LUT.git",
+    "repository_commit": "3e62f9c9b59ea7b30d220ff6ba61047dab898c9a",
+    "code_license": "S-Lab License 1.0 non-commercial research only",
+    "checkpoint_url": "https://huggingface.co/zrgong/SA-LUT/resolve/main/epoch%3D100-step%3D4127466.ckpt.state.pt",
+    "checkpoint_expected_bytes": 218400931,
+    "checkpoint_http_etag": "f0eef7d1ef5f193456cfe8333c3c6f3671734ff56a41ddf28f336df4131c6d81",
+    "checkpoint_model_card_present": false,
+    "checkpoint_rights_ceiling": "internal non-commercial research baseline only; no redistribution or product use",
+    "pst50_dataset": "https://huggingface.co/datasets/zrgong/PST50",
+    "pst50_license": "CC-BY-4.0",
+    "pst50_full_download_allowed_in_this_leaf": false
+  },
+  "acquisition": {
+    "root": "data/external/salut_v1",
+    "repository_subdir": "repo",
+    "checkpoint_subpath": "checkpoint/epoch=100-step=4127466.ckpt.state.pt",
+    "create_only": true,
+    "maximum_total_bytes": 300000000,
+    "retain_exact_git_commit": true,
+    "compute_sha256_after_download": true
+  },
+  "compatibility_gate": {
+    "load_checkpoint_on_local_pytorch": true,
+    "run_official_or_mechanically_equivalent_cpu_smoke": true,
+    "run_official_or_mechanically_equivalent_cuda_smoke": true,
+    "repeat_same_pair_output_identity": true,
+    "inspect_output_for_finite_rgb_and_shape_identity": true,
+    "inspect_generated_lut_or_explicit_mapping_identity": true,
+    "maximum_new_code_boundary_fraction": 0.005,
+    "hard_clipping_allowed": false
+  },
+  "branches": {
+    "source_or_runtime_fail": "close direct reproduction and retain SA-LUT as literature baseline only",
+    "compatibility_pass": "freeze a bounded development comparison using existing rights-cleared content and film-reference appearance images; no PST50 full download is implied",
+    "later_quality_fail": "retain AO6 and record SA-LUT as a mature negative baseline",
+    "later_quality_pass": "retain as a research challenger only; product use remains blocked by code/checkpoint rights and severe/OOD gates"
+  },
+  "training_allowed": false,
+  "fine_tuning_allowed": false,
+  "generative_model_allowed": false,
+  "product_integration_allowed": false,
+  "production_default_changed": false,
+  "film_stock_response_claim_allowed": false,
+  "claim_ceiling": "Exact official-checkpoint compatibility evidence for a non-commercial general photorealistic style-transfer baseline; not film truth, stock response, calibrated simulation, product authorization or evidence that a neural context map is artifact-safe"
+}
