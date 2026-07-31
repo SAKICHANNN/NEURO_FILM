@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u5_r2bk9_smooth_perceptual_blind_preference_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk9-smooth-perceptual-blind-preference-v1",
+  "node": "ULT > U5 > U5.R2BK9",
+  "status": "blind_preference_gate_failed_branch_closed",
+  "decision": "close_bk7_as_generalized_preference_challenger",
+  "result": {
+    "blind_gate_passed": false,
+    "confirmed_severe_artifact_count": 0,
+    "total_votes": 33,
+    "counts": {
+      "fixed_bk7_smooth_perceptual_hue_density": 16,
+      "fixed_ao6_colour_only_t15_c35": 2,
+      "safe_rich_velvia_50": 15,
+      "tie": 0
+    },
+    "round_wins": {
+      "fixed_bk7_smooth_perceptual_hue_density": 1,
+      "fixed_ao6_colour_only_t15_c35": 0,
+      "safe_rich_velvia_50": 0,
+      "tie": 2
+    },
+    "bk7_vs_ao6_round_wins": {
+      "fixed_bk7_smooth_perceptual_hue_density": 3,
+      "fixed_ao6_colour_only_t15_c35": 0,
+      "tie": 0
+    },
+    "bk7_total_choice_share": 0.48484848484848486,
+    "bk7_choice_share_vs_ao6": 0.8888888888888888,
+    "failed_gate": {
+      "name": "minimum_bk7_overall_round_wins",
+      "observed": 1,
+      "required": 2
+    },
+    "passed_secondary_gates": {
+      "minimum_bk7_total_choice_share": true,
+      "minimum_bk7_round_wins_vs_ao6": true,
+      "minimum_bk7_choice_share_vs_ao6": true,
+      "confirmed_severe_artifact_allowed": true
+    },
+    "interpretation": "BK7 is a strong artifact-safe mechanism result and decisively outperformed AO6 in this autonomous blind comparison, but it split the population almost evenly with safe-rich and won only one of three overall rounds. The two tied rounds make the preregistered two-round preference gate fail. No threshold relaxation, revote, rerender or post-reveal tuning is allowed."
+  },
+  "evidence": {
+    "software_commit": "18fec83968bc2d46232e15c6e444876377a10ef1",
+    "contract_sha256": "b49609d3dd6b4847b69836e0e092bb77c6638a93b601a3800335e5f5f44c4fed",
+    "blind_observations_commit": "b70fb2f534b394e10d225f27cbdbd941a69ab2c5",
+    "blind_observations_sha256": "7b4e8b33f782c73e81c90656a411646bd633997bec1f7088218fa444944fd1c0",
+    "build_receipt_sha256": "25e1dd602030b4e3893fd026d0d77a32797cc5f2c256c5d2a5ac789dc0bc631a",
+    "result_sha256": "9e698c01291bcf750344278b7510f2081e0fccad3c3b75b112c199ad354c2ec1",
+    "stable_evidence_id": "80aedc9c4f474ea3d9db26364af8acf9e00fc14b51b0a4fbd1ca5fb6cba764b2"
+  },
+  "forbidden_rescue": [
+    "lower the frozen two-round preference gate",
+    "reinterpret tied rounds as BK7 wins",
+    "revote after mapping reveal",
+    "retune BK7 on the BK8/BK9 population",
+    "promote BK7 because it beat AO6 pairwise",
+    "reuse the fourth-fresh population as successor confirmation"
+  ],
+  "branch_action": "Close BK7 as the generalized preference challenger while retaining it as a smooth artifact-safe mechanism baseline. Develop a separately versioned explicit factorized candidate on synthetic controls only, then require a fifth leakage-clean fresh population before any generalized comparison.",
+  "next_leaf": "freeze and implement a synthetic-only safe-rich-base plus bounded orthogonal perceptual-residual primitive that preserves BK7 continuity while targeting the complementary preference split; no BK8/BK9 pixel fitting or parameter tuning",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "autonomous blind negative preference gate for fixed BK7 on one frozen fourth-fresh population; BK7 remains artifact-safe mechanism evidence but is not a generalized winner, owner preference, population preference, stock response, calibration or product promotion"
+}

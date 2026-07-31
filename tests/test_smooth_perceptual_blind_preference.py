@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk9_smooth_perceptual_blind_preference_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk9_smooth_perceptual_blind_preference_decision_v1.json"
+)
 
 
 def test_bk9_blind_contract_is_frozen() -> None:
@@ -52,3 +56,35 @@ def test_bk9_contract_mutation_fails_closed() -> None:
     config["arms"].reverse()
     with pytest.raises(ValueError):
         _validate_inputs(ROOT, config)
+
+
+def test_bk9_decision_closes_bk7_without_relaxing_gate() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "close_bk7_as_generalized_preference_challenger"
+    )
+    assert not result["blind_gate_passed"]
+    assert result["confirmed_severe_artifact_count"] == 0
+    assert result["counts"] == {
+        "fixed_bk7_smooth_perceptual_hue_density": 16,
+        "fixed_ao6_colour_only_t15_c35": 2,
+        "safe_rich_velvia_50": 15,
+        "tie": 0,
+    }
+    assert result["round_wins"][
+        "fixed_bk7_smooth_perceptual_hue_density"
+    ] == 1
+    assert result["failed_gate"] == {
+        "name": "minimum_bk7_overall_round_wins",
+        "observed": 1,
+        "required": 2,
+    }
+    assert result["bk7_vs_ao6_round_wins"][
+        "fixed_bk7_smooth_perceptual_hue_density"
+    ] == 3
+    assert result["bk7_total_choice_share"] >= 0.4
+    assert result["bk7_choice_share_vs_ao6"] >= 0.5
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["production_default_changed"]
