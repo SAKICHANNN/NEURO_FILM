@@ -8544,3 +8544,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Strict-interior fitting preserves BL1 capacity without per-pixel safety
   intervention. Open only a fixed no-fit/no-retune OOD execution on BL3's CC0
   population; no calibration or product claim.
+
+## 2026-08-01 - U5.R2BL6 retains strict-interior FilmMatch as challenger
+
+- Two 12-camera runs, reports and outputs are exact (`3410d2f1...e2c1c4`),
+  with `.12201` median style displacement and zero output/new-boundary pixels.
+- Three mapping-sealed autonomous blind rounds prefer the candidate `11/12`,
+  `10/12`, `11/12` (`32/36` aggregate). Contact-sheet and risk-selected
+  full-resolution review confirms zero severe artifact.
+- Retain BL5 only as a high-priority internal Look Approximation challenger.
+  The reused population is not independent confirmation or population
+  preference; next run the unchanged operator on genuinely fresh cleared data.

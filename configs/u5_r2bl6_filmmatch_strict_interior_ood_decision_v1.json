@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2bl6_filmmatch_strict_interior_ood_decision_summary.v1",
+  "experiment_id": "u5.r2bl6-filmmatch-strict-interior-ood-v1",
+  "automatic_report_sha256": "3410d2f117673bb2fd6ccfec7a81e8ebb2a2f0dd164597deca20431943e2c1c4",
+  "formal_decision_file_sha256": "e06d52b6989cfd34cc7a4d4a1ca5d8b490cbb595f8639100957c793f1468b158",
+  "formal_stable_evidence_id": "43241a3452915fd918ab71e4f0b594ce0c6f017f30ba03617653a037617e82ff",
+  "blind_observations_sha256": "1de385e4f43415c637764415960defdaa6fd2a7efcc1fe5960396fd6b7413f7a",
+  "blind_mapping_sha256": [
+    "f9b9ffe1991228cab37051062b5259b6dd9d76914f9951355b15c4cf6ee83876",
+    "ede236fe30090b44f4f9bf00ba4fd1c88bd9a60b8c698086adba831ac0d09ede",
+    "09af319b2d22e80196df09b9639bfe5f02db93e831ade51374d12b51c94f76c2"
+  ],
+  "automatic_result": {
+    "outputs": 12,
+    "camera_makes": 12,
+    "median_style_rgb_rmse_from_source": 0.12200505286455154,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "two_run_report_and_output_identity": true
+  },
+  "autonomous_visual_result": {
+    "evidence_class": "autonomous-visual-evidence-not-population-preference",
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 32,
+    "aggregate_choice_denominator": 36,
+    "confirmed_severe_artifact_count": 0,
+    "full_resolution_risk_samples_reviewed": [
+      "epson_r_d1x",
+      "hasselblad_lunar",
+      "huawei_eml_l29",
+      "lg_lg_h850",
+      "olympus_e_450"
+    ],
+    "full_resolution_findings": "No geometry damage, text corruption, posterization, banding, red-speckle failure, tile seam, or unintended clipping was confirmed. Strong contrast, dark shadows, visible sensor noise, and pronounced colour are photographic/source characteristics rather than severe transform artifacts."
+  },
+  "gates": {
+    "automatic_gate": true,
+    "two_run_identity": true,
+    "severe_artifact_veto": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true
+  },
+  "passed": true,
+  "decision": "retain_strict_interior_as_high_priority_internal_challenger",
+  "next_leaf": "genuinely fresh rights-cleared independent population confirmation without refitting or strength changes",
+  "product_integration_opened": false,
+  "claim_ceiling": "candidate-fit-independent but program-wide reused CC0 OOD safety and autonomous visual-value evidence for a fixed strict-interior Look Approximation; not independent confirmation, population preference, film truth, calibrated stock response, universal safety or product promotion"
+}

@@ -67,3 +67,21 @@ emissive RMSE changes only to `0.09633`; combined mean RMSE is `0.14302`.
 The 33-cube has zero quantized endpoint samples and minimum Jacobian
 `0.01064`. All frozen gates pass, opening only fixed ordinary-photo OOD
 execution with no refit or retuning.
+
+## BL6 fixed OOD value result
+
+BL6 applies the exact BL5 equation to the 12-camera BL3 population without
+refitting, routing or strength changes. Two complete reports and all outputs
+are byte-identical (`3410d2f1...e2c1c4`); median style RGB RMSE from source is
+`0.12201`, with zero output-boundary pixels and zero new boundary pixels versus
+AO6. Three mapping-sealed blind permutations were recorded before reveal. The
+strict-interior candidate wins `11/12`, `10/12` and `11/12`, for `32/36`
+aggregate choices against fixed AO6. Contact sheets and five risk-selected
+full-resolution outputs show no confirmed severe artifact.
+
+This passes the frozen internal OOD value gate and retains BL5 as a
+high-priority Look Approximation challenger. The population is program-wide
+reused, so this is autonomous visual evidence rather than population
+preference or independent confirmation. AO6 remains the incumbent until the
+unchanged candidate passes a genuinely fresh rights-cleared population; no
+product, calibration or stock-response claim opens.
