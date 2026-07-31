@@ -12,6 +12,10 @@ CONFIG = (
     ROOT
     / "configs/u5_r2bk12s_orthogonal_residual_replacement_source_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk12s_orthogonal_residual_replacement_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -110,3 +114,24 @@ def test_bk12s_selection_excludes_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk12s_decision_preserves_automatic_failure() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "close_bk12s_open_corrected_replacement_freeze"
+    )
+    assert not result["automatic_pass"]
+    assert not result["visual_review_allowed"]
+    assert not result["visual_review_performed"]
+    assert result["decoded_rows"] == 11
+    assert result["decoded_camera_makes"] == 11
+    assert result["failed_gate"]["name"] == (
+        "maximum_largest_make_fraction"
+    )
+    assert result["failed_gate"]["observed"] == 1 / 11
+    assert result["failed_gate"]["required_maximum"] == 1 / 12
+    assert not result["operator_outputs_inspected"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]

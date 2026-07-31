@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u5_r2bk12s_orthogonal_residual_replacement_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk12s-orthogonal-residual-replacement-source-v1",
+  "node": "ULT > U5 > U5.R2BK12S",
+  "status": "automatic_contract_gate_failed_replacement_v2_open",
+  "decision": "close_bk12s_open_corrected_replacement_freeze",
+  "config": {
+    "path": "configs/u5_r2bk12s_orthogonal_residual_replacement_source_v1.json",
+    "sha256": "c343343431712449e0612c88fab6bf92cad5b49f224fd593cae4c54cf37368f4"
+  },
+  "result": {
+    "candidate_rows": 12,
+    "decoded_rows": 11,
+    "decoded_camera_makes": 11,
+    "automatic_pass": false,
+    "visual_review_allowed": false,
+    "visual_review_performed": false,
+    "failed_gate": {
+      "name": "maximum_largest_make_fraction",
+      "observed": 0.09090909090909091,
+      "required_maximum": 0.08333333333333333
+    },
+    "fixed_decode_failures": [
+      {
+        "id": "xiro_xplorer_v",
+        "reason": "LibRawFileUnsupportedError: unsupported RAW format"
+      }
+    ],
+    "passed_gates": [
+      "minimum_rows",
+      "minimum_makes",
+      "within_exact",
+      "within_dhash",
+      "cross_exact",
+      "cross_dhash",
+      "near_empty_or_monochrome"
+    ],
+    "operator_outputs_inspected": false,
+    "interpretation": "The pool remains one image per make. The sole automatic failure is a preregistered 1/12 make-share ceiling that becomes impossible after any single decode failure, even though 11 independent makes remain. The result is not reinterpreted as a pass and no visual or operator output was inspected."
+  },
+  "evidence": {
+    "manifest_sha256": "0f3915ba6e3480060c70d4e6753556f1bfff500168ea3767e1763eba5eca238f",
+    "automatic_report_sha256": "d853e908bfa392b148d58958bb8d120064b4eba5a70b9c2278cbc589f2e76e56",
+    "software_commit": "c77a6022ac1190a77f01c33360563749b1427c09"
+  },
+  "branch_action": "Do not change or rerun BK12S. Freeze BK13S before new pixel access, replace only the unsupported Xiro row with a previously unused make, and restore the established make-share ceiling to 1/minimum-required-rows = 1/9. All other gates and the 11 unseen decoded rows remain fixed.",
+  "next_leaf": "freeze BK13S with exact 11-row carry-forward, one new make replacement, and maximum largest make fraction 1/9 before download",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "automatic source-contract failure and corrected replacement design evidence only; no visual, algorithm, preference, film truth, calibration or product claim"
+}
