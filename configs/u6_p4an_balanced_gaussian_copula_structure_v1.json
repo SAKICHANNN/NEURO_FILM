@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u6_p4an_balanced_gaussian_copula_structure_contract.v1",
+  "experiment_id": "u6.p4an-balanced-gaussian-copula-structure-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AN",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4am_decision_path": "configs/u6_p4am_transmittance_moment_corrected_structure_decision_v1.json",
+    "p4am_decision_sha256": "217ae606ca6f4e9fa21f3361eb52b6c630a8f8e1fb925e7ed2d2138f78179e11",
+    "p4af_decision_path": "configs/u6_p4af_derivative_conditioned_structure_decision_v1.json",
+    "p4af_decision_sha256": "27e5ef636d4dbf7c290efc920d379645bca9ae1fe2f7cacb4dc35c2668ebc126",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can a coordinate-fixed zero-sum 2x2 Gaussian source suppress low-frequency single-realization drift before the unchanged P4AF Gamma marginal without creating periodic, anisotropic or severe artifacts?",
+  "model": {
+    "marginal": "unchanged P4AF moment-matched gamma density",
+    "source_field": "four independent coordinate-counter normals per aligned 2x2 block, block mean removed, multiplied by sqrt(4/3)",
+    "filter": "unchanged separable truncated Gaussian",
+    "variance_normalization": "analytic infinite-grid covariance quadratic form",
+    "block_shape": [2, 2],
+    "peak_density_variance": 0.0001,
+    "correlation_sigma_pixels": 0.65,
+    "layer_seeds": [260831, 260837, 260851],
+    "variance_normalization_domain": [0.0001, 16.0],
+    "variance_normalization_samples": 32769,
+    "fitted_parameters": 0,
+    "sample_or_image_centering_allowed": false,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "shape": [512, 768],
+    "flat_exposure_levels": [0.001, 0.0055, 0.18, 4.0],
+    "ramp_exposure_interval": [0.0001, 16.0],
+    "ramp_bins": 24,
+    "low_frequency_block_sizes": [4, 8],
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 6,
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.001,
+    "minimum_flat_transmittance_error_improvement_over_p4af": 0.5,
+    "maximum_density_variance_relative_error": 0.2,
+    "minimum_ramp_variance_shape_spearman": 0.9,
+    "minimum_lag1_autocorrelation": 0.15,
+    "maximum_lag1_autocorrelation": 0.45,
+    "maximum_lag1_anisotropy": 0.03,
+    "maximum_low_frequency_block_mean_std_ratio_to_p4af": 0.5,
+    "maximum_checker_frequency_power_ratio_to_neighborhood": 3.0,
+    "maximum_isolated_standardized_excursions": 0,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true,
+    "no_parameter_fit": true
+  },
+  "negative_controls": [
+    "unchanged P4AF coordinate-counter correlated Gaussian copula",
+    "P4AM analytic mean correction",
+    "unblurred 2x2 checker pattern",
+    "sample-dependent global or local centering"
+  ],
+  "branch_rule": {
+    "pass": "Retain only as a generic synthetic low-frequency-controlled structure candidate and open an independently seeded severe/NPS confirmation before any photographic use.",
+    "fail": "Close without block-size, sigma, seed, marginal, spectrum or threshold rescue; continue another physical or colour mechanism."
+  },
+  "forbidden": [
+    "using sample/image statistics to recenter the field",
+    "changing P4AF amplitude, marginal or sensitometry",
+    "photographic rendering, visual promotion or product integration",
+    "stock, process, scanner, grain-size or calibration claims"
+  ],
+  "claim_ceiling": "Generic synthetic Gaussian-copula variance-reduction experiment for the existing uncalibrated P4AF marginal; not physical emulsion geometry, measured film NPS, stock response, photographic quality or product evidence."
+}
