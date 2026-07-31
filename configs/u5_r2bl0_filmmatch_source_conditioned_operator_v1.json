@@ -1,0 +1,97 @@
+{
+  "schema": "neuro_film.u5_r2bl0_filmmatch_source_conditioned_operator.v1",
+  "experiment_id": "u5.r2bl0-filmmatch-source-conditioned-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL0",
+  "parent": {
+    "sample_config": "configs/u5_r2aw1_filmmatch_code_domain_capacity_v1.json",
+    "sample_config_sha256": "1f5aa2e0d0c1a4a438642891db84dfcd3180fc236a5d061f5cb825d88eb12fbf",
+    "capacity_report": "outputs/external_controls/filmmatch_ektachrome_v1/factorized_capacity_report.json",
+    "capacity_report_sha256": "18bbea75d8769d8ddf075493498271ed94cebbe4baedae5da0e6ff6d107eb157",
+    "validation_decision": "configs/u5_r2aw9_filmmatch_validation_scene_decision_v1.json",
+    "validation_decision_sha256": "5d118a5b0837b8ed8acb25e6b0550022a441e034fc00e59bb183b4b4fdd8313c"
+  },
+  "question": "Can source-only chart statistics predict a bounded explicit paired-code-domain look operator across a completely held illuminant, rather than selecting a known condition or averaging one global operator?",
+  "data": {
+    "lane": "reflective_only",
+    "groups": 33,
+    "patches_per_group": 164,
+    "content_control": "the same SG and Classic chart patches occur in every exposure and illuminant group",
+    "outer_split": "leave one complete author-declared illuminant out",
+    "target_use": "targets fit development group operators and evaluator Oracle only; source descriptors never contain target values",
+    "validation_scene_use_allowed": false,
+    "emissive_lane_use_allowed": false
+  },
+  "operator": {
+    "family": "monotone_curves_positive_matrix",
+    "parameter_count": 12,
+    "curve_identity_mixture": 0.25,
+    "matrix_identity_mixture": 0.25,
+    "free_logit_bounds": [-8.0, 4.0],
+    "group_fit": {
+      "restart_count": 1,
+      "maximum_function_evaluations": 1500,
+      "function_tolerance": 1e-9,
+      "parameter_tolerance": 1e-9,
+      "gradient_tolerance": 1e-9,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260801
+    }
+  },
+  "source_descriptor": {
+    "rgb_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "luma_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "chromaticity_quantiles": [0.1, 0.5, 0.9],
+    "chroma_quantiles": [0.1, 0.5, 0.9],
+    "epsilon": 1e-8,
+    "fit_normalization_on_development_only": true
+  },
+  "predictor": {
+    "family": "multi_output_ridge",
+    "alpha_candidates": [0.1, 1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "nested leave-one-development-illuminant-out; minimum mean operator-parameter RMSE, then larger alpha",
+    "decode": "clip predicted logits to the frozen operator bounds, then analytically decode positive curves and matrix",
+    "negative_control": "one deterministic outer-development permutation of fitted operator parameter rows",
+    "seed": 20260801
+  },
+  "controls": {
+    "global": "same bounded operator family fit on all outer-development patches",
+    "oracle": "same bounded operator family fit separately on each held group using its targets; evaluator only",
+    "shuffled": "same source descriptor and ridge procedure with permuted development operator parameters"
+  },
+  "structural_audit": {
+    "cube_size": 17,
+    "minimum_jacobian_determinant": 1e-8,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "automatic_gate": {
+    "minimum_oracle_mean_rgb_rmse_improvement_over_global": 0.1,
+    "minimum_adaptive_mean_rgb_rmse_improvement_over_global": 0.05,
+    "minimum_adaptive_group_win_fraction": 0.6666666666666666,
+    "maximum_adaptive_aggregate_p95_ratio_to_global": 1.0,
+    "minimum_adaptive_mean_rgb_rmse_improvement_over_shuffled": 0.05,
+    "maximum_predicted_logit_clip_fraction": 0.25,
+    "require_all_outer_folds_finite": true,
+    "require_zero_out_of_cube": true,
+    "require_minimum_jacobian": true,
+    "require_two_run_byte_identity": true
+  },
+  "branches": {
+    "pass": "retain a source-conditioned bounded explicit-operator research candidate; no validation render opens because the only scene is already consumed",
+    "oracle_only": "conditional value exists but the source descriptor cannot recover it; close this predictor and retain global fallback",
+    "no_oracle": "the bounded operator family has insufficient conditional value; close routing and use the global operator",
+    "shuffled_or_unstable": "treat the apparent gain as nuisance or small-sample instability and close",
+    "structural_failure": "close without clipping, threshold relaxation or parameter-capacity rescue"
+  },
+  "gates": {
+    "paired_code_domain_operator_fitting_allowed": true,
+    "physical_exposure_or_illuminant_inference_claim_allowed": false,
+    "film_mode_claim_allowed": false,
+    "calibrated_stock_response_claim_allowed": false,
+    "scanner_independence_claim_allowed": false,
+    "validation_render_allowed": false,
+    "product_integration_allowed": false,
+    "public_fitted_asset_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation evidence for source-conditioned bounded explicit operators within one author-prepared Sony FX3/Ektachrome E100 capture-and-scan session; no physical exposure or illuminant inference, film mode, calibrated stock response, scanner independence, public asset or product promotion"
+}
