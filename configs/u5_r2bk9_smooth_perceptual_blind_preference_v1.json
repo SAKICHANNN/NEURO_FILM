@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u5_r2bk9_smooth_perceptual_blind_preference.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk9-smooth-perceptual-blind-preference-v1",
+  "node": "ULT > U5 > U5.R2BK9",
+  "status": "contract_frozen_build_ready",
+  "parents": {
+    "decision": {
+      "path": "configs/u5_r2bk8_smooth_perceptual_fresh_confirmation_decision_v1.json",
+      "sha256": "e95ec707ac0ff986a2b7d9938ed2f19ac4e8958ac6f858ef27f42dfd33f065bc",
+      "required_decision": "retain_bk7_open_independent_blind_preference"
+    },
+    "render_report": {
+      "path": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a/report.json",
+      "sha256": "c52622d3f7e4a3c847f57ac3f41d8b11a8e92ec0989215fd930b1c90d5698721"
+    },
+    "render_root": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a"
+  },
+  "population": {
+    "manifest": {
+      "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+      "sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8"
+    },
+    "expected_rows": 11,
+    "fixed_before_bk7_rendering": true,
+    "replacement_allowed": false
+  },
+  "arms": [
+    "fixed_bk7_smooth_perceptual_hue_density",
+    "fixed_ao6_colour_only_t15_c35",
+    "safe_rich_velvia_50"
+  ],
+  "blind_gate": {
+    "rounds": 3,
+    "ties_allowed": true,
+    "minimum_bk7_overall_round_wins": 2,
+    "minimum_bk7_total_choice_share": 0.4,
+    "minimum_bk7_round_wins_vs_ao6": 2,
+    "minimum_bk7_choice_share_vs_ao6": 0.5,
+    "confirmed_severe_artifact_allowed": false
+  },
+  "observation_protocol": {
+    "mapping_must_remain_unread_until_all_votes_and_severe_observations_are_frozen": true,
+    "source_visible": true,
+    "full_population_each_round": true,
+    "severe_artifact_veto_precedes_preference": true,
+    "preference_question": "Which anonymous candidate best combines visibly film-inspired style, photographic appeal and natural colour without severe artifact?",
+    "additional_rounds_after_reveal_allowed": false
+  },
+  "gates": {
+    "threshold_relaxation_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "rerender_allowed": false,
+    "product_integration_allowed": false
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "three-round autonomous blinded preference and severe-artifact comparison of fixed BK7, AO6 and safe-rich on one frozen fourth-fresh population; not owner or population preference, film truth, stock response, calibration or product promotion"
+}
