@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p4an_balanced_gaussian_copula_structure_decision.v1",
+  "experiment_id": "u6.p4an-balanced-gaussian-copula-structure-v1",
+  "decision": "close_balanced_gaussian_copula_below_comparative_gate",
+  "passed": false,
+  "report_sha256": "0a2c18d6e3975f6ca7fca4b674d8fab5b42cd63d4fc343179fdce89261efe0a3",
+  "stable_evidence_id": "942631b0dc227bd70d0e07b6503e5a521e90e550c239218fc910cb9a4def7429",
+  "passed_evidence": {
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.0001342610451393611,
+    "maximum_density_variance_relative_error": 0.007053616928928574,
+    "ramp_variance_shape_spearman": 0.9997427487298219,
+    "lag1_x": 0.2723762987374569,
+    "lag1_y": 0.27218932963622167,
+    "lag1_anisotropy": 0.0001869691012352237,
+    "maximum_low_frequency_block_mean_std_ratio_to_p4af": 0.31588030921203747,
+    "checker_frequency_power_ratio_to_neighborhood": 1.1175735497403139,
+    "isolated_standardized_excursions": 0,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true
+  },
+  "failed_evidence": {
+    "metric": "flat_transmittance_error_improvement_over_p4af",
+    "observed": 0.1780679698815809,
+    "frozen_minimum": 0.5
+  },
+  "interpretation": "The coordinate-fixed balanced source substantially suppresses low-frequency block means and meets the absolute tone, variance, correlation, anisotropy, periodicity and severe-excursion gates, but improves the matched P4AF single-realization flat transmittance error by only 17.81%, below the frozen 50% comparative requirement.",
+  "branch": {
+    "action": "close_before_photographic_rendering",
+    "forbidden_rescue": [
+      "block_size_search",
+      "sigma_search",
+      "seed_search",
+      "marginal_change",
+      "spectrum_search",
+      "threshold_relaxation"
+    ],
+    "next": "continue_a_distinct_physical_or_colour_mechanism"
+  },
+  "claim_ceiling": "Negative synthetic evidence for one low-frequency-controlled Gaussian-copula approximation; not physical emulsion geometry, measured film NPS, stock response, photographic quality or product evidence."
+}
