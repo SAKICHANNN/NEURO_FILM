@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u5_r2bl2_filmmatch_identity_residual_validation.v1",
+  "experiment_id": "u5.r2bl2-filmmatch-identity-residual-validation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL2",
+  "parent": {
+    "config": "configs/u5_r2bl1_filmmatch_identity_residual_sigmoid_v1.json",
+    "config_sha256": "0ebacbf2037070c3ba4f88c9bdf9bc5a65c34cd52eba34c65a51cd257dd5b1b1",
+    "report": "outputs/external_controls/filmmatch_ektachrome_v1/identity_residual_sigmoid_bl1/run_a.json",
+    "report_sha256": "8e10c665c2fd6816d21e4ab10534e6852c72e9518baad0532ee33f138a709784",
+    "stable_evidence_id": "6cb29367190311a52f968e54447a2bb00653f751d6fcfea2b7bda472293893d6"
+  },
+  "data_root": "data/external_controls/filmmatch_ektachrome_v1",
+  "validation": {
+    "source_relative_path": "validation/ValidationFrames_1.19.1.tif",
+    "source_sha256": "55db395093f0ee043cd9d685642baaf93ce6246aa958d05894bb4b3b33f4a407",
+    "target_relative_path": "validation/ValidationFrames_1.20.1.tif",
+    "target_sha256": "2bc46cfe7cb1be5c66f7cec1864129e881e1f98cf696a400673d756ae558ac9f",
+    "already_consumed_development_scene": true,
+    "fit_forbidden": true,
+    "target_pixel_metric_forbidden": true,
+    "independent_confirmation_claim_forbidden": true
+  },
+  "execution": {
+    "operator_source": "exact BL1 final_fit operator",
+    "row_chunk": 128,
+    "output": "RGB16 PNG carrying author code values without a standardized display profile"
+  },
+  "automatic_gate": {
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_style_rgb_rmse_from_source": 0.03,
+    "require_finite_bounded_output": true,
+    "require_two_run_byte_identity": true
+  },
+  "visual_gate": {
+    "confirmed_severe_artifact_allowed": false,
+    "red_speckle_or_posterization_allowed": false,
+    "review_source_candidate_and_target": true,
+    "style_salience_is_descriptive_not_accuracy": true
+  },
+  "branches": {
+    "automatic_fail": "close BL1 real-scene use without changing the fitted operator or gates",
+    "severe_visual_fail": "close BL1 real-scene use without rescue",
+    "clean_but_weak": "retain paired-code-domain capacity evidence only and seek genuinely independent paired data",
+    "clean_and_stylized": "retain as a Look Approximation candidate only; independent paired confirmation remains required"
+  },
+  "gates": {
+    "validation_target_fit_allowed": false,
+    "target_pixel_metric_allowed": false,
+    "independent_confirmation_claim_allowed": false,
+    "calibrated_stock_response_claim_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "development-only fit-forbidden real-scene visual and bounded-output evidence for one author-prepared Sony FX3/Ektachrome E100 session; this already-consumed scene is not independent confirmation and provides no calibrated stock, scanner-independent or product claim"
+}
