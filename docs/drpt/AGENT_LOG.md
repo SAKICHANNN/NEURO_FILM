@@ -8306,3 +8306,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This does not close useful reference matching. It fixes the claim ceiling:
   proceed with bounded film-inspired appearance matching, hard case selection,
   sensitivity controls and fallback, never real operator/physical mode truth.
+# 2026-07-31 - Close U5.R2BK24 semantic pseudo-pair flow
+
+- **Node/parent:** `ULT > U5 > U5.R2BK24`, after BK23 exposes pooled
+  appearance averaging.
+- Frozen Apache-2.0 DINOv2-S/14 luma-only patch retrieval, excluded all
+  same-photo matches, and fit only the existing bounded explicit colour flow.
+- Two full GPU reports are byte-identical at `b819057d...a1bb`. Retrieval
+  covers all 48 targets and beats the permuted-colour control, but median/worst
+  held-out improvement is `-89.57%/-823.23%`; 15/16 photographs regress.
+- Structure and new-boundary gates pass. Close this fixed family with identity;
+  no larger-encoder or parameter rescue, film/stock claim, confirmation or
+  product path opens.

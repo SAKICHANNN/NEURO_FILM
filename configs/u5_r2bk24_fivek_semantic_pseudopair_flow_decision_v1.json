@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u5_r2bk24_fivek_semantic_pseudopair_flow_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk24-fivek-semantic-pseudopair-flow-v1",
+  "config": "configs/u5_r2bk24_fivek_semantic_pseudopair_flow_v1.json",
+  "config_sha256": "39c449131ec5cad0bb2ce74833e1a030b553080f460a4c765524c39f380dfd89",
+  "software_commit": "a5a6fe11",
+  "formal_report": "outputs/u5_r2bk24_fivek_semantic_pseudopair_flow_v1/report_a.json",
+  "repeat_report": "outputs/u5_r2bk24_fivek_semantic_pseudopair_flow_v1/report_b.json",
+  "report_sha256": "b819057d7bc39562e69a4ea7f5a0924b7b990f49c19e5e87d35c439f8ef7a1bb",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": false,
+  "decision": "retain_k1_identity_close_fixed_semantic_pseudopair",
+  "observations": {
+    "fit_photographs": 48,
+    "held_out_development_photographs": 16,
+    "same_identity_matches": 0,
+    "distinct_target_images": 48,
+    "largest_target_share": 0.0375,
+    "semantic_median_improvement_fraction": -0.895677212423832,
+    "semantic_worst_improvement_fraction": -8.232346764719374,
+    "semantic_pass_fraction": 0.0625,
+    "control_median_improvement_fraction": -1.0246334433371564,
+    "semantic_minus_control_median_improvement": 0.1289562309133244,
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_jacobian_determinant": 0.09590881468950849,
+    "maximum_jacobian_spectral_norm": 2.0685133587080986,
+    "maximum_inverse_error": 1.5924854590565474e-07,
+    "maximum_replay_error": 0.0
+  },
+  "interpretation": "Colour-blind semantic pseudo-pairing contains measurable information relative to the exact target-colour-permuted control, but it does not identify a transferable shared colour operator. The bounded operator remains structurally safe while regressing 15 of 16 held-out photographs and therefore returns identity.",
+  "allowed_next": [
+    "retain semantic pseudo-pairing as a negative baseline for future unpaired appearance work",
+    "continue a distinct algorithm that does not treat cross-photograph semantic similarity as colour correspondence",
+    "retain global AO6 Look Approximation and identity fallbacks"
+  ],
+  "forbidden": [
+    "tune DINO, top-k, Sinkhorn, split, flow capacity or thresholds on these 16 photographs",
+    "replace DINOv2-S with a larger encoder as rescue",
+    "reuse BK23 confirmation photographs for this closed family",
+    "call FiveK film, stock, unpaired operator identification, calibration or product evidence"
+  ],
+  "claim_ceiling": "repeat-exact research-only FiveK digital-retouch negative result: semantic pseudo-pairing beats its shuffled control but fails held-out transfer and returns K=1/identity"
+}

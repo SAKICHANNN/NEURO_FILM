@@ -28,6 +28,19 @@ def test_contract_and_inventory_are_frozen() -> None:
     assert config["feature_model"]["input"].startswith("luma")
 
 
+def test_closed_decision_binds_repeat_exact_reports() -> None:
+    decision = __import__("json").loads(
+        (
+            ROOT
+            / "configs/u5_r2bk24_fivek_semantic_pseudopair_flow_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["decision"] == "retain_k1_identity_close_fixed_semantic_pseudopair"
+    assert decision["repeat_report_byte_identical"] is True
+    assert decision["automatic_pass"] is False
+    assert decision["observations"]["semantic_pass_fraction"] == 0.0625
+
+
 def test_contract_hash_drift_fails_closed() -> None:
     config = load_config(ROOT, CONFIG)
     tampered = copy.deepcopy(config)

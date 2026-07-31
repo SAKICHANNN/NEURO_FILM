@@ -2240,3 +2240,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > external-cell gate and do not rescue the shared operator or relabel FiveK as
 > film evidence.
 >
+> `U5.R2BK24` tests the strongest currently identified non-generative
+> alternative to pooled marginals: frozen colour-blind DINOv2 patch
+> pseudo-pairs across different photographs, followed by the existing bounded
+> explicit flow. Retrieval is diverse and beats an exact colour-permuted
+> control, but 15/16 target-hidden photographs regress and the worst is
+> `-823.23%`; two reports are exact. The fixed semantic pseudo-pair family
+> closes with identity. Do not tune retrieval/flow parameters or substitute a
+> larger encoder on these rows.
+>
