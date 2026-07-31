@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4ac_peaked_density_grain_shape_decision.v1",
+  "experiment_id": "u6.p4ac-peaked-density-grain-shape-v1",
+  "decision": "close_peaked_density_shape_without_rescue",
+  "report_sha256": "5eb1f9b9459e9fded554946f1f165f79406a0b756688a7b1db328c17914053df",
+  "stable_evidence_id": "da67552985a3503a7b845fcc8905c4b50406fa17819e001bb58d4fc48b4a9ce0",
+  "passed": false,
+  "passing_gates": {
+    "eligible_series": 9,
+    "candidate_median_normalized_relative_error": 0.09711187206943689,
+    "candidate_p90_normalized_relative_error": 0.2638602845548334,
+    "candidate_median_spearman": 0.7999999999999999,
+    "candidate_to_p4d_p90_error_ratio": 0.8885685755850542,
+    "series_with_observed_peak_near_2d": 9,
+    "finite_positive": true,
+    "no_parameter_fit": true
+  },
+  "failed_gates": {
+    "relative_improvement_in_median_error_over_p4d": -0.5830749227804631,
+    "required_minimum_relative_improvement": 0.1,
+    "p4d_median_normalized_relative_error": 0.061343825659794196
+  },
+  "interpretation": "The fixed 2.0D peak captures rank/turnover and improves tail error, but it materially worsens median normalized error versus unchanged P4D. The source-stated peak alone is therefore insufficient to justify a new stochastic primitive.",
+  "branch_action": "Close this peaked exponential density-shape family without tuning peak position, exponent, aperture or table-specific parameters. Continue a distinct physical or colour algorithm leaf.",
+  "claim_ceiling": "One no-fit same-source peaked shape failed its preregistered comparative median-error gate on historical radiographic-film tables; not independent confirmation, amplitude calibration, modern stock response or product evidence."
+}
