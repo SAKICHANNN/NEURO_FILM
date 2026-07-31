@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u5_r2bk4_quantization_regularized_log_chroma.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk4-quantization-regularized-log-chroma-v1",
+  "node": "ULT > U5 > U5.R2BK4",
+  "status": "primitive_contract_frozen",
+  "question": "Does a half-input-code regularization floor remove BK2's zero-channel discontinuity and severe sky speckling without reducing the fixed generic look below the material-style gate?",
+  "parent": {
+    "decision": "configs/u5_r2bk3_encoded_log_chroma_fresh_comparison_decision_v1.json",
+    "decision_sha256": "ddbc7395ef633200c2abf4e88334203d2a8c4619e22cead2876f87e3e4a7c60d",
+    "required_decision": "reject_fixed_bk2_severe_artifact"
+  },
+  "operator": {
+    "representation": "BK2 encoded-safe nonlinear log-chroma response with a fixed half-8-bit-code floor converted through the sRGB EOTF before opponent ratios",
+    "contrast": 1.18,
+    "red_green_gain": 1.22,
+    "blue_yellow_gain": 1.14,
+    "midtone_chroma_lift": 0.12,
+    "opponent_rotation": 0.09,
+    "hue_bend": 0.06,
+    "encoded_margin": 0.000015259021896696422,
+    "chroma_floor_encoded": 0.00196078431372549,
+    "strength": 1.0
+  },
+  "mechanism_basis": {
+    "input_precision": "frozen fresh-population sources are RGB8 display approximations",
+    "floor_rule": "0.5 / 255, the half-code quantization uncertainty rather than an aesthetic fit",
+    "bk2_observed_zero_to_one_red_code_max_delta_e76": 85.80303132704668,
+    "bk2_observed_zero_to_one_red_code_median_delta_e76": 55.28532308517043,
+    "source_zero_to_one_red_code_max_delta_e76": 0.0818579167638561
+  },
+  "primitive_gates": {
+    "identity_strength_zero_exact": true,
+    "neutral_axis_maximum_range": 0.000000000001,
+    "black_white_endpoints_exact": true,
+    "partition_output_exact": true,
+    "new_uint16_boundary_fraction_on_interior_synthetic_cube": 0.0,
+    "minimum_synthetic_median_delta_e76": 5.0,
+    "maximum_zero_to_one_red_code_delta_e76": 1.0,
+    "bk2_phaseone_regression_requires_zero_confirmed_severe_artifact": true
+  },
+  "forbidden": [
+    "change BK3 thresholds or reinterpret BK3 as a pass",
+    "lower strength to rescue the BK3 population",
+    "fit the regularization floor to style or preference",
+    "use BK3 images as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "hard clipping",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "freeze a third leakage-clean CC0 RAW population before pixel access and compare fixed BK4, AO6 and safe-rich without parameter changes",
+  "claim_ceiling": "quantization-regularized generic film-inspired explicit operator primitive and BK2 failure-regression evidence only"
+}
