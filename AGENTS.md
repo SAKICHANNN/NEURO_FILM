@@ -198,13 +198,14 @@ Keep these artifacts for research and regression. Do not restart the same grid w
 
 Local Windows storage binding, 2026-07-31: the canonical repository path
 `C:\Users\hhvrf\Documents\neuro_film\data` is an NTFS junction to the
-project-owned physical root `O:\neuro_film_storage\data`. Keep configs and
+project-owned physical root `P:\neuro_film_storage\data`. Keep configs and
 scripts repo-relative under `data/...`; do not bypass the junction with a
-machine-specific `O:` path. If `O:` is unavailable, data-dependent work must
+machine-specific `P:` path. If `P:` is unavailable, data-dependent work must
 fail closed rather than recreate a partial `data` tree on `C:`. The full
-29,171-file / 126,645,748,045-byte copy was block-compared and SHA-256
-verified before the old C-drive payload was cleared; local migration evidence
-is retained under `O:\neuro_film_storage\migration`.
+29,346-file / 131,193,580,154-byte physical storage root was copied,
+block-compared and verified by a byte-identical per-file SHA-256 manifest
+before the old O-drive root was cleared. Local migration evidence is retained
+under `P:\_migration_evidence_o_to_p_20260731`.
 
 | Source | Default lane | Valid use | Invalid default use |
 |---|---|---|---|

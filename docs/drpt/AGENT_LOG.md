@@ -2,6 +2,27 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - project data roots migrate from O to P
+
+- Froze all three active project chats, confirmed no data writers, and copied
+  `O:\neuro_film_storage` plus the independent `O:\zhuise_storage` to separate
+  `P:` roots. An initial P-drive surprise-removal event corrupted a partial
+  copy; the filesystem was repaired, the partial copy was quarantined, and a
+  32 GiB WriteThrough write/read SHA-256 probe passed before the formal retry.
+- The formal copy and two later Robocopy comparisons retain 29,346 files /
+  131,193,580,154 bytes for neuro_film and 99,081 files /
+  88,357,184,376 bytes for zhuise with zero failure, mismatch or extras.
+  Source/destination per-file SHA-256 manifests are byte-identical with
+  aggregates `2639cc83...c72183` and `350abd8c...d994f`; evidence is under
+  `P:\_migration_evidence_o_to_p_20260731`.
+- The canonical junctions now target `P:\neuro_film_storage\data`,
+  `P:\zhuise_storage\data`, and `P:\zhuise_storage\outputs`. Targeted
+  post-switch suites pass 24/24 and 15/15 respectively. Final P-drive CHKDSK
+  reports no problems or bad sectors; the two old O roots and owned partial
+  migration artifacts were removed, leaving O effectively empty.
+- Continue to use repository-relative paths. This migration changes storage
+  binding only and does not change any dataset lineage, rights or claim gate.
+
 # 2026-07-31 - U5.R2BH1 retains AO6 after independent confirmation
 
 - Rendered fixed B0 and fixed AO6 t15/c35 on the 12-source BH1S population.
