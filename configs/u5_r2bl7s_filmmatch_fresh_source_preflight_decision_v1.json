@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2bl7s_filmmatch_fresh_source_preflight_decision.v1",
+  "experiment_id": "u5.r2bl7s-filmmatch-fresh-source-preflight-v1",
+  "report_sha256": "d1c4d2bee9d37a0813f9f48761730db93c0463b79e2b21bc62e09dc161696266",
+  "manifest_sha256": "1f14bc525cbea0e32cede50afb588d062503da2eae827ec3585163054e055bd1",
+  "decoded_rows": 16,
+  "decoded_makes": 16,
+  "decode_failures": ["samsung_galaxy_s23", "sony_ilce_7m5"],
+  "leakage_failures": {
+    "pentax_k_r": ["pentax_k_r"],
+    "om_system_om_5_mark_ii": ["om_system_om5_ii"],
+    "canon_eos_r6_mark_iii": ["canon_r6_iii", "legacy_rawpixls:8963"]
+  },
+  "automatic_pass": false,
+  "visual_review_opened": false,
+  "decision": "close_bl7s_open_explicit_replacement_source_leaf",
+  "replacement_rule": "retain only the thirteen hash-clean decoded rows with no within/cross-pool dHash<=4 match; exclude all failed or leaking rows; add five metadata-selected CC0 rows from makes and make-model pairs absent from all prior pools and BL7S",
+  "operator_rendered": false,
+  "claim_ceiling": "source-only failure and leakage evidence; no algorithm, preference, film, stock, calibration, product or universal-safety claim"
+}
