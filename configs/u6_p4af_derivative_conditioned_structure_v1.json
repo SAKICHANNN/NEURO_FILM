@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p4af_derivative_conditioned_structure_contract.v1",
+  "experiment_id": "u6.p4af-derivative-conditioned-structure-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AF",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4ae_decision_path": "configs/u6_p4ae_existing_sensitometry_grain_variance_decision_v1.json",
+    "p4ae_decision_sha256": "d508a740e2d2519b8d17cd85b3c98ec9bcec3efe3641a0b7ca1a36e922c23159",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can the unchanged U2.2 derivative-derived variance shape drive a positive, mean-preserving, coordinate-stable developed-density structure approximation without adding display-RGB noise?",
+  "model": {
+    "input_domain": "relative_linear_exposure",
+    "output_domains": ["developed_optical_density", "film_transmittance"],
+    "marginal_family": "moment-matched gamma density",
+    "spatial_copula": "coordinate-counter correlated normal",
+    "peak_density_variance": 0.0001,
+    "correlation_sigma_pixels": 0.65,
+    "layer_seeds": [260831, 260837, 260851],
+    "variance_normalization_domain": [0.0001, 16.0],
+    "variance_normalization_samples": 32769,
+    "zero_exposure_noise": "exact zero variance with unchanged sensitometry density",
+    "transmittance_equation": "10^(-developed_optical_density)",
+    "display_rgb_noise_allowed": false,
+    "per_image_normalization_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "shape": [512, 768],
+    "flat_exposure_levels": [0.0, 0.001, 0.0055, 0.18, 4.0],
+    "ramp_exposure_interval": [0.0001, 16.0],
+    "ramp_bins": 24,
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 4,
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "maximum_flat_mean_absolute_error": 0.003,
+    "maximum_flat_variance_relative_error": 0.2,
+    "minimum_ramp_variance_shape_spearman": 0.9,
+    "maximum_ramp_variance_relative_error_p90": 0.3,
+    "minimum_lag1_autocorrelation": 0.05,
+    "zero_exposure_density_exact": true,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "input_unchanged": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "no_parameter_fit": true
+  },
+  "negative_controls": [
+    "constant post-development RGB noise",
+    "P4D monotone density-only count rate",
+    "per-image variance normalization",
+    "U6.2B salt-like bright speckles"
+  ],
+  "allowed_after_pass": [
+    "freeze a synthetic severe/LOD audit against P4D and constant-variance controls",
+    "seek independent measured exposure-plus-granularity evidence before photographic use"
+  ],
+  "forbidden": [
+    "fit peak variance or spatial scale from photographs, P4AA or current scans",
+    "call the gamma copula an exact emulsion microstructure simulation",
+    "photographic rendering, visual promotion or product integration",
+    "stock, process or scanner calibration claims"
+  ],
+  "branch_rule": {
+    "pass": "Retain as a generic synthetic derivative-conditioned structure approximation and open only a separately frozen severe/LOD comparison.",
+    "fail": "Close this gamma-copula compiler without amplitude, seed, scale or gate rescue; retain P4AD/P4AE analytic evidence only."
+  },
+  "claim_ceiling": "Generic synthetic positive developed-density structure driven by the existing uncalibrated sensitometry derivative; not exact marked-Poisson emulsion geometry, measured grain, stock response, calibration or product evidence."
+}
