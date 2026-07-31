@@ -9,6 +9,10 @@ import pytest
 from skimage.color import rgb2lab
 
 from src.eval.log_chroma_fresh_comparison import _safe_rich
+from src.eval.orthogonal_perceptual_residual_regression import (
+    OrthogonalResidualRegressionError,
+    validate_contract,
+)
 from src.roll2film.orthogonal_perceptual_residual import (
     OrthogonalPerceptualResidual,
 )
@@ -184,3 +188,20 @@ def test_bk10_rejects_invalid_inputs_and_parameters() -> None:
         operator.apply(source, source[..., :2], source)
     with pytest.raises(ValueError):
         operator.apply(source, source, source, strength=1.1)
+
+
+def test_bk10_regression_binds_frozen_phaseone_failure() -> None:
+    validated = validate_contract(
+        ROOT, json.loads(CONFIG.read_text(encoding="utf-8"))
+    )
+    assert validated["source_path"].name == "phaseone_p25plus.png"
+    assert validated["source_sha256"] == (
+        "a81bd65ce6b88f50d26862ae6f38a03109a7ca02d782eb87ffc3368d657afe9a"
+    )
+
+
+def test_bk10_regression_contract_mutation_fails_closed() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    config["operator"]["residual_strength"] = 0.75
+    with pytest.raises(OrthogonalResidualRegressionError):
+        validate_contract(ROOT, config)
