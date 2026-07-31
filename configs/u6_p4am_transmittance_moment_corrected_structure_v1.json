@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p4am_transmittance_moment_corrected_structure_contract.v1",
+  "experiment_id": "u6.p4am-transmittance-moment-corrected-structure-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AM",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p4af_decision_path": "configs/u6_p4af_derivative_conditioned_structure_decision_v1.json",
+    "p4af_decision_sha256": "27e5ef636d4dbf7c290efc920d379645bca9ae1fe2f7cacb4dc35c2668ebc126",
+    "p4u_decision_path": "configs/u6_p4u_photographic_material_stress_decision_v1.json",
+    "p4u_decision_sha256": "143255d4d7a7ae98ff924faa90a797b6c31e7fa80882a19ae6e9f3f9d20f4da5",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can an analytic gamma-Laplace correction preserve the target mean film transmittance while retaining P4AF's fixed derivative-conditioned density variance, correlation and deterministic execution?",
+  "model": {
+    "base": "unchanged P4AF moment-matched gamma density with coordinate-counter Gaussian copula",
+    "correction": "add c=m+log10(E[10^-X]) for X~Gamma(m^2/v,v/m)",
+    "target_mean": "10^-m pointwise",
+    "peak_density_variance": 0.0001,
+    "correlation_sigma_pixels": 0.65,
+    "layer_seeds": [260831, 260837, 260851],
+    "variance_normalization_domain": [0.0001, 16.0],
+    "variance_normalization_samples": 32769,
+    "fitted_parameters": 0,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "shape": [512, 768],
+    "flat_exposure_levels": [0.0, 0.001, 0.0055, 0.18, 4.0],
+    "ramp_exposure_interval": [0.0001, 16.0],
+    "ramp_bins": 24,
+    "row_partitions": [31, 127],
+    "interior_border_pixels": 4,
+    "runs": 2,
+    "post_result_retuning_allowed": false
+  },
+  "gates": {
+    "maximum_analytic_transmittance_mean_absolute_error": 1e-12,
+    "maximum_empirical_flat_transmittance_mean_absolute_error": 0.0005,
+    "maximum_ramp_transmittance_mean_absolute_error_p90": 0.0005,
+    "minimum_transmittance_bias_improvement_over_p4af": 0.5,
+    "maximum_density_variance_relative_error": 0.2,
+    "minimum_ramp_variance_shape_spearman": 0.9,
+    "minimum_lag1_autocorrelation": 0.05,
+    "density_nonnegative": true,
+    "transmittance_strictly_positive_at_most_one": true,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_unchanged": true,
+    "no_parameter_fit": true
+  },
+  "negative_controls": [
+    "uncorrected P4AF density-mean-preserving gamma marginal",
+    "sample-mean normalization",
+    "display-RGB mean correction",
+    "hard clipping"
+  ],
+  "branch_rule": {
+    "pass": "Retain only as a generic synthetic transmittance-preserving structure candidate and open a separately frozen severe/nonstationary audit before any photographic use.",
+    "fail": "Close without changing marginal, amplitude, seeds, thresholds or sample normalization; retain P4AF full-resolution synthetic reference only."
+  },
+  "forbidden": [
+    "reopening or rewriting P4U",
+    "fitting any correction from photographs or measured scans",
+    "sample-dependent centering or per-image normalization",
+    "photographic rendering, visual promotion or product integration",
+    "stock, process, scanner or calibration claims"
+  ],
+  "claim_ceiling": "Generic synthetic analytic mean-transmittance correction for the existing uncalibrated P4AF gamma marginal; not exact emulsion geometry, measured film response, stock calibration, photographic quality or product evidence."
+}
