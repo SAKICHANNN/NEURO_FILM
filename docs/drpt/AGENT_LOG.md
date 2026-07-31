@@ -2,6 +2,27 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-07-31 - Close U5.R2BK21 canonicalizer-consensus appearance policy
+
+- **Node/parent:** `ULT > U5 > U5.R2BK21`, after BK20 constructive unpaired
+  nonidentifiability.
+- **Implementation:** reused the frozen O0 explicit flow with independent
+  sliced-quantile and RFF-MMD objectives. The policy hard-selects one whole
+  operator and otherwise returns identity; it never blends operators or RGB.
+- **Evidence:** five focused tests pass. Two complete local RTX 5070 Ti
+  float32 runs are byte-identical at `90ea9ca3...3fcd`. The material look
+  retains 97.15% cross-objective improvement and all structure gates pass.
+  The already-matched control falls back, but the content-confounded reference
+  is wrongly authorized at 64.98% improvement and `.05007` operator
+  disagreement below the frozen `.06` limit.
+- **Decision:** close the frozen consensus-only policy. Agreement between two
+  colour-distribution objectives is not a content-independence proof. Do not
+  retune the threshold, add a third loss or increase flow capacity.
+- **Handoff:** a distinct child may test worst-case improvement across
+  content cells defined independently of colour appearance. Real application
+  still requires rights-cleared same-look/different-content connectivity and
+  remains film-inspired only.
+
 # 2026-07-31 - project data roots migrate from O to P
 
 - Froze all three active project chats, confirmed no data writers, and copied

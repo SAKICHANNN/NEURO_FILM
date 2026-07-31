@@ -2213,3 +2213,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > matcher, but must label it film-inspired, compare multiple canonicalizers or
 > control pools, and fail back when their results disagree.
 >
+> `U5.R2BK21` closes that simplest consensus authorization policy. The fixed
+> sliced-quantile and RFF-MMD candidates agree and retain a strong generated
+> look, but they also agree closely enough to authorize a deliberately
+> content-confounded reference. Two exact reports prove this is not numerical
+> instability. Do not tighten the disagreement threshold or add another loss
+> as a rescue. A next distinct mechanism must require worst-case improvement
+> across content cells defined independently of colour appearance, with exact
+> hard fallback and the same film-inspired claim ceiling.
+>

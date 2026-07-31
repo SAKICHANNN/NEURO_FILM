@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2bk21_canonicalizer_consensus_appearance_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk21-canonicalizer-consensus-appearance-v1",
+  "config": "configs/u5_r2bk21_canonicalizer_consensus_appearance_v1.json",
+  "config_sha256": "2f5c99de6e2e84f63baa840fcf421b64c0a4479410d95004006e63fa7232178f",
+  "software_commit": "761d2f133df71e128b8c83cb8919abc9da3b18a9",
+  "formal_report": "outputs/u5_r2bk21_canonicalizer_consensus_appearance_v1/formal_a/report.json",
+  "formal_report_sha256": "90ea9ca31e0bf6867a091abdce726fe045b578ad32d5372b4cd8e12722013fcd",
+  "repeat_report": "outputs/u5_r2bk21_canonicalizer_consensus_appearance_v1/formal_b/report.json",
+  "repeat_report_sha256": "90ea9ca31e0bf6867a091abdce726fe045b578ad32d5372b4cd8e12722013fcd",
+  "automatic_pass": false,
+  "decision": "close_frozen_consensus_policy",
+  "observations": {
+    "device": "cuda",
+    "true_style_identity_rmse": 0.13134034620478185,
+    "material_shared_look": {
+      "policy_result": "hard_explicit_candidate",
+      "canonicalizer_operator_rmse": 0.010809409011796719,
+      "selected_cross_objective_improvement_fraction": 0.9715182919018962
+    },
+    "appearance_already_matched": {
+      "policy_result": "identity_fallback",
+      "canonicalizer_operator_rmse": 0.005069251331397637,
+      "selected_cross_objective_improvement_fraction": -0.2113051615544752,
+      "fallback_reason": "insufficient-cross-objective-improvement"
+    },
+    "content_confounded_reference": {
+      "policy_result": "hard_explicit_candidate",
+      "canonicalizer_operator_rmse": 0.05007362515745219,
+      "selected_cross_objective_improvement_fraction": 0.6498015160027807,
+      "failed_gate": "content_confounded_returns_identity"
+    },
+    "minimum_jacobian_determinant": 0.14590943580358845,
+    "maximum_jacobian_spectral_norm": 2.059495182393836,
+    "maximum_inverse_error": 1.7196804313890368e-08,
+    "maximum_replay_error": 0.0
+  },
+  "interpretation": "Two independently specified distribution objectives can agree on a strong, bounded appearance match, but their agreement does not exclude a shared content-distribution shortcut. Canonicalizer consensus is therefore a necessary sensitivity diagnostic, not a sufficient authorization gate.",
+  "allowed_next": [
+    "test a frozen content-cell-balanced worst-case appearance gate using content identities that are independent of colour appearance",
+    "retain exact identity or the stock-global champion as hard fallback",
+    "search for rights-cleared same-look/different-content evidence with explicit group connectivity"
+  ],
+  "forbidden": [
+    "tighten the 0.06 disagreement threshold after observing the failed confound",
+    "add a third distribution loss or larger flow as a rescue",
+    "call canonicalizer agreement operator identification",
+    "train on current stock pixels or promote a product renderer"
+  ],
+  "claim_ceiling": "negative synthetic evidence that two canonicalizer agreement plus held-out appearance improvement is insufficient to exclude content-confounded reference matching"
+}
