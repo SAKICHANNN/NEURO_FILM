@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u5_r2bk15_orthogonal_residual_blind_preference.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk15-orthogonal-residual-blind-preference-v1",
+  "node": "ULT > U5 > U5.R2BK15",
+  "status": "contract_frozen_build_ready",
+  "parents": {
+    "decision": {
+      "path": "configs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_decision_v1.json",
+      "sha256": "0365fa97d3269d82324ad41324bb818290b0713b74a4976d4a20d5495a6a5ee2",
+      "required_decision": "retain_bk10_open_independent_blind_comparison"
+    },
+    "render_report": {
+      "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/report.json",
+      "sha256": "641f36934958623575d11d34af1ac2ea8bab62c41105c14917955549152f4340"
+    },
+    "render_root": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a"
+  },
+  "population": {
+    "manifest": {
+      "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json",
+      "sha256": "a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547"
+    },
+    "expected_rows": 12,
+    "fixed_before_bk10_rendering": true,
+    "replacement_allowed": false
+  },
+  "arms": [
+    "fixed_bk10_safe_base_orthogonal_residual",
+    "fixed_bk7_smooth_perceptual_hue_density",
+    "fixed_ao6_colour_only_t15_c35",
+    "safe_rich_velvia_50"
+  ],
+  "blind_gate": {
+    "rounds": 3,
+    "ties_allowed": true,
+    "minimum_bk10_overall_round_wins": 2,
+    "minimum_bk10_total_choice_share": 0.35,
+    "minimum_bk10_round_wins_vs_each_control": 2,
+    "minimum_bk10_choice_share_vs_each_control": 0.5,
+    "confirmed_severe_artifact_allowed": false
+  },
+  "observation_protocol": {
+    "mapping_must_remain_unread_until_all_votes_and_severe_observations_are_frozen": true,
+    "source_visible": true,
+    "full_population_each_round": true,
+    "severe_artifact_veto_precedes_preference": true,
+    "preference_question": "Which anonymous candidate best combines clearly visible film-inspired style, photographic appeal and natural continuity without severe artifact?",
+    "additional_rounds_after_reveal_allowed": false
+  },
+  "gates": {
+    "threshold_relaxation_allowed": false,
+    "operator_refit_allowed": false,
+    "strength_retuning_allowed": false,
+    "rerender_allowed": false,
+    "product_integration_allowed": false
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "three-round autonomous blinded preference and severe-artifact comparison of fixed BK10, BK7, AO6 and safe-rich on one frozen fifth-fresh population; not owner or population preference, film truth, stock response, calibration or product promotion"
+}
