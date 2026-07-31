@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2bk11s_orthogonal_residual_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk11s-orthogonal-residual-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK11S",
+  "status": "source_visual_gate_failed_replacement_freeze_open",
+  "decision": "close_bk11s_open_metadata_only_replacement_freeze",
+  "config": {
+    "path": "configs/u5_r2bk11s_orthogonal_residual_fresh_source_v1.json",
+    "sha256": "05f28b0f59e4da5278e4882f9a7d988d431551c5c2a29d36f02719472bc1b7d5"
+  },
+  "result": {
+    "candidate_rows": 12,
+    "decoded_rows": 10,
+    "visual_eligible_rows": 7,
+    "visual_eligible_camera_makes": 7,
+    "automatic_pass": true,
+    "visual_pass": false,
+    "minimum_required_rows": 9,
+    "confirmed_severe_source_artifact_count": 1,
+    "fixed_decode_failures": [
+      {
+        "id": "arri_alexa_mini",
+        "reason": "LibRawFileUnsupportedError: unsupported ARI format"
+      },
+      {
+        "id": "paralenz_dive_camera",
+        "reason": "LibRawFileUnsupportedError: unsupported RAW format"
+      }
+    ],
+    "visual_exclusions": [
+      {
+        "id": "sjcam_m20",
+        "reason": "confirmed periodic repeated-image and chroma-noise decode corruption"
+      },
+      {
+        "id": "raspberrypi_imx477",
+        "reason": "ColorChecker test target, not a natural photographic scene"
+      },
+      {
+        "id": "xiaoyi_yi4k",
+        "reason": "ColorChecker test target, not a natural photographic scene"
+      }
+    ],
+    "retained_rows": [
+      "fimi_x8se",
+      "gitup_git2",
+      "hmd_nokia_7_plus",
+      "htc_10",
+      "microsoft_lumia_950xl",
+      "oneplus_one",
+      "yuneec_cgo3"
+    ],
+    "operator_outputs_inspected": false,
+    "visual_finding": "The remaining seven rows are usable and heterogeneous, spanning aerial landscape, foliage, interior neutral wood, street detail, waterfall, low-light rotated architecture and dusk aerial water. No operator output was rendered or inspected. The pool nevertheless fails because one decoded source is severely corrupted and two are test charts, leaving fewer than nine natural-photo rows."
+  },
+  "evidence": {
+    "manifest_sha256": "708eea624edd8b9370519b30e4962b6d4fff8f577b014b684b017810b0d83a82",
+    "automatic_report_sha256": "c38c196649bbd985d018d1f53bc47b28c9b120814b1953a7cf0545896b8cf610",
+    "contact_sheet_sha256": "24ad3c8298d8df9a386d3b4e3853f8ae690e4954c9b1760a04ac8e1e6568fd96",
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true,
+    "repeat_contact_sheet_sha256_exact": true,
+    "software_commit": "48fa9532807df0df8fe69e7448757598c7cf6ed9"
+  },
+  "branch_action": "Do not render BK10 on this failed pool. Retain the seven natural-photo rows without viewing any operator output, freeze at least five new metadata-only candidates from previously unused makes, and rerun all integrity and visual gates on the combined replacement pool.",
+  "next_leaf": "freeze BK12S combined seven-row retained base plus five new previously unseen make candidates before downloading replacement pixels",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "repeatable source-pool rejection and data-gap evidence; no BK10 algorithm, preference, film truth, stock response, calibration or product claim"
+}

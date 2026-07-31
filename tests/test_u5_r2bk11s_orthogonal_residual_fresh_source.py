@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk11s_orthogonal_residual_fresh_source_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk11s_orthogonal_residual_fresh_source_decision_v1.json"
+)
 
 
 def _repository_ids(payload: object) -> set[int]:
@@ -83,3 +87,25 @@ def test_bk11s_selection_excludes_nonphotographic_metadata() -> None:
             str(row[key]) for key in ("make", "model", "mode", "filename")
         )
         assert forbidden.search(text) is None
+
+
+def test_bk11s_decision_closes_visual_ineligible_pool() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["decision"] == (
+        "close_bk11s_open_metadata_only_replacement_freeze"
+    )
+    assert result["automatic_pass"]
+    assert not result["visual_pass"]
+    assert result["visual_eligible_rows"] == 7
+    assert result["minimum_required_rows"] == 9
+    assert result["confirmed_severe_source_artifact_count"] == 1
+    assert len(result["fixed_decode_failures"]) == 2
+    assert {row["id"] for row in result["visual_exclusions"]} == {
+        "sjcam_m20",
+        "raspberrypi_imx477",
+        "xiaoyi_yi4k",
+    }
+    assert not result["operator_outputs_inspected"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
