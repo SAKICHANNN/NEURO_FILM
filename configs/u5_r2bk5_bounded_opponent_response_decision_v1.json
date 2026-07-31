@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u5_r2bk5_bounded_opponent_response_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk5-bounded-opponent-response-v1",
+  "node": "ULT > U5 > U5.R2BK5",
+  "decision": "retain_primitive_open_third_fresh_confirmation",
+  "status": "primitive_and_failure_regression_pass",
+  "evidence": {
+    "config": {
+      "path": "configs/u5_r2bk5_bounded_opponent_response_v1.json",
+      "sha256": "d89684c51cc85c8f59715f017a574a9f6aa3194c0a413acd7217982957da91b5"
+    },
+    "formal_runs": [
+      "outputs/u5_r2bk5_bounded_opponent_regression_v1/run_a",
+      "outputs/u5_r2bk5_bounded_opponent_regression_v1/run_b"
+    ],
+    "report_sha256": "b0ef9382c470a7758d836047d1c367605658f38243277fc90b82732bc80c1718",
+    "stable_evidence_id": "4d151ed64e4dcfdb192ac8d83d16d91a88eb52eb9a030e02e195071838572566",
+    "repeat_file_count_per_run": 4,
+    "repeat_file_hash_differences": 0,
+    "visual_regression": {
+      "path": "outputs/u5_r2bk5_bounded_opponent_regression_v1/run_a/visual_regression.png",
+      "sha256": "df779c4e71c5555894703a3977d4845d38cd6f795fcb46a21386b682633397ef"
+    }
+  },
+  "result": {
+    "automatic_pass": true,
+    "maximum_zero_to_one_red_code_delta_e76": 0.5891260561101738,
+    "bk5_style_delta_e76_on_regression": 5.6967244148254395,
+    "bk5_new_boundary_fraction": 0.0,
+    "confirmed_severe_artifact_count": 0,
+    "bk2_failure_reproduced": true,
+    "bk5_failure_regression_pass": true,
+    "visual_observation": "The fixed BK2 rerender reproduces widespread electric-blue sky speckling. BK5 retains a clear tone/chroma change while the same sky remains spatially continuous with no confirmed posterization, speckling, banding or geometry corruption.",
+    "visual_review_scope": "autonomous known-failure regression only; not fresh-population preference or product promotion",
+    "thresholds_or_strengths_changed": false
+  },
+  "branch_action": "Retain fixed BK5 as a generic explicit challenger. Freeze a third leakage-clean CC0 RAW population before pixel access, then compare unchanged BK5, AO6 and safe-rich. Do not reuse BK1 or BK3 populations as confirmation.",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "fixed primitive and one known-failure regression pass only; not generalized artifact safety, population preference, film truth, stock response, calibration or product promotion"
+}
