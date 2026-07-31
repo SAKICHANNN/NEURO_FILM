@@ -2249,3 +2249,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > closes with identity. Do not tune retrieval/flow parameters or substitute a
 > larger encoder on these rows.
 >
+> `U6.P6L` uses a newly located CC-BY-4.0 University of Chicago source to
+> address a different evidence gap: three scans of the same historical plate
+> can isolate repeat-acquisition nuisance after registration. The frozen
+> acquisition is only 88,475,062 bytes. A source pass opens NPS/ACF and
+> row/column residual analysis against P6A's generic shot-plus-read noise; it
+> cannot identify plate grain, stock, process, scanner calibration or colour.
+>

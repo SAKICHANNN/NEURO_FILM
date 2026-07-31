@@ -1,0 +1,94 @@
+{
+  "schema": "neuro_film.u6_p6l_uchicago_repeat_scan_source_contract.v1",
+  "experiment_id": "u6.p6l-uchicago-repeat-scan-source-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6L",
+  "question": "Can one rights-cleared same-plate three-scan set provide a mechanically valid scanner-repeat residual control without treating the historical plate, scanner, or scan settings as film-stock truth?",
+  "source": {
+    "title": "Precise Photometric Measurements from a 1903 Photographic Plate Using a Commercial Scanner",
+    "record_id": "qw505-gq084",
+    "doi": "10.6082/uchicago.3901",
+    "publisher": "University of Chicago",
+    "record_url": "https://knowledge.uchicago.edu/records/qw505-gq084",
+    "api_url": "https://knowledge.uchicago.edu/api/records/qw505-gq084",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source_snapshot_date": "2026-07-31",
+    "observed_description": "f0007.tif, f0008.tif and f0009.tif are repeated scans at focus +1.4 of the same 2.4 by 2.4 inch central plate area, reported as 3840 pixels.",
+    "unknown_fields": [
+      "photographic_plate_stock_or_emulsion",
+      "original_1903_exposure",
+      "development_process",
+      "scanner_model_and_complete_settings",
+      "scanner_illuminant_spectrum",
+      "scanner_profile",
+      "per_scan_temperature_or_lamp_state"
+    ]
+  },
+  "acquisition": {
+    "destination": "data/physical_scanner/uchicago_1903_plate_repeat_v1",
+    "maximum_total_bytes": 88475062,
+    "files": [
+      {
+        "name": "f0007.tif",
+        "expected_bytes": 29491348,
+        "expected_md5": "9f77e062f834440720790566ae8c0c1e",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0007.tif/content",
+        "role": "same_plate_repeat_1"
+      },
+      {
+        "name": "f0008.tif",
+        "expected_bytes": 29491348,
+        "expected_md5": "acd93bfd30ad706cb98d64a783a1eb83",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0008.tif/content",
+        "role": "same_plate_repeat_2"
+      },
+      {
+        "name": "f0009.tif",
+        "expected_bytes": 29491348,
+        "expected_md5": "88521bdf173eddf9a799a94364fd2e9d",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0009.tif/content",
+        "role": "same_plate_repeat_3"
+      },
+      {
+        "name": "README.txt",
+        "expected_bytes": 1018,
+        "expected_md5": "b208fe88a6546ad66fe0c03b905e0369",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/README.txt/content",
+        "role": "source_metadata"
+      }
+    ],
+    "network_policy": {
+      "bounded_exact_files_only": true,
+      "resume_partial_downloads": true,
+      "reject_redirect_off_record_host": true,
+      "no_other_record_files": true
+    }
+  },
+  "source_gate": {
+    "required_tiff_count": 3,
+    "required_equal_shape": true,
+    "required_equal_dtype": true,
+    "required_single_frame": true,
+    "required_finite_decode": true,
+    "maximum_integer_registration_shift_pixels": 8,
+    "minimum_registered_pair_correlation": 0.995,
+    "two_independent_audits": true
+  },
+  "allowed_actions_after_source_pass": [
+    "fit only per-scan affine intensity normalization on development regions",
+    "measure registered repeat residual variance, NPS, ACF and row-column structure",
+    "compare the residual with the existing P6A independent shot-plus-read noise family",
+    "retain a scanner-nuisance stress profile or close as unidentified"
+  ],
+  "forbidden": [
+    "infer or backfill film stock, emulsion, exposure, development, scanner, illuminant or profile metadata",
+    "fit a film colour operator",
+    "treat fixed plate grain as scanner noise",
+    "treat repeat residual as emulsion grain",
+    "claim scanner calibration or population transfer",
+    "modify completed P6A-P6K gates or results",
+    "download the full 3.6GB record under this contract",
+    "production integration"
+  ],
+  "claim_ceiling": "CC-BY-4.0 same-plate same-workflow scanner-repeat nuisance evidence only; not film stock, emulsion grain, scanner calibration, colour response, product or population evidence."
+}

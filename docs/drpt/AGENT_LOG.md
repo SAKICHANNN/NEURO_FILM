@@ -8318,3 +8318,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Structure and new-boundary gates pass. Close this fixed family with identity;
   no larger-encoder or parameter rescue, film/stock claim, confirmation or
   product path opens.
+## 2026-07-31 - Freeze U6.P6L same-plate repeat-scan source
+
+- **Parent:** U6.P6 scanner nuisance/output-profile programme after P6K.
+- **Decision:** do not reopen the sealed AO9 71-pair capacity pool. A current
+  source search instead found a CC-BY-4.0 University of Chicago dataset with
+  three repeated scans of the same plate area. Freeze only three TIFFs plus
+  metadata (88,475,062 bytes).
+- **Next:** acquire, hash and decode twice; require bounded registration and
+  pair correlation before any residual analysis. Fixed plate texture remains
+  common signal, while repeat differences are scanner/workflow nuisance plus
+  registration error. No film-stock, emulsion-grain, scanner-calibration,
+  colour or product claim opens.
