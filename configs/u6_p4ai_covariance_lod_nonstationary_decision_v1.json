@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4ai_covariance_lod_nonstationary_decision.v1",
+  "experiment_id": "u6.p4ai-covariance-lod-nonstationary-v1",
+  "decision": "close_scalar_exposure_covariance_lod_nonstationary_reuse",
+  "report_sha256": "c714c17fa031cf74d22156bd552e3d4842223d0c9bcf914ca27f986ff0092442",
+  "stable_evidence_id": "e92442a3aea3824b2edb32b716ab96c32e54998c8d48ee14f1b6cd26f7f45ef0",
+  "passed": false,
+  "metrics": {
+    "maximum_cell_mean_density_absolute_error": 0.02451837039916427,
+    "maximum_cell_mean_transmittance_absolute_error": 0.01821185739856901,
+    "minimum_cell_variance_ratio": 0.8033128088013162,
+    "maximum_cell_variance_ratio": 842.8491904878131,
+    "median_absolute_log_variance_error": 0.013178206839589451,
+    "median_variance_error_improvement_over_direct": 3.512484098799895e-06,
+    "maximum_boundary_contrast_absolute_error": 0.013383530397732102,
+    "maximum_lag1_acf_absolute_error": 0.20545091098941998,
+    "total_isolated_excursion_count": 0,
+    "density_transmittance_domain": true,
+    "input_unchanged": true,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": "The fixed covariance scale remains stable and seam-free, but block-mean exposure is not a sufficient statistic for nonstationary subpixel exposure. Sparse and mixed cells can produce extreme local variance mismatch, and mean density/transmittance exceed frozen gates. This is consistent with nonlinear development and transmittance order, not a coefficient defect.",
+  "branch_action": "Close scalar block-mean-exposure reuse without scale or gate rescue. Retain P4AF full-resolution reference and P4AH flat-field evidence. A distinct future LOD may preserve bounded subpixel exposure moments or a finite exposure mixture before development.",
+  "claim_ceiling": "Negative synthetic nonstationary evidence for scalar-exposure covariance LOD; not measured emulsion, photographic quality, stock response, calibration or product evidence."
+}
