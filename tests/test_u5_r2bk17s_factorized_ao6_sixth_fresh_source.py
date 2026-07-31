@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
     ROOT / "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_decision_v1.json"
+)
 
 
 def _walk_rows(value: object) -> list[dict[str, object]]:
@@ -106,3 +110,27 @@ def test_bk17s_preserves_fixed_algorithm_boundary() -> None:
     assert not config["next_leaf"]["strength_retuning_allowed"]
     assert not config["next_leaf"]["router_training_allowed"]
     assert not config["next_leaf"]["operator_output_access_before_source_decision"]
+
+
+def test_bk17s_decision_opens_only_fixed_sixth_fresh_confirmation() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    result = decision["result"]
+    assert decision["status"] == "source_eligible_fixed_comparison_open"
+    assert decision["decision"] == "open_fixed_bk16_sixth_fresh_confirmation"
+    assert result["automatic_pass"]
+    assert result["visual_pass"]
+    assert result["eligible_rows"] == 12
+    assert result["eligible_camera_makes"] == 12
+    assert result["confirmed_severe_source_artifact_count"] == 0
+    assert result["within_exact_pairs"] == 0
+    assert result["within_dhash_pairs_le_4"] == 0
+    assert result["cross_exact_pairs"] == 0
+    assert result["cross_dhash_pairs_le_4"] == 0
+    assert not result["operator_outputs_inspected"]
+    assert decision["evidence"]["repeat_manifest_sha256_exact"]
+    assert decision["evidence"]["repeat_report_sha256_exact"]
+    assert decision["evidence"]["repeat_contact_sheet_sha256_exact"]
+    assert not decision["training_allowed"]
+    assert not decision["operator_fitting_allowed"]
+    assert not decision["selector_training_allowed"]
+    assert not decision["strength_retuning_allowed"]

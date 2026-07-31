@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u5_r2bk17s_factorized_ao6_sixth_fresh_source_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk17s-factorized-ao6-sixth-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK17S",
+  "status": "source_eligible_fixed_comparison_open",
+  "decision": "open_fixed_bk16_sixth_fresh_confirmation",
+  "config": {
+    "path": "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1.json",
+    "sha256": "229a91c0bb7429f3c4f9225e7304127ed9e853c90b732a1900d18723163ecb0c"
+  },
+  "result": {
+    "candidate_rows": 12,
+    "eligible_rows": 12,
+    "eligible_camera_makes": 12,
+    "downloaded_bytes": 305012953,
+    "largest_make_fraction": 0.08333333333333333,
+    "automatic_pass": true,
+    "visual_pass": true,
+    "confirmed_severe_source_artifact_count": 0,
+    "near_empty_or_monochrome_rows": 0,
+    "fixed_decode_failures": [],
+    "within_exact_pairs": 0,
+    "within_dhash_pairs_le_4": 0,
+    "cross_exact_pairs": 0,
+    "cross_dhash_pairs_le_4": 0,
+    "stress_rows": [
+      "eyedeas_e1",
+      "bq_aquaris_u_plus",
+      "arashi_vision_insta360_one_x",
+      "pentax_k2000"
+    ],
+    "visual_finding": "Autonomous source-only review found twelve legitimate photographic scenes spanning residential landscape, a product still, waterfront, gallery art, roadside foliage, dual-fisheye parking structure, open road, tabletop objects, white peacock, turbulent water, backlit plants and a high-contrast garden. The rotated product still, abstract artwork, bright peacock feathers and dual-fisheye geometry are retained as useful source characteristics or stress cases, not decode corruption. No chart, empty frame, repeated image or confirmed severe source artifact is present.",
+    "operator_outputs_inspected": false
+  },
+  "evidence": {
+    "manifest": {
+      "path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/manifest.json",
+      "sha256": "a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad"
+    },
+    "automatic_report": {
+      "path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/automatic_report.json",
+      "sha256": "f8a32d70280a9550489d2be76e301091319198536286c3440d66dcceec736fc8"
+    },
+    "contact_sheet": {
+      "path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/source_contact_sheet.png",
+      "sha256": "78d257710f32e3c4af20d4c625fe04da9fbc992d1f3d1852c2196f42c652c766"
+    },
+    "formal_runs": [
+      "run_a",
+      "run_b"
+    ],
+    "repeat_manifest_sha256_exact": true,
+    "repeat_report_sha256_exact": true,
+    "repeat_contact_sheet_sha256_exact": true,
+    "software_commit": "97d58c3bfe1eb2d1aec69a47f0ef3e8322e581ee"
+  },
+  "next_leaf": "freeze and execute fixed BK16 versus unchanged BK7, AO6 and safe-rich on all twelve eligible sixth-fresh rows",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "selector_training_allowed": false,
+  "strength_retuning_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "sixth fresh CC0 digital-photo eligibility for one fixed BK16/BK7/AO6/safe-rich comparison; not population preference, film truth, calibration or promotion"
+}

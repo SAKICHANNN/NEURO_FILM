@@ -8183,3 +8183,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gates. No candidate pixels or BK16 outputs were inspected before freeze.
 - A pass opens only an unchanged BK16/BK7/AO6/safe-rich comparison; learning,
   routing, strength tuning, stock claims and production changes remain closed.
+
+## 2026-07-31 - Pass U5.R2BK17S source eligibility
+
+- Two complete 305,012,953-byte runs decoded all 12 rows and produced exact
+  manifest, report and contact-sheet hashes (`a1a77d47...eccad`,
+  `f8a32d70...36fc8`, `78d25771...2c766`).
+- All within/cross-pool exact and dHash<=4 duplicate counts are zero; all 12
+  makes have one row and no near-empty/monochrome source was found.
+- Source-only full-resolution review retained rotated product, abstract art,
+  dual-fisheye and bright-feather rows as legitimate stress content, with zero
+  confirmed severe source artifacts. No operator output was inspected.
+- Open only the frozen BK16/BK7/AO6/safe-rich sixth-fresh comparison.
