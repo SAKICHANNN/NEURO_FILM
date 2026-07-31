@@ -31,6 +31,7 @@ def test_bk10_primitive_contract_is_frozen_before_implementation() -> None:
     assert operator["residual_strength"] == 0.8
     assert operator["maximum_orthogonal_delta_e76"] == 12.0
     assert operator["gamut_iterations"] == 24
+    assert config["fixed_inputs"]["base"]["seed"] == 20260731
     mechanism = config["mechanism_basis"]
     assert mechanism["synthetic_only_parameter_selection"]
     assert not mechanism["bk8_or_bk9_pixels_read_for_parameter_selection"]

@@ -15,7 +15,8 @@
       "role": "existing artifact-safe deterministic fallback",
       "profile": "configs/render_profiles/safe_rich_v1.json",
       "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
-      "style": "velvia_50"
+      "style": "velvia_50",
+      "seed": 20260731
     },
     "residual_source": {
       "role": "closed but smooth artifact-safe mechanism baseline",
