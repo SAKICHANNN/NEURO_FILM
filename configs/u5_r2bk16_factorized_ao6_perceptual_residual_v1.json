@@ -1,0 +1,110 @@
+{
+  "schema": "neuro_film.u5_r2bk16_factorized_ao6_perceptual_residual.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk16-factorized-ao6-perceptual-residual-v1",
+  "node": "ULT > U5 > U5.R2BK16",
+  "status": "primitive_contract_frozen",
+  "question": "Can the fixed AO6 t15/c35 appearance remaining after safe-rich be separated into smooth bounded lightness and chroma residuals, then capped after gamut mapping, so that AO6's strong direction becomes visibly stylized without its unbounded extreme-colour behavior?",
+  "parent": {
+    "decision": "configs/u5_r2bk15_orthogonal_residual_blind_preference_decision_v1.json",
+    "decision_sha256": "69a97646380a9fa2d7bd1f9850a2210830cc5ad05e18f8404def34332d0b8466",
+    "required_decision": "close_bk10_as_generalized_preference_challenger"
+  },
+  "fixed_inputs": {
+    "base": {
+      "role": "existing artifact-safe deterministic fallback",
+      "profile": "configs/render_profiles/safe_rich_v1.json",
+      "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+      "style_statistics": "configs/film_color_stats.json",
+      "style_statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+      "guardrails": "configs/color_guardrails.json",
+      "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "style": "velvia_50",
+      "seed": 20260731
+    },
+    "ao6_candidate": {
+      "role": "fixed strong development Look Approximation direction only",
+      "profile_compiler_config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+      "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+      "component": "ao6-source-context-display-look"
+    },
+    "known_severe_regression": {
+      "source": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/inputs/phaseone_p25plus.png",
+      "source_sha256": "a81bd65ce6b88f50d26862ae6f38a03109a7ca02d782eb87ffc3368d657afe9a",
+      "failure": "BK2 electric-blue speckling/posterization"
+    }
+  },
+  "operator": {
+    "representation": "source, safe-rich base and fixed AO6 display-sRGB -> D65 CIELAB; compute AO6-minus-base residual; independently tanh-bound lightness and chroma; apply fixed strength; fixed-L chroma gamut compression; measure the actual encoded candidate and cap its final Delta E76 from base; analytical linear and encoded rail safety",
+    "residual_strength": 0.6,
+    "lightness_soft_cap": 5.0,
+    "chroma_soft_cap": 10.0,
+    "maximum_final_delta_e76": 8.0,
+    "minimum_lightness": 0.1,
+    "maximum_lightness": 99.9,
+    "residual_epsilon": 1e-12,
+    "gamut_iterations": 24,
+    "encoded_margin": 0.000015259021896696422,
+    "row_chunk": 128,
+    "numeric_gamut_tolerance": 2e-06,
+    "perceptual_tolerance": 0.001
+  },
+  "mechanism_basis": {
+    "fixed_global_parameters": true,
+    "per_image_fit_or_routing": false,
+    "dense_arm_weight_prediction": false,
+    "residual_is_explicit_ao6_minus_base": true,
+    "lightness_and_chroma_soft_bounded_separately": true,
+    "post_gamut_final_delta_e76_bounded": true,
+    "source_inclusive_linear_and_encoded_safety": true,
+    "synthetic_only_parameter_selection": true,
+    "bk13_bk14_bk15_pixels_or_votes_read_for_parameter_selection": false,
+    "rejected_per_pixel_projection_prototype": {
+      "reason": "a 257-level neutral ramp exposed eight local L reversals and a worst -1.730667 Delta L step",
+      "retained": false
+    },
+    "prototype_17_cube_median_style_delta_e76": 13.841256141662598,
+    "prototype_17_cube_p95_style_delta_e76": 18.86687469482422,
+    "prototype_17_cube_median_increment_vs_base_delta_e76": 6.052452564239502,
+    "prototype_17_cube_p95_increment_vs_base_delta_e76": 6.638333320617676,
+    "prototype_17_cube_maximum_increment_vs_base_delta_e76": 8.00002384185791,
+    "prototype_17_cube_final_cap_fraction": 0.008141664970486465,
+    "prototype_maximum_soft_lightness_residual": 4.972115836115592,
+    "prototype_maximum_soft_chroma_residual": 9.999997405539654,
+    "prototype_new_uint16_boundary_fraction": 0.0,
+    "prototype_neutral_ramp_minimum_lightness_step": 0.0040531158447265625,
+    "prototype_neutral_ramp_maximum_chroma": 5.91982889175415,
+    "prototype_safe_base_neutral_ramp_maximum_chroma": 8.502643585205078
+  },
+  "primitive_gates": {
+    "identity_strength_zero_returns_base_exact": true,
+    "black_white_source_endpoints_exact": true,
+    "partition_output_exact_given_fixed_inputs": true,
+    "minimum_17_cube_median_style_delta_e76": 13.5,
+    "minimum_17_cube_median_increment_vs_base_delta_e76": 5.8,
+    "maximum_final_increment_vs_base_delta_e76": 8.001,
+    "maximum_17_cube_final_cap_fraction": 0.02,
+    "maximum_soft_lightness_residual": 5.000001,
+    "maximum_soft_chroma_residual": 10.000001,
+    "new_uint16_boundary_fraction_on_17_cube": 0.0,
+    "neutral_ramp_lightness_must_be_monotone": true,
+    "maximum_neutral_chroma_increase_vs_base": 0.0,
+    "maximum_phaseone_new_uint16_boundary_fraction": 0.0
+  },
+  "forbidden": [
+    "reinterpret BK15 as a pass or lower its preference gates",
+    "fit or tune parameters on BK13S, BK14 or BK15 images or votes",
+    "reuse the fifth-fresh population as successor confirmation",
+    "read or refit FiveK targets or the sealed 71-pair display-proxy pool",
+    "per-image parameter fitting, learned routing or dense arm blending",
+    "hard clipping as gamut handling",
+    "stock, process, exposure, scanner or calibration claim",
+    "production default change"
+  ],
+  "next_if_primitive_passes": "run the frozen Phase One severe regression twice and inspect full resolution, then freeze a sixth leakage-clean CC0 RAW population before any generalized comparison",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "stock_or_authenticity_claim_allowed": false,
+  "claim_ceiling": "synthetic safe-base plus factorized bounded AO6-direction Look Approximation primitive and one known-failure regression candidate only"
+}
