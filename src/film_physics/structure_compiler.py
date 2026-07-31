@@ -141,6 +141,94 @@ def correlated_normal_region(
     return normalized[crop_y : crop_y + shape[0], crop_x : crop_x + shape[1]]
 
 
+def _balanced_gaussian_variance_scale(sigma: float, truncate: float = 4.0) -> float:
+    """Exact infinite-grid variance after filtering zero-sum 2x2 normals."""
+
+    if sigma <= 0.0:
+        return 1.0
+    radius = int(truncate * sigma + 0.5)
+    offsets = np.arange(-radius, radius + 1, dtype=np.int64)
+    kernel = np.exp(-0.5 * np.square(offsets.astype(np.float64) / sigma))
+    kernel /= np.sum(kernel)
+    blocks: dict[tuple[int, int], list[float]] = {}
+    for iy, dy in enumerate(offsets):
+        for ix, dx in enumerate(offsets):
+            key = (int(dy) // 2, int(dx) // 2)
+            blocks.setdefault(key, []).append(float(kernel[iy] * kernel[ix]))
+    variance = sum(
+        (4.0 / 3.0) * sum(weight * weight for weight in weights)
+        - (1.0 / 3.0) * sum(weights) ** 2
+        for weights in blocks.values()
+    )
+    if not math.isfinite(variance) or variance <= 0.0:
+        raise RuntimeError("invalid balanced Gaussian variance")
+    return variance
+
+
+def balanced_correlated_normal_region(
+    full_shape: tuple[int, int],
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    sigma: float,
+    seed: int,
+) -> np.ndarray:
+    """Return a coordinate-stable Gaussian field with zero-sum 2x2 sources."""
+
+    full_height, full_width = full_shape
+    origin_y, origin_x = origin_yx
+    height, width = shape
+    if not (
+        0 <= origin_y < origin_y + height <= full_height
+        and 0 <= origin_x < origin_x + width <= full_width
+        and math.isfinite(sigma)
+        and sigma >= 0.0
+    ):
+        raise ValueError("balanced normal region is outside the full field")
+    halo = int(4.0 * sigma + 0.5) if sigma > 0.0 else 0
+    y0 = max(0, origin_y - halo)
+    x0 = max(0, origin_x - halo)
+    y1 = min(full_height, origin_y + height + halo)
+    x1 = min(full_width, origin_x + width + halo)
+    y0 -= y0 % 2
+    x0 -= x0 % 2
+    y1 = min(full_height, y1 + (y1 % 2))
+    x1 = min(full_width, x1 + (x1 % 2))
+    white = counter_normal_region(
+        full_shape,
+        origin_yx=(y0, x0),
+        shape=(y1 - y0, x1 - x0),
+        seed=seed,
+    )
+    padded_height = white.shape[0] + white.shape[0] % 2
+    padded_width = white.shape[1] + white.shape[1] % 2
+    padded = np.zeros((padded_height, padded_width), dtype=np.float64)
+    mask = np.zeros_like(padded)
+    padded[: white.shape[0], : white.shape[1]] = white
+    mask[: white.shape[0], : white.shape[1]] = 1.0
+    block = padded.reshape(padded_height // 2, 2, padded_width // 2, 2)
+    block_mask = mask.reshape(padded_height // 2, 2, padded_width // 2, 2)
+    count = np.sum(block_mask, axis=(1, 3), keepdims=True)
+    mean = np.sum(block * block_mask, axis=(1, 3), keepdims=True) / count
+    scale = np.zeros_like(count)
+    active = count > 1.0
+    scale[active] = np.sqrt(count[active] / (count[active] - 1.0))
+    balanced = ((block - mean) * block_mask * scale).reshape(padded.shape)
+    balanced = balanced[: white.shape[0], : white.shape[1]]
+    if sigma > 0.0:
+        balanced = gaussian_filter(
+            balanced,
+            sigma=sigma,
+            order=0,
+            mode="constant",
+            cval=0.0,
+            truncate=4.0,
+        ) / math.sqrt(_balanced_gaussian_variance_scale(sigma))
+    crop_y = origin_y - y0
+    crop_x = origin_x - x0
+    return balanced[crop_y : crop_y + height, crop_x : crop_x + width]
+
+
 def render_marginal_region(
     profile: MarginalProfile,
     full_shape: tuple[int, int],
