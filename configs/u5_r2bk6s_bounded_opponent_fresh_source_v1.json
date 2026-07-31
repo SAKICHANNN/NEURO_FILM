@@ -1,0 +1,82 @@
+{
+  "schema": "neuro_film.u5_r2bk6s_bounded_opponent_fresh_source.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bk6s-bounded-opponent-fresh-source-v1",
+  "node": "ULT > U5 > U5.R2BK6S",
+  "status": "contract_frozen_acquisition_ready",
+  "parent_decision": {
+    "path": "configs/u5_r2bk5_bounded_opponent_response_decision_v1.json",
+    "sha256": "e4f5a246b832fea106155dd3adddb68196c44b219627816c9341372d322c8674"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-07-31",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact selected row",
+    "purpose": "third fresh digital-photo population for fixed BK5 versus AO6 versus safe-rich confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact freeze before pixel access: twelve CC0 rows, one per make, with repository ID, source hash and make/model unseen across every tracked raw.pixls.us pool including BK1 and BK3; 4-30 MB per row and <=190 MiB aggregate; scanner/chart/flat/target/film/buggy metadata excluded; no image appearance used for selection",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 182861414,
+    "download_root": "data/external/rawpixls_bk6_v1/raw",
+    "decoded_root": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/inputs",
+    "maximum_decoded_side": 1600
+  },
+  "candidates": [
+    {"id":"canon_powershot_s120","repository_id":1694,"make":"Canon","model":"PowerShot S120","mode":"RAW (4:3)","date":"2017-09-01","megapixels":12.0,"bytes_reported_mb":14.07,"filename":"Canon - PowerShot S120 - RAW (4:3).CR2","path":"data/external/rawpixls_bk6_v1/raw/canon_powershot_s120.cr2","sha256":"bcbfadad8ecdbcc783864a2b769aef37588e2a6339b9682dcd9642602bd2011f","url":"https://raw.pixls.us/getfile.php/1694/nice/Canon%20-%20PowerShot%20S120%20-%20RAW%20%284%3A3%29.CR2"},
+    {"id":"fujifilm_finepix_s5200","repository_id":1970,"make":"Fujifilm","model":"FinePix S5200","mode":"4:3","date":"2017-11-26","megapixels":17.28,"bytes_reported_mb":10.71,"filename":"Fujifilm - FinePix S5200 - 4:3.RAF","path":"data/external/rawpixls_bk6_v1/raw/fujifilm_finepix_s5200.raf","sha256":"93eada72efdf8261d9bfde5022a28a656e4c1c6d0ddac7b0c82686fdcb8ded99","url":"https://raw.pixls.us/getfile.php/1970/nice/Fujifilm%20-%20FinePix%20S5200%20-%204%3A3.RAF"},
+    {"id":"nikon_d4s","repository_id":2220,"make":"Nikon","model":"D4S","mode":"12bit 12bit compressed (Lossless) (3:2)","date":"2018-01-13","megapixels":16.23,"bytes_reported_mb":13.83,"filename":"Nikon - D4S - 12bit 12bit compressed (Lossless) (3:2).NEF","path":"data/external/rawpixls_bk6_v1/raw/nikon_d4s.nef","sha256":"49067c81374549465f3c621acd249bf05dbdef4e44b9201fef1fb11c93572983","url":"https://raw.pixls.us/getfile.php/2220/nice/Nikon%20-%20D4S%20-%2012bit%2012bit%20compressed%20%28Lossless%29%20%283%3A2%29.NEF"},
+    {"id":"sony_slt_a33","repository_id":2050,"make":"Sony","model":"SLT-A33","mode":"12bit 12bit compressed (3:2)","date":"2017-12-07","megapixels":14.16,"bytes_reported_mb":14.53,"filename":"Sony - SLT-A33 - 12bit 12bit compressed (3:2).ARW","path":"data/external/rawpixls_bk6_v1/raw/sony_slt_a33.arw","sha256":"1a59856394f10d4fadb40f5ab9c6d1c89f473f4dbcdefd216fbbbbf1ad8d21f9","url":"https://raw.pixls.us/getfile.php/2050/nice/Sony%20-%20SLT-A33%20-%2012bit%2012bit%20compressed%20%283%3A2%29.ARW"},
+    {"id":"panasonic_dmc_fz38","repository_id":1780,"make":"Panasonic","model":"DMC-FZ38","mode":"4:3","date":"2017-10-07","megapixels":12.05,"bytes_reported_mb":14.06,"filename":"Panasonic - DMC-FZ38 - 4:3.RW2","path":"data/external/rawpixls_bk6_v1/raw/panasonic_dmc_fz38.rw2","sha256":"67b01feff1eac6502435c27f83201d4b411a2765501f38a83f926d47130fd650","url":"https://raw.pixls.us/getfile.php/1780/nice/Panasonic%20-%20DMC-FZ38%20-%204%3A3.RW2"},
+    {"id":"pentax_k5_iis","repository_id":1198,"make":"Pentax","model":"K-5 II s","mode":"14bit (3:2)","date":"2017-03-21","megapixels":16.39,"bytes_reported_mb":14.78,"filename":"Pentax - K-5 II s - 14bit (3:2).PEF","path":"data/external/rawpixls_bk6_v1/raw/pentax_k5_iis.pef","sha256":"e579e7360c35e512f9c3a5c0eb9519575b87b489c6f86be82590f7706a7ed17b","url":"https://raw.pixls.us/getfile.php/1198/nice/Pentax%20-%20K-5%20II%20s%20-%2014bit%20%283%3A2%29.PEF"},
+    {"id":"olympus_ep2","repository_id":2430,"make":"Olympus","model":"E-P2","mode":"16bit (4:3)","date":"2018-03-20","megapixels":12.64,"bytes_reported_mb":13.53,"filename":"Olympus - E-P2 - 16bit (4:3).ORF","path":"data/external/rawpixls_bk6_v1/raw/olympus_ep2.orf","sha256":"2666a6ed03e8678bc6ce0e5354f39a07284e6f8b200dc696d9b543dc9f82bdd5","url":"https://raw.pixls.us/getfile.php/2430/nice/Olympus%20-%20E-P2%20-%2016bit%20%284%3A3%29.ORF"},
+    {"id":"samsung_sm_g950u","repository_id":1815,"make":"Samsung","model":"SM-G950U","mode":"16bit (16:9)","date":"2017-10-12","megapixels":9.14,"bytes_reported_mb":17.86,"filename":"Samsung - SM-G950U - 16bit (16:9).dng","path":"data/external/rawpixls_bk6_v1/raw/samsung_sm_g950u.dng","sha256":"7b0327cf015270ec98627ed1dee02ff39a47d1a6d6ff1ecfe164586e7dc7a749","url":"https://raw.pixls.us/getfile.php/1815/nice/Samsung%20-%20SM-G950U%20-%2016bit%20%2816%3A9%29.dng"},
+    {"id":"leica_x2","repository_id":882,"make":"Leica","model":"X2","mode":"12bit (3:2)","date":"2017-01-15","megapixels":16.18,"bytes_reported_mb":23.32,"filename":"Leica - X2 - 12bit (3:2).DNG","path":"data/external/rawpixls_bk6_v1/raw/leica_x2.dng","sha256":"a67eca6271afb10510ffc9cf998b641d0e8a0ebfa4c779a7bc0bfed5d28b62dd","url":"https://raw.pixls.us/getfile.php/882/nice/Leica%20-%20X2%20-%2012bit%20%283%3A2%29.DNG"},
+    {"id":"apple_iphone_se","repository_id":1207,"make":"Apple","model":"iPhone SE","mode":"16bit (4:3)","date":"2017-03-23","megapixels":12.19,"bytes_reported_mb":10.6,"filename":"Apple - iPhone SE - 16bit (4:3).dng","path":"data/external/rawpixls_bk6_v1/raw/apple_iphone_se.dng","sha256":"7a2a9747a0cb1537007233ce7e8b7233c5ee641d683b7b3da29e22387994a0d7","url":"https://raw.pixls.us/getfile.php/1207/nice/Apple%20-%20iPhone%20SE%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"google_pixel_3a","repository_id":3496,"make":"Google","model":"Pixel 3a","mode":"16bit (4:3)","date":"2019-10-20","megapixels":12.19,"bytes_reported_mb":11.84,"filename":"Google - Pixel 3a - 16bit (4:3).dng","path":"data/external/rawpixls_bk6_v1/raw/google_pixel_3a.dng","sha256":"78c7bec867f3f739d43df6f027fad36ead73502d062570ce6ca14f59cdc4a0dd","url":"https://raw.pixls.us/getfile.php/3496/nice/Google%20-%20Pixel%203a%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"huawei_vog_l29","repository_id":3060,"make":"HUAWEI","model":"VOG-L29","mode":"16bit (4:3)","date":"2019-04-03","megapixels":7.99,"bytes_reported_mb":15.26,"filename":"HUAWEI - VOG-L29 - 16bit (4:3).dng","path":"data/external/rawpixls_bk6_v1/raw/huawei_vog_l29.dng","sha256":"6dea2735a31f06e39b1a203826bcdfe4ff0fcdec444772bdab455c49f91b1846","url":"https://raw.pixls.us/getfile.php/3060/nice/HUAWEI%20-%20VOG-L29%20-%2016bit%20%284%3A3%29.dng"}
+  ],
+  "maximum_download_bytes": 199229440,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json",
+    "development_manifest_sha256": "a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761",
+    "comparison_manifests": [
+      {"path":"outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json","sha256":"8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json","sha256":"e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json","sha256":"75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json","sha256":"f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json","sha256":"a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761","format":"rawpixls_manifest"},
+      {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": [
+      "fixed_bk5_bounded_opponent_response",
+      "fixed_ao6_colour_only_t15_c35",
+      "safe_rich_velvia_50"
+    ],
+    "strength_retuning_allowed": false,
+    "router_training_allowed": false
+  },
+  "claim_ceiling": "third fresh CC0 digital-photo eligibility for fixed BK5/AO6/safe-rich comparison only"
+}
