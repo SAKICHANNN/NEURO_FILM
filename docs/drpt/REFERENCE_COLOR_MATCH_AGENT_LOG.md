@@ -5190,3 +5190,26 @@
   removed. The full isolated suite remains `1,429 passed, 5 skipped`.
 - R0JH stays private one-Pixel virtual performance evidence and does not add
   a public producer interface, compatible RAW rail or consumer mapping.
+
+## 2026-07-31 - Revalidate destination type at batch commit
+
+- Node/parent goal: P178 bounded follow-up audit of the P176 shared commit
+  primitive. V47 was paused before main integration after a distinct
+  commit-time entry-type gap was confirmed.
+- Trigger: destination preflight occurred before staging. If an existing
+  destination was a directory or other non-regular entry when the shared
+  commit helper ran, the old replace-existing branch could move that external
+  entry to a rollback-backup name and publish the stage at its former path.
+- Change: commit-time `lexists` plus non-symlink regular-file validation now
+  runs for every destination before backup or publication. All seven
+  core/external/shared/runtime writers inherit the same fail-closed invariant.
+- Evidence: the deterministic regression retains an external directory and
+  marker at their original path, leaves the stage unpublished and creates no
+  backup. File plus affected writer suites pass `165 passed, 3 skipped`; the
+  isolated `test_color_match*` suite passes `1,435 passed, 5 skipped`.
+- Full-repository context: `2,387 passed, 6 skipped`; 35 failures remain the
+  isolated worktree's historical missing-output and tracked-profile-hash
+  failures, with no color-match failure.
+- Producer R0JK/R0JL remains private RAW mechanics without a public package,
+  schema, receipt, capability or compatible RAW rail. Consumer mapping remains
+  unchanged.
