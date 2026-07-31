@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p4ag_derivative_structure_severe_lod_decision.v1",
+  "experiment_id": "u6.p4ag-derivative-structure-severe-lod-v1",
+  "decision": "retain_full_resolution_reference_close_direct_lod",
+  "report_sha256": "06ea651f1e0edcf4e3c8d8df0a4dc205fcf05601d2be3a7f7892c5b58f180c7b",
+  "stable_evidence_id": "74b90f9f1c47e6cf5a2f16743238f20709423d51a6d516e7aaa48f8afede612b",
+  "severe_pass": true,
+  "lod_pass": false,
+  "metrics": {
+    "maximum_absolute_standardized_density_residual": 5.244748830505408,
+    "total_isolated_excursion_count": 0,
+    "maximum_ramp_column_second_difference": 0.003080207228491394,
+    "candidate_variance_shape_spearman": 0.9993247154157826,
+    "constant_variance_shape_spearman": 0.17319441764743718,
+    "p4d_variance_shape_spearman": -0.7784423435590715,
+    "minimum_candidate_spearman_advantage_over_controls": 0.8261302977683455,
+    "maximum_lod_mean_density_absolute_error": 1.3645950578677901e-05,
+    "minimum_lod_variance_ratio": 0.28502879889309046,
+    "maximum_lod_variance_ratio": 0.4270533705972533,
+    "maximum_lod_lag1_acf_absolute_error": 0.21495124658222428,
+    "minimum_lod_variance_error_improvement_over_unscaled": -0.5940864155715948,
+    "repeat_exact": true,
+    "row_partition_exact": true
+  },
+  "interpretation": "P4AF clears the frozen synthetic severe-artifact controls and follows the derivative variance shape much more closely than constant variance or P4D. The no-fit direct LOD preserves means and bounded ACF error but underestimates area-mean variance and loses to the unscaled negative control, so it is rejected without coefficient or gate rescue.",
+  "branch_action": "Retain P4AF only as a full-resolution generic synthetic reference. Close the area-inverse variance LOD. A subsequent leaf may derive a moment-aware variance scale from the fixed spatial covariance and area average before inspecting results.",
+  "claim_ceiling": "Synthetic severe-artifact evidence for a full-resolution generic derivative-conditioned density approximation and negative direct-LOD evidence; not measured emulsion, photographic quality, stock response, calibration or product evidence."
+}
