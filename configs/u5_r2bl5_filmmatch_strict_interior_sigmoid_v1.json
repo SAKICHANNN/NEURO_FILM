@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2bl5_filmmatch_strict_interior_sigmoid.v1",
+  "experiment_id": "u5.r2bl5-filmmatch-strict-interior-sigmoid-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL5",
+  "parent": {
+    "bl1_report": "outputs/external_controls/filmmatch_ektachrome_v1/identity_residual_sigmoid_bl1/run_a.json",
+    "bl1_report_sha256": "8e10c665c2fd6816d21e4ab10534e6852c72e9518baad0532ee33f138a709784",
+    "bl1_stable_evidence_id": "6cb29367190311a52f968e54447a2bb00653f751d6fcfea2b7bda472293893d6",
+    "bl4_decision": "configs/u5_r2bl4_filmmatch_analytical_residual_ood_decision_v1.json",
+    "bl4_decision_sha256": "7a0a7255ab62973ca38d0a56ece84442f8738ee02f625f72755c9617eb9c3334",
+    "required_bl4_status": "close_bl4_analytical_composition_before_visual_review"
+  },
+  "question": "Can a fixed strict-interior output parameterization absorb the boundary margin during fitting while preserving BL1 held-group accuracy and invertibility?",
+  "candidate": {
+    "family": "strict_interior_identity_residual_normalized_log_sigmoid",
+    "parameters": 18,
+    "output_epsilon": 0.00196078431372549,
+    "nonlinear_strength": 0.75,
+    "matrix_identity_mixture": 0.25,
+    "exposure_floor": 0.0000152587890625,
+    "matrix_logit_bounds": [-8.0, 4.0],
+    "midpoint_bounds": [-12.0, 2.0],
+    "slope_bounds": [0.2, 4.0],
+    "fit": {
+      "restart_count": 2,
+      "maximum_function_evaluations": 2000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260801
+    }
+  },
+  "evaluation": {
+    "reflective_split": "leave one complete author-declared illuminant out",
+    "emissive_split": "leave one controlled-stimulus hue sector out",
+    "cube_size": 33
+  },
+  "bound_controls": {
+    "bl1_reflective_mean_rgb_rmse": 0.046938059918590076,
+    "bl1_emissive_mean_rgb_rmse": 0.09618027714226163,
+    "bl1_combined_mean_rgb_rmse_sum": 0.1431183370608517,
+    "bl1_minimum_cube_jacobian_determinant": 0.01071216755757776
+  },
+  "automatic_gate": {
+    "maximum_reflective_rmse_ratio_to_bl1": 1.05,
+    "maximum_emissive_rmse_ratio_to_bl1": 1.05,
+    "maximum_combined_mean_rmse_sum": 0.15,
+    "maximum_cube_output_code_boundary_fraction": 0.0,
+    "minimum_cube_jacobian_determinant": 0.0009,
+    "require_all_fits_finite": true,
+    "require_two_run_byte_identity": true
+  },
+  "branches": {
+    "pass": "open only fixed direct OOD execution on the frozen BL3 population",
+    "accuracy_fail": "close without changing epsilon, bounds, loss or capacity",
+    "structural_fail": "close without post-fit clipping or analytical residual rescue"
+  },
+  "gates": {
+    "paired_code_domain_fit_allowed": true,
+    "ordinary_photo_execution_allowed": false,
+    "physical_parameter_interpretation_allowed": false,
+    "calibrated_stock_response_claim_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain strict-interior equation-family evidence for one author-prepared Sony FX3/Ektachrome E100 session; no physical parameter recovery, calibrated stock response, scanner independence, OOD safety or product promotion"
+}
