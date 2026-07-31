@@ -365,12 +365,14 @@ def _comparison_rows(
                     "dhash64": str(source["dhash64"]),
                 }
             )
-    identities = [
-        (row["decoded_sha256"], row["dhash64"]) for row in rows
-    ]
-    if len(set(identities)) != len(identities):
-        raise ConfirmationSourceError("comparison manifests overlap")
-    return rows
+    # A cumulative prior-population inventory may legitimately bind two
+    # historical manifests that point to the same decoded source.  Count that
+    # source once rather than rejecting the inventory or overweighting it.
+    unique: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        identity = (row["decoded_sha256"], row["dhash64"])
+        unique.setdefault(identity, row)
+    return list(unique.values())
 
 
 def make_contact_sheet(
