@@ -1,0 +1,102 @@
+{
+  "schema": "neuro-film.u5-r2bo3-flickr-weak-pair-operator-development.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO3",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "Do low-capacity cube-safe explicit operators transfer across held scenes within each one-author camera/film display-chain family?",
+  "parents": {
+    "registration_report": {
+      "path": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_a/report.json",
+      "sha256": "954f5dc9f64a74615da695668fb924c80659d00620607c37ad149f0db2e089eb",
+      "required_stable_evidence_id": "fb19f395aa5d1850443372c1e4afef2f7dd8273fda1562a561d2d2702da10e65"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+      "sha256": "697cc636fe7668fe8586455b4bb1eecc858cbe984045e18417195d902d281703"
+    }
+  },
+  "data_root": "data/research/flickr_analog_digital_album_v1",
+  "split": {
+    "group": "pair_id",
+    "confirmation_rule": "scene_id_mod_4_equals_0",
+    "development_rule": "all accepted pairs not in confirmation",
+    "development_crossfit_fold": "scene_id_mod_3",
+    "confirmation_pixels_forbidden": true
+  },
+  "paired_samples": {
+    "warp": "digital linear-sRGB to film geometry with frozen BO2 homography and OpenCV INTER_LINEAR",
+    "mask_erosion_pixels": 5,
+    "encoded_boundary_code_minimum": 2,
+    "encoded_boundary_code_maximum": 253,
+    "maximum_combined_encoded_luma_gradient_quantile": 0.75,
+    "maximum_samples_per_scene": 2048,
+    "sampling": "row-major evenly spaced over eligible pixels"
+  },
+  "operators": {
+    "identity": {"parameter_count": 0},
+    "family_basic_logit": {
+      "family": "independent per-channel logit scale+shift",
+      "parameter_count": 6,
+      "log_scale_bounds": [-0.7, 0.7],
+      "shift_bounds": [-1.0, 1.0],
+      "identity_shrinkage": 0.05,
+      "maximum_fit_evaluations": 100
+    },
+    "family_curve_positive_matrix": {
+      "family": "three-segment endpoint-fixed monotone curves then positive row-stochastic matrix",
+      "parameter_count": 12,
+      "curve_identity_mixture": 0.75,
+      "matrix_identity_mixture": 0.25,
+      "free_logit_bounds": [-8.0, 4.0],
+      "restart_count": 2,
+      "maximum_fit_evaluations": 500,
+      "loss": "soft_l1",
+      "loss_scale": 0.02,
+      "seed": 20260801
+    },
+    "family_triangular_logit": {
+      "family": "monotone triangular logit transport",
+      "parameter_count": 14,
+      "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+      "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+      "identity_shrinkage": 0.05,
+      "maximum_fit_evaluations": 200,
+      "safe_dose_grid_size": 9,
+      "safe_dose_finite_difference": 0.00001,
+      "minimum_jacobian_determinant": 0.02,
+      "maximum_jacobian_condition": 30.0,
+      "safe_dose_bisection_iterations": 24
+    },
+    "pooled_triangular_logit": {
+      "purpose": "same-capacity pooled-family nuisance control",
+      "settings_from": "family_triangular_logit"
+    }
+  },
+  "evaluation": {
+    "primary_metric": "per-scene linear-sRGB RGB RMSE on frozen registered low-gradient pixels",
+    "new_boundary_epsilon": 0.0000152587890625,
+    "minimum_candidate_mean_improvement_over_identity": 0.1,
+    "minimum_candidate_median_improvement_over_family_basic": 0.05,
+    "minimum_candidate_scene_win_fraction_over_family_basic": 0.6,
+    "minimum_each_family_median_improvement_over_family_basic": 0.0,
+    "maximum_candidate_p95_error_ratio_to_family_basic": 1.05,
+    "maximum_candidate_worst_error_ratio_to_family_basic": 1.2,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_all_fits_converged": true,
+    "selection": "lowest parameter count among eligible candidates; ties use lower mean RMSE",
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "candidate_pass": "freeze the selected operator family and fit on all development scenes before one untouched confirmation run",
+    "all_candidates_fail": "close this low-capacity family without threshold or capacity rescue; retain paired data for another preregistered mechanism",
+    "confirmation_later_fails": "close without refitting or selecting from confirmation"
+  },
+  "forbidden": [
+    "load confirmation pixels during development",
+    "change splits, masks, samples, operators, fit settings or gates after formal execution",
+    "call a camera-family display-chain result a film-stock response or scanner-independent operator",
+    "train a content router or direct-RGB model"
+  ],
+  "operator_fitting_allowed": "development pixels only",
+  "training_allowed": false,
+  "claim_ceiling": "one-author weak-paired camera/film display-chain operator development evidence; not exact stock, calibrated response, scanner-independent transform, product promotion or commercial-use training"
+}
