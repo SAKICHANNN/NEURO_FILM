@@ -81,6 +81,7 @@
     "fit": "One nonnegative least-squares simplex shared across every channel, stock, scan and image; then deterministic largest-remainder quantization summing exactly to 1024.",
     "field_shape": [768, 768],
     "central_analysis_crop": [128, 128, 512, 512],
+    "comparison_target_density": 0.8,
     "positive_proxy_scale": 0.01,
     "development_seeds": [261201, 261203, 261209, 261223],
     "confirmation_seeds": [261229, 261241, 261251, 261263],
