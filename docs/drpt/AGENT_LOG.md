@@ -9133,3 +9133,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The effect is nonempty (`.07169` maximum transmittance change) and the maximum
   retained half-range is `.00955`. Open P5Q photo stress only; no physical
   placement, calibration or product claim opens.
+
+## 2026-08-01 - U6.P5Q closes measured-total photographic use
+
+- Ran two exact 18-photo/nine-camera reports. The candidate is finite,
+  boundary-clean, distinct and retains strong-edge/texture ratios of
+  `.842-.956` / `.779-.865`.
+- Frozen severe/uncertainty gates fail: flat-region P99 `.06791`, 3,401
+  isolated excursions and `.18905` maximum placement half-range. Automatic
+  failure forbids visual review; generated sheets remain unreviewed evidence.
+- Close P5I-P5Q without threshold, arm or envelope rescue. Continue P2P exact
+  Kodak 250D characteristic-curve source tracing as a distinct mechanism.

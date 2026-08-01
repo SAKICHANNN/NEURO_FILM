@@ -257,6 +257,11 @@ P5P passes: the pointwise interval midpoint has zero bound violation,
 maximum transmittance effect while preserving an explicit `.00955` maximum
 uncertainty half-range. P5Q must now run the fixed photographic severe/style
 comparison; none of this identifies a physical MTF placement.
+P5Q closes the photographic route automatically: flat-region P99 is `.06791`,
+3,401 isolated excursions appear and maximum placement half-range is `.18905`.
+Visual review and any single-arm/threshold rescue are forbidden. The next
+distinct film-simulation leaf is P2P: exact source tracing of the Kodak 250D
+characteristic curves before any curve compiler or digital-input use.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

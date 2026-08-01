@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p5q_measured_mtf_photographic_stress_decision.v1",
+  "node": "U6.P5Q",
+  "date": "2026-08-01",
+  "contract_commit": "428e9302",
+  "implementation_commit": "3b650cb6",
+  "contract_sha256": "ee88092c23f0bd086e9730eeb903352ed6926812a11e9d50a5b79d5fc1abfd98",
+  "report_sha256": "34be49b6cc5cec5056adef892605167d20e6b58d5bc21e7ebf63c41afc1cfd3d",
+  "stable_evidence_id": "c443eea96399242ac69faf043d5d591cb28447d1ba4d7d4757bed620a63613ab",
+  "overview_sha256": "9d44b31c609a31a347d38f89336c342dd89d55045abc27f90adec3498df90ae7",
+  "worst_patches_sha256": "092cf43c1c58d4c8cd33f4e44f1729717f47c78713837672fb7109cfffd9a779",
+  "automatic_pass": false,
+  "visual_review_performed": false,
+  "result": {
+    "population_p95_candidate_vs_sensitometry_abs": 0.009920888033994156,
+    "population_p95_candidate_vs_generic_abs": 0.04815966402118951,
+    "population_p95_uncertainty_half_range": 0.009168164872572245,
+    "maximum_candidate_vs_sensitometry_abs": 0.14775730679040566,
+    "maximum_flat_region_p99_abs": 0.0679143651815004,
+    "maximum_uncertainty_half_range": 0.189050858820153,
+    "total_isolated_excursions": 3401,
+    "strong_edge_gradient_ratio_range": [0.8424779082725911, 0.9562017107929096],
+    "texture_energy_ratio_range": [0.7790634847526141, 0.8653491318721689],
+    "row_partitions_byte_exact": true,
+    "failed_gates": [
+      "flat_regions",
+      "isolated_excursions",
+      "uncertainty_max"
+    ]
+  },
+  "decision": "close_measured_mtf_envelope_photographic_use",
+  "branch_decision": "The fixed measured-MTF envelope is nonempty, distinct from generic P5C, finite, boundary-clean and retains strong-edge/texture energy, but it fails three frozen severe/uncertainty gates. Flat-region P99 reaches .06791, 3,401 isolated excursions are detected, and local placement uncertainty reaches .18905. The automatic failure forbids visual review. Close the complete P5I-P5Q measured-total photographic route without threshold, arm or envelope rescue.",
+  "next_leaf": "U6.P2P first-party Kodak 250D characteristic-curve source trace",
+  "claim_ceiling": "Negative photographic structural evidence for one film-inspired measured-MTF uncertainty envelope; no physical placement, calibrated stock response, preference or product claim."
+}
