@@ -2356,3 +2356,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > passes only one of three frozen blind rounds (`13/8/9`). Keep fixed AO6
 > t15/c35 and move to a mechanism-distinct algorithm rather than retuning.
 >
+> `U5.R2BL14` executes BL0's sole authorized hard-abstention follow-up.  A
+> development-OOF source-median-luma threshold improves held RGB RMSE by
+> `9.50%`, beats dense BL0 by `2.71%`, wins 11/15 active groups and all three
+> held folds, but admits a `1.18075x` worst-group regression and beats the
+> shuffled-hard control by only `4.82%` against the frozen `5%` floor.  Close
+> source-conditioned routing for this consumed session; keep global fallback
+> and continue a mechanism-distinct explicit/physical algorithm.
+>

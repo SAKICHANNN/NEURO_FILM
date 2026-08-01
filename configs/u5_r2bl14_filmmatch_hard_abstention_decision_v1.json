@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bl14-filmmatch-hard-abstention-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL14",
+  "decision": "close_source_conditioned_hard_abstention_and_retain_global_fallback",
+  "software_commit": "914b4446",
+  "contract": {
+    "path": "configs/u5_r2bl14_filmmatch_hard_abstention_v1.json",
+    "sha256": "b35ed7d9f55d0535b8068ce111c6657234e0382adf78de8bcb85202ad679b165"
+  },
+  "formal_report": "outputs/external_controls/filmmatch_ektachrome_v1/hard_abstention_bl14_914b4446/run_a/report.json",
+  "formal_report_sha256": "d5c91849e10891c56f865506e64441244b87b964ec61ae3126f58c1c7887171c",
+  "stable_evidence_id": "b668b1411d216f0d3d05b1ed8264083e7a3ed0c29cb4a0e903479997dc3d7683",
+  "repeat_report_sha256_exact": true,
+  "automatic_result": {
+    "passed": false,
+    "branch": "unstable",
+    "hard_rgb_rmse_improvement_over_global": 0.09496409561928243,
+    "hard_rgb_rmse_improvement_over_dense_adaptive": 0.027102633348483063,
+    "hard_rgb_rmse_improvement_over_shuffled_hard": 0.04818544181791318,
+    "hard_active_groups": 15,
+    "hard_active_group_win_fraction": 0.7333333333333333,
+    "outer_fold_win_fraction": 1.0,
+    "hard_aggregate_p95_ratio_to_global": 0.8397319950441773,
+    "hard_worst_group_rmse_ratio_to_global": 1.1807473909460853,
+    "minimum_cube_jacobian": 0.28439762093324067,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "failed_gates": {
+    "shuffled_control": "4.8185% improvement is below the frozen 5% minimum",
+    "worst_group": "1.18075x global exceeds the frozen 1.05x maximum"
+  },
+  "failure_structure": {
+    "active_wins": "11/15",
+    "held_fold_gains": [0.04702428805915981, 0.11936693817070854, 0.11043047156347285],
+    "worst_group": "3200K|ev=+0",
+    "interpretation": "A single source-brightness threshold extracts substantial high-brightness value but does not transfer the safe activation boundary across illuminants. The source-conditioned family remains unstable despite aggregate and P95 gains."
+  },
+  "visual_review_allowed": false,
+  "forbidden_followup": [
+    "lower the frozen shuffled or worst-group gates",
+    "retune threshold quantiles on held results",
+    "add another score or classifier on the same consumed population",
+    "present fallback-assisted aggregate gain as stable routing",
+    "interpret source median luma as physical exposure truth",
+    "claim film mode, calibrated stock response or product promotion"
+  ],
+  "next_direction": "close this source-conditioned ML routing family; continue a mechanism-distinct explicit or physical film-imaging algorithm, or reopen only with independent content-diverse paired evidence",
+  "claim_ceiling": "negative hard-routing and positive conditional-value evidence inside one author-prepared paired code-domain session; no physical exposure inference, film mode, calibrated stock response, scanner independence or product promotion"
+}

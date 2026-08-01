@@ -8591,3 +8591,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   severe artifact. Mapping-sealed choices are `13/8/9`, so only 1/3 rounds
   clears the frozen 10/17 gate. Decision `f5eff796...3c63eb` closes BL13 and
   retains AO6 without strength, threshold or extra-round rescue.
+
+## 2026-08-01 - U5.R2BL14 closes source-conditioned hard abstention
+
+- Froze one hard adaptive/global selector before execution.  Each outer-held
+  illuminant uses a threshold selected only from leave-one-development-
+  illuminant-out predictions; the sole routing fact is source median luma.
+- Two complete reports are byte-identical at `d5c91849...7171c` (stable ID
+  `b668b141...d7683`).  Hard routing improves RGB RMSE 9.50% over global and
+  2.71% over dense BL0, wins 11/15 active groups and all three held folds,
+  reaches `.8397x` aggregate P95, zero OOG and minimum Jacobian `.2844`.
+- Automatic result is `unstable`: `3200K|ev=+0` is `1.18075x` global versus
+  the frozen `1.05x` maximum, and the shuffled-hard advantage is `4.8185%`
+  versus the frozen 5% minimum.  No visual review, score addition or threshold
+  rescue opens.  Close this source-conditioned ML family and retain global.
