@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p2x_intrinsic_langmuir_response_photographic_decision.v1",
+  "node": "U6.P2X",
+  "status": "automatic-value-and-artifact-close-no-visual-review",
+  "contract": "configs/u6_p2x_intrinsic_langmuir_response_photographic_v1.json",
+  "contract_sha256": "1142f165c25c899be644b4e184aa7a16876c65987fb561089b0998a378dc5c6d",
+  "software_commit": "6a590f4ebc0d1c4412f5afa4eff3c5d97ad3b37c",
+  "implementation": "src/eval/physical_intrinsic_langmuir_photographic.py",
+  "implementation_sha256": "407437420c58a2d290fea839ee548f9eceb25697b5cef6f17c017cd50f799f2a",
+  "reports": [
+    {
+      "path": "outputs/u6_p2x_intrinsic_langmuir_response_photographic_v1/run_a/report.json",
+      "sha256": "7d73475478d5bbf37f5ee92a3780dd3238e38dd2d6e42c64db420ff59d939ff1"
+    },
+    {
+      "path": "outputs/u6_p2x_intrinsic_langmuir_response_photographic_v1/run_b/report.json",
+      "sha256": "7d73475478d5bbf37f5ee92a3780dd3238e38dd2d6e42c64db420ff59d939ff1"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "inventories_byte_identical": true,
+    "files_per_run": 49,
+    "bytes_per_run": 107162765
+  },
+  "stable_evidence_id": "37f849e7c83209320bb4c0c97f8e83fe3b7d3bab44817acee81975ad5c845cfd",
+  "summary": {
+    "source_count": 16,
+    "images_with_effect_delta_e76_at_least_0_1": 9,
+    "population_median_effect_delta_e76": 0.1676764757687766,
+    "maximum_per_image_median_effect_delta_e76": 0.9048256813242553,
+    "population_median_style_delta_e76_vs_input": 25.077149506428746,
+    "population_median_non_basic_delta_e76_vs_input": 15.909181082631886,
+    "worst_new_hard_boundary_fraction_vs_linear": 0.0,
+    "population_median_luma_absolute_shift_vs_linear": 0.0006369573829174673,
+    "population_median_lab_chroma_ratio_vs_linear": 0.9898936421422881,
+    "minimum_gradient_energy_ratio_vs_linear": 1.023561459416299,
+    "maximum_gradient_energy_ratio_vs_linear": 1.0999223863269796,
+    "maximum_isolated_excursion_count": 126
+  },
+  "failed_gates": [
+    "minimum_population_median_effect_delta_e76",
+    "minimum_images_with_effect_delta_e76_at_least_0_1",
+    "maximum_isolated_excursion_count_must_equal_zero"
+  ],
+  "visual_review_performed": false,
+  "production_default_changed": false,
+  "decision": "close-intrinsically-bounded-family-without-rescue",
+  "retained_evidence": "The sigmoid response is intrinsically density-bounded and replay-exact, but it neither reaches the frozen population value floor nor removes severe-artifact risk. P2V remains synthetic mechanism evidence only.",
+  "next_ready_leaf": "U6.P2Y bounded source audit for independently measured interimage response data; no additional photographic heuristic family until identifying evidence exists",
+  "claim_ceiling": "generic physical-inspired fixed equation-family comparison on rights-cleared display-sRGB photographs; not measured chemistry, sensitometry, stock/process/scanner response, calibration, authenticity or product promotion"
+}

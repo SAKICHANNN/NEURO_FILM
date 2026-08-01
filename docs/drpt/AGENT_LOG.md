@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P2X closes intrinsic photographic Langmuir family
+
+- Replaced P2W corrected-log-exposure execution with one shared intrinsically
+  bounded sigmoid response and no per-pixel post-hoc scale. Two 49-file runs are
+  byte-identical (`7d734754...9ff1`).
+- Median effect is `.16768` Delta E76, only 9/16 images reach `.1`, and the
+  worst isolated-excursion count is 126. Three frozen gates fail; visual review
+  was forbidden and not performed.
+- Stop heuristic photographic interimage families. Further work requires an
+  independently measured response source; retain P2V only as synthetic evidence.
+
 # 2026-08-02 - U6.P2W photographic Langmuir realization closes
 
 - Two complete 49-file runs are byte-identical (`500ae294...22bf`). All 16
