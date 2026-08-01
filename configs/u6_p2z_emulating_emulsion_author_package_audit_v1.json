@@ -97,10 +97,13 @@
         "website_repository_license": null,
         "emulating_emulsion_page_blob": "28c21209cdaa240f52656c4b8eaf3782fa8bc105",
         "full_paper_content_length": 86874097,
-        "full_paper_retained": false
+        "new_full_paper_download_retained": false,
+        "preexisting_full_paper_path": "outputs/source_recon/emulating_emulsion_siggraph2025/full_paper.pdf",
+        "preexisting_full_paper_bytes": 86874097,
+        "preexisting_full_paper_sha256": "02ce6345ed08cb61b70a7089cc488b5f7d7b6809db2e51ce0c4410f0606a5d47"
       },
-      "change": "bind the exact retained author HTML, abstract and poster plus read-only GitHub metadata; the author-linked full paper exceeds the frozen 25,000,000-byte total acquisition cap, so the partial transfer was aborted, deleted and never parsed",
-      "scientific_effect": "preserves the frozen cost and acquisition boundary while permitting deterministic audit of every retained primary-author asset and explicit outbound link"
+      "change": "bind the exact retained author HTML, abstract and poster plus read-only GitHub metadata; the author-linked full paper exceeds the frozen 25,000,000-byte new-acquisition cap, so the partial new transfer was aborted and deleted, while an exact pre-existing local copy from the earlier source audit is bound without another remote byte",
+      "scientific_effect": "preserves the frozen acquisition boundary while permitting deterministic audit of every retained primary-author asset and explicit outbound link, including the independently retained full paper"
     }
   ]
 }
