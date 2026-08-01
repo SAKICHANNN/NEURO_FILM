@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import random
+from copy import deepcopy
 from typing import Any, Mapping
 
 import numpy as np
@@ -51,14 +52,14 @@ def _load_exact_json(root: Path, path: str, expected_sha256: str) -> Any:
     return json.loads(resolved.read_text(encoding="utf-8"))
 
 
-def _load_display_image(path: Path, maximum_side: int) -> np.ndarray:
+def _load_display_image(path: Path) -> np.ndarray:
     with Image.open(path) as image:
         if image.mode != "RGB":
             raise FiveKProjectionCurveVisualError(
                 f"expected RGB source: {path}"
             )
         encoded = np.asarray(image, dtype=np.float32) / np.float32(255.0)
-    return np.clip(resize_float(encoded, maximum_side), 0.0, 1.0)
+    return np.clip(encoded, 0.0, 1.0)
 
 
 def _median_delta_e76(first: np.ndarray, second: np.ndarray) -> float:
@@ -78,34 +79,75 @@ def _p999_gradient(rgb: np.ndarray) -> float:
     )
 
 
-def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
+def _resolve_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
+    if config.get("schema_version") == 1:
+        return dict(config)
+    if config.get("schema_version") != 2:
+        raise FiveKProjectionCurveVisualError("unsupported BN3 schema")
+    base_ref = config["base_contract"]
+    base = _load_exact_json(root, base_ref["path"], base_ref["sha256"])
+    correction = config["correction"]
     if (
-        config.get("status") != "contract_frozen_implementation_ready"
-        or tuple(config.get("render_arms", ())) != ARMS
-        or config.get("new_data_download_allowed")
-        or config.get("production_default_changed")
-        or config.get("film_or_stock_claim_allowed")
-        or config["frozen_model"].get("target_pixels_available")
-        or config["frozen_model"].get("operator_or_predictor_tuning_allowed")
-        or config["blind_protocol"].get("rounds") != 3
-        or not config["blind_protocol"].get(
+        base.get("status") != base_ref["required_status"]
+        or correction.get("descriptor_resolution")
+        != "unchanged maximum-side-256 AY0 source descriptor"
+        or correction.get("operator_and_ao6_resolution")
+        != "exact decoded source pixels"
+        or correction.get("operator_or_ao6_resampling_allowed")
+        or any(
+            int(correction[key]) != 0
+            for key in (
+                "threshold_changes",
+                "source_changes",
+                "model_changes",
+                "blind_protocol_changes",
+            )
+        )
+    ):
+        raise FiveKProjectionCurveVisualError("BN3 v2 correction drift")
+    effective = deepcopy(base)
+    effective["schema_version"] = 2
+    effective["experiment_id"] = config["experiment_id"]
+    effective["status"] = config["status"]
+    effective["software_commit_at_freeze"] = config[
+        "software_commit_at_freeze"
+    ]
+    effective["rendering"] = deepcopy(correction)
+    effective["claim_ceiling"] = config["claim_ceiling"]
+    return effective
+
+
+def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
+    effective = _resolve_contract(root, config)
+    if (
+        effective.get("status") != "contract_frozen_implementation_ready"
+        or tuple(effective.get("render_arms", ())) != ARMS
+        or effective.get("new_data_download_allowed")
+        or effective.get("production_default_changed")
+        or effective.get("film_or_stock_claim_allowed")
+        or effective["frozen_model"].get("target_pixels_available")
+        or effective["frozen_model"].get("operator_or_predictor_tuning_allowed")
+        or effective["blind_protocol"].get("rounds") != 3
+        or not effective["blind_protocol"].get(
             "mapping_hidden_until_all_observations_are_frozen"
         )
     ):
         raise FiveKProjectionCurveVisualError("BN3 boundary drift")
 
     parent = _load_exact_json(
-        root, config["parent"]["decision"], config["parent"]["decision_sha256"]
+        root,
+        effective["parent"]["decision"],
+        effective["parent"]["decision_sha256"],
     )
     if (
-        parent.get("status") != config["parent"]["required_status"]
+        parent.get("status") != effective["parent"]["required_status"]
         or parent.get("report_sha256")
-        != config["parent"]["required_report_sha256"]
+        != effective["parent"]["required_report_sha256"]
         or not parent.get("automatic_pass")
     ):
         raise FiveKProjectionCurveVisualError("BN2 parent drift")
 
-    model = config["frozen_model"]
+    model = effective["frozen_model"]
     bn1_config = _load_exact_json(root, model["config"], model["config_sha256"])
     bn1_decision = _load_exact_json(
         root, model["decision"], model["decision_sha256"]
@@ -114,7 +156,7 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         raise FiveKProjectionCurveVisualError("BN1 model decision drift")
     bn1_validated = validate_bn1_contract(root, bn1_config)
 
-    source = config["independent_source"]
+    source = effective["independent_source"]
     source_decision = _load_exact_json(
         root, source["decision"], source["decision_sha256"]
     )
@@ -143,6 +185,7 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         "bn1_validated": bn1_validated,
         "eligible_ids": eligible_ids,
         "source_rows": rows,
+        "effective_config": effective,
     }
 
 
@@ -161,13 +204,16 @@ def _load_visual_population(
             raise FiveKProjectionCurveVisualError(
                 f"source image drift: {source_id}"
             )
-        source = _load_display_image(path, maximum_side)
+        source = _load_display_image(path)
+        descriptor_source = resize_float(source, maximum_side)
         rows.append(
             {
                 "pair_id": source_id,
                 "group": evidence["make"],
                 "source": source,
-                "descriptor": source_descriptor(source, ay0_config),
+                "descriptor": source_descriptor(descriptor_source, ay0_config),
+                "source_shape": list(source.shape),
+                "descriptor_shape": list(descriptor_source.shape),
                 "decoded_path": evidence["decoded_path"],
                 "decoded_sha256": evidence["decoded_sha256"],
             }
@@ -184,6 +230,7 @@ def run_visual_product_value(
     software_commit: str,
 ) -> dict[str, Any]:
     validated = validate_contract(root, config)
+    effective = validated["effective_config"]
     if output_dir.exists():
         raise FileExistsError("BN3 output is create-only")
     output_dir.mkdir(parents=True)
@@ -298,7 +345,7 @@ def run_visual_product_value(
             }
         )
 
-    gate = config["automatic_gate"]
+    gate = effective["automatic_gate"]
     all_arms = [arm for row in rows for arm in row["arms"].values()]
     all_diagnostics = [
         (row["global_minimum_jacobian_determinant"],
@@ -358,14 +405,14 @@ def run_visual_product_value(
     stable = {"summary": summary, "gates": gates, "rows": rows}
     report = {
         "schema_version": 1,
-        "experiment_id": config["experiment_id"],
+        "experiment_id": effective["experiment_id"],
         "software_commit": software_commit,
         "config_sha256": _sha256(config_path),
         **stable,
         "automatic_pass": all(gates.values()),
         "blind_review_allowed": all(gates.values()),
         "stable_evidence_id": hashlib.sha256(_canonical_bytes(stable)).hexdigest(),
-        "claim_ceiling": config["claim_ceiling"],
+        "claim_ceiling": effective["claim_ceiling"],
     }
     report_path = output_dir / "report.json"
     report_path.write_bytes(_canonical_bytes(report))

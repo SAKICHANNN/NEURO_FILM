@@ -20,7 +20,7 @@ from src.eval.fivek_projection_curve_visual_product_value import (  # noqa: E402
 )
 
 
-CONFIG = ROOT / "configs/u5_r2bn3_projection_curve_visual_product_value_v1.json"
+CONFIG = ROOT / "configs/u5_r2bn3_projection_curve_visual_product_value_v2.json"
 
 
 def main() -> int:
@@ -41,7 +41,7 @@ def main() -> int:
     )
     sheets = []
     if args.build_blind_sheets:
-        for round_index in range(1, int(config["blind_protocol"]["rounds"]) + 1):
+        for round_index in range(1, 4):
             sheets.append(
                 build_blind_round(
                     root=ROOT,

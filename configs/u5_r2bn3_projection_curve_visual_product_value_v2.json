@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "experiment_id": "u5.r2bn3-projection-curve-visual-product-value-v2",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN3",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "d0d2e448136886e69c51ef6051534e8edc283320",
+  "base_contract": {
+    "path": "configs/u5_r2bn3_projection_curve_visual_product_value_v1.json",
+    "sha256": "2605e8c0194b909439330a5b5c3e25aaa830ab9fd02cb034cdd1c40034a0bbb1",
+    "required_status": "contract_frozen_implementation_ready"
+  },
+  "invalid_v1_decision": "configs/u5_r2bn3_projection_curve_visual_product_value_v1_invalid_decision.json",
+  "correction": {
+    "descriptor_resolution": "unchanged maximum-side-256 AY0 source descriptor",
+    "operator_and_ao6_resolution": "exact decoded source pixels",
+    "operator_or_ao6_resampling_allowed": false,
+    "threshold_changes": 0,
+    "source_changes": 0,
+    "model_changes": 0,
+    "blind_protocol_changes": 0
+  },
+  "claim_ceiling": "independent-population full-decoded-resolution autonomous visual product-value evidence for a confirmed explicit digital-retouch operator under fixed AO6; not population preference, film, stock, calibration, universal safety or product promotion"
+}

@@ -15,24 +15,24 @@ from src.eval.fivek_projection_curve_visual_product_value import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs/u5_r2bn3_projection_curve_visual_product_value_v1.json"
+CONFIG = ROOT / "configs/u5_r2bn3_projection_curve_visual_product_value_v2.json"
 
 
 def test_bn3_contract_binds_independent_population_and_fixed_arms() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     validated = validate_contract(ROOT, config)
-    assert tuple(config["render_arms"]) == ARMS
+    assert tuple(validated["effective_config"]["render_arms"]) == ARMS
     assert len(validated["eligible_ids"]) == 12
     assert len({validated["source_rows"][key]["make"] for key in validated["eligible_ids"]}) == 12
 
 
 def test_bn3_contract_rejects_target_access_and_arm_drift() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    config["frozen_model"]["target_pixels_available"] = True
+    config["correction"]["threshold_changes"] = 1
     with pytest.raises(FiveKProjectionCurveVisualError):
         validate_contract(ROOT, config)
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    config["render_arms"] = list(reversed(config["render_arms"]))
+    config["correction"]["operator_and_ao6_resolution"] = "descriptor pixels"
     with pytest.raises(FiveKProjectionCurveVisualError):
         validate_contract(ROOT, config)
 

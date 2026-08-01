@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn3-projection-curve-visual-product-value-v1",
+  "status": "invalid_preview_only_implementation",
+  "config_sha256": "2605e8c0194b909439330a5b5c3e25aaa830ab9fd02cb034cdd1c40034a0bbb1",
+  "report_sha256": "d4594f5114a8fa6a093d66ced056a02d69470f339adf5c6c200fa5b7f635680a",
+  "blind_observations_sha256": "34b16f71bac1b151fe7d4af92694205755e6c8569f9f5f44e7d4441e220cfbc4",
+  "reason": "The v1 implementation used the 256-pixel descriptor resize as the render input, so its automatic evidence and blind observations are preview-only and cannot close the full-resolution product-value or severe-artifact gate.",
+  "decision": "Do not decode or promote the v1 blind observations. Preserve the outputs, keep every numerical and blind threshold unchanged, and rerun a separately versioned v2 whose descriptor is resized but whose explicit operator and AO6 execute on exact decoded pixels.",
+  "claim_ceiling": "invalid implementation diagnosis only"
+}
