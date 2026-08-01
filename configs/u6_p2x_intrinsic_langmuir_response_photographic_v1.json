@@ -1,0 +1,108 @@
+{
+  "schema": "neuro_film.u6_p2x_intrinsic_langmuir_response_photographic_contract.v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2X",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p2v_decision_path": "configs/u6_p2v_langmuir_interimage_primitive_decision_v1.json",
+    "p2v_decision_sha256": "e9eccd5198e6d9d78ff334516590d8544204a7336445607138da56289f07d061",
+    "p2w_decision_path": "configs/u6_p2w_langmuir_interimage_photographic_decision_v1.json",
+    "p2w_decision_sha256": "0240f30b06df012d121a39b9b23dcee81e8c989d0f7d6007f047003474884e79",
+    "p7f_contract_path": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
+    "p7f_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
+    "p7f_decision_path": "configs/u6_p7f_neutral_gauged_physical_chain_decision_v1.json",
+    "p7f_decision_sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03",
+    "p7f_report_path": "outputs/u6_p7f_neutral_gauged_physical_chain_v1/run_a/report.json",
+    "p7f_report_sha256": "84fb63e25571cbe75efeea95c86100b68ce1d12b2ca8b8ccc1880700f67cee3f"
+  },
+  "question": "Does a fixed intrinsically bounded sigmoid characteristic response retain a visible and severe-safe Langmuir-versus-linear interimage effect on photographs without the P2W corrected-log-exposure realization or any per-pixel post-hoc safety scale?",
+  "claim_ceiling": "generic physical-inspired fixed equation-family comparison on rights-cleared display-sRGB photographs; not measured chemistry, sensitometry, stock/process/scanner response, calibration, authenticity or product promotion",
+  "population": {
+    "source": "exact P7F 16-image / nine-make eligible development cohort",
+    "expected_rows": 16,
+    "expected_makes": 9,
+    "expected_ids": ["canon_eos_kiss_f", "canon_eos_1d_mark_iv", "nikon_d2x", "nikon_d200", "sony_nex_3n", "sony_dslr_a290", "fujifilm_finepix_s5000", "olympus_sp550uz", "olympus_e_p7", "panasonic_dmc_gf2", "panasonic_dmc_fz100", "pentax_k_r", "pentax_k100d_super", "leica_d_lux_6", "leica_digilux_3", "kodak_dcs_pro_14n"],
+    "new_data_allowed": false,
+    "photograph_fitting_allowed": false,
+    "role": "development-only; any pass requires a separately frozen fresh OOD population"
+  },
+  "fixed_operator": {
+    "equation_family": "existing clean-room InterimageDevelopmentOperator sigmoid response with amplitude-matched Langmuir donor",
+    "source_witness": "U6.P2V symmetric-moderate",
+    "exposure_encoding": "P7F LogExposureEncoder applied to forward-scattered nonnegative linear exposure, converted from log10 to log2 exactly by multiplication with log2(10)",
+    "density_min": [0.08, 0.08, 0.08],
+    "density_max": [2.55, 2.55, 2.55],
+    "slope": [1.35, 1.35, 1.35],
+    "midpoint": [0.0, 0.0, 0.0],
+    "coupling": [[0.0, 0.28, 0.18], [0.18, 0.0, 0.28], [0.28, 0.18, 0.0]],
+    "linear_control_knee_fraction": "positive infinity",
+    "langmuir_knee_fraction": [1.0, 1.0, 1.0],
+    "density_capacity": [1.0, 1.0, 1.0],
+    "match_fraction": [0.5, 0.5, 0.5],
+    "hard_density_or_rgb_clipping_allowed": false,
+    "per_pixel_post_hoc_scale_allowed": false,
+    "sampling_dpi": 4000,
+    "downstream_chain": "unchanged P7F adjacency, dye diffusion, interpretation, scanner MTF, neutral gauge and AO6 colour"
+  },
+  "metric_sampling": {
+    "maximum_pixels_per_image": 65536,
+    "hard_boundary_epsilon": 0.00196078431372549,
+    "isolated_excursion_threshold": 0.08,
+    "isolated_support_radius_pixels": 1,
+    "minimum_isolated_support_count": 3
+  },
+  "automatic_gates": {
+    "two_reports_and_render_inventories_must_be_exact": true,
+    "source_count_exact": 16,
+    "all_outputs_finite_and_bounded": true,
+    "minimum_population_median_effect_delta_e76": 0.25,
+    "maximum_per_image_median_effect_delta_e76": 8.0,
+    "minimum_images_with_effect_delta_e76_at_least_0_1": 14,
+    "minimum_population_median_style_delta_e76_vs_input": 7.0,
+    "minimum_population_median_non_basic_delta_e76_vs_input": 4.9,
+    "maximum_worst_new_hard_boundary_fraction_vs_linear": 0.005,
+    "maximum_population_median_luma_absolute_shift_vs_linear": 0.05,
+    "minimum_population_median_lab_chroma_ratio_vs_linear": 0.8,
+    "maximum_population_median_lab_chroma_ratio_vs_linear": 1.25,
+    "minimum_worst_gradient_energy_ratio_vs_linear": 0.75,
+    "maximum_worst_gradient_energy_ratio_vs_linear": 1.25,
+    "maximum_isolated_excursion_count": 0
+  },
+  "visual_protocol": {
+    "only_after_automatic_pass": true,
+    "blind_arms": ["intrinsic_linear_donor", "intrinsic_langmuir_donor", "frozen_p7f_incumbent"],
+    "severe_veto_first": true,
+    "preference_is_descriptive_without_a_preregistered_win_threshold": true
+  },
+  "research_basis": [
+    {
+      "source": "Shuto et al., Mechanism of the Interimage-Effect in Color Reversal System and Its Application to Improve Color Reproduction, IS&T 1997",
+      "url": "https://www.imaging.org/common/uploaded%20files/pdfs/Papers/1997/IST-0-4/62.pdf",
+      "use": "primary experimental mechanism evidence; no parameter calibration"
+    },
+    {
+      "source": "Jang, Karaimer and Brown, Emulating Emulsion: A Compact Physically-Based Model for Film Colour, SIGGRAPH Posters 2025",
+      "url": "https://doi.org/10.1145/3721250.3743014",
+      "use": "latest paired explicit colour-response baseline; its two-matrix plus per-channel sigmoid family excludes an interimage donor and does not identify this generic mechanism"
+    },
+    {
+      "source": "Spektrafilm v0.3.3 and dev history, 2026",
+      "url": "https://github.com/andreavolpato/spektrafilm",
+      "use": "latest open physical-simulation comparison and external mechanism evidence only; no code, profile or output copying"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "change the sigmoid witness, donor knee, match point, coupling, exposure encoding, placement, downstream chain, population, metrics or gates after execution",
+    "reuse P2W corrected-log-exposure code or add any per-pixel post-hoc safety scale",
+    "fit any parameter on photographs, external rendered outputs or the sealed 71-pair display-proxy pool",
+    "remove difficult photographs or add visual rounds",
+    "hard clip density or RGB",
+    "advance to visual review if any automatic gate fails",
+    "call the result measured sensitometry or DIR chemistry, a stock/process/scanner response, calibration or product promotion"
+  ],
+  "branch_rule": {
+    "automatic_fail": "close this intrinsically bounded family without rescue and move to a materially different physical mechanism or data-identification leaf",
+    "automatic_pass": "open one blind severe/preference comparison; production remains unchanged",
+    "visual_severe_fail": "close photographic use and retain P2V synthetic evidence only",
+    "visual_clean": "retain a development challenger and require a fresh independent OOD population before runtime consideration"
+  }
+}
