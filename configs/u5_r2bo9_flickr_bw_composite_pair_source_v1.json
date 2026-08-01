@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u5-r2bo9-flickr-bw-composite-pair-source.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO9",
+  "source": {
+    "search_page_url": "https://www.flickr.com/photos/tags/filmvsdigital/",
+    "owner_nsid": "60452595@N02",
+    "tag": "filmvsdigital",
+    "expected_search_total": 9,
+    "allowed_license_ids": [4],
+    "license_label": "CC-BY-2.0",
+    "derivative_size": "l",
+    "maximum_metadata_requests": 2,
+    "image_payloads_allowed": false
+  },
+  "eligible_composites": [
+    {"photo_id": "16067052258", "scene_id": 1},
+    {"photo_id": "16079545949", "scene_id": 2},
+    {"photo_id": "16086083648", "scene_id": 3},
+    {"photo_id": "16131408780", "scene_id": 4},
+    {"photo_id": "16330534096", "scene_id": 7},
+    {"photo_id": "16363569301", "scene_id": 22},
+    {"photo_id": "16495071285", "scene_id": 30}
+  ],
+  "explicit_exclusions": [
+    {"photo_id": "16027008683", "reason": "description says the film frame was unsharp and only the digital view is shown"},
+    {"photo_id": "16519538457", "reason": "description says the digital view is omitted"}
+  ],
+  "feasibility_gates": {
+    "required_complete_composites": 7,
+    "required_width": 765,
+    "required_height": 1024,
+    "require_public_photo_media": true,
+    "require_bounded_derivative_url": true,
+    "require_role_text": [
+      "Above: Minolta XG-2. Below: Sony SLT-77",
+      "making the same shots"
+    ]
+  },
+  "branches": {
+    "pass": "open bounded seven-derivative split and registration feasibility only",
+    "fail": "close this source before pixel acquisition"
+  },
+  "forbidden": [
+    "operator fitting or training during BO9",
+    "inferring film stock developer process scanner exposure or roll from appearance",
+    "treating the two excluded single-view rows as pairs",
+    "requesting original-size payloads",
+    "calibrated stock or product claims"
+  ],
+  "claim_ceiling": "metadata-only feasibility for seven one-author same-scene black-and-white composite weak pairs; exact film stock, developer, process, scanner, exposure and physical response remain unknown"
+}
