@@ -44,6 +44,7 @@
   ],
   "automatic_gate": {
     "expected_outputs": 36,
+    "boundary_epsilon": 0.00196078431372549,
     "maximum_new_boundary_fraction_vs_source": 0.005,
     "maximum_out_of_cube_fraction": 0.0,
     "maximum_nonpositive_jacobian_count": 0,
