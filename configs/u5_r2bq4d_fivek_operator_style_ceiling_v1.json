@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq4d-fivek-operator-style-ceiling-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ4D",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the already-fitted 14-parameter case bank itself contain safe operators that preserve at least 70% of target style, or is BQ4 limited by operator capacity rather than source conditioning?",
+  "parent_bq4_decision": {
+    "path": "configs/u5_r2bq4_fivek_factorized_safe_residual_decision_v1.json",
+    "sha256": "5d480d928d938ba38183c984840a25dd164b463121c86f093eb9f79189b0d13f"
+  },
+  "parent_bq4_report": {
+    "path": "outputs/u5_r2bq4_fivek_factorized_safe_residual_v1/run_a/report.json",
+    "sha256": "5bf3cbc458eb3b25f27c4291b3066a32b27cf4ecf60be529dd592d8979d8bfa1",
+    "stable_evidence_id": "96f48c3dfa371566ca312bddc1f4a41b8a6eb2879069b94832ee4705bce5ee16"
+  },
+  "parent_oracle": {
+    "path": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "samples_per_image": 512},
+  "split": {
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "confirmation_allowed": false
+  },
+  "safe_execution": {
+    "function": "src.eval.boundary_safe_neutral_base.apply_boundary_safe_residual",
+    "boundary_epsilon": 0.00001525902189669642,
+    "hard_clipping_allowed": false
+  },
+  "variants": ["aligned_expert", "filtered"],
+  "diagnostic_gates": {
+    "minimum_self_fit_median_style_retention": 0.7,
+    "minimum_error_oracle_median_style_retention": 0.7,
+    "minimum_rows_with_style_eligible_fit_case": 0.9,
+    "maximum_style_constrained_oracle_error_ratio": 1.1,
+    "maximum_new_boundary_fraction": 0.0005
+  },
+  "branch_rules": {
+    "self_fit_fails": "close the current triangular-logit operator family for the anti-bland target and move to a more expressive bounded explicit residual family",
+    "self_fit_passes_but_error_oracle_fails": "retain operator capacity and formulate a style-constrained sparse selection objective without opening confirmation",
+    "all_style_ceiling_gates_pass": "return to a source-only sparse selector with the frozen style constraint; do not change renderer capacity",
+    "style_eligible_bank_is_sparse": "expand explicit case residual representation rather than dense selector capacity"
+  },
+  "training_or_fitting_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "development-only capacity diagnosis for already-fitted FiveK digital-retouch explicit operators; no film, preference, confirmation or product claim"
+}
