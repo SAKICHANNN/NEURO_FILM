@@ -8680,3 +8680,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   worst tail is 2.292x, and shuffled-label advantage is only 3.27%.
 - BM1 remains an Oracle/data-requirement result. BM2-BM4 close current routing;
   no added capacity is allowed without materially larger independent cases.
+
+## 2026-08-01 - U5.R2BN1 passes projection-curve development
+
+- Audited the 2026 many-projection enhancement paper and public repository.
+  No license file was present, so implementation/weights were not copied; BN1
+  is a clean-room explicit parameter-only operator.
+- Two reports are byte-identical at `0a5c78a9...52a2d4`. Adaptive mean gains
+  are 7.24-7.95%, all three P95 and worst tails improve, wins are 68.25-70.31%,
+  and style is retained with zero cube/boundary/nonpositive-Jacobian failures.
+- Freeze the complete BN1 representation and gates. Next run it unchanged on
+  the disjoint retained AY2 official FiveK content population; no visual,
+  film, stock or product claim opens yet.

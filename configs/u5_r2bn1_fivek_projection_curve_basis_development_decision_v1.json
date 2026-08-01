@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn1-fivek-projection-curve-basis-development-v1",
+  "status": "development_pass_confirmation_required",
+  "config": "configs/u5_r2bn1_fivek_projection_curve_basis_development_v1.json",
+  "config_sha256": "2b1a6a1e742308f9fd3d1de48552139b9aa0906311e2077a29b0333521bd5467",
+  "software_commit": "f0580ad14bc9e33d80001a3e1d5d9147de33b127",
+  "report": "outputs/u5_r2bn1_fivek_projection_curve_basis_development_v1/run_a/report.json",
+  "report_sha256": "0a5c78a95230cb5ae34959a329bd014d83aa7415bf1392f78aca3e2fea52a2d4",
+  "stable_evidence_id": "04798a7e9a7535ca21ee89ecb065d4fc0b78edc97d53486a0734517f94ca581f",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "observed": {
+    "ay0_camera_group_crossfit": {"adaptive_mean_improvement_over_global": 0.0724481243869852, "adaptive_win_fraction": 0.703125, "adaptive_p95_ratio": 0.9562703529614702, "adaptive_worst_ratio": 0.9537038373645079, "style_ratio": 1.024597823368593, "median_safe_dose": 0.8144996464252472, "minimum_safe_dose": 0.3429410457611084},
+    "ay3_seen_fresh": {"adaptive_mean_improvement_over_global": 0.07952297774108157, "adaptive_win_fraction": 0.6825396825396826, "adaptive_p95_ratio": 0.9757478722587222, "adaptive_worst_ratio": 0.8180311303942984, "style_ratio": 1.0829961384538966, "median_safe_dose": 0.8273972868919373, "minimum_safe_dose": 0.7360444068908691},
+    "ay6_seen_confirmation": {"adaptive_mean_improvement_over_global": 0.07751024634378816, "adaptive_win_fraction": 0.6875, "adaptive_p95_ratio": 0.9121949987400803, "adaptive_worst_ratio": 0.9134395352574902, "style_ratio": 1.0033540523517679, "median_safe_dose": 0.8085082471370697, "minimum_safe_dose": 0.7166886329650879}
+  },
+  "safety": {
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_nonpositive_jacobian_count": 0,
+    "minimum_sampled_jacobian_determinant": 0.02000000014523626,
+    "maximum_sampled_jacobian_condition": 29.999995571488526,
+    "hard_output_clipping_used": false,
+    "per_pixel_post_operator_scaling_used": false
+  },
+  "decision": "Freeze the clean-room projection directions, knots, fit, PCA rank, source descriptor, ridge selection and operator-level Jacobian dose. BN1 closes the BJ2 fresh-tail gap on all three already-seen digital-retouch populations and opens one unchanged disjoint FiveK content confirmation only.",
+  "forbidden": [
+    "do not tune the frozen representation or gates on AY2 outcomes",
+    "do not call this a paper reproduction or physical pigment model",
+    "do not use the unavailable-license source code or checkpoints",
+    "do not claim film, stock, calibration, owner preference or product value"
+  ],
+  "next_leaf": "U5.R2BN2 unchanged confirmation on the disjoint retained AY2 official FiveK rows 65-128",
+  "claim_ceiling": "repeat-exact positive development evidence for one clean-room source-adaptive explicit digital-retouch operator family; not untouched confirmation, film, stock, calibration, preference or product promotion"
+}
