@@ -9111,3 +9111,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Do not add radius, families, negative taps or retune gates. Close residual
   composition; measured-total replacement advances only to P5O nonlinear-domain
   placement sensitivity, with no photographic or product claim.
+
+## 2026-08-01 - U6.P5O finds material nonlinear placement ambiguity
+
+- Froze exposure-, developed-density- and scan-transmittance-domain arms around
+  the exact P5L measured-total PSF and unchanged U2.2 sensitometry primitive.
+- Two reports and diagnostics are byte-identical. Constants and the affine
+  negative control commute to `<=8.89e-16`, but nonlinear probes differ by up
+  to `.03940` density and `.01911` transmittance; every row partition is exact.
+- The diagnostic shows structured transition-local disagreement. No arm is
+  physical truth. Open P5P analytical minimax envelope only; no photograph,
+  calibration or product integration opens.

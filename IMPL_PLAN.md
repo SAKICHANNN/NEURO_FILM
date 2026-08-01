@@ -247,9 +247,11 @@ residual. P5N must fit and confirm that residual with a finite positive PSF;
 otherwise measured-total replacement wins by construction. P5N closes the
 residual: the smallest positive FIRs pass held one-dimensional frequency error
 but fail two-dimensional max/mean chart gates at `.16269/.01404`. No radius or
-family rescue opens. P5O must now compare exposure-, density- and
-scan-transmittance-domain placement of the measured-total operator before any
-photographic challenger.
+family rescue opens. P5O then proves material nonlinear placement sensitivity:
+constants and an affine negative control commute to roundoff, while the three
+fixed arms differ by up to `.03940` density / `.01911` transmittance. Current
+evidence therefore identifies no physical placement. P5P must test an
+analytical minimax transmittance envelope before any photographic challenger.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

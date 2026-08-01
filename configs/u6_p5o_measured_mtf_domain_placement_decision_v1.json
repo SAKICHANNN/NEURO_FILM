@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p5o_measured_mtf_domain_placement_decision.v1",
+  "node": "U6.P5O",
+  "date": "2026-08-01",
+  "contract_commit": "8db38cfe",
+  "implementation_commit": "bef3291f",
+  "contract_sha256": "d77f6adad58e31b4a424f1844035c75c3c7dd3178b8aa1b7daf38e3042c0a2e5",
+  "report_sha256": "00bbd2010a99cb8e70a70b6b8c14865ffdbba57d82f8ac5f4b9330a8783885e9",
+  "stable_evidence_id": "dbb81b9c5eba7223bc1b0208e9240174065e6bd773fabb1887dc1954e1698755",
+  "diagnostic_sha256": "d275bec757df33ba3fd6a74f9982c12e5c9ee80244266508819d8ff4ac51830c",
+  "automatic_pass": true,
+  "visual_diagnostic_pass": true,
+  "result": {
+    "material_density_max_absolute_difference": 0.039399183539859606,
+    "material_transmittance_max_absolute_difference": 0.01910722207453794,
+    "constant_density_max_absolute_difference": 8.881784197001252e-16,
+    "constant_transmittance_max_absolute_difference": 1.1102230246251565e-16,
+    "affine_exposure_density_commutation_max_absolute_difference": 2.220446049250313e-16,
+    "density_range": [0.16639819405406184, 1.9106531413601453],
+    "transmittance_range": [0.012284199435128304, 0.6817133610987579],
+    "row_partitions_byte_exact": true
+  },
+  "decision": "placement_unidentified_open_bounded_envelope",
+  "branch_decision": "The exact measured-total operator is constant-preserving and commutes with an affine negative control to floating-point roundoff, but the fixed nonlinear sensitometry response makes exposure-, developed-density- and scan-transmittance-domain placements materially different. The largest frozen differences are .03940 density and .01911 transmittance, concentrated at spatial transitions. Current manufacturer evidence does not identify one causal placement. Keep all three as hypotheses and open only an analytical placement-uncertainty envelope challenger.",
+  "next_leaf": "U6.P5P analytical minimax transmittance-envelope challenger",
+  "claim_ceiling": "Synthetic proof that measured-total placement is unidentified under one uncalibrated nonlinear sensitometry primitive; no physical-domain, stock, roll, process, scanner, photographic-value or product claim."
+}
