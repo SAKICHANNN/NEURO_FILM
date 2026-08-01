@@ -217,10 +217,11 @@ def _safe_strength(
     size = int(raw_values.shape[0])
     axis = np.linspace(0.0, 1.0, size, dtype=np.float64)
     identity = np.stack(np.meshgrid(axis, axis, axis, indexing="ij"), axis=-1)
+    safe_identity = output_margin + (1.0 - 2.0 * output_margin) * identity
 
     def candidate(strength: float) -> DenseLUT3D:
         return DenseLUT3D(
-            identity + strength * (raw_values - identity),
+            safe_identity + strength * (raw_values - safe_identity),
             np.zeros(3),
             np.ones(3),
             "tetrahedral",
@@ -229,8 +230,8 @@ def _safe_strength(
     def valid(strength: float) -> bool:
         lut = candidate(strength)
         return bool(
-            np.min(lut.values) >= output_margin
-            and np.max(lut.values) <= 1.0 - output_margin
+            np.min(lut.values) >= output_margin - 1e-15
+            and np.max(lut.values) <= 1.0 - output_margin + 1e-15
             and np.min(lut.tetrahedron_jacobian_determinants())
             >= minimum_determinant
         )

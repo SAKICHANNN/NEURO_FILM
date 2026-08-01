@@ -41,6 +41,7 @@ def test_fit_is_explicit_safe_and_roundtrips() -> None:
     identity_rmse = float(np.sqrt(np.mean((source - target) ** 2)))
     candidate_rmse = float(np.sqrt(np.mean((output - target) ** 2)))
     assert candidate_rmse < identity_rmse
+    assert model.residual_strength > 0.0
     assert np.min(output) > 0.0
     assert np.max(output) < 1.0
     assert np.min(model.lut.tetrahedron_jacobian_determinants()) >= 0.01 - 1e-8
