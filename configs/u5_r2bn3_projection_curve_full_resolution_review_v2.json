@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn3-projection-curve-visual-product-value-v2",
+  "status": "full_resolution_severe_review_complete",
+  "review_date": "2026-08-01",
+  "observer": "autonomous_codex_visual_review",
+  "render_report_sha256": "d6d19321d15472b8bcf511e1a69e17a43d5dfc9c91d2a424f389e256db5db204",
+  "confirmed_severe_count": 0,
+  "reviewed_scope": {
+    "blind_sheet_scope": "all 36 choices across nine exact source-resolution-render sheets",
+    "full_resolution_risk_rows": [
+      "autel_robotics_xb015",
+      "leica_c_typ_112",
+      "olympus_e_450",
+      "huawei_eml_l29"
+    ],
+    "arms_per_risk_row": 2,
+    "risk_coverage": [
+      "high-key snow and dense conifer texture",
+      "smooth water gradients and repetitive bands",
+      "deep foliage shadows and high-contrast edges",
+      "text, tabletop texture and high-ISO-like source noise"
+    ]
+  },
+  "reviewed_outputs": [
+    {"source_id": "autel_robotics_xb015", "arm": "adaptive_projection_curves_then_fixed_ao6", "sha256": "655e6856130d9e94f9ab671e3870a24f5f341311a0eb158d5f7380564d30c714"},
+    {"source_id": "autel_robotics_xb015", "arm": "global_projection_curves_then_fixed_ao6", "sha256": "c0328c86897e362945e1e9c56bbccc02d86658a3323d68a16c1e51619b32370d"},
+    {"source_id": "leica_c_typ_112", "arm": "adaptive_projection_curves_then_fixed_ao6", "sha256": "24f4fe6dbf7a4ca8458b107c7430944b092e30670c79b5403fe54c33a34b7910"},
+    {"source_id": "leica_c_typ_112", "arm": "global_projection_curves_then_fixed_ao6", "sha256": "9117e267644b501fc8663daae3c12b3eab5a7e3b40ef5abb681da1565603decb"},
+    {"source_id": "olympus_e_450", "arm": "adaptive_projection_curves_then_fixed_ao6", "sha256": "7e6dc9bda5f388bf6e3c17f3a67b607266db15d4dc407d8b66eb7979a62483d8"},
+    {"source_id": "olympus_e_450", "arm": "global_projection_curves_then_fixed_ao6", "sha256": "dc873fab005fb538c542aa8bcaa6dacf309bfd0984677c5ee4a4649f0cc8b2b5"},
+    {"source_id": "huawei_eml_l29", "arm": "adaptive_projection_curves_then_fixed_ao6", "sha256": "57f0ddeccf13804232d52735b6a8565bb585f82ef01a40a20e426b64c55e1726"},
+    {"source_id": "huawei_eml_l29", "arm": "global_projection_curves_then_fixed_ao6", "sha256": "fa22007d0b32569c2b311693402f67a02d7cd43cbf189f7601eac0b79f40d5bd"}
+  ],
+  "findings": [
+    "No candidate-generated geometry failure, seam, colour block, red-speckle field, posterization or large clipping failure was confirmed.",
+    "The Leica water bands remain spatially continuous and nearly identical between arms; they are scene or source structure rather than a newly generated banding failure.",
+    "The Huawei tabletop noise and the Olympus deep shadow structure remain fine-grained and spatially consistent in both arms; neither becomes a new blotch or repeated-texture artifact.",
+    "The Autel snow and conifer edges preserve detail without coloured edge breakup or highlight posterization."
+  ],
+  "claim_ceiling": "risk-based autonomous full-resolution severe-artifact review on the frozen BN3 v2 population; not universal safety, population preference, film truth or product promotion"
+}

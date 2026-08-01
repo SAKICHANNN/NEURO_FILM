@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn3-projection-curve-visual-product-value-v2",
+  "status": "mapping_identities_bound_after_observations_commit",
+  "mapping_revealed": true,
+  "observations_path": "configs/u5_r2bn3_projection_curve_blind_observations_v2.json",
+  "observations_sha256": "c448789da9e8a2d39faae5850c3c142297e63c352194183c9453df65263bcb00",
+  "observations_commit": "52552a1d16661f169f5d625ddb6d8fd74b13e2ad",
+  "mapping_sha256_by_round": [
+    "c4fa9e505d89ff9bde1e30ff234e7616d0aff313e8381857803ed447f644de1a",
+    "562eec684f5a8a9a667cf26e24ed7c0dc72dfd3fc4d2ecd3b2ed33a7b18684d7",
+    "16e54130dfddffc89fed2a766023b3309462aad6f3ec4058554abd0c80ae0535"
+  ],
+  "claim_ceiling": "mapping identity receipt only; not preference or promotion evidence"
+}
