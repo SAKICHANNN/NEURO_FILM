@@ -5,6 +5,7 @@ import pytest
 
 from src.eval.historical_blind_candidate_evaluator import (
     HistoricalBlindCandidateEvaluatorError,
+    _decode_rgb,
     _cross_validate,
     _experiment_global_baseline,
     _utility_features,
@@ -30,6 +31,19 @@ def test_utility_features_are_distributional_across_shape_mismatch() -> None:
     assert base == 52
     delta_names = [index for index, name in enumerate(names) if name.startswith("delta_")]
     assert np.max(np.abs(features[delta_names])) == pytest.approx(0.0, abs=1e-12)
+
+
+def test_statistic_decode_projects_only_resampler_roundoff(tmp_path) -> None:
+    import cv2
+    import hashlib
+
+    pixels = np.full((257, 383, 3), 65535, dtype=np.uint16)
+    path = tmp_path / "white.png"
+    assert cv2.imwrite(str(path), pixels)
+    sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
+    decoded = _decode_rgb(path, sha256, 192)
+    assert float(np.min(decoded)) >= 0.0
+    assert float(np.max(decoded)) <= 1.0
 
 
 def test_source_group_cross_validation_can_learn_interaction() -> None:

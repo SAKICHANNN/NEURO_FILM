@@ -78,6 +78,16 @@ def _decode_rgb(path: Path, expected_sha256: str, maximum_side: int) -> np.ndarr
             (max(1, int(round(width * factor))), max(1, int(round(height * factor)))),
             interpolation=cv2.INTER_AREA,
         )
+    minimum = float(np.min(rgb))
+    maximum = float(np.max(rgb))
+    if minimum < -1e-6 or maximum > 1.0 + 1e-6:
+        raise HistoricalBlindCandidateEvaluatorError(
+            f"resampled statistic input outside encoded RGB tolerance: {path}"
+        )
+    # OpenCV's float32 area reducer may overshoot a legal endpoint by one ULP.
+    # This projection is confined to the 192px statistics view; source files,
+    # rendered candidates and severe-boundary evidence remain untouched.
+    rgb = np.clip(rgb, np.float32(0.0), np.float32(1.0))
     return np.asarray(rgb, dtype=np.float32)
 
 
