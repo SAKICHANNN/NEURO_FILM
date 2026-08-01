@@ -568,3 +568,10 @@ halves retain a cross-scene positive high-frequency/PSD residual while shifted,
 edge and JPEG controls pass. Open one LOO mean-preserving density-domain
 structure challenger only; this is not stock, emulsion, scanner or product
 evidence.
+
+U5.R2BP3 closes that stochastic challenger. Its single global analytical
+no-clipping scale falls to `.0070`; PSD error improves only `.118%` over basic
+and `.067%` over equal-energy white noise, while reversed shape slightly wins.
+No visual review or per-pixel safety rescue opens. A distinct deterministic
+density-domain acutance/spatial-response test is the next permissible use of
+the paired B&W evidence.

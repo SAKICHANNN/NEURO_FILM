@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u5-r2bp3-flickr-bw-density-structure-challenger-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BP3",
+  "decision": "close_stochastic_structure_fitting_on_this_source",
+  "contract_sha256": "419df47ebd974f4ee7db54cf15b573f3ae8c6357ed9a4e9582df4f979e7f1a0e",
+  "software_commit": "2da100fcc95a89f457e29c7c84cc6dd67292ec1d",
+  "reports": {
+    "run_a": "outputs/u5_r2bp3_flickr_bw_density_structure_challenger_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bp3_flickr_bw_density_structure_challenger_v1/run_b/report.json",
+    "sha256": "990a567a79a6b31f4ea559daab6a490df725afb9134d304bd443f26cbadcf259",
+    "byte_identical": true,
+    "stable_evidence_id": "ebbd8346f22068efbeda228182379d22a00b7f98e6669f0884ab0925c8bd2732"
+  },
+  "observed": {
+    "median_psd_error_improvement_over_basic": 0.001184209421182222,
+    "scene_win_fraction_over_basic": 0.7142857142857143,
+    "median_psd_error_improvement_over_white": 0.0006742797982654436,
+    "median_psd_error_improvement_over_wrong_shape": -0.000004066828780139557,
+    "median_highpass_energy_error_improvement_over_basic": 0.00035839577389652777,
+    "minimum_safe_scale": 0.007044324271162268,
+    "maximum_absolute_mean_luma_drift": 1.1102230246251565e-16,
+    "maximum_new_boundary_fraction": 0.0,
+    "median_candidate_edge_correlation": 0.001203436707075483,
+    "worst_candidate_to_film_highpass_energy_ratio": 0.9488064463918726
+  },
+  "interpretation": "The stationary random-density direction is mostly extinguished by the preregistered single global no-clipping scale and does not beat equal-energy shape controls materially.",
+  "allowed_next": "a mechanism-distinct deterministic density-domain acutance or spatial-response challenger using held-scene-excluded parameter selection",
+  "retuning_allowed": false,
+  "visual_review_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "negative seven-scene one-author B&W display-chain mechanism result; not stock, emulsion, scanner, developer, process, calibration or product evidence"
+}

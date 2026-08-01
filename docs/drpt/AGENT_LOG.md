@@ -8865,3 +8865,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   structure challenger. Keep stock, emulsion, developer, scanner, calibration
   and product claims closed because this is seven-scene one-author display-chain
   evidence and its evaluation normalization observes each target.
+
+## 2026-08-01 - U5.R2BP3 closes stochastic structure fitting
+
+- Two byte-identical reports (`990a567a...f259`) use strict LOO spectral
+  profiles and equal-energy white/reversed-shape controls. Held film pixels
+  score candidates but never construct them.
+- Mean preservation and zero new boundary pass, but the single safe scale falls
+  to `.0070`; median PSD gain over basic/white is `.118%/.067%`, reversed shape
+  slightly wins and energy-error gain is `.036%`.
+- Per the frozen branch, no visual review, threshold change or per-pixel safety
+  rescue is allowed. Close random structure fitting on this source and permit
+  only a distinct deterministic density-domain spatial-response experiment.

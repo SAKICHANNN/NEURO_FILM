@@ -2484,3 +2484,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > with white/wrong-shape controls; keep all stock, emulsion, scanner,
 > calibration and product claims closed.
 >
+> BP3 tests the one allowed LOO density-domain stochastic challenger and
+> closes it. Mean and boundary safety are exact, but the global safe scale
+> collapses to `.0070`; median PSD/energy gains are only `.118%/.036%`, white
+> noise is essentially tied and reversed shape slightly wins. Do not rescue
+> the random field. Continue only with a genuinely different deterministic
+> spatial-response mechanism or new evidence.
+>
