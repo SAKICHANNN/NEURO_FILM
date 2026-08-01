@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn5-fivek-triangular-logit-transport-confirmation-v1",
+  "status": "confirmation_pass_visual_product_value_required",
+  "config": "configs/u5_r2bn5_fivek_triangular_logit_transport_confirmation_v1.json",
+  "config_sha256": "fda6931e8ab10c560a7183c64175109da7e8d87d360996d89c4b765739363c01",
+  "software_commit": "9cab8ee619854e63ee0fc3d939e62f7d231d9506",
+  "report": "outputs/u5_r2bn5_fivek_triangular_logit_transport_confirmation_v1/run_a/report.json",
+  "report_sha256": "d3a4a1fcb41efebd8a141988e5a9af183a70c52c3b90fb53702cc6f2b0f6f0c7",
+  "stable_evidence_id": "f84d26f4beb6f650ff85c671b25eb46c4ca0cecc3640f20abe850bdfc7e4d7d8",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "leakage": {"pair_id_overlap": 0, "exact_sha_overlap": 0},
+  "observed": {
+    "oracle_mean_improvement_over_identity": 0.3719963231523179,
+    "adaptive_mean_improvement_over_global": 0.10091306445581112,
+    "adaptive_win_fraction": 0.6875,
+    "adaptive_p95_ratio": 0.7994209233389344,
+    "adaptive_worst_ratio": 0.8858953058412368,
+    "adaptive_style_ratio": 0.9467016008538137,
+    "adaptive_median_safe_dose": 1.0,
+    "adaptive_minimum_safe_dose": 0.6139417290687561
+  },
+  "safety": {
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_nonpositive_jacobian_count": 0,
+    "minimum_sampled_jacobian_determinant": 0.0200000004988944,
+    "maximum_sampled_jacobian_condition": 29.9999997829312,
+    "maximum_inverse_roundtrip_error": 3.21964677141295e-15
+  },
+  "decision": "Freeze BN4/BN5 as a confirmed explicit digital-retouch representation. The unchanged source-only predictor passes every value, tail, style, dose, inverse and structural gate on disjoint AY2 content. Open one independent full-resolution severe-artifact-first visual comparison against the global triangular counterpart under fixed AO6.",
+  "forbidden": [
+    "do not tune the operator, predictor, bounds, dose or thresholds on visual outcomes",
+    "do not infer camera OOD because AY2 camera metadata is unknown",
+    "do not claim film, stock, calibration or population preference",
+    "do not integrate into production before visual product-value gates"
+  ],
+  "next_leaf": "U5.R2BN6 independent full-resolution visual product-value comparison",
+  "claim_ceiling": "repeat-exact disjoint-content confirmation of a bounded source-adaptive explicit digital-retouch operator; not film, stock, calibration, preference or product promotion"
+}

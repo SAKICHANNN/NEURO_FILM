@@ -2419,3 +2419,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > tail/style/dose/inverse/Jacobian gates pass, and no clipping is used. Freeze
 > the 14-parameter family and run only unchanged disjoint AY2 confirmation next.
 >
+> `U5.R2BN5` passes that disjoint 64-row confirmation twice exactly at
+> `d3a4a1fc...f6f0c7`: adaptive improves 10.09%, wins 68.75%, improves both
+> tails, retains .9467x style and has zero structural failures. One unchanged
+> full-resolution adaptive-versus-global visual comparison is now the ready leaf.
+>

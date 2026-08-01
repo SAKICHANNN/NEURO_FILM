@@ -8729,3 +8729,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   improves every P95/worst tail and retains at least .5967 safe dose.
 - Zero new boundary, out-of-cube or nonpositive-Jacobian events occur. Freeze
   all method choices and open unchanged disjoint AY2 confirmation only.
+
+## 2026-08-01 - U5.R2BN5 confirms triangular transport on disjoint content
+
+- Two unchanged AY2 reports are byte-identical at `d3a4a1fc...f6f0c7`; pair
+  and exact-SHA overlap with BN4 are zero.
+- Adaptive improves mean error 10.09%, wins 68.75%, improves P95 and worst
+  tails, retains .9467x AO6 style and keeps at least .6139 safe dose. All
+  inverse, cube, boundary and Jacobian gates pass.
+- Freeze BN4/BN5 and open only one full-resolution severe-first visual value
+  test of adaptive versus global under the unchanged AO6 renderer.
