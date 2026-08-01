@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u6_p2v_langmuir_interimage_primitive_contract.v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2V",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "u5_r2bs0_evidence": "docs/evidence/U5_R2BS0_SPEKTRAFILM_LANGMUIR_RESULT.json",
+    "u5_r2bs0_evidence_sha256": "297c146bb1bd8f88df212b6213be8e3a90cd716ede14a768b6259adc39159ec1",
+    "u6_p2m_contract": "configs/u6_p2m_density_interimage_recovery_v1.json",
+    "u6_p2m_contract_sha256": "f7a3a54dcd147b4a499eb38cea0e81673790b436f6f8f446a063835b651552cd",
+    "u6_p2m_decision": "configs/u6_p2m_density_interimage_recovery_decision_v1.json",
+    "u6_p2m_decision_sha256": "138c395ea3760b227eba1dd58ce8a85f54437ccdc902ae4437b074dbebdf8eb2"
+  },
+  "question": "Can an independently implemented amplitude-matched saturating donor extend the existing bounded interimage-development primitive while preserving exact reference-point amplitude, the linear limit, density bounds, monotonic own-channel response, cross-suppression sign and symmetric neutral-axis invariance?",
+  "claim_ceiling": "generic physical-inspired clean-room interimage donor primitive and synthetic known-operator evidence only; no measured chemistry, stock, process, scanner, calibrated response, external-output reproduction or product claim",
+  "donor": {
+    "equation": "g(D)=D*(K+Dref)/(K+D)",
+    "density_capacity": [1.0, 1.0, 1.0],
+    "knee_fraction_of_capacity": [1.0, 1.0, 1.0],
+    "match_fraction_of_capacity": [0.5, 0.5, 0.5],
+    "linear_control": "K=positive infinity",
+    "hard_clipping_forbidden": true
+  },
+  "witnesses": [
+    {
+      "id": "symmetric-moderate",
+      "density_min": [0.08, 0.08, 0.08],
+      "density_max": [2.55, 2.55, 2.55],
+      "slope": [1.35, 1.35, 1.35],
+      "midpoint": [0.0, 0.0, 0.0],
+      "coupling": [[0.0, 0.28, 0.18], [0.18, 0.0, 0.28], [0.28, 0.18, 0.0]]
+    },
+    {
+      "id": "asymmetric-strong",
+      "density_min": [0.05, 0.09, 0.07],
+      "density_max": [2.75, 2.45, 2.60],
+      "slope": [1.55, 1.20, 1.42],
+      "midpoint": [-0.18, 0.12, 0.04],
+      "coupling": [[0.0, 0.52, 0.10], [0.14, 0.0, 0.44], [0.36, 0.20, 0.0]]
+    }
+  ],
+  "sampling": {
+    "seed": 62121,
+    "random_rows_per_witness": 4096,
+    "log2_exposure_range": [-4.0, 4.0],
+    "neutral_axis_rows": 1025,
+    "finite_difference_step": 1e-5,
+    "row_partitions": [7, 31, 127]
+  },
+  "automatic_gates": {
+    "two_reports_must_be_byte_identical": true,
+    "maximum_scalar_oracle_error": 1e-15,
+    "maximum_reference_point_error": 1e-15,
+    "maximum_linear_limit_error": 0.0,
+    "minimum_donor_derivative": 0.3,
+    "maximum_density_domain_violation": 0.0,
+    "minimum_own_channel_jacobian": 0.0,
+    "maximum_cross_channel_jacobian": 1e-12,
+    "maximum_finite_difference_jacobian_error": 1e-6,
+    "maximum_symmetric_neutral_channel_spread": 1e-12,
+    "minimum_median_density_difference_vs_linear": 0.003,
+    "maximum_partition_error": 0.0
+  },
+  "research_basis": [
+    {
+      "source": "Shuto et al., Mechanism of the Interimage-Effect in Color Reversal System and Its Application to Improve Color Reproduction, IS&T 1997",
+      "url": "https://www.imaging.org/common/uploaded%20files/pdfs/Papers/1997/IST-0-4/62.pdf",
+      "use": "primary experimental evidence for imagewise inhibitor release and cross-layer colour-reproduction effects; no Langmuir parameter calibration"
+    },
+    {
+      "source": "Spektrafilm dev commit 2ea9724, 2026",
+      "url": "https://github.com/andreavolpato/spektrafilm/commit/2ea972459e7811e65db552ed98b6993e70398618",
+      "use": "latest observed mechanism hypothesis and external BS0 comparison only; no source or profile copying"
+    }
+  ],
+  "forbidden_fallbacks": [
+    "copy external implementation text, source, profiles or LUTs into the project",
+    "use external rendered outputs as fitting targets or teacher truth",
+    "change donor fractions, witnesses, samples, seeds, gates or partitions after execution",
+    "fit any parameter on photographs or the sealed 71-pair display-proxy pool",
+    "hard clip density or RGB",
+    "call the result a measured DIR response, stock response, calibrated chemistry or product operator",
+    "advance to photographs if any automatic gate fails"
+  ],
+  "branch_rule": {
+    "pass": "retain the clean-room primitive and open one fixed photographic value/safety comparison in the existing generic physical chain",
+    "fail": "close the independent primitive without changing existing U2/U5/U6 champions"
+  }
+}
