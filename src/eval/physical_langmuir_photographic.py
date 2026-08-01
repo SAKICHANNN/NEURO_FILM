@@ -6,6 +6,7 @@ from dataclasses import replace
 import hashlib
 import json
 from pathlib import Path
+import shutil
 from typing import Any
 
 import numpy as np
@@ -18,7 +19,6 @@ from src.eval.density_witness_frontier import (
 )
 from src.eval.global_frontier import new_hard_clipping_fraction, sha256_file
 from src.eval.physical_neutral_gauged_chain import (
-    _render_arms,
     apply_gauge_to_intermediate,
     validate_contract as validate_p7f,
 )
@@ -121,7 +121,7 @@ def _render_pair(
     runtime: Any,
     gauge: Any,
     config: dict[str, Any],
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     encoded = np.asarray(source, dtype=np.float64)
     linear = encoded_srgb_to_linear(encoded)
     fixed = config["fixed_operator"]
@@ -167,13 +167,7 @@ def _render_pair(
             raise RuntimeError("U6.P2W output escaped encoded RGB")
         return output
 
-    incumbent = _render_arms(
-        encoded,
-        runtime,
-        gauge,
-        sampling_dpi=int(fixed["sampling_dpi"]),
-    )["gauged_spatial_4000"]
-    return finish(linear_density), finish(langmuir_density), incumbent
+    return finish(linear_density), finish(langmuir_density)
 
 
 def _save(path: Path, values: np.ndarray) -> str:
@@ -181,6 +175,16 @@ def _save(path: Path, values: np.ndarray) -> str:
     pixels = np.rint(np.asarray(values) * 255.0).astype(np.uint8)
     Image.fromarray(pixels, mode="RGB").save(path, format="PNG", compress_level=6)
     return sha256_file(path)
+
+
+def _copy_exact(source: Path, destination: Path, expected: str) -> str:
+    if sha256_file(source) != expected:
+        raise ValueError(f"frozen incumbent hash drift: {source}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, destination)
+    if sha256_file(destination) != expected:
+        raise RuntimeError("frozen incumbent copy changed bytes")
+    return expected
 
 
 def evaluate_langmuir_photographic(
@@ -196,10 +200,14 @@ def evaluate_langmuir_photographic(
     p7f_decision = _load_exact(
         root, parents["p7f_decision_path"], parents["p7f_decision_sha256"]
     )
+    p7f_report = _load_exact(
+        root, parents["p7f_report_path"], parents["p7f_report_sha256"]
+    )
     if (
         p2v["decision"] != "retain-clean-room-generic-primitive"
         or p7f_decision["visual_result"]["decision"] != "complete_pass"
         or p7f_decision["production_default_changed"]
+        or p7f_report["selected_candidate_arm_id"] != "gauged_spatial_4000"
     ):
         raise ValueError("U6.P2W parent decision mismatch")
     runtime, gauge = validate_p7f(root, p7f)
@@ -212,6 +220,14 @@ def evaluate_langmuir_photographic(
     ):
         raise ValueError("U6.P2W population drift")
     metric = config["metric_sampling"]
+    incumbent_rows = {
+        row["sample_id"]: row
+        for row in p7f_report["rows"]
+        if row["arm_id"] == "gauged_spatial_4000"
+    }
+    if set(incumbent_rows) != set(runtime.eligible_ids):
+        raise ValueError("frozen P7F incumbent population drift")
+    incumbent_root = (root / parents["p7f_report_path"]).parent
     rows = []
     for sample_id in runtime.eligible_ids:
         source_row = runtime.source_rows[sample_id]
@@ -225,7 +241,7 @@ def evaluate_langmuir_photographic(
                 )
                 / 255.0
             )
-        linear, langmuir, incumbent = _render_pair(source, runtime, gauge, config)
+        linear, langmuir = _render_pair(source, runtime, gauge, config)
         source_sample = _sample(source, int(metric["maximum_pixels_per_image"]))
         linear_sample = _sample(linear, int(metric["maximum_pixels_per_image"]))
         candidate_sample = _sample(langmuir, int(metric["maximum_pixels_per_image"]))
@@ -250,9 +266,13 @@ def evaluate_langmuir_photographic(
                 "langmuir_sha256": _save(
                     output_dir / "langmuir_donor" / f"{sample_id}.png", langmuir
                 ),
-                "incumbent_sha256": _save(
+                "incumbent_sha256": _copy_exact(
+                    incumbent_root
+                    / "renders"
+                    / "gauged_spatial_4000"
+                    / f"{sample_id}.png",
                     output_dir / "frozen_p7f_incumbent" / f"{sample_id}.png",
-                    incumbent,
+                    incumbent_rows[sample_id]["output_sha256"],
                 ),
                 "metrics": {
                     "effect_median_delta_e76": effect,
