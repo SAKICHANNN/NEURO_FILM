@@ -341,6 +341,13 @@ def evaluate_offdiagonal_oracle(
         "random_case_mean_ratio_to_global": float(
             random_array.mean() / max(global_array.mean(), 1.0e-12)
         ),
+        "mean_improvement_over_random_case": float(
+            (random_array.mean() - oracle_array.mean())
+            / max(random_array.mean(), 1.0e-12)
+        ),
+        "win_fraction_over_random_case": float(
+            np.mean(oracle_array < random_array)
+        ),
         "median_per_row_improvement_over_global": float(np.median(improvement)),
         "median_per_row_improvement_over_strength": float(
             np.median(strength_improvement)
@@ -366,6 +373,10 @@ def evaluate_offdiagonal_oracle(
         >= thresholds["minimum_mean_improvement_over_strength_oracle"],
         "strength_wins": metrics["win_fraction_over_strength_oracle"]
         >= thresholds["minimum_win_fraction_over_strength_oracle"],
+        "random_case": metrics["mean_improvement_over_random_case"]
+        >= thresholds["minimum_mean_improvement_over_random_case"],
+        "random_wins": metrics["win_fraction_over_random_case"]
+        >= thresholds["minimum_win_fraction_over_random_case"],
         "bootstrap": metrics["group_bootstrap_improvement_ci95"][0]
         > thresholds["minimum_bootstrap_lower_improvement"],
         "case_support": metrics["distinct_selected_cases"]

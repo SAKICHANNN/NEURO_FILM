@@ -46,6 +46,8 @@ def _contract(tmp_path):
             "maximum_worst_ratio_to_global": 1.1,
             "minimum_mean_improvement_over_strength_oracle": 0.03,
             "minimum_win_fraction_over_strength_oracle": 0.55,
+            "minimum_mean_improvement_over_random_case": 0.05,
+            "minimum_win_fraction_over_random_case": 0.6,
             "minimum_bootstrap_lower_improvement": 0.02,
             "minimum_distinct_selected_cases": 8,
             "maximum_selected_case_share": 0.2,

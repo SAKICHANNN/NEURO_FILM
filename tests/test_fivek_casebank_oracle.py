@@ -42,6 +42,8 @@ def _config() -> dict:
                 "maximum_worst_ratio_to_global": 1.0,
                 "minimum_mean_improvement_over_strength_oracle": 0.02,
                 "minimum_win_fraction_over_strength_oracle": 0.5,
+                "minimum_mean_improvement_over_random_case": 0.05,
+                "minimum_win_fraction_over_random_case": 0.5,
                 "minimum_bootstrap_lower_improvement": 0.0,
                 "minimum_distinct_selected_cases": 2,
                 "maximum_selected_case_share": 0.75,
@@ -90,6 +92,7 @@ def test_offdiagonal_oracle_recovers_multiple_explicit_directions() -> None:
     assert report["automatic_pass"] is True
     assert report["metrics"]["mean_improvement_over_global"] > 0.5
     assert report["metrics"]["mean_improvement_over_strength_oracle"] > 0.5
+    assert report["metrics"]["mean_improvement_over_random_case"] > 0.5
     assert report["metrics"]["distinct_selected_cases"] >= 2
     assert len(report["pooled_operator"]["parameters"]) == 14
     assert all(len(case["parameters"]) == 14 for case in report["case_bank"])

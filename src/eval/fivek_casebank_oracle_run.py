@@ -99,6 +99,8 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         "maximum_worst_ratio_to_global",
         "minimum_mean_improvement_over_strength_oracle",
         "minimum_win_fraction_over_strength_oracle",
+        "minimum_mean_improvement_over_random_case",
+        "minimum_win_fraction_over_random_case",
         "minimum_bootstrap_lower_improvement",
         "minimum_distinct_selected_cases",
         "maximum_selected_case_share",
