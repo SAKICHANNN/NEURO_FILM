@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p6w_streamed_explicit_print_runtime_contract.v1",
+  "experiment_id": "u6.p6w-streamed-explicit-print-runtime-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6W",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p6v_contract": {
+      "path": "configs/u6_p6v_fp16_print_lut_compiler_v1.json",
+      "sha256": "7be9a8db3325783604338ecffb4bf90fa2fc4a0347cdcde1c69f2e1284643d81"
+    },
+    "p6v_evidence": {
+      "path": "docs/evidence/U6_P6V_FP16_PRINT_LUT_COMPILER_RESULT.json",
+      "sha256": "5b3e4675b2f549d2ca693d8435ea85e255ff6540a3cbb0d98d6012aa8da90b2d",
+      "required_decision": "close_fp16_print_lut_compiler"
+    },
+    "p6v_report": {
+      "path": "outputs/experiments/u6_p6v_fp16_print_lut_compiler_v1/report_a.json",
+      "sha256": "38cb8494c101a2152e6c428877b0c5342028e06ce8bb139d0a47f605231c9836"
+    }
+  },
+  "question": "After fixed FP16 single-LUT compilation fails, can the retained explicit density-to-print equation run as a deterministic bounded-memory float32 row stream at 24MP with tight float64-reference error and practical ordinary-CPU latency?",
+  "runtime": {
+    "width": 6000,
+    "height": 4000,
+    "pixels": 24000000,
+    "channels": 3,
+    "tile_rows": 128,
+    "reference_dtype": "float64",
+    "runtime_dtype": "float32",
+    "input_generator": "coordinate-deterministic smooth three-channel density field strictly inside declared references",
+    "output_sink": "incremental SHA-256 over canonical little-endian float32 rows",
+    "full_frame_output_allocation_allowed": false,
+    "post_operator_clipping_allowed": false,
+    "formal_runs": 2
+  },
+  "automatic_gates": {
+    "maximum_float32_vs_float64_absolute_error": 2e-06,
+    "maximum_float32_vs_float64_rmse": 2e-07,
+    "maximum_process_tree_rss_bytes": 536870912,
+    "maximum_worker_wall_seconds": 30.0,
+    "maximum_live_rows": 256,
+    "maximum_out_of_range_output_count": 0,
+    "repeat_output_sha256_exact": true,
+    "repeat_stable_metrics_exact": true,
+    "small_partition_output_bytes_exact": true,
+    "full_frame_output_allocation_count_zero": true,
+    "post_operator_clipping_count_zero": true
+  },
+  "allowed_after_pass": [
+    "retain the canonical float32 streamed explicit print runtime",
+    "compile the same equations into a separately frozen native SIMD/backend audit"
+  ],
+  "forbidden": [
+    "increase tile size or allocate a full output frame after measurement",
+    "replace failed FP16 LUTs with a larger grid in this branch",
+    "weaken error, memory or latency gates",
+    "claim measured film/print/scanner calibration or photographic product promotion"
+  ],
+  "branch_rule": {
+    "pass": "Retain the explicit streamed runtime and open one native CPU/backend parity leaf.",
+    "fail": "Retain the float64 analytic research reference and close this float32 runtime realization without threshold or tile rescue."
+  },
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p6w_streamed_explicit_print_runtime_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p6w_streamed_explicit_print_runtime_v1/report_b.json"
+  },
+  "claim_ceiling": "Local Windows/Python CPU performance and float32 numerical evidence for one generic explicit density-to-print equation family; not native/mobile runtime, measured print/scanner calibration, photographic quality or product promotion."
+}
