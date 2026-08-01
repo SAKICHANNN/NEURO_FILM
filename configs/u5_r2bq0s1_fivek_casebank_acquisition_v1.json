@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq0s1-fivek-casebank-acquisition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "c501ffdc34a559d835f9523668175f087de975bf",
+  "preflight": {
+    "config": "configs/u5_r2bq0s0_fivek_casebank_preflight_v1.json",
+    "config_sha256": "cd76866b004251d39e9a72f5e339b20036bd8de764be5a583d9973ea92c76e3f",
+    "manifest": "outputs/u5_r2bq0s0_fivek_casebank_preflight_v1/run_b/manifest.json",
+    "manifest_sha256": "37e3fb135bdd0c0776c9c44d6339ad2e580ddbd12f0e047c5292f6848aac8111",
+    "report": "outputs/u5_r2bq0s0_fivek_casebank_preflight_v1/run_b/report.json",
+    "report_sha256": "127d56efdf3b84109cbe04ef1f980870139fe7b4f4d3b0347b26b96ffd531760",
+    "repeat_manifest": "outputs/u5_r2bq0s0_fivek_casebank_preflight_v1/run_c/manifest.json",
+    "repeat_manifest_sha256": "37e3fb135bdd0c0776c9c44d6339ad2e580ddbd12f0e047c5292f6848aac8111",
+    "repeat_report": "outputs/u5_r2bq0s0_fivek_casebank_preflight_v1/run_c/report.json",
+    "repeat_report_sha256": "127d56efdf3b84109cbe04ef1f980870139fe7b4f4d3b0347b26b96ffd531760",
+    "required_automatic_pass": true,
+    "expected_pairs": 512,
+    "expected_assets": 1024,
+    "expected_bytes": 29627684806
+  },
+  "ownership": {
+    "external_root": "data/external/fivek-bq0-casebank512-v1",
+    "require_repository_data_junction": true,
+    "owner": "codex-thread-019f4b76-e70a-75c0-b7ea-b473ab38c200",
+    "purpose": "bounded internal-research FiveK explicit case-bank data",
+    "foreign_resource_mutation_allowed": false,
+    "move_or_delete_unrelated_files_allowed": false
+  },
+  "download": {
+    "maximum_workers": 6,
+    "timeout_seconds": 180,
+    "resume_partial_files": true,
+    "atomic_part_then_replace": true,
+    "maximum_total_bytes": 42949672960,
+    "minimum_free_bytes_before_start": 85899345920,
+    "user_agent": "Neuro-Film-Research/1.0"
+  },
+  "integrity": {
+    "require_exact_content_length": true,
+    "hash": "sha256",
+    "dng_decode": "project WorkingImage raw decoder, validation only",
+    "expert_decode": "TIFF first-page RGB uint16 validation",
+    "dimension_mismatches": "record only; ordinary DNG visible-frame versus rendered-TIFF crop differences require the next geometry-only normalization audit",
+    "copy_license_and_file_list_into_owned_root": true
+  },
+  "license_inputs": {
+    "license": "data/raw/fivek/legal/LicenseAdobe.txt",
+    "license_sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+    "file_list": "data/raw/fivek/legal/filesAdobe.txt",
+    "file_list_sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"
+  },
+  "pass_gates": {
+    "pairs": 512,
+    "assets": 1024,
+    "downloaded_bytes": 29627684806,
+    "length_failures": 0,
+    "hash_failures": 0,
+    "decode_failures": 0,
+    "license_copies": 2
+  },
+  "branch_rules": {
+    "pass": "open only geometry normalization, duplicate/leakage and camera-group support audit before the off-diagonal Oracle contract",
+    "fail": "retain valid completed owned files for exact resume; do not substitute mirrors, expand selection or fit operators",
+    "ordinary_dimension_mismatch": "record for the frozen geometry-only normalization audit; do not relabel as download corruption"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "bounded integrity-verified internal-research acquisition of 512 disjoint FiveK digital-retouch pairs; no learning, film, stock, calibration, preference or product claim"
+}

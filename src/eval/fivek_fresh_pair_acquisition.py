@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import urllib.error
 import urllib.request
@@ -62,12 +63,35 @@ def validate_contract(
     ):
         raise FiveKFreshPairAcquisitionError("ownership boundary drift")
     preflight = config["preflight"]
+    if "config" in preflight:
+        _load_hashed_json(
+            root, preflight["config"], preflight["config_sha256"]
+        )
     manifest = _load_hashed_json(
         root, preflight["manifest"], preflight["manifest_sha256"]
     )
     report = _load_hashed_json(
         root, preflight["report"], preflight["report_sha256"]
     )
+    if "repeat_manifest" in preflight or "repeat_report" in preflight:
+        if "repeat_manifest" not in preflight or "repeat_report" not in preflight:
+            raise FiveKFreshPairAcquisitionError(
+                "incomplete repeat preflight evidence"
+            )
+        repeat_manifest = _load_hashed_json(
+            root,
+            preflight["repeat_manifest"],
+            preflight["repeat_manifest_sha256"],
+        )
+        repeat_report = _load_hashed_json(
+            root,
+            preflight["repeat_report"],
+            preflight["repeat_report_sha256"],
+        )
+        if repeat_manifest != manifest or repeat_report != report:
+            raise FiveKFreshPairAcquisitionError(
+                "repeat preflight is not byte-equivalent"
+            )
     if (
         report.get("automatic_pass")
         is not preflight["required_automatic_pass"]
@@ -114,6 +138,35 @@ def ensure_owned_root(path: Path, ownership: Mapping[str, Any]) -> Path:
     if not marker.exists():
         marker.write_bytes(_canonical_bytes(expected))
     return root
+
+
+def resolve_configured_owned_root(
+    root: Path, ownership: Mapping[str, Any]
+) -> Path:
+    """Resolve an absolute root or a repository-relative owned data root."""
+
+    configured = Path(str(ownership["external_root"]))
+    if configured.is_absolute():
+        return configured
+    candidate = root / configured
+    if ownership.get("require_repository_data_junction"):
+        data_root = root / "data"
+        is_redirect = (
+            os.path.isjunction(data_root)
+            if hasattr(os.path, "isjunction")
+            else data_root.is_symlink()
+        )
+        if not data_root.is_dir() or not is_redirect:
+            raise FiveKFreshPairAcquisitionError(
+                "repository data junction is unavailable"
+            )
+        try:
+            candidate.resolve().relative_to(data_root.resolve())
+        except ValueError as exc:
+            raise FiveKFreshPairAcquisitionError(
+                "owned root escapes repository data junction"
+            ) from exc
+    return candidate
 
 
 def _download_one(
@@ -174,7 +227,7 @@ def run_acquisition(
     validated = validate_contract(root, config)
     ownership = config["ownership"]
     external_root = ensure_owned_root(
-        Path(str(ownership["external_root"])), ownership
+        resolve_configured_owned_root(root, ownership), ownership
     )
     download = config["download"]
     free_bytes = shutil.disk_usage(external_root).free
