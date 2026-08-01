@@ -60,6 +60,7 @@ def _config() -> dict:
             "maximum_bytes_total": 2_000_000,
             "maximum_long_edge": 1024,
             "minimum_pixels": 200_000,
+            "maximum_metadata_dimension_delta_per_axis": 2,
             "required_format": "JPEG",
             "allowed_modes": ["RGB"],
             "require_single_frame": True,
@@ -141,6 +142,24 @@ def test_selected_rows_rejects_rights_drift() -> None:
     parent["records"][0]["license_id"] = 0
     with pytest.raises(FlickrPairAcquisitionError, match="metadata limits"):
         selected_rows(parent, _config())
+
+
+def test_decode_dimension_tolerance_is_bounded(tmp_path: Path) -> None:
+    config = _config()
+    parent = _parent()
+    parent["records"][0]["derivative_width_l"] = 642
+    rows = selected_rows(parent, config)
+    session = _Session(
+        {
+            rows[0]["derivative_url"]: _jpeg((10, 20, 30)),
+            rows[1]["derivative_url"]: _jpeg((200, 100, 20)),
+        }
+    )
+    assert acquire(rows, root=tmp_path, config=config, session=session)["complete"]
+    parent["records"][0]["derivative_width_l"] = 643
+    rows = selected_rows(parent, config)
+    with pytest.raises(FlickrPairAcquisitionError, match="dimensions drift"):
+        acquire(rows, root=tmp_path / "fail", config=config, session=session)
 
 
 def test_audit_rejects_byte_drift(tmp_path: Path) -> None:

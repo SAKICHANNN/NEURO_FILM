@@ -17,6 +17,7 @@
     "maximum_bytes_total": 268435456,
     "maximum_long_edge": 1024,
     "minimum_pixels": 200000,
+    "maximum_metadata_dimension_delta_per_axis": 2,
     "required_format": "JPEG",
     "allowed_modes": ["RGB"],
     "require_single_frame": true,

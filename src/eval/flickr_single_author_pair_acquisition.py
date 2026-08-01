@@ -131,7 +131,11 @@ def _decode(payload: bytes, row: Mapping[str, Any], config: Mapping[str, Any]) -
                 raise FlickrPairAcquisitionError("decoded mode is not allowed")
             if limits["require_single_frame"] and frames != 1:
                 raise FlickrPairAcquisitionError("multi-frame derivative is forbidden")
-            if (width, height) != (int(row["expected_width"]), int(row["expected_height"])):
+            tolerance = int(limits["maximum_metadata_dimension_delta_per_axis"])
+            if (
+                abs(width - int(row["expected_width"])) > tolerance
+                or abs(height - int(row["expected_height"])) > tolerance
+            ):
                 raise FlickrPairAcquisitionError("decoded dimensions drift from BO0 metadata")
             rgb = ImageOps.exif_transpose(image).convert("RGB")
             return {
