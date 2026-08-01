@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p6t_digital_lad_print_sensitivity_contract.v1",
+  "experiment_id": "u6.p6t-digital-lad-print-sensitivity-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6T",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p6r_contract": {
+      "path": "configs/u6_p6r_kodak_digital_lad_density_primitive_v1.json",
+      "sha256": "1c4e87b6d899cdb0e9bbfc93070db2294f9c7afef6b638d7aa1b0ea535a542c4"
+    },
+    "p6s_contract": {
+      "path": "configs/u6_p6s_digital_lad_print_compatibility_v1.json",
+      "sha256": "70b57385ee7f88170b4eab3e4f6830716173ab08509df6acf8707a4b30ac5fd5"
+    },
+    "p6s_evidence": {
+      "path": "docs/evidence/U6_P6S_DIGITAL_LAD_PRINT_COMPATIBILITY_RESULT.json",
+      "sha256": "1753e7a04758c6b6543fb5d5d5b1a77e5e4a1eb7732ca51d5ac8b375b51a64fb",
+      "required_decision": "retain_typed_neutral_recorder_print_anchor"
+    },
+    "p6s_report": {
+      "path": "outputs/experiments/u6_p6s_digital_lad_print_compatibility_v1/report_a.json",
+      "sha256": "e57aa2b15ee26a5af621beb1e5e26a78e329b1ffedbfd364a7c93d788b3d7eab"
+    }
+  },
+  "question": "Does the retained typed neutral recorder/print anchor admit an accurate analytic density-to-print Jacobian and a stable, non-degenerate local code sensitivity around LAD 445 across the complete compatible negative and interpositive code domains?",
+  "mechanism": {
+    "operator": "exact chain-rule Jacobian through dye absorption, base-10 transmission, print exposure, log2 exposure, logistic paper density and normalized reflectance",
+    "input_role": "recorder_printing_density_neutral_anchor",
+    "output_role": "generic_print_reflectance_local_sensitivity",
+    "density_direction": [1.0, 1.0, 1.0],
+    "negative_density_per_code": 0.002,
+    "interpositive_density_per_code": -0.002,
+    "finite_difference_density_step": 1e-06,
+    "local_code_radius": 8,
+    "partition_sizes": [127, 382, 315]
+  },
+  "automatic_gates": {
+    "maximum_analytic_vs_density_finite_difference_error": 2e-08,
+    "maximum_code_tangent_relative_error": 0.0001,
+    "minimum_lad_absolute_code_sensitivity": 1e-05,
+    "maximum_lad_absolute_code_sensitivity": 0.01,
+    "maximum_local_linearization_absolute_error": 0.002,
+    "minimum_negative_interpositive_lad_tangent_distance": 1e-05,
+    "negative_code_direction_positive": true,
+    "interpositive_code_direction_negative": true,
+    "all_compatible_codes_finite": true,
+    "partition_exact": true,
+    "serialization_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "allowed_after_pass": [
+    "retain the analytic density-to-print Jacobian as a deterministic physical-profile/compiler primitive",
+    "use the measured local sensitivity as a neutral recorder-control diagnostic in separately frozen synthetic print-chain work"
+  ],
+  "forbidden": [
+    "fit or tune the generic print witness from Digital LAD neutral aims",
+    "interpret the Jacobian as camera-film, stock-colour, process or scanner calibration",
+    "derive RGB stock response from the neutral direction",
+    "use Status M or D-min in arithmetic",
+    "photographic fitting, visual promotion or product integration"
+  ],
+  "branch_rule": {
+    "pass": "Retain the analytic Jacobian and open only a distinct typed print-chain or profile-compiler experiment.",
+    "fail": "Close this sensitivity primitive without derivative-step, gate, operator or witness rescue."
+  },
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p6t_digital_lad_print_sensitivity_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p6t_digital_lad_print_sensitivity_v1/report_b.json"
+  },
+  "claim_ceiling": "Deterministic analytic and finite-difference sensitivity evidence for one generic print interpretation along a manufacturer-documented neutral recorder-density axis; not camera-film response, stock colour, local calibration, photographic quality or product promotion."
+}
