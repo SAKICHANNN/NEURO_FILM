@@ -8672,3 +8672,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close further fixed descriptor sweeps. BM1's independently passing Oracle
   permits a small group-crossfit pairwise compatibility ranker next; its only
   runtime action may be one hard case ID.
+
+## 2026-08-01 - U5.R2BM4 closes the current case router
+
+- Two nested group-crossfit ranker reports are exact at `0e9ddaec...4364e`.
+  Median gain and Oracle recovery are zero; 1/17 sources and zero folds improve,
+  worst tail is 2.292x, and shuffled-label advantage is only 3.27%.
+- BM1 remains an Oracle/data-requirement result. BM2-BM4 close current routing;
+  no added capacity is allowed without materially larger independent cases.

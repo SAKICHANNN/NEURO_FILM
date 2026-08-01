@@ -1,0 +1,13 @@
+{
+  "schema": "neuro_film.u5_r2bm4_ao6_pairwise_compatibility_ranker_decision.v1",
+  "node": "U5.R2BM4",
+  "software_commit": "f586b2b7b2f212e894fbe01955cddf23ccdf7df8",
+  "contract": {"path": "configs/u5_r2bm4_ao6_pairwise_compatibility_ranker_v1.json", "sha256": "7e877cae6bc61eb67cd25322c21d2f758220b92bbb503e79c715fa5c6328e543"},
+  "repeat_evidence": {"runs": 2, "all_file_hashes_identical": true, "report_sha256": "0e9ddaec4f6a1caf4debf278170f6293a77d41e95b0f2271547116f7aa84364e", "stable_evidence_id": "8aa17d2c430cd0b3c0ef74447ff89087bff11198170a2dfc85c6c7cc2a94f0f3"},
+  "result": {"automatic_pass": false, "median_retrieval_rmse_reduction_vs_global_medoid": 0.0, "fraction_of_bm1_oracle_gain_recovered": 0.0, "worst_retrieval_vs_global_rmse_ratio": 2.2919374166600086, "sources_retrieval_beats_global": 1, "improved_outer_folds": 0, "nonfallback_sources": 11, "retrieval_reduction_advantage_over_shuffled": 0.03274069569805116, "maximum_new_boundary_fraction_vs_ao6": 0.0},
+  "decision": "close_current_case_router_retain_oracle_as_data_requirement",
+  "interpretation": "BM1 proves post-hoc case value, but fixed semantic retrieval, fixed tone/layout retrieval and a nested group-crossfit pairwise ranker all fail to identify transferable case compatibility on 17 sources. More router capacity is not authorized; future case routing requires materially larger independent grouped evidence.",
+  "next_leaf": "return to a mechanism-distinct explicit colour/physical algorithm or acquire new evidence-qualified grouped cases; keep contextual AO6/global fallback",
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative group-crossfit evidence for one small pairwise hard case ranker over deterministic AO6 Look Approximation cases; not film, stock, latent mode, calibration, authenticity, preference or product promotion"
+}
