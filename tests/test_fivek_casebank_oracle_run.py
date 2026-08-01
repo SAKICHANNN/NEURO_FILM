@@ -40,6 +40,10 @@ def _contract(tmp_path):
         "bootstrap_seed": 7,
         "bootstrap_repetitions": 1000,
         "gates": {
+            "minimum_mean_improvement_over_identity": 0.05,
+            "minimum_win_fraction_over_identity": 0.6,
+            "maximum_p95_ratio_to_identity": 1.0,
+            "maximum_worst_ratio_to_identity": 1.1,
             "minimum_mean_improvement_over_global": 0.05,
             "minimum_win_fraction_over_global": 0.6,
             "maximum_p95_ratio_to_global": 1.0,

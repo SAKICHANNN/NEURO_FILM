@@ -36,6 +36,10 @@ def _config() -> dict:
             "bootstrap_seed": 31,
             "bootstrap_repetitions": 200,
             "gates": {
+                "minimum_mean_improvement_over_identity": 0.05,
+                "minimum_win_fraction_over_identity": 0.5,
+                "maximum_p95_ratio_to_identity": 1.0,
+                "maximum_worst_ratio_to_identity": 1.0,
                 "minimum_mean_improvement_over_global": 0.05,
                 "minimum_win_fraction_over_global": 0.5,
                 "maximum_p95_ratio_to_global": 1.0,
@@ -91,6 +95,7 @@ def test_offdiagonal_oracle_recovers_multiple_explicit_directions() -> None:
     report = evaluate_offdiagonal_oracle(development, confirmation, _config())
     assert report["automatic_pass"] is True
     assert report["metrics"]["mean_improvement_over_global"] > 0.5
+    assert report["metrics"]["mean_improvement_over_identity"] > 0.5
     assert report["metrics"]["mean_improvement_over_strength_oracle"] > 0.5
     assert report["metrics"]["mean_improvement_over_random_case"] > 0.5
     assert report["metrics"]["distinct_selected_cases"] >= 2

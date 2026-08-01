@@ -93,6 +93,10 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     ):
         raise FiveKCasebankOracleRunError("explicit operator contract drift")
     required_gate_names = {
+        "minimum_mean_improvement_over_identity",
+        "minimum_win_fraction_over_identity",
+        "maximum_p95_ratio_to_identity",
+        "maximum_worst_ratio_to_identity",
         "minimum_mean_improvement_over_global",
         "minimum_win_fraction_over_global",
         "maximum_p95_ratio_to_global",

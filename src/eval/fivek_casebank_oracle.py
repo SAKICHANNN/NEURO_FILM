@@ -249,6 +249,7 @@ def evaluate_offdiagonal_oracle(
     if not strength_doses or min(strength_doses) < 0.0 or max(strength_doses) > 1.0:
         raise FiveKCasebankOracleError("invalid strength control")
     global_errors = []
+    identity_errors = []
     strength_errors = []
     oracle_errors = []
     random_errors = []
@@ -259,6 +260,7 @@ def evaluate_offdiagonal_oracle(
         source = _even_samples(_rgb(row["source"]), sample_count)
         target = _even_samples(_rgb(row["target"]), sample_count)
         global_error = _rmse(pooled_safe.apply(source), target)
+        identity_error = _rmse(source, target)
         strength_error = min(
             _rmse(
                 TriangularLogitTransport(
@@ -279,6 +281,7 @@ def evaluate_offdiagonal_oracle(
         ).digest()
         random_index = int.from_bytes(digest[:8], "big") % len(cases)
         global_errors.append(global_error)
+        identity_errors.append(identity_error)
         strength_errors.append(strength_error)
         oracle_errors.append(float(case_errors[oracle_index]))
         random_errors.append(float(case_errors[random_index]))
@@ -288,6 +291,7 @@ def evaluate_offdiagonal_oracle(
                 "pair_id": str(row["pair_id"]),
                 "group": str(row["group"]),
                 "global_rmse": global_error,
+                "identity_rmse": identity_error,
                 "strength_oracle_rmse": strength_error,
                 "case_oracle_rmse": float(case_errors[oracle_index]),
                 "random_case_rmse": float(case_errors[random_index]),
@@ -297,6 +301,7 @@ def evaluate_offdiagonal_oracle(
         )
 
     global_array = np.asarray(global_errors)
+    identity_array = np.asarray(identity_errors)
     strength_array = np.asarray(strength_errors)
     oracle_array = np.asarray(oracle_errors)
     random_array = np.asarray(random_errors)
@@ -322,6 +327,20 @@ def evaluate_offdiagonal_oracle(
         "mean_improvement_over_global": float(
             (global_array.mean() - oracle_array.mean())
             / max(global_array.mean(), 1.0e-12)
+        ),
+        "mean_improvement_over_identity": float(
+            (identity_array.mean() - oracle_array.mean())
+            / max(identity_array.mean(), 1.0e-12)
+        ),
+        "win_fraction_over_identity": float(
+            np.mean(oracle_array < identity_array)
+        ),
+        "p95_ratio_to_identity": float(
+            np.quantile(oracle_array, 0.95)
+            / max(np.quantile(identity_array, 0.95), 1.0e-12)
+        ),
+        "worst_ratio_to_identity": float(
+            np.max(oracle_array) / max(np.max(identity_array), 1.0e-12)
         ),
         "win_fraction_over_global": float(np.mean(oracle_array < global_array)),
         "p95_ratio_to_global": float(
@@ -361,6 +380,14 @@ def evaluate_offdiagonal_oracle(
     }
     thresholds = evaluation["gates"]
     gates = {
+        "identity_mean": metrics["mean_improvement_over_identity"]
+        >= thresholds["minimum_mean_improvement_over_identity"],
+        "identity_wins": metrics["win_fraction_over_identity"]
+        >= thresholds["minimum_win_fraction_over_identity"],
+        "identity_p95": metrics["p95_ratio_to_identity"]
+        <= thresholds["maximum_p95_ratio_to_identity"],
+        "identity_worst": metrics["worst_ratio_to_identity"]
+        <= thresholds["maximum_worst_ratio_to_identity"],
         "mean": metrics["mean_improvement_over_global"]
         >= thresholds["minimum_mean_improvement_over_global"],
         "wins": metrics["win_fraction_over_global"]
