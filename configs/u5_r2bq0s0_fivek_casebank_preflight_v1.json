@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq0s0-fivek-casebank-preflight-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S0",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "f330b2afa2f95dc69c839f9508d926ba42750566",
+  "question": "Can the official MIT-Adobe FiveK individual-file interface provide a bounded 512-pair population, disjoint from all 255 prior rows, for a scale-sensitive explicit case-bank Oracle study?",
+  "scientific_role": {
+    "dataset_role": "digital-retouch architecture control only",
+    "hypothesis": "Increasing the disjoint case-bank population from the prior 64-pair regime may make a source-only hard case selector useful, but only if an off-diagonal evaluator Oracle first beats the fixed global explicit operator on held-out photographs.",
+    "forbidden_inference": "FiveK is not film, a film stock, real-film truth, stock calibration or product-rights evidence",
+    "next_gate_if_pass": "bounded exact acquisition, integrity and leakage audit; operator fitting remains closed until those gates pass"
+  },
+  "official_source": {
+    "base_url": "https://data.csail.mit.edu/graphics/fivek/",
+    "page": "data/raw/fivek/official_20260730/index.html",
+    "page_sha256": "cc11c048a6c29459628cd0989ba28324857988eac10894773b8a20dbb9fd3127",
+    "license": "data/raw/fivek/legal/LicenseAdobe.txt",
+    "license_sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+    "license_file_list": "data/raw/fivek/legal/filesAdobe.txt",
+    "license_file_list_sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383",
+    "rights_scope": "internal non-commercial research only; preserve copyright and license with retained data; no redistribution, commercial-weight or product-rights decision"
+  },
+  "exclusion": {
+    "retained_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "retained_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "expected_excluded_rows": 128,
+    "additional_manifests": [
+      {
+        "path": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+        "sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+        "name_field": "source_name",
+        "expected_rows": 63
+      },
+      {
+        "path": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_a/manifest.json",
+        "sha256": "6bb33ec6f3c0a10c23688c862f1112cfedb907a4ba2320b3fe7cf4ef7d2a77a5",
+        "name_field": "source_name",
+        "expected_rows": 64
+      }
+    ],
+    "expected_total_unique_names": 255
+  },
+  "selection": {
+    "eligible_license_partition": "Adobe",
+    "seed": 2026080117,
+    "sample_without_replacement": true,
+    "sort_selected_by_source_name_after_sampling": true,
+    "pair_count": 512,
+    "required_assets": [
+      "individual DNG input",
+      "Expert C TIFF16"
+    ],
+    "semantic_metadata_used_for_selection": false,
+    "camera_metadata_used_for_selection": false
+  },
+  "network_preflight": {
+    "method": "HEAD",
+    "maximum_requests": 1024,
+    "timeout_seconds": 30,
+    "required_status": 200,
+    "content_length_required": true,
+    "maximum_expected_bytes": 42949672960,
+    "pixel_payload_download_allowed": false
+  },
+  "pass_gates": {
+    "selected_pairs": 512,
+    "selected_ids_in_exact_license_partition": 512,
+    "selected_ids_overlapping_retained_128": 0,
+    "selected_ids_overlapping_all_exclusions": 0,
+    "total_unique_excluded_names": 255,
+    "missing_page_links": 0,
+    "non_200_assets": 0,
+    "assets_missing_content_length": 0,
+    "expected_bytes_at_or_below_limit": true,
+    "repeat_selection_byte_identity": true
+  },
+  "branch_rules": {
+    "pass": "open only the exact bounded acquisition, integrity/leakage audit and a preregistered off-diagonal explicit-operator Oracle; do not train a router first",
+    "fail": "close this selection without mirror substitution, broad archive download, threshold relaxation or model-capacity rescue"
+  },
+  "image_download_allowed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "metadata, rights and URL feasibility for one disjoint 512-pair FiveK digital-retouch control population; no pixels, learning, film, stock, calibration, preference or product claim"
+}
