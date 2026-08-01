@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p2v_langmuir_interimage_primitive_decision.v1",
+  "node": "U6.P2V",
+  "contract": "configs/u6_p2v_langmuir_interimage_primitive_v1.json",
+  "contract_sha256": "ed03b305f49dac4db9e48cacf203035247a9836a722f4d64fdf78bcc60c8e317",
+  "software_commit": "608818fac891b7d3d9893890193ebaad5ebfaa6c",
+  "report_sha256": "d58d06519c2e8abca2d6535720d96fd58d762539f70d69da6754b76f6d2a512b",
+  "payload_sha256": "04bf92485cde433eeece61a7b0ff3577aa487f20e7f8016046b174629466cd2b",
+  "stable_evidence_id": "2a78ae958d0368e465097aa41ce266a3495fc11d28a7d2190697ff54dfa3fea3",
+  "two_reports_byte_identical": true,
+  "summary": {
+    "maximum_scalar_oracle_error": 0.0,
+    "maximum_reference_point_error": 0.0,
+    "maximum_linear_limit_error": 0.0,
+    "minimum_donor_derivative": 0.375,
+    "maximum_density_domain_violation": 0.0,
+    "minimum_own_channel_jacobian": 0.006858506922248576,
+    "maximum_cross_channel_jacobian": -9.326434861008004e-7,
+    "maximum_finite_difference_jacobian_error": 4.090544569734789e-11,
+    "maximum_symmetric_neutral_channel_spread": 8.881784197001252e-16,
+    "median_density_difference_vs_linear": 0.017945208601182275,
+    "maximum_partition_error": 0.0
+  },
+  "all_frozen_gates_pass": true,
+  "decision": "retain-clean-room-generic-primitive",
+  "next_ready_leaf": "U6.P2W fixed photographic value and severe-safety comparison inside the existing generic physical chain",
+  "claim_ceiling": "generic physical-inspired clean-room interimage donor primitive and synthetic known-operator evidence only; no measured chemistry, stock, process, scanner, calibrated response, external-output reproduction or product claim"
+}

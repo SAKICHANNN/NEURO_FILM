@@ -63,6 +63,15 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - This is descriptive external Look Approximation evidence, not promotion.
   Open one clean-room bounded donor pilot; external code/profiles remain out.
 
+# 2026-08-01 - U6.P2V clean-room Langmuir primitive passes
+
+- Added an independent bounded donor and analytical interimage Jacobian without
+  external code, profiles or image targets.
+- Two reports are exact. Linear/reference/scalar oracle errors are zero;
+  Jacobian, density, neutral-axis, material-effect and partition gates all pass.
+- Retain only a generic physical-inspired primitive. Open fixed P2W photograph
+  value/safety stress; no measured chemistry, stock or product claim opens.
+
 # 2026-08-01 - U6.P2U shared characteristic template closed
 
 - Two formal reports and bundles are byte-identical (`f646fd52...145b` /

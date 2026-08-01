@@ -665,3 +665,8 @@ amplitude-matched non-spatial Langmuir donor passes exact automatic and severe
 visual gates, ranking over its linear donor on 6/9 blinded photographs. It is
 not an integration or preference promotion. The next ready leaf is one
 clean-room bounded donor primitive and synthetic identifiability pilot.
+
+U6.P2V passes that clean-room primitive with exact linear/reference limits,
+bounded monotone Jacobian behavior, neutral-axis and partition invariance. U6.P2W
+is now ready: one fixed photographic comparison in the existing generic
+physical chain, with no fitting, external-output teacher or parameter search.
