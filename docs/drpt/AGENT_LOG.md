@@ -8926,3 +8926,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   this is not one average direction or a few dominant presets.
 - Open development-only source retrieval baselines and freeze their selection
   before final confirmation. No deployable router or film/product claim yet.
+
+## 2026-08-01 - U5.R2BQ2A narrowly closes nearest-case retrieval
+
+- Two reports are byte-identical at `23013378...b70b4a5`; development admits
+  spatial-photometric and tone-layout, and the frozen selector chooses the
+  latter without confirmation targets.
+- Confirmation mean gains are `5.06%/7.45%` for aligned/filtered. Filtered
+  passes, while aligned wins `76/128 = 59.375%`, one row below the frozen 60%
+  gate; every other aligned gate passes.
+- Preserve the positive information and the formal failure. No descriptor or
+  threshold rescue is allowed. Open one group-aware pairwise compatibility
+  learner with hard Top-1 and global fallback; all film/product claims remain
+  closed.

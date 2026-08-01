@@ -2511,3 +2511,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > bank and test source-only hard retrieval with whole-camera development CV;
 > dense mixing and learned final RGB remain forbidden.
 >
+> BQ2A repeat-exactly closes the three simple nearest-case families. The
+> selected tone-layout family is positive on both confirmation targets, but
+> aligned wins 59.375% versus the frozen 60% gate. Do not retune its descriptor
+> or threshold. The next leaf is one preregistered group-aware pairwise
+> compatibility learner, still hard Top-1 with pooled-global fallback.
+>

@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.u5-r2bq2a-fivek-source-hard-retrieval-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ2A",
+  "decision": "close_nearest_case_families_open_pairwise_compatibility_learner",
+  "contract_commit": "15a198770d04d9605668d43cc7da380e90f06c6b",
+  "reports": {
+    "run_a": "outputs/u5_r2bq2a_fivek_source_hard_retrieval_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq2a_fivek_source_hard_retrieval_v1/run_b/report.json",
+    "sha256": "230133781aa6431b015f2b6dd45ff2c97e5f68ba531b308cd28266622b70b4a5",
+    "byte_identical": true,
+    "stable_evidence_id": "32a6825ad9ce7c167b2b8c90bac238b500e946a99c7100a439269f8de420961f",
+    "automatic_pass": false
+  },
+  "selected_family": "tone_layout",
+  "development_eligible_families": [
+    "spatial_photometric",
+    "tone_layout"
+  ],
+  "confirmation": {
+    "aligned_expert": {
+      "mean_improvement_over_global": 0.05062055841367809,
+      "win_fraction_over_global": 0.59375,
+      "required_win_fraction_over_global": 0.6,
+      "oracle_gap_closure": 0.15161029223745776,
+      "p95_ratio_to_global": 0.8804288257802436,
+      "worst_ratio_to_global": 0.7465372804230817,
+      "bootstrap_ci95": [0.021438390443763118, 0.10389205585690348],
+      "automatic_pass": false,
+      "only_failed_gate": "win_fraction_over_global"
+    },
+    "filtered": {
+      "mean_improvement_over_global": 0.07446338914402638,
+      "win_fraction_over_global": 0.6171875,
+      "oracle_gap_closure": 0.19259845059534994,
+      "p95_ratio_to_global": 0.8955843155440953,
+      "worst_ratio_to_global": 0.8325805096613226,
+      "bootstrap_ci95": [0.04380647839495625, 0.12601364524497083],
+      "automatic_pass": true
+    }
+  },
+  "threshold_or_descriptor_rescue_allowed": false,
+  "next_leaf": "preregister a development-only group-aware pairwise source-compatibility learner; preserve hard Top-1 selection and global OOD fallback",
+  "dense_blending_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact source-only hard retrieval evidence on paired FiveK digital-retouch controls; not film response, stock identity, calibration, preference or product evidence"
+}

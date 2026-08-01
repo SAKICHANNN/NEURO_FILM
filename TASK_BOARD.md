@@ -595,3 +595,8 @@ and ORB/RANSAC evidence. BQ1v2 then proves strong evaluator-Oracle value on
 29.67%/33.43% beyond global strength for aligned/filtered targets, with 87
 distinct cases. Open source-only hard retrieval on development cross-validation;
 no selector or product claim exists yet.
+
+U5.R2BQ2A closes simple source-only nearest-case retrieval without rescue.
+Tone-layout improves aligned/filtered confirmation mean error by 5.06%/7.45%,
+but aligned wins 76/128 rows and misses the frozen 60% gate by one row. Open
+one group-aware pairwise compatibility learner; keep hard Top-1/global fallback.
