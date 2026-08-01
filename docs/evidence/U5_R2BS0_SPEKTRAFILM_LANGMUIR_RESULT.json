@@ -1,0 +1,120 @@
+{
+  "schema_version": "u5-r2bs0-spektrafilm-langmuir-adjudication-v1",
+  "node": "U5.R2BS0",
+  "automatic_report_sha256": "f533c99d3bb5462038c7b15dbae28c8d1ebf08a1c464244b45593b40d74f19d6",
+  "observations_sha256": "a2e691e389e20fab09d74a2272a0225709a26d40f64a033d12a6916577f5f944",
+  "mapping_sha256": "641dda821dc5775bc280ec87af252535c74df42a4703c01616f3a092570ce341",
+  "automatic_summary": {
+    "sample_count": 9,
+    "exact_repeat": true,
+    "all_outputs_finite_and_bounded": true,
+    "median_langmuir_effect_delta_e76": 2.8773615386522975,
+    "median_style_delta_e76_vs_input": 7.4825318837959935,
+    "median_non_basic_residual_delta_e76_vs_input": 6.836135641073631,
+    "worst_new_hard_boundary_fraction_vs_linear": 0.0,
+    "worst_new_isolated_red_speckle_fraction_vs_linear": 0.00035316389092240115,
+    "worst_luma_gradient_p99_ratio_vs_linear": 1.0359219411778937,
+    "worst_chroma_high_frequency_p99_ratio_vs_linear": 0.9519647527011099
+  },
+  "visual_adjudication": {
+    "pairwise_preference_counts": {
+      "langmuir_over_linear": 6,
+      "linear_over_langmuir": 3,
+      "langmuir_over_ao6": 7,
+      "ao6_over_langmuir": 2
+    },
+    "severe_counts": {
+      "linear": 0,
+      "langmuir": 0,
+      "ao6": 0
+    },
+    "decision": "retain_external_mechanism_development_evidence",
+    "preference_gate_status": "descriptive-no-preregistered-win-threshold",
+    "next_allowed_leaf": "independent-bounded-Langmuir-mechanism-pilot",
+    "decoded_records": [
+      {
+        "sample_id": "01",
+        "ranking": [
+          "ao6",
+          "linear",
+          "langmuir"
+        ],
+        "note": "C is most vivid; A is the richer of the two restrained warm variants."
+      },
+      {
+        "sample_id": "05",
+        "ranking": [
+          "langmuir",
+          "linear",
+          "ao6"
+        ],
+        "note": "A and B retain convincing blue water; C has a less convincing magenta cast but no severe corruption."
+      },
+      {
+        "sample_id": "08",
+        "ranking": [
+          "langmuir",
+          "linear",
+          "ao6"
+        ],
+        "note": "A has the strongest warm film-like separation; B has distracting cyan/red texture emphasis, below severe threshold."
+      },
+      {
+        "sample_id": "09",
+        "ranking": [
+          "langmuir",
+          "linear",
+          "ao6"
+        ],
+        "note": "C balances the warm scene best; B is overly red and A is markedly cool."
+      },
+      {
+        "sample_id": "11",
+        "ranking": [
+          "ao6",
+          "langmuir",
+          "linear"
+        ],
+        "note": "A has compelling teal-orange separation; B and C are near-identical red variants with intact edges and no visible red speckle failure at full resolution."
+      },
+      {
+        "sample_id": "18",
+        "ranking": [
+          "langmuir",
+          "linear",
+          "ao6"
+        ],
+        "note": "A and B provide pleasant warm density; C is cooler and harsher but remains structurally clean."
+      },
+      {
+        "sample_id": "21",
+        "ranking": [
+          "linear",
+          "langmuir",
+          "ao6"
+        ],
+        "note": "C gives the most convincing warm portrait rendering; A is too cyan-pale."
+      },
+      {
+        "sample_id": "29",
+        "ranking": [
+          "langmuir",
+          "linear",
+          "ao6"
+        ],
+        "note": "B has the richest warm structural colour; A is comparatively cyan and washed."
+      },
+      {
+        "sample_id": "FS_FACE_01",
+        "ranking": [
+          "linear",
+          "langmuir",
+          "ao6"
+        ],
+        "note": "A and B preserve believable skin and eye detail; C is more stylized but pushes skin orange and contrast high. Full-resolution face remains intact in all variants."
+      }
+    ]
+  },
+  "claim_ceiling": "same-revision external Look Approximation ablation of one amplitude-matched non-spatial DIR saturation hypothesis on nine display-sRGB proxy photographs",
+  "payload_sha256": "72f403e0eeaa4a817c0e87fdbec34a4bf076c962d907c07902af4a589ba3300e"
+}

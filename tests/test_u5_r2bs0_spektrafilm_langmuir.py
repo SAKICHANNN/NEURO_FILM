@@ -6,7 +6,11 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from src.eval.spektrafilm_langmuir import evaluate_manifests, paired_metrics
+from src.eval.spektrafilm_langmuir import (
+    adjudicate_blind_observations,
+    evaluate_manifests,
+    paired_metrics,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,3 +71,24 @@ def test_evaluator_requires_distinct_external_runs() -> None:
     }
     with pytest.raises(ValueError, match="distinct external run IDs"):
         evaluate_manifests(manifest, manifest, CONFIG, root=ROOT)
+
+
+def test_blind_adjudication_decodes_pairwise_preferences() -> None:
+    observations = {
+        "mapping_read_before_observations": False,
+        "records": [
+            {
+                "sample_id": "x",
+                "ranking": ["B", "A", "C"],
+                "severe_by_candidate": {"A": False, "B": False, "C": False},
+                "note": "locked",
+            }
+        ],
+    }
+    result = adjudicate_blind_observations(
+        observations,
+        {"x": ["linear", "langmuir", "ao6"]},
+    )
+    assert result["pairwise_preference_counts"]["langmuir_over_linear"] == 1
+    assert result["pairwise_preference_counts"]["langmuir_over_ao6"] == 1
+    assert result["decision"] == "retain_external_mechanism_development_evidence"

@@ -283,8 +283,64 @@ def evaluate_manifests(
     }
 
 
+def adjudicate_blind_observations(
+    observations: dict[str, Any],
+    mapping: dict[str, list[str]],
+) -> dict[str, Any]:
+    records = observations["records"]
+    if observations.get("mapping_read_before_observations") is not False:
+        raise ValueError("blind observations were not locked before reveal")
+    if {row["sample_id"] for row in records} != set(mapping):
+        raise ValueError("blind observation population mismatch")
+    pairwise = {
+        "langmuir_over_linear": 0,
+        "linear_over_langmuir": 0,
+        "langmuir_over_ao6": 0,
+        "ao6_over_langmuir": 0,
+    }
+    decoded = []
+    severe = {candidate: 0 for candidate in ("linear", "langmuir", "ao6")}
+    for row in records:
+        sample_id = row["sample_id"]
+        candidate_by_letter = dict(zip("ABC", mapping[sample_id], strict=True))
+        ranking = [candidate_by_letter[letter] for letter in row["ranking"]]
+        if set(ranking) != {"linear", "langmuir", "ao6"}:
+            raise ValueError(f"invalid blind ranking: {sample_id}")
+        for letter, failed in row["severe_by_candidate"].items():
+            severe[candidate_by_letter[letter]] += int(bool(failed))
+        if ranking.index("langmuir") < ranking.index("linear"):
+            pairwise["langmuir_over_linear"] += 1
+        else:
+            pairwise["linear_over_langmuir"] += 1
+        if ranking.index("langmuir") < ranking.index("ao6"):
+            pairwise["langmuir_over_ao6"] += 1
+        else:
+            pairwise["ao6_over_langmuir"] += 1
+        decoded.append(
+            {"sample_id": sample_id, "ranking": ranking, "note": row["note"]}
+        )
+    decision = (
+        "close_visual_severe_artifact"
+        if severe["langmuir"]
+        else "retain_external_mechanism_development_evidence"
+    )
+    return {
+        "pairwise_preference_counts": pairwise,
+        "severe_counts": severe,
+        "decision": decision,
+        "preference_gate_status": "descriptive-no-preregistered-win-threshold",
+        "next_allowed_leaf": (
+            "independent-bounded-Langmuir-mechanism-pilot"
+            if decision == "retain_external_mechanism_development_evidence"
+            else "none"
+        ),
+        "decoded_records": decoded,
+    }
+
+
 __all__ = [
     "MANIFEST_SCHEMA",
+    "adjudicate_blind_observations",
     "evaluate_manifests",
     "load_manifest",
     "paired_metrics",
