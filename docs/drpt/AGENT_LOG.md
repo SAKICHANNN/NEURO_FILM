@@ -9099,3 +9099,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   over 25-65 cycles/mm for all channels. This is only a necessary condition.
   Open P5N finite positive-residual compilation; no spatial arm, photograph or
   product integration is authorized yet.
+
+## 2026-08-01 - U6.P5N closes positive residual composition
+
+- Development-only selection chooses symmetric nonnegative FIR radii R/G/B
+  `2/7/1`; all held one-dimensional frequency errors are at most `.00892`, and
+  positivity, effective impulse, constants, step bounds and partitions pass.
+- The same fixed operators fail the pre-registered two-dimensional charts:
+  normalized max/mean error is `.16269/.01404` versus `.02/.002`. The visual
+  diagnostic shows structured checker residuals despite the convincing 1D fit.
+- Do not add radius, families, negative taps or retune gates. Close residual
+  composition; measured-total replacement advances only to P5O nonlinear-domain
+  placement sensitivity, with no photographic or product claim.

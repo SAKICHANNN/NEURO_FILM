@@ -244,7 +244,12 @@ closes full measured-total stacking at `.22462` maximum response error. The
 correct named B/G/R-to-RGB mapping leaves measured/legacy positive and below one
 at every frozen frequency, which is only a necessary condition for a positive
 residual. P5N must fit and confirm that residual with a finite positive PSF;
-otherwise measured-total replacement wins by construction.
+otherwise measured-total replacement wins by construction. P5N closes the
+residual: the smallest positive FIRs pass held one-dimensional frequency error
+but fail two-dimensional max/mean chart gates at `.16269/.01404`. No radius or
+family rescue opens. P5O must now compare exposure-, density- and
+scan-transmittance-domain placement of the measured-total operator before any
+photographic challenger.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

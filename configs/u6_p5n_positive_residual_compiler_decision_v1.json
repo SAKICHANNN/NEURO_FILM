@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p5n_positive_residual_compiler_decision.v1",
+  "node": "U6.P5N",
+  "date": "2026-08-01",
+  "contract_commit": "01d8fea7",
+  "contract_sha256": "d490581d69a8589f78d6aa4073f0b0669c497a9f9e2eead3970536f60261e302",
+  "report_sha256": "b1bedea0a7f2511414b99a73f930151292135bd382abac20f8d77153f9d66074",
+  "stable_evidence_id": "55204ed016570c326c9bdb228469d22824125a59e2eb0a402d475622a9b55403",
+  "failed_candidate_bundle_sha256": "c6017a0739fcf2de5dd775c022eb505eb268c0c77e7dd873ee83325efd93bdce",
+  "failed_candidate_bundle_id": "484654d76ebbcbc1f126e161e46ca0150c7aa490468bdd78e49678bf0518a9bc",
+  "diagnostic_sha256": "52bc48f87ccd7ddf63380e2c855c0f7d3d4e6c5d8484352572ca4be01c901344",
+  "automatic_pass": false,
+  "visual_diagnostic_pass": false,
+  "result": {
+    "selected_radii_rgb": [2, 7, 1],
+    "maximum_confirmation_frequency_error": 0.008911223528572099,
+    "two_dimensional_chart_max_absolute_error": 0.16268702644300914,
+    "two_dimensional_chart_mean_absolute_error": 0.014044073190213193,
+    "combined_effective_impulse_minimum": -8.56197549834522e-15,
+    "combined_effective_impulse_sum_error": 4.440892098500626e-16,
+    "row_partitions_byte_exact": true,
+    "repeat_byte_exact": true
+  },
+  "decision": "close_residual_use_measured_total_replacement",
+  "branch_decision": "The smallest positive FIRs pass development and held one-dimensional frequency gates, remain normalized, effectively nonnegative and partition-exact, but fail both frozen two-dimensional chart gates by a large margin. The diagnostic confirms structured checker residuals. Close residual composition without larger radii, extra families, negative taps or threshold changes. A later measured-MTF challenger must replace the generic forward-scatter, adjacency and dye-diffusion budget with the exact P5L measured-total operator.",
+  "next_leaf": "U6.P5O measured-total placement and nonlinear-domain sensitivity audit",
+  "claim_ceiling": "Numerical rejection of one positive residual composition family; measured-total replacement remains a research Look Approximation, not an identified physical decomposition, calibrated stock response or product promotion."
+}
