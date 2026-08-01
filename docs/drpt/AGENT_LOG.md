@@ -53,6 +53,16 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   remains a generic hypothesis, not a measured PSF, stock calibration or
   runtime candidate.
 
+# 2026-08-01 - U5.R2BS0 retains a non-spatial Langmuir mechanism
+
+- Pinned the latest Spektrafilm dev revision and isolated only the
+  amplitude-matched Langmuir donor against its same-revision linear limit.
+- Two 9-photo renders and two evaluations are exact. All automatic safety and
+  style gates pass; post-gate blind review reports zero severe failures and
+  ranks Langmuir over linear 6/9 and AO6 7/9.
+- This is descriptive external Look Approximation evidence, not promotion.
+  Open one clean-room bounded donor pilot; external code/profiles remain out.
+
 # 2026-08-01 - U6.P2U shared characteristic template closed
 
 - Two formal reports and bundles are byte-identical (`f646fd52...145b` /

@@ -659,3 +659,9 @@ U5.R2BQ10 fixed champions retain 135.42%/134.74% style but cost 22.78%/20.53%
 mean error versus global. Close the FiveK adaptive route without confirmation.
 BQ1-BQ10 establish strict-interior LUT capacity but not source routing; retain
 AO6/global safe-rich and return to real-film/physical-image-formation work.
+
+U5.R2BS0 retains one latest external colour-chemistry mechanism: an
+amplitude-matched non-spatial Langmuir donor passes exact automatic and severe
+visual gates, ranking over its linear donor on 6/9 blinded photographs. It is
+not an integration or preference promotion. The next ready leaf is one
+clean-room bounded donor primitive and synthetic identifiability pilot.
