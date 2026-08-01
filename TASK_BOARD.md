@@ -556,3 +556,8 @@ U5.R2BO7 supplies the mature fixed-global LUT baseline. It is active,
 Jacobian-positive and wins 33/40 scenes, but mean/median gains are only
 2.09%/1.65% and P95 narrowly misses. Do not increase LUT degree or retune;
 the next candidate must change information structure rather than capacity.
+
+U5.R2BO8 tests source-only logit canonicalization and a shared preset with a
+wrong-adapter control. Correct adapters recover only .048% median over wrong,
+ordinary-control gain is .28%, and worst error grows 1.147x. Close this
+canonicalizer without relabeling it as exposure/WB; confirmation stays unread.

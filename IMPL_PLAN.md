@@ -2470,3 +2470,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > below the frozen 5% gates. Degree/ridge/strength rescue and confirmation are
 > closed; more global capacity is not the next answer.
 >
+> BO8 changes information flow instead: a source-only bounded logit adapter,
+> shared canonical-space preset and deterministic inverse. Correct adapters
+> beat wrong adapters by only .048% median, so the canonicalizer is
+> unidentified. Close without statistic/operator rescue and seek new evidence
+> or a genuinely different mechanism.
+>

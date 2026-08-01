@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u5-r2bo8-flickr-source-canonicalized-preset-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO8",
+  "decision": "close_source_canonicalized_shared_preset_without_confirmation",
+  "contract_sha256": "de1170cabaf34e508c150fdd0c4131d54ac4e41ec8fae8a0cef7865c0dc217d1",
+  "software_commit": "2ee148a09cbcb581585d9b31f2a5bb3ac599e5e5",
+  "reports": {
+    "run_a": "outputs/u5_r2bo8_flickr_source_canonicalized_preset_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo8_flickr_source_canonicalized_preset_v1/run_b/report.json",
+    "sha256": "c51678e411b2de3f8afae469226c23dd3627fbf4d5065bd50545aff25a434732",
+    "byte_identical": true,
+    "stable_evidence_id": "85c45ba64e0d5629f67a2891e936e46529dbaf86b269643a8552c48b6feb9e64"
+  },
+  "observed": {
+    "mean_improvement_over_control": -0.002517290860667129,
+    "median_improvement_over_control": 0.002825228455077779,
+    "median_improvement_over_wrong_adapter": 0.000475597610188785,
+    "scene_win_fraction_over_control": 0.5,
+    "p95_error_ratio_to_control": 0.9869375657389606,
+    "worst_error_ratio_to_control": 1.1467983584621122,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "confirmation_pixels_loaded": false,
+  "adapter_or_operator_retuning_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "development-only negative source-canonicalization result on one-author weak-paired camera-film display chains; not physical exposure/WB, stock, calibration or product evidence"
+}

@@ -8843,3 +8843,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   family medians.
 - Mean/median gains are only `2.09%/1.65%`; P95 ratio `.9532` misses `.95`.
   Close degree/ridge/strength rescue and preserve all confirmation pixels.
+
+## 2026-08-01 - U5.R2BO8 closes source-only canonicalization
+
+- Two exact reports (`c51678e4...34732`) show bounded source-only adapters and
+  zero new boundary, but mean/median gains are `-.25%/.28%`, win rate 50%,
+  worst ratio `1.147x`, and correct-over-wrong adapter gain only `.048%`.
+- Do not infer exposure/WB or call this a successful NFRM stage. Keep the 12
+  confirmation pairs unread and move to new evidence or mechanism.
