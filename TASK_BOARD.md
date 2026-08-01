@@ -753,3 +753,9 @@ figure-only PSD. The printed table has 27 series while prose says 26; retain the
 contradiction. U6.P4AU is next: fit cloud scale from RMS ratios only, freeze it,
 then test whether it explains film-type MTF differences after a shared nuisance
 factor better than no-diffusion and wrong-film controls.
+
+U6.P4AU is frozen as development evidence, not confirmation. The exact circular
+aperture response and one positive Gaussian scale per printed film type are fit
+only to Tables 4-6 RMS values. Table 25 then tests a shared composite nuisance
+residual against unchanged no-diffusion and cyclic wrong-film controls. No MTF
+value may influence fitting, and no plotted PSD value may be read.

@@ -9529,3 +9529,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   this source contradiction is retained.
 - Open only P4AU: fit film scale from RMS ratios, then test held composite MTF
   after a shared nuisance factor against no-diffusion and wrong-film controls.
+
+## 2026-08-02 - Freeze U6.P4AU measured compatibility
+
+- This is explicitly development-only: P4AT already exposed every source
+  table. Fit one positive scale per printed film type from multi-aperture RMS
+  ratios using the report's circular-aperture transfer equation; each density
+  keeps only an amplitude nuisance.
+- After all scales freeze, divide numerical Table 25 composite MTF by the
+  predicted film MTF. Require the resulting shared-nuisance dispersion to beat
+  no diffusion and a cyclic wrong-film assignment by at least 5%, while
+  remaining finite and <=1.05.
+- Table 25 cannot train the scale; PSD figures remain unread. Pass or fail stays
+  generic radiographic development evidence with composite system nuisance.

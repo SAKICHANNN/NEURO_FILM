@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u6_p4au_nasa_measured_joint_compatibility_contract.v1",
+  "experiment_id": "u6.p4au-nasa-measured-joint-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AU",
+  "date_frozen": "2026-08-02",
+  "parent": "U6.P4AT measured joint-table source pass",
+  "question": "Does one film-type Gaussian cloud scale fitted only from multi-aperture RMS granularity make the independent composite Table 25 MTF family more consistent with a shared nuisance response than no diffusion and a cyclic wrong-film scale?",
+  "evidence_role": "development-only measured compatibility because every source table was observed during P4AT",
+  "source_report": {
+    "path": "outputs/eval/u6_p4at_nasa_joint_mtf_granularity_source_v1/report_run1.json",
+    "expected_sha256": "53748b3eeb92fa3a9b103db50ea32f1bb2edba4278ae72e2a9b74f8aa2fd447b",
+    "expected_stable_evidence_id": "656897fd4816a46ee184736dd626aaf618e21d53acb8b2397a25d2db6c90d0c8"
+  },
+  "film_type_mapping": {
+    "1": {"name": "R_SC", "granularity_table": 4},
+    "2": {"name": "R_DC", "granularity_table": 5},
+    "3": {"name": "M", "granularity_table": 6}
+  },
+  "fit": {
+    "observations": "RMS granularity at circular aperture diameters 13, 27 and 57 micrometres; missing cells remain missing",
+    "noise_model": "white density source filtered by one normalized Gaussian cloud PSF and the exact circular aperture MTF",
+    "gaussian_mtf": "exp(-2*pi^2*sigma_mm^2*f_cycles_per_mm^2)",
+    "aperture_mtf": "2*J1(pi*diameter_mm*f)/(pi*diameter_mm*f)",
+    "variance_integral": "2*pi*integral_0^5000 f*gaussian_mtf(f)^2*aperture_mtf(f)^2 df",
+    "integration_samples": 50001,
+    "frequency_grid": "zero plus geometric 1e-5..5000 cycles/mm",
+    "sigma_bounds_um": [0.05, 50.0],
+    "optimizer": "bounded scalar minimization with xatol 1e-10",
+    "per_density_amplitude": "closed-form log-domain nuisance fitted only after sigma proposal",
+    "objective": "mean squared log RMS residual across all available aperture cells",
+    "fit_reads_mtf": false
+  },
+  "evaluation": {
+    "frequencies_cycles_per_mm": [2, 4, 6, 8, 10, 12, 14, 16],
+    "candidate_residual": "measured composite MTF divided by fitted film-type Gaussian MTF",
+    "no_diffusion_control": "measured composite MTF unchanged",
+    "wrong_film_control": "cyclic R_SC->R_DC->M->R_SC sigma assignment",
+    "dispersion": "mean across frequencies of median absolute log residual deviation from the frequency median",
+    "shared_nuisance_assumption": "x-ray source plus process plus scanner response is exposure-invariant only as a testable compatibility approximation",
+    "mtf_values_are_never_fit": true
+  },
+  "gates": {
+    "maximum_fit_log_rmse": 0.15,
+    "maximum_candidate_residual": 1.05,
+    "minimum_dispersion_improvement_vs_no_diffusion": 0.05,
+    "minimum_dispersion_improvement_vs_wrong_film": 0.05,
+    "all_scales_positive_finite": true,
+    "all_predictions_finite": true,
+    "source_count_contradiction_retained": true
+  },
+  "controls": [
+    "no diffusion",
+    "cyclic wrong-film scale",
+    "reported 27 printed versus 26 prose series contradiction"
+  ],
+  "forbidden": [
+    "fit sigma from Table 25 MTF",
+    "fit a separate MTF and RMS scale",
+    "fit frequency-dependent nuisance terms",
+    "digitize PSD or MTF figures",
+    "change aperture model, bounds, optimizer, controls or gates after scoring",
+    "call a pass fresh confirmation, emulsion-only MTF, stock calibration or product evidence"
+  ],
+  "branch_rule": {
+    "pass": "Retain the shared-scale mechanism as measured development compatibility and require a new rights-cleared material/process confirmation before profile use.",
+    "fail": "Close this exact Gaussian shared-scale measured family without rescue; retain P4AS synthetic mechanism only and continue a distinct physical leaf."
+  },
+  "claim_ceiling": "Development-only compatibility of a generic shared cloud scale with one public radiographic film report containing composite system MTF; no NPS curve samples, camera-film stock, scanner calibration or product claim."
+}
