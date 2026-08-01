@@ -8,6 +8,7 @@ from src.eval.fivek_group_split import (
     FiveKGroupSplitError,
     assign_group_split,
 )
+from src.eval.fivek_fresh_normalization_support import _split_leakage
 
 
 def _rows() -> list[dict[str, str]]:
@@ -75,3 +76,38 @@ def test_group_split_fails_when_whole_groups_cannot_meet_support() -> None:
             maximum_confirmation_rows=6,
             minimum_development_groups=1,
         )
+
+
+def test_cross_split_leakage_detects_exact_and_perceptual_duplicates() -> None:
+    rows = [
+        {
+            "pair_id": "dev",
+            "split": "development",
+            "source_sha256": "a",
+            "target_sha256": "b",
+            "dhash64": "0000000000000000",
+        },
+        {
+            "pair_id": "confirm-exact",
+            "split": "confirmation",
+            "source_sha256": "a",
+            "target_sha256": "c",
+            "dhash64": "0000000000000001",
+        },
+        {
+            "pair_id": "confirm-far",
+            "split": "confirmation",
+            "source_sha256": "d",
+            "target_sha256": "e",
+            "dhash64": "ffffffffffffffff",
+        },
+    ]
+    exact, perceptual = _split_leakage(rows, 4)
+    assert exact == 1
+    assert perceptual == [
+        {
+            "development_pair_id": "dev",
+            "confirmation_pair_id": "confirm-exact",
+            "hamming_distance": 1,
+        }
+    ]

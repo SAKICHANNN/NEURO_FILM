@@ -285,6 +285,39 @@ def _save_exact(
     return _sha256(path), path.stat().st_size
 
 
+def _split_leakage(
+    rows: list[Mapping[str, Any]], maximum_dhash_hamming: int
+) -> tuple[int, list[dict[str, Any]]]:
+    """Find exact and near-duplicate content across frozen split groups."""
+
+    development = [row for row in rows if row.get("split") == "development"]
+    confirmation = [
+        row for row in rows if row.get("split") == "confirmation"
+    ]
+    exact = 0
+    perceptual: list[dict[str, Any]] = []
+    for left in development:
+        for right in confirmation:
+            if (
+                left["source_sha256"] == right["source_sha256"]
+                or left["target_sha256"] == right["target_sha256"]
+            ):
+                exact += 1
+            distance = (
+                int(str(left["dhash64"]), 16)
+                ^ int(str(right["dhash64"]), 16)
+            ).bit_count()
+            if distance <= maximum_dhash_hamming:
+                perceptual.append(
+                    {
+                        "development_pair_id": str(left["pair_id"]),
+                        "confirmation_pair_id": str(right["pair_id"]),
+                        "hamming_distance": distance,
+                    }
+                )
+    return exact, perceptual
+
+
 def run_audit(
     *,
     root: Path,
@@ -510,6 +543,12 @@ def run_audit(
             ),
         )
         rows = split_result["rows"]
+    internal_exact_cross_split = 0
+    internal_perceptual_pairs: list[dict[str, Any]] = []
+    if split_result is not None:
+        internal_exact_cross_split, internal_perceptual_pairs = _split_leakage(
+            rows, int(support["maximum_cross_split_dhash_hamming"])
+        )
     eligible = len(rows)
     largest_share = max(cameras.values(), default=0) / max(eligible, 1)
     exact_cross_split = sum(
@@ -557,6 +596,12 @@ def run_audit(
                 "confirmation_groups": len(
                     split_result["confirmation_groups"]
                 ),
+                "internal_exact_cross_split_duplicates": (
+                    internal_exact_cross_split
+                ),
+                "internal_perceptual_cross_split_duplicates": len(
+                    internal_perceptual_pairs
+                ),
             }
         )
         gates.update(
@@ -577,6 +622,12 @@ def run_audit(
                     "selection_used_target_or_pixels"
                 ]
                 is False,
+                "internal_exact_split_leakage": (
+                    internal_exact_cross_split == 0
+                ),
+                "internal_perceptual_split_leakage": (
+                    len(internal_perceptual_pairs) == 0
+                ),
             }
         )
     manifest = {
@@ -606,6 +657,7 @@ def run_audit(
         "gates": gates,
         "manifest_sha256": _sha256(manifest_path),
         "perceptual_pairs": perceptual_pairs,
+        "internal_perceptual_pairs": internal_perceptual_pairs,
     }
     report = {
         "schema_version": 1,
