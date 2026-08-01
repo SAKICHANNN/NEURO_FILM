@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p5j_kodak_250d_positive_psf_compiler_decision.v1",
+  "node": "U6.P5J",
+  "date": "2026-08-01",
+  "contract_commit": "0907a814",
+  "contract": "configs/u6_p5j_kodak_250d_positive_psf_compiler_v1.json",
+  "confirmation_trace": "configs/data/kodak_250d_mtf_confirmation_pixels_v1.json",
+  "bundle_sha256": "b2d0ff39743ba3ec21a8d033fe38f3ebf6e7360e5a75ea6b838dc67b4b856270",
+  "bundle_id": "80bff073e5da5a4da1dcdd46b11238e1b2b3ca96596b3f082c419d791b60d1b8",
+  "report_sha256": "98759151cfa7b167b5f60f7cdaf0d8f11a90f9e66b3817315bc6286669015f85",
+  "stable_evidence_id": "bbf32daba6583d52ec017b26c7deb23510229f174a1f9cd78f659cd16c88fc55",
+  "confirmation_overlay_sha256": "e50e676d7ff9b7063ec83c8922f5fba7db11388aea9537a5741e78224ee098ca",
+  "automatic_pass": true,
+  "visual_overlay_pass": true,
+  "selected_families": {
+    "blue": "single_gaussian",
+    "green": "delta_plus_gaussian",
+    "red": "two_gaussian"
+  },
+  "selected_components": {
+    "blue": [[1.0, 3.069644781724088]],
+    "green": [[0.35709571972667475, 0.0], [0.6429042802733252, 5.296637754143383]],
+    "red": [[0.3233812252202683, 2.331306176304914], [0.6766187747797316, 7.154955149816132]]
+  },
+  "confirmation": {
+    "all_channel_rmse_ratio": 0.2184171483040274,
+    "blue_rmse_ratio": 1.0,
+    "green_rmse_ratio": 0.2020048332054671,
+    "red_rmse_ratio": 0.040266202391464216,
+    "selected_max_absolute_error": 0.022211028861356397,
+    "wrong_channel_mean_rmse_ratio": 22.684624838292905
+  },
+  "decision": "open_u6_p5k_synthetic_kernel_audit",
+  "branch_decision": "Retain the compact positive per-channel PSF bundle. The development-only complexity rule keeps B single-scale, selects a delta-plus-Gaussian G response and a two-Gaussian R response; all preregistered held-frequency and negative-control gates pass. Next prove discrete kernel, edge, partition and no-ringing behavior before any photographic use.",
+  "claim_ceiling": "Compact positive-PSF approximation of one printed Kodak VISION3 250D manufacturer MTF curve over 25-65 cycles/mm; not calibrated stock, roll, process, scanner, colour or product response."
+}

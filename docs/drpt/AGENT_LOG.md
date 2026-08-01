@@ -9052,3 +9052,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Visual overlay review confirms the colored points follow the original black
   curves. Open P5J positive-PSF compilation only; calibration, extrapolation,
   photographic use and integration remain closed.
+
+## 2026-08-01 - U6.P5J passes held-frequency positive-PSF compilation
+
+- Committed the split, family order and numerical gates before tracing six new
+  confirmation frequencies. Development-only LOOCV selects B single Gaussian,
+  G delta-plus-Gaussian and R two-Gaussian.
+- Two bundles/reports/overlays are exact. Held all-channel RMSE is `.21842x`
+  the single-Gaussian baseline, worst absolute response error is `.02222`, and
+  wrong-channel application is `22.68x` worse than the correct models.
+- Open synthetic P5K kernel/edge/partition conformance only. No photographic,
+  product, calibrated-stock or scanner claim opens.

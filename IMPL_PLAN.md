@@ -224,6 +224,12 @@ overlay gates. P5J must now freeze development-only model selection between
 positive one- and two-scale Gaussian PSFs and use disjoint held frequencies for
 confirmation. The trace is typical manufacturer evidence, not roll, process,
 scanner, stock-colour or product calibration.
+P5J passes after six newly traced held frequencies: B remains a single Gaussian,
+G uses a positive delta-plus-Gaussian mixture and R uses two positive Gaussian
+scales. Combined held RMSE is `.21842x` the single-Gaussian baseline and the
+maximum absolute response error is `.02222`. P5K now compiles only this exact
+bundle into discrete physical-scale kernels and tests impulse, edge, measured-
+interval MTF, row partitions and ringing before photographs or integration.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

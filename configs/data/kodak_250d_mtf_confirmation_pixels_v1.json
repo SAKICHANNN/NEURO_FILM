@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.kodak_250d_mtf_confirmation_pixels.v1",
+  "frozen_parent_contract_commit": "0907a814",
+  "annotation_method": "integer source-pixel trace recorded only after the U6.P5J split, model family and numerical gates were committed",
+  "frequencies_cycles_per_mm": [27.0, 33.0, 42.0, 52.0, 58.0, 63.0],
+  "curves": {
+    "blue": [[400, 141], [418, 150], [440, 161], [460, 173], [470, 183], [478, 191]],
+    "green": [[400, 149], [418, 160], [440, 175], [460, 190], [470, 196], [478, 201]],
+    "red": [[400, 171], [418, 187], [440, 212], [460, 235], [470, 248], [478, 258]]
+  },
+  "limitations": [
+    "confirmation is held-frequency interpolation on the same printed manufacturer curve, not an independent roll or measurement",
+    "manual trace precision is limited by raster resolution and grid intersections",
+    "visual overlay review remains required"
+  ]
+}
