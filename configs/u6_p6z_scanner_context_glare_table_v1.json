@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p6z_scanner_context_glare_table.v1",
+  "experiment_id": "u6.p6z-scanner-context-glare-transfer-v1",
+  "source": {
+    "title": "Tonal distribution and glare assessment in cinematographic film scanners",
+    "doi": "10.1007/s11760-025-04569-8",
+    "license": "CC-BY-4.0",
+    "pdf_path": "data/external/u6_p6z_scanner_context_glare_v1/article.pdf",
+    "pdf_bytes": 2590747,
+    "pdf_sha256": "7168488e638ad16fe993f0d5dd72a5df6bb76f4be77b448ab6cc7dde295c730b",
+    "pdf_pages": 9,
+    "layout_text_bytes": 53443,
+    "layout_text_sha256": "bd136d3e150036fb65d2b2fed1f5ca06c2a0978cbf8d4321a0bd958eb9cc10b6",
+    "layout_tool": "pdftotext 24.04.0",
+    "layout_tool_sha256": "640b9a93fa31fc093860c635cd410a3e30f7d1e6166cb1130993fb1985f474ff",
+    "table": 3,
+    "table_caption": "Context Glare (CG) and CGdif calculated using black values from Frame 40 (Bc) and central black digits: Frame 25 for positive scans, Frame 5 for negative scans. CGdif values are reported in 16-bit"
+  },
+  "rows": [
+    {
+      "polarity": "positive-scan-negative-image",
+      "cg": [1.740, 1.733, null, 1.292, 2.398, 0.759, null, 1.348, 1.056, 1.553, 1.386, 3.487],
+      "cg_difference_16bit": [379, 392, 53, 2180, 1226, -6750, null, 1583, 542, 584, 6610, 7641]
+    },
+    {
+      "polarity": "negative-scan-positive-image",
+      "cg": [2.019, 2.029, 2.039, 1.958, 2.228, 1.306, null, 2.466, 10.315, 1.318, 2.417, 2.248],
+      "cg_difference_16bit": [5926, 5923, 6072, 5643, 4527, 746, null, 3533, 2815, 2702, 5445, 5274]
+    }
+  ],
+  "extraction": {
+    "numeric_table_only": true,
+    "figure_digitization": false,
+    "scanner_ids_are_one_based_array_positions": true,
+    "dash_is_null": true,
+    "negative_difference_is_preserved": true,
+    "thresholds_splits_operator_or_claim_changed": false
+  }
+}
