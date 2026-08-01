@@ -14,6 +14,7 @@ from src.eval.kci_velvia_tone_photographic_stress import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2br2_kci_velvia_tone_photographic_stress_v1.json"
+RESULT = ROOT / "docs/evidence/U5_R2BR2_KCI_VELVIA_TONE_PHOTOGRAPHIC_STRESS_RESULT.json"
 
 
 def test_contract_is_fixed_photographic_stress_only() -> None:
@@ -57,3 +58,20 @@ def test_gradient_inversion_detector_rejects_reversal() -> None:
     source = np.asarray([[1.0, 2.0, 3.0]], dtype=np.float32)
     output = np.asarray([[1.0, 3.0, 2.0]], dtype=np.float32)
     assert _gradient_inversion_fraction(source, output, epsilon=0.0001) > 0.0
+
+
+def test_formal_result_closes_without_visual_rescue() -> None:
+    result = json.loads(RESULT.read_text(encoding="utf-8"))
+    assert result["formal_report_sha256"] == (
+        "ea1225313b19282dca96e8e50da85feb6371eb61492e7726df0b397d25133a4b"
+    )
+    assert not result["automatic_pass"]
+    assert not result["visual_review_allowed"]
+    assert result["failed_gates"] == [
+        "gamut_scale_tail",
+        "new_boundaries",
+        "gradient_order",
+    ]
+    assert result["metrics"][
+        "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
+    ] == 0.14899761325339006

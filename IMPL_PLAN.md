@@ -311,6 +311,12 @@ leave-one-patch-out reports pass every frozen gate: the monotone PCHIP reaches
 `2.215` mean / `5.524` maximum Delta L-star and improves 36.96% over one
 gamma. Retain the curve only for one separately frozen photographic stress;
 it remains a display-chain tone observation, not sensitometry or stock truth.
+BR2 closes direct photographic transfer. The fixed curve is strongly visible
+on 12 independent camera makes, but source-segment gamut safety becomes highly
+colour-dependent: the worst row has 54.41% materially attenuated pixels,
+18.93% new boundary channels and 14.90% local L-star order inversions. The
+automatic gate forbids visual review and any curve, strength or gamut-policy
+rescue. BR1 remains controlled observation evidence only.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

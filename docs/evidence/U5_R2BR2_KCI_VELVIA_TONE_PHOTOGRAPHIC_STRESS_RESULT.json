@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u5.r2br2.result-summary.v1",
+  "experiment_id": "u5.r2br2-kci-velvia-tone-photographic-stress-v1",
+  "software_commit": "e1a62e7a",
+  "config_sha256": "9b57487a105603b91ec53aa3279c8468a2b69d44e6003a3f3613bc526ebaa9e2",
+  "formal_report_sha256": "ea1225313b19282dca96e8e50da85feb6371eb61492e7726df0b397d25133a4b",
+  "two_run_byte_identity": true,
+  "automatic_pass": false,
+  "visual_review_allowed": false,
+  "decision": "close_fixed_tone_photographic_stress_without_rescue",
+  "metrics": {
+    "source_count": 12,
+    "camera_make_count": 12,
+    "population_median_per_image_p95_lstar_effect": 13.342525482177734,
+    "maximum_per_image_p95_lstar_effect": 13.364051818847656,
+    "population_median_gamut_scale": 1.0,
+    "maximum_per_image_fraction_gamut_scale_below_0p99": 0.5440535491905355,
+    "maximum_new_hard_boundary_fraction": 0.1893430884184309,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.14899761325339006,
+    "output_linear_minimum": 0.0,
+    "output_linear_maximum": 1.0
+  },
+  "failed_gates": [
+    "gamut_scale_tail",
+    "new_boundaries",
+    "gradient_order"
+  ],
+  "interpretation": "The fixed publication-derived neutral curve is strongly visible on photographs, but colour-dependent source-segment gamut compression produces large spatially varying attenuation, new near-boundary channels and local L-star order reversals. The controlled chart signal is not a directly transferable photographic tone operator.",
+  "claim_ceiling": "photographic stress evidence for one fixed publication-derived display-tone component; not Velvia sensitometry, scene exposure response, scanner-independent stock tone, full film style, calibrated reference or product promotion"
+}

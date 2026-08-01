@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U5.R2BR2 direct photographic tone transfer closes
+
+- Applied the unchanged BR1 PCHIP to 12 independent camera makes with fixed
+  source-to-target Lab gamut compression and no photographic fitting.
+- Two reports are byte-identical (`ea122531...33a4b`). The effect is strongly
+  visible, but worst material gamut attenuation reaches 54.41%, new boundary
+  18.93% and local L-star order inversion 14.90%.
+- Automatic failure forbids visual review. Close without curve, strength,
+  compression-policy or threshold rescue; BR1 remains a controlled
+  scanner/publication observation rather than a transferable operator.
+
 # 2026-08-02 - U5.R2BR1 controlled neutral-tone residual passes development
 
 - Reused BR0's exact controlled publication extraction and evaluated only the
