@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn1-fivek-projection-curve-basis-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN1",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "1d3f94202034cecf1b9c4a29efd67431737fa5de",
+  "question": "Can a source-predicted bank of bounded parallel projection curves preserve conditional FiveK retouching gains over one global operator while eliminating the safety-limited tail that closed BJ0-BJ2?",
+  "source_method": {
+    "decision": "configs/u5_r2bn0_pigment_representation_source_method_decision_v1.json",
+    "required_status": "source_audit_complete_clean_room_pilot_allowed"
+  },
+  "parents": [
+    {
+      "decision": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_decision_v1.json",
+      "decision_sha256": "3090e38905d1b033e3e888cae68dbaaa91984fa84596110e9c5b38ba11f473b6",
+      "required_status": "closed_fresh_tail_failed"
+    },
+    {
+      "decision": "configs/u5_r2bm4_ao6_pairwise_compatibility_ranker_decision_v1.json",
+      "decision_sha256": "05c6755dc77f1a1de209a7426d174d4f992856f7e1fc1a7988874efdf4588fab",
+      "required_status": "closed_no_transferable_pairwise_signal"
+    }
+  ],
+  "development_populations": [
+    {"name": "ay0_camera_group_crossfit", "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json", "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01", "rows": 64},
+    {"name": "ay3_seen_fresh", "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json", "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b", "rows": 63},
+    {"name": "ay6_seen_confirmation", "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json", "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22", "rows": 64}
+  ],
+  "operator": {
+    "family": "strict_interior_parallel_projection_curve_residual",
+    "projection_directions": [
+      [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+      [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5],
+      [0.3333333333333333, 0.3333333333333333, 0.3333333333333333],
+      [0.5, 0.25, 0.25], [0.25, 0.5, 0.25], [0.25, 0.25, 0.5],
+      [0.6, 0.3, 0.1], [0.6, 0.1, 0.3], [0.3, 0.6, 0.1],
+      [0.1, 0.6, 0.3], [0.3, 0.1, 0.6], [0.1, 0.3, 0.6]
+    ],
+    "control_point_count": 9,
+    "boundary_epsilon": 0.00196078431372549,
+    "sample_stride": 8,
+    "target_activation_limit": 0.95,
+    "identity_shrinkage": 0.05,
+    "first_difference_smoothness": 0.2,
+    "coefficient_absolute_limit": 3.0,
+    "safe_dose_grid_size": 7,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24,
+    "hard_output_clipping_allowed": false,
+    "post_operator_pixel_scaling_allowed": false,
+    "spatial_or_semantic_features_allowed": false
+  },
+  "basis_prediction": {
+    "basis": "training-only PCA of per-image projection-curve coefficient tensors",
+    "basis_rank": 8,
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "predictor": "StandardScaler plus Ridge",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner camera-group cross-validation on AY0 outer-development only",
+    "learned_final_rgb_allowed": false
+  },
+  "methods": ["identity", "global_projection_curves", "adaptive_projection_curves", "oracle_projection_curves"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.2,
+    "minimum_adaptive_mean_improvement_over_global_each_population": 0.03,
+    "minimum_adaptive_win_fraction_over_global_each_population": 0.55,
+    "maximum_adaptive_p95_ratio_to_global_each_population": 1.0,
+    "maximum_adaptive_worst_ratio_to_global_each_population": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global_each_population": 0.8,
+    "minimum_adaptive_median_safe_dose_each_population": 0.5,
+    "minimum_adaptive_worst_safe_dose_each_population": 0.2,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_operator_out_of_cube_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the representation and acquire one new disjoint official FiveK confirmation population before any visual product-value test",
+    "oracle_fails": "close representation capacity without predictor rescue",
+    "predictor_or_tail_fails": "close without tuning directions, knots, rank, descriptor, regularization, dose gate or AO6",
+    "safety_fails": "treat as proof or implementation failure before visual review"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only clean-room parallel projection-curve evidence on already-seen digital-retouch pairs before fixed AO6; not paper reproduction, confirmation, film, stock, calibration, preference or product promotion"
+}

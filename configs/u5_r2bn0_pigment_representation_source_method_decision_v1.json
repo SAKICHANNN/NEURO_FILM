@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn0-pigment-representation-source-method-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN0",
+  "status": "source_audit_complete_clean_room_pilot_allowed",
+  "audited_at": "2026-08-01",
+  "primary_sources": [
+    "https://arxiv.org/abs/2510.02713",
+    "https://arxiv.org/html/2510.02713",
+    "https://github.com/jbnu-vilab/pigment_enhancement"
+  ],
+  "paper_facts": {
+    "title": "Image Enhancement Based on Pigment Representation",
+    "authors": ["Se-Ho Lee", "Keunsoo Ko", "Seung-Wook Kim"],
+    "venue": "IEEE Transactions on Multimedia",
+    "method": "content-adaptive RGB-to-many-positive-projections, per-projection piecewise-linear 1D reprojection, learned 1x1 blending, and learned RGB reconstruction",
+    "reported_default": {"pigments": 64, "control_points": 32},
+    "reported_tasks": ["MIT-Adobe FiveK digital photo retouching", "PPR10K portrait retouching", "FiveK-derived tone mapping"],
+    "reported_boundary_gaps": [
+      "no monotonicity constraint on the learned reprojection control values",
+      "no cube, Jacobian, inverse, severe-artifact, or strict output-boundary gate",
+      "the name pigment is a mathematical feature-space analogy, not a film-emulsion or dye-cloud model"
+    ]
+  },
+  "code_rights": {
+    "public_repository_present": true,
+    "license_file_present_at_audit": false,
+    "code_or_checkpoint_copy_allowed": false,
+    "paper_equation_clean_room_research_allowed": true
+  },
+  "project_overlap": {
+    "already_present": [
+      "sequential sliced projection transport",
+      "three-coordinate SO(3) monotone curves",
+      "image-adaptive low-rank 3D LUTs",
+      "strict-interior residual execution"
+    ],
+    "untested_combination": "parallel many-direction 1D curve basis with source-only parameter prediction and intrinsic strict-interior execution",
+    "novelty_claim_allowed": false
+  },
+  "decision": "Allow one clean-room digital-retouch control pilot using only the paper-level many-projection idea. Do not copy unlicensed source or weights, call the representation physical pigment or film, or bypass the existing stock/data gates.",
+  "next_leaf": "U5.R2BN1 strict-interior projection-curve basis development",
+  "claim_ceiling": "source-method reconnaissance and clean-room algorithm-family permission; not reproduction, license clearance, film evidence, stock response, calibration, preference, product promotion, or novelty"
+}
