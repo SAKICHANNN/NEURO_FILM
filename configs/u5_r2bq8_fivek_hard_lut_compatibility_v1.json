@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq8-fivek-hard-lut-compatibility-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ8",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can source-only query/case compatibility choose one intact style-eligible strict-interior LUT and beat global, strength, nearest, random and shuffled controls without dense style averaging?",
+  "parent_bq7_decision": {
+    "path": "configs/u5_r2bq7_fivek_source_adaptive_lut_decision_v1.json",
+    "sha256": "c97e47215e6ab5891f457f29ac2a228f3393388e666f20c29ef118055c2677d8"
+  },
+  "mature_baseline": {
+    "config": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1.json",
+    "config_sha256": "031ec330e78499d0e36dd999258cf75a03dcd33f1469916137d4aa31f93790cd"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "evaluation_samples_per_image": 512},
+  "descriptor": {
+    "families": ["spatial_photometric", "tone_layout"],
+    "source_pixels_only": true,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9
+  },
+  "model": {
+    "family": "closed_form_ridge_ranker_of_style_eligible_within_query_case_error_rank",
+    "pca_components": 32,
+    "pair_features": ["query", "case", "absolute_difference", "elementwise_product"],
+    "ridge_alpha": 10.0,
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "shuffled_label_seed": 2026080181,
+    "query_target_used_at_inference": false,
+    "operator_parameters_used_at_inference": false,
+    "dense_blending_allowed": false
+  },
+  "selector": {
+    "policy": "hard Top-1 intact case LUT or global LUT OOD fallback",
+    "ood_distance_quantile": 0.95,
+    "bootstrap_seed": 2026080183,
+    "bootstrap_repetitions": 2000,
+    "random_case_seed": 2026080187
+  },
+  "evaluation": {
+    "minimum_case_target_style_retention": 0.7,
+    "strength_doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.1,
+    "minimum_mean_improvement_over_strength_oracle": 0.01,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_random_case": 0.05,
+    "minimum_mean_improvement_over_shuffled_ranker": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "minimum_median_target_style_retention": 0.7,
+    "minimum_selected_case_style_eligible_fraction": 0.9,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_distinct_selected_cases": 8,
+    "maximum_selected_case_share": 0.2,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "target_variants": ["aligned_expert", "filtered"],
+  "branch_rules": {
+    "development_fails": "close this hard ranker without confirmation or feature, loss, alpha, OOD or threshold rescue; next test fixed sparse Top-K medoid retrieval only if the frozen failure mechanism supports it",
+    "development_passes": "freeze exact hard router and execute unchanged confirmation",
+    "style_fails": "close; do not blend cases to improve error",
+    "safety_fails": "treat as intrinsic-bound implementation drift"
+  },
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held development-only hard Top-1 strict-interior LUT routing evidence on paired FiveK digital-retouch controls; no confirmation, film, preference or product claim"
+}
