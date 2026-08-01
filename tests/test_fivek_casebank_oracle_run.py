@@ -149,6 +149,41 @@ def test_runner_rejects_router_training(tmp_path) -> None:
         validate_contract(tmp_path, config)
 
 
+def test_runner_accepts_separate_source_only_adjudication(tmp_path) -> None:
+    config = _contract(tmp_path)
+    normalization_path = tmp_path / config["parent_population"]["report"]
+    config["parent_population"]["report_sha256"] = _write_json(
+        normalization_path, {"automatic_pass": False}
+    )
+    adjudication_path = tmp_path / "adjudication.json"
+    adjudication_sha = _write_json(
+        adjudication_path,
+        {
+            "automatic_pass": True,
+            "target_pixels_accessed": False,
+            "operator_fitting_allowed": False,
+            "parent_manifest_sha256": config["parent_population"][
+                "manifest_sha256"
+            ],
+        },
+    )
+    config["parent_source_adjudication"] = {
+        "report": adjudication_path.name,
+        "report_sha256": adjudication_sha,
+        "required_automatic_pass": True,
+        "required_target_pixels_accessed": False,
+    }
+    validate_contract(tmp_path, config)
+
+    payload = json.loads(adjudication_path.read_text(encoding="utf-8"))
+    payload["target_pixels_accessed"] = True
+    config["parent_source_adjudication"]["report_sha256"] = _write_json(
+        adjudication_path, payload
+    )
+    with pytest.raises(FiveKCasebankOracleRunError, match="adjudication"):
+        validate_contract(tmp_path, config)
+
+
 def test_runner_rejects_operator_and_strength_control_drift(tmp_path) -> None:
     config = _contract(tmp_path)
     config["operator"]["hard_output_clipping_allowed"] = True

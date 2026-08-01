@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq1v2-fivek-casebank-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ1V2",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "A large bank of bounded explicit per-case operators contains target-specific adjustment directions that materially outperform identity, one pooled global operator, its continuous strength path and a random-case control on target-hidden whole-camera confirmation groups.",
+  "parent_population": {
+    "manifest": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+    "report": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/report.json",
+    "report_sha256": "f744cac82d604425736d4d8c2a0b9b1a6e91b28f2d0730ce786f933a54ab5885",
+    "development_rows": 381,
+    "confirmation_rows": 128,
+    "development_groups": 24,
+    "confirmation_groups": 4,
+    "selection_used_target_or_pixels": false
+  },
+  "parent_source_adjudication": {
+    "report": "outputs/u5_r2bq0s3_fivek_duplicate_adjudication_v1/run_a/report.json",
+    "report_sha256": "f6838274b3ce73c827c0c9435947723d0cf9dc589733585109dc3641b8c697a6",
+    "required_automatic_pass": true,
+    "required_target_pixels_accessed": false
+  },
+  "decode": {
+    "maximum_side": 128,
+    "input_space": "display-encoded sRGB16",
+    "asset_hash_validation": true
+  },
+  "operator": {
+    "family": "monotone_triangular_logit_transport",
+    "parameter_count": 14,
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "fit_samples_per_image": 1024,
+    "pooled_samples_per_image": 256,
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24,
+    "hard_output_clipping_allowed": false,
+    "spatial_or_semantic_features_allowed": false,
+    "learned_final_rgb_allowed": false
+  },
+  "target_variants": {
+    "aligned_expert": {
+      "target_variant": "aligned_expert",
+      "evaluation": {
+        "samples_per_confirmation_image": 1024,
+        "strength_doses": [0.0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1.0],
+        "random_case_seed": 2026080119,
+        "bootstrap_seed": 2026080121,
+        "bootstrap_repetitions": 2000,
+        "gates": {
+          "minimum_mean_improvement_over_identity": 0.05,
+          "minimum_win_fraction_over_identity": 0.6,
+          "maximum_p95_ratio_to_identity": 1.0,
+          "maximum_worst_ratio_to_identity": 1.1,
+          "minimum_mean_improvement_over_global": 0.05,
+          "minimum_win_fraction_over_global": 0.6,
+          "maximum_p95_ratio_to_global": 1.0,
+          "maximum_worst_ratio_to_global": 1.1,
+          "minimum_mean_improvement_over_strength_oracle": 0.03,
+          "minimum_win_fraction_over_strength_oracle": 0.55,
+          "minimum_mean_improvement_over_random_case": 0.05,
+          "minimum_win_fraction_over_random_case": 0.6,
+          "minimum_bootstrap_lower_improvement": 0.02,
+          "minimum_distinct_selected_cases": 8,
+          "maximum_selected_case_share": 0.2
+        }
+      }
+    },
+    "filtered": {
+      "target_variant": "filtered",
+      "evaluation": {
+        "samples_per_confirmation_image": 1024,
+        "strength_doses": [0.0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1.0],
+        "random_case_seed": 2026080123,
+        "bootstrap_seed": 2026080127,
+        "bootstrap_repetitions": 2000,
+        "gates": {
+          "minimum_mean_improvement_over_identity": 0.05,
+          "minimum_win_fraction_over_identity": 0.6,
+          "maximum_p95_ratio_to_identity": 1.0,
+          "maximum_worst_ratio_to_identity": 1.1,
+          "minimum_mean_improvement_over_global": 0.05,
+          "minimum_win_fraction_over_global": 0.6,
+          "maximum_p95_ratio_to_global": 1.0,
+          "maximum_worst_ratio_to_global": 1.1,
+          "minimum_mean_improvement_over_strength_oracle": 0.03,
+          "minimum_win_fraction_over_strength_oracle": 0.55,
+          "minimum_mean_improvement_over_random_case": 0.05,
+          "minimum_win_fraction_over_random_case": 0.6,
+          "minimum_bootstrap_lower_improvement": 0.02,
+          "minimum_distinct_selected_cases": 8,
+          "maximum_selected_case_share": 0.2
+        }
+      }
+    }
+  },
+  "required_pass_variants": ["aligned_expert", "filtered"],
+  "branch_rules": {
+    "both_variants_pass": "freeze the case bank and open source-only router baselines with nested whole-camera development cross-validation",
+    "either_variant_fails": "close this case-bank family without router training, threshold change, target-aware case pruning or a larger operator",
+    "oracle_passes_but_random_or_strength_control_fails": "treat the apparent value as bank size or strength luck and close routing",
+    "safety_or_tail_fails": "close without clipping or per-image rescue"
+  },
+  "router_training_allowed": false,
+  "confirmation_target_use_for_selection_allowed": false,
+  "final_rgb_learning_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "target-aware off-diagonal evaluator Oracle on paired FiveK digital-retouch controls; not a deployable selector, film response, stock identity, calibration, preference or product result"
+}

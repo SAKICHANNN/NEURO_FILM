@@ -58,17 +58,45 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     manifest = _load_hashed_json(
         root, parent["manifest"], parent["manifest_sha256"]
     )
-    report = _load_hashed_json(
+    normalization_report = _load_hashed_json(
         root, parent["report"], parent["report_sha256"]
     )
     summary = manifest.get("split_summary", {})
     if (
-        report.get("automatic_pass") is not True
-        or summary.get("development_rows") != parent["development_rows"]
+        summary.get("development_rows") != parent["development_rows"]
         or summary.get("confirmation_rows") != parent["confirmation_rows"]
         or summary.get("selection_used_target_or_pixels") is not False
     ):
         raise FiveKCasebankOracleRunError("parent population is not eligible")
+    adjudication_spec = config.get("parent_source_adjudication")
+    if adjudication_spec is None:
+        if normalization_report.get("automatic_pass") is not True:
+            raise FiveKCasebankOracleRunError("parent population is not eligible")
+    else:
+        if (
+            adjudication_spec.get("required_automatic_pass") is not True
+            or adjudication_spec.get("required_target_pixels_accessed")
+            is not False
+        ):
+            raise FiveKCasebankOracleRunError(
+                "source-only adjudication contract drift"
+            )
+        adjudication = _load_hashed_json(
+            root,
+            adjudication_spec["report"],
+            adjudication_spec["report_sha256"],
+        )
+        if (
+            normalization_report.get("automatic_pass") is not False
+            or adjudication.get("automatic_pass") is not True
+            or adjudication.get("target_pixels_accessed") is not False
+            or adjudication.get("operator_fitting_allowed") is not False
+            or adjudication.get("parent_manifest_sha256")
+            != parent["manifest_sha256"]
+        ):
+            raise FiveKCasebankOracleRunError(
+                "source-only adjudication is not eligible"
+            )
     variants = config["target_variants"]
     if set(variants) != {"aligned_expert", "filtered"}:
         raise FiveKCasebankOracleRunError("target-control inventory drift")
