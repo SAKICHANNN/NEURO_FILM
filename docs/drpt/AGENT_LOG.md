@@ -9122,3 +9122,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The diagnostic shows structured transition-local disagreement. No arm is
   physical truth. Open P5P analytical minimax envelope only; no photograph,
   calibration or product integration opens.
+
+## 2026-08-01 - U6.P5P retains an analytical minimax envelope
+
+- Implemented the parameter-free common-transmittance Chebyshev center of the
+  three fixed P5O arms, retaining the full pointwise uncertainty half-range.
+- Two reports and diagnostics are exact. Interval violation is zero,
+  Chebyshev identity error is `5.56e-17`, all partitions pass, and the midpoint
+  is no worse than the best fixed hard arm under the frozen worst-case metric.
+- The effect is nonempty (`.07169` maximum transmittance change) and the maximum
+  retained half-range is `.00955`. Open P5Q photo stress only; no physical
+  placement, calibration or product claim opens.

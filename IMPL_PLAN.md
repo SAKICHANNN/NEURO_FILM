@@ -252,6 +252,11 @@ constants and an affine negative control commute to roundoff, while the three
 fixed arms differ by up to `.03940` density / `.01911` transmittance. Current
 evidence therefore identifies no physical placement. P5P must test an
 analytical minimax transmittance envelope before any photographic challenger.
+P5P passes: the pointwise interval midpoint has zero bound violation,
+`5.56e-17` Chebyshev-identity error, exact partitions and a nonempty `.07169`
+maximum transmittance effect while preserving an explicit `.00955` maximum
+uncertainty half-range. P5Q must now run the fixed photographic severe/style
+comparison; none of this identifies a physical MTF placement.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

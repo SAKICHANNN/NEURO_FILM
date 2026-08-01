@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p5p_measured_mtf_minimax_envelope_decision.v1",
+  "node": "U6.P5P",
+  "date": "2026-08-01",
+  "contract_commit": "7b026984",
+  "implementation_commit": "38d856f3",
+  "contract_sha256": "011b9be8e4156c37e039f9b6d48ba58713d6a6c561b014e2bf12c966664d81d3",
+  "report_sha256": "64ec1620c46a6a610faf33df064c8ea67bd0304d1dadc2778de48b5da708b667",
+  "stable_evidence_id": "1414cd4862bdd1f86126d6eed5f7b6e2acb33d526865d1122607f23c23a9a714",
+  "diagnostic_sha256": "f88ab3968d458c9516f4bea2dc0c46306d11d04edf703f887392fd94ac78b4cd",
+  "automatic_pass": true,
+  "visual_diagnostic_pass": true,
+  "result": {
+    "arm_interval_violation_max": 0.0,
+    "chebyshev_identity_max_absolute_error": 5.551115123125783e-17,
+    "midpoint_worst_loss_excess_over_best_fixed_arm": -2.4222364639718557e-06,
+    "nonidentity_transmittance_max_absolute_difference": 0.07168675040177502,
+    "uncertainty_half_range_max": 0.00955361103726897,
+    "constant_transmittance_max_absolute_error": 1.3877787807814457e-17,
+    "constant_density_max_absolute_error": 2.220446049250313e-16,
+    "row_partitions_byte_exact": true
+  },
+  "decision": "retain_minimax_envelope_open_photographic_challenger",
+  "branch_decision": "The pointwise transmittance interval midpoint is exactly bounded by the three frozen P5O arms, satisfies the Chebyshev-center identity to 5.56e-17 and has no greater global worst-arm loss than the best fixed hard arm. Constants, ranges and all row partitions pass, while the maximum nonidentity change is .07169 and the retained uncertainty half-range reaches .00955. Retain only as an explicit placement-uncertainty challenger; it does not identify a physical domain.",
+  "next_leaf": "U6.P5Q frozen photographic severe/style comparison of the minimax envelope",
+  "claim_ceiling": "Analytical bounded common-domain challenger for three unidentified measured-total placement hypotheses; not physical identification, calibrated stock response, photographic value or product promotion."
+}
