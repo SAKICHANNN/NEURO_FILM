@@ -72,3 +72,4 @@ ninja==1.13.0
 pytest==9.0.3
 pytest-cov==7.1.0
 jsonschema==4.26.0
+pypdf==6.7.4
