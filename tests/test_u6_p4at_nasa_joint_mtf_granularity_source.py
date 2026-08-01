@@ -45,6 +45,9 @@ def test_audit_binds_numeric_tables_and_nuisance_boundaries() -> None:
     second = audit_source(contract, ROOT)
     assert first == second
     assert first["source_pass"]
+    assert first["stable_evidence_id"] == (
+        "656897fd4816a46ee184736dd626aaf618e21d53acb8b2397a25d2db6c90d0c8"
+    )
     assert first["decision"] == "open_nuisance_aware_measured_compatibility"
     assert len(first["numeric_density_granularity_rows"]) == 14
     assert len(first["mtf_blocks"]) == 9

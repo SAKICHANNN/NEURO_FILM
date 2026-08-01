@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4at_nasa_joint_mtf_granularity_source_decision.v1",
+  "node": "U6.P4AT",
+  "decision": "open_nuisance_aware_measured_compatibility",
+  "contract_commit": "c2fd7aa13e68465e247c827b8fa58e2491644f9a",
+  "implementation_commit": "459d7cab0e745a0fd20f02e19a830c242132bd77",
+  "report_path": "outputs/eval/u6_p4at_nasa_joint_mtf_granularity_source_v1/report_run1.json",
+  "report_sha256": "53748b3eeb92fa3a9b103db50ea32f1bb2edba4278ae72e2a9b74f8aa2fd447b",
+  "stable_evidence_id": "656897fd4816a46ee184736dd626aaf618e21d53acb8b2397a25d2db6c90d0c8",
+  "two_reports_byte_exact": true,
+  "source_pass": true,
+  "facts": {
+    "numeric_density_granularity_rows": 14,
+    "mtf_blocks": 9,
+    "mtf_numeric_values": 243,
+    "printed_mtf_series": 27,
+    "prose_mtf_series": 26,
+    "series_count_contradiction_retained": true,
+    "same_film_packages": true,
+    "same_process_conditions": true,
+    "composite_xray_film_process_scanner_mtf": true,
+    "psd_curves_figure_only": true
+  },
+  "next_leaf": "U6.P4AU fits one film-type cloud scale only from Tables 4-6 multi-aperture RMS ratios, freezes it, then asks whether dividing Table 25 composite MTF by the predicted film MTF yields a more exposure-invariant nuisance response than no diffusion and wrong-film controls.",
+  "figure_digitization_allowed": false,
+  "parameter_fit_during_source_audit": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Measured-table source feasibility for same-package radiographic film under shared processing, with composite x-ray/scanner nuisance and no direct NPS samples."
+}

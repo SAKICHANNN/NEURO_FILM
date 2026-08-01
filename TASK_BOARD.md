@@ -746,8 +746,10 @@ mechanism, not a real-film Gaussian radius. The next data leaf requires
 rights-cleared MTF and NPS measured on the same material/process group; absent
 that evidence, continue a distinct mechanism without photographic rescue.
 
-U6.P4AT is the next source leaf. Re-audit the already acquired public NASA
-report without new payloads: bind Tables 4-6 multi-aperture RMS granularity to
-the machine-readable Table 25 MTF values, and verify the printed same-package,
-same-process and composite x-ray/film/scanner nuisance statements. PSD curves
-remain figure-only and may not be digitized; this leaf performs no fit.
+U6.P4AT passes the no-fit source audit. Two exact reports (`53748b3e...fd447b`)
+bind 14 multi-aperture granularity rows and 243 numerical MTF values; the source
+states same packages/process, composite x-ray/film/process/scanner MTF and
+figure-only PSD. The printed table has 27 series while prose says 26; retain the
+contradiction. U6.P4AU is next: fit cloud scale from RMS ratios only, freeze it,
+then test whether it explains film-type MTF differences after a shared nuisance
+factor better than no-diffusion and wrong-film controls.

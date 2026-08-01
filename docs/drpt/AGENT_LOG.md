@@ -9517,3 +9517,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   recorded rather than silently repaired.
 - Passing can open only a nuisance-aware measured compatibility test. It cannot
   identify an emulsion MTF, camera stock, scanner profile or product operator.
+
+## 2026-08-02 - U6.P4AT opens nuisance-aware measured compatibility
+
+- Two audits are byte-identical (`53748b3e...fd447b`, stable
+  `656897fd...90d0c8`). They bind 14 multi-aperture RMS granularity rows and
+  243 Table 25 MTF values without reading any plotted curve.
+- Same film packages and processing are explicit. Table 25 is equally explicit
+  that its MTF combines x-ray source, film, processing and scanner. PSD values
+  remain figure-only. The table prints 27 edge series despite prose saying 26;
+  this source contradiction is retained.
+- Open only P4AU: fit film scale from RMS ratios, then test held composite MTF
+  after a shared nuisance factor against no-diffusion and wrong-film controls.
