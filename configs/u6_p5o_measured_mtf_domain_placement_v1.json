@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u6_p5o_measured_mtf_domain_placement_contract.v1",
+  "experiment_id": "u6.p5o-measured-mtf-domain-placement-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5O",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p5n_decision": "configs/u6_p5n_positive_residual_compiler_decision_v1.json",
+    "p5n_decision_sha256": "3316edb50473933c34bf349d7e8ee3a45287b319a86655907029f65534a900fb",
+    "p5l_bundle": "outputs/u6_p5l_measured_mtf_lod_compiler/bundle_run1.json",
+    "p5l_bundle_sha256": "03c0d983cbebf83f4feb79ed56fb8a8c20cf2e21e7e5d4ab2bd5f7dbfc1100fd",
+    "sensitometry_contract": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "kodak_250d_technical_data": "data/physics/kodak_vision3_250d/technical_data.pdf",
+    "kodak_250d_technical_data_sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16"
+  },
+  "question": "Does the exact measured-total film MTF commute with the fixed nonlinear U2.2 sensitometry response closely enough to identify one exposure-, developed-density- or scan-transmittance-domain placement from current evidence?",
+  "source_boundary": {
+    "manufacturer_statement": "The MTF graph measures film visual sharpness while sensitometric curves separately determine density change for a change in log exposure.",
+    "measurement_protocol_identifies_exact_operator_domain": false,
+    "total_film_mtf_identifies_internal_causal_stage": false
+  },
+  "arms": {
+    "exposure_domain": "measured-total PSF on linear layer exposure, then fixed sensitometry, then density-to-transmittance",
+    "developed_density_domain": "fixed sensitometry, then measured-total PSF on developed optical density, then density-to-transmittance",
+    "scan_transmittance_domain": "fixed sensitometry, then density-to-transmittance, then measured-total PSF on transmittance, then transmittance-to-density"
+  },
+  "probes": {
+    "log_exposure": {
+      "toe": -2.5,
+      "mid": -0.5,
+      "shoulder": 1.5
+    },
+    "relative_modulation_amplitudes": [0.05, 0.5],
+    "shape": [97, 131],
+    "patterns": ["vertical_step", "checker_3x5", "seeded_random"],
+    "random_seed": 20260815,
+    "constant_values": [0.0, 0.18, 1.0, 8.0],
+    "row_partitions": [7, 17, 31]
+  },
+  "comparison": {
+    "common_report_domains": ["developed_optical_density", "scan_transmittance"],
+    "density_to_transmittance": "T=10^(-D)",
+    "pairwise_arms": [
+      ["exposure_domain", "developed_density_domain"],
+      ["exposure_domain", "scan_transmittance_domain"],
+      ["developed_density_domain", "scan_transmittance_domain"]
+    ],
+    "no_arm_is_selected_from_photographs_or_preference": true
+  },
+  "gates": {
+    "density_minimum": 0.0,
+    "transmittance_minimum_exclusive": 0.0,
+    "transmittance_maximum": 1.0,
+    "constant_arm_density_max_absolute_difference": 1e-12,
+    "constant_arm_transmittance_max_absolute_difference": 1e-12,
+    "affine_exposure_density_commutation_max_absolute_difference": 1e-12,
+    "material_nonlinear_density_max_absolute_difference_minimum": 0.002,
+    "material_nonlinear_transmittance_max_absolute_difference_minimum": 0.0000152587890625,
+    "row_partition_byte_exact": true,
+    "repeat_byte_exact": true,
+    "two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "material_noncommutation": "Mark exact measured-total placement unidentified and open one bounded placement-uncertainty envelope; do not promote any arm as physical truth.",
+    "immaterial_noncommutation": "Retain the developed-density arm only as the simplest film-inspired numerical realization, still without a physical or calibrated claim.",
+    "numerical_or_parent_failure": "Close measured-total placement and retain P5L as reference evidence only."
+  },
+  "forbidden": [
+    "fit or tune the sensitometry curve, MTF kernel, probe amplitudes or gates after viewing the result",
+    "infer forward scatter, adjacency, dye diffusion, exposure, process or scanner causality from total MTF",
+    "select an arm using photographic appearance, AO6 output or preference",
+    "compose the measured-total operator with the replaced generic film spatial stages",
+    "fold scanner MTF or creative bloom into the film MTF",
+    "claim calibrated stock, roll, process, scanner or product response"
+  ],
+  "claim_ceiling": "Synthetic nonlinear-domain sensitivity of one manufacturer total-film MTF realization under the uncalibrated U2.2 sensitometry primitive; not identified physical placement, stock calibration, photographic value or product promotion."
+}
