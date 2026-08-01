@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u6_p2z_emulating_emulsion_author_package_audit_contract.v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2Z",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p2y_measured_interimage_source_audit_decision_v1.json",
+    "decision_sha256": "dcdbdf2d5cfa9b60f595f2f44b10d0dcb7fa59dce3016641af852937bc257f8b",
+    "status": "fail-closed-no-reusable-row-level-data"
+  },
+  "question": "Does the latest primary-author Emulating Emulsion package expose an exact, rights-auditable implementation plus fitted parameters or complete paired patch rows sufficient for a clean-room reproduction of its explicit 30-parameter baseline?",
+  "claim_ceiling": "author-package reproducibility and data-feasibility audit; at most a one-roll paired-calibrated baseline candidate, never transferable stock truth, generic film physics, product calibration or promotion",
+  "primary_sources": [
+    {
+      "role": "author project page",
+      "url": "https://musicofmusix.github.io/siggraphposters25"
+    },
+    {
+      "role": "author-hosted paper",
+      "url": "https://musicofmusix.github.io/assets/misc/siggraph_abstract.pdf",
+      "doi": "10.1145/3721250.3743014",
+      "expected_pages": 2
+    },
+    {
+      "role": "author-hosted poster",
+      "url": "https://musicofmusix.github.io/assets/misc/siggraph_poster_srgb.pdf"
+    }
+  ],
+  "acquisition": {
+    "maximum_total_bytes": 25000000,
+    "store_under_ignored_source_recon_only": true,
+    "remote_requests_are_read_only": true,
+    "download_only_author_page_html_paper_poster_and_explicit_code_or_data_links": true,
+    "photographic_image_payload_download_allowed": false,
+    "repository_clone_allowed_only_after_explicit_author_link_and_license_are_observed": true,
+    "source_substitution_after_audit_begins": false
+  },
+  "frozen_reported_design_facts": {
+    "film_stock": "Fujifilm Velvia 100 colour-positive film",
+    "film_roll_count": 1,
+    "paired_capture_count": 33,
+    "chart_patch_count": 140,
+    "reported_patch_pair_count": 4620,
+    "reported_unique_correspondence_count": 3168,
+    "illuminant_count": 3,
+    "exposure_levels": 11,
+    "operator_family": "3x3 digital-to-film matrix, three four-parameter sigmoids in log exposure, 3x3 film-to-scan matrix",
+    "parameter_count": 30,
+    "reported_model_rmse": 0.0116,
+    "reported_lut_rmse": 0.0111
+  },
+  "audit_requirements": {
+    "author_page_paper_and_poster_hashes_required": true,
+    "explicit_author_link_to_source_code_required": true,
+    "exact_repository_revision_required": true,
+    "software_license_required": true,
+    "runnable_operator_implementation_required": true,
+    "exact_fitted_parameter_bundle_or_complete_paired_patch_rows_required": true,
+    "minimum_complete_paired_patch_rows_if_parameters_absent": 3000,
+    "data_or_parameter_rights_required_for_local_reproduction": true,
+    "capture_device_film_process_scan_and_color_domain_lineage_required": true,
+    "published_train_validation_or_fit_evaluation_roles_required": true,
+    "operator_fit_render_or_visual_review_allowed": false
+  },
+  "automatic_branch": {
+    "pass": "open one separately preregistered clean-room exact baseline reproduction with paired evidence and held-out controls",
+    "code_without_parameters_or_rows": "retain equation-family implementation evidence only and close reproduction",
+    "parameters_or_rows_without_rights_or_lineage": "retain bibliographic facts only and close reproduction",
+    "no_explicit_author_package": "classify as paper-only mechanism and return to a materially distinct identifying-data or physical mechanism leaf"
+  },
+  "forbidden_fallbacks": [
+    "reverse-engineer fitted parameters from figures, screenshots or sample images",
+    "download or align author sample photographs as unannounced paired training data",
+    "recreate missing patch rows from rendered examples",
+    "fit the equation family to the current 71 archive display-proxy pairs in this leaf",
+    "treat one roll, one process or one scanner as transferable stock response",
+    "call the 30-parameter colour equation a complete grain, halation, MTF or scanner-physics model",
+    "lower reproducibility, rights, lineage or data-completeness gates after inspection"
+  ]
+}
