@@ -174,9 +174,11 @@ def analyze_pair(
     if len(candidates) < int(contract["minimum_patches_per_scene"]):
         raise FlickrPairedTextureError("too few fully valid texture patches")
     scores = np.asarray([row[0] for row in candidates], dtype=np.float64)
-    cutoff = float(np.quantile(scores, float(contract["maximum_patch_gradient_quantile"])))
-    selected = [row for row in sorted(candidates) if row[0] <= cutoff]
-    selected = selected[: int(contract["maximum_patches_per_scene"])]
+    ordered = sorted(candidates)
+    quantile_count = int(np.ceil(len(ordered) * float(contract["maximum_patch_gradient_quantile"])))
+    selected_count = max(int(contract["minimum_patches_per_scene"]), quantile_count)
+    selected = ordered[: min(selected_count, int(contract["maximum_patches_per_scene"]))]
+    cutoff = float(selected[-1][0])
     if len(selected) < int(contract["minimum_patches_per_scene"]):
         raise FlickrPairedTextureError("too few low-gradient texture patches")
 
@@ -324,4 +326,3 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         "claim_ceiling": config["claim_ceiling"],
     }
     return {**stable, "stable_evidence_id": hashlib.sha256(canonical_bytes(stable)).hexdigest()}
-
