@@ -14,6 +14,18 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   than the dashed granularity curves. Open P2Q monotone explicit prior only;
   digital RGB-to-layer exposure and calibrated 250D claims remain forbidden.
 
+# 2026-08-01 - U6.P2Q manufacturer characteristic prior pass
+
+- Compiled the P2P observation with no fitted parameters: cumulative-max at
+  source knots, piecewise-linear interpolation and hard rejection outside
+  each observed exposure domain.
+- Two reports/bundles are exact (`2404de72...4cf8` / `087e6754...caaa`).
+  Maximum source correction is `.006742` density; monotonicity, bounds,
+  endpoints, replay, domain guards and partitions pass.
+- Shape-only gauge comparison differs from unchanged generic U2.2 by
+  `.07641-.08437` RMSE across all channels. Open P2R anchored-shape hypothesis;
+  no digital layer-exposure, calibrated-stock or product claim opens.
+
 # 2026-08-01 - U6.P4AK-P4AM source and transmittance closure
 
 - P4AK and P4AL retain two exact primary-source acquisitions as background,

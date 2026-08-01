@@ -268,6 +268,12 @@ the ready leaf: compile the observation into the simplest bounded monotone
 explicit prior and compare it with unchanged U2.2 curves. This does not make
 digital RGB an identified layer exposure or the trace a calibrated stock
 response.
+P2Q then compiles the exact trace by cumulative-max source-knot projection and
+piecewise-linear no-extrapolation. Two reports and bundles are identical;
+source error is at most `.006742` density and all numerical/replay/partition
+gates pass. Normalized shape differs from generic U2.2 by `.07641-.08437`
+RMSE. P2R may now test one preregistered shared-anchor gauge hypothesis before
+any photographic challenge; it remains film-inspired and uncalibrated.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p2q_kodak_250d_characteristic_prior_decision.v1",
+  "node": "U6.P2Q",
+  "status": "complete_research_prior_pass",
+  "contract": "configs/u6_p2q_kodak_250d_characteristic_prior_v1.json",
+  "reports": [
+    "outputs/u6_p2q_kodak_250d_characteristic_prior/report_run1.json",
+    "outputs/u6_p2q_kodak_250d_characteristic_prior/report_run2.json"
+  ],
+  "bundles": [
+    "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run2.json"
+  ],
+  "report_sha256": "2404de723311a21c4ce11458eb4dde12d0b03c1efa4fe70f15fca0e1c5474cf8",
+  "bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+  "stable_evidence_id": "dd73da13c457831887ff6a8d1b53cb03ebe6442d7ef88fea58e7d04a09c92d19",
+  "prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb",
+  "metrics": {
+    "source_knot_density_max_abs_error": {
+      "red": 0.0,
+      "green": 0.006741573033707704,
+      "blue": 0.0
+    },
+    "dense_monotonic_min_step": {
+      "red": 0.000038678458567392715,
+      "green": 0.0,
+      "blue": 0.00003428272300620705
+    },
+    "generic_u2_2_normalized_shape_rmse": {
+      "red": 0.0843708573768542,
+      "green": 0.07640885247716542,
+      "blue": 0.07778859837773291
+    }
+  },
+  "branch_decision": "Retain the exact research-only prior. Source fidelity, monotonicity, endpoints, bounds, serialization, domain rejection and all row partitions pass; all three normalized curve shapes differ materially from unchanged generic U2.2. This establishes a useful manufacturer-shape prior, not layer-exposure identification.",
+  "next_ready_leaf": "U6.P2R — compile a separately versioned anchored shape-gauge hypothesis that preserves the generic U2.2 encoder/anchor and can be challenged before any photographic promotion.",
+  "claim_ceiling": "Deterministic bounded monotone compilation of a first-party manufacturer graph observation in relative layer-log-exposure and Status-M density domains; no digital-to-film operator, calibrated stock response or product route."
+}
