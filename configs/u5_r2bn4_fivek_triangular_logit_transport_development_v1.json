@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn4-fivek-triangular-logit-transport-development-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN4",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "a37d0122eb477a7c6d2088955536ddecc29f117f",
+  "question": "Can a strictly cube-preserving monotone triangular logit transport capture source-dependent joint RGB retouching that the confirmed-but-visually-closed parallel projection curves miss?",
+  "parent": {
+    "decision": "configs/u5_r2bn3_projection_curve_visual_product_value_decision_v2.json",
+    "decision_sha256": "a5c8eb0cd818f7b77448b4578dd4b58101594af3bf8e90e98a7808a7eb48a806",
+    "required_status": "adaptive_visual_value_fail_retain_ao6_incumbent"
+  },
+  "data_protocol": {
+    "config": "configs/u5_r2bj0_fivek_adaptive_lut_basis_development_v1.json",
+    "config_sha256": "8708c29445c546728703b54cac5a01c282529feda229f3aa83d69bcde16725a1",
+    "purpose": "reuse only frozen AY0, AY3 and AY6 pairs, groups, source-only descriptors and fixed AO6 evaluator"
+  },
+  "development_populations": [
+    {"name": "ay0_camera_group_crossfit", "manifest": "outputs/u5_r2ay0_fivek_neutral_base_source_v1/run_a/manifest.json", "manifest_sha256": "f38a177ad6a0091a2e58367308d0a5fe3074aae39eede553aec0e32118dbac01", "rows": 64},
+    {"name": "ay3_seen_fresh", "manifest": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json", "manifest_sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b", "rows": 63},
+    {"name": "ay6_seen_confirmation", "manifest": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_c/manifest.json", "manifest_sha256": "a9fb11aab28db7f673e3686e911cd7d08c92fe8c85858aed2ed0a6f5f466cd22", "rows": 64}
+  ],
+  "operator": {
+    "family": "monotone_triangular_logit_transport",
+    "channel_order": ["red", "green", "blue"],
+    "parameter_order": ["red_log_scale", "red_shift", "green_log_scale_0", "green_log_scale_r", "green_shift_0", "green_shift_r", "blue_log_scale_0", "blue_log_scale_r", "blue_log_scale_g", "blue_log_scale_rg", "blue_shift_0", "blue_shift_r", "blue_shift_g", "blue_shift_rg"],
+    "parameter_count": 14,
+    "identity": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "endpoint_preservation": "exact per channel",
+    "conditioning_coordinates": "previous transformed channels centered at 0.5",
+    "conditional_basis": "green=[1,r]; blue=[1,r,g,r*g]",
+    "sample_stride": 8,
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24,
+    "hard_output_clipping_allowed": false,
+    "post_operator_pixel_scaling_allowed": false,
+    "spatial_or_semantic_features_allowed": false,
+    "learned_final_rgb_allowed": false
+  },
+  "basis_prediction": {
+    "basis": "training-only PCA of fourteen per-image explicit transport parameters",
+    "basis_rank": 8,
+    "descriptor": "unchanged AY0 source-only descriptor",
+    "predictor": "StandardScaler plus Ridge",
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "inner camera-group cross-validation on AY0 outer-development only"
+  },
+  "methods": ["identity", "global_triangular_transport", "adaptive_triangular_transport", "oracle_triangular_transport"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity_each_population": 0.2,
+    "minimum_adaptive_mean_improvement_over_global_each_population": 0.03,
+    "minimum_adaptive_win_fraction_over_global_each_population": 0.55,
+    "maximum_adaptive_p95_ratio_to_global_each_population": 1.0,
+    "maximum_adaptive_worst_ratio_to_global_each_population": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global_each_population": 0.8,
+    "minimum_adaptive_median_safe_dose_each_population": 0.5,
+    "minimum_adaptive_worst_safe_dose_each_population": 0.2,
+    "maximum_inverse_roundtrip_error": 0.0000001,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_operator_out_of_cube_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "related_work": [
+    "https://proceedings.neurips.cc/paper/8969-neural-spline-flows.pdf",
+    "https://proceedings.mlr.press/v84/blondel18a.html",
+    "https://epubs.siam.org/doi/10.1137/130929886"
+  ],
+  "branch_rules": {
+    "all_gates_pass": "freeze representation and run one unchanged disjoint confirmation before visual comparison",
+    "oracle_fails": "close triangular representation capacity without predictor rescue",
+    "predictor_or_tail_fails": "close without changing channel order, basis, parameter bounds, rank, descriptor, regularization or safety gates",
+    "safety_or_inverse_fails": "treat as representation or implementation failure before visual review"
+  },
+  "visual_review_allowed_only_after_confirmation": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only explicit triangular transport evidence on already-seen FiveK digital-retouch pairs; not flow generation, film, stock, calibration, preference or product promotion"
+}
