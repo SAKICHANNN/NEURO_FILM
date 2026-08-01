@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P3Q source-grounded base-return topology pass
+
+- Acquired and hash-bound the exact 6,609,435-byte NIST/Bureau of Standards
+  source. Pages 30-31 visually confirm support total-internal reflection,
+  critical-angle/thickness/index scaling, absorbing-backing control and the
+  thinner-film spread ordering; no modern stock parameters are supplied.
+- The frozen analytical ray-angle pushforward passes two exact audits
+  (`db174e3e...034e`). It produces a 214.66um annular inner mode, differs from
+  an equal-second-moment Gaussian by `.58961` L1, and preserves all thickness,
+  index, attenuation, energy, constant and domain invariants.
+- Open only P3R fixed-energy photographic topology comparison. The geometry
+  remains a generic hypothesis, not a measured PSF, stock calibration or
+  runtime candidate.
+
 # 2026-08-01 - U6.P2U shared characteristic template closed
 
 - Two formal reports and bundles are byte-identical (`f646fd52...145b` /

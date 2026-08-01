@@ -289,7 +289,13 @@ improves median RMSE by 37.32%, but its P95 RMSE is 12.62% worse than the
 canonical straight gauge. Close the template without weighting or threshold
 rescue; retain only the canonical gauge and raw source observations. P3Q next
 tests a distinct, energy-bounded film-base return geometry after a primary-
-source mechanism gate; current-stock calibration remains closed.
+source mechanism gate. Exact NIST pages pass that gate, and the resulting
+no-fit analytical kernel passes all synthetic topology checks: it has a
+source-required nonzero critical radius, differs from an equal-second-moment
+Gaussian by `.58961` L1, scales with support thickness and responds in the
+correct direction to refractive index and attenuation. P3R may compare this
+fixed topology on photographs at a separately frozen diagnostic energy;
+current-stock material calibration remains closed.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
