@@ -1,0 +1,150 @@
+{
+  "adaptive_round_wins": 2,
+  "adaptive_source_majorities": 8,
+  "additional_rounds_allowed": false,
+  "adjudicator_software_commit": "4f240dba3f5c7d52f20f7f16f54aa8aa9e2cd7f8",
+  "aggregate_counts": {
+    "adaptive_triangular_transport_then_fixed_ao6": 23,
+    "global_triangular_transport_then_fixed_ao6": 13
+  },
+  "claim_ceiling": "independent-population full-decoded-resolution autonomous visual product-value evidence for a confirmed explicit digital-retouch operator under fixed AO6; not population preference, film, stock, calibration, universal safety or product promotion",
+  "experiment_id": "u5.r2bn6-triangular-logit-transport-visual-product-value-v1",
+  "gates": {
+    "automatic_gate": {
+      "pass": true,
+      "threshold": true,
+      "value": true
+    },
+    "maximum_confirmed_severe_artifact_count": {
+      "pass": true,
+      "threshold": 0,
+      "value": 0
+    },
+    "minimum_adaptive_aggregate_choices": {
+      "pass": true,
+      "threshold": 22,
+      "value": 23
+    },
+    "minimum_adaptive_round_wins": {
+      "pass": true,
+      "threshold": 2,
+      "value": 2
+    },
+    "minimum_adaptive_source_majorities": {
+      "pass": true,
+      "threshold": 7,
+      "value": 8
+    },
+    "repeat_exact": {
+      "pass": true,
+      "threshold": true,
+      "value": true
+    }
+  },
+  "inputs": {
+    "blind_mapping_sha256": [
+      "a7ae7e7fb2a00dc5f8c9b71ecec2ae687b1304ebccf0f5a5382805596227e22a",
+      "f57cbe5e54c3ae114aeb871db550d064f1f664f5d23cbeb1d71f5e2fc85a6a34",
+      "1859f7342b602d87d6c792f78dd9d4fa5f2304f792316f2756c1d681d0f03bff"
+    ],
+    "config_sha256": "429842ad76b26f2ec8d865e6008ca0057b701f6d46fefe92c64624440dcd8830",
+    "full_resolution_review_sha256": "6eab018d06dab9766de977078ab947fcd56968d2d93a84dc703d40c785bfc16b",
+    "mapping_receipt_sha256": "b3bb2e18dd315ef641dec2535b4969564c9798020c1676656d8b8e4a1bc4855c",
+    "observations_sha256": "f7430ff0cf64e64142676dc6c94315277803f7458ce7c7c8c084ddbc40688df8",
+    "render_report_sha256": "a6884435dbf6b93cc4e8906a0fb41ac13b31416130e857a37851b9dd34d4169e",
+    "render_stable_evidence_id": "3cf641a9ed511506bdd48d69a636a2a46e1ffbc02e31e34cacd962ae0eb9096b"
+  },
+  "next_branch": "compare_adaptive_triangular_transport_against_ao6_incumbent",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN6",
+  "operator_retuning_allowed": false,
+  "pass": true,
+  "per_source_adaptive_choices": {
+    "apple_iphone_12_pro": 2,
+    "autel_robotics_xb015": 0,
+    "blackmagic_pocket_cinema_camera_4k": 2,
+    "epson_r_d1x": 1,
+    "hasselblad_lunar": 3,
+    "huawei_eml_l29": 3,
+    "leaf_aptus_22": 3,
+    "leica_c_typ_112": 2,
+    "lg_lg_h850": 1,
+    "motorola_moto_g_7_play": 0,
+    "olympus_e_450": 3,
+    "xiaomi_m2010j19cg": 3
+  },
+  "production_default_changed": false,
+  "rounds": [
+    {
+      "counts": {
+        "adaptive_triangular_transport_then_fixed_ao6": 6,
+        "global_triangular_transport_then_fixed_ao6": 6
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "global_triangular_transport_then_fixed_ao6",
+        "autel_robotics_xb015": "global_triangular_transport_then_fixed_ao6",
+        "blackmagic_pocket_cinema_camera_4k": "global_triangular_transport_then_fixed_ao6",
+        "epson_r_d1x": "global_triangular_transport_then_fixed_ao6",
+        "hasselblad_lunar": "adaptive_triangular_transport_then_fixed_ao6",
+        "huawei_eml_l29": "adaptive_triangular_transport_then_fixed_ao6",
+        "leaf_aptus_22": "adaptive_triangular_transport_then_fixed_ao6",
+        "leica_c_typ_112": "adaptive_triangular_transport_then_fixed_ao6",
+        "lg_lg_h850": "global_triangular_transport_then_fixed_ao6",
+        "motorola_moto_g_7_play": "global_triangular_transport_then_fixed_ao6",
+        "olympus_e_450": "adaptive_triangular_transport_then_fixed_ao6",
+        "xiaomi_m2010j19cg": "adaptive_triangular_transport_then_fixed_ao6"
+      },
+      "round": 1,
+      "winner": "tie"
+    },
+    {
+      "counts": {
+        "adaptive_triangular_transport_then_fixed_ao6": 9,
+        "global_triangular_transport_then_fixed_ao6": 3
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "adaptive_triangular_transport_then_fixed_ao6",
+        "autel_robotics_xb015": "global_triangular_transport_then_fixed_ao6",
+        "blackmagic_pocket_cinema_camera_4k": "adaptive_triangular_transport_then_fixed_ao6",
+        "epson_r_d1x": "adaptive_triangular_transport_then_fixed_ao6",
+        "hasselblad_lunar": "adaptive_triangular_transport_then_fixed_ao6",
+        "huawei_eml_l29": "adaptive_triangular_transport_then_fixed_ao6",
+        "leaf_aptus_22": "adaptive_triangular_transport_then_fixed_ao6",
+        "leica_c_typ_112": "global_triangular_transport_then_fixed_ao6",
+        "lg_lg_h850": "adaptive_triangular_transport_then_fixed_ao6",
+        "motorola_moto_g_7_play": "global_triangular_transport_then_fixed_ao6",
+        "olympus_e_450": "adaptive_triangular_transport_then_fixed_ao6",
+        "xiaomi_m2010j19cg": "adaptive_triangular_transport_then_fixed_ao6"
+      },
+      "round": 2,
+      "winner": "adaptive_triangular_transport_then_fixed_ao6"
+    },
+    {
+      "counts": {
+        "adaptive_triangular_transport_then_fixed_ao6": 8,
+        "global_triangular_transport_then_fixed_ao6": 4
+      },
+      "resolved_choices": {
+        "apple_iphone_12_pro": "adaptive_triangular_transport_then_fixed_ao6",
+        "autel_robotics_xb015": "global_triangular_transport_then_fixed_ao6",
+        "blackmagic_pocket_cinema_camera_4k": "adaptive_triangular_transport_then_fixed_ao6",
+        "epson_r_d1x": "global_triangular_transport_then_fixed_ao6",
+        "hasselblad_lunar": "adaptive_triangular_transport_then_fixed_ao6",
+        "huawei_eml_l29": "adaptive_triangular_transport_then_fixed_ao6",
+        "leaf_aptus_22": "adaptive_triangular_transport_then_fixed_ao6",
+        "leica_c_typ_112": "adaptive_triangular_transport_then_fixed_ao6",
+        "lg_lg_h850": "global_triangular_transport_then_fixed_ao6",
+        "motorola_moto_g_7_play": "global_triangular_transport_then_fixed_ao6",
+        "olympus_e_450": "adaptive_triangular_transport_then_fixed_ao6",
+        "xiaomi_m2010j19cg": "adaptive_triangular_transport_then_fixed_ao6"
+      },
+      "round": 3,
+      "winner": "adaptive_triangular_transport_then_fixed_ao6"
+    }
+  ],
+  "schema": "neuro_film.u5_r2bn6_triangular_logit_transport_visual_decision.v1",
+  "schema_version": 1,
+  "selector_or_router_training_allowed": false,
+  "stable_evidence_id": "e960988719c50855ab1858c58e49ec8d55be7195f49158342cf08317d68fbd01",
+  "status": "adaptive_visual_value_pass_research_challenger",
+  "thresholds_changed": false
+}

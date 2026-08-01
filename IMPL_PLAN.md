@@ -2424,3 +2424,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > tails, retains .9467x style and has zero structural failures. One unchanged
 > full-resolution adaptive-versus-global visual comparison is now the ready leaf.
 >
+> `U5.R2BN6` passes that full-resolution comparison twice exactly at
+> `a6884435...169e`. All automatic and severe gates pass; mapping-sealed
+> autonomous review gives adaptive `6/9/8` choices by round, `23/36`
+> aggregate and eight source majorities. Retain a research Look Approximation
+> challenger only. Its next legal test is an unchanged direct comparison with
+> the AO6 incumbent; no retuning, router, stock claim or integration opens.
+>

@@ -8739,3 +8739,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   inverse, cube, boundary and Jacobian gates pass.
 - Freeze BN4/BN5 and open only one full-resolution severe-first visual value
   test of adaptive versus global under the unchanged AO6 renderer.
+
+## 2026-08-01 - U5.R2BN6 passes autonomous visual product-value gates
+
+- Two full-decoded-resolution runs and all 49 artifacts per run are exact at
+  `a6884435...169e`; all automatic structure, boundary, style-separation and
+  repeat gates pass.
+- Blind choices were committed before mapping reveal. Adaptive decodes to
+  `6/9/8` by round, `23/36` aggregate and eight source majorities, passing the
+  frozen `2/22/7` gates. Risk-based full-resolution review confirms zero
+  severe artifacts, including no ID-11-like red speckle or posterization.
+- Retain only a research Look Approximation challenger. The next ready leaf is
+  an unchanged direct comparison with AO6; product, stock and calibration
+  claims remain closed.
