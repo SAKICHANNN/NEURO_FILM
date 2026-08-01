@@ -1,0 +1,113 @@
+{
+  "schema": "neuro_film.u6_p4ap_standard_ar_grain_shape_contract.v1",
+  "experiment_id": "u6.p4ap-standard-ar-grain-shape-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AP",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "analysis_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "p4r_report": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_nps_v1/report.json",
+      "sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889",
+      "required_decision": "retain_generic_scanner_convolved_signature_only"
+    },
+    "p4t_contract": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+      "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+    },
+    "p4t_decision": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_decision_v1.json",
+      "sha256": "65433684b970d15c36d5e4a668131ba8ee21e68ba8ea883b11fb5f373f374339",
+      "required_status": "automatic_and_synthetic_severe_pass"
+    },
+    "p4t_report": {
+      "path": "outputs/experiments/u6_p4t_anisotropic_grain_physical_v1/report.json",
+      "sha256": "494b26d8bf7e79c0289020e75331ac8539e453deb1f35cef52038efa1cb1cd7d"
+    }
+  },
+  "question": "Does a standards-derived bounded causal autoregressive Gaussian source, fit label-blind on the frozen P4R development scans, improve both NPS and ACF on sealed confirmation scans over the retained single anisotropic Gaussian-kernel P4T baseline?",
+  "research_basis": {
+    "current_primary_standard": "https://www.itu.int/rec/T-REC-H.Sup21-202501-I",
+    "current_primary_paper": "https://arxiv.org/abs/2506.14350",
+    "reference_implementation": "https://github.com/InterDigitalInc/VersatileFilmGrain",
+    "scope": "Clean-room spatial-source baseline using the current standard's explicit causal AR family. This is not a wire-compatible AFGS1 implementation and does not copy reference code."
+  },
+  "split": {
+    "development_source_ids": [
+      "KodakEktar100GrainScan01",
+      "KodakEktar100GrainScan02",
+      "KodakUltramax400GrainScan01",
+      "KodakUltramax400GrainScan02"
+    ],
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "stock_labels_available_to_fit": false,
+    "confirmation_pixels_read_after_candidate_freeze": true,
+    "normalization_and_fit": "Each fixed development crop/channel is quadratically detrended in scanner-code divided by its crop mean, standardized to unit variance, and contributes equal normal-equation weight."
+  },
+  "model": {
+    "family": "shared-causal-2d-ar-gaussian-source",
+    "candidate_lags": [1, 2, 3],
+    "neighbor_pattern": "For lag L: all offsets (dy,dx) with dy=-L..-1 and dx=-L..L, plus current-row offsets (0,-L)..(0,-1); count=2*L*(L+1).",
+    "ridge_relative_trace": 1e-06,
+    "coefficient_step": 0.001953125,
+    "minimum_coefficient": -0.25,
+    "maximum_coefficient": 0.248046875,
+    "coefficient_out_of_range_action": "reject_candidate_lag_without_clipping",
+    "field_shape": [768, 768],
+    "central_analysis_crop": [128, 128, 512, 512],
+    "development_seeds": [260901, 260903, 260909, 260917],
+    "confirmation_seeds": [260921, 260927, 260929, 260933],
+    "selection": "Minimize the maximum of development median NPS-error ratio and median ACF-error ratio versus P4T, then their sum, then lag.",
+    "impulse_shape": [513, 513],
+    "impulse_tail_width": 16,
+    "per_channel_coefficients_allowed": false,
+    "stock_specific_fit_allowed": false,
+    "confirmation_refit_allowed": false,
+    "per_image_normalization_allowed": false,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_impulse_tail_energy_fraction": 1e-08,
+    "maximum_impulse_peak_absolute": 10.0,
+    "minimum_confirmation_nps_median_improvement_over_p4t": 0.1,
+    "maximum_confirmation_nps_worst_error_ratio_to_p4t": 1.0,
+    "minimum_confirmation_acf_median_improvement_over_p4t": 0.1,
+    "maximum_confirmation_acf_worst_error_ratio_to_p4t": 1.0,
+    "minimum_candidate_vs_reversed_frequency_control_improvement": 0.25,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_hashes_unchanged": true,
+    "stock_labels_used_for_fit": false,
+    "confirmation_reads_before_candidate_freeze": 0
+  },
+  "branch_rule": {
+    "pass": "Retain one generic standards-derived AR spatial-source candidate and open a separately frozen P4AQ positive density/transmittance integration plus fit-forbidden P4Z external confirmation.",
+    "fail": "Close this bounded AR representation without coefficient, lag, split, metric or threshold rescue; retain P4AF as the full-resolution synthetic reference and P4T only as prior generic scanner-convolved development evidence."
+  },
+  "forbidden_fallbacks": [
+    "read stock labels during fitting",
+    "read confirmation pixels before all coefficients, lag selection and normalization are frozen",
+    "fit per-channel, per-stock, per-scan or per-image coefficients",
+    "clip fitted coefficients into the allowed range",
+    "retune lag, ridge, coefficient step, split, seeds, metrics or thresholds after confirmation",
+    "call scanner-code AR parameters physical emulsion grain, stock response or scanner-independent",
+    "photographic rendering or product integration in this leaf"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4ap_standard_ar_grain_shape_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p4ap_standard_ar_grain_shape_v1/report_b.json"
+  },
+  "claim_ceiling": "Development/confirmation evidence for one generic standards-derived scanner-convolved AR spatial-source baseline; not AFGS1 wire conformance, physical emulsion geometry, stock/process/scanner calibration, photographic quality or product promotion."
+}
