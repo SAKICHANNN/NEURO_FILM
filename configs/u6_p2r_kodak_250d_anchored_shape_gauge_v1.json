@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u6_p2r_kodak_250d_anchored_shape_gauge_contract.v1",
+  "experiment_id": "u6.p2r-kodak-250d-anchored-shape-gauge-v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2R",
+  "date_frozen": "2026-08-01",
+  "question": "Can the retained manufacturer curve shapes be transformed by one explicit no-fit gauge into a strictly invertible, shared-anchor layer-exposure hypothesis while preserving the unchanged generic U2.2 encoder and endpoint ranges?",
+  "parents": {
+    "p2q_decision": {
+      "path": "configs/u6_p2q_kodak_250d_characteristic_prior_decision_v1.json",
+      "sha256": "80aef83b5868ed4dd86e9ea1c91e2a1ae9a6e5355ac450448c9c556f26a9da88",
+      "required_status": "complete_research_prior_pass",
+      "required_prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    },
+    "p2q_contract": {
+      "path": "configs/u6_p2q_kodak_250d_characteristic_prior_v1.json",
+      "sha256": "3edbc61b132385500f7bb4acb93f58bb38b666e341f503e193dec10c8a6661f3"
+    },
+    "generic_u2_2": {
+      "path": "configs/u2_2a_sensitometry_primitive_v1.json",
+      "sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+    }
+  },
+  "gauge": {
+    "channel_order": ["red", "green", "blue"],
+    "source_anchor_density_rule": "match_generic_anchor_fraction_between_each_channels_generic_endpoint_densities",
+    "source_anchor_exposure_rule": "left_continuous_piecewise_linear_inverse",
+    "x_mapping": "piecewise_affine_source_min_anchor_max_to_generic_min_zero_max",
+    "y_mapping": "piecewise_affine_source_min_anchor_max_to_generic_min_one_max",
+    "insert_exact_shared_anchor": [0.0, 1.0],
+    "strictness_repair": "nextafter_up_only_for_equal_projected_density_knots",
+    "spline": "existing_rational_quadratic_from_knots",
+    "encoder": "unchanged_generic_u2_2_log_exposure_encoder",
+    "input_space": "relative_layer_exposure_rgb_order",
+    "output_space": "status_m_layer_density",
+    "parameter_fit": false
+  },
+  "evaluation": {
+    "linear_layer_exposure_max": 16.0,
+    "samples": 16387,
+    "seed": 2026080102,
+    "shape_samples": 4097,
+    "partition_rows": [1, 7, 31, 127]
+  },
+  "gates": {
+    "source_normalized_shape_rmse_each_channel_max": 0.01,
+    "source_anchor_mapping_error_max": 1e-12,
+    "strictness_repair_max_density": 1e-12,
+    "linear_roundtrip_max_abs": 1e-10,
+    "anchor_density_error_max": 1e-12,
+    "jacobian_determinant_min_exclusive": 0.0,
+    "curve_derivative_min_exclusive": 0.0,
+    "partition_max_abs_error": 0.0,
+    "serialization_replay_max_abs_error": 0.0,
+    "generic_density_difference_max_each_channel_min": 0.05,
+    "generic_density_difference_median_all_samples_min": 0.02,
+    "finite_and_within_generic_endpoint_density_bounds": true,
+    "two_byte_identical_audits": true
+  },
+  "allowed_after_pass": [
+    "retain one versioned hypothesis-only anchored manufacturer-shape operator",
+    "open U6.P2S photographic severe/style challenger only with explicit ordinary-RGB-as-layer-exposure-proxy labeling and unchanged AO6/generic controls"
+  ],
+  "forbidden": [
+    "call the gauge transform measured exposure calibration or Kodak speed alignment",
+    "claim ordinary RGB identifies film-layer exposure, spectral sensitivity or stock response",
+    "alter the generic encoder, shared anchor, endpoint density ranges or source curves after seeing results",
+    "fit photographic pixels, AO6 outputs, preference targets, strength or gamut parameters",
+    "change the current production sensitometry or renderer default"
+  ],
+  "branch_rule": {
+    "pass": "Retain only as a versioned manufacturer-shaped layer-exposure hypothesis and preregister a severe-first photographic challenger.",
+    "fail": "Close the gauge adapter without alternate anchors, splines, repairs or parameter search; retain P2Q source-domain prior only."
+  },
+  "claim_ceiling": "No-fit anchored manufacturer-shape hypothesis over explicit relative layer exposure; not digital-to-film identification, calibrated Kodak 250D response, spectral model or product profile."
+}
