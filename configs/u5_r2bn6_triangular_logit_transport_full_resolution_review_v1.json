@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn6-triangular-logit-transport-visual-product-value-v1",
+  "status": "full_resolution_severe_review_complete",
+  "review_date": "2026-08-01",
+  "observer": "autonomous_codex_visual_review",
+  "render_report_sha256": "a6884435dbf6b93cc4e8906a0fb41ac13b31416130e857a37851b9dd34d4169e",
+  "confirmed_severe_count": 0,
+  "reviewed_scope": {
+    "blind_sheet_scope": "all 36 choices across nine exact full-decoded-source-render sheets",
+    "full_resolution_risk_rows": [
+      "autel_robotics_xb015",
+      "leica_c_typ_112",
+      "olympus_e_450",
+      "huawei_eml_l29"
+    ],
+    "arms_per_risk_row": 2,
+    "risk_coverage": [
+      "high-key snow and dense conifer texture",
+      "smooth water gradients and repetitive bands",
+      "deep foliage shadows and high-contrast edges",
+      "text, tabletop texture and high-ISO-like source noise"
+    ]
+  },
+  "reviewed_outputs": [
+    {"source_id": "autel_robotics_xb015", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "490eaf95000fd1b484db072ade2788720bfe0b939bd58cdbb3d5481b177ff382"},
+    {"source_id": "autel_robotics_xb015", "arm": "global_triangular_transport_then_fixed_ao6", "sha256": "87952be649c975abb982e5af7d7698c48c29adaa6022ffe34046f70525b44766"},
+    {"source_id": "leica_c_typ_112", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "40bde03074752bb81f7eb60e70c980e736b878a5896ccee635ed56d7f73713ab"},
+    {"source_id": "leica_c_typ_112", "arm": "global_triangular_transport_then_fixed_ao6", "sha256": "20e31b612092fa2ea26cdb3e15abb56a83136a3b557f08b5e305caa6a11b95b2"},
+    {"source_id": "olympus_e_450", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "32bb67b68e5a9c9c60f10f172d13758af6b7a6c1f592c28c1105a7d4353ec806"},
+    {"source_id": "olympus_e_450", "arm": "global_triangular_transport_then_fixed_ao6", "sha256": "7fea87c747038f8261653cd4d179719369a6d60b7d1a0ec069eec46c64d44813"},
+    {"source_id": "huawei_eml_l29", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "8bfa80c8175e0fc83c2bcebfbaa1c47a424b7d11506b7ff2707e9922f9ce0d0f"},
+    {"source_id": "huawei_eml_l29", "arm": "global_triangular_transport_then_fixed_ao6", "sha256": "ecae3b78aa36e04e6472db451a5642d84516425622a8fd68a20221074594a303"}
+  ],
+  "findings": [
+    "No candidate-generated geometry failure, seam, colour block, red-speckle field, posterization or large clipping failure was confirmed.",
+    "The Leica water bands are already visible in the source and remain spatially continuous in both arms; the adaptive arm changes colour and contrast without introducing a new structural banding failure.",
+    "The Huawei tabletop noise is present in the source and amplified similarly by both rendered arms; the adaptive arm does not create the red salt-like speckle or posterization seen in the frozen ID-11 negative regression.",
+    "The Olympus deep shadows remain structured rather than blotched or repeated, and the Autel snow and conifer edges retain detail without coloured edge breakup or highlight posterization."
+  ],
+  "claim_ceiling": "risk-based autonomous full-resolution severe-artifact review on the frozen BN6 population; not universal safety, population preference, film truth or product promotion"
+}
