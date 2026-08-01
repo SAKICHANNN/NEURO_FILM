@@ -643,3 +643,8 @@ over global; 15.01%/18.31% over shuffled) but averages target style to
 53.14%/57.91% and wins only 45.19% versus global strength selection. BQ8 keeps
 one real BQ6 LUT intact and learns hard Top-1 source/case compatibility; no
 dense blending or BQ7 rescue opens.
+
+U5.R2BQ8 keeps strong style (121.08%/125.47%) and beats random/shuffled, but
+regresses 27.14%/21.68% versus global with poor tails. Close direct hard Top-1.
+BQ9 holds its selected case identities fixed and measures only a
+style-constrained global-to-case path Oracle before any strength learner.

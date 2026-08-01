@@ -1,0 +1,39 @@
+{
+  "schema": "neuro-film.u5-r2bq8-fivek-hard-lut-compatibility-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ8",
+  "decision": "close_direct_hard_top1_open_selected_path_oracle",
+  "implementation_commit": "e25c4783baefecd23dfe530bf2ef7de70a337597",
+  "reports": {
+    "run_a": "outputs/u5_r2bq8_fivek_hard_lut_compatibility_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq8_fivek_hard_lut_compatibility_v1/run_b/report.json",
+    "sha256": "59d11fc2450724bda66c531a819acb464e4d3c64a5b571113e90b780cf9b4d87",
+    "byte_identical": true,
+    "stable_evidence_id": "7148fc2a732d8ca12ef9cf15f9a567d32dbf6ddd4ecae3853963d8bb0650e06b",
+    "automatic_pass": false,
+    "confirmation_loaded": false,
+    "visual_review_performed": false
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global": -0.2713950841032425,
+    "win_fraction_over_global": 0.26666666666666666,
+    "median_target_style_retention": 1.210764105147003,
+    "mean_improvement_over_random_case": 0.06142427626221324,
+    "mean_improvement_over_shuffled_ranker": 0.05234396654898695,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "filtered": {
+    "mean_improvement_over_global": -0.21684148075863988,
+    "win_fraction_over_global": 0.32592592592592595,
+    "median_target_style_retention": 1.2546696468651946,
+    "mean_improvement_over_random_case": 0.12395050135437156,
+    "mean_improvement_over_shuffled_ranker": 0.12584958002584024,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "diagnosis": "The ranker has non-random compatibility signal and preserves strong style, but its hard case choice is too aggressive and inaccurate to beat global or strength controls. Model-capacity rescue is not justified until a fixed selected-direction strength Oracle proves value.",
+  "next_leaf": "hold BQ8 selected case identities fixed and compute an evaluator-only style-constrained Oracle over the convex global-to-selected LUT path; train no router or strength predictor",
+  "hard_ranker_rescue_allowed": false,
+  "selected_path_oracle_allowed": true,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative development evidence for one source-only hard Top-1 LUT ranker on FiveK controls; no confirmation, film, preference or product claim"
+}

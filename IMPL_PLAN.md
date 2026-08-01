@@ -2559,3 +2559,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > predictor unchanged. BQ8 must preserve a real case LUT and learn only hard
 > Top-1 source/case compatibility with global OOD fallback.
 >
+> BQ8 preserves 121.08%/125.47% target style but regresses 27.14%/21.68% versus
+> global. Before changing routing capacity, BQ9 freezes the selected identities
+> and tests an evaluator-only global-to-selected strength path with a 70% style
+> floor. Confirmation remains unread.
+>

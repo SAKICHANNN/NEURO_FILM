@@ -9016,3 +9016,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   45.19% for both variants. Automatic failure forbids visual review.
 - Close rank/alpha/descriptor/OOD rescue. BQ8 keeps one fitted LUT intact and
   learns hard Top-1 compatibility with global fallback. Claims stay closed.
+
+## 2026-08-01 - U5.R2BQ8 closes direct hard Top-1 routing
+
+- Repeat-exact hard routing retains 121.08%/125.47% target style and beats
+  random/shuffled controls, but is 27.14%/21.68% worse than global.
+- Close larger-ranker or threshold rescue. BQ9 keeps selected identities fixed
+  and computes a style-constrained global-to-case path Oracle to distinguish
+  wrong direction from wrong magnitude. Confirmation and product stay closed.
