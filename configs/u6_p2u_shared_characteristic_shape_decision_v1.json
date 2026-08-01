@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p2u_shared_characteristic_shape_decision.v1",
+  "experiment_id": "U6.P2U",
+  "status": "complete_closed",
+  "contract": "configs/u6_p2u_shared_characteristic_shape_v1.json",
+  "contract_sha256": "389f84105957ae3ef47861e86877db251cab73923e96927c2d472ee9dfdf72ef",
+  "software_commit": "1de5961938cda464cb0e0813a45af3f52efe2621",
+  "formal_evidence": {
+    "report_a": "outputs/u6_p2u_shared_characteristic_shape/formal_a/report.json",
+    "report_b": "outputs/u6_p2u_shared_characteristic_shape/formal_b/report.json",
+    "bundle_a": "outputs/u6_p2u_shared_characteristic_shape/formal_a/bundle.json",
+    "bundle_b": "outputs/u6_p2u_shared_characteristic_shape/formal_b/bundle.json",
+    "report_sha256": "f646fd527827d0b21bccc574a0e59296c5fc787fb6ae4039c8c71b23a7de145b",
+    "bundle_sha256": "8e71048eedc7f954e457aad46cefd0260bb56b5fce7dbfa89e7f8a00e60f8669",
+    "stable_evidence_id": "336187272938b6841a4193f9963ccbd2751087abff6c5484102ff2f39963b187",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "shared_template_pass": false,
+    "candidate_win_count": 8,
+    "row_count": 9,
+    "wins_by_channel": {
+      "blue": 2,
+      "green": 3,
+      "red": 3
+    },
+    "candidate_median_rmse": 0.006810368692160442,
+    "baseline_median_rmse": 0.010865650921004668,
+    "median_rmse_improvement_fraction": 0.37322036740614006,
+    "candidate_p95_rmse": 0.02152117059077067,
+    "baseline_p95_rmse": 0.019109027362235555,
+    "p95_rmse_improvement_fraction": -0.12623056018550383,
+    "maximum_loso_rmse": 0.02177845958643206,
+    "maximum_final_uncertainty_width": 0.04603049421737787,
+    "failed_gates": [
+      "p95_rmse_improvement"
+    ]
+  },
+  "decision": "close_empirical_shared_template_and_retain_only_canonical_gauge_plus_raw_source_observations",
+  "next_ready_leaf": "U6.P3Q audit a primary-source base-return halation mechanism and, only if the source gate passes, preregister an energy-bounded analytical geometry-kernel synthetic challenger distinct from the closed Gaussian family.",
+  "forbidden_followups": [
+    "Do not weaken the P95 gate, retune the grid, weight channels or rescue the template after formal execution.",
+    "Do not reopen P2R, infer a layer-exposure gauge or apply the failed template to photographs.",
+    "Do not call the retained raw traces a stock response, calibration or product profile."
+  ],
+  "claim_ceiling": "Negative leave-one-stock-out evidence for one gauge-free shared VISION3 source-document shape template; the canonical gauge and raw source observations remain research priors only."
+}

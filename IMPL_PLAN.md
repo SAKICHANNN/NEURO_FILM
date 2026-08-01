@@ -284,9 +284,12 @@ P2T closes the stock-shape bank. Two reports and all three overlays are exact;
 source, axis, ink, lineage, monotonicity and uncertainty gates pass. Only the
 50D-versus-250D blue layer exceeds the frozen `.02` normalized-shape gate, so
 no pair has the required two material layers and the stock graph has zero
-edges. P2U may compile one gauge-free shared template with a leave-one-stock-
-out uncertainty envelope; P2R, stock-specific mapping and photographs remain
-closed.
+edges. P2U's frozen shared template wins 8/9 leave-one-stock-out rows and
+improves median RMSE by 37.32%, but its P95 RMSE is 12.62% worse than the
+canonical straight gauge. Close the template without weighting or threshold
+rescue; retain only the canonical gauge and raw source observations. P3Q next
+tests a distinct, energy-bounded film-base return geometry after a primary-
+source mechanism gate; current-stock calibration remains closed.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

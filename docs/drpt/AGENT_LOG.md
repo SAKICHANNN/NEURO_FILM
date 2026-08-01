@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P2U shared characteristic template closed
+
+- Two formal reports and bundles are byte-identical (`f646fd52...145b` /
+  `8e71048e...8669`). The shared template wins 8/9 LOSO rows, reaches at
+  least two wins in every channel and improves median RMSE 37.32%.
+- The frozen tail gate fails: P95 RMSE is `.02152` versus `.01911` for the
+  canonical straight gauge, a 12.62% regression driven by held-out 50D blue.
+- Close without weighting, grid or threshold rescue. P3Q moves to a distinct
+  primary-source-gated, energy-bounded base-return halation geometry; no
+  current-stock physical calibration or product mapping opens.
+
 # 2026-08-01 - U6.P2T VISION3 characteristic diversity closed
 
 - Froze first-party 50D/250D/500T graph identities, axes and solid B/G/R
