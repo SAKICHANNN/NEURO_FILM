@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import http.client
 import json
 import random
 import urllib.error
@@ -11,7 +12,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Mapping
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 from lxml import html
 
@@ -144,7 +145,12 @@ def _head(url: str, timeout: int) -> dict[str, Any]:
                 "content_length": int(length) if length is not None else None,
                 "error": None,
             }
-    except (OSError, ValueError, urllib.error.URLError) as exc:
+    except (
+        OSError,
+        ValueError,
+        http.client.HTTPException,
+        urllib.error.URLError,
+    ) as exc:
         return {
             "url": url,
             "final_url": None,
@@ -152,6 +158,12 @@ def _head(url: str, timeout: int) -> dict[str, Any]:
             "content_length": None,
             "error": type(exc).__name__,
         }
+
+
+def _asset_url(base_url: str, href: str) -> str:
+    """Join one official relative asset URL without leaving raw spaces."""
+
+    return urljoin(base_url, quote(href, safe="/%:@?&=+$,;~"))
 
 
 def run_preflight(
@@ -220,8 +232,8 @@ def run_preflight(
         ):
             missing_links += 1
             continue
-        dng_url = urljoin(base_url, link["dng_href"])
-        expert_url = urljoin(base_url, link["expert_c_href"])
+        dng_url = _asset_url(base_url, link["dng_href"])
+        expert_url = _asset_url(base_url, link["expert_c_href"])
         rows.append(
             {
                 "source_name": source_name,

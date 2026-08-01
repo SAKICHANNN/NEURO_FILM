@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from src.eval.fivek_fresh_pair_preflight import (
+    _asset_url,
     select_pair_names,
     validate_contract,
 )
@@ -41,3 +42,14 @@ def test_selection_is_deterministic_disjoint_and_sorted() -> None:
     assert first == second
     assert first == sorted(first)
     assert not set(first) & retained
+
+
+def test_official_asset_url_percent_encodes_spaces() -> None:
+    url = _asset_url(
+        "https://data.csail.mit.edu/graphics/fivek/",
+        "img/dng/a0532-jmacdscf0021 (1).dng",
+    )
+    assert url == (
+        "https://data.csail.mit.edu/graphics/fivek/"
+        "img/dng/a0532-jmacdscf0021%20%281%29.dng"
+    )
