@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq9-fivek-selected-lut-path-oracle-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ9",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Holding BQ8 source-selected case identities fixed, does a style-constrained evaluator Oracle on the convex global-to-case LUT path recover enough value to justify a later source-only scalar confidence predictor?",
+  "parent_bq8_decision": {
+    "path": "configs/u5_r2bq8_fivek_hard_lut_compatibility_decision_v1.json",
+    "sha256": "7e1c4d3310d23a3fa7ff23ff2dd305ada22fb028627b2580b0cd74c88d9a022d"
+  },
+  "parent_bq8": {
+    "config": "configs/u5_r2bq8_fivek_hard_lut_compatibility_v1.json",
+    "config_sha256": "20dc9a0d02a4870849d54961dd49a6ee098d912e0634a19da7adffdb36e8b77b",
+    "report": "outputs/u5_r2bq8_fivek_hard_lut_compatibility_v1/run_a/report.json",
+    "report_sha256": "59d11fc2450724bda66c531a819acb464e4d3c64a5b571113e90b780cf9b4d87",
+    "stable_evidence_id": "7148fc2a732d8ca12ef9cf15f9a567d32dbf6ddd4ecae3853963d8bb0650e06b"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "evaluation_samples_per_image": 512},
+  "path": {
+    "coefficient_equation": "global_lut + dose * (selected_case_lut - global_lut)",
+    "doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "minimum_target_style_retention": 0.7,
+    "selected_case_identity_refit_or_change_allowed": false
+  },
+  "evaluation": {
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_mean_improvement_over_global_strength_oracle": 0.01,
+    "minimum_win_fraction_over_global_strength_oracle": 0.55,
+    "minimum_style_constrained_availability": 0.9,
+    "maximum_style_constraint_error_ratio": 1.1,
+    "minimum_median_target_style_retention": 0.7,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "branch_rules": {
+    "oracle_fails": "close BQ8 selected directions; do not train scalar confidence or sparse blending",
+    "oracle_passes": "freeze the selected path and train one bounded source-only scalar confidence predictor with global OOD fallback",
+    "style_fails": "close even if unconstrained path error improves",
+    "safety_fails": "treat as convexity or implementation drift"
+  },
+  "router_or_strength_training_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only evaluator-Oracle diagnosis of fixed source-selected strict-interior LUT directions on FiveK controls; not an inference algorithm, confirmation, film, preference or product evidence"
+}
