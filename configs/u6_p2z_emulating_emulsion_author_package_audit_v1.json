@@ -75,5 +75,32 @@
     "treat one roll, one process or one scanner as transferable stock response",
     "call the 30-parameter colour equation a complete grain, halation, MTF or scanner-physics model",
     "lower reproducibility, rights, lineage or data-completeness gates after inspection"
+  ],
+  "execution_amendments": [
+    {
+      "date": "2026-08-02",
+      "trigger": "bounded pre-analysis acquisition",
+      "facts": {
+        "author_page_bytes": 35366,
+        "author_page_sha256": "fdd1dd24e14a65eb11c8d1413e5fd8a26e1a9e6c96a056b11d7a2046e615da28",
+        "abstract_bytes": 3971955,
+        "abstract_sha256": "2a1689c9abfc610d16bbd164228e68d7bcab4ac6c2e9be0c5636442dfeaa81ff",
+        "abstract_pages": 2,
+        "poster_bytes": 3943731,
+        "poster_sha256": "4677654c27c779436358c4ffab753d2c49f111c47e9349ff3f80825b690d0bed",
+        "poster_pages": 1,
+        "retained_total_bytes": 7951052,
+        "explicit_github_profile": "https://github.com/musicofmusix",
+        "github_public_repository_count": 11,
+        "website_repository": "musicofmusix/musicofmusix.github.io",
+        "website_repository_commit": "2feac6171a529cc8f1890d25fcbe66f032b0ce48",
+        "website_repository_license": null,
+        "emulating_emulsion_page_blob": "28c21209cdaa240f52656c4b8eaf3782fa8bc105",
+        "full_paper_content_length": 86874097,
+        "full_paper_retained": false
+      },
+      "change": "bind the exact retained author HTML, abstract and poster plus read-only GitHub metadata; the author-linked full paper exceeds the frozen 25,000,000-byte total acquisition cap, so the partial transfer was aborted, deleted and never parsed",
+      "scientific_effect": "preserves the frozen cost and acquisition boundary while permitting deterministic audit of every retained primary-author asset and explicit outbound link"
+    }
   ]
 }
