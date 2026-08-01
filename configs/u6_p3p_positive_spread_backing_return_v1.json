@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p3p_positive_spread_backing_return.v1",
+  "node": "U6.P3P",
+  "status": "synthetic_contract_frozen_implementation_ready",
+  "question": "Can a highlight-spread compiler retain only the positive exterior lobe of the fixed P3D backing-return blur, remain constant-preserving, and produce a visible response-bounded halo without the whole-frame return that made P3N imperceptible?",
+  "parents": {
+    "backing_return_contract": "configs/u6_p3d_backing_return_reference_v1.json",
+    "backing_return_contract_sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12",
+    "sensitometry_contract": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+    "p3n_decision": "configs/u6_p3n_response_bounded_backing_return_decision_v1.json",
+    "p3n_decision_sha256": "ec350e2837ba2af38dcd4563f90ac8151ef05bffa0ae365b387afc3e44909ba1",
+    "p3o_decision": "configs/u6_p3o_response_bounded_fresh_decision_v1.json",
+    "p3o_decision_sha256": "b460e4d200f43197d8fdfbe256ded2c60f18250ba8d260e5ce5bb082c6ff2e51"
+  },
+  "candidate": {
+    "input_domain": "film-layer-linear-exposure",
+    "raw_residual": "sum_components W_component * max(reflect_blur(E)-E, 0)",
+    "boundary_mode": "symmetric-context",
+    "profile": "unchanged U6.P3D component radii, return fractions and layer coupling",
+    "response_projection": "existing shared-RGB-scale sensitometry bound",
+    "maximum_transmittance_delta": 0.02,
+    "hard_clipping_allowed": false,
+    "fitting_allowed": false,
+    "per_image_parameter_selection_allowed": false,
+    "physical_claim": "generic highlight-spread compiled approximation, not a linear reference transport or measured emulsion"
+  },
+  "witnesses": {
+    "shape": [257, 257, 3],
+    "background_exposure": 0.01,
+    "constant_exposure": 0.18,
+    "highlight_exposure": 4.0,
+    "far_radius_pixels": 20
+  },
+  "automatic_gates": {
+    "maximum_constant_residual": 1e-14,
+    "maximum_impulse_center_increment": 1e-14,
+    "minimum_impulse_halo_energy": 1e-5,
+    "minimum_far_red_over_blue_ratio": 5.0,
+    "minimum_edge_dark_side_increment": 1e-5,
+    "maximum_edge_bright_side_increment": 1e-14,
+    "maximum_bounded_transmittance_delta": 0.020000000001,
+    "minimum_bounded_transmittance_delta": 0.01,
+    "maximum_out_of_domain_fraction": 0.0,
+    "repeat_report_sha256_exact": true
+  },
+  "branches": {
+    "pass": "retain the synthetic highlight-spread approximation and open a separately frozen photographic severe/value development leaf",
+    "fail": "close without changing profile, cap, witness, boundary or gates"
+  },
+  "forbidden_actions": [
+    "reinterpret the positive-lobe compiler as linear optical transport",
+    "fit radius, return fractions, coupling or cap to photographs",
+    "reuse the P3O confirmation population for parameter selection",
+    "call the generic profile a named stock or calibrated anti-halation response",
+    "promote to runtime or product from synthetic evidence"
+  ],
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "generic synthetic numerical evidence for a constant-preserving highlight-spread backing-return approximation; no measured film, stock, process, scanner, calibration, authenticity, preference or product claim"
+}
