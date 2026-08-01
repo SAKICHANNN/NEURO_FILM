@@ -8705,3 +8705,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Freeze BN1/BN2. Open one independent severe-artifact-first visual comparison
   against the global projection-curve base under fixed AO6; no camera-OOD,
   film, stock, calibration, preference or product claim opens yet.
+
+## 2026-08-01 - U5.R2BN3 closes adaptive visual promotion
+
+- Corrected the evaluator so only the source descriptor is 256px while the
+  explicit operator and fixed AO6 render at exact decoded source resolution;
+  the preview-only v1 evidence is invalid and not adjudicated.
+- Two corrected runs are byte-identical at `d6d19321...5db204`, preserve all
+  source dimensions and pass every automatic gate. Full-resolution snow,
+  water, foliage and tabletop review confirms zero severe artifacts.
+- Blind observations were committed before mapping reveal. Adaptive choices
+  decode to `9/4/7` by round, `20/36` aggregate and seven source majorities.
+  The frozen aggregate minimum is 22, so promotion closes without added rounds,
+  threshold movement, retuning or router rescue. AO6 remains incumbent.

@@ -2405,3 +2405,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > learning-to-rank pilot. It may predict one hard case ID only; held queries,
 > dense blending and learned final RGB remain forbidden.
 >
+> `U5.R2BN0-BN3` now closes the clean-room many-projection family. BN1 and BN2
+> establish repeatable bounded explicit-operator value on development and
+> disjoint content. The corrected source-resolution BN3 render is exact,
+> boundary-clean and has zero confirmed severe artifacts, but adaptive wins
+> only `20/36` choices against the frozen `22/36` aggregate gate. Two round
+> wins and seven source majorities do not override that failure. Retain AO6;
+> do not add rounds, retune this operator or train a rescue router.
+>

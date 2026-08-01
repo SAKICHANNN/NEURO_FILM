@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn3-projection-curve-visual-product-value-v2",
+  "status": "adaptive_visual_value_fail_retain_ao6_incumbent",
+  "automatic_pass": true,
+  "repeat_exact": true,
+  "render_report_sha256": "d6d19321d15472b8bcf511e1a69e17a43d5dfc9c91d2a424f389e256db5db204",
+  "render_stable_evidence_id": "b17609251a1b5ae091839b6e407ea247bf77b4705485eb5d74dc300c649c203b",
+  "adjudication_report_sha256": "d43f7b7aff7fa952dabcafcbb40f2d1d4378cb2d202666194cee2490127bbe46",
+  "adjudication_stable_evidence_id": "9de367526403eb722a61cc1f5b460a4d2e42f1e82f44d6294cc505e91505e4d0",
+  "confirmed_severe_artifact_count": 0,
+  "adaptive_round_wins": 2,
+  "minimum_adaptive_round_wins": 2,
+  "adaptive_aggregate_choices": 20,
+  "aggregate_choice_denominator": 36,
+  "minimum_adaptive_aggregate_choices": 22,
+  "adaptive_source_majorities": 7,
+  "minimum_adaptive_source_majorities": 7,
+  "failed_gates": [
+    "minimum_adaptive_aggregate_choices"
+  ],
+  "thresholds_changed": false,
+  "additional_rounds_allowed": false,
+  "operator_retuning_allowed": false,
+  "selector_or_router_training_allowed": false,
+  "production_default_changed": false,
+  "next_branch": "close_bn3_visual_promotion_and_continue_distinct_explicit_or_physical_algorithm",
+  "claim_ceiling": "BN1 and BN2 establish a repeatable safe explicit digital-retouch operator, but BN3 does not establish independent visual product value; not film, stock, calibration, population preference, universal safety or product promotion"
+}
