@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u5-r2bo0-flickr-single-author-pair-source.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO0",
+  "source": {
+    "album_url": "https://www.flickr.com/photos/russellmcneil/albums/72157632212684694",
+    "album_id": "72157632212684694",
+    "owner_nsid": "63463553@N07",
+    "expected_public_photo_count": 218,
+    "allowed_license_ids": [1],
+    "license_label": "CC-BY-NC-SA-2.0",
+    "derivative_size": "l",
+    "maximum_metadata_requests": 2,
+    "image_payloads_allowed": false
+  },
+  "pair_families": [
+    {
+      "family_id": "nikon_d70_to_ricoh_rw1",
+      "pattern": "^Digital vs\\. Film Shootout: Scene (?P<scene>[0-9]+) (?P<medium>Digital|Film) - ",
+      "digital_medium": "Digital",
+      "film_medium": "Film",
+      "stock_label": "unknown"
+    },
+    {
+      "family_id": "lumix_lc40_to_nikon_f90x_fuji200",
+      "pattern": "^Film \\(Nikon\\) vs\\. Digital \\(Leica\\) Scene (?P<scene>[0-9]+) \\((?P<medium>Digital|Film)\\)",
+      "digital_medium": "Digital",
+      "film_medium": "Film",
+      "stock_label": "Fuji 200 ISO family; exact stock unknown"
+    },
+    {
+      "family_id": "olympus_c70_to_yashica_kodak400",
+      "pattern": "^(?P<medium>Digital Olympus Camedia C-70|Analog Yashica Auto Focus Motor) - (?P<scene>[0-9]+) \\(of 23\\)",
+      "digital_medium": "Digital Olympus Camedia C-70",
+      "film_medium": "Analog Yashica Auto Focus Motor",
+      "stock_label": "Kodak ISO 400 family; exact stock unknown"
+    }
+  ],
+  "feasibility_gates": {
+    "minimum_complete_rights_eligible_pairs": 45,
+    "minimum_independent_capture_families": 3,
+    "maximum_largest_family_pair_share": 0.45,
+    "maximum_duplicate_photo_ids": 0,
+    "require_all_pair_rows_public_photo_media": true,
+    "require_bounded_derivative_url": true
+  },
+  "branches": {
+    "pass": "open_bounded_derivative_integrity_and_registration_feasibility_only",
+    "fail": "close_album_before_pixel_acquisition"
+  },
+  "forbidden": [
+    "operator fitting or training during BO0",
+    "calling one uploader an independent stock population",
+    "inferring exact stock process scanner exposure or roll metadata from appearance",
+    "commercial model or asset use under the noncommercial source license",
+    "requesting original-size image payloads",
+    "product calibration or stock-response claims"
+  ],
+  "claim_ceiling": "metadata-only feasibility for a one-author same-scene film/digital weak-pair source; titles and licences are observed facts, while exact stock, process, scanner, exposure and physical operator remain unknown"
+}
