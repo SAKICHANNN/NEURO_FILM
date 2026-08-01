@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -76,6 +77,46 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         "filtered",
     ]:
         raise FiveKCasebankOracleRunError("pass-variant policy drift")
+    operator = config["operator"]
+    lower = operator.get("lower_bounds", [])
+    upper = operator.get("upper_bounds", [])
+    if (
+        operator.get("family") != "monotone_triangular_logit_transport"
+        or operator.get("parameter_count") != 14
+        or len(lower) != 14
+        or len(upper) != 14
+        or not all(math.isfinite(float(value)) for value in [*lower, *upper])
+        or not all(float(lo) < float(hi) for lo, hi in zip(lower, upper))
+        or operator.get("hard_output_clipping_allowed") is not False
+        or operator.get("spatial_or_semantic_features_allowed") is not False
+        or operator.get("learned_final_rgb_allowed") is not False
+    ):
+        raise FiveKCasebankOracleRunError("explicit operator contract drift")
+    required_gate_names = {
+        "minimum_mean_improvement_over_global",
+        "minimum_win_fraction_over_global",
+        "maximum_p95_ratio_to_global",
+        "maximum_worst_ratio_to_global",
+        "minimum_mean_improvement_over_strength_oracle",
+        "minimum_win_fraction_over_strength_oracle",
+        "minimum_bootstrap_lower_improvement",
+        "minimum_distinct_selected_cases",
+        "maximum_selected_case_share",
+    }
+    for variant in variants.values():
+        evaluation = variant.get("evaluation", {})
+        doses = evaluation.get("strength_doses", [])
+        gates = evaluation.get("gates", {})
+        if (
+            variant.get("target_variant") not in {"aligned_expert", "filtered"}
+            or not doses
+            or doses != sorted(set(doses))
+            or doses[0] != 0.0
+            or doses[-1] != 1.0
+            or int(evaluation.get("bootstrap_repetitions", 0)) < 1000
+            or set(gates) != required_gate_names
+        ):
+            raise FiveKCasebankOracleRunError("evaluation contract drift")
     return {"manifest": manifest}
 
 

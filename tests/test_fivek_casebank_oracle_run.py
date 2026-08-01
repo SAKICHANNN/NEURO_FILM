@@ -33,7 +33,24 @@ def _contract(tmp_path):
         },
     )
     report_sha = _write_json(report_path, {"automatic_pass": True})
-    evaluation = {"placeholder": True}
+    evaluation = {
+        "samples_per_confirmation_image": 32,
+        "strength_doses": [0.0, 0.5, 1.0],
+        "random_case_seed": 5,
+        "bootstrap_seed": 7,
+        "bootstrap_repetitions": 1000,
+        "gates": {
+            "minimum_mean_improvement_over_global": 0.05,
+            "minimum_win_fraction_over_global": 0.6,
+            "maximum_p95_ratio_to_global": 1.0,
+            "maximum_worst_ratio_to_global": 1.1,
+            "minimum_mean_improvement_over_strength_oracle": 0.03,
+            "minimum_win_fraction_over_strength_oracle": 0.55,
+            "minimum_bootstrap_lower_improvement": 0.02,
+            "minimum_distinct_selected_cases": 8,
+            "maximum_selected_case_share": 0.2,
+        },
+    }
     return {
         "status": "contract_frozen_implementation_ready",
         "experiment_id": "test",
@@ -46,7 +63,15 @@ def _contract(tmp_path):
             "confirmation_rows": 2,
         },
         "decode": {"maximum_side": 32},
-        "operator": {"placeholder": True},
+        "operator": {
+            "family": "monotone_triangular_logit_transport",
+            "parameter_count": 14,
+            "lower_bounds": [-1.0] * 14,
+            "upper_bounds": [1.0] * 14,
+            "hard_output_clipping_allowed": False,
+            "spatial_or_semantic_features_allowed": False,
+            "learned_final_rgb_allowed": False,
+        },
         "target_variants": {
             "aligned_expert": {
                 "target_variant": "aligned_expert",
@@ -115,4 +140,18 @@ def test_runner_rejects_router_training(tmp_path) -> None:
     config = _contract(tmp_path)
     config["router_training_allowed"] = True
     with pytest.raises(FiveKCasebankOracleRunError, match="boundary"):
+        validate_contract(tmp_path, config)
+
+
+def test_runner_rejects_operator_and_strength_control_drift(tmp_path) -> None:
+    config = _contract(tmp_path)
+    config["operator"]["hard_output_clipping_allowed"] = True
+    with pytest.raises(FiveKCasebankOracleRunError, match="operator"):
+        validate_contract(tmp_path, config)
+
+    config = _contract(tmp_path)
+    config["target_variants"]["filtered"]["evaluation"][
+        "strength_doses"
+    ] = [0.0, 0.5]
+    with pytest.raises(FiveKCasebankOracleRunError, match="evaluation"):
         validate_contract(tmp_path, config)
