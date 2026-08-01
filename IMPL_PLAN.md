@@ -2491,3 +2491,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > the random field. Continue only with a genuinely different deterministic
 > spatial-response mechanism or new evidence.
 >
+> BP4 tests that distinct deterministic spatial response and also closes it.
+> Seven of seven held scenes improve, but only by `.948%` median; all folds
+> choose the weakest DoG, linear-luma sharpening is better and wrong radius is
+> essentially tied. Stop fitting this source. New work requires independent
+> physical evidence or a mechanism unrelated to these seven composites.
+>

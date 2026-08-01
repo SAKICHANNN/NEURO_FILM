@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u5-r2bp4-flickr-bw-density-acutance-challenger-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BP4",
+  "decision": "close_fitted_spatial_response_use_of_this_source",
+  "contract_sha256": "f466c2b5c4a4cb385f48b20344c564296dd2380d3256b9c4d4b347c09b3a4d20",
+  "software_commit": "062a0adba9ad65bfe75ec34e54e75e70032d077c",
+  "reports": {
+    "run_a": "outputs/u5_r2bp4_flickr_bw_density_acutance_challenger_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bp4_flickr_bw_density_acutance_challenger_v1/run_b/report.json",
+    "sha256": "e12eb4311d74abfcd5e7137de8dccc18c52f404a15232beec86cd9cd3cd778ef",
+    "byte_identical": true,
+    "stable_evidence_id": "8f30701f92629aaa756c7dddf66fd5508c641a151aa6e64eed7584f464da283b"
+  },
+  "observed": {
+    "selected_parameter_counts": {"0.6/1.8/0.1": 7},
+    "median_psd_error_improvement_over_basic": 0.009480174778960968,
+    "scene_win_fraction_over_basic": 1.0,
+    "median_psd_error_improvement_over_linear_luma": -0.004404198772376779,
+    "median_psd_error_improvement_over_wrong_radius": 0.0010216597043111741,
+    "median_highpass_energy_error_improvement_over_basic": 0.016136642780336607,
+    "minimum_safe_scale": 0.026682679512283466,
+    "maximum_absolute_luma_delta": 0.0050068152401088195,
+    "maximum_absolute_mean_luma_drift": 1.1102230246251565e-16,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "interpretation": "The weak all-scene gain is not density-domain specific: the matched linear-luma control is better, all folds choose the weakest candidate, and no-clipping scaling suppresses the operator.",
+  "retuning_allowed": false,
+  "visual_review_allowed": false,
+  "product_integration_allowed": false,
+  "allowed_next": "new independent controlled physical evidence or a mechanism unrelated to these seven target-normalized B&W composites",
+  "claim_ceiling": "negative seven-scene one-author B&W display-chain acutance result; not stock, emulsion, scanner, developer, process, calibration or product evidence"
+}

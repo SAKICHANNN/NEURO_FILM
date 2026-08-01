@@ -8877,3 +8877,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Per the frozen branch, no visual review, threshold change or per-pixel safety
   rescue is allowed. Close random structure fitting on this source and permit
   only a distinct deterministic density-domain spatial-response experiment.
+
+## 2026-08-01 - U5.R2BP4 closes fitted density acutance
+
+- Two exact reports (`e12eb431...78ef`) LOO-select from 27 density-domain DoG
+  candidates and compare basic, matched linear-luma and wrong-radius controls.
+- All seven scenes improve nominally, but median PSD/energy gains are only
+  `.948%/1.61%`; all folds choose `.6/1.8/.1`, the matched linear control is
+  better, wrong radius is nearly tied and minimum safe scale is `.0267`.
+- Automatic mechanism gates fail, so visual review and grid/strength/safety
+  rescue are closed. This one-author target-normalized source has yielded its
+  admissible structure information; move to independent evidence or another
+  explicit mechanism.

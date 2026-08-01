@@ -575,3 +575,9 @@ and `.067%` over equal-energy white noise, while reversed shape slightly wins.
 No visual review or per-pixel safety rescue opens. A distinct deterministic
 density-domain acutance/spatial-response test is the next permissible use of
 the paired B&W evidence.
+
+U5.R2BP4 closes the deterministic density-acutance follow-up. Although all
+seven held scenes improve nominally, the median PSD gain is only `.948%`, every
+fold selects the weakest candidate, the matched linear-luma control is better,
+and the safe scale falls to `.0267`. Stop fitting structure on this source;
+continue with independent physical evidence or an unrelated explicit mechanism.
