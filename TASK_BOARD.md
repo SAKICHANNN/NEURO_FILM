@@ -531,3 +531,7 @@ registration feasibility; fitting/training remain closed pending geometry.
 U5.R2BO2 registers 52/53 pairs across all three families; two runs are exact
 and visual overlay review finds no obvious accepted warp failure. Keep the one
 2.021px reject and open only a scene-split bounded-operator development pilot.
+
+U5.R2BO3 closes a single family-average operator: curve+matrix wins 67.5% but
+misses the frozen 5% median-over-basic gate at 4.03%; triangular also fails.
+Keep 12 confirmation pairs unread and test per-scene case-bank Oracle value.

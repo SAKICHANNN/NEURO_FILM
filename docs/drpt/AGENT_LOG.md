@@ -8800,3 +8800,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   positive among accepted overlays.
 - Retain Olympus/Yashica scene 06 as rejected at 2.021px median error versus
   the frozen 2.0px gate. Open only a new scene-split bounded-operator pilot.
+
+## 2026-08-01 - U5.R2BO3 closes the average-operator route
+
+- Two development runs are exact at `fcd9a3d8...7b82430`; 12 confirmation
+  pairs remain pixel-unread. Curve+matrix median improvement is 4.03% versus
+  the frozen 5% gate; triangular gains only 1.13% and fails one family median.
+- Do not tune gates or add average-model capacity. Open only a same-capacity
+  per-scene Evaluator Oracle before source-only hard retrieval.

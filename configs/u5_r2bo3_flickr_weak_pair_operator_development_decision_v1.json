@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u5-r2bo3-flickr-weak-pair-operator-development-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO3",
+  "decision": "close_single_average_operator_and_open_case_bank_oracle_only",
+  "contract_sha256": "a1e42cbebe1f66e7259e118bfcc7d18c4cba6de6e343a580526564046714145f",
+  "software_commit": "c0e4e84d1fea7a74ec2f2c4f79f5d84d5e285f1e",
+  "reports": {
+    "run_a": "outputs/u5_r2bo3_flickr_weak_pair_operator_development_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo3_flickr_weak_pair_operator_development_v1/run_b/report.json",
+    "sha256": "fcd9a3d81ce3888a4c68e67e34d81afb7de744f03a86a0ba0b0fe95707b82430",
+    "byte_identical": true,
+    "stable_evidence_id": "c7eb065859039a4a427f5b36ef0c9b35836fb7db3e10222721f4c3c69e36e72a"
+  },
+  "split": {
+    "development_pairs": 40,
+    "confirmation_pairs_held_unread": 12
+  },
+  "observed": {
+    "curve_matrix_median_improvement_over_basic": 0.04029747318055979,
+    "curve_matrix_scene_win_fraction": 0.675,
+    "triangular_median_improvement_over_basic": 0.011263952379471955,
+    "triangular_scene_win_fraction": 0.575,
+    "selected_candidate": null
+  },
+  "allowed_next": "development-only evaluator Oracle for a hard per-scene case bank using the same 12-parameter bounded operator; no router until Oracle passes",
+  "confirmation_pixels_loaded": false,
+  "operator_fitting_allowed": "development-only case-bank Oracle under a separate frozen contract",
+  "training_allowed": false,
+  "claim_ceiling": "one-author weak-paired camera/film display-chain negative global-operator development evidence; not exact stock, calibration, scanner independence, product or commercial training"
+}
