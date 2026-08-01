@@ -2,8 +2,8 @@
   "schema": "neuro-film.u5-r2bp3-flickr-bw-density-structure-challenger.v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BP3",
   "status": "contract_frozen_before_formal_execution",
-  "contract_parent_commit": "e2ff41d2f78c3b5f0a669b097e562049fb2f1926",
-  "software_commit": "0000000000000000000000000000000000000000",
+  "contract_parent_commit": "e2ff41d25c03c30996d3e556a526850c65c3aec1",
+  "software_commit": "2da100fcc95a89f457e29c7c84cc6dd67292ec1d",
   "question": "Does a leave-one-scene-out density-domain stochastic field shaped only by the other six scenes improve the held B&W film residual over basic and equal-energy white/wrong-shape controls without clipping, mean drift, or edge locking?",
   "parents": {
     "residual_report": {
