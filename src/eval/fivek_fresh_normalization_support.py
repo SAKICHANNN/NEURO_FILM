@@ -24,6 +24,7 @@ from scripts.build_fivek_freeze_pack import (
 from src.eval.fivek_fresh_pair_acquisition import (
     resolve_configured_owned_root,
 )
+from src.eval.fivek_group_split import assign_group_split
 
 
 class FiveKFreshNormalizationError(ValueError):
@@ -487,6 +488,28 @@ def run_audit(
             }
         )
     cameras = Counter(row["camera_model"] for row in rows)
+    split_result = None
+    split = config.get("split")
+    if split is not None:
+        split_result = assign_group_split(
+            rows,
+            group_field="camera_model",
+            id_field="pair_id",
+            seed=int(split["seed"]),
+            target_confirmation_rows=int(
+                split["target_confirmation_rows"]
+            ),
+            minimum_confirmation_rows=int(
+                split["minimum_confirmation_rows"]
+            ),
+            maximum_confirmation_rows=int(
+                split["maximum_confirmation_rows"]
+            ),
+            minimum_development_groups=int(
+                split["minimum_development_groups"]
+            ),
+        )
+        rows = split_result["rows"]
     eligible = len(rows)
     largest_share = max(cameras.values(), default=0) / max(eligible, 1)
     exact_cross_split = sum(
@@ -523,6 +546,35 @@ def run_audit(
         "exact_leakage": exact_cross_split == 0,
         "perceptual_leakage": len(perceptual_pairs) == 0,
     }
+    if split_result is not None:
+        observed.update(
+            {
+                "development_rows": split_result["development_rows"],
+                "confirmation_rows": split_result["confirmation_rows"],
+                "development_groups": len(
+                    split_result["development_groups"]
+                ),
+                "confirmation_groups": len(
+                    split_result["confirmation_groups"]
+                ),
+            }
+        )
+        gates.update(
+            {
+                "development_support": split_result["development_rows"]
+                >= int(split["minimum_development_rows"]),
+                "confirmation_support": split_result["confirmation_rows"]
+                >= int(split["minimum_confirmation_rows"]),
+                "split_group_disjoint": not set(
+                    split_result["development_groups"]
+                )
+                & set(split_result["confirmation_groups"]),
+                "split_target_blind": split_result[
+                    "selection_used_target_or_pixels"
+                ]
+                is False,
+            }
+        )
     manifest = {
         "schema_version": 1,
         "experiment_id": config["experiment_id"],
@@ -532,6 +584,16 @@ def run_audit(
         "camera_counts": dict(sorted(cameras.items())),
         "claim_ceiling": config["claim_ceiling"],
     }
+    if split_result is not None:
+        manifest["split_summary"] = {
+            "development_rows": split_result["development_rows"],
+            "confirmation_rows": split_result["confirmation_rows"],
+            "development_groups": split_result["development_groups"],
+            "confirmation_groups": split_result["confirmation_groups"],
+            "selection_used_target_or_pixels": split_result[
+                "selection_used_target_or_pixels"
+            ],
+        }
     output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = output_dir / "manifest.json"
     manifest_path.write_bytes(_canonical_bytes(manifest))

@@ -34,6 +34,7 @@ def test_existing_contract_keeps_legacy_pair_id_prefix() -> None:
         config["normalization"].get("save_aligned_expert_target", False)
         is False
     )
+    assert "split" not in config
 
 
 def test_center_crop_landscape_to_narrower_landscape() -> None:
