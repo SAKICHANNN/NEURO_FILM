@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p5i_kodak_250d_mtf_source_contract.v1",
+  "experiment_id": "u6.p5i-kodak-250d-mtf-source-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5I",
+  "date_frozen": "2026-08-01",
+  "question": "Can the first-party Kodak VISION3 250D datasheet provide a reproducible channel-resolved film MTF trace that supports a separately frozen positive-PSF compiler experiment?",
+  "source": {
+    "title": "KODAK VISION3 250D Color Negative Film 5207 / 7207 Technical Data",
+    "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+    "expected_bytes": 684722,
+    "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16",
+    "publisher": "Eastman Kodak Company",
+    "measurement_context": {
+      "exposure": "5500 K daylight",
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "spatial_frequency_unit": "cycles/mm",
+      "response_unit": "percent"
+    }
+  },
+  "graph": {
+    "page_zero_based": 2,
+    "embedded_image_index": 2,
+    "path": "outputs/u5_r2aa0_source_audit/extracted/250d_mtf.png",
+    "width": 710,
+    "height": 589,
+    "sha256": "c99ca3cefe1d028b68ecdbd8bae5f65fef601a4b8cefd6dc0907ca022beb4075"
+  },
+  "trace": "configs/data/kodak_250d_mtf_curve_pixels_v1.json",
+  "gates": {
+    "axis_max_residual_px": 1.0,
+    "frequency_trace_max_residual_cycles_per_mm": 0.35,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_points_per_channel": 8,
+    "frequency_min_cycles_per_mm": 25.0,
+    "frequency_max_cycles_per_mm": 65.0,
+    "response_min_percent": 10.0,
+    "response_max_percent": 110.0,
+    "maximum_monotonic_increase_percent": 1.5,
+    "require_blue_ge_green_ge_red": true,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "freeze one development/confirmation split for a positive one- versus two-scale Gaussian PSF compiler",
+    "compare the compact compiler against the traced response only in the measured 25-65 cycles/mm interval"
+  ],
+  "forbidden": [
+    "fit any PSF or image operator in this source leaf",
+    "claim roll, batch, exposure, process, scanner or stock calibration",
+    "treat the MTF trace as colour response, dye-cloud separation or scanner MTF",
+    "use photographic outputs, AO6 or preference evidence to alter trace points",
+    "extrapolate beyond the traced frequency interval"
+  ],
+  "branch_rule": {
+    "pass": "Open U6.P5J positive-PSF compiler with a preregistered held-frequency confirmation split.",
+    "fail": "Close this trace without fitting and continue another physical mechanism leaf."
+  },
+  "claim_ceiling": "Manufacturer-curve source evidence for one typical Kodak VISION3 250D ECN-2/5500K Status-M measurement; not roll, batch, process, scanner, stock-colour or product calibration."
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.kodak_250d_mtf_curve_pixels.v1",
+  "annotation_method": "human-guided trace on the exact embedded Kodak graph, frozen as integer source pixels before any PSF fitting",
+  "graph_axes": {
+    "x_scale": "log10",
+    "x_value_pixels": [[1.0, 94.0], [600.0, 687.0]],
+    "x_tick_value_pixels": [[1.0, 94.0], [2.0, 158.0], [3.0, 196.0], [4.0, 223.0], [5.0, 243.0], [10.0, 307.0], [20.0, 372.0], [50.0, 457.0], [100.0, 521.0], [200.0, 585.0], [600.0, 687.0]],
+    "y_scale": "log10",
+    "y_value_pixels": [[1.0, 520.0], [200.0, 72.0]],
+    "y_tick_value_pixels": [[1.0, 520.0], [2.0, 461.0], [3.0, 427.0], [5.0, 384.0], [7.0, 355.0], [10.0, 325.0], [20.0, 267.0], [30.0, 232.0], [50.0, 189.0], [70.0, 161.0], [100.0, 131.0], [200.0, 72.0]]
+  },
+  "curves": {
+    "blue": [[392, 137], [409, 145], [424, 152], [436, 159], [447, 164], [465, 177], [474, 187], [481, 194]],
+    "green": [[392, 145], [409, 154], [424, 165], [436, 172], [447, 180], [465, 193], [474, 199], [481, 203]],
+    "red": [[392, 165], [409, 178], [424, 194], [436, 207], [447, 220], [465, 241], [474, 253], [481, 261]]
+  },
+  "frequencies_cycles_per_mm": [25.0, 30.0, 35.0, 40.0, 45.0, 55.0, 60.0, 65.0],
+  "limitations": [
+    "manual graph transcription is approximate and source-ink proximity is necessary but not calibration",
+    "grid intersections and overlapping black curves require an independently inspected overlay",
+    "the graph documents a typical manufacturer measurement, not per-roll behavior"
+  ]
+}

@@ -9040,3 +9040,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - BQ1-BQ10 leave strict-interior 4^3 LUT capacity as positive evidence while
   closing dense, hard, path-strength and fixed-case routing before confirmation.
 - Retain AO6/global safe-rich and resume the real-film/physical programme.
+
+## 2026-08-01 - U6.P5I passes Kodak 250D measured-MTF source gate
+
+- Extended the existing exact Kodak graph extractor with the 710x589 MTF
+  raster and froze eight source-pixel points per B/G/R curve over 25-65
+  cycles/mm. This source leaf performs no fitting.
+- Two reports and overlays are byte-identical (`b32d20f2...f6164` and
+  `38a03a20...89477`). Axis residual is below `.49px`, all trace points land on
+  source ink, all channels are monotone and the printed B>=G>=R ordering holds.
+- Visual overlay review confirms the colored points follow the original black
+  curves. Open P5J positive-PSF compilation only; calibration, extrapolation,
+  photographic use and integration remain closed.

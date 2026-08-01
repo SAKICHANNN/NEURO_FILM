@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p5i_kodak_250d_mtf_source_decision.v1",
+  "node": "U6.P5I",
+  "date": "2026-08-01",
+  "contract": "configs/u6_p5i_kodak_250d_mtf_source_v1.json",
+  "trace": "configs/data/kodak_250d_mtf_curve_pixels_v1.json",
+  "source_sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16",
+  "graph_sha256": "c99ca3cefe1d028b68ecdbd8bae5f65fef601a4b8cefd6dc0907ca022beb4075",
+  "report_sha256": "b32d20f21abc12926d73b56a56e1516e41b35320663aa665e14f6758572f6164",
+  "stable_evidence_id": "63413b079953e7045a2fde674ebdbf1931cb5c66d0188c6770e5f44dec723a53",
+  "overlay_sha256": "38a03a206b1db7915f655f4fc3e99c812388c07b5f2d0d5838b521a635789477",
+  "automatic_pass": true,
+  "visual_overlay_pass": true,
+  "result": {
+    "frequency_interval_cycles_per_mm": [25.0, 65.0],
+    "points_per_channel": 8,
+    "axis_max_residual_px": 0.4895113042605317,
+    "frequency_max_residual_cycles_per_mm": 0.29281440378807844,
+    "trace_max_ink_distance_px": 0.0,
+    "all_channels_monotone": true,
+    "blue_ge_green_ge_red": true
+  },
+  "decision": "open_u6_p5j_positive_psf_compiler",
+  "branch_decision": "Retain the exact manufacturer graph and manual source-pixel trace as source evidence only. Freeze U6.P5J before fitting: development frequencies choose the simplest positive Gaussian family, while disjoint held frequencies decide whether the compact compiler generalizes.",
+  "forbidden": [
+    "alter trace points after P5J results",
+    "claim calibrated stock, roll, process, scanner or colour response",
+    "extrapolate beyond 25-65 cycles/mm",
+    "integrate a fitted operator before separate synthetic, photographic and severe-artifact gates"
+  ],
+  "claim_ceiling": "Manufacturer-curve source evidence for one typical Kodak VISION3 250D ECN-2/5500K Status-M MTF measurement; not calibrated stock response or product evidence."
+}

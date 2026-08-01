@@ -217,6 +217,14 @@ Automation passes, but all 27 pre-key choices are ties, so each round scores
 `0/9`. Close P5F runtime and combined-chain integration without retuning;
 retain its explicit mechanism and safety evidence only.
 
+U6.P5I opens a genuinely distinct measured spatial-response leaf. The exact
+first-party Kodak VISION3 250D MTF graph and a frozen 8-point/channel trace over
+25-65 cycles/mm pass repeat identity, source-ink, axis, monotonicity and visual
+overlay gates. P5J must now freeze development-only model selection between
+positive one- and two-scale Gaussian PSFs and use disjoint held frequencies for
+confirmation. The trace is typical manufacturer evidence, not roll, process,
+scanner, stock-colour or product calibration.
+
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
 `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock

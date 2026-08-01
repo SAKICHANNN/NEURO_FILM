@@ -11,9 +11,6 @@ import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 
-from pypdf import PdfReader
-
-
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "outputs/u5_r2aa0_source_audit/extracted"
 
@@ -47,6 +44,15 @@ SOURCES = {
 }
 
 GRAPHS = (
+    GraphSpec(
+        "negative_250d",
+        2,
+        2,
+        "250d_mtf.png",
+        710,
+        589,
+        "c99ca3cefe1d028b68ecdbd8bae5f65fef601a4b8cefd6dc0907ca022beb4075",
+    ),
     GraphSpec(
         "negative_250d",
         2,
@@ -113,6 +119,8 @@ def sha256(path: Path) -> str:
 
 
 def extract(output: Path) -> list[Path]:
+    from pypdf import PdfReader
+
     readers: dict[str, PdfReader] = {}
     for name, source in SOURCES.items():
         if sha256(source.path) != source.sha256:
