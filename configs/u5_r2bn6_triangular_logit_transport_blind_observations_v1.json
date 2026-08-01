@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn6-triangular-logit-transport-visual-product-value-v1",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "outputs/u5_r2bn6_triangular_logit_transport_visual_product_value_v1/run_a/report.json",
+  "report_sha256": "a6884435dbf6b93cc4e8906a0fb41ac13b31416130e857a37851b9dd34d4169e",
+  "criteria": "prefer the more visibly stylized and photographically coherent result unless it introduces severe corruption; ties are allowed",
+  "sheet_sha256": {
+    "blind_round_1_part_1.png": "cf3559e103338458ade68e5e9018ffc0a29191b7623e45ddb71030b557a0cd64",
+    "blind_round_1_part_2.png": "6d8adae62555167411edad7a477daf5cde257801289b3123f480732af0a54254",
+    "blind_round_1_part_3.png": "40e209b60c479407fa1cf7603b80696d0667a7f28bc3182a86af67fd3bbb3393",
+    "blind_round_2_part_1.png": "9762916a2096527aab63dcdf234c73a92338aecc66b2ce9fd8740b47b2064a0e",
+    "blind_round_2_part_2.png": "190486578f2bd48a9df3f44807a9a838f27b01abc449b70d14018a052f484ceb",
+    "blind_round_2_part_3.png": "541c61a20eb393a16af245db20c34e77bdc59ef3f8d0ba16b612d2bcae7c9b0c",
+    "blind_round_3_part_1.png": "8c1e0fe2ba63389238c02c8b62c7f71fe91ee74bfd57baff830a72a83fffd777",
+    "blind_round_3_part_2.png": "eb99e30205c9c6eb14d0b152c0d57114718d9fad5ce53723c0481946a805c068",
+    "blind_round_3_part_3.png": "212623aa38ae83436a4751d4424b8a0f15771cb6f9146d22d7275aeb2ff31b46"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "B"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "B"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "B"},
+        {"source_id": "apple_iphone_12_pro", "choice": "B"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "B"},
+        {"source_id": "leica_c_typ_112", "choice": "B"},
+        {"source_id": "olympus_e_450", "choice": "B"},
+        {"source_id": "huawei_eml_l29", "choice": "B"},
+        {"source_id": "leaf_aptus_22", "choice": "B"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "B"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "B"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "A"},
+        {"source_id": "apple_iphone_12_pro", "choice": "B"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "B"},
+        {"source_id": "leica_c_typ_112", "choice": "B"},
+        {"source_id": "olympus_e_450", "choice": "A"},
+        {"source_id": "huawei_eml_l29", "choice": "B"},
+        {"source_id": "leaf_aptus_22", "choice": "B"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "A"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "B"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "A"},
+        {"source_id": "apple_iphone_12_pro", "choice": "B"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "B"},
+        {"source_id": "leica_c_typ_112", "choice": "B"},
+        {"source_id": "olympus_e_450", "choice": "A"},
+        {"source_id": "huawei_eml_l29", "choice": "B"},
+        {"source_id": "leaf_aptus_22", "choice": "B"}
+      ]
+    }
+  ],
+  "sheet_level_confirmed_severe_artifact_count": 0,
+  "notes": [
+    "All 36 comparisons remain recognizably the same photograph with no geometry or object corruption.",
+    "Snow, water, foliage and high-key tabletop scenes require full-resolution regression review after this blind record is committed.",
+    "Strong magenta or warm rendering is treated as style unless full-resolution inspection shows posterization, blocks, seams or unstable speckle."
+  ],
+  "mapping_files_read": false
+}
