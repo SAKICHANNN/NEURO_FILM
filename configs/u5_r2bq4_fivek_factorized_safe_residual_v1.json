@@ -58,6 +58,7 @@
     "fit_samples_per_image": 1024,
     "pooled_samples_per_image": 256,
     "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
     "safe_dose_grid_size": 9,
     "safe_dose_finite_difference": 0.00001,
     "minimum_jacobian_determinant": 0.02,
