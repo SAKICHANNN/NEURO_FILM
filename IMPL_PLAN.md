@@ -2380,3 +2380,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > and projection rescue.  Retain AO6 as fallback and move to separately
 > represented operator-signature selection plus within-case content matching.
 >
+> `U5.R2BM1` now supplies the prerequisite evaluator Oracle. Two exact reports
+> show hard development-case contexts reduce held-camera median AO6 error by
+> 28.85% versus the operator medoid and 19.03% versus an analytically safe
+> scalar-strength Oracle, with 9/17 material strength-control wins and zero new
+> boundary. This does not establish content routing or latent modes. `BM2` is
+> the next ready leaf: freeze colour-independent content features and compare
+> hard Top-1 retrieval with medoid, strength, shuffled/random and the BM1
+> Oracle ceiling.
+>

@@ -8633,3 +8633,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   closes larger-LUT/projection rescue.
 - **Handoff:** keep contextual AO6 as global fallback; next test hard case or
   medoid selection with operator-signature and content spaces kept separate.
+
+## 2026-08-01 - U5.R2BM1 establishes hard-case Oracle value
+
+- Added an exact context-rebinding API that preserves the existing AO6 output
+  for the original geometry while allowing one explicit development context to
+  be hard-applied to a held query. Related profile/streaming tests pass 34/34.
+- Two independent BM1 reports are byte-identical at `ea903412...478e6`
+  (stable ID `3d05baf0...a7b4`). Hard cases improve median held error 28.85%
+  over the development medoid and 19.03% over an oracle bounded strength path;
+  9/17 materially beat strength, eight case IDs are selected, and boundary
+  increase is zero.
+- This is operator-space Oracle evidence only. No content feature, router,
+  latent mode, real-film or product claim opens. BM2 may now preregister a
+  colour-independent content-space hard selector with the BM1 Oracle fixed as
+  its unreachable upper bound.

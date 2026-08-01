@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2bm1_ao6_case_operator_oracle_decision.v1",
+  "node": "U5.R2BM1",
+  "software_commit": "e4859e47e64cce177fcff6d598e9e29d98325428",
+  "contract": {
+    "path": "configs/u5_r2bm1_ao6_case_operator_oracle_v1.json",
+    "sha256": "621ca1915384db873e8e52a685ae037bbc2c6e7de5507d77470e99cfbdf3cac1"
+  },
+  "repeat_evidence": {
+    "runs": 2,
+    "files_per_run": 1,
+    "all_file_hashes_identical": true,
+    "report_sha256": "ea903412c4887b143b192d4e868d8b8bc93f69d979a1a4c431d6af6a73e478e6",
+    "stable_evidence_id": "3d05baf021519940333d64921ebbc21c9a4c067967dfa22794190e558cb8a7b4"
+  },
+  "result": {
+    "automatic_pass": true,
+    "maximum_self_context_target_rgb_rmse": 0.000004413626457078358,
+    "median_case_rmse_reduction_vs_global_medoid": 0.28853002935863825,
+    "median_case_rmse_reduction_vs_strength_oracle": 0.19032058034733823,
+    "worst_case_vs_global_rmse_ratio": 1.0,
+    "sources_case_beats_strength_by_two_percent": 9,
+    "distinct_selected_case_ids": 8,
+    "nonmedoid_selection_count": 12,
+    "median_style_retention_ratio": 0.9604643659769946,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0,
+    "median_pairwise_residual_direction_cosine": 0.8680763822029868
+  },
+  "decision": "retain_case_oracle_open_content_space_hard_retrieval",
+  "interpretation": "Held-camera hard case reuse has material value beyond one global medoid and beyond a post-hoc analytically bounded scalar-strength path. The result establishes an evaluator Oracle and operator-space diversity only; it does not establish that source content predicts the selected case.",
+  "next_leaf": "U5.R2BM2: preregister and test colour-independent content-space hard Top-1 retrieval against global medoid, strength, shuffled/random and the frozen BM1 Oracle ceiling",
+  "forbidden_claims": [
+    "content routing has succeeded",
+    "the eight selected case IDs are latent film modes",
+    "AO6 or its contexts are real film or stock operators",
+    "dense blending or a learned final-RGB renderer is authorized",
+    "product integration is open"
+  ],
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact group-held evaluator-Oracle evidence for hard case reuse within one deterministic AO6 Look Approximation control; not content routing, film, stock, latent mode, calibration, authenticity, population preference or product promotion"
+}
