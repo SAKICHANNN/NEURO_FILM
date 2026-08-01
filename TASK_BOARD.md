@@ -605,3 +605,10 @@ U5.R2BQ2B closes that pairwise learner on disjoint development cameras before
 confirmation. Filtered passes, but aligned wins 54.81% and is 0.60% worse than
 nearest. Do not add ranker capacity. Next test a bounded source-conditioned
 explicit operator and require it to preserve strong style magnitude.
+
+U5.R2BQ3 repeat-exactly closes direct source-to-parameter regression before
+confirmation. It improves mean error over pooled global by 4.94%/11.14% and
+beats strength and shuffled controls, but retains only 32.63%/47.30% of target
+style and creates 0.3906%/0.1953% new epsilon-boundary samples. Keep all gates
+frozen and open one factorized direction/magnitude plus analytical safe-residual
+leaf; no dense-RGB, film or product claim opens.

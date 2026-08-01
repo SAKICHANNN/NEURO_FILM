@@ -2523,3 +2523,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > family. Stop router capacity and test a source-conditioned bounded explicit
 > operator with an explicit anti-blandness/style-magnitude gate.
 >
+> BQ3 finds real source-conditioned explicit-parameter signal but closes before
+> confirmation. Mean errors improve 4.94%/11.14% over global and both variants
+> beat strength/shuffle controls, while target-style retention collapses to
+> 32.63%/47.30% and the strict epsilon-boundary gate fails. Do not rescue direct
+> regression. Next factorize parameter direction from magnitude and execute its
+> residual analytically inside the gamut boundary, with unchanged style gates.
+>

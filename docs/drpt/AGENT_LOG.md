@@ -8951,3 +8951,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Confirmation remained unread. Close ranker capacity. Next test a bounded
   source-conditioned explicit operator and guard style magnitude so averaging
   cannot masquerade as success; FiveK remains architecture-control evidence.
+
+## 2026-08-01 - U5.R2BQ3 closes direct conditional parameter regression
+
+- Two reports are byte-identical at `41416bb7...d765`; development fit uses
+  246 rows/19 camera groups and validates on 135 rows/five held groups.
+- Aligned/filtered mean gains over pooled global are 4.94%/11.14%; strength,
+  shuffled-parameter and error-tail controls show genuine conditional signal.
+- Frozen anti-blandness and boundary gates reject the candidate: target-style
+  retention is 32.63%/47.30% and new boundary reaches .3906%/.1953%.
+- Confirmation remained unread. No direct-regression capacity or threshold
+  rescue; open a separately frozen factorized magnitude/direction plus
+  analytical safe-residual mechanism. Product and film claims remain closed.

@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.u5-r2bq3-fivek-conditional-explicit-operator-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ3",
+  "decision": "close_direct_conditional_parameter_regression_before_confirmation",
+  "implementation_commit": "5f33e1fdeb09d3010eed4b7370040b369d0c6485",
+  "reports": {
+    "run_a": "outputs/u5_r2bq3_fivek_conditional_explicit_operator_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq3_fivek_conditional_explicit_operator_v1/run_b/report.json",
+    "sha256": "41416bb71dca281ab371d852353aa650ef41fb42cbd51c94b0e54711c2c0d765",
+    "byte_identical": true,
+    "stable_evidence_id": "7eba2e178248033b0a266463c5316c97d71d65c2542ac11ee3f3d7e8940606cc",
+    "development_pass": false,
+    "confirmation_executed": false,
+    "automatic_pass": false
+  },
+  "development_partition": {
+    "fit_rows": 246,
+    "fit_camera_groups": 19,
+    "validation_rows": 135,
+    "validation_camera_groups": 5
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global": 0.049399935115274636,
+    "win_fraction_over_global": 0.6518518518518519,
+    "oracle_gap_closure": 0.14577003635832603,
+    "mean_improvement_over_strength_oracle": 0.028255631735467673,
+    "mean_improvement_over_nearest": -0.00985622882383648,
+    "mean_improvement_over_shuffled_parameters": 0.06226686505974049,
+    "bootstrap_ci95": [0.0262951324383496, 0.14262907357804067],
+    "median_style_retention_ratio": 0.32629655829535614,
+    "mean_style_magnitude_ratio_to_global": 0.8782118218217903,
+    "maximum_new_boundary_fraction": 0.00390625,
+    "automatic_pass": false,
+    "failed_gates": [
+      "boundary",
+      "mean_improvement_over_nearest",
+      "win_fraction_over_nearest",
+      "style_magnitude_ratio_to_global",
+      "style_retention_ratio"
+    ]
+  },
+  "filtered": {
+    "mean_improvement_over_global": 0.1114104660477807,
+    "win_fraction_over_global": 0.6962962962962963,
+    "oracle_gap_closure": 0.28365765788532427,
+    "mean_improvement_over_strength_oracle": 0.07618179063384037,
+    "mean_improvement_over_nearest": 0.05466768159719578,
+    "mean_improvement_over_shuffled_parameters": 0.09557579408654653,
+    "bootstrap_ci95": [0.07132579338912144, 0.2690650373316327],
+    "median_style_retention_ratio": 0.4729647449161653,
+    "mean_style_magnitude_ratio_to_global": 1.0259261916294269,
+    "maximum_new_boundary_fraction": 0.001953125,
+    "automatic_pass": false,
+    "failed_gates": ["boundary", "style_retention_ratio"]
+  },
+  "diagnosis": "Low-capacity source-conditioned explicit parameters carry transferable signal, but direct multivariate regression averages target style magnitude and the transform alone does not satisfy the strict interior boundary contract.",
+  "next_leaf": "separately preregister a factorized parameter direction/magnitude predictor followed by analytical gamut-safe residual execution; preserve all BQ3 gates and keep confirmation unread",
+  "threshold_or_capacity_rescue_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact group-held development evidence for bounded source-conditioned explicit parameters on paired FiveK digital-retouch controls; confirmation remained unread and no film, preference or product claim opens"
+}
