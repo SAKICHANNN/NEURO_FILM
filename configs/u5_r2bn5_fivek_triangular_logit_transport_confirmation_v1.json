@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn5-fivek-triangular-logit-transport-confirmation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN5",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "ef0be7df6f3a02b3960e73ca50905034ce021953",
+  "question": "Does the unchanged BN4 triangular logit transport retain its source-adaptive mean, tail, style, invertibility and structural-safety gains on disjoint AY2 official FiveK content?",
+  "parent": {
+    "decision": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_decision_v1.json",
+    "decision_sha256": "50dd9beacb5939fe1ac90a01590796ed4b46d00dd36b8e37fe48514402a35ec1",
+    "required_status": "development_pass_confirmation_required",
+    "required_report_sha256": "0911b018128d94ced5ef95696d070f1ede99b74dcd41e7ad7d88f4eb85ce9133"
+  },
+  "confirmation_source": {
+    "config": "configs/u5_r2ay2s_fivek_unseen_content_source_v1.json",
+    "config_sha256": "e24c8aedf45469ec73cbdf136cefd4306c5cac6925cf1de8914a6c943bd81d2e",
+    "manifest": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/manifest.json",
+    "manifest_sha256": "c361f533a9d41a9b8df99333f0c91c2bc5104c32a9231eb969c7b71d381f61ae",
+    "report": "outputs/u5_r2ay2s_fivek_unseen_content_source_v1/run_a/report.json",
+    "report_sha256": "90f16d48b391a0ba8baa4347e73129a2348b62cbaa69eefeddfe28aa2899decc",
+    "rows": 64,
+    "required_automatic_pass": true,
+    "scope": "unseen content only; camera metadata is unknown"
+  },
+  "leakage_controls": {
+    "compare_against_bn4_population_manifests": true,
+    "required_pair_id_overlap": 0,
+    "required_exact_sha_overlap": 0,
+    "target_pixels_allowed_for_oracle_only": true,
+    "target_pixels_allowed_for_adaptive_prediction": false
+  },
+  "frozen_from_bn4": {
+    "parameterization": true,
+    "channel_order_and_conditioning": true,
+    "fit_and_regularization": true,
+    "pca_rank": true,
+    "source_descriptor": true,
+    "ridge_alpha_selection": true,
+    "parameter_bounds": true,
+    "jacobian_dose": true,
+    "thresholds": true,
+    "fixed_ao6_renderer": true
+  },
+  "methods": ["identity", "global_triangular_transport", "adaptive_triangular_transport", "oracle_triangular_transport"],
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_identity": 0.2,
+    "minimum_adaptive_mean_improvement_over_global": 0.03,
+    "minimum_adaptive_win_fraction_over_global": 0.55,
+    "maximum_adaptive_p95_ratio_to_global": 1.0,
+    "maximum_adaptive_worst_ratio_to_global": 1.25,
+    "minimum_adaptive_ao6_style_ratio_to_global": 0.8,
+    "minimum_adaptive_median_safe_dose": 0.5,
+    "minimum_adaptive_worst_safe_dose": 0.2,
+    "maximum_inverse_roundtrip_error": 0.0000001,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_operator_out_of_cube_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the confirmed operator and open one severe-artifact-first visual comparison of adaptive versus global triangular transport before unchanged AO6",
+    "any_value_or_tail_gate_fails": "close without tuning and retain BN4 as development evidence only",
+    "any_safety_or_inverse_gate_fails": "treat as implementation or structural failure and close before visual review"
+  },
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "new_data_download_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "untouched-for-BN4 official FiveK content confirmation of a source-adaptive explicit digital-retouch operator; not camera OOD, film, stock, calibration, preference or product promotion"
+}
