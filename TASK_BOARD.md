@@ -701,4 +701,7 @@ without photographic tuning: 824 compatible codes per negative/IP branch,
 exact neutral LAD input density, all 16 gates true and two exact reports
 (`e57aa2b...d7eab`). P6T is ready: freeze and test a local LAD print-chain
 sensitivity/Jacobian audit without converting this anchor into camera-film or
-stock calibration.
+stock calibration. P6T passes two exact runs (`9bb08b2a...1bd57`): analytic
+error `3.83e-10`, whole-domain code-tangent relative error `1.36e-5`, and LAD
+local error `2.76e-4`. Retain the explicit Jacobian and continue to a distinct
+print/profile-compiler leaf; do not spend another leaf on neutral LAD glue.

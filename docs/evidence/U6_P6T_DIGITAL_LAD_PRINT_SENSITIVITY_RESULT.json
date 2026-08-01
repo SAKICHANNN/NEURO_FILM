@@ -1,0 +1,33 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Deterministic analytic and finite-difference sensitivity evidence for one generic print interpretation along a manufacturer-documented neutral recorder-density axis; not camera-film response, stock colour, local calibration, photographic quality or product promotion.",
+  "code_counts": {
+    "interpositive": 824,
+    "negative": 824
+  },
+  "contract_sha256": "e1fdd9304b42dc7345c0160f9f196c911df6de8e5754322ee34ed75fca21e985",
+  "decision": "retain_analytic_print_sensitivity",
+  "formal_report_sha256": "9bb08b2ab777c056f09dd6548d1f94314abc5e17f981fe2ae9e72ac3a6d1bd57",
+  "formal_runs": 2,
+  "formal_runs_byte_identical": true,
+  "gate_count": 12,
+  "gate_failures": [],
+  "interpositive_lad_code_tangent": [
+    -0.0015814394093108045,
+    -0.0016168810008038844,
+    -0.0016556976295065647
+  ],
+  "maximum_analytic_vs_density_finite_difference_error": 3.8264658108744243e-10,
+  "maximum_code_tangent_relative_error": 1.3575321779221547e-05,
+  "maximum_local_linearization_absolute_error": 0.00027618208501975494,
+  "negative_interpositive_lad_tangent_distance": 0.004542742119478735,
+  "negative_lad_code_tangent": [
+    0.0009815901329897807,
+    0.001003588520219945,
+    0.001027681773180603
+  ],
+  "parent_stable_evidence_id": "5eb6787f2a608e2e8842c7ea552ca3b317faa276000aad890d5c602974f70879",
+  "rgb_image_transform_count": 0,
+  "schema": "neuro_film.u6_p6t_digital_lad_print_sensitivity_evidence.v1",
+  "stable_evidence_id": "2dcbbe2e992d1fc5b98dba50a8dfd7fa824e3f6c66238d7d3e1c8e6c6d570b81"
+}

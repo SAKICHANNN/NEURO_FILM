@@ -1122,4 +1122,9 @@ passes compatibility with the existing generic print interpretation in two
 byte-identical formal runs (`e57aa2b...d7eab`). The typed neutral anchor admits
 824 codes per negative/IP branch, preserves exact LAD input density and rejects
 all non-print routes without Status M/D-min arithmetic. U6.P6T is ready for a
-separately frozen local print-chain sensitivity audit. AO6 remains incumbent.
+separately frozen local print-chain sensitivity audit. P6T passes all 12 gates
+in two exact runs (`9bb08b2a...1bd57`): analytic-vs-finite-difference error is
+`3.83e-10`, whole-domain code-tangent relative error is `1.36e-5`, and LAD
+local linearization error is `2.76e-4`. Retain the deterministic Jacobian for
+physical profile compilation; it remains generic neutral-axis evidence. AO6
+remains incumbent.

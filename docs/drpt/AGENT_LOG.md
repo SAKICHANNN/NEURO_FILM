@@ -9389,3 +9389,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The result is neutral recorder/print interoperability only. Continue P6T
   with a prospective local sensitivity audit; no camera-film, stock, scanner,
   photographic-quality or product claim opens.
+
+## 2026-08-02 - U6.P6T retains analytic density-to-print sensitivity
+
+- Implemented the exact chain-rule Jacobian through dye absorption,
+  transmission, print exposure, log exposure, paper sigmoid density and
+  normalized reflectance; it is an explicit deterministic operator, not a fit.
+- Two complete 824+824-code reports are byte-identical (`9bb08b2a...1bd57`).
+  All 12 gates pass: analytic error `3.83e-10`, code-tangent relative error
+  `1.36e-5`, LAD local error `2.76e-4`, finite partition parity and strict
+  opposite negative/IP derivative direction.
+- Retain the Jacobian for future physical profile compilation. Stop neutral LAD
+  interface work; the evidence remains generic and opens no camera-film,
+  stock-colour, process/scanner, quality or product claim.

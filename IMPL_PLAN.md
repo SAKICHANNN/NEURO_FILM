@@ -8,6 +8,13 @@
 > is interoperability evidence only, not camera-film density, stock response,
 > scanner calibration or product promotion. U6.P6T next tests the frozen
 > anchor's local print-chain sensitivity without photographic fitting.
+>
+> U6.P6T implements the exact chain-rule density-to-print Jacobian and passes
+> two byte-identical full-code audits (`9bb08b2a...1bd57`). Maximum derivative
+> error is `3.83e-10`; code-tangent error is `1.36e-5`; LAD +/-8-code local
+> linearization error is `2.76e-4`, with strict opposite negative/IP direction.
+> Retain this deterministic profile-compiler primitive, but stop neutral LAD
+> interface work here and advance a distinct physical imaging experiment.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are
