@@ -9504,3 +9504,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   The next admissible validation needs rights-cleared MTF and NPS measured from
   the same material/process group; photographic tuning and product integration
   remain forbidden.
+
+## 2026-08-02 - Freeze U6.P4AT measured joint-table source audit
+
+- Current primary-source search found no newer open photographic-film dataset
+  with same-material numerical MTF and NPS. The already acquired public NASA
+  report contains an unconsumed machine-readable Table 25 MTF alongside the
+  P4AA multi-aperture RMS tables.
+- Freeze a no-download/no-fit audit of the printed tables and four factual
+  boundaries: same film packages, shared processing, composite x-ray/film/
+  scanner MTF, and figure-only PSD curves. Printed/prose series-count drift is
+  recorded rather than silently repaired.
+- Passing can open only a nuisance-aware measured compatibility test. It cannot
+  identify an emulsion MTF, camera stock, scanner profile or product operator.

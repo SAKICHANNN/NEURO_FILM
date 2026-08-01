@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p4at_nasa_joint_mtf_granularity_source_contract.v1",
+  "experiment_id": "u6.p4at-nasa-joint-mtf-granularity-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AT",
+  "date_frozen": "2026-08-02",
+  "parent": "U6.P4AS synthetic shared-scale mechanism pass",
+  "question": "Does the already acquired public NASA report provide machine-readable numerical MTF and multi-aperture RMS granularity tables from the same film packages and process conditions, with the composite x-ray/scanner nuisance stated explicitly?",
+  "source": {
+    "record_id": "19730022682",
+    "title": "Computer enhancement of radiographs",
+    "report_number": "NASA-CR-124393 / MFR-73-3",
+    "record_url": "https://ntrs.nasa.gov/citations/19730022682",
+    "local_path": "data/physical_grain/nasa_cr_124393_v1/19730022682.pdf",
+    "expected_bytes": 2179830,
+    "expected_pages": 85,
+    "expected_sha256": "8773bb57946c38573d2feb42a08ddf3b0d5001745bc46ac23d825d6cdad90814",
+    "distribution": "PUBLIC",
+    "rights_scope": "US-government public-use source record; extracted numerical facts only"
+  },
+  "upstream_granularity_report": {
+    "path": "outputs/eval/u6_p4aa_nasa_density_grain_source_v1/report_run1.json",
+    "expected_sha256": "98be0f689842b9ec92ecc6ea9b51c2fd73269345da5508dcc9e07dba477c9b42",
+    "expected_stable_evidence_id": "c58138f5fff35cf5e116a7329ed4ff84ea96d2aca8b7eb104045a2eec947ff9b",
+    "expected_numeric_rows": 14,
+    "expected_tables": [4, 5, 6]
+  },
+  "table_gate": {
+    "expected_mtf_blocks": ["25a", "25b", "25c", "25d", "25e", "25f", "25g", "25h", "25i"],
+    "expected_frequencies_cycles_per_mm": [0, 2, 4, 6, 8, 10, 12, 14, 16],
+    "expected_columns_per_block": 3,
+    "record_printed_series_count_even_if_prose_disagrees": true,
+    "minimum_machine_readable_mtf_values": 240,
+    "same_package_statement_required": true,
+    "same_process_statement_required": true,
+    "composite_system_nuisance_statement_required": true,
+    "psd_is_figure_only_statement_required": true,
+    "two_independent_audits": true,
+    "no_figure_digitization": true,
+    "no_parameter_fit": true
+  },
+  "allowed_after_pass": [
+    "freeze one nuisance-aware measured compatibility test using only extracted table values",
+    "treat multi-aperture RMS as integrated noise observations rather than a directly sampled NPS curve",
+    "treat Table 25 MTF as x-ray-source plus film plus process plus scanner system response"
+  ],
+  "forbidden": [
+    "digitize PSD or MTF figures",
+    "call the composite Table 25 response an emulsion-only MTF",
+    "claim a camera-film stock, colour-film layer, scanner calibration or product profile",
+    "fit or tune the U6.P4AS mechanism during this source audit",
+    "silently resolve the report's printed-series versus prose-count contradiction"
+  ],
+  "branch_rule": {
+    "source_pass": "Open one fixed nuisance-aware P4AU compatibility test on the extracted tables.",
+    "source_fail": "Close this source extension without figure digitization and continue a distinct physical mechanism."
+  },
+  "claim_ceiling": "Public measured-table source feasibility for radiographic film packages under shared processing, with composite x-ray/scanner nuisance; not photographic-film calibration or product evidence."
+}
