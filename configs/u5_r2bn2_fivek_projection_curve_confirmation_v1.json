@@ -3,7 +3,7 @@
   "experiment_id": "u5.r2bn2-fivek-projection-curve-confirmation-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BN2",
   "status": "contract_frozen_implementation_ready",
-  "software_commit_at_freeze": "f63fdaeb3bf360c661d887a2bf58b80c90085e85",
+  "software_commit_at_freeze": "f63fdaeb18281d217920337208d3bfb3aecd08dc",
   "question": "Does the unchanged BN1 projection-curve family retain its source-adaptive mean, tail, style and structural-safety gains on the disjoint AY2 official FiveK content population?",
   "parent": {
     "decision": "configs/u5_r2bn1_fivek_projection_curve_basis_development_decision_v1.json",
