@@ -1,0 +1,81 @@
+{
+  "schema": "neuro_film.u5_r2bn8_historical_blind_preference_feasibility.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn8-historical-blind-preference-feasibility-v1",
+  "node": "ULT > U5 > U5.R2BN8",
+  "purpose": "Audit whether sealed autonomous blind choices contain enough source-by-candidate connectivity to preregister a bounded explicit-candidate evaluator pilot.",
+  "evidence_inputs": [
+    {
+      "path": "configs/u5_r2bh1_fixed_global_policy_confirmation_decision_v1.json",
+      "sha256": "47e37316f8910c27d885d3e0f8a680e76592aae526212d3ecaae5c6fd523234c",
+      "parser": "resolved_rounds"
+    },
+    {
+      "path": "configs/u5_r2bn6_triangular_logit_transport_visual_product_value_decision_v1.json",
+      "sha256": "52af8822aad15d0d087f720130914909ea0fe85704a995fc7181a39c86ecd475",
+      "parser": "resolved_rounds"
+    },
+    {
+      "path": "configs/u5_r2bn7_triangular_logit_transport_vs_ao6_decision_v1.json",
+      "sha256": "524debc8c7b8365942819ac4f88f34f0eb1e8bdaafdc1e3b235bbf2f9f9ddad1",
+      "parser": "resolved_rounds"
+    },
+    {
+      "path": "configs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_decision_v1.json",
+      "sha256": "fa938ca8f4b9a358066bd023b2bbac1db3584adb8f2fd7f91978440ff1d014b7",
+      "parser": "decoded_rounds"
+    },
+    {
+      "path": "configs/u5_r2bl11_filmmatch_luma_preserving_chroma_transplant_decision_v1.json",
+      "sha256": "6b7a696687a454c1a9ddef9ceda80eddc650d4d3e92c5db22babe7fee7b8c82b",
+      "parser": "decoded_choices"
+    },
+    {
+      "path": "configs/u5_r2bl13_ao6_nonbasic_chroma_emphasis_decision_v1.json",
+      "sha256": "c9cc9eba42f2fc60d2133944ff9b61c39dd48e83bbe95cb0283345b0ad806eef",
+      "parser": "nested_decoded_rounds"
+    },
+    {
+      "path": "outputs/u5_r2bk9_smooth_perceptual_blind_preference_v1/result.json",
+      "sha256": "9e698c01291bcf750344278b7510f2081e0fccad3c3b75b112c199ad354c2ec1",
+      "parser": "decoded_vote_rounds"
+    },
+    {
+      "path": "outputs/u5_r2bk15_orthogonal_residual_blind_preference_v1/result.json",
+      "sha256": "effcec3bed546ee011c4d7715a1b1e8c3b7647a1157b6ee9cb21c201d34cdb9d",
+      "parser": "decoded_vote_rounds"
+    }
+  ],
+  "arm_aliases": {
+    "fixed_ao6_direct": "fixed_ao6_colour_only_t15_c35"
+  },
+  "gates": {
+    "minimum_experiment_count": 8,
+    "minimum_unique_source_count": 45,
+    "minimum_effective_source_experiment_units": 100,
+    "minimum_raw_blind_votes": 250,
+    "minimum_sources_per_experiment": 10,
+    "minimum_candidate_graph_largest_component_share": 1.0,
+    "minimum_source_cohort_count": 5,
+    "minimum_repeated_source_cohort_units": 70,
+    "minimum_mean_within_unit_vote_agreement": 0.75,
+    "minimum_oracle_gain_over_experiment_global": 0.1,
+    "maximum_unassigned_units": 0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "allowed_if_pass": [
+    "preregister_handcrafted_choice_evaluator_pilot",
+    "use_source_and_explicit_render_diagnostics_only",
+    "group_hold_out_sources_and_candidate_families",
+    "retain_hard_ao6_fallback"
+  ],
+  "forbidden_even_if_pass": [
+    "direct_rgb_prediction",
+    "product_promotion",
+    "stock_response_or_calibration_claim",
+    "treat_repeated_rounds_as_independent_samples",
+    "train_on_experiment_id_or_camera_identity",
+    "relax_severe_artifact_veto"
+  ],
+  "claim_ceiling": "historical autonomous blind-evidence feasibility only; not owner or population preference, not a trained evaluator, not stock truth and not product promotion"
+}
