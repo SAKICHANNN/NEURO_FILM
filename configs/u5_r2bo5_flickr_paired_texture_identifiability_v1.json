@@ -1,0 +1,71 @@
+{
+  "schema": "neuro-film.u5-r2bo5-flickr-paired-texture-identifiability.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO5",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "After geometry, low-frequency tone and edge controls, does the film side of the one-author weak pairs retain a cross-family stationary high-frequency excess worth approximating with an explicit density-domain structure model?",
+  "parents": {
+    "registration_report": {
+      "path": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_a/report.json",
+      "sha256": "954f5dc9f64a74615da695668fb924c80659d00620607c37ad149f0db2e089eb",
+      "required_stable_evidence_id": "fb19f395aa5d1850443372c1e4afef2f7dd8273fda1562a561d2d2702da10e65"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+      "sha256": "697cc636fe7668fe8586455b4bb1eecc858cbe984045e18417195d902d281703"
+    }
+  },
+  "data_root": "data/research/flickr_analog_digital_album_v1",
+  "split": {
+    "development_rule": "accepted BO2 pairs with scene_id_mod_4_not_equal_0",
+    "confirmation_rule": "accepted BO2 pairs with scene_id_mod_4_equals_0",
+    "confirmation_pixels_forbidden": true
+  },
+  "analysis": {
+    "warp": "digital encoded sRGB to film geometry using exact BO2 homography and OpenCV INTER_LINEAR",
+    "valid_mask_erosion_pixels": 12,
+    "encoded_boundary_code_minimum": 3,
+    "encoded_boundary_code_maximum": 252,
+    "prefilter_sigma_pixels": 0.8,
+    "highpass_sigma_pixels": 2.0,
+    "patch_size_pixels": 48,
+    "patch_stride_pixels": 48,
+    "maximum_patches_per_scene": 24,
+    "minimum_patches_per_scene": 6,
+    "maximum_patch_gradient_quantile": 0.4,
+    "log_floor": 0.00392156862745098,
+    "shift_control_pixels": 4,
+    "radial_frequency_edges_nyquist": [0.0, 0.125, 0.25, 0.375, 0.5, 0.75, 1.000001],
+    "opponent_coordinates": "log-luma=(R+2G+B)/4, rg=R-G, bg=B-G",
+    "scene_weighting": "equal scene weight; patches average within scene",
+    "jpeg_block_control": "mean absolute adjacent difference at local 8-pixel boundaries divided by non-boundaries"
+  },
+  "evaluation": {
+    "minimum_scenes": 36,
+    "minimum_scenes_per_family": 8,
+    "maximum_median_correct_to_shifted_residual_rms_ratio": 0.95,
+    "minimum_median_film_to_digital_luma_highpass_energy_ratio": 1.05,
+    "minimum_each_family_median_film_to_digital_luma_highpass_energy_ratio": 1.0,
+    "minimum_positive_film_minus_digital_luma_psd_bin_fraction": 0.5,
+    "minimum_each_family_positive_delta_psd_cosine_to_pooled": 0.75,
+    "maximum_median_residual_edge_correlation": 0.5,
+    "maximum_median_film_jpeg_block_ratio": 1.5,
+    "minimum_median_residual_chroma_to_luma_energy_ratio": 0.01,
+    "maximum_median_residual_chroma_to_luma_energy_ratio": 0.6,
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "pass": "freeze the measured generic capture-chain residual shape and preregister one mean-preserving density-domain stochastic structure challenger with shuffled-shape and monochrome controls",
+    "fail": "close this paired texture route without generator fitting; continue another explicit colour or physical mechanism",
+    "nuisance_fail": "classify the signal as alignment, edge, JPEG or family nuisance rather than film structure"
+  },
+  "forbidden": [
+    "load BO3 confirmation pixels",
+    "fit or tune thresholds from the formal report",
+    "call the residual a stock, emulsion, scanner-independent or calibrated grain response",
+    "train a neural texture generator or generate final RGB with ML",
+    "use hard clipping or display-RGB additive noise as the next renderer"
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "one-author weak-paired camera-film-display-chain stationary texture identifiability evidence; not stock, emulsion, scanner, process, calibration, product or commercial-use evidence"
+}
