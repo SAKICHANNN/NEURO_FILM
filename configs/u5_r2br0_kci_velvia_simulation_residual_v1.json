@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2br0-kci-velvia-simulation-residual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BR0",
+  "question": "Does the controlled real-Velvia-versus-digital-Velvia chart observation contain a held-patch, non-basic chroma direction beyond one global chroma strength after each chain's neutral offset is removed?",
+  "source": {
+    "title": "A Comparative Study on Color Reproduction Using Fujifilm's Film Simulation Technology",
+    "publication_year": 2025,
+    "kci_article_id": "ART003250199",
+    "kci_url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003250199",
+    "paper_pdf_sha256": "d12fe531474d3b46e4c6b3e357135aa5e43adf26d72c33b109383da1850d569e",
+    "paper_pdf_bytes": 7427971,
+    "observation_role": "same-chart controlled digital-Velvia JPEG versus real Velvia 50 E-6 scanner display-chain observation",
+    "digital_chain": "Fujifilm X-T50 Velvia/Vivid JPEG, Nikon 105mm lens, Profoto A10 at measured 5428K",
+    "film_chain": "Nikon F55, Fujichrome Velvia RVP 50, same Nikon 105mm lens, standard E-6, Epson V850 Pro and SilverFast 8.8.0r8",
+    "paper_controls": "three repeats and plus/minus 3EV brackets averaged; ICE, sharpening and gamma disabled; paper reports scanned-chain mean Delta E00 3.5",
+    "digital_plot_png": {
+      "sha256": "354aaa6373b27d729a3bfe9072d0309a25e102e1a9dae9065b829ca508b74f82",
+      "bytes": 2348277,
+      "width": 2048,
+      "height": 1751
+    },
+    "film_plot_png": {
+      "sha256": "c371ee7db44960cff885045e47b0b32d01ab71240b7cf7ec392b7515e05c586c",
+      "bytes": 2207612,
+      "width": 2048,
+      "height": 1751
+    },
+    "encoded_space": "paper-embedded nominal sRGB display plots",
+    "working_space": "D65 CIELAB derived from encoded sRGB patch medians",
+    "claim_limit": "the embedded plots are author-rendered publication observations, not original camera or scan pixels"
+  },
+  "extraction": {
+    "chart_horizontal_start": 1536,
+    "chart_horizontal_end_inclusive": 2026,
+    "chart_vertical_start": 299,
+    "chart_vertical_end_inclusive": 626,
+    "rows": 4,
+    "columns": 6,
+    "centre_half_width": 10,
+    "centre_half_height": 10,
+    "maximum_centre_channel_range": 20,
+    "expected_digital_patch_u8_sha256": "de1ea63ce5518985176055becca78d148abcfa068f2f9e0fbad86a25a7dfbd8a",
+    "expected_film_patch_u8_sha256": "f8c4846563c4096713aa8f76897fbd6742e6eb726eb130cec9c75d1faafc3a47",
+    "expected_paired_patch_u8_sha256": "22d91add6bee54107fa8052517e3aeb965de4a50973dcf58996162197097d4fd",
+    "digital_patch_rgb_u8": [[79, 41, 28], [223, 132, 128], [82, 127, 201], [46, 77, 42], [123, 116, 193], [82, 196, 182], [243, 101, 36], [57, 86, 175], [239, 43, 90], [68, 46, 98], [124, 199, 42], [244, 145, 34], [47, 71, 163], [58, 147, 62], [208, 36, 39], [234, 196, 37], [198, 54, 162], [68, 140, 209], [252, 253, 252], [200, 209, 220], [157, 170, 184], [95, 109, 131], [41, 46, 56], [16, 17, 17]],
+    "film_patch_rgb_u8": [[92, 49, 40], [234, 151, 182], [133, 164, 219], [74, 116, 54], [172, 134, 202], [159, 223, 225], [243, 102, 46], [72, 98, 183], [210, 40, 90], [97, 40, 115], [175, 221, 90], [242, 156, 47], [49, 73, 165], [86, 194, 110], [178, 36, 42], [235, 206, 44], [204, 49, 160], [96, 181, 231], [255, 255, 255], [237, 240, 249], [199, 203, 235], [122, 138, 184], [57, 73, 98], [19, 22, 21]],
+    "chromatic_patch_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+    "neutral_patch_indices": [18, 19, 20, 21, 22, 23]
+  },
+  "split": {
+    "folds": "leave_one_ColorChecker_column_out",
+    "fold_count": 6,
+    "chromatic_development_rows_per_fold": 15,
+    "chromatic_confirmation_rows_per_fold": 3,
+    "confirmation_indices_by_fold": [[0, 6, 12], [1, 7, 13], [2, 8, 14], [3, 9, 15], [4, 10, 16], [5, 11, 17]],
+    "formal_status": "independent_controlled_display-chain_development_not_stock_confirmation"
+  },
+  "normalization": {
+    "neutral_offset": "subtract each chain's mean a-star and b-star over patches 19-24",
+    "lightness": "not modeled in this chroma-direction experiment",
+    "fit_dtype": "float64"
+  },
+  "models": {
+    "identity": "neutral-corrected digital a-star,b-star unchanged",
+    "global_chroma": "one nonnegative scalar shared by a-star and b-star",
+    "axis_scale": "two nonnegative diagonal a-star and b-star scales",
+    "full_matrix": "one unconstrained 2x2 least-squares chroma matrix, accepted only under determinant and condition gates",
+    "affine_ceiling": "2x2 matrix plus two-component bias; capacity diagnostic only"
+  },
+  "gates": {
+    "all_six_folds_present": true,
+    "source_nonmutation": true,
+    "identity_mean_confirmation_chroma_rmse_minimum": 4.0,
+    "full_matrix_minimum_gain_over_global_chroma": 0.15,
+    "full_matrix_mean_confirmation_chroma_rmse_maximum": 8.0,
+    "full_matrix_maximum_fold_chroma_rmse": 12.0,
+    "full_matrix_train_test_chroma_rmse_gap_maximum": 2.5,
+    "full_matrix_rmse_ratio_to_affine_ceiling_maximum": 1.10,
+    "full_matrix_determinant_minimum": 0.20,
+    "full_matrix_condition_number_maximum": 3.0,
+    "two_run_report_byte_identity": true
+  },
+  "selection_rule": "retain the full 2x2 chroma direction only if every frozen gate passes; otherwise close this controlled source without adding nonlinear capacity or changing thresholds",
+  "image_download_allowed": false,
+  "additional_pixel_acquisition_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "development evidence on one controlled 24-patch publication display-chain comparison; may identify a small film-versus-digital-simulation chroma residual, but not a digital-to-film operator, scanner-independent Velvia response, calibration, photo transfer, product promotion or stock truth"
+}
