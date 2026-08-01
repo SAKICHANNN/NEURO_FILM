@@ -8718,3 +8718,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   decode to `9/4/7` by round, `20/36` aggregate and seven source majorities.
   The frozen aggregate minimum is 22, so promotion closes without added rounds,
   threshold movement, retuning or router rescue. AO6 remains incumbent.
+
+## 2026-08-01 - U5.R2BN4 passes triangular transport development
+
+- Implemented a 14-parameter monotone triangular logit RGB transport with
+  exact endpoints, analytic inverse and sampled Jacobian dose control. ML only
+  predicts the explicit parameters; final RGB remains deterministic.
+- Two full AY0/AY3/AY6 reports are byte-identical at `0911b018...9133`.
+  Adaptive improves mean error 8.87-10.73% over global, wins 64.06-71.43%,
+  improves every P95/worst tail and retains at least .5967 safe dose.
+- Zero new boundary, out-of-cube or nonpositive-Jacobian events occur. Freeze
+  all method choices and open unchanged disjoint AY2 confirmation only.

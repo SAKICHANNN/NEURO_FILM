@@ -2413,3 +2413,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > wins and seven source majorities do not override that failure. Retain AO6;
 > do not add rounds, retune this operator or train a rescue router.
 >
+> `U5.R2BN4` tests a mechanism-distinct, strictly cube-preserving triangular
+> logit transport. Two development runs are exact at `0911b018...9133`.
+> Adaptive gains are 8.87-10.73% over global across AY0/AY3/AY6, all frozen
+> tail/style/dose/inverse/Jacobian gates pass, and no clipping is used. Freeze
+> the 14-parameter family and run only unchanged disjoint AY2 confirmation next.
+>

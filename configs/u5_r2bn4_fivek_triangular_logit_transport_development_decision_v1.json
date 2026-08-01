@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn4-fivek-triangular-logit-transport-development-v1",
+  "status": "development_pass_confirmation_required",
+  "config": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_v1.json",
+  "config_sha256": "de829f2bd51b9d52c8b34d0017901f8fb401c39da85ece8772677901e38d81f9",
+  "software_commit": "e93865ff84a629b287769380a9252f73f5d29869",
+  "report": "outputs/u5_r2bn4_fivek_triangular_logit_transport_development_v1/run_a/report.json",
+  "report_sha256": "0911b018128d94ced5ef95696d070f1ede99b74dcd41e7ad7d88f4eb85ce9133",
+  "stable_evidence_id": "fc6abc02a8e56e44508ec0a5a175e39c62700ef1d982fa7a425f13e42ce0ec22",
+  "repeat_report_byte_identical": true,
+  "automatic_pass": true,
+  "observed": {
+    "ay0_camera_group_crossfit": {"oracle_mean_improvement_over_identity": 0.3149265719736641, "adaptive_mean_improvement_over_global": 0.1073375207482537, "adaptive_win_fraction": 0.6875, "adaptive_p95_ratio": 0.9187772679848634, "adaptive_worst_ratio": 0.9008183126665805, "style_ratio": 0.9279385726348894, "median_safe_dose": 1.0, "minimum_safe_dose": 0.7169946432113647},
+    "ay3_seen_fresh": {"oracle_mean_improvement_over_identity": 0.3644494145434286, "adaptive_mean_improvement_over_global": 0.09552010330207393, "adaptive_win_fraction": 0.7142857142857143, "adaptive_p95_ratio": 0.9438147270014862, "adaptive_worst_ratio": 0.8498131716694156, "style_ratio": 0.873546287138909, "median_safe_dose": 1.0, "minimum_safe_dose": 0.6952834725379944},
+    "ay6_seen_confirmation": {"oracle_mean_improvement_over_identity": 0.39131925817976393, "adaptive_mean_improvement_over_global": 0.08871789563675628, "adaptive_win_fraction": 0.640625, "adaptive_p95_ratio": 0.8574941530928752, "adaptive_worst_ratio": 0.9187073294933348, "style_ratio": 0.9037561817665821, "median_safe_dose": 1.0, "minimum_safe_dose": 0.5966507792472839}
+  },
+  "safety": {
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_nonpositive_jacobian_count": 0,
+    "minimum_sampled_jacobian_determinant": 0.0200000000122958,
+    "maximum_sampled_jacobian_condition": 29.9999999913504,
+    "maximum_inverse_roundtrip_error": 2.99760216648792e-15,
+    "hard_output_clipping_used": false,
+    "post_operator_pixel_scaling_used": false
+  },
+  "decision": "Freeze the fourteen-parameter triangular logit representation, sequential per-image fit, PCA rank, source descriptor, ridge selection, bounds and Jacobian dose. Development passes on all three already-seen FiveK populations and opens one unchanged disjoint AY2 confirmation only.",
+  "forbidden": [
+    "do not tune the representation or gates on AY2 outcomes",
+    "do not reinterpret supervised FiveK digital-retouch pairs as film or stock evidence",
+    "do not call this a generative flow or allow learned final RGB",
+    "do not open visual or product comparison before unchanged confirmation"
+  ],
+  "next_leaf": "U5.R2BN5 unchanged confirmation on the disjoint retained AY2 official FiveK rows 65-128",
+  "claim_ceiling": "repeat-exact positive development evidence for one bounded source-adaptive explicit digital-retouch operator family; not untouched confirmation, film, stock, calibration, preference or product promotion"
+}
