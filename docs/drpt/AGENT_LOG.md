@@ -8648,3 +8648,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   latent mode, real-film or product claim opens. BM2 may now preregister a
   colour-independent content-space hard selector with the BM1 Oracle fixed as
   its unreachable upper bound.
+
+## 2026-08-01 - U5.R2BM2 closes semantic content retrieval
+
+- Fixed grayscale DINOv2-S embeddings, hard Top-1 cosine retrieval and a
+  development-only OOD fallback were evaluated without colour statistics,
+  target pixels, operator signatures, training or blending.
+- Two reports are byte-identical at `374e4d5a...9663` (stable ID
+  `4d4737c5...2b867`). Retrieval matches 2/17 Oracle cases, improves 4/17,
+  regresses median target error 12.98% and reaches an 18.18x worst tail; style
+  retention remains .983 and new boundary is zero.
+- Close semantic retrieval without tuning. Retain BM1 as Oracle-only evidence;
+  one frozen classical grayscale tone/layout control is the next minimal leaf.

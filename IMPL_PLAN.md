@@ -2389,3 +2389,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > hard Top-1 retrieval with medoid, strength, shuffled/random and the BM1
 > Oracle ceiling.
 >
+> `U5.R2BM2` now closes the fixed grayscale DINOv2-S hard selector. Two exact
+> reports match only 2/17 Oracle cases; median error regresses 12.98% and the
+> worst source reaches 18.18x global while style strength and boundary remain
+> clean. Thus semantic similarity does not identify the needed colour action.
+> One preregistered classical grayscale tone/layout nearest-case control is
+> the next minimal discriminator; failure closes simple source-only retrieval
+> for this consumed population rather than opening a learned router.
+>

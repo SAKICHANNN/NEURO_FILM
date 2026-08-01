@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2bm2_ao6_content_hard_retrieval_decision.v1",
+  "node": "U5.R2BM2",
+  "software_commit": "796bfc1513958779b91c016c0830a1f2673dce56",
+  "contract": {
+    "path": "configs/u5_r2bm2_ao6_content_hard_retrieval_v1.json",
+    "sha256": "fc64e01861ec5c78f274ce7de261d7cb38465fa0b77be8c3242429e09626e90b"
+  },
+  "repeat_evidence": {
+    "runs": 2,
+    "files_per_run": 1,
+    "all_file_hashes_identical": true,
+    "report_sha256": "374e4d5acb65a2d6b163127a3e9c70733577d4bffa8bab8fb50bfdf767379663",
+    "stable_evidence_id": "4d4737c554fcf97f48ddc9730e5f751358d4062767d253aa16c09ef5f9e2b867"
+  },
+  "result": {
+    "automatic_pass": false,
+    "feature_sha256": "f8235084f04de93cca5982cacf2b97bdf4a94b57fee52c87df4ca84ac25a31eb",
+    "median_retrieval_rmse_reduction_vs_global_medoid": -0.12982091596510115,
+    "fraction_of_bm1_oracle_gain_recovered": -0.4499390106938776,
+    "worst_retrieval_vs_global_rmse_ratio": 18.177349077234993,
+    "sources_retrieval_beats_global": 4,
+    "nonfallback_sources": 13,
+    "oracle_exact_match_count": 2,
+    "shuffled_reduction_p95": 0.0,
+    "retrieval_reduction_advantage_over_shuffled_p95": -0.12982091596510115,
+    "median_style_retention_ratio": 0.9829629145725606,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0
+  },
+  "decision": "close_colour_blind_semantic_hard_retrieval_retain_oracle_only",
+  "interpretation": "Global grayscale semantic similarity does not predict which historical AO6 context best approximates a held query. The selected renders remain bounded and stylistically strong, but the wrong case choices create severe target-error tails. BM1 remains descriptive Oracle evidence only.",
+  "forbidden_rescue": [
+    "fine-tune or replace DINOv2 on this consumed population",
+    "change k, pooling, OOD quantile or similarity after observing the result",
+    "blend multiple cases to hide hard-selection errors",
+    "call semantic nearest neighbours film modes or transferable operators"
+  ],
+  "next_leaf": "test one preregistered classical grayscale tone/layout nearest-case control, which is mechanism-distinct from semantic embedding; if it fails, close simple source-only case retrieval for this population",
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative group-held evidence for one colour-blind semantic hard selector over deterministic AO6 Look Approximation cases; not film, stock, latent mode, calibration, authenticity, population preference or product promotion"
+}
