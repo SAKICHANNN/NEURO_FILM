@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p2z_emulating_emulsion_author_package_audit_decision.v1",
+  "node": "U6.P2Z",
+  "status": "fail-closed-paper-only-no-reproducible-author-package",
+  "contract": "configs/u6_p2z_emulating_emulsion_author_package_audit_v1.json",
+  "contract_sha256": "577e94151c9de46165d2f2382bd4c2e7b81fc09b71569c37f4d46c8b0b6e6058",
+  "software_commit": "a06d209f2eaa1655ed4db9532cf45a75b9c83385",
+  "reports": [
+    {
+      "path": "outputs/u6_p2z_emulating_emulsion_author_package_audit_v1/run_a/report.json",
+      "sha256": "f0f5d6e8c7bb3abdd7e48f6cabad69c303568b4f58d3eb066e58a0544ab17fbe"
+    },
+    {
+      "path": "outputs/u6_p2z_emulating_emulsion_author_package_audit_v1/run_b/report.json",
+      "sha256": "f0f5d6e8c7bb3abdd7e48f6cabad69c303568b4f58d3eb066e58a0544ab17fbe"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "stable_evidence_id": "e96090304b07e707ce85da6b09e1d9a21590360ad307df7f21d473896fb9e469"
+  },
+  "source_facts": {
+    "primary_author_assets_hash_and_parse_exact": true,
+    "full_paper_pages": 8,
+    "film_stock": "Fujifilm Velvia 100 colour-positive film",
+    "film_roll_count": 1,
+    "total_patch_pairs": 4620,
+    "unique_patch_rows": 3168,
+    "operator_parameter_count": 30,
+    "explicit_algorithm_repository_links": 0,
+    "published_complete_paired_patch_rows": 0,
+    "published_exact_fitted_parameter_values": 0,
+    "operator_fit_count": 0,
+    "image_render_count": 0,
+    "visual_review_count": 0
+  },
+  "failed_gates": [
+    "explicit_author_link_to_source_code",
+    "exact_algorithm_repository_revision",
+    "software_license",
+    "runnable_operator_implementation",
+    "exact_fitted_parameter_bundle_or_complete_paired_patch_rows",
+    "data_or_parameter_rights_for_local_reproduction",
+    "complete_capture_process_scan_and_color_domain_lineage",
+    "published_fit_evaluation_role_manifest"
+  ],
+  "decision": "retain-as-current-best-paired-compact-equation-and-capture-design-baseline-but-close-clean-room-reproduction",
+  "next_ready_leaf": "U6.P6Q Kodak Digital LAD official source and machine-readable calibration audit",
+  "claim_ceiling": "author-package reproducibility and data-feasibility audit; not transferable stock truth, generic film physics, product calibration or promotion"
+}

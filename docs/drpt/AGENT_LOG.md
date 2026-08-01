@@ -9316,3 +9316,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   an HTTP 202 challenge and was not bypassed.
 - Continue U6.P2Z with the latest 2025 Emulating Emulsion author package. This
   is source feasibility only, not stock/process/scanner or product evidence.
+
+## 2026-08-02 - U6.P2Z closes as paper-only reproducibility evidence
+
+- Exact author page, abstract, poster and retained full paper establish the
+  one-roll 4,620-pair, 30-parameter Emulating Emulsion design without a patch
+  count contradiction: 140 total positions and 96 unique patches per shot.
+- Two reports are byte-identical at `f0f5d6e8...17fbe`. The public author
+  surface exposes no runnable algorithm repository, licence, fitted values,
+  complete paired rows, reproduction rights or complete process/split lineage.
+  No fit, render or visual review occurred.
+- Retain it as the current best paired compact equation/capture-design
+  baseline, not transferable stock truth or complete film physics. Continue
+  U6.P6Q with Kodak Digital LAD official machine-readable calibration assets.

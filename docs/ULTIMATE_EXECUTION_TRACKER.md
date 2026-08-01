@@ -1104,6 +1104,10 @@ independent content-diverse evidence next.
 U6.P2Y closes the accessible measured-interimage source family before fitting.
 The CIC companion reports a real Ektachrome/CRT-recorder RGB-to-CMY experiment
 but publishes zero complete machine-readable rows against the frozen minimum
-of 24. Two reports are byte-identical; no OCR, manual digitization, operator fit
-or render occurred. U6.P2Z audits the 2025 Emulating Emulsion author package for
-reproducible code, fitted parameters or paired patch rows. AO6 remains incumbent.
+of 24. U6.P2Z then verifies the 2025 Emulating Emulsion author assets and full
+paper exactly (`f0f5d6e8...17fbe` twice). Its one-roll, 4,620-pair,
+30-parameter design is retained as the strongest paired compact equation-family
+baseline, but no public runnable implementation, fitted values, complete rows,
+reproduction rights or full lineage exist. It closes before fitting or visual
+review. U6.P6Q audits Kodak Digital LAD as an official machine-readable neutral
+recorder/print calibration source. AO6 remains incumbent.
