@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p2y_measured_interimage_source_audit_contract.v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2Y",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p2x_intrinsic_langmuir_response_photographic_decision_v1.json",
+    "decision_sha256": "a7681e1881c47b81d9f319d80d7750104bbda45cbf3758bb5a0a0afc66a47fe3",
+    "status": "automatic-value-and-artifact-close-no-visual-review"
+  },
+  "question": "Do exact primary sources expose independently measured, reusable multi-channel film-recorder response rows sufficient to identify a non-spatial interimage operator without fitting another heuristic to photographs?",
+  "claim_ceiling": "bounded source and data-feasibility audit; not a film-stock response, stock/process/scanner calibration, operator fit, product profile or authenticity claim",
+  "sources": [
+    {
+      "role": "primary thesis",
+      "citation": "Helen Hae-Kyung Shin, The Colorimetric characterization of CRT-based digital film recorders, RIT thesis, 1996",
+      "landing_url": "https://repository.rit.edu/theses/4561",
+      "pdf_url": "https://repository.rit.edu/cgi/viewcontent.cgi?article=5565&context=theses",
+      "expected_viewer_pages": 171,
+      "expected_landing_download_label": "PDF (9.6 MB)",
+      "reported_measurement_scope": "digital RGB drive signals to processed positive-35mm-film spectral transmittance and Status A density, including interimage effects modeled by PCA and cubic splines"
+    },
+    {
+      "role": "official companion paper",
+      "citation": "Mark D. Fairchild, Roy S. Berns, Audrey A. Lester and Hae Kyung Shin, Accurate Color Reproduction of CRT Displayed Images as Projected 35mm Slides, CIC 1994",
+      "landing_url": "https://library.imaging.org/cic/articles/2/1/art00020",
+      "pdf_url": "https://library.imaging.org/admin/apis/public/api/ist/website/downloadArticle/cic/2/1/art00020",
+      "doi": "10.2352/CIC.1994.2.1.art00020"
+    }
+  ],
+  "acquisition": {
+    "maximum_total_bytes": 25000000,
+    "remote_requests_are_read_only": true,
+    "store_under_ignored_source_recon_only": true,
+    "command_line_challenge_or_login_bypass_allowed": false,
+    "captcha_solving_allowed": false,
+    "source_substitution_after_audit_begins": false,
+    "image_payloads_or_photographs_requested": false
+  },
+  "audit_requirements": {
+    "official_landing_metadata_exact": true,
+    "local_pdf_bytes_hash_and_parse_required_for_numeric_data_claim": true,
+    "title_author_year_and_page_count_required": true,
+    "measurement_device_film_process_and_density_domain_required": true,
+    "complete_numeric_rows_must_bind_input_rgb_drive_and_three_measured_output_channels": true,
+    "minimum_complete_numeric_rows": 24,
+    "minimum_independent_input_channel_levels": 3,
+    "minimum_nonzero_cross_channel_interactions": 3,
+    "machine_readable_or_explicitly_tabulated_values_required": true,
+    "figure_only_ocr_or_manual_digitization_allowed": false,
+    "fit_or_render_allowed": false
+  },
+  "rights": {
+    "thesis_license": "no explicit reusable data or software license observed at freeze",
+    "companion_paper_license": "copyright Society for Imaging Science and Technology 1994",
+    "allowed_use": "local internal source audit and non-redistributed research evidence only",
+    "redistribution": false,
+    "commercial_training": false,
+    "product_profile_compilation": false
+  },
+  "automatic_branch": {
+    "pass": "open one separately preregistered measured interimage operator-identifiability audit; still no stock or product claim",
+    "source_access_blocked": "record exact access boundary and continue with the independently accessible source; do not bypass or poll",
+    "numeric_rows_absent_or_figure_only": "close this source family without OCR, manual digitization or heuristic reconstruction",
+    "metadata_or_context_incomplete": "classify as mechanism literature only and return to a materially different physical or data-identification leaf"
+  },
+  "forbidden_fallbacks": [
+    "treat an abstract, fitted figure, plotted surface or model diagram as measured row-level data",
+    "infer missing film, process, device, exposure or density metadata from appearance",
+    "OCR or manually digitize figures after discovering that tabulated data are absent",
+    "fit a new Langmuir, matrix, spline or neural operator in this source-audit leaf",
+    "lower row, channel or interaction gates after reading the sources",
+    "claim that film-recorder measurements identify a camera-to-film, scanner or named-stock operator"
+  ]
+}
