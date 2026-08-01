@@ -535,3 +535,7 @@ and visual overlay review finds no obvious accepted warp failure. Keep the one
 U5.R2BO3 closes a single family-average operator: curve+matrix wins 67.5% but
 misses the frozen 5% median-over-basic gate at 4.03%; triangular also fails.
 Keep 12 confirmation pairs unread and test per-scene case-bank Oracle value.
+
+U5.R2BO4 closes retrieval: Oracle mean gain is 13.08% and wins 85%, but median
+gains over global/medoid (8.76%/6.73%) and p95 ratio .943 miss frozen gates.
+Do not train a similarity selector; confirmation remains unread.

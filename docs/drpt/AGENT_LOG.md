@@ -8808,3 +8808,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the frozen 5% gate; triangular gains only 1.13% and fails one family median.
 - Do not tune gates or add average-model capacity. Open only a same-capacity
   per-scene Evaluator Oracle before source-only hard retrieval.
+
+## 2026-08-01 - U5.R2BO4 closes weak-pair case routing
+
+- Two exact reports (`ba33e56b...5c0e5a`) show Oracle mean gain 13.08% and 85%
+  wins, but median gains over global/medoid are 8.76%/6.73% and p95 ratio is
+  .943, missing frozen 10%/10%/.90 gates.
+- Train no retriever and keep 12 confirmation pairs unread. Continue a
+  mechanism-distinct explicit/physical research leaf.

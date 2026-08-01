@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u5-r2bo4-flickr-weak-pair-case-oracle-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO4",
+  "decision": "close_case_routing_without_retriever",
+  "contract_sha256": "8195c9bee08994321ca935b3a27ecf9ba8d58d735c2c003a038599fabf166715",
+  "software_commit": "860e1026cc169696342fca0d62b0d65107b8e77a",
+  "reports": {
+    "run_a": "outputs/u5_r2bo4_flickr_weak_pair_case_oracle_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo4_flickr_weak_pair_case_oracle_v1/run_b/report.json",
+    "sha256": "ba33e56b71eb5f06c3acffe0ab8c1cfe4fa69738ed97d7b398442b4ea15c0e5a",
+    "byte_identical": true,
+    "stable_evidence_id": "9d901f7d4b8b6de3991ad5f58c352c159bd522277bd1b5df8d29db8e62e29760"
+  },
+  "observed": {
+    "mean_oracle_improvement_over_global": 0.13078521811319566,
+    "median_oracle_improvement_over_global": 0.08757817527153133,
+    "median_oracle_improvement_over_medoid": 0.06727317728433144,
+    "oracle_win_fraction_over_global": 0.85,
+    "p95_oracle_error_ratio_to_global": 0.9433539908538158,
+    "worst_oracle_error_ratio_to_global": 0.926879410211498
+  },
+  "retriever_allowed": false,
+  "confirmation_pixels_loaded": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "development-only negative evaluator-Oracle for one-author weak-paired camera/film display-chain cases; not a selector, stock mode, calibration, product or commercial-use training"
+}
