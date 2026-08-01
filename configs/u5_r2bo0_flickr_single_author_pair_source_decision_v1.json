@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u5-r2bo0-flickr-single-author-pair-source-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO0",
+  "decision": "open_bounded_derivative_integrity_and_registration_feasibility_only",
+  "contract": {
+    "path": "configs/u5_r2bo0_flickr_single_author_pair_source_v1.json",
+    "sha256": "b3f9fe868f902bd1970d1677a48713830f04c5c43969229bea41df5be96edcdc"
+  },
+  "software_commit": "8a99e5d8c66b4b54f54f34cf6c1c2fe09ddc39dd",
+  "reports": {
+    "run_a": "outputs/u5_r2bo0_flickr_single_author_pair_source_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo0_flickr_single_author_pair_source_v1/run_b/report.json",
+    "sha256": "b1e266508d718766a3c347cadff2693b97d72617bb3c2b57a44c6b756598e3cd",
+    "byte_identical": true,
+    "stable_evidence_id": "90d0e6bb1148cd5537fdbed638f35e8948cd82826a64d502df639521f5bf0c53"
+  },
+  "observed": {
+    "public_photos": 218,
+    "eligible_complete_pairs": 53,
+    "family_pair_counts": {
+      "lumix_lc40_to_nikon_f90x_fuji200": 17,
+      "nikon_d70_to_ricoh_rw1": 18,
+      "olympus_c70_to_yashica_kodak400": 18
+    },
+    "largest_family_share": 0.33962264150943394,
+    "duplicate_photo_ids": 0,
+    "pixel_payloads_requested": 0
+  },
+  "allowed_next": "download only the 106 exact 1024px l derivatives for integrity and registration feasibility under CC-BY-NC-SA-2.0; no originals",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "one-author same-scene film/digital weak-pair metadata feasibility; exact stock, process, scanner, exposure, roll and physical digital-to-film operator remain unknown"
+}

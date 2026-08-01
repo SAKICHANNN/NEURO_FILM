@@ -517,3 +517,9 @@ U5.R2BL0 closes dense source-conditioned prediction: aggregate and tail error
 improve, but only 13/33 held groups win. The next colour leaf must use a frozen
 hard fallback or independent content-diverse evidence; dense routing cannot
 advance.
+
+U5.R2BO0 finds 53 title-exact same-scene film/digital weak pairs in one
+218-photo album. The three capture families are balanced at 18/17/18 and all
+selected rows are CC BY-NC-SA 2.0 with 1024px derivatives. Open only bounded
+integrity/registration feasibility; one uploader and unknown stock, process,
+exposure and scanner state still forbid fitting, training or calibration.

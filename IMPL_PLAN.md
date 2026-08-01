@@ -2445,3 +2445,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > is negative and grouped permutation p=.614. Close this historical selector
 > without a larger-model or feature rescue and continue a distinct renderer.
 >
+> `U5.R2BO0` locates 53 title-exact same-scene film/digital weak pairs in one
+> public 218-photo album. All selected rows are CC BY-NC-SA 2.0 and expose
+> bounded 1024px derivatives; family counts are 18/17/18. This opens only a
+> 106-file integrity and registration pilot. One author plus unknown exact
+> stock, exposure, process and scanner state keep fitting/training/calibration
+> closed.
+>

@@ -8775,3 +8775,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   .93 points; LOEO/LOCO gains are 1.70/.77 points, bootstrap lower bound is
   -2.96 points and permutation p=.614. Close the selector without capacity or
   feature rescue; continue a mechanism-distinct explicit/physical renderer.
+
+## 2026-08-01 - U5.R2BO0 opens bounded paired derivative feasibility
+
+- A two-request metadata audit of one 218-photo Flickr album yields 53
+  title-exact same-scene film/digital pairs across three capture families
+  (18/17/18). All selected rows are public CC BY-NC-SA 2.0 photos with 1024px
+  derivatives; two reports are byte-identical at `b1e26650...8e3cd`.
+- Open only 106-file integrity and registration feasibility. One author and
+  unknown exact stock/process/scanner/exposure remain explicit blockers for
+  fitting, training, calibration or commercial asset/weight use.
