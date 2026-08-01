@@ -9024,3 +9024,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close larger-ranker or threshold rescue. BQ9 keeps selected identities fixed
   and computes a style-constrained global-to-case path Oracle to distinguish
   wrong direction from wrong magnitude. Confirmation and product stay closed.
+
+## 2026-08-01 - U5.R2BQ9 closes selected-direction magnitude rescue
+
+- The fixed-direction path Oracle improves mean 11.82%/15.33% with
+  79.86%/82.43% style, but only 39.26%/49.63% of rows improve and feasibility
+  is 85.93%/88.15%.
+- Close scalar confidence and sparse-path rescue. BQ10 tests one fixed fit-only
+  strong medoid as the K=1 alternative to coefficient-median blandness.

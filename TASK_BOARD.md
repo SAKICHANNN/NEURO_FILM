@@ -648,3 +648,8 @@ U5.R2BQ8 keeps strong style (121.08%/125.47%) and beats random/shuffled, but
 regresses 27.14%/21.68% versus global with poor tails. Close direct hard Top-1.
 BQ9 holds its selected case identities fixed and measures only a
 style-constrained global-to-case path Oracle before any strength learner.
+
+U5.R2BQ9 finds 11.82%/15.33% mean path-Oracle value with 79.86%/82.43% style,
+but only 39.26%/49.63% of rows improve and style feasibility is 85.93%/88.15%.
+Close confidence/strength rescue. BQ10 tests a fixed fit-only strong-style
+medoid as the K=1 alternative to coefficient-median blandness.

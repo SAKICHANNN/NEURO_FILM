@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.u5-r2bq9-fivek-selected-lut-path-oracle-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ9",
+  "decision": "close_selected_direction_strength_route_open_fixed_strong_medoid",
+  "implementation_commit": "b22a48a683feeba3fb2a99cb0396b946e0eef77c",
+  "reports": {
+    "run_a": "outputs/u5_r2bq9_fivek_selected_lut_path_oracle_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq9_fivek_selected_lut_path_oracle_v1/run_b/report.json",
+    "sha256": "d0262801189bb2e09e18cc2291f53b176367c14d8bfcdbb293d0ee09c847fc05",
+    "byte_identical": true,
+    "stable_evidence_id": "d9b6360c5e85a0008b78c36b0056fa027ddd8ea6ba173c4af6065f2b217e70bf",
+    "automatic_pass": false,
+    "confirmation_loaded": false
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global": 0.11816495614053295,
+    "win_fraction_over_global": 0.3925925925925926,
+    "style_constrained_availability": 0.8592592592592593,
+    "median_target_style_retention": 0.7985937542983991,
+    "median_constrained_dose": 0.25
+  },
+  "filtered": {
+    "mean_improvement_over_global": 0.15330339622938122,
+    "win_fraction_over_global": 0.4962962962962963,
+    "style_constrained_availability": 0.8814814814814815,
+    "median_target_style_retention": 0.8242833717447592,
+    "median_constrained_dose": 0.25
+  },
+  "diagnosis": "Post-hoc magnitude can rescue mean error and style for a subset, but too few held rows have a style-eligible improvement over global. The source-selected direction is not broadly useful enough to justify a confidence predictor.",
+  "next_leaf": "select one fixed strong-style medoid/champion from fit groups only and test whether K=1 avoids coefficient-median blandness on held camera groups",
+  "selected_path_or_confidence_rescue_allowed": false,
+  "fixed_strong_medoid_research_allowed": true,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative development evaluator-Oracle evidence for fixed source-selected LUT directions on FiveK controls; no inference, confirmation, film, preference or product claim"
+}

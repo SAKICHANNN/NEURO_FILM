@@ -2564,3 +2564,7 @@ python_coreml_stable_diffusion  # CoreML 转换
 > and tests an evaluator-only global-to-selected strength path with a 70% style
 > floor. Confirmation remains unread.
 >
+> BQ9 path Oracle improves means but only 39.26%/49.63% of held rows and
+> 85.93%/88.15% style availability pass. Close source-selected magnitude rescue.
+> BQ10 now tests a fit-only fixed strong medoid as the explicit K=1 branch.
+>
