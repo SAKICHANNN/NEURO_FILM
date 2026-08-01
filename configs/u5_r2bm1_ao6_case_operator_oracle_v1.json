@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u5_r2bm1_ao6_case_operator_oracle.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bm1-ao6-case-operator-oracle-v1",
+  "node": "ULT > U5 > U5.R2BM1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "After keeping operator space separate from content space, can a hard-selected development-photo AO6 context materially outperform both one global medoid and an oracle scalar-strength path on held camera groups?",
+  "parents": {
+    "population_contract": "configs/u5_r2bm0_ao6_global_lut_distillation_v1.json",
+    "population_contract_sha256": "fa43f3959db70157ea672157fc1d53ee2ac9b157da35c5db31253750fbe8d3cf",
+    "population_decision": "configs/u5_r2bm0_ao6_global_lut_distillation_decision_v1.json",
+    "population_decision_sha256": "211c9fa4e2843425ac640b612883b3f3b5c87e456339babc72fca9048df92714",
+    "required_population_decision": "close_fixed_global_lut_distillation_as_context_averaging_failure",
+    "profile_contract": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+    "profile_contract_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "context_runtime_commit": "1d8f36d8",
+    "expected_sources": 17,
+    "target_arm": "fixed_ao6_colour_only_t15_c35"
+  },
+  "protocol": {
+    "folds": 3,
+    "fold_assignment": "sha256(source_id) modulo 3",
+    "context_source": "full-frame density-domain SafeLab mean/std only",
+    "operator_signature_grid_size": 17,
+    "operator_signature_domain": "relative display sRGB encoded RGB",
+    "evaluation_samples_per_source": 65536,
+    "context_tile_rows": 128,
+    "global_baseline": "development case medoid minimizing mean pairwise operator-signature RGB RMSE",
+    "strength_control": "post-hoc least-squares scalar in [0,1.5] along the global-medoid residual direction",
+    "case_oracle": "post-hoc hard Top-1 development case minimizing target RGB RMSE",
+    "selection_is_hard": true,
+    "dense_case_blending_allowed": false,
+    "content_features_used": false,
+    "seed": 20260801
+  },
+  "gates": {
+    "require_two_run_report_identity": true,
+    "maximum_self_context_target_rgb_rmse": 0.00003,
+    "minimum_median_case_rmse_reduction_vs_global_medoid": 0.1,
+    "minimum_median_case_rmse_reduction_vs_strength_oracle": 0.05,
+    "maximum_worst_case_vs_global_rmse_ratio": 1.0,
+    "minimum_sources_case_beats_strength_by_two_percent": 9,
+    "minimum_distinct_selected_case_ids": 4,
+    "minimum_median_style_retention_ratio": 0.85,
+    "maximum_median_style_retention_ratio": 1.15,
+    "maximum_new_boundary_fraction_vs_ao6": 0.005
+  },
+  "branches": {
+    "pass": "freeze the case bank and open a separate content-space hard retrieval comparison; do not train a dense router",
+    "strength_control_fail": "treat apparent case diversity as a continuous strength path, retain K=1/global AO6 and do not create multiple cases",
+    "oracle_value_fail": "close case routing for this operator family and retain contextual AO6/global fallback",
+    "self_replay_or_artifact_fail": "invalidate the evaluator or case policy without threshold relaxation",
+    "future_retrieval_fail": "retain the descriptive Oracle result but keep the product path on the global/contextual champion"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "router_training_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "group-held evaluator-Oracle evidence for hard case reuse within one deterministic AO6 Look Approximation control; not content routing, film, stock, latent mode, calibration, authenticity, population preference or product promotion"
+}
