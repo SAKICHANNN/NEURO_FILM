@@ -9007,3 +9007,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Open only BQ7 source-only factorized LUT inference versus global and hard
   retrieval controls. Confirmation, film, preference and product claims stay
   closed.
+
+## 2026-08-01 - U5.R2BQ7 rejects dense LUT averaging
+
+- Repeat-exact source-only prediction improves 6.89%/8.98% over global and
+  15.01%/18.31% over shuffled, so source signal is present.
+- Target-style retention is only 53.14%/57.91%, and strength-oracle win rate is
+  45.19% for both variants. Automatic failure forbids visual review.
+- Close rank/alpha/descriptor/OOD rescue. BQ8 keeps one fitted LUT intact and
+  learns hard Top-1 compatibility with global fallback. Claims stay closed.

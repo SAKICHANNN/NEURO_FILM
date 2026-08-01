@@ -2554,3 +2554,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > are zero. BQ7 may now test a low-capacity source-only factorized LUT predictor
 > against global and hard retrieval; confirmation and product remain closed.
 >
+> BQ7 confirms source-predictable signal but fails the anti-bland gate: dense
+> coefficient prediction retains only 53.14%/57.91% target style. Close that
+> predictor unchanged. BQ8 must preserve a real case LUT and learn only hard
+> Top-1 source/case compatibility with global OOD fallback.
+>

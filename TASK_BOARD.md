@@ -637,3 +637,9 @@ is 49.78%/52.26% with 78.19%/79.41% style, and group-held Oracle gain is
 30.06%/34.25% with 76.45%/82.65% style. Boundary/cube rates are zero. Operator
 capacity is sufficient; BQ7 now tests source-only factorized LUT inference
 against global and hard-retrieval controls. Confirmation stays closed.
+
+U5.R2BQ7 closes dense LUT prediction. It carries source signal (6.89%/8.98%
+over global; 15.01%/18.31% over shuffled) but averages target style to
+53.14%/57.91% and wins only 45.19% versus global strength selection. BQ8 keeps
+one real BQ6 LUT intact and learns hard Top-1 source/case compatibility; no
+dense blending or BQ7 rescue opens.

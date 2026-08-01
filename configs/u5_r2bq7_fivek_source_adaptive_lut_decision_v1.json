@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u5-r2bq7-fivek-source-adaptive-lut-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ7",
+  "decision": "close_dense_lut_prediction_on_style_open_hard_case_routing",
+  "implementation_commit": "32afb94f1733967fc84fec4d7834f106aeead03a",
+  "reports": {
+    "run_a": "outputs/u5_r2bq7_fivek_source_adaptive_lut_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq7_fivek_source_adaptive_lut_v1/run_b/report.json",
+    "sha256": "d23946e3cc158ebe8f55508720214dece592572b1733a50350ae6ee11a65f907",
+    "byte_identical": true,
+    "stable_evidence_id": "a56444b03f4b204ecf46a15f99f292966cad1757edfa44fd797600a2aed9fcc3",
+    "automatic_pass": false,
+    "confirmation_loaded": false,
+    "visual_review_performed": false
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global": 0.06888498422484549,
+    "mean_improvement_over_shuffled": 0.15006413324826193,
+    "mean_improvement_over_strength_oracle": 0.03022241102051168,
+    "win_fraction_over_strength_oracle": 0.45185185185185184,
+    "median_target_style_retention": 0.5314157050868169,
+    "fallback_fraction": 0.05925925925925926,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "filtered": {
+    "mean_improvement_over_global": 0.08983995836024787,
+    "mean_improvement_over_shuffled": 0.18309322589951388,
+    "mean_improvement_over_strength_oracle": 0.04186344883211946,
+    "win_fraction_over_strength_oracle": 0.45185185185185184,
+    "median_target_style_retention": 0.5790574387969869,
+    "fallback_fraction": 0.05925925925925926,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "diagnosis": "Source descriptors predict non-random LUT variation and improve mean/tails, but dense coefficient prediction averages the look below the absolute style floor and loses to the global strength Oracle on most rows.",
+  "next_leaf": "train a group-held source-only compatibility ranker over unchanged BQ6 case LUTs and select one hard Top-1 style-eligible case with global OOD fallback; do not blend LUTs",
+  "dense_predictor_rescue_allowed": false,
+  "hard_case_routing_research_allowed": true,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative development evidence for one source-only factorized strict-interior LUT predictor on FiveK controls; no confirmation, film, preference or product claim"
+}
