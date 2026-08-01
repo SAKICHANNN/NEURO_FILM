@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AR spectral mixture closes before confirmation
+
+- Implemented a nonnegative seven-basis PSD source with deterministic simplex
+  quantization and a shared development-only NNLS fit. The source is stable by
+  construction and uses no stock/channel/image-conditioned parameters.
+- Two reports are byte-identical (`d80d963a...c2ad52`). Six components remain
+  active and the largest weight is `.34375`, but development NPS/ACF regress
+  `95.80%/17.34%` versus P4T. Confirmation pixel reads remain zero.
+- Close without center, bandwidth, objective or capacity rescue. Stop further
+  scanner-code spatial-source fitting on this reused cohort and advance a
+  mechanism-distinct physical imaging stage.
+
 # 2026-08-02 - U6.P4AP causal AR family closes before confirmation
 
 - Implemented a clean-room explicit causal AR source and a development/confirmatory

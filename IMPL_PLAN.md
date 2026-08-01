@@ -2444,6 +2444,12 @@ python_coreml_stable_diffusion  # CoreML 转换
 > Do not widen the envelope or tune ridge/lag on this cohort; use a
 > stability-by-construction source family or advance a different physical stage.
 >
+> `U6.P4AR` tests the stability-by-construction branch with seven fixed
+> log-Gaussian PSD bases and one shared quantized simplex. Six components are
+> active, but development NPS/ACF regress `95.80%/17.34%` against P4T, so the
+> leaf closes before confirmation. Stop fitting further scanner-code spatial
+> source families on this reused cohort; continue a different physical stage.
+>
 > `U5.R2AO4R` adds the missing mature root-polynomial baseline from the
 > controlled-film colour-correction literature. On the exact 71 Velvia
 > display-proxy rows it strongly regresses the bounded one-matrix control in

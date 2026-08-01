@@ -1,0 +1,35 @@
+{
+  "automatic_pass": false,
+  "claim_ceiling": "Development/confirmation evidence for one generic scanner-convolved spectral source; not physical particle geometry, stock/process/scanner calibration, photographic quality or product promotion.",
+  "confirmation_pixel_reads": 0,
+  "contract_sha256": "587a3c58b20787576f45331d5257cab8dbfc0d8b9a97c9de6ad2e990b3df50b5",
+  "decision": "close_spectral_mixture_before_confirmation",
+  "development": {
+    "acf_median_improvement_over_p4t": -0.17343765522882237,
+    "nps_median_improvement_over_p4t": -0.9580061706591165
+  },
+  "development_gate_results": {
+    "acf_median_improvement": false,
+    "maximum_single_component_weight": true,
+    "minimum_active_components": true,
+    "nps_median_improvement": false
+  },
+  "formal_report_sha256": "d80d963aee56323c062016cada245015346da02a09e4e66805644dd4f0c2ad52",
+  "formal_runs": 2,
+  "formal_runs_byte_identical": true,
+  "frozen_bundle": {
+    "active_components": 6,
+    "maximum_component_weight": 0.34375,
+    "quantized_weights": [
+      0.25,
+      0.0,
+      0.34375,
+      0.115234375,
+      0.2099609375,
+      0.0751953125,
+      0.005859375
+    ]
+  },
+  "schema": "neuro_film.u6_p4ar_spectral_mixture_grain_shape_evidence.v1",
+  "stable_evidence_id": "9bea3ba13c9bf4048ac7b7b0f5ba818b7c46caf40166dbba3ba78f609ff19599"
+}

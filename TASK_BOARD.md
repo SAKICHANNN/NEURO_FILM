@@ -454,6 +454,11 @@ development fits exceed the frozen coefficient envelope, so the family closes
 with zero confirmation reads and no parameter rescue. The next grain leaf must
 use a stability-by-construction source family or move to another physical stage.
 
+U6.P4AR executes that distinct nonnegative spectral-mixture source. Its shared
+quantized bundle does not collapse, but development NPS/ACF regress 95.80% and
+17.34% versus P4T; it closes with zero confirmation reads. Stop scanner-code
+spatial-source fitting on this reused cohort and advance another physical stage.
+
 BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
 win-rate and P95 error improvements. Next: freeze an intrinsically
 cube-preserving residual basis; do not retune or confirm BJ0.
