@@ -714,3 +714,8 @@ the fixed FP16 single-LUT compiler: 17-cube fails three accuracy gates; 33-cube
 misses only frozen RMSE (`.00027461 > .00025`) despite positive topology, zero
 range escape and zero inverse rejection. Do not add size/precision or relax the
 gate; retain the exact analytic pair and move to a distinct factorization.
+P6W instead streams the unchanged explicit equations in float32. Two 24MP runs
+produce the same SHA with max/RMSE error `3.88e-7/5.47e-8`, peak `171.5–171.7MB`
+RSS and `9.57–10.04s` wall; all 11 gates pass without full-frame output or
+clipping. Retain this ordinary-CPU reference and open native CPU parity, not a
+larger LUT.

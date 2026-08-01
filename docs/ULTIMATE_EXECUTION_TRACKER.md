@@ -1135,3 +1135,7 @@ incumbent. U6.P6V then closes the fixed FP16 tetrahedral LUT compiler: 17-cube
 fails output/inverse accuracy, while 33-cube passes maximum error and inverse
 error but misses RMSE (`.00027461 > .00025`). Both remain positive-topology,
 bounded and inverse-reachable. No size, precision, interpolation or gate rescue.
+U6.P6W retains the distinct streamed explicit route: two 24MP CPU runs have
+exact output SHA, max/RMSE float32 error `3.88e-7/5.47e-8`, peak RSS
+`171.46/171.73MB` and wall `10.04/9.57s`. All 11 gates pass with 128 live rows,
+zero full-frame output, clipping or range escape. Native parity remains open.

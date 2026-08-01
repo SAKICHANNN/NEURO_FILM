@@ -9428,3 +9428,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this single-LUT family without adding size, changing FP16/tetrahedral
   interpolation or relaxing thresholds. Retain the exact analytic pair and
   test only a materially distinct factorization if its information gain is clear.
+
+## 2026-08-02 - U6.P6W retains streamed explicit float32 print runtime
+
+- Implemented the unchanged density-to-print equations as canonical float32
+  row-stream execution, with incremental output hashing and no full-frame output
+  allocation or post-operator clipping.
+- Two independent 24MP runs have the same output SHA and stable identity
+  `8c1a937d...99737`. Max/RMSE error is `3.88e-7/5.47e-8`; peak RSS is
+  `171.46/171.73MB`; wall is `10.04/9.57s`. All 11 gates pass.
+- Retain this as the ordinary-CPU reference alternative to the closed FP16 LUT
+  route. Native CPU/backend parity remains a separate leaf; measured print,
+  scanner, photographic quality and product promotion remain unclaimed.

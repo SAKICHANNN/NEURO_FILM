@@ -1,0 +1,30 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Local Windows/Python CPU performance and float32 numerical evidence for one generic explicit density-to-print equation family; not native/mobile runtime, measured print/scanner calibration, photographic quality or product promotion.",
+  "contract_sha256": "3f36271353433b910a71f1eb0a7de9e4c0314155f9564f5f6f5691e608283f1f",
+  "decision": "retain_streamed_explicit_float32_print_runtime",
+  "formal_report_sha256": [
+    "ed1059c6f29119fab4e5875471465254c72559fb5a0eee44152f3f7af007fc0d",
+    "d0831f59f5745d395536f1f3b6bec7f428db94856adb36f44d8ddddca8dfe4cf"
+  ],
+  "formal_runs": 2,
+  "gate_count": 11,
+  "gate_failures": [],
+  "maximum_float32_vs_float64_absolute_error": 3.875707172973364e-07,
+  "maximum_live_rows": 128,
+  "maximum_process_tree_rss_bytes": [
+    171458560,
+    171732992
+  ],
+  "maximum_worker_wall_seconds": [
+    10.039600499992957,
+    9.569417200007592
+  ],
+  "output_sha256": "6dff40f2ee73fdabce7af0641a4ae9c37b5107e4758b0d214ba291de9be0e162",
+  "outputs_exact_across_runs": true,
+  "pixels_per_run": 24000000,
+  "post_operator_clipping_count": 0,
+  "rmse_float32_vs_float64": 5.470710681285596e-08,
+  "schema": "neuro_film.u6_p6w_streamed_explicit_print_runtime_evidence.v1",
+  "stable_evidence_id": "8c1a937d944c0fb1e97e8701d75c01934b51cd0f21f3e67ff73828640ab99737"
+}

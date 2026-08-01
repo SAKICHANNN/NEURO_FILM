@@ -29,6 +29,13 @@
 > gates and 33-cube misses RMSE (`.00027461 > .00025`). Close the single-LUT
 > family without size, precision, interpolation or threshold rescue; the exact
 > analytic forward/inverse remains retained.
+>
+> U6.P6W retains the distinct streamed explicit runtime. Two 24MP local CPU
+> runs share output SHA `6dff40f2...0e162`, with max/RMSE float32 error
+> `3.88e-7/5.47e-8`, peak RSS `171.46/171.73MB` and wall `10.04/9.57s`.
+> All 11 gates pass at 128 live rows with zero full-frame output, clipping or
+> range escape. The next product-facing step is native CPU parity, not a larger
+> LUT or a weaker numerical gate.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are
