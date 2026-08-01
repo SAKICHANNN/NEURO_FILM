@@ -7,7 +7,7 @@
     "bo3_decision": {
       "path": "configs/u5_r2bo3_flickr_weak_pair_operator_development_decision_v1.json",
       "sha256": "5948315113352f40a4877e27ae5cb4bc33a3706fea8c06e3bba95903cb4979d5",
-      "required_decision": "close_average_operator_without_confirmation"
+      "required_decision": "close_single_average_operator_and_open_case_bank_oracle_only"
     },
     "bo5_decision": {
       "path": "configs/u5_r2bo5_flickr_paired_texture_identifiability_decision_v1.json",
