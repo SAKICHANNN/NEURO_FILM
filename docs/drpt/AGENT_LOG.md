@@ -9415,3 +9415,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the inverse for versioned physical profile compilation or bounded
   fitting. This is generic equation-family evidence, not measured print,
   scanner, stock or photographic product evidence.
+
+## 2026-08-02 - U6.P6V closes fixed FP16 single-LUT compilation
+
+- Compiled exact 17-cube and 33-cube FP16 tetrahedral candidates and scored
+  24,389 independent interior density rows without clipping. Two reports are
+  byte-identical (`38cb8494...1c9836`).
+- The 17-cube fails maximum/RMSE/inverse accuracy (`.003313/.001114/.01643`).
+  The 33-cube passes maximum and inverse error but misses frozen RMSE by
+  `2.46e-5` (`.00027461 > .00025`). Both preserve positive topology, bounded
+  output, exact partitions and zero inverse rejection.
+- Close this single-LUT family without adding size, changing FP16/tetrahedral
+  interpolation or relaxing thresholds. Retain the exact analytic pair and
+  test only a materially distinct factorization if its information gain is clear.

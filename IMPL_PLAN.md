@@ -22,6 +22,13 @@
 > `1.35e-15` Jacobian identity error and worst condition number `37.82`.
 > Retain it for explicit profile compilation or bounded fitting, without
 > relabeling the generic witness as calibrated film, printer or scanner truth.
+>
+> U6.P6V tests fixed 17-cube and 33-cube FP16 tetrahedral compilation. Two
+> reports are exact (`38cb8494...1c9836`). Both candidates preserve positive
+> topology, range and inverse reachability, but 17-cube fails three accuracy
+> gates and 33-cube misses RMSE (`.00027461 > .00025`). Close the single-LUT
+> family without size, precision, interpolation or threshold rescue; the exact
+> analytic forward/inverse remains retained.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are

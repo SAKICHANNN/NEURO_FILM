@@ -1,0 +1,45 @@
+{
+  "automatic_pass": false,
+  "candidates": [
+    {
+      "automatic_pass": false,
+      "bundle_bytes": 29478,
+      "failed_gates": [
+        "maximum_output_absolute_error",
+        "maximum_output_rmse",
+        "maximum_inverse_density_absolute_error"
+      ],
+      "inverse_rejection_count": 0,
+      "maximum_inverse_density_absolute_error": 0.01642582094003875,
+      "maximum_output_absolute_error": 0.0033129070418145556,
+      "minimum_tetrahedral_jacobian_determinant": 1.0252131875002966e-05,
+      "out_of_range_output_count": 0,
+      "output_rmse": 0.00111386172269947,
+      "size": 17
+    },
+    {
+      "automatic_pass": false,
+      "bundle_bytes": 215622,
+      "failed_gates": [
+        "maximum_output_rmse"
+      ],
+      "inverse_rejection_count": 0,
+      "maximum_inverse_density_absolute_error": 0.00436038095660729,
+      "maximum_output_absolute_error": 0.0007753188539724176,
+      "minimum_tetrahedral_jacobian_determinant": 7.469774214199619e-06,
+      "out_of_range_output_count": 0,
+      "output_rmse": 0.00027460794363984113,
+      "size": 33
+    }
+  ],
+  "claim_ceiling": "Compact deterministic approximation evidence for one generic explicit density-to-print equation family; not measured film/print/scanner calibration, photographic quality or product promotion.",
+  "contract_sha256": "7be9a8db3325783604338ecffb4bf90fa2fc4a0347cdcde1c69f2e1284643d81",
+  "decision": "close_fp16_print_lut_compiler",
+  "formal_report_sha256": "38cb8494c101a2152e6c428877b0c5342028e06ce8bb139d0a47f605231c9836",
+  "formal_runs": 2,
+  "formal_runs_byte_identical": true,
+  "parent_stable_evidence_id": "8adfb5734f0e2c8af0951c1b40c6d9da52e769857241bde93a88ec15e3b7f2db",
+  "schema": "neuro_film.u6_p6v_fp16_print_lut_compiler_evidence.v1",
+  "selected_size": null,
+  "stable_evidence_id": "58c360ef40b321c612b16bb0ca6a793053688ae9ef25e6134727ce5e310df736"
+}

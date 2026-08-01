@@ -709,4 +709,8 @@ P6U analytically reverses the full explicit print chain on 343 interior density
 points with `8.88e-16` maximum inverse error and condition number `37.82`; five
 invalid/unreachable controls reject and all 12 gates pass in two exact reports
 (`2575423d...50654`). The next leaf should compile this reversible pair into a
-versioned generic profile or use it in a bounded fitting experiment.
+versioned generic profile or use it in a bounded fitting experiment. P6V closes
+the fixed FP16 single-LUT compiler: 17-cube fails three accuracy gates; 33-cube
+misses only frozen RMSE (`.00027461 > .00025`) despite positive topology, zero
+range escape and zero inverse rejection. Do not add size/precision or relax the
+gate; retain the exact analytic pair and move to a distinct factorization.

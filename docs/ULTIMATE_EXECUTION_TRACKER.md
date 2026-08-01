@@ -1131,4 +1131,7 @@ then analytically inverts the complete explicit print chain without optimization
 or clipping. Two exact 343-point reports (`2575423d...50654`) reach `8.88e-16`
 density error, `6.66e-16` replay error and maximum condition number `37.82`;
 all 12 gates pass. Retain the reversible primitive, still generic. AO6 remains
-incumbent.
+incumbent. U6.P6V then closes the fixed FP16 tetrahedral LUT compiler: 17-cube
+fails output/inverse accuracy, while 33-cube passes maximum error and inverse
+error but misses RMSE (`.00027461 > .00025`). Both remain positive-topology,
+bounded and inverse-reachable. No size, precision, interpolation or gate rescue.
