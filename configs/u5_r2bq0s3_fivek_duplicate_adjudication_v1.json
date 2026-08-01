@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq0s3-fivek-source-duplicate-adjudication-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S3",
+  "status": "contract_frozen_implementation_ready",
+  "adaptive_successor_after_bq0s2_failure": true,
+  "hypothesis": "The two frozen dHash<=4 candidates are low-information hash collisions rather than source duplicates when tested by an independently structured DCT perceptual hash and local-feature geometric verification.",
+  "parent_report": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/report.json",
+    "sha256": "f744cac82d604425736d4d8c2a0b9b1a6e91b28f2d0730ce786f933a54ab5885"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "prior_manifests": [
+    {
+      "path": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+      "sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+      "format": "csv",
+      "expected_rows": 128,
+      "id_field": "id",
+      "source_path_field": "raw_preview"
+    },
+    {
+      "path": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+      "sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+      "format": "json",
+      "expected_rows": 63,
+      "id_field": "pair_id",
+      "source_path_field": "source_path"
+    },
+    {
+      "path": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_a/manifest.json",
+      "sha256": "6bb33ec6f3c0a10c23688c862f1112cfedb907a4ba2320b3fe7cf4ef7d2a77a5",
+      "format": "json",
+      "expected_rows": 64,
+      "id_field": "pair_id",
+      "source_path_field": "source_path"
+    }
+  ],
+  "expected_candidates": {
+    "prior_pool": 1,
+    "internal_split": 1
+  },
+  "protocol": {
+    "candidate_generator": "frozen 9x8 grayscale dHash hamming<=4 from BQ0S2",
+    "maximum_dhash_hamming": 4,
+    "phash": "32x32 grayscale DCT, median-thresholded 8x8 low frequencies",
+    "maximum_phash_hamming": 8,
+    "minimum_normalized_luma_correlation": 0.85,
+    "decision": "confirmed duplicate iff pHash and normalized luma layout pass together OR ORB mutual-ratio homography passes",
+    "orb": {
+      "maximum_orb_side": 512,
+      "maximum_features": 1000,
+      "scale_factor": 1.2,
+      "levels": 8,
+      "ratio_test": 0.75,
+      "minimum_mutual_ratio_matches": 12,
+      "ransac_reprojection_pixels": 3.0,
+      "ransac_maximum_iterations": 2000,
+      "ransac_confidence": 0.995,
+      "minimum_ransac_inliers": 12,
+      "minimum_ransac_inlier_fraction": 0.35,
+      "opencv_rng_seed": 20260801
+    }
+  },
+  "branch_rules": {
+    "all_candidates_rejected_as_duplicates": "open only a separately versioned BQ1v2 Oracle bound to this source-only report and the unchanged target-blind parent manifest",
+    "any_candidate_confirmed_duplicate": "close this population without row substitution or resplitting",
+    "candidate_or_parent_drift": "fail closed without image access beyond the declared source paths"
+  },
+  "target_pixels_allowed": false,
+  "operator_fitting_allowed": false,
+  "router_training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "adaptive post-BQ0S2 source-only duplicate-candidate adjudication; no target, operator, router, film, stock, calibration, preference or product claim"
+}
