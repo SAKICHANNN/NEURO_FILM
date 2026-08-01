@@ -2543,3 +2543,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > strict-interior projection-curve operator unchanged as the next case-bank
 > capacity baseline; only after it passes may a source-only selector reopen.
 >
+> BQ5 shows why that mature higher-capacity baseline still fails: group-held
+> Oracle value is large, but Jacobian-safe dose falls to .247/.300 median and
+> self-fit style to 27.59%/32.14%. Close projection-curve fitting and routing.
+> Next reuse BJ2's intrinsic strict-interior 4^3 residual LUT unchanged; it must
+> pass absolute target-style and case-bank Oracle gates before prediction.
+>

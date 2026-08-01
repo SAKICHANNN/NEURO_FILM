@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.u5-r2bq5-fivek-projection-curve-casebank-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ5",
+  "decision": "close_mature_projection_curve_casebank_on_style_and_safe_dose",
+  "implementation_commit": "ef3c9bd6bc1eb1b6b22d37c8a8615ea028fe39cf",
+  "reports": {
+    "run_a": "outputs/u5_r2bq5_fivek_projection_curve_casebank_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq5_fivek_projection_curve_casebank_v1/run_b/report.json",
+    "sha256": "b53098b2205b656776963210379c62b5c844ec069586cbd0a64e180473a775a5",
+    "byte_identical": true,
+    "stable_evidence_id": "2682bfb3123c68674cd863c1a6a596895862344c1f72f83b79890c88c8bf3d44",
+    "automatic_pass": false,
+    "confirmation_loaded": false
+  },
+  "data_eligibility": {
+    "input_rows": 381,
+    "fit_eligible_rows": 358,
+    "fit_eligible_fraction": 0.9396325459317585,
+    "all_24_source_groups_retained": true
+  },
+  "aligned_expert": {
+    "self_fit_mean_improvement_over_identity": 0.2351590912629096,
+    "self_fit_median_style_retention": 0.2759446833320484,
+    "group_oracle_mean_improvement_over_global": 0.24458918674273702,
+    "group_oracle_median_style_retention": 0.7021653692598641,
+    "style_eligible_case_fraction": 0.8992248062015504,
+    "style_constrained_oracle_error_ratio": 1.0389016017149615,
+    "median_safe_dose": 0.24651312828063965,
+    "minimum_safe_dose": 0.0941469669342041,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "filtered": {
+    "self_fit_mean_improvement_over_identity": 0.2851475955194773,
+    "self_fit_median_style_retention": 0.32137967933373346,
+    "group_oracle_mean_improvement_over_global": 0.3144382316585533,
+    "group_oracle_median_style_retention": 0.7804536490730947,
+    "style_eligible_case_fraction": 0.9922480620155039,
+    "style_constrained_oracle_error_ratio": 1.0201217319360028,
+    "median_safe_dose": 0.30033576488494873,
+    "minimum_safe_dose": 0.10666269063949585,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "diagnosis": "The mature many-projection family has large group-held Oracle value, but unconstrained per-case fits require severe Jacobian dose reduction and become even blander than the triangular family. More curve capacity without intrinsic regularity is not sufficient.",
+  "next_leaf": "apply the mature BJ2 strict-interior 4x4x4 residual LUT fit unchanged as the next intrinsically bounded case-bank capacity baseline; do not train a projection-curve selector",
+  "projection_curve_fit_or_selector_rescue_allowed": false,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact development-only capacity and group-held Oracle evidence for a mature explicit projection-curve baseline on FiveK controls; no confirmation, film, preference or product claim"
+}

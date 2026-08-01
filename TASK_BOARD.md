@@ -625,3 +625,9 @@ style, while every held row has a safe strong-style case and a style-constrained
 Oracle costs only 3.62%/1.97% error. Close triangular fitting/routing rescue.
 Next replay the mature strict-interior projection-curve family as a capacity
 baseline on this bank before training any new selector.
+
+U5.R2BQ5 closes the unchanged mature projection-curve baseline. Its group-held
+Oracle is strong (24.46%/31.44% over global), but Jacobian safety collapses
+median dose to .247/.300 and self-fit style to 27.59%/32.14%. More curves are
+not enough without intrinsic regularity. Test the mature strict-interior 4^3
+residual LUT next; no projection-curve selector or confirmation opens.

@@ -8986,3 +8986,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close triangular fit/router rescue. Next run the existing mature BN1
   strict-interior projection-curve operator unchanged on this case bank as a
   capacity baseline before any new selector. Product/film claims stay closed.
+
+## 2026-08-01 - U5.R2BQ5 closes mature projection curves on safe dose
+
+- Two reports and both coefficient banks are byte-identical; 358/381 eligible
+  rows retain all 24 camera groups.
+- Group-held Oracle gains are 24.46%/31.44%, but median Jacobian-safe dose is
+  only .247/.300 and self-fit style retention is 27.59%/32.14%.
+- Close fit/selector rescue. Next apply the existing BJ2 intrinsic strict-
+  interior 4^3 residual LUT unchanged as a capacity baseline. Confirmation,
+  film and product claims remain closed.
