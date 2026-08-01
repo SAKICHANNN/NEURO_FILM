@@ -7,7 +7,13 @@
   "question": "Can a source-predicted bank of bounded parallel projection curves preserve conditional FiveK retouching gains over one global operator while eliminating the safety-limited tail that closed BJ0-BJ2?",
   "source_method": {
     "decision": "configs/u5_r2bn0_pigment_representation_source_method_decision_v1.json",
+    "decision_sha256": "388f03425d79ec64e858e8e6dcc5e578011a1f03963348bc7e9c1d2cfc2d8d68",
     "required_status": "source_audit_complete_clean_room_pilot_allowed"
+  },
+  "data_protocol": {
+    "config": "configs/u5_r2bj0_fivek_adaptive_lut_basis_development_v1.json",
+    "config_sha256": "8708c29445c546728703b54cac5a01c282529feda229f3aa83d69bcde16725a1",
+    "purpose": "reuse only the frozen AY0/AY3/AY6 loaders, groups, source descriptors and fixed AO6 evaluator"
   },
   "parents": [
     {
@@ -38,6 +44,7 @@
     ],
     "control_point_count": 9,
     "boundary_epsilon": 0.00196078431372549,
+    "strict_interior_safety_factor": 0.9999999999,
     "sample_stride": 8,
     "target_activation_limit": 0.95,
     "identity_shrinkage": 0.05,
