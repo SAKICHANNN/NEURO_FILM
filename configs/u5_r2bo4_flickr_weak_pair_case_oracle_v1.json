@@ -1,0 +1,83 @@
+{
+  "schema": "neuro-film.u5-r2bo4-flickr-weak-pair-case-oracle.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO4",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "Does a hard bank of same-capacity per-scene explicit operators have evaluator-Oracle value beyond family-global and train-selected medoid controls?",
+  "parents": {
+    "development_report": {
+      "path": "outputs/u5_r2bo3_flickr_weak_pair_operator_development_v1/run_a/report.json",
+      "sha256": "fcd9a3d81ce3888a4c68e67e34d81afb7de744f03a86a0ba0b0fe95707b82430",
+      "required_stable_evidence_id": "c7eb065859039a4a427f5b36ef0c9b35836fb7db3e10222721f4c3c69e36e72a",
+      "required_selected_candidate": null
+    },
+    "registration_report": {
+      "path": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_a/report.json",
+      "sha256": "954f5dc9f64a74615da695668fb924c80659d00620607c37ad149f0db2e089eb"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+      "sha256": "697cc636fe7668fe8586455b4bb1eecc858cbe984045e18417195d902d281703"
+    }
+  },
+  "data_root": "data/research/flickr_analog_digital_album_v1",
+  "split": {
+    "reuse_exact_development_pair_ids_from_BO3": true,
+    "reuse_crossfit_fold": "scene_id_mod_3",
+    "confirmation_pixels_forbidden": true
+  },
+  "paired_samples": {
+    "reuse_exact_BO3_sampling": true,
+    "mask_erosion_pixels": 5,
+    "encoded_boundary_code_minimum": 2,
+    "encoded_boundary_code_maximum": 253,
+    "maximum_combined_encoded_luma_gradient_quantile": 0.75,
+    "maximum_samples_per_scene": 2048
+  },
+  "case_operator": {
+    "family": "three-segment endpoint-fixed monotone curves then positive row-stochastic matrix",
+    "parameter_count": 12,
+    "curve_identity_mixture": 0.75,
+    "matrix_identity_mixture": 0.25,
+    "free_logit_bounds": [-8.0, 4.0],
+    "restart_count": 2,
+    "maximum_fit_evaluations": 500,
+    "loss": "soft_l1",
+    "loss_scale": 0.02,
+    "seed": 20260801,
+    "hard_output_clipping_allowed": false
+  },
+  "controls": {
+    "family_global": "fit the same operator on all outer-train scenes",
+    "train_medoid": "case with minimum mean error on other outer-train scenes; no held target access",
+    "fixed_first_case": "lexicographically first train case negative control",
+    "oracle": "post-hoc minimum held-target RMSE over train cases; evaluator only"
+  },
+  "evaluation": {
+    "minimum_oracle_mean_improvement_over_family_global": 0.1,
+    "minimum_oracle_median_improvement_over_family_global": 0.1,
+    "minimum_oracle_median_improvement_over_train_medoid": 0.1,
+    "minimum_oracle_win_fraction_over_family_global": 0.75,
+    "minimum_each_family_median_improvement_over_family_global": 0.05,
+    "maximum_oracle_p95_error_ratio_to_family_global": 0.9,
+    "maximum_oracle_worst_error_ratio_to_family_global": 1.0,
+    "minimum_median_best_vs_second_relative_margin": 0.005,
+    "minimum_median_case_output_pairwise_rmse": 0.01,
+    "require_all_case_and_global_fits_converged": true,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "oracle_pass": "freeze the case bank representation and preregister source-only content retrieval with hard Top-1, medoid fallback and no confirmation access",
+    "oracle_fail": "close case routing on this source without retriever or larger case operator",
+    "retrieval_later_fails": "retain family-global/basic research controls and close routing"
+  },
+  "forbidden": [
+    "use held target pixels to choose a deployable case",
+    "load BO3 confirmation pixels",
+    "increase per-case capacity or tune gates after execution",
+    "claim a case is exposure, stock, process or scanner truth"
+  ],
+  "operator_fitting_allowed": "BO3 development pixels only",
+  "training_allowed": false,
+  "claim_ceiling": "development-only evaluator-Oracle for one-author weak-paired camera/film display-chain cases; not a selector, stock mode, calibration, product or commercial-use training"
+}
