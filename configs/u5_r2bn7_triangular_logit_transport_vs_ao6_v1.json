@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn7-triangular-logit-transport-vs-ao6-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN7",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "0a2e89cb59748ea5758e64a2814bce84be784434",
+  "question": "On a rights-cleared population unused by the triangular family, does the unchanged source-adaptive triangular transport under fixed AO6 beat the fixed AO6 incumbent directly without severe artifacts?",
+  "challenger_evidence": {
+    "decision": "configs/u5_r2bn6_triangular_logit_transport_visual_product_value_decision_v1.json",
+    "decision_sha256": "52af8822aad15d0d087f720130914909ea0fe85704a995fc7181a39c86ecd475",
+    "required_status": "adaptive_visual_value_pass_research_challenger",
+    "required_next_branch": "compare_adaptive_triangular_transport_against_ao6_incumbent"
+  },
+  "parent": {
+    "decision": "configs/u5_r2bn5_fivek_triangular_logit_transport_confirmation_decision_v1.json",
+    "decision_sha256": "149465ab577d67145379e89ba79f960faba580852415bd41f37c90d8111c662d",
+    "required_status": "confirmation_pass_visual_product_value_required",
+    "required_report_sha256": "d3a4a1fcb41efebd8a141988e5a9af183a70c52c3b90fb53702cc6f2b0f6f0c7"
+  },
+  "frozen_model": {
+    "config": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_v1.json",
+    "config_sha256": "de829f2bd51b9d52c8b34d0017901f8fb401c39da85ece8772677901e38d81f9",
+    "decision": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_decision_v1.json",
+    "decision_sha256": "50dd9beacb5939fe1ac90a01590796ed4b46d00dd36b8e37fe48514402a35ec1",
+    "training_population": "unchanged AY0 complete camera-group population",
+    "parameter_refit": "reconstruct frozen AY0 parameter fit and source-only PCA plus Ridge predictor",
+    "target_pixels_available": false,
+    "operator_or_predictor_tuning_allowed": false
+  },
+  "independent_source": {
+    "decision": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "expected_rows": 10,
+    "required_confirmed_severe_source_artifact_count": 0,
+    "candidate_family_prior_use": "none",
+    "allowed_use": "internal independent digital-photo evaluation"
+  },
+  "rendering": {
+    "descriptor_resolution": "unchanged maximum-side-256 AY0 source descriptor",
+    "operator_and_ao6_resolution": "exact decoded source pixels",
+    "operator_or_ao6_resampling_allowed": false
+  },
+  "render_arms": [
+    "fixed_ao6_direct",
+    "global_triangular_transport_then_fixed_ao6",
+    "adaptive_triangular_transport_then_fixed_ao6"
+  ],
+  "automatic_gate": {
+    "expected_outputs": 30,
+    "boundary_epsilon": 0.00196078431372549,
+    "maximum_new_boundary_fraction_vs_source": 0.005,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_sampled_jacobian_condition": 30.0,
+    "minimum_sampled_jacobian_determinant": 0.02,
+    "maximum_inverse_roundtrip_error": 0.0000001,
+    "maximum_p999_gradient_ratio_vs_direct_ao6": 2.5,
+    "minimum_median_adaptive_vs_direct_ao6_delta_e76": 1.0,
+    "minimum_sources_with_adaptive_vs_direct_ao6_delta_e76_ge_0p5": 5,
+    "require_repeat_report_and_output_identity": true
+  },
+  "blind_protocol": {
+    "primary_pair": [
+      "fixed_ao6_direct",
+      "adaptive_triangular_transport_then_fixed_ao6"
+    ],
+    "source_visible": true,
+    "rounds": 3,
+    "sources_per_round": 10,
+    "ties_allowed": true,
+    "mapping_hidden_until_all_observations_are_frozen": true,
+    "independent_per_source_mapping_each_round": true,
+    "maximum_confirmed_severe_artifact_count": 0,
+    "minimum_adaptive_round_wins": 2,
+    "minimum_adaptive_aggregate_choices": 19,
+    "aggregate_choice_denominator": 30,
+    "minimum_adaptive_source_majorities": 6
+  },
+  "branch_rules": {
+    "repeat_or_automatic_fail": "close BN7 without changing the source set, model, arms, thresholds or AO6",
+    "severe_fail": "reject the challenger regardless of style strength",
+    "blind_gate_pass": "retain the triangular transport as the leading research Look Approximation challenger and open one frozen gold/stress product-safety regression before integration",
+    "blind_gate_fail": "close triangular transport promotion, retain AO6 and do not tune on blind outcomes"
+  },
+  "new_data_download_allowed": false,
+  "production_default_changed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "independent-population full-decoded-resolution autonomous head-to-head evidence for an explicit digital-retouch Look Approximation challenger versus AO6; not population preference, film, stock, calibration, universal safety or product promotion"
+}
