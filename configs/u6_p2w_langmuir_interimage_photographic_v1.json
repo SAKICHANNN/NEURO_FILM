@@ -8,7 +8,9 @@
     "p7f_contract_path": "configs/u6_p7f_neutral_gauged_physical_chain_v1.json",
     "p7f_contract_sha256": "9002d7a149af2d15ab22e10a54d6e7edc1fe8983844c0d2d43d65c9e3a90647f",
     "p7f_decision_path": "configs/u6_p7f_neutral_gauged_physical_chain_decision_v1.json",
-    "p7f_decision_sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03"
+    "p7f_decision_sha256": "4579c82069d51c8c0f058efb253ea977d34f33c680ef411749d08a94cea09b03",
+    "p7f_report_path": "outputs/u6_p7f_neutral_gauged_physical_chain_v1/run_a/report.json",
+    "p7f_report_sha256": "84fb63e25571cbe75efeea95c86100b68ce1d12b2ca8b8ccc1880700f67cee3f"
   },
   "question": "Does the fixed clean-room amplitude-matched donor improve the visible, severe-safe generic interimage contribution over its exact linear-donor control after the same P7F physical and AO6 colour chain?",
   "claim_ceiling": "generic physical-inspired fixed photographic mechanism comparison on rights-cleared display-sRGB photographs; not measured chemistry, stock/process/scanner response, calibration, authenticity or product promotion",
@@ -81,6 +83,12 @@
       "trigger": "pre-formal one-crop smoke exposed that unbounded donor subtraction can leave the zero-exposure sensitometry domain before P7F adjacency",
       "change": "freeze the analytical maximum common donor scale above; no photographic metric, rendered output or gate was observed",
       "scientific_effect": "preserves donor direction and all frozen parameters while making domain safety explicit; it may only weaken the mechanism near the zero-exposure boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "trigger": "pre-report first attempt showed the unchanged P7F incumbent was being recomputed for every source",
+      "change": "bind and byte-copy the exact frozen P7F run-A incumbent after report and per-row SHA verification instead of recomputing it",
+      "scientific_effect": "changes only redundant control-arm execution cost; candidate, linear control, source population, metrics and gates are unchanged"
     }
   ],
   "branch_rule": {
