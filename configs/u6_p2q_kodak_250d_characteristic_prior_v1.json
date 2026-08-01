@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p2q_kodak_250d_characteristic_prior_contract.v1",
+  "experiment_id": "u6.p2q-kodak-250d-characteristic-prior-v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2Q",
+  "date_frozen": "2026-08-01",
+  "question": "Can the P2P graph observation compile into a deterministic bounded monotone explicit layer-exposure-to-density prior that is reproducible, source-faithful and materially distinct in normalized shape from the unchanged generic U2.2 curves?",
+  "parents": {
+    "p2p_decision": {
+      "path": "configs/u6_p2p_kodak_250d_characteristic_source_decision_v1.json",
+      "sha256": "3a176daa540a79e13a36a24192440325423dbeecf758d12d5ddebe5da2d2b1b6",
+      "required_status": "complete_source_pass",
+      "required_stable_evidence_id": "71bfba27b816a43f6ec23d918e800736707a668057a9ec5b4e3aa5a336e49778"
+    },
+    "trace": {
+      "path": "configs/data/kodak_250d_characteristic_curve_pixels_v1.json",
+      "sha256": "0157c8235160a47c231f091aa8fd42dae8a50a8af3c949cb17424a55b45394a9"
+    },
+    "generic_u2_2": {
+      "path": "configs/u2_2a_sensitometry_primitive_v1.json",
+      "sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+    }
+  },
+  "compiler": {
+    "channel_order": ["red", "green", "blue"],
+    "input_domain": "relative_layer_log_exposure",
+    "output_domain": "status_m_density",
+    "monotonic_projection": "cumulative_max_at_source_knots",
+    "interpolation": "piecewise_linear",
+    "outside_observed_domain": "reject",
+    "floating_point": "float64",
+    "parameter_fit": false
+  },
+  "evaluation": {
+    "dense_samples_per_channel": 4097,
+    "normalized_shape_samples": 1025,
+    "partition_rows": [1, 7, 31, 127],
+    "shape_comparison_gauge": "independent per-channel affine normalization of observed x and endpoint density to [0,1]; diagnostic only"
+  },
+  "gates": {
+    "source_knot_density_max_abs_error": 0.007,
+    "dense_monotonic_min_step": -1e-15,
+    "endpoint_max_abs_error": 0.0,
+    "output_bound_tolerance": 1e-15,
+    "replay_max_abs_error": 0.0,
+    "partition_max_abs_error": 0.0,
+    "generic_normalized_shape_rmse_each_channel_min": 0.05,
+    "generic_normalized_shape_rmse_median_min": 0.05,
+    "two_byte_identical_audits": true
+  },
+  "allowed_after_pass": [
+    "retain the compiled bundle as a research-only manufacturer characteristic prior",
+    "open a separately frozen exposure-semantics or interpretation ablation that never infers layer exposure from ordinary digital RGB"
+  ],
+  "forbidden": [
+    "replace the current generic production sensitometry or reinterpret its wire identity",
+    "map ordinary digital RGB channels directly to Kodak blue/green/red layer exposure",
+    "claim calibrated 250D response, roll/process truth, scanner response or product promotion",
+    "use normalized shape comparison as a physical exposure alignment",
+    "fit extra knots, slopes, strength, gamut logic or photographic parameters in this leaf",
+    "extrapolate outside any channel's observed graph domain"
+  ],
+  "branch_rule": {
+    "pass": "Retain the exact research prior and open only a separately frozen layer-exposure semantics/interpretation experiment.",
+    "fail": "Close the compiled prior without interpolation, projection, threshold or U2.2 rescue; retain P2P as source evidence only."
+  },
+  "claim_ceiling": "Deterministic bounded monotone compilation of a first-party manufacturer graph observation in relative layer-log-exposure and Status-M density domains; no digital-to-film operator, calibrated stock response or product route."
+}
