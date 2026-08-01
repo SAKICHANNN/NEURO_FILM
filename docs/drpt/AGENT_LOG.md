@@ -8975,3 +8975,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Next diagnose the fit-only case/operator Oracle style ceiling. If capacity,
   not selection, is limiting, test a more expressive bounded explicit residual
   family. FiveK and all product/film claims remain controls/closed.
+
+## 2026-08-01 - U5.R2BQ4D locates the style bottleneck in triangular fitting
+
+- Two diagnostic reports are exact at `a3949faa...52888`; no confirmation or
+  new fitting is used.
+- Self-fit style retention is only 43.84%/58.52%. Yet every held row has a
+  safe case above 70%, and style-constrained Oracle error is only 1.036x/1.020x
+  the unconstrained Oracle with zero new boundary.
+- Close triangular fit/router rescue. Next run the existing mature BN1
+  strict-interior projection-curve operator unchanged on this case bank as a
+  capacity baseline before any new selector. Product/film claims stay closed.

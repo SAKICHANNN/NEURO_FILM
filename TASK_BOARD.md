@@ -619,3 +619,9 @@ execution yields zero new boundary. Absolute target-style retention is only
 45.58%/69.05% versus 70%, so confirmation remains unread. Diagnose the fitted
 operator/Oracle style ceiling next; change renderer capacity only if the ceiling
 itself is inadequate.
+
+U5.R2BQ4D shows the current self-fit retains only 43.84%/58.52% of target
+style, while every held row has a safe strong-style case and a style-constrained
+Oracle costs only 3.62%/1.97% error. Close triangular fitting/routing rescue.
+Next replay the mature strict-interior projection-curve family as a capacity
+baseline on this bank before training any new selector.

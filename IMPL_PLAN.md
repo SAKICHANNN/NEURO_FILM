@@ -2537,3 +2537,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > Oracle style ceilings on the consumed development split. If those ceilings
 > fail, move to a higher-capacity bounded explicit residual, not a larger router.
 >
+> BQ4D confirms the self-fit ceiling is only 43.84%/58.52% target style, while
+> safe style-eligible cases exist for every held row and cost little under a
+> constrained Oracle. Stop triangular fit/router rescue. Reuse the mature BN1
+> strict-interior projection-curve operator unchanged as the next case-bank
+> capacity baseline; only after it passes may a source-only selector reopen.
+>

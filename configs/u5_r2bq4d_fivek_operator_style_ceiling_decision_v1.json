@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.u5-r2bq4d-fivek-operator-style-ceiling-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ4D",
+  "decision": "close_triangular_fit_family_open_mature_projection_curve_capacity_baseline",
+  "implementation_commit": "a633138ad29185f0670829cc457bfe057da36841",
+  "reports": {
+    "run_a": "outputs/u5_r2bq4d_fivek_operator_style_ceiling_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq4d_fivek_operator_style_ceiling_v1/run_b/report.json",
+    "sha256": "a3949faa1a2f2c37de18fcd4cbcdeb0404a238e3de0b395266f07c1189052888",
+    "byte_identical": true,
+    "stable_evidence_id": "994782955ab4cb38b92c5660b88d425e004f014e713b2db326e551b5ce116e41",
+    "confirmation_loaded": false,
+    "branch": "operator_capacity_inadequate"
+  },
+  "aligned_expert": {
+    "self_fit_median_style_retention": 0.438425238837428,
+    "error_oracle_median_style_retention": 0.6964880666676484,
+    "rows_with_style_eligible_fit_case_fraction": 1.0,
+    "style_constrained_oracle_error_ratio": 1.0361982520098718,
+    "median_strongest_case_style_retention": 2.000649260185176,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "filtered": {
+    "self_fit_median_style_retention": 0.5851766780669444,
+    "error_oracle_median_style_retention": 0.8047641322293061,
+    "rows_with_style_eligible_fit_case_fraction": 1.0,
+    "style_constrained_oracle_error_ratio": 1.0197286437542783,
+    "median_strongest_case_style_retention": 2.6050213828568896,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "diagnosis": "The current per-image triangular fit itself suppresses style, although every held row has safe style-eligible operators elsewhere in the bank and a style-constrained evaluator Oracle costs only 3.62%/1.97% error. The signal exists, but this fit/operator family is the wrong next bottleneck.",
+  "next_leaf": "apply the already-established strict-interior parallel projection-curve operator as an unchanged mature capacity baseline on this case bank before any new selector or fit objective",
+  "triangular_fit_or_router_rescue_allowed": false,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact development-only style-capacity diagnosis for already-fitted FiveK digital-retouch operators; no film, preference, confirmation or product claim"
+}
