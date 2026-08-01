@@ -681,5 +681,8 @@ parameters or complete paired rows. Both close without fitting. U6.P6Q is the
 next ready leaf: audit Kodak Digital LAD as an official machine-readable
 recorder/print calibration anchor, not a stock-response target. P6Q confirms
 the guide semantics but closes the archive-image route because a 51,019,264-byte
-member exceeds the frozen 50,000,000-byte limit before decompression. P6R is
-ready: implement the H-387 guide-table-only typed code-to-density primitive.
+member exceeds the frozen 50,000,000-byte limit before decompression. P6R
+passes the H-387 guide-table-only typed code-to-density primitive: all 1,024
+codes roundtrip within `1.14e-13`, negative/IP domains remain separate, and no
+RGB transform occurs. P6S is ready: verify compatibility with the existing
+density and print-interpretation types without photographic tuning.

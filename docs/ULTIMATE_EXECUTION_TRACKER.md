@@ -1111,6 +1111,9 @@ baseline, but no public runnable implementation, fitted values, complete rows,
 reproduction rights or full lineage exist. It closes before fitting or visual
 review. U6.P6Q verifies Kodak Digital LAD guide semantics and archive inventory,
 but each archive contains a 51,019,264-byte member above the frozen 50,000,000
-limit. It closes before decompression (`85cf7b6a...b7c6a` twice). U6.P6R may use
-only the exact H-387 tables for a typed neutral code-to-density primitive. AO6
-remains incumbent.
+limit. It closes before decompression (`85cf7b6a...b7c6a` twice). U6.P6R then
+passes the exact H-387 typed primitive (`f5ec8fde...55510` twice): all 1,024
+codes roundtrip within `1.14e-13`; negative/IP, raw/physical printing density,
+Status M and D-min remain separate; RGB transform count is zero. U6.P6S tests
+compatibility with existing density/print interpretation types. AO6 remains
+incumbent.

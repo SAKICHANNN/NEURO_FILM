@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p6r_kodak_digital_lad_density_primitive_decision.v1",
+  "node": "U6.P6R",
+  "status": "pass-typed-digital-lad-density-primitive",
+  "contract": "configs/u6_p6r_kodak_digital_lad_density_primitive_v1.json",
+  "contract_sha256": "1c4e87b6d899cdb0e9bbfc93070db2294f9c7afef6b638d7aa1b0ea535a542c4",
+  "software_commit": "d5acda5f322db67b90f1136269bc71305de97649",
+  "reports": [
+    {
+      "path": "outputs/u6_p6r_kodak_digital_lad_density_primitive_v1/run_a/report.json",
+      "sha256": "f5ec8fdedb6beab9219d2a2614de744cf7ccceb678eabeb80078c01c93655510"
+    },
+    {
+      "path": "outputs/u6_p6r_kodak_digital_lad_density_primitive_v1/run_b/report.json",
+      "sha256": "f5ec8fdedb6beab9219d2a2614de744cf7ccceb678eabeb80078c01c93655510"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "stable_evidence_id": "d9b5d73423ad1c90c30041a4bb17ba88e01e48ac1ef94e72632b2d8dd8ec816c"
+  },
+  "metrics": {
+    "code_count": 1024,
+    "formula_table_max_abs_error": 4.440892098500626e-16,
+    "all_code_roundtrip_max_abs_error": 1.1368683772161603e-13,
+    "negative_minimum_first_difference": 0.0019999999999997797,
+    "interpositive_maximum_first_difference": -0.0019999999999997797,
+    "status_m_total_addition_max_abs_error": 2.220446049250313e-16,
+    "rgb_image_transform_count": 0
+  },
+  "decision": "retain-exact-typed-neutral-density-primitive",
+  "next_ready_leaf": "U6.P6S Digital LAD compatibility with existing density and print interpretation domains",
+  "claim_ceiling": "exact manufacturer-documented neutral film-recorder/print density semantics; not a film-look operator, stock response, local calibration, scanner profile or product promotion"
+}

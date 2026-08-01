@@ -9340,3 +9340,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   image parsing, fitting or rendering; the limit was not rescued.
 - Continue P6R with only the exact H-387 tables and a typed neutral
   code-to-density primitive. No stock-response or local-calibration claim opens.
+
+## 2026-08-02 - U6.P6R passes typed Digital LAD density semantics
+
+- Implemented exact 10-bit code-to-printing-density negative/IP equations,
+  explicit raw versus nonnegative physical density, and immutable LAD aims with
+  separate Status M above-D-min, D-min and total values.
+- Two exact reports (`f5ec8fde...55510`) pass all 1,024 codes, table error
+  `4.44e-16`, roundtrip `1.14e-13`, monotonic direction, serialization and
+  partition gates. No RGB transform, fit or render occurred.
+- P6S may test compatibility with existing typed density/print interpretation;
+  the primitive remains neutral recorder/print documentation, not a film look.
