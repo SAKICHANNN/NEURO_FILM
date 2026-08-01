@@ -1,0 +1,92 @@
+{
+  "schema": "neuro-film.u5-r2bo8-flickr-source-canonicalized-preset.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO8",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "Does a source-only bounded canonicalizer followed by one shared explicit family preset transfer across held scenes better than the same preset without canonicalization and a wrong-adapter control?",
+  "parents": {
+    "bo7_decision": {
+      "path": "configs/u5_r2bo7_flickr_safe_bernstein_lut_decision_v1.json",
+      "sha256": "e8e4a84d7bbb1ad50c22e72faf845c0aae0f4b1b9ce7b707c7b8529a44f4ede0",
+      "required_decision": "close_fixed_global_safe_lut_without_confirmation"
+    },
+    "registration_report": {
+      "path": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_a/report.json",
+      "sha256": "954f5dc9f64a74615da695668fb924c80659d00620607c37ad149f0db2e089eb",
+      "required_stable_evidence_id": "fb19f395aa5d1850443372c1e4afef2f7dd8273fda1562a561d2d2702da10e65"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+      "sha256": "697cc636fe7668fe8586455b4bb1eecc858cbe984045e18417195d902d281703"
+    }
+  },
+  "data_root": "data/research/flickr_analog_digital_album_v1",
+  "split": {
+    "development_rule": "accepted BO2 pairs with scene_id_mod_4_not_equal_0",
+    "confirmation_rule": "accepted BO2 pairs with scene_id_mod_4_equals_0",
+    "development_crossfit_fold": "scene_id_mod_3",
+    "confirmation_pixels_forbidden": true
+  },
+  "paired_samples": {
+    "reuse_exact_BO3_sampling": true,
+    "mask_erosion_pixels": 5,
+    "encoded_boundary_code_minimum": 2,
+    "encoded_boundary_code_maximum": 253,
+    "maximum_combined_encoded_luma_gradient_quantile": 0.75,
+    "maximum_samples_per_scene": 2048
+  },
+  "source_adapter": {
+    "information_allowed": "application source pixels, BO2 geometry and target dimensions only",
+    "target_or_reference_pixels_allowed": false,
+    "statistic": "per-channel median logit over warped valid source-only pixels",
+    "canonical_anchor": 0.5,
+    "maximum_absolute_logit_shift": 1.0,
+    "mask_erosion_pixels": 5,
+    "encoded_boundary_code_minimum": 2,
+    "encoded_boundary_code_maximum": 253,
+    "maximum_statistic_samples": 8192,
+    "wrong_adapter_control": "next lexicographic development scene in the same family, wrapping once"
+  },
+  "shared_preset": {
+    "family": "BO3 three-segment endpoint-fixed monotone curves then positive row-stochastic matrix",
+    "parameter_count": 12,
+    "curve_identity_mixture": 0.75,
+    "matrix_identity_mixture": 0.25,
+    "free_logit_bounds": [-8.0, 4.0],
+    "restart_count": 2,
+    "maximum_fit_evaluations": 500,
+    "loss": "soft_l1",
+    "loss_scale": 0.02,
+    "seed": 20260801,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "minimum_candidate_mean_improvement_over_uncanonicalized_control": 0.05,
+    "minimum_candidate_median_improvement_over_uncanonicalized_control": 0.05,
+    "minimum_candidate_scene_win_fraction_over_uncanonicalized_control": 0.6,
+    "minimum_each_family_median_improvement_over_uncanonicalized_control": 0.0,
+    "maximum_candidate_p95_error_ratio_to_uncanonicalized_control": 0.95,
+    "maximum_candidate_worst_error_ratio_to_uncanonicalized_control": 1.0,
+    "minimum_candidate_median_improvement_over_wrong_adapter": 0.02,
+    "maximum_observed_absolute_logit_shift": 1.0,
+    "dense_cube_grid_size": 17,
+    "strict_boundary_epsilon": 0.0000152587890625,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_all_fits_converged": true,
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "pass": "freeze adapter and shared-preset semantics, fit on all development scenes and run one untouched confirmation",
+    "fail": "close source-canonicalized shared preset without statistic, cap, operator, capacity or router rescue",
+    "wrong_adapter_not_worse": "close because source-specific canonicalization adds no identified information"
+  },
+  "forbidden": [
+    "load target or reference pixels when constructing an application source adapter",
+    "load confirmation pixels during development",
+    "change statistic, cap, operator or thresholds after formal execution",
+    "interpret adapter shifts as exposure, white balance, illuminant or scanner truth",
+    "call the family operator a film-stock response or calibration"
+  ],
+  "operator_fitting_allowed": "BO3 development pixels only",
+  "training_allowed": false,
+  "claim_ceiling": "one-author weak-paired source-only canonicalization plus explicit shared-preset development evidence; not physical exposure/WB, stock, calibration, product or commercial-use training"
+}
