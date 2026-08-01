@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u5_r2bl14_filmmatch_hard_abstention.v1",
+  "experiment_id": "u5.r2bl14-filmmatch-hard-abstention-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BL14",
+  "parent": {
+    "contract": "configs/u5_r2bl0_filmmatch_source_conditioned_operator_v1.json",
+    "contract_sha256": "d9154bc3747073db78879b31d19c19c6766503ea0d49d779d2673cc7577d1fbf",
+    "decision": "configs/u5_r2bl0_filmmatch_source_conditioned_operator_decision_v1.json",
+    "decision_sha256": "97962f2dcc65674c99222209724c214e9084b429eb26c881a79a05602f42ba5e",
+    "required_decision": "close_dense_source_conditioning_and_retain_global_fallback",
+    "required_branch": "oracle_only"
+  },
+  "question": "Can a single source-only support threshold recover BL0's high-brightness conditional value by hard-selecting the unchanged bounded adaptive operator and otherwise returning the unchanged global operator?",
+  "data": {
+    "lane": "reflective_only",
+    "groups": 33,
+    "patches_per_group": 164,
+    "outer_split": "leave one complete author-declared illuminant out",
+    "policy_selection": "within each outer fold, leave one development illuminant out; outer-held targets are never used",
+    "validation_scene_use_allowed": false
+  },
+  "operator": {
+    "family": "unchanged_bl0_monotone_curves_positive_matrix",
+    "parameter_count": 12,
+    "hard_outputs": ["adaptive", "global"],
+    "blending_allowed": false
+  },
+  "routing": {
+    "score": "source_median_luma",
+    "direction": "adaptive_if_score_greater_than_or_equal_to_threshold",
+    "threshold_quantiles": [0.45, 0.55, 0.65, 0.75, 0.85],
+    "selection_objective": "minimum OOF aggregate RGB RMSE, then greater coverage, then greater threshold",
+    "minimum_oof_improvement_over_global": 0.03,
+    "minimum_oof_active_fraction": 0.15,
+    "maximum_oof_active_fraction": 0.55,
+    "minimum_oof_active_group_win_fraction": 0.6666666666666666,
+    "maximum_oof_p95_ratio_to_global": 1.0,
+    "maximum_oof_worst_group_rmse_ratio_to_global": 1.05,
+    "fallback_when_no_policy_passes": "global"
+  },
+  "negative_control": {
+    "family": "bl0_deterministically_shuffled_operator_parameters_with_independently_selected_hard_threshold",
+    "seed": 20260801
+  },
+  "structural_audit": {
+    "cube_size": 17,
+    "minimum_jacobian_determinant": 1e-8,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "automatic_gate": {
+    "minimum_hard_rgb_rmse_improvement_over_global": 0.05,
+    "minimum_hard_rgb_rmse_improvement_over_dense_adaptive": 0.0,
+    "minimum_hard_rgb_rmse_improvement_over_shuffled_hard": 0.05,
+    "minimum_hard_active_fraction": 0.15,
+    "maximum_hard_active_fraction": 0.55,
+    "minimum_hard_active_group_win_fraction": 0.6666666666666666,
+    "minimum_outer_fold_win_fraction": 0.6666666666666666,
+    "maximum_hard_aggregate_p95_ratio_to_global": 1.0,
+    "maximum_hard_worst_group_rmse_ratio_to_global": 1.05,
+    "require_policy_in_all_outer_folds": true,
+    "require_zero_out_of_cube": true,
+    "require_minimum_jacobian": true,
+    "require_two_run_byte_identity": true
+  },
+  "branches": {
+    "pass": "retain the hard-abstaining bounded explicit-operator research candidate; no validation render or product integration opens",
+    "no_policy": "the development-only OOF policy cannot isolate conditional value; close source-conditioned routing",
+    "unstable": "the hard policy fails held group, fold, tail or shuffled controls; close source-conditioned routing",
+    "structural_failure": "close without clipping, blending, threshold relaxation or capacity rescue"
+  },
+  "gates": {
+    "paired_code_domain_operator_fitting_allowed": true,
+    "physical_exposure_or_illuminant_inference_claim_allowed": false,
+    "film_mode_claim_allowed": false,
+    "calibrated_stock_response_claim_allowed": false,
+    "validation_render_allowed": false,
+    "product_integration_allowed": false
+  },
+  "claim_ceiling": "internal paired code-domain Look Approximation evidence for hard source-support abstention within one author-prepared Sony FX3/Ektachrome E100 capture-and-scan session; source brightness is a routing fact, not physical exposure truth; no film mode, calibrated stock response, scanner independence or product promotion"
+}
