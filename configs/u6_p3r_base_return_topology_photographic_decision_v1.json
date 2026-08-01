@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p3r_base_return_topology_photographic_decision.v1",
+  "experiment_id": "U6.P3R",
+  "status": "complete_automatic_close",
+  "contract": "configs/u6_p3r_base_return_topology_photographic_v1.json",
+  "contract_sha256": "bb0ecf94f992212119851af654384d1d3da004ddf835692eb344cd139a99282f",
+  "software_commit": "5f277bfd",
+  "formal_evidence": {
+    "report_a": "outputs/u6_p3r_base_return_topology_photographic_v1/run_a/report.json",
+    "report_b": "outputs/u6_p3r_base_return_topology_photographic_v1/run_b/report.json",
+    "report_sha256": "f129e287d87b871037ac40ff6810baa0a20a97134e00fac04aebeb06833f4c8e",
+    "stable_evidence_id": "bd499d8a5f83aa05be894d66902e59cce91224de865cbf80dad0354218d51483",
+    "two_byte_identical_audits": true,
+    "visual_review_performed": false,
+    "visual_review_forbidden_by_automatic_gate": true
+  },
+  "result": {
+    "automatic_pass": false,
+    "source_count": 12,
+    "camera_make_count": 12,
+    "p3o_raw_hash_overlap": 0,
+    "analytical_maximum_effect": 0.01500000000000018,
+    "analytical_population_p95_effect": 0.014977300938920758,
+    "analytical_median_fraction_pixels_over_0p005": 0.31071333253303857,
+    "population_p95_topology_difference": 0.0005938600916012464,
+    "minimum_population_p95_topology_difference": 0.001,
+    "total_isolated_excursion_count": 15356,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "failed_gates": [
+      "topology_distinguishable",
+      "isolated_excursions"
+    ]
+  },
+  "decision": "close_photographic_base_return_topology_before_visual_review",
+  "retained_evidence": "P3Q remains a generic source-grounded synthetic mechanism prior only; it is not a photographic runtime arm.",
+  "forbidden_followups": [
+    "Do not inspect or score the generated P3R visual candidates after the automatic failure.",
+    "Do not change diagnostic energy, topology threshold, isolated-excursion definition, population or kernel parameters to rescue P3R.",
+    "Do not integrate the annular topology into the renderer or relabel it as measured film energy, modern-stock behavior or calibration."
+  ],
+  "next_ready_leaf": "A mechanism-distinct explicit colour-operator experiment or newly independent paired-evidence leaf; no further halation topology tuning.",
+  "claim_ceiling": "Negative autonomous photographic development evidence for one deliberately amplified generic support-return topology; synthetic mechanism evidence only, with no visual, preference, calibration or product claim."
+}

@@ -9216,3 +9216,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   failure forbids visual review; generated sheets remain unreviewed evidence.
 - Close P5I-P5Q without threshold, arm or envelope rescue. Continue P2P exact
   Kodak 250D characteristic-curve source tracing as a distinct mechanism.
+
+## 2026-08-01 - U6.P3R closes annular base-return photographic use
+
+- Ran two byte-identical frozen 12-photo/12-camera audits with zero P3O raw
+  overlap. Response, population visibility and hard-boundary gates pass.
+- The analytical topology differs from the equal-moment Gaussian by only
+  `.000594` at population P95 versus the frozen `.001` minimum and produces
+  15,356 isolated excursions versus the frozen zero maximum.
+- Automatic failure forbids visual review. Retain P3Q as generic synthetic
+  mechanism evidence only; do not retune halation topology. Continue a
+  mechanism-distinct explicit colour or independent paired-evidence leaf.

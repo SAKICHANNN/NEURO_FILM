@@ -293,9 +293,14 @@ source mechanism gate. Exact NIST pages pass that gate, and the resulting
 no-fit analytical kernel passes all synthetic topology checks: it has a
 source-required nonzero critical radius, differs from an equal-second-moment
 Gaussian by `.58961` L1, scales with support thickness and responds in the
-correct direction to refractive index and attenuation. P3R may compare this
-fixed topology on photographs at a separately frozen diagnostic energy;
-current-stock material calibration remains closed.
+correct direction to refractive index and attenuation. P3R then closes the
+photographic route automatically. Two exact 12-camera reports remain response-
+bounded and visible, but the P95 analytical-versus-Gaussian difference is only
+`.000594 < .001` and the frozen detector counts 15,356 isolated excursions.
+Visual review is forbidden; no energy, kernel or gate rescue is allowed. Retain
+P3Q only as synthetic mechanism evidence and move to a mechanism-distinct
+explicit colour or independent paired-evidence leaf. Current-stock material
+calibration remains closed.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
