@@ -1,0 +1,83 @@
+{
+  "schema": "neuro_film.u6_p3r_base_return_topology_photographic_contract.v1",
+  "experiment_id": "U6.P3R",
+  "status": "photographic_contract_frozen_before_render",
+  "question": "At a fixed diagnostic response budget, does the source-grounded annular support-return topology provide artifact-safe and visibly preferable halation over an equal-energy/equal-second-moment Gaussian and no-spatial control?",
+  "parent": {
+    "decision_path": "configs/u6_p3q1_analytical_base_return_geometry_decision_v1.json",
+    "decision_sha256": "8c69cc9d6dabe33c51ded5ce88de53f3b69d792dcc67f22b707747185b4a76cb",
+    "required_decision": "retain_generic_analytical_topology_open_energy_moment_matched_photographic_comparison",
+    "stable_evidence_id": "5f608b95b07a8927d8eecb775e6a6f042f2d6400679286fa386abe18bea748f0",
+    "geometry_contract_path": "configs/u6_p3q1_analytical_base_return_geometry_v1.json",
+    "geometry_contract_sha256": "a4a9d16cf50af997a81c9e854771b93d021dc37ca980d03a0e59617ead74670e",
+    "sensitometry_contract_path": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "population": {
+    "source": "raw.pixls.us CC0/Public Domain BH1 cohort, reused only as a fixed topology-development population",
+    "preflight_decision_path": "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json",
+    "preflight_decision_sha256": "9b3cb743e186d8c7fe9a27202aba9bbbd8aae6785a2ea318e44478a2b36e93a5",
+    "required_preflight_decision": "pass_fresh_population_and_open_fixed_global_policy_confirmation",
+    "manifest_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "visual_source_review_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/visual_source_review.json",
+    "visual_source_review_sha256": "388acf3710d2cb850a3f048db5b27441f63160f21dd944af24443fc2497ce268",
+    "p3o_manifest_path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "p3o_manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "expected_source_count": 12,
+    "expected_camera_make_count": 12,
+    "require_zero_exact_raw_hash_overlap_with_p3o": true,
+    "maximum_long_edge": 768,
+    "selection_used_image_appearance": false
+  },
+  "fixed_arms": {
+    "no_spatial": "unchanged generic sensitometry interpretation",
+    "gaussian": "P3Q equal-energy/equal-second-moment Gaussian positive spread",
+    "analytical": "P3Q source-grounded annular positive spread",
+    "diagnostic_return_fraction_scale": 4.0,
+    "maximum_transmittance_delta": 0.015,
+    "shared_rgb_response_scale": true,
+    "per_image_parameter_selection_allowed": false,
+    "profile_fitting_allowed": false,
+    "hard_clipping_allowed": false,
+    "physical_energy_claim_allowed": false
+  },
+  "automatic_gates": {
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_p3o_raw_hash_overlap": 0,
+    "maximum_response_delta": 0.015000000001,
+    "minimum_population_p95_effect": 0.006,
+    "minimum_median_fraction_pixels_over_0p005": 0.2,
+    "minimum_population_p95_topology_difference": 0.001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_threshold": 0.012,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "repeat_report_and_render_hashes_exact": true
+  },
+  "visual_protocol": {
+    "automatic_pass_required": true,
+    "direct_severe_columns": ["no_spatial", "gaussian", "analytical"],
+    "topology_blind_round_seeds": [314159, 271828, 161803],
+    "value_blind_round_seeds": [57721, 141421, 173205],
+    "topology_question": "Which rendering has the more plausible restrained film-support halo without donut/ringing or diffuse digital bloom?",
+    "value_question": "Which rendering has more useful film-like spatial character while remaining free of severe artifacts?",
+    "ties_allowed": true,
+    "minimum_candidate_votes_per_round": 7,
+    "minimum_passing_rounds": 2,
+    "zero_confirmed_severe_artifact_required": true,
+    "autonomous_visual_evidence_only": true,
+    "population_preference_claim_allowed": false
+  },
+  "branches": {
+    "automatic_fail": "close P3R before visual review without changing scale, cap, population or gates",
+    "severe_fail": "reject the analytical photographic arm and retain P3Q1 synthetic topology only",
+    "topology_or_value_fail": "retain P3Q1 as generic mechanism evidence but close photographic/runtime use",
+    "pass": "retain the analytical topology as a physical-image-formation challenger and open only a separately frozen lower-cost compiler"
+  },
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "Autonomous photographic development evidence for one deliberately amplified but response-bounded generic support-return topology; not measured film energy, stock/process calibration, population preference or product promotion."
+}
