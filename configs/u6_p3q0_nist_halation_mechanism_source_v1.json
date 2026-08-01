@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p3q0_nist_halation_mechanism_source_contract.v1",
+  "experiment_id": "U6.P3Q0",
+  "status": "source_contract_frozen_implementation_ready",
+  "question": "Does an exact primary historical source support a film-base total-internal-reflection geometry that is materially distinct from an unconstrained Gaussian halo, before any modern-stock parameters or photograph rendering are introduced?",
+  "source": {
+    "title": "Sensitometry of Photographic Emulsions and a Survey of the Characteristics of Plates and Films of American Manufacture",
+    "authors": ["Raymond Davis", "F. M. Walters, Jr."],
+    "publisher": "United States Bureau of Standards",
+    "publication_year": 1922,
+    "url": "https://nvlpubs.nist.gov/nistpubs/ScientificPapers/nbsscientificpaper439vol18p1_A2b.pdf",
+    "path": "data/physical_halation/nist_sensitometry_1922_v1/nbsscientificpaper439vol18p1_A2b.pdf",
+    "expected_bytes": 6609435,
+    "sha256": "baf2d8c7f397f14a2be1ea2bcdbc2f471432d70a11a324250d35a600986d9e0f",
+    "pdf_pages": 120,
+    "rights_basis": "United States federal government Bureau of Standards publication; retained as primary-source research evidence."
+  },
+  "review_pages": [
+    {
+      "pdf_page_one_based": 30,
+      "printed_page": 30,
+      "path": "outputs/u6_p3q_nist_halation_source/source_review/page_030.png",
+      "expected_bytes": 534698,
+      "sha256": "a659178e6526909b57c6f6ccae12f482f6917f7936fb918f72b692ee7f1e7f35"
+    },
+    {
+      "pdf_page_one_based": 31,
+      "printed_page": 31,
+      "path": "outputs/u6_p3q_nist_halation_source/source_review/page_031.png",
+      "expected_bytes": 468915,
+      "sha256": "62240160a8989fdce92b684c8e57a200cf65c1a59b8426df7044077bea6a29e8"
+    }
+  ],
+  "reviewed_observations": [
+    {
+      "observation_id": "support-total-internal-reflection",
+      "page": 30,
+      "fact": "The source distinguishes halation from emulsion irradiation and attributes the halo around a bright point on dark background to light reflected inside the glass or celluloid support."
+    },
+    {
+      "observation_id": "critical-angle-return-threshold",
+      "page": 30,
+      "fact": "Light reaching the rear support surface at or beyond the critical angle is returned toward the coated side; the source identifies that returned light as the halo cause."
+    },
+    {
+      "observation_id": "thickness-index-scale",
+      "page": 30,
+      "fact": "Halo size depends on support thickness and critical angle, with the latter derived from refractive index."
+    },
+    {
+      "observation_id": "absorbing-backing-control",
+      "page": 30,
+      "fact": "An index-matched light-absorbing backing suppresses the reflected return."
+    },
+    {
+      "observation_id": "film-thickness-ordering",
+      "page": 31,
+      "fact": "The source states that the same mechanism occurs in film and that thinner film support produces less spreading than glass support."
+    }
+  ],
+  "source_gates": {
+    "required_observation_ids": [
+      "support-total-internal-reflection",
+      "critical-angle-return-threshold",
+      "thickness-index-scale",
+      "absorbing-backing-control",
+      "film-thickness-ordering"
+    ],
+    "required_review_pages": [30, 31],
+    "visual_review_required": true,
+    "two_byte_identical_audits": true
+  },
+  "allowed_after_pass": [
+    "Freeze one generic analytical support-return kernel family whose inner support follows thickness and critical angle.",
+    "Use explicit uncalibrated thickness, refractive-index and attenuation hypotheses only in synthetic witnesses.",
+    "Compare topology against an equal-energy/equal-second-moment Gaussian control."
+  ],
+  "forbidden": [
+    "Do not infer a modern stock's support thickness, refractive index, backing absorption or returned energy from this 1922 source.",
+    "Do not call any derived kernel VISION3, CineStill, calibrated halation or measured film response.",
+    "Do not fit kernel parameters to photographs or reopen frozen P3D-P3P experiments.",
+    "Do not promote from source or synthetic evidence."
+  ],
+  "branch_rule": {
+    "pass": "Open U6.P3Q1 analytical base-return geometry synthetic audit with separately frozen hypotheses and gates.",
+    "fail": "Close the geometry route and continue another distinct physical mechanism."
+  },
+  "claim_ceiling": "Primary historical mechanism evidence for support-mediated total-internal-reflection halation; not modern-stock material data, a measured PSF, calibration or product authorization."
+}
