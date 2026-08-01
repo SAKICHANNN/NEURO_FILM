@@ -72,6 +72,7 @@
   },
   "diagnostics": {
     "paired_effect_metric": "mean D65 Delta E76 between same-revision Langmuir and linear donor outputs",
+    "metric_sample_pixels_per_image": 65536,
     "midpoint_signature": "diagnostic only: effect by linear-output luma quartile; no truth claim",
     "basic_residual_factors": ["ev", "white_balance", "contrast", "saturation", "global_luma_curve"],
     "hard_boundary_epsilon": 0.00196078431372549,
