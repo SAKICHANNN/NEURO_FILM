@@ -8963,3 +8963,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Confirmation remained unread. No direct-regression capacity or threshold
   rescue; open a separately frozen factorized magnitude/direction plus
   analytical safe-residual mechanism. Product and film claims remain closed.
+
+## 2026-08-01 - U5.R2BQ4 factorized safe residual is a strong style near-miss
+
+- Two reports are byte-identical at `5bf3cbc4...bfa1`; confirmation is unread.
+- Factorized direction/magnitude improves mean error 11.48%/14.68% over safe
+  global and passes strength, nearest, direct-BQ3, shuffle, tail and bootstrap
+  controls. Analytical residual execution records zero new boundary samples.
+- The only failed gate is absolute target-style retention at 45.58%/69.05%
+  versus 70%; the threshold remains frozen and the candidate closes.
+- Next diagnose the fit-only case/operator Oracle style ceiling. If capacity,
+  not selection, is limiting, test a more expressive bounded explicit residual
+  family. FiveK and all product/film claims remain controls/closed.

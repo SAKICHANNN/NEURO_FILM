@@ -2530,3 +2530,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > regression. Next factorize parameter direction from magnitude and execute its
 > residual analytically inside the gamut boundary, with unchanged style gates.
 >
+> BQ4 validates that mechanism: it beats global, strength, nearest, direct BQ3
+> and shuffle controls while producing zero new boundary samples. It still
+> closes because target-style retention is 45.58%/69.05% versus 70%. Before
+> changing the model, measure the fitted 14-parameter operator and evaluator-
+> Oracle style ceilings on the consumed development split. If those ceilings
+> fail, move to a higher-capacity bounded explicit residual, not a larger router.
+>

@@ -612,3 +612,10 @@ beats strength and shuffled controls, but retains only 32.63%/47.30% of target
 style and creates 0.3906%/0.1953% new epsilon-boundary samples. Keep all gates
 frozen and open one factorized direction/magnitude plus analytical safe-residual
 leaf; no dense-RGB, film or product claim opens.
+
+U5.R2BQ4 factorization is a strong near-miss: all performance/control/safety
+gates pass, mean gain over safe global is 11.48%/14.68%, and analytical residual
+execution yields zero new boundary. Absolute target-style retention is only
+45.58%/69.05% versus 70%, so confirmation remains unread. Diagnose the fitted
+operator/Oracle style ceiling next; change renderer capacity only if the ceiling
+itself is inadequate.
