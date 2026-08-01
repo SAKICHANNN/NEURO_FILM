@@ -37,7 +37,7 @@ def main() -> int:
     sample_parent = parent_config["parent"]
     sample_config = _load_bound_json(ROOT / sample_parent["sample_config"], sample_parent["sample_config_sha256"])
     report = evaluate_hard_abstention(extract_pair_datasets(ROOT, sample_config), config, parent_config)
-    args.output.parent.mkdir(parents=True, exist_ok=False)
+    args.output.mkdir(parents=True, exist_ok=False)
     report_path = args.output / "report.json"
     report_path.write_text(json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
     print(json.dumps({"automatic_gate_passed": report["automatic_gate_passed"], "branch": report["branch"], "stable_evidence_id": report["stable_evidence_id"]}, sort_keys=True))
