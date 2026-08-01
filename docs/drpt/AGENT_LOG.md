@@ -9063,3 +9063,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   wrong-channel application is `22.68x` worse than the correct models.
 - Open synthetic P5K kernel/edge/partition conformance only. No photographic,
   product, calibrated-stock or scanner claim opens.
+
+## 2026-08-01 - U6.P5K retains the reference kernel and rejects direct 4000 dpi
+
+- Cell-integrated positive kernels at 16000 dpi reproduce the analytic P5J MTF
+  to `.00794` maximum error over 25-65 cycles/mm. Constants, impulse mass,
+  channel order, step bounds, replay and three row partitions pass.
+- The diagnostic has a clean positive impulse and monotone edge with no ringing.
+  Direct 4000-dpi compilation reaches `.05550` error, above the frozen `.02`
+  warning threshold.
+- Retain only the high-sampling reference. P5L must derive/test a positive LOD
+  route; direct product use and all calibration claims stay closed.

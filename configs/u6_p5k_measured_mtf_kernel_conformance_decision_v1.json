@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p5k_measured_mtf_kernel_conformance_decision.v1",
+  "node": "U6.P5K",
+  "date": "2026-08-01",
+  "contract_commit": "ccb1d761",
+  "contract": "configs/u6_p5k_measured_mtf_kernel_conformance_v1.json",
+  "parent_bundle_id": "80bff073e5da5a4da1dcdd46b11238e1b2b3ca96596b3f082c419d791b60d1b8",
+  "report_sha256": "283bcf9ccb550f040a1e6b6f331fd45ddf290ff4dd4ecb765605bfb286980b3c",
+  "stable_evidence_id": "0e8c31e16ab8165cb59a21eaa884619167449fec8e744a9863de1d3357cfb8c7",
+  "diagnostic_sha256": "3ab5828c40a9ee6b5361fd04751144c34351517d64ac39ec7d81b49f926eac3e",
+  "automatic_pass": true,
+  "visual_diagnostic_pass": true,
+  "result": {
+    "reference_dpi": 16000.0,
+    "reference_max_measured_interval_error": 0.007940274587406704,
+    "direct_4000dpi_max_measured_interval_error": 0.05550370229517487,
+    "required_reference_halo_px": 24,
+    "constant_max_error": 4.440892098500626e-16,
+    "step_min": 0.0,
+    "step_max": 1.0000000000000004,
+    "all_row_partitions_byte_exact": true,
+    "repeat_byte_exact": true
+  },
+  "decision": "retain_reference_open_lod_compiler",
+  "branch_decision": "Retain the 16000-dpi positive, finite, partition-exact reference kernel. Direct 4000-dpi cell-integrated sampling exceeds the frozen warning threshold, so target-resolution use remains closed. Freeze a reference-render/downsample versus cheap LOD compiler instead of adding negative taps or hiding the discretization error.",
+  "claim_ceiling": "Synthetic high-sampling conformance for a manufacturer-MTF-derived positive PSF; not target-resolution, photographic, calibrated or product evidence."
+}

@@ -231,6 +231,13 @@ maximum absolute response error is `.02222`. P5K now compiles only this exact
 bundle into discrete physical-scale kernels and tests impulse, edge, measured-
 interval MTF, row partitions and ringing before photographs or integration.
 
+P5K proves that the P5J family has a clean finite spatial realization at a
+16000-dpi reference sampling rate: maximum measured-interval error `.00794`,
+positive normalized impulse, no step ringing, and exact 31/47/127-row parity.
+The frozen 4000-dpi direct control reaches `.05550` error and is explicitly
+closed. P5L must compare reference-render/downsample against positive cheap LOD
+compilers; negative taps and hidden direct-sampling degradation remain forbidden.
+
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
 `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md`. Conditional within-stock
