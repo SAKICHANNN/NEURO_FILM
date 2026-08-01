@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u5_r2bm3_ao6_tone_layout_hard_retrieval_decision.v1",
+  "node": "U5.R2BM3",
+  "software_commit": "6a7c3f9be7b767e6e1905b865d1e1b69ab4cdf05",
+  "contract": {
+    "path": "configs/u5_r2bm3_ao6_tone_layout_hard_retrieval_v1.json",
+    "sha256": "a9655165601552fd940508656498a6ff3c592757afa7b7b518d16a6499b49786"
+  },
+  "repeat_evidence": {
+    "runs": 2,
+    "files_per_run": 1,
+    "all_file_hashes_identical": true,
+    "report_sha256": "edc49c27990443a90e84371d77f796d7c1ea5a8b26b5729066f75e5c599428ba",
+    "stable_evidence_id": "74f155544f1cd7b1a942e5400153bfe0864dd7d79e5153d30d493a9ef066b326"
+  },
+  "result": {
+    "automatic_pass": false,
+    "feature_sha256": "cc178819d2f960323c25c5611d25fe86cb7919005a023ffd2673c45f4b09c1c8",
+    "median_retrieval_rmse_reduction_vs_global_medoid": -0.4572472749404257,
+    "fraction_of_bm1_oracle_gain_recovered": -1.5847476117367132,
+    "worst_retrieval_vs_global_rmse_ratio": 18.177349077234993,
+    "sources_retrieval_beats_global": 4,
+    "nonfallback_sources": 15,
+    "oracle_exact_match_count": 2,
+    "median_style_retention_ratio": 1.061262493016775,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0
+  },
+  "decision": "close_simple_source_only_case_retrieval_retain_oracle_only",
+  "interpretation": "Neither fixed global semantic similarity nor fixed grayscale tone/layout similarity identifies AO6 case compatibility. BM1 proves post-hoc value, while BM2/BM3 prove that unlearned source-only nearest neighbours cannot realize it on this population.",
+  "next_leaf": "preregister a group-crossfit pairwise compatibility learning-to-rank pilot that predicts one hard case ID from query/case descriptors while keeping held queries and final RGB outside training",
+  "forbidden_rescue": [
+    "try more hand-designed nearest-neighbour descriptors on the consumed population",
+    "change BM3 feature weights, OOD threshold or k",
+    "blend cases to hide wrong hard selections",
+    "treat BM1 Oracle case IDs as film modes"
+  ],
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative group-held evidence for one classical grayscale hard selector over deterministic AO6 Look Approximation cases; not film, stock, latent mode, calibration, authenticity, population preference or product promotion"
+}

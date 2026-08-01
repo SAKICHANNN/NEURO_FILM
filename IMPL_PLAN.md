@@ -2397,3 +2397,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > the next minimal discriminator; failure closes simple source-only retrieval
 > for this consumed population rather than opening a learned router.
 >
+> `U5.R2BM3` closes that final fixed nearest-neighbour control: the classical
+> grayscale tone/layout descriptor matches 2/17 Oracle cases, improves 4/17
+> sources and worsens median error 45.72%. Stop hand-designed similarity
+> sweeps. Because BM1 independently established material Oracle value, the
+> next admissible leaf is a small group-crossfit pairwise compatibility
+> learning-to-rank pilot. It may predict one hard case ID only; held queries,
+> dense blending and learned final RGB remain forbidden.
+>

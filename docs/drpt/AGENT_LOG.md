@@ -8660,3 +8660,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   retention remains .983 and new boundary is zero.
 - Close semantic retrieval without tuning. Retain BM1 as Oracle-only evidence;
   one frozen classical grayscale tone/layout control is the next minimal leaf.
+
+## 2026-08-01 - U5.R2BM3 closes fixed nearest-neighbour case routing
+
+- A fixed 74-dimensional grayscale tone/layout/gradient descriptor replaces
+  DINO while preserving hard Top-1, development-only OOD fallback and all BM2
+  value/tail gates.
+- Two reports are exact at `edc49c27...428ba` (stable ID
+  `74f15554...6b326`). It matches 2/17 Oracle cases, improves 4/17, regresses
+  median error 45.72% and retains the 18.18x worst tail, with zero new boundary.
+- Close further fixed descriptor sweeps. BM1's independently passing Oracle
+  permits a small group-crossfit pairwise compatibility ranker next; its only
+  runtime action may be one hard case ID.
