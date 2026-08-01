@@ -69,4 +69,3 @@ def test_formal_report_closes_before_fit_or_digitization() -> None:
     assert not report["numeric_data_feasibility"][
         "figure_ocr_or_manual_digitization_performed"
     ]
-
