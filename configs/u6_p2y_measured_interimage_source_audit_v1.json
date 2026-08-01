@@ -70,5 +70,20 @@
     "fit a new Langmuir, matrix, spline or neural operator in this source-audit leaf",
     "lower row, channel or interaction gates after reading the sources",
     "claim that film-recorder measurements identify a camera-to-film, scanner or named-stock operator"
+  ],
+  "execution_amendments": [
+    {
+      "date": "2026-08-02",
+      "trigger": "pre-analysis bounded acquisition",
+      "facts": {
+        "primary_thesis_landing_and_browser_pdf_loaded": true,
+        "primary_thesis_browser_page_count": 171,
+        "primary_thesis_command_line_response": "HTTP 202 AWS WAF challenge; no local PDF retained",
+        "companion_pdf_bytes": 116437,
+        "companion_pdf_sha256": "920f74eab439dc14a18cd95a3d3f441ca377a68c298e530b11a8bb44e6e3bbf9"
+      },
+      "change": "bind the exact accessible companion PDF and classify the thesis as locally unavailable without bypass; no numeric page, table, fit, metric or operator result was inspected before this amendment",
+      "scientific_effect": "prevents source substitution or silent use of a challenge response while allowing the independently accessible official companion source to be audited"
+    }
   ]
 }
