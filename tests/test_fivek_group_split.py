@@ -85,6 +85,7 @@ def test_cross_split_leakage_detects_exact_and_perceptual_duplicates() -> None:
             "split": "development",
             "source_sha256": "a",
             "target_sha256": "b",
+            "aligned_expert_sha256": "expert-a",
             "dhash64": "0000000000000000",
         },
         {
@@ -92,6 +93,7 @@ def test_cross_split_leakage_detects_exact_and_perceptual_duplicates() -> None:
             "split": "confirmation",
             "source_sha256": "a",
             "target_sha256": "c",
+            "aligned_expert_sha256": "expert-b",
             "dhash64": "0000000000000001",
         },
         {
@@ -99,11 +101,12 @@ def test_cross_split_leakage_detects_exact_and_perceptual_duplicates() -> None:
             "split": "confirmation",
             "source_sha256": "d",
             "target_sha256": "e",
+            "aligned_expert_sha256": "expert-a",
             "dhash64": "ffffffffffffffff",
         },
     ]
     exact, perceptual = _split_leakage(rows, 4)
-    assert exact == 1
+    assert exact == 2
     assert perceptual == [
         {
             "development_pair_id": "dev",

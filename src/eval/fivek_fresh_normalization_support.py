@@ -298,9 +298,15 @@ def _split_leakage(
     perceptual: list[dict[str, Any]] = []
     for left in development:
         for right in confirmation:
+            comparable_hash_fields = ["source_sha256", "target_sha256"]
             if (
-                left["source_sha256"] == right["source_sha256"]
-                or left["target_sha256"] == right["target_sha256"]
+                "aligned_expert_sha256" in left
+                and "aligned_expert_sha256" in right
+            ):
+                comparable_hash_fields.append("aligned_expert_sha256")
+            if any(
+                left[field] == right[field]
+                for field in comparable_hash_fields
             ):
                 exact += 1
             distance = (
