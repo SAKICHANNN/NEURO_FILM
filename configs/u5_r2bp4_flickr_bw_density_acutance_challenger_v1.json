@@ -3,7 +3,7 @@
   "node": "ULT > U5 > U5.R2 > U5.R2BP4",
   "status": "contract_frozen_before_formal_execution",
   "contract_parent_commit": "514755b8181b4aecc8d242dcc0f4ce787763807e",
-  "software_commit": "0000000000000000000000000000000000000000",
+  "software_commit": "062a0adba9ad65bfe75ec34e54e75e70032d077c",
   "question": "Can a held-scene-excluded deterministic density-domain difference-of-Gaussians acutance operator explain useful B&W film residual structure better than basic, linear-luma, and wrong-radius controls?",
   "parents": {
     "residual_report": {
