@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn7-triangular-logit-transport-vs-ao6-v1",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "outputs/u5_r2bn7_triangular_logit_transport_vs_ao6_v1/run_a/report.json",
+  "report_sha256": "b272fe140b1361f7b4771cff090d17ebecff800a68c8577b810d723bf05499a1",
+  "criteria": "prefer the more visibly stylized and photographically coherent result unless it introduces severe corruption; ties are allowed",
+  "sheet_sha256": {
+    "blind_round_1_part_1.png": "439cc1085b325f2bb5fa8c6b7c3588a184541b526724dbf87e53626a9576024d",
+    "blind_round_1_part_2.png": "6d444c9f7d2f33d24400edb32552eced1420c087d1e7617c5fe99354c6f5e889",
+    "blind_round_1_part_3.png": "94ada9c31b7c91b2435c4350a288c6c3492d1c50f37944a686a521a13844cf7e",
+    "blind_round_2_part_1.png": "de0f1f3e63f8c3c7c103cc52e783e385446e13b6caac8a4cf569991258374911",
+    "blind_round_2_part_2.png": "cd1c983c6f9d2cce0a4d892cf2cc89a7d0eb7f1047fe23eee5d70085c1c1e7a6",
+    "blind_round_2_part_3.png": "3ed3762318e8f930c213aa744bfe92381c235e86b9e0b96c453fab9c6ffff4a3",
+    "blind_round_3_part_1.png": "0a822d0a7327126b9da1a9121e26847c3dff76bf976a81e3434049ecbb8cfbc8",
+    "blind_round_3_part_2.png": "4a1e63f257e0512fdffcfbf13a16e9c3c589c0576129895d082234d912c21413",
+    "blind_round_3_part_3.png": "b8d7449b527827bd5fd00c6b190b992e01fab96a2dfe3d895ff552c0ed22ba27"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "sony_ilme_fx2", "choice": "A"},
+        {"source_id": "panasonic_dc_s1m2es", "choice": "A"},
+        {"source_id": "nikon_d5300", "choice": "B"},
+        {"source_id": "dji_fc4382", "choice": "A"},
+        {"source_id": "om_system_om_3", "choice": "B"},
+        {"source_id": "minolta_dimage_5", "choice": "A"},
+        {"source_id": "phase_one_p45_plus", "choice": "A"},
+        {"source_id": "fujifilm_x_e5", "choice": "B"},
+        {"source_id": "samsung_ek_gn120", "choice": "B"},
+        {"source_id": "google_pixel_7_pro", "choice": "B"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "sony_ilme_fx2", "choice": "A"},
+        {"source_id": "panasonic_dc_s1m2es", "choice": "A"},
+        {"source_id": "nikon_d5300", "choice": "A"},
+        {"source_id": "dji_fc4382", "choice": "B"},
+        {"source_id": "om_system_om_3", "choice": "B"},
+        {"source_id": "minolta_dimage_5", "choice": "A"},
+        {"source_id": "phase_one_p45_plus", "choice": "B"},
+        {"source_id": "fujifilm_x_e5", "choice": "B"},
+        {"source_id": "samsung_ek_gn120", "choice": "A"},
+        {"source_id": "google_pixel_7_pro", "choice": "B"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "sony_ilme_fx2", "choice": "B"},
+        {"source_id": "panasonic_dc_s1m2es", "choice": "B"},
+        {"source_id": "nikon_d5300", "choice": "A"},
+        {"source_id": "dji_fc4382", "choice": "B"},
+        {"source_id": "om_system_om_3", "choice": "B"},
+        {"source_id": "minolta_dimage_5", "choice": "A"},
+        {"source_id": "phase_one_p45_plus", "choice": "B"},
+        {"source_id": "fujifilm_x_e5", "choice": "B"},
+        {"source_id": "samsung_ek_gn120", "choice": "A"},
+        {"source_id": "google_pixel_7_pro", "choice": "B"}
+      ]
+    }
+  ],
+  "sheet_level_confirmed_severe_artifact_count": 0,
+  "notes": [
+    "All 30 comparisons preserve the same geometry, objects and fine structure with no visible seam, block, posterization or red-speckle field.",
+    "High-key sky, dark forest, dense foliage, architecture and the inverted plant image require full-resolution regression review after this record is committed.",
+    "Strong cyan, magenta, orange or warm rendering is treated as style unless full-resolution inspection shows clipping, banding or unstable colour texture."
+  ],
+  "mapping_files_read": false
+}
