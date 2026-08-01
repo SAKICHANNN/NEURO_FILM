@@ -14,6 +14,7 @@
   },
   "asset_providers": [
     {
+      "experiment_ids": ["u5.r2bh1-fixed-global-policy-confirmation-v1"],
       "report": {
         "path": "outputs/u5_r2bn9_historical_preference_evaluator_v1/bh1_rerender/report.json",
         "sha256": "4ab65440ca7609fc465dce28bc6f609d22ba2a8838967192d18b4e2b063648ec"
@@ -27,6 +28,7 @@
       "output_adapter": "row_arm"
     },
     {
+      "experiment_ids": ["u5.r2bn6-triangular-logit-transport-visual-product-value-v1"],
       "report": {
         "path": "outputs/u5_r2bn6_triangular_logit_transport_visual_product_value_v1/run_a/report.json",
         "sha256": "a6884435dbf6b93cc4e8906a0fb41ac13b31416130e857a37851b9dd34d4169e"
@@ -36,6 +38,7 @@
       "output_adapter": "nested_arms"
     },
     {
+      "experiment_ids": ["u5.r2bn7-triangular-logit-transport-vs-ao6-v1"],
       "report": {
         "path": "outputs/u5_r2bn7_triangular_logit_transport_vs_ao6_v1/run_a/report.json",
         "sha256": "b272fe140b1361f7b4771cff090d17ebecff800a68c8577b810d723bf05499a1"
@@ -45,6 +48,11 @@
       "output_adapter": "nested_arms"
     },
     {
+      "experiment_ids": [
+        "U5.R2BL8",
+        "u5.r2bl11-filmmatch-luma-preserving-chroma-transplant-v1",
+        "u5.r2bl13-ao6-nonbasic-chroma-emphasis-v1"
+      ],
       "report": {
         "path": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a/report.json",
         "sha256": "9ad3ad2ea4ea585c375dc13aabb87b21b96bf276ea522b70d1fd9d9abd71068f"
@@ -58,6 +66,7 @@
       "output_adapter": "row_arm"
     },
     {
+      "experiment_ids": ["u5.r2bl11-filmmatch-luma-preserving-chroma-transplant-v1"],
       "report": {
         "path": "outputs/u5_r2bl11_filmmatch_luma_preserving_chroma_transplant_v1/run_a/report.json",
         "sha256": "cd7c452ef6add4e963268f69ec565920531dda9f00411787d6ae26dfde30bada"
@@ -72,6 +81,7 @@
       "fixed_arm_id": "ao6_lightness_bl5_chroma_analytical_safe"
     },
     {
+      "experiment_ids": ["u5.r2bl13-ao6-nonbasic-chroma-emphasis-v1"],
       "report": {
         "path": "outputs/u5_r2bl13_ao6_nonbasic_chroma_emphasis_v1/formal_a/report.json",
         "sha256": "ee381b4643a8a3e42cfcd65ecf2da5e2cea699ad9bc49cc2b7368c730560641f"
@@ -86,6 +96,7 @@
       "fixed_arm_id": "ao6_nonbasic_chroma_emphasis_025"
     },
     {
+      "experiment_ids": ["u5.r2bk9-smooth-perceptual-blind-preference-v1"],
       "report": {
         "path": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a/report.json",
         "sha256": "c52622d3f7e4a3c847f57ac3f41d8b11a8e92ec0989215fd930b1c90d5698721"
@@ -100,6 +111,7 @@
       "rows_key": "records"
     },
     {
+      "experiment_ids": ["u5.r2bk15-orthogonal-residual-blind-preference-v1"],
       "report": {
         "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/report.json",
         "sha256": "641f36934958623575d11d34af1ac2ea8bab62c41105c14917955549152f4340"

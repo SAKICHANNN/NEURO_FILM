@@ -44,8 +44,8 @@ def test_source_group_cross_validation_can_learn_interaction() -> None:
             }
         )
         sign = 1.0 if source_index % 2 == 0 else -1.0
-        features[(source_id, "a")] = np.asarray([sign, 1.0])
-        features[(source_id, "b")] = np.asarray([-sign, 1.0])
+        features[("e", source_id, "a")] = np.asarray([sign, 1.0])
+        features[("e", source_id, "b")] = np.asarray([-sign, 1.0])
     result = _cross_validate(
         units=units,
         features=features,

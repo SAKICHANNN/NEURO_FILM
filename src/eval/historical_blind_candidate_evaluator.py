@@ -219,12 +219,12 @@ def _build_asset_inventory(
     *, root: Path, config: Mapping[str, Any]
 ) -> tuple[
     dict[str, tuple[Path, str]],
-    dict[tuple[str, str], tuple[Path, str]],
+    dict[tuple[str, str, str], tuple[Path, str]],
     list[dict[str, str]],
 ]:
     aliases = {str(k): str(v) for k, v in config.get("arm_aliases", {}).items()}
     sources: dict[str, tuple[Path, str]] = {}
-    outputs: dict[tuple[str, str], tuple[Path, str]] = {}
+    outputs: dict[tuple[str, str, str], tuple[Path, str]] = {}
     bindings: list[dict[str, str]] = []
 
     def add_source(source_id: str, path: Path, sha256: str) -> None:
@@ -236,8 +236,14 @@ def _build_asset_inventory(
             )
         sources[source_id] = value
 
-    def add_output(source_id: str, arm: str, path: Path, sha256: str) -> None:
-        key = (source_id, _canonical_arm(arm, aliases))
+    def add_output(
+        experiment_id: str,
+        source_id: str,
+        arm: str,
+        path: Path,
+        sha256: str,
+    ) -> None:
+        key = (experiment_id, source_id, _canonical_arm(arm, aliases))
         value = (path, sha256)
         previous = outputs.get(key)
         if previous is not None and previous != value:
@@ -247,6 +253,9 @@ def _build_asset_inventory(
         outputs[key] = value
 
     for provider in config["asset_providers"]:
+        experiment_ids = [str(value) for value in provider["experiment_ids"]]
+        if not experiment_ids:
+            raise HistoricalBlindCandidateEvaluatorError("empty asset namespace")
         report_binding = provider["report"]
         report = _load_exact_json(root, report_binding)
         bindings.append(
@@ -276,29 +285,35 @@ def _build_asset_inventory(
             for row in report["rows"]:
                 source_id = str(row["source_id"])
                 for arm, artifact in row["arms"].items():
-                    add_output(
-                        source_id,
-                        str(arm),
-                        output_root / artifact["output"],
-                        artifact["output_sha256"],
-                    )
+                    for experiment_id in experiment_ids:
+                        add_output(
+                            experiment_id,
+                            source_id,
+                            str(arm),
+                            output_root / artifact["output"],
+                            artifact["output_sha256"],
+                        )
         elif adapter == "row_arm":
             for row in report[provider.get("rows_key", "rows")]:
-                add_output(
-                    str(row["source_id"]),
-                    str(row["arm_id"]),
-                    output_root / row["output"],
-                    row["output_sha256"],
-                )
+                for experiment_id in experiment_ids:
+                    add_output(
+                        experiment_id,
+                        str(row["source_id"]),
+                        str(row["arm_id"]),
+                        output_root / row["output"],
+                        row["output_sha256"],
+                    )
         elif adapter == "fixed_arm_rows":
             arm = str(provider["fixed_arm_id"])
             for row in report["rows"]:
-                add_output(
-                    str(row["source_id"]),
-                    arm,
-                    output_root / row["output"],
-                    row["output_sha256"],
-                )
+                for experiment_id in experiment_ids:
+                    add_output(
+                        experiment_id,
+                        str(row["source_id"]),
+                        arm,
+                        output_root / row["output"],
+                        row["output_sha256"],
+                    )
         else:
             raise HistoricalBlindCandidateEvaluatorError("unknown output adapter")
     return sources, outputs, bindings
@@ -306,7 +321,7 @@ def _build_asset_inventory(
 
 def _pair_training_rows(
     units: Sequence[Mapping[str, Any]],
-    features: Mapping[tuple[str, str], np.ndarray],
+    features: Mapping[tuple[str, str, str], np.ndarray],
     indices: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     x_rows: list[np.ndarray] = []
@@ -320,8 +335,8 @@ def _pair_training_rows(
         for loser in losers:
             first, second = sorted((winner, loser))
             x_rows.append(
-                features[(unit["source_id"], first)]
-                - features[(unit["source_id"], second)]
+                features[(unit["experiment_id"], unit["source_id"], first)]
+                - features[(unit["experiment_id"], unit["source_id"], second)]
             )
             labels.append(int(winner == first))
             weights.append(1.0 / len(losers))
@@ -354,14 +369,16 @@ def _fit_model(
 
 def _predict_unit(
     unit: Mapping[str, Any],
-    features: Mapping[tuple[str, str], np.ndarray],
+    features: Mapping[tuple[str, str, str], np.ndarray],
     scaler: StandardScaler,
     model: LogisticRegression,
 ) -> tuple[str, dict[str, float]]:
     scores = {
         arm: float(
             model.decision_function(
-                scaler.transform(features[(unit["source_id"], arm)][None, :])
+                scaler.transform(
+                    features[(unit["experiment_id"], unit["source_id"], arm)][None, :]
+                )
             )[0]
         )
         for arm in unit["arms"]
@@ -373,7 +390,7 @@ def _predict_unit(
 def _cross_validate(
     *,
     units: Sequence[Mapping[str, Any]],
-    features: Mapping[tuple[str, str], np.ndarray],
+    features: Mapping[tuple[str, str, str], np.ndarray],
     groups: Sequence[str],
     feature_slice: slice,
     regularization_c: float,
@@ -470,7 +487,7 @@ def _bootstrap_gain_lower(
 def _permutation_p_value(
     *,
     units: Sequence[Mapping[str, Any]],
-    features: Mapping[tuple[str, str], np.ndarray],
+    features: Mapping[tuple[str, str, str], np.ndarray],
     groups: Sequence[str],
     feature_slice: slice,
     observed_gain: float,
@@ -536,17 +553,18 @@ def run_evaluator(*, root: Path, config_path: Path) -> dict[str, Any]:
             cache[binding] = _decode_rgb(binding[0], binding[1], maximum_side)
         return cache[binding]
 
-    features: dict[tuple[str, str], np.ndarray] = {}
+    features: dict[tuple[str, str, str], np.ndarray] = {}
     feature_names: tuple[str, ...] | None = None
     base_dimension: int | None = None
     pixel_identities = []
     for unit in units:
+        experiment_id = str(unit["experiment_id"])
         source_id = str(unit["source_id"])
         if source_id not in sources:
             raise HistoricalBlindCandidateEvaluatorError(f"missing source asset: {source_id}")
         source = decode(sources[source_id])
         for arm in unit["arms"]:
-            key = (source_id, arm)
+            key = (experiment_id, source_id, arm)
             if key in features:
                 continue
             if key not in outputs:
@@ -561,6 +579,7 @@ def run_evaluator(*, root: Path, config_path: Path) -> dict[str, Any]:
             pixel_identities.append(
                 {
                     "source_id": source_id,
+                    "experiment_id": experiment_id,
                     "arm": arm,
                     "source_sha256": sources[source_id][1],
                     "output_sha256": outputs[key][1],
