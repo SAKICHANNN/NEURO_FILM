@@ -1,5 +1,14 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6S retains a typed Kodak Digital LAD neutral recorder/print
+> anchor. Two byte-identical reports (`e57aa2b...d7eab`) pass all 16 gates:
+> exact LAD input density, 824 compatible negative and interpositive codes,
+> strict opposite monotonicity, bounded finite generic print output, route
+> rejection and zero Status M/D-min arithmetic or RGB-image transforms. This
+> is interoperability evidence only, not camera-film density, stock response,
+> scanner calibration or product promotion. U6.P6T next tests the frozen
+> anchor's local print-chain sensitivity without photographic fitting.
+
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are
 > byte-identical and recovery strongly beats independent curves plus a fixed

@@ -9376,3 +9376,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   partition gates. No RGB transform, fit or render occurred.
 - P6S may test compatibility with existing typed density/print interpretation;
   the primitive remains neutral recorder/print documentation, not a film look.
+
+## 2026-08-02 - U6.P6S retains typed neutral recorder/print compatibility
+
+- Added a separate typed adapter from H-387 negative/interpositive recorder
+  printing density into the existing generic color-negative print operator;
+  non-print routes and out-of-reference densities fail closed.
+- Two formal reports are byte-identical (`e57aa2b...d7eab`). All 16 gates pass:
+  824-code compatible subsets per mode include LAD 445, preserve exact neutral
+  input density and strict opposite monotonicity, and perform zero Status M,
+  D-min or RGB-image-transform reads.
+- The result is neutral recorder/print interoperability only. Continue P6T
+  with a prospective local sensitivity audit; no camera-film, stock, scanner,
+  photographic-quality or product claim opens.

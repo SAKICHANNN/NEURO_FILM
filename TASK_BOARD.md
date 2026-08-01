@@ -696,5 +696,9 @@ the guide semantics but closes the archive-image route because a 51,019,264-byte
 member exceeds the frozen 50,000,000-byte limit before decompression. P6R
 passes the H-387 guide-table-only typed code-to-density primitive: all 1,024
 codes roundtrip within `1.14e-13`, negative/IP domains remain separate, and no
-RGB transform occurs. P6S is ready: verify compatibility with the existing
-density and print-interpretation types without photographic tuning.
+RGB transform occurs. P6S then passes the existing generic print interpretation
+without photographic tuning: 824 compatible codes per negative/IP branch,
+exact neutral LAD input density, all 16 gates true and two exact reports
+(`e57aa2b...d7eab`). P6T is ready: freeze and test a local LAD print-chain
+sensitivity/Jacobian audit without converting this anchor into camera-film or
+stock calibration.
