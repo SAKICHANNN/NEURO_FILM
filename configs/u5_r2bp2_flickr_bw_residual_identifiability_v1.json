@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u5-r2bp2-flickr-bw-residual-identifiability.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BP2",
+  "status": "contract_frozen_before_formal_execution",
+  "question": "After exact registration and per-scene monotone marginal tone normalization, is there a cross-scene B&W high-frequency residual stable enough to justify a density-domain structure challenger?",
+  "parents": {
+    "registration_report": {
+      "path": "outputs/u5_r2bp1_flickr_bw_composite_pair_registration_v1/run_a/report.json",
+      "sha256": "9e6ec16784d394e3d116c16056e719b92a66692d89e1734ad398fd97da3acd05",
+      "required_stable_evidence_id": "6258d64ae650da67178f09b88ec0894d4a7466df51a3c7b035c5a37b254a08c5"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bp0_flickr_bw_composite_pair_acquisition_v1/download_manifest.json",
+      "sha256": "8dd00f57f92bb561f9e0ee1dcec83ea1aa2a11c0c65575c749471e47fdbab0b9"
+    }
+  },
+  "data_root": "data/research/flickr_bw_composite_pairs_v1",
+  "analysis": {
+    "warp": "digital to film geometry using exact BP1 homography and OpenCV INTER_LINEAR",
+    "valid_mask_erosion_pixels": 12,
+    "encoded_boundary_code_minimum": 3,
+    "encoded_boundary_code_maximum": 252,
+    "tone_normalization": "per-scene 33-quantile monotone marginal map on the valid intersection",
+    "tone_quantiles": 33,
+    "prefilter_sigma_pixels": 0.8,
+    "highpass_sigma_pixels": 2.0,
+    "patch_size_pixels": 48,
+    "patch_stride_pixels": 48,
+    "maximum_patches_per_scene": 24,
+    "minimum_patches_per_scene": 6,
+    "maximum_patch_gradient_quantile": 0.5,
+    "log_floor": 0.00392156862745098,
+    "shift_control_pixels": 4,
+    "radial_frequency_edges_nyquist": [0.0, 0.125, 0.25, 0.375, 0.5, 0.75, 1.000001],
+    "scene_weighting": "equal scene weight; selected patches average within scene"
+  },
+  "evaluation": {
+    "required_scenes": 7,
+    "maximum_median_correct_to_shifted_residual_rms_ratio": 0.95,
+    "minimum_median_film_to_basic_luma_highpass_energy_ratio": 1.05,
+    "minimum_scene_fraction_with_luma_excess": 0.7142857142857143,
+    "minimum_positive_film_minus_basic_psd_bin_fraction": 0.5,
+    "minimum_leave_one_scene_out_positive_delta_cosine": 0.75,
+    "minimum_loo_stable_scene_fraction": 0.7142857142857143,
+    "maximum_median_residual_edge_correlation": 0.5,
+    "maximum_median_film_jpeg_block_ratio": 1.5,
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "pass": "freeze the generic display-chain residual and preregister one mean-preserving density-domain B&W structure challenger",
+    "fail": "close stochastic or MTF fitting on this source and retain it as paired nuisance evidence",
+    "nuisance_fail": "classify the signal as alignment edge compression camera or scanner nuisance"
+  },
+  "forbidden": [
+    "retune thresholds after the formal report",
+    "call the residual stock emulsion scanner-independent or calibrated grain",
+    "train a neural texture generator or generate final RGB with ML",
+    "use display-RGB additive noise as a product renderer",
+    "open product or stock claims from seven one-author scenes"
+  ],
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "seven-scene one-author paired B&W display-chain residual identifiability evidence; not stock, emulsion, scanner, developer, process, calibration or product evidence"
+}
