@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq0s2-fivek-casebank-normalization-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S2",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "07e1b22cb4bb4f9840ad1e8b0742ac78ac7785fc",
+  "hypothesis": "At least 480 of the exact 512 disjoint FiveK pairs can be normalized deterministically with content alignment, zero prior-pool leakage, broad camera support and a target-blind whole-camera development/confirmation split, while preserving both aligned Expert C and the safe filtered control.",
+  "parent_acquisition": {
+    "config": "configs/u5_r2bq0s1_fivek_casebank_acquisition_v1.json",
+    "config_sha256": "4a6bb2409fdfbe27407fa8e866f7ea03669a49cf644108d793b8c993acf25350",
+    "manifest": "outputs/u5_r2bq0s1_fivek_casebank_acquisition_v1/run_a/manifest.json",
+    "manifest_sha256": "f9a2c5ce95815fbbe1941cd03558d1f3ff1eb39b314386038626504de7c78641",
+    "report": "outputs/u5_r2bq0s1_fivek_casebank_acquisition_v1/run_a/report.json",
+    "report_sha256": "426e608718cb393bcab7a13d8e17d36cd062e6580263b72b0d02d6fc854222ec",
+    "required_automatic_pass": true,
+    "required_assets": 1024,
+    "required_decode_failures": 0
+  },
+  "normalization": {
+    "source_decode": "project WorkingImage generic RAW decode then exact sRGB encoding",
+    "target_decode": "Expert-C ProPhoto RGB16 TIFF through pinned ProPhoto-to-D50-to-D65-to-sRGB conversion",
+    "orientation_policy": "reject source-target orientation mismatch",
+    "crop_policy": "geometry-only centered source crop to target aspect ratio",
+    "resize_policy": "Lanczos4, preserve source crop aspect, maximum side 256, then target to exact source shape",
+    "target_policy": {
+      "luma_strength": 0.82,
+      "chroma_strength": 0.18,
+      "chroma_headroom": 0.02,
+      "white_balance_anchor_strength": 1.0
+    },
+    "save_aligned_expert_target": true,
+    "pair_id_prefix": "casebank",
+    "output_dtype": "uint16",
+    "output_space": "display-encoded sRGB",
+    "external_root": "data/external/fivek-bq0-casebank512-v1/normalized_srgb16_256_v1",
+    "require_repository_data_junction": true,
+    "maximum_side": 256
+  },
+  "alignment_audit": {
+    "audit_side": 256,
+    "feature": "normalized Sobel gradient magnitude",
+    "reported_decimal_places": 6,
+    "minimum_per_pair_gradient_correlation": 0.25,
+    "minimum_median_gradient_correlation": 0.5,
+    "maximum_absolute_phase_shift_pixels": 8.0
+  },
+  "support_and_leakage": {
+    "existing_128_manifest": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv",
+    "existing_128_manifest_sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174",
+    "existing_rows": 128,
+    "additional_existing_manifests": [
+      {
+        "path": "outputs/u5_r2ay3s2_fivek_fresh_normalization_support_v1/run_c/manifest.json",
+        "sha256": "a3936bd6e22ae6540b9d9b2f763cac0ce428d416ec812d06cd92e841ed45f63b",
+        "expected_rows": 63,
+        "id_field": "pair_id",
+        "source_hash_field": "source_sha256",
+        "target_hash_field": "target_sha256",
+        "dhash_field": "dhash64"
+      },
+      {
+        "path": "outputs/u5_r2ay6s2_fivek_confirmation_normalization_v1/run_a/manifest.json",
+        "sha256": "6bb33ec6f3c0a10c23688c862f1112cfedb907a4ba2320b3fe7cf4ef7d2a77a5",
+        "expected_rows": 64,
+        "id_field": "pair_id",
+        "source_hash_field": "source_sha256",
+        "target_hash_field": "target_sha256",
+        "dhash_field": "dhash64"
+      }
+    ],
+    "existing_total_rows": 255,
+    "maximum_cross_split_dhash_hamming": 4,
+    "minimum_eligible_pairs": 480,
+    "minimum_camera_models": 8,
+    "maximum_largest_camera_share": 0.35
+  },
+  "split": {
+    "method": "target-blind whole-camera subset-sum nearest fixed target",
+    "seed": 2026080117,
+    "target_confirmation_rows": 128,
+    "minimum_confirmation_rows": 96,
+    "maximum_confirmation_rows": 160,
+    "minimum_confirmation_groups": 3,
+    "minimum_development_rows": 320,
+    "minimum_development_groups": 5,
+    "target_pixels_or_fit_metrics_used": false
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze this exact population and open only the preregistered off-diagonal explicit-operator Oracle",
+    "alignment_fails": "close failed rows without manual crop, per-image registration or row substitution",
+    "support_or_leakage_fails": "close BQ1 and retain the data only as an internal digital-retouch diagnostic",
+    "split_fails": "close this selection without target-aware reassignment or weakening camera-group isolation"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "candidate_rendering_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "data-only deterministic FiveK digital-retouch normalization, alignment, leakage, camera support and target-blind split evidence; no operator, router, film, stock, calibration, preference or product claim"
+}
