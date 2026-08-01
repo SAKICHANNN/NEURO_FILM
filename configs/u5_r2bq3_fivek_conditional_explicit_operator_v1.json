@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq3-fivek-conditional-explicit-operator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ3",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "A source-conditioned low-capacity model can predict one bounded 14-parameter explicit transport that beats global strength, frozen nearest retrieval and shuffled parameter prediction across held camera groups without averaging style magnitude away.",
+  "parent_pairwise_decision": {
+    "path": "configs/u5_r2bq2b_fivek_pairwise_compatibility_decision_v1.json",
+    "sha256": "63cf9a0d86027e6ceac42e5ad574fe947c97d83ddc5f047348de14806265f61a"
+  },
+  "parent_nearest_report": {
+    "path": "outputs/u5_r2bq2a_fivek_source_hard_retrieval_v1/run_a/report.json",
+    "sha256": "230133781aa6431b015f2b6dd45ff2c97e5f68ba531b308cd28266622b70b4a5"
+  },
+  "parent_oracle": {
+    "path": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "asset_hash_validation": true},
+  "descriptor": {
+    "families": ["spatial_photometric", "tone_layout"],
+    "source_pixels_only": true,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9
+  },
+  "model": {
+    "family": "ridge_prediction_of_effective_triangular_logit_parameters",
+    "pca_components": 32,
+    "ridge_alpha": 10.0,
+    "ridge_alpha_source": "fixed from BQ2B; no BQ3 development or confirmation tuning",
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "parameter_bounds": "intersection of frozen operator bounds and model-fit effective-parameter extrema",
+    "shuffled_parameter_seed": 2026080151,
+    "query_target_used_at_inference": false,
+    "confirmation_used_for_fit_or_selection": false,
+    "direct_final_rgb_prediction": false
+  },
+  "operator": {
+    "family": "monotone_triangular_logit_transport",
+    "parameter_count": 14,
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "fit_samples_per_image": 1024,
+    "pooled_samples_per_image": 256,
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24
+  },
+  "evaluation": {
+    "development_samples_per_image": 512,
+    "confirmation_samples_per_image": 1024,
+    "strength_doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "boundary_epsilon": 0.00001525902189669642,
+    "ood_distance_quantile": 0.95,
+    "bootstrap_seed": 2026080153,
+    "bootstrap_repetitions": 2000
+  },
+  "target_variants": {
+    "aligned_expert": {"target_variant": "aligned_expert"},
+    "filtered": {"target_variant": "filtered"}
+  },
+  "required_pass_variants": ["aligned_expert", "filtered"],
+  "development_gates": {
+    "minimum_mean_improvement_over_identity": 0.05,
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.1,
+    "minimum_mean_improvement_over_strength_oracle": 0.01,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_shuffled_parameters": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "minimum_median_style_retention_ratio": 0.7,
+    "minimum_mean_style_magnitude_ratio_to_global": 0.9,
+    "minimum_safe_dose": 0.5,
+    "maximum_parameter_clipping_fraction": 0.25,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_fallback_fraction": 0.5
+  },
+  "confirmation_gates": {
+    "minimum_mean_improvement_over_identity": 0.05,
+    "minimum_mean_improvement_over_global": 0.05,
+    "minimum_win_fraction_over_global": 0.6,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.15,
+    "minimum_mean_improvement_over_strength_oracle": 0.02,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_shuffled_parameters": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.02,
+    "minimum_median_style_retention_ratio": 0.7,
+    "minimum_mean_style_magnitude_ratio_to_global": 0.9,
+    "minimum_safe_dose": 0.5,
+    "maximum_parameter_clipping_fraction": 0.25,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_fallback_fraction": 0.5
+  },
+  "branch_rules": {
+    "development_fails": "close without confirmation, alpha, descriptor, PCA or bound rescue",
+    "confirmation_fails": "close this direct parameter model and move to a factorized canonicalization plus explicit residual mechanism",
+    "confirmation_passes": "freeze candidate and acquire a fresh independent digital-control population before visual or product consideration",
+    "style_gate_fails": "reject averaging toward a bland global operator even if error improves",
+    "safety_gate_fails": "reject without post-hoc clipping or dense final-RGB correction"
+  },
+  "confirmation_model_selection_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held bounded source-conditioned explicit-parameter evidence on paired FiveK digital-retouch controls; not film response, stock identity, calibration, preference or product evidence"
+}
