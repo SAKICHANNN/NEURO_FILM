@@ -1,0 +1,112 @@
+{
+  "schema": "neuro_film.u6_p6r_kodak_digital_lad_density_primitive_contract.v1",
+  "experiment_id": "u6.p6r-kodak-digital-lad-density-primitive-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6R",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6q_kodak_digital_lad_source_audit_decision_v1.json",
+    "decision_sha256": "6114d17341936bdf7675ca7c2a3febb187af8a336497738be39bcafc747311ea",
+    "status": "fail-closed-archive-member-exceeds-frozen-limit"
+  },
+  "question": "Can the exact H-387 guide tables be compiled into a typed, deterministic and invertible 10-bit Cineon-code to printing-density primitive while keeping negative, interpositive, Status M and D-min semantics separate?",
+  "source": {
+    "path": "data/physical_scanner/kodak_digital_lad_v1/H-387.pdf",
+    "bytes": 97320,
+    "sha256": "26fff29d504f318ddf5ebadf1caee9b0fb06e7ab3d5846c8f17bb69a8a217956",
+    "publication": "KODAK Digital LAD Test Image User's Guide and Digital Recorder Calibration and Aims H-387",
+    "year": 2011,
+    "rights_boundary": "Internal factual interoperability research only; do not redistribute source content."
+  },
+  "formula": {
+    "code_minimum": 0,
+    "code_maximum": 1023,
+    "negative_raw_printing_density": "0.002 * code",
+    "interpositive_raw_printing_density": "1.930 - 0.002 * code",
+    "physical_nonnegative_density": "max(raw_printing_density, 0.0)",
+    "recommended_lad_code_rgb": [445, 445, 445]
+  },
+  "printing_density_rows": {
+    "negative": [
+      [0, 0.000], [22, 0.044], [95, 0.190], [200, 0.400],
+      [445, 0.890], [520, 1.040], [685, 1.370], [800, 1.600],
+      [900, 1.800], [968, 1.936], [1000, 2.000], [1023, 2.046]
+    ],
+    "interpositive": [
+      [0, 1.930], [22, 1.886], [95, 1.740], [200, 1.530],
+      [445, 1.040], [520, 0.890], [685, 0.560], [800, 0.330],
+      [900, 0.130], [965, 0.000], [1023, -0.116]
+    ]
+  },
+  "lad_aims": [
+    {
+      "stock_id": "kodak-vision-color-intermediate-2242",
+      "mode": "negative",
+      "code": 445,
+      "printing_density": 0.890,
+      "status_m_above_dmin": [0.828, 0.860, 0.943],
+      "dmin": [0.071, 0.550, 0.603],
+      "status_m_total": [0.899, 1.410, 1.546]
+    },
+    {
+      "stock_id": "kodak-vision3-digital-color-intermediate-2254",
+      "mode": "negative",
+      "code": 445,
+      "printing_density": 0.890,
+      "status_m_above_dmin": [0.828, 0.860, 0.943],
+      "dmin": [0.067, 0.710, 0.687],
+      "status_m_total": [0.895, 1.570, 1.630]
+    },
+    {
+      "stock_id": "kodak-vision-color-intermediate-2242",
+      "mode": "interpositive",
+      "code": 445,
+      "printing_density": 1.040,
+      "status_m_above_dmin": [0.967, 1.005, 1.102],
+      "dmin": [0.071, 0.550, 0.603],
+      "status_m_total": [1.038, 1.555, 1.705]
+    },
+    {
+      "stock_id": "kodak-vision3-digital-color-intermediate-2254",
+      "mode": "interpositive",
+      "code": 445,
+      "printing_density": 1.040,
+      "status_m_above_dmin": [0.967, 1.005, 1.102],
+      "dmin": [0.067, 0.710, 0.687],
+      "status_m_total": [1.034, 1.715, 1.789]
+    }
+  ],
+  "automatic_gates": {
+    "all_1024_codes_finite": true,
+    "formula_table_max_abs_error": 0.000000000001,
+    "all_code_roundtrip_max_abs_error": 0.000000000001,
+    "negative_strictly_increasing": true,
+    "interpositive_strictly_decreasing": true,
+    "physical_density_nonnegative": true,
+    "raw_interpositive_negative_tail_preserved": true,
+    "lad_code_exact": true,
+    "status_m_total_addition_max_abs_error": 0.000000000001,
+    "serialization_byte_exact": true,
+    "partition_invariant": true,
+    "invalid_code_mode_or_domain_fails_closed": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "allowed_after_pass": [
+    "reuse the typed Cineon code and printing-density primitives in a later recorder/print interpretation profile",
+    "use H-387 LAD aims as manufacturer documentation priors",
+    "open a separate explicit integration audit against existing U2.2/U6 interpretation domains"
+  ],
+  "forbidden": [
+    "call printing density Status M density",
+    "silently clamp the raw interpositive equation before reporting it",
+    "merge negative and interpositive modes",
+    "treat 10-bit code as display-sRGB",
+    "infer camera exposure, stock colour response, process session or scanner profile",
+    "apply an RGB image transform in this leaf",
+    "production or calibrated-reference integration"
+  ],
+  "branch_rule": {
+    "pass": "Retain the exact typed primitive and open one integration/compatibility audit without photographic tuning.",
+    "fail": "Close the primitive without rescue and retain H-387 as documentation-only evidence."
+  },
+  "claim_ceiling": "Exact manufacturer-documented neutral film-recorder/print density semantics; not a film-look operator, stock response, local calibration, scanner profile or product promotion"
+}
