@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.kodak_250d_characteristic_curve_pixels.v1",
+  "source_graph": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+  "source_graph_sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d",
+  "annotation_lineage": {
+    "path": "configs/data/kodak_250d_2383_curve_pixels_v1.json",
+    "sha256": "62e463c8e0f0784da1980b66b0b338a1a2a3f6ece5ffe34268d2bc1987c2187d",
+    "subset": "curves.250d_characteristic"
+  },
+  "annotation_method": "Exact integer source pixels copied from the previously frozen human-guided, source-ink-snapped Kodak trace; no curve fit or numerical operator was consulted.",
+  "graph_axes": {
+    "x_scale": "linear",
+    "x_quantity": "log_relative_exposure",
+    "x_value_pixels": [[0.0, 62.0], [5.0, 506.0]],
+    "x_tick_value_pixels": [[0.0, 62.0], [1.0, 150.0], [2.0, 239.0], [3.0, 328.0], [4.0, 417.0], [5.0, 506.0]],
+    "y_scale": "linear",
+    "y_quantity": "status_m_density",
+    "y_value_pixels": [[0.0, 506.0], [3.0, 61.0]],
+    "y_tick_value_pixels": [[0.0, 506.0], [0.2, 476.0], [0.4, 447.0], [0.6, 417.0], [0.8, 387.0], [1.0, 358.0], [1.2, 328.0], [1.4, 298.0], [1.6, 269.0], [1.8, 239.0], [2.0, 209.0], [2.2, 180.0], [2.4, 150.0], [2.6, 120.0], [2.8, 91.0], [3.0, 61.0]],
+    "known_vertical_grid_pixels": [62, 506],
+    "known_horizontal_grid_pixels": [61, 506]
+  },
+  "curves": {
+    "blue": [[65, 358], [106, 356], [150, 352], [195, 338], [239, 287], [284, 241], [328, 198], [372, 151], [417, 110], [462, 78], [479, 69], [492, 64]],
+    "green": [[65, 416], [115, 417], [151, 414], [187, 400], [223, 364], [257, 328], [293, 291], [327, 257], [363, 219], [399, 181], [435, 145], [470, 119], [497, 108]],
+    "red": [[65, 476], [115, 472], [151, 470], [177, 464], [203, 447], [238, 415], [275, 393], [311, 350], [345, 320], [381, 286], [417, 256], [452, 230], [488, 212]]
+  },
+  "limitations": [
+    "Source-ink proximity and axis reproducibility establish a graph observation, not stock calibration.",
+    "The graph combines characteristic and granularity curves; the frozen points follow only the solid B/G/R characteristic curves.",
+    "Status M density is a measurement-domain observation and does not identify digital RGB as layer exposure."
+  ]
+}

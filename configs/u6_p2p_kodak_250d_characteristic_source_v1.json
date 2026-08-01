@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p2p_kodak_250d_characteristic_source_contract.v1",
+  "experiment_id": "u6.p2p-kodak-250d-characteristic-source-v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2P",
+  "date_frozen": "2026-08-01",
+  "question": "Can the exact first-party Kodak VISION3 250D technical-data graph provide a reproducible channel-resolved characteristic-curve observation before any curve compiler or digital-input mapping is chosen?",
+  "source": {
+    "title": "KODAK VISION3 250D Color Negative Film 5207 / 7207 Technical Data",
+    "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+    "expected_bytes": 684722,
+    "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16",
+    "publisher": "Eastman Kodak Company",
+    "measurement_context": {
+      "exposure": "5500 K daylight",
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "x_quantity": "log relative exposure",
+      "y_quantity": "density"
+    }
+  },
+  "graph": {
+    "page_zero_based": 2,
+    "embedded_image_index": 0,
+    "path": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+    "width": 587,
+    "height": 557,
+    "expected_bytes": 121845,
+    "sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d"
+  },
+  "trace": {
+    "path": "configs/data/kodak_250d_characteristic_curve_pixels_v1.json",
+    "sha256": "0157c8235160a47c231f091aa8fd42dae8a50a8af3c949cb17424a55b45394a9"
+  },
+  "gates": {
+    "axis_max_residual_px": 1.0,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_points_per_channel": 12,
+    "log_exposure_min": 0.0,
+    "log_exposure_max": 5.0,
+    "minimum_trace_span_log_exposure": 4.6,
+    "density_min": 0.0,
+    "density_max": 3.0,
+    "maximum_monotonic_reversal_density": 0.01,
+    "require_blue_ge_green_ge_red": true,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "open U6.P2Q to compile one monotone bounded explicit manufacturer-curve prior",
+    "compare that prior against the existing generic U2.2 sensitometry under explicit channel/exposure semantics"
+  ],
+  "forbidden": [
+    "fit a curve, film operator or digital-input mapping in this source leaf",
+    "claim that digital RGB identifies blue-, green- or red-sensitive layer exposure",
+    "claim a roll, batch, process, scanner, print, display or calibrated stock response",
+    "use photographic outputs, AO6, preference evidence or downstream metrics to alter trace points",
+    "interpret the dashed granularity curves as characteristic response",
+    "extrapolate beyond the observed graph domain"
+  ],
+  "branch_rule": {
+    "pass": "Open U6.P2Q monotone characteristic-prior compiler with separately frozen interpolation and exposure semantics.",
+    "fail": "Close this source trace without fitting and continue another physical exposure/development mechanism."
+  },
+  "claim_ceiling": "Manufacturer-graph observation for one typical Kodak VISION3 250D daylight/ECN-2/Status-M sensitometric context; not a digital-to-film operator, particular roll response, full emulsion model or product calibration."
+}
