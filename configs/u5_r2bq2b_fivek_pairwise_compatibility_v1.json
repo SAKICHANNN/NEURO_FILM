@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq2b-fivek-pairwise-compatibility-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ2B",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "A low-capacity group-held pairwise ranker can use only query-source and case-source appearance to select one bounded explicit case operator that materially improves both target variants beyond pooled global, shuffled learning and the frozen nearest-case baseline.",
+  "parent_nearest_decision": {
+    "path": "configs/u5_r2bq2a_fivek_source_hard_retrieval_decision_v1.json",
+    "sha256": "20baa96effe9487834a55457fe7738b81f045f4d0209be9871c894f76f92d9f5"
+  },
+  "parent_nearest_report": {
+    "path": "outputs/u5_r2bq2a_fivek_source_hard_retrieval_v1/run_a/report.json",
+    "sha256": "230133781aa6431b015f2b6dd45ff2c97e5f68ba531b308cd28266622b70b4a5",
+    "stable_evidence_id": "32a6825ad9ce7c167b2b8c90bac238b500e946a99c7100a439269f8de420961f"
+  },
+  "parent_oracle": {
+    "path": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {
+    "maximum_side": 128,
+    "asset_hash_validation": true
+  },
+  "operator": {
+    "family": "monotone_triangular_logit_transport",
+    "parameter_count": 14,
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "fit_samples_per_image": 1024,
+    "pooled_samples_per_image": 256,
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24
+  },
+  "descriptor": {
+    "families": ["spatial_photometric", "tone_layout"],
+    "source_pixels_only": true,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9
+  },
+  "model": {
+    "family": "closed_form_ridge_ranker_of_within_query_case_error_rank",
+    "pca_components": 32,
+    "pca_and_normalization_fit": "model-fit development camera groups only; all development groups for final confirmation model",
+    "pair_features": ["query", "case", "absolute_difference", "elementwise_product"],
+    "ridge_alpha": 10.0,
+    "ridge_alpha_source": "fixed midpoint of prior BM4 alpha range; no BQ2B validation or confirmation tuning",
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "evaluation_samples_per_image": 512,
+    "shuffled_label_seed": 2026080141,
+    "query_target_used_at_inference": false,
+    "confirmation_used_for_fit_or_selection": false,
+    "operator_parameters_used_at_inference": false
+  },
+  "selector": {
+    "policy": "hard Top-1 minimum predicted rank or pooled-global OOD fallback",
+    "ood_distance_quantile": 0.95,
+    "bootstrap_seed": 2026080143,
+    "bootstrap_repetitions": 2000,
+    "random_case_seed": 2026080147,
+    "dense_blending_allowed": false
+  },
+  "development_evaluation": {
+    "samples_per_image": 512,
+    "random_case_seed": 2026080133,
+    "group_partition_uses_targets": false,
+    "validation_groups_used_for_fit": false
+  },
+  "target_variants": {
+    "aligned_expert": {"target_variant": "aligned_expert"},
+    "filtered": {"target_variant": "filtered"}
+  },
+  "required_pass_variants": ["aligned_expert", "filtered"],
+  "development_gates": {
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.1,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_random_case": 0.05,
+    "minimum_mean_improvement_over_shuffled_ranker": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_distinct_selected_cases": 8,
+    "maximum_selected_case_share": 0.2
+  },
+  "confirmation_gates": {
+    "minimum_mean_improvement_over_global": 0.05,
+    "minimum_win_fraction_over_global": 0.6,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.15,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_random_case": 0.05,
+    "minimum_mean_improvement_over_shuffled_ranker": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.02,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_distinct_selected_cases": 8,
+    "maximum_selected_case_share": 0.2
+  },
+  "branch_rules": {
+    "development_fails": "close BQ2B without reading confirmation; do not add ranker capacity",
+    "confirmation_fails": "close this pairwise ranker without hyperparameter rescue; continue a mechanism-distinct bounded image-adaptive explicit operator",
+    "confirmation_passes": "freeze the hard router and require a fresh independent population before any product consideration",
+    "severe_tail_fails": "close without dense blending or threshold weakening"
+  },
+  "confirmation_model_selection_allowed": false,
+  "dense_blending_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held pairwise hard case-selection evidence on paired FiveK digital-retouch controls; not film response, stock identity, calibration, preference or product evidence"
+}
