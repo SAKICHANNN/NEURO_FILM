@@ -8816,3 +8816,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   .943, missing frozen 10%/10%/.90 gates.
 - Train no retriever and keep 12 confirmation pairs unread. Continue a
   mechanism-distinct explicit/physical research leaf.
+
+## 2026-08-01 - U5.R2BO5 closes paired texture identification
+
+- Two exact reports (`959b8056...6f174`) analyze 31/40 development scenes;
+  nine explicit exclusions lack the frozen flat-patch support and all 12
+  confirmation pairs remain unread.
+- Film/digital luma high-pass energy is `.8715` overall but
+  `.763/.730/4.138` by family, pooled positive PSD support is zero, and the
+  correct/shifted residual ratio is `.99934`. Close generator fitting: this is
+  capture-chain nuisance, not a stable emulsion texture signature.

@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.u5-r2bo5-flickr-paired-texture-identifiability-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO5",
+  "decision": "close_cross_family_paired_texture_generator_route",
+  "contract_sha256": "e0d49e503bda499aeed4f5bcb4dc171f1444caf3ce37e7b4d9b16029bdbca4fd",
+  "software_commit": "32911b606f5234f44ca1cee674db3306eb4a3ae9",
+  "reports": {
+    "run_a": "outputs/u5_r2bo5_flickr_paired_texture_identifiability_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo5_flickr_paired_texture_identifiability_v1/run_b/report.json",
+    "sha256": "959b805624f5676a53e9649a6d876c02d9c16349ec05150e2bb137412456f174",
+    "byte_identical": true,
+    "stable_evidence_id": "607607fcd139c69de4248ddb921c9da8b054318c490c66331304ca6078ef4a7b"
+  },
+  "observed": {
+    "development_scenes_attempted": 40,
+    "development_scenes_analyzed": 31,
+    "sealed_confirmation_scenes_not_loaded": 12,
+    "median_correct_to_shifted_residual_rms_ratio": 0.9993413861215498,
+    "median_film_to_digital_luma_highpass_energy_ratio": 0.8715050899776504,
+    "per_family_energy_ratios": [0.7630763602804214, 0.7296089700140159, 4.13841315624225],
+    "positive_film_minus_digital_luma_psd_bin_fraction": 0.0,
+    "median_residual_edge_correlation": 0.21951772598711677,
+    "median_film_jpeg_block_ratio": 1.0946476009414052
+  },
+  "generator_fitting_allowed": false,
+  "confirmation_pixels_loaded": false,
+  "training_allowed": false,
+  "claim_ceiling": "development-only negative cross-family texture identifiability result for one-author weak-paired camera/film display chains; not stock, emulsion, scanner, process, calibration or product evidence"
+}

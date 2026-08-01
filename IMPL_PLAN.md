@@ -2452,3 +2452,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > stock, exposure, process and scanner state keep fitting/training/calibration
 > closed.
 >
+> BO1-BO2 acquire all 106 derivatives and register 52/53 pairs. BO3 closes
+> one family-average operator, BO4 closes case routing, and BO5 closes a
+> paired stochastic-texture route: the film/digital high-frequency direction
+> reverses strongly by capture family and correct alignment does not beat the
+> shift control materially. The 12 confirmation pairs remain pixel-unread.
+> Continue a distinct explicit colour or physical mechanism; do not fit a
+> generator to capture-chain nuisance.
+>

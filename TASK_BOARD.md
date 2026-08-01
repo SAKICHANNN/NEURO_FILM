@@ -539,3 +539,10 @@ Keep 12 confirmation pairs unread and test per-scene case-bank Oracle value.
 U5.R2BO4 closes retrieval: Oracle mean gain is 13.08% and wins 85%, but median
 gains over global/medoid (8.76%/6.73%) and p95 ratio .943 miss frozen gates.
 Do not train a similarity selector; confirmation remains unread.
+
+U5.R2BO5 also closes a paired texture generator. The film-minus-digital
+high-frequency direction reverses across the three capture families
+(`.763/.730/4.138` energy ratios), pooled positive PSD support is zero and
+correct alignment barely differs from a shifted control. Treat this as
+camera/scanner/sharpening nuisance, not emulsion structure; confirmation stays
+unread.
