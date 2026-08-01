@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2br1-kci-velvia-tone-residual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BR1",
+  "question": "Does the controlled real-Velvia-versus-digital-Velvia neutral ramp support a held-patch monotone tone residual beyond identity, one gamma and one affine line?",
+  "parent": {
+    "experiment_id": "u5.r2br0-kci-velvia-simulation-residual-v1",
+    "config_sha256": "bd7edf5c86b3f1d50d639a8891cef6e8c52437216e8932f183da659dfe9556c3",
+    "formal_report_sha256": "47f7092504214e062d8eaac35041795b2a8463f2a43d66509872ab185949ca21",
+    "exact_extraction_reused": true,
+    "br0_chroma_decision_unchanged": "close_controlled_chart_residual_without_capacity_rescue"
+  },
+  "observation": {
+    "neutral_patch_indices": [18, 19, 20, 21, 22, 23],
+    "input_role": "digital Velvia/Vivid publication-thumbnail neutral-patch D65 L-star",
+    "target_role": "real Velvia 50 E-6/V850 publication-thumbnail neutral-patch D65 L-star",
+    "sample_count": 6,
+    "lightness_domain": [0.0, 100.0],
+    "chroma_ignored": true,
+    "claim_limit": "display-chain tone observation; scanner and publication rendering remain inseparable"
+  },
+  "split": {
+    "folds": "leave_one_neutral_patch_out",
+    "fold_count": 6,
+    "development_rows_per_fold": 5,
+    "confirmation_rows_per_fold": 1,
+    "formal_status": "independent_controlled_display-chain_development_not_stock_confirmation"
+  },
+  "models": {
+    "identity": "L-out equals L-in",
+    "gamma": "100 times (L-in divided by 100) to one positive least-squares exponent",
+    "affine": "one unconstrained least-squares slope and intercept, evaluated before clipping",
+    "monotone_pchip": "PCHIP through development observations plus fixed black (0,0) and white (100,100) anchors"
+  },
+  "evaluation": {
+    "curve_grid_count": 1001,
+    "fit_dtype": "float64",
+    "primary_metric": "leave-one-patch-out absolute L-star error"
+  },
+  "gates": {
+    "all_six_folds_present": true,
+    "identity_mean_confirmation_absolute_lstar_error_minimum": 5.0,
+    "pchip_mean_confirmation_absolute_lstar_error_maximum": 3.5,
+    "pchip_maximum_confirmation_absolute_lstar_error": 6.0,
+    "pchip_minimum_gain_over_gamma": 0.20,
+    "pchip_minimum_gain_over_affine": 0.15,
+    "pchip_train_test_absolute_lstar_gap_maximum": 3.5,
+    "pchip_minimum_grid_derivative": 0.0,
+    "pchip_output_minimum": 0.0,
+    "pchip_output_maximum": 100.0,
+    "source_nonmutation": true,
+    "two_run_report_byte_identity": true
+  },
+  "selection_rule": "retain the fixed monotone tone residual for one separately frozen photo stress only if every gate passes; otherwise close without changing anchors, knots, thresholds or model family",
+  "additional_pixel_acquisition_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "development evidence on six neutral patches from one controlled publication display-chain comparison; not a scene exposure curve, characteristic curve, scanner-independent Velvia response, calibrated stock tone, photo transfer or product promotion"
+}
