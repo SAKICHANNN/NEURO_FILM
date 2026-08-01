@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u5-r2bo1-flickr-single-author-pair-acquisition-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO1",
+  "decision": "open_preregistered_registration_feasibility_only",
+  "contract_sha256": "4fc8d1f29431fdd91eb02adec5424bc2c95a2c540d8e9e4fa95e760337157357",
+  "software_commit": "4add35e41e8f23e25ed2b4a094c9fc393677dd6b",
+  "manifest": {
+    "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+    "sha256": "697cc636fe7668fe8586455b4bb1eecc858cbe984045e18417195d902d281703"
+  },
+  "report": {
+    "path": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/report.json",
+    "sha256": "fe9b069764f8ca50373a129d45a672388e4376c8993de607d861cb0fc7a766d2",
+    "repeat_byte_identical": true,
+    "stable_evidence_id": "7c1f0b5a22bb4e2f4c3edba3da5b29328f86c12070e669d566bc4bae0fbd9b38"
+  },
+  "observed": {
+    "files": 106,
+    "bytes": 23962120,
+    "complete_pairs": 53,
+    "capture_families": 3,
+    "exact_duplicate_groups": 0,
+    "cross_pair_dhash_le_4": 0
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "one-author same-scene weak-pair derivative integrity evidence under CC-BY-NC-SA-2.0; no exact stock, calibrated response, process, scanner, exposure or commercial-use claim"
+}

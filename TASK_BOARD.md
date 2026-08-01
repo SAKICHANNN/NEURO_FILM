@@ -523,3 +523,7 @@ U5.R2BO0 finds 53 title-exact same-scene film/digital weak pairs in one
 selected rows are CC BY-NC-SA 2.0 with 1024px derivatives. Open only bounded
 integrity/registration feasibility; one uploader and unknown stock, process,
 exposure and scanner state still forbid fitting, training or calibration.
+
+U5.R2BO1 acquires and verifies all 106 bounded derivatives (23.96MB): 53/53
+pairs, zero exact duplicates and zero cross-pair dHash<=4. Open only frozen
+registration feasibility; fitting/training remain closed pending geometry.

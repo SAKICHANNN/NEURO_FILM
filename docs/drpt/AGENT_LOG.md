@@ -8785,3 +8785,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Open only 106-file integrity and registration feasibility. One author and
   unknown exact stock/process/scanner/exposure remain explicit blockers for
   fitting, training, calibration or commercial asset/weight use.
+
+## 2026-08-01 - U5.R2BO1 derivative integrity passes
+
+- Acquired all 106 frozen 1024px JPEG derivatives (23,962,120 bytes); two
+  complete audits are byte-identical at `fe9b0697...a766d2`.
+- All 53 pairs are complete with zero exact duplicates and zero cross-pair
+  dHash<=4. Open registration feasibility only; operator fitting stays closed.
