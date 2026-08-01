@@ -27,6 +27,11 @@ def test_contract_preserves_failed_parent_and_forbids_fitting() -> None:
     assert config["operator_fitting_allowed"] is False
 
 
+def test_existing_contract_keeps_legacy_pair_id_prefix() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    assert config["normalization"].get("pair_id_prefix", "fresh") == "fresh"
+
+
 def test_center_crop_landscape_to_narrower_landscape() -> None:
     source = np.zeros((100, 180, 3), dtype=np.float32)
     cropped = center_crop_to_aspect(source, 100, 150)

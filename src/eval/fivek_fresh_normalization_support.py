@@ -21,6 +21,9 @@ from scripts.build_fivek_freeze_pack import (
     save_preview,
     save_tiff16,
 )
+from src.eval.fivek_fresh_pair_acquisition import (
+    resolve_configured_owned_root,
+)
 
 
 class FiveKFreshNormalizationError(ValueError):
@@ -77,9 +80,15 @@ def validate_contract(
         if "decision" in parent
         else None
     )
-    development = config["development_candidate"]
-    candidate = _load_hashed_json(
-        root, development["decision"], development["decision_sha256"]
+    development = config.get("development_candidate")
+    candidate = (
+        _load_hashed_json(
+            root,
+            development["decision"],
+            development["decision_sha256"],
+        )
+        if development is not None
+        else None
     )
     support = config["support_and_leakage"]
     existing_manifest = root / support["existing_128_manifest"]
@@ -113,8 +122,14 @@ def validate_contract(
         or report.get("observed", {}).get("decode_failures")
         != parent["required_decode_failures"]
         or not parent_eligible
-        or candidate.get("status") != development["required_status"]
-        or development.get("use_during_this_leaf") is not False
+        or (
+            development is not None
+            and (
+                candidate is None
+                or candidate.get("status") != development["required_status"]
+                or development.get("use_during_this_leaf") is not False
+            )
+        )
     ):
         raise FiveKFreshNormalizationError("parent branch boundary drift")
     return {
@@ -281,7 +296,15 @@ def run_audit(
     normalization = config["normalization"]
     alignment = config["alignment_audit"]
     support = config["support_and_leakage"]
-    external_root = Path(normalization["external_root"])
+    external_root = resolve_configured_owned_root(
+        root,
+        {
+            "external_root": normalization["external_root"],
+            "require_repository_data_junction": normalization.get(
+                "require_repository_data_junction", False
+            ),
+        },
+    )
     external_root.mkdir(parents=True, exist_ok=True)
     marker = external_root.parent / ".neuro_film_owner.json"
     if not marker.is_file():
@@ -401,7 +424,10 @@ def run_audit(
                 }
             )
             continue
-        pair_id = f"fresh_{len(rows) + 1:04d}_{source_name}"
+        pair_id = (
+            f"{normalization.get('pair_id_prefix', 'fresh')}_"
+            f"{len(rows) + 1:04d}_{source_name}"
+        )
         source_output = external_root / "source" / f"{source_name}.tif"
         target_output = external_root / "target" / f"{source_name}.tif"
         preview_output = external_root / "preview" / f"{source_name}.jpg"
