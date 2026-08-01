@@ -1,0 +1,83 @@
+{
+  "schema": "neuro-film.u5-r2bp4-flickr-bw-density-acutance-challenger.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BP4",
+  "status": "contract_frozen_before_formal_execution",
+  "contract_parent_commit": "514755b8181b4aecc8d242dcc0f4ce787763807e",
+  "software_commit": "0000000000000000000000000000000000000000",
+  "question": "Can a held-scene-excluded deterministic density-domain difference-of-Gaussians acutance operator explain useful B&W film residual structure better than basic, linear-luma, and wrong-radius controls?",
+  "parents": {
+    "residual_report": {
+      "path": "outputs/u5_r2bp2_flickr_bw_residual_identifiability_v1/run_a/report.json",
+      "sha256": "46009c9cb2189fb354fbb1a6be4fafe7f62f0093a4b67034fa7a57b1f1d92b47",
+      "required_stable_evidence_id": "17e6e49fd019ab3890a89d7684c70085405d6db1f21459f66e7e1ae8993c3c23"
+    },
+    "stochastic_close_report": {
+      "path": "outputs/u5_r2bp3_flickr_bw_density_structure_challenger_v1/run_a/report.json",
+      "sha256": "990a567a79a6b31f4ea559daab6a490df725afb9134d304bd443f26cbadcf259",
+      "required_stable_evidence_id": "ebbd8346f22068efbeda228182379d22a00b7f98e6669f0884ab0925c8bd2732"
+    },
+    "registration_report": {
+      "path": "outputs/u5_r2bp1_flickr_bw_composite_pair_registration_v1/run_a/report.json",
+      "sha256": "c22b13fbeacad50ea3d933c9efef553157843440e8791855e2019cf3be9bb391",
+      "required_stable_evidence_id": "6e56e5b2a6231c6bd284b43a00b78ce945f572415402f70e3fb24e022137320d"
+    },
+    "download_manifest": {
+      "path": "outputs/u5_r2bp0_flickr_bw_composite_pair_acquisition_v1/download_manifest.json",
+      "sha256": "880961b497694f10f75bcd7de7442ca5227c3f13090c4a9b75cda217d19ff3e1"
+    }
+  },
+  "data_root": "data/research/flickr_bw_composite_pairs_v1",
+  "analysis": {
+    "valid_mask_erosion_pixels": 12,
+    "encoded_boundary_code_minimum": 3,
+    "encoded_boundary_code_maximum": 252,
+    "tone_quantiles": 33,
+    "prefilter_sigma_pixels": 0.8,
+    "highpass_sigma_pixels": 2.0,
+    "patch_size_pixels": 48,
+    "patch_stride_pixels": 48,
+    "maximum_patches_per_scene": 24,
+    "minimum_patches_per_scene": 6,
+    "maximum_patch_gradient_quantile": 0.5,
+    "log_floor": 0.00392156862745098,
+    "radial_frequency_edges_nyquist": [0.0, 0.125, 0.25, 0.375, 0.5, 0.75, 1.000001],
+    "inner_sigma_grid_pixels": [0.6, 0.9, 1.2],
+    "outer_sigma_grid_pixels": [1.8, 2.4, 3.2],
+    "strength_grid": [0.1, 0.2, 0.35],
+    "selection": "leave-one-scene-out minimum median normalized radial-PSD error; lexicographic tie break",
+    "linear_control": "same selected sigmas and strength applied as a mean-zero linear-luma DoG",
+    "wrong_radius_control": "same selected strength with both sigmas doubled",
+    "maximum_absolute_luma_delta": 0.08,
+    "maximum_safe_scale": 1.0,
+    "scene_weighting": "equal scene weight"
+  },
+  "evaluation": {
+    "required_scenes": 7,
+    "minimum_median_psd_error_improvement_over_basic": 0.1,
+    "minimum_scene_win_fraction_over_basic": 0.7142857142857143,
+    "minimum_median_psd_error_improvement_over_linear_luma": 0.05,
+    "minimum_median_psd_error_improvement_over_wrong_radius": 0.05,
+    "minimum_median_highpass_energy_error_improvement_over_basic": 0.1,
+    "minimum_safe_scale": 0.25,
+    "maximum_absolute_mean_luma_drift": 0.005,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_absolute_luma_delta": 0.08,
+    "maximum_worst_candidate_to_film_highpass_energy_ratio": 2.0,
+    "require_repeat_report_byte_identity": true
+  },
+  "branches": {
+    "pass": "retain one generic deterministic density-domain acutance candidate and open full-resolution severe-artifact visual comparison",
+    "fail": "close fitted spatial-response use of this source and retain BP2 as descriptive display-chain evidence only",
+    "control_fail": "classify any gain as generic digital sharpening rather than density-domain evidence"
+  },
+  "forbidden": [
+    "retune grids thresholds or controls after formal execution",
+    "use held-film pixels to choose its operator parameters",
+    "claim stock emulsion developer process scanner calibration or product evidence",
+    "use hard clipping or an unconstrained sharpening operator",
+    "open visual review when any automatic gate fails"
+  ],
+  "training_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "leave-one-scene-out generic B&W display-chain acutance mechanism feasibility; target-informed tone baseline and one-author data prevent product, stock, emulsion, developer, process, scanner or calibration claims"
+}
