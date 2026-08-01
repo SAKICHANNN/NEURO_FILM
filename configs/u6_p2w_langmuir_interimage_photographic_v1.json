@@ -28,6 +28,12 @@
     "linear_control_knee_fraction": "positive infinity",
     "langmuir_knee_fraction": [1.0, 1.0, 1.0],
     "match_fraction": [0.5, 0.5, 0.5],
+    "analytical_domain_safety": {
+      "enabled": true,
+      "rule": "per-pixel largest common donor scale in [0,1] that keeps all corrected log-exposure channels at or above the frozen zero-exposure boundary",
+      "hard_density_or_rgb_clipping_allowed": false,
+      "photograph_fitting_allowed": false
+    },
     "sampling_dpi": 4000,
     "downstream_chain": "unchanged P7F adjacency, dye diffusion, interpretation, scanner MTF, neutral gauge and AO6 colour"
   },
@@ -68,6 +74,14 @@
     "hard clip density or RGB",
     "advance to visual review if any automatic gate fails",
     "call the result measured DIR chemistry, a stock/process/scanner response, calibration or product promotion"
+  ],
+  "execution_amendments": [
+    {
+      "date": "2026-08-01",
+      "trigger": "pre-formal one-crop smoke exposed that unbounded donor subtraction can leave the zero-exposure sensitometry domain before P7F adjacency",
+      "change": "freeze the analytical maximum common donor scale above; no photographic metric, rendered output or gate was observed",
+      "scientific_effect": "preserves donor direction and all frozen parameters while making domain safety explicit; it may only weaken the mechanism near the zero-exposure boundary"
+    }
   ],
   "branch_rule": {
     "automatic_fail": "close fixed photographic use without strength, coupling, placement or threshold rescue",
