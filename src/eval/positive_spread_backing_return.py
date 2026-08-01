@@ -55,7 +55,7 @@ def evaluate_positive_spread(root: Path, config: dict[str, Any]) -> dict[str, An
     sensitometry_contract = _load_exact(root, parents["sensitometry_contract"], parents["sensitometry_contract_sha256"])
     p3n = _load_exact(root, parents["p3n_decision"], parents["p3n_decision_sha256"])
     p3o = _load_exact(root, parents["p3o_decision"], parents["p3o_decision_sha256"])
-    if p3n.get("decision") != "retain_generic_response_bounded_research_primitive" or p3o.get("decision") != "close_product_value_retain_research_primitive":
+    if p3n.get("decision") != "retain_development_challenger_require_fresh_value_confirmation" or p3o.get("decision") != "close_product_value_retain_research_primitive":
         raise ValueError("P3N/P3O parent decision drift")
     profile = backing_return_profile_from_contract(p3d)
     operator = build_operator(sensitometry_contract)
