@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p4au_nasa_measured_joint_compatibility_decision.v1",
+  "node": "U6.P4AU",
+  "decision": "close_exact_gaussian_shared_scale_measured_family",
+  "contract_commit": "54f5acd8e9c104df2684fe47a9b1cfe5ebe104f1",
+  "implementation_commit": "0771dde1c4cfaef0f3cb1e3274a97d2c2fadc6d0",
+  "source_report_sha256": "53748b3eeb92fa3a9b103db50ea32f1bb2edba4278ae72e2a9b74f8aa2fd447b",
+  "report_path": "outputs/experiments/u6_p4au_nasa_measured_joint_compatibility_v1/report_run1.json",
+  "report_sha256": "574f0c595b4fa1657954949b8bab36b873f9fcdad1b9df93426077b6a2569c7a",
+  "stable_evidence_id": "89ea286ac57ea3cb1d10ed5597c0f1b56cb9ec5e02d1a1c687596a198f38c498",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "fitted_sigma_um": {
+    "R_SC": 6.329469783424193,
+    "R_DC": 6.89216732895716,
+    "M": 5.710499722420881
+  },
+  "metrics": {
+    "maximum_fit_log_rmse": 0.05884328770591919,
+    "candidate_residual_dispersion": 0.1562425855527168,
+    "no_diffusion_residual_dispersion": 0.15315339949657727,
+    "wrong_film_residual_dispersion": 0.15805796053284268,
+    "dispersion_improvement_vs_no_diffusion": -0.020170535334467516,
+    "dispersion_improvement_vs_wrong_film": 0.01148550173623595,
+    "maximum_candidate_residual": 0.9535697651986811
+  },
+  "failed_gates": [
+    "minimum_dispersion_improvement_vs_no_diffusion",
+    "minimum_dispersion_improvement_vs_wrong_film"
+  ],
+  "interpretation": "Multi-aperture RMS supports compact positive per-film scales, but those scales do not explain the composite Table 25 MTF family better than no diffusion or a wrong-film assignment. Scanner/x-ray/process nuisance dominates or the Gaussian shared-scale assumption is not measured-compatible here.",
+  "same_cohort_profile_or_gate_rescue_allowed": false,
+  "p4as_synthetic_mechanism_retained": true,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Formal development negative for one Gaussian shared-scale family on one radiographic composite-system report; not a rejection of dye-cloud coupling in real photographic film."
+}

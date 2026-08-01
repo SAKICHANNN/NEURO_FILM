@@ -754,8 +754,9 @@ contradiction. U6.P4AU is next: fit cloud scale from RMS ratios only, freeze it,
 then test whether it explains film-type MTF differences after a shared nuisance
 factor better than no-diffusion and wrong-film controls.
 
-U6.P4AU is frozen as development evidence, not confirmation. The exact circular
-aperture response and one positive Gaussian scale per printed film type are fit
-only to Tables 4-6 RMS values. Table 25 then tests a shared composite nuisance
-residual against unchanged no-diffusion and cyclic wrong-film controls. No MTF
-value may influence fitting, and no plotted PSD value may be read.
+U6.P4AU closes the measured Gaussian shared-scale family. RMS-only fits are
+compact and accurate (`5.71-6.89um`, max log RMSE `.05884`), but Table 25
+residual dispersion regresses `2.02%` versus no diffusion and improves only
+`1.15%` versus wrong-film, below both frozen 5% gates. Two reports are exact
+(`574f0c59...569c7a`). Retain P4AS synthetic mechanism only; do not rescue this
+profile on the same tables. Continue a distinct physical algorithm leaf.

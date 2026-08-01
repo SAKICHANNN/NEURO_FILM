@@ -9542,3 +9542,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   remaining finite and <=1.05.
 - Table 25 cannot train the scale; PSD figures remain unread. Pass or fail stays
   generic radiographic development evidence with composite system nuisance.
+
+## 2026-08-02 - U6.P4AU closes measured Gaussian shared scale
+
+- Two reports are byte-identical (`574f0c59...569c7a`, stable
+  `89ea286a...f38c498`). RMS-only fitting yields positive `5.71-6.89um` scales
+  with `.05884` worst log RMSE and all finite/residual-envelope gates pass.
+- The decisive cross-signal gates fail: shared-nuisance residual dispersion is
+  2.02% worse than no diffusion and only 1.15% better than cyclic wrong-film,
+  versus frozen 5% minimum gains.
+- Close this exact measured Gaussian family without profile, gate or same-table
+  rescue. This does not falsify dye-cloud coupling; P4AS remains synthetic-only.

@@ -40,6 +40,10 @@ def test_evaluator_is_exact_and_keeps_source_contradiction() -> None:
     first = evaluate_measured_joint_compatibility(contract, ROOT)
     second = evaluate_measured_joint_compatibility(contract, ROOT)
     assert first == second
+    assert first["automatic_pass"] is False
+    assert first["stable_evidence_id"] == (
+        "89ea286ac57ea3cb1d10ed5597c0f1b56cb9ec5e02d1a1c687596a198f38c498"
+    )
     assert set(first["fits"]) == {"1", "2", "3"}
     assert first["gate_results"]["source_count_contradiction_retained"]
     assert all(fit["sigma_um"] > 0.0 for fit in first["fits"].values())
