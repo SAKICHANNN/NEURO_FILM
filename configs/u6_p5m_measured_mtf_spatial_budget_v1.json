@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u6_p5m_measured_mtf_spatial_budget_contract.v1",
+  "experiment_id": "u6.p5m-measured-mtf-spatial-budget-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5M",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p5l_bundle": "outputs/u6_p5l_measured_mtf_lod_compiler/bundle_run1.json",
+    "p5l_bundle_sha256": "03c0d983cbebf83f4feb79ed56fb8a8c20cf2e21e7e5d4ab2bd5f7dbfc1100fd",
+    "p5l_decision": "configs/u6_p5l_measured_mtf_lod_compiler_decision_v1.json",
+    "p5l_decision_sha256": "f4b9d02e941b1d2b272ccc4a6dadf72e54072294ad4a0644244f6cc96555968a",
+    "generic_spatial_contract": "configs/u6_p5a_spatial_response_primitives_v1.json",
+    "generic_spatial_contract_sha256": "38d5b93bbfe0f64cee74f3f42271bd548d3ea01cadd32299c844eea2e820791e",
+    "bounded_adjacency_contract": "configs/u6_p5c_bounded_adjacency_v1.json",
+    "bounded_adjacency_contract_sha256": "0f945f531dc5f0d1c78f30dd0ad5bf71ad6630a2e42ecde593bc907f05b61f99",
+    "long_range_response_decision": "configs/u6_p3o_response_bounded_fresh_decision_v1.json",
+    "long_range_response_decision_sha256": "b460e4d200f43197d8fdfbe256ded2c60f18250ba8d260e5ce5bb082c6ff2e51"
+  },
+  "question": "Does the measured Kodak total-film MTF need to replace the existing generic forward-scatter, development-adjacency and dye-diffusion small-signal budget, or can it be composed without double counting?",
+  "domain": {
+    "sampling_dpi": 4000.0,
+    "pixel_pitch_um": 6.35,
+    "frequency_unit": "cycles-per-mm",
+    "frequencies": {
+      "start": 25.0,
+      "stop": 65.0,
+      "step": 1.0
+    },
+    "channels": ["blue", "green", "red"],
+    "small_signal_only": true
+  },
+  "arms": {
+    "measured_total": "exact discrete response of the P5L total-film LOD",
+    "legacy_total": "analytic product of generic forward scatter, linearized P5C adjacency and dye diffusion at the same physical frequencies",
+    "stacked_total": "measured_total multiplied by legacy_total",
+    "required_residual": "measured_total divided by legacy_total"
+  },
+  "ownership_policy": {
+    "measured_total_replaces_if_selected": [
+      "forward_scatter",
+      "development_adjacency",
+      "dye_diffusion"
+    ],
+    "scanner_mtf_is_separate_downstream_nuisance": true,
+    "creative_bloom_is_separate": true,
+    "long_range_backing_return_requires_separate_excess_response_proof": true,
+    "generic_and_measured_film_spatial_budgets_may_not_be_active_together": true
+  },
+  "gates": {
+    "parent_hashes_exact": true,
+    "measured_response_finite_inside_zero_one": true,
+    "legacy_response_finite_positive": true,
+    "stacking_must_not_be_silently_selected": true,
+    "positive_residual_maximum": 1.000000000001,
+    "minimum_residual_direction_margin": 0.001,
+    "mixed_residual_directions_close_positive_composition": true,
+    "minimum_stacked_max_absolute_error_to_measured": 0.05,
+    "budget_application_repeat_exact": true,
+    "budget_application_row_partition_exact": true,
+    "row_partitions": [7, 17, 31]
+  },
+  "branch_rule": {
+    "mixed_or_above_unity_residual": "close additive positive composition; measured total replaces all three generic film small-signal spatial stages in any later Kodak-250D look challenger",
+    "positive_residual_feasible": "freeze and validate a separately versioned positive residual compiler; do not assign physical causes from mathematics alone",
+    "parent_or_numerical_failure": "retain P5L reference evidence only and close budget integration"
+  },
+  "forbidden": [
+    "multiply measured total-film MTF by the full generic film spatial chain",
+    "retain P5C sharpening merely because it was previously severe-clean",
+    "fold scanner MTF into film MTF or stock identity",
+    "infer exposure, process, layer or dye-cloud component truth from one total MTF graph",
+    "use negative taps or an unconstrained sharpening residual to force a fit",
+    "fit photographs or preference outcomes",
+    "claim calibrated roll, process, scanner, colour or product response"
+  ],
+  "claim_ceiling": "Small-signal spatial-budget attribution for one manufacturer total-film MTF curve family; no identified internal decomposition, roll/process/scanner calibration, photographic value or product promotion."
+}
