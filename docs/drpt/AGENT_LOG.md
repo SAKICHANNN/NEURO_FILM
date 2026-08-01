@@ -9074,3 +9074,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   warning threshold.
 - Retain only the high-sampling reference. P5L must derive/test a positive LOD
   route; direct product use and all calibration claims stay closed.
+
+## 2026-08-01 - U6.P5L compiles an exact positive 4000-dpi LOD
+
+- Froze the zero-order-hold reconstruction, 4x reference sampling and 4x4 area
+  downsample before execution. The derived target-grid kernels remain positive,
+  normalized and symmetric with a six-pixel halo.
+- Two bundles, reports and diagnostics are byte-identical. Across impulse,
+  step, checker and random charts, max/mean error versus the 16000-dpi reference
+  is `4.44e-16/4.22e-17`; the naive direct-kernel control has `.01034` mean
+  error. Constants, step bounds, repeat and 7/17/31-row parity all pass.
+- Retain only under the explicit reconstruction assumption. Open P5M joint
+  spatial-budget attribution; no photographic, calibrated-stock or product
+  claim opens.

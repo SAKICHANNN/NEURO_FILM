@@ -35,9 +35,16 @@ class ChannelPsf:
     components: tuple[PositivePsfComponent, ...]
 
     def __post_init__(self) -> None:
-        if self.family not in {"single_gaussian", "delta_plus_gaussian", "two_gaussian"}:
+        if self.family not in {
+            "single_gaussian",
+            "delta_plus_gaussian",
+            "two_gaussian",
+        }:
             raise ValueError("unsupported positive PSF family")
-        if not self.components or abs(sum(row.weight for row in self.components) - 1.0) > 1e-12:
+        if (
+            not self.components
+            or abs(sum(row.weight for row in self.components) - 1.0) > 1e-12
+        ):
             raise ValueError("positive PSF weights must sum to one")
         sigmas = tuple(row.sigma_um for row in self.components)
         if tuple(sorted(sigmas)) != sigmas:
@@ -46,13 +53,19 @@ class ChannelPsf:
         if len(self.components) != expected_count:
             raise ValueError("positive PSF component count does not match family")
         if self.family == "delta_plus_gaussian" and self.components[0].sigma_um != 0.0:
-            raise ValueError("delta-plus-Gaussian requires an exact zero-sigma component")
+            raise ValueError(
+                "delta-plus-Gaussian requires an exact zero-sigma component"
+            )
         if self.family == "two_gaussian" and self.components[0].sigma_um <= 0.0:
             raise ValueError("two-Gaussian components must both have positive sigma")
 
     def response(self, frequencies_cycles_per_mm: Sequence[float]) -> np.ndarray:
         frequencies = np.asarray(frequencies_cycles_per_mm, dtype=np.float64)
-        if frequencies.ndim != 1 or not np.all(np.isfinite(frequencies)) or np.any(frequencies < 0.0):
+        if (
+            frequencies.ndim != 1
+            or not np.all(np.isfinite(frequencies))
+            or np.any(frequencies < 0.0)
+        ):
             raise ValueError("MTF frequencies must be a finite nonnegative vector")
         result = np.zeros_like(frequencies)
         for component in self.components:
@@ -157,6 +170,53 @@ def required_compiled_psf_halo(
     )
 
 
+def compile_zero_order_hold_lod_component(
+    component: CompiledPsfComponent, *, scale: int
+) -> CompiledPsfComponent:
+    if isinstance(scale, bool) or not isinstance(scale, int) or scale <= 1:
+        raise ValueError("zero-order-hold LOD scale must be an integer above one")
+    radius = math.ceil(component.radius / scale)
+    length = 2 * (radius + 2) + 1
+    impulse = np.zeros(length, dtype=np.float64)
+    center = length // 2
+    impulse[center] = 1.0
+    reconstructed = np.repeat(impulse, scale)
+    filtered = convolve1d(reconstructed, component.kernel_1d, axis=0, mode="nearest")
+    downsampled = filtered.reshape(length, scale).mean(axis=1)
+    kernel = downsampled[center - radius : center + radius + 1]
+    if abs(float(np.sum(kernel)) - 1.0) > 1e-14:
+        raise RuntimeError("derived zero-order-hold LOD lost kernel mass")
+    return CompiledPsfComponent(component.weight, kernel)
+
+
+def compile_zero_order_hold_lod(
+    compiled_rgb: Sequence[Sequence[CompiledPsfComponent]], *, scale: int
+) -> tuple[tuple[CompiledPsfComponent, ...], ...]:
+    return tuple(
+        tuple(
+            compile_zero_order_hold_lod_component(component, scale=scale)
+            for component in channel
+        )
+        for channel in compiled_rgb
+    )
+
+
+def apply_zero_order_hold_reference(
+    values: np.ndarray,
+    compiled_rgb: Sequence[Sequence[CompiledPsfComponent]],
+    *,
+    scale: int,
+) -> np.ndarray:
+    array = np.asarray(values, dtype=np.float64)
+    if isinstance(scale, bool) or not isinstance(scale, int) or scale <= 1:
+        raise ValueError("zero-order-hold reference scale must be an integer above one")
+    reconstructed = np.repeat(np.repeat(array, scale, axis=0), scale, axis=1)
+    filtered = apply_compiled_positive_psf(reconstructed, compiled_rgb)
+    return filtered.reshape(array.shape[0], scale, array.shape[1], scale, 3).mean(
+        axis=(1, 3)
+    )
+
+
 def apply_compiled_positive_psf(
     values: np.ndarray,
     compiled_rgb: Sequence[Sequence[CompiledPsfComponent]],
@@ -178,12 +238,8 @@ def apply_compiled_positive_psf(
         for component in components:
             plane = array[..., channel]
             if component.radius:
-                plane = convolve1d(
-                    plane, component.kernel_1d, axis=0, mode="nearest"
-                )
-                plane = convolve1d(
-                    plane, component.kernel_1d, axis=1, mode="nearest"
-                )
+                plane = convolve1d(plane, component.kernel_1d, axis=0, mode="nearest")
+                plane = convolve1d(plane, component.kernel_1d, axis=1, mode="nearest")
             output[..., channel] += component.weight * plane
     if not np.all(np.isfinite(output)) or np.any(output < -1e-15):
         raise RuntimeError("compiled positive PSF left its nonnegative domain")
@@ -205,16 +261,16 @@ def apply_compiled_positive_psf_row_tiled(
         y1 = min(array.shape[0], y0 + tile_rows)
         source_y0 = max(0, y0 - halo)
         source_y1 = min(array.shape[0], y1 + halo)
-        rendered = apply_compiled_positive_psf(
-            array[source_y0:source_y1], compiled_rgb
-        )
+        rendered = apply_compiled_positive_psf(array[source_y0:source_y1], compiled_rgb)
         output[y0:y1] = rendered[y0 - source_y0 : y1 - source_y0]
     return output
 
 
 def channel_psf_from_json(value: Mapping[str, Any]) -> ChannelPsf:
     components = tuple(
-        PositivePsfComponent(weight=float(row["weight"]), sigma_um=float(row["sigma_um"]))
+        PositivePsfComponent(
+            weight=float(row["weight"]), sigma_um=float(row["sigma_um"])
+        )
         for row in value["components"]
     )
     return ChannelPsf(family=str(value["family"]), components=components)
@@ -227,8 +283,11 @@ __all__ = [
     "PositivePsfComponent",
     "apply_compiled_positive_psf",
     "apply_compiled_positive_psf_row_tiled",
+    "apply_zero_order_hold_reference",
     "channel_psf_from_json",
     "compile_channel_psf",
+    "compile_zero_order_hold_lod",
+    "compile_zero_order_hold_lod_component",
     "compiled_channel_response",
     "required_compiled_psf_halo",
 ]

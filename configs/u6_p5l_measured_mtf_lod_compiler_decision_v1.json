@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p5l_measured_mtf_lod_compiler_decision.v1",
+  "node": "U6.P5L",
+  "date": "2026-08-01",
+  "contract_commit": "0ad66d4f",
+  "contract": "configs/u6_p5l_measured_mtf_lod_compiler_v1.json",
+  "parent_bundle_id": "80bff073e5da5a4da1dcdd46b11238e1b2b3ca96596b3f082c419d791b60d1b8",
+  "lod_bundle_id": "febb633617f3462264fdf7bffa976c89ba01cd32976247fc018b89bad630d69a",
+  "bundle_sha256": "03c0d983cbebf83f4feb79ed56fb8a8c20cf2e21e7e5d4ab2bd5f7dbfc1100fd",
+  "report_sha256": "72863d91a837d91f7d7e740f82410501f2670cbf0959169aae35956b00fbf2ca",
+  "stable_evidence_id": "ab4af2e8efeb8fdb51a5f492658e417df319020277671d8f456e02a44f79b02c",
+  "diagnostic_sha256": "12ab001d17833f864fd42dcef4386a582e99b4d29cb0be75b1f2a4e55d3db15a",
+  "automatic_pass": true,
+  "visual_diagnostic_pass": true,
+  "result": {
+    "target_dpi": 4000.0,
+    "reference_dpi": 16000.0,
+    "reference_scale": 4,
+    "target_halo_px": 6,
+    "reference_vs_lod_max_error": 4.440892098500626e-16,
+    "reference_vs_lod_mean_error": 4.22420948927768e-17,
+    "reference_vs_naive_mean_error": 0.010342826032381517,
+    "lod_vs_naive_error_reduction": 0.9999999999999959,
+    "constant_max_error": 1.1102230246251565e-16,
+    "step_min": 0.0,
+    "step_max": 1.0,
+    "all_row_partitions_byte_exact": true,
+    "repeat_byte_exact": true
+  },
+  "decision": "retain_zero_order_hold_lod_open_joint_spatial_budget_audit",
+  "branch_decision": "Retain the exact positive 4000-dpi LOD only under the frozen zero-order-hold digital-source assumption. It reproduces the high-sampling reference to floating-point roundoff and avoids the known naive direct-kernel error without negative taps, overshoot or invented subpixel content. Before any photograph use, audit the total film spatial budget so this measured total MTF is not stacked on an already equivalent scatter, dye-diffusion or acutance stage.",
+  "claim_ceiling": "Exact target-grid realization of the P5K reference under a frozen zero-order-hold digital-source assumption; not subpixel recovery, calibrated film or product evidence."
+}

@@ -235,8 +235,11 @@ P5K proves that the P5J family has a clean finite spatial realization at a
 16000-dpi reference sampling rate: maximum measured-interval error `.00794`,
 positive normalized impulse, no step ringing, and exact 31/47/127-row parity.
 The frozen 4000-dpi direct control reaches `.05550` error and is explicitly
-closed. P5L must compare reference-render/downsample against positive cheap LOD
-compilers; negative taps and hidden direct-sampling degradation remain forbidden.
+closed. P5L then compiles an exact positive 4000-dpi LOD under a frozen
+zero-order-hold reconstruction: maximum reference error `4.44e-16`, six-pixel
+halo, exact 7/17/31-row partitions and no step overshoot. P5M must now assign a
+single total film spatial budget so this measured MTF is not double-counted with
+P3/P5C scatter, dye diffusion or adjacency; scanner MTF stays downstream.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
