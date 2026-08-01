@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u6_p4as_joint_dye_cloud_mtf_nps_contract.v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AS",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can one positive dye-cloud diffusion scale per colour layer, fitted only from development MTF frequencies, predict both held-frequency MTF and independently realized Poisson NPS shape across held densities better than no diffusion and wrong-layer scales?",
+  "claim_ceiling": "generic synthetic joint dye-cloud MTF/NPS identifiability evidence; no measured stock, process, scanner, photographic preference or product claim",
+  "source_basis": [
+    {
+      "title": "On Dye Cloud Diffusion and the Image Quality of Colour Negative Photographic Materials",
+      "doi": "10.1080/00223638.1995.11738635",
+      "role": "foundational shared MTF/NPS/granularity mechanism"
+    },
+    {
+      "title": "Estimating the Size and Profile of Diffuse Dye Clouds in Colour Negative Film",
+      "doi": "10.1080/00223638.1996.11737647",
+      "role": "independent cloud-profile consistency across photomicrography, MTF and NPS"
+    },
+    {
+      "title": "ITU-T H.Sup21 Film grain synthesis technology for video applications",
+      "date": "2025-01",
+      "role": "latest standards context for dye-cloud rather than display-RGB noise semantics"
+    }
+  ],
+  "synthetic_reference": {
+    "shape": [384, 384],
+    "layer_ids": ["cyan-dye", "magenta-dye", "yellow-dye"],
+    "truth_sigma_pixels": [0.72, 1.08, 1.52],
+    "poisson_event_rates": [0.15, 0.4, 0.9],
+    "development_seeds": [26080101, 26080102, 26080103, 26080104],
+    "confirmation_seeds": [26080201, 26080202, 26080203, 26080204, 26080205, 26080206],
+    "gaussian_truncate": 4.0,
+    "boundary": "periodic",
+    "domain": "developed-optical-density-proxy"
+  },
+  "split": {
+    "development_mtf_frequencies_cycles_per_pixel": [0.025, 0.05, 0.1, 0.15],
+    "confirmation_mtf_frequencies_cycles_per_pixel": [0.035, 0.075, 0.125, 0.2],
+    "confirmation_nps_radial_edges_cycles_per_pixel": [0.015, 0.03, 0.045, 0.06, 0.08, 0.105, 0.135, 0.17, 0.215, 0.27],
+    "rule": "Fit sigma from development MTF only. Confirmation MTF, all Poisson fields and NPS-derived sigma estimates remain unread until all three layer sigmas are frozen."
+  },
+  "candidate": {
+    "family": "positive-normalized-gaussian-dye-cloud",
+    "sigma_grid_pixels": {
+      "minimum": 0.4,
+      "maximum": 2.0,
+      "step": 0.005
+    },
+    "shared_constraint": "The same frozen layer sigma generates the signal MTF and predicts normalized NPS shape; independent MTF and NPS radii are forbidden in the primary candidate."
+  },
+  "controls": {
+    "no_diffusion_sigma_pixels": 0.0,
+    "wrong_layer_mapping": [2, 0, 1],
+    "nps_only_oracle": "diagnostic only; may quantify finite-sample identifiability but cannot replace the MTF-fitted primary scale",
+    "label_permutation": "wrong-layer radii must not tie the correctly bound layer identities"
+  },
+  "automatic_gates": {
+    "maximum_sigma_relative_error": 0.03,
+    "maximum_confirmation_mtf_rmse": 0.006,
+    "maximum_confirmation_nps_shape_rmse": 0.08,
+    "minimum_median_nps_improvement_vs_no_diffusion": 0.5,
+    "minimum_median_nps_improvement_vs_wrong_layer": 0.2,
+    "maximum_median_nps_sigma_relative_disagreement": 0.15,
+    "maximum_p95_nps_sigma_relative_disagreement": 0.3,
+    "all_layers_and_densities_required": true,
+    "repeat_report_byte_exact": true,
+    "finite_nonnegative_density": true,
+    "confirmation_read_after_bundle_freeze": true
+  },
+  "forbidden_actions": [
+    "fit sigma to confirmation MTF or NPS",
+    "give MTF and NPS separate primary radii",
+    "change layer mapping, seeds, densities, frequencies, grid or gates after confirmation",
+    "add display RGB noise or infer a stock/process/scanner profile",
+    "open photographic rendering, preference review or product integration from this synthetic result"
+  ],
+  "branch_rule": {
+    "pass": "Retain one shared-scale joint dye-cloud signature primitive and next test it only against independently measured MTF plus NPS from the same material/process group.",
+    "fail": "Close this exact Gaussian shared-scale hypothesis without adding mixture components or fitting confirmation; continue a distinct physical mechanism."
+  }
+}

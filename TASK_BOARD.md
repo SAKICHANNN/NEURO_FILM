@@ -736,3 +736,10 @@ same-hardware fraction transferred across laboratories. It wins 7/9 against
 both no-context and global controls, but confirmation p95 black-context error is
 `.03588 > .02`; two reports are exact (`f71f52ff...f85165`). Close this exact
 transfer and retain scanner/lab/polarity processing as nuisance, not stock truth.
+
+U6.P4AS is the next distinct physical-algorithm leaf. It freezes a joint
+dye-cloud signature test motivated by Jarvis's MTF/NPS coupling: fit one
+positive Gaussian cloud scale per layer from development MTF frequencies only,
+then require the frozen scale to predict disjoint-frequency MTF and independent
+Poisson NPS shapes across three densities. No-diffusion and wrong-layer scales
+are fixed controls. This is synthetic mechanism identification only.

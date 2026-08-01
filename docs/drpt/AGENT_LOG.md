@@ -9477,3 +9477,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two reports are byte-identical (`f71f52ff...f85165`), but p95 confirmation
   black-context error is `.03588 > .02`. Close the exact model without rescue;
   scanner, lab, polarity and in-camera processing remain nuisance variables.
+
+## 2026-08-02 - Freeze U6.P4AS joint dye-cloud MTF/NPS identifiability
+
+- **Question:** test the unimplemented coupling between P4 stochastic colour
+  structure and P5 signal transfer: can one positive layer scale fitted only
+  from development MTF predict held MTF and independently realized NPS shape?
+- **Contract:** three fixed layer scales, three event densities, disjoint MTF
+  frequencies, independent Poisson seeds, no-diffusion and wrong-layer
+  controls, and frozen central/tail disagreement gates. Confirmation remains
+  unread until the MTF-only bundle is frozen.
+- **Boundary:** synthetic developed-density mechanism evidence only. No
+  measured stock/process/scanner claim, photo render, preference review or
+  product integration can open from this node.
