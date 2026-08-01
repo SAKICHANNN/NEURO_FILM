@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p2r_kodak_250d_anchored_shape_gauge_decision.v1",
+  "node": "U6.P2R",
+  "status": "complete_closed",
+  "contract": "configs/u6_p2r_kodak_250d_anchored_shape_gauge_v1.json",
+  "reports": [
+    "outputs/u6_p2r_kodak_250d_anchored_shape_gauge/report_run1.json",
+    "outputs/u6_p2r_kodak_250d_anchored_shape_gauge/report_run2.json"
+  ],
+  "bundles": [
+    "outputs/u6_p2r_kodak_250d_anchored_shape_gauge/bundle_run1.json",
+    "outputs/u6_p2r_kodak_250d_anchored_shape_gauge/bundle_run2.json"
+  ],
+  "report_sha256": "d2fc2a53bb2caead189392cf95db5a1977b8a6fa8e79a79d40b00034873c471c",
+  "bundle_sha256": "2a92eb47470e787d458a94eb6bf0ac4be99f6cf8fa64c6612c91aad62490a2ec",
+  "stable_evidence_id": "0171a23ccd6f49d81d76019990c3a2c5fe72aaa61054992700eafa0ea0fcee92",
+  "operator_identity": "f4fe88fcfd476feb76ba61a1c09b376d84bf5ae47f64befab99c8d742a1390d4",
+  "passing_metrics": {
+    "source_shape_rmse": {"red": 0.004578994644911034, "green": 0.004799697823670201, "blue": 0.007001865284494384},
+    "strictness_repair_max_density": 1.3877787807814457e-17,
+    "jacobian_determinant_min": 1.6914582799970297e-09,
+    "generic_density_difference_max": {"red": 0.12708781450127016, "green": 0.09772250349358247, "blue": 0.06483923833300709}
+  },
+  "failed_gates": {
+    "linear_roundtrip_max_abs": {"observed": 0.000009365967004562717, "maximum": 1e-10},
+    "generic_density_difference_median_all_samples": {"observed": 0.014392797402324686, "minimum": 0.02}
+  },
+  "branch_decision": "Close the anchored shape gauge. The exact source-shape transform, anchor, derivative, Jacobian, bounds, replay and partitions pass, but the source green plateau makes the strictly invertible spline numerically ill-conditioned and the population-level change remains below the frozen materiality gate. Do not change anchor, spline, strictness repair or thresholds, and do not open P2S photographs.",
+  "next_ready_leaf": "U6.P2T — audit exact first-party Kodak VISION3 50D/250D/500T characteristic graphs for stock-shape diversity in the source domain before any shared gauge or photograph mapping.",
+  "claim_ceiling": "Negative evidence for one no-fit anchored manufacturer-shape hypothesis; P2Q remains source-domain research evidence only."
+}

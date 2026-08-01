@@ -26,6 +26,17 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   `.07641-.08437` RMSE across all channels. Open P2R anchored-shape hypothesis;
   no digital layer-exposure, calibrated-stock or product claim opens.
 
+# 2026-08-01 - U6.P2R anchored shape gauge closed
+
+- The preregistered no-fit gauge preserves source shape, shared anchor,
+  positive derivative/Jacobian, bounds, replay and partitions in two exact
+  reports (`d2fc2a53...471c`).
+- It fails frozen linear roundtrip (`9.37e-6 > 1e-10`) because the green source
+  plateau becomes nearly singular under strict invertibility, and its median
+  population difference is `.01439 < .02`.
+- Close without alternate anchor, spline, repair or threshold. P2S photographs
+  do not open; P2T moves to first-party 50D/250D/500T source-domain diversity.
+
 # 2026-08-01 - U6.P4AK-P4AM source and transmittance closure
 
 - P4AK and P4AL retain two exact primary-source acquisitions as background,

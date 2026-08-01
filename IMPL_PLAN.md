@@ -274,6 +274,12 @@ source error is at most `.006742` density and all numerical/replay/partition
 gates pass. Normalized shape differs from generic U2.2 by `.07641-.08437`
 RMSE. P2R may now test one preregistered shared-anchor gauge hypothesis before
 any photographic challenge; it remains film-inspired and uncalibrated.
+P2R closes that anchor hypothesis: its source-shape and numerical-domain gates
+mostly pass, but the green near-plateau makes strict inverse roundtrip
+`9.37e-6` against `1e-10`, while the population median change is only
+`.01439` against `.02`. No alternate anchor/spline/repair is allowed and P2S
+does not open. P2T instead asks whether exact local Kodak 50D/250D/500T graphs
+contain source-domain stock-shape diversity before any RGB or photograph use.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
