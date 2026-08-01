@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u5_r2bm0_ao6_global_lut_distillation_decision.v1",
+  "node": "U5.R2BM0",
+  "software_commit": "09262e539265622262274e419de582d777e3f548",
+  "contract": {
+    "path": "configs/u5_r2bm0_ao6_global_lut_distillation_v1.json",
+    "sha256": "fa43f3959db70157ea672157fc1d53ee2ac9b157da35c5db31253750fbe8d3cf"
+  },
+  "repeat_evidence": {
+    "runs": 2,
+    "files_per_run": 21,
+    "all_file_hashes_identical": true,
+    "report_sha256": "77a6ff57b72db9b81ab526cda5c2ca8e96ee107e08884f0f380420bd10f7ddb0",
+    "stable_evidence_id": "cafeee05811a1a8da28bcb28943cd5c7577182079ee0544841f7fbe49b8e93ac"
+  },
+  "result": {
+    "automatic_pass": false,
+    "visual_review_allowed": false,
+    "median_target_rmse_reduction_vs_identity": 0.5597265990032185,
+    "median_target_rmse_reduction_vs_shaper_only": -0.00001564812385734804,
+    "worst_source_target_rmse_ratio": 1.4295568623965103,
+    "median_style_retention_ratio": 0.8276853444551759,
+    "median_target_delta_e76": 8.515536695621638,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0934600830078125,
+    "minimum_fold_residual_strength": 0.0,
+    "maximum_nonpositive_tetrahedral_jacobian_count": 0,
+    "minimum_tetrahedral_jacobian_determinant": 0.9999084486626444
+  },
+  "decision": "close_fixed_global_lut_distillation_as_context_averaging_failure",
+  "interpretation": "A single monotone channel shaper explains a material average component of AO6, but the bounded 3D residual cannot activate under the frozen node/topology constraint and held-camera errors vary from attenuation to over-application. Fixed global distillation therefore does not preserve AO6's image-specific style safely.",
+  "forbidden_rescue": [
+    "increase LUT size on the consumed population",
+    "relax topology, output-boundary or worst-source gates",
+    "project or clip the fitted LUT after seeing the result",
+    "run visual preference review after automatic failure"
+  ],
+  "next_leaf": "test separated operator-signature and content spaces with hard case or medoid selection on deterministic controls; keep AO6 as global fallback",
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact group-held negative development evidence for one fixed explicit AO6-distilled LUT; not film, stock, calibration, owner or population preference, universal context requirement or product promotion"
+}

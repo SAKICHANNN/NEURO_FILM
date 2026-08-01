@@ -8618,3 +8618,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Automatic result fails only value: maximum transmittance change `.004091`
   is below the frozen `.01` floor, while the `.02` safety cap is inactive.
   Close without fraction amplification, threshold rescue or photographic use.
+
+## 2026-08-01 - U5.R2BM0 closes fixed global LUT averaging
+
+- **Node:** `ULT > U5 > U5.R2BM0`; primary workflow `codex-super-research-harness`.
+- **Implementation:** added a reusable strictly monotone RGB shaper, sparse
+  regularized 17-cube fitter, analytical residual-strength safety projection,
+  grouped evaluator and exact RGB16 replay.
+- **Evidence:** three held-camera folds, 17 sources, two complete 21-file runs;
+  every file is hash-identical and report SHA is `77a6ff57...ddb0`.
+- **Decision:** global central tendency is real (55.97% median error reduction),
+  but safe 3D residual strength is zero, median AO6 Delta E76 is 8.52 and the
+  worst camera regresses to 1.430x.  Automatic fail forbids visual review and
+  closes larger-LUT/projection rescue.
+- **Handoff:** keep contextual AO6 as global fallback; next test hard case or
+  medoid selection with operator-signature and content spaces kept separate.

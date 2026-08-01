@@ -2372,3 +2372,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > source-conditioned routing for this consumed session; keep global fallback
 > and continue a mechanism-distinct explicit/physical algorithm.
 >
+> `U5.R2BM0` completes the pending fixed global 1D+3D LUT baseline against
+> AO6.  Two 21-file runs are byte-identical.  The monotone global component
+> reduces median target error 55.97% and retains 82.77% median style, but its
+> bounded 17-cube residual has zero admissible strength; median target Delta
+> E76 remains 8.52 and the worst camera is 1.430x identity.  Close larger-grid
+> and projection rescue.  Retain AO6 as fallback and move to separately
+> represented operator-signature selection plus within-case content matching.
+>
