@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u5_r2bm2_ao6_content_hard_retrieval.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bm2-ao6-content-hard-retrieval-v1",
+  "node": "ULT > U5 > U5.R2BM2",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a fixed colour-blind content descriptor select one useful AO6 case on held camera groups, recovering material BM1 Oracle value without using source colour statistics, target pixels, operator signatures or dense blending?",
+  "parent": {
+    "decision": "configs/u5_r2bm1_ao6_case_operator_oracle_decision_v1.json",
+    "decision_sha256": "b734ebaffba18fd40cbe6efe265f678e52a93b36454f1a21bda3262691b84cd5",
+    "required_decision": "retain_case_oracle_open_content_space_hard_retrieval",
+    "report": "outputs/u5_r2bm1_ao6_case_operator_oracle_v1/run_a/report.json",
+    "report_sha256": "ea903412c4887b143b192d4e868d8b8bc93f69d979a1a4c431d6af6a73e478e6",
+    "expected_sources": 17
+  },
+  "feature_model": {
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "license": "Apache-2.0",
+    "root": "data/models/huggingface/facebook-dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "config_sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+    "preprocessor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+    "input": "source luma replicated to RGB after fixed resize and center crop",
+    "image_size": 224,
+    "resize_short_edge": 256,
+    "feature": "L2-normalized mean of fixed DINOv2-S patch tokens",
+    "device": "cuda",
+    "batch_size": 8,
+    "training_allowed": false,
+    "fine_tuning_allowed": false
+  },
+  "selector": {
+    "folds": 3,
+    "fold_assignment": "reuse exact BM1 folds",
+    "rule": "hard Top-1 cosine-nearest development source; ties by source_id",
+    "case_identity": "nearest development source AO6 context",
+    "ood_threshold": "development-only 10th percentile of leave-one-development-source-out nearest cosine similarity",
+    "ood_fallback": "fold global operator medoid from BM1",
+    "target_pixels_used": false,
+    "source_colour_statistics_used": false,
+    "operator_signatures_used_at_inference": false,
+    "fitting_allowed": false,
+    "dense_blending_allowed": false
+  },
+  "controls": {
+    "global_medoid": "exact BM1 fold medoid",
+    "strength_oracle": "exact BM1 analytically bounded scalar-strength control",
+    "case_oracle": "exact BM1 post-hoc hard case upper bound",
+    "shuffled_case_mapping_permutations": 256,
+    "shuffled_case_mapping_seed": 20260802,
+    "prior_negative_baseline": "U5.R2BL10 colour-blind DINO hard selector closed on a different two-arm preference question"
+  },
+  "gates": {
+    "require_two_run_report_identity": true,
+    "minimum_median_retrieval_rmse_reduction_vs_global_medoid": 0.05,
+    "minimum_fraction_of_bm1_oracle_gain_recovered": 0.25,
+    "maximum_worst_retrieval_vs_global_rmse_ratio": 1.1,
+    "minimum_sources_retrieval_beats_global": 9,
+    "minimum_nonfallback_sources": 9,
+    "minimum_retrieval_reduction_advantage_over_shuffled_p95": 0.05,
+    "minimum_median_style_retention_ratio": 0.85,
+    "maximum_median_style_retention_ratio": 1.15,
+    "maximum_new_boundary_fraction_vs_ao6": 0.005,
+    "require_zero_self_matches": true
+  },
+  "branches": {
+    "pass": "freeze this simplest hard selector and acquire a genuinely fresh unchanged confirmation population before any product consideration",
+    "retrieval_fail": "retain BM1 as descriptive Oracle evidence but close content routing; keep contextual AO6/global fallback",
+    "shuffle_fail": "treat apparent retrieval value as chance on this small population and close without embedding or threshold tuning",
+    "tail_or_artifact_fail": "close the selector without dense blending, score rescue or relaxed fallback"
+  },
+  "final_rgb_learning_allowed": false,
+  "real_film_operator_fitting_allowed": false,
+  "latent_mode_claim_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "group-held development evidence for colour-blind hard content retrieval among deterministic AO6 Look Approximation cases; not film, stock, latent mode, calibration, authenticity, population preference, final-RGB ML or product promotion"
+}
