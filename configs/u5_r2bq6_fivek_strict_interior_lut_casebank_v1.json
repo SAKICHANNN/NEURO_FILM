@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq6-fivek-strict-interior-lut-casebank-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ6",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the unchanged mature BJ2 strict-interior 4x4x4 residual LUT provide both strong per-case style and group-held Oracle value on the BQ case bank without post-fit gamut scaling?",
+  "parent_bq5_decision": {
+    "path": "configs/u5_r2bq5_fivek_projection_curve_casebank_decision_v1.json",
+    "sha256": "d5d1c04123d23cbf7eca8d2835ec7c660c952825e27be271a8b4bbba973c1759"
+  },
+  "mature_baseline": {
+    "config": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1.json",
+    "config_sha256": "031ec330e78499d0e36dd999258cf75a03dcd33f1469916137d4aa31f93790cd",
+    "decision": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_decision_v1.json",
+    "decision_sha256": "3090e38905d1b033e3e888cae68dbaaa91984fa84596110e9c5b38ba11f473b6",
+    "required_status": "closed_fresh_p95_tail_failed",
+    "reuse": "strict-interior headroom equation, grid, coefficient bounds, fit stride, shrinkage and smoothness unchanged"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {
+    "maximum_side": 128,
+    "evaluation_samples_per_image": 512
+  },
+  "split": {
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "confirmation_allowed": false
+  },
+  "variants": [
+    "aligned_expert",
+    "filtered"
+  ],
+  "evaluation": {
+    "minimum_self_fit_mean_improvement_over_identity": 0.2,
+    "minimum_self_fit_median_style_retention": 0.7,
+    "minimum_group_oracle_mean_improvement_over_global": 0.1,
+    "minimum_group_oracle_median_style_retention": 0.7,
+    "minimum_rows_with_style_eligible_fit_case": 0.9,
+    "maximum_style_constrained_oracle_error_ratio": 1.1,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "branch_rules": {
+    "self_fit_style_or_accuracy_fails": "close the strict-interior LUT fit as insufficient case representation without changing the mature fit",
+    "group_oracle_fails": "close before source prediction because the case bank lacks transferable operator diversity",
+    "capacity_and_group_oracle_pass": "freeze coefficient banks and open one low-capacity source-only factorized LUT predictor or hard sparse retrieval with OOD global fallback",
+    "safety_fails": "treat as a proof or implementation failure before any visual review"
+  },
+  "source_selector_training_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only capacity and group-held Oracle evidence for an unchanged mature explicit strict-interior LUT baseline on paired FiveK digital-retouch controls; no confirmation, film, preference or product claim"
+}
