@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq2a-fivek-source-hard-retrieval-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ2A",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "At least one mature source-only nearest-case descriptor can recover a material fraction of the BQ1v2 evaluator-Oracle gap across whole-camera development folds and then improve both frozen confirmation target variants with hard Top-1 selection plus a source-distance global fallback.",
+  "parent_oracle": {
+    "path": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c",
+    "required_automatic_pass": true
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {
+    "maximum_side": 128,
+    "asset_hash_validation": true
+  },
+  "operator": {
+    "family": "monotone_triangular_logit_transport",
+    "parameter_count": 14,
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "fit_samples_per_image": 1024,
+    "pooled_samples_per_image": 256,
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24
+  },
+  "descriptor_families": [
+    "global_photometric",
+    "spatial_photometric",
+    "tone_layout"
+  ],
+  "descriptor": {
+    "source_pixels_only": true,
+    "target_pixels_used": false,
+    "operator_parameters_used": false,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9,
+    "normalization": "development-bank mean/std per held whole-camera fold"
+  },
+  "selector": {
+    "policy": "hard Top-1 Euclidean nearest case or pooled-global fallback",
+    "ood_distance_quantile": 0.95,
+    "threshold_fit": "source-only cross-camera nearest-neighbour distance within each development bank",
+    "bootstrap_seed": 2026080131,
+    "bootstrap_repetitions": 2000,
+    "dense_blending_allowed": false
+  },
+  "development_evaluation": {
+    "method": "leave-one-camera-model-out; cases and pooled global exclude the held camera",
+    "samples_per_image": 512,
+    "random_case_seed": 2026080133
+  },
+  "confirmation_evaluation": {
+    "family_selection": "highest mean development improvement among families passing both target variants; config-order tie break",
+    "samples_per_image": 1024,
+    "single_execution_after_family_freeze": true
+  },
+  "development_gates": {
+    "minimum_mean_improvement_over_global": 0.02,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.08,
+    "minimum_mean_improvement_over_random_case": 0.05,
+    "minimum_win_fraction_over_random_case": 0.55,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_distinct_selected_cases": 8,
+    "maximum_selected_case_share": 0.2
+  },
+  "confirmation_gates": {
+    "minimum_mean_improvement_over_global": 0.05,
+    "minimum_win_fraction_over_global": 0.6,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.15,
+    "minimum_mean_improvement_over_random_case": 0.05,
+    "minimum_win_fraction_over_random_case": 0.6,
+    "minimum_bootstrap_lower_improvement": 0.02,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_distinct_selected_cases": 8,
+    "maximum_selected_case_share": 0.2
+  },
+  "target_variants": {
+    "aligned_expert": {"target_variant": "aligned_expert"},
+    "filtered": {"target_variant": "filtered"}
+  },
+  "required_pass_variants": ["aligned_expert", "filtered"],
+  "branch_rules": {
+    "development_no_family_passes": "close BQ2A without confirmation execution and open only a preregistered pairwise source-compatibility learner",
+    "confirmation_fails": "close these nearest-neighbour families without descriptor/threshold rescue; pairwise learning may use development targets only under a new contract",
+    "confirmation_passes": "freeze hard retrieval before considering sparse Top-K or a learned pairwise challenger",
+    "severe_tail_or_concentration_fails": "close without dense blending or target-aware fallback"
+  },
+  "confirmation_family_selection_allowed": false,
+  "dense_blending_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "source-only hard case retrieval on paired FiveK digital-retouch controls; not film response, stock identity, calibration, preference or product evidence"
+}
