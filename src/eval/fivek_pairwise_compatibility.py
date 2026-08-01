@@ -331,7 +331,12 @@ def evaluate_development(
     threshold = _source_only_threshold(projected[fit], groups[fit], float(selector_spec["ood_distance_quantile"]))
     fallback = nearest_distance > threshold
     pooled = _pooled_operator(ordered, fit, operator_config)
-    baseline = _pooled_errors(ordered, validation, pooled, int(model_spec["evaluation_samples_per_image"]))
+    baseline = _pooled_errors(
+        ordered,
+        validation,
+        pooled,
+        int(model_spec["development_samples_per_image"]),
+    )
     matrix = np.asarray(prepared["error_matrix"])
     selected = matrix[validation, selected_case]
     shuffled = matrix[validation, shuffled_case]
@@ -389,11 +394,12 @@ def evaluate_confirmation(
     projection = fit_projection(features[fit], int(model_spec["pca_components"]))
     projected = project_features(features, *projection)
     operators = _operators(oracle_report)
-    samples = int(model_spec["evaluation_samples_per_image"])
+    development_samples = int(model_spec["development_samples_per_image"])
+    confirmation_samples = int(model_spec["confirmation_samples_per_image"])
     error_matrix = np.empty((len(development), len(development)), dtype=np.float64)
     for query_index, row in enumerate(development):
-        source = _even_samples(_rgb(row["source"]), samples)
-        target = _even_samples(_rgb(row["target"]), samples)
+        source = _even_samples(_rgb(row["source"]), development_samples)
+        target = _even_samples(_rgb(row["target"]), development_samples)
         for case_index, operator in enumerate(operators):
             error_matrix[query_index, case_index] = _rmse(operator.apply(source), target)
     x, y = training_matrix(projected[: len(development)], fit, error_matrix)
@@ -412,8 +418,8 @@ def evaluate_confirmation(
     baseline, selected, nearest, oracle, random, shuffled, selected_ids, output_rows = [], [], [], [], [], [], [], []
     for pos, row in enumerate(confirmation):
         pair_id = str(row["pair_id"])
-        source = _even_samples(_rgb(row["source"]), samples)
-        target = _even_samples(_rgb(row["target"]), samples)
+        source = _even_samples(_rgb(row["source"]), confirmation_samples)
+        target = _even_samples(_rgb(row["target"]), confirmation_samples)
         chosen = int(selected_case[pos])
         shuffled_chosen = int(shuffled_case[pos])
         evidence = oracle_rows[pair_id]

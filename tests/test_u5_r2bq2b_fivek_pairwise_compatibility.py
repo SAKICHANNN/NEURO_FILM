@@ -16,6 +16,8 @@ def test_bq2b_contract_is_low_capacity_hard_and_source_only_at_inference() -> No
         "closed_form_ridge_ranker_of_within_query_case_error_rank"
     )
     assert payload["model"]["pca_components"] == 32
+    assert payload["model"]["development_samples_per_image"] == 512
+    assert payload["model"]["confirmation_samples_per_image"] == 1024
     assert payload["model"]["query_target_used_at_inference"] is False
     assert payload["model"]["operator_parameters_used_at_inference"] is False
     assert payload["selector"]["dense_blending_allowed"] is False
