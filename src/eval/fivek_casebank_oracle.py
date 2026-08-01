@@ -321,6 +321,7 @@ def evaluate_offdiagonal_oracle(
         ),
         "confirmation_groups": len(set(groups.tolist())),
         "pooled_operator": {
+            "parameters": pooled_parameters.tolist(),
             "parameter_sha256": _array_sha256(pooled_parameters),
             "dose": float(pooled_safe.dose),
             "diagnostics": pooled_diagnostics,
@@ -328,6 +329,7 @@ def evaluate_offdiagonal_oracle(
         "case_bank": [
             {
                 "pair_id": case["pair_id"],
+                "parameters": case["parameters"].tolist(),
                 "parameter_sha256": _array_sha256(case["parameters"]),
                 "dose": float(case["operator"].dose),
                 "diagnostics": case["diagnostics"],

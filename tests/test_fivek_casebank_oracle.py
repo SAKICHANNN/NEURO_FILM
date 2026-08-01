@@ -89,6 +89,8 @@ def test_offdiagonal_oracle_recovers_multiple_explicit_directions() -> None:
     assert report["metrics"]["mean_improvement_over_global"] > 0.5
     assert report["metrics"]["mean_improvement_over_strength_oracle"] > 0.5
     assert report["metrics"]["distinct_selected_cases"] >= 2
+    assert len(report["pooled_operator"]["parameters"]) == 14
+    assert all(len(case["parameters"]) == 14 for case in report["case_bank"])
     assert report["router_training_allowed"] is False
 
 
