@@ -8903,3 +8903,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   BQ0S2. BQ1 v1 remains closed and no second run or operator fit was started.
 - Next: preregister and implement a separately versioned source-only
   multi-evidence duplicate adjudicator; confirmation targets remain unread.
+
+## 2026-08-01 - U5.R2BQ0S3 rejects dHash false positives
+
+- A separately committed adaptive protocol uses dHash only for candidate
+  generation, then requires pHash plus normalized-luma layout or independent
+  ORB/RANSAC geometry. Synthetic copy/crop/collision controls pass.
+- Two executions are byte-identical at `f6838274...97a6`; the real candidates
+  have pHash distances 28/32, luma correlations `.4634/-.2061` and zero mutual
+  ORB matches. Neither is a duplicate.
+- BQ0S2 remains failed. No target pixels were opened. Open only BQ1v2's frozen
+  evaluator Oracle; router, film, stock, calibration and product remain closed.

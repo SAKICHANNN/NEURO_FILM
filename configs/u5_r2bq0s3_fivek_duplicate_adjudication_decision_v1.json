@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u5-r2bq0s3-fivek-duplicate-adjudication-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S3",
+  "decision": "open_separately_versioned_bq1v2_oracle_only",
+  "contract_commit": "23bf78b388f5c41c18d6765d389c1edf7310a258",
+  "reports": {
+    "run_a": "outputs/u5_r2bq0s3_fivek_duplicate_adjudication_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq0s3_fivek_duplicate_adjudication_v1/run_b/report.json",
+    "sha256": "f6838274b3ce73c827c0c9435947723d0cf9dc589733585109dc3641b8c697a6",
+    "byte_identical": true,
+    "stable_evidence_id": "67587d634016a6176912696d52fff3687d8139bcc85b8bc5a2693c7a2377385e",
+    "automatic_pass": true
+  },
+  "observed_candidates": [
+    {
+      "scope": "prior_pool",
+      "dhash_hamming": 4,
+      "phash_hamming": 28,
+      "normalized_luma_correlation": 0.4634058570162577,
+      "orb_mutual_ratio_matches": 0,
+      "confirmed_duplicate": false
+    },
+    {
+      "scope": "internal_split",
+      "dhash_hamming": 4,
+      "phash_hamming": 32,
+      "normalized_luma_correlation": -0.2061103466258145,
+      "orb_mutual_ratio_matches": 0,
+      "confirmed_duplicate": false
+    }
+  ],
+  "parent_bq0s2_result_overridden": false,
+  "target_pixels_accessed": false,
+  "operator_fitting_allowed": false,
+  "router_training_allowed": false,
+  "next_leaf": "BQ1v2 may fit the preregistered off-diagonal evaluator Oracle only after binding this report and the unchanged target-blind parent manifest",
+  "claim_ceiling": "adaptive source-only duplicate-candidate rejection; no target, operator, router, film, stock, calibration, preference or product claim"
+}
