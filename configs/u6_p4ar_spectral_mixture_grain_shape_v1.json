@@ -1,0 +1,133 @@
+{
+  "schema": "neuro_film.u6_p4ar_spectral_mixture_grain_shape_contract.v1",
+  "experiment_id": "u6.p4ar-spectral-mixture-grain-shape-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AR",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "analysis_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "p4r_report": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_nps_v1/report.json",
+      "sha256": "01791c96929c3ba21816c94edee0cc0748654ff5de499f0d6b5eec9ea496c889",
+      "required_decision": "retain_generic_scanner_convolved_signature_only"
+    },
+    "p4t_contract": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_v1.json",
+      "sha256": "726300eaacce91e270fe69a80839e818d9be13eb07cc8221f38b509fb9944366"
+    },
+    "p4t_decision": {
+      "path": "configs/u6_p4t_anisotropic_grain_physical_decision_v1.json",
+      "sha256": "65433684b970d15c36d5e4a668131ba8ee21e68ba8ea883b11fb5f373f374339",
+      "required_status": "automatic_and_synthetic_severe_pass"
+    },
+    "p4t_report": {
+      "path": "outputs/experiments/u6_p4t_anisotropic_grain_physical_v1/report.json",
+      "sha256": "494b26d8bf7e79c0289020e75331ac8539e453deb1f35cef52038efa1cb1cd7d"
+    },
+    "p4ap_contract": {
+      "path": "configs/u6_p4ap_standard_ar_grain_shape_v1.json",
+      "sha256": "60add276486abb89da9fdecedb8e97ba0bd67b0c3dad85c10b2beaf38d914940"
+    },
+    "p4ap_evidence": {
+      "path": "docs/evidence/U6_P4AP_STANDARD_AR_GRAIN_SHAPE_RESULT.json",
+      "sha256": "9eaa4ed7a94e49276c832517794aa29fd5819958abb2e43c818b6e2ba1c64144",
+      "required_decision": "close_no_admitted_ar_candidate_before_confirmation"
+    }
+  },
+  "question": "Can one shared stability-by-construction nonnegative spectral mixture improve both scanner-convolved radial NPS and short-lag ACF over P4T on the fixed confirmation scans after development-only fitting?",
+  "research_basis": {
+    "latest_parameter_estimation": "https://arxiv.org/abs/2506.14350",
+    "latest_style_synthesis_control": "https://doi.org/10.1145/3712592",
+    "physical_stochastic_reference": "https://doi.org/10.1111/cgf.13159",
+    "scope": "Explicit stationary Gaussian source reference with a nonnegative PSD. It is a deterministic bounded-parameter challenger, not a neural pixel synthesizer, particle geometry model or product kernel."
+  },
+  "split": {
+    "development_source_ids": [
+      "KodakEktar100GrainScan01",
+      "KodakEktar100GrainScan02",
+      "KodakUltramax400GrainScan01",
+      "KodakUltramax400GrainScan02"
+    ],
+    "confirmation_source_ids": [
+      "KodakEktar100GrainScan03",
+      "KodakEktar100GrainScan04",
+      "KodakUltramax400GrainScan03",
+      "KodakUltramax400GrainScan04"
+    ],
+    "stock_labels_available_to_fit": false,
+    "confirmation_pixels_read_after_bundle_freeze": true,
+    "fit_observation": "Equal-weight median of normalized linear radial band powers over every fixed development crop and RGB channel after the frozen quadratic detrend."
+  },
+  "model": {
+    "family": "shared-nonnegative-log-gaussian-spectral-mixture",
+    "center_frequencies_cycles_per_pixel": [
+      0.018,
+      0.028,
+      0.044,
+      0.07,
+      0.112,
+      0.18,
+      0.3
+    ],
+    "bandwidth_octaves": 0.55,
+    "white_floor_fraction": 0.005,
+    "weight_quantization_denominator": 1024,
+    "fit": "One nonnegative least-squares simplex shared across every channel, stock, scan and image; then deterministic largest-remainder quantization summing exactly to 1024.",
+    "field_shape": [768, 768],
+    "central_analysis_crop": [128, 128, 512, 512],
+    "positive_proxy_scale": 0.01,
+    "development_seeds": [261201, 261203, 261209, 261223],
+    "confirmation_seeds": [261229, 261241, 261251, 261263],
+    "per_channel_weights_allowed": false,
+    "stock_specific_fit_allowed": false,
+    "confirmation_refit_allowed": false,
+    "per_image_normalization_allowed": false,
+    "display_rgb_noise_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "development_gates_before_confirmation": {
+    "minimum_active_components": 2,
+    "maximum_single_component_weight": 0.8,
+    "minimum_nps_median_improvement_over_p4t": 0.1,
+    "minimum_acf_median_improvement_over_p4t": 0.1
+  },
+  "confirmation_gates": {
+    "minimum_nps_median_improvement_over_p4t": 0.1,
+    "maximum_nps_worst_error_ratio_to_p4t": 1.0,
+    "minimum_acf_median_improvement_over_p4t": 0.1,
+    "maximum_acf_worst_error_ratio_to_p4t": 1.0,
+    "minimum_candidate_vs_reversed_frequency_control_improvement": 0.25,
+    "minimum_field_value_before_positive_proxy": -100.0,
+    "repeat_exact": true,
+    "row_partition_exact": true,
+    "input_hashes_unchanged": true,
+    "stock_labels_used_for_fit": false,
+    "confirmation_reads_before_bundle_freeze": 0
+  },
+  "branch_rule": {
+    "development_fail": "Close before confirmation without adding components, moving centers, changing bandwidth, regularization, split, metric or threshold.",
+    "confirmation_fail": "Close this exact spectral mixture without same-cohort rescue; retain P4T as generic development evidence and P4AF as synthetic reference.",
+    "pass": "Retain one generic scanner-convolved spectral source and open a separately frozen positive developed-density integration plus external P4Z fit-forbidden stress."
+  },
+  "forbidden_fallbacks": [
+    "read stock labels during fitting",
+    "read confirmation pixels before weights are frozen",
+    "fit channel, stock, scan or image-specific spectra",
+    "move spectral centers or bandwidth after any pixel result",
+    "increase component count or use an unrestricted per-bin spectrum",
+    "retune seeds, split, metrics or thresholds",
+    "call scanner-code covariance physical emulsion grain or stock response",
+    "photographic rendering or product integration in this leaf"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4ar_spectral_mixture_grain_shape_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p4ar_spectral_mixture_grain_shape_v1/report_b.json"
+  },
+  "claim_ceiling": "Development/confirmation evidence for one generic scanner-convolved spectral source; not physical particle geometry, stock/process/scanner calibration, photographic quality or product promotion."
+}
