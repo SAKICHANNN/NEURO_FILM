@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p5n_positive_residual_compiler_contract.v1",
+  "experiment_id": "u6.p5n-positive-residual-compiler-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5N",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p5m_contract": "configs/u6_p5m_measured_mtf_spatial_budget_v1.json",
+    "p5m_contract_sha256": "a0271a4b8ce6a8efe572c2696b5bde94d6990555ce819b53a0a2354eb6e54c1e",
+    "p5m_decision": "configs/u6_p5m_measured_mtf_spatial_budget_decision_v1.json",
+    "p5m_decision_sha256": "5d427be2c8a64bb2753c3bae0deac05962b8887d80fab19d92b7b47729faf0ee"
+  },
+  "question": "Can the measured/legacy small-signal response be represented by the simplest finite symmetric nonnegative target-grid PSF and reproduce the two-dimensional measured-total operator without ringing or partition drift?",
+  "frequency_split": {
+    "development_frequencies_cycles_per_mm": [25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65],
+    "confirmation_frequencies_cycles_per_mm": [26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64],
+    "normalization_fit_on_development_only": true
+  },
+  "candidate_family": {
+    "type": "symmetric_nonnegative_fir_pair_mass",
+    "candidate_radii_px": [1, 2, 5, 7],
+    "selection": "smallest radius with development maximum absolute response error at or below threshold",
+    "optimizer": "SLSQP simplex-constrained least squares",
+    "initial_pair_masses": "uniform",
+    "negative_taps_forbidden": true,
+    "sum_must_equal_one": true,
+    "post_fit_renormalization_forbidden": true
+  },
+  "charts": {
+    "shapes": [[31, 47], [64, 97], [129, 191]],
+    "random_seeds": [20260811, 20260812],
+    "constant_values": [0.0, 0.18, 0.5, 1.0],
+    "row_partitions": [7, 17, 31],
+    "small_signal_step_amplitude": 0.01,
+    "small_signal_baseline": 0.5
+  },
+  "gates": {
+    "development_max_absolute_response_error": 0.02,
+    "confirmation_max_absolute_response_error": 0.01,
+    "kernel_sum_absolute_error": 1e-12,
+    "kernel_minimum": -1e-15,
+    "combined_effective_impulse_minimum": -1e-12,
+    "combined_effective_impulse_sum_error": 1e-12,
+    "two_dimensional_chart_max_absolute_error": 0.02,
+    "two_dimensional_chart_mean_absolute_error": 0.002,
+    "constant_max_absolute_error": 1e-12,
+    "step_undershoot_max": 1e-12,
+    "step_overshoot_max": 1e-12,
+    "row_partition_byte_exact": true,
+    "repeat_byte_exact": true,
+    "two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "all_gates_pass": "retain the positive residual plus legacy generic chain as a numerical measured-total realization and open synthetic density/nonlinearity stress before photographs",
+    "frequency_or_two_dimensional_fail": "close residual composition and use measured-total replacement for any later measured-MTF challenger",
+    "artifact_or_partition_fail": "close the residual runtime candidate without threshold relaxation"
+  },
+  "forbidden": [
+    "fit confirmation frequencies",
+    "increase radius or add model families after viewing confirmation",
+    "use negative taps, unconstrained sharpening or hard clipping",
+    "claim the residual identifies forward scatter, development adjacency or dye diffusion",
+    "apply scanner MTF inside the fit",
+    "fit photographs, AO6 output or preference results",
+    "claim calibrated film, roll, process, scanner or product response"
+  ],
+  "claim_ceiling": "Numerical small-signal residual composition for one manufacturer total-film MTF family; not identified physical decomposition, photographic value, calibrated stock response or product promotion."
+}
