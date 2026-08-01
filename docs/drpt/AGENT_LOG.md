@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P2T VISION3 characteristic diversity closed
+
+- Froze first-party 50D/250D/500T graph identities, axes and solid B/G/R
+  source-ink traces before implementing the comparison. Three overlays were
+  inspected and follow the characteristic rather than granularity curves.
+- Two reports are byte-identical (`c6a2efa3...6f20`). All source, trace,
+  monotonicity, digitization-uncertainty and replay gates pass, but only the
+  50D-versus-250D blue layer exceeds `.02`; no pair has two material layers.
+- Close the stock-specific source-shape bank without rescue. P2U may compile
+  one gauge-free shared template and uncertainty envelope; RGB mapping,
+  photographs, calibration and product use remain closed.
+
 # 2026-08-01 - U6.P2P Kodak 250D characteristic source pass
 
 - Froze a dedicated, lineage-bound subset of the existing first-party Kodak

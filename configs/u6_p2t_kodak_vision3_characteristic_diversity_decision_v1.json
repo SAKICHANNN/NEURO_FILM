@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p2t_kodak_vision3_characteristic_diversity_decision.v1",
+  "experiment_id": "U6.P2T",
+  "contract_sha256": "65a98003450075a2aec04e63bc33cf88dc952343cf0db3eb949323ce473cf03c",
+  "trace_sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb",
+  "software_commit": "ef554eb2077dff95e34e4989d9b3020a55f687cf",
+  "formal_evidence": {
+    "report_a": "outputs/u6_p2t_kodak_characteristic_diversity/formal_a/report.json",
+    "report_b": "outputs/u6_p2t_kodak_characteristic_diversity/formal_b/report.json",
+    "report_sha256": "c6a2efa3f4f4ebbe11dd23204b50abd347e3b67188b2d74a98181d8347386f20",
+    "stable_evidence_id": "cdff0ee6c2178e4ee7088840c1b27695bc3345a0d689f312b6bdbcba3d9ed496",
+    "two_byte_identical_audits": true,
+    "visual_overlays_reviewed": true,
+    "overlay_sha256": {
+      "kodak_vision3_50d_5203_7203": "79ba3bb46ed0fdf0642b7f9333ca811f593b8e23c160fc675ccac0e8dd992fca",
+      "kodak_vision3_250d_5207_7207": "b79fa8b5359f8c0b56c5ae67de037924b792a789b3529c97f4904579529a39cb",
+      "kodak_vision3_500t_5219_7219": "011af6654e07ecb5bf7c897e78f912a39266a703db34662acd07e0107a1159f9"
+    }
+  },
+  "result": {
+    "diversity_pass": false,
+    "material_pair_count": 0,
+    "material_graph_degree": {
+      "kodak_vision3_50d_5203_7203": 0,
+      "kodak_vision3_250d_5207_7207": 0,
+      "kodak_vision3_500t_5219_7219": 0
+    },
+    "normalized_shape_rmse": {
+      "50d_vs_250d": {"blue": 0.027372934022437605, "green": 0.004861726697098567, "red": 0.010648121038382526},
+      "50d_vs_500t": {"blue": 0.0133442816147813, "green": 0.007544799144051425, "red": 0.006592211924212829},
+      "250d_vs_500t": {"blue": 0.014581309720984635, "green": 0.006502526946331668, "red": 0.013378002169839734}
+    },
+    "only_material_single_channel": "50D versus 250D blue layer",
+    "all_non_diversity_gates_pass": true
+  },
+  "decision": "retain_one_shared_manufacturer_shape_prior_and_close_stock_specific_shape_bank",
+  "next_ready_leaf": "U6.P2U compile and leave-one-stock-out validate one gauge-free shared manufacturer characteristic-shape template with an explicit uncertainty envelope; source-domain research only",
+  "forbidden_followups": [
+    "No trace, gate, affine gauge or single-channel rescue.",
+    "No stock-specific characteristic bank from these three graphs.",
+    "No digital RGB mapping, photograph test, calibrated stock claim or product integration."
+  ],
+  "claim_ceiling": "First-party manufacturer-graph source-domain characteristic-shape diversity diagnostic for VISION3 50D/250D/500T; not calibrated stock response, particular-roll evidence, digital-to-film identification or a product operator."
+}

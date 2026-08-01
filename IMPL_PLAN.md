@@ -280,6 +280,13 @@ mostly pass, but the green near-plateau makes strict inverse roundtrip
 `.01439` against `.02`. No alternate anchor/spline/repair is allowed and P2S
 does not open. P2T instead asks whether exact local Kodak 50D/250D/500T graphs
 contain source-domain stock-shape diversity before any RGB or photograph use.
+P2T closes the stock-shape bank. Two reports and all three overlays are exact;
+source, axis, ink, lineage, monotonicity and uncertainty gates pass. Only the
+50D-versus-250D blue layer exceeds the frozen `.02` normalized-shape gate, so
+no pair has the required two material layers and the stock graph has zero
+edges. P2U may compile one gauge-free shared template with a leave-one-stock-
+out uncertainty envelope; P2R, stock-specific mapping and photographs remain
+closed.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
