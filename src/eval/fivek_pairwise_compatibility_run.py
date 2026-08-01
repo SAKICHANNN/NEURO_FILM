@@ -102,7 +102,7 @@ def run_pairwise(
     oracle = validated["oracle"]
     nearest = validated["nearest"]
     development_results: dict[str, Any] = {}
-    populations: dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]] = {}
+    development_populations: dict[str, list[dict[str, Any]]] = {}
     for variant_name in config["required_pass_variants"]:
         target_variant = config["target_variants"][variant_name]["target_variant"]
         development = load_split_population(
@@ -111,13 +111,7 @@ def run_pairwise(
             target_variant=target_variant,
             maximum_side=int(config["decode"]["maximum_side"]),
         )
-        confirmation = load_split_population(
-            manifest,
-            split="confirmation",
-            target_variant=target_variant,
-            maximum_side=int(config["decode"]["maximum_side"]),
-        )
-        populations[variant_name] = (development, confirmation)
+        development_populations[variant_name] = development
         prepared = prepare_development_evidence(
             development,
             oracle["variants"][variant_name],
@@ -142,7 +136,16 @@ def run_pairwise(
     confirmation_results: dict[str, Any] = {}
     if development_pass:
         for variant_name in config["required_pass_variants"]:
-            development, confirmation = populations[variant_name]
+            target_variant = config["target_variants"][variant_name][
+                "target_variant"
+            ]
+            development = development_populations[variant_name]
+            confirmation = load_split_population(
+                manifest,
+                split="confirmation",
+                target_variant=target_variant,
+                maximum_side=int(config["decode"]["maximum_side"]),
+            )
             confirmation_results[variant_name] = evaluate_confirmation(
                 development_rows=development,
                 confirmation_rows=confirmation,
