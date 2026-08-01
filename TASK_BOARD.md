@@ -718,4 +718,9 @@ P6W instead streams the unchanged explicit equations in float32. Two 24MP runs
 produce the same SHA with max/RMSE error `3.88e-7/5.47e-8`, peak `171.5–171.7MB`
 RSS and `9.57–10.04s` wall; all 11 gates pass without full-frame output or
 clipping. Retain this ordinary-CPU reference and open native CPU parity, not a
-larger LUT.
+larger LUT. P6X then evaluates the Balica-Trumpy 2025 fixed multispectral
+centres with a shared nonnegative XYZ compiler. Paper7/paper8 are strong in
+absolute CIEDE2000 error, but the fresh CAVE median improvement over RGB3 is
+only `64.74%`, below the frozen `75%` gate. Close this ideal-centre family; a
+successor requires measured LED/sensor responses or an independent film MSI
+cube, not band or threshold rescue.

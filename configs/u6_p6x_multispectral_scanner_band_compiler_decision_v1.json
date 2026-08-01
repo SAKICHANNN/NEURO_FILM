@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p6x_multispectral_scanner_band_compiler_decision.v1",
+  "node": "U6.P6X",
+  "decision": "close_ideal_band_compiler_under_frozen_cross_material_gate",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6x_multispectral_scanner_band_compiler_v1.json",
+      "sha256": "72e8c41e824797ce79dc891240b202b69a7505434efff722128118753725c6ad"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6x_multispectral_scanner_band_compiler_v1/report.json",
+      "sha256": "113df741eab548df0471c9a040c12062bff8c398f9e65afa0b4b3253cc148fa4",
+      "stable_evidence_id": "09db794886914ba2d3b350937d42a4565a14b316c99e76136d84f3d9249c1fb7"
+    },
+    "software_commit": "c44767e9"
+  },
+  "results": {
+    "automatic_pass": false,
+    "failed_gates": [
+      "paper7_cave_median_vs_rgb3"
+    ],
+    "repeat_report_byte_exact": true,
+    "measured_velvia100f_rows": 8640,
+    "fresh_cave_representative_rows": 5951,
+    "fresh_cave_scene_count": 31,
+    "measured_joint_held_delta_e00": {
+      "rgb3_median": 4.291717640219885,
+      "rgb3_p95": 10.634270173001566,
+      "paper7_median": 0.4961716660550948,
+      "paper7_p95": 1.0607838847912356,
+      "paper8_median": 0.4752817063922552,
+      "paper8_p95": 1.4522654583041037
+    },
+    "fresh_cave_delta_e00": {
+      "rgb3_median": 2.096333892398322,
+      "rgb3_p95": 8.623615046211945,
+      "paper7_median": 0.7391646540162718,
+      "paper7_p95": 1.8510483606324915,
+      "paper7_maximum": 11.63296928929403,
+      "paper8_median": 0.6929313807154169,
+      "paper8_p95": 1.5789379581650012,
+      "paper8_maximum": 3.9950723118722533
+    },
+    "paper7_cave_median_improvement_vs_rgb3": 0.6474012767257096,
+    "paper7_cave_p95_improvement_vs_rgb3": 0.7853512302308076,
+    "frozen_paper7_cave_median_improvement_min": 0.75,
+    "paper7_vs_uniform7_cave_median_improvement": 0.10409068015673593,
+    "reversed_to_correct_paper7_cave_median_ratio": 17.744847734188014,
+    "clear_response_max_abs_error": 2.220446049250313e-16,
+    "minimum_output": 0.00009980436722375325,
+    "maximum_output_minus_d65_white": -0.05327161261073621
+  },
+  "interpretation": [
+    "The fixed 2025 paper centres preserve substantially more spectral information than the three-band control. Both seven and eight bands have low absolute CIEDE2000 error on measured Velvia 100F target spectra and on the independent CAVE reflectance stress population.",
+    "The paper7 compiler improves fresh CAVE p95 error by 78.54% and beats the equal-spacing diagnostic, while reversed band order fails strongly. The explicit nonnegative compiler is bounded and exactly clear-normalized without clipping.",
+    "The frozen programme nevertheless required at least 75% fresh CAVE median improvement over RGB3. The observed 64.74% fails that gate. The ideal-centre abstraction therefore closes under this contract; its strong development signal is retained without promotion or threshold rescue.",
+    "The result does not test numeric commercial LED SPDs, sensor sensitivity, actual scanner geometry or a released film MSI cube. A future successor requires one of those new identifying observations rather than more bands, a larger model or reuse of the same populations."
+  ],
+  "next_leaf": "Return to a distinct physical-film or stock-first explicit-operator leaf. Reopen multispectral compilation only with exact measured LED/sensor responses or an independently released film MSI cube.",
+  "production_integration_allowed": false,
+  "scanner_calibration_claim_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "strong ideal-band development evidence and formal cross-material gate failure; no measured scanner, stock, process, digital-to-film or product claim"
+}

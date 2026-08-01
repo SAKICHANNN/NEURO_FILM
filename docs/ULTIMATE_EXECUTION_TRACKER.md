@@ -1139,3 +1139,8 @@ U6.P6W retains the distinct streamed explicit route: two 24MP CPU runs have
 exact output SHA, max/RMSE float32 error `3.88e-7/5.47e-8`, peak RSS
 `171.46/171.73MB` and wall `10.04/9.57s`. All 11 gates pass with 128 live rows,
 zero full-frame output, clipping or range escape. Native parity remains open.
+U6.P6X then tests the 2025 Balica-Trumpy fixed 7/8-band centres as an explicit
+nonnegative XYZ compiler. The mechanism is strong and bounded, but formally
+closes: fresh CAVE median improvement over RGB3 is 64.74%, below the frozen
+75% gate, despite paper7/paper8 median Delta E00 of .739/.693 and exact replay.
+No band, threshold or same-pool rescue; measured LED/sensor evidence is required.

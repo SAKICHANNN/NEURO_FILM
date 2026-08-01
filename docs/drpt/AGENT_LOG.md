@@ -9440,3 +9440,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain this as the ordinary-CPU reference alternative to the closed FP16 LUT
   route. Native CPU/backend parity remains a separate leaf; measured print,
   scanner, photographic quality and product promotion remain unclaimed.
+
+## 2026-08-02 - U6.P6X closes the ideal multispectral band compiler
+
+- Implemented fixed Balica-Trumpy 2025 3/6/7/8-band and equal-spacing controls
+  as shared nonnegative band-to-XYZ compilers, fitted only on development rows.
+- Two runs are byte-identical (`113df741...8fa4`). Paper7/paper8 reach fresh
+  CAVE median Delta E00 `.739/.693`, and reversed ordering fails strongly, but
+  paper7 median improvement over RGB3 is `64.74% < 75%`; the frozen gate fails.
+- Close this abstraction without band, fit or threshold rescue. Reopen only
+  with measured LED/sensor response or an independent film MSI cube; no scanner,
+  stock, process, digital-to-film or product calibration claim opens.

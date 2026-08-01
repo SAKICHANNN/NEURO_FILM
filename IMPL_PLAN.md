@@ -36,6 +36,13 @@
 > All 11 gates pass at 128 live rows with zero full-frame output, clipping or
 > range escape. The next product-facing step is native CPU parity, not a larger
 > LUT or a weaker numerical gate.
+>
+> U6.P6X evaluates the Balica-Trumpy 2025 fixed multispectral centres with one
+> shared nonnegative band-to-XYZ compiler. Paper7 and paper8 reduce fresh CAVE
+> median Delta E00 to `.739/.693`, but paper7 improves the RGB3 median by only
+> `64.74%`, below the frozen `75%` gate. Close the ideal-centre family without
+> band or threshold rescue; reopening requires measured LED/sensor response or
+> an independent film multispectral cube.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are
